@@ -1,0 +1,30 @@
+# codex-loop artifacts
+.codex/
+.codex_logs/
+.codex-loop/
+.codex_loop/
+.codex_loopd/
+.codex_runs/
+# local dotnet installs/cache (DOTNET_CLI_HOME is set to repo dir)
+.dotnet/
+.dotnet6/
+.dotnet_home/
+.local/
+.nuget/
+dotnet-install.sh
+node_modules/
+userfile/
+# .NET build outputs and user settings
+**/bin/
+**/obj/
+*.user
+*.suo
+*.csproj.user
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+# Temp workspace artifacts
+tmp/
+/tmp/

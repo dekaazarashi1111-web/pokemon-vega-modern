@@ -1,0 +1,17 @@
+{
+  "name": "codex-loop-project",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check tools/chatgpt_browser/config.mjs && node --check tools/chatgpt_browser/open_chatgpt.mjs && node --check tools/chatgpt_browser/check_chatgpt.mjs && node --check tools/chatgpt_browser/send_message.mjs && node --check tools/chatgpt_browser/conversation_message.mjs && node --check tools/chatgpt_browser/generate_image.mjs",
+    "chatgpt:open": "node tools/chatgpt_browser/open_chatgpt.mjs",
+    "chatgpt:check": "node tools/chatgpt_browser/check_chatgpt.mjs",
+    "chatgpt:send": "node tools/chatgpt_browser/send_message.mjs",
+    "chatgpt:conversation": "node tools/chatgpt_browser/conversation_message.mjs",
+    "chatgpt:image": "node tools/chatgpt_browser/generate_image.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}

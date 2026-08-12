@@ -1,0 +1,64 @@
+schema_version: "1.0.0"
+
+project_dir: /home/dekaa/projects/Pokemon-Vega # set to an absolute repo path to force cwd (defaults to config directory)
+
+repo:
+  tasks_file: design/tasks_next.md
+  run_log_md: .codex-loop/logs/run_log.md
+  blockers_md: design/blockers.md
+  run_log_jsonl: .codex-loop/runs/run_log.jsonl
+
+artifacts:
+  max_runs: 50
+  max_log_bytes: 1048576
+
+logging:
+  level: info
+  sample_success_rate: 1.0
+
+telemetry:
+  enabled: false
+  format: jsonl
+  path: .codex-loop/logs/metrics.jsonl
+
+loop:
+  max_iters: 999
+  max_seconds: 28800
+  max_new_tasks_per_iter: 0
+  stop_flag: .codex-loop/queue/stop.flag
+  lock_file: .codex-loop/queue/LOCK.json
+  on_blocked: skip
+  max_blocked_per_run: 10
+  max_retries_per_task: 2
+
+verify:
+  # Default for native Linux. For WSL, scripts/verify_wsl.sh is also available.
+  # For native Windows, set to:
+  #   powershell -ExecutionPolicy Bypass -File scripts/verify_windows.ps1
+  command: "bash scripts/verify_linux.sh"
+  timeout_seconds: 7200
+  cpu_time_seconds: null
+  memory_mb: 16384
+
+git:
+  require_clean: false
+  ignore_artifacts: true
+  commit_enabled: true
+  message_template: "{task_id}: {title}"
+
+agent:
+  kind: "codex"
+  bin: "codex"
+  model: null
+  enable_search: true
+  max_attempts: 3
+  timeout_seconds: 7200
+  cpu_time_seconds: null
+  memory_mb: 16384
+  retry_backoff_seconds: 2.0
+  prompt_mode: "auto"
+  tty_wrapper: "auto"
+
+env:
+  mode: "native"
+  wsl_distro: null
