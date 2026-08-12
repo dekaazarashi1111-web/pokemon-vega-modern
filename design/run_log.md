@@ -260,3 +260,32 @@
   - address `e6ac294cef03599ca33c13fb44472d03daefe2a84f8849f66e92621c21e01f10` / semantic `f34553c892310d88fb300c427d01f479e1ff8f45e7d9e65d6e34d3b3eadfb3ee` / id inventory `95118aca3f88e2baee116d41ba7562fdcbf2d8f669230394626c4f7fb4e95a01`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みローカル入力、source、T01成果だけを参照した。
+
+## 2026-08-13T06:16:46+09:00
+
+- Task: `T03` / Create rebuildable Vega module harness
+- Status: DONE
+- Summary:
+  - clean FireRed日本版Rev.0へ固定Vega IPSをmemory上で適用し、既知Vega SHA-256へ照合してから32 MiBへ `0xFF` 拡張するstage driverを追加した。入力原本と前stageは上書きしない。
+  - strict named-region allocatorと `config/rom_regions.csv` を追加し、file offset `0x01200000` / GBA `0x09200000`へ34-byte no-op Thumb moduleを配置した。Vega-owned byte差分0、宣言span外差分0、hook/repoint 0件、overlap 0。
+  - 連続2 buildでROM・module成果・allocationをbyte一致させ、固定title frame、通常new-game trace、map移動、Vega `TrySavingData`、第1core破棄後のfresh-core `Save_LoadGameData`をlibmGBAでreference/candidate一致確認した。
+  - `harness-check` はinput/config fingerprint、header、expected bytes、smoke、module no-op、layout/allocation/content hash、reportをcross-linkして改変をfail-closedにする。
+- Files changed:
+  - build/entry: `scripts/build_project.py`, `Makefile`
+  - allocator/config: `tools/rom_allocator.py`, `config/rom_regions.csv`, `config/harness_smoke.json`
+  - module/smoke: `overlays/vega_adapter/**`, `tools/mgba_harness_smoke.c`
+  - focused tests: `tests/test_build_project.py`, `tests/test_rom_allocator.py`, `tests/test_vega_adapter.py`
+  - docs/state: `README.md`, `docs/BUILD_PIPELINE.md`, `docs/ROM_LAYOUT_POLICY.md`, `design/current_state.md`, `design/agent_context_map.md`, `design/catalog.md`, `design/report_lifecycle_index.md`, `design/tasks_next.md`, `state/task_status.json`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外再生成物: `build/stages/03_harness.{gba,json}`, `build/stages/03_allocation.json`, `build/modules/vega_adapter/**`, `reports/generated/harness_smoke.md`
+- Verify:
+  - `make harness`: PASS。fingerprint `b69cd1b2aacb6becee8f9eaf6150c209e8ccbb98c4b9218e288afe66786ce807`、ROM SHA-256 `fd01903a3507e25ae62377e3549962709ca207d5871b55fd4dcbb57813d5bbaf`。
+  - `make harness-check`: PASS。Vega先頭16 MiB一致、34-byte module以外の拡張領域不変、allocator overlap 0、metadata/report cross-link一致。
+  - `python3 -m unittest -v tests.test_build_project tests.test_rom_allocator tests.test_vega_adapter`: PASS（27 tests）。
+  - 独立read-only再レビュー: P1/P2なし。smoke/module metadata改変probeを拒否。
+  - `git diff --check`: PASS。
+  - ユーザー指示に従い、WSL repository全体verifyは実行していない。
+- Report identity:
+  - harness smoke Markdown SHA-256 `0d00be81301ea024d0f0e1e7521b7dcf1789167bd5d5079d963aca540c195f11`。
+  - module binary SHA-256 `16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みローカル入力、toolchain manifest、T01/T02成果だけを参照した。

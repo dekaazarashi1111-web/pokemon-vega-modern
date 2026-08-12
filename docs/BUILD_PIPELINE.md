@@ -25,6 +25,15 @@ inputs/private/clean.gba
 - expected-byte assertionに失敗したらそのstageを中止する。
 - 前stageを上書きしない。
 
+## T03 harness
+
+```bash
+make harness
+make harness-check
+```
+
+`make harness` はclean ROMとVega IPSから毎回作り直し、Vega既知hash、32 MiB `0xFF` 拡張、allocator、expected-byte、no-op module、連続2 build、libmGBA smokeを1回のtask固有gateで確認します。生成ROMは `build/stages/03_harness.gba`、machine-readable metadataは `build/stages/03_harness.json`、人間向け結果は `reports/generated/harness_smoke.md` です。`make harness-check` はエミュレータを再実行せず、現在の入力/config fingerprintと公開済み成果を照合します。
+
 ## 最終目標コマンド
 
 T18では次を実装します。

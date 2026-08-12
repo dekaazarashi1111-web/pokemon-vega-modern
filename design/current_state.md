@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: Gate A・T02完了 / 再構築可能なVega module harnessへ移行。
+- マイルストーン: Gate A・T03完了 / Vega Move IDのCFRU model移植へ移行。
 - ユーザー提供の4 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 4 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料を役割別に配置済み。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
@@ -16,6 +16,8 @@
 - Factory実挙動fixtureはBP、参加判定、Battle Mine optionが参照と一致し、trainer選出は差異として分類した。固定CFRU AIの保守的cold合成上限はsingle `2,584,765` cycles、double `6,297,788` cyclesで、warmはそれぞれ `339,772` / `609,210` cycles。
 - T02でDPE/CFRUのactive fixed write `6,143`件を実emission spanで再生し、同値write `155`件、許可済みoverlap `156`組を含めてT01の4 ROMとbyte一致した。分類はCFRU `5,127`、PORT `943`、RELOCATE `4`、SAME_TARGET `69`、UNKNOWN `0`。
 - Vega ROMをrooted walkし、43 map group / 425 map、132 encounter header、743 trainer、4,665 script nodeを機械可読化した。RAM/save/ID、QOL 14 domain、Factory/Mirage、通貨、CFRU AI ABI/cacheも同じpolicyとvalidatorへ統合した。
+- T03でclean ROMへVega IPSをmemory上で再適用し、32 MiBへ `0xFF` 拡張してno-op Thumb moduleをfile offset `0x01200000`へ配置するstage driverを確定した。連続2 buildはbyte一致、出力SHA-256は `fd01903a3507e25ae62377e3549962709ca207d5871b55fd4dcbb57813d5bbaf`、Vega-owned byte差分0、allocator overlap 0、hook/repoint 0件。
+- T03 libmGBA smokeは固定title frame、通常new-game入力trace、map `4/0`での移動、128 KiB physical save、第1core破棄後のfresh-core loadをreference/candidateで一致確認した。fingerprintは `b69cd1b2aacb6becee8f9eaf6150c209e8ccbb98c4b9218e288afe66786ce807`。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - 元FireRedのカントーを新規 `KANTO_*` 名前空間へ複製し、Vega中盤からトーホクと常時往復できる二地方構成は実現可能と判定。V2の47地点は生態設計単位であり、raw map総数ではないためT11で全建物・階層・warpとのcrosswalkを生成する。
@@ -27,11 +29,12 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、推奨 `PRIMARY=T03`、依存READY候補 `PARALLEL_PREP=T11,T12` である。PRIMARYは強制順ではなく、待ち時間を減らせる独立準備は並列化してよい。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、推奨 `PRIMARY=T04`、依存READY候補 `PARALLEL_PREP=T05,T08,T11,T12` である。PRIMARYは強制順ではなく、待ち時間を減らせる独立準備は並列化してよい。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
-- T03: clean ROMからVegaを再適用し、32 MiB拡張、named allocator、expected-byte assertion、no-op ARM module、boot/save smokeまでを決定的buildへする。
+- T03: DONE。clean ROMからVegaを再適用し、32 MiB拡張、named allocator、expected-byte assertion、no-op Thumb module、title/new-game/movement/save/fresh-core load smokeを決定的buildへ統合した。
+- T04: Vega Move ID 0〜511を固定し、CFRU move/battle modelへ移植する。
 - T11: T02のmap/ID監査を入力に、元FireRedカントーmap importerを並列準備できる。
 - T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
 

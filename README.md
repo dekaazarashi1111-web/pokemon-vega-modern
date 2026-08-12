@@ -46,6 +46,8 @@ ROM、IPS、UPS、元ZIPは `userfile/imports/` に読み取り専用で置き�
 ```bash
 make status       # 状態とRESUME/PRIMARY/並列準備候補
 make plan         # PRIMARY、並列準備候補、全実行wave
+make harness      # clean+Vega IPSから32 MiB T03 no-op harnessを再構築
+make harness-check # 生成済みT03成果を現在の入力/configへ照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -54,6 +56,8 @@ make test         # unit test
 WSLでは全体標準verifyを実行しません。選択タスクのacceptanceに必要なコマンドだけを使い、同じ検査を重ねません。
 
 初期入力・上流取得・参照ROM生成は `make quickstart` で行います。副作用と生成先は `CODEX_START_HERE.md` を先に確認してください。
+
+T03以降のROM stageは入力原本を上書きしません。`make harness` は固定clean ROMへVega IPSをmemory上で適用し、32 MiBへ `0xFF` 拡張して、named allocatorが許可した拡張領域へno-op moduleを配置します。
 
 ## 効率方針
 

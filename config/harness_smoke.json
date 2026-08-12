@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "runner_source": "tools/mgba_harness_smoke.c",
+  "fixed_rtc_unix": 946684800,
+  "title_frames": 1682,
+  "trace_segments": 233,
+  "settle_frames": 120,
+  "movement_frames": 60,
+  "symbols": {
+    "TrySavingData": "0x080DB34D",
+    "Save_LoadGameData": "0x080DB4E5",
+    "gSaveBlock1": "0x03005048"
+  },
+  "expected_entry_bytes": {
+    "TrySavingData": "30b50006050e0948",
+    "Save_LoadGameData": "70b50006040e0448"
+  },
+  "save_status_ok": 1,
+  "module_destination_expected_byte": 255,
+  "expected_title_framebuffer_fnv1a64": "b37da58cf64dfbf1",
+  "saveblock1": {
+    "position_offset": 0,
+    "location_offset": 4
+  },
+  "movement_keys": [16, 32, 64, 128],
+  "expected_new_game": {
+    "map_group": 4,
+    "map_number": 0,
+    "x": 10,
+    "y": 2
+  },
+  "expected_movement": {
+    "key": 32,
+    "x": 6,
+    "y": 2
+  },
+  "expected_game_title_ascii": "POKEMON FIRE",
+  "expected_game_code_ascii": "BPRJ"
+}

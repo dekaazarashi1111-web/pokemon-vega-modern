@@ -1,0 +1,6 @@
+name,start,end_exclusive,alignment,kind,owner,purpose
+vega_base,0x00000000,0x01000000,4,reserved,Vega,Vega IPS output and original data
+cfru_payload,0x01000000,0x01200000,4,reserved,CFRU-JP,T01 CFRU linked payload envelope
+integration_modules,0x01200000,0x01600000,4,allocatable,project,relocated adapters and integration modules
+dpe_payload,0x01600000,0x01F50000,4,reserved,DPE-JP,T01 DPE linked payload envelope
+future_tail,0x01F50000,0x02000000,4,allocatable,project,future small generated tables and metadata

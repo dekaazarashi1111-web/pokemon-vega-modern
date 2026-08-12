@@ -29,6 +29,7 @@
 - `scripts/preflight.py`: 入力とtoolchainの事前検査
 - `scripts/run_baseline_audit.py`: cleanからの参照ROMと厳密競合監査
 - `scripts/generate_t02_audit.py`: T01成果、固定ROM、固定sourceからT02の11監査成果を決定的生成
+- `scripts/build_project.py`: clean+Vega IPSから32 MiB T03 harnessを2回再構築し、module配置とlibmGBA smokeを検証
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -57,4 +58,7 @@
 - `tools/chatgpt_browser/README.md`: ChatGPT Web ブリッジ操作手順
 - `audit_seed/tools/`: patch解析、参照ROM生成、source address監査
 - `tools/t02/`: fixed source write、Vega ROM inventory、RAM/save/ID/state監査model
+- `tools/rom_allocator.py`: 32 MiB named regionの決定的配置とoverlap拒否
+- `overlays/vega_adapter/`: hook 0件の再構築可能なT03 no-op Thumb module
 - `config/t02_audit_policy.json`: T02入力hash、分類、overlap、移行・施設・AI契約の機械可読正本
+- `config/rom_regions.csv`: ROM file offset half-open partitionの機械可読正本
