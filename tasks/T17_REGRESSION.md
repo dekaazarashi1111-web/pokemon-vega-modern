@@ -27,6 +27,10 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 16. 文章の全制御code、移動の接触/座標event・warp・段差・歩数、IV/EV境界、固定RNG孵化matrix、Lv.100/box満杯/save移行を自動または決定論fixtureで回帰する。
 17. QOL-Bを容量不足、禁止個体/道具/map、cancel、色違い/固定戦闘、save/load込みで検証する。タマゴバスケットは親不在/相性なし/255歩/256歩/queue満杯/無効map/再起動後の各境界を固定RNGで検査する。
 18. `config/feature_matrix.csv` へ全QOL-B entry、解禁条件、release既定ON/OFFを追加し、QOL-A/Bの正本を1つに統合する。
+19. FactoryのTrial/Standard/Full/Master、single/double/NPC partner multi/random、候補6→選択3、勝利後交換、BP/shop、一度限り報酬、mode別ギミックを通し、Mirage Battleの持込party/recordが変化しないことを検証する。実戦は3/7連戦を通し、49/100はstreak=48/99の決定論fixtureから境界戦と報酬だけを検証する。link multiはrelease scope外とする。
+20. 施設入退場、辞退、敗北、全滅、save/load、reset、中断、blackout、変身/form、持ち物交換、消耗品、multiで、元party/HP/PP/status/持ち物と一時stateがexactに一度だけ復元されることを検証する。
+21. 施設外NPCを残高不足、解禁前、party満杯かつPC満杯、cancel、支払い直後reset、逃走、撃破、全滅、再挑戦、捕獲成功で検証する。同一保留個体を再抽選せず、二重減算/増殖を起こさず、報酬戦からEXP/EV/賞金/野生所持品の盗難・持出し/drop/chainを得られないことを確認する。
+22. 全Factory mode、連勝表示、Ultimate選択、BP shop、建物外NPCは既存party/list/shop/Yes-No/messageだけを再利用し、`frontier_records.c` 専用画面を含む新規full-screen UIや専用演出assetを追加しない。
 
 ## Required outputs
 
@@ -34,6 +38,7 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 - `tests/manual/KANTO_CHECKPOINTS.md`
 - `reports/generated/regression_summary.md`
 - `reports/generated/qol_b_integration.md`
+- `reports/generated/facility_regression.md`
 - `config/feature_matrix.csv`
 - `KNOWN_ISSUES.md`
 
@@ -52,6 +57,10 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 - [ ] QOL-Bの全機能が `docs/QOL_POLICY.md` の対象・解禁・atomicity規則どおりrelease configで有効になる。
 - [ ] `config/feature_matrix.csv` がQOL-A/Bの全機能とrelease既定値を列挙し、実build configと一致する。
 - [ ] QOL-Bは既存画面/標準menuへ収まり、新規full-screen UI、独自window skin、専用animation/cutscene assetを追加しない。
+- [ ] 全Factory modeと連勝境界がrelease configで完走し、通常Vega戦・Mirage・save・図鑑・育成stateへの漏れがない。
+- [ ] 全施設出口と異常終了で元partyがexact復元され、BP/連勝/報酬/保留遭遇の更新はatomicかつ再起動可能である。
+- [ ] 施設外NPC捕獲は標準UIから即時開始し、capacity、支払い、retry、捕獲完了の全境界でcredit・個体・caught stateが一貫する。
+- [ ] Factory全mode、記録、shop、遭遇NPCが既存UIだけで操作でき、link multiや専用record/capture画面をrelease scopeへ持ち込まない。
 
 ## Finish
 

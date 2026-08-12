@@ -17,6 +17,7 @@ Generate a clean distributable patch and documentation without including copyrig
 6. Scan the archive for ROMs, saves, original patches, and private paths.
 7. Tag the source revision and store build metadata.
 8. 既定即時文章、移動速度、孵化演出、全体学習装置、育成/PC操作、解禁時期、save移行を利用説明とfeature matrixへ記載する。
+9. Battle Factoryの操作、4段階解禁、rental/交換/連勝、BP shop、施設外NPC捕獲、Mirageとの役割分離、save復旧を説明し、移植元source/作者/利用条件とFactory参照hashをcredits/build metadataへ記録する。
 
 ## Required outputs
 
@@ -33,6 +34,7 @@ Generate a clean distributable patch and documentation without including copyrig
 - [ ] Source pins and input hashes are documented.
 - [ ] Release build is reproducible from a fresh checkout plus private inputs.
 - [ ] Release文書と `config/feature_matrix.csv` が `docs/QOL_POLICY.md` の全既定値・操作方法と一致する。
+- [ ] Release archiveへFactory UPS/ROMを含めず、施設source provenance、解禁、操作、known issue、save互換性を再現可能な形で記載する。
 
 ## Finish
 

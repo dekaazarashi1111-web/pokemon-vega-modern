@@ -25,6 +25,11 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 14. T12 schemaの `field_pc_allowed` を両地方の町・通常道路へtrueで明示配置し、gym、dungeon、league、event専用mapはfalseにする。未設定falseに依存せず、両地方から代表town/routeと全禁止contextをreportする。
 15. `manifests/tohoku_items.csv` と `manifests/qol_rewards.csv` のheader、unique key、symbolic reference、unlock/repeatabilityを `scripts/validate_manifests.py` または専用validatorへ登録する。
 16. V2由来を含む新規eventはゲーム上の効果を維持しつつ `SIMPLE_EVENT` を優先し、既存NPC/端末、短い会話、標準battle/item/flag/warpへ正規化する。専用演出は既存asset再利用でも成立しない必須eventだけに限定する。
+17. Factoryの初級/中級/上級/特殊/Vega/Mix rental pool、trainer、AI、rule、BP reward/shopを生成する。Mixの基本抽選比率は公式70%、Vega固有25%、特別枠5%とし、rental rowへspecies/form、nature、IV/EV、item、4 moves、ability、Gmax可否、Tera typeを明示する。
+18. BP shopの初期balanceをmanifest化する。XS=1、S=2、進化石=3、かわらずのいし=4、あかいいと=12、power系=8、mint=8、特性カプセル=16、M=4、こだわり系=24、銀冠=32、特性パッチ=64、金冠=128、XL=12 BPを起点とし、T15のstory gateと `docs/QOL_POLICY.md` のfirst-availabilityを優先してlintする。
+19. Trial初回報酬をXS×5、S×2、BP 3、反復報酬をBP 1〜2と木の実/ballを起点にmanifest化する。施設外NPC用には、おまかせ8、生息地15、タイプ25、希少50 BPを起点とする遭遇credit/poolを配置する。3/7/14/21連勝では段階credit、49連勝では一度限りの特殊event key、100連勝では一度限りの非伝説色違い記念枠を付与する。
+20. 反復遭遇poolへ伝説・幻・battle専用formを入れず、全poolを進行gateし、通常探索の入手経路も残す。未捕獲を最大10回の内部再抽選で優先し、該当なしなら重複を許可する。tier別level/IV保証/隠れ特性率を明示する。報酬戦ではEXP/EV/賞金/野生所持品の盗難・持出し/drop/DexNav chainを無効化し、捕獲時だけ通常のcaught stateを更新する。
+21. 既存の釣り、虫取り、採掘、写真、生態調査、ゲームコーナー等で利用可能な完了hookだけを調査point/arcade coin供給へ接続する。存在しない活動のために新規ミニゲーム、map、UIを作らず、未実装hookは明示的にDEFERする。
 
 ## Required outputs
 
@@ -33,6 +38,11 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 - `manifests/kanto_items.csv`
 - `manifests/tohoku_items.csv`
 - `manifests/qol_rewards.csv`
+- `manifests/facility_modes.csv`
+- `manifests/facility_rentals.csv`
+- `manifests/facility_trainers.csv`
+- `manifests/facility_rewards.csv`
+- `manifests/reward_encounters.csv`
 - `reports/generated/kanto_content_audit.md`
 
 ## Acceptance gates
@@ -48,6 +58,10 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 - [ ] Tohoku/Kanto双方で代表town/routeのfield PCが有効、全gym/dungeon/league/event専用mapが無効になり、未分類map一覧が0になる。
 - [ ] 新規Tohoku/QOL manifestのheader、unique key、全symbolic referenceをvalidatorが検査する。
 - [ ] 新規eventの専用UI/cutscene/minigame依存が0で、例外は根拠と再利用不能理由をreportに列挙する。
+- [ ] 全rental/trainer rowが合法で、pool比率、Lv.50補正、rule/AI/gimmick eligibilityを再現可能に生成できる。
+- [ ] BP価格と初回入手時期に矛盾がなく、遭遇credit、節目報酬、一度限りkey、反復poolの禁止種をvalidatorが検査する。
+- [ ] ランダム捕獲は施設外の `SIMPLE_EVENT` NPCだけから起動し、専用capture map/UI用contentを生成しない。
+- [ ] 採用した既存ミニゲームhookはexactly-onceでpointを付与し、未採用/未実装hookは架空の供給経路として生成されない。
 
 ## Finish
 

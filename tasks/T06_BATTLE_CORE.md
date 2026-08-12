@@ -18,6 +18,9 @@ Run the CFRU battle engine on top of Vega without replacing Vega story/map conte
 7. Run smoke tests after each hook category and keep bisectable commits.
 8. 全体学習装置ON/OFF、mint補正、特性slot、SV式Hyper Trainingの実効IV=31を入力として受けるbattle/stat accessorを作る。save fieldとsummary UIへの接続はT08/T09後のT10で行う。
 9. 経験アメはbattle分配を通さず選択個体だけを処理できる境界を作る。
+10. CFRUのBattle Factory battle-side coreをallocator管理領域へ移植し、既存Vega種だけのsynthetic fixtureでLv.50 rental生成、facility battle flag、single 3v3、double 4v4、NPC partner multi、random、Little/Monotype/Unrestricted/OU/Uber/Camomons/GSのrule dispatchを検証する。link multiはrelease scope外とする。候補6→3、交換、連戦session、記録、図鑑、party復元はT08/T09後のT10で統合する。
+11. 施設戦ではEXP、EV、なつき度、孵化歩数、捕獲、賞金、恒久的な道具消費/持出しを無効化するbattle境界を作る。
+12. 標準、Mega、Z、Dynamax、Teraを別modeとして隔離し、Ultimateは入場時に1方式だけを選ぶ。複数ギミックの無条件同時使用を許可しない。
 
 ## Required outputs
 
@@ -25,6 +28,7 @@ Run the CFRU battle engine on top of Vega without replacing Vega story/map conte
 - `config/cfru_vega_minimal.h`
 - `reports/generated/battle_hook_matrix.csv`
 - `reports/generated/battle_core_smoke.md`
+- `reports/generated/facility_core_smoke.md`
 
 ## Acceptance gates
 
@@ -33,6 +37,8 @@ Run the CFRU battle engine on top of Vega without replacing Vega story/map conte
 - [ ] No unclassified hook overwrites Vega code.
 - [ ] Optional feature disablement is explicit, not accidental.
 - [ ] 全体学習装置、mint、特性slot、Hyper Trainingの各入力fixtureに対してbattle/stat accessorが正しい結果を返し、経験アメは他partyへ分配されない。save・summaryとの一致はT10で検証する。
+- [ ] Synthetic fixtureのrental生成、facility flag、rule dispatch、各battle形式が通常Vega戦と独立して動き、施設中の成長・捕獲・道具変化をbattle結果へ出力しない。
+- [ ] 各ギミックmodeは相互排他的で、mode終了時に一時battle stateが全て破棄される。
 
 ## Finish
 

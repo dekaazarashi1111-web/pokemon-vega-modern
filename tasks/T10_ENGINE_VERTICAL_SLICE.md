@@ -22,6 +22,8 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 11. field/battle文章を次の描画機会で即時表示し、変数、色、改ページ、選択肢、明示wait、効果音とscript同期順を維持する。
 12. 経験アメ5種の共通callbackを既存数量選択UIへ接続し、`x1/x5/x10/すべて` を栄養drink、ハネ、ふしぎなアメ、テラピース、coin、努力値reset用品へ再利用する。専用画面は作らない。
 13. 全体学習装置、現代孵化、SV式王冠、mint/特性道具、IV/EV表示、タマゴPC/queueを同じ継続saveで通す。
+14. 最小Factory縦切りとして、Lv.50 rental候補6体から3体を既存party/list/Yes-No UIで選び、single 3v3を3連戦し、勝利後の1体交換、連勝/BP、敗北・辞退・退出後の元party/持ち物完全復元まで通す。rental/対戦相手は図鑑のseenだけを更新しcaughtを更新しない。専用record画面は作らず標準messageで表示する。
+15. debug用の施設外NPCから遭遇credit 1回を使用し、容量確認、支払い、固定pool抽選、通常scripted wild battleの即時開始、逃走後の同一個体再挑戦、捕獲成功による保留消去を通す。
 
 ## Required outputs
 
@@ -31,6 +33,8 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 - `reports/generated/qol_vertical_slice.md`
 - `tests/fixtures/qol_slice.json`
 - `tests/fixtures/qol_movement_courses.json`
+- `tests/fixtures/factory_trial.json`
+- `tests/fixtures/reward_encounter.json`
 
 ## Acceptance gates
 
@@ -43,6 +47,8 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 - [ ] 経験アメは100/800/3000/10000/30000を選択個体だけへ加算し、EV、他party、level途中の技習得・進化を誤らない。
 - [ ] 即時文章と高速移動がVegaのscript/battle順、tile event、warp、saveを壊さない。
 - [ ] QOL-Aの表示・設定は既存UI部品だけで操作でき、新規full-screen UIや専用演出assetを必要としない。
+- [ ] 3連戦Factory trialは新規full-screen UIなしで完走でき、交換・敗北・辞退・save/resetの全出口で元party/HP/PP/status/持ち物が完全復元される。
+- [ ] 施設外NPCは標準message/list/Yes-Noから通常捕獲戦を即時起動し、専用捕獲mapやcutsceneを必要としない。
 
 ## Finish
 

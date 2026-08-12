@@ -65,3 +65,14 @@
   - UIは既存画面のcompact adapter、eventは短い `SIMPLE_EVENT` に限定し、QOL-Bが最初のカントー縦切りを待たせない順序にした。
   - READY先頭順を助言化し、検証重複を削減しつつ最終stage/private guard/commitを含むGit完了手順へ統一した。
 - Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）
+
+## 2026-08-12T23:22:49+09:00
+
+- Version: `design-battle-factory-0.6.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260812-BATTLE-FACTORY` / Battle Factoryと施設外ランダム捕獲NPC追加
+- Summary:
+  - 固定CFRU sourceからのRental Factory移植、4段階解禁、BP/shop、Mirage分離、元party完全復元を既存T01〜T18へ割り当てた。
+  - クチバ港の簡易受付と建物外NPCを採用し、新規大型map/full-screen UIなしでランダム捕獲戦を即時開始する仕様を固定した。
+  - 支払い済み個体のatomic saveと同一個体retryを定義し、smoke matrixを57件へ拡張した。
+- Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）

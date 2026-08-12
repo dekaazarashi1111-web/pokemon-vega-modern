@@ -22,11 +22,15 @@
 11. Kanto scriptのVega badge/story/HM flagへの書込み、境界ノード以外のVega進行flag参照をlintする。
 12. 全体学習装置、タマゴPC転送/5個queue、技思い出し、あかいいと、power系、経験アメ各tier、mint、特性道具、王冠、EV reset service/item、まるいおまもり、PC検索/一括操作、field PC、持ち物操作、タマゴバスケット、自動戦闘の解禁を `docs/QOL_POLICY.md` の境界へ接続する。
 13. QOL解禁は既存NPC/端末の短い `SIMPLE_EVENT` と1回のflag/reward処理で実装し、専用cutsceneや多段questを追加しない。
+14. クチバ港の同じ簡易Factory受付で4段階を解禁する。D・Hビル後は一般種・ギミックなしの3連戦Trial、Vega 5個目badge後はsingle/double・交換・7連戦のStandard、Vega殿堂入り後は高種族値/準伝説とLittle/Monotype/Unrestricted/OU/Uber/Camomons等を含むFull、Kanto League後は高難度AI・完成育成・GS/地方混成・49/100連勝戦を含むMasterとする。
+15. Factoryはrental専用、Vegaミラージュバトルは育成済み持込専用としてstate/rewardを分離する。Mega/Z/Dynamax/Teraはmode別に解禁し、Ultimateだけ入場時に1方式を選択する。
+16. BP shop、rental pool、遭遇credit/poolをstory gateへ接続し、早期渡航だけで後半育成品・特殊種・高連勝報酬を解禁しない。
 
 ## Required outputs
 
 - `content/kanto_progression.csv`
 - `content/qol_progression.csv`
+- `content/facility_progression.csv`
 - `generated/kanto/progression/`
 - `reports/generated/progression_graph.md`
 
@@ -41,6 +45,8 @@
 - [ ] Kanto側の状態変更でVega本編のwarp/HM/story gateを開かない。
 - [ ] 各QOL unlockの直前/直後fixtureがあり、Kanto早期アクセスだけでVega殿堂入り後・Kanto League後の育成報酬を解禁できない。
 - [ ] Vega badge由来とKanto由来のQOL unlockは `content/qol_progression.csv` で一意に導出され、saveへ同じ解禁stateを二重保存しない。
+- [ ] Trial/Standard/Full/Masterの直前・直後fixtureがあり、各mode、rental pool、BP shop、遭遇poolは指定境界でだけ解禁される。
+- [ ] FactoryとMirageの連勝、通貨、party owner、報酬が相互に更新されず、各ギミックmodeの解禁も独立する。
 
 ## Finish
 

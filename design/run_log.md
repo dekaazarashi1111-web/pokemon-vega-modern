@@ -133,3 +133,27 @@
   - `git diff --check`: PASS
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。ユーザー添付とローカルworkspaceだけを参照した。
+
+## 2026-08-12T23:22:49+09:00
+
+- Task: `USER-20260812-BATTLE-FACTORY` / Battle Factoryと施設外ランダム捕獲NPCのタスク追加
+- Status: DONE
+- Summary:
+  - 既存のFactory UPSと生成済み参照ROMが固定hashで揃っていることを再確認し、再取込・再download・VegaへのUPS重ね掛けを行わず、固定CFRU-JP sourceからBattle Factoryを移植する作業をT01/T02/T06/T08/T10/T12〜T18へ割り当てた。
+  - Rental候補6体から3体選択、勝利後交換、3/7連戦、single/double/NPC partner multi/random、rule別・ギミック別mode、BP/shop、Mirage Battleとのstate分離、全出口での元party完全復元を受入条件にした。
+  - D・Hビル後Trial、Vega 5個目badge後Standard、Vega殿堂入り後Full、Kanto League後Masterの4段階を、クチバ港の同じ簡易受付で解禁する。新規大型施設map、Sevii/Trainer Tower、専用record画面、full-screen UIは必須scopeへ追加しない。
+  - ランダム捕獲は施設外NPCの標準message/list/Yes-Noから、支払いと固定個体をatomic saveした後に通常scripted wild battleを即開始する仕様へ固定した。専用捕獲map/UIは作らず、逃走・撃破・全滅後は同一個体へ無償再挑戦し、捕獲成功時だけ保留を消す。
+  - smoke matrixをS001〜S057へ拡張し、施設、復元、4段階解禁、BP/連勝、外NPC即時戦闘、再挑戦、容量/残高/gate、Mirage非干渉を追加した。
+- Files changed:
+  - タスク仕様: `tasks/T01_UPSTREAM_REPRO.md`, `tasks/T02_EXACT_AUDIT.md`, `tasks/T06_BATTLE_CORE.md`, `tasks/T08_SAVE_RAM.md`, `tasks/T10_ENGINE_VERTICAL_SLICE.md`, `tasks/T12_CONTENT_SCHEMA.md`, `tasks/T13_VERMILION_SLICE.md`, `tasks/T15_POSTGAME_PROGRESSION.md`, `tasks/T16_CONTENT_POPULATION.md`, `tasks/T17_REGRESSION.md`, `tasks/T18_RELEASE.md`
+  - 検証: `tests/smoke_test_matrix.csv`
+- Verify:
+  - Factory UPS原本/安定参照SHA-256 `46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358`: PASS
+  - Factory参照ROM 32 MiB / SHA-256 `570ac486f0e66563ee23278ff7ee34dd8dfeed11cbf37ab924d13eb2c62c0da5`: PASS
+  - smoke matrix S001〜S057、8列、連番、一意、task ID: PASS
+  - `bash scripts/verify_wsl.sh`: PASS（受領資料、DAG/manifest/private guard、42 tests、npm check）
+  - `git diff --check`: PASS
+  - 独立read-only再レビュー: blocking/P1/P2なし
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - `https://w.atwiki.jp/pokehackgames/pages/62.html` を参照。kpbr氏制作のBattle Factory patchが最新世代のポケモン/道具、Mega/Dynamax、CFRU移植を含む施設であるという概要と、2026-04-25のページ更新を確認した。実装source/config/hashの根拠はローカル固定CFRU-JPとFactory参照を正とする。

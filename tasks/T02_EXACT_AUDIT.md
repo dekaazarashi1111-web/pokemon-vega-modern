@@ -22,6 +22,9 @@ Turn the initial binary conflict report into a complete machine-readable compati
 11. 早期渡航の境界以外でKanto側が参照または書込みしてはならないVega badge/story/HM/warp/item flagの所有権リストを作る。
 12. ダッシュ、自転車、field/battle文章printerとdelay、経験値分配、item-use、預かり屋/孵化、summary、PC、技思い出し、設定保存のVega実hook・table・制御codeを抽出する。
 13. 移動高速化で通過し得るtile callback、文章即時化で保持すべき明示wait/効果音/改ページ/選択肢、自動戦闘を禁止すべきbattle種別を分類する。
+14. Factory参照をoracleとして、施設用hook、`FLAG_BATTLE_FACILITY`、flag/var/script special、trainer/map/music ID、BP/連勝record、rental生成、party backup、RAM/save領域、中断・全滅・復元経路を抽出する。
+15. Vegaのミラージュバトルを同じ粒度で監査し、持込party施設とレンタル施設のstate/hook/rewardが衝突せず共存する割当を確定する。
+16. BP、調査point、arcade coin候補について、Vegaのcoin case/残高、既存ミニゲーム完了hook、V2の調査state、上限、表示/減算routineを監査し、再利用・新規割当・DEFERを分類する。
 
 ## Required outputs
 
@@ -33,6 +36,7 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - `reports/generated/vega_map_inventory.csv`
 - `reports/generated/vega_encounter_inventory.csv`
 - `reports/generated/qol_hook_inventory.csv`
+- `reports/generated/facility_audit.md`
 - `tools/validate/address_assertions.py`
 
 ## Acceptance gates
@@ -44,6 +48,8 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - [ ] Map group limits, reserved values, and every state domain needed by dual-region travel are classified.
 - [ ] 早期解禁元の実flagは「3個目バッジ＋アーシアD・Hビル攻略後」にだけ成立し、数値とscript contextの証拠がある。
 - [ ] QOL実装に必要な全hook、save field、tableと、Vega側のexpected bytesが未分類なく記録される。
+- [ ] Battle Factoryとミラージュバトルの全固定write、RAM/save、ID、script境界が分類され、raw固定値を統合版へ持ち込まない再配置案がある。
+- [ ] 採用候補通貨ごとにsave owner、bit幅、上限、獲得/消費hookが確定し、根拠のない通貨はrelease有効化されない。
 
 ## Finish
 
