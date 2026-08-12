@@ -11,3 +11,5 @@ python3 scripts/validate_manifests.py
 ```
 
 bootstrap中はheaderのみの空ファイルを許容し、各タスクで段階的に埋める。
+
+`move_ids.csv` はT04の `scripts/build_move_port.py` が生成するMove ID正本で、0〜511はVega固定、512〜1062はCFRU-JP appendです。手編集せず、`make moves` / `make moves-check` と `scripts/validate_manifests.py` で更新・検査します。

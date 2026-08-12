@@ -289,3 +289,36 @@
   - module binary SHA-256 `16ab88fb53956eccba0cb99a9621c14e9f04282535f8c7cc74ee4b5dd010e350`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みローカル入力、toolchain manifest、T01/T02成果だけを参照した。
+
+## 2026-08-13T07:42:09+09:00
+
+- Task: `T04` / Port Vega Move IDs into CFRU model
+- Status: DONE
+- Summary:
+  - 固定Vega ROMのpointerから技名・12-byte battle data・説明・animation・effect tableを再抽出し、Vega Move ID `0..511`を固定した。CFRU identity 441件を対応し、未収録551技を`512..1062`へappendして全1,063技を単一manifestから生成した。
+  - 受領したV3技調整資料をhash固定で取り込み、現代化61件とVega独自技70件を優先適用した。同名別技はVega ID 470を「ソウルバイト」、ID 509を「ダークスナイプ」へ変更し、CFRU公式「くらいつく」「ねらいうち」は別IDに保持した。
+  - 独自技70件の提案を構造化operationへ変換し、compile済みhandler/dispatchを生成した。CFRU未知effect IDは流用せずbase effect 0とし、battle runtime callbackの接続点をT06へ渡した。技名・説明はgame charmap byteと`0xFF`終端で生成し、992 CFRU aliasも既存headerと併用可能にした。
+  - 44,032-byte bridgeをT03 stageのnamed allocatorへ配置し、Vega所有領域の178 pointerをexpected old pointerから再参照した。宣言span外の変更は0。固定wild battleで技ID33を実行し、player PP `35 -> 34`とenemy HP低下をreference/candidate双方で確認した。
+- Files changed:
+  - build/model: `scripts/build_move_port.py`, `scripts/build_move_stage.py`, `config/move_port.json`, `Makefile`
+  - extract/smoke: `tools/engine/extract_vega_moves.py`, `tools/engine/cfru_move_inventory.py`, `tools/mgba_move_smoke.c`
+  - manifests/import: `manifests/move_ids.csv`, `manifests/id_ranges.csv`, `design/imported/VEGA_CFRU_DPE_技調整設計_V3/**`, `scripts/verify_imported_packages.py`, `scripts/validate_manifests.py`
+  - focused tests: `tests/test_extract_vega_moves.py`, `tests/test_cfru_move_inventory.py`, `tests/test_build_move_port.py`, `tests/test_mgba_move_smoke.py`, `tests/test_build_move_stage.py`
+  - docs/state: `README.md`, `docs/BUILD_PIPELINE.md`, `docs/ID_POLICY.md`, `docs/ROM_LAYOUT_POLICY.md`, `design/{current_state,agent_context_map,catalog,decisions,import_inventory,import_review,report_lifecycle_index,tasks_next}.md`, `design/imported/README.md`, `manifests/README.md`, `state/task_status.json`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外再生成物: `build/stages/04_moves.{gba,json}`, `generated/engine/moves/**`, `reports/generated/move_port.md`
+- Verify:
+  - `python3 -m unittest -v tests.test_extract_vega_moves tests.test_cfru_move_inventory tests.test_build_move_port tests.test_mgba_move_smoke tests.test_build_move_stage`: PASS（38 tests）。
+  - `make harness-check`: PASS。T03 fingerprint `e82de050dfac119d373a9784c111a1f770ce469ce5ec22a5473bf03c9e13c03c`。
+  - `make moves-check`: PASS。T04 fingerprint `726abc638bdd5ba2a9e6b96963da5fc2db01de50f2c4cf3e0daef83b220e58ac`、1,063技、178 repoint、smoke PASS。
+  - `python3 scripts/validate_manifests.py`: PASS。
+  - `python3 scripts/verify_imported_packages.py`: PASS（V3 13件を含む）。
+  - 生成C 6件の`-Wall -Wextra -Werror` compile、固定CFRU `moves.h`との併用compile、独立read-only監査: PASS。blocking/P1なし。
+  - ユーザー指示に従い、WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 04 ROM SHA-256 `3adfbc639176b5e2b3f7a9b6beff2da5fcac792562a940bd154b2af5d83bc099`。
+  - metadata SHA-256 `337326e182a74057b7c198cd9d59800b8beb241b3f75a332c54ea835276c57c7`。
+  - move report SHA-256 `4f938e887475fb5f33ed14ca352319fb4b5e94fbdf9ba50880ee5ddb743fb117`。
+  - move bridge SHA-256 `3714b6df11dab92069829afbf201bdad25d976980969aa0cac58fc042496a30b`。
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - `https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/moves.csv` — CFRU 992技の世代分類を一次照合した。結果はoffline mappingへ固定し、通常buildはnetworkを使用しない。

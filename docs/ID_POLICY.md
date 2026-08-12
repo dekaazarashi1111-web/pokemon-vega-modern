@@ -24,6 +24,8 @@ TRAINER_KEY_KANTO_SURGE
 
 Generatorがmanifestから数値defineを作ります。
 
+T04でMove範囲は確定済みです。Vega 0〜511を固定し、NFKC完全一致するCFRU identityを対応付け、未収録551技を512〜1062へappendします。Vega ID 470/509はCFRU公式同名別技との衝突を避けるため、それぞれ `MOVE_KEY_SOUL_BITE`（ソウルバイト）、`MOVE_KEY_DARK_SNIPE`（ダークスナイプ）へ表示名とsymbolを変更します。CFRU公式 `MOVE_JAWLOCK` / `MOVE_SNIPESHOT` は別append IDとして保持します。
+
 ## 予約
 
 `manifests/id_ranges.csv`でownerと範囲を管理します。未確定範囲は空欄のまま`PROPOSED`とし、監査後に確定します。

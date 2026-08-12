@@ -111,3 +111,11 @@
 - 道具: `docs/QOL_POLICY.md` のfirst-availability/repeatabilityを後退させない。ここでの段階条件は追加の対戦道具、Mirage/Sphere報酬、TM再利用license、ギミック、UB/Paradoxの供給を制御し、既に解禁済みの育成QOLを再ロックしない。
 - 施設: MirageはLv.100の育成済み持込施設、Factoryはrental施設として分離する。双方で相手の持ち物を盗難・持出しできず、報酬、記録、通貨も相互更新しない。
 - 影響: T01、T02、T06、T08、T10、T12、T15〜T18、trainer/encounter manifest、回帰試験。
+
+## 2026-08-13 — D-016: V3技調整をVega固定IDへ優先適用する
+
+- 決定: `VEGA_CFRU_DPE_技調整設計_V3` の技現代化61件とVega独自技70件をT04のactive入力にする。Vega Move ID 0〜511を固定し、NFKC完全一致するCFRU identityを対応、未収録551技を512〜1062へappendする。
+- 同名衝突: Vega ID 470「くらいつく」は「ソウルバイト」/`MOVE_KEY_SOUL_BITE`、ID 509「ねらいうち」は「ダークスナイプ」/`MOVE_KEY_DARK_SNIPE`へ変更する。CFRU公式 `MOVE_JAWLOCK` / `MOVE_SNIPESHOT` は別技としてappendする。
+- 効果: V3独自技70件の自由記述を固定operation列へ構造化し、Vega legacy effect pointerを来歴に保持したcompile済みhandler/dispatchを生成する。CFRU側の未知effect IDは流用せず安全なbase effect 0を使い、T06がbattle runtime callbackを接続する。
+- 文字列: 技名・説明はUTF-8 literalではなくゲームcharmap byte＋`0xFF`終端で生成する。CFRU外部説明354件はhash固定clean ROMのrooted pointerから抽出し、`@0x...` placeholderを許可しない。
+- 影響: T04、T06、T09、T12、T16、全技manifestとbattle smoke。

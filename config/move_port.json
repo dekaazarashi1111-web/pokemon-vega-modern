@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "task": "T04",
+  "vega": {
+    "rom_path": "build/reference/vega.gba",
+    "rom_size": 16777216,
+    "rom_sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "move_count": 512,
+    "pointer_sites": {
+      "names": ["0x0804E7B4"],
+      "battle": ["0x080001CC"],
+      "descriptions": ["0x080E63F0", "0x081383A4"],
+      "animations": ["0x08071D74"],
+      "effects": ["0x08015B78"]
+    },
+    "tables": {
+      "names": {"address": "0x08E0BBB0", "count": 512, "stride": 8, "sha256": "cc18482c20e9783525786a2b224987ccc1175a2617a133d32de4a99966dd01c4", "reference_count": 32},
+      "battle": {"address": "0x08E0CBB0", "count": 512, "stride": 12, "sha256": "269e3fc9803b3edbec8d6b78cfa457d7d8c9c8e307c11a647b9031bdf01b1708", "reference_count": 137},
+      "descriptions": {"address": "0x08E0E3B0", "count": 512, "stride": 60, "sha256": "a60e869d5041a0f0fd2f2adea3640a771f34a156019f7445757e81f9acc7ef14", "reference_count": 2},
+      "animations": {"address": "0x08E15BB0", "count": 512, "stride": 4, "sha256": "a40a92b18005209d68902ec5f0ce31e95af9bcfc6707aac895e5d156ed8387bd", "reference_count": 1},
+      "effects": {"address": "0x08E165D0", "count": 256, "stride": 4, "sha256": "ac4e17870e1dec846dce36e6ff8266ffb3e6fab8a5b018004e8c9ea3209ec58c", "reference_count": 6}
+    }
+  },
+  "cfru": {
+    "source_path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "move_count": 992,
+    "effect_count": 256,
+    "description_reference_rom": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+    "description_reference_sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+  },
+  "adjustments": {
+    "root": "design/imported/VEGA_CFRU_DPE_技調整設計_V3",
+    "archive_sha256": "51fdf3aa25f49dc0586d2d824117995261527a3ae306d621aa718d273939ce37",
+    "modern_effects": {"path": "data/技効果現代化マスター.csv", "count": 61, "sha256": "1dbd2eed7623d2c48ad25b9b38786fc41ff584953f01813f3d1f6eb58fb61704"},
+    "vega_exclusive": {"path": "data/ベガ独自技再調整マスター.csv", "count": 70, "sha256": "6503c75b25c11f2af5b3dda1e1c6f791708d244d574eca5fc316e22a75b8e670"}
+  },
+  "mapping_policy": {
+    "frozen_vega_start": 0,
+    "frozen_vega_end": 511,
+    "append_start": 512,
+    "automatic_match": "NFKC_EXACT_UNIQUE",
+    "fuzzy_match": false,
+    "activation_task": "T06",
+    "duplicate_name_resolution": {
+      "1": {
+        "duplicate_vega_ids": [1, 511],
+        "cfru_symbol": "MOVE_POUND",
+        "canonical_vega_id": 1,
+        "policy": "CFRU_ALIAS_TO_LOWEST_VEGA_ID_KEEP_ALL_FROZEN_ROWS"
+      }
+    },
+    "vega_name_overrides": {
+      "470": {
+        "source_name": "くらいつく",
+        "display_name": "ソウルバイト",
+        "move_key": "MOVE_KEY_SOUL_BITE",
+        "reason": "CFRU MOVE_JAWLOCK（くらいつく）との別技衝突を解消"
+      },
+      "509": {
+        "source_name": "ねらいうち",
+        "display_name": "ダークスナイプ",
+        "move_key": "MOVE_KEY_DARK_SNIPE",
+        "reason": "CFRU MOVE_SNIPESHOT（ねらいうち）との別技衝突を解消"
+      }
+    }
+  },
+  "early_game": {
+    "rooted_move_ids": [1, 10, 33, 39, 43, 45, 64, 116, 120, 182, 204],
+    "sentinel_move_ids": [74, 470, 487, 509, 511, 512, 1062],
+    "evidence": "Vega rooted wild/trainer tables and level-up pointer 0x0804346C -> 0x0821A1BC",
+    "runtime_smoke": "tools/mgba_move_smoke.c"
+  },
+  "bridge": {
+    "region": "integration_modules",
+    "start": "0x01200024",
+    "alignment": 4,
+    "expected_size": 44032,
+    "stage_input": "build/stages/03_harness.gba",
+    "stage_rom": "build/stages/04_moves.gba",
+    "stage_metadata": "build/stages/04_moves.json"
+  }
+}

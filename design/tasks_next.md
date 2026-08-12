@@ -3,7 +3,7 @@
 - [x] T01: DPE-JP/CFRU-JP上流ビルドを再現する <!-- id:T01 -->
 - [x] T02: ROM/RAM/SaveBlock/ID競合を完全監査する <!-- id:T02 -->
 - [x] T03: Vegaの再現可能なmodule harnessを作る <!-- id:T03 -->
-- [ ] T04: Vega Move IDをCFRUモデルへ移植する <!-- id:T04 -->
+- [x] T04: Vega Move IDをCFRUモデルへ移植する <!-- id:T04 -->
 - [ ] T05: Type/Ability/Item ID空間を統合する <!-- id:T05 -->
 - [ ] T06: CFRU battle coreを移植する <!-- id:T06 -->
 - [ ] T07: Vega IDを固定してDPE Speciesを移植する <!-- id:T07 -->

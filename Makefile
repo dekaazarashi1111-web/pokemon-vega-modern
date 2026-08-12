@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -39,6 +39,12 @@ harness:
 
 harness-check:
 	$(PYTHON) scripts/build_project.py check-harness --config $(CONFIG)
+
+moves:
+	$(PYTHON) scripts/build_move_stage.py build
+
+moves-check:
+	$(PYTHON) scripts/build_move_stage.py check
 
 validate:
 	$(PYTHON) scripts/validate_task_graph.py

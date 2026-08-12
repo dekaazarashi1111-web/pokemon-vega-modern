@@ -20,6 +20,8 @@ T03以降の正本partitionは `config/rom_regions.csv`、配置APIは `tools/ro
 
 T03 no-op adapterはfile offset `0x01200000` / GBA `0x09200000` から34 bytesを使用する。Vega-owned領域へのhook/repointは0件で、挿入前の全byteが `0xFF` であることをassertする。
 
+T04 move table bridgeはfile offset `[0x01200024, 0x0120AC24)` / GBA `0x09200024` へ44,032 bytesを配置する。Vega-owned先頭16 MiBでは旧5 table pointerのaligned完全走査で見つかった178件だけをrepointし、bridgeとrepoint宣言span外のbyte差分を0にする。
+
 ## RAM
 
 CFRU、DPE、VegaのRAM使用範囲を`reports/ram_map.csv`へ統合します。

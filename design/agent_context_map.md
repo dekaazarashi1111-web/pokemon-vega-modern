@@ -38,7 +38,7 @@
 - T01: `docs/SOURCE_NOTES.md`、上流README、T01。
 - T02: `config/t02_audit_policy.json`、`tools/t02/`、`reports/generated/{address_audit.csv,id_inventory.json,semantic_conflicts.md}`。初期資料が必要な時だけ `audit_seed/CODEX_TASK_01.md` を読む。
 - T03: `scripts/build_project.py`、`config/{rom_regions.csv,harness_smoke.json}`、`overlays/vega_adapter/`。配置方針は `docs/ROM_LAYOUT_POLICY.md`、再生成結果は `reports/generated/harness_smoke.md`。
-- T04: `audit_seed/CODEX_TASK_02_MOVE_PORT.md`、`docs/ID_POLICY.md`、T04。
+- T04: `config/move_port.json`、`scripts/build_move_{port,stage}.py`、`tools/engine/{extract_vega_moves,cfru_move_inventory}.py`、`manifests/move_ids.csv`、`reports/generated/move_port.md`。V3原本は必要なCSVだけ読む。
 - T05/T06/T08〜T10: `docs/QOL_POLICY.md` と対象タスク。上流機能の実在根拠が必要ならT01/T02成果だけを追加で読む。
 - T08/T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。

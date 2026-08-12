@@ -30,6 +30,8 @@
 - `scripts/run_baseline_audit.py`: cleanからの参照ROMと厳密競合監査
 - `scripts/generate_t02_audit.py`: T01成果、固定ROM、固定sourceからT02の11監査成果を決定的生成
 - `scripts/build_project.py`: clean+Vega IPSから32 MiB T03 harnessを2回再構築し、module配置とlibmGBA smokeを検証
+- `scripts/build_move_port.py`: Vega/CFRU/V3から1063技model、game-encoding表、70 effect adapterを生成
+- `scripts/build_move_stage.py`: T03へ44,032-byte move bridgeと178 repointを適用し、実技smokeを検証
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -41,6 +43,7 @@
 - `design/imported/README.md`: active設計資料と旧版の案内
 - `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`: 二地方設計のactive review資料
 - `design/imported/VEGA_CFRU_DPE_統合設計/`: V1受領時点を保つ来歴資料
+- `design/imported/VEGA_CFRU_DPE_技調整設計_V3/`: T04で採用した技現代化61件・Vega独自技70件の不変原本
 - `reports/generated/`: 再実行可能なローカル監査結果（Git管理外）
 - `userfile/imports/`: ROM、patch、元ZIP、展開バックアップ（Git管理外）
 
@@ -59,6 +62,9 @@
 - `audit_seed/tools/`: patch解析、参照ROM生成、source address監査
 - `tools/t02/`: fixed source write、Vega ROM inventory、RAM/save/ID/state監査model
 - `tools/rom_allocator.py`: 32 MiB named regionの決定的配置とoverlap拒否
+- `tools/engine/extract_vega_moves.py`: 固定Vega ROMの512技・5 table・effect pointer抽出
+- `tools/engine/cfru_move_inventory.py`: 固定CFRU-JPの992技・256 effect script inventory生成
+- `tools/mgba_move_smoke.c`: T04 synthetic wild battleでslot 0の実技実行、PP・HP変化を観測
 - `overlays/vega_adapter/`: hook 0件の再構築可能なT03 no-op Thumb module
 - `config/t02_audit_policy.json`: T02入力hash、分類、overlap、移行・施設・AI契約の機械可読正本
 - `config/rom_regions.csv`: ROM file offset half-open partitionの機械可読正本

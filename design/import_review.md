@@ -7,7 +7,16 @@
 1. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
 2. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
 3. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
-4. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+4. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
+5. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+
+## 技調整V3の位置付け
+
+- ZIP: 159,635 bytes、SHA-256 `51fdf3aa25f49dc0586d2d824117995261527a3ae306d621aa718d273939ce37`。
+- 展開14ファイル。同梱`SHA256SUMS.txt`の13対象は13/13 PASS。
+- 技効果現代化61技、ベガ独自技再調整70技、TM・教え技184枠を含む。
+- T04では実ROMから抽出した技ID・battle recordへ技名で厳密joinし、数値調整と必要なeffect adapter契約を生成する。曖昧一致は採用しない。
+- 種族別習得表、フォーム継承、TM互換、野生初期4技は、最終統合IDとROM抽出結果が必要なためT04で直接適用せず、後続タスクへ引き渡す。
 
 完成目標は、FireRed日本版Rev.0からVegaを再生成し、公開ソースのDPE-JP/CFRU-JPをVega互換で移植し、元FireRedのカントー本土を新規名前空間へ復元して、トーホクと自由往復できる32 MiB ROMを再現ビルドすることである。最終配布物はROMを含まない単一差分パッチとする。
 

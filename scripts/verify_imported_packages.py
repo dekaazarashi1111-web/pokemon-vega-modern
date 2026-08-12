@@ -36,6 +36,13 @@ DESIGN_PACKAGES = (
     },
 )
 
+SHA_ONLY_DESIGN_PACKAGES = (
+    {
+        "label": "技調整設計V3（現行）",
+        "root": ROOT / "design" / "imported" / "VEGA_CFRU_DPE_技調整設計_V3",
+    },
+)
+
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -200,6 +207,29 @@ def verify_design(package: dict[str, Any]) -> tuple[list[str], int]:
     return errors, len(expected_paths)
 
 
+def verify_sha_only_design(package: dict[str, Any]) -> tuple[list[str], int]:
+    """同梱SHA256SUMSを正本とする受領パッケージを検査する。"""
+
+    errors: list[str] = []
+    design_root: Path = package["root"]
+    label: str = package["label"]
+    records = read_sha_manifest(design_root / "SHA256SUMS.txt", label, errors)
+    for relative, expected_hash in records.items():
+        target = design_root / relative
+        if not target.is_file():
+            errors.append(f"{label}ファイル欠落: {relative}")
+        elif sha256(target) != expected_hash:
+            errors.append(f"{label}hash不一致: {relative}")
+    actual_paths = {
+        path.relative_to(design_root)
+        for path in design_root.rglob("*")
+        if path.is_file() and path.name != "SHA256SUMS.txt"
+    }
+    if actual_paths != set(records):
+        errors.append(f"{label}のSHA256SUMS対象集合が展開ファイルと不一致です")
+    return errors, len(records)
+
+
 def main() -> int:
     errors = verify_audit()
     design_counts: list[int] = []
@@ -207,6 +237,11 @@ def main() -> int:
         package_errors, count = verify_design(package)
         errors.extend(package_errors)
         design_counts.append(count)
+    sha_only_counts: list[int] = []
+    for package in SHA_ONLY_DESIGN_PACKAGES:
+        package_errors, count = verify_sha_only_design(package)
+        errors.extend(package_errors)
+        sha_only_counts.append(count)
     if errors:
         print("受領資料の整合性検査: FAIL")
         for error in errors:
@@ -214,7 +249,8 @@ def main() -> int:
         return 1
     print(
         "受領資料の整合性検査: PASS"
-        f"（監査15件、設計V1 {design_counts[0]}件、設計V2 {design_counts[1]}件）"
+        f"（監査15件、設計V1 {design_counts[0]}件、設計V2 {design_counts[1]}件、"
+        f"技調整V3 {sha_only_counts[0]}件）"
     )
     return 0
 
