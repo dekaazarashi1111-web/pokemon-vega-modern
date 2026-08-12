@@ -99,3 +99,13 @@
   - Factory参照との4カテゴリ実挙動比較と、固定CFRU AIのsingle/double cold/warm ARM cycle fixtureを実測し、QOL/Factory/AIの機械可読inventoryと再生成reportを確定した。
   - T02で使うfixed output hash、symbol/fixture provenance、Save/flag/Factory監査入口を固定した。
 - Verify: `make upstream-toolcheck`, `make upstream-repro`, report削除相当からのbyte同一再生成、`bash scripts/verify_wsl.sh` PASS（87 tests）
+
+## 2026-08-13T04:26:37+09:00
+
+- Version: `wsl-targeted-checks-0.8.1`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260813-REMOVE-WSL-VERIFY` / WSL全体標準verifyの廃止
+- Summary:
+  - `scripts/verify_wsl.sh` を削除し、WSLのall-in-one検証経路を廃止した。
+  - 運用・入口・全taskの完了手順を、変更対象とtask acceptanceに必要な最小gateだけを実行する方針へ統一した。
+- Verify: active実行参照0、`git diff --check` PASS。repository全体verifyは未実行。

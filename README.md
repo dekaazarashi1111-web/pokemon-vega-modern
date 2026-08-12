@@ -41,7 +41,7 @@ python3 scripts/taskctl.py next
 
 ROM、IPS、UPS、元ZIPは `userfile/imports/` に読み取り専用で置き、Gitへ入れません。`inputs/private/` と `inputs/reference/` はツール向けのGit管理外参照です。入力原本へ直接パッチを当てず、生成先へコピーして処理します。
 
-## 標準コマンド
+## 必要時に選ぶコマンド
 
 ```bash
 make status       # 状態とRESUME/PRIMARY/並列準備候補
@@ -49,8 +49,9 @@ make plan         # PRIMARY、並列準備候補、全実行wave
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
-bash scripts/verify_wsl.sh
 ```
+
+WSLでは全体標準verifyを実行しません。選択タスクのacceptanceに必要なコマンドだけを使い、同じ検査を重ねません。
 
 初期入力・上流取得・参照ROM生成は `make quickstart` で行います。副作用と生成先は `CODEX_START_HERE.md` を先に確認してください。
 

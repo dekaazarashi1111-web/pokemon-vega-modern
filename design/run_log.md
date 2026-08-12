@@ -212,3 +212,23 @@
   - Ubuntu公式APT repositoryからmanifest固定版のARM toolchain/newlib、mGBA/libmGBA開発依存を取得した。導入版とAPT archive metadata、実行/runtime/header SHA-256は `infra/toolchain_manifest.json` に固定した。
   - `https://mgba.io/docs/scripting.html` — mGBAのautomation/debugger入口を確認。
   - `https://github.com/mgba-emu/mgba` および `https://github.com/mgba-emu/mgba/tree/0.10.2` — 固定0.10.2のlibmGBA API、CLI/debugger、cycle境界の一次sourceを確認。実計測条件はtracked runner/configへ固定した。
+
+## 2026-08-13T04:26:37+09:00
+
+- Task: `USER-20260813-REMOVE-WSL-VERIFY` / WSL全体標準verifyの廃止
+- Status: DONE
+- Summary:
+  - ユーザー指示により `scripts/verify_wsl.sh` を削除した。代替のall-in-one WSL検査は作らず、変更箇所とtask acceptanceに必要な最小gateだけを選ぶ運用へ変更した。
+  - `AGENTS.md`、README、task T00〜T18のFinish、catalog、context minimap、codex-loopの実行案内からWSL全体verify入口を除去した。過去のrun/version log内の実行記録はappend-only履歴として変更していない。
+- Files changed:
+  - `scripts/verify_wsl.sh`（削除）
+  - `AGENTS.md`, `README.md`, `codex-loop.yaml`
+  - `design/current_state.md`, `design/catalog.md`, `docs/agent_context_minimap.md`
+  - `tasks/T00_*.md`〜`tasks/T18_*.md`
+  - `design/run_log.md`, `design/version_log.md`
+- Verify:
+  - active sourceから `verify_wsl.sh` と旧platform-default手順を検索: 実行参照0（廃止を明記する `AGENTS.md` とappend-only履歴を除く）。
+  - `git diff --check`: PASS。
+  - ユーザー指示に従い、repository全体verifyは未実行。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。

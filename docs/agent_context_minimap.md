@@ -20,6 +20,6 @@
 - 実行ログ: `design/run_log.md`
 - ブロッカー: `design/blockers.md`
 - ChatGPT Web操作: `tools/chatgpt_browser/README.md`
-- 検証: `bash scripts/verify_wsl.sh`
+- 検証: 選択した `tasks/T*.md` のacceptanceに必要なtask固有gateだけを実行
 
 最初に `python3 scripts/taskctl.py next` を実行し、`RESUME`、なければ依存READY候補を1件選びます。`PRIMARY` は推奨で強制順ではありません。全waveは`make plan`、必要な資料は`design/agent_context_map.md`から確認します。

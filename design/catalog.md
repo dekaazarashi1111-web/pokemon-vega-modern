@@ -23,7 +23,6 @@
 
 ## Scripts
 
-- `scripts/verify_wsl.sh`: WSL/Linux向け既定検証
 - `scripts/verify_linux.sh`: native Linux向け検証
 - `scripts/verify_windows.ps1`: Windows向け検証
 - `scripts/bootstrap_project.py`: 私有入力検証、上流取得、source lock生成

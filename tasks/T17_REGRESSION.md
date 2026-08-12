@@ -75,7 +75,7 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 
 ## Finish
 
-1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+1. タスク固有のacceptance checkだけを実行する。WSLではrepository全体のdefault verifyを実行しない。
 2. Update reports, `design/run_log.md`, and `design/version_log.md`.
 3. Mark the task done with `python3 scripts/taskctl.py done T17 --summary "..."`.
 4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T17:`.

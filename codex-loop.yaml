@@ -32,7 +32,7 @@ loop:
   max_retries_per_task: 2
 
 verify:
-  # Default for native Linux. For WSL, scripts/verify_wsl.sh is also available.
+  # Default for native Linux. WSLではtask固有gateを個別指定し、全体verifyは使わない。
   # For native Windows, set to:
   #   powershell -ExecutionPolicy Bypass -File scripts/verify_windows.ps1
   command: "bash scripts/verify_linux.sh"

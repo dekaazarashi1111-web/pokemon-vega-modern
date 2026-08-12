@@ -114,15 +114,14 @@ python3 scripts/taskctl.py done T00 --summary "完了内容"
 
 ## 4. 検証
 
-既定コマンド:
+WSLではrepository全体を走査する標準verifyを設けない。`scripts/verify_wsl.sh` は廃止し、代替のall-in-one検査も作らない。変更箇所と選択タスクのacceptanceに直結する最小コマンドだけを実行し、実行内容を `design/run_log.md` に記録する。
 
-- WSL: `bash scripts/verify_wsl.sh`
+native環境で必要な場合の既定コマンド:
+
 - Linux/macOS: `bash scripts/verify_linux.sh`
 - Windows: `powershell -ExecutionPolicy Bypass -File scripts/verify_windows.ps1`
 
-検証を省略する場合は、理由を `design/run_log.md` に書く。
-
-プレイブック系の標準ゲート:
+個別に利用できるゲート:
 
 ```bash
 make validate
@@ -130,7 +129,7 @@ make guard
 make test
 ```
 
-反復中は変更箇所のタスク固有テストだけを先に実行する。完了時は既定verifyを1回実行する。`scripts/verify_wsl.sh` / `verify_linux.sh` / `verify_windows.ps1` が標準ゲートを内包する場合、直前に同じ `make validate guard test` を重複実行しない。
+WSLでは `make validate guard test` を一括実行しない。変更内容に必要なゲートだけを選び、同じ検査を重複実行しない。native Linux/Windowsの既定verifyを使う場合も、直前に同じgateを重ねない。
 
 ## 4.1 チェックコマンドの副作用禁止
 
