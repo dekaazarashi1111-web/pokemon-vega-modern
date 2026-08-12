@@ -17,6 +17,7 @@ Make the pinned DPE-JP and CFRU-JP sources build reproducibly before adapting th
 6. Run two independent clean builds of every variant and require identical output hashes. Cache only artifacts keyed by input/source/config/tool fingerprints.
 7. Compare the Factory-like build against Factory reference behavior and changed-address categories. Exact CRC equality is not required unless the same config is recovered.
 8. Add a one-command upstream reproduction target and headless smoke prerequisites needed by T03.
+9. 固定commitで、現代孵化、全体学習装置、mint、特性カプセル/パッチ、王冠、経験アメ、PC/summary拡張、自動戦闘に相当する実装・config・依存hookの有無を機械可読matrixへ記録する。名称だけで実装済みと判定しない。
 
 ## Required outputs
 
@@ -26,6 +27,7 @@ Make the pinned DPE-JP and CFRU-JP sources build reproducibly before adapting th
 - `config/cfru_minimal.h`
 - `config/cfru_factory_like.h`
 - `reports/generated/upstream_repro.md`
+- `reports/generated/upstream_feature_matrix.csv`
 - `scripts/build_upstream.py`
 
 ## Acceptance gates
@@ -37,11 +39,12 @@ Make the pinned DPE-JP and CFRU-JP sources build reproducibly before adapting th
 - [ ] Pinned upstream worktrees remain clean; every build runs in a disposable sandbox.
 - [ ] grit, wav2agb, and mid2agb each pass one fixture conversion through the selected WSL-safe path; ARM tools, converters, Python, and headless emulator path/version/hash are recorded.
 - [ ] Generated reports can be deleted and reproduced from a tracked command, input/source/config/tool fingerprint, and expected artifact hashes recorded in the run log or a tracked manifest.
+- [ ] `docs/QOL_POLICY.md` の各機能について、upstream実装の有無、有効config、Vega adapter要否が根拠付きで分類される。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T01:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T01 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T01 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T01:`.
 5. If another task is READY, continue without waiting for approval.

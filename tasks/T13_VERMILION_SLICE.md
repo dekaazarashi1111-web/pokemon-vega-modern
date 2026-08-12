@@ -19,6 +19,7 @@ Vega本編中盤の定義済みcheckpointから、殿堂入り前に安全なク
 8. Test save/load inside Kanto and return to Vega.
 9. Test PC/heal, reset, whiteout, and Escape/dynamic-warp behavior, keeping the return NPC available in every progression state.
 10. 港からPC/回復と帰還船まで、強制戦闘、不可避の草むら、field move要求、支払いを0にする。
+11. T11のphysical map inventory/crosswalkをT12のlogical schemaへbindし、build-mode emissionと全参照解決を検証する。
 
 ## Required outputs
 
@@ -35,11 +36,12 @@ Vega本編中盤の定義済みcheckpointから、殿堂入り前に安全なク
 - [ ] Arrival cannot softlock even before the full Kanto route graph is imported.
 - [ ] 解禁直前は乗船できず、解禁直後・殿堂入り前・全国図鑑なしで往復できる。
 - [ ] 船上戦の拒否・敗北・辞退で渡航権を失わず、カントーでの全滅後も帰還できる。
+- [ ] T11/T12 crosswalkの全クチバ参照が実physical mapへ解決し、未解決keyを含むbuildは失敗する。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T13:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T13 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T13 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T13:`.
 5. If another task is READY, continue without waiting for approval.

@@ -34,6 +34,7 @@ python3 scripts/taskctl.py next
 - 入力・上流pin: `state/source-lock.json`
 - 受領物一覧: `design/import_inventory.md`
 - 受領資料レビュー: `design/import_review.md`
+- 育成・操作QOL: `docs/QOL_POLICY.md`
 - 二地方設計のactive review資料: `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`
 
 ## 私有入力
@@ -55,7 +56,11 @@ bash scripts/verify_wsl.sh
 
 ## 効率方針
 
-同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。正本タスクは `PRIMARY` 1件に保ち、`PARALLEL_PREP` は別worktreeまたは読取調査として先行します。大規模統合を一度に行わず、no-op ROM、Move/battle/Species、engine縦切り、クチバ往復の順に動く成果を出してから広げます。現在対象とDAG由来の準備waveは `make plan`、マイルストーン要約は `MASTER_PLAN.md`、厳密な完了条件は各 `tasks/T*.md` を正とします。
+同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。正本IN_PROGRESSは1件に保ちますが、`PRIMARY` は推奨順であり、依存READYの `PARALLEL_PREP` を待ち時間やfan-outに応じて先に選べます。大規模統合を一度に行わず、no-op ROM、Move/battle/Species、育成・操作QOL、クチバ往復の順に動く成果を出してから広げます。現在対象とDAG由来の準備waveは `make plan`、マイルストーン要約は `MASTER_PLAN.md`、厳密な完了条件は各 `tasks/T*.md` を正とします。
+
+既定QOLは、全文字の即時表示、Vega比でダッシュ25%以上・自転車50%以上の移動時間短縮、現代式孵化、経験アメ、育成値表示・変更、全体学習装置、PC一括操作です。固定仕様は `docs/QOL_POLICY.md` を参照します。
+
+UIと追加イベントは機能優先の最小構成です。既存画面・標準menu・既存NPC/端末を再利用し、新規full-screen UI、装飾演出、長いcutsceneや多段questは原則追加しません。
 
 ## 補助ツール
 

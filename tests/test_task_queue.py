@@ -180,8 +180,12 @@ class TaskTransitionTest(unittest.TestCase):
         repo = self.make_repo()
         with self.assertRaisesRegex(taskctl.TaskQueueError, "未完了の依存先"):
             taskctl.transition_task(repo.root, "start", "T01")
-        with self.assertRaisesRegex(taskctl.TaskQueueError, "現在のPRIMARY: T00"):
-            taskctl.transition_task(repo.root, "start", "T02")
+
+        # キュー先頭でなくても、依存READYなら待ち時間短縮のため開始できる。
+        self.assertEqual(
+            taskctl.transition_task(repo.root, "start", "T02"), "IN_PROGRESS"
+        )
+        self.assertEqual(taskctl.transition_task(repo.root, "reset", "T02"), "PENDING")
 
         before = (repo.root / "design/tasks_next.md").read_bytes()
         status = taskctl.transition_task(

@@ -18,7 +18,9 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 7. Add reports for first availability, evolution-item availability, trainer usage, 541-family dual-region coverage, and 125 shared special-capture keys.
 8. Add `recommended_level_min/max`, `difficulty_policy`, `mandatory`, and `warning_key`; represent Kanto Lv.68–100 as a fixed optional high-level policy rather than dynamic party scaling.
 9. Normalize V2 K-E01, the research pass, champion-assuming dialogue, and the mandatory Lv.70-range ship battle into an early research invitation, progress-aware dialogue, and an optional result-independent battle.
-10. During parallel preparation before T11 completes, validate logical map keys and dry-run reports but deliberately reject build-mode physical-map emission. Bind and validate the real physical-map crosswalk after T11 produces it, when T12 reaches PRIMARY integration.
+10. T11前はlogical map keyとdry-run reportを検証し、build-mode physical-map emissionを明示的に拒否する。T12はT11を待たず完了でき、実crosswalkのbindingは両方へ依存するT13が所有する。
+11. `docs/QOL_POLICY.md` の育成機能、道具、service、供給tier、反復可否、badge/D・H/Hall of Fame/Kanto League unlockと `field_pc_allowed` をraw numeric IDなしのsymbolic schemaへ追加する。mapの未設定値はfalseとする。
+12. 新規eventへ `presentation_profile` を追加し、既定 `SIMPLE_EVENT` は標準message/condition/flag/reward/battle/warpだけを許可する。専用UI/cutscene/minigame参照をvalidatorで拒否する。
 
 ## Required outputs
 
@@ -35,13 +37,15 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 - [ ] Reports can detect unobtainable evolution lines.
 - [ ] V2's 59 checks are independently reproducible and the known V1-derived semantic issues fail before normalization.
 - [ ] Logical V2 location keys cannot be emitted until they resolve through the T11 physical-map crosswalk.
-- [ ] T12 implementation can be prepared before T11; at PRIMARY completion, unresolved physical maps pass explicit dry-run validation, fail build-mode emission with an actionable error, and the available T11 crosswalk is validated.
+- [ ] T12はT11前でも完了できる。未解決physical mapはdry-runで明示され、build-mode emissionはactionable errorで失敗し、crosswalk bindingをT13へ引き渡す。
 - [ ] The schema rejects early-access rows that lack the level warning/safe-route policy and rejects post-HoF content reachable only from `KANTO_EARLY_ACCESS`.
+- [ ] 育成道具のfirst-availabilityとrepeatabilityを機械出力でき、後半限定道具の早期無限入手をvalidatorが拒否する。
+- [ ] 全新規eventが明示profileを持ち、`SIMPLE_EVENT` は既存UI/script部品だけで生成できる。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T12:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T12 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T12 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T12:`.
 5. If another task is READY, continue without waiting for approval.

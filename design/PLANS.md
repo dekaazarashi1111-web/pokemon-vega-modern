@@ -20,7 +20,8 @@ FireRed JPN Rev.0 clean
 ## 進め方
 
 - Gate A〜EとT00〜T18は `MASTER_PLAN.md` を参照する。
-- 現在のPRIMARY、並列準備候補、DAG由来のwaveは `make plan` で確認する。
+- 現在の推奨PRIMARY、依存READY候補、DAG由来のwaveは `make plan` で確認する。PRIMARYは強制順ではなく、待ち時間とfan-outを見て別のREADY候補を選べる。
 - 二地方設計の優先参照は `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`。V1は来歴保存専用とし、`design/import_review.md` の問題を解消したデータだけ段階的に正本化する。
 - V2のカントー設計をD-003/D-004/D-010/D-011、`docs/KANTO_PORT_POLICY.md`、T11/T13〜T16の入力に使う。殿堂入り後限定の原案はD-011の早期任意アクセスでoverrideする。ただしV2の47地点はraw map総数ではなく、マップ実体はT11の全資産inventoryを正とする。
 - 並列化は `WORKSTREAMS.md` の所有権に従い、親側の正本IN_PROGRESSは1件に保つ。
+- 育成・操作QOLの固定scope、既定値、解禁時期は `docs/QOL_POLICY.md` を正とし、QOL-A/QOL-Bともrelease対象にする。

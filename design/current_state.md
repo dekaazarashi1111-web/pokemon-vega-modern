@@ -14,11 +14,13 @@
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - 元FireRedのカントーを新規 `KANTO_*` 名前空間へ複製し、Vega中盤からトーホクと常時往復できる二地方構成は実現可能と判定。V2の47地点は生態設計単位であり、raw map総数ではないためT11で全建物・階層・warpとのcrosswalkを生成する。
 - 早期渡航の概念条件は「シオウの3個目バッジ取得後、アーシア島D・Hビル初回攻略完了」。実flagとscript終端はT02で確定する。早期は認定章進行0〜4の範囲、Vega殿堂入り後は後半認定章・カントーリーグ・最終共鳴を解禁する。
+- 育成・操作QOLをrelease scopeへ追加済み。文章は既定即時表示、ダッシュは25%以上、自転車は50%以上の移動時間短縮を目標にする。現代式孵化、経験アメ、SV式Hyper Training、IV/EV表示、全体学習装置、タマゴPC転送はT10、PC検索・一括操作、field PC、タマゴバスケット、自動戦闘は最初のカントー縦切りを待たせずT17回帰前に統合する。
+- UIと追加eventは最小実装に固定した。新規full-screen UIや長いcutsceneを作らず、既存画面・標準menu・既存NPC/端末・短いflag/reward scriptを再利用する。
 - ブロッカーなし。
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、`PRIMARY=T01`、`PARALLEL_PREP=T02,T12` である。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、推奨 `PRIMARY=T01`、依存READY候補 `PARALLEL_PREP=T02,T12` である。PRIMARYは強制順ではなく、toolchain待ちなどでthroughputが上がる場合はT02またはT12を正本に選んでよい。
 
 - T01: DPE-JP/CFRU-JP上流ビルド再現。最初にARM toolchainとasset converter wrapperを整え、vendor原本ではなく隔離sandboxでpinned-current baselineを再現し、Factory差分からfactory-like候補、次にminimalを作る。
 - T02: config-aware fixed-write監査、RAM/SaveBlock/ID、Vega map/早期解禁flagの読取調査をT01と並列準備する。
@@ -26,7 +28,7 @@
 
 ARM toolchain、asset converter、mGBAは現環境に未導入だが、T01で導入・固定する作業そのものなのでブロッカーではない。入力、参照ROM、上流commitは一致している。
 
-T11（カントーimporter）はT02完了後に別worktreeで先行準備でき、正本への統合はT11がPRIMARYになった時に行う。
+T11（カントーimporter）はT02完了後に先行準備でき、依存READYになった時点で正本へ選択・統合できる。
 
 全体wave、終了条件、最初の動作成果は `MASTER_PLAN.md`、現在の自動導出結果は `make plan` を参照する。
 
@@ -39,6 +41,7 @@ T11（カントーimporter）はT02完了後に別worktreeで先行準備でき�
 - カントー本土とトーホクは連絡船で双方向移動可能にする。ナナシマはV2本体のscope外。
 - カントーのLv.68〜100帯は動的に下げない。初回警告、強制戦闘なしの安全導線、無条件の無料帰還を必須にする。
 - V2の統合設計CSVはreview状態であり、進化重複、フォームキー、ID型、道具参照を修正するまで実装正本にしない。
+- 育成・操作QOLの正本は `docs/QOL_POLICY.md` とし、添付内の未確定案はジャッジ最初から、タマゴIV表示、SV式王冠、預かりタマゴ5個queue、無料技思い出しとして固定する。
 
 ## 再開時の確認先
 

@@ -109,3 +109,27 @@
   - `git diff --check`: PASS
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。ローカルの入力、source-lock、上流checkout、既存ツールを読取監査した。
+
+## 2026-08-12T14:03:43Z
+
+- Task: `USER-20260812-QOL-FAST-MINIMAL-UI` / 現代育成・高速操作QOLと最小UI/event方針の追加
+- Status: DONE
+- Summary:
+  - 添付663行を全文確認し、現代式孵化、経験アメXS〜XL、共通複数使用、IV/EV judge、全体学習装置、mint、特性道具、SV式Hyper Training、タマゴPC/5個queue、PC高度操作、field PC、タマゴバスケット、自動戦闘をrelease scopeへ追加した。T01/T02で実装位置を監査し、QOL-AをT05〜T10、QOL-Bを最初のカントー縦切りを待たせずT17回帰前、供給をT12/T15/T16へ割り当てた。
+  - 文章は新規/移行saveで既定 `INSTANT`、人工glyph delay 0、ダッシュはVega比25%以上、自転車は50%以上の移動時間短縮を固定した。tile event、制御code、save境界を含むsmoke matrixを36件から49件へ拡張した。
+  - UIは既存summary/PC情報欄、標準list/数量選択/文字入力/技思い出し/Optionsの薄いadapterに限定した。新規eventは既存NPC/端末、短い会話、条件、flag、標準reward/battle/warpだけの `SIMPLE_EVENT` を既定とし、新規full-screen UI、装飾asset、長いcutscene、minigame、多段questを原則不要にした。
+  - タマゴバスケットは専用picnic UIなしで、許可mapの標準menuからON/OFFし、登録済み預かり親を既存孵化coreで256歩ごとに判定して共有5個queueへ生成する機能として保持した。
+  - `taskctl.py` の先頭READY以外を拒否する処理を外し、PRIMARYを推奨順へ変更した。依存と単一IN_PROGRESSは維持し、反復中の対象test、完了時verify 1回、最終stage後のgraph/private index検査、状態・ログを含むcommitへ全タスクの完了手順を統一した。D-013が前回ログの固定開始順だけを置き換える。
+- Files changed:
+  - QOL正本・設計判断: `docs/QOL_POLICY.md`, `design/decisions.md`, `docs/TEST_STRATEGY.md`, `docs/CONTENT_PIPELINE.md`, `content/README.md`, `CHANGELOG.md`
+  - 入口・計画・運用: `README.md`, `MASTER_PLAN.md`, `AGENTS.md`, `WORKSTREAMS.md`, `CODEX_START_HERE.md`, `CODEX_HANDOFF.md`, `design/current_state.md`, `design/PLANS.md`, `design/agent_context_map.md`, `docs/FAIL_FAST_POLICY.md`, `docs/agent_bootstrap.md`, `docs/agent_context_minimap.md`, `prompts/AUTOPILOT.md`, `prompts/RESUME.md`
+  - タスク・自動化: `tasks/T00_*.md`〜`tasks/T18_*.md`, `tasks/INDEX.md`, `tasks/task_graph.json`, `scripts/taskctl.py`, `scripts/quickstart.sh`, `Makefile`
+  - 検証: `tests/test_task_queue.py`, `tests/smoke_test_matrix.csv`
+- Verify:
+  - `python3 scripts/validate_task_graph.py`: PASS
+  - smoke matrix 49 ID・8列・連番/一意検査: PASS
+  - `bash scripts/verify_wsl.sh`: PASS（受領資料、DAG/manifest/private guard、42 tests、npm check）
+  - 3系統の独立read-onlyレビュー: blocking/P1なし
+  - `git diff --check`: PASS
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。ユーザー添付とローカルworkspaceだけを参照した。

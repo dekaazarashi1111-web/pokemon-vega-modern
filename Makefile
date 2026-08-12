@@ -25,7 +25,6 @@ validate:
 	$(PYTHON) scripts/validate_task_graph.py
 	$(PYTHON) scripts/validate_manifests.py
 	$(PYTHON) scripts/verify_imported_packages.py
-	$(PYTHON) scripts/project_status.py --check
 
 guard:
 	$(PYTHON) scripts/guard_private_files.py

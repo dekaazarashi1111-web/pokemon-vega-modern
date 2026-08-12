@@ -28,6 +28,8 @@ KANTO_LEAGUE_CLEAR
 
 配置・イベント行は `unlock_phase`、`recommended_level_min/max`、`difficulty_policy`、`mandatory`、`warning_key` を持てるようにする。カントーの早期高レベル帯は `FIXED_HIGH_LEVEL_OPTIONAL`とし、意図的な地方間レベル差を未説明の曲線異常と区別する。
 
+新規eventは `presentation_profile=SIMPLE_EVENT` を既定にする。既存NPC/端末、短い標準message、条件check、flag、standard battle/item/warpで構成し、専用UI、専用map、長いcutscene、escort、minigameを要求しない。元作品の再利用可能な地形仕掛けやgym puzzleはこの制約の対象外だが、新しい演出を足さない。
+
 V2 CSVを取り込む前に次を正規化する。
 
 - 全国番号を整数文字列へ統一する。
@@ -84,3 +86,4 @@ item ball、hidden item、NPC reward、gym rewardを一つのsymbolic schemaで�
 - 未解禁のトーホクoverlayが元Vega結果と一致することをfixtureで検査する。
 - カントーの固定高レベルpolicyが必ず推奨レベル警告と安全導線を持つか検査する。
 - 早期フェーズの強力な店売り、重要道具、伝説、後半認定章が `VEGA_HALL_OF_FAME` または専用の後段条件なしで漏れないか検査する。
+- `SIMPLE_EVENT` の行が標準script部品だけで生成でき、専用UI/cutscene assetへの未解決参照を持たないか検査する。

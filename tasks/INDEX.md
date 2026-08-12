@@ -1,6 +1,6 @@
 # タスク一覧
 
-Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状態から、再開対象、PRIMARY、並列準備候補を判定します。リポジトリrootで `python3 scripts/taskctl.py plan` を実行すると全waveを表示できます。`state/task_status.json` は `scripts/taskctl.py` が同期する互換ミラーであり、手編集しません。
+Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状態から、再開対象、推奨PRIMARY、その他の依存READY候補を判定します。PRIMARYは強制順ではありません。リポジトリrootで `python3 scripts/taskctl.py plan` を実行すると全waveを表示できます。`state/task_status.json` は `scripts/taskctl.py` が同期する互換ミラーであり、手編集しません。
 
 | ID | Task | Lane | Depends |
 |---|---|---|---|
@@ -21,5 +21,5 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T14](T14_FULL_KANTO_IMPORT.md) | Import selected full Kanto map set | maps | T11, T13 |
 | [T15](T15_POSTGAME_PROGRESSION.md) | Implement dual-phase Kanto progression | content | T13, T14 |
 | [T16](T16_CONTENT_POPULATION.md) | Populate encounters trainers and items | content | T12, T14, T15 |
-| [T17](T17_REGRESSION.md) | Run regression and playtest gates | qa | T10, T13, T16 |
+| [T17](T17_REGRESSION.md) | Integrate QOL-B and run regression/playtest gates | qa/engine | T10, T13, T16 |
 | [T18](T18_RELEASE.md) | Create reproducible release pipeline | platform | T17 |

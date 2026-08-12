@@ -2,7 +2,7 @@
 
 ## 基本運用
 
-`design/tasks_next.md` の正本IN_PROGRESSは1件に保ちます。`make plan` の `PRIMARY` が親の統合対象、`PARALLEL_PREP` は読み取り専用調査または別worktreeの先行実装です。複数の長期レーンを同時に進める場合だけブランチ/worktreeへ分離し、先行レーンはキュー、共有ログ、共有設定を変更しません。
+`design/tasks_next.md` の正本IN_PROGRESSは1件に保ちます。`make plan` の `PRIMARY` は推奨対象、`PARALLEL_PREP` も依存READY候補です。正本が空ならthroughputを優先してどちらを選んでもよく、正本実行中は所有ファイルが重ならない調査・実装を並列化します。短い非競合subtaskは同一worktree、長期レーンまたは競合可能性がある時だけbranch/worktreeへ分離し、担当レーンはキュー、共有ログ、共有設定を変更しません。
 
 ## ブランチ
 
@@ -77,7 +77,7 @@ git worktree add ../vega-qa -b codex/lane-qa
 
 `AGENTS.md`、`MASTER_PLAN.md`、`design/tasks_next.md`、`design/run_log.md`、`design/version_log.md`、`Makefile`、`state/task_status.json`、`state/source-lock.json`はintegration/親担当だけが変更します。`config/` は原則親担当ですが、タスク仕様が必須出力として予約した専用ファイルだけ担当レーンで作れます。必要な共有変更は小さな専用コミットに分けます。
 
-## マージ順
+## 推奨マージ順
 
 1. QAのvalidator改善
 2. EngineのID/header変更
@@ -94,4 +94,4 @@ git worktree add ../vega-qa -b codex/lane-qa
 - MapレーンはTrainer/Species/Itemの数値IDを参照しない。
 - 共通schema変更時は先にQAブランチからmergeする。
 - V2は読取専用review入力とし、Contentレーンから直接編集しない。
-- `PARALLEL_PREP` のコミットはlane branch内に留め、対象がPRIMARYになった時に親が再検証して統合する。
+- `PARALLEL_PREP` のコミットはlane branch内に留め、対象タスクを正本へ統合する時に親がdiffと対象testを確認する。同一base/input/tool hashで既にPASSした全検証は再実行せず、タスク完了時の既定verifyを1回だけ実行する。

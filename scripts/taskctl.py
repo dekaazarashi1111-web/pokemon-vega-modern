@@ -374,7 +374,7 @@ def longest_dependency_chain(
 def next_task_lines(
     graph: Sequence[Mapping[str, Any]], entries: Sequence[QueueEntry]
 ) -> list[str]:
-    """再開対象、正本PRIMARY、並列準備候補を区別して表示する。"""
+    """再開対象、推奨PRIMARY、その他の依存READY候補を表示する。"""
 
     entry_by_id = _entries_by_id(entries)
     graph_index = graph_by_id(graph)
@@ -851,17 +851,6 @@ def transition_task(
                 raise TaskQueueError(
                     f"{task_id}: 未完了の依存先があります: {', '.join(incomplete)}"
                 )
-            status_map = {
-                entry.task_id: entry.status
-                for entry in entries
-            }
-            ready_tasks = ready(graph, status_map)
-            primary_id = str(ready_tasks[0]["id"]) if ready_tasks else None
-            if primary_id != task_id:
-                suffix = f"。現在のPRIMARY: {primary_id}" if primary_id else ""
-                raise TaskQueueError(
-                    f"{task_id}: 正本順より先には開始できません{suffix}"
-                )
 
     if command == "reset" and entry.status == "DONE" and task_id in graph_index:
         active_descendants = [
@@ -950,7 +939,7 @@ def _print_plan(
         )
         print(f"  W{index}: {tasks}")
     print(
-        "正本統合順: "
+        "既定優先順（依存READYなら変更可）: "
         + " -> ".join(
             str(task["id"])
             for task in graph

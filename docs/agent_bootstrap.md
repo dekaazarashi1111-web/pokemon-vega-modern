@@ -18,11 +18,11 @@
 
 ## 進め方
 
-1. `RESUME` があれば再開し、なければ `PRIMARY` だけを `taskctl.py start` で開始します。`PARALLEL_PREP` は別worktreeまたは読取調査に限定します。
+1. `RESUME` があれば再開し、なければ依存READY候補から1件を `taskctl.py start` で開始します。`PRIMARY` は推奨であり、待ち時間やfan-outに利点があれば `PARALLEL_PREP` を選べます。
 2. `design/agent_context_map.md` から必要資料だけを読みます。
 3. 独立作業は所有ファイルを分けて並列化します。
 4. 最小の縦切りを実装し、タスク固有テストを先に実行します。
-5. `make validate guard test` と既定verifyを実行します。
+5. 完了時は標準ゲートを内包する既定verifyを1回実行します。
 6. `design/run_log.md` と `design/version_log.md` に証跡を残し、taskctlで完了してコミットします。
 
 ## 入力の扱い

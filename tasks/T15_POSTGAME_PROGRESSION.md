@@ -20,10 +20,13 @@
 9. Model research rank, dual-region resonance, shared special-capture state, and a permanently available return edge.
 10. 初回船上戦を任意・勝敗不問にし、高レベル店売り、重要道具、伝説、後半施設を早期渡航と無条件に結び付けない。
 11. Kanto scriptのVega badge/story/HM flagへの書込み、境界ノード以外のVega進行flag参照をlintする。
+12. 全体学習装置、タマゴPC転送/5個queue、技思い出し、あかいいと、power系、経験アメ各tier、mint、特性道具、王冠、EV reset service/item、まるいおまもり、PC検索/一括操作、field PC、持ち物操作、タマゴバスケット、自動戦闘の解禁を `docs/QOL_POLICY.md` の境界へ接続する。
+13. QOL解禁は既存NPC/端末の短い `SIMPLE_EVENT` と1回のflag/reward処理で実装し、専用cutsceneや多段questを追加しない。
 
 ## Required outputs
 
 - `content/kanto_progression.csv`
+- `content/qol_progression.csv`
 - `generated/kanto/progression/`
 - `reports/generated/progression_graph.md`
 
@@ -36,11 +39,13 @@
 - [ ] The progression graph rejects unreachable nodes, circular gates, and every state in which return to Tohoku is impossible.
 - [ ] 早期認定章層とpost-HoF層の境界が機械検査され、殿堂入り前に後半ノードへ到達できない。
 - [ ] Kanto側の状態変更でVega本編のwarp/HM/story gateを開かない。
+- [ ] 各QOL unlockの直前/直後fixtureがあり、Kanto早期アクセスだけでVega殿堂入り後・Kanto League後の育成報酬を解禁できない。
+- [ ] Vega badge由来とKanto由来のQOL unlockは `content/qol_progression.csv` で一意に導出され、saveへ同じ解禁stateを二重保存しない。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T15:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T15 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T15 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T15:`.
 5. If another task is READY, continue without waiting for approval.

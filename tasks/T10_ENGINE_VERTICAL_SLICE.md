@@ -5,7 +5,7 @@
 
 ## Objective
 
-Prove the integrated engine end-to-end before importing large Kanto content.
+Prove the integrated engine and the QOL-A core end-to-end before importing large Kanto content. QOL-B remains release scope but is integrated in T17 so it does not delay T13.
 
 ## Execute
 
@@ -17,12 +17,20 @@ Prove the integrated engine end-to-end before importing large Kanto content.
 6. Remove or guard debug-only access behind a build define.
 7. Freeze engine manifest schema after the vertical slice passes.
 8. Register the selected species through one Tohoku overlay fixture and prove that disabled/failed overlay selection returns the byte-equivalent original Vega encounter result.
+9. `config/feature_matrix.csv` に `TEXT_SPEED=INSTANT`、`HATCH_MODE=FAST`、ダッシュ/自転車の速度目標、QOL-Aのrelease既定値を固定する。
+10. ダッシュの同一路程をVega比25%以上、自転車を50%以上短時間化し、歩数、遭遇、孵化、毒、接触/座標event、warp、段差を各tileで1回だけ処理する。
+11. field/battle文章を次の描画機会で即時表示し、変数、色、改ページ、選択肢、明示wait、効果音とscript同期順を維持する。
+12. 経験アメ5種の共通callbackを既存数量選択UIへ接続し、`x1/x5/x10/すべて` を栄養drink、ハネ、ふしぎなアメ、テラピース、coin、努力値reset用品へ再利用する。専用画面は作らない。
+13. 全体学習装置、現代孵化、SV式王冠、mint/特性道具、IV/EV表示、タマゴPC/queueを同じ継続saveで通す。
 
 ## Required outputs
 
 - `reports/generated/engine_vertical_slice.md`
 - `tests/fixtures/engine_slice.json`
 - `config/feature_matrix.csv`
+- `reports/generated/qol_vertical_slice.md`
+- `tests/fixtures/qol_slice.json`
+- `tests/fixtures/qol_movement_courses.json`
 
 ## Acceptance gates
 
@@ -31,11 +39,15 @@ Prove the integrated engine end-to-end before importing large Kanto content.
 - [ ] No debug code is active in release config.
 - [ ] Manifest schemas are versioned.
 - [ ] The Tohoku overlay adds content without replacing an original Vega slot or 1% encounter.
+- [ ] QOL-Aの全機能がrelease configで有効になり、`docs/QOL_POLICY.md` の既定値と一致する。
+- [ ] 経験アメは100/800/3000/10000/30000を選択個体だけへ加算し、EV、他party、level途中の技習得・進化を誤らない。
+- [ ] 即時文章と高速移動がVegaのscript/battle順、tile event、warp、saveを壊さない。
+- [ ] QOL-Aの表示・設定は既存UI部品だけで操作でき、新規full-screen UIや専用演出assetを必要としない。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T10:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T10 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T10 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T10:`.
 5. If another task is READY, continue without waiting for approval.

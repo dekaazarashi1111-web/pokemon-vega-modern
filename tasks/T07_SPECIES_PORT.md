@@ -16,6 +16,7 @@ Convert Vega existing species into DPE-compatible tables, map duplicates, and ap
 5. Append only missing species/forms after the frozen Vega range.
 6. Generate DPE tables and constants from the mapping.
 7. Add reference validators for trainer parties, wild tables, scripts, gifts, and evolutions.
+8. `manifests/species_ids.csv` に `is_official` とフォーム間で共有する `canonical_national_dex` を必須化し、公式100種捕獲がフォーム重複で水増しされないgenerator/validatorを追加する。
 
 ## Required outputs
 
@@ -30,11 +31,12 @@ Convert Vega existing species into DPE-compatible tables, map duplicates, and ap
 - [ ] No duplicate canonical species is created unless explicitly marked as a form/variant.
 - [ ] All existing Vega references resolve.
 - [ ] One appended species can be created in party memory without crash.
+- [ ] 全Species/formがofficial判定とcanonical全国番号を持ち、まるいおまもり用の100種countは同一番号のformを1種として数える。
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T07:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T07 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T07 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T07:`.
 5. If another task is READY, continue without waiting for approval.

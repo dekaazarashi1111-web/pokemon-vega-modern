@@ -57,7 +57,7 @@ hashと用途は `design/import_inventory.md` を正とします。ROM、patch�
 
 ```bash
 make quickstart
-make validate guard test
+make test
 ```
 
 ## 並列化

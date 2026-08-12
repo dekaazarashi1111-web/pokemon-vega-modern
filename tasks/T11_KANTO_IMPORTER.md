@@ -38,8 +38,8 @@ Create a repeatable map conversion/import pipeline that assigns new KANTO IDs an
 
 ## Finish
 
-1. Run `make validate guard`.
-2. Update reports and state.
-3. Commit with a message beginning `T11:`.
-4. Mark the task done with `python3 scripts/taskctl.py done T11 --summary "..."`.
+1. Run task-specific acceptance checks, then run the platform default verify once as defined by `AGENTS.md`.
+2. Update reports, `design/run_log.md`, and `design/version_log.md`.
+3. Mark the task done with `python3 scripts/taskctl.py done T11 --summary "..."`.
+4. Stage the intended task/state/log changes, run `python3 scripts/validate_task_graph.py` and `python3 scripts/guard_private_files.py` against the final index, then commit with a message beginning `T11:`.
 5. If another task is READY, continue without waiting for approval.

@@ -14,6 +14,5 @@ python3 scripts/preflight.py --config config/project.toml
 python3 scripts/validate_task_graph.py
 python3 scripts/validate_manifests.py
 python3 scripts/verify_imported_packages.py
-python3 scripts/project_status.py --check
 python3 scripts/guard_private_files.py
 python3 scripts/taskctl.py next

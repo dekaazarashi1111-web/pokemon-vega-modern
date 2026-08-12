@@ -76,3 +76,27 @@
 - 状態分離: `KANTO_TRAVEL_UNLOCKED`、`KANTO_VISITED`、`KANTO_CERT_*`、`KANTO_STORY_*`、`VEGA_HALL_OF_FAME` を別状態にし、Kantoのfield permitはTohokuのHM判定を変更しない。
 - 置換: D-003とD-010の「殿堂入り後に解禁」という時期だけを本決定で置き換える。別名前空間、clean BPRJからの復元方式、常時帰還は維持する。V2受領原本は編集せず、T12の正規化層で殿堂入り前提をoverrideする。
 - 影響: T02、T08、T12〜T17、リリース回帰。
+
+## 2026-08-12 — D-012: 現代育成と高速操作QOLをrelease scopeにする
+
+- 決定: `docs/QOL_POLICY.md` のQOL-A/QOL-Bを全て実装対象にする。文章は既定 `INSTANT`、ダッシュはVega比25%以上、自転車は50%以上の移動時間短縮を受入条件とする。現代式孵化、経験アメ、複数使用、IV/EV表示、全体学習装置、タマゴPC/queue、mint、特性道具、SV式Hyper Training、PC検索・一括操作、field PC、タマゴバスケット、自動戦闘を含む。
+- 既定値: ジャッジは最初から利用可能でタマゴIVも数値表示する。王冠は元IVを書き換えず「きたえた！」を別保存する。孵化演出は既定FAST、技思い出しは2個目badge後から無料、まるいおまもりは100種捕獲またはカントー預かり屋questの早い方で解禁する。
+- 実装順: T01/T02で固定upstreamとVega hookを実証し、T05〜T10でQOL-Aを統合、T12/T15/T16で解禁と供給、T17の全回帰前にQOL-Bを統合し、T18で配布説明を完成させる。最初のカントー縦切りを高度PC改造で待たせず、DAGは変更しない。
+- 根拠: 育成の反復作業と移動・文章待ちを大幅に減らし、二地方・1025種規模でも遊びやすくするため。添付内で分岐していた案は、SV準拠と利便性を優先して上記へ固定した。
+- 影響: T01、T02、T05、T06、T08〜T10、T12、T15〜T18。
+
+## 2026-08-12 — D-013: READYタスクの先頭順は推奨にする
+
+- 決定: 正本IN_PROGRESSは1件、DAG依存は維持するが、依存READY候補の先頭以外も `taskctl.py start` で開始できる。`PRIMARY` は推奨、`PARALLEL_PREP` は他のREADY候補として扱う。
+- 根拠: toolchainや長時間buildを待つ間にT02/T12など独立タスクを正本化でき、固定順による遊休をなくせる。Git上の状態一貫性は単一IN_PROGRESS、依存、task commitで維持できる。
+- 検証: 反復中は対象test、タスク完了時は標準ゲートを内包する既定verifyを1回実行し、同じsuiteの直列二重実行を避ける。
+- 置換: D-006の正本構造とD-008の効率原則は維持し、`design/tasks_next.md` の並びを強制開始順としていた運用だけを置き換える。
+- 影響: 全タスク、`scripts/taskctl.py`、再開prompt、並列運用。
+
+## 2026-08-12 — D-014: UI追加と新規イベント演出を最小化する
+
+- 決定: 採用済み機能は維持するが、新しいfull-screen UI、独自window、装飾asset、長いcutscene、minigame、多段questを原則作らない。既存summary/PC/list/数量選択/技思い出し/Options、既存NPC/端末と標準script commandを薄いadapterで再利用する。
+- UI: IV/EVは既存情報欄のcompact切替、複数使用は既存数量選択、PC高度機能は標準list/文字入力/SELECT marker、field PCは既存PC画面、自動戦闘は簡単な既存menu commandで実装する。
+- イベント: QOL解禁と追加イベントは `SIMPLE_EVENT` を既定とし、短い会話、条件check、flag、標準reward/battle/warpだけで完了させる。元Vega/FireRedの既存gym puzzleや地形仕掛けは再利用する。
+- 根拠: UI・演出制作をcritical pathから外し、機能、二地方化、再現性へ実装時間を集中するため。
+- 影響: T09、T10、T12、T15〜T17、content生成、release UI。

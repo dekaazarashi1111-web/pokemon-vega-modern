@@ -89,7 +89,22 @@
 - 早期は要求認定章数0〜4、Vega殿堂入り後は後半認定章・リーグ・共鳴だけが追加解禁される。
 - Kanto scriptがVega badge/story/HM flagへ書き込まず、境界ノード以外がVega進行flagを参照しない。
 
-## 7. Release
+## 7. 育成・操作QOL
+
+- `tests/fixtures/qol_movement_courses.json` の100 tile直線、曲がり角、接触script、warp/段差courseで、ダッシュの所要frameがVega基準から25%以上、自転車は50%以上短縮されることを計測する。
+- 全接触script、座標event、warp、段差、遭遇、歩数、毒、孵化判定を高速移動で各1回だけ処理する。
+- 通常会話、看板、取得通知、店、PC、menu、battle messageを即時表示し、変数、色、改ページ、選択肢、明示wait、効果音、script同期順を保持する。
+- 新規saveとQOL fieldを持たない移行saveの既定値、設定変更後のsave/load/resetを検査する。
+- 固定RNG fixtureで、かわらずの石、あかいいと、power系、タマゴ技、共通level技、ball、通常/隠れ特性、おこう、メタモン、異親ID、リージョンフォームを網羅する。
+- 経験アメ5種の100/800/3000/10000/30000、`x1/x5/x10/すべて`、途中level技・進化、Lv.100、EV非加算、選択個体限定を検査する。
+- 共通複数使用UIを栄養drink、ハネ、ふしぎなアメ、テラピース、coin、単能力/全能力EV resetでも実行し、各上限、対象選択、cancel、効果なし時の非消費を検査する。
+- IV判定境界0/1/15/16/25/26/29/30/31、EV各値/252/合計510、実IV31と「きたえた！」を手持ち/PC/タマゴで比較する。
+- mint、特性カプセル/パッチ、銀/金王冠、努力値reset、全体学習装置ON/OFFをparty↔PC、進化、孵化、save/loadで検査する。
+- 手持ち/box満杯、タマゴ5個queue、まとめ受取、孵化NORMAL/FAST/SKIPで個体、図鑑、nicknameの同一性を検査する。まるいおまもりは公式100種/quest境界と生成成功率2倍を固定RNGで比較する。
+- PC検索、複数移動、一括逃がし、`field_pc_allowed`、relearn pool内技変更、技/持ち物操作、登録済み預かり親から256歩ごとに共有5個queueへ生成するタマゴバスケット、通常random野生限定の自動戦闘を、禁止個体/道具/map/戦闘、色違い、cancel、容量不足、save/load込みで検査する。
+- 各badge、D・Hビル、Vega殿堂入り、Kanto Leagueの直前/直後でfirst-availabilityと反復供給を照合する。
+
+## 8. Release
 
 - clean inputから一発再生成
 - 差分パッチをcleanへ適用してfinal hash一致
