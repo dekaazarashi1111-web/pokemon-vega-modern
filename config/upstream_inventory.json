@@ -1,0 +1,855 @@
+{
+  "schema_version": 1,
+  "language": "ja",
+  "source": {
+    "component": "CFRU-JP",
+    "path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "source_lock_evidence": "state/source-lock.json:46-56",
+    "inventory_scope": "固定commitのbuild、QOL、Battle Facility/Factory相当、Battle AI",
+    "hash_algorithm": "sha256"
+  },
+  "status_definitions": {
+    "present_active": "固定configでcompileされ、必要なruntime条件以外は有効",
+    "present_runtime_gated": "compile対象だがflag、event、itemまたはscriptでの有効化が必要",
+    "present_inactive": "実装はあるが固定configでは無効",
+    "partial": "中核実装はあるが製品要件を満たすには追加実装が必要",
+    "absent": "固定commitのtracked sourceで対応実装を確認できない",
+    "candidate": "比較用候補であり参照ROMとの一致は未確認",
+    "pending_measurement": "測定契約は定義済みだがfixture実測結果は未取得",
+    "measured_classified": "固定fixtureで実測し、一致・差異をカテゴリ別に分類済み",
+    "measured_pass": "固定fixtureの実測値が再現し、採用閾値を満たした",
+    "present_empty_fallback": "engineはあるがactiveなfallback dataが空または実用不能"
+  },
+  "profiles": {
+    "minimal": {
+      "path": "config/cfru_minimal.h",
+      "sha256": "5bd6b567d3fd028bf0580076e8422ef93bac92e743d44f1d0c1ea4cf7d84d5f3",
+      "application": "使い捨てCFRU source sandboxのsrc/config.h末尾へ内容をinline展開し、insert疑似preprocessorでも同じ順序で評価",
+      "classification": "explicit_overlay",
+      "kept": [
+        "SAVE_BLOCK_EXPANSION",
+        "EXPANDED_NEW_ITEMS（repointallのgItemData無条件参照による実測hard dependency）",
+        "EXPANDED_TMSHMS",
+        "EXPANDED_MOVE_TUTORS",
+        "REUSABLE_TMS",
+        "DISPLAY_REAL_POWER_ON_MENU（Dynamax OFF側branchの実測hard dependency）",
+        "NUM_TMS",
+        "NUM_HMS",
+        "NUM_MOVE_TUTORS",
+        "LAST_TOTAL_TUTOR_NUM",
+        "runtime flag/varの数値ID"
+      ],
+      "disabled_clusters": [
+        "time/DNS",
+        "DexNav runtime有効化（FLAG_SYS_DEXNAV数値IDはdebug menu依存で保持）",
+        "select-from-PCと表示QOL",
+        "Mega/Dynamax/Terastal",
+        "capture/affection experience"
+      ],
+      "forbidden_defines": [
+        "UNBOUND",
+        "VAR_GAME_DIFFICULTY",
+        "SCALED_TRAINERS",
+        "TRAINERS_WITH_EVS",
+        "WILD_ALWAYS_SMART"
+      ]
+    },
+    "factory_like": {
+      "path": "config/cfru_factory_like.h",
+      "sha256": "bad0943df35602d19d0d58ef77152ae73572a842b1039b1cdca2ebaf557ccd6c",
+      "application": "使い捨てCFRU source sandboxのsrc/config.h末尾へ内容をinline展開し、insert疑似preprocessorでも同じ順序で評価",
+      "classification": "candidate_not_recovered_factory_config",
+      "kept": [
+        "SAVE_BLOCK_EXPANSION",
+        "EXPANDED_TMSHMSとEXPANDED_MOVE_TUTORS（item.c実測hard dependency）",
+        "REUSABLE_TMS（item.c実測hard dependency）",
+        "DISPLAY_REAL_POWER_ON_MENU（move_menu.c実測hard dependency）",
+        "FLAG_SYS_DEXNAV数値ID（debug_menu.c実測hard dependency、runtime未設定）",
+        "FLAG_BATTLE_FACILITYと連続facility vars",
+        "MEGA_EVOLUTION_FEATURE",
+        "DYNAMAX_FEATURE",
+        "TERASTAL_FEATURE",
+        "EXPANDED_NEW_ITEMS（repointallのgItemData無条件参照による実測hard dependency）"
+      ],
+      "required_external_data": [
+        "Vega/Factory向け非空rental spread table",
+        "Vega/Factory向けtrainer table",
+        "参照ROM差分から確定したgimmick policy"
+      ],
+      "reference_validation": {
+        "byte_region_comparison": "measured",
+        "behavior_fixture": "measured_selection_bp_eligibility_battle_mine_options",
+        "claim_limit": "測定4カテゴリ以外のFactory同一configまたは全面挙動一致は主張しない"
+      },
+      "forbidden_defines": [
+        "UNBOUND",
+        "VAR_GAME_DIFFICULTY",
+        "SCALED_TRAINERS",
+        "TRAINERS_WITH_EVS",
+        "WILD_ALWAYS_SMART"
+      ]
+    }
+  },
+  "active_config": {
+    "pinned_current": [
+      {
+        "symbol": "FLAG_EXP_SHARE",
+        "state": "defined",
+        "value": "0x906",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:38"
+      },
+      {
+        "symbol": "FLAG_SYS_DEXNAV",
+        "state": "defined",
+        "value": "0x91E",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:75"
+      },
+      {
+        "symbol": "FLAG_BATTLE_FACILITY",
+        "state": "defined",
+        "value": "0x930",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:84-98"
+      },
+      {
+        "symbol": "REUSABLE_TMS",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:128"
+      },
+      {
+        "symbol": "MEGA_EVOLUTION_FEATURE",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:219"
+      },
+      {
+        "symbol": "DYNAMAX_FEATURE",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:220"
+      },
+      {
+        "symbol": "TERASTAL_FEATURE",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:221"
+      },
+      {
+        "symbol": "SAVE_BLOCK_EXPANSION",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:228"
+      },
+      {
+        "symbol": "SELECT_FROM_PC",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:229"
+      },
+      {
+        "symbol": "EXPANDED_NEW_ITEMS",
+        "state": "defined",
+        "value": "1",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:343"
+      },
+      {
+        "symbol": "AI_TRY_TO_KILL_RATE",
+        "state": "defined",
+        "value": "50",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:153"
+      },
+      {
+        "symbol": "STANDARD_IV",
+        "state": "defined",
+        "value": "10",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:147"
+      }
+    ],
+    "pinned_inactive": [
+      {
+        "symbol": "TRAINERS_WITH_EVS",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:211"
+      },
+      {
+        "symbol": "FATHER_PASSES_TMS",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:234"
+      },
+      {
+        "symbol": "INHERIT_MASTER_CHERISH_BALL",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:235"
+      },
+      {
+        "symbol": "INSTANT_TEXT",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:264;vendor/upstream/CFRU-JP/src/config.h:351"
+      },
+      {
+        "symbol": "OLD_EXP_SHARE",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:317"
+      },
+      {
+        "symbol": "OLD_EXP_SPLIT",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:319"
+      },
+      {
+        "symbol": "WILD_ALWAYS_SMART",
+        "state": "undefined_commented",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:328"
+      }
+    ],
+    "not_defined_by_pinned_build": [
+      {
+        "symbol": "UNBOUND",
+        "verification": "tracked sourceの#defineとbuild commandをexact searchし、active定義0件"
+      },
+      {
+        "symbol": "VAR_GAME_DIFFICULTY",
+        "verification": "tracked sourceの#defineとbuild commandをexact searchし、active定義0件"
+      },
+      {
+        "symbol": "SCALED_TRAINERS",
+        "verification": "tracked sourceの#defineとbuild commandをexact searchし、active定義0件"
+      },
+      {
+        "symbol": "DEXNAV_DETECTOR_MODE",
+        "verification": "tracked sourceの#defineとbuild commandをexact searchし、active定義0件"
+      }
+    ],
+    "runtime_identifiers_not_enabled_by_definition": [
+      {
+        "symbol": "FLAG_SCALE_WILD_POKEMON_LEVELS",
+        "value": "0x90D",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:45"
+      },
+      {
+        "symbol": "FLAG_SCALE_TRAINER_LEVELS",
+        "value": "0x90E",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:46"
+      },
+      {
+        "symbol": "FLAG_RAID_BATTLE",
+        "value": "0x919",
+        "evidence": "vendor/upstream/CFRU-JP/src/config.h:61"
+      }
+    ]
+  },
+  "matrix": [
+    {
+      "category": "build",
+      "feature": "python_build_driver",
+      "status": "present_active",
+      "active_config": "入力BPRJ0.gba;出力test.gba;挿入開始0x1000000",
+      "evidence": "vendor/upstream/CFRU-JP/README.md:24-39;vendor/upstream/CFRU-JP/scripts/make.py:11-14;vendor/upstream/CFRU-JP/scripts/build.py:331-348",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "tracked Makefileは存在しない。make.pyはlinker.ldとinsert.pyを書き換えるため使い捨てsandbox専用。"
+    },
+    {
+      "category": "config",
+      "feature": "save_block_expansion",
+      "status": "present_active",
+      "active_config": "SAVE_BLOCK_EXPANSION=defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:228",
+      "factory_correspondence": "Facility記録と追加Pokemon fieldの保存基盤として保持",
+      "vega_adapter": "required",
+      "notes": "上流コメントがhard dependencyとしており、両overlayで保持する。Vega save layoutとの統合はT08対象。"
+    },
+    {
+      "category": "config",
+      "feature": "expanded_new_items_repoint_dependency",
+      "status": "present_active",
+      "active_config": "EXPANDED_NEW_ITEMS=defined in baseline/minimal/factory-like",
+      "evidence": "vendor/upstream/CFRU-JP/repointall:20;vendor/upstream/CFRU-JP/src/Tables/item_tables.c:1077-1084;vendor/upstream/CFRU-JP/src/Tables/item_tables.c:1862-1866",
+      "factory_correspondence": "Factory固有機能の推定ではなく、全profileの挿入完全性を保つbuild dependency",
+      "vega_adapter": "required",
+      "notes": "無効化時にgItemData/gItemGraphicsTable missingを実測した。repointallはgItemDataを無条件参照するため、metadataを条件化してvanilla fallbackを実証するまでは保持する。"
+    },
+    {
+      "category": "config",
+      "feature": "difficulty_scaling_and_trainer_evs",
+      "status": "present_inactive",
+      "active_config": "UNBOUND=undefined;VAR_GAME_DIFFICULTY=undefined;SCALED_TRAINERS=undefined;TRAINERS_WITH_EVS=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:211;vendor/upstream/CFRU-JP/src/build_pokemon.c:161-169;vendor/upstream/CFRU-JP/src/build_pokemon.c:967-1042",
+      "factory_correspondence": "Factory AI/IV/EV再現のためにも暗黙に有効化しない",
+      "vega_adapter": "required",
+      "notes": "Facility rental EVは別経路でspreadから設定される。"
+    },
+    {
+      "category": "qol",
+      "feature": "modern_breeding",
+      "status": "partial",
+      "active_config": "EGG_HATCH_LEVEL=1;FATHER_PASSES_TMS=undefined;INHERIT_MASTER_CHERISH_BALL=undefined;SEND_EGGS_TO_PC_IF_MAX_PARTY=undefined;VAR_DAYCARE_NUM_EGGS=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/daycare.c:62-173;vendor/upstream/CFRU-JP/src/daycare.c:176-195;vendor/upstream/CFRU-JP/src/daycare.c:233-349;vendor/upstream/CFRU-JP/src/daycare.c:385-490;vendor/upstream/CFRU-JP/src/daycare.c:574-675;vendor/upstream/CFRU-JP/src/daycare.c:716-774;vendor/upstream/CFRU-JP/src/daycare.c:840-990;vendor/upstream/CFRU-JP/hooks:534-548",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "継承coreは豊富だが、最大5個queue、満杯時PC転送のtransaction、NORMAL/FAST/SKIP設定は不足。"
+    },
+    {
+      "category": "qol",
+      "feature": "party_wide_exp_share",
+      "status": "present_runtime_gated",
+      "active_config": "FLAG_EXP_SHARE=0x906;OLD_EXP_SHARE=undefined;OLD_EXP_SPLIT=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:38;vendor/upstream/CFRU-JP/src/config.h:317-320;vendor/upstream/CFRU-JP/src/exp.c:103-168;vendor/upstream/CFRU-JP/src/exp.c:228-255;vendor/upstream/CFRU-JP/src/exp.c:444-468;vendor/upstream/CFRU-JP/src/party_menu.c:2745-2770",
+      "factory_correspondence": "Factory戦の経験値付与方針は参照ROM未照合",
+      "vega_adapter": "required",
+      "notes": "現代分配coreとtoggleはある。1個目badge解禁、既定ON、save migrationはVega側で追加する。"
+    },
+    {
+      "category": "qol",
+      "feature": "mints",
+      "status": "present_active",
+      "active_config": "EXPANDED_NEW_ITEMS=defined;SAVE_BLOCK_EXPANSION=defined",
+      "evidence": "vendor/upstream/CFRU-JP/include/pokemon.h:283-315;vendor/upstream/CFRU-JP/src/party_menu.c:2772-2854;vendor/upstream/CFRU-JP/src/pokemon_summary_screen.c:90-102;vendor/upstream/CFRU-JP/src/Tables/item_tables.c:13912-13926",
+      "factory_correspondence": "BP交換・供給は参照ROM未照合",
+      "vega_adapter": "required",
+      "notes": "元性格と別fieldで補正しsummaryも対応。Vega item ID、供給、save配置のadapterが必要。"
+    },
+    {
+      "category": "qol",
+      "feature": "ability_capsule_and_patch",
+      "status": "present_active",
+      "active_config": "EXPANDED_NEW_ITEMS=defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/Tables/item_tables.c:13512-13542;vendor/upstream/CFRU-JP/src/party_menu.c:2463-2588",
+      "factory_correspondence": "BP交換・供給は参照ROM未照合",
+      "vega_adapter": "required",
+      "notes": "Capsuleは通常slot反転、Patchは隠れ特性、成功時のみ消費。Vega item tableへの接続が必要。"
+    },
+    {
+      "category": "qol",
+      "feature": "hyper_training_and_bottle_caps",
+      "status": "partial",
+      "active_config": "SAVE_BLOCK_EXPANSION=defined;EXPANDED_NEW_ITEMS=defined",
+      "evidence": "vendor/upstream/CFRU-JP/include/pokemon.h:289;vendor/upstream/CFRU-JP/include/pokemon.h:313;vendor/upstream/CFRU-JP/src/scripting.c:543-584;vendor/upstream/CFRU-JP/routinepointers:183;vendor/upstream/CFRU-JP/src/build_pokemon.c:4273-4284;vendor/upstream/CFRU-JP/src/Tables/item_tables.c:12088-12118",
+      "factory_correspondence": "BP交換・供給は参照ROM未照合",
+      "vega_adapter": "required",
+      "notes": "保存bit、31相当計算、script specialはあるがBottle Cap item callbackはない。serviceと表示区別が必要。"
+    },
+    {
+      "category": "qol",
+      "feature": "experience_candy",
+      "status": "absent",
+      "active_config": "対応symbolなし",
+      "evidence": "vendor/upstream/CFRU-JP/src/Tables/item_tables.c:1",
+      "factory_correspondence": "Factory報酬・供給は参照ROM未照合",
+      "vega_adapter": "required_new_implementation",
+      "notes": "EXP_CANDYとEXPERIENCE_CANDYのexact searchは0件。5 item、固定経験値callback、複数使用UIが必要。"
+    },
+    {
+      "category": "qol",
+      "feature": "reusable_tm",
+      "status": "present_active",
+      "active_config": "REUSABLE_TMS=defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:128;vendor/upstream/CFRU-JP/hooks:576-587;vendor/upstream/CFRU-JP/src/item.c:804-955",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "item Mystery byte=1が前提。Vega item tableを監査して接続する。"
+    },
+    {
+      "category": "qol",
+      "feature": "dexnav",
+      "status": "present_runtime_gated",
+      "active_config": "FLAG_SYS_DEXNAV=0x91E;DEXNAV_DETECTOR_MODE=undefined;DEXNAV_POKEMON_MOVE_IN_CAVES_WATER=defined",
+      "evidence": "vendor/upstream/CFRU-JP/include/new/dexnav_config.h:9-61;vendor/upstream/CFRU-JP/src/start_menu.c:112-156;vendor/upstream/CFRU-JP/src/start_menu.c:221-235;vendor/upstream/CFRU-JP/src/overworld.c:1511-1539;vendor/upstream/CFRU-JP/routinepointers:152;vendor/upstream/CFRU-JP/bytereplacement:428-435",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "menuはDexNav runtime flagとPokédex flagの双方を要求。Vega encounter/save/hook addressへ接続する。"
+    },
+    {
+      "category": "qol",
+      "feature": "raid",
+      "status": "present_runtime_gated",
+      "active_config": "DYNAMAX_FEATURE=defined;FLAG_RAID_BATTLE=0x919",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:60-62;vendor/upstream/CFRU-JP/src/config.h:220;vendor/upstream/CFRU-JP/src/dynamax.c:1576-1589;vendor/upstream/CFRU-JP/routinepointers:171-178",
+      "factory_correspondence": "Dynamax/raidのFactory内可否は参照ROM未照合",
+      "vega_adapter": "required",
+      "notes": "compile済みだが通常story battleはruntime flagをsetしない限りRaid化しない。"
+    },
+    {
+      "category": "qol",
+      "feature": "pc_and_summary_extensions",
+      "status": "partial",
+      "active_config": "SELECT_FROM_PC=defined;SAVE_BLOCK_EXPANSION=defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:228-229;vendor/upstream/CFRU-JP/hooks:365-376;vendor/upstream/CFRU-JP/hooks:460-469;vendor/upstream/CFRU-JP/hooks:594-618;vendor/upstream/CFRU-JP/repoints:155-160;vendor/upstream/CFRU-JP/src/scripting.c:146-170;vendor/upstream/CFRU-JP/src/scripting.c:639-717",
+      "factory_correspondence": "rental UIとの対応は参照ROM未照合",
+      "vega_adapter": "required_new_implementation",
+      "notes": "基本PC選択とsummary拡張はあるが、検索、複数選択、transaction、一括操作、field PC、compact IV/EV judgeはない。"
+    },
+    {
+      "category": "qol",
+      "feature": "auto_battle",
+      "status": "absent",
+      "active_config": "対応symbolなし",
+      "evidence": "vendor/upstream/CFRU-JP/src/battle_controller_opponent.c:1",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required_new_implementation",
+      "notes": "AUTO_BATTLE、AUTOBATTLE、AutoBattleのexact searchは0件。"
+    },
+    {
+      "category": "qol",
+      "feature": "instant_text",
+      "status": "present_inactive",
+      "active_config": "INSTANT_TEXT=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:264;vendor/upstream/CFRU-JP/src/config.h:351;vendor/upstream/CFRU-JP/src/text_printer.c:33-60",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "compile switch実装だけで、save可能なINSTANT/FAST/NORMAL optionではない。"
+    },
+    {
+      "category": "qol",
+      "feature": "movement_speed",
+      "status": "partial",
+      "active_config": "FLAG_AUTO_RUN=0x914;FLAG_BIKE_TURBO_BOOST=0x91F;FLAG_SURF_TURBO_BOOST=0x929",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:53-56",
+      "factory_correspondence": "対象外",
+      "vega_adapter": "required",
+      "notes": "runtime flag IDはあるが、Vega比ダッシュ25%・自転車50%短縮とtile event保持は未測定。"
+    },
+    {
+      "category": "factory",
+      "feature": "facility_engine_and_formats",
+      "status": "present_runtime_gated",
+      "active_config": "FLAG_BATTLE_FACILITY=0x930;VAR_BATTLE_FACILITY_*=0x5015..0x501E",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:83-98;vendor/upstream/CFRU-JP/include/new/frontier.h:78-143;vendor/upstream/CFRU-JP/include/new/frontier.h:192-325;vendor/upstream/CFRU-JP/src/frontier.c:111-171",
+      "factory_correspondence": "固定Special ABI fixtureで選出/BP/参加判定に加え、sp070 random format/tier/gimmickを3 tier×13 streak×4 seedの156固定入力で参照ROMと照合",
+      "vega_adapter": "required",
+      "notes": "single/double/multiとrandom形式、tier、record構造を持つ。独立したfactory.cはない。"
+    },
+    {
+      "category": "factory",
+      "feature": "trainer_and_rental_generation",
+      "status": "partial",
+      "active_config": "Facility AI flags=5;UNBOUND=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/frontier.c:435-474;vendor/upstream/CFRU-JP/src/frontier.c:1057-1116;vendor/upstream/CFRU-JP/routinepointers:91-100;vendor/upstream/CFRU-JP/routinepointers:156;vendor/upstream/CFRU-JP/src/build_pokemon.c:409-674;vendor/upstream/CFRU-JP/src/build_pokemon.c:1491-1985;vendor/upstream/CFRU-JP/src/build_pokemon.c:2127-2204",
+      "factory_correspondence": "固定seed trainer選出を参照ROMと実測比較しdifferent（candidate fallback trainer 0）。rental生成/UIは未実行でadapter段階に追加比較",
+      "vega_adapter": "required",
+      "notes": "生成core、重複回避、synergy、spread適用はあるがactive table dataが不足。"
+    },
+    {
+      "category": "factory",
+      "feature": "streak_records_and_bp",
+      "status": "present_runtime_gated",
+      "active_config": "SAVE_BLOCK_EXPANSION=defined;Facility vars defined",
+      "evidence": "vendor/upstream/CFRU-JP/include/new/frontier.h:299-325;vendor/upstream/CFRU-JP/src/frontier.c:1163-1434;vendor/upstream/CFRU-JP/src/frontier_records.c:1-240",
+      "factory_correspondence": "streak 0..101の全境界fixtureでBP報酬match。save layoutはVega adapterで別途接続",
+      "vega_adapter": "required",
+      "notes": "record/BP coreは存在。Vega save layoutとFactory報酬表へ接続する。"
+    },
+    {
+      "category": "factory",
+      "feature": "entry_eligibility_and_random_rules",
+      "status": "present_runtime_gated",
+      "active_config": "Facility tier/battle type/party size vars defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/frontier.c:1590-1645;vendor/upstream/CFRU-JP/src/frontier.c:1655-1772",
+      "factory_correspondence": "empty/valid-six/egg混入の参加判定と、sp070の3 tier×13 streak境界×4 seedによるformat/tier/level/party size/inverse/dynamax/RNGが参照ROMとmatch",
+      "vega_adapter": "required",
+      "notes": "Battle Mineの6匹・非egg・tier適合判定とrandom option生成がある。"
+    },
+    {
+      "category": "factory",
+      "feature": "active_spread_and_trainer_tables",
+      "status": "present_empty_fallback",
+      "active_config": "UNBOUND=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/Tables/battle_tower_spreads.h:17-23;vendor/upstream/CFRU-JP/src/Tables/battle_tower_spreads.h:61850-61909;vendor/upstream/CFRU-JP/src/Tables/battle_frontier_trainers.c:45-55;vendor/upstream/CFRU-JP/src/Tables/battle_frontier_trainers.c:2276-2306",
+      "factory_correspondence": "参照ROMのtrainer/rental dataから非空tableを生成する必要あり",
+      "vega_adapter": "required_new_data_and_adapter",
+      "notes": "active spreadは各table空entry 1件、trainerはYoungster 1名、special/brain/multiは空。UNBOUND一括有効化は禁止。"
+    },
+    {
+      "category": "factory",
+      "feature": "factory_like_overlay",
+      "status": "candidate",
+      "active_config": "SAVE_BLOCK_EXPANSION=defined;Facility IDs fixed;Mega/Dynamax/Terastal/expanded items kept;UNBOUND/VAR_GAME_DIFFICULTY/SCALED_TRAINERS/TRAINERS_WITH_EVS=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:83-98;vendor/upstream/CFRU-JP/src/config.h:219-228;vendor/upstream/CFRU-JP/src/config.h:211",
+      "factory_correspondence": "byte領域比較と固定Special ABI挙動fixtureを実測。選出different、BP/参加判定/sp070 random optionsはmatch",
+      "vega_adapter": "required",
+      "notes": "参照ROM挙動fixtureで選出、連勝/BP、参加判定、Battle Mine random optionsを照合済み。選出差は空fallback tableに分類し、非空rental table投入とUI統合はVega adapter対象。"
+    },
+    {
+      "category": "factory",
+      "feature": "reference_behavior_fixture",
+      "status": "measured_classified",
+      "active_config": "Factory-like candidateとFactory referenceを独立mGBA coreで各2回、同一Special ABI入力で測定",
+      "evidence": "vendor/upstream/CFRU-JP/src/frontier.c:1057-1116;vendor/upstream/CFRU-JP/src/frontier.c:1163-1434;vendor/upstream/CFRU-JP/src/frontier.c:1590-1772;vendor/upstream/CFRU-JP/src/Tables/battle_tower_spreads.h:61850-61909;vendor/upstream/CFRU-JP/src/Tables/battle_frontier_trainers.c:2276-2306;tools/factory_fixture_runner.c:1-1531;config/factory_fixture_inputs.json:1-74",
+      "factory_correspondence": "trainer選出=different（空fallback tableを特定）、streak境界BP=match、empty/valid-six/egg参加判定=match、sp070 156ケース=match",
+      "vega_adapter": "required_for_selection_tables_and_uncovered_ui_gimmicks",
+      "notes": "tools/factory_fixture_runner.cがROM/save/state/RAM dumpを残さず数値JSONを生成し、同一ROM内2回一致を必須化する。rental生成は初期化状態不足でfixture化せずVega adapter対象に残す。"
+    },
+    {
+      "category": "ai",
+      "feature": "active_ai_core",
+      "status": "present_active",
+      "active_config": "Trainer.aiFlagsを使用;AI_TRY_TO_KILL_RATE=50",
+      "evidence": "vendor/upstream/CFRU-JP/include/battle.h:264-277;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:182-191;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:227-305;vendor/upstream/CFRU-JP/src/battle_controller_opponent.c:33-56;vendor/upstream/CFRU-JP/hooks:104-115",
+      "factory_correspondence": "Facility/Tower/RaidはAI_FULL_SMART=5",
+      "vega_adapter": "required",
+      "notes": "古いinclude/constants/battle_ai.hではなくinclude/battle.hのactive bitsを正とする。"
+    },
+    {
+      "category": "ai",
+      "feature": "ai_profile_aliases",
+      "status": "present_active",
+      "active_config": "AI_BASIC=1;AI_SEMI_SMART=3;AI_FULL_SMART=5",
+      "evidence": "vendor/upstream/CFRU-JP/include/battle.h:486-494;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:182-191;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:307-363",
+      "factory_correspondence": "Facility/Tower/Raidは5",
+      "vega_adapter": "required",
+      "notes": "project alias。FULLはbad|goodでありsemi bitを含まない。予測内部の一時値7とは区別する。"
+    },
+    {
+      "category": "ai",
+      "feature": "distributed_cache_and_invalidation",
+      "status": "partial",
+      "active_config": "NewBattleStruct cache fields active",
+      "evidence": "vendor/upstream/CFRU-JP/include/battle.h:1019-1048;vendor/upstream/CFRU-JP/src/battle_start_turn_start.c:629-653;vendor/upstream/CFRU-JP/src/end_turn.c:1700-1737;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2849-2878;vendor/upstream/CFRU-JP/src/switching.c:1316-1321;vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:1590-1596",
+      "factory_correspondence": "single/double cold/warm比較対象",
+      "vega_adapter": "required",
+      "notes": "turn endは全体reset。switchはhistoryと入場bank prediction中心で、mid-turn form/item/field変更の包括的invalidateが不足。"
+    },
+    {
+      "category": "ai",
+      "feature": "rng_model",
+      "status": "partial",
+      "active_config": "AI randSeedとglobal Randomの混用",
+      "evidence": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:37-44;vendor/upstream/CFRU-JP/src/battle_start_turn_start.c:136-141;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:281;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:488;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:568;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:632;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2562",
+      "factory_correspondence": "参照action再現には両seedとframe schedule固定が必要",
+      "vega_adapter": "required",
+      "notes": "AI専用LCGだけを固定してもdecisionは決定論化しない。"
+    },
+    {
+      "category": "ai",
+      "feature": "knowledge_model",
+      "status": "present_active",
+      "active_config": "REALLY_SMART_AI=defined",
+      "evidence": "vendor/upstream/CFRU-JP/src/defines_battle.h:42;vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:1324-1349;vendor/upstream/CFRU-JP/src/battle_util.c:105-231;vendor/upstream/CFRU-JP/src/accuracy_calc.c:540-541;vendor/upstream/CFRU-JP/src/damage_calc.c:1391-1450",
+      "factory_correspondence": "Factory trainerの技知識は全知として比較",
+      "vega_adapter": "required_policy_decision",
+      "notes": "相手技4枠は全読取。ability/itemはreveal historyとlive state直接参照が混在する。"
+    },
+    {
+      "category": "ai",
+      "feature": "trainer_ev_iv_dependency",
+      "status": "partial",
+      "active_config": "TRAINERS_WITH_EVS=undefined;STANDARD_IV=10;VAR_GAME_DIFFICULTY=undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:147;vendor/upstream/CFRU-JP/src/config.h:211;vendor/upstream/CFRU-JP/src/Tables/trainers_with_evs_table.h:1-7;vendor/upstream/CFRU-JP/src/Tables/trainers_with_evs_table.h:1237-1290;vendor/upstream/CFRU-JP/src/build_pokemon.c:713-724;vendor/upstream/CFRU-JP/src/build_pokemon.c:967-1042;vendor/upstream/CFRU-JP/src/build_pokemon.c:2177-2178",
+      "factory_correspondence": "Facility rentalだけspread IV/EVを常時適用",
+      "vega_adapter": "required",
+      "notes": "通常trainer EV featureを一括ONにせず、Vega trainer schemaの明示spreadへ変換する。"
+    },
+    {
+      "category": "ai",
+      "feature": "cold_warm_performance_contract",
+      "status": "measured_pass",
+      "active_config": "trainer battle;effective aiFlags=7（AI_FULL_SMART bits 5を包含）;single party=6;double active battlers=4;各active=4技;独立process=2",
+      "evidence": "tools/mgba_ai_fixture_runner.c:1-755;config/ai_fixture_inputs.json:1-184;vendor/upstream/CFRU-JP/include/battle.h:1019-1048;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:686-794;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2849-2878",
+      "factory_correspondence": "固定CFRU baselineの実AIをmGBA ARM7TDMI coreでcold/warm実測し、同一出力・cache-only差分・閾値PASSを確認",
+      "vega_adapter": "required_t06_fixture_reuse",
+      "notes": "action stageとmove stageを実ROM関数で別々に測り、cold totalは各stageを独立coldにした保守的合成上限。全AI状態空間の包括的worst-caseとは主張せず、最大party/4 battler/4技/Full Smartの固定stress条件をT06へ引き継ぐ。"
+    }
+  ],
+  "files": {
+    "vendor/upstream/CFRU-JP/README.md": "883fee75e542024ee54b729d5f82b07387d6e9e2ecc557f0a01304fa435a1c45",
+    "vendor/upstream/CFRU-JP/scripts/make.py": "0349742755fb3d78705d3af08306c3ccea3f20647adca8e6f1d9f776cfad23fe",
+    "vendor/upstream/CFRU-JP/scripts/build.py": "09f8d0c5fbb8e0ebbff4177c70891e955aa2cf5a021bfe7134d033b9ef5d13a3",
+    "vendor/upstream/CFRU-JP/scripts/insert.py": "b29fd801bd4f05c474d61af878767af6269edba37bca0f76c6d2509b76286bb0",
+    "vendor/upstream/CFRU-JP/src/config.h": "49ea2d82bbd5e0040e39b83e044ff3e4e21e09222bcc0a6879a786cc99da4f6e",
+    "vendor/upstream/CFRU-JP/hooks": "19c730e12bcc8ee614b43745a1a6478429c1876a025fdce23b80a49599d8deb5",
+    "vendor/upstream/CFRU-JP/routinepointers": "dcc05504a939cb1876d1b569fb11a33021908bad4d9af7ed66ff74782b88ca24",
+    "vendor/upstream/CFRU-JP/repoints": "b387e4239d00a59698407b1837b5573504bcb172fb41cae6afb7265c1008a12d",
+    "vendor/upstream/CFRU-JP/repointall": "5aaac92950bb01fdf40ca8e16f0e097774afb8d892da760b804bb531c0482df3",
+    "vendor/upstream/CFRU-JP/bytereplacement": "98d0e13da0563c15f11435fd7f9f58f6d3220af47d4f12025730596932dfae00",
+    "vendor/upstream/CFRU-JP/src/daycare.c": "3533614a49b2025a299c6446b6fb303b2eeccd76dfc102dc8197097a1023fe5a",
+    "vendor/upstream/CFRU-JP/src/exp.c": "0d02ff2b0fc420035eac7fb03b367b2a4bebdcc809c6815512b8f0006d470a3e",
+    "vendor/upstream/CFRU-JP/src/party_menu.c": "6b72ebe4b136af6d573c5e7079fe183497a7883ff2daceb4c519cd8dd8e66e59",
+    "vendor/upstream/CFRU-JP/include/pokemon.h": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+    "vendor/upstream/CFRU-JP/src/pokemon_summary_screen.c": "db4578b47c1e5969b12acfce878bf78e543a1e66e033d736bfdd2228994f36e1",
+    "vendor/upstream/CFRU-JP/src/Tables/item_tables.c": "2b191277378fe61fe4cc920ba41dd7ac6d7cf3c7aa469937488f4297734383c6",
+    "vendor/upstream/CFRU-JP/src/item.c": "885c2ae9fa78d145eec1eca4333104b6fdd90a1d5afbbe191e0bc3398e740922",
+    "vendor/upstream/CFRU-JP/src/dexnav.c": "8049836072f5f3469cb134ade1d864ab0c2241f6162930ba76028d8b3d1dbd17",
+    "vendor/upstream/CFRU-JP/include/new/dexnav_config.h": "d2ca25376b465727c95727af2cc5241b011a8ac6f4c70f5c55b05ea53cdafed8",
+    "vendor/upstream/CFRU-JP/src/start_menu.c": "7c29d8bf46d825435dbac8e883f7cfc0e2ed1b54862d983778276a92bf6e4eee",
+    "vendor/upstream/CFRU-JP/src/overworld.c": "1d5877fd2d38747db0a03891e193729cb410d75a653ece57eef444783c197fe6",
+    "vendor/upstream/CFRU-JP/src/dynamax.c": "165a51cf016a690a17c8fa981cb65db67e1ea853ad0a92a6ec374bbd6843c490",
+    "vendor/upstream/CFRU-JP/src/raid_intro.c": "8579cdf4a3535918a6a4222ba2faa75ef64e7eefbdfcad0c5a7c67c27c52a7e3",
+    "vendor/upstream/CFRU-JP/src/Tables/raid_encounters.h": "77b56fb07f0e40ef38e8fb5fbd4053bb90590e7a5af9d7cd73d5ac9abe256c57",
+    "vendor/upstream/CFRU-JP/src/Tables/raid_partners.h": "df77eba3cc6793bb34b638bffb989f6a3920fccca163ef1e82542a5005f579eb",
+    "vendor/upstream/CFRU-JP/src/scripting.c": "6ab41220852dba87df2a26c6fba3b3c3bebf1c7df5f85a596eb7ae644461544a",
+    "vendor/upstream/CFRU-JP/src/text_printer.c": "9e6ed81fe6b025e4d7a71f52a5a82f88a61f91dee697000639193ed3810fbe5a",
+    "vendor/upstream/CFRU-JP/src/frontier.c": "a33395bfaf81eec041a423d44d5620908e587a4f6e5614780b4bde393d7f4e06",
+    "vendor/upstream/CFRU-JP/src/frontier_records.c": "eb0ed3f1692ccd9a81420f60c533be7632bbf5835e8361e9a4ba0d4986e93084",
+    "vendor/upstream/CFRU-JP/include/new/frontier.h": "aa62962fe7f2828a89b64fd8355e386c9ce72f16f0cff27db279d3448d971801",
+    "vendor/upstream/CFRU-JP/src/Tables/battle_tower_spreads.h": "c52eced597a03b3fc9afd794e95832467ba6a7df79ed98dea445ee28b35f0824",
+    "vendor/upstream/CFRU-JP/src/Tables/battle_frontier_trainers.c": "39c3a7adac454fdaa1694b3bf273e79c0c97580e7bdad89f63b510132b29861c",
+    "vendor/upstream/CFRU-JP/src/Tables/frontier_multi_spreads.h": "7e7ab7d4e4f0dac90fe8e999be4fc180fa83575a8c25e5a8bfde037b31fdfe54",
+    "vendor/upstream/CFRU-JP/src/Tables/frontier_special_trainer_spreads.h": "f3833a28eff836566a68ae74ad03daf294458e44560c9068ca3e7ff893515e1c",
+    "vendor/upstream/CFRU-JP/src/Tables/trainers_with_evs_table.h": "fc3fe890d36a2ca182819373ed37c65a970f9c85c8930532cfd204cee59109f1",
+    "vendor/upstream/CFRU-JP/src/build_pokemon.c": "ac81e3a9a8c7a58105573e6ee2abf62a4b22922e88c6c7d3a1ecdc6c9431e824",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c": "e790e1cc1271ffdec28a2c5d9c843fe7032fa3b0b962dea2bcb1852808557fd9",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_negatives.c": "26fe866fba68dbd394ef8d3ef2f93d02a6bd3355310aa07a094ff061bf0ee336",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_positives.c": "5f4fda43ae99b7ba6a10df75385cccd320f6f1428ad004a396415dd109a07c81",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_advanced.c": "1946d392ebbedb2d09a110888b75b543a5144aa68cfbe4960e38429a4540cc5d",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_partner.c": "f813c3ae78d190db5ef43d46f143801cba6cc6bb0a894c91dc0336f27ae7e8a5",
+    "vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c": "3479dda29bf49c548ba590fb1a8fe501176ab17a934e88d2b04cd7112c2eea61",
+    "vendor/upstream/CFRU-JP/src/battle_controller_opponent.c": "54e1692bf573079ca30279bc5011dc3811a1d9aceef883ff1fc4666d3fee2a25",
+    "vendor/upstream/CFRU-JP/src/battle_start_turn_start.c": "00ee1fbed9e28d1cfe41dc85322cba5c502a4ecb14217c672e1570dff5516445",
+    "vendor/upstream/CFRU-JP/src/end_turn.c": "c05d64d360cfc9120e0c9b55bb51027f6ddbe5146dc09da620b6e7c83f947e71",
+    "vendor/upstream/CFRU-JP/src/switching.c": "6435d62c4b9608f72a7edfe8c69575a8a44e3d2cc3e6bba68a3cd51c73550f96",
+    "vendor/upstream/CFRU-JP/src/battle_util.c": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3",
+    "vendor/upstream/CFRU-JP/src/damage_calc.c": "21aff6f8dd64161786b5b6d8b1f31d094e86643fd2bbc3752d447f9e6019cf04",
+    "vendor/upstream/CFRU-JP/src/accuracy_calc.c": "907a002fb0ba2c5c69d9ae7ede4383145cf63dab9ff92f905f21698d665868c6",
+    "vendor/upstream/CFRU-JP/src/item_battle_effects.c": "262107ca883e8348aee8a738bdc330a2f18c3b768231873c883c44b91879d6e3",
+    "vendor/upstream/CFRU-JP/src/ability_battle_effects.c": "760725330a1c94117de914f880807543ab97d97e502b1166d3278e0061144382",
+    "vendor/upstream/CFRU-JP/src/mega.c": "2b1113d8645f44cd7139ab1bd936d5467eb84342d07cbbb2967edbc650436efd",
+    "vendor/upstream/CFRU-JP/src/terastal.c": "b6a73ddc8800c96690bf2604c617bd6bd4d4b02b9db3c633514975b516ef7ffc",
+    "vendor/upstream/CFRU-JP/include/battle.h": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+    "vendor/upstream/CFRU-JP/src/defines_battle.h": "e85a4e7a35321a05972fa3742fe469619869127b545242f640c6c6cf061355de",
+    "tools/factory_fixture_runner.c": "361ff077dbb6fcb965045d76553b155b96ee46d38b10971cb6975527f83c2665",
+    "config/factory_fixture_inputs.json": "de0c38df5d970927fd0a99910955ea97bf735065e3549bf2ae1728b21eebc6b0",
+    "tools/mgba_ai_fixture_runner.c": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+    "config/ai_fixture_inputs.json": "a361bb56f13905897f9465adf034ec2e50e5841d38fe1d873e4a419f40680eac"
+  },
+  "ai": {
+    "aliases": {
+      "AI_BASIC": {
+        "value": 1,
+        "bits": [
+          "AI_SCRIPT_CHECK_BAD_MOVE"
+        ]
+      },
+      "AI_SEMI_SMART": {
+        "value": 3,
+        "bits": [
+          "AI_SCRIPT_CHECK_BAD_MOVE",
+          "AI_SCRIPT_SEMI_SMART"
+        ]
+      },
+      "AI_FULL_SMART": {
+        "value": 5,
+        "bits": [
+          "AI_SCRIPT_CHECK_BAD_MOVE",
+          "AI_SCRIPT_CHECK_GOOD_MOVE"
+        ]
+      }
+    },
+    "active_bits_evidence": "vendor/upstream/CFRU-JP/include/battle.h:486-494",
+    "dispatch_evidence": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:182-191",
+    "profile_resolution": {
+      "facility_tower_raid": 5,
+      "scripted_smart_wild": 1,
+      "legendary_wild": 3,
+      "ordinary_trainer": "Trainer.aiFlags",
+      "difficulty_override": "inactive because VAR_GAME_DIFFICULTY is undefined",
+      "evidence": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:307-363"
+    },
+    "prediction_internal_flags": {
+      "value": 7,
+      "scope": "move prediction内部だけの一時値",
+      "is_profile_alias": false,
+      "evidence": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2495-2569"
+    },
+    "source_roles": [
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c",
+        "role": "setup、flag解決、single/double選択、switch/item、予測、cache"
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_negatives.c",
+        "role": "不利手のviability減点"
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_positives.c",
+        "role": "有利手の加点とsemi-smart評価"
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_advanced.c",
+        "role": "move prediction、fight style、single/double高度判断"
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_partner.c",
+        "role": "partner targetとsupport判断"
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c",
+        "role": "共通評価、damage/KO/double cache、AI専用LCG"
+      }
+    ],
+    "cache": {
+      "fields_evidence": "vendor/upstream/CFRU-JP/include/battle.h:1019-1048",
+      "initialization_evidence": "vendor/upstream/CFRU-JP/src/battle_start_turn_start.c:629-653",
+      "turn_end_invalidation_evidence": "vendor/upstream/CFRU-JP/src/end_turn.c:1700-1737;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2849-2878",
+      "switch_invalidation_evidence": "vendor/upstream/CFRU-JP/src/switching.c:1316-1321;vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:1590-1596",
+      "port_requirement": "switch、form、ability、item、weather、terrain変更時の依存cacheを明示的にinvalidateする"
+    },
+    "rng": {
+      "ai_lcg_evidence": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:37-44",
+      "global_rng_examples": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:281;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:488;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:568;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:632;vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c:2562",
+      "determinism_contract": [
+        "decision直前のglobal RNG stateを固定",
+        "AI randSeedを固定",
+        "frame更新回数を固定",
+        "ROM/source/config/tool/fixture hashを記録"
+      ]
+    },
+    "knowledge": {
+      "mode": "moves_omniscient_ability_item_mixed",
+      "really_smart_ai": true,
+      "moves": "相手の4 move slotを履歴に関係なく直接読む",
+      "ability_item": "reveal historyを使う計算とlive state直接参照が混在",
+      "evidence": "vendor/upstream/CFRU-JP/src/defines_battle.h:42;vendor/upstream/CFRU-JP/src/Battle_AI/ai_util.c:1324-1349;vendor/upstream/CFRU-JP/src/battle_util.c:105-231;vendor/upstream/CFRU-JP/src/accuracy_calc.c:540-541;vendor/upstream/CFRU-JP/src/damage_calc.c:1391-1450"
+    },
+    "ev_iv": {
+      "trainers_with_evs_active": false,
+      "normal_trainer_default_iv": 10,
+      "normal_trainer_ev_behavior": "固定configではEV spreadを適用しない",
+      "facility_rental_behavior": "TRAINERS_WITH_EVSと無関係にspread IV/EVを適用",
+      "active_table_problem": "non-UNBOUND spreadが空entryのため有効dataを生成する必要あり",
+      "evidence": "vendor/upstream/CFRU-JP/src/config.h:147;vendor/upstream/CFRU-JP/src/config.h:211;vendor/upstream/CFRU-JP/src/Tables/trainers_with_evs_table.h:1-7;vendor/upstream/CFRU-JP/src/build_pokemon.c:713-724;vendor/upstream/CFRU-JP/src/build_pokemon.c:967-1042;vendor/upstream/CFRU-JP/src/build_pokemon.c:2177-2178"
+    },
+    "performance": {
+      "measurement_state": "t01_mgba_arm_cycle_measured_pass",
+      "shared_measurement_boundary": "AI_TrySwitchOrUseItemのaction stageと、BattleAI_SetupAIData＋BattleAI_ChooseMoveOrActionのmove stageをROM entryから指定LR returnまで測る。ACTION_USE_MOVEのときだけ両stageを合算する",
+      "total_semantics": "coldは各stageを同一baseから独立coldで測るためprediction重処理を二重計上し得る保守的上限。warmは実coldで生成したprediction cacheだけを同一baseへoverlayした各stageの合計。連続E2E wall timeではない",
+      "bounded_worst_case_contract": [
+        "両陣営party sizeは6で、相手側に複数の生存switch候補を持つ",
+        "singleはactive 2体、doubleはactive 4体で全activeのHPが非0",
+        "各active battlerは4つの非zero合法moveと非zero PPを持つ",
+        "trainer battleで、Setup後の実効aiFlags=7がAI_FULL_SMART bits 5を包含する",
+        "cold/warmは同一base、global RNGとai.randSeedを保持しprediction cacheだけを差し替える",
+        "cold/warmのaction、parameter、target、move choiceが一致し、ACTION_USE_MOVEを必須にする",
+        "hazard、weather、terrain、trainer item、gimmickを含む全AI状態空間の包括的worst-caseとは主張しない"
+      ],
+      "fixtures": [
+        {
+          "id": "cfru_ai_single_cold",
+          "format": "single",
+          "active_battlers": 2,
+          "player_party_size": 6,
+          "opponent_party_size": 6,
+          "cache_state": "turn開始時sentinel初期化後、calculatedAIPredictions=false、予測cache未生成",
+          "paired_fixture": "cfru_ai_single_warm",
+          "payload_path": "tools/mgba_ai_fixture_runner.c",
+          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "status": "measured_pass"
+        },
+        {
+          "id": "cfru_ai_single_warm",
+          "format": "single",
+          "active_battlers": 2,
+          "player_party_size": 6,
+          "opponent_party_size": 6,
+          "cache_state": "同一turn・同一battle stateで予測cache生成済み、end-turn/switch invalidate前",
+          "paired_fixture": "cfru_ai_single_cold",
+          "payload_path": "tools/mgba_ai_fixture_runner.c",
+          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "status": "measured_pass"
+        },
+        {
+          "id": "cfru_ai_double_cold",
+          "format": "double",
+          "active_battlers": 4,
+          "player_party_size": 6,
+          "opponent_party_size": 6,
+          "cache_state": "turn開始時sentinel初期化後、calculatedAIPredictions=false、全target/partner予測cache未生成",
+          "paired_fixture": "cfru_ai_double_warm",
+          "payload_path": "tools/mgba_ai_fixture_runner.c",
+          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "status": "measured_pass"
+        },
+        {
+          "id": "cfru_ai_double_warm",
+          "format": "double",
+          "active_battlers": 4,
+          "player_party_size": 6,
+          "opponent_party_size": 6,
+          "cache_state": "同一turn・同一battle stateで全target/partner予測cache生成済み、end-turn/switch invalidate前",
+          "paired_fixture": "cfru_ai_double_cold",
+          "payload_path": "tools/mgba_ai_fixture_runner.c",
+          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "status": "measured_pass"
+        }
+      ],
+      "t01_arm_cycle_fixture": {
+        "purpose": "固定CFRU-JP baselineの最大party single/double stress条件を実ARM coreでcold/warm測定",
+        "measurement_kind": "mGBA_0.10.2_ARM7TDMI_cycles",
+        "clock": "mTimingGlobalTime",
+        "unit": "emulated_ARM_cycles_per_conservative_decision_bound",
+        "environment": "infra/toolchain_manifest.json;config/ai_fixture_inputs.json",
+        "runner_path": "tools/mgba_ai_fixture_runner.c",
+        "runner_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+        "config_path": "config/ai_fixture_inputs.json",
+        "config_sha256": "a361bb56f13905897f9465adf034ec2e50e5841d38fe1d873e4a419f40680eac",
+        "process_runs": 2,
+        "internal_runs_per_fixture": 2,
+        "results_path": "reports/generated/upstream_repro.json#/ai_benchmark/fixtures",
+        "verified_baseline_rom_sha256": "7f8d30f0c885b617634d7023aa27c7820e8a6a80d8a33cbe252d8c9ba0c64c70",
+        "verified_stdout_json_sha256": "2fc8e2e73bb8b11fd14afad1867c93c8becfc4560ff85eb8840d6534f7ad3cb6",
+        "results": {
+          "cfru_ai_single_cold": 2584765,
+          "cfru_ai_single_warm": 339772,
+          "cfru_ai_double_cold": 6297788,
+          "cfru_ai_double_warm": 609210
+        },
+        "status": "measured_pass"
+      },
+      "t06_arm_cycle_gate": {
+        "purpose": "統合ROM上で同じ固定stress fixtureを再実行し、T01 baselineからの性能回帰を検出",
+        "metric": "ARM7TDMI cycles per conservative decision bound",
+        "emulator_path": "/usr/games/mgba",
+        "emulator_version": "0.10.2",
+        "emulator_sha256": "ca3914111e3e156057180c36646bdb3b003df5f75323deb94a4ae7ebf5dca50f",
+        "rom_sha256": "7f8d30f0c885b617634d7023aa27c7820e8a6a80d8a33cbe252d8c9ba0c64c70",
+        "results": {
+          "cfru_ai_single_cold": 2584765,
+          "cfru_ai_single_warm": 339772,
+          "cfru_ai_double_cold": 6297788,
+          "cfru_ai_double_warm": 609210
+        },
+        "threshold_cycles": {
+          "cfru_ai_single_cold": 3300000,
+          "cfru_ai_single_warm": 450000,
+          "cfru_ai_double_cold": 8000000,
+          "cfru_ai_double_warm": 800000
+        },
+        "threshold_rationale": "T01固定baselineの保守的cold合算値に25%以上の余裕を持たせ、warmはcache効果を維持しつつ明確な回帰を検出する上限へ丸めた。",
+        "status": "baseline_measured_pass_reuse_required",
+        "completion_rule": "T06統合ROMのBuildOutcome SHAと同一offsets由来symbolをrunnerへ渡し、2 process一致・Full Smart・4技・cold/warm出力一致・全threshold PASSを再確認する"
+      }
+    }
+  },
+  "absence_searches": [
+    {
+      "feature": "experience_candy",
+      "patterns": [
+        "EXP_CANDY",
+        "EXPERIENCE_CANDY"
+      ],
+      "scope": "vendor/upstream/CFRU-JP tracked source",
+      "matches": 0
+    },
+    {
+      "feature": "auto_battle",
+      "patterns": [
+        "AUTO_BATTLE",
+        "AUTOBATTLE",
+        "AutoBattle"
+      ],
+      "scope": "vendor/upstream/CFRU-JP tracked source",
+      "matches": 0
+    },
+    {
+      "feature": "advanced_pc_qol",
+      "patterns": [
+        "name/type/ability filter",
+        "multi-select marker",
+        "transactional bulk move/release",
+        "field_pc_allowed"
+      ],
+      "scope": "vendor/upstream/CFRU-JP tracked sourceの機能・symbol監査",
+      "matches": 0
+    }
+  ]
+}

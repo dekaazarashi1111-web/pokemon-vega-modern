@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "fixture_id": "T01-CFRU-AI-ARM-CYCLES-v1",
+  "purpose": "固定CFRU-JPの実AIをmGBA ARM7TDMI上で測定するT06引継ぎfixture",
+  "runner": {
+    "source": "tools/mgba_ai_fixture_runner.c",
+    "source_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+    "compiler": "/usr/bin/cc",
+    "compile_argv": [
+      "/usr/bin/cc",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "tools/mgba_ai_fixture_runner.c",
+      "-o",
+      "<git-ignored-runner>",
+      "-lmgba"
+    ],
+    "runtime": {
+      "emulator_binary": "/usr/games/mgba",
+      "emulator_binary_sha256": "ca3914111e3e156057180c36646bdb3b003df5f75323deb94a4ae7ebf5dca50f",
+      "library": "/lib/x86_64-linux-gnu/libmgba.so.0.10",
+      "library_sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "package": "libmgba-dev",
+      "version": "0.10.2+dfsg-1.1build3"
+    }
+  },
+  "input_contract": {
+    "cfru_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "rom_variant": "cfru/baseline/run-1",
+    "rom_sha256_argument_source": "BuildOutcome.output_sha256",
+    "rom_sha256_must_match_before_boot": true,
+    "symbol_argument_source": "同じBuildOutcomeのoffsets.ini",
+    "symbols": [
+      "AI_TrySwitchOrUseItem",
+      "BattleAI_SetupAIData",
+      "BattleAI_ChooseMoveOrAction",
+      "ClearCachedAIData"
+    ],
+    "fixed_symbols": {
+      "GetMonData": "0x0803F355",
+      "SetMonData": "0x0803FA71"
+    },
+    "fixed_symbol_source": "pinned CFRU-JP BPRJ.ld (GetMonData = 0x0803F354|1, SetMonData = 0x0803FA70|1)",
+    "argv": [
+      "<git-ignored-runner>",
+      "<baseline-rom>",
+      "<BuildOutcome.output_sha256>",
+      "<offsets.ini:AI_TrySwitchOrUseItem>",
+      "<offsets.ini:BattleAI_SetupAIData>",
+      "<offsets.ini:BattleAI_ChooseMoveOrAction>",
+      "<offsets.ini:ClearCachedAIData>"
+    ],
+    "tracked_rom_or_state": false
+  },
+  "emulator_contract": {
+    "emulator": "mGBA",
+    "version": "0.10.2",
+    "core": "ARM7TDMI",
+    "idle_optimization": "ignore",
+    "load_user_config": false,
+    "fixed_rtc_unix": 946684800,
+    "measurement_unit": "emulated ARM cycles",
+    "boundary": "各実ROM関数entryからcalleeが指定LRへreturnするまで。action stageはEmitTwoReturnValues完了を含む",
+    "warnings": "mGBA WARN/ERROR/FATALはstderrへ出し失敗。CFRUをBIOS HLEで動かす際のmLOG_GAME_ERROR互換診断のみ測定ノイズとして抑止",
+    "process_environment": {"PATH": "/usr/bin:/bin", "LC_ALL": "C", "LANG": "C", "TZ": "UTC"},
+    "stdout": "単一行UTF-8 JSONのみ",
+    "stderr_on_pass": "空",
+    "fixture_state_digest": "opaque savestateではなくcanonical EWRAM 0x02000000..0x0203ffff と IWRAM 0x03000000..0x03007fffのFNV-1a-64"
+  },
+  "fixture_construction": {
+    "natural_base": "クリーンsaveからrunner内の固定key/frame列で開始し、最初のライバル戦の戦闘runtime初期化後まで進める",
+    "move_setup": {
+      "party_write": "実ROM SetMonDataをfields MOVE1..4=13..16、PP1..4=17..20へ呼び、暗号化substruct/checksumの整合を維持",
+      "party_readback": "実ROM GetMonDataで両party各6体の全slotを読戻し、期待値かつ非zeroを検証",
+      "active_sync": "BattlePokemon.moves offset 0x0c、pp offset 0x24へ同じ値を設定し、cold/warm各stage直前に全active slotを検証",
+      "player_species": 4,
+      "player_moves": [10, 45, 52, 108],
+      "player_pp": [35, 40, 25, 20],
+      "enemy_species": 7,
+      "enemy_moves": [33, 39, 55, 110],
+      "enemy_pp": [35, 30, 25, 40],
+      "move_slots_per_party_member": 4,
+      "move_slots_per_active_battler": 4
+    },
+    "required_move_invariants": [
+      "両party各6体の4 moves/PPが期待値と一致し、すべて非zero",
+      "single active 2体・double active 4体の4 moves/PPがparty側と一致し、すべて非zero",
+      "各cold/warm action/move stageの実ROM関数呼出直前にactive moves/PPを再検証"
+    ],
+    "single_max_party": {
+      "active_battlers": 2,
+      "party_size_per_side": 6,
+      "construction": "自然戦闘の両party先頭個体を残り5枠へ複製"
+    },
+    "double_four_battler": {
+      "active_battlers": 4,
+      "party_size_per_side": 6,
+      "construction": "同じ自然戦闘stateからdouble flag/count/positions/party indexesを設定し、bank 2/3へactive battle monを複製",
+      "required_invariants": [
+        "gBattlersCount == 4",
+        "gAbsentBattlerFlags & 0x0f == 0",
+        "gBattlerPositions[0..3] == [0,1,2,3]",
+        "gBattlerPartyIndexes[0..3] == [0,0,1,1]",
+        "active 4体のHPが非0",
+        "両party各6体のcurrent HP (Pokemon.hp offset 0x56)が非0"
+      ]
+    },
+    "scope_limitations": "最大party、全active、各4合法技/PP、Full Smartを固定するfixture。自然ライバル戦に存在しないhazard/weather等を人工設定しておらず、それらを含むworst-caseとは主張しない"
+  },
+  "cache_contract": {
+    "cold": "実ClearCachedAIData結果をbaseへcache-only overlayし、calculatedAIPredictionsを0にした同一base state",
+    "warm": "cold実AI call後のprediction cacheだけを同じbase stateへoverlayし、calculatedAIPredictionsを1にする",
+    "overlay_start": "offsetof(NewBattleStruct, ai.itemEffects) == 0x299",
+    "overlay_end_exclusive": "offsetof(NewBattleStruct, foePartyBackup) == 0x554",
+    "additional_cache": [
+      "recalculatedBestDoublesKillingScores[4]",
+      "calculatedAIPredictions bit"
+    ],
+    "excluded_non_cache": [
+      "ai.zMoveHelper",
+      "ai.randSeed",
+      "ai.sideSwitchedThisRound",
+      "ai.switchingCooldown",
+      "ai.typeAbsorbSwitchingCooldown",
+      "controller buffer",
+      "global RNG and CPU state"
+    ],
+    "gates": [
+      "cold開始flag=0、cold終了flag=1、warm開始flag=1",
+      "warm overlay前後でai.randSeed一致",
+      "cold/warmのaction、parameter、target、move choice一致",
+      "trainer battleで、BattleAI_SetupAIData後のaiFlagsがcold/warmともAI_FULL_SMART bits 5を包含",
+      "cold/warm各stage直前に全active battlerの4 moves/PPが期待値かつ非zero"
+    ],
+    "layout_evidence": {
+      "vendor/upstream/CFRU-JP/BPRJ.ld": "e371c23b9c9ea914c9ca3f644983e0b4e05be07bf11054492fa37afcfd58892a",
+      "vendor/upstream/CFRU-JP/include/battle.h": "8c6b332ef73bc545297b4f6c5bedc1ad11fa4470901f39cf386c1be53f4abdc9",
+      "vendor/upstream/CFRU-JP/include/pokemon.h": "d75972c66e85835a3fc9c859cb695c033995ba6627ba1d44f577b35136356c78",
+      "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c": "e790e1cc1271ffdec28a2c5d9c843fe7032fa3b0b962dea2bcb1852808557fd9"
+    },
+    "offset_derivation": "pinned ARM ABIでoffsetofをarm-none-eabi-gcc 13.2.1により確認: NewBattleStruct size=0x558, recalculatedBestDoublesKillingScores=0x0a0, calculated flag byte=0x164 bit3, ai=0x288, ai.randSeed=0x28c, ai.itemEffects=0x299, foePartyBackup=0x554; BattleResources.ai=0x14; AI_ThinkingStruct.funcResult=0x08, aiFlags=0x0c; Pokemon=100, Pokemon.hp(current HP)=0x56, Pokemon.maxHP=0x58, BattlePokemon=88, BattlePokemon.moves=0x0c, BattlePokemon.pp=0x24"
+  },
+  "thresholds": {
+    "rationale": "全party/activeを4技化した現baseline実測に約27%以上の余裕を持たせ、再現差より大きな性能回帰を検出できる上限へ丸めたT06初期性能基準",
+    "single_max_party": {
+      "cold_max_cycles": 3300000,
+      "warm_max_cycles": 450000
+    },
+    "double_four_battler": {
+      "cold_max_cycles": 8000000,
+      "warm_max_cycles": 800000
+    }
+  },
+  "repeatability": {
+    "independent_process_runs": 2,
+    "require_byte_identical_stdout_json": true,
+    "internal_runs_per_fixture": 2,
+    "require_identical_cycles_instructions_outputs": true
+  },
+  "verified_baseline_observation": {
+    "rom_sha256": "7f8d30f0c885b617634d7023aa27c7820e8a6a80d8a33cbe252d8c9ba0c64c70",
+    "stdout_json_sha256": "2fc8e2e73bb8b11fd14afad1867c93c8becfc4560ff85eb8840d6534f7ad3cb6",
+    "single_max_party": {
+      "fixture_state_fnv1a64": "4503c0dcc81c594e",
+      "effective_ai_flags": 7,
+      "required_ai_full_smart_bits": 5,
+      "move_slots_per_active_battler": 4,
+      "cold_cycles": 2584765,
+      "warm_cycles": 339772
+    },
+    "double_four_battler": {
+      "fixture_state_fnv1a64": "dacb25099cf34228",
+      "effective_ai_flags": 7,
+      "required_ai_full_smart_bits": 5,
+      "move_slots_per_active_battler": 4,
+      "cold_cycles": 6297788,
+      "warm_cycles": 609210
+    },
+    "status": "PASS"
+  }
+}

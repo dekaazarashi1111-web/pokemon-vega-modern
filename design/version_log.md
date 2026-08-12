@@ -87,3 +87,15 @@
   - Vega本編の横強化、初回boss/league、Tohoku再戦と3段階league、NORMAL/RESEARCH、Sphere、Mirageを機械検証可能な仕様へした。
   - TM再利用と固定CFRU Raidによる簡易高難度Raidを既存UI前提で追加し、smoke matrixを67件へ拡張した。
 - Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）
+
+## 2026-08-13T04:21:11+09:00
+
+- Version: `upstream-repro-0.8.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T01` / 固定DPE-JP/CFRU-JP上流ビルド再現
+- Summary:
+  - ARM/host/mGBA/Windows converter toolchainを完全fingerprint化し、vendor外のACL保護sandboxからDPEとCFRU 3 profileを各2回再構築した。
+  - ROM/blob/offsetsの再現性、固定挿入領域と予約領域、hidden insert失敗、private cleanup、cache/report identityを自動gateにした。
+  - Factory参照との4カテゴリ実挙動比較と、固定CFRU AIのsingle/double cold/warm ARM cycle fixtureを実測し、QOL/Factory/AIの機械可読inventoryと再生成reportを確定した。
+  - T02で使うfixed output hash、symbol/fixture provenance、Save/flag/Factory監査入口を固定した。
+- Verify: `make upstream-toolcheck`, `make upstream-repro`, report削除相当からのbyte同一再生成、`bash scripts/verify_wsl.sh` PASS（87 tests）

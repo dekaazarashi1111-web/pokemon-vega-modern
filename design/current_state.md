@@ -1,15 +1,19 @@
 # current_state.md
 
-最終更新: 2026-08-12
+最終更新: 2026-08-13
 
 ## 現在地
 
-- マイルストーン: Gate A完了 / 上流再現・完全監査・schema設計へ移行。
+- マイルストーン: Gate A・T01完了 / 完全監査とschema設計へ移行。
 - ユーザー提供の4 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 4 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料を役割別に配置済み。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
+- T01で固定DPE-JP/CFRU-JPをvendor外のWindows ACL保護sandboxから各2回再構築し、全variantのROM・primary blob・offsets一致を確認した。再現fingerprintは `feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633`。
+- DPE base ROMは `eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c`、CFRU baselineは `140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922`、Factory-likeは `494b488735270cc0b384febc1dc5b73f53595905f6fd51aa32f471864f7e61b1`、minimalは `964ee5b785200b018143586351373cf60aeb37df85649173c2c8f1c98e208517`。
+- ARM GCC/binutils/newlib、Python、host runner closure、mGBA/libmGBA、Windows PE converter/DLL/bridgeをversion・path・SHA-256で固定した。grit/wav2agb/mid2agbは各2回のfixtureとknown-good canonical hashを通過した。
+- Factory実挙動fixtureはBP、参加判定、Battle Mine optionが参照と一致し、trainer選出は差異として分類した。固定CFRU AIの保守的cold合成上限はsingle `2,584,765` cycles、double `6,297,788` cyclesで、warmはそれぞれ `339,772` / `609,210` cycles。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - 元FireRedのカントーを新規 `KANTO_*` 名前空間へ複製し、Vega中盤からトーホクと常時往復できる二地方構成は実現可能と判定。V2の47地点は生態設計単位であり、raw map総数ではないためT11で全建物・階層・warpとのcrosswalkを生成する。
@@ -21,13 +25,13 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、推奨 `PRIMARY=T01`、依存READY候補 `PARALLEL_PREP=T02,T12` である。PRIMARYは強制順ではなく、toolchain待ちなどでthroughputが上がる場合はT02またはT12を正本に選んでよい。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、推奨 `PRIMARY=T02`、依存READY候補 `PARALLEL_PREP=T12` である。PRIMARYは強制順ではなく、待ち時間を減らせる独立準備は並列化してよい。
 
-- T01: DPE-JP/CFRU-JP上流ビルド再現。最初にARM toolchainとasset converter wrapperを整え、vendor原本ではなく隔離sandboxでpinned-current baselineを再現し、Factory差分からfactory-like候補、次にminimalを作る。
-- T02: config-aware fixed-write監査、RAM/SaveBlock/ID、Vega map/早期解禁flagの読取調査をT01と並列準備する。
+- T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
+- T02: config-aware fixed-write監査、RAM/SaveBlock/ID、Vega map/早期解禁flagを完全監査する。先行読取でVega高位flagとCFRU expanded flagsの保存位置変更、Factory/Mirage state、港object上限を要移行事項として特定済み。
 - T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
 
-ARM toolchain、asset converter、mGBAは現環境に未導入だが、T01で導入・固定する作業そのものなのでブロッカーではない。入力、参照ROM、上流commitは一致している。
+ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 
 T11（カントーimporter）はT02完了後に先行準備でき、依存READYになった時点で正本へ選択・統合できる。
 

@@ -36,7 +36,7 @@ root = pathlib.Path(".").resolve()
 ignore = {".git", ".venv", ".venv_test", ".codex", ".local", "userfile", "vendor", "tests", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", "generated", ".tox"}
 patterns = [
     re.compile(r"(?i)(bearer\s+)([A-Za-z0-9._-]{8,})"),
-    re.compile(r"(?i)(token=)([A-Za-z0-9._-]{8,})"),
+    re.compile(r"(?i)(?<!publickey)(token=)([A-Za-z0-9._-]{8,})"),
     re.compile(r"(?i)(api[_-]?key\s*[=:]\s*)([A-Za-z0-9._-]{12,})"),
     re.compile(r"(?i)(access[_-]?token\s*[=:]\s*)([A-Za-z0-9._-]{12,})"),
     re.compile(r"(?i)(aws_secret_access_key\s*[=:]\s*)([A-Za-z0-9/+=]{16,})"),

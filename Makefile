@@ -1,7 +1,8 @@
 PYTHON ?= python3
 CONFIG ?= config/project.toml
+UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -20,6 +21,12 @@ references:
 
 t00:
 	$(PYTHON) scripts/run_baseline_audit.py --config $(CONFIG) --target t00
+
+upstream-toolcheck:
+	$(PYTHON) scripts/build_upstream.py toolcheck --config $(CONFIG) --sandbox-root $(UPSTREAM_SANDBOX)
+
+upstream-repro:
+	$(PYTHON) scripts/build_upstream.py reproduce --config $(CONFIG) --sandbox-root $(UPSTREAM_SANDBOX) --repeat 2
 
 validate:
 	$(PYTHON) scripts/validate_task_graph.py

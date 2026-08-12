@@ -179,3 +179,36 @@
   - `git diff --check`: PASS
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。ユーザー添付とローカルの固定CFRU-JP source、既存設計正本だけを参照した。
+
+## 2026-08-13T04:21:11+09:00
+
+- Task: `T01` / 固定DPE-JP/CFRU-JP上流ビルド再現
+- Status: DONE
+- Summary:
+  - DPE-JP `10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e` とCFRU-JP `e24a16fe39e27ae162faf5b78596d1f3df18489d` を、vendor外のWindows ACL保護・使い捨てDrvFS sandboxから各2回独立構築した。fingerprintは `feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633`。
+  - DPE base `eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c`、CFRU baseline `140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922`、Factory-like `494b488735270cc0b384febc1dc5b73f53595905f6fd51aa32f471864f7e61b1`、minimal `964ee5b785200b018143586351373cf60aeb37df85649173c2c8f1c98e208517` は、ROM、primary blob、offsets、patch hashが各2 runで一致した。
+  - ARM toolchain、Python、host runner compile/link/runtime/header closure、mGBA/libmGBA、Windows PE converter/DLL/VC90 SxS/bridgeをpath・version・package・SHA-256で固定した。grit/wav2agb/mid2agbは各2回の変換とknown-good canonical assembly hashを照合した。
+  - DPEの32 MiB FF拡張、固定挿入offset、CFRU予約領域保持、CFRU profileの最終define/hook整合、build logの隠れたinsert失敗、artifact recovery/report cross-link、cache/lock symlink、Windows ACL、private ROM cleanupをfail-closedで検証した。上流worktreeは前後ともclean、DrvFS sandboxのROM残存は0。
+  - Factory参照と候補を独立mGBA coreで各2回観測し、BP、参加判定、Battle Mine optionは一致、trainer選出は差異として記録した。固定CFRU実AIはFull Smart bitsを含む4技×最大party fixtureで、single cold/warm `2,584,765 / 339,772` cycles、double `6,297,788 / 609,210` cyclesを計測し閾値内だった。cold値はaction/move stageを別々にcold測定した保守的合成上限で、全状態空間の包括的worst-caseとはしていない。
+  - QOL、Factory、AIの31行matrixとmachine-readable inventoryを生成した。生成レポート3件を生成先から外して `python3 scripts/build_upstream.py report` だけで再生成し、全ファイルのbyte一致を確認した。
+- Files changed:
+  - 再現driver/入口: `scripts/build_upstream.py`, `Makefile`
+  - toolchain: `infra/README.md`, `infra/setup_toolchain.sh`, `infra/toolchain_manifest.json`
+  - profile/inventory/fixture契約: `config/cfru_minimal.h`, `config/cfru_factory_like.h`, `config/upstream_inventory.json`, `config/factory_fixture_inputs.json`, `config/ai_fixture_inputs.json`
+  - 実挙動runner: `tools/factory_fixture_runner.c`, `tools/mgba_ai_fixture_runner.c`
+  - 回帰検証: `tests/test_build_upstream.py`, `scripts/verify_wsl.sh`, `scripts/verify_linux.sh`, `scripts/verify_windows.ps1`
+  - 状態・証跡: `design/current_state.md`, `design/tasks_next.md`, `state/task_status.json`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外再生成物: `reports/generated/upstream_repro.{md,json}`, `reports/generated/upstream_feature_matrix.csv`, `build/upstream-cache/feb30b4f.../**`
+- Verify:
+  - `make upstream-toolcheck`: PASS。full check log SHA-256 `0768e419e8cca34d7a1eb36e33f64be86f011bda48d5e5c8c374d16866ca2ded`、3 converter fixtureは各2回一致かつknown-good hash一致。
+  - `make upstream-repro`: PASS。全8 build、repeatability、ROM layout、Factory/AI fixture、mGBA smokeを通過。
+  - `python3 scripts/build_upstream.py report`: PASS。削除相当から再生成し、Markdown `5415524760344bc7268a59c8c25bf424ec6447490f266fcd1c7ac1a1e058e22c`、JSON `018c2996e6daf831e1bf9eaccee6bf0bcdd14fefd000586180986c1a74652c19`、CSV `ebfa9c1fcc5b37fc81cde0e06239ec3653a7282e9dbd9f462048eb4c3b993c03` がbyte一致。
+  - `python3 -W error::SyntaxWarning -m py_compile scripts/build_upstream.py tests/test_build_upstream.py`: PASS。
+  - `bash scripts/verify_wsl.sh`: 初回はmanifest中の公開 `publicKeyToken=` をsecret scanが誤検出してFAIL。公開tokenだけを除外し実 `token=` は検出する回帰確認後に再実行しPASS（87 tests、npm checkを含む）。
+  - 独立最終監査: P1/P2なし、全acceptance gate完了可。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - Ubuntu公式APT repositoryからmanifest固定版のARM toolchain/newlib、mGBA/libmGBA開発依存を取得した。導入版とAPT archive metadata、実行/runtime/header SHA-256は `infra/toolchain_manifest.json` に固定した。
+  - `https://mgba.io/docs/scripting.html` — mGBAのautomation/debugger入口を確認。
+  - `https://github.com/mgba-emu/mgba` および `https://github.com/mgba-emu/mgba/tree/0.10.2` — 固定0.10.2のlibmGBA API、CLI/debugger、cycle境界の一次sourceを確認。実計測条件はtracked runner/configへ固定した。

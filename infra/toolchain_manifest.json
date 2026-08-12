@@ -1,0 +1,899 @@
+{
+  "schema_version": 1,
+  "platform": {
+    "os_id": "ubuntu",
+    "version_codename": "noble",
+    "architecture": "x86_64",
+    "wsl_required": true,
+    "windows_drive_mount": "/mnt/c"
+  },
+  "apt": {
+    "repository_suite": "noble",
+    "packages": [
+      {
+        "name": "python3",
+        "version": "3.12.3-0ubuntu2.1",
+        "install": true,
+        "deb_sha256": "e691b9cc40841c41bbdc50bd794c876cb1b1801306ea27b06e9a1458180df1e9"
+      },
+      {
+        "name": "gcc-arm-none-eabi",
+        "version": "15:13.2.rel1-2",
+        "install": true,
+        "deb_sha256": "519a5d0e5292a4b4861f69ae96e8918149bfd1646072ca53451ccfb8c5a91948"
+      },
+      {
+        "name": "binutils-arm-none-eabi",
+        "version": "2.42-1ubuntu1+23",
+        "install": true,
+        "deb_sha256": "2aab2d6a7e4c21ce33462f8b52b972e2a8e4597e79b5add5502e2d1f3e543472"
+      },
+      {
+        "name": "libnewlib-arm-none-eabi",
+        "version": "4.4.0.20231231-2",
+        "install": true,
+        "deb_sha256": "9af508599193d07c9460897d01a36af46a2707765bd6941e27c6d0747859b0eb"
+      },
+      {
+        "name": "mgba-sdl",
+        "version": "0.10.2+dfsg-1.1build3",
+        "install": true,
+        "deb_sha256": "9840ec7bcd0d8eee5d588c6f1e0c99e6a846eaf739bf3eff1a5707a69fcec200"
+      },
+      {
+        "name": "mgba-common",
+        "version": "0.10.2+dfsg-1.1build3",
+        "install": false,
+        "deb_sha256": "3d870b6d88cb15b1502544d14be466e7e8eb78ce536cd46a3871cbecaf4182b3"
+      },
+      {
+        "name": "libmgba0.10t64",
+        "version": "0.10.2+dfsg-1.1build3",
+        "install": false,
+        "deb_sha256": "3c2088fec5a3219082f7d77dd95911ef2cae1aca838f60a560a261c0bed7d23b"
+      },
+      {
+        "name": "libmgba-dev",
+        "version": "0.10.2+dfsg-1.1build3",
+        "install": true,
+        "deb_sha256": "6a6473fe988d9918fcb6b1cfa5342cf45003dfbacffd07e8c370b2b407e51c4e"
+      },
+      {
+        "name": "gcc-13",
+        "version": "13.3.0-6ubuntu2~24.04.1",
+        "install": true,
+        "deb_sha256": "7438ff160b020a74970672189ecae25d0ca650de6d7f543f12a3134192cffbd9"
+      },
+      {
+        "name": "cpp-13-x86-64-linux-gnu",
+        "version": "13.3.0-6ubuntu2~24.04.1",
+        "install": true,
+        "deb_sha256": "2ca48bf0c2d6465bc39322899715a85d934b4d7442dd5586a7bebbe3ce0f806b"
+      },
+      {
+        "name": "gcc-13-x86-64-linux-gnu",
+        "version": "13.3.0-6ubuntu2~24.04.1",
+        "install": true,
+        "deb_sha256": "a134b0319a82d14581b3a14820d2832af4ec9778ed8b9b4ddaeecfb0555ec325"
+      },
+      {
+        "name": "binutils",
+        "version": "2.42-4ubuntu2.10",
+        "install": true,
+        "deb_sha256": "b3b5a84181a38fd191820b2cdcc1a3eeb1cd6333ad472f2092f96e81047e9c74"
+      },
+      {
+        "name": "binutils-x86-64-linux-gnu",
+        "version": "2.42-4ubuntu2.10",
+        "install": true,
+        "deb_sha256": "1e510a15f30208d39edcd840e48f26a77bbca7c417805eeccb1e3f7de198ef29"
+      },
+      {
+        "name": "libgcc-13-dev",
+        "version": "13.3.0-6ubuntu2~24.04.1",
+        "install": true,
+        "deb_sha256": "cd689db2691edaa10f37329307292796bb599e722e0505c79e14caaa1fe9a93a"
+      },
+      {
+        "name": "libgcc-s1",
+        "version": "14.2.0-4ubuntu2~24.04.1",
+        "install": true,
+        "deb_sha256": "aa7fadbe33b78bcf99885318040601c550c208929565b179891d9a3cc2aa68cd"
+      },
+      {
+        "name": "libc6-dev",
+        "version": "2.39-0ubuntu8.8",
+        "install": true,
+        "deb_sha256": "bb8741966e7c1d2e2c0b84bb311717a0908fb563d9b2247b7212710e3cd88b94"
+      },
+      {
+        "name": "libc6",
+        "version": "2.39-0ubuntu8.8",
+        "install": true,
+        "deb_sha256": "3b8d5391b6b484a4c81fd000b6064885ad967ec3cb966bc57603f3fb3ebf0ed5"
+      },
+      {
+        "name": "libc-bin",
+        "version": "2.39-0ubuntu8.8",
+        "install": true,
+        "deb_sha256": "64625a2e1b51e736c71f4916268c496278bbc789b1b189d1621607a33f455473"
+      },
+      {
+        "name": "linux-libc-dev",
+        "version": "6.8.0-137.137",
+        "install": true,
+        "deb_sha256": "2b2cb11434e5f72703e7133219dc00a59cf2a966d8c4ff0ff0133992369da3f0"
+      },
+      {
+        "name": "libbinutils",
+        "version": "2.42-4ubuntu2.10",
+        "install": true,
+        "deb_sha256": "064dce00ce94e1fc2d33779cb0071088f4c8aac79e85345f2e78a020f7d14699"
+      },
+      {
+        "name": "libsframe1",
+        "version": "2.42-4ubuntu2.10",
+        "install": true,
+        "deb_sha256": "72093fb456864db55f1352bfa5e952a94f7abaff64e71dff1fbf001db1984564"
+      },
+      {
+        "name": "libctf0",
+        "version": "2.42-4ubuntu2.10",
+        "install": true,
+        "deb_sha256": "7ec86d697c3668503c85f308a6832f092075b5880ad002f22185264da0bd4645"
+      },
+      {
+        "name": "zlib1g",
+        "version": "1:1.3.dfsg-3.1ubuntu2.1",
+        "install": true,
+        "deb_sha256": "7074b6a2f6367a10d280c00a1cb02e74277709180bab4f2491a2f355ab2d6c20"
+      },
+      {
+        "name": "libzstd1",
+        "version": "1.5.5+dfsg2-2build1.1",
+        "install": true,
+        "deb_sha256": "dfcf25061e07aad7efd3f4f880ba5ad4d4d09ebe7fc8cc77ab6b8a161d6d4727"
+      },
+      {
+        "name": "libjansson4",
+        "version": "2.14-2build2",
+        "install": true,
+        "deb_sha256": "0cf79113f5d193ce9af2be2ff4b2c3b30dd4e55a0b6c47f7d28f6c849ff3aa60"
+      }
+    ]
+  },
+  "tools": {
+    "python": {
+      "path": "/usr/bin/python3",
+      "version": "3.12.3",
+      "version_command": [
+        "/usr/bin/python3",
+        "--version"
+      ],
+      "version_contains": "Python 3.12.3",
+      "sha256": "1643dacd9feaedc58f3cc581e4d22577dfe25c09b10282936186ccf0f2e61118"
+    },
+    "host_cc": {
+      "path": "/usr/bin/cc",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-gcc-13",
+      "package": "gcc-13-x86-64-linux-gnu",
+      "package_version": "13.3.0-6ubuntu2~24.04.1",
+      "version": "13.3.0",
+      "version_command": [
+        "/usr/bin/cc",
+        "--version"
+      ],
+      "version_contains": "13.3.0",
+      "sha256": "1b99826121ae6682a634e5efe09bd3e3df58ce58e0b28f849114ab5b89139c26",
+      "runtime_files": [
+        {
+          "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/cc1",
+          "role": "host C compiler proper",
+          "package": "cpp-13-x86-64-linux-gnu",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "5d1679131184e2de4435b426eb264bf13472fe026db8e5c6bc97445814e8e2f4"
+        },
+        {
+          "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so",
+          "role": "GNU ld plugin passed by collect2",
+          "package": "gcc-13-x86-64-linux-gnu",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "14469ff8498fca3871c29dbf678c2330123207fffb8308151314a08395309ddf"
+        },
+        {
+          "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper",
+          "role": "collect2 linker plugin helper",
+          "package": "gcc-13-x86-64-linux-gnu",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "f6d39bcfb1c2798c704e275a4ed2c1fe6374ebfb6aa0c5f3f3b6c669e1ff2e13"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/Scrt1.o",
+          "role": "PIE process startup object",
+          "package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "9438d15c4bac893a0e3aad2c2c86ccbceb59d5872bd07101949f237ee1c92a8b"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/crti.o",
+          "role": "ELF initialization prologue",
+          "package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "077ccb6c68db1794da3ee262c4a16a3c6f8e902845dd0829110ad4b7065e5aa3"
+        },
+        {
+          "path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o",
+          "role": "GCC shared PIE constructor startup",
+          "package": "libgcc-13-dev",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "667ff5f1edc931d44d1f2bb44d313907aa274bcc207c0beff71a398335f0d29f"
+        },
+        {
+          "path": "/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o",
+          "role": "GCC shared PIE constructor terminator",
+          "package": "libgcc-13-dev",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "9c8b2caad195193301ef072895dc89bea1d23371d4c19accd821debe27773063"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/crtn.o",
+          "role": "ELF initialization epilogue",
+          "package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "a2266079f95b84ccc2162ebbf279bcd78858a748aa1882e0bdb912316c76a58f"
+        },
+        {
+          "path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc.a",
+          "role": "GCC static support archive scanned by ld",
+          "package": "libgcc-13-dev",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "d9376c55f97863a4e5fbb6c6beca2591b319bf786f3a7ca56da8964c5662171f"
+        },
+        {
+          "path": "/usr/lib/gcc/x86_64-linux-gnu/13/libgcc_s.so",
+          "role": "GNU ld script for shared GCC support",
+          "package": "libgcc-13-dev",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "sha256": "69a56a9993b7729b29b274e65016031c81f2397f176ed5ad44d59bd50425e0bd"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+          "role": "shared GCC runtime",
+          "package": "libgcc-s1",
+          "package_version": "14.2.0-4ubuntu2~24.04.1",
+          "sha256": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libc.so",
+          "role": "GNU ld script for glibc",
+          "package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "fe2a4ce2930fc6b3966aa987fae808375446c8d3823b8c21792e991aad9c75df"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libc_nonshared.a",
+          "role": "glibc non-shared link support",
+          "package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "3341391290ddd596521a61152b4e2612f4625cc85f737d875b918f6cfb2b2786"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "role": "direct host runner runtime dependency",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "8db37cf3f2169f59a0f07ef1fea308c35656668c64c8ff294e1860f4121eb161"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "role": "host runner ELF interpreter",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "cd4df4f3c7b83673d61189bf2eaebd33ca4f2853ab9772b8a25e025ef99b1e81"
+        }
+      ]
+    },
+    "host_as": {
+      "path": "/usr/bin/as",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-as",
+      "package": "binutils-x86-64-linux-gnu",
+      "package_version": "2.42-4ubuntu2.10",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/as",
+        "--version"
+      ],
+      "version_contains": "GNU assembler (GNU Binutils for Ubuntu) 2.42",
+      "sha256": "21aff249b692b5c31a44007491f922dcb49f41323e362c57d2ada3f52eddb7f0",
+      "expected_runtime_file_count": 6,
+      "runtime_files": [
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libbfd-2.42-system.so",
+          "role": "assembler BFD runtime",
+          "version": "2.42",
+          "package": "libbinutils",
+          "package_version": "2.42-4ubuntu2.10",
+          "sha256": "11f084bc6ff5fc64e91c0b6422040fab1245419e7ff29560a95c1176ce1b9ff4"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+          "role": "assembler compression runtime",
+          "version": "1.3",
+          "package": "zlib1g",
+          "package_version": "1:1.3.dfsg-3.1ubuntu2.1",
+          "sha256": "9b64150b28505a33d6bc3ecf709c279f6de97a1c184dbda65d06ee4537f6d286"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libzstd.so.1.5.5",
+          "role": "assembler zstd runtime",
+          "version": "1.5.5",
+          "package": "libzstd1",
+          "package_version": "1.5.5+dfsg2-2build1.1",
+          "sha256": "0a2128bc10841fb29e76d08d945864dfb0b6a66da5df6df5d8299197439e54bb"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "role": "assembler C runtime",
+          "version": "2.39",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "8db37cf3f2169f59a0f07ef1fea308c35656668c64c8ff294e1860f4121eb161"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libsframe.so.1.0.0",
+          "role": "assembler SFrame runtime",
+          "version": "1.0.0",
+          "package": "libsframe1",
+          "package_version": "2.42-4ubuntu2.10",
+          "sha256": "1693a2dbd77c909d279ae34aa9b5d8d08d97f116f8d0ed724063df11151b3c69"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "role": "assembler ELF interpreter",
+          "version": "2.39",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "cd4df4f3c7b83673d61189bf2eaebd33ca4f2853ab9772b8a25e025ef99b1e81"
+        }
+      ]
+    },
+    "host_collect2": {
+      "path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "resolved_path": "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+      "package": "gcc-13-x86-64-linux-gnu",
+      "package_version": "13.3.0-6ubuntu2~24.04.1",
+      "version": "13.3.0",
+      "version_command": [
+        "/usr/libexec/gcc/x86_64-linux-gnu/13/collect2",
+        "--version"
+      ],
+      "version_contains": "collect2 version 13.3.0",
+      "sha256": "4d1f341ae5b763b513258ee2812422a45e063c30a2f1924a0cf63d3699f3a158"
+    },
+    "host_ld": {
+      "path": "/usr/bin/ld",
+      "resolved_path": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "package": "binutils-x86-64-linux-gnu",
+      "package_version": "2.42-4ubuntu2.10",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/ld",
+        "--version"
+      ],
+      "version_contains": "GNU ld (GNU Binutils for Ubuntu) 2.42",
+      "sha256": "e9ceb054c12207970f2726dfc07e9a66b411602748628baf27399f02a9bbb31b",
+      "expected_runtime_file_count": 8,
+      "runtime_files": [
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libbfd-2.42-system.so",
+          "role": "linker BFD runtime",
+          "version": "2.42",
+          "package": "libbinutils",
+          "package_version": "2.42-4ubuntu2.10",
+          "sha256": "11f084bc6ff5fc64e91c0b6422040fab1245419e7ff29560a95c1176ce1b9ff4"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libctf.so.0.0.0",
+          "role": "linker CTF runtime",
+          "version": "0.0.0",
+          "package": "libctf0",
+          "package_version": "2.42-4ubuntu2.10",
+          "sha256": "25c8f765c259d05b59a3dc3634d711912a7f5ce9be8a28ace081507b925b3ad1"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libjansson.so.4.14.0",
+          "role": "linker JSON runtime",
+          "version": "2.14",
+          "package": "libjansson4",
+          "package_version": "2.14-2build2",
+          "sha256": "c49935a4b3ac599064281b1f257576087806d0dad7ec46f353bd983b052c5e26"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+          "role": "linker C runtime",
+          "version": "2.39",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "8db37cf3f2169f59a0f07ef1fea308c35656668c64c8ff294e1860f4121eb161"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libz.so.1.3",
+          "role": "linker compression runtime",
+          "version": "1.3",
+          "package": "zlib1g",
+          "package_version": "1:1.3.dfsg-3.1ubuntu2.1",
+          "sha256": "9b64150b28505a33d6bc3ecf709c279f6de97a1c184dbda65d06ee4537f6d286"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libzstd.so.1.5.5",
+          "role": "linker zstd runtime",
+          "version": "1.5.5",
+          "package": "libzstd1",
+          "package_version": "1.5.5+dfsg2-2build1.1",
+          "sha256": "0a2128bc10841fb29e76d08d945864dfb0b6a66da5df6df5d8299197439e54bb"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libsframe.so.1.0.0",
+          "role": "linker SFrame runtime",
+          "version": "1.0.0",
+          "package": "libsframe1",
+          "package_version": "2.42-4ubuntu2.10",
+          "sha256": "1693a2dbd77c909d279ae34aa9b5d8d08d97f116f8d0ed724063df11151b3c69"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+          "role": "linker ELF interpreter",
+          "version": "2.39",
+          "package": "libc6",
+          "package_version": "2.39-0ubuntu8.8",
+          "sha256": "cd4df4f3c7b83673d61189bf2eaebd33ca4f2853ab9772b8a25e025ef99b1e81"
+        }
+      ]
+    },
+    "host_ldd": {
+      "path": "/usr/bin/ldd",
+      "package": "libc-bin",
+      "package_version": "2.39-0ubuntu8.8",
+      "version": "2.39",
+      "version_command": [
+        "/usr/bin/ldd",
+        "--version"
+      ],
+      "version_contains": "2.39",
+      "sha256": "4f1d37e25f27535e3f02a5b7da63e1ce18d4982445db2c25fc8f985a3d395cc3"
+    },
+    "arm_none_eabi_gcc": {
+      "path": "/usr/bin/arm-none-eabi-gcc",
+      "version": "13.2.1",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-gcc",
+        "--version"
+      ],
+      "version_contains": "13.2.1",
+      "sha256": "38fc178604a84beb10f9adb8ea243bd5e0475a9e6e31c9270f53e2fcaa79ec59",
+      "runtime_files": [
+        {
+          "path": "/usr/lib/gcc/arm-none-eabi/13.2.1/cc1",
+          "role": "C compiler proper",
+          "version": "GNU C17 (15:13.2.rel1-2) version 13.2.1 20231009 (arm-none-eabi)",
+          "package": "gcc-arm-none-eabi",
+          "package_version": "15:13.2.rel1-2",
+          "sha256": "1d284dd98e80e416ad199f5a2e24df5e704b43c0afd15ee3a34357dc46d8c5c0"
+        }
+      ]
+    },
+    "arm_none_eabi_as": {
+      "path": "/usr/bin/arm-none-eabi-as",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-as",
+        "--version"
+      ],
+      "version_contains": "2.42",
+      "sha256": "ec839647452c629c6b26b35c8e29b56cd5be8d9bbf5221d01947451395bb7689"
+    },
+    "arm_none_eabi_ld": {
+      "path": "/usr/bin/arm-none-eabi-ld",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-ld",
+        "--version"
+      ],
+      "version_contains": "2.42",
+      "sha256": "3a45f0f6cd20f341f56efcbc408774ca7894721547a1e79712a268d8aa36b490"
+    },
+    "arm_none_eabi_objcopy": {
+      "path": "/usr/bin/arm-none-eabi-objcopy",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-objcopy",
+        "--version"
+      ],
+      "version_contains": "2.42",
+      "sha256": "782d8a0a03424f5b54ea10d269b253b4506f85cb48cd40b2de1b9635ce16a821"
+    },
+    "arm_none_eabi_objdump": {
+      "path": "/usr/bin/arm-none-eabi-objdump",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-objdump",
+        "--version"
+      ],
+      "version_contains": "2.42",
+      "sha256": "d8e94d502fd80248334d739b3e4705369897381a69b12dc7c8cf01eadecb7d32"
+    },
+    "arm_none_eabi_nm": {
+      "path": "/usr/bin/arm-none-eabi-nm",
+      "version": "2.42",
+      "version_command": [
+        "/usr/bin/arm-none-eabi-nm",
+        "--version"
+      ],
+      "version_contains": "2.42",
+      "sha256": "379b7d2d6ac1d8bab793d76970adb4678b490bc9b9836f4862c04577177c0f1d"
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "version": "4.3",
+      "version_command": [
+        "/usr/bin/make",
+        "--version"
+      ],
+      "version_contains": "GNU Make 4.3",
+      "sha256": "d78b8f1d099fbcfb6f2f49ab87223b9b68fb3956642f92d6ec6de812e8afa965"
+    },
+    "git": {
+      "path": "/usr/bin/git",
+      "version": "2.43.0",
+      "version_command": [
+        "/usr/bin/git",
+        "--version"
+      ],
+      "version_contains": "git version 2.43.0",
+      "sha256": "2a8c18fbf43da9f692d75474c72bea9dfd796c260b0f3dfe456376abc3bbd668"
+    },
+    "mgba": {
+      "path": "/usr/games/mgba",
+      "version": "0.10.2",
+      "version_command": [
+        "/usr/games/mgba",
+        "--version"
+      ],
+      "version_contains": "0.10.2",
+      "sha256": "ca3914111e3e156057180c36646bdb3b003df5f75323deb94a4ae7ebf5dca50f",
+      "runtime_files": [
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libmgba.so",
+          "role": "host runner link-time library",
+          "package": "libmgba-dev",
+          "package_version": "0.10.2+dfsg-1.1build3",
+          "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+        },
+        {
+          "path": "/usr/lib/x86_64-linux-gnu/libmgba.so.0.10",
+          "role": "host runner direct runtime library",
+          "package": "libmgba0.10t64",
+          "package_version": "0.10.2+dfsg-1.1build3",
+          "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+        },
+        {
+          "path": "/usr/include/mgba/core/core.h",
+          "sha256": "958eda4ce9d37a69a73150359ee40b9637195fd641529ec9a47d0990d70f4dbf"
+        },
+        {
+          "path": "/usr/include/mgba/core/config.h",
+          "sha256": "e8b8fd5b325d6b01e3c9595f4c1af07e8bf0ec42b94ae36783ec05f4011fc2e8"
+        },
+        {
+          "path": "/usr/include/mgba/core/cpu.h",
+          "sha256": "e3f510004eabd0271a6bc0af75b002835c42e74eaa3ee6c62e3a9e18878c8328"
+        },
+        {
+          "path": "/usr/include/mgba/core/directories.h",
+          "sha256": "753e2fce69a5f9867c1a6d5e66c7ba24ceda79a197a30ae8ca1223d12cbf20f2"
+        },
+        {
+          "path": "/usr/include/mgba/core/input.h",
+          "sha256": "95f6b893728ba6b09e8928025273b0c23b316794eb28137eb1b4c3683915d916"
+        },
+        {
+          "path": "/usr/include/mgba/core/interface.h",
+          "sha256": "632e412342603190d303b57268231879291972e3f8f4da35069eced6b3c2c22e"
+        },
+        {
+          "path": "/usr/include/mgba/core/log.h",
+          "sha256": "5155659644d789527d1f3de44d076e41d45c5596bb98ee5fa6407bc6406ef514"
+        },
+        {
+          "path": "/usr/include/mgba/core/timing.h",
+          "sha256": "0bc98ea66ded4856a258786dc19c3c2a6e19cf4c1046211b93d9304729aa1915"
+        },
+        {
+          "path": "/usr/include/mgba/internal/arm/arm.h",
+          "sha256": "dea6a59d0f8a8cb553cd414b54e1790ff03d5107725830a4222b679f54247715"
+        },
+        {
+          "path": "/usr/include/mgba/internal/arm/isa-inlines.h",
+          "sha256": "17d976d898d9e412f863ea5a1ff41bde3232c16c13e08f9b0f9350a911e269a9"
+        },
+        {
+          "path": "/usr/include/mgba/internal/arm/macros.h",
+          "sha256": "196d6bf1210d223dd58930908dcf5d538a7111fe93e0a0b36b45721cd93dbad9"
+        },
+        {
+          "path": "/usr/include/mgba-util/common.h",
+          "sha256": "32206ef5f4878aeb3af13e928c117c920493f7089b869340f8c3cadcdbae0e9e"
+        },
+        {
+          "path": "/usr/include/mgba-util/configuration.h",
+          "sha256": "39e93d0f873451d0486b21283b5b28ae4fba62e87c22488211b19d97cfdfe4d0"
+        },
+        {
+          "path": "/usr/include/mgba-util/dllexports.h",
+          "sha256": "96871f8861195f4ff9fedd861ff07ed5b0a10a0e7642d6a780a8221cafd163d4"
+        },
+        {
+          "path": "/usr/include/mgba-util/table.h",
+          "sha256": "e30841e105b4f70e917c6d758e1d78fab8068d5461198abcf765a0cb31aa046d"
+        },
+        {
+          "path": "/usr/include/mgba-util/vector.h",
+          "sha256": "8802a31ef4b3d365b4a0fcef51cab9f6dd983e3e907e7ecacfb5856290d899b4"
+        }
+      ]
+    }
+  },
+  "converters": {
+    "grit": {
+      "source_path": "vendor/upstream/CFRU-JP/deps/grit.exe",
+      "equivalent_paths": [
+        "vendor/upstream/DPE-JP/deps/grit.exe"
+      ],
+      "format": "PE32 x86 Windows CUI",
+      "version": "0.8.6",
+      "size": 67072,
+      "sha256": "3ef8b91d92e0f6e2977b1462683e9ac6ecf04c915cec623919553db02e143b31",
+      "fixture": {
+        "input_path": "vendor/upstream/DPE-JP/graphics/backspr/gBackShinySprite412Egg.png",
+        "input_sha256": "ba122455b7349b16dfe0d76492284af9f600a9511b0cfef9034b0c1f3312d3d2",
+        "flags_path": "vendor/upstream/DPE-JP/graphics/frontspriteflags.grit",
+        "flags_sha256": "17c9260e865be8d203e7a5ade4ac393c9d2f1b27a95c711256b41a0125fa9da2",
+        "runs": 2,
+        "expected_canonical_assembly_sha256": "453ab74e64d63d05524fb6b3e1b5ed303b9f24e28d71c18175bc61ad8ccb84e6"
+      },
+      "runtime_files": [
+        {
+          "path": "vendor/upstream/CFRU-JP/deps/FreeImage.dll",
+          "equivalent_paths": [
+            "vendor/upstream/DPE-JP/deps/FreeImage.dll"
+          ],
+          "sha256": "2986dc4993f8bfe582a89981fabaf0d19c837dd21cc7e16edcdc84a63925df9a"
+        }
+      ],
+      "windows_sxs_runtime": "microsoft_vc90_crt_x86"
+    },
+    "wav2agb": {
+      "source_path": "vendor/upstream/CFRU-JP/deps/wav2agb.exe",
+      "equivalent_paths": [
+        "vendor/upstream/DPE-JP/deps/wav2agb.exe"
+      ],
+      "format": "PE32 x86 Windows CUI",
+      "version": "1.1",
+      "size": 460319,
+      "sha256": "fb167b599af88fb6f87a358b89181082bf5f4e7cd2ea90dac1309c2ca937fb48",
+      "fixture": {
+        "input_path": "vendor/upstream/CFRU-JP/audio/sounds/Wav_grass_footstep_sample.wav",
+        "input_sha256": "592ad886eed8bc775a8c92d788f6526c1206867606f3020e9f3dbcc99d2094f9",
+        "runs": 2,
+        "expected_canonical_assembly_sha256": "b2e09c26377c45f7eaa6b2fc3c72315570b8667439dc667713867faf46d0a298"
+      },
+      "runtime_files": [
+        {
+          "path": "vendor/upstream/CFRU-JP/deps/libgcc_s_dw2-1.dll",
+          "equivalent_paths": [
+            "vendor/upstream/DPE-JP/deps/libgcc_s_dw2-1.dll"
+          ],
+          "sha256": "2ce9908edfe339f039c873bda899c8db0975ab5d980a11d6bbb43eccb5246ec7"
+        },
+        {
+          "path": "vendor/upstream/CFRU-JP/deps/libstdc++-6.dll",
+          "equivalent_paths": [
+            "vendor/upstream/DPE-JP/deps/libstdc++-6.dll"
+          ],
+          "sha256": "7171607dd392289c09b7ffeb4df1389c4f39bb895daef35e3f0d768589c2308f"
+        }
+      ]
+    },
+    "mid2agb": {
+      "source_path": "vendor/upstream/CFRU-JP/deps/mid2agb.exe",
+      "equivalent_paths": [],
+      "format": "PE32 x86 Windows CUI",
+      "version": "1.05",
+      "size": 54272,
+      "sha256": "e3b9f30251a2381c973debc65463a783e82e58f95815b544e1210f3ae1077e4e",
+      "fixture": {
+        "input_path": "vendor/upstream/CFRU-JP/audio/sounds/grass_footstep.mid",
+        "input_sha256": "bcf1db9ae867f511cf0471d2ff7f1669cbeaf9af5a560b5005a94855dfa8e983",
+        "flags_path": "vendor/upstream/CFRU-JP/audio/sounds/grass_footstep_flags.txt",
+        "flags_sha256": "96cdc31227b12d479325e14396db433002879dc4092831b4df4f84dad68a54e6",
+        "runs": 2,
+        "expected_canonical_assembly_sha256": "7c858de79a5488db75aa66225c53cb6cbfc4794332eeb1336b6094d2289338d1"
+      },
+      "runtime_files": []
+    }
+  },
+  "windows_side_by_side": {
+    "microsoft_vc90_crt_x86": {
+      "identity": "Microsoft.VC90.CRT, version=9.0.21022.8, processorArchitecture=x86, publicKeyToken=1fc8b3b9a1e18e3b",
+      "directory_glob": "/mnt/c/Windows/WinSxS/x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_*",
+      "files": [
+        {
+          "name": "msvcm90.dll",
+          "sha256": "9dd820b39dfb69e96cec4f8109cc9ffccf7a094aeadc4899d62e62c084381ddf"
+        },
+        {
+          "name": "msvcp90.dll",
+          "sha256": "8ec03abe0a14325804b3d8819f0c3f3400b379105eca7452306f53c93408f238"
+        },
+        {
+          "name": "msvcr90.dll",
+          "sha256": "1e984b8d06618ed54733d00a2a3f44fde4c6cb11d9a2e4635c7c0312cde7b91a"
+        }
+      ]
+    }
+  },
+  "windows_bridge": {
+    "cmd": {
+      "path": "/mnt/c/WINDOWS/system32/cmd.exe",
+      "version": "10.0.26200.8875",
+      "version_command": [
+        "/mnt/c/WINDOWS/system32/cmd.exe",
+        "/d",
+        "/s",
+        "/c",
+        "ver"
+      ],
+      "version_contains": "10.0.26200.8875",
+      "sha256": "65ec268add3973b6dca64222985da47caeaee44a340b0ec1466782914fd743d9"
+    },
+    "powershell": {
+      "path": "/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "version": "5.1.26100.8875",
+      "version_command": [
+        "/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$PSVersionTable.PSVersion.ToString()"
+      ],
+      "version_contains": "5.1.26100.8875",
+      "sha256": "7600ffe12da441fe89d035b13801e8e91d064bc544a27b19a5cf49f6ab8b18f5"
+    },
+    "icacls": {
+      "path": "/mnt/c/WINDOWS/System32/icacls.exe",
+      "version": "10.0.26100.8875",
+      "version_command": [
+        "/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "(Get-Item -LiteralPath 'C:\\WINDOWS\\System32\\icacls.exe').VersionInfo.FileVersion"
+      ],
+      "version_contains": "10.0.26100.8875",
+      "sha256": "cb9e55d4c02f4e55100724d2da9a1267f49e196bd39fcdf36cec6ea6314fad2a"
+    },
+    "wslpath": {
+      "path": "/usr/bin/wslpath",
+      "sha256": "f84f9ae9116b972fce6723f920fb8fb1dedff2aeb0baa40ed7c5d2b9f4b73311"
+    }
+  },
+  "sources": {
+    "dpe": {
+      "path": "vendor/upstream/DPE-JP",
+      "repository": "https://github.com/kapibarasan000/DPE-JP.git",
+      "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e"
+    },
+    "cfru": {
+      "path": "vendor/upstream/CFRU-JP",
+      "repository": "https://github.com/kapibarasan000/CFRU-JP.git",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+    },
+    "pokefirered": {
+      "path": "vendor/upstream/pokefirered",
+      "repository": "https://github.com/pret/pokefirered.git",
+      "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+    }
+  },
+  "sandbox_policy": {
+    "linux_mount_prefix": "/mnt/c/",
+    "windows_root_example": "C:\\pv\\t01",
+    "linux_root_example": "/mnt/c/pv/t01",
+    "ascii_only": true,
+    "spaces_allowed": false,
+    "unc_allowed": false,
+    "build_in_vendor_allowed": false,
+    "source_staging": "git archive from pinned commit",
+    "converter_staging": "copy the complete deps directory",
+    "private_input_mode": "copy from read-only source into variant sandbox",
+    "max_windows_path": 180
+  },
+  "verification": {
+    "python_policy": "use-current-first",
+    "python_legacy_runtime": "not-required-unless-measured-incompatibility",
+    "converter_launcher": "Windows PE from an ASCII NTFS drive-path sandbox",
+    "wine_required": false,
+    "arm_compile_flags_checked": [
+      "-mthumb",
+      "-mno-thumb-interwork",
+      "-mcpu=arm7tdmi",
+      "-mtune=arm7tdmi",
+      "-mno-long-calls",
+      "-march=armv4t",
+      "-fira-loop-pressure",
+      "-fipa-pta"
+    ],
+    "host_runner_header_closure": {
+      "compiler_tool": "host_cc",
+      "sources": [
+        "tools/factory_fixture_runner.c",
+        "tools/mgba_ai_fixture_runner.c"
+      ],
+      "compile_flags": [
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror"
+      ],
+      "dependency_flags": [
+        "-M",
+        "-MT",
+        "__header_closure__"
+      ],
+      "installed_path_prefixes": [
+        "/usr/include/",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/include/"
+      ],
+      "allowed_header_packages": [
+        {
+          "binary_package": "libc6-dev:amd64",
+          "apt_package": "libc6-dev",
+          "package_version": "2.39-0ubuntu8.8",
+          "verification": "aggregate",
+          "expected_count": 95
+        },
+        {
+          "binary_package": "libgcc-13-dev:amd64",
+          "apt_package": "libgcc-13-dev",
+          "package_version": "13.3.0-6ubuntu2~24.04.1",
+          "verification": "aggregate",
+          "expected_count": 6
+        },
+        {
+          "binary_package": "linux-libc-dev:amd64",
+          "apt_package": "linux-libc-dev",
+          "package_version": "6.8.0-137.137",
+          "verification": "aggregate",
+          "expected_count": 5
+        },
+        {
+          "binary_package": "libmgba-dev:amd64",
+          "apt_package": "libmgba-dev",
+          "package_version": "0.10.2+dfsg-1.1build3",
+          "verification": "individual_runtime_files",
+          "runtime_tool": "mgba",
+          "expected_count": 16
+        }
+      ],
+      "canonicalization": "sha256-v1:absolute-path-tab-file-sha256-lf",
+      "expected_installed_header_count": 122,
+      "expected_installed_header_sha256": "92f932e8d3378ec7fe77f75bda4b50b5dd200be398e61dc70d741de046ba03fd",
+      "expected_standard_header_count": 106,
+      "expected_standard_header_sha256": "da83c6181a96d8a9b4d1b73b85a7ba1cd8a68df5b1916e5251852d099ad9cbce"
+    },
+    "source_worktrees_must_be_clean": true,
+    "repeated_build_count": 2
+  }
+}
