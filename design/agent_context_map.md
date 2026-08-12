@@ -21,6 +21,7 @@
 | 受領資料の評価 | `design/import_review.md` | `design/imported/README.md`, `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/README.md` |
 | 採択済み判断 | `design/decisions.md` | 根拠となる監査レポート |
 | パッチ競合 | `audit_seed/PHASE_01_STATUS.md` | `audit_seed/reports/conflict_report.md`, `semantic_hotspots.md` |
+| T02 exact監査 | `config/t02_audit_policy.json` | `tools/t02/`, `reports/generated/address_audit.csv`, `id_inventory.json`, `semantic_conflicts.md` |
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
 | 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17 |
@@ -35,7 +36,7 @@
 
 - T00: `docs/INPUT_CONTRACT.md`、`config/project.toml`、`design/import_inventory.md`。
 - T01: `docs/SOURCE_NOTES.md`、上流README、T01。
-- T02: `audit_seed/README_JA.md`、`audit_seed/CODEX_TASK_01.md`、`docs/KANTO_PORT_POLICY.md`、T02。
+- T02: `config/t02_audit_policy.json`、`tools/t02/`、`reports/generated/{address_audit.csv,id_inventory.json,semantic_conflicts.md}`。初期資料が必要な時だけ `audit_seed/CODEX_TASK_01.md` を読む。
 - T04: `audit_seed/CODEX_TASK_02_MOVE_PORT.md`、`docs/ID_POLICY.md`、T04。
 - T05/T06/T08〜T10: `docs/QOL_POLICY.md` と対象タスク。上流機能の実在根拠が必要ならT01/T02成果だけを追加で読む。
 - T08/T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。

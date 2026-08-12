@@ -28,9 +28,11 @@
 - `scripts/bootstrap_project.py`: 私有入力検証、上流取得、source lock生成
 - `scripts/preflight.py`: 入力とtoolchainの事前検査
 - `scripts/run_baseline_audit.py`: cleanからの参照ROMと厳密競合監査
+- `scripts/generate_t02_audit.py`: T01成果、固定ROM、固定sourceからT02の11監査成果を決定的生成
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
+- `tools/validate/address_assertions.py`: T02成果を一時領域へ再生成し、byte一致と意味契約を検証
 
 ## Imported Evidence
 
@@ -54,3 +56,5 @@
 
 - `tools/chatgpt_browser/README.md`: ChatGPT Web ブリッジ操作手順
 - `audit_seed/tools/`: patch解析、参照ROM生成、source address監査
+- `tools/t02/`: fixed source write、Vega ROM inventory、RAM/save/ID/state監査model
+- `config/t02_audit_policy.json`: T02入力hash、分類、overlap、移行・施設・AI契約の機械可読正本

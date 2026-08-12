@@ -232,3 +232,31 @@
   - ユーザー指示に従い、repository全体verifyは未実行。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。
+
+## 2026-08-13T05:33:08+09:00
+
+- Task: `T02` / Exact ROM/RAM/save/ID audit
+- Status: DONE
+- Summary:
+  - T01固定成果とclean/Vega/Factory参照、固定DPE/CFRU sourceからactive fixed write `6,143`件を実emission spanで再生した。T01の4 variantと最終ROMがbyte一致し、同値write `155`件、許可済みoverlap `156`組、code context `2,297`件、代表Thumb disassembly 4件を確定した。
+  - fixed write分類はCFRU `5,127`、PORT `943`、RELOCATE `4`、SAME_TARGET `69`、UNKNOWN `0`。全行へ分類根拠、clean/Vega/Factory digest、意図symbol、解決方針を付与し、新規・stale overlapをfail-closedにした。
+  - Vega ROMをrooted walkし、43 group / 425 map、132 encounter header、743 trainer、4,665 script nodeを抽出した。早期渡航はflag `0x0824 && 0x114B`、アーシア港はplayer込みobject 16枠で空き0、Vega所有高位flagは5件のwhitelist bit移行と確定した。
+  - RAM/save/ID、QOL 14 domain、Factory/Mirage、arcade coin/BP/research point、CFRU AI hook/ABI/cache/RNGを機械可読化した。生成11成果は入力hash・policy・T01 fingerprintを保持し、一時再生成とのbyte一致と意味契約をvalidatorで検査する。
+- Files changed:
+  - policy/入口: `config/t02_audit_policy.json`, `Makefile`
+  - generator/validator: `scripts/generate_t02_audit.py`, `tools/validate/address_assertions.py`
+  - audit model: `tools/t02/{source_writes,rom_inventory,state_inventory}.py`, `tools/t02/__init__.py`
+  - focused tests: `tests/test_t02_{source_writes,rom_inventory,state_inventory}.py`
+  - 状態・索引: `design/current_state.md`, `design/agent_context_map.md`, `design/catalog.md`, `design/report_lifecycle_index.md`, `design/tasks_next.md`, `state/task_status.json`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外再生成物: `reports/generated/address_audit.csv`, `semantic_conflicts.md`, `ram_map.csv`, `save_map.csv`, `id_inventory.json`, `vega_map_inventory.csv`, `vega_encounter_inventory.csv`, `qol_hook_inventory.csv`, `facility_audit.md`, `vega_trainer_baseline.csv`, `trainer_ai_audit.md`
+- Verify:
+  - `python3 -m unittest tests.test_t02_rom_inventory tests.test_t02_source_writes tests.test_t02_state_inventory`: PASS（56 tests）。
+  - `make t02-check`: PASS。11 reportを一時領域へ再生成してbyte一致。address `6,143`行、QOL `139`行、map `425`、encounter `132`、trainer `743`、script graph node `4,665`、UNKNOWN `0`。
+  - `python3 -m py_compile scripts/generate_t02_audit.py tools/validate/address_assertions.py`: PASS。
+  - 独立read-only再レビュー: blocking/P1/P2なし。context digest欠落・空disassembly改竄を拒否。
+  - ユーザー指示に従い、WSL repository全体verifyは実行していない。
+- Report identity:
+  - policy SHA-256 `d06c0895a24d67317beb40d73619a584f88ae391a05f7fd09af3b2271c2f4429`
+  - address `e6ac294cef03599ca33c13fb44472d03daefe2a84f8849f66e92621c21e01f10` / semantic `f34553c892310d88fb300c427d01f479e1ff8f45e7d9e65d6e34d3b3eadfb3ee` / id inventory `95118aca3f88e2baee116d41ba7562fdcbf2d8f669230394626c4f7fb4e95a01`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みローカル入力、source、T01成果だけを参照した。

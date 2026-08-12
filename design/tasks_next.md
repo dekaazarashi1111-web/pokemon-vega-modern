@@ -1,7 +1,7 @@
 - [x] 初期タスク: リポジトリを確認する <!-- id:INIT-1 -->
 - [x] T00: 入力を検証し上流ソースを固定する <!-- id:T00 -->
 - [x] T01: DPE-JP/CFRU-JP上流ビルドを再現する <!-- id:T01 -->
-- [ ] T02: ROM/RAM/SaveBlock/ID競合を完全監査する <!-- id:T02 -->
+- [x] T02: ROM/RAM/SaveBlock/ID競合を完全監査する <!-- id:T02 -->
 - [ ] T03: Vegaの再現可能なmodule harnessを作る <!-- id:T03 -->
 - [ ] T04: Vega Move IDをCFRUモデルへ移植する <!-- id:T04 -->
 - [ ] T05: Type/Ability/Item ID空間を統合する <!-- id:T05 -->

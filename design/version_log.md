@@ -109,3 +109,14 @@
   - `scripts/verify_wsl.sh` を削除し、WSLのall-in-one検証経路を廃止した。
   - 運用・入口・全taskの完了手順を、変更対象とtask acceptanceに必要な最小gateだけを実行する方針へ統一した。
 - Verify: active実行参照0、`git diff --check` PASS。repository全体verifyは未実行。
+
+## 2026-08-13T05:33:08+09:00
+
+- Version: `exact-compatibility-audit-0.9.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T02` / Exact ROM/RAM/save/ID audit
+- Summary:
+  - DPE/CFRU fixed write 6,143件をactive configと実emission spanで再生し、T01の4成果とbyte一致、UNKNOWN 0、許可overlap 156組を確定した。
+  - Vegaの425 map、132 encounter、743 trainer、4,665 script nodeと、早期渡航flag、RAM/save/ID、QOL、Factory/Mirage、通貨、AI状態を機械可読化した。
+  - 11監査成果を決定的生成し、入力identity、byte一致、意味契約、分類根拠、code context/disassemblyをfail-closedで再検証できるようにした。
+- Verify: focused 56 tests、`make t02-check`、py_compile、独立read-only再レビュー PASS。WSL全体verifyは未実行。

@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "policy_id": "T02_EXACT_AUDIT_V1",
+  "source_lock": {
+    "path": "state/source-lock.json",
+    "sha256": "0e230bf9fad2766d05ccb2410b22274c32085fed7544a78e37e0b5f451bda3c4",
+    "commits": {
+      "cfru": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "dpe": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+      "pokefirered": "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+    }
+  },
+  "inputs": {
+    "clean": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "vega": {
+      "path": "build/reference/vega.gba",
+      "size": 16777216,
+      "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5"
+    },
+    "factory": {
+      "path": "build/reference/factory.gba",
+      "size": 33554432,
+      "sha256": "570ac486f0e66563ee23278ff7ee34dd8dfeed11cbf37ab924d13eb2c62c0da5"
+    }
+  },
+  "t01_artifact": {
+    "fingerprint": "feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633",
+    "result": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/result.json",
+    "outputs": {
+      "dpe/base": "eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c",
+      "cfru/baseline": "140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922",
+      "cfru/factory-like": "494b488735270cc0b384febc1dc5b73f53595905f6fd51aa32f471864f7e61b1",
+      "cfru/minimal": "964ee5b785200b018143586351373cf60aeb37df85649173c2c8f1c98e208517"
+    }
+  },
+  "address_space": {
+    "rom_base": 134217728,
+    "rom_end_exclusive": 167772160,
+    "clean_end_exclusive": 150994944,
+    "cfru_insert_start": 150994944,
+    "dpe_insert_start": 157286400
+  },
+  "classifications": [
+    "VEGA",
+    "CFRU",
+    "PORT",
+    "RELOCATE",
+    "SAME_TARGET",
+    "UNKNOWN"
+  ],
+  "unknown_contract": {
+    "requires_nonempty_evidence": true,
+    "requires_followup_task": true,
+    "allowed_followups": [
+      "T03",
+      "T04",
+      "T05",
+      "T06",
+      "T07",
+      "T08",
+      "T09",
+      "T10",
+      "T11",
+      "T12",
+      "T13",
+      "T14",
+      "T15",
+      "T16",
+      "T17"
+    ]
+  },
+  "source_writes": {
+    "allowed_overlaps": [
+      ["cfru/baseline/000054", "cfru/baseline/001220"],
+      ["cfru/baseline/000061", "cfru/baseline/001211"],
+      ["cfru/baseline/000265", "cfru/baseline/000293"],
+      ["cfru/baseline/000266", "cfru/baseline/000296"],
+      ["cfru/baseline/000272", "cfru/baseline/001288"],
+      ["cfru/baseline/000333", "cfru/baseline/001328"],
+      ["cfru/baseline/000371", "cfru/baseline/001488"],
+      ["cfru/baseline/000372", "cfru/baseline/001489"],
+      ["cfru/baseline/000401", "cfru/baseline/001320"],
+      ["cfru/baseline/000980", "cfru/baseline/001341"],
+      ["cfru/factory-like/000054", "cfru/factory-like/001211"],
+      ["cfru/factory-like/000061", "cfru/factory-like/001202"],
+      ["cfru/factory-like/000265", "cfru/factory-like/000293"],
+      ["cfru/factory-like/000266", "cfru/factory-like/000296"],
+      ["cfru/factory-like/000272", "cfru/factory-like/001279"],
+      ["cfru/factory-like/000333", "cfru/factory-like/001319"],
+      ["cfru/factory-like/000371", "cfru/factory-like/001476"],
+      ["cfru/factory-like/000372", "cfru/factory-like/001477"],
+      ["cfru/factory-like/000401", "cfru/factory-like/001311"],
+      ["cfru/factory-like/000980", "cfru/factory-like/001332"],
+      ["cfru/minimal/000054", "cfru/minimal/001211"],
+      ["cfru/minimal/000061", "cfru/minimal/001202"],
+      ["cfru/minimal/000265", "cfru/minimal/000293"],
+      ["cfru/minimal/000266", "cfru/minimal/000296"],
+      ["cfru/minimal/000272", "cfru/minimal/001279"],
+      ["cfru/minimal/000333", "cfru/minimal/001319"],
+      ["cfru/minimal/000371", "cfru/minimal/001476"],
+      ["cfru/minimal/000372", "cfru/minimal/001477"],
+      ["cfru/minimal/000401", "cfru/minimal/001311"],
+      ["cfru/minimal/000980", "cfru/minimal/001332"],
+      ["dpe/base/000029", "dpe/base/000041"],
+      ["dpe/base/000029", "dpe/base/000138"],
+      ["dpe/base/000030", "dpe/base/000138"],
+      ["dpe/base/000031", "dpe/base/000139"],
+      ["dpe/base/000032", "dpe/base/000139"],
+      ["dpe/base/000033", "dpe/base/000139"],
+      ["dpe/base/000039", "dpe/base/000048"],
+      ["dpe/base/000040", "dpe/base/000049"],
+      ["dpe/base/000041", "dpe/base/000138"]
+    ],
+    "allowed_cross_engine_overlap_template": {
+      "left_engine": "cfru",
+      "left_profiles": ["baseline", "factory-like", "minimal"],
+      "right_variant": "dpe/base",
+      "write_number_pairs": [
+        [13, 39], [13, 48], [14, 40], [14, 49], [37, 45],
+        [265, 23], [266, 26],
+        [287, 17], [288, 18], [289, 19], [290, 20], [291, 21],
+        [292, 22], [293, 23], [294, 24], [295, 25], [296, 26],
+        [297, 27], [298, 28],
+        [299, 29], [299, 41], [299, 138],
+        [300, 30], [300, 138],
+        [301, 31], [301, 139],
+        [302, 32], [302, 139],
+        [303, 33], [303, 139],
+        [304, 34], [305, 35], [306, 36], [307, 37], [308, 38],
+        [340, 50], [341, 51], [723, 145], [724, 146]
+      ]
+    }
+  },
+  "maps": {
+    "groups_table_address": 137455448,
+    "expected_group_count": 43,
+    "expected_physical_map_count": 425,
+    "maximum_maps_per_group": 126,
+    "dynamic_map_sentinel": {
+      "group": 127,
+      "map": 127
+    },
+    "early_port": {
+      "group": 3,
+      "map": 4,
+      "header_address": 137447224,
+      "map_section": 92,
+      "object_count": 15,
+      "runtime_object_limit_including_player": 16,
+      "dh_entry_warp": {
+        "index": 8,
+        "x": 24,
+        "y": 19,
+        "destination_group": 1,
+        "destination_map": 47
+      },
+      "forbidden_dummy_warp_indices": [9, 10, 11, 12],
+      "new_static_object_allowed": false
+    }
+  },
+  "encounters": {
+    "headers_pointer_address": 134751612,
+    "headers_address": 137956148,
+    "expected_header_count": 132,
+    "terminator_group": 255,
+    "terminator_map": 255
+  },
+  "early_unlock": {
+    "required_flags": [2084, 4427],
+    "forbidden_inferred_flags": [2082],
+    "predicate": "FlagGet(0x0824) && FlagGet(0x114B)",
+    "latch_policy": "NEW_DEDICATED_FLAG",
+    "shiou": {
+      "group": 11,
+      "map": 3,
+      "map_section": 91,
+      "object_local_id": 7,
+      "script_address": 142951456,
+      "battle_script_address": 135819150,
+      "trainer_id": 418,
+      "completion_flag": 2084
+    },
+    "dh_building": {
+      "outdoor_group": 3,
+      "outdoor_map": 4,
+      "floor5_group": 1,
+      "floor5_map": 51,
+      "final_script_address": 149037358,
+      "trainer_id": 291,
+      "completion_flag": 4427,
+      "completion_var": 16497,
+      "completion_var_value": 10
+    }
+  },
+  "high_flag_migration": {
+    "legacy_bitmap_offset": 3808,
+    "expanded_flag_start": 2304,
+    "expanded_flag_end_exclusive": 6400,
+    "policy": "WHITELIST_VEGA_OWNED_BITS_ONLY",
+    "whitelist": [4427, 4626, 4627, 4628, 4629],
+    "never_bulk_copy_legacy_bitmap": true,
+    "preserve_vega_vars_in_place": true
+  },
+  "facilities": {
+    "factory": {
+      "flag_battle_facility": 2352,
+      "state_vars": [20501, 20502, 20503, 20504, 20505, 20506, 20507],
+      "table_index_vars": [20508, 20509, 20510],
+      "raw_facility_number_var": 16442,
+      "raw_facility_number_policy": "REMAP",
+      "pseudo_trainer_ids": [917, 918, 919, 920, 921],
+      "pseudo_trainer_policy": "SPECIAL_RUNTIME",
+      "special_table_base": "0x08163068",
+      "opponent_generation_special": 231,
+      "special_ids": [
+        82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+        98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110,
+        111, 112, 113, 114, 115
+      ],
+      "fixture_measured_categories": ["selection", "bp_reward", "eligibility", "battle_mine_options"],
+      "fixture_unmeasured_categories": ["rental_generation", "rental_ui", "interrupt_resume", "whiteout_restore", "reward_transaction"],
+      "party_transaction_policy": "RELOCATE_PERSISTENT_FULL_PARTY_WITH_COMMIT_MARKER"
+    },
+    "mirage": {
+      "group": 31,
+      "map": 1,
+      "map_section": 143,
+      "flags": [4626, 4627, 4628, 4629],
+      "vars": [16509, 16510],
+      "badge_flags": [2080, 2081, 2082, 2083, 2084, 2085, 2086, 2087],
+      "respawn_id": 14,
+      "policy": "REMAP_ALL_PERSISTENT_STATE_AND_EXACT_BADGE_RESTORE",
+      "party_model": "CARRIED_THREE_NOT_RENTAL"
+    }
+  },
+  "currencies": {
+    "arcade_coin": {
+      "availability": "REUSE",
+      "storage": "SaveBlock1+0x294 XOR SaveBlock2.encryptionKey",
+      "width_bits": 16,
+      "cap": 9999,
+      "required_operations": ["get", "set", "add", "subtract", "display"]
+    },
+    "battle_point": {
+      "availability": "NEW",
+      "minimum_width_bits": 16,
+      "required_operations": ["get", "set", "add", "subtract", "display"],
+      "enabled": false
+    },
+    "research_point": {
+      "availability": "DEFERRED",
+      "enabled": false
+    }
+  },
+  "ids": {
+    "dpe_counts": {
+      "species": 1440,
+      "moves": 992,
+      "abilities": 311,
+      "items": 774,
+      "national_dex": 1026
+    },
+    "vega_trainer_table": {
+      "address": "0x081FDFD8",
+      "record_size": 32,
+      "count": 743,
+      "end_exclusive": "0x08203CB8"
+    },
+    "vega_species_name_table": {
+      "address": "0x08203CB8",
+      "record_size": 6,
+      "count": 412
+    }
+  },
+  "ai": {
+    "aliases": {
+      "AI_BASIC": 1,
+      "AI_SEMI_SMART": 3,
+      "AI_FULL_SMART": 5
+    },
+    "vega_expected_hook_prefixes": {
+      "0x0800CCF0": "bbf0fef80c480460",
+      "0x080138E8": "2348006840210840",
+      "0x08037444": "70b54e46454660b4",
+      "0x08037614": "70b54e46454660b4",
+      "0x08037D1C": "70b50c4e30784002",
+      "0x08037EB0": "70b5104e30783cf0",
+      "0x08038E04": "f0b54f464646c0b4",
+      "0x08038F94": "f0b557464e464546",
+      "0x080395A8": "f0b557464e464546",
+      "0x080C8214": "f0b54f464646c0b4",
+      "0x080C7EF0": "f0b51e4908688469"
+    },
+    "abi": {
+      "new_battle_struct_size": 1368,
+      "recalculated_offset": 160,
+      "calculated_predictions_flag_byte_offset": 356,
+      "calculated_predictions_flag_bit": 3,
+      "ai_offset": 648,
+      "ai_rand_seed_offset": 652,
+      "ai_item_effects_offset": 665,
+      "foe_party_backup_offset": 1364,
+      "battle_resources_ai_offset": 20,
+      "ai_thinking_func_result_offset": 8,
+      "ai_thinking_flags_offset": 12
+    },
+    "required_rng_domains": ["gNewBS.ai.randSeed", "global.Random"],
+    "required_knowledge_domains": ["moves", "abilities", "items", "reserve_party", "trainer_items", "switch", "gimmick"],
+    "forbidden_implicit_configs": ["UNBOUND", "VAR_GAME_DIFFICULTY", "SCALED_TRAINERS", "TRAINERS_WITH_EVS"]
+  },
+  "qol_required_domains": [
+    "dash",
+    "bicycle",
+    "field_text_printer",
+    "battle_text_printer",
+    "experience_distribution",
+    "item_use",
+    "daycare_and_hatching",
+    "summary",
+    "pc",
+    "move_relearner",
+    "tm_consumption",
+    "dexnav",
+    "raid",
+    "settings_save"
+  ],
+  "qol_write_symbol_patterns": {
+    "dash": "^(AutoRunHook|IsRunningDisallowedByMetatile|gEventObjectImageAnim_Run(South|North|West|East))$",
+    "bicycle": "^(BikeTurboBoostHook|PlayerOnBikeCollide|FollowMe_BikeHook|FieldEffectScript_BikeTireTracks)$",
+    "field_text_printer": "^TextPrinterWait(WithDownArrow)?$",
+    "battle_text_printer": "^(TextPrinterWait(WithDownArrow)?|BattleStringExpandPlaceholders)$",
+    "experience_distribution": "^(ExpBarChangeAmountHook|PlayerHandleExpBarUpdate|CaptureExperienceEvolutionHook|SetMonExpWithMaxLevelCheck|gExperienceTables|sText_ExpGain)$",
+    "item_use": ".*ItemUse.*",
+    "daycare_and_hatching": ".*(Daycare|Egg).*",
+    "summary": ".*(SummaryScreen|PokeSum).*",
+    "pc": ".*(Storage|PartyMenuCursorOptions).*",
+    "move_relearner": ".*(Relearnable|Relearner).*",
+    "tm_consumption": ".*(TMHM|TmHm|CanMonLearnTM|RemoveTMPPRestore|MartTm).*",
+    "dexnav": ".*DexNav.*",
+    "raid": ".*Raid.*",
+    "settings_save": "^(SaveWriteToFlash|GetSaveValidStatus|TryLoadSaveSector|NewGameSaveClearHook|gSaveSectionOffsets)$"
+  },
+  "outputs": [
+    "reports/generated/address_audit.csv",
+    "reports/generated/semantic_conflicts.md",
+    "reports/generated/ram_map.csv",
+    "reports/generated/save_map.csv",
+    "reports/generated/id_inventory.json",
+    "reports/generated/vega_map_inventory.csv",
+    "reports/generated/vega_encounter_inventory.csv",
+    "reports/generated/qol_hook_inventory.csv",
+    "reports/generated/facility_audit.md",
+    "reports/generated/vega_trainer_baseline.csv",
+    "reports/generated/trainer_ai_audit.md"
+  ]
+}
