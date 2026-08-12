@@ -1,0 +1,283 @@
+{
+  "package_name": "VEGA_CFRU_DPE_統合設計_V2_二地方生態版",
+  "version": "V2",
+  "edition": "二地方生態版",
+  "generated_at_utc": "2026-08-12T08:11:09+00:00",
+  "status": "design-specification-only",
+  "counts": {
+    "official_species": 1025,
+    "evolution_chains": 541,
+    "dual_region_rows": 1082,
+    "tohoku_maps": 49,
+    "kanto_maps": 47,
+    "events": 34,
+    "special_species": 125,
+    "kanto_gym_party_members": 48,
+    "tohoku_rematch_party_members": 48,
+    "kanto_league_party_members": 30
+  },
+  "validation": {
+    "total_checks": 59,
+    "pass": 59,
+    "fail": 0,
+    "report": "09_設計データ検証結果.md"
+  },
+  "input_artifacts": [
+    {
+      "name": "18年2月23日完成版ベガ(2).ips",
+      "size_bytes": 3720110,
+      "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b",
+      "role": "ベガ基準IPS"
+    },
+    {
+      "name": "factory_test_20260524(2).ups",
+      "size_bytes": 16012506,
+      "sha256": "46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358",
+      "role": "ファクトリー／CFRU-DPE系UPS"
+    },
+    {
+      "name": "VEGA_CFRU_DPE_統合設計パッケージ(1).zip",
+      "size_bytes": 223960,
+      "sha256": "78d196e1e24b7f95b595c74f1646c5cc1e345422862ce4c298118447d1b9164d",
+      "role": "前版設計パッケージ"
+    }
+  ],
+  "manifest_scope": "manifest.jsonとMANIFEST.sha256自身を除く全ファイル",
+  "files": [
+    {
+      "path": "00_採用仕様_V2.md",
+      "size_bytes": 5644,
+      "sha256": "bde65c5a32f0e60df6f6f0358ec8b9e792bfc8da7f1618df3096199abe5db783"
+    },
+    {
+      "path": "01_技術統合・競合回避_V2.md",
+      "size_bytes": 11978,
+      "sha256": "f48142e6917193442d30ae58466fc5f78d46d2ed63a424ede44623d3de097eb9"
+    },
+    {
+      "path": "02_二地方の世界観・進行・解禁.md",
+      "size_bytes": 5886,
+      "sha256": "8a213e497b78fc68534cb308fdb1bae095728b4dfba866d00ac6302a1c9a0c80"
+    },
+    {
+      "path": "03_トーホク地方_新種出現・イベント詳細.md",
+      "size_bytes": 32093,
+      "sha256": "9501b838cf85dd07c60de2599b0b30e0cc13676634585b3394a6cf563c77dbd4"
+    },
+    {
+      "path": "04_カントー地方_クリア後出現・イベント詳細.md",
+      "size_bytes": 48404,
+      "sha256": "e8818c0b297769a2d0608f366c4902532890600b4ce7a81f4d92e566c98c7f2c"
+    },
+    {
+      "path": "05_二地方の入手設計・進化・特殊個体.md",
+      "size_bytes": 41416,
+      "sha256": "b09a5c6f56771abd8b4788c120179b7105b172d4aa9a4dc1310d472c19076949"
+    },
+    {
+      "path": "06_出現率・トレーナー・報酬バランス.md",
+      "size_bytes": 8652,
+      "sha256": "da7c54ab3e0ae86f4da854122a96f7d14aee3943ac6c51fbd52c9e9464b87f35"
+    },
+    {
+      "path": "07_実装ロードマップ・QA・リリース.md",
+      "size_bytes": 8999,
+      "sha256": "3ac7903838e7462ee09f0a001d34de210e6ae5afdbe150338ffe7d5609a779bb"
+    },
+    {
+      "path": "08_参考リンク・固定バージョン.md",
+      "size_bytes": 2770,
+      "sha256": "41d7e24129ceb76bcf3487aedf8c0a30c73237e2a228bf1c1bbe9ebb9e77981a"
+    },
+    {
+      "path": "09_設計データ検証結果.md",
+      "size_bytes": 10490,
+      "sha256": "b7672833ae0c10d84ae39116ae9e0d25ba40be1ef3c045e5f6173a33aea0aebe"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5914,
+      "sha256": "f29e43f31754eebf8c9ddd96458ee869641b23e5f3881d1f0f392926715c1d62"
+    },
+    {
+      "path": "VEGA_CFRU_DPE_統合設計書_V2_二地方生態版_統合版.md",
+      "size_bytes": 177814,
+      "sha256": "44c54c75e1003d342d65807cb7c386698d7c5d5fc54ba225f7b5c86f5def0701"
+    },
+    {
+      "path": "data/DPE実装専用フォーム・補助ID.csv",
+      "size_bytes": 1653,
+      "sha256": "d000237a9c1b50f7f60ecd96ef4829f2cc4ba52c37ae7cd909bf2d2929f5e4bd"
+    },
+    {
+      "path": "data/IDレジストリ雛形.csv",
+      "size_bytes": 1319,
+      "sha256": "9b3ea01423f9a1a8d5db0a6c55147e40302dc71182e7897aff5dab51fd1c64cb"
+    },
+    {
+      "path": "data/ROM競合分析_1MiBバンク.csv",
+      "size_bytes": 640,
+      "sha256": "b54379602a3c1436373a8bb1302ee26236e073bae19d9dc0b8082cbf6af75496"
+    },
+    {
+      "path": "data/ROM競合分析_上位重複アドレス.csv",
+      "size_bytes": 2434,
+      "sha256": "09b0d6efd5c7de54b5b40ec91562e3e086c4a28541fbc99bcea7303d849286f6"
+    },
+    {
+      "path": "data/アイテム入手マスター.csv",
+      "size_bytes": 55554,
+      "sha256": "8bb0ebd306d15f6252cd6eb53b43ae8fffd4c0c179ffd2e5e0659b3e95b21b84"
+    },
+    {
+      "path": "data/カントー_NPC・イベント再利用判定マスター_26件.csv",
+      "size_bytes": 7485,
+      "sha256": "8179bcec729bfdf6151f160c3d2d4eaae959ae46a2739975b9117bf48ad8dd89"
+    },
+    {
+      "path": "data/カントー_重要アイテム置換マスター_24件.csv",
+      "size_bytes": 4960,
+      "sha256": "4d780b2afea24cd55ef6336116fcc199210235a76776aa11422d0996c9fc19d6"
+    },
+    {
+      "path": "data/カントージム_詳細手持ち_48体.csv",
+      "size_bytes": 16428,
+      "sha256": "236c93d4e66ffd6c12938a430b9386830044bd0e7a61de1e087a7779a5109f4b"
+    },
+    {
+      "path": "data/カントージム_認定章・生態解禁マスター.csv",
+      "size_bytes": 2968,
+      "sha256": "70e2481db610c530289a571bcb4f23ccda7165391e49703574f8a148d9191a38"
+    },
+    {
+      "path": "data/カントーリーグ_四天王・チャンピオン詳細手持ち_30体.csv",
+      "size_bytes": 5687,
+      "sha256": "0fd4e620a388ad5d1905b634fe3a4801276f409eef1eeae472a8e158eca5c565"
+    },
+    {
+      "path": "data/トーホクジム_クリア後再戦・生態解禁マスター.csv",
+      "size_bytes": 3257,
+      "sha256": "d9f935f8ecbd52218bea999c042283508f5a2576f9789cd39e4b03bee370f93a"
+    },
+    {
+      "path": "data/トーホクジム_クリア後詳細手持ち_48体.csv",
+      "size_bytes": 10778,
+      "sha256": "9bcb3b7d3f1850f16d7f9542a875d3a35481327186662fea4b4ffcd3fb71ccfd"
+    },
+    {
+      "path": "data/フォーム対応マスター.csv",
+      "size_bytes": 313498,
+      "sha256": "5a0ae8b678c662684e0610489a090f34228487045584700b0c1c1e9dbd612256"
+    },
+    {
+      "path": "data/フラグ・変数割当雛形.csv",
+      "size_bytes": 1904,
+      "sha256": "df46d5bb78ee7f12bbb10db3ac5d7373144f1a7554a2ff38e82794e5269ee974"
+    },
+    {
+      "path": "data/ベガ既存図鑑ID保護台帳_386種.csv",
+      "size_bytes": 54078,
+      "sha256": "b0ebd96facad6a068fa389e45d709f56aa8269d8297a282db984df088b0abb0e"
+    },
+    {
+      "path": "data/ポケモン入手マスター_全1025種_二地方改訂版.csv",
+      "size_bytes": 1871779,
+      "sha256": "a35a3b79c423f21b27ce0bd41c6624ad1afd613805980efd1d8ab861c9597d5c"
+    },
+    {
+      "path": "data/二地方_出現率・レベル規格.csv",
+      "size_bytes": 2570,
+      "sha256": "d46fff87e1d10e76bae690f022c3b554efb334f8a44353b2724d6b15ed5d0a91"
+    },
+    {
+      "path": "data/二地方_追加イベント詳細マスター_34件.csv",
+      "size_bytes": 33092,
+      "sha256": "60d83b51b5b9f040d0afbc89a240ddcb242303eeca68b735c1e2cafa45f0131d"
+    },
+    {
+      "path": "data/二地方_進化系統別遭遇詳細_1082行.csv",
+      "size_bytes": 1025423,
+      "sha256": "390b3a0bb1098adf75005c8c903c5cb99e6ffc5f69a6bf92b066740f0e9e113c"
+    },
+    {
+      "path": "data/二地方マップ別_出現レイヤーマスター_96地点.csv",
+      "size_bytes": 90878,
+      "sha256": "8d2dd5a32dcfecb68cf9f8d665066ae88d370862f4aead3c66b5a91800662327"
+    },
+    {
+      "path": "data/伝説・幻・UB・パラドックスイベントマスター_二地方改訂版_125種.csv",
+      "size_bytes": 89157,
+      "sha256": "c90c03a994e30d032f0962c1c93326baec2d7a3967e10ba4512a045ccec5137c"
+    },
+    {
+      "path": "data/実装ロードマップ・受入条件マスター.csv",
+      "size_bytes": 3216,
+      "sha256": "e4c7a3dc363818d5af149406dae4d6a1792c53af5db0523a226311556d913046"
+    },
+    {
+      "path": "data/機能統合プロファイル.csv",
+      "size_bytes": 3265,
+      "sha256": "cd3f4f2ec465eeccea65ad8d8f4493495b9468b3200105f6d913071ad3b89cf7"
+    },
+    {
+      "path": "data/設計データ検証サマリー_V2.json",
+      "size_bytes": 667,
+      "sha256": "1dba150e0a0525ade93ae9673212c75f8e7f525e8160c68fbaa886c336cfbe4a"
+    },
+    {
+      "path": "data/設計データ検証チェック_V2.csv",
+      "size_bytes": 6249,
+      "sha256": "0527493e1a71f79f5c17ddded563ba7c0616161069c656b7f6e49e0e527df65a"
+    },
+    {
+      "path": "data/進化条件変換マスター.csv",
+      "size_bytes": 132461,
+      "sha256": "59b28788469b5fee76ba0f39801535674beb83d6069aeeb8f9aa72cf9b372f94"
+    },
+    {
+      "path": "data/進化系統_二地方配置マスター_全541系統.csv",
+      "size_bytes": 416642,
+      "sha256": "7bc705d82d4defc5f3ca94690af9a1f914f3852774336f89d50d4db118516a36"
+    },
+    {
+      "path": "templates/README.md",
+      "size_bytes": 1010,
+      "sha256": "fca8d0203e6c4ecdde9a42b9f52088b910ea9ea5b15eb6088a0e12e1f06b9984"
+    },
+    {
+      "path": "templates/ability_id_map.csv",
+      "size_bytes": 258,
+      "sha256": "ea8b9f297d1bd1dc37c11a08c7d620e951fe83e9ff79e1a6e50a77397474d436"
+    },
+    {
+      "path": "templates/build_manifest.json",
+      "size_bytes": 1629,
+      "sha256": "c1d7f8226689ab81c7cde7c35fd15e2026bcb6c40badbd7046b65e3357a7987d"
+    },
+    {
+      "path": "templates/hook_audit.csv",
+      "size_bytes": 420,
+      "sha256": "49aef060ad1c9a96e13fa57073cfb3a2fa03931dae02dccf2810ed07581fa4d3"
+    },
+    {
+      "path": "templates/item_id_map.csv",
+      "size_bytes": 325,
+      "sha256": "a62db1b1ae43f6d5279b69b512ca69dcc4f2fe8fa51da8060bd0889142937d15"
+    },
+    {
+      "path": "templates/move_id_map.csv",
+      "size_bytes": 272,
+      "sha256": "ee7cd0700d29fc98a0949c8a9a3f6471d4e4f189fae7e9042cb500917734c008"
+    },
+    {
+      "path": "templates/saveblock_layout.md",
+      "size_bytes": 1931,
+      "sha256": "5b33711ec377b984f9370ecb5ae93f0923bd5139ffe389863b0002fb2cd3f92b"
+    },
+    {
+      "path": "templates/species_id_map.csv",
+      "size_bytes": 286378,
+      "sha256": "a958d2b530fc81f416cc4385885a8e5eba3949b08d4c5035f99afff091725935"
+    }
+  ]
+}

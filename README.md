@@ -1,6 +1,6 @@
-# Pokémon Vega Modern + Postgame Kanto
+# Pokémon Vega Modern — トーホク＋カントー二地方版
 
-FireRed日本版Rev.0からVega 2018-02-23を再生成し、DPE-JP/CFRU-JPを公開ソースからVega互換で移植し、殿堂入り後カントーを追加する長期開発ワークスペースです。最終成果は32 MiB ROMの再現ビルドと、ROM本体を含まない差分パッチです。
+FireRed日本版Rev.0からVega 2018-02-23を再生成し、DPE-JP/CFRU-JPを公開ソースからVega互換で移植したうえで、元FireRedのカントーを殿堂入り後の第二地方として復活させる長期開発ワークスペースです。トーホクとカントーを自由に往復でき、両地方へ追加生態を配置します。最終成果は32 MiB ROMの再現ビルドと、ROM本体を含まない差分パッチです。
 
 Factory UPSをVegaへ重ねる方式は採用しません。Factory ROMは挙動・配置の参照オラクルとしてだけ使います。
 
@@ -32,6 +32,7 @@ python3 scripts/taskctl.py next
 - 入力・上流pin: `state/source-lock.json`
 - 受領物一覧: `design/import_inventory.md`
 - 受領資料レビュー: `design/import_review.md`
+- 二地方設計のactive review資料: `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`
 
 ## 私有入力
 
@@ -51,7 +52,7 @@ bash scripts/verify_wsl.sh
 
 ## 効率方針
 
-同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。大規模統合を一度に行わず、Move、battle、Species、Kantoの順に最小縦切りを通してから広げます。
+同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。大規模統合を一度に行わず、Move、battle、Species、トーホク生態overlay、クチバ往復の順に最小縦切りを通してから広げます。
 
 ## 補助ツール
 

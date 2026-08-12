@@ -1,0 +1,15 @@
+﻿phase,workstream,main_work,deliverables,acceptance_criteria,priority
+P0,ROM基準固定,クリーンBPRJ Rev.0、ベガIPS、ファクトリーUPSのSHA-256を記録,build_manifest.json、ハッシュ台帳,ハッシュが一致しないROMではビルド停止,必須
+P1,ベガ既存資産抽出,種族ID、野生表、トレーナー、マップ、イベント、フラグ、SaveBlock、フック期待値を抽出,species_id_map、hook_audit、saveblock_layout,ベガ本編を単体再ビルドして既存セーブで回帰,必須
+P2,32MiBメモリ配置,ROM後半をコード・画像・テーブル・カントーマップ・イベントに区画化,linker map、bank registry,領域重複0、ポインタ範囲内、圧縮データ境界確認,必須
+P3,DPE種族再配置,ベガ既存386枠を固定し、公式No.1～1025とフォーム補助IDを後段に再配置,species_id_map、Dex変換表,全参照が新IDへ変換され、既存イベント個体が変化しない,必須
+P4,CFRU機能再フック,戦闘、進化、道具、DexNav、昼夜、SaveBlockをベガ実アドレスへ再移植,hook_audit、offsets.ini,各フック期待バイト一致。タイトル～殿堂入りまでクラッシュ0,必須
+P5,トーホク外来生態レイヤー,既存野生表を上書きせず、追加抽選・DexNav・夜・大量発生を実装,49地点マップ表、541系統配置表,既存1%枠消失0、追加率上限遵守、イベント前出現なし,必須
+P6,カントーマップ移植,FRマップ・NPC座標・ジム構造を新規マップグループへ複製,map registry、warp audit,ベガ側マップ番号上書き0、全ワープ往復、詰み座標0,必須
+P7,カントー野生表,原作象徴種を残しつつ新種40～65%で再編,47地点マップ表、1082行遭遇詳細,各マップ原作系最低4枠、水場整合、Lv曲線整合,必須
+P8,追加イベント34件,固定戦、環境変化、報酬、再戦救済、地方共通フラグを実装,イベントマスター、script registry,倒す・逃げる・捕獲・手持ち満杯・再訪を全分岐試験,必須
+P9,ジム・NPC・アイテム,カントー8ジム、トーホク再戦8組、NPC26件、重要アイテム24件を実装,party tables、NPC audit、item replacement,認定章とベガバッジの干渉0、全報酬再入手経路確認,必須
+P10,特殊個体125件,伝説・幻・UB・パラドックスを二地方手掛かり方式へ統合,special event master,重複捕獲0、捕獲済み分岐、復活処理、図鑑フラグ確認,高
+P11,経済・育成調整,ショップ段階、BP、進化素材、ミント、特性道具の供給量を調整,shop tables、item economy sheet,通信不要、RTC待ち不要、有限素材による図鑑詰み0,高
+P12,回帰・長時間QA,ベガ本編、既存ポストゲーム、カントー、両地方往復、SaveBlockを検証,QA matrix、bug log,100時間相当セーブ、PC満杯、図鑑1025、殿堂入り更新を通過,必須
+P13,統合パッチ生成,クリーンROM向け単一UPS/BPSと変更履歴を生成,release patch、manifest、credits,別順パッチ適用を要求しない。ROM本体を同梱しない,必須

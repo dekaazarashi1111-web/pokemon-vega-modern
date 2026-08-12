@@ -31,3 +31,5 @@
 - 原本へ直接patchせず、build側へコピーして再生成します。
 - Factory UPSはVegaへ適用せず、clean ROMから別参照を作ります。
 - 同一hash/source pinの生成済み監査は再利用します。
+- 二地方設計はV2をactive reviewとし、`design/import_review.md` と `design/kanto_feasibility.md` から必要範囲だけ読みます。
+- V2の47カントー地点は生態上の論理単位です。全建物・階層・warpの物理map scopeはT11で再生成します。

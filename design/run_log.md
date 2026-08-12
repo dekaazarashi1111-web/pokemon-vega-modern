@@ -31,3 +31,30 @@
   - `https://github.com/kapibarasan000/CFRU-JP.git` — HEADと固定commitの一致を確認。
   - `https://github.com/kapibarasan000/DPE-JP.git` — 設計資料pin `520937c...` の1 commit後にある最新HEADを採用し、差分が `src/Back_Pic_Coords_Table.c` の1行修正であることを確認。
   - `https://github.com/pret/pokefirered.git` — HEADと固定commitの一致を確認。
+
+## 2026-08-12T12:12:25Z
+
+- Task: `USER-20260812-V2-DUAL-REGION` / V2二地方設計への切替えとFireRedカントー復元の実現性評価
+- Status: DONE
+- Summary:
+  - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版.zip` をGit管理外へ原名・読み取り専用で取り込み、元ファイルとSHA-256 `fb7c542a50aaec7ae25af70cdb100f4c71effb5e9ddc4f09c6365f79fa76cd06` が一致することを確認した。安全展開後のJSON manifest 47件と `MANIFEST.sha256` 47件は相互一致し、size/hashも全件PASSした。
+  - V2を二地方のactive review資料、V1を来歴保存専用とし、入口、現在状態、計画、ADR、タスク完了条件、content/test方針をトーホク＋カントー二地方版へ更新した。V2に残る進化重複、フォームキー不足、ID型、救済道具参照漏れをT12の正規化前ゲートにした。
+  - clean BPRJ Rev.0と固定pokefireredを読取専用で初期inventoryし、カントー本土候補256 physical maps、180 unique layoutsを確認した。180 layoutのうち179は日本版clean ROM内のbyteと一致し、Vega参照ROMに同列が残るのは54だった。このためVega内を上書き復元せず、clean ROMから新規 `KANTO_*` MapGroupへ複製・全参照再接続する方式を採用した。
+  - トーホクとカントーの常時双方向移動、帰還NPCの常時有効化、V2のクチバ到着と認定章gateの地理矛盾を解消する初期回廊、47論理地点と全physical mapのcrosswalkを必須仕様にした。
+- Files changed:
+  - 受領資料: `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/**`, `design/imported/README.md`
+  - 判断・証跡: `design/import_inventory.md`, `design/import_review.md`, `design/kanto_feasibility.md`, `design/decisions.md`, `design/current_state.md`
+  - 運用・計画: `README.md`, `CODEX_START_HERE.md`, `CODEX_HANDOFF.md`, `MASTER_PLAN.md`, `WORKSTREAMS.md`, `docs/**`, `tasks/T02_*.md`, `tasks/T08_*.md`〜`tasks/T17_*.md`
+  - 検証: `scripts/verify_imported_packages.py`, `.gitattributes`, `CHANGELOG.md`
+- Verify:
+  - 元ZIP/取込ZIPのsize・SHA-256一致、ZIP CRC/安全展開、V2 JSON/SHA manifest 47/47: PASS
+  - `python3 scripts/verify_imported_packages.py`: PASS（監査15件、設計V1 35件、設計V2 47件）
+  - `make validate guard test`: PASS（36 tests）
+  - `bash scripts/verify_wsl.sh`: PASS（secret scan、project gates、36 tests、npm check）
+  - staging後の `git diff --cached --check`、private guard、V2不変hash、私有ROM/パッチ/ZIP非追跡: PASS
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - GitHub既定ブランチHEADの再確認に `git ls-remote --symref` を使用。
+  - `https://github.com/kapibarasan000/CFRU-JP.git` — `main` HEAD `e24a16fe39e27ae162faf5b78596d1f3df18489d`。
+  - `https://github.com/kapibarasan000/DPE-JP.git` — `main` HEAD `10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e`。
+  - `https://github.com/pret/pokefirered.git` — `master` HEAD `c75f352304d529f6ba92d4f74b9cf8b5c3810788`。

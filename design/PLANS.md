@@ -10,6 +10,7 @@ FireRed JPN Rev.0 clean
   -> Vega互換DPE-JP
   -> Vega互換CFRU-JP
   -> battle/species縦切り
+  -> トーホク非破壊生態overlay縦切り
   -> postgame Kanto縦切り
   -> 全コンテンツと回帰試験
   -> 32 MiB final ROM
@@ -19,6 +20,6 @@ FireRed JPN Rev.0 clean
 ## 進め方
 
 - Gate A〜EとT00〜T18は `MASTER_PLAN.md` を参照する。
-- 受領した現代化コンテンツ設計は `design/imported/VEGA_CFRU_DPE_統合設計/` に保存し、`design/import_review.md` の問題を解消したデータだけ段階的に正本化する。
-- カントーは統合設計パッケージに含まれないため、D-003/D-004、`docs/KANTO_PORT_POLICY.md`、T11/T13〜T16を正とする。
+- 二地方設計の優先参照は `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`。V1は来歴保存専用とし、`design/import_review.md` の問題を解消したデータだけ段階的に正本化する。
+- V2のカントー設計をD-003/D-004/D-010、`docs/KANTO_PORT_POLICY.md`、T11/T13〜T16の入力に使う。ただしV2の47地点はraw map総数ではなく、マップ実体はT11の全資産inventoryを正とする。
 - 並列化は `WORKSTREAMS.md` の所有権に従い、親側の正本IN_PROGRESSは1件に保つ。

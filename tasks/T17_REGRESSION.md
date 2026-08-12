@@ -5,7 +5,7 @@
 
 ## Objective
 
-Prove that the new engine and Kanto content do not prevent Vega completion and that Kanto progression is playable.
+Prove that the new engine and dual-region content preserve Vega completion, keep Tohoku ecology non-destructive, and make Kanto progression and return travel reliable.
 
 ## Execute
 
@@ -17,6 +17,8 @@ Prove that the new engine and Kanto content do not prevent Vega completion and t
 6. Perform targeted battle tests for status, switching, capture, evolution, forms, items, bosses, and save/load.
 7. Triage failures into release blockers, known issues, or deferred enhancements.
 8. Repeat from a clean build after fixes.
+9. Exercise 49 Tohoku and 47 Kanto logical locations across time/method/unlock states, 34 event branches, and 125 shared special-capture states.
+10. Run 200 region round trips including save/load, reset, heal, whiteout, and full-PC cases.
 
 ## Required outputs
 
@@ -31,6 +33,8 @@ Prove that the new engine and Kanto content do not prevent Vega completion and t
 - [ ] Vega main progression remains completable to the defined gate.
 - [ ] Kanto progression reaches its final objective.
 - [ ] Known issues include reproduction steps and severity.
+- [ ] No original Vega encounter disappears and no special species can be captured twice across regions.
+- [ ] Every imported Kanto physical map is reachable or intentionally gated, and return travel is always possible.
 
 ## Finish
 

@@ -20,3 +20,14 @@
   - プレイブック、監査、統合設計を役割別に統合し、セッション再開入口とT00〜T18の正本キューを整備した。
   - CFRU-JP、DPE-JP、pokefireredを2026-08-12時点のGitHub最新HEADへ固定し、安全なquickstartと検証基盤を追加した。
 - Verify: `bash scripts/verify_wsl.sh` PASS
+
+## 2026-08-12T12:12:25Z
+
+- Version: `design-v2-dual-region-0.2.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260812-V2-DUAL-REGION` / V2切替えと二地方実現性評価
+- Summary:
+  - V2二地方生態版の不変受領資料を追加し、V1を来歴保存へ切り替えた。
+  - clean FireRed日本版からカントー本土を新規名前空間へ復元し、トーホクと双方向に往復する方針を固定した。
+  - 256 physical map候補、180 unique layoutsの初期監査とV2意味課題をタスクゲートへ反映した。
+- Verify: `bash scripts/verify_wsl.sh` PASS

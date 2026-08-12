@@ -8,7 +8,7 @@ FireRed JPN Rev0 clean
       └─ Vega互換DPE-JP
           └─ Vega互換CFRU-JP
               └─ Postgame Kanto maps
-                  └─ symbolic content manifests
+                  └─ Tohoku/Kanto symbolic ecology manifests
                       └─ final 32 MiB ROM
                           └─ 配布用差分パッチ
 ```
@@ -27,14 +27,14 @@ FireRed JPN Rev0 clean
 | T07 | DPE Species port | Engine | T04,T05,T03 | Vega species固定＋追加species |
 | T08 | Save/RAM compatibility | QA/Engine | T02,T03 | save/RAM衝突解消 |
 | T09 | Graphics/Dex/Evolution | Engine | T07,T08 | 表示・図鑑・進化・習得技 |
-| T10 | Engine vertical slice | Engine/QA | T04–T09 | 新要素を1セット通しで動作 |
-| T11 | Kanto importer | Map | T00,T02 | 1マップround-tripと新Map ID |
-| T12 | Content schema | Content | T00 | 野生/トレーナー/アイテム仕様 |
+| T10 | Engine vertical slice | Engine/QA | T04–T09 | 新要素＋トーホク非破壊overlayを通しで動作 |
+| T11 | Kanto importer | Map | T00,T02 | FR本土inventory、1マップround-trip、新Map ID |
+| T12 | Dual-region content schema | Content | T00 | 二地方の野生/トレーナー/アイテム/イベント仕様 |
 | T13 | Vermilion vertical slice | Map/Content | T10,T11,T12 | 港→町→ジム→帰還 |
 | T14 | Full Kanto import | Map | T11,T13 | 選定マップと接続を一括追加 |
 | T15 | Postgame progression | Content/Engine | T13,T14 | 解禁・ジム進行・地方間移動 |
-| T16 | Populate content | Content | T12,T14,T15 | 野生・手持ち・報酬を生成 |
-| T17 | Regression/playtest | QA | T10,T13,T16 | Vega本編＋Kanto回帰確認 |
+| T16 | Populate dual-region content | Content | T12,T14,T15 | トーホク49＋カントー47論理地点を生成 |
+| T17 | Regression/playtest | QA | T10,T13,T16 | Vega本編＋二地方回帰確認 |
 | T18 | Release pipeline | Platform | T17 | 再現ビルド・差分パッチ・記録 |
 
 ## 並行可能範囲
@@ -47,7 +47,7 @@ T00完了後、以下を同時に開始できます。
 
 T02完了後にT11（カントーマップ変換）を開始できます。T03以後はEngineレーンを進めながら、MapとContentを継続できます。Kantoの正確な数値IDを書き込むのはT10以後ですが、記号名での設計はT12から可能です。
 
-受領した `design/imported/VEGA_CFRU_DPE_統合設計/` は現代化コンテンツのreview資料であり、このカントー工程を置き換えません。採用済みデータだけをT12/T16のschemaへ昇格します。
+受領したV2二地方生態版は完成像・進行・生態・イベントのactive review資料です。V1は来歴保存専用です。V2の47カントー地点はraw map総数ではないため、T11ではclean BPRJとpokefireredから約256候補mapの再現可能なinventoryを作り、論理地点とのcrosswalkを確定します。採用済みデータだけをT12/T16のschemaへ昇格します。
 
 ## 重要ゲート
 
@@ -68,7 +68,7 @@ Vega既存技と追加技、新特性、新Species、追加道具が1つずつ�
 
 ### Gate D — Kanto vertical slice
 
-Vegaからクチバへ移動し、NPC、ジム、報酬、セーブ、帰還が動作する。
+Vegaからクチバへ移動し、NPC、PC/回復、ジム、報酬、セーブ、全滅復帰、常時帰還が動作する。
 
 ### Gate E — Release candidate
 

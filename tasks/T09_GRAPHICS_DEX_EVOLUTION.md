@@ -16,6 +16,7 @@ Complete the non-battle Species surface so existing and appended species display
 5. Merge level-up, egg, TM/HM, tutor learnsets.
 6. Define regional/national dex numbering without breaking Vega completion events.
 7. Add display tests for summary, party, PC, battle, evolution, and Dex screens.
+8. Normalize V2 evolution data by removing semantic duplicates, adding from/to form keys, canonicalizing National Dex types, and resolving every required item/counter before generation.
 
 ## Required outputs
 
@@ -31,6 +32,7 @@ Complete the non-battle Species surface so existing and appended species display
 - [ ] One appended species displays front/back/icon/cry and Dex entry.
 - [ ] Evolution works across Vega-existing and appended targets.
 - [ ] Vega Dex-dependent events remain reachable or have an explicit compatibility adapter.
+- [ ] Every generated evolution row has unambiguous form identity and resolvable requirements.
 
 ## Finish
 

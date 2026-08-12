@@ -16,6 +16,8 @@ Turn the initial binary conflict report into a complete machine-readable compati
 5. Build a RAM ownership map from CFRU linker files, DPE sources, and any discoverable Vega use.
 6. Build save-block, script-special, flag, var, trainer, species, move, ability, item, and map-ID inventories.
 7. Generate overlap validators that fail the build when a new unclassified conflict appears.
+8. Inventory Vega map groups, headers, layouts, warp/heal/Fly/Escape state, hidden-item flag width, and signed map-ID call paths needed by the Kanto importer.
+9. Extract the original Vega encounter tables and unlock dependencies needed to prove a non-destructive Tohoku overlay.
 
 ## Required outputs
 
@@ -24,6 +26,8 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - `reports/generated/ram_map.csv`
 - `reports/generated/save_map.csv`
 - `reports/generated/id_inventory.json`
+- `reports/generated/vega_map_inventory.csv`
+- `reports/generated/vega_encounter_inventory.csv`
 - `tools/validate/address_assertions.py`
 
 ## Acceptance gates
@@ -32,6 +36,7 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - [ ] UNKNOWN entries have evidence and an assigned follow-up task.
 - [ ] RAM and save ranges include owner and lifetime.
 - [ ] Audit can be rerun after source updates.
+- [ ] Map group limits, reserved values, and every state domain needed by dual-region travel are classified.
 
 ## Finish
 

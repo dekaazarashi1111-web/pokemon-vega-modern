@@ -18,7 +18,7 @@
 - `audit_seed/reports/conflict_report.md`: 269 ranges / 775 bytesの人間向け要約
 - `audit_seed/reports/semantic_hotspots.md`: Move優先などの初期意味分析
 - `audit_seed/reports/public_source_reference.md`: 初期監査時の公開source blob参照
-- `design/imported/VEGA_CFRU_DPE_統合設計/`: 受領時点を保つ設計資料（review完了前）
+- `design/imported/VEGA_CFRU_DPE_統合設計/`: V2に置き換えられたV1来歴資料
 
 ## archive
 
@@ -26,6 +26,7 @@
 
 ## review
 
-- `design/imported/VEGA_CFRU_DPE_統合設計/data/*.csv`: manifest整合性はPASS。意味上の不整合は `design/import_review.md` を参照。
+- `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`: 二地方設計のactive review資料。JSON/SHA manifestは47/47 PASS。
+- `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/data/*.csv`: 付属59検査はPASSしたが、V1由来の意味不整合は `design/import_review.md` を参照。
 - 受領資料を直接編集しない。修正済みschema/dataはT12等で `manifests/` / `content/` へ昇格する。
 - 新しいレポートはactive / reference / archive / reviewのどれかと、生成条件（input hash、source commit、tool version）を明記する。

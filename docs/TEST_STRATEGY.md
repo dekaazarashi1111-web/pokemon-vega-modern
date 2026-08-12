@@ -65,9 +65,20 @@
 - trainer party
 - boss reward
 - save/load in Kanto
+- heal/whiteout/reset in Kanto
 - return travel
 
-## 6. Release
+## 6. 二地方生態・進行
+
+- トーホク49論理地点で、未解禁・抽選外の元Vega encounterが変化しない。
+- カントー47論理地点を全physical mapへcrosswalkし、全warp destinationを解決する。
+- 541進化系統の両地方導線と全進化道具の入手可能性を検査する。
+- 追加イベント34件の捕獲・撃破・逃走・敗北・満杯・再訪を検査する。
+- 特殊個体125種は地方共有flagで重複捕獲できない。
+- 港の往復を200回行い、save/load/heal/whiteout後も帰還できる。
+- クチバ到着時の初期回廊と認定章gateにunreachable/circular prerequisiteがない。
+
+## 7. Release
 
 - clean inputから一発再生成
 - 差分パッチをcleanへ適用してfinal hash一致

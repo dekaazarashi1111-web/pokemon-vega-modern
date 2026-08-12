@@ -5,16 +5,17 @@
 
 ## Objective
 
-Allow encounter, trainer, item, gym, and event design to proceed in parallel without waiting for numeric IDs.
+Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event design to proceed in parallel without waiting for numeric IDs.
 
 ## Execute
 
-1. Finalize CSV schemas for maps, encounters, trainers, items, gym rewards, and progression.
+1. Finalize region-keyed CSV schemas for maps, encounters, Tohoku overlays, trainers, items, gym rewards, shared capture state, events, and progression.
 2. Implement validators for keys, slots, level ranges, move count, duplicate rewards, and unresolved references.
 3. Implement generators that consume a later ID-resolution file but can run now in dry-run mode.
-4. Create content templates for mainland Kanto.
-5. Define default postgame level bands and biome tags as proposals, not hard-coded ROM data.
-6. Add report generation showing each species first availability, evolution-item availability, and trainer usage.
+4. Create content templates for Tohoku and mainland Kanto.
+5. Import V2 only through a normalization layer that canonicalizes ID types, adds form keys, removes semantic duplicates, and rejects missing item/counter references.
+6. Define default story/postgame level bands and biome tags as proposals, not hard-coded ROM data.
+7. Add reports for first availability, evolution-item availability, trainer usage, 541-family dual-region coverage, and 125 shared special-capture keys.
 
 ## Required outputs
 
@@ -29,6 +30,8 @@ Allow encounter, trainer, item, gym, and event design to proceed in parallel wit
 - [ ] Generators fail on unresolved key in build mode and allow explicit dry-run mode.
 - [ ] No content file contains raw Species/Move/Item numeric IDs.
 - [ ] Reports can detect unobtainable evolution lines.
+- [ ] V2's 59 checks are independently reproducible and the known V1-derived semantic issues fail before normalization.
+- [ ] Logical V2 location keys cannot be emitted until they resolve through the T11 physical-map crosswalk.
 
 ## Finish
 

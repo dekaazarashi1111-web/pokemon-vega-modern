@@ -1,0 +1,13 @@
+﻿domain,protected_range,new_range_symbolic,rule
+species,ベガ既存全386枠,NATIONAL_EXT_0001～1025＋必要フォーム,既存内部IDを固定し、全国番号は別テーブル
+moves,ベガ既存技・固有技,MOVE_EXT_*,既存スクリプト参照を固定。CFRU技は名称照合ではなく明示マップ
+items,ベガ既存道具・キーアイテム,ITEM_EXT_*,ポケット分類・所持効果・スクリプトを一体で登録
+abilities,ベガ既存特性,ABILITY_EXT_*,AI・表示・バトルスクリプトの3箇所を同時更新
+types,ベガ既存タイプ表,TYPE_FAIRY等,相性表・アイコン・技分類・進化条件を同期
+trainer,全既存トレーナーID,追加調査員・再戦ID,ストーリー用IDの並びを変えない
+maps,全既存Bank/Map,増設小部屋だけ新ID,既存ワープ・フライト先を固定
+scripts,全既存スクリプト,EXT_SCRIPT_*,ポインタ直書きを避けシンボル化
+flags,ベガ既存フラグ,FLAG_EXT_*,未使用調査後に連続領域を確保
+vars,ベガ既存変数,VAR_EXT_*,生態・研究・ギミック状態を分離
+specials,既存special番号,SPECIAL_EXT_*,CFRU specialsと衝突照合
+saveblock,既存ベガ構造,研究図鑑・DexNav・フォーム・カウンタ,構造体から再設計し新規セーブを標準

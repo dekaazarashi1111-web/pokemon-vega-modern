@@ -50,10 +50,10 @@ git worktree add ../vega-qa -b codex/lane-qa
 ### Content
 
 - `content/**`
-- `manifests/kanto_encounters.csv`
-- `manifests/kanto_trainers.csv`
-- `manifests/kanto_items.csv`
-- 会話、レベル曲線、報酬仕様
+- `manifests/*encounters.csv`
+- `manifests/*trainers.csv`
+- `manifests/*items.csv`
+- 二地方の会話、レベル曲線、生態overlay、報酬仕様
 
 数値IDを独断で確定せず、`*_key`を使用します。
 
@@ -85,3 +85,4 @@ git worktree add ../vega-qa -b codex/lane-qa
 - Contentレーンは数値IDを参照しない。
 - MapレーンはTrainer/Species/Itemの数値IDを参照しない。
 - 共通schema変更時は先にQAブランチからmergeする。
+- V2は読取専用review入力とし、Contentレーンから直接編集しない。

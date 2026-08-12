@@ -14,6 +14,15 @@ python3 scripts/taskctl.py next
 
 次に、選択した `tasks/T*.md` とcontext mapが指す資料だけを読みます。再開時は `prompts/RESUME.md` も使えます。
 
+二地方関連では、V2をactive review資料とし、V1は来歴確認にだけ使います。
+
+```text
+design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/
+design/import_review.md
+design/kanto_feasibility.md
+docs/KANTO_PORT_POLICY.md
+```
+
 ## 私有入力
 
 物理的な原本は `userfile/imports/` に読み取り専用で保存されています。ツールは次のGit管理外安定名を使います。
@@ -58,6 +67,8 @@ make validate guard test
 - Map: `prompts/MAP_LANE.md`
 - Content: `prompts/CONTENT_LANE.md`
 - QA: `prompts/QA_LANE.md`
+
+カントーはVega内の元FireRed領域を上書き復元せず、clean BPRJ Rev.0のraw資産を新規 `KANTO_*` 群へ複製して全参照を再接続します。まずT11の1map importer、次にT13のクチバ往復縦切りを通します。
 
 ## 人が確認する場所
 

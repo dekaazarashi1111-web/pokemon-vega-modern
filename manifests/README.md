@@ -1,6 +1,8 @@
 # Manifests
 
-These CSV files are the only source of truth for stable IDs and Kanto content. Generated code must reference them; generated outputs must not be hand-edited.
+これらのCSVは、安定IDとトーホク／カントー二地方コンテンツの実装正本である。生成コードはsymbolic keyからこれらを解決し、生成物を手編集しない。
+
+`design/imported/**` はreview入力であり正本ではない。V2データはT12で型・フォーム・重複・参照を正規化した後にだけ昇格する。
 
 Run:
 
@@ -8,4 +10,4 @@ Run:
 python3 scripts/validate_manifests.py
 ```
 
-Empty files with headers are valid during bootstrap. Tasks populate them incrementally.
+bootstrap中はheaderのみの空ファイルを許容し、各タスクで段階的に埋める。

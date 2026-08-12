@@ -17,12 +17,12 @@
 | 現在状態 | `design/current_state.md` | `design/run_log.md`末尾 |
 | 次タスク | `design/tasks_next.md` | `tasks/task_graph.json`, 対応する`tasks/T*.md` |
 | 入力・hash | `design/import_inventory.md` | `docs/INPUT_CONTRACT.md`, `state/source-lock.json` |
-| 受領資料の評価 | `design/import_review.md` | `design/imported/VEGA_CFRU_DPE_統合設計/README.md` |
+| 受領資料の評価 | `design/import_review.md` | `design/imported/README.md`, `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/README.md` |
 | 採択済み判断 | `design/decisions.md` | 根拠となる監査レポート |
 | パッチ競合 | `audit_seed/PHASE_01_STATUS.md` | `audit_seed/reports/conflict_report.md`, `semantic_hotspots.md` |
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
-| カントー | `docs/KANTO_PORT_POLICY.md` | T11/T13〜T16 |
+| 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T11/T13〜T16 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
 | ブロッカー | `design/blockers.md` | 選択タスクの失敗ログ |
@@ -34,8 +34,8 @@
 - T01: `docs/SOURCE_NOTES.md`、上流README、T01。
 - T02: `audit_seed/README_JA.md`、`audit_seed/CODEX_TASK_01.md`、T02。
 - T04: `audit_seed/CODEX_TASK_02_MOVE_PORT.md`、`docs/ID_POLICY.md`、T04。
-- T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、該当タスク。
-- T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、該当タスク。
+- T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
+- T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 
 ## 読みすぎ・やり直し防止

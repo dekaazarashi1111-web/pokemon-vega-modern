@@ -7,7 +7,8 @@
 | 種別 | ワークスペース内の物理ファイル | Size | SHA-256 | 補足 |
 |---|---|---:|---|---|
 | プレイブックZIP | `userfile/imports/archives/vega_modern_codex_playbook.zip` | 133,940 | `2b99ed24b67d80277d7cbfea3b9d30dfbb6fcfecace9f56caf1357fa86840304` | 132ファイル、破損なし |
-| 統合設計ZIP | `userfile/imports/archives/VEGA_CFRU_DPE_統合設計パッケージ.zip` | 223,960 | `78d196e1e24b7f95b595c74f1646c5cc1e345422862ce4c298118447d1b9164d` | 36ファイル、破損なし |
+| 統合設計ZIP V1 | `userfile/imports/archives/VEGA_CFRU_DPE_統合設計パッケージ.zip` | 223,960 | `78d196e1e24b7f95b595c74f1646c5cc1e345422862ce4c298118447d1b9164d` | 36ファイル、破損なし、来歴保存専用 |
+| 統合設計ZIP V2 | `userfile/imports/archives/VEGA_CFRU_DPE_統合設計_V2_二地方生態版.zip` | 465,121 | `fb7c542a50aaec7ae25af70cdb100f4c71effb5e9ddc4f09c6365f79fa76cd06` | 49ファイル、破損なし、active review |
 | 競合監査ZIP | `userfile/imports/archives/vega_cfru_integration_audit.zip` | 55,244 | `5b009797b037c597aac8371140d21d3731bc5329d8addd2356b9756a5e679459` | 監査正本、破損なし |
 | FireRed日本版Rev.0 | `userfile/imports/roms/Pocket Monsters - FireRed (Japan).gba` | 16,777,216 | `1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486` | CRC32 `3B2056E9`、BPRJ01 Rev.00 |
 | Vega参照ROM | `userfile/imports/roms/Pocket Monsters Vega.gba` | 16,777,216 | `f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5` | CRC32 `42A73E62` |
@@ -31,8 +32,11 @@
 |---|---|---|
 | プレイブック実行基盤 | 現行運用へ統合 | ルート、`tasks/`、`scripts/`、`manifests/` ほか |
 | 競合監査 | 受領ZIP単体版を正本として統合 | `audit_seed/` |
-| 統合設計パッケージ | 不変のreview資料 | `design/imported/VEGA_CFRU_DPE_統合設計/` |
+| 統合設計パッケージV2 | 不変のactive review資料 | `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/` |
+| 統合設計パッケージV1 | V2へ置換済みの来歴資料 | `design/imported/VEGA_CFRU_DPE_統合設計/` |
 | 元の展開結果 | Git管理外バックアップ | `userfile/imports/extracted/` |
+
+V2は `manifest.json` の47対象と `MANIFEST.sha256` の47対象が相互一致し、展開後の全対象ファイルがsize・SHA-256とも一致した。V2を設計の優先資料とするが、`design/import_review.md` の意味課題を解消するまで実装用CSVへ直接コピーしない。
 
 ## 最新上流pin
 

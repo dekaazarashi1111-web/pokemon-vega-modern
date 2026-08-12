@@ -17,6 +17,7 @@ Deliver the first playable postgame Kanto loop: unlock, travel, town, NPCs, gym,
 6. Generate gym trainers and boss party from symbolic content manifests.
 7. Grant an independent KANTO gym-clear flag and configurable reward.
 8. Test save/load inside Kanto and return to Vega.
+9. Test PC/heal, reset, whiteout, and Escape/dynamic-warp behavior, keeping the return NPC available in every progression state.
 
 ## Required outputs
 
@@ -30,6 +31,7 @@ Deliver the first playable postgame Kanto loop: unlock, travel, town, NPCs, gym,
 - [ ] Gym puzzle resets/finishes correctly.
 - [ ] Trainer and reward IDs are new and namespaced.
 - [ ] Save/load and return travel work.
+- [ ] Arrival cannot softlock even before the full Kanto route graph is imported.
 
 ## Finish
 

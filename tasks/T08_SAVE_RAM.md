@@ -16,6 +16,7 @@ Allocate CFRU/DPE state safely and define an explicit save compatibility policy.
 5. Attempt direct Vega save compatibility first; implement one-time migration if practical.
 6. Add save round-trip test fixtures and corrupted-version rejection.
 7. Document whether old Vega saves are supported.
+8. Allocate and test National Dex 1025 state, research rank, eight Kanto certifications, region/rotation/retry state, and 125 shared special-capture states.
 
 ## Required outputs
 
@@ -31,6 +32,7 @@ Allocate CFRU/DPE state safely and define an explicit save compatibility policy.
 - [ ] New save data survives save/load and checksum validation.
 - [ ] Unsupported old saves fail clearly rather than silently corrupting.
 - [ ] Policy is documented and tested.
+- [ ] Dual-region travel and shared capture state survive save/load without modifying Vega badges.
 
 ## Finish
 

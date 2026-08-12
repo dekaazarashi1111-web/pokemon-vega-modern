@@ -5,7 +5,7 @@
 
 ## Objective
 
-Fill Kanto with the expanded roster while preserving a sensible postgame curve and making important evolution lines obtainable.
+Populate both Tohoku and Kanto with the expanded roster while preserving Vega encounters, a sensible dual-region curve, and complete evolution access.
 
 ## Execute
 
@@ -16,6 +16,8 @@ Fill Kanto with the expanded roster while preserving a sensible postgame curve a
 5. Place field items, hidden items, evolution items, TMs, and gym rewards.
 6. Generate first-availability, duplicate-role, level-curve, type-distribution, and evolution-access reports.
 7. Run automatic balance lint, then perform at least one human pass for each city/route batch.
+8. Populate Tohoku's 49 logical overlay locations and Kanto's 47 logical ecology locations from normalized V2 data.
+9. Verify all 541 families have both regional routes and all 125 special species share one capture key across regions.
 
 ## Required outputs
 
@@ -30,6 +32,8 @@ Fill Kanto with the expanded roster while preserving a sensible postgame curve a
 - [ ] No required evolution item is permanently unobtainable.
 - [ ] No trainer has invalid move/item/species combinations.
 - [ ] Level curve has no unexplained extreme jumps.
+- [ ] Tohoku fallback tables preserve every original Vega slot and rare encounter when overlays are disabled.
+- [ ] V2 logical locations resolve to the imported physical map graph.
 
 ## Finish
 

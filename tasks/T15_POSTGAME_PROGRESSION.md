@@ -16,6 +16,8 @@ Turn imported Kanto maps into a coherent Vega postgame progression without reusi
 5. Define route gates, key items, dungeon access, boss sequence, and final Kanto objective.
 6. Provide a fallback fast-travel terminal for development builds.
 7. Generate a progression graph and detect impossible prerequisites.
+8. Resolve the V2 arrival mismatch: Vermilion port/city and the Route 6/11/Diglett initial corridor are reachable on arrival while later facilities remain certification-gated.
+9. Model research rank, dual-region resonance, shared special-capture state, and a permanently available return edge.
 
 ## Required outputs
 
@@ -29,6 +31,7 @@ Turn imported Kanto maps into a coherent Vega postgame progression without reusi
 - [ ] All included Kanto areas have a valid progression path.
 - [ ] Gym flags do not modify Vega badges.
 - [ ] Development shortcuts are disabled in release config.
+- [ ] The progression graph rejects unreachable nodes, circular gates, and every state in which return to Tohoku is impossible.
 
 ## Finish
 

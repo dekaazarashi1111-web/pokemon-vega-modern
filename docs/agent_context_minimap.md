@@ -12,6 +12,9 @@
 - 採択済み判断: `design/decisions.md`
 - 入力一覧: `design/import_inventory.md`
 - 受領資料レビュー: `design/import_review.md`
+- 現行二地方設計: `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`
+- カントー復元の初期実現性: `design/kanto_feasibility.md`
+- カントー復元・往復ポリシー: `docs/KANTO_PORT_POLICY.md`
 - 設計/成果物索引: `design/catalog.md`
 - レポート索引: `design/report_lifecycle_index.md`
 - 実行ログ: `design/run_log.md`

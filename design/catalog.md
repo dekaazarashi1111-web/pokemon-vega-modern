@@ -14,6 +14,7 @@
 - `design/decisions.md`: 採択済みADR（追記のみ）
 - `design/import_inventory.md`: 受領入力、hash、配置、上流pin
 - `design/import_review.md`: 受領パッケージの採否と既知課題
+- `design/kanto_feasibility.md`: 元FireRedカントー復元と二地方化の初期実証
 - `design/run_log.md`: 実行ログ
 - `design/version_log.md`: バージョン履歴
 - `design/blockers.md`: ブロッカー記録
@@ -35,7 +36,9 @@
 ## Imported Evidence
 
 - `audit_seed/`: 受領した単体競合監査パッケージの正本
-- `design/imported/VEGA_CFRU_DPE_統合設計/`: 受領時点を保つreview資料
+- `design/imported/README.md`: active設計資料と旧版の案内
+- `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/`: 二地方設計のactive review資料
+- `design/imported/VEGA_CFRU_DPE_統合設計/`: V1受領時点を保つ来歴資料
 - `reports/generated/`: 再実行可能なローカル監査結果（Git管理外）
 - `userfile/imports/`: ROM、patch、元ZIP、展開バックアップ（Git管理外）
 

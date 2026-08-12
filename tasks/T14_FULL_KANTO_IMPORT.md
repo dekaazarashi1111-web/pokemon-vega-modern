@@ -9,13 +9,14 @@ Scale the proven importer to the chosen Kanto mainland map scope while preservin
 
 ## Execute
 
-1. Generate a scope manifest marking each map INCLUDE, DEFER, or REBUILD.
+1. Generate a physical-map scope manifest marking each map INCLUDE, DEFER, or REBUILD; V2's 47 ecology locations are not treated as 47 raw maps.
 2. Import cities, routes, required interiors, gyms, caves, and dungeons in batches.
 3. Remap all connections and warps to KANTO IDs.
 4. Retain NPC coordinates/local scripts where safe; replace story-global scripts with stubs or KANTO scripts.
 5. Create unreachable-map, one-way-warp, duplicate-local-id, missing-tileset, and invalid-connection validators.
 6. Add map batch smoke reports and size/allocation reports.
 7. Keep Sevii deferred unless explicitly included in the scope manifest.
+8. Apply V2's 26 NPC reuse decisions and 24 important-item replacements as review inputs, with explicit script-state conversion records.
 
 ## Required outputs
 
@@ -30,6 +31,7 @@ Scale the proven importer to the chosen Kanto mainland map scope while preservin
 - [ ] No warp points to a Vega map by accidental original ID reuse.
 - [ ] No Map ID, local object ID, flag, or var collision.
 - [ ] ROM allocation remains non-overlapping.
+- [ ] Every V2 logical Kanto location resolves to all required outdoor, dungeon, and indoor physical maps.
 
 ## Finish
 

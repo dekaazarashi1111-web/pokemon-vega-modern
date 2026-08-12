@@ -16,6 +16,7 @@ Prove the integrated engine end-to-end before importing large Kanto content.
 5. Run Vega baseline regression checkpoints.
 6. Remove or guard debug-only access behind a build define.
 7. Freeze engine manifest schema after the vertical slice passes.
+8. Register the selected species through one Tohoku overlay fixture and prove that disabled/failed overlay selection returns the byte-equivalent original Vega encounter result.
 
 ## Required outputs
 
@@ -29,6 +30,7 @@ Prove the integrated engine end-to-end before importing large Kanto content.
 - [ ] Vega baseline smoke tests pass.
 - [ ] No debug code is active in release config.
 - [ ] Manifest schemas are versioned.
+- [ ] The Tohoku overlay adds content without replacing an original Vega slot or 1% encounter.
 
 ## Finish
 
