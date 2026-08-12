@@ -40,7 +40,13 @@ class TemporaryTaskRepo:
             encoding="utf-8",
         )
         for task in self.graph:
-            (self.root / task["file"]).write_text(f"# {task['id']}\n", encoding="utf-8")
+            dependencies = ", ".join(task["depends_on"]) or "none"
+            (self.root / task["file"]).write_text(
+                f"# {task['id']} — {task['title']}\n\n"
+                f"- Lane: `{task['lane']}`\n"
+                f"- Depends on: `{dependencies}`\n",
+                encoding="utf-8",
+            )
 
         if mirror is None:
             _, entries = taskctl.parse_task_queue(self.root / "design/tasks_next.md")
@@ -114,6 +120,45 @@ class ReadyTaskTest(unittest.TestCase):
         mirror = {"tasks": {"T00": {"status": "PENDING"}}}
         self.assertEqual([task["id"] for task in taskctl.ready(graph, mirror)], ["T00"])
 
+    def test_next_lines_distinguish_primary_parallel_prep_and_resume(self):
+        graph = [
+            graph_task("T00"),
+            graph_task("T01", ["T00"]),
+            graph_task("T02", ["T00"]),
+        ]
+        pending = taskctl.parse_task_queue_text(
+            "- [x] T00 <!-- id:T00 -->\n"
+            "- [ ] T01 <!-- id:T01 -->\n"
+            "- [ ] T02 <!-- id:T02 -->\n"
+        )
+        self.assertEqual(
+            [line.split()[0:2] for line in taskctl.next_task_lines(graph, pending)],
+            [["PRIMARY", "T01"], ["PARALLEL_PREP", "T02"]],
+        )
+
+        active = taskctl.parse_task_queue_text(
+            "- [x] T00 <!-- id:T00 -->\n"
+            "- [>] T01 <!-- id:T01 -->\n"
+            "- [ ] T02 <!-- id:T02 -->\n"
+        )
+        self.assertEqual(
+            [line.split()[0:2] for line in taskctl.next_task_lines(graph, active)],
+            [["RESUME", "T01"], ["PARALLEL_PREP", "T02"]],
+        )
+
+    def test_execution_waves_and_longest_chain_are_derived_from_dependencies(self):
+        graph = [
+            graph_task("T00"),
+            graph_task("T01", ["T00"]),
+            graph_task("T02", ["T00"]),
+            graph_task("T03", ["T01", "T02"]),
+        ]
+        self.assertEqual(
+            [[task["id"] for task in wave] for wave in taskctl.execution_waves(graph)],
+            [["T00"], ["T01", "T02"], ["T03"]],
+        )
+        self.assertEqual(taskctl.longest_dependency_chain(graph), ["T00", "T01", "T03"])
+
 
 class TaskTransitionTest(unittest.TestCase):
     def make_repo(self):
@@ -135,6 +180,8 @@ class TaskTransitionTest(unittest.TestCase):
         repo = self.make_repo()
         with self.assertRaisesRegex(taskctl.TaskQueueError, "未完了の依存先"):
             taskctl.transition_task(repo.root, "start", "T01")
+        with self.assertRaisesRegex(taskctl.TaskQueueError, "現在のPRIMARY: T00"):
+            taskctl.transition_task(repo.root, "start", "T02")
 
         before = (repo.root / "design/tasks_next.md").read_bytes()
         status = taskctl.transition_task(
@@ -253,6 +300,79 @@ class MirrorAndValidationTest(unittest.TestCase):
         self.assertIn("state/task_status.json にタスクがありません: T01", joined)
         self.assertIn("state/task_status.json に余分なタスクがあります: T99", joined)
         self.assertNotIn("task_graph.json にないタスクIDです: INIT-1", joined)
+
+    def test_validation_reports_task_file_metadata_drift(self):
+        queue = "- [ ] Bootstrap <!-- id:T00 -->\n- [ ] Dependent <!-- id:T01 -->\n"
+        repo = TemporaryTaskRepo(self, queue)
+        task_file = repo.root / "tasks/T01.md"
+        task_file.write_text(
+            "# T01 — Wrong title\n\n- Lane: `qa`\n- Depends on: `T00`\n",
+            encoding="utf-8",
+        )
+
+        errors = taskctl.collect_consistency_errors(repo.root, check_task_files=True)
+        joined = "\n".join(errors)
+        self.assertIn("T01: task_graph.json と tasks/T01.md の title が不一致", joined)
+        self.assertIn("T01: task_graph.json と tasks/T01.md の lane が不一致", joined)
+
+    def test_validation_reports_queue_and_graph_order_drift(self):
+        graph = [graph_task("T00"), graph_task("T01"), graph_task("T02")]
+        entries = taskctl.parse_task_queue_text(
+            "- [ ] T00 <!-- id:T00 -->\n"
+            "- [ ] T02 <!-- id:T02 -->\n"
+            "- [ ] T01 <!-- id:T01 -->\n"
+        )
+
+        errors = taskctl.consistency_errors(graph, entries)
+
+        self.assertTrue(any("タスク順が不一致" in error for error in errors))
+
+        repo = TemporaryTaskRepo(
+            self,
+            "- [ ] T00 <!-- id:T00 -->\n"
+            "- [ ] T02 <!-- id:T02 -->\n"
+            "- [ ] T01 <!-- id:T01 -->\n",
+            graph,
+        )
+        with self.assertRaisesRegex(taskctl.TaskQueueError, "タスク順が不一致"):
+            taskctl.transition_task(repo.root, "start", "T00")
+
+    def test_validation_reports_non_topological_graph_array_order(self):
+        graph = [graph_task("T01", ["T00"]), graph_task("T00")]
+        entries = taskctl.parse_task_queue_text(
+            "- [ ] T01 <!-- id:T01 -->\n- [ ] T00 <!-- id:T00 -->\n"
+        )
+
+        errors = taskctl.consistency_errors(graph, entries)
+
+        self.assertTrue(any("配列順が依存順ではありません" in error for error in errors))
+
+    def test_plan_view_validation_detects_index_and_master_dependency_drift(self):
+        graph = [graph_task("T00"), graph_task("T01", ["T00"])]
+        repo = TemporaryTaskRepo(
+            self,
+            "- [ ] T00 <!-- id:T00 -->\n- [ ] T01 <!-- id:T01 -->\n",
+            graph,
+        )
+        (repo.root / "tasks/INDEX.md").write_text(
+            "| ID | Task | Lane | Depends |\n"
+            "|---|---|---|---|\n"
+            "| [T00](T00.md) | Task T00 | test | — |\n"
+            "| [T01](T01.md) | Task T01 | test | — |\n",
+            encoding="utf-8",
+        )
+        (repo.root / "MASTER_PLAN.md").write_text(
+            "| ID | タスク | 主レーン | 依存 | ゴール |\n"
+            "|---|---|---|---|---|\n"
+            "| T00 | zero | test | — | done |\n"
+            "| T01 | one | test | — | done |\n",
+            encoding="utf-8",
+        )
+
+        joined = "\n".join(taskctl.plan_view_errors(graph, repo.root))
+
+        self.assertIn("T01: tasks/INDEX.md の depends", joined)
+        self.assertIn("T01: MASTER_PLAN.md の依存", joined)
 
     def test_project_status_uses_queue_instead_of_stale_mirror(self):
         queue = "- [>] Bootstrap <!-- id:T00 -->\n- [ ] Dependent <!-- id:T01 -->\n"

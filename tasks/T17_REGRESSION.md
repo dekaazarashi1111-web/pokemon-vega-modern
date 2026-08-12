@@ -10,7 +10,7 @@ Prove that the new engine and dual-region content preserve Vega completion, keep
 ## Execute
 
 1. Create a versioned manual checkpoint matrix for Vega main story, Kanto pre-unlock, early-access pre-HoF, and post-HoF states.
-2. Create clean-start and migrated-save test paths.
+2. Create clean-start tests and follow the T08 policy: test migrated saves when supported, or test explicit safe rejection when old saves are unsupported.
 3. Run all static/build validators.
 4. Run engine vertical slice tests.
 5. Run Vermilion and full Kanto connectivity/progression tests.

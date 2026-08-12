@@ -12,6 +12,8 @@
 - `state/source-lock.json`: bootstrap後の入力hash・上流commit
 - `reports/generated/`: 現在の入力/source pinから再生成するローカル監査（Git管理外）
 
+`reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
+
 ## reference
 
 - `audit_seed/reports/conflict_report.json`: パッチのみの機械可読競合証跡

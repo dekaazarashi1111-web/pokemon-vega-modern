@@ -14,7 +14,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("タスクグラフ・キュー・互換ミラー検証: OK")
+    print("タスクグラフ・キュー・タスク仕様・互換ミラー検証: OK")
     return 0
 
 

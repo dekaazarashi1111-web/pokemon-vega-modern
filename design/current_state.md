@@ -18,15 +18,17 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T00完了後のREADY候補はT01、T02、T12である。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。現在はW1で、`PRIMARY=T01`、`PARALLEL_PREP=T02,T12` である。
 
-次の並列候補:
+- T01: DPE-JP/CFRU-JP上流ビルド再現。最初にARM toolchainとasset converter wrapperを整え、vendor原本ではなく隔離sandboxでpinned-current baselineを再現し、Factory差分からfactory-like候補、次にminimalを作る。
+- T02: config-aware fixed-write監査、RAM/SaveBlock/ID、Vega map/早期解禁flagの読取調査をT01と並列準備する。
+- T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
 
-- T01: DPE-JP/CFRU-JP上流ビルド再現。
-- T02: ROM/RAM/SaveBlock/IDの完全監査。
-- T12: 記号コンテンツschemaとgenerator。
+ARM toolchain、asset converter、mGBAは現環境に未導入だが、T01で導入・固定する作業そのものなのでブロッカーではない。入力、参照ROM、上流commitは一致している。
 
-T11（カントーimporter）はT02完了後に開始する。
+T11（カントーimporter）はT02完了後に別worktreeで先行準備でき、正本への統合はT11がPRIMARYになった時に行う。
+
+全体wave、終了条件、最初の動作成果は `MASTER_PLAN.md`、現在の自動導出結果は `make plan` を参照する。
 
 ## 固定済み方針
 

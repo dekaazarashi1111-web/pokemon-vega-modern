@@ -36,6 +36,20 @@ TASK_LINE_RE = re.compile(
     re.MULTILINE,
 )
 AUXILIARY_ID_RE = re.compile(r"^(?:USER|INIT)(?:[-_:].+)?$")
+TASK_HEADER_RE = re.compile(r"^#[ \t]+(?P<id>T\d+)[ \t]+—[ \t]+(?P<title>.+?)\r?$", re.MULTILINE)
+TASK_LANE_RE = re.compile(r"^-[ \t]+Lane:[ \t]+`(?P<lane>[^`]+)`[ \t]*\r?$", re.MULTILINE)
+TASK_DEPENDS_RE = re.compile(
+    r"^-[ \t]+Depends on:[ \t]+`(?P<depends>[^`]+)`[ \t]*\r?$", re.MULTILINE
+)
+INDEX_ROW_RE = re.compile(
+    r"^\| \[(?P<id>T\d+)\]\((?P<file>[^)]+)\) \| (?P<title>.*?) \| "
+    r"(?P<lane>.*?) \| (?P<depends>.*?) \|\r?$",
+    re.MULTILINE,
+)
+MASTER_TASK_ROW_RE = re.compile(
+    r"^\| (?P<id>T\d+) \| .*? \| .*? \| (?P<depends>.*?) \| .*? \|\r?$",
+    re.MULTILINE,
+)
 
 
 class TaskQueueError(RuntimeError):
@@ -135,6 +149,111 @@ def load_graph(path: Path) -> list[dict[str, Any]]:
     return tasks
 
 
+def task_file_metadata(path: Path) -> dict[str, Any]:
+    """T*.mdの先頭metadataを読み、DAGとのdrift検査用に正規化する。"""
+
+    text = _read_utf8_exact(path)
+    header = TASK_HEADER_RE.search(text)
+    lane = TASK_LANE_RE.search(text)
+    depends = TASK_DEPENDS_RE.search(text)
+    missing = [
+        label
+        for label, match in (("header", header), ("Lane", lane), ("Depends on", depends))
+        if match is None
+    ]
+    if missing:
+        raise TaskQueueError(f"{path}: task metadataがありません: {', '.join(missing)}")
+    assert header is not None and lane is not None and depends is not None
+    raw_dependencies = depends.group("depends").strip()
+    dependencies = (
+        []
+        if raw_dependencies.lower() == "none"
+        else [item.strip() for item in raw_dependencies.split(",") if item.strip()]
+    )
+    return {
+        "id": header.group("id").strip(),
+        "title": header.group("title").strip(),
+        "lane": lane.group("lane").strip(),
+        "depends_on": dependencies,
+    }
+
+
+def _dependency_cell(cell: str) -> list[str]:
+    value = cell.strip()
+    if value.lower() in {"", "-", "—", "none"}:
+        return []
+    result: list[str] = []
+    for item in (part.strip() for part in value.split(",")):
+        range_match = re.fullmatch(r"T(?P<start>\d+)[–-]T(?P<end>\d+)", item)
+        if range_match:
+            start = int(range_match.group("start"))
+            end = int(range_match.group("end"))
+            width = max(len(range_match.group("start")), len(range_match.group("end")))
+            result.extend(f"T{number:0{width}d}" for number in range(start, end + 1))
+        elif item:
+            result.append(item)
+    return result
+
+
+def plan_view_errors(graph: Sequence[Mapping[str, Any]], root: Path) -> list[str]:
+    """DAGの手動表示であるINDEXとMASTER_PLANのdriftを検出する。"""
+
+    errors: list[str] = []
+    graph_ids = [str(task["id"]) for task in graph]
+    index_path = root / "tasks/INDEX.md"
+    if index_path.exists():
+        rows = [match.groupdict() for match in INDEX_ROW_RE.finditer(_read_utf8_exact(index_path))]
+        if [row["id"] for row in rows] != graph_ids:
+            errors.append("tasks/INDEX.md のタスク順またはIDがtask_graph.jsonと不一致です")
+        row_by_id = {row["id"]: row for row in rows}
+        for task in graph:
+            task_id = str(task["id"])
+            row = row_by_id.get(task_id)
+            if row is None:
+                continue
+            expected = {
+                "file": Path(str(task["file"])).name,
+                "title": str(task["title"]),
+                "lane": str(task["lane"]),
+                "depends": sorted(task["depends_on"]),
+            }
+            actual = {
+                "file": row["file"].strip(),
+                "title": row["title"].strip(),
+                "lane": row["lane"].strip(),
+                "depends": sorted(_dependency_cell(row["depends"])),
+            }
+            for key in expected:
+                if actual[key] != expected[key]:
+                    errors.append(
+                        f"{task_id}: tasks/INDEX.md の {key} がtask_graph.jsonと不一致です: "
+                        f"graph={expected[key]!r} index={actual[key]!r}"
+                    )
+
+    master_path = root / "MASTER_PLAN.md"
+    if master_path.exists():
+        rows = [
+            match.groupdict()
+            for match in MASTER_TASK_ROW_RE.finditer(_read_utf8_exact(master_path))
+        ]
+        if [row["id"] for row in rows] != graph_ids:
+            errors.append("MASTER_PLAN.md のタスク順またはIDがtask_graph.jsonと不一致です")
+        row_by_id = {row["id"]: row for row in rows}
+        for task in graph:
+            task_id = str(task["id"])
+            row = row_by_id.get(task_id)
+            if row is None:
+                continue
+            dependencies = sorted(_dependency_cell(row["depends"]))
+            graph_dependencies = sorted(task["depends_on"])
+            if dependencies != graph_dependencies:
+                errors.append(
+                    f"{task_id}: MASTER_PLAN.md の依存がtask_graph.jsonと不一致です: "
+                    f"graph={graph_dependencies!r} master={dependencies!r}"
+                )
+    return errors
+
+
 def graph_by_id(graph: Sequence[Mapping[str, Any]]) -> dict[str, Mapping[str, Any]]:
     duplicates = _duplicate_values([str(task["id"]) for task in graph])
     if duplicates:
@@ -217,6 +336,77 @@ def ready(
     return result
 
 
+def execution_waves(
+    graph: Sequence[Mapping[str, Any]],
+) -> list[list[Mapping[str, Any]]]:
+    """依存段数から並列準備可能なwaveを導出する。"""
+
+    wave_by_id: dict[str, int] = {}
+    waves: list[list[Mapping[str, Any]]] = []
+    for task in topological_tasks(graph):
+        dependencies = [str(dependency) for dependency in task["depends_on"]]
+        wave = 0 if not dependencies else max(wave_by_id[item] for item in dependencies) + 1
+        task_id = str(task["id"])
+        wave_by_id[task_id] = wave
+        while len(waves) <= wave:
+            waves.append([])
+        waves[wave].append(task)
+    return waves
+
+
+def longest_dependency_chain(
+    graph: Sequence[Mapping[str, Any]],
+) -> list[str]:
+    """DAG上で最長の依存鎖を安定順で1本返す。期間見積りではない。"""
+
+    chains: dict[str, list[str]] = {}
+    for task in topological_tasks(graph):
+        task_id = str(task["id"])
+        dependencies = [str(dependency) for dependency in task["depends_on"]]
+        if not dependencies:
+            chains[task_id] = [task_id]
+            continue
+        predecessor = max(dependencies, key=lambda item: len(chains[item]))
+        chains[task_id] = chains[predecessor] + [task_id]
+    return max(chains.values(), key=len, default=[])
+
+
+def next_task_lines(
+    graph: Sequence[Mapping[str, Any]], entries: Sequence[QueueEntry]
+) -> list[str]:
+    """再開対象、正本PRIMARY、並列準備候補を区別して表示する。"""
+
+    entry_by_id = _entries_by_id(entries)
+    graph_index = graph_by_id(graph)
+    status_map = {task_id: entry.status for task_id, entry in entry_by_id.items()}
+    ready_tasks = ready(graph, status_map)
+    in_progress = [entry for entry in entries if entry.status == "IN_PROGRESS"]
+    if len(in_progress) > 1:
+        raise TaskQueueError(
+            "IN_PROGRESSは最大1件です: "
+            + ", ".join(entry.task_id for entry in in_progress)
+        )
+
+    lines: list[str] = []
+    if in_progress:
+        active_id = in_progress[0].task_id
+        active = graph_index.get(active_id)
+        if active is None:
+            lines.append(f"RESUME {active_id} [auxiliary]")
+        else:
+            lines.append(
+                f"RESUME {active_id} [{active['lane']}] {active['title']} -> {active['file']}"
+            )
+
+    for index, task in enumerate(ready_tasks):
+        current_label = "PARALLEL_PREP" if in_progress or index > 0 else "PRIMARY"
+        lines.append(
+            f"{current_label} {task['id']} [{task['lane']}] "
+            f"{task['title']} -> {task['file']}"
+        )
+    return lines
+
+
 def _load_json_detecting_duplicate_keys(path: Path) -> tuple[Any, list[str]]:
     duplicate_keys: list[str] = []
 
@@ -279,9 +469,29 @@ def consistency_errors(
     for task_id in sorted(queue_ids - graph_ids):
         if not is_auxiliary_task_id(task_id):
             errors.append(f"task_graph.json にないタスクIDです: {task_id}")
+    queue_graph_order = [task_id for task_id in queue_ids_in_order if task_id in graph_ids]
+    if (
+        not graph_duplicates
+        and not queue_duplicates
+        and set(queue_graph_order) == graph_ids
+        and queue_graph_order != graph_ids_in_order
+    ):
+        errors.append(
+            "tasks_next.md と task_graph.json のタスク順が不一致です: "
+            + " -> ".join(queue_graph_order)
+        )
 
     if not graph_duplicates:
         errors.extend(_cycle_errors(graph))
+        try:
+            topological_order = [str(task["id"]) for task in topological_tasks(graph)]
+        except TaskQueueError:
+            topological_order = []
+        if topological_order and topological_order != graph_ids_in_order:
+            errors.append(
+                "task_graph.json の配列順が依存順ではありません: "
+                + " -> ".join(graph_ids_in_order)
+            )
         by_id = {str(task["id"]): task for task in graph}
         for task in graph:
             task_id = str(task["id"])
@@ -295,6 +505,18 @@ def consistency_errors(
                 task_file = root / str(task["file"])
                 if not task_file.exists():
                     errors.append(f"{task_id}: タスクファイルがありません: {task['file']}")
+                    continue
+                try:
+                    metadata = task_file_metadata(task_file)
+                except TaskQueueError as exc:
+                    errors.append(str(exc))
+                    continue
+                for key in ("id", "title", "lane", "depends_on"):
+                    if metadata[key] != task[key]:
+                        errors.append(
+                            f"{task_id}: task_graph.json と {task['file']} の {key} が不一致です: "
+                            f"graph={task[key]!r} file={metadata[key]!r}"
+                        )
 
     in_progress = [entry.task_id for entry in entries if entry.status == "IN_PROGRESS"]
     if len(in_progress) > 1:
@@ -379,6 +601,8 @@ def collect_consistency_errors(root: Path, *, check_task_files: bool = False) ->
             check_task_files=check_task_files,
         )
     )
+    if check_task_files:
+        errors.extend(plan_view_errors(graph, root))
     return errors
 
 
@@ -387,7 +611,13 @@ def _core_model(
 ) -> tuple[list[dict[str, Any]], str, list[QueueEntry], dict[str, QueueEntry]]:
     graph = load_graph(root / "tasks/task_graph.json")
     # This verifies duplicate IDs, unknown dependencies and cycles before mutation.
-    topological_tasks(graph)
+    topological_order = [str(task["id"]) for task in topological_tasks(graph)]
+    graph_ids_in_order = [str(task["id"]) for task in graph]
+    if topological_order != graph_ids_in_order:
+        raise TaskQueueError(
+            "task_graph.json の配列順が依存順ではありません: "
+            + " -> ".join(graph_ids_in_order)
+        )
     for task in graph:
         duplicated_dependencies = _duplicate_values(list(task["depends_on"]))
         if duplicated_dependencies:
@@ -411,6 +641,12 @@ def _core_model(
     if invalid_extra:
         raise TaskQueueError(
             "task_graph.json にないタスクIDです: " + ", ".join(invalid_extra)
+        )
+    queue_graph_order = [entry.task_id for entry in entries if entry.task_id in graph_ids]
+    if queue_graph_order != graph_ids_in_order:
+        raise TaskQueueError(
+            "tasks_next.md と task_graph.json のタスク順が不一致です: "
+            + " -> ".join(queue_graph_order)
         )
     return graph, text, entries, entry_by_id
 
@@ -615,6 +851,17 @@ def transition_task(
                 raise TaskQueueError(
                     f"{task_id}: 未完了の依存先があります: {', '.join(incomplete)}"
                 )
+            status_map = {
+                entry.task_id: entry.status
+                for entry in entries
+            }
+            ready_tasks = ready(graph, status_map)
+            primary_id = str(ready_tasks[0]["id"]) if ready_tasks else None
+            if primary_id != task_id:
+                suffix = f"。現在のPRIMARY: {primary_id}" if primary_id else ""
+                raise TaskQueueError(
+                    f"{task_id}: 正本順より先には開始できません{suffix}"
+                )
 
     if command == "reset" and entry.status == "DONE" and task_id in graph_index:
         active_descendants = [
@@ -684,11 +931,42 @@ def _print_list(
             print(f"{entry.task_id} {entry.status:<11} auxiliary")
 
 
+def _print_plan(
+    graph: Sequence[Mapping[str, Any]], entries: Sequence[QueueEntry]
+) -> None:
+    lines = next_task_lines(graph, entries)
+    print("現在の実行対象:")
+    if lines:
+        for line in lines:
+            print(f"  {line}")
+    else:
+        print("  完了または開始可能タスクなし")
+
+    entry_by_id = _entries_by_id(entries)
+    print("並列準備wave（同じwaveは論理上並列、正本IN_PROGRESSは1件）:")
+    for index, wave in enumerate(execution_waves(graph)):
+        tasks = ", ".join(
+            f"{task['id']}({entry_by_id[str(task['id'])].status})" for task in wave
+        )
+        print(f"  W{index}: {tasks}")
+    print(
+        "正本統合順: "
+        + " -> ".join(
+            str(task["id"])
+            for task in graph
+            if entry_by_id[str(task["id"])].status != "DONE"
+        )
+    )
+    chain = longest_dependency_chain(graph)
+    print("最長依存鎖（期間見積りではない）: " + " -> ".join(chain))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="tasks_next.md 正本のタスク状態管理")
     sub = parser.add_subparsers(dest="cmd", required=True)
     sub.add_parser("list")
     sub.add_parser("next")
+    sub.add_parser("plan")
     sub.add_parser("sync")
     for name in ("start", "done", "block", "reset"):
         command_parser = sub.add_parser(name)
@@ -708,15 +986,15 @@ def main() -> int:
             _print_list(graph, entries)
             return 0
         if args.cmd == "next":
-            status_map = {task_id: entry.status for task_id, entry in entry_by_id.items()}
-            ready_tasks = ready(graph, status_map)
-            if not ready_tasks:
+            lines = next_task_lines(graph, entries)
+            if not lines:
                 print("準備完了タスクはありません")
                 return 0
-            for task in ready_tasks:
-                print(
-                    f"{task['id']} [{task['lane']}] {task['title']} -> {task['file']}"
-                )
+            for line in lines:
+                print(line)
+            return 0
+        if args.cmd == "plan":
+            _print_plan(graph, entries)
             return 0
 
         new_status = transition_task(

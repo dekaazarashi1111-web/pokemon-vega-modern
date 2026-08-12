@@ -1,7 +1,7 @@
 PYTHON ?= python3
 CONFIG ?= config/project.toml
 
-.PHONY: quickstart bootstrap preflight audit references t00 validate guard status next clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -36,6 +36,9 @@ status:
 
 next:
 	$(PYTHON) scripts/taskctl.py next
+
+plan:
+	$(PYTHON) scripts/taskctl.py plan
 
 test:
 	$(PYTHON) -m unittest discover -s tests -v

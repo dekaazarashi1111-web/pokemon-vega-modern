@@ -43,7 +43,8 @@ ROM、IPS、UPS、元ZIPは `userfile/imports/` に読み取り専用で置き�
 ## 標準コマンド
 
 ```bash
-make status       # 状態とREADYタスク
+make status       # 状態とRESUME/PRIMARY/並列準備候補
+make plan         # PRIMARY、並列準備候補、全実行wave
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -54,7 +55,7 @@ bash scripts/verify_wsl.sh
 
 ## 効率方針
 
-同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。大規模統合を一度に行わず、Move、battle、Species、トーホク生態overlay、クチバ往復の順に最小縦切りを通してから広げます。
+同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。正本タスクは `PRIMARY` 1件に保ち、`PARALLEL_PREP` は別worktreeまたは読取調査として先行します。大規模統合を一度に行わず、no-op ROM、Move/battle/Species、engine縦切り、クチバ往復の順に動く成果を出してから広げます。現在対象とDAG由来の準備waveは `make plan`、マイルストーン要約は `MASTER_PLAN.md`、厳密な完了条件は各 `tasks/T*.md` を正とします。
 
 ## 補助ツール
 

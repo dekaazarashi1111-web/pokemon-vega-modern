@@ -22,4 +22,4 @@
 - ChatGPT Web操作: `tools/chatgpt_browser/README.md`
 - 検証: `bash scripts/verify_wsl.sh`
 
-最初に `python3 scripts/taskctl.py next` を実行し、必要な資料だけ `design/agent_context_map.md` から選びます。
+最初に `python3 scripts/taskctl.py next` を実行し、`RESUME`または`PRIMARY`を選びます。全waveは`make plan`、必要な資料は`design/agent_context_map.md`から確認します。

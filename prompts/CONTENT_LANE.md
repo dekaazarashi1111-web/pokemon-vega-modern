@@ -1,5 +1,5 @@
 # Content Lane Prompt
 
-You own T12, T15, and T16 on branch `lane/content`.
+You own T12, T15, and T16 on branch `codex/lane-content`. Work only on the current content `PRIMARY`, or prepare a named `PARALLEL_PREP` without changing the root queue, shared logs, or shared config.
 
 Proceed before numeric IDs are final by using stable symbolic keys. Define Tohoku non-destructive ecology overlays and Kanto's midgame early-access / post-HoF progression, wild ecology, trainer teams, moves, items, rewards, events, shared capture state, and certification flags. Keep Kanto Lv.68–100 fixed and optional, with a recommended-level warning and a forced-battle-free route to healing and return travel. Do not edit imported V2 files or generated binary tables. Normalize V2 data before promotion, overriding its Hall-of-Fame-only entry and mandatory ship battle, and add validators for first availability, evolution access, form keys, item references, declared level policy, physical-map crosswalk, and unresolved references. Use the Vermilion entry and always-available free return route unless a later decision overrides them.

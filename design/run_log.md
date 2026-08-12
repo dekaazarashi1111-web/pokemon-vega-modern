@@ -84,3 +84,28 @@
   - Vega本編の進行順を補助確認するため攻略記事を参照した。実装flagの根拠にはせず、T02で実ROM scriptを監査する。
   - `https://torik0419.com/2023/01/05/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3-%E3%83%99%E3%82%AC%E6%94%BB%E7%95%A5-part3%EF%BC%88%EF%BD%9E%E3%82%B8%E3%83%A0%E3%83%90%E3%83%83%E3%83%813%E3%81%A4%E7%9B%AE%EF%BC%89/` — シオウ、なみのり、3個目バッジまでの順序を補助確認。
   - `https://torik0419.com/2023/01/05/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3-%E3%83%99%E3%82%AC%E6%94%BB%E7%95%A5-part4%EF%BC%88%EF%BD%9E%E3%82%B8%E3%83%A0%E3%83%90%E3%83%83%E3%83%814%E3%81%A4%E7%9B%AE%EF%BC%89/` — 507/508水道、海底トンネル、アーシア島D・Hビル、ヒスイ4個目の順序を補助確認。
+
+## 2026-08-12T13:20:37Z
+
+- Task: `USER-20260812-FAST-ROADMAP` / 全体の高速実行順と並列運用の整理
+- Status: DONE
+- Summary:
+  - 既存T00〜T18 DAGを監査し、Engine主経路、Map/Content並行枝、13段の並列準備wave、各タスクをPRIMARY統合する際の成果基準、ボトルネック優先順位を `MASTER_PLAN.md` へ整理した。最初の動作成果はT03の32 MiB no-op Vega ROM、最初の二地方製品経路はT13、配布候補はT18と明示した。
+  - `taskctl.py next/plan` が `RESUME`、`PRIMARY`、`PARALLEL_PREP`、準備wave、固定正本統合順、最長依存鎖を自動表示するようにした。現在は `PRIMARY=T01`、`PARALLEL_PREP=T02,T12` である。
+  - 正本IN_PROGRESSは1件、並列準備は読取調査または共有ファイルを触らない別worktreeとし、PRIMARY到達時に親が再検証・統合する運用へAGENTS、WORKSTREAMS、lane prompt、再開入口を統一した。
+  - T01はARM/converter/emulator固定、隔離sandbox、pinned-current→Factory-like候補→minimal、再現fingerprintを先頭手順にした。T02はconfig-aware実write span、T12はT11 crosswalk前のdry-run準備とPRIMARY時統合を明確化した。
+  - queue/graph順、DAGの配列依存順、各T*.md metadata、tasks/INDEX、MASTER_PLAN依存表のdriftを検出し、正本順より先のtask startを拒否する検証を追加した。旧saveは移行成功または安全な明示拒否のどちらかをT08/T17で検証する。
+- Files changed:
+  - 運用・入口: `AGENTS.md`, `README.md`, `CODEX_START_HERE.md`, `CODEX_HANDOFF.md`, `WORKSTREAMS.md`, `Makefile`, `prompts/**`
+  - 計画・状態: `MASTER_PLAN.md`, `design/current_state.md`, `design/PLANS.md`, `design/agent_context_map.md`, `design/report_lifecycle_index.md`
+  - タスク仕様: `tasks/INDEX.md`, `tasks/T01_UPSTREAM_REPRO.md`, `tasks/T02_EXACT_AUDIT.md`, `tasks/T12_CONTENT_SCHEMA.md`, `tasks/T17_REGRESSION.md`, `docs/TEST_STRATEGY.md`
+  - 自動化・検証: `scripts/taskctl.py`, `scripts/validate_task_graph.py`, `tests/test_task_queue.py`, `docs/agent_bootstrap.md`, `docs/agent_context_minimap.md`
+- Verify:
+  - `python3 scripts/taskctl.py next`: PASS（PRIMARY T01、PARALLEL_PREP T02/T12）
+  - `python3 scripts/taskctl.py plan`: PASS（準備wave、正本統合順、最長依存鎖を表示）
+  - 全状態遷移T01→T18の隔離模擬: PASS（最終レビュー担当）
+  - `make validate guard test`: PASS（42 tests）
+  - `bash scripts/verify_wsl.sh`: PASS（secret scan、受領資料、DAG/仕様/表示表、42 tests、npm check）
+  - `git diff --check`: PASS
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。ローカルの入力、source-lock、上流checkout、既存ツールを読取監査した。

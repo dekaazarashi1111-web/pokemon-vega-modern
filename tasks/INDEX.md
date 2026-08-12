@@ -1,6 +1,6 @@
 # タスク一覧
 
-Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状態からREADYタスクを判定します。`state/task_status.json` は `scripts/taskctl.py` が同期する互換ミラーであり、手編集しません。
+Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状態から、再開対象、PRIMARY、並列準備候補を判定します。リポジトリrootで `python3 scripts/taskctl.py plan` を実行すると全waveを表示できます。`state/task_status.json` は `scripts/taskctl.py` が同期する互換ミラーであり、手編集しません。
 
 | ID | Task | Lane | Depends |
 |---|---|---|---|

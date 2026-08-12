@@ -42,3 +42,14 @@
   - Lv.68〜100固定帯、初回警告、強制戦闘なしの安全導線、無料常時帰還、地方別state/anchor分離を受入条件にした。
   - V2の殿堂入り前提は原本不変のまま正規化層でoverrideし、T02/T08/T12〜T17と36件のsmoke matrixへ反映した。
 - Verify: `bash scripts/verify_wsl.sh` PASS
+
+## 2026-08-12T13:20:37Z
+
+- Version: `roadmap-fast-execution-0.4.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260812-FAST-ROADMAP` / 高速実行ロードマップ整理
+- Summary:
+  - T00〜T18を準備wave、固定正本統合順、成果基準、critical path、ボトルネックへ整理した。
+  - taskctlへRESUME/PRIMARY/PARALLEL_PREP、wave、統合順の自動表示と誤順開始拒否を追加した。
+  - DAG、キュー、各タスク仕様、INDEX、MASTER_PLANのdriftを自動検出し、直近T01のtoolchain/隔離build手順を具体化した。
+- Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）

@@ -10,7 +10,7 @@ Turn the initial binary conflict report into a complete machine-readable compati
 ## Execute
 
 1. Run bundled exact audit tools against clean/Vega/Factory references.
-2. Extract every CFRU/DPE fixed ROM address from hooks, byte replacements, repoints, repointall, routine pointers, linker files, and special inserts.
+2. Extract every CFRU/DPE fixed ROM address from hooks, byte replacements, repoints, repointall, routine pointers, linker files, and special inserts. Evaluate active config/include conditions and calculate actual emitted write spans; do not treat every `.org` site as a one-byte write.
 3. For each site, capture clean bytes, Vega bytes, Factory bytes, intended symbol, write length, and proposed resolution.
 4. Disassemble a bounded context around code hooks and identify whether Vega changed the containing function.
 5. Build a RAM ownership map from CFRU linker files, DPE sources, and any discoverable Vega use.

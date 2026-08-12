@@ -37,17 +37,58 @@ FireRed JPN Rev0 clean
 | T17 | Regression/playtest | QA | T10,T13,T16 | Vega本編＋二地方回帰確認 |
 | T18 | Release pipeline | Platform | T17 | 再現ビルド・差分パッチ・記録 |
 
-## 並行可能範囲
+## 最短実行戦略
 
-T00完了後、以下を同時に開始できます。
+実際の二地方往復であるT13へ最短で到達する主経路は次です。T02→T11とT00→T12はEngine主経路と並行準備します。
 
-- T01: 上流ビルド再現
-- T02: 競合監査
-- T12: コンテンツschemaと設計
+```text
+T01 + T02
+  -> T03
+  -> T04 / T05 / T08
+  -> T06 / T07
+  -> T09
+  -> T10
+  -> T13
 
-T02完了後にT11（カントーマップ変換）を開始できます。T03以後はEngineレーンを進めながら、MapとContentを継続できます。Kantoの正確な数値IDを書き込むのはT10以後ですが、記号名での設計はT12から可能です。
+並行枝:
+T02 -> T11 ----┐
+T00 -> T12 ----┴-> T13
+```
+
+`make plan` はDAGから現在の `RESUME` / `PRIMARY` / `PARALLEL_PREP` と準備waveを自動導出します。正本IN_PROGRESSは1件だけとし、同じwaveの他タスクは所有ファイルを分けた別worktreeか読取調査で先行します。準備waveは依存深度を表す論理並列単位であり、正本完了のbarrierや統合順ではありません。
+
+正本への統合順は `design/tasks_next.md` の固定順で、現在は `T01 → T02 → T03 → … → T18` です。W1開始時はT01をPRIMARY、T02とT12を並列準備とします。T01の待ち時間には、T02のconfig-aware監査parserとT12のsymbolic schema/fixtureを先行準備します。進行後の現在値は `make plan` と `design/current_state.md` を正とします。
+
+## 高速並列準備waveと統合時の成果基準
+
+| Wave | 論理並列準備 | 各タスクをPRIMARY統合する際の成果基準 |
+|---|---|---|
+| W0 | T00 | 入力hash、参照ROM、上流commit、初期監査が固定済み（完了） |
+| W1 | T01 / T02 / T12 | 上流2構成の再現build、全固定write・RAM/save/ID・早期解禁flagの証拠化、symbolic schemaとV2正規化検査 |
+| W2 | T03 / T11 | clean→Vega→32 MiB no-op ROMが再現・boot/saveし、Kanto 1 mapが新IDでround-tripする |
+| W3 | T04 / T05 / T08 | Vega ID固定、生成ID空間、RAM/save衝突解消、地方別stateが成立し、旧saveは移行成功または安全な明示拒否になる |
+| W4 | T06 / T07 | CFRU基本戦闘が完走し、Vega Species IDを維持した追加Speciesをpartyへ生成できる |
+| W5 | T09 | 追加Speciesの画像、鳴き声、図鑑、進化、習得技、saveが一通り動く |
+| W6 | T10 | 追加技・特性・道具・Species・進化を1セーブで完走し、Vega回帰とoverlay fallbackがPASSする |
+| W7 | T13 | 殿堂入り前の港→クチバ→save/全滅→無料帰還が安全に動く（Gate D） |
+| W8 | T14 | 採用Kanto全physical mapの接続、到達性、ID衝突検査がPASSする |
+| W9 | T15 | 早期層とpost-HoF層の進行DAGが完成し、循環・帰還不能・Vega flag汚染が0になる |
+| W10 | T16 | 49+47論理地点、541系統、125共有捕獲stateを生成配置し、全参照が解決する |
+| W11 | T17 | 新規saveと、方針に応じた旧save移行または拒否、Kanto訪問あり/なしのVega完走、往復・長時間回帰がPASSする |
+| W12 | T18 | clean checkoutからbyte再現buildでき、配布patch再適用hashとprivate guardがPASSする |
+
+最初に正本へ統合する動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後にlane branchで先行でき、正本へはT11がPRIMARYになった時に統合します。最初の製品経路としての二地方往復はT13、配布可能候補はT18です。
 
 受領したV2二地方生態版は完成像・進行・生態・イベントのactive review資料です。V1は来歴保存専用です。V2の47カントー地点はraw map総数ではないため、T11ではclean BPRJとpokefireredから約256候補mapの再現可能なinventoryを作り、論理地点とのcrosswalkを確定します。採用済みデータだけをT12/T16のschemaへ昇格します。
+
+## ボトルネック優先順位
+
+1. T01/T02: 現在不足するtoolchainを固定するT01と、T03/T05/T08/T11を解放する最大fan-outのT02を共同最優先にする。T02はUNKNOWN、実write span、早期解禁flagを曖昧なまま後続へ渡さない。
+2. T03/T06: no-op harnessとCFRU hook移植。カテゴリ別test ROMで壊れた最初の境界を特定する。
+3. T08: save互換・地方別anchorを先に固定し、後から全stateを移し直す事態を避ける。
+4. T11/T14: 約256候補physical map、日本版差異、signed Map IDをimporter/validatorで吸収する。
+5. T13: Engine/Maps/Content最初の統合点。ここまでのinterfaceをfreezeしてから全mapへ広げる。
+6. T16/T17: データ量と手動確認が支配的になるため、schema validatorとsave fixtureをW1から前倒しする。
 
 ## 重要ゲート
 

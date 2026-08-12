@@ -50,6 +50,8 @@
 
 `state/task_status.json` は外部ツール互換用の生成ミラーであり、手編集しない。`state/PROJECT_STATE.md`、`state/DECISIONS.md`、`state/BLOCKERS.md` は `design/` 正本への案内であり、二重記録しない。
 
+`design/tasks_next.md` の説明文は取込時の履歴ラベルを保持する。タイトルやscopeが後続判断で変わった場合、現行仕様は `tasks/task_graph.json` と対応する `tasks/T*.md` を正とする。
+
 ## 1.1 作業開始時の入口
 
 作業開始時は、まず次の順で読む。
@@ -101,7 +103,13 @@ python3 scripts/taskctl.py start T00
 python3 scripts/taskctl.py done T00 --summary "完了内容"
 ```
 
-親側の正本タスクは同時に1件だけ `[>]` とする。サブエージェントや別レーンを並列化しても、正本状態、共有ファイル、ログ、最終コミットは親側が統合する。
+`taskctl.py next` の表示は次の意味を持つ。
+
+- `RESUME`: 既存の正本IN_PROGRESS。必ずこれを先に再開する。
+- `PRIMARY`: 次に開始する唯一の正本タスク。
+- `PARALLEL_PREP`: 依存上はREADYで、読取調査や別worktreeの先行実装が可能。ただし正本状態、共有ファイル、ログ、統合コミットは変更しない。
+
+親側の正本タスクは同時に1件だけ `[>]` とする。`make plan` のwaveは並列準備可能な集合であり、同時に複数を `[>]` にする指示ではない。サブエージェントや別レーンの成果は、対象がPRIMARYになった時点で親が再検証して統合し、タスク単位のログとコミットを作る。
 
 ## 4. 検証
 
@@ -231,7 +239,7 @@ make test
 - 主目的、担当範囲、書き込み可能ファイル、完了条件を具体化してから渡す。
 - 同じファイルを複数エージェントに書かせない。
 - `design/run_log.md`、`design/version_log.md`、`design/tasks_next.md`、`package.json` は親側が統合する。
-- `AGENTS.md`、`MASTER_PLAN.md`、`config/`、`Makefile`、`state/source-lock.json` も親側が統合する。
+- `AGENTS.md`、`MASTER_PLAN.md`、`Makefile`、`state/source-lock.json`、共有 `config/**` も親側が統合する。タスク仕様で必須出力として名前を予約した専用 `config/<task_scope>*` は、所有ファイルが重ならない場合に限り担当サブエージェントが編集できる。
 - サブエージェントの成果は親側で統合・検証し、最終判断とコミット責任は親側が持つ。
 
 ## 13. コミュニケーションと言語

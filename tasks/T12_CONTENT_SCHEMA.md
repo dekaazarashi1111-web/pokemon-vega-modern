@@ -18,6 +18,7 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 7. Add reports for first availability, evolution-item availability, trainer usage, 541-family dual-region coverage, and 125 shared special-capture keys.
 8. Add `recommended_level_min/max`, `difficulty_policy`, `mandatory`, and `warning_key`; represent Kanto Lv.68–100 as a fixed optional high-level policy rather than dynamic party scaling.
 9. Normalize V2 K-E01, the research pass, champion-assuming dialogue, and the mandatory Lv.70-range ship battle into an early research invitation, progress-aware dialogue, and an optional result-independent battle.
+10. During parallel preparation before T11 completes, validate logical map keys and dry-run reports but deliberately reject build-mode physical-map emission. Bind and validate the real physical-map crosswalk after T11 produces it, when T12 reaches PRIMARY integration.
 
 ## Required outputs
 
@@ -34,6 +35,7 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 - [ ] Reports can detect unobtainable evolution lines.
 - [ ] V2's 59 checks are independently reproducible and the known V1-derived semantic issues fail before normalization.
 - [ ] Logical V2 location keys cannot be emitted until they resolve through the T11 physical-map crosswalk.
+- [ ] T12 implementation can be prepared before T11; at PRIMARY completion, unresolved physical maps pass explicit dry-run validation, fail build-mode emission with an actionable error, and the available T11 crosswalk is validated.
 - [ ] The schema rejects early-access rows that lack the level warning/safe-route policy and rejects post-HoF content reachable only from `KANTO_EARLY_ACCESS`.
 
 ## Finish

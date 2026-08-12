@@ -4,7 +4,7 @@
 
 Operate autonomously and aggressively on generated files and feature branches. The private source files are backed up; do not be timid about rebuilding or discarding generated ROMs. Never modify or commit `inputs/private`.
 
-1. `python3 scripts/taskctl.py next` を実行し、先頭のREADYタスクを選ぶ。
+1. `python3 scripts/taskctl.py next` を実行し、`RESUME` があれば再開、なければ `PRIMARY` を選ぶ。`PARALLEL_PREP` は別worktreeまたは読取調査に限定する。
 2. `python3 scripts/taskctl.py start <ID>` で開始し、そのタスク文書を最後まで読む。
 3. 同一hash/source pin/tool versionの既存成果を先に探し、再解析を避ける。
 4. 独立した調査・実装は所有ファイルを分けて並列化し、共有状態・ログ・コミットは親側で統合する。

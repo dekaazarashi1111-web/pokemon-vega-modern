@@ -13,6 +13,7 @@
 | 目的 | 最初に読むファイル | 必要な時だけ追加で読む |
 |---|---|---|
 | 全体像 | `README.md` | `MASTER_PLAN.md` |
+| 高速実行順・現在の主作業 | `make plan` | `MASTER_PLAN.md`, `design/current_state.md` |
 | 運用・安全・効率 | `AGENTS.md` | `WORKSTREAMS.md`, `docs/FAIL_FAST_POLICY.md` |
 | 現在状態 | `design/current_state.md` | `design/run_log.md`末尾 |
 | 次タスク | `design/tasks_next.md` | `tasks/task_graph.json`, 対応する`tasks/T*.md` |
@@ -32,9 +33,9 @@
 
 - T00: `docs/INPUT_CONTRACT.md`、`config/project.toml`、`design/import_inventory.md`。
 - T01: `docs/SOURCE_NOTES.md`、上流README、T01。
-- T02: `audit_seed/README_JA.md`、`audit_seed/CODEX_TASK_01.md`、T02。
+- T02: `audit_seed/README_JA.md`、`audit_seed/CODEX_TASK_01.md`、`docs/KANTO_PORT_POLICY.md`、T02。
 - T04: `audit_seed/CODEX_TASK_02_MOVE_PORT.md`、`docs/ID_POLICY.md`、T04。
-- T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
+- T08/T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 

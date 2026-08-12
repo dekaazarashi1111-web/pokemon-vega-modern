@@ -10,6 +10,7 @@ sed -n '1,240p' AGENTS.md
 sed -n '1,220p' design/current_state.md
 sed -n '1,260p' design/agent_context_map.md
 python3 scripts/taskctl.py next
+python3 scripts/taskctl.py plan
 ```
 
 次に、選択した `tasks/T*.md` とcontext mapが指す資料だけを読みます。再開時は `prompts/RESUME.md` も使えます。
