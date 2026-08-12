@@ -76,3 +76,14 @@
   - クチバ港の簡易受付と建物外NPCを採用し、新規大型map/full-screen UIなしでランダム捕獲戦を即時開始する仕様を固定した。
   - 支払い済み個体のatomic saveと同一個体retryを定義し、smoke matrixを57件へ拡張した。
 - Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）
+
+## 2026-08-13T00:07:01+09:00
+
+- Version: `design-trainer-ai-balance-0.7.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260813-TRAINER-AI-BALANCE` / 固定CFRU-JP AIとトレーナー難易度設計追加
+- Summary:
+  - 固定CFRU-JP AIの3 profile、trainer育成値、single/double、gimmick、cache/RNG/performanceを既存T01〜T18へ割り当てた。
+  - Vega本編の横強化、初回boss/league、Tohoku再戦と3段階league、NORMAL/RESEARCH、Sphere、Mirageを機械検証可能な仕様へした。
+  - TM再利用と固定CFRU Raidによる簡易高難度Raidを既存UI前提で追加し、smoke matrixを67件へ拡張した。
+- Verify: `bash scripts/verify_wsl.sh` PASS（42 tests）

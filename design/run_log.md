@@ -157,3 +157,25 @@
 - Commit: `-`（本エントリを含むコミット）
 - Network:
   - `https://w.atwiki.jp/pokehackgames/pages/62.html` を参照。kpbr氏制作のBattle Factory patchが最新世代のポケモン/道具、Mega/Dynamax、CFRU移植を含む施設であるという概要と、2026-04-25のページ更新を確認した。実装source/config/hashの根拠はローカル固定CFRU-JPとFactory参照を正とする。
+
+## 2026-08-13T00:07:01+09:00
+
+- Task: `USER-20260813-TRAINER-AI-BALANCE` / 固定CFRU-JP AIとトレーナー難易度設計の追加
+- Status: DONE
+- Summary:
+  - source-lock済みCFRU-JP commit `e24a16fe39e27ae162faf5b78596d1f3df18489d` のAI source、hook、controller、分散cache/history、既定knowledge modelを実装元に固定し、`AI_BASIC=1`、`AI_SEMI_SMART=3`、`AI_FULL_SMART=5` のprofile、trainer育成値adapter、single/double判断、1戦1gimmick、性能基準をT01/T02/T06/T10/T12/T17へ割り当てた。
+  - Vega本編は一律scaleせず、一般trainer、boss、野生をmap/batch単位で横強化する。初回boss ace帯、シオウ/オウニ/New Island、初回四天王、序盤種/技/進化制限をmanifest/lint条件にした。全体学習装置既定ONとの整合も連続saveで調整する。
+  - Tohoku地方強豪の3段階再戦とLeague I→II→Finalを明示flagで順序化し、早期Kanto認定章と衝突させない。KantoはV2認定章帯/Lv68〜100を維持し、現行Lv100 leagueをKanto League＋Sphere後のFinalへ移す。
+  - NORMAL/RESEARCH二層、Sphere更新、TM再利用license、段階的gimmick/道具供給、Mirage 7戦×4周と仮想item/報酬、固定CFRU Raidを使うHOF＋認定章4個後の簡易高難度Raidを既存UI/SIMPLE_EVENT前提でタスク化した。smoke matrixをS001〜S067へ拡張した。
+- Files changed:
+  - 判断・入口: `design/decisions.md`, `design/current_state.md`, `design/agent_context_map.md`, `CHANGELOG.md`
+  - 実行・検証方針: `docs/TEST_STRATEGY.md`
+  - タスク仕様: `tasks/T01_UPSTREAM_REPRO.md`, `tasks/T02_EXACT_AUDIT.md`, `tasks/T06_BATTLE_CORE.md`, `tasks/T08_SAVE_RAM.md`, `tasks/T10_ENGINE_VERTICAL_SLICE.md`, `tasks/T12_CONTENT_SCHEMA.md`, `tasks/T15_POSTGAME_PROGRESSION.md`, `tasks/T16_CONTENT_POPULATION.md`, `tasks/T17_REGRESSION.md`, `tasks/T18_RELEASE.md`
+  - 検証: `tests/smoke_test_matrix.csv`
+- Verify:
+  - `bash scripts/verify_wsl.sh`: PASS（受領資料、DAG/manifest/private guard、42 tests、npm check）
+  - smoke matrix S001〜S067、8列、連番、一意: PASS
+  - 固定CFRU AI技術監査、添付カバレッジ、DAG/所有権の独立read-onlyレビュー: blocking/P1なし
+  - `git diff --check`: PASS
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。ユーザー添付とローカルの固定CFRU-JP source、既存設計正本だけを参照した。

@@ -14,3 +14,4 @@
 - 文章の既定即時表示、ダッシュ25%以上・自転車50%以上の移動時間短縮と回帰条件を追加。
 - taskctlの固定先頭順を推奨順へ変更し、依存READY候補を待ち時間とfan-outに応じて選べる高速運用へ更新。
 - 追加UIと新規イベントを既存画面・標準menu・短い `SIMPLE_EVENT` の最小構成へ固定。
+- 固定CFRU-JP AIを採用し、本編の横方向強化、初回league是正、3段階再戦/league、NORMAL/RESEARCH encounter、Mirage改修をタスク化。

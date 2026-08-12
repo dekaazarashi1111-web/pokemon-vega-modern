@@ -31,6 +31,13 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 20. 施設入退場、辞退、敗北、全滅、save/load、reset、中断、blackout、変身/form、持ち物交換、消耗品、multiで、元party/HP/PP/status/持ち物と一時stateがexactに一度だけ復元されることを検証する。
 21. 施設外NPCを残高不足、解禁前、party満杯かつPC満杯、cancel、支払い直後reset、逃走、撃破、全滅、再挑戦、捕獲成功で検証する。同一保留個体を再抽選せず、二重減算/増殖を起こさず、報酬戦からEXP/EV/賞金/野生所持品の盗難・持出し/drop/chainを得られないことを確認する。
 22. 全Factory mode、連勝表示、Ultimate選択、BP shop、建物外NPCは既存party/list/shop/Yes-No/messageだけを再利用し、`frontier_records.c` 専用画面を含む新規full-screen UIや専用演出assetを追加しない。
+23. decision直前のglobal RNGを固定して `AI_BASIC` / `AI_SEMI_SMART` / `AI_FULL_SMART` のsingle/doubleを回し、技評価、KO/2HKO、switch、hazard、setup、recovery、weather/field、trainer item、gimmick、味方巻込み回避/支援の期待actionを比較する。
+24. T02で記録した固定CFRU knowledge modelと実buildを照合し、switch/faint/form/item/field変化で分散cache/historyが無効化されること、worst-caseがT01の性能閾値内であることを検証する。
+25. 一般trainer、8 gym、ライバル/幹部、初回四天王/Ginnoを全体学習装置既定ONの連続saveで通し、ace範囲、gym固有戦術、地面牽制、既存/新種比、合法move/item、Vega本編完走を検証する。
+26. Vega殿堂入り、HOF＋認定章4＋League I clear、Kanto League＋Sphere＋League II clearの各直前/直後で地方強豪と3段階leagueを検査し、早期認定章saveの順序飛越、Final前のLv100編成漏出、複数gimmick、未登録一般trainerの一括強化がないことを確認する。
+27. NORMAL/RESEARCH/Safariを同一map/seedで比較し、元slot/1%枠/EV稼ぎ/低level導線、Tohoku area band、Kanto Lv68〜100上限、IV/ability/egg move/item/shiny policyと解禁を検証する。
+28. Mirageを勝利/敗北/辞退/reset/save-load/持ち物盗難moveで検証し、Lv100、仮想item、段階reward、record/currencyとFactory分離を確認する。
+29. 高難度RaidをHOF＋認定章4の直前/直後、勝利/敗北/捕獲/cancel/reset/save-loadで検証し、partner/shield、capture policy/shared key、reward repeatability/claim、retry、Mirage由来bonus tier、Raid後flag clear、通常battleと他gimmickの非干渉を確認する。
 
 ## Required outputs
 
@@ -39,6 +46,7 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 - `reports/generated/regression_summary.md`
 - `reports/generated/qol_b_integration.md`
 - `reports/generated/facility_regression.md`
+- `reports/generated/trainer_ai_regression.md`
 - `config/feature_matrix.csv`
 - `KNOWN_ISSUES.md`
 
@@ -61,6 +69,9 @@ Integrate the remaining QOL-B layer, then prove that the new engine and dual-reg
 - [ ] 全施設出口と異常終了で元partyがexact復元され、BP/連勝/報酬/保留遭遇の更新はatomicかつ再起動可能である。
 - [ ] 施設外NPC捕獲は標準UIから即時開始し、capacity、支払い、retry、捕獲完了の全境界でcredit・個体・caught stateが一貫する。
 - [ ] Factory全mode、記録、shop、遭遇NPCが既存UIだけで操作でき、link multiや専用record/capture画面をrelease scopeへ持ち込まない。
+- [ ] 固定CFRU AIの全profileと既定knowledge modelがsource inventoryどおり動き、cache/RNG/performance回帰とsingle/double/gimmick fixtureを通る。
+- [ ] 本編の横強化、初回league、3段階再戦/league、Sphere、NORMAL/RESEARCH/Safari、MirageがD-015とT15/T16の全境界を満たす。
+- [ ] 高難度Raidが既存UIのみで全終了経路を通り、反復報酬・捕獲state・Dynamax例外を複製または通常storyへ漏出させない。
 
 ## Finish
 

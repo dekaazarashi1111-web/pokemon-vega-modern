@@ -104,7 +104,16 @@
 - PC検索、複数移動、一括逃がし、`field_pc_allowed`、relearn pool内技変更、技/持ち物操作、登録済み預かり親から256歩ごとに共有5個queueへ生成するタマゴバスケット、通常random野生限定の自動戦闘を、禁止個体/道具/map/戦闘、色違い、cancel、容量不足、save/load込みで検査する。
 - 各badge、D・Hビル、Vega殿堂入り、Kanto Leagueの直前/直後でfirst-availabilityと反復供給を照合する。
 
-## 8. Release
+## 8. Trainer AI・難易度
+
+- 固定CFRU-JP AIの `AI_BASIC` / `AI_SEMI_SMART` / `AI_FULL_SMART` を固定global RNGで実行し、move、switch、hazard、setup、recovery、weather/field、item、gimmickを期待actionと比較する。
+- Doubleはtarget、範囲技の味方巻込み、Protect/Wide Guard、Tailwind/Trick Room、Follow Me/Helping Handを検査する。
+- 固定CFRUの既定knowledge model、分散cache/historyの無効化とT01で固定したworst-case性能閾値を検査する。
+- 全体学習装置既定ONの連続saveで8 gym、初回league、Ginnoまで完走し、ace level、map/batch単位の一般trainer/野生調整、固有戦術、合法構成、一律level scaleなしを確認する。
+- 3段階再戦/league、Sphere遺跡、NORMAL/RESEARCH/Safari、Mirageのitem/reward/state分離を各解禁境界で検査する。
+- 高難度RaidはHOF＋認定章4の境界、partner/shield/end/capture/reward、reset/save-load、通常battleへのflag/state漏出を検査する。既存UI以外をrelease要件にしない。
+
+## 9. Release
 
 - clean inputから一発再生成
 - 差分パッチをcleanへ適用してfinal hash一致

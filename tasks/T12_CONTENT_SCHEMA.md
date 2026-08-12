@@ -24,13 +24,19 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 13. Battle Factoryのmode/tier、battle format、mechanic policy、rental set/pool、trainer、streak/BP reward、story-gated shop、遭遇credit/pool/NPCをsymbolic schemaへ追加する。FactoryとMirageのowner/state keyを分離する。
 14. 遭遇NPC rowは `payment_kind=currency|credit`、`currency_key` または `credit_key`、`cost`、`pool_key`、`unlock_key`、`level/quality policy`、`presentation_profile=SIMPLE_EVENT` を必須とする。currencyは指定残高をcost分、creditはtyped creditを1個だけ減算し、同時指定を拒否する。専用捕獲map、ticket用full-screen UI、raw IDを拒否する。
 15. 遭遇creditの通貨はBP、調査point、arcade coinを共通interfaceで表現し、`availability=ENABLED|DEFERRED` と既存ミニゲーム完了hookからのpoint加算をschema化する。T02/T08でownerと供給hookが確定しない通貨はDEFERREDを強制し、新規ミニゲームや専用交換UIはschema要件にしない。
+16. Trainer rowへ `trainer_role`、`ai_profile_key`、自動推定との照合用 `expected_fight_style_key`、`team_stage`、`rematch_tier`、`league_stage`、`ev_spread_key`、nature/ability/item/moves、`mechanic_policy`、`unlock_key` を追加し、AI profileはT06の `AI_BASIC|AI_SEMI_SMART|AI_FULL_SMART` だけへ解決する。
+17. Encounter rowには既存の `layer=original|overlay|dexnav|time|outbreak|fixed` を維持したまま、直交軸 `table_profile=NORMAL|RESEARCH`、base table、level delta/range、IV floor、hidden-ability/egg-move/held-item/shiny policy、unlockを追加する。NORMALを上書きせず、RESEARCHを既存scanner/DexNav/調査flagから明示選択する。
+18. Validatorは違法move/item/ability、未解決AI profile、stage外levelまたはLv100超、解禁前gimmick、1 trainer戦で複数gimmick、全一般trainerへの一括rematch/level scale、NORMAL rare slot消失を拒否する。
+19. Raid rowへ `raid_tier`、species/form/level/quality、partner pool、shield policy、reward pool、`capture_policy` / `shared_capture_key`、`reward_repeatability` / `claim_key`、unlock、`presentation_profile=SIMPLE_EVENT` を追加する。捕獲と報酬の反復性を混同せず、専用map/UI/cutsceneを要求せず、Raid固定Dynamax以外の複数gimmickを拒否する。
 
 ## Required outputs
 
 - `content/README.md`
 - `content/kanto_progression.csv`
 - `content/schema/facility.schema.json`
+- `content/schema/trainer_difficulty.schema.json`
 - `tests/fixtures/facility_schema/`
+- `tests/fixtures/trainer_difficulty_schema/`
 - `tools/content/`
 - `reports/generated/content_schema.md`
 
@@ -49,6 +55,8 @@ Allow dual-region encounter, trainer, item, gym, ecology-overlay, and event desi
 - [ ] Facility/rental/BP/encounterの全参照がsymbolic keyで解決し、解禁前pool、同時複数ギミック、反復可能な伝説・幻poolをvalidatorが拒否する。
 - [ ] 遭遇NPCは標準message/list/Yes-Noと通常scripted wild battleだけで生成でき、支払い前の容量確認と支払い済み保留遭遇を表現できる。
 - [ ] BP/調査point/arcade coinの獲得・消費は同じsymbolic契約で検証され、未知通貨、負残高、二重減算を拒否する。
+- [ ] 全trainer/AI/rematch/league/encounter table-profile rowがsymbolic keyだけで解決し、違法構成、隠れたlevel scaling、未解禁/複数gimmickを生成前に拒否する。
+- [ ] Raid rowは既存NPC/標準battle UIで生成でき、未解禁pool、禁止種、反復報酬、Raid以外の複数gimmickをvalidatorが拒否する。
 
 ## Finish
 

@@ -24,6 +24,11 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 13. 全体学習装置、現代孵化、SV式王冠、mint/特性道具、IV/EV表示、タマゴPC/queueを同じ継続saveで通す。
 14. 最小Factory縦切りとして、Lv.50 rental候補6体から3体を既存party/list/Yes-No UIで選び、single 3v3を3連戦し、勝利後の1体交換、連勝/BP、敗北・辞退・退出後の元party/持ち物完全復元まで通す。rental/対戦相手は図鑑のseenだけを更新しcaughtを更新しない。専用record画面は作らず標準messageで表示する。
 15. debug用の施設外NPCから遭遇credit 1回を使用し、容量確認、支払い、固定pool抽選、通常scripted wild battleの即時開始、逃走後の同一個体再挑戦、捕獲成功による保留消去を通す。
+16. T06所有の既存Vega IDだけを使うsynthetic trainer fixtureで、`AI_SEMI_SMART`、`AI_FULL_SMART` single、`AI_FULL_SMART` doubleを各1戦通し、技評価、交代、設置/積み、double連携、trainer itemとbattle後saveを検証する。production trainer rowはT12/T16までbindしない。
+17. T02で特定したTM-use hookへ `TM_REUSE_LICENSE` adapterを接続し、synthetic flagの直前はTMを1個消費、直後は同じTMを消費せず再利用でき、save/load後も境界が維持されることを通す。
+18. Mirage synthetic戦で相手の仮想held itemを盗む・交換するmoveを実行し、勝利/敗北/辞退後にplayer party/bagへ残らないことを通す。
+19. T02で特定したencounter/DexNav hookへsynthetic `table_profile=NORMAL|RESEARCH` selectorを接続する。NORMALは元tableへbyte-equivalentに戻り、RESEARCHは入力されたlevel/IV/ability/egg move/held item/shiny policyを適用してsave/load後も選択状態を保つ。production rowはT12/T15/T16までbindしない。
+20. 既存mapのdebug NPCからsynthetic 4-star `RAID_HIGH_DIFFICULTY` を1戦起動し、partner、shield、勝敗、捕獲、報酬、終了後flag clearを標準message/Yes-Noと既存battle UIだけで通す。
 
 ## Required outputs
 
@@ -35,6 +40,9 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 - `tests/fixtures/qol_movement_courses.json`
 - `tests/fixtures/factory_trial.json`
 - `tests/fixtures/reward_encounter.json`
+- `tests/fixtures/trainer_ai_slice.json`
+- `tests/fixtures/research_encounter_slice.json`
+- `tests/fixtures/raid_slice.json`
 
 ## Acceptance gates
 
@@ -49,6 +57,10 @@ Prove the integrated engine and the QOL-A core end-to-end before importing large
 - [ ] QOL-Aの表示・設定は既存UI部品だけで操作でき、新規full-screen UIや専用演出assetを必要としない。
 - [ ] 3連戦Factory trialは新規full-screen UIなしで完走でき、交換・敗北・辞退・save/resetの全出口で元party/HP/PP/status/持ち物が完全復元される。
 - [ ] 施設外NPCは標準message/list/Yes-Noから通常捕獲戦を即時起動し、専用捕獲mapやcutsceneを必要としない。
+- [ ] `AI_SEMI_SMART` / `AI_FULL_SMART` のsingle/double synthetic縦切りが同じsaveで完走し、固定CFRU knowledge model、通常Vega battle、save、RNGを破損しない。
+- [ ] TM license境界の消費/再利用とMirage仮想item隔離が、既存UIだけの継続saveでPASSする。
+- [ ] Synthetic NORMAL/RESEARCH selectorが同一map/seedでprofileだけを切り替え、NORMAL fallback、RESEARCH品質入力、save/loadを壊さない。
+- [ ] Synthetic Raidは専用map/full-screen UIなしで完走し、終了後に通常battle/gimmick/saveへ一時stateを残さない。
 
 ## Finish
 

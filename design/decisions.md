@@ -100,3 +100,14 @@
 - イベント: QOL解禁と追加イベントは `SIMPLE_EVENT` を既定とし、短い会話、条件check、flag、標準reward/battle/warpだけで完了させる。元Vega/FireRedの既存gym puzzleや地形仕掛けは再利用する。
 - 根拠: UI・演出制作をcritical pathから外し、機能、二地方化、再現性へ実装時間を集中するため。
 - 影響: T09、T10、T12、T15〜T17、content生成、release UI。
+
+## 2026-08-12 — D-015: 固定CFRU-JP AIで横強化と段階再戦を実装する
+
+- 実装元: source-lock済みCFRU-JP commit `e24a16fe39e27ae162faf5b78596d1f3df18489d` の `src/Battle_AI/**`、AI hook、battle controller、damage/accuracy、switch/item/gimmick判断を正とする。別AI engineや浮動HEADは導入しない。
+- 本編方針: Vega初回殿堂入りまでは一律level scalingを使わず、一般trainerは元難度を基準に `AI_BASIC` / `AI_SEMI_SMART` を選び、ジム/幹部/ライバル/初回リーグは編成、役割、性格、EV/IV、特性、持ち物と進行別AI profileで横方向に強化する。全bossを無条件に最高AIへせず、既存の象徴的なVega個体と役割を保護する。
+- AI知識: 固定CFRU-JPの既定knowledge modelをそのまま移植・監査し、未公開情報を遮断する独自AI再設計は行わない。難度の公平性は合法な技/道具/育成値、回避や確率発動への過度な依存禁止、決定論fixtureで担保する。
+- レベル: 1個目badge後から全体学習装置を既定ONにするD-012を維持し、中盤以降は連続saveの実測に基づき一般trainer、boss、野生をmap/batch単位で最大+0〜3調整できる。全trainer一括補正、party連動scale、CFRUのglobal Hard/Expert化は採用しない。KantoのLv.68〜100固定任意帯も維持する。
+- 段階再戦: League Iは `VEGA_HALL_OF_FAME`、League IIは `VEGA_HALL_OF_FAME && KANTO_CERT_4 && LEAGUE_I_CLEARED`、Final Leagueは `KANTO_LEAGUE_CLEAR && SPHERE_COMPLETE && LEAGUE_II_CLEARED` で順番に解禁する。通常/地方強豪の第3再戦はKanto League後に解禁してよいが、Lv.100 leagueはFinal条件まで出さない。既存の即Lv.100強化leagueはFinalへ後送りして再利用する。
+- 道具: `docs/QOL_POLICY.md` のfirst-availability/repeatabilityを後退させない。ここでの段階条件は追加の対戦道具、Mirage/Sphere報酬、TM再利用license、ギミック、UB/Paradoxの供給を制御し、既に解禁済みの育成QOLを再ロックしない。
+- 施設: MirageはLv.100の育成済み持込施設、Factoryはrental施設として分離する。双方で相手の持ち物を盗難・持出しできず、報酬、記録、通貨も相互更新しない。
+- 影響: T01、T02、T06、T08、T10、T12、T15〜T18、trainer/encounter manifest、回帰試験。

@@ -25,12 +25,19 @@
 14. クチバ港の同じ簡易Factory受付で4段階を解禁する。D・Hビル後は一般種・ギミックなしの3連戦Trial、Vega 5個目badge後はsingle/double・交換・7連戦のStandard、Vega殿堂入り後は高種族値/準伝説とLittle/Monotype/Unrestricted/OU/Uber/Camomons等を含むFull、Kanto League後は高難度AI・完成育成・GS/地方混成・49/100連勝戦を含むMasterとする。
 15. Factoryはrental専用、Vegaミラージュバトルは育成済み持込専用としてstate/rewardを分離する。Mega/Z/Dynamax/Teraはmode別に解禁し、Ultimateだけ入場時に1方式を選択する。
 16. BP shop、rental pool、遭遇credit/poolをstory gateへ接続し、早期渡航だけで後半育成品・特殊種・高連勝報酬を解禁しない。
+17. `region=TOHOKU` の地方強豪へ3段階再戦を定義する。Vega殿堂入り後は通常Lv58〜68/強敵72〜84、`VEGA_HALL_OF_FAME && KANTO_CERT_4` 後は72〜82/84〜94、Kanto League後は88〜96/94〜100とする。leagueはstep 18の別順序を正とし、全一般trainerではなく主要バトルサーチャー対象、調査boss、ライバル、D・H幹部だけを登録する。Kanto trainerはV2認定章帯とLv68〜100固定方針を維持する。
+18. 強化League Iを `VEGA_HALL_OF_FAME` 後（Lv84〜90、medium EV、ギミックなし）、League IIを `VEGA_HALL_OF_FAME && KANTO_CERT_4 && LEAGUE_I_CLEARED` 後（Lv92〜96、6体、一部MegaまたはZ）、Final Leagueを `KANTO_LEAGUE_CLEAR && SPHERE_COMPLETE && LEAGUE_II_CLEARED` 後（全Lv100、6V/適正nature/完成EV、各trainer最大1 gimmick）に解禁する。既存Lv100編成はFinalへ移す。
+19. 通常storyではmodern gimmickを敵味方とも必須にせず、Vega殿堂入り後にMega、`VEGA_HALL_OF_FAME && KANTO_CERT_4` 後にZ、Kanto League後にTera/Dynamaxを進行systemとして解禁する。各trainerは1戦最大1方式とし、QOL道具の既存first-availability/repeatabilityは `docs/QOL_POLICY.md` を優先する。
+20. Vega殿堂入り後に既存scanner/DexNav/調査端末からRESEARCH table profileを任意解禁する。NORMAL profile、Safari低level育成導線、元Vega捕獲flagは常時保護する。
+21. Vega殿堂入り後にTM再利用licenseとhidden-ability DexNavを解禁し、`VEGA_HALL_OF_FAME && KANTO_CERT_4` 後に追加の競技用item供給、Kanto League後にBoost EnergyとUB/Paradox関連を解禁する。`docs/QOL_POLICY.md` のfirst-availability/repeatabilityを双方とも後退させず、ここでは未提供品の追加供給経路と戦闘system側の利用時期だけをgateする。
+22. `VEGA_HALL_OF_FAME && KANTO_CERT_4` 後に高難度Raidを解禁する。既存mapの短いNPC/調査端末から標準Yes-Noで起動し、Raid中だけDynamaxを固定許可する。専用den map、ロビー、full-screen UI、長いeventは作らない。
 
 ## Required outputs
 
 - `content/kanto_progression.csv`
 - `content/qol_progression.csv`
 - `content/facility_progression.csv`
+- `content/trainer_progression.csv`
 - `generated/kanto/progression/`
 - `reports/generated/progression_graph.md`
 
@@ -47,6 +54,10 @@
 - [ ] Vega badge由来とKanto由来のQOL unlockは `content/qol_progression.csv` で一意に導出され、saveへ同じ解禁stateを二重保存しない。
 - [ ] Trial/Standard/Full/Masterの直前・直後fixtureがあり、各mode、rental pool、BP shop、遭遇poolは指定境界でだけ解禁される。
 - [ ] FactoryとMirageの連勝、通貨、party owner、報酬が相互に更新されず、各ギミックmodeの解禁も独立する。
+- [ ] 3段階再戦/leagueの直前・直後fixtureがあり、早期認定章4個saveでもLeague I→II→Finalの順序を飛ばさず、既存Lv100 leagueはFinal条件前に選択されない。
+- [ ] RESEARCH profileは殿堂入り前に選べず、解禁後もNORMAL/Safariと既存捕獲stateを置換しない。
+- [ ] TM license、hidden-ability DexNav、競技用item反復、UB/Paradoxの直前/直後fixtureがあり、QOL道具の既存first-availability/repeatabilityを後退させない。
+- [ ] 高難度RaidはHOF＋認定章4個の直前で起動せず、直後にだけ既存UIから起動し、通常storyのDynamax解禁や進行skipを起こさない。
 
 ## Finish
 

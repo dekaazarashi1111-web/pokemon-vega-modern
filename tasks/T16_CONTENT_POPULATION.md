@@ -30,11 +30,28 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 19. Trial初回報酬をXS×5、S×2、BP 3、反復報酬をBP 1〜2と木の実/ballを起点にmanifest化する。施設外NPC用には、おまかせ8、生息地15、タイプ25、希少50 BPを起点とする遭遇credit/poolを配置する。3/7/14/21連勝では段階credit、49連勝では一度限りの特殊event key、100連勝では一度限りの非伝説色違い記念枠を付与する。
 20. 反復遭遇poolへ伝説・幻・battle専用formを入れず、全poolを進行gateし、通常探索の入手経路も残す。未捕獲を最大10回の内部再抽選で優先し、該当なしなら重複を許可する。tier別level/IV保証/隠れ特性率を明示する。報酬戦ではEXP/EV/賞金/野生所持品の盗難・持出し/drop/DexNav chainを無効化し、捕獲時だけ通常のcaught stateを更新する。
 21. 既存の釣り、虫取り、採掘、写真、生態調査、ゲームコーナー等で利用可能な完了hookだけを調査point/arcade coin供給へ接続する。存在しない活動のために新規ミニゲーム、map、UIを作らず、未実装hookは明示的にDEFERする。
+22. Vega本編は一律高level化せず横方向に強化する。一般trainerは元の役割を保って新種を少数・技を合法化し、進行とplaytestに応じて `AI_BASIC` / `AI_SEMI_SMART` を選ぶ。ライバル/幹部/gym/bossは編成、役割、nature、IV/EV、ability、itemと `AI_SEMI_SMART` / `AI_FULL_SMART` を段階選択する。
+23. 初回bossのace基準をAyame 15、Miru 24、Shiou 30〜31、Hisui 39〜40、Ouni 46〜47、Karasuba 52〜53、Rapisura 57〜58、New Island 64〜65、初回四天王69〜78、Ginno 79〜82としてmanifest化する。1 badge後既定ONの全体学習装置を含む連続saveで、中盤以降の一般trainer、boss、NORMAL野生をmap/batch単位で+0〜3調整できるが、補正根拠をreportしglobal scaleは使わない。
+24. Badge 0〜2は低種族値のココガラ/ホシガリス/パモ/グルトン/タマンチュラ/マメバッタ/パピモッチ/ミニーブ/コジオ等を候補とする。パーモットはbadge4以降、ミニーブ高火力技とコジオ系しおづけを中盤まで遅らせ、カイデン/ワンパチ等の高性能な水gym直接counterはShiou後、強力な進化石は対応gym後とする。低種族値の弱い対策枠は許可する。Badge 3〜5は中堅系統、6〜8はpseudo-legend基礎形と追加進化を段階投入する。
+25. Shiou gymは4体中1体だけを草/電気counter枠、Ouni doubleは既存4体のままProtect/Wide Guard/Tailwind/Follow Me/Helping Hand/天候/field連携、New Islandは既存の象徴的5体を維持して新世代1体を第6枠にする。
+26. 初回四天王は各trainerへ地面無効/牽制を1〜2体入れ、Vega/既存主力3〜4体＋新世代1〜2体を基本にする。違法move、回避率item、先制/耐久発動運への過度な依存を禁止し、役割、交代、hazard、weather、合法itemで強化する。
+27. T15の3段階について `region=TOHOKU` の通常/強敵level帯とleagueのteam stage、AI profile、EV/IV、item、最大1 gimmickを生成する。League IはVega主力4〜5＋新世代1〜2、League IIは新世代2〜3を目安にし、全一般trainerを差し替えず523水道、Tohoku Champion Road、島/調査boss、D・H研究員/幹部、dragon trainer、rival等の登録済み地方強豪だけを更新する。Kanto trainerはV2認定章帯とLv68〜100固定方針を維持する。
+28. Sphere遺跡は上層72〜84、深層82〜92を目安にし、一部野生を新世代高種族値系統へ更新してrival/Jakky/Mosugisuのteamを現代化するが一律level増加はしない。既存部屋/warpを使う簡易分岐でKanto League後のParadox/UB/時空eventを追加し、再戦teamだけにgimmickを許可し、既存legend捕獲flagを保持する。深層報酬にはQOL_POLICYを後退させない範囲でmint/patch/cap等を配置する。
+29. NORMAL table profileは元Vega table、1%枠、Vega固有種、EV稼ぎ、Safariの低level導線を保持し、新種は合計4〜12%を上限目安にoverlayする。Tohoku RESEARCHは序盤45〜55、中盤50〜62、旧dungeon56〜68、島/Champion Road64〜76、Sphere上層72〜84/深層82〜92の絶対target bandを正とし、同band内で両立する場合だけ通常+10〜20を目安にする。高IV/hidden ability/egg move/進化形/modern held item/軽微なshiny補正を別tableで生成する。Kantoは既決定Lv68〜100を維持し、RESEARCHは主に品質を上げてLv100を超えない。
+30. MirageはLv100、1周7戦、4周目最高難度を維持し、team/item/AI/rewardを現代化する。相手item rowをbattle-local virtual policyとして生成し、安価=mint/進化道具/ball、中価格=こだわり系/いのちのたま/とつげきチョッキ、高価格=patch/ぎんのおうかん/専用進化道具、一度限り=Mega石/Z crystal/`RAID_BONUS_TIER`追加pool解禁、最高=色違いのおまもり/特殊個体event keyを進行gateする。基本高難度RaidはHOF＋認定章4で自動解禁し、Mirage報酬を必須licenseにしない。reward/record/currencyはFactoryから分離する。
+31. `manifests/tohoku_trainers.csv`、`trainer_ai_profiles.csv`、`trainer_rematches.csv`、`research_encounters.csv` をmanifest validatorへ登録し、header、unique key、symbolic reference、AI profile、level/unlock/gimmick、NORMAL base-table参照を検査する。
+32. 本編中はVega既存持ち物を保護しつつ、新規のいのちのたま/こだわりスカーフ/とつげきチョッキ/Boost Energy等を無制限供給しない。殿堂入り、HOF＋認定章4、Kanto Leagueの追加供給境界をT15へ合わせ、QOL_POLICYですでに早期解禁された育成品を再ロックしない。
+33. 高難度Raidの進行別boss/partner/reward poolを生成し、反復枠へ伝説・幻・一度限りkeyを入れない。Raidは既存mapの `SIMPLE_EVENT` NPC/端末から起動し、新規den map/UI用contentを生成しない。
 
 ## Required outputs
 
 - `manifests/kanto_encounters.csv`
 - `manifests/kanto_trainers.csv`
+- `manifests/tohoku_trainers.csv`
+- `manifests/trainer_ai_profiles.csv`
+- `manifests/trainer_rematches.csv`
+- `manifests/research_encounters.csv`
+- `manifests/raid_encounters.csv`
 - `manifests/kanto_items.csv`
 - `manifests/tohoku_items.csv`
 - `manifests/qol_rewards.csv`
@@ -44,6 +61,7 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 - `manifests/facility_rewards.csv`
 - `manifests/reward_encounters.csv`
 - `reports/generated/kanto_content_audit.md`
+- `reports/generated/trainer_balance_audit.md`
 
 ## Acceptance gates
 
@@ -62,6 +80,12 @@ Populate both Tohoku and Kanto with the expanded roster while preserving Vega en
 - [ ] BP価格と初回入手時期に矛盾がなく、遭遇credit、節目報酬、一度限りkey、反復poolの禁止種をvalidatorが検査する。
 - [ ] ランダム捕獲は施設外の `SIMPLE_EVENT` NPCだけから起動し、専用capture map/UI用contentを生成しない。
 - [ ] 採用した既存ミニゲームhookはexactly-onceでpointを付与し、未採用/未実装hookは架空の供給経路として生成されない。
+- [ ] 本編ace基準、map/batch単位の+0〜3補正、gym個別条件、初回四天王の地面牽制/構成比/合法性をmachine lintでき、全trainer一括level増加が0件である。
+- [ ] 3段階再戦/leagueのlevel、AI、育成、gimmick境界がT15と一致し、未登録一般trainerを強制再戦へ変えない。
+- [ ] NORMALの全既存枠とSafari低level導線が保護され、Tohoku/KantoのRESEARCH target band、品質、上限Lv100、解禁は別tableとして再現できる。
+- [ ] Mirageの7戦×4周、仮想item policy、5段階報酬とFactory分離がmanifestから再現できる。runtimeの全出口隔離はT06/T10/T17が所有する。
+- [ ] 新規trainer/AI/rematch/research manifestのheader、unique key、全symbolic referenceとprogression constraintをvalidatorが検査する。
+- [ ] Tohoku再戦帯がKanto trainer levelを下げず、高難度Raidのpool/reward/repeatability/Dynamax例外がHOF＋認定章4境界と一致する。
 
 ## Finish
 

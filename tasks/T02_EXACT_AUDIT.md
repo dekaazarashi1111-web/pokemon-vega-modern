@@ -20,11 +20,13 @@ Turn the initial binary conflict report into a complete machine-readable compati
 9. Extract the original Vega encounter tables and unlock dependencies needed to prove a non-destructive Tohoku overlay.
 10. シオウの3個目バッジ取得とアーシア島D・Hビル初回攻略完了の実flag/script終端、早期到達可能な港map、NPC表示条件を抽出し、`KANTO_TRAVEL_UNLOCKED` の一回性latch元として分類する。
 11. 早期渡航の境界以外でKanto側が参照または書込みしてはならないVega badge/story/HM/warp/item flagの所有権リストを作る。
-12. ダッシュ、自転車、field/battle文章printerとdelay、経験値分配、item-use、預かり屋/孵化、summary、PC、技思い出し、設定保存のVega実hook・table・制御codeを抽出する。
+12. ダッシュ、自転車、field/battle文章printerとdelay、経験値分配、item-use、預かり屋/孵化、summary、PC、技思い出し、TM消費/再利用、DexNav、CFRU Raid、設定保存のVega実hook・table・制御codeを抽出する。Raidはflag/var/RAM、wild generator、partner、shield/end/catch/reward経路を含む。
 13. 移動高速化で通過し得るtile callback、文章即時化で保持すべき明示wait/効果音/改ページ/選択肢、自動戦闘を禁止すべきbattle種別を分類する。
 14. Factory参照をoracleとして、施設用hook、`FLAG_BATTLE_FACILITY`、flag/var/script special、trainer/map/music ID、BP/連勝record、rental生成、party backup、RAM/save領域、中断・全滅・復元経路を抽出する。
 15. Vegaのミラージュバトルを同じ粒度で監査し、持込party施設とレンタル施設のstate/hook/rewardが衝突せず共存する割当を確定する。
 16. BP、調査point、arcade coin候補について、Vegaのcoin case/残高、既存ミニゲーム完了hook、V2の調査state、上限、表示/減算routineを監査し、再利用・新規割当・DEFERを分類する。
+17. Vegaの一般trainer、ライバル、D・H幹部、8 gym、初回/強化league、主要バトルサーチャー再戦、Sphere遺跡boss、Mirageについて、trainer ID、役割、party、level、技、特性、持ち物、AI flag、報酬、再戦分岐をbaseline化する。
+18. CFRU AIの全hook expected bytes、`gBattleResources->ai`、`BATTLE_HISTORY`、`gNewBS`内外のprediction/cache lifetimeと無効化、global RNG、trainer item、switch、gimmick判断、相手の未公開move/ability/item/控えparty参照、`REALLY_SMART_AI`、global difficulty/level-scale configを監査する。既定knowledge modelは改変せず、実際に参照する情報を根拠付きで記録する。
 
 ## Required outputs
 
@@ -37,6 +39,8 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - `reports/generated/vega_encounter_inventory.csv`
 - `reports/generated/qol_hook_inventory.csv`
 - `reports/generated/facility_audit.md`
+- `reports/generated/vega_trainer_baseline.csv`
+- `reports/generated/trainer_ai_audit.md`
 - `tools/validate/address_assertions.py`
 
 ## Acceptance gates
@@ -50,6 +54,7 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - [ ] QOL実装に必要な全hook、save field、tableと、Vega側のexpected bytesが未分類なく記録される。
 - [ ] Battle Factoryとミラージュバトルの全固定write、RAM/save、ID、script境界が分類され、raw固定値を統合版へ持ち込まない再配置案がある。
 - [ ] 採用候補通貨ごとにsave owner、bit幅、上限、獲得/消費hookが確定し、根拠のない通貨はrelease有効化されない。
+- [ ] 対象trainerの元party/level/AI/rematch/rewardと全AI hook/cache/RNG/knowledge modelが未分類0で記録され、Vega expected bytesをassertできる。
 
 ## Finish
 
