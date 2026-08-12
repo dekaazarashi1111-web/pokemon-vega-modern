@@ -1,27 +1,44 @@
 # current_state.md
 
-最終更新: 未設定
+最終更新: 2026-08-12
 
-## 現在の状態
+## 現在地
 
-- このファイルは、プロジェクトの現在地を短く共有するための入口です。
-- 詳細な作業キューは `design/tasks_next.md` を正本とします。
-- 全体構想や長期計画は `design/PLANS.md` に分けます。
+- マイルストーン: Gate A完了 / 上流再現・完全監査・schema設計へ移行。
+- ユーザー提供の3 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
+- 3 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、統合設計資料を役割別に配置済み。
+- clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
+- 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
+- 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
+- T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
+- ブロッカーなし。
 
-## 現在の優先対象
+## 次の正本タスク
 
-- `design/tasks_next.md` の先頭TODOから進めます。
-- ユーザーから直接依頼がある場合は、その依頼を優先し、必要に応じて `run_log.md` / `version_log.md` に記録します。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T00完了後のREADY候補はT01、T02、T12である。
 
-## 直近の確認先
+次の並列候補:
 
-1. `README.md`
-2. `AGENTS.md`
+- T01: DPE-JP/CFRU-JP上流ビルド再現。
+- T02: ROM/RAM/SaveBlock/IDの完全監査。
+- T12: 記号コンテンツschemaとgenerator。
+
+T11（カントーimporter）はT02完了後に開始する。
+
+## 固定済み方針
+
+- Vega本編を母体とし、Factory UPSは参照専用にする。
+- Vega Move ID 0〜511と既存Species IDを固定する。
+- 追加IDはmanifestから生成する。
+- カントーは殿堂入り後の別名前空間として復活させる。
+- 受領した統合設計CSVはreview状態であり、既知の意味不整合を修正するまで実装正本にしない。
+
+## 再開時の確認先
+
+1. `AGENTS.md`
+2. このファイル
 3. `design/agent_context_map.md`
 4. `design/tasks_next.md`
+5. READYになった `tasks/T*.md`
 
-## 注意事項
-
-- 未確定の仕様や将来案は、すぐに実装へ混ぜず `design/feature_ideas.md` または明示された設計ファイルへ残します。
-- 重要な判断、検証省略、ブロッカーはログへ残します。
-
+入力詳細は `design/import_inventory.md`、資料評価は `design/import_review.md`、採択済み判断は `design/decisions.md` を参照する。

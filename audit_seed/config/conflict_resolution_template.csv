@@ -1,0 +1,270 @@
+﻿id,file_offset_start,file_offset_end_inclusive,gba_address_start,gba_address_end_inclusive,length,area,severity,vega_ips_output_hex,factory_ups_xor_hex,resolution,note
+1,0x00000148,0x0000014A,0x08000148,0x0800014A,3,header/pointer-vector,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+2,0x000001CC,0x000001CE,0x080001CC,0x080001CE,3,header/pointer-vector,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+3,0x0000DDB0,0x0000DDB2,0x0800DDB0,0x0800DDB2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+4,0x0001211C,0x0001211E,0x0801211C,0x0801211E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+5,0x000123F4,0x000123F6,0x080123F4,0x080123F6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+6,0x00014880,0x00014882,0x08014880,0x08014882,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+7,0x000157D0,0x000157D2,0x080157D0,0x080157D2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+8,0x00015904,0x00015906,0x08015904,0x08015906,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+9,0x00015A4C,0x00015A4E,0x08015A4C,0x08015A4E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+10,0x00015B78,0x00015B7E,0x08015B78,0x08015B7E,7,core-engine/hook-area,critical,D065E108B0CBE0,9C581801BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+11,0x00016EE8,0x00016EEA,0x08016EE8,0x08016EEA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+12,0x000171A0,0x000171A2,0x080171A0,0x080171A2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+13,0x00018D54,0x00018D56,0x08018D54,0x08018D56,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+14,0x00018FB4,0x00018FB6,0x08018FB4,0x08018FB6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+15,0x00019400,0x00019402,0x08019400,0x08019402,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+16,0x000198E0,0x000198E2,0x080198E0,0x080198E2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+17,0x00019EF8,0x00019EFA,0x08019EF8,0x08019EFA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+18,0x00019F50,0x00019F52,0x08019F50,0x08019F52,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+19,0x0001A250,0x0001A252,0x0801A250,0x0801A252,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+20,0x0001A31C,0x0001A31E,0x0801A31C,0x0801A31E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+21,0x0001A410,0x0001A412,0x0801A410,0x0801A412,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+22,0x0001A4EC,0x0001A4EE,0x0801A4EC,0x0801A4EE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+23,0x0001A5C8,0x0001A5CA,0x0801A5C8,0x0801A5CA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+24,0x0001A69C,0x0001A69E,0x0801A69C,0x0801A69E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+25,0x0001A808,0x0001A80A,0x0801A808,0x0801A80A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+26,0x0001C710,0x0001C712,0x0801C710,0x0801C712,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+27,0x0001C8A8,0x0001C8AA,0x0801C8A8,0x0801C8AA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+28,0x0001CAAC,0x0001CAAE,0x0801CAAC,0x0801CAAE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+29,0x0001D144,0x0001D146,0x0801D144,0x0801D146,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+30,0x0001D1E0,0x0001D1E2,0x0801D1E0,0x0801D1E2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+31,0x0001D2A0,0x0001D2A2,0x0801D2A0,0x0801D2A2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+32,0x0001D400,0x0001D402,0x0801D400,0x0801D402,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+33,0x0001D47C,0x0001D47E,0x0801D47C,0x0801D47E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+34,0x0001D5C4,0x0001D5C6,0x0801D5C4,0x0801D5C6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+35,0x0001D678,0x0001D67A,0x0801D678,0x0801D67A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+36,0x0001D798,0x0001D79A,0x0801D798,0x0801D79A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+37,0x0001D910,0x0001D912,0x0801D910,0x0801D912,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+38,0x0001D9B8,0x0001D9BA,0x0801D9B8,0x0801D9BA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+39,0x0001DA98,0x0001DA9A,0x0801DA98,0x0801DA9A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+40,0x0001DCE8,0x0001DCEA,0x0801DCE8,0x0801DCEA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+41,0x0001DE90,0x0001DE92,0x0801DE90,0x0801DE92,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+42,0x0001DF78,0x0001DF7A,0x0801DF78,0x0801DF7A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+43,0x0001E000,0x0001E002,0x0801E000,0x0801E002,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+44,0x0001E040,0x0001E042,0x0801E040,0x0801E042,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+45,0x0001E120,0x0001E122,0x0801E120,0x0801E122,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+46,0x0001E2AC,0x0001E2AE,0x0801E2AC,0x0801E2AE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+47,0x0001E30C,0x0001E30E,0x0801E30C,0x0801E30E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+48,0x0001E540,0x0001E542,0x0801E540,0x0801E542,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+49,0x0001E5C4,0x0001E5C6,0x0801E5C4,0x0801E5C6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+50,0x0001E5F4,0x0001E5F6,0x0801E5F4,0x0801E5F6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+51,0x0001E6A4,0x0001E6A6,0x0801E6A4,0x0801E6A6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+52,0x0001E7D8,0x0001E7DA,0x0801E7D8,0x0801E7DA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+53,0x0001E840,0x0001E842,0x0801E840,0x0801E842,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+54,0x0001E8D4,0x0001E8D6,0x0801E8D4,0x0801E8D6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+55,0x0001EA68,0x0001EA6A,0x0801EA68,0x0801EA6A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+56,0x0001ED4C,0x0001ED4E,0x0801ED4C,0x0801ED4E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+57,0x0001EF60,0x0001EF62,0x0801EF60,0x0801EF62,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+58,0x00020968,0x0002096A,0x08020968,0x0802096A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+59,0x000209A0,0x000209A2,0x080209A0,0x080209A2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+60,0x00022B28,0x00022B2A,0x08022B28,0x08022B2A,3,core-engine/hook-area,critical,D065E1,9C5818,PORT,
+61,0x00022B4C,0x00022B4E,0x08022B4C,0x08022B4E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+62,0x00022C90,0x00022C92,0x08022C90,0x08022C92,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+63,0x0002313C,0x0002313E,0x0802313C,0x0802313E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+64,0x00023314,0x00023316,0x08023314,0x08023316,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+65,0x00023420,0x00023422,0x08023420,0x08023422,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+66,0x0002349C,0x0002349E,0x0802349C,0x0802349E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+67,0x0002366C,0x0002366E,0x0802366C,0x0802366E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+68,0x000238C4,0x000238C6,0x080238C4,0x080238C6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+69,0x000254E0,0x000254E6,0x080254E0,0x080254E6,7,core-engine/hook-area,critical,D065E108B0CBE0,9C581801BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+70,0x000258E8,0x000258EA,0x080258E8,0x080258EA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+71,0x00026828,0x0002682A,0x08026828,0x0802682A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+72,0x00026C40,0x00026C46,0x08026C40,0x08026C46,7,core-engine/hook-area,critical,D065E108B0CBE0,9C581801BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+73,0x00027E78,0x00027E7A,0x08027E78,0x08027E7A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+74,0x00027F1C,0x00027F1E,0x08027F1C,0x08027F1E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+75,0x00028244,0x00028246,0x08028244,0x08028246,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+76,0x00028324,0x00028326,0x08028324,0x08028326,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+77,0x00028C0C,0x00028C0E,0x08028C0C,0x08028C0E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+78,0x00028E84,0x00028E86,0x08028E84,0x08028E86,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+79,0x00028FC8,0x00028FCE,0x08028FC8,0x08028FCE,7,core-engine/hook-area,critical,D065E108B0CBE0,9C581801BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+80,0x00029958,0x0002995A,0x08029958,0x0802995A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+81,0x000299C8,0x000299CA,0x080299C8,0x080299CA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+82,0x00029A54,0x00029A56,0x08029A54,0x08029A56,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+83,0x0002A4D8,0x0002A4DA,0x0802A4D8,0x0802A4DA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+84,0x0002A5F0,0x0002A5F2,0x0802A5F0,0x0802A5F2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+85,0x0002A628,0x0002A62A,0x0802A628,0x0802A62A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+86,0x0002B298,0x0002B29A,0x0802B298,0x0802B29A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+87,0x0002B658,0x0002B65E,0x0802B658,0x0802B65E,7,core-engine/hook-area,critical,D065E108B0CBE0,9C581801BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+88,0x0002BE98,0x0002BE9A,0x0802BE98,0x0802BE9A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+89,0x0002C7EC,0x0002C7EE,0x0802C7EC,0x0802C7EE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+90,0x0002E090,0x0002E092,0x0802E090,0x0802E092,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+91,0x0002E1D0,0x0002E1D2,0x0802E1D0,0x0802E1D2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+92,0x0002E278,0x0002E27A,0x0802E278,0x0802E27A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+93,0x00030020,0x00030022,0x08030020,0x08030022,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+94,0x0003012C,0x0003012E,0x0803012C,0x0803012E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+95,0x000332B4,0x000332B6,0x080332B4,0x080332B6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+96,0x00037DDC,0x00037DDE,0x08037DDC,0x08037DDE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+97,0x00037E28,0x00037E2A,0x08037E28,0x08037E2A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+98,0x00038B88,0x00038B8A,0x08038B88,0x08038B8A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+99,0x00038BD4,0x00038BD6,0x08038BD4,0x08038BD6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+100,0x00038D98,0x00038D9A,0x08038D98,0x08038D9A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+101,0x00039030,0x00039032,0x08039030,0x08039032,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+102,0x00039900,0x00039902,0x08039900,0x08039902,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+103,0x0003E0B8,0x0003E0BA,0x0803E0B8,0x0803E0BA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+104,0x0003E13C,0x0003E13E,0x0803E13C,0x0803E13E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+105,0x0003E3A8,0x0003E3AA,0x0803E3A8,0x0803E3AA,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+106,0x0003E454,0x0003E457,0x0803E454,0x0803E457,4,core-engine/hook-area,critical,B0CBE008,BC683001,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+107,0x0003E4A8,0x0003E4AB,0x0803E4A8,0x0803E4AB,4,core-engine/hook-area,critical,03800849,BC683001,PORT,
+108,0x0003E4CC,0x0003E4CE,0x0803E4CC,0x0803E4CE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+109,0x0003E9C0,0x0003E9C2,0x0803E9C0,0x0803E9C2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+110,0x0003EB20,0x0003EB22,0x0803EB20,0x0803EB22,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+111,0x0003EC7C,0x0003EC7F,0x0803EC7C,0x0803EC7F,4,core-engine/hook-area,critical,B0CBE008,BC683001,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+112,0x0004074C,0x0004074E,0x0804074C,0x0804074E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+113,0x00045214,0x00045216,0x08045214,0x08045216,3,core-engine/hook-area,critical,30668B,C03C81,PORT,0x088B6630: Vega egg-move table target; seen at DPE-JP gEggMoves repoint site 0x08045214; Exact DPE-JP gEggMoves repoint site: 0x08045214
+114,0x0004526A,0x0004526A,0x0804526A,0x0804526A,1,core-engine/hook-area,critical,31,3B,PORT,
+115,0x0004528C,0x0004528E,0x0804528C,0x0804528E,3,core-engine/hook-area,critical,30668B,C03C81,PORT,0x088B6630: Vega egg-move table target; seen at DPE-JP gEggMoves repoint site 0x08045214
+116,0x0004E7B4,0x0004E7B6,0x0804E7B4,0x0804E7B6,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+117,0x0006B680,0x0006B682,0x0806B680,0x0806B682,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+118,0x00071D75,0x00071D76,0x08071D75,0x08071D76,2,core-engine/hook-area,critical,5BE1,151A,PORT,
+119,0x0009AF14,0x0009AF16,0x0809AF14,0x0809AF16,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+120,0x000BEAEC,0x000BEAEE,0x080BEAEC,0x080BEAEE,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+121,0x000C0C74,0x000C0C76,0x080C0C74,0x080C0C76,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+122,0x000C8F6C,0x000C8F6E,0x080C8F6C,0x080C8F6E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+123,0x000C8FDC,0x000C8FDE,0x080C8FDC,0x080C8FDE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+124,0x000C9110,0x000C9112,0x080C9110,0x080C9112,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+125,0x000C9138,0x000C913A,0x080C9138,0x080C913A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+126,0x000C9288,0x000C928A,0x080C9288,0x080C928A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+127,0x000C95F0,0x000C95F2,0x080C95F0,0x080C95F2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+128,0x000C9B00,0x000C9B02,0x080C9B00,0x080C9B02,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+129,0x000C9B4C,0x000C9B4E,0x080C9B4C,0x080C9B4E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+130,0x000C9DB0,0x000C9DB2,0x080C9DB0,0x080C9DB2,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+131,0x000C9E98,0x000C9E9A,0x080C9E98,0x080C9E9A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+132,0x000CA108,0x000CA10A,0x080CA108,0x080CA10A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+133,0x000CA180,0x000CA182,0x080CA180,0x080CA182,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+134,0x000CA20C,0x000CA20E,0x080CA20C,0x080CA20E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+135,0x000CA260,0x000CA262,0x080CA260,0x080CA262,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+136,0x000CA638,0x000CA63A,0x080CA638,0x080CA63A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+137,0x000CA664,0x000CA666,0x080CA664,0x080CA666,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+138,0x000CA690,0x000CA692,0x080CA690,0x080CA692,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+139,0x000CDA88,0x000CDA8A,0x080CDA88,0x080CDA8A,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+140,0x000D86F0,0x000D86F2,0x080D86F0,0x080D86F2,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+141,0x000D8EF0,0x000D8EF2,0x080D8EF0,0x080D8EF2,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+142,0x000D9554,0x000D9556,0x080D9554,0x080D9556,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+143,0x000E5E1C,0x000E5E1E,0x080E5E1C,0x080E5E1E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+144,0x000E61A8,0x000E61AA,0x080E61A8,0x080E61AA,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+145,0x000E6330,0x000E6332,0x080E6330,0x080E6332,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+146,0x000E637C,0x000E637E,0x080E637C,0x080E637E,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+147,0x000E63EC,0x000E63F2,0x080E63EC,0x080E63F2,7,core-engine/hook-area,critical,B0CBE008B0E3E0,BC683001B89641,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes; 0x08E0E3B0: Vega table immediately following the 512-entry move data table
+148,0x0010E48C,0x0010E48E,0x0810E48C,0x0810E48E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+149,0x00114C10,0x00114C12,0x08114C10,0x08114C12,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+150,0x0011CDE4,0x0011CDE6,0x0811CDE4,0x0811CDE6,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+151,0x0011CF1C,0x0011CF1E,0x0811CF1C,0x0811CF1E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+152,0x0012601C,0x0012601E,0x0812601C,0x0812601E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+153,0x001262A4,0x001262A6,0x081262A4,0x081262A6,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+154,0x00126378,0x0012637A,0x08126378,0x0812637A,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+155,0x00126530,0x00126532,0x08126530,0x08126532,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+156,0x00126628,0x0012662A,0x08126628,0x0812662A,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+157,0x00126940,0x00126942,0x08126940,0x08126942,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+158,0x001269B4,0x001269B6,0x081269B4,0x081269B6,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+159,0x00126A70,0x00126A72,0x08126A70,0x08126A72,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+160,0x00126B40,0x00126B42,0x08126B40,0x08126B42,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+161,0x00126BC0,0x00126BC2,0x08126BC0,0x08126BC2,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+162,0x00127130,0x00127132,0x08127130,0x08127132,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+163,0x001271BC,0x001271BE,0x081271BC,0x081271BE,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+164,0x0012779C,0x0012779E,0x0812779C,0x0812779E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+165,0x00132608,0x0013260A,0x08132608,0x0813260A,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+166,0x00133CC4,0x00133CC6,0x08133CC4,0x08133CC6,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+167,0x00133D14,0x00133D16,0x08133D14,0x08133D16,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+168,0x00133D98,0x00133D9A,0x08133D98,0x08133D9A,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+169,0x00133EDC,0x00133EDE,0x08133EDC,0x08133EDE,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+170,0x00134064,0x00134066,0x08134064,0x08134066,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+171,0x00137130,0x00137132,0x08137130,0x08137132,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+172,0x0013713C,0x0013713E,0x0813713C,0x0813713E,3,core-engine/hook-area,critical,B0BBE0,8CC62E,PORT,0x08E0BBB0: Vega move-name table; 0x1000 bytes to 0x08E0CBB0 = 512 entries x 8 bytes
+173,0x00137244,0x00137246,0x08137244,0x08137246,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+174,0x00137290,0x00137292,0x08137290,0x08137292,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+175,0x00137B54,0x00137B56,0x08137B54,0x08137B56,3,core-engine/hook-area,critical,B0CBE0,BC6830,PORT,0x08E0CBB0: Vega move data table; 0x1800 bytes to 0x08E0E3B0 = 512 entries x 12 bytes
+176,0x001383A4,0x001383A6,0x081383A4,0x081383A6,3,core-engine/hook-area,critical,B0E3E0,B89641,PORT,0x08E0E3B0: Vega table immediately following the 512-entry move data table
+177,0x001C1085,0x001C1085,0x081C1085,0x081C1085,1,core-engine/hook-area,critical,CC,09,PORT,
+178,0x003C4200,0x003C4202,0x083C4200,0x083C4202,3,shared-table/data-area,high,906869,FCDC32,PORT,0x08696890: Vega custom script/data target; exact subsystem unresolved
+179,0x003C490C,0x003C490C,0x083C490C,0x083C490C,1,shared-table/data-area,high,FF,0E,PORT,
+180,0x003C490E,0x003C490E,0x083C490E,0x083C490E,1,shared-table/data-area,high,FF,46,PORT,
+181,0x003C4910,0x003C4910,0x083C4910,0x083C4910,1,shared-table/data-area,high,00,4A,PORT,
+182,0x003C4912,0x003C4912,0x083C4912,0x083C4912,1,shared-table/data-area,high,27,6A,PORT,
+183,0x003C4914,0x003C4914,0x083C4914,0x083C4914,1,shared-table/data-area,high,71,6B,PORT,
+184,0x003C4916,0x003C4916,0x083C4916,0x083C4916,1,shared-table/data-area,high,C0,6C,PORT,
+185,0x003C4918,0x003C4918,0x083C4918,0x083C4918,1,shared-table/data-area,high,02,6E,PORT,
+186,0x003C491A,0x003C491A,0x083C491A,0x083C491A,1,shared-table/data-area,high,AD,6F,PORT,
+187,0x003C491C,0x003C491C,0x083C491C,0x083C491C,1,shared-table/data-area,high,0B,79,PORT,
+188,0x003C491E,0x003C491E,0x083C491E,0x083C491E,1,shared-table/data-area,high,05,7B,PORT,
+189,0x003C4920,0x003C4920,0x083C4920,0x083C4920,1,shared-table/data-area,high,00,7D,PORT,
+190,0x003C4922,0x003C4922,0x083C4922,0x083C4922,1,shared-table/data-area,high,00,94,PORT,
+191,0x003C4924,0x003C4924,0x083C4924,0x083C4924,1,shared-table/data-area,high,00,96,PORT,
+192,0x003C4926,0x003C4926,0x083C4926,0x083C4926,1,shared-table/data-area,high,05,97,PORT,
+193,0x003C4928,0x003C4928,0x083C4928,0x083C4928,1,shared-table/data-area,high,94,9B,PORT,
+194,0x003C492A,0x003C492A,0x083C492A,0x083C492A,1,shared-table/data-area,high,3A,9C,PORT,
+195,0x003C492C,0x003C492C,0x083C492C,0x083C492C,1,shared-table/data-area,high,02,9F,PORT,
+196,0x003C492E,0x003C492E,0x083C492E,0x083C492E,1,shared-table/data-area,high,00,A4,PORT,
+197,0x003C4930,0x003C4930,0x083C4930,0x083C4930,1,shared-table/data-area,high,19,AA,PORT,
+198,0x003C4932,0x003C4932,0x083C4932,0x083C4932,1,shared-table/data-area,high,00,AD,PORT,
+199,0x003C4934,0x003C4934,0x083C4934,0x083C4934,1,shared-table/data-area,high,05,B6,PORT,
+200,0x003C4936,0x003C4936,0x083C4936,0x083C4936,1,shared-table/data-area,high,02,BF,PORT,
+201,0x003C4938,0x003C4938,0x083C4938,0x083C4938,1,shared-table/data-area,high,94,CB,PORT,
+202,0x003C493A,0x003C493A,0x083C493A,0x083C493A,1,shared-table/data-area,high,3A,CD,PORT,
+203,0x003C493C,0x003C493C,0x083C493C,0x083C493C,1,shared-table/data-area,high,02,CF,PORT,
+204,0x003C493E,0x003C493E,0x083C493E,0x083C493E,1,shared-table/data-area,high,01,D6,PORT,
+205,0x003C4940,0x003C4940,0x083C4940,0x083C4940,1,shared-table/data-area,high,05,ED,PORT,
+206,0x003C4942,0x003C4942,0x083C4942,0x083C4942,1,shared-table/data-area,high,D9,F4,PORT,
+207,0x003C4944,0x003C4944,0x083C4944,0x083C4944,1,shared-table/data-area,high,09,F5,PORT,
+208,0x003C4946,0x003C495F,0x083C4946,0x083C495F,26,shared-table/data-area,high,0205000002000000040001000301840908020501000500000006,0A010F01120113011A01250136013C01400149014A014E015401,PORT,
+209,0x003C4962,0x003C4962,0x083C4962,0x083C4962,1,shared-table/data-area,high,00,64,PORT,
+210,0x003C4964,0x003C4964,0x083C4964,0x083C4964,1,shared-table/data-area,high,94,69,PORT,
+211,0x003C4966,0x003C4966,0x083C4966,0x083C4966,1,shared-table/data-area,high,3A,75,PORT,
+212,0x003C4968,0x003C4968,0x083C4968,0x083C4968,1,shared-table/data-area,high,02,85,PORT,
+213,0x003C496A,0x003C496A,0x083C496A,0x083C496A,1,shared-table/data-area,high,02,AF,PORT,
+214,0x003C496C,0x003C496F,0x083C496C,0x083C496F,4,shared-table/data-area,high,02DCF13A,0D015301,PORT,
+215,0x003C4972,0x003C4972,0x083C4972,0x083C4972,1,shared-table/data-area,high,04,60,PORT,
+216,0x003C4974,0x003C4974,0x083C4974,0x083C4974,1,shared-table/data-area,high,00,61,PORT,
+217,0x003C4976,0x003C4976,0x083C4976,0x083C4976,1,shared-table/data-area,high,00,66,PORT,
+218,0x003C4978,0x003C4978,0x083C4978,0x083C4978,1,shared-table/data-area,high,00,68,PORT,
+219,0x003C497A,0x003C497A,0x083C497A,0x083C497A,1,shared-table/data-area,high,00,8C,PORT,
+220,0x003C497C,0x003C497C,0x083C497C,0x083C497C,1,shared-table/data-area,high,74,90,PORT,
+221,0x003C497E,0x003C497E,0x083C497E,0x083C497E,1,shared-table/data-area,high,3F,A5,PORT,
+222,0x003C4980,0x003C4980,0x083C4980,0x083C4980,1,shared-table/data-area,high,08,B8,PORT,
+223,0x003C4982,0x003C4995,0x083C4982,0x083C4995,20,shared-table/data-area,high,FFFFFFFFFFFFFFFFFFFFFFFFFFFF00ED27140217,0C0111011801190129012A012C0139015A015B01,PORT,
+224,0x003C4998,0x003C4998,0x083C4998,0x083C4998,1,shared-table/data-area,high,19,01,PORT,
+225,0x003C499A,0x003C499A,0x083C499A,0x083C499A,1,shared-table/data-area,high,00,0A,PORT,
+226,0x003C499C,0x003C499C,0x083C499C,0x083C499C,1,shared-table/data-area,high,02,0B,PORT,
+227,0x003C499E,0x003C499E,0x083C499E,0x083C499E,1,shared-table/data-area,high,EB,11,PORT,
+228,0x003C49A0,0x003C49A0,0x083C49A0,0x083C49A0,1,shared-table/data-area,high,08,13,PORT,
+229,0x003C49A2,0x003C49A2,0x083C49A2,0x083C49A2,1,shared-table/data-area,high,00,14,PORT,
+230,0x003C49A4,0x003C49A4,0x083C49A4,0x083C49A4,1,shared-table/data-area,high,25,15,PORT,
+231,0x003C49A6,0x003C49A6,0x083C49A6,0x083C49A6,1,shared-table/data-area,high,09,1E,PORT,
+232,0x003C49A8,0x003C49A8,0x083C49A8,0x083C49A8,1,shared-table/data-area,high,02,23,PORT,
+233,0x003C49AA,0x003C49AA,0x083C49AA,0x083C49AA,1,shared-table/data-area,high,01,25,PORT,
+234,0x003C49AC,0x003C49AC,0x083C49AC,0x083C49AC,1,shared-table/data-area,high,02,27,PORT,
+235,0x003C49AE,0x003C49AE,0x083C49AE,0x083C49AE,1,shared-table/data-area,high,00,2B,PORT,
+236,0x003C49B0,0x003C49B0,0x083C49B0,0x083C49B0,1,shared-table/data-area,high,0E,2C,PORT,
+237,0x003C49B2,0x003C49B2,0x083C49B2,0x083C49B2,1,shared-table/data-area,high,01,2D,PORT,
+238,0x003C49B4,0x003C49B4,0x083C49B4,0x083C49B4,1,shared-table/data-area,high,05,2E,PORT,
+239,0x003C49B6,0x003C49B6,0x083C49B6,0x083C49B6,1,shared-table/data-area,high,03,2F,PORT,
+240,0x003C49B8,0x003C49B8,0x083C49B8,0x083C49B8,1,shared-table/data-area,high,17,40,PORT,
+241,0x003C49BA,0x003C49BA,0x083C49BA,0x083C49BA,1,shared-table/data-area,high,FF,47,PORT,
+242,0x003C49BC,0x003C49BC,0x083C49BC,0x083C49BC,1,shared-table/data-area,high,FF,51,PORT,
+243,0x003C49BE,0x003C49BE,0x083C49BE,0x083C49BE,1,shared-table/data-area,high,FF,59,PORT,
+244,0x003C49C0,0x003C49C0,0x083C49C0,0x083C49C0,1,shared-table/data-area,high,00,5A,PORT,
+245,0x003C49C2,0x003C49C2,0x083C49C2,0x083C49C2,1,shared-table/data-area,high,27,5B,PORT,
+246,0x003C49C4,0x003C49C4,0x083C49C4,0x083C49C4,1,shared-table/data-area,high,71,5C,PORT,
+247,0x003C49C6,0x003C49C6,0x083C49C6,0x083C49C6,1,shared-table/data-area,high,C0,67,PORT,
+248,0x003C49C8,0x003C49C8,0x083C49C8,0x083C49C8,1,shared-table/data-area,high,02,76,PORT,
+249,0x003C49CA,0x003C49CA,0x083C49CA,0x083C49CA,1,shared-table/data-area,high,AD,7A,PORT,
+250,0x003C49CC,0x003C49CC,0x083C49CC,0x083C49CC,1,shared-table/data-area,high,0B,80,PORT,
+251,0x003C49CE,0x003C49CE,0x083C49CE,0x083C49CE,1,shared-table/data-area,high,05,84,PORT,
+252,0x003C49D0,0x003C49D0,0x083C49D0,0x083C49D0,1,shared-table/data-area,high,00,8B,PORT,
+253,0x003C49D2,0x003C49D2,0x083C49D2,0x083C49D2,1,shared-table/data-area,high,00,91,PORT,
+254,0x003C49D4,0x003C49D4,0x083C49D4,0x083C49D4,1,shared-table/data-area,high,00,A3,PORT,
+255,0x003C49D6,0x003C49D6,0x083C49D6,0x083C49D6,1,shared-table/data-area,high,05,A9,PORT,
+256,0x003C49D8,0x003C49D8,0x083C49D8,0x083C49D8,1,shared-table/data-area,high,B9,AB,PORT,
+257,0x003C49DA,0x003C49DA,0x083C49DA,0x083C49DA,1,shared-table/data-area,high,C0,AE,PORT,
+258,0x003C49DC,0x003C49DC,0x083C49DC,0x083C49DC,1,shared-table/data-area,high,21,C1,PORT,
+259,0x003C49DE,0x003C49DE,0x083C49DE,0x083C49DE,1,shared-table/data-area,high,0B,CC,PORT,
+260,0x003C49E0,0x003C49E0,0x083C49E0,0x083C49E0,1,shared-table/data-area,high,02,D5,PORT,
+261,0x003C49E2,0x003C49E2,0x083C49E2,0x083C49E2,1,shared-table/data-area,high,05,F9,PORT,
+262,0x003C49E4,0x003C49E4,0x083C49E4,0x083C49E4,1,shared-table/data-area,high,FF,FD,PORT,
+263,0x003C49E6,0x003C49E6,0x083C49E6,0x083C49E6,1,shared-table/data-area,high,FF,FF,PORT,
+264,0x003C49E9,0x003C49F5,0x083C49E9,0x083C49F5,13,shared-table/data-area,high,FFFFFFFFFFFFFFFFFFFFFFFFFF,010301040110011B0141015701,PORT,
+265,0x0042B714,0x0042B717,0x0842B714,0x0842B717,4,shared-table/data-area,high,00012412,5E0B7235,PORT,
+266,0x006C7D40,0x006C7D63,0x086C7D40,0x086C7D63,36,occupied-storage/free-space-area,high,020000000000000003230000010000000000000003240000040000000000000003130000,FFF8FFFFFFFFFFFFFFFFFFF7FFFFFFFFFEFFFFFFC78293F7AF8293F7AF8293F7AF8293F7,RELOCATE,
+267,0x006C7D90,0x006C7D93,0x086C7D90,0x086C7D93,4,occupied-storage/free-space-area,high,00000000,699B8693,RELOCATE,
+268,0x006C7DB8,0x006C7DC3,0x086C7DB8,0x086C7DC3,12,occupied-storage/free-space-area,high,040000000000000000000000,F5FFFDFFFFF7FFFFFFFFFFFF,RELOCATE,
+269,0x00777770,0x00777781,0x08777770,0x08777781,18,occupied-storage/free-space-area,high,292CFB5165601A00012E3F2E1500140A2B16,D6E7F6D6E1F6D6D0F7D5F7F6BBBBFFEBFFFD,RELOCATE,

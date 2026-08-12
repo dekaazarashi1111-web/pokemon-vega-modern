@@ -1,0 +1,43 @@
+[project]
+name = "vega-modern-kanto"
+rom_size = 33554432
+build_dir = "build"
+
+[inputs]
+clean_rom = "inputs/private/FireRed_JPN_Rev0_clean.gba"
+vega_ips = "inputs/private/Vega_20180223.ips"
+factory_ups = "inputs/private/factory_test_20260524.ups"
+audit_zip = "inputs/reference/vega_cfru_integration_audit.zip"
+
+[expected]
+clean_size = 16777216
+clean_crc32 = "3b2056e9"
+clean_md5 = "47596db5a16556c60027e7bf372ec917"
+clean_sha1 = "04139887b6cd8f53269aca098295b006ddba6cfe"
+clean_sha256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+vega_ips_sha256 = "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b"
+factory_ups_sha256 = "46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358"
+vega_output_size = 16777216
+vega_output_crc32 = "42a73e62"
+vega_output_sha256 = "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5"
+factory_output_size = 33554432
+factory_output_crc32 = "216ab7fd"
+factory_output_sha256 = "570ac486f0e66563ee23278ff7ee34dd8dfeed11cbf37ab924d13eb2c62c0da5"
+
+[sources.cfru]
+repo = "https://github.com/kapibarasan000/CFRU-JP.git"
+commit = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+archive = "inputs/source_archives/CFRU-JP.zip"
+dest = "vendor/upstream/CFRU-JP"
+
+[sources.dpe]
+repo = "https://github.com/kapibarasan000/DPE-JP.git"
+commit = "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e"
+archive = "inputs/source_archives/DPE-JP.zip"
+dest = "vendor/upstream/DPE-JP"
+
+[sources.pokefirered]
+repo = "https://github.com/pret/pokefirered.git"
+commit = "c75f352304d529f6ba92d4f74b9cf8b5c3810788"
+archive = "inputs/source_archives/pokefirered.zip"
+dest = "vendor/upstream/pokefirered"

@@ -1,0 +1,890 @@
+{
+  "created": "2026-08-12",
+  "title": "VEGA × CFRU-JP/DPE-JP 統合設計",
+  "package_status": "design_only_not_playable_patch",
+  "source_baselines": [
+    {
+      "repo": "kapibarasan000/DPE-JP",
+      "commit": "520937c0959e2a1be57771d1dfee9f6fee806c7e",
+      "provenance": "public reproducible baseline; exact UPS provenance unproven"
+    },
+    {
+      "repo": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "provenance": "public reproducible baseline; exact UPS provenance unproven"
+    }
+  ],
+  "input_patches": [
+    {
+      "name": "factory_test_20260524(2).ups",
+      "size": 16012506,
+      "sha256": "46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358",
+      "ups_source_crc32": "3b2056e9",
+      "ups_target_crc32": "216ab7fd"
+    },
+    {
+      "name": "18年2月23日完成版ベガ(2).ips",
+      "size": 3720110,
+      "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b"
+    }
+  ],
+  "data_counts": {
+    "vega_dex_slots": 386,
+    "vega_official_species": 205,
+    "vega_original_species": 181,
+    "national_species": 1025,
+    "new_official_species": 820,
+    "evolution_chains": 541,
+    "evolution_rules": 553,
+    "alternate_form_policies": 509,
+    "dpe_helper_ids": 9,
+    "special_events": 125,
+    "item_acquisition_rows": 255,
+    "species_id_template_rows": 1206
+  },
+  "patch_analysis": {
+    "factory_ups": {
+      "source_size": 16777216,
+      "target_size": 33554432,
+      "source_crc32": "3b2056e9",
+      "target_crc32": "216ab7fd",
+      "patch_crc32": "26e078c8",
+      "patch_crc_valid": true,
+      "segment_count": 664194,
+      "xor_nonzero_bytes": 14680526,
+      "file_size": 16012506
+    },
+    "vega_ips": {
+      "records": 20195,
+      "payload_bytes": 3782136,
+      "max_end": 16656572,
+      "file_size": 3720110,
+      "truncate_size": null
+    },
+    "first_16mib": {
+      "vega_unique_changed_bytes": 3782136,
+      "factory_unique_changed_bytes": 13187,
+      "overlap_changed_bytes": 775,
+      "union_changed_bytes": 3794548,
+      "overlap_ratio_of_factory": 0.05877000075832259,
+      "overlap_ratio_of_vega": 0.0002049106642384092,
+      "overlap_run_count": 269,
+      "largest_overlap_run": 36
+    },
+    "factory_expanded_half": {
+      "segment_count": 661509,
+      "xor_nonzero_bytes": 14667339,
+      "first_segment_hex": "0x01000000",
+      "last_segment_end_hex": "0x02000000"
+    },
+    "banks": [
+      {
+        "bank": "00",
+        "start_hex": "0x00000000",
+        "end_hex": "0x000FFFFF",
+        "vega_changed": 1508,
+        "factory_changed": 7437,
+        "overlap": 465
+      },
+      {
+        "bank": "01",
+        "start_hex": "0x00100000",
+        "end_hex": "0x001FFFFF",
+        "vega_changed": 38936,
+        "factory_changed": 3036,
+        "overlap": 88
+      },
+      {
+        "bank": "02",
+        "start_hex": "0x00200000",
+        "end_hex": "0x002FFFFF",
+        "vega_changed": 361333,
+        "factory_changed": 145,
+        "overlap": 0
+      },
+      {
+        "bank": "03",
+        "start_hex": "0x00300000",
+        "end_hex": "0x003FFFFF",
+        "vega_changed": 158666,
+        "factory_changed": 1046,
+        "overlap": 148
+      },
+      {
+        "bank": "04",
+        "start_hex": "0x00400000",
+        "end_hex": "0x004FFFFF",
+        "vega_changed": 64894,
+        "factory_changed": 67,
+        "overlap": 4
+      },
+      {
+        "bank": "05",
+        "start_hex": "0x00500000",
+        "end_hex": "0x005FFFFF",
+        "vega_changed": 0,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "06",
+        "start_hex": "0x00600000",
+        "end_hex": "0x006FFFFF",
+        "vega_changed": 382692,
+        "factory_changed": 120,
+        "overlap": 52
+      },
+      {
+        "bank": "07",
+        "start_hex": "0x00700000",
+        "end_hex": "0x007FFFFF",
+        "vega_changed": 1042398,
+        "factory_changed": 18,
+        "overlap": 18
+      },
+      {
+        "bank": "08",
+        "start_hex": "0x00800000",
+        "end_hex": "0x008FFFFF",
+        "vega_changed": 911827,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "09",
+        "start_hex": "0x00900000",
+        "end_hex": "0x009FFFFF",
+        "vega_changed": 0,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "0A",
+        "start_hex": "0x00A00000",
+        "end_hex": "0x00AFFFFF",
+        "vega_changed": 0,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "0B",
+        "start_hex": "0x00B00000",
+        "end_hex": "0x00BFFFFF",
+        "vega_changed": 0,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "0C",
+        "start_hex": "0x00C00000",
+        "end_hex": "0x00CFFFFF",
+        "vega_changed": 157160,
+        "factory_changed": 1318,
+        "overlap": 0
+      },
+      {
+        "bank": "0D",
+        "start_hex": "0x00D00000",
+        "end_hex": "0x00DFFFFF",
+        "vega_changed": 499642,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "0E",
+        "start_hex": "0x00E00000",
+        "end_hex": "0x00EFFFFF",
+        "vega_changed": 152700,
+        "factory_changed": 0,
+        "overlap": 0
+      },
+      {
+        "bank": "0F",
+        "start_hex": "0x00F00000",
+        "end_hex": "0x00FFFFFF",
+        "vega_changed": 10380,
+        "factory_changed": 0,
+        "overlap": 0
+      }
+    ],
+    "top_overlap_runs": [
+      {
+        "start_hex": "0x006C7D40",
+        "length": 36,
+        "end_hex": "0x006C7D63"
+      },
+      {
+        "start_hex": "0x003C4946",
+        "length": 26,
+        "end_hex": "0x003C495F"
+      },
+      {
+        "start_hex": "0x003C4982",
+        "length": 20,
+        "end_hex": "0x003C4995"
+      },
+      {
+        "start_hex": "0x00777770",
+        "length": 18,
+        "end_hex": "0x00777781"
+      },
+      {
+        "start_hex": "0x003C49E9",
+        "length": 13,
+        "end_hex": "0x003C49F5"
+      },
+      {
+        "start_hex": "0x006C7DB8",
+        "length": 12,
+        "end_hex": "0x006C7DC3"
+      },
+      {
+        "start_hex": "0x00015B78",
+        "length": 7,
+        "end_hex": "0x00015B7E"
+      },
+      {
+        "start_hex": "0x000254E0",
+        "length": 7,
+        "end_hex": "0x000254E6"
+      },
+      {
+        "start_hex": "0x00026C40",
+        "length": 7,
+        "end_hex": "0x00026C46"
+      },
+      {
+        "start_hex": "0x00028FC8",
+        "length": 7,
+        "end_hex": "0x00028FCE"
+      },
+      {
+        "start_hex": "0x0002B658",
+        "length": 7,
+        "end_hex": "0x0002B65E"
+      },
+      {
+        "start_hex": "0x000E63EC",
+        "length": 7,
+        "end_hex": "0x000E63F2"
+      },
+      {
+        "start_hex": "0x0003E454",
+        "length": 4,
+        "end_hex": "0x0003E457"
+      },
+      {
+        "start_hex": "0x0003E4A8",
+        "length": 4,
+        "end_hex": "0x0003E4AB"
+      },
+      {
+        "start_hex": "0x0003EC7C",
+        "length": 4,
+        "end_hex": "0x0003EC7F"
+      },
+      {
+        "start_hex": "0x003C496C",
+        "length": 4,
+        "end_hex": "0x003C496F"
+      },
+      {
+        "start_hex": "0x0042B714",
+        "length": 4,
+        "end_hex": "0x0042B717"
+      },
+      {
+        "start_hex": "0x006C7D90",
+        "length": 4,
+        "end_hex": "0x006C7D93"
+      },
+      {
+        "start_hex": "0x00000148",
+        "length": 3,
+        "end_hex": "0x0000014A"
+      },
+      {
+        "start_hex": "0x000001CC",
+        "length": 3,
+        "end_hex": "0x000001CE"
+      },
+      {
+        "start_hex": "0x0000DDB0",
+        "length": 3,
+        "end_hex": "0x0000DDB2"
+      },
+      {
+        "start_hex": "0x0001211C",
+        "length": 3,
+        "end_hex": "0x0001211E"
+      },
+      {
+        "start_hex": "0x000123F4",
+        "length": 3,
+        "end_hex": "0x000123F6"
+      },
+      {
+        "start_hex": "0x00014880",
+        "length": 3,
+        "end_hex": "0x00014882"
+      },
+      {
+        "start_hex": "0x000157D0",
+        "length": 3,
+        "end_hex": "0x000157D2"
+      },
+      {
+        "start_hex": "0x00015904",
+        "length": 3,
+        "end_hex": "0x00015906"
+      },
+      {
+        "start_hex": "0x00015A4C",
+        "length": 3,
+        "end_hex": "0x00015A4E"
+      },
+      {
+        "start_hex": "0x00016EE8",
+        "length": 3,
+        "end_hex": "0x00016EEA"
+      },
+      {
+        "start_hex": "0x000171A0",
+        "length": 3,
+        "end_hex": "0x000171A2"
+      },
+      {
+        "start_hex": "0x00018D54",
+        "length": 3,
+        "end_hex": "0x00018D56"
+      },
+      {
+        "start_hex": "0x00018FB4",
+        "length": 3,
+        "end_hex": "0x00018FB6"
+      },
+      {
+        "start_hex": "0x00019400",
+        "length": 3,
+        "end_hex": "0x00019402"
+      },
+      {
+        "start_hex": "0x000198E0",
+        "length": 3,
+        "end_hex": "0x000198E2"
+      },
+      {
+        "start_hex": "0x00019EF8",
+        "length": 3,
+        "end_hex": "0x00019EFA"
+      },
+      {
+        "start_hex": "0x00019F50",
+        "length": 3,
+        "end_hex": "0x00019F52"
+      },
+      {
+        "start_hex": "0x0001A250",
+        "length": 3,
+        "end_hex": "0x0001A252"
+      },
+      {
+        "start_hex": "0x0001A31C",
+        "length": 3,
+        "end_hex": "0x0001A31E"
+      },
+      {
+        "start_hex": "0x0001A410",
+        "length": 3,
+        "end_hex": "0x0001A412"
+      },
+      {
+        "start_hex": "0x0001A4EC",
+        "length": 3,
+        "end_hex": "0x0001A4EE"
+      },
+      {
+        "start_hex": "0x0001A5C8",
+        "length": 3,
+        "end_hex": "0x0001A5CA"
+      },
+      {
+        "start_hex": "0x0001A69C",
+        "length": 3,
+        "end_hex": "0x0001A69E"
+      },
+      {
+        "start_hex": "0x0001A808",
+        "length": 3,
+        "end_hex": "0x0001A80A"
+      },
+      {
+        "start_hex": "0x0001C710",
+        "length": 3,
+        "end_hex": "0x0001C712"
+      },
+      {
+        "start_hex": "0x0001C8A8",
+        "length": 3,
+        "end_hex": "0x0001C8AA"
+      },
+      {
+        "start_hex": "0x0001CAAC",
+        "length": 3,
+        "end_hex": "0x0001CAAE"
+      },
+      {
+        "start_hex": "0x0001D144",
+        "length": 3,
+        "end_hex": "0x0001D146"
+      },
+      {
+        "start_hex": "0x0001D1E0",
+        "length": 3,
+        "end_hex": "0x0001D1E2"
+      },
+      {
+        "start_hex": "0x0001D2A0",
+        "length": 3,
+        "end_hex": "0x0001D2A2"
+      },
+      {
+        "start_hex": "0x0001D400",
+        "length": 3,
+        "end_hex": "0x0001D402"
+      },
+      {
+        "start_hex": "0x0001D47C",
+        "length": 3,
+        "end_hex": "0x0001D47E"
+      },
+      {
+        "start_hex": "0x0001D5C4",
+        "length": 3,
+        "end_hex": "0x0001D5C6"
+      },
+      {
+        "start_hex": "0x0001D678",
+        "length": 3,
+        "end_hex": "0x0001D67A"
+      },
+      {
+        "start_hex": "0x0001D798",
+        "length": 3,
+        "end_hex": "0x0001D79A"
+      },
+      {
+        "start_hex": "0x0001D910",
+        "length": 3,
+        "end_hex": "0x0001D912"
+      },
+      {
+        "start_hex": "0x0001D9B8",
+        "length": 3,
+        "end_hex": "0x0001D9BA"
+      },
+      {
+        "start_hex": "0x0001DA98",
+        "length": 3,
+        "end_hex": "0x0001DA9A"
+      },
+      {
+        "start_hex": "0x0001DCE8",
+        "length": 3,
+        "end_hex": "0x0001DCEA"
+      },
+      {
+        "start_hex": "0x0001DE90",
+        "length": 3,
+        "end_hex": "0x0001DE92"
+      },
+      {
+        "start_hex": "0x0001DF78",
+        "length": 3,
+        "end_hex": "0x0001DF7A"
+      },
+      {
+        "start_hex": "0x0001E000",
+        "length": 3,
+        "end_hex": "0x0001E002"
+      },
+      {
+        "start_hex": "0x0001E040",
+        "length": 3,
+        "end_hex": "0x0001E042"
+      },
+      {
+        "start_hex": "0x0001E120",
+        "length": 3,
+        "end_hex": "0x0001E122"
+      },
+      {
+        "start_hex": "0x0001E2AC",
+        "length": 3,
+        "end_hex": "0x0001E2AE"
+      },
+      {
+        "start_hex": "0x0001E30C",
+        "length": 3,
+        "end_hex": "0x0001E30E"
+      },
+      {
+        "start_hex": "0x0001E540",
+        "length": 3,
+        "end_hex": "0x0001E542"
+      },
+      {
+        "start_hex": "0x0001E5C4",
+        "length": 3,
+        "end_hex": "0x0001E5C6"
+      },
+      {
+        "start_hex": "0x0001E5F4",
+        "length": 3,
+        "end_hex": "0x0001E5F6"
+      },
+      {
+        "start_hex": "0x0001E6A4",
+        "length": 3,
+        "end_hex": "0x0001E6A6"
+      },
+      {
+        "start_hex": "0x0001E7D8",
+        "length": 3,
+        "end_hex": "0x0001E7DA"
+      },
+      {
+        "start_hex": "0x0001E840",
+        "length": 3,
+        "end_hex": "0x0001E842"
+      },
+      {
+        "start_hex": "0x0001E8D4",
+        "length": 3,
+        "end_hex": "0x0001E8D6"
+      },
+      {
+        "start_hex": "0x0001EA68",
+        "length": 3,
+        "end_hex": "0x0001EA6A"
+      },
+      {
+        "start_hex": "0x0001ED4C",
+        "length": 3,
+        "end_hex": "0x0001ED4E"
+      },
+      {
+        "start_hex": "0x0001EF60",
+        "length": 3,
+        "end_hex": "0x0001EF62"
+      },
+      {
+        "start_hex": "0x00020968",
+        "length": 3,
+        "end_hex": "0x0002096A"
+      },
+      {
+        "start_hex": "0x000209A0",
+        "length": 3,
+        "end_hex": "0x000209A2"
+      },
+      {
+        "start_hex": "0x00022B28",
+        "length": 3,
+        "end_hex": "0x00022B2A"
+      },
+      {
+        "start_hex": "0x00022B4C",
+        "length": 3,
+        "end_hex": "0x00022B4E"
+      },
+      {
+        "start_hex": "0x00022C90",
+        "length": 3,
+        "end_hex": "0x00022C92"
+      },
+      {
+        "start_hex": "0x0002313C",
+        "length": 3,
+        "end_hex": "0x0002313E"
+      },
+      {
+        "start_hex": "0x00023314",
+        "length": 3,
+        "end_hex": "0x00023316"
+      },
+      {
+        "start_hex": "0x00023420",
+        "length": 3,
+        "end_hex": "0x00023422"
+      },
+      {
+        "start_hex": "0x0002349C",
+        "length": 3,
+        "end_hex": "0x0002349E"
+      },
+      {
+        "start_hex": "0x0002366C",
+        "length": 3,
+        "end_hex": "0x0002366E"
+      },
+      {
+        "start_hex": "0x000238C4",
+        "length": 3,
+        "end_hex": "0x000238C6"
+      },
+      {
+        "start_hex": "0x000258E8",
+        "length": 3,
+        "end_hex": "0x000258EA"
+      },
+      {
+        "start_hex": "0x00026828",
+        "length": 3,
+        "end_hex": "0x0002682A"
+      },
+      {
+        "start_hex": "0x00027E78",
+        "length": 3,
+        "end_hex": "0x00027E7A"
+      },
+      {
+        "start_hex": "0x00027F1C",
+        "length": 3,
+        "end_hex": "0x00027F1E"
+      },
+      {
+        "start_hex": "0x00028244",
+        "length": 3,
+        "end_hex": "0x00028246"
+      },
+      {
+        "start_hex": "0x00028324",
+        "length": 3,
+        "end_hex": "0x00028326"
+      },
+      {
+        "start_hex": "0x00028C0C",
+        "length": 3,
+        "end_hex": "0x00028C0E"
+      },
+      {
+        "start_hex": "0x00028E84",
+        "length": 3,
+        "end_hex": "0x00028E86"
+      },
+      {
+        "start_hex": "0x00029958",
+        "length": 3,
+        "end_hex": "0x0002995A"
+      },
+      {
+        "start_hex": "0x000299C8",
+        "length": 3,
+        "end_hex": "0x000299CA"
+      },
+      {
+        "start_hex": "0x00029A54",
+        "length": 3,
+        "end_hex": "0x00029A56"
+      },
+      {
+        "start_hex": "0x0002A4D8",
+        "length": 3,
+        "end_hex": "0x0002A4DA"
+      },
+      {
+        "start_hex": "0x0002A5F0",
+        "length": 3,
+        "end_hex": "0x0002A5F2"
+      },
+      {
+        "start_hex": "0x0002A628",
+        "length": 3,
+        "end_hex": "0x0002A62A"
+      },
+      {
+        "start_hex": "0x0002B298",
+        "length": 3,
+        "end_hex": "0x0002B29A"
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "00_結論と採用仕様.md",
+      "size": 6548,
+      "sha256": "d214a5d9036b2b2aa58954582a080188fccfd3260ac5c3c3f49bfdddf598f25d"
+    },
+    {
+      "path": "01_技術統合・競合回避.md",
+      "size": 9069,
+      "sha256": "35971b74aa3dfca1f9120e03f3e7da369583da4795dae51033d7b3473cec0971"
+    },
+    {
+      "path": "02_世界観・進行・イベント.md",
+      "size": 8849,
+      "sha256": "96717340c0dc84ea9ac3acf2c4c34e20294e098f1fc4f004653534d190ef328b"
+    },
+    {
+      "path": "03_野生出現・入手・進化.md",
+      "size": 14604,
+      "sha256": "9719b045a1278908010673b9b3ecaf9cb9b17b4418e7b2c3d29babd85ed1f62f"
+    },
+    {
+      "path": "04_アイテム・ショップ・機能解禁.md",
+      "size": 9839,
+      "sha256": "4dd5306b906ff103626b83218036e4f6248f0687393d757cd6a285ece34f5322"
+    },
+    {
+      "path": "05_トレーナー・施設・バランス.md",
+      "size": 5299,
+      "sha256": "e711a17ed67743a49a003d526b9f2ca2753fe0a79776fccfe3f9d392b47c5d15"
+    },
+    {
+      "path": "06_実装ロードマップ・QA・リリース.md",
+      "size": 5858,
+      "sha256": "c55436163616e5eb826e82c820073607ea2c8d0a6cb3a4c3a0f50ac3efb1ca9b"
+    },
+    {
+      "path": "07_イベント台本案.md",
+      "size": 4207,
+      "sha256": "6d0c5bfa1de9016cd7b19754c40e975b330ddea33dba632380fac865f0cda13f"
+    },
+    {
+      "path": "08_参考リンク・固定バージョン.md",
+      "size": 1490,
+      "sha256": "bbd92158560fd22526d7d62e9f4af2afc4d5e618c194e59a32ef55baa1fd733c"
+    },
+    {
+      "path": "09_設計データ検証結果.md",
+      "size": 4518,
+      "sha256": "7e3645435bdc68f98882e96552eefb42022b718f6bd27c1c090bb3b7743e0b39"
+    },
+    {
+      "path": "README.md",
+      "size": 3901,
+      "sha256": "c2d37fa1f7f02dc96f2e9edc7acc4ae534619b054cc7fe4aad7926c81e0731ed"
+    },
+    {
+      "path": "VEGA_CFRU_DPE_統合設計書_統合版.md",
+      "size": 74252,
+      "sha256": "0c673ba13338e4d5ba9408a2b291cf83b935f5747da1c85e7bc79ff62478e9d6"
+    },
+    {
+      "path": "data/DPE実装専用フォーム・補助ID.csv",
+      "size": 1653,
+      "sha256": "d000237a9c1b50f7f60ecd96ef4829f2cc4ba52c37ae7cd909bf2d2929f5e4bd"
+    },
+    {
+      "path": "data/IDレジストリ雛形.csv",
+      "size": 1319,
+      "sha256": "9b3ea01423f9a1a8d5db0a6c55147e40302dc71182e7897aff5dab51fd1c64cb"
+    },
+    {
+      "path": "data/ROM競合分析_1MiBバンク.csv",
+      "size": 640,
+      "sha256": "b54379602a3c1436373a8bb1302ee26236e073bae19d9dc0b8082cbf6af75496"
+    },
+    {
+      "path": "data/ROM競合分析_上位重複アドレス.csv",
+      "size": 2434,
+      "sha256": "09b0d6efd5c7de54b5b40ec91562e3e086c4a28541fbc99bcea7303d849286f6"
+    },
+    {
+      "path": "data/アイテム入手マスター.csv",
+      "size": 55554,
+      "sha256": "8bb0ebd306d15f6252cd6eb53b43ae8fffd4c0c179ffd2e5e0659b3e95b21b84"
+    },
+    {
+      "path": "data/フォーム対応マスター.csv",
+      "size": 313498,
+      "sha256": "5a0ae8b678c662684e0610489a090f34228487045584700b0c1c1e9dbd612256"
+    },
+    {
+      "path": "data/フラグ・変数割当雛形.csv",
+      "size": 1904,
+      "sha256": "df46d5bb78ee7f12bbb10db3ac5d7373144f1a7554a2ff38e82794e5269ee974"
+    },
+    {
+      "path": "data/ベガ既存図鑑ID保護台帳_386種.csv",
+      "size": 54078,
+      "sha256": "b0ebd96facad6a068fa389e45d709f56aa8269d8297a282db984df088b0abb0e"
+    },
+    {
+      "path": "data/ポケモン入手マスター_全1025種.csv",
+      "size": 434584,
+      "sha256": "6066854c97fccc96032873226434a770bcc644c983be599dfa1c31ed88a371eb"
+    },
+    {
+      "path": "data/伝説・幻・UB・パラドックスイベントマスター.csv",
+      "size": 44131,
+      "sha256": "fe7d3d598c9b55266ac2effc993aae9b56306be5f8761f54f67f3a8c59cd1c40"
+    },
+    {
+      "path": "data/機能統合プロファイル.csv",
+      "size": 3265,
+      "sha256": "cd3f4f2ec465eeccea65ad8d8f4493495b9468b3200105f6d913071ad3b89cf7"
+    },
+    {
+      "path": "data/設計データ検証サマリー.json",
+      "size": 1294,
+      "sha256": "de1d663f435977a55a9231f5b07263c8ed37e07880ef19a3766fc57014659315"
+    },
+    {
+      "path": "data/設計データ検証チェック.csv",
+      "size": 877,
+      "sha256": "602c8395c6e2b987a2829e2207336f19ee0d46aadeedfe435ffd986782e38e76"
+    },
+    {
+      "path": "data/進化条件変換マスター.csv",
+      "size": 132461,
+      "sha256": "59b28788469b5fee76ba0f39801535674beb83d6069aeeb8f9aa72cf9b372f94"
+    },
+    {
+      "path": "data/進化系統配置マスター_全541系統.csv",
+      "size": 236945,
+      "sha256": "ae9776534b7e789df1e2f49b27631cc702f23a86a012e08c0309d94421a5feee"
+    },
+    {
+      "path": "templates/README.md",
+      "size": 1010,
+      "sha256": "fca8d0203e6c4ecdde9a42b9f52088b910ea9ea5b15eb6088a0e12e1f06b9984"
+    },
+    {
+      "path": "templates/ability_id_map.csv",
+      "size": 258,
+      "sha256": "ea8b9f297d1bd1dc37c11a08c7d620e951fe83e9ff79e1a6e50a77397474d436"
+    },
+    {
+      "path": "templates/build_manifest.json",
+      "size": 1629,
+      "sha256": "c1d7f8226689ab81c7cde7c35fd15e2026bcb6c40badbd7046b65e3357a7987d"
+    },
+    {
+      "path": "templates/hook_audit.csv",
+      "size": 420,
+      "sha256": "49aef060ad1c9a96e13fa57073cfb3a2fa03931dae02dccf2810ed07581fa4d3"
+    },
+    {
+      "path": "templates/item_id_map.csv",
+      "size": 325,
+      "sha256": "a62db1b1ae43f6d5279b69b512ca69dcc4f2fe8fa51da8060bd0889142937d15"
+    },
+    {
+      "path": "templates/move_id_map.csv",
+      "size": 272,
+      "sha256": "ee7cd0700d29fc98a0949c8a9a3f6471d4e4f189fae7e9042cb500917734c008"
+    },
+    {
+      "path": "templates/saveblock_layout.md",
+      "size": 1931,
+      "sha256": "5b33711ec377b984f9370ecb5ae93f0923bd5139ffe389863b0002fb2cd3f92b"
+    },
+    {
+      "path": "templates/species_id_map.csv",
+      "size": 286378,
+      "sha256": "a958d2b530fc81f416cc4385885a8e5eba3949b08d4c5035f99afff091725935"
+    }
+  ]
+}

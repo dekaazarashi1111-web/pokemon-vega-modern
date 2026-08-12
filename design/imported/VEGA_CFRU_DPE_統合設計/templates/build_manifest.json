@@ -1,0 +1,58 @@
+{
+  "status": "template_not_a_build",
+  "schema_version": 1,
+  "created": "2026-08-12",
+  "inputs": [
+    {
+      "name": "factory_test_20260524(2).ups",
+      "sha256": "46ef4b008b7c68a94f919d037a0bba31853b32af3f50895e722e39deea336358"
+    },
+    {
+      "name": "18年2月23日完成版ベガ(2).ips",
+      "sha256": "94955c5830888c69a7dee3696abda3b88f69184af67f28a9fb77a8e8abd77f5b"
+    },
+    {
+      "name": "clean_BPRJ0.gba",
+      "sha1": "TO_BE_FILLED",
+      "crc32": "3b2056e9"
+    }
+  ],
+  "source_baselines": [
+    {
+      "repo": "kapibarasan000/DPE-JP",
+      "commit": "520937c0959e2a1be57771d1dfee9f6fee806c7e",
+      "provenance": "reproducible public baseline; not proven to be exact UPS source"
+    },
+    {
+      "repo": "kapibarasan000/CFRU-JP",
+      "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+      "provenance": "reproducible public baseline; not proven to be exact UPS source"
+    }
+  ],
+  "compiler": {
+    "devkitARM": "TO_BE_FILLED",
+    "python": "TO_BE_FILLED",
+    "commands": []
+  },
+  "id_maps": {
+    "species": "templates/species_id_map.csv",
+    "moves": "templates/move_id_map.csv",
+    "items": "templates/item_id_map.csv",
+    "abilities": "templates/ability_id_map.csv"
+  },
+  "link": {
+    "rom_size": 33554432,
+    "linker_map": "TO_BE_GENERATED",
+    "offsets_ini": "TO_BE_GENERATED",
+    "free_space_bytes": "TO_BE_MEASURED"
+  },
+  "output": {
+    "filename": "TO_BE_GENERATED",
+    "sha256": "TO_BE_GENERATED",
+    "crc32": "TO_BE_GENERATED"
+  },
+  "tests": {
+    "design_data_validation": "see 09_設計データ検証結果.md",
+    "runtime_regression": "NOT_RUN"
+  }
+}

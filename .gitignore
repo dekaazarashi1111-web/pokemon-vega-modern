@@ -14,6 +14,53 @@
 dotnet-install.sh
 node_modules/
 userfile/
+
+# Private inputs and source archives
+inputs/private/**
+inputs/reference/*.zip
+inputs/reference/*.gba
+inputs/source_archives/**
+!inputs/private/.gitkeep
+!inputs/reference/.gitkeep
+!inputs/source_archives/.gitkeep
+
+# ROMs, patches, saves and user-provided archives
+*.gba
+*.gb
+*.gbc
+*.nds
+*.sav
+*.srm
+*.state
+*.state*
+*.ips
+*.ups
+*.bps
+*.xdelta
+*.xdelta3
+*.zip
+
+# Reproducible/generated artifacts
+build/**
+generated/**
+dist/**
+reports/generated/**
+vendor/upstream/**
+vendor/audit_seed_external/**
+vendor/.audit_seed_external.archive-lock.json
+!build/.gitkeep
+!generated/.gitkeep
+!dist/.gitkeep
+config/project.toml
+state/resolved_paths.json
+.env*
+
+# Python tooling
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
 # .NET build outputs and user settings
 **/bin/
 **/obj/
@@ -28,3 +75,6 @@ Thumbs.db
 # Temp workspace artifacts
 tmp/
 /tmp/
+
+# Download metadata
+*:Zone.Identifier

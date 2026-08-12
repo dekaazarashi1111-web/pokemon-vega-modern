@@ -15,6 +15,7 @@
 - 暴走しない。
 - 再現性を壊さない。
 - 証跡を残す。
+- 品質・安全性を落とさない範囲で、待ち時間と重複作業を最小化する。
 
 ## 0.1 品質方針
 
@@ -23,14 +24,31 @@
 - 問題に直面しても安易にあきらめず、自律的に調査、切り分け、修正、再検証を進める。
 - 目的達成に必要な範囲で最も品質が高くなる判断を優先し、無関係な改善や大規模化は避ける。
 
+## 0.2 効率方針
+
+- 効率を「検証省略」ではなく、再読・再計算・手作業・直列待ちの削減で高める。
+- 入力ハッシュ、上流コミット、ツール版が同じ検証済み成果は再利用し、理由なく再生成しない。
+- `design/agent_context_map.md` で対象を絞り、タスクに不要な全資料の再読を避ける。
+- 独立した調査、読取専用監査、所有ファイルが重ならない実装は並列化する。親タスクの統合、検証、状態更新、コミットは1か所で行う。
+- 大規模変更は、最小の縦切りを先に通してから広げる。失敗は早く検出し、生成物は入力から再構築する。
+- 数値IDや派生表の手作業を避け、manifest、generator、validatorを優先する。
+- 安全に戻せる判断は自律的に進め、後戻りしにくい仕様判断と必須入力不足だけを人へ確認する。
+
 ## 1. ソースオブトゥルース
 
-- タスクキュー: `design/tasks_next.md`
+- タスク状態と実行順: `design/tasks_next.md`
+- タスク依存関係と担当レーン: `tasks/task_graph.json`
+- タスクの完了条件: `tasks/T*.md`
 - 現在状態: `design/current_state.md`
 - ログ: `design/run_log.md`（追記のみ）、`design/blockers.md`（追記のみ）
+- 意思決定: `design/decisions.md`（追記のみ）
 - バージョン履歴: `design/version_log.md`（追記のみ）
-- 中長期計画: `design/PLANS.md`（全体構想/ロードマップ。通常は参照のみ）
-- 受け渡し領域（Git管理外）: `userfile/**`
+- 製品・技術ロードマップ: `MASTER_PLAN.md`（通常は参照のみ）
+- 運用計画索引: `design/PLANS.md`
+- 入力と上流の固定記録: `state/source-lock.json`
+- 受け渡し・私有原本領域（Git管理外）: `userfile/**`
+
+`state/task_status.json` は外部ツール互換用の生成ミラーであり、手編集しない。`state/PROJECT_STATE.md`、`state/DECISIONS.md`、`state/BLOCKERS.md` は `design/` 正本への案内であり、二重記録しない。
 
 ## 1.1 作業開始時の入口
 
@@ -47,6 +65,7 @@
 - `docs/agent_context_minimap.md`
 - `design/catalog.md`
 - `design/report_lifecycle_index.md`
+- 選択したタスクの `tasks/T*.md`
 
 大量ドキュメントを読む前に `design/agent_context_map.md` で対象を絞る。全Markdownを横断するのは、参照切れ、仕様矛盾、実装判断の根拠確認が必要な時だけにする。
 
@@ -60,6 +79,8 @@
   - `[x]` DONE
   - `[!]` BLOCKED
 - ユーザーから明示された直接作業は、必要に応じて `Task: USER-...` として `design/run_log.md` / `design/version_log.md` に記録する。既存キューを無理に崩さない。
+- T00〜T18の依存可否は `python3 scripts/taskctl.py next` で確認し、状態変更も `taskctl.py` 経由を優先する。
+- `tasks/task_graph.json` と `tasks/T*.md` は状態を持たない。`state/task_status.json` を直接変更しない。
 
 ## 3. 自律開発ワークフロー
 
@@ -72,6 +93,16 @@
 5. PASSしたら `[>] -> [x]`、`design/run_log.md` と `design/version_log.md` に追記し、必ずコミットする。
 6. 詰まったら `[>] -> [!]`、`design/blockers.md` と `design/run_log.md` に理由を残す。
 
+T00〜T18では、開始・完了・ブロックを次で更新する。
+
+```bash
+python3 scripts/taskctl.py next
+python3 scripts/taskctl.py start T00
+python3 scripts/taskctl.py done T00 --summary "完了内容"
+```
+
+親側の正本タスクは同時に1件だけ `[>]` とする。サブエージェントや別レーンを並列化しても、正本状態、共有ファイル、ログ、最終コミットは親側が統合する。
+
 ## 4. 検証
 
 既定コマンド:
@@ -81,6 +112,16 @@
 - Windows: `powershell -ExecutionPolicy Bypass -File scripts/verify_windows.ps1`
 
 検証を省略する場合は、理由を `design/run_log.md` に書く。
+
+プレイブック系の標準ゲート:
+
+```bash
+make validate
+make guard
+make test
+```
+
+タスク固有テストを先に実行し、完了時は既定verifyと標準ゲートを通す。
 
 ## 4.1 チェックコマンドの副作用禁止
 
@@ -106,9 +147,23 @@
 ## 6. ファイル・ディレクトリ運用
 
 - `userfile/**` は受け渡し・一時保管用。Git管理対象にしない。
+- 私有入力の物理的な正本は `userfile/imports/**` に置き、読み取り専用とする。`inputs/private/**` と `inputs/reference/**` はツール向けのGit管理外参照である。
+- ユーザー提供ROM、IPS、UPS、セーブ、元ZIPは変更・追跡・ステージ・コミットしない。
+- `build/**`、`generated/**`、`reports/generated/**`、`dist/**` は再生成可能な領域とし、入力原本をそこへコピーして処理する。
+- `design/imported/**` は受領時点の資料を保存する参照領域とし、レビュー完了前に実装用正本へ昇格しない。原本を直接修正せず、採用内容は別の正本へ反映する。
 - `.gitignore` で `userfile/` と `*:Zone.Identifier` は除外する。
 - 大きな生成物、実験データ、ローカルDB、キャッシュを作る場合は `.local/` などGit管理外に置く。
 - 秘密情報、APIキー、個人情報を設計ログや正本仕様に書かない。
+
+## 6.1 ROM統合の固定原則
+
+- FireRed日本版Rev.0クリーンROMから各stageを毎回再生成し、stageを手で継ぎ足さない。
+- Factory UPSは完成見本と挙動比較の参照専用とし、Vega ROMへ直接適用しない。
+- Vega IPSとFactory UPSは、必ずクリーンROMへ別々に適用して参照ROMを作る。
+- Vegaのストーリー、マップ、NPC、固有イベント、BGMを優先する。
+- CFRU-JPの戦闘ロジック、現代技・特性・道具・進化方式をVega向けに移植する。
+- DPE-JPを種族拡張の基盤にしつつ、Vega既存Species/Move IDを固定する。追加IDはmanifestから生成する。
+- 同じアドレスを双方が変更する場合、片方のbyteを盲目的に採用せず、統合・ラッパー・再実装・32 MiB側への再配置で解決する。
 
 ## 7. ネットワーク利用
 
@@ -116,6 +171,7 @@
 - 公式ドキュメント、一次情報、信頼できる技術資料を優先する。
 - `curl ... | bash` のようなリモート実行は禁止。
 - 外部情報を根拠に使ったら、検索語/URLと要点を `design/run_log.md` に残す。
+- 上流ソースは取得時点の既定ブランチHEADを確認してもよいが、実作業は必ず `state/source-lock.json` のコミットへ固定する。更新は専用タスクで差分監査してから行う。
 
 ## 7.1 ChatGPT Web ブリッジ利用
 
@@ -175,6 +231,7 @@
 - 主目的、担当範囲、書き込み可能ファイル、完了条件を具体化してから渡す。
 - 同じファイルを複数エージェントに書かせない。
 - `design/run_log.md`、`design/version_log.md`、`design/tasks_next.md`、`package.json` は親側が統合する。
+- `AGENTS.md`、`MASTER_PLAN.md`、`config/`、`Makefile`、`state/source-lock.json` も親側が統合する。
 - サブエージェントの成果は親側で統合・検証し、最終判断とコミット責任は親側が持つ。
 
 ## 13. コミュニケーションと言語

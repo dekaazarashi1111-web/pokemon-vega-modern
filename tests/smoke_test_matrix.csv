@@ -1,0 +1,28 @@
+id,subsystem,scenario,required_by,automation,status,build,notes
+S001,boot,Title screen reaches input,T03,manual,pending,,
+S002,boot,New game reaches player control,T03,manual,pending,,
+S003,save,Save restart and reload,T08,mixed,pending,,
+S004,battle,Wild battle with Vega species and move,T06,manual,pending,,
+S005,battle,Trainer battle with Vega species and move,T06,manual,pending,,
+S006,capture,Catch one DPE-added species,T10,manual,pending,,
+S007,evolution,Evolve one Vega original species,T09,manual,pending,,
+S008,evolution,Evolve one DPE-added species,T10,manual,pending,,
+S009,items,Use one merged held item,T10,manual,pending,,
+S010,abilities,Trigger one merged ability,T10,manual,pending,,
+S011,dex,Register and view one added species,T10,manual,pending,,
+S012,box,Deposit withdraw and reload an added species,T10,manual,pending,,
+S013,vega,Representative early story event,T10,manual,pending,,
+S014,vega,Representative midgame warp and event,T17,manual,pending,,
+S015,vega,Hall of Fame and postgame unlock,T17,manual,pending,,
+S016,kanto,Unlock and travel to Vermilion,T13,manual,pending,,
+S017,kanto,Vermilion outdoor connections and interiors,T13,manual,pending,,
+S018,kanto,NPC dialogue and local event,T13,manual,pending,,
+S019,kanto,Wild and trainer battle in Kanto,T13,manual,pending,,
+S020,kanto,Vermilion Gym puzzle clear boss and reward,T13,manual,pending,,
+S021,kanto,Save and load inside Kanto,T13,manual,pending,,
+S022,kanto,Return from Kanto to Vega,T13,manual,pending,,
+S023,advanced,Mega representative battle,T17,manual,pending,,optional profile
+S024,advanced,Z-Move representative battle,T17,manual,pending,,optional profile
+S025,advanced,Dynamax representative battle,T17,manual,pending,,optional profile
+S026,release,Clean rebuild hash reproducibility,T18,automated,pending,,
+S027,release,Release patch applies and target hash matches,T18,automated,pending,,

@@ -1,10 +1,13 @@
 {
-  "name": "codex-loop-project",
+  "name": "pokemon-vega-modern-kanto",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "check": "node --check tools/chatgpt_browser/config.mjs && node --check tools/chatgpt_browser/open_chatgpt.mjs && node --check tools/chatgpt_browser/check_chatgpt.mjs && node --check tools/chatgpt_browser/send_message.mjs && node --check tools/chatgpt_browser/conversation_message.mjs && node --check tools/chatgpt_browser/generate_image.mjs",
+    "project:status": "python3 scripts/project_status.py",
+    "task:next": "python3 scripts/taskctl.py next",
+    "imports:check": "python3 scripts/verify_imported_packages.py",
     "chatgpt:open": "node tools/chatgpt_browser/open_chatgpt.mjs",
     "chatgpt:check": "node tools/chatgpt_browser/check_chatgpt.mjs",
     "chatgpt:send": "node tools/chatgpt_browser/send_message.mjs",

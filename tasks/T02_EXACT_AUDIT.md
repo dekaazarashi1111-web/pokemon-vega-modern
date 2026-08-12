@@ -1,0 +1,42 @@
+# T02 — Exact ROM/RAM/save/ID audit
+
+- Lane: `qa`
+- Depends on: `T00`
+
+## Objective
+
+Turn the initial binary conflict report into a complete machine-readable compatibility model for source porting.
+
+## Execute
+
+1. Run bundled exact audit tools against clean/Vega/Factory references.
+2. Extract every CFRU/DPE fixed ROM address from hooks, byte replacements, repoints, repointall, routine pointers, linker files, and special inserts.
+3. For each site, capture clean bytes, Vega bytes, Factory bytes, intended symbol, write length, and proposed resolution.
+4. Disassemble a bounded context around code hooks and identify whether Vega changed the containing function.
+5. Build a RAM ownership map from CFRU linker files, DPE sources, and any discoverable Vega use.
+6. Build save-block, script-special, flag, var, trainer, species, move, ability, item, and map-ID inventories.
+7. Generate overlap validators that fail the build when a new unclassified conflict appears.
+
+## Required outputs
+
+- `reports/generated/address_audit.csv`
+- `reports/generated/semantic_conflicts.md`
+- `reports/generated/ram_map.csv`
+- `reports/generated/save_map.csv`
+- `reports/generated/id_inventory.json`
+- `tools/validate/address_assertions.py`
+
+## Acceptance gates
+
+- [ ] Every fixed write is classified as VEGA, CFRU, PORT, RELOCATE, SAME_TARGET, or UNKNOWN.
+- [ ] UNKNOWN entries have evidence and an assigned follow-up task.
+- [ ] RAM and save ranges include owner and lifetime.
+- [ ] Audit can be rerun after source updates.
+
+## Finish
+
+1. Run `make validate guard`.
+2. Update reports and state.
+3. Commit with a message beginning `T02:`.
+4. Mark the task done with `python3 scripts/taskctl.py done T02 --summary "..."`.
+5. If another task is READY, continue without waiting for approval.

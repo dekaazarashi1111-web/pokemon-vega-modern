@@ -33,7 +33,7 @@ import re
 import sys
 
 root = pathlib.Path(".").resolve()
-ignore = {".git", ".venv", ".venv_test", ".codex", "tests", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", ".tox"}
+ignore = {".git", ".venv", ".venv_test", ".codex", ".local", "userfile", "vendor", "tests", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", "generated", ".tox"}
 patterns = [
     re.compile(r"(?i)(bearer\s+)([A-Za-z0-9._-]{8,})"),
     re.compile(r"(?i)(token=)([A-Za-z0-9._-]{8,})"),
@@ -77,7 +77,29 @@ if ($LASTEXITCODE -ne 0) {
 
 $ranCheck = $false
 
-if ((Get-Command pytest -ErrorAction SilentlyContinue) -and (Test-Path (Join-Path $root "tests"))) {
+if (Test-Path (Join-Path $root "Makefile")) {
+    Write-Host "[verify] running project gates"
+    if (Get-Command make -ErrorAction SilentlyContinue) {
+        make validate guard test
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    } else {
+        python scripts/validate_task_graph.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python scripts/validate_manifests.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python scripts/verify_imported_packages.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python scripts/project_status.py --check
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python scripts/guard_private_files.py
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+        python -m unittest discover -s tests -v
+        if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    }
+    $ranCheck = $true
+}
+
+if ((-not $ranCheck) -and (Get-Command pytest -ErrorAction SilentlyContinue) -and (Test-Path (Join-Path $root "tests"))) {
     Write-Host "[verify] running pytest -q"
     python -m pytest -q
     $pyExit = $LASTEXITCODE
@@ -86,6 +108,13 @@ if ((Get-Command pytest -ErrorAction SilentlyContinue) -and (Test-Path (Join-Pat
     } elseif ($pyExit -ne 0) {
         exit $pyExit
     }
+    $ranCheck = $true
+}
+
+if ((Get-Command node -ErrorAction SilentlyContinue) -and (Test-Path (Join-Path $root "package.json"))) {
+    Write-Host "[verify] running npm check"
+    npm run check
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     $ranCheck = $true
 }
 

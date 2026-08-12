@@ -35,7 +35,7 @@ echo "[verify] secrets scan"
 import re, sys, pathlib
 
 root = pathlib.Path(".").resolve()
-ignore = {".git", ".venv", ".venv_test", ".codex", "tests", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", ".tox"}
+ignore = {".git", ".venv", ".venv_test", ".codex", ".local", "userfile", "vendor", "tests", "__pycache__", ".pytest_cache", "node_modules", "dist", "build", "generated", ".tox"}
 patterns = [
     re.compile(r"(?i)(bearer\s+)([A-Za-z0-9._-]{8,})"),
     re.compile(r"(?i)(token=)([A-Za-z0-9._-]{8,})"),
@@ -77,7 +77,13 @@ PY
 
 ran_check=0
 
-if command -v pytest >/dev/null 2>&1 && [ -d "tests" ]; then
+if [ -f "Makefile" ]; then
+  echo "[verify] running project gates"
+  make validate guard test
+  ran_check=1
+fi
+
+if [ $ran_check -eq 0 ] && command -v pytest >/dev/null 2>&1 && [ -d "tests" ]; then
   echo "[verify] running pytest -q"
   set +e
   pytest -q
@@ -88,6 +94,12 @@ if command -v pytest >/dev/null 2>&1 && [ -d "tests" ]; then
   elif [ "$py_status" -ne 0 ]; then
     exit "$py_status"
   fi
+  ran_check=1
+fi
+
+if command -v node >/dev/null 2>&1 && [ -f "package.json" ]; then
+  echo "[verify] running npm check"
+  npm run check
   ran_check=1
 fi
 

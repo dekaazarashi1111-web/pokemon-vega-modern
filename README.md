@@ -1,23 +1,58 @@
-# プロジェクト README
+# Pokémon Vega Modern + Postgame Kanto
 
-このワークスペースは Codex Chat で継続運用するためのプロジェクトです。
+FireRed日本版Rev.0からVega 2018-02-23を再生成し、DPE-JP/CFRU-JPを公開ソースからVega互換で移植し、殿堂入り後カントーを追加する長期開発ワークスペースです。最終成果は32 MiB ROMの再現ビルドと、ROM本体を含まない差分パッチです。
 
-## 入口
+Factory UPSをVegaへ重ねる方式は採用しません。Factory ROMは挙動・配置の参照オラクルとしてだけ使います。
 
-作業開始時は次を順に確認します。
+## セッション開始
+
+毎回、次だけを順に読みます。
 
 1. `AGENTS.md`
 2. `design/current_state.md`
 3. `design/agent_context_map.md`
 4. `design/tasks_next.md`
+5. 選択した `tasks/T*.md`
 
-## 運用
+```bash
+git status --short --branch
+python3 scripts/taskctl.py next
+```
 
-- タスクは `design/tasks_next.md` で管理します。
-- 実行ログは `design/run_log.md`、ブロッカーは `design/blockers.md` に追記します。
-- バージョン履歴は `design/version_log.md` に追記します。
-- 既定の検証は `bash scripts/verify_wsl.sh` です。
+詳細資料を全件読み直さず、`design/agent_context_map.md` から目的別に絞ります。
 
-## ChatGPT Web ブリッジ
+## 重要な正本
 
-ChatGPT Web を補助的な相談、要約、レビュー、画像生成に使う場合は `tools/chatgpt_browser/README.md` を参照します。
+- 状態: `design/tasks_next.md`
+- 依存関係: `tasks/task_graph.json`
+- タスク完了条件: `tasks/T*.md`
+- 現在地: `design/current_state.md`
+- 採択済み判断: `design/decisions.md`
+- 全体ロードマップ: `MASTER_PLAN.md`
+- 入力・上流pin: `state/source-lock.json`
+- 受領物一覧: `design/import_inventory.md`
+- 受領資料レビュー: `design/import_review.md`
+
+## 私有入力
+
+ROM、IPS、UPS、元ZIPは `userfile/imports/` に読み取り専用で置き、Gitへ入れません。`inputs/private/` と `inputs/reference/` はツール向けのGit管理外参照です。入力原本へ直接パッチを当てず、生成先へコピーして処理します。
+
+## 標準コマンド
+
+```bash
+make status       # 状態とREADYタスク
+make validate     # DAG、manifest、状態、受領資料の静的検査
+make guard        # 私有バイナリ混入防止
+make test         # unit test
+bash scripts/verify_wsl.sh
+```
+
+初期入力・上流取得・参照ROM生成は `make quickstart` で行います。副作用と生成先は `CODEX_START_HERE.md` を先に確認してください。
+
+## 効率方針
+
+同一hash・同一source commit・同一tool versionの検証済み成果を再利用し、独立作業は所有ファイルを分けて並列化します。大規模統合を一度に行わず、Move、battle、Species、Kantoの順に最小縦切りを通してから広げます。
+
+## 補助ツール
+
+ChatGPT Webを補助的な相談、要約、レビュー、画像生成に使う場合だけ `tools/chatgpt_browser/README.md` を参照します。私有ROMや非公開データは送信しません。

@@ -6,25 +6,41 @@
 2. `AGENTS.md`
 3. `design/current_state.md`
 4. `design/tasks_next.md`
+5. `python3 scripts/taskctl.py next` で選んだ `tasks/T*.md`
 
 ## 目的別の入口
 
-| 目的 | 読むファイル |
-|---|---|
-| 全体像 | `README.md` |
-| 運用ルール | `AGENTS.md` |
-| 現在状態 | `design/current_state.md` |
-| 次タスク | `design/tasks_next.md` |
-| 全体計画 | `design/PLANS.md` |
-| 設計/成果物索引 | `design/catalog.md` |
-| 実行ログ | `design/run_log.md` |
-| バージョン履歴 | `design/version_log.md` |
-| ブロッカー | `design/blockers.md` |
-| ChatGPT Web 操作 | `tools/chatgpt_browser/README.md` |
+| 目的 | 最初に読むファイル | 必要な時だけ追加で読む |
+|---|---|---|
+| 全体像 | `README.md` | `MASTER_PLAN.md` |
+| 運用・安全・効率 | `AGENTS.md` | `WORKSTREAMS.md`, `docs/FAIL_FAST_POLICY.md` |
+| 現在状態 | `design/current_state.md` | `design/run_log.md`末尾 |
+| 次タスク | `design/tasks_next.md` | `tasks/task_graph.json`, 対応する`tasks/T*.md` |
+| 入力・hash | `design/import_inventory.md` | `docs/INPUT_CONTRACT.md`, `state/source-lock.json` |
+| 受領資料の評価 | `design/import_review.md` | `design/imported/VEGA_CFRU_DPE_統合設計/README.md` |
+| 採択済み判断 | `design/decisions.md` | 根拠となる監査レポート |
+| パッチ競合 | `audit_seed/PHASE_01_STATUS.md` | `audit_seed/reports/conflict_report.md`, `semantic_hotspots.md` |
+| ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
+| ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
+| カントー | `docs/KANTO_PORT_POLICY.md` | T11/T13〜T16 |
+| テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
+| レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
+| ブロッカー | `design/blockers.md` | 選択タスクの失敗ログ |
+| ChatGPT Web | `tools/chatgpt_browser/README.md` | 必要時のみ |
 
-## 読みすぎ防止
+## タスク別の最小セット
 
-- まず `design/current_state.md` とこのファイルで対象を絞ります。
-- 全Markdownを横断するのは、参照切れ、仕様矛盾、実装判断の根拠確認が必要な時だけにします。
-- `userfile/` は受け渡し用のGit管理外領域です。通常作業では必要なファイルだけ参照します。
+- T00: `docs/INPUT_CONTRACT.md`、`config/project.toml`、`design/import_inventory.md`。
+- T01: `docs/SOURCE_NOTES.md`、上流README、T01。
+- T02: `audit_seed/README_JA.md`、`audit_seed/CODEX_TASK_01.md`、T02。
+- T04: `audit_seed/CODEX_TASK_02_MOVE_PORT.md`、`docs/ID_POLICY.md`、T04。
+- T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、該当タスク。
+- T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、該当タスク。
+- T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 
+## 読みすぎ・やり直し防止
+
+- 全Markdown横断は、参照切れ・仕様矛盾・根拠監査が必要な時だけ行う。
+- `design/imported/**` はタスクに必要なモジュール/CSVだけ読む。統合版Markdownは各章の複製なので通常読まない。
+- 同じ入力hash・source commit・tool versionで生成済みの `reports/generated/**` は再利用する。
+- `userfile/**` はGit管理外の原本/受け渡し領域。通常は `inputs/**` の安定名か `state/source-lock.json` を参照する。

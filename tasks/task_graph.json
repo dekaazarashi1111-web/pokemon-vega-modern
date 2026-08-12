@@ -1,0 +1,194 @@
+{
+  "tasks": [
+    {
+      "id": "T00",
+      "title": "Bootstrap and pin inputs",
+      "lane": "platform",
+      "depends_on": [],
+      "file": "tasks/T00_BOOTSTRAP.md"
+    },
+    {
+      "id": "T01",
+      "title": "Reproduce upstream DPE/CFRU builds",
+      "lane": "engine",
+      "depends_on": [
+        "T00"
+      ],
+      "file": "tasks/T01_UPSTREAM_REPRO.md"
+    },
+    {
+      "id": "T02",
+      "title": "Exact ROM/RAM/save/ID audit",
+      "lane": "qa",
+      "depends_on": [
+        "T00"
+      ],
+      "file": "tasks/T02_EXACT_AUDIT.md"
+    },
+    {
+      "id": "T03",
+      "title": "Create rebuildable Vega module harness",
+      "lane": "engine",
+      "depends_on": [
+        "T01",
+        "T02"
+      ],
+      "file": "tasks/T03_VEGA_HARNESS.md"
+    },
+    {
+      "id": "T04",
+      "title": "Port Vega Move IDs into CFRU model",
+      "lane": "engine",
+      "depends_on": [
+        "T03"
+      ],
+      "file": "tasks/T04_MOVE_PORT.md"
+    },
+    {
+      "id": "T05",
+      "title": "Unify Type Ability Item ID spaces",
+      "lane": "engine",
+      "depends_on": [
+        "T02",
+        "T03"
+      ],
+      "file": "tasks/T05_ID_SPACES.md"
+    },
+    {
+      "id": "T06",
+      "title": "Port CFRU battle core",
+      "lane": "engine",
+      "depends_on": [
+        "T04",
+        "T05"
+      ],
+      "file": "tasks/T06_BATTLE_CORE.md"
+    },
+    {
+      "id": "T07",
+      "title": "Port DPE Species while freezing Vega IDs",
+      "lane": "engine",
+      "depends_on": [
+        "T03",
+        "T04",
+        "T05"
+      ],
+      "file": "tasks/T07_SPECIES_PORT.md"
+    },
+    {
+      "id": "T08",
+      "title": "Resolve RAM and save compatibility",
+      "lane": "qa",
+      "depends_on": [
+        "T02",
+        "T03"
+      ],
+      "file": "tasks/T08_SAVE_RAM.md"
+    },
+    {
+      "id": "T09",
+      "title": "Port graphics cries dex evolution learnsets",
+      "lane": "engine",
+      "depends_on": [
+        "T07",
+        "T08"
+      ],
+      "file": "tasks/T09_GRAPHICS_DEX_EVOLUTION.md"
+    },
+    {
+      "id": "T10",
+      "title": "Complete engine vertical slice",
+      "lane": "qa",
+      "depends_on": [
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09"
+      ],
+      "file": "tasks/T10_ENGINE_VERTICAL_SLICE.md"
+    },
+    {
+      "id": "T11",
+      "title": "Build Kanto map importer",
+      "lane": "maps",
+      "depends_on": [
+        "T00",
+        "T02"
+      ],
+      "file": "tasks/T11_KANTO_IMPORTER.md"
+    },
+    {
+      "id": "T12",
+      "title": "Build symbolic content schema and generators",
+      "lane": "content",
+      "depends_on": [
+        "T00"
+      ],
+      "file": "tasks/T12_CONTENT_SCHEMA.md"
+    },
+    {
+      "id": "T13",
+      "title": "Implement Vermilion postgame vertical slice",
+      "lane": "maps",
+      "depends_on": [
+        "T10",
+        "T11",
+        "T12"
+      ],
+      "file": "tasks/T13_VERMILION_SLICE.md"
+    },
+    {
+      "id": "T14",
+      "title": "Import selected full Kanto map set",
+      "lane": "maps",
+      "depends_on": [
+        "T11",
+        "T13"
+      ],
+      "file": "tasks/T14_FULL_KANTO_IMPORT.md"
+    },
+    {
+      "id": "T15",
+      "title": "Implement postgame unlock and gym progression",
+      "lane": "content",
+      "depends_on": [
+        "T13",
+        "T14"
+      ],
+      "file": "tasks/T15_POSTGAME_PROGRESSION.md"
+    },
+    {
+      "id": "T16",
+      "title": "Populate encounters trainers and items",
+      "lane": "content",
+      "depends_on": [
+        "T12",
+        "T14",
+        "T15"
+      ],
+      "file": "tasks/T16_CONTENT_POPULATION.md"
+    },
+    {
+      "id": "T17",
+      "title": "Run regression and playtest gates",
+      "lane": "qa",
+      "depends_on": [
+        "T10",
+        "T13",
+        "T16"
+      ],
+      "file": "tasks/T17_REGRESSION.md"
+    },
+    {
+      "id": "T18",
+      "title": "Create reproducible release pipeline",
+      "lane": "platform",
+      "depends_on": [
+        "T17"
+      ],
+      "file": "tasks/T18_RELEASE.md"
+    }
+  ]
+}

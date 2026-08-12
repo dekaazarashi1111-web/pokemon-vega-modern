@@ -1,1 +1,20 @@
-- [ ] 初期タスク: リポジトリを確認する <!-- id:INIT-1 -->
+- [x] 初期タスク: リポジトリを確認する <!-- id:INIT-1 -->
+- [x] T00: 入力を検証し上流ソースを固定する <!-- id:T00 -->
+- [ ] T01: DPE-JP/CFRU-JP上流ビルドを再現する <!-- id:T01 -->
+- [ ] T02: ROM/RAM/SaveBlock/ID競合を完全監査する <!-- id:T02 -->
+- [ ] T03: Vegaの再現可能なmodule harnessを作る <!-- id:T03 -->
+- [ ] T04: Vega Move IDをCFRUモデルへ移植する <!-- id:T04 -->
+- [ ] T05: Type/Ability/Item ID空間を統合する <!-- id:T05 -->
+- [ ] T06: CFRU battle coreを移植する <!-- id:T06 -->
+- [ ] T07: Vega IDを固定してDPE Speciesを移植する <!-- id:T07 -->
+- [ ] T08: RAMとSaveBlock互換性を解決する <!-- id:T08 -->
+- [ ] T09: 画像・鳴き声・図鑑・進化・習得技を移植する <!-- id:T09 -->
+- [ ] T10: engine vertical sliceを完成させる <!-- id:T10 -->
+- [ ] T11: カントーマップimporterを作る <!-- id:T11 -->
+- [ ] T12: 記号コンテンツschemaとgeneratorを作る <!-- id:T12 -->
+- [ ] T13: クチバのpostgame vertical sliceを作る <!-- id:T13 -->
+- [ ] T14: 選定した全カントーマップをimportする <!-- id:T14 -->
+- [ ] T15: postgame解禁とジム進行を実装する <!-- id:T15 -->
+- [ ] T16: 野生・トレーナー・アイテムを生成配置する <!-- id:T16 -->
+- [ ] T17: 本編・engine・Kantoの回帰試験を通す <!-- id:T17 -->
+- [ ] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->
