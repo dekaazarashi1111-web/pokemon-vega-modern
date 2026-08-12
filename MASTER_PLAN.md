@@ -7,7 +7,7 @@ FireRed JPN Rev0 clean
   └─ Vega 2018-02-23
       └─ Vega互換DPE-JP
           └─ Vega互換CFRU-JP
-              └─ Postgame Kanto maps
+              └─ Early-access / post-HoF Kanto maps
                   └─ Tohoku/Kanto symbolic ecology manifests
                       └─ final 32 MiB ROM
                           └─ 配布用差分パッチ
@@ -30,9 +30,9 @@ FireRed JPN Rev0 clean
 | T10 | Engine vertical slice | Engine/QA | T04–T09 | 新要素＋トーホク非破壊overlayを通しで動作 |
 | T11 | Kanto importer | Map | T00,T02 | FR本土inventory、1マップround-trip、新Map ID |
 | T12 | Dual-region content schema | Content | T00 | 二地方の野生/トレーナー/アイテム/イベント仕様 |
-| T13 | Vermilion vertical slice | Map/Content | T10,T11,T12 | 港→町→ジム→帰還 |
+| T13 | Early Kanto vertical slice | Map/Content | T10,T11,T12 | 本編中盤の港→クチバ→安全帰還 |
 | T14 | Full Kanto import | Map | T11,T13 | 選定マップと接続を一括追加 |
-| T15 | Postgame progression | Content/Engine | T13,T14 | 解禁・ジム進行・地方間移動 |
+| T15 | Dual-phase Kanto progression | Content/Engine | T13,T14 | 早期解禁・認定章・殿堂入り後進行 |
 | T16 | Populate dual-region content | Content | T12,T14,T15 | トーホク49＋カントー47論理地点を生成 |
 | T17 | Regression/playtest | QA | T10,T13,T16 | Vega本編＋二地方回帰確認 |
 | T18 | Release pipeline | Platform | T17 | 再現ビルド・差分パッチ・記録 |
@@ -68,7 +68,7 @@ Vega既存技と追加技、新特性、新Species、追加道具が1つずつ�
 
 ### Gate D — Kanto vertical slice
 
-Vegaからクチバへ移動し、NPC、PC/回復、ジム、報酬、セーブ、全滅復帰、常時帰還が動作する。
+Vegaのシオウ3個目バッジ取得後・アーシア島D・Hビル攻略後の安全な実flagでカントーを恒久解禁する。殿堂入り前saveからクチバへ移動し、推奨Lv.65警告、NPC、PC/回復、セーブ、全滅復帰、強制戦闘なしの常時帰還が動作する。ジムは必要認定章のtest fixtureで別検証する。
 
 ### Gate E — Release candidate
 

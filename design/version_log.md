@@ -31,3 +31,14 @@
   - clean FireRed日本版からカントー本土を新規名前空間へ復元し、トーホクと双方向に往復する方針を固定した。
   - 256 physical map候補、180 unique layoutsの初期監査とV2意味課題をタスクゲートへ反映した。
 - Verify: `bash scripts/verify_wsl.sh` PASS
+
+## 2026-08-12T12:41:58Z
+
+- Version: `design-early-kanto-0.3.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260812-EARLY-KANTO` / Vegaクリア前のカントー早期アクセス設計
+- Summary:
+  - シオウ3個目バッジとアーシア島D・Hビル攻略後から、殿堂入り前でもカントーへ任意渡航できる二段階進行を採用した。
+  - Lv.68〜100固定帯、初回警告、強制戦闘なしの安全導線、無料常時帰還、地方別state/anchor分離を受入条件にした。
+  - V2の殿堂入り前提は原本不変のまま正規化層でoverrideし、T02/T08/T12〜T17と36件のsmoke matrixへ反映した。
+- Verify: `bash scripts/verify_wsl.sh` PASS

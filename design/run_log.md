@@ -58,3 +58,29 @@
   - `https://github.com/kapibarasan000/CFRU-JP.git` — `main` HEAD `e24a16fe39e27ae162faf5b78596d1f3df18489d`。
   - `https://github.com/kapibarasan000/DPE-JP.git` — `main` HEAD `10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e`。
   - `https://github.com/pret/pokefirered.git` — `master` HEAD `c75f352304d529f6ba92d4f74b9cf8b5c3810788`。
+
+## 2026-08-12T12:41:58Z
+
+- Task: `USER-20260812-EARLY-KANTO` / Vegaクリア前のカントー早期アクセス設計
+- Status: DONE
+- Summary:
+  - カントー渡航をVega初回殿堂入り後限定から、本編中盤の任意高難度ルートへ変更した。概念解禁点は「シオウの3個目バッジ取得後、アーシア島D・Hビル初回攻略完了」とし、実flag/script終端の確定をT02の証拠ゲートへ追加した。
+  - V2のLv.68〜100固定帯を維持し、推奨Lv.65以上の警告、船上戦の任意・勝敗不問化、クチバのPC/回復・無料帰還まで強制戦闘/field move不要を必須にした。高レベル個体の持ち帰りは任意報酬として許容し、Vegaのstory/warp/HM/重要道具のsequence breakは禁止した。
+  - 早期の要求認定章数0〜4と、Vega殿堂入り後の後半認定章・カントーリーグ・終盤伝説・二地方共鳴を分離した。渡航、訪問、認定章、Kanto story、Vega殿堂入り、地方別heal/return anchorを別状態として保存・検証する方針を固定した。
+  - V2受領原本は編集せず、K-E01、調査パス、チャンピオン前提台詞、必須船上戦をT12正規化層でoverrideする。T02/T08/T12〜T17、DAG表示名、36件のsmoke matrix、将来セッション入口へ受入条件を反映した。
+- Files changed:
+  - 入口・計画: `README.md`, `CODEX_START_HERE.md`, `CODEX_HANDOFF.md`, `MASTER_PLAN.md`, `CHANGELOG.md`, `pyproject.toml`
+  - 判断・状態: `design/current_state.md`, `design/decisions.md`, `design/PLANS.md`, `design/import_review.md`, `design/kanto_feasibility.md`, `design/agent_context_map.md`
+  - 方針・実行仕様: `docs/KANTO_PORT_POLICY.md`, `docs/CONTENT_PIPELINE.md`, `docs/TEST_STRATEGY.md`, `content/README.md`, `prompts/CONTENT_LANE.md`
+  - タスク・検証: `tasks/T02_EXACT_AUDIT.md`, `tasks/T08_SAVE_RAM.md`, `tasks/T12_CONTENT_SCHEMA.md`, `tasks/T13_VERMILION_SLICE.md`, `tasks/T15_POSTGAME_PROGRESSION.md`, `tasks/T16_CONTENT_POPULATION.md`, `tasks/T17_REGRESSION.md`, `tasks/INDEX.md`, `tasks/task_graph.json`, `tests/smoke_test_matrix.csv`
+- Verify:
+  - `python3 scripts/validate_task_graph.py`: PASS
+  - smoke matrix CSVの36 ID・列数・連番検査: PASS
+  - `make validate guard test`: PASS（36 tests）
+  - `bash scripts/verify_wsl.sh`: PASS（secret scan、project gates、36 tests、npm check）
+  - `git diff --check`: PASS
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - Vega本編の進行順を補助確認するため攻略記事を参照した。実装flagの根拠にはせず、T02で実ROM scriptを監査する。
+  - `https://torik0419.com/2023/01/05/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3-%E3%83%99%E3%82%AC%E6%94%BB%E7%95%A5-part3%EF%BC%88%EF%BD%9E%E3%82%B8%E3%83%A0%E3%83%90%E3%83%83%E3%83%813%E3%81%A4%E7%9B%AE%EF%BC%89/` — シオウ、なみのり、3個目バッジまでの順序を補助確認。
+  - `https://torik0419.com/2023/01/05/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3-%E3%83%99%E3%82%AC%E6%94%BB%E7%95%A5-part4%EF%BC%88%EF%BD%9E%E3%82%B8%E3%83%A0%E3%83%90%E3%83%83%E3%83%814%E3%81%A4%E7%9B%AE%EF%BC%89/` — 507/508水道、海底トンネル、アーシア島D・Hビル、ヒスイ4個目の順序を補助確認。

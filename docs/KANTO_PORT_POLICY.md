@@ -2,11 +2,45 @@
 
 ## 既定仕様
 
-- 元FireRedのカントー本土を、Vega初回殿堂入り後に解禁する第二地方として復元する。
+- 元FireRedのカントー本土を、Vega本編中盤から任意で訪問できる高難度の第二地方として復元する。
 - トーホクとカントーは連絡船で常時双方向移動できる。港、セーブ、回復、全滅復帰のどの状態からも帰還不能にしない。
 - 初期入口はクチバ港。V2の地理矛盾を避けるため、到着時からクチバ市街、6/11番道路、ディグダのあなを通る初期回廊を移動可能にし、ジムや後半イベントだけを認定章でgateする。
 - カントーの認定章8個はVegaバッジと別flagで管理する。初期縦切りではflag表示を優先し、専用UIは基盤安定後に追加できる。
 - ナナシマはV2本体のscope外。予約IDだけを残し、カントー本土完成後の別判断にする。
+
+## 解禁と二段階進行
+
+初回渡航の概念条件は次とする。数値flagは推測で固定せず、T02で実ROMのscript終端を監査して対応するsymbolを確定する。
+
+```text
+KANTO_EARLY_ACCESS_SOURCE =
+  VEGA_SHIOU_BADGE_OBTAINED
+  && VEGA_ASPHERE_DH_BUILDING_CLEAR
+
+KANTO_TRAVEL_UNLOCKED =
+  latched(KANTO_EARLY_ACCESS_SOURCE)
+  || migrated(VEGA_HALL_OF_FAME)
+```
+
+- 初回便はアーシア島の新設ターミナルから出す。初訪問後は、クチバ帰還船とシオウの再訪便を恒久登録する。
+- 早期フェーズでは、クチバと初期回廊、高レベル野生、要求認定章数0〜4のジム・調査を任意攻略できる。
+- `VEGA_HALL_OF_FAME` は渡航条件に使わず、後半認定章、カントーリーグ、終盤伝説、二地方共鳴だけを解禁する。
+- 早期カントーを無視してもVega本編は従来どおり完走でき、先にカントーを遊んだ後も同じ必須フラグ列で再開できる。
+
+## 難易度と安全導線
+
+- V2のカントーLv.68〜100を固定帯とし、party平均レベルで自動スケーリングしない。意図的な高難度差はlintの例外ではなく、明示policyとして検証する。
+- 初回乗船時に「推奨Lv.65以上」「高レベル地域」「いつでも無料で帰還可能」を確認表示する。
+- クチバ到着からプレイヤー操作を返す前に、Kantoのheal/whiteout anchorを登録する。港、市街、PC/回復、帰り船の間に強制戦闘、不可避の草むら、field move要求を置かない。
+- V2原案のLv.70台船上ダブル戦は任意にし、拒否・敗北・辞退で渡航権や帰還路を失わない。
+- 高レベル個体を捕獲し、Vega本編の戦闘に持ち込むことは任意ルートの報酬として許容する。Vegaのstory、warp、HM、重要道具のsequence breakは禁止する。
+
+## 状態とfield moveの分離
+
+- `KANTO_TRAVEL_UNLOCKED`、`KANTO_VISITED`、`KANTO_CERT_*`、`KANTO_STORY_*`、`VEGA_HALL_OF_FAME` を別々に保存する。
+- Tohokuのfield moveはVega既存badge/HM、Kantoのfield moveは `KANTO_PERMIT_*` とmap条件だけを参照する。Kanto側の許可を得てもTohoku側の未解禁技は使えない。
+- Flyは地方内限定、地方間移動は連絡船限定とする。`TOHOKU_RETURN_ANCHOR` と `KANTO_LAST_HEAL` を分け、Escape/Teleport/dynamic warp/whiteoutが別地方の古いwarpを使わないようにする。
+- anchorが破損または未定義なら、Kantoではクチバterminal、Tohokuでは渡航元港へfail-safe復帰する。
 
 ## 復元方式
 
@@ -26,7 +60,7 @@ mapGroup/mapNumを扱う既存APIにはsigned 8-bit経路と `0x7F/0x7F` の予�
 
 - raw layout/blockdata/border/tileset: 所有するclean BPRJ Rev.0から抽出した値を正とする。
 - map名、source構造、依存関係の意味: `state/source-lock.json` で固定したpokefireredを補助にする。
-- 日本語textと後日談script: 統合版で新規作成する。英語版decompのtextは持ち込まない。
+- 日本語textと二地方追加script: 進行段階別に統合版で新規作成する。英語版decompのtextは持ち込まない。
 - 二地方の進行・生態・イベント候補: V2二地方生態版をreview入力にする。
 
 初期照合ではカントー本土候補180 unique layoutの179件がclean日本版BPRJ内のbyte列と一致し、Route 11だけがpokefirered側と一致しなかった。個別差異では必ずclean BPRJを優先する。
@@ -85,15 +119,19 @@ NPC座標や演出を残す場合でも、V2のNPC再利用26件・重要アイ�
    - 開発terminalから往復。
    - layout/collision/tileset/warpのround-trip diffとVega map非変更を証明。
 2. T13 product slice:
-   - Vega側港NPC → Kanto terminal → クチバ市街。
-   - PC/回復所、クチバジム、1 trainer、1 item、1 wild header、認定章1個。
-   - save/load、reset、whiteout、即時帰還を通す。
+   - 解禁直前は乗船不可、アーシアD・Hビル攻略直後・殿堂入り前は乗船可を証明。
+   - アーシア港NPC → Kanto terminal → クチバ市街 → PC/回復 → 無料帰還をrelease状態で通す。
+   - 1 trainer、1 item、1 wild headerを高レベル帯で検証。クチバジムは到着時に無条件解禁せず、必要認定章数のtest fixtureで別検証する。
+   - save/load、reset、heal、whiteout、full PC、即時帰還を殿堂入り前saveで通す。
 
 ## 完了条件
 
 - Vega既存Map ID/header/warpの上書き0。
 - 全Kanto destinationが解決し、意図しないunreachable/one-wayが0。
 - 港は常時双方向で、save/load/reset/heal/whiteout/Escape後も帰還可能。
+- 意図した中盤checkpointより前は乗船できず、checkpoint直後・殿堂入り前に乗船できる。
+- 初回安全導線は強制戦闘・field move・支払いなしでPCと帰還船へ到達できる。
+- カントー訪問後もVega本編を最後まで完走でき、Kanto permitがTohokuのHM/story gateを開かない。
 - 認定章、trainer defeat、item取得、story stateがVega側と衝突0。
 - Map group予約値・signedness、local ID、tileset、music、object、trainer/item/species ID衝突0。
 - linker allocation重複0、末尾reserve維持、Vega本編回帰PASS。

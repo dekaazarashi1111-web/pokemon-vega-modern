@@ -9,7 +9,7 @@ Prove that the new engine and dual-region content preserve Vega completion, keep
 
 ## Execute
 
-1. Create a versioned manual checkpoint matrix for Vega main story and postgame.
+1. Create a versioned manual checkpoint matrix for Vega main story, Kanto pre-unlock, early-access pre-HoF, and post-HoF states.
 2. Create clean-start and migrated-save test paths.
 3. Run all static/build validators.
 4. Run engine vertical slice tests.
@@ -19,6 +19,9 @@ Prove that the new engine and dual-region content preserve Vega completion, keep
 8. Repeat from a clean build after fixes.
 9. Exercise 49 Tohoku and 47 Kanto logical locations across time/method/unlock states, 34 event branches, and 125 shared special-capture states.
 10. Run 200 region round trips including save/load, reset, heal, whiteout, and full-PC cases.
+11. 「未解禁」「早期解禁直後・殿堂入り前」「早期認定章進行後」「Vega殿堂入り後」のsave状態行列を検証する。
+12. カントーを無視したVega本編と、早期往復・高レベル捕獲後のVega本編をどちらも完走する。
+13. 地方往復200回を殿堂入り前と後の両方で実施し、Kanto permit後もTohoku側未解禁HMが使えないことを検査する。
 
 ## Required outputs
 
@@ -35,6 +38,8 @@ Prove that the new engine and dual-region content preserve Vega completion, keep
 - [ ] Known issues include reproduction steps and severity.
 - [ ] No original Vega encounter disappears and no special species can be captured twice across regions.
 - [ ] Every imported Kanto physical map is reachable or intentionally gated, and return travel is always possible.
+- [ ] Kanto is unreachable immediately before the intended midgame checkpoint and reachable immediately after it without Hall of Fame or National Dex state.
+- [ ] Early Kanto visitation cannot skip Vega story/warp/HM gates, and both the visited and unvisited Vega paths remain completable.
 
 ## Finish
 

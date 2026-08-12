@@ -17,6 +17,9 @@ Allocate CFRU/DPE state safely and define an explicit save compatibility policy.
 6. Add save round-trip test fixtures and corrupted-version rejection.
 7. Document whether old Vega saves are supported.
 8. Allocate and test National Dex 1025 state, research rank, eight Kanto certifications, region/rotation/retry state, and 125 shared special-capture states.
+9. `KANTO_TRAVEL_UNLOCKED`、`KANTO_VISITED`、`VEGA_HALL_OF_FAME`、認定章、現在地方、地方別heal/return anchor、初回警告確認をそれぞれ独立保存する。
+10. 既存save移行では、早期checkpointまたは殿堂入りを満たすsaveに渡航権を1回だけ付与し、逆戻りさせない。
+11. Escape/Teleport/dynamic warp/whiteoutが地方別anchorを使い、不正値時はクチバterminalまたはVega渡航元港へfail-safe復帰することを検証する。
 
 ## Required outputs
 
@@ -33,6 +36,8 @@ Allocate CFRU/DPE state safely and define an explicit save compatibility policy.
 - [ ] Unsupported old saves fail clearly rather than silently corrupting.
 - [ ] Policy is documented and tested.
 - [ ] Dual-region travel and shared capture state survive save/load without modifying Vega badges.
+- [ ] 殿堂入り前のKanto内save/load/reset/heal/whiteoutで渡航権と帰還路が保持される。
+- [ ] Kanto field permitや認定章はTohokuのHM/badge/story flagを変更しない。
 
 ## Finish
 

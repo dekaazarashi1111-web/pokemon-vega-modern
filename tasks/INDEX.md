@@ -17,9 +17,9 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T10](T10_ENGINE_VERTICAL_SLICE.md) | Complete engine vertical slice | qa | T04, T05, T06, T07, T08, T09 |
 | [T11](T11_KANTO_IMPORTER.md) | Build Kanto map importer | maps | T00, T02 |
 | [T12](T12_CONTENT_SCHEMA.md) | Build symbolic content schema and generators | content | T00 |
-| [T13](T13_VERMILION_SLICE.md) | Implement Vermilion postgame vertical slice | maps | T10, T11, T12 |
+| [T13](T13_VERMILION_SLICE.md) | Implement Vermilion early-access vertical slice | maps | T10, T11, T12 |
 | [T14](T14_FULL_KANTO_IMPORT.md) | Import selected full Kanto map set | maps | T11, T13 |
-| [T15](T15_POSTGAME_PROGRESSION.md) | Implement postgame unlock and gym progression | content | T13, T14 |
+| [T15](T15_POSTGAME_PROGRESSION.md) | Implement dual-phase Kanto progression | content | T13, T14 |
 | [T16](T16_CONTENT_POPULATION.md) | Populate encounters trainers and items | content | T12, T14, T15 |
 | [T17](T17_REGRESSION.md) | Run regression and playtest gates | qa | T10, T13, T16 |
 | [T18](T18_RELEASE.md) | Create reproducible release pipeline | platform | T17 |

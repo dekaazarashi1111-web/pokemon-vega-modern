@@ -18,6 +18,8 @@ Turn the initial binary conflict report into a complete machine-readable compati
 7. Generate overlap validators that fail the build when a new unclassified conflict appears.
 8. Inventory Vega map groups, headers, layouts, warp/heal/Fly/Escape state, hidden-item flag width, and signed map-ID call paths needed by the Kanto importer.
 9. Extract the original Vega encounter tables and unlock dependencies needed to prove a non-destructive Tohoku overlay.
+10. シオウの3個目バッジ取得とアーシア島D・Hビル初回攻略完了の実flag/script終端、早期到達可能な港map、NPC表示条件を抽出し、`KANTO_TRAVEL_UNLOCKED` の一回性latch元として分類する。
+11. 早期渡航の境界以外でKanto側が参照または書込みしてはならないVega badge/story/HM/warp/item flagの所有権リストを作る。
 
 ## Required outputs
 
@@ -37,6 +39,7 @@ Turn the initial binary conflict report into a complete machine-readable compati
 - [ ] RAM and save ranges include owner and lifetime.
 - [ ] Audit can be rerun after source updates.
 - [ ] Map group limits, reserved values, and every state domain needed by dual-region travel are classified.
+- [ ] 早期解禁元の実flagは「3個目バッジ＋アーシアD・Hビル攻略後」にだけ成立し、数値とscript contextの証拠がある。
 
 ## Finish
 

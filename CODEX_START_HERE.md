@@ -70,6 +70,8 @@ make validate guard test
 
 カントーはVega内の元FireRed領域を上書き復元せず、clean BPRJ Rev.0のraw資産を新規 `KANTO_*` 群へ複製して全参照を再接続します。まずT11の1map importer、次にT13のクチバ往復縦切りを通します。
 
+T13のrelease解禁は殿堂入り後ではありません。シオウの3個目バッジとアーシア島D・Hビル初回攻略をT02で確定した実flagへ結び、早期・殿堂入り前のセーブで往復を必ず検証します。
+
 ## 人が確認する場所
 
 ```text

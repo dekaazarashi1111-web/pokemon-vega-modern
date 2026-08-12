@@ -51,22 +51,29 @@
 - 殿堂入り
 - 殿堂入り後シナリオ
 - 図鑑関連
+- カントー早期訪問を無視する経路と、訪問後にトーホクへ戻る経路の両方
 
 セーブステートを互換性判定に使わず、ゲーム内セーブを使用します。
 
-## 5. Kanto vertical slice
+## 5. Kanto早期アクセスvertical slice
 
-- unlock flag
+- 解禁直前の乗船不可
+- シオウ3個目バッジ＋アーシアD・Hビル攻略直後・殿堂入り前の乗船可
+- 全国図鑑なしでの乗船
+- unlock flagの恒久latchと既存殿堂入りsave移行
 - 港NPC出現
 - 地方間warp
+- 推奨Lv.65以上の警告
 - map name/music
 - NPC会話
-- gym puzzle
-- trainer party
-- boss reward
+- 船上戦の拒否・敗北・辞退後も渡航可能
+- 港からPC/帰還船まで強制戦闘・field move不要
+- ジム仕掛け、trainer party、boss rewardは必要認定章fixtureで検証
 - save/load in Kanto
 - heal/whiteout/reset in Kanto
 - return travel
+- Kanto permit取得後もトーホク側の未解禁HMを使えない
+- カントー訪問後のVega本編完走
 
 ## 6. 二地方生態・進行
 
@@ -76,7 +83,11 @@
 - 追加イベント34件の捕獲・撃破・逃走・敗北・満杯・再訪を検査する。
 - 特殊個体125種は地方共有flagで重複捕獲できない。
 - 港の往復を200回行い、save/load/heal/whiteout後も帰還できる。
+- 往復200回はVega殿堂入り前と殿堂入り後の両方で行う。
 - クチバ到着時の初期回廊と認定章gateにunreachable/circular prerequisiteがない。
+- 全reachable Kanto stateから無条件帰還辺があることを逆到達性検査する。
+- 早期は要求認定章数0〜4、Vega殿堂入り後は後半認定章・リーグ・共鳴だけが追加解禁される。
+- Kanto scriptがVega badge/story/HM flagへ書き込まず、境界ノード以外がVega進行flagを参照しない。
 
 ## 7. Release
 
