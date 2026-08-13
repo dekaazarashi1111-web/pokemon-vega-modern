@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: Gate A・T07完了。Vega固定SpeciesとDPE追加Speciesのcanonical stageまで到達。
+- マイルストーン: Gate A・T08完了。Vega固定Species/DPE追加Species stageとversioned RAM/save互換層まで到達。
 - ユーザー提供の5 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 5 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料を役割別に配置済み。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
@@ -31,6 +31,10 @@
 - T07でVega Species `0..411`を固定し、DPE定義済み1415 IDのうち206件（NONE sentinelを含む）をVegaへalias、欠落Species/form 1209件を`412..1620`へappendした。DPE予約hole `252..276`は生成対象外とした。
 - canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8`、fingerprintは `be3931a374adfb902b6add1193adc07925491196b4a335fb17fd396199872188`。
 - 全行にofficial判定、canonical全国番号、review stateを付け、公式全国番号1〜1025と209 multi-form群を検証した。公式捕獲数は全国番号distinctで数えるためform重複で100種条件を水増ししない。既存trainer/wild/script/gift/evolution参照は全て解決し、追加キャタピーcanonical ID 412を実party memoryへ2 processで生成した。
+- T08でT02のlive RAM/save ownerを統合し、CFRU sector 30/31 payloadのEWRAM `0x0203D000..0x0203D800`へ2,048-byte version 1 ledgerを割り当てた。magic/version/size/FNV-1a checksumと予約領域検査をfail-closedにし、既存Vega saveはsector checksum検証後だけ一回性migrationへ進める。
+- Kanto渡航・訪問・殿堂入り・認定章・地方別heal/return anchor・League I/II・地方別NORMAL/RESEARCH profile、125共有捕獲/Raid stateをVega badge/HM/story flagと分離した。早期渡航は`0x0824 && 0x114B`または殿堂入りからmonotonicに付与する。
+- Factoryはreset unsafeな348-byte/3体backupを廃止し、6×100 byte exact party snapshot、BP、24 mode streak、once reward、unlock、markerを原子的に保存する。typed encounter creditと完全なpending encounterも同じpersist-before-battle transactionにし、flash失敗、reset、二重課金・二重報酬をfocused C fixtureで検証した。
+- `natureMint`、Hyper Training、Tera typeは80-byte BoxPokemon ABI内を正本とし、最大5個のタマゴqueueも個体byteをFIFO保存する。arcade coinは既存暗号化u16を再利用し、Factory BPは新規u16、research pointはearn hook不在のためstorageなしのDEFERとした。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - 元FireRedのカントーを新規 `KANTO_*` 名前空間へ複製し、Vega中盤からトーホクと常時往復できる二地方構成は実現可能と判定。V2の47地点は生態設計単位であり、raw map総数ではないためT11で全建物・階層・warpとのcrosswalkを生成する。
@@ -51,6 +55,8 @@
 - T05: DONE。Vega既存Type/Ability/Itemを凍結し、CFRU/DPE alias、Fairy/Stellar、育成/QOL itemを決定的な配置前modelへ統合した。
 - T06: DONE。固定CFRU battle core、canonical runtime表、育成QOL、Factory、AI、gimmick、Mirage、Raidをstage 04へ統合し、実schedulerと決定的publish gateを通過した。
 - T07: DONE。Vega Species 0〜411を固定し、DPE alias/追加Species/formを1621行canonical modelとstage 07へ統合し、追加Speciesの実party生成を通過した。
+- T08: DONE。live RAM overlap 0の配置、2 KiB versioned ledger、旧Vega一回性migration、Factory/遭遇/Raid transaction、QOL/二地方stateを実装し、focused 5 testsと決定的report checkを通過した。
+- T09: T07/T08成果を入力に、graphics・cry・Dex・evolution・learnsetを統合する次のengineタスク。
 - T11: T02のmap/ID監査を入力に、元FireRedカントーmap importerを並列準備できる。
 - T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
 

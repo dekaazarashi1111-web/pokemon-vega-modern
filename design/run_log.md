@@ -409,3 +409,30 @@
   - Species report SHA-256 `739016ef2e51aa2d02707fb8fd9e17af714e85cc2530c21790389db46eb7738f`、manifest SHA-256 `6bb337437d2798112ecf8796de2ee01d02b33b82eea0be0e5ea5b140d3bd5553`、BaseStats SHA-256 `097da1f8d6a374729c60acd407ca1c6e2a86965d67c0fda57a5e052c65f277f8`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みローカルVega ROM、固定DPE-JP build、T02/T05/T06成果だけを参照した。
+
+## 2026-08-14T03:01:22+09:00
+
+- Task: `T08` / RAMとSaveBlock互換性を解決する
+- Status: DONE
+- Summary:
+  - T02のRAM/save監査をmergeし、live owner overlap 0の正本台帳を作成した。CFRU sector 30/31 payloadのEWRAM `0x0203D000..0x0203D800`へ2,048-byte version 1 ledgerを割り当て、magic/version/size/FNV-1a checksum/予約領域をfail-closed検証するmigration entry pointを実装した。
+  - 既存Vega saveは既存sector signature/checksumが正しい場合だけ一回移行する。早期checkpoint `0x0824 && 0x114B`または殿堂入りから渡航権をmonotonicに付与し、渡航・訪問・殿堂入り・認定章・地方・heal/return anchor・League I/II・地方別profileをVega badge/HM/story bitmapと分離した。
+  - 全国図鑑1025、999 item取得flag、最大5個のタマゴqueue、個体内natureMint/Hyper Training/Tera、125共有捕獲とRaid reward/retry/bonus、Factory/Mirage、通貨ownerを明示した。arcade coinは既存暗号化u16を再利用、Factory BPは上限9999の新規u16、research pointはearn hook不在のため未割当DEFERとした。
+  - Factoryの旧348-byte/3体/reset-unsafe backupを6×100 byte exact snapshotへ置換し、入場・復元・once rewardと、typed credit減算＋完全なpending encounterをpersist-before-battle transactionにした。flash失敗、電断相当partial staging、reset、二重課金/二重報酬をC fixtureで検証した。
+- Files changed:
+  - 台帳/config: `config/ram_layout.csv`, `config/save_layout.csv`
+  - runtime: `overlays/save_migration/{README.md,save_migration.h,save_migration.c}`
+  - build/report: `scripts/build_save_compatibility.py`, `Makefile`, Git管理外 `reports/generated/save_compatibility.md`
+  - focused tests: `tests/test_save_layout.py`, `tests/test_facility_save.py`, `tests/fixtures/save_migration_fixture.c`
+  - docs/state: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+- Verify:
+  - `make save-layout` / `make save-layout-check`: PASS。live RAM/save overlap 0、入力hash付きreportのbyte一致、副作用なしcheckを確認した。
+  - `python3 -m unittest tests.test_save_layout tests.test_facility_save -v`: PASS（5 tests）。新規/移行round-trip、checksum/未知version/予約領域拒否、Kanto pre-HOF anchor、Vega badge非変更、QOL/egg FIFO、League順序、Raid stateを確認した。
+  - host C fixture `-std=c11 -Wall -Wextra -Werror`: PASS。Factory 600-byte exact restore、BP cap/underflow、Mirage非干渉、save失敗rollback、pending encounter再起動/二重課金防止/捕獲時clearを確認した。
+  - `python3 -m py_compile scripts/build_save_compatibility.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - save compatibility report SHA-256 `aad1a0f63eebf0bfc52ee5a18b883153a2d8e05baf8cc1b4161d0df0aa304a1e`。
+  - RAM/save layout SHA-256 `4586ebae823ca33bc534f5ea466f274fb36d56b902c864f48a0fd24dd9c08776` / `a1e39fa7783b8d0142cd58b09915088dca23ca9122bf720f3cd6c1bc010da4d7`。
+  - overlay C/header SHA-256 `9afb5079fa91ae7497868dca4e7dcef708fefed94d7e1fcaeaab197a801f8359` / `f4c4a2aa49057221bf89dbaad3646bf496e7f249d8370282b677bedaff5d4ace`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済み固定CFRU-JP、T02監査、T06/T07 ABIだけを参照した。

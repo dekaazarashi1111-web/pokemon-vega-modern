@@ -1,0 +1,93 @@
+from __future__ import annotations
+
+import csv
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+RAM_LAYOUT = ROOT / "config" / "ram_layout.csv"
+SAVE_LAYOUT = ROOT / "config" / "save_layout.csv"
+SOURCE = ROOT / "overlays" / "save_migration" / "save_migration.c"
+FIXTURE = ROOT / "tests" / "fixtures" / "save_migration_fixture.c"
+
+
+def _live_intervals(path: Path):
+    with path.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            if row["status"] != "LIVE" or not row["start"]:
+                continue
+            yield row, int(row["start"], 0), int(row["end_exclusive"], 0)
+
+
+class SaveLayoutTests(unittest.TestCase):
+    def test_live_layouts_have_valid_non_overlapping_intervals(self) -> None:
+        for path in (RAM_LAYOUT, SAVE_LAYOUT):
+            by_space: dict[str, list[tuple[dict[str, str], int, int]]] = {}
+            for row, start, end in _live_intervals(path):
+                self.assertLess(start, end, row["symbol"])
+                self.assertEqual(end - start, int(row["size"], 0), row["symbol"])
+                by_space.setdefault(row["address_space"], []).append((row, start, end))
+            for intervals in by_space.values():
+                intervals.sort(key=lambda item: item[1])
+                for left, right in zip(intervals, intervals[1:]):
+                    self.assertLessEqual(left[2], right[1], f"{left[0]['symbol']} / {right[0]['symbol']}")
+
+    def test_required_owners_and_exclusions_are_explicit(self) -> None:
+        with SAVE_LAYOUT.open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        symbols = {row["symbol"]: row for row in rows}
+        required = {
+            "KANTO_TRAVEL_UNLOCKED",
+            "KANTO_VISITED",
+            "VEGA_HALL_OF_FAME",
+            "kanto_certifications_8bit",
+            "region_heal_return_anchors",
+            "national_dex_seen_1025",
+            "national_dex_caught_1025",
+            "shared_special_capture_125",
+            "egg_queue_box_mon_5x80",
+            "factory_transaction",
+            "pending_encounter",
+            "itemObtainedFlags_999",
+        }
+        self.assertTrue(required.issubset(symbols))
+        self.assertEqual(symbols["research_point_currency"]["status"], "DEFER")
+        self.assertEqual(symbols["battle_local_virtual_item"]["status"], "EXCLUDED")
+        self.assertEqual(symbols["arcade_coin_u16"]["owner"], "VEGA_ARCADE_COIN")
+        self.assertEqual(int(symbols["national_dex_seen_1025"]["size"]), 129)
+        self.assertEqual(int(symbols["shared_special_capture_125"]["size"]), 16)
+        self.assertEqual(int(symbols["itemObtainedFlags_999"]["size"]), 125)
+
+    def test_c_runtime_roundtrip_migration_checksum_and_bounds(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="t08-save-") as temp:
+            executable = Path(temp) / "save_fixture"
+            subprocess.run(
+                [
+                    "cc",
+                    "-std=c11",
+                    "-Wall",
+                    "-Wextra",
+                    "-Werror",
+                    "-I",
+                    str(SOURCE.parent),
+                    str(SOURCE),
+                    str(FIXTURE),
+                    "-o",
+                    str(executable),
+                ],
+                cwd=ROOT,
+                check=True,
+                text=True,
+                capture_output=True,
+            )
+            result = subprocess.run(
+                [str(executable), "save"], cwd=ROOT, check=True, text=True, capture_output=True
+            )
+            self.assertIn("save-suite: PASS", result.stdout)
+
+
+if __name__ == "__main__":
+    unittest.main()

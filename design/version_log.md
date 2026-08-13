@@ -175,3 +175,14 @@
   - T05 canonical Ability/Itemへ変換したBaseStatsをDPE領域へ配置し、T06 root 105件をrepointしたstage 07を決定的生成した。
   - 公式全国番号1〜1025とform共有番号を完全化し、form重複なしの100種捕獲countと追加Speciesの実party生成を検証した。
 - Verify: T07 build/check、focused 27 tests、manifest validator、生成C compile、libmGBA 2 process PASS。fingerprint `be3931a374adfb902b6add1193adc07925491196b4a335fb17fd396199872188`、ROM SHA-256 `3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8`。WSL全体verifyは未実行。
+
+## 2026-08-14T03:01:22+09:00
+
+- Version: `save-compatibility-0.15.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T08` / RAMとSaveBlock互換性を解決する
+- Summary:
+  - live overlap 0のRAM/save台帳と、sector 30/31内2 KiBのversioned checksum ledgerを実装した。
+  - 旧Vega一回性migration、二地方/QOL/図鑑/共有捕獲/Raid stateをbadge/HM/storyから分離した。
+  - Factory exact party、BP/rewardとpending encounterをflash確定前transactionにし、Mirage/仮想item ownerを分離した。
+- Verify: `make save-layout-check`、focused 5 tests、host C `-Wall -Wextra -Werror` compile、py_compile PASS。report SHA-256 `aad1a0f63eebf0bfc52ee5a18b883153a2d8e05baf8cc1b4161d0df0aa304a1e`。WSL全体verifyは未実行。

@@ -1,0 +1,18 @@
+address_space,start,end_exclusive,size,owner,symbol,lifetime,persistence,status,source_ref,notes
+EWRAM,0x02023F54,0x02023F58,4,CFRU_BATTLE_CORE,gBattleResources,battle,VOLATILE,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:56,Named pointer slot
+EWRAM,0x020241E4,0x0202443C,600,PLAYER_PARTY,gPlayerParty,overworld_and_battle,SAVE_BACKED,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:44,Authoritative six-member party
+EWRAM,0x02026794,0x020267A8,20,CFRU_FACTORY_RECORDS,gBattleSandsStreaks,save_session,SAVE_BACKED,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:5,Sands records
+EWRAM,0x020267A8,0x02026A48,672,CFRU_FACTORY_RECORDS,gBattleTowerStreaks,save_session,SAVE_BACKED,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:6,Tower records
+EWRAM,0x02026AA8,0x02026AB4,12,CFRU_FACTORY_RECORDS,gBattleMineStreaks,save_session,SAVE_BACKED,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:7,Mine records
+EWRAM,0x02026AB8,0x020270D8,1568,CFRU_FACTORY_RECORDS,gBattleCircusStreaks,save_session,SAVE_BACKED,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:8,Circus record block
+EWRAM,0x020398D8,0x020398DC,4,DPE_UI,sNamingScreenData,naming_screen,VOLATILE,LIVE,vendor/upstream/DPE-JP/BPRJ.ld:11,Named relocatable pointer slot
+EWRAM,0x0203AC68,0x0203AC6C,4,DPE_UI,gPokedexScreenDataPtr,pokedex_screen,VOLATILE,LIVE,vendor/upstream/DPE-JP/BPRJ.ld:10,Named relocatable pointer slot
+EWRAM,0x0203B0E8,0x0203B2E8,512,CFRU_SAVE_EXPANSION,gExpandedFlags,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:143,Expanded flags
+EWRAM,0x0203B2E8,0x0203B6E8,1024,CFRU_SAVE_EXPANSION,gExpandedVars,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:144,Expanded vars
+EWRAM,0x0203B78C,0x0203B790,4,CFRU_SAVE_EXPANSION,gPlayerCoins,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:158,CFRU u32 coin field is not the Vega arcade coin ABI
+EWRAM,0x0203C6C8,0x0203C6CE,6,CFRU_PARTY_SELECTION,gSelectedOrderFromParty,party_selection,VOLATILE,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:170,Outside the T08 ledger allocation
+EWRAM,0x0203D000,0x0203D800,2048,T08_SAVE_LEDGER,gVegaModernSaveData,save_session,FLASH,LIVE,overlays/save_migration/save_migration.h,Backed by CFRU sector 30/31 payload offset 0x1054
+EWRAM,0x0203DFB0,0x0203DFB4,4,CFRU_BATTLE_CORE,gNewBS,battle,VOLATILE,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:13,Named pointer slot
+EWRAM,0x0203E118,0x0203E274,348,CFRU_FACTORY_LEGACY,factory_temp_party_backup,legacy_factory_session,VOLATILE_RESET_UNSAFE,RETIRED,reports/generated/ram_map.csv,Replaced by the persistent 600-byte T08 snapshot
+EWRAM,0x0203E300,0x0203E400,256,T08_TRANSACTION_SCRATCH,gVegaSaveTransactionScratch,save_or_restore_call,VOLATILE,LIVE,overlays/save_migration/save_migration.h,Named scratch reservation; never serialized
+IWRAM,0x03003130,0x0300356C,1084,DPE_MAIN,gMain,engine,VOLATILE,LIVE,vendor/upstream/DPE-JP/BPRJ.ld:12,Exact ABI asserted by upstream

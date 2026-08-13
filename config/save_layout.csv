@@ -1,0 +1,42 @@
+address_space,start,end_exclusive,size,owner,symbol,version,migration,status,source_ref,notes
+SAVE_BLOCK1_OFFSET,0x00000294,0x00000296,2,VEGA_ARCADE_COIN,arcade_coin_u16,legacy,KEEP,LIVE,reports/generated/save_map.csv,XOR SaveBlock2 encryption key; cap 9999
+SAVE_BLOCK1_OFFSET,0x00000310,0x00000391,129,T08_DEX,national_dex_seen_1025,1,ZERO_EXTEND,LIVE,vendor/upstream/CFRU-JP/include/global.h:717,Authoritative first 1025 bits of the existing 150-byte field
+SAVE_BLOCK1_OFFSET,0x000003A6,0x00000427,129,T08_DEX,national_dex_caught_1025,1,ZERO_EXTEND,LIVE,vendor/upstream/CFRU-JP/include/global.h:718,Authoritative first 1025 bits of the existing 150-byte field
+SAVE_BLOCK1_OFFSET,0x00000EE0,0x00001000,288,VEGA_EVENT_FLAGS,vega_badges_hm_story_flags,legacy,KEEP,LIVE,reports/generated/save_map.csv,T08 never rewrites or aliases this bitmap
+SAVE_BLOCK1_OFFSET,0x00001000,0x00001200,512,VEGA_EVENT_VARS,vega_event_vars,legacy,KEEP,LIVE,reports/generated/save_map.csv,Preserved in place
+SAVE_BLOCK1_OFFSET,0x00002F18,0x00002F80,104,CFRU_ITEM_FLAGS_LEGACY,itemObtainedFlags_legacy_832,legacy,TRANSLATE,RETIRED,vendor/upstream/CFRU-JP/include/global.h:761,Translated to the 999-item T08 bitmap
+SAVE_PARASITE_IMAGE_OFFSET,0x00000000,0x00000200,512,CFRU_SAVE_EXPANSION,expanded_flags,legacy,KEEP,LIVE,reports/generated/save_map.csv,Flag IDs 2304 through 6399
+SAVE_PARASITE_IMAGE_OFFSET,0x00000200,0x00000600,1024,CFRU_SAVE_EXPANSION,expanded_vars,legacy,KEEP,LIVE,reports/generated/save_map.csv,Var IDs 0x5000 through 0x51FF
+SAVE_PARASITE_IMAGE_OFFSET,0x000006A4,0x000006A8,4,CFRU_EXPANDED_COINS,cfru_player_coins_u32,legacy,KEEP,LIVE,reports/generated/save_map.csv,Not used as Vega arcade coin Factory BP or Mirage reward
+POKEMON_ABI_OFFSET,0x0000000F,0x00000010,1,POKEMON_PERSISTENT,natureMint,1,KEEP,LIVE,vendor/upstream/CFRU-JP/include/pokemon.h:288,Present in both 80-byte BoxPokemon and 100-byte party Pokemon ABI
+POKEMON_ABI_OFFSET,0x00000010,0x00000011,1,POKEMON_PERSISTENT,hyperTraining_6bit,1,KEEP,LIVE,vendor/upstream/CFRU-JP/include/pokemon.h:289,Upper two bits must remain zero
+POKEMON_ABI_OFFSET,0x00000011,0x00000012,1,POKEMON_PERSISTENT,teraType,1,KEEP,LIVE,vendor/upstream/CFRU-JP/include/pokemon.h:290,Travels with the individual
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F18,0x00001F28,16,T08_HEADER,magic_version_size_checksum_generation,1,CREATE,LIVE,overlays/save_migration/save_migration.h,FNV-1a checksum with checksum word treated as zero
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F28,0x00001F29,1,T08_TRAVEL,KANTO_TRAVEL_UNLOCKED,1,DERIVE_ONCE,LIVE,overlays/save_migration/save_migration.h,Early checkpoint 0x0824 and 0x114B or Hall of Fame; monotonic
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F29,0x00001F2A,1,T08_TRAVEL,KANTO_VISITED,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Independent of travel unlock and Hall of Fame
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F2A,0x00001F2B,1,T08_PROGRESS,VEGA_HALL_OF_FAME,1,COPY_SIGNAL,LIVE,overlays/save_migration/save_migration.h,Does not alias badges
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F2B,0x00001F2C,1,T08_TRAVEL,first_kanto_warning_seen,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,One-time warning acknowledgement
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F2C,0x00001F2E,2,T08_LEAGUE,league_i_ii_cleared,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,II cannot be set before I
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F2E,0x00001F2F,1,T08_MIGRATION,legacy_migration_done,1,SET_ONCE,LIVE,overlays/save_migration/save_migration.h,One-time migration latch
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F2F,0x00001F30,1,T08_TRAVEL,current_region,1,DEFAULT_TOHOKU,LIVE,overlays/save_migration/save_migration.h,0 Tohoku; 1 Kanto
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F30,0x00001F31,1,T08_KANTO,kanto_certifications_8bit,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Independent of Vega badge and HM flags
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F31,0x00001F34,3,T08_RESEARCH,research_rank_rotation_retry,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Research rank is not research-point currency
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F34,0x00001F37,3,T08_QOL,text_hatch_exp_share,1,DEFAULT_QOL,LIVE,overlays/save_migration/save_migration.h,INSTANT FAST and badge1-dependent Exp Share
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F37,0x00001F39,2,T08_ENCOUNTER_PROFILE,region_profiles,1,DEFAULT_NORMAL,LIVE,overlays/save_migration/save_migration.h,Invalid values normalize to NORMAL
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F39,0x00001F59,32,T08_TRAVEL,region_heal_return_anchors,1,DEFAULT_INVALID,LIVE,overlays/save_migration/save_migration.h,Invalid anchors resolve through named Tohoku port or Vermilion terminal fallback
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F59,0x0000205B,258,T08_RESERVED,reserved_dex_migration,1,ZERO,LIVE,overlays/save_migration/save_migration.h,Serialized as zero; authoritative Dex bits remain in SaveBlock1
+SAVE_PARASITE_IMAGE_OFFSET,0x0000205B,0x0000206B,16,T08_SHARED_CAPTURE,shared_special_capture_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Single capture owner shared by static encounters and Raid
+SAVE_PARASITE_IMAGE_OFFSET,0x0000206B,0x0000207B,16,T08_RAID,raid_reward_claimed_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Separate from capture state
+SAVE_PARASITE_IMAGE_OFFSET,0x0000207B,0x0000208B,16,T08_RAID,raid_retry_pending_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Retry does not grant capture or reward
+SAVE_PARASITE_IMAGE_OFFSET,0x0000208B,0x0000209B,16,T08_RAID,raid_in_progress_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Interrupted marker
+SAVE_PARASITE_IMAGE_OFFSET,0x0000209B,0x00002118,125,T08_RAID,raid_bonus_tier_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Monotonic tier 0 through 3
+SAVE_PARASITE_IMAGE_OFFSET,0x00002118,0x0000211A,2,T08_BREEDING,egg_queue_meta,1,DEFAULT_EMPTY,LIVE,overlays/save_migration/save_migration.h,Count and circular head
+SAVE_PARASITE_IMAGE_OFFSET,0x0000211A,0x000022AA,400,T08_BREEDING,egg_queue_box_mon_5x80,1,DEFAULT_EMPTY,LIVE,overlays/save_migration/save_migration.h,Exact FIFO individual bytes; no derived unlock fields
+SAVE_PARASITE_IMAGE_OFFSET,0x000022AA,0x00002574,714,T08_FACTORY,factory_transaction,1,DEFAULT_OUTSIDE,LIVE,overlays/save_migration/save_migration.h,BP 24-mode streaks claim unlock marker and exact 6x100 party snapshot
+SAVE_PARASITE_IMAGE_OFFSET,0x00002574,0x0000259C,40,T08_MIRAGE,mirage_records_and_item_reward,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Separate owner from Factory; no numeric Mirage currency
+SAVE_PARASITE_IMAGE_OFFSET,0x0000259C,0x000025AC,16,T08_ENCOUNTER,typed_encounter_credits,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Eight u16 credit owners
+SAVE_PARASITE_IMAGE_OFFSET,0x000025AC,0x000025DA,46,T08_ENCOUNTER,pending_encounter,1,DEFAULT_INVALID,LIVE,overlays/save_migration/save_migration.h,Exact generated attributes version fingerprint and transaction id
+SAVE_PARASITE_IMAGE_OFFSET,0x000025DA,0x00002657,125,T08_ITEM_FLAGS,itemObtainedFlags_999,1,ZERO_EXTEND,LIVE,overlays/save_migration/save_migration.h,Canonical item IDs 0 through 998
+SAVE_PARASITE_IMAGE_OFFSET,0x00002657,0x00002718,193,T08_RESERVED,reserved_v1_tail,1,ZERO,LIVE,overlays/save_migration/save_migration.h,Must remain zero until a versioned migration allocates it
+DEFERRED,,,,RESEARCH_POINT,research_point_currency,-,NONE,DEFER,task T08 execute 17,No earn hook; no storage display earn or spend path is allowed
+BATTLE_LOCAL,,,,CFRU_VIRTUAL_ITEM,battle_local_virtual_item,-,NONE,EXCLUDED,config/cfru_vega_minimal.h,Never serialized

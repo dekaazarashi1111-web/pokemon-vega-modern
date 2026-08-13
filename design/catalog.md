@@ -35,6 +35,7 @@
 - `scripts/build_id_spaces.py`: Vega/CFRU/DPEのType・Ability・Itemを配置前stable modelへ統合し、manifest/C表/幅レポートを決定的生成
 - `scripts/build_battle_core.py`: T04/T05へ固定CFRU battle coreを統合し、2回構築、3本のlibmGBA acceptance、publish gate、stage/report公開を決定的に実行
 - `scripts/build_species_port.py`: T06へVega固定412種とDPE追加1209種のcanonical BaseStatsを統合し、manifest、公式捕獲count、実party生成smokeを決定的に実行
+- `scripts/build_save_compatibility.py`: T08 RAM/save配置のlive overlapを検査し、versioned ledger入力hash付き互換性reportを決定的に生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -82,3 +83,5 @@
 - `config/id_spaces.json`: T05入力hash、抽出root、意味同一override、追加range、QOL item契約の正本
 - `config/battle_core.json`: T06入力、battle-only分類、allocator/payload、runtime table、smoke/publish契約の正本
 - `config/species_port.json`: T07固定Vega/DPE table hash、mapping、canonical BaseStats配置、stage/smoke契約の正本
+- `config/ram_layout.csv`, `config/save_layout.csv`: T08のlive RAM ownerとversioned save field/migration/DEFER/EXCLUDED配置の正本
+- `overlays/save_migration/`: T08 checksum、旧Vega migration、二地方/QOL、Factory/遭遇/Raid transaction runtime
