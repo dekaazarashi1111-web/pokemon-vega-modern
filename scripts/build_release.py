@@ -8,7 +8,6 @@ import csv
 import hashlib
 import io
 import json
-import os
 import shutil
 import stat
 import subprocess
@@ -653,7 +652,7 @@ def verify_release() -> tuple[bytes, dict[str, bytes], bytes]:
     return final, expected_files, expected_archive
 
 
-def _link_private_inputs(checkout: Path) -> None:
+def _copy_private_inputs(checkout: Path) -> None:
     required_paths = (
         "inputs/private/FireRed_JPN_Rev0_clean.gba",
         "inputs/private/Vega_20180223.ips",
@@ -679,7 +678,8 @@ def _link_private_inputs(checkout: Path) -> None:
         destination.parent.mkdir(parents=True, exist_ok=True)
         if destination.exists():
             destination.unlink()
-        os.symlink(source.resolve(), destination)
+        shutil.copyfile(source, destination)
+        destination.chmod(0o400)
 
 
 def fresh_checkout_check() -> dict[str, object]:
@@ -697,7 +697,7 @@ def fresh_checkout_check() -> dict[str, object]:
         checkout = Path(temporary) / "checkout"
         _run(("git", "worktree", "add", "--detach", str(checkout), revision), label="fresh worktree")
         try:
-            _link_private_inputs(checkout)
+            _copy_private_inputs(checkout)
             _run(("make", "clean-build"), cwd=checkout, label="fresh clean-build")
             _run(("make", "final"), cwd=checkout, label="fresh final")
             _run(("make", "release-patch"), cwd=checkout, label="fresh release-patch")
@@ -722,7 +722,7 @@ def fresh_checkout_check() -> dict[str, object]:
         "status": "PASS",
         "source_revision": revision,
         "commands": ["make clean-build", "make final", "make release-patch", "build_release.py verify"],
-        "private_inputs": "symlinked read-only inputs; not copied into outputs",
+        "private_inputs": "read-only copies inside isolated worktree; never copied into outputs",
         "final_sha256": _sha(current_final),
         "patch_sha256": _sha(current_files[PATCH_NAME]),
         "archive_sha256": _sha(current_archive),
