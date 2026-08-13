@@ -41,6 +41,8 @@
 - T10で追加オコリザル445、ふんどのこぶし1027、まけんき129、ウタンのみ669、技習得進化method 26を選び、stage 09のlibmGBA 2 process生成と継続save fixtureを通した。wild/trainer/capture/level/move/ability/item/evolution/Dex/save/restart/loadを同一fixtureで検証し、release debug giftはOFFに固定した。
 - `config/feature_matrix.csv`でTEXT_SPEED=INSTANT、HATCH_MODE=FAST、ダッシュ37.5%・自転車62.5%の固定course短縮、QOL-A全release既定値を固定した。tile event各1回、text control順、共通数量UI、アメ、孵化/王冠/mint/特性/IV-EV/egg queueを同一saveで検証した。
 - Factory Lv.50 single 3v3×3、交換/BP/全exit復元、credit報酬遭遇、3 AI profile、TM reuse license、Mirage仮想item、Tohoku overlayのbyte同値fallback、NORMAL/RESEARCH save、4-star Raid cleanupをhost Cで統合検証した。engine manifest schemaはv1でfreezeした。
+- T12で進行13 phase、map/encounter/trainer/QOL供給/event/facility/通貨/credit/Raidをraw IDなしsymbolic schemaへ固定した。V2付属59検査を元CSVから59/59再計算し、受領原本の意味重複23行・小数National ID 205行・不足救済道具4件は正規化前FAIL、正規化後PASSにした。541系統二地方coverage、125共有捕獲key、8 gym rewardをcanonical CSVへ昇格した。
+- カントーLv.68〜100は任意固定高難度、警告・安全帰還必須とし、早期招待/調査pass/進行別会話/船上戦をSIMPLE_EVENTへ正規化した。Factory/Mirage owner分離、AI 3 profile、NORMAL/RESEARCH直交、供給tier、DEFERRED調査point、persist-before-battle encounter、Raid捕獲/報酬state分離をvalidatorとnegative fixtureで固定した。T13 physical map bindingなしのemitはfail-closedする。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - T11で本土256 physical mapsをoutdoor 38 / dungeon 96 / indoor 122へ確定し、新規group 96〜98へ全IDを予約した。180 unique layoutの179件をclean日本版BPRJでbyte照合し、V2の47論理地点から全physical map・layout・tileset・warp/connection・script/text依存へのcrosswalkを生成した。
@@ -53,7 +55,7 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T11完了後は依存DAGに従いT12を統合する。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T12完了後は依存DAGに従いT13を統合する。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
@@ -66,7 +68,7 @@
 - T09: DONE。Vega/DPEのgraphics・cry・Dex・evolution・learnsetを1621行canonical tableとstage 09へ統合し、現代式孵化/QOL境界を固定fixtureで検証した。
 - T10: DONE。stage 09の追加要素とQOL-A、Factory/報酬遭遇/AI/TM/Mirage/Research/Raidを継続save vertical sliceで通した。
 - T11: DONE。256本土map、3安全group、47論理地点crosswalk、clean raw照合、クチバ民家1のstory-safe canonical import/round-tripを通過した。
-- T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
+- T12: DONE。V2正規化、symbolic content schema、dry-run/physical emit境界、59検査、negative fixtureを通過した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 

@@ -219,3 +219,14 @@
   - クチバ民家1の地形・collision・tileset・NPC/warp座標をcanonical importし、未取込warpを安全terminalへ再接続した。
   - 原作global story stateと英語textを除外し、名前空間化したlocal stub、決定的build/check、structural round-tripを固定した。
 - Verify: importer build/check、focused 5 tests、manifest validator PASS。256/180/179/47件、ID重複0、story-state非混入、round-trip byte一致を確認した。WSL全体verifyは未実行。
+
+## 2026-08-14T04:00:35+09:00
+
+- Version: `content-schema-0.19.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T12` / symbolic content schemaとgeneratorを構築する
+- Summary:
+  - 二地方の進行/map/encounter/trainer/QOL/event/facility/currency/Raidをraw IDなしsymbolic schemaへ統合した。
+  - V2 59検査を独立再計算し、raw意味課題を正規化前に拒否して541 family・125共有捕獲・8 gym rewardを昇格した。
+  - optional Lv.68〜100、SIMPLE_EVENT、供給tier、AI/gimmick、transaction、Raid反復性とT13 physical binding境界をfail-closedにした。
+- Verify: content build/check、focused 5 tests・17 negative/valid fixture、JSON schema、py_compile、resolutionなしemit期待FAIL、完全resolution emit PASS。report SHA-256 `3f2278ea269d405403196950a6f482b1079059bf95ca3c3fdbfe94e18838d58c`。WSL全体verifyは未実行。

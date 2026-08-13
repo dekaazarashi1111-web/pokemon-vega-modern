@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-vega.local/schema/facility.schema.json",
+  "title": "Pokemon Vega symbolic facility content",
+  "type": "object",
+  "required": ["schema_version", "state_owners", "currencies", "credits", "modes", "rental_sets", "rental_pools", "trainer_pools", "rewards", "shops", "encounter_pools", "encounter_npcs", "raids"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "state_owners": {"type":"object","required":["factory","mirage"],"properties":{"factory":{"$ref":"#/$defs/key"},"mirage":{"$ref":"#/$defs/key"}},"additionalProperties":false},
+    "currencies": {"type":"array","items":{"$ref":"#/$defs/currency"}},
+    "credits": {"type":"array","items":{"$ref":"#/$defs/credit"}},
+    "modes": {"type":"array","items":{"$ref":"#/$defs/mode"}},
+    "rental_sets": {"type":"array","items":{"$ref":"#/$defs/rentalSet"}},
+    "rental_pools": {"type":"array","items":{"$ref":"#/$defs/pool"}},
+    "trainer_pools": {"type":"array","items":{"$ref":"#/$defs/pool"}},
+    "rewards": {"type":"array","items":{"$ref":"#/$defs/reward"}},
+    "shops": {"type":"array","items":{"type":"object"}},
+    "encounter_pools": {"type":"array","items":{"type":"object"}},
+    "encounter_npcs": {"type":"array","items":{"$ref":"#/$defs/encounterNpc"}},
+    "raids": {"type":"array","items":{"$ref":"#/$defs/raid"}}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "key": {"type":"string","pattern":"^(?:[A-Z][A-Z0-9_]*|NONE)$"},
+    "currency": {"type":"object","required":["currency_key","owner_key","availability","balance_policy","earn_hook_key"],"properties":{"currency_key":{"$ref":"#/$defs/key"},"owner_key":{"$ref":"#/$defs/key"},"availability":{"enum":["ENABLED","DEFERRED"]},"balance_policy":{"const":"NONNEGATIVE_U16"},"earn_hook_key":{"$ref":"#/$defs/key"}},"additionalProperties":false},
+    "credit": {"type":"object","required":["credit_key","owner_key","availability","consume_count"],"properties":{"credit_key":{"$ref":"#/$defs/key"},"owner_key":{"$ref":"#/$defs/key"},"availability":{"enum":["ENABLED","DEFERRED"]},"consume_count":{"const":1}},"additionalProperties":false},
+    "mode": {"type":"object","required":["mode_key","tier_key","battle_format","mechanic_policy","rental_pool_key","trainer_pool_key","streak_reward_key","unlock_key"],"properties":{"mode_key":{"$ref":"#/$defs/key"},"tier_key":{"$ref":"#/$defs/key"},"battle_format":{"enum":["SINGLE_3V3","SINGLE_6V6","DOUBLE_4V4"]},"mechanic_policy":{"$ref":"#/$defs/key"},"rental_pool_key":{"$ref":"#/$defs/key"},"trainer_pool_key":{"$ref":"#/$defs/key"},"streak_reward_key":{"$ref":"#/$defs/key"},"unlock_key":{"$ref":"#/$defs/key"}},"additionalProperties":false},
+    "rentalSet": {"type":"object","required":["rental_set_key","species_key","form_key","level","ability_key","item_key","nature_key","move_keys","ev_spread_key","mechanic_policy"],"properties":{"rental_set_key":{"$ref":"#/$defs/key"},"species_key":{"$ref":"#/$defs/key"},"form_key":{"$ref":"#/$defs/key"},"level":{"type":"integer","minimum":1,"maximum":100},"ability_key":{"$ref":"#/$defs/key"},"item_key":{"$ref":"#/$defs/key"},"nature_key":{"$ref":"#/$defs/key"},"move_keys":{"type":"array","minItems":1,"maxItems":4,"uniqueItems":true,"items":{"$ref":"#/$defs/key"}},"ev_spread_key":{"$ref":"#/$defs/key"},"mechanic_policy":{"$ref":"#/$defs/key"}},"additionalProperties":false},
+    "pool": {"type":"object","required":["pool_key","unlock_key"],"properties":{"pool_key":{"$ref":"#/$defs/key"},"unlock_key":{"$ref":"#/$defs/key"},"set_keys":{"type":"array","items":{"$ref":"#/$defs/key"}},"trainer_keys":{"type":"array","items":{"$ref":"#/$defs/key"}}},"additionalProperties":false},
+    "reward": {"type":"object","required":["reward_key","currency_key","amount","repeatability","unlock_key"],"properties":{"reward_key":{"$ref":"#/$defs/key"},"currency_key":{"$ref":"#/$defs/key"},"amount":{"type":"integer","minimum":0},"repeatability":{"enum":["ONCE","REPEATABLE","LIMITED"]},"unlock_key":{"$ref":"#/$defs/key"}},"additionalProperties":false},
+    "encounterNpc": {"type":"object","required":["npc_key","payment_kind","currency_key","credit_key","cost","pool_key","unlock_key","level_policy","quality_policy","presentation_profile","ui_components","capacity_check_before_payment","persist_pending_before_battle","dedicated_map","full_screen_ui"],"properties":{"npc_key":{"$ref":"#/$defs/key"},"payment_kind":{"enum":["currency","credit"]},"currency_key":{"$ref":"#/$defs/key"},"credit_key":{"$ref":"#/$defs/key"},"cost":{"type":"integer","minimum":1},"pool_key":{"$ref":"#/$defs/key"},"unlock_key":{"$ref":"#/$defs/key"},"level_policy":{"$ref":"#/$defs/key"},"quality_policy":{"$ref":"#/$defs/key"},"presentation_profile":{"const":"SIMPLE_EVENT"},"ui_components":{"type":"array","items":{"enum":["STANDARD_MESSAGE","STANDARD_LIST","YES_NO"]}},"capacity_check_before_payment":{"const":true},"persist_pending_before_battle":{"const":true},"dedicated_map":{"const":false},"full_screen_ui":{"const":false}},"additionalProperties":false},
+    "raid": {"type":"object","required":["raid_key","raid_tier","species_key","form_key","level","quality_policy","partner_pool_key","shield_policy","reward_pool_key","capture_policy","shared_capture_key","reward_repeatability","claim_key","unlock_key","presentation_profile","mechanic_policy","dedicated_map","custom_ui","cutscene"],"properties":{"raid_key":{"$ref":"#/$defs/key"},"raid_tier":{"type":"integer","minimum":1,"maximum":7},"species_key":{"$ref":"#/$defs/key"},"form_key":{"$ref":"#/$defs/key"},"level":{"type":"integer","minimum":1,"maximum":100},"quality_policy":{"$ref":"#/$defs/key"},"partner_pool_key":{"$ref":"#/$defs/key"},"shield_policy":{"$ref":"#/$defs/key"},"reward_pool_key":{"$ref":"#/$defs/key"},"capture_policy":{"enum":["SHARED_ONCE","REPEATABLE_NORMAL","NO_CAPTURE"]},"shared_capture_key":{"$ref":"#/$defs/key"},"reward_repeatability":{"enum":["ONCE","REPEATABLE","LIMITED"]},"claim_key":{"$ref":"#/$defs/key"},"unlock_key":{"$ref":"#/$defs/key"},"presentation_profile":{"const":"SIMPLE_EVENT"},"mechanic_policy":{"const":"RAID_DYNAMAX"},"dedicated_map":{"const":false},"custom_ui":{"const":false},"cutscene":{"const":false}},"additionalProperties":false}
+  }
+}

@@ -39,6 +39,7 @@
 - `scripts/build_species_surface.py`: T09の1621行画像/鳴き声/Dex/進化/learnset table、V2進化正規化、stage 09、孵化matrixを決定的に生成・照合
 - `scripts/build_engine_vertical_slice.py`: T10追加要素・QOL-A・Factory/報酬遭遇/AI/TM/Mirage/Research/Raidの継続save fixture、libmGBA証跡、reportを生成・照合
 - `scripts/build_kanto_import.py`: T11本土256 map manifest、V2 crosswalk、clean raw照合、1 map canonical import/round-tripを決定的生成・照合
+- `scripts/build_content_schema.py`: T12 symbolic content、V2 59検査/正規化、dry-run、T13 resolution必須physical emitを生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -76,6 +77,7 @@
 - `tools/engine/cfru_*`: T06のbattle write、runtime表、Factory、QOL、move effect、script tableを生成・検証
 - `tools/engine/t06_publish_gate.py`: T06 stage、payload、進化表、固定Pokémon ABI、report identityを公開直前にfail-closed検証
 - `tools/map_import/`: T11本土scope、物理ID分割、V2 logical-to-physical依存、story-safe canonical map変換
+- `tools/content/`: T12 map/encounter/trainer/QOL/event/facility/currency/Raid schema検証、V2独立監査・正規化
 - `tools/engine/extract_vega_species.py`: 固定Vega ROMのSpecies名412行と28-byte BaseStatsをpointer/hash検証付きで抽出
 - `tools/mgba_move_smoke.c`: T04 synthetic wild battleでslot 0の実技実行、PP・HP変化を観測
 - `tools/mgba_battle_{core,core_ai,policy}_smoke.c`: T06の通常戦、固定CFRU AI、Factory/Mirage/Raid policyを自然scheduler経路で検証
@@ -93,3 +95,4 @@
 - `config/species_surface.json`: T09固定ROM/table root、canonical件数、配置、Oval Charm契約の正本
 - `config/feature_matrix.csv`, `config/engine_manifest_schema.json`: T10 QOL-A release既定値と凍結済みengine schemaの正本
 - `overlays/engine_slice/`: T10の移動/文章/数量UI、TM license、Tohoku overlay、NORMAL/RESEARCH、Factory選択の境界adapter
+- `content/`: T12 raw IDなしsymbolic正本、JSON schemas、541 family/125 shared capture/8 gym reward正規化成果

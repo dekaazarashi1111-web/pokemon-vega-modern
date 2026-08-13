@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "state_owners": {"factory":"OWNER_KEY_FACTORY_STATE","mirage":"OWNER_KEY_MIRAGE_STATE"},
+  "currencies": [
+    {"currency_key":"CURRENCY_KEY_BP","owner_key":"OWNER_KEY_FACTORY_STATE","availability":"ENABLED","balance_policy":"NONNEGATIVE_U16","earn_hook_key":"HOOK_KEY_FACTORY_RESULT"},
+    {"currency_key":"CURRENCY_KEY_RESEARCH_POINT","owner_key":"OWNER_KEY_RESEARCH_STATE","availability":"DEFERRED","balance_policy":"NONNEGATIVE_U16","earn_hook_key":"HOOK_KEY_DEFERRED"},
+    {"currency_key":"CURRENCY_KEY_ARCADE_COIN","owner_key":"OWNER_KEY_ARCADE_ENCRYPTED_U16","availability":"ENABLED","balance_policy":"NONNEGATIVE_U16","earn_hook_key":"HOOK_KEY_EXISTING_MINIGAME_COMPLETE"}
+  ],
+  "credits": [{"credit_key":"CREDIT_KEY_RESEARCH_ENCOUNTER","owner_key":"OWNER_KEY_ENCOUNTER_LEDGER","availability":"ENABLED","consume_count":1}],
+  "modes": [{"mode_key":"FACILITY_MODE_FACTORY_TRIAL","tier_key":"FACILITY_TIER_TRIAL","battle_format":"SINGLE_3V3","mechanic_policy":"NONE","rental_pool_key":"RENTAL_POOL_KEY_TRIAL","trainer_pool_key":"TRAINER_POOL_KEY_TRIAL","streak_reward_key":"REWARD_KEY_FACTORY_TRIAL","unlock_key":"KANTO_EARLY_ACCESS"}],
+  "rental_sets": [{"rental_set_key":"RENTAL_SET_KEY_PRIMEAPE","species_key":"SPECIES_KEY_PRIMEAPE","form_key":"NONE","level":50,"ability_key":"ABILITY_KEY_DEFIANT","item_key":"ITEM_KEY_ORAN_BERRY","nature_key":"NATURE_JOLLY","move_keys":["MOVE_KEY_CLOSECOMBAT","MOVE_KEY_RAGEFIST","MOVE_KEY_PROTECT","MOVE_KEY_ROCKSLIDE"],"ev_spread_key":"EV_SPREAD_PHYSICAL_FAST","mechanic_policy":"NONE"}],
+  "rental_pools": [{"pool_key":"RENTAL_POOL_KEY_TRIAL","unlock_key":"KANTO_EARLY_ACCESS","set_keys":["RENTAL_SET_KEY_PRIMEAPE"]}],
+  "trainer_pools": [{"pool_key":"TRAINER_POOL_KEY_TRIAL","unlock_key":"KANTO_EARLY_ACCESS","trainer_keys":["TRAINER_KEY_KANTO_RESEARCHER_01"]}],
+  "rewards": [{"reward_key":"REWARD_KEY_FACTORY_TRIAL","currency_key":"CURRENCY_KEY_BP","amount":9,"repeatability":"REPEATABLE","unlock_key":"KANTO_EARLY_ACCESS"}],
+  "shops": [{"shop_key":"SHOP_KEY_FACTORY_BP","currency_key":"CURRENCY_KEY_BP","unlock_key":"KANTO_EARLY_ACCESS","item_keys":["ITEM_KEY_EXP_CANDY_XS"]}],
+  "encounter_pools": [{"pool_key":"ENCOUNTER_POOL_KEY_RESEARCH","unlock_key":"KANTO_EARLY_ACCESS","entries":[{"species_key":"SPECIES_KEY_MANKEY","form_key":"NONE","capture_policy":"REPEATABLE_NORMAL"}]}],
+  "encounter_npcs": [{"npc_key":"NPC_KEY_RESEARCH_ENCOUNTER","payment_kind":"credit","currency_key":"NONE","credit_key":"CREDIT_KEY_RESEARCH_ENCOUNTER","cost":1,"pool_key":"ENCOUNTER_POOL_KEY_RESEARCH","unlock_key":"KANTO_EARLY_ACCESS","level_policy":"FIXED_RANGE_68_78","quality_policy":"RESEARCH","presentation_profile":"SIMPLE_EVENT","ui_components":["STANDARD_MESSAGE","YES_NO"],"capacity_check_before_payment":true,"persist_pending_before_battle":true,"dedicated_map":false,"full_screen_ui":false}],
+  "raids": [{"raid_key":"RAID_KEY_KANTO_4STAR","raid_tier":4,"species_key":"SPECIES_KEY_PRIMEAPE","form_key":"NONE","level":85,"quality_policy":"RAID_4STAR","partner_pool_key":"TRAINER_POOL_KEY_TRIAL","shield_policy":"SHIELD_4","reward_pool_key":"REWARD_KEY_FACTORY_TRIAL","capture_policy":"SHARED_ONCE","shared_capture_key":"SHARED_CAPTURE_KEY_PRIMEAPE_RAID","reward_repeatability":"ONCE","claim_key":"CLAIM_KEY_PRIMEAPE_RAID","unlock_key":"KANTO_CERT_4","presentation_profile":"SIMPLE_EVENT","mechanic_policy":"RAID_DYNAMAX","dedicated_map":false,"custom_ui":false,"cutscene":false}]
+}

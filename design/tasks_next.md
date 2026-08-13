@@ -11,7 +11,7 @@
 - [x] T09: 画像・鳴き声・図鑑・進化・習得技を移植する <!-- id:T09 -->
 - [x] T10: engine vertical sliceを完成させる <!-- id:T10 -->
 - [x] T11: カントーマップimporterを作る <!-- id:T11 -->
-- [ ] T12: 記号コンテンツschemaとgeneratorを作る <!-- id:T12 -->
+- [x] T12: 記号コンテンツschemaとgeneratorを作る <!-- id:T12 -->
 - [ ] T13: クチバのpostgame vertical sliceを作る <!-- id:T13 -->
 - [ ] T14: 選定した全カントーマップをimportする <!-- id:T14 -->
 - [ ] T15: postgame解禁とジム進行を実装する <!-- id:T15 -->

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-vega.local/schema/trainer_difficulty.schema.json",
+  "title": "Pokemon Vega trainer difficulty row",
+  "type": "object",
+  "required": ["trainer_key","region","map_key","trainer_role","ai_profile_key","expected_fight_style_key","team_stage","rematch_tier","league_stage","ev_spread_key","species_key","form_key","level","nature_key","ability_key","item_key","move1_key","move2_key","move3_key","move4_key","mechanic_policy","unlock_key","mandatory","difficulty_policy","warning_key"],
+  "properties": {
+    "trainer_key":{"$ref":"#/$defs/key"}, "region":{"enum":["TOHOKU","KANTO"]},
+    "map_key":{"$ref":"#/$defs/key"}, "trainer_role":{"enum":["GENERAL","BOSS","GYM","LEAGUE","FACILITY"]},
+    "ai_profile_key":{"enum":["AI_BASIC","AI_SEMI_SMART","AI_FULL_SMART"]},
+    "expected_fight_style_key":{"$ref":"#/$defs/key"}, "team_stage":{"$ref":"#/$defs/key"},
+    "rematch_tier":{"$ref":"#/$defs/key"}, "league_stage":{"$ref":"#/$defs/key"},
+    "ev_spread_key":{"$ref":"#/$defs/key"}, "species_key":{"$ref":"#/$defs/key"},
+    "form_key":{"$ref":"#/$defs/key"}, "level":{"type":"string","pattern":"^(?:[1-9]|[1-9][0-9]|100)$"},
+    "nature_key":{"$ref":"#/$defs/key"}, "ability_key":{"$ref":"#/$defs/key"},
+    "item_key":{"$ref":"#/$defs/key"}, "move1_key":{"$ref":"#/$defs/key"},
+    "move2_key":{"$ref":"#/$defs/key"}, "move3_key":{"$ref":"#/$defs/key"},
+    "move4_key":{"$ref":"#/$defs/key"}, "mechanic_policy":{"$ref":"#/$defs/key"},
+    "unlock_key":{"$ref":"#/$defs/key"}, "mandatory":{"enum":["true","false"]},
+    "difficulty_policy":{"enum":["STORY_CURVE","FIXED_OPTIONAL_HIGH_LEVEL"]}, "warning_key":{"$ref":"#/$defs/key"}
+  },
+  "additionalProperties": false,
+  "$defs": {"key":{"type":"string","pattern":"^(?:[A-Z][A-Z0-9_]*|NONE)$"}}
+}

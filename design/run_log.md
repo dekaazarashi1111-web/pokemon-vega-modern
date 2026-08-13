@@ -512,3 +512,29 @@
   - canonical imported map SHA-256 `ede4d41188b1027d1e45cb57e32db7fb5b03a2c58e8b6d86595c7c5d456421d9`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みpokefirered、clean日本版BPRJ、V2受領資料だけを参照した。
+
+## 2026-08-14T04:00:35+09:00
+
+- Task: `T12` / symbolic content schemaとgeneratorを構築する
+- Status: DONE
+- Summary:
+  - map、NORMAL/RESEARCH encounter、trainer/AI、QOL供給、event、13段階進行、Factory/rental/BP/shop/遭遇NPC、currency/credit、Raidをraw Species/Move/Item IDなしのsymbolic CSV/JSON schemaへ固定した。physical emitはT13 resolutionとphysical map bindingがなければactionable errorで停止する。
+  - V2付属59検査を結果欄に依存せず元CSVから59/59再計算した。V1由来の意味重複23行、小数National ID 205行、不足救済道具4件を正規化前FAILとして再現し、integer型・form key・重複除去・symbolic item参照で正規化後PASSにした。541 family、125共有捕獲key、8 gym rewardをcanonical CSVへ生成した。
+  - カントーLv.68〜100を任意固定curve、早期警告/安全帰還、船上戦任意・勝敗不問、進行別会話、SIMPLE_EVENTへ正規化した。後半供給の早期無限化、post-HoF bypass、NORMAL rare消失、違法AI/move/level/gimmick、二重支払/負残高/DEFERRED通貨、専用UI/map/cutscene、反復特殊捕獲、Raid捕獲/報酬state混同をfail-closedにした。
+- Files changed:
+  - symbolic content: `content/{README.md,kanto_progression.csv,maps.csv,encounters.csv,trainers.csv,qol_supply.csv,events.csv,event_symbols.csv,facilities.json}`
+  - schema/normalized: `content/schema/{facility,trainer_difficulty}.schema.json`, `content/normalized/{v2_family_coverage,shared_captures,kanto_gym_rewards}.csv`
+  - build/tests: `tools/content/{__init__.py,content_schema.py,v2_normalize.py}`, `scripts/build_content_schema.py`, `tests/test_content_schema.py`, `tests/fixtures/{facility_schema,trainer_difficulty_schema}/`
+  - docs/state: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `reports/generated/content_schema.md`, `generated/content/dry_run.json`
+- Verify:
+  - `python3 scripts/build_content_schema.py build` / `check`: PASS。5成果を決定的生成し、check副作用なし・byte一致を確認した。
+  - `python3 -m unittest -v tests.test_content_schema`: PASS（5 tests、fixture 17件）。JSON schema、symbolic key、V2 59検査、raw issue、供給/進行、facility/trainer/Raid negative、dry-run/emitを確認した。
+  - `python3 scripts/build_content_schema.py emit`: resolutionなしを期待どおりFAIL。完全なsymbolic resolution fixtureではphysical mode生成PASS。
+  - `python3 -m py_compile scripts/build_content_schema.py tools/content/{content_schema,v2_normalize}.py`, `git diff --check`: PASS。task graph/index private guardはcommit直前に実行する。WSL repository全体verifyは実行していない。
+- Report identity:
+  - content report / dry-run SHA-256 `3f2278ea269d405403196950a6f482b1079059bf95ca3c3fdbfe94e18838d58c` / `e406287f32238dc9d01ed2e66ee0b1e5c51067018c37b0a13b0c4ec97fab2d2c`。
+  - shared capture / family coverage / gym reward SHA-256 `45fc15ea83fe0798df69efe3284664a17252c9d7883d1ec26fd3cd772496bdf6` / `5b6ce50d81327315cd1ce52047338959e03f4a0daa0cac3edb9d332410a6c12a` / `d914daa58057c019ebcfa1cb26cea4334077c2145b4183281c375269811d5fc7`。
+  - facility / trainer schema SHA-256 `7ff6e83a6dbae928cad3e88a0f6a3cf92c6d617f52c7e97e8ccaa5a5738d604b` / `fc90116956209c1749515b04945e1bd180dd6db125df1757afaae6391983876f`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みmanifests、T06/T08/T10契約、V2受領資料だけを参照した。
