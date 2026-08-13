@@ -488,3 +488,27 @@
   - engine / QOL fixture SHA-256 `bbce9d080c82cacf3632ad9e5a2370327a06959585708f5e7da76c8a8ed6f104` / `d12199f40db833d1be734ce59ac4d4a8537a57a93c1928265267f18f45c19da8`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。T03/T06/T08/T09の固定生成物とsource-lock済みローカル入力だけを参照した。
+
+## 2026-08-14T03:45:51+09:00
+
+- Task: `T11` / Kanto map importerを構築する
+- Status: DONE
+- Summary:
+  - 固定pokefireredからナナシマを除く本土256 physical mapsをoutdoor 38 / dungeon 96 / indoor 122へ分類し、新規group 96〜98へ重複なしで予約した。全groupは127件未満で、Vega既存group 0〜42と予約値を避ける。
+  - V2の47論理地点を全256 map、180 shared layout、primary/secondary tileset、warp/connection、script/text依存へ展開したcrosswalkを生成した。180 layout中179件はclean日本版BPRJ raw blockdataとbyte一致し、Route11だけをclean再抽出待ちとして明示した。
+  - クチバ民家1を `KANTO_INDOOR_VERMILION_CITY_HOUSE1` (`98/0`)へcanonical importした。地形/collision/elevation、tileset、border、NPCとwarp座標を保持し、未取込先warpを安全terminalへremap、原作global flag/var・英語textを名前空間化した日本語local flavor stubへ置換した。再exportのstructural diffは0。
+- Files changed:
+  - importer/build: `tools/map_import/{README.md,__init__.py,kanto_importer.py}`, `scripts/build_kanto_import.py`
+  - manifests/tests: `manifests/{map_ids,kanto_maps}.csv`, `tests/test_kanto_map_import.py`
+  - docs/state: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `reports/generated/{kanto_map_inventory.csv,kanto_v2_crosswalk.csv,map_roundtrip.md}`, `generated/maps/KANTO_INDOOR_VERMILION_CITY_HOUSE1{,.roundtrip}.json`
+- Verify:
+  - `python3 scripts/build_kanto_import.py build` / `check`: PASS。7成果を決定的生成し、check副作用なし・byte一致を確認した。
+  - `python3 -m unittest tests.test_kanto_map_import tests.test_manifest_headers`: PASS（5 tests）。256/180/179/47件、3 group境界、ID重複0、geometry/NPC/warp、global state非混入、round-trip同一を確認した。
+  - `python3 scripts/validate_manifests.py`: PASS。`git diff --check`、task graph/index private guardはcommit直前に実行する。WSL repository全体verifyは実行していない。
+- Report identity:
+  - map ID / Kanto manifest SHA-256 `d2f7e3be6683ba06b04243bb7e526755b98e9303811154a00c7b1fbf5004e4da` / `678d55150aef9aeeb5c3a0a9ef8e97728a4541c2bef3e087cd3159d555b3ccc4`。
+  - inventory / crosswalk / round-trip report SHA-256 `88b330759894401dda5f544e7e247d4c4e76c21e08b907511294ff7772f691b8` / `a08b4b5e2dc6918fb3d264cf4f052209e188ee07aef00f1184b8853ef3596cef` / `f1279da9044ba9598695a0f311c8bb619fe758c35caf29b4d1ff01979ec93584`。
+  - canonical imported map SHA-256 `ede4d41188b1027d1e45cb57e32db7fb5b03a2c58e8b6d86595c7c5d456421d9`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みpokefirered、clean日本版BPRJ、V2受領資料だけを参照した。

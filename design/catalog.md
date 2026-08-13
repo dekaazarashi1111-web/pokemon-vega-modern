@@ -38,6 +38,7 @@
 - `scripts/build_save_compatibility.py`: T08 RAM/save配置のlive overlapを検査し、versioned ledger入力hash付き互換性reportを決定的に生成・照合
 - `scripts/build_species_surface.py`: T09の1621行画像/鳴き声/Dex/進化/learnset table、V2進化正規化、stage 09、孵化matrixを決定的に生成・照合
 - `scripts/build_engine_vertical_slice.py`: T10追加要素・QOL-A・Factory/報酬遭遇/AI/TM/Mirage/Research/Raidの継続save fixture、libmGBA証跡、reportを生成・照合
+- `scripts/build_kanto_import.py`: T11本土256 map manifest、V2 crosswalk、clean raw照合、1 map canonical import/round-tripを決定的生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -74,6 +75,7 @@
 - `tools/engine/cfru_id_space_inventory.py`: 固定CFRU-JP/DPE-JPのType・Ability・Item、表示、相性、ItemType、aliasを抽出
 - `tools/engine/cfru_*`: T06のbattle write、runtime表、Factory、QOL、move effect、script tableを生成・検証
 - `tools/engine/t06_publish_gate.py`: T06 stage、payload、進化表、固定Pokémon ABI、report identityを公開直前にfail-closed検証
+- `tools/map_import/`: T11本土scope、物理ID分割、V2 logical-to-physical依存、story-safe canonical map変換
 - `tools/engine/extract_vega_species.py`: 固定Vega ROMのSpecies名412行と28-byte BaseStatsをpointer/hash検証付きで抽出
 - `tools/mgba_move_smoke.c`: T04 synthetic wild battleでslot 0の実技実行、PP・HP変化を観測
 - `tools/mgba_battle_{core,core_ai,policy}_smoke.c`: T06の通常戦、固定CFRU AI、Factory/Mirage/Raid policyを自然scheduler経路で検証

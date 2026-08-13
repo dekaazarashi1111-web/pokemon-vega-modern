@@ -208,3 +208,14 @@
   - QOL-Aのrelease既定値、高速移動・即時文章・共通数量UI・アメ・育成/save境界を15-feature matrixへ固定した。
   - Factory、報酬遭遇、3 AI profile、TM license、Mirage、Tohoku overlay/Research、Raidを既存UI契約で統合検証した。
 - Verify: `make engine-slice-check`、focused 17 tests、libmGBA 2 process、release/debug host C compile、py_compile PASS。metadata SHA-256 `b69b17f446b6f0e924d40e21f51e69382fcbf7036fca1bd2587582b49a7558ad`。WSL全体verifyは未実行。
+
+## 2026-08-14T03:45:51+09:00
+
+- Version: `kanto-importer-0.18.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T11` / Kanto map importerを構築する
+- Summary:
+  - 本土256 mapを3個の安全な新規groupへ予約し、180 layoutのclean BPRJ raw照合とV2 47地点crosswalkを生成した。
+  - クチバ民家1の地形・collision・tileset・NPC/warp座標をcanonical importし、未取込warpを安全terminalへ再接続した。
+  - 原作global story stateと英語textを除外し、名前空間化したlocal stub、決定的build/check、structural round-tripを固定した。
+- Verify: importer build/check、focused 5 tests、manifest validator PASS。256/180/179/47件、ID重複0、story-state非混入、round-trip byte一致を確認した。WSL全体verifyは未実行。
