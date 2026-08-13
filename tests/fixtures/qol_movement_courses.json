@@ -1,0 +1,75 @@
+{
+  "courses": [
+    {
+      "bicycle_frames": 300,
+      "bicycle_reduction_percent": 62.5,
+      "course_key": "STRAIGHT_100",
+      "event_multiplicity": "EXACTLY_ONCE_PER_DECLARED_TILE",
+      "events": {
+        "encounter": 1,
+        "hatch": 1,
+        "poison": 1,
+        "step": 100
+      },
+      "run_frames": 500,
+      "run_reduction_percent": 37.5,
+      "status": "PASS",
+      "tiles": 100,
+      "vega_frames": 800
+    },
+    {
+      "bicycle_frames": 300,
+      "bicycle_reduction_percent": 62.5,
+      "course_key": "CORNERS_100",
+      "event_multiplicity": "EXACTLY_ONCE_PER_DECLARED_TILE",
+      "events": {
+        "coord": 1,
+        "encounter": 1,
+        "hatch": 1,
+        "poison": 1,
+        "step": 100
+      },
+      "run_frames": 500,
+      "run_reduction_percent": 37.5,
+      "status": "PASS",
+      "tiles": 100,
+      "vega_frames": 800
+    },
+    {
+      "bicycle_frames": 300,
+      "bicycle_reduction_percent": 62.5,
+      "course_key": "CONTACT_SCRIPT_100",
+      "event_multiplicity": "EXACTLY_ONCE_PER_DECLARED_TILE",
+      "events": {
+        "contact": 1,
+        "coord": 1,
+        "step": 100
+      },
+      "run_frames": 500,
+      "run_reduction_percent": 37.5,
+      "status": "PASS",
+      "tiles": 100,
+      "vega_frames": 800
+    },
+    {
+      "bicycle_frames": 300,
+      "bicycle_reduction_percent": 62.5,
+      "course_key": "WARP_LEDGE_100",
+      "event_multiplicity": "EXACTLY_ONCE_PER_DECLARED_TILE",
+      "events": {
+        "coord": 1,
+        "ledge": 1,
+        "step": 100,
+        "warp": 1
+      },
+      "run_frames": 500,
+      "run_reduction_percent": 37.5,
+      "status": "PASS",
+      "tiles": 100,
+      "vega_frames": 800
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "T10"
+}

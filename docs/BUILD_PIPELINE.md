@@ -83,6 +83,16 @@ python3 -m unittest -v tests.test_species_surface
 
 `config/species_surface.json`はstage 07、T06進化ABI、T07 Species mapping、T04/T05 Move/Item alias、固定DPE ROMを入力に固定する。DPEアセット領域を元アドレスのまま保存し、ROM末尾に1621行のcanonical tableを配置する。`check`は全成果とstage 09をmemory内で再生成し、byte一致しない公開物を拒否する。
 
+## T10 Engine vertical slice
+
+```bash
+make engine-slice
+make engine-slice-check
+python3 -m unittest -v tests.test_engine_vertical_slice
+```
+
+`config/feature_matrix.csv`でQOL-Aのrelease既定値とUI ownerを固定する。buildはstage 09で追加Species 445をlibmGBA 2 processで生成し、T06/T08/T09 runtimeをhost Cの継続save fixtureで結合する。release compileでdebug giftが無効、debug defineでだけ選定fixtureが有効であることを別binaryで確認する。
+
 ## 最終目標コマンド
 
 T18では次を実装します。

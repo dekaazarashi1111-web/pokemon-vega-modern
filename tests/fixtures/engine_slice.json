@@ -1,0 +1,110 @@
+{
+  "baseline": {
+    "battle_core": "PASS",
+    "battle_policy": "PASS",
+    "movement": true,
+    "new_game": true,
+    "save_load": true,
+    "title": true
+  },
+  "continuous_save": "T10_SAVE_A",
+  "debug_release_active": false,
+  "manifest_schema": {
+    "debug_release_policy": "RELEASE_CONFIG_MUST_COMPILE_VEGA_ENGINE_SLICE_DEBUG_AS_ZERO",
+    "frozen": true,
+    "schema_version": 1,
+    "schemas": {
+      "battle_core": 1,
+      "engine_slice": 1,
+      "id_spaces": 1,
+      "moves": 1,
+      "save": 1,
+      "species": 1,
+      "species_surface": 1
+    },
+    "task": "T10",
+    "unknown_field_policy": "REJECT"
+  },
+  "mgba_smoke": {
+    "artifacts_written": [],
+    "fixture": "t07_appended_species_party_creation",
+    "instructions": 23490,
+    "level": 20,
+    "max_hp": 56,
+    "process_runs": 2,
+    "rom_sha256": "9dfd7caf04cdda4c0b4b559ce842a53341667c1f4e5af298348a55c655230345",
+    "runner_sha256": "cdbca0a06ac772f24112d1b9dc72cce74416e11acf66558e67b314d8a235d57d",
+    "schema_version": 1,
+    "species": 445,
+    "status": "PASS",
+    "warnings_errors": 0
+  },
+  "mirage": {
+    "exit_paths": [
+      "WIN",
+      "LOSS",
+      "FORFEIT"
+    ],
+    "mutation_tested": true,
+    "persistent_party_and_bag_unchanged": true,
+    "virtual_item": 669
+  },
+  "schema_version": 1,
+  "selected": {
+    "ability": {
+      "id": 129,
+      "name": "まけんき"
+    },
+    "evolution": {
+      "from_form_key": "",
+      "from_id": 445,
+      "from_national_dex": 57,
+      "method": 26,
+      "param": 1027,
+      "target_form_key": "",
+      "target_id": 1556,
+      "target_national_dex": 979,
+      "unknown": 0
+    },
+    "held_item": {
+      "id": 669,
+      "name": "ウタンのみ"
+    },
+    "move": {
+      "id": 1027,
+      "name": "ふんどのこぶし"
+    },
+    "species": {
+      "form_key": "",
+      "id": 445,
+      "name": "オコリザル"
+    }
+  },
+  "sequence": [
+    "DEBUG_GIFT_GUARDED",
+    "WILD_ENCOUNTER",
+    "TRAINER_BATTLE",
+    "CAPTURE",
+    "LEVEL_UP",
+    "MOVE_USE",
+    "ABILITY_ACTIVATION",
+    "HELD_ITEM",
+    "EVOLUTION",
+    "DEX_REGISTER",
+    "SAVE",
+    "RESTART",
+    "LOAD",
+    "FACTORY_TRIAL",
+    "REWARD_ENCOUNTER",
+    "MIRAGE",
+    "RESEARCH",
+    "RAID"
+  ],
+  "status": "PASS",
+  "task": "T10",
+  "tm_reuse_license": {
+    "after_flag_consumed": 0,
+    "before_flag_consumed": 1,
+    "save_load": true
+  }
+}

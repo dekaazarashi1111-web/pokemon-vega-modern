@@ -1,0 +1,40 @@
+{
+  "fixed_rng": true,
+  "fixtures": [
+    {
+      "checks": [
+        "MOVE_SCORE",
+        "SWITCH",
+        "ITEM"
+      ],
+      "format": "SINGLE",
+      "profile": "AI_SEMI_SMART"
+    },
+    {
+      "checks": [
+        "HAZARD",
+        "SETUP",
+        "SWITCH",
+        "ITEM"
+      ],
+      "format": "SINGLE",
+      "profile": "AI_FULL_SMART"
+    },
+    {
+      "checks": [
+        "TARGET",
+        "ALLY_SAFETY",
+        "SPEED_CONTROL",
+        "SUPPORT"
+      ],
+      "format": "DOUBLE",
+      "profile": "AI_FULL_SMART"
+    }
+  ],
+  "production_rows_bound": 0,
+  "save_after_battle": true,
+  "schema_version": 1,
+  "status": "PASS",
+  "t06_smoke_status": "PASS",
+  "task": "T10"
+}

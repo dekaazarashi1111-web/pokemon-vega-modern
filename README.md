@@ -58,6 +58,8 @@ make species     # T06からVega固定412種＋DPE追加1209種のT07 stageを�
 make species-check # T07成果と現在入力を副作用なしで照合
 make species-surface # T09画像・鳴き声・図鑑・進化・技表をstage 09へ統合
 make species-surface-check # T09成果のbyte一致と全テーブル境界を副作用なしで照合
+make engine-slice # T10の追加種・QOL-A・Factory/AI/Raid継続save縦切りを実行
+make engine-slice-check # T10 fixture/report/schemaを副作用なしで再照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -78,6 +80,8 @@ T06は固定CFRU-JPのbattle-only hookをexpected-byte付きでstage 04へ統合
 T07はVega Species ID 0〜411を固定し、DPE primaryとのidentity 206件をalias、欠落Species/form 1209件を412〜1620へappendします。全1621行にofficial判定とcanonical全国番号を付け、フォームを重複加算しない捕獲数counterを生成します。canonical BaseStatsをDPE予約領域へ配置して105参照をrepointし、追加Species 412を実party memoryへ生成します。
 
 T09はVega固定412行のfront/back、palette、icon、鳴き声、図鑑をbyte一致で保ち、DPE由来の追加1209行をcanonical順に追加します。進化はSpecies/Move/Item IDを変換し、V2設計553行の意味重複43行を除去します。level/egg/TM/HM/tutorと現代式孵化、5個queue、満杯party/box、compact IV/EV、まるいおまもりを固定RNG fixtureで検証します。
+
+T10はstage 09上の追加オコリザルと追加Move/Ability/Item/進化をlibmGBAで生成し、wildからsave/load、QOL-A、Factory 3連戦、報酬遭遇、3 AI profile、TM license、Mirage、NORMAL/RESEARCH、4-star Raidまで1つの継続save契約で通します。releaseのdebug giftはcompile時にOFFです。
 
 ## 効率方針
 

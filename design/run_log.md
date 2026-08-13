@@ -464,3 +464,27 @@
   - evolution table / learnset metadata / breeding matrix SHA-256 `f95527dc0512486e024d250b3caeb838a5f4ca2f1ce122f7b9f315464500ed91` / `f0da72e8f1f04f65729a05b90a7d462f5b1f26f386fca9e2e00352f982e8e451` / `04177ee8b4bd580ba1d6c7ef8fe3872253c66059c44fdc0bbf5b72d44c72c031`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済み固定Vega/DPE/CFRU ROM、T04〜T08生成物、V2受領資料だけを参照した。
+
+## 2026-08-14T03:37:45+09:00
+
+- Task: `T10` / engine vertical sliceを完成させる
+- Status: DONE
+- Summary:
+  - stage 09で追加オコリザル445をlibmGBA 2 processで生成し、ふんどのこぶ1027、まけんき129、ウタンのみ669、method 26進化を継続save `T10_SAVE_A`に固定した。release compileでdebug giftは無効、専用define buildだけで有効になる。
+  - TEXT_SPEED=INSTANT、HATCH_MODE=FAST、ダッシュ37.5%・自転車62.5%短縮、tile event各1回、control code順序、共通数量UI、アメ5種、EXP Share/孵化/王冠/mint/特性/IV-EV/egg queueのrelease既定値を固定した。
+  - Factory single 3v3×3、勝利交換・BP・全exit復元、credit報酬遭遇、SEMI/FULL single・FULL double AI、TM license、Mirage、Tohoku overlay/NORMAL/RESEARCH、4-star Raidを既存UIとsave transactionで統合した。
+- Files changed:
+  - config/runtime: `config/{feature_matrix.csv,engine_manifest_schema.json}`, `overlays/engine_slice/{engine_slice.h,engine_slice.c}`
+  - build/tests: `scripts/build_engine_vertical_slice.py`, `tests/test_engine_vertical_slice.py`, `tests/fixtures/{engine_vertical_slice_fixture.c,engine_slice,qol_slice,qol_movement_courses,factory_trial,reward_encounter,trainer_ai_slice,research_encounter_slice,raid_slice}.json`
+  - docs/state: `Makefile`, `README.md`, `docs/BUILD_PIPELINE.md`, `design/{current_state,agent_context_map,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/10_engine_slice.json`, `reports/generated/{engine_vertical_slice,qol_vertical_slice}.md`
+- Verify:
+  - `make engine-slice`: PASS。stage 09 SHA-256 `9dfd7caf04cdda4c0b4b559ce842a53341667c1f4e5af298348a55c655230345`で追加Species 445をlibmGBA 2 process生成した。
+  - `make engine-slice-check`: PASS。15 feature、freeze schema、10 fixture/report、release/debug別compile、host C継続save fixtureを副作用なしで照合した。
+  - `python3 -m unittest -q tests.test_engine_vertical_slice tests.test_species_surface tests.test_save_layout tests.test_facility_save`: PASS（17 tests）。
+  - `python3 -m py_compile scripts/build_engine_vertical_slice.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - metadata / engine report / QOL report SHA-256 `b69b17f446b6f0e924d40e21f51e69382fcbf7036fca1bd2587582b49a7558ad` / `462276c4be6d683f1c5d9f4685df2a11c8a531bffbfa5e29f1e005c77e4a6451` / `112141eee2595d869297eda881267b362a5f29e3a32e32038aa82ff6927d2668`。
+  - engine / QOL fixture SHA-256 `bbce9d080c82cacf3632ad9e5a2370327a06959585708f5e7da76c8a8ed6f104` / `d12199f40db833d1be734ce59ac4d4a8537a57a93c1928265267f18f45c19da8`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。T03/T06/T08/T09の固定生成物とsource-lock済みローカル入力だけを参照した。

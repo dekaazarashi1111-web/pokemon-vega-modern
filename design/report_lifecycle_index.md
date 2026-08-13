@@ -19,6 +19,7 @@
 - T07 Species port: `make species` が `build/stages/07_species.{gba,json}`、`generated/engine/species/`、`manifests/species_ids.csv`、`reports/generated/species_port.md` を生成し、追加Speciesのparty生成をlibmGBA 2 processで検証する。`make species-check`は1621行model、105 repoint、stage/report/table/smoke identity、生成C compileを副作用なしで再照合する。
 - T08 RAM/save compatibility: `make save-layout` が `config/{ram_layout,save_layout}.csv` とversioned overlayのhashから `reports/generated/save_compatibility.md` を決定的生成する。`make save-layout-check` はlive interval overlap 0、report identity、DEFER/EXCLUDED ownerを副作用なしで照合し、focused testsがchecksum/migration/transaction fixtureを実行する。
 - T09 Species surface: `make species-surface` が `build/stages/09_species_surface.{gba,json}`、`generated/engine/{species_assets,evolutions,learnsets}/`、`reports/generated/{dex_policy,species_asset_validation}.md`、孵化matrixを生成する。`make species-surface-check`は1621行境界、DPE圧縮/アライン、ID変換、stage/report/table identityを副作用なしで再照合する。
+- T10 Engine slice: `make engine-slice` がstage 09のlibmGBA追加種生成とhost C継続save fixtureを実行し、10 fixture・2 report・`build/stages/10_engine_slice.json`を生成する。`make engine-slice-check`は公開成果、feature matrix、schema、compile fixtureを副作用なしで照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

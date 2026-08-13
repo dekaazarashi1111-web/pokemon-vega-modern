@@ -44,6 +44,7 @@
 - T07: `config/species_port.json`、`scripts/build_species_port.py`、`tools/engine/extract_vega_species.py`、`manifests/species_ids.csv`、`reports/generated/species_port.md`。ID原則は`docs/ID_POLICY.md`、T05 canonical Ability/ItemとT06 BaseStats stageを入力にする。
 - T08〜T10: `docs/QOL_POLICY.md` と対象タスク。上流機能の実在根拠が必要ならT01/T02成果だけを追加で読む。
 - T09: `config/species_surface.json`、`scripts/build_species_surface.py`、`generated/engine/{species_assets,evolutions,learnsets}/`、`overlays/species_surface/`、`reports/generated/{dex_policy,species_asset_validation}.md`。T04/T05/T06/T07/T08のID・進化・save ABIを入力にする。
+- T10: `config/{feature_matrix.csv,engine_manifest_schema.json}`、`scripts/build_engine_vertical_slice.py`、`overlays/engine_slice/`、`tests/fixtures/{engine_slice,qol_slice,factory_trial,reward_encounter,trainer_ai_slice,research_encounter_slice,raid_slice}.json`。
 - T08/T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。

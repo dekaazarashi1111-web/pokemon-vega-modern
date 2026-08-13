@@ -37,6 +37,7 @@
 - `scripts/build_species_port.py`: T06へVega固定412種とDPE追加1209種のcanonical BaseStatsを統合し、manifest、公式捕獲count、実party生成smokeを決定的に実行
 - `scripts/build_save_compatibility.py`: T08 RAM/save配置のlive overlapを検査し、versioned ledger入力hash付き互換性reportを決定的に生成・照合
 - `scripts/build_species_surface.py`: T09の1621行画像/鳴き声/Dex/進化/learnset table、V2進化正規化、stage 09、孵化matrixを決定的に生成・照合
+- `scripts/build_engine_vertical_slice.py`: T10追加要素・QOL-A・Factory/報酬遭遇/AI/TM/Mirage/Research/Raidの継続save fixture、libmGBA証跡、reportを生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -88,3 +89,5 @@
 - `overlays/save_migration/`: T08 checksum、旧Vega migration、二地方/QOL、Factory/遭遇/Raid transaction runtime
 - `overlays/species_surface/`: T09現代式孵化、タマゴ5個queue、party/PC原子的配送、孵化演出、compact IV/EV、まるいおまもりruntime
 - `config/species_surface.json`: T09固定ROM/table root、canonical件数、配置、Oval Charm契約の正本
+- `config/feature_matrix.csv`, `config/engine_manifest_schema.json`: T10 QOL-A release既定値と凍結済みengine schemaの正本
+- `overlays/engine_slice/`: T10の移動/文章/数量UI、TM license、Tohoku overlay、NORMAL/RESEARCH、Factory選択の境界adapter

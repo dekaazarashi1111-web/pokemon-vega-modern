@@ -197,3 +197,14 @@
   - 進化・level/egg/TM/HM/tutorのSpecies/Move/Item IDを変換し、V2進化553行を意味重複なし510行へ正規化した。
   - Vega/全国Dex集計を分離し、現代式孵化、5個queue、party/box満杯、compact IV/EV、3孵化mode、Oval Charmを固定fixtureで実装・検証した。
 - Verify: `make species-surface-check`、focused 20 tests、host C `-Wall -Wextra -Werror`、py_compile、`git diff --check` PASS。ROM SHA-256 `9dfd7caf04cdda4c0b4b559ce842a53341667c1f4e5af298348a55c655230345`。WSL全体verifyは未実行。
+
+## 2026-08-14T03:37:45+09:00
+
+- Version: `engine-slice-0.17.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T10` / engine vertical sliceを完成させる
+- Summary:
+  - stage 09の追加Species/Move/Ability/Item/進化をlibmGBAと継続save fixtureで通し、release debug accessを無効に固定した。
+  - QOL-Aのrelease既定値、高速移動・即時文章・共通数量UI・アメ・育成/save境界を15-feature matrixへ固定した。
+  - Factory、報酬遭遇、3 AI profile、TM license、Mirage、Tohoku overlay/Research、Raidを既存UI契約で統合検証した。
+- Verify: `make engine-slice-check`、focused 17 tests、libmGBA 2 process、release/debug host C compile、py_compile PASS。metadata SHA-256 `b69b17f446b6f0e924d40e21f51e69382fcbf7036fca1bd2587582b49a7558ad`。WSL全体verifyは未実行。
