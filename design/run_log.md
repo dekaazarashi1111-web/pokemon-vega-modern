@@ -436,3 +436,31 @@
   - overlay C/header SHA-256 `9afb5079fa91ae7497868dca4e7dcef708fefed94d7e1fcaeaab197a801f8359` / `f4c4a2aa49057221bf89dbaad3646bf496e7f249d8370282b677bedaff5d4ace`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済み固定CFRU-JP、T02監査、T06/T07 ABIだけを参照した。
+
+## 2026-08-14T03:23:05+09:00
+
+- Task: `T09` / graphics・cry・Dex・進化・learnsetを統合する
+- Status: DONE
+- Summary:
+  - Vega固定412行のfront/back、palette/shiny、coords、icon、鳴き声、Dexをbyte一致で保持し、DPE追加1209行と1621行canonical tableをstage 09に配置した。追加画像LZ77/alignment 4,836件、icon 1,209件、summary/party/PC/battle/evolution/Dexの行境界を検証した。
+  - T06進化prefixとDPE追加行を1621×16行に統合し、Species/Move/Itemをcanonical IDへ変換し、T06 runtime root 38参照を全repointした。V2進化553行の意味重複43行を除去し510行に正規化、from/to form key・National Dex型・要件解決を固定した。
+  - level-up 1209行、egg 3,362値のMove IDを変換し、TM/HM・tutorを16-byte行に統合した。Vega地方図鑑と全国1〜1025/form共有集計を分離し、既存完成イベントを保持した。
+  - かわらずの石、あかいいと、power系、両親技、共通level技、ball/特性/おこう/メタモン/異親ID6回/地域form、5個queue、party/box満杯、compact IV/EV、3孵化mode、まるいおまもりを18固定RNG caseとhost C fixtureで検証した。
+- Files changed:
+  - build/config: `config/species_surface.json`, `scripts/build_species_surface.py`, `Makefile`
+  - runtime: `overlays/species_surface/{species_surface.h,species_surface.c}`
+  - focused tests: `tests/test_species_surface.py`, `tests/fixtures/{species_surface_fixture.c,breeding_matrix.json}`
+  - docs/state: `README.md`, `docs/BUILD_PIPELINE.md`, `design/{current_state,agent_context_map,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/09_species_surface.{gba,json}`, `generated/engine/{species_assets,evolutions,learnsets}/**`, `reports/generated/{dex_policy,species_asset_validation}.md`
+- Verify:
+  - `make species-surface`: PASS。stage 09を32 MiBで決定的に生成し、ROM SHA-256 `9dfd7caf04cdda4c0b4b559ce842a53341667c1f4e5af298348a55c655230345`、末尾残量210,548 byteを確認した。
+  - `make species-surface-check`: PASS。1621行、V2 553 -> 510行、進化850件、learnset、stage/report/table identity、副作用なしを再照合した。
+  - `python3 -m unittest -v tests.test_species_surface tests.test_build_species_port tests.test_save_layout tests.test_facility_save`: PASS（20 tests）。T07 Species ABIとT08 save/queue transactionの回帰を含む。
+  - host C fixture `-std=c11 -Wall -Wextra -Werror`: PASS。固定RNG孵化、queue 5個上限、party/PC満杯保留、Oval Charm、IV/EV・孵化mode境界を確認した。
+  - `python3 -m py_compile scripts/build_species_surface.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage metadata SHA-256 `388e483604cfebfb389d14d965fd58b117fd26d9c2352c59679413d4258a0a38`。
+  - Dex policy / asset validation SHA-256 `65012ac25543ea4ddb7195aea4e38c49aa2e7bf96951a214faf1bd017b297aa6` / `771a4f3eb7ac6ac1def326babb97049d9973b24dd4457f1b4850ae2fb766ebd7`。
+  - evolution table / learnset metadata / breeding matrix SHA-256 `f95527dc0512486e024d250b3caeb838a5f4ca2f1ce122f7b9f315464500ed91` / `f0da72e8f1f04f65729a05b90a7d462f5b1f26f386fca9e2e00352f982e8e451` / `04177ee8b4bd580ba1d6c7ef8fe3872253c66059c44fdc0bbf5b72d44c72c031`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済み固定Vega/DPE/CFRU ROM、T04〜T08生成物、V2受領資料だけを参照した。

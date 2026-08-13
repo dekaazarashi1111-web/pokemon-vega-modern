@@ -56,6 +56,8 @@ python3 scripts/build_battle_core.py build # T04/T05からT06 battle core stage�
 python3 scripts/build_battle_core.py check # T06成果と現在入力を副作用なしで照合
 make species     # T06からVega固定412種＋DPE追加1209種のT07 stageを再構築
 make species-check # T07成果と現在入力を副作用なしで照合
+make species-surface # T09画像・鳴き声・図鑑・進化・技表をstage 09へ統合
+make species-surface-check # T09成果のbyte一致と全テーブル境界を副作用なしで照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -74,6 +76,8 @@ T05はVega既存Type/Ability/Itemを固定し、意味同一を証明できた�
 T06は固定CFRU-JPのbattle-only hookをexpected-byte付きでstage 04へ統合し、Type/Ability/Item/Moveのcanonical表、育成QOL境界、Factory、3段階AI、1戦1gimmick、Mirage item、high-difficulty Raidをallocator管理payloadへ配置します。通常戦・AI・policyの3本のlibmGBA runnerを各2 processで実行し、公開前にROM/report/payload/fingerprintをfail-closedで照合します。
 
 T07はVega Species ID 0〜411を固定し、DPE primaryとのidentity 206件をalias、欠落Species/form 1209件を412〜1620へappendします。全1621行にofficial判定とcanonical全国番号を付け、フォームを重複加算しない捕獲数counterを生成します。canonical BaseStatsをDPE予約領域へ配置して105参照をrepointし、追加Species 412を実party memoryへ生成します。
+
+T09はVega固定412行のfront/back、palette、icon、鳴き声、図鑑をbyte一致で保ち、DPE由来の追加1209行をcanonical順に追加します。進化はSpecies/Move/Item IDを変換し、V2設計553行の意味重複43行を除去します。level/egg/TM/HM/tutorと現代式孵化、5個queue、満杯party/box、compact IV/EV、まるいおまもりを固定RNG fixtureで検証します。
 
 ## 効率方針
 

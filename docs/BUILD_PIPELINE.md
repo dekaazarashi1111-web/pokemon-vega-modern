@@ -73,6 +73,16 @@ make species-check
 
 `build` はstage 06を入力に、Vega Species 0〜411をlosslessなprefixとして固定し、DPE-JPの定義済み1415 IDを明示mappingします。primary identity 206件はVega IDへaliasし、欠落Species/form 1209件を412〜1620へappendします。T05 canonical Ability/ItemへBaseStats参照を変換し、DPE payload partitionへ1621×32 byteを配置してcanonical root 105件をrepointします。追加Species 412のparty生成をlibmGBA 2 processで検証します。`check`はエミュレータを再実行せず、現在入力からstage、manifest、table、report、smoke証跡をbyte照合します。
 
+## T09 Species surface
+
+```bash
+make species-surface
+make species-surface-check
+python3 -m unittest -v tests.test_species_surface
+```
+
+`config/species_surface.json`はstage 07、T06進化ABI、T07 Species mapping、T04/T05 Move/Item alias、固定DPE ROMを入力に固定する。DPEアセット領域を元アドレスのまま保存し、ROM末尾に1621行のcanonical tableを配置する。`check`は全成果とstage 09をmemory内で再生成し、byte一致しない公開物を拒否する。
+
 ## 最終目標コマンド
 
 T18では次を実装します。

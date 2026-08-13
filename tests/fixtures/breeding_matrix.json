@@ -1,0 +1,155 @@
+{
+  "cases": [
+    {
+      "expected": "nature_and_form_inherited",
+      "features": [
+        "EVERSTONE",
+        "REGIONAL_FORM"
+      ],
+      "id": "everstone_nature_form"
+    },
+    {
+      "expected": "five_unique_iv_stats",
+      "features": [
+        "DESTINY_KNOT"
+      ],
+      "id": "destiny_knot_unique_five"
+    },
+    {
+      "expected": "forced_stat_in_five",
+      "features": [
+        "POWER_ITEM",
+        "DESTINY_KNOT"
+      ],
+      "id": "power_item_forced_iv"
+    },
+    {
+      "expected": "both_moves_inherited",
+      "features": [
+        "MOTHER_EGG_MOVE",
+        "FATHER_EGG_MOVE"
+      ],
+      "id": "both_parent_egg_moves"
+    },
+    {
+      "expected": "common_moves_inherited",
+      "features": [
+        "COMMON_LEVEL_MOVE"
+      ],
+      "id": "common_level_moves"
+    },
+    {
+      "expected": "legal_parent_rolls",
+      "features": [
+        "BALL",
+        "ABILITY_SLOT",
+        "HIDDEN_ABILITY"
+      ],
+      "id": "ball_and_ability"
+    },
+    {
+      "expected": "baby_species_selected",
+      "features": [
+        "INCENSE"
+      ],
+      "id": "incense_baby"
+    },
+    {
+      "expected": "non_ditto_parent_is_line_owner",
+      "features": [
+        "DITTO"
+      ],
+      "id": "ditto"
+    },
+    {
+      "expected": "six_shiny_rolls",
+      "features": [
+        "DIFFERENT_TRAINER_ID"
+      ],
+      "id": "masuda_six_rolls"
+    },
+    {
+      "expected": "single_pc_delivery",
+      "features": [
+        "PARTY_FULL"
+      ],
+      "id": "egg_to_pc"
+    },
+    {
+      "expected": "queue_retained_no_duplicate",
+      "features": [
+        "PARTY_FULL",
+        "BOXES_FULL"
+      ],
+      "id": "party_and_boxes_full"
+    },
+    {
+      "expected": "sixth_rejected",
+      "features": [
+        "FIVE_EGGS_QUEUED"
+      ],
+      "id": "queue_capacity"
+    },
+    {
+      "expected": "three_modes_bounded",
+      "features": [
+        "NORMAL",
+        "SHORT",
+        "SKIP"
+      ],
+      "id": "hatch_modes"
+    },
+    {
+      "expected": "existing_panels_only",
+      "features": [
+        "SUMMARY_FIELD",
+        "PC_RIGHT_PANE",
+        "EGG_IV"
+      ],
+      "id": "compact_iv_ev"
+    },
+    {
+      "expected": "no_currency_mutation",
+      "features": [
+        "ZERO_COST",
+        "EXISTING_SCREEN"
+      ],
+      "id": "free_move_relearner"
+    },
+    {
+      "expected": "base_rate_20_percent",
+      "features": [
+        "CAUGHT_99"
+      ],
+      "id": "oval_charm_locked"
+    },
+    {
+      "expected": "doubled_rate_40_percent",
+      "features": [
+        "CAUGHT_100"
+      ],
+      "id": "oval_charm_unlocked_caught"
+    },
+    {
+      "expected": "doubled_rate_40_percent",
+      "features": [
+        "QUEST_COMPLETE"
+      ],
+      "id": "oval_charm_unlocked_quest"
+    }
+  ],
+  "fixed_rng": [
+    7,
+    2,
+    5,
+    1,
+    0,
+    4,
+    3,
+    9,
+    6,
+    8
+  ],
+  "schema_version": 1,
+  "status": "PASS"
+}

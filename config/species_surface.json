@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "T09",
+  "inputs": {
+    "stage07_path": "build/stages/07_species.gba",
+    "stage07_sha256": "3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8",
+    "stage06_metadata_path": "build/stages/06_battle_core.json",
+    "species_model_path": "generated/engine/species/species_port.json",
+    "move_model_path": "generated/engine/moves/move_port.json",
+    "id_model_path": "generated/engine/ids/id_spaces.json",
+    "dpe_rom_path": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/dpe/base/run-1/test.gba",
+    "dpe_rom_sha256": "eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c",
+    "v2_evolution_path": "design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/data/進化条件変換マスター.csv"
+  },
+  "counts": {
+    "vega_species": 412,
+    "dpe_species": 1440,
+    "canonical_species": 1621,
+    "official_species": 1025,
+    "evolutions_per_species": 16,
+    "tmhm_bytes_per_species": 16,
+    "tutor_bytes_per_species": 16
+  },
+  "dpe_copy": {"start_offset": 23120544, "end_offset": 32833536},
+  "allocation": {"start_offset": 32833536, "end_offset": 33554432},
+  "output": {
+    "rom_path": "build/stages/09_species_surface.gba",
+    "metadata_path": "build/stages/09_species_surface.json"
+  },
+  "pointer_sites": {
+    "front": 296, "back": 300, "palette": 304, "shiny_palette": 308,
+    "icon": 312, "icon_palette": 316, "front_coords": 71580,
+    "back_coords": 474584, "elevation": 216684, "footprint": 1075632,
+    "cry": 465080, "cry2": 465064, "evolution": 271964,
+    "level_up": 254440, "egg": 283156, "tmhm": 275124,
+    "tutor": 1184800, "dex_entries": 559632, "national_dex": 272684
+  },
+  "dpe_roots": {
+    "front": 161716024, "back": 161422768, "palette": 161809216,
+    "shiny_palette": 161858784, "icon": 161734228,
+    "icon_palette": 161732788, "front_coords": 161710264,
+    "back_coords": 161417008, "elevation": 161524504,
+    "cry": 161480368, "cry2": 161497648, "evolution": 161525944,
+    "level_up": 161747188, "egg": 161515952, "tmhm": 157286400,
+    "tutor": 157309440, "dex_entries": 161821568,
+    "national_dex": 161870304
+  },
+  "strides": {
+    "front": 8, "back": 8, "palette": 8, "shiny_palette": 8,
+    "icon": 4, "icon_palette": 1, "front_coords": 4,
+    "back_coords": 4, "elevation": 1, "footprint": 4,
+    "cry": 12, "cry2": 12, "dex_entries": 28, "evolution": 128
+  },
+  "oval_charm": {"caught_threshold": 100, "base_numerator": 20, "denominator": 100}
+}

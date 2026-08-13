@@ -18,6 +18,7 @@
 - T06 CFRU battle core: `python3 scripts/build_battle_core.py build` が `build/stages/06_battle_core.{gba,json}` と `reports/generated/{battle_hook_matrix.csv,battle_core_smoke.md,facility_core_smoke.md,trainer_ai_smoke.md}` を2回構築・3本のlibmGBA runner・publish gate後に公開する。同`check`は入力fingerprint、stage/payload/allocation/report identity、進化表・固定Pokémon ABIを副作用なしで再照合する。
 - T07 Species port: `make species` が `build/stages/07_species.{gba,json}`、`generated/engine/species/`、`manifests/species_ids.csv`、`reports/generated/species_port.md` を生成し、追加Speciesのparty生成をlibmGBA 2 processで検証する。`make species-check`は1621行model、105 repoint、stage/report/table/smoke identity、生成C compileを副作用なしで再照合する。
 - T08 RAM/save compatibility: `make save-layout` が `config/{ram_layout,save_layout}.csv` とversioned overlayのhashから `reports/generated/save_compatibility.md` を決定的生成する。`make save-layout-check` はlive interval overlap 0、report identity、DEFER/EXCLUDED ownerを副作用なしで照合し、focused testsがchecksum/migration/transaction fixtureを実行する。
+- T09 Species surface: `make species-surface` が `build/stages/09_species_surface.{gba,json}`、`generated/engine/{species_assets,evolutions,learnsets}/`、`reports/generated/{dex_policy,species_asset_validation}.md`、孵化matrixを生成する。`make species-surface-check`は1621行境界、DPE圧縮/アライン、ID変換、stage/report/table identityを副作用なしで再照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 
