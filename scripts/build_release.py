@@ -653,19 +653,25 @@ def verify_release() -> tuple[bytes, dict[str, bytes], bytes]:
 
 
 def _link_private_inputs(checkout: Path) -> None:
-    logical_paths = (
+    required_paths = (
         "inputs/private/FireRed_JPN_Rev0_clean.gba",
         "inputs/private/Vega_20180223.ips",
         "inputs/private/factory_test_20260524.ups",
         "inputs/reference/vega_cfru_integration_audit.zip",
+    )
+    optional_source_archives = (
         "inputs/source_archives/CFRU-JP.zip",
         "inputs/source_archives/DPE-JP.zip",
         "inputs/source_archives/pokefirered.zip",
     )
-    for logical in logical_paths:
+    for logical in (*required_paths, *optional_source_archives):
         source = ROOT / logical
         if not source.is_file():
-            raise ReleaseError(f"fresh checkout input is missing: {logical}")
+            if logical in required_paths:
+                raise ReleaseError(f"fresh checkout input is missing: {logical}")
+            # bootstrap_project clones the configured pinned repository when a
+            # local provenance archive is not available.
+            continue
         destination = checkout / logical
         destination.parent.mkdir(parents=True, exist_ok=True)
         if destination.exists():
