@@ -59,6 +59,21 @@ _BASELINE_SYMBOLS = (
     "gTypeNames",
 )
 
+_T01_BUILD_CONTRACT_FIELDS = (
+    "engine",
+    "profile",
+    "run",
+    "source_commit",
+    "source_tree",
+    "insertion_offset",
+    "output_bin_size",
+    "input_sha256",
+    "output_sha256",
+    "output_bin_sha256",
+    "offsets_sha256",
+    "patch_sha256",
+)
+
 _ITEM_FIELDS = (
     "name",
     "itemId",
@@ -128,6 +143,33 @@ def _stable_sha256(value: object) -> str:
         value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     ).encode("utf-8")
     return _sha256(encoded)
+
+
+def _t01_report_contract_sha256(report: Mapping[str, Any]) -> str:
+    """T05が消費するT01の意味情報だけを決定的に識別する。
+
+    T01レポートには計測時間とcache再利用状態が含まれる。これらは監査証跡には
+    必要だが、同一sourceから生成するID ABIの入力ではないため、T05 fingerprintへ
+    混入させない。
+    """
+
+    builds = report.get("builds")
+    if not isinstance(builds, list) or not all(
+        isinstance(row, Mapping) for row in builds
+    ):
+        raise CFRUIdSpaceInventoryError("T01 report builds are invalid")
+    return _stable_sha256(
+        {
+            "schema_version": report.get("schema_version"),
+            "fingerprint": report.get("fingerprint"),
+            "sources": report.get("sources"),
+            "repeatability": report.get("repeatability"),
+            "builds": [
+                {key: row.get(key) for key in _T01_BUILD_CONTRACT_FIELDS}
+                for row in builds
+            ],
+        }
+    )
 
 
 def _merge_mapping(base: dict[str, Any], override: Mapping[str, Any]) -> dict[str, Any]:
@@ -1328,7 +1370,7 @@ def extract_cfru_id_spaces(
         raise CFRUIdSpaceInventoryError("fixed CFRU/DPE source directory is missing")
 
     lock, lock_raw = _load_json(lock_path, lock_logical)
-    report, report_raw = _load_json(report_path, report_logical)
+    report, _report_raw = _load_json(report_path, report_logical)
     report_sources = report.get("sources")
     if not isinstance(report_sources, Mapping):
         raise CFRUIdSpaceInventoryError("T01 report sources are invalid")
@@ -1611,7 +1653,8 @@ def extract_cfru_id_spaces(
         "source_lock": {"path": lock_logical, "sha256": _sha256(lock_raw)},
         "t01_baseline": {
             "report_path": report_logical,
-            "report_sha256": _sha256(report_raw),
+            "report_identity": "SEMANTIC_CONTRACT_V1",
+            "report_contract_sha256": _t01_report_contract_sha256(report),
             "fingerprint": fingerprint,
             "profile": resolved["baseline"].get("profile", "baseline"),
             "run": resolved["baseline"].get("run", 1),

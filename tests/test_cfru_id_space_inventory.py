@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import json
 import subprocess
 import sys
@@ -58,6 +59,8 @@ class CFRUIdSpaceInventoryTests(unittest.TestCase):
             metadata["sources"]["dpe"]["source_bundle_sha256"], r"^[0-9a-f]{64}$"
         )
         baseline = metadata["t01_baseline"]
+        self.assertEqual(baseline["report_identity"], "SEMANTIC_CONTRACT_V1")
+        self.assertRegex(baseline["report_contract_sha256"], r"^[0-9a-f]{64}$")
         self.assertEqual(
             baseline["fingerprint"],
             "feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633",
@@ -68,6 +71,51 @@ class CFRUIdSpaceInventoryTests(unittest.TestCase):
         )
         self.assertEqual(baseline["rom_size"], 32 * 1024 * 1024)
         self.assertEqual(baseline["symbols"]["gItemData"], "0x090FAAE4")
+
+    def test_t01_contract_excludes_observational_build_fields(self) -> None:
+        report = {
+            "schema_version": 1,
+            "fingerprint": "a" * 64,
+            "sources": {"cfru": {"commit": "c", "tree": "t"}},
+            "repeatability": {"status": "PASS", "independent_builds_per_variant": 2},
+            "builds": [],
+        }
+        build = {
+            "engine": "cfru",
+            "profile": "baseline",
+            "run": 1,
+            "source_commit": "c",
+            "source_tree": "t",
+            "output_sha256": "b" * 64,
+            "elapsed_seconds": 1.25,
+            "cache_reused": False,
+            "artifact_dir": "build/one",
+            "log": "build/one/build.log",
+        }
+        report["builds"].append(build)
+        observed_report = copy.deepcopy(report)
+        observed_again = copy.deepcopy(build)
+        observed_again.update(
+            {
+                "elapsed_seconds": 99.0,
+                "cache_reused": True,
+                "artifact_dir": "build/two",
+                "log": "build/two/build.log",
+            }
+        )
+        observed_report["builds"] = [observed_again]
+        self.assertEqual(
+            inventory._t01_report_contract_sha256(report),
+            inventory._t01_report_contract_sha256(observed_report),
+        )
+        changed_report = copy.deepcopy(report)
+        changed_output = copy.deepcopy(build)
+        changed_output["output_sha256"] = "d" * 64
+        changed_report["builds"] = [changed_output]
+        self.assertNotEqual(
+            inventory._t01_report_contract_sha256(report),
+            inventory._t01_report_contract_sha256(changed_report),
+        )
 
     def test_type_rows_contain_complete_compiled_and_logical_matrix(self) -> None:
         types = self.model["types"]

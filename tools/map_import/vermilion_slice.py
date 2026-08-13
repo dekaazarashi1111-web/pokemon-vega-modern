@@ -37,7 +37,9 @@ def _sha(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
-def _resolution(root: Path, physical: dict[str, dict[str, int]]) -> dict[str, Any]:
+def _resolution(
+    root: Path, inventory: dict[str, dict[str, str]]
+) -> dict[str, Any]:
     tables, _ = load_repository(root)
     required: set[str] = set()
     for rows in tables.values():
@@ -47,6 +49,30 @@ def _resolution(root: Path, physical: dict[str, dict[str, int]]) -> dict[str, An
                         and field not in ("map_key", "unlock_key", "warning_key", "safe_route_key")):
                     required.add(value)
     ids = {key: index for index, key in enumerate(sorted(required), 1)}
+    logical_maps = {row["map_key"] for row in tables["maps"]}
+    binding_rows = _read_csv(root / "content/map_bindings.csv")
+    if len({row["map_key"] for row in binding_rows}) != len(binding_rows):
+        raise BuildError("content map bindings contain duplicate logical keys")
+    if {row["map_key"] for row in binding_rows} != logical_maps:
+        raise BuildError("content map bindings do not cover the logical map schema")
+    physical: dict[str, dict[str, int]] = {}
+    for row in binding_rows:
+        if row["status"] != "ACTIVE":
+            raise BuildError(f"inactive physical map binding: {row['map_key']}")
+        group = int(row["group_id"])
+        map_id = int(row["map_id"])
+        if not (0 <= group < 128 and 0 <= map_id < 128):
+            raise BuildError(
+                f"physical map binding is outside the GBA ABI: {row['map_key']}"
+            )
+        if row["region"] == "KANTO":
+            imported = inventory.get(row["physical_map_key"])
+            if imported is None:
+                raise BuildError(f"unresolved Kanto physical map: {row['physical_map_key']}")
+            imported_id = (int(imported["group_id"]), int(imported["map_id"]))
+            if (group, map_id) != imported_id:
+                raise BuildError(f"Kanto physical map ID drift: {row['map_key']}")
+        physical[row["map_key"]] = {"group": group, "map": map_id}
     return {"schema_version": 1, "owner": "T13", "ids": ids,
             "physical_map_bindings": physical}
 
@@ -98,26 +124,7 @@ def build_outputs(root: Path) -> dict[str, bytes]:
             or npc[0]["facility_state_allowed"] != "false":
         raise BuildError("encounter transaction contract drift")
 
-    physical = {
-        "MAP_KEY_TOHOKU_HAKUJI_RESEARCH": {"group": 4, "map": 0},
-        "MAP_KEY_KANTO_VERMILION_TERMINAL": {
-            "group": int(by_key["KANTO_OUTDOOR_VERMILION_CITY"]["group_id"]),
-            "map": int(by_key["KANTO_OUTDOOR_VERMILION_CITY"]["map_id"]),
-        },
-        "MAP_KEY_KANTO_ROUTE1": {
-            "group": int(by_key["KANTO_OUTDOOR_ROUTE1"]["group_id"]),
-            "map": int(by_key["KANTO_OUTDOOR_ROUTE1"]["map_id"]),
-        },
-        "MAP_KEY_KANTO_VIRIDIAN_FOREST": {
-            "group": int(by_key["KANTO_DUNGEON_VIRIDIAN_FOREST"]["group_id"]),
-            "map": int(by_key["KANTO_DUNGEON_VIRIDIAN_FOREST"]["map_id"]),
-        },
-        "MAP_KEY_KANTO_LEAGUE": {
-            "group": int(by_key["KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR"]["group_id"]),
-            "map": int(by_key["KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR"]["map_id"]),
-        },
-    }
-    resolution = _resolution(root, physical)
+    resolution = _resolution(root, by_key)
     emitted = emit_content(root, resolution)
     bindings = {
         key: {"group": int(by_key[key]["group_id"]), "map": int(by_key[key]["map_id"]),

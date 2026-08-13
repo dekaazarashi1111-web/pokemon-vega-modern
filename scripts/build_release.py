@@ -126,7 +126,15 @@ def _git(*args: str, cwd: Path = ROOT) -> str:
 
 
 def _source_revision() -> str:
-    revision = _git("rev-parse", "HEAD")
+    tagged = subprocess.run(
+        ("git", "rev-parse", "--verify", f"refs/tags/{TAG}^{{commit}}"),
+        cwd=ROOT, text=True, capture_output=True, check=False,
+    )
+    revision = (
+        tagged.stdout.strip()
+        if tagged.returncode == 0
+        else _git("rev-parse", "HEAD")
+    )
     if len(revision) != 40:
         raise ReleaseError("source revision is not a full Git object id")
     return revision

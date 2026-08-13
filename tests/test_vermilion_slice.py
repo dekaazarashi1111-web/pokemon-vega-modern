@@ -33,7 +33,12 @@ class VermilionSliceTest(unittest.TestCase):
     def test_physical_emit_is_complete(self):
         emitted = json.loads(self.outputs["generated/kanto/vermilion/content.bin.json"])
         self.assertEqual(emitted["mode"], "PHYSICAL")
-        self.assertEqual(len(emitted["physical_maps"]), 5)
+        with (ROOT / "content/maps.csv").open(encoding="utf-8-sig", newline="") as stream:
+            logical_maps = list(csv.DictReader(stream))
+        self.assertEqual(len(emitted["physical_maps"]), len(logical_maps))
+        self.assertEqual(
+            set(emitted["physical_maps"]), {row["map_key"] for row in logical_maps}
+        )
 
     def test_runtime_fixture(self):
         with tempfile.TemporaryDirectory() as folder:
