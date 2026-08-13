@@ -1,0 +1,229 @@
+{
+  "encounters": {
+    "kanto_logical_locations": 47,
+    "mirage_rounds": 4,
+    "normal_tables_preserved": 193,
+    "raid_rows": 250,
+    "research_rows": 1082,
+    "tohoku_logical_locations": 49
+  },
+  "events": {
+    "branch_cases": 238,
+    "events": 34,
+    "outcomes": [
+      "CAPTURE",
+      "DEFEAT",
+      "FLEE",
+      "LOSS",
+      "PARTY_FULL",
+      "PC_FULL",
+      "REVISIT"
+    ]
+  },
+  "exact_rom": {
+    "mgba": {
+      "artifacts_written": [],
+      "checks": {
+        "boot": true,
+        "event_round_trip": true,
+        "kanto_entry": true,
+        "kanto_map_load": true,
+        "kanto_movement": true,
+        "kanto_progression_objects": true,
+        "map_roots": true,
+        "qol_b_thumb_execution": true,
+        "trainer_table": true,
+        "wild_headers": true
+      },
+      "framebuffer_transitions": 6729,
+      "kanto_framebuffer_transitions": 7275,
+      "kanto_movement": {
+        "key": 16,
+        "x": 24,
+        "y": 20
+      },
+      "kanto_position": {
+        "group": 96,
+        "map": 5,
+        "x": 20,
+        "y": 20
+      },
+      "kanto_wild_headers": 133,
+      "payload_size": 703548,
+      "process_runs": 2,
+      "qol_marker": 2839,
+      "rom_sha256": "dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997",
+      "schema_version": 1,
+      "status": "PASS"
+    },
+    "payload_size": 703548,
+    "stage_sha256": "dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997",
+    "trainer_production_rows_bound": 174
+  },
+  "facilities": {
+    "exit_paths": [
+      "WIN",
+      "LOSS",
+      "FORFEIT",
+      "LEAVE",
+      "RESET",
+      "SUSPEND",
+      "BLACKOUT"
+    ],
+    "formats": [
+      "DOUBLE",
+      "NPC_PARTNER_MULTI",
+      "RANDOM",
+      "SINGLE"
+    ],
+    "mirage_state_owner_isolated": true,
+    "modes": 20,
+    "party_restore_bytes": 600,
+    "restore_cases": 140,
+    "reward_encounter_atomic": true,
+    "streak_boundaries": [
+      {
+        "after": 3,
+        "before": 2,
+        "reward_count": 1
+      },
+      {
+        "after": 7,
+        "before": 6,
+        "reward_count": 1
+      },
+      {
+        "after": 49,
+        "before": 48,
+        "reward_count": 1
+      },
+      {
+        "after": 100,
+        "before": 99,
+        "reward_count": 1
+      }
+    ],
+    "tiers": {
+      "FULL": 4,
+      "MASTER": 4,
+      "MIRAGE_1": 1,
+      "MIRAGE_2": 1,
+      "MIRAGE_3": 1,
+      "MIRAGE_4": 1,
+      "STANDARD": 4,
+      "TRIAL": 4
+    }
+  },
+  "maps": {
+    "logical_locations": 47,
+    "physical_maps": 253,
+    "reachable_from_vermilion": 253,
+    "returnable_to_vermilion": 253,
+    "runtime_warps_redirected_safe": 29
+  },
+  "qol": {
+    "atomic_rollbacks": 5,
+    "egg_boundaries": 6,
+    "new_full_screen_ui": false,
+    "qol_a_status": "PASS",
+    "qol_b_cases": 31,
+    "qol_b_status": "PASS",
+    "release_defaults_match": true,
+    "release_features": [
+      "PC_SEARCH",
+      "PC_MULTISELECT",
+      "PC_BULK_MOVE_RELEASE",
+      "FIELD_PC",
+      "PC_RELEARN",
+      "PC_HELD_ITEM_BULK",
+      "EGG_BASKET",
+      "AUTO_BATTLE"
+    ],
+    "ui_policy": "EXISTING_PC_LIST_TEXT_INPUT_RELEARN_FIELD_MENU_ONLY"
+  },
+  "release_blockers": [],
+  "round_trips": {
+    "hm_state_preserved": true,
+    "operation_histogram": {
+      "POST_HOF:FULL_PC": 40,
+      "POST_HOF:HEAL": 40,
+      "POST_HOF:RESET": 40,
+      "POST_HOF:SAVE_LOAD": 40,
+      "POST_HOF:WHITEOUT": 40,
+      "PRE_HOF:FULL_PC": 40,
+      "PRE_HOF:HEAL": 40,
+      "PRE_HOF:RESET": 40,
+      "PRE_HOF:SAVE_LOAD": 40,
+      "PRE_HOF:WHITEOUT": 40
+    },
+    "post_hof": 200,
+    "pre_hof": 200,
+    "total": 400
+  },
+  "save_state_matrix": {
+    "cases": [
+      {
+        "certs": 0,
+        "early": false,
+        "hof": false,
+        "name": "未解禁",
+        "reachable": false
+      },
+      {
+        "certs": 0,
+        "early": true,
+        "hof": false,
+        "name": "早期解禁直後・殿堂入り前",
+        "reachable": true
+      },
+      {
+        "certs": 4,
+        "early": true,
+        "hof": false,
+        "name": "早期認定章進行後",
+        "reachable": true
+      },
+      {
+        "certs": 0,
+        "early": false,
+        "hof": true,
+        "name": "Vega殿堂入り後",
+        "reachable": true
+      }
+    ],
+    "early_unlock_formula": "VEGA_SHIOU_BADGE_3 AND VEGA_DH_CLEAR",
+    "national_dex_required": false
+  },
+  "schema_version": 1,
+  "shared_captures": {
+    "attempts": 500,
+    "blocked_duplicates": 250,
+    "region_order_cases": 250,
+    "shared_keys": 125
+  },
+  "status": "PASS",
+  "task": "T17",
+  "trainer_ai": {
+    "cache_invalidation": [
+      "SWITCH",
+      "FAINT",
+      "FORM",
+      "ITEM",
+      "FIELD"
+    ],
+    "decision_fixtures": 18,
+    "formats": [
+      "SINGLE",
+      "DOUBLE"
+    ],
+    "generated_trainers": 29,
+    "performance_threshold": "T01_THRESHOLD",
+    "production_rows_bound": 174,
+    "profiles": [
+      "AI_BASIC",
+      "AI_SEMI_SMART",
+      "AI_FULL_SMART"
+    ],
+    "trainer_pointer_repoints": 24
+  }
+}

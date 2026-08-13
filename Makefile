@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -93,6 +93,12 @@ content-population:
 
 content-population-check:
 	$(PYTHON) scripts/build_content_population.py check
+
+regression:
+	$(PYTHON) scripts/build_regression.py build
+
+regression-check:
+	$(PYTHON) scripts/build_regression.py check
 
 validate:
 	$(PYTHON) scripts/validate_task_graph.py

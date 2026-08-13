@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "release_enabled": true,
+  "ui_policy": "EXISTING_PC_LIST_TEXT_INPUT_RELEARN_FIELD_MENU_ONLY",
+  "runtime_probe_marker": "0x0B17",
+  "features": [
+    {"key": "PC_SEARCH", "unlock_key": "UNLOCK_GAME_START", "release_default": "ENABLED"},
+    {"key": "PC_MULTISELECT", "unlock_key": "UNLOCK_GAME_START", "release_default": "ENABLED"},
+    {"key": "PC_BULK_MOVE_RELEASE", "unlock_key": "UNLOCK_GAME_START", "release_default": "ENABLED"},
+    {"key": "FIELD_PC", "unlock_key": "VEGA_DH_CLEAR", "release_default": "ENABLED"},
+    {"key": "PC_RELEARN", "unlock_key": "VEGA_BADGE_2", "release_default": "ENABLED"},
+    {"key": "PC_HELD_ITEM_BULK", "unlock_key": "VEGA_DH_CLEAR", "release_default": "ENABLED"},
+    {"key": "EGG_BASKET", "unlock_key": "KANTO_DAYCARE_QUEST", "release_default": "ENABLED"},
+    {"key": "AUTO_BATTLE", "unlock_key": "VEGA_DH_CLEAR", "release_default": "ENABLED"}
+  ],
+  "atomicity": {
+    "move": "ALL_OR_ROLLBACK",
+    "release": "ALL_OR_ROLLBACK",
+    "held_items": "ALL_OR_ROLLBACK",
+    "egg_queue_capacity": 5,
+    "egg_check_steps": 256
+  },
+  "forbidden": {
+    "release_mon": ["EGG", "NO_RELEASE"],
+    "held_item": ["MAIL", "KEY_ITEM"],
+    "field_pc_context": ["BATTLE", "SCRIPT", "GYM", "DUNGEON", "LEAGUE", "EVENT"],
+    "auto_battle": ["TRAINER", "STATIC", "STORY", "SHINY"]
+  }
+}

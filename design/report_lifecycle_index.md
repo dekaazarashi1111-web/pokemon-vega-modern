@@ -26,6 +26,7 @@
 - T14 Full Kanto maps: `make kanto-maps` がscope 256件から253 operational map、canonical map JSON、connectivity/size reportを生成する。`make kanto-maps-check` は257成果のbyte一致、253/253到達、47地点coverage、warp/connection/ID/tileset/allocation gateを副作用なしで照合する。
 - T15 Kanto progression: `make kanto-progression` が39-node DAG、253 map gate、35 QOL境界、Factory 4 tier、再戦/League、Research/TM/DexNav/Raid state matrixと `reports/generated/progression_graph.md` を生成する。`make kanto-progression-check` は5成果のbyte一致と副作用なしを照合する。
 - T16 Content population: `make content-population` が15 manifest、4 content policy、`build/stages/16_content.{gba,json}`、中央allocation、`reports/generated/{kanto_content_audit,trainer_balance_audit}.md` を生成する。`make content-population-check` は96論理地点、541系統×2地方、125共有捕獲key、価格/進行/合法性、ROM payload、stage外byte不変、allocation overlap 0、29成果のbyte一致と副作用なしを照合する。
+- T17 Regression: `make regression` が `build/stages/17_regression.{gba,json}`、中央allocation、QOL-B runtime、Kanto map/wild/trainer/progression実体、manual checkpointと4 regression reportを生成する。`make regression-check` は2回のbyte同一build、libmGBA 2 process、QOL-B host境界、253 map往復到達、400地方往復、125共有捕獲、施設/AI/event状態fixture、16成果のbyte一致を副作用なしで照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

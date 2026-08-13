@@ -68,6 +68,8 @@ make kanto-progression # T15二段階進行・QOL・Factory・League fixtureを�
 make kanto-progression-check # T15成果を副作用なしで再照合
 make content-population # T16二地方encounter/trainer/itemとROM payloadを生成
 make content-population-check # T16 manifest・中央allocation・stage 16を副作用なしで再照合
+make regression # T17実Kanto map/QOL-B/trainer進行をstage 17へ統合してlibmGBA回帰
+make regression-check # T17の16成果を副作用なしで再生成・照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -90,6 +92,8 @@ T07はVega Species ID 0〜411を固定し、DPE primaryとのidentity 206件をa
 T09はVega固定412行のfront/back、palette、icon、鳴き声、図鑑をbyte一致で保ち、DPE由来の追加1209行をcanonical順に追加します。進化はSpecies/Move/Item IDを変換し、V2設計553行の意味重複43行を除去します。level/egg/TM/HM/tutorと現代式孵化、5個queue、満杯party/box、compact IV/EV、まるいおまもりを固定RNG fixtureで検証します。
 
 T10はstage 09上の追加オコリザルと追加Move/Ability/Item/進化をlibmGBAで生成し、wildからsave/load、QOL-A、Factory 3連戦、報酬遭遇、3 AI profile、TM license、Mirage、NORMAL/RESEARCH、4-star Raidまで1つの継続save契約で通します。releaseのdebug giftはcompile時にOFFです。
+
+T17はstage 16から253 Kanto map、180 layout、51 tileset、133 Kanto wild header、29 trainer/174 party row、8 gym＋Leagueの実eventを中央allocatorへ配置します。自然なnew gameからクチバ描画・移動・Vega帰還、QOL-B Thumb実行、trainer pointer graphを同一32 MiB ROMでlibmGBA 2 process検証し、広い状態空間は固定fixtureへ分離します。
 
 ## 効率方針
 

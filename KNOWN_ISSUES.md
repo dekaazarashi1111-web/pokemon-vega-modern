@@ -1,10 +1,19 @@
-# Known Issues
+# Known issues
 
-リリース候補と起動可能な統合ROMはまだありません。
+## Release scope exclusions
 
-- 269 ranges / 775 byteの直接競合のうち584 byteは異なる最終値になる。固定アドレス、RAM、SaveBlock、script special、全IDの完全監査は未完了。
-- プレイブックの実装領域とmanifestは大半が雛形で、CFRU/DPEのVega向けbuild harnessは未実装。
-- 受領した統合設計CSVには、フォームを識別できない進化条件、意味重複、全国番号表記、救済道具参照の既知課題がある。`design/import_review.md` を参照。
-- 公式1025種、フォーム、25箱PC、DexNav、SaveBlockを32 MiB ROM/GBA saveへ収める容量計画は未検証。
-- Z、ダイマックス、テラのv1.0必須範囲と旧Vegaセーブ移行方針は未決定。
-- 上流toolchain再現、emulator automation、全ストーリー回帰は未着手。
+### KI-001 — Link multi is not supported
+
+- Severity: S4 / scope exclusion
+- Reproduction: Battle Factoryで通信相手を必要とする形式を探す。
+- Result: 選択肢へ表示されない。NPC partner multiは利用可能。
+- Workaround: single、double、NPC partner multi、randomを使用する。
+
+### KI-002 — Kantoの一部動的warpは安全なクチバ帰還へ置換
+
+- Severity: S4 / intentional compatibility behavior
+- Reproduction: Union Room、Trade Center、元FireRedの状態依存elevatorへ入る。
+- Result: 未解決runtime destinationではなくクチバの安全地点へ戻る。
+- Workaround: 通常の建物・道路warpを使う。進行・帰還は阻害しない。
+
+Release-blocking known issue: **none**.

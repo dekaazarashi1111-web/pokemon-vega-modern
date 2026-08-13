@@ -274,3 +274,14 @@
   - Tohoku NORMALをbyte保護し、Kantoを `FIXED_HIGH_LEVEL_OPTIONAL` Lv.68〜100、警告・安全帰還・動的scaleなしへ固定した。
   - T09/T14の衝突配置を中央allocatorで解消し、T16 payloadをintegration_modulesへ配置した32 MiB stage 16を生成した。
 - Verify: T12/T15/T16 build/check、manifest validator、focused 17 tests、py_compile、diff check PASS。ROM SHA-256 `5c56b86da56b2a15d9e75bad8a85db83e1c63e6a7814e265b996ce07d50660b5`、allocation overlap 0。WSL全体verifyは未実行。
+
+## 2026-08-14T06:54:10+09:00
+
+- Version: `regression-rc-0.24.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T17` / 本編・engine・Kantoの回帰試験を通す
+- Summary:
+  - Kanto 253 mapと実asset/wild root、QOL-B、29 trainer/174 party row、8 gym＋League eventを中央allocator管理のstage 17へ統合した。
+  - 自然new-gameからKanto描画・移動・往復、QOL-B、trainer/progression pointer graphをlibmGBA 2 processで実行した。
+  - 400地方往復、125共有捕獲、34 event分岐、20 facility mode、3 AI profileを決定論fixtureとmanual checkpointへ固定した。
+- Verify: `make regression-check`、manifest validator、focused 4 tests、py_compile、diff check PASS。ROM SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`、allocation overlap 0。WSL全体verifyは未実行。

@@ -97,10 +97,11 @@
 - `overlays/save_migration/`: T08 checksum、旧Vega migration、二地方/QOL、Factory/遭遇/Raid transaction runtime
 - `overlays/species_surface/`: T09現代式孵化、タマゴ5個queue、party/PC原子的配送、孵化演出、compact IV/EV、まるいおまもりruntime
 - `config/species_surface.json`: T09固定ROM/table root、canonical件数、配置、Oval Charm契約の正本
-- `config/feature_matrix.csv`, `config/engine_manifest_schema.json`: T10 QOL-A release既定値と凍結済みengine schemaの正本
+- `config/feature_matrix.csv`, `config/engine_manifest_schema.json`: T10/T17 QOL-A/B release既定値と凍結済みengine schemaの正本
 - `overlays/engine_slice/`: T10の移動/文章/数量UI、TM license、Tohoku overlay、NORMAL/RESEARCH、Factory選択の境界adapter
 - `content/`: T12 raw IDなしsymbolic正本、JSON schemas、541 family/125 shared capture/8 gym reward正規化成果
 - `src/kanto/vermilion/`, `content/vermilion/`: T13の早期渡航runtime、クチバ安全導線、ジム、Factory Trial、建物外遭遇NPC契約
 - `content/kanto_map_scope.csv`, `tools/map_import/full_kanto_import.py`: T14のINCLUDE/REBUILD/DEFER判断と全本土map canonical変換
 - `content/{kanto,qol,facility,trainer}_progression.csv`, `content/kanto_state_model.csv`: T15の進行DAG、解禁境界、save ownership正本
 - `content/{map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`, `manifests/{kanto,tohoku,research,raid,facility,reward}*.csv`: T16の二地方物理binding、NORMAL保護、trainer/施設/報酬content正本
+- `overlays/qol_b/`, `tools/regression/`, `scripts/build_regression.py`: T17のQOL-B、実Kanto ROM serializer、拡張trainer/progression、exact-ROM/state regression

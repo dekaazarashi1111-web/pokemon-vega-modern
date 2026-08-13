@@ -93,9 +93,19 @@ python3 -m unittest -v tests.test_engine_vertical_slice
 
 `config/feature_matrix.csv`でQOL-Aのrelease既定値とUI ownerを固定する。buildはstage 09で追加Species 445をlibmGBA 2 processで生成し、T06/T08/T09 runtimeをhost Cの継続save fixtureで結合する。release compileでdebug giftが無効、debug defineでだけ選定fixtureが有効であることを別binaryで確認する。
 
+## T17 Regression release candidate
+
+```bash
+make regression
+make regression-check
+python3 -m unittest -v tests.test_regression
+```
+
+stage 16を入力に、KantoのMapHeader/layout/tileset/wild table、拡張trainer table、gym/League event、双方向portal、QOL-B Thumb overlayを実ROMへserializeする。`check`は同じstageを2回byte一致で構築し、libmGBAの自然new-game/Kanto往復を独立processで2回実行したうえで、16成果のdriftを副作用なしで拒否する。
+
 ## 最終目標コマンド
 
-T18では次を実装します。
+T18のrelease入口は次とする。
 
 ```bash
 make clean-build

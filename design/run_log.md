@@ -631,3 +631,27 @@
   - allocation / content audit / trainer audit SHA-256 `eeb93b6dec5bbc69582b2180476403879c1b8eee3a0580b026db8677d4a7f5d2` / `1395f3b7ddae54a02ec1748db94cf58090b906d6d975839db6d07f1474611543` / `8c87c4c43aa3c1f3d36e688976cf133d1ec75dbeffc3248255275d17a7242e4b`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みROM/上流、T03〜T15成果、V2固定review入力だけを参照した。
+
+## 2026-08-14T06:54:10+09:00
+
+- Task: `T17` / 本編・engine・Kantoの回帰試験を通す
+- Status: DONE
+- Summary:
+  - T16 stageを入力に、253 Kanto map、180 layout、51 tileset、133 Kanto wild header、QOL-B Thumb overlayを中央allocator管理payloadへ実配置した。既存Tohoku map/layout/wild表はprefix保持し、rootをexpected-byte付きでrepointした。
+  - Vega既存trainer 743件をprefix保持して917件へ拡張し、T16の29 trainer ID・174 party rowを実ABIへbindした。既存engineの24 literalを新tableへrepointし、8 gymと四天王/Championの13 physical battle objectを順序flag/HOF gateへ接続した。
+  - 自然new-game入力traceからVega field、Kantoクチバ描画・移動、無条件帰還、QOL-B実行、gym/Champion pointer graphをlibmGBA 2 processで完走した。253 map往復到達、pre/post-HOF各200往復、125共有捕獲、34 event×7分岐、20 facility mode、QOL-B/AIを固定fixtureへ統合した。
+- Files changed:
+  - ROM/runtime: `tools/regression/{rom_runtime,model}.py`, `scripts/build_regression.py`, `overlays/qol_b/**`, `tools/mgba_regression_smoke.c`, `config/qol_b.json`
+  - tests/config: `tests/test_regression.py`, `tests/fixtures/{qol_b_fixture.c,qol_b.json,regression.json}`, `tests/manual/{VEGA_CHECKPOINTS,KANTO_CHECKPOINTS}.md`, `config/feature_matrix.csv`, `KNOWN_ISSUES.md`, `Makefile`
+  - docs/state: `README.md`, `docs/BUILD_PIPELINE.md`, `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/17_regression.{gba,json}`, `build/stages/{17_allocation,17_mgba_smoke}.json`, `generated/runtime/t17_runtime*`, `reports/generated/{regression_summary,qol_b_integration,facility_regression,trainer_ai_regression}.md`
+- Verify:
+  - `make regression` / `make regression-check`: PASS。16成果を2回byte一致で構築し、check副作用なし、libmGBA独立process 2/2 PASSを確認した。
+  - `python3 scripts/validate_manifests.py`: PASS。
+  - `python3 -m unittest -v tests.test_regression`: PASS（4 tests）。ROM/payload/allocation、trainer ABI、Kanto progression、全state model成果を検査した。
+  - `python3 -m py_compile scripts/build_regression.py tools/regression/{model,rom_runtime}.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 17 / runtime / allocation SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997` / `bd36a7960f1f4d85006c99930bd8e7a7aecdd7bb104f869b6245965c053750a7` / `db27581c2a7126c3fb1a143c0340ca17eefd9ea98da18c0ba2919cfa86aaa647`。
+  - mGBA / regression fixture / QOL-B fixture SHA-256 `db0eeb97142b43d3dc08d7f7165317dee7b03b9e1a4a075211885beabc02e804` / `7c591046e388d37d7a3cc6af85f68c8467d8e325ea4a99273990ec981bb212fa` / `2b614f9365df01b588590b5e1c2b7464cfb866137fe2b1a408d73253b56def28`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みROM/上流、T03〜T16成果、V2固定review入力だけを参照した。

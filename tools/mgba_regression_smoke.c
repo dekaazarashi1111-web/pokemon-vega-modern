@@ -1,0 +1,437 @@
+/* T17 exact-ROM smoke: boot stage17, validate repointed Kanto roots, and execute
+ * the embedded QOL-B Thumb probe. No ROM/save/state/framebuffer artifact is written. */
+#define _POSIX_C_SOURCE 200809L
+
+#include <errno.h>
+#include <inttypes.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <mgba/core/config.h>
+#include <mgba/core/core.h>
+#include <mgba/core/log.h>
+
+#define GBA_WIDTH 240U
+#define GBA_HEIGHT 160U
+#define MAX_CALL_STEPS UINT64_C(2000000)
+#define ROM_BASE UINT32_C(0x08000000)
+#define ROM_END UINT32_C(0x0A000000)
+#define SPECIAL_VAR_RESULT UINT32_C(0x02037004)
+#define QOL_MARKER UINT32_C(0x00000B17)
+#define G_SAVE_BLOCK1 UINT32_C(0x03005048)
+#define SCRIPT_CONTEXT1_SETUP UINT32_C(0x080693A5)
+
+static void die(const char *message)
+{
+    fprintf(stderr, "mgba-regression-smoke: %s\n", message);
+    exit(1);
+}
+
+static void silent_log(struct mLogger *logger, int category, enum mLogLevel level,
+                       const char *format, va_list args)
+{
+    (void)logger;
+    (void)category;
+    (void)level;
+    (void)format;
+    (void)args;
+}
+
+static uint32_t parse_u32(const char *text, const char *label)
+{
+    errno = 0;
+    char *end = NULL;
+    unsigned long value = strtoul(text, &end, 0);
+    if (errno || end == NULL || *end != '\0' || value > UINT32_MAX) {
+        fprintf(stderr, "mgba-regression-smoke: invalid %s\n", label);
+        exit(2);
+    }
+    return (uint32_t)value;
+}
+
+static uint8_t read8(struct mCore *core, uint32_t address)
+{
+    return (uint8_t)core->rawRead8(core, address, -1);
+}
+
+static uint16_t read16(struct mCore *core, uint32_t address)
+{
+    return (uint16_t)core->rawRead16(core, address, -1);
+}
+
+static uint16_t read_le16_unaligned(struct mCore *core, uint32_t address)
+{
+    return (uint16_t)(read8(core, address)
+        | ((uint16_t)read8(core, address + 1U) << 8U));
+}
+
+static uint32_t read32(struct mCore *core, uint32_t address)
+{
+    return core->rawRead32(core, address, -1);
+}
+
+static int32_t read_register(struct mCore *core, const char *name)
+{
+    int32_t value = 0;
+    if (!core->readRegister(core, name, &value))
+        die("register read failed");
+    return value;
+}
+
+static void write_register(struct mCore *core, const char *name, int32_t value)
+{
+    if (!core->writeRegister(core, name, &value))
+        die("register write failed");
+}
+
+static const char *const REGISTER_NAMES[] = {
+    "r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7",
+    "r8", "r9", "r10", "r11", "r12", "sp", "lr", "pc", "cpsr",
+};
+
+struct CpuContext {
+    int32_t registers[17];
+};
+
+struct Segment {
+    uint32_t frames;
+    uint16_t keys;
+};
+
+#define A(wait_frames) {2, 1}, {(wait_frames), 0}
+
+/* Fixed natural Vega new-game path shared with the T03 behavior fixture.
+ * Key bits: A=1, B=2, START=8, RIGHT=16, LEFT=32, UP=64, DOWN=128. */
+static const struct Segment BOOT_TRACE[] = {
+    {600, 0}, {600, 0}, {1, 8}, {1, 0}, {180, 0}, {300, 0},
+    {2, 8}, {2, 0}, {120, 0}, {120, 0}, {2, 1}, {2, 0}, {180, 0},
+    A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20),
+    A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(120),
+    A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20),
+    A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(20), A(120),
+    A(60), A(60), A(60), A(60), A(60), A(60), A(60), A(60), A(60), A(180),
+    A(100), A(100), A(100), A(100), A(100), A(100), A(100), A(100), A(100), A(200),
+    A(120), A(120), A(120), A(180),
+    A(120), A(120), A(120), A(120), A(120), A(200),
+    A(120), A(120), A(120), A(120), A(120), A(120), A(120), A(120), A(120), A(300),
+    {80, 16}, {10, 0}, {140, 64}, {180, 0}, {2, 2}, {30, 0}, {80, 32}, {120, 0},
+    {60, 32}, {10, 0}, {180, 128}, {180, 0},
+    {100, 16}, {10, 0}, {220, 128}, {180, 0}, {100, 32}, {10, 0}, {150, 128}, {180, 0},
+    {50, 32}, {10, 0}, {80, 128}, {200, 0}, {40, 16}, {10, 0}, {60, 128}, {200, 0},
+    {20, 32}, {10, 0}, {40, 64}, {10, 0}, {60, 128}, {200, 0},
+    {120, 128}, {60, 32}, {300, 64}, {300, 0}, {180, 16}, {10, 0}, {300, 64}, {300, 0},
+    {2, 1}, {120, 0}, {2, 1}, {120, 0}, {2, 1}, {120, 0}, {2, 1}, {120, 0},
+    {2, 1}, {120, 0}, {2, 1}, {120, 0}, {2, 1}, {120, 0}, {2, 1}, {120, 0},
+    {2, 1}, {120, 0}, {2, 1}, {500, 0},
+    {2, 1}, {150, 0}, {2, 1}, {150, 0}, {2, 1}, {200, 0},
+    {2, 1}, {150, 0}, {2, 1}, {150, 0}, {2, 1}, {200, 0},
+    {2, 1}, {150, 0}, {2, 1}, {200, 0},
+    {2, 1}, {150, 0}, {2, 1}, {150, 0}, {2, 1}, {200, 0},
+    {2, 1}, {200, 0}, {2, 1}, {200, 0}, {2, 1}, {200, 0}, {2, 1}, {200, 0},
+    {2, 1}, {300, 0},
+    {60, 128}, {10, 0}, {80, 16}, {10, 0}, {40, 64}, {100, 0},
+    {2, 1}, {100, 0}, {60, 16}, {10, 0}, {100, 64}, {100, 0},
+    {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {200, 0},
+    {2, 1}, {180, 0}, {2, 128}, {10, 0}, {2, 1}, {400, 0},
+    {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {180, 0},
+    {2, 1}, {300, 0}, {80, 32}, {10, 0}, {220, 128}, {400, 0},
+    {90, 32}, {10, 0}, {220, 128}, {400, 0},
+    {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {180, 0}, {2, 1}, {180, 0},
+    {2, 1}, {180, 0}, {2, 1}, {400, 0},
+    {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0},
+    {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0},
+    {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {160, 0},
+    {2, 1}, {160, 0}, {2, 1}, {160, 0}, {2, 1}, {400, 0},
+};
+
+static struct CpuContext capture_cpu(struct mCore *core)
+{
+    struct CpuContext result;
+    for (size_t index = 0; index < 17; ++index)
+        result.registers[index] = read_register(core, REGISTER_NAMES[index]);
+    return result;
+}
+
+static void restore_cpu(struct mCore *core, const struct CpuContext *context)
+{
+    write_register(core, "cpsr", context->registers[16]);
+    for (size_t index = 0; index < 15; ++index)
+        write_register(core, REGISTER_NAMES[index], context->registers[index]);
+    write_register(core, "pc", context->registers[15]);
+}
+
+static uint32_t call_thumb(struct mCore *core, uint32_t function,
+                           uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3)
+{
+    struct CpuContext original = capture_cpu(core);
+    write_register(core, "cpsr", original.registers[16] | 0xA0);
+    write_register(core, "lr", (int32_t)UINT32_C(0x08000001));
+    write_register(core, "r0", (int32_t)r0);
+    write_register(core, "r1", (int32_t)r1);
+    write_register(core, "r2", (int32_t)r2);
+    write_register(core, "r3", (int32_t)r3);
+    write_register(core, "pc", (int32_t)function);
+    uint64_t steps = 0;
+    while ((((uint32_t)read_register(core, "pc")) & ~1U) != UINT32_C(0x08000002)) {
+        if (++steps > MAX_CALL_STEPS)
+            die("QOL-B probe instruction limit exceeded");
+        core->step(core);
+    }
+    uint32_t result = (uint32_t)read_register(core, "r0");
+    restore_cpu(core, &original);
+    return result;
+}
+
+static bool rom_pointer(uint32_t pointer)
+{
+    return pointer >= ROM_BASE && pointer < ROM_END && (pointer & 3U) == 0;
+}
+
+static void run_frames(struct mCore *core, unsigned count, uint16_t keys)
+{
+    core->setKeys(core, keys);
+    for (unsigned frame = 0; frame < count; ++frame)
+        core->runFrame(core);
+    core->setKeys(core, 0);
+}
+
+static uint32_t run_natural_new_game(struct mCore *core, color_t *video)
+{
+    const uint32_t title_checkpoint = 1682U;
+    uint32_t elapsed = 0;
+    uint32_t transitions = 0;
+    bool captured = false;
+    for (size_t segment = 0; segment < sizeof(BOOT_TRACE) / sizeof(BOOT_TRACE[0]); ++segment) {
+        uint32_t frames = BOOT_TRACE[segment].frames;
+        if (!captured && elapsed < title_checkpoint
+            && title_checkpoint < elapsed + frames) {
+            run_frames(core, title_checkpoint - elapsed, BOOT_TRACE[segment].keys);
+            frames -= title_checkpoint - elapsed;
+            elapsed = title_checkpoint;
+        }
+        if (!captured && elapsed == title_checkpoint) {
+            for (size_t index = 1; index < GBA_WIDTH * GBA_HEIGHT; ++index) {
+                if (video[index] != video[index - 1])
+                    ++transitions;
+            }
+            captured = true;
+        }
+        run_frames(core, frames, BOOT_TRACE[segment].keys);
+        elapsed += frames;
+    }
+    run_frames(core, 120, 0);
+    if (!captured || transitions < 100U)
+        die("title checkpoint is blank or outside the natural trace");
+    return transitions;
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 12) {
+        fprintf(stderr, "usage: %s ROM QOL_PROBE MAP_ROOT LAYOUT_ROOT WILD_ROOT PAYLOAD_SIZE PORTAL_TRAVEL RETURN_TRAVEL TRAINER_ROOT PEWTER_SCRIPT CHAMPION_SCRIPT\n",
+                argv[0]);
+        return 2;
+    }
+    uint32_t probe = parse_u32(argv[2], "QOL probe");
+    uint32_t expected_map_root = parse_u32(argv[3], "map root");
+    uint32_t expected_layout_root = parse_u32(argv[4], "layout root");
+    uint32_t expected_wild_root = parse_u32(argv[5], "wild root");
+    uint32_t payload_size = parse_u32(argv[6], "payload size");
+    uint32_t portal_travel = parse_u32(argv[7], "portal travel script");
+    uint32_t return_travel = parse_u32(argv[8], "return travel script");
+    uint32_t trainer_root = parse_u32(argv[9], "trainer root");
+    uint32_t pewter_script = parse_u32(argv[10], "Pewter progression script");
+    uint32_t champion_script = parse_u32(argv[11], "Champion progression script");
+    if ((probe & 1U) == 0 || payload_size == 0
+        || !rom_pointer(portal_travel) || !rom_pointer(return_travel)
+        || !rom_pointer(trainer_root) || !rom_pointer(pewter_script)
+        || !rom_pointer(champion_script))
+        die("runtime argument contract failed");
+
+    struct mLogger logger = {.log = silent_log, .filter = NULL};
+    mLogSetDefaultLogger(&logger);
+    struct mCore *core = mCoreFind(argv[1]);
+    if (core == NULL || !core->init(core))
+        die("core initialization failed");
+    if (!mCoreLoadFile(core, argv[1]))
+        die("ROM load failed");
+    mCoreInitConfig(core, NULL);
+    mCoreConfigSetDefaultValue(&core->config, "idleOptimization", "ignore");
+    color_t *video = calloc(GBA_WIDTH * GBA_HEIGHT, sizeof(*video));
+    if (video == NULL)
+        die("video allocation failed");
+    core->setVideoBuffer(core, video, GBA_WIDTH);
+    core->reset(core);
+    uint32_t transitions = run_natural_new_game(core, video);
+
+    uint32_t map_root = read32(core, ROM_BASE + UINT32_C(0x54B0C));
+    uint32_t layout_root = read32(core, ROM_BASE + UINT32_C(0x54A54));
+    uint32_t wild_root = read32(core, ROM_BASE + UINT32_C(0x8257C));
+    if (map_root != expected_map_root || layout_root != expected_layout_root
+        || wild_root != expected_wild_root)
+        die("repoint root differs from metadata");
+    if (!rom_pointer(map_root) || !rom_pointer(layout_root) || !rom_pointer(wild_root))
+        die("repoint root is not a ROM pointer");
+
+    uint32_t group96 = read32(core, map_root + 96U * 4U);
+    uint32_t vermilion_header = read32(core, group96 + 5U * 4U);
+    uint32_t vermilion_layout = read32(core, vermilion_header);
+    uint32_t vermilion_events = read32(core, vermilion_header + 4U);
+    if (!rom_pointer(group96) || !rom_pointer(vermilion_header)
+        || !rom_pointer(vermilion_layout) || !rom_pointer(vermilion_events))
+        die("Kanto entry pointer graph is invalid");
+    if (read32(core, vermilion_layout) != 48U
+        || read32(core, vermilion_layout + 4U) != 40U
+        || read16(core, vermilion_header + UINT32_C(0x12)) != 553U
+        || read8(core, vermilion_events) != 1U
+        || read8(core, vermilion_events + 1U) != 10U)
+        die("Kanto entry ABI values differ from canonical map");
+
+    unsigned kanto_wild_headers = 0;
+    for (unsigned index = 0; index < 1024; ++index) {
+        uint32_t header = wild_root + index * 20U;
+        uint8_t group = read8(core, header);
+        uint8_t map = read8(core, header + 1U);
+        if (group == 0xFFU && map == 0xFFU)
+            break;
+        if (group >= 96U && group <= 98U)
+            ++kanto_wild_headers;
+    }
+    if (kanto_wild_headers != 133U)
+        die("Kanto wild header count differs from metadata");
+
+    /* The battle engine's literal pool must reference the expanded table, and
+     * both ends of the Kanto progression must resolve to real six-mon parties. */
+    if (read32(core, ROM_BASE + UINT32_C(0xF5C0)) != trainer_root)
+        die("battle engine does not reference expanded trainer table");
+    const unsigned trainer_ids[] = {751U, 763U};
+    for (size_t index = 0; index < sizeof(trainer_ids) / sizeof(trainer_ids[0]); ++index) {
+        uint32_t record = trainer_root + trainer_ids[index] * 32U;
+        uint32_t party = read32(core, record + 0x1CU);
+        if (read8(core, record) != 3U || read32(core, record + 0x14U) != 5U
+            || read8(core, record + 0x18U) != 6U || !rom_pointer(party))
+            die("generated trainer ABI record is invalid");
+        if (read16(core, party) == 0U || read16(core, party + 2U) < 68U
+            || read16(core, party + 4U) == 0U || read16(core, party + 8U) == 0U
+            || read16(core, party + 10U) == 0U || read16(core, party + 12U) == 0U
+            || read16(core, party + 14U) == 0U)
+            die("generated trainer party row is invalid");
+    }
+
+    uint32_t group98 = read32(core, map_root + 98U * 4U);
+    uint32_t pewter_header = read32(core, group98 + 12U * 4U);
+    uint32_t pewter_events = read32(core, pewter_header + 4U);
+    uint32_t pewter_objects = read32(core, pewter_events + 4U);
+    uint32_t group97 = read32(core, map_root + 97U * 4U);
+    uint32_t champion_header = read32(core, group97 + 79U * 4U);
+    uint32_t champion_events = read32(core, champion_header + 4U);
+    uint32_t champion_objects = read32(core, champion_events + 4U);
+    if (!rom_pointer(pewter_events) || !rom_pointer(pewter_objects)
+        || !rom_pointer(champion_events) || !rom_pointer(champion_objects)
+        || read8(core, pewter_events) != 1U || read8(core, champion_events) != 1U
+        || read32(core, pewter_objects + 0x10U) != pewter_script
+        || read32(core, champion_objects + 0x10U) != champion_script)
+        die("Kanto progression object graph is invalid");
+    if (read8(core, pewter_script) != 0x5AU || read8(core, pewter_script + 1U) != 0x5CU
+        || read_le16_unaligned(core, pewter_script + 3U) != 751U)
+        die("first Kanto gym battle script is invalid");
+    if (read8(core, champion_script) != 0x5AU
+        || read8(core, champion_script + 1U) != 0x2BU
+        || read16(core, champion_script + 2U) != 0x140BU
+        || read8(core, champion_script + 10U) != 0x2BU
+        || read_le16_unaligned(core, champion_script + 11U) != 0x082CU
+        || read8(core, champion_script + 19U) != 0x5CU
+        || read_le16_unaligned(core, champion_script + 21U) != 763U)
+        die("final Kanto League battle script is invalid");
+
+    core->rawWrite16(core, SPECIAL_VAR_RESULT, -1, 0);
+    uint32_t probe_result = call_thumb(core, probe, 0, 0, 0, 0);
+    uint16_t marker = read16(core, SPECIAL_VAR_RESULT);
+    if (probe_result != QOL_MARKER || marker != QOL_MARKER)
+        die("embedded QOL-B probe did not execute");
+
+    uint32_t saveblock1 = read32(core, G_SAVE_BLOCK1);
+    if (saveblock1 < UINT32_C(0x02000000) || saveblock1 >= UINT32_C(0x02040000))
+        die("natural new game did not retain a valid SaveBlock1");
+    if (read8(core, saveblock1 + 4U) != 4U || read8(core, saveblock1 + 5U) != 0U)
+        die("natural new game did not reach the Vega field checkpoint");
+    /* Run the exact portal travel bytecode from a natural Vega field state. */
+    (void)call_thumb(core, SCRIPT_CONTEXT1_SETUP, portal_travel, 0, 0, 0);
+    run_frames(core, 1200, 0);
+    saveblock1 = read32(core, G_SAVE_BLOCK1);
+    int16_t player_x = (int16_t)read16(core, saveblock1);
+    int16_t player_y = (int16_t)read16(core, saveblock1 + 2U);
+    uint8_t player_group = read8(core, saveblock1 + 4U);
+    uint8_t player_map = read8(core, saveblock1 + 5U);
+    if (player_group != 96U || player_map != 5U) {
+        fprintf(stderr, "mgba-regression-smoke: Kanto load observed map=%u/%u pos=%d,%d\n",
+                player_group, player_map, player_x, player_y);
+        die("normal map loader did not enter Kanto Vermilion");
+    }
+    uint32_t kanto_transitions = 0;
+    for (size_t index = 1; index < GBA_WIDTH * GBA_HEIGHT; ++index) {
+        if (video[index] != video[index - 1])
+            ++kanto_transitions;
+    }
+    if (kanto_transitions < 100U)
+        die("Kanto framebuffer is blank or uniform");
+
+    size_t field_state_size = core->stateSize(core);
+    void *field_state = malloc(field_state_size);
+    if (field_state == NULL || !core->saveState(core, field_state))
+        die("Kanto field state capture failed");
+    const uint16_t movement_keys[] = {16U, 32U, 64U, 128U};
+    bool kanto_moved = false;
+    int16_t moved_x = player_x;
+    int16_t moved_y = player_y;
+    uint16_t movement_key = 0;
+    for (size_t index = 0; index < sizeof(movement_keys) / sizeof(movement_keys[0]); ++index) {
+        if (!core->loadState(core, field_state))
+            die("Kanto field state restore failed");
+        run_frames(core, 60, movement_keys[index]);
+        run_frames(core, 4, 0);
+        int16_t observed_x = (int16_t)read16(core, saveblock1);
+        int16_t observed_y = (int16_t)read16(core, saveblock1 + 2U);
+        if (read8(core, saveblock1 + 4U) == 96U
+            && read8(core, saveblock1 + 5U) == 5U
+            && (observed_x != player_x || observed_y != player_y)) {
+            kanto_moved = true;
+            moved_x = observed_x;
+            moved_y = observed_y;
+            movement_key = movement_keys[index];
+            break;
+        }
+    }
+    free(field_state);
+    if (!kanto_moved)
+        die("player could not move on the rendered Kanto map");
+
+    (void)call_thumb(core, SCRIPT_CONTEXT1_SETUP, return_travel, 0, 0, 0);
+    run_frames(core, 900, 0);
+    saveblock1 = read32(core, G_SAVE_BLOCK1);
+    if (read8(core, saveblock1 + 4U) != 4U || read8(core, saveblock1 + 5U) != 0U)
+        die("return event bytecode did not enter the Vega map");
+
+    printf("{\"schema_version\":1,\"status\":\"PASS\","
+           "\"checks\":{\"boot\":true,\"map_roots\":true,"
+           "\"kanto_entry\":true,\"wild_headers\":true,"
+           "\"trainer_table\":true,\"kanto_progression_objects\":true,"
+           "\"qol_b_thumb_execution\":true,\"kanto_map_load\":true,"
+           "\"kanto_movement\":true,\"event_round_trip\":true},"
+           "\"framebuffer_transitions\":%" PRIu32 ","
+           "\"kanto_framebuffer_transitions\":%" PRIu32 ","
+           "\"kanto_position\":{\"group\":%u,\"map\":%u,\"x\":%d,\"y\":%d},"
+           "\"kanto_movement\":{\"key\":%u,\"x\":%d,\"y\":%d},"
+           "\"kanto_wild_headers\":%u,\"qol_marker\":%u,"
+           "\"payload_size\":%" PRIu32 ",\"artifacts_written\":[]}\n",
+           transitions, kanto_transitions, player_group, player_map,
+           player_x, player_y, movement_key, moved_x, moved_y,
+           kanto_wild_headers, marker, payload_size);
+
+    free(video);
+    mCoreConfigDeinit(&core->config);
+    core->deinit(core);
+    return 0;
+}
