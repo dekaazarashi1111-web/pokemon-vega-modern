@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "task": "T05",
+  "activation_task": "T06",
+  "vega": {
+    "rom_path": "build/reference/vega.gba",
+    "rom_size": 16777216,
+    "rom_sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "frozen_ability_count": 78,
+    "frozen_item_count": 375,
+    "frozen_type_count": 18
+  },
+  "cfru": {
+    "source_path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "baseline_rom_path": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/cfru/baseline/run-1/test.gba",
+    "baseline_rom_sha256": "140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922",
+    "offsets_path": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/cfru/baseline/run-1/offsets.ini",
+    "offsets_sha256": "05cef90bc63c04cd93a1a327ddfef1aa07d4910e42d80c3f43ae8db800f2b0fd",
+    "type_count": 25,
+    "ability_count": 311,
+    "item_count": 774
+  },
+  "dpe": {
+    "source_path": "vendor/upstream/DPE-JP",
+    "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e"
+  },
+  "charmap": {
+    "path": "vendor/upstream/CFRU-JP/charmap.tbl",
+    "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"
+  },
+  "mapping_policy": {
+    "ability": {
+      "frozen_start": 0,
+      "frozen_end": 77,
+      "identity_source_start": 0,
+      "identity_source_end": 75,
+      "source_overrides": {
+        "76": 77
+      },
+      "append_source_start": 77,
+      "append_start": 78,
+      "vega_key_overrides": {
+        "24": "ABILITY_KEY_WOUNDING_BODY",
+        "76": "ABILITY_KEY_CACOPHONY",
+        "77": "ABILITY_KEY_AIRLOCK"
+      }
+    },
+    "item": {
+      "frozen_start": 0,
+      "frozen_end": 374,
+      "automatic_match": "SAME_SOURCE_ID_NFKC_NAME_DESCRIPTION_SEMANTIC_ABI",
+      "cross_id_match": "EXPLICIT_OVERRIDES_ONLY",
+      "reuse_holes": false,
+      "source_overrides": {
+        "74": 74,
+        "186": 186,
+        "348": 353
+      },
+      "source_override_evidence": {
+        "74": "same description and semantic ABI; Vega display name is a localized rename",
+        "186": "same source ID, name, hold-effect ABI; description wording only",
+        "348": "same name, description and semantic ABI at Vega Gold Teeth ID 353"
+      },
+      "source_distinct_evidence": {
+        "80": "Vega Poke Toy and CFRU Poke Doll share an escape effect but remain distinct named entities"
+      },
+      "vega_key_overrides": {
+        "192": "ITEM_KEY_VEGA_ANALYSIS_SCAR",
+        "193": "ITEM_KEY_VEGA_FORECAST_SCAR",
+        "224": "ITEM_KEY_PINK_BUBBLE",
+        "225": "ITEM_KEY_DIZZY_HOOP",
+        "271": "ITEM_KEY_VEGA",
+        "274": "ITEM_KEY_IMPORTANT_DOCUMENT",
+        "287": "ITEM_KEY_FANG_FOSSIL",
+        "353": "ITEM_KEY_GOLD_TEETH",
+        "357": "ITEM_KEY_DARK_FOSSIL",
+        "358": "ITEM_KEY_WING_FOSSIL",
+        "360": "ITEM_KEY_DOUBLE_BOARD",
+        "373": "ITEM_KEY_ALTAIR",
+        "374": "ITEM_KEY_SIRIUS"
+      }
+    },
+    "type": {
+      "canonical_source_ids": true,
+      "active_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        23,
+        24
+      ],
+      "reserved_ids": [18, 21, 22],
+      "sentinel_ids": [19, 20],
+      "display_overrides": {
+        "23": "フェアリー",
+        "24": "ステラ"
+      },
+      "stellar_policy": "ACTIVE_CFRU_SPECIAL_BIND_T06",
+      "tera_input_encoding": "TYPE_ID_PLUS_ONE",
+      "vega_matrix_overrides": {
+        "7,8": 500,
+        "17,8": 500
+      }
+    }
+  },
+  "text_width": {
+    "type_name_bytes": 5,
+    "ability_name_bytes": 16,
+    "item_name_bytes": 9,
+    "ability_description_line_bytes": 28,
+    "item_description_line_bytes": 28
+  },
+  "qol_contracts": [
+    {
+      "source_symbol": "ITEM_EVERSTONE",
+      "item_key": "ITEM_KEY_EVERSTONE",
+      "field_effect_key": "BREEDING_NATURE_AND_FORM_INHERIT",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE1_T12"
+    },
+    {
+      "source_symbol": "ITEM_DESTINY_KNOT",
+      "item_key": "ITEM_KEY_DESTINY_KNOT",
+      "field_effect_key": "BREEDING_INHERIT_FIVE_IVS",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_KANTO_DAYCARE_T16"
+    },
+    {
+      "source_symbol": "ITEM_POWER_WEIGHT",
+      "item_key": "ITEM_KEY_POWER_WEIGHT",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_HP",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_POWER_BRACER",
+      "item_key": "ITEM_KEY_POWER_BRACER",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_ATK",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_POWER_BELT",
+      "item_key": "ITEM_KEY_POWER_BELT",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_DEF",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_POWER_ANKLET",
+      "item_key": "ITEM_KEY_POWER_ANKLET",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_SPEED",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_POWER_LENS",
+      "item_key": "ITEM_KEY_POWER_LENS",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_SPATK",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_POWER_BAND",
+      "item_key": "ITEM_KEY_POWER_BAND",
+      "field_effect_key": "BREEDING_FORCE_IV",
+      "field_effect_param": "STAT_SPDEF",
+      "runtime_binding": "T08_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE5_T12"
+    },
+    {
+      "source_symbol": "ITEM_ABILITY_CAPSULE",
+      "item_key": "ITEM_KEY_ABILITY_CAPSULE",
+      "field_effect_key": "ABILITY_NORMAL_SWAP",
+      "runtime_binding": "T06_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_DH_T12"
+    },
+    {
+      "source_symbol": "ITEM_ABILITY_PATCH",
+      "item_key": "ITEM_KEY_ABILITY_PATCH",
+      "field_effect_key": "ABILITY_HIDDEN_SET",
+      "runtime_binding": "T06_RUNTIME_BIND_PENDING",
+      "supply_key": "SUPPLY_BADGE8_LIMITED_T12"
+    },
+    {
+      "source_symbol": "ITEM_BOTTLE_CAP",
+      "item_key": "ITEM_KEY_BOTTLE_CAP",
+      "field_effect_key": "HYPER_TRAIN_ONE",
+      "runtime_binding": "T06_SERVICE_ADAPTER_PENDING",
+      "supply_key": "SUPPLY_BADGE7_T12"
+    },
+    {
+      "source_symbol": "ITEM_GOLD_BOTTLE_CAP",
+      "item_key": "ITEM_KEY_GOLD_BOTTLE_CAP",
+      "field_effect_key": "HYPER_TRAIN_ALL",
+      "runtime_binding": "T06_SERVICE_ADAPTER_PENDING",
+      "supply_key": "SUPPLY_KANTO_LEAGUE_T16"
+    },
+    {
+      "source_symbol": "ITEM_OVAL_CHARM",
+      "item_key": "ITEM_KEY_OVAL_CHARM",
+      "field_effect_key": "BREEDING_CHECK_MULTIPLIER_X2_CAP100",
+      "runtime_binding": "T08_QOL_ADAPTER_PENDING",
+      "supply_key": "SUPPLY_CAPTURE100_OR_KANTO_DAYCARE_T16"
+    }
+  ],
+  "mint_contract": {
+    "source_symbols": [
+      "ITEM_LONELY_MINT",
+      "ITEM_ADAMANT_MINT",
+      "ITEM_NAUGHTY_MINT",
+      "ITEM_BRAVE_MINT",
+      "ITEM_BOLD_MINT",
+      "ITEM_IMPISH_MINT",
+      "ITEM_LAX_MINT",
+      "ITEM_RELAXED_MINT",
+      "ITEM_MODEST_MINT",
+      "ITEM_MILD_MINT",
+      "ITEM_RASH_MINT",
+      "ITEM_QUIET_MINT",
+      "ITEM_CALM_MINT",
+      "ITEM_GENTLE_MINT",
+      "ITEM_CAREFUL_MINT",
+      "ITEM_SASSY_MINT",
+      "ITEM_TIMID_MINT",
+      "ITEM_HASTY_MINT",
+      "ITEM_JOLLY_MINT",
+      "ITEM_NAIVE_MINT",
+      "ITEM_SERIOUS_MINT"
+    ],
+    "nature_keys": [
+      "NATURE_LONELY",
+      "NATURE_ADAMANT",
+      "NATURE_NAUGHTY",
+      "NATURE_BRAVE",
+      "NATURE_BOLD",
+      "NATURE_IMPISH",
+      "NATURE_LAX",
+      "NATURE_RELAXED",
+      "NATURE_MODEST",
+      "NATURE_MILD",
+      "NATURE_RASH",
+      "NATURE_QUIET",
+      "NATURE_CALM",
+      "NATURE_GENTLE",
+      "NATURE_CAREFUL",
+      "NATURE_SASSY",
+      "NATURE_TIMID",
+      "NATURE_HASTY",
+      "NATURE_JOLLY",
+      "NATURE_NAIVE",
+      "NATURE_SERIOUS"
+    ],
+    "field_effect_key": "NATURE_MODIFIER_SET_KEEP_PERSONALITY",
+    "runtime_binding": "T06_RUNTIME_BIND_PENDING",
+    "supply_key": "SUPPLY_PARTIAL_DH_ALL_BADGE8_T12"
+  },
+  "new_items": [
+    {
+      "item_key": "ITEM_KEY_EXP_CANDY_XS",
+      "display_name": "けいけんアメXS",
+      "description": "ポケモン1ひきの\nけいけんちを 100\nふやすアメ。",
+      "icon_key": "gItemIcon_RareCandyTiles",
+      "palette_key": "gItemIcon_RareCandyPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 500,
+      "field_effect_key": "EXP_ADD_FIXED",
+      "field_effect_param": "100",
+      "field_use_callback_key": "FieldUseFunc_ExpCandy",
+      "supply_key": "SUPPLY_DH_AND_FIELD_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EXP_CANDY_S",
+      "display_name": "けいけんアメS",
+      "description": "ポケモン1ひきの\nけいけんちを 800\nふやすアメ。",
+      "icon_key": "gItemIcon_RareCandyTiles",
+      "palette_key": "gItemIcon_RareCandyPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 1200,
+      "field_effect_key": "EXP_ADD_FIXED",
+      "field_effect_param": "800",
+      "field_use_callback_key": "FieldUseFunc_ExpCandy",
+      "supply_key": "SUPPLY_DH_AND_FIELD_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EXP_CANDY_M",
+      "display_name": "けいけんアメM",
+      "description": "ポケモン1ひきの\nけいけんちを 3000\nふやすアメ。",
+      "icon_key": "gItemIcon_RareCandyTiles",
+      "palette_key": "gItemIcon_RareCandyPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 4000,
+      "field_effect_key": "EXP_ADD_FIXED",
+      "field_effect_param": "3000",
+      "field_use_callback_key": "FieldUseFunc_ExpCandy",
+      "supply_key": "SUPPLY_DH_BADGE6_REPEAT_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EXP_CANDY_L",
+      "display_name": "けいけんアメL",
+      "description": "ポケモン1ひきの\nけいけんちを 10000\nふやすアメ。",
+      "icon_key": "gItemIcon_RareCandyTiles",
+      "palette_key": "gItemIcon_RareCandyPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 12000,
+      "field_effect_key": "EXP_ADD_FIXED",
+      "field_effect_param": "10000",
+      "field_use_callback_key": "FieldUseFunc_ExpCandy",
+      "supply_key": "SUPPLY_BADGE7_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EXP_CANDY_XL",
+      "display_name": "けいけんアメXL",
+      "description": "ポケモン1ひきの\nけいけんちを 30000\nふやすアメ。",
+      "icon_key": "gItemIcon_RareCandyTiles",
+      "palette_key": "gItemIcon_RareCandyPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 30000,
+      "field_effect_key": "EXP_ADD_FIXED",
+      "field_effect_param": "30000",
+      "field_use_callback_key": "FieldUseFunc_ExpCandy",
+      "supply_key": "SUPPLY_VEGA_CHAMPION_KANTO_REPEAT_T16"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_HP",
+      "display_name": "HPリセット",
+      "description": "1ひきの HPの\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_PomegBerryTiles",
+      "palette_key": "gItemIcon_PomegBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_HP",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_ATK",
+      "display_name": "こうげきリセット",
+      "description": "1ひきの こうげき\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_KelpsyBerryTiles",
+      "palette_key": "gItemIcon_KelpsyBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_ATK",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_DEF",
+      "display_name": "ぼうぎょリセット",
+      "description": "1ひきの ぼうぎょ\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_QualotBerryTiles",
+      "palette_key": "gItemIcon_QualotBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_DEF",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_SPEED",
+      "display_name": "すばやさリセット",
+      "description": "1ひきの すばやさ\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_TamatoBerryTiles",
+      "palette_key": "gItemIcon_TamatoBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_SPEED",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_SPATK",
+      "display_name": "とくこうリセット",
+      "description": "1ひきの とくこう\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_HondewBerryTiles",
+      "palette_key": "gItemIcon_HondewBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_SPATK",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    },
+    {
+      "item_key": "ITEM_KEY_EV_RESET_SPDEF",
+      "display_name": "とくぼうリセット",
+      "description": "1ひきの とくぼう\nきそポイントを\n0に もどす。",
+      "icon_key": "gItemIcon_GrepaBerryTiles",
+      "palette_key": "gItemIcon_GrepaBerryPal",
+      "pocket": "POCKET_ITEMS",
+      "price": 10000,
+      "field_effect_key": "EV_SET_ZERO",
+      "field_effect_param": "STAT_SPDEF",
+      "field_use_callback_key": "FieldUseFunc_EvResetZero",
+      "supply_key": "SUPPLY_BADGE8_T12"
+    }
+  ]
+}

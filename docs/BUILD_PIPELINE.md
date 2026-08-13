@@ -43,6 +43,17 @@ make moves-check
 
 `make moves` はstage 03を入力に、Vega Move ID 0〜511、V3技調整、固定CFRU-JP 992技を単一modelへ統合します。CFRU未収録551技をappendし、game charmapの名前・説明、battle/effect/animation表、Vega固有70技のcompile済みadapter handlerを生成します。bridgeとaligned pointer 178件だけを変更し、連続2生成と固定wild battleの技実行を確認します。成果は `build/stages/04_moves.{gba,json}`、`generated/engine/moves/`、`manifests/move_ids.csv`、`reports/generated/move_port.md` です。`make moves-check` はmGBAを再実行せず、現在の入力から再構築したROM・table・allocation・runner binary identity・reportを照合します。
 
+## T05 ID space model（ROM stageではない）
+
+```bash
+python3 scripts/build_id_spaces.py build
+python3 scripts/build_id_spaces.py check
+```
+
+T05はVega既存Type/Ability/Item IDを凍結し、固定CFRU-JP/DPE-JPのsymbolとQOL追加道具をstable keyへ解決する配置前modelです。`generated/engine/ids/`、3種のID manifest、text-width結果、`reports/generated/id_space_report.md`を決定的に生成します。ROMへの配置、repoint、allocator requestは、T04とT05の両方に依存するT06がstage 04へ統合します。このためstage 05 ROMは作らず、`check`は公開済み成果のbyte照合と一時directory内のC compile probeだけを行います。
+
+`generated/engine/ids/*_tables.c`はstable keyと分離済み意味fieldの配置前tableで、CFRUのpositional runtime ABI表をそのまま置換するものではありません。Itemのsource→canonical対応は非affineで、AbilityにもAir Lockのshiftがあるため、T06は`id_spaces.json.runtime_handoff`をhard gateとして、実`struct Item`/icon表を999行、Ability名/説明を312行のcanonical順で再生成します。全runtime consumerのrepoint、全行round-trip、source ID直index不在を検証し、`itemObtainedFlags`はT08でresize/translationするまで関連featureを無効のまま保ちます。
+
 ## 最終目標コマンド
 
 T18では次を実装します。

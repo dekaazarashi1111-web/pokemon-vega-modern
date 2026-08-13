@@ -14,6 +14,7 @@
 - T02 exact audit 11成果: `make t02-audit` で生成し、`make t02-check` が一時再生成byte一致、fixed-write/ROM/state意味契約、UNKNOWN 0を検証する。入力policy SHA-256は `d06c0895a24d67317beb40d73619a584f88ae391a05f7fd09af3b2271c2f4429`。
 - T03 harness: `make harness` が `reports/generated/harness_smoke.md` と `build/stages/03_harness.{gba,json}` を生成し、`make harness-check` が現在の入力/config fingerprint、Vega-owned byte一致、module配置、allocation reportを照合する。
 - T04 move port: `make moves` が `reports/generated/move_port.md`、`build/stages/04_moves.{gba,json}`、`generated/engine/moves/`、`manifests/move_ids.csv` を生成し、`make moves-check` が1063技model、V3 131行、70 adapter、178 repoint、allocation、ROM、runner identityを現在入力から照合する。
+- T05 ID space model: `python3 scripts/build_id_spaces.py build` が `reports/generated/id_space_report.md`、`generated/engine/ids/`、Type/Ability/Item manifestを生成し、同`check`が999 itemを含む13成果のbyte一致、host/ARM C compile、公開header共存を副作用なしで照合する。ROM stageとallocator配置はT06で行う。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

@@ -50,6 +50,8 @@ make harness      # clean+Vega IPSから32 MiB T03 no-op harnessを再構築
 make harness-check # 生成済みT03成果を現在の入力/configへ照合
 make moves        # T03からVega固定512技＋CFRU追加551技のT04 stageを再構築
 make moves-check  # エミュレータを再実行せずT04成果と現在入力を照合
+python3 scripts/build_id_spaces.py build # T05 Type/Ability/Item配置前modelを再生成
+python3 scripts/build_id_spaces.py check # T05公開成果を副作用なしで照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -62,6 +64,8 @@ WSLでは全体標準verifyを実行しません。選択タスクのacceptance�
 T03以降のROM stageは入力原本を上書きしません。`make harness` は固定clean ROMへVega IPSをmemory上で適用し、32 MiBへ `0xFF` 拡張して、named allocatorが許可した拡張領域へno-op moduleを配置します。
 
 `make moves` はVega Move ID 0〜511を固定し、V3技調整を優先適用してCFRU-JPの未収録551技を512〜1062へappendします。生成したgame-encoding表、70個のVega固有effect adapter、178 pointer repointをstage 04へ配置し、固定wild battleで実際に技を1回実行します。
+
+T05はVega既存Type/Ability/Itemを固定し、意味同一を証明できた上流entityだけを同じIDへ対応させます。Type 25、Ability 312、Item 999のstable model、source alias、C table、表示幅レポートを生成します。ROM配置は行わず、T06がT04 stageと合わせて統合します。
 
 ## 効率方針
 

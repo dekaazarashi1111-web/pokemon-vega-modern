@@ -119,3 +119,12 @@
 - 効果: V3独自技70件の自由記述を固定operation列へ構造化し、Vega legacy effect pointerを来歴に保持したcompile済みhandler/dispatchを生成する。CFRU側の未知effect IDは流用せず安全なbase effect 0を使い、T06がbattle runtime callbackを接続する。
 - 文字列: 技名・説明はUTF-8 literalではなくゲームcharmap byte＋`0xFF`終端で生成する。CFRU外部説明354件はhash固定clean ROMのrooted pointerから抽出し、`@0x...` placeholderを許可しない。
 - 影響: T04、T06、T09、T12、T16、全技manifestとbattle smoke。
+
+## 2026-08-13 — D-017: Type・Ability・Itemを意味契約付きの配置前ID modelにする
+
+- 決定: Vega Type 0〜17、Ability 0〜77、Item 0〜374を未使用slot込みで固定し、固定CFRU-JP/DPE-JPをType 25、Ability 312、Item 999の連続canonical IDへ解決する。T05はROM stageを作らず、生成manifest/C/JSONをT06がstage 04と統合する。
+- 意味同一: Itemは同じsource ID、NFKC名、説明、hold/field/battle ABI、pocket、`unk19`、callback、secondary IDが一致した161件だけを自動対応する。表示だけ異なる明示identity 3件と、別entityとして保持する例外には根拠を`config/id_spaces.json`へ固定し、証明できない613件はCFRU rangeへappendする。
+- 直交契約: ItemType、進化石/進化道具、ball kind、pocket、icon/palette、説明、hold/field/battle effectとcallback、`unk19`、consume/target/supply/runtime bindingを別fieldとして保持する。opaque byteや単一roleへ意味を潰し込まない。
+- Runtime受渡し: T05の生成Cは配置前semantic tableであり、上流のpositional runtime ABI表ではない。T06で実`struct Item`/icon表999行とAbility名/説明312行をcanonical順に再生成し、全consumerのrepoint、全行round-trip、source ID直index不在をhard gateとする。832 ID分の`itemObtainedFlags`はT08でresize/translationするまで関連featureを有効化しない。
+- 追加type/QOL: FairyとStellarは表示icon、RGB/BGR555色、25×25相性、特殊規則をactive契約とし、Stellar runtimeはT06でbindする。経験アメ5種と単能力EV reset 6種は末尾988〜998へ置き、既存育成道具を含む45 QOL効果をstable keyへ固定する。
+- 影響: T05、T06、T07、T09、T10、T12、T16、Type/Ability/Item参照と生成表。

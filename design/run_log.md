@@ -322,3 +322,34 @@
 - Commit: `-`（本エントリを含むコミット）
 - Network:
   - `https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/moves.csv` — CFRU 992技の世代分類を一次照合した。結果はoffline mappingへ固定し、通常buildはnetworkを使用しない。
+
+## 2026-08-13T09:24:03+09:00
+
+- Task: `T05` / Unify Type Ability Item ID spaces
+- Status: DONE
+- Summary:
+  - 固定Vega ROMのType `0..17`、Ability `0..77`、Item slot `0..374`をrooted pointer・table hashで抽出して未使用slot込みで凍結した。固定CFRU-JP/DPE-JPをType 25、Ability 312、Item 999の連続canonical IDへ統合した。
+  - Itemは名・説明・hold/field/battle ABI・pocket・`unk19`・callback・secondary IDまで一致した161件だけをVegaへ対応した。CFRU未対応613件を`375..987`、経験アメ5種と単能力EV reset 6種を`988..998`へappendし、774 canonical symbolとTM/HM等53 aliasを827件の一意なsource aliasへ解決した。
+  - Fairy/Stellarの日本語表示、icon geometry、RGB/BGR555色、25×25相性、Stellar特殊規則をactive契約にした。ボール27種、進化石12種、進化道具40種、45 QOL効果、ItemType、`unk19`、pocket、各effect/callbackを直交fieldとしてmanifest/JSON/生成Cへ保持した。
+  - T05をROM非配置のsemantic handoffに固定した。T06がItem/Icon 999行とAbility名/説明312行のpositional runtime表をcanonical順で再生成・repoint・全行照合し、`itemObtainedFlags`はT08対応まで有効化しないhard gateをmodelへ追加した。
+- Files changed:
+  - build/config: `config/id_spaces.json`, `scripts/build_id_spaces.py`
+  - extract/inventory: `tools/engine/extract_vega_id_spaces.py`, `tools/engine/cfru_id_space_inventory.py`
+  - manifests/validation: `manifests/{type_ids,ability_ids,item_ids,id_ranges}.csv`, `scripts/validate_manifests.py`
+  - focused tests: `tests/test_build_id_spaces.py`, `tests/test_extract_vega_id_spaces.py`, `tests/test_cfru_id_space_inventory.py`, `tests/test_validate_manifests.py`
+  - docs/state: `README.md`, `docs/{BUILD_PIPELINE,ID_POLICY}.md`, `manifests/README.md`, `design/{current_state,agent_context_map,catalog,decisions,report_lifecycle_index,tasks_next}.md`, `state/task_status.json`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外再生成物: `generated/engine/ids/**`, `reports/generated/id_space_report.md`
+- Verify:
+  - `python3 scripts/build_id_spaces.py build`: PASS。13成果、host C実行、ARM7TDMI Thumb compile、上流constants header共存compileを確認した。
+  - `python3 -m unittest -v tests.test_build_id_spaces tests.test_extract_vega_id_spaces tests.test_cfru_id_space_inventory tests.test_validate_manifests`: PASS（61 tests）。
+  - `python3 scripts/validate_manifests.py`: PASS。999 item、827 alias、QOL 45、進化/ball/pocket/`unk19`を実manifestで照合した。
+  - `python3 scripts/build_id_spaces.py check`: PASS。13成果byte一致、fingerprint `e0210325bc1e1a2d86f1e477cea36eacd8e91a4322ee666ae40192345cb4f00e`、side effects `NONE`。
+  - `make harness-check` / `make moves-check`: PASS。T03 fingerprint `e82de050dfac119d373a9784c111a1f770ce469ce5ec22a5473bf03c9e13c03c`、T04 fingerprint `726abc638bdd5ba2a9e6b96963da5fc2db01de50f2c4cf3e0daef83b220e58ac`を維持した。
+  - 独立read-only最終監査: T05内のblocking/P1/P2なし。T06 positional runtime table hard gateをmodel/文書へ反映した。
+  - ユーザー指示に従い、WSL repository全体verifyは実行していない。
+- Report identity:
+  - ID space report SHA-256 `fd8533ca311cca58b9298b25edddee29e189d86ce735997ae5b3e84895202a19`。
+  - generated metadata SHA-256 `4d94ad6deed9d1e601fee985873b59c511c4a685ebba56352ee8481f3d451c46`。
+  - Type/Ability/Item manifest SHA-256 `b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb` / `8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf` / `f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みローカルROM、CFRU-JP/DPE-JP、T01/T02成果だけを参照した。

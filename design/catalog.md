@@ -32,6 +32,7 @@
 - `scripts/build_project.py`: clean+Vega IPSから32 MiB T03 harnessを2回再構築し、module配置とlibmGBA smokeを検証
 - `scripts/build_move_port.py`: Vega/CFRU/V3から1063技model、game-encoding表、70 effect adapterを生成
 - `scripts/build_move_stage.py`: T03へ44,032-byte move bridgeと178 repointを適用し、実技smokeを検証
+- `scripts/build_id_spaces.py`: Vega/CFRU/DPEのType・Ability・Itemを配置前stable modelへ統合し、manifest/C表/幅レポートを決定的生成
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -64,7 +65,10 @@
 - `tools/rom_allocator.py`: 32 MiB named regionの決定的配置とoverlap拒否
 - `tools/engine/extract_vega_moves.py`: 固定Vega ROMの512技・5 table・effect pointer抽出
 - `tools/engine/cfru_move_inventory.py`: 固定CFRU-JPの992技・256 effect script inventory生成
+- `tools/engine/extract_vega_id_spaces.py`: 固定Vega ROMのType・Ability・Item表と相性表をpointer/hash検証付きで抽出
+- `tools/engine/cfru_id_space_inventory.py`: 固定CFRU-JP/DPE-JPのType・Ability・Item、表示、相性、ItemType、aliasを抽出
 - `tools/mgba_move_smoke.c`: T04 synthetic wild battleでslot 0の実技実行、PP・HP変化を観測
 - `overlays/vega_adapter/`: hook 0件の再構築可能なT03 no-op Thumb module
 - `config/t02_audit_policy.json`: T02入力hash、分類、overlap、移行・施設・AI契約の機械可読正本
 - `config/rom_regions.csv`: ROM file offset half-open partitionの機械可読正本
+- `config/id_spaces.json`: T05入力hash、抽出root、意味同一override、追加range、QOL item契約の正本
