@@ -203,7 +203,7 @@ def _roundtrip(value: dict[str, Any]) -> dict[str, Any]:
 
 
 def build_outputs(root: Path) -> dict[str, bytes]:
-    clean_path = root / "userfile/imports/roms/Pocket Monsters - FireRed (Japan).gba"
+    clean_path = root / "inputs/private/FireRed_JPN_Rev0_clean.gba"
     clean = clean_path.read_bytes()
     layouts = _layout_table(root)
     logical = _v2_locations(root)
