@@ -325,7 +325,7 @@ def validate_repository(root: Path) -> dict[str,Any]:
     for table in kanto_normal:
         if not any((row["map_key"],row["base_table_key"])==table and row["table_profile"]=="NORMAL" and 0 < int(row["weight"]) <= 10 for row in tables["encounters"]):
             errors.append(f"{table}: NORMAL rare slot disappeared")
-    repeat_floor={"ITEM_KEY_POWER_BRACER":"KANTO_CERT_5","ITEM_KEY_EXP_CANDY_L":"KANTO_CERT_7","ITEM_KEY_ABILITY_PATCH":"KANTO_CERT_8","ITEM_KEY_EXP_CANDY_XL":"KANTO_LEAGUE_CLEAR","ITEM_KEY_GOLD_BOTTLE_CAP":"KANTO_LEAGUE_CLEAR"}
+    repeat_floor={"ITEM_KEY_POWER_BRACER":"VEGA_BADGE_5","ITEM_KEY_EXP_CANDY_L":"VEGA_BADGE_7","ITEM_KEY_ABILITY_PATCH":"VEGA_BADGE_8","ITEM_KEY_EXP_CANDY_XL":"KANTO_LEAGUE_CLEAR","ITEM_KEY_GOLD_BOTTLE_CAP":"KANTO_LEAGUE_CLEAR"}
     for row in tables["qol_supply"]:
         key=row["supply_key"]
         if row["item_key"] not in registries["item"] or row["unlock_key"] not in unlocks: errors.append(f"{key}: unresolved item/unlock")

@@ -582,3 +582,27 @@
   - connectivity / size / scope / index SHA-256 `af6510aeec2aa5bbeafea5c0150c792fe3fe281d1902ea99c95f33b22e54aa9a` / `d3904fe3a77425298bd984ea98cc54c595a90187905444ed2f8b34b3d5404d56` / `4d879b58f78aed7ff149d69a1cae15172e88d60449b4fcec31a0380ab57b854d` / `7a7aa54b6d2041025819371f68410200dd10d5501abc8b107b72168e7d68ad91`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みpokefirered、clean BPRJ、T11/T13、V2 review CSVだけを参照した。
+
+## 2026-08-14T04:25:47+09:00
+
+- Task: `T15` / postgame解禁とジム進行を実装する
+- Status: DONE
+- Summary:
+  - 39-node DAGで中盤早期渡航、認定章1〜4、Vega HOF、認定章5〜8、Kanto League、Sphere、League I→II→Finalを分離した。253 operational mapを47 logical地点の進行gateへ全て接続した。
+  - QOL 35境界と22 unique save state、Factory Trial/Standard/Full/Master、地方強豪3段階、League 3段階、Mega/Z/Tera/Dynamax境界を直前/直後fixtureへ固定した。既存Lv.100 leagueはFinalへ移した。
+  - Research profile、TM license、hidden-ability DexNav、競技品、UB/Paradox、高難度Raid、research rank、二地方共鳴、共有特殊捕獲を独立ownerへ接続した。NORMAL/Safari/Vega捕獲stateとFactory/Mirageは非干渉で、開発terminalはbuild gate付きrelease無効。
+- Files changed:
+  - progression/content: `content/{kanto_progression,qol_progression,facility_progression,trainer_progression,kanto_state_model,kanto_development}.csv`, `content/{qol_supply,trainers}.csv`, `content/facilities.json`
+  - build/config/tests: `tools/content/{content_schema,progression}.py`, `scripts/build_kanto_progression.py`, `config/feature_matrix.csv`, `tests/{test_kanto_progression.py,fixtures/progression_boundaries.json,smoke_test_matrix.csv}`, `Makefile`
+  - docs/state: `README.md`, `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `generated/kanto/progression/**`, `reports/generated/progression_graph.md`、T10/T12/T13再生成物
+- Verify:
+  - `make kanto-progression` / `make kanto-progression-check`: PASS。5成果の決定的生成と副作用なしcheckを確認した。
+  - `python3 scripts/build_content_schema.py build/check`, `make vermilion-slice/check`, `make kanto-maps-check`, `make engine-slice/check`: PASS。T10〜T14の関連契約を再生成・照合した。
+  - focused unittest 18件および先行17件: PASS。cycle/unreachable、全map gate、早期/HOF境界、QOL/Factory/League/Research/Raid、host Cクチバruntimeを検査した。
+  - `python3 -m py_compile scripts/build_kanto_progression.py tools/content/{progression,content_schema}.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - progression report / boundary fixture SHA-256 `928a02d56dca147a64f7aa03601060c4bbf767a8d68a98b94145c9e1c30b03cb` / `302e31aa56254166a4ccd5c97ba944482ec8b090f7bc5af4041d31c38637bdb3`。
+  - progression/QOL/facility/trainer CSV SHA-256 `ec6fe53519fc5a94eb41a6336c1faae7d47051320957482442a70ca182a0c976` / `8534b520b88ff2789212a11ebc97303692c997fc65377d57fe681130401b8e1f` / `2f02ed6cd03394714af37adedf10be36fdb617dd0bde5f494d710dde5dcb0517` / `f9c35fcfb5924d8fc847455740814a1990417b9d783003dcb60ff22d6fd3b298`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。T02/T06/T08/T10〜T14、docs/QOL_POLICY.md、V2固定review入力だけを参照した。

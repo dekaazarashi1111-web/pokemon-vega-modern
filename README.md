@@ -60,6 +60,12 @@ make species-surface # T09画像・鳴き声・図鑑・進化・技表をstage 
 make species-surface-check # T09成果のbyte一致と全テーブル境界を副作用なしで照合
 make engine-slice # T10の追加種・QOL-A・Factory/AI/Raid継続save縦切りを実行
 make engine-slice-check # T10 fixture/report/schemaを副作用なしで再照合
+make vermilion-slice # T13クチバ早期往復とphysical contentを生成
+make vermilion-slice-check # T13成果を副作用なしで再照合
+make kanto-maps # T14本土253 operational mapをcanonical import
+make kanto-maps-check # T14接続・ID・size成果を副作用なしで再照合
+make kanto-progression # T15二段階進行・QOL・Factory・League fixtureを生成
+make kanto-progression-check # T15成果を副作用なしで再照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test

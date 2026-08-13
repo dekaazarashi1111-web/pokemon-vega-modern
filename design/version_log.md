@@ -252,3 +252,14 @@
   - クチバ起点の全到達、47 logical地点、warp/connection/ID/tileset/one-way validatorを通した。
   - 180 layoutとmetadataを329,866 bytesへdedupeし、future tail overlap 0を固定した。
 - Verify: full Kanto build/check、focused 12 tests、py_compile、diff check PASS。connectivity SHA-256 `af6510aeec2aa5bbeafea5c0150c792fe3fe281d1902ea99c95f33b22e54aa9a`。WSL全体verifyは未実行。
+
+## 2026-08-14T04:25:47+09:00
+
+- Version: `kanto-progression-0.22.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T15` / postgame解禁とジム進行を実装する
+- Summary:
+  - 早期認定章1〜4とHOF後5〜8、Kanto League、League I→II→Finalを39-node DAGへ分離した。
+  - 35 QOL境界、Factory 4 tier、地方強豪3段階、Research/TM/DexNav/競技品/UB・Paradox/Raidを状態fixtureへ固定した。
+  - 全253 map gate、恒久無料帰還、Vega進行非干渉、owner分離、release shortcut無効を機械検査した。
+- Verify: progression/content/T13/T14/engine build-check、focused unittest、py_compile、diff check PASS。report SHA-256 `928a02d56dca147a64f7aa03601060c4bbf767a8d68a98b94145c9e1c30b03cb`。WSL全体verifyは未実行。

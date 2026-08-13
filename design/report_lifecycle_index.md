@@ -24,6 +24,7 @@
 - T12 Symbolic content: `python3 scripts/build_content_schema.py build` が `content/normalized/` の541 family・125 shared capture・8 gym rewardと `reports/generated/content_schema.md` / dry-run JSONを生成する。同`check`はJSON schema、symbolic参照、V2 59検査、正規化、進行/供給/AI/encounter/facility/Raid制約、成果byte一致を副作用なしで照合する。physical emitはT13 resolutionなしで拒否する。
 - T13 Vermilion slice: `make vermilion-slice` がT11 physical mapとT12 symbolic contentをbindし、クチバ往復・安全導線・認定章ジム・Factory Trial・遭遇transactionのfixtureと `reports/generated/vermilion_slice.md` を生成する。`make vermilion-slice-check` は5成果のbyte一致と副作用なしを照合する。
 - T14 Full Kanto maps: `make kanto-maps` がscope 256件から253 operational map、canonical map JSON、connectivity/size reportを生成する。`make kanto-maps-check` は257成果のbyte一致、253/253到達、47地点coverage、warp/connection/ID/tileset/allocation gateを副作用なしで照合する。
+- T15 Kanto progression: `make kanto-progression` が39-node DAG、253 map gate、35 QOL境界、Factory 4 tier、再戦/League、Research/TM/DexNav/Raid state matrixと `reports/generated/progression_graph.md` を生成する。`make kanto-progression-check` は5成果のbyte一致と副作用なしを照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 
