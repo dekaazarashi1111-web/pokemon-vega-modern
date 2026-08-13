@@ -560,3 +560,25 @@
   - Vermilion report / fixture SHA-256 `3ec549e6b407a98dc613ceadf9d588de219514524ce6e7eff0fc05d61ed82b60` / `11000a224716b6c784e5ba136f2bef6772abde01fff6461a670e0f9992e274c8`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。T02/T08/T10/T11/T12成果とsource-lock済みローカル入力だけを参照した。
+
+## 2026-08-14T04:16:29+09:00
+
+- Task: `T14` / 選定した全カントーマップをimportする
+- Status: DONE
+- Summary:
+  - T11の本土256 physical mapをINCLUDE 252、clean BPRJ差異のRoute11をREBUILD 1、未使用孤立houseをDEFER 3へ固定し、253 operational mapをcanonical変換した。
+  - 全warp/connectionをKANTO namespaceまたは明示runtime sentinelへ変換し、story script/flag/trainer/itemをnamespaced stub・T16 placementへ分離した。クチバ起点253/253到達、V2 47/47地点coverageを確認した。
+  - V2 NPC再利用26件・重要item置換24件をhash付きreview入力として記録し、180 layoutのdedupe配置をfuture tail 329,866 bytesへ収めた。
+- Files changed:
+  - scope/tool: `content/kanto_map_scope.csv`, `tools/map_import/full_kanto_import.py`, `scripts/build_full_kanto_import.py`
+  - tests/build: `tests/test_full_kanto_import.py`, `Makefile`
+  - docs/state: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `generated/maps/kanto/**`, `reports/generated/{kanto_connectivity,kanto_size}.md`
+- Verify:
+  - `make kanto-maps` / `make kanto-maps-check`: PASS。257成果の決定的生成と副作用なしcheckを確認した。
+  - `python3 -m unittest -v tests.test_full_kanto_import tests.test_vermilion_slice tests.test_kanto_map_import`: PASS（12 tests）。到達性、参照、namespace、ID、one-way、allocationを検査した。
+  - `python3 -m py_compile scripts/build_full_kanto_import.py tools/map_import/full_kanto_import.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - connectivity / size / scope / index SHA-256 `af6510aeec2aa5bbeafea5c0150c792fe3fe281d1902ea99c95f33b22e54aa9a` / `d3904fe3a77425298bd984ea98cc54c595a90187905444ed2f8b34b3d5404d56` / `4d879b58f78aed7ff149d69a1cae15172e88d60449b4fcec31a0380ab57b854d` / `7a7aa54b6d2041025819371f68410200dd10d5501abc8b107b72168e7d68ad91`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みpokefirered、clean BPRJ、T11/T13、V2 review CSVだけを参照した。

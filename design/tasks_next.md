@@ -13,7 +13,7 @@
 - [x] T11: カントーマップimporterを作る <!-- id:T11 -->
 - [x] T12: 記号コンテンツschemaとgeneratorを作る <!-- id:T12 -->
 - [x] T13: クチバのpostgame vertical sliceを作る <!-- id:T13 -->
-- [ ] T14: 選定した全カントーマップをimportする <!-- id:T14 -->
+- [x] T14: 選定した全カントーマップをimportする <!-- id:T14 -->
 - [ ] T15: postgame解禁とジム進行を実装する <!-- id:T15 -->
 - [ ] T16: 野生・トレーナー・アイテムを生成配置する <!-- id:T16 -->
 - [ ] T17: 本編・engine・Kantoの回帰試験を通す <!-- id:T17 -->

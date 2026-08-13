@@ -241,3 +241,14 @@
   - クチバ安全導線7 mapをphysical bindし、認定章ジム、Factory Trial、建物外遭遇transactionを統合した。
   - 解禁境界、船上戦4結果、save失敗rollback、whiteout、puzzle/rewardを決定的fixtureへ固定した。
 - Verify: Vermilion build/check、focused 13 tests、host C compile/run、py_compile、diff check PASS。report SHA-256 `3ec549e6b407a98dc613ceadf9d588de219514524ce6e7eff0fc05d61ed82b60`。WSL全体verifyは未実行。
+
+## 2026-08-14T04:16:29+09:00
+
+- Version: `kanto-maps-0.21.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T14` / 選定した全カントーマップをimportする
+- Summary:
+  - 本土256 mapを253 operational・3 intentional DEFERへ確定し、全mapをKANTO namespaceへcanonical変換した。
+  - クチバ起点の全到達、47 logical地点、warp/connection/ID/tileset/one-way validatorを通した。
+  - 180 layoutとmetadataを329,866 bytesへdedupeし、future tail overlap 0を固定した。
+- Verify: full Kanto build/check、focused 12 tests、py_compile、diff check PASS。connectivity SHA-256 `af6510aeec2aa5bbeafea5c0150c792fe3fe281d1902ea99c95f33b22e54aa9a`。WSL全体verifyは未実行。
