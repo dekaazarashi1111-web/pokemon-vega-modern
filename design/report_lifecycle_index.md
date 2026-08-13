@@ -15,6 +15,7 @@
 - T03 harness: `make harness` が `reports/generated/harness_smoke.md` と `build/stages/03_harness.{gba,json}` を生成し、`make harness-check` が現在の入力/config fingerprint、Vega-owned byte一致、module配置、allocation reportを照合する。
 - T04 move port: `make moves` が `reports/generated/move_port.md`、`build/stages/04_moves.{gba,json}`、`generated/engine/moves/`、`manifests/move_ids.csv` を生成し、`make moves-check` が1063技model、V3 131行、70 adapter、178 repoint、allocation、ROM、runner identityを現在入力から照合する。
 - T05 ID space model: `python3 scripts/build_id_spaces.py build` が `reports/generated/id_space_report.md`、`generated/engine/ids/`、Type/Ability/Item manifestを生成し、同`check`が999 itemを含む13成果のbyte一致、host/ARM C compile、公開header共存を副作用なしで照合する。ROM stageとallocator配置はT06で行う。
+- T06 CFRU battle core: `python3 scripts/build_battle_core.py build` が `build/stages/06_battle_core.{gba,json}` と `reports/generated/{battle_hook_matrix.csv,battle_core_smoke.md,facility_core_smoke.md,trainer_ai_smoke.md}` を2回構築・3本のlibmGBA runner・publish gate後に公開する。同`check`は入力fingerprint、stage/payload/allocation/report identity、進化表・固定Pokémon ABIを副作用なしで再照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

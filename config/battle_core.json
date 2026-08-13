@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "task": "T06",
+  "source": {
+    "path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "tree": "f4424af017abd01afe2d2deb833fb67275f03804"
+  },
+  "inputs": {
+    "stage04": {
+      "path": "build/stages/04_moves.gba",
+      "size": 33554432,
+      "sha256": "3adfbc639176b5e2b3f7a9b6beff2da5fcac792562a940bd154b2af5d83bc099"
+    },
+    "address_audit": {
+      "path": "reports/generated/address_audit.csv",
+      "sha256": "e6ac294cef03599ca33c13fb44472d03daefe2a84f8849f66e92621c21e01f10",
+      "classification_profile": "factory-like"
+    },
+    "move_model": {
+      "path": "generated/engine/moves/move_port.json",
+      "sha256": "0c1e38aac41eb6b96a5fbeb695c0a60bcc15b92e6b5dffb3490e346fa260f442",
+      "count": 1063
+    },
+    "id_model": {
+      "path": "generated/engine/ids/id_spaces.json",
+      "sha256": "89a243f7796c71c0cfbcfb345e7fbf7f5150b230bf2adb1a535fad8c16f36072",
+      "type_count": 25,
+      "ability_count": 312,
+      "item_count": 999
+    },
+    "move_aliases": {
+      "path": "generated/engine/moves/moves_merged.h",
+      "sha256": "ada2e1f764fd9b2d54857d70bdf7cdfd005488bc568c54024a1f80cfbbeaa48c"
+    },
+    "id_aliases": {
+      "path": "generated/engine/ids/ids_generated.h",
+      "sha256": "0eab674cd7e72fa34a47a94e8fde4c38dbdd5287f1624acb8480eb0f19cf093a"
+    },
+    "profile": "config/cfru_vega_minimal.h"
+  },
+  "rom": {
+    "base": 134217728,
+    "size": 33554432,
+    "payload_start": 16777216,
+    "payload_end_exclusive": 18874368,
+    "integration_start": 18874368,
+    "integration_end_exclusive": 23068672,
+    "pending_shadow_start": 33808448,
+    "pending_shadow_end_exclusive": 33808500,
+    "pending_shadow_magic": 1412445776
+  },
+  "abi_bridges": {
+    "selected_party_order": {
+      "rom_offset": 661296,
+      "before_pointer": 33796168,
+      "after_pointer": 33801928,
+      "consumer_address": 134878896,
+      "symbol": "gSelectedOrderFromParty"
+    }
+  },
+  "runtime_tables": {
+    "move_data": {"symbol": "gBattleMoves", "count": 1063, "stride": 12},
+    "move_names": {"symbol": "gMoveNames", "count": 1063, "stride": 16},
+    "move_descriptions": {"symbol": "gMoveDescriptions", "count": 1063, "stride": 4},
+    "move_animations": {"symbol": "gMoveAnimations", "count": 1063, "stride": 4},
+    "ability_names": {"symbol": "gAbilityNames", "count": 312, "stride": 17},
+    "ability_descriptions": {"symbol": "gAbilityDescriptions", "count": 312, "stride": 4},
+    "item_data": {"symbol": "gItemData", "count": 999, "stride": 40},
+    "item_graphics": {"symbol": "gItemGraphicsTable", "count": 999, "stride": 8},
+    "base_stats": {
+      "symbol": "gCfruVegaBaseStats",
+      "count": 412,
+      "stride": 32,
+      "vega_pointer_site": 444,
+      "vega_pointer": 136384908,
+      "vega_pointer_occurrences": 55,
+      "canonical_pointer_sites": [
+        444, 73636, 75768, 76400, 90736, 124952, 136248, 145588,
+        176788, 181864, 183572, 194364, 194664, 194936, 232644,
+        233768, 233940, 235348, 250928, 251136, 253848, 257772,
+        257844, 264872, 276560, 277152, 301096, 324696, 825020,
+        954048, 954348, 954620, 1067136, 1077796, 1160848, 1272340,
+        1273724, 1290944, 1416440, 1416740, 1417012
+      ],
+      "legacy_pointer_sites": [
+        253600, 253956, 263244, 263276, 266384, 274384, 274404,
+        274424, 274444, 274464, 274528, 275040, 285588, 834076
+      ],
+      "vega_count": 412,
+      "vega_stride": 28
+    },
+    "evolutions": {
+      "symbol": "gCfruVegaEvolutionTable",
+      "count": 1440,
+      "stride": 128,
+      "vega_pointer_site": 271964,
+      "vega_pointer": 136405340,
+      "vega_count": 412,
+      "vega_stride": 40,
+      "vega_rows_per_species": 5,
+      "cfru_rows_per_species": 16,
+      "mega_fixture_species": 157,
+      "mega_fixture_source_item": 534,
+      "mega_fixture_method": 254,
+      "mega_fixture_variant": 0,
+      "linked_canonical_literal_count": 38,
+      "linked_legacy_root_literal_count": 0,
+      "legacy_pointer_sites": [
+        271964, 272044, 272424, 282464, 850408
+      ]
+    }
+  },
+  "outputs": {
+    "stage_rom": "build/stages/06_battle_core.gba",
+    "stage_metadata": "build/stages/06_battle_core.json",
+    "runtime_root": "generated/engine/battle_core",
+    "hook_matrix": "reports/generated/battle_hook_matrix.csv",
+    "battle_smoke": "reports/generated/battle_core_smoke.md",
+    "facility_smoke": "reports/generated/facility_core_smoke.md",
+    "trainer_ai_smoke": "reports/generated/trainer_ai_smoke.md"
+  },
+  "audit_contract": {
+    "write_count": 955,
+    "classification_counts": {
+      "CFRU": 774,
+      "PORT": 181
+    }
+  },
+  "hook_policy": {
+    "allowed_classifications": ["CFRU", "SAME_TARGET", "RELOCATE", "PORT"],
+    "forbidden_classifications": ["VEGA", "UNKNOWN"],
+    "port_symbols": {
+      "gBattleMoves": "CANONICAL_RUNTIME_TABLE",
+      "gMoveNames": "CANONICAL_RUNTIME_TABLE",
+      "gMoveDescriptions": "CANONICAL_RUNTIME_TABLE",
+      "gMoveAnimations": "CANONICAL_RUNTIME_TABLE",
+      "gBattleScriptsForMoveEffects": "CFRU_EFFECT_DISPATCH",
+      "gText_AbilityPreventsConfusion": "CFRU_LOCALIZED_STRING",
+      "literal bytes": "PRESERVE_T04_DESCRIPTION_BRIDGE"
+    }
+  },
+  "policies": {
+    "ai_profiles": {"AI_BASIC": 1, "AI_SEMI_SMART": 3, "AI_FULL_SMART": 5},
+    "mechanic_modes": ["STANDARD", "MEGA", "Z_MOVE", "DYNAMAX", "TERASTAL", "RAID_HIGH_DIFFICULTY"],
+    "facility_formats": ["SINGLE_3V3", "DOUBLE_4V4", "NPC_PARTNER_MULTI"],
+    "facility_rules": ["RANDOM", "LITTLE", "MONOTYPE", "UNRESTRICTED", "OU", "UBER", "CAMOMONS", "GS"],
+    "global_difficulty": false,
+    "scaled_trainers": false,
+    "trainer_evs_compile_switch": false,
+    "wild_always_smart": false,
+    "link_multi_release": false
+  }
+}

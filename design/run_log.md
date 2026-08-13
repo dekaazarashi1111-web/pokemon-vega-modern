@@ -353,3 +353,31 @@
   - Type/Ability/Item manifest SHA-256 `b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb` / `8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf` / `f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みローカルROM、CFRU-JP/DPE-JP、T01/T02成果だけを参照した。
+
+## 2026-08-13T21:33:01+09:00
+
+- Task: `T06` / Port CFRU battle core
+- Status: DONE
+- Summary:
+  - stage 04とT05 modelを入力に、固定CFRU-JPのbattle-only hook 955件をexpected-byte付きで統合した。分類はCFRU 774件・PORT 181件、未分類変更0。Move 1,063、Ability 312、Item/Icon 999、base stat 412、進化1,440行のcanonical runtime表をallocator管理payloadへ配置した。
+  - 通常wild/trainer、status、priority、double multi-target、switch、faint、EXP、captureを実schedulerで完走した。固定CFRU AI 3 profile、single/double 18判断fixture、Factory 24 rule/format、育成QOL、1戦1gimmick、Mirage仮想item、high-difficulty Raidを同じbattle coreへ接続した。
+  - Raid partnerの技破損は、`CreateFrontierMon`後の正しいspreadをVega packed-u16 learnset非互換のCFRU初期技fallbackが上書きしていたことを命令traceで確定し、fallbackを無効化した。partner controllerのcommand上限も`buffer >= COMMAND_MAX`へ修正した。
+  - Raid runnerをcontroller状態同期へ変更し、5/5 shield、PP `35 -> 31`、自然捕獲、full-party PC 80-byte ABI、SaveBlock再配置後の論理隣接slot不変、Raid後wild/trainer、turn-limit終了、Raid/Double/Partner flag cleanupまで検証した。独立read-only監査はblocking/P1なし。
+- Files changed:
+  - build/config: `scripts/build_battle_core.py`, `config/battle_core.json`, `config/cfru_vega_minimal.h`
+  - runtime/bridge: `overlays/cfru/**`, `tools/engine/cfru_*`, `tools/engine/t06_publish_gate.py`
+  - smoke: `tools/mgba_battle_{core,core_ai,policy}_smoke.c`
+  - focused tests: `tests/test_build_battle_core.py`, `tests/test_cfru_*.py`, `tests/test_mgba_battle_*.py`, `tests/test_t06_publish_gate.py`
+  - docs/state: `README.md`, `docs/BUILD_PIPELINE.md`, `design/{current_state,agent_context_map,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/06_battle_core.{gba,json}`, `reports/generated/{battle_hook_matrix.csv,battle_core_smoke.md,facility_core_smoke.md,trainer_ai_smoke.md}`
+- Verify:
+  - `python3 scripts/build_battle_core.py build`: PASS。隔離2 buildのROM・offsets・primary blobがbyte一致し、3本のlibmGBA runnerを各2独立processでPASSした。
+  - `python3 scripts/build_battle_core.py check`: PASS。fingerprint `58417b356175a6e291f6fc194f5ac2e2335c9fbb76e2167db001714f75713a59`、955 hooks、ROM SHA-256 `c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05`、副作用なし。
+  - `python3 -m unittest -v tests.test_build_battle_core tests.test_mgba_battle_core_smoke tests.test_mgba_battle_core_ai_smoke tests.test_mgba_battle_policy_smoke`: PASS（50 tests）。
+  - `python3 -m unittest -v tests.test_cfru_battle_patchset tests.test_cfru_runtime tests.test_cfru_integration tests.test_cfru_rom_bridge tests.test_cfru_qol_runtime tests.test_cfru_facility_runtime tests.test_cfru_move_effect_lowering tests.test_cfru_runtime_tables tests.test_cfru_script_table_gate tests.test_t06_publish_gate`: PASS（85 tests）。
+  - 独立read-only最終監査: blocking/P1なし。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage metadata SHA-256 `90edd243cb76d800cc5a11aa3022afa26a28135a158110d9371cbd152953159d`、payload SHA-256 `db9e2f941f1598ed22ad579ec9ee4915486c488d9a38d6ba1ca8dfa00d4a87b7`。
+  - hook matrix `b30a997df5cf0872a6137ea44793e009460061e0eebbaba4097d765d4d8baf7d`、battle smoke `bce43aeb89e2cddfbc0f9bb4bf71abc3b152fbf2db2e1fced2e95ff6227d1081`、facility smoke `aa21ab5824a8f4679ae997ab53124114db964fe7675c227babbd77be89d0da17`、trainer AI smoke `b7564db18b0967e1e222f75f7c70f6f018f9545930dc73da4333262b7ee7342b`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みローカル入力、T01〜T05成果、固定CFRU-JPだけを参照した。

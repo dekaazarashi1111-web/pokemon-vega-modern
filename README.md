@@ -52,6 +52,8 @@ make moves        # T03からVega固定512技＋CFRU追加551技のT04 stageを�
 make moves-check  # エミュレータを再実行せずT04成果と現在入力を照合
 python3 scripts/build_id_spaces.py build # T05 Type/Ability/Item配置前modelを再生成
 python3 scripts/build_id_spaces.py check # T05公開成果を副作用なしで照合
+python3 scripts/build_battle_core.py build # T04/T05からT06 battle core stageを2回再構築・実機検証
+python3 scripts/build_battle_core.py check # T06成果と現在入力を副作用なしで照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -66,6 +68,8 @@ T03以降のROM stageは入力原本を上書きしません。`make harness` �
 `make moves` はVega Move ID 0〜511を固定し、V3技調整を優先適用してCFRU-JPの未収録551技を512〜1062へappendします。生成したgame-encoding表、70個のVega固有effect adapter、178 pointer repointをstage 04へ配置し、固定wild battleで実際に技を1回実行します。
 
 T05はVega既存Type/Ability/Itemを固定し、意味同一を証明できた上流entityだけを同じIDへ対応させます。Type 25、Ability 312、Item 999のstable model、source alias、C table、表示幅レポートを生成します。ROM配置は行わず、T06がT04 stageと合わせて統合します。
+
+T06は固定CFRU-JPのbattle-only hookをexpected-byte付きでstage 04へ統合し、Type/Ability/Item/Moveのcanonical表、育成QOL境界、Factory、3段階AI、1戦1gimmick、Mirage item、high-difficulty Raidをallocator管理payloadへ配置します。通常戦・AI・policyの3本のlibmGBA runnerを各2 processで実行し、公開前にROM/report/payload/fingerprintをfail-closedで照合します。
 
 ## 効率方針
 

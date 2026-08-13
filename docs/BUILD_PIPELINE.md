@@ -54,6 +54,15 @@ T05はVega既存Type/Ability/Item IDを凍結し、固定CFRU-JP/DPE-JPのsymbol
 
 `generated/engine/ids/*_tables.c`はstable keyと分離済み意味fieldの配置前tableで、CFRUのpositional runtime ABI表をそのまま置換するものではありません。Itemのsource→canonical対応は非affineで、AbilityにもAir Lockのshiftがあるため、T06は`id_spaces.json.runtime_handoff`をhard gateとして、実`struct Item`/icon表を999行、Ability名/説明を312行のcanonical順で再生成します。全runtime consumerのrepoint、全行round-trip、source ID直index不在を検証し、`itemObtainedFlags`はT08でresize/translationするまで関連featureを無効のまま保ちます。
 
+## T06 CFRU battle core
+
+```bash
+python3 scripts/build_battle_core.py build
+python3 scripts/build_battle_core.py check
+```
+
+`build` はstage 04とT05 modelを入力に、固定CFRU-JPのbattle-only writeを隔離sandboxで2回構築します。955 writeのexpected-byte分類、allocator payload、canonical runtime表、battle-script境界、通常wild/trainer・主要戦闘経路、AI single/double、Factory/Mirage/Raid policyを検証し、2 runがbyte一致した場合だけ `build/stages/06_battle_core.{gba,json}` と4件の `reports/generated/` 成果を公開します。`check` は現在の入力fingerprint、stage identity、payload slice、allocation、report identity、進化表・固定Pokémon ABI・publish gateを副作用なしで再照合します。
+
 ## 最終目標コマンド
 
 T18では次を実装します。

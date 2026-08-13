@@ -5,7 +5,7 @@
 - [x] T03: Vegaの再現可能なmodule harnessを作る <!-- id:T03 -->
 - [x] T04: Vega Move IDをCFRUモデルへ移植する <!-- id:T04 -->
 - [x] T05: Type/Ability/Item ID空間を統合する <!-- id:T05 -->
-- [ ] T06: CFRU battle coreを移植する <!-- id:T06 -->
+- [x] T06: CFRU battle coreを移植する <!-- id:T06 -->
 - [ ] T07: Vega IDを固定してDPE Speciesを移植する <!-- id:T07 -->
 - [ ] T08: RAMとSaveBlock互換性を解決する <!-- id:T08 -->
 - [ ] T09: 画像・鳴き声・図鑑・進化・習得技を移植する <!-- id:T09 -->

@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: Gate A・T05完了。
+- マイルストーン: Gate A・T06完了。ユーザー指示によりT07着手前で一時停止中。
 - ユーザー提供の5 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 5 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料を役割別に配置済み。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
@@ -24,6 +24,10 @@
 - T05でVega Type `0..17`、Ability `0..77`、Item slot `0..374`を未使用行込みで凍結し、固定CFRU/DPEのType 25、Ability 311、Item 774とTM/HM別名52件をstable keyへ解決した。canonicalはType 25、Ability 312、Item 999で、意味同一161 itemだけをVegaへ対応し、CFRU未対応613 itemとQOL新規11 itemをappendした。
 - Ability source 76 `AIRLOCK`はVega canonical 77へaliasし、Vega 76 `そうおん`を保持した。Fairy 23とStellar 24は表示icon、色、25×25相性、特殊規則を完全化し、Stellar runtime bindingをT06へ渡した。VegaのGhost/Dark→Steel半減は明示overrideで維持した。
 - 経験アメ5種、育成道具、21 mint、特性道具、王冠、Oval Charm、単能力EV reset用品6種を45 QOL効果・callback・supply keyへ正規化した。ボール27種、進化石12種、進化道具40種、pocket、`unk19`、hold/field/battle用途を直交する契約として保持した。生成Cはhost実行とARM7TDMI Thumb compile、`check`は公開13成果のbyte一致と副作用なしを確認した。ROM配置/repointに加え、Item/Icon 999行とAbility名/説明312行のpositional runtime表再構築・全行照合をT06 hard gateへ渡した。
+- T06で固定CFRU-JPのbattle-only hook 955件をexpected-byte付きでstage 04へ統合し、CFRU 774件・PORT 181件、未分類変更0を確定した。Move 1,063、Ability 312、Item/Icon 999、Vega base stat 412、進化1,440行をallocator管理payloadへ配置し、連続2 buildをbyte一致させた。
+- 通常wild/trainer、status、priority、double multi-target、switch、faint、EXP、captureを実schedulerで完走した。固定CFRU AI 3 profileとsingle/double 18判断fixture、Factory 24 rule/format、育成QOL、1戦1gimmick、Mirage仮想item、high-difficulty Raidを同じcoreへ接続した。
+- Raid partnerの技破損は、Vega packed-u16 learnsetへ不適合なCFRU初期技fallbackが正しいspreadを上書きしていたことを動的traceで確定し、fallbackを無効化した。partner controllerのcommand上限を修正し、Raid 5/5 shield、自然捕獲、full-party PC 80-byte ABI、Raid後wild/trainer、turn-limit終了と一時flag cleanupを検証した。
+- T06 stage fingerprintは `58417b356175a6e291f6fc194f5ac2e2335c9fbb76e2167db001714f75713a59`、ROM SHA-256は `c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
 - 元FireRedのカントーを新規 `KANTO_*` 名前空間へ複製し、Vega中盤からトーホクと常時往復できる二地方構成は実現可能と判定。V2の47地点は生態設計単位であり、raw map総数ではないためT11で全建物・階層・warpとのcrosswalkを生成する。
@@ -35,13 +39,14 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T05完了後は依存READY候補から既定PRIMARYを継続する。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T06完了後の次候補はT07だが、ユーザー指示により未着手のまま一時停止する。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
 - T03: DONE。clean ROMからVegaを再適用し、32 MiB拡張、named allocator、expected-byte assertion、no-op Thumb module、title/new-game/movement/save/fresh-core load smokeを決定的buildへ統合した。
 - T04: DONE。Vega Move ID 0〜511、V3調整、CFRU追加551技を1063技modelとstage 04へ統合した。
 - T05: DONE。Vega既存Type/Ability/Itemを凍結し、CFRU/DPE alias、Fairy/Stellar、育成/QOL itemを決定的な配置前modelへ統合した。
+- T06: DONE。固定CFRU battle core、canonical runtime表、育成QOL、Factory、AI、gimmick、Mirage、Raidをstage 04へ統合し、実schedulerと決定的publish gateを通過した。
 - T11: T02のmap/ID監査を入力に、元FireRedカントーmap importerを並列準備できる。
 - T12: 数値IDを待たず、V2正規化、symbolic schema、validator fixtureを並列準備する。
 

@@ -40,7 +40,8 @@
 - T03: `scripts/build_project.py`、`config/{rom_regions.csv,harness_smoke.json}`、`overlays/vega_adapter/`。配置方針は `docs/ROM_LAYOUT_POLICY.md`、再生成結果は `reports/generated/harness_smoke.md`。
 - T04: `config/move_port.json`、`scripts/build_move_{port,stage}.py`、`tools/engine/{extract_vega_moves,cfru_move_inventory}.py`、`manifests/move_ids.csv`、`reports/generated/move_port.md`。V3原本は必要なCSVだけ読む。
 - T05: `config/id_spaces.json`、`scripts/build_id_spaces.py`、`tools/engine/{extract_vega_id_spaces,cfru_id_space_inventory}.py`、`manifests/{type,ability,item}_ids.csv`、`reports/generated/id_space_report.md`。育成道具の意味契約は`docs/QOL_POLICY.md`を読む。
-- T06/T08〜T10: `docs/QOL_POLICY.md` と対象タスク。上流機能の実在根拠が必要ならT01/T02成果だけを追加で読む。
+- T06: `config/battle_core.json`、`scripts/build_battle_core.py`、`overlays/cfru/`、`tools/engine/cfru_*`、`tools/mgba_battle_{core,core_ai,policy}_smoke.c`、`reports/generated/{battle_core,facility_core,trainer_ai}_smoke.md`。育成境界は`docs/QOL_POLICY.md`、上流根拠はT01/T02成果だけを追加で読む。
+- T08〜T10: `docs/QOL_POLICY.md` と対象タスク。上流機能の実在根拠が必要ならT01/T02成果だけを追加で読む。
 - T08/T11/T13: `docs/KANTO_PORT_POLICY.md`、`docs/ROM_LAYOUT_POLICY.md`、V2のカントー章、該当タスク。
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
