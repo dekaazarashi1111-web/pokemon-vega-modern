@@ -22,6 +22,7 @@
 - T10 Engine slice: `make engine-slice` がstage 09のlibmGBA追加種生成とhost C継続save fixtureを実行し、10 fixture・2 report・`build/stages/10_engine_slice.json`を生成する。`make engine-slice-check`は公開成果、feature matrix、schema、compile fixtureを副作用なしで照合する。
 - T11 Kanto importer: `python3 scripts/build_kanto_import.py build` が本土256 mapのmanifest/inventory、V2 47地点crosswalk、クチバ民家1のcanonical JSONとround-trip reportを生成する。同`check`はclean BPRJ raw照合、全dependency解決、story-state非混入、成果byte一致を副作用なしで照合する。
 - T12 Symbolic content: `python3 scripts/build_content_schema.py build` が `content/normalized/` の541 family・125 shared capture・8 gym rewardと `reports/generated/content_schema.md` / dry-run JSONを生成する。同`check`はJSON schema、symbolic参照、V2 59検査、正規化、進行/供給/AI/encounter/facility/Raid制約、成果byte一致を副作用なしで照合する。physical emitはT13 resolutionなしで拒否する。
+- T13 Vermilion slice: `make vermilion-slice` がT11 physical mapとT12 symbolic contentをbindし、クチバ往復・安全導線・認定章ジム・Factory Trial・遭遇transactionのfixtureと `reports/generated/vermilion_slice.md` を生成する。`make vermilion-slice-check` は5成果のbyte一致と副作用なしを照合する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

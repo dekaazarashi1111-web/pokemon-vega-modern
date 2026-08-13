@@ -40,6 +40,7 @@
 - `scripts/build_engine_vertical_slice.py`: T10追加要素・QOL-A・Factory/報酬遭遇/AI/TM/Mirage/Research/Raidの継続save fixture、libmGBA証跡、reportを生成・照合
 - `scripts/build_kanto_import.py`: T11本土256 map manifest、V2 crosswalk、clean raw照合、1 map canonical import/round-tripを決定的生成・照合
 - `scripts/build_content_schema.py`: T12 symbolic content、V2 59検査/正規化、dry-run、T13 resolution必須physical emitを生成・照合
+- `scripts/build_vermilion_slice.py`: T13クチバ早期往復、physical binding、ジム・Factory・遭遇transaction fixtureを決定的生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -96,3 +97,4 @@
 - `config/feature_matrix.csv`, `config/engine_manifest_schema.json`: T10 QOL-A release既定値と凍結済みengine schemaの正本
 - `overlays/engine_slice/`: T10の移動/文章/数量UI、TM license、Tohoku overlay、NORMAL/RESEARCH、Factory選択の境界adapter
 - `content/`: T12 raw IDなしsymbolic正本、JSON schemas、541 family/125 shared capture/8 gym reward正規化成果
+- `src/kanto/vermilion/`, `content/vermilion/`: T13の早期渡航runtime、クチバ安全導線、ジム、Factory Trial、建物外遭遇NPC契約

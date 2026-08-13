@@ -538,3 +538,25 @@
   - facility / trainer schema SHA-256 `7ff6e83a6dbae928cad3e88a0f6a3cf92c6d617f52c7e97e8ccaa5a5738d604b` / `fc90116956209c1749515b04945e1bd180dd6db125df1757afaae6391983876f`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みmanifests、T06/T08/T10契約、V2受領資料だけを参照した。
+
+## 2026-08-14T04:11:12+09:00
+
+- Task: `T13` / クチバのpostgame vertical sliceを作る
+- Status: DONE
+- Summary:
+  - T02確定flag `0x0824 && 0x114B` をT08 save ledgerの恒久渡航latchへ原子的に写し、解禁直前/直後、殿堂入り前、全国図鑑なしをhost C fixtureで固定した。
+  - アーシア初回便、シオウ再訪便、クチバ無料帰還船、到着時heal/return/whiteout anchor、船上戦の拒否・勝利・敗北・辞退を実装した。安全導線7 mapは強制戦闘・field move・支払い0である。
+  - T11/T12をbuild-modeでphysical bindし、クチバジムの認定章2個gate・3端末puzzle・namespaced reward、6候補Factory Trial、T08 persist-before-battle遭遇NPCを統合した。
+- Files changed:
+  - runtime/content: `src/kanto/vermilion/**`, `content/vermilion/**`
+  - build/tests: `tools/map_import/vermilion_slice.py`, `scripts/build_vermilion_slice.py`, `tests/test_vermilion_slice.py`, `tests/fixtures/vermilion_slice*`, `Makefile`
+  - docs/state: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `generated/kanto/vermilion/**`, `reports/generated/vermilion_slice.md`
+- Verify:
+  - `make vermilion-slice` / `make vermilion-slice-check`: PASS。5成果を決定的生成し、check副作用なし・byte一致を確認した。
+  - `python3 -m unittest -v tests.test_vermilion_slice tests.test_content_schema tests.test_kanto_map_import`: PASS（13 tests）。host Cは`-Wall -Wextra -Werror`でcompile/runした。
+  - `python3 -m py_compile scripts/build_vermilion_slice.py tools/map_import/vermilion_slice.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - Vermilion report / fixture SHA-256 `3ec549e6b407a98dc613ceadf9d588de219514524ce6e7eff0fc05d61ed82b60` / `11000a224716b6c784e5ba136f2bef6772abde01fff6461a670e0f9992e274c8`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。T02/T08/T10/T11/T12成果とsource-lock済みローカル入力だけを参照した。

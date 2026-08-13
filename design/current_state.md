@@ -42,6 +42,8 @@
 - `config/feature_matrix.csv`でTEXT_SPEED=INSTANT、HATCH_MODE=FAST、ダッシュ37.5%・自転車62.5%の固定course短縮、QOL-A全release既定値を固定した。tile event各1回、text control順、共通数量UI、アメ、孵化/王冠/mint/特性/IV-EV/egg queueを同一saveで検証した。
 - Factory Lv.50 single 3v3×3、交換/BP/全exit復元、credit報酬遭遇、3 AI profile、TM reuse license、Mirage仮想item、Tohoku overlayのbyte同値fallback、NORMAL/RESEARCH save、4-star Raid cleanupをhost Cで統合検証した。engine manifest schemaはv1でfreezeした。
 - T12で進行13 phase、map/encounter/trainer/QOL供給/event/facility/通貨/credit/Raidをraw IDなしsymbolic schemaへ固定した。V2付属59検査を元CSVから59/59再計算し、受領原本の意味重複23行・小数National ID 205行・不足救済道具4件は正規化前FAIL、正規化後PASSにした。541系統二地方coverage、125共有捕獲key、8 gym rewardをcanonical CSVへ昇格した。
+- T13でT11 physical mapとT12 symbolic contentをbuild-modeでbindし、`0x0824 && 0x114B` の直前/直後から殿堂入り・全国図鑑なしのクチバ往復を固定した。アーシア初回便、シオウ再訪便、クチバ無料帰還、到着時heal/whiteout anchor、船上戦4結果を検証した。
+- クチバ初期安全導線7 mapは強制戦闘・field move・支払い0。ジムは認定章2個と3端末電圧puzzle、Vega badge書込み0にし、6候補Factory TrialとT08 persist-before-battle遭遇NPCを同じ縦切りへ接続した。
 - カントーLv.68〜100は任意固定高難度、警告・安全帰還必須とし、早期招待/調査pass/進行別会話/船上戦をSIMPLE_EVENTへ正規化した。Factory/Mirage owner分離、AI 3 profile、NORMAL/RESEARCH直交、供給tier、DEFERRED調査point、persist-before-battle encounter、Raid捕獲/報酬state分離をvalidatorとnegative fixtureで固定した。T13 physical map bindingなしのemitはfail-closedする。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。

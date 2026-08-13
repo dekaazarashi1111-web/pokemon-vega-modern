@@ -230,3 +230,14 @@
   - V2 59検査を独立再計算し、raw意味課題を正規化前に拒否して541 family・125共有捕獲・8 gym rewardを昇格した。
   - optional Lv.68〜100、SIMPLE_EVENT、供給tier、AI/gimmick、transaction、Raid反復性とT13 physical binding境界をfail-closedにした。
 - Verify: content build/check、focused 5 tests・17 negative/valid fixture、JSON schema、py_compile、resolutionなしemit期待FAIL、完全resolution emit PASS。report SHA-256 `3f2278ea269d405403196950a6f482b1079059bf95ca3c3fdbfe94e18838d58c`。WSL全体verifyは未実行。
+
+## 2026-08-14T04:11:12+09:00
+
+- Version: `vermilion-slice-0.20.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T13` / クチバのpostgame vertical sliceを作る
+- Summary:
+  - 中盤2 flagからの恒久渡航、3つの無料往復edge、到着時Kanto anchorをT08 save runtimeへ接続した。
+  - クチバ安全導線7 mapをphysical bindし、認定章ジム、Factory Trial、建物外遭遇transactionを統合した。
+  - 解禁境界、船上戦4結果、save失敗rollback、whiteout、puzzle/rewardを決定的fixtureへ固定した。
+- Verify: Vermilion build/check、focused 13 tests、host C compile/run、py_compile、diff check PASS。report SHA-256 `3ec549e6b407a98dc613ceadf9d588de219514524ce6e7eff0fc05d61ed82b60`。WSL全体verifyは未実行。

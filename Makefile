@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -69,6 +69,12 @@ engine-slice:
 
 engine-slice-check:
 	$(PYTHON) scripts/build_engine_vertical_slice.py check
+
+vermilion-slice:
+	$(PYTHON) scripts/build_vermilion_slice.py build
+
+vermilion-slice-check:
+	$(PYTHON) scripts/build_vermilion_slice.py check
 
 validate:
 	$(PYTHON) scripts/validate_task_graph.py
