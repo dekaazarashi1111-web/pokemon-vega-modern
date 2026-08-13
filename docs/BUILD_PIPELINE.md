@@ -10,6 +10,7 @@ inputs/private/clean.gba
   -> build/stages/03_harness.gba
   -> build/stages/04_moves.gba
   -> build/stages/06_battle_core.gba
+  -> build/stages/07_species.gba
   -> build/stages/10_engine_slice.gba
   -> build/stages/13_kanto_slice.gba
   -> build/final/vega_modern_kanto.gba
@@ -62,6 +63,15 @@ python3 scripts/build_battle_core.py check
 ```
 
 `build` はstage 04とT05 modelを入力に、固定CFRU-JPのbattle-only writeを隔離sandboxで2回構築します。955 writeのexpected-byte分類、allocator payload、canonical runtime表、battle-script境界、通常wild/trainer・主要戦闘経路、AI single/double、Factory/Mirage/Raid policyを検証し、2 runがbyte一致した場合だけ `build/stages/06_battle_core.{gba,json}` と4件の `reports/generated/` 成果を公開します。`check` は現在の入力fingerprint、stage identity、payload slice、allocation、report identity、進化表・固定Pokémon ABI・publish gateを副作用なしで再照合します。
+
+## T07 Species port
+
+```bash
+make species
+make species-check
+```
+
+`build` はstage 06を入力に、Vega Species 0〜411をlosslessなprefixとして固定し、DPE-JPの定義済み1415 IDを明示mappingします。primary identity 206件はVega IDへaliasし、欠落Species/form 1209件を412〜1620へappendします。T05 canonical Ability/ItemへBaseStats参照を変換し、DPE payload partitionへ1621×32 byteを配置してcanonical root 105件をrepointします。追加Species 412のparty生成をlibmGBA 2 processで検証します。`check`はエミュレータを再実行せず、現在入力からstage、manifest、table、report、smoke証跡をbyte照合します。
 
 ## 最終目標コマンド
 

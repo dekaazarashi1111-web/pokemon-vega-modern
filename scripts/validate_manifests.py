@@ -10,7 +10,7 @@ from common import repo_root
 EXPECTED = {
     'id_ranges.csv': ['domain','owner','start_id','end_id','status','notes'],
     'move_ids.csv': ['move_key','id','vega_id','cfru_symbol','classification','display_name','status','notes'],
-    'species_ids.csv': ['species_key','id','vega_id','dpe_symbol','classification','display_name','form_key','status','notes'],
+    'species_ids.csv': ['species_key','id','vega_id','dpe_id','dpe_symbol','classification','display_name','form_key','is_official','canonical_national_dex','review_state','status','notes'],
     'ability_ids.csv': ['ability_key','id','vega_id','cfru_id','cfru_symbol','dpe_symbol','classification','display_name','description_key','effect_key','runtime_binding','status','notes'],
     'item_ids.csv': ['item_key','id','vega_id','cfru_id','cfru_symbol','classification','display_name','description_key','icon_key','palette_key','pocket','price','importance','role','item_type_key','item_type_id','item_type_explicit','item_type_source','source_mystery','is_evolution_stone','is_evolution_item','hold_effect_key','hold_effect_param','field_effect_key','field_effect_param','field_use_callback_key','battle_usage','battle_effect_key','battle_effect_param','battle_use_callback_key','secondary_id','ball_kind','consume_policy','target_policy','supply_key','runtime_binding','status','notes'],
     'type_ids.csv': ['type_key','id','vega_id','cfru_id','cfru_symbol','dpe_symbol','classification','display_name','icon_key','icon_width','icon_height','icon_tile_offset','icon_source','color_key','color_r','color_g','color_b','color_bgr555','color_source','effectiveness_key','special_rule','tera_input_code','status','notes'],
@@ -47,6 +47,10 @@ PRIMARY_KEYS = {
 
 T05_FILES = ('ability_ids.csv', 'item_ids.csv', 'type_ids.csv')
 NONE = {'', 'NONE'}
+
+T07_ALLOWED_CLASSIFICATIONS = {
+    'VEGA_DPE_CANONICAL', 'VEGA_ORIGINAL', 'DPE_SPECIES_APPEND', 'DPE_FORM_APPEND'
+}
 
 T05_ALLOWED_CLASSIFICATIONS = {
     'ability_ids.csv': {'VEGA_CFRU_CANONICAL', 'VEGA_EXCLUSIVE', 'CFRU_APPEND'},
@@ -1511,6 +1515,56 @@ def collect_errors(root: Path) -> list[str]:
             row = symbol_rows.get(symbol)
             if row is None or int(row['id'], 0) < 512:
                 errors.append(f'move_ids.csv: {symbol} must remain a distinct appended move')
+
+    species_rows = loaded_rows.get('species_ids.csv', [])
+    if species_rows:
+        parsed_ids: list[int] = []
+        dpe_ids: set[int] = set()
+        official_numbers: set[int] = set()
+        for index, row in enumerate(species_rows):
+            line_no = index + 2
+            try:
+                canonical_id = int(row['id'], 0)
+                parsed_ids.append(canonical_id)
+                national = int(row['canonical_national_dex'], 0)
+            except ValueError:
+                errors.append(f'species_ids.csv:{line_no}: invalid canonical/national ID')
+                continue
+            frozen = index < 412
+            if row['vega_id'] != (str(index) if frozen else ''):
+                errors.append(f'species_ids.csv:{line_no}: Vega ID frozen-prefix mismatch')
+            if row['status'] != ('FROZEN' if frozen else 'APPENDED'):
+                errors.append(f'species_ids.csv:{line_no}: frozen/append status mismatch')
+            if row['classification'] not in T07_ALLOWED_CLASSIFICATIONS:
+                errors.append(f'species_ids.csv:{line_no}: invalid classification')
+            if row['is_official'] not in {'true', 'false'}:
+                errors.append(f'species_ids.csv:{line_no}: is_official must be true/false')
+            official = row['is_official'] == 'true'
+            if official:
+                if not 1 <= national <= 1025:
+                    errors.append(f'species_ids.csv:{line_no}: official National Dex out of range')
+                official_numbers.add(national)
+            elif national != 0:
+                errors.append(f'species_ids.csv:{line_no}: unofficial row must use National Dex 0')
+            if row['classification'] == 'DPE_FORM_APPEND' and not row['form_key'].startswith('FORM_KEY_'):
+                errors.append(f'species_ids.csv:{line_no}: appended form lacks form_key')
+            if not row['review_state'].startswith('REVIEWED_') and row['review_state'] != 'AUTO_REVIEWED_UNIQUE_NAME':
+                errors.append(f'species_ids.csv:{line_no}: unresolved review state')
+            if row['dpe_id']:
+                try:
+                    source_id = int(row['dpe_id'], 0)
+                except ValueError:
+                    errors.append(f'species_ids.csv:{line_no}: invalid DPE ID')
+                else:
+                    if source_id in dpe_ids:
+                        errors.append(f'species_ids.csv:{line_no}: duplicate DPE primary ID {source_id}')
+                    dpe_ids.add(source_id)
+        if parsed_ids != list(range(1621)):
+            errors.append('species_ids.csv: canonical IDs must be exact contiguous 0..1620')
+        if len(dpe_ids) != 1415:
+            errors.append(f'species_ids.csv: expected 1415 defined DPE IDs, got {len(dpe_ids)}')
+        if official_numbers != set(range(1, 1026)):
+            errors.append('species_ids.csv: official canonical National Dex must cover 1..1025')
 
     range_rows = loaded_rows.get('id_ranges.csv', [])
     ranges_by_domain: dict[str, list[tuple[int, int, int]]] = {}

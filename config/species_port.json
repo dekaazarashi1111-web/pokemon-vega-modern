@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "task": "T07",
+  "vega": {
+    "rom_path": "build/reference/vega.gba",
+    "rom_sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5",
+    "species_count": 412,
+    "name_pointer_site": 324,
+    "name_pointer": 136330424,
+    "name_stride": 6,
+    "name_table_sha256": "38a8cfca0b559a34be8885863b4ad32f85b218696493a52e405a7499797f56bc",
+    "base_stats_pointer_site": 444,
+    "base_stats_pointer": 136384908,
+    "base_stats_stride": 28,
+    "base_stats_sha256": "acf19eb9955f368497b129e9e3ff522fbb4c1161110941988def207c01c253de"
+  },
+  "dpe": {
+    "source_path": "vendor/upstream/DPE-JP",
+    "commit": "10ff98c85ebf37ab5cb39a41b6e9b50f06efb19e",
+    "rom_path": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/dpe/base/run-1/test.gba",
+    "rom_sha256": "eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c",
+    "offsets_path": "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/dpe/base/run-1/offsets.ini",
+    "offsets_sha256": "a3270048cad51a57155709d5e3442d1907a738b6bf805512689df1d93cfe5476",
+    "species_count": 1440,
+    "name_address": 157379012,
+    "name_stride": 8,
+    "name_table_sha256": "9082020dc6d1753e73762ca772478f31ffe5a0f3629a6feb96247951c6a54076",
+    "base_stats_address": 161434288,
+    "base_stats_stride": 32,
+    "base_stats_sha256": "75742e81dd7a4c7e17392b5619c55d6053598117c263185234618a4c2667bcc8",
+    "national_dex_address": 161870304,
+    "national_dex_count": 1439,
+    "national_dex_sha256": "598545a264e4231f147a66648d16f14e041243d465d800bf52ab72aeacd82193"
+  },
+  "inputs": {
+    "stage06_path": "build/stages/06_battle_core.gba",
+    "stage06_sha256": "c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05",
+    "stage06_metadata_path": "build/stages/06_battle_core.json",
+    "id_spaces_path": "generated/engine/ids/id_spaces.json",
+    "id_inventory_path": "reports/generated/id_inventory.json"
+  },
+  "runtime": {
+    "old_base_stats_address": 151358552,
+    "old_base_stats_pointer_count": 105,
+    "new_base_stats_offset": 23068672,
+    "new_base_stats_address": 157286400,
+    "output_rom_path": "build/stages/07_species.gba",
+    "output_metadata_path": "build/stages/07_species.json"
+  },
+  "mapping_policy": {
+    "automatic_identity": "UNIQUE_NFKC_DISPLAY_NAME_TO_PRIMARY_NATIONAL_FORM",
+    "reuse_frozen_holes": false,
+    "append_start": 412,
+    "unofficial_canonical_national_dex": 0,
+    "official_national_dex_min": 1,
+    "official_national_dex_max": 1025
+  },
+  "charmap": {
+    "path": "vendor/upstream/CFRU-JP/charmap.tbl",
+    "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"
+  }
+}

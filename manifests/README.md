@@ -15,3 +15,5 @@ bootstrap中はheaderのみの空ファイルを許容し、各タスクで段�
 `move_ids.csv` はT04の `scripts/build_move_port.py` が生成するMove ID正本で、0〜511はVega固定、512〜1062はCFRU-JP appendです。手編集せず、`make moves` / `make moves-check` と `scripts/validate_manifests.py` で更新・検査します。
 
 `type_ids.csv`、`ability_ids.csv`、`item_ids.csv` はT05の `scripts/build_id_spaces.py` が生成します。Vega既存範囲を凍結し、固定CFRU-JP/DPE-JP source symbol、用途ごとの道具ABI、明示rangeをstable keyへ解決します。手編集せず、同scriptの`build` / `check`と`scripts/validate_manifests.py`で更新・検査します。
+
+`species_ids.csv` はT07の `scripts/build_species_port.py` が生成します。Vega Species 0〜411を固定し、DPE primaryとの明示identityをalias、欠落Species/formを412以降へappendします。全行の`is_official`と`canonical_national_dex`を必須とし、公式捕獲数はformではなく全国番号のdistinct数で数えます。`make species` / `make species-check`で更新・検査します。

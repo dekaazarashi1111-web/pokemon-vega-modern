@@ -34,6 +34,7 @@
 - `scripts/build_move_stage.py`: T03へ44,032-byte move bridgeと178 repointを適用し、実技smokeを検証
 - `scripts/build_id_spaces.py`: Vega/CFRU/DPEのType・Ability・Itemを配置前stable modelへ統合し、manifest/C表/幅レポートを決定的生成
 - `scripts/build_battle_core.py`: T04/T05へ固定CFRU battle coreを統合し、2回構築、3本のlibmGBA acceptance、publish gate、stage/report公開を決定的に実行
+- `scripts/build_species_port.py`: T06へVega固定412種とDPE追加1209種のcanonical BaseStatsを統合し、manifest、公式捕獲count、実party生成smokeを決定的に実行
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -70,11 +71,14 @@
 - `tools/engine/cfru_id_space_inventory.py`: 固定CFRU-JP/DPE-JPのType・Ability・Item、表示、相性、ItemType、aliasを抽出
 - `tools/engine/cfru_*`: T06のbattle write、runtime表、Factory、QOL、move effect、script tableを生成・検証
 - `tools/engine/t06_publish_gate.py`: T06 stage、payload、進化表、固定Pokémon ABI、report identityを公開直前にfail-closed検証
+- `tools/engine/extract_vega_species.py`: 固定Vega ROMのSpecies名412行と28-byte BaseStatsをpointer/hash検証付きで抽出
 - `tools/mgba_move_smoke.c`: T04 synthetic wild battleでslot 0の実技実行、PP・HP変化を観測
 - `tools/mgba_battle_{core,core_ai,policy}_smoke.c`: T06の通常戦、固定CFRU AI、Factory/Mirage/Raid policyを自然scheduler経路で検証
+- `tools/mgba_species_smoke.c`: T07追加Speciesを実`CreateMon`でparty memoryへ生成し、Species・level・最大HPを検証
 - `overlays/vega_adapter/`: hook 0件の再構築可能なT03 no-op Thumb module
 - `overlays/cfru/`: T06 battle-local policy、QOL/Factory/Mirage/Raid bridge、固定幅runtime
 - `config/t02_audit_policy.json`: T02入力hash、分類、overlap、移行・施設・AI契約の機械可読正本
 - `config/rom_regions.csv`: ROM file offset half-open partitionの機械可読正本
 - `config/id_spaces.json`: T05入力hash、抽出root、意味同一override、追加range、QOL item契約の正本
 - `config/battle_core.json`: T06入力、battle-only分類、allocator/payload、runtime table、smoke/publish契約の正本
+- `config/species_port.json`: T07固定Vega/DPE table hash、mapping、canonical BaseStats配置、stage/smoke契約の正本

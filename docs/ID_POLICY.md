@@ -28,6 +28,8 @@ T04でMove範囲は確定済みです。Vega 0〜511を固定し、NFKC完全一
 
 T05でType/Ability/Item範囲を確定します。Vega Type 0〜17、Ability 0〜77、Item 0〜374を未使用slot込みで固定し、Typeは0〜24、Abilityは0〜311、Itemは0〜998の連続canonical IDとします。Itemの自動identityは同じsource IDに加え、表示名、説明、hold/field/battle ABI、pocket、`unk19`、callback、secondary IDが一致する場合だけ許可します。明示identity/distinct判断は`config/id_spaces.json`へ根拠を固定し、曖昧な同名entityはCFRU rangeへappendします。
 
+T07でSpecies範囲を確定します。Vega 0〜411を全slot固定し、DPE primary formとNFKC表示名が一意一致する206件だけをVegaへaliasします。欠落Species/form 1209件は412〜1620へappendし、DPEの未定義予約hole 252〜276は実Speciesとして生成しません。全行に`is_official`、`canonical_national_dex`、`review_state`を持たせ、追加formは`form_key`を必須とします。公式捕獲数はSpecies行数でなくcanonical全国番号のdistinct数で数えます。
+
 Itemのfield ID、ItemType、進化分類、hold effect、battle effect、pocket、icon/palette、説明、script callback、ball kind、`unk19`は直交する列として保持し、1つのroleやopaque paramへ潰し込みません。
 
 ## 予約

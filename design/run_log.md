@@ -381,3 +381,31 @@
   - hook matrix `b30a997df5cf0872a6137ea44793e009460061e0eebbaba4097d765d4d8baf7d`、battle smoke `bce43aeb89e2cddfbc0f9bb4bf71abc3b152fbf2db2e1fced2e95ff6227d1081`、facility smoke `aa21ab5824a8f4679ae997ab53124114db964fe7675c227babbd77be89d0da17`、trainer AI smoke `b7564db18b0967e1e222f75f7c70f6f018f9545930dc73da4333262b7ee7342b`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みローカル入力、T01〜T05成果、固定CFRU-JPだけを参照した。
+
+## 2026-08-14T02:44:24+09:00
+
+- Task: `T07` / Vega IDを固定してDPE Speciesを移植する
+- Status: DONE
+- Summary:
+  - 固定Vega ROMからSpecies名412行と28-byte BaseStatsをpointer/hash付きで抽出し、Vega ID `0..411`をlossless prefixとして固定した。DPE定義済み1415 IDのうち206件（NONE sentinelを含む）を一意なprimary名でaliasし、欠落Species/form 1209件を`412..1620`へappendした。
+  - DPE BaseStatsのAbility/held ItemをT05 canonical IDへ変換し、1621×32 byte tableをDPE予約領域`0x01600000`へ配置した。T06 canonical BaseStats rootのaligned参照105件をexpected-pointer付きで全repointした。
+  - 全1621行へ`is_official`、`canonical_national_dex`、`review_state`を付与し、公式全国番号1〜1025、209 multi-form群、form keyを検証した。まるいおまもり用100種判定は全国番号bitmapのdistinct countとして生成し、form重複を加算しない。
+  - trainer、wild、script/gift、evolutionの既存Species参照を全解決した。追加キャタピーcanonical ID 412を実ROMの`CreateMon`でparty memoryへ生成し、Species 412、Lv.20、最大HP 48をlibmGBA 2 processで同一確認した。
+- Files changed:
+  - build/config: `config/species_port.json`, `scripts/build_species_port.py`, `Makefile`
+  - extract/smoke: `tools/engine/extract_vega_species.py`, `tools/mgba_species_smoke.c`
+  - manifests/validation: `manifests/{species_ids,id_ranges}.csv`, `scripts/validate_manifests.py`
+  - focused tests: `tests/test_extract_vega_species.py`, `tests/test_build_species_port.py`
+  - docs/state: `README.md`, `docs/{BUILD_PIPELINE,ID_POLICY,ROM_LAYOUT_POLICY}.md`, `manifests/README.md`, `design/{current_state,agent_context_map,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/07_species.{gba,json}`, `generated/engine/species/**`, `reports/generated/species_port.md`
+- Verify:
+  - `make species`: PASS。連続2 model/stage build byte一致、生成C `-Wall -Wextra -Werror` compile、libmGBA追加Species生成2 process PASS。
+  - `make species-check`: PASS。1621行、追加1209行、公式1025番号、105 repoint、stage/table/report/smoke identity、副作用なし。fingerprint `be3931a374adfb902b6add1193adc07925491196b4a335fb17fd396199872188`。
+  - `python3 -m unittest -v tests.test_extract_vega_species tests.test_build_species_port tests.test_validate_manifests tests.test_manifest_headers`: PASS（27 tests）。
+  - `python3 scripts/validate_manifests.py`: PASS。Vega prefix、DPE 1415 defined ID、canonical `0..1620`、公式全国番号、form keyを照合した。
+  - `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 07 ROM SHA-256 `3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8`、metadata SHA-256 `d3053b50b0fe43c7d68032006279f7580e8590a7befde8388473adc008db1918`。
+  - Species report SHA-256 `739016ef2e51aa2d02707fb8fd9e17af714e85cc2530c21790389db46eb7738f`、manifest SHA-256 `6bb337437d2798112ecf8796de2ee01d02b33b82eea0be0e5ea5b140d3bd5553`、BaseStats SHA-256 `097da1f8d6a374729c60acd407ca1c6e2a86965d67c0fda57a5e052c65f277f8`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みローカルVega ROM、固定DPE-JP build、T02/T05/T06成果だけを参照した。

@@ -164,3 +164,14 @@
   - 通常戦・主要戦闘経路、3段階AI、Factory、育成QOL、相互排他gimmick、Mirage、high-difficulty Raidを実schedulerへ接続した。
   - Raid partner moves、controller上限、自然入力・捕獲・PC ABI・終了cleanupを修正し、5/5 shieldからRaid後通常戦とturn-limitまで完走させた。
 - Verify: T06 build/check、focused 135 tests、3本のlibmGBA runner各2 process、独立read-only監査 PASS。fingerprint `58417b356175a6e291f6fc194f5ac2e2335c9fbb76e2167db001714f75713a59`、ROM SHA-256 `c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05`。WSL全体verifyは未実行。
+
+## 2026-08-14T02:44:24+09:00
+
+- Version: `species-port-0.14.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T07` / Vega IDを固定してDPE Speciesを移植する
+- Summary:
+  - Vega Species 0〜411を固定し、DPE identity 206件と追加Species/form 1209件を1621行canonical manifestへ統合した。
+  - T05 canonical Ability/Itemへ変換したBaseStatsをDPE領域へ配置し、T06 root 105件をrepointしたstage 07を決定的生成した。
+  - 公式全国番号1〜1025とform共有番号を完全化し、form重複なしの100種捕獲countと追加Speciesの実party生成を検証した。
+- Verify: T07 build/check、focused 27 tests、manifest validator、生成C compile、libmGBA 2 process PASS。fingerprint `be3931a374adfb902b6add1193adc07925491196b4a335fb17fd396199872188`、ROM SHA-256 `3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8`。WSL全体verifyは未実行。

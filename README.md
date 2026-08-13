@@ -54,6 +54,8 @@ python3 scripts/build_id_spaces.py build # T05 Type/Ability/Item配置前model�
 python3 scripts/build_id_spaces.py check # T05公開成果を副作用なしで照合
 python3 scripts/build_battle_core.py build # T04/T05からT06 battle core stageを2回再構築・実機検証
 python3 scripts/build_battle_core.py check # T06成果と現在入力を副作用なしで照合
+make species     # T06からVega固定412種＋DPE追加1209種のT07 stageを再構築
+make species-check # T07成果と現在入力を副作用なしで照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test
@@ -70,6 +72,8 @@ T03以降のROM stageは入力原本を上書きしません。`make harness` �
 T05はVega既存Type/Ability/Itemを固定し、意味同一を証明できた上流entityだけを同じIDへ対応させます。Type 25、Ability 312、Item 999のstable model、source alias、C table、表示幅レポートを生成します。ROM配置は行わず、T06がT04 stageと合わせて統合します。
 
 T06は固定CFRU-JPのbattle-only hookをexpected-byte付きでstage 04へ統合し、Type/Ability/Item/Moveのcanonical表、育成QOL境界、Factory、3段階AI、1戦1gimmick、Mirage item、high-difficulty Raidをallocator管理payloadへ配置します。通常戦・AI・policyの3本のlibmGBA runnerを各2 processで実行し、公開前にROM/report/payload/fingerprintをfail-closedで照合します。
+
+T07はVega Species ID 0〜411を固定し、DPE primaryとのidentity 206件をalias、欠落Species/form 1209件を412〜1620へappendします。全1621行にofficial判定とcanonical全国番号を付け、フォームを重複加算しない捕獲数counterを生成します。canonical BaseStatsをDPE予約領域へ配置して105参照をrepointし、追加Species 412を実party memoryへ生成します。
 
 ## 効率方針
 

@@ -22,6 +22,8 @@ T03 no-op adapterはfile offset `0x01200000` / GBA `0x09200000` から34 bytes�
 
 T04 move table bridgeはfile offset `[0x01200024, 0x0120AC24)` / GBA `0x09200024` へ44,032 bytesを配置する。Vega-owned先頭16 MiBでは旧5 table pointerのaligned完全走査で見つかった178件だけをrepointし、bridgeとrepoint宣言span外のbyte差分を0にする。
 
+T07 canonical BaseStatsはDPE予約領域のfile offset `0x01600000` / GBA `0x09600000` から1621×32 byteを配置する。stage 06のcanonical BaseStats root `0x09058C58` を参照するaligned 105箇所をexpected-pointer付きでrepointし、Vega 0〜411の先頭412行はT06 canonical tableとbyte一致させる。
+
 ## RAM
 
 CFRU、DPE、VegaのRAM使用範囲を`reports/ram_map.csv`へ統合します。
