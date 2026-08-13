@@ -658,6 +658,8 @@ def _link_private_inputs(checkout: Path) -> None:
         "inputs/private/Vega_20180223.ips",
         "inputs/private/factory_test_20260524.ups",
         "inputs/reference/vega_cfru_integration_audit.zip",
+        "inputs/reference/vega_reference_provided.gba",
+        "inputs/reference/factory_reference_provided.gba",
     )
     optional_source_archives = (
         "inputs/source_archives/CFRU-JP.zip",
