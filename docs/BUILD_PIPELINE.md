@@ -114,4 +114,17 @@ make release-patch
 make verify-release
 ```
 
-`make final`は私有入力が無ければ明確に失敗してよいが、ソースのみのCIは`make validate`で通るようにします。
+`make final` は既存T17成果を副作用なしcheckして再利用し、欠落・drift時は
+`bootstrap -> T03 -> ... -> T17` を固定順に実行する。最終ROMとmetadataは
+`build/final/vega-modern-kanto-v1.0.0.{gba,json}` へ出し、stageを上書きしない。
+
+`make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
+独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、
+save互換性、feature matrix、build metadataだけを固定時刻・辞書順のZIPへ格納する。
+`make verify-release` は書き込みを行わず、最終hash、BPS CRC/往復、全package byte、ZIP順序、
+ROM/save/元IPS・UPS/private path不在を再照合する。
+
+source revisionのclean exportと私有入力だけから完全再構築する最終gateは
+`make release-fresh-check`。一時Git worktree内で `make clean-build` から実行し、final ROM、BPS、
+ZIPが現worktreeとbyte一致した時だけ証跡を公開する。私有入力が無ければ明確に失敗してよいが、
+ソースのみのCIは`make validate`で通る。

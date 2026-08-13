@@ -1,0 +1,66 @@
+from __future__ import annotations
+
+import io
+import unittest
+import zipfile
+
+from scripts import build_release
+from tools.release.bps import BpsError, apply_bps, create_bps
+
+
+class BpsTests(unittest.TestCase):
+    def test_round_trip_and_determinism(self) -> None:
+        source = bytes((index * 37 + 11) & 0xFF for index in range(32768))
+        target = bytearray(source)
+        target[31:401] = b"Vega" * 92 + b"!!"
+        target.extend(b"\xFF" * 131072)
+        first = create_bps(source, bytes(target), metadata=b'{"version":"test"}\n')
+        second = create_bps(source, bytes(target), metadata=b'{"version":"test"}\n')
+        self.assertEqual(first, second)
+        self.assertEqual(apply_bps(source, first), bytes(target))
+        self.assertLess(len(first), 4096)
+
+    def test_empty_and_literal_targets(self) -> None:
+        for source, target in ((b"", b""), (b"abc", b"xyz"), (b"abc", b"abc")):
+            with self.subTest(source=source, target=target):
+                patch = create_bps(source, target)
+                self.assertEqual(apply_bps(source, patch), target)
+
+    def test_crc_and_source_identity_fail_closed(self) -> None:
+        patch = create_bps(b"source", b"target")
+        damaged = bytearray(patch)
+        damaged[-1] ^= 1
+        with self.assertRaisesRegex(BpsError, "patch CRC"):
+            apply_bps(b"source", bytes(damaged))
+        with self.assertRaisesRegex(BpsError, "source CRC"):
+            apply_bps(b"sourcf", patch)
+
+
+class ReleaseContractTests(unittest.TestCase):
+    def test_release_docs_cover_feature_matrix(self) -> None:
+        files = {
+            name: (build_release.ROOT / path).read_bytes()
+            for name, path in build_release.DOC_SOURCES.items()
+        }
+        rows = build_release._feature_rows()
+        build_release._validate_release_docs(files, rows)
+        self.assertEqual(len(rows), 23)
+
+    def test_deterministic_archive_and_safety_scan(self) -> None:
+        files = {"README_JA.md": b"release\n", "sample.bps": b"BPS1safe"}
+        first = build_release._zip_bytes(files)
+        second = build_release._zip_bytes(files)
+        self.assertEqual(first, second)
+        scan = build_release._scan_archive(first, files)
+        self.assertEqual(scan["forbidden_members"], 0)
+
+    def test_archive_rejects_rom_member(self) -> None:
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, "w") as archive:
+            archive.writestr(f"{build_release.SLUG}/forbidden.gba", b"rom")
+        with self.assertRaisesRegex(build_release.ReleaseError, "forbidden"):
+            build_release._scan_archive(stream.getvalue(), {})
+
+
+if __name__ == "__main__":
+    unittest.main()

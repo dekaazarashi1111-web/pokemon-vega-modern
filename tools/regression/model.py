@@ -484,6 +484,13 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
 - Result: 未解決runtime destinationではなくクチバの安全地点へ戻る。
 - Workaround: 通常の建物・道路warpを使う。進行・帰還は阻害しない。
 
+### KI-003 — emulator savestateはversion間非互換
+
+- Severity: S4 / expected platform behavior
+- Reproduction: 旧ROMで作ったsavestateをv1.0.0で直接読み込む。
+- Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
+- Workaround: 旧ROM上でゲーム内saveを行い、v1.0.0を再起動してbattery saveから読む。
+
 Release-blocking known issue: **none**.
 """
     return {

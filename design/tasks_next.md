@@ -17,4 +17,4 @@
 - [x] T15: postgame解禁とジム進行を実装する <!-- id:T15 -->
 - [x] T16: 野生・トレーナー・アイテムを生成配置する <!-- id:T16 -->
 - [x] T17: 本編・engine・Kantoの回帰試験を通す <!-- id:T17 -->
-- [ ] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->
+- [>] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->

@@ -1,0 +1,130 @@
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.0.0
+
+これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
+Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
+CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず、任意寄付の対価にも
+しないでください。
+
+## 適用方法
+
+1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
+2. BPS対応patcherで `vega-modern-kanto-v1.0.0.bps` をそのclean ROMへ直接適用する。
+3. 出力が32 MiBで、SHA-256が
+   `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`
+   であることを確認する。
+
+入力ROMのSHA-256は
+`1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486`。
+Vega IPSやFactory UPSを先に適用したROM、別言語版、Rev.1には適用しない。元ROMと
+saveは必ず別名でbackupする。patcherのsource/targetを逆に指定しない。
+
+## ゲーム開始と二地方
+
+新規saveを推奨する。Vega本編はトーホクで進み、シオウの3個目badgeとアーシア島
+D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁される。全国図鑑は
+不要。最初の船はアーシア、再訪便はシオウ、カントー側はクチバの船員からいつでも
+無料で帰還できる。
+
+カントーは任意の固定高難度地方で、野生・trainerはLv.68〜100。player側へ合わせた
+動的scaleは行わない。早期は認定章1〜4、Vega殿堂入り後に認定章5〜8とKanto League
+が開く。253 physical map、180 layout、二地方のwild table、Gym 8戦と四天王・Champion
+が同じ32 MiB ROMへ格納されている。未解決の通信施設・動的elevatorは進行停止を避ける
+ため、クチバの安全地点へ戻す。
+
+## 操作と既定QOL
+
+- 文章は `TEXT_SPEED=INSTANT` が既定。制御code、選択肢、改ページ、明示waitは飛ばさない。
+- ダッシュの `RUN_COURSE_FRAME_RATIO=0.625`、自転車の
+  `BICYCLE_COURSE_FRAME_RATIO=0.375` が既定。tile eventは飛ばさない。
+- 孵化演出は `HATCH_MODE=FAST`。`NORMAL / FAST / SKIP` を選べ、SKIPでも図鑑登録と
+  nickname確認を残す。
+- 全体学習装置は `EXP_SHARE=ON` が既定。戦闘経験値だけを分配する。
+- 数量選択は `x1 / x5 / x10 / ALL`。アメ、栄養、ハネ、ふしぎなアメ、テラピース、
+  coin、EV resetで共通利用する。
+- Summary/PC欄はSELECTで通常/ジャッジ、L/RでIV/EVを切り替える。PCは既存listの
+  文字入力で名前・type・ability検索、SELECT markerで複数選択する。一括移動・逃がし・
+  持ち物回収は容量不足や禁止個体があれば全体rollbackする。
+- Field PCはD・Hビル攻略後、許可された町・道路だけでfield menuから開く。battle、gym、
+  dungeon、league、event中は開かない。
+- タマゴバスケットはカントー預かり屋依頼後、許可mapのfield menuでON/OFFする。
+  現在預けている2匹を親として256歩ごとに判定し、預かり屋と共有する5個queueへ入れる。
+- 自動戦闘はD・Hビル攻略後、通常random野生戦だけで選べる。trainer、固定・story・
+  legendary・色違いでは通常戦へ戻り、開始前と各turnにcancelできる。
+
+### release feature matrix
+
+`release default` と `unlock` は同梱 `FEATURE_MATRIX.csv` の値そのもの。`DEBUG_GIFT=OFF`
+で、release buildでは利用できない。
+
+| feature key | release default | unlock |
+|---|---|---|
+| `TEXT_SPEED` | `INSTANT` | `UNLOCK_GAME_START` |
+| `HATCH_MODE` | `FAST` | `UNLOCK_GAME_START` |
+| `RUN_COURSE_FRAME_RATIO` | `0.625` | `UNLOCK_GAME_START` |
+| `BICYCLE_COURSE_FRAME_RATIO` | `0.375` | `UNLOCK_BICYCLE` |
+| `EXP_SHARE` | `ON` | `UNLOCK_BADGE_1` |
+| `EXP_CANDY` | `ENABLED` | `UNLOCK_DH_BUILDING` |
+| `QUANTITY_UI` | `ENABLED` | `UNLOCK_GAME_START` |
+| `MODERN_BREEDING` | `ENABLED` | `UNLOCK_DAYCARE` |
+| `IV_EV_COMPACT` | `IV` | `UNLOCK_GAME_START` |
+| `HYPER_TRAINING` | `SV_STYLE` | `UNLOCK_BADGE_7` |
+| `MINT_ABILITY_ITEMS` | `ENABLED` | `UNLOCK_DH_BUILDING` |
+| `EGG_PC_QUEUE` | `ENABLED` | `UNLOCK_DAYCARE` |
+| `TM_REUSE_LICENSE` | `DISABLED` | `TM_LICENSE_UNLOCKED` |
+| `ENCOUNTER_PROFILE` | `NORMAL` | `RESEARCH_PROFILE_UNLOCKED` |
+| `PC_SEARCH` | `ENABLED` | `UNLOCK_GAME_START` |
+| `PC_MULTISELECT` | `ENABLED` | `UNLOCK_GAME_START` |
+| `PC_BULK_MOVE_RELEASE` | `ENABLED` | `UNLOCK_GAME_START` |
+| `FIELD_PC` | `ENABLED` | `VEGA_DH_CLEAR` |
+| `PC_RELEARN` | `ENABLED` | `VEGA_BADGE_2` |
+| `PC_HELD_ITEM_BULK` | `ENABLED` | `VEGA_DH_CLEAR` |
+| `EGG_BASKET` | `ENABLED` | `KANTO_DAYCARE_QUEST` |
+| `AUTO_BATTLE` | `ENABLED` | `VEGA_DH_CLEAR` |
+
+経験アメXS/S、能力capsuleと一部mint、全EV resetはD・H攻略後。power系は5個目badge、
+アメM反復は6個目、アメLと銀冠は7個目、全mint・特性patch・単能力EV reset・標準育成店は
+8個目。アメXLはVega殿堂入り時に一度、Kanto League後に反復解禁される。王冠はSV式で
+実IVを変えず戦闘時だけ31相当。技思い出しは2個目badge後無料。
+
+## Battle Factory
+
+クチバ受付から始める。rental候補を選び、規定数の連戦を行い、勝利後は相手のrentalと
+交換できる。連勝記録とBPを保存し、BP shopで育成品と交換する。棄権・敗北・退出・reset・
+blackout後は参加前partyを完全復旧し、未確定結果を二重加算しない。施設外の調査NPCは
+支払い/creditと空き容量を先に確認し、同じ個体を保存して捕獲戦を再開できる。
+
+| tier | unlock | 主な形式・mechanic |
+|---|---|---|
+| Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし |
+| Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega |
+| Full | `FACTORY_FULL`（Vega殿堂入り） | single/double/Little/Monotype/OU等、Mega/Z |
+| Master | `FACTORY_MASTER`（Kanto League clear） | 49/100連勝、region mix/Ultimate、Mega/Z/Tera/Dynamaxから入場時1つ |
+
+通信相手が必要なlink multiは対象外。NPC partner multiは利用できる。Mirageは持込partyと
+仮想itemを使う攻略施設、Factoryはrental交換施設であり、save owner・連勝・報酬を共有しない。
+
+## Trainer AI、再戦、遭遇、Raid
+
+固定CFRU-JP commit `e24a16fe39e27ae162faf5b78596d1f3df18489d` のAIを使う。
+既定knowledge modelは `GLOBAL_FIXED_BEFORE_DECISION`。一般trainerは `AI_BASIC`、強敵・Gymは
+`AI_SEMI_SMART`、boss・League・facilityは `AI_FULL_SMART`。本編を一律level scaleせず、
+trainer party、技、持ち物、IV/EV、profileを進行帯ごとに横方向へ強化している。
+
+Vega殿堂入り、認定章4、Kanto League clearでトーホク強豪再戦I/II/IIIが順次開く。
+League I、League II、Final Leagueも前段clear flagで順番に開き、FinalはLv.100。
+通常出現の既定は `NORMAL` で元tableを維持し、殿堂入り後に `RESEARCH` を任意選択できる。
+RESEARCHは高IV・隠れ特性等の調査枠で、NORMALを置換しない。
+
+MegaはVega殿堂入り、Zは後半認定章、Tera/Dynamax storyはKanto League clear後。
+高難度RaidはVega殿堂入り＋認定章4で解禁し、固定CFRU battle coreでshield、partner、報酬、
+共有一回捕獲stateを処理する。Raid後の通常戦へ一時stateを持ち越さない。
+
+## Save
+
+詳細は `SAVE_COMPATIBILITY.md`。新規saveを推奨する。条件を満たす旧Vega battery saveだけを
+一回性migrationし、未知magic/version、checksum不正、予約領域汚染は拒否する。emulatorの
+savestateはruntime内部状態を固定するためversion間で引き継がず、ゲーム内saveから再開する。
+Factory参加中や報酬遭遇中の電源断は、最後にflashへ確定したtransactionから復旧する。
+
+既知の仕様上の除外は `KNOWN_ISSUES.md`、第三者source・作者・利用条件は `CREDITS.md`、
+全入力/source pinとbuild情報は `BUILD_METADATA.json`、ファイルhashは `CHECKSUMS.txt` を参照。

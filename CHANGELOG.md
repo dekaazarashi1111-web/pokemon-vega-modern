@@ -2,16 +2,20 @@
 
 ## Unreleased
 
-- Vega Modern + Postgame Kantoプレイブックを現行運用へ統合。
-- 私有入力8件をGit管理外へ取り込み、hash・patch適用結果・参照ROM一致を検証。
-- 競合監査と統合設計資料を来歴付きで配置し、資料整合性検査を追加。
-- T00〜T18のDAG、単一タスク状態、入力/source lock、検証・private guard基盤を整備。
-- 効率方針、context map、ADR、import inventory/reviewを追加。
-- 統合設計のactive reviewをV2二地方生態版へ切り替え、V1を来歴保存に変更。
-- clean FireRed日本版からカントー本土を新規名前空間へ復元し、トーホクと往復する実装方針・初期実現性評価を追加。
-- カントー渡航を殿堂入り後限定からVega中盤の任意早期アクセスへ変更し、固定高レベル帯、二段階進行、常時帰還の受入条件を追加。
-- 現代式孵化、経験アメ、育成値表示・変更、全体学習装置、タマゴ/PC高度QOL、自動戦闘をrelease scopeへ追加。
-- 文章の既定即時表示、ダッシュ25%以上・自転車50%以上の移動時間短縮と回帰条件を追加。
-- taskctlの固定先頭順を推奨順へ変更し、依存READY候補を待ち時間とfan-outに応じて選べる高速運用へ更新。
-- 追加UIと新規イベントを既存画面・標準menu・短い `SIMPLE_EVENT` の最小構成へ固定。
-- 固定CFRU-JP AIを採用し、本編の横方向強化、初回league是正、3段階再戦/league、NORMAL/RESEARCH encounter、Mirage改修をタスク化。
+- なし。
+
+## 1.0.0 — 2026-08-14
+
+- FireRed日本版Rev.0＋Vega 2018-02-23から毎回再生成する32 MiB build chainを完成。
+- Vega Move 0〜511 / Species 0〜411を固定し、CFRU-JP battle core、3段階AI、DPE-JPの
+  追加Species/form、画像・鳴き声・図鑑・進化・learnsetを統合。
+- トーホク本編を保ったまま、クチバ起点のカントー253 map、180 layout、wild table、
+  8 Gym＋四天王・Champion、Lv.68〜100固定高難度進行、無料往復を実ROMへ追加。
+- 即時文章、高速移動、全体学習装置、経験アメ、現代孵化、SV式王冠、IV/EV、育成道具、
+  PC検索・複数選択・一括操作、Field PC、タマゴバスケット、自動戦闘をrelease設定へ追加。
+- Battle Factory Trial/Standard/Full/Master、rental交換、BP shop、施設外捕獲NPC、
+  NORMAL/RESEARCH、三段階再戦・League、高難度Raid、段階的gimmick解禁を追加。
+- versioned save ledger、旧Vega一回性migration、Factory/遭遇transaction復旧を追加。
+- 中央allocatorでT09/T14の重複を解消し、Kanto map/content/QOL runtimeを単一stageへ実配置。
+- exact-ROM libmGBA、400地方往復、253 map到達、125共有捕獲、34 event分岐、20 facility mode、
+  BPS完全往復、禁止binary監査、fresh-checkout再構築をrelease gate化。
