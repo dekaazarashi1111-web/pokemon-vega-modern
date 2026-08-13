@@ -685,7 +685,12 @@ def fresh_checkout_check() -> dict[str, object]:
     except ReleaseError:
         current_final, current_files, current_archive = build_patch()
     revision = _source_revision()
-    with tempfile.TemporaryDirectory(prefix="vega-t18-fresh-") as temporary:
+    # WSL may inherit a Windows TEMP path.  A Linux-local worktree avoids
+    # cross-filesystem metadata latency and makes the clean rebuild practical.
+    temporary_parent = Path("/tmp") if Path("/tmp").is_dir() else None
+    with tempfile.TemporaryDirectory(
+        prefix="vega-t18-fresh-", dir=temporary_parent
+    ) as temporary:
         checkout = Path(temporary) / "checkout"
         _run(("git", "worktree", "add", "--detach", str(checkout), revision), label="fresh worktree")
         try:
