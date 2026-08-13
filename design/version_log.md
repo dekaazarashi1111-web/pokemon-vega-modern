@@ -263,3 +263,14 @@
   - 35 QOL境界、Factory 4 tier、地方強豪3段階、Research/TM/DexNav/競技品/UB・Paradox/Raidを状態fixtureへ固定した。
   - 全253 map gate、恒久無料帰還、Vega進行非干渉、owner分離、release shortcut無効を機械検査した。
 - Verify: progression/content/T13/T14/engine build-check、focused unittest、py_compile、diff check PASS。report SHA-256 `928a02d56dca147a64f7aa03601060c4bbf767a8d68a98b94145c9e1c30b03cb`。WSL全体verifyは未実行。
+
+## 2026-08-14T05:20:17+09:00
+
+- Version: `content-population-0.23.0`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T16` / 二地方のencounter・trainer・item・施設contentを本配置する
+- Summary:
+  - 96論理地点、541系統×2地方、125共有捕獲key、Gym/League/再戦、Factory/Mirage、QOL/進化道具をsymbolic manifestへ完全化した。
+  - Tohoku NORMALをbyte保護し、Kantoを `FIXED_HIGH_LEVEL_OPTIONAL` Lv.68〜100、警告・安全帰還・動的scaleなしへ固定した。
+  - T09/T14の衝突配置を中央allocatorで解消し、T16 payloadをintegration_modulesへ配置した32 MiB stage 16を生成した。
+- Verify: T12/T15/T16 build/check、manifest validator、focused 17 tests、py_compile、diff check PASS。ROM SHA-256 `5c56b86da56b2a15d9e75bad8a85db83e1c63e6a7814e265b996ce07d50660b5`、allocation overlap 0。WSL全体verifyは未実行。

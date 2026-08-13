@@ -43,6 +43,7 @@
 - `scripts/build_vermilion_slice.py`: T13クチバ早期往復、physical binding、ジム・Factory・遭遇transaction fixtureを決定的生成・照合
 - `scripts/build_full_kanto_import.py`: T14本土scope 256件を253 operational mapへ変換し、接続・ID・tileset・allocationを検証
 - `scripts/build_kanto_progression.py`: T15の二段階Kanto進行、QOL、Factory 4 tier、再戦/League、Research/Raid境界を生成・照合
+- `scripts/build_content_population.py`: T16の二地方encounter/trainer/item/facility/Raidを生成し、中央allocator管理の32 MiB stage 16へ配置・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -102,3 +103,4 @@
 - `src/kanto/vermilion/`, `content/vermilion/`: T13の早期渡航runtime、クチバ安全導線、ジム、Factory Trial、建物外遭遇NPC契約
 - `content/kanto_map_scope.csv`, `tools/map_import/full_kanto_import.py`: T14のINCLUDE/REBUILD/DEFER判断と全本土map canonical変換
 - `content/{kanto,qol,facility,trainer}_progression.csv`, `content/kanto_state_model.csv`: T15の進行DAG、解禁境界、save ownership正本
+- `content/{map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`, `manifests/{kanto,tohoku,research,raid,facility,reward}*.csv`: T16の二地方物理binding、NORMAL保護、trainer/施設/報酬content正本

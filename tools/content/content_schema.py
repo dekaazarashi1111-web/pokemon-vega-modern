@@ -100,7 +100,7 @@ def _unlocks(rows: list[dict[str, str]], errors: list[str]) -> tuple[set[str], d
         for parent in _split(row["predecessor_keys"]):
             if parent not in by_key:
                 errors.append(f"{row['unlock_key']}: unresolved predecessor {parent}")
-        if row["region"] == "KANTO" and row["difficulty_policy"] != "FIXED_OPTIONAL_HIGH_LEVEL":
+        if row["region"] == "KANTO" and row["difficulty_policy"] != "FIXED_HIGH_LEVEL_OPTIONAL":
             errors.append(f"{row['unlock_key']}: Kanto must use fixed optional high-level policy")
         if row["unlock_key"] == "KANTO_EARLY_ACCESS":
             if row["mandatory"] != "false" or row["warning_key"] == "WARNING_NONE" or row["safe_route_key"] == "NONE":
@@ -151,7 +151,7 @@ def validate_trainer_rows(rows: list[dict[str, str]], registries: dict[str, set[
                 errors.append(f"{key}: multiple gimmicks in one battle")
             if mechanics - allowed:
                 errors.append(f"{key}: gimmick before unlock")
-        if row.get("region") == "KANTO" and row.get("difficulty_policy") != "FIXED_OPTIONAL_HIGH_LEVEL":
+        if row.get("region") == "KANTO" and row.get("difficulty_policy") != "FIXED_HIGH_LEVEL_OPTIONAL":
             errors.append(f"{key}: hidden/dynamic level scaling is forbidden")
         if row.get("unlock_key") == "KANTO_EARLY_ACCESS" and row.get("warning_key") in ("","WARNING_NONE"):
             errors.append(f"{key}: early-access warning missing")
@@ -292,7 +292,10 @@ def validate_repository(root: Path) -> dict[str,Any]:
             errors.append(f"{key}: post-HoF content reachable without VEGA_HALL_OF_FAME")
     event_symbols={row["symbol_key"]:row["symbol_kind"] for row in tables["event_symbols"]}
     maps={row["map_key"] for row in tables["maps"]}
-    logical={f"K{x:02d}" for x in range(1,48)}|{"VEGA_NATIVE"}
+    logical=({f"K{x:02d}" for x in range(1,48)}
+             | {f"T{x:03d}" for x in range(501,524)}
+             | {f"T{x:03d}" for x in range(24,50)}
+             | {"VEGA_NATIVE"})
     for row in tables["maps"]:
         if row["unlock_key"] not in unlocks: errors.append(f"{row['map_key']}: unresolved unlock")
         if row["logical_location_key"] not in logical: errors.append(f"{row['map_key']}: unresolved logical location")
@@ -392,7 +395,7 @@ Raw V2 is therefore rejected before normalization. The normalized contract canon
 
 ## Safety policies
 
-- Kanto Lv.68–100 is `FIXED_OPTIONAL_HIGH_LEVEL`; no party scaling field exists.
+- Kanto Lv.68–100 is `FIXED_HIGH_LEVEL_OPTIONAL`; no party scaling field exists.
 - Early invitation, research pass, dialogue, and ship battle are progress-aware; the ship battle is optional and result-independent.
 - `SIMPLE_EVENT` permits standard message/list/Yes-No and normal script commands only.
 - NORMAL encounter tables remain present when RESEARCH overlays exist.

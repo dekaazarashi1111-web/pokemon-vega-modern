@@ -606,3 +606,28 @@
   - progression/QOL/facility/trainer CSV SHA-256 `ec6fe53519fc5a94eb41a6336c1faae7d47051320957482442a70ca182a0c976` / `8534b520b88ff2789212a11ebc97303692c997fc65377d57fe681130401b8e1f` / `2f02ed6cd03394714af37adedf10be36fdb617dd0bde5f494d710dde5dcb0517` / `f9c35fcfb5924d8fc847455740814a1990417b9d783003dcb60ff22d6fd3b298`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。T02/T06/T08/T10〜T14、docs/QOL_POLICY.md、V2固定review入力だけを参照した。
+
+## 2026-08-14T05:20:17+09:00
+
+- Task: `T16` / 二地方のencounter・trainer・item・施設contentを本配置する
+- Status: DONE
+- Summary:
+  - V2のTohoku 49 / Kanto 47論理地点を物理mapへ一意にbindし、Kanto 541系統、二地方RESEARCH 1,082行、125共有捕獲keyの二地方Raid 250行をsymbolic manifestへ生成した。Tohoku NORMALは既存slot/hashとbyte同値fallbackを保護した。
+  - Kanto Gym 48体・League 30体、Tohoku登録済み強豪48体、3 AI profile、3段階再戦、Factory/Mirage、BP価格、QOL/進化道具、報酬遭遇を生成した。Kantoは `FIXED_HIGH_LEVEL_OPTIONAL` Lv.68〜100、全体動的scale 0とし、K42 League gateをT15と同期した。
+  - T09とT14の `0x01F50000` 領域衝突を検出・解消し、T03/T04/T09/T16の全ownerを単一allocation reportで照合した。77,092-byte `VEGA16` payloadをexpected-FF付きでintegration_modules `0x0120AC24`へ配置し、32 MiB `build/stages/16_content.gba` を生成した。
+  - 96地点の進行gate、Kanto警告、field PC明示値、gym/dungeon/league/event禁止、物理bindingをmap-levelでreviewし、新規専用UI/map/minigameは0、未実装activity hookはDEFERとした。
+- Files changed:
+  - build/validation: `scripts/build_content_population.py`, `tools/content/{populate_content,validate_population}.py`, `scripts/validate_manifests.py`, `tests/test_content_population.py`, `tests/fixtures/content_population.json`, `Makefile`
+  - content/manifests: `content/{maps,map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`、T16必須15 manifest、`flags.csv`、`trainer_ids.csv`、難易度policyの旧T12/T15入力
+  - docs/state: `README.md`, `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/16_content.{gba,json}`, `build/stages/16_allocation.json`, `generated/content/t16_content.bin`, `reports/generated/{kanto_content_audit,trainer_balance_audit}.md`
+- Verify:
+  - `python3 scripts/build_content_population.py build` / `check`: PASS。29成果の決定的生成、check副作用なし、stage 09外byte不変、ROM 32 MiB、payload/hash、allocation overlap 0を確認した。
+  - `python3 scripts/build_content_schema.py build/check`, `python3 scripts/build_kanto_progression.py build/check`: PASS。難易度policy語彙統一後のT12/T15互換性と副作用なしを確認した。
+  - `python3 scripts/validate_manifests.py`: PASS。15 manifestのheader・unique key・symbolic reference・進行/価格/反復/保護境界を確認した。
+  - focused unittest: PASS（17 tests）。`py_compile`、`git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 16 / payload SHA-256 `5c56b86da56b2a15d9e75bad8a85db83e1c63e6a7814e265b996ce07d50660b5` / `b226aa2140f09ee6169ea18fce7010847a1ad46ca8cdc3339a35db8ba197855b`。
+  - allocation / content audit / trainer audit SHA-256 `eeb93b6dec5bbc69582b2180476403879c1b8eee3a0580b026db8677d4a7f5d2` / `1395f3b7ddae54a02ec1748db94cf58090b906d6d975839db6d07f1474611543` / `8c87c4c43aa3c1f3d36e688976cf133d1ec75dbeffc3248255275d17a7242e4b`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みROM/上流、T03〜T15成果、V2固定review入力だけを参照した。

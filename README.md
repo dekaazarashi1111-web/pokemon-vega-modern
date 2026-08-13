@@ -66,6 +66,8 @@ make kanto-maps # T14本土253 operational mapをcanonical import
 make kanto-maps-check # T14接続・ID・size成果を副作用なしで再照合
 make kanto-progression # T15二段階進行・QOL・Factory・League fixtureを生成
 make kanto-progression-check # T15成果を副作用なしで再照合
+make content-population # T16二地方encounter/trainer/itemとROM payloadを生成
+make content-population-check # T16 manifest・中央allocation・stage 16を副作用なしで再照合
 make validate     # DAG、manifest、状態、受領資料の静的検査
 make guard        # 私有バイナリ混入防止
 make test         # unit test

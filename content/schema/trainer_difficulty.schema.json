@@ -17,7 +17,7 @@
     "move2_key":{"$ref":"#/$defs/key"}, "move3_key":{"$ref":"#/$defs/key"},
     "move4_key":{"$ref":"#/$defs/key"}, "mechanic_policy":{"$ref":"#/$defs/key"},
     "unlock_key":{"$ref":"#/$defs/key"}, "mandatory":{"enum":["true","false"]},
-    "difficulty_policy":{"enum":["STORY_CURVE","FIXED_OPTIONAL_HIGH_LEVEL"]}, "warning_key":{"$ref":"#/$defs/key"}
+    "difficulty_policy":{"enum":["STORY_CURVE","FIXED_HIGH_LEVEL_OPTIONAL"]}, "warning_key":{"$ref":"#/$defs/key"}
   },
   "additionalProperties": false,
   "$defs": {"key":{"type":"string","pattern":"^(?:[A-Z][A-Z0-9_]*|NONE)$"}}

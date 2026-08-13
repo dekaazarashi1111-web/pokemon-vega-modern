@@ -2,10 +2,18 @@ from __future__ import annotations
 
 import csv
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 from common import repo_root
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from tools.content.populate_content import HEADERS as T16_HEADERS
+from tools.content.validate_population import collect_population_errors
 
 EXPECTED = {
     'id_ranges.csv': ['domain','owner','start_id','end_id','status','notes'],
@@ -23,6 +31,7 @@ EXPECTED = {
     'kanto_trainers.csv': ['trainer_key','class_key','party_slot','species_key','level','move1_key','move2_key','move3_key','move4_key','item_key','ability_policy','nature','ai_profile','status','notes'],
     'kanto_items.csv': ['placement_key','map_key','placement_type','item_key','quantity','condition','flag_key','status','notes'],
 }
+EXPECTED.update(T16_HEADERS)
 KEY_RE = re.compile(r'^[A-Z][A-Z0-9_]*$')
 
 T05_LEGACY_HEADERS = {
@@ -44,6 +53,20 @@ PRIMARY_KEYS = {
     'kanto_maps.csv': 'map_key',
     'kanto_items.csv': 'placement_key',
 }
+PRIMARY_KEYS.update({
+    'kanto_encounters.csv': 'encounter_key',
+    'trainer_ai_profiles.csv': 'ai_profile_key',
+    'trainer_rematches.csv': 'rematch_key',
+    'research_encounters.csv': 'research_key',
+    'raid_encounters.csv': 'raid_key',
+    'tohoku_items.csv': 'placement_key',
+    'qol_rewards.csv': 'reward_key',
+    'facility_modes.csv': 'mode_key',
+    'facility_rentals.csv': 'rental_key',
+    'facility_trainers.csv': 'facility_trainer_key',
+    'facility_rewards.csv': 'facility_reward_key',
+    'reward_encounters.csv': 'reward_encounter_key',
+})
 
 T05_FILES = ('ability_ids.csv', 'item_ids.csv', 'type_ids.csv')
 NONE = {'', 'NONE'}
@@ -1587,6 +1610,7 @@ def collect_errors(root: Path) -> list[str]:
                     f'id_ranges.csv:{right[2]}: {domain} range overlaps line {left[2]}'
                 )
     _validate_t05_manifests(root, loaded_rows, range_rows, errors)
+    errors.extend(collect_population_errors(root, loaded_rows))
     return errors
 
 

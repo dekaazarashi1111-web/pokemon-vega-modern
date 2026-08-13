@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: T15完了。統合engine、クチバ縦切り、本土253 map、二段階Kanto進行がPASSし、T16の野生・trainer・item本配置へ進める状態。
+- マイルストーン: T16完了。V2の二地方96論理地点、541系統、125共有捕獲key、trainer/item/Factory/Raidを32 MiB stage 16へ衝突なしで配置した。T17でマップとruntimeの実機結合・QOL-B・回帰を行う。
 - ユーザー提供の5 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 5 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料を役割別に配置済み。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
@@ -45,9 +45,12 @@
 - T13でT11 physical mapとT12 symbolic contentをbuild-modeでbindし、`0x0824 && 0x114B` の直前/直後から殿堂入り・全国図鑑なしのクチバ往復を固定した。アーシア初回便、シオウ再訪便、クチバ無料帰還、到着時heal/whiteout anchor、船上戦4結果を検証した。
 - クチバ初期安全導線7 mapは強制戦闘・field move・支払い0。ジムは認定章2個と3端末電圧puzzle、Vega badge書込み0にし、6候補Factory TrialとT08 persist-before-battle遭遇NPCを同じ縦切りへ接続した。
 - T14で本土256 physical mapをINCLUDE 252、Route11 clean BPRJ REBUILD 1、未使用孤立house DEFER 3へ確定した。253 operational mapはクチバ起点で全到達し、V2 47地点を全て保持する。
-- 全warp/connectionをKANTO namespaceへ変換し、未解決参照、Vega map誤接続、physical/local ID重複、欠損tileset、予期しない一方通行、allocation overlapを0にした。180 layoutとmetadataは329,866 bytesでfuture tailに収まり391,030 bytesを残す。
+- 全warp/connectionをKANTO namespaceへ変換し、未解決参照、Vega map誤接続、physical/local ID重複、欠損tileset、予期しない一方通行を0にした。T14の局所見積り329,866 bytesはT09 future tailと衝突するため実ROM配置に使わず、T16以降は全ownerを中央allocatorでintegration_modulesへ再配置する。
 - T15で39-node進行DAGを固定し、早期認定章1〜4とHOF後の5〜8、League I→II→Finalを分離した。全253 mapに到達gateがあり、全Kanto stateから無料帰還でき、Kanto側のVega badge/HM/story書込みは0。
 - QOL 35境界、Factory Trial/Standard/Full/Master、地方強豪3段階、Research/TM/HA DexNav/競技品/UB・Paradox/Raidを直前/直後fixtureへ固定した。Research rank、二地方共鳴、共有特殊捕獲、permit/return stateは独立ownerで、開発terminalはrelease無効。
+- T16でTohoku 49 / Kanto 47論理地点を物理mapへ一意にbindし、Kanto 541系統、二地方RESEARCH 1,082行、125特殊種×2地方Raid 250行をsymbolic manifestへ生成した。Tohoku NORMALは全既存slotのbyte同値fallbackを保持する。
+- Kanto Gym 48体・League 30体、Tohoku登録済み強豪再戦48体、3 AI profile、3段階再戦、Factory/Mirage、BP価格、進化道具、QOL供給を進行境界つきで完全化した。Kantoは `FIXED_HIGH_LEVEL_OPTIONAL` Lv.68〜100で、全体動的scaleは0。
+- T09/T14領域衝突は、T03/T04/T09/T16の全allocationを単一reportへ統合し、T16 payload 77,092 bytesをintegration_modulesの `0x0120AC24`へexpected-FF付きで配置して解消した。stage 16 SHA-256は `5c56b86da56b2a15d9e75bad8a85db83e1c63e6a7814e265b996ce07d50660b5`、allocation overlapは0。
 - カントーLv.68〜100は任意固定高難度、警告・安全帰還必須とし、早期招待/調査pass/進行別会話/船上戦をSIMPLE_EVENTへ正規化した。Factory/Mirage owner分離、AI 3 profile、NORMAL/RESEARCH直交、供給tier、DEFERRED調査point、persist-before-battle encounter、Raid捕獲/報酬state分離をvalidatorとnegative fixtureで固定した。T13 physical map bindingなしのemitはfail-closedする。
 - T00成果としてportableな `state/source-lock.json`、preflight、参照ROM、exact auditを生成済み。同一条件の2回目quickstartでcache reuseを確認済み。
 - `VEGA_CFRU_DPE_統合設計_V2_二地方生態版` をactive review資料に切替済み。V1は来歴保存専用。
@@ -61,7 +64,7 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T15完了後は依存DAGに従いT16を統合する。
+`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T16完了後は依存DAGに従いT17の実ROM統合・QOL-B・回帰を実施する。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
@@ -78,6 +81,7 @@
 - T13: DONE。中盤flagからのクチバ恒久往復、安全導線、physical binding、認定章ジム、Factory Trial、遭遇transactionを通過した。
 - T14: DONE。本土256 mapを253 operationalへimportし、全到達・参照・namespace・allocation gateを通過した。
 - T15: DONE。早期/HOF後の二段階進行、QOL/Factory/再戦/League/Research/Raid境界を通過した。
+- T16: DONE。二地方encounter/trainer/item/facility/Raid manifest、NORMAL保護、物理binding、中央allocator、stage 16 ROMを通過した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 
