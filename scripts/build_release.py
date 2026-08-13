@@ -54,6 +54,8 @@ DOC_SOURCES: dict[str, Path] = {
 FULL_BUILD_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("scripts/bootstrap_project.py", "--config", "config/project.toml", "--auto", "--lock-inputs"),
     ("scripts/run_baseline_audit.py", "--config", "config/project.toml", "--target", "references"),
+    ("scripts/build_upstream.py", "reproduce", "--config", "config/project.toml", "--repeat", "2"),
+    ("scripts/generate_t02_audit.py",),
     ("scripts/build_project.py", "harness", "--config", "config/project.toml"),
     ("scripts/build_move_stage.py", "build"),
     ("scripts/build_id_spaces.py", "build"),
