@@ -1,4 +1,4 @@
-# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.1.0
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.2.0
 
 これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
 Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
@@ -8,9 +8,9 @@ CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず
 ## 適用方法
 
 1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
-2. BPS対応patcherで `vega-modern-kanto-v1.1.0.bps` をそのclean ROMへ直接適用する。
+2. BPS対応patcherで `vega-modern-kanto-v1.2.0.bps` をそのclean ROMへ直接適用する。
 3. 出力が32 MiBで、SHA-256が
-   `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478`
+   `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`
    であることを確認する。
 
 入力ROMのSHA-256は
@@ -88,17 +88,24 @@ D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁�
 
 ## Battle Factory
 
-クチバ受付から始める。rental候補を選び、規定数の連戦を行い、勝利後は相手のrentalと
-交換できる。連勝記録とBPを保存し、BP shopで育成品と交換する。棄権・敗北・退出・reset・
-blackout後は参加前partyを完全復旧し、未確定結果を二重加算しない。施設外の調査NPCは
-支払い/creditと空き容量を先に確認し、同じ個体を保存して捕獲戦を再開できる。
+クチバの受付NPCからTrialを始める。固定CFRU-JP生成器がLv.50の重複なしrental候補6体を
+毎回ランダム生成し、既存party画面で任意の3体を選ぶ。single 3v3を3戦し、1・2戦目の
+勝利後は相手側からランダムに保持された1体と、自分で選んだ手持ち1体を交換できる。
+各戦後は全回復し、3連勝で9 BPを得る。棄権・敗北・選択cancel・reset後は参加前partyの
+全600 byte（HP・PP・状態・持ち物を含む）を復旧し、rentalと相手はseenだけを更新する。
+連勝記録とBPはsector 31へ保存する。BP shopと施設外の調査NPCについては、進行条件、
+価格、支払い/credit、空き容量、再開用個体のcontent定義を保持する。
 
-| tier | unlock | 主な形式・mechanic |
-|---|---|---|
-| Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし |
-| Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega |
-| Full | `FACTORY_FULL`（Vega殿堂入り） | single/double/Little/Monotype/OU等、Mega/Z |
-| Master | `FACTORY_MASTER`（Kanto League clear） | 49/100連勝、region mix/Ultimate、Mega/Z/Tera/Dynamaxから入場時1つ |
+v1.2.0で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
+Master、BP shop、施設外報酬遭遇は進行・content定義と回帰fixtureを保持しているが、実ROMの
+受付・NPCへはまだ接続していない。
+
+| tier | unlock | 主な形式・mechanic | v1.2.0 runtime |
+|---|---|---|---|
+| Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし | 接続済み |
+| Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega | 未接続 |
+| Full | `FACTORY_FULL`（Vega殿堂入り） | single/double/Little/Monotype/OU等、Mega/Z | 未接続 |
+| Master | `FACTORY_MASTER`（Kanto League clear） | 49/100連勝、region mix/Ultimate、Mega/Z/Tera/Dynamaxから入場時1つ | 未接続 |
 
 通信相手が必要なlink multiは対象外。NPC partner multiは利用できる。Mirageは持込partyと
 仮想itemを使う攻略施設、Factoryはrental交換施設であり、save owner・連勝・報酬を共有しない。
@@ -110,7 +117,7 @@ blackout後は参加前partyを完全復旧し、未確定結果を二重加算�
 `AI_SEMI_SMART`、boss・League・facilityは `AI_FULL_SMART`。本編を一律level scaleせず、
 trainer party、技、持ち物、IV/EV、profileを進行帯ごとに横方向へ強化している。
 
-v1.1.0では「トレーナー再設計V4」の141戦・610体を正規化し、Vega本編に実在する648個の
+v1.1.0以降は「トレーナー再設計V4」の141戦・610体を正規化し、Vega本編に実在する648個の
 Trainer IDへ編成を結合した。主要人物、Gymと既存Gym NPC、一般trainer、バトルサーチャー
 再戦が対象で、Mirageと未指定Sphere枠は維持する。V4のAI rank 1は `AI_BASIC`、rank 2～3は
 `AI_SEMI_SMART`、rank 4～5は `AI_FULL_SMART` へ対応し、独自AI段階は追加しない。

@@ -118,9 +118,14 @@ make verify-release
 stage 19へ結合する。`make trainer-rebalance-check` は141戦・610体のID解決、AI flags 1/3/5、
 party pointer、変更span、allocator overlapを副作用なしで再照合する。
 
-`make final` は既存stage 19成果を副作用なしcheckして再利用し、欠落・drift時は
-`bootstrap -> T03 -> ... -> T17 -> trainer-rebalance` を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.1.0.{gba,json}` へ出し、stageを上書きしない。
+`make facility-runtime` はstage 19を入力に、クチバ受付NPC、3戦event、CFRU候補生成・
+対戦policy、6体snapshot、交換、BP、sector 31保存をstage 20へ実結合する。
+`make facility-runtime-check` は同じROMを再生成し、自然new-gameからのlibmGBA exact-ROM
+スモーク2 processと成果物byteを副作用なしで照合する。
+
+`make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
+`bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
+最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。
 
 `make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
 独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、

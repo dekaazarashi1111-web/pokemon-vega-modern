@@ -19,9 +19,9 @@
 ### KI-003 — emulator savestateはversion間非互換
 
 - Severity: S4 / expected platform behavior
-- Reproduction: 旧ROMで作ったsavestateをv1.1.0で直接読み込む。
+- Reproduction: 旧ROMで作ったsavestateをv1.2.0で直接読み込む。
 - Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
-- Workaround: 旧ROM上でゲーム内saveを行い、v1.1.0を再起動してbattery saveから読む。
+- Workaround: 旧ROM上でゲーム内saveを行い、v1.2.0を再起動してbattery saveから読む。
 
 ### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
 
@@ -30,5 +30,13 @@
 - Result: Species、level、持ち物、4技、IV下限、trainer item、AI段階は反映されるが、通常の
   16-byte TrainerMon ABIに欄のない性格・特性・EV・個別gimmick triggerは直接固定されない。
 - Workaround: 現行CFRUの個体生成規則と1戦1gimmick policyを使用する。値は正規化台帳に保持済み。
+
+### KI-005 — Factoryの実受付はTrialのみ
+
+- Severity: S4 / release scope exclusion
+- Reproduction: クチバのFactory受付でStandard、Full、Master、BP shop、施設外報酬遭遇を探す。
+- Result: v1.2.0の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
+  shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
+- Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
 
 Release-blocking known issue: **none**.

@@ -145,3 +145,21 @@
 - 配置: stage 17のrepoint済みTrainer tableをexpected input hash付きでin-place更新し、共有party
   blobだけを中央allocatorのintegration_modulesへ追加する。元ROM、ZIP、stage 17は変更しない。
 - 影響: stage 19、v1.1.0 release、Vega本編trainer、release文書・検証。
+
+## 2026-08-14 — D-019: Factory Trialを小さい実ROM縦切りとして結合する
+
+- 決定: 文書・host fixtureだけだったFactory機能から、クチバ受付で実際に開始できるTrialを
+  stage 20へ結合する。固定CFRU-JP生成器のLv.50候補6体から既存party UIで3体を選び、
+  single 3v3を3戦する。1・2勝後は実対戦相手から保持したランダム1体と任意の手持ち1体を
+  交換でき、各戦後全回復、完走9 BPとする。
+- 所有権: 入場前party 6×100 byteをversioned ledgerへ保存し、完走、敗北、辞退、cancel、
+  save/reset後のクチバ復帰でexact復元する。rentalと対戦相手はseenだけを更新し、caught、
+  通常trainer報酬、Mirage状態へ波及させない。
+- 保存: CFRU-JPのsector 31 writeを利用する。2,048-byte rollback像はGBA stackへ置かず、
+  予約済みEWRAM `0x0203E400..0x0203EC00`へ固定する。host検証では従来どおりstack-localを使う。
+- リリース境界: v1.2.0で実ROM受付から保証する施設modeはTrialである。Standard / Full /
+  Master、BP shop、施設外報酬遭遇は進行・content manifestとfixtureを保持するが、実受付へは
+  未接続として明記し、実装済みとは表示しない。
+- 検証: 重いfresh checkout全再構築はユーザー指示により繰り返さず、stage 20の決定論build、
+  中央allocator、物理NPC/script graph、libmGBA exact-ROM 2 process、BPS完全往復へ絞る。
+- 影響: stage 20、save runtime、v1.2.0 release、Factory文書・検証。

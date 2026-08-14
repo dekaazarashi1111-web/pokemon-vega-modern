@@ -26,13 +26,14 @@ from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
 
 
 TASK = "T18"
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
-STAGE = Path("build/stages/19_trainer_rebalance.gba")
-STAGE_META = Path("build/stages/19_trainer_rebalance.json")
+STAGE = Path("build/stages/20_facility_runtime.gba")
+STAGE_META = Path("build/stages/20_facility_runtime.json")
+TRAINER_STAGE_META = Path("build/stages/19_trainer_rebalance.json")
 BASE_STAGE_META = Path("build/stages/17_regression.json")
-STAGE_TASK = "USER-20260814-TRAINER-V4"
+STAGE_TASK = "USER-20260814-FACILITY-RUNTIME"
 FINAL_ROM = Path(f"build/final/{SLUG}.gba")
 FINAL_META = Path(f"build/final/{SLUG}.json")
 RELEASE_ROOT = Path("dist/release")
@@ -74,6 +75,7 @@ FULL_BUILD_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("scripts/build_content_population.py", "build"),
     ("scripts/build_regression.py", "build"),
     ("scripts/build_trainer_rebalance_v4.py", "build"),
+    ("scripts/build_facility_runtime.py", "build"),
 )
 
 FORBIDDEN_SUFFIXES = {
@@ -174,7 +176,7 @@ def _stage_is_current() -> bool:
     if not (ROOT / STAGE).is_file() or not (ROOT / STAGE_META).is_file():
         return False
     completed = subprocess.run(
-        (sys.executable, "scripts/build_trainer_rebalance_v4.py", "check"), cwd=ROOT,
+        (sys.executable, "scripts/build_facility_runtime.py", "check"), cwd=ROOT,
         check=False,
     )
     return completed.returncode == 0
@@ -205,20 +207,26 @@ def _validate_stage() -> tuple[bytes, dict[str, Any]]:
     stage_path = ROOT / STAGE
     meta_path = ROOT / STAGE_META
     if not stage_path.is_file() or not meta_path.is_file():
-        raise ReleaseError("trainer V4 stage/metadata is missing")
+        raise ReleaseError("facility runtime stage/metadata is missing")
     stage = stage_path.read_bytes()
     metadata = _read_json(meta_path)
     output = metadata.get("output")
     invariants = metadata.get("invariants")
     if metadata.get("task") != STAGE_TASK or metadata.get("status") != "PASS":
-        raise ReleaseError("trainer V4 metadata does not report PASS")
+        raise ReleaseError("facility runtime metadata does not report PASS")
     if not isinstance(output, Mapping) or output.get("size") != len(stage) or output.get("sha256") != _sha(stage):
-        raise ReleaseError("trainer V4 stage identity differs from metadata")
+        raise ReleaseError("facility runtime stage identity differs from metadata")
     if not isinstance(invariants, Mapping) or not invariants or not all(value is True for value in invariants.values()):
-        raise ReleaseError("trainer V4 release invariants are incomplete")
+        raise ReleaseError("facility runtime release invariants are incomplete")
     allocation = metadata.get("allocation")
     if not isinstance(allocation, Mapping) or allocation.get("overlap_count") != 0:
-        raise ReleaseError("trainer V4 allocation overlap is not zero")
+        raise ReleaseError("facility runtime allocation overlap is not zero")
+    contract = metadata.get("contract")
+    if not isinstance(contract, Mapping) or (
+        contract.get("random_candidates"), contract.get("manual_selections"),
+        contract.get("battle_count"), contract.get("exact_party_snapshot_bytes"),
+    ) != (6, 3, 3, 600):
+        raise ReleaseError("facility runtime playable Trial contract is incomplete")
     _validate_header(stage)
     return stage, metadata
 
@@ -338,9 +346,15 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
 
 def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, object]:
     revision = _source_revision()
+    trainer_stage_meta = _read_json(ROOT / TRAINER_STAGE_META)
     base_stage_meta = _read_json(ROOT / BASE_STAGE_META)
     if (
         stage_meta.get("input", {}).get("sha256")
+        != trainer_stage_meta.get("output", {}).get("sha256")
+    ):
+        raise ReleaseError("facility runtime input does not match trainer V4 stage")
+    if (
+        trainer_stage_meta.get("input", {}).get("sha256")
         != base_stage_meta.get("output", {}).get("sha256")
     ):
         raise ReleaseError("trainer V4 input does not match published stage17")
@@ -356,6 +370,10 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         "config/trainer_rebalance_v4.json",
         "content/trainer_rebalance_v4/battles.csv",
         "content/trainer_rebalance_v4/parties.csv",
+        "config/ram_layout.csv", "overlays/save_migration/save_migration.h",
+        "overlays/save_migration/save_migration.c",
+        "overlays/facility_runtime/facility_runtime.h",
+        "overlays/facility_runtime/facility_runtime.c",
     )
     return {
         "schema_version": 1,
@@ -395,16 +413,16 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "qol_b_runtime_sha256": base_stage_meta["qol_b"]["sha256"],
         },
         "trainer_rebalance_v4": {
-            "sha256": _sha(stage),
-            "source_archive_sha256": stage_meta["source"]["archive_sha256"],
-            "source_battles": stage_meta["source"]["battle_count"],
-            "source_party_rows": stage_meta["source"]["party_row_count"],
-            "modified_trainers": stage_meta["bindings"]["trainer_count"],
-            "bound_battles": stage_meta["bindings"]["bound_battle_count"],
-            "catalog_only_battles": stage_meta["bindings"]["catalog_only_battle_count"],
-            "party_payload_sha256": stage_meta["payload"]["sha256"],
-            "party_payload_size": stage_meta["payload"]["size"],
-            "allocation_overlap_count": stage_meta["allocation"]["overlap_count"],
+            "sha256": trainer_stage_meta["output"]["sha256"],
+            "source_archive_sha256": trainer_stage_meta["source"]["archive_sha256"],
+            "source_battles": trainer_stage_meta["source"]["battle_count"],
+            "source_party_rows": trainer_stage_meta["source"]["party_row_count"],
+            "modified_trainers": trainer_stage_meta["bindings"]["trainer_count"],
+            "bound_battles": trainer_stage_meta["bindings"]["bound_battle_count"],
+            "catalog_only_battles": trainer_stage_meta["bindings"]["catalog_only_battle_count"],
+            "party_payload_sha256": trainer_stage_meta["payload"]["sha256"],
+            "party_payload_size": trainer_stage_meta["payload"]["size"],
+            "allocation_overlap_count": trainer_stage_meta["allocation"]["overlap_count"],
         },
         "features": feature_rows,
         "factory": {
@@ -416,13 +434,28 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
                 "use_condition": "non-commercial; no paywalls or optional donations without explicit permission",
             },
             "reference": _expected_inputs()["battle_factory_reference_patch"],
+            "playable_trial_runtime": {
+                "sha256": stage_meta["output"]["sha256"],
+                "payload_sha256": stage_meta["payload"]["sha256"],
+                "payload_size": stage_meta["payload"]["size"],
+                "map_group": 96,
+                "map_number": 5,
+                "npc_local_id": stage_meta["map"]["facility_object"]["local_id"],
+                "random_candidates": stage_meta["contract"]["random_candidates"],
+                "manual_selections": stage_meta["contract"]["manual_selections"],
+                "battle_count": stage_meta["contract"]["battle_count"],
+                "bp_reward": stage_meta["contract"]["bp_reward"],
+                "exact_party_snapshot_bytes": stage_meta["contract"]["exact_party_snapshot_bytes"],
+                "save_sector": 31,
+                "allocation_overlap_count": stage_meta["allocation"]["overlap_count"],
+            },
             "tiers": [
-                {"name": "Trial", "unlock": "KANTO_EARLY_ACCESS"},
-                {"name": "Standard", "unlock": "FACTORY_STANDARD"},
-                {"name": "Full", "unlock": "FACTORY_FULL"},
-                {"name": "Master", "unlock": "FACTORY_MASTER"},
+                {"name": "Trial", "unlock": "KANTO_EARLY_ACCESS", "runtime_bound": True},
+                {"name": "Standard", "unlock": "FACTORY_STANDARD", "runtime_bound": False},
+                {"name": "Full", "unlock": "FACTORY_FULL", "runtime_bound": False},
+                {"name": "Master", "unlock": "FACTORY_MASTER", "runtime_bound": False},
             ],
-            "operations": ["rental selection", "post-win swap", "streak", "BP shop", "party restore"],
+            "operations": ["random six rentals", "manual three selection", "post-win swap", "three-battle streak", "9 BP", "exact party restore"],
             "mirage_state_owner_isolated": True,
             "link_multi_supported": False,
         },
@@ -430,7 +463,7 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "source": "CFRU-JP src/Battle_AI/**",
             "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
             "profiles": ["AI_BASIC", "AI_SEMI_SMART", "AI_FULL_SMART"],
-            "v4_rank_to_flags": stage_meta["ai"]["rank_to_flags"],
+            "v4_rank_to_flags": trainer_stage_meta["ai"]["rank_to_flags"],
             "default_knowledge_model": "GLOBAL_FIXED_BEFORE_DECISION",
             "encounter_profiles": ["NORMAL", "RESEARCH"],
             "progression": ["TOHOKU_REMATCH_I", "TOHOKU_REMATCH_II", "TOHOKU_REMATCH_III", "LEAGUE_I", "LEAGUE_II", "FINAL_LEAGUE"],
@@ -445,10 +478,10 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
 
 def build_final() -> tuple[bytes, dict[str, object]]:
     if not _stage_is_current():
-        print(f"[{TASK}] trainer V4 stage is absent/stale; rebuilding from pinned clean inputs", flush=True)
+        print(f"[{TASK}] facility runtime stage is absent/stale; rebuilding from pinned clean inputs", flush=True)
         _full_build()
     else:
-        print(f"[{TASK}] verified trainer V4 stage reused", flush=True)
+        print(f"[{TASK}] verified facility runtime stage reused", flush=True)
     stage, stage_meta = _validate_stage()
     metadata = _final_metadata(stage, stage_meta)
     final_path = ROOT / FINAL_ROM
@@ -466,7 +499,7 @@ def _load_valid_final() -> tuple[bytes, dict[str, object], dict[str, Any]]:
     stage, stage_meta = _validate_stage()
     expected_meta = _final_metadata(stage, stage_meta)
     if not final_path.is_file() or final_path.read_bytes() != stage:
-        raise ReleaseError("final ROM is absent or differs from trainer V4 stage")
+        raise ReleaseError("final ROM is absent or differs from facility runtime stage")
     if not meta_path.is_file() or meta_path.read_bytes() != _stable(expected_meta):
         raise ReleaseError("final build metadata is absent or stale")
     return stage, expected_meta, stage_meta
@@ -614,7 +647,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
 - BPS source: clean FireRed Japanese Rev.0 SHA-256 `{_expected_inputs()['clean_firered_jpn_rev0']['sha256']}`
 - BPS round-trip exact target: PASS
 - 32 MiB / BPRJ header checksum: PASS
-- Stage 19 central allocator overlap: 0
+- Stage 20 central allocator overlap: 0
 - Archive members: {scan['members']}; ROM/save/original patch/private path: 0/0/0/0
 - Source pins, input hashes, Factory provenance/reference hash, AI profiles/knowledge model: `BUILD_METADATA.json`へ固定
 - QOL release defaults/unlocks: `README_JA.md` と `FEATURE_MATRIX.csv` の全enabled行を照合

@@ -4,11 +4,13 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18完了後、本編トレーナー再設計V4をstage 19へ実結合し、v1.1.0 releaseへ更新した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、v1.2.0 releaseへ更新した。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
 - V4 AI rankは固定CFRU-JPの既存3段階だけを使用する。rank 1→flags 1、rank 2〜3→flags 3、rank 4〜5→flags 5。stage 19 SHA-256は `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478`。
+- クチバ（group 96 / map 5）へFactory Trial受付NPCを実配置した。固定CFRU-JP生成器の重複なしLv.50候補6体から既存party UIで3体を選び、single 3v3×3、1・2勝後の任意1体交換、各戦全回復、完走9 BPを実ROMで実行する。完走・敗北・辞退・cancel・保存後復旧は入場前party 600 byteをexact復元し、図鑑はseenだけを更新する。
+- Factory ledgerは既存CFRU sector 31へ直接保存し、ROM用2 KiB rollback像をEWRAM `0x0203E400..0x0203EC00`へ配置した。stage 20 SHA-256は `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`、中央allocator overlapは0。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
@@ -91,6 +93,7 @@
 - T17: DONE。Kanto map/wild/trainer/progressionとQOL-Bをstage 17へ実配置し、libmGBA exact-ROM、二地方state、施設/AI/QOL回帰を通過した。
 - T18: DONE。v1.0.0最終ROM、BPS、決定論ZIP、release文書を生成し、隔離fresh checkoutからの完全byte再現を通過した。
 - USER-20260814-TRAINER-V4: DONE。V4本編trainerをstage 19へ実配置し、v1.1.0 release導線へ接続した。
+- USER-20260814-FACILITY-RUNTIME: DONE。クチバFactory Trialの受付・候補6→選択3・3連戦・勝利後交換・BP・sector 31保存・exact復元をstage 20へ実配置し、v1.2.0 release導線へ接続した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 

@@ -4,6 +4,18 @@
 
 - なし。
 
+## 1.2.0 — 2026-08-14
+
+- クチバへBattle Factory Trial受付NPCを実配置。固定CFRU-JP生成器によるLv.50・重複なし
+  候補6体、既存party UIでの3体選択、single 3v3×3を実ROM eventへ結合。
+- 1・2勝後に実対戦相手からランダム保持した1体と、選択した手持ち1体を任意交換する経路を追加。
+  各戦後全回復、3連勝9 BP、seenのみ更新を実装。
+- 参加前6×100 byte partyをsector 31へ保存し、完走・敗北・辞退・cancel・保存後復旧で
+  HP・PP・状態・持ち物を含む600 byteを完全復元。ROM用2 KiB rollbackをEWRAMへ移し、
+  GBA stack破損を防止。
+- 自然new-gameから候補生成、選択、CFRU policy、交換、BP、全出口復元、Flash round-trip、
+  physical NPC/map scriptを2 processのlibmGBA exact-ROM smokeで確認。
+
 ## 1.1.0 — 2026-08-14
 
 - ユーザー提供「ベガ本編トレーナー再設計V4」の141戦・610体をcanonical

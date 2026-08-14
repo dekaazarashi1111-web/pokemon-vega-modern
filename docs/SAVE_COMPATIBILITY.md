@@ -1,4 +1,4 @@
-# Save compatibility — v1.1.0
+# Save compatibility — v1.2.0
 
 ## 推奨
 
@@ -25,5 +25,10 @@ Factoryは参加前party 6体を完全snapshotし、BP・連勝・一回報酬�
 勝敗、棄権、退出、reset、suspend、blackoutの全経路でpartyを復旧する。施設外捕獲NPCは
 空き容量確認後に個体と支払い状態を先に確定し、reset後も同じ個体から再開する。捕獲完了時だけ
 pendingを消す。Mirageの仮想item/stateはFactoryと共有しない。
+
+v1.2.0のFactory Trialは2,048-byte ledgerをCFRU-JPのsector 31 payloadへ直接確定する。
+ROM実行時の2 KiB rollback像はEWRAM `0x0203E400..0x0203EC00`へ置き、GBAの小さい
+call stackへ積まない。入場前partyは6×100 byteで、完走・敗北・辞退・selection cancel・
+保存後復旧のいずれも同じ像から一度だけ戻す。
 
 saveが拒否された場合は書き込みを繰り返さず、backupへ戻して新規saveを開始してください。

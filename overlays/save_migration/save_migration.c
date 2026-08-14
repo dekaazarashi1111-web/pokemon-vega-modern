@@ -9,6 +9,14 @@ _Static_assert(offsetof(VegaModernSaveData, factory) + offsetof(VegaFactoryState
                <= VEGA_SAVE_LEDGER_SIZE,
                "factory snapshot exceeds the ledger");
 
+#if defined(VEGA_SAVE_ROM_RUNTIME)
+#define VEGA_SAVE_DECLARE_BEFORE() VegaModernSaveData *before = gVegaSaveRollbackData
+#else
+#define VEGA_SAVE_DECLARE_BEFORE() \
+    VegaModernSaveData before_storage; \
+    VegaModernSaveData *before = &before_storage
+#endif
+
 static uint8_t IsErasedOrZero(const VegaModernSaveData *data)
 {
     const uint8_t *bytes = (const uint8_t *)data;
@@ -324,31 +332,31 @@ VegaSaveStatus VegaFactoryEnter(VegaModernSaveData *data,
                                 VegaPersistCallback persist,
                                 void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || party == NULL || party_count > VEGA_PARTY_CAPACITY)
         return VEGA_SAVE_INVALID_ARGUMENT;
     if (data->factory.marker != VEGA_FACTORY_OUTSIDE || data->factory.snapshot_valid)
         return VEGA_SAVE_NOT_ALLOWED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     memcpy(data->factory.party_snapshot, party, sizeof(data->factory.party_snapshot));
     data->factory.party_count = party_count;
     data->factory.snapshot_valid = 1;
     data->factory.marker = VEGA_FACTORY_SNAPSHOT_COMMITTED;
     data->factory.transaction_id++;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaFactorySetBattleActive(VegaModernSaveData *data,
                                           VegaPersistCallback persist,
                                           void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || data->factory.marker != VEGA_FACTORY_SNAPSHOT_COMMITTED
         || !data->factory.snapshot_valid)
         return VEGA_SAVE_NOT_ALLOWED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     data->factory.marker = VEGA_FACTORY_BATTLE_ACTIVE;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaFactoryRestore(VegaModernSaveData *data,
@@ -357,13 +365,13 @@ VegaSaveStatus VegaFactoryRestore(VegaModernSaveData *data,
                                   VegaPersistCallback persist,
                                   void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || party == NULL || party_count == NULL)
         return VEGA_SAVE_INVALID_ARGUMENT;
     if (!data->factory.snapshot_valid)
         return VEGA_SAVE_NOT_ALLOWED;
 
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     data->factory.marker = VEGA_FACTORY_RESTORE_PENDING;
     memcpy(party, data->factory.party_snapshot, sizeof(data->factory.party_snapshot));
     *party_count = data->factory.party_count;
@@ -372,7 +380,7 @@ VegaSaveStatus VegaFactoryRestore(VegaModernSaveData *data,
     data->factory.snapshot_valid = 0;
     data->factory.marker = VEGA_FACTORY_OUTSIDE;
     data->factory.transaction_id++;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaFactoryClaimReward(VegaModernSaveData *data,
@@ -381,7 +389,7 @@ VegaSaveStatus VegaFactoryClaimReward(VegaModernSaveData *data,
                                       VegaPersistCallback persist,
                                       void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     uint32_t bit;
     uint32_t result;
     if (data == NULL || reward_index >= 32u)
@@ -389,13 +397,13 @@ VegaSaveStatus VegaFactoryClaimReward(VegaModernSaveData *data,
     bit = 1u << reward_index;
     if ((data->factory.reward_claim_bits & bit) != 0)
         return VEGA_SAVE_ALREADY_CLAIMED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     result = (uint32_t)data->factory.battle_points + bp_amount;
     data->factory.battle_points = (uint16_t)(result > VEGA_BP_CAP ? VEGA_BP_CAP : result);
     data->factory.reward_claim_bits |= bit;
     data->factory.reward_pending = 0;
     data->factory.transaction_id++;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaSavePurchaseEncounter(VegaModernSaveData *data,
@@ -403,7 +411,7 @@ VegaSaveStatus VegaSavePurchaseEncounter(VegaModernSaveData *data,
                                          VegaPersistCallback persist,
                                          void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     VegaPendingEncounter *pending;
     if (data == NULL || request == NULL || request->credit_kind >= VEGA_ENCOUNTER_CREDIT_TYPE_COUNT)
         return VEGA_SAVE_INVALID_ARGUMENT;
@@ -412,7 +420,7 @@ VegaSaveStatus VegaSavePurchaseEncounter(VegaModernSaveData *data,
     if (data->encounter_credits[request->credit_kind] < request->cost)
         return VEGA_SAVE_INSUFFICIENT_CREDIT;
 
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     data->encounter_credits[request->credit_kind] =
         (uint16_t)(data->encounter_credits[request->credit_kind] - request->cost);
     pending = &data->pending_encounter;
@@ -434,7 +442,7 @@ VegaSaveStatus VegaSavePurchaseEncounter(VegaModernSaveData *data,
     memcpy(pending->generator_fingerprint, request->generator_fingerprint,
            sizeof(pending->generator_fingerprint));
     pending->transaction_id = data->generation + 1u;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaSaveCompleteCapture(VegaModernSaveData *data,
@@ -442,16 +450,16 @@ VegaSaveStatus VegaSaveCompleteCapture(VegaModernSaveData *data,
                                        VegaPersistCallback persist,
                                        void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     VegaSaveStatus status;
     if (data == NULL || !data->pending_encounter.valid)
         return VEGA_SAVE_NOT_ALLOWED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     status = BitSet(data->shared_special_capture, shared_key, VEGA_SPECIAL_CAPTURE_COUNT);
     if (status != VEGA_SAVE_OK)
         return status;
     memset(&data->pending_encounter, 0, sizeof(data->pending_encounter));
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaRaidClaimReward(VegaModernSaveData *data,
@@ -459,14 +467,14 @@ VegaSaveStatus VegaRaidClaimReward(VegaModernSaveData *data,
                                    VegaPersistCallback persist,
                                    void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || shared_key >= VEGA_SPECIAL_CAPTURE_COUNT)
         return VEGA_SAVE_RANGE_ERROR;
     if (BitGet(data->raid_reward_claimed, shared_key, VEGA_SPECIAL_CAPTURE_COUNT))
         return VEGA_SAVE_ALREADY_CLAIMED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     BitSet(data->raid_reward_claimed, shared_key, VEGA_SPECIAL_CAPTURE_COUNT);
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaRaidSetRetry(VegaModernSaveData *data,
@@ -475,15 +483,15 @@ VegaSaveStatus VegaRaidSetRetry(VegaModernSaveData *data,
                                 VegaPersistCallback persist,
                                 void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || shared_key >= VEGA_SPECIAL_CAPTURE_COUNT)
         return VEGA_SAVE_RANGE_ERROR;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     if (pending)
         BitSet(data->raid_retry_pending, shared_key, VEGA_SPECIAL_CAPTURE_COUNT);
     else
         data->raid_retry_pending[shared_key >> 3] &= (uint8_t)~(1u << (shared_key & 7u));
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }
 
 VegaSaveStatus VegaRaidSetBonusTier(VegaModernSaveData *data,
@@ -492,12 +500,12 @@ VegaSaveStatus VegaRaidSetBonusTier(VegaModernSaveData *data,
                                     VegaPersistCallback persist,
                                     void *context)
 {
-    VegaModernSaveData before;
+    VEGA_SAVE_DECLARE_BEFORE();
     if (data == NULL || shared_key >= VEGA_SPECIAL_CAPTURE_COUNT || tier > 3u)
         return VEGA_SAVE_RANGE_ERROR;
     if (tier < data->raid_bonus_tier[shared_key])
         return VEGA_SAVE_NOT_ALLOWED;
-    memcpy(&before, data, sizeof(before));
+    memcpy(before, data, sizeof(*before));
     data->raid_bonus_tier[shared_key] = tier;
-    return Commit(data, &before, persist, context);
+    return Commit(data, before, persist, context);
 }

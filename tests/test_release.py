@@ -37,6 +37,20 @@ class BpsTests(unittest.TestCase):
 
 
 class ReleaseContractTests(unittest.TestCase):
+    def test_final_stage_requires_playable_factory_trial(self) -> None:
+        stage, metadata = build_release._validate_stage()
+        self.assertEqual(len(stage), 32 * 1024 * 1024)
+        self.assertEqual(metadata["task"], build_release.STAGE_TASK)
+        self.assertEqual(
+            (
+                metadata["contract"]["random_candidates"],
+                metadata["contract"]["manual_selections"],
+                metadata["contract"]["battle_count"],
+                metadata["contract"]["exact_party_snapshot_bytes"],
+            ),
+            (6, 3, 3, 600),
+        )
+
     def test_release_docs_cover_feature_matrix(self) -> None:
         files = {
             name: (build_release.ROOT / path).read_bytes()

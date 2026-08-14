@@ -10,6 +10,7 @@
 #define VEGA_SAVE_EWRAM_ADDRESS 0x0203D000u
 #define VEGA_SAVE_PARASITE_IMAGE_OFFSET 0x1F18u
 #define VEGA_SAVE_TRANSACTION_SCRATCH_ADDRESS 0x0203E300u
+#define VEGA_SAVE_ROLLBACK_ADDRESS 0x0203E400u
 #define VEGA_NATIONAL_DEX_COUNT 1025u
 #define VEGA_DEX_BYTES ((VEGA_NATIONAL_DEX_COUNT + 7u) / 8u)
 #define VEGA_SPECIAL_CAPTURE_COUNT 125u
@@ -185,6 +186,7 @@ typedef struct VEGA_PACKED VegaModernSaveData {
 
 #define gVegaModernSaveData ((VegaModernSaveData *)(uintptr_t)VEGA_SAVE_EWRAM_ADDRESS)
 #define gVegaSaveTransactionScratch ((uint8_t *)(uintptr_t)VEGA_SAVE_TRANSACTION_SCRATCH_ADDRESS)
+#define gVegaSaveRollbackData ((VegaModernSaveData *)(uintptr_t)VEGA_SAVE_ROLLBACK_ADDRESS)
 
 typedef struct VegaLegacySignals {
     uint8_t recognized_vega_signature;
