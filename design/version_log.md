@@ -296,3 +296,15 @@
   - BPS完全往復、archive禁止物、source/input/toolchain pin、QOL/Factory/AI契約をrelease gateへ固定した。
   - tagged sourceの隔離fresh checkoutからT01〜T17、final/BPS/ZIPを完全再構築し、byte一致させた。
 - Verify: `make release-fresh-check`, `make verify-release`, focused 47 tests、T17 check、manifest/task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997` / `a20a85a5501e134b36020c0b8b169958c1ef1876d26914d725ffeecceaf7c9e4` / `eb11865e3817f4d4ead53f10288a8c31ffa818e6f3e8c8c26c3d9164c7985cf6`。
+
+## 2026-08-14T10:37:50+09:00
+
+- Version: `v1.1.0`
+- Commit: `d2a3aeaa3f9510be0451b09f0c6fee71b4675a4c`（release source tag。完了ログは本エントリを含むコミット）
+- Task: `USER-20260814-TRAINER-V4` / ユーザー提供V4でVega本編トレーナーを再設計する
+- Summary:
+  - V4の141戦・610体をcanonical IDへ全件解決し、既存本編Trainer ID 648件の編成・レベル・道具・技・IV下限・trainer itemをstage 19へ実配置した。
+  - AI rankを固定CFRU-JPのBasic / Semi Smart / Full Smartへ対応し、独自AIを追加せず、名前・class・double battleおよびMirage／未指定Sphereを維持した。
+  - 追加event枠のない21戦と通常ABI外の性格・特性・EV・gimmick triggerは検証済み台帳として保持し、誤った既存戦への接続を拒否した。
+  - v1.1.0最終ROM、clean FireRed日本版Rev.0用BPS、9-member決定論ZIPを生成し、tagged fresh checkoutでもbyte一致させた。
+- Verify: `make trainer-rebalance-check`, focused 11 tests、py_compile、`make final`, `make release-patch`, `make verify-release`, `make release-fresh-check`, task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478` / `2bd167ab762645becd4b2a3eeda348aeb109d4d636d3521e4c753d7ef33ca101` / `6031174f113f671d9001ed8f0b694ef411e5a3b10d4eb5700be89f79580c2d3c`。

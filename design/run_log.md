@@ -684,3 +684,31 @@
   - fresh-checkoutで固定commitのCFRU-JP、DPE-JP、pokefireredを各公式GitHub repositoryからcloneした。
   - <https://github.com/kapibarasan000/CFRU-JP> を参照し、CFRU-JPの公開source、作者表記、README利用条件をcredits/build metadataへ固定した。
   - <https://w.atwiki.jp/pokehackgames/pages/62.html> を参照し、Battle Factory referenceの公開帰属をcreditsへ記録した。
+
+## 2026-08-14T10:37:50+09:00
+
+- Task: `USER-20260814-TRAINER-V4` / ユーザー提供V4でVega本編トレーナーを再設計する
+- Status: DONE
+- Summary:
+  - 私有ZIP `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4.zip` を読み取り専用で安全抽出し、21/21内部検査と同梱SHA256SUMS 20/20を確認した。141戦・610体の2 CSVだけをLF正規化したhash固定入力へ昇格した。
+  - 全Species・Move・Itemをcanonical IDへ解決し、既存本編Trainer ID 648件へ結合した。内訳は主要人物62、実Gym NPC 39、一般・バトルサーチャー547で、名前・class・gender/music・pic・double flagを維持した。
+  - V4 AI rankは固定CFRU-JPの既存段階だけへ対応した（1→`AI_BASIC` flags 1、2〜3→`AI_SEMI_SMART` flags 3、4〜5→`AI_FULL_SMART` flags 5）。独自AIは追加していない。
+  - Species、level、held item、4技、IV下限、trainer item、AIを実ROMへ反映した。通常16-byte TrainerMon ABIに欄のない性格・特性・EV・個別gimmick triggerは台帳へ保持し、追加event枠のない21戦は誤接続せずcatalog-onlyとした。
+  - 8,176-byte共有party payloadを中央allocatorへ配置し、overlap 0の32 MiB stage 19を生成した。Mirageと未指定Sphereを保護し、v1.1.0の最終ROM・BPS・9-member決定論ZIPへ接続した。
+- Files changed:
+  - V4入力・binding: `config/trainer_rebalance_v4.json`, `content/trainer_rebalance_v4/{battles,parties}.csv`, `scripts/build_trainer_rebalance_v4.py`
+  - tests/release: `tests/{test_trainer_rebalance_v4.py,fixtures/trainer_rebalance_v4.json}`, `scripts/build_release.py`, `tools/regression/model.py`, `Makefile`
+  - docs/state: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `design/{catalog,current_state,decisions,import_inventory,import_review,report_lifecycle_index,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/19_trainer_rebalance.{gba,json}`, `build/stages/19_allocation.json`, `build/final/vega-modern-kanto-v1.1.0.{gba,json}`, `dist/release/vega-modern-kanto-v1.1.0{,.zip}`, `reports/generated/{trainer_rebalance_v4*,release_verification.md,release_fresh_checkout.json}`
+- Verify:
+  - `make trainer-rebalance-check`: PASS。7成果のbyte一致、141戦・610体のID解決、648 record、party pointer、AI flags 1/3/5、Mirage/Sphere保護、allocator overlap 0を副作用なしで確認した。
+  - `python3 -m unittest -v tests.test_trainer_rebalance_v4 tests.test_release`: PASS（11 tests）。`python3 -m py_compile scripts/build_trainer_rebalance_v4.py scripts/build_release.py tools/regression/model.py`、known-issues生成照合、`git diff --check`: PASS。
+  - `make final`, `make release-patch`, `make verify-release`: PASS。BPS完全往復、32 MiB/BPRJ header、9 archive member、ROM/save/元patch/private path混入0を確認した。
+  - `make release-fresh-check`: PASS。tag `v1.1.0`の隔離worktreeでT01〜T17、V4 stage 19、final/BPS/ZIPを再構築し、3成果のexact byte一致を確認した。重いfresh-checkは1回だけ実行した。
+  - `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 19 / allocation / V4 report / normalized CSV SHA-256 `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478` / `e5aebf6dbb2b096038d7b1a5fb03ca2b6777cec061a473f92c9ef0b90b009b3d` / `859e61152660dbc337fb2b3258c5af6fb9c6cc4c0336a1d1f0594cf249aa3c56` / `5a9b4ac95514ff394ef41293763cbd9dc7930f113f13810f799048158363c4be`。
+  - final ROM / BPS / ZIP SHA-256 `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478` / `2bd167ab762645becd4b2a3eeda348aeb109d4d636d3521e4c753d7ef33ca101` / `6031174f113f671d9001ed8f0b694ef411e5a3b10d4eb5700be89f79580c2d3c`。
+  - source tag `v1.1.0` -> `d2a3aeaa3f9510be0451b09f0c6fee71b4675a4c`、fresh checkout status `PASS`。
+- Commit: `d2a3aeaa3f9510be0451b09f0c6fee71b4675a4c`（実装・release source tag）、完了ログは本エントリを含むコミット。
+- Network: fresh-checkoutがsource-lock済みCFRU-JP、DPE-JP、pokefirered固定commitを各公式GitHub repositoryからcloneした。新規Web調査は未使用。
