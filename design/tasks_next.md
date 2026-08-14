@@ -23,4 +23,4 @@
 - [x] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->
 - [x] 戦闘UIと有効度表示をCFRU/Factory系へ統一する <!-- id:USER-20260814-BATTLE-UI -->
 - [x] 無料の共通技管理「わざメモリー」を実装する <!-- id:USER-20260814-MOVE-MEMORY -->
-- [ ] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->
+- [>] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->

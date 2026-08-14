@@ -229,8 +229,8 @@ static uint32_t run_natural_new_game(struct mCore *core, color_t *video)
 
 int main(int argc, char **argv)
 {
-    if (argc != 12) {
-        fprintf(stderr, "usage: %s ROM QOL_PROBE MAP_ROOT LAYOUT_ROOT WILD_ROOT PAYLOAD_SIZE PORTAL_TRAVEL RETURN_TRAVEL TRAINER_ROOT PEWTER_SCRIPT CHAMPION_SCRIPT\n",
+    if (argc != 12 && argc != 13) {
+        fprintf(stderr, "usage: %s ROM QOL_PROBE MAP_ROOT LAYOUT_ROOT WILD_ROOT PAYLOAD_SIZE PORTAL_TRAVEL RETURN_TRAVEL TRAINER_ROOT PEWTER_SCRIPT CHAMPION_SCRIPT [VERMILION_EVENT_OBJECTS]\n",
                 argv[0]);
         return 2;
     }
@@ -244,6 +244,8 @@ int main(int argc, char **argv)
     uint32_t trainer_root = parse_u32(argv[9], "trainer root");
     uint32_t pewter_script = parse_u32(argv[10], "Pewter progression script");
     uint32_t champion_script = parse_u32(argv[11], "Champion progression script");
+    uint32_t vermilion_event_objects = argc == 13
+        ? parse_u32(argv[12], "Vermilion event object count") : 1U;
     if ((probe & 1U) == 0 || payload_size == 0
         || !rom_pointer(portal_travel) || !rom_pointer(return_travel)
         || !rom_pointer(trainer_root) || !rom_pointer(pewter_script)
@@ -285,7 +287,7 @@ int main(int argc, char **argv)
     if (read32(core, vermilion_layout) != 48U
         || read32(core, vermilion_layout + 4U) != 40U
         || read16(core, vermilion_header + UINT32_C(0x12)) != 553U
-        || read8(core, vermilion_events) != 1U
+        || read8(core, vermilion_events) != vermilion_event_objects
         || read8(core, vermilion_events + 1U) != 10U)
         die("Kanto entry ABI values differ from canonical map");
 

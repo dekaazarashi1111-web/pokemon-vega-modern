@@ -163,3 +163,18 @@
 - 検証: 重いfresh checkout全再構築はユーザー指示により繰り返さず、stage 20の決定論build、
   中央allocator、物理NPC/script graph、libmGBA exact-ROM 2 process、BPS完全往復へ絞る。
 - 影響: stage 20、save runtime、v1.2.0 release、Factory文書・検証。
+
+## 2026-08-14 — D-020: QOL統合releaseをstage 25と単一save境界で確定する
+
+- 決定: 初戦防御、HM field能力、固定CFRU-JP battle rules、技選択UI、わざメモリーを
+  stage 20→25の順に結合し、stage 25をv1.3.0の唯一の最終ROMとする。各旧stageのfixtureを
+  転記せず、Kanto/QOL-B、Factoryと全QOL runnerへ同じstage 25を渡して再観測する。
+- 保存: stage 20以後にserialized fieldを追加しない。HM解禁はVega HM Item 339〜346のバッグ
+  所持から導出し、わざメモリーの通常／タマゴ技modeはvolatile EWRAM 1 byteだけを使う。
+  v1.2.0 battery saveは互換とし、version間のemulator savestateは引き続き対象外とする。
+- 配布: clean FireRed日本版Rev.0用BPS、32 MiB BPRJ最終ROM、固定順・固定時刻ZIPをv1.3.0へ
+  更新する。archiveへROM、save、元IPS/UPS、private pathを含めない。
+- 検証: 通常worktreeでは検証済みstageをhash一致時に再利用する。全chainの重い再構築は
+  annotated tag `v1.3.0` の隔離fresh worktreeで最後に1回だけ行い、final/BPS/ZIPのbyte一致を
+  release完了gateとする。
+- 影響: stage 25、v1.3.0 release、save互換性、release文書・統合回帰。

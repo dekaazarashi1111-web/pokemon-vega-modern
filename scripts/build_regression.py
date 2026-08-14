@@ -57,7 +57,13 @@ def _qol_fixture(temp: Path) -> dict[str, object]:
     return result
 
 
-def _mgba_fixture(temp: Path, stage: bytes, metadata: dict[str, object]) -> dict[str, object]:
+def _mgba_fixture(
+    temp: Path,
+    stage: bytes,
+    metadata: dict[str, object],
+    *,
+    vermilion_event_objects: int = 1,
+) -> dict[str, object]:
     rom = temp / "17_regression.gba"
     executable = temp / "mgba-regression-smoke"
     rom.write_bytes(stage)
@@ -74,6 +80,7 @@ def _mgba_fixture(temp: Path, stage: bytes, metadata: dict[str, object]) -> dict
         hex(symbols["script_portal_travel"]), hex(symbols["script_return_travel"]),
         hex(symbols["trainer_table"]), hex(symbols["progress::PewterCity_Gym"]),
         hex(symbols["progress::PokemonLeague_ChampionsRoom"]),
+        str(vermilion_event_objects),
     ]
     first = json.loads(_run(args, "libmGBA exact-ROM smoke run 1"))
     second = json.loads(_run(args, "libmGBA exact-ROM smoke run 2"))

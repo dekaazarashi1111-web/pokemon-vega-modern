@@ -1,4 +1,4 @@
-# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.2.0
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.3.0
 
 これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
 Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
@@ -8,9 +8,9 @@ CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず
 ## 適用方法
 
 1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
-2. BPS対応patcherで `vega-modern-kanto-v1.2.0.bps` をそのclean ROMへ直接適用する。
+2. BPS対応patcherで `vega-modern-kanto-v1.3.0.bps` をそのclean ROMへ直接適用する。
 3. 出力が32 MiBで、SHA-256が
-   `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`
+   `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9`
    であることを確認する。
 
 入力ROMのSHA-256は
@@ -51,6 +51,41 @@ D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁�
 - 自動戦闘はD・Hビル攻略後、通常random野生戦だけで選べる。trainer、固定・story・
   legendary・色違いでは通常戦へ戻り、開始前と各turnにcancelできる。
 
+### HMフィールド能力
+
+Vega既存のHM01〜HM08（だいじなものItem 339〜346）をバッグで所持すると、対応する
+フィールド能力を利用できる。HM05はフラッシュ、HM08はダイビング。バッジ、手持ち数、
+対応技を覚えたポケモン、技枠、技の適性は解禁条件にしない。いあいぎり対象、なみのり可能な
+水辺、フラッシュ対象map、follower制約など、実行地点の安全判定は従来どおり残る。
+フィールド能力を使ってもポケモンの技は書き換えない。
+
+### 戦闘規則と技選択表示
+
+戦闘規則は固定CFRU-JP commit `e24a16fe39e27ae162faf5b78596d1f3df18489d` が単独で所有する。
+麻痺は素早さ1/2・行動不能1/4、眠りは付与時2〜4 turn、凍りの自然回復は1/5。毒は最大HPの
+1/8、やけどは1/16、猛毒は1/16から段階増加する。急所倍率は1.5倍で、天候は通常5 turn、
+延長道具で8 turn。雨・晴れの炎/水補正も同じCFRU規則を使う。
+
+戦闘中の技選択画面には、その時点の実タイプと相手ごとの有効度を表示する。通常1×、
+「こうかばつぐん」相当、半減、無効を色分けし、タイプ一致（STAB）も併記する。ダブルでは
+対象ごとに計算し、Stellarとテラバーストのタイプ変更も実damage計算と同じ判定を使う。
+通常野生、trainer、double、Factory Trial、Raidのいずれでも同じUIを使う。
+
+### わざメモリー
+
+1個目のバッジ報酬として、だいじなもの「わざメモリー」（Item 347）を受け取る。既存saveで
+報酬地点を通過済みの場合は、シオウの技管理NPCが未所持分を補う。道具またはシオウ・カラスバの
+NPCから同じmenuを開き、「おもいだす」「わすれる」「タマゴ技」「やめる」を選べる。
+
+- おもいだす: 現在Lv以下のレベル技（Lv.0/1を含む）を無料で習得する。既に覚えている技は候補外。
+- わすれる: 無料。HMも削除できるが、最後の1技、タマゴ、一時form専用技、戦闘・施設・Raid中は
+  拒否する。PP Up段階は技slotと一緒に移動し、ケルディオ等のform連動も更新する。
+- タマゴ技: D・Hビル攻略後に解禁。Vega殿堂入り前はものまねハーブ所持と空き技枠を必要とするが、
+  ハーブは消費しない。殿堂入り後は無料で、空き枠がなければ通常の技選択で入れ替える。
+
+キノコ、ものまねハーブ、その他の道具はどの技管理でも消費しない。PCの技思い出し
+（`PC_RELEARN` / `VEGA_BADGE_2`）も残るが、携帯できるわざメモリーは1個目のバッジから使える。
+
 ### release feature matrix
 
 `release default` と `unlock` は同梱 `FEATURE_MATRIX.csv` の値そのもの。`DEBUG_GIFT=OFF`
@@ -84,7 +119,7 @@ D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁�
 経験アメXS/S、能力capsuleと一部mint、全EV resetはD・H攻略後。power系は5個目badge、
 アメM反復は6個目、アメLと銀冠は7個目、全mint・特性patch・単能力EV reset・標準育成店は
 8個目。アメXLはVega殿堂入り時に一度、Kanto League後に反復解禁される。王冠はSV式で
-実IVを変えず戦闘時だけ31相当。技思い出しは2個目badge後無料。
+実IVを変えず戦闘時だけ31相当。PC技思い出しは2個目badge後、わざメモリーは1個目badge後から無料。
 
 ## Battle Factory
 
@@ -96,11 +131,11 @@ D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁�
 連勝記録とBPはsector 31へ保存する。BP shopと施設外の調査NPCについては、進行条件、
 価格、支払い/credit、空き容量、再開用個体のcontent定義を保持する。
 
-v1.2.0で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
+v1.3.0で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
 Master、BP shop、施設外報酬遭遇は進行・content定義と回帰fixtureを保持しているが、実ROMの
 受付・NPCへはまだ接続していない。
 
-| tier | unlock | 主な形式・mechanic | v1.2.0 runtime |
+| tier | unlock | 主な形式・mechanic | v1.3.0 runtime |
 |---|---|---|---|
 | Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし | 接続済み |
 | Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega | 未接続 |

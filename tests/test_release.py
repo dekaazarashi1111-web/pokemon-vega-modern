@@ -37,10 +37,22 @@ class BpsTests(unittest.TestCase):
 
 
 class ReleaseContractTests(unittest.TestCase):
-    def test_final_stage_requires_playable_factory_trial(self) -> None:
+    def test_final_stage_requires_complete_qol_chain(self) -> None:
         stage, metadata = build_release._validate_stage()
         self.assertEqual(len(stage), 32 * 1024 * 1024)
         self.assertEqual(metadata["task"], build_release.STAGE_TASK)
+        self.assertTrue(all(metadata["acceptance"].values()))
+        self.assertFalse(metadata["ram_audit"]["flash_serialized"])
+        chain = build_release.build_qol_release.validate_stage_chain()
+        fixture = build_release.build_qol_release.validate_published_fixture()
+        self.assertEqual(chain["final_sha256"], metadata["output"]["sha256"])
+        self.assertEqual(fixture["rom_sha256"], metadata["output"]["sha256"])
+        self.assertTrue(all(fixture["continuous_save_contract"].values()))
+
+    def test_factory_trial_remains_bound_below_final_stage(self) -> None:
+        metadata = build_release._read_json(
+            build_release.ROOT / build_release.FACILITY_STAGE_META
+        )
         self.assertEqual(
             (
                 metadata["contract"]["random_candidates"],
@@ -50,6 +62,10 @@ class ReleaseContractTests(unittest.TestCase):
             ),
             (6, 3, 3, 600),
         )
+
+    def test_release_identity_is_v1_3(self) -> None:
+        self.assertEqual(build_release.VERSION, "1.3.0")
+        self.assertEqual(build_release.STAGE.name, "25_move_memory.gba")
 
     def test_release_docs_cover_feature_matrix(self) -> None:
         files = {

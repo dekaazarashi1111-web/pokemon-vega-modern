@@ -160,9 +160,16 @@ BPS往復、8成果のbyte一致を副作用なしで照合する。
 script graph、候補・解禁・削除・contextのlibmGBA結果、allocation、BPS往復、7成果を照合する。
 既存stageを再利用し、公開releaseと全stage fresh rebuildは後続QOL releaseまで更新しない。
 
-`make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
-`bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
-最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。
+`make qol-release-smoke` はstage 20→25のhash chainと各allocationを確認し、同じ最終stage 25を
+Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモリーの既存libmGBA runnerへ渡す。
+`make qol-release-smoke-check` はROM/source/toolchain hashが同じ検証済みfixtureとreportを
+副作用なしで再照合する。stage 20以後にserialized fieldを増やさず、HMはバッグ所持から導出し、
+技管理modeはvolatile RAMだけに置く。
+
+`make final` は既存stage 25とQOL統合fixtureを副作用なしcheckして再利用し、欠落・drift時は
+`bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
+を固定順に実行する。最終ROMとmetadataは
+`build/final/vega-modern-kanto-v1.3.0.{gba,json}` へ出し、stageを上書きしない。
 
 `make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
 独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、

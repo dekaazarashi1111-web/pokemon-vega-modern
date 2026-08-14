@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, package, and verify the reproducible T18 BPS release."""
+"""Build, package, and verify the reproducible v1.3.0 QOL BPS release."""
 
 from __future__ import annotations
 
@@ -23,17 +23,20 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
+from scripts import build_qol_release  # noqa: E402
 
 
-TASK = "T18"
-VERSION = "1.2.0"
+TASK = "USER-20260814-QOL-RELEASE"
+VERSION = "1.3.0"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
-STAGE = Path("build/stages/20_facility_runtime.gba")
-STAGE_META = Path("build/stages/20_facility_runtime.json")
+STAGE = Path("build/stages/25_move_memory.gba")
+STAGE_META = Path("build/stages/25_move_memory.json")
+FACILITY_STAGE_META = Path("build/stages/20_facility_runtime.json")
 TRAINER_STAGE_META = Path("build/stages/19_trainer_rebalance.json")
 BASE_STAGE_META = Path("build/stages/17_regression.json")
-STAGE_TASK = "USER-20260814-FACILITY-RUNTIME"
+QOL_FIXTURE = Path("build/stages/25_mgba_qol_release.json")
+STAGE_TASK = "USER-20260814-MOVE-MEMORY"
 FINAL_ROM = Path(f"build/final/{SLUG}.gba")
 FINAL_META = Path(f"build/final/{SLUG}.json")
 RELEASE_ROOT = Path("dist/release")
@@ -76,6 +79,12 @@ FULL_BUILD_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("scripts/build_regression.py", "build"),
     ("scripts/build_trainer_rebalance_v4.py", "build"),
     ("scripts/build_facility_runtime.py", "build"),
+    ("scripts/build_first_battle_hotfix.py", "build"),
+    ("scripts/build_hm_field_access.py", "build"),
+    ("scripts/build_battle_rules.py", "build"),
+    ("scripts/build_battle_ui.py", "build"),
+    ("scripts/build_move_memory.py", "build"),
+    ("scripts/build_qol_release.py", "build"),
 )
 
 FORBIDDEN_SUFFIXES = {
@@ -90,7 +99,7 @@ PRIVATE_MARKERS = (
 
 
 class ReleaseError(RuntimeError):
-    """A T18 release or reproducibility contract failed."""
+    """A QOL release or reproducibility contract failed."""
 
 
 def _stable(value: object) -> bytes:
@@ -175,11 +184,13 @@ def _full_build() -> None:
 def _stage_is_current() -> bool:
     if not (ROOT / STAGE).is_file() or not (ROOT / STAGE_META).is_file():
         return False
-    completed = subprocess.run(
-        (sys.executable, "scripts/build_facility_runtime.py", "check"), cwd=ROOT,
-        check=False,
-    )
-    return completed.returncode == 0
+    for script in ("scripts/build_move_memory.py", "scripts/build_qol_release.py"):
+        completed = subprocess.run(
+            (sys.executable, script, "check"), cwd=ROOT, check=False,
+        )
+        if completed.returncode:
+            return False
+    return True
 
 
 def _validate_header(rom: bytes) -> dict[str, object]:
@@ -207,26 +218,36 @@ def _validate_stage() -> tuple[bytes, dict[str, Any]]:
     stage_path = ROOT / STAGE
     meta_path = ROOT / STAGE_META
     if not stage_path.is_file() or not meta_path.is_file():
-        raise ReleaseError("facility runtime stage/metadata is missing")
+        raise ReleaseError("stage 25 move-memory ROM/metadata is missing")
     stage = stage_path.read_bytes()
     metadata = _read_json(meta_path)
     output = metadata.get("output")
     invariants = metadata.get("invariants")
     if metadata.get("task") != STAGE_TASK or metadata.get("status") != "PASS":
-        raise ReleaseError("facility runtime metadata does not report PASS")
+        raise ReleaseError("stage 25 move-memory metadata does not report PASS")
     if not isinstance(output, Mapping) or output.get("size") != len(stage) or output.get("sha256") != _sha(stage):
-        raise ReleaseError("facility runtime stage identity differs from metadata")
+        raise ReleaseError("stage 25 identity differs from move-memory metadata")
     if not isinstance(invariants, Mapping) or not invariants or not all(value is True for value in invariants.values()):
-        raise ReleaseError("facility runtime release invariants are incomplete")
+        raise ReleaseError("stage 25 release invariants are incomplete")
     allocation = metadata.get("allocation")
     if not isinstance(allocation, Mapping) or allocation.get("overlap_count") != 0:
-        raise ReleaseError("facility runtime allocation overlap is not zero")
-    contract = metadata.get("contract")
-    if not isinstance(contract, Mapping) or (
-        contract.get("random_candidates"), contract.get("manual_selections"),
-        contract.get("battle_count"), contract.get("exact_party_snapshot_bytes"),
-    ) != (6, 3, 3, 600):
-        raise ReleaseError("facility runtime playable Trial contract is incomplete")
+        raise ReleaseError("stage 25 allocation overlap is not zero")
+    acceptance = metadata.get("acceptance")
+    if not isinstance(acceptance, Mapping) or not acceptance or not all(
+        value is True for value in acceptance.values()
+    ):
+        raise ReleaseError("move-memory acceptance is incomplete")
+    if metadata.get("ram_audit", {}).get("flash_serialized") is not False:
+        raise ReleaseError("move-memory mode must remain outside serialized save data")
+    if metadata.get("exact_rom_fixture", {}).get("status") != "PASS":
+        raise ReleaseError("move-memory exact-ROM fixture is not PASS")
+    try:
+        chain = build_qol_release.validate_stage_chain(ROOT)
+        fixture = build_qol_release.validate_published_fixture(ROOT)
+    except (build_qol_release.QolReleaseError, OSError, ValueError, KeyError) as error:
+        raise ReleaseError(f"stage 20→25 QOL integration differs: {error}") from error
+    if chain.get("final_sha256") != _sha(stage) or fixture.get("rom_sha256") != _sha(stage):
+        raise ReleaseError("QOL integration did not validate the published stage 25")
     _validate_header(stage)
     return stage, metadata
 
@@ -335,7 +356,8 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
         "Trial", "Standard", "Full", "Master", "rental", "交換", "連勝", "BP shop",
         "施設外", "Mirage", "save", "AI_BASIC", "AI_SEMI_SMART", "AI_FULL_SMART",
         "GLOBAL_FIXED_BEFORE_DECISION", "RESEARCH", "Raid", "Mega", "Z", "Tera", "Dynamax",
-        "トレーナー再設計V4",
+        "トレーナー再設計V4", "1個目", "わざメモリー", "D・Hビル", "ものまねハーブ",
+        "HM01", "HM08", "CFRU-JP", "麻痺", "急所", "天候", "こうかばつぐん",
     )
     for topic in required_topics:
         if topic not in readme:
@@ -346,10 +368,13 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
 
 def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, object]:
     revision = _source_revision()
+    facility_stage_meta = _read_json(ROOT / FACILITY_STAGE_META)
     trainer_stage_meta = _read_json(ROOT / TRAINER_STAGE_META)
     base_stage_meta = _read_json(ROOT / BASE_STAGE_META)
+    chain = build_qol_release.validate_stage_chain(ROOT)
+    integration = build_qol_release.validate_published_fixture(ROOT)
     if (
-        stage_meta.get("input", {}).get("sha256")
+        facility_stage_meta.get("input", {}).get("sha256")
         != trainer_stage_meta.get("output", {}).get("sha256")
     ):
         raise ReleaseError("facility runtime input does not match trainer V4 stage")
@@ -374,6 +399,14 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         "overlays/save_migration/save_migration.c",
         "overlays/facility_runtime/facility_runtime.h",
         "overlays/facility_runtime/facility_runtime.c",
+        "config/battle_rules.json", "config/battle_ui.json", "config/move_memory.json",
+        "overlays/hm_field_access/hm_field_access.h",
+        "overlays/hm_field_access/hm_field_access.c",
+        "overlays/battle_ui/battle_ui.h", "overlays/battle_ui/battle_ui.c",
+        "overlays/move_memory/move_memory.h", "overlays/move_memory/move_memory.c",
+        "scripts/build_first_battle_hotfix.py", "scripts/build_hm_field_access.py",
+        "scripts/build_battle_rules.py", "scripts/build_battle_ui.py",
+        "scripts/build_move_memory.py", "scripts/build_qol_release.py",
     )
     return {
         "schema_version": 1,
@@ -424,6 +457,22 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "party_payload_size": trainer_stage_meta["payload"]["size"],
             "allocation_overlap_count": trainer_stage_meta["allocation"]["overlap_count"],
         },
+        "qol_v1_3": {
+            "stage_chain": {
+                str(row["stage"]): row["output_sha256"] for row in chain["rows"]
+            },
+            "integration_fixture_sha256": _sha_file(ROOT / QOL_FIXTURE),
+            "same_final_rom_for_all_components": integration["continuous_save_contract"]["same_final_rom_for_all_components"],
+            "new_serialized_fields_after_stage20": chain["save_contract"]["new_serialized_fields_after_stage20"],
+            "first_battle_branches": len(integration["components"]["first_battle"]["branches"]),
+            "hm_field_capabilities": len(integration["components"]["hm_field"]["hm_cases"]),
+            "battle_rule_owner": integration["components"]["battle_rules"]["owner"],
+            "battle_ui_effect_cases": len(integration["components"]["battle_ui"]["effect_cases"]),
+            "battle_ui_input_return": integration["components"]["battle_ui"]["input_return"],
+            "move_memory_item_id": stage_meta["item"]["id"],
+            "move_memory_mode_persistence": stage_meta["ram_audit"]["persistence"],
+            "acceptance": dict(stage_meta["acceptance"]),
+        },
         "features": feature_rows,
         "factory": {
             "implementation_source": {
@@ -435,19 +484,19 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             },
             "reference": _expected_inputs()["battle_factory_reference_patch"],
             "playable_trial_runtime": {
-                "sha256": stage_meta["output"]["sha256"],
-                "payload_sha256": stage_meta["payload"]["sha256"],
-                "payload_size": stage_meta["payload"]["size"],
+                "sha256": facility_stage_meta["output"]["sha256"],
+                "payload_sha256": facility_stage_meta["payload"]["sha256"],
+                "payload_size": facility_stage_meta["payload"]["size"],
                 "map_group": 96,
                 "map_number": 5,
-                "npc_local_id": stage_meta["map"]["facility_object"]["local_id"],
-                "random_candidates": stage_meta["contract"]["random_candidates"],
-                "manual_selections": stage_meta["contract"]["manual_selections"],
-                "battle_count": stage_meta["contract"]["battle_count"],
-                "bp_reward": stage_meta["contract"]["bp_reward"],
-                "exact_party_snapshot_bytes": stage_meta["contract"]["exact_party_snapshot_bytes"],
+                "npc_local_id": facility_stage_meta["map"]["facility_object"]["local_id"],
+                "random_candidates": facility_stage_meta["contract"]["random_candidates"],
+                "manual_selections": facility_stage_meta["contract"]["manual_selections"],
+                "battle_count": facility_stage_meta["contract"]["battle_count"],
+                "bp_reward": facility_stage_meta["contract"]["bp_reward"],
+                "exact_party_snapshot_bytes": facility_stage_meta["contract"]["exact_party_snapshot_bytes"],
                 "save_sector": 31,
-                "allocation_overlap_count": stage_meta["allocation"]["overlap_count"],
+                "allocation_overlap_count": facility_stage_meta["allocation"]["overlap_count"],
             },
             "tiers": [
                 {"name": "Trial", "unlock": "KANTO_EARLY_ACCESS", "runtime_bound": True},
@@ -478,10 +527,10 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
 
 def build_final() -> tuple[bytes, dict[str, object]]:
     if not _stage_is_current():
-        print(f"[{TASK}] facility runtime stage is absent/stale; rebuilding from pinned clean inputs", flush=True)
+        print(f"[{TASK}] stage 25/QOL fixture is absent or stale; rebuilding from pinned clean inputs", flush=True)
         _full_build()
     else:
-        print(f"[{TASK}] verified facility runtime stage reused", flush=True)
+        print(f"[{TASK}] verified stage 25 and QOL integration fixture reused", flush=True)
     stage, stage_meta = _validate_stage()
     metadata = _final_metadata(stage, stage_meta)
     final_path = ROOT / FINAL_ROM
@@ -489,7 +538,7 @@ def build_final() -> tuple[bytes, dict[str, object]]:
     final_path.parent.mkdir(parents=True, exist_ok=True)
     final_path.write_bytes(stage)
     meta_path.write_bytes(_stable(metadata))
-    print(f"T18 final: PASS ({len(stage)} bytes, sha256={_sha(stage)})")
+    print(f"QOL release final: PASS ({len(stage)} bytes, sha256={_sha(stage)})")
     return stage, metadata
 
 
@@ -499,7 +548,7 @@ def _load_valid_final() -> tuple[bytes, dict[str, object], dict[str, Any]]:
     stage, stage_meta = _validate_stage()
     expected_meta = _final_metadata(stage, stage_meta)
     if not final_path.is_file() or final_path.read_bytes() != stage:
-        raise ReleaseError("final ROM is absent or differs from facility runtime stage")
+        raise ReleaseError("final ROM is absent or differs from stage 25")
     if not meta_path.is_file() or meta_path.read_bytes() != _stable(expected_meta):
         raise ReleaseError("final build metadata is absent or stale")
     return stage, expected_meta, stage_meta
@@ -630,7 +679,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
     patch = files[PATCH_NAME]
     fresh = _fresh_status(_sha(final), _sha(patch), _sha(archive))
     metadata = json.loads(files["BUILD_METADATA.json"])
-    return f"""# T18 release verification
+    return f"""# v1.3.0 QOL release verification
 
 ## 結論
 
@@ -647,7 +696,8 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
 - BPS source: clean FireRed Japanese Rev.0 SHA-256 `{_expected_inputs()['clean_firered_jpn_rev0']['sha256']}`
 - BPS round-trip exact target: PASS
 - 32 MiB / BPRJ header checksum: PASS
-- Stage 20 central allocator overlap: 0
+- Stage 20→25 hash chain / central allocator overlap: PASS / 0
+- Same final ROM QOL integration smoke: PASS
 - Archive members: {scan['members']}; ROM/save/original patch/private path: 0/0/0/0
 - Source pins, input hashes, Factory provenance/reference hash, AI profiles/knowledge model: `BUILD_METADATA.json`へ固定
 - QOL release defaults/unlocks: `README_JA.md` と `FEATURE_MATRIX.csv` の全enabled行を照合
@@ -685,7 +735,7 @@ def build_patch() -> tuple[bytes, dict[str, bytes], bytes]:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_bytes(report)
     print(
-        f"T18 patch: PASS ({len(files)} members, patch={len(files[PATCH_NAME])} bytes, "
+        f"QOL release patch: PASS ({len(files)} members, patch={len(files[PATCH_NAME])} bytes, "
         f"archive_sha256={_sha(archive)})"
     )
     return final, files, archive
@@ -715,7 +765,7 @@ def verify_release() -> tuple[bytes, dict[str, bytes], bytes]:
     if not report_path.is_file() or report_path.read_bytes() != expected_report:
         raise ReleaseError("release verification report is absent or stale")
     print(
-        f"T18 verify: PASS (round-trip sha256={_sha(final)}, "
+        f"QOL release verify: PASS (round-trip sha256={_sha(final)}, "
         f"archive members={scan['members']}, side effects NONE)"
     )
     return final, expected_files, expected_archive
@@ -761,7 +811,7 @@ def fresh_checkout_check() -> dict[str, object]:
     # cross-filesystem metadata latency and makes the clean rebuild practical.
     temporary_parent = Path("/tmp") if Path("/tmp").is_dir() else None
     with tempfile.TemporaryDirectory(
-        prefix="vega-t18-fresh-", dir=temporary_parent
+        prefix="vega-qol-fresh-", dir=temporary_parent
     ) as temporary:
         checkout = Path(temporary) / "checkout"
         _run(("git", "worktree", "add", "--detach", str(checkout), revision), label="fresh worktree")
@@ -799,7 +849,7 @@ def fresh_checkout_check() -> dict[str, object]:
     path = ROOT / FRESH_EVIDENCE
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(_stable(evidence))
-    print(f"T18 fresh-checkout: PASS (revision={revision}, exact final/patch/ZIP)")
+    print(f"QOL release fresh-checkout: PASS (revision={revision}, exact final/patch/ZIP)")
     return evidence
 
 
@@ -817,7 +867,7 @@ def main() -> int:
         else:
             fresh_checkout_check()
     except (ReleaseError, BpsError, OSError, ValueError, KeyError, json.JSONDecodeError, zipfile.BadZipFile) as error:
-        print(f"T18 {args.mode}: FAIL: {error}", file=sys.stderr)
+        print(f"QOL release {args.mode}: FAIL: {error}", file=sys.stderr)
         return 1
     return 0
 
