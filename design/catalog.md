@@ -47,6 +47,7 @@
 - `scripts/build_trainer_rebalance_v4.py`: ユーザー提供V4の141戦・610体をcanonical IDへ解決し、既存本編Trainer IDへstage 19として決定的に結合・照合
 - `scripts/build_facility_runtime.py`: stage 19へクチバFactory Trialの物理NPC、3戦script、CFRU候補生成・交換・sector 31保存runtimeをstage 20として決定的に結合・照合
 - `scripts/build_first_battle_hotfix.py`: stage 20の行動順schedulerへ不正Quick Claw/Custap indicator防御を14-byte命令patchとして適用し、stage 21・allocation・実ROM回帰・BPS往復を決定的に生成・照合
+- `scripts/build_hm_field_access.py`: stage 21へVega HM01〜08所持runtimeと8 callback guardを結合し、stage 22・allocation・実ROM境界・BPS往復を決定的に生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -111,4 +112,5 @@
 - `config/trainer_rebalance_v4.json`, `content/trainer_rebalance_v4/`, `scripts/build_trainer_rebalance_v4.py`: V4入力hash、AI段階、既存Trainer ID対応、stage 19本編trainer結合の正本
 - `overlays/facility_runtime/`, `tools/mgba_facility_runtime_smoke.c`, `scripts/build_facility_runtime.py`: Factory Trialの実ROM受付・候補6→選択3・勝利後交換・3連戦・BP・exact復元・stage 20の正本
 - `tools/mgba_first_battle_loop_smoke.c`, `scripts/build_first_battle_hotfix.py`: 初戦3分岐、不正indicator fault injection、正規Quick Claw/Custap/Quick Draw、stage 21の正本
+- `overlays/hm_field_access/`, `tools/mgba_hm_field_access_smoke.c`, `scripts/build_hm_field_access.py`: Vega Item 339〜346、party非依存field能力、地形/callback境界、stage 22の正本
 - `tools/release/`, `scripts/build_release.py`: T18のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

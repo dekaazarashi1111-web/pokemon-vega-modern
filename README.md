@@ -76,6 +76,8 @@ make facility-runtime # クチバFactory Trialの受付・6候補・交換・保
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
 make first-battle-hotfix-check # 初戦3分岐・fault injection・正規優先効果・BPS往復を再照合
+make hm-field-access # Vega HM所持だけでfield能力を使えるstage 22を生成
+make hm-field-access-check # 8 HM・手持ち3条件・地形境界・BPS往復を再照合
 make final       # clean入力からv1.2.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
@@ -124,6 +126,12 @@ Lv.50候補生成器で重複なし6体を作る。既存party UIで3体を選�
 Item ID 0の初戦リープンを「？？？？？？？？」通知へ誤送出する経路をhold effect再検証で遮断する。
 初戦3分岐、正規のせんせいのツメ・イバンのみ・クイックドロウ、clean ROMからのBPS往復を
 libmGBAで検証する。公開releaseへの統合と重いfresh rebuildは全QOL完了時に1回だけ行う。
+
+追加stage 22はstage 21を再利用し、Vega既存HM01〜08（Item 339〜346）のバッグ所持を
+フィールド能力の唯一の解禁条件にする。HM05はフラッシュ、HM08はダイビングとして扱い、
+CFRU追加HM IDや手持ちの習得・適性・技枠へ依存しない。既存の地形、map、follower、script
+入力境界は維持し、ポケモンへ技を書き込まない。実ROMで8種×手持ち0体／未習得／習得済み、
+Surf状態、callback gate、clean ROMからのBPS往復を検証する。公開release更新は最終QOL統合まで行わない。
 
 ## 効率方針
 

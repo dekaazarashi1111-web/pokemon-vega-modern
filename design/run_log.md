@@ -792,3 +792,28 @@
   - memory生成BPS SHA-256 `573ee2970017c6250ee1a4c47ad567761af7c58e05c1f9d929529c4199fe12f9`、round-trip exact `true`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みCFRU-JP source、既存stage 20、clean私有入力だけを参照した。
+
+## 2026-08-14T13:37:12+09:00
+
+- Task: `USER-20260814-HM-FIELD-ACCESS` / HM所持だけで対応フィールド技を使用可能にする
+- Status: DONE
+- Summary:
+  - Vegaの実HMを既存Item 339〜346として監査し、CFRU統合時に生成された追加HM別名570〜577をfield解禁へ使わないよう分離した。HM05はVegaのフラッシュ、HM08はVegaのダイビングへ固定した。
+  - 408-byte Thumb runtimeをstage 21後方の中央allocatorへ配置し、HM所持、Surf状態、既存map/terrain/follower callbackだけで可否を決めるstage 22を生成した。badge、手持ち数、技習得、習得適性、技枠を解禁条件から外した。
+  - party menuの8 field callbackへHM所持guardを置き、HM未所持で技だけ知っている迂回を拒否した。Cut/Flyのparty menu追加はVega既存Item IDへ戻し、badgeと習得適性を要求しない。技、story flag、save fieldは書き込まない。
+  - libmGBA exact-ROMで8 HMすべてを手持ち0体／未習得／習得済みの3条件で検査し、未所持6→入手直後0→snapshot復元後0を確認した。Surf中／非Surf中の相互境界、所持時callbackと元map gateの同値、clean ROMからのBPS完全往復もPASSした。
+  - 既存stage 21を再利用し、重い全stage再構築、公開release更新、fresh checkout buildは実行していない。
+- Files changed:
+  - runtime/build: `overlays/hm_field_access/**`, `scripts/build_hm_field_access.py`, `tools/mgba_hm_field_access_smoke.c`, `Makefile`
+  - tests: `tests/test_hm_field_access.py`
+  - task/docs/state: `tasks/USER_20260814_HM_FIELD_ACCESS.md`, `README.md`, `docs/{BUILD_PIPELINE,QOL_POLICY,TEST_STRATEGY}.md`, `design/{agent_context_map,catalog,current_state,report_lifecycle_index,tasks_next,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/22_hm_field_access.{gba,json}`, `build/stages/{22_allocation,22_mgba_hm_field_access}.json`, `generated/runtime/hm_field_access*`, `reports/generated/hm_field_access.md`
+- Verify:
+  - `make hm-field-access-check`: PASS。7成果のbyte一致、stage 21入力hash、408-byte runtime、宣言patchだけの変更、allocator overlap 0、libmGBA 2 process、BPS完全往復を確認した。
+  - `python3 -m unittest tests.test_hm_field_access -v`: PASS（4 tests）。Vega HM ID、party非依存、保存相当復元、Surf/callback境界、move/story/save非書込み、決定論stageを検査した。
+  - `python3 -m py_compile scripts/build_hm_field_access.py`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 22 / runtime / allocation / mGBA smoke SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf` / `9821d0fe561f9ec62d76e3d5e6dd4476b4191d4cbe12b955b23d73aefc324d5b` / `8da26566114c3fa0260a9c1e93b3219c0c693546da302473f210f3c9a49b409f` / `d1f1138521f84758bee5bf0fc437883bf46b7844e28d4f3de07dc921606b0f47`。
+  - memory生成BPS SHA-256 `a3127dff9116b63af22a9a9de63ab723fd0d3f5ba8f926aeef957e388e986a06`、round-trip exact `true`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みCFRU-JP source、既存stage 21、clean私有入力だけを参照した。

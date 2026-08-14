@@ -19,11 +19,11 @@
 
 ## 受入条件
 
-- [ ] 全対応HMで入手前FAIL、入手直後PASSを実ROMまたは同一runtime fixtureで確認する。
-- [ ] 手持ち0体・未習得・習得済みの差でfield利用可否が変わらない。
-- [ ] 使用禁止map/地形、script lock、HM未所持の安全境界を維持する。
-- [ ] HMを忘れてもfield能力を失わず、save/load後も同じである。
-- [ ] Vegaのstory進行、warp、map object、既存HM入手eventを壊さない。
+- [x] 全対応HMで入手前FAIL、入手直後PASSを実ROMまたは同一runtime fixtureで確認する。
+- [x] 手持ち0体・未習得・習得済みの差でfield利用可否が変わらない。
+- [x] 使用禁止map/地形、script lock、HM未所持の安全境界を維持する。
+- [x] HMを忘れてもfield能力を失わず、save/load後も同じである。
+- [x] Vegaのstory進行、warp、map object、既存HM入手eventを壊さない。
 
 ## 完了
 

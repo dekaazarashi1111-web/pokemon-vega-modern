@@ -49,7 +49,7 @@
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
-- HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、T02 field/QOL監査、Vega field move hook、`docs/QOL_POLICY.md`。
+- HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules/UI: `tasks/USER_20260814_BATTLE_RULES.md`、`tasks/USER_20260814_BATTLE_UI.md`、固定CFRU-JP battle source、T06 hook/runtime表、Factory参照fixture。
 - わざメモリー: `tasks/USER_20260814_MOVE_MEMORY.md`、T09 learnset、CFRU技思い出し/技忘れ、Vegaシオウ/カラスバevent、item callback。
 - QOL release: `tasks/USER_20260814_QOL_RELEASE.md`、`scripts/build_release.py`、`docs/RELEASE_POLICY.md`、各先行taskの検証済みstage/hash。

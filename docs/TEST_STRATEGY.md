@@ -45,6 +45,12 @@ Item ID 0へ残留Quick Claw/Custap indicatorを命令境界で注入し、通�
 ことを確認する。正規Quick Claw、Custap、Quick Drawは遅いbankを先頭へ移し、通知1回で
 同じターンを完了することを別fixtureで検証する。
 
+HM field能力回帰ではVega既存HM01〜08（Item 339〜346）を1個ずつ追加し、追加前は拒否値6、
+追加直後とsnapshot復元後は許可値0になることをexact-ROMで確認する。各HMは手持ち0体、
+技未習得、技習得済みを同じ結果にし、move書込みと新規story/save flagを0件にする。
+Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反転して検査し、party callbackは
+未所持を拒否し、所持時には元のmap/terrain callbackと同じ結果を返すことを確認する。
+
 ## 4. Vega regression
 
 主要checkpoint saveを個人環境で作り、次を確認します。

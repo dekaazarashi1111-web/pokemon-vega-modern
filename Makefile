@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check hm-field-access hm-field-access-check final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -117,6 +117,12 @@ first-battle-hotfix:
 
 first-battle-hotfix-check:
 	$(PYTHON) scripts/build_first_battle_hotfix.py check
+
+hm-field-access:
+	$(PYTHON) scripts/build_hm_field_access.py build
+
+hm-field-access-check:
+	$(PYTHON) scripts/build_hm_field_access.py check
 
 final:
 	$(PYTHON) scripts/build_release.py final

@@ -339,3 +339,14 @@
   - 初戦3分岐とfault injectionで不正通知0、PP/HP更新を確認し、正規Quick Claw / Custap / Quick Drawの先行効果と各1回通知を維持した。
   - 既存stage 20を再利用し、新規allocation 0、clean ROMからのBPS完全往復を確認した。公開release更新と重いfresh buildは後続統合まで保留した。
 - Verify: `make first-battle-hotfix-check`、focused 4 tests、py_compile、task graph/private guard、diff check PASS。stage 21 SHA-256 `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521`。
+
+## 2026-08-14T13:37:12+09:00
+
+- Version: `hm-field-access-stage22`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-HM-FIELD-ACCESS` / HM所持だけで対応フィールド技を使用可能にする
+- Summary:
+  - Vega既存HM Item 339〜346をfield能力の正本にし、CFRU追加別名、badge、手持ち、習得、適性、技枠から分離した。
+  - 8 callbackの未所持迂回を閉じ、既存map/terrain/follower/script境界を維持する408-byte runtimeをstage 22へ結合した。
+  - 8 HM×手持ち3条件、保存相当復元、Surf状態、callback gate、BPS往復を実ROMで確認した。公開releaseと重いfresh buildは後続統合まで保留した。
+- Verify: `make hm-field-access-check`、focused 4 tests、py_compile、task graph/private guard、diff check PASS。stage 22 SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。

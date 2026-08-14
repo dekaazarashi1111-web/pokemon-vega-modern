@@ -17,6 +17,13 @@ Vega本編、DPE/CFRU統合、二地方化と同じrelease scopeで、現代的�
 - 既存のsummary/PC右欄、標準list menu、数量選択、Yes/No、文字入力、技思い出し、PC、Optionsを再利用する。収まらない設定だけ既存list部品の簡易 `QOL設定` を1枚使う。
 - IV/EVは新規専用pageを作らず、summaryの既存情報欄とPC右欄をSELECT/L/Rで切り替える同一のcompact text rendererにする。barや新規graphは必須にしない。
 - 複数使用は既存数量選択、検索は標準list＋既存文字入力、複数選択は既存PC上の簡易marker、技変更は既存技思い出し画面、field PCは既存PC画面をそのまま開く。
+
+## HMフィールド能力
+
+- Vega既存HM01〜08をバッグに所持した時点で、対応能力を解禁する。HM05はフラッシュ、HM08はダイビングとする。
+- badge、手持ち数、技習得、習得適性、空き技枠は解禁条件にしない。HMを忘れても能力は失わない。
+- HMは消費せず、save fieldやstory flagを新設せず、save/load後もバッグ所持から導出する。
+- map、地形、向き、Surf状態、follower、実行中scriptの既存安全境界は維持する。技を一時的にもポケモンへ書き込まない。
 - QOL解禁eventは、原則として既存NPCまたは端末への短い会話、条件check、flag、道具/機能解禁だけで完了させる。専用map、長いcutscene、escort、minigame、複数段階の演出は作らない。
 - 「quest」は既存進行flag・捕獲数・所持条件を1回確認して報酬を渡す簡易依頼を意味する。カントー預かり屋依頼、D・H端末、タマムシ研究NPCもこの形に統一する。
 - 元Vega/FireRedに既にある地形仕掛けやgym puzzleは再利用してよいが、新規追加eventの演出規模は `SIMPLE_EVENT` を既定にする。

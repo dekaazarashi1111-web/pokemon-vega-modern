@@ -129,6 +129,13 @@ party pointer、変更span、allocator overlapを副作用なしで再照合す�
 Custap / Quick Draw、allocation overlap 0、clean ROMからのBPS完全往復を副作用なしで照合する。
 全stageの再構築や公開release更新は行わず、最終QOL統合gateまでstage 21を後続入力として保持する。
 
+`make hm-field-access` は検証済みstage 21へ408-byte Thumb runtimeを中央allocatorで配置し、
+Vega既存HM Item 339..346をfield能力へ対応させたstage 22を生成する。CFRUの追加HM別名、
+badge、party move、TM/HM適性は解禁判定に使わず、既存callbackへ入る直前だけHM所持をguardする。
+`make hm-field-access-check` は8 HMの入手前後、手持ち0体／未習得／習得済み、save相当snapshot復元、
+Surf中／非Surf中、既存map callback、allocation overlap 0、clean ROMからのBPS完全往復を
+libmGBA 2 processと成果byteで副作用なしに照合する。公開releaseとfresh rebuildは更新しない。
+
 `make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
 最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。
