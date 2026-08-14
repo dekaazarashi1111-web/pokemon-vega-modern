@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260814-BATTLE-RULES",
+  "input": {
+    "path": "build/stages/22_hm_field_access.gba",
+    "sha256": "64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf"
+  },
+  "source": {
+    "name": "CFRU-JP",
+    "path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+  },
+  "owner": {
+    "kind": "CFRU_PAYLOAD",
+    "main_command_table": "0x0903F450",
+    "secondary_command_table": "0x0903F850",
+    "command_roots": [
+      "0x0801443C",
+      "0x08015240",
+      "0x08015480",
+      "0x080154AC",
+      "0x0801C864"
+    ],
+    "hooks": {
+      "speed": {"site": "0x080144F8", "register": 3},
+      "end_turn": {"site": "0x08017A68", "register": 0},
+      "status": {"site": "0x0801F730", "register": 2}
+    },
+    "commands": {
+      "attack_canceler": 0,
+      "critical": 4,
+      "damage": 5,
+      "rain": 125,
+      "sand": 149,
+      "sun": 187,
+      "hail": 200
+    }
+  },
+  "defaults": {
+    "paralysis": {
+      "speed_divisor": 2,
+      "immobility_denominator": 4
+    },
+    "sleep": {
+      "application_turns_min": 2,
+      "application_turns_max": 4,
+      "normal_decrement": 1,
+      "early_bird_decrement": 2
+    },
+    "freeze": {
+      "thaw_denominator": 5
+    },
+    "residual": {
+      "poison_max_hp_divisor": 8,
+      "burn_max_hp_divisor": 16,
+      "heatproof_burn_max_hp_divisor": 32,
+      "toxic_max_hp_divisor": 16,
+      "toxic_counter_cap": 15,
+      "pinned_first_tick_counter_after_update": 1,
+      "pinned_first_tick_damage_units": 2
+    },
+    "critical": {
+      "stage_denominators": [24, 8, 2, 1, 1],
+      "base_multiplier_tenths": 10,
+      "critical_multiplier_tenths": 15
+    },
+    "weather": {
+      "move_duration": 5,
+      "extender_duration": 8,
+      "ability_duration": 5,
+      "rain_fire_multiplier_tenths": 5,
+      "rain_water_multiplier_tenths": 15,
+      "sun_fire_multiplier_tenths": 15,
+      "sun_water_multiplier_tenths": 5,
+      "expires_at_zero": true
+    }
+  },
+  "forbidden_active_defines": [
+    "OLD_BURN_DAMAGE",
+    "OLD_PARALYSIS_SPD_DROP",
+    "INFINITE_WEATHER",
+    "OLD_CRIT_DAMAGE",
+    "CRIT_CHANCE_GEN_6",
+    "CRIT_CHANCE_GEN_2_TO_5"
+  ],
+  "mode_regression": {
+    "exact_rom": ["wild", "trainer", "double"],
+    "policy_exact_rom": ["facility", "raid"],
+    "policy_source": "tools/mgba_battle_policy_smoke.c",
+    "policy_symbols_source": "build/stages/06_battle_core.json"
+  }
+}

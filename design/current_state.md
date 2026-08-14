@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22へ追加した。公開releaseは引き続きv1.2.0で、全QOL統合後に更新する。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23へ追加した。公開releaseは引き続きv1.2.0で、全QOL統合後に更新する。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
@@ -13,6 +13,7 @@
 - Factory ledgerは既存CFRU sector 31へ直接保存し、ROM用2 KiB rollback像をEWRAM `0x0203E400..0x0203EC00`へ配置した。stage 20 SHA-256は `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`、中央allocator overlapは0。
 - 初戦の相手リープンはItem ID 0 / hold effect 0で正常だが、行動順schedulerが残留Quick Claw/Custap indicatorを再検証せず通知へ進むと、Item 0名の「？？？？？？？？」を反復して行動が止まることを命令単位fault injectionで再現した。stage 21は通知直前にhold effect 26/96を再検証し、それ以外を破棄して同じターンを継続する。3御三家、正規Quick Claw/Custap/Quick Draw、clean ROMからのBPS完全往復がPASSし、SHA-256は `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521`。新規allocationは0。
 - Vegaの実HMは既存Item 339〜346で、CFRU追加別名570〜577とは分離した。stage 22はHM05をフラッシュ、HM08をダイビングとして、バッグ所持だけでfield能力を許可する。badge、手持ち数、習得、適性、技枠を解禁条件から外し、既存map/terrain/follower/script境界とcallbackを維持する。8 HM×手持ち0体／未習得／習得済み、snapshot復元、Surf状態、BPS往復がPASSし、SHA-256は `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`、runtimeは408 bytes、allocation overlapは0。
+- stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
@@ -78,7 +79,7 @@
 
 - USER-20260814-FIRST-BATTLE-LOOP: DONE。残留Quick Claw/Custap indicatorをhold effect再検証で破棄し、stage 21の実ROM回帰を通した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。Vega既存HM所持を正本にし、手持ち・習得・badgeから分離したstage 22の実ROM境界を通した。
-- USER-20260814-BATTLE-RULES: 状態異常・急所・天候の現行ownerを監査し、固定CFRU-JP既定へ統一する。
+- USER-20260814-BATTLE-RULES: DONE。現行ownerが単一CFRU payloadであることをsource/hook/固定RNGで確定し、zero-patch stage 23と全mode回帰を通した。
 - USER-20260814-BATTLE-UI: 通常戦を含むbattle UIと有効度表示をCFRU/Factory系へ統一する。
 - USER-20260814-MOVE-MEMORY: だいじなものと既存NPCが共用する無料の技思い出し・技忘れ・段階解禁タマゴ技を実装する。
 - USER-20260814-QOL-RELEASE: 上記QOLを統合し、最後に重いfresh rebuildを1回だけ実行してreleaseを確定する。
@@ -105,6 +106,7 @@
 - USER-20260814-FACILITY-RUNTIME: DONE。クチバFactory Trialの受付・候補6→選択3・3連戦・勝利後交換・BP・sector 31保存・exact復元をstage 20へ実配置し、v1.2.0 release導線へ接続した。
 - USER-20260814-FIRST-BATTLE-LOOP: DONE。stage 20を再利用した14-byte命令patchと将来のCFRU source再構築guardを追加し、初戦3分岐・不正indicator注入・正規優先効果3種・BPS往復をstage 21で検証した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。stage 21へVega HM Item 339〜346を正本とするruntimeと8 callback guardを結合し、party非依存・Surf状態・保存相当復元・BPS往復をstage 22で検証した。
+- USER-20260814-BATTLE-RULES: DONE。stage 22のCFRU rule owner/defaultを監査し、麻痺・主要状態・急所・天候、単一適用、通常/double/Factory/Raidをzero-patch stage 23で検証した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 

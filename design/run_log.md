@@ -817,3 +817,29 @@
   - memory生成BPS SHA-256 `a3127dff9116b63af22a9a9de63ab723fd0d3f5ba8f926aeef957e388e986a06`、round-trip exact `true`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みCFRU-JP source、既存stage 21、clean私有入力だけを参照した。
+
+## 2026-08-14T14:10:33+09:00
+
+- Task: `USER-20260814-BATTLE-RULES` / 状態異常・急所・天候を固定CFRU-JP既定へ統一する
+- Status: DONE
+- Summary:
+  - 固定CFRU-JP `e24a16fe39e27ae162faf5b78596d1f3df18489d` のconfigとruntime sourceを正本に、麻痺速度・行動不能、眠り、凍り、毒、猛毒、やけど、急所段階/倍率、天候継続/補正/終了を監査した。旧世代define 6種は全て無効だった。
+  - stage 22の5 stock battle-script rootは同じmain command table `0x0903F450` を参照し、行動順、end-turn、status hookと対象command handlerを含む15 surfaceは検証済みT06からbyte不変だった。現行/期待/修正後ownerはいずれも単一`CFRU_PAYLOAD`で、Vega fallback patchは不要だった。
+  - 固定RNG実ROMで麻痺速度1/2・行動不能1/4、眠り3→2、凍り解凍1/5、毒1/8、固定source runtimeの猛毒初回、やけど1/16、急所stage分母24/8/2/1/1・1.5倍、4天候5 turn・延長8 turn・雨晴れ補正・duration 0終了を確認した。
+  - end-turn residualはHPを直接二重更新せず、bankを1度進めて1回分のbattle script damageだけを予約した。通常wild、trainer、4 battler double、Factory Trial 24 matrix、Raid 5 shield/turn-limit/end/cleanupを現行stage exact-ROMでPASSした。
+  - 対象値は既に正しかったため追加ROM patch 0、allocation追加0で、stage 22とbyte-identicalなstage 23を確定した。clean FireRed日本版Rev.0からのBPS完全往復を確認し、重い全stage再構築と公開release更新は行っていない。
+- Files changed:
+  - config/build: `config/battle_rules.json`, `scripts/build_battle_rules.py`, `Makefile`
+  - exact-ROM/tests: `tools/mgba_battle_rules_smoke.c`, `tests/test_battle_rules.py`
+  - task/docs/state: `README.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY}.md`, `design/{agent_context_map,catalog,current_state,report_lifecycle_index,tasks_next,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/23_battle_rules.{gba,json}`, `build/stages/{23_allocation,23_mgba_battle_rules,23_mgba_battle_policy}.json`, `reports/generated/battle_rules.md`
+- Verify:
+  - `make battle-rules-check`: PASS。6成果のbyte一致、固定source/config、単一owner、15 surface、zero-patch stage、allocator overlap 0、BPS完全往復を確認した。
+  - `python3 -m unittest tests.test_battle_rules`: PASS（6 tests）。固定RNGの状態異常・急所・天候、二重適用拒否、通常/trainer/double/Factory/Raid、stage 22/23同一性を検査した。
+  - current-stage libmGBA policy smoke: PASS。41 actual battle setups、612 bounded calls、Factory 24 matrix、Raid 5 shield、scheduler end/cleanup、通常戦へのleak 0を確認した。
+  - `python3 -m py_compile scripts/build_battle_rules.py`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyと重いfresh rebuildは実行していない。
+- Report identity:
+  - stage 23 / allocation / battle-rule mGBA / policy mGBA / report SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf` / `8da26566114c3fa0260a9c1e93b3219c0c693546da302473f210f3c9a49b409f` / `200fac88cd5c0cc473e16ec21daa6f3ecc98c2721ca229330cd47ec23fd09e44` / `932d98de45cbdcff5f78281f66de707cf6d32642df370d76859949dae9e53d9c` / `42b5a6395fa1bf40690bec46c255b8249b829ed00bfb6f665ca4be4bb5ce0811`。
+  - memory生成BPS SHA-256 `c8a82df7010419c18397f673757b3af23487278d4725312e06e054a3f7d96fba`、round-trip exact `true`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みCFRU-JP source、検証済みstage 06/22、clean私有入力だけを参照した。

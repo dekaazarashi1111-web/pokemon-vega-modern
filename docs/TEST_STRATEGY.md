@@ -114,6 +114,8 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
 - 手持ち/box満杯、タマゴ5個queue、まとめ受取、孵化NORMAL/FAST/SKIPで個体、図鑑、nicknameの同一性を検査する。まるいおまもりは公式100種/quest境界と生成成功率2倍を固定RNGで比較する。
 - PC検索、複数移動、一括逃がし、`field_pc_allowed`、relearn pool内技変更、技/持ち物操作、登録済み預かり親から256歩ごとに共有5個queueへ生成するタマゴバスケット、通常random野生限定の自動戦闘を、禁止個体/道具/map/戦闘、色違い、cancel、容量不足、save/load込みで検査する。
 - 各badge、D・Hビル、Vega殿堂入り、Kanto Leagueの直前/直後でfirst-availabilityと反復供給を照合する。
+- stage 23で麻痺速度1/2・行動不能1/4、眠り減少、凍り解凍1/5、毒1/8、固定CFRU猛毒counter、やけど1/16、急所stage分母と1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNGで検査する。
+- end-turn状態damageはHPを直接更新せず1回分のbattle scriptだけを予約し、5 stock rootが単一CFRU command tableを指すことを検査する。wild/trainer/doubleは専用fixture、Factory/Raidは現行stageのpolicy scheduler回帰を使う。
 
 ## 8. Trainer AI・難易度
 

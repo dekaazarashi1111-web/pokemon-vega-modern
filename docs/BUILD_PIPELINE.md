@@ -136,6 +136,14 @@ badge、party move、TM/HM適性は解禁判定に使わず、既存callbackへ�
 Surf中／非Surf中、既存map callback、allocation overlap 0、clean ROMからのBPS完全往復を
 libmGBA 2 processと成果byteで副作用なしに照合する。公開releaseとfresh rebuildは更新しない。
 
+`make battle-rules` は検証済みstage 22の5 battle-script root、command table、行動順・end-turn・
+status hookと各handlerを固定CFRU-JP `e24a16f...` のsource/defaultへ照合する。legacy defineが全て
+無効で、現行ownerが既に単一CFRU payloadだったためROM patchは追加せず、byte-identicalなstage 23を
+生成する。`make battle-rules-check` は麻痺、眠り、凍り、毒、猛毒、やけど、急所、4天候を固定RNGで
+再照合し、残HPを直接二重更新せず1回分だけdamageを予約すること、通常/trainer/double、Factory Trial、
+Raidの現行stage回帰、allocation overlap 0、clean ROMからのBPS完全往復を確認する。libmGBA fixtureは
+ROM/source/toolchain hashが一致する検証済み成果を再利用し、全stage再構築は行わない。
+
 `make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
 最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。

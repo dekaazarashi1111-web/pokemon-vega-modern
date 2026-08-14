@@ -19,10 +19,10 @@
 
 ## 受入条件
 
-- [ ] 各ruleについて現行owner、固定CFRU既定値、修正後ownerを証跡化する。
-- [ ] 麻痺、主要状態異常、急所、主要天候の固定RNG fixtureがCFRU既定値と一致する。
-- [ ] 同じダメージ・残ターン・状態更新が二重適用されない。
-- [ ] 通常戦、double、Factory Trial、Raidの対象回帰がPASSする。
+- [x] 各ruleについて現行owner、固定CFRU既定値、修正後ownerを証跡化する。
+- [x] 麻痺、主要状態異常、急所、主要天候の固定RNG fixtureがCFRU既定値と一致する。
+- [x] 同じダメージ・残ターン・状態更新が二重適用されない。
+- [x] 通常戦、double、Factory Trial、Raidの対象回帰がPASSする。
 
 ## 完了
 

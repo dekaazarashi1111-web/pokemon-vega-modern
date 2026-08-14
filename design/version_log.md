@@ -350,3 +350,14 @@
   - 8 callbackの未所持迂回を閉じ、既存map/terrain/follower/script境界を維持する408-byte runtimeをstage 22へ結合した。
   - 8 HM×手持ち3条件、保存相当復元、Surf状態、callback gate、BPS往復を実ROMで確認した。公開releaseと重いfresh buildは後続統合まで保留した。
 - Verify: `make hm-field-access-check`、focused 4 tests、py_compile、task graph/private guard、diff check PASS。stage 22 SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。
+
+## 2026-08-14T14:10:33+09:00
+
+- Version: `battle-rules-stage23`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-BATTLE-RULES` / 状態異常・急所・天候を固定CFRU-JP既定へ統一する
+- Summary:
+  - stage 22の状態異常・行動順・急所・damage・天候が固定CFRU-JP payloadの単一ownerで、legacy defineとVega fallbackが有効でないことをsource/hook単位で確定した。
+  - 麻痺、眠り、凍り、毒、猛毒、やけど、急所、4天候と単一damage予約を固定RNG実ROMで検証した。
+  - 通常/trainer/double、Factory Trial、Raidを現行ROMで通し、追加patch 0のbyte-identical stage 23を確定した。公開releaseと重いfresh buildは後続統合まで保留した。
+- Verify: `make battle-rules-check`、focused 6 tests、current-stage policy smoke、py_compile、task graph/private guard、diff check PASS。stage 23 SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。

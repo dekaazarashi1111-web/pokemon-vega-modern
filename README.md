@@ -78,6 +78,8 @@ make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を
 make first-battle-hotfix-check # 初戦3分岐・fault injection・正規優先効果・BPS往復を再照合
 make hm-field-access # Vega HM所持だけでfield能力を使えるstage 22を生成
 make hm-field-access-check # 8 HM・手持ち3条件・地形境界・BPS往復を再照合
+make battle-rules # 固定CFRU-JPの状態異常・急所・天候ownerをstage 23として確定
+make battle-rules-check # 固定RNG・通常/double/Factory/Raid回帰・BPS往復を再照合
 make final       # clean入力からv1.2.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
@@ -132,6 +134,12 @@ libmGBAで検証する。公開releaseへの統合と重いfresh rebuildは全QO
 CFRU追加HM IDや手持ちの習得・適性・技枠へ依存しない。既存の地形、map、follower、script
 入力境界は維持し、ポケモンへ技を書き込まない。実ROMで8種×手持ち0体／未習得／習得済み、
 Surf状態、callback gate、clean ROMからのBPS往復を検証する。公開release更新は最終QOL統合まで行わない。
+
+追加stage 23はstage 22を再利用し、5個のstock battle-script root、状態異常、行動順、急所、
+damage、天候のownerが固定CFRU-JP payloadだけであることを確認する。麻痺1/2・行動不能1/4、
+眠り・凍り、毒・猛毒・やけど、急所1.5倍とstage分母、天候5/8 turn・damage補正・終了を
+固定RNGの実ROMで検査する。対象byteは既に正しかったため追加patchは0件で、stage 22とbyte-identical。
+通常、trainer、double、Factory Trial、Raidを現行stageで通し、重い全再構築は行わない。
 
 ## 効率方針
 

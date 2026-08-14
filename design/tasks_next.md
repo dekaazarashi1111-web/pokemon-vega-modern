@@ -20,7 +20,7 @@
 - [x] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->
 - [x] HM所持だけで対応フィールド技を使用可能にする <!-- id:USER-20260814-HM-FIELD-ACCESS -->
-- [ ] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->
+- [x] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->
 - [ ] 戦闘UIと有効度表示をCFRU/Factory系へ統一する <!-- id:USER-20260814-BATTLE-UI -->
 - [ ] 無料の共通技管理「わざメモリー」を実装する <!-- id:USER-20260814-MOVE-MEMORY -->
 - [ ] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->
