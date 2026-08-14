@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260814-TRAINER-V4",
+  "source": {
+    "archive_name": "VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4.zip",
+    "archive_sha256": "0655648e4d54bd29c49a13deeae997cbf5465f717d7f1513540bc20fdefdbac8",
+    "archive_size": 333031,
+    "extracted_tree_sha256": "3297bb18421e894c981cdfa1ed5e50efc23e2be43d1aa3a416a51cfecbf51589",
+    "parties": {
+      "path": "content/trainer_rebalance_v4/parties.csv",
+      "sha256": "afa351bfba80b5ad157f6e63bbc82691986bcde3c73f5ce7fcafabe29841c326",
+      "rows": 610
+    },
+    "battles": {
+      "path": "content/trainer_rebalance_v4/battles.csv",
+      "sha256": "255e1c2c3e6f199abb8e0813ad3738555fb899cfd7670242860fce86b374450d",
+      "rows": 141
+    }
+  },
+  "ai_rank_to_cfru_flags": {
+    "1": 1,
+    "2": 3,
+    "3": 3,
+    "4": 5,
+    "5": 5
+  },
+  "ai_profiles": {
+    "1": "AI_BASIC",
+    "3": "AI_SEMI_SMART",
+    "5": "AI_FULL_SMART"
+  },
+  "species_aliases": {
+    "イエッサン♀": "SPECIES_KEY_INDEEDEE_FEMALE",
+    "ウォッシュロトム": "SPECIES_KEY_ROTOM_WASH",
+    "ガチグマ（アカツキ）": "SPECIES_KEY_URSALUNA_BLOODMOON",
+    "キュウコン（アローラ）": "SPECIES_KEY_NINETALES_A",
+    "ゾロアーク（ヒスイ）": "SPECIES_KEY_ZOROARK_H",
+    "タテボーシ前段階": "SPECIES_KEY_VEGA_008",
+    "ドレディア（ヒスイ）": "SPECIES_KEY_LILLIGANT_H",
+    "ヒートロトム": "SPECIES_KEY_ROTOM_HEAT",
+    "マタドガス（ガラル）": "SPECIES_KEY_WEEZING_G",
+    "メタゲラス前段階": "SPECIES_KEY_VEGA_050",
+    "ランドロス（霊獣）": "SPECIES_KEY_LANDORUS_THERIAN",
+    "ロトム（ヒート）": "SPECIES_KEY_ROTOM_HEAT"
+  },
+  "move_aliases": {
+    "なし": "MOVE_KEY_NONE"
+  },
+  "item_aliases": {
+    "なし": "ITEM_KEY_NONE",
+    "でんきメモリ": "ITEM_KEY_ELECTRIC_MEMORY"
+  },
+  "direct_bindings": {
+    "14": "RIVAL03_PLAYER_FAMER",
+    "15": "RIVAL03_PLAYER_ACTASHI",
+    "16": "RIVAL03_PLAYER_LEEPUN",
+    "29": "RIVAL04_PLAYER_FAMER",
+    "30": "RIVAL04_PLAYER_ACTASHI",
+    "31": "RIVAL04_PLAYER_LEEPUN",
+    "45": "NABARI03",
+    "46": "TURNER01",
+    "64": "RIVAL05_PLAYER_FAMER",
+    "65": "RIVAL05_PLAYER_ACTASHI",
+    "66": "RIVAL05_PLAYER_LEEPUN",
+    "69": "MOSUGISU_PRELEAGUE",
+    "130": "TURNER03_FINAL",
+    "171": "NABARI01",
+    "223": "JACKIE01",
+    "291": "NABARI02",
+    "326": "RIVAL01_PLAYER_FAMER",
+    "327": "RIVAL01_PLAYER_ACTASHI",
+    "328": "RIVAL01_PLAYER_LEEPUN",
+    "329": "RIVAL02_PLAYER_FAMER",
+    "330": "RIVAL02_PLAYER_ACTASHI",
+    "331": "RIVAL02_PLAYER_LEEPUN",
+    "341": "TURNER02",
+    "350": "GYM08_MEWTWO",
+    "410": "LEAGUE01_HOONOKI",
+    "411": "LEAGUE02_MIYAMA",
+    "412": "LEAGUE03_YACHIYO",
+    "413": "LEAGUE04_KANZO",
+    "414": "GYM01_AMANA",
+    "415": "GYM05_MOKU_REN",
+    "416": "GYM06_SAZANKA",
+    "417": "GYM02_NAGINATA",
+    "418": "GYM03_KIRI",
+    "419": "GYM07_KONAGI",
+    "420": "GYM04_HANZA",
+    "438": "CHAMPION_GINNO",
+    "554": "JACKIE_FINAL",
+    "556": "MOSUGISU_FINAL",
+    "590": "GEORGE01",
+    "673": "GYM_R1_AMANA",
+    "674": "GYM_R1_NAGINATA",
+    "675": "GYM_R1_KIRI",
+    "676": "GYM_R1_HANZA",
+    "677": "GYM_R1_MOKU_REN",
+    "678": "GYM_R1_SAZANKA",
+    "679": "GYM_R1_KONAGI",
+    "680": "GYM_R1_MEWTWO",
+    "704": "GYM_RF_AMANA",
+    "705": "GYM_RF_NAGINATA",
+    "706": "GYM_RF_KIRI",
+    "707": "GYM_RF_HANZA",
+    "708": "GYM_RF_MOKU_REN",
+    "709": "GYM_RF_SAZANKA",
+    "710": "GYM_RF_KONAGI",
+    "711": "GYM_RF_MEWTWO",
+    "714": "AREA_KAZUKI_FINAL",
+    "715": "AREA_MIDORI_FINAL",
+    "735": "LEAGUE_FINAL_HOONOKI",
+    "736": "LEAGUE_FINAL_MIYAMA",
+    "737": "LEAGUE_FINAL_YACHIYO",
+    "738": "LEAGUE_FINAL_KANZO",
+    "739": "LEAGUE_FINAL_GINNO"
+  },
+  "gym_trainer_bindings": {
+    "1": [142],
+    "2": [132, 160, 265],
+    "3": [288, 289, 292, 295],
+    "4": [280, 282, 283, 462, 463],
+    "5": [133, 150, 234, 266, 267, 293, 294, 402],
+    "6": [141, 220, 281, 297, 323, 392, 423, 464],
+    "7": [177, 178, 179, 180, 213, 214, 215, 322, 324, 401],
+    "8": []
+  },
+  "generic_roles": [
+    "general",
+    "battle_searcher_rematch"
+  ],
+  "preserved_roles": [
+    "mirage",
+    "sphere_boss"
+  ],
+  "live_fields": [
+    "species",
+    "level",
+    "held_item",
+    "moves",
+    "iv_floor",
+    "trainer_items",
+    "ai_profile"
+  ],
+  "catalog_only_fields": [
+    "ability",
+    "nature",
+    "ev_profile",
+    "gimmick_type",
+    "gimmick_trigger"
+  ]
+}

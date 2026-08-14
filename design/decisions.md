@@ -128,3 +128,20 @@
 - Runtime受渡し: T05の生成Cは配置前semantic tableであり、上流のpositional runtime ABI表ではない。T06で実`struct Item`/icon表999行とAbility名/説明312行をcanonical順に再生成し、全consumerのrepoint、全行round-trip、source ID直index不在をhard gateとする。832 ID分の`itemObtainedFlags`はT08でresize/translationするまで関連featureを有効化しない。
 - 追加type/QOL: FairyとStellarは表示icon、RGB/BGR555色、25×25相性、特殊規則をactive契約とし、Stellar runtimeはT06でbindする。経験アメ5種と単能力EV reset 6種は末尾988〜998へ置き、既存育成道具を含む45 QOL効果をstable keyへ固定する。
 - 影響: T05、T06、T07、T09、T10、T12、T16、Type/Ability/Item参照と生成表。
+
+## 2026-08-14 — D-018: 本編トレーナー再設計V4を既存IDへ決定的に結合する
+
+- 決定: V4の141戦・610体をcanonical Species/Move/Itemへ厳密解決し、Vega本編に実在する
+  Trainer IDへ明示または決定的policyで結合する。主要人物は名前・進行段階・既存party、Gym
+  trainerは実map上のNPC、一般・バトルサーチャーは元level/class/double属性を根拠にする。
+- AI: V4独自の6段階AIは作らず、固定CFRU-JP commit `e24a16f...` の既存段階を流用する。
+  rank 1はflags 1、rank 2〜3はflags 3、rank 4〜5はflags 5とする。
+- ABI: 通常TrainerMonへSpecies、level、held item、4技、IV下限を入れ、Trainer recordへ
+  trainer itemとAI flagsを入れる。名前、class、gender/music、pic、double flagは保持する。
+  通常ABIに欄のない性格・特性・EV・個別gimmick triggerは入力台帳に保持し、広範なbattle
+  core改造は行わない。
+- 安全境界: Mirageと未指定Sphereを一般対応から除外する。追加event/Trainer IDのない21戦は
+  推測で既存戦へ上書きせずcatalog-onlyとし、実イベントが追加された時だけ明示bindする。
+- 配置: stage 17のrepoint済みTrainer tableをexpected input hash付きでin-place更新し、共有party
+  blobだけを中央allocatorのintegration_modulesへ追加する。元ROM、ZIP、stage 17は変更しない。
+- 影響: stage 19、v1.1.0 release、Vega本編trainer、release文書・検証。

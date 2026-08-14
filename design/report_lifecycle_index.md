@@ -27,7 +27,8 @@
 - T15 Kanto progression: `make kanto-progression` が39-node DAG、253 map gate、35 QOL境界、Factory 4 tier、再戦/League、Research/TM/DexNav/Raid state matrixと `reports/generated/progression_graph.md` を生成する。`make kanto-progression-check` は5成果のbyte一致と副作用なしを照合する。
 - T16 Content population: `make content-population` が15 manifest、4 content policy、`build/stages/16_content.{gba,json}`、中央allocation、`reports/generated/{kanto_content_audit,trainer_balance_audit}.md` を生成する。`make content-population-check` は96論理地点、541系統×2地方、125共有捕獲key、価格/進行/合法性、ROM payload、stage外byte不変、allocation overlap 0、29成果のbyte一致と副作用なしを照合する。
 - T17 Regression: `make regression` が `build/stages/17_regression.{gba,json}`、中央allocation、QOL-B runtime、Kanto map/wild/trainer/progression実体、manual checkpointと4 regression reportを生成する。`make regression-check` は2回のbyte同一build、libmGBA 2 process、QOL-B host境界、253 map往復到達、400地方往復、125共有捕獲、施設/AI/event状態fixture、16成果のbyte一致を副作用なしで照合する。
-- T18 Release: `make final` / `make release-patch` が32 MiB最終ROM、BPS、9-member決定論ZIP、`reports/generated/release_verification.md` を生成する。`make verify-release` はBPS完全往復とarchive禁止物を副作用なしで照合し、`make release-fresh-check` はtagged sourceの隔離worktreeからT01〜T17を再構築してfinal/BPS/ZIPのbyte一致証跡を生成する。
+- USER Trainer V4: `make trainer-rebalance` が `build/stages/19_trainer_rebalance.{gba,json}`、中央allocation、正規化CSV、binding台帳、結合reportを生成する。`make trainer-rebalance-check` は141戦・610体のID解決、既存Trainer record、party pointer、AI flags 1/3/5、Mirage保護、変更span、7成果のbyte一致を副作用なしで照合する。
+- T18 Release: `make final` / `make release-patch` がstage 19から32 MiB最終ROM、BPS、9-member決定論ZIP、`reports/generated/release_verification.md` を生成する。`make verify-release` はBPS完全往復とarchive禁止物を副作用なしで照合し、`make release-fresh-check` はtagged sourceの隔離worktreeからT01〜T17とV4結合を再構築してfinal/BPS/ZIPのbyte一致証跡を生成する。
 
 `reports/generated/**` は `make clean-build` で削除可能なため、タスク完了時は生成コマンド、入力/source/config/tool fingerprint、主要成果hashを `design/run_log.md` または追跡対象manifestへ残す。生成レポートだけを唯一の跨セッション証跡にしない。
 

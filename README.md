@@ -70,7 +70,9 @@ make content-population # T16二地方encounter/trainer/itemとROM payloadを生
 make content-population-check # T16 manifest・中央allocation・stage 16を副作用なしで再照合
 make regression # T17実Kanto map/QOL-B/trainer進行をstage 17へ統合してlibmGBA回帰
 make regression-check # T17の16成果を副作用なしで再生成・照合
-make final       # clean入力からv1.0.0最終ROMとbuild metadataを生成
+make trainer-rebalance # V4本編trainerをstage 17へ結合してstage 19を生成
+make trainer-rebalance-check # V4のID解決・record・party pointerを副作用なしで照合
+make final       # clean入力からv1.1.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -99,11 +101,15 @@ T10はstage 09上の追加オコリザルと追加Move/Ability/Item/進化をlib
 
 T17はstage 16から253 Kanto map、180 layout、51 tileset、133 Kanto wild header、29 trainer/174 party row、8 gym＋Leagueの実eventを中央allocatorへ配置します。自然なnew gameからクチバ描画・移動・Vega帰還、QOL-B Thumb実行、trainer pointer graphを同一32 MiB ROMでlibmGBA 2 process検証し、広い状態空間は固定fixtureへ分離します。
 
-T18は `make final` でT03〜T17をclean入力から再構築可能にし、clean FireRed日本版Rev.0へ
+T18 release導線は `make final` でT03〜T17と追加stage 19をclean入力から再構築可能にし、clean FireRed日本版Rev.0へ
 直接適用するBPSだけを配布します。patchの再適用結果、32 MiB最終hash、固定ZIP byte、
 ROM/save/元patch/private path不在、source pin、QOL/Factory/AI/save説明を機械検証します。
 遊び方と適用方法は `docs/RELEASE_README_JA.md`、save互換性は
 `docs/SAVE_COMPATIBILITY.md` を参照してください。
+
+追加stage 19はユーザー提供の本編トレーナー再設計V4（141戦・610体）をcanonical IDへ解決し、
+実在するVega Trainer IDへ決定的に結合します。AI rankは固定CFRU-JPのBasic / Semi Smart /
+Full Smartへ対応し、Mirage・未指定Sphereの施設編成は変更しません。
 
 ## 効率方針
 

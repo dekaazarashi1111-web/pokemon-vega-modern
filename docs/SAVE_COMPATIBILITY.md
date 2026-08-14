@@ -1,4 +1,4 @@
-# Save compatibility — v1.0.0
+# Save compatibility — v1.1.0
 
 ## 推奨
 

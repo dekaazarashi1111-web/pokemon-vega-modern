@@ -44,6 +44,7 @@
 - `scripts/build_full_kanto_import.py`: T14本土scope 256件を253 operational mapへ変換し、接続・ID・tileset・allocationを検証
 - `scripts/build_kanto_progression.py`: T15の二段階Kanto進行、QOL、Factory 4 tier、再戦/League、Research/Raid境界を生成・照合
 - `scripts/build_content_population.py`: T16の二地方encounter/trainer/item/facility/Raidを生成し、中央allocator管理の32 MiB stage 16へ配置・照合
+- `scripts/build_trainer_rebalance_v4.py`: ユーザー提供V4の141戦・610体をcanonical IDへ解決し、既存本編Trainer IDへstage 19として決定的に結合・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -105,4 +106,5 @@
 - `content/{kanto,qol,facility,trainer}_progression.csv`, `content/kanto_state_model.csv`: T15の進行DAG、解禁境界、save ownership正本
 - `content/{map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`, `manifests/{kanto,tohoku,research,raid,facility,reward}*.csv`: T16の二地方物理binding、NORMAL保護、trainer/施設/報酬content正本
 - `overlays/qol_b/`, `tools/regression/`, `scripts/build_regression.py`: T17のQOL-B、実Kanto ROM serializer、拡張trainer/progression、exact-ROM/state regression
+- `config/trainer_rebalance_v4.json`, `content/trainer_rebalance_v4/`, `scripts/build_trainer_rebalance_v4.py`: V4入力hash、AI段階、既存Trainer ID対応、stage 19本編trainer結合の正本
 - `tools/release/`, `scripts/build_release.py`: T18のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

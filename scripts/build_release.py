@@ -26,11 +26,13 @@ from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
 
 
 TASK = "T18"
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
-STAGE = Path("build/stages/17_regression.gba")
-STAGE_META = Path("build/stages/17_regression.json")
+STAGE = Path("build/stages/19_trainer_rebalance.gba")
+STAGE_META = Path("build/stages/19_trainer_rebalance.json")
+BASE_STAGE_META = Path("build/stages/17_regression.json")
+STAGE_TASK = "USER-20260814-TRAINER-V4"
 FINAL_ROM = Path(f"build/final/{SLUG}.gba")
 FINAL_META = Path(f"build/final/{SLUG}.json")
 RELEASE_ROOT = Path("dist/release")
@@ -71,6 +73,7 @@ FULL_BUILD_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("scripts/build_kanto_progression.py", "build"),
     ("scripts/build_content_population.py", "build"),
     ("scripts/build_regression.py", "build"),
+    ("scripts/build_trainer_rebalance_v4.py", "build"),
 )
 
 FORBIDDEN_SUFFIXES = {
@@ -171,7 +174,7 @@ def _stage_is_current() -> bool:
     if not (ROOT / STAGE).is_file() or not (ROOT / STAGE_META).is_file():
         return False
     completed = subprocess.run(
-        (sys.executable, "scripts/build_regression.py", "check"), cwd=ROOT,
+        (sys.executable, "scripts/build_trainer_rebalance_v4.py", "check"), cwd=ROOT,
         check=False,
     )
     return completed.returncode == 0
@@ -202,20 +205,20 @@ def _validate_stage() -> tuple[bytes, dict[str, Any]]:
     stage_path = ROOT / STAGE
     meta_path = ROOT / STAGE_META
     if not stage_path.is_file() or not meta_path.is_file():
-        raise ReleaseError("T17 stage/metadata is missing")
+        raise ReleaseError("trainer V4 stage/metadata is missing")
     stage = stage_path.read_bytes()
     metadata = _read_json(meta_path)
     output = metadata.get("output")
     invariants = metadata.get("invariants")
-    if metadata.get("task") != "T17" or metadata.get("status") != "PASS":
-        raise ReleaseError("T17 metadata does not report PASS")
+    if metadata.get("task") != STAGE_TASK or metadata.get("status") != "PASS":
+        raise ReleaseError("trainer V4 metadata does not report PASS")
     if not isinstance(output, Mapping) or output.get("size") != len(stage) or output.get("sha256") != _sha(stage):
-        raise ReleaseError("T17 stage identity differs from metadata")
+        raise ReleaseError("trainer V4 stage identity differs from metadata")
     if not isinstance(invariants, Mapping) or not invariants or not all(value is True for value in invariants.values()):
-        raise ReleaseError("T17 release invariants are incomplete")
+        raise ReleaseError("trainer V4 release invariants are incomplete")
     allocation = metadata.get("allocation")
     if not isinstance(allocation, Mapping) or allocation.get("overlap_count") != 0:
-        raise ReleaseError("T17 allocation overlap is not zero")
+        raise ReleaseError("trainer V4 allocation overlap is not zero")
     _validate_header(stage)
     return stage, metadata
 
@@ -324,6 +327,7 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
         "Trial", "Standard", "Full", "Master", "rental", "交換", "連勝", "BP shop",
         "施設外", "Mirage", "save", "AI_BASIC", "AI_SEMI_SMART", "AI_FULL_SMART",
         "GLOBAL_FIXED_BEFORE_DECISION", "RESEARCH", "Raid", "Mega", "Z", "Tera", "Dynamax",
+        "トレーナー再設計V4",
     )
     for topic in required_topics:
         if topic not in readme:
@@ -334,6 +338,12 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
 
 def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, object]:
     revision = _source_revision()
+    base_stage_meta = _read_json(ROOT / BASE_STAGE_META)
+    if (
+        stage_meta.get("input", {}).get("sha256")
+        != base_stage_meta.get("output", {}).get("sha256")
+    ):
+        raise ReleaseError("trainer V4 input does not match published stage17")
     feature_rows = _feature_rows()
     ai_profiles = [
         row["feature_key"] for row in feature_rows if row["feature_key"] == "ENCOUNTER_PROFILE"
@@ -343,6 +353,9 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         "content/trainer_progression.csv", "manifests/trainer_ai_profiles.csv",
         "manifests/kanto_trainers.csv", "manifests/tohoku_trainers.csv",
         "manifests/research_encounters.csv", "manifests/raid_encounters.csv",
+        "config/trainer_rebalance_v4.json",
+        "content/trainer_rebalance_v4/battles.csv",
+        "content/trainer_rebalance_v4/parties.csv",
     )
     return {
         "schema_version": 1,
@@ -370,16 +383,28 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "header": _validate_header(stage),
         },
         "stage17": {
+            "sha256": base_stage_meta["output"]["sha256"],
+            "payload_sha256": base_stage_meta["payload"]["sha256"],
+            "payload_size": base_stage_meta["payload"]["size"],
+            "allocation_overlap_count": base_stage_meta["allocation"]["overlap_count"],
+            "remaining_allocatable_bytes": base_stage_meta["allocation"]["remaining_allocatable_bytes"],
+            "physical_kanto_maps": base_stage_meta["maps"]["physical_count"],
+            "kanto_wild_headers": base_stage_meta["wild"]["kanto_header_count"],
+            "generated_trainers": base_stage_meta["trainers"]["generated_trainers"],
+            "trainer_party_rows": base_stage_meta["trainers"]["production_rows_bound"],
+            "qol_b_runtime_sha256": base_stage_meta["qol_b"]["sha256"],
+        },
+        "trainer_rebalance_v4": {
             "sha256": _sha(stage),
-            "payload_sha256": stage_meta["payload"]["sha256"],
-            "payload_size": stage_meta["payload"]["size"],
+            "source_archive_sha256": stage_meta["source"]["archive_sha256"],
+            "source_battles": stage_meta["source"]["battle_count"],
+            "source_party_rows": stage_meta["source"]["party_row_count"],
+            "modified_trainers": stage_meta["bindings"]["trainer_count"],
+            "bound_battles": stage_meta["bindings"]["bound_battle_count"],
+            "catalog_only_battles": stage_meta["bindings"]["catalog_only_battle_count"],
+            "party_payload_sha256": stage_meta["payload"]["sha256"],
+            "party_payload_size": stage_meta["payload"]["size"],
             "allocation_overlap_count": stage_meta["allocation"]["overlap_count"],
-            "remaining_allocatable_bytes": stage_meta["allocation"]["remaining_allocatable_bytes"],
-            "physical_kanto_maps": stage_meta["maps"]["physical_count"],
-            "kanto_wild_headers": stage_meta["wild"]["kanto_header_count"],
-            "generated_trainers": stage_meta["trainers"]["generated_trainers"],
-            "trainer_party_rows": stage_meta["trainers"]["production_rows_bound"],
-            "qol_b_runtime_sha256": stage_meta["qol_b"]["sha256"],
         },
         "features": feature_rows,
         "factory": {
@@ -405,6 +430,7 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "source": "CFRU-JP src/Battle_AI/**",
             "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
             "profiles": ["AI_BASIC", "AI_SEMI_SMART", "AI_FULL_SMART"],
+            "v4_rank_to_flags": stage_meta["ai"]["rank_to_flags"],
             "default_knowledge_model": "GLOBAL_FIXED_BEFORE_DECISION",
             "encounter_profiles": ["NORMAL", "RESEARCH"],
             "progression": ["TOHOKU_REMATCH_I", "TOHOKU_REMATCH_II", "TOHOKU_REMATCH_III", "LEAGUE_I", "LEAGUE_II", "FINAL_LEAGUE"],
@@ -419,10 +445,10 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
 
 def build_final() -> tuple[bytes, dict[str, object]]:
     if not _stage_is_current():
-        print(f"[{TASK}] T17 stage is absent/stale; rebuilding from pinned clean inputs", flush=True)
+        print(f"[{TASK}] trainer V4 stage is absent/stale; rebuilding from pinned clean inputs", flush=True)
         _full_build()
     else:
-        print(f"[{TASK}] verified T17 stage reused", flush=True)
+        print(f"[{TASK}] verified trainer V4 stage reused", flush=True)
     stage, stage_meta = _validate_stage()
     metadata = _final_metadata(stage, stage_meta)
     final_path = ROOT / FINAL_ROM
@@ -440,7 +466,7 @@ def _load_valid_final() -> tuple[bytes, dict[str, object], dict[str, Any]]:
     stage, stage_meta = _validate_stage()
     expected_meta = _final_metadata(stage, stage_meta)
     if not final_path.is_file() or final_path.read_bytes() != stage:
-        raise ReleaseError("final ROM is absent or differs from T17 stage")
+        raise ReleaseError("final ROM is absent or differs from trainer V4 stage")
     if not meta_path.is_file() or meta_path.read_bytes() != _stable(expected_meta):
         raise ReleaseError("final build metadata is absent or stale")
     return stage, expected_meta, stage_meta
@@ -588,7 +614,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
 - BPS source: clean FireRed Japanese Rev.0 SHA-256 `{_expected_inputs()['clean_firered_jpn_rev0']['sha256']}`
 - BPS round-trip exact target: PASS
 - 32 MiB / BPRJ header checksum: PASS
-- T17 central allocator overlap: 0
+- Stage 19 central allocator overlap: 0
 - Archive members: {scan['members']}; ROM/save/original patch/private path: 0/0/0/0
 - Source pins, input hashes, Factory provenance/reference hash, AI profiles/knowledge model: `BUILD_METADATA.json`へ固定
 - QOL release defaults/unlocks: `README_JA.md` と `FEATURE_MATRIX.csv` の全enabled行を照合

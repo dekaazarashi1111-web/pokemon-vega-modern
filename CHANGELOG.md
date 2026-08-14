@@ -4,6 +4,17 @@
 
 - なし。
 
+## 1.1.0 — 2026-08-14
+
+- ユーザー提供「ベガ本編トレーナー再設計V4」の141戦・610体をcanonical
+  Species/Move/Item IDへ全件解決し、既存本編Trainer ID 648件へ実ROM結合。
+- 主要人物62件、既存Gym NPC 39件、一般・バトルサーチャー547件を、元の名前・class・
+  double battle flagを保ったまま編成、レベル、道具、技、IV下限、trainer itemごと更新。
+- V4 AI rankを固定CFRU-JPの既存3段階へ変換（1→Basic、2–3→Semi Smart、4–5→Full Smart）。
+  新規AI engineや6段階AIは追加していない。
+- Mirageと未指定Sphere枠を保護し、追加event枠のない21設計は誤ったTrainer IDへ割り当てず
+  検証済み台帳として保持。中央allocatorの重複0と実party pointerを軽量gateで検証。
+
 ## 1.0.0 — 2026-08-14
 
 - FireRed日本版Rev.0＋Vega 2018-02-23から毎回再生成する32 MiB build chainを完成。

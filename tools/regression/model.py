@@ -487,9 +487,17 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
 ### KI-003 — emulator savestateはversion間非互換
 
 - Severity: S4 / expected platform behavior
-- Reproduction: 旧ROMで作ったsavestateをv1.0.0で直接読み込む。
+- Reproduction: 旧ROMで作ったsavestateをv1.1.0で直接読み込む。
 - Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
-- Workaround: 旧ROM上でゲーム内saveを行い、v1.0.0を再起動してbattery saveから読む。
+- Workaround: 旧ROM上でゲーム内saveを行い、v1.1.0を再起動してbattery saveから読む。
+
+### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
+
+- Severity: S4 / intentional ABI scope
+- Reproduction: V4設計CSVの性格・特性・EV欄と通常trainer戦の生成個体を比較する。
+- Result: Species、level、持ち物、4技、IV下限、trainer item、AI段階は反映されるが、通常の
+  16-byte TrainerMon ABIに欄のない性格・特性・EV・個別gimmick triggerは直接固定されない。
+- Workaround: 現行CFRUの個体生成規則と1戦1gimmick policyを使用する。値は正規化台帳に保持済み。
 
 Release-blocking known issue: **none**.
 """

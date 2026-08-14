@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -99,6 +99,12 @@ regression:
 
 regression-check:
 	$(PYTHON) scripts/build_regression.py check
+
+trainer-rebalance:
+	$(PYTHON) scripts/build_trainer_rebalance_v4.py build
+
+trainer-rebalance-check:
+	$(PYTHON) scripts/build_trainer_rebalance_v4.py check
 
 final:
 	$(PYTHON) scripts/build_release.py final

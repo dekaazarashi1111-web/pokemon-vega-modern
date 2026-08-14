@@ -114,9 +114,13 @@ make release-patch
 make verify-release
 ```
 
-`make final` は既存T17成果を副作用なしcheckして再利用し、欠落・drift時は
-`bootstrap -> T03 -> ... -> T17` を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.0.0.{gba,json}` へ出し、stageを上書きしない。
+`make trainer-rebalance` はT17を入力に、V4本編trainerの実record 648件と共有party blobを
+stage 19へ結合する。`make trainer-rebalance-check` は141戦・610体のID解決、AI flags 1/3/5、
+party pointer、変更span、allocator overlapを副作用なしで再照合する。
+
+`make final` は既存stage 19成果を副作用なしcheckして再利用し、欠落・drift時は
+`bootstrap -> T03 -> ... -> T17 -> trainer-rebalance` を固定順に実行する。最終ROMとmetadataは
+`build/final/vega-modern-kanto-v1.1.0.{gba,json}` へ出し、stageを上書きしない。
 
 `make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
 独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、

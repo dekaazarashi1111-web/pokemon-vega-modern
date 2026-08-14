@@ -1,4 +1,4 @@
-# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.0.0
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.1.0
 
 これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
 Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
@@ -8,9 +8,9 @@ CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず
 ## 適用方法
 
 1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
-2. BPS対応patcherで `vega-modern-kanto-v1.0.0.bps` をそのclean ROMへ直接適用する。
+2. BPS対応patcherで `vega-modern-kanto-v1.1.0.bps` をそのclean ROMへ直接適用する。
 3. 出力が32 MiBで、SHA-256が
-   `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`
+   `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478`
    であることを確認する。
 
 入力ROMのSHA-256は
@@ -109,6 +109,15 @@ blackout後は参加前partyを完全復旧し、未確定結果を二重加算�
 既定knowledge modelは `GLOBAL_FIXED_BEFORE_DECISION`。一般trainerは `AI_BASIC`、強敵・Gymは
 `AI_SEMI_SMART`、boss・League・facilityは `AI_FULL_SMART`。本編を一律level scaleせず、
 trainer party、技、持ち物、IV/EV、profileを進行帯ごとに横方向へ強化している。
+
+v1.1.0では「トレーナー再設計V4」の141戦・610体を正規化し、Vega本編に実在する648個の
+Trainer IDへ編成を結合した。主要人物、Gymと既存Gym NPC、一般trainer、バトルサーチャー
+再戦が対象で、Mirageと未指定Sphere枠は維持する。V4のAI rank 1は `AI_BASIC`、rank 2～3は
+`AI_SEMI_SMART`、rank 4～5は `AI_FULL_SMART` へ対応し、独自AI段階は追加しない。
+Species、level、持ち物、4技、IV下限、trainer itemはROMへ反映済み。性格・特性・EV指定と
+gimmick triggerは現行の通常Trainer party ABIに直接欄がないため設計台帳に保持し、既存の
+CFRU生成規則と1戦1gimmick policyを変更しない。追加event枠を必要とする21戦は既存戦へ
+誤接続せず台帳のみとし、実在する本編戦はすべて決定的に対応付ける。
 
 Vega殿堂入り、認定章4、Kanto League clearでトーホク強豪再戦I/II/IIIが順次開く。
 League I、League II、Final Leagueも前段clear flagで順番に開き、FinalはLv.100。

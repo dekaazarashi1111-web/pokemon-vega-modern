@@ -6,9 +6,24 @@
 
 1. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
 2. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
-3. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
-4. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
-5. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+3. `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4`: Vega本編の編成、技、道具、IV下限、AI段階に関するactive実装入力。
+4. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
+5. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
+6. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+
+## 本編トレーナー再設計V4の位置付け
+
+- ZIP: 333,031 bytes、SHA-256 `0655648e4d54bd29c49a13deeae997cbf5465f717d7f1513540bc20fdefdbac8`。
+- 展開21ファイル。同梱`SHA256SUMS.txt`の20対象は20/20 PASS、内部検査21/21 PASS。
+- 戦闘master 141戦、party master 610体。数値Trainer IDは含まないため、名前、役割、既存編成、
+  map上の既存NPCを用いて明示対応し、一般・再戦は元level/class/double属性から決定的に対応する。
+- Species/Move/Itemはcanonical manifestへ厳密joinする。フォーム表記とVega前段階だけを
+  `config/trainer_rebalance_v4.json` の明示aliasで解決し、部分一致は使わない。
+- V4 AI rank 1〜5は別AIとして実装せず、固定CFRU-JPの既存フラグへ
+  `1→AI_BASIC / 2–3→AI_SEMI_SMART / 4–5→AI_FULL_SMART` と対応する。
+- 通常Trainer ABIで表現できるSpecies、level、held item、4技、IV下限、trainer item、AIを
+  ROMへ反映する。性格・特性・EV・個別gimmick triggerは台帳に保持し、CFRU生成規則を変えない。
+- 追加event/Trainer IDを持たない21戦は既存戦へ推測接続せずcatalog-onlyとする。
 
 ## 技調整V3の位置付け
 
