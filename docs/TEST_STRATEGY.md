@@ -118,7 +118,7 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
 - 各badge、D・Hビル、Vega殿堂入り、Kanto Leagueの直前/直後でfirst-availabilityと反復供給を照合する。
 - stage 23で麻痺速度1/2・行動不能1/4、眠り減少、凍り解凍1/5、毒1/8、固定CFRU猛毒counter、やけど1/16、急所stage分母と1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNGで検査する。
 - end-turn状態damageはHPを直接更新せず1回分のbattle scriptだけを予約し、5 stock rootが単一CFRU command tableを指すことを検査する。wild/trainer/doubleは専用fixture、Factory/Raidは現行stageのpolicy scheduler回帰を使う。
-- stage 24の技選択では `EmitChooseMove` の事前計算結果を使い、等倍・タイプ不一致空欄、2×以上、0.5×以下、0×、タイプ一致、Stellar/Tera Blastを既存CFRU文字列・paletteと比較する。通常actionから技選択へ入り、ボタン設定L/RでL詳細の技名・接触・威力・命中を開閉する。doubleは選択対象別、wild/trainerは入力からターン完了、Factory/Raidはpolicy schedulerとcleanupまで検査する。
+- stage 24の技選択では `EmitChooseMove` の事前計算結果を使い、等倍・タイプ不一致空欄、2×以上、0.5×以下、0×、タイプ一致、Stellar/Tera Blastを既存CFRU文字列・paletteと比較する。通常actionから技選択へ入り、通常HELP/LR両設定でL詳細の技名・接触・威力・命中を開閉し、field HELP、戦闘pointer、controllerを維持する。doubleは選択対象別、wild/trainerは入力からターン完了、Factory/Raidはpolicy schedulerとcleanupまで検査する。
 - stage 25の通常思い出しはLv.0/1、現在Lv境界、未来Lv拒否、既知/重複除外、40件上限をT09混在learnsetで検査する。タマゴ技はD・Hビル、殿堂入り、ものまねハーブ、空き枠の5条件とCFRU owner一致、cancel/reset後mode 0を比較する。
 - stage 25の技忘れは最後の1技、PP Up警告、HM許可、form専用技拒否、battle/facility/Raid拒否を検査する。実削除はCFRU `SetMonMoveSlot` 経路で「しんぴのつるぎ」を外し、ケルディオ通常form復帰、後続技とPP Up段階のslot移動を実RAMで確認する。
 - 技名・特性名・道具通知名・Species対象名はcanonical model/tableの件数とhashを照合する。未使用のItem sentinel/reserved slotと非Dex Species gapだけを明示的に不活性として許容し、実戦fixtureでplaceholder表示0件を要求する。

@@ -5,10 +5,21 @@
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置・tool inventory・可変計測値依存を修正し、annotated tag `v1.3.3` の隔離再構築でfinal/BPS/ZIPをbyte一致させてreleaseを確定した。
-- 直前のv1.3.3追試は、初戦をAbility 67だけで通し、UIもadapter単体呼出しを中心に確認していたため実症状を取り逃した。1件目のDelta exportでは停止中のアクタシが正規の第2特性Ability 64でQuick Draw scriptへ誤進入していたため、stage 21へAbility 260以外のQuick Draw indicatorを破棄する148-byte guardを追加した。続くv1.3.4 exportを再解析するとAbility 67でも同じ症状があり、両stateとも戦闘中の`gNewBS`が0、`gLastUsedAbility`が`0xE55E`で、ROM改版間の実行state混入が根因だった。guardは有効な`gNewBS`内の不正indicatorだけを防ぐもので、壊れたsavestateのmigrationや修復ではない。
-- v1.3.4最終ROMを固定Delta/VBA-M engineでsave/stateなしから起動し、中央のアクタシ、Trainer 327、実action選択を再実行した。`gNewBS=0x02017634`、Ability 67/65、技ID 1/45・表示Type 0/0、Quick Draw/Quick Claw通知0、PP 35→34、双方HP更新でPASSした。したがってROM byteは変更せず、Deltaでは当該gameのAuto Saveを含むsavestateを削除してhard restartする。復旧しない場合は別sandboxのRetroArch/mGBAを推奨する。
-- stage 24は表示関数2件を差し替えていたが、固定CFRU objectのメニュー初期化・カーソル処理には無効だった旧effect表示がinline済みで、新UIを直後に上書きしていた。両ownerをexact-prologue trampolineで包む1,148-byte runtimeへ更新し、実際の「たたかう→技選択→カーソル移動」でtype/effect entry、抜群label、抜群palette、controller復帰を確認した。L/R設定のL詳細と全battle modeも維持する。
-- `scripts/build_fast_rom.py --from first-battle-hotfix`でstage 20以前の14工程を再利用してstage 21〜25とfinalを401.3秒、追加のUI修正をstage 24から281.8秒で再生成した。最終のRAM境界hardeningもstage 20以前を再利用し約386.2秒でstage 21〜finalだけを更新した。v1.3.4最終ROMは32 MiB、SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。旧savestateは引き継がず、ゲーム内saveまたは新規gameから起動する。
+- v1.3.4で「ROM改版間の実行state混入」とした診断を訂正した。提供されたbattery saveと実際の
+  「技画面→L→閉じる」経路を固定VBA-M engineで追跡すると、FR由来の`RunHelpSystemCallback`が
+  CFRUより先にLを受け取り、旧HELPの画面退避領域がCFRU戦闘EWRAMを上書きして
+  `gNewBS=0`にしていた。これが技Type、空欄の特性通知、「こうどうが はやくなった！」の破損を
+  同時に起こした根因で、Delta環境、battery save、アクタシのヘドロえき／げきりゅうの効果ではない。
+- stage 24は旧HELPがL/Rを検出した地点`0x0813C0AC`だけをexpected-byte付きでhookする。
+  戦闘中は旧HELPのopenだけを抑止して同じL edgeをCFRU技詳細へ渡し、fieldではstockの
+  `HelpSystem_IsSinglePlayer`判定とHELP動作をそのまま維持する。通常HELP設定とL/R設定の双方で
+  接触・威力・命中の詳細を開閉し、`gNewBS`、HELP state、battle controllerが不変であることを確認した。
+- v1.3.5最終ROMそのものを固定VBA-M engineへ渡し、L詳細open/close、命中label、
+  `gNewBS=0x02017634`の前後一致、HELP state 0、controller `0x0802E1ED`を確認した。
+  提供された`.srm`は通常のbattery saveとして利用できる。症状発生後のsavestateだけは再利用しない。
+- `scripts/build_fast_rom.py --from battle-ui`でstage 23以前を再利用し、stage 24〜25、QOL統合、finalを
+  225.3秒（3分45.3秒）で再生成した。v1.3.5最終ROMは32 MiB、SHA-256
+  `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
@@ -18,9 +29,9 @@
 - 初戦schedulerはQuick Claw/Custapに加えてQuick Draw indicatorも実Abilityへ再照合する。Deltaと同じアクタシAbility 64への不正indicator注入はQuick Draw script進入0、PP 35→34、双方HP更新でPASSし、正規Ability 260は通知1回・表示Ability 260を維持する。stage 21 SHA-256は `40d0c53e1f624eee2ead523f8b37f3bc30e5695e0e0b0e164658ef78184999f2`、runtime 148 bytes、allocator overlap 0。
 - Vegaの実HMは既存Item 339〜346で、CFRU追加別名570〜577とは分離した。stage 22はHM05をフラッシュ、HM08をダイビングとして、バッグ所持だけでfield能力を許可する。badge、手持ち数、習得、適性、技枠を解禁条件から外し、既存map/terrain/follower/script境界とcallbackを維持する。8 HM×手持ち0体／未習得／習得済み、snapshot復元、Surf状態、BPS往復がPASSし、SHA-256は `ce8748a5c725bd523824147571c081254281e6521af204472cfffdf45ca9fa36`、runtimeは408 bytes、allocation overlapは0。
 - stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `ce8748a5c725bd523824147571c081254281e6521af204472cfffdf45ca9fa36`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
-- stage 24は固定CFRU move menuの実タイプ・有効度分岐とinline ownerを1,148-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。実カーソル経路、等倍・タイプ不一致空欄、2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰をlibmGBAで確認した。SHA-256は `3a8c02a0429f2bdeb1bb08d7888a355e63fa210a907663018056f7e9d8ea1e37`、allocation overlapは0。Factory ROM byteは使用していない。
-- stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`、runtimeは2,931 bytes、allocation overlapは0。
-- v1.3.4統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、実カーソル技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。
+- stage 24は固定CFRU move menuの実タイプ・有効度分岐、inline owner、戦闘中旧HELP guardを1,200-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。実カーソル経路、等倍・タイプ不一致空欄、2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、通常HELP/LR両設定のL詳細、field HELP、wild/trainer/Factory/Raid入力復帰をlibmGBAで確認した。SHA-256は `659e25bd994a10466b981b10a0c775590ec1bf749e2a316e46dadcedbf7ec6f0`、allocation overlapは0。Factory ROM byteは使用していない。
+- stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`、runtimeは2,931 bytes、allocation overlapは0。
+- v1.3.5統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、通常HELP設定を含む実カーソル技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`。
 - release source revision `c6f15f4ad421d35e33853039fae4ae4fabedb3ec` をローカルannotated tag `v1.3.3` へ固定した。隔離fresh checkoutからT01〜stage 25、final、BPS、9-member ZIPを再構築し、通常worktreeと完全byte一致した。BPS / ZIP SHA-256は `9f99d3663458b7f065de9ab0104eff54562331c0467c25fee3e9983935959c5f` / `aac8894833b5124e8ec82edd166291961c1c3c4c5e7c6a24c3c86fd96e894af5`。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。

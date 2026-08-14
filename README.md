@@ -86,7 +86,7 @@ make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をs
 make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make qol-release-smoke # 同じstage 25でKanto/Factoryと全QOLを横断実ROM再検証
 make qol-release-smoke-check # hash一致済みの統合fixtureを副作用なしで再照合
-make final       # clean入力からv1.3.4最終ROMとbuild metadataを生成
+make final       # clean入力からv1.3.5最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -148,11 +148,12 @@ damage、天候のownerが固定CFRU-JP payloadだけであることを確認す
 通常、trainer、double、Factory Trial、Raidを現行stageで通し、重い全再構築は行わない。
 
 追加stage 24はstage 23の固定CFRU move menu ownerを維持し、profileで無効だった実タイプ・
-有効度表示を1,148-byte adapterで接続する。inline済みの初期化・カーソル経路もwrapperで覆い、
+有効度表示を1,200-byte adapterで接続する。inline済みの初期化・カーソル経路もwrapperで覆い、
 `EmitChooseMove` が実damage側 `VisualTypeCalc` から
 事前計算した結果を表示し、抜群・半減・無効・タイプ一致とStellar/Tera Blastを既存CFRUの
-文字列・paletteで示す。通常、trainer、double、Factory Trial、Raidの入力復帰、canonical名、
-clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない。
+文字列・paletteで示す。通常のHELPボタン設定でも戦闘中のLはCFRU技詳細へ渡し、旧HELPは
+戦闘中だけ抑止する。fieldのHELP、通常、trainer、double、Factory Trial、Raidの入力復帰、
+canonical名、clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない。
 
 追加stage 25はstage 24を再利用し、1個目のバッジ報酬へだいじなもの「わざメモリー」を追加する。
 通常は現在Lv以下のLv.0/1を含むlevel技だけ、D・Hビル後のタマゴ技は殿堂入り前に
@@ -161,7 +162,7 @@ clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない�
 戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
 ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
-v1.3.4統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
+v1.3.5統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 25を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／
 忘却／form連動を再観測する。stage 20以後の新規serialized fieldは0で、HMはバッグから導出し、

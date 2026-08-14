@@ -1006,3 +1006,40 @@
 - Network:
   - Delta公式FAQ `https://faq.deltaemulator.com/using-delta/save-states`、`https://faq.deltaemulator.com/using-delta/fast-forward` とローカル固定Delta sourceでAuto Save/Resume、game SHA-1識別、削除手順を確認した。
   - RetroArch公式 `https://docs.libretro.com/guides/install-ios/`、`https://docs.libretro.com/library/mgba/`、`https://docs.libretro.com/guides/input-and-controls/`、`https://www.retroarch.com/?page=privacy-app` でiPad App Store配布、mGBA、fast-forward、広告なしを確認した。private ROM/stateは外部送信していない。
+
+## 2026-08-15T08:04:45+09:00
+
+- Task: `USER-20260815-BATTLE-HELP-COLLISION` / 戦闘中Lの旧HELP競合を再現して修正する
+- Status: DONE
+- Summary:
+  - 直前コミット`9188c64`と1つ前`97985ca`を再監査した。後者の実カーソルUI接続は有効だったが、テストがボタン設定をL/Rへ変更しており、通常HELP設定でLを押すユーザー経路を覆っていなかった。前者の「非互換実行state混入が根因」という診断を訂正した。
+  - 提供されたbattery saveと実際の「技画面→L→閉じる」を固定VBA-M engineで追跡し、FR由来の`RunHelpSystemCallback`がCFRUより先にLを消費し、旧HELPの画面退避でCFRU戦闘EWRAMを上書きして`gNewBS=0`にすることを確定した。技Type、空欄の特性通知、行動順ループは同じ破損の派生で、Deltaやヘドロえきの効果ではない。
+  - 旧HELPがL/Rを検出した`0x0813C0AC`だけへexpected-byte付きguardを追加した。戦闘中は旧HELP openを抑止して同じL edgeをCFRU技詳細へ渡し、fieldではstock HELP判定を再生する。通常HELP/LR両設定で接触・威力・命中の詳細を開閉し、field HELP、`gNewBS`、HELP state、battle controllerを維持した。
+  - stage 23以前を再利用する高速差分buildでstage 24〜25、QOL統合、v1.3.5 finalを225.3秒で再生成した。最終ROMそのものの画像と内部stateを固定VBA-M engineで照合し、Downloadsへ旧版を残した別名ROMとして配置した。
+- Files changed:
+  - runtime/build: `config/battle_ui.json`, `overlays/battle_ui/battle_ui_trampoline.S`, `scripts/build_{battle_ui,qol_release,release}.py`
+  - QA: `tools/mgba_battle_ui_smoke.c`, `tests/test_{battle_ui,release}.py`
+  - release/design: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `design/{catalog,current_state,report_lifecycle_index,run_log,version_log}.md`
+  - Git管理外成果: stage 24〜25、QOL統合fixture、v1.3.5 final、固定VBA-M checkpoint・画像、Downloads向け検証ROM
+- Verify:
+  - `python3 scripts/build_battle_ui.py build` / `check`: PASS（8 artifacts）。stage 24 SHA-256 `659e25bd994a10466b981b10a0c775590ec1bf749e2a316e46dadcedbf7ec6f0`、runtime 1,200 bytes、allocator overlap 0。
+  - `python3 scripts/build_fast_rom.py --from battle-ui`: PASS（225.3秒）。stage 23以前を再利用し、QOL統合を含むstage 24〜finalだけを再生成した。
+  - 最終ROM固定VBA-M checkpoint: PASS。L詳細open/close、命中label、`gNewBS`前後`0x02017634`、HELP state 0、controller `0x0802E1ED`。
+  - `python3 -m unittest -v tests.test_battle_ui tests.test_first_battle_hotfix tests.test_fast_rom tests.test_release`: PASS（29 tests）。通常HELP/LR両設定、field HELP、初戦、fast stage選択、v1.3.5 release契約を確認した。
+  - `python3 scripts/build_qol_release.py check`: PASS（side effects NONE）。`python3 -m py_compile ...`、task graph、private guard、`git diff --check`: PASS。
+  - WSL repository全体verifyとstage 00からのfresh rebuildは実行せず、変更所有stageからの高速buildと変更に直結するgateを使用した。
+- Output identity:
+  - final/Downloads copy SHA-256 `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`、size `33,554,432` bytes。
+  - 提供されたbattery save原本は変更0・Git追跡0。症状発生後のsavestateは互換入力として扱わない。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済み上流source、ローカル提供save、検証済みstage、clean私有入力だけを参照した。
+
+## 2026-08-15T08:06:57+09:00
+
+- Task: `USER-20260815-BATTLE-HELP-COLLISION` / v1.3.5成果の最終包装検査
+- Status: DONE
+- Summary: テスト戦略へ通常HELP/LR両設定、field HELP、戦闘pointerの回帰条件を同期し、生成済みfinalからBPSと9-member archiveを作成した。ROMの再ビルドは行っていない。
+- Files changed: `docs/TEST_STRATEGY.md`。Git管理外のv1.3.5 BPS、archive、release検証reportを再生成した。
+- Verify: `python3 scripts/build_release.py patch` / `verify` PASS。BPS完全往復後のROM SHA-256 `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`、archive 9 members、禁止物0。focused 17 tests、battle UI/QOL check、task graph/private guard、diff check PASS。
+- Commit: `-`（直前エントリと同じ完了コミット）
+- Network: 未使用。

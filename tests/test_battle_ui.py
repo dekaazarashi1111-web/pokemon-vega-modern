@@ -102,14 +102,14 @@ class BattleUITests(unittest.TestCase):
         self.assertEqual(audit["address_audit"]["classifications"], {"CFRU": 15})
         self.assertTrue(audit["global_owner_shared_by_normal_factory_raid"])
 
-    def test_stage_build_is_deterministic_and_changes_only_four_owner_entries(self) -> None:
+    def test_stage_build_is_deterministic_and_changes_only_five_owner_entries(self) -> None:
         first, first_meta = _build_stage(ROOT)
         second, second_meta = _build_stage(ROOT)
         self.assertEqual(first, second)
         self.assertEqual(first_meta, second_meta)
         self.assertEqual(first[STAGE24.as_posix()], (ROOT / STAGE24).read_bytes())
         self.assertEqual(first_meta["status"], "PASS")
-        self.assertEqual(len(first_meta["patches"]), 4)
+        self.assertEqual(len(first_meta["patches"]), 5)
         self.assertEqual(
             {row["address"] for row in first_meta["patches"]},
             {
@@ -117,6 +117,7 @@ class BattleUITests(unittest.TestCase):
                 UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveEffectiveness"][0],
                 UPSTREAM_SYMBOLS["HandleInputChooseMove"][0],
                 UPSTREAM_SYMBOLS["InitMoveSelectionsVarsAndStrings"][0],
+                0x0813C0AC,
             },
         )
         self.assertTrue(all(first_meta["invariants"].values()))
@@ -172,6 +173,19 @@ class BattleUITests(unittest.TestCase):
                 "button_mode": 1,
             },
         )
+        self.assertTrue(value["field_help_forwarded"])
+        self.assertEqual(
+            value["default_help_guard"],
+            {
+                "details_opened": True,
+                "accuracy_label": True,
+                "closed": True,
+                "pointer_stable": True,
+                "help_state_idle": True,
+                "controller_stable": True,
+                "button_mode": 0,
+            },
+        )
         self.assertTrue(value["input_return"])
 
     def test_live_names_and_factory_raid_regressions_pass(self) -> None:
@@ -205,7 +219,9 @@ class BattleUITests(unittest.TestCase):
 
     def test_report_is_stable_after_sorted_json_fixture_reload(self) -> None:
         reordered = copy.deepcopy(self.fixture)
-        for key in ("actual_menu_super", "l_move_details"):
+        for key in (
+            "actual_menu_super", "default_help_guard", "l_move_details",
+        ):
             reordered[key] = dict(reversed(list(reordered[key].items())))
         self.assertEqual(
             _report(self.metadata, self.fixture, self.policy),

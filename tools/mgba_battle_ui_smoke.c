@@ -25,11 +25,17 @@ enum {
     UI_NUMBER_OF_MOVES = 0x03005038,
     UI_SAVE_BLOCK2_PTR = 0x0300504C,
     UI_OPTIONS_BUTTON_MODE_OFFSET = 0x13,
+    UI_OPTIONS_BUTTON_MODE_HELP = 0,
     UI_OPTIONS_BUTTON_MODE_LR = 1,
     UI_MAIN = 0x03003130,
+    UI_MAIN_FLAGS = 0x03003569,
+    UI_MAIN_IN_BATTLE = 1 << 1,
     UI_MAIN_HELD_KEYS_RAW = 0x28,
     UI_MAIN_NEW_KEYS_RAW = 0x2A,
     UI_MAIN_NEW_KEYS = 0x2E,
+    UI_HELP_OPEN_HOOK = 0x0813C0AC,
+    UI_HELP_SYSTEM_ENABLED = 0x03005F1C,
+    UI_HELP_VIDEO_STATE = 0x0203F101,
     UI_DISPLAYED_STRING = 0x020228FC,
     UI_PLTT_UNFADED = 0x0203712C,
     UI_NEW_BATTLE_STRUCT_PTR = 0x0203DFB0,
@@ -81,6 +87,7 @@ static uint32_t ui_text_accuracy;
 static uint32_t ui_type_matrix;
 static uint32_t ui_handle_choose_move;
 static uint32_t ui_handle_choose_target;
+static uint32_t ui_help_guard;
 
 struct UIEffectObservation {
     const char *name;
@@ -339,12 +346,12 @@ static struct UIActualMenuObservation probe_actual_menu_super_effective(
 
 int main(int argc, char **argv)
 {
-    if (argc != 18) {
+    if (argc != 19) {
         fprintf(stderr,
                 "usage: %s ROM SHA TYPE EFFECT CLASSIFY GETTYPE TYPE_ENTRY "
                 "EFFECT_ENTRY PALETTE TEXT_SUPER TEXT_RESISTED TEXT_NONE "
                 "TEXT_STAB TEXT_ACCURACY TYPE_MATRIX HANDLE_CHOOSE_MOVE "
-                "HANDLE_CHOOSE_TARGET\n",
+                "HANDLE_CHOOSE_TARGET HELP_GUARD\n",
                 argv[0]);
         return 2;
     }
@@ -367,6 +374,7 @@ int main(int argc, char **argv)
     ui_type_matrix = parse_address(argv[15]);
     ui_handle_choose_move = parse_address(argv[16]);
     ui_handle_choose_target = parse_address(argv[17]);
+    ui_help_guard = ui_parse_address(argv[18]);
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);
@@ -383,11 +391,46 @@ int main(int argc, char **argv)
     if (hook_target(core, UI_TYPE_HOOK) != (ui_type_entry | 1U)
         || hook_target(core, UI_EFFECT_HOOK) != (ui_effect_entry | 1U)
         || hook_target(core, ui_type_entry) != type_runtime
-        || hook_target(core, ui_effect_entry) != effect_runtime) {
+        || hook_target(core, ui_effect_entry) != effect_runtime
+        || hook_target(core, UI_HELP_OPEN_HOOK) != ui_help_guard) {
         ui_die("physical move-menu ownership chain differs");
     }
     run_trace_prefix(core);
     if (log_problem_count) ui_die("mGBA warned/errored during field boot");
+
+    /* Outside battle the wrapper must preserve FireRed's ordinary HELP.
+     * Invoke the physical owner with a controlled L edge, then restore the
+     * entire field snapshot before entering the battle fixture. */
+    struct Snapshot field_help = take_snapshot(core);
+    uint32_t field_save_block2 = read32(core, UI_SAVE_BLOCK2_PTR);
+    if (field_save_block2 < 0x02000000U
+        || field_save_block2 >= 0x02040000U) {
+        ui_die("field HELP save block 2 pointer differs");
+    }
+    write8(core, field_save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET,
+           UI_OPTIONS_BUTTON_MODE_HELP);
+    write8(core, UI_HELP_SYSTEM_ENABLED, 1);
+    write8(core, UI_HELP_VIDEO_STATE, 0);
+    write8(core, UI_MAIN_FLAGS,
+           read8(core, UI_MAIN_FLAGS) & (uint8_t)~UI_MAIN_IN_BATTLE);
+    core->setKeys(core, 0x200U);
+    bool field_help_forwarded = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        uint8_t state = read8(core, UI_HELP_VIDEO_STATE);
+        if (state >= 1U && state <= 8U) {
+            field_help_forwarded = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0);
+    restore_snapshot(core, &field_help);
+    free(field_help.bytes);
+    if (!field_help_forwarded)
+        ui_die("field HELP was not forwarded to the original callback");
+
     struct Snapshot field = take_snapshot(core);
     (void)setup_wild(core, &field);
     if (read32(core, UI_NEW_BATTLE_STRUCT_PTR) == 0)
@@ -478,18 +521,122 @@ int main(int argc, char **argv)
     free(actual_menu.bytes);
     menu_new_battle = read32(core, UI_NEW_BATTLE_STRUCT_PTR);
 
-    /* The fixed upstream CFRU menu uses L to toggle contact/power/accuracy
-     * details.  Verify that exact user-visible route and the upstream gNewBS
-     * pointer together, then close it again before the remaining cases. */
     uint32_t save_block2 = read32(core, UI_SAVE_BLOCK2_PTR);
     if (save_block2 < 0x02000000U || save_block2 >= 0x02040000U) {
         fprintf(stderr, "mgba-battle-ui-smoke: save block 2=%08" PRIx32 "\n",
                 save_block2);
         ui_die("save block 2 pointer differs on move-details route");
     }
-    /* HELP consumes L before the battle callback, while L=A intentionally
-     * gives A precedence.  Upstream CFRU's dedicated details control is the
-     * FRLG L/R button mode. */
+
+    /* Reproduce the user's real configuration: FireRed's default HELP mode,
+     * HELP enabled, and L pressed in the live CFRU move menu.  The global
+     * callback must stay idle so the same L edge reaches CFRU details without
+     * clearing gNewBS or replacing the player controller. */
+    struct Snapshot default_help = take_snapshot(core);
+    write8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET,
+           UI_OPTIONS_BUTTON_MODE_HELP);
+    write8(core, UI_HELP_SYSTEM_ENABLED, 1);
+    write8(core, UI_HELP_VIDEO_STATE, 0);
+    if (!(read8(core, UI_MAIN_FLAGS) & UI_MAIN_IN_BATTLE))
+        ui_die("default HELP regression did not start inside battle");
+
+    core->setKeys(core, 0x200U);
+    bool default_details_opened = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (read32(core, UI_NEW_BATTLE_STRUCT_PTR) != menu_new_battle
+            || read8(core, UI_HELP_VIDEO_STATE) != 0U)
+            break;
+        if (read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS)
+            & UI_NEWBS_VIEWING_DETAILS) {
+            default_details_opened = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+    bool default_open_release_seen = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (!(read16(core, UI_MAIN + UI_MAIN_HELD_KEYS_RAW) & 0x200U)) {
+            default_open_release_seen = true;
+            break;
+        }
+    }
+    bool default_accuracy_label = contains_string(
+        core, UI_DISPLAYED_STRING, ui_text_accuracy);
+    bool default_pointer_stable =
+        read32(core, UI_NEW_BATTLE_STRUCT_PTR) == menu_new_battle;
+    bool default_help_state_idle = read8(core, UI_HELP_VIDEO_STATE) == 0U;
+    bool default_controller_stable =
+        read32(core, UI_CONTROLLER_FUNCS) == ui_handle_choose_move;
+
+    core->setKeys(core, 0x200U);
+    bool default_details_closed = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (read32(core, UI_NEW_BATTLE_STRUCT_PTR) != menu_new_battle
+            || read8(core, UI_HELP_VIDEO_STATE) != 0U)
+            break;
+        if (!(read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS)
+              & UI_NEWBS_VIEWING_DETAILS)) {
+            default_details_closed = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+    bool default_close_release_seen = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (!(read16(core, UI_MAIN + UI_MAIN_HELD_KEYS_RAW) & 0x200U)) {
+            default_close_release_seen = true;
+            break;
+        }
+    }
+    default_pointer_stable = default_pointer_stable
+        && read32(core, UI_NEW_BATTLE_STRUCT_PTR) == menu_new_battle;
+    default_help_state_idle = default_help_state_idle
+        && read8(core, UI_HELP_VIDEO_STATE) == 0U;
+    default_controller_stable = default_controller_stable
+        && read32(core, UI_CONTROLLER_FUNCS) == ui_handle_choose_move;
+    if (!default_details_opened || !default_open_release_seen
+        || !default_accuracy_label || !default_details_closed
+        || !default_close_release_seen || !default_pointer_stable
+        || !default_help_state_idle || !default_controller_stable) {
+        fprintf(stderr,
+                "mgba-battle-ui-smoke: default HELP guard debug "
+                "opened=%u accuracy=%u closed=%u pointer=%u help_idle=%u "
+                "controller=%u before=%08" PRIx32 " after=%08" PRIx32
+                " help_state=%u flags=%02x mode=%u\n",
+                default_details_opened, default_accuracy_label,
+                default_details_closed, default_pointer_stable,
+                default_help_state_idle, default_controller_stable,
+                menu_new_battle, read32(core, UI_NEW_BATTLE_STRUCT_PTR),
+                read8(core, UI_HELP_VIDEO_STATE),
+                default_pointer_stable
+                    ? read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS) : 0U,
+                read8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET));
+        ui_die("default HELP mode did not safely open CFRU move details");
+    }
+    restore_snapshot(core, &default_help);
+    free(default_help.bytes);
+    menu_new_battle = read32(core, UI_NEW_BATTLE_STRUCT_PTR);
+
+    /* The fixed upstream CFRU menu uses L to toggle contact/power/accuracy
+     * details.  Verify that exact user-visible route and the upstream gNewBS
+     * pointer together, then close it again before the remaining cases. */
+    /* The alternate L/R option remains a secondary regression. */
     write8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET,
            UI_OPTIONS_BUTTON_MODE_LR);
     core->setKeys(core, 0x200U);
@@ -659,13 +806,15 @@ int main(int argc, char **argv)
         ui_die("wild/trainer/double input or screen return failed");
 
     printf("{\"schema_version\":1,\"status\":\"PASS\","
-           "\"fixture\":\"cfru_move_menu_effectiveness_v4\","
+           "\"fixture\":\"cfru_move_menu_effectiveness_v5\","
            "\"rom_sha256\":\"%s\",\"read_only\":true,"
            "\"warnings_errors\":0,\"owner\":{"
            "\"type_hook\":\"0x%08X\",\"type_entry\":\"0x%08X\","
-           "\"effect_hook\":\"0x%08X\",\"effect_entry\":\"0x%08X\"},"
+           "\"effect_hook\":\"0x%08X\",\"effect_entry\":\"0x%08X\","
+           "\"help_hook\":\"0x%08X\",\"help_guard\":\"0x%08X\"},"
            "\"effect_cases\":[",
-           rom_sha256, UI_TYPE_HOOK, type_runtime, UI_EFFECT_HOOK, effect_runtime);
+           rom_sha256, UI_TYPE_HOOK, type_runtime, UI_EFFECT_HOOK,
+           effect_runtime, UI_HELP_OPEN_HOOK, ui_help_guard);
     for (unsigned index = 0; index < ARRAY_LEN(effects); ++index) {
         if (index) putchar(',');
         print_effect(&effects[index]);
@@ -680,6 +829,11 @@ int main(int argc, char **argv)
            "\"effect_entry_seen\":true,\"super_label_seen\":true,"
            "\"cursor_before\":%u,\"cursor_after\":%u,"
            "\"palette_group\":%u,\"controller_stable\":true},"
+           "\"field_help_forwarded\":true,"
+           "\"default_help_guard\":{\"details_opened\":true,"
+           "\"accuracy_label\":true,\"closed\":true,"
+           "\"pointer_stable\":true,\"help_state_idle\":true,"
+           "\"controller_stable\":true,\"button_mode\":0},"
            "\"l_move_details\":{\"opened\":true,\"accuracy_label\":true,"
            "\"closed\":true,\"pointer_stable\":true,\"button_mode\":1},"
            "\"routes\":{"

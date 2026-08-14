@@ -149,12 +149,14 @@ ROM/source/toolchain hashが一致する検証済み成果を再利用し、全s
 
 `make battle-ui` は検証済みstage 23を入力に、固定CFRU-JPの
 `DISPLAY_REAL_MOVE_TYPE_ON_MENU` / `DISPLAY_EFFECTIVENESS_ON_MENU` source経路と同じABIを持つ
-adapterを中央allocatorへ置き、既存のタイプ・有効度表示entry 2件だけをstage 24へ接続する。
+adapterを中央allocatorへ置き、タイプ・有効度表示、inline済み初期化・カーソル入力、
+戦闘中の旧HELP抑止の5 entryだけをstage 24へ接続する。
 判定は `EmitChooseMove` が `VisualTypeCalc` から生成した `moveTypes/moveResults` を使い、独自相性表や
 Factory ROM byteを持たない。`make battle-ui-check` は等倍・タイプ不一致が元CFRUどおり空欄であること、
 2×以上、0.5×以下、0×、STAB、Stellar、Tera Blast、double対象別表示、通常action→技選択、
-ボタン設定L/RでのL詳細開閉、wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、
-BPS往復、8成果のbyte一致を副作用なしで照合する。
+通常のHELP設定とL/R設定でのL詳細開閉、field HELPの維持、戦闘pointer不変、
+wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、BPS往復、8成果のbyte一致を
+副作用なしで照合する。
 
 `make move-memory` は検証済みstage 24を入力に、Item 347と1個目のバッジ報酬、シオウ・
 カラスバのobject script、CFRU技思い出しentryをexpected-byte付きでstage 25へ接続する。
@@ -173,7 +175,7 @@ Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモ�
 `make final` は既存stage 25とQOL統合fixtureを副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
 を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.3.4.{gba,json}` へ出し、stageを上書きしない。
+`build/final/vega-modern-kanto-v1.3.5.{gba,json}` へ出し、stageを上書きしない。
 
 ### 開発用差分ROM
 

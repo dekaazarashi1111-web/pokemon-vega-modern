@@ -80,6 +80,7 @@ REQUIRED_SYMBOLS = {
     "VegaBattleUI_DisplayMoveEffectiveness",
     "VegaBattleUI_InitMoveSelection",
     "VegaBattleUI_HandleInputChooseMove",
+    "VegaBattleUI_GuardHelpOpen",
 }
 
 UPSTREAM_SYMBOLS = {
@@ -504,6 +505,8 @@ def _compile_runtime(
             f"-DVEGA_UI_HANDLE_CHOOSE_MOVE_HOOK_ADDRESS=0x{_address(_config(root)['owners']['handle_input_choose_move']['hook']) | 1:08X}u",
             f"-DVEGA_UI_INIT_MOVE_SELECTION_CONTINUE_ADDRESS=0x{linked_symbols['InitMoveSelectionsVarsAndStrings']['address'] + 8 | 1:08X}",
             f"-DVEGA_UI_HANDLE_CHOOSE_MOVE_CONTINUE_ADDRESS=0x{linked_symbols['HandleInputChooseMove']['address'] + 8 | 1:08X}",
+            f"-DVEGA_UI_HELP_OPEN_CONTINUE_ADDRESS=0x{_address(_config(root)['owners']['help_open_guard']['entry']) + 8 | 1:08X}",
+            "-DVEGA_UI_HELP_OPEN_SUPPRESS_ADDRESS=0x0813C0C5",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -656,6 +659,7 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
         ("display_effectiveness", "VegaBattleUI_DisplayMoveEffectiveness"),
         ("handle_input_choose_move", "VegaBattleUI_HandleInputChooseMove"),
         ("init_move_selection", "VegaBattleUI_InitMoveSelection"),
+        ("help_open_guard", "VegaBattleUI_GuardHelpOpen"),
     )
     for owner_key, symbol in patch_contract:
         row = config["owners"][owner_key]
@@ -681,6 +685,8 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
         != symbols["VegaBattleUI_HandleInputChooseMove"] | 1
         or _hook_target(output_raw, _address(config["owners"]["init_move_selection"]["entry"]))
         != symbols["VegaBattleUI_InitMoveSelection"] | 1
+        or _hook_target(output_raw, _address(config["owners"]["help_open_guard"]["entry"]))
+        != symbols["VegaBattleUI_GuardHelpOpen"] | 1
     ):
         _fail("battle UI post-patch ownership chain differs")
 
@@ -733,7 +739,7 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
             "source_lock_verified": source_audit["source_lock_verified"],
             "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 19,
             "normal_factory_raid_share_owner": owner_audit["global_owner_shared_by_normal_factory_raid"],
-            "four_owner_entry_stubs_only": len(patches) == 4,
+            "five_owner_entry_stubs_only": len(patches) == 5,
             "declared_changes_only": changed <= allowed,
             "allocator_overlap_zero": allocation_report["summaries"]["overlap_count"] == 0,
             "canonical_live_strings_resolved": all(not values for values in strings["live_unresolved"].values()),
@@ -791,7 +797,7 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
     observed = {row.get("name"): row.get("class") for row in cases}
     if (
         value.get("status") != "PASS"
-        or value.get("fixture") != "cfru_move_menu_effectiveness_v4"
+        or value.get("fixture") != "cfru_move_menu_effectiveness_v5"
         or value.get("rom_sha256") != rom_sha256
         or value.get("warnings_errors") != 0
         or not value.get("read_only")
@@ -811,6 +817,13 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
             "cursor_after": 1,
             "palette_group": 1,
             "controller_stable": True,
+        }
+        or not value.get("field_help_forwarded")
+        or value.get("default_help_guard") != {
+            "details_opened": True, "accuracy_label": True,
+            "closed": True, "pointer_stable": True,
+            "help_state_idle": True, "controller_stable": True,
+            "button_mode": 0,
         }
         or value.get("l_move_details") != {
             "opened": True, "accuracy_label": True,
@@ -834,6 +847,7 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
             "VegaBattleUI_DisplayMoveEffectiveness",
             "VegaBattleUI_ClassifyResult",
             "VegaBattleUI_GetSelectedMoveType",
+            "VegaBattleUI_GuardHelpOpen",
         )
     }
     selected.update({
@@ -885,6 +899,7 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
             str(selected["type_matrix"]),
             str(selected["handle_choose_move"]),
             str(selected["handle_choose_target"]),
+            str(selected["VegaBattleUI_GuardHelpOpen"]),
         ]
         first = json.loads(_run(args, "battle UI exact-ROM run 1", cwd=root))
         second = json.loads(_run(args, "battle UI exact-ROM run 2", cwd=root))
@@ -991,6 +1006,9 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
     move_details = json.dumps(
         ui["l_move_details"], ensure_ascii=False, sort_keys=True,
     )
+    default_help_guard = json.dumps(
+        ui["default_help_guard"], ensure_ascii=False, sort_keys=True,
+    )
     text = f"""# 戦闘時の技タイプ・有効度UI
 
 ## 結論
@@ -1007,6 +1025,8 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
 - wild/trainer/double input return: {ui['input_return']} / double target-specific: {ui['double_target_specific']}
 - actual action-to-move menu indicator: {ui['actual_menu_path']}
 - actual cursor super-effective render: {actual_menu_super}
+- default HELP設定での戦闘中L詳細guard: {default_help_guard}
+- field HELP passthrough: {ui['field_help_forwarded']}
 - L技詳細（威力・命中）open/close: {move_details}
 - Factory: {policy['facility']['matrix_cases']} cases / Raid shields: {policy['raid']['shield_breaks']}/{policy['raid']['initial_shields']} / cleanup: {policy['raid']['runtime_cleaned']}
 - process runs: UI {ui['process_runs']} / policy {policy['process_runs']} / warnings-errors: {ui['warnings_errors']}+{policy['warnings_errors']}
@@ -1059,6 +1079,14 @@ def collect_outputs(root: Path = ROOT) -> dict[str, bytes]:
                 "opened", "accuracy_label", "closed", "pointer_stable"
             ))
             and ui["l_move_details"]["button_mode"] == 1
+        ),
+        "default_help_guarded_in_battle": (
+            all(ui["default_help_guard"][key] for key in (
+                "details_opened", "accuracy_label", "closed",
+                "pointer_stable", "help_state_idle", "controller_stable",
+            ))
+            and ui["default_help_guard"]["button_mode"] == 0
+            and ui["field_help_forwarded"]
         ),
         "canonical_live_names_resolved": all(
             not values for values in metadata["string_audit"]["live_unresolved"].values()

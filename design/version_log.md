@@ -429,3 +429,14 @@
   - 2件のDelta stateで特性が異なっても、共通して戦闘構造pointerが0であることを確定した。ヘドロえきによる行動順変化ではなく、非互換実行stateの混入である。
   - 固定Delta/VBA-M engineの完全新規起動では、アクタシ初戦、技Type、PP/HP進行、行動順通知が正常だった。ROMは再生成せず、Auto Save削除・hard restart手順を保存互換文書へ追記した。
 - Verify: 固定VBA-M fresh route、focused 20 tests、`make battle-ui-check`、`make first-battle-hotfix-check`、final/Windows SHA-256一致 PASS。
+
+## 2026-08-15T08:04:45+09:00
+
+- Version: `v1.3.5`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-BATTLE-HELP-COLLISION` / 戦闘中Lの旧HELP競合を再現して修正する
+- Summary:
+  - 旧savestate混入とした診断を訂正し、FR由来のHELP画面退避がCFRU戦闘EWRAMと競合して`gNewBS`を0にするROM側の根因を確定した。
+  - 戦闘中だけ旧HELP openを抑止し、通常HELP設定のLをCFRU技詳細へ渡した。field HELP、L/R設定、既存battle modeは維持した。
+  - stage 24以降を225.3秒で高速再生成し、固定VBA-M engineで最終ROMの画面と戦闘pointerを確認した。
+- Verify: battle UI build/check、QOL integration check、focused 29 tests、最終ROM fixed-engine checkpoint、py_compile、task graph/private guard、diff check PASS。final SHA-256 `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`。

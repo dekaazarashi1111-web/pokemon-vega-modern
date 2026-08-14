@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, package, and verify the reproducible v1.3.4 QOL BPS release."""
+"""Build, package, and verify the reproducible v1.3.5 QOL BPS release."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ from scripts import build_qol_release  # noqa: E402
 
 
 TASK = "USER-20260814-QOL-RELEASE"
-VERSION = "1.3.4"
+VERSION = "1.3.5"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
 STAGE = Path("build/stages/25_move_memory.gba")
@@ -687,7 +687,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
     patch = files[PATCH_NAME]
     fresh = _fresh_status(_sha(final), _sha(patch), _sha(archive))
     metadata = json.loads(files["BUILD_METADATA.json"])
-    return f"""# v1.3.4 QOL release verification
+    return f"""# v1.3.5 QOL release verification
 
 ## 結論
 

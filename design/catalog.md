@@ -118,7 +118,7 @@
 - `tools/mgba_first_battle_loop_smoke.c`, `scripts/build_first_battle_hotfix.py`: 初戦3分岐、不正indicator fault injection、正規Quick Claw/Custap/Quick Draw、stage 21の正本
 - `overlays/hm_field_access/`, `tools/mgba_hm_field_access_smoke.c`, `scripts/build_hm_field_access.py`: Vega Item 339〜346、party非依存field能力、地形/callback境界、stage 22の正本
 - `config/battle_rules.json`, `tools/mgba_battle_rules_smoke.c`, `scripts/build_battle_rules.py`: 固定CFRU-JP状態異常・急所・天候default、単一owner、固定RNG、stage 23の正本
-- `config/battle_ui.json`, `overlays/battle_ui/`, `tools/mgba_battle_ui_smoke.c`, `scripts/build_battle_ui.py`: 固定CFRU-JPの技タイプ・有効度・STAB表示、Stellar、canonical文字列、stage 24の正本
+- `config/battle_ui.json`, `overlays/battle_ui/`, `tools/mgba_battle_ui_smoke.c`, `scripts/build_battle_ui.py`: 固定CFRU-JPの技タイプ・有効度・STAB表示、戦闘中旧HELP抑止とfield HELP維持、Stellar、canonical文字列、stage 24の正本
 - `config/move_memory.json`, `overlays/move_memory/`, `tools/mgba_move_memory_smoke.c`, `scripts/build_move_memory.py`: Item 347、シオウ/カラスバ、T09 learnset、CFRU技slot/form連動、stage 25の正本
-- `scripts/build_qol_release.py`, `build/stages/25_mgba_qol_release.json`: stage 25上の初戦/HM/battle rules/UI/技管理と既存Kanto/Factoryを同一ROMで確認するv1.3.4統合契約
-- `tools/release/`, `scripts/build_release.py`: T18/v1.3.4のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築
+- `scripts/build_qol_release.py`, `build/stages/25_mgba_qol_release.json`: stage 25上の初戦/HM/battle rules/UI/技管理と既存Kanto/Factoryを同一ROMで確認するv1.3.5統合契約
+- `tools/release/`, `scripts/build_release.py`: T18/v1.3.5のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

@@ -19,9 +19,9 @@
 ### KI-003 — emulator savestateはversion間非互換
 
 - Severity: S4 / expected platform behavior
-- Reproduction: 旧ROMで作ったsavestateをv1.3.4で直接読み込む。
-- Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。DeltaのAuto Saveから再開した場合も、戦闘構造pointer 0、表示Type破損、無関係な行動順通知、音声破損として現れることがある。
-- Workaround: Delta Syncを一時停止し、当該gameのAuto/General/Locked stateを削除してRestartする。必要ならgame entryを削除してv1.3.4 ROMを再importする。旧版から進行を移す場合はsavestateではなく、旧ROM上で作ったゲーム内saveだけを使う。
+- Reproduction: 旧ROMで作ったsavestateをv1.3.5で直接読み込む。
+- Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
+- Workaround: 旧版から進行を移す場合はsavestateではなく、旧ROM上で作ったゲーム内saveを使う。症状があるstateだけを削除し、battery saveまたはNew GameからRestartする。
 
 ### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
 
@@ -35,8 +35,13 @@
 
 - Severity: S4 / release scope exclusion
 - Reproduction: クチバのFactory受付でStandard、Full、Master、BP shop、施設外報酬遭遇を探す。
-- Result: v1.3.4の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
+- Result: v1.3.5の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
   shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
 - Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
+
+## v1.3.5で解決済み
+
+- 戦闘中の技画面でLを押すと旧HELPが開き、`gNewBS`が0になって技Type・特性通知・行動順が
+  破損する問題を修正した。これはDeltaやbattery save固有ではなく、v1.3.4のROM統合不具合だった。
 
 Release-blocking known issue: **none**.
