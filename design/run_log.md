@@ -712,3 +712,58 @@
   - source tag `v1.1.0` -> `d2a3aeaa3f9510be0451b09f0c6fee71b4675a4c`、fresh checkout status `PASS`。
 - Commit: `d2a3aeaa3f9510be0451b09f0c6fee71b4675a4c`（実装・release source tag）、完了ログは本エントリを含むコミット。
 - Network: fresh-checkoutがsource-lock済みCFRU-JP、DPE-JP、pokefirered固定commitを各公式GitHub repositoryからcloneした。新規Web調査は未使用。
+
+## 2026-08-14T11:35:07+09:00
+
+- Task: `USER-20260814-FACILITY-RUNTIME` / Factoryのランダムrental・勝利後交換を実ROMで遊べるようにする
+- Status: DONE
+- Summary:
+  - 従来は進行manifestとhost fixtureだけだったFactoryから、クチバ（group 96 / map 5）へ
+    Trial受付NPCを物理配置した。固定CFRU-JP生成器でLv.50の重複なし候補6体を生成し、既存
+    party UIで3体を選び、single 3v3を3戦する実eventへ接続した。
+  - 1・2勝後は実対戦相手からランダム保持した1体と、選択した手持ち1体を任意交換する。
+    各戦後全回復、3連勝9 BP、rental/opponentはseenだけを更新しcaughtは変更しない。
+  - 入場前party 6×100 byteをsector 31へ保存し、完走、敗北、辞退、selection cancel、
+    save/reset後復旧でHP・PP・状態・持ち物を含む600 byteをexact復元した。ROM用2 KiB
+    rollback像をEWRAM `0x0203E400..0x0203EC00`へ置き、GBA stack破損を回避した。
+  - v1.2.0で実受付へ接続したmodeはTrialだけとし、Standard / Full / Master、BP shop、
+    施設外報酬遭遇はmanifest・fixtureのみでruntime未接続であることをrelease文書へ明記した。
+  - stage 20をv1.2.0最終ROM、clean FireRed日本版Rev.0用BPS、9-member決定論ZIPへ接続し、
+    ROM/save/元patch/private pathをarchiveへ含めなかった。
+- Files changed:
+  - runtime/build: `overlays/facility_runtime/**`, `overlays/save_migration/**`,
+    `scripts/build_facility_runtime.py`, `tools/mgba_facility_runtime_smoke.c`, `Makefile`,
+    `config/ram_layout.csv`, `scripts/build_release.py`
+  - tests: `tests/test_facility_runtime_stage.py`, `tests/test_release.py`
+  - docs/state: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`,
+    `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`,
+    `design/{catalog,current_state,decisions,report_lifecycle_index,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/20_facility_runtime.{gba,json}`、
+    `build/stages/{20_allocation,20_mgba_smoke}.json`、`generated/runtime/facility_runtime*`、
+    `build/final/vega-modern-kanto-v1.2.0.{gba,json}`、
+    `dist/release/vega-modern-kanto-v1.2.0{,.zip}`、
+    `reports/generated/{facility_runtime,release_verification}.md`
+- Verify:
+  - `make facility-runtime-check`: PASS。7成果のbyte一致、中央allocator overlap 0、自然new-game、
+    物理NPC/script、候補6体、3体選択、CFRU policy、交換、3勝、9 BP、全出口exact復元、
+    sector 31、seen-onlyをlibmGBA exact-ROM 2 processで確認した。
+  - `python3 -m unittest -v tests.test_release tests.test_facility_runtime_stage tests.test_facility_save tests.test_save_layout`:
+    PASS（16 tests）。`python3 -m py_compile scripts/build_facility_runtime.py scripts/build_release.py`、
+    `git diff --cached --check`: PASS。
+  - `make final`, `make release-patch`, `make verify-release`: PASS。32 MiB/BPRJ header、BPS完全往復、
+    9 archive member、禁止binary/private path 0を確認した。
+  - `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`: PASS。
+    ユーザー指示に従い重い `make release-fresh-check` は再実行せず、既存のv1.1.0 tagged
+    fresh-check証跡を保持し、今回の変更範囲に限定した実ROM・patch検証を実行した。
+- Report identity:
+  - stage 20 / payload / allocation / mGBA smoke SHA-256
+    `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3` /
+    `2ef3e01e004388085ad7c05984416eca4adfd2ad1f08864965dae2639654e5ea` /
+    `12a0d057e4c375846d6fd9b040da92d281493b2709e0091d44d46b33b4f4e773` /
+    `b5e620f0b18c0923e95ed6c073247fe8726a6fc7c428849613ee557d3409b793`。
+  - final ROM / BPS / ZIP SHA-256
+    `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3` /
+    `29707aa8e1acde91bb4fb11c993e1b68cc7351663d7d350d93da8fd1691da10b` /
+    `fad037c85632cda691cb6d7637310fd8be123cf62260c65bebeba2acd001fa82`。
+- Commit: `3d81fd6a29de7d4ed96375809e9c28e71195327e`（実装・release source tag）、完了ログは本エントリを含むコミット。
+- Network: 未使用。source-lock済みCFRU-JP、既存stage 17/19、clean私有入力だけを参照した。

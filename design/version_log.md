@@ -308,3 +308,23 @@
   - 追加event枠のない21戦と通常ABI外の性格・特性・EV・gimmick triggerは検証済み台帳として保持し、誤った既存戦への接続を拒否した。
   - v1.1.0最終ROM、clean FireRed日本版Rev.0用BPS、9-member決定論ZIPを生成し、tagged fresh checkoutでもbyte一致させた。
 - Verify: `make trainer-rebalance-check`, focused 11 tests、py_compile、`make final`, `make release-patch`, `make verify-release`, `make release-fresh-check`, task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478` / `2bd167ab762645becd4b2a3eeda348aeb109d4d636d3521e4c753d7ef33ca101` / `6031174f113f671d9001ed8f0b694ef411e5a3b10d4eb5700be89f79580c2d3c`。
+
+## 2026-08-14T11:35:07+09:00
+
+- Version: `v1.2.0`
+- Commit: `3d81fd6a29de7d4ed96375809e9c28e71195327e`（release source tag。完了ログは本エントリを含むコミット）
+- Task: `USER-20260814-FACILITY-RUNTIME` / Factoryのランダムrental・勝利後交換を実ROMで遊べるようにする
+- Summary:
+  - クチバへTrial受付NPCを物理配置し、固定CFRU-JPのLv.50候補6体から3体を選ぶsingle
+    3v3×3、1・2勝後の任意交換、各戦全回復、3連勝9 BPをstage 20へ結合した。
+  - 入場前party 600 byteをsector 31へ保存し、完走・敗北・辞退・cancel・save/reset復旧で
+    exact復元する。図鑑はseen-only、Mirageと通常trainer状態は非干渉とした。
+  - Standard / Full / Master、BP shop、施設外報酬遭遇はruntime未接続と明記し、v1.2.0の
+    実装済み範囲をTrialへ限定した。
+  - 32 MiB最終ROM、clean FireRed日本版Rev.0用BPS、9-member決定論ZIPを生成した。
+- Verify: `make facility-runtime-check`、focused 16 tests、py_compile、`make final`,
+  `make release-patch`, `make verify-release`, task graph/private guard、cached diff check PASS。
+  重いfresh-checkはユーザー指示により再実行していない。final ROM/BPS/ZIP SHA-256
+  `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3` /
+  `29707aa8e1acde91bb4fb11c993e1b68cc7351663d7d350d93da8fd1691da10b` /
+  `fad037c85632cda691cb6d7637310fd8be123cf62260c65bebeba2acd001fa82`。
