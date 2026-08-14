@@ -407,3 +407,15 @@
   - 検証済みstageと入力hashから変更所有stage以降だけを生成するfast ROM driverを追加し、後段3工程を214.313秒で完了した。
   - Windows Downloadsへ32 MiB verified ROMを配置した。SHA-256は既存v1.3.3と同じ`13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
 - Verify: first-battle/UI/QOL統合check、`final-fast`、focused 76 unittest＋release 9 tests、fast dry-run、py_compile、task graph/private guard、diff check PASS。
+
+## 2026-08-15T05:40:28+09:00
+
+- Version: `v1.3.4`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-BATTLE-UI-LOOP-AUDIT` / 直前修正を再監査して実症状を直す
+- Summary:
+  - アクタシの正規第2特性Ability 64へ残留したQuick Draw indicatorを通知前に破棄し、正規Ability 260の通知を維持した。
+  - 固定CFRU objectにinline済みの旧表示をexact-prologue wrapperで覆い、実技カーソル経路へ抜群・半減・無効・STAB表示を接続した。
+  - stage 20以前を再利用する差分chainでstage 21〜25、final、BPS、9-member ZIPを再生成し、旧v1.3.3と識別できるv1.3.4へ更新した。
+  - RAM境界をfail-closedにし、UIレポートのJSONキー順driftを決定的出力へ修正した。
+- Verify: first-battle/HM/battle-rules/UI/move-memory/QOL build+check、focused 29 tests、release BPS往復・archive検査、py_compile、task graph/private guard、diff check PASS。final ROM SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。

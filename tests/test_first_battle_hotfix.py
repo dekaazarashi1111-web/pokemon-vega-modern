@@ -6,8 +6,9 @@ from pathlib import Path
 from scripts.build_first_battle_hotfix import (
     EXPECTED,
     MGBA_FIXTURE,
-    PATCH_OFFSET,
     REPLACEMENT,
+    RUN_TURN_PROLOGUE,
+    RUNTIME_BIN,
     SOURCE_GUARD,
     SOURCE_GUARD_OFFSET,
     STAGE21,
@@ -32,15 +33,32 @@ class FirstBattleHotfixTest(unittest.TestCase):
             hashlib.sha256(self.rom).hexdigest(),
             self.meta["output"]["sha256"],
         )
-        self.assertEqual(self.meta["patch"]["integration_mode"], "t06_source_integrated")
+        self.assertEqual(
+            self.meta["patch"]["item_guard_integration_mode"],
+            "t06_source_integrated",
+        )
         self.assertEqual(
             self.rom[SOURCE_GUARD_OFFSET:SOURCE_GUARD_OFFSET + len(SOURCE_GUARD)],
             SOURCE_GUARD,
         )
         self.assertNotEqual(EXPECTED, REPLACEMENT)
-        self.assertEqual(self.meta["patch"]["changed_byte_count"], 0)
-        self.assertEqual(self.meta["allocation"]["new_allocation_count"], 0)
+        self.assertGreater(self.meta["patch"]["changed_byte_count"], 8)
+        self.assertEqual(self.meta["patch"]["expected_hex"], RUN_TURN_PROLOGUE.hex())
+        self.assertEqual(self.meta["allocation"]["new_allocation_count"], 1)
         self.assertEqual(self.meta["allocation"]["overlap_count"], 0)
+        self.assertEqual(
+            self.meta["actashi_ability_contract"],
+            {
+                "species_id": 7,
+                "primary": 67,
+                "secondary": 64,
+                "base_stats_address": 151358552,
+            },
+        )
+        self.assertEqual(
+            hashlib.sha256(self.outputs[RUNTIME_BIN.as_posix()]).hexdigest(),
+            self.meta["runtime"]["sha256"],
+        )
         self.assertTrue(all(self.meta["invariants"].values()))
 
     def test_clean_rom_bps_round_trip_is_exact(self):
@@ -70,11 +88,24 @@ class FirstBattleHotfixTest(unittest.TestCase):
         self.assertEqual(observation["placeholder_item_entries"], 0)
         self.assertTrue(observation["pp_spent_once"])
         self.assertTrue(observation["hp_changed"])
-        fault = fixture["invalid_indicator_fault_injection"]
-        self.assertTrue(fault["invalid_indicator_injected"])
-        self.assertTrue(fault["invalid_indicator_rejected"])
-        self.assertEqual(fault["placeholder_item_entries"], 0)
-        self.assertTrue(fault["pp_spent_once"])
+        faults = {
+            row["indicator"]: row
+            for row in fixture["invalid_indicator_fault_injections"]
+        }
+        self.assertEqual(
+            set(faults),
+            {"QUICK_CLAW", "QUICK_DRAW_ACTASHI_ABILITY_64"},
+        )
+        self.assertEqual(faults["QUICK_DRAW_ACTASHI_ABILITY_64"]["bank"], 0)
+        self.assertEqual(faults["QUICK_DRAW_ACTASHI_ABILITY_64"]["ability"], 64)
+        for row in faults.values():
+            fault = row["observation"]
+            self.assertTrue(fault["invalid_indicator_injected"])
+            self.assertTrue(fault["invalid_indicator_rejected"])
+            self.assertEqual(fault["quick_claw_script_entries"], 0)
+            self.assertEqual(fault["quick_draw_script_entries"], 0)
+            self.assertEqual(fault["placeholder_item_entries"], 0)
+            self.assertTrue(fault["pp_spent_once"])
         by_effect = {
             row["effect"]: row for row in fixture["legitimate_priority_effects"]
         }
@@ -88,6 +119,8 @@ class FirstBattleHotfixTest(unittest.TestCase):
                 self.assertEqual(row["first_bank"], 1)
                 self.assertTrue(row["observation"]["pp_spent_once"])
                 self.assertTrue(row["observation"]["hp_changed"])
+        self.assertTrue(by_effect["QUICK_DRAW"]["ability_name_valid"])
+        self.assertEqual(by_effect["QUICK_DRAW"]["popup_ability"], 260)
 
 
 if __name__ == "__main__":

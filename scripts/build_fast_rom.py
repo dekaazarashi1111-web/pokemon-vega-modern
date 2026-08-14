@@ -81,7 +81,8 @@ OWNER_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "scripts/build_facility_runtime.py", "overlays/facility_runtime/",
     )),
     ("first-battle-hotfix", (
-        "scripts/build_first_battle_hotfix.py", "tools/mgba_first_battle_loop_smoke.c",
+        "scripts/build_first_battle_hotfix.py", "overlays/first_battle_hotfix/",
+        "tools/mgba_first_battle_loop_smoke.c",
     )),
     ("hm-field-access", (
         "scripts/build_hm_field_access.py", "overlays/hm_field_access/",
@@ -100,6 +101,7 @@ OWNER_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "overlays/move_memory/", "tools/mgba_move_memory_smoke.c",
     )),
     ("qol-release", ("scripts/build_qol_release.py",)),
+    ("final", ("scripts/build_release.py",)),
 )
 
 NON_ROM_PREFIXES = (

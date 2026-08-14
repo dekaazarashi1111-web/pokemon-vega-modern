@@ -24,7 +24,8 @@ enum {
     FIRST_BATTLE_ITEM_QUICK_CLAW = 183,
     FIRST_BATTLE_ITEM_CUSTAP_BERRY = 678,
     FIRST_BATTLE_ABILITY_QUICK_DRAW = 260,
-    FIRST_BATTLE_ABILITY_ACTASHI = 67,
+    FIRST_BATTLE_ABILITY_ACTASHI_PRIMARY = 67,
+    FIRST_BATTLE_ABILITY_ACTASHI_SECONDARY = 64,
     FIRST_BATTLE_ABILITY_LEEPUN = 65,
     FIRST_BATTLE_ITEM_EFFECT_QUICK_CLAW = 26,
     FIRST_BATTLE_ITEM_EFFECT_CUSTAP_BERRY = 96,
@@ -33,6 +34,7 @@ enum {
     FIRST_BATTLE_QUICK_DRAW_SCRIPT_END = 0x09001B28,
     FIRST_BATTLE_SCRIPT_POINTER = 0x02023CD4,
     FIRST_BATTLE_LAST_USED_ITEM = 0x02023CC8,
+    FIRST_BATTLE_LAST_USED_ABILITY = 0x0203DFAC,
     FIRST_BATTLE_CURRENT_ACTION = 0x02023B43,
     FIRST_BATTLE_MAIN_FUNC = 0x03004FC4,
     FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP = 0x122,
@@ -49,7 +51,6 @@ enum {
 
 static uint32_t first_battle_get_bank_item_effect;
 static uint32_t first_battle_run_turn_entry_pc;
-static uint32_t first_battle_invalid_item_skip_pc;
 
 struct FirstBattleCase {
     const char *name;
@@ -63,6 +64,18 @@ enum FirstBattlePriorityKind {
     FIRST_BATTLE_PRIORITY_QUICK_CLAW,
     FIRST_BATTLE_PRIORITY_CUSTAP,
     FIRST_BATTLE_PRIORITY_QUICK_DRAW,
+};
+
+enum FirstBattleInvalidIndicatorKind {
+    FIRST_BATTLE_INVALID_QUICK_CLAW,
+    FIRST_BATTLE_INVALID_QUICK_DRAW,
+};
+
+struct FirstBattleInvalidIndicatorCase {
+    const char *name;
+    enum FirstBattleInvalidIndicatorKind kind;
+    uint8_t bank;
+    uint16_t ability;
 };
 
 struct FirstBattlePriorityCase {
@@ -110,10 +123,12 @@ struct FirstBattleObservation {
 
 struct FirstBattlePriorityObservation {
     struct FirstBattleObservation battle;
+    uint16_t popup_ability;
     uint8_t first_bank;
     bool scheduler_seen;
     bool indicator_seen;
     bool notification_seen;
+    bool ability_name_valid;
 };
 
 struct NaturalFirstBattleObservation {
@@ -147,6 +162,14 @@ static const struct FirstBattlePriorityCase FIRST_BATTLE_PRIORITY_CASES[] = {
      FIRST_BATTLE_ITEM_EFFECT_CUSTAP_BERRY},
     {"QUICK_DRAW", FIRST_BATTLE_PRIORITY_QUICK_DRAW,
      FIRST_BATTLE_ITEM_NONE, FIRST_BATTLE_ABILITY_QUICK_DRAW, 0},
+};
+
+static const struct FirstBattleInvalidIndicatorCase
+FIRST_BATTLE_INVALID_INDICATOR_CASES[] = {
+    {"QUICK_CLAW", FIRST_BATTLE_INVALID_QUICK_CLAW, 1,
+     FIRST_BATTLE_ABILITY_LEEPUN},
+    {"QUICK_DRAW_ACTASHI_ABILITY_64", FIRST_BATTLE_INVALID_QUICK_DRAW, 0,
+     FIRST_BATTLE_ABILITY_ACTASHI_SECONDARY},
 };
 
 static struct CallObservation setup_first_battle(
@@ -327,7 +350,8 @@ static bool first_battle_choices_ready(struct mCore *core) {
 static struct FirstBattleObservation run_invalid_indicator_fault_case(
     struct mCore *core,
     const struct Snapshot *field,
-    const struct FirstBattleCase *fixture
+    const struct FirstBattleCase *fixture,
+    const struct FirstBattleInvalidIndicatorCase *invalid
 ) {
     struct FirstBattleObservation result = {0};
     (void)setup_first_battle(core, field, fixture);
@@ -336,6 +360,10 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
         || !(read32(core, ADDR_BATTLE_TYPE_FLAGS) & BATTLE_TYPE_TRAINER)) {
         battle_core_die("fault fixture did not enter a 1v1 trainer battle");
     }
+
+    uint32_t invalid_mon = ADDR_BATTLE_MONS
+        + (uint32_t)invalid->bank * BATTLE_MON_SIZE;
+    write16(core, invalid_mon + 0x38, invalid->ability);
 
     struct MonObservation player = observe_mon(core, 0);
     struct MonObservation opponent = observe_mon(core, 1);
@@ -395,32 +423,46 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
             if (newbs == 0) {
                 battle_core_die("fault fixture lost gNewBS before scheduler entry");
             }
-            write8(core,
-                   newbs + FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP,
-                   read8(core,
-                         newbs + FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP)
-                       | 2U);
+            uint32_t indicator_offset = invalid->kind
+                    == FIRST_BATTLE_INVALID_QUICK_DRAW
+                ? FIRST_BATTLE_NEWBS_QUICK_DRAW
+                : FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP;
+            uint8_t bit = (uint8_t)(1U << invalid->bank);
+            write8(core, newbs + indicator_offset,
+                   read8(core, newbs + indicator_offset) | bit);
             result.invalid_indicator_injected = true;
             result.invalid_indicator_injection_writes = 1;
             result.injection_first_main_func = read32(
                 core, FIRST_BATTLE_MAIN_FUNC);
         }
-        uint32_t script = read32(core, FIRST_BATTLE_SCRIPT_POINTER);
-        if (result.invalid_indicator_injected
-            && script >= FIRST_BATTLE_QUICK_CLAW_SCRIPT
-            && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT) {
-            ++result.quick_claw_script_entries;
-            if (read16(core, FIRST_BATTLE_LAST_USED_ITEM)
-                == FIRST_BATTLE_ITEM_NONE) {
-                ++result.placeholder_item_entries;
+        if (result.invalid_indicator_injected) {
+            uint32_t script = read32(core, FIRST_BATTLE_SCRIPT_POINTER);
+            bool quick_claw = script >= FIRST_BATTLE_QUICK_CLAW_SCRIPT
+                && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT;
+            bool quick_draw = script >= FIRST_BATTLE_QUICK_DRAW_SCRIPT
+                && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT_END;
+            if (quick_claw || quick_draw) {
+                result.quick_claw_script_entries += quick_claw ? 1U : 0U;
+                result.quick_draw_script_entries += quick_draw ? 1U : 0U;
+                if (quick_claw
+                    && read16(core, FIRST_BATTLE_LAST_USED_ITEM)
+                        == FIRST_BATTLE_ITEM_NONE) {
+                    ++result.placeholder_item_entries;
+                }
+                break;
             }
-            break;
-        }
-        if (result.invalid_indicator_injected
-            && pc >= first_battle_invalid_item_skip_pc
-            && pc <= first_battle_invalid_item_skip_pc + 8U) {
-            result.invalid_indicator_rejected = true;
-            break;
+
+            uint32_t newbs = read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER);
+            uint32_t indicator_offset = invalid->kind
+                    == FIRST_BATTLE_INVALID_QUICK_DRAW
+                ? FIRST_BATTLE_NEWBS_QUICK_DRAW
+                : FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP;
+            uint8_t bit = (uint8_t)(1U << invalid->bank);
+            if (newbs != 0
+                && !(read8(core, newbs + indicator_offset) & bit)) {
+                result.invalid_indicator_rejected = true;
+                break;
+            }
         }
 
         core->setKeys(core, 0);
@@ -483,6 +525,8 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
 ) {
     struct FirstBattlePriorityObservation result = {
         .first_bank = UINT8_MAX,
+        .ability_name_valid = priority->kind
+            != FIRST_BATTLE_PRIORITY_QUICK_DRAW,
     };
     struct FirstBattleObservation *battle = &result.battle;
     (void)setup_first_battle(core, field, fixture);
@@ -577,8 +621,15 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
                 }
             } else {
                 battle->quick_draw_script_entries = 1;
+                result.popup_ability = read16(
+                    core, FIRST_BATTLE_LAST_USED_ABILITY);
+                result.ability_name_valid =
+                    result.popup_ability == FIRST_BATTLE_ABILITY_QUICK_DRAW;
             }
-            break;
+            if (priority->kind != FIRST_BATTLE_PRIORITY_QUICK_DRAW
+                || result.ability_name_valid) {
+                break;
+            }
         }
 
         core->step(core);
@@ -737,7 +788,7 @@ static struct NaturalFirstBattleObservation run_natural_actashi_first_battle(
             && read16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE)
                 == FIRST_BATTLE_SPECIES_LEEPUN
             && read16(core, ADDR_BATTLE_MONS + 0x38)
-                == FIRST_BATTLE_ABILITY_ACTASHI
+                == FIRST_BATTLE_ABILITY_ACTASHI_PRIMARY
             && read16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38)
                 == FIRST_BATTLE_ABILITY_LEEPUN) {
             break;
@@ -870,13 +921,27 @@ static void print_first_battle_priority_observation(
 ) {
     printf("{\"effect\":\"%s\",\"scheduler_seen\":%s,"
            "\"indicator_seen\":%s,\"notification_seen\":%s,"
+           "\"ability_name_valid\":%s,\"popup_ability\":%u,"
            "\"first_bank\":%u,\"observation\":",
            fixture->name,
            value->scheduler_seen ? "true" : "false",
            value->indicator_seen ? "true" : "false",
            value->notification_seen ? "true" : "false",
+           value->ability_name_valid ? "true" : "false",
+           value->popup_ability,
            value->first_bank);
     print_first_battle_observation(&FIRST_BATTLE_CASES[0], &value->battle);
+    putchar('}');
+}
+
+static void print_invalid_indicator_observation(
+    const struct FirstBattleInvalidIndicatorCase *fixture,
+    const struct FirstBattleObservation *value
+) {
+    printf("{\"indicator\":\"%s\",\"bank\":%u,"
+           "\"ability\":%u,\"observation\":",
+           fixture->name, fixture->bank, fixture->ability);
+    print_first_battle_observation(&FIRST_BATTLE_CASES[0], value);
     putchar('}');
 }
 
@@ -897,7 +962,6 @@ int main(int argc, char **argv) {
     uint32_t run_turn_actions = parse_address(argv[3]);
     first_battle_get_bank_item_effect = parse_address(argv[4]);
     first_battle_run_turn_entry_pc = run_turn_actions + 0x002U;
-    first_battle_invalid_item_skip_pc = run_turn_actions + 0x08CU;
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);
@@ -943,7 +1007,7 @@ int main(int argc, char **argv) {
         || !natural.trainer_327_started
         || !natural.pointer_stable
         || !natural.pending_shadow_stable
-        || natural.battle.player_ability != FIRST_BATTLE_ABILITY_ACTASHI
+        || natural.battle.player_ability != FIRST_BATTLE_ABILITY_ACTASHI_PRIMARY
         || natural.battle.opponent_ability != FIRST_BATTLE_ABILITY_LEEPUN
         || natural.battle.player_item != FIRST_BATTLE_ITEM_NONE
         || natural.battle.opponent_item != FIRST_BATTLE_ITEM_NONE
@@ -973,23 +1037,33 @@ int main(int argc, char **argv) {
             pass = false;
         }
     }
-    struct FirstBattleObservation fault_injection =
-        run_invalid_indicator_fault_case(
-            core, &field, &FIRST_BATTLE_CASES[0]);
-    printf("],\"invalid_indicator_fault_injection\":");
-    print_first_battle_observation(&FIRST_BATTLE_CASES[0], &fault_injection);
-    if (!fault_injection.invalid_indicator_injected
-        || !fault_injection.invalid_indicator_rejected
-        || fault_injection.quick_claw_script_entries != 0
-        || fault_injection.placeholder_item_entries != 0
-        || !fault_injection.pp_spent_once
-        || !fault_injection.hp_changed) {
-        pass = false;
+    struct FirstBattleObservation fault_injections[
+        ARRAY_LEN(FIRST_BATTLE_INVALID_INDICATOR_CASES)];
+    printf("],\"invalid_indicator_fault_injections\":[");
+    for (unsigned index = 0;
+         index < ARRAY_LEN(FIRST_BATTLE_INVALID_INDICATOR_CASES);
+         ++index) {
+        const struct FirstBattleInvalidIndicatorCase *fixture =
+            &FIRST_BATTLE_INVALID_INDICATOR_CASES[index];
+        fault_injections[index] = run_invalid_indicator_fault_case(
+            core, &field, &FIRST_BATTLE_CASES[0], fixture);
+        const struct FirstBattleObservation *fault = &fault_injections[index];
+        if (index) putchar(',');
+        print_invalid_indicator_observation(fixture, fault);
+        if (!fault->invalid_indicator_injected
+            || !fault->invalid_indicator_rejected
+            || fault->quick_claw_script_entries != 0
+            || fault->quick_draw_script_entries != 0
+            || fault->placeholder_item_entries != 0
+            || !fault->pp_spent_once
+            || !fault->hp_changed) {
+            pass = false;
+        }
     }
 
     struct FirstBattlePriorityObservation priority_observations[
         ARRAY_LEN(FIRST_BATTLE_PRIORITY_CASES)];
-    printf(",\"legitimate_priority_effects\":[");
+    printf("],\"legitimate_priority_effects\":[");
     for (unsigned index = 0;
          index < ARRAY_LEN(FIRST_BATTLE_PRIORITY_CASES);
          ++index) {
@@ -1015,6 +1089,7 @@ int main(int argc, char **argv) {
                 != (quick_claw_expected ? 1U : 0U)
             || battle->quick_draw_script_entries
                 != (quick_claw_expected ? 0U : 1U)
+            || !value->ability_name_valid
             || battle->placeholder_item_entries != 0
             || !battle->pp_spent_once
             || !battle->hp_changed) {

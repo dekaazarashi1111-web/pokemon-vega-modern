@@ -124,6 +124,7 @@ typedef u8 (*CheckMoveEffectTableFn)(u16 move, const u8 *table);
 #define G_BATTLER_CONTROLLER_FUNCS PTR(volatile u32 *, 0x03005020)
 #define G_MULTI_USE_PLAYER_CURSOR PTR(volatile u8 *, 0x03005034)
 #define G_NEW_BATTLE_STRUCT PTR(volatile u32 *, 0x0203DFB0)
+#define G_MAIN_NEW_KEYS PTR(volatile u16 *, 0x0300315E)
 #define G_BATTLE_MONS PTR(volatile u8 *, 0x02023B44)
 #define G_DISPLAYED_STRING PTR(u8 *, 0x020228FC)
 #define G_PLTT_BUFFER_UNFADED PTR(volatile u16 *, 0x0203712C)
@@ -156,6 +157,11 @@ typedef u8 (*CheckMoveEffectTableFn)(u16 move, const u8 *table);
     PTR(CheckMoveEffectTableFn, VEGA_UI_CHECK_MOVE_EFFECT_TABLE_ADDRESS)
 
 #define HANDLE_INPUT_CHOOSE_TARGET ((u32)VEGA_UI_HANDLE_CHOOSE_TARGET_ADDRESS)
+#define HANDLE_INPUT_CHOOSE_MOVE_HOOK \
+    ((u32)VEGA_UI_HANDLE_CHOOSE_MOVE_HOOK_ADDRESS)
+
+extern void vega_battle_ui_init_move_selection_trampoline(void);
+extern void vega_battle_ui_handle_input_choose_move_trampoline(void);
 
 static struct ChooseMoveStruct *move_info(u8 active)
 {
@@ -338,5 +344,48 @@ void VegaBattleUI_DisplayMoveEffectiveness(void)
     for (u8 index = 0; index < 4; ++index) {
         G_PLTT_BUFFER_FADED[STAB_PALETTE_INDEX + index] =
             G_PLTT_BUFFER_UNFADED[STAB_PALETTE_INDEX + index];
+    }
+}
+
+static u8 can_display_effectiveness(void)
+{
+    enum {
+        EWRAM_START = 0x02000000,
+        EWRAM_END_EXCLUSIVE = 0x02040000,
+        NEWBS_MOVE_DETAILS_OFFSET = 0x248,
+    };
+    u32 state = *G_NEW_BATTLE_STRUCT;
+    return state >= EWRAM_START
+        && state <= EWRAM_END_EXCLUSIVE - (NEWBS_MOVE_DETAILS_OFFSET + 1u)
+        && !(*(volatile u8 *)(uintptr_t)(state + NEWBS_MOVE_DETAILS_OFFSET)
+             & (1u << 5));
+}
+
+/* The fixed T06 object inlined the disabled effectiveness branch into both
+ * owners below.  Re-enter through exact prologue trampolines, then render the
+ * source-equivalent adapter after the stale inline code has returned. */
+__attribute__((section(".text.VegaBattleUI_InitMoveSelection"), used, noinline))
+void VegaBattleUI_InitMoveSelection(void)
+{
+    vega_battle_ui_init_move_selection_trampoline();
+    if (*G_ACTIVE_BATTLER < MAX_BATTLERS && can_display_effectiveness()) {
+        VegaBattleUI_DisplayMoveEffectiveness();
+    }
+}
+
+__attribute__((section(".text.VegaBattleUI_HandleInputChooseMove"), used, noinline))
+void VegaBattleUI_HandleInputChooseMove(void)
+{
+    u16 new_keys = *G_MAIN_NEW_KEYS;
+    vega_battle_ui_handle_input_choose_move_trampoline();
+
+    u8 active = *G_ACTIVE_BATTLER;
+    if (new_keys != 0u && active < MAX_BATTLERS
+        && can_display_effectiveness()) {
+        u32 controller = G_BATTLER_CONTROLLER_FUNCS[active];
+        if (controller == HANDLE_INPUT_CHOOSE_MOVE_HOOK
+            || controller == HANDLE_INPUT_CHOOSE_TARGET) {
+            VegaBattleUI_DisplayMoveEffectiveness();
+        }
     }
 }

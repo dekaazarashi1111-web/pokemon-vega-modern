@@ -936,7 +936,7 @@
   - build/runtime: `Makefile`, `scripts/{build_fast_rom,fast_stage_reuse,build_battle_core,build_species_port,build_species_surface,build_first_battle_hotfix,build_hm_field_access,build_battle_rules,build_battle_ui,build_move_memory,build_qol_release,build_release}.py`
   - config/QA: `config/{battle_core,battle_ui,move_memory}.json`, `config/ram_layout.csv`, `tools/mgba_{first_battle_loop,battle_ui}_smoke.c`, `tests/test_{fast_rom,build_battle_core,first_battle_hotfix,battle_ui}.py`
   - task/design/state: `tasks/USER_20260814_BATTLE_UI_LOOP_FAST_BUILD.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY,RELEASE_README_JA}.md`, `design/{current_state,tasks_next,run_log,version_log}.md`
-  - Git管理外成果: `build/stages/{06,21,24,25}*`, `build/final/vega-modern-kanto-v1.3.3.gba`, `.local/fast_rom_state.json`, `/mnt/c/Users/dekaa/Downloads/vega-modern-kanto-v1.3.3-verified.gba`
+  - Git管理外成果: `build/stages/{06,21,24,25}*`, `build/final/vega-modern-kanto-v1.3.3.gba`, `.local/fast_rom_state.json`, Windows Downloadsの`vega-modern-kanto-v1.3.3-verified.gba`
 - Verify:
   - `python3 scripts/build_first_battle_hotfix.py check`: PASS（5 artifacts、side effects NONE）。自然アクタシ初戦、3御三家、fault injection、正規行動順効果を確認した。
   - `python3 scripts/build_battle_ui.py check`: PASS（8 artifacts）。通常action→技選択、L/R modeのL詳細open/close、等倍・タイプ不一致空欄、抜群/半減/無効/STAB、全battle modeを確認した。
@@ -954,3 +954,30 @@
 - Network:
   - Delta / GBADeltaCore / VBA-Mのstate形式確認にGitHub一次情報を使用した。参照URL: `https://github.com/rileytestut/Delta`、`https://github.com/rileytestut/GBADeltaCore`、`https://github.com/visualboyadvance-m/visualboyadvance-m`。確認revisionはDelta `c1d3d068...`、GBADeltaCore `869c34a...`、VBA-M `453fa0decf179360926fb417725a794aa496d6e3`。
   - VBA-Mのローカル再現補助導入でUbuntu archiveを使用した。外部へprivate ROM/saveや内部仕様は送信していない。
+
+## 2026-08-15T05:40:28+09:00
+
+- Task: `USER-20260815-BATTLE-UI-LOOP-AUDIT` / 直前修正を再監査して実症状を直す
+- Status: DONE
+- Summary:
+  - 直前コミット`bdffa7b2`とその1つ前を監査した。v1.3.3最終ROMが旧releaseとbyte-identicalだったこと、初戦テストがアクタシAbility 67だけ、UIテストがadapter直接呼出し中心だったため、ユーザーの実経路を覆えていなかったことを確認した。
+  - Delta export原本を変更せずVBA-M stateとして読み、停止中のアクタシが正規の第2特性Ability 64、Quick Draw indicator残留、`gLastUsedAbility`不正値であることを特定した。stage 21へ148-byte scheduler guardを追加し、Ability 64では通知script進入0、正規Ability 260では通知1回・popup ability 260を維持した。
+  - 固定T06 objectの`InitMoveSelectionsVarsAndStrings`と`HandleInputChooseMove`に旧effect表示がinline済みで、新adapterを上書きしていた。exact-prologue trampolineを含む1,148-byte runtimeへ更新し、実際の「たたかう→技選択→カーソル移動」でtype/effect entry、抜群label・palette、controller復帰を確認した。
+  - RAM field加算後までEWRAM内であることを検査し、壊れたstateはfail-closedにした。UIレポートのJSON再読後だけ発生するキー順driftも固定順JSONへ直し、build後の副作用なしcheckを安定化した。
+  - stage 20以前を再利用し、最終境界修正はstage 21〜finalだけを約386.2秒で再生成した。v1.3.4最終ROMは32 MiB、SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。旧savestateは互換入力として扱わない。
+  - private guardが検出した直前ログの端末固有Windowsパス1件を、内容を変えない汎用表記へredactした。
+- Files changed:
+  - runtime/build: `overlays/{first_battle_hotfix,battle_ui}/**`, `scripts/build_{first_battle_hotfix,hm_field_access,battle_rules,battle_ui,move_memory,qol_release,release,fast_rom}.py`, `config/{battle_rules,battle_ui,move_memory}.json`
+  - QA: `tools/mgba_{first_battle_loop,battle_ui}_smoke.c`, `tests/test_{first_battle_hotfix,battle_ui,fast_rom,release}.py`
+  - release/design: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `design/{catalog,current_state,report_lifecycle_index,run_log,version_log}.md`, `tasks/USER_20260815_BATTLE_UI_LOOP_AUDIT.md`
+  - Git管理外再生成物: stage 21〜25、final v1.3.4、BPS、9-member ZIP、Windows Downloads向け検証ROM
+- Verify:
+  - first-battle / HM field / battle rules / battle UI / move memory / QOL integrationの各build・副作用なしcheck: PASS。stage 21/22=23/24/25 SHA-256は`40d0c53e...` / `ce8748a5...` / `3a8c02a0...` / `0b04e004...`、allocator overlap 0。
+  - `python3 -m unittest -v tests.test_first_battle_hotfix tests.test_battle_ui tests.test_fast_rom tests.test_release`: PASS（29 tests）。Ability 64/260、実カーソル抜群表示、レポートキー順決定性、高速stage選択、v1.3.4 release契約を確認した。
+  - `python3 scripts/build_release.py patch` / `verify`: PASS。clean FireRed日本版Rev.0からのBPS往復は最終ROMと一致し、archive 9 members、禁止ROM member 0。
+  - `python3 -m py_compile ...`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyとstage 00からのfresh rebuildは実行していない。
+- Output identity:
+  - final ROM SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`、size `33,554,432` bytes。
+  - Delta原本 SHA-256 `d316dc18f9442ee127cf4bc9d32cdb7a279c32b6e94179990c88c8cedda2539b`、size `38,714` bytes。原本変更0、Git追跡0。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。既存のsource-lock済み上流、ローカルDelta export、検証済みstage、clean私有入力だけを参照した。

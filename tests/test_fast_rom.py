@@ -14,6 +14,20 @@ class FastRomSelectionTests(unittest.TestCase):
             "battle-ui",
         )
 
+    def test_first_battle_runtime_starts_at_first_battle_stage(self) -> None:
+        self.assertEqual(
+            build_fast_rom.choose_start([
+                "overlays/first_battle_hotfix/first_battle_hotfix.c"
+            ]),
+            "first-battle-hotfix",
+        )
+
+    def test_release_identity_change_starts_at_final(self) -> None:
+        self.assertEqual(
+            build_fast_rom.choose_start(["scripts/build_release.py"]),
+            "final",
+        )
+
     def test_core_change_wins_over_later_change(self) -> None:
         self.assertEqual(
             build_fast_rom.choose_start([

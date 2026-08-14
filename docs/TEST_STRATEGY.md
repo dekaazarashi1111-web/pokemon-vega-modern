@@ -42,8 +42,10 @@
 
 初戦の行動順回帰では、アクタシ・ファマー・リープンの3分岐を実controllerで1ターン進める。
 Item ID 0へ残留Quick Claw/Custap indicatorを命令境界で注入し、通知なしでPP/HPが更新される
-ことを確認する。正規Quick Claw、Custap、Quick Drawは遅いbankを先頭へ移し、通知1回で
-同じターンを完了することを別fixtureで検証する。
+ことに加え、Delta exportと同じアクタシAbility 64へ残留Quick Draw indicatorを注入しても、
+空の特性名や速度通知を出さず同じターンを完了することを確認する。正規Quick Claw、Custap、
+Quick Drawは遅いbankを先頭へ移し、Quick DrawではAbility 260と有効な特性名を要求したうえで、
+通知1回だけで同じターンを完了することを別fixtureで検証する。
 
 HM field能力回帰ではVega既存HM01〜08（Item 339〜346）を1個ずつ追加し、追加前は拒否値6、
 追加直後とsnapshot復元後は許可値0になることをexact-ROMで確認する。各HMは手持ち0体、

@@ -22,6 +22,7 @@ enum {
     UI_MOVE_CURSOR = 0x02023F5C,
     UI_CONTROLLER_FUNCS = 0x03005020,
     UI_MULTI_CURSOR = 0x03005034,
+    UI_NUMBER_OF_MOVES = 0x03005038,
     UI_SAVE_BLOCK2_PTR = 0x0300504C,
     UI_OPTIONS_BUTTON_MODE_OFFSET = 0x13,
     UI_OPTIONS_BUTTON_MODE_LR = 1,
@@ -91,6 +92,16 @@ struct UIEffectObservation {
     bool saw_effect_label;
     bool saw_stab_label;
     bool entry_completed;
+};
+
+struct UIActualMenuObservation {
+    uint8_t cursor_before;
+    uint8_t cursor_after;
+    uint8_t palette_group;
+    bool type_entry_seen;
+    bool effect_entry_seen;
+    bool super_label_seen;
+    bool controller_stable;
 };
 
 static void ui_die(const char *message)
@@ -248,6 +259,84 @@ static void print_effect(const struct UIEffectObservation *row)
            row->entry_completed ? "true" : "false");
 }
 
+static struct UIActualMenuObservation probe_actual_menu_super_effective(
+    struct mCore *core, uint32_t type_runtime, uint32_t effect_runtime
+) {
+    struct UIActualMenuObservation result = {0};
+    uint8_t active = 0;
+    if (read32(core, UI_CONTROLLER_FUNCS) != ui_handle_choose_move)
+        ui_die("actual menu player controller differs");
+    uint32_t info = UI_BATTLE_BUFFER_A + (uint32_t)active * 0x200U + 4U;
+    result.cursor_before = read8(core, UI_MOVE_CURSOR + active);
+    uint8_t next_slot = (uint8_t)(result.cursor_before ^ 1U);
+    if (next_slot >= 4U) ui_die("actual menu cursor shape differs");
+    if (read16(core, info + UI_INFO_MOVES + next_slot * 2U) == 0) {
+        write16(core, info + UI_INFO_MOVES + next_slot * 2U,
+                read16(core, info + UI_INFO_MOVES
+                       + result.cursor_before * 2U));
+    }
+    if (read8(core, UI_NUMBER_OF_MOVES) < 2U)
+        write8(core, UI_NUMBER_OF_MOVES, 2U);
+    write8(core, info + UI_INFO_MOVE_TYPES + next_slot, UI_TYPE_FIRE);
+    /* Fill the complete 4x4 result matrix: this probe is about the production
+     * cursor route, while the separate matrix cases verify target indexing. */
+    for (unsigned index = 0; index < 16U; ++index) {
+        write8(core, info + UI_INFO_MOVE_RESULTS + index,
+               UI_MOVE_RESULT_SUPER);
+        write8(core, info + UI_INFO_Z_MOVE_RESULTS + index,
+               UI_MOVE_RESULT_SUPER);
+    }
+
+    write8(core, UI_ACTIVE_BATTLER, active);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 1U << 4);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 1U << 4); /* DPAD_RIGHT */
+    struct CpuState original = capture_cpu_state(core);
+    write_register(core, "cpsr", (uint32_t)original.registers[16] | 0xA0U);
+    write_register(core, "lr", 0x08000001U);
+    write_register(core, "pc", ui_handle_choose_move);
+    uint32_t instructions = 0;
+    while ((((uint32_t)read_register(core, "pc")) & ~1U) != 0x08000002U) {
+        uint32_t pc = (uint32_t)read_register(core, "pc") & ~1U;
+        uint32_t type_base = type_runtime & ~1U;
+        uint32_t effect_base = effect_runtime & ~1U;
+        /* mGBA can expose either the Thumb entry or entry + 2 while stepping
+         * across the absolute-jump stub. */
+        if (pc == type_base || pc == type_base + 2U)
+            result.type_entry_seen = true;
+        if (pc == effect_base || pc == effect_base + 2U)
+            result.effect_entry_seen = true;
+        if (++instructions > BATTLE_CORE_DIRECT_CALL_LIMIT)
+            ui_die("actual move handler exceeded instruction limit");
+        core->step(core);
+    }
+    restore_cpu_state(core, &original);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+    result.cursor_after = read8(core, UI_MOVE_CURSOR + active);
+    result.super_label_seen =
+        contains_string(core, UI_DISPLAYED_STRING, ui_text_super);
+    result.palette_group = palette_group(core);
+    result.controller_stable =
+        read32(core, UI_CONTROLLER_FUNCS + (uint32_t)active * 4U)
+            == ui_handle_choose_move;
+    if (!result.type_entry_seen
+        || !result.effect_entry_seen
+        || !result.super_label_seen
+        || result.cursor_after != next_slot
+        || result.palette_group != UI_EFFECT_SUPER
+        || !result.controller_stable) {
+        fprintf(stderr,
+                "mgba-battle-ui-smoke: actual super debug type=%u effect=%u "
+                "label=%u cursor=%u->%u palette=%u controller=%u\n",
+                result.type_entry_seen, result.effect_entry_seen,
+                result.super_label_seen, result.cursor_before,
+                result.cursor_after, result.palette_group,
+                result.controller_stable);
+        ui_die("real move cursor did not render the super-effective UI");
+    }
+    return result;
+}
+
 int main(int argc, char **argv)
 {
     if (argc != 18) {
@@ -381,6 +470,13 @@ int main(int argc, char **argv)
     }
     if (!menu_waiting_for_input)
         ui_die("move menu did not remain idle after releasing A");
+
+    struct Snapshot actual_menu = take_snapshot(core);
+    struct UIActualMenuObservation actual_super =
+        probe_actual_menu_super_effective(core, type_runtime, effect_runtime);
+    restore_snapshot(core, &actual_menu);
+    free(actual_menu.bytes);
+    menu_new_battle = read32(core, UI_NEW_BATTLE_STRUCT_PTR);
 
     /* The fixed upstream CFRU menu uses L to toggle contact/power/accuracy
      * details.  Verify that exact user-visible route and the upstream gNewBS
@@ -563,7 +659,7 @@ int main(int argc, char **argv)
         ui_die("wild/trainer/double input or screen return failed");
 
     printf("{\"schema_version\":1,\"status\":\"PASS\","
-           "\"fixture\":\"cfru_move_menu_effectiveness_v3\","
+           "\"fixture\":\"cfru_move_menu_effectiveness_v4\","
            "\"rom_sha256\":\"%s\",\"read_only\":true,"
            "\"warnings_errors\":0,\"owner\":{"
            "\"type_hook\":\"0x%08X\",\"type_entry\":\"0x%08X\","
@@ -580,6 +676,10 @@ int main(int argc, char **argv)
            "\"matrix_multipliers\":[%" PRIu32 ",%" PRIu32
            ",%" PRIu32 ",%" PRIu32 ",%" PRIu32 "],"
            "\"double_target_specific\":true,\"actual_menu_path\":true,"
+           "\"actual_menu_super\":{\"type_entry_seen\":true,"
+           "\"effect_entry_seen\":true,\"super_label_seen\":true,"
+           "\"cursor_before\":%u,\"cursor_after\":%u,"
+           "\"palette_group\":%u,\"controller_stable\":true},"
            "\"l_move_details\":{\"opened\":true,\"accuracy_label\":true,"
            "\"closed\":true,\"pointer_stable\":true,\"button_mode\":1},"
            "\"routes\":{"
@@ -589,7 +689,9 @@ int main(int argc, char **argv)
            "\"input_return\":true,\"artifacts_written\":[]}",
            stellar_type, tera_selected_type, tera_clear_type,
            multipliers[0], multipliers[1], multipliers[2], multipliers[3],
-           multipliers[4], wild.turn.outcome_after, trainer.turn.outcome_after,
+           multipliers[4], actual_super.cursor_before,
+           actual_super.cursor_after, actual_super.palette_group,
+           wild.turn.outcome_after, trainer.turn.outcome_after,
            double_route.battler_count);
     putchar('\n');
 

@@ -55,7 +55,7 @@ EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_ai_fixture_runner.c"),
 )
 ALLOCATION_NAME = "battle_ui_runtime"
-EXPECTED_STAGE23_SHA256 = "18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407"
+EXPECTED_STAGE23_SHA256 = "ce8748a5c725bd523824147571c081254281e6521af204472cfffdf45ca9fa36"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
 EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
@@ -78,9 +78,13 @@ REQUIRED_SYMBOLS = {
     "VegaBattleUI_GetSelectedMoveType",
     "VegaBattleUI_DisplayMoveType",
     "VegaBattleUI_DisplayMoveEffectiveness",
+    "VegaBattleUI_InitMoveSelection",
+    "VegaBattleUI_HandleInputChooseMove",
 }
 
 UPSTREAM_SYMBOLS = {
+    "InitMoveSelectionsVarsAndStrings": (0x09116310, 0x2C8),
+    "HandleInputChooseMove": (0x09116E40, 0x119C),
     "MoveSelectionDisplayMoveType": (0x0911570C, 0xB8),
     "MoveSelectionDisplayMoveEffectiveness": (0x09116DF0, 0x50),
     "HandleInputChooseTarget": (0x09115CEC, 0x624),
@@ -342,7 +346,7 @@ def audit_source(root: Path = ROOT, config: dict[str, Any] | None = None) -> dic
         "profile": profile.relative_to(root).as_posix(),
         "profile_sha256": _sha(profile.read_bytes()),
         "profile_ui_macros_active": macro_states,
-        "adapter_reason": "T06の固定payloadを再構築せず、無効だったsource UI分岐だけを同じABIで接続",
+        "adapter_reason": "T06の固定payloadを再構築せず、無効だったsource UI分岐とinline済みcursor経路を同じABIで接続",
         "files": source_files,
         "evidence": evidence,
         "linked_symbols": symbols,
@@ -396,14 +400,17 @@ def audit_owner(root: Path = ROOT, config: dict[str, Any] | None = None) -> dict
         _fail("stage23 owner input differs")
     owners = config["owners"]
     observed: dict[str, dict[str, Any]] = {}
-    for key in ("emit_choose_move", "handle_input_choose_move", "init_move_selection"):
+    for key in ("emit_choose_move",):
         row = owners[key]
         site = _address(row["hook"])
         target = _hook_target(rom, site)
         if target != _address(row["target"]):
             _fail(f"battle UI owner target differs: {key}")
         observed[key] = {"hook": site, "target": target}
-    for key in ("display_move_type", "display_effectiveness"):
+    for key in (
+        "display_move_type", "display_effectiveness",
+        "handle_input_choose_move", "init_move_selection",
+    ):
         row = owners[key]
         site = _address(row["hook"])
         entry = _address(row["entry"])
@@ -462,8 +469,9 @@ def _compile_runtime(
     if not compiler or not objcopy or not nm:
         _fail("ARM GNU toolchain is required for battle UI runtime")
     source = root / "overlays/battle_ui/battle_ui.c"
+    assembly = root / "overlays/battle_ui/battle_ui_trampoline.S"
     header = root / "overlays/battle_ui/battle_ui.h"
-    if not source.is_file() or not header.is_file():
+    if not source.is_file() or not assembly.is_file() or not header.is_file():
         _fail("battle UI adapter source is missing")
     with tempfile.TemporaryDirectory(prefix="vega-battle-ui-") as raw:
         directory = Path(raw)
@@ -493,11 +501,14 @@ def _compile_runtime(
             f"-DVEGA_UI_TERA_TYPE_ACTIVE_ADDRESS=0x{linked_symbols['TeraTypeActive']['address'] | 1:08X}u",
             f"-DVEGA_UI_CHECK_MOVE_EFFECT_TABLE_ADDRESS=0x{linked_symbols['CheckTableForMoveEffect']['address'] | 1:08X}u",
             f"-DVEGA_UI_HANDLE_CHOOSE_TARGET_ADDRESS=0x{linked_symbols['HandleInputChooseTarget']['address'] | 1:08X}u",
+            f"-DVEGA_UI_HANDLE_CHOOSE_MOVE_HOOK_ADDRESS=0x{_address(_config(root)['owners']['handle_input_choose_move']['hook']) | 1:08X}u",
+            f"-DVEGA_UI_INIT_MOVE_SELECTION_CONTINUE_ADDRESS=0x{linked_symbols['InitMoveSelectionsVarsAndStrings']['address'] + 8 | 1:08X}",
+            f"-DVEGA_UI_HANDLE_CHOOSE_MOVE_CONTINUE_ADDRESS=0x{linked_symbols['HandleInputChooseMove']['address'] + 8 | 1:08X}",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
             "-Wl,-e,VegaBattleUI_DisplayMoveType", f"-Wl,-T,{linker}",
-            f"-I{source.parent}", str(source), "-o", str(elf),
+            f"-I{source.parent}", str(source), str(assembly), "-o", str(elf),
         ], "battle UI ARM link", cwd=root)
         undefined = _run([nm, "-u", str(elf)], "battle UI undefined-symbol check")
         if undefined:
@@ -590,9 +601,14 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
     if len(species_raw) != 1621 * 11 or _sha(species_raw) != config["inputs"]["species_names"]["sha256"]:
         _fail("canonical Species name artifact differs")
     first = _read_json(root / config["inputs"]["first_battle_fixture"]["path"])
+    fault_observations = [
+        row.get("observation", {})
+        for row in first.get("invalid_indicator_fault_injections", [])
+        if isinstance(row, dict)
+    ]
     placeholder_observations = [
         row.get("placeholder_item_entries")
-        for row in [*first.get("branches", []), first.get("invalid_indicator_fault_injection", {})]
+        for row in [*first.get("branches", []), *fault_observations]
     ]
     if not placeholder_observations or any(value != 0 for value in placeholder_observations):
         _fail("first-battle item notification exposed a placeholder")
@@ -638,6 +654,8 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
     patch_contract = (
         ("display_move_type", "VegaBattleUI_DisplayMoveType"),
         ("display_effectiveness", "VegaBattleUI_DisplayMoveEffectiveness"),
+        ("handle_input_choose_move", "VegaBattleUI_HandleInputChooseMove"),
+        ("init_move_selection", "VegaBattleUI_InitMoveSelection"),
     )
     for owner_key, symbol in patch_contract:
         row = config["owners"][owner_key]
@@ -659,6 +677,10 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
         != symbols["VegaBattleUI_DisplayMoveType"] | 1
         or _hook_target(output_raw, _address(config["owners"]["display_effectiveness"]["entry"]))
         != symbols["VegaBattleUI_DisplayMoveEffectiveness"] | 1
+        or _hook_target(output_raw, _address(config["owners"]["handle_input_choose_move"]["entry"]))
+        != symbols["VegaBattleUI_HandleInputChooseMove"] | 1
+        or _hook_target(output_raw, _address(config["owners"]["init_move_selection"]["entry"]))
+        != symbols["VegaBattleUI_InitMoveSelection"] | 1
     ):
         _fail("battle UI post-patch ownership chain differs")
 
@@ -709,9 +731,9 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
             "stage23_hash_pinned": _sha(source) == expected_stage23,
             "source_lock_verified": source_audit["source_lock_verified"],
-            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 17,
+            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 19,
             "normal_factory_raid_share_owner": owner_audit["global_owner_shared_by_normal_factory_raid"],
-            "two_entry_stubs_only": len(patches) == 2,
+            "four_owner_entry_stubs_only": len(patches) == 4,
             "declared_changes_only": changed <= allowed,
             "allocator_overlap_zero": allocation_report["summaries"]["overlap_count"] == 0,
             "canonical_live_strings_resolved": all(not values for values in strings["live_unresolved"].values()),
@@ -769,7 +791,7 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
     observed = {row.get("name"): row.get("class") for row in cases}
     if (
         value.get("status") != "PASS"
-        or value.get("fixture") != "cfru_move_menu_effectiveness_v3"
+        or value.get("fixture") != "cfru_move_menu_effectiveness_v4"
         or value.get("rom_sha256") != rom_sha256
         or value.get("warnings_errors") != 0
         or not value.get("read_only")
@@ -781,6 +803,15 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
         or value.get("matrix_multipliers") != [500, 2000, 4000, 250, 0]
         or not value.get("double_target_specific")
         or not value.get("actual_menu_path")
+        or value.get("actual_menu_super") != {
+            "type_entry_seen": True,
+            "effect_entry_seen": True,
+            "super_label_seen": True,
+            "cursor_before": 0,
+            "cursor_after": 1,
+            "palette_group": 1,
+            "controller_stable": True,
+        }
         or value.get("l_move_details") != {
             "opened": True, "accuracy_label": True,
             "closed": True, "pointer_stable": True, "button_mode": 1,
@@ -954,6 +985,12 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
         for row in ui["effect_cases"]
     )
     strings = metadata["string_audit"]
+    actual_menu_super = json.dumps(
+        ui["actual_menu_super"], ensure_ascii=False, sort_keys=True,
+    )
+    move_details = json.dumps(
+        ui["l_move_details"], ensure_ascii=False, sort_keys=True,
+    )
     text = f"""# 戦闘時の技タイプ・有効度UI
 
 ## 結論
@@ -969,7 +1006,8 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
 - type matrix: {ui['matrix_multipliers']} (1000=1×)
 - wild/trainer/double input return: {ui['input_return']} / double target-specific: {ui['double_target_specific']}
 - actual action-to-move menu indicator: {ui['actual_menu_path']}
-- L技詳細（威力・命中）open/close: {ui['l_move_details']}
+- actual cursor super-effective render: {actual_menu_super}
+- L技詳細（威力・命中）open/close: {move_details}
 - Factory: {policy['facility']['matrix_cases']} cases / Raid shields: {policy['raid']['shield_breaks']}/{policy['raid']['initial_shields']} / cleanup: {policy['raid']['runtime_cleaned']}
 - process runs: UI {ui['process_runs']} / policy {policy['process_runs']} / warnings-errors: {ui['warnings_errors']}+{policy['warnings_errors']}
 
@@ -1009,6 +1047,13 @@ def collect_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "normal_and_factory_same_owner": True,
         "effectiveness_and_stellar_match_damage_contract": ui["status"] == "PASS",
         "actual_menu_path_rendered": ui["actual_menu_path"],
+        "actual_cursor_effectiveness_rendered": all(
+            ui["actual_menu_super"][key]
+            for key in (
+                "type_entry_seen", "effect_entry_seen", "super_label_seen",
+                "controller_stable",
+            )
+        ) and ui["actual_menu_super"]["palette_group"] == 1,
         "l_move_details_rendered": (
             all(ui["l_move_details"][key] for key in (
                 "opened", "accuracy_label", "closed", "pointer_stable"

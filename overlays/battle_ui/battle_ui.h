@@ -14,5 +14,7 @@ uint8_t VegaBattleUI_ClassifyResult(uint8_t move_result);
 uint8_t VegaBattleUI_GetSelectedMoveType(void);
 void VegaBattleUI_DisplayMoveType(void);
 void VegaBattleUI_DisplayMoveEffectiveness(void);
+void VegaBattleUI_InitMoveSelection(void);
+void VegaBattleUI_HandleInputChooseMove(void);
 
 #endif /* POKEMON_VEGA_BATTLE_UI_H */

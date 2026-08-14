@@ -123,10 +123,13 @@ party pointer、変更span、allocator overlapを副作用なしで再照合す�
 `make facility-runtime-check` は同じROMを再生成し、自然new-gameからのlibmGBA exact-ROM
 スモーク2 processと成果物byteを副作用なしで照合する。
 
-`make first-battle-hotfix` は検証済みstage 20を入力に、行動順schedulerのQuick Claw/Custap
-通知直前へhold effect 26/96の再検証を14-byte命令patchで適用し、stage 21を生成する。
-`make first-battle-hotfix-check` は初戦3分岐、不正indicator fault injection、正規Quick Claw /
-Custap / Quick Draw、allocation overlap 0、clean ROMからのBPS完全往復を副作用なしで照合する。
+`make first-battle-hotfix` は検証済みstage 20を入力に、既存のQuick Claw/Custap通知直前の
+hold effect 26/96再検証に加え、行動開始時にQuick Draw indicatorと実Ability 260を照合する
+148-byte scheduler wrapperを適用し、stage 21を生成する。これにより、アクタシの正規Ability 64へ
+残留indicatorが立った場合も、空の特性名と速度通知を反復しない。
+`make first-battle-hotfix-check` は初戦3分岐、Ability 64を含む不正indicator fault injection、
+正規Quick Claw / Custap / Quick Draw（Ability 260と有効な特性名）、allocation overlap 0、
+clean ROMからのBPS完全往復を副作用なしで照合する。
 全stageの再構築や公開release更新は行わず、最終QOL統合gateまでstage 21を後続入力として保持する。
 
 `make hm-field-access` は検証済みstage 21へ408-byte Thumb runtimeを中央allocatorで配置し、
@@ -170,7 +173,7 @@ Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモ�
 `make final` は既存stage 25とQOL統合fixtureを副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
 を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.3.3.{gba,json}` へ出し、stageを上書きしない。
+`build/final/vega-modern-kanto-v1.3.4.{gba,json}` へ出し、stageを上書きしない。
 
 ### 開発用差分ROM
 

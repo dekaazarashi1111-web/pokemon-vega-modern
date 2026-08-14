@@ -7,6 +7,8 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
+import struct
 import subprocess
 import sys
 import tempfile
@@ -19,6 +21,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
+from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
 from scripts.fast_stage_reuse import trusted_stage_sha  # noqa: E402
 
 TASK = "USER-20260814-FIRST-BATTLE-LOOP"
@@ -36,16 +39,26 @@ STAGE21_ALLOCATION = Path("build/stages/21_allocation.json")
 MGBA_FIXTURE = Path("build/stages/21_mgba_first_battle_loop.json")
 REPORT = Path("reports/generated/first_battle_loop_fix.md")
 RUNNER = Path("tools/mgba_first_battle_loop_smoke.c")
+RUNTIME_SOURCE = Path("overlays/first_battle_hotfix/first_battle_hotfix.c")
+RUNTIME_HEADER = Path("overlays/first_battle_hotfix/first_battle_hotfix.h")
+RUNTIME_BIN = Path("generated/runtime/first_battle_hotfix.bin")
+RUNTIME_SYMBOLS = Path("generated/runtime/first_battle_hotfix_symbols.json")
+ALLOCATION_NAME = "first_battle_priority_guard"
 
-PATCH_ADDRESS = 0x090CEAFC
-PATCH_OFFSET = PATCH_ADDRESS - 0x08000000
+ITEM_PATCH_ADDRESS = 0x090CEAFC
+ITEM_PATCH_OFFSET = ITEM_PATCH_ADDRESS - GBA_ROM_BASE
 EXPECTED = bytes.fromhex("60 28 04 d1 01 3c 24 06 24 0e 02 2c 2a d9")
 REPLACEMENT = bytes.fromhex("1a 28 04 d0 60 28 c6 d1 01 3c 02 2c 2a d9")
 SOURCE_GUARD_ADDRESS = 0x090CEAFC
-SOURCE_GUARD_OFFSET = SOURCE_GUARD_ADDRESS - 0x08000000
+SOURCE_GUARD_OFFSET = SOURCE_GUARD_ADDRESS - GBA_ROM_BASE
 SOURCE_GUARD = bytes.fromhex(
     "02 00 1a 3a 51 1e 8a 41 01 00 60 39 4d 1e a9 41 11 42 bf d1"
 )
+RUN_TURN_PROLOGUE = bytes.fromhex("f0 b5 57 46 de 46 4e 46")
+REQUIRED_RUNTIME_SYMBOLS = {
+    "VegaFirstBattle_ClearInvalidQuickDrawIndicators",
+    "VegaFirstBattle_RunTurnActionsFunctions",
+}
 
 
 class FirstBattleHotfixError(ValueError):
@@ -79,15 +92,98 @@ def _run(command: Sequence[str], label: str, *, cwd: Path = ROOT) -> str:
     return completed.stdout.strip()
 
 
-def _allocation_contract(root: Path) -> tuple[bytes, dict[str, Any]]:
-    raw = (root / STAGE20_ALLOCATION).read_bytes()
-    value = json.loads(raw)
+def _allocation_contract(root: Path) -> dict[str, Any]:
+    value = json.loads((root / STAGE20_ALLOCATION).read_bytes())
     if not isinstance(value, dict):
         _fail("stage20 allocation report must be an object")
     summaries = value.get("summaries")
     if not isinstance(summaries, dict) or summaries.get("overlap_count") != 0:
         _fail("stage20 allocator overlap contract failed")
-    return raw, value
+    return value
+
+
+def _allocation(root: Path, size: int, digest: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    previous = _allocation_contract(root)
+    requests = [{
+        "name": row["name"],
+        "region": row["region"],
+        "size": row["size"],
+        "alignment": row["alignment"],
+        "owner": row["owner"],
+        "purpose": row["purpose"],
+        "content_sha256": row["content_sha256"],
+    } for row in previous["allocations"]]
+    requests.append({
+        "name": ALLOCATION_NAME,
+        "region": "integration_modules",
+        "size": size,
+        "alignment": 4,
+        "owner": TASK,
+        "purpose": "Quick Draw indicatorと実特性を照合するturn scheduler wrapper",
+        "content_sha256": digest,
+    })
+    report = build_allocation_report_from_csv(root / "config/rom_regions.csv", requests)
+    allocation = next(
+        row for row in report["allocations"] if row["name"] == ALLOCATION_NAME
+    )
+    return allocation, report
+
+
+def _compile_runtime(
+    root: Path, load_address: int, continuation_address: int
+) -> tuple[bytes, dict[str, int]]:
+    compiler = shutil.which("arm-none-eabi-gcc")
+    objcopy = shutil.which("arm-none-eabi-objcopy")
+    nm = shutil.which("arm-none-eabi-nm")
+    if not compiler or not objcopy or not nm:
+        _fail("first-battle hotfix requires the ARM GNU toolchain")
+    source = root / RUNTIME_SOURCE
+    header = root / RUNTIME_HEADER
+    if not source.is_file() or not header.is_file():
+        _fail("first-battle runtime source is missing")
+
+    with tempfile.TemporaryDirectory(prefix="vega-first-battle-runtime-") as raw:
+        temporary = Path(raw)
+        linker = temporary / "linker.ld"
+        elf = temporary / "first_battle_hotfix.elf"
+        binary = temporary / "first_battle_hotfix.bin"
+        linker.write_text(
+            "SECTIONS\n{\n"
+            f"  . = 0x{load_address:08X};\n"
+            "  .text : { KEEP(*(.text.VegaFirstBattle_*)) *(.text*) *(.rodata*) }\n"
+            "  /DISCARD/ : { *(.comment*) *(.ARM.attributes*) *(.note*) }\n"
+            "}\n",
+            encoding="ascii",
+        )
+        _run([
+            compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
+            "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            f"-DVEGA_FIRST_BATTLE_ORIGINAL_CONTINUE=0x{continuation_address:08X}",
+            "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
+            "-fdata-sections", "-ffunction-sections", "-nostdlib",
+            "-Wl,--build-id=none", "-Wl,--gc-sections",
+            "-Wl,-e,VegaFirstBattle_RunTurnActionsFunctions",
+            f"-Wl,-T,{linker}", f"-I{source.parent}", str(source),
+            "-o", str(elf),
+        ], "first-battle ARM runtime link", cwd=root)
+        undefined = _run([nm, "-u", str(elf)], "first-battle undefined symbols")
+        if undefined:
+            _fail("first-battle runtime has undefined symbols: " + undefined)
+        _run([objcopy, "-O", "binary", str(elf), str(binary)],
+             "first-battle runtime objcopy")
+        symbols: dict[str, int] = {}
+        for line in _run(
+            [nm, "-n", "--defined-only", str(elf)], "first-battle runtime nm"
+        ).splitlines():
+            fields = line.split()
+            if len(fields) == 3 and fields[2].startswith("VegaFirstBattle_"):
+                symbols[fields[2]] = int(fields[0], 16)
+        if set(symbols) != REQUIRED_RUNTIME_SYMBOLS:
+            _fail(f"first-battle runtime symbol set differs: {sorted(symbols)}")
+        runtime = binary.read_bytes()
+        if not runtime or len(runtime) > 1024:
+            _fail(f"first-battle runtime size differs: {len(runtime)}")
+        return runtime, symbols
 
 
 def _t06_symbol_addresses(root: Path) -> dict[str, int]:
@@ -137,7 +233,7 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
     )
     if len(source) != ROM_SIZE or _sha(source) != expected_stage20:
         _fail("stage20 size/hash contract failed")
-    actual = source[PATCH_OFFSET:PATCH_OFFSET + len(EXPECTED)]
+    actual = source[ITEM_PATCH_OFFSET:ITEM_PATCH_OFFSET + len(EXPECTED)]
     source_guard = source[
         SOURCE_GUARD_OFFSET:SOURCE_GUARD_OFFSET + len(SOURCE_GUARD)
     ]
@@ -154,25 +250,79 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
 
     output = bytearray(source)
     if integration_mode == "stage21_instruction_patch":
-        output[PATCH_OFFSET:PATCH_OFFSET + len(REPLACEMENT)] = REPLACEMENT
-    changed = [
-        index for index, (before, after) in enumerate(zip(source, output))
-        if before != after
-    ]
-    expected_changed = (
+        output[ITEM_PATCH_OFFSET:ITEM_PATCH_OFFSET + len(REPLACEMENT)] = REPLACEMENT
+    legacy_changed = (
         [
-            PATCH_OFFSET + index
+            ITEM_PATCH_OFFSET + index
             for index, (before, after) in enumerate(zip(EXPECTED, REPLACEMENT))
             if before != after
         ]
         if integration_mode == "stage21_instruction_patch"
         else []
     )
-    if changed != expected_changed:
-        _fail("hotfix changed bytes outside the declared instruction patch")
 
-    allocation_raw, allocation = _allocation_contract(root)
+    t06_symbols = _t06_symbol_addresses(root)
+    t06_metadata = json.loads((root / STAGE06_META).read_text(encoding="utf-8"))
+    base_stats = t06_metadata.get("runtime_tables", {}).get("base_stats", {})
+    base_stats_address = base_stats.get("address")
+    if not isinstance(base_stats_address, int):
+        _fail("T06 BaseStats address is missing")
+    actashi_row = base_stats_address - GBA_ROM_BASE + 7 * 32
+    actashi_abilities = [
+        int.from_bytes(source[actashi_row + 0x16:actashi_row + 0x18], "little"),
+        int.from_bytes(source[actashi_row + 0x1A:actashi_row + 0x1C], "little"),
+    ]
+    if actashi_abilities != [67, 64]:
+        _fail(f"Actashi primary/secondary ability contract differs: {actashi_abilities}")
+    run_turn = t06_symbols["RunTurnActionsFunctions"]
+    run_turn_offset = run_turn - GBA_ROM_BASE
+    if source[run_turn_offset:run_turn_offset + len(RUN_TURN_PROLOGUE)] \
+            != RUN_TURN_PROLOGUE:
+        _fail("RunTurnActionsFunctions entry prologue drifted")
+
+    provisional, _ = _allocation(root, 1024, "0" * 64)
+    payload_offset = int(provisional["start"])
+    runtime, runtime_symbols = _compile_runtime(
+        root, GBA_ROM_BASE + payload_offset, (run_turn + 8) | 1,
+    )
+    allocation, allocation_report = _allocation(root, len(runtime), _sha(runtime))
+    if int(allocation["start"]) != payload_offset:
+        _fail("first-battle runtime allocation moved after final link")
+    payload_end = int(allocation["end_exclusive"])
+    if source[payload_offset:payload_end] != bytes([0xFF]) * len(runtime):
+        _fail("first-battle runtime destination is not erased FF")
+    output[payload_offset:payload_end] = runtime
+
+    wrapper = runtime_symbols["VegaFirstBattle_RunTurnActionsFunctions"] | 1
+    entry_stub = bytes.fromhex("00 4b 18 47") + struct.pack("<I", wrapper)
+    output[run_turn_offset:run_turn_offset + len(entry_stub)] = entry_stub
     output_raw = bytes(output)
+
+    allowed = set(range(payload_offset, payload_end))
+    allowed.update(range(run_turn_offset, run_turn_offset + len(entry_stub)))
+    allowed.update(legacy_changed)
+    changed = {
+        index for index, (before, after) in enumerate(zip(source, output_raw))
+        if before != after
+    }
+    if not changed <= allowed:
+        _fail("hotfix changed bytes outside the runtime/entry patch contract")
+    if output_raw[run_turn_offset:run_turn_offset + 8] != entry_stub:
+        _fail("RunTurnActionsFunctions wrapper hook differs")
+
+    allocation_raw = _stable(allocation_report)
+    runtime_symbol_payload = {
+        "schema_version": 1,
+        "task": TASK,
+        "load_address": GBA_ROM_BASE + payload_offset,
+        "symbols": {
+            name: address | 1 for name, address in sorted(runtime_symbols.items())
+        },
+        "original": {
+            "RunTurnActionsFunctions": run_turn | 1,
+            "continuation": (run_turn + 8) | 1,
+        },
+    }
     clean = (root / CLEAN_ROM).read_bytes()
     if len(clean) != 16 * 1024 * 1024 or _sha(clean) != CLEAN_ROM_SHA256:
         _fail("clean FireRed Japanese Rev.0 identity mismatch")
@@ -197,31 +347,49 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "sha256": _sha(output_raw),
         },
         "patch": {
-            "integration_mode": integration_mode,
+            "item_guard_integration_mode": integration_mode,
             "function": "RunTurnActionsFunctions",
-            "site_address": f"0x{PATCH_ADDRESS:08X}",
-            "site_offset": PATCH_OFFSET,
-            "span_size": len(REPLACEMENT),
-            "expected_hex": EXPECTED.hex(),
-            "replacement_hex": REPLACEMENT.hex(),
+            "site_address": f"0x{run_turn:08X}",
+            "site_offset": run_turn_offset,
+            "span_size": len(entry_stub),
+            "expected_hex": RUN_TURN_PROLOGUE.hex(),
+            "replacement_hex": entry_stub.hex(),
             "changed_byte_count": len(changed),
+            "wrapper_address": f"0x{wrapper:08X}",
             "source_guard_address": f"0x{SOURCE_GUARD_ADDRESS:08X}",
             "source_guard_hex": SOURCE_GUARD.hex(),
             "semantics": [
-                "ITEM_EFFECT_QUICK_CLAWなら既存通知経路を維持",
-                "ITEM_EFFECT_CUSTAP_BERRYなら既存行動制限を維持",
-                "それ以外はindicatorを消去して次のbattlerへ継続",
+                "Quick Draw indicatorを各bankの実特性と照合",
+                "ABILITY_QUICKDRAW以外のbankはindicatorを通知前に破棄",
+                "正規Quick Drawと既存Quick Claw/Custap経路は維持",
             ],
+        },
+        "runtime": {
+            "allocation_name": ALLOCATION_NAME,
+            "offset": payload_offset,
+            "address": GBA_ROM_BASE + payload_offset,
+            "size": len(runtime),
+            "sha256": _sha(runtime),
+            "symbols": runtime_symbol_payload["symbols"],
+        },
+        "actashi_ability_contract": {
+            "species_id": 7,
+            "primary": actashi_abilities[0],
+            "secondary": actashi_abilities[1],
+            "base_stats_address": base_stats_address,
         },
         "source_generation": {
             "path": "scripts/build_battle_core.py",
-            "guard": "invalid Quick Claw/Custap indicator guard",
+            "guards": [
+                "invalid Quick Claw/Custap indicator guard",
+            ],
+            "quick_draw_owner": "stage21 runtime wrapper",
         },
         "allocation": {
             "input_path": STAGE20_ALLOCATION.as_posix(),
             "output_path": STAGE21_ALLOCATION.as_posix(),
-            "new_allocation_count": 0,
-            "overlap_count": allocation["summaries"]["overlap_count"],
+            "new_allocation_count": 1,
+            "overlap_count": allocation_report["summaries"]["overlap_count"],
             "sha256": _sha(allocation_raw),
         },
         "release_patch_round_trip": {
@@ -238,8 +406,11 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "source_guard_or_patch_valid": integration_mode in {
                 "stage21_instruction_patch", "t06_source_integrated"
             },
-            "patch_span_only": changed == expected_changed,
-            "allocator_overlap_zero": allocation["summaries"]["overlap_count"] == 0,
+            "wrapper_hook_exact": output_raw[
+                run_turn_offset:run_turn_offset + len(entry_stub)
+            ] == entry_stub,
+            "declared_changes_only": changed <= allowed,
+            "allocator_overlap_zero": allocation_report["summaries"]["overlap_count"] == 0,
         },
     }
     if not all(metadata["invariants"].values()):
@@ -248,6 +419,8 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
         STAGE21.as_posix(): output_raw,
         STAGE21_META.as_posix(): _stable(metadata),
         STAGE21_ALLOCATION.as_posix(): allocation_raw,
+        RUNTIME_BIN.as_posix(): runtime,
+        RUNTIME_SYMBOLS.as_posix(): _stable(runtime_symbol_payload),
     }
 
 
@@ -278,7 +451,7 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
             _fail("first-battle exact-ROM fixture is not deterministic PASS")
         branches = first.get("branches")
         natural = first.get("natural_actashi_route")
-        fault = first.get("invalid_indicator_fault_injection")
+        faults = first.get("invalid_indicator_fault_injections")
         legitimate = first.get("legitimate_priority_effects")
         if not isinstance(branches, list) or len(branches) != 3:
             _fail("first-battle fixture did not cover all three starter branches")
@@ -297,20 +470,49 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
             or not natural.get("observation", {}).get("hp_changed")
         ):
             _fail("natural Actashi first-battle route contract drifted")
-        if not isinstance(fault, dict) or not fault.get("invalid_indicator_injected"):
-            _fail("first-battle fixture did not inject the invalid indicator")
+        if not isinstance(faults, list) or len(faults) != 2:
+            _fail("first-battle fixture did not cover both invalid indicators")
+        expected_faults = {
+            "QUICK_CLAW": (1, 65),
+            "QUICK_DRAW_ACTASHI_ABILITY_64": (0, 64),
+        }
+        if {row.get("indicator") for row in faults} != set(expected_faults):
+            _fail("first-battle invalid indicator set drifted")
+        for row in faults:
+            expected_bank, expected_ability = expected_faults[row["indicator"]]
+            observation = row.get("observation", {})
+            if (
+                row.get("bank") != expected_bank
+                or row.get("ability") != expected_ability
+                or not observation.get("invalid_indicator_injected")
+                or not observation.get("invalid_indicator_rejected")
+                or observation.get("quick_claw_script_entries") != 0
+                or observation.get("quick_draw_script_entries") != 0
+                or observation.get("placeholder_item_entries") != 0
+                or not observation.get("pp_spent_once")
+                or not observation.get("hp_changed")
+            ):
+                _fail(f"invalid indicator guard failed: {row.get('indicator')}")
         if not isinstance(legitimate, list) or len(legitimate) != 3:
             _fail("first-battle fixture did not cover all priority effects")
         expected_effects = {"QUICK_CLAW", "CUSTAP_BERRY", "QUICK_DRAW"}
         if {row.get("effect") for row in legitimate} != expected_effects:
             _fail("first-battle priority effect coverage drifted")
+        quick_draw = next(
+            row for row in legitimate if row.get("effect") == "QUICK_DRAW"
+        )
+        if (
+            not quick_draw.get("ability_name_valid")
+            or quick_draw.get("popup_ability") != 260
+        ):
+            _fail("legitimate Quick Draw popup ability name is invalid")
         first["process_runs"] = 2
         first["rom_sha256"] = metadata["output"]["sha256"]
         return first
 
 
 def _report(metadata: dict[str, Any], mgba: dict[str, Any]) -> bytes:
-    fault = mgba["invalid_indicator_fault_injection"]
+    faults = mgba["invalid_indicator_fault_injections"]
     natural = mgba["natural_actashi_route"]
     natural_observation = natural["observation"]
     branch_lines = "\n".join(
@@ -322,24 +524,33 @@ def _report(metadata: dict[str, Any], mgba: dict[str, Any]) -> bytes:
     priority_lines = "\n".join(
         f"- {row['effect']}: indicator={row['indicator_seen']}、"
         f"先頭bank={row['first_bank']}、通知={row['notification_seen']}、"
+        f"特性名有効={row['ability_name_valid']}、"
         f"PP {row['observation']['pp_before']}→{row['observation']['pp_after']}"
         for row in mgba["legitimate_priority_effects"]
+    )
+    fault_lines = "\n".join(
+        f"- fault {row['indicator']}: bank={row['bank']}、ability={row['ability']}、"
+        f"破棄={row['observation']['invalid_indicator_rejected']}、"
+        f"Quick Draw通知={row['observation']['quick_draw_script_entries']}、"
+        f"PP {row['observation']['pp_before']}→{row['observation']['pp_after']}"
+        for row in faults
     )
     text = f"""# 初戦の行動順通知ループ修正
 
 ## 結論
 
 - stage 20のTrainer 327（アクタシ選択、相手リープン）を含む初戦3分岐は、固定入力では通常進行した。
-- 命令単位のfault injectionで、Item ID 0 / hold effect 0に不正なQuick Claw indicatorが残ると、旧処理がアイテム名「？？？？？？？？」の通知経路へ入ってPP/HPを更新しないことを再現した。
-- stage 21は通知直前に保持効果を再確認し、せんせいのツメ／イバンのみ以外のindicatorを破棄して同じターンを継続する。
-- 固定CFRU-JPを将来再構築する場合も同じガードをsource生成へ適用する。
+- Delta/VBA-M stateと同じアクタシ第2特性64を確認し、不正なQuick Draw indicatorを命令単位で注入した。
+- stage 21はturn scheduler入口でindicatorと実特性を照合し、Quick Draw以外なら通知前に破棄して同じターンを継続する。
+- 正規Quick Drawは通知を1回表示し、popup ability ID 260が設定される。Quick Draw防御の正本はstage 21 runtime wrapperとする。
 
 ## ROM差分
 
 - Input: `{metadata['input']['path']}` / `{metadata['input']['sha256']}`
 - Output: `{metadata['output']['path']}` / `{metadata['output']['sha256']}`
 - Patch: `{metadata['patch']['site_address']}` / {metadata['patch']['span_size']} bytes / 実変更 {metadata['patch']['changed_byte_count']} bytes
-- New allocation: 0 / allocator overlap: {metadata['allocation']['overlap_count']}
+- Runtime: `{metadata['runtime']['address']:#010x}` / {metadata['runtime']['size']} bytes / `{metadata['runtime']['sha256']}`
+- New allocation: {metadata['allocation']['new_allocation_count']} / allocator overlap: {metadata['allocation']['overlap_count']}
 - clean FireRed Rev.0→stage 21 BPS往復: {metadata['release_patch_round_trip']['exact']} / `{metadata['release_patch_round_trip']['patch_sha256']}`
 
 ## libmGBA実ROM回帰
@@ -348,7 +559,7 @@ def _report(metadata: dict[str, Any], mgba: dict[str, Any]) -> bytes:
 - 自然初戦: ability {natural_observation['player_ability']}/{natural_observation['opponent_ability']}、PP {natural_observation['pp_before']}→{natural_observation['pp_after']}、HP更新={natural_observation['hp_changed']}、不正通知={natural_observation['placeholder_item_entries']}
 - gNewBS / pending shadow安定: {natural['pointer_stable']} / {natural['pending_shadow_stable']}
 {branch_lines}
-- fault injection: injected={fault['invalid_indicator_injected']}、通知={fault['placeholder_item_entries']}、PP {fault['pp_before']}→{fault['pp_after']}、HP更新={fault['hp_changed']}
+{fault_lines}
 {priority_lines}
 - warnings/errors: {mgba['warnings_errors']}
 - deterministic process runs: {mgba['process_runs']}

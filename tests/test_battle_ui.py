@@ -22,6 +22,7 @@ from scripts.build_battle_ui import (  # noqa: E402
     UPSTREAM_SYMBOLS,
     _battle_core_contract,
     _build_stage,
+    _report,
     audit_owner,
     audit_source,
 )
@@ -45,7 +46,7 @@ class BattleUITests(unittest.TestCase):
         self.assertTrue(audit["source_lock_verified"])
         self.assertTrue(audit["source_checkout_clean"])
         self.assertFalse(any(audit["profile_ui_macros_active"].values()))
-        self.assertEqual(len(audit["linked_symbols"]), 17)
+        self.assertEqual(len(audit["linked_symbols"]), 19)
         self.assertEqual(
             audit["linked_symbols"]["MoveSelectionDisplayMoveType"],
             {
@@ -101,19 +102,21 @@ class BattleUITests(unittest.TestCase):
         self.assertEqual(audit["address_audit"]["classifications"], {"CFRU": 15})
         self.assertTrue(audit["global_owner_shared_by_normal_factory_raid"])
 
-    def test_stage_build_is_deterministic_and_changes_only_two_entries(self) -> None:
+    def test_stage_build_is_deterministic_and_changes_only_four_owner_entries(self) -> None:
         first, first_meta = _build_stage(ROOT)
         second, second_meta = _build_stage(ROOT)
         self.assertEqual(first, second)
         self.assertEqual(first_meta, second_meta)
         self.assertEqual(first[STAGE24.as_posix()], (ROOT / STAGE24).read_bytes())
         self.assertEqual(first_meta["status"], "PASS")
-        self.assertEqual(len(first_meta["patches"]), 2)
+        self.assertEqual(len(first_meta["patches"]), 4)
         self.assertEqual(
             {row["address"] for row in first_meta["patches"]},
             {
                 UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveType"][0],
                 UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveEffectiveness"][0],
+                UPSTREAM_SYMBOLS["HandleInputChooseMove"][0],
+                UPSTREAM_SYMBOLS["InitMoveSelectionsVarsAndStrings"][0],
             },
         )
         self.assertTrue(all(first_meta["invariants"].values()))
@@ -147,6 +150,18 @@ class BattleUITests(unittest.TestCase):
         self.assertEqual(value["matrix_multipliers"], [500, 2000, 4000, 250, 0])
         self.assertTrue(value["double_target_specific"])
         self.assertTrue(value["actual_menu_path"])
+        self.assertEqual(
+            value["actual_menu_super"],
+            {
+                "type_entry_seen": True,
+                "effect_entry_seen": True,
+                "super_label_seen": True,
+                "cursor_before": 0,
+                "cursor_after": 1,
+                "palette_group": 1,
+                "controller_stable": True,
+            },
+        )
         self.assertEqual(
             value["l_move_details"],
             {
@@ -187,6 +202,15 @@ class BattleUITests(unittest.TestCase):
         runner = (ROOT / "tools/mgba_battle_ui_smoke.c").read_text(encoding="utf-8")
         self.assertNotIn("fopen(", runner)
         self.assertIn("run_multi_target_double(core, &field)", runner)
+
+    def test_report_is_stable_after_sorted_json_fixture_reload(self) -> None:
+        reordered = copy.deepcopy(self.fixture)
+        for key in ("actual_menu_super", "l_move_details"):
+            reordered[key] = dict(reversed(list(reordered[key].items())))
+        self.assertEqual(
+            _report(self.metadata, self.fixture, self.policy),
+            _report(self.metadata, reordered, self.policy),
+        )
 
 
 if __name__ == "__main__":

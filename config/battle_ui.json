@@ -10,11 +10,11 @@
     "stage_rom": {
       "path": "build/stages/23_battle_rules.gba",
       "size": 33554432,
-      "sha256": "18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407"
+      "sha256": "ce8748a5c725bd523824147571c081254281e6521af204472cfffdf45ca9fa36"
     },
     "allocation": {
       "path": "build/stages/23_allocation.json",
-      "sha256": "c4557c0d0486ac8b36c75871e38178795790a2105b85c26322f5a774c0071f21"
+      "sha256": "41085116bc6dbae6235b87301910a5d403243be70aff2b1349d877b849b0c1fd"
     },
     "battle_core_metadata": {
       "path": "build/stages/06_battle_core.json",
@@ -45,7 +45,7 @@
     },
     "first_battle_fixture": {
       "path": "build/stages/21_mgba_first_battle_loop.json",
-      "sha256": "2c551137a6e9ad6bce0e821813e95bd2590b5a81b154d8fb30047fee84c6bd97"
+      "sha256": "eb4a6f3a75f3f1da07f00502ed88a7cc033a3b3c459188cf23b680cf7980255e"
     }
   },
   "owners": {
@@ -55,11 +55,15 @@
     },
     "handle_input_choose_move": {
       "hook": "0x0802E1EC",
-      "target": "0x09116E41"
+      "target": "0x09116E41",
+      "entry": "0x09116E40",
+      "expected_hex": "90 22 F0 B5 4E 46 57 46"
     },
     "init_move_selection": {
       "hook": "0x08032428",
-      "target": "0x09116311"
+      "target": "0x09116311",
+      "entry": "0x09116310",
+      "expected_hex": "F0 B5 DE 46 4E 46 57 46"
     },
     "display_move_type": {
       "hook": "0x080300D0",
