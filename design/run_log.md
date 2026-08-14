@@ -981,3 +981,28 @@
   - Delta原本 SHA-256 `d316dc18f9442ee127cf4bc9d32cdb7a279c32b6e94179990c88c8cedda2539b`、size `38,714` bytes。原本変更0、Git追跡0。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。既存のsource-lock済み上流、ローカルDelta export、検証済みstage、clean私有入力だけを参照した。
+
+## 2026-08-15T06:20:22+09:00
+
+- Task: `USER-20260815-DELTA-STATE-DIAG` / v1.3.4 Delta再現stateと直前2コミットを再監査する
+- Status: DONE
+- Summary:
+  - 直前コミット`97985ca9`と1つ前`bdffa7b2`を監査した。高速差分buildと実メニューUI hookは実装・検証されていたが、stage 21 guardの受入試験は有効な`gNewBS`へのfault injectionであり、ユーザーstateの`gNewBS=0`を覆っていなかった。壊れたstateまで「修正済み」とした前回判断を訂正した。
+  - 2件目のDelta export原本を変更せずVBA-M stateとして解析した。戦闘中のアクタシはAbility 67、技ID 1/45でROM側データは正常だった一方、`gNewBS=0`、`gLastUsedAbility=0xE55E`、技選択buffer破損を確認した。1件目はAbility 64だったが同じ無効pointer領域を持つため、ヘドロえき／げきりゅうの効果ではなく旧実行state混入と判定した。
+  - v1.3.4最終ROMを固定GBADeltaCore/VBA-M sourceのlibretro coreでsave RAM/stateなしから自然起動し、中央アクタシ、Trainer 327、実action入力を通した。`gNewBS=0x02017634`、Ability 67/65、技ID 1/45、表示Type 0/0、Quick Draw/Quick Claw通知0、PP 35→34、双方HP更新、reset 0でPASSした。
+  - ROMとWindows配布copyはSHA-256一致だった。ROM固有対策・音声対策・再buildは行わず、DeltaのAuto Save削除とhard restart、代替としてRetroArch/mGBAを案内する方針にした。
+- Files changed:
+  - `design/current_state.md`, `KNOWN_ISSUES.md`, `docs/SAVE_COMPATIBILITY.md`, `design/run_log.md`, `design/version_log.md`
+  - Git管理外証跡: Delta export解析物、固定VBA-M core、fresh-route probeと画面capture
+- Verify:
+  - 固定VBA-M fresh natural route: PASS。`gNewBS`有効、実技buffer正常、通知loop 0、PP/HP進行、reset 0。
+  - `python3 -m unittest tests.test_fast_rom tests.test_first_battle_hotfix tests.test_battle_ui`: PASS（20 tests / 55.496秒）。
+  - `make battle-ui-check`: PASS（8 artifacts、stage 24 ROM SHA-256 `3a8c02a0429f2bdeb1bb08d7888a355e63fa210a907663018056f7e9d8ea1e37`）。
+  - `make first-battle-hotfix-check`: PASS（7 artifacts、side effects NONE）。
+  - final/Windows copy SHA-256: `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`で一致。
+- Input identity:
+  - 2件目Delta原本 SHA-256 `9974939ef4970ca31ba718a2760b48d19d2669175513034701f063669641608e`、size 40,174 bytes。gzip展開state SHA-256 `8e76f044c8c6f16f4009d712463dfdb85f7fbe32f64edd75fa691f4a73d9035f`、size 2,102,280 bytes。原本変更0、Git追跡0。
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - Delta公式FAQ `https://faq.deltaemulator.com/using-delta/save-states`、`https://faq.deltaemulator.com/using-delta/fast-forward` とローカル固定Delta sourceでAuto Save/Resume、game SHA-1識別、削除手順を確認した。
+  - RetroArch公式 `https://docs.libretro.com/guides/install-ios/`、`https://docs.libretro.com/library/mgba/`、`https://docs.libretro.com/guides/input-and-controls/`、`https://www.retroarch.com/?page=privacy-app` でiPad App Store配布、mGBA、fast-forward、広告なしを確認した。private ROM/stateは外部送信していない。

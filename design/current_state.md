@@ -5,7 +5,8 @@
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置・tool inventory・可変計測値依存を修正し、annotated tag `v1.3.3` の隔離再構築でfinal/BPS/ZIPをbyte一致させてreleaseを確定した。
-- 直前のv1.3.3追試は、初戦をAbility 67だけで通し、UIもadapter単体呼出しを中心に確認していたため実症状を取り逃した。Delta exportをVBA-M stateとして解析すると、停止中のアクタシは正規の第2特性Ability 64で、Quick Draw scriptへ誤進入し、`gLastUsedAbility`が不正値のため空欄通知になっていた。stage 21へ148-byte guardを追加し、Ability 260以外のQuick Draw indicatorをscheduler直前で破棄する。
+- 直前のv1.3.3追試は、初戦をAbility 67だけで通し、UIもadapter単体呼出しを中心に確認していたため実症状を取り逃した。1件目のDelta exportでは停止中のアクタシが正規の第2特性Ability 64でQuick Draw scriptへ誤進入していたため、stage 21へAbility 260以外のQuick Draw indicatorを破棄する148-byte guardを追加した。続くv1.3.4 exportを再解析するとAbility 67でも同じ症状があり、両stateとも戦闘中の`gNewBS`が0、`gLastUsedAbility`が`0xE55E`で、ROM改版間の実行state混入が根因だった。guardは有効な`gNewBS`内の不正indicatorだけを防ぐもので、壊れたsavestateのmigrationや修復ではない。
+- v1.3.4最終ROMを固定Delta/VBA-M engineでsave/stateなしから起動し、中央のアクタシ、Trainer 327、実action選択を再実行した。`gNewBS=0x02017634`、Ability 67/65、技ID 1/45・表示Type 0/0、Quick Draw/Quick Claw通知0、PP 35→34、双方HP更新でPASSした。したがってROM byteは変更せず、Deltaでは当該gameのAuto Saveを含むsavestateを削除してhard restartする。復旧しない場合は別sandboxのRetroArch/mGBAを推奨する。
 - stage 24は表示関数2件を差し替えていたが、固定CFRU objectのメニュー初期化・カーソル処理には無効だった旧effect表示がinline済みで、新UIを直後に上書きしていた。両ownerをexact-prologue trampolineで包む1,148-byte runtimeへ更新し、実際の「たたかう→技選択→カーソル移動」でtype/effect entry、抜群label、抜群palette、controller復帰を確認した。L/R設定のL詳細と全battle modeも維持する。
 - `scripts/build_fast_rom.py --from first-battle-hotfix`でstage 20以前の14工程を再利用してstage 21〜25とfinalを401.3秒、追加のUI修正をstage 24から281.8秒で再生成した。最終のRAM境界hardeningもstage 20以前を再利用し約386.2秒でstage 21〜finalだけを更新した。v1.3.4最終ROMは32 MiB、SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。旧savestateは引き継がず、ゲーム内saveまたは新規gameから起動する。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。

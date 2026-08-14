@@ -42,4 +42,19 @@ call stackへ積まない。入場前partyは6×100 byteで、完走・敗北・
   Item 347を1個だけ補う。キノコやものまねハーブを消費したという履歴は追加しない。
 - v1.2.0以前のemulator savestateは非互換。v1.3.4起動前にゲーム内saveへ戻す。
 
+## Deltaで壊れたAuto Saveから再開した場合
+
+Deltaはゲームを離れる際にAuto Save stateを作り、Resume時にその実行状態を読み込む。旧ROMの
+stateをv1.3.4へ持ち込むと、ゲーム内の技IDや特性が正常でも、表示Type、通知、音声などの
+一時戦闘状態だけが壊れることがある。このstateはROM側で安全にmigrationできない。
+
+1. 必要な進行があれば、互換ROM上でゲーム内saveを作り、battery saveを別にbackupする。
+2. Delta Syncを一時停止する。
+3. 当該gameのView Save StatesからAuto、General、Lockedを全て削除する。
+4. Restartし、stateをLoadせずゲーム内saveまたはNew Gameから開始する。
+5. まだ起動直後から異常ならgame entryを削除し、v1.3.4 ROMを再importする。
+
+アプリ全体の再installは他gameの保存データを失う可能性があるため最後の手段とする。別emulatorへ
+移す場合もsavestateはimportせず、ゲーム内saveまたはNew Gameから開始する。
+
 saveが拒否された場合は書き込みを繰り返さず、backupへ戻して新規saveを開始してください。

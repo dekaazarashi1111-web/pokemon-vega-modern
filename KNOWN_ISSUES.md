@@ -20,8 +20,8 @@
 
 - Severity: S4 / expected platform behavior
 - Reproduction: 旧ROMで作ったsavestateをv1.3.4で直接読み込む。
-- Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
-- Workaround: 旧ROM上でゲーム内saveを行い、v1.3.4を再起動してbattery saveから読む。
+- Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。DeltaのAuto Saveから再開した場合も、戦闘構造pointer 0、表示Type破損、無関係な行動順通知、音声破損として現れることがある。
+- Workaround: Delta Syncを一時停止し、当該gameのAuto/General/Locked stateを削除してRestartする。必要ならgame entryを削除してv1.3.4 ROMを再importする。旧版から進行を移す場合はsavestateではなく、旧ROM上で作ったゲーム内saveだけを使う。
 
 ### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
 

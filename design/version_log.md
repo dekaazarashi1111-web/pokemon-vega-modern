@@ -419,3 +419,13 @@
   - stage 20以前を再利用する差分chainでstage 21〜25、final、BPS、9-member ZIPを再生成し、旧v1.3.3と識別できるv1.3.4へ更新した。
   - RAM境界をfail-closedにし、UIレポートのJSONキー順driftを決定的出力へ修正した。
 - Verify: first-battle/HM/battle-rules/UI/move-memory/QOL build+check、focused 29 tests、release BPS往復・archive検査、py_compile、task graph/private guard、diff check PASS。final ROM SHA-256 `0b04e0042312c90450c007a83ed94476a11b16b11b2f10f5307e76eed9acb497`。
+
+## 2026-08-15T06:20:22+09:00
+
+- Version: `v1.3.4`（Delta state診断追記。ROM byte変更なし）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-DELTA-STATE-DIAG` / v1.3.4 Delta再現stateと直前2コミットを再監査する
+- Summary:
+  - 2件のDelta stateで特性が異なっても、共通して戦闘構造pointerが0であることを確定した。ヘドロえきによる行動順変化ではなく、非互換実行stateの混入である。
+  - 固定Delta/VBA-M engineの完全新規起動では、アクタシ初戦、技Type、PP/HP進行、行動順通知が正常だった。ROMは再生成せず、Auto Save削除・hard restart手順を保存互換文書へ追記した。
+- Verify: 固定VBA-M fresh route、focused 20 tests、`make battle-ui-check`、`make first-battle-hotfix-check`、final/Windows SHA-256一致 PASS。
