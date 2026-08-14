@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置依存を修正したv1.3.1 sourceで、tagged sourceの最終fresh rebuildを残す。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置・tool inventory依存を修正したv1.3.2 sourceで、tagged sourceの最終fresh rebuildを残す。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
@@ -16,20 +16,20 @@
 - stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
 - stage 24は固定CFRU move menuの実タイプ・有効度分岐を956-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。1×/2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、実使用canonical名をlibmGBAで確認した。SHA-256は `b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb`、allocation overlapは0。Factory ROM byteは使用していない。
 - stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`、runtimeは2,931 bytes、allocation overlapは0。
-- v1.3.1統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
+- v1.3.2統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
-- T01で固定DPE-JP/CFRU-JPをvendor外のWindows ACL保護sandboxから各2回再構築し、全variantのROM・primary blob・offsets一致を確認した。再現fingerprintは `feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633`。
+- T01で固定DPE-JP/CFRU-JPをvendor外のWindows ACL保護sandboxから各2回再構築し、全variantのROM・primary blob・offsets一致を確認した。現行tool inventoryを含む再現fingerprintは `893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2`。
 - DPE base ROMは `eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c`、CFRU baselineは `140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922`、Factory-likeは `494b488735270cc0b384febc1dc5b73f53595905f6fd51aa32f471864f7e61b1`、minimalは `964ee5b785200b018143586351373cf60aeb37df85649173c2c8f1c98e208517`。
 - ARM GCC/binutils/newlib、Python、host runner closure、mGBA/libmGBA、Windows PE converter/DLL/bridgeをversion・path・SHA-256で固定した。grit/wav2agb/mid2agbは各2回のfixtureとknown-good canonical hashを通過した。
 - Factory実挙動fixtureはBP、参加判定、Battle Mine optionが参照と一致し、trainer選出は差異として分類した。固定CFRU AIの保守的cold合成上限はsingle `2,584,765` cycles、double `6,297,788` cyclesで、warmはそれぞれ `339,772` / `609,210` cycles。
 - T02でDPE/CFRUのactive fixed write `6,143`件を実emission spanで再生し、同値write `155`件、許可済みoverlap `156`組を含めてT01の4 ROMとbyte一致した。分類はCFRU `5,127`、PORT `943`、RELOCATE `4`、SAME_TARGET `69`、UNKNOWN `0`。
 - Vega ROMをrooted walkし、43 map group / 425 map、132 encounter header、743 trainer、4,665 script nodeを機械可読化した。RAM/save/ID、QOL 14 domain、Factory/Mirage、通貨、CFRU AI ABI/cacheも同じpolicyとvalidatorへ統合した。
 - T03でclean ROMへVega IPSをmemory上で再適用し、32 MiBへ `0xFF` 拡張してno-op Thumb moduleをfile offset `0x01200000`へ配置するstage driverを確定した。連続2 buildはbyte一致、出力SHA-256は `fd01903a3507e25ae62377e3549962709ca207d5871b55fd4dcbb57813d5bbaf`、Vega-owned byte差分0、allocator overlap 0、hook/repoint 0件。
-- T03 libmGBA smokeは固定title frame、通常new-game入力trace、map `4/0`での移動、128 KiB physical save、第1core破棄後のfresh-core loadをreference/candidateで一致確認した。T04入口追加後の現行fingerprintは `e82de050dfac119d373a9784c111a1f770ce469ce5ec22a5473bf03c9e13c03c`。
+- T03 libmGBA smokeは固定title frame、通常new-game入力trace、map `4/0`での移動、128 KiB physical save、第1core破棄後のfresh-core loadをreference/candidateで一致確認した。現行fingerprintは `e5f3134ed04cd8b081bab5a65f8ff86b1341bc789d986d36d0c3a01ad9c6a205`。
 - T04でVega Move ID 0〜511を固定し、CFRU identity 441件を対応、未収録551技を512〜1062へappendした。V3現代化61件と独自技70件を構造化し、独自技は70個のcompile済みeffect handlerへ変換した。game charmap名・説明、992 CFRU alias、5 table bridge、178 repointを生成した。
-- 同名別技はVega ID 470を「ソウルバイト」、ID 509を「ダークスナイプ」へ変更し、CFRU公式「くらいつく」「ねらいうち」は別append IDに保持した。stage 04 SHA-256は `3adfbc639176b5e2b3f7a9b6beff2da5fcac792562a940bd154b2af5d83bc099`、fingerprintは `726abc638bdd5ba2a9e6b96963da5fc2db01de50f2c4cf3e0daef83b220e58ac`。
+- 同名別技はVega ID 470を「ソウルバイト」、ID 509を「ダークスナイプ」へ変更し、CFRU公式「くらいつく」「ねらいうち」は別append IDに保持した。stage 04 SHA-256は `3adfbc639176b5e2b3f7a9b6beff2da5fcac792562a940bd154b2af5d83bc099`、fingerprintは `dce93866e70a8df720c9b52241a903b5ee836ec1128da4d6e23be41bf2827ff4`。
 - T04 smokeは自然field状態からsynthetic wild battleを開始し、技ID33を固定入力で実行してPP `35→34` と敵HP低下をreference/candidate双方で確認した。CFRU battle coreへのadapter runtime bindingは依存T06で行う。
 - T05でVega Type `0..17`、Ability `0..77`、Item slot `0..374`を未使用行込みで凍結し、固定CFRU/DPEのType 25、Ability 311、Item 774とTM/HM別名52件をstable keyへ解決した。canonicalはType 25、Ability 312、Item 999で、意味同一161 itemだけをVegaへ対応し、CFRU未対応613 itemとQOL新規11 itemをappendした。
 - Ability source 76 `AIRLOCK`はVega canonical 77へaliasし、Vega 76 `そうおん`を保持した。Fairy 23とStellar 24は表示icon、色、25×25相性、特殊規則を完全化し、Stellar runtime bindingをT06へ渡した。VegaのGhost/Dark→Steel半減は明示overrideで維持した。
@@ -37,9 +37,9 @@
 - T06で固定CFRU-JPのbattle-only hook 955件をexpected-byte付きでstage 04へ統合し、CFRU 774件・PORT 181件、未分類変更0を確定した。Move 1,063、Ability 312、Item/Icon 999、Vega base stat 412、進化1,440行をallocator管理payloadへ配置し、連続2 buildをbyte一致させた。
 - 通常wild/trainer、status、priority、double multi-target、switch、faint、EXP、captureを実schedulerで完走した。固定CFRU AI 3 profileとsingle/double 18判断fixture、Factory 24 rule/format、育成QOL、1戦1gimmick、Mirage仮想item、high-difficulty Raidを同じcoreへ接続した。
 - Raid partnerの技破損は、Vega packed-u16 learnsetへ不適合なCFRU初期技fallbackが正しいspreadを上書きしていたことを動的traceで確定し、fallbackを無効化した。partner controllerのcommand上限を修正し、Raid 5/5 shield、自然捕獲、full-party PC 80-byte ABI、Raid後wild/trainer、turn-limit終了と一時flag cleanupを検証した。
-- T06 stage fingerprintは `da248a2ac3724a35d444da58ca5c8a299088f4d0ec02e4b5d23e283cd8d8558e`、ROM SHA-256は `61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
+- T06 stage fingerprintは `5dcedeba8c93e42b2dbde1d3a5ac0d9df1898b12ea2a30fb43ecd42d732f6de0`、ROM SHA-256は `61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
 - T07でVega Species `0..411`を固定し、DPE定義済み1415 IDのうち206件（NONE sentinelを含む）をVegaへalias、欠落Species/form 1209件を`412..1620`へappendした。DPE予約hole `252..276`は生成対象外とした。
-- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `8634e053e4204311b38fb90e8ae3a0da112f2ebd50739763af931800b785252f`、fingerprintは `e047f9dba47ece36948094e6e31731a820fde4c67c9777c7b0ad6ec7cd20e0ad`。
+- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `8634e053e4204311b38fb90e8ae3a0da112f2ebd50739763af931800b785252f`、fingerprintは `a29e55ed812ef7f233bd496a1cab6715aaff813511dce5604e4193a64689f74d`。
 - 全行にofficial判定、canonical全国番号、review stateを付け、公式全国番号1〜1025と209 multi-form群を検証した。公式捕獲数は全国番号distinctで数えるためform重複で100種条件を水増ししない。既存trainer/wild/script/gift/evolution参照は全て解決し、追加キャタピーcanonical ID 412を実party memoryへ2 processで生成した。
 - T08でT02のlive RAM/save ownerを統合し、CFRU sector 30/31 payloadのEWRAM `0x0203D000..0x0203D800`へ2,048-byte version 1 ledgerを割り当てた。magic/version/size/FNV-1a checksumと予約領域検査をfail-closedにし、既存Vega saveはsector checksum検証後だけ一回性migrationへ進める。
 - Kanto渡航・訪問・殿堂入り・認定章・地方別heal/return anchor・League I/II・地方別NORMAL/RESEARCH profile、125共有捕獲/Raid stateをVega badge/HM/story flagと分離した。早期渡航は`0x0824 && 0x114B`または殿堂入りからmonotonicに付与する。
@@ -85,7 +85,7 @@
 - USER-20260814-BATTLE-RULES: DONE。現行ownerが単一CFRU payloadであることをsource/hook/固定RNGで確定し、zero-patch stage 23と全mode回帰を通した。
 - USER-20260814-BATTLE-UI: DONE。固定CFRUの実タイプ・有効度・STAB表示をstage 24へ接続し、通常/Factory/Raidを同じownerと判定へ統一した。
 - USER-20260814-MOVE-MEMORY: DONE。だいじなものと既存NPCが共用する無料の技思い出し・技忘れ・段階解禁タマゴ技をstage 25へ結合した。
-- USER-20260814-QOL-RELEASE: IN_PROGRESS。同一stage 25の全QOL/Factory/Kanto統合スモークはPASS。修正済みv1.3.1 sourceをtag固定し、最後の重いfresh rebuildを1回実行してreleaseを確定する。
+- USER-20260814-QOL-RELEASE: IN_PROGRESS。同一stage 25の全QOL/Factory/Kanto統合スモークはPASS。v1.3.1 freshは重いbuild前のtool inventory gateで停止したため、来歴を同期したv1.3.2 sourceをtag固定して最終fresh rebuildを行う。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。

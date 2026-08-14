@@ -2029,8 +2029,8 @@ def _build_ai(policy: Mapping[str, Any], verified: Mapping[str, Any]) -> dict[st
             for name in ai_policy["forbidden_implicit_configs"]
         ],
         "fixture": {
-            "runner_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
-            "config_sha256": "a361bb56f13905897f9465adf034ec2e50e5841d38fe1d873e4a419f40680eac",
+            "runner_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+            "config_sha256": "e75f2ff9f945a2150ccef858d32f8e55f78abb2ea99a6ef1a1e237af3c1557c6",
             "process_runs": 2,
             "status": "MEASURED_PASS_T01_REUSE_REQUIRED_T06",
         },

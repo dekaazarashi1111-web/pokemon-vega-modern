@@ -63,7 +63,7 @@ class CFRUIdSpaceInventoryTests(unittest.TestCase):
         self.assertRegex(baseline["report_contract_sha256"], r"^[0-9a-f]{64}$")
         self.assertEqual(
             baseline["fingerprint"],
-            "feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633",
+            "893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2",
         )
         self.assertEqual(
             baseline["rom_sha256"],

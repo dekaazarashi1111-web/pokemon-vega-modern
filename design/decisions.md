@@ -193,3 +193,15 @@
 - 配布: 修正済みsourceは `v1.3.1` に分け、そのtagged sourceの隔離fresh checkoutで
   final/BPS/ZIPがbyte一致した場合に限りrelease完了とする。
 - 影響: T05〜T07、T09、T16〜T17、stage 19〜25、v1.3.1 release、来歴・配置検証。
+
+## 2026-08-14 — D-022: local toolの固定inventoryをv1.3.2で同期する
+
+- 判定: annotated tag `v1.3.1` のfresh checkoutは、上流ビルドを開始する前に
+  `tools/mgba_ai_fixture_runner.c` の実hashとT01 inventoryの固定hashが不一致で停止した。
+  この候補もrelease gate不合格とし、tagを移動・削除せず配布・pushしない。
+- 修正: runner本体、`config/ai_fixture_inputs.json`、`config/upstream_inventory.json`、
+  T02 state inventoryが持つrunner/config hashを同一byteへ同期する。戦闘ロジックと
+  最終ROM byteは変更しない。
+- 再試行: 前回は重い上流build前にfail-closedしたため、`v1.3.2` tagged sourceで
+  隔離fresh rebuildを再試行し、final/BPS/ZIP byte一致を最終gateとする。
+- 影響: T01/T02来歴、AI fixture、v1.3.2 release、fresh-checkout再現性。

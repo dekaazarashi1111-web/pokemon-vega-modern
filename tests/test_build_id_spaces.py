@@ -33,7 +33,7 @@ CONFIG_PATH = ROOT / "config/id_spaces.json"
 VEGA_ROM = ROOT / "build/reference/vega.gba"
 CFRU_ROM = (
     ROOT
-    / "build/upstream-cache/feb30b4f3b3f6324260af767096293c4fc6de79c8cf32334d720e13767a77633/cfru/baseline/run-1/test.gba"
+    / "build/upstream-cache/893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2/cfru/baseline/run-1/test.gba"
 )
 
 

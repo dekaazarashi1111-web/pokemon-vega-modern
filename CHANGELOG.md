@@ -4,6 +4,14 @@
 
 - なし。
 
+## 1.3.2 — 2026-08-14
+
+- `v1.3.1` 候補のfresh checkoutが重い上流build前に検出した、更新済み
+  `mgba_ai_fixture_runner.c` とT01/T02固定inventoryのhash不一致を解消。その候補は
+  配布・pushせず、旧tagも移動しない。
+- 戦闘UIとROM byteは `v1.3.1` 候補から不変。1×・抜群・半減・無効・STAB、
+  Stellar/テラバースト、ダブル対象別、Factory/Raid共通経路の契約を維持。
+
 ## 1.3.1 — 2026-08-14
 
 - `v1.3.0` 候補の隔離fresh checkoutが検出したT05→T06の古い入力pinを更新。

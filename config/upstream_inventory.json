@@ -609,8 +609,8 @@
     "vendor/upstream/CFRU-JP/src/defines_battle.h": "e85a4e7a35321a05972fa3742fe469619869127b545242f640c6c6cf061355de",
     "tools/factory_fixture_runner.c": "361ff077dbb6fcb965045d76553b155b96ee46d38b10971cb6975527f83c2665",
     "config/factory_fixture_inputs.json": "de0c38df5d970927fd0a99910955ea97bf735065e3549bf2ae1728b21eebc6b0",
-    "tools/mgba_ai_fixture_runner.c": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
-    "config/ai_fixture_inputs.json": "a361bb56f13905897f9465adf034ec2e50e5841d38fe1d873e4a419f40680eac"
+    "tools/mgba_ai_fixture_runner.c": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+    "config/ai_fixture_inputs.json": "e75f2ff9f945a2150ccef858d32f8e55f78abb2ea99a6ef1a1e237af3c1557c6"
   },
   "ai": {
     "aliases": {
@@ -732,7 +732,7 @@
           "cache_state": "turn開始時sentinel初期化後、calculatedAIPredictions=false、予測cache未生成",
           "paired_fixture": "cfru_ai_single_warm",
           "payload_path": "tools/mgba_ai_fixture_runner.c",
-          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "payload_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
           "status": "measured_pass"
         },
         {
@@ -744,7 +744,7 @@
           "cache_state": "同一turn・同一battle stateで予測cache生成済み、end-turn/switch invalidate前",
           "paired_fixture": "cfru_ai_single_cold",
           "payload_path": "tools/mgba_ai_fixture_runner.c",
-          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "payload_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
           "status": "measured_pass"
         },
         {
@@ -756,7 +756,7 @@
           "cache_state": "turn開始時sentinel初期化後、calculatedAIPredictions=false、全target/partner予測cache未生成",
           "paired_fixture": "cfru_ai_double_warm",
           "payload_path": "tools/mgba_ai_fixture_runner.c",
-          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "payload_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
           "status": "measured_pass"
         },
         {
@@ -768,7 +768,7 @@
           "cache_state": "同一turn・同一battle stateで全target/partner予測cache生成済み、end-turn/switch invalidate前",
           "paired_fixture": "cfru_ai_double_cold",
           "payload_path": "tools/mgba_ai_fixture_runner.c",
-          "payload_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+          "payload_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
           "status": "measured_pass"
         }
       ],
@@ -779,9 +779,9 @@
         "unit": "emulated_ARM_cycles_per_conservative_decision_bound",
         "environment": "infra/toolchain_manifest.json;config/ai_fixture_inputs.json",
         "runner_path": "tools/mgba_ai_fixture_runner.c",
-        "runner_sha256": "4d92969a5d7c48debe861ee305ff9a77bc5689c4be5922637c231c7ff18e9656",
+        "runner_sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
         "config_path": "config/ai_fixture_inputs.json",
-        "config_sha256": "a361bb56f13905897f9465adf034ec2e50e5841d38fe1d873e4a419f40680eac",
+        "config_sha256": "e75f2ff9f945a2150ccef858d32f8e55f78abb2ea99a6ef1a1e237af3c1557c6",
         "process_runs": 2,
         "internal_runs_per_fixture": 2,
         "results_path": "reports/generated/upstream_repro.json#/ai_benchmark/fixtures",
