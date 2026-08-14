@@ -10,27 +10,27 @@
     "stage_rom": {
       "path": "build/stages/24_battle_ui.gba",
       "size": 33554432,
-      "sha256": "870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387"
+      "sha256": "b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb"
     },
     "stage_metadata": {
       "path": "build/stages/24_battle_ui.json",
-      "sha256": "8e7c10ce9569d75918f7674e7b3b312e1ba4a9b0d9ebb0c2f650829389e95a0d"
+      "sha256": "87dfe395d94124e24aac103a16d43ddaa1f8fd704334383dbc5892bf177e6b55"
     },
     "allocation": {
       "path": "build/stages/24_allocation.json",
-      "sha256": "30993166cb36cc7c26635e5852b259c7d0f71f87d7650e09a37d483239cdd363"
+      "sha256": "750f7359c10e47c69ba47a93012837479ae16ba70ca0e176cd3816ce35634ab2"
     },
     "charmap": {
       "path": "vendor/upstream/CFRU-JP/charmap.tbl",
       "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"
     },
     "linked_object": {
-      "path": "build/battle-core/862a6c4f715c56684e172db2073ebc6f1b5263623f551da7b0eaa1e07a11c847/run-1/linked.o",
-      "sha256": "9cadaa8695197357b2db03507a690c11dffaefb4d7fc004bd8a408871770f58d"
+      "path": "build/battle-core/da248a2ac3724a35d444da58ca5c8a299088f4d0ec02e4b5d23e283cd8d8558e/run-1/linked.o",
+      "sha256": "8c0ac2be2b77fa97b974a7a2377aaf99b796fb49c369d10a7faf9432ce2040f6"
     },
     "species_surface_metadata": {
       "path": "build/stages/09_species_surface.json",
-      "sha256": "388e483604cfebfb389d14d965fd58b117fd26d9c2352c59679413d4258a0a38"
+      "sha256": "3dec47e2a91cbfe3064b7c7e4d9c81dc6a1db80379014c7735b9c4e87624a34f"
     },
     "level_up_pointers": {
       "path": "generated/engine/learnsets/level_up_pointers.bin",
@@ -60,7 +60,7 @@
   },
   "patches": {
     "move_relearner": {
-      "address": "0x091140A0",
+      "address": "0x09114088",
       "expected_hex": "f0b5c646542300b5"
     },
     "shiou_npc": {

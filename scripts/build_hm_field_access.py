@@ -29,8 +29,9 @@ ROM_SIZE = 32 * 1024 * 1024
 CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE21 = Path("build/stages/21_first_battle_hotfix.gba")
-STAGE21_SHA256 = "ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521"
+STAGE21_SHA256 = "d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd"
 STAGE21_ALLOCATION = Path("build/stages/21_allocation.json")
+STAGE06_META = Path("build/stages/06_battle_core.json")
 STAGE22 = Path("build/stages/22_hm_field_access.gba")
 STAGE22_META = Path("build/stages/22_hm_field_access.json")
 STAGE22_ALLOCATION = Path("build/stages/22_allocation.json")
@@ -63,6 +64,15 @@ HM_ROWS = (
     ("HM07", "たきのぼり", 127, 345, 6, "VegaHM_SetUpWaterfall", 0x09120879),
     ("HM08", "ダイビング", 291, 346, 14, "VegaHM_SetUpDive", 0x09120951),
 )
+
+T06_ORIGINAL_CALLBACK_SYMBOLS = {
+    "HM02": "SetUpFieldMove_Fly",
+    "HM03": "SetUpFieldMove_Surf",
+    "HM07": "SetUpFieldMove_Waterfall",
+    "HM08": "SetUpFieldMove_Dive",
+}
+T06_PATCH_ANCHOR_SYMBOL = "PartyHasMonWithFieldMovePotential"
+T06_PATCH_ANCHOR_LEGACY_ADDRESS = 0x0911F748
 
 PATCHES = (
     ("field capability branch", 0x0911F748,
@@ -116,6 +126,45 @@ def _read_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def _t06_offsets(root: Path) -> dict[str, int]:
+    metadata = _read_json(root / STAGE06_META)
+    fingerprint = metadata.get("fingerprint")
+    runs = metadata.get("upstream_runs")
+    if not isinstance(fingerprint, str) or len(fingerprint) != 64:
+        _fail("T06 fingerprint is invalid")
+    if not isinstance(runs, list) or len(runs) != 2:
+        _fail("T06 repeatability contract is missing")
+    resolved_runs: list[dict[str, int]] = []
+    for index, run in enumerate(runs, 1):
+        if not isinstance(run, dict) or not isinstance(run.get("offsets"), dict):
+            _fail(f"T06 offsets contract is invalid: run {index}")
+        path = root / "build/battle-core" / fingerprint / f"run-{index}/offsets.ini"
+        raw = path.read_bytes()
+        if _sha(raw) != run["offsets"].get("sha256"):
+            _fail(f"T06 offsets digest differs: run {index}")
+        symbols: dict[str, int] = {}
+        for line in raw.decode("utf-8").splitlines():
+            if ":" not in line:
+                continue
+            name, value = line.split(":", 1)
+            if value.strip():
+                symbols[name.strip()] = int(value.strip(), 16)
+        if len(symbols) != run["offsets"].get("symbol_count"):
+            _fail(f"T06 offsets symbol count differs: run {index}")
+        resolved_runs.append(symbols)
+    if resolved_runs[0] != resolved_runs[1]:
+        _fail("T06 offsets differ between repeatability runs")
+    required = {
+        T06_PATCH_ANCHOR_SYMBOL,
+        "gFieldMoveCursorCallbacks",
+        *T06_ORIGINAL_CALLBACK_SYMBOLS.values(),
+    }
+    missing = required - set(resolved_runs[0])
+    if missing:
+        _fail(f"T06 HM symbols are missing: {sorted(missing)}")
+    return resolved_runs[0]
+
+
 def _previous_requests(root: Path) -> list[dict[str, object]]:
     report = _read_json(root / STAGE21_ALLOCATION)
     if report.get("summaries", {}).get("overlap_count") != 0:
@@ -148,7 +197,9 @@ def _allocation(
     return allocation, report
 
 
-def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, int]]:
+def _compile_runtime(
+    root: Path, load_address: int, original_callbacks: dict[str, int]
+) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -176,6 +227,10 @@ def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, in
         _run([
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            f"-DVEGA_HM_SETUP_FLY_ADDRESS=0x{original_callbacks['HM02']:08X}u",
+            f"-DVEGA_HM_SETUP_SURF_ADDRESS=0x{original_callbacks['HM03']:08X}u",
+            f"-DVEGA_HM_SETUP_WATERFALL_ADDRESS=0x{original_callbacks['HM07']:08X}u",
+            f"-DVEGA_HM_SETUP_DIVE_ADDRESS=0x{original_callbacks['HM08']:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -228,10 +283,21 @@ def _build_stage(root: Path) -> tuple[dict[str, bytes], dict[str, Any]]:
     source = (root / STAGE21).read_bytes()
     if len(source) != ROM_SIZE or _sha(source) != STAGE21_SHA256:
         _fail("stage21 size/hash contract failed")
+    t06_offsets = _t06_offsets(root)
+    patch_delta = (
+        t06_offsets[T06_PATCH_ANCHOR_SYMBOL]
+        - T06_PATCH_ANCHOR_LEGACY_ADDRESS
+    )
+    original_callbacks = {
+        hm: t06_offsets[symbol] | 1
+        for hm, symbol in T06_ORIGINAL_CALLBACK_SYMBOLS.items()
+    }
 
     provisional, _ = _allocation(root, 4096, "0" * 64)
     payload_offset = int(provisional["start"])
-    runtime, symbols = _compile_runtime(root, GBA_ROM_BASE + payload_offset)
+    runtime, symbols = _compile_runtime(
+        root, GBA_ROM_BASE + payload_offset, original_callbacks
+    )
     allocation, allocation_report = _allocation(root, len(runtime), _sha(runtime))
     if int(allocation["start"]) != payload_offset:
         _fail("HM field allocation moved after final link")
@@ -243,20 +309,28 @@ def _build_stage(root: Path) -> tuple[dict[str, bytes], dict[str, Any]]:
     output[payload_offset:payload_end] = runtime
     patch_rows: list[dict[str, Any]] = []
     for label, address, expected, replacement in PATCHES:
+        address += patch_delta
         if replacement == "capability_stub":
             target = symbols["VegaHM_FieldCapability"] | 1
             replacement = bytes.fromhex("00 4b 18 47") + struct.pack("<I", target)
         assert isinstance(replacement, bytes)
         patch_rows.append(_patch(output, address, expected, replacement, label))
 
-    callback_base = 0x09168F9C
+    callback_base = t06_offsets["gFieldMoveCursorCallbacks"]
+    resolved_hm_rows: list[tuple[Any, ...]] = []
     for hm, name, move, item, index, symbol, original in HM_ROWS:
+        original_symbol = T06_ORIGINAL_CALLBACK_SYMBOLS.get(hm)
+        if original_symbol is not None:
+            original = original_callbacks[hm]
         address = callback_base + index * 8
         replacement = struct.pack("<I", symbols[symbol] | 1)
         patch_rows.append(_patch(
             output, address, struct.pack("<I", original), replacement,
             f"{hm} {name} callback ownership guard",
         ))
+        resolved_hm_rows.append(
+            (hm, name, move, item, index, symbol, original)
+        )
 
     output_raw = bytes(output)
     allowed: set[int] = set(range(payload_offset, payload_end))
@@ -297,7 +371,16 @@ def _build_stage(root: Path) -> tuple[dict[str, bytes], dict[str, Any]]:
         "hm_contract": [{
             "hm": hm, "name": name, "move_id": move, "vega_item_id": item,
             "callback_index": index, "wrapper": symbol_payload["symbols"][symbol],
-        } for hm, name, move, item, index, symbol, _ in HM_ROWS],
+            "original_callback": original,
+        } for hm, name, move, item, index, symbol, original in resolved_hm_rows],
+        "t06_contract": {
+            "source": STAGE06_META.as_posix(),
+            "patch_delta": patch_delta,
+            "field_capability_address": (
+                t06_offsets[T06_PATCH_ANCHOR_SYMBOL] | 1
+            ),
+            "callback_table_address": callback_base,
+        },
         "patches": patch_rows,
         "allocation": {
             "path": STAGE22_ALLOCATION.as_posix(),
@@ -342,7 +425,12 @@ def _mgba_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str,
             os.environ.get("CC", "cc"), "-std=c11", "-O2", "-Wall", "-Wextra",
             "-Werror", str(root / RUNNER), "-o", str(executable), "-lmgba",
         ], "HM field libmGBA runner compile", cwd=root)
-        args = [str(executable), str(rom_path), metadata["output"]["sha256"]]
+        args = [
+            str(executable), str(rom_path), metadata["output"]["sha256"],
+            hex(metadata["t06_contract"]["field_capability_address"]),
+            hex(metadata["t06_contract"]["callback_table_address"]),
+            *[hex(row["original_callback"]) for row in metadata["hm_contract"]],
+        ]
         first = json.loads(_run(args, "HM field exact-ROM run 1", cwd=root))
         second = json.loads(_run(args, "HM field exact-ROM run 2", cwd=root))
         if first != second or first.get("status") != "PASS":

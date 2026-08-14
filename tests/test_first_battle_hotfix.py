@@ -8,6 +8,8 @@ from scripts.build_first_battle_hotfix import (
     MGBA_FIXTURE,
     PATCH_OFFSET,
     REPLACEMENT,
+    SOURCE_GUARD,
+    SOURCE_GUARD_OFFSET,
     STAGE21,
     STAGE21_META,
     build_hotfix_outputs,
@@ -30,11 +32,13 @@ class FirstBattleHotfixTest(unittest.TestCase):
             hashlib.sha256(self.rom).hexdigest(),
             self.meta["output"]["sha256"],
         )
+        self.assertEqual(self.meta["patch"]["integration_mode"], "t06_source_integrated")
         self.assertEqual(
-            self.rom[PATCH_OFFSET:PATCH_OFFSET + len(REPLACEMENT)],
-            REPLACEMENT,
+            self.rom[SOURCE_GUARD_OFFSET:SOURCE_GUARD_OFFSET + len(SOURCE_GUARD)],
+            SOURCE_GUARD,
         )
         self.assertNotEqual(EXPECTED, REPLACEMENT)
+        self.assertEqual(self.meta["patch"]["changed_byte_count"], 0)
         self.assertEqual(self.meta["allocation"]["new_allocation_count"], 0)
         self.assertEqual(self.meta["allocation"]["overlap_count"], 0)
         self.assertTrue(all(self.meta["invariants"].values()))

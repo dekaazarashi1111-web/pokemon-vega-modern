@@ -49,10 +49,10 @@ EMBEDDED_RUNNER_SOURCES = (
 )
 
 EXPECTED_STAGE22_SHA256 = (
-    "64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf"
+    "18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407"
 )
 EXPECTED_STAGE06_SHA256 = (
-    "c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05"
+    "61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591"
 )
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 
@@ -448,7 +448,13 @@ def _validate_rule_fixture(value: dict[str, Any], config: dict[str, Any]) -> Non
 
 def _rule_fixture(root: Path, rom: bytes, config: dict[str, Any]) -> dict[str, Any]:
     sources = (RUNNER, *EMBEDDED_RUNNER_SOURCES)
-    key, provenance = _runner_cache_key(root, sources, _sha(rom), config["defaults"])
+    stage06 = (root / STAGE06).read_bytes()
+    main_table = _address(config["owner"]["main_command_table"])
+    secondary_dispatch = _rom_u32(stage06, main_table + 0xFF * 4)
+    key, provenance = _runner_cache_key(
+        root, sources, _sha(rom),
+        {"defaults": config["defaults"], "secondary_dispatch": secondary_dispatch},
+    )
     cache_path = root / MGBA_FIXTURE
     if cache_path.is_file():
         cached = _read_json(cache_path)
@@ -464,7 +470,7 @@ def _rule_fixture(root: Path, rom: bytes, config: dict[str, Any]) -> dict[str, A
             os.environ.get("CC", "cc"), "-std=c11", "-O2", "-Wall", "-Wextra",
             "-Werror", str(root / RUNNER), "-o", str(executable), "-lmgba",
         ], "battle rules libmGBA runner compile", cwd=root)
-        args = [str(executable), str(rom_path), _sha(rom)]
+        args = [str(executable), str(rom_path), _sha(rom), hex(secondary_dispatch)]
         first = json.loads(_run(args, "battle rules exact-ROM run 1", cwd=root))
         second = json.loads(_run(args, "battle rules exact-ROM run 2", cwd=root))
         if first != second:
@@ -476,12 +482,14 @@ def _rule_fixture(root: Path, rom: bytes, config: dict[str, Any]) -> dict[str, A
 
 
 def _policy_symbol_names(source: str) -> list[str]:
+    from scripts.build_battle_core import POLICY_SMOKE_SYMBOLS
+
     start = source.find("#define POLICY_SYMBOL_LIST")
     end = source.find("struct PolicySymbols", start)
     if start < 0 or end < 0:
         _fail("policy runner symbol list missing")
     names = re.findall(r'X\([^,]+,\s*"([^"]+)"\)', source[start:end])
-    if len(names) != 41 or len(names) != len(set(names)):
+    if tuple(names) != POLICY_SMOKE_SYMBOLS or len(names) != len(set(names)):
         _fail("policy runner symbol contract differs")
     return names
 

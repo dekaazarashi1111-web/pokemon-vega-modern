@@ -7,8 +7,6 @@
 
 enum {
     MM_LEVEL_ROOT_SITE = 0x0803E1E8,
-    MM_RELEARNER_ENTRY = 0x091140A0,
-    MM_GET_ALL_EGG_MOVES = 0x090EB839,
     MM_ITEM_DATA = 0x0904D108,
     MM_ITEM_STRIDE = 40,
     MM_ITEM_ID = 347,
@@ -42,6 +40,8 @@ enum {
 };
 
 struct MmSymbols {
+    uint32_t upstream_relearner_entry;
+    uint32_t upstream_get_all_egg_moves;
     uint32_t field_use;
     uint32_t get_moves;
     uint32_t set_normal;
@@ -95,6 +95,8 @@ static void mm_set_symbol(struct MmSymbols *symbols, const char *key,
 #define MM_SCRIPT(name, member) \
     if (!strcmp(key, name)) { symbols->member = mm_parse_address(value, false); return; }
     MM_FUNCTION("VegaMoveMemory_FieldUse", field_use)
+    MM_SCRIPT("UpstreamGetMoveRelearnerMoves", upstream_relearner_entry)
+    MM_FUNCTION("UpstreamGetAllEggMoves", upstream_get_all_egg_moves)
     MM_FUNCTION("VegaMoveMemory_GetMoveRelearnerMoves", get_moves)
     MM_FUNCTION("VegaMoveMemory_SetNormalMode", set_normal)
     MM_FUNCTION("VegaMoveMemory_SetEggMode", set_egg)
@@ -350,7 +352,7 @@ int main(int argc, char **argv)
     if (log_problem_count) mm_die("mGBA warned/errored during field boot");
 
     bool physical =
-        mm_hook_target(core, MM_RELEARNER_ENTRY) == symbols.get_moves
+        mm_hook_target(core, symbols.upstream_relearner_entry) == symbols.get_moves
         && read32(core, MM_ITEM_DATA + MM_ITEM_ID * MM_ITEM_STRIDE
                          + MM_ITEM_CALLBACK_OFFSET) == symbols.field_use
         && read32(core, MM_SHIOU_POINTER) == symbols.shiou_script
@@ -368,7 +370,8 @@ int main(int argc, char **argv)
     mm_clear(core, MM_OUTPUT, MM_MAX_MOVES * 2U);
     call_bounded(core, symbols.set_normal, 0, 0, 0, 0);
     unsigned low_count = call_bounded(
-        core, MM_RELEARNER_ENTRY | 1U, MM_PARTY, MM_OUTPUT, 0, 0).result;
+        core, symbols.upstream_relearner_entry | 1U,
+        MM_PARTY, MM_OUTPUT, 0, 0).result;
     if (low_count > MM_MAX_MOVES) mm_die("normal candidate count overflow");
     uint16_t low[MM_MAX_MOVES] = {0};
     for (unsigned index = 0; index < low_count; ++index)
@@ -418,7 +421,8 @@ int main(int argc, char **argv)
     mm_clear(core, MM_OUTPUT, MM_EGG_BUFFER * 2U);
     mm_clear(core, MM_OUTPUT_DIRECT, MM_EGG_BUFFER * 2U);
     unsigned direct_egg_count = call_bounded(
-        core, MM_GET_ALL_EGG_MOVES, MM_PARTY, MM_OUTPUT_DIRECT, 1, 0).result;
+        core, symbols.upstream_get_all_egg_moves,
+        MM_PARTY, MM_OUTPUT_DIRECT, 1, 0).result;
     call_bounded(core, symbols.set_egg, 0, 0, 0, 0);
     unsigned adapter_egg_count = call_bounded(
         core, symbols.get_moves, MM_PARTY, MM_OUTPUT, 0, 0).result;

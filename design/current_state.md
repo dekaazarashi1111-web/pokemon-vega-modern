@@ -4,19 +4,19 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。stage 25をv1.3.0 release sourceへ接続し、tagged sourceの最終fresh rebuildを残す。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置依存を修正したv1.3.1 sourceで、tagged sourceの最終fresh rebuildを残す。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
-- V4 AI rankは固定CFRU-JPの既存3段階だけを使用する。rank 1→flags 1、rank 2〜3→flags 3、rank 4〜5→flags 5。stage 19 SHA-256は `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478`。
+- V4 AI rankは固定CFRU-JPの既存3段階だけを使用する。rank 1→flags 1、rank 2〜3→flags 3、rank 4〜5→flags 5。stage 19 SHA-256は `cbec85a298bc146b4b12a0edc8ca4d478b6713a5cb1f7db77e7ab1f74da1104a`。
 - クチバ（group 96 / map 5）へFactory Trial受付NPCを実配置した。固定CFRU-JP生成器の重複なしLv.50候補6体から既存party UIで3体を選び、single 3v3×3、1・2勝後の任意1体交換、各戦全回復、完走9 BPを実ROMで実行する。完走・敗北・辞退・cancel・保存後復旧は入場前party 600 byteをexact復元し、図鑑はseenだけを更新する。
-- Factory ledgerは既存CFRU sector 31へ直接保存し、ROM用2 KiB rollback像をEWRAM `0x0203E400..0x0203EC00`へ配置した。stage 20 SHA-256は `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`、中央allocator overlapは0。
-- 初戦の相手リープンはItem ID 0 / hold effect 0で正常だが、行動順schedulerが残留Quick Claw/Custap indicatorを再検証せず通知へ進むと、Item 0名の「？？？？？？？？」を反復して行動が止まることを命令単位fault injectionで再現した。stage 21は通知直前にhold effect 26/96を再検証し、それ以外を破棄して同じターンを継続する。3御三家、正規Quick Claw/Custap/Quick Draw、clean ROMからのBPS完全往復がPASSし、SHA-256は `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521`。新規allocationは0。
-- Vegaの実HMは既存Item 339〜346で、CFRU追加別名570〜577とは分離した。stage 22はHM05をフラッシュ、HM08をダイビングとして、バッグ所持だけでfield能力を許可する。badge、手持ち数、習得、適性、技枠を解禁条件から外し、既存map/terrain/follower/script境界とcallbackを維持する。8 HM×手持ち0体／未習得／習得済み、snapshot復元、Surf状態、BPS往復がPASSし、SHA-256は `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`、runtimeは408 bytes、allocation overlapは0。
-- stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
-- stage 24は固定CFRU move menuの実タイプ・有効度分岐を956-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。1×/2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、実使用canonical名をlibmGBAで確認した。SHA-256は `870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387`、allocation overlapは0。Factory ROM byteは使用していない。
-- stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9`、runtimeは2,931 bytes、allocation overlapは0。
-- v1.3.0統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9`。
+- Factory ledgerは既存CFRU sector 31へ直接保存し、ROM用2 KiB rollback像をEWRAM `0x0203E400..0x0203EC00`へ配置した。stage 20はT06のhash検証済みoffsetsから施設、rental、trainer、active-state addressを解決し、SHA-256は `d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd`、中央allocator overlapは0。
+- 初戦の相手リープンはItem ID 0 / hold effect 0で正常だが、行動順schedulerが残留Quick Claw/Custap indicatorを再検証せず通知へ進むと、Item 0名の「？？？？？？？？」を反復して行動が止まることを命令単位fault injectionで再現した。通知直前のhold effect 26/96再検証はT06 sourceへ統合し、stage 21は統合済みの場合をzero-patchとして確認する。3御三家、正規Quick Claw/Custap/Quick Draw、clean ROMからのBPS完全往復がPASSし、SHA-256はstage 20と同じ `d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd`。新規allocationは0。
+- Vegaの実HMは既存Item 339〜346で、CFRU追加別名570〜577とは分離した。stage 22はHM05をフラッシュ、HM08をダイビングとして、バッグ所持だけでfield能力を許可する。badge、手持ち数、習得、適性、技枠を解禁条件から外し、既存map/terrain/follower/script境界とcallbackを維持する。8 HM×手持ち0体／未習得／習得済み、snapshot復元、Surf状態、BPS往復がPASSし、SHA-256は `18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407`、runtimeは408 bytes、allocation overlapは0。
+- stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
+- stage 24は固定CFRU move menuの実タイプ・有効度分岐を956-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。1×/2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、実使用canonical名をlibmGBAで確認した。SHA-256は `b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb`、allocation overlapは0。Factory ROM byteは使用していない。
+- stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`、runtimeは2,931 bytes、allocation overlapは0。
+- v1.3.1統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
@@ -37,15 +37,15 @@
 - T06で固定CFRU-JPのbattle-only hook 955件をexpected-byte付きでstage 04へ統合し、CFRU 774件・PORT 181件、未分類変更0を確定した。Move 1,063、Ability 312、Item/Icon 999、Vega base stat 412、進化1,440行をallocator管理payloadへ配置し、連続2 buildをbyte一致させた。
 - 通常wild/trainer、status、priority、double multi-target、switch、faint、EXP、captureを実schedulerで完走した。固定CFRU AI 3 profileとsingle/double 18判断fixture、Factory 24 rule/format、育成QOL、1戦1gimmick、Mirage仮想item、high-difficulty Raidを同じcoreへ接続した。
 - Raid partnerの技破損は、Vega packed-u16 learnsetへ不適合なCFRU初期技fallbackが正しいspreadを上書きしていたことを動的traceで確定し、fallbackを無効化した。partner controllerのcommand上限を修正し、Raid 5/5 shield、自然捕獲、full-party PC 80-byte ABI、Raid後wild/trainer、turn-limit終了と一時flag cleanupを検証した。
-- T06 stage fingerprintは `58417b356175a6e291f6fc194f5ac2e2335c9fbb76e2167db001714f75713a59`、ROM SHA-256は `c0deba02342ccb64558243c897728aea878cc669fb5d458c7543b70a4d9d4f05`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
+- T06 stage fingerprintは `da248a2ac3724a35d444da58ca5c8a299088f4d0ec02e4b5d23e283cd8d8558e`、ROM SHA-256は `61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
 - T07でVega Species `0..411`を固定し、DPE定義済み1415 IDのうち206件（NONE sentinelを含む）をVegaへalias、欠落Species/form 1209件を`412..1620`へappendした。DPE予約hole `252..276`は生成対象外とした。
-- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `3c24e8eb6c8f5ca10e272f1aa6c7daa375741b9061a012385661fba81652f7b8`、fingerprintは `be3931a374adfb902b6add1193adc07925491196b4a335fb17fd396199872188`。
+- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `8634e053e4204311b38fb90e8ae3a0da112f2ebd50739763af931800b785252f`、fingerprintは `e047f9dba47ece36948094e6e31731a820fde4c67c9777c7b0ad6ec7cd20e0ad`。
 - 全行にofficial判定、canonical全国番号、review stateを付け、公式全国番号1〜1025と209 multi-form群を検証した。公式捕獲数は全国番号distinctで数えるためform重複で100種条件を水増ししない。既存trainer/wild/script/gift/evolution参照は全て解決し、追加キャタピーcanonical ID 412を実party memoryへ2 processで生成した。
 - T08でT02のlive RAM/save ownerを統合し、CFRU sector 30/31 payloadのEWRAM `0x0203D000..0x0203D800`へ2,048-byte version 1 ledgerを割り当てた。magic/version/size/FNV-1a checksumと予約領域検査をfail-closedにし、既存Vega saveはsector checksum検証後だけ一回性migrationへ進める。
 - Kanto渡航・訪問・殿堂入り・認定章・地方別heal/return anchor・League I/II・地方別NORMAL/RESEARCH profile、125共有捕獲/Raid stateをVega badge/HM/story flagと分離した。早期渡航は`0x0824 && 0x114B`または殿堂入りからmonotonicに付与する。
 - Factoryはreset unsafeな348-byte/3体backupを廃止し、6×100 byte exact party snapshot、BP、24 mode streak、once reward、unlock、markerを原子的に保存する。typed encounter creditと完全なpending encounterも同じpersist-before-battle transactionにし、flash失敗、reset、二重課金・二重報酬をfocused C fixtureで検証した。
 - `natureMint`、Hyper Training、Tera typeは80-byte BoxPokemon ABI内を正本とし、最大5個のタマゴqueueも個体byteをFIFO保存する。arcade coinは既存暗号化u16を再利用し、Factory BPは新規u16、research pointはearn hook不在のためstorageなしのDEFERとした。
-- T09でVega 412行のfront/back、palette、coords、icon、footprint、鳴き声、Dexをlossless prefixで保ち、DPE追加1209行をcanonical順に統合した。追加行のLZ77 4,836ポインタ、icon 1,209ポインタを全検査し、NULLの内部補助IDは境界内default assetへ固定した。T06進化runtime root 38参照も新表へrepointした。stage 09 SHA-256は `9dfd7caf04cdda4c0b4b559ce842a53341667c1f4e5af298348a55c655230345`、ROM末尾残量は210,548 byte。
+- T09でVega 412行のfront/back、palette、coords、icon、footprint、鳴き声、Dexをlossless prefixで保ち、DPE追加1209行をcanonical順に統合した。追加行のLZ77 4,836ポインタ、icon 1,209ポインタを全検査し、NULLの内部補助IDは境界内default assetへ固定した。T06進化runtime root 38参照も新表へrepointした。stage 09 SHA-256は `af086a3772c5e6868e68a8d8c0be14a1cb1ae7bd69f70621908583f5153f03ad`、ROM末尾残量は210,548 byte。
 - T06進化prefixとDPE進化を1621×16行ABIに統合し、Species/Move/Item参照をcanonical IDへ変換した。V2進化553行は意味重複43行を除いて510行に正規化し、from/to form keyと数値National Dexを付与した。level-up 1209行とegg 3,362値のMove IDを変換し、TM/HM・tutorを16-byte行で固定した。
 - 現代式孵化はかわらずの石・あかいいと・power系・両親技・共通level技・ball/特性/おこう/メタモン/異親ID6回/地域form、5個FIFO、party/PC満杯保留、3孵化mode、compact IV/EV、無料技思い出し契約、公式100種またはquestのOval Charmと18固定RNG caseへ固定した。
 - T10で追加オコリザル445、ふんどのこぶし1027、まけんき129、ウタンのみ669、技習得進化method 26を選び、stage 09のlibmGBA 2 process生成と継続save fixtureを通した。wild/trainer/capture/level/move/ability/item/evolution/Dex/save/restart/loadを同一fixtureで検証し、release debug giftはOFFに固定した。
@@ -60,9 +60,9 @@
 - QOL 35境界、Factory Trial/Standard/Full/Master、地方強豪3段階、Research/TM/HA DexNav/競技品/UB・Paradox/Raidを直前/直後fixtureへ固定した。Research rank、二地方共鳴、共有特殊捕獲、permit/return stateは独立ownerで、開発terminalはrelease無効。
 - T16でTohoku 49 / Kanto 47論理地点を物理mapへ一意にbindし、Kanto 541系統、二地方RESEARCH 1,082行、125特殊種×2地方Raid 250行をsymbolic manifestへ生成した。Tohoku NORMALは全既存slotのbyte同値fallbackを保持する。
 - Kanto Gym 48体・League 30体、Tohoku登録済み強豪再戦48体、3 AI profile、3段階再戦、Factory/Mirage、BP価格、進化道具、QOL供給を進行境界つきで完全化した。Kantoは `FIXED_HIGH_LEVEL_OPTIONAL` Lv.68〜100で、全体動的scaleは0。
-- T09/T14領域衝突は、T03/T04/T09/T16の全allocationを単一reportへ統合し、T16 payload 77,092 bytesをintegration_modulesの `0x0120AC24`へexpected-FF付きで配置して解消した。stage 16 SHA-256は `5c56b86da56b2a15d9e75bad8a85db83e1c63e6a7814e265b996ce07d50660b5`、allocation overlapは0。
+- T09/T14領域衝突は、T03/T04/T09/T16の全allocationを単一reportへ統合し、T16 payload 77,092 bytesをintegration_modulesの `0x0120AC24`へexpected-FF付きで配置して解消した。stage 16 SHA-256は `22c7f2e6021d2f65dd5fab63bab49fa515b5dd495338183d3b369567e533dd4c`、allocation overlapは0。
 - カントーLv.68〜100は任意固定高難度、警告・安全帰還必須とし、早期招待/調査pass/進行別会話/船上戦をSIMPLE_EVENTへ正規化した。Factory/Mirage owner分離、AI 3 profile、NORMAL/RESEARCH直交、供給tier、DEFERRED調査point、persist-before-battle encounter、Raid捕獲/報酬state分離をvalidatorとnegative fixtureで固定した。T13 physical map bindingなしのemitはfail-closedする。
-- T17でstage 16から253 Kanto map、180 layout、51 tileset、133 wild header、29 trainer/174 party row、8 gym＋四天王/Champion 13 eventを実ROMへserializeした。既存map/layout/wild rootと24 trainer table参照をexpected-byte付きでrepointし、中央allocation overlap 0のstage 17 SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`を生成した。
+- T17でstage 16から253 Kanto map、180 layout、51 tileset、133 wild header、29 trainer/174 party row、8 gym＋四天王/Champion 13 eventを実ROMへserializeした。既存map/layout/wild rootと24 trainer table参照をexpected-byte付きでrepointし、中央allocation overlap 0のstage 17 SHA-256 `bf3dcc979edcfd6f0c9892f236c2e4873155fceda267c43239bfc9be45cb279e`を生成した。
 - 自然new-gameのVega fieldからKantoへ渡航し、描画・移動・無条件帰還、QOL-B Thumb probe、先頭gym/最終Championのobject→script→trainer→6体party graphをlibmGBA 2 processで通した。253/253 mapの往復到達、殿堂入り前後各200往復、125共有捕獲、34 event×7分岐、20 facility mode、3 AI profileを決定論fixtureで固定し、release blocker 0とした。
 - T18でstage 17から32 MiB最終ROMとclean FireRed日本版Rev.0用BPSを生成し、BPS CRCと完全往復、BPRJ header、中央allocation、9-member決定論ZIP、ROM/save/元patch/private path不在をfail-closedにした。最終ROM SHA-256は `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`。
 - source revision `a98b991dbd8742b8f51a611f8d30dc714044400a` を `v1.0.0` へtag付けし、隔離Git worktree＋読み取り専用私有入力からT01〜T17、final ROM、BPS、ZIPを完全再構築して現成果とbyte一致させた。release BPS / ZIP SHA-256は `a20a85a5501e134b36020c0b8b169958c1ef1876d26914d725ffeecceaf7c9e4` / `eb11865e3817f4d4ead53f10288a8c31ffa818e6f3e8c8c26c3d9164c7985cf6`。
@@ -85,7 +85,7 @@
 - USER-20260814-BATTLE-RULES: DONE。現行ownerが単一CFRU payloadであることをsource/hook/固定RNGで確定し、zero-patch stage 23と全mode回帰を通した。
 - USER-20260814-BATTLE-UI: DONE。固定CFRUの実タイプ・有効度・STAB表示をstage 24へ接続し、通常/Factory/Raidを同じownerと判定へ統一した。
 - USER-20260814-MOVE-MEMORY: DONE。だいじなものと既存NPCが共用する無料の技思い出し・技忘れ・段階解禁タマゴ技をstage 25へ結合した。
-- USER-20260814-QOL-RELEASE: IN_PROGRESS。同一stage 25の全QOL/Factory/Kanto統合スモークはPASS。v1.3.0 tagと最後の重いfresh rebuildを1回実行してreleaseを確定する。
+- USER-20260814-QOL-RELEASE: IN_PROGRESS。同一stage 25の全QOL/Factory/Kanto統合スモークはPASS。修正済みv1.3.1 sourceをtag固定し、最後の重いfresh rebuildを1回実行してreleaseを確定する。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
@@ -107,7 +107,7 @@
 - T18: DONE。v1.0.0最終ROM、BPS、決定論ZIP、release文書を生成し、隔離fresh checkoutからの完全byte再現を通過した。
 - USER-20260814-TRAINER-V4: DONE。V4本編trainerをstage 19へ実配置し、v1.1.0 release導線へ接続した。
 - USER-20260814-FACILITY-RUNTIME: DONE。クチバFactory Trialの受付・候補6→選択3・3連戦・勝利後交換・BP・sector 31保存・exact復元をstage 20へ実配置し、v1.2.0 release導線へ接続した。
-- USER-20260814-FIRST-BATTLE-LOOP: DONE。stage 20を再利用した14-byte命令patchと将来のCFRU source再構築guardを追加し、初戦3分岐・不正indicator注入・正規優先効果3種・BPS往復をstage 21で検証した。
+- USER-20260814-FIRST-BATTLE-LOOP: DONE。hold effect再検証をT06 sourceへ統合し、stage 21はsource統合済みをzero-patchで確認する。初戦3分岐・不正indicator注入・正規優先効果3種・BPS往復を現行stage 21で検証した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。stage 21へVega HM Item 339〜346を正本とするruntimeと8 callback guardを結合し、party非依存・Surf状態・保存相当復元・BPS往復をstage 22で検証した。
 - USER-20260814-BATTLE-RULES: DONE。stage 22のCFRU rule owner/defaultを監査し、麻痺・主要状態・急所・天候、単一適用、通常/double/Factory/Raidをzero-patch stage 23で検証した。
 - USER-20260814-BATTLE-UI: DONE。stage 23へ固定CFRU source相当の技タイプ・有効度・STAB adapterを結合し、表示区分・Stellar・canonical名・全battle modeをstage 24で検証した。

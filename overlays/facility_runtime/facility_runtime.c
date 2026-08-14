@@ -51,10 +51,22 @@
 #define FACILITY_ROM_MEMCPY ((void *(*)(void *, const void *, size_t))(uintptr_t)0x081C9D99u)
 #define FACILITY_ROM_MEMSET ((void *(*)(void *, int, size_t))(uintptr_t)0x081C9DF9u)
 #define FACILITY_TRY_WRITE_SECTOR ((uint8_t (*)(uint16_t, const void *))(uintptr_t)0x080DA9C1u)
-#define FACILITY_GENERATE_RENTALS ((void (*)(void))(uintptr_t)0x090DCDC9u)
-#define FACILITY_GENERATE_TRAINER ((uint16_t (*)(void))(uintptr_t)0x0910228Du)
+#ifndef VEGA_FACILITY_GENERATE_RENTALS_ADDRESS
+#error "VEGA_FACILITY_GENERATE_RENTALS_ADDRESS must come from the linked T06 contract"
+#endif
+#define FACILITY_GENERATE_RENTALS \
+    ((void (*)(void))(uintptr_t)VEGA_FACILITY_GENERATE_RENTALS_ADDRESS)
+#ifndef VEGA_FACILITY_GENERATE_TRAINER_ADDRESS
+#error "VEGA_FACILITY_GENERATE_TRAINER_ADDRESS must come from the linked T06 contract"
+#endif
+#define FACILITY_GENERATE_TRAINER \
+    ((uint16_t (*)(void))(uintptr_t)VEGA_FACILITY_GENERATE_TRAINER_ADDRESS)
 #define FACILITY_HEAL_PLAYER_PARTY ((void (*)(void))(uintptr_t)0x080A1331u)
-#define FACILITY_CONFIGURE_POLICY ((uint8_t (*)(int, int, int))(uintptr_t)0x09126175u)
+#ifndef VEGA_FACILITY_CONFIGURE_POLICY_ADDRESS
+#error "VEGA_FACILITY_CONFIGURE_POLICY_ADDRESS must come from the linked T06 contract"
+#endif
+#define FACILITY_CONFIGURE_POLICY \
+    ((uint8_t (*)(int, int, int))(uintptr_t)VEGA_FACILITY_CONFIGURE_POLICY_ADDRESS)
 
 #define FACILITY_SAVE_BUFFER ((uint8_t *)(uintptr_t)0x020399B0u)
 #define FACILITY_SECTOR31_IMAGE ((const uint8_t *)(uintptr_t)0x0203CF9Cu)

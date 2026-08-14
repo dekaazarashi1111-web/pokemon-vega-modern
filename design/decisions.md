@@ -178,3 +178,18 @@
   annotated tag `v1.3.0` の隔離fresh worktreeで最後に1回だけ行い、final/BPS/ZIPのbyte一致を
   release完了gateとする。
 - 影響: stage 25、v1.3.0 release、save互換性、release文書・統合回帰。
+
+## 2026-08-14 — D-021: fresh rebuildで検出した配置依存をv1.3.1で除去する
+
+- 判定: ローカルannotated tag `v1.3.0` の隔離fresh checkoutは、T05生成modelの
+  古いfingerprint pinをT06が拒否したためrelease gate不合格とする。tagは移動・削除せず、
+  配布・pushも行わない。
+- 原因: QOL追加時に検証済みstageを再利用した際、T05→T06の来歴pinと、再リンクで
+  変化するCFRU絶対addressを参照する下流overlay/runnerの契約がクリーン再構築に
+  追従できていなかった。
+- 修正: T05/T06の来歴を現行入力で再固定し、Factory、HM、battle rules/UI、
+  わざメモリーの実addressをhash検証済みT06 offsetsから解決する。初戦防御は
+  T06 sourceに統合済みの場合を明示的なzero-patch契約にする。
+- 配布: 修正済みsourceは `v1.3.1` に分け、そのtagged sourceの隔離fresh checkoutで
+  final/BPS/ZIPがbyte一致した場合に限りrelease完了とする。
+- 影響: T05〜T07、T09、T16〜T17、stage 19〜25、v1.3.1 release、来歴・配置検証。

@@ -12,7 +12,6 @@
 #define FACILITY_GET_MON_DATA UINT32_C(0x0803F355)
 #define FACILITY_SPECIES_TO_NATIONAL UINT32_C(0x08042989)
 #define FACILITY_GET_SET_POKEDEX UINT32_C(0x08088A51)
-#define FACILITY_STATE_IS_ACTIVE UINT32_C(0x09126871)
 #define FACILITY_PLAYER_PARTY UINT32_C(0x020241E4)
 #define FACILITY_ENEMY_PARTY UINT32_C(0x02023F8C)
 #define FACILITY_PARTY_COUNT UINT32_C(0x02023F89)
@@ -255,11 +254,11 @@ static void require_flash_ledger(struct mCore *core)
 
 int main(int argc, char **argv)
 {
-    if (argc != 15) {
+    if (argc != 16) {
         fprintf(stderr,
                 "usage: %s ROM PROBE ENTER COMMIT_SELECT PREPARE AFTER "
                 "BEGIN_EXCHANGE COMMIT_EXCHANGE SKIP COMPLETE ABORT RECOVER "
-                "NPC_SCRIPT MAP_SCRIPTS\n",
+                "NPC_SCRIPT MAP_SCRIPTS FACILITY_STATE_IS_ACTIVE\n",
                 argv[0]);
         return 2;
     }
@@ -276,6 +275,8 @@ int main(int argc, char **argv)
     uint32_t recover = parse_u32(argv[12], "recover");
     uint32_t npc_script = parse_u32(argv[13], "NPC script");
     uint32_t map_scripts = parse_u32(argv[14], "map scripts");
+    uint32_t facility_state_is_active = parse_u32(
+        argv[15], "facility state is active");
     const uint32_t entrypoints[] = {
         probe, enter, commit_selection, prepare, after, begin_exchange,
         commit_exchange, skip_exchange, complete, abort_entry, recover,
@@ -287,7 +288,9 @@ int main(int argc, char **argv)
             || (entrypoints[index] & ~1U) >= ROM_END)
             facility_die("runtime entrypoint contract failed");
     }
-    if (!rom_pointer(npc_script) || !rom_pointer(map_scripts))
+    if (!rom_pointer(npc_script) || !rom_pointer(map_scripts)
+        || (facility_state_is_active & 1U) == 0U
+        || !rom_pointer(facility_state_is_active & ~1U))
         facility_die("script address contract failed");
 
     struct mLogger logger = {.log = silent_log, .filter = NULL};
@@ -396,7 +399,7 @@ int main(int argc, char **argv)
         facility_die("manual three-candidate selection failed");
 
     if (facility_invoke(core, prepare) != 1U
-        || facility_call_thumb(core, FACILITY_STATE_IS_ACTIVE, 0, 0, 0, 0)
+        || facility_call_thumb(core, facility_state_is_active, 0, 0, 0, 0)
                != 1U)
         facility_die("fixed CFRU facility policy is not active");
 

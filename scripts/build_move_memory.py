@@ -50,10 +50,10 @@ EMBEDDED_RUNNER_SOURCES = (
 ALLOCATION_NAME = "move_memory_runtime"
 PAYLOAD_HEADER_SIZE = 64
 
-EXPECTED_STAGE24_SHA256 = "870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387"
+EXPECTED_STAGE24_SHA256 = "b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "862a6c4f715c56684e172db2073ebc6f1b5263623f551da7b0eaa1e07a11c847"
+EXPECTED_T06_FINGERPRINT = "da248a2ac3724a35d444da58ca5c8a299088f4d0ec02e4b5d23e283cd8d8558e"
 
 ITEM_DATA = 0x0904D108
 ITEM_DATA_STRIDE = 40
@@ -95,13 +95,13 @@ REQUIRED_SYMBOLS = {
 }
 
 UPSTREAM_SYMBOLS = {
-    "GetAllEggMoves": 0x090EB838,
-    "GetMoveRelearnerMoves": 0x091140A0,
-    "GetNumberOfRelearnableMoves": 0x091141D8,
-    "SetMonMoveSlot": 0x09114560,
+    "GetAllEggMoves": 0x090EB820,
+    "GetMoveRelearnerMoves": 0x09114088,
+    "GetNumberOfRelearnableMoves": 0x091141C0,
+    "SetMonMoveSlot": 0x09114548,
     "RemoveMonPPBonus": 0x08040755,
     "ShiftMoveSlot": 0x080C0C79,
-    "RandomizeMove": 0x09114200,
+    "RandomizeMove": 0x091141E8,
 }
 
 TEXTS = {
@@ -335,7 +335,9 @@ def _allocation(root: Path, size: int, digest: str) -> tuple[dict[str, Any], dic
     return allocation, report
 
 
-def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, int]]:
+def _compile_runtime(
+    root: Path, load_address: int, linked_symbols: dict[str, int]
+) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -361,6 +363,9 @@ def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, in
         _run([
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            "-DVEGA_MOVE_MEMORY_LINKED_ABI=1",
+            f"-DVEGA_MOVE_MEMORY_GET_ALL_EGG_MOVES_ADDRESS=0x{linked_symbols['GetAllEggMoves'] | 1:08X}u",
+            f"-DVEGA_MOVE_MEMORY_SET_MON_MOVE_SLOT_ADDRESS=0x{linked_symbols['SetMonMoveSlot'] | 1:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -710,11 +715,13 @@ def _build_scripts(root: Path, blob: _Blob) -> dict[str, Any]:
     return {"texts": text_meta, "scripts": scripts}
 
 
-def _build_payload(root: Path, payload_offset: int) -> tuple[bytes, dict[str, Any], bytes, dict[str, int]]:
+def _build_payload(
+    root: Path, payload_offset: int, linked_symbols: dict[str, int]
+) -> tuple[bytes, dict[str, Any], bytes, dict[str, int]]:
     blob = _Blob()
     header_offset = blob.reserve("move_memory_header", PAYLOAD_HEADER_SIZE, 16)
     code_load = GBA_ROM_BASE + payload_offset + ((len(blob.data) + 3) & ~3)
-    code, symbols = _compile_runtime(root, code_load)
+    code, symbols = _compile_runtime(root, code_load, linked_symbols)
     code_offset = blob.add("move_memory_code", code, 4)
     if GBA_ROM_BASE + payload_offset + code_offset != code_load:
         _fail("move memory linker address disagrees with payload placement")
@@ -827,7 +834,9 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
 
     provisional, _ = _allocation(root, 16384, "0" * 64)
     payload_offset = int(provisional["start"])
-    payload, payload_meta, code, symbols = _build_payload(root, payload_offset)
+    payload, payload_meta, code, symbols = _build_payload(
+        root, payload_offset, source_audit["linked_symbols"]
+    )
     allocation, allocation_report = _allocation(root, len(payload), _sha(payload))
     if int(allocation["start"]) != payload_offset:
         _fail("move memory allocation moved after final link")
@@ -1088,6 +1097,12 @@ def _fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, Any]
             "VegaMoveMemory_DeleteSelectedMove",
         )
     }
+    selected["UpstreamGetMoveRelearnerMoves"] = metadata["source_audit"][
+        "linked_symbols"
+    ]["GetMoveRelearnerMoves"]
+    selected["UpstreamGetAllEggMoves"] = (
+        metadata["source_audit"]["linked_symbols"]["GetAllEggMoves"] | 1
+    )
     labels = metadata["runtime"]["payload"]["labels"]
     for name in (
         "script_shiou_npc", "script_karasuba_npc", "script_badge1_reward",

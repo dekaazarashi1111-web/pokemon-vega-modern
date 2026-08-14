@@ -93,6 +93,8 @@ static const struct RulesCommand RULES_COMMANDS[] = {
     {"secondary_dispatch", 0xFF},
 };
 
+static uint32_t rules_expected_secondary_dispatch;
+
 static const struct HookContract RULES_SPEED_HOOK = {
     "paralysis_speed", "DIRECT_CALL_BOUNDED", "GetWhoStrikesFirst",
     0x080144F8, 3, true,
@@ -185,7 +187,8 @@ static struct RulesOwnerObservation observe_rules_owner(struct mCore *core)
     }
     for (unsigned command = 0; command < ARRAY_LEN(RULES_COMMANDS); ++command)
         result.commands[command] = rules_command(core, RULES_COMMANDS[command].index);
-    if (result.commands[ARRAY_LEN(RULES_COMMANDS) - 1] != 0x0911A955U)
+    if (result.commands[ARRAY_LEN(RULES_COMMANDS) - 1]
+        != rules_expected_secondary_dispatch)
         rules_die("secondary command dispatch entry changed");
     if (read32(core, RULES_SECONDARY_COMMAND_TABLE) != 0)
         rules_die("secondary command table null boundary changed");
@@ -451,14 +454,17 @@ static void print_residual(const struct RulesResidualObservation *value)
 
 int main(int argc, char **argv)
 {
-    if (argc != 3) {
-        fprintf(stderr, "usage: %s ROM EXPECTED_ROM_SHA256\n", argv[0]);
+    if (argc != 4) {
+        fprintf(stderr,
+                "usage: %s ROM EXPECTED_ROM_SHA256 SECONDARY_DISPATCH\n",
+                argv[0]);
         return 2;
     }
     char rom_sha256[65];
     sha256_file(argv[1], rom_sha256);
     if (strlen(argv[2]) != 64 || strcmp(rom_sha256, argv[2]) != 0)
         rules_die("ROM SHA-256 mismatch");
+    rules_expected_secondary_dispatch = parse_address(argv[3]);
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);

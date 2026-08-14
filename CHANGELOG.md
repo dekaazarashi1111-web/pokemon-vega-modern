@@ -4,6 +4,16 @@
 
 - なし。
 
+## 1.3.1 — 2026-08-14
+
+- `v1.3.0` 候補の隔離fresh checkoutが検出したT05→T06の古い入力pinを更新。
+  その候補は配布・pushせず、旧tagも移動しない。
+- 固定CFRU-JPの再リンクで変化する絶対addressを、hash検証済みT06 offsetsから決定的に
+  解決する契約へ更新。Factory、初戦、HM、戦闘規則/UI、わざメモリーの
+  runnerを、最終ROMの実配置で再検証した。
+- 技選択UIは1×・抜群・半減・無効・STAB、Stellar/テラバースト、ダブル対象別、
+  Factory/Raidの共通ownerを同一実ROMで再確認。
+
 ## 1.3.0 — 2026-08-14
 
 - 初戦で不正なQuick Claw/Custap通知が残留した場合に「？？？？？？？？」表示へ入る経路を防止。

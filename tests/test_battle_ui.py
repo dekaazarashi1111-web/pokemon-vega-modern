@@ -18,6 +18,7 @@ from scripts.build_battle_ui import (  # noqa: E402
     RESERVED_SPECIES_PLACEHOLDERS,
     STAGE24,
     STAGE24_META,
+    UPSTREAM_SYMBOLS,
     _build_stage,
     audit_owner,
     audit_source,
@@ -42,14 +43,24 @@ class BattleUITests(unittest.TestCase):
         self.assertTrue(audit["source_lock_verified"])
         self.assertTrue(audit["source_checkout_clean"])
         self.assertFalse(any(audit["profile_ui_macros_active"].values()))
-        self.assertEqual(len(audit["linked_symbols"]), 15)
+        self.assertEqual(len(audit["linked_symbols"]), 16)
         self.assertEqual(
             audit["linked_symbols"]["MoveSelectionDisplayMoveType"],
-            {"address": 0x09115724, "size": 0xB8},
+            {
+                "address": UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveType"][0],
+                "size": UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveType"][1],
+            },
         )
         self.assertEqual(
             audit["linked_symbols"]["MoveSelectionDisplayMoveEffectiveness"],
-            {"address": 0x09116E08, "size": 0x50},
+            {
+                "address": UPSTREAM_SYMBOLS[
+                    "MoveSelectionDisplayMoveEffectiveness"
+                ][0],
+                "size": UPSTREAM_SYMBOLS[
+                    "MoveSelectionDisplayMoveEffectiveness"
+                ][1],
+            },
         )
 
     def test_all_move_menu_profiles_share_the_fixed_cfru_owner(self) -> None:
@@ -73,7 +84,10 @@ class BattleUITests(unittest.TestCase):
         self.assertEqual(len(first_meta["patches"]), 2)
         self.assertEqual(
             {row["address"] for row in first_meta["patches"]},
-            {0x09115724, 0x09116E08},
+            {
+                UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveType"][0],
+                UPSTREAM_SYMBOLS["MoveSelectionDisplayMoveEffectiveness"][0],
+            },
         )
         self.assertTrue(all(first_meta["invariants"].values()))
 

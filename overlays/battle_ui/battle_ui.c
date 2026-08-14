@@ -113,6 +113,10 @@ typedef u8 (*CheckMoveEffectTableFn)(u16 move, const u8 *table);
 
 #define PTR(type, address) ((type)(uintptr_t)(address))
 
+#ifndef VEGA_BATTLE_UI_LINKED_ABI
+#error "battle UI linked addresses must come from the verified T06 contract"
+#endif
+
 #define G_ACTIVE_BATTLER PTR(volatile u8 *, 0x02023B24)
 #define G_BATTLE_TYPE_FLAGS PTR(volatile u32 *, 0x02022AAC)
 #define G_BATTLE_BUFFER_A PTR(volatile u8 *, 0x02022B24)
@@ -125,14 +129,15 @@ typedef u8 (*CheckMoveEffectTableFn)(u16 move, const u8 *table);
 #define G_PLTT_BUFFER_UNFADED PTR(volatile u16 *, 0x0203712C)
 #define G_PLTT_BUFFER_FADED PTR(volatile u16 *, 0x0203752C)
 
-#define G_TYPE_HIGHLIGHT_PALETTE PTR(const u16 *, 0x091B66B8)
-#define G_PSS_ICONS PTR(const u8 *, 0x091B5360)
+#define G_TYPE_HIGHLIGHT_PALETTE \
+    PTR(const u16 *, VEGA_UI_TYPE_HIGHLIGHT_PALETTE_ADDRESS)
+#define G_PSS_ICONS PTR(const u8 *, VEGA_UI_PSS_ICONS_ADDRESS)
 #define G_IGNORE_WEAKNESS_EFFECTS PTR(const u8 *, 0x0903FE65)
-#define G_TEXT_SUPER_EFFECTIVE PTR(const u8 *, 0x091430FB)
-#define G_TEXT_NOT_VERY_EFFECTIVE PTR(const u8 *, 0x091430FE)
-#define G_TEXT_NO_EFFECT PTR(const u8 *, 0x09143101)
-#define G_TEXT_STAB PTR(const u8 *, 0x09143103)
-#define G_TEXT_STAB_PREFIX PTR(const u8 *, 0x091683F4)
+#define G_TEXT_SUPER_EFFECTIVE PTR(const u8 *, VEGA_UI_TEXT_SUPER_ADDRESS)
+#define G_TEXT_NOT_VERY_EFFECTIVE PTR(const u8 *, VEGA_UI_TEXT_RESISTED_ADDRESS)
+#define G_TEXT_NO_EFFECT PTR(const u8 *, VEGA_UI_TEXT_NONE_ADDRESS)
+#define G_TEXT_STAB PTR(const u8 *, VEGA_UI_TEXT_STAB_ADDRESS)
+#define G_TEXT_STAB_PREFIX PTR(const u8 *, VEGA_UI_TEXT_STAB_PREFIX_ADDRESS)
 #define G_TEXT_EMPTY PTR(const u8 *, 0x09001CB5)
 
 #define FN_STRING_COPY PTR(StringCopyFn, 0x08008901)
@@ -143,11 +148,14 @@ typedef u8 (*CheckMoveEffectTableFn)(u16 move, const u8 *table);
 #define FN_COPY_WINDOW PTR(CopyWindowToVramFn, 0x08003EED)
 #define FN_PUT_WINDOW_TILEMAP PTR(WindowUnaryFn, 0x08003F6D)
 #define FN_GET_BATTLER_POSITION PTR(GetBattlerPositionFn, 0x0807497D)
-#define FN_COUNT_ALIVE_MONS PTR(CountAliveMonsFn, 0x090E8139)
-#define FN_TERA_TYPE_ACTIVE PTR(TeraTypeActiveFn, 0x09130541)
-#define FN_CHECK_MOVE_EFFECT_TABLE PTR(CheckMoveEffectTableFn, 0x09130E2D)
+#define FN_COUNT_ALIVE_MONS \
+    PTR(CountAliveMonsFn, VEGA_UI_COUNT_ALIVE_MONS_ADDRESS)
+#define FN_TERA_TYPE_ACTIVE \
+    PTR(TeraTypeActiveFn, VEGA_UI_TERA_TYPE_ACTIVE_ADDRESS)
+#define FN_CHECK_MOVE_EFFECT_TABLE \
+    PTR(CheckMoveEffectTableFn, VEGA_UI_CHECK_MOVE_EFFECT_TABLE_ADDRESS)
 
-#define HANDLE_INPUT_CHOOSE_TARGET ((u32)0x09115D05)
+#define HANDLE_INPUT_CHOOSE_TARGET ((u32)VEGA_UI_HANDLE_CHOOSE_TARGET_ADDRESS)
 
 static struct ChooseMoveStruct *move_info(u8 active)
 {

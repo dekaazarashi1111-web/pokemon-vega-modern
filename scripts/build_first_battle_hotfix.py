@@ -25,8 +25,9 @@ ROM_SIZE = 32 * 1024 * 1024
 CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE20 = Path("build/stages/20_facility_runtime.gba")
-STAGE20_SHA256 = "0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3"
+STAGE20_SHA256 = "d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd"
 STAGE20_ALLOCATION = Path("build/stages/20_allocation.json")
+STAGE06_META = Path("build/stages/06_battle_core.json")
 STAGE21 = Path("build/stages/21_first_battle_hotfix.gba")
 STAGE21_META = Path("build/stages/21_first_battle_hotfix.json")
 STAGE21_ALLOCATION = Path("build/stages/21_allocation.json")
@@ -38,6 +39,11 @@ PATCH_ADDRESS = 0x090CEAFC
 PATCH_OFFSET = PATCH_ADDRESS - 0x08000000
 EXPECTED = bytes.fromhex("60 28 04 d1 01 3c 24 06 24 0e 02 2c 2a d9")
 REPLACEMENT = bytes.fromhex("1a 28 04 d0 60 28 c6 d1 01 3c 02 2c 2a d9")
+SOURCE_GUARD_ADDRESS = 0x090CEAFC
+SOURCE_GUARD_OFFSET = SOURCE_GUARD_ADDRESS - 0x08000000
+SOURCE_GUARD = bytes.fromhex(
+    "02 00 1a 3a 51 1e 8a 41 01 00 60 39 4d 1e a9 41 11 42 bf d1"
+)
 
 
 class FirstBattleHotfixError(ValueError):
@@ -82,29 +88,80 @@ def _allocation_contract(root: Path) -> tuple[bytes, dict[str, Any]]:
     return raw, value
 
 
+def _t06_symbol_addresses(root: Path) -> dict[str, int]:
+    metadata = json.loads((root / STAGE06_META).read_text(encoding="utf-8"))
+    fingerprint = metadata.get("fingerprint")
+    runs = metadata.get("upstream_runs")
+    if not isinstance(fingerprint, str) or len(fingerprint) != 64:
+        _fail("T06 fingerprint is invalid")
+    if not isinstance(runs, list) or len(runs) != 2:
+        _fail("T06 repeatability contract is missing")
+    required = ("RunTurnActionsFunctions", "GetBankItemEffect")
+    resolved_runs: list[dict[str, int]] = []
+    for index, run in enumerate(runs, 1):
+        if not isinstance(run, dict) or not isinstance(run.get("offsets"), dict):
+            _fail(f"T06 offsets contract is invalid: run {index}")
+        path = root / "build/battle-core" / fingerprint / f"run-{index}/offsets.ini"
+        raw = path.read_bytes()
+        if _sha(raw) != run["offsets"].get("sha256"):
+            _fail(f"T06 offsets digest differs: run {index}")
+        symbols: dict[str, int] = {}
+        for line in raw.decode("utf-8").splitlines():
+            if ":" not in line:
+                continue
+            name, value = line.split(":", 1)
+            if value.strip():
+                symbols[name.strip()] = int(value.strip(), 16)
+        if len(symbols) != run["offsets"].get("symbol_count"):
+            _fail(f"T06 offsets symbol count differs: run {index}")
+        resolved: dict[str, int] = {}
+        for name in required:
+            address = symbols.get(name)
+            if address is None or address & 1:
+                _fail(f"T06 symbol is missing/unaligned: {name} (run {index})")
+            resolved[name] = address
+        resolved_runs.append(resolved)
+    if resolved_runs[0] != resolved_runs[1]:
+        _fail("T06 first-battle symbols differ between repeatability runs")
+    return resolved_runs[0]
+
+
 def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
     root = Path(root)
     source = (root / STAGE20).read_bytes()
     if len(source) != ROM_SIZE or _sha(source) != STAGE20_SHA256:
         _fail("stage20 size/hash contract failed")
     actual = source[PATCH_OFFSET:PATCH_OFFSET + len(EXPECTED)]
-    if actual != EXPECTED:
+    source_guard = source[
+        SOURCE_GUARD_OFFSET:SOURCE_GUARD_OFFSET + len(SOURCE_GUARD)
+    ]
+    if actual == EXPECTED:
+        integration_mode = "stage21_instruction_patch"
+    elif source_guard == SOURCE_GUARD:
+        integration_mode = "t06_source_integrated"
+    else:
         _fail(
-            "RunTurnActionsFunctions expected bytes drift: "
-            f"expected={EXPECTED.hex()} actual={actual.hex()}"
+            "RunTurnActionsFunctions guard bytes drift: "
+            f"legacy_expected={EXPECTED.hex()} source_expected={SOURCE_GUARD.hex()} "
+            f"actual={source_guard.hex()}"
         )
 
     output = bytearray(source)
-    output[PATCH_OFFSET:PATCH_OFFSET + len(REPLACEMENT)] = REPLACEMENT
+    if integration_mode == "stage21_instruction_patch":
+        output[PATCH_OFFSET:PATCH_OFFSET + len(REPLACEMENT)] = REPLACEMENT
     changed = [
         index for index, (before, after) in enumerate(zip(source, output))
         if before != after
     ]
-    expected_changed = [
-        PATCH_OFFSET + index
-        for index, (before, after) in enumerate(zip(EXPECTED, REPLACEMENT))
-        if before != after
-    ]
+    expected_changed = (
+        [
+            PATCH_OFFSET + index
+            for index, (before, after) in enumerate(zip(EXPECTED, REPLACEMENT))
+            if before != after
+        ]
+        if integration_mode == "stage21_instruction_patch"
+        else []
+    )
     if changed != expected_changed:
         _fail("hotfix changed bytes outside the declared instruction patch")
 
@@ -134,6 +191,7 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "sha256": _sha(output_raw),
         },
         "patch": {
+            "integration_mode": integration_mode,
             "function": "RunTurnActionsFunctions",
             "site_address": f"0x{PATCH_ADDRESS:08X}",
             "site_offset": PATCH_OFFSET,
@@ -141,6 +199,8 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "expected_hex": EXPECTED.hex(),
             "replacement_hex": REPLACEMENT.hex(),
             "changed_byte_count": len(changed),
+            "source_guard_address": f"0x{SOURCE_GUARD_ADDRESS:08X}",
+            "source_guard_hex": SOURCE_GUARD.hex(),
             "semantics": [
                 "ITEM_EFFECT_QUICK_CLAWなら既存通知経路を維持",
                 "ITEM_EFFECT_CUSTAP_BERRYなら既存行動制限を維持",
@@ -169,6 +229,9 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "invariants": {
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
             "input_hash_pinned": _sha(source) == STAGE20_SHA256,
+            "source_guard_or_patch_valid": integration_mode in {
+                "stage21_instruction_patch", "t06_source_integrated"
+            },
             "patch_span_only": changed == expected_changed,
             "allocator_overlap_zero": allocation["summaries"]["overlap_count"] == 0,
         },
@@ -197,7 +260,12 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
             "first-battle libmGBA runner compile",
             cwd=root,
         )
-        args = [executable.as_posix(), rom.as_posix(), metadata["output"]["sha256"]]
+        symbols = _t06_symbol_addresses(root)
+        args = [
+            executable.as_posix(), rom.as_posix(), metadata["output"]["sha256"],
+            hex(symbols["RunTurnActionsFunctions"]),
+            hex(symbols["GetBankItemEffect"]),
+        ]
         first = json.loads(_run(args, "first-battle exact-ROM run 1", cwd=root))
         second = json.loads(_run(args, "first-battle exact-ROM run 2", cwd=root))
         if first != second or first.get("status") != "PASS":

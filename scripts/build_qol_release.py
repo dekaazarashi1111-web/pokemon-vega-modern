@@ -184,6 +184,13 @@ def _cache_key(root: Path, stage_sha256: str) -> tuple[str, dict[str, Any]]:
 
 def _battle_rule_fixture(root: Path, stage: bytes) -> dict[str, Any]:
     config = build_battle_rules._config(root)
+    stage06 = (root / build_battle_rules.STAGE06).read_bytes()
+    main_table = build_battle_rules._address(
+        config["owner"]["main_command_table"]
+    )
+    secondary_dispatch = build_battle_rules._rom_u32(
+        stage06, main_table + 0xFF * 4
+    )
     with tempfile.TemporaryDirectory(prefix="vega-qol-rules-") as raw:
         directory = Path(raw)
         rom = directory / STAGE.name
@@ -194,7 +201,9 @@ def _battle_rule_fixture(root: Path, stage: bytes) -> dict[str, Any]:
             "-Wextra", "-Werror", str(root / build_battle_rules.RUNNER),
             "-o", str(executable), "-lmgba",
         ], "final-stage battle rules runner compile", cwd=root)
-        args = [str(executable), str(rom), _sha(stage)]
+        args = [
+            str(executable), str(rom), _sha(stage), hex(secondary_dispatch)
+        ]
         first = json.loads(_run(args, "final-stage battle rules run 1", cwd=root))
         second = json.loads(_run(args, "final-stage battle rules run 2", cwd=root))
     if first != second or first.get("rom_sha256") != _sha(stage):
@@ -210,6 +219,7 @@ def _run_all(root: Path, stage: bytes, chain: dict[str, Any]) -> dict[str, Any]:
     stage_sha = _sha(stage)
     stage17_meta = _read_json(root / "build/stages/17_regression.json")
     stage20_meta = _read_json(root / "build/stages/20_facility_runtime.json")
+    stage22_meta = _read_json(root / "build/stages/22_hm_field_access.json")
     stage24_meta = _read_json(root / "build/stages/24_battle_ui.json")
     stage25_meta = _read_json(root / STAGE_META)
     final_meta = {"output": {"sha256": stage_sha}}
@@ -219,7 +229,9 @@ def _run_all(root: Path, stage: bytes, chain: dict[str, Any]) -> dict[str, Any]:
         )
     facility = build_facility_runtime._mgba_fixture(root, stage, stage20_meta)
     first_battle = build_first_battle_hotfix._mgba_fixture(root, stage, final_meta)
-    hm = build_hm_field_access._mgba_fixture(root, stage, final_meta)
+    final_hm_meta = copy.deepcopy(stage22_meta)
+    final_hm_meta["output"]["sha256"] = stage_sha
+    hm = build_hm_field_access._mgba_fixture(root, stage, final_hm_meta)
     battle_rules = _battle_rule_fixture(root, stage)
     battle_ui = build_battle_ui._ui_fixture(root, stage, stage24_meta)
     battle_policy = build_battle_ui._policy_fixture(root, stage)
@@ -307,7 +319,7 @@ def validate_published_fixture(root: Path = ROOT) -> dict[str, Any]:
 
 def _report(value: dict[str, Any]) -> bytes:
     components = value["components"]
-    return f"""# v1.3.0 QOL統合実ROM回帰
+    return f"""# v1.3.1 QOL統合実ROM回帰
 
 ## 結論
 

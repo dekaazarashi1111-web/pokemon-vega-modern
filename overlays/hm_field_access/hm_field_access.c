@@ -38,12 +38,28 @@ enum {
 
 #define VEGA_HM_SETUP_FLASH ((VegaHMFieldMoveCallback)(uintptr_t)0x080CACF9u)
 #define VEGA_HM_SETUP_CUT ((VegaHMFieldMoveCallback)(uintptr_t)0x080972C5u)
-#define VEGA_HM_SETUP_FLY ((VegaHMFieldMoveCallback)(uintptr_t)0x0912083Du)
+#ifndef VEGA_HM_SETUP_FLY_ADDRESS
+#error "VEGA_HM_SETUP_FLY_ADDRESS must come from the linked T06 contract"
+#endif
+#define VEGA_HM_SETUP_FLY \
+    ((VegaHMFieldMoveCallback)(uintptr_t)VEGA_HM_SETUP_FLY_ADDRESS)
 #define VEGA_HM_SETUP_STRENGTH ((VegaHMFieldMoveCallback)(uintptr_t)0x080D18ADu)
-#define VEGA_HM_SETUP_SURF ((VegaHMFieldMoveCallback)(uintptr_t)0x091208F5u)
+#ifndef VEGA_HM_SETUP_SURF_ADDRESS
+#error "VEGA_HM_SETUP_SURF_ADDRESS must come from the linked T06 contract"
+#endif
+#define VEGA_HM_SETUP_SURF \
+    ((VegaHMFieldMoveCallback)(uintptr_t)VEGA_HM_SETUP_SURF_ADDRESS)
 #define VEGA_HM_SETUP_ROCK_SMASH ((VegaHMFieldMoveCallback)(uintptr_t)0x080CABA5u)
-#define VEGA_HM_SETUP_WATERFALL ((VegaHMFieldMoveCallback)(uintptr_t)0x09120879u)
-#define VEGA_HM_SETUP_DIVE ((VegaHMFieldMoveCallback)(uintptr_t)0x09120951u)
+#ifndef VEGA_HM_SETUP_WATERFALL_ADDRESS
+#error "VEGA_HM_SETUP_WATERFALL_ADDRESS must come from the linked T06 contract"
+#endif
+#define VEGA_HM_SETUP_WATERFALL \
+    ((VegaHMFieldMoveCallback)(uintptr_t)VEGA_HM_SETUP_WATERFALL_ADDRESS)
+#ifndef VEGA_HM_SETUP_DIVE_ADDRESS
+#error "VEGA_HM_SETUP_DIVE_ADDRESS must come from the linked T06 contract"
+#endif
+#define VEGA_HM_SETUP_DIVE \
+    ((VegaHMFieldMoveCallback)(uintptr_t)VEGA_HM_SETUP_DIVE_ADDRESS)
 
 static uint16_t item_for_move(uint16_t move)
 {

@@ -50,10 +50,10 @@ EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_ai_fixture_runner.c"),
 )
 ALLOCATION_NAME = "battle_ui_runtime"
-EXPECTED_STAGE23_SHA256 = "64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf"
+EXPECTED_STAGE23_SHA256 = "18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "862a6c4f715c56684e172db2073ebc6f1b5263623f551da7b0eaa1e07a11c847"
+EXPECTED_T06_FINGERPRINT = "da248a2ac3724a35d444da58ca5c8a299088f4d0ec02e4b5d23e283cd8d8558e"
 
 REQUIRED_SYMBOLS = {
     "VegaBattleUI_ClassifyResult",
@@ -63,22 +63,23 @@ REQUIRED_SYMBOLS = {
 }
 
 UPSTREAM_SYMBOLS = {
-    "MoveSelectionDisplayMoveType": (0x09115724, 0xB8),
-    "MoveSelectionDisplayMoveEffectiveness": (0x09116E08, 0x50),
-    "HandleInputChooseTarget": (0x09115D04, 0x624),
-    "CountAliveMonsInBattle": (0x090E8138, 0x138),
-    "TeraTypeActive": (0x09130540, 0x2C),
-    "CheckTableForMoveEffect": (0x09130E2C, 0x30),
-    "gUserInterfaceGfx_TypeHighlightingPal": (0x091B66B8, 0x20),
-    "sText_StabMoveInterfaceType": (0x091683F4, 0x09),
-    "gTypeEffectiveness": (0x09164AA4, 0x4E2),
+    "MoveSelectionDisplayMoveType": (0x0911570C, 0xB8),
+    "MoveSelectionDisplayMoveEffectiveness": (0x09116DF0, 0x50),
+    "HandleInputChooseTarget": (0x09115CEC, 0x624),
+    "CountAliveMonsInBattle": (0x090E8120, 0x138),
+    "TeraTypeActive": (0x09130528, 0x2C),
+    "CheckTableForMoveEffect": (0x09130E14, 0x30),
+    "gUserInterfaceGfx_TypeHighlightingPal": (0x091B66A0, 0x20),
+    "PSSIconsTiles": (0x091B5348, 0x240),
+    "sText_StabMoveInterfaceType": (0x091683DC, 0x09),
+    "gTypeEffectiveness": (0x09164A8C, 0x4E2),
 }
 
 UPSTREAM_ADDRESS_ONLY = {
-    "gText_BattleUI_SuperEffective": 0x091430FB,
-    "gText_BattleUI_NotVeryEffective": 0x091430FE,
-    "gText_BattleUI_NoEffect": 0x09143101,
-    "gText_BattleUI_STAB": 0x09143103,
+    "gText_BattleUI_SuperEffective": 0x091430E3,
+    "gText_BattleUI_NotVeryEffective": 0x091430E6,
+    "gText_BattleUI_NoEffect": 0x091430E9,
+    "gText_BattleUI_STAB": 0x091430EB,
     "StringNull": 0x09001CB5,
     "gMoveEffectsThatIgnoreWeaknessResistance": 0x0903FE65,
 }
@@ -403,7 +404,9 @@ def _allocation(root: Path, size: int, digest: str) -> tuple[dict[str, Any], dic
     return allocation, report
 
 
-def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, int]]:
+def _compile_runtime(
+    root: Path, load_address: int, linked_symbols: dict[str, dict[str, Any]]
+) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -429,6 +432,18 @@ def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, in
         _run([
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            "-DVEGA_BATTLE_UI_LINKED_ABI=1",
+            f"-DVEGA_UI_TYPE_HIGHLIGHT_PALETTE_ADDRESS=0x{linked_symbols['gUserInterfaceGfx_TypeHighlightingPal']['address']:08X}u",
+            f"-DVEGA_UI_PSS_ICONS_ADDRESS=0x{linked_symbols['PSSIconsTiles']['address']:08X}u",
+            f"-DVEGA_UI_TEXT_SUPER_ADDRESS=0x{linked_symbols['gText_BattleUI_SuperEffective']['address']:08X}u",
+            f"-DVEGA_UI_TEXT_RESISTED_ADDRESS=0x{linked_symbols['gText_BattleUI_NotVeryEffective']['address']:08X}u",
+            f"-DVEGA_UI_TEXT_NONE_ADDRESS=0x{linked_symbols['gText_BattleUI_NoEffect']['address']:08X}u",
+            f"-DVEGA_UI_TEXT_STAB_ADDRESS=0x{linked_symbols['gText_BattleUI_STAB']['address']:08X}u",
+            f"-DVEGA_UI_TEXT_STAB_PREFIX_ADDRESS=0x{linked_symbols['sText_StabMoveInterfaceType']['address']:08X}u",
+            f"-DVEGA_UI_COUNT_ALIVE_MONS_ADDRESS=0x{linked_symbols['CountAliveMonsInBattle']['address'] | 1:08X}u",
+            f"-DVEGA_UI_TERA_TYPE_ACTIVE_ADDRESS=0x{linked_symbols['TeraTypeActive']['address'] | 1:08X}u",
+            f"-DVEGA_UI_CHECK_MOVE_EFFECT_TABLE_ADDRESS=0x{linked_symbols['CheckTableForMoveEffect']['address'] | 1:08X}u",
+            f"-DVEGA_UI_HANDLE_CHOOSE_TARGET_ADDRESS=0x{linked_symbols['HandleInputChooseTarget']['address'] | 1:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -557,7 +572,9 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
 
     provisional, _ = _allocation(root, 4096, "0" * 64)
     payload_offset = int(provisional["start"])
-    runtime, symbols = _compile_runtime(root, GBA_ROM_BASE + payload_offset)
+    runtime, symbols = _compile_runtime(
+        root, GBA_ROM_BASE + payload_offset, source_audit["linked_symbols"]
+    )
     allocation, allocation_report = _allocation(root, len(runtime), _sha(runtime))
     if int(allocation["start"]) != payload_offset:
         _fail("battle UI allocation moved after final link")
@@ -642,7 +659,7 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
             "stage23_hash_pinned": _sha(source) == EXPECTED_STAGE23_SHA256,
             "source_lock_verified": source_audit["source_lock_verified"],
-            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 15,
+            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 16,
             "normal_factory_raid_share_owner": owner_audit["global_owner_shared_by_normal_factory_raid"],
             "two_entry_stubs_only": len(patches) == 2,
             "declared_changes_only": changed <= allowed,
@@ -723,6 +740,8 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
 
 def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, Any]:
     symbols = metadata["runtime"]["symbols"]
+    linked = metadata["source_audit"]["linked_symbols"]
+    owners = metadata["owner_audit"]["stock_hooks"]
     selected = {
         name: symbols[name] for name in (
             "VegaBattleUI_DisplayMoveType",
@@ -731,6 +750,17 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
             "VegaBattleUI_GetSelectedMoveType",
         )
     }
+    selected.update({
+        "type_entry": owners["display_move_type"]["entry"],
+        "effect_entry": owners["display_effectiveness"]["entry"],
+        "type_palette": linked["gUserInterfaceGfx_TypeHighlightingPal"]["address"],
+        "text_super": linked["gText_BattleUI_SuperEffective"]["address"],
+        "text_resisted": linked["gText_BattleUI_NotVeryEffective"]["address"],
+        "text_none": linked["gText_BattleUI_NoEffect"]["address"],
+        "text_stab": linked["gText_BattleUI_STAB"]["address"],
+        "type_matrix": linked["gTypeEffectiveness"]["address"],
+        "handle_choose_target": linked["HandleInputChooseTarget"]["address"] | 1,
+    })
     sources = (RUNNER, *EMBEDDED_RUNNER_SOURCES)
     key, provenance = _runner_cache_key(root, sources, _sha(rom), selected)
     cache = root / MGBA_FIXTURE
@@ -754,6 +784,15 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
             str(selected["VegaBattleUI_DisplayMoveEffectiveness"]),
             str(selected["VegaBattleUI_ClassifyResult"]),
             str(selected["VegaBattleUI_GetSelectedMoveType"]),
+            str(selected["type_entry"]),
+            str(selected["effect_entry"]),
+            str(selected["type_palette"]),
+            str(selected["text_super"]),
+            str(selected["text_resisted"]),
+            str(selected["text_none"]),
+            str(selected["text_stab"]),
+            str(selected["type_matrix"]),
+            str(selected["handle_choose_target"]),
         ]
         first = json.loads(_run(args, "battle UI exact-ROM run 1", cwd=root))
         second = json.loads(_run(args, "battle UI exact-ROM run 2", cwd=root))
@@ -766,12 +805,14 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
 
 
 def _policy_symbol_names(source: str) -> list[str]:
+    from scripts.build_battle_core import POLICY_SMOKE_SYMBOLS
+
     start = source.find("#define POLICY_SYMBOL_LIST")
     end = source.find("struct PolicySymbols", start)
     if start < 0 or end < 0:
         _fail("policy runner symbol list missing")
     names = re.findall(r'X\([^,]+,\s*"([^"]+)"\)', source[start:end])
-    if len(names) != 41 or len(names) != len(set(names)):
+    if tuple(names) != POLICY_SMOKE_SYMBOLS or len(names) != len(set(names)):
         _fail("policy runner symbol contract differs")
     return names
 

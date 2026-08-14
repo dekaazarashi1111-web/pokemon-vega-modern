@@ -63,6 +63,9 @@ REQUIRED_SYMBOLS = (
     "IsRaidBattle",
     "IsCatchableRaidBattle",
     "sp067_GenerateRandomBattleTowerTeam",
+    "HandleInputChooseAction",
+    "HandleInputChooseMove",
+    "HandleInputChooseTarget",
 )
 
 

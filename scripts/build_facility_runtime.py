@@ -30,6 +30,7 @@ ROM_SIZE = 32 * 1024 * 1024
 STAGE19 = Path("build/stages/19_trainer_rebalance.gba")
 STAGE19_META = Path("build/stages/19_trainer_rebalance.json")
 STAGE19_ALLOC = Path("build/stages/19_allocation.json")
+STAGE06_META = Path("build/stages/06_battle_core.json")
 STAGE20 = Path("build/stages/20_facility_runtime.gba")
 STAGE20_META = Path("build/stages/20_facility_runtime.json")
 STAGE20_ALLOC = Path("build/stages/20_allocation.json")
@@ -107,7 +108,61 @@ def _run(command: Sequence[str], label: str, *, cwd: Path = ROOT) -> str:
     return completed.stdout.strip()
 
 
-def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, int]]:
+def _battle_policy_addresses(root: Path) -> dict[str, int]:
+    metadata = _read_json(root / STAGE06_META)
+    fingerprint = metadata.get("fingerprint")
+    if not isinstance(fingerprint, str) or len(fingerprint) != 64:
+        _fail("T06 fingerprint is invalid")
+    runs = metadata.get("upstream_runs")
+    if not isinstance(runs, list) or len(runs) != 2:
+        _fail("T06 upstream run contract is missing")
+    required = {
+        "configure_facility": "VegaConfigureNextFacility",
+        "generate_rentals": "sp067_GenerateRandomBattleTowerTeam",
+        "generate_trainer": "sp052_GenerateFacilityTrainer",
+        "state_is_active": "VegaFacilityStateIsActive",
+    }
+    resolved_runs: list[dict[str, int]] = []
+    for index, run in enumerate(runs, 1):
+        if not isinstance(run, dict):
+            _fail(f"T06 upstream run {index} is invalid")
+        offsets_record = run.get("offsets")
+        if not isinstance(offsets_record, dict):
+            _fail(f"T06 offsets contract is missing: run {index}")
+        path = root / "build/battle-core" / fingerprint / f"run-{index}/offsets.ini"
+        raw = path.read_bytes()
+        if _sha(raw) != offsets_record.get("sha256"):
+            _fail(f"T06 offsets digest differs: run {index}")
+        symbols: dict[str, int] = {}
+        for line in raw.decode("utf-8").splitlines():
+            if ":" not in line:
+                continue
+            name, value = line.split(":", 1)
+            value = value.strip()
+            if value:
+                symbols[name.strip()] = int(value, 16)
+        if len(symbols) != offsets_record.get("symbol_count"):
+            _fail(f"T06 offsets symbol count differs: run {index}")
+        resolved: dict[str, int] = {}
+        for key, symbol in required.items():
+            address = symbols.get(symbol)
+            if address is None:
+                _fail(f"T06 facility symbol is missing: {symbol} (run {index})")
+            if address & 1 or not GBA_ROM_BASE <= address < GBA_ROM_BASE + ROM_SIZE:
+                _fail(
+                    "T06 facility symbol is outside ROM/alignment: "
+                    f"{symbol}={address:#010x}"
+                )
+            resolved[key] = address | 1
+        resolved_runs.append(resolved)
+    if resolved_runs[0] != resolved_runs[1]:
+        _fail("T06 facility symbols differ between repeatability runs")
+    return resolved_runs[0]
+
+
+def _compile_runtime(
+    root: Path, load_address: int, battle_policy_addresses: dict[str, int]
+) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -138,6 +193,12 @@ def _compile_runtime(root: Path, load_address: int) -> tuple[bytes, dict[str, in
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
             "-DVEGA_SAVE_ROM_RUNTIME=1",
+            "-DVEGA_FACILITY_CONFIGURE_POLICY_ADDRESS="
+            f"0x{battle_policy_addresses['configure_facility']:08X}u",
+            "-DVEGA_FACILITY_GENERATE_RENTALS_ADDRESS="
+            f"0x{battle_policy_addresses['generate_rentals']:08X}u",
+            "-DVEGA_FACILITY_GENERATE_TRAINER_ADDRESS="
+            f"0x{battle_policy_addresses['generate_trainer']:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -391,7 +452,8 @@ def _build_payload(root: Path, stage: bytes, stage17_meta: dict[str, Any],
     blob = _Blob()
     header_offset = blob.reserve("facility_runtime_header", PAYLOAD_HEADER_SIZE, 16)
     code_load = GBA_ROM_BASE + payload_offset + ((len(blob.data) + 3) & ~3)
-    code, code_symbols = _compile_runtime(root, code_load)
+    battle_policy_addresses = _battle_policy_addresses(root)
+    code, code_symbols = _compile_runtime(root, code_load, battle_policy_addresses)
     code_offset = blob.add("facility_runtime_code", code, 4)
     if GBA_ROM_BASE + payload_offset + code_offset != code_load:
         _fail("facility linker address disagrees with payload placement")
@@ -444,6 +506,10 @@ def _build_payload(root: Path, stage: bytes, stage17_meta: dict[str, Any],
             for label, relative in sorted(blob.labels.items())
             if label.startswith("native::") or label.startswith("script_facility_")
             or label.startswith("facility_vermilion_")
+        },
+        "battle_policy": {
+            "source": STAGE06_META.as_posix(),
+            "addresses": battle_policy_addresses,
         },
     }
     return payload, metadata
@@ -555,7 +621,8 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "exact_party_snapshot_bytes": 6 * POKEMON_SIZE,
             "seen_only": True, "caught_unchanged": True,
             "recovery_map_script": True,
-            "battle_policy_source": "CFRU-JP fixed upstream runtime",
+            "battle_policy_source": STAGE06_META.as_posix(),
+            "battle_policy_addresses": runtime["battle_policy"]["addresses"],
         },
         "invariants": {
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
@@ -611,6 +678,7 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
             hex(entrypoints["FacilityRuntime_Recover"]),
             hex(metadata["symbols"]["script_facility_npc"]),
             hex(metadata["symbols"]["facility_vermilion_map_scripts"]),
+            hex(metadata["battle_policy"]["addresses"]["state_is_active"]),
         ]
         first = json.loads(_run(args, "facility exact-ROM smoke run 1", cwd=root))
         second = json.loads(_run(args, "facility exact-ROM smoke run 2", cwd=root))

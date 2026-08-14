@@ -169,7 +169,7 @@ Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモ�
 `make final` は既存stage 25とQOL統合fixtureを副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
 を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.3.0.{gba,json}` へ出し、stageを上書きしない。
+`build/final/vega-modern-kanto-v1.3.1.{gba,json}` へ出し、stageを上書きしない。
 
 `make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
 独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、

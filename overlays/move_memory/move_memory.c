@@ -100,6 +100,10 @@ typedef void (*PlaySeFn)(u16 song);
 
 #define PTR(type, address) ((type)(uintptr_t)(address))
 
+#ifndef VEGA_MOVE_MEMORY_LINKED_ABI
+#error "move-memory linked addresses must come from the verified T06 contract"
+#endif
+
 #define G_MOVE_MANAGER_MODE PTR(volatile u8 *, 0x0203EC00)
 #define G_BATTLE_TYPE_FLAGS PTR(volatile u32 *, 0x02022AAC)
 #define G_PLAYER_PARTY PTR(u8 *, 0x020241E4)
@@ -133,8 +137,10 @@ typedef void (*PlaySeFn)(u16 song);
 #define FN_GET_STD_WINDOW_BASE_TILE PTR(GetBaseTileFn, 0x080F89CD)
 #define FN_MENU_INIT_CURSOR PTR(MenuInitCursorFn, 0x0811030D)
 #define FN_MENU_PROCESS_INPUT PTR(MenuInputFn, 0x08110BF9)
-#define FN_GET_ALL_EGG_MOVES PTR(GetAllEggMovesFn, 0x090EB839)
-#define FN_SET_MON_MOVE_SLOT PTR(SetMonMoveSlotFn, 0x09114561)
+#define FN_GET_ALL_EGG_MOVES \
+    PTR(GetAllEggMovesFn, VEGA_MOVE_MEMORY_GET_ALL_EGG_MOVES_ADDRESS)
+#define FN_SET_MON_MOVE_SLOT \
+    PTR(SetMonMoveSlotFn, VEGA_MOVE_MEMORY_SET_MON_MOVE_SLOT_ADDRESS)
 #define FN_REMOVE_MON_PP_BONUS PTR(MonMoveSlotFn, 0x08040755)
 #define FN_SHIFT_MOVE_SLOT PTR(ShiftMoveSlotFn, 0x080C0C79)
 

@@ -119,6 +119,9 @@ POLICY_SMOKE_SYMBOLS = (
     "IsRaidBattle",
     "IsCatchableRaidBattle",
     "sp067_GenerateRandomBattleTowerTeam",
+    "HandleInputChooseAction",
+    "HandleInputChooseMove",
+    "HandleInputChooseTarget",
 )
 
 
@@ -3089,6 +3092,9 @@ def _integration_contract(offsets: Mapping[str, int]) -> dict[str, int]:
         "IsRaidBattle",
         "IsCatchableRaidBattle",
         "sp067_GenerateRandomBattleTowerTeam",
+        "HandleInputChooseAction",
+        "HandleInputChooseMove",
+        "HandleInputChooseTarget",
     )
     result: dict[str, int] = {}
     for symbol in symbols:

@@ -40,13 +40,12 @@ enum {
     FIRST_BATTLE_NEWBS_ACTIVATED_BYTE = 0x164,
     FIRST_BATTLE_NEWBS_ACTIVATED_MASK = 0x04,
     FIRST_BATTLE_TURN_FRAME_LIMIT = 2400,
-    FIRST_BATTLE_RUN_TURN_ENTRY_PC = 0x090CEA06,
-    FIRST_BATTLE_INVALID_ITEM_SKIP_PC = 0x090CEA94,
-    FIRST_BATTLE_INVALID_ITEM_SCRIPT_PC = 0x090CEB3E,
-    FIRST_BATTLE_QUICK_DRAW_NOTIFICATION_PC = 0x090CEB40,
-    FIRST_BATTLE_CUSTAP_NOTIFICATION_PC = 0x090CF28A,
     FIRST_BATTLE_SCHEDULER_STEP_LIMIT = 1000000,
 };
+
+static uint32_t first_battle_get_bank_item_effect;
+static uint32_t first_battle_run_turn_entry_pc;
+static uint32_t first_battle_invalid_item_skip_pc;
 
 struct FirstBattleCase {
     const char *name;
@@ -252,9 +251,9 @@ static struct FirstBattleObservation run_first_battle_case(
     result.opponent_ability = read16(
         core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38);
     result.player_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 0, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 0, 0, 0, 0);
     result.opponent_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 1, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 1, 0, 0, 0);
     result.player_pp_before = player.pp[0];
     result.player_hp_before = player.hp;
     result.opponent_hp_before = opponent.hp;
@@ -340,9 +339,9 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
     result.opponent_ability = read16(
         core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38);
     result.player_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 0, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 0, 0, 0, 0);
     result.opponent_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 1, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 1, 0, 0, 0);
     result.player_pp_before = player.pp[0];
     result.player_hp_before = player.hp;
     result.opponent_hp_before = opponent.hp;
@@ -375,7 +374,7 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
          step < FIRST_BATTLE_SCHEDULER_STEP_LIMIT;
          ++step) {
         uint32_t pc = ((uint32_t)read_register(core, "pc")) & ~1U;
-        if (pc == FIRST_BATTLE_RUN_TURN_ENTRY_PC
+        if (pc == first_battle_run_turn_entry_pc
             && !result.invalid_indicator_injected) {
             uint32_t newbs = read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER);
             if (newbs == 0) {
@@ -391,7 +390,10 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
             result.injection_first_main_func = read32(
                 core, FIRST_BATTLE_MAIN_FUNC);
         }
-        if (pc == FIRST_BATTLE_INVALID_ITEM_SCRIPT_PC) {
+        uint32_t script = read32(core, FIRST_BATTLE_SCRIPT_POINTER);
+        if (result.invalid_indicator_injected
+            && script >= FIRST_BATTLE_QUICK_CLAW_SCRIPT
+            && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT) {
             ++result.quick_claw_script_entries;
             if (read16(core, FIRST_BATTLE_LAST_USED_ITEM)
                 == FIRST_BATTLE_ITEM_NONE) {
@@ -400,7 +402,8 @@ static struct FirstBattleObservation run_invalid_indicator_fault_case(
             break;
         }
         if (result.invalid_indicator_injected
-            && pc == FIRST_BATTLE_INVALID_ITEM_SKIP_PC) {
+            && pc >= first_battle_invalid_item_skip_pc
+            && pc <= first_battle_invalid_item_skip_pc + 8U) {
             result.invalid_indicator_rejected = true;
             break;
         }
@@ -495,9 +498,9 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
     battle->player_ability = read16(core, ADDR_BATTLE_MONS + 0x38);
     battle->opponent_ability = read16(core, opponent_base + 0x38);
     battle->player_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 0, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 0, 0, 0, 0);
     battle->opponent_item_effect = (uint8_t)call_preserving(
-        core, 0x090D4014, 1, 0, 0, 0);
+        core, first_battle_get_bank_item_effect, 1, 0, 0, 0);
     battle->player_pp_before = player.pp[0];
     battle->player_hp_before = player.hp;
     battle->opponent_hp_before = opponent.hp;
@@ -532,7 +535,7 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
          step < FIRST_BATTLE_SCHEDULER_STEP_LIMIT;
          ++step) {
         uint32_t pc = ((uint32_t)read_register(core, "pc")) & ~1U;
-        if (pc == FIRST_BATTLE_RUN_TURN_ENTRY_PC && !result.scheduler_seen) {
+        if (pc == first_battle_run_turn_entry_pc && !result.scheduler_seen) {
             result.scheduler_seen = true;
             result.first_bank = read8(core, BATTLE_CORE_BANKS_BY_TURN_ORDER);
             uint8_t indicator = priority->kind
@@ -542,18 +545,14 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
             result.indicator_seen = (indicator & 2U) != 0;
         }
 
-        uint32_t notification_pc = FIRST_BATTLE_INVALID_ITEM_SCRIPT_PC;
-        if (priority->kind == FIRST_BATTLE_PRIORITY_CUSTAP) {
-            notification_pc = FIRST_BATTLE_CUSTAP_NOTIFICATION_PC;
-        } else if (priority->kind == FIRST_BATTLE_PRIORITY_QUICK_DRAW) {
-            notification_pc = FIRST_BATTLE_QUICK_DRAW_NOTIFICATION_PC;
-        }
-        bool notification_instruction = pc == notification_pc;
-        if (priority->kind == FIRST_BATTLE_PRIORITY_QUICK_DRAW) {
-            notification_instruction = pc >= FIRST_BATTLE_QUICK_DRAW_NOTIFICATION_PC
-                && pc <= FIRST_BATTLE_QUICK_DRAW_NOTIFICATION_PC + 8U;
-        }
-        if (result.scheduler_seen && notification_instruction) {
+        uint32_t script = read32(core, FIRST_BATTLE_SCRIPT_POINTER);
+        bool quick_claw_script = script >= FIRST_BATTLE_QUICK_CLAW_SCRIPT
+            && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT;
+        bool quick_draw_script = script >= FIRST_BATTLE_QUICK_DRAW_SCRIPT
+            && script < FIRST_BATTLE_QUICK_DRAW_SCRIPT_END;
+        bool notification_seen = priority->kind == FIRST_BATTLE_PRIORITY_QUICK_DRAW
+            ? quick_draw_script : quick_claw_script;
+        if (result.scheduler_seen && notification_seen) {
             result.notification_seen = true;
             if (priority->kind != FIRST_BATTLE_PRIORITY_QUICK_DRAW) {
                 battle->quick_claw_script_entries = 1;
@@ -676,8 +675,11 @@ static void print_first_battle_priority_observation(
 
 #ifndef FIRST_BATTLE_EMBEDDED
 int main(int argc, char **argv) {
-    if (argc != 3) {
-        fprintf(stderr, "usage: %s ROM EXPECTED_ROM_SHA256\n", argv[0]);
+    if (argc != 5) {
+        fprintf(stderr,
+                "usage: %s ROM EXPECTED_ROM_SHA256 "
+                "RunTurnActionsFunctions GetBankItemEffect\n",
+                argv[0]);
         return 2;
     }
     char rom_sha256[65];
@@ -685,6 +687,10 @@ int main(int argc, char **argv) {
     if (strlen(argv[2]) != 64 || strcmp(rom_sha256, argv[2]) != 0) {
         battle_core_die("ROM SHA-256 mismatch");
     }
+    uint32_t run_turn_actions = parse_address(argv[3]);
+    first_battle_get_bank_item_effect = parse_address(argv[4]);
+    first_battle_run_turn_entry_pc = run_turn_actions + 0x002U;
+    first_battle_invalid_item_skip_pc = run_turn_actions + 0x08CU;
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);

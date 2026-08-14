@@ -352,7 +352,13 @@ static struct RomCall call_rom_args(struct mCore *core, uint32_t function,
     write_register(core, "pc", function);
     uint64_t before = mTimingGlobalTime(core->timing);
     do {
-        if (++result.instructions > MAX_STEPS) die("ROM call instruction limit exceeded");
+        if (++result.instructions > MAX_STEPS) {
+            fprintf(stderr,
+                    "mgba-ai-fixture: ROM call instruction limit "
+                    "function=%#010" PRIx32 " pc=%#010" PRIx32 "\n",
+                    function, (uint32_t)read_register(core, "pc"));
+            die("ROM call instruction limit exceeded");
+        }
         core->step(core);
     } while ((((uint32_t) read_register(core, "pc")) & ~1u) != 0x08000002u);
     result.cycles = mTimingGlobalTime(core->timing) - before;

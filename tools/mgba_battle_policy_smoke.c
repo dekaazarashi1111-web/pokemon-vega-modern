@@ -139,7 +139,10 @@ struct PolicySymbol {
     X(raid_ui_shields, "GetNumRaidShieldsUp") \
     X(is_raid, "IsRaidBattle") \
     X(is_catchable_raid, "IsCatchableRaidBattle") \
-    X(rental_generate, "sp067_GenerateRandomBattleTowerTeam")
+    X(rental_generate, "sp067_GenerateRandomBattleTowerTeam") \
+    X(controller_action, "HandleInputChooseAction") \
+    X(controller_move, "HandleInputChooseMove") \
+    X(controller_target, "HandleInputChooseTarget")
 
 struct PolicySymbols {
 #define POLICY_FIELD(field, text) struct PolicySymbol field;
@@ -1482,6 +1485,7 @@ static void policy_run_raid_frames(
 static void policy_run_raid_controller_round(
     struct mCore *core,
     struct RaidEndEvidence *evidence,
+    const struct PolicySymbols *symbols,
     bool stop_at_shields
 ) {
     uint8_t latched_gate = 0;
@@ -1515,18 +1519,18 @@ static void policy_run_raid_controller_round(
                    && (exec & 1U) != 0
                    && command == POLICY_COMMAND_CHOOSE_ACTION
                    && (controller == POLICY_CONTROLLER_ACTION_STOCK
-                       || controller == POLICY_CONTROLLER_ACTION_CFRU)) {
+                       || controller == (symbols->controller_action.address | 1U))) {
             gate = 1;
         } else if (main == POLICY_BATTLE_MAIN_ACTION_SELECTION
                    && (exec & 1U) != 0
                    && command == POLICY_COMMAND_CHOOSE_MOVE
                    && (controller == POLICY_CONTROLLER_MOVE_STOCK
-                       || controller == POLICY_CONTROLLER_MOVE_CFRU)) {
+                       || controller == (symbols->controller_move.address | 1U))) {
             gate = 2;
         } else if (main == POLICY_BATTLE_MAIN_ACTION_SELECTION
                    && (exec & 1U) != 0
                    && command == POLICY_COMMAND_CHOOSE_MOVE
-                   && controller == POLICY_CONTROLLER_TARGET_CFRU) {
+                   && controller == (symbols->controller_target.address | 1U)) {
             gate = 3;
         } else if (main == 0x08014DE9U
                    && (exec & (1U << 1)) != 0
@@ -1717,7 +1721,7 @@ static struct RaidEndEvidence policy_test_raid_scheduler_e2e(
         core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
     uint8_t remaining = (uint8_t)(
         evidence.initial_shields - evidence.shield_breaks);
-    policy_run_raid_controller_round(core, &evidence, true);
+    policy_run_raid_controller_round(core, &evidence, symbols, true);
     remaining = (uint8_t)(evidence.initial_shields - evidence.shield_breaks);
     evidence.player_pp_after = read8(
         core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
@@ -1749,7 +1753,7 @@ static struct RaidEndEvidence policy_test_raid_scheduler_e2e(
     if (!evidence.boss_fainted) {
         write16(core, ADDR_ENEMY_PARTY + POKEMON_CURRENT_HP_OFFSET, 1);
         write16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + BATTLE_CORE_MON_HP, 1);
-        policy_run_raid_controller_round(core, &evidence, false);
+        policy_run_raid_controller_round(core, &evidence, symbols, false);
     }
     if (!evidence.boss_fainted
         || (!evidence.runtime_cleaned
@@ -1830,7 +1834,7 @@ static bool policy_test_raid_turn_limit_scheduler(
         || POLICY_OBSERVE0(core, symbols->raid_shields) != 0) {
         policy_die("no-capture one-turn Raid setup semantics differ");
     }
-    policy_run_raid_controller_round(core, &evidence, false);
+    policy_run_raid_controller_round(core, &evidence, symbols, false);
     for (uint32_t pulse = 0;
          pulse < BATTLE_CORE_END_INPUT_PULSES && !evidence.runtime_cleaned;
          ++pulse) {

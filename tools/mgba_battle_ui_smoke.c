@@ -15,8 +15,6 @@
 enum {
     UI_TYPE_HOOK = 0x080300D0,
     UI_EFFECT_HOOK = 0x08030024,
-    UI_TYPE_ENTRY = 0x09115724,
-    UI_EFFECT_ENTRY = 0x09116E08,
     UI_BATTLE_BUFFER_A = 0x02022B24,
     UI_ACTIVE_BATTLER = 0x02023B24,
     UI_BATTLERS_COUNT = 0x02023B2C,
@@ -27,14 +25,6 @@ enum {
     UI_DISPLAYED_STRING = 0x020228FC,
     UI_PLTT_UNFADED = 0x0203712C,
     UI_NEW_BATTLE_STRUCT_PTR = 0x0203DFB0,
-    UI_TYPE_PALETTE = 0x091B66B8,
-    UI_TEXT_SUPER = 0x091430FB,
-    UI_TEXT_RESISTED = 0x091430FE,
-    UI_TEXT_NONE = 0x09143101,
-    UI_TEXT_STAB = 0x09143103,
-    UI_TYPE_MATRIX = 0x09164AA4,
-    UI_HANDLE_CHOOSE_TARGET = 0x09115D05,
-    UI_VISUAL_TYPE_CALC = 0x090E5DC1,
 
     UI_INFO_MOVES = 0x00,
     UI_INFO_MON_TYPE1 = 0x12,
@@ -68,6 +58,16 @@ enum {
     UI_STAB_PALETTE_INDEX = 86,
     UI_EFFECT_PALETTE_INDEX = 88,
 };
+
+static uint32_t ui_type_entry;
+static uint32_t ui_effect_entry;
+static uint32_t ui_type_palette;
+static uint32_t ui_text_super;
+static uint32_t ui_text_resisted;
+static uint32_t ui_text_none;
+static uint32_t ui_text_stab;
+static uint32_t ui_type_matrix;
+static uint32_t ui_handle_choose_target;
 
 struct UIEffectObservation {
     const char *name;
@@ -163,7 +163,7 @@ static uint8_t palette_group(struct mCore *core)
                             + UI_EFFECT_PALETTE_INDEX * 2U);
     static const uint8_t starts[] = {12, 0, 4, 8};
     for (unsigned effect = 0; effect < ARRAY_LEN(starts); ++effect) {
-        if (value == read16(core, UI_TYPE_PALETTE + starts[effect] * 2U))
+        if (value == read16(core, ui_type_palette + starts[effect] * 2U))
             return (uint8_t)effect;
     }
     ui_die("effect palette does not match a fixed CFRU group");
@@ -192,16 +192,16 @@ static struct UIEffectObservation observe_effect(
     result.entry_completed = call.instructions > 0;
     result.palette_group = palette_group(core);
     result.saw_effect_label = expected_class == UI_EFFECT_SUPER
-        ? contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_SUPER)
+        ? contains_string(core, UI_DISPLAYED_STRING, ui_text_super)
         : expected_class == UI_EFFECT_RESISTED
-        ? contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_RESISTED)
+        ? contains_string(core, UI_DISPLAYED_STRING, ui_text_resisted)
         : expected_class == UI_EFFECT_NONE
-        ? contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_NONE)
-        : !contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_SUPER)
-            && !contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_RESISTED)
-            && !contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_NONE);
+        ? contains_string(core, UI_DISPLAYED_STRING, ui_text_none)
+        : !contains_string(core, UI_DISPLAYED_STRING, ui_text_super)
+            && !contains_string(core, UI_DISPLAYED_STRING, ui_text_resisted)
+            && !contains_string(core, UI_DISPLAYED_STRING, ui_text_none);
     result.saw_stab_label = contains_string(
-        core, UI_DISPLAYED_STRING, UI_TEXT_STAB);
+        core, UI_DISPLAYED_STRING, ui_text_stab);
     if (result.actual_class != expected_class
         || result.palette_group != expected_class
         || !result.saw_effect_label
@@ -215,10 +215,10 @@ static struct UIEffectObservation observe_effect(
 static uint32_t matrix_multiplier(struct mCore *core, uint8_t attack,
                                   uint8_t type1, uint8_t type2)
 {
-    uint32_t first = read16(core, UI_TYPE_MATRIX
+    uint32_t first = read16(core, ui_type_matrix
                             + ((uint32_t)attack * 25U + type1) * 2U);
     uint32_t second = type1 == type2 ? 1000U : read16(
-        core, UI_TYPE_MATRIX + ((uint32_t)attack * 25U + type2) * 2U);
+        core, ui_type_matrix + ((uint32_t)attack * 25U + type2) * 2U);
     if (first == 1U || second == 1U) return 0;
     if (first == 0U) first = 1000U;
     if (second == 0U) second = 1000U;
@@ -238,8 +238,12 @@ static void print_effect(const struct UIEffectObservation *row)
 
 int main(int argc, char **argv)
 {
-    if (argc != 7) {
-        fprintf(stderr, "usage: %s ROM SHA TYPE EFFECT CLASSIFY GETTYPE\n", argv[0]);
+    if (argc != 16) {
+        fprintf(stderr,
+                "usage: %s ROM SHA TYPE EFFECT CLASSIFY GETTYPE TYPE_ENTRY "
+                "EFFECT_ENTRY PALETTE TEXT_SUPER TEXT_RESISTED TEXT_NONE "
+                "TEXT_STAB TYPE_MATRIX HANDLE_CHOOSE_TARGET\n",
+                argv[0]);
         return 2;
     }
     char rom_sha256[65];
@@ -250,6 +254,15 @@ int main(int argc, char **argv)
     uint32_t effect_runtime = ui_parse_address(argv[4]);
     uint32_t classify_runtime = ui_parse_address(argv[5]);
     uint32_t get_type_runtime = ui_parse_address(argv[6]);
+    ui_type_entry = parse_address(argv[7]);
+    ui_effect_entry = parse_address(argv[8]);
+    ui_type_palette = parse_address(argv[9]);
+    ui_text_super = parse_address(argv[10]);
+    ui_text_resisted = parse_address(argv[11]);
+    ui_text_none = parse_address(argv[12]);
+    ui_text_stab = parse_address(argv[13]);
+    ui_type_matrix = parse_address(argv[14]);
+    ui_handle_choose_target = parse_address(argv[15]);
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);
@@ -263,10 +276,10 @@ int main(int argc, char **argv)
     mCoreSetRTC(core, &rtc);
     core->reset(core);
 
-    if (hook_target(core, UI_TYPE_HOOK) != (UI_TYPE_ENTRY | 1U)
-        || hook_target(core, UI_EFFECT_HOOK) != (UI_EFFECT_ENTRY | 1U)
-        || hook_target(core, UI_TYPE_ENTRY) != type_runtime
-        || hook_target(core, UI_EFFECT_ENTRY) != effect_runtime) {
+    if (hook_target(core, UI_TYPE_HOOK) != (ui_type_entry | 1U)
+        || hook_target(core, UI_EFFECT_HOOK) != (ui_effect_entry | 1U)
+        || hook_target(core, ui_type_entry) != type_runtime
+        || hook_target(core, ui_effect_entry) != effect_runtime) {
         ui_die("physical move-menu ownership chain differs");
     }
 
@@ -278,18 +291,18 @@ int main(int argc, char **argv)
         ui_die("battle UI fixture has no CFRU battle state");
 
     struct UIEffectObservation effects[] = {
-        observe_effect(core, UI_EFFECT_ENTRY | 1U, classify_runtime,
+        observe_effect(core, ui_effect_entry | 1U, classify_runtime,
                        "NORMAL_1X", 0, UI_EFFECT_NORMAL, false),
-        observe_effect(core, UI_EFFECT_ENTRY | 1U, classify_runtime,
+        observe_effect(core, ui_effect_entry | 1U, classify_runtime,
                        "SUPER_2X_OR_MORE", UI_MOVE_RESULT_SUPER,
                        UI_EFFECT_SUPER, false),
-        observe_effect(core, UI_EFFECT_ENTRY | 1U, classify_runtime,
+        observe_effect(core, ui_effect_entry | 1U, classify_runtime,
                        "RESISTED_HALF_OR_LESS", UI_MOVE_RESULT_RESISTED,
                        UI_EFFECT_RESISTED, false),
-        observe_effect(core, UI_EFFECT_ENTRY | 1U, classify_runtime,
+        observe_effect(core, ui_effect_entry | 1U, classify_runtime,
                        "NO_EFFECT_0X", UI_MOVE_RESULT_NONE,
                        UI_EFFECT_NONE, false),
-        observe_effect(core, UI_EFFECT_ENTRY | 1U, classify_runtime,
+        observe_effect(core, ui_effect_entry | 1U, classify_runtime,
                        "SUPER_AND_STAB", UI_MOVE_RESULT_SUPER,
                        UI_EFFECT_SUPER, true),
     };
@@ -300,7 +313,7 @@ int main(int argc, char **argv)
     uint32_t stellar_type = call_bounded(
         core, get_type_runtime, 0, 0, 0, 0).result;
     if (stellar_type != UI_TYPE_STELLAR) ui_die("Stellar type display differs");
-    if (!call_bounded(core, UI_TYPE_ENTRY | 1U, 0, 0, 0, 0).instructions)
+    if (!call_bounded(core, ui_type_entry | 1U, 0, 0, 0, 0).instructions)
         ui_die("type-window adapter did not return");
 
     clear_move_info(core);
@@ -324,15 +337,15 @@ int main(int argc, char **argv)
     write32_bytes(core, ADDR_BATTLE_TYPE_FLAGS,
                   read32(core, ADDR_BATTLE_TYPE_FLAGS) | UI_BATTLE_TYPE_DOUBLE);
     write8(core, UI_BATTLERS_COUNT, 4);
-    write32_bytes(core, UI_CONTROLLER_FUNCS, UI_HANDLE_CHOOSE_TARGET);
+    write32_bytes(core, UI_CONTROLLER_FUNCS, ui_handle_choose_target);
     write8(core, UI_MULTI_CURSOR, 3);
     write8(core, info + UI_INFO_MOVE_RESULTS + 3U * 4U,
            UI_MOVE_RESULT_RESISTED);
     struct CallObservation double_call = call_bounded(
-        core, UI_EFFECT_ENTRY | 1U, 0, 0, 0, 0);
+        core, ui_effect_entry | 1U, 0, 0, 0, 0);
     bool double_target_specific = double_call.instructions > 0
         && palette_group(core) == UI_EFFECT_RESISTED
-        && contains_string(core, UI_DISPLAYED_STRING, UI_TEXT_RESISTED);
+        && contains_string(core, UI_DISPLAYED_STRING, ui_text_resisted);
     if (!double_target_specific) ui_die("double target-specific display differs");
 
     uint32_t multipliers[] = {
