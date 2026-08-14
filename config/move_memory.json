@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260814-MOVE-MEMORY",
+  "source": {
+    "path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "tree": "f4424af017abd01afe2d2deb833fb67275f03804"
+  },
+  "inputs": {
+    "stage_rom": {
+      "path": "build/stages/24_battle_ui.gba",
+      "size": 33554432,
+      "sha256": "870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387"
+    },
+    "stage_metadata": {
+      "path": "build/stages/24_battle_ui.json",
+      "sha256": "8e7c10ce9569d75918f7674e7b3b312e1ba4a9b0d9ebb0c2f650829389e95a0d"
+    },
+    "allocation": {
+      "path": "build/stages/24_allocation.json",
+      "sha256": "30993166cb36cc7c26635e5852b259c7d0f71f87d7650e09a37d483239cdd363"
+    },
+    "charmap": {
+      "path": "vendor/upstream/CFRU-JP/charmap.tbl",
+      "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"
+    },
+    "linked_object": {
+      "path": "build/battle-core/862a6c4f715c56684e172db2073ebc6f1b5263623f551da7b0eaa1e07a11c847/run-1/linked.o",
+      "sha256": "9cadaa8695197357b2db03507a690c11dffaefb4d7fc004bd8a408871770f58d"
+    },
+    "species_surface_metadata": {
+      "path": "build/stages/09_species_surface.json",
+      "sha256": "388e483604cfebfb389d14d965fd58b117fd26d9c2352c59679413d4258a0a38"
+    },
+    "level_up_pointers": {
+      "path": "generated/engine/learnsets/level_up_pointers.bin",
+      "sha256": "e55a55ca5f48fce79452b486816c3d48be17ff9dbb77536bfcd8536d244cb15a"
+    },
+    "level_up_data": {
+      "path": "generated/engine/learnsets/level_up_data.bin",
+      "sha256": "8c457521b0971551a9251edcb4a8534ceafaa6a391e5648c2260dccebdfb1269"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    }
+  },
+  "item": {
+    "id": 347,
+    "name": "わざメモリー",
+    "description": "いつでも わざを おもいだしたり\nわすれさせたり できる そうち。",
+    "table": "0x0904D108",
+    "stride": 40,
+    "expected_row_hex": "acacacacacacacacff00000000000000ef063a0800000104f9340a08000000000000000000000000",
+    "template_item_id": 364,
+    "icon_table": "0x09056D20",
+    "icon_stride": 8,
+    "expected_icon_hex": "5070d808c870d808",
+    "icon_source_item_id": 366
+  },
+  "patches": {
+    "move_relearner": {
+      "address": "0x091140A0",
+      "expected_hex": "f0b5c646542300b5"
+    },
+    "shiou_npc": {
+      "address": "0x08382628",
+      "expected_hex": "b90f1908",
+      "map": "33:1",
+      "object": 0
+    },
+    "karasuba_npc": {
+      "address": "0x0838047C",
+      "expected_hex": "c67c1808",
+      "map": "11:9",
+      "object": 0
+    },
+    "badge1_reward_call": {
+      "address": "0x0817F893",
+      "expected_hex": "e4431908",
+      "original_subscript": "0x081943E4"
+    }
+  },
+  "policy": {
+    "mode_ram": "0x0203EC00",
+    "badge1_flag": "0x0820",
+    "hall_of_fame_flag": "0x082C",
+    "dh_build_clear_flag": "0x114B",
+    "raid_flag": "0x0919",
+    "facility_flag": "0x0930",
+    "mirror_herb_item": 965,
+    "max_candidates": 40,
+    "form_only_moves": [768, 769]
+  },
+  "outputs": {
+    "stage_rom": "build/stages/25_move_memory.gba",
+    "stage_metadata": "build/stages/25_move_memory.json",
+    "allocation": "build/stages/25_allocation.json",
+    "runtime_bin": "generated/runtime/move_memory.bin",
+    "runtime_symbols": "generated/runtime/move_memory_symbols.json",
+    "mgba_fixture": "build/stages/25_mgba_move_memory.json",
+    "report": "reports/generated/move_memory.md"
+  }
+}

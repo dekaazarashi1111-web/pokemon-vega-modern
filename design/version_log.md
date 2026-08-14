@@ -372,3 +372,14 @@
   - 1×、2×以上、0.5×以下、0×、Stellar/Tera Blast、double対象別表示を既存CFRU文字列・paletteで実ROM検証した。
   - canonical実使用名の未解決0件と、wild/trainer/double/Factory/Raidの入力復帰・cleanupを確認した。公開releaseと重いfresh buildは後続統合まで保留した。
 - Verify: `make battle-ui-check`、focused 6 tests、UI 2-process / policy current-stage libmGBA smoke、py_compile、task graph/private guard、diff check PASS。stage 24 SHA-256 `870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387`。
+
+## 2026-08-14T15:45:41+09:00
+
+- Version: `move-memory-stage25`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-MOVE-MEMORY` / 無料の共通技管理「わざメモリー」を実装する
+- Summary:
+  - Item 347、1個目のバッジ報酬、シオウ、カラスバを無料の共通技管理coreへ接続し、キノコ・ハーブ消費を廃止した。
+  - T09混在learnsetの現在Lv候補と、D・Hビル/HOF/ハーブ/空き枠で段階解禁するCFRUタマゴ技候補をvolatile modeで切り替えた。
+  - HM忘却を許可し、最後の1技・PP Up・form・contextをguardした。削除はCFRU技slot経路を通し、ケルディオform連動とPP Up移動を維持した。
+- Verify: `make move-memory-check`、focused 6 tests、libmGBA 2 process、py_compile、task graph/private guard、diff check PASS。stage 25 SHA-256 `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9`。

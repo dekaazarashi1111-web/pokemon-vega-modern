@@ -30,10 +30,10 @@
 
 ## 受入条件
 
-- [ ] item/NPC両入口が同じ候補と制限を返し、キノコを消費しない。
-- [ ] 通常Lv境界、進化時技、未来Lv拒否、egg解禁前後、殿堂入り後無料化がPASSする。
-- [ ] 最後の1技、PP Up警告、HM忘却、cancel/reset、form連動がPASSする。
-- [ ] バッグ・field・NPC会話へ正しく復帰し、battle/facility/Raid中は起動しない。
+- [x] item/NPC両入口が同じ候補と制限を返し、キノコを消費しない。
+- [x] 通常Lv境界、進化時技、未来Lv拒否、egg解禁前後、殿堂入り後無料化がPASSする。
+- [x] 最後の1技、PP Up警告、HM忘却、cancel/reset、form連動がPASSする。
+- [x] バッグ・field・NPC会話へ正しく復帰し、battle/facility/Raid中は起動しない。
 
 ## 完了
 

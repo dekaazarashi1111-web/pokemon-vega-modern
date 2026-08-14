@@ -152,6 +152,14 @@ Factory ROM byteを持たない。`make battle-ui-check` は1×、2×以上、0.
 Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、
 BPS往復、8成果のbyte一致を副作用なしで照合する。
 
+`make move-memory` は検証済みstage 24を入力に、Item 347と1個目のバッジ報酬、シオウ・
+カラスバのobject script、CFRU技思い出しentryをexpected-byte付きでstage 25へ接続する。
+通常候補はT09のVega packed-u16/DPE 3-byte混在learnsetを現在Lv境界で読み、タマゴ候補は
+固定CFRU `GetAllEggMoves` を一時RAM modeから呼ぶ。技削除は固定CFRU `SetMonMoveSlot`、
+`RemoveMonPPBonus`、`ShiftMoveSlot` を通す。`make move-memory-check` は入力hash、manifest ID、
+script graph、候補・解禁・削除・contextのlibmGBA結果、allocation、BPS往復、7成果を照合する。
+既存stageを再利用し、公開releaseと全stage fresh rebuildは後続QOL releaseまで更新しない。
+
 `make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
 最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。

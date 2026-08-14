@@ -82,6 +82,8 @@ make battle-rules # 固定CFRU-JPの状態異常・急所・天候ownerをstage 
 make battle-rules-check # 固定RNG・通常/double/Factory/Raid回帰・BPS往復を再照合
 make battle-ui # 実タイプ・有効度・タイプ一致表示をstage 24へ結合
 make battle-ui-check # 5表示区分・Stellar・全戦闘mode・文字列境界を再照合
+make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をstage 25へ結合
+make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make final       # clean入力からv1.2.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
@@ -148,6 +150,13 @@ damage、天候のownerが固定CFRU-JP payloadだけであることを確認す
 事前計算した結果を表示し、抜群・半減・無効・タイプ一致とStellar/Tera Blastを既存CFRUの
 文字列・paletteで示す。通常、trainer、double、Factory Trial、Raidの入力復帰、canonical名、
 clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない。
+
+追加stage 25はstage 24を再利用し、1個目のバッジ報酬へだいじなもの「わざメモリー」を追加する。
+通常は現在Lv以下のLv.0/1を含むlevel技だけ、D・Hビル後のタマゴ技は殿堂入り前に
+ものまねハーブ所持と空き枠を要求し、殿堂入り後は無料にする。シオウ・カラスバの既存NPCも
+同じ無料coreへ接続し、キノコやハーブを消費しない。技忘れはHMを許可し、最後の1技、タマゴ、
+戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
+ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
 ## 効率方針
 

@@ -869,3 +869,28 @@
   - memory生成BPS SHA-256はstage metadataに固定し、round-trip exact `true`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みCFRU-JP source、検証済みstage 06/23、canonical生成表、clean私有入力だけを参照した。
+
+## 2026-08-14T15:45:41+09:00
+
+- Task: `USER-20260814-MOVE-MEMORY` / 無料の共通技管理「わざメモリー」を実装する
+- Status: DONE
+- Summary:
+  - 未使用Item 347をだいじなもの「わざメモリー」として登録し、1個目のバッジ報酬、シオウの技教えマニア、カラスバの技忘れオヤジを同じstage 25 coreへ接続した。既存NPCを残し、キノコとものまねハーブは消費しない。
+  - 通常思い出しはT09のVega packed-u16 412行とDPE 3-byte 1,209行を同じadapterで読み、現在Lv以下のLv.0/1を含む未習得・重複なし最大40技だけを返す。タマゴ技はD・Hビル後に解禁し、殿堂入り前はものまねハーブ所持＋空き枠、殿堂入り後は無料とした。一時modeはvolatile EWRAM `0x0203EC00`だけに置き、終了時にresetする。
+  - 技忘れは最後の1技、タマゴ、battle/facility/Raid、一時form専用のきょじゅう技を拒否し、PP Up適用時に警告する。HMはstage 22のfield能力分離後として許可した。旧specialのFireRed技slot更新を使わず、固定CFRU `SetMonMoveSlot`、`RemoveMonPPBonus`、`ShiftMoveSlot`へ接続した。
+  - libmGBA exact-ROMで通常候補、タマゴ技5条件、全context、物理patchを独立2 processで検査した。「しんぴのつるぎ」削除時のケルディオ通常form復帰、後続3技の詰め、PP Up段階移動も実RAMで確認した。検証済みstage 24を再利用し、公開release更新と重いfresh rebuildは後続QOL releaseまで行っていない。
+- Files changed:
+  - runtime/config/build: `config/move_memory.json`, `config/ram_layout.csv`, `overlays/move_memory/**`, `scripts/build_move_memory.py`, `tools/mgba_move_memory_smoke.c`, `Makefile`
+  - tests: `tests/test_move_memory.py`
+  - task/docs/state: `tasks/USER_20260814_MOVE_MEMORY.md`, `README.md`, `docs/{BUILD_PIPELINE,QOL_POLICY,TEST_STRATEGY}.md`, `design/{agent_context_map,catalog,current_state,report_lifecycle_index,tasks_next,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/25_move_memory.{gba,json}`, `build/stages/{25_allocation,25_mgba_move_memory}.json`, `generated/runtime/move_memory*`, `reports/generated/move_memory.md`
+- Verify:
+  - `make move-memory-check`: PASS。7成果のbyte一致、固定stage/source/manifest/learnset入力、6物理patch、2,931-byte runtime、allocation overlap 0、clean ROMからのBPS完全往復を確認した。
+  - `python3 -m unittest -v tests.test_move_memory`: PASS（6 tests）。決定論build、共通入口、通常/タマゴ候補、CFRU技slot/form連動、volatile RAM、contextを検査した。
+  - move memory libmGBA smoke: PASS（独立2 process）。fixture Species 422、通常候補Lv.1で5件/Lv.100で14件、タマゴ技24件、policy 5件、context 4件、warnings/errors 0。
+  - `python3 -m py_compile scripts/build_move_memory.py tests/test_move_memory.py`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyと重いfresh rebuildは実行していない。
+- Report identity:
+  - stage 25 / runtime / allocation / mGBA smoke / report SHA-256 `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9` / `5dac7e8e39c0008711f531589122320381183740e4c7f0e1e36cc0875965b90f` / `2dd4bbb2a8c5800640a9e1f0f9a4b088ce3ecac7332cb413b441e62b0524a5e4` / `b820f604f35a518f95fa11fea02261f6f69d9497c85783a5b187f95c6822b4d4` / `ad1baf619c47b1e3084b4924c6c4e76c321432b6bc58f1a879615145520f11b4`。
+  - memory生成BPSはclean FireRed日本版Rev.0からstage 25へ再適用してexact `true`。patch SHA-256はstage metadataへ固定した。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みCFRU-JP、T09 learnset、move ID manifest、検証済みstage 24、clean私有入力だけを参照した。
