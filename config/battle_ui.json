@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260814-BATTLE-UI",
+  "source": {
+    "path": "vendor/upstream/CFRU-JP",
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "tree": "f4424af017abd01afe2d2deb833fb67275f03804"
+  },
+  "inputs": {
+    "stage_rom": {
+      "path": "build/stages/23_battle_rules.gba",
+      "size": 33554432,
+      "sha256": "64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf"
+    },
+    "allocation": {
+      "path": "build/stages/23_allocation.json",
+      "sha256": "8da26566114c3fa0260a9c1e93b3219c0c693546da302473f210f3c9a49b409f"
+    },
+    "battle_core_metadata": {
+      "path": "build/stages/06_battle_core.json",
+      "sha256": "cdd10e9c3e702523bbaa56ed29ae20443c311eafc8c8307b1923c8fa92135a48",
+      "fingerprint": "862a6c4f715c56684e172db2073ebc6f1b5263623f551da7b0eaa1e07a11c847",
+      "offsets_sha256": "61214d1ee951339cfa365b52dcdd7fc627a53a97fcb291b5af38c3a984a43ced"
+    },
+    "address_audit": {
+      "path": "reports/generated/address_audit.csv",
+      "sha256": "e6ac294cef03599ca33c13fb44472d03daefe2a84f8849f66e92621c21e01f10"
+    },
+    "move_model": {
+      "path": "generated/engine/moves/move_port.json",
+      "sha256": "0c1e38aac41eb6b96a5fbeb695c0a60bcc15b92e6b5dffb3490e346fa260f442"
+    },
+    "id_model": {
+      "path": "generated/engine/ids/id_spaces.json",
+      "sha256": "73fd3703157d10573833cdbd97a768649f6e762f257bc74cd7907d6befc32eff"
+    },
+    "species_model": {
+      "path": "generated/engine/species/species_port.json",
+      "sha256": "b34de5d74e0232894731e4cb525cf1dbb39ac9eedf30580f8a989a418048b39f"
+    },
+    "species_names": {
+      "path": "generated/engine/species/species_names.bin",
+      "sha256": "c1b1d3aaf1fdd30c0620f49d19bd912d1d4241c9cf0e6220aa83195a76869876"
+    },
+    "first_battle_fixture": {
+      "path": "build/stages/21_mgba_first_battle_loop.json",
+      "sha256": "e628b870a27edca6ac4b2125bd0f82a71631bfdd00ff9f8a98ea29e8cd3287d4"
+    }
+  },
+  "owners": {
+    "emit_choose_move": {
+      "hook": "0x0800DED8",
+      "target": "0x09096EE3"
+    },
+    "handle_input_choose_move": {
+      "hook": "0x0802E1EC",
+      "target": "0x09116E59"
+    },
+    "init_move_selection": {
+      "hook": "0x08032428",
+      "target": "0x09116329"
+    },
+    "display_move_type": {
+      "hook": "0x080300D0",
+      "target": "0x09115725",
+      "entry": "0x09115724",
+      "expected_hex": "30b5234b1a782349"
+    },
+    "display_effectiveness": {
+      "hook": "0x08030024",
+      "target": "0x09116E09",
+      "entry": "0x09116E08",
+      "expected_hex": "fc2310b50b4c2370"
+    }
+  },
+  "canonical_moves": {
+    "tera_blast": 1037,
+    "tera_starstorm": 1050,
+    "count": 1063
+  },
+  "outputs": {
+    "stage_rom": "build/stages/24_battle_ui.gba",
+    "stage_metadata": "build/stages/24_battle_ui.json",
+    "allocation": "build/stages/24_allocation.json",
+    "runtime_bin": "generated/runtime/battle_ui.bin",
+    "runtime_symbols": "generated/runtime/battle_ui_symbols.json",
+    "mgba_fixture": "build/stages/24_mgba_battle_ui.json",
+    "policy_fixture": "build/stages/24_mgba_battle_policy.json",
+    "report": "reports/generated/battle_ui.md"
+  }
+}

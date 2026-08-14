@@ -144,6 +144,14 @@ status hookと各handlerを固定CFRU-JP `e24a16f...` のsource/defaultへ照合
 Raidの現行stage回帰、allocation overlap 0、clean ROMからのBPS完全往復を確認する。libmGBA fixtureは
 ROM/source/toolchain hashが一致する検証済み成果を再利用し、全stage再構築は行わない。
 
+`make battle-ui` は検証済みstage 23を入力に、固定CFRU-JPの
+`DISPLAY_REAL_MOVE_TYPE_ON_MENU` / `DISPLAY_EFFECTIVENESS_ON_MENU` source経路と同じABIを持つ
+adapterを中央allocatorへ置き、既存のタイプ・有効度表示entry 2件だけをstage 24へ接続する。
+判定は `EmitChooseMove` が `VisualTypeCalc` から生成した `moveTypes/moveResults` を使い、独自相性表や
+Factory ROM byteを持たない。`make battle-ui-check` は1×、2×以上、0.5×以下、0×、STAB、Stellar、
+Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、
+BPS往復、8成果のbyte一致を副作用なしで照合する。
+
 `make final` は既存stage 20成果を副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime` を固定順に実行する。
 最終ROMとmetadataは `build/final/vega-modern-kanto-v1.2.0.{gba,json}` へ出し、stageを上書きしない。

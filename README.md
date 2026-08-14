@@ -80,6 +80,8 @@ make hm-field-access # Vega HM所持だけでfield能力を使えるstage 22を�
 make hm-field-access-check # 8 HM・手持ち3条件・地形境界・BPS往復を再照合
 make battle-rules # 固定CFRU-JPの状態異常・急所・天候ownerをstage 23として確定
 make battle-rules-check # 固定RNG・通常/double/Factory/Raid回帰・BPS往復を再照合
+make battle-ui # 実タイプ・有効度・タイプ一致表示をstage 24へ結合
+make battle-ui-check # 5表示区分・Stellar・全戦闘mode・文字列境界を再照合
 make final       # clean入力からv1.2.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
@@ -140,6 +142,12 @@ damage、天候のownerが固定CFRU-JP payloadだけであることを確認す
 眠り・凍り、毒・猛毒・やけど、急所1.5倍とstage分母、天候5/8 turn・damage補正・終了を
 固定RNGの実ROMで検査する。対象byteは既に正しかったため追加patchは0件で、stage 22とbyte-identical。
 通常、trainer、double、Factory Trial、Raidを現行stageで通し、重い全再構築は行わない。
+
+追加stage 24はstage 23の固定CFRU move menu ownerを維持し、profileで無効だった実タイプ・
+有効度表示を956-byte adapterで接続する。`EmitChooseMove` が実damage側 `VisualTypeCalc` から
+事前計算した結果を表示し、抜群・半減・無効・タイプ一致とStellar/Tera Blastを既存CFRUの
+文字列・paletteで示す。通常、trainer、double、Factory Trial、Raidの入力復帰、canonical名、
+clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない。
 
 ## 効率方針
 

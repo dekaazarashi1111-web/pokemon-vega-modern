@@ -361,3 +361,14 @@
   - 麻痺、眠り、凍り、毒、猛毒、やけど、急所、4天候と単一damage予約を固定RNG実ROMで検証した。
   - 通常/trainer/double、Factory Trial、Raidを現行ROMで通し、追加patch 0のbyte-identical stage 23を確定した。公開releaseと重いfresh buildは後続統合まで保留した。
 - Verify: `make battle-rules-check`、focused 6 tests、current-stage policy smoke、py_compile、task graph/private guard、diff check PASS。stage 23 SHA-256 `64dafd7c265f44153465e630dafd1a0928ba34819d657a6ad3870d2a181e87bf`。
+
+## 2026-08-14T14:41:59+09:00
+
+- Version: `battle-ui-stage24`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-BATTLE-UI` / 戦闘UIと有効度表示をCFRU/Factory系へ統一する
+- Summary:
+  - 固定CFRU-JPの技選択ownerを維持し、実damageと同じ事前計算値から実タイプ・有効度・STABを表示する956-byte adapterをstage 24へ結合した。
+  - 1×、2×以上、0.5×以下、0×、Stellar/Tera Blast、double対象別表示を既存CFRU文字列・paletteで実ROM検証した。
+  - canonical実使用名の未解決0件と、wild/trainer/double/Factory/Raidの入力復帰・cleanupを確認した。公開releaseと重いfresh buildは後続統合まで保留した。
+- Verify: `make battle-ui-check`、focused 6 tests、UI 2-process / policy current-stage libmGBA smoke、py_compile、task graph/private guard、diff check PASS。stage 24 SHA-256 `870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387`。

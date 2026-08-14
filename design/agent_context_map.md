@@ -51,7 +51,7 @@
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
 - HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules: `tasks/USER_20260814_BATTLE_RULES.md`、`config/battle_rules.json`、`scripts/build_battle_rules.py`、`tools/mgba_battle_rules_smoke.c`、固定CFRU-JP battle source、stage 22/23、T06 hook/runtime表。
-- battle UI: `tasks/USER_20260814_BATTLE_UI.md`、固定CFRU-JP move menu/type source、stage 23、Factory参照fixture。
+- battle UI: `tasks/USER_20260814_BATTLE_UI.md`、`config/battle_ui.json`、`overlays/battle_ui/`、`scripts/build_battle_ui.py`、`tools/mgba_battle_ui_smoke.c`、固定CFRU-JP move menu/type source、stage 23/24、T06 policy fixture。
 - わざメモリー: `tasks/USER_20260814_MOVE_MEMORY.md`、T09 learnset、CFRU技思い出し/技忘れ、Vegaシオウ/カラスバevent、item callback。
 - QOL release: `tasks/USER_20260814_QOL_RELEASE.md`、`scripts/build_release.py`、`docs/RELEASE_POLICY.md`、各先行taskの検証済みstage/hash。
 

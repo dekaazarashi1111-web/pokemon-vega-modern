@@ -116,6 +116,8 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
 - 各badge、D・Hビル、Vega殿堂入り、Kanto Leagueの直前/直後でfirst-availabilityと反復供給を照合する。
 - stage 23で麻痺速度1/2・行動不能1/4、眠り減少、凍り解凍1/5、毒1/8、固定CFRU猛毒counter、やけど1/16、急所stage分母と1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNGで検査する。
 - end-turn状態damageはHPを直接更新せず1回分のbattle scriptだけを予約し、5 stock rootが単一CFRU command tableを指すことを検査する。wild/trainer/doubleは専用fixture、Factory/Raidは現行stageのpolicy scheduler回帰を使う。
+- stage 24の技選択では `EmitChooseMove` の事前計算結果を使い、1×、2×以上、0.5×以下、0×、タイプ一致、Stellar/Tera Blastを既存CFRU文字列・paletteと比較する。doubleは選択対象別、wild/trainerは入力からターン完了、Factory/Raidはpolicy schedulerとcleanupまで検査する。
+- 技名・特性名・道具通知名・Species対象名はcanonical model/tableの件数とhashを照合する。未使用のItem sentinel/reserved slotと非Dex Species gapだけを明示的に不活性として許容し、実戦fixtureでplaceholder表示0件を要求する。
 
 ## 8. Trainer AI・難易度
 

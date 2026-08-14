@@ -49,6 +49,7 @@
 - `scripts/build_first_battle_hotfix.py`: stage 20の行動順schedulerへ不正Quick Claw/Custap indicator防御を14-byte命令patchとして適用し、stage 21・allocation・実ROM回帰・BPS往復を決定的に生成・照合
 - `scripts/build_hm_field_access.py`: stage 21へVega HM01〜08所持runtimeと8 callback guardを結合し、stage 22・allocation・実ROM境界・BPS往復を決定的に生成・照合
 - `scripts/build_battle_rules.py`: stage 22のCFRU rule owner/defaultをsource・hook・固定RNGで監査し、zero-patch stage 23・通常/double/Factory/Raid回帰・BPS往復を生成・照合
+- `scripts/build_battle_ui.py`: stage 23へ固定CFRUの実タイプ・有効度・STAB表示adapterを結合し、stage 24・canonical文字列・全battle mode・BPS往復を決定的に生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査
@@ -115,4 +116,5 @@
 - `tools/mgba_first_battle_loop_smoke.c`, `scripts/build_first_battle_hotfix.py`: 初戦3分岐、不正indicator fault injection、正規Quick Claw/Custap/Quick Draw、stage 21の正本
 - `overlays/hm_field_access/`, `tools/mgba_hm_field_access_smoke.c`, `scripts/build_hm_field_access.py`: Vega Item 339〜346、party非依存field能力、地形/callback境界、stage 22の正本
 - `config/battle_rules.json`, `tools/mgba_battle_rules_smoke.c`, `scripts/build_battle_rules.py`: 固定CFRU-JP状態異常・急所・天候default、単一owner、固定RNG、stage 23の正本
+- `config/battle_ui.json`, `overlays/battle_ui/`, `tools/mgba_battle_ui_smoke.c`, `scripts/build_battle_ui.py`: 固定CFRU-JPの技タイプ・有効度・STAB表示、Stellar、canonical文字列、stage 24の正本
 - `tools/release/`, `scripts/build_release.py`: T18のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

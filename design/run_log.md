@@ -843,3 +843,29 @@
   - memory生成BPS SHA-256 `c8a82df7010419c18397f673757b3af23487278d4725312e06e054a3f7d96fba`、round-trip exact `true`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みCFRU-JP source、検証済みstage 06/22、clean私有入力だけを参照した。
+
+## 2026-08-14T14:41:59+09:00
+
+- Task: `USER-20260814-BATTLE-UI` / 戦闘UIと有効度表示をCFRU/Factory系へ統一する
+- Status: DONE
+- Summary:
+  - 固定CFRU-JP `e24a16fe39e27ae162faf5b78596d1f3df18489d` のmove menuを監査し、stockの技選択・タイプ・有効度・入力hookはbaseline / factory-like / minimalの全profileでCFRU ownerだった。一方、現行minimal profileは実タイプ・有効度表示macroだけを明示的に無効化していた。
+  - `EmitChooseMove` が実damage側 `VisualTypeCalc` から作る `moveTypes/moveResults` を正本にする956-byte Thumb adapterを中央allocatorの `0x092CC954`へ配置した。既存CFRUのタイプ表示entryと有効度表示entryの先頭8 byteだけをadapterへ接続し、Factory ROM byteと独自相性表は使用していない。
+  - 既存CFRUの文字列・paletteで通常1×、抜群2×以上、半減0.5×以下、無効0×、タイプ一致を表示する。StellarとTera Blast選択前後、doubleの選択対象別結果も同じ事前計算値へ同期した。
+  - canonical Move 1063、Ability 312、Item 999、Species 1621を監査し、実使用名の未解決文字列は0件だった。68個のItem sentinel/reserved slotは価格・重要度・battle use・hold effectが全て0/none、15個のSpecies placeholderはNONE/非Dex予約gapだけで、初戦実ROMのplaceholder item通知は0件だった。
+  - libmGBA exact-ROMでwild、trainer、4 battler double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupを通した。stage 23を再利用し、公開release更新と重いfresh rebuildは後続の全QOL統合まで行っていない。
+- Files changed:
+  - runtime/config/build: `config/battle_ui.json`, `overlays/battle_ui/**`, `scripts/build_battle_ui.py`, `tools/mgba_battle_ui_smoke.c`, `Makefile`
+  - tests: `tests/test_battle_ui.py`
+  - task/docs/state: `tasks/USER_20260814_BATTLE_UI.md`, `README.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY}.md`, `design/{agent_context_map,catalog,current_state,report_lifecycle_index,tasks_next,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/24_battle_ui.{gba,json}`, `build/stages/{24_allocation,24_mgba_battle_ui,24_mgba_battle_policy}.json`, `generated/runtime/battle_ui*`, `reports/generated/battle_ui.md`
+- Verify:
+  - `make battle-ui-check`: PASS。8成果のbyte一致、固定source/T06 ABI、15 owner rows、entry 2件だけの変更、956-byte runtime、allocator overlap 0、canonical文字列、BPS完全往復を確認した。
+  - `python3 -m unittest tests.test_battle_ui -v`: PASS（6 tests）。決定論build、CFRU owner、1×/抜群/半減/無効/STAB、Stellar/Tera Blast、double対象、全battle mode、予約文字列境界を検査した。
+  - battle UI libmGBA smoke: PASS（独立2 process）。Factory/Raid policy smoke: PASS（現行stage 1 process＋T06同一runner 2 process証跡再利用）。warnings/errors 0。
+  - `python3 -m py_compile scripts/build_battle_ui.py`: PASS。WSL repository全体verifyと重いfresh rebuildは実行していない。
+- Report identity:
+  - stage 24 / runtime / allocation / UI mGBA / policy mGBA / report SHA-256 `870d3a49e9f4004e3bf7003469c2159dc73a96cb81c5101f572971a08af73387` / `c6e11c5d8cc37246b84b93db090a387e9eec4be0a8e5af12d35bdfcc0f472e73` / `30993166cb36cc7c26635e5852b259c7d0f71f87d7650e09a37d483239cdd363` / `cbfd05dcab2848647f5d91d8ea7ebe06c2ab10602ad8156e29bc5e82be1d46d0` / `52905e3c0f474eef72ed82135f3facf124f31c9c8c6df078c4706b828908cde9` / `c6d4a0d25703ef4a6137b92670771b5fd215a3338f68838fb9681e2b5aeca581`。
+  - memory生成BPS SHA-256はstage metadataに固定し、round-trip exact `true`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みCFRU-JP source、検証済みstage 06/23、canonical生成表、clean私有入力だけを参照した。

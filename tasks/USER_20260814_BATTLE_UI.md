@@ -19,10 +19,10 @@ Vega固有の旧battle UIを主経路に残さず、固定CFRU-JPまたはFactor
 
 ## 受入条件
 
-- [ ] 通常戦とFactoryで同じbattle UI ownerと有効度判定を使う。
-- [ ] 1×、2×以上、0.5×以下、0×、Stellar/特殊規則の表示が実damage判定と一致する。
-- [ ] 特性popup、item通知、技名、対象名に未解決文字列がない。
-- [ ] single/double、trainer、wild、Factory、Raidの入力と画面復帰がPASSする。
+- [x] 通常戦とFactoryで同じbattle UI ownerと有効度判定を使う。
+- [x] 1×、2×以上、0.5×以下、0×、Stellar/特殊規則の表示が実damage判定と一致する。
+- [x] 特性popup、item通知、技名、対象名に未解決文字列がない。
+- [x] single/double、trainer、wild、Factory、Raidの入力と画面復帰がPASSする。
 
 ## 完了
 
