@@ -209,7 +209,7 @@ def _battle_rule_fixture(root: Path, stage: bytes) -> dict[str, Any]:
     if first != second or first.get("rom_sha256") != _sha(stage):
         _fail("final-stage battle rules are not deterministic/current")
     compatible = copy.deepcopy(first)
-    compatible["rom_sha256"] = build_battle_rules.EXPECTED_STAGE22_SHA256
+    compatible["rom_sha256"] = build_battle_rules._expected_stage22(root)
     build_battle_rules._validate_rule_fixture(compatible, config)
     first["process_runs"] = 2
     return first

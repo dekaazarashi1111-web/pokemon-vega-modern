@@ -22,9 +22,19 @@ enum {
     UI_MOVE_CURSOR = 0x02023F5C,
     UI_CONTROLLER_FUNCS = 0x03005020,
     UI_MULTI_CURSOR = 0x03005034,
+    UI_SAVE_BLOCK2_PTR = 0x0300504C,
+    UI_OPTIONS_BUTTON_MODE_OFFSET = 0x13,
+    UI_OPTIONS_BUTTON_MODE_LR = 1,
+    UI_MAIN = 0x03003130,
+    UI_MAIN_HELD_KEYS_RAW = 0x28,
+    UI_MAIN_NEW_KEYS_RAW = 0x2A,
+    UI_MAIN_NEW_KEYS = 0x2E,
     UI_DISPLAYED_STRING = 0x020228FC,
     UI_PLTT_UNFADED = 0x0203712C,
     UI_NEW_BATTLE_STRUCT_PTR = 0x0203DFB0,
+    UI_HANDLE_CHOOSE_ACTION = 0x0802DC15,
+    UI_NEWBS_ZMOVE_FLAGS = 0x248,
+    UI_NEWBS_VIEWING_DETAILS = 1 << 5,
 
     UI_INFO_MOVES = 0x00,
     UI_INFO_MON_TYPE1 = 0x12,
@@ -66,7 +76,9 @@ static uint32_t ui_text_super;
 static uint32_t ui_text_resisted;
 static uint32_t ui_text_none;
 static uint32_t ui_text_stab;
+static uint32_t ui_text_accuracy;
 static uint32_t ui_type_matrix;
+static uint32_t ui_handle_choose_move;
 static uint32_t ui_handle_choose_target;
 
 struct UIEffectObservation {
@@ -238,11 +250,12 @@ static void print_effect(const struct UIEffectObservation *row)
 
 int main(int argc, char **argv)
 {
-    if (argc != 16) {
+    if (argc != 18) {
         fprintf(stderr,
                 "usage: %s ROM SHA TYPE EFFECT CLASSIFY GETTYPE TYPE_ENTRY "
                 "EFFECT_ENTRY PALETTE TEXT_SUPER TEXT_RESISTED TEXT_NONE "
-                "TEXT_STAB TYPE_MATRIX HANDLE_CHOOSE_TARGET\n",
+                "TEXT_STAB TEXT_ACCURACY TYPE_MATRIX HANDLE_CHOOSE_MOVE "
+                "HANDLE_CHOOSE_TARGET\n",
                 argv[0]);
         return 2;
     }
@@ -261,8 +274,10 @@ int main(int argc, char **argv)
     ui_text_resisted = parse_address(argv[11]);
     ui_text_none = parse_address(argv[12]);
     ui_text_stab = parse_address(argv[13]);
-    ui_type_matrix = parse_address(argv[14]);
-    ui_handle_choose_target = parse_address(argv[15]);
+    ui_text_accuracy = parse_address(argv[14]);
+    ui_type_matrix = parse_address(argv[15]);
+    ui_handle_choose_move = parse_address(argv[16]);
+    ui_handle_choose_target = parse_address(argv[17]);
 
     struct mLogger logger = {.log = quiet_log, .filter = NULL};
     mLogSetDefaultLogger(&logger);
@@ -282,13 +297,193 @@ int main(int argc, char **argv)
         || hook_target(core, ui_effect_entry) != effect_runtime) {
         ui_die("physical move-menu ownership chain differs");
     }
-
     run_trace_prefix(core);
     if (log_problem_count) ui_die("mGBA warned/errored during field boot");
     struct Snapshot field = take_snapshot(core);
     (void)setup_wild(core, &field);
     if (read32(core, UI_NEW_BATTLE_STRUCT_PTR) == 0)
         ui_die("battle UI fixture has no CFRU battle state");
+
+    /* Enter the move screen through the real action/move controllers. */
+    bool actual_menu_path = false;
+    bool action_menu_seen = false;
+    for (unsigned press = 0; press < 32U && !action_menu_seen; ++press) {
+        for (unsigned frame = 0; frame < 120U; ++frame) {
+            run_key_frames(core, 0, 1U);
+            uint32_t controller = read32(core, UI_CONTROLLER_FUNCS);
+            if (controller == ui_handle_choose_move) {
+                actual_menu_path = true;
+                action_menu_seen = true;
+                break;
+            }
+            if (controller == UI_HANDLE_CHOOSE_ACTION) {
+                action_menu_seen = true;
+                break;
+            }
+        }
+        if (!action_menu_seen)
+            run_key_frames(core, 1, 1U); /* dismiss one intro message */
+    }
+    if (action_menu_seen && !actual_menu_path) {
+        write8(core, BATTLE_CORE_ACTION_SELECTION_CURSOR, 0);
+        /* A whole mGBA video-frame call can span both callbacks and let one A
+         * edge immediately select a move.  Step the live scheduler until the
+         * production action handler consumes A, then release it before the
+         * move handler is installed. */
+        core->setKeys(core, 1U);
+        bool fight_consumed = false;
+        for (uint32_t instruction = 0;
+             instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+             ++instruction) {
+            core->step(core);
+            if (read32(core, UI_CONTROLLER_FUNCS)
+                != UI_HANDLE_CHOOSE_ACTION) {
+                fight_consumed = true;
+                break;
+            }
+        }
+        core->setKeys(core, 0);
+        write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+        write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+        if (!fight_consumed)
+            ui_die("Fight input was not consumed by the CFRU action handler");
+        for (unsigned frame = 0; frame < 240U; ++frame) {
+            run_key_frames(core, 0, 1U);
+            if (read32(core, UI_CONTROLLER_FUNCS) == ui_handle_choose_move) {
+                actual_menu_path = true;
+                break;
+            }
+        }
+    }
+    if (!actual_menu_path) {
+        fprintf(stderr,
+                "mgba-battle-ui-smoke: controller debug active=%u "
+                "c0=%08" PRIx32 " c1=%08" PRIx32 " c2=%08" PRIx32
+                " c3=%08" PRIx32 " expected=%08" PRIx32 "\n",
+                read8(core, UI_ACTIVE_BATTLER),
+                read32(core, UI_CONTROLLER_FUNCS),
+                read32(core, UI_CONTROLLER_FUNCS + 4U),
+                read32(core, UI_CONTROLLER_FUNCS + 8U),
+                read32(core, UI_CONTROLLER_FUNCS + 12U),
+                ui_handle_choose_move);
+        ui_die("real action-to-move menu did not reach the CFRU controller");
+    }
+
+    uint32_t menu_new_battle = read32(core, UI_NEW_BATTLE_STRUCT_PTR);
+    bool menu_waiting_for_input = menu_new_battle != 0;
+    for (unsigned frame = 0; frame < 120U; ++frame) {
+        run_key_frames(core, 0, 1U);
+        if (read32(core, UI_CONTROLLER_FUNCS) != ui_handle_choose_move
+            || read32(core, UI_NEW_BATTLE_STRUCT_PTR) != menu_new_battle) {
+            menu_waiting_for_input = false;
+            break;
+        }
+    }
+    if (!menu_waiting_for_input)
+        ui_die("move menu did not remain idle after releasing A");
+
+    /* The fixed upstream CFRU menu uses L to toggle contact/power/accuracy
+     * details.  Verify that exact user-visible route and the upstream gNewBS
+     * pointer together, then close it again before the remaining cases. */
+    uint32_t save_block2 = read32(core, UI_SAVE_BLOCK2_PTR);
+    if (save_block2 < 0x02000000U || save_block2 >= 0x02040000U) {
+        fprintf(stderr, "mgba-battle-ui-smoke: save block 2=%08" PRIx32 "\n",
+                save_block2);
+        ui_die("save block 2 pointer differs on move-details route");
+    }
+    /* HELP consumes L before the battle callback, while L=A intentionally
+     * gives A precedence.  Upstream CFRU's dedicated details control is the
+     * FRLG L/R button mode. */
+    write8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET,
+           UI_OPTIONS_BUTTON_MODE_LR);
+    core->setKeys(core, 0x200U);
+    bool l_details_opened = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (read32(core, UI_NEW_BATTLE_STRUCT_PTR) != menu_new_battle)
+            break;
+        if (read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS)
+            & UI_NEWBS_VIEWING_DETAILS) {
+            l_details_opened = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+    bool l_release_seen = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (!(read16(core, UI_MAIN + UI_MAIN_HELD_KEYS_RAW) & 0x200U)) {
+            l_release_seen = true;
+            break;
+        }
+    }
+    bool l_accuracy_label = contains_string(
+        core, UI_DISPLAYED_STRING, ui_text_accuracy);
+    bool l_pointer_stable =
+        read32(core, UI_NEW_BATTLE_STRUCT_PTR) == menu_new_battle;
+    if (!l_details_opened || !l_release_seen
+        || !l_accuracy_label || !l_pointer_stable) {
+        fprintf(stderr,
+                "mgba-battle-ui-smoke: L details debug opened=%u accuracy=%u "
+                "pointer=%u before=%08" PRIx32 " after=%08" PRIx32
+                " flags=%02x controller=%08" PRIx32
+                " sb2=%08" PRIx32 " mode=%u raw=%04x keys=%04x\n",
+                l_details_opened, l_accuracy_label, l_pointer_stable,
+                menu_new_battle, read32(core, UI_NEW_BATTLE_STRUCT_PTR),
+                read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS),
+                read32(core, UI_CONTROLLER_FUNCS), save_block2,
+                read8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET),
+                read16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW),
+                read16(core, UI_MAIN + UI_MAIN_NEW_KEYS));
+        ui_die("L move-details accuracy screen did not open safely");
+    }
+    core->setKeys(core, 0x200U);
+    bool l_details_closed = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (!(read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS)
+              & UI_NEWBS_VIEWING_DETAILS)) {
+            l_details_closed = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW, 0);
+    write16(core, UI_MAIN + UI_MAIN_NEW_KEYS, 0);
+    bool close_release_seen = false;
+    for (uint32_t instruction = 0;
+         instruction < BATTLE_CORE_DIRECT_CALL_LIMIT;
+         ++instruction) {
+        core->step(core);
+        if (!(read16(core, UI_MAIN + UI_MAIN_HELD_KEYS_RAW) & 0x200U)) {
+            close_release_seen = true;
+            break;
+        }
+    }
+    if (!l_details_closed
+        || !close_release_seen
+        || read32(core, UI_CONTROLLER_FUNCS) != ui_handle_choose_move) {
+        fprintf(stderr,
+                "mgba-battle-ui-smoke: L close debug closed=%u flags=%02x "
+                "controller=%08" PRIx32 " expected=%08" PRIx32
+                " pointer=%08" PRIx32 " mode=%u raw=%04x keys=%04x\n",
+                l_details_closed,
+                read8(core, menu_new_battle + UI_NEWBS_ZMOVE_FLAGS),
+                read32(core, UI_CONTROLLER_FUNCS), ui_handle_choose_move,
+                read32(core, UI_NEW_BATTLE_STRUCT_PTR),
+                read8(core, save_block2 + UI_OPTIONS_BUTTON_MODE_OFFSET),
+                read16(core, UI_MAIN + UI_MAIN_NEW_KEYS_RAW),
+                read16(core, UI_MAIN + UI_MAIN_NEW_KEYS));
+        ui_die("L move-details screen did not return to move selection");
+    }
 
     struct UIEffectObservation effects[] = {
         observe_effect(core, ui_effect_entry | 1U, classify_runtime,
@@ -368,7 +563,7 @@ int main(int argc, char **argv)
         ui_die("wild/trainer/double input or screen return failed");
 
     printf("{\"schema_version\":1,\"status\":\"PASS\","
-           "\"fixture\":\"cfru_move_menu_effectiveness_v1\","
+           "\"fixture\":\"cfru_move_menu_effectiveness_v3\","
            "\"rom_sha256\":\"%s\",\"read_only\":true,"
            "\"warnings_errors\":0,\"owner\":{"
            "\"type_hook\":\"0x%08X\",\"type_entry\":\"0x%08X\","
@@ -384,7 +579,10 @@ int main(int argc, char **argv)
            ",\"tera_blast_clear\":%" PRIu32 "},"
            "\"matrix_multipliers\":[%" PRIu32 ",%" PRIu32
            ",%" PRIu32 ",%" PRIu32 ",%" PRIu32 "],"
-           "\"double_target_specific\":true,\"routes\":{"
+           "\"double_target_specific\":true,\"actual_menu_path\":true,"
+           "\"l_move_details\":{\"opened\":true,\"accuracy_label\":true,"
+           "\"closed\":true,\"pointer_stable\":true,\"button_mode\":1},"
+           "\"routes\":{"
            "\"wild\":{\"pp_spent\":true,\"outcome\":%u},"
            "\"trainer\":{\"pp_spent\":true,\"outcome\":%u},"
            "\"double\":{\"both_opponents_hit\":true,\"battlers\":%u}},"

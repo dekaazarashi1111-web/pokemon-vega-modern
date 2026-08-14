@@ -65,6 +65,7 @@ class BattleCoreBuilderTests(unittest.TestCase):
         self.assertEqual(
             fixed["pending_shadow"],
             {
+                "new_battle_struct_pointer": 0x0203DFB0,
                 "start": 0x0203E040,
                 "end_exclusive": 0x0203E074,
                 "size": 52,
@@ -111,6 +112,7 @@ class BattleCoreBuilderTests(unittest.TestCase):
             subprocess.run(
                 [
                     "/usr/bin/arm-none-eabi-ld", "-r",
+                    "--defsym=gNewBS=0x0203DFB0",
                     "--defsym=gCfruPendingBattleShadow=0x0203E040",
                     "--defsym=gRngValue=0x03005040",
                     "-o", str(linked), str(object_path),
@@ -120,6 +122,7 @@ class BattleCoreBuilderTests(unittest.TestCase):
             self.assertEqual(
                 _stock_ram_contract(linked),
                 {
+                    "gNewBS": 0x0203DFB0,
                     "gCfruPendingBattleShadow": 0x0203E040,
                     "gRngValue": 0x03005040,
                 },
@@ -127,6 +130,7 @@ class BattleCoreBuilderTests(unittest.TestCase):
             subprocess.run(
                 [
                     "/usr/bin/arm-none-eabi-ld", "-r",
+                    "--defsym=gNewBS=0x0203DFB0",
                     "--defsym=gCfruPendingBattleShadow=0x0203E040",
                     "--defsym=gRngValue=0x03005044",
                     "-o", str(linked), str(object_path),
@@ -139,6 +143,7 @@ class BattleCoreBuilderTests(unittest.TestCase):
     def test_pending_shadow_rejects_input_references_and_helper_calls(self) -> None:
         fixture_config = {
             "rom": {
+                "new_battle_struct_pointer": 0x0203DFB0,
                 "pending_shadow_start": 0x0203E040,
                 "pending_shadow_end_exclusive": 0x0203E074,
                 "pending_shadow_magic": 0x54303650,

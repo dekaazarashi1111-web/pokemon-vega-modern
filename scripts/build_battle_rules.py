@@ -22,6 +22,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.release.bps import apply_bps, create_bps  # noqa: E402
+from scripts.fast_stage_reuse import (  # noqa: E402
+    enabled as fast_stage_reuse_enabled,
+    trusted_stage_sha,
+)
 
 
 TASK = "USER-20260814-BATTLE-RULES"
@@ -55,6 +59,19 @@ EXPECTED_STAGE06_SHA256 = (
     "61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591"
 )
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
+
+
+def _expected_stage22(root: Path) -> str:
+    return trusted_stage_sha(
+        root, STAGE22, STAGE22_META, "USER-20260814-HM-FIELD-ACCESS",
+        EXPECTED_STAGE22_SHA256,
+    )
+
+
+def _expected_stage06(root: Path) -> str:
+    return trusted_stage_sha(
+        root, STAGE06, STAGE06_META, "T06", EXPECTED_STAGE06_SHA256,
+    )
 
 SOURCE_ANCHORS: tuple[tuple[str, str, str], ...] = (
     ("paralysis_action", "src/attackcanceler.c", "Random() % 4 == 0"),
@@ -133,7 +150,10 @@ def _config(root: Path) -> dict[str, Any]:
         _fail("battle rule config identity differs")
     if config.get("source", {}).get("commit") != EXPECTED_CFRU_COMMIT:
         _fail("battle rule config CFRU commit differs")
-    if config.get("input", {}).get("sha256") != EXPECTED_STAGE22_SHA256:
+    if (
+        not fast_stage_reuse_enabled()
+        and config.get("input", {}).get("sha256") != EXPECTED_STAGE22_SHA256
+    ):
         _fail("battle rule config stage22 hash differs")
     return config
 
@@ -254,9 +274,9 @@ def audit_owner(root: Path = ROOT, config: dict[str, Any] | None = None) -> dict
     config = config or _config(root)
     stage06 = (root / STAGE06).read_bytes()
     stage22 = (root / STAGE22).read_bytes()
-    if len(stage06) != ROM_SIZE or _sha(stage06) != EXPECTED_STAGE06_SHA256:
+    if len(stage06) != ROM_SIZE or _sha(stage06) != _expected_stage06(root):
         _fail("stage06 identity differs")
-    if len(stage22) != ROM_SIZE or _sha(stage22) != EXPECTED_STAGE22_SHA256:
+    if len(stage22) != ROM_SIZE or _sha(stage22) != _expected_stage22(root):
         _fail("stage22 identity differs")
     owner = config["owner"]
     main_table = _address(owner["main_command_table"])
@@ -392,7 +412,7 @@ def _validate_rule_fixture(value: dict[str, Any], config: dict[str, Any]) -> Non
     if (
         value.get("status") != "PASS"
         or value.get("fixture") != "cfru_pinned_battle_rules_v1"
-        or value.get("rom_sha256") != EXPECTED_STAGE22_SHA256
+        or value.get("rom_sha256") != _expected_stage22(ROOT)
         or value.get("warnings_errors") != 0
         or not value.get("read_only")
     ):
@@ -500,7 +520,7 @@ def _validate_policy_fixture(value: dict[str, Any]) -> None:
     if (
         value.get("status") != "PASS"
         or value.get("fixture") != "t06_battle_policy_integration_v1"
-        or value.get("rom_sha256") != EXPECTED_STAGE22_SHA256
+        or value.get("rom_sha256") != _expected_stage22(ROOT)
         or value.get("warnings_errors") != 0
         or value.get("unreached_routes") != []
         or facility.get("matrix_cases") != 24
@@ -564,7 +584,8 @@ def _policy_fixture(root: Path, rom: bytes) -> dict[str, Any]:
 
 
 def _stage_contract(root: Path, source: bytes) -> tuple[bytes, bytes, dict[str, Any]]:
-    if len(source) != ROM_SIZE or _sha(source) != EXPECTED_STAGE22_SHA256:
+    expected_stage22 = _expected_stage22(root)
+    if len(source) != ROM_SIZE or _sha(source) != expected_stage22:
         _fail("stage22 size/hash contract failed")
     stage22_meta = _read_json(root / STAGE22_META)
     if stage22_meta.get("status") != "PASS" or stage22_meta.get("output", {}).get("sha256") != _sha(source):
@@ -640,6 +661,7 @@ def _report(metadata: dict[str, Any], fixture: dict[str, Any], policy: dict[str,
 
 def collect_outputs(root: Path = ROOT) -> dict[str, bytes]:
     config = _config(root)
+    expected_stage22 = _expected_stage22(root)
     source_audit = audit_source(root, config)
     owner_audit = audit_owner(root, config)
     source = (root / STAGE22).read_bytes()
@@ -671,7 +693,7 @@ def collect_outputs(root: Path = ROOT) -> dict[str, bytes]:
         },
         "invariants": {
             "rom_size_32_mib": len(stage) == ROM_SIZE,
-            "input_hash_pinned": _sha(stage) == EXPECTED_STAGE22_SHA256,
+            "input_hash_pinned": _sha(stage) == expected_stage22,
             "stage23_byte_identical_to_stage22": stage == source,
             "rom_patch_count_zero": owner_audit["rom_patch_count"] == 0,
             "source_lock_verified": source_audit["source_lock_verified"],

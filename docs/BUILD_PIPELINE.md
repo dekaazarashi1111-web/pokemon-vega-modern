@@ -148,8 +148,9 @@ ROM/source/toolchain hashが一致する検証済み成果を再利用し、全s
 `DISPLAY_REAL_MOVE_TYPE_ON_MENU` / `DISPLAY_EFFECTIVENESS_ON_MENU` source経路と同じABIを持つ
 adapterを中央allocatorへ置き、既存のタイプ・有効度表示entry 2件だけをstage 24へ接続する。
 判定は `EmitChooseMove` が `VisualTypeCalc` から生成した `moveTypes/moveResults` を使い、独自相性表や
-Factory ROM byteを持たない。`make battle-ui-check` は1×、2×以上、0.5×以下、0×、STAB、Stellar、
-Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、
+Factory ROM byteを持たない。`make battle-ui-check` は等倍・タイプ不一致が元CFRUどおり空欄であること、
+2×以上、0.5×以下、0×、STAB、Stellar、Tera Blast、double対象別表示、通常action→技選択、
+ボタン設定L/RでのL詳細開閉、wild/trainer/Factory/Raid入力復帰、canonical文字列、allocation、
 BPS往復、8成果のbyte一致を副作用なしで照合する。
 
 `make move-memory` は検証済みstage 24を入力に、Item 347と1個目のバッジ報酬、シオウ・
@@ -170,6 +171,19 @@ Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモ�
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
 を固定順に実行する。最終ROMとmetadataは
 `build/final/vega-modern-kanto-v1.3.3.{gba,json}` へ出し、stageを上書きしない。
+
+### 開発用差分ROM
+
+```bash
+make fast-rom
+make fast-rom-battle-ui
+make fast-rom-battle-core
+```
+
+`make fast-rom`は前回PASS時と現在のGit管理・未追跡非ignore入力をhash比較し、最初の変更所有stageを
+自動選択する。再利用する各stageは32 MiB ROM、PASS metadata、出力SHA-256、invariantを相互照合し、
+一致しない成果を黙って継ぎ足さない。所有stageを把握している場合は上記の明示targetを使える。
+最終工程はcurrentなstage 25がない場合に全chainへfallbackせず失敗し、必要な所有stageからの再生成を促す。
 
 `make release-patch` はclean FireRed日本版Rev.0から最終ROMへのBPSを生成し、自己実装とは
 独立したdecode経路で完全往復する。README、changelog、credits、checksums、known issues、

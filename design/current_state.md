@@ -1,10 +1,13 @@
 # current_state.md
 
-最終更新: 2026-08-14
+最終更新: 2026-08-15
 
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置・tool inventory・可変計測値依存を修正し、annotated tag `v1.3.3` の隔離再構築でfinal/BPS/ZIPをbyte一致させてreleaseを確定した。
+- v1.3.3追試では、戦闘UIが未適用だったのではなく、stage 24の実タイプ・有効度・STAB表示が最終ROMへ既に入っていたことを通常の「たたかう→技選択」経路で再確認した。等倍・タイプ不一致は元CFRUどおり空欄のまま、抜群・いまひとつ・無効・タイプ一致を表示する。L詳細はボタン設定`L/R`で技名・接触・威力・命中を開閉し、`HELP`では既存ヘルプがLを先に受け、`L=A`ではA入力になる。
+- アクタシをnew gameで中央から選ぶ自然経路を追加検証し、Trainer 327初戦でAbility 67対65、PP 35→34、双方HP更新、不正Quick Claw/Quick Draw/無名item通知0、`gNewBS` pointerとpre-battle shadow安定を確認した。ユーザーのDelta exportはSHA-256 `d316dc18f9442ee127cf4bc9d32cdb7a279c32b6e94179990c88c8cedda2539b`のVBA-M gzip stateとして原本不変で扱い、ROM/state対応が確定しないため自然経路を正本証跡とした。
+- `make fast-rom`と所有stage指定targetを追加し、PASS済みstageのROM・metadata・入力hashを相互検査して変更所有stage以降だけを再生成する。T06の固定上流2 buildは並列（各286.6/287.0秒）、後段move-memory→QOL統合→finalは214.313秒で完了した。最終ROMはv1.3.3とbyte-identical（SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`）のためversionは上げていない。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
@@ -14,7 +17,7 @@
 - 初戦の相手リープンはItem ID 0 / hold effect 0で正常だが、行動順schedulerが残留Quick Claw/Custap indicatorを再検証せず通知へ進むと、Item 0名の「？？？？？？？？」を反復して行動が止まることを命令単位fault injectionで再現した。通知直前のhold effect 26/96再検証はT06 sourceへ統合し、stage 21は統合済みの場合をzero-patchとして確認する。3御三家、正規Quick Claw/Custap/Quick Draw、clean ROMからのBPS完全往復がPASSし、SHA-256はstage 20と同じ `d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd`。新規allocationは0。
 - Vegaの実HMは既存Item 339〜346で、CFRU追加別名570〜577とは分離した。stage 22はHM05をフラッシュ、HM08をダイビングとして、バッグ所持だけでfield能力を許可する。badge、手持ち数、習得、適性、技枠を解禁条件から外し、既存map/terrain/follower/script境界とcallbackを維持する。8 HM×手持ち0体／未習得／習得済み、snapshot復元、Surf状態、BPS往復がPASSし、SHA-256は `18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407`、runtimeは408 bytes、allocation overlapは0。
 - stage 22の5 stock battle-script root、command table、行動順・end-turn・status hookは固定CFRU-JP `e24a16f...` payloadの単一ownerで、T06から対象15 surfaceがbyte不変だった。legacy battle defineは全て無効で、麻痺1/2・1/4、眠り、凍り1/5、毒1/8、固定sourceの猛毒初回、やけど1/16、急所1.5倍、天候5/8 turn・雨晴れ補正・終了を固定RNG実ROMで確認した。追加patch 0のstage 23はstage 22とbyte-identicalでSHA-256 `18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407`。通常/trainer/double、Factory Trial 24 matrix、Raid 5 shield/終了/cleanupが現行ROMでPASSした。
-- stage 24は固定CFRU move menuの実タイプ・有効度分岐を956-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。1×/2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、実使用canonical名をlibmGBAで確認した。SHA-256は `b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb`、allocation overlapは0。Factory ROM byteは使用していない。
+- stage 24は固定CFRU move menuの実タイプ・有効度分岐を956-byte adapterで接続し、`VisualTypeCalc`由来の事前計算結果から抜群・半減・無効・タイプ一致を既存文字列・paletteへ表示する。等倍・タイプ不一致空欄、2×以上/0.5×以下/0×、Stellar/Tera Blast、double対象別表示、wild/trainer/Factory/Raid入力復帰、実使用canonical名をlibmGBAで確認した。SHA-256は `b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb`、allocation overlapは0。Factory ROM byteは使用していない。
 - stage 25はItem 347をだいじなもの「わざメモリー」とし、1個目のバッジ報酬、シオウ、カラスバを共通coreへ接続した。通常Lv.0/1・未来Lv拒否・既知/重複除外、D・Hビル/HOF/ものまねハーブ/空き枠のタマゴ技5条件、最後の1技・PP Up警告・HM・form技、battle/facility/Raid拒否、cancel時mode resetをlibmGBAで確認した。技削除はCFRU `SetMonMoveSlot` を通し、ケルディオの通常form復帰とPP Up段階のslot移動もPASSした。SHA-256は `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`、runtimeは2,931 bytes、allocation overlapは0。
 - v1.3.3統合fixtureは同じstage 25で初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを再観測してPASSした。stage 20以後の新規serialized fieldは0。最終ROM SHA-256はstage 25と同じ `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
 - release source revision `c6f15f4ad421d35e33853039fae4ae4fabedb3ec` をローカルannotated tag `v1.3.3` へ固定した。隔離fresh checkoutからT01〜stage 25、final、BPS、9-member ZIPを再構築し、通常worktreeと完全byte一致した。BPS / ZIP SHA-256は `9f99d3663458b7f065de9ab0104eff54562331c0467c25fee3e9983935959c5f` / `aac8894833b5124e8ec82edd166291961c1c3c4c5e7c6a24c3c86fd96e894af5`。

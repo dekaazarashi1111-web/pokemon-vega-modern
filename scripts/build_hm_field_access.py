@@ -22,6 +22,7 @@ if str(ROOT) not in sys.path:
 
 from tools.release.bps import apply_bps, create_bps  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
+from scripts.fast_stage_reuse import trusted_stage_sha  # noqa: E402
 
 
 TASK = "USER-20260814-HM-FIELD-ACCESS"
@@ -30,6 +31,7 @@ CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE21 = Path("build/stages/21_first_battle_hotfix.gba")
 STAGE21_SHA256 = "d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd"
+STAGE21_META = Path("build/stages/21_first_battle_hotfix.json")
 STAGE21_ALLOCATION = Path("build/stages/21_allocation.json")
 STAGE06_META = Path("build/stages/06_battle_core.json")
 STAGE22 = Path("build/stages/22_hm_field_access.gba")
@@ -281,7 +283,11 @@ def _patch(
 
 def _build_stage(root: Path) -> tuple[dict[str, bytes], dict[str, Any]]:
     source = (root / STAGE21).read_bytes()
-    if len(source) != ROM_SIZE or _sha(source) != STAGE21_SHA256:
+    expected_stage21 = trusted_stage_sha(
+        root, STAGE21, STAGE21_META, "USER-20260814-FIRST-BATTLE-LOOP",
+        STAGE21_SHA256,
+    )
+    if len(source) != ROM_SIZE or _sha(source) != expected_stage21:
         _fail("stage21 size/hash contract failed")
     t06_offsets = _t06_offsets(root)
     patch_delta = (

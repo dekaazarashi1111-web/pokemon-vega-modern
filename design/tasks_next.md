@@ -24,3 +24,4 @@
 - [x] 戦闘UIと有効度表示をCFRU/Factory系へ統一する <!-- id:USER-20260814-BATTLE-UI -->
 - [x] 無料の共通技管理「わざメモリー」を実装する <!-- id:USER-20260814-MOVE-MEMORY -->
 - [x] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->
+- [x] 戦闘UI・アクタシ初戦ループ・高速差分ビルドを修正する <!-- id:USER-20260814-BATTLE-UI-LOOP-FAST-BUILD -->

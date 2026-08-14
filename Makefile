@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check hm-field-access hm-field-access-check battle-rules battle-rules-check battle-ui battle-ui-check move-memory move-memory-check qol-release-smoke qol-release-smoke-check final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check hm-field-access hm-field-access-check battle-rules battle-rules-check battle-ui battle-ui-check move-memory move-memory-check qol-release-smoke qol-release-smoke-check fast-rom fast-rom-battle-core fast-rom-battle-ui final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -147,6 +147,15 @@ qol-release-smoke:
 
 qol-release-smoke-check:
 	$(PYTHON) scripts/build_qol_release.py check
+
+fast-rom:
+	$(PYTHON) scripts/build_fast_rom.py --from auto
+
+fast-rom-battle-core:
+	$(PYTHON) scripts/build_fast_rom.py --from battle-core
+
+fast-rom-battle-ui:
+	$(PYTHON) scripts/build_fast_rom.py --from battle-ui
 
 final:
 	$(PYTHON) scripts/build_release.py final

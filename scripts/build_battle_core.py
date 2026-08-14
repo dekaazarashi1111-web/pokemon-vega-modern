@@ -67,6 +67,9 @@ SELECTED_PARTY_ORDER_BRIDGE_OFFSET = 0x000A1730
 SELECTED_PARTY_ORDER_STOCK_POINTER = 0x0203B048
 SELECTED_PARTY_ORDER_CFRU_POINTER = 0x0203C6C8
 SELECTED_PARTY_ORDER_CONSUMER = 0x080A16B0
+NEW_BATTLE_STRUCT_POINTER = 0x0203DFB0
+PENDING_SHADOW_START = 0x0203E040
+PENDING_SHADOW_END = 0x0203E074
 
 AI_SMOKE_SYMBOLS = (
     "AI_TrySwitchOrUseItem",
@@ -307,12 +310,21 @@ def _pending_shadow_input_contract(
     rom = config.get("rom")
     if not isinstance(rom, Mapping):
         _fail("T06 ROM contract missing")
+    new_battle_struct_pointer = _integer(
+        rom.get("new_battle_struct_pointer"), "new battle struct pointer"
+    )
     start = _integer(rom.get("pending_shadow_start"), "pending shadow start")
     end = _integer(
         rom.get("pending_shadow_end_exclusive"), "pending shadow end"
     )
     magic = _integer(rom.get("pending_shadow_magic"), "pending shadow magic")
-    if (start != 0x0203E040 or end != 0x0203E074 or end - start != 52):
+    if new_battle_struct_pointer != NEW_BATTLE_STRUCT_POINTER:
+        _fail("T06 gNewBS pointer reservation differs from reviewed EWRAM")
+    if (
+        start != PENDING_SHADOW_START
+        or end != PENDING_SHADOW_END
+        or end - start != 52
+    ):
         _fail("T06 pre-battle shadow reservation differs from reviewed EWRAM")
     if magic != 0x54303650:
         _fail("T06 pre-battle shadow magic differs")
@@ -327,6 +339,7 @@ def _pending_shadow_input_contract(
             + ", ".join(f"{offset:#x}" for offset in matches[:8])
         )
     return {
+        "new_battle_struct_pointer": new_battle_struct_pointer,
         "start": start,
         "end_exclusive": end,
         "size": end - start,
@@ -2929,8 +2942,14 @@ def prepare_source_tree(
     linker_script = tree / "BPRJ.ld"
     _replace_once(
         linker_script,
+        "gNewBS = 0x203DFB0;",
+        f"gNewBS = 0x{NEW_BATTLE_STRUCT_POINTER:08X};",
+        "project-owned gNewBS RAM binding",
+    )
+    _replace_once(
+        linker_script,
         "Random = 0x804448C | 1;",
-        "gCfruPendingBattleShadow = 0x0203E040;\n"
+        f"gCfruPendingBattleShadow = 0x{PENDING_SHADOW_START:08X};\n"
         "gRngValue = 0x03005040;\n"
         "Random = 0x804448C | 1;",
         "stock JP RAM linker bindings",
@@ -2968,7 +2987,7 @@ def prepare_source_tree(
         "stock_rng_binding": {"symbol": "gRngValue", "address": 0x03005040},
         "prebattle_shadow_binding": {
             "symbol": "gCfruPendingBattleShadow",
-            "address": 0x0203E040,
+            "address": PENDING_SHADOW_START,
             "size": 52,
             "magic": 0x54303650,
         },
@@ -3127,7 +3146,8 @@ def _stock_ram_contract(linked_object: Path) -> dict[str, int]:
     if result.returncode or result.stderr:
         _fail("T06 linked object symbol audit failed/noisy")
     expected = {
-        "gCfruPendingBattleShadow": 0x0203E040,
+        "gNewBS": NEW_BATTLE_STRUCT_POINTER,
+        "gCfruPendingBattleShadow": PENDING_SHADOW_START,
         "gRngValue": 0x03005040,
     }
     found: dict[str, tuple[int, str]] = {}
@@ -3255,7 +3275,7 @@ def _pending_shadow_contract(linked_object: Path) -> dict[str, Any]:
         )
     }
     return {
-        "address": 0x0203E040,
+        "address": PENDING_SHADOW_START,
         "size": 52,
         "magic": 0x54303650,
         "helpers": helpers,

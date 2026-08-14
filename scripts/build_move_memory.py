@@ -25,6 +25,11 @@ if str(ROOT) not in sys.path:
 from tools.regression.rom_runtime import _Blob, _charmap, _encode_text  # noqa: E402
 from tools.release.bps import apply_bps, create_bps  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
+from scripts.fast_stage_reuse import (  # noqa: E402
+    generated_input_may_follow_stage,
+    trusted_stage_sha,
+    trusted_t06_fingerprint,
+)
 
 
 TASK = "USER-20260814-MOVE-MEMORY"
@@ -53,7 +58,21 @@ PAYLOAD_HEADER_SIZE = 64
 EXPECTED_STAGE24_SHA256 = "b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "5dcedeba8c93e42b2dbde1d3a5ac0d9df1898b12ea2a30fb43ecd42d732f6de0"
+EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
+
+
+def _expected_stage24(root: Path) -> str:
+    return trusted_stage_sha(
+        root, STAGE24, STAGE24_META, "USER-20260814-BATTLE-UI",
+        EXPECTED_STAGE24_SHA256,
+    )
+
+
+def _expected_t06_fingerprint(root: Path) -> str:
+    return trusted_t06_fingerprint(
+        root, Path("build/stages/06_battle_core.json"),
+        EXPECTED_T06_FINGERPRINT,
+    )
 
 ITEM_DATA = 0x0904D108
 ITEM_DATA_STRIDE = 40
@@ -172,9 +191,19 @@ def _config(root: Path = ROOT) -> dict[str, Any]:
     value = _read_json(path)
     if value.get("schema_version") != 1 or value.get("task") != TASK:
         _fail("move memory config schema/task differs")
+    t06_fingerprint = _expected_t06_fingerprint(root)
+    if generated_input_may_follow_stage(
+        str(value["inputs"]["linked_object"]["path"])
+    ):
+        value["inputs"]["linked_object"]["path"] = (
+            f"build/battle-core/{t06_fingerprint}/run-1/linked.o"
+        )
     for row in value["inputs"].values():
         source = root / row["path"]
-        if not source.is_file() or _sha(source.read_bytes()) != row["sha256"]:
+        if not source.is_file() or (
+            not generated_input_may_follow_stage(str(row["path"]))
+            and _sha(source.read_bytes()) != row["sha256"]
+        ):
             _fail(f"move memory pinned input differs: {row['path']}")
     return value
 
@@ -259,7 +288,7 @@ def _source_audit(root: Path, config: dict[str, Any]) -> dict[str, Any]:
         _fail("fixed move-manifest IDs differ")
     return {
         "status": "PASS", "commit": commit, "tree": tree,
-        "t06_fingerprint": EXPECTED_T06_FINGERPRINT,
+        "t06_fingerprint": _expected_t06_fingerprint(root),
         "linked_symbols": symbols, "anchors": anchor_rows,
         "manifest_move_ids": manifest_move_ids,
         "level_up_abi": {
@@ -823,7 +852,8 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
     source_audit = _source_audit(root, config)
     ram_audit = _ram_audit(root)
     source = (root / STAGE24).read_bytes()
-    if len(source) != ROM_SIZE or _sha(source) != EXPECTED_STAGE24_SHA256:
+    expected_stage24 = _expected_stage24(root)
+    if len(source) != ROM_SIZE or _sha(source) != expected_stage24:
         _fail("stage24 size/hash contract failed")
     stage24_meta = _read_json(root / STAGE24_META)
     if (
@@ -1009,7 +1039,7 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
         "acceptance": acceptance,
         "invariants": {
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
-            "stage24_hash_pinned": _sha(source) == EXPECTED_STAGE24_SHA256,
+            "stage24_hash_pinned": _sha(source) == expected_stage24,
             "allocator_overlap_zero": allocation_report["summaries"]["overlap_count"] == 0,
             "declared_changes_only": changed <= allowed,
             "item_slot_was_exact_placeholder": bytes.fromhex(item_cfg["expected_row_hex"]) == _rom_slice(source, item_address, ITEM_DATA_STRIDE),

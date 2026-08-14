@@ -14,6 +14,11 @@ from pathlib import Path
 from typing import Any, Mapping, NoReturn
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from scripts.fast_stage_reuse import trusted_stage_sha  # noqa: E402
+
 ROM_BASE = 0x08000000
 CONFIG = Path("config/species_surface.json")
 TASK = "T09"
@@ -77,6 +82,17 @@ def fixed(path: Path, expected: str) -> bytes:
     if sha(raw) != expected:
         fail(f"fixed input hash mismatch: {path}")
     return raw
+
+
+def expected_stage07_sha(root: Path, config: Mapping[str, Any]) -> str:
+    inputs = config["inputs"]
+    return trusted_stage_sha(
+        root,
+        Path(str(inputs["stage07_path"])),
+        Path("build/stages/07_species.json"),
+        "T07",
+        str(inputs["stage07_sha256"]),
+    )
 
 
 def ptr(rom: bytes | bytearray, site: int) -> int:
@@ -414,7 +430,10 @@ class Allocator:
 
 def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], bytes]:
     config = read_json(root / CONFIG)
-    stage = fixed(root / config["inputs"]["stage07_path"], config["inputs"]["stage07_sha256"])
+    stage = fixed(
+        root / config["inputs"]["stage07_path"],
+        expected_stage07_sha(root, config),
+    )
     dpe = fixed(root / config["inputs"]["dpe_rom_path"], config["inputs"]["dpe_rom_sha256"])
     models = {name: read_json(root / config["inputs"][path]) for name, path in (
         ("species", "species_model_path"), ("moves", "move_model_path"), ("ids", "id_model_path"))}

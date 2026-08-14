@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
+from scripts.fast_stage_reuse import trusted_stage_sha  # noqa: E402
 
 TASK = "USER-20260814-FIRST-BATTLE-LOOP"
 ROM_SIZE = 32 * 1024 * 1024
@@ -26,6 +27,7 @@ CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE20 = Path("build/stages/20_facility_runtime.gba")
 STAGE20_SHA256 = "d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd"
+STAGE20_META = Path("build/stages/20_facility_runtime.json")
 STAGE20_ALLOCATION = Path("build/stages/20_allocation.json")
 STAGE06_META = Path("build/stages/06_battle_core.json")
 STAGE21 = Path("build/stages/21_first_battle_hotfix.gba")
@@ -129,7 +131,11 @@ def _t06_symbol_addresses(root: Path) -> dict[str, int]:
 def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
     root = Path(root)
     source = (root / STAGE20).read_bytes()
-    if len(source) != ROM_SIZE or _sha(source) != STAGE20_SHA256:
+    expected_stage20 = trusted_stage_sha(
+        root, STAGE20, STAGE20_META, "USER-20260814-FACILITY-RUNTIME",
+        STAGE20_SHA256,
+    )
+    if len(source) != ROM_SIZE or _sha(source) != expected_stage20:
         _fail("stage20 size/hash contract failed")
     actual = source[PATCH_OFFSET:PATCH_OFFSET + len(EXPECTED)]
     source_guard = source[
@@ -228,7 +234,7 @@ def build_hotfix_outputs(root: Path = ROOT) -> dict[str, bytes]:
         },
         "invariants": {
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
-            "input_hash_pinned": _sha(source) == STAGE20_SHA256,
+            "input_hash_pinned": _sha(source) == expected_stage20,
             "source_guard_or_patch_valid": integration_mode in {
                 "stage21_instruction_patch", "t06_source_integrated"
             },
@@ -271,10 +277,26 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
         if first != second or first.get("status") != "PASS":
             _fail("first-battle exact-ROM fixture is not deterministic PASS")
         branches = first.get("branches")
+        natural = first.get("natural_actashi_route")
         fault = first.get("invalid_indicator_fault_injection")
         legitimate = first.get("legitimate_priority_effects")
         if not isinstance(branches, list) or len(branches) != 3:
             _fail("first-battle fixture did not cover all three starter branches")
+        if (
+            not isinstance(natural, dict)
+            or not natural.get("selected_actashi")
+            or not natural.get("trainer_327_started")
+            or not natural.get("pointer_stable")
+            or not natural.get("pending_shadow_stable")
+            or natural.get("observation", {}).get("player_ability") != 67
+            or natural.get("observation", {}).get("opponent_ability") != 65
+            or natural.get("observation", {}).get("quick_claw_script_entries") != 0
+            or natural.get("observation", {}).get("quick_draw_script_entries") != 0
+            or natural.get("observation", {}).get("placeholder_item_entries") != 0
+            or not natural.get("observation", {}).get("pp_spent_once")
+            or not natural.get("observation", {}).get("hp_changed")
+        ):
+            _fail("natural Actashi first-battle route contract drifted")
         if not isinstance(fault, dict) or not fault.get("invalid_indicator_injected"):
             _fail("first-battle fixture did not inject the invalid indicator")
         if not isinstance(legitimate, list) or len(legitimate) != 3:
@@ -289,6 +311,8 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: dict[str, Any]) -> dict[st
 
 def _report(metadata: dict[str, Any], mgba: dict[str, Any]) -> bytes:
     fault = mgba["invalid_indicator_fault_injection"]
+    natural = mgba["natural_actashi_route"]
+    natural_observation = natural["observation"]
     branch_lines = "\n".join(
         f"- {row['branch']} / Trainer {row['trainer_id']}: "
         f"PP {row['pp_before']}→{row['pp_after']}、HP更新={row['hp_changed']}、"
@@ -320,6 +344,9 @@ def _report(metadata: dict[str, Any], mgba: dict[str, Any]) -> bytes:
 
 ## libmGBA実ROM回帰
 
+- 自然new-game経路: アクタシ選択={natural['selected_actashi']}、Trainer 327開始={natural['trainer_327_started']}、A入力={natural['a_presses']}回
+- 自然初戦: ability {natural_observation['player_ability']}/{natural_observation['opponent_ability']}、PP {natural_observation['pp_before']}→{natural_observation['pp_after']}、HP更新={natural_observation['hp_changed']}、不正通知={natural_observation['placeholder_item_entries']}
+- gNewBS / pending shadow安定: {natural['pointer_stable']} / {natural['pending_shadow_stable']}
 {branch_lines}
 - fault injection: injected={fault['invalid_indicator_injected']}、通知={fault['placeholder_item_entries']}、PP {fault['pp_before']}→{fault['pp_after']}、HP更新={fault['hp_changed']}
 {priority_lines}

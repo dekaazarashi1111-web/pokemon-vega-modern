@@ -57,6 +57,19 @@ class FirstBattleHotfixTest(unittest.TestCase):
         self.assertEqual(fixture["status"], "PASS")
         self.assertEqual(fixture["process_runs"], 2)
         self.assertEqual(len(fixture["branches"]), 3)
+        natural = fixture["natural_actashi_route"]
+        self.assertTrue(natural["selected_actashi"])
+        self.assertTrue(natural["trainer_327_started"])
+        self.assertTrue(natural["pointer_stable"])
+        self.assertTrue(natural["pending_shadow_stable"])
+        observation = natural["observation"]
+        self.assertEqual(observation["player_ability"], 67)
+        self.assertEqual(observation["opponent_ability"], 65)
+        self.assertEqual(observation["quick_claw_script_entries"], 0)
+        self.assertEqual(observation["quick_draw_script_entries"], 0)
+        self.assertEqual(observation["placeholder_item_entries"], 0)
+        self.assertTrue(observation["pp_spent_once"])
+        self.assertTrue(observation["hp_changed"])
         fault = fixture["invalid_indicator_fault_injection"]
         self.assertTrue(fault["invalid_indicator_injected"])
         self.assertTrue(fault["invalid_indicator_rejected"])

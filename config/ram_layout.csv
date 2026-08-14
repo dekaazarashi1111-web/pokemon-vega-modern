@@ -12,7 +12,8 @@ EWRAM,0x0203B2E8,0x0203B6E8,1024,CFRU_SAVE_EXPANSION,gExpandedVars,save_session,
 EWRAM,0x0203B78C,0x0203B790,4,CFRU_SAVE_EXPANSION,gPlayerCoins,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:158,CFRU u32 coin field is not the Vega arcade coin ABI
 EWRAM,0x0203C6C8,0x0203C6CE,6,CFRU_PARTY_SELECTION,gSelectedOrderFromParty,party_selection,VOLATILE,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:170,Outside the T08 ledger allocation
 EWRAM,0x0203D000,0x0203D800,2048,T08_SAVE_LEDGER,gVegaModernSaveData,save_session,FLASH,LIVE,overlays/save_migration/save_migration.h,Backed by CFRU sector 30/31 payload offset 0x1054
-EWRAM,0x0203DFB0,0x0203DFB4,4,CFRU_BATTLE_CORE,gNewBS,battle,VOLATILE,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:13,Named pointer slot
+EWRAM,0x0203DFB0,0x0203DFB4,4,CFRU_BATTLE_CORE,gNewBS,battle,VOLATILE,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:13,Upstreamのbattle専用pointer slot; DexNav等との排他的lifetimeを維持
+EWRAM,0x0203E040,0x0203E074,52,CFRU_BATTLE_CORE,gCfruPendingBattleShadow,field_to_battle,VOLATILE,LIVE,scripts/build_battle_core.py,Upstreamが0x0203E03F以降をfreeとする領域内のpre-battle command shadow
 EWRAM,0x0203E118,0x0203E274,348,CFRU_FACTORY_LEGACY,factory_temp_party_backup,legacy_factory_session,VOLATILE_RESET_UNSAFE,RETIRED,reports/generated/ram_map.csv,Replaced by the persistent 600-byte T08 snapshot
 EWRAM,0x0203E300,0x0203E400,256,T08_TRANSACTION_SCRATCH,gVegaSaveTransactionScratch,save_or_restore_call,VOLATILE,LIVE,overlays/save_migration/save_migration.h,Named scratch reservation; never serialized
 EWRAM,0x0203E400,0x0203EC00,2048,FACILITY_RUNTIME_SAVE_ROLLBACK,gVegaSaveRollbackData,save_or_restore_call,VOLATILE,LIVE,overlays/save_migration/save_migration.h,ROM runtime rollback image; host builds retain stack-local rollback

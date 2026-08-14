@@ -24,6 +24,11 @@ if str(ROOT) not in sys.path:
 
 from tools.release.bps import apply_bps, create_bps  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
+from scripts.fast_stage_reuse import (  # noqa: E402
+    generated_input_may_follow_stage,
+    trusted_stage_sha,
+    trusted_t06_fingerprint,
+)
 
 
 TASK = "USER-20260814-BATTLE-UI"
@@ -53,7 +58,20 @@ ALLOCATION_NAME = "battle_ui_runtime"
 EXPECTED_STAGE23_SHA256 = "18e31dee11f88060fcc81acbec58cada265ac715dc1c9398061afa2f16684407"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "5dcedeba8c93e42b2dbde1d3a5ac0d9df1898b12ea2a30fb43ecd42d732f6de0"
+EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
+
+
+def _expected_stage23(root: Path) -> str:
+    return trusted_stage_sha(
+        root, STAGE23, STAGE23_META, "USER-20260814-BATTLE-RULES",
+        EXPECTED_STAGE23_SHA256,
+    )
+
+
+def _expected_t06_fingerprint(root: Path) -> str:
+    return trusted_t06_fingerprint(
+        root, STAGE06_META, EXPECTED_T06_FINGERPRINT,
+    )
 
 REQUIRED_SYMBOLS = {
     "VegaBattleUI_ClassifyResult",
@@ -80,6 +98,7 @@ UPSTREAM_ADDRESS_ONLY = {
     "gText_BattleUI_NotVeryEffective": 0x091430E6,
     "gText_BattleUI_NoEffect": 0x091430E9,
     "gText_BattleUI_STAB": 0x091430EB,
+    "gText_Acc": 0x09143100,
     "StringNull": 0x09001CB5,
     "gMoveEffectsThatIgnoreWeaknessResistance": 0x0903FE65,
 }
@@ -191,6 +210,8 @@ def _config(root: Path) -> dict[str, Any]:
         path = root / row["path"]
         if not path.is_file():
             _fail(f"battle UI pinned input differs: {row['path']}")
+        if generated_input_may_follow_stage(str(row["path"])):
+            continue
         if name == "battle_core_metadata":
             observed = _battle_core_contract(_read_json(path))
             expected = {key: row.get(key) for key in observed}
@@ -198,7 +219,13 @@ def _config(root: Path) -> dict[str, Any]:
                 _fail(f"battle UI pinned input differs: {row['path']}")
         elif _sha(path.read_bytes()) != row["sha256"]:
             _fail(f"battle UI pinned input differs: {row['path']}")
-    if config["inputs"]["stage_rom"]["sha256"] != EXPECTED_STAGE23_SHA256:
+    if (
+        not generated_input_may_follow_stage(
+            str(config["inputs"]["stage_rom"]["path"])
+        )
+        and config["inputs"]["stage_rom"]["sha256"]
+            != EXPECTED_STAGE23_SHA256
+    ):
         _fail("battle UI stage23 config hash differs")
     return config
 
@@ -282,10 +309,11 @@ def audit_source(root: Path = ROOT, config: dict[str, Any] | None = None) -> dic
         source_files[relative] = {"size": len(raw), "sha256": _sha(raw)}
 
     t06 = _read_json(root / STAGE06_META)
-    if t06.get("fingerprint") != EXPECTED_T06_FINGERPRINT or t06.get("status") != "PASS":
+    t06_fingerprint = _expected_t06_fingerprint(root)
+    if t06.get("fingerprint") != t06_fingerprint or t06.get("status") != "PASS":
         _fail("T06 battle-core identity differs")
     run = t06.get("upstream_runs", [{}])[-1]
-    build_root = root / "build/battle-core" / EXPECTED_T06_FINGERPRINT / "run-1"
+    build_root = root / "build/battle-core" / t06_fingerprint / "run-1"
     offsets_path = build_root / "offsets.ini"
     linked_path = build_root / "linked.o"
     if (
@@ -364,7 +392,7 @@ def _audit_address_csv(root: Path, config: dict[str, Any]) -> dict[str, Any]:
 def audit_owner(root: Path = ROOT, config: dict[str, Any] | None = None) -> dict[str, Any]:
     config = config or _config(root)
     rom = (root / STAGE23).read_bytes()
-    if len(rom) != ROM_SIZE or _sha(rom) != EXPECTED_STAGE23_SHA256:
+    if len(rom) != ROM_SIZE or _sha(rom) != _expected_stage23(root):
         _fail("stage23 owner input differs")
     owners = config["owners"]
     observed: dict[str, dict[str, Any]] = {}
@@ -585,7 +613,8 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
     source_audit = audit_source(root, config)
     owner_audit = audit_owner(root, config)
     source = (root / STAGE23).read_bytes()
-    if len(source) != ROM_SIZE or _sha(source) != EXPECTED_STAGE23_SHA256:
+    expected_stage23 = _expected_stage23(root)
+    if len(source) != ROM_SIZE or _sha(source) != expected_stage23:
         _fail("stage23 size/hash contract failed")
     stage23_meta = _read_json(root / STAGE23_META)
     if stage23_meta.get("status") != "PASS" or stage23_meta.get("output", {}).get("sha256") != _sha(source):
@@ -678,9 +707,9 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
         },
         "invariants": {
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
-            "stage23_hash_pinned": _sha(source) == EXPECTED_STAGE23_SHA256,
+            "stage23_hash_pinned": _sha(source) == expected_stage23,
             "source_lock_verified": source_audit["source_lock_verified"],
-            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 16,
+            "fixed_cfru_ui_abi_verified": len(source_audit["linked_symbols"]) == 17,
             "normal_factory_raid_share_owner": owner_audit["global_owner_shared_by_normal_factory_raid"],
             "two_entry_stubs_only": len(patches) == 2,
             "declared_changes_only": changed <= allowed,
@@ -740,7 +769,7 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
     observed = {row.get("name"): row.get("class") for row in cases}
     if (
         value.get("status") != "PASS"
-        or value.get("fixture") != "cfru_move_menu_effectiveness_v1"
+        or value.get("fixture") != "cfru_move_menu_effectiveness_v3"
         or value.get("rom_sha256") != rom_sha256
         or value.get("warnings_errors") != 0
         or not value.get("read_only")
@@ -751,6 +780,11 @@ def _validate_ui_fixture(value: dict[str, Any], rom_sha256: str) -> None:
         or value.get("type_cases") != {"stellar": 24, "tera_blast_selected": 24, "tera_blast_clear": 10}
         or value.get("matrix_multipliers") != [500, 2000, 4000, 250, 0]
         or not value.get("double_target_specific")
+        or not value.get("actual_menu_path")
+        or value.get("l_move_details") != {
+            "opened": True, "accuracy_label": True,
+            "closed": True, "pointer_stable": True, "button_mode": 1,
+        }
         or not value.get("input_return")
         or not value.get("routes", {}).get("wild", {}).get("pp_spent")
         or not value.get("routes", {}).get("trainer", {}).get("pp_spent")
@@ -779,7 +813,11 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
         "text_resisted": linked["gText_BattleUI_NotVeryEffective"]["address"],
         "text_none": linked["gText_BattleUI_NoEffect"]["address"],
         "text_stab": linked["gText_BattleUI_STAB"]["address"],
+        "text_accuracy": linked["gText_Acc"]["address"],
         "type_matrix": linked["gTypeEffectiveness"]["address"],
+        "handle_choose_move": _address(
+            _config(root)["owners"]["handle_input_choose_move"]["hook"]
+        ) | 1,
         "handle_choose_target": linked["HandleInputChooseTarget"]["address"] | 1,
     })
     sources = (RUNNER, *EMBEDDED_RUNNER_SOURCES)
@@ -812,7 +850,9 @@ def _ui_fixture(root: Path, rom: bytes, metadata: dict[str, Any]) -> dict[str, A
             str(selected["text_resisted"]),
             str(selected["text_none"]),
             str(selected["text_stab"]),
+            str(selected["text_accuracy"]),
             str(selected["type_matrix"]),
+            str(selected["handle_choose_move"]),
             str(selected["handle_choose_target"]),
         ]
         first = json.loads(_run(args, "battle UI exact-ROM run 1", cwd=root))
@@ -920,7 +960,7 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
 
 - 固定CFRU-JP `{EXPECTED_CFRU_COMMIT}` の技選択UI ownerを維持し、無効だった実タイプ・有効度分岐をstage 24 adapterで接続した。
 - 判定は独自相性表ではなく、`EmitChooseMove` が実damage側 `VisualTypeCalc` から作る `moveTypes/moveResults` をそのまま表示する。
-- こうかばつぐん、いまひとつ、こうかなし、タイプ一致を既存CFRU文字列・paletteで表示する。Factory ROM byteは使用していない。
+- 等倍・タイプ不一致は元CFRUどおり空欄。抜群・いまひとつ・無効・タイプ一致は既存CFRU記号とpaletteで判別できる。Factory ROM byteは使用していない。
 
 ## exact-ROM結果
 
@@ -928,6 +968,8 @@ def _report(metadata: dict[str, Any], ui: dict[str, Any], policy: dict[str, Any]
 - Stellar / Tera Blast selected / clear: {ui['type_cases']['stellar']} / {ui['type_cases']['tera_blast_selected']} / {ui['type_cases']['tera_blast_clear']}
 - type matrix: {ui['matrix_multipliers']} (1000=1×)
 - wild/trainer/double input return: {ui['input_return']} / double target-specific: {ui['double_target_specific']}
+- actual action-to-move menu indicator: {ui['actual_menu_path']}
+- L技詳細（威力・命中）open/close: {ui['l_move_details']}
 - Factory: {policy['facility']['matrix_cases']} cases / Raid shields: {policy['raid']['shield_breaks']}/{policy['raid']['initial_shields']} / cleanup: {policy['raid']['runtime_cleaned']}
 - process runs: UI {ui['process_runs']} / policy {policy['process_runs']} / warnings-errors: {ui['warnings_errors']}+{policy['warnings_errors']}
 
@@ -966,6 +1008,13 @@ def collect_outputs(root: Path = ROOT) -> dict[str, bytes]:
     metadata["acceptance"] = {
         "normal_and_factory_same_owner": True,
         "effectiveness_and_stellar_match_damage_contract": ui["status"] == "PASS",
+        "actual_menu_path_rendered": ui["actual_menu_path"],
+        "l_move_details_rendered": (
+            all(ui["l_move_details"][key] for key in (
+                "opened", "accuracy_label", "closed", "pointer_stable"
+            ))
+            and ui["l_move_details"]["button_mode"] == 1
+        ),
         "canonical_live_names_resolved": all(
             not values for values in metadata["string_audit"]["live_unresolved"].values()
         ),

@@ -525,8 +525,13 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
     }
 
 
-def build_final() -> tuple[bytes, dict[str, object]]:
+def build_final(*, allow_full_build: bool = True) -> tuple[bytes, dict[str, object]]:
     if not _stage_is_current():
+        if not allow_full_build:
+            raise ReleaseError(
+                "fast final requires a current validated stage 25; "
+                "run scripts/build_fast_rom.py from the owning stage"
+            )
         print(f"[{TASK}] stage 25/QOL fixture is absent or stale; rebuilding from pinned clean inputs", flush=True)
         _full_build()
     else:
@@ -855,11 +860,15 @@ def fresh_checkout_check() -> dict[str, object]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("final", "patch", "verify", "fresh-check"))
+    parser.add_argument(
+        "mode", choices=("final", "final-fast", "patch", "verify", "fresh-check")
+    )
     args = parser.parse_args()
     try:
         if args.mode == "final":
             build_final()
+        elif args.mode == "final-fast":
+            build_final(allow_full_build=False)
         elif args.mode == "patch":
             build_patch()
         elif args.mode == "verify":

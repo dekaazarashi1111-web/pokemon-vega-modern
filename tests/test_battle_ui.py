@@ -45,7 +45,7 @@ class BattleUITests(unittest.TestCase):
         self.assertTrue(audit["source_lock_verified"])
         self.assertTrue(audit["source_checkout_clean"])
         self.assertFalse(any(audit["profile_ui_macros_active"].values()))
-        self.assertEqual(len(audit["linked_symbols"]), 16)
+        self.assertEqual(len(audit["linked_symbols"]), 17)
         self.assertEqual(
             audit["linked_symbols"]["MoveSelectionDisplayMoveType"],
             {
@@ -146,6 +146,17 @@ class BattleUITests(unittest.TestCase):
         )
         self.assertEqual(value["matrix_multipliers"], [500, 2000, 4000, 250, 0])
         self.assertTrue(value["double_target_specific"])
+        self.assertTrue(value["actual_menu_path"])
+        self.assertEqual(
+            value["l_move_details"],
+            {
+                "opened": True,
+                "accuracy_label": True,
+                "closed": True,
+                "pointer_stable": True,
+                "button_mode": 1,
+            },
+        )
         self.assertTrue(value["input_return"])
 
     def test_live_names_and_factory_raid_regressions_pass(self) -> None:
@@ -170,6 +181,7 @@ class BattleUITests(unittest.TestCase):
         self.assertIn("move_results[position][slot]", source)
         self.assertIn("z_move_results[position][slot]", source)
         self.assertIn("VegaBattleUI_ClassifyResult", source)
+        self.assertNotIn("1×", source)
         self.assertNotIn("factory.gba", source.lower())
         self.assertIn("Factory ROMのbyteや独自相性表は持たず", source)
         runner = (ROOT / "tools/mgba_battle_ui_smoke.c").read_text(encoding="utf-8")

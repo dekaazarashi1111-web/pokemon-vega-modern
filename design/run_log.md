@@ -921,3 +921,36 @@
   - fresh evidence / release report SHA-256 `a8b2a178af41abc7ea6afca5f547701b45d78d770864b9a189c4b94a339364d7` / `cc91e12a494d7c0f74c2caa3f0ad034810ac81dec635d0f415aadc6f7549ccf1`。
 - Commit: `c6f15f4ad421d35e33853039fae4ae4fabedb3ec`（release source tag。完了ログ・task状態は本エントリを含む後続コミット）
 - Network: 隔離fresh checkoutのbootstrapでGitHubからsource-lock済みCFRU-JP / DPE-JP / pokefireredの固定commitを取得した。Web検索は未使用。private入力は隔離先へ読み取り専用で渡し、配布物へ含めていない。
+
+## 2026-08-15T00:41:52+09:00
+
+- Task: `USER-20260814-BATTLE-UI-LOOP-FAST-BUILD` / 戦闘UI・アクタシ初戦ループ・高速差分ビルドを検証・修正する
+- Status: DONE
+- Summary:
+  - 最終v1.3.3はUI未適用ではなく、stage 24のCFRU技選択UIを既に含むことを実ROMの通常操作経路で確定した。等倍・タイプ不一致はユーザー指定どおり変更せず空欄を維持し、抜群・いまひとつ・無効・タイプ一致を実damage判定と同じ結果から表示する。
+  - 元CFRUのL技詳細はボタン設定`L/R`（mode 1）で開閉し、技名・接触・威力・命中表示を確認した。`HELP`（mode 0）は既存ヘルプがLを先に消費し、`L=A`はA相当になるため、ROM差ではなくボタン設定差だった。
+  - new gameで中央のアクタシを実選択し、Trainer 327の初戦でPP 35→34と双方HP更新まで進行した。不正Quick Claw/Quick Draw/無名item通知は0、Ability 67/65、`gNewBS` pointerと52-byte pre-battle shadowは安定し、fault injectionと正規Quick Claw/Custap/Quick Draw回帰もPASSした。
+  - `make fast-rom`、`fast-rom-battle-core`、`fast-rom-battle-ui`を追加した。入力hashとPASS metadataを検査し、未追跡の非ignore入力も含めて最初の変更所有stageを保守的に選ぶ。T06の固定上流2 buildを並列化済み契約で各286.615/286.994秒、後段move-memory→QOL統合→finalを214.313秒で生成した。
+  - Delta export原本は変更せず、gzip内のVBA-M stateとして識別したが、対応ROM/stateを確定できなかったため再現の正本には使っていない。最終ROMはv1.3.3とbyte-identicalでversionを上げず、Windows Downloadsへ`vega-modern-kanto-v1.3.3-verified.gba`として配置した。
+- Files changed:
+  - build/runtime: `Makefile`, `scripts/{build_fast_rom,fast_stage_reuse,build_battle_core,build_species_port,build_species_surface,build_first_battle_hotfix,build_hm_field_access,build_battle_rules,build_battle_ui,build_move_memory,build_qol_release,build_release}.py`
+  - config/QA: `config/{battle_core,battle_ui,move_memory}.json`, `config/ram_layout.csv`, `tools/mgba_{first_battle_loop,battle_ui}_smoke.c`, `tests/test_{fast_rom,build_battle_core,first_battle_hotfix,battle_ui}.py`
+  - task/design/state: `tasks/USER_20260814_BATTLE_UI_LOOP_FAST_BUILD.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY,RELEASE_README_JA}.md`, `design/{current_state,tasks_next,run_log,version_log}.md`
+  - Git管理外成果: `build/stages/{06,21,24,25}*`, `build/final/vega-modern-kanto-v1.3.3.gba`, `.local/fast_rom_state.json`, `/mnt/c/Users/dekaa/Downloads/vega-modern-kanto-v1.3.3-verified.gba`
+- Verify:
+  - `python3 scripts/build_first_battle_hotfix.py check`: PASS（5 artifacts、side effects NONE）。自然アクタシ初戦、3御三家、fault injection、正規行動順効果を確認した。
+  - `python3 scripts/build_battle_ui.py check`: PASS（8 artifacts）。通常action→技選択、L/R modeのL詳細open/close、等倍・タイプ不一致空欄、抜群/半減/無効/STAB、全battle modeを確認した。
+  - `python3 scripts/build_release.py final-fast`: PASS。stage 25/QOL fixtureを再利用し、32 MiB final SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`を生成した。
+  - `python3 scripts/build_qol_release.py build`: PASS（2 artifacts）。最終runner文言修正後も8 componentを同じROMで再実行し、QOL統合fixtureを最新source hashへ同期した。
+  - focused unittest 10 modules: PASS（76 tests / 110.170秒）。fast/UI/初戦/save/release、T06 battle core/mGBA AI/QOLをまとめて再実行した。
+  - `python3 -m unittest tests.test_release -v`: PASS（9 tests）。最新QOL fixtureと修正済みrelease文書を使うfinal-stage契約を再確認した。
+  - `python3 scripts/build_fast_rom.py --from auto --dry-run`: PASS。変更所有stageと再利用stageを出力し、未追跡非ignore入力をinventoryへ含めた。
+  - `python3 -m py_compile ...`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。
+  - WSL repository全体verifyとfresh全chainは再実行せず、変更に直結するgateと検証済みstageを使用した。
+- Output identity:
+  - final/Windows copy SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`、size `33,554,432` bytes。公開v1.3.3からROM byte変更0のため既存BPSはそのまま有効。
+  - Delta原本 SHA-256 `d316dc18f9442ee127cf4bc9d32cdb7a279c32b6e94179990c88c8cedda2539b`、size `38,714` bytes、gzip展開時VBA-M state `2,102,280` bytes。原本変更0・Git追跡0。
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - Delta / GBADeltaCore / VBA-Mのstate形式確認にGitHub一次情報を使用した。参照URL: `https://github.com/rileytestut/Delta`、`https://github.com/rileytestut/GBADeltaCore`、`https://github.com/visualboyadvance-m/visualboyadvance-m`。確認revisionはDelta `c1d3d068...`、GBADeltaCore `869c34a...`、VBA-M `453fa0decf179360926fb417725a794aa496d6e3`。
+  - VBA-Mのローカル再現補助導入でUbuntu archiveを使用した。外部へprivate ROM/saveや内部仕様は送信していない。

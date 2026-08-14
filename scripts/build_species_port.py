@@ -29,6 +29,7 @@ from tools.engine.extract_vega_species import (  # noqa: E402
     VegaSpeciesExtractionError,
     extract_vega_species,
 )
+from scripts.fast_stage_reuse import trusted_stage_sha  # noqa: E402
 
 
 ROM_BASE = 0x08000000
@@ -38,6 +39,16 @@ GENERATED_ROOT = Path("generated/engine/species")
 REPORT_PATH = Path("reports/generated/species_port.md")
 MANIFEST_PATH = Path("manifests/species_ids.csv")
 SCHEMA_VERSION = 1
+
+
+def _expected_stage06_sha(root: Path, inputs: Mapping[str, Any]) -> str:
+    return trusted_stage_sha(
+        root,
+        Path(str(inputs["stage06_path"])),
+        Path(str(inputs["stage06_metadata_path"])),
+        "T06",
+        str(inputs["stage06_sha256"]),
+    )
 
 MANIFEST_HEADER = (
     "species_key", "id", "vega_id", "dpe_id", "dpe_symbol", "classification",
@@ -336,7 +347,10 @@ def build_species_model(root: Path, config: Mapping[str, Any]) -> dict[str, Any]
 
     vega = extract_vega_species(root, config)
     dpe = extract_dpe_species(root, config)
-    stage06 = _fixed_bytes(root, inputs.get("stage06_path"), inputs.get("stage06_sha256"), "T06 stage")
+    stage06 = _fixed_bytes(
+        root, inputs.get("stage06_path"),
+        _expected_stage06_sha(root, inputs), "T06 stage",
+    )
     stage06_meta = _read_json(_logical(root, inputs.get("stage06_metadata_path"), "T06 metadata"), "T06 metadata")
     id_model = _read_json(_logical(root, inputs.get("id_spaces_path"), "T05 model"), "T05 model")
     inventory = _read_json(_logical(root, inputs.get("id_inventory_path"), "T02 inventory"), "T02 inventory")
@@ -607,7 +621,10 @@ The Oval Charm threshold counts distinct official National Dex numbers, so multi
 def build_stage(root: Path, config: Mapping[str, Any], model: Mapping[str, Any]) -> tuple[bytes, dict[str, Any]]:
     inputs = config["inputs"]
     runtime = config["runtime"]
-    stage06 = _fixed_bytes(root, inputs["stage06_path"], inputs["stage06_sha256"], "T06 stage")
+    stage06 = _fixed_bytes(
+        root, inputs["stage06_path"],
+        _expected_stage06_sha(root, inputs), "T06 stage",
+    )
     table = bytes.fromhex(str(model["base_stats_hex"]))
     offset = _integer(runtime.get("new_base_stats_offset"), "new BaseStats offset")
     address = _integer(runtime.get("new_base_stats_address"), "new BaseStats address")

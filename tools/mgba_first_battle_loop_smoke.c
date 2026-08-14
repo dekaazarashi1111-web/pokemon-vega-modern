@@ -24,6 +24,8 @@ enum {
     FIRST_BATTLE_ITEM_QUICK_CLAW = 183,
     FIRST_BATTLE_ITEM_CUSTAP_BERRY = 678,
     FIRST_BATTLE_ABILITY_QUICK_DRAW = 260,
+    FIRST_BATTLE_ABILITY_ACTASHI = 67,
+    FIRST_BATTLE_ABILITY_LEEPUN = 65,
     FIRST_BATTLE_ITEM_EFFECT_QUICK_CLAW = 26,
     FIRST_BATTLE_ITEM_EFFECT_CUSTAP_BERRY = 96,
     FIRST_BATTLE_QUICK_CLAW_SCRIPT = 0x09001AC2,
@@ -39,6 +41,8 @@ enum {
     FIRST_BATTLE_NEWBS_QUICK_DRAW_RANDOM = 0xB8,
     FIRST_BATTLE_NEWBS_ACTIVATED_BYTE = 0x164,
     FIRST_BATTLE_NEWBS_ACTIVATED_MASK = 0x04,
+    FIRST_BATTLE_PENDING_SHADOW = 0x0203E040,
+    FIRST_BATTLE_PENDING_ACTIVE_MAGIC = 0x54303641,
     FIRST_BATTLE_TURN_FRAME_LIMIT = 2400,
     FIRST_BATTLE_SCHEDULER_STEP_LIMIT = 1000000,
 };
@@ -110,6 +114,17 @@ struct FirstBattlePriorityObservation {
     bool scheduler_seen;
     bool indicator_seen;
     bool notification_seen;
+};
+
+struct NaturalFirstBattleObservation {
+    struct FirstBattleObservation battle;
+    uint32_t newbs_pointer;
+    uint32_t pending_magic;
+    uint32_t route_a_presses;
+    bool selected_actashi;
+    bool trainer_327_started;
+    bool pointer_stable;
+    bool pending_shadow_stable;
 };
 
 static const struct FirstBattleCase FIRST_BATTLE_CASES[] = {
@@ -586,11 +601,14 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
         core->setKeys(core, 0);
     }
 
-    player = observe_mon(core, 0);
-    opponent = observe_mon(core, 1);
-    battle->player_pp_after = player.pp[0];
-    battle->player_hp_after = player.hp;
-    battle->opponent_hp_after = opponent.hp;
+    /* A legitimate first hit may faint Leepun.  Read the final controller
+     * state directly instead of rejecting HP 0 through observe_mon(). */
+    battle->player_pp_after = read8(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
+    battle->player_hp_after = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_CORE_MON_HP);
+    battle->opponent_hp_after = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + BATTLE_CORE_MON_HP);
     battle->pp_spent_once = battle->player_pp_after + 1U
         == battle->player_pp_before;
     battle->hp_changed = battle->player_hp_after != battle->player_hp_before
@@ -603,6 +621,195 @@ static struct FirstBattlePriorityObservation run_legitimate_priority_case(
         core, newbs + FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP);
     battle->final_activation_latched =
         (read8(core, newbs + FIRST_BATTLE_NEWBS_ACTIVATED_BYTE)
+         & FIRST_BATTLE_NEWBS_ACTIVATED_MASK) != 0;
+    return result;
+}
+
+static uint16_t first_battle_natural_key(char command)
+{
+    switch (command) {
+    case 'U': return 64;
+    case 'D': return 128;
+    case 'L': return 32;
+    case 'R': return 16;
+    default: return 0;
+    }
+}
+
+static void first_battle_natural_commands(struct mCore *core,
+                                          const char *commands)
+{
+    for (const char *command = commands; *command; ++command) {
+        uint16_t key = first_battle_natural_key(*command);
+        if (!key) battle_core_die("natural first-battle route command differs");
+        run_key_frames(core, key, 8U);
+        run_key_frames(core, 0, 12U);
+    }
+}
+
+static void first_battle_natural_a(struct mCore *core,
+                                   struct NaturalFirstBattleObservation *result)
+{
+    run_key_frames(core, 1, 2U);
+    run_key_frames(core, 0, 100U);
+    ++result->route_a_presses;
+}
+
+static void first_battle_natural_sample_frames(
+    struct mCore *core,
+    struct NaturalFirstBattleObservation *natural,
+    bool *quick_claw_active,
+    bool *quick_draw_active,
+    uint32_t *consecutive_quick_claw_frames,
+    uint16_t keys,
+    uint32_t frames
+) {
+    core->setKeys(core, keys);
+    for (uint32_t frame = 0; frame < frames; ++frame) {
+        core->runFrame(core);
+        ++natural->battle.frames;
+        sample_first_battle_frame(
+            core, &natural->battle, quick_claw_active, quick_draw_active,
+            consecutive_quick_claw_frames);
+        if (read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER)
+            != natural->newbs_pointer) {
+            natural->pointer_stable = false;
+        }
+        if (read32(core, FIRST_BATTLE_PENDING_SHADOW)
+            != FIRST_BATTLE_PENDING_ACTIVE_MAGIC) {
+            natural->pending_shadow_stable = false;
+        }
+    }
+}
+
+static struct NaturalFirstBattleObservation run_natural_actashi_first_battle(
+    struct mCore *core,
+    const struct Snapshot *field
+) {
+    struct NaturalFirstBattleObservation result = {
+        .pointer_stable = true,
+        .pending_shadow_stable = true,
+    };
+    restore_snapshot(core, field);
+
+    /* Frozen Vega path: research-building exit, starter introduction, then
+     * the centre ball (species 7 / Actashi).  No party or trainer RAM is
+     * injected on this route. */
+    first_battle_natural_commands(
+        core, "DDDDDDDDDDLLLLLLDDDDDDDDRUUURRRRRR");
+    for (unsigned press = 0; press < 120U; ++press)
+        first_battle_natural_a(core, &result);
+    first_battle_natural_commands(core, "DDRRRRU");
+    for (unsigned press = 0; press < 40U; ++press)
+        first_battle_natural_a(core, &result);
+
+    result.selected_actashi = read8(core, ADDR_PLAYER_PARTY_COUNT) == 1
+        && call_preserving(core, BATTLE_CORE_GET_MON_DATA,
+                           ADDR_PLAYER_PARTY, 11U, 0, 0)
+            == FIRST_BATTLE_SPECIES_ACTASHI;
+    if (!result.selected_actashi)
+        battle_core_die("natural first-battle route did not select Actashi");
+
+    first_battle_natural_commands(core, "DDDLLLLLDDDDD");
+    for (unsigned press = 0; press < 32U; ++press) {
+        first_battle_natural_a(core, &result);
+        if (read8(core, ADDR_BATTLERS_COUNT) == 2
+            && (read32(core, ADDR_BATTLE_TYPE_FLAGS) & BATTLE_TYPE_TRAINER)
+            && read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER) != 0) {
+            result.trainer_327_started = true;
+            break;
+        }
+    }
+    if (!result.trainer_327_started)
+        battle_core_die("natural Actashi route did not start the rival battle");
+
+    result.newbs_pointer = read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER);
+    result.pending_magic = read32(core, FIRST_BATTLE_PENDING_SHADOW);
+    result.pointer_stable = result.newbs_pointer >= 0x02000000U
+        && result.newbs_pointer < 0x02040000U;
+    result.pending_shadow_stable =
+        result.pending_magic == FIRST_BATTLE_PENDING_ACTIVE_MAGIC;
+
+    /* Advance the actual intro/controller until both battle mons exist. */
+    for (unsigned press = 0; press < 32U; ++press) {
+        first_battle_natural_a(core, &result);
+        if (read16(core, ADDR_BATTLE_MONS) == FIRST_BATTLE_SPECIES_ACTASHI
+            && read16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE)
+                == FIRST_BATTLE_SPECIES_LEEPUN
+            && read16(core, ADDR_BATTLE_MONS + 0x38)
+                == FIRST_BATTLE_ABILITY_ACTASHI
+            && read16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38)
+                == FIRST_BATTLE_ABILITY_LEEPUN) {
+            break;
+        }
+        if (read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER)
+            != result.newbs_pointer) {
+            result.pointer_stable = false;
+        }
+        if (read32(core, FIRST_BATTLE_PENDING_SHADOW)
+            != FIRST_BATTLE_PENDING_ACTIVE_MAGIC) {
+            result.pending_shadow_stable = false;
+        }
+    }
+
+    struct FirstBattleObservation *battle = &result.battle;
+    battle->trainer_id = FIRST_BATTLE_TRAINER_ACTASHI;
+    battle->player_species = read16(core, ADDR_BATTLE_MONS);
+    battle->opponent_species = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE);
+    battle->player_item = read16(core, ADDR_BATTLE_MONS + 0x2E);
+    battle->opponent_item = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x2E);
+    battle->player_ability = read16(core, ADDR_BATTLE_MONS + 0x38);
+    battle->opponent_ability = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38);
+    battle->player_pp_before = read8(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
+    battle->player_hp_before = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_CORE_MON_HP);
+    battle->opponent_hp_before = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + BATTLE_CORE_MON_HP);
+
+    bool quick_claw_active = false;
+    bool quick_draw_active = false;
+    uint32_t consecutive_quick_claw_frames = 0;
+    for (unsigned press = 0;
+         press < 48U && read8(core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET)
+             == battle->player_pp_before;
+         ++press) {
+        write8(core, BATTLE_CORE_MOVE_SELECTION_CURSOR, 0);
+        first_battle_natural_sample_frames(
+            core, &result, &quick_claw_active, &quick_draw_active,
+            &consecutive_quick_claw_frames, 1, 2U);
+        first_battle_natural_sample_frames(
+            core, &result, &quick_claw_active, &quick_draw_active,
+            &consecutive_quick_claw_frames, 0, 100U);
+        ++result.route_a_presses;
+    }
+    first_battle_natural_sample_frames(
+        core, &result, &quick_claw_active, &quick_draw_active,
+        &consecutive_quick_claw_frames, 0, 120U);
+
+    /* A legitimate first hit may faint Leepun.  HP 0 is an expected final
+     * battle state, so do not pass it through observe_mon's live-mon guard. */
+    battle->player_pp_after = read8(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
+    battle->player_hp_after = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_CORE_MON_HP);
+    battle->opponent_hp_after = read16(
+        core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + BATTLE_CORE_MON_HP);
+    battle->pp_spent_once = battle->player_pp_after + 1U
+        == battle->player_pp_before;
+    battle->hp_changed = battle->player_hp_after != battle->player_hp_before
+        || battle->opponent_hp_after != battle->opponent_hp_before;
+    battle->final_action = read8(core, FIRST_BATTLE_CURRENT_ACTION);
+    battle->final_main_func = read32(core, FIRST_BATTLE_MAIN_FUNC);
+    battle->final_quick_draw_indicator = read8(
+        core, result.newbs_pointer + FIRST_BATTLE_NEWBS_QUICK_DRAW);
+    battle->final_quick_claw_indicator = read8(
+        core, result.newbs_pointer + FIRST_BATTLE_NEWBS_QUICK_CLAW_CUSTAP);
+    battle->final_activation_latched =
+        (read8(core, result.newbs_pointer + FIRST_BATTLE_NEWBS_ACTIVATED_BYTE)
          & FIRST_BATTLE_NEWBS_ACTIVATED_MASK) != 0;
     return result;
 }
@@ -716,7 +923,38 @@ int main(int argc, char **argv) {
 
     printf("{\"schema_version\":1,\"fixture\":"
            "\"first_rival_action_order_scheduler\","
-           "\"rom_sha256\":\"%s\",\"branches\":[", rom_sha256);
+           "\"rom_sha256\":\"%s\",", rom_sha256);
+    struct NaturalFirstBattleObservation natural =
+        run_natural_actashi_first_battle(core, &field);
+    printf("\"natural_actashi_route\":{\"selected_actashi\":%s,"
+           "\"trainer_327_started\":%s,\"gNewBS\":\"0x%08" PRIx32 "\","
+           "\"pending_magic\":\"0x%08" PRIx32 "\","
+           "\"pointer_stable\":%s,\"pending_shadow_stable\":%s,"
+           "\"a_presses\":%" PRIu32 ",\"observation\":",
+           natural.selected_actashi ? "true" : "false",
+           natural.trainer_327_started ? "true" : "false",
+           natural.newbs_pointer, natural.pending_magic,
+           natural.pointer_stable ? "true" : "false",
+           natural.pending_shadow_stable ? "true" : "false",
+           natural.route_a_presses);
+    print_first_battle_observation(&FIRST_BATTLE_CASES[0], &natural.battle);
+    putchar('}');
+    if (!natural.selected_actashi
+        || !natural.trainer_327_started
+        || !natural.pointer_stable
+        || !natural.pending_shadow_stable
+        || natural.battle.player_ability != FIRST_BATTLE_ABILITY_ACTASHI
+        || natural.battle.opponent_ability != FIRST_BATTLE_ABILITY_LEEPUN
+        || natural.battle.player_item != FIRST_BATTLE_ITEM_NONE
+        || natural.battle.opponent_item != FIRST_BATTLE_ITEM_NONE
+        || natural.battle.quick_claw_script_entries != 0
+        || natural.battle.quick_draw_script_entries != 0
+        || natural.battle.placeholder_item_entries != 0
+        || !natural.battle.pp_spent_once
+        || !natural.battle.hp_changed) {
+        pass = false;
+    }
+    printf(",\"branches\":[");
     for (unsigned index = 0; index < ARRAY_LEN(FIRST_BATTLE_CASES); ++index) {
         observations[index] = run_first_battle_case(
             core, &field, &FIRST_BATTLE_CASES[index]);

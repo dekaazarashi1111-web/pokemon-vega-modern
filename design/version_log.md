@@ -395,3 +395,15 @@
   - clean FireRed日本版Rev.0用BPS、32 MiB BPRJ ROM、9-member決定論ZIP、日本語release/save文書をv1.3.3へ更新した。
   - annotated tag `v1.3.3` の隔離fresh checkoutから全chainを再構築し、final/BPS/ZIPを通常成果とbyte一致させた。
 - Verify: `make release-fresh-check`, `make verify-release`, battle UI/QOL integration build+check、focused 16 tests、T17 check、task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07` / `9f99d3663458b7f065de9ab0104eff54562331c0467c25fee3e9983935959c5f` / `aac8894833b5124e8ec82edd166291961c1c3c4c5e7c6a24c3c86fd96e894af5`。
+
+## 2026-08-15T00:41:52+09:00
+
+- Version: `v1.3.3`（追試・差分ビルド高速化。ROM byte変更なし）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-BATTLE-UI-LOOP-FAST-BUILD` / 戦闘UI・アクタシ初戦ループ・高速差分ビルドを検証・修正する
+- Summary:
+  - v1.3.3にstage 24 UIが既に適用済みと通常入力経路で確認した。等倍・タイプ不一致は元CFRUどおり空欄を維持し、L/R設定のLで技名・接触・威力・命中詳細を開閉する。
+  - 自然new-game経路のアクタシ初戦で不正行動順通知0、PP/HP進行、RAM pointer/shadow安定を確認した。正常なQuick Claw/Custap/Quick Drawは維持した。
+  - 検証済みstageと入力hashから変更所有stage以降だけを生成するfast ROM driverを追加し、後段3工程を214.313秒で完了した。
+  - Windows Downloadsへ32 MiB verified ROMを配置した。SHA-256は既存v1.3.3と同じ`13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07`。
+- Verify: first-battle/UI/QOL統合check、`final-fast`、focused 76 unittest＋release 9 tests、fast dry-run、py_compile、task graph/private guard、diff check PASS。
