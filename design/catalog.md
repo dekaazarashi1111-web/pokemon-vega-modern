@@ -105,3 +105,4 @@
 - `content/{kanto,qol,facility,trainer}_progression.csv`, `content/kanto_state_model.csv`: T15の進行DAG、解禁境界、save ownership正本
 - `content/{map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`, `manifests/{kanto,tohoku,research,raid,facility,reward}*.csv`: T16の二地方物理binding、NORMAL保護、trainer/施設/報酬content正本
 - `overlays/qol_b/`, `tools/regression/`, `scripts/build_regression.py`: T17のQOL-B、実Kanto ROM serializer、拡張trainer/progression、exact-ROM/state regression
+- `tools/release/`, `scripts/build_release.py`: T18のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

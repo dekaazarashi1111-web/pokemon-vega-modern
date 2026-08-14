@@ -285,3 +285,14 @@
   - 自然new-gameからKanto描画・移動・往復、QOL-B、trainer/progression pointer graphをlibmGBA 2 processで実行した。
   - 400地方往復、125共有捕獲、34 event分岐、20 facility mode、3 AI profileを決定論fixtureとmanual checkpointへ固定した。
 - Verify: `make regression-check`、manifest validator、focused 4 tests、py_compile、diff check PASS。ROM SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997`、allocation overlap 0。WSL全体verifyは未実行。
+
+## 2026-08-14T09:23:50+09:00
+
+- Version: `v1.0.0`
+- Commit: `-`（本エントリを含むコミット。release source tagは`a98b991dbd8742b8f51a611f8d30dc714044400a`）
+- Task: `T18` / 再現可能なrelease pipelineを完成させる
+- Summary:
+  - 32 MiB最終ROM、clean FireRed日本版Rev.0用BPS、9-member決定論ZIP、完全な日本語利用説明・credits・save互換性文書を生成した。
+  - BPS完全往復、archive禁止物、source/input/toolchain pin、QOL/Factory/AI契約をrelease gateへ固定した。
+  - tagged sourceの隔離fresh checkoutからT01〜T17、final/BPS/ZIPを完全再構築し、byte一致させた。
+- Verify: `make release-fresh-check`, `make verify-release`, focused 47 tests、T17 check、manifest/task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997` / `a20a85a5501e134b36020c0b8b169958c1ef1876d26914d725ffeecceaf7c9e4` / `eb11865e3817f4d4ead53f10288a8c31ffa818e6f3e8c8c26c3d9164c7985cf6`。

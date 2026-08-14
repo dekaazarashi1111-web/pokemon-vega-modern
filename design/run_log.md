@@ -655,3 +655,32 @@
   - mGBA / regression fixture / QOL-B fixture SHA-256 `db0eeb97142b43d3dc08d7f7165317dee7b03b9e1a4a075211885beabc02e804` / `7c591046e388d37d7a3cc6af85f68c8467d8e325ea4a99273990ec981bb212fa` / `2b614f9365df01b588590b5e1c2b7464cfb866137fe2b1a408d73253b56def28`。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みROM/上流、T03〜T16成果、V2固定review入力だけを参照した。
+
+## 2026-08-14T09:23:50+09:00
+
+- Task: `T18` / 再現可能なrelease pipelineを完成させる
+- Status: DONE
+- Summary:
+  - stage 17から32 MiB最終ROMを固定し、clean FireRed日本版Rev.0用BPS、checksums、README、changelog、credits、known issues、save互換性、feature matrix、build metadataを9-member決定論ZIPへ梱包した。ROM/save/元IPS・UPS/private pathの混入は0。
+  - BPS encoder/decoder、CRC検査、完全往復、BPRJ header、source/input/toolchain pin、Factory/AI/QOL/save文書照合をfail-closedにし、source revision `a98b991dbd8742b8f51a611f8d30dc714044400a` を `v1.0.0` へtag付けした。
+  - 隔離Git worktreeへ読み取り専用私有入力だけを渡し、`make clean-build` 後にT01〜T17、final ROM、BPS、ZIPを再構築した。全8上流独立build、T02〜T17 gate、libmGBA exact-ROM smoke 2 processがPASSし、現成果とfinal/BPS/ZIPがbyte一致した。
+  - fresh buildで発見したT01観測値のT05 fingerprint混入、T13 physical binding不足、T11重複私有ROM pathを修正した。T01 reportの計測時間/cache状態が変わってもT05 model SHA-256 `73fd3703157d10573833cdbd97a768649f6e762f257bc74cd7907d6befc32eff` が不変であることを実測した。
+- Files changed:
+  - release: `scripts/build_release.py`, `tools/release/{__init__,bps}.py`, `Makefile`, `tests/test_release.py`
+  - docs: `docs/{RELEASE_README_JA,SAVE_COMPATIBILITY,BUILD_PIPELINE}.md`, `README.md`, `CHANGELOG.md`, `CREDITS.md`, `KNOWN_ISSUES.md`
+  - reproducibility fixes: `tools/engine/cfru_id_space_inventory.py`, `config/battle_core.json`, `tools/map_import/{kanto_importer,vermilion_slice}.py`, `tests/test_cfru_id_space_inventory.py`, `tests/test_vermilion_slice.py`, `tests/fixtures/{qol_slice,vermilion_slice}.json`
+  - state/index: `design/{current_state,catalog,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/final/vega-modern-kanto-v1.0.0.{gba,json}`, `dist/release/vega-modern-kanto-v1.0.0{,.zip}`, `reports/generated/{release_verification.md,release_fresh_checkout.json}`
+- Verify:
+  - `make release-fresh-check`: PASS。tagged sourceの隔離worktreeで`make clean-build`からT01〜T17を再構築し、final ROM/BPS/ZIPのexact byte一致を確認した。
+  - `make final`, `make release-patch`, `make verify-release`: PASS。BPS完全往復、32 MiB/BPRJ header、9 archive member、禁止binary/private path 0を確認した。
+  - `python3 -m unittest -v tests.test_cfru_id_space_inventory tests.test_build_id_spaces tests.test_vermilion_slice tests.test_content_schema tests.test_release`: PASS（47 tests）。
+  - `python3 scripts/build_regression.py check`, `python3 scripts/validate_manifests.py`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - final ROM / BPS / ZIP SHA-256 `dc77691bb2f2bfb1965803707f937c03c73dfc96605cfb7358ba35821f865997` / `a20a85a5501e134b36020c0b8b169958c1ef1876d26914d725ffeecceaf7c9e4` / `eb11865e3817f4d4ead53f10288a8c31ffa818e6f3e8c8c26c3d9164c7985cf6`。
+  - source tag `v1.0.0` -> `a98b991dbd8742b8f51a611f8d30dc714044400a`、fresh checkout status `PASS`。
+- Commit: `-`（本エントリを含むコミット）
+- Network:
+  - fresh-checkoutで固定commitのCFRU-JP、DPE-JP、pokefireredを各公式GitHub repositoryからcloneした。
+  - <https://github.com/kapibarasan000/CFRU-JP> を参照し、CFRU-JPの公開source、作者表記、README利用条件をcredits/build metadataへ固定した。
+  - <https://w.atwiki.jp/pokehackgames/pages/62.html> を参照し、Battle Factory referenceの公開帰属をcreditsへ記録した。
