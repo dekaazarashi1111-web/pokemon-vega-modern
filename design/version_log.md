@@ -383,3 +383,15 @@
   - T09混在learnsetの現在Lv候補と、D・Hビル/HOF/ハーブ/空き枠で段階解禁するCFRUタマゴ技候補をvolatile modeで切り替えた。
   - HM忘却を許可し、最後の1技・PP Up・form・contextをguardした。削除はCFRU技slot経路を通し、ケルディオform連動とPP Up移動を維持した。
 - Verify: `make move-memory-check`、focused 6 tests、libmGBA 2 process、py_compile、task graph/private guard、diff check PASS。stage 25 SHA-256 `0515f2bad9ea39728446779352f48db8c8eed10bb276470976893bce71e614a9`。
+
+## 2026-08-14T21:01:50+09:00
+
+- Version: `v1.3.3`
+- Commit: `c6f15f4ad421d35e33853039fae4ae4fabedb3ec`（release source tag。完了ログは本エントリを含む後続コミット）
+- Task: `USER-20260814-QOL-RELEASE` / 全QOL変更を統合して再現可能な遊べるreleaseを確定する
+- Summary:
+  - stage 20〜25の初戦、HM、固定CFRU戦闘規則、実タイプ・有効度・STAB UI、無料技管理を、既存Kanto/Factoryと同じ最終ROMへ統合した。
+  - T06メタデータの可変経過時間をUI ABI pinから除外し、ROM、offsets、linked objectの決定的な契約へ修正した。最終ROMとsave形式は不変である。
+  - clean FireRed日本版Rev.0用BPS、32 MiB BPRJ ROM、9-member決定論ZIP、日本語release/save文書をv1.3.3へ更新した。
+  - annotated tag `v1.3.3` の隔離fresh checkoutから全chainを再構築し、final/BPS/ZIPを通常成果とbyte一致させた。
+- Verify: `make release-fresh-check`, `make verify-release`, battle UI/QOL integration build+check、focused 16 tests、T17 check、task graph/private guard、diff check PASS。final ROM/BPS/ZIP SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07` / `9f99d3663458b7f065de9ab0104eff54562331c0467c25fee3e9983935959c5f` / `aac8894833b5124e8ec82edd166291961c1c3c4c5e7c6a24c3c86fd96e894af5`。

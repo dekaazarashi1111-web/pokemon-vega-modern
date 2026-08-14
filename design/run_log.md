@@ -894,3 +894,30 @@
   - memory生成BPSはclean FireRed日本版Rev.0からstage 25へ再適用してexact `true`。patch SHA-256はstage metadataへ固定した。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済みCFRU-JP、T09 learnset、move ID manifest、検証済みstage 24、clean私有入力だけを参照した。
+
+## 2026-08-14T21:01:50+09:00
+
+- Task: `USER-20260814-QOL-RELEASE` / 全QOL変更を統合して再現可能な遊べるreleaseを確定する
+- Status: DONE
+- Summary:
+  - stage 20〜25を同一ROMへ順に結合し、初戦3分岐、Kanto往復、Factory選択・交換・sector 31復旧、8 HM、状態異常・急所・天候、技選択UI、わざメモリーを継続save相当のlibmGBA fixtureで再観測した。
+  - 戦闘中の技選択は固定CFRU ownerを維持し、実damage計算と同じ結果から実タイプ、1×、抜群、半減、無効、STABを表示する。Stellar/Tera Blast、double対象別、wild/trainer/Factory/Raidの入力復帰をstage 24でPASSした。
+  - `v1.3.2` freshで判明したT06メタデータ全体SHAの誤pinを、battle fingerprint、stage 06 ROM、offsets、linked objectだけの安定UI ABI契約へ変更した。経過時間差は許可し、ABI差は拒否する回帰を追加した。ROM byteとsave形式は変更していない。
+  - source revision `c6f15f4ad421d35e33853039fae4ae4fabedb3ec` をローカルannotated tag `v1.3.3` へ固定し、隔離fresh checkoutからfinal/BPS/ZIPを通常worktreeと完全byte一致させた。旧候補tag `v1.3.0`〜`v1.3.2` は移動・削除・配布・pushしていない。
+- Files changed:
+  - reproducibility: `config/battle_ui.json`, `scripts/build_battle_ui.py`, `tests/test_battle_ui.py`
+  - release/version: `scripts/build_{qol_release,release}.py`, `tests/test_release.py`, `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `tools/regression/model.py`
+  - task/design/state: `tasks/USER_20260814_QOL_RELEASE.md`, `design/{catalog,current_state,decisions,report_lifecycle_index,tasks_next,run_log,version_log}.md`, `state/task_status.json`
+  - Git管理外再生成物: `build/stages/20..25*`, `build/final/vega-modern-kanto-v1.3.3.*`, `dist/release/vega-modern-kanto-v1.3.3*`, `reports/generated/{qol_release_integration,release_verification}.md`, `reports/generated/release_fresh_checkout.json`
+- Verify:
+  - `python3 scripts/build_battle_ui.py build` / `check`: PASS。8成果、stage 24 ROM `b7cb44552185b6478563b67d928dbeb1f50c62f77f7cd8b88059cb0a0661c4bb`、UI ABI、5有効度区分、Stellar/Tera Blast、double対象、全battle modeを確認した。
+  - `python3 scripts/build_qol_release.py build` / `check`: PASS。副作用なしcheckと同一stage 25の全QOL/Factory/Kanto横断回帰を確認した。
+  - `python3 -m unittest tests.test_battle_ui tests.test_release`: PASS（16 tests）。可変経過時間の許可とlinked object差の拒否、release契約を検査した。
+  - `python3 scripts/build_regression.py check`, `make final`, `make release-patch`, `make verify-release`: PASS。最終ROM32 MiB/BPRJ、BPS完全往復、9-member archive、禁止物0を確認した。
+  - `make release-fresh-check`: PASS。固定上流4 variant各2回、T02〜stage 25、final/BPS/ZIPをtagged sourceから再構築し、revision `c6f15f4ad421d35e33853039fae4ae4fabedb3ec` の通常成果と完全一致した。
+  - `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyは実行せず、タスクに直結するgateだけを使用した。
+- Report identity:
+  - final ROM / final metadata / BPS / ZIP SHA-256 `13eab962d4de4149e463e5120b683302a0ed18170cecca6fa71341aba0479d07` / `5e5eaab1f58c3e376bd559e599c2def47f32df06ba9ad080f6d37baaec82981d` / `9f99d3663458b7f065de9ab0104eff54562331c0467c25fee3e9983935959c5f` / `aac8894833b5124e8ec82edd166291961c1c3c4c5e7c6a24c3c86fd96e894af5`。
+  - fresh evidence / release report SHA-256 `a8b2a178af41abc7ea6afca5f547701b45d78d770864b9a189c4b94a339364d7` / `cc91e12a494d7c0f74c2caa3f0ad034810ac81dec635d0f415aadc6f7549ccf1`。
+- Commit: `c6f15f4ad421d35e33853039fae4ae4fabedb3ec`（release source tag。完了ログ・task状態は本エントリを含む後続コミット）
+- Network: 隔離fresh checkoutのbootstrapでGitHubからsource-lock済みCFRU-JP / DPE-JP / pokefireredの固定commitを取得した。Web検索は未使用。private入力は隔離先へ読み取り専用で渡し、配布物へ含めていない。

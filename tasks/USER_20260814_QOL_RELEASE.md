@@ -19,10 +19,10 @@
 
 ## 受入条件
 
-- [ ] 全機能の継続save smokeと既存Factory/Kanto主要回帰がPASSする。
-- [ ] BPS完全往復、32 MiB/BPRJ header、archive禁止物0を確認する。
-- [ ] tagged sourceのfresh checkoutからfinal/BPS/ZIPがbyte一致する。
-- [ ] 日本語release文書が操作、解禁条件、CFRU rule provenance、save互換性と一致する。
+- [x] 全機能の継続save smokeと既存Factory/Kanto主要回帰がPASSする。
+- [x] BPS完全往復、32 MiB/BPRJ header、archive禁止物0を確認する。
+- [x] tagged sourceのfresh checkoutからfinal/BPS/ZIPがbyte一致する。
+- [x] 日本語release文書が操作、解禁条件、CFRU rule provenance、save互換性と一致する。
 
 ## 完了
 
