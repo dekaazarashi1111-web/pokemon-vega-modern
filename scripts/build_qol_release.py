@@ -319,7 +319,7 @@ def validate_published_fixture(root: Path = ROOT) -> dict[str, Any]:
 
 def _report(value: dict[str, Any]) -> bytes:
     components = value["components"]
-    return f"""# v1.3.2 QOL統合実ROM回帰
+    return f"""# v1.3.3 QOL統合実ROM回帰
 
 ## 結論
 

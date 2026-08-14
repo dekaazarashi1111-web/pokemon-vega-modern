@@ -4,6 +4,13 @@
 
 - なし。
 
+## 1.3.3 — 2026-08-14
+
+- `v1.3.2` 候補のfresh checkoutがstage 23まで再構築後、T06メタデータの実行時間差だけで
+  battle UI入力pinを拒否する問題を検出。その候補は配布・pushせず、旧tagも移動しない。
+- T06入力をメタデータ全体のSHAではなく、battle fingerprint、ROM、offsets、linked objectの
+  決定的なUI ABI契約へ固定。戦闘UIと最終ROM byte、save形式、遊べる機能は変更しない。
+
 ## 1.3.2 — 2026-08-14
 
 - `v1.3.1` 候補のfresh checkoutが重い上流build前に検出した、更新済み

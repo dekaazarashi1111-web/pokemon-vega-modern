@@ -205,3 +205,16 @@
 - 再試行: 前回は重い上流build前にfail-closedしたため、`v1.3.2` tagged sourceで
   隔離fresh rebuildを再試行し、final/BPS/ZIP byte一致を最終gateとする。
 - 影響: T01/T02来歴、AI fixture、v1.3.2 release、fresh-checkout再現性。
+
+## 2026-08-14 — D-023: T06の可変計測値をUI ABI pinから除外する
+
+- 判定: annotated tag `v1.3.2` のfresh checkoutはstage 23まで同一ROMを再構築したが、
+  `build/stages/06_battle_core.json` 全体SHAが通常worktreeと異なるためbattle UI gateで停止した。
+  この候補もrelease gate不合格とし、tagを移動・削除せず配布・pushしない。
+- 原因: T06メタデータは来歴として各上流runの `elapsed_seconds` を保持する。UI実装はその値へ
+  依存しないのにJSON全体SHAを固定していたため、正常な実行時間差をABI差として誤判定した。
+- 修正: battle fingerprint、stage 06 ROM、offsets、linked objectのSHAだけをUI入力契約にする。
+  経過時間が変わっても受理し、offsetsまたはlinked objectが変われば拒否する回帰を追加する。
+- 再試行: ROM byteを変えない `v1.3.3` sourceをtag固定し、隔離fresh rebuildで
+  final/BPS/ZIP byte一致を最終gateとする。
+- 影響: battle UI入力来歴、v1.3.3 release、fresh-checkout再現性。

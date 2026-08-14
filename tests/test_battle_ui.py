@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 import sys
 import unittest
@@ -19,6 +20,7 @@ from scripts.build_battle_ui import (  # noqa: E402
     STAGE24,
     STAGE24_META,
     UPSTREAM_SYMBOLS,
+    _battle_core_contract,
     _build_stage,
     audit_owner,
     audit_source,
@@ -61,6 +63,31 @@ class BattleUITests(unittest.TestCase):
                     "MoveSelectionDisplayMoveEffectiveness"
                 ][1],
             },
+        )
+
+    def test_battle_core_pin_ignores_elapsed_time_but_keeps_ui_abi(self) -> None:
+        metadata = json.loads(
+            (ROOT / "build/stages/06_battle_core.json").read_text(encoding="utf-8")
+        )
+        pinned = json.loads(
+            (ROOT / "config/battle_ui.json").read_text(encoding="utf-8")
+        )["inputs"]["battle_core_metadata"]
+        expected = {key: pinned[key] for key in _battle_core_contract(metadata)}
+        self.assertEqual(_battle_core_contract(metadata), expected)
+
+        elapsed_changed = copy.deepcopy(metadata)
+        for index, run in enumerate(elapsed_changed["upstream_runs"], 1):
+            run["elapsed_seconds"] = index * 0.001
+        self.assertEqual(
+            _battle_core_contract(elapsed_changed),
+            _battle_core_contract(metadata),
+        )
+
+        abi_changed = copy.deepcopy(metadata)
+        abi_changed["upstream_runs"][-1]["linked_object"]["sha256"] = "0" * 64
+        self.assertNotEqual(
+            _battle_core_contract(abi_changed),
+            _battle_core_contract(metadata),
         )
 
     def test_all_move_menu_profiles_share_the_fixed_cfru_owner(self) -> None:

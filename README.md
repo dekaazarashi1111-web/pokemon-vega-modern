@@ -86,7 +86,7 @@ make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をs
 make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make qol-release-smoke # 同じstage 25でKanto/Factoryと全QOLを横断実ROM再検証
 make qol-release-smoke-check # hash一致済みの統合fixtureを副作用なしで再照合
-make final       # clean入力からv1.3.2最終ROMとbuild metadataを生成
+make final       # clean入力からv1.3.3最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -160,7 +160,7 @@ clean ROMからのBPS往復を検証し、Factory ROMのbyteは使用しない�
 戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
 ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
-v1.3.2統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
+v1.3.3統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 25を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／
 忘却／form連動を再観測する。stage 20以後の新規serialized fieldは0で、HMはバッグから導出し、

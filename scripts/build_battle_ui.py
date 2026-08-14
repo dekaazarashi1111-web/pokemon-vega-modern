@@ -163,6 +163,20 @@ def _rom_slice(rom: bytes, address: int, size: int) -> bytes:
     return rom[offset:offset + size]
 
 
+def _battle_core_contract(metadata: dict[str, Any]) -> dict[str, Any]:
+    """UIが実際に依存するT06の決定的な契約だけを取り出す。"""
+    runs = metadata.get("upstream_runs")
+    if not isinstance(runs, list) or not runs or not isinstance(runs[-1], dict):
+        _fail("T06 upstream run evidence missing")
+    run = runs[-1]
+    return {
+        "fingerprint": metadata.get("fingerprint"),
+        "rom_sha256": metadata.get("output", {}).get("sha256"),
+        "offsets_sha256": run.get("offsets", {}).get("sha256"),
+        "linked_object_sha256": run.get("linked_object", {}).get("sha256"),
+    }
+
+
 def _config(root: Path) -> dict[str, Any]:
     config = _read_json(root / CONFIG)
     if config.get("schema_version") != 1 or config.get("task") != TASK:
@@ -173,9 +187,16 @@ def _config(root: Path) -> dict[str, Any]:
         "tree": EXPECTED_CFRU_TREE,
     }:
         _fail("battle UI pinned source differs")
-    for row in config["inputs"].values():
+    for name, row in config["inputs"].items():
         path = root / row["path"]
-        if not path.is_file() or _sha(path.read_bytes()) != row["sha256"]:
+        if not path.is_file():
+            _fail(f"battle UI pinned input differs: {row['path']}")
+        if name == "battle_core_metadata":
+            observed = _battle_core_contract(_read_json(path))
+            expected = {key: row.get(key) for key in observed}
+            if observed != expected:
+                _fail(f"battle UI pinned input differs: {row['path']}")
+        elif _sha(path.read_bytes()) != row["sha256"]:
             _fail(f"battle UI pinned input differs: {row['path']}")
     if config["inputs"]["stage_rom"]["sha256"] != EXPECTED_STAGE23_SHA256:
         _fail("battle UI stage23 config hash differs")
