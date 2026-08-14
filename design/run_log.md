@@ -767,3 +767,28 @@
     `fad037c85632cda691cb6d7637310fd8be123cf62260c65bebeba2acd001fa82`。
 - Commit: `3d81fd6a29de7d4ed96375809e9c28e71195327e`（実装・release source tag）、完了ログは本エントリを含むコミット。
 - Network: 未使用。source-lock済みCFRU-JP、既存stage 17/19、clean私有入力だけを参照した。
+
+## 2026-08-14T13:15:35+09:00
+
+- Task: `USER-20260814-FIRST-BATTLE-LOOP` / 初戦の行動順メッセージ無限ループを修正する
+- Status: DONE
+- Summary:
+  - stage 20のTrainer 327は相手リープンがSpecies 1 / Item 0 / Ability 65の正常recordで、通常固定入力ではユーザー再試行と同様に再発しなかった。一方、行動順scheduler入口へ残留Quick Claw/Custap indicatorを注入すると、旧処理がhold effectを再検証せずItem 0の「？？？？？？？？」通知へ入り、PP/HPを更新しない経路を命令単位で再現した。
+  - `RunTurnActionsFunctions`の通知直前にhold effect 26（Quick Claw）/ 96（Custap）を再検証し、それ以外のindicatorを消去して同じターンを継続する14-byte命令patchをstage 21へ適用した。将来の固定CFRU-JP再構築にも同じsource guardを追加した。
+  - アクタシ・ファマー・リープンの初戦3分岐は不正通知0、PP 35→34、HP更新で進行した。不正indicator注入後も通知0で同じターンが進み、正規Quick Claw / Custap / Quick Drawは遅いbank 1を先頭にして通知各1回、PP/HP更新を維持した。
+  - stage 20を再利用し、新規allocation 0でstage 21を生成した。clean FireRed日本版Rev.0からstage 21へのBPSをmemory上で生成・再適用し、exact target一致を確認した。重い全stage再構築とfresh release buildは実行していない。
+- Files changed:
+  - runtime/build: `scripts/build_first_battle_hotfix.py`, `scripts/build_battle_core.py`, `tools/mgba_first_battle_loop_smoke.c`, `Makefile`
+  - tests: `tests/test_first_battle_hotfix.py`, `tests/test_build_battle_core.py`
+  - task/docs/state: `tasks/USER_20260814_*.md`, `README.md`, `docs/{BUILD_PIPELINE,TEST_STRATEGY}.md`, `design/{agent_context_map,catalog,current_state,report_lifecycle_index,tasks_next,run_log,version_log}.md`
+  - Git管理外再生成物: `build/stages/21_first_battle_hotfix.{gba,json}`, `build/stages/{21_allocation,21_mgba_first_battle_loop}.json`, `reports/generated/first_battle_loop_fix.md`
+- Verify:
+  - `make first-battle-hotfix-check`: PASS。5成果のbyte一致と副作用なし、stage入力hash、14-byte patch span、新規allocation 0、libmGBA 2 process、BPS完全往復を確認した。
+  - `python3 -m unittest tests.test_first_battle_hotfix`: PASS（3 tests）。stage identity、patch span、allocator、BPS、公開mGBA証跡を検査した。
+  - `python3 -m unittest tests.test_build_battle_core.BattleCoreBuilderTests.test_prepared_source_binds_runtime_policy_effects_and_cacophony`: PASS（1 test）。将来のsource再構築へguardが1回だけ入ることを検査した。
+  - `python3 -m py_compile scripts/build_first_battle_hotfix.py scripts/build_battle_core.py`, `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyは実行していない。
+- Report identity:
+  - stage 21 / allocation / mGBA smoke SHA-256 `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521` / `12a0d057e4c375846d6fd9b040da92d281493b2709e0091d44d46b33b4f4e773` / `e628b870a27edca6ac4b2125bd0f82a71631bfdd00ff9f8a98ea29e8cd3287d4`。
+  - memory生成BPS SHA-256 `573ee2970017c6250ee1a4c47ad567761af7c58e05c1f9d929529c4199fe12f9`、round-trip exact `true`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済みCFRU-JP source、既存stage 20、clean私有入力だけを参照した。

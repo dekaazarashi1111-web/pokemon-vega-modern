@@ -74,6 +74,8 @@ make trainer-rebalance # V4本編trainerをstage 17へ結合してstage 19を生
 make trainer-rebalance-check # V4のID解決・record・party pointerを副作用なしで照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
+make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
+make first-battle-hotfix-check # 初戦3分岐・fault injection・正規優先効果・BPS往復を再照合
 make final       # clean入力からv1.2.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
@@ -117,6 +119,11 @@ Full Smartへ対応し、Mirage・未指定Sphereの施設編成は変更しま�
 Lv.50候補生成器で重複なし6体を作る。既存party UIで3体を選択してsingle 3v3を3戦し、
 1・2勝後は相手側からランダムに保持した1体と手持ちの任意1体を交換できる。完走は9 BP。
 敗北・辞退・cancel・save/reset復旧では入場前party 600 byteを復元し、図鑑はseenだけを更新する。
+
+追加stage 21はstage 20を再利用し、行動順schedulerに残留したQuick Claw/Custap indicatorが
+Item ID 0の初戦リープンを「？？？？？？？？」通知へ誤送出する経路をhold effect再検証で遮断する。
+初戦3分岐、正規のせんせいのツメ・イバンのみ・クイックドロウ、clean ROMからのBPS往復を
+libmGBAで検証する。公開releaseへの統合と重いfresh rebuildは全QOL完了時に1回だけ行う。
 
 ## 効率方針
 

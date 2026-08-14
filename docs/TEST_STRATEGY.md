@@ -40,6 +40,11 @@
 11. party summary
 12. Pokedex registration
 
+初戦の行動順回帰では、アクタシ・ファマー・リープンの3分岐を実controllerで1ターン進める。
+Item ID 0へ残留Quick Claw/Custap indicatorを命令境界で注入し、通知なしでPP/HPが更新される
+ことを確認する。正規Quick Claw、Custap、Quick Drawは遅いbankを先頭へ移し、通知1回で
+同じターンを完了することを別fixtureで検証する。
+
 ## 4. Vega regression
 
 主要checkpoint saveを個人環境で作り、次を確認します。

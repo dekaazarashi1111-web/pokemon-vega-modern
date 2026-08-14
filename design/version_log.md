@@ -328,3 +328,14 @@
   `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3` /
   `29707aa8e1acde91bb4fb11c993e1b68cc7351663d7d350d93da8fd1691da10b` /
   `fad037c85632cda691cb6d7637310fd8be123cf62260c65bebeba2acd001fa82`。
+
+## 2026-08-14T13:15:35+09:00
+
+- Version: `first-battle-hotfix-stage21`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260814-FIRST-BATTLE-LOOP` / 初戦の行動順メッセージ無限ループを修正する
+- Summary:
+  - Item 0に残った不正Quick Claw/Custap indicatorを通知直前のhold effect再検証で破棄し、同じターンを継続するstage 21を生成した。
+  - 初戦3分岐とfault injectionで不正通知0、PP/HP更新を確認し、正規Quick Claw / Custap / Quick Drawの先行効果と各1回通知を維持した。
+  - 既存stage 20を再利用し、新規allocation 0、clean ROMからのBPS完全往復を確認した。公開release更新と重いfresh buildは後続統合まで保留した。
+- Verify: `make first-battle-hotfix-check`、focused 4 tests、py_compile、task graph/private guard、diff check PASS。stage 21 SHA-256 `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521`。

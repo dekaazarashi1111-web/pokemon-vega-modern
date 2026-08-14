@@ -285,6 +285,9 @@ class BattleCoreBuilderTests(unittest.TestCase):
                 encoding="utf-8"
             )
             prepared_multi = (tree / "src/multi.c").read_text(encoding="utf-8")
+            prepared_turn_start = (
+                tree / "src/battle_start_turn_start.c"
+            ).read_text(encoding="utf-8")
             prepared_linker = (tree / "BPRJ.ld").read_text(encoding="utf-8")
         self.assertEqual(result["battle_patchset"]["write_count"], 955)
         self.assertEqual(result["battle_patchset"]["omitted_write_count"], 955)
@@ -368,6 +371,16 @@ class BattleCoreBuilderTests(unittest.TestCase):
         )
         self.assertIn("if (buffer >= COMMAND_MAX)", prepared_multi)
         self.assertNotIn("if (buffer > COMMAND_MAX)", prepared_multi)
+        self.assertEqual(
+            prepared_turn_start.count(
+                "if (itemEffect != ITEM_EFFECT_QUICK_CLAW\n"
+                "\t\t\t\t&& itemEffect != ITEM_EFFECT_CUSTAP_BERRY)"
+            ),
+            1,
+        )
+        self.assertIn(
+            "RecordItemEffectBattle(bank, itemEffect)", prepared_turn_start
+        )
         self.assertEqual(
             prepared_catching.count("VegaGiveCaughtMonToPlayer(mon)"), 1
         )

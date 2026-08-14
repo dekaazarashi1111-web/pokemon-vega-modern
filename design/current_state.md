@@ -4,13 +4,14 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、v1.2.0 releaseへ更新した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21へ追加した。公開releaseは引き続きv1.2.0で、全QOL統合後に更新する。
 - ユーザー提供の6 ZIP、3 ROM、IPS、UPSをGit管理外へ取り込み、原本とのSHA-256一致を確認済み。
 - 6 ZIPは破損・パストラバーサルなし。プレイブック基盤、競合監査、V1来歴資料、V2二地方設計資料、V3技調整資料、V4本編トレーナー資料を役割別に配置済み。
 - V4の141戦・610体を全件canonical ID解決し、既存本編Trainer ID 648件へ実配置した。主要人物62、既存Gym NPC 39、一般・バトルサーチャー547。Mirageと未指定Sphereを保護し、追加event枠のない21戦はcatalog-onlyである。
 - V4 AI rankは固定CFRU-JPの既存3段階だけを使用する。rank 1→flags 1、rank 2〜3→flags 3、rank 4〜5→flags 5。stage 19 SHA-256は `43bcc2bf20364f2e8fcf6e03e9bcbadf9f9f6c2308592bdb1bac364e3f00c478`。
 - クチバ（group 96 / map 5）へFactory Trial受付NPCを実配置した。固定CFRU-JP生成器の重複なしLv.50候補6体から既存party UIで3体を選び、single 3v3×3、1・2勝後の任意1体交換、各戦全回復、完走9 BPを実ROMで実行する。完走・敗北・辞退・cancel・保存後復旧は入場前party 600 byteをexact復元し、図鑑はseenだけを更新する。
 - Factory ledgerは既存CFRU sector 31へ直接保存し、ROM用2 KiB rollback像をEWRAM `0x0203E400..0x0203EC00`へ配置した。stage 20 SHA-256は `0976e5d84b12fc3e2175278ecce1ee2fda1cf3dc2c9b3ee1bbc4cd85e7b60ac3`、中央allocator overlapは0。
+- 初戦の相手リープンはItem ID 0 / hold effect 0で正常だが、行動順schedulerが残留Quick Claw/Custap indicatorを再検証せず通知へ進むと、Item 0名の「？？？？？？？？」を反復して行動が止まることを命令単位fault injectionで再現した。stage 21は通知直前にhold effect 26/96を再検証し、それ以外を破棄して同じターンを継続する。3御三家、正規Quick Claw/Custap/Quick Draw、clean ROMからのBPS完全往復がPASSし、SHA-256は `ac0bd8c54ea8a6ee76a56fb0e4cd124e01ace03c4a72ebe923e87e536c8ec521`。新規allocationは0。
 - clean ROMはBPRJ01 Rev.00、CRC32 `3B2056E9`。IPS/UPSから個別生成した参照ROMは提供済み2 ROMとbyte一致。
 - 厳密競合結果は775 byte中、同値191、異値584。単純なパッチ結合はNO-GO。
 - 上流pinは2026-08-12時点のGitHub既定ブランチHEADへ固定する。
@@ -72,7 +73,14 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` と `python3 scripts/taskctl.py next` を正とする。T00〜T18は全て完了し、次の正本タスクはない。
+`design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
+
+- USER-20260814-FIRST-BATTLE-LOOP: DONE。残留Quick Claw/Custap indicatorをhold effect再検証で破棄し、stage 21の実ROM回帰を通した。
+- USER-20260814-HM-FIELD-ACCESS: 次。HM所持だけで対応field能力を使えるようにし、技習得から分離する。
+- USER-20260814-BATTLE-RULES: 状態異常・急所・天候の現行ownerを監査し、固定CFRU-JP既定へ統一する。
+- USER-20260814-BATTLE-UI: 通常戦を含むbattle UIと有効度表示をCFRU/Factory系へ統一する。
+- USER-20260814-MOVE-MEMORY: だいじなものと既存NPCが共用する無料の技思い出し・技忘れ・段階解禁タマゴ技を実装する。
+- USER-20260814-QOL-RELEASE: 上記QOLを統合し、最後に重いfresh rebuildを1回だけ実行してreleaseを確定する。
 
 - T01: DONE。固定toolchain、隔離build、baseline/Factory-like/minimal、Factory/AI実fixture、再生成可能なreportをfingerprint付きで確定した。
 - T02: DONE。config-aware fixed-write、RAM/SaveBlock/ID、Vega map/encounter/trainer/script graph、早期解禁flag、QOL/施設/AIをUNKNOWN 0で確定した。アーシア港はplayer込みobject上限16のため、新規静的NPCを追加しない。
@@ -94,6 +102,7 @@
 - T18: DONE。v1.0.0最終ROM、BPS、決定論ZIP、release文書を生成し、隔離fresh checkoutからの完全byte再現を通過した。
 - USER-20260814-TRAINER-V4: DONE。V4本編trainerをstage 19へ実配置し、v1.1.0 release導線へ接続した。
 - USER-20260814-FACILITY-RUNTIME: DONE。クチバFactory Trialの受付・候補6→選択3・3連戦・勝利後交換・BP・sector 31保存・exact復元をstage 20へ実配置し、v1.2.0 release導線へ接続した。
+- USER-20260814-FIRST-BATTLE-LOOP: DONE。stage 20を再利用した14-byte命令patchと将来のCFRU source再構築guardを追加し、初戦3分岐・不正indicator注入・正規優先効果3種・BPS往復をstage 21で検証した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 

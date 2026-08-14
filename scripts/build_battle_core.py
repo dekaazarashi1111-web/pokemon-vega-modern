@@ -2115,6 +2115,44 @@ def install_rom_integration(root: Path, tree: Path) -> dict[str, Any]:
     )
     _replace_once(
         start,
+        "\t\t\telse if (gNewBS->quickClawCustapIndicator & gBitTable[bank])\n"
+        "\t\t\t{\n"
+        "\t\t\t\tgNewBS->quickClawCustapIndicator &= ~(gBitTable[bank]);\n"
+        "\t\t\t\tgNewBS->quickDrawIndicator &= ~(gBitTable[bank]); //One or the other\n\n"
+        "\t\t\t\tif (action == ACTION_USE_ITEM)\n"
+        "\t\t\t\t\tcontinue;\n"
+        "\t\t\t\telse if (ITEM_EFFECT(bank) == ITEM_EFFECT_CUSTAP_BERRY\n"
+        "\t\t\t\t&& (action == ACTION_USE_ITEM || action == ACTION_SWITCH || action == ACTION_RUN)) //Only Quick Claw activates on the switch\n"
+        "\t\t\t\t\tcontinue;\n\n"
+        "\t\t\t\tgBattleScripting.bank = bank;\n"
+        "\t\t\t\tgLastUsedItem = ITEM(bank);\n"
+        "\t\t\t\tif (ITEM_EFFECT(bank) != ITEM_EFFECT_CUSTAP_BERRY)\n"
+        "\t\t\t\t\tRecordItemEffectBattle(bank, ITEM_EFFECT(bank));\n"
+        "\t\t\t\telse\n"
+        "\t\t\t\t\tgNewBS->ateCustapBerry |= gBitTable[bank];",
+        "\t\t\telse if (gNewBS->quickClawCustapIndicator & gBitTable[bank])\n"
+        "\t\t\t{\n"
+        "\t\t\t\tu8 itemEffect = ITEM_EFFECT(bank);\n\n"
+        "\t\t\t\tgNewBS->quickClawCustapIndicator &= ~(gBitTable[bank]);\n"
+        "\t\t\t\tgNewBS->quickDrawIndicator &= ~(gBitTable[bank]); //One or the other\n\n"
+        "\t\t\t\tif (itemEffect != ITEM_EFFECT_QUICK_CLAW\n"
+        "\t\t\t\t&& itemEffect != ITEM_EFFECT_CUSTAP_BERRY)\n"
+        "\t\t\t\t\tcontinue;\n"
+        "\t\t\t\tif (action == ACTION_USE_ITEM)\n"
+        "\t\t\t\t\tcontinue;\n"
+        "\t\t\t\telse if (itemEffect == ITEM_EFFECT_CUSTAP_BERRY\n"
+        "\t\t\t\t&& (action == ACTION_USE_ITEM || action == ACTION_SWITCH || action == ACTION_RUN)) //Only Quick Claw activates on the switch\n"
+        "\t\t\t\t\tcontinue;\n\n"
+        "\t\t\t\tgBattleScripting.bank = bank;\n"
+        "\t\t\t\tgLastUsedItem = ITEM(bank);\n"
+        "\t\t\t\tif (itemEffect != ITEM_EFFECT_CUSTAP_BERRY)\n"
+        "\t\t\t\t\tRecordItemEffectBattle(bank, itemEffect);\n"
+        "\t\t\t\telse\n"
+        "\t\t\t\t\tgNewBS->ateCustapBerry |= gBitTable[bank];",
+        "invalid Quick Claw/Custap indicator guard",
+    )
+    _replace_once(
+        start,
         "\tgNewBS->isTrainerBattle = (gBattleTypeFlags & BATTLE_TYPE_TRAINER) != 0; //Used as part of the anti-catch-Trainer-Pokemon cheat\n"
         "\tFormsRevert(gPlayerParty); //Try to reset all forms before battle\n}",
         "\tgNewBS->isTrainerBattle = (gBattleTypeFlags & BATTLE_TYPE_TRAINER) != 0; //Used as part of the anti-catch-Trainer-Pokemon cheat\n"
