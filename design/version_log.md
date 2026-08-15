@@ -511,3 +511,13 @@
   - 既存2 KiB台帳へ240 byte取得blockを配置し、標準saveとsector 31の双方を跨ぐ永続化・移行を実ROMで確認した。
   - 通信進化30経路と野生内部ID2件を修正し、stage 26、v1.4.0 BPS、ROMなし9-member ZIPを生成した。
 - Verify: package生成／negative／2,035 exact case、stage 26 build/check、libmGBA 2 process、focused 5 save tests、BPS完全往復、archive安全監査、task graph/private guard/diff check PASS。
+
+## 2026-08-16T03:16:35+09:00
+
+- Version: `v1.4.0`（最終release identity）
+- Commit: `9c3671d617ad5c17b1a09acf317d2ac68d4a9704`（tag `v1.4.0`）／`6d4b558`（完了状態）
+- Task: `USER-20260816-ACQUISITION-EVENTS` / release source固定
+- Summary:
+  - release sourceを機能実装コミットへtagで固定し、完了ログ追加後もfinal/BPS/ZIP検証を再現可能にした。
+  - ROMとBPSは不変。tag検証済みmetadataを含む最終9-member ZIP SHA-256を`ca20130634c519fc08049464a21faa88e71f9708b3642af74b3cf8b55f739a1e`へ確定した。
+- Verify: release final-fast / patch / verify、BPS完全往復、archive禁止物0、verify副作用なし PASS。

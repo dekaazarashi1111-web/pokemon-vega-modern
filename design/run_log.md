@@ -1239,3 +1239,15 @@
   - 9-member ZIP: 15,452,825 bytes、SHA-256 `578f11ba3e67e93af09233f89182b2ae82262ba23efe813688ffb43733801b44`
 - Commit: `9c3671d617ad5c17b1a09acf317d2ac68d4a9704`（機能実装。完了状態と本証跡は後続コミット）
 - Network: 未使用。ユーザー提供ZIP、source-lock済み上流、検証済みstage 25、clean私有入力だけを参照した。
+
+## 2026-08-16T03:16:35+09:00
+
+- Task: `USER-20260816-ACQUISITION-EVENTS` / v1.4.0 release sourceと最終archive identityを固定する
+- Status: DONE
+- Summary:
+  - 機能実装コミット`9c3671d617ad5c17b1a09acf317d2ac68d4a9704`へlocal tag `v1.4.0`を作成し、完了ログだけを含む後続HEADに依存せず同じrelease sourceを再現できるようにした。
+  - 前エントリのZIP SHA-256 `578f11ba...`はtag作成前のmetadataを含む暫定archive。ROMとBPS byteは不変のまま、tag検証済みmetadataを含む最終ZIPへ再包装した。
+- Files changed: `design/current_state.md`、`design/run_log.md`、`design/version_log.md`。Git管理外のfinal metadata／release ZIPを再生成した。
+- Verify: `python3 scripts/build_release.py final-fast` / `patch` / `verify`: PASS。final ROM SHA-256 `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`、BPS SHA-256 `0b69b5de39e29168929f36750049c29f2064f290215112384449f1e4b38f418e`、最終ZIP SHA-256 `ca20130634c519fc08049464a21faa88e71f9708b3642af74b3cf8b55f739a1e`。
+- Commit: `6d4b558`（タスク完了状態）／`9c3671d`（`v1.4.0` release source）。本訂正は後続コミット。
+- Network: 未使用。
