@@ -26,4 +26,4 @@
 - [x] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->
 - [x] 戦闘UI・アクタシ初戦ループ・高速差分ビルドを修正する <!-- id:USER-20260814-BATTLE-UI-LOOP-FAST-BUILD -->
 - [x] 6文字のポケモン名を全UIで欠けずに表示する <!-- id:USER-20260815-SPECIES-NAME-LENGTH -->
-- [>] 全コレクション対象の入手方法と取得イベントを実ROMへ統合する <!-- id:USER-20260816-ACQUISITION-EVENTS -->
+- [x] 全コレクション対象の入手方法と取得イベントを実ROMへ統合する <!-- id:USER-20260816-ACQUISITION-EVENTS -->

@@ -1210,3 +1210,32 @@
   - 9-member ZIP: SHA-256 `5cb94dd8ebb735cc4c1681ea455b1ca273f26365946ff73a396daf06235001ba`
 - Commit: `-`（本エントリを含むコミット）
 - Network: `https://github.com/pret/pokefirered.git`を`.local/`へ取得し、commit `c75f352304d529f6ba92d4f74b9cf8b5c3810788`のstock consumer意味分類だけを参照した。実装入力と上流固定は既存`state/source-lock.json`を変更していない。
+
+## 2026-08-16T03:10:47+09:00
+
+- Task: `USER-20260816-ACQUISITION-EVENTS` / 全コレクション対象の入手方法と取得イベントを実ROMへ統合する
+- Status: DONE
+- Summary:
+  - 受領ZIP `Pokemon-Vega_Acquisition-Design_20260815.zip`（SHA-256 `d96e26b571855c89f112674853165359273564b771f2be5bf29d63b80adfb6ed`、410 entries）を安全検査し、読み取り専用原本を`userfile/imports/**`へ保存した。v1.3.7前提のstage pinを現行v1.3.9 stage 25へ再監査し、採用したcontent、manifest、generator、validatorだけを`vendor/vega_acquisition/**`へ昇格した。
+  - コレクション対象1,206種と有効化フォーム10種の到達性を1,216/1,216にし、不足分201イベントを24個のclean FireRed由来objectへ結合した。元のobject予算内で19 mapへ復元し、新規設計objectは追加していない。
+  - 固定捕獲、ギフト、タマゴ、化石復元、進化支援、交換エミュレータ、サービスの7方式を共通transaction runtimeへ接続した。捕獲後だけのclaim、5件ページmenu、party→PC、全収納満杯、道具rollback、reset復旧、重複防止を実装し、タマゴは受取時claim・孵化時図鑑登録へ分離した。
+  - 現行2 KiB台帳の予約領域へ4 byte整列の240 byte `VACQ` blockを後続offset不変で配置した。個体・party・PC・図鑑の標準saveとsector 31台帳保存をtransaction phaseごとに組み合わせ、通常load後の台帳復元、旧zero領域移行、outer/inner CRCを実ROMで確認した。
+  - 内部Species 282の野生2 slotをストライク255へ修正し、通信進化30経路をItem 395「リンクケーブル」へ変換した。stage 26とv1.4.0のROMなしBPS／9-member ZIPを生成した。
+- Files changed:
+  - package/runtime/build: `vendor/vega_acquisition/**`、`overlays/acquisition_runtime/**`、`scripts/build_acquisition_events.py`、`tools/mgba_acquisition_smoke.c`、`Makefile`
+  - save/QA: `overlays/save_migration/save_migration.{c,h}`、`config/{ram_layout,save_layout}.csv`、`tests/fixtures/save_migration_fixture.c`、`tests/test_{save_layout,facility_save}.py`
+  - release/design: `scripts/build_release.py`、`README.md`、`CHANGELOG.md`、`CREDITS.md`、`KNOWN_ISSUES.md`、`docs/{RELEASE_README_JA,SAVE_COMPATIBILITY}.md`、`tasks/USER_20260816_ACQUISITION_EVENTS.md`、`design/{current_state,run_log,version_log,tasks_next}.md`
+  - Git管理外成果: 読み取り専用受領ZIP、stage 26、mGBA fixture、v1.4.0 final ROM／BPS／ZIP。Downloads原本、私有ROM、save、元patchは変更・追跡していない。
+- Verify:
+  - `python3 vendor/vega_acquisition/tests/run_tests.py` / `run_negative_tests.py`: PASS。1,206＋10到達、201 event、24 host、2,035 exact case、7 negative fixture、wild sanitizer、host C runtime、生成再現性を確認した。
+  - `python3 scripts/build_acquisition_events.py build` / `check`: PASS。stage 26 SHA-256 `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`、allocator overlap 0、宣言外変更0、BPS往復PASS。
+  - libmGBA独立2 process: PASS。7方式、解禁前後、固定捕獲commit、実flash再読込、標準party save/load、タマゴ孵化時登録、pending reset復旧、party/PC満杯、進化30経路、野生byteを確認した。
+  - `python3 -m unittest -v tests.test_save_layout tests.test_facility_save`: PASS（5 tests）。`python3 scripts/build_save_compatibility.py check`: PASS。
+  - `python3 scripts/build_release.py final-fast` / `patch` / `verify`: PASS。BPS完全往復、archive 9 members、ROM/save/元patch/private path 0、verify副作用なし。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。WSL repository全体verifyとstage 00からの長時間再生成は行っていない。
+- Output identity:
+  - final ROM: 33,554,432 bytes、SHA-256 `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`
+  - BPS: 15,376,040 bytes、SHA-256 `0b69b5de39e29168929f36750049c29f2064f290215112384449f1e4b38f418e`
+  - 9-member ZIP: 15,452,825 bytes、SHA-256 `578f11ba3e67e93af09233f89182b2ae82262ba23efe813688ffb43733801b44`
+- Commit: `9c3671d617ad5c17b1a09acf317d2ac68d4a9704`（機能実装。完了状態と本証跡は後続コミット）
+- Network: 未使用。ユーザー提供ZIP、source-lock済み上流、検証済みstage 25、clean私有入力だけを参照した。

@@ -499,3 +499,15 @@
   - エースバーン／ムゲンダイナの実戦メッセージとhealthbox OBJ tile、Lv.100フォーム、全下流QOLを再検証した。
   - final ROM `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`、BPS／9-member ZIPを生成した。
 - Verify: T09 exact-ROM、fast stage 09→final、focused 39 tests、BPS完全往復、release archive、task graph/private guard/diff check PASS。
+
+## 2026-08-16T03:10:47+09:00
+
+- Version: `v1.4.0`
+- Commit: `9c3671d617ad5c17b1a09acf317d2ac68d4a9704`（機能実装。完了記録は本エントリを含むコミット）
+- Task: `USER-20260816-ACQUISITION-EVENTS` / 全コレクション対象の入手方法と取得イベントを実ROMへ統合する
+- Summary:
+  - 1,206種と10有効化フォームを既存経路または201取得イベントで全到達可能にし、24 host objectを19 mapへ復元・結合した。
+  - 7取得方式の共通transaction、捕獲後確定、孵化時登録、party/PC満杯、rollback、reset復旧を実装した。
+  - 既存2 KiB台帳へ240 byte取得blockを配置し、標準saveとsector 31の双方を跨ぐ永続化・移行を実ROMで確認した。
+  - 通信進化30経路と野生内部ID2件を修正し、stage 26、v1.4.0 BPS、ROMなし9-member ZIPを生成した。
+- Verify: package生成／negative／2,035 exact case、stage 26 build/check、libmGBA 2 process、focused 5 save tests、BPS完全往復、archive安全監査、task graph/private guard/diff check PASS。

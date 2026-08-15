@@ -4,7 +4,21 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
+- v1.4.0はコレクション対象1,206種と到達性に必要な10フォームを監査し、既存野生・進化と
+  201取得イベントのいずれかで1,216/1,216を到達可能にした。T17で省略されていたclean
+  FireRed由来24 objectを19マップへ元の座標・予算内で復元し、新規設計objectは追加していない。
+- 固定捕獲、ギフト、タマゴ、化石復元、進化支援、交換エミュレータ、サービスの7方式を
+  共通transaction runtimeへ接続した。捕獲後確定、重複防止、party→PC、全収納満杯、道具rollback、
+  reset復旧を実装し、タマゴは受取時claim・孵化時図鑑登録に分離した。通信進化30経路は
+  Item 395「リンクケーブル」で必要持ち物を維持した単独ROM進化になる。
+- 既存2,048 byte台帳の予約領域へ4 byte整列の240 byte `VACQ` blockを配置し、後続offsetを
+  変えずにv1.3.9以前の全zero領域を移行する。個体・party・PC・図鑑は標準save、取得台帳は
+  sector 31へ保存し、通常load後の台帳復元、outer/inner CRC、中断transactionを実ROMで確認した。
+- v1.4.0 stage 26/finalは32 MiB、SHA-256
+  `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`。BPS / 9-member ZIP
+  SHA-256は `0b69b5de39e29168929f36750049c29f2064f290215112384449f1e4b38f418e` /
+  `578f11ba3e67e93af09233f89182b2ae82262ba23efe813688ffb43733801b44`。
 - 外来生態は通常の草むら77、洞窟・屋内31、水上23、いわくだき22、朝昼／ずつき28、
   夜34、夜間水上1、日替わり大量発生29、釣り21、水上／釣り兼用1、隠れ7、
   隠れ／タマゴ11、屋内異常8の293行を、41地点・95 runtime entry・294候補bindingへ生成する。
@@ -147,6 +161,8 @@
 
 `design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
 
+- USER-20260816-ACQUISITION-EVENTS: DONE。1,206種＋10フォームの取得経路、201イベント、24 host、
+  7方式の共通transaction、240 byte取得台帳、孵化時登録、通常save／sector 31復元をstage 26で検証した。
 - USER-20260815-SPECIES-NAME-LENGTH: DONE。canonical 11 byte名を正本に、旧6 byte名前表を読む40経路を8 byte互換ABIへ移行し、6文字名134行を全UIで欠けなく表示する。
 - USER-20260814-FIRST-BATTLE-LOOP: DONE。残留Quick Claw/Custap indicatorをhold effect再検証で破棄し、stage 21の実ROM回帰を通した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。Vega既存HM所持を正本にし、手持ち・習得・badgeから分離したstage 22の実ROM境界を通した。
@@ -180,6 +196,8 @@
 - USER-20260814-BATTLE-RULES: DONE。stage 22のCFRU rule owner/defaultを監査し、麻痺・主要状態・急所・天候、単一適用、通常/double/Factory/Raidをzero-patch stage 23で検証した。
 - USER-20260814-BATTLE-UI: DONE。stage 23へ固定CFRU source相当の技タイプ・有効度・STAB adapterを結合し、表示区分・Stellar・canonical名・全battle modeをstage 24で検証した。
 - USER-20260814-MOVE-MEMORY: DONE。stage 24へItem/NPC共通の無料技管理coreを結合し、通常/タマゴ候補、技忘れ、CFRU form連動、context復帰をstage 25で検証した。
+- USER-20260816-ACQUISITION-EVENTS: DONE。stage 25を入力に全取得経路、201イベント、24 host object、
+  7方式runtime、240 byte取得台帳を結合し、stage 26の実ROMとv1.4.0 releaseで検証した。
 
 ARM toolchain、asset converter、mGBA/libmGBAはT01で導入・固定済み。入力、参照ROM、上流commitは一致し、ブロッカーはない。
 

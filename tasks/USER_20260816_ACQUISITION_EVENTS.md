@@ -22,16 +22,16 @@
 
 ## 受入条件
 
-- [ ] パッケージ正本の1,206種と10有効化フォームが全て少なくとも1つの到達可能な取得経路を持つ。
-- [ ] 201イベントを24個の既存設計hostへ結合する。T17で省略されたclean FireRed由来objectだけを復元再利用し、新規設計objectを増やさず、元のobject予算とpointerを実ROMから再検証する。
-- [ ] 固有捕獲は捕獲成功時のみclaimされ、撃破・逃走・リセットで失われず、捕獲済みの複製を禁止する。
-- [ ] ギフト・タマゴ・化石復元はparty/PCと入力道具をpreflightし、失敗時に渡し済み・消費済みの片側状態を残さない。
-- [ ] 現行2 KiBセーブ台帳の予約領域に版管理240 byte acquisition blockを割当て、新規・旧save・中断transactionを移行できる。
-- [ ] 内部Species ID 282の野生2件は公式ストライクID 255へ修正され、その他の野生テーブルbyteは不変である。
-- [ ] 交換進化30経路がリンクケーブルと必要持ち物のルールを保った通常プレイ進化になる。
-- [ ] コンテンツ生成・negative test・2,035 exact case・野生sanitize・host graph・allocator overlap・決定性・BPS往復がPASSする。
-- [ ] libmGBAで解禁前/後、取得、捕獲後確定、save/reload、中断復帰、party満員を実ROM確認する。
-- [ ] release、日本語配布資料、ログ、version履歴、task状態を同期し、タスク単位commitを作る。
+- [x] パッケージ正本の1,206種と10有効化フォームが全て少なくとも1つの到達可能な取得経路を持つ。
+- [x] 201イベントを24個の既存設計hostへ結合する。T17で省略されたclean FireRed由来objectだけを復元再利用し、新規設計objectを増やさず、元のobject予算とpointerを実ROMから再検証する。
+- [x] 固有捕獲は捕獲成功時のみclaimされ、撃破・逃走・リセットで失われず、捕獲済みの複製を禁止する。
+- [x] ギフト・タマゴ・化石復元はparty/PCと入力道具をpreflightし、失敗時に渡し済み・消費済みの片側状態を残さない。
+- [x] 現行2 KiBセーブ台帳の予約領域に版管理240 byte acquisition blockを割当て、新規・旧save・中断transactionを移行できる。
+- [x] 内部Species ID 282の野生2件は公式ストライクID 255へ修正され、その他の野生テーブルbyteは不変である。
+- [x] 交換進化30経路がリンクケーブルと必要持ち物のルールを保った通常プレイ進化になる。
+- [x] コンテンツ生成・negative test・2,035 exact case・野生sanitize・host graph・allocator overlap・決定性・BPS往復がPASSする。
+- [x] libmGBAで解禁前/後、取得、捕獲後確定、save/reload、中断復帰、party満員を実ROM確認する。
+- [x] release、日本語配布資料、ログ、version履歴、task状態を同期し、タスク単位commitを作る。
 
 ## 完了
 
