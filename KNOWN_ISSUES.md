@@ -19,9 +19,9 @@
 ### KI-003 — emulator savestateはversion間非互換
 
 - Severity: S4 / expected platform behavior
-- Reproduction: 旧ROMで作ったsavestateをv1.3.7で直接読み込む。
+- Reproduction: 旧ROMで作ったsavestateをv1.3.8で直接読み込む。
 - Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
-- Workaround: 旧ROM上でゲーム内saveを行い、v1.3.7を再起動してbattery saveから読む。
+- Workaround: 旧ROM上でゲーム内saveを行い、v1.3.8を再起動してbattery saveから読む。
 
 ### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
 
@@ -35,11 +35,11 @@
 
 - Severity: S4 / release scope exclusion
 - Reproduction: クチバのFactory受付でStandard、Full、Master、BP shop、施設外報酬遭遇を探す。
-- Result: v1.3.7の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
+- Result: v1.3.8の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
   shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
 - Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
 
-## v1.3.7で解決済み
+## v1.3.8で解決済み
 
 - 追加Speciesを含むtrainer戦が戦闘開始時に黒画面のまま停止する初期技表ABI不一致。
 - 最初の草むら（map 3/19）が別の論理地点へ誤結合され、追加種が出現しない問題。

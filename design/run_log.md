@@ -1099,3 +1099,73 @@
   - final/Downloads copy SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`、size `33,554,432` bytesで一致。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。source-lock済み上流、検証済みstage、clean私有入力だけを参照した。
+
+## 2026-08-15T22:42:00+09:00
+
+- Task: `USER-20260815-SPECIES-DISPLAY` / v1.3.8最終証跡の再発行
+- Status: DONE
+- Summary: 戦闘UIのstage 23固定SHA同期後にQOL fixture fingerprintが正しく変化したため、stage 25以前を再利用してQOL統合・final・BPS・ZIPだけを再発行した。ROMとBPS byteは不変で、ZIPのmetadataだけが更新された。
+- Files changed: Git管理内の追加変更なし。Git管理外のQOL fixture、final metadata、release archiveを再生成した。
+- Verify: `python3 scripts/build_fast_rom.py --from qol-release` PASS（202.7秒）、`python3 scripts/build_release.py patch` / `verify` PASS、focused unittest 35/35 PASS。
+- Output identity: ROM SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`、BPS SHA-256 `4c916b6928751b0321428aeb853162597d708373d0a8dc54c600ff316e69ea49`、最終ZIP SHA-256 `282bb0d3bf5ff08af187db1b98bf226bd01c715a8b69a621369fb87ea91b252d`。
+- Commit: `-`（同じ完了コミット）
+- Network: 未使用。
+
+## 2026-08-15T22:35:58+09:00
+
+- Task: `USER-20260815-SPECIES-DISPLAY` / 追加Speciesの「？」・黒丸・タマゴ表示を同種ごと修正する
+- Status: DONE
+- Summary:
+  - ポッポとグルトンの表示破損はemulatorやsaveではなく、DPE由来1209行のfront/back/palette resource tagがDPE側IDのままで、FireRed/Vegaの画像・palette・icon読込もSpecies 412を上限としていたROM側の問題と確定した。全6484 tagをcanonical namespaceへ正規化し、28 front、10 back、5 palette、3 shiny、3 icon、11 icon palette、座標・鳴き声・Dex entryを含む全aligned consumerを新1621行表へ結合した。
+  - キャタピーは同じ表示上限だけでなく、canonical 412がFireRed/Vegaの運用タマゴsentinelと衝突していた。タマゴを412へ戻し、キャタピーだけを旧タマゴ枠649へ交換した。ほかの1619 canonical IDは不変。v1.3.7不具合版で捕獲済みキャタピーだけは切替前に逃がす必要をsave文書へ明記した。
+  - 画像関数全体の置換がFacility/Raid controllerの暗黙レジスタ契約を変えることを実ROM二分で検出したため、stock関数を保持し、上限分岐・Unown基準・表pointerだけを最小patchした。Species→全国番号も関数置換を避け、Vega既存411行、Egg 0、追加1208行のhybrid表へした。施設経験値／持ち物、Raid 5 shield、通常戦cleanupが再度PASSした。
+  - exact-ROM gateはタマゴ412、ポッポ418、キャタピー649、グルトン1484、最大ID1620の前後画像・通常色・iconと図鑑変換を直接実行した。全1620表示名、タマゴを除く1619種の個体生成、追加1209行のLZ77/icon pointer、全resource tagを検査した。
+  - v1.3.8へ更新し、検証済みbattle core／Species stageを再利用してSpecies表示以降だけを高速再生成した。最終成功chainは約9分で、stage 00からの7時間級再生成は行っていない。
+- Files changed:
+  - runtime/build: `overlays/species_surface/species_runtime.{c,h}`, `scripts/build_{species_port,species_surface,fast_rom,battle_ui,qol_release,release}.py`, `config/{species_port,species_surface,battle_ui}.json`, `manifests/species_ids.csv`
+  - QA: `tools/mgba_{species_runtime,facility_runtime}_smoke.c`, `tests/test_{build_species_port,species_surface,battle_ui,release}.py`、下流fixture
+  - release/design: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `design/{catalog,current_state,report_lifecycle_index,run_log,version_log}.md`
+  - Git管理外成果: stage 07〜25、`build/final/vega-modern-kanto-v1.3.8.gba`、v1.3.8 BPS／9-member ZIP。ユーザー提供ROM/saveは変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_species_surface.py build`: PASS。stage 09 SHA-256 `df5463eac2e5d5afc4449f0e9177d8542da65a9713f9c365957e068e1f835849`、runtime smokeはSpecies生成1619、名前1620、表示5、図鑑変換5、tag 6484を確認。
+  - T09 exact-ROM battle policy: PASS（612 direct calls、Facility 24 matrix、Raid shield 5/5、cleanup、未到達route 0）。full-wrapperと図鑑関数置換による2件の回帰を同じrunnerで検出し、最小patch後に解消した。
+  - `python3 scripts/build_fast_rom.py --from species-surface`と`--from battle-ui`: PASS。前段を再利用し、T09〜T25、初戦、HM、battle rules/UI、技メモリ、QOL統合、finalまで完走した。
+  - `python3 scripts/build_release.py patch` / `verify`: PASS。BPS完全往復ROM SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`、ZIP SHA-256 `b157ecc97ffc2199eeafbfae590b3e8d8c5bd11f74d864d53ad48bbf0bf3a24b`、9 members、禁止物0。
+  - focused unittest 35件は旧stage23固定SHA 3件を検出してpinを同期後、全件PASS。`python3 scripts/validate_manifests.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Output identity:
+  - final ROM: `build/final/vega-modern-kanto-v1.3.8.gba`、33,554,432 bytes、SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`。
+  - BPS: SHA-256 `4c916b6928751b0321428aeb853162597d708373d0a8dc54c600ff316e69ea49`。ZIP: `dist/release/vega-modern-kanto-v1.3.8.zip`。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済み上流、検証済みstage、clean私有入力だけを参照した。
+
+## 2026-08-15T22:43:00+09:00
+
+- Task: `USER-20260815-SPECIES-DISPLAY` / 最終archive identity訂正
+- Status: DONE
+- Summary: 上記のZIP SHA-256 `b157ecc9...`はstage 23固定SHA同期前の暫定archive。QOL証跡再発行後の最終ZIPへ置き換えた。ROMとBPSは不変。
+- Files changed: Git管理内の追加変更なし。
+- Verify: QOL統合再発行、release patch/verify、focused unittest 35/35 PASS。
+- Output identity: 最終ZIP SHA-256 `282bb0d3bf5ff08af187db1b98bf226bd01c715a8b69a621369fb87ea91b252d`。
+- Commit: `-`（同じ完了コミット）
+- Network: 未使用。
+
+## 2026-08-15T22:45:00+09:00
+
+- Task: `USER-20260815-SPECIES-DISPLAY` / release来歴同期
+- Status: DONE
+- Summary: final metadataのtask IDを前回の生態タスクから本タスクへ同期した。ROM/BPS byteは不変で、metadataを含むZIPだけを最終再包装した。
+- Files changed: `scripts/build_release.py`。Git管理外final metadata／ZIPを再生成した。
+- Verify: fast `--from final` 12.3秒、release patch/verify PASS。
+- Output identity: ROM SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`、BPS SHA-256 `4c916b6928751b0321428aeb853162597d708373d0a8dc54c600ff316e69ea49`、最終ZIP SHA-256 `1f922d1c83f64c4b4bf56ea78a21a0c282aabd63d7aa08d7344e44af32592714`。
+- Commit: `-`（同じ完了コミット）
+- Network: 未使用。
+
+## 2026-08-15T22:46:00+09:00
+
+- Task: `USER-20260815-SPECIES-DISPLAY` / 検証済みROM受け渡し
+- Status: DONE
+- Summary: 既存ファイルを上書きせず、v1.3.8最終ROMをWindows Downloadsへ新規配置した。
+- Files changed: Git管理外 `/mnt/c/Users/dekaa/Downloads/vega-modern-kanto-v1.3.8-verified.gba`。
+- Verify: workspace finalとのSHA-256一致 PASS。
+- Commit: `-`（同じ完了コミット）
+- Network: 未使用。

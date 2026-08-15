@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import re
 import shutil
 import struct
@@ -150,6 +151,34 @@ def table_merge(stage: bytes, dpe: bytes, rows: list[dict[str, Any]], site: int,
     return bytes(output)
 
 
+def canonicalize_display_tags(
+    tables: dict[str, bytes], species_count: int,
+) -> dict[str, int]:
+    """Sprite resource tags must live in the canonical Species namespace.
+
+    DPE structs carry their source Species ID in the tag field.  Copying those
+    structs into a reordered canonical table leaves every appended sprite and
+    palette registered under the wrong resource tag.  Shiny tags additionally
+    need a disjoint canonical range so they cannot collide with normal tags.
+    Asset pointers and compressed bytes remain lossless; only the resource IDs
+    are normalized here.
+    """
+    checks = 0
+    for name in ("front", "back", "palette"):
+        mutable = bytearray(tables[name])
+        for species in range(species_count):
+            struct.pack_into("<H", mutable, species * 8 + 6 if name in {"front", "back"}
+                             else species * 8 + 4, species)
+            checks += 1
+        tables[name] = bytes(mutable)
+    mutable = bytearray(tables["shiny_palette"])
+    for species in range(species_count):
+        struct.pack_into("<H", mutable, species * 8 + 4, species_count + species)
+        checks += 1
+    tables["shiny_palette"] = bytes(mutable)
+    return {"canonical_tags": checks, "shiny_tag_base": species_count}
+
+
 def cry_merge(stage: bytes, dpe: bytes, rows: list[dict[str, Any]], site: int,
               dpe_root: int, vega_count: int) -> bytes:
     old_root = ptr(stage, site)
@@ -195,7 +224,23 @@ def dpe_footprints(root: Path) -> dict[int, int]:
 
 def validate_assets(dpe: bytes, tables: Mapping[str, bytes], rows: list[dict[str, Any]],
                     vega_count: int) -> dict[str, Any]:
-    checks = {"compressed_checked": 0, "aligned_pointers": 0, "icons_checked": 0}
+    checks = {"compressed_checked": 0, "aligned_pointers": 0, "icons_checked": 0,
+              "canonical_tags_checked": 0}
+    species_count = len(rows)
+    for cid in range(species_count):
+        for key in ("front", "back"):
+            tag = struct.unpack_from("<H", tables[key], cid * 8 + 6)[0]
+            if tag != cid:
+                fail(f"noncanonical {key} tag for species {cid}: {tag}")
+            checks["canonical_tags_checked"] += 1
+        normal_tag = struct.unpack_from("<H", tables["palette"], cid * 8 + 4)[0]
+        shiny_tag = struct.unpack_from("<H", tables["shiny_palette"], cid * 8 + 4)[0]
+        if normal_tag != cid or shiny_tag != species_count + cid:
+            fail(
+                f"noncanonical palette tags for species {cid}: "
+                f"normal={normal_tag} shiny={shiny_tag}"
+            )
+        checks["canonical_tags_checked"] += 2
     for cid in range(vega_count, len(rows)):
         for key, expected in (("front", 2048), ("back", 2048), ("palette", 32), ("shiny_palette", 32)):
             address = struct.unpack_from("<I", tables[key], cid * 8)[0]
@@ -452,8 +497,10 @@ def linked_learn_symbols(root: Path, config: Mapping[str, Any]) -> dict[str, int
     return symbols
 
 
-def compile_species_runtime(root: Path, load_address: int, names_address: int,
-                            learnsets_address: int) -> tuple[bytes, dict[str, int]]:
+def compile_species_runtime(
+    root: Path, load_address: int, names_address: int,
+    learnsets_address: int, asset_locations: Mapping[str, int],
+) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -482,6 +529,12 @@ def compile_species_runtime(root: Path, load_address: int, names_address: int,
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
             f"-DVEGA_SPECIES_NAMES_ADDRESS=0x{names_address:08X}u",
             f"-DVEGA_LEVEL_UP_LEARNSETS_ADDRESS=0x{learnsets_address:08X}u",
+            f"-DVEGA_FRONT_SPRITES_ADDRESS=0x{asset_locations['front']:08X}u",
+            f"-DVEGA_BACK_SPRITES_ADDRESS=0x{asset_locations['back']:08X}u",
+            f"-DVEGA_NORMAL_PALETTES_ADDRESS=0x{asset_locations['palette']:08X}u",
+            f"-DVEGA_SHINY_PALETTES_ADDRESS=0x{asset_locations['shiny_palette']:08X}u",
+            f"-DVEGA_ICON_PALETTE_INDICES_ADDRESS=0x{asset_locations['icon_palette']:08X}u",
+            f"-DVEGA_NATIONAL_DEX_ADDRESS=0x{asset_locations['national_dex']:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -497,16 +550,24 @@ def compile_species_runtime(root: Path, load_address: int, names_address: int,
         for line in run([nm, "-n", "--defined-only", str(elf)],
                         "T09 Species runtime nm").splitlines():
             fields = line.split()
-            if len(fields) == 3 and fields[2].startswith("VegaSpeciesSurface_"):
+            if (len(fields) == 3 and fields[1] == "T"
+                    and fields[2].startswith("VegaSpeciesSurface_")):
                 symbols[fields[2]] = int(fields[0], 16)
-        if set(symbols) != {
+        expected_symbols = {
             "VegaSpeciesSurface_GetSpeciesName",
+            "VegaSpeciesSurface_NationalPokedexNumToSpecies",
             "VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended",
             "VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch",
-        }:
+            "VegaSpeciesSurface_GetIconSpecies",
+            "VegaSpeciesSurface_SafeLoadMonIconPalette",
+            "VegaSpeciesSurface_SafeFreeMonIconPalette",
+            "VegaSpeciesSurface_GetValidMonIconPalettePtr",
+            "VegaSpeciesSurface_GetValidMonIconPalIndex",
+        }
+        if set(symbols) != expected_symbols:
             fail(f"T09 Species runtime symbol set differs: {symbols}")
         runtime = binary.read_bytes()
-        if not runtime or len(runtime) > 1024:
+        if not runtime or len(runtime) > 4096:
             fail(f"unexpected T09 Species runtime size: {len(runtime)}")
         return runtime, symbols
 
@@ -515,6 +576,57 @@ def absolute_thumb_hook(register: int, target: int) -> bytes:
     if not 0 <= register <= 7 or target & 1:
         fail("invalid aligned Thumb hook target/register")
     return bytes((0, 0x48 | register, register << 3, 0x47)) + struct.pack("<I", target | 1)
+
+
+def run_species_runtime_smoke(root: Path, rom: bytes) -> dict[str, Any]:
+    source = root / "tools/mgba_species_runtime_smoke.c"
+    compiler = shutil.which("cc")
+    if compiler is None or not source.is_file():
+        fail("T09 exact-ROM Species runtime smoke prerequisites are missing")
+    build_root = root / "build"
+    build_root.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix=".t09-species-runtime-", dir=build_root) as raw:
+        work = Path(raw)
+        candidate = work / "candidate.gba"
+        executable = work / "mgba_species_runtime_smoke"
+        candidate.write_bytes(rom)
+        completed = subprocess.run(
+            [compiler, "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror",
+             str(source), "-o", str(executable), "-lmgba"],
+            cwd=root, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            timeout=60, check=False,
+        )
+        if completed.returncode or completed.stdout or completed.stderr:
+            fail("T09 Species runtime smoke compile failed/noisy: "
+                 + (completed.stdout + completed.stderr)[-2000:])
+        environment = {
+            "HOME": str(work), "LC_ALL": "C", "LANG": "C",
+            "PATH": os.environ.get("PATH", "/usr/bin:/bin"), "TZ": "UTC",
+        }
+        completed = subprocess.run(
+            [str(executable), str(candidate)], cwd=work, env=environment,
+            text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            timeout=180, check=False,
+        )
+        if completed.returncode or completed.stderr:
+            fail("T09 Species runtime smoke failed: "
+                 + (completed.stdout + completed.stderr)[-2000:])
+        try:
+            result = json.loads(completed.stdout)
+        except json.JSONDecodeError as error:
+            fail(f"T09 Species runtime smoke returned invalid JSON: {error}")
+        expected = {
+            "status": "PASS", "species_created": 1619,
+            "species_named": 1620, "display_species_checked": 5,
+            "egg_species": 412, "caterpie_species": 649,
+            "canonical_species_count": 1621,
+        }
+        if any(result.get(key) != value for key, value in expected.items()):
+            fail(f"T09 Species runtime smoke contract differs: {result}")
+        return {
+            **result, "process_runs": 1,
+            "runner_sha256": sha(source.read_bytes()),
+        }
 
 
 def patch_exact(output: bytearray, stage: bytes, site: int, expected: bytes,
@@ -605,6 +717,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
             if struct.unpack_from("<I", mutable, cid * stride)[0] == 0:
                 mutable[cid * stride:(cid + 1) * stride] = default
         tables[name] = bytes(mutable)
+    tag_normalization = canonicalize_display_tags(tables, len(rows))
     footprint_root = ptr(stage, int(sites["footprint"]))
     footprints = bytearray(slice_at(stage, footprint_root, 412 * 4, "Vega footprints"))
     footprint_map = dpe_footprints(root)
@@ -614,6 +727,19 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     tables["cry"] = cry_merge(stage, dpe, rows, int(sites["cry"]), int(roots["cry"]), 412)
     tables["cry2"] = cry_merge(stage, dpe, rows, int(sites["cry2"]), int(roots["cry2"]), 412)
     tables["national_dex"] = (root / "generated/engine/species/national_dex.bin").read_bytes()
+    native_national_root = ptr(stage, 0x429A0)
+    # Stock SpeciesToNationalPokedexNum indexes a species-1 table and has
+    # observable register behavior relied on by the linked Raid controller.
+    # Preserve its exact code and native Vega rows, reserve Egg as zero, then
+    # append the canonical official mapping for Species 413..1620.
+    tables["national_dex_runtime"] = (
+        slice_at(stage, native_national_root, 411 * 2,
+                 "native Vega Species-to-National table")
+        + struct.pack("<H", 0)
+        + tables["national_dex"][413 * 2:]
+    )
+    if len(tables["national_dex_runtime"]) != 1620 * 2:
+        fail("hybrid Species-to-National runtime table size differs")
     validation = validate_assets(dpe, tables, rows, 412)
 
     evolutions, evolution_model = merge_evolutions(stage, dpe, config, rows,
@@ -635,6 +761,8 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     locations: dict[str, int] = {}
     for name in assets_order:
         off = allocator.put(name, tables[name]); locations[name] = ROM_BASE + off
+    off = allocator.put("national_dex_runtime", tables["national_dex_runtime"])
+    locations["national_dex_runtime"] = ROM_BASE + off
     off = allocator.put("evolutions", evolutions); locations["evolution"] = ROM_BASE + off
     # Allocate level data before pointers and rebuild pointers against the real address.
     off = allocator.put("level_up_data", learn["level_up_data"]); locations["level_up_data"] = ROM_BASE + off
@@ -649,7 +777,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     runtime_load = ROM_BASE + ((allocator.cursor + 3) & ~3)
     runtime, runtime_symbols = compile_species_runtime(
         root, runtime_load, locations["species_names"],
-        locations["level_up_pointers"],
+        locations["level_up_pointers"], locations,
     )
     off = allocator.put("species_runtime", runtime)
     if ROM_BASE + off != runtime_load:
@@ -668,12 +796,62 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                 "front_coords": "front_coords", "back_coords": "back_coords", "elevation": "elevation",
                 "footprint": "footprint", "cry": "cry", "cry2": "cry2", "evolution": "evolution",
                 "egg": "egg_moves", "tmhm": "tmhm", "tutor": "tutor",
-                "dex_entries": "dex_entries", "national_dex": "national_dex"}
+                "dex_entries": "dex_entries"}
+    display_literal_counts = {
+        "front": 28, "back": 10, "palette": 5, "shiny_palette": 3,
+        "icon": 3, "icon_palette": 11, "front_coords": 16,
+        "back_coords": 8, "elevation": 4, "footprint": 1,
+        "cry": 2, "cry2": 2, "dex_entries": 8,
+    }
     repoints = {}
     for key, location_key in bindings.items():
         site = int(sites[key]); old = ptr(stage, site); new = locations[location_key]
-        output_rom[site:site + 4] = struct.pack("<I", new)
-        repoints[key] = {"site": site, "old": old, "new": new}
+        literal_sites = [site]
+        if key in display_literal_counts:
+            old_bytes = struct.pack("<I", old)
+            literal_sites = [
+                index for index in range(0, len(stage) - 3, 4)
+                if stage[index:index + 4] == old_bytes
+            ]
+            if len(literal_sites) != display_literal_counts[key]:
+                fail(
+                    f"stock {key} literal inventory changed: "
+                    f"{len(literal_sites)}"
+                )
+        for literal_site in literal_sites:
+            output_rom[literal_site:literal_site + 4] = struct.pack("<I", new)
+        repoints[key] = {
+            "site": site, "sites": literal_sites, "count": len(literal_sites),
+            "old": old, "new": new,
+        }
+    # The two stock national-Dex consumers have different runtime semantics.
+    # National->Species uses the bounded canonical adapter installed below;
+    # Species->National keeps its exact stock instruction/register behavior
+    # and reads the hybrid native+canonical table.
+    national_site = int(sites["national_dex"])
+    old_national_root = ptr(stage, national_site)
+    old_national_bytes = struct.pack("<I", old_national_root)
+    national_sites = [
+        index for index in range(0, len(stage) - 3, 4)
+        if stage[index:index + 4] == old_national_bytes
+    ]
+    if national_sites != [0x4292C, 0x429A0]:
+        fail(f"stock national Dex literal inventory changed: {national_sites}")
+    repoints["national_dex"] = {
+        "site": national_site,
+        "old": old_national_root,
+        "new": locations["national_dex"], "applied": False,
+        "runtime_adapter": True,
+    }
+    output_rom[0x429A0:0x429A4] = struct.pack(
+        "<I", locations["national_dex_runtime"]
+    )
+    repoints["national_dex_runtime"] = {
+        "site": 0x429A0, "old": old_national_root,
+        "new": locations["national_dex_runtime"], "applied": True,
+        "native_rows": 411, "egg_species": 412,
+        "canonical_rows": 1208,
+    }
     # The native packed-table routine remains the exact path for Vega IDs.
     # Its literal therefore stays on the original table; the dispatcher uses
     # the canonical table only for appended IDs.
@@ -741,6 +919,64 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         output_rom, stage, 0x406C4, bytes.fromhex("f0b5061c09040c0c"),
         absolute_thumb_hook(3, name_target), "canonical GetSpeciesName",
     ))
+    display_hook_specs = (
+        (0x96988, "00b50004020cc92a", "VegaSpeciesSurface_GetIconSpecies", 2,
+         "canonical icon species"),
+        (0x96ACC, "10b50004010cce20", "VegaSpeciesSurface_SafeLoadMonIconPalette", 1,
+         "bounded icon palette load"),
+        (0x96B64, "00b50004010cce20", "VegaSpeciesSurface_SafeFreeMonIconPalette", 1,
+         "bounded icon palette free"),
+        (0x96BF8, "00b50004020cce20", "VegaSpeciesSurface_GetValidMonIconPalettePtr", 1,
+         "bounded icon palette pointer"),
+        (0x96C24, "00b50004010cce20", "VegaSpeciesSurface_GetValidMonIconPalIndex", 1,
+         "bounded icon palette index"),
+    )
+    for site, expected_hex, symbol, register, label in display_hook_specs:
+        runtime_patches.append(patch_exact(
+            output_rom, stage, site, bytes.fromhex(expected_hex),
+            absolute_thumb_hook(register, runtime_symbols[symbol]), label,
+        ))
+
+    # Preserve the stock image/palette routines and only remove their native
+    # Species 412 ceiling.  Replacing these whole functions changes battle
+    # setup timing and controller state in CFRU facilities/Raids even when the
+    # resulting image bytes are identical.
+    for site, label in (
+        (0x0E64E, "canonical DecompressPicFromTable bound"),
+        (0x0EA9E, "canonical DecompressPicFromTable no-Deoxys bound"),
+        (0x0E726, "canonical HandleLoadSpecialPokePic bound"),
+        (0x0EB6A, "canonical HandleLoadSpecialPokePic no-Deoxys bound"),
+    ):
+        runtime_patches.append(patch_exact(
+            output_rom, stage, site, bytes.fromhex("07dd"),
+            bytes.fromhex("07e0"), label,
+        ))
+    # Unown B starts at canonical 650 after reserving 412 for the Egg sentinel;
+    # the stock routine receives letters 1..27, hence its new base delta is 649.
+    for site, label in (
+        (0x0E6F2, "canonical Unown form base"),
+        (0x0EB36, "canonical Unown form base no-Deoxys"),
+    ):
+        runtime_patches.append(patch_exact(
+            output_rom, stage, site,
+            bytes.fromhex("ce22520088180004010c"),
+            bytes.fromhex("a222920001328818011c"), label,
+        ))
+    runtime_patches.append(patch_exact(
+        output_rom, stage, 0x4374C, bytes.fromhex("04d9"),
+        bytes.fromhex("04e0"), "canonical personality palette bound",
+    ))
+    runtime_patches.append(patch_exact(
+        output_rom, stage, 0x428F0, bytes.fromhex("10b50004020c002a"),
+        absolute_thumb_hook(
+            3, runtime_symbols["VegaSpeciesSurface_NationalPokedexNumToSpecies"]
+        ),
+        "bounded National Dex to canonical Species",
+    ))
+    runtime_patches.append(patch_exact(
+        output_rom, stage, 0x968A4, bytes.fromhex("01d9"),
+        bytes.fromhex("01e0"), "preserve canonical icon palette tag",
+    ))
     learn_hooks: list[dict[str, Any]] = []
     for row in config["learn_move_hooks"]:
         symbol = str(row["symbol"])
@@ -772,8 +1008,11 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
             struct.pack("<I", replacement), label,
         ))
 
+    runtime_smoke = run_species_runtime_smoke(root, bytes(output_rom))
+
     asset_model = {"schema_version": 1, "task": TASK, "species_count": len(rows),
                    "vega_preserved": 412, "dpe_appended": len(rows) - 412,
+                   "tag_normalization": tag_normalization,
                    "animation_policy": {"vega": "ORIGINAL_CALLBACKS_PRESERVED",
                                         "appended": "DPE_DEFAULT_SPECIES_ANIMATION"},
                    "display_matrix": {
@@ -787,7 +1026,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                    "validation": validation, "status": "PASS"}
     fixture = breeding_fixture()
     dex_report = f"""# T09 Dex policy\n\n- Vega地方図鑑は既存イベント互換のためSpecies `0..411`を別集計する。\n- 全国図鑑はT07のcanonical National Dex `1..1025`をseen/caught bitmapのキーとし、formは同じ全国番号を共有する。\n- Vega完成イベントは旧フラグと地方集計だけを参照し、追加フォームで必要数が変化しない。\n- まるいおまもりは異なる公式全国番号100種またはquest完了の早い方で解禁し、タマゴ生成成功率を `{config['oval_charm']['base_numerator']}% -> {2 * config['oval_charm']['base_numerator']}%`へ変換する。\n\nStatus: PASS\n""".encode()
-    asset_report = f"""# T09 Species asset validation\n\n- canonical Species: {len(rows)}\n- Vega lossless rows: 412\n- DPE appended rows: {len(rows)-412}\n- LZ77 headers: {validation['compressed_checked']} PASS\n- aligned pointers: {validation['aligned_pointers']} PASS\n- icons: {validation['icons_checked']} PASS\n- first appended fixture: canonical 412 / DPE 10\n- front, back, palette, shiny palette, coordinates, icon, icon palette, footprint fallback, cry, Dex entry: PASS\n- summary / party / PC / battle / evolution / Dex table bounds: PASS\n\nStatus: PASS\n""".encode()
+    asset_report = f"""# T09 Species asset validation\n\n- canonical Species: {len(rows)}\n- Vega lossless rows: 412\n- DPE appended rows: {len(rows)-412}\n- LZ77 headers: {validation['compressed_checked']} PASS\n- aligned pointers: {validation['aligned_pointers']} PASS\n- icons: {validation['icons_checked']} PASS\n- canonical resource tags: {validation['canonical_tags_checked']} PASS\n- runtime display hooks: {len(runtime_patches) - 1} PASS\n- runtime Egg sentinel: canonical 412 / DPE 412\n- Caterpie display row: canonical 649 / DPE 10\n- exact-ROM mGBA display samples: {runtime_smoke['display_species_checked']} PASS\n- front, back, palette, shiny palette, coordinates, icon, icon palette, footprint fallback, cry, Dex entry: PASS\n- summary / party / PC / battle / evolution / Dex table bounds: PASS\n\nStatus: PASS\n""".encode()
     artifacts: dict[str, bytes] = {
         "generated/engine/species_assets/species_assets.json": stable(asset_model),
         **{f"generated/engine/species_assets/{name}.bin": tables[name] for name in assets_order},
@@ -822,6 +1061,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                             "sha256": sha(runtime), "symbols": runtime_symbols,
                             "patches": runtime_patches},
                 "learn_move_hooks": learn_hooks,
+                "runtime_smoke": runtime_smoke,
                 "toxtricity_namespace_patches": toxtricity_patches,
                 "assets": asset_model, "evolutions": {k: v for k, v in evolution_model.items() if k != "rows"},
                 "learnsets": learn_model, "v2": {k: v for k, v in v2.items() if k != "rows"},

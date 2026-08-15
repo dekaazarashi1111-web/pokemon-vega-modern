@@ -35,18 +35,23 @@ class SpeciesSurfaceTests(unittest.TestCase):
         self.assertEqual(len(self.artifacts["generated/engine/learnsets/tmhm.bin"]), 1621 * 16)
         self.assertEqual(len(self.artifacts["generated/engine/learnsets/tutor.bin"]), 1621 * 16)
 
-    def test_vega_prefix_is_lossless_and_appended_fixture_is_displayable(self) -> None:
+    def test_vega_prefix_is_lossless_and_reserved_egg_caterpie_rows_are_displayable(self) -> None:
         stage = (ROOT / "build/stages/07_species.gba").read_bytes()
         front = self.artifacts["generated/engine/species_assets/front.bin"]
         old_root = struct.unpack_from("<I", stage, 0x128)[0] - 0x08000000
         self.assertEqual(front[:412 * 8], stage[old_root:old_root + 412 * 8])
-        for name, stride in (("front", 8), ("back", 8), ("icon", 4), ("footprint", 4),
-                             ("cry", 12), ("dex_entries", 28)):
-            row = self.artifacts[f"generated/engine/species_assets/{name}.bin"][412 * stride:413 * stride]
-            self.assertNotEqual(row, bytes(stride), name)
+        for species_id in (412, 649):
+            for name, stride in (("front", 8), ("back", 8), ("icon", 4), ("footprint", 4),
+                                 ("cry", 12), ("dex_entries", 28)):
+                row = self.artifacts[f"generated/engine/species_assets/{name}.bin"][
+                    species_id * stride:(species_id + 1) * stride
+                ]
+                self.assertNotEqual(row, bytes(stride), f"{name}:{species_id}")
         fixture = self.species["first_appended_fixture"]
-        self.assertEqual(fixture["canonical_id"], 412)
-        self.assertEqual(fixture["dpe_id"], 10)
+        self.assertEqual(fixture["canonical_id"], 413)
+        self.assertEqual(fixture["dpe_id"], 11)
+        self.assertEqual(self.species["runtime_reservation"]["canonical_id"], 412)
+        self.assertEqual(self.species["runtime_reservation"]["displaced_canonical_id"], 649)
 
     def test_evolutions_are_canonical_and_form_explicit(self) -> None:
         model = json.loads(self.artifacts["generated/engine/evolutions/evolutions.json"])
@@ -146,6 +151,39 @@ class SpeciesSurfaceTests(unittest.TestCase):
                 stride = strides[table]
                 self.assertEqual(len(raw), 1621 * stride, f"{path}:{table}")
                 self.assertEqual(len(raw[412 * stride:413 * stride]), stride, f"{path}:{table}:appended")
+
+        for species_id in range(1621):
+            self.assertEqual(struct.unpack_from("<H", self.artifacts[
+                "generated/engine/species_assets/front.bin"
+            ], species_id * 8 + 6)[0], species_id)
+            self.assertEqual(struct.unpack_from("<H", self.artifacts[
+                "generated/engine/species_assets/back.bin"
+            ], species_id * 8 + 6)[0], species_id)
+            self.assertEqual(struct.unpack_from("<H", self.artifacts[
+                "generated/engine/species_assets/palette.bin"
+            ], species_id * 8 + 4)[0], species_id)
+            self.assertEqual(struct.unpack_from("<H", self.artifacts[
+                "generated/engine/species_assets/shiny_palette.bin"
+            ], species_id * 8 + 4)[0], 1621 + species_id)
+
+    def test_exact_rom_display_hooks_and_samples_are_live(self) -> None:
+        patches = self.metadata["runtime"]["patches"]
+        self.assertEqual(len(patches), 15)
+        for patch in patches:
+            replacement = bytes.fromhex(patch["replacement_hex"])
+            self.assertEqual(
+                self.rom[patch["site"]:patch["site"] + len(replacement)],
+                replacement,
+                patch["label"],
+            )
+        smoke = self.metadata["runtime_smoke"]
+        self.assertEqual(smoke["status"], "PASS")
+        self.assertEqual(smoke["species_created"], 1619)
+        self.assertEqual(smoke["species_named"], 1620)
+        self.assertEqual(smoke["display_species_checked"], 5)
+        self.assertEqual(smoke["dex_species_checked"], 5)
+        self.assertEqual(smoke["egg_species"], 412)
+        self.assertEqual(smoke["caterpie_species"], 649)
 
     def test_breeding_fixture_and_runtime(self) -> None:
         fixture = json.loads(self.artifacts["tests/fixtures/breeding_matrix.json"])

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, package, and verify the reproducible v1.3.7 QOL BPS release."""
+"""Build, package, and verify the reproducible v1.3.8 QOL BPS release."""
 
 from __future__ import annotations
 
@@ -26,8 +26,8 @@ from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
 from scripts import build_qol_release  # noqa: E402
 
 
-TASK = "USER-20260815-ECOLOGY-RUNTIME"
-VERSION = "1.3.7"
+TASK = "USER-20260815-SPECIES-DISPLAY"
+VERSION = "1.3.8"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
 STAGE = Path("build/stages/25_move_memory.gba")
@@ -711,7 +711,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
     patch = files[PATCH_NAME]
     fresh = _fresh_status(_sha(final), _sha(patch), _sha(archive))
     metadata = json.loads(files["BUILD_METADATA.json"])
-    return f"""# v1.3.7 QOL release verification
+    return f"""# v1.3.8 QOL release verification
 
 ## 結論
 

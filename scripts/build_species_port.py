@@ -456,6 +456,45 @@ def build_species_model(root: Path, config: Mapping[str, Any]) -> dict[str, Any]
         name_rows.append(raw8[:terminator + 1].ljust(11, b"\xFF"))
         national_rows.append(national if is_official else 0)
 
+    # FireRed/Vega reserve Species 412 as the operational Egg sentinel in a
+    # large amount of stock code.  The plain append order placed Caterpie at
+    # 412 and Egg at 649, making every SPECIES_EGG comparison also match a
+    # real Caterpie.  Swap just those two canonical slots: all other IDs stay
+    # byte-for-byte stable, while the native Egg ABI is restored.
+    reservation = policy.get("runtime_reserved_species")
+    expected_reservation = {
+        "canonical_id": 412,
+        "dpe_id": 412,
+        "dpe_symbol": "SPECIES_EGG",
+        "displaced_dpe_id": 10,
+        "displaced_dpe_symbol": "SPECIES_CATERPIE",
+    }
+    if reservation != expected_reservation:
+        _fail("runtime-reserved Egg Species policy changed")
+    reserved_id = int(reservation["canonical_id"])
+    egg_source = int(reservation["dpe_id"])
+    caterpie_source = int(reservation["displaced_dpe_id"])
+    egg_previous_id = source_to_canonical.get(egg_source)
+    if (source_to_canonical.get(caterpie_source) != reserved_id
+            or egg_previous_id is None):
+        _fail("runtime-reserved Egg/Caterpie source mapping changed")
+    for values in (canonical_rows, stats_rows, name_rows, national_rows):
+        values[reserved_id], values[egg_previous_id] = (
+            values[egg_previous_id], values[reserved_id]
+        )
+    canonical_rows[reserved_id]["id"] = reserved_id
+    canonical_rows[egg_previous_id]["id"] = egg_previous_id
+    source_to_canonical[egg_source] = reserved_id
+    source_to_canonical[caterpie_source] = egg_previous_id
+    runtime_reservation = {
+        "canonical_id": reserved_id,
+        "species_key": "SPECIES_KEY_EGG",
+        "dpe_id": egg_source,
+        "displaced_species_key": "SPECIES_KEY_CATERPIE",
+        "displaced_canonical_id": egg_previous_id,
+        "status": "PASS",
+    }
+
     if [row["id"] for row in canonical_rows] != list(range(len(canonical_rows))):
         _fail("canonical Species IDs are not contiguous")
     if [row["vega_id"] for row in canonical_rows[:412]] != list(range(412)):
@@ -505,6 +544,7 @@ def build_species_model(root: Path, config: Mapping[str, Any]) -> dict[str, Any]
         "species_names_hex": b"".join(name_rows).hex(),
         "national_dex": national_rows,
         "reference_validation": reference_validation,
+        "runtime_reservation": runtime_reservation,
         "first_appended_fixture": {
             "canonical_id": first_appended["id"], "dpe_id": first_appended["dpe_id"],
             "dpe_symbol": first_appended["dpe_symbols"][0],
@@ -596,6 +636,7 @@ bool VegaOfficialDexThresholdMet(const uint8_t *caught, size_t caught_size, unsi
 - Official multi-form groups: {summary['official_form_duplicate_group_count']} ({summary['official_form_row_count']} rows)
 - Vega original/unofficial rows: {summary['unofficial_vega_count']}
 - Existing trainer/wild/script/gift/evolution references: PASS
+- Runtime Egg sentinel: Species `{model['runtime_reservation']['canonical_id']}`; Caterpie: Species `{model['runtime_reservation']['displaced_canonical_id']}`
 - Appended party-memory fixture: Species `{smoke_species}` / {smoke_status}
 
 ## Mapping contract

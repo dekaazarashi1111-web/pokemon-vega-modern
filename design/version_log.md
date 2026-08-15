@@ -464,3 +464,15 @@
   - バッジ・竿・殿堂入りlevel条件を接続し、通常歩行、実釣り、屋内隠れ戦闘、最初の草むら、trainer/戦闘UI/HP/Factory/Raidを最終ROMで回帰した。
   - 検証済み前段を再利用する高速chainでv1.3.7を生成し、Downloadsへ別名のverified ROMを配置した。
 - Verify: T17 build/check exact-ROM x2、最終stage 25レーダー実menu x2、QOL統合check、`final-fast`、focused 28 tests、py_compile、task graph/private guard/diff check PASS。final SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`。
+
+## 2026-08-15T22:35:58+09:00
+
+- Version: `v1.3.8`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-SPECIES-DISPLAY` / 追加Species表示とタマゴID衝突を修正する
+- Summary:
+  - DPE追加1209行の画像／palette resource tag、stock Species 412上限、全表示table consumerをcanonical 1621行へ修正した。
+  - タマゴを運用ID 412へ戻し、衝突したキャタピーだけを649へ交換した。ポッポ、グルトンを含む同種の表示破損を一括で解消した。
+  - stock画像／図鑑関数の副作用を保持し、Facility、Raid、初戦、戦闘UI、技管理、全QOLを維持した。
+  - 32 MiB最終ROM、ROMなしBPS、9-member ZIPを生成した。
+- Verify: T09 exact-ROM Species／battle policy、fast T09→final、focused 35 tests、manifest/private guard、BPS往復・release archive検査 PASS。final SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`。

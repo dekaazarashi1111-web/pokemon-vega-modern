@@ -65,11 +65,14 @@ OWNER_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
         "scripts/build_battle_core.py", "scripts/build_upstream.py",
         "tools/engine/cfru_", "tools/engine/t06_",
     )),
-    ("species", ("scripts/build_species_port.py",)),
+    ("species", (
+        "scripts/build_species_port.py", "config/species_port.json",
+        "tools/mgba_species_smoke.c",
+    )),
     ("save-layout", ("scripts/build_save_compatibility.py", "overlays/save_migration/")),
     ("species-surface", (
         "scripts/build_species_surface.py", "config/species_surface.json",
-        "overlays/species_surface/",
+        "overlays/species_surface/", "tools/mgba_species_runtime_smoke.c",
     )),
     ("engine-slice", ("scripts/build_engine_vertical_slice.py",)),
     ("kanto-import", ("scripts/build_kanto_import.py",)),

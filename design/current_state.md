@@ -4,7 +4,7 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、RTC自動とItem 348の手動modeを併設した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突を修正した。
 - 外来生態は通常の草むら77、洞窟・屋内31、水上23、いわくだき22、朝昼／ずつき28、
   夜34、夜間水上1、日替わり大量発生29、釣り21、水上／釣り兼用1、隠れ7、
   隠れ／タマゴ11、屋内異常8の293行を、41地点・95 runtime entry・294候補bindingへ生成する。
@@ -13,6 +13,16 @@
   シオウNPCが不足分だけ補う。modeはRTC自動、朝昼、夜、群れ、隠れ探索。Var `0x51FF`へ保存し、
   RTCのないemulatorや時刻待ちを避けたい場合も手動確認できる。T-E04は2個目バッジ＋いいつりざおへ正規化し、
   生態チケット代替はレーダーの夜固定へ接続した。
+- v1.3.8はDPE由来1209行のfront/back/palette resource tagをcanonical IDへ正規化し、
+  FireRed/Vega表示関数のSpecies 412上限と全画像・座標・icon参照を1621行へ拡張した。
+  タマゴをengine予約ID 412へ戻し、衝突していたキャタピーだけを649へ交換した。ポッポ418、
+  キャタピー649、グルトン1484、最大ID1620とタマゴ412の前後画像・palette・iconを実ROMで確認し、
+  全1620表示名、タマゴを除く1619種の個体生成、追加1209行の全LZ77/icon pointerを検査した。
+- Vega固有種の従来図鑑値と追加種の公式全国番号をhybrid表で分離し、既存命令列のレジスタ副作用を
+  保持した。施設Trial、レイド5 shield、最初のライバル戦、HM、戦闘ルール、L詳細、技メモリ、
+  QOL統合が同じ最終stageでPASSした。v1.3.8最終ROMは32 MiB、SHA-256
+  `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`。検証済み前段を再利用した
+  最終成功chainと証跡再発行は合計約12分で、stage 00からの長時間再生成は行っていない。
 - v1.3.7最終ROMは検証済みstage 16以前を再利用し、成功したstage 17→finalの累計約23分19秒で
   生成した。32 MiB、SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`。
   exact-ROM 2 processと同一stage 25のQOL統合で、trainer開始、初戦通知、L詳細、傷薬前後HP、
@@ -84,14 +94,14 @@
 - 通常wild/trainer、status、priority、double multi-target、switch、faint、EXP、captureを実schedulerで完走した。固定CFRU AI 3 profileとsingle/double 18判断fixture、Factory 24 rule/format、育成QOL、1戦1gimmick、Mirage仮想item、high-difficulty Raidを同じcoreへ接続した。
 - Raid partnerの技破損は、Vega packed-u16 learnsetへ不適合なCFRU初期技fallbackが正しいspreadを上書きしていたことを動的traceで確定し、fallbackを無効化した。partner controllerのcommand上限を修正し、Raid 5/5 shield、自然捕獲、full-party PC 80-byte ABI、Raid後wild/trainer、turn-limit終了と一時flag cleanupを検証した。
 - T06 stage fingerprintは `5dcedeba8c93e42b2dbde1d3a5ac0d9df1898b12ea2a30fb43ecd42d732f6de0`、ROM SHA-256は `61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591`。対象135 tests、build/check、独立read-only監査は全PASSし、blocking/P1はない。
-- T07でVega Species `0..411`を固定し、DPE定義済み1415 IDのうち206件（NONE sentinelを含む）をVegaへalias、欠落Species/form 1209件を`412..1620`へappendした。DPE予約hole `252..276`は生成対象外とした。
-- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。stage 07 SHA-256は `8634e053e4204311b38fb90e8ae3a0da112f2ebd50739763af931800b785252f`、fingerprintは `a29e55ed812ef7f233bd496a1cab6715aaff813511dce5604e4193a64689f74d`。
-- 全行にofficial判定、canonical全国番号、review stateを付け、公式全国番号1〜1025と209 multi-form群を検証した。公式捕獲数は全国番号distinctで数えるためform重複で100種条件を水増ししない。既存trainer/wild/script/gift/evolution参照は全て解決し、追加キャタピーcanonical ID 412を実party memoryへ2 processで生成した。
+- T07でVega Species `0..411`を固定し、DPE定義済み1415 IDのうち206件（NONE sentinelを含む）をVegaへalias、欠落Species/form 1209件を`412..1620`へappendした。DPE予約hole `252..276`は生成対象外とし、FireRed/Vegaのタマゴ予約ID 412を維持するためキャタピーだけを649へ交換した。
+- canonical 1621行のBaseStatsでDPE Ability/ItemをT05 IDへ変換し、file offset `0x01600000`へ配置した。T06 canonical rootのaligned参照105件をrepointし、Vega prefix 412行はbyte一致。現行stage 07 SHA-256は `6c0a7cff328835e2eef0ee3bc8daae099b2ab22ba6b58c11de8e674e1da31ad8`。
+- 全行にofficial判定、canonical全国番号、review stateを付け、公式全国番号1〜1025と209 multi-form群を検証した。公式捕獲数は全国番号distinctで数えるためform重複で100種条件を水増ししない。既存trainer/wild/script/gift/evolution参照は全て解決し、先頭の通常追加種トランセルcanonical ID 413を実party memoryへ2 processで生成した。
 - T08でT02のlive RAM/save ownerを統合し、CFRU sector 30/31 payloadのEWRAM `0x0203D000..0x0203D800`へ2,048-byte version 1 ledgerを割り当てた。magic/version/size/FNV-1a checksumと予約領域検査をfail-closedにし、既存Vega saveはsector checksum検証後だけ一回性migrationへ進める。
 - Kanto渡航・訪問・殿堂入り・認定章・地方別heal/return anchor・League I/II・地方別NORMAL/RESEARCH profile、125共有捕獲/Raid stateをVega badge/HM/story flagと分離した。早期渡航は`0x0824 && 0x114B`または殿堂入りからmonotonicに付与する。
 - Factoryはreset unsafeな348-byte/3体backupを廃止し、6×100 byte exact party snapshot、BP、24 mode streak、once reward、unlock、markerを原子的に保存する。typed encounter creditと完全なpending encounterも同じpersist-before-battle transactionにし、flash失敗、reset、二重課金・二重報酬をfocused C fixtureで検証した。
 - `natureMint`、Hyper Training、Tera typeは80-byte BoxPokemon ABI内を正本とし、最大5個のタマゴqueueも個体byteをFIFO保存する。arcade coinは既存暗号化u16を再利用し、Factory BPは新規u16、research pointはearn hook不在のためstorageなしのDEFERとした。
-- T09でVega 412行のfront/back、palette、coords、icon、footprint、鳴き声、Dexをlossless prefixで保ち、DPE追加1209行をcanonical順に統合した。追加行のLZ77 4,836ポインタ、icon 1,209ポインタを全検査し、NULLの内部補助IDは境界内default assetへ固定した。T06進化runtime root 38参照も新表へrepointした。stage 09 SHA-256は `af086a3772c5e6868e68a8d8c0be14a1cb1ae7bd69f70621908583f5153f03ad`、ROM末尾残量は210,548 byte。
+- T09でVega 412行のfront/back、palette、coords、icon、footprint、鳴き声、Dexをlossless prefixで保ち、DPE追加1209行をcanonical順に統合した。追加行のLZ77 4,836ポインタ、icon 1,209ポインタを全検査し、NULLの内部補助IDは境界内default assetへ固定した。全6484 resource tag、画像関数上限、全aligned表示root、icon palette境界、全国図鑑変換をruntime化し、T06進化runtime root 38参照も新表へrepointした。現行stage 09 SHA-256は `df5463eac2e5d5afc4449f0e9177d8542da65a9713f9c365957e068e1f835849`、ROM末尾残量は158,344 byte。
 - T06進化prefixとDPE進化を1621×16行ABIに統合し、Species/Move/Item参照をcanonical IDへ変換した。V2進化553行は意味重複43行を除いて510行に正規化し、from/to form keyと数値National Dexを付与した。level-up 1209行とegg 3,362値のMove IDを変換し、TM/HM・tutorを16-byte行で固定した。
 - 現代式孵化はかわらずの石・あかいいと・power系・両親技・共通level技・ball/特性/おこう/メタモン/異親ID6回/地域form、5個FIFO、party/PC満杯保留、3孵化mode、compact IV/EV、無料技思い出し契約、公式100種またはquestのOval Charmと18固定RNG caseへ固定した。
 - T10で追加オコリザル445、ふんどのこぶし1027、まけんき129、ウタンのみ669、技習得進化method 26を選び、stage 09のlibmGBA 2 process生成と継続save fixtureを通した。wild/trainer/capture/level/move/ability/item/evolution/Dex/save/restart/loadを同一fixtureで検証し、release debug giftはOFFに固定した。

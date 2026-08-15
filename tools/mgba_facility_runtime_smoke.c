@@ -371,9 +371,12 @@ int main(int argc, char **argv)
         fprintf(stderr,
                 "mgba-facility-runtime-smoke: dex diagnostic seen_changed=%u "
                 "caught_unchanged=%u rental_seen_only=%u saveblock=%#010" PRIx32
+                " species=[%u,%u,%u,%u,%u,%u]"
                 " national=[%" PRIu32 ",%" PRIu32 ",%" PRIu32
                 ",%" PRIu32 ",%" PRIu32 ",%" PRIu32 "]\n",
                 seen_changed, caught_unchanged, rental_seen_only, saveblock1,
+                rental_species[0], rental_species[1], rental_species[2],
+                rental_species[3], rental_species[4], rental_species[5],
                 facility_call_thumb(core, FACILITY_SPECIES_TO_NATIONAL,
                                     rental_species[0], 0, 0, 0),
                 facility_call_thumb(core, FACILITY_SPECIES_TO_NATIONAL,

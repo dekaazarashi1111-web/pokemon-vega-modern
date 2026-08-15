@@ -61,6 +61,19 @@ class SpeciesPortBuilderTests(unittest.TestCase):
         self.assertEqual(len(source_ids), 1415)
         self.assertNotIn(252, source_ids)
         self.assertIn(1439, source_ids)
+        self.assertEqual(
+            self.model["runtime_reservation"],
+            {
+                "canonical_id": 412,
+                "species_key": "SPECIES_KEY_EGG",
+                "dpe_id": 412,
+                "displaced_species_key": "SPECIES_KEY_CATERPIE",
+                "displaced_canonical_id": 649,
+                "status": "PASS",
+            },
+        )
+        self.assertEqual(rows[412]["species_key"], "SPECIES_KEY_EGG")
+        self.assertEqual(rows[649]["species_key"], "SPECIES_KEY_CATERPIE")
 
     def test_official_count_deduplicates_forms(self) -> None:
         rows = self.model["species"]
@@ -121,6 +134,12 @@ class SpeciesPortBuilderTests(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix="t07-manifests-") as raw:
             temporary = Path(raw)
             shutil.copytree(ROOT / "manifests", temporary / "manifests")
+            shutil.copytree(ROOT / "content", temporary / "content")
+            (temporary / "reports/generated").mkdir(parents=True)
+            shutil.copy2(
+                ROOT / "reports/generated/id_inventory.json",
+                temporary / "reports/generated/id_inventory.json",
+            )
             path = temporary / "manifests/species_ids.csv"
             with path.open(encoding="utf-8", newline="") as stream:
                 rows = list(csv.DictReader(stream))
