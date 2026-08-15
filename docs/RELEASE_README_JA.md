@@ -1,4 +1,4 @@
-# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.3.8
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.3.9
 
 これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
 Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
@@ -8,9 +8,9 @@ CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず
 ## 適用方法
 
 1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
-2. BPS対応patcherで `vega-modern-kanto-v1.3.8.bps` をそのclean ROMへ直接適用する。
+2. BPS対応patcherで `vega-modern-kanto-v1.3.9.bps` をそのclean ROMへ直接適用する。
 3. 出力が32 MiBで、SHA-256が
-   `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`
+   `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`
    であることを確認する。
 
 入力ROMのSHA-256は
@@ -73,6 +73,8 @@ RTC自動中は現在が「あさ・ひる」か「よる」かも同じ画面�
   現在預けている2匹を親として256歩ごとに判定し、預かり屋と共有する5個queueへ入れる。
 - 自動戦闘はD・Hビル攻略後、通常random野生戦だけで選べる。trainer、固定・story・
   legendary・色違いでは通常戦へ戻り、開始前と各turnにcancelできる。
+- Species名は6文字まで省略せず表示する。エースバーン、ムゲンダイナ等は戦闘HUD・
+  メッセージ、手持ち・概要、PC、図鑑、進化／通知、道具対象でも公式名の末尾を保持する。
 
 ### HMフィールド能力
 
@@ -156,11 +158,11 @@ NPCから同じmenuを開き、「おもいだす」「わすれる」「タマ�
 連勝記録とBPはsector 31へ保存する。BP shopと施設外の調査NPCについては、進行条件、
 価格、支払い/credit、空き容量、再開用個体のcontent定義を保持する。
 
-v1.3.8で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
+v1.3.9で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
 Master、BP shop、施設外報酬遭遇は進行・content定義と回帰fixtureを保持しているが、実ROMの
 受付・NPCへはまだ接続していない。
 
-| tier | unlock | 主な形式・mechanic | v1.3.8 runtime |
+| tier | unlock | 主な形式・mechanic | v1.3.9 runtime |
 |---|---|---|---|
 | Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし | 接続済み |
 | Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega | 未接続 |

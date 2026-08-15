@@ -120,9 +120,16 @@ class SpeciesSurfaceTests(unittest.TestCase):
             self.assertEqual(self.rom[site:site + 8].hex(), row["replacement_hex"])
             self.assertEqual(struct.unpack_from("<I", self.rom, site + 4)[0], row["target"])
         names = self.artifacts["generated/engine/species/species_names_legacy.bin"]
-        self.assertEqual(len(names), 1621 * 6)
-        self.assertTrue(all(names[index * 6 + 5] == 0xFF for index in range(1621)))
+        canonical = (ROOT / "generated/engine/species/species_names.bin").read_bytes()
+        self.assertEqual(len(names), 1621 * 8)
+        for species in range(1621):
+            canonical_row = canonical[species * 11:(species + 1) * 11]
+            visible = canonical_row.split(b"\xFF", 1)[0]
+            compatibility_row = names[species * 8:(species + 1) * 8]
+            self.assertEqual(compatibility_row[:len(visible)], visible)
+            self.assertEqual(compatibility_row[len(visible):], b"\xFF" * (8 - len(visible)))
         self.assertEqual(self.metadata["repoints"]["species_names_legacy"]["count"], 40)
+        self.assertEqual(self.metadata["repoints"]["species_names_legacy"]["new_stride"], 8)
         self.assertEqual(
             struct.unpack_from("<I", self.rom, 0x4346C)[0],
             self.metadata["repoints"]["level_up"]["new"],
@@ -137,6 +144,55 @@ class SpeciesSurfaceTests(unittest.TestCase):
         self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC0)[0], (-1322) & 0xFFFFFFFF)
         self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC4)[0], (-1374) & 0xFFFFFFFF)
         self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC8)[0], 1374)
+
+    def test_six_glyph_names_and_all_stock_consumers_are_closed(self) -> None:
+        inventory = json.loads(self.artifacts[
+            "generated/engine/species/species_name_consumers.json"
+        ])
+        names = inventory["name_table"]
+        self.assertEqual(names["length_distribution"], {
+            "1": 14, "2": 4, "3": 93, "4": 452, "5": 924, "6": 134,
+        })
+        self.assertEqual(names["six_glyph_count"], 134)
+        self.assertEqual(len(names["six_glyph_rows"]), 134)
+        rows = {row["id"]: row for row in names["six_glyph_rows"]}
+        self.assertEqual(rows[1288]["display_name"], "エースバーン")
+        self.assertEqual(rows[1288]["canonical_hex"], "54ae5d96ae7eff")
+        self.assertEqual(rows[1363]["display_name"], "ムゲンダイナ")
+        self.assertEqual(rows[1363]["canonical_hex"], "718a7e915265ff")
+
+        self.assertEqual(inventory["consumer_count"], 40)
+        self.assertEqual(inventory["instruction_patch_count"], 48)
+        self.assertEqual(inventory["unreviewed_count"], 0)
+        self.assertEqual(inventory["unmigrated_count"], 0)
+        self.assertEqual(inventory["unknown_boundary_count"], 0)
+        self.assertEqual(inventory["battle_nickname_transfer_count"], 4)
+        self.assertEqual(inventory["nickname_display_bound"]["direct_call_count"], 13)
+        self.assertEqual(
+            inventory["nickname_display_bound"]["cfru_long_call_literal_count"], 3,
+        )
+        self.assertEqual(self.rom[0x88A8:0x88AA], bytes.fromhex("0624"))
+        self.assertTrue(all(row["boundary_known"] and row["migrated"]
+                            for row in inventory["consumers"]))
+        for patch in inventory["instruction_patches"]:
+            replacement = bytes.fromhex(patch["replacement_hex"])
+            self.assertEqual(
+                self.rom[patch["site"]:patch["site"] + len(replacement)],
+                replacement,
+                patch["label"],
+            )
+        self.assertTrue(all(
+            row["destination_buffer_bytes"] == 8
+            and row["new_max_visible_glyphs"] == 6
+            and row["migrated"]
+            for row in inventory["battle_nickname_transfers"]
+        ))
+        for row in inventory["battle_nickname_transfers"]:
+            replacement = bytes.fromhex(row["replacement_hex"])
+            self.assertEqual(
+                self.rom[row["site"]:row["site"] + len(replacement)],
+                replacement,
+            )
 
     def test_summary_party_pc_battle_evolution_and_dex_display_paths(self) -> None:
         model = json.loads(self.artifacts["generated/engine/species_assets/species_assets.json"])
@@ -168,7 +224,7 @@ class SpeciesSurfaceTests(unittest.TestCase):
 
     def test_exact_rom_display_hooks_and_samples_are_live(self) -> None:
         patches = self.metadata["runtime"]["patches"]
-        self.assertEqual(len(patches), 15)
+        self.assertEqual(len(patches), 21)
         for patch in patches:
             replacement = bytes.fromhex(patch["replacement_hex"])
             self.assertEqual(
@@ -180,7 +236,17 @@ class SpeciesSurfaceTests(unittest.TestCase):
         self.assertEqual(smoke["status"], "PASS")
         self.assertEqual(smoke["species_created"], 1619)
         self.assertEqual(smoke["species_named"], 1620)
-        self.assertEqual(smoke["display_species_checked"], 5)
+        self.assertEqual(smoke["compatibility_names_checked"], 1620)
+        self.assertEqual(smoke["six_glyph_names"], 134)
+        self.assertTrue(smoke["buffer_canaries"])
+        self.assertEqual(smoke["stock_string_routes"], 4)
+        self.assertEqual(smoke["surface_name_routes"], 7)
+        self.assertEqual(smoke["form_base_names_checked"], 3)
+        self.assertEqual(smoke["battle_name_cases"], 2)
+        self.assertEqual(smoke["battle_messages"], 2)
+        self.assertEqual(smoke["healthbox_tile_cases"], 2)
+        self.assertEqual(smoke["level100_form_cases"], 2)
+        self.assertEqual(smoke["display_species_checked"], 7)
         self.assertEqual(smoke["dex_species_checked"], 5)
         self.assertEqual(smoke["egg_species"], 412)
         self.assertEqual(smoke["caterpie_species"], 649)

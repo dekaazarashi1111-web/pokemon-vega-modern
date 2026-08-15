@@ -1183,3 +1183,30 @@
 - Verify: `python3 scripts/validate_task_graph.py`、`python3 -m unittest -v tests.test_task_queue`、`python3 scripts/guard_private_files.py`、`git diff --check`を実行してPASS。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。ローカルのmanifest、生成済み名前表、v1.3.8実ROM観測だけを参照した。
+
+## 2026-08-16T00:47:00+09:00
+
+- Task: `USER-20260815-SPECIES-NAME-LENGTH` / 6文字のSpecies名を全UIで欠けずに表示する
+- Status: DONE
+- Summary:
+  - canonical `species_names.bin` 1,621行×11 byteを正本として長さ分布を固定し、6文字134行を末尾文字＋EOS付きの8 byte互換表へ変換した。5文字以下1,487行の可視byteは不変。エースバーン1288 `54 AE 5D 96 AE 7E FF`、ムゲンダイナ1363 `71 8A 7E 91 52 65 FF`をcanary化した。
+  - stock `gSpeciesNames`直接参照40か所をaddress・用途・stride・buffer・描画幅で分類し、48個の`species*6`／表示上限命令をexpected-byte付きで8 byte strideへ移行した。未監査・未移行・境界不明は各0件。全134行とconsumerをJSON／Markdownへ列挙するfail-closed生成契約を追加した。
+  - 共有`StringCopy_Nickname`を無差別に拡張せず、8 byte `BattlePokemon.nickname`へ書く4経路だけを6文字＋EOS wrapperへ接続した。近距離Thumb veneerの空き領域、旧call命令、参照不在をbuild時に固定検査した。nickname表示clampはnative 13 callerとCFRU-JP 3 literal poolのbuffer境界を監査して5→6へ拡張した。
+  - exact-ROM mGBAで全1,620有効名、6文字134行、共有文字列4経路、手持ち・概要／道具対象、PC、図鑑、進化／通知、戦闘の7 surfaceを確認した。Lv.100メガピジョット対エースバーン、キョダイマックスゲンガー対ムゲンダイナで戦闘メッセージ2件、healthbox文字列・OBJ tile 2件を検査し、6文字目だけを別字形へ変えたtile差分と完全復元も確認した。フォームbase name、性別、3桁level、buffer canaryを維持した。
+  - v1.3.9へ更新し、検証済みstage 07以前を再利用してstage 09→25→finalを545.3秒で再生成した。通常wild/trainer/double、初戦、HM、戦闘規則/UI、Factory Trial 24 matrix、Raid 5 shield、技管理、Kanto/QOL-Bを同じ最終stageで再観測した。
+- Files changed:
+  - runtime/build: `overlays/species_surface/species_runtime.{c,h}`、`scripts/build_{species_surface,qol_release,release}.py`
+  - QA: `tools/mgba_species_runtime_smoke.c`、`tests/test_{species_surface,release}.py`、T10/T16/T17/T19の下流exact-hash fixture
+  - release/design: `README.md`、`CHANGELOG.md`、`KNOWN_ISSUES.md`、`docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`、`design/{catalog,current_state,report_lifecycle_index,run_log,version_log,tasks_next}.md`、`tools/regression/model.py`
+  - Git管理外生成物: `generated/engine/species/species_name_consumers.json`、`reports/generated/species_name_consumers.md`、stage 09〜25、v1.3.9 final/BPS/ZIP。私有ROM・save・patch原本は変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_species_surface.py build`、`python3 -m unittest -v tests.test_species_surface tests.test_release`: PASS（20 tests、read-only checkを含む）。stage 09 SHA-256 `de8e63dc180646e9f2fe8054fd7c85f5e432371946a37518d869990b8f757dd9`。
+  - `python3 scripts/build_fast_rom.py --from species-surface`: PASS（545.3秒）。T09〜T25、QOL統合、finalを連続生成した。
+  - `VEGA_FAST_STAGE_REUSE=1 python3 scripts/build_release.py final-fast` / `patch` / `verify`: PASS。BPS完全往復、archive 9 members、禁止物0、verify副作用なし。フラグなしの単独`final-fast`は旧固定stage 24 pinを意図どおり拒否し、差分chain metadataと実ROM SHA一致を確認後に差分検証modeを明示した。
+  - `python3 -m unittest -v tests.test_engine_vertical_slice tests.test_content_population tests.test_regression tests.test_trainer_rebalance_v4`: PASS（19 tests）。`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。WSL repository全体verifyとstage 00からの再生成は行っていない。
+- Output identity:
+  - final ROM: 33,554,432 bytes、SHA-256 `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`
+  - BPS: 15,329,301 bytes、SHA-256 `31b4f83741f53bf20c27a6571b53e156fdb5ee34e9ffbb9ac2c36a5d1f8dae73`
+  - 9-member ZIP: SHA-256 `5cb94dd8ebb735cc4c1681ea455b1ca273f26365946ff73a396daf06235001ba`
+- Commit: `-`（本エントリを含むコミット）
+- Network: `https://github.com/pret/pokefirered.git`を`.local/`へ取得し、commit `c75f352304d529f6ba92d4f74b9cf8b5c3810788`のstock consumer意味分類だけを参照した。実装入力と上流固定は既存`state/source-lock.json`を変更していない。

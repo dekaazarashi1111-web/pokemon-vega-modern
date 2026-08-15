@@ -54,7 +54,7 @@
 - battle UI: `tasks/USER_20260814_BATTLE_UI.md`、`config/battle_ui.json`、`overlays/battle_ui/`、`scripts/build_battle_ui.py`、`tools/mgba_battle_ui_smoke.c`、固定CFRU-JP move menu/type source、stage 23/24、T06 policy fixture。
 - わざメモリー: `tasks/USER_20260814_MOVE_MEMORY.md`、`config/move_memory.json`、`overlays/move_memory/`、`scripts/build_move_memory.py`、`tools/mgba_move_memory_smoke.c`、T09 learnset、stage 24/25。
 - QOL release: `tasks/USER_20260814_QOL_RELEASE.md`、`scripts/build_qol_release.py`、`scripts/build_release.py`、`docs/RELEASE_POLICY.md`、stage 20〜25 metadataと統合fixture。
-- Species名6文字: `tasks/USER_20260815_SPECIES_NAME_LENGTH.md`、`scripts/build_species_surface.py`の`legacy_species_names`と40 direct consumer、`overlays/species_surface/species_runtime.{c,h}`、`generated/engine/species/species_names{,_legacy}.bin`、`manifests/species_ids.csv`、`tools/mgba_{species_runtime,battle_ui}_smoke.c`、stage 09/24以降。
+- Species名6文字: `tasks/USER_20260815_SPECIES_NAME_LENGTH.md`、`scripts/build_species_surface.py`の`compatibility_species_names`と40 direct consumer、`overlays/species_surface/species_runtime.{c,h}`、`generated/engine/species/species_names{,_legacy}.bin`、`manifests/species_ids.csv`、`tools/mgba_{species_runtime,battle_ui}_smoke.c`、stage 09/24以降。
 
 ## 読みすぎ・やり直し防止
 

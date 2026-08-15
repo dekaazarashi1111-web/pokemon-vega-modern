@@ -487,3 +487,15 @@
   - 全40 consumerの境界監査、全UI移行、exact-ROM表示回帰を未着手タスクの受入条件にした。
   - 製品ROM、patch、生成stageは変更していない。
 - Verify: task graph、task queue unit test、private guard、diff check PASS。
+
+## 2026-08-16T00:47:00+09:00
+
+- Version: `v1.3.9`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-SPECIES-NAME-LENGTH` / 6文字のSpecies名を全UIで欠けずに表示する
+- Summary:
+  - canonical 1,621行の6文字名134行を8 byte互換ABIへ完全移行し、5文字以下1,487行をbyte不変にした。
+  - stock直接参照40件、stride/bound 48件、戦闘nickname転送4件、表示clamp callerをfail-closed監査した。
+  - エースバーン／ムゲンダイナの実戦メッセージとhealthbox OBJ tile、Lv.100フォーム、全下流QOLを再検証した。
+  - final ROM `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`、BPS／9-member ZIPを生成した。
+- Verify: T09 exact-ROM、fast stage 09→final、focused 39 tests、BPS完全往復、release archive、task graph/private guard/diff check PASS。

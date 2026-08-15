@@ -44,6 +44,7 @@ ARTIFACTS = (
     "generated/engine/species_assets/dex_entries.bin",
     "generated/engine/species_assets/national_dex.bin",
     "generated/engine/species/species_names_legacy.bin",
+    "generated/engine/species/species_name_consumers.json",
     "generated/engine/evolutions/evolutions.bin",
     "generated/engine/evolutions/evolutions.json",
     "generated/engine/evolutions/v2_normalized.json",
@@ -57,8 +58,139 @@ ARTIFACTS = (
     "generated/runtime/species_surface_symbols.json",
     "reports/generated/dex_policy.md",
     "reports/generated/species_asset_validation.md",
+    "reports/generated/species_name_consumers.md",
     "tests/fixtures/breeding_matrix.json",
 )
+
+
+SPECIES_NAME_CANONICAL_STRIDE = 11
+SPECIES_NAME_COMPAT_STRIDE = 8
+SPECIES_NAME_MAX_GLYPHS = 6
+
+# The stock Japanese ROM exposes 40 aligned literals for gSpeciesNames.  Keep
+# this list explicit: a new, removed, or relocated consumer must be audited
+# before the build can proceed.  buffer_bytes=0 means that the routine only
+# compares/addresses the row and never copies it; direct rows use the full
+# eight-byte compatibility row as their bound.
+SPECIES_NAME_CONSUMERS = (
+    (0x000144, "cfru_abi", "CFRU-JP indirect gSpeciesNames root", 8, 7, "compat_stride_8"),
+    (0x010CFC, "battle_seed", "trainer party name hash: no item/default moves", 0, 0, "compat_stride_8"),
+    (0x010DC0, "battle_seed", "trainer party name hash: no item/custom moves", 0, 0, "compat_stride_8"),
+    (0x010E60, "battle_seed", "trainer party name hash: item/default moves", 0, 0, "compat_stride_8"),
+    (0x010F64, "battle_seed", "trainer party name hash: item/custom moves", 0, 0, "compat_stride_8"),
+    (0x0344F4, "battle_hud", "Illusion nickname replacement and healthbox refresh", 11, 7, "compat_stride_8"),
+    (0x0406E8, "name_getter", "stock GetSpeciesName body bypassed by canonical adapter", 11, 0, "canonical_getter"),
+    (0x042CA4, "pokemon_data", "species-change nickname compare and replacement", 11, 0, "compat_stride_8"),
+    (0x048D78, "battle_hud", "Nidoran gender suppression compare", 11, 7, "compat_stride_8"),
+    (0x0533A0, "summary", "summary owner/nickname species comparisons", 256, 10, "compat_stride_8"),
+    (0x053408, "summary", "summary species text copy", 256, 10, "compat_stride_8"),
+    (0x06B55C, "script", "buffer species name command", 256, 0, "compat_stride_8"),
+    (0x06B5AC, "script", "buffer lead Species name command", 256, 0, "compat_stride_8"),
+    (0x0938C0, "pc", "PC storage Species field padded copy", 36, 6, "compat_stride_8_copy_6"),
+    (0x09EF90, "naming", "default Species nickname seed", 16, 10, "compat_stride_8"),
+    (0x0A1BD4, "size_record", "size record Species placeholder", 256, 0, "compat_stride_8"),
+    (0x0BEAE0, "easy_chat", "easy-chat Species word pointer", 8, 10, "compat_stride_8"),
+    (0x0CC2EC, "field_special", "requested Species placeholder", 256, 0, "compat_stride_8"),
+    (0x0CD028, "field_special", "unmodified nickname comparison", 11, 0, "compat_stride_8"),
+    (0x0CF20C, "evolution", "evolved Species placeholder", 256, 0, "compat_stride_8"),
+    (0x0CF810, "evolution", "trade-evolution Species placeholder", 256, 0, "compat_stride_8"),
+    (0x0CF9F4, "evolution", "extra evolved mon nickname", 11, 0, "compat_stride_8"),
+    (0x0E74C8, "notification", "Species name notification append", 256, 0, "compat_stride_8"),
+    (0x0F42E0, "hall_of_fame", "Hall of Fame slash and Species text", 16, 10, "compat_stride_8"),
+    (0x104370, "pokedex_list", "regional-dex seen list label", 8, 10, "compat_stride_8"),
+    (0x10444C, "pokedex_list", "regional-dex caught list label", 8, 10, "compat_stride_8"),
+    (0x1044F0, "pokedex_list", "national-dex seen list label", 8, 10, "compat_stride_8"),
+    (0x104588, "pokedex_list", "national-dex caught list label", 8, 10, "compat_stride_8"),
+    (0x104624, "pokedex_list", "alphabetical-dex list label", 8, 10, "compat_stride_8"),
+    (0x104688, "pokedex_list", "weight/height-dex list label", 8, 10, "compat_stride_8"),
+    (0x105C2C, "pokedex_category", "category list Species label", 8, 10, "compat_stride_8"),
+    (0x106B88, "pokedex_detail", "detail page Species label", 8, 10, "compat_stride_8"),
+    (0x107020, "pokedex_area", "area page Species label", 8, 12, "compat_stride_8_split_index"),
+    (0x114A20, "quest_log", "dynamic Species placeholder pointer", 8, 0, "compat_stride_8"),
+    (0x119D78, "union_room", "trade registration Species placeholder", 256, 0, "compat_stride_8"),
+    (0x11B500, "union_room", "trade-list Species text", 8, 10, "compat_stride_8"),
+    (0x11B838, "union_room", "local trade request Species buffer", 11, 10, "compat_stride_8"),
+    (0x11B88C, "union_room", "remote trade request Species buffer", 11, 10, "compat_stride_8"),
+    (0x1220E0, "party", "party Nidoran gender suppression compare", 11, 10, "compat_stride_8"),
+    (0x136B1C, "trade", "in-game trade Species placeholder/compare", 256, 10, "compat_stride_8"),
+)
+
+# (consumer literal, instruction site, expected bytes, replacement bytes,
+#  human-readable migration).  Six-byte sequences replace `species * 6` with
+# one `lsl #3` plus two Thumb NOPs, preserving the surrounding register ABI.
+SPECIES_NAME_PATCHES = (
+    (0x010CFC, 0x010C84, "480040184000", "c800c046c046", "name hash source A"),
+    (0x010CFC, 0x010C9C, "410009184900", "c100c046c046", "name hash source B"),
+    (0x010DC0, 0x010D12, "480040184000", "c800c046c046", "name hash source A"),
+    (0x010DC0, 0x010D2A, "410009184900", "c100c046c046", "name hash source B"),
+    (0x010E60, 0x010DDA, "480040184000", "c800c046c046", "name hash source A"),
+    (0x010E60, 0x010DF2, "410009184900", "c100c046c046", "name hash source B"),
+    (0x010F64, 0x010E76, "480040184000", "c800c046c046", "name hash source A"),
+    (0x010F64, 0x010E8E, "410009184900", "c100c046c046", "name hash source B"),
+    (0x0344F4, 0x03449C, "5a0042445200", "da00c046c046", "Illusion nickname row"),
+    (0x042CA4, 0x042C74, "600000194000", "e000c046c046", "old Species nickname row"),
+    (0x042CA4, 0x042C88, "720092195200", "f200c046c046", "new Species nickname row"),
+    (0x048D78, 0x048D2A, "510089184900", "d100c046c046", "healthbox compare row"),
+    (0x0533A0, 0x05336C, "510089184900", "d100c046c046", "summary current Species row"),
+    (0x0533A0, 0x05337E, "510089184900", "d100c046c046", "summary compared Species row"),
+    (0x053408, 0x0533DA, "510089184900", "d100c046c046", "summary copied Species row"),
+    (0x06B55C, 0x06B53E, "410009184900", "c100c046c046", "script Species row"),
+    (0x06B5AC, 0x06B58A, "410009184900", "c100c046c046", "script lead Species row"),
+    (0x0938C0, 0x093854, "410009184900", "c100c046c046", "PC Species row"),
+    (0x0938C0, 0x093862, "0523", "0623", "PC padded visible glyph count"),
+    (0x09EF90, 0x09EF2A, "410009184900", "c100c046c046", "naming Species row"),
+    (0x0A1BD4, 0x0A1BB6, "610009194900", "e100c046c046", "size record Species row"),
+    (0x0BEAE0, 0x0BEAD4, "500080184000", "d000c046c046", "easy-chat Species row"),
+    (0x0CC2EC, 0x0CC2C2, "410009184900", "c100c046c046", "field request Species row"),
+    (0x0CD028, 0x0CD008, "480040184000", "c800c046c046", "field nickname compare row"),
+    (0x0CF20C, 0x0CF03A, "510049444900", "d100c046c046", "evolution placeholder row"),
+    (0x0CF810, 0x0CF6CA, "690049194900", "e900c046c046", "trade evolution placeholder row"),
+    (0x0CF9F4, 0x0CF906, "4a0052185200", "ca00c046c046", "extra evolved mon nickname row"),
+    (0x0E74C8, 0x0E74A0, "690049194900", "e900c046c046", "notification Species row"),
+    (0x0F42E0, 0x0F426A, "480040184000", "c800c046c046", "Hall of Fame width pass"),
+    (0x0F42E0, 0x0F4284, "480040184000", "c800c046c046", "Hall of Fame copy pass"),
+    (0x0F42E0, 0x0F429C, "500080184000", "d000c046c046", "Hall of Fame gender pass"),
+    (0x104370, 0x104358, "410009184900", "c100c046c046", "Dex list row"),
+    (0x10444C, 0x104402, "410009184900", "c100c046c046", "Dex list row"),
+    (0x1044F0, 0x1044A6, "410009184900", "c100c046c046", "Dex list row"),
+    (0x104588, 0x104542, "410009184900", "c100c046c046", "Dex list row"),
+    (0x104624, 0x1045DE, "410009184900", "c100c046c046", "Dex list row"),
+    (0x104688, 0x104670, "410009184900", "c100c046c046", "Dex list row"),
+    (0x105C2C, 0x105BB4, "4a0042445200", "ca00c046c046", "Dex category row"),
+    (0x106B88, 0x106A92, "4a0052185200", "ca00c046c046", "Dex detail row"),
+    (0x107020, 0x106DE4, "4900", "0900", "Dex area cached Species factor 2 to 1"),
+    (0x107020, 0x106F9A, "5200", "9200", "Dex area final factor 2 to 4"),
+    (0x114A20, 0x114A0C, "5900c9184900", "d900c046c046", "quest log Species row"),
+    (0x119D78, 0x119D3C, "410009184900", "c100c046c046", "union registration Species row"),
+    (0x11B500, 0x11B4AA, "620012195200", "e200c046c046", "union list Species row"),
+    (0x11B838, 0x11B824, "510089184900", "d100c046c046", "union local Species buffer"),
+    (0x11B88C, 0x11B852, "510089184900", "d100c046c046", "union remote Species buffer"),
+    (0x1220E0, 0x1220C0, "690049194900", "e900c046c046", "party gender compare row"),
+    (0x136B1C, 0x136A64, "610009194900", "e100c046c046", "trade Species row"),
+)
+
+# StringCopy_Nickname at 0x08008870 is shared with narrower non-battle
+# destinations and intentionally retains the Japanese five-glyph nickname
+# policy.  Only these four audited party-to-BattlePokemon transfers target the
+# eight-byte nickname field and are safe to widen to six glyphs plus EOS.
+BATTLE_NICKNAME_COPY_CAVE = 0x18C350
+BATTLE_NICKNAME_TRANSFER_SITES = (
+    (0x03069A, "d8f7e9f8", "player party to local BattlePokemon"),
+    (0x036072, "d2f7fdfb", "opponent party to local BattlePokemon"),
+    (0x03AC9E, "cdf7e7fd", "link party to local BattlePokemon"),
+    (0x040A2A, "c7f721ff", "party data to gBattleMons nickname field"),
+)
+
+# StringGetEnd10 is the stock display clamp used after MON_DATA_NICKNAME reads.
+# Its thirteen native BL callers and three CFRU-JP long-call literals all
+# target buffers of at least seven bytes; widen only its immediate bound.
+NICKNAME_END_BOUND_SITE = 0x0088A8
+NICKNAME_END_DIRECT_CALLS = (
+    0x043EEC, 0x048CEE, 0x06B5E4, 0x09359E, 0x093696,
+    0x0A17C6, 0x0CD302, 0x0D933A, 0x0D95CA, 0x0D9640,
+    0x11FD8C, 0x120ADE, 0x1369DA,
+)
+NICKNAME_END_LONG_CALL_LITERALS = (0x10D1828, 0x10D1BE0, 0x1128E2C)
 
 
 class SurfaceError(RuntimeError):
@@ -469,15 +601,251 @@ def merge_learnsets(stage: bytes, dpe: bytes, config: Mapping[str, Any], rows: l
             "tmhm": tmhm, "tutor": tutor}, model
 
 
-def legacy_species_names(names: bytes, species_count: int) -> bytes:
-    if len(names) != species_count * 11:
+def compatibility_species_names(
+    names: bytes, rows: list[dict[str, Any]],
+) -> tuple[bytes, dict[str, Any]]:
+    """Render the audited Japanese six-glyph compatibility ABI.
+
+    The canonical 11-byte table remains authoritative.  Stock direct users
+    cannot consume that stride, while fixed CFRU-JP was compiled with
+    POKEMON_NAME_6 and therefore expects an eight-byte row.  Copying the full
+    visible bytes into an eight-byte row preserves six glyphs plus EOS without
+    widening nickname/global-string destinations.
+    """
+    species_count = len(rows)
+    if len(names) != species_count * SPECIES_NAME_CANONICAL_STRIDE:
         fail("canonical Species name table size mismatch")
     output = bytearray()
-    for species in range(species_count):
-        row = names[species * 11:(species + 1) * 11]
-        visible = row.split(b"\xFF", 1)[0][:5]
-        output += visible + b"\xFF" * (6 - len(visible))
-    return bytes(output)
+    distribution: dict[int, int] = {}
+    six_glyph_rows: list[dict[str, Any]] = []
+    unchanged_short = 0
+    for species, model_row in enumerate(rows):
+        row = names[
+            species * SPECIES_NAME_CANONICAL_STRIDE:
+            (species + 1) * SPECIES_NAME_CANONICAL_STRIDE
+        ]
+        try:
+            terminator = row.index(0xFF)
+        except ValueError:
+            fail(f"canonical Species name row is unterminated: {species}")
+        visible = row[:terminator]
+        if len(visible) > SPECIES_NAME_MAX_GLYPHS:
+            fail(f"canonical Species name exceeds six glyphs: {species}")
+        if any(value != 0xFF for value in row[terminator:]):
+            fail(f"canonical Species name padding differs: {species}")
+        display_name = str(model_row["display_name"])
+        if len(display_name) != len(visible):
+            fail(
+                f"canonical Species display/byte length differs: "
+                f"{species} {display_name!r}/{visible.hex()}"
+            )
+        distribution[len(visible)] = distribution.get(len(visible), 0) + 1
+        compat_row = visible + b"\xFF" * (
+            SPECIES_NAME_COMPAT_STRIDE - len(visible)
+        )
+        if compat_row[:len(visible)] != visible or compat_row[len(visible)] != 0xFF:
+            fail(f"compatibility Species name differs: {species}")
+        output += compat_row
+        if len(visible) <= 5:
+            unchanged_short += 1
+        else:
+            six_glyph_rows.append({
+                "id": species,
+                "species_key": model_row["species_key"],
+                "form_key": model_row["form_key"],
+                "display_name": display_name,
+                "canonical_hex": (visible + b"\xFF").hex(),
+                "compat_hex": compat_row.hex(),
+            })
+    if distribution.get(6) != 134 or len(six_glyph_rows) != 134:
+        fail(f"six-glyph Species inventory differs: {distribution}")
+    expected_canaries = {
+        1288: "54ae5d96ae7eff",
+        1363: "718a7e915265ff",
+    }
+    actual_canaries = {
+        row["id"]: row["canonical_hex"]
+        for row in six_glyph_rows if row["id"] in expected_canaries
+    }
+    if actual_canaries != expected_canaries:
+        fail(f"six-glyph Species canary differs: {actual_canaries}")
+    model = {
+        "schema_version": 1,
+        "task": "USER-20260815-SPECIES-NAME-LENGTH",
+        "status": "PASS",
+        "canonical_stride": SPECIES_NAME_CANONICAL_STRIDE,
+        "compatibility_stride": SPECIES_NAME_COMPAT_STRIDE,
+        "max_visible_glyphs": SPECIES_NAME_MAX_GLYPHS,
+        "species_count": species_count,
+        "length_distribution": {
+            str(length): count for length, count in sorted(distribution.items())
+        },
+        "six_glyph_count": len(six_glyph_rows),
+        "unchanged_five_or_fewer": unchanged_short,
+        "six_glyph_rows": six_glyph_rows,
+        "canaries": actual_canaries,
+    }
+    return bytes(output), model
+
+
+def species_name_consumer_model(stage: bytes) -> dict[str, Any]:
+    old_root = ptr(stage, 0x144)
+    old_bytes = struct.pack("<I", old_root)
+    actual_sites = [
+        index for index in range(0, len(stage) - 3, 4)
+        if stage[index:index + 4] == old_bytes
+    ]
+    declared_sites = [row[0] for row in SPECIES_NAME_CONSUMERS]
+    if actual_sites != declared_sites or len(set(declared_sites)) != 40:
+        fail(
+            "stock Species name consumer inventory changed: "
+            f"actual={actual_sites} declared={declared_sites}"
+        )
+    owners = {row[0] for row in SPECIES_NAME_PATCHES}
+    if not owners <= set(declared_sites):
+        fail(f"Species name patch has unknown consumer: {sorted(owners - set(declared_sites))}")
+    patch_sites = [row[1] for row in SPECIES_NAME_PATCHES]
+    if len(patch_sites) != len(set(patch_sites)):
+        fail("Species name instruction patch sites are duplicated")
+    patches_by_consumer: dict[int, list[int]] = {}
+    for consumer_site, site, expected_hex, replacement_hex, _ in SPECIES_NAME_PATCHES:
+        expected = bytes.fromhex(expected_hex)
+        replacement = bytes.fromhex(replacement_hex)
+        if len(expected) != len(replacement):
+            fail(f"Species name patch width differs at 0x{site:X}")
+        if stage[site:site + len(expected)] != expected:
+            fail(
+                f"Species name consumer code changed at 0x{site:X}: "
+                f"{stage[site:site + len(expected)].hex()}"
+            )
+        patches_by_consumer.setdefault(consumer_site, []).append(site)
+    consumers = []
+    for site, surface, purpose, buffer_bytes, max_draw_glyphs, strategy in SPECIES_NAME_CONSUMERS:
+        migrated = strategy == "canonical_getter" or bool(
+            patches_by_consumer.get(site)
+        ) or site == 0x144
+        consumers.append({
+            "literal_site": site,
+            "literal_address": ROM_BASE + site,
+            "surface": surface,
+            "purpose": purpose,
+            "old_row_stride": 6,
+            "new_row_stride": (
+                SPECIES_NAME_CANONICAL_STRIDE
+                if strategy == "canonical_getter"
+                else SPECIES_NAME_COMPAT_STRIDE
+            ),
+            "output_buffer_bytes": buffer_bytes,
+            "max_draw_glyphs": max_draw_glyphs,
+            "boundary_known": True,
+            "strategy": strategy,
+            "instruction_patch_sites": patches_by_consumer.get(site, []),
+            "migrated": migrated,
+        })
+    unreviewed = [row["literal_site"] for row in consumers if not row["purpose"]]
+    unmigrated = [row["literal_site"] for row in consumers if not row["migrated"]]
+    unknown_boundaries = [
+        row["literal_site"] for row in consumers if not row["boundary_known"]
+    ]
+    if unreviewed or unmigrated or unknown_boundaries:
+        fail(
+            "Species name inventory is incomplete: "
+            f"unreviewed={unreviewed} unmigrated={unmigrated} "
+            f"unknown_boundaries={unknown_boundaries}"
+        )
+    cave_expected = b"\xFF" * 8
+    if stage[BATTLE_NICKNAME_COPY_CAVE:BATTLE_NICKNAME_COPY_CAVE + 8] != cave_expected:
+        fail("audited battle nickname veneer cave is no longer empty")
+    cave_pointer = struct.pack("<I", ROM_BASE + BATTLE_NICKNAME_COPY_CAVE)
+    cave_references = [
+        index for index in range(0, len(stage) - 3, 4)
+        if stage[index:index + 4] == cave_pointer
+    ]
+    if cave_references:
+        fail(f"battle nickname veneer cave gained pointer users: {cave_references}")
+    battle_transfers = []
+    for site, expected_hex, purpose in BATTLE_NICKNAME_TRANSFER_SITES:
+        expected = bytes.fromhex(expected_hex)
+        if stage[site:site + len(expected)] != expected:
+            fail(
+                f"battle nickname transfer changed at 0x{site:X}: "
+                f"{stage[site:site + len(expected)].hex()}"
+            )
+        battle_transfers.append({
+            "site": site,
+            "address": ROM_BASE + site,
+            "purpose": purpose,
+            "destination_buffer_bytes": 8,
+            "old_max_visible_glyphs": 5,
+            "new_max_visible_glyphs": SPECIES_NAME_MAX_GLYPHS,
+            "strategy": "audited_battle_copy_wrapper",
+            "expected_hex": expected_hex,
+            "migrated": True,
+        })
+    if stage[NICKNAME_END_BOUND_SITE:NICKNAME_END_BOUND_SITE + 2] != bytes.fromhex("0524"):
+        fail("stock StringGetEnd10 five-glyph bound changed")
+    nickname_end_target = 0x0088A4
+    direct_calls = []
+    scan_end = min(len(stage) - 3, nickname_end_target + 0x400004)
+    for site in range(0, scan_end, 2):
+        first, second = struct.unpack_from("<HH", stage, site)
+        if first & 0xF800 != 0xF000 or second & 0xF800 != 0xF800:
+            continue
+        delta = ((first & 0x07FF) << 12) | ((second & 0x07FF) << 1)
+        if delta & 0x400000:
+            delta -= 0x800000
+        if site + 4 + delta == nickname_end_target:
+            direct_calls.append(site)
+    if tuple(direct_calls) != NICKNAME_END_DIRECT_CALLS:
+        fail(f"StringGetEnd10 direct caller inventory changed: {direct_calls}")
+    long_call_bytes = struct.pack("<I", ROM_BASE + nickname_end_target + 1)
+    long_call_literals = []
+    cursor = 0
+    while True:
+        cursor = stage.find(long_call_bytes, cursor)
+        if cursor < 0:
+            break
+        long_call_literals.append(cursor)
+        cursor += 1
+    if tuple(long_call_literals) != NICKNAME_END_LONG_CALL_LITERALS:
+        fail(
+            "StringGetEnd10 CFRU long-call inventory changed: "
+            f"{long_call_literals}"
+        )
+    return {
+        "schema_version": 1,
+        "task": "USER-20260815-SPECIES-NAME-LENGTH",
+        "status": "PASS",
+        "source_reference": {
+            "url": "https://github.com/pret/pokefirered.git",
+            "commit": "c75f352304d529f6ba92d4f74b9cf8b5c3810788",
+            "use": "gSpeciesNames stock consumer semantic classification only",
+        },
+        "old_root": old_root,
+        "consumer_count": len(consumers),
+        "instruction_patch_count": len(SPECIES_NAME_PATCHES),
+        "unreviewed_count": 0,
+        "unmigrated_count": 0,
+        "unknown_boundary_count": 0,
+        "consumers": consumers,
+        "battle_nickname_transfer_count": len(battle_transfers),
+        "battle_nickname_veneer_cave": BATTLE_NICKNAME_COPY_CAVE,
+        "battle_nickname_transfers": battle_transfers,
+        "nickname_display_bound": {
+            "site": NICKNAME_END_BOUND_SITE,
+            "address": ROM_BASE + NICKNAME_END_BOUND_SITE,
+            "old_max_visible_glyphs": 5,
+            "new_max_visible_glyphs": SPECIES_NAME_MAX_GLYPHS,
+            "minimum_audited_destination_bytes": 8,
+            "direct_call_count": len(direct_calls),
+            "direct_calls": direct_calls,
+            "cfru_long_call_literal_count": len(long_call_literals),
+            "cfru_long_call_literals": long_call_literals,
+            "expected_hex": "0524",
+            "replacement_hex": "0624",
+            "migrated": True,
+        },
+    }
 
 
 def linked_learn_symbols(root: Path, config: Mapping[str, Any]) -> dict[str, int]:
@@ -555,6 +923,7 @@ def compile_species_runtime(
                 symbols[fields[2]] = int(fields[0], 16)
         expected_symbols = {
             "VegaSpeciesSurface_GetSpeciesName",
+            "VegaSpeciesSurface_CopyBattleNickname",
             "VegaSpeciesSurface_NationalPokedexNumToSpecies",
             "VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended",
             "VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch",
@@ -576,6 +945,18 @@ def absolute_thumb_hook(register: int, target: int) -> bytes:
     if not 0 <= register <= 7 or target & 1:
         fail("invalid aligned Thumb hook target/register")
     return bytes((0, 0x48 | register, register << 3, 0x47)) + struct.pack("<I", target | 1)
+
+
+def thumb_bl(site: int, target: int) -> bytes:
+    """Encode a Thumb-1 BL from one ROM file offset to another."""
+    delta = target - (site + 4)
+    if delta & 1 or not -0x400000 <= delta < 0x400000:
+        fail(f"Thumb BL target out of range: site=0x{site:X} target=0x{target:X}")
+    return struct.pack(
+        "<HH",
+        0xF000 | ((delta >> 12) & 0x07FF),
+        0xF800 | ((delta >> 1) & 0x07FF),
+    )
 
 
 def run_species_runtime_smoke(root: Path, rom: bytes) -> dict[str, Any]:
@@ -617,9 +998,15 @@ def run_species_runtime_smoke(root: Path, rom: bytes) -> dict[str, Any]:
             fail(f"T09 Species runtime smoke returned invalid JSON: {error}")
         expected = {
             "status": "PASS", "species_created": 1619,
-            "species_named": 1620, "display_species_checked": 5,
+            "species_named": 1620, "display_species_checked": 7,
             "egg_species": 412, "caterpie_species": 649,
             "canonical_species_count": 1621,
+            "compatibility_names_checked": 1620,
+            "six_glyph_names": 134, "buffer_canaries": True,
+            "stock_string_routes": 4, "surface_name_routes": 7,
+            "form_base_names_checked": 3,
+            "battle_name_cases": 2, "battle_messages": 2,
+            "healthbox_tile_cases": 2, "level100_form_cases": 2,
         }
         if any(result.get(key) != value for key, value in expected.items()):
             fail(f"T09 Species runtime smoke contract differs: {result}")
@@ -697,7 +1084,10 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         root / str(config["inputs"]["species_names_path"]),
         str(config["inputs"]["species_names_sha256"]),
     )
-    names_legacy = legacy_species_names(species_names, len(rows))
+    names_compat, species_name_model = compatibility_species_names(
+        species_names, rows
+    )
+    name_consumer_model = species_name_consumer_model(stage)
     learn_symbols = linked_learn_symbols(root, config)
 
     strides, roots, sites = config["strides"], config["dpe_roots"], config["pointer_sites"]
@@ -772,7 +1162,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         off = allocator.put(name, learn[name]); locations[name] = ROM_BASE + off
     off = allocator.put("species_names", species_names)
     locations["species_names"] = ROM_BASE + off
-    off = allocator.put("species_names_legacy", names_legacy)
+    off = allocator.put("species_names_legacy", names_compat)
     locations["species_names_legacy"] = ROM_BASE + off
     runtime_load = ROM_BASE + ((allocator.cursor + 3) & ~3)
     runtime, runtime_symbols = compile_species_runtime(
@@ -785,7 +1175,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     locations["species_runtime"] = ROM_BASE + off
     payloads = {**tables, **learn, "evolutions": evolutions,
                 "species_names": species_names,
-                "species_names_legacy": names_legacy,
+                "species_names_legacy": names_compat,
                 "species_runtime": runtime}
     for entry in allocator.entries:
         data = payloads[entry["name"]]
@@ -876,20 +1266,45 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         "new": locations["level_up_pointers"],
     }
 
-    # Stock UI code has 40 direct six-byte gSpeciesNames consumers.  Point all
-    # of them at a bounded compatibility table, while GetSpeciesName itself
-    # uses the full eleven-byte canonical table through the adapter below.
+    # Stock UI code has 40 aligned gSpeciesNames literals.  Repoint them to the
+    # audited eight-byte Japanese six-glyph ABI and patch each reachable
+    # species*6 calculation to species*8.  GetSpeciesName itself is replaced
+    # at its entry and continues to use the canonical eleven-byte table.
     old_names_root = ptr(stage, 0x144)
     old_names_bytes = struct.pack("<I", old_names_root)
-    legacy_name_sites = [index for index in range(0, len(stage) - 3, 4)
-                         if stage[index:index + 4] == old_names_bytes]
-    if len(legacy_name_sites) != 40:
-        fail(f"stock Species name consumer inventory changed: {len(legacy_name_sites)}")
-    for site in legacy_name_sites:
+    compatibility_name_sites = [
+        row["literal_site"] for row in name_consumer_model["consumers"]
+    ]
+    if any(
+        stage[site:site + 4] != old_names_bytes
+        for site in compatibility_name_sites
+    ):
+        fail("stock Species name literal differs after inventory audit")
+    for site in compatibility_name_sites:
         output_rom[site:site + 4] = struct.pack("<I", locations["species_names_legacy"])
+    species_name_instruction_patches = []
+    for consumer_site, site, expected_hex, replacement_hex, label in SPECIES_NAME_PATCHES:
+        patch = patch_exact(
+            output_rom, stage, site, bytes.fromhex(expected_hex),
+            bytes.fromhex(replacement_hex), f"Species name: {label}",
+        )
+        patch["consumer_literal_site"] = consumer_site
+        species_name_instruction_patches.append(patch)
+    for row in name_consumer_model["consumers"]:
+        row["new_root"] = (
+            locations["species_names"]
+            if row["strategy"] == "canonical_getter"
+            else locations["species_names_legacy"]
+        )
+    name_consumer_model["instruction_patches"] = species_name_instruction_patches
+    name_consumer_model["compatibility_root"] = locations["species_names_legacy"]
+    name_consumer_model["canonical_root"] = locations["species_names"]
     repoints["species_names_legacy"] = {
-        "sites": legacy_name_sites, "count": len(legacy_name_sites),
+        "sites": compatibility_name_sites,
+        "count": len(compatibility_name_sites),
         "old": old_names_root, "new": locations["species_names_legacy"],
+        "old_stride": 6, "new_stride": SPECIES_NAME_COMPAT_STRIDE,
+        "instruction_patches": len(species_name_instruction_patches),
     }
     # T06 redirected CFRU evolution consumers to its canonical 1440-row root.
     # Replace every aligned literal for that root so appended IDs 1440..1620
@@ -914,6 +1329,47 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     output_rom[0x429F4:0x429FC] = cry_adapter
 
     runtime_patches: list[dict[str, Any]] = []
+    battle_copy_target = runtime_symbols[
+        "VegaSpeciesSurface_CopyBattleNickname"
+    ]
+    battle_copy_veneer = (
+        bytes.fromhex("004b1847") + struct.pack("<I", battle_copy_target | 1)
+    )
+    veneer_patch = patch_exact(
+        output_rom, stage, BATTLE_NICKNAME_COPY_CAVE, b"\xFF" * 8,
+        battle_copy_veneer, "six-glyph battle nickname copy veneer",
+    )
+    runtime_patches.append(veneer_patch)
+    transfer_patches: dict[int, dict[str, Any]] = {}
+    for site, expected_hex, purpose in BATTLE_NICKNAME_TRANSFER_SITES:
+        patch = patch_exact(
+            output_rom, stage, site, bytes.fromhex(expected_hex),
+            thumb_bl(site, BATTLE_NICKNAME_COPY_CAVE),
+            f"six-glyph battle nickname: {purpose}",
+        )
+        patch.update({
+            "veneer_site": BATTLE_NICKNAME_COPY_CAVE,
+            "target": battle_copy_target | 1,
+        })
+        runtime_patches.append(patch)
+        transfer_patches[site] = patch
+    name_consumer_model["battle_nickname_veneer"] = {
+        **veneer_patch,
+        "target_symbol": "VegaSpeciesSurface_CopyBattleNickname",
+        "target": battle_copy_target | 1,
+    }
+    for row in name_consumer_model["battle_nickname_transfers"]:
+        row.update({
+            "replacement_hex": transfer_patches[row["site"]]["replacement_hex"],
+            "veneer_site": BATTLE_NICKNAME_COPY_CAVE,
+            "target": battle_copy_target | 1,
+        })
+    nickname_bound_patch = patch_exact(
+        output_rom, stage, NICKNAME_END_BOUND_SITE, bytes.fromhex("0524"),
+        bytes.fromhex("0624"), "six-glyph StringGetEnd10 display bound",
+    )
+    runtime_patches.append(nickname_bound_patch)
+    name_consumer_model["nickname_display_bound"]["patch"] = nickname_bound_patch
     name_target = runtime_symbols["VegaSpeciesSurface_GetSpeciesName"]
     runtime_patches.append(patch_exact(
         output_rom, stage, 0x406C4, bytes.fromhex("f0b5061c09040c0c"),
@@ -1026,11 +1482,74 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                    "validation": validation, "status": "PASS"}
     fixture = breeding_fixture()
     dex_report = f"""# T09 Dex policy\n\n- Vega地方図鑑は既存イベント互換のためSpecies `0..411`を別集計する。\n- 全国図鑑はT07のcanonical National Dex `1..1025`をseen/caught bitmapのキーとし、formは同じ全国番号を共有する。\n- Vega完成イベントは旧フラグと地方集計だけを参照し、追加フォームで必要数が変化しない。\n- まるいおまもりは異なる公式全国番号100種またはquest完了の早い方で解禁し、タマゴ生成成功率を `{config['oval_charm']['base_numerator']}% -> {2 * config['oval_charm']['base_numerator']}%`へ変換する。\n\nStatus: PASS\n""".encode()
-    asset_report = f"""# T09 Species asset validation\n\n- canonical Species: {len(rows)}\n- Vega lossless rows: 412\n- DPE appended rows: {len(rows)-412}\n- LZ77 headers: {validation['compressed_checked']} PASS\n- aligned pointers: {validation['aligned_pointers']} PASS\n- icons: {validation['icons_checked']} PASS\n- canonical resource tags: {validation['canonical_tags_checked']} PASS\n- runtime display hooks: {len(runtime_patches) - 1} PASS\n- runtime Egg sentinel: canonical 412 / DPE 412\n- Caterpie display row: canonical 649 / DPE 10\n- exact-ROM mGBA display samples: {runtime_smoke['display_species_checked']} PASS\n- front, back, palette, shiny palette, coordinates, icon, icon palette, footprint fallback, cry, Dex entry: PASS\n- summary / party / PC / battle / evolution / Dex table bounds: PASS\n\nStatus: PASS\n""".encode()
+    asset_report = f"""# T09 Species asset validation\n\n- canonical Species: {len(rows)}\n- Vega lossless rows: 412\n- DPE appended rows: {len(rows)-412}\n- LZ77 headers: {validation['compressed_checked']} PASS\n- aligned pointers: {validation['aligned_pointers']} PASS\n- icons: {validation['icons_checked']} PASS\n- canonical resource tags: {validation['canonical_tags_checked']} PASS\n- runtime exact patches: {len(runtime_patches)} PASS\n- runtime Egg sentinel: canonical 412 / DPE 412\n- Caterpie display row: canonical 649 / DPE 10\n- exact-ROM mGBA display samples: {runtime_smoke['display_species_checked']} PASS\n- Species名: canonical {species_name_model['canonical_stride']} byte / compatibility {species_name_model['compatibility_stride']} byte\n- 6文字Species名: {species_name_model['six_glyph_count']} / 40 consumers audited / {name_consumer_model['instruction_patch_count']} instruction patches\n- 戦闘nickname転送: {name_consumer_model['battle_nickname_transfer_count']} routes / 8-byte field限定\n- front, back, palette, shiny palette, coordinates, icon, icon palette, footprint fallback, cry, Dex entry: PASS\n- summary / party / PC / battle / evolution / Dex table bounds: PASS\n\nStatus: PASS\n""".encode()
+    asset_report = asset_report.replace(
+        b"- front, back, palette, shiny palette",
+        (
+            "- nickname表示上限: 5→6 / native "
+            f"{name_consumer_model['nickname_display_bound']['direct_call_count']} calls "
+            "+ CFRU "
+            f"{name_consumer_model['nickname_display_bound']['cfru_long_call_literal_count']} "
+            "literal pools audited\n- front, back, palette, shiny palette"
+        ).encode("utf-8"),
+    )
+    six_name_lines = "\n".join(
+        f"- {row['id']}: {row['display_name']} / `{row['canonical_hex']}` / "
+        f"form=`{row['form_key'] or '-'}`"
+        for row in species_name_model["six_glyph_rows"]
+    )
+    consumer_lines = "\n".join(
+        f"- `0x{row['literal_site']:06X}` {row['surface']}: {row['purpose']} / "
+        f"stride {row['old_row_stride']}→{row['new_row_stride']} / "
+        f"buffer={row['output_buffer_bytes']} / draw={row['max_draw_glyphs']} / "
+        f"strategy={row['strategy']}"
+        for row in name_consumer_model["consumers"]
+    )
+    battle_transfer_lines = "\n".join(
+        f"- `0x{row['site']:06X}`: {row['purpose']} / "
+        f"buffer={row['destination_buffer_bytes']} / "
+        f"glyph {row['old_max_visible_glyphs']}→{row['new_max_visible_glyphs']} / "
+        f"veneer=`0x{row['veneer_site']:06X}`"
+        for row in name_consumer_model["battle_nickname_transfers"]
+    )
+    species_name_report = f"""# 6文字Species名 consumer監査
+
+## 結論
+
+- canonical: {species_name_model['species_count']} rows × {species_name_model['canonical_stride']} bytes
+- compatibility: {species_name_model['species_count']} rows × {species_name_model['compatibility_stride']} bytes
+- 長さ分布: `{json.dumps(species_name_model['length_distribution'], ensure_ascii=False, sort_keys=True)}`
+- 6文字: {species_name_model['six_glyph_count']} rows
+- 5文字以下byte維持: {species_name_model['unchanged_five_or_fewer']} rows
+- consumer: {name_consumer_model['consumer_count']} / 未監査 {name_consumer_model['unreviewed_count']} / 未移行 {name_consumer_model['unmigrated_count']} / 境界不明 {name_consumer_model['unknown_boundary_count']}
+- stride/bound patch: {name_consumer_model['instruction_patch_count']}
+- 戦闘nickname転送: {name_consumer_model['battle_nickname_transfer_count']} / 8-byte BattlePokemon field限定
+- nickname表示上限: 5→6 / native {name_consumer_model['nickname_display_bound']['direct_call_count']} calls + CFRU {name_consumer_model['nickname_display_bound']['cfru_long_call_literal_count']} literal pools監査済み
+
+## consumer inventory
+
+{consumer_lines}
+
+## 戦闘nickname転送
+
+共有のcopy helperは維持し、転送先境界が8 byteと確認できた経路だけを6文字+EOS wrapperへ移行する。表示用 `StringGetEnd10` は全callerの境界監査後に6文字へ拡張する。
+
+{battle_transfer_lines}
+
+## 6文字全行
+
+{six_name_lines}
+
+Status: PASS
+""".encode("utf-8")
     artifacts: dict[str, bytes] = {
         "generated/engine/species_assets/species_assets.json": stable(asset_model),
         **{f"generated/engine/species_assets/{name}.bin": tables[name] for name in assets_order},
-        "generated/engine/species/species_names_legacy.bin": names_legacy,
+        "generated/engine/species/species_names_legacy.bin": names_compat,
+        "generated/engine/species/species_name_consumers.json": stable({
+            **name_consumer_model,
+            "name_table": species_name_model,
+        }),
         "generated/engine/evolutions/evolutions.bin": evolutions,
         "generated/engine/evolutions/evolutions.json": stable(evolution_model),
         "generated/engine/evolutions/v2_normalized.json": stable(v2),
@@ -1045,6 +1564,7 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         }),
         "reports/generated/dex_policy.md": dex_report,
         "reports/generated/species_asset_validation.md": asset_report,
+        "reports/generated/species_name_consumers.md": species_name_report,
         "tests/fixtures/breeding_matrix.json": stable(fixture),
     }
     if set(artifacts) != set(ARTIFACTS):
@@ -1062,6 +1582,8 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                             "patches": runtime_patches},
                 "learn_move_hooks": learn_hooks,
                 "runtime_smoke": runtime_smoke,
+                "species_names": species_name_model,
+                "species_name_consumers": name_consumer_model,
                 "toxtricity_namespace_patches": toxtricity_patches,
                 "assets": asset_model, "evolutions": {k: v for k, v in evolution_model.items() if k != "rows"},
                 "learnsets": learn_model, "v2": {k: v for k, v in v2.items() if k != "rows"},

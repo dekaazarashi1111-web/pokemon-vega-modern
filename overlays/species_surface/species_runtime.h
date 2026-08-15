@@ -4,6 +4,8 @@
 #include <stdint.h>
 
 void VegaSpeciesSurface_GetSpeciesName(uint8_t *destination, uint16_t species);
+uint8_t *VegaSpeciesSurface_CopyBattleNickname(
+    uint8_t *destination, const uint8_t *source);
 uint16_t VegaSpeciesSurface_NationalPokedexNumToSpecies(uint16_t national_dex);
 void VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended(
     void *box_mon, uint16_t species, uint8_t level);

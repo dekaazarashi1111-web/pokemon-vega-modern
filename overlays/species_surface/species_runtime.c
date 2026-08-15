@@ -266,6 +266,30 @@ void VegaSpeciesSurface_GetSpeciesName(uint8_t *destination, uint16_t species)
 }
 
 /*
+ * The Japanese stock helper StringCopy_Nickname stops after five glyphs.
+ * BattlePokemon owns an eight-byte nickname field, so the four audited
+ * party-to-battle transfers can retain all six Species glyphs plus EOS without
+ * changing the narrower nickname helper used by unrelated destinations.
+ */
+__attribute__((section(".text.VegaSpeciesSurface_CopyBattleNickname"),
+               used, noinline))
+uint8_t *VegaSpeciesSurface_CopyBattleNickname(
+    uint8_t *destination, const uint8_t *source)
+{
+    uint8_t index;
+
+    for (index = 0; index < 6u; ++index) {
+        uint8_t value = source[index];
+        destination[index] = value;
+        if (value == VEGA_TEXT_TERMINATOR) {
+            return destination + index;
+        }
+    }
+    destination[6] = VEGA_TEXT_TERMINATOR;
+    return destination + 6;
+}
+
+/*
  * Keep Vega's native GiveMoveToBoxMon semantics while adapting only the
  * level-up row decoder.  Redirecting the whole CFRU helper changed unrelated
  * stock battle setup state (notably Raid controller timing), even though the

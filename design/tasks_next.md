@@ -25,4 +25,4 @@
 - [x] 無料の共通技管理「わざメモリー」を実装する <!-- id:USER-20260814-MOVE-MEMORY -->
 - [x] 全QOL変更を統合して再現可能な遊べるreleaseを確定する <!-- id:USER-20260814-QOL-RELEASE -->
 - [x] 戦闘UI・アクタシ初戦ループ・高速差分ビルドを修正する <!-- id:USER-20260814-BATTLE-UI-LOOP-FAST-BUILD -->
-- [ ] 6文字のポケモン名を全UIで欠けずに表示する <!-- id:USER-20260815-SPECIES-NAME-LENGTH -->
+- [x] 6文字のポケモン名を全UIで欠けずに表示する <!-- id:USER-20260815-SPECIES-NAME-LENGTH -->

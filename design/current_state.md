@@ -1,10 +1,10 @@
 # current_state.md
 
-最終更新: 2026-08-15
+最終更新: 2026-08-16
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突を修正した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正した。
 - 外来生態は通常の草むら77、洞窟・屋内31、水上23、いわくだき22、朝昼／ずつき28、
   夜34、夜間水上1、日替わり大量発生29、釣り21、水上／釣り兼用1、隠れ7、
   隠れ／タマゴ11、屋内異常8の293行を、41地点・95 runtime entry・294候補bindingへ生成する。
@@ -18,10 +18,17 @@
   タマゴをengine予約ID 412へ戻し、衝突していたキャタピーだけを649へ交換した。ポッポ418、
   キャタピー649、グルトン1484、最大ID1620とタマゴ412の前後画像・palette・iconを実ROMで確認し、
   全1620表示名、タマゴを除く1619種の個体生成、追加1209行の全LZ77/icon pointerを検査した。
-- v1.3.8にはSpecies名の旧5文字制限が残る。canonical 11 byte名表には完全な6文字名がある一方、
-  stock UI向け6 byte互換表が先頭5文字へ切っており、直接参照40か所を通るとエースバーン1288が
-  「エースバー」、ムゲンダイナ1363が「ムゲンダイ」になる。現行の6文字名はform込み134行。
-  emulator/saveではなくROM側の既知不具合として`USER-20260815-SPECIES-NAME-LENGTH`へ登録した。
+- v1.3.9はcanonical 1,621行×11 byte名表を正本にし、6文字名134行を末尾文字＋終端付きの
+  8 byte互換表へ変換する。stock直接参照40か所、stride/bound命令48か所、nickname表示の
+  native 13 callerとCFRU 3 literal poolをfail-closed監査し、戦闘データ転送4経路だけを
+  8 byte境界の6文字copy wrapperへ移行した。エースバーン1288とムゲンダイナ1363は実ROMの
+  戦闘メッセージ、HPバー文字列・OBJ tileで6文字を保持し、5文字以下1,487行のbyteは不変。
+- v1.3.9は検証済みstage 07以前を再利用し、stage 09→25→finalを545.3秒で再生成した。
+  finalは32 MiB、SHA-256 `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`。
+  通常wild/trainer/double、Factory Trial 24 matrix、Raid 5 shield、初戦、HM、戦闘規則/UI、
+  わざメモリー、Kanto/QOL-Bを同じ最終stageで再観測した。BPS / 9-member ZIP SHA-256は
+  `31b4f83741f53bf20c27a6571b53e156fdb5ee34e9ffbb9ac2c36a5d1f8dae73` /
+  `5cb94dd8ebb735cc4c1681ea455b1ca273f26365946ff73a396daf06235001ba`。
 - Vega固有種の従来図鑑値と追加種の公式全国番号をhybrid表で分離し、既存命令列のレジスタ副作用を
   保持した。施設Trial、レイド5 shield、最初のライバル戦、HM、戦闘ルール、L詳細、技メモリ、
   QOL統合が同じ最終stageでPASSした。v1.3.8最終ROMは32 MiB、SHA-256
@@ -140,7 +147,7 @@
 
 `design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
 
-- USER-20260815-SPECIES-NAME-LENGTH: TODO。旧6 byte名前表を直接読む40経路を安全に11 byte対応し、6文字名134行を全UIで欠けなく表示する。
+- USER-20260815-SPECIES-NAME-LENGTH: DONE。canonical 11 byte名を正本に、旧6 byte名前表を読む40経路を8 byte互換ABIへ移行し、6文字名134行を全UIで欠けなく表示する。
 - USER-20260814-FIRST-BATTLE-LOOP: DONE。残留Quick Claw/Custap indicatorをhold effect再検証で破棄し、stage 21の実ROM回帰を通した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。Vega既存HM所持を正本にし、手持ち・習得・badgeから分離したstage 22の実ROM境界を通した。
 - USER-20260814-BATTLE-RULES: DONE。現行ownerが単一CFRU payloadであることをsource/hook/固定RNGで確定し、zero-patch stage 23と全mode回帰を通した。

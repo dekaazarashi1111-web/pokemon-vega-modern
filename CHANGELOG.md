@@ -4,6 +4,18 @@
 
 - なし。
 
+## 1.3.9 — 2026-08-16
+
+- stock UI向けSpecies名互換表が各行を5文字へ切っていた問題を修正。canonical 1,621行の
+  長さ分布を固定し、6文字名134行を8 byte互換表でも末尾文字＋終端まで保持する。
+- `gSpeciesNames`直接参照40か所とstride/bound命令48か所をfail-closed inventoryへ固定。
+  戦闘データへのnickname転送4経路と、監査済み表示bufferの5文字上限も局所的に6文字へ拡張した。
+- exact-ROM mGBAでエースバーンとムゲンダイナの戦闘メッセージ、HPバー文字列・OBJ tile、
+  buffer canaryを検査。メガピジョット／キョダイマックスゲンガーのLv.100表示と、
+  手持ち・概要・PC・図鑑・進化／通知・道具対象の共有文字列経路も再検証した。
+- 最終ROM SHA-256:
+  `0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd`。
+
 ## 1.3.8 — 2026-08-15
 
 - DPE由来の追加1209種で、画像・色・アイコンのresource tagがDPE側IDのまま残り、

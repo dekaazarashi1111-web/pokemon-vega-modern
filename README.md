@@ -86,7 +86,7 @@ make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をs
 make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make qol-release-smoke # 同じstage 25でKanto/Factoryと全QOLを横断実ROM再検証
 make qol-release-smoke-check # hash一致済みの統合fixtureを副作用なしで再照合
-make final       # clean入力からv1.3.8最終ROMとbuild metadataを生成
+make final       # clean入力からv1.3.9最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -109,7 +109,7 @@ T06は固定CFRU-JPのbattle-only hookをexpected-byte付きでstage 04へ統合
 
 T07はVega Species ID 0〜411を固定し、DPE primaryとのidentity 206件をalias、欠落Species/form 1209件を412〜1620へappendします。全1621行にofficial判定とcanonical全国番号を付け、フォームを重複加算しない捕獲数counterを生成します。FireRed/Vegaのタマゴ予約ID 412を維持し、キャタピーは649へ割り当てます。canonical BaseStatsをDPE予約領域へ配置して105参照をrepointし、追加Species 413を実party memoryへ生成します。
 
-T09はVega固定412行のfront/back、palette、icon、鳴き声、図鑑をbyte一致で保ち、DPE由来の追加1209行をcanonical順に追加します。進化はSpecies/Move/Item IDを変換し、V2設計553行の意味重複43行を除去します。level/egg/TM/HM/tutorと現代式孵化、5個queue、満杯party/box、compact IV/EV、まるいおまもりを固定RNG fixtureで検証します。
+T09はVega固定412行のfront/back、palette、icon、鳴き声、図鑑をbyte一致で保ち、DPE由来の追加1209行をcanonical順に追加します。進化はSpecies/Move/Item IDを変換し、V2設計553行の意味重複43行を除去します。Species名はcanonical 11 byte表を正本とし、stock直接参照40か所を8 byte互換表へ移行して6文字名134行を保持します。level/egg/TM/HM/tutorと現代式孵化、5個queue、満杯party/box、compact IV/EV、まるいおまもりを固定RNG fixtureで検証します。
 
 T10はstage 09上の追加オコリザルと追加Move/Ability/Item/進化をlibmGBAで生成し、wildからsave/load、QOL-A、Factory 3連戦、報酬遭遇、3 AI profile、TM license、Mirage、NORMAL/RESEARCH、4-star Raidまで1つの継続save契約で通します。releaseのdebug giftはcompile時にOFFです。
 
@@ -162,13 +162,13 @@ canonical名、clean ROMからのBPS往復を検証し、Factory ROMのbyteは�
 戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
 ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
-v1.3.8統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
+v1.3.9統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 25を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／
 忘却／form連動を再観測する。stage 20以後の新規serialized fieldは0で、HMはバッグから導出し、
 技管理modeはvolatile RAMだけに置く。
 
-v1.3.8のトーホク外来生態runtimeは、設計293行を草むら・洞窟・水上・いわくだき・釣り・
+v1.3.9のトーホク外来生態runtimeは、設計293行を草むら・洞窟・水上・いわくだき・釣り・
 朝昼・夜・日替わり大量発生・隠れ遭遇へすべて接続する。最初の草むらはmap `3/19`へ
 5%の8候補を実結合し、抽選4096回と実遭遇生成で検証する。通常はRTCから朝昼／夜と
 日替わり群れを自動選択する。1個目のバッジ報酬「せいたいレーダー」（Item 348）では
