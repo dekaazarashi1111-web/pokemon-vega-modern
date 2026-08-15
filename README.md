@@ -86,7 +86,7 @@ make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をs
 make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make qol-release-smoke # 同じstage 25でKanto/Factoryと全QOLを横断実ROM再検証
 make qol-release-smoke-check # hash一致済みの統合fixtureを副作用なしで再照合
-make final       # clean入力からv1.3.6最終ROMとbuild metadataを生成
+make final       # clean入力からv1.3.7最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -162,16 +162,18 @@ canonical名、clean ROMからのBPS往復を検証し、Factory ROMのbyteは�
 戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
 ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
-v1.3.6統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
+v1.3.7統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 25を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／
 忘却／form連動を再観測する。stage 20以後の新規serialized fieldは0で、HMはバッグから導出し、
 技管理modeはvolatile RAMだけに置く。
 
-v1.3.6のトーホク外来生態runtimeは、設計293行のうち草むら・洞窟・水上・
-いわくだき153行を既存表の前段抽選として接続する。最初の草むらはmap `3/19`へ
-5%の8候補を実結合し、抽選4096回と実遭遇生成で検証する。夜間・大量発生・ずつき・
-釣り・DexNav専用140行とevent別解禁は未接続であり、実装済みと扱わない。
+v1.3.7のトーホク外来生態runtimeは、設計293行を草むら・洞窟・水上・いわくだき・釣り・
+朝昼・夜・日替わり大量発生・隠れ遭遇へすべて接続する。最初の草むらはmap `3/19`へ
+5%の8候補を実結合し、抽選4096回と実遭遇生成で検証する。通常はRTCから朝昼／夜と
+日替わり群れを自動選択する。1個目のバッジ報酬「せいたいレーダー」（Item 348）では
+現在modeを確認し、RTCに依存せず朝昼・夜・群れへ固定したり、現在mapの隠れ枠を直接探索したりできる。
+既存saveで未所持の場合はシオウの技管理NPCが補う。釣りは実際の竿入力経路と竿条件を使う。
 
 ## 効率方針
 

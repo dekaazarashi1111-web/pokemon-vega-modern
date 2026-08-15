@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.build_move_memory import (  # noqa: E402
+    ECOLOGY_RADAR_ITEM_ID,
     ITEM_ID,
     MAX_CANDIDATES,
     MODE_RAM,
@@ -61,8 +62,25 @@ class MoveMemoryTests(unittest.TestCase):
         self.assertFalse(any(value.startswith("removeitem:") for value in operations))
         self.assertIn("additem:347:1", scripts["script_badge1_reward"]["operations"])
         self.assertIn(
-            "goto:script_shiou_context",
+            f"additem:{ECOLOGY_RADAR_ITEM_ID}:1",
+            scripts["script_badge1_reward"]["operations"],
+        )
+        self.assertEqual(
+            metadata["companion_item"],
+            {
+                "id": ECOLOGY_RADAR_ITEM_ID,
+                "name": "せいたいレーダー",
+                "grant": "badge1_reward_and_shiou_recovery",
+                "runtime_owner": "T17_TOHOKU_ECOLOGY",
+            },
+        )
+        self.assertIn(
+            "goto:script_shiou_ecology_check",
             scripts["script_shiou_grant"]["operations"],
+        )
+        self.assertIn(
+            "goto:script_shiou_context",
+            scripts["script_shiou_ecology_grant"]["operations"],
         )
         self.assertIn(
             "branch:1:script_remember_entry",

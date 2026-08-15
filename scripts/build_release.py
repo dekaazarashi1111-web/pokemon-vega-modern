@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, package, and verify the reproducible v1.3.6 QOL BPS release."""
+"""Build, package, and verify the reproducible v1.3.7 QOL BPS release."""
 
 from __future__ import annotations
 
@@ -26,8 +26,8 @@ from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
 from scripts import build_qol_release  # noqa: E402
 
 
-TASK = "USER-20260814-QOL-RELEASE"
-VERSION = "1.3.6"
+TASK = "USER-20260815-ECOLOGY-RUNTIME"
+VERSION = "1.3.7"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
 STAGE = Path("build/stages/25_move_memory.gba")
@@ -358,6 +358,7 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
         "GLOBAL_FIXED_BEFORE_DECISION", "RESEARCH", "Raid", "Mega", "Z", "Tera", "Dynamax",
         "トレーナー再設計V4", "1個目", "わざメモリー", "D・Hビル", "ものまねハーブ",
         "HM01", "HM08", "CFRU-JP", "麻痺", "急所", "天候", "こうかばつぐん",
+        "せいたいレーダー", "RTC自動", "293行", "釣り", "隠れ遭遇",
     )
     for topic in required_topics:
         if topic not in readme:
@@ -371,6 +372,8 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
     facility_stage_meta = _read_json(ROOT / FACILITY_STAGE_META)
     trainer_stage_meta = _read_json(ROOT / TRAINER_STAGE_META)
     base_stage_meta = _read_json(ROOT / BASE_STAGE_META)
+    ecology = base_stage_meta.get("wild", {}).get("tohoku_overlay", {})
+    ecology_coverage = ecology.get("coverage", {})
     chain = build_qol_release.validate_stage_chain(ROOT)
     integration = build_qol_release.validate_published_fixture(ROOT)
     if (
@@ -383,6 +386,14 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         != base_stage_meta.get("output", {}).get("sha256")
     ):
         raise ReleaseError("trainer V4 input does not match published stage17")
+    if (
+        ecology_coverage.get("runtime_source_rows") != 293
+        or ecology_coverage.get("deferred_source_rows") != 0
+        or ecology_coverage.get("runtime_candidate_bindings") != 294
+        or ecology.get("entry_count") != 95
+        or ecology.get("ecology_radar", {}).get("item_id") != 348
+    ):
+        raise ReleaseError("published stage17 does not cover the 293-row ecology runtime")
     feature_rows = _feature_rows()
     ai_profiles = [
         row["feature_key"] for row in feature_rows if row["feature_key"] == "ENCOUNTER_PROFILE"
@@ -407,9 +418,11 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         "overlays/battle_ui/battle_ui.h", "overlays/battle_ui/battle_ui.c",
         "overlays/battle_ui/battle_ui_trampoline.S",
         "overlays/move_memory/move_memory.h", "overlays/move_memory/move_memory.c",
+        "overlays/wild_overlay/wild_overlay.h", "overlays/wild_overlay/wild_overlay.c",
         "scripts/build_first_battle_hotfix.py", "scripts/build_hm_field_access.py",
         "scripts/build_battle_rules.py", "scripts/build_battle_ui.py",
-        "scripts/build_move_memory.py", "scripts/build_qol_release.py",
+        "scripts/build_move_memory.py", "scripts/build_regression.py",
+        "scripts/build_qol_release.py", "tools/regression/rom_runtime.py",
     )
     return {
         "schema_version": 1,
@@ -447,6 +460,17 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "generated_trainers": base_stage_meta["trainers"]["generated_trainers"],
             "trainer_party_rows": base_stage_meta["trainers"]["production_rows_bound"],
             "qol_b_runtime_sha256": base_stage_meta["qol_b"]["sha256"],
+            "tohoku_ecology": {
+                "source_rows": ecology_coverage["runtime_source_rows"],
+                "deferred_rows": ecology_coverage["deferred_source_rows"],
+                "runtime_entries": ecology["entry_count"],
+                "candidate_bindings": ecology_coverage["runtime_candidate_bindings"],
+                "methods": ecology_coverage["runtime_methods"],
+                "modes": ecology_coverage["modes"],
+                "mode_var": ecology_coverage["mode_var"],
+                "radar_item_id": ecology["ecology_radar"]["item_id"],
+                "conditional_unlocks_bound": ecology_coverage["conditional_unlocks_bound"],
+            },
         },
         "trainer_rebalance_v4": {
             "sha256": trainer_stage_meta["output"]["sha256"],
@@ -687,7 +711,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
     patch = files[PATCH_NAME]
     fresh = _fresh_status(_sha(final), _sha(patch), _sha(archive))
     metadata = json.loads(files["BUILD_METADATA.json"])
-    return f"""# v1.3.6 QOL release verification
+    return f"""# v1.3.7 QOL release verification
 
 ## 結論
 

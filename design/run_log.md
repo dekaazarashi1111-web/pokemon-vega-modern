@@ -1073,3 +1073,29 @@
   - 提供save SHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`、size `131,072` bytes、distinct byteは`FF`1種。原本変更0、Git追跡0。
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済み上流source、ローカル提供save、検証済みstage、clean私有入力だけを参照した。
+
+## 2026-08-15T18:45:51+09:00
+
+- Task: `USER-20260815-ECOLOGY-RUNTIME` / 外来生態293行を実ROMへ接続し、時間帯を道具で確認・切替できるようにする
+- Status: DONE
+- Summary:
+  - v1.3.6で保留していた夜間34、大量発生29、朝昼／ずつき28、釣り21、水上／釣り兼用1、DexNav相当18、屋内異常8、夜間水上1の140行を追加し、既存153行と合わせた設計293/293行を95 runtime entry・294候補bindingへ生成した。保留0、全6 layer、41地点で、既存遭遇表は上書きしない。
+  - 通常歩行の草むら・洞窟・水上・いわくだき、stockの実釣り入口、RTC朝昼／夜、日替わり大量発生、屋内を含む隠れ探索へ分離して接続した。バッジ、使用中の竿、殿堂入り前後のlevelを候補単位で判定する。専用ずつき操作は新設せず朝昼layer、DexNav相当は隠れ探索へ接続し、T-E04固有依頼だけはバッジ2個＋いいつりざおへ正規化した。
+  - だいじなもの「せいたいレーダー」（Item 348）を追加し、1個目のバッジ報酬と既存save向けシオウ補完へ接続した。RTC自動では現在の朝昼／夜を表示し、朝昼・夜・群れの手動固定、隠れ探索、RTC自動への復帰を同じmenuから行う。modeは既存拡張Var `0x51FF`へ保存する。
+  - 初期実装で誤って参照したRTC関数addressをexact-ROM direct-callが停止として検出し、固定CFRU-JPの`DirectClockUpdate=0x09126FFD`とsignatureへ訂正した。レーダーmenuは自然フィールドの最終stage 25上でDOWN→DOWN→Aにより夜固定が保存されるところまで2 processで確認した。
+  - stage 16以前を再利用した高速差分buildでstage 17→finalを成功工程累計約23分19秒で生成した。trainer開始、初戦通知、戦闘中L詳細、傷薬前後HP、Factory/Raidを同一stage 25の統合fixtureで維持した。
+- Files changed:
+  - runtime/build: `overlays/wild_overlay/**`, `tools/regression/{rom_runtime,model}.py`, `scripts/build_{regression,battle_ui,move_memory,qol_release,release}.py`, `config/{battle_ui,move_memory}.json`
+  - QA: `tools/mgba_regression_smoke.c`, `tests/test_{regression,battle_ui,move_memory,release}.py`, `tests/fixtures/{regression,trainer_rebalance_v4}.json`
+  - release/design: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY,TEST_STRATEGY}.md`, `design/{catalog,current_state,report_lifecycle_index,run_log,version_log}.md`, `tasks/USER_20260815_ECOLOGY_RUNTIME.md`
+  - Git管理外成果: stage 17〜25、QOL統合fixture、`build/final/vega-modern-kanto-v1.3.7.gba`、Downloads向けverified ROM。ユーザー提供ROM/saveは変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_regression.py build` / `check`: PASS（16 artifacts、決定論build、exact-ROM smoke x2、check side effects NONE）。stage 17 SHA-256 `492e0e39753de4143b84d9a32b1163c49b6beabe6fd455832576f397b3773241`。
+  - stage 17および最終stage 25 exact-ROM: PASS。293 source rows、95 entries、294 bindings、layer mask `0x3F`、最初の草むら4096回中234 hit・8候補全種、実生成Species 583、RTC自動、手動3 mode、実釣りSpecies 842、屋内隠れSpecies 1357、隠れ戦闘遷移、通常歩行への漏出0、レーダー実menu操作を2 processで確認した。
+  - 変更所有stage以降の高速build: trainer 4.0秒、Facility 88.5秒、初戦169.6秒、HM 71.6秒、戦闘規則145.5秒、戦闘UI177.9秒、わざメモリー69.9秒、QOL統合538.1秒、final 32.7秒でPASS。検証済み前段を再利用し、stage 00からの長時間再buildは行っていない。
+  - `python3 scripts/build_qol_release.py check`: PASS（side effects NONE）。`python3 scripts/build_release.py final-fast`: PASS。stage 25とQOL統合fixtureを再利用し、final 32 MiBを再照合した。
+  - `python3 -m unittest -v tests.test_regression tests.test_battle_ui tests.test_move_memory tests.test_release`: PASS（28 tests / 27.575秒）。`py_compile`、task graph、private guard、`git diff --check`: PASS。
+- Output identity:
+  - final/Downloads copy SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`、size `33,554,432` bytesで一致。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。source-lock済み上流、検証済みstage、clean私有入力だけを参照した。

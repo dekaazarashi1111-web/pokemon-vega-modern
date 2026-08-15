@@ -192,6 +192,11 @@ class BattleUITests(unittest.TestCase):
         strings = self.metadata["string_audit"]
         self.assertTrue(all(not values for values in strings["live_unresolved"].values()))
         self.assertEqual(set(strings["reserved_inert_item_ids"]), RESERVED_ITEM_PLACEHOLDERS)
+        self.assertEqual(strings["runtime_item_overrides"], [348])
+        self.assertEqual(
+            strings["runtime_tables"]["item_data"]["runtime_override_item_ids"],
+            [348],
+        )
         self.assertEqual(
             set(strings["reserved_non_dex_species_ids"]),
             RESERVED_SPECIES_PLACEHOLDERS,

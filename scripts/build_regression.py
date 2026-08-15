@@ -82,7 +82,13 @@ def _mgba_fixture(
         hex(symbols["progress::PokemonLeague_ChampionsRoom"]),
         hex(symbols["wild_overlay::VegaWildOverlay_SelectSpecies"] | 1),
         hex(symbols["wild_overlay::VegaWildOverlay_TryGenerateWildMon"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_GenerateFishingEncounter"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_SetMode"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_GetMode"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_TryHiddenEncounter"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_FieldUse"] | 1),
         hex(metadata["wild"]["tohoku_overlay"]["table_address"]),
+        str(metadata["wild"]["tohoku_overlay"]["entry_count"]),
         str(vermilion_event_objects),
     ]
     first = json.loads(_run(args, "libmGBA exact-ROM smoke run 1"))

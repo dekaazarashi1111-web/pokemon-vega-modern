@@ -4,7 +4,19 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.6で追加Speciesの初期技ABI、トーホク外来生態の物理map結合、初戦Quick Draw防御を再修正した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、RTC自動とItem 348の手動modeを併設した。
+- 外来生態は通常の草むら77、洞窟・屋内31、水上23、いわくだき22、朝昼／ずつき28、
+  夜34、夜間水上1、日替わり大量発生29、釣り21、水上／釣り兼用1、隠れ7、
+  隠れ／タマゴ11、屋内異常8の293行を、41地点・95 runtime entry・294候補bindingへ生成する。
+  保留0、layer mask `0x3F`、通常・釣り・隠れの実生成入口をexact-ROM 2 processで検証する。
+- 1個目バッジで「せいたいレーダー」（Item 348）をわざメモリーと同時に渡し、既存saveは
+  シオウNPCが不足分だけ補う。modeはRTC自動、朝昼、夜、群れ、隠れ探索。Var `0x51FF`へ保存し、
+  RTCのないemulatorや時刻待ちを避けたい場合も手動確認できる。T-E04は2個目バッジ＋いいつりざおへ正規化し、
+  生態チケット代替はレーダーの夜固定へ接続した。
+- v1.3.7最終ROMは検証済みstage 16以前を再利用し、成功したstage 17→finalの累計約23分19秒で
+  生成した。32 MiB、SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`。
+  exact-ROM 2 processと同一stage 25のQOL統合で、trainer開始、初戦通知、L詳細、傷薬前後HP、
+  Factory/Raid、通常／釣り／隠れ遭遇を再観測した。
 - trainer戦開始の黒画面は、Vega Species `0..411`の2-byte packed初期技表と追加Species
   `412..1620`の3-byte初期技表を同じ読み出し経路へ混在させたABI不一致が原因。
   canonical 1,621行は3-byte表へ統一し、Vega既存種の初期化だけは従来処理をbyte単位で保持。
@@ -13,7 +25,7 @@
   V2正本のorderでT501を実map `3/19`へ結合した。既存遭遇表を保持したまま5%で8候補を追加抽選し、
   4,096回中238回の追加抽選、8候補全種、実際の`TryGenerateWildMon`から追加Species 583の生成、
   非対象mapへの漏れ0を実ROMで確認した。
-- 外来生態の設計293行を再集計し、通常の草むら77、洞窟・屋内31、水上23、
+- v1.3.6時点の外来生態を再集計し、通常の草むら77、洞窟・屋内31、水上23、
   いわくだき22の計153行が36論理地点・47 runtime entryで実接続済み。夜間34、大量発生29、
   ずつき28、釣り等22、DexNav等18、屋内異常8、夜間水上1の計140行とevent別解禁は専用runtime未接続で、KI-006へscope exclusionとして明記した。
 - v1.3.6最終ROMは差分buildで363.6秒（6分04秒）、32 MiB、SHA-256

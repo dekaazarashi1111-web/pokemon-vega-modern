@@ -37,6 +37,9 @@ CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 CONFIG = Path("config/battle_ui.json")
 STAGE06_META = Path("build/stages/06_battle_core.json")
+STAGE06 = Path("build/stages/06_battle_core.gba")
+STAGE17 = Path("build/stages/17_regression.gba")
+STAGE17_META = Path("build/stages/17_regression.json")
 STAGE23 = Path("build/stages/23_battle_rules.gba")
 STAGE23_META = Path("build/stages/23_battle_rules.json")
 STAGE23_ALLOCATION = Path("build/stages/23_allocation.json")
@@ -55,7 +58,7 @@ EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_ai_fixture_runner.c"),
 )
 ALLOCATION_NAME = "battle_ui_runtime"
-EXPECTED_STAGE23_SHA256 = "ce8748a5c725bd523824147571c081254281e6521af204472cfffdf45ca9fa36"
+EXPECTED_STAGE23_SHA256 = "0a18bb04235717fab1bb0786a559d0c8a9d72f74ad3d074b46eab252730f060b"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
 EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
@@ -133,8 +136,9 @@ RESERVED_ITEM_PLACEHOLDERS = {
     89, 90, 91, 92, 99, 100, 101, 102, 105, 112, 113, 114, 115, 116,
     117, 118, 119, 120, 176, 177, 178, 226, 227, 228, 229, 230, 231,
     232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244,
-    245, 246, 247, 248, 249, 250, 251, 252, 253, 267, 347, 348,
+    245, 246, 247, 248, 249, 250, 251, 252, 253, 267, 347,
 }
+RUNTIME_ITEM_OVERRIDES = {348}
 RESERVED_SPECIES_PLACEHOLDERS = {0, *range(263, 277)}
 
 
@@ -564,11 +568,11 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
     species_unresolved = {row["id"] for row in species if _has_placeholder(row.get("display_name"))}
     if move_unresolved or ability_unresolved:
         _fail("live move/ability name placeholder remains")
-    if item_unresolved != RESERVED_ITEM_PLACEHOLDERS:
+    if item_unresolved != RESERVED_ITEM_PLACEHOLDERS | RUNTIME_ITEM_OVERRIDES:
         _fail("reserved item placeholder set differs")
     inert_items = {
         row["id"] for row in items
-        if row["id"] in item_unresolved
+        if row["id"] in RESERVED_ITEM_PLACEHOLDERS
         and row.get("price") == 0
         and row.get("importance") == 0
         and row.get("battle_usage") == 0
@@ -576,7 +580,7 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
         and row.get("battle_effect_key") == "NONE"
         and row.get("status") == "FROZEN"
     }
-    if inert_items != item_unresolved:
+    if inert_items != RESERVED_ITEM_PLACEHOLDERS:
         _fail("placeholder item is reachable through a live battle effect")
     if species_unresolved != RESERVED_SPECIES_PLACEHOLDERS or any(
         row.get("canonical_national_dex") != 0
@@ -585,6 +589,21 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
         _fail("reserved Species placeholder set differs")
 
     t06 = _read_json(root / STAGE06_META)
+    stage06 = (root / STAGE06).read_bytes()
+    stage17 = (root / STAGE17).read_bytes()
+    stage17_meta = _read_json(root / STAGE17_META)
+    if (
+        len(stage06) != ROM_SIZE
+        or len(stage17) != ROM_SIZE
+        or _sha(stage06) != t06.get("output", {}).get("sha256")
+        or _sha(stage17) != stage17_meta.get("output", {}).get("sha256")
+    ):
+        _fail("stage06/stage17 runtime-table provenance differs")
+    radar = stage17_meta.get("wild", {}).get("tohoku_overlay", {}).get(
+        "ecology_radar", {}
+    )
+    if radar.get("item_id") != 348:
+        _fail("stage17 ecology radar metadata differs")
     tables: dict[str, dict[str, Any]] = {}
     for name in ("move_names", "ability_names", "item_data"):
         row = t06["runtime_tables"][name]
@@ -592,11 +611,38 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
         size = int(row["size"])
         before = source[start:start + size]
         after = output[start:start + size]
-        if before != after or _sha(after) != row["sha256"]:
+        if before != after:
             _fail(f"canonical runtime table changed: {name}")
+        canonicalized = bytearray(after)
+        runtime_overrides: list[int] = []
+        if name == "item_data":
+            stride = int(row["stride"])
+            relative = 348 * stride
+            if relative + stride > size:
+                _fail("ecology radar item row is outside canonical item table")
+            expected_override = stage17[start + relative:start + relative + stride]
+            if (
+                radar.get("item_address") != GBA_ROM_BASE + start + relative
+                or struct.unpack_from("<H", expected_override, 10)[0] != 348
+                or struct.unpack_from("<I", expected_override, 16)[0]
+                    != radar.get("description_address")
+                or struct.unpack_from("<I", expected_override, 24)[0]
+                    != radar.get("field_callback")
+            ):
+                _fail("ecology radar item ABI differs from stage17 metadata")
+            if after[relative:relative + stride] != expected_override:
+                _fail("ecology radar item row differs from validated stage17")
+            canonicalized[relative:relative + stride] = stage06[
+                start + relative:start + relative + stride
+            ]
+            runtime_overrides.append(348)
+        if _sha(bytes(canonicalized)) != row["sha256"]:
+            _fail(f"canonical runtime table changed outside overrides: {name}")
         tables[name] = {
             "address": row["address"], "count": row["count"],
             "stride": row["stride"], "sha256": row["sha256"],
+            "effective_sha256": _sha(after),
+            "runtime_override_item_ids": runtime_overrides,
             "unchanged": True,
         }
     species_names = root / config["inputs"]["species_names"]["path"]
@@ -619,7 +665,8 @@ def audit_strings(root: Path, source: bytes, output: bytes, config: dict[str, An
         "status": "PASS",
         "counts": {"moves": 1063, "abilities": 312, "items": 999, "species": 1621},
         "live_unresolved": {"moves": [], "abilities": [], "items": [], "species": []},
-        "reserved_inert_item_ids": sorted(item_unresolved),
+        "reserved_inert_item_ids": sorted(inert_items),
+        "runtime_item_overrides": sorted(RUNTIME_ITEM_OVERRIDES),
         "reserved_non_dex_species_ids": sorted(species_unresolved),
         "runtime_tables": tables,
         "species_names": {"path": species_names.relative_to(root).as_posix(), "sha256": _sha(species_raw)},

@@ -319,7 +319,7 @@ def validate_published_fixture(root: Path = ROOT) -> dict[str, Any]:
 
 def _report(value: dict[str, Any]) -> bytes:
     components = value["components"]
-    return f"""# v1.3.6 QOL統合実ROM回帰
+    return f"""# v1.3.7 QOL統合実ROM回帰
 
 ## 結論
 
@@ -338,6 +338,7 @@ def _report(value: dict[str, Any]) -> bytes:
 - わざメモリー: 通常Lv.1 {components['move_memory']['normal']['low_count']}件、Lv.100 {components['move_memory']['normal']['high_count']}件、タマゴ技 {components['move_memory']['egg']['adapter_count']}件、CFRU form連動 PASS
 - Factory/Raid: {components['battle_policy']['facility']['matrix_cases']} matrix / shield {components['battle_policy']['raid']['shield_breaks']}回 / cleanup PASS
 - Kanto/QOL-B: {components['regression']['kanto_wild_headers']} wild headers / entry・movement・return・event round-trip PASS
+- トーホク外来生態: 293 source rows / 95 runtime entries / RTC・手動mode・釣り・隠れ探索 PASS
 - Factory Trial: 6候補・3選択・交換・9 BP・sector 31 round-trip・全出口party復元 PASS
 
 このfixtureは各旧stageの結果を転記せず、stage 25の同一ROMを各runnerへ渡して再観測する。

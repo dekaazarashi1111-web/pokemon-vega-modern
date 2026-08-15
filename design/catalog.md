@@ -112,7 +112,7 @@
 - `content/kanto_map_scope.csv`, `tools/map_import/full_kanto_import.py`: T14のINCLUDE/REBUILD/DEFER判断と全本土map canonical変換
 - `content/{kanto,qol,facility,trainer}_progression.csv`, `content/kanto_state_model.csv`: T15の進行DAG、解禁境界、save ownership正本
 - `content/{map_bindings,normal_table_protection,trainer_balance_constraints,activity_hooks}.csv`, `manifests/{kanto,tohoku,research,raid,facility,reward}*.csv`: T16の二地方物理binding、NORMAL保護、trainer/施設/報酬content正本
-- `overlays/qol_b/`, `tools/regression/`, `scripts/build_regression.py`: T17のQOL-B、実Kanto ROM serializer、拡張trainer/progression、exact-ROM/state regression
+- `overlays/qol_b/`, `overlays/wild_overlay/`, `tools/regression/`, `scripts/build_regression.py`: T17のQOL-B、実Kanto ROM serializer、外来生態293行、拡張trainer/progression、exact-ROM/state regression
 - `config/trainer_rebalance_v4.json`, `content/trainer_rebalance_v4/`, `scripts/build_trainer_rebalance_v4.py`: V4入力hash、AI段階、既存Trainer ID対応、stage 19本編trainer結合の正本
 - `overlays/facility_runtime/`, `tools/mgba_facility_runtime_smoke.c`, `scripts/build_facility_runtime.py`: Factory Trialの実ROM受付・候補6→選択3・勝利後交換・3連戦・BP・exact復元・stage 20の正本
 - `tools/mgba_first_battle_loop_smoke.c`, `scripts/build_first_battle_hotfix.py`: 初戦3分岐、不正indicator fault injection、正規Quick Claw/Custap/Quick Draw、stage 21の正本
@@ -120,5 +120,5 @@
 - `config/battle_rules.json`, `tools/mgba_battle_rules_smoke.c`, `scripts/build_battle_rules.py`: 固定CFRU-JP状態異常・急所・天候default、単一owner、固定RNG、stage 23の正本
 - `config/battle_ui.json`, `overlays/battle_ui/`, `tools/mgba_battle_ui_smoke.c`, `scripts/build_battle_ui.py`: 固定CFRU-JPの技タイプ・有効度・STAB表示、戦闘中旧HELP抑止とfield HELP維持、Stellar、canonical文字列、stage 24の正本
 - `config/move_memory.json`, `overlays/move_memory/`, `tools/mgba_move_memory_smoke.c`, `scripts/build_move_memory.py`: Item 347、シオウ/カラスバ、T09 learnset、CFRU技slot/form連動、stage 25の正本
-- `scripts/build_qol_release.py`, `build/stages/25_mgba_qol_release.json`: stage 25上の初戦/HM/battle rules/UI/技管理と既存Kanto/Factoryを同一ROMで確認するv1.3.6統合契約
-- `tools/release/`, `scripts/build_release.py`: T18/v1.3.6のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築
+- `scripts/build_qol_release.py`, `build/stages/25_mgba_qol_release.json`: stage 25上の初戦/HM/battle rules/UI/技管理と既存Kanto/Factoryを同一ROMで確認するv1.3.7統合契約
+- `tools/release/`, `scripts/build_release.py`: T18/v1.3.7のBPS encode/decode、最終ROM、決定論release archive、安全監査、隔離fresh-checkout再構築

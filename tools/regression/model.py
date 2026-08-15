@@ -377,12 +377,12 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
     overlay_coverage = runtime["wild"]["tohoku_overlay"]["coverage"]
     _require(overlay_coverage["source_rows"] == 293,
              "Tohoku overlay source coverage drift")
-    _require(overlay_coverage["runtime_source_rows"] == 153,
-             "Tohoku normal overlay runtime coverage drift")
-    _require(overlay_coverage["deferred_source_rows"] == 140,
-             "Tohoku special-method deferral coverage drift")
-    _require(not overlay_coverage["conditional_unlocks_bound"],
-             "Tohoku unlock scope must be reviewed before changing")
+    _require(overlay_coverage["runtime_source_rows"] == 293,
+             "Tohoku ecology runtime coverage drift")
+    _require(overlay_coverage["deferred_source_rows"] == 0,
+             "Tohoku ecology still has deferred source rows")
+    _require(overlay_coverage["conditional_unlocks_bound"],
+             "Tohoku ecology method/unlock dispatch is not bound")
     population = _json(root / "tests/fixtures/content_population.json")
     _require(population["status"] == "PASS", "T16 population fixture failed")
     map_result = _map_regression(root, runtime)
@@ -425,7 +425,8 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
 - Trainers: 29人 / {runtime['trainers']['production_rows_bound']} party rowsを実ROMへbind、24 engine pointer repoint
 - Progression: 8 gym + 四天王/Champion（13 physical battle objects）
 - Ecology: Tohoku 49 / Kanto 47論理地点、original NORMAL {population['normal_tables_preserved']}表を保持
-- Tohoku overlay: 設計{overlay_coverage['source_rows']}行中、通常方式{overlay_coverage['runtime_source_rows']}行を実ROM接続、専用方式{overlay_coverage['deferred_source_rows']}行はKI-006
+- Tohoku ecology: 設計{overlay_coverage['source_rows']}行を全件実ROM接続、未接続{overlay_coverage['deferred_source_rows']}行
+- Ecology modes: RTC自動／朝昼／夜／日替わり大量発生／釣り／せいたいレーダー隠し枠スキャン
 - State: pre-HoF 200 + post-HoF 200 region round trips PASS
 - Shared captures: {shared_result['shared_keys']} keys × 両地域順序 PASS、duplicate 0
 - Event model: 34 events × 7 branches = {event_result['branch_cases']} PASS
@@ -498,9 +499,9 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
 ### KI-003 — emulator savestateはversion間非互換
 
 - Severity: S4 / expected platform behavior
-- Reproduction: 旧ROMで作ったsavestateをv1.3.6で直接読み込む。
+- Reproduction: 旧ROMで作ったsavestateをv1.3.7で直接読み込む。
 - Result: ROM内部addressや一時stateが一致せず、安全なmigration対象にならない。
-- Workaround: 旧ROM上でゲーム内saveを行い、v1.3.6を再起動してbattery saveから読む。
+- Workaround: 旧ROM上でゲーム内saveを行い、v1.3.7を再起動してbattery saveから読む。
 
 ### KI-004 — V4の性格・特性・EV・gimmick triggerは設計台帳のみ
 
@@ -514,25 +515,17 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
 
 - Severity: S4 / release scope exclusion
 - Reproduction: クチバのFactory受付でStandard、Full、Master、BP shop、施設外報酬遭遇を探す。
-- Result: v1.3.6の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
+- Result: v1.3.7の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
   shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
 - Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
 
-### KI-006 — トーホク外来生態の専用遭遇方式は未接続
-
-- Severity: S4 / release scope exclusion
-- Reproduction: 夜間、大量発生、ずつき、釣り、DexNav専用と指定された新種を該当mapで探す。
-- Result: v1.3.6で実ROM接続済みなのは設計{overlay_coverage['source_rows']}行中{overlay_coverage['runtime_source_rows']}行（草むら77、洞窟・屋内31、
-  水上23、いわくだき22）のmap別追加抽選。{overlay_coverage['deferred_source_rows']}行の専用方式とevent別解禁条件は
-  runtime未接続。通常追加抽選は対象mapで常時有効としている。
-- Workaround: 通常の草むら・洞窟・水上・いわくだきの追加種を利用する。専用方式を
-  実装済みと扱わない。
-
-## v1.3.6で解決済み
+## v1.3.7で解決済み
 
 - 追加Speciesを含むtrainer戦が戦闘開始時に黒画面のまま停止する初期技表ABI不一致。
 - 最初の草むら（map 3/19）が別の論理地点へ誤結合され、追加種が出現しない問題。
 - 戦闘中Lの旧HELP競合が技Type・特性通知・行動順を破損した問題。
+- トーホク外来生態293行のうち、夜・大量発生・朝昼・釣り・DexNav相当140行が
+  実ROM未接続だった問題。RTC自動と「せいたいレーダー」の手動切替を併設した。
 
 Release-blocking known issue: **none**.
 """

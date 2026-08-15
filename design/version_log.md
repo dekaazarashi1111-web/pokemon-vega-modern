@@ -452,3 +452,15 @@
   - 外来生態293設計行のうち通常方式153行が接続済み、専用方式140行は未接続という境界をmetadata・test・KI-006に固定した。
   - 通常turnのQuick Draw guardをfast path化し、アクタシの「げきりゅう」「ヘドロえき」のどちらでも不正な行動順通知が発生しないことを再検証した。
 - Verify: `build_fast_rom.py --from species-surface` 363.6秒、最終`--from regression` 183.2秒、focused 53 tests、Species `1..1620`、有効trainer 772件、最初の草むら4096抽選/実遭遇、L詳細、傷薬HP表示、task graph/private guard/diff check PASS。final SHA-256 `aeaa8724db55aaff5261581b4faead9aaf91b013e0fc9fb04bb9ae5bf701f5e1`。
+
+## 2026-08-15T18:45:51+09:00
+
+- Version: `v1.3.7`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-ECOLOGY-RUNTIME` / 外来生態293行と生態レーダーを実ROMへ接続する
+- Summary:
+  - 外来生態設計293/293行を通常・朝昼・夜・日替わり群れ・釣り・隠れ探索の95 runtime entryへ変換し、0件保留で実遭遇入口へ接続した。
+  - RTC自動と、朝昼・夜・群れ・隠れ探索を確認・切替できるItem 348「せいたいレーダー」を追加した。1個目バッジと既存save用シオウ補完から取得できる。
+  - バッジ・竿・殿堂入りlevel条件を接続し、通常歩行、実釣り、屋内隠れ戦闘、最初の草むら、trainer/戦闘UI/HP/Factory/Raidを最終ROMで回帰した。
+  - 検証済み前段を再利用する高速chainでv1.3.7を生成し、Downloadsへ別名のverified ROMを配置した。
+- Verify: T17 build/check exact-ROM x2、最終stage 25レーダー実menu x2、QOL統合check、`final-fast`、focused 28 tests、py_compile、task graph/private guard/diff check PASS。final SHA-256 `cb8ac173bf8f9e0e4bc51ecd12adc581c6344761955f38766ce7211e2dd5f167`。

@@ -39,6 +39,22 @@ MAP_LAYOUTS_POINTER_SITE = 0x00054A54
 WILD_HEADERS_POINTER_SITE = 0x0008257C
 WILD_GENERATION_HOOK_SITE = 0x000826D8
 WILD_GENERATION_HOOK_EXPECTED = bytes.fromhex("f0b5474680b4071c")
+FISHING_GENERATION_HOOK_SITE = 0x00082750
+FISHING_GENERATION_HOOK_EXPECTED = bytes.fromhex("70b5061c0806000e")
+CFRU_DIRECT_CLOCK_UPDATE_ADDRESS = 0x09126FFD
+CFRU_DIRECT_CLOCK_UPDATE_EXPECTED = bytes.fromhex("002370b50d4c2370")
+ITEM_DATA_ADDRESS = 0x0904D108
+ITEM_DATA_STRIDE = 40
+ITEM_GRAPHICS_ADDRESS = 0x09056D20
+ITEM_GRAPHICS_STRIDE = 8
+ECOLOGY_RADAR_ITEM_ID = 348
+ECOLOGY_RADAR_TEMPLATE_ITEM_ID = 364
+ECOLOGY_RADAR_ICON_SOURCE_ID = 366
+ECOLOGY_RADAR_EXPECTED_ROW = bytes.fromhex(
+    "acacacacacacacacff00000000000000ef063a0800000104"
+    "f9340a08000000000000000000000000"
+)
+ECOLOGY_RADAR_EXPECTED_ICON = bytes.fromhex("5070d808c870d808")
 EXPECTED_MAP_GROUPS_ROOT = 0x08316758
 EXPECTED_MAP_LAYOUTS_ROOT = 0x08312C3C
 EXPECTED_WILD_HEADERS_ROOT = 0x08390B34
@@ -108,6 +124,13 @@ def _rom_offset(pointer: int, size: int, label: str) -> int:
         offset = (pointer & ~1) - GBA_ROM_BASE
     if offset < 0 or offset + size > 16 * 1024 * 1024:
         raise RuntimeBuildError(f"{label}: invalid clean ROM pointer {pointer:#010x}")
+    return offset
+
+
+def _expanded_rom_offset(pointer: int, size: int, label: str) -> int:
+    offset = (pointer & ~1 if pointer & 1 else pointer) - GBA_ROM_BASE
+    if offset < 0 or offset + size > ROM_SIZE:
+        raise RuntimeBuildError(f"{label}: invalid 32 MiB ROM pointer {pointer:#010x}")
     return offset
 
 
@@ -236,14 +259,99 @@ def _compile_qol_b(root: Path, load_address: int) -> tuple[bytes, dict[str, int]
         return raw, symbols
 
 
-def _tohoku_overlay_area(method: str) -> int | None:
-    if method in {"草むらオーバーレイ", "洞窟・屋内オーバーレイ"}:
-        return 0
-    if method == "水上オーバーレイ":
-        return 1
-    if method == "いわくだき／DexNav":
-        return 2
-    return None
+WILD_AREA_LAND = 0
+WILD_AREA_WATER = 1
+WILD_AREA_ROCKS = 2
+WILD_AREA_FISHING = 3
+WILD_AREA_HIDDEN = 4
+
+ECOLOGY_LAYER_NORMAL = 0
+ECOLOGY_LAYER_DAY = 1
+ECOLOGY_LAYER_NIGHT = 2
+ECOLOGY_LAYER_SWARM = 3
+ECOLOGY_LAYER_FISHING = 4
+ECOLOGY_LAYER_HIDDEN = 5
+
+ECOLOGY_ENTRY_SIZE = 104
+ECOLOGY_MAX_CANDIDATES = 12
+
+
+def _tohoku_overlay_bindings(method: str) -> tuple[tuple[int, int], ...]:
+    bindings = {
+        "草むらオーバーレイ": ((WILD_AREA_LAND, ECOLOGY_LAYER_NORMAL),),
+        "洞窟・屋内オーバーレイ": ((WILD_AREA_LAND, ECOLOGY_LAYER_NORMAL),),
+        "水上オーバーレイ": ((WILD_AREA_WATER, ECOLOGY_LAYER_NORMAL),),
+        "いわくだき／DexNav": ((WILD_AREA_ROCKS, ECOLOGY_LAYER_NORMAL),),
+        "ずつき／朝昼オーバーレイ": ((WILD_AREA_LAND, ECOLOGY_LAYER_DAY),),
+        "夜間オーバーレイ": ((WILD_AREA_LAND, ECOLOGY_LAYER_NIGHT),),
+        "夜間水上オーバーレイ": ((WILD_AREA_WATER, ECOLOGY_LAYER_NIGHT),),
+        "大量発生": ((WILD_AREA_LAND, ECOLOGY_LAYER_SWARM),),
+        "釣りオーバーレイ": ((WILD_AREA_FISHING, ECOLOGY_LAYER_FISHING),),
+        "水上／釣りオーバーレイ": (
+            (WILD_AREA_WATER, ECOLOGY_LAYER_NORMAL),
+            (WILD_AREA_FISHING, ECOLOGY_LAYER_FISHING),
+        ),
+        "DexNav隠し枠": ((WILD_AREA_HIDDEN, ECOLOGY_LAYER_HIDDEN),),
+        "DexNav隠し枠／低確率タマゴ": (
+            (WILD_AREA_HIDDEN, ECOLOGY_LAYER_HIDDEN),
+        ),
+        "屋内異常遭遇／DexNav": ((WILD_AREA_HIDDEN, ECOLOGY_LAYER_HIDDEN),),
+    }
+    return bindings.get(method, ())
+
+
+def _ecology_rate(text: str) -> int:
+    active = text.split("／")[-1]
+    numbers = [int(value) for value in re.findall(r"\d+", active)]
+    if not numbers:
+        raise RuntimeBuildError(f"ecology rate has no percentage: {text}")
+    if len(numbers) == 1:
+        rate = numbers[0]
+    else:
+        rate = (numbers[-2] + numbers[-1] + 1) // 2
+    if not 1 <= rate <= 100:
+        raise RuntimeBuildError(f"ecology rate is outside 1..100: {text}")
+    return rate
+
+
+def _ecology_levels(text: str) -> tuple[int, int, int, int]:
+    ranges = [
+        (int(low), int(high or low))
+        for low, high in re.findall(r"Lv\.(\d+)(?:～(\d+))?", text)
+    ]
+    if not ranges:
+        raise RuntimeBuildError(f"ecology level has no range: {text}")
+    pre_min, pre_max = ranges[0]
+    if "殿堂入り後" in text and len(ranges) >= 2:
+        post_min, post_max = ranges[1]
+    else:
+        post_min, post_max = pre_min, pre_max
+    if not all(1 <= value <= 100 for value in (pre_min, pre_max, post_min, post_max)):
+        raise RuntimeBuildError(f"ecology level is outside 1..100: {text}")
+    if pre_max < pre_min or post_max < post_min:
+        raise RuntimeBuildError(f"ecology level range is reversed: {text}")
+    return pre_min, pre_max, post_min, post_max
+
+
+def _ecology_unlocks(condition: str) -> tuple[int, int, bool, str]:
+    badges = 0
+    rod = 0
+    radar_override = False
+    policy = "METHOD_ENTRY"
+    badge_match = re.search(r"バッジ(\d+)個", condition)
+    if badge_match:
+        badges = int(badge_match.group(1))
+    if "いいつりざお" in condition:
+        rod = 1
+    if "T-E04" in condition:
+        # T-E04 is not a physical quest in the Vega map set.  Badge 2 is the
+        # authored prerequisite, while the real Good Rod remains mandatory.
+        badges = max(badges, 2)
+        policy = "T-E04_NORMALIZED_TO_BADGE2_PLUS_GOOD_ROD"
+    if "生態チケット" in condition:
+        radar_override = True
+        policy = "BADGE4_NIGHT_OR_ECOLOGY_RADAR_MANUAL_NIGHT"
+    return badges, rod, radar_override, policy
 
 
 def _tohoku_wild_overlay(
@@ -275,26 +383,45 @@ def _tohoku_wild_overlay(
     runtime_method_counts: Counter[str] = Counter()
     runtime_source_locations: set[str] = set()
     unresolved_runtime_rows: list[dict[str, str]] = []
-    candidates: dict[tuple[str, int], list[tuple[int, str]]] = defaultdict(list)
+    candidates: dict[tuple[str, int, int], list[dict[str, Any]]] = defaultdict(list)
+    binding_count = 0
     for row in source_rows:
         code = row["tohoku_map_code"]
-        area = _tohoku_overlay_area(row["tohoku_method"])
+        method = row["tohoku_method"]
+        method_bindings = _tohoku_overlay_bindings(method)
         national = int(row["root_national_no"])
-        if area is None:
-            continue
-        if code not in maps or national not in by_national:
+        if not method_bindings or code not in maps or national not in by_national:
             unresolved_runtime_rows.append({
                 "logical_location": code,
-                "method": row["tohoku_method"],
+                "method": method,
                 "root_name": row["root_name"],
                 "root_national_no": row["root_national_no"],
             })
             continue
-        runtime_method_counts[row["tohoku_method"]] += 1
+        runtime_method_counts[method] += 1
         runtime_source_locations.add(code)
-        value = (by_national[national], row["root_name"])
-        if value not in candidates[(code, area)]:
-            candidates[(code, area)].append(value)
+        levels = _ecology_levels(row["tohoku_level"])
+        min_badges, min_rod, radar_override, unlock_policy = _ecology_unlocks(
+            row["tohoku_condition"]
+        )
+        for area, layer in method_bindings:
+            value = {
+                "species": by_national[national],
+                "display_name": row["root_name"],
+                "source_method": method,
+                "rate_percent": _ecology_rate(row["tohoku_rate"]),
+                "levels": levels,
+                "min_badges": min_badges,
+                "min_rod": min_rod,
+                "radar_override": radar_override,
+                "unlock_policy": unlock_policy,
+            }
+            if not any(
+                prior["species"] == value["species"]
+                for prior in candidates[(code, area, layer)]
+            ):
+                candidates[(code, area, layer)].append(value)
+                binding_count += 1
 
     if unresolved_runtime_rows:
         raise RuntimeBuildError(
@@ -304,66 +431,105 @@ def _tohoku_wild_overlay(
 
     payload = bytearray()
     metadata: list[dict[str, Any]] = []
-    for (code, area), values in sorted(
+    for (code, area, layer), values in sorted(
         candidates.items(), key=lambda item: (
-            int(maps[item[0][0]]["order"]), item[0][1], item[0][0]
+            int(maps[item[0][0]]["order"]), item[0][2], item[0][1], item[0][0]
         ),
     ):
         if code not in bindings:
             raise RuntimeBuildError(f"Tohoku overlay lacks physical binding: {code}")
-        rates = [int(value) for value in re.findall(r"\d+", maps[code]["story_overlay_rate"])]
-        if not rates:
-            continue
-        rate = sum(rates[:2]) // min(2, len(rates))
-        if not 1 <= rate <= 100 or not 1 <= len(values) <= 12:
+        rate = max(value["rate_percent"] for value in values)
+        if not 1 <= rate <= 100 or not 1 <= len(values) <= ECOLOGY_MAX_CANDIDATES:
             raise RuntimeBuildError(
-                f"Tohoku overlay bound differs: {code}/{area} rate={rate} count={len(values)}"
+                "Tohoku ecology binding differs: "
+                f"{code}/{area}/{layer} rate={rate} count={len(values)}"
             )
         binding = bindings[code]
         group, map_number = int(binding["group_id"]), int(binding["map_id"])
         threshold = min(255, (rate * 256 + 50) // 100)
-        entry = bytearray((group, map_number, area, threshold, len(values), rate))
-        for species, _ in values:
-            entry += struct.pack("<H", species)
-        entry += bytes(32 - len(entry))
+        entry = bytearray(ECOLOGY_ENTRY_SIZE)
+        entry[0:8] = bytes((
+            group, map_number, area, layer, threshold, len(values), rate, 0,
+        ))
+        for index, value in enumerate(values):
+            struct.pack_into("<H", entry, 8 + index * 2, value["species"])
+            pre_min, pre_max, post_min, post_max = value["levels"]
+            entry[32 + index] = pre_min
+            entry[44 + index] = pre_max
+            entry[56 + index] = post_min
+            entry[68 + index] = post_max
+            entry[80 + index] = value["min_badges"] | (
+                0x80 if value["radar_override"] else 0
+            )
+            entry[92 + index] = value["min_rod"]
         payload += entry
         metadata.append({
             "logical_location": code, "group": group, "map": map_number,
-            "area": area, "rate_percent": rate, "threshold_256": threshold,
+            "area": area, "layer": layer,
+            "rate_percent": rate, "authored_rates": sorted({
+                value["rate_percent"] for value in values
+            }), "threshold_256": threshold,
             "candidate_count": len(values),
-            "species": [species for species, _ in values],
-            "display_names": [name for _, name in values],
+            "species": [value["species"] for value in values],
+            "display_names": [value["display_name"] for value in values],
+            "source_methods": sorted({value["source_method"] for value in values}),
+            "levels": [list(value["levels"]) for value in values],
+            "minimum_badges": [value["min_badges"] for value in values],
+            "minimum_rods": [value["min_rod"] for value in values],
+            "radar_overrides": [value["radar_override"] for value in values],
+            "unlock_policies": [value["unlock_policy"] for value in values],
         })
     if not metadata:
         raise RuntimeBuildError("Tohoku wild overlay table is empty")
-    first = next((row for row in metadata if row["logical_location"] == "T501" and row["area"] == 0), None)
+    first = next((
+        row for row in metadata
+        if row["logical_location"] == "T501"
+        and row["area"] == WILD_AREA_LAND
+        and row["layer"] == ECOLOGY_LAYER_NORMAL
+    ), None)
     if first is None or (first["group"], first["map"]) != (3, 19) or first["candidate_count"] != 8:
         raise RuntimeBuildError(f"first-route overlay contract differs: {first}")
     runtime_source_rows = sum(runtime_method_counts.values())
-    deferred_methods = {
-        method: count
-        for method, count in sorted(method_counts.items())
-        if method not in runtime_method_counts
-    }
+    if runtime_source_rows != len(source_rows) or runtime_method_counts != method_counts:
+        raise RuntimeBuildError("Tohoku ecology source rows are not fully bound")
+    swarm_entries = sum(row["layer"] == ECOLOGY_LAYER_SWARM for row in metadata)
+    if swarm_entries == 0:
+        raise RuntimeBuildError("Tohoku ecology swarm table is empty")
     coverage = {
         "source_rows": len(source_rows),
         "source_locations": len({row["tohoku_map_code"] for row in source_rows}),
         "runtime_source_rows": runtime_source_rows,
         "runtime_source_locations": len(runtime_source_locations),
         "runtime_methods": dict(sorted(runtime_method_counts.items())),
-        "deferred_source_rows": len(source_rows) - runtime_source_rows,
-        "deferred_methods": deferred_methods,
-        "conditional_unlocks_bound": False,
+        "runtime_candidate_bindings": binding_count,
+        "deferred_source_rows": 0,
+        "deferred_methods": {},
+        "conditional_unlocks_bound": True,
+        "swarm_entry_count": swarm_entries,
+        "mode_var": "0x51FF",
+        "modes": {
+            "0": "RTC自動＋日替わり大量発生",
+            "1": "朝昼固定",
+            "2": "夜固定",
+            "3": "大量発生固定",
+            "4": "隠し枠スキャン",
+        },
+        "unlock_normalization": (
+            "実在するrod/surf/badge入口を保持。T-E04専用flagだけは、"
+            "設計上の前提であるbadge2＋いいつりざおへ正規化。"
+            "生態チケット代替は、せいたいレーダーの夜固定として接続。"
+        ),
         "scope_note": (
-            "実ROMは通常の草むら・洞窟・水上・いわくだきの追加抽選を接続。"
-            "夜間・大量発生・ずつき・釣り・DexNav専用条件は専用runtime未接続。"
+            "設計293行を草むら・洞窟・水上・いわくだき・朝昼・夜・"
+            "日替わり大量発生・釣り・道具の隠し枠スキャンへ実ROM接続。"
         ),
     }
     return bytes(payload), metadata, coverage
 
 
 def _compile_wild_overlay(root: Path, load_address: int, table_address: int,
-                          table_count: int) -> tuple[bytes, dict[str, int]]:
+                          table_count: int, swarm_count: int,
+                          ) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
     nm = shutil.which("arm-none-eabi-nm")
@@ -388,8 +554,11 @@ def _compile_wild_overlay(root: Path, load_address: int, table_address: int,
         command = [
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            "-fno-jump-tables",
             f"-DVEGA_WILD_OVERLAY_TABLE_ADDRESS=0x{table_address:08X}u",
             f"-DVEGA_WILD_OVERLAY_TABLE_COUNT={table_count}u",
+            f"-DVEGA_WILD_SWARM_ENTRY_COUNT={swarm_count}u",
+            f"-DVEGA_DIRECT_CLOCK_UPDATE_ADDRESS=0x{CFRU_DIRECT_CLOCK_UPDATE_ADDRESS:08X}u",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-nostdlib",
             "-Wl,--build-id=none", "-Wl,--gc-sections",
@@ -419,11 +588,19 @@ def _compile_wild_overlay(root: Path, load_address: int, table_address: int,
             fields = line.split()
             if len(fields) == 3 and fields[2].startswith("VegaWildOverlay_"):
                 symbols[fields[2]] = int(fields[0], 16)
-        required = {"VegaWildOverlay_SelectSpecies", "VegaWildOverlay_TryGenerateWildMon"}
+        required = {
+            "VegaWildOverlay_SelectSpecies",
+            "VegaWildOverlay_TryGenerateWildMon",
+            "VegaWildOverlay_GenerateFishingEncounter",
+            "VegaWildOverlay_SetMode",
+            "VegaWildOverlay_GetMode",
+            "VegaWildOverlay_TryHiddenEncounter",
+            "VegaWildOverlay_FieldUse",
+        }
         if set(symbols) != required:
             raise RuntimeBuildError(f"wild overlay entrypoints differ: {symbols}")
         raw = binary.read_bytes()
-        if not raw or len(raw) > 2048:
+        if not raw or len(raw) > 8192:
             raise RuntimeBuildError(f"unexpected wild overlay runtime size: {len(raw)}")
         return raw, symbols
 
@@ -867,11 +1044,27 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
     blob = _Blob()
     runtime_header_offset = blob.reserve("runtime_header", 64, 16)
     overlay_table, overlay_rows, overlay_coverage = _tohoku_wild_overlay(root)
+    clock_offset = (CFRU_DIRECT_CLOCK_UPDATE_ADDRESS & ~1) - GBA_ROM_BASE
+    clock_signature = stage[
+        clock_offset:clock_offset + len(CFRU_DIRECT_CLOCK_UPDATE_EXPECTED)
+    ]
+    if clock_signature != CFRU_DIRECT_CLOCK_UPDATE_EXPECTED:
+        raise RuntimeBuildError("fixed CFRU DirectClockUpdate signature differs")
     overlay_table_offset = blob.add("tohoku_wild_overlay_table", overlay_table, 4)
     overlay_table_address = GBA_ROM_BASE + payload_offset + overlay_table_offset
+    mapping, tokens = _charmap(root)
+    ecology_description = _encode_text(
+        "じかんや たいりょうはっせいを\n"
+        "きりかえ かくれた せいたいを しらべる。",
+        mapping, tokens,
+    )
+    ecology_description_offset = blob.add(
+        "tohoku_ecology_radar_description", ecology_description, 1,
+    )
     overlay_load = GBA_ROM_BASE + payload_offset + ((len(blob.data) + 3) & ~3)
     overlay_raw, overlay_symbols = _compile_wild_overlay(
         root, overlay_load, overlay_table_address, len(overlay_rows),
+        overlay_coverage["swarm_entry_count"],
     )
     overlay_runtime_offset = blob.add("tohoku_wild_overlay_runtime", overlay_raw, 4)
     if overlay_runtime_offset + GBA_ROM_BASE + payload_offset != overlay_load:
@@ -1289,6 +1482,23 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
                 "rows": overlay_rows,
                 "coverage": overlay_coverage,
                 "normal_tables_preserved": True,
+                "rtc": {
+                    "direct_clock_update": CFRU_DIRECT_CLOCK_UPDATE_ADDRESS,
+                    "g_clock": 0x03005EF0,
+                    "signature": CFRU_DIRECT_CLOCK_UPDATE_EXPECTED.hex(),
+                },
+                "ecology_radar": {
+                    "item_id": ECOLOGY_RADAR_ITEM_ID,
+                    "name": "せいたいレーダー",
+                    "description_address": (
+                        GBA_ROM_BASE + payload_offset + ecology_description_offset
+                    ),
+                    "field_callback": (
+                        overlay_symbols["VegaWildOverlay_FieldUse"] | 1
+                    ),
+                    "mode_var": 0x51FF,
+                    "grant": "1個目のバッジ報酬＋シオウNPC補完",
+                },
             },
         },
         "qol_b": {
@@ -1342,6 +1552,34 @@ def _absolute_thumb_hook(register: int, target: int) -> bytes:
     if not 0 <= register <= 7 or not target & 1:
         raise RuntimeBuildError("invalid T17 absolute Thumb hook")
     return bytes((0, 0x48 | register, register << 3, 0x47)) + struct.pack("<I", target)
+
+
+def _fixed_item_name(root: Path, text: str) -> bytes:
+    mapping, tokens = _charmap(root)
+    encoded = _encode_text(text, mapping, tokens)
+    if not encoded or encoded[-1] != 0xFF or len(encoded) > 10:
+        raise RuntimeBuildError("ecology radar item name exceeds the 10-byte ABI")
+    body = encoded[:-1]
+    return body + bytes([0xFF]) * (9 - len(body)) + b"\0"
+
+
+def _ecology_radar_item_row(root: Path, source: bytes, description: int,
+                            field_callback: int) -> bytes:
+    template = _expanded_rom_offset(
+        ITEM_DATA_ADDRESS + ECOLOGY_RADAR_TEMPLATE_ITEM_ID * ITEM_DATA_STRIDE,
+        ITEM_DATA_STRIDE, "ecology radar item template",
+    )
+    row = bytearray(source[template:template + ITEM_DATA_STRIDE])
+    row[0:10] = _fixed_item_name(root, "せいたいレーダー")
+    struct.pack_into("<H", row, 10, ECOLOGY_RADAR_ITEM_ID)
+    struct.pack_into("<H", row, 12, 0)
+    row[14] = 0
+    row[15] = 0
+    struct.pack_into("<I", row, 16, description)
+    row[20:24] = bytes((1, 1, 2, 4))
+    struct.pack_into("<I", row, 24, field_callback | 1)
+    struct.pack_into("<III", row, 28, 0, 0, 0)
+    return bytes(row)
 
 
 def _trainer_pointer_sites(stage: bytes) -> list[tuple[int, int]]:
@@ -1407,6 +1645,52 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
         "site": GBA_ROM_BASE + WILD_GENERATION_HOOK_SITE,
         "target": wild_target, "size": 8,
     }
+    fishing_target = int(runtime["wild"]["tohoku_overlay"]["entrypoints"]
+                         ["VegaWildOverlay_GenerateFishingEncounter"])
+    _patch_expected(
+        output, FISHING_GENERATION_HOOK_SITE, FISHING_GENERATION_HOOK_EXPECTED,
+        _absolute_thumb_hook(3, fishing_target),
+        "Tohoku fishing ecology dispatcher", patches,
+    )
+    runtime["wild"]["tohoku_overlay"]["fishing_hook"] = {
+        "site": GBA_ROM_BASE + FISHING_GENERATION_HOOK_SITE,
+        "target": fishing_target, "size": 8,
+    }
+
+    radar = runtime["wild"]["tohoku_overlay"]["ecology_radar"]
+    item_site = _expanded_rom_offset(
+        ITEM_DATA_ADDRESS + ECOLOGY_RADAR_ITEM_ID * ITEM_DATA_STRIDE,
+        ITEM_DATA_STRIDE, "ecology radar item row",
+    )
+    item_row = _ecology_radar_item_row(
+        root, stage, int(radar["description_address"]),
+        int(radar["field_callback"]),
+    )
+    _patch_expected(
+        output, item_site, ECOLOGY_RADAR_EXPECTED_ROW, item_row,
+        "unused item 348 -> ecology radar", patches,
+    )
+    icon_site = _expanded_rom_offset(
+        ITEM_GRAPHICS_ADDRESS + ECOLOGY_RADAR_ITEM_ID * ITEM_GRAPHICS_STRIDE,
+        ITEM_GRAPHICS_STRIDE, "ecology radar icon",
+    )
+    icon_source = _expanded_rom_offset(
+        ITEM_GRAPHICS_ADDRESS + ECOLOGY_RADAR_ICON_SOURCE_ID * ITEM_GRAPHICS_STRIDE,
+        ITEM_GRAPHICS_STRIDE, "ecology radar icon source",
+    )
+    _patch_expected(
+        output, icon_site, ECOLOGY_RADAR_EXPECTED_ICON,
+        stage[icon_source:icon_source + ITEM_GRAPHICS_STRIDE],
+        "ecology radar key-item icon", patches,
+    )
+    radar.update({
+        "item_address": ITEM_DATA_ADDRESS + ECOLOGY_RADAR_ITEM_ID * ITEM_DATA_STRIDE,
+        "icon_address": (
+            ITEM_GRAPHICS_ADDRESS + ECOLOGY_RADAR_ITEM_ID * ITEM_GRAPHICS_STRIDE
+        ),
+        "icon_source_item": ECOLOGY_RADAR_ICON_SOURCE_ID,
+        "pocket": "KEY_ITEMS", "importance": 1, "registrable": True,
+    })
 
     trainer_table = int(runtime["symbols"]["trainer_table"])
     trainer_repoints = []
@@ -1468,7 +1752,8 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
             "stage16_unchanged_outside_payload_and_repoints": True,
             "tohoku_wild_headers_byte_preserved": True,
             "tohoku_wild_overlay_live": (
-                runtime["wild"]["tohoku_overlay"]["entry_count"] > 0
+                runtime["wild"]["tohoku_overlay"]["coverage"]["runtime_source_rows"] == 293
+                and runtime["wild"]["tohoku_overlay"]["coverage"]["deferred_source_rows"] == 0
                 and runtime["wild"]["tohoku_overlay"]["rows"][0]["logical_location"] == "T501"
             ),
             "all_imported_maps_serialized": runtime["maps"]["physical_count"] == 253,

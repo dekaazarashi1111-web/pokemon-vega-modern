@@ -7,30 +7,40 @@
     "research_rows": 1082,
     "tohoku_logical_locations": 49,
     "tohoku_overlay_coverage": {
-      "conditional_unlocks_bound": false,
-      "deferred_methods": {
+      "conditional_unlocks_bound": true,
+      "deferred_methods": {},
+      "deferred_source_rows": 0,
+      "mode_var": "0x51FF",
+      "modes": {
+        "0": "RTC自動＋日替わり大量発生",
+        "1": "朝昼固定",
+        "2": "夜固定",
+        "3": "大量発生固定",
+        "4": "隠し枠スキャン"
+      },
+      "runtime_candidate_bindings": 294,
+      "runtime_methods": {
         "DexNav隠し枠": 7,
         "DexNav隠し枠／低確率タマゴ": 11,
+        "いわくだき／DexNav": 22,
         "ずつき／朝昼オーバーレイ": 28,
         "夜間オーバーレイ": 34,
         "夜間水上オーバーレイ": 1,
         "大量発生": 29,
         "屋内異常遭遇／DexNav": 8,
+        "水上オーバーレイ": 23,
         "水上／釣りオーバーレイ": 1,
+        "洞窟・屋内オーバーレイ": 31,
+        "草むらオーバーレイ": 77,
         "釣りオーバーレイ": 21
       },
-      "deferred_source_rows": 140,
-      "runtime_methods": {
-        "いわくだき／DexNav": 22,
-        "水上オーバーレイ": 23,
-        "洞窟・屋内オーバーレイ": 31,
-        "草むらオーバーレイ": 77
-      },
-      "runtime_source_locations": 36,
-      "runtime_source_rows": 153,
-      "scope_note": "実ROMは通常の草むら・洞窟・水上・いわくだきの追加抽選を接続。夜間・大量発生・ずつき・釣り・DexNav専用条件は専用runtime未接続。",
+      "runtime_source_locations": 41,
+      "runtime_source_rows": 293,
+      "scope_note": "設計293行を草むら・洞窟・水上・いわくだき・朝昼・夜・日替わり大量発生・釣り・道具の隠し枠スキャンへ実ROM接続。",
       "source_locations": 41,
-      "source_rows": 293
+      "source_rows": 293,
+      "swarm_entry_count": 9,
+      "unlock_normalization": "実在するrod/surf/badge入口を保持。T-E04専用flagだけは、設計上の前提であるbadge2＋いいつりざおへ正規化。生態チケット代替は、せいたいレーダーの夜固定として接続。"
     }
   },
   "events": {
@@ -51,25 +61,44 @@
       "artifacts_written": [],
       "checks": {
         "boot": true,
+        "ecology_radar_item": true,
+        "ecology_radar_menu": true,
         "event_round_trip": true,
         "first_route_wild_generation": true,
         "first_route_wild_overlay": true,
+        "fishing_ecology": true,
+        "hidden_battle_scheduled": true,
+        "hidden_ecology": true,
+        "hidden_mode_isolated": true,
         "kanto_entry": true,
         "kanto_map_load": true,
         "kanto_movement": true,
         "kanto_progression_objects": true,
         "map_roots": true,
         "qol_b_thumb_execution": true,
+        "radar_ticket_alternative": true,
+        "rtc_auto_ecology": true,
+        "special_ecology_modes": true,
         "trainer_table": true,
         "wild_headers": true,
         "wild_overlay_isolated": true
+      },
+      "ecology": {
+        "candidate_bindings": 294,
+        "entries": 95,
+        "fishing_calls": 4,
+        "fishing_species": 842,
+        "hidden_species": 1357,
+        "layer_mask": 63,
+        "radar_overrides": 1,
+        "special_mode_hits": 3
       },
       "first_route_wild_overlay": {
         "calls": 4096,
         "candidate_mask": 255,
         "generated_species": 583,
         "generation_calls": 28,
-        "hits": 238
+        "hits": 234
       },
       "framebuffer_transitions": 6729,
       "kanto_framebuffer_transitions": 7275,
@@ -85,15 +114,15 @@
         "y": 20
       },
       "kanto_wild_headers": 133,
-      "payload_size": 705300,
+      "payload_size": 715400,
       "process_runs": 2,
       "qol_marker": 2839,
-      "rom_sha256": "bbd4146920609b24b0fd8fa06aa2c8eb2613915c406757e810a635ec0d664091",
+      "rom_sha256": "492e0e39753de4143b84d9a32b1163c49b6beabe6fd455832576f397b3773241",
       "schema_version": 1,
       "status": "PASS"
     },
-    "payload_size": 705300,
-    "stage_sha256": "bbd4146920609b24b0fd8fa06aa2c8eb2613915c406757e810a635ec0d664091",
+    "payload_size": 715400,
+    "stage_sha256": "492e0e39753de4143b84d9a32b1163c49b6beabe6fd455832576f397b3773241",
     "trainer_production_rows_bound": 174
   },
   "facilities": {

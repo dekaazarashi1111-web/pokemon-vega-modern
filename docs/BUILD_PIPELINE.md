@@ -101,7 +101,7 @@ make regression-check
 python3 -m unittest -v tests.test_regression
 ```
 
-stage 16を入力に、KantoのMapHeader/layout/tileset/wild table、拡張trainer table、gym/League event、双方向portal、QOL-B Thumb overlayを実ROMへserializeする。`check`は同じstageを2回byte一致で構築し、libmGBAの自然new-game/Kanto往復を独立processで2回実行したうえで、16成果のdriftを副作用なしで拒否する。
+stage 16を入力に、KantoのMapHeader/layout/tileset/wild table、拡張trainer table、gym/League event、双方向portal、QOL-B Thumb overlayを実ROMへserializeする。トーホク外来生態293行は通常・朝昼・夜・日替わり群れ・釣り・隠れ枠の95 runtime entryへ生成し、通常遭遇、釣り、RTC自動、Item 348の手動modeから接続する。`check`は同じstageを2回byte一致で構築し、libmGBAの自然new-game/Kanto往復と全294 candidate bindingを独立processで2回実行したうえで、成果のdriftを副作用なしで拒否する。
 
 ## 最終目標コマンド
 
@@ -175,7 +175,7 @@ Kanto/QOL-B、Factory、初戦、HM、戦闘規則、技選択UI、わざメモ�
 `make final` は既存stage 25とQOL統合fixtureを副作用なしcheckして再利用し、欠落・drift時は
 `bootstrap -> T03 -> ... -> T17 -> trainer-rebalance -> facility-runtime -> stage 21..25 -> qol-release-smoke`
 を固定順に実行する。最終ROMとmetadataは
-`build/final/vega-modern-kanto-v1.3.6.{gba,json}` へ出し、stageを上書きしない。
+`build/final/vega-modern-kanto-v1.3.7.{gba,json}` へ出し、stageを上書きしない。
 
 ### 開発用差分ROM
 

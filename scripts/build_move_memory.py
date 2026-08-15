@@ -55,7 +55,7 @@ EMBEDDED_RUNNER_SOURCES = (
 ALLOCATION_NAME = "move_memory_runtime"
 PAYLOAD_HEADER_SIZE = 64
 
-EXPECTED_STAGE24_SHA256 = "3a8c02a0429f2bdeb1bb08d7888a355e63fa210a907663018056f7e9d8ea1e37"
+EXPECTED_STAGE24_SHA256 = "66b6762f9c8969e118e306f4bc3d2429712fdb2c2ea066774b8191d67802d962"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
 EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
@@ -79,6 +79,7 @@ ITEM_DATA_STRIDE = 40
 ITEM_GRAPHICS = 0x09056D20
 ITEM_GRAPHICS_STRIDE = 8
 ITEM_ID = 347
+ECOLOGY_RADAR_ITEM_ID = 348
 ITEM_TEMPLATE_ID = 364
 ITEM_ICON_SOURCE_ID = 366
 MODE_RAM = 0x0203EC00
@@ -125,8 +126,9 @@ UPSTREAM_SYMBOLS = {
 
 TEXTS = {
     "text_item_description": "いつでも わざを おもいだしたり\nわすれさせたり できる そうち。",
-    "text_badge_reward": "わざメモリーを てにいれた！",
+    "text_badge_reward": "わざメモリーと せいたいレーダーを\nてにいれた！",
     "text_npc_grant": "わざメモリーを もっていなかったので\nひとつ おわたしします",
+    "text_ecology_grant": "せいたいレーダーも おわたしします",
     "text_remember_intro": "わざを おもいだします",
     "text_forget_intro": "わざを わすれさせます",
     "text_choose_mon": "どの ポケモンに つかいますか？",
@@ -696,11 +698,22 @@ def _build_scripts(root: Path, blob: _Blob) -> dict[str, Any]:
     _add_script(
         blob, "script_shiou_item_check",
         _Script().checkitem(ITEM_ID).compare_result(0).if_equal("script_shiou_grant")
-        .goto("script_shiou_context"), scripts,
+        .goto("script_shiou_ecology_check"), scripts,
     )
     _add_script(
         blob, "script_shiou_grant",
         _Script().additem(ITEM_ID).msgbox("text_npc_grant")
+        .goto("script_shiou_ecology_check"), scripts,
+    )
+    _add_script(
+        blob, "script_shiou_ecology_check",
+        _Script().checkitem(ECOLOGY_RADAR_ITEM_ID).compare_result(0)
+        .if_equal("script_shiou_ecology_grant")
+        .goto("script_shiou_context"), scripts,
+    )
+    _add_script(
+        blob, "script_shiou_ecology_grant",
+        _Script().additem(ECOLOGY_RADAR_ITEM_ID).msgbox("text_ecology_grant")
         .goto("script_shiou_context"), scripts,
     )
     _add_script(
@@ -719,6 +732,7 @@ def _build_scripts(root: Path, blob: _Blob) -> dict[str, Any]:
     _add_script(
         blob, "script_badge1_reward",
         _Script().call(0x081943E4).additem(ITEM_ID)
+        .additem(ECOLOGY_RADAR_ITEM_ID)
         .msgbox("text_badge_reward").emit(0x03, operation="return"), scripts,
     )
 
@@ -1029,6 +1043,11 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
             "field_callback": published_symbols["VegaMoveMemory_FieldUse"],
             "pocket": "KEY_ITEMS", "importance": 1, "registrable": True,
             "icon_source_item": ITEM_ICON_SOURCE_ID,
+        },
+        "companion_item": {
+            "id": ECOLOGY_RADAR_ITEM_ID, "name": "せいたいレーダー",
+            "grant": "badge1_reward_and_shiou_recovery",
+            "runtime_owner": "T17_TOHOKU_ECOLOGY",
         },
         "npc_entries": {
             "shiou": {"map": "33:1", "object": 0, "script": payload_meta["labels"]["script_shiou_npc"]},
