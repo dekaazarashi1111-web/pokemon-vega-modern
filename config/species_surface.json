@@ -8,6 +8,10 @@
     "species_model_path": "generated/engine/species/species_port.json",
     "move_model_path": "generated/engine/moves/move_port.json",
     "id_model_path": "generated/engine/ids/id_spaces.json",
+    "species_names_path": "generated/engine/species/species_names.bin",
+    "species_names_sha256": "c1b1d3aaf1fdd30c0620f49d19bd912d1d4241c9cf0e6220aa83195a76869876",
+    "linked_object_path": "build/battle-core/0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03/run-1/linked.o",
+    "linked_object_sha256": "8c0ac2be2b77fa97b974a7a2377aaf99b796fb49c369d10a7faf9432ce2040f6",
     "dpe_rom_path": "build/upstream-cache/893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2/dpe/base/run-1/test.gba",
     "dpe_rom_sha256": "eb9434745801c8f82dc1eedbda3445a45bf6d5393290c1cec4e4c6697d3c820c",
     "v2_evolution_path": "design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/data/進化条件変換マスター.csv"
@@ -52,4 +56,12 @@
     "cry": 12, "cry2": 12, "dex_entries": 28, "evolution": 128
   },
   "oval_charm": {"caught_threshold": 100, "base_numerator": 20, "denominator": 100}
+  ,
+  "learn_move_hooks": [
+    {"symbol": "GiveBoxMonInitialMoveset", "target_symbol": "VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch", "site": 254324, "register": 3, "expected_hex": "1c48a60030180068"},
+    {"symbol": "MonTryLearningNewMove", "site": 254452, "register": 2, "expected_hex": "f0b557464e464546"},
+    {"symbol": "GetMoveRelearnerMoves", "site": 275152, "register": 2, "expected_hex": "f0b557464e464546"},
+    {"symbol": "GetLevelUpMovesBySpecies", "site": 275488, "register": 2, "expected_hex": "f0b50e1c00040025"},
+    {"symbol": "GetNumberOfRelearnableMoves", "site": 275576, "register": 1, "expected_hex": "f0b557464e464546"}
+  ]
 }

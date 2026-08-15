@@ -254,6 +254,10 @@ def _build_maps(v2_maps: Sequence[dict[str, str]]) -> tuple[list[dict[str, objec
             "map_kind": kind, "field_pc_allowed": str(field_pc).lower(),
             "safe_route_key": "SAFE_ROUTE_KANTO_TERMINAL" if region == "KANTO" else "SAFE_ROUTE_TOHOKU_HOME",
             "warning_key": "WARNING_KANTO_HIGH_LEVEL" if region == "KANTO" else "WARNING_NONE",
+            # Physical Tohoku binding follows the authored progression order.
+            # Sorting the textual codes places T024 before T501 even though
+            # Route 501 is explicitly order 1 and the first Lv.2-5 area.
+            "_binding_order": int(source["order"]),
         }
         if code == "K42":
             # The V2 ecology row's level-derived certificate is not the story
@@ -297,7 +301,9 @@ def _physical_bindings(root: Path, map_rows: Sequence[Mapping[str, object]]) -> 
     normal_maps = list(normal_by_map.values())
     normal_maps.sort(key=lambda value: (value[2], value[0], value[1]))
     tohoku_rows = [row for row in map_rows if row["region"] == "TOHOKU" and row["logical_location_key"] != "VEGA_NATIVE"]
-    tohoku_rows.sort(key=lambda row: (int(str(row["logical_location_key"])[1:]), str(row["logical_location_key"])))
+    tohoku_rows.sort(key=lambda row: (
+        int(row["_binding_order"]), str(row["logical_location_key"]),
+    ))
     if len(normal_maps) < len(tohoku_rows):
         raise PopulationError("not enough rooted Vega NORMAL maps for Tohoku binding")
     # Select evenly across the rooted level curve instead of silently mapping

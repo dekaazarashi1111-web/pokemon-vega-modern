@@ -68,13 +68,70 @@ class SpeciesSurfaceTests(unittest.TestCase):
             sites = row.get("sites", [row.get("site")])
             self.assertTrue(sites, key)
             for site in sites:
-                self.assertEqual(struct.unpack_from("<I", self.rom, site)[0], row["new"])
+                expected = row["old"] if row.get("applied") is False else row["new"]
+                self.assertEqual(struct.unpack_from("<I", self.rom, site)[0], expected)
         self.assertGreater(self.metadata["repoints"]["evolution_runtime"]["count"], 0)
         old = struct.pack("<I", self.metadata["repoints"]["evolution_runtime"]["old"])
         self.assertFalse(any(self.rom[index:index + 4] == old
                              for index in range(0, len(self.rom) - 3, 4)))
         self.assertEqual(self.rom[0x429F4:0x429FC].hex(), "0130704700bf00bf")
         self.assertGreater(self.metadata["allocation"]["free"], 0)
+
+    def test_all_level_up_rows_use_one_three_byte_abi(self) -> None:
+        model = json.loads(self.artifacts["generated/engine/learnsets/learnsets.json"])
+        level = model["level_up"]
+        self.assertEqual(level["format"], "U16_MOVE_U8_LEVEL")
+        self.assertEqual(level["stride"], 3)
+        self.assertEqual(level["converted_vega_rows"], 412)
+        self.assertEqual(level["translated_dpe_rows"], 1209)
+        pointers = self.artifacts["generated/engine/learnsets/level_up_pointers.bin"]
+        data = self.artifacts["generated/engine/learnsets/level_up_data.bin"]
+        base = self.metadata["repoints"]["level_up"]["new"]
+        data_base = next(
+            row["address"] for row in self.metadata["allocation"]["entries"]
+            if row["name"] == "level_up_data"
+        )
+        self.assertEqual(len(pointers), 1621 * 4)
+        self.assertEqual(base, next(
+            row["address"] for row in self.metadata["allocation"]["entries"]
+            if row["name"] == "level_up_pointers"
+        ))
+        for species in range(1621):
+            address = struct.unpack_from("<I", pointers, species * 4)[0]
+            cursor = address - data_base
+            self.assertGreaterEqual(cursor, 0)
+            for _ in range(256):
+                move = struct.unpack_from("<H", data, cursor)[0]
+                move_level = data[cursor + 2]
+                cursor += 3
+                if move == 0 and move_level == 0xFF:
+                    break
+            else:
+                self.fail(f"unterminated canonical learnset: {species}")
+
+    def test_cfru_learn_hooks_names_and_form_namespace_are_live(self) -> None:
+        for row in self.metadata["learn_move_hooks"]:
+            site = row["site"]
+            self.assertEqual(self.rom[site:site + 8].hex(), row["replacement_hex"])
+            self.assertEqual(struct.unpack_from("<I", self.rom, site + 4)[0], row["target"])
+        names = self.artifacts["generated/engine/species/species_names_legacy.bin"]
+        self.assertEqual(len(names), 1621 * 6)
+        self.assertTrue(all(names[index * 6 + 5] == 0xFF for index in range(1621)))
+        self.assertEqual(self.metadata["repoints"]["species_names_legacy"]["count"], 40)
+        self.assertEqual(
+            struct.unpack_from("<I", self.rom, 0x4346C)[0],
+            self.metadata["repoints"]["level_up"]["new"],
+        )
+        native = self.metadata["repoints"]["level_up"]
+        self.assertFalse(native["applied"])
+        self.assertTrue(native["legacy_root_preserved"])
+        self.assertEqual(
+            struct.unpack_from("<I", self.rom, native["site"])[0],
+            native["old"],
+        )
+        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC0)[0], (-1322) & 0xFFFFFFFF)
+        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC4)[0], (-1374) & 0xFFFFFFFF)
+        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC8)[0], 1374)
 
     def test_summary_party_pc_battle_evolution_and_dex_display_paths(self) -> None:
         model = json.loads(self.artifacts["generated/engine/species_assets/species_assets.json"])

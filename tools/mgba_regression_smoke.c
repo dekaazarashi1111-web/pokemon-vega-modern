@@ -21,7 +21,13 @@
 #define SPECIAL_VAR_RESULT UINT32_C(0x02037004)
 #define QOL_MARKER UINT32_C(0x00000B17)
 #define G_SAVE_BLOCK1 UINT32_C(0x03005048)
+#define GLOBAL_RNG UINT32_C(0x03005040)
 #define SCRIPT_CONTEXT1_SETUP UINT32_C(0x080693A5)
+#define GET_MON_DATA UINT32_C(0x0803F355)
+#define ENEMY_PARTY UINT32_C(0x02023F8C)
+#define ENEMY_PARTY_COUNT UINT32_C(0x02023F8A)
+#define PARTY_BYTES 600U
+#define WILD_OVERLAY_CALLS 4096U
 
 static void die(const char *message)
 {
@@ -70,6 +76,16 @@ static uint16_t read_le16_unaligned(struct mCore *core, uint32_t address)
 static uint32_t read32(struct mCore *core, uint32_t address)
 {
     return core->rawRead32(core, address, -1);
+}
+
+static void write8(struct mCore *core, uint32_t address, uint8_t value)
+{
+    core->rawWrite8(core, address, -1, value);
+}
+
+static void write32(struct mCore *core, uint32_t address, uint32_t value)
+{
+    core->rawWrite32(core, address, -1, value);
 }
 
 static int32_t read_register(struct mCore *core, const char *name)
@@ -229,8 +245,8 @@ static uint32_t run_natural_new_game(struct mCore *core, color_t *video)
 
 int main(int argc, char **argv)
 {
-    if (argc != 12 && argc != 13) {
-        fprintf(stderr, "usage: %s ROM QOL_PROBE MAP_ROOT LAYOUT_ROOT WILD_ROOT PAYLOAD_SIZE PORTAL_TRAVEL RETURN_TRAVEL TRAINER_ROOT PEWTER_SCRIPT CHAMPION_SCRIPT [VERMILION_EVENT_OBJECTS]\n",
+    if (argc != 15 && argc != 16) {
+        fprintf(stderr, "usage: %s ROM QOL_PROBE MAP_ROOT LAYOUT_ROOT WILD_ROOT PAYLOAD_SIZE PORTAL_TRAVEL RETURN_TRAVEL TRAINER_ROOT PEWTER_SCRIPT CHAMPION_SCRIPT WILD_SELECT WILD_TRY_GENERATE WILD_OVERLAY_TABLE [VERMILION_EVENT_OBJECTS]\n",
                 argv[0]);
         return 2;
     }
@@ -244,12 +260,17 @@ int main(int argc, char **argv)
     uint32_t trainer_root = parse_u32(argv[9], "trainer root");
     uint32_t pewter_script = parse_u32(argv[10], "Pewter progression script");
     uint32_t champion_script = parse_u32(argv[11], "Champion progression script");
-    uint32_t vermilion_event_objects = argc == 13
-        ? parse_u32(argv[12], "Vermilion event object count") : 1U;
+    uint32_t wild_select = parse_u32(argv[12], "wild overlay selector");
+    uint32_t wild_try_generate = parse_u32(argv[13], "wild generation hook");
+    uint32_t wild_overlay_table = parse_u32(argv[14], "wild overlay table");
+    uint32_t vermilion_event_objects = argc == 16
+        ? parse_u32(argv[15], "Vermilion event object count") : 1U;
     if ((probe & 1U) == 0 || payload_size == 0
         || !rom_pointer(portal_travel) || !rom_pointer(return_travel)
         || !rom_pointer(trainer_root) || !rom_pointer(pewter_script)
-        || !rom_pointer(champion_script))
+        || !rom_pointer(champion_script) || (wild_select & 1U) == 0
+        || (wild_try_generate & 1U) == 0
+        || !rom_pointer(wild_overlay_table))
         die("runtime argument contract failed");
 
     struct mLogger logger = {.log = silent_log, .filter = NULL};
@@ -292,6 +313,7 @@ int main(int argc, char **argv)
         die("Kanto entry ABI values differ from canonical map");
 
     unsigned kanto_wild_headers = 0;
+    uint32_t first_route_land_info = 0;
     for (unsigned index = 0; index < 1024; ++index) {
         uint32_t header = wild_root + index * 20U;
         uint8_t group = read8(core, header);
@@ -300,9 +322,13 @@ int main(int argc, char **argv)
             break;
         if (group >= 96U && group <= 98U)
             ++kanto_wild_headers;
+        if (group == 3U && map == 19U)
+            first_route_land_info = read32(core, header + 4U);
     }
     if (kanto_wild_headers != 133U)
         die("Kanto wild header count differs from metadata");
+    if (!rom_pointer(first_route_land_info))
+        die("first-route native land encounter info is missing");
 
     /* The battle engine's literal pool must reference the expanded table, and
      * both ends of the Kanto progression must resolve to real six-mon parties. */
@@ -359,6 +385,7 @@ int main(int argc, char **argv)
         die("natural new game did not retain a valid SaveBlock1");
     if (read8(core, saveblock1 + 4U) != 4U || read8(core, saveblock1 + 5U) != 0U)
         die("natural new game did not reach the Vega field checkpoint");
+
     /* Run the exact portal travel bytecode from a natural Vega field state. */
     (void)call_thumb(core, SCRIPT_CONTEXT1_SETUP, portal_travel, 0, 0, 0);
     run_frames(core, 1200, 0);
@@ -416,20 +443,113 @@ int main(int argc, char **argv)
     if (read8(core, saveblock1 + 4U) != 4U || read8(core, saveblock1 + 5U) != 0U)
         die("return event bytecode did not enter the Vega map");
 
+    /* Exercise the exact in-ROM selector used by the first grass route after
+     * the field/event checks, so the synthetic map coordinate cannot affect
+     * those independent scenarios. T501 is the first overlay row (map 3/19). */
+    if (read8(core, wild_overlay_table) != 3U
+        || read8(core, wild_overlay_table + 1U) != 19U
+        || read8(core, wild_overlay_table + 2U) != 0U
+        || read8(core, wild_overlay_table + 3U) != 13U
+        || read8(core, wild_overlay_table + 4U) != 8U)
+        die("first-route wild overlay row differs from authored 5% contract");
+    uint32_t previous_rng = read32(core, GLOBAL_RNG);
+    uint8_t previous_group = read8(core, saveblock1 + 4U);
+    uint8_t previous_map = read8(core, saveblock1 + 5U);
+    write8(core, saveblock1 + 4U, 3U);
+    write8(core, saveblock1 + 5U, 19U);
+    write32(core, GLOBAL_RNG, UINT32_C(0x12345678));
+    unsigned wild_overlay_hits = 0;
+    uint32_t wild_candidates_seen = 0;
+    for (unsigned call = 0; call < WILD_OVERLAY_CALLS; ++call) {
+        uint16_t species = (uint16_t)call_thumb(core, wild_select, 1U, 0U, 0U, 0U);
+        if (species == 1U)
+            continue;
+        bool matched = false;
+        for (unsigned candidate = 0; candidate < 8U; ++candidate) {
+            if (species == read_le16_unaligned(
+                    core, wild_overlay_table + 6U + candidate * 2U)) {
+                wild_candidates_seen |= UINT32_C(1) << candidate;
+                matched = true;
+                break;
+            }
+        }
+        if (!matched)
+            die("first-route selector returned a species outside its ROM table");
+        ++wild_overlay_hits;
+    }
+    if (wild_overlay_hits < 120U || wild_overlay_hits > 300U
+        || wild_candidates_seen != UINT32_C(0xFF))
+        die("first-route selector did not produce the complete authored 5% pool");
+
+    /* Call the function installed at stock TryGenerateWildMon, not just its
+     * selector helper. This proves native slot/level generation reaches the
+     * overlay and creates a readable party Pokemon on the actual hook path. */
+    uint32_t native_slots = read32(core, first_route_land_info + 4U);
+    if (!rom_pointer(native_slots))
+        die("first-route native land slots are invalid");
+    write32(core, GLOBAL_RNG, UINT32_C(0x12345678));
+    unsigned generation_calls = 0;
+    uint16_t generated_overlay_species = 0;
+    for (; generation_calls < 512U && generated_overlay_species == 0U;
+         ++generation_calls) {
+        for (unsigned byte = 0; byte < PARTY_BYTES; ++byte)
+            write8(core, ENEMY_PARTY + byte, 0U);
+        write8(core, ENEMY_PARTY_COUNT, 0U);
+        if (call_thumb(core, wild_try_generate,
+                       first_route_land_info, 0U, 0U, 0U) != 1U)
+            die("first-route wild generation hook rejected valid land info");
+        uint16_t species = (uint16_t)call_thumb(
+            core, GET_MON_DATA, ENEMY_PARTY, 11U, 0U, 0U);
+        bool valid = false;
+        for (unsigned candidate = 0; candidate < 8U; ++candidate) {
+            if (species == read_le16_unaligned(
+                    core, wild_overlay_table + 6U + candidate * 2U)) {
+                generated_overlay_species = species;
+                valid = true;
+                break;
+            }
+        }
+        for (unsigned slot = 0; slot < 12U && !valid; ++slot) {
+            if (species == read_le16_unaligned(core, native_slots + slot * 4U + 2U))
+                valid = true;
+        }
+        if (!valid)
+            die("wild generation hook created a species outside native/overlay tables");
+    }
+    if (generated_overlay_species == 0U)
+        die("first-route generation hook never created an overlay species");
+
+    write8(core, saveblock1 + 4U, 4U);
+    write8(core, saveblock1 + 5U, 0U);
+    for (unsigned call = 0; call < 256U; ++call) {
+        if (call_thumb(core, wild_select, 1U, 0U, 0U, 0U) != 1U)
+            die("wild overlay leaked into an unmatched Vega map");
+    }
+    write8(core, saveblock1 + 4U, previous_group);
+    write8(core, saveblock1 + 5U, previous_map);
+    write32(core, GLOBAL_RNG, previous_rng);
+
     printf("{\"schema_version\":1,\"status\":\"PASS\","
            "\"checks\":{\"boot\":true,\"map_roots\":true,"
            "\"kanto_entry\":true,\"wild_headers\":true,"
            "\"trainer_table\":true,\"kanto_progression_objects\":true,"
+           "\"first_route_wild_overlay\":true,\"first_route_wild_generation\":true,"
+           "\"wild_overlay_isolated\":true,"
            "\"qol_b_thumb_execution\":true,\"kanto_map_load\":true,"
            "\"kanto_movement\":true,\"event_round_trip\":true},"
            "\"framebuffer_transitions\":%" PRIu32 ","
            "\"kanto_framebuffer_transitions\":%" PRIu32 ","
            "\"kanto_position\":{\"group\":%u,\"map\":%u,\"x\":%d,\"y\":%d},"
            "\"kanto_movement\":{\"key\":%u,\"x\":%d,\"y\":%d},"
+           "\"first_route_wild_overlay\":{\"calls\":%u,\"hits\":%u,"
+           "\"candidate_mask\":%" PRIu32 ",\"generation_calls\":%u,"
+           "\"generated_species\":%u},"
            "\"kanto_wild_headers\":%u,\"qol_marker\":%u,"
            "\"payload_size\":%" PRIu32 ",\"artifacts_written\":[]}\n",
            transitions, kanto_transitions, player_group, player_map,
            player_x, player_y, movement_key, moved_x, moved_y,
+           WILD_OVERLAY_CALLS, wild_overlay_hits, wild_candidates_seen,
+           generation_calls, generated_overlay_species,
            kanto_wild_headers, marker, payload_size);
 
     free(video);

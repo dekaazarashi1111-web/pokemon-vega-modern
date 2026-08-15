@@ -8,8 +8,11 @@ import csv
 import hashlib
 import json
 import re
+import shutil
 import struct
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Mapping, NoReturn
 
@@ -39,6 +42,7 @@ ARTIFACTS = (
     "generated/engine/species_assets/cry2.bin",
     "generated/engine/species_assets/dex_entries.bin",
     "generated/engine/species_assets/national_dex.bin",
+    "generated/engine/species/species_names_legacy.bin",
     "generated/engine/evolutions/evolutions.bin",
     "generated/engine/evolutions/evolutions.json",
     "generated/engine/evolutions/v2_normalized.json",
@@ -48,6 +52,8 @@ ARTIFACTS = (
     "generated/engine/learnsets/tmhm.bin",
     "generated/engine/learnsets/tutor.bin",
     "generated/engine/learnsets/learnsets.json",
+    "generated/runtime/species_surface.bin",
+    "generated/runtime/species_surface_symbols.json",
     "reports/generated/dex_policy.md",
     "reports/generated/species_asset_validation.md",
     "tests/fixtures/breeding_matrix.json",
@@ -82,6 +88,16 @@ def fixed(path: Path, expected: str) -> bytes:
     if sha(raw) != expected:
         fail(f"fixed input hash mismatch: {path}")
     return raw
+
+
+def run(command: list[str], label: str, *, cwd: Path = ROOT) -> str:
+    completed = subprocess.run(
+        command, cwd=cwd, text=True, capture_output=True, check=False,
+    )
+    if completed.returncode:
+        detail = (completed.stderr or completed.stdout).strip()
+        fail(f"{label} failed ({completed.returncode}): {detail}")
+    return completed.stdout.strip()
 
 
 def expected_stage07_sha(root: Path, config: Mapping[str, Any]) -> str:
@@ -324,6 +340,22 @@ def parse_level_data(rom: bytes, address: int, move_alias: Mapping[int, int]) ->
     fail(f"unterminated level-up data at {address:#x}")
 
 
+def parse_vega_level_data(rom: bytes, address: int) -> bytes:
+    """Convert Vega's packed 9-bit move/7-bit level rows to CFRU's 3-byte ABI."""
+    output = bytearray()
+    offset = address - ROM_BASE
+    for _ in range(256):
+        if offset < 0 or offset + 2 > len(rom):
+            fail(f"Vega level-up data is outside ROM at {address:#x}")
+        packed = struct.unpack_from("<H", rom, offset)[0]
+        offset += 2
+        if packed == 0xFFFF:
+            output += b"\x00\x00\xff"
+            return bytes(output)
+        output += struct.pack("<HB", packed & 0x01FF, packed >> 9)
+    fail(f"unterminated Vega level-up data at {address:#x}")
+
+
 def parse_egg(rom: bytes, root: int, move_alias: Mapping[int, int] | None,
               species_alias: Mapping[int, int] | None, include: callable) -> list[int]:
     values: list[int] = []
@@ -354,19 +386,20 @@ def merge_learnsets(stage: bytes, dpe: bytes, config: Mapping[str, Any], rows: l
     old_level = ptr(stage, int(config["pointer_sites"]["level_up"]))
     pointer_values: list[int] = []
     data = bytearray()
-    inherited = translated = 0
+    converted_vega = translated_dpe = 0
     for row in rows:
         cid = int(row["id"])
         if cid < 412:
-            pointer_values.append(ptr(stage, old_level - ROM_BASE + cid * 4))
-            inherited += 1
+            source_ptr = ptr(stage, old_level - ROM_BASE + cid * 4)
+            converted = parse_vega_level_data(stage, source_ptr)
+            converted_vega += 1
         else:
             source = int(row["dpe_id"])
             source_ptr = ptr(dpe, dpe_level - ROM_BASE + source * 4)
             converted = parse_level_data(dpe, source_ptr, move_alias)
-            pointer_values.append(allocate_address + len(data))
-            data += converted
-            translated += 1
+            translated_dpe += 1
+        pointer_values.append(allocate_address + len(data))
+        data += converted
     pointers = b"".join(struct.pack("<I", value) for value in pointer_values)
 
     vega_egg = parse_egg(stage, ptr(stage, int(config["pointer_sites"]["egg"])), None, None,
@@ -380,13 +413,120 @@ def merge_learnsets(stage: bytes, dpe: bytes, config: Mapping[str, Any], rows: l
     tutor = table_merge(stage, dpe, rows, int(config["pointer_sites"]["tutor"]),
                         int(config["dpe_roots"]["tutor"]), 16, 412, "tutor")
     model = {"schema_version": 1, "task": TASK, "species_count": len(rows),
-             "level_up": {"vega_pointer_rows": inherited, "translated_rows": translated,
+             "level_up": {"format": "U16_MOVE_U8_LEVEL", "stride": 3,
+                          "converted_vega_rows": converted_vega,
+                          "translated_dpe_rows": translated_dpe,
                           "data_bytes": len(data)},
              "egg": {"u16_count": len(egg) // 2, "vega_values": len(vega_egg),
                      "translated_values": len(dpe_egg)},
              "tmhm": {"stride": 16}, "tutor": {"stride": 16}, "status": "PASS"}
     return {"level_up_pointers": pointers, "level_up_data": bytes(data), "egg_moves": egg,
             "tmhm": tmhm, "tutor": tutor}, model
+
+
+def legacy_species_names(names: bytes, species_count: int) -> bytes:
+    if len(names) != species_count * 11:
+        fail("canonical Species name table size mismatch")
+    output = bytearray()
+    for species in range(species_count):
+        row = names[species * 11:(species + 1) * 11]
+        visible = row.split(b"\xFF", 1)[0][:5]
+        output += visible + b"\xFF" * (6 - len(visible))
+    return bytes(output)
+
+
+def linked_learn_symbols(root: Path, config: Mapping[str, Any]) -> dict[str, int]:
+    path = root / str(config["inputs"]["linked_object_path"])
+    fixed(path, str(config["inputs"]["linked_object_sha256"]))
+    required = {
+        str(row["symbol"]) for row in config["learn_move_hooks"]
+        if "target_symbol" not in row
+    }
+    symbols: dict[str, int] = {}
+    for line in run(["arm-none-eabi-nm", "-n", str(path)], "T09 CFRU symbol audit").splitlines():
+        fields = line.split()
+        if len(fields) == 3 and fields[2] in required:
+            symbols[fields[2]] = int(fields[0], 16)
+    if set(symbols) != required or any(address & 1 for address in symbols.values()):
+        fail(f"T09 CFRU Learn Move symbol contract differs: {symbols}")
+    return symbols
+
+
+def compile_species_runtime(root: Path, load_address: int, names_address: int,
+                            learnsets_address: int) -> tuple[bytes, dict[str, int]]:
+    compiler = shutil.which("arm-none-eabi-gcc")
+    objcopy = shutil.which("arm-none-eabi-objcopy")
+    nm = shutil.which("arm-none-eabi-nm")
+    if not compiler or not objcopy or not nm:
+        fail("ARM GNU toolchain is required for T09 Species runtime")
+    source = root / "overlays/species_surface/species_runtime.c"
+    header = root / "overlays/species_surface/species_runtime.h"
+    trampoline = root / "overlays/species_surface/species_runtime_trampoline.S"
+    if not source.is_file() or not header.is_file() or not trampoline.is_file():
+        fail("T09 Species runtime source/header is missing")
+    with tempfile.TemporaryDirectory(prefix="vega-t09-species-") as raw:
+        directory = Path(raw)
+        linker = directory / "linker.ld"
+        elf = directory / "species_runtime.elf"
+        binary = directory / "species_runtime.bin"
+        linker.write_text(
+            "SECTIONS\n{\n"
+            f"  . = 0x{load_address:08X};\n"
+            "  .text : { KEEP(*(.text.VegaSpeciesSurface_*)) *(.text*) *(.rodata*) }\n"
+            "  /DISCARD/ : { *(.comment*) *(.ARM.attributes*) *(.note*) }\n"
+            "}\n",
+            encoding="ascii",
+        )
+        run([
+            compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
+            "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            f"-DVEGA_SPECIES_NAMES_ADDRESS=0x{names_address:08X}u",
+            f"-DVEGA_LEVEL_UP_LEARNSETS_ADDRESS=0x{learnsets_address:08X}u",
+            "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
+            "-fdata-sections", "-ffunction-sections", "-nostdlib",
+            "-Wl,--build-id=none", "-Wl,--gc-sections",
+            "-Wl,-e,VegaSpeciesSurface_GetSpeciesName", f"-Wl,-T,{linker}",
+            f"-I{source.parent}", str(source), str(trampoline), "-o", str(elf),
+        ], "T09 Species runtime link", cwd=root)
+        undefined = run([nm, "-u", str(elf)], "T09 Species runtime undefined symbols")
+        if undefined:
+            fail("T09 Species runtime has undefined symbols: " + undefined)
+        run([objcopy, "-O", "binary", str(elf), str(binary)],
+            "T09 Species runtime objcopy")
+        symbols: dict[str, int] = {}
+        for line in run([nm, "-n", "--defined-only", str(elf)],
+                        "T09 Species runtime nm").splitlines():
+            fields = line.split()
+            if len(fields) == 3 and fields[2].startswith("VegaSpeciesSurface_"):
+                symbols[fields[2]] = int(fields[0], 16)
+        if set(symbols) != {
+            "VegaSpeciesSurface_GetSpeciesName",
+            "VegaSpeciesSurface_GiveBoxMonInitialMovesetAppended",
+            "VegaSpeciesSurface_GiveBoxMonInitialMovesetDispatch",
+        }:
+            fail(f"T09 Species runtime symbol set differs: {symbols}")
+        runtime = binary.read_bytes()
+        if not runtime or len(runtime) > 1024:
+            fail(f"unexpected T09 Species runtime size: {len(runtime)}")
+        return runtime, symbols
+
+
+def absolute_thumb_hook(register: int, target: int) -> bytes:
+    if not 0 <= register <= 7 or target & 1:
+        fail("invalid aligned Thumb hook target/register")
+    return bytes((0, 0x48 | register, register << 3, 0x47)) + struct.pack("<I", target | 1)
+
+
+def patch_exact(output: bytearray, stage: bytes, site: int, expected: bytes,
+                replacement: bytes, label: str) -> dict[str, Any]:
+    if len(expected) != len(replacement):
+        fail(f"{label}: patch width differs")
+    actual = bytes(stage[site:site + len(expected)])
+    if actual != expected:
+        fail(f"{label}: expected={expected.hex()} actual={actual.hex()}")
+    output[site:site + len(replacement)] = replacement
+    return {"label": label, "site": site, "address": ROM_BASE + site,
+            "expected_hex": expected.hex(), "replacement_hex": replacement.hex()}
 
 
 def breeding_fixture() -> dict[str, Any]:
@@ -441,6 +581,12 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     if len(rows) != 1621 or [int(row["id"]) for row in rows] != list(range(1621)):
         fail("T07 canonical Species ABI changed")
     species_alias, move_alias, item_alias = aliases(models)
+    species_names = fixed(
+        root / str(config["inputs"]["species_names_path"]),
+        str(config["inputs"]["species_names_sha256"]),
+    )
+    names_legacy = legacy_species_names(species_names, len(rows))
+    learn_symbols = linked_learn_symbols(root, config)
 
     strides, roots, sites = config["strides"], config["dpe_roots"], config["pointer_sites"]
     tables: dict[str, bytes] = {}
@@ -496,22 +642,77 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                                          locations["level_up_data"])
     for name in ("level_up_pointers", "egg_moves", "tmhm", "tutor"):
         off = allocator.put(name, learn[name]); locations[name] = ROM_BASE + off
+    off = allocator.put("species_names", species_names)
+    locations["species_names"] = ROM_BASE + off
+    off = allocator.put("species_names_legacy", names_legacy)
+    locations["species_names_legacy"] = ROM_BASE + off
+    runtime_load = ROM_BASE + ((allocator.cursor + 3) & ~3)
+    runtime, runtime_symbols = compile_species_runtime(
+        root, runtime_load, locations["species_names"],
+        locations["level_up_pointers"],
+    )
+    off = allocator.put("species_runtime", runtime)
+    if ROM_BASE + off != runtime_load:
+        fail("T09 Species runtime linker address disagrees with allocation")
+    locations["species_runtime"] = ROM_BASE + off
+    payloads = {**tables, **learn, "evolutions": evolutions,
+                "species_names": species_names,
+                "species_names_legacy": names_legacy,
+                "species_runtime": runtime}
     for entry in allocator.entries:
-        data = (tables.get(entry["name"]) or
-                (evolutions if entry["name"] == "evolutions" else learn[entry["name"]]))
+        data = payloads[entry["name"]]
         output_rom[entry["offset"]:entry["offset"] + len(data)] = data
 
     bindings = {"front": "front", "back": "back", "palette": "palette",
                 "shiny_palette": "shiny_palette", "icon": "icon", "icon_palette": "icon_palette",
                 "front_coords": "front_coords", "back_coords": "back_coords", "elevation": "elevation",
                 "footprint": "footprint", "cry": "cry", "cry2": "cry2", "evolution": "evolution",
-                "level_up": "level_up_pointers", "egg": "egg_moves", "tmhm": "tmhm", "tutor": "tutor",
+                "egg": "egg_moves", "tmhm": "tmhm", "tutor": "tutor",
                 "dex_entries": "dex_entries", "national_dex": "national_dex"}
     repoints = {}
     for key, location_key in bindings.items():
         site = int(sites[key]); old = ptr(stage, site); new = locations[location_key]
         output_rom[site:site + 4] = struct.pack("<I", new)
         repoints[key] = {"site": site, "old": old, "new": new}
+    # The native packed-table routine remains the exact path for Vega IDs.
+    # Its literal therefore stays on the original table; the dispatcher uses
+    # the canonical table only for appended IDs.
+    native_level_site = int(sites["level_up"])
+    native_level_root = ptr(stage, native_level_site)
+    repoints["level_up"] = {
+        "site": native_level_site, "old": native_level_root,
+        "new": locations["level_up_pointers"], "applied": False,
+        "legacy_root_preserved": True,
+    }
+    # CFRU Learn Move consumers load the canonical pointer root through this
+    # stock global, independently of the native GiveBoxMon literal above.
+    level_root_storage = 0x4346C
+    old_level_root = ptr(stage, level_root_storage)
+    if old_level_root != native_level_root:
+        fail("stock level-up root storage differs from GiveBoxMon literal")
+    output_rom[level_root_storage:level_root_storage + 4] = struct.pack(
+        "<I", locations["level_up_pointers"]
+    )
+    repoints["level_up_cfru_root"] = {
+        "site": level_root_storage, "old": old_level_root,
+        "new": locations["level_up_pointers"],
+    }
+
+    # Stock UI code has 40 direct six-byte gSpeciesNames consumers.  Point all
+    # of them at a bounded compatibility table, while GetSpeciesName itself
+    # uses the full eleven-byte canonical table through the adapter below.
+    old_names_root = ptr(stage, 0x144)
+    old_names_bytes = struct.pack("<I", old_names_root)
+    legacy_name_sites = [index for index in range(0, len(stage) - 3, 4)
+                         if stage[index:index + 4] == old_names_bytes]
+    if len(legacy_name_sites) != 40:
+        fail(f"stock Species name consumer inventory changed: {len(legacy_name_sites)}")
+    for site in legacy_name_sites:
+        output_rom[site:site + 4] = struct.pack("<I", locations["species_names_legacy"])
+    repoints["species_names_legacy"] = {
+        "sites": legacy_name_sites, "count": len(legacy_name_sites),
+        "old": old_names_root, "new": locations["species_names_legacy"],
+    }
     # T06 redirected CFRU evolution consumers to its canonical 1440-row root.
     # Replace every aligned literal for that root so appended IDs 1440..1620
     # cannot index the superseded table.
@@ -534,6 +735,43 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
         fail(f"SpeciesToCryId prologue changed: {expected.hex()}")
     output_rom[0x429F4:0x429FC] = cry_adapter
 
+    runtime_patches: list[dict[str, Any]] = []
+    name_target = runtime_symbols["VegaSpeciesSurface_GetSpeciesName"]
+    runtime_patches.append(patch_exact(
+        output_rom, stage, 0x406C4, bytes.fromhex("f0b5061c09040c0c"),
+        absolute_thumb_hook(3, name_target), "canonical GetSpeciesName",
+    ))
+    learn_hooks: list[dict[str, Any]] = []
+    for row in config["learn_move_hooks"]:
+        symbol = str(row["symbol"])
+        site = int(row["site"])
+        target_symbol = str(row.get("target_symbol", symbol))
+        target = (runtime_symbols[target_symbol]
+                  if "target_symbol" in row else learn_symbols[symbol])
+        patch = patch_exact(
+            output_rom, stage, site, bytes.fromhex(str(row["expected_hex"])),
+            absolute_thumb_hook(int(row["register"]), target),
+            f"CFRU Learn Move {symbol}",
+        )
+        patch.update({"symbol": symbol, "target_symbol": target_symbol,
+                      "target": target | 1,
+                      "register": int(row["register"])})
+        learn_hooks.append(patch)
+
+    # The fixed CFRU object was compiled in its source Species namespace.
+    # Toxtricity's two IDs retain the same delta (52), so correcting the three
+    # literal constants preserves form selection without touching other forms.
+    toxtricity_patches = []
+    for site, expected, replacement, label in (
+        (0x1100DC0, 0xFFFFFB8B, (-1322) & 0xFFFFFFFF, "Toxtricity amped compare"),
+        (0x1100DC4, 0xFFFFFB57, (-1374) & 0xFFFFFFFF, "Toxtricity low-key compare"),
+        (0x1100DC8, 0x000004A9, 1374, "Toxtricity canonical base"),
+    ):
+        toxtricity_patches.append(patch_exact(
+            output_rom, stage, site, struct.pack("<I", expected),
+            struct.pack("<I", replacement), label,
+        ))
+
     asset_model = {"schema_version": 1, "task": TASK, "species_count": len(rows),
                    "vega_preserved": 412, "dpe_appended": len(rows) - 412,
                    "animation_policy": {"vega": "ORIGINAL_CALLBACKS_PRESERVED",
@@ -553,11 +791,19 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
     artifacts: dict[str, bytes] = {
         "generated/engine/species_assets/species_assets.json": stable(asset_model),
         **{f"generated/engine/species_assets/{name}.bin": tables[name] for name in assets_order},
+        "generated/engine/species/species_names_legacy.bin": names_legacy,
         "generated/engine/evolutions/evolutions.bin": evolutions,
         "generated/engine/evolutions/evolutions.json": stable(evolution_model),
         "generated/engine/evolutions/v2_normalized.json": stable(v2),
         **{f"generated/engine/learnsets/{name}.bin": data for name, data in learn.items()},
         "generated/engine/learnsets/learnsets.json": stable(learn_model),
+        "generated/runtime/species_surface.bin": runtime,
+        "generated/runtime/species_surface_symbols.json": stable({
+            "schema_version": 1, "task": TASK, "status": "PASS",
+            "load_address": locations["species_runtime"],
+            "names_address": locations["species_names"],
+            "symbols": runtime_symbols,
+        }),
         "reports/generated/dex_policy.md": dex_report,
         "reports/generated/species_asset_validation.md": asset_report,
         "tests/fixtures/breeding_matrix.json": stable(fixture),
@@ -572,6 +818,11 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                                "end": allocator.cursor, "limit": allocator.end,
                                "free": allocator.end - allocator.cursor, "entries": allocator.entries},
                 "repoints": repoints, "cry_adapter": {"site": 0x429F4, "bytes": cry_adapter.hex()},
+                "runtime": {"address": locations["species_runtime"], "size": len(runtime),
+                            "sha256": sha(runtime), "symbols": runtime_symbols,
+                            "patches": runtime_patches},
+                "learn_move_hooks": learn_hooks,
+                "toxtricity_namespace_patches": toxtricity_patches,
                 "assets": asset_model, "evolutions": {k: v for k, v in evolution_model.items() if k != "rows"},
                 "learnsets": learn_model, "v2": {k: v for k, v in v2.items() if k != "rows"},
                 "breeding": {"cases": len(fixture["cases"]), "status": fixture["status"]}}

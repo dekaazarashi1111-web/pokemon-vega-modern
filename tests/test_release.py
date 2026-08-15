@@ -63,8 +63,8 @@ class ReleaseContractTests(unittest.TestCase):
             (6, 3, 3, 600),
         )
 
-    def test_release_identity_is_v1_3_5(self) -> None:
-        self.assertEqual(build_release.VERSION, "1.3.5")
+    def test_release_identity_is_v1_3_6(self) -> None:
+        self.assertEqual(build_release.VERSION, "1.3.6")
         self.assertEqual(build_release.STAGE.name, "25_move_memory.gba")
 
     def test_release_docs_cover_feature_matrix(self) -> None:

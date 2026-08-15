@@ -24,7 +24,6 @@ enum {
     MAX_LEARNABLE_MOVES = 40,
     EGG_MOVE_BUFFER_COUNT = 50,
     SPECIES_COUNT = 1621,
-    VEGA_PACKED_SPECIES_COUNT = 412,
 
     MON_DATA_MOVE1 = 13,
     MON_DATA_PP_BONUSES = 21,
@@ -112,8 +111,8 @@ typedef void (*PlaySeFn)(u16 song);
 #define G_SPECIAL_VAR_RESULT PTR(volatile u16 *, 0x02037004)
 #define G_TASKS PTR(struct Task *, 0x030050D0)
 #define S_ITEM_USE_ON_FIELD_CB PTR(volatile TaskFunc *, 0x02039910)
-/* T09の正規root。0..411はVega packed-u16、412以降はDPE 3-byte。 */
-#define G_LEVEL_UP_LEARNSET_ROOT PTR(const u8 *const *const *, 0x0803E1E8)
+/* T09の正規root。全1,621種がu16 move + u8 levelの3-byte ABI。 */
+#define G_LEVEL_UP_LEARNSET_ROOT PTR(const u8 *const *const *, 0x0804346C)
 
 #define FN_GET_MON_DATA PTR(GetMonDataFn, 0x0803F355)
 #define FN_FLAG_GET PTR(FlagGetFn, 0x0806DEC5)
@@ -316,21 +315,11 @@ static u8 normal_relearner_moves(void *mon, u16 *moves)
         u16 move;
         u8 move_level;
         u8 slot;
-        if (species < VEGA_PACKED_SPECIES_COUNT) {
-            u16 packed = (u16)(learnset[0] | (u16)learnset[1] << 8);
-            learnset += 2;
-            if (packed == 0xFFFF) {
-                break;
-            }
-            move = packed & 0x01FFu;
-            move_level = (u8)(packed >> 9);
-        } else {
-            move = (u16)(learnset[0] | (u16)learnset[1] << 8);
-            move_level = learnset[2];
-            learnset += 3;
-            if (move == MOVE_NONE && move_level == 0xFF) {
-                break;
-            }
+        move = (u16)(learnset[0] | (u16)learnset[1] << 8);
+        move_level = learnset[2];
+        learnset += 3;
+        if (move == MOVE_NONE && move_level == 0xFF) {
+            break;
         }
         if (move == MOVE_NONE || move_level > level) {
             continue;

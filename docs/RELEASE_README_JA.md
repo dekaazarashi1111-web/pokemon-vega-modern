@@ -1,4 +1,4 @@
-# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.3.5
+# Pokémon Vega Modern — トーホク＋カントー二地方版 v1.3.6
 
 これは非公式・非営利のファン制作差分パッチです。ROM本体は含みません。Nintendo、
 Creatures、GAME FREAK、The Pokémon Company、およびVega原作者とは無関係です。
@@ -8,9 +8,9 @@ CFRUの利用条件に従い、本作を販売・有料配布・paywall化せず
 ## 適用方法
 
 1. 所有している無改変の「ポケットモンスター ファイアレッド」日本版Rev.0を用意する。
-2. BPS対応patcherで `vega-modern-kanto-v1.3.5.bps` をそのclean ROMへ直接適用する。
+2. BPS対応patcherで `vega-modern-kanto-v1.3.6.bps` をそのclean ROMへ直接適用する。
 3. 出力が32 MiBで、SHA-256が
-   `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`
+   `aeaa8724db55aaff5261581b4faead9aaf91b013e0fc9fb04bb9ae5bf701f5e1`
    であることを確認する。
 
 入力ROMのSHA-256は
@@ -27,9 +27,14 @@ D・Hビル攻略の両方を終えると `KANTO_EARLY_ACCESS` が恒久解禁�
 
 カントーは任意の固定高難度地方で、野生・trainerはLv.68〜100。player側へ合わせた
 動的scaleは行わない。早期は認定章1〜4、Vega殿堂入り後に認定章5〜8とKanto League
-が開く。253 physical map、180 layout、二地方のwild table、Gym 8戦と四天王・Champion
+が開く。253 physical map、180 layout、Kanto wild table、Vega既存遭遇表、Gym 8戦と四天王・Champion
 が同じ32 MiB ROMへ格納されている。未解決の通信施設・動的elevatorは進行停止を避ける
 ため、クチバの安全地点へ戻す。
+
+トーホクの既存遭遇表は上書きせず、通常の草むら・洞窟・水上・いわくだきで
+外来種のmap別追加抽選を行う。最初の草むらは5%で8種の候補から抽選する。
+夜間・大量発生・ずつき・釣り・DexNav専用の外来生態とevent別解禁条件は未接続であり、
+通常追加抽選は対象mapで常時有効。詳細は `KNOWN_ISSUES.md` のKI-006を参照する。
 
 ## 操作と既定QOL
 
@@ -133,11 +138,11 @@ NPCから同じmenuを開き、「おもいだす」「わすれる」「タマ�
 連勝記録とBPはsector 31へ保存する。BP shopと施設外の調査NPCについては、進行条件、
 価格、支払い/credit、空き容量、再開用個体のcontent定義を保持する。
 
-v1.3.5で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
+v1.3.6で受付から実際に遊べるよう結合済みなのはTrialだけである。下表のStandard / Full /
 Master、BP shop、施設外報酬遭遇は進行・content定義と回帰fixtureを保持しているが、実ROMの
 受付・NPCへはまだ接続していない。
 
-| tier | unlock | 主な形式・mechanic | v1.3.5 runtime |
+| tier | unlock | 主な形式・mechanic | v1.3.6 runtime |
 |---|---|---|---|
 | Trial | `KANTO_EARLY_ACCESS` | single 3v3×3、一般rental、gimmickなし | 接続済み |
 | Standard | `FACTORY_STANDARD`（Vega 5個目badge） | single 3v3 / double 4v4、交換、Mega | 未接続 |

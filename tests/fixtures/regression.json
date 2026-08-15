@@ -5,7 +5,33 @@
     "normal_tables_preserved": 193,
     "raid_rows": 250,
     "research_rows": 1082,
-    "tohoku_logical_locations": 49
+    "tohoku_logical_locations": 49,
+    "tohoku_overlay_coverage": {
+      "conditional_unlocks_bound": false,
+      "deferred_methods": {
+        "DexNav隠し枠": 7,
+        "DexNav隠し枠／低確率タマゴ": 11,
+        "ずつき／朝昼オーバーレイ": 28,
+        "夜間オーバーレイ": 34,
+        "夜間水上オーバーレイ": 1,
+        "大量発生": 29,
+        "屋内異常遭遇／DexNav": 8,
+        "水上／釣りオーバーレイ": 1,
+        "釣りオーバーレイ": 21
+      },
+      "deferred_source_rows": 140,
+      "runtime_methods": {
+        "いわくだき／DexNav": 22,
+        "水上オーバーレイ": 23,
+        "洞窟・屋内オーバーレイ": 31,
+        "草むらオーバーレイ": 77
+      },
+      "runtime_source_locations": 36,
+      "runtime_source_rows": 153,
+      "scope_note": "実ROMは通常の草むら・洞窟・水上・いわくだきの追加抽選を接続。夜間・大量発生・ずつき・釣り・DexNav専用条件は専用runtime未接続。",
+      "source_locations": 41,
+      "source_rows": 293
+    }
   },
   "events": {
     "branch_cases": 238,
@@ -26,6 +52,8 @@
       "checks": {
         "boot": true,
         "event_round_trip": true,
+        "first_route_wild_generation": true,
+        "first_route_wild_overlay": true,
         "kanto_entry": true,
         "kanto_map_load": true,
         "kanto_movement": true,
@@ -33,7 +61,15 @@
         "map_roots": true,
         "qol_b_thumb_execution": true,
         "trainer_table": true,
-        "wild_headers": true
+        "wild_headers": true,
+        "wild_overlay_isolated": true
+      },
+      "first_route_wild_overlay": {
+        "calls": 4096,
+        "candidate_mask": 255,
+        "generated_species": 583,
+        "generation_calls": 28,
+        "hits": 238
       },
       "framebuffer_transitions": 6729,
       "kanto_framebuffer_transitions": 7275,
@@ -49,15 +85,15 @@
         "y": 20
       },
       "kanto_wild_headers": 133,
-      "payload_size": 703548,
+      "payload_size": 705300,
       "process_runs": 2,
       "qol_marker": 2839,
-      "rom_sha256": "bf3dcc979edcfd6f0c9892f236c2e4873155fceda267c43239bfc9be45cb279e",
+      "rom_sha256": "bbd4146920609b24b0fd8fa06aa2c8eb2613915c406757e810a635ec0d664091",
       "schema_version": 1,
       "status": "PASS"
     },
-    "payload_size": 703548,
-    "stage_sha256": "bf3dcc979edcfd6f0c9892f236c2e4873155fceda267c43239bfc9be45cb279e",
+    "payload_size": 705300,
+    "stage_sha256": "bbd4146920609b24b0fd8fa06aa2c8eb2613915c406757e810a635ec0d664091",
     "trainer_production_rows_bound": 174
   },
   "facilities": {

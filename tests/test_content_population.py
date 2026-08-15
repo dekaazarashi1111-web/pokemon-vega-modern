@@ -32,6 +32,14 @@ class ContentPopulationTest(unittest.TestCase):
         shared = {row["shared_capture_key"] for row in self.manifests["raid_encounters.csv"]}
         self.assertEqual(len(shared), 125)
         maps = rows(self.outputs["content/maps.csv"])
+        bindings = rows(self.outputs["content/map_bindings.csv"])
+        first_route = next(
+            row for row in bindings if row["logical_location_key"] == "T501"
+        )
+        self.assertEqual(
+            (first_route["group_id"], first_route["map_id"]), ("3", "19")
+        )
+        self.assertIn("Lv3.3", first_route["notes"])
         league = next(row for row in maps if row["logical_location_key"] == "K42")
         self.assertEqual(league["unlock_key"], "KANTO_LEAGUE")
         self.assertEqual(league["warning_key"], "WARNING_KANTO_LEAGUE")

@@ -263,11 +263,18 @@ def _source_audit(root: Path, config: dict[str, Any]) -> dict[str, Any]:
     level_up = learnsets.get("level_up", {})
     if (
         learnsets.get("species_count") != 1621
-        or level_up.get("vega_pointer_rows") != 412
-        or level_up.get("translated_rows") != 1209
+        or level_up.get("format") != "U16_MOVE_U8_LEVEL"
+        or level_up.get("stride") != 3
+        or level_up.get("converted_vega_rows") != 412
+        or level_up.get("translated_dpe_rows") != 1209
         or species_surface.get("repoints", {}).get("level_up", {}).get("site") != 0x0003E1E8
+        or species_surface.get("repoints", {}).get("level_up_cfru_root", {}).get("site") != 0x0004346C
+        or not species_surface.get("repoints", {}).get("level_up", {}).get(
+            "legacy_root_preserved"
+        )
+        or len(species_surface.get("learn_move_hooks", [])) != 5
     ):
-        _fail("T09 mixed level-up ABI contract differs")
+        _fail("T09 canonical level-up ABI contract differs")
     with (root / config["inputs"]["move_manifest"]["path"]).open(
         encoding="utf-8-sig", newline=""
     ) as stream:
@@ -292,9 +299,11 @@ def _source_audit(root: Path, config: dict[str, Any]) -> dict[str, Any]:
         "linked_symbols": symbols, "anchors": anchor_rows,
         "manifest_move_ids": manifest_move_ids,
         "level_up_abi": {
-            "root_pointer_site": 0x0803E1E8,
-            "vega_packed_u16_species": 412,
-            "dpe_three_byte_species": 1209,
+            "root_pointer_site": 0x0804346C,
+            "format": "U16_MOVE_U8_LEVEL",
+            "stride": 3,
+            "converted_vega_species": 412,
+            "translated_dpe_species": 1209,
             "species_count": 1621,
         },
     }

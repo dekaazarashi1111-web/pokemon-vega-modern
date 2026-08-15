@@ -1043,3 +1043,33 @@
 - Verify: `python3 scripts/build_release.py patch` / `verify` PASS。BPS完全往復後のROM SHA-256 `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`、archive 9 members、禁止物0。focused 17 tests、battle UI/QOL check、task graph/private guard、diff check PASS。
 - Commit: `-`（直前エントリと同じ完了コミット）
 - Network: 未使用。
+
+## 2026-08-15T11:04:35+09:00
+
+- Task: `USER-20260815-RUNTIME-STABILITY` / trainer開始・外来生態・戦闘表示の実ROM安定化
+- Status: DONE
+- Summary:
+  - 直前コミット`1216f54`とその1つ前`9188c64`を監査した。戦闘中Lの旧HELP競合修正は実在したが、追加Speciesのtrainer開始と最初の草むらの物理結合は覆っていなかった。
+  - trainer戦黒画面は、Vega 412種の2-byte packed初期技表と追加1209種の3-byte初期技表をstock処理が同じABIとして読んだことが原因と確定した。canonical 1,621行の表を3-byteへ統一し、Vega ID `0..411`は従来処理、追加ID `412..1620`は専用adapterへ分岐させた。11-byte名前表とstock用6-byte互換表もownerを分離した。
+  - アクタシの通常特性は2つで、Ability 67「げきりゅう」とAbility 64「ヘドロえき」。どちらも行動順を速めない。Quick Drawは別のAbility 260で、不正indicatorだけを消し、通常turnはC wrapperを通らないfast pathへした。
+  - トーホクmap bindingの文字列sortをV2正本のorder保持へ修正し、T501を最初の草むらmap `3/19`へ結合した。既存表を上書きせず5%で8候補を追加抽選するruntimeを入れ、4,096回中238回の追加抽選、8候補全種、実際の遭遇生成、別map漏出0を確認した。
+  - 外来生態293設計行を再監査し、草むら77・洞窟/屋内31・水上23・いわくだき22の153行だけが実ROM接続済みと確定した。夜間・大量発生・ずつき・釣り・DexNav等140行とevent別解禁は専用runtime未接続のため、coverage metadata・回帰test・KI-006にscope exclusionとして固定した。
+  - 提供されたv1.3.5 `.srm`は131,072 byte全て`FF`で、個別のsave状態は再現不能。同一最終ROMの画像監査で通常HP、傷薬対象`8/21`、回復後`21/21`の数字・ゲージに二重表示はなく、再現しないUIへの推測patchは行わなかった。
+- Files changed:
+  - runtime/build: `overlays/{species_surface,wild_overlay}/**`, `overlays/{first_battle_hotfix,move_memory}/*.c`, `scripts/build_{species_surface,move_memory,regression,fast_rom,qol_release,release}.py`, `tools/{content/populate_content,regression/model,regression/rom_runtime}.py`
+  - QA/config: `config/species_surface.json`, `content/map_bindings.csv`, `tools/mgba_{species_runtime,regression,move_memory}_smoke.c`, `tests/test_{species_surface,content_population,regression,release}.py`, 関連fixture
+  - release/design: `README.md`, `CHANGELOG.md`, `KNOWN_ISSUES.md`, `docs/{BUILD_PIPELINE,RELEASE_README_JA,SAVE_COMPATIBILITY}.md`, `design/{catalog,current_state,report_lifecycle_index,run_log,version_log}.md`
+  - Git管理外成果: stage 09〜25、`build/final/vega-modern-kanto-v1.3.6.gba`、画像/全trainer/Species監査証跡、Downloads向けverified ROM。提供save原本は読取専用で保存しGit追跡なし。
+- Verify:
+  - `python3 scripts/build_fast_rom.py --from species-surface`: PASS（363.6秒）。変更所有stage以降だけを再生成し、v1.3.6 finalまで完走した。
+  - coverage metadata追記後の`python3 scripts/build_fast_rom.py --from regression`: PASS（183.2秒）。T17 exact-ROM smoke x2、trainer再配置、Factory、初戦、HM、battle rules/UI、わざメモリー、QOL統合、finalを差分再生成した。
+  - focused unittest 8 modules: PASS（53 tests / 34.777秒）。統一learnset ABI、最初の草むら、初戦、L技詳細、わざメモリー、fast stage選択、release契約を確認した。
+  - final ROMのSpecies実行監査: PASS。Species ID `1..1620`を生成・呼称し、1,331種でLv.5初期技を確認。
+  - final ROMのtrainer開始監査: PASS。有効trainer ID `0..771`の772件をparty生成・開始・420 frame実行・可視framebufferまで通し、失敗0。
+  - final QOL/visual fixture: PASS。通常HELP/LR両設定のL詳細open/close、pointer/controller不変、初戦、傷薬使用前後のHP表示を確認。
+  - `python3 scripts/validate_task_graph.py`, `python3 scripts/guard_private_files.py`, `git diff --check`: PASS。WSL repository全体verifyとstage 00からのfresh rebuildは行わず、変更所有stageと対応gateだけを実行した。
+- Output identity:
+  - final/Downloads copy SHA-256 `aeaa8724db55aaff5261581b4faead9aaf91b013e0fc9fb04bb9ae5bf701f5e1`、size `33,554,432` bytes。
+  - 提供save SHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`、size `131,072` bytes、distinct byteは`FF`1種。原本変更0、Git追跡0。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済み上流source、ローカル提供save、検証済みstage、clean私有入力だけを参照した。

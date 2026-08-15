@@ -80,6 +80,9 @@ def _mgba_fixture(
         hex(symbols["script_portal_travel"]), hex(symbols["script_return_travel"]),
         hex(symbols["trainer_table"]), hex(symbols["progress::PewterCity_Gym"]),
         hex(symbols["progress::PokemonLeague_ChampionsRoom"]),
+        hex(symbols["wild_overlay::VegaWildOverlay_SelectSpecies"] | 1),
+        hex(symbols["wild_overlay::VegaWildOverlay_TryGenerateWildMon"] | 1),
+        hex(metadata["wild"]["tohoku_overlay"]["table_address"]),
         str(vermilion_event_objects),
     ]
     first = json.loads(_run(args, "libmGBA exact-ROM smoke run 1"))

@@ -4,7 +4,24 @@
 
 ## 現在地
 
-- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。fresh rebuildで検出した来歴・再配置・tool inventory・可変計測値依存を修正し、annotated tag `v1.3.3` の隔離再構築でfinal/BPS/ZIPをbyte一致させてreleaseを確定した。
+- マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.6で追加Speciesの初期技ABI、トーホク外来生態の物理map結合、初戦Quick Draw防御を再修正した。
+- trainer戦開始の黒画面は、Vega Species `0..411`の2-byte packed初期技表と追加Species
+  `412..1620`の3-byte初期技表を同じ読み出し経路へ混在させたABI不一致が原因。
+  canonical 1,621行は3-byte表へ統一し、Vega既存種の初期化だけは従来処理をbyte単位で保持。
+  追加種は専用adapterを通し、有効trainer ID `0..771`の全772件を実party生成から戦闘画面まで自動実行して停止0を確認した。
+- トーホク最初の草むらは、論理地点の文字列sortでT024が先に結合される不具合を修正し、
+  V2正本のorderでT501を実map `3/19`へ結合した。既存遭遇表を保持したまま5%で8候補を追加抽選し、
+  4,096回中238回の追加抽選、8候補全種、実際の`TryGenerateWildMon`から追加Species 583の生成、
+  非対象mapへの漏れ0を実ROMで確認した。
+- 外来生態の設計293行を再集計し、通常の草むら77、洞窟・屋内31、水上23、
+  いわくだき22の計153行が36論理地点・47 runtime entryで実接続済み。夜間34、大量発生29、
+  ずつき28、釣り等22、DexNav等18、屋内異常8、夜間水上1の計140行とevent別解禁は専用runtime未接続で、KI-006へscope exclusionとして明記した。
+- v1.3.6最終ROMは差分buildで363.6秒（6分04秒）、32 MiB、SHA-256
+  `aeaa8724db55aaff5261581b4faead9aaf91b013e0fc9fb04bb9ae5bf701f5e1`。Species ID `1..1620`の生成・名前・
+  初期技、有効trainer 772件、初戦、L詳細、Factory/Raid、傷薬前後のHP表示を再検証した。
+- 今回提供の `vega-modern-kanto-v1.3.5-verified 2.srm` は131,072 byteの全byte `FF`で、
+  ゲーム内saveは含まれていない。そのため該当saveの個別状態は再現できないが、自動戦闘fixtureで
+  通常HP、傷薬対象 `8/21`、回復後 `21/21` の数字・ゲージは二重表示なし。再現しないUIへの推測patchは加えていない。
 - v1.3.4で「ROM改版間の実行state混入」とした診断を訂正した。提供されたbattery saveと実際の
   「技画面→L→閉じる」経路を固定VBA-M engineで追跡すると、FR由来の`RunHelpSystemCallback`が
   CFRUより先にLを受け取り、旧HELPの画面退避領域がCFRU戦闘EWRAMを上書きして
@@ -16,7 +33,8 @@
   接触・威力・命中の詳細を開閉し、`gNewBS`、HELP state、battle controllerが不変であることを確認した。
 - v1.3.5最終ROMそのものを固定VBA-M engineへ渡し、L詳細open/close、命中label、
   `gNewBS=0x02017634`の前後一致、HELP state 0、controller `0x0802E1ED`を確認した。
-  提供された`.srm`は通常のbattery saveとして利用できる。症状発生後のsavestateだけは再利用しない。
+  この時に提供されたv1.3.4用`.srm`は通常のbattery saveとして利用できる。症状発生後の
+  savestateだけは再利用しない。後に受領したv1.3.5用`.srm`は全byte `FF`で別物。
 - `scripts/build_fast_rom.py --from battle-ui`でstage 23以前を再利用し、stage 24〜25、QOL統合、finalを
   225.3秒（3分45.3秒）で再生成した。v1.3.5最終ROMは32 MiB、SHA-256
   `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`。

@@ -440,3 +440,15 @@
   - 戦闘中だけ旧HELP openを抑止し、通常HELP設定のLをCFRU技詳細へ渡した。field HELP、L/R設定、既存battle modeは維持した。
   - stage 24以降を225.3秒で高速再生成し、固定VBA-M engineで最終ROMの画面と戦闘pointerを確認した。
 - Verify: battle UI build/check、QOL integration check、focused 29 tests、最終ROM fixed-engine checkpoint、py_compile、task graph/private guard、diff check PASS。final SHA-256 `7db577ce5a2db02c9a33b1d87338be756f42e5cfe0cbad49bac4ff7dada45cc8`。
+
+## 2026-08-15T11:04:35+09:00
+
+- Version: `v1.3.6`
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260815-RUNTIME-STABILITY` / trainer開始・外来生態・戦闘表示の実ROM安定化
+- Summary:
+  - Vega/appendで混在した初期技表ABIを統一し、追加Speciesを使うtrainer戦の黒画面停止を修正した。
+  - T501を最初の草むらmap `3/19`へ正しく結合し、既存表保持の5%/8候補追加抽選を実ROMへ接続した。
+  - 外来生態293設計行のうち通常方式153行が接続済み、専用方式140行は未接続という境界をmetadata・test・KI-006に固定した。
+  - 通常turnのQuick Draw guardをfast path化し、アクタシの「げきりゅう」「ヘドロえき」のどちらでも不正な行動順通知が発生しないことを再検証した。
+- Verify: `build_fast_rom.py --from species-surface` 363.6秒、最終`--from regression` 183.2秒、focused 53 tests、Species `1..1620`、有効trainer 772件、最初の草むら4096抽選/実遭遇、L詳細、傷薬HP表示、task graph/private guard/diff check PASS。final SHA-256 `aeaa8724db55aaff5261581b4faead9aaf91b013e0fc9fb04bb9ae5bf701f5e1`。

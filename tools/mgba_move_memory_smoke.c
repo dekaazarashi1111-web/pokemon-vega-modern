@@ -6,7 +6,7 @@
 #include "mgba_battle_core_smoke.c"
 
 enum {
-    MM_LEVEL_ROOT_SITE = 0x0803E1E8,
+    MM_LEVEL_ROOT_SITE = 0x0804346C,
     MM_ITEM_DATA = 0x0904D108,
     MM_ITEM_STRIDE = 40,
     MM_ITEM_ID = 347,

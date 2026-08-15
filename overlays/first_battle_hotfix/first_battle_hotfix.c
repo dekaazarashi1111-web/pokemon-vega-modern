@@ -76,11 +76,29 @@ __attribute__((section(".text.VegaFirstBattle_RunTurnActionsFunctions"),
 void VegaFirstBattle_RunTurnActionsFunctions(void)
 {
     __asm__ volatile(
+        /* The common path has no pending Quick Draw notification.  Avoid a
+         * C call on every ordinary turn so controller/frame timing stays as
+         * close as possible to the upstream routine. */
+        "ldr r0, =0x0203DFB0\n"
+        "ldr r0, [r0]\n"
+        "cmp r0, #0\n"
+        "beq 1f\n"
+        "ldr r1, =0x02000000\n"
+        "cmp r0, r1\n"
+        "blo 1f\n"
+        "ldr r1, =0x0203FEDC\n"
+        "cmp r0, r1\n"
+        "bhi 1f\n"
+        "ldr r1, =0x123\n"
+        "ldrb r0, [r0, r1]\n"
+        "cmp r0, #0\n"
+        "beq 1f\n"
         "push {r4, lr}\n"
         "bl VegaFirstBattle_ClearInvalidQuickDrawIndicators\n"
         "pop {r4}\n"
         "pop {r0}\n"
         "mov lr, r0\n"
+        "1:\n"
         "push {r4-r7, lr}\n"
         "mov r7, r10\n"
         "mov lr, r11\n"

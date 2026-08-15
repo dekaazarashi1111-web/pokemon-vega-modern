@@ -67,15 +67,23 @@ OWNER_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     )),
     ("species", ("scripts/build_species_port.py",)),
     ("save-layout", ("scripts/build_save_compatibility.py", "overlays/save_migration/")),
-    ("species-surface", ("scripts/build_species_surface.py",)),
+    ("species-surface", (
+        "scripts/build_species_surface.py", "config/species_surface.json",
+        "overlays/species_surface/",
+    )),
     ("engine-slice", ("scripts/build_engine_vertical_slice.py",)),
     ("kanto-import", ("scripts/build_kanto_import.py",)),
     ("content-schema", ("scripts/build_content_schema.py",)),
     ("vermilion-slice", ("scripts/build_vermilion_slice.py",)),
     ("kanto-maps", ("scripts/build_full_kanto_import.py",)),
     ("kanto-progression", ("scripts/build_kanto_progression.py",)),
-    ("content-population", ("scripts/build_content_population.py",)),
-    ("regression", ("scripts/build_regression.py", "tools/mgba_regression_smoke.c")),
+    ("content-population", (
+        "scripts/build_content_population.py", "tools/content/populate_content.py",
+    )),
+    ("regression", (
+        "scripts/build_regression.py", "tools/regression/",
+        "overlays/wild_overlay/", "tools/mgba_regression_smoke.c",
+    )),
     ("trainer-rebalance", ("scripts/build_trainer_rebalance_v4.py",)),
     ("facility-runtime", (
         "scripts/build_facility_runtime.py", "overlays/facility_runtime/",

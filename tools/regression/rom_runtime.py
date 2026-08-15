@@ -37,6 +37,8 @@ RUNTIME_SYMBOLS = Path("generated/runtime/t17_runtime_symbols.json")
 MAP_GROUPS_POINTER_SITE = 0x00054B0C
 MAP_LAYOUTS_POINTER_SITE = 0x00054A54
 WILD_HEADERS_POINTER_SITE = 0x0008257C
+WILD_GENERATION_HOOK_SITE = 0x000826D8
+WILD_GENERATION_HOOK_EXPECTED = bytes.fromhex("f0b5474680b4071c")
 EXPECTED_MAP_GROUPS_ROOT = 0x08316758
 EXPECTED_MAP_LAYOUTS_ROOT = 0x08312C3C
 EXPECTED_WILD_HEADERS_ROOT = 0x08390B34
@@ -79,6 +81,7 @@ CONNECTION_DIRECTIONS = {"down": 1, "up": 2, "left": 3, "right": 4,
                          "dive": 5, "emerge": 6}
 RUNTIME_DESTINATIONS = {"RUNTIME_UNION_ROOM", "RUNTIME_TRADE_CENTER",
                         "RUNTIME_DYNAMIC_WARP"}
+V2_DATA = Path("design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/data")
 
 
 class RuntimeBuildError(ValueError):
@@ -230,6 +233,198 @@ def _compile_qol_b(root: Path, load_address: int) -> tuple[bytes, dict[str, int]
         raw = binary.read_bytes()
         if not raw or len(raw) > 8192:
             raise RuntimeBuildError(f"unexpected QOL-B runtime size: {len(raw)}")
+        return raw, symbols
+
+
+def _tohoku_overlay_area(method: str) -> int | None:
+    if method in {"草むらオーバーレイ", "洞窟・屋内オーバーレイ"}:
+        return 0
+    if method == "水上オーバーレイ":
+        return 1
+    if method == "いわくだき／DexNav":
+        return 2
+    return None
+
+
+def _tohoku_wild_overlay(
+    root: Path,
+) -> tuple[bytes, list[dict[str, Any]], dict[str, Any]]:
+    maps = {
+        row["map_code"]: row for row in _rows(
+            root / V2_DATA / "二地方マップ別_出現レイヤーマスター_96地点.csv"
+        ) if row["region"] == "トーホク"
+    }
+    bindings = {
+        row["logical_location_key"]: row
+        for row in _rows(root / "content/map_bindings.csv")
+        if row["region"] == "TOHOKU" and row["logical_location_key"] != "VEGA_NATIVE"
+    }
+    by_national: dict[int, int] = {}
+    for row in _rows(root / "manifests/species_ids.csv"):
+        national = int(row["canonical_national_dex"])
+        if row["is_official"] == "true" and national > 0:
+            by_national.setdefault(national, int(row["id"]))
+
+    source_rows = [
+        row for row in _rows(
+            root / V2_DATA / "進化系統_二地方配置マスター_全541系統.csv"
+        )
+        if row["integration_mode"] == "外来生態レイヤーへ追加"
+    ]
+    method_counts = Counter(row["tohoku_method"] for row in source_rows)
+    runtime_method_counts: Counter[str] = Counter()
+    runtime_source_locations: set[str] = set()
+    unresolved_runtime_rows: list[dict[str, str]] = []
+    candidates: dict[tuple[str, int], list[tuple[int, str]]] = defaultdict(list)
+    for row in source_rows:
+        code = row["tohoku_map_code"]
+        area = _tohoku_overlay_area(row["tohoku_method"])
+        national = int(row["root_national_no"])
+        if area is None:
+            continue
+        if code not in maps or national not in by_national:
+            unresolved_runtime_rows.append({
+                "logical_location": code,
+                "method": row["tohoku_method"],
+                "root_name": row["root_name"],
+                "root_national_no": row["root_national_no"],
+            })
+            continue
+        runtime_method_counts[row["tohoku_method"]] += 1
+        runtime_source_locations.add(code)
+        value = (by_national[national], row["root_name"])
+        if value not in candidates[(code, area)]:
+            candidates[(code, area)].append(value)
+
+    if unresolved_runtime_rows:
+        raise RuntimeBuildError(
+            "Tohoku runtime overlay has unresolved supported rows: "
+            + json.dumps(unresolved_runtime_rows[:8], ensure_ascii=False)
+        )
+
+    payload = bytearray()
+    metadata: list[dict[str, Any]] = []
+    for (code, area), values in sorted(
+        candidates.items(), key=lambda item: (
+            int(maps[item[0][0]]["order"]), item[0][1], item[0][0]
+        ),
+    ):
+        if code not in bindings:
+            raise RuntimeBuildError(f"Tohoku overlay lacks physical binding: {code}")
+        rates = [int(value) for value in re.findall(r"\d+", maps[code]["story_overlay_rate"])]
+        if not rates:
+            continue
+        rate = sum(rates[:2]) // min(2, len(rates))
+        if not 1 <= rate <= 100 or not 1 <= len(values) <= 12:
+            raise RuntimeBuildError(
+                f"Tohoku overlay bound differs: {code}/{area} rate={rate} count={len(values)}"
+            )
+        binding = bindings[code]
+        group, map_number = int(binding["group_id"]), int(binding["map_id"])
+        threshold = min(255, (rate * 256 + 50) // 100)
+        entry = bytearray((group, map_number, area, threshold, len(values), rate))
+        for species, _ in values:
+            entry += struct.pack("<H", species)
+        entry += bytes(32 - len(entry))
+        payload += entry
+        metadata.append({
+            "logical_location": code, "group": group, "map": map_number,
+            "area": area, "rate_percent": rate, "threshold_256": threshold,
+            "candidate_count": len(values),
+            "species": [species for species, _ in values],
+            "display_names": [name for _, name in values],
+        })
+    if not metadata:
+        raise RuntimeBuildError("Tohoku wild overlay table is empty")
+    first = next((row for row in metadata if row["logical_location"] == "T501" and row["area"] == 0), None)
+    if first is None or (first["group"], first["map"]) != (3, 19) or first["candidate_count"] != 8:
+        raise RuntimeBuildError(f"first-route overlay contract differs: {first}")
+    runtime_source_rows = sum(runtime_method_counts.values())
+    deferred_methods = {
+        method: count
+        for method, count in sorted(method_counts.items())
+        if method not in runtime_method_counts
+    }
+    coverage = {
+        "source_rows": len(source_rows),
+        "source_locations": len({row["tohoku_map_code"] for row in source_rows}),
+        "runtime_source_rows": runtime_source_rows,
+        "runtime_source_locations": len(runtime_source_locations),
+        "runtime_methods": dict(sorted(runtime_method_counts.items())),
+        "deferred_source_rows": len(source_rows) - runtime_source_rows,
+        "deferred_methods": deferred_methods,
+        "conditional_unlocks_bound": False,
+        "scope_note": (
+            "実ROMは通常の草むら・洞窟・水上・いわくだきの追加抽選を接続。"
+            "夜間・大量発生・ずつき・釣り・DexNav専用条件は専用runtime未接続。"
+        ),
+    }
+    return bytes(payload), metadata, coverage
+
+
+def _compile_wild_overlay(root: Path, load_address: int, table_address: int,
+                          table_count: int) -> tuple[bytes, dict[str, int]]:
+    compiler = shutil.which("arm-none-eabi-gcc")
+    objcopy = shutil.which("arm-none-eabi-objcopy")
+    nm = shutil.which("arm-none-eabi-nm")
+    if not compiler or not objcopy or not nm:
+        raise RuntimeBuildError("ARM GNU toolchain is required for wild overlay runtime")
+    source = root / "overlays/wild_overlay/wild_overlay.c"
+    header = root / "overlays/wild_overlay/wild_overlay.h"
+    if not source.is_file() or not header.is_file():
+        raise RuntimeBuildError("wild overlay source/header is missing")
+    with tempfile.TemporaryDirectory(prefix="vega-t17-wild-") as temporary:
+        directory = Path(temporary)
+        linker = directory / "linker.ld"
+        elf = directory / "wild_overlay.elf"
+        binary = directory / "wild_overlay.bin"
+        linker.write_text(
+            "SECTIONS\n{\n"
+            f"  . = 0x{load_address:08X};\n"
+            "  .text : { KEEP(*(.text.VegaWildOverlay_*)) *(.text*) *(.rodata*) }\n"
+            "  /DISCARD/ : { *(.comment*) *(.ARM.attributes*) *(.note*) }\n"
+            "}\n", encoding="ascii",
+        )
+        command = [
+            compiler, "-mthumb", "-mcpu=arm7tdmi", "-Os", "-std=c11",
+            "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
+            f"-DVEGA_WILD_OVERLAY_TABLE_ADDRESS=0x{table_address:08X}u",
+            f"-DVEGA_WILD_OVERLAY_TABLE_COUNT={table_count}u",
+            "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
+            "-fdata-sections", "-ffunction-sections", "-nostdlib",
+            "-Wl,--build-id=none", "-Wl,--gc-sections",
+            "-Wl,-e,VegaWildOverlay_TryGenerateWildMon", f"-Wl,-T,{linker}",
+            f"-I{source.parent}", str(source), "-o", str(elf),
+        ]
+        completed = subprocess.run(command, cwd=root, capture_output=True, text=True, check=False)
+        if completed.returncode:
+            raise RuntimeBuildError("wild overlay ARM link failed: " + completed.stderr.strip())
+        undefined = subprocess.run([nm, "-u", str(elf)], capture_output=True, text=True, check=False)
+        if undefined.returncode or undefined.stdout.strip():
+            raise RuntimeBuildError("wild overlay has undefined symbols: " + undefined.stdout.strip())
+        extracted = subprocess.run(
+            [objcopy, "-O", "binary", str(elf), str(binary)],
+            capture_output=True, text=True, check=False,
+        )
+        if extracted.returncode:
+            raise RuntimeBuildError("wild overlay objcopy failed: " + extracted.stderr.strip())
+        symbols_raw = subprocess.run(
+            [nm, "-n", "--defined-only", str(elf)], capture_output=True,
+            text=True, check=False,
+        )
+        if symbols_raw.returncode:
+            raise RuntimeBuildError("wild overlay nm failed: " + symbols_raw.stderr.strip())
+        symbols: dict[str, int] = {}
+        for line in symbols_raw.stdout.splitlines():
+            fields = line.split()
+            if len(fields) == 3 and fields[2].startswith("VegaWildOverlay_"):
+                symbols[fields[2]] = int(fields[0], 16)
+        required = {"VegaWildOverlay_SelectSpecies", "VegaWildOverlay_TryGenerateWildMon"}
+        if set(symbols) != required:
+            raise RuntimeBuildError(f"wild overlay entrypoints differ: {symbols}")
+        raw = binary.read_bytes()
+        if not raw or len(raw) > 2048:
+            raise RuntimeBuildError(f"unexpected wild overlay runtime size: {len(raw)}")
         return raw, symbols
 
 
@@ -671,6 +866,21 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
 
     blob = _Blob()
     runtime_header_offset = blob.reserve("runtime_header", 64, 16)
+    overlay_table, overlay_rows, overlay_coverage = _tohoku_wild_overlay(root)
+    overlay_table_offset = blob.add("tohoku_wild_overlay_table", overlay_table, 4)
+    overlay_table_address = GBA_ROM_BASE + payload_offset + overlay_table_offset
+    overlay_load = GBA_ROM_BASE + payload_offset + ((len(blob.data) + 3) & ~3)
+    overlay_raw, overlay_symbols = _compile_wild_overlay(
+        root, overlay_load, overlay_table_address, len(overlay_rows),
+    )
+    overlay_runtime_offset = blob.add("tohoku_wild_overlay_runtime", overlay_raw, 4)
+    if overlay_runtime_offset + GBA_ROM_BASE + payload_offset != overlay_load:
+        raise RuntimeBuildError("wild overlay linker address disagrees with blob placement")
+    for name, address in overlay_symbols.items():
+        relative = address - overlay_load
+        if relative < 0 or relative >= len(overlay_raw):
+            raise RuntimeBuildError(f"wild overlay symbol outside binary: {name}")
+        blob.labels[f"wild_overlay::{name}"] = overlay_runtime_offset + relative
     qol_load = GBA_ROM_BASE + payload_offset + ((len(blob.data) + 3) & ~3)
     qol_raw, qol_symbols = _compile_qol_b(root, qol_load)
     qol_offset = blob.add("qol_b_runtime", qol_raw, 4)
@@ -1067,6 +1277,19 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             "original_header_count": original_count,
             "original_headers_sha256": _sha(original_wild),
             "kanto_header_count": len(wild_entries), "rows": wild_entries,
+            "tohoku_overlay": {
+                "table_address": overlay_table_address,
+                "table_size": len(overlay_table),
+                "table_sha256": _sha(overlay_table),
+                "runtime_address": overlay_load,
+                "runtime_size": len(overlay_raw),
+                "runtime_sha256": _sha(overlay_raw),
+                "entrypoints": {name: address | 1 for name, address in sorted(overlay_symbols.items())},
+                "entry_count": len(overlay_rows),
+                "rows": overlay_rows,
+                "coverage": overlay_coverage,
+                "normal_tables_preserved": True,
+            },
         },
         "qol_b": {
             "binary_offset": payload_offset + qol_offset,
@@ -1092,6 +1315,7 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
                          "script_portal", "script_portal_prompt", "script_portal_travel",
                          "script_return", "script_return_travel", "trainer_table"}
             or label.startswith("qol::") or label.startswith("progress::")
+            or label.startswith("wild_overlay::")
         },
     }
     return payload, metadata
@@ -1109,8 +1333,15 @@ def _patch_expected(output: bytearray, site: int, expected: bytes, replacement: 
     output[site:site + len(replacement)] = replacement
     evidence.append({
         "label": label, "site_offset": site, "site_address": GBA_ROM_BASE + site,
+        "size": len(expected),
         "expected_hex": expected.hex(), "replacement_hex": replacement.hex(),
     })
+
+
+def _absolute_thumb_hook(register: int, target: int) -> bytes:
+    if not 0 <= register <= 7 or not target & 1:
+        raise RuntimeBuildError("invalid T17 absolute Thumb hook")
+    return bytes((0, 0x48 | register, register << 3, 0x47)) + struct.pack("<I", target)
 
 
 def _trainer_pointer_sites(stage: bytes) -> list[tuple[int, int]]:
@@ -1165,6 +1396,18 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
         _patch_expected(output, site, struct.pack("<I", expected_pointer),
                         struct.pack("<I", replacement), label, patches)
 
+    wild_target = int(runtime["wild"]["tohoku_overlay"]["entrypoints"]
+                      ["VegaWildOverlay_TryGenerateWildMon"])
+    _patch_expected(
+        output, WILD_GENERATION_HOOK_SITE, WILD_GENERATION_HOOK_EXPECTED,
+        _absolute_thumb_hook(3, wild_target),
+        "Tohoku land/water/rock wild overlay dispatcher", patches,
+    )
+    runtime["wild"]["tohoku_overlay"]["hook"] = {
+        "site": GBA_ROM_BASE + WILD_GENERATION_HOOK_SITE,
+        "target": wild_target, "size": 8,
+    }
+
     trainer_table = int(runtime["symbols"]["trainer_table"])
     trainer_repoints = []
     for site, field_offset in _trainer_pointer_sites(stage):
@@ -1186,7 +1429,10 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
 
     output_raw = bytes(output)
     outside_changed = []
-    allowed = [(payload_offset, end)] + [(row["site_offset"], row["site_offset"] + 4) for row in patches]
+    allowed = [(payload_offset, end)] + [
+        (row["site_offset"], row["site_offset"] + int(row["size"]))
+        for row in patches
+    ]
     for index, (before, after) in enumerate(zip(stage, output_raw)):
         if before == after:
             continue
@@ -1221,6 +1467,10 @@ def build_runtime_outputs(root: Path) -> dict[str, bytes]:
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
             "stage16_unchanged_outside_payload_and_repoints": True,
             "tohoku_wild_headers_byte_preserved": True,
+            "tohoku_wild_overlay_live": (
+                runtime["wild"]["tohoku_overlay"]["entry_count"] > 0
+                and runtime["wild"]["tohoku_overlay"]["rows"][0]["logical_location"] == "T501"
+            ),
             "all_imported_maps_serialized": runtime["maps"]["physical_count"] == 253,
             "all_generated_trainers_bound": runtime["trainers"]["generated_trainers"] == 29,
             "trainer_production_rows_bound": runtime["trainers"]["production_rows_bound"] > 0,

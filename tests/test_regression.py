@@ -50,6 +50,61 @@ class RegressionReleaseCandidateTest(unittest.TestCase):
             self.assertGreaterEqual(party, GBA_ROM_BASE)
             self.assertLess(party, GBA_ROM_BASE + len(self.rom))
 
+    def test_tohoku_wild_overlay_is_live_on_the_first_route(self):
+        overlay = self.meta["wild"]["tohoku_overlay"]
+        coverage = overlay["coverage"]
+        self.assertEqual(coverage["source_rows"], 293)
+        self.assertEqual(coverage["source_locations"], 41)
+        self.assertEqual(coverage["runtime_source_rows"], 153)
+        self.assertEqual(coverage["runtime_source_locations"], 36)
+        self.assertEqual(coverage["deferred_source_rows"], 140)
+        self.assertEqual(coverage["runtime_methods"], {
+            "いわくだき／DexNav": 22,
+            "水上オーバーレイ": 23,
+            "洞窟・屋内オーバーレイ": 31,
+            "草むらオーバーレイ": 77,
+        })
+        self.assertEqual(coverage["deferred_methods"], {
+            "DexNav隠し枠": 7,
+            "DexNav隠し枠／低確率タマゴ": 11,
+            "ずつき／朝昼オーバーレイ": 28,
+            "夜間オーバーレイ": 34,
+            "夜間水上オーバーレイ": 1,
+            "屋内異常遭遇／DexNav": 8,
+            "水上／釣りオーバーレイ": 1,
+            "釣りオーバーレイ": 21,
+            "大量発生": 29,
+        })
+        self.assertFalse(coverage["conditional_unlocks_bound"])
+        self.assertEqual(
+            sum(row["candidate_count"] for row in overlay["rows"]), 153
+        )
+        first = next(
+            row for row in overlay["rows"]
+            if row["logical_location"] == "T501" and row["area"] == 0
+        )
+        self.assertEqual((first["group"], first["map"]), (3, 19))
+        self.assertEqual(first["rate_percent"], 5)
+        self.assertEqual(first["candidate_count"], 8)
+        self.assertIn(950, first["species"])   # ヤヤコマ
+        self.assertIn(1491, first["species"])  # パモ
+        hook = overlay["hook"]
+        site = hook["site"] - GBA_ROM_BASE
+        self.assertEqual(struct.unpack_from("<I", self.rom, site + 4)[0], hook["target"])
+        self.assertTrue(overlay["normal_tables_preserved"])
+
+        mgba = json.loads((ROOT / "build/stages/17_mgba_smoke.json").read_text())
+        self.assertTrue(mgba["checks"]["first_route_wild_overlay"])
+        self.assertTrue(mgba["checks"]["first_route_wild_generation"])
+        self.assertTrue(mgba["checks"]["wild_overlay_isolated"])
+        observed = mgba["first_route_wild_overlay"]
+        self.assertEqual(observed["calls"], 4096)
+        self.assertGreaterEqual(observed["hits"], 120)
+        self.assertLessEqual(observed["hits"], 300)
+        self.assertEqual(observed["candidate_mask"], 0xFF)
+        self.assertGreater(observed["generation_calls"], 0)
+        self.assertIn(observed["generated_species"], first["species"])
+
     def test_kanto_progression_is_physical_and_ordered(self):
         progression = self.meta["progression"]
         self.assertEqual(progression["physical_battle_objects"], 13)
