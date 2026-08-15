@@ -18,6 +18,10 @@
   タマゴをengine予約ID 412へ戻し、衝突していたキャタピーだけを649へ交換した。ポッポ418、
   キャタピー649、グルトン1484、最大ID1620とタマゴ412の前後画像・palette・iconを実ROMで確認し、
   全1620表示名、タマゴを除く1619種の個体生成、追加1209行の全LZ77/icon pointerを検査した。
+- v1.3.8にはSpecies名の旧5文字制限が残る。canonical 11 byte名表には完全な6文字名がある一方、
+  stock UI向け6 byte互換表が先頭5文字へ切っており、直接参照40か所を通るとエースバーン1288が
+  「エースバー」、ムゲンダイナ1363が「ムゲンダイ」になる。現行の6文字名はform込み134行。
+  emulator/saveではなくROM側の既知不具合として`USER-20260815-SPECIES-NAME-LENGTH`へ登録した。
 - Vega固有種の従来図鑑値と追加種の公式全国番号をhybrid表で分離し、既存命令列のレジスタ副作用を
   保持した。施設Trial、レイド5 shield、最初のライバル戦、HM、戦闘ルール、L詳細、技メモリ、
   QOL統合が同じ最終stageでPASSした。v1.3.8最終ROMは32 MiB、SHA-256
@@ -136,6 +140,7 @@
 
 `design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
 
+- USER-20260815-SPECIES-NAME-LENGTH: TODO。旧6 byte名前表を直接読む40経路を安全に11 byte対応し、6文字名134行を全UIで欠けなく表示する。
 - USER-20260814-FIRST-BATTLE-LOOP: DONE。残留Quick Claw/Custap indicatorをhold effect再検証で破棄し、stage 21の実ROM回帰を通した。
 - USER-20260814-HM-FIELD-ACCESS: DONE。Vega既存HM所持を正本にし、手持ち・習得・badgeから分離したstage 22の実ROM境界を通した。
 - USER-20260814-BATTLE-RULES: DONE。現行ownerが単一CFRU payloadであることをsource/hook/固定RNGで確定し、zero-patch stage 23と全mode回帰を通した。

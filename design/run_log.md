@@ -1165,7 +1165,21 @@
 - Task: `USER-20260815-SPECIES-DISPLAY` / 検証済みROM受け渡し
 - Status: DONE
 - Summary: 既存ファイルを上書きせず、v1.3.8最終ROMをWindows Downloadsへ新規配置した。
-- Files changed: Git管理外 `/mnt/c/Users/dekaa/Downloads/vega-modern-kanto-v1.3.8-verified.gba`。
+- Files changed: Git管理外のWindows Downloads向け`vega-modern-kanto-v1.3.8-verified.gba`。
 - Verify: workspace finalとのSHA-256一致 PASS。
 - Commit: `-`（同じ完了コミット）
 - Network: 未使用。
+
+## 2026-08-15T23:01:43+09:00
+
+- Task: `META-20260815-SPECIES-NAME-LENGTH-QUEUE` / 6文字Species名修正を次セッション向けタスクとして登録する
+- Status: DONE
+- Summary:
+  - 実装は行わず、v1.3.8で6文字名が5文字へ切れる根因、40 direct consumer、影響134行、危険な単純pointer差替えをタスク仕様へ固定した。
+  - エースバーン1288とムゲンダイナ1363のcanonical/legacy byte、全UIの移行範囲、buffer境界、フォームアイコン＋Lv.100を含むexact-ROM受入条件を記録した。
+  - `design/tasks_next.md`へ未着手の`USER-20260815-SPECIES-NAME-LENGTH`を追加し、次セッションの最短参照先をcontext mapとcurrent stateへ同期した。
+  - private guardが直前ログのmachine-specific Windows pathを検出したため、成果物名を保持したまま`Windows Downloads`表記へ正規化した。
+- Files changed: `tasks/USER_20260815_SPECIES_NAME_LENGTH.md`、`design/tasks_next.md`、`design/current_state.md`、`design/agent_context_map.md`、`design/run_log.md`、`design/version_log.md`。
+- Verify: `python3 scripts/validate_task_graph.py`、`python3 -m unittest -v tests.test_task_queue`、`python3 scripts/guard_private_files.py`、`git diff --check`を実行してPASS。
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。ローカルのmanifest、生成済み名前表、v1.3.8実ROM観測だけを参照した。

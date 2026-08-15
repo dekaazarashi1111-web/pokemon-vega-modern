@@ -476,3 +476,14 @@
   - stock画像／図鑑関数の副作用を保持し、Facility、Raid、初戦、戦闘UI、技管理、全QOLを維持した。
   - 32 MiB最終ROM、ROMなしBPS、9-member ZIPを生成した。
 - Verify: T09 exact-ROM Species／battle policy、fast T09→final、focused 35 tests、manifest/private guard、BPS往復・release archive検査 PASS。final SHA-256 `51b154c056f5bd83cdff6d9afbe124204d88ab65137d85271480ffce4448a1f2`。
+
+## 2026-08-15T23:01:43+09:00
+
+- Version: `-`（タスク登録のみ。ROM byte変更なし）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `META-20260815-SPECIES-NAME-LENGTH-QUEUE` / 6文字Species名修正タスクを登録する
+- Summary:
+  - 旧5文字互換表による6文字名134行の末尾欠落を既知不具合として記録した。
+  - 全40 consumerの境界監査、全UI移行、exact-ROM表示回帰を未着手タスクの受入条件にした。
+  - 製品ROM、patch、生成stageは変更していない。
+- Verify: task graph、task queue unit test、private guard、diff check PASS。
