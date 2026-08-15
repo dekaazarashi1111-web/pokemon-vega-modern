@@ -1,0 +1,89 @@
+{
+  "fixtures": [
+    {
+      "expected_error_contains": "internal species leaked",
+      "file": "content/acquisition_events.csv",
+      "fixture_key": "NEG_INTERNAL_SPECIES_EVENT",
+      "selector": {
+        "event_key": "EVENT_SPECIAL_NATIONAL_0144"
+      },
+      "updates": {
+        "target_species_keys": "SPECIES_KEY_VEGA_282"
+      }
+    },
+    {
+      "expected_error_contains": "missing required route",
+      "file": "content/species_acquisition_routes.csv",
+      "fixture_key": "NEG_REQUIRED_ROUTE_MISSING",
+      "selector": {
+        "species_key": "SPECIES_KEY_BULBASAUR"
+      },
+      "updates": {
+        "method": "MISSING",
+        "runtime_status": "MISSING"
+      }
+    },
+    {
+      "expected_error_contains": "non-Kanto release host",
+      "file": "content/acquisition_physical_hosts.csv",
+      "fixture_key": "NEG_TOHOKU_READY_WITHOUT_COORDS",
+      "selector": {
+        "host_key": "HOST_TOHOKU_LEGACY_EVENT_AUDIT"
+      },
+      "updates": {
+        "event_kind": "OBJECT_REUSE",
+        "object_count_after": "1",
+        "object_count_before": "1",
+        "object_delta": "0",
+        "physical_map_key": "TOHOKU_UNKNOWN",
+        "status": "READY_TO_SERIALIZE"
+      }
+    },
+    {
+      "expected_error_contains": "unlock cycle",
+      "file": "content/unlocks.csv",
+      "fixture_key": "NEG_UNLOCK_CYCLE",
+      "selector": {
+        "unlock_key": "UNLOCK_NEW_GAME"
+      },
+      "updates": {
+        "operator": "AND",
+        "prerequisite_keys": "UNLOCK_BADGE_1"
+      }
+    },
+    {
+      "expected_error_contains": "raw allocation addresses",
+      "file": "manifests/allocation_requests.csv",
+      "fixture_key": "NEG_RAW_ALLOCATION_ADDRESS",
+      "selector": {
+        "allocation_name": "acquisition_runtime"
+      },
+      "updates": {
+        "address": "0x09ABC000"
+      }
+    },
+    {
+      "expected_error_contains": "wild correction IDs differ",
+      "file": "content/wild_source_corrections.csv",
+      "fixture_key": "NEG_WILD_CORRECTION_TARGET_INTERNAL",
+      "selector": {
+        "correction_key": "WILD_FIX_SCYTHER_01_064_LAND"
+      },
+      "updates": {
+        "to_canonical_id": "282"
+      }
+    },
+    {
+      "expected_error_contains": "save layout differs",
+      "file": "manifests/save_layout.csv",
+      "fixture_key": "NEG_SAVE_LAYOUT_TOTAL_CORRUPT",
+      "selector": {
+        "field_key": "ACQ_SAVE_BLOCK_TOTAL"
+      },
+      "updates": {
+        "size_bytes": "239"
+      }
+    }
+  ],
+  "schema_version": 1
+}

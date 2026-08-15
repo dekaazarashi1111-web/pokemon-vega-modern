@@ -24,7 +24,9 @@ SAVE_PARASITE_IMAGE_OFFSET,0x00001F31,0x00001F34,3,T08_RESEARCH,research_rank_ro
 SAVE_PARASITE_IMAGE_OFFSET,0x00001F34,0x00001F37,3,T08_QOL,text_hatch_exp_share,1,DEFAULT_QOL,LIVE,overlays/save_migration/save_migration.h,INSTANT FAST and badge1-dependent Exp Share
 SAVE_PARASITE_IMAGE_OFFSET,0x00001F37,0x00001F39,2,T08_ENCOUNTER_PROFILE,region_profiles,1,DEFAULT_NORMAL,LIVE,overlays/save_migration/save_migration.h,Invalid values normalize to NORMAL
 SAVE_PARASITE_IMAGE_OFFSET,0x00001F39,0x00001F59,32,T08_TRAVEL,region_heal_return_anchors,1,DEFAULT_INVALID,LIVE,overlays/save_migration/save_migration.h,Invalid anchors resolve through named Tohoku port or Vermilion terminal fallback
-SAVE_PARASITE_IMAGE_OFFSET,0x00001F59,0x0000205B,258,T08_RESERVED,reserved_dex_migration,1,ZERO,LIVE,overlays/save_migration/save_migration.h,Serialized as zero; authoritative Dex bits remain in SaveBlock1
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F59,0x00001F5C,3,T08_RESERVED,reserved_dex_migration_prefix,1,ZERO,LIVE,overlays/save_migration/save_migration.h,ARM7TDMI u32 access alignment pad
+SAVE_PARASITE_IMAGE_OFFSET,0x00001F5C,0x0000204C,240,USER_20260816_ACQUISITION,acquisition_save_block,1,INNER_VERSION_CRC,LIVE,overlays/save_migration/save_migration.h,Versioned aligned VACQ block; old all-zero region migrates from authoritative caught Dex and claims
+SAVE_PARASITE_IMAGE_OFFSET,0x0000204C,0x0000205B,15,T08_RESERVED,reserved_dex_migration,1,ZERO,LIVE,overlays/save_migration/save_migration.h,Unallocated remainder of the former 258-byte Dex migration reservation
 SAVE_PARASITE_IMAGE_OFFSET,0x0000205B,0x0000206B,16,T08_SHARED_CAPTURE,shared_special_capture_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Single capture owner shared by static encounters and Raid
 SAVE_PARASITE_IMAGE_OFFSET,0x0000206B,0x0000207B,16,T08_RAID,raid_reward_claimed_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Separate from capture state
 SAVE_PARASITE_IMAGE_OFFSET,0x0000207B,0x0000208B,16,T08_RAID,raid_retry_pending_125,1,DEFAULT_ZERO,LIVE,overlays/save_migration/save_migration.h,Retry does not grant capture or reward

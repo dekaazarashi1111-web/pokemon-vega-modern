@@ -27,6 +27,11 @@
 #define VEGA_ARCADE_COIN_CAP 9999u
 #define VEGA_ITEM_COUNT 999u
 #define VEGA_ITEM_OBTAINED_BYTES ((VEGA_ITEM_COUNT + 7u) / 8u)
+#define VEGA_ACQUISITION_SAVE_BYTES 240u
+#define VEGA_DEX_MIGRATION_PREFIX_BYTES 3u
+#define VEGA_DEX_MIGRATION_RESERVED_BYTES \
+    (2u * VEGA_DEX_BYTES - VEGA_DEX_MIGRATION_PREFIX_BYTES \
+     - VEGA_ACQUISITION_SAVE_BYTES)
 
 typedef enum VegaSaveStatus {
     VEGA_SAVE_OK = 0,
@@ -165,7 +170,10 @@ typedef struct VEGA_PACKED VegaModernSaveData {
     VegaWarpAnchor heal_anchor[VEGA_REGION_COUNT];
     VegaWarpAnchor return_anchor[VEGA_REGION_COUNT];
 
-    uint8_t reserved_dex_migration[2][VEGA_DEX_BYTES];
+    /* v1の後続offsetを維持し、3 byte padで取得台帳のu32 ABIを整列する。 */
+    uint8_t reserved_dex_migration_prefix[VEGA_DEX_MIGRATION_PREFIX_BYTES];
+    uint8_t acquisition_save_block[VEGA_ACQUISITION_SAVE_BYTES];
+    uint8_t reserved_dex_migration[VEGA_DEX_MIGRATION_RESERVED_BYTES];
     uint8_t shared_special_capture[VEGA_SPECIAL_CAPTURE_BYTES];
     uint8_t raid_reward_claimed[VEGA_SPECIAL_CAPTURE_BYTES];
     uint8_t raid_retry_pending[VEGA_SPECIAL_CAPTURE_BYTES];

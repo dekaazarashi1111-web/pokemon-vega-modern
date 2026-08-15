@@ -1,4 +1,5 @@
 #include "save_migration.h"
+#include "acquisition_save_migration.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,12 +77,28 @@ static int RunSaveSuite(void)
     memset(&flash, 0, sizeof(flash));
     VegaSaveInitNew(&save, 0);
     CHECK(VegaSaveValidate(&save, sizeof(save)) == VEGA_SAVE_OK);
+    CHECK(!VegaAcqSaveValidate(
+        (const VegaAcqSaveBlock *)(const void *)save.acquisition_save_block));
     CHECK(save.text_speed == VEGA_TEXT_INSTANT);
     CHECK(save.hatch_mode == VEGA_HATCH_FAST);
     CHECK(save.exp_share_enabled == 0);
     CHECK(save.current_region == VEGA_REGION_TOHOKU);
     CHECK(save.encounter_profile[0] == VEGA_PROFILE_NORMAL);
     CHECK(save.encounter_profile[1] == VEGA_PROFILE_NORMAL);
+
+    VegaAcqSaveInitialize(
+        (VegaAcqSaveBlock *)(void *)save.acquisition_save_block);
+    CHECK(VegaAcqSaveValidate(
+        (const VegaAcqSaveBlock *)(const void *)save.acquisition_save_block));
+    VegaSaveFinalize(&save);
+    CHECK(VegaSaveValidate(&save, sizeof(save)) == VEGA_SAVE_OK);
+    save.acquisition_save_block[32] ^= 1u;
+    VegaSaveFinalize(&save);
+    CHECK(VegaSaveValidate(&save, sizeof(save)) == VEGA_SAVE_RESERVED_NONZERO);
+    VegaAcqSaveFinalize(
+        (VegaAcqSaveBlock *)(void *)save.acquisition_save_block);
+    VegaSaveFinalize(&save);
+    CHECK(VegaSaveValidate(&save, sizeof(save)) == VEGA_SAVE_OK);
     legacy.item_obtained_flags[103] = 0x40u;
 
     memcpy(badge_before, badge_bytes, sizeof(badge_bytes));

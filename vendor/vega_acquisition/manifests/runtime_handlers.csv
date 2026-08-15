@@ -1,0 +1,8 @@
+handler_key,mode,entrypoint,completion_entrypoint,atomicity,storage_policy,retry_policy,source_file,status
+ACQ_RUNTIME_CAPTURE,CAPTURE,VegaAcq_Begin,VegaAcq_ResolveBattle,ledger only on caught outcome,normal capture/box,defeat/escape/reset rollback,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_GIFT,GIFT,VegaAcq_Begin,internal synchronous adapter result,delivery then ledger; adapter must rollback delivery if persist fails,party→PC,full/cancel/reset non-consuming,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_EGG,EGG,VegaAcq_Begin,internal synchronous adapter result,egg queue commit and ledger in transaction,party→PC→queue,full/cancel/reset non-consuming,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_FOSSIL,FOSSIL,VegaAcq_Begin,internal synchronous adapter result,consume source item only after successful delivery and ledger persist,party→PC,full/persist error restores item,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_EVOLUTION_SUPPORT,EVOLUTION_SUPPORT,VegaAcq_Begin,engine adapter,service result persisted by evolution engine,party selected,repeatable,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_TRADE_EMULATOR,TRADE_EMULATOR,VegaAcq_Begin,engine adapter,validate species/item twice; consume only on successful evolution,party selected,repeatable,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE
+ACQ_RUNTIME_SERVICE,SERVICE,VegaAcq_Begin,engine adapter,setting write only after selection,none,repeatable,overlays/acquisition_runtime/acquisition_runtime.c,READY_TO_INTEGRATE

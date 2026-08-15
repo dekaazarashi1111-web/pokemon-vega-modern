@@ -4,6 +4,25 @@
 
 - なし。
 
+## 1.4.0 — 2026-08-16
+
+- コレクション対象1,206種と到達性に必要な10フォームを監査し、既存の野生・進化経路と
+  不足分201件の取得イベントを統合。T17で省略されたclean FireRed由来object 24件を
+  19マップへ元の座標・object予算内で復元し、新規設計objectは追加していない。
+- 固定捕獲、ギフト、タマゴ、化石復元、現代進化支援、交換エミュレータ、サービスの7方式を
+  共通transaction runtimeへ接続。解禁、5件ページmenu、捕獲後だけのclaim、重複防止、
+  party→PC、全収納満杯、道具消費rollback、reset復旧を実装した。
+- 既存2 KiB save台帳内へ、4 byte整列した240 byteの取得台帳を後続offset不変で配置。
+  v1.3.9以前のzero領域を一度だけ移行し、outer/inner CRCとsector 31直接保存を検証した。
+  手持ち・PC・図鑑は通常save、取得台帳はsector 31へ確定し、双方の再読込も確認した。
+- 通信進化30経路をItem 395「リンクケーブル」で単独ROM進化可能にし、必要持ち物を保持。
+  化石16経路と採掘補助を追加し、内部Species 282だった野生2slotをストライク255へ補正した。
+- 2,035 exact case、24 host graph、allocator overlap 0、clean ROMからのBPS往復に加え、
+  libmGBA独立2 processで7方式、実flash再読込、通常save、タマゴ孵化時登録、party/PC満杯、
+  固定進化・野生byteを確認した。
+- 最終ROM SHA-256:
+  `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`。
+
 ## 1.3.9 — 2026-08-16
 
 - stock UI向けSpecies名互換表が各行を5文字へ切っていた問題を修正。canonical 1,621行の

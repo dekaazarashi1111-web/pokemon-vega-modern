@@ -1,0 +1,159 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/species_acquisition_routes.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "box_full_policy": {
+      "type": "string"
+    },
+    "canonical_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "collection_key": {
+      "type": "string"
+    },
+    "defeat_policy": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "elevation": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "fallback_route_key": {
+      "type": "string"
+    },
+    "group_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "host_key": {
+      "type": "string"
+    },
+    "host_kind": {
+      "type": "string"
+    },
+    "host_local_id_or_bg_index": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "implementation_priority": {
+      "type": "string"
+    },
+    "level_or_egg": {
+      "type": "string"
+    },
+    "logical_location_key": {
+      "type": "string"
+    },
+    "map_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "method_detail": {
+      "type": "string"
+    },
+    "missable_policy": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "party_full_policy": {
+      "type": "string"
+    },
+    "physical_map_key": {
+      "type": "string"
+    },
+    "physical_status": {
+      "type": "string"
+    },
+    "prerequisite_species_key": {
+      "type": "string"
+    },
+    "primary_route_key": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "repeatability": {
+      "type": "string"
+    },
+    "rtc_fallback": {
+      "type": "string"
+    },
+    "runtime_status": {
+      "type": "string"
+    },
+    "shared_capture_key": {
+      "type": "string"
+    },
+    "species_key": {
+      "type": "string"
+    },
+    "target_status": {
+      "type": "string"
+    },
+    "unlock_key": {
+      "type": "string"
+    },
+    "x": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "y": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "collection_key",
+    "species_key",
+    "canonical_id",
+    "display_name",
+    "target_status",
+    "primary_route_key",
+    "fallback_route_key",
+    "region",
+    "logical_location_key",
+    "physical_map_key",
+    "group_id",
+    "map_id",
+    "host_kind",
+    "host_key",
+    "host_local_id_or_bg_index",
+    "x",
+    "y",
+    "elevation",
+    "method",
+    "method_detail",
+    "prerequisite_species_key",
+    "unlock_key",
+    "level_or_egg",
+    "repeatability",
+    "missable_policy",
+    "defeat_policy",
+    "party_full_policy",
+    "box_full_policy",
+    "rtc_fallback",
+    "shared_capture_key",
+    "runtime_status",
+    "physical_status",
+    "evidence",
+    "implementation_priority",
+    "notes"
+  ],
+  "title": "species_acquisition_routes",
+  "type": "object"
+}

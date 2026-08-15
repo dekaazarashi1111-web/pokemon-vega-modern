@@ -9,6 +9,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "overlays" / "save_migration" / "save_migration.c"
+ACQUISITION_SOURCE = (
+    ROOT / "vendor" / "vega_acquisition" / "overlays" / "acquisition_runtime"
+    / "acquisition_save_migration.c"
+)
+ACQUISITION_INCLUDE = ACQUISITION_SOURCE.parent
+ACQUISITION_GENERATED = (
+    ROOT / "vendor" / "vega_acquisition" / "generated"
+)
 FIXTURE = ROOT / "tests" / "fixtures" / "save_migration_fixture.c"
 SAVE_LAYOUT = ROOT / "config" / "save_layout.csv"
 
@@ -26,7 +34,12 @@ class FacilitySaveTests(unittest.TestCase):
                     "-Werror",
                     "-I",
                     str(SOURCE.parent),
+                    "-I",
+                    str(ACQUISITION_INCLUDE),
                     str(SOURCE),
+                    str(ACQUISITION_SOURCE),
+                    str(ACQUISITION_GENERATED / "acquisition_event_defs.c"),
+                    str(ACQUISITION_GENERATED / "acquisition_collection_defs.c"),
                     str(FIXTURE),
                     "-o",
                     str(executable),

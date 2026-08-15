@@ -4,6 +4,10 @@
 
 _Static_assert(sizeof(VegaWarpAnchor) == 8, "warp anchor ABI changed");
 _Static_assert(sizeof(VegaModernSaveData) == VEGA_SAVE_LEDGER_SIZE, "save ledger must fill its allocation");
+_Static_assert(VEGA_DEX_MIGRATION_RESERVED_BYTES == 15u,
+               "acquisition block must preserve the v1 save offsets");
+_Static_assert(offsetof(VegaModernSaveData, acquisition_save_block) % 4u == 0u,
+               "acquisition block must be aligned for ARM7TDMI u32 access");
 _Static_assert(offsetof(VegaModernSaveData, factory) + offsetof(VegaFactoryState, party_snapshot)
                    + VEGA_PARTY_CAPACITY * VEGA_PARTY_MON_SIZE
                <= VEGA_SAVE_LEDGER_SIZE,
@@ -39,6 +43,51 @@ static uint8_t BytesAreZero(const uint8_t *bytes, size_t size)
             return 0;
     }
     return 1;
+}
+
+#define VEGA_ACQUISITION_SAVE_MAGIC 0x51434156u /* "VACQ" */
+#define VEGA_ACQUISITION_SAVE_VERSION 1u
+#define VEGA_ACQUISITION_CRC_OFFSET 8u
+
+static uint32_t ReadU32(const uint8_t *bytes)
+{
+    return (uint32_t)bytes[0]
+        | ((uint32_t)bytes[1] << 8)
+        | ((uint32_t)bytes[2] << 16)
+        | ((uint32_t)bytes[3] << 24);
+}
+
+static uint16_t ReadU16(const uint8_t *bytes)
+{
+    return (uint16_t)((uint16_t)bytes[0] | ((uint16_t)bytes[1] << 8));
+}
+
+static uint32_t AcquisitionChecksum(const uint8_t *bytes)
+{
+    uint32_t crc = 0xFFFFFFFFu;
+    size_t index;
+    uint8_t bit;
+    for (index = 0; index < VEGA_ACQUISITION_SAVE_BYTES; ++index) {
+        uint8_t value = (index >= VEGA_ACQUISITION_CRC_OFFSET
+                         && index < VEGA_ACQUISITION_CRC_OFFSET + 4u)
+            ? 0u : bytes[index];
+        crc ^= value;
+        for (bit = 0u; bit < 8u; ++bit)
+            crc = (crc >> 1) ^ (0xEDB88320u & (0u - (crc & 1u)));
+    }
+    return ~crc;
+}
+
+static uint8_t AcquisitionBlockIsValid(const uint8_t *bytes)
+{
+    if (BytesAreZero(bytes, VEGA_ACQUISITION_SAVE_BYTES))
+        return 1u; /* v1.3.9以前のsaveは初回アクセス時に移行する。 */
+    return (uint8_t)(
+        ReadU32(bytes) == VEGA_ACQUISITION_SAVE_MAGIC
+        && ReadU16(bytes + 4u) == VEGA_ACQUISITION_SAVE_VERSION
+        && ReadU16(bytes + 6u) == VEGA_ACQUISITION_SAVE_BYTES
+        && ReadU32(bytes + VEGA_ACQUISITION_CRC_OFFSET)
+            == AcquisitionChecksum(bytes));
 }
 
 uint32_t VegaSaveChecksum(const VegaModernSaveData *data)
@@ -124,7 +173,11 @@ VegaSaveStatus VegaSaveValidate(const VegaModernSaveData *data, size_t available
         return VEGA_SAVE_BAD_SIZE;
     if (data->checksum != VegaSaveChecksum(data))
         return VEGA_SAVE_BAD_CHECKSUM;
-    if (!BytesAreZero(&data->reserved_dex_migration[0][0], sizeof(data->reserved_dex_migration))
+    if (!BytesAreZero(data->reserved_dex_migration_prefix,
+                      sizeof(data->reserved_dex_migration_prefix))
+        || !AcquisitionBlockIsValid(data->acquisition_save_block)
+        || !BytesAreZero(data->reserved_dex_migration,
+                         sizeof(data->reserved_dex_migration))
         || !BytesAreZero(data->reserved, sizeof(data->reserved)))
         return VEGA_SAVE_RESERVED_NONZERO;
     return VEGA_SAVE_OK;

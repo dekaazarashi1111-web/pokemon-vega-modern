@@ -1,0 +1,37 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/unlocks.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "evidence": {
+      "type": "string"
+    },
+    "operator": {
+      "enum": [
+        "ROOT",
+        "AND",
+        "OR"
+      ],
+      "type": "string"
+    },
+    "prerequisite_keys": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "unlock_key": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "unlock_key",
+    "operator",
+    "prerequisite_keys",
+    "evidence",
+    "status"
+  ],
+  "title": "unlocks",
+  "type": "object"
+}

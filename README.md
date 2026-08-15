@@ -86,7 +86,9 @@ make move-memory # 無料の技思い出し・技忘れ・タマゴ技管理をs
 make move-memory-check # 候補境界・解禁・form連動・入口scriptを再照合
 make qol-release-smoke # 同じstage 25でKanto/Factoryと全QOLを横断実ROM再検証
 make qol-release-smoke-check # hash一致済みの統合fixtureを副作用なしで再照合
-make final       # clean入力からv1.3.9最終ROMとbuild metadataを生成
+make acquisition-events # 201件の取得イベントと共通runtimeをstage 26へ結合
+make acquisition-events-check # 取得経路・host・save・実ROMfixtureを副作用なしで再照合
+make final       # clean入力からv1.4.0最終ROMとbuild metadataを生成
 make release-patch # ROMを含まないBPS＋文書の決定論release archiveを生成
 make verify-release # BPS完全往復とarchive禁止物を副作用なしで再照合
 make release-fresh-check # clean Git worktree＋私有入力からfinal/BPS/ZIPをbyte再現
@@ -115,7 +117,7 @@ T10はstage 09上の追加オコリザルと追加Move/Ability/Item/進化をlib
 
 T17はstage 16から253 Kanto map、180 layout、51 tileset、133 Kanto wild header、29 trainer/174 party row、8 gym＋Leagueの実eventを中央allocatorへ配置します。自然なnew gameからクチバ描画・移動・Vega帰還、QOL-B Thumb実行、trainer pointer graphを同一32 MiB ROMでlibmGBA 2 process検証し、広い状態空間は固定fixtureへ分離します。
 
-T18 release導線は `make final` でT03〜T17と追加stage 19〜25をclean入力から再構築可能にし、clean FireRed日本版Rev.0へ
+T18 release導線は `make final` でT03〜T17と追加stage 19〜26をclean入力から再構築可能にし、clean FireRed日本版Rev.0へ
 直接適用するBPSだけを配布します。patchの再適用結果、32 MiB最終hash、固定ZIP byte、
 ROM/save/元patch/private path不在、source pin、QOL/Factory/AI/save説明を機械検証します。
 遊び方と適用方法は `docs/RELEASE_README_JA.md`、save互換性は
@@ -162,11 +164,17 @@ canonical名、clean ROMからのBPS往復を検証し、Factory ROMのbyteは�
 戦闘/施設/Raid、一時form専用技を拒否する。削除はCFRU `SetMonMoveSlot` 経路を通し、
 ケルディオのform連動とPP Up段階のslot移動を実ROMで検証する。
 
-v1.3.9統合gateはstage 20→25のhash chainと全allocator overlap 0を確認したうえで、同じ最終
-stage 25を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
+追加stage 26は、コレクション対象1,206種と有効化に必要な10フォームの不足経路を201件の
+取得イベントへまとめ、clean FireRed由来の既存24 objectを19マップへ復元して結合する。
+固定捕獲、ギフト、タマゴ、化石、進化支援、交換エミュレータ、サービスを共通transactionで扱い、
+捕獲後だけの確定、孵化時の図鑑登録、party/PC満杯、道具rollback、通常saveとsector 31台帳の
+再読込を実ROMで検証する。通信進化30経路はItem 395「リンクケーブル」で単独ROM進化できる。
+
+v1.4.0統合gateはstage 20→26のhash chainと全allocator overlap 0を確認したうえで、同じ最終
+stage 26を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／
-忘却／form連動を再観測する。stage 20以後の新規serialized fieldは0で、HMはバッグから導出し、
-技管理modeはvolatile RAMだけに置く。
+忘却／form連動、全7取得方式を再観測する。stage 25までの新規serialized fieldは0で、
+stage 26だけが既存2 KiB台帳の予約領域へ240 byte取得blockを割り当てる。
 
 v1.3.9のトーホク外来生態runtimeは、設計293行を草むら・洞窟・水上・いわくだき・釣り・
 朝昼・夜・日替わり大量発生・隠れ遭遇へすべて接続する。最初の草むらはmap `3/19`へ

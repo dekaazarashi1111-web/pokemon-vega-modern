@@ -1,0 +1,92 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/collectible_species_registry.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "base_or_form": {
+      "type": "string"
+    },
+    "canonical_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "collection_key": {
+      "type": "string"
+    },
+    "completion_weight": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "current_audit_class": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "string"
+    },
+    "exclusion_reason": {
+      "type": "string"
+    },
+    "family_key": {
+      "type": "string"
+    },
+    "form_key": {
+      "type": "string"
+    },
+    "is_official": {
+      "type": "string"
+    },
+    "national_no": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "route_required": {
+      "enum": [
+        "yes",
+        "no"
+      ],
+      "type": "string"
+    },
+    "source_classification": {
+      "type": "string"
+    },
+    "species_key": {
+      "type": "string"
+    },
+    "target_status": {
+      "type": "string"
+    },
+    "vega_internal_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "collection_key",
+    "species_key",
+    "canonical_id",
+    "display_name",
+    "national_no",
+    "vega_internal_id",
+    "base_or_form",
+    "target_status",
+    "completion_weight",
+    "route_required",
+    "is_official",
+    "family_key",
+    "form_key",
+    "source_classification",
+    "current_audit_class",
+    "exclusion_reason",
+    "evidence",
+    "notes"
+  ],
+  "title": "collectible_species_registry",
+  "type": "object"
+}

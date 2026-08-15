@@ -1,0 +1,85 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/wild_source_corrections.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "correction_key": {
+      "type": "string"
+    },
+    "encounter_kind": {
+      "enum": [
+        "LAND",
+        "WATER",
+        "ROCK_SMASH",
+        "FISHING"
+      ],
+      "type": "string"
+    },
+    "from_canonical_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "from_species_key": {
+      "type": "string"
+    },
+    "map_group": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "map_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "patch_policy": {
+      "type": "string"
+    },
+    "postcondition": {
+      "type": "string"
+    },
+    "serializer_owner": {
+      "type": "string"
+    },
+    "source_evidence": {
+      "type": "string"
+    },
+    "source_level_range": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "REQUIRED_BEFORE_RELEASE"
+      ],
+      "type": "string"
+    },
+    "to_canonical_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "to_species_key": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "encounter_kind",
+    "from_species_key",
+    "from_canonical_id",
+    "to_species_key",
+    "to_canonical_id",
+    "patch_policy",
+    "postcondition",
+    "status",
+    "serializer_owner",
+    "notes",
+    "correction_key",
+    "map_group",
+    "map_id",
+    "source_level_range",
+    "source_evidence"
+  ],
+  "title": "wild_source_corrections",
+  "type": "object"
+}

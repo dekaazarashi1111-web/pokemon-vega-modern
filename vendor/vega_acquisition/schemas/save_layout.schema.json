@@ -1,0 +1,55 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/save_layout.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "alignment": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "allocator_contract": {
+      "type": "string"
+    },
+    "field_key": {
+      "type": "string"
+    },
+    "migration": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "offset_bytes": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "persistence": {
+      "type": "string"
+    },
+    "size_bytes": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "field_key",
+    "offset_bytes",
+    "size_bytes",
+    "alignment",
+    "persistence",
+    "migration",
+    "owner",
+    "allocator_contract",
+    "status",
+    "notes"
+  ],
+  "title": "save_layout",
+  "type": "object"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cases": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "case_key": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "observed_result": {
+            "type": "string"
+          },
+          "save_after_sha256": {
+            "type": "string"
+          },
+          "save_before_sha256": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL"
+            ]
+          }
+        },
+        "required": [
+          "case_key",
+          "status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "rom_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "rom_sha256",
+    "cases"
+  ],
+  "title": "mGBA acquisition acceptance result",
+  "type": "object"
+}

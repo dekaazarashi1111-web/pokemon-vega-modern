@@ -1,0 +1,95 @@
+{
+  "authored_output_scan": {
+    "bad_utf8": [],
+    "forbidden_tbd": [],
+    "internal_event_leaks": [],
+    "raw_allocation_addresses": []
+  },
+  "components": [
+    {
+      "component": "target definition and 1621-row registry",
+      "evidence": "validator count/classification assertions and host C test package run",
+      "status": "IMPLEMENTED_AND_TESTED"
+    },
+    {
+      "component": "1216-route design and new-game graph",
+      "evidence": "static graph reaches 1206 completion species plus 10 enabling forms",
+      "status": "IMPLEMENTED_AND_TESTED_STATICALLY"
+    },
+    {
+      "component": "201 event catalog/dialogue/FSM",
+      "evidence": "all rows complete; 9 dialogue and 9 FSM rows per event; C data generated",
+      "status": "READY_TO_INTEGRATE"
+    },
+    {
+      "component": "common capture/gift/egg/fossil/trade runtime",
+      "evidence": "native C test covers PREPARED/STAGED/COMMIT persistence failures, capture retry, bounded claims, storage full, migration, and negative fixtures",
+      "status": "IMPLEMENTED_AND_HOST_TESTED"
+    },
+    {
+      "component": "Kanto host serializer",
+      "evidence": "24 exact JSON-backed existing object hosts; no object additions",
+      "status": "READY_TO_INTEGRATE"
+    },
+    {
+      "component": "internal wild Species sanitizer",
+      "evidence": "2 exact map-scoped corrections; positive patch and uncovered-ID negative fixture pass; exact ROM still required",
+      "status": "IMPLEMENTED_AND_SYNTHETICALLY_TESTED"
+    },
+    {
+      "component": "repository-specific engine adapter",
+      "evidence": "contract and fail-closed implementation included; exact ABI symbols unavailable",
+      "status": "DESIGN_COMPLETE_PHYSICAL_AUDIT_REQUIRED"
+    },
+    {
+      "component": "save/flag/var allocation",
+      "evidence": "relative layout and named requests complete; allocator result absent",
+      "status": "DESIGN_COMPLETE_PHYSICAL_AUDIT_REQUIRED"
+    },
+    {
+      "component": "Tohoku legacy event binding",
+      "evidence": "14-row audit/runbook and Kanto fallback complete; coordinates and entry scripts deliberately unbound",
+      "status": "DESIGN_COMPLETE_PHYSICAL_AUDIT_REQUIRED"
+    },
+    {
+      "component": "exact-ROM/mGBA acceptance",
+      "evidence": "runner and 2035 all-event cases included; ROM not supplied",
+      "status": "DESIGN_COMPLETE_PHYSICAL_AUDIT_REQUIRED"
+    },
+    {
+      "component": "patched ROM",
+      "evidence": "ROM absent; source package regenerates from a pinned clean stage",
+      "status": "NOT_PRODUCED_BY_DESIGN"
+    }
+  ],
+  "overall_status": "READY_TO_INTEGRATE; EXACT_ROM_AND_ENGINE_ABI_AUDIT_REQUIRED",
+  "rom_in_delivery": false,
+  "schema_version": 1,
+  "source_release": "v1.3.7",
+  "source_snapshot_commit": "e0351f3deacc52816636e343ba748cb35d54e6bd",
+  "static_validation": {
+    "completion_target": 1206,
+    "current_audit_rows": 1216,
+    "enabling_forms": 10,
+    "event_integration_or_route_audit": 184,
+    "events": 201,
+    "evolution_edges": 553,
+    "exact_acceptance_cases": 2035,
+    "exact_edge_trigger_audit": 451,
+    "fossils": 16,
+    "reachable_required_or_enabling": 1216,
+    "registry_rows": 1621,
+    "release_events": 201,
+    "release_hosts": 24,
+    "save_block_bytes": 240,
+    "specials": 125,
+    "starters": 24,
+    "status": "PASS",
+    "strict_direct_ecology_only": 14,
+    "strict_direct_rom_wild": 567,
+    "trade_edges": 30,
+    "vertical_slices": 7,
+    "wild_source_corrections": 2
+  },
+  "tests_summary": "PASS"
+}

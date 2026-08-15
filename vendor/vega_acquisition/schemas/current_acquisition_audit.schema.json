@@ -1,0 +1,82 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/current_acquisition_audit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "canonical_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "completion_weight": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "current_audit_class": {
+      "type": "string"
+    },
+    "current_evidence": {
+      "type": "string"
+    },
+    "current_method": {
+      "type": "string"
+    },
+    "current_physical_status": {
+      "type": "string"
+    },
+    "current_runtime_status": {
+      "type": "string"
+    },
+    "designed_evidence": {
+      "type": "string"
+    },
+    "designed_method": {
+      "type": "string"
+    },
+    "designed_physical_status": {
+      "type": "string"
+    },
+    "designed_primary_route_key": {
+      "type": "string"
+    },
+    "designed_runtime_status": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "proof_strength": {
+      "type": "string"
+    },
+    "remaining_exact_rom_gate": {
+      "type": "string"
+    },
+    "species_key": {
+      "type": "string"
+    },
+    "target_status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "species_key",
+    "canonical_id",
+    "display_name",
+    "target_status",
+    "completion_weight",
+    "current_audit_class",
+    "proof_strength",
+    "current_method",
+    "current_runtime_status",
+    "current_physical_status",
+    "current_evidence",
+    "designed_primary_route_key",
+    "designed_method",
+    "designed_runtime_status",
+    "designed_physical_status",
+    "designed_evidence",
+    "remaining_exact_rom_gate"
+  ],
+  "title": "current_acquisition_audit",
+  "type": "object"
+}

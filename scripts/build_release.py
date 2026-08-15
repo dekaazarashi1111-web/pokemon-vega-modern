@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, package, and verify the reproducible v1.3.9 QOL BPS release."""
+"""Build, package, and verify the reproducible v1.4.0 acquisition BPS release."""
 
 from __future__ import annotations
 
@@ -26,17 +26,19 @@ from tools.release.bps import BpsError, apply_bps, create_bps  # noqa: E402
 from scripts import build_qol_release  # noqa: E402
 
 
-TASK = "USER-20260815-SPECIES-NAME-LENGTH"
-VERSION = "1.3.9"
+TASK = "USER-20260816-ACQUISITION-EVENTS"
+VERSION = "1.4.0"
 TAG = f"v{VERSION}"
 SLUG = f"vega-modern-kanto-v{VERSION}"
-STAGE = Path("build/stages/25_move_memory.gba")
-STAGE_META = Path("build/stages/25_move_memory.json")
+STAGE = Path("build/stages/26_acquisition_events.gba")
+STAGE_META = Path("build/stages/26_acquisition_events.json")
+MOVE_STAGE_META = Path("build/stages/25_move_memory.json")
 FACILITY_STAGE_META = Path("build/stages/20_facility_runtime.json")
 TRAINER_STAGE_META = Path("build/stages/19_trainer_rebalance.json")
 BASE_STAGE_META = Path("build/stages/17_regression.json")
 QOL_FIXTURE = Path("build/stages/25_mgba_qol_release.json")
-STAGE_TASK = "USER-20260814-MOVE-MEMORY"
+ACQUISITION_FIXTURE = Path("build/stages/26_mgba_acquisition.json")
+STAGE_TASK = "USER-20260816-ACQUISITION-EVENTS"
 FINAL_ROM = Path(f"build/final/{SLUG}.gba")
 FINAL_META = Path(f"build/final/{SLUG}.json")
 RELEASE_ROOT = Path("dist/release")
@@ -85,6 +87,7 @@ FULL_BUILD_COMMANDS: tuple[tuple[str, ...], ...] = (
     ("scripts/build_battle_ui.py", "build"),
     ("scripts/build_move_memory.py", "build"),
     ("scripts/build_qol_release.py", "build"),
+    ("scripts/build_acquisition_events.py", "build"),
 )
 
 FORBIDDEN_SUFFIXES = {
@@ -184,13 +187,33 @@ def _full_build() -> None:
 def _stage_is_current() -> bool:
     if not (ROOT / STAGE).is_file() or not (ROOT / STAGE_META).is_file():
         return False
-    for script in ("scripts/build_move_memory.py", "scripts/build_qol_release.py"):
+    for script in ("scripts/build_acquisition_events.py",):
         completed = subprocess.run(
             (sys.executable, script, "check"), cwd=ROOT, check=False,
         )
         if completed.returncode:
             return False
     return True
+
+
+def _validate_qol_fixture(stage25_sha256: str) -> dict[str, Any]:
+    value = _read_json(ROOT / QOL_FIXTURE)
+    components = value.get("components", {})
+    if (
+        value.get("status") != "PASS"
+        or value.get("fixture") != "qol_release_final_stage_v1"
+        or value.get("rom_sha256") != stage25_sha256
+        or value.get("stage_chain", {}).get("final_sha256") != stage25_sha256
+        or len(components) != 8
+        or not all(
+            component.get("status") == "PASS"
+            and component.get("rom_sha256") == stage25_sha256
+            for component in components.values()
+        )
+        or not all(value.get("continuous_save_contract", {}).values())
+    ):
+        raise ReleaseError("published stage 25 QOL fixture identity differs")
+    return value
 
 
 def _validate_header(rom: bytes) -> dict[str, object]:
@@ -218,36 +241,59 @@ def _validate_stage() -> tuple[bytes, dict[str, Any]]:
     stage_path = ROOT / STAGE
     meta_path = ROOT / STAGE_META
     if not stage_path.is_file() or not meta_path.is_file():
-        raise ReleaseError("stage 25 move-memory ROM/metadata is missing")
+        raise ReleaseError("stage 26 acquisition ROM/metadata is missing")
     stage = stage_path.read_bytes()
     metadata = _read_json(meta_path)
     output = metadata.get("output")
     invariants = metadata.get("invariants")
     if metadata.get("task") != STAGE_TASK or metadata.get("status") != "PASS":
-        raise ReleaseError("stage 25 move-memory metadata does not report PASS")
+        raise ReleaseError("stage 26 acquisition metadata does not report PASS")
     if not isinstance(output, Mapping) or output.get("size") != len(stage) or output.get("sha256") != _sha(stage):
-        raise ReleaseError("stage 25 identity differs from move-memory metadata")
+        raise ReleaseError("stage 26 identity differs from acquisition metadata")
     if not isinstance(invariants, Mapping) or not invariants or not all(value is True for value in invariants.values()):
-        raise ReleaseError("stage 25 release invariants are incomplete")
+        raise ReleaseError("stage 26 release invariants are incomplete")
     allocation = metadata.get("allocation")
     if not isinstance(allocation, Mapping) or allocation.get("overlap_count") != 0:
-        raise ReleaseError("stage 25 allocation overlap is not zero")
-    acceptance = metadata.get("acceptance")
-    if not isinstance(acceptance, Mapping) or not acceptance or not all(
-        value is True for value in acceptance.values()
-    ):
-        raise ReleaseError("move-memory acceptance is incomplete")
+        raise ReleaseError("stage 26 allocation overlap is not zero")
     if metadata.get("ram_audit", {}).get("flash_serialized") is not False:
-        raise ReleaseError("move-memory mode must remain outside serialized save data")
-    if metadata.get("exact_rom_fixture", {}).get("status") != "PASS":
-        raise ReleaseError("move-memory exact-ROM fixture is not PASS")
+        raise ReleaseError("acquisition menu state must remain outside serialized save data")
+    exact = metadata.get("exact_case_matrix", {})
+    package = metadata.get("package_validation", {})
+    exact_rom = metadata.get("exact_rom_fixture", {})
+    if exact.get("status") != "PASS" or exact.get("case_count") != 2035:
+        raise ReleaseError("acquisition 2,035-case matrix is not PASS")
+    if (
+        package.get("status") != "PASS"
+        or package.get("events") != 201
+        or package.get("release_hosts") != 24
+        or package.get("reachable_required_or_enabling") != 1216
+    ):
+        raise ReleaseError("acquisition content/reachability contract differs")
+    if (
+        exact_rom.get("status") != "PASS"
+        or exact_rom.get("process_runs") != 2
+        or not exact_rom.get("all_modes")
+        or not exact_rom.get("save_sector_round_trip")
+        or not exact_rom.get("egg_hatch_registration")
+        or not exact_rom.get("standard_party_round_trip")
+        or not exact_rom.get("all_storage_full_rejected")
+    ):
+        raise ReleaseError("acquisition exact-ROM fixture is incomplete")
+    fixture = _read_json(ROOT / ACQUISITION_FIXTURE)
+    if (
+        fixture.get("status") != "PASS"
+        or fixture.get("rom_sha256") != _sha(stage)
+        or fixture.get("process_runs") != 2
+    ):
+        raise ReleaseError("published acquisition fixture differs from stage 26")
     try:
         chain = build_qol_release.validate_stage_chain(ROOT)
-        fixture = build_qol_release.validate_published_fixture(ROOT)
+        qol_fixture = _validate_qol_fixture(str(metadata.get("input", {}).get("sha256")))
     except (build_qol_release.QolReleaseError, OSError, ValueError, KeyError) as error:
         raise ReleaseError(f"stage 20→25 QOL integration differs: {error}") from error
-    if chain.get("final_sha256") != _sha(stage) or fixture.get("rom_sha256") != _sha(stage):
-        raise ReleaseError("QOL integration did not validate the published stage 25")
+    stage25_sha = metadata.get("input", {}).get("sha256")
+    if chain.get("final_sha256") != stage25_sha or qol_fixture.get("rom_sha256") != stage25_sha:
+        raise ReleaseError("QOL integration did not validate the stage 25 input")
     _validate_header(stage)
     return stage, metadata
 
@@ -359,6 +405,8 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
         "トレーナー再設計V4", "1個目", "わざメモリー", "D・Hビル", "ものまねハーブ",
         "HM01", "HM08", "CFRU-JP", "麻痺", "急所", "天候", "こうかばつぐん",
         "せいたいレーダー", "RTC自動", "293行", "釣り", "隠れ遭遇",
+        "取得イベント", "201件", "24人", "リンクケーブル", "化石復元",
+        "1,206種", "240 byte", "孵化した時", "通常のゲーム内save", "v1.4.0",
     )
     for topic in required_topics:
         if topic not in readme:
@@ -369,13 +417,16 @@ def _validate_release_docs(files: Mapping[str, bytes], feature_rows: Sequence[Ma
 
 def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, object]:
     revision = _source_revision()
+    move_stage_meta = _read_json(ROOT / MOVE_STAGE_META)
     facility_stage_meta = _read_json(ROOT / FACILITY_STAGE_META)
     trainer_stage_meta = _read_json(ROOT / TRAINER_STAGE_META)
     base_stage_meta = _read_json(ROOT / BASE_STAGE_META)
     ecology = base_stage_meta.get("wild", {}).get("tohoku_overlay", {})
     ecology_coverage = ecology.get("coverage", {})
     chain = build_qol_release.validate_stage_chain(ROOT)
-    integration = build_qol_release.validate_published_fixture(ROOT)
+    integration = _validate_qol_fixture(stage_meta["input"]["sha256"])
+    if move_stage_meta.get("output", {}).get("sha256") != stage_meta.get("input", {}).get("sha256"):
+        raise ReleaseError("stage 26 input does not match the published move-memory stage")
     if (
         facility_stage_meta.get("input", {}).get("sha256")
         != trainer_stage_meta.get("output", {}).get("sha256")
@@ -424,6 +475,14 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
         "scripts/build_move_memory.py", "scripts/build_regression.py",
         "scripts/build_species_surface.py",
         "scripts/build_qol_release.py", "tools/regression/rom_runtime.py",
+        "scripts/build_acquisition_events.py", "tools/mgba_acquisition_smoke.c",
+        "overlays/acquisition_runtime/acquisition_engine_adapter_rom.h",
+        "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+        "overlays/acquisition_runtime/acquisition_libc.c",
+        "vendor/vega_acquisition/manifests/source_stage_pin.json",
+        "vendor/vega_acquisition/content/acquisition_events.csv",
+        "vendor/vega_acquisition/content/acquisition_physical_hosts.csv",
+        "vendor/vega_acquisition/content/trade_alternative_catalog_30.csv",
         "overlays/species_surface/species_runtime.h",
         "overlays/species_surface/species_runtime.c",
         "tools/mgba_species_runtime_smoke.c",
@@ -500,9 +559,29 @@ def _final_metadata(stage: bytes, stage_meta: Mapping[str, Any]) -> dict[str, ob
             "battle_rule_owner": integration["components"]["battle_rules"]["owner"],
             "battle_ui_effect_cases": len(integration["components"]["battle_ui"]["effect_cases"]),
             "battle_ui_input_return": integration["components"]["battle_ui"]["input_return"],
-            "move_memory_item_id": stage_meta["item"]["id"],
-            "move_memory_mode_persistence": stage_meta["ram_audit"]["persistence"],
-            "acceptance": dict(stage_meta["acceptance"]),
+            "move_memory_item_id": move_stage_meta["item"]["id"],
+            "move_memory_mode_persistence": move_stage_meta["ram_audit"]["persistence"],
+            "acceptance": dict(move_stage_meta["acceptance"]),
+        },
+        "acquisition_v1_4": {
+            "input_sha256": stage_meta["input"]["sha256"],
+            "output_sha256": stage_meta["output"]["sha256"],
+            "collectible_species": 1206,
+            "enabling_forms": 10,
+            "events": stage_meta["package_validation"]["events"],
+            "physical_hosts": stage_meta["package_validation"]["release_hosts"],
+            "physical_maps": len(stage_meta["map_scripts"]["maps"]),
+            "exact_cases": stage_meta["exact_case_matrix"]["case_count"],
+            "trade_evolution_routes": stage_meta["evolution_routes"]["verified_route_count"],
+            "wild_internal_species_remaining": stage_meta["wild_sanitization"]["internal_slots_after"],
+            "save_block_bytes": stage_meta["save_validator"]["nested_acquisition_bytes"],
+            "save_sector": 31,
+            "exact_rom_process_runs": stage_meta["exact_rom_fixture"]["process_runs"],
+            "all_modes": stage_meta["exact_rom_fixture"]["all_modes"],
+            "egg_hatch_registration": stage_meta["exact_rom_fixture"]["egg_hatch_registration"],
+            "save_sector_round_trip": stage_meta["exact_rom_fixture"]["save_sector_round_trip"],
+            "standard_party_round_trip": stage_meta["exact_rom_fixture"]["standard_party_round_trip"],
+            "all_storage_full_rejected": stage_meta["exact_rom_fixture"]["all_storage_full_rejected"],
         },
         "features": feature_rows,
         "factory": {
@@ -560,13 +639,13 @@ def build_final(*, allow_full_build: bool = True) -> tuple[bytes, dict[str, obje
     if not _stage_is_current():
         if not allow_full_build:
             raise ReleaseError(
-                "fast final requires a current validated stage 25; "
+                "fast final requires a current validated stage 26; "
                 "run scripts/build_fast_rom.py from the owning stage"
             )
-        print(f"[{TASK}] stage 25/QOL fixture is absent or stale; rebuilding from pinned clean inputs", flush=True)
+        print(f"[{TASK}] stage 26/acquisition fixture is absent or stale; rebuilding from pinned clean inputs", flush=True)
         _full_build()
     else:
-        print(f"[{TASK}] verified stage 25 and QOL integration fixture reused", flush=True)
+        print(f"[{TASK}] verified stage 26 acquisition and stage 25 QOL fixtures reused", flush=True)
     stage, stage_meta = _validate_stage()
     metadata = _final_metadata(stage, stage_meta)
     final_path = ROOT / FINAL_ROM
@@ -574,7 +653,7 @@ def build_final(*, allow_full_build: bool = True) -> tuple[bytes, dict[str, obje
     final_path.parent.mkdir(parents=True, exist_ok=True)
     final_path.write_bytes(stage)
     meta_path.write_bytes(_stable(metadata))
-    print(f"QOL release final: PASS ({len(stage)} bytes, sha256={_sha(stage)})")
+    print(f"acquisition release final: PASS ({len(stage)} bytes, sha256={_sha(stage)})")
     return stage, metadata
 
 
@@ -584,7 +663,7 @@ def _load_valid_final() -> tuple[bytes, dict[str, object], dict[str, Any]]:
     stage, stage_meta = _validate_stage()
     expected_meta = _final_metadata(stage, stage_meta)
     if not final_path.is_file() or final_path.read_bytes() != stage:
-        raise ReleaseError("final ROM is absent or differs from stage 25")
+        raise ReleaseError("final ROM is absent or differs from stage 26")
     if not meta_path.is_file() or meta_path.read_bytes() != _stable(expected_meta):
         raise ReleaseError("final build metadata is absent or stale")
     return stage, expected_meta, stage_meta
@@ -715,7 +794,7 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
     patch = files[PATCH_NAME]
     fresh = _fresh_status(_sha(final), _sha(patch), _sha(archive))
     metadata = json.loads(files["BUILD_METADATA.json"])
-    return f"""# v1.3.9 QOL release verification
+    return f"""# v1.4.0 acquisition release verification
 
 ## 結論
 
@@ -732,8 +811,8 @@ def _report(final: bytes, files: Mapping[str, bytes], archive: bytes, scan: Mapp
 - BPS source: clean FireRed Japanese Rev.0 SHA-256 `{_expected_inputs()['clean_firered_jpn_rev0']['sha256']}`
 - BPS round-trip exact target: PASS
 - 32 MiB / BPRJ header checksum: PASS
-- Stage 20→25 hash chain / central allocator overlap: PASS / 0
-- Same final ROM QOL integration smoke: PASS
+- Stage 20→25 QOL chain + stage 26 acquisition / central allocator overlap: PASS / 0
+- Same stage 25 QOL integration smoke + stage 26 acquisition exact-ROM smoke: PASS
 - Archive members: {scan['members']}; ROM/save/original patch/private path: 0/0/0/0
 - Source pins, input hashes, Factory provenance/reference hash, AI profiles/knowledge model: `BUILD_METADATA.json`へ固定
 - QOL release defaults/unlocks: `README_JA.md` と `FEATURE_MATRIX.csv` の全enabled行を照合
@@ -771,7 +850,7 @@ def build_patch() -> tuple[bytes, dict[str, bytes], bytes]:
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_bytes(report)
     print(
-        f"QOL release patch: PASS ({len(files)} members, patch={len(files[PATCH_NAME])} bytes, "
+        f"acquisition release patch: PASS ({len(files)} members, patch={len(files[PATCH_NAME])} bytes, "
         f"archive_sha256={_sha(archive)})"
     )
     return final, files, archive
@@ -801,7 +880,7 @@ def verify_release() -> tuple[bytes, dict[str, bytes], bytes]:
     if not report_path.is_file() or report_path.read_bytes() != expected_report:
         raise ReleaseError("release verification report is absent or stale")
     print(
-        f"QOL release verify: PASS (round-trip sha256={_sha(final)}, "
+        f"acquisition release verify: PASS (round-trip sha256={_sha(final)}, "
         f"archive members={scan['members']}, side effects NONE)"
     )
     return final, expected_files, expected_archive
@@ -885,7 +964,7 @@ def fresh_checkout_check() -> dict[str, object]:
     path = ROOT / FRESH_EVIDENCE
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(_stable(evidence))
-    print(f"QOL release fresh-checkout: PASS (revision={revision}, exact final/patch/ZIP)")
+    print(f"acquisition release fresh-checkout: PASS (revision={revision}, exact final/patch/ZIP)")
     return evidence
 
 
@@ -907,7 +986,7 @@ def main() -> int:
         else:
             fresh_checkout_check()
     except (ReleaseError, BpsError, OSError, ValueError, KeyError, json.JSONDecodeError, zipfile.BadZipFile) as error:
-        print(f"QOL release {args.mode}: FAIL: {error}", file=sys.stderr)
+        print(f"acquisition release {args.mode}: FAIL: {error}", file=sys.stderr)
         return 1
     return 0
 

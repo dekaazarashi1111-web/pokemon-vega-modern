@@ -1,0 +1,3 @@
+allocation_name,owner,payload_kind,alignment,maximum_size_bytes,placement_policy,address,allocator_input,status,notes
+acquisition_runtime,overlays/acquisition_runtime,THUMB_CODE_AND_RODATA,4,262144,named deterministic allocation in 32 MiB expanded ROM,,existing tools/rom_allocator.py allocation CSV,ALLOCATION_REQUIRED,Build fails when allocation report/name/size is absent.
+acquisition_map_scripts,scripts/serialize_acquisition_events.py,GEN3_FIELD_SCRIPT_BYTES,4,4096,named deterministic allocation in 32 MiB expanded ROM,,existing tools/rom_allocator.py allocation CSV,ALLOCATION_REQUIRED,Only READY_TO_SERIALIZE object hosts are emitted.

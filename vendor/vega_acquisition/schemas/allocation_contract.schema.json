@@ -1,0 +1,30 @@
+{
+  "$comment": "Each named row must resolve address/start, size/capacity/length, and fill_byte. Release tools reject absence or ambiguity.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "allocations": {
+      "oneOf": [
+        {
+          "required": [
+            "acquisition_runtime",
+            "acquisition_map_scripts"
+          ],
+          "type": "object"
+        },
+        {
+          "items": {
+            "type": "object"
+          },
+          "minItems": 2,
+          "type": "array"
+        }
+      ]
+    }
+  },
+  "required": [
+    "allocations"
+  ],
+  "title": "Named acquisition allocation contract",
+  "type": "object"
+}

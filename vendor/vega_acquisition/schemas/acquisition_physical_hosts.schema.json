@@ -1,0 +1,110 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/acquisition_physical_hosts.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "collision_or_reuse_evidence": {
+      "type": "string"
+    },
+    "elevation": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "event_kind": {
+      "type": "string"
+    },
+    "graphics_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "host_key": {
+      "type": "string"
+    },
+    "local_id_or_bg_index": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "logical_location_key": {
+      "type": "string"
+    },
+    "map_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "movement_type": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "object_count_after": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "object_count_before": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "object_delta": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "physical_map_key": {
+      "type": "string"
+    },
+    "script_after": {
+      "type": "string"
+    },
+    "script_before": {
+      "type": "string"
+    },
+    "source_json": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "READY_TO_SERIALIZE",
+        "PHYSICAL_COORD_AUDIT_REQUIRED",
+        "RESERVED_UNUSED_HOST"
+      ],
+      "type": "string"
+    },
+    "x": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "y": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "host_key",
+    "physical_map_key",
+    "group_id",
+    "map_id",
+    "logical_location_key",
+    "event_kind",
+    "local_id_or_bg_index",
+    "x",
+    "y",
+    "elevation",
+    "graphics_id",
+    "movement_type",
+    "script_before",
+    "script_after",
+    "object_count_before",
+    "object_count_after",
+    "object_delta",
+    "collision_or_reuse_evidence",
+    "status",
+    "source_json",
+    "notes"
+  ],
+  "title": "acquisition_physical_hosts",
+  "type": "object"
+}

@@ -1,0 +1,201 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/acquisition_events.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "acceptance_tests": {
+      "type": "string"
+    },
+    "battle_or_gift": {
+      "enum": [
+        "CAPTURE",
+        "GIFT",
+        "EGG",
+        "FOSSIL",
+        "EVOLUTION_SUPPORT",
+        "TRADE_EMULATOR",
+        "SERVICE"
+      ],
+      "type": "string"
+    },
+    "box_full_policy": {
+      "type": "string"
+    },
+    "capture_level": {
+      "type": "string"
+    },
+    "condition_expression": {
+      "type": "string"
+    },
+    "dialogue_key": {
+      "type": "string"
+    },
+    "elevation": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "event_arc": {
+      "type": "string"
+    },
+    "event_key": {
+      "type": "string"
+    },
+    "flag_key": {
+      "type": "string"
+    },
+    "flow_state_keys": {
+      "type": "string"
+    },
+    "generator_owner": {
+      "type": "string"
+    },
+    "graphics_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "host_event_kind": {
+      "type": "string"
+    },
+    "host_key": {
+      "type": "string"
+    },
+    "host_local_id_or_bg_index": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "host_script_after": {
+      "type": "string"
+    },
+    "host_script_before": {
+      "type": "string"
+    },
+    "logical_location_key": {
+      "type": "string"
+    },
+    "map_id": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "movement_type": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "object_count_after": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "object_count_before": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "party_full_policy": {
+      "type": "string"
+    },
+    "physical_constraints": {
+      "type": "string"
+    },
+    "physical_map_key": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "required_runtime": {
+      "type": "string"
+    },
+    "retry_policy": {
+      "type": "string"
+    },
+    "reward_key": {
+      "type": "string"
+    },
+    "rtc_policy": {
+      "type": "string"
+    },
+    "runtime_status": {
+      "type": "string"
+    },
+    "serializer_output": {
+      "type": "string"
+    },
+    "shared_capture_key": {
+      "type": "string"
+    },
+    "target_species_keys": {
+      "type": "string"
+    },
+    "trigger": {
+      "type": "string"
+    },
+    "ui_profile": {
+      "type": "string"
+    },
+    "unlock_key": {
+      "type": "string"
+    },
+    "var_key": {
+      "type": "string"
+    },
+    "x": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    },
+    "y": {
+      "pattern": "^$|^-?[0-9]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_key",
+    "event_arc",
+    "target_species_keys",
+    "region",
+    "logical_location_key",
+    "physical_map_key",
+    "group_id",
+    "map_id",
+    "host_event_kind",
+    "host_key",
+    "host_local_id_or_bg_index",
+    "host_script_before",
+    "host_script_after",
+    "x",
+    "y",
+    "elevation",
+    "graphics_id",
+    "movement_type",
+    "object_count_before",
+    "object_count_after",
+    "unlock_key",
+    "condition_expression",
+    "trigger",
+    "flow_state_keys",
+    "dialogue_key",
+    "battle_or_gift",
+    "capture_level",
+    "reward_key",
+    "flag_key",
+    "var_key",
+    "shared_capture_key",
+    "retry_policy",
+    "party_full_policy",
+    "box_full_policy",
+    "rtc_policy",
+    "ui_profile",
+    "required_runtime",
+    "generator_owner",
+    "serializer_output",
+    "runtime_status",
+    "physical_constraints",
+    "acceptance_tests",
+    "notes"
+  ],
+  "title": "acquisition_events",
+  "type": "object"
+}

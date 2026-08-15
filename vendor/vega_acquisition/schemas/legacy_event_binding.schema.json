@@ -1,0 +1,60 @@
+{
+  "$id": "https://pokemon-vega-modern.invalid/schema/legacy_event_binding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "CSV row schema. CSV parsers expose every cell as a string.",
+  "properties": {
+    "binding_status": {
+      "type": "string"
+    },
+    "candidate_event_kind": {
+      "type": "string"
+    },
+    "candidate_local_id_or_index": {
+      "type": "string"
+    },
+    "candidate_map_group": {
+      "type": "string"
+    },
+    "candidate_map_id": {
+      "type": "string"
+    },
+    "candidate_script_pointer": {
+      "type": "string"
+    },
+    "legacy_event_semantic": {
+      "type": "string"
+    },
+    "observed_completion_flag_or_ledger": {
+      "type": "string"
+    },
+    "observed_species_id": {
+      "type": "string"
+    },
+    "release_action": {
+      "type": "string"
+    },
+    "species_key": {
+      "type": "string"
+    },
+    "vega_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "vega_id",
+    "species_key",
+    "legacy_event_semantic",
+    "candidate_map_group",
+    "candidate_map_id",
+    "candidate_event_kind",
+    "candidate_local_id_or_index",
+    "candidate_script_pointer",
+    "observed_species_id",
+    "observed_completion_flag_or_ledger",
+    "binding_status",
+    "release_action"
+  ],
+  "title": "legacy_event_binding",
+  "type": "object"
+}

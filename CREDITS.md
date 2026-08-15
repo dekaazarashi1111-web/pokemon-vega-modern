@@ -70,5 +70,11 @@ CFRU documentation記載のcontributors:
 Kanto importer、QOL adapter、決定論build/test/release pipelineは本projectで作成しました。
 GNU Arm Embedded Toolchain、Python、Git、mGBA/libmGBAを固定manifestに従って使用しています。
 
+v1.4.0の取得経路・イベント設計は、ユーザー提供
+`Pokemon-Vega_Acquisition-Design_20260815.zip`（SHA-256
+`d96e26b571855c89f112674853165359273564b771f2be5bf29d63b80adfb6ed`）を入力として、
+現行v1.3.9 ABIへ再監査・移植しました。原ZIPや私有入力はreleaseへ含めず、採用した
+manifest、content定義、生成器、検証だけを追跡しています。
+
 本ファイルは帰属と利用条件の要約です。矛盾がある場合は各upstreamに同梱された原文license・
 README・documentationが優先します。
