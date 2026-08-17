@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- stage 27のFactory Trial完了scriptへ、既存完了処理を先に呼ぶmanifest報酬wrapperを接続する
+  post-release stage 28を実装。初回はExp Candy XS×5、S×2、追加3 BP、連勝3/7/14/21では
+  HABITAT/TYPE/RARE/RANDOM encounter creditを各1回だけ付与する。
+- 基本9 BP、連勝更新、party復元、sector 31保存は既存runtimeのまま保持。bag満杯時は
+  基本完了だけを確定して追加報酬を繰り越し、反復時のitem・追加BP・credit重複を抑止する。
+- v1.4.0 release tag／配布ROMとstage 27は不変。stage 28用incremental/cumulative BPSと
+  再現builderを独立管理する。
 - v1.4.0をhash固定入力として、クチバFactoryへ18品目のBPショップNPCを追加する
   post-release stage 27を実装。Trialと同じBP残高を使用し、解禁、5件ページmenu、
   通常save＋sector 31の購入確定、保存失敗時rollback、残高不足・bag満杯の無変更終了を接続した。

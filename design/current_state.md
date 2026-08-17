@@ -159,12 +159,14 @@
 - ブロッカーなし。
 
 - v1.4.0最終ROMを入力に、クチバFactory map `96/5`へBPショップNPC local 3を追加したpost-release stage 27を生成した。ACTIVE `BP_SHOP` 18行、Trial共通BP、5件ページmenu、通常save＋sector 31、補償rollbackを接続し、output SHA-256は `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`。v1.4.0 tag／配布ROMは不変。
+- post-v1.4.0 stage 28で、Factory Trial完了scriptの`callnative`を既存`FacilityRuntime_Complete`先行wrapperへ接続した。基本9 BP、連勝更新、party exact復元、sector 31保存を保持し、初回XS×5・S×2・追加3 BP、連勝3/7/14/21の4 encounter creditをclaim bit付きで実装した。stage 28 SHA-256は `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`。
 
 ## 次の正本タスク
 
 `design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
 
 - USER-20260817-BP-SHOP-RUNTIME: DONE。Factory map 96/5へ18品目のmanifest-backed BPショップを物理接続し、通常save／sector 31、成功購入、再読込、残高不足、bag満杯、未解禁をstage 27 exact-ROM 2 processで検証した。
+- USER-20260818-FACTORY-REWARD-RUNTIME: DONE。libmGBA独立2 processで初回12 BP、credit catch-up、反復重複なし、bag満杯時の基本9 BP維持とbonus繰越、通常save item再読込、sector 31 ledger一致、全完了時party exact復元を確認した。declared span外変更0、ROM/RAM overlap 0、incremental/cumulative BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
 - USER-20260816-ACQUISITION-EVENTS: DONE。1,206種＋10フォームの取得経路、201イベント、24 host、
   7方式の共通transaction、240 byte取得台帳、孵化時登録、通常save／sector 31復元をstage 26で検証した。
 - USER-20260815-SPECIES-NAME-LENGTH: DONE。canonical 11 byte名を正本に、旧6 byte名前表を読む40経路を8 byte互換ABIへ移行し、6文字名134行を全UIで欠けなく表示する。

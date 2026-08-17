@@ -532,3 +532,14 @@
   - 解禁、残高不足、bag満杯、通常save＋sector 31確定、保存失敗時のitem／BP補償rollbackを実装した。
   - v1.4.0を固定入力とするstage 27と4,120 byteの差分BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
 - Verify: `make bp-shop-runtime` / `make bp-shop-runtime-check`、libmGBA独立2 process、BPS完全往復、allocator／RAM overlap、manifest／task graph／private guard／focused unit test／diff check PASS。stage SHA-256 `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`。
+
+## 2026-08-18T00:54:20+09:00
+
+- Version: `post-v1.4.0-stage28`（v1.4.0 release identityとstage 27は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260818-FACTORY-REWARD-RUNTIME` / Factory Trialの初回・連勝報酬を実ROMへ接続する
+- Summary:
+  - 既存Trial完了処理を先に呼ぶwrapperで、初回XS×5、S×2、追加3 BPと連勝3/7/14/21の4 encounter creditを接続した。
+  - 基本9 BP、連勝更新、party復元、sector 31保存を保持し、claim bitによる一度限り付与、bag満杯繰越、保存失敗時補償を実装した。
+  - stage 27を固定入力とするstage 28とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
+- Verify: `make factory-reward-runtime` / `make factory-reward-runtime-check`、libmGBA独立2 process、通常save／sector 31再読込、exact party復元、BPS完全往復、allocator／RAM overlap、declared span監査 PASS。stage SHA-256 `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`。fresh全体監査は未実施。

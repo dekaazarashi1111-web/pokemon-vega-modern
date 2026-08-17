@@ -1276,3 +1276,27 @@
   - v1.4.0→stage 27 BPS: 4,120 bytes、SHA-256 `ca462ea2c6621494db1eb7d8a114e46b68953f9d1d5c7878c4adcc9531007c1d`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。既存manifest、固定済みv1.4.0 ROM、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-18T00:54:20+09:00
+
+- Task: `USER-20260818-FACTORY-REWARD-RUNTIME` / Factory Trialの初回・連勝報酬を実ROMへ接続する
+- Result: PASS
+- Implementation:
+  - `manifests/facility_rewards.csv` のACTIVE Trial初回3行と連勝3/7/14/21の4行を生成catalogへ固定した。
+  - Factory Trial完了scriptの4-byte native pointerだけをwrapperへ差し替え、既存`FacilityRuntime_Complete`を先に呼んでparty復元、連勝、基本9 BP、sector 31を維持した。
+  - 初回XS×5、S×2、追加3 BPと4種のencounter creditをclaim bitへ接続し、反復重複、bag満杯繰越、通常save／sector 31の補償transactionを実装した。
+  - runtime/build: `overlays/factory_reward_runtime/**`、`scripts/build_factory_reward_runtime.py`、`tools/mgba_factory_reward_smoke.c`、`Makefile`
+  - Git管理外成果: `build/stages/28_*`、`build/patches/*factory-reward-stage28.bps`、`generated/runtime/factory_reward_*`、`reports/generated/factory_reward_runtime.md`。ROM／saveは配布物へ含めない。
+- Verification:
+  - `make factory-reward-runtime` / `make factory-reward-runtime-check`: PASS。stage 28 SHA-256 `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`、payload SHA-256 `9ddf7c5f5c5b663018059a17dcbcb5348b0b1352a78a1bf99e3373484c01c8e4`。
+  - libmGBA独立2 process: PASS。初回BP `100→112`、claim `0x1F`、XS×5/S×2、連勝21 catch-up claim `0xFF`、4 credit各1、反復BP `121→130`・重複0、bag満杯BP `200→209`・bonus未claimを確認した。
+  - 通常save item再読込、sector 31 ledger再読込、全完了経路の600-byte party exact復元: PASS。
+  - changed byte 1,349、declared span外0、allocator overlap 0、RAM overlap 0、incremental/cumulative BPS完全往復: PASS。
+  - fresh全体監査、正式v1.4.0 tag移動、配布ROM再生成は行っていない。
+- Output identity:
+  - input stage 27 ROM: 33,554,432 bytes、SHA-256 `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`
+  - stage 28 ROM: 33,554,432 bytes、SHA-256 `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`
+  - stage 27→28 BPS SHA-256: `3ba38f5dc973dc3b28dee2ed2d47c9bab9e99e1ca045c3f81a53e06884711fcb`
+  - v1.4.0→stage 28 BPS SHA-256: `6f3eb0f3e419c0b7a3522bd71fdc950d7899c9c6dd37d4d9ddfbd6f8648b8177`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みstage 27、manifest、ローカルtoolchain／libmGBAだけを使用した。

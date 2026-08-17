@@ -28,3 +28,4 @@
 - [x] 6文字のポケモン名を全UIで欠けずに表示する <!-- id:USER-20260815-SPECIES-NAME-LENGTH -->
 - [x] 全コレクション対象の入手方法と取得イベントを実ROMへ統合する <!-- id:USER-20260816-ACQUISITION-EVENTS -->
 - [x] クチバFactoryのBPショップを実ROMへ物理接続する <!-- id:USER-20260817-BP-SHOP-RUNTIME -->
+- [x] Factory Trialの初回・連勝報酬を実ROMへ接続する <!-- id:USER-20260818-FACTORY-REWARD-RUNTIME -->
