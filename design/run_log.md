@@ -1350,3 +1350,30 @@
   - v1.4.0→stage 30 BPS: 6,559 bytes、SHA-256 `595404bdc0b268bb70812cb1077753a61f063320d20e74615a0ecfde07df8d7b`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みstage 29、manifest、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-18T08:24:32+09:00
+
+- Task: `USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME` / Factory Trialの100連勝色違い記念枠を実ROMへ接続する
+- Status: DONE
+- Summary:
+  - stage 30の`FactorySpecialEventRuntime_Complete`を先に呼ぶstage 31 wrapperをFactory Trial完了scriptへ物理接続した。ACTIVE `FACILITY_REWARD_KEY_STREAK_100`をthreshold 100、`FACTORY_MASTER`、`CLAIM_KEY_STREAK_100_SHINY`、claim bit 9へmanifestから一意に生成した。
+  - 取得registryのBASE／REQUIRED_BASE／旧図鑑1〜386からspecial event catalog 125を除外し、Vega internal ID、正しいNational番号、取得台帳bitが一意な137種poolを生成した。Lv.50のplayer OT色違いをparty優先、満杯時PCへ一度だけ配布する。
+  - 既存取得pending slotをPREPARED/STAGED write-ahead journalとして再利用し、通常save、sector 31、図鑑、取得台帳、claimを原子的に確定する。個体personality markerのparty／PC scanを第二のidempotency証拠とし、journal喪失、容量不足、sector書込失敗、通常save失敗からclaim未消費で再試行／commit復旧する。
+- Files changed:
+  - runtime/build: `overlays/factory_shiny_memorial_runtime/**`、`scripts/build_factory_shiny_memorial_runtime.py`、`tools/mgba_factory_shiny_memorial_smoke.c`、`tests/test_factory_shiny_memorial_runtime.py`、`Makefile`
+  - task/design/docs: `tasks/USER_20260818_FACTORY_SHINY_MEMORIAL_RUNTIME.md`、`design/{current_state,tasks_next,run_log,version_log}.md`、`docs/RELEASE_README_JA.md`、`CHANGELOG.md`
+  - Git管理外成果: `build/stages/31_*`、`build/patches/*factory-shiny-memorial-stage31.bps`、`generated/runtime/factory_shiny_memorial_*`、`reports/generated/factory_shiny_memorial_runtime.md`。ROM／saveは配布物へ含めない。
+- Verify:
+  - `python3 scripts/build_factory_shiny_memorial_runtime.py build`: PASS。stage 31 SHA-256 `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`、payload 3,322 bytes / SHA-256 `c2fc9cfce5b20e24eea38a67b4a668388a6d4c7fe1ff8fb2dc4924076d71f892`、pool 137種。
+  - libmGBA独立2 process: PASS。completion／recovery物理binding、ABI `0xB931`、Master／100境界、party配布、強制色違い、正しいNational図鑑／取得台帳、once抑止、Stage 30共存、PC配布、全収納満杯後の再試行、PREPARED／STAGED復旧、sector 31失敗、通常save失敗、通常取得recovery trampoline、sector 31再読込を確認した。決定的初回抽選はpool index 124、internal species 340、transaction `500→503`。
+  - 初回exact fixtureで、stock `SpeciesToNationalPokedexNum`がVega再配置internal 340を旧FireRed National 323へ変換する差異を検出した。stage 31 commitをgenerated National 220／取得台帳bit表の直接登録へ修正し、unitでこの対応を固定した。
+  - `make factory-shiny-memorial-runtime-check`: PASS。changed byte 3,291、declared span外0、ROM allocator overlap 0、RAM overlap 0、stage 30→31 BPS 3,375 bytes / SHA-256 `8c878aa59e7e386c6f2d8cbd2f3ea0fae0336b73e02cc34f9316536725fe39a1`、cumulative BPS 9,896 bytes / SHA-256 `a6353ff75b1b235e43e5707746da33cec68b4c27745faf21c13ff0ff8b29be36`、双方完全往復。
+  - Stage 31＋Stage 30 focused unit 9件、`python3 -m py_compile scripts/build_factory_shiny_memorial_runtime.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - ユーザー指示どおりfresh全体監査とv1.4.0再releaseは実施していない。
+- Output identity:
+  - input stage 30 ROM: 33,554,432 bytes、SHA-256 `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`
+  - stage 31 ROM: 33,554,432 bytes、SHA-256 `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`
+  - stage 30→31 BPS: 3,375 bytes、SHA-256 `8c878aa59e7e386c6f2d8cbd2f3ea0fae0336b73e02cc34f9316536725fe39a1`
+  - v1.4.0→stage 31 BPS: 9,896 bytes、SHA-256 `a6353ff75b1b235e43e5707746da33cec68b4c27745faf21c13ff0ff8b29be36`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みstage 30、manifest、取得registry、ローカルtoolchain／libmGBAだけを使用した。

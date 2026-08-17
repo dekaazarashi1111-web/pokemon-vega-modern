@@ -15,8 +15,8 @@ Factory Master解禁後の一度限り非伝説色違い記念枠として実ROM
 
 ## 受入条件
 
-- [ ] 100連勝境界、Factory Master gate、claim bit 9をmanifestから一意に生成する。
-- [ ] 非伝説色違いを一度限り生成し、party/PC・図鑑・取得台帳を原子的に更新する。
-- [ ] 容量不足と保存失敗ではclaimを消費せず、後続受取を可能にする。
-- [ ] Stage 30以前のFactory報酬、party復元、通常save／sector 31を回帰させない。
-- [ ] exact-ROM、allocator、BPS、ログ、タスク単位commitを残す。
+- [x] 100連勝境界、Factory Master gate、claim bit 9をmanifestから一意に生成する。
+- [x] 非伝説色違いを一度限り生成し、party/PC・図鑑・取得台帳を原子的に更新する。
+- [x] 容量不足と保存失敗ではclaimを消費せず、後続受取を可能にする。
+- [x] Stage 30以前のFactory報酬、party復元、通常save／sector 31を回帰させない。
+- [x] exact-ROM、allocator、BPS、ログ、タスク単位commitを残す。

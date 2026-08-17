@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- stage 30のFactory Trial完了wrapperを先に呼ぶpost-release stage 31を実装し、ACTIVE
+  `SHINY_MEMORIAL` 100連勝行をFactory Master解禁後の一度限りclaim bit 9へ接続した。
+- special event catalogを除外した旧図鑑安全範囲137種からLv.50色違いを生成し、party優先・
+  満杯時PCへ配布する。generated National／取得台帳bit表で図鑑・collectionを正しく登録する。
+- PREPARED/STAGED write-ahead journalと個体markerで、容量不足、通常save／sector 31失敗、
+  journal喪失から再試行・commit復旧し、claim消費と二重配布を防ぐ。v1.4.0とstage 27〜30は不変。
 - stage 29のFactory Trial完了wrapperを先に呼ぶpost-release stage 30を実装し、ACTIVE
   `SPECIAL_EVENT` 49連勝行をFactory Master解禁後の一度限りclaim bit 8へ接続した。
 - Master未解禁、streak 48以下、既claimではStage 30の永続状態を変更せず、Stage 29の反復item/BP、

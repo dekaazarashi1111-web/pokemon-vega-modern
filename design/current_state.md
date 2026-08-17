@@ -162,6 +162,7 @@
 - post-v1.4.0 stage 28で、Factory Trial完了scriptの`callnative`を既存`FacilityRuntime_Complete`先行wrapperへ接続した。基本9 BP、連勝更新、party exact復元、sector 31保存を保持し、初回XS×5・S×2・追加3 BP、連勝3/7/14/21の4 encounter creditをclaim bit付きで実装した。stage 28 SHA-256は `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`。
 - post-v1.4.0 stage 29で、stage 28完了wrapperを先に呼ぶ反復報酬wrapperを接続した。初回claim完了済みの成功完走だけを対象に、stock RNGでオレンのみ×1＋1 BPまたはハイパーボール×1＋2 BPを付与する。bag満杯時は基本9 BPを保持し、反復item／追加BPだけを見送る。stage 29 SHA-256は `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`。
 - post-v1.4.0 stage 30で、stage 29完了wrapperを先に呼ぶ49連勝特殊event wrapperを接続した。Factory Masterを現行save ABIの`league_ii_cleared`へ写像し、完了後Trial streak 49以上で`CLAIM_KEY_STREAK_049_EVENT`のclaim bit 8を一度だけsector 31へ確定する。Stage 29の反復item/BP、基本9 BP、party exact復元を維持し、stage 30 SHA-256は `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`。
+- post-v1.4.0 stage 31で、stage 30完了wrapperを先に呼ぶ100連勝色違い記念wrapperを接続した。Factory Master解禁、Trial streak 100以上、claim bit 9未設定をgateに、special event catalogを除外した137種からLv.50色違いをparty優先・満杯時PCへ一度だけ配布する。generated National／取得台帳bit表、PREPARED/STAGED journal、個体markerで図鑑・collection・claimを原子的に確定し、保存失敗とjournal喪失から再試行／復旧する。stage 31 SHA-256は `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`。
 
 ## 次の正本タスク
 
@@ -171,7 +172,7 @@
 - USER-20260818-FACTORY-REWARD-RUNTIME: DONE。libmGBA独立2 processで初回12 BP、credit catch-up、反復重複なし、bag満杯時の基本9 BP維持とbonus繰越、通常save item再読込、sector 31 ledger一致、全完了時party exact復元を確認した。declared span外変更0、ROM/RAM overlap 0、incremental/cumulative BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
 - USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME: DONE。ACTIVE `TRIAL_REPEAT` 2行を反復完走へ接続し、初回非対象、+1 BP／オレン、+2 BP／ハイパーボール、連勝credit共存、bag満杯時の基本9 BP維持、通常save／sector 31再読込、party exact復元をlibmGBA独立2 processで確認した。stage 29のdeclared span外変更0、ROM/RAM overlap 0、BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
 - USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME: DONE。ACTIVE `SPECIAL_EVENT` 49連勝行をFactory Master gate、claim bit 8へ接続し、未解禁、streak 48、60連勝catch-up、once抑止、sector 31再読込、Stage 29反復報酬共存、party exact復元をlibmGBA独立2 processで確認した。stage 30のdeclared span外変更0、ROM/RAM overlap 0、BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
-- USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME: NEXT。stage 30を固定入力に、100連勝の一度限り非伝説色違い記念枠を接続する。
+- USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME: DONE。ACTIVE `SHINY_MEMORIAL` 100連勝行をFactory Master gate、claim bit 9、137種poolへ接続し、party／PC配布、強制色違い、図鑑・取得台帳、once抑止、全収納満杯再試行、PREPARED/STAGED復旧、通常save／sector 31失敗復旧、Stage 30共存をlibmGBA独立2 processで確認した。stage 31のdeclared span外変更0、ROM/RAM overlap 0、BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
 - USER-20260816-ACQUISITION-EVENTS: DONE。1,206種＋10フォームの取得経路、201イベント、24 host、
   7方式の共通transaction、240 byte取得台帳、孵化時登録、通常save／sector 31復元をstage 26で検証した。
 - USER-20260815-SPECIES-NAME-LENGTH: DONE。canonical 11 byte名を正本に、旧6 byte名前表を読む40経路を8 byte互換ABIへ移行し、6文字名134行を全UIで欠けなく表示する。

@@ -1,0 +1,25 @@
+#ifndef VEGA_FACTORY_SHINY_MEMORIAL_RUNTIME_H
+#define VEGA_FACTORY_SHINY_MEMORIAL_RUNTIME_H
+
+#include <stdint.h>
+
+#define VEGA_FACTORY_SHINY_MEMORIAL_ABI_VERSION 0xB931u
+
+typedef enum VegaFactoryShinyMemorialResult {
+    VEGA_FACTORY_SHINY_MEMORIAL_CLAIMED = 0,
+    VEGA_FACTORY_SHINY_MEMORIAL_NOT_ELIGIBLE = 1,
+    VEGA_FACTORY_SHINY_MEMORIAL_BUSY = 2,
+    VEGA_FACTORY_SHINY_MEMORIAL_NO_CAPACITY = 3,
+    VEGA_FACTORY_SHINY_MEMORIAL_PERSIST_FAILED = 4,
+    VEGA_FACTORY_SHINY_MEMORIAL_RECOVERED_COMMIT = 5,
+    VEGA_FACTORY_SHINY_MEMORIAL_RECOVERED_RETRY = 6,
+    VEGA_FACTORY_SHINY_MEMORIAL_CORRUPT_PENDING = 7,
+    VEGA_FACTORY_SHINY_MEMORIAL_ENGINE_REJECTED = 8
+} VegaFactoryShinyMemorialResult;
+
+uint16_t FactoryShinyMemorialRuntime_Probe(void);
+uint16_t FactoryShinyMemorialRuntime_Complete(void);
+uint16_t FactoryShinyMemorialRuntime_ClaimPending(void);
+uint16_t FactoryShinyMemorialRuntime_RecoverDispatch(void);
+
+#endif /* VEGA_FACTORY_SHINY_MEMORIAL_RUNTIME_H */

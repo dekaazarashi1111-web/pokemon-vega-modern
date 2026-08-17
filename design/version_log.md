@@ -565,3 +565,15 @@
   - Master未解禁、streak 48以下、既claimではStage 30の追加transactionを作らず、Stage 29の反復item/BP、基本9 BP、party復元を維持する。
   - stage 29を固定入力とするstage 30とincremental/cumulative BPSを生成し、100連勝色違い記念枠はstage 31候補として残した。
 - Verify: `make factory-special-event-runtime` / `make factory-special-event-runtime-check`、libmGBA独立2 process、Master gate、threshold、catch-up、once、sector 31、exact party、BPS完全往復、allocator／RAM overlap、declared span監査、focused 24 tests、task graph/private guard/diff check PASS。stage SHA-256 `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`。fresh全体監査は未実施。
+
+## 2026-08-18T08:24:32+09:00
+
+- Version: `post-v1.4.0-stage31`（v1.4.0 release identityとstage 27〜30は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME` / Factory Trialの100連勝色違い記念枠を実ROMへ接続する
+- Summary:
+  - stage 30完了処理を先に呼ぶwrapperで、ACTIVE 100連勝`SHINY_MEMORIAL`をFactory Master解禁後のclaim bit 9へ一度だけ接続した。
+  - special event catalogを除外した137種からLv.50のplayer OT色違いをparty／PCへ配布し、generated National／取得台帳bit表で図鑑・collectionを登録する。
+  - PREPARED/STAGED journal、通常save＋sector 31、個体marker scanにより、容量不足、保存失敗、journal喪失でclaimを消費せず、二重配布を防いで再試行／commit復旧する。
+  - stage 30を固定入力とするstage 31とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
+- Verify: Stage 31 build/check、libmGBA独立2 process、Master／100 gate、party／PC、強制色違い、National図鑑／取得台帳、once、満杯再試行、PREPARED／STAGED、通常save／sector 31失敗復旧、通常取得trampoline、Stage 30共存、BPS完全往復、allocator／RAM overlap、declared span監査、focused 9 tests、task graph/private guard/diff check PASS。stage SHA-256 `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`。fresh全体監査は未実施。
