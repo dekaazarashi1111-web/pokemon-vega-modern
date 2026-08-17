@@ -34,10 +34,12 @@
 ### KI-005 — Factoryの実受付はTrialのみ
 
 - Severity: S4 / release scope exclusion
-- Reproduction: クチバのFactory受付でStandard、Full、Master、BP shop、施設外報酬遭遇を探す。
-- Result: v1.4.0の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。後続modeと
-  shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
-- Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
+- Reproduction: クチバのFactory受付でStandard、Full、Master、施設外報酬遭遇を探す。
+- Result: v1.4.0の実ROM受付は候補6体から3体を選ぶTrial 3連戦だけを提供する。post-v1.4.0
+  stage 27〜29ではBP shopとTrial初回・連勝・反復報酬を接続済みだが、後続3 modeと
+  encounter creditを消費する施設外報酬遭遇はNPCから開始できない。
+- Workaround: Trialとpost-release BP shopを利用する。未接続mode／報酬遭遇を実装済みと扱わず、
+  後続stageで個別に結合する。
 
 ## v1.4.0で解決済み
 

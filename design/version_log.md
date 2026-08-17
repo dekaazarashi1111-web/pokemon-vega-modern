@@ -543,3 +543,14 @@
   - 基本9 BP、連勝更新、party復元、sector 31保存を保持し、claim bitによる一度限り付与、bag満杯繰越、保存失敗時補償を実装した。
   - stage 27を固定入力とするstage 28とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
 - Verify: `make factory-reward-runtime` / `make factory-reward-runtime-check`、libmGBA独立2 process、通常save／sector 31再読込、exact party復元、BPS完全往復、allocator／RAM overlap、declared span監査 PASS。stage SHA-256 `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`。fresh全体監査は未実施。
+
+## 2026-08-18T04:29:26+09:00
+
+- Version: `post-v1.4.0-stage29`（v1.4.0 release identityとstage 27・28は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME` / Factory Trialの反復BP＋道具抽選を実ROMへ接続する
+- Summary:
+  - stage 28完了処理を先に呼ぶwrapperで、ACTIVE反復報酬2行をオレンのみ×1＋1 BP／ハイパーボール×1＋2 BPのstock RNG抽選へ接続した。
+  - 初回claim完了済みの成功完走だけを対象にし、初回報酬、連勝credit、基本9 BP、party復元を維持した。bag満杯と保存失敗では反復item／追加BPだけを補償する。
+  - stage 28を固定入力とするstage 29とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
+- Verify: `make factory-repeat-reward-runtime` / `make factory-repeat-reward-runtime-check`、libmGBA独立2 process、両RNG分岐、連勝共存、bag満杯、通常save／sector 31再読込、exact party復元、BPS完全往復、allocator／RAM overlap、declared span監査、focused 20 tests、manifest/task graph/private guard PASS。stage SHA-256 `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`。fresh全体監査は未実施。

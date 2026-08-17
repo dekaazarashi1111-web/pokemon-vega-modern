@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- stage 28のFactory Trial完了wrapperを先に呼ぶpost-release stage 29を実装し、ACTIVE
+  `TRIAL_REPEAT` 2行を反復完走へ接続。stock RNGで「オレンのみ×1＋1 BP」または
+  「ハイパーボール×1＋2 BP」を抽選する。
+- 初回報酬claimが呼出前から完了している成功完走だけを反復対象にし、初回item／追加3 BP、
+  連勝credit、party復元、基本9 BPはstage 28の所有権を維持する。bag満杯時は反復itemと
+  追加BPだけを同時に見送り、保存失敗時はpost-stage-28状態へ補償rollbackする。
+- v1.4.0 release tag／配布ROMとstage 27・28は不変。stage 29用incremental/cumulative BPSと
+  再現builderを独立管理する。
 - stage 27のFactory Trial完了scriptへ、既存完了処理を先に呼ぶmanifest報酬wrapperを接続する
   post-release stage 28を実装。初回はExp Candy XS×5、S×2、追加3 BP、連勝3/7/14/21では
   HABITAT/TYPE/RARE/RANDOM encounter creditを各1回だけ付与する。

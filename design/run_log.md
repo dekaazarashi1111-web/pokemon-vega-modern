@@ -1300,3 +1300,27 @@
   - v1.4.0→stage 28 BPS SHA-256: `6f3eb0f3e419c0b7a3522bd71fdc950d7899c9c6dd37d4d9ddfbd6f8648b8177`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みstage 27、manifest、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-18T04:29:26+09:00
+
+- Task: `USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME` / Factory Trialの反復BP＋道具抽選を実ROMへ接続する
+- Result: PASS
+- Implementation:
+  - `manifests/facility_rewards.csv` のACTIVE `TRIAL_REPEAT` 2行を生成catalogへ固定し、item ID 432オレンのみ×1＋1 BP、item ID 2ハイパーボール×1＋2 BPへ結合した。
+  - Trial完了scriptの4-byte native pointerだけをstage 29 wrapperへ差し替え、呼出前の初回claim完了状態を保持してからstage 28 `FactoryRewardRuntime_Complete`を先に呼ぶ。
+  - 結果9かつ初回claim完了済みの場合だけstock `Random()`で1行を選び、itemと追加BPを通常save→sector 31の補償transactionで確定する。bag満杯時はstage 28の基本9 BP、party復元、連勝／creditを維持する。
+  - runtime/build: `overlays/factory_repeat_reward_runtime/**`、`scripts/build_factory_repeat_reward_runtime.py`、`tools/mgba_factory_repeat_reward_smoke.c`、`tests/test_factory_repeat_reward_runtime.py`、`Makefile`
+  - Git管理外成果: `build/stages/29_*`、`build/patches/*factory-repeat-reward-stage29.bps`、`generated/runtime/factory_repeat_reward_*`、`reports/generated/factory_repeat_reward_runtime.md`。ROM／saveは配布物へ含めない。
+- Verification:
+  - `make factory-repeat-reward-runtime`: PASS。libmGBA独立2 processを含む。`make factory-repeat-reward-runtime-check`: PASS。stage 29 SHA-256 `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`、payload SHA-256 `c1662d4778528b7cc6bc87177521287afe00610f2cd1df5032229262c31ab228`。
+  - exact-ROM: 初回BP `100→112`で反復item 0、オレン分岐 `112→122`、ハイパーボール分岐 `122→133`、連勝21 credit共存 `133→143`、bag満杯 `200→209`を確認した。
+  - 通常saveでXS×5／S×2／オレン×1／ハイパーボール×1を再読込し、sector 31 ledger、全経路600-byte party exact復元を確認した。
+  - changed byte 565、payload 572 bytes、declared span外0、allocator overlap 0、RAM overlap 0、incremental/cumulative BPS完全往復: PASS。
+  - focused unit 20件、manifest、task graph、private guard、py_compile、diff check: PASS。fresh全体監査、正式v1.4.0 tag移動、配布ROM再生成は行っていない。
+- Output identity:
+  - input stage 28 ROM: 33,554,432 bytes、SHA-256 `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`
+  - stage 29 ROM: 33,554,432 bytes、SHA-256 `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`
+  - stage 28→29 BPS: 613 bytes、SHA-256 `fe8139a71dbf929b42ae0cdc03c001144ac20b02ae37d445759d3853ec674649`
+  - v1.4.0→stage 29 BPS: 6,132 bytes、SHA-256 `85754363f5473fa7a0e2db12dfa2d00edd0835a6313bf388916850e85a8949eb`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みstage 28、manifest、ローカルtoolchain／libmGBAだけを使用した。
