@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- stage 29のFactory Trial完了wrapperを先に呼ぶpost-release stage 30を実装し、ACTIVE
+  `SPECIAL_EVENT` 49連勝行をFactory Master解禁後の一度限りclaim bit 8へ接続した。
+- Master未解禁、streak 48以下、既claimではStage 30の永続状態を変更せず、Stage 29の反復item/BP、
+  基本9 BP、連勝credit、party exact復元を維持する。sector 31失敗時はpost-stage-29台帳へ補償する。
+- v1.4.0 release tag／配布ROMとstage 27〜29は不変。stage 30用incremental/cumulative BPSと
+  再現builderを独立管理し、100連勝色違い記念枠は次タスクへ残す。
 - stage 28のFactory Trial完了wrapperを先に呼ぶpost-release stage 29を実装し、ACTIVE
   `TRIAL_REPEAT` 2行を反復完走へ接続。stock RNGで「オレンのみ×1＋1 BP」または
   「ハイパーボール×1＋2 BP」を抽選する。

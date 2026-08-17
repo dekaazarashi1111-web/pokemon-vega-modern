@@ -192,6 +192,8 @@ Master、BP shop、施設外報酬遭遇は進行・content定義と回帰fixtur
 | Full | `FACTORY_FULL`（Vega殿堂入り） | single/double/Little/Monotype/OU等、Mega/Z | 未接続 |
 | Master | `FACTORY_MASTER`（Kanto League clear） | 49/100連勝、region mix/Ultimate、Mega/Z/Tera/Dynamaxから入場時1つ | 未接続 |
 
+post-v1.4.0 stage 30では、Trial完了chainに49連勝の特殊event key（claim bit 8）のみを追加接続した。Master受付、region mix/Ultimate、入場時gimmick選択、100連勝色違い記念枠は未接続で、v1.4.0のtag／配布ROMは変更していない。
+
 通信相手が必要なlink multiは対象外。NPC partner multiは利用できる。Mirageは持込partyと
 仮想itemを使う攻略施設、Factoryはrental交換施設であり、save owner・連勝・報酬を共有しない。
 

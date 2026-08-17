@@ -554,3 +554,14 @@
   - 初回claim完了済みの成功完走だけを対象にし、初回報酬、連勝credit、基本9 BP、party復元を維持した。bag満杯と保存失敗では反復item／追加BPだけを補償する。
   - stage 28を固定入力とするstage 29とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
 - Verify: `make factory-repeat-reward-runtime` / `make factory-repeat-reward-runtime-check`、libmGBA独立2 process、両RNG分岐、連勝共存、bag満杯、通常save／sector 31再読込、exact party復元、BPS完全往復、allocator／RAM overlap、declared span監査、focused 20 tests、manifest/task graph/private guard PASS。stage SHA-256 `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`。fresh全体監査は未実施。
+
+## 2026-08-18T06:51:55+09:00
+
+- Version: `post-v1.4.0-stage30`（v1.4.0 release identityとstage 27〜29は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME` / Factory Trialの49連勝特殊イベントキーを実ROMへ接続する
+- Summary:
+  - stage 29完了処理を先に呼ぶwrapperで、ACTIVE 49連勝`SPECIAL_EVENT`をFactory Master解禁後のclaim bit 8へ一度だけ接続した。
+  - Master未解禁、streak 48以下、既claimではStage 30の追加transactionを作らず、Stage 29の反復item/BP、基本9 BP、party復元を維持する。
+  - stage 29を固定入力とするstage 30とincremental/cumulative BPSを生成し、100連勝色違い記念枠はstage 31候補として残した。
+- Verify: `make factory-special-event-runtime` / `make factory-special-event-runtime-check`、libmGBA独立2 process、Master gate、threshold、catch-up、once、sector 31、exact party、BPS完全往復、allocator／RAM overlap、declared span監査、focused 24 tests、task graph/private guard/diff check PASS。stage SHA-256 `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`。fresh全体監査は未実施。

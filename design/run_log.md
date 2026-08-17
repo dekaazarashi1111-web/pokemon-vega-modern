@@ -1324,3 +1324,29 @@
   - v1.4.0→stage 29 BPS: 6,132 bytes、SHA-256 `85754363f5473fa7a0e2db12dfa2d00edd0835a6313bf388916850e85a8949eb`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みstage 28、manifest、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-18T06:51:55+09:00
+
+- Task: `USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME` / Factory Trialの49連勝特殊イベントキーを実ROMへ接続する
+- Status: DONE
+- Summary:
+  - stage 29の`FactoryRepeatRewardRuntime_Complete`を先に呼ぶstage 30 wrapperをFactory Trial完了scriptへ物理接続した。ACTIVE `FACILITY_REWARD_KEY_STREAK_049`をthreshold 49、`FACTORY_MASTER`、`CLAIM_KEY_STREAK_049_EVENT`、claim bit 8へmanifestから一意に生成した。
+  - 現行save ABIではFactory Masterを`league_ii_cleared`へ写像し、結果9、完了後Trial streak 49以上、未claimの場合だけbit 8とFactory transactionをsector 31へ確定する。保存失敗時は共有rollback領域へ退避したexact post-stage-29 ledgerを復元する。
+  - Stage 29の基本9 BP、初回・連勝credit、反復item/BP、通常save、party exact復元を変更しない。v1.4.0 tag／配布ROMとstage 27〜29は不変で、100連勝色違い記念枠を次タスクに残した。
+- Files changed:
+  - runtime/build: `overlays/factory_special_event_runtime/**`、`scripts/build_factory_special_event_runtime.py`、`tools/mgba_factory_special_event_smoke.c`、`tests/test_factory_special_event_runtime.py`、`Makefile`
+  - task/design/docs: `tasks/USER_20260818_FACTORY_SPECIAL_EVENT_RUNTIME.md`、`tasks/USER_20260818_FACTORY_SHINY_MEMORIAL_RUNTIME.md`、`design/{current_state,tasks_next,run_log,version_log}.md`、`docs/RELEASE_README_JA.md`、`CHANGELOG.md`
+  - Git管理外成果: `build/stages/30_*`、`build/patches/*factory-special-event-stage30.bps`、`generated/runtime/factory_special_event_*`、`reports/generated/factory_special_event_runtime.md`。ROM／saveは配布物へ含めない。
+- Verify:
+  - `make factory-special-event-runtime`: PASS。stage 30 SHA-256 `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`、payload 424 bytes / SHA-256 `8609381ebb6bf2a843599f2f378b91cc3dd40fe1a072f0cc489678305d722a13`。
+  - libmGBA独立2 process: PASS。物理binding、ABI `0xB930`、Master未解禁49連勝、Master解禁streak 48、60連勝catch-up、once抑止、Stage 29オレン＋1 BP共存、sector 31再読込、全経路600-byte party exact復元を確認した。catch-up transactionは`100→103`、既claimは`100→102`で、差分1がStage 30 claimである。
+  - `make factory-special-event-runtime-check`: PASS。changed byte 420、declared span外0、ROM allocator overlap 0、RAM overlap 0、stage 29→30 BPS 465 bytes / SHA-256 `fda84f40203dbe54a86495d5abd11b4569e4a45283c423160618c2e66e047597`、cumulative BPS 6,559 bytes / SHA-256 `595404bdc0b268bb70812cb1077753a61f063320d20e74615a0ecfde07df8d7b`、双方完全往復。
+  - focused unit 24件、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。初回fixtureで`league_ii_cleared`単独設定がsave正規化により解除されることを検出し、実契約どおり`league_i_cleared`と整合するMaster fixtureへ修正後に再検証した。
+  - fresh全体監査とv1.4.0再releaseは実施していない。
+- Output identity:
+  - input stage 29 ROM: 33,554,432 bytes、SHA-256 `00548aa770dc377eefe671b1825af9a78852374322471eb5e9b1cfb174a644a6`
+  - stage 30 ROM: 33,554,432 bytes、SHA-256 `e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38`
+  - stage 29→30 BPS: 465 bytes、SHA-256 `fda84f40203dbe54a86495d5abd11b4569e4a45283c423160618c2e66e047597`
+  - v1.4.0→stage 30 BPS: 6,559 bytes、SHA-256 `595404bdc0b268bb70812cb1077753a61f063320d20e74615a0ecfde07df8d7b`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。固定済みstage 29、manifest、ローカルtoolchain／libmGBAだけを使用した。
