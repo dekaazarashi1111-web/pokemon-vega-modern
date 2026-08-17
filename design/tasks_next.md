@@ -27,3 +27,4 @@
 - [x] 戦闘UI・アクタシ初戦ループ・高速差分ビルドを修正する <!-- id:USER-20260814-BATTLE-UI-LOOP-FAST-BUILD -->
 - [x] 6文字のポケモン名を全UIで欠けずに表示する <!-- id:USER-20260815-SPECIES-NAME-LENGTH -->
 - [x] 全コレクション対象の入手方法と取得イベントを実ROMへ統合する <!-- id:USER-20260816-ACQUISITION-EVENTS -->
+- [x] クチバFactoryのBPショップを実ROMへ物理接続する <!-- id:USER-20260817-BP-SHOP-RUNTIME -->

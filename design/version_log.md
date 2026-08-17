@@ -521,3 +521,14 @@
   - release sourceを機能実装コミットへtagで固定し、完了ログ追加後もfinal/BPS/ZIP検証を再現可能にした。
   - ROMとBPSは不変。tag検証済みmetadataを含む最終9-member ZIP SHA-256を`ca20130634c519fc08049464a21faa88e71f9708b3642af74b3cf8b55f739a1e`へ確定した。
 - Verify: release final-fast / patch / verify、BPS完全往復、archive禁止物0、verify副作用なし PASS。
+
+## 2026-08-17T23:22:41+09:00
+
+- Version: `post-v1.4.0-stage27`（v1.4.0 release identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260817-BP-SHOP-RUNTIME` / クチバFactoryのBPショップを実ROMへ物理接続する
+- Summary:
+  - Factory Trial共通BPで購入する18品目のmanifest-backedショップを、map `96/5`の物理NPCと5件ページmenuへ接続した。
+  - 解禁、残高不足、bag満杯、通常save＋sector 31確定、保存失敗時のitem／BP補償rollbackを実装した。
+  - v1.4.0を固定入力とするstage 27と4,120 byteの差分BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
+- Verify: `make bp-shop-runtime` / `make bp-shop-runtime-check`、libmGBA独立2 process、BPS完全往復、allocator／RAM overlap、manifest／task graph／private guard／focused unit test／diff check PASS。stage SHA-256 `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`。

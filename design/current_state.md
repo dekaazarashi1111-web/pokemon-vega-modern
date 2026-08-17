@@ -158,10 +158,13 @@
 - Trainer AIは固定済みCFRU-JP `src/Battle_AI/**` と既定knowledge modelを移植する。本編は一律scaleせず、一般trainer・boss・野生を進行別profileと実測したmap/batch単位の横強化で調整する。League I→II→Finalを明示flagで順番に解禁し、現行Lv.100 leagueはKanto League＋Sphere完結後のFinalへ移す。
 - ブロッカーなし。
 
+- v1.4.0最終ROMを入力に、クチバFactory map `96/5`へBPショップNPC local 3を追加したpost-release stage 27を生成した。ACTIVE `BP_SHOP` 18行、Trial共通BP、5件ページmenu、通常save＋sector 31、補償rollbackを接続し、output SHA-256は `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`。v1.4.0 tag／配布ROMは不変。
+
 ## 次の正本タスク
 
 `design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
 
+- USER-20260817-BP-SHOP-RUNTIME: DONE。Factory map 96/5へ18品目のmanifest-backed BPショップを物理接続し、通常save／sector 31、成功購入、再読込、残高不足、bag満杯、未解禁をstage 27 exact-ROM 2 processで検証した。
 - USER-20260816-ACQUISITION-EVENTS: DONE。1,206種＋10フォームの取得経路、201イベント、24 host、
   7方式の共通transaction、240 byte取得台帳、孵化時登録、通常save／sector 31復元をstage 26で検証した。
 - USER-20260815-SPECIES-NAME-LENGTH: DONE。canonical 11 byte名を正本に、旧6 byte名前表を読む40経路を8 byte互換ABIへ移行し、6文字名134行を全UIで欠けなく表示する。

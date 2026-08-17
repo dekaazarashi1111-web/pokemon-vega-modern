@@ -19,4 +19,5 @@ EWRAM,0x0203E300,0x0203E400,256,T08_TRANSACTION_SCRATCH,gVegaSaveTransactionScra
 EWRAM,0x0203E400,0x0203EC00,2048,FACILITY_RUNTIME_SAVE_ROLLBACK,gVegaSaveRollbackData,save_or_restore_call,VOLATILE,LIVE,overlays/save_migration/save_migration.h,ROM runtime rollback image; host builds retain stack-local rollback
 EWRAM,0x0203EC00,0x0203EC01,1,USER_20260814_MOVE_MEMORY,gMoveManagerMode,field_move_management,VOLATILE,LIVE,overlays/move_memory/move_memory.h,通常/タマゴ技候補の一時mode; flashへ保存しない
 EWRAM,0x0203EC10,0x0203ED30,288,USER_20260816_ACQUISITION_EVENTS,gVegaAcqVolatileState,acquisition_menu_and_transaction,VOLATILE,LIVE,overlays/acquisition_runtime/acquisition_engine_adapter_rom.h,Host menu candidates/delivery scratch; acquisition claims and pending journal remain in the 240-byte flash block
+EWRAM,0x0203ED40,0x0203EDC0,128,USER_20260817_BP_SHOP_RUNTIME,gVegaBpShopVolatileState,bp_shop_menu,VOLATILE,LIVE,overlays/bp_shop_runtime/bp_shop_runtime.h,Paged catalog/menu state; BP remains in T08 ledger
 IWRAM,0x03003130,0x0300356C,1084,DPE_MAIN,gMain,engine,VOLATILE,LIVE,vendor/upstream/DPE-JP/BPRJ.ld:12,Exact ABI asserted by upstream

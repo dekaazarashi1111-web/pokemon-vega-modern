@@ -1251,3 +1251,28 @@
 - Verify: `python3 scripts/build_release.py final-fast` / `patch` / `verify`: PASS。final ROM SHA-256 `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`、BPS SHA-256 `0b69b5de39e29168929f36750049c29f2064f290215112384449f1e4b38f418e`、最終ZIP SHA-256 `ca20130634c519fc08049464a21faa88e71f9708b3642af74b3cf8b55f739a1e`。
 - Commit: `6d4b558`（タスク完了状態）／`9c3671d`（`v1.4.0` release source）。本訂正は後続コミット。
 - Network: 未使用。
+
+## 2026-08-17T23:22:41+09:00
+
+- Task: `USER-20260817-BP-SHOP-RUNTIME` / クチバFactoryのBPショップを実ROMへ物理接続する
+- Status: DONE
+- Summary:
+  - v1.4.0最終ROMをhash固定入力に、クチバFactory map `96/5`へ既存Trial NPCをbyte-preserving cloneしたlocal ID 3、座標`(22,19)`のBPショップNPCを追加した。既存2 objectとmap scriptsはbyte不変、object数だけを2→3へ更新した。
+  - `manifests/qol_rewards.csv`のACTIVE `BP_SHOP` 18行を`item_ids.csv`と結合し、実item ID、BP価格、表示文字列、11種の解禁mappingを生成正本へ接続した。5件ページmenuとFactory Trial共通の`factory.battle_points`残高を使用する。
+  - 購入をitem追加→BP減算→通常save→sector 31の順で確定し、通常saveまたはsector 31失敗時はitemとBPを補償rollbackして両保存先の再書込みを試行する。未解禁、残高不足、bag満杯は永続状態を変更しない。
+  - stage 27、差分BPS、allocator/RAM証跡、catalog、symbol、exact-ROM fixtureを決定的に生成した。v1.4.0のtag、最終ROM、既存release archiveは変更していない。
+- Files changed:
+  - runtime/build: `overlays/bp_shop_runtime/**`、`scripts/build_bp_shop_runtime.py`、`tools/mgba_bp_shop_smoke.c`、`Makefile`
+  - layout/task/design: `config/ram_layout.csv`、`tasks/USER_20260817_BP_SHOP_RUNTIME.md`、`CHANGELOG.md`、`design/{current_state,tasks_next,run_log,version_log}.md`
+  - Git管理外成果: `build/stages/27_*`、`build/patches/vega-modern-kanto-v1.4.0-to-bp-shop-stage27.bps`、`generated/runtime/bp_shop_*`、`reports/generated/bp_shop_runtime.md`。ROM／saveは配布物へ含めない。
+- Verify:
+  - `make bp-shop-runtime` / `make bp-shop-runtime-check`: PASS。stage 27 SHA-256 `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`、payload SHA-256 `8a62aca35c08c32590bfa63cff611af89305b054db91d7ba0315763157b57572`、BPS SHA-256 `ca462ea2c6621494db1eb7d8a114e46b68953f9d1d5c7878c4adcc9531007c1d`。
+  - libmGBA独立2 process: PASS。physical NPC、18品目、11種解禁、成功購入、通常save／sector 31再読込、未解禁、残高不足、bag満杯を確認した。各runは独立ROM／128 KiB save名前空間を使い、結果JSONは一致した。
+  - declared span外変更0、ROM allocator overlap 0、RAM overlap 0、BPS完全往復、catalog item ID一意、既存Factory object／script保持: PASS。
+  - `python3 scripts/validate_manifests.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`python3 -m unittest -v tests.test_task_queue`、`git diff --check`: PASS。fresh全体監査とv1.4.0再releaseは実施していない。
+- Output identity:
+  - input v1.4.0 ROM: 33,554,432 bytes、SHA-256 `30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e`
+  - stage 27 ROM: 33,554,432 bytes、SHA-256 `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`
+  - v1.4.0→stage 27 BPS: 4,120 bytes、SHA-256 `ca462ea2c6621494db1eb7d8a114e46b68953f9d1d5c7878c4adcc9531007c1d`
+- Commit: `-`（本エントリを含むコミット）
+- Network: 未使用。既存manifest、固定済みv1.4.0 ROM、ローカルtoolchain／libmGBAだけを使用した。

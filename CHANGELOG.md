@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- なし。
+- v1.4.0をhash固定入力として、クチバFactoryへ18品目のBPショップNPCを追加する
+  post-release stage 27を実装。Trialと同じBP残高を使用し、解禁、5件ページmenu、
+  通常save＋sector 31の購入確定、保存失敗時rollback、残高不足・bag満杯の無変更終了を接続した。
+- v1.4.0 release tag／配布ROMは不変。stage 27用BPSと再現builderを独立管理する。
 
 ## 1.4.0 — 2026-08-16
 
