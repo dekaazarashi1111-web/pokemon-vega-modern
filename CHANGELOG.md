@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- post-release stage 32としてTrainer Redesign V5の先行25 encounter／25 party／71 memberを
+  Stage 31の個別map/object/scriptへ接続し、23 SINGLE／2 DOUBLEを1,367行Trainer tableと
+  16-byte live sidecarへ生成した。
+- グローバルflag APIと最適化private party関数はhookせず、trainer専用flag入口、公開
+  `BuildTrainerPartySetup`、exact kind-4再束縛だけを使用する。初回DOUBLE scriptは物理ID 702を
+  保持し、戦闘引数消費後だけV5 ID 1342へ切り替えるため、NPC敗北flagと既存saveを維持する。
+- 独立2 processのexact-ROMで自然trainer、SINGLE sidecar、rooted DOUBLE、4 controller、
+  勝敗、再戦、flag、save/loadを確認した。v1.4.0とstage 27〜31は不変。
 - stage 30のFactory Trial完了wrapperを先に呼ぶpost-release stage 31を実装し、ACTIVE
   `SHINY_MEMORIAL` 100連勝行をFactory Master解禁後の一度限りclaim bit 9へ接続した。
 - special event catalogを除外した旧図鑑安全範囲137種からLv.50色違いを生成し、party優先・

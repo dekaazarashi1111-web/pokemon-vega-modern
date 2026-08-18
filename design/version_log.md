@@ -577,3 +577,15 @@
   - PREPARED/STAGED journal、通常save＋sector 31、個体marker scanにより、容量不足、保存失敗、journal喪失でclaimを消費せず、二重配布を防いで再試行／commit復旧する。
   - stage 30を固定入力とするstage 31とincremental/cumulative BPSを生成し、正式tag／配布ROMを変更せずpost-release成果として分離した。
 - Verify: Stage 31 build/check、libmGBA独立2 process、Master／100 gate、party／PC、強制色違い、National図鑑／取得台帳、once、満杯再試行、PREPARED／STAGED、通常save／sector 31失敗復旧、通常取得trampoline、Stage 30共存、BPS完全往復、allocator／RAM overlap、declared span監査、focused 9 tests、task graph/private guard/diff check PASS。stage SHA-256 `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`。fresh全体監査は未実施。
+
+## 2026-08-18T15:06:38+09:00
+
+- Version: `post-v1.4.0-stage32`（v1.4.0 release identityとstage 27〜31は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION` / Trainer V5先行25戦を実ROMへ安全に接続する
+- Summary:
+  - V5先行25戦を個別のStage 31物理bindingへ接続し、25 party／71 member、1,367行Trainer table、live sidecarを生成した。
+  - グローバルflag APIとprivate party ABIをhookせず、trainer専用flag入口、公開party入口、exact kind-4再束縛だけを使用した。
+  - 初回DOUBLE scriptの物理ID 702を維持し、実戦時だけID 1342へ解決して4体party／4 controllerまで検証した。
+  - stage 32 ROMとincremental/cumulative BPSを決定的に生成した。
+- Verify: `make trainer-v5-foundation` / `make trainer-v5-foundation-check`、libmGBA独立2 process 10 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694`。

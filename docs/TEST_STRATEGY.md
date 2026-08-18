@@ -134,6 +134,14 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
 
 ## 8. Trainer AI・難易度
 
+- Trainer V5 Stage 32は、25 encounter／25 party／71 memberのsource hash、SINGLE 23／DOUBLE 2、
+  map/object/script/trainer ID crosswalk、1,367行tableの24 repoint、allocator、declared span、
+  incremental/cumulative BPSを静的gateにする。グローバルflag API 3関数はStage 31の先頭byteと
+  完全一致し、9 hookがtrainer専用入口または安定した公開入口だけであることを確認する。
+- exact-ROMは独立2 processで、自然new-gameからの通常trainer、V5 SINGLEのspecies／nature／
+  ability／IV／6EV、rooted kind-4 DOUBLEの物理ID 702保持→V5 ID 1342再束縛、4体party、
+  4 battler/controller、勝利／敗北、再戦ID、物理敗北flag、save/reloadを検査する。
+  各checkを個別表示し、環境停止とROM不整合を同じPASSへ丸めない。
 - 固定CFRU-JP AIの `AI_BASIC` / `AI_SEMI_SMART` / `AI_FULL_SMART` を固定global RNGで実行し、move、switch、hazard、setup、recovery、weather/field、item、gimmickを期待actionと比較する。
 - Doubleはtarget、範囲技の味方巻込み、Protect/Wide Guard、Tailwind/Trick Room、Follow Me/Helping Handを検査する。
 - 固定CFRUの既定knowledge model、分散cache/historyの無効化とT01で固定したworst-case性能閾値を検査する。

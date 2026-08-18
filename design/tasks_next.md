@@ -32,3 +32,4 @@
 - [x] Factory Trialの反復BP＋道具抽選を実ROMへ接続する <!-- id:USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME -->
 - [x] Factory Trialの49連勝特殊イベントキーを実ROMへ接続する <!-- id:USER-20260818-FACTORY-SPECIAL-EVENT-RUNTIME -->
 - [x] Factory Trialの100連勝色違い記念枠を実ROMへ接続する <!-- id:USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME -->
+- [x] Trainer V5先行25戦をStage 31実ROMへ安全に接続する <!-- id:USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION -->

@@ -1377,3 +1377,29 @@
   - v1.4.0→stage 31 BPS: 9,896 bytes、SHA-256 `a6353ff75b1b235e43e5707746da33cec68b4c27745faf21c13ff0ff8b29be36`
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。固定済みstage 30、manifest、取得registry、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-18T15:06:38+09:00
+
+- Task: `USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION` / Trainer V5先行25戦をStage 31実ROMへ安全に接続する
+- Status: DONE
+- Summary:
+  - `WIP_RECOVERY.zip`をライブworkspaceへ書き込まず隔離検査し、ZIP CRC、内部SHA-256、完全Git bundle、Stage 31 HEAD `364ae1d9ad6081d2bcf64f23b049c0ddb096c110`、17新規sourceの整合を確認して復旧した。
+  - V5の25 encounter／25一意party／71 memberをStage 31のmap、object、script、trainer IDへ個別結合し、23 SINGLE／2 DOUBLE、1,367行Trainer table、16-byte sidecar V1をstage 32へ生成した。
+  - ABIが最適化で変化したprivate `CreateNPCTrainerParty` hookを廃止し、公開`BuildTrainerPartySetup`後にability、nature、exact IV、6EVを適用する。グローバル`FlagGet/Set/Clear` hookも廃止し、trainer専用6入口だけで高IDを物理flagへ写像した。
+  - 初回DOUBLEのrooted scriptは物理ID 702を保持し、exact kind-4引数の消費後だけV5 ID 1342へ再束縛する。NPC視界／敗北flag ABIと既存saveを維持した。
+  - mGBA fixtureを個別check表示へ変更し、field scriptに必須の`ScriptContext2_Enable`を含む実経路でkind 4、4体party sidecar、double flag、4 battler/controllerを確認した。環境エラーや未到達をPASSへ丸めない。
+- Files changed:
+  - source/runtime/build: `content/trainer_v5_stage31/**`、`overlays/trainer_v5_stage31_runtime/**`、`scripts/build_trainer_v5_stage31.py`、`tools/mgba_trainer_v5_stage31_smoke.c`、`Makefile`
+  - task/design/docs: `tasks/USER_20260818_TRAINER_V5_STAGE31_INTEGRATION_FOUNDATION.md`、`design/{current_state,tasks_next,run_log,version_log}.md`、`docs/TEST_STRATEGY.md`、`README.md`、`CHANGELOG.md`
+  - Git管理外成果: `build/stages/32_*`、`build/patches/*trainer-v5-stage32.bps`、`generated/runtime/trainer_v5_stage31_*`、`reports/generated/trainer_v5_stage31*`。私有ROM／save／元ZIPは追跡していない。
+- Verify:
+  - `make trainer-v5-foundation` / `make trainer-v5-foundation-check`: PASS。決定的build、source/schema/format、24 repoint、9 hook、allocator overlap 0、P4B2c禁止領域回避、declared span外変更0、BPS完全往復を確認した。
+  - libmGBA独立2 process: PASS、結果一致、warnings/errors 0。自然初戦、SINGLE sidecar、AI record、rooted kind-4 DOUBLE、勝利、敗北、再戦、物理flag、save/reloadの10 checkを確認した。
+  - `python3 -m py_compile scripts/build_trainer_v5_stage31.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。WSL repository全体verifyとStage 00からの再生成は実施していない。
+- Output identity:
+  - input stage 31 ROM: 33,554,432 bytes、SHA-256 `3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703`
+  - stage 32 ROM: 33,554,432 bytes、SHA-256 `bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694`
+  - stage 31→32 BPS: 47,519 bytes、SHA-256 `d26c2bd92b1ef4c04db1459954d73d32a6afbc7d2efcfa51a71adca5ad889d66`
+  - v1.4.0→stage 32 BPS: 57,383 bytes、SHA-256 `e152c35c8fa4937e48b5e1aaca3c24ca88baaa4654e3b08279ed591fee188b26`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network: ABI調査だけに`https://github.com/kapibarasan000/CFRU-JP.git`を読み取り専用取得し、`state/source-lock.json`固定commit `e24a16fe39e27ae162faf5b78596d1f3df18489d`を参照した。Stage 32のbuild／mGBA／BPS生成は完全オフラインで実行した。

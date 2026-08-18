@@ -72,6 +72,8 @@ make regression # T17実Kanto map/QOL-B/trainer進行をstage 17へ統合してl
 make regression-check # T17の16成果を副作用なしで再生成・照合
 make trainer-rebalance # V4本編trainerをstage 17へ結合してstage 19を生成
 make trainer-rebalance-check # V4のID解決・record・party pointerを副作用なしで照合
+make trainer-v5-foundation # Stage 31へV5先行25戦とlive sidecarを結合してstage 32を生成
+make trainer-v5-foundation-check # SINGLE/DOUBLE・flag・再戦・saveのexact-ROM成果を再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
