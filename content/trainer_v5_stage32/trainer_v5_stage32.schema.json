@@ -1,0 +1,187 @@
+{
+  "$id": "trainer_v5_stage32.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "battle_contracts": {
+      "properties": {
+        "DOUBLE": {
+          "properties": {
+            "maximum_party_size": {
+              "const": 6
+            },
+            "minimum_party_size": {
+              "const": 2
+            },
+            "trainerbattle_kinds": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "trainerbattle_kinds",
+            "minimum_party_size",
+            "maximum_party_size"
+          ],
+          "type": "object"
+        },
+        "MULTI": {
+          "properties": {
+            "requires_partner_binding": {
+              "const": true
+            },
+            "trainerbattle_kinds": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "trainerbattle_kinds",
+            "requires_partner_binding"
+          ],
+          "type": "object"
+        },
+        "SINGLE": {
+          "properties": {
+            "maximum_party_size": {
+              "const": 6
+            },
+            "minimum_party_size": {
+              "const": 1
+            },
+            "trainerbattle_kinds": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "trainerbattle_kinds",
+            "minimum_party_size",
+            "maximum_party_size"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "SINGLE",
+        "DOUBLE",
+        "MULTI"
+      ],
+      "type": "object"
+    },
+    "member_sidecar_v1": {
+      "properties": {
+        "ev_runtime_order": {
+          "const": [
+            "hp_ev",
+            "atk_ev",
+            "def_ev",
+            "spe_ev",
+            "spa_ev",
+            "spd_ev"
+          ]
+        },
+        "ev_source_order": {
+          "const": [
+            "hp_ev",
+            "atk_ev",
+            "def_ev",
+            "spa_ev",
+            "spd_ev",
+            "spe_ev"
+          ]
+        },
+        "record_size": {
+          "const": 16
+        },
+        "required_fields": {
+          "const": [
+            "trainer_id",
+            "species_id",
+            "side",
+            "slot",
+            "nature_id",
+            "ability_mode",
+            "iv",
+            "hp_ev",
+            "atk_ev",
+            "def_ev",
+            "spe_ev",
+            "spa_ev",
+            "spd_ev",
+            "reserved"
+          ]
+        }
+      },
+      "required": [
+        "record_size",
+        "required_fields",
+        "ev_source_order",
+        "ev_runtime_order"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "selected_scope": {
+      "properties": {
+        "encounter_count": {
+          "const": 39
+        },
+        "max_encounters": {
+          "const": 39
+        },
+        "story_phase": {
+          "const": "TOHOKU_PROLOGUE_PRE_GYM1"
+        }
+      },
+      "required": [
+        "encounter_count",
+        "max_encounters",
+        "story_phase"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "battle_contracts",
+    "member_sidecar_v1",
+    "selected_scope"
+  ],
+  "title": "Stage32 Trainer V5 Tohoku Batch02 cumulative integration",
+  "type": "object",
+  "x-stage32-contract": {
+    "double_kinds": [
+      4,
+      7
+    ],
+    "hardcoded_double_must_not_accept_single": true,
+    "live_sidecar_fields": [
+      "ability_key",
+      "nature_key",
+      "hp_ev",
+      "atk_ev",
+      "def_ev",
+      "spa_ev",
+      "spd_ev",
+      "spe_ev"
+    ],
+    "multi_kinds": [],
+    "party_member_size": 16,
+    "single_kinds": [
+      0,
+      3,
+      5,
+      9
+    ],
+    "trainer_record_size": 32
+  }
+}

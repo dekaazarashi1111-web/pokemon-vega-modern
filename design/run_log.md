@@ -1403,3 +1403,27 @@
   - v1.4.0→stage 32 BPS: 57,383 bytes、SHA-256 `e152c35c8fa4937e48b5e1aaca3c24ca88baaa4654e3b08279ed591fee188b26`
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network: ABI調査だけに`https://github.com/kapibarasan000/CFRU-JP.git`を読み取り専用取得し、`state/source-lock.json`固定commit `e24a16fe39e27ae162faf5b78596d1f3df18489d`を参照した。Stage 32のbuild／mGBA／BPS生成は完全オフラインで実行した。
+
+## 2026-08-19T05:07:39+09:00
+
+- Task: `USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02` / Trainer V5のTohoku次14物理命令を累積39戦へ接続する
+- Status: DONE
+- Summary:
+  - Stage 32の25戦へ、map `3/21`・`3/22`・`22/1`の次14物理命令を追加し、39 encounter／39一意party／113 member、35 SINGLE／4 DOUBLEへ拡張した。
+  - source 119の複数命令と非整列kind-3をcommand-data pointer＋kind＋source IDで区別する20行exact tableを追加し、論理alias 419/424は物理root 420/425へ統合した。
+  - 公開`ConfigureTrainerBattle`と`BuildTrainerPartySetup`だけをwrapし、グローバルflag API、private party ABI、rooted kind-4物理ID 702を維持した。
+- Files changed:
+  - source/runtime/build: `content/trainer_v5_stage32/**`、`overlays/trainer_v5_stage32_runtime/**`、`scripts/build_trainer_v5_stage32.py`、`tools/mgba_trainer_v5_stage32_smoke.c`、`Makefile`
+  - task/design/docs: `tasks/USER_20260818_TRAINER_V5_STAGE32_TOHOKU_BATCH02.md`、`design/{current_state,tasks_next,run_log,version_log}.md`、`docs/TEST_STRATEGY.md`、`README.md`、`CHANGELOG.md`
+  - Git管理外成果: `build/stages/33_*`、`build/patches/*trainer-v5-stage33.bps`、`generated/runtime/trainer_v5_stage32_*`、`reports/generated/trainer_v5_stage32*`。私有ROM／save／元ZIPは追跡していない。
+- Verify:
+  - `make trainer-v5-tohoku-batch02` / `make trainer-v5-tohoku-batch02-check`: PASS。source/schema/format、24 repoint、9 hook、20 exact rebind、allocator overlap 0、禁止領域回避、declared span外変更0、BPS完全往復を確認した。
+  - libmGBA独立2 process: PASS、結果一致、warnings/errors 0。通常初戦、2種sidecar、AI、exact rebind、rooted kind-4 DOUBLE、勝利、敗北、再戦、flag、save/reloadの12 checkを確認した。
+  - `python3 -m py_compile scripts/build_trainer_v5_stage32.py`、task graph、private guard、`git diff --check`: PASS。
+- Output identity:
+  - input stage 32 ROM: 33,554,432 bytes、SHA-256 `bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694`
+  - stage 33 ROM: 33,554,432 bytes、SHA-256 `7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0`
+  - stage 32→33 BPS: 49,211 bytes、SHA-256 `2c3352a61723cfe92f8065f8975f49c88eecdced14203baad893fae3a55424bb`
+  - v1.4.0→stage 33 BPS: 106,349 bytes、SHA-256 `794b6f0dd1544227a5a3c646c8d6ea4a2f57bc1946e1b3e14394b0650b684241`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network: 未使用。固定済みStage 32、同梱V5正本、ローカルtoolchain／libmGBAだけを使用した。

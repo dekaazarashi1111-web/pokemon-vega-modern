@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- post-release stage 33として、Trainer Redesign V5のTohoku次14物理trainerbattle命令を
+  stage 32へ累積し、39 encounter／39一意party／113 member、35 SINGLE／4 DOUBLEへ拡張した。
+- map `3/21`・`3/22`・`22/1`を命令pointer＋kind＋source IDの三つ組で再束縛し、
+  source 119の複数命令と非整列kind-3を区別する。論理alias 419/424は物理root 420/425へ統合した。
+- 独立2 processのexact-ROMで20 exact rebind、live ability/nature/IV/6EV、rooted kind-4
+  DOUBLE、勝敗、再戦、物理flag、save/loadを確認した。v1.4.0とstage 27〜32は不変。
+
 - post-release stage 32としてTrainer Redesign V5の先行25 encounter／25 party／71 memberを
   Stage 31の個別map/object/scriptへ接続し、23 SINGLE／2 DOUBLEを1,367行Trainer tableと
   16-byte live sidecarへ生成した。

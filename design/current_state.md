@@ -5,13 +5,14 @@
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
-- Trainer Redesign V5の先行25 encounter（23 SINGLE / 2 DOUBLE、25一意party、71 member）を
-  Stage 31のmap/object/scriptへ個別結合し、1,367行Trainer tableと16-byte sidecar V1を
-  stage 32へ配置した。stage 32 SHA-256は
-  `bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694`。
+- Trainer Redesign V5を累積39 encounter（35 SINGLE / 4 DOUBLE、39一意party、113 member）へ
+  拡張し、map `3/21`・`3/22`・`22/1`の次14物理trainerbattle命令をstage 33へ接続した。
+  stage 33 SHA-256は `7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0`。
 - グローバル`FlagGet/Set/Clear`と最適化private party関数はhookしない。trainer専用flag入口、
-  公開`BuildTrainerPartySetup`、exact kind-4構成入口だけをwrapする。初回DOUBLE scriptは物理ID
-  702を保持してNPC視界／敗北flag ABIを守り、引数消費後だけV5 ID 1342へ再束縛する。
+  公開`BuildTrainerPartySetup`、exact command-data pointer＋kind＋source ID入口だけをwrapする。
+  rooted kind-4の物理ID 702とkind-7の物理ID 100は保持し、CFRU引数消費後だけ高IDへ再束縛する。
+- source 119の複数物理命令と非整列kind-3命令を20行exact tableで区別する。wrapper由来の
+  論理alias 419/424は物理root 420/425へ統合し、defeat flagと既存save ownerを一意に保つ。
 - v1.4.0はコレクション対象1,206種と到達性に必要な10フォームを監査し、既存野生・進化と
   201取得イベントのいずれかで1,216/1,216を到達可能にした。T17で省略されていたclean
   FireRed由来24 objectを19マップへ元の座標・予算内で復元し、新規設計objectは追加していない。

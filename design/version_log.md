@@ -589,3 +589,14 @@
   - 初回DOUBLE scriptの物理ID 702を維持し、実戦時だけID 1342へ解決して4体party／4 controllerまで検証した。
   - stage 32 ROMとincremental/cumulative BPSを決定的に生成した。
 - Verify: `make trainer-v5-foundation` / `make trainer-v5-foundation-check`、libmGBA独立2 process 10 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694`。
+
+## 2026-08-19T05:07:39+09:00
+
+- Version: `post-v1.4.0-stage33`（v1.4.0 release identityとstage 27〜32は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02` / Trainer V5のTohoku次14物理命令を累積39戦へ接続する
+- Summary:
+  - Tohoku前章の次14物理trainerbattle命令を追加し、39戦／113 memberへ累積した。
+  - exact pointer＋kind＋source IDで重複sourceと非整列kind-3を解決し、物理flag ownerと既存saveを保持した。
+  - stage 33 ROMとincremental/cumulative BPSを決定的に生成した。
+- Verify: `make trainer-v5-tohoku-batch02` / `make trainer-v5-tohoku-batch02-check`、libmGBA独立2 process 12 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0`。
