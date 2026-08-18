@@ -1,7 +1,7 @@
 /*
- * USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02
+ * USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03
  *
- * Stage 32 keeps the established 0x20 Trainer / 16-byte party ABI, while this
+ * Stage 33 keeps the established 0x20 Trainer / 16-byte party ABI, while this
  * hook layer supplies the V5 fields that ABI cannot represent: exact IV,
  * ability slot, nature, and all six EVs.  Trainer defeat-state translation is
  * restricted to trainer-specific entry points; the global FlagGet/Set/Clear
@@ -72,7 +72,7 @@ enum {
     TRAINER_V5_HIDDEN_ABILITY_MASK = 0x1000,
     TRAINER_V5_IV_FIELD_MASK = 0x3FFFFFFF,
     TRAINER_V5_ABILITY_NUM_MASK = 0x80000000u,
-    TRAINER_V5_PROBE_MAGIC = 0x56353232u /* V522 */
+    TRAINER_V5_PROBE_MAGIC = 0x56353333u /* V533 */
 };
 
 
@@ -100,18 +100,22 @@ typedef const u8 *(*ConfigureTrainerBattleFn)(const u8 *data);
 
 _Static_assert(sizeof(struct TrainerV5MemberSidecarV1) == 16u,
                "Trainer V5 sidecar ABI must remain 16 bytes");
-_Static_assert(sizeof(struct TrainerV5RematchMapV1) == 4u,
-               "Trainer V5 rematch map ABI must remain 4 bytes");
+_Static_assert(sizeof(struct TrainerV5RematchMapV2) == 8u,
+               "Trainer V5 RematchMap V2 ABI must remain 8 bytes");
 _Static_assert(sizeof(struct TrainerV5FlagMapV1) == 4u,
                "Trainer V5 flag map ABI must remain 4 bytes");
 _Static_assert(sizeof(struct TrainerV5ExactRebindV1) == 12u,
                "Trainer V5 exact rebind ABI must remain 12 bytes");
-_Static_assert(TRAINER_V5_GENERATED_ENCOUNTER_COUNT == 39u,
-               "Stage 32 cumulative scope must remain 39 encounters");
-_Static_assert(TRAINER_V5_GENERATED_SIDECAR_COUNT == 113u,
-               "Stage 32 cumulative sidecar count must remain 113");
-_Static_assert(TRAINER_V5_GENERATED_EXACT_REBIND_COUNT == 20u,
-               "Stage 32 exact command rebind count must remain 20");
+_Static_assert(TRAINER_V5_GENERATED_ENCOUNTER_COUNT == 54u,
+               "Stage 33 cumulative scope must remain 54 encounters");
+_Static_assert(TRAINER_V5_GENERATED_SIDECAR_COUNT == 171u,
+               "Stage 33 cumulative sidecar count must remain 171");
+_Static_assert(TRAINER_V5_GENERATED_REMATCH_MAP_COUNT == 23u,
+               "Stage 33 RematchMap V2 count must remain 23");
+_Static_assert(TRAINER_V5_GENERATED_FLAG_MAP_COUNT == 29u,
+               "Stage 33 trainer-specific flag map count must remain 29");
+_Static_assert(TRAINER_V5_GENERATED_EXACT_REBIND_COUNT == 29u,
+               "Stage 33 exact command rebind count must remain 29");
 
 static u16 read_u16(const u8 *source)
 {
@@ -139,6 +143,13 @@ static void write_u32(u8 *destination, u32 value)
     destination[2] = (u8)(value >> 16);
     destination[3] = (u8)(value >> 24);
 }
+
+/* ConfigureTrainerBattle sets this exact command-data context before entering
+ * the stock routine.  GetRematchTrainerId executes inside that routine, so V2
+ * can distinguish shared physical trainer IDs by their actual script command. */
+static uintptr_t sTrainerV5CommandDataAddress;
+static u16 sTrainerV5CommandSource;
+static u8 sTrainerV5CommandKind;
 
 static u16 map_flag(u16 flag)
 {
@@ -283,35 +294,56 @@ u16 TrainerV5Runtime_GetRematchTrainerId(u16 trainer_id)
     u16 resolved = FN_GET_REMATCH(trainer_id);
     size_t low = 0u;
     size_t high = TRAINER_V5_GENERATED_REMATCH_MAP_COUNT;
+    size_t index;
+    u16 fallback = 0u;
+    u8 fallback_count = 0u;
 
-    /*
-     * The stock selector owns Vs Seeker availability and story-gate logic.
-     * A zero result must remain zero; only an actually selected rematch party
-     * is replaced by the V5 record bound to this physical trainer.
-     */
+    /* The stock selector owns availability and story gates.  Its zero result
+     * remains zero.  A nonzero result is replaced only by an exact V2 row for
+     * the active command-data address and physical source ID. */
     if (resolved == 0u)
         return 0u;
-    while (low < high) {
-        size_t middle = low + ((high - low) >> 1);
-        u16 source = gTrainerV5RematchMap[middle].source_trainer_id;
-        if (source < trainer_id)
-            low = middle + 1u;
-        else
-            high = middle;
+    if (sTrainerV5CommandDataAddress != 0u
+        && sTrainerV5CommandSource == trainer_id
+        && (sTrainerV5CommandKind == 5u || sTrainerV5CommandKind == 7u)) {
+        while (low < high) {
+            size_t middle = low + ((high - low) >> 1);
+            uintptr_t current = (uintptr_t)gTrainerV5RematchMap[middle].data_address;
+            if (current < sTrainerV5CommandDataAddress)
+                low = middle + 1u;
+            else
+                high = middle;
+        }
+        if (low < TRAINER_V5_GENERATED_REMATCH_MAP_COUNT
+            && (uintptr_t)gTrainerV5RematchMap[low].data_address == sTrainerV5CommandDataAddress
+            && gTrainerV5RematchMap[low].stock_trainer_id == trainer_id)
+            return gTrainerV5RematchMap[low].v5_trainer_id;
     }
-    if (low < TRAINER_V5_GENERATED_REMATCH_MAP_COUNT
-        && gTrainerV5RematchMap[low].source_trainer_id == trainer_id)
-        return gTrainerV5RematchMap[low].v5_trainer_id;
-    return resolved;
+
+    /* Some callers invoke GetRematchTrainerId outside ConfigureTrainerBattle.
+     * Preserve compatibility only when the physical source has exactly one V2
+     * destination.  Shared sources such as 119 deliberately fall back to stock. */
+    for (index = 0u; index < TRAINER_V5_GENERATED_REMATCH_MAP_COUNT; ++index) {
+        if (gTrainerV5RematchMap[index].stock_trainer_id == trainer_id) {
+            fallback = gTrainerV5RematchMap[index].v5_trainer_id;
+            ++fallback_count;
+        }
+    }
+    return fallback_count == 1u ? fallback : resolved;
 }
 
 TRAINER_V5_EXPORT(TrainerV5Runtime_ConfigureTrainerBattle)
 const u8 *TrainerV5Runtime_ConfigureTrainerBattle(const u8 *data)
 {
-    const u8 *next = FN_CONFIGURE_TRAINER_BATTLE(data);
+    const u8 *next;
     uintptr_t address = (uintptr_t)data;
     u8 kind = data[0];
     u16 source = read_u16(data + 1u);
+
+    sTrainerV5CommandDataAddress = address;
+    sTrainerV5CommandKind = kind;
+    sTrainerV5CommandSource = source;
+    next = FN_CONFIGURE_TRAINER_BATTLE(data);
     size_t low = 0u;
     size_t high = TRAINER_V5_GENERATED_EXACT_REBIND_COUNT;
 
@@ -332,6 +364,9 @@ const u8 *TrainerV5Runtime_ConfigureTrainerBattle(const u8 *data)
         && gTrainerV5ExactRebinds[low].kind == kind
         && gTrainerV5ExactRebinds[low].source_trainer_id == source)
         G_TRAINER_OPPONENT_A = gTrainerV5ExactRebinds[low].v5_trainer_id;
+    sTrainerV5CommandDataAddress = 0u;
+    sTrainerV5CommandSource = 0u;
+    sTrainerV5CommandKind = 0u;
     return next;
 }
 
@@ -359,7 +394,7 @@ const struct TrainerV5MemberSidecarV1 *TrainerV5Runtime_SidecarTable(void)
 }
 
 TRAINER_V5_EXPORT(TrainerV5Runtime_RematchTable)
-const struct TrainerV5RematchMapV1 *TrainerV5Runtime_RematchTable(void)
+const struct TrainerV5RematchMapV2 *TrainerV5Runtime_RematchTable(void)
 {
     return gTrainerV5RematchMap;
 }

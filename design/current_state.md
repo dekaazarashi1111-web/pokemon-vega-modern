@@ -1,18 +1,19 @@
 # current_state.md
 
-最終更新: 2026-08-18
+最終更新: 2026-08-19
 
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
-- Trainer Redesign V5を累積39 encounter（35 SINGLE / 4 DOUBLE、39一意party、113 member）へ
-  拡張し、map `3/21`・`3/22`・`22/1`の次14物理trainerbattle命令をstage 33へ接続した。
-  stage 33 SHA-256は `7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0`。
+- Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
+  拡張し、Gym1直後のmap-script物理命令1件とmap `3/21`の連続14命令をstage 34へ接続した。
+  stage 34 SHA-256は `84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f`。
 - グローバル`FlagGet/Set/Clear`と最適化private party関数はhookしない。trainer専用flag入口、
   公開`BuildTrainerPartySetup`、exact command-data pointer＋kind＋source ID入口だけをwrapする。
   rooted kind-4の物理ID 702とkind-7の物理ID 100は保持し、CFRU引数消費後だけ高IDへ再束縛する。
-- source 119の複数物理命令と非整列kind-3命令を20行exact tableで区別する。wrapper由来の
-  論理alias 419/424は物理root 420/425へ統合し、defeat flagと既存save ownerを一意に保つ。
+- exact rebindとtrainer-specific defeat flag mapは29行。再戦は8-byte RematchMap V2 23行を
+  command-data address＋physical source IDで引き、共有source 119を物理位置別の1043/1045へ
+  分離する。論理alias ref 0/419/424は物理root側へ統合して既存save ownerを一意に保つ。
 - v1.4.0はコレクション対象1,206種と到達性に必要な10フォームを監査し、既存野生・進化と
   201取得イベントのいずれかで1,216/1,216を到達可能にした。T17で省略されていたclean
   FireRed由来24 objectを19マップへ元の座標・予算内で復元し、新規設計objectは追加していない。

@@ -146,6 +146,11 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
   command-data pointer＋kind＋source IDをbyte単位で照合し、非整列kind-3でGBAのrotated LDRHを
   誤用しない。source 119の複数命令、kind-4高ID 1026、kind-3高ID 1201/1204、未再束縛kind-7を
   同一fixtureで検査し、Batch02 partyのability／nature／exact IV／6EVをlive RAMで確認する。
+- Stage 34は累積54 encounter／171 sidecar、50 SINGLE／4 DOUBLE、29 exact rebind、
+  29 trainer flag、23 RematchMap V2をgateにする。Gym1直後の非整列kind-3とmap `3/21`の
+  次14命令を全件実ROMから再読取りし、source 119の二つのkind-5命令をcommand-data address別に
+  1043/1045へ解決する。trainer 1362の4体party、secondary ability、nature、exact IV、6EV、
+  Stage33 Batch02 sidecar、rooted kind-4 DOUBLE、勝敗、save/reloadを独立2 processで確認する。
 - 固定CFRU-JP AIの `AI_BASIC` / `AI_SEMI_SMART` / `AI_FULL_SMART` を固定global RNGで実行し、move、switch、hazard、setup、recovery、weather/field、item、gimmickを期待actionと比較する。
 - Doubleはtarget、範囲技の味方巻込み、Protect/Wide Guard、Tailwind/Trick Room、Follow Me/Helping Handを検査する。
 - 固定CFRUの既定knowledge model、分散cache/historyの無効化とT01で固定したworst-case性能閾値を検査する。

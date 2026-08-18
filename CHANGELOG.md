@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- post-release stage 34として、Trainer Redesign V5のGym1直後map-script 1命令とmap `3/21`の
+  連続14物理命令をstage 33へ累積し、54 encounter／54一意party／171 member、
+  50 SINGLE／4 DOUBLEへ拡張した。
+- 共有source IDをcommand-data addressと組で解決する8-byte RematchMap V2を23行へ移行し、
+  source 119の二つの再戦を1043/1045へ位置別に束縛した。exact rebind／defeat flag mapは29行。
+- 独立2 processのexact-ROMで新15命令、trainer 1362 sidecar、RematchMap V2、旧Batch02、
+  rooted kind-4 DOUBLE、勝敗、再戦、flag、save/loadを確認した。v1.4.0とstage 27〜33は不変。
+
 - post-release stage 33として、Trainer Redesign V5のTohoku次14物理trainerbattle命令を
   stage 32へ累積し、39 encounter／39一意party／113 member、35 SINGLE／4 DOUBLEへ拡張した。
 - map `3/21`・`3/22`・`22/1`を命令pointer＋kind＋source IDの三つ組で再束縛し、

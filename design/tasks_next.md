@@ -34,3 +34,4 @@
 - [x] Factory Trialの100連勝色違い記念枠を実ROMへ接続する <!-- id:USER-20260818-FACTORY-SHINY-MEMORIAL-RUNTIME -->
 - [x] Trainer V5先行25戦をStage 31実ROMへ安全に接続する <!-- id:USER-TRAINER-V5-STAGE31-INTEGRATION-FOUNDATION -->
 - [x] Trainer V5のTohoku次14物理命令を累積39戦へ接続する <!-- id:USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02 -->
+- [x] Trainer V5のGym1直後＋map 3/21次15物理命令を累積54戦へ接続する <!-- id:USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03 -->

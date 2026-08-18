@@ -76,6 +76,8 @@ make trainer-v5-foundation # Stage 31へV5先行25戦とlive sidecarを結合し
 make trainer-v5-foundation-check # SINGLE/DOUBLE・flag・再戦・saveのexact-ROM成果を再照合
 make trainer-v5-tohoku-batch02 # Tohoku次14物理命令を累積39戦へ接続してstage 33を生成
 make trainer-v5-tohoku-batch02-check # exact pointer再束縛・sidecar・DOUBLE・saveを再照合
+make trainer-v5-tohoku-batch03 # Gym1直後＋map 3/21の次15物理命令を累積54戦へ接続してstage 34を生成
+make trainer-v5-tohoku-batch03-check # RematchMap V2・exact rebind・sidecar・旧batch回帰を再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

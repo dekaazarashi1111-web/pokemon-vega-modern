@@ -1,4 +1,4 @@
-/* Focused exact-ROM smoke for USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02. */
+/* Focused exact-ROM smoke for USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03. */
 #if defined(__GNUC__)
 #pragma GCC diagnostic ignored "-Wunused-function"
 #endif
@@ -200,30 +200,40 @@ static bool tv32_ai_records(struct mCore *core, uint32_t table) {
     uint32_t r1026 = table + 1026U * TV32_TABLE_RECORD_SIZE;
     uint32_t r1044 = table + 1044U * TV32_TABLE_RECORD_SIZE;
     uint32_t r1201 = table + 1201U * TV32_TABLE_RECORD_SIZE;
+    uint32_t r1362 = table + 1362U * TV32_TABLE_RECORD_SIZE;
+    uint32_t r1363 = table + 1363U * TV32_TABLE_RECORD_SIZE;
     return read32(core, r327 + 0x14U) == 1U
         && read32(core, r116 + 0x14U) == 3U
         && read32(core, r1342 + 0x14U) == 3U
         && read32(core, r1026 + 0x14U) == 3U
         && read32(core, r1044 + 0x14U) == 3U
         && read32(core, r1201 + 0x14U) == 1U
+        && read32(core, r1362 + 0x14U) == 3U
+        && read32(core, r1363 + 0x14U) == 3U
         && read8(core, r327 + 0x12U) == 0U
         && read8(core, r116 + 0x12U) == 0U
         && read8(core, r1342 + 0x12U) == 1U
         && read8(core, r1026 + 0x12U) == 1U
         && read8(core, r1044 + 0x12U) == 0U
         && read8(core, r1201 + 0x12U) == 0U
+        && read8(core, r1362 + 0x12U) == 0U
+        && read8(core, r1363 + 0x12U) == 0U
         && read8(core, r1342 + 0x18U) == 4U
         && read8(core, r1026 + 0x18U) == 4U
         && read8(core, r1044 + 0x18U) == 3U
         && read8(core, r1201 + 0x18U) == 2U
+        && read8(core, r1362 + 0x18U) == 4U
+        && read8(core, r1363 + 0x18U) == 4U
         && read32(core, r327 + 0x1CU) >= UINT32_C(0x09200000)
         && read32(core, r1342 + 0x1CU) >= UINT32_C(0x09200000)
         && read32(core, r1026 + 0x1CU) >= UINT32_C(0x09200000)
         && read32(core, r1044 + 0x1CU) >= UINT32_C(0x09200000)
-        && read32(core, r1201 + 0x1CU) >= UINT32_C(0x09200000);
+        && read32(core, r1201 + 0x1CU) >= UINT32_C(0x09200000)
+        && read32(core, r1362 + 0x1CU) >= UINT32_C(0x09200000)
+        && read32(core, r1363 + 0x1CU) >= UINT32_C(0x09200000);
 }
 
-static bool tv33_exact_rebinds(
+static bool tv34_exact_rebinds(
     struct mCore *core, const struct Snapshot *field, uint32_t configure
 ) {
     struct ExactCase {
@@ -233,6 +243,7 @@ static bool tv33_exact_rebinds(
         uint16_t target;
     };
     static const struct ExactCase cases[] = {
+        /* Stage32 and Batch02 regressions. */
         {UINT32_C(0x08E032C1), 4U, 702U, 1342U},
         {UINT32_C(0x08E03601), 4U, 100U, 1026U},
         {UINT32_C(0x08196B5D), 5U, 119U, 1043U},
@@ -240,6 +251,22 @@ static bool tv33_exact_rebinds(
         {UINT32_C(0x08E034A9), 5U, 119U, 1045U},
         {UINT32_C(0x0842A4F0), 3U, 317U, 1201U},
         {UINT32_C(0x0842A522), 3U, 319U, 1204U},
+        /* Batch03: the complete 15-command physical band. */
+        {UINT32_C(0x0842A554), 3U, 1U, 1024U},
+        {UINT32_C(0x08E03381), 0U, 101U, 101U},
+        {UINT32_C(0x08E033A9), 5U, 101U, 1027U},
+        {UINT32_C(0x08E033C1), 0U, 102U, 102U},
+        {UINT32_C(0x08E033E9), 5U, 102U, 1028U},
+        {UINT32_C(0x08E03401), 0U, 107U, 107U},
+        {UINT32_C(0x08E03429), 5U, 107U, 1033U},
+        {UINT32_C(0x08E03341), 0U, 90U, 90U},
+        {UINT32_C(0x08E03369), 5U, 90U, 1356U},
+        {UINT32_C(0x08E034C1), 0U, 94U, 94U},
+        {UINT32_C(0x08E034E9), 5U, 94U, 1360U},
+        {UINT32_C(0x08E03501), 0U, 96U, 1362U},
+        {UINT32_C(0x08E03529), 5U, 96U, 1363U},
+        {UINT32_C(0x08E03541), 0U, 97U, 97U},
+        {UINT32_C(0x08E03569), 5U, 97U, 1364U},
         /* Negative control: the direct kind-7 physical ID remains unchanged. */
         {UINT32_C(0x081AAB41), 7U, 100U, 100U},
     };
@@ -310,6 +337,108 @@ static bool tv33_batch02_sidecar(
                 first_species, second_species,
                 first_nature, second_nature, first_iv, second_iv,
                 ev_ok ? "PASS" : "FAIL", first_active_ability);
+    }
+    return passed;
+}
+
+static bool tv34_batch03_sidecar(
+    struct mCore *core, const struct Snapshot *field
+) {
+    (void)tv32_setup_trainer(core, field, 1362U, 1U, 0U);
+    uint8_t party_count = read8(core, BATTLE_CORE_ENEMY_PARTY_COUNT);
+    uint8_t battlers_count = read8(core, ADDR_BATTLERS_COUNT);
+    uint32_t first = ADDR_ENEMY_PARTY;
+    uint32_t fourth = ADDR_ENEMY_PARTY + 3U * POKEMON_SIZE;
+    uint32_t first_species =
+        call_preserving(core, BATTLE_CORE_GET_MON_DATA, first, 11U, 0U, 0U);
+    uint32_t fourth_species =
+        call_preserving(core, BATTLE_CORE_GET_MON_DATA, fourth, 11U, 0U, 0U);
+    uint8_t first_nature = read8(core, first + TV32_MON_NATURE_MINT);
+    uint8_t fourth_nature = read8(core, fourth + TV32_MON_NATURE_MINT);
+    uint32_t first_iv = read32(core, first + TV32_MON_IV_BITS);
+    uint32_t fourth_iv = read32(core, fourth + TV32_MON_IV_BITS);
+    uint16_t first_met = read16(core, first + TV32_MON_MET_BITS);
+    bool ev_ok = true;
+    for (unsigned ev = 0; ev < 6U; ++ev) {
+        if (read8(core, first + TV32_MON_EV_HP + ev) != 0U
+            || read8(core, fourth + TV32_MON_EV_HP + ev) != 0U)
+            ev_ok = false;
+    }
+    uint16_t first_active_ability =
+        read16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + 0x38U);
+    bool passed = battlers_count == 2U
+        && first_species == 1294U && fourth_species == 7U
+        && first_nature == 14U && fourth_nature == 1U
+        && tv32_repeated_iv(first_iv, 10U)
+        && tv32_repeated_iv(fourth_iv, 8U)
+        && (first_iv & TV32_ABILITY_NUM_MASK) != 0U
+        && (fourth_iv & TV32_ABILITY_NUM_MASK) == 0U
+        && (first_met & TV32_HIDDEN_ABILITY_MASK) == 0U
+        && ev_ok && first_active_ability == 128U;
+    if (!passed) {
+        fprintf(stderr,
+                "batch03-sidecar actual: party=%u battlers=%u "
+                "species=%" PRIu32 "/%" PRIu32
+                " nature=%u/%u iv=0x%08" PRIx32 "/0x%08" PRIx32
+                " met=0x%04x ev=%s ability=%u\n",
+                party_count, battlers_count, first_species, fourth_species,
+                first_nature, fourth_nature, first_iv, fourth_iv, first_met,
+                ev_ok ? "PASS" : "FAIL", first_active_ability);
+    }
+    return passed;
+}
+
+static bool tv34_rematch_map_v2(
+    struct mCore *core, const struct Snapshot *field,
+    uint32_t rematch, uint32_t configure
+) {
+    struct V2Case {
+        uint32_t data_address;
+        uint8_t kind;
+        uint16_t source;
+        uint16_t target;
+    };
+    static const struct V2Case cases[] = {
+        /* One physical source (119), two location-specific rematches. */
+        {UINT32_C(0x08196B5D), 5U, 119U, 1043U},
+        {UINT32_C(0x08E034A9), 5U, 119U, 1045U},
+        /* Batch03's map-local source 96 rematch. */
+        {UINT32_C(0x08E03529), 5U, 96U, 1363U},
+    };
+    bool passed = true;
+    for (unsigned index = 0; index < ARRAY_LEN(cases); ++index) {
+        const struct V2Case *test = &cases[index];
+        restore_snapshot(core, field);
+        uint8_t observed_kind = read8(core, test->data_address);
+        uint16_t observed_source = (uint16_t)(
+            read8(core, test->data_address + 1U)
+            | ((uint16_t)read8(core, test->data_address + 2U) << 8));
+        write16(core, BATTLE_CORE_TRAINER_OPPONENT_A, 0U);
+        (void)call_preserving(
+            core, configure, test->data_address, 0U, 0U, 0U);
+        uint16_t observed_target =
+            read16(core, BATTLE_CORE_TRAINER_OPPONENT_A);
+        bool one = observed_kind == test->kind
+            && observed_source == test->source
+            && observed_target == test->target;
+        if (!one) {
+            fprintf(stderr,
+                    "rematch-v2[%u] actual: data=0x%08" PRIx32
+                    " kind=%u/%u source=%u/%u target=%u/%u\n",
+                    index, test->data_address,
+                    observed_kind, test->kind,
+                    observed_source, test->source,
+                    observed_target, test->target);
+            passed = false;
+        }
+    }
+    /* Outside ConfigureTrainerBattle, an ambiguous shared source must never be
+     * collapsed to either location-specific high ID. */
+    restore_snapshot(core, field);
+    uint16_t ambiguous = (uint16_t)call_preserving(core, rematch, 119U, 0U, 0U, 0U);
+    if (ambiguous == 1043U || ambiguous == 1045U) {
+        fprintf(stderr, "rematch-v2 ambiguous source 119 collapsed to %u\n", ambiguous);
+        passed = false;
     }
     return passed;
 }
@@ -467,7 +596,7 @@ static bool tv32_probe_and_hooks(
     uint32_t configure
 ) {
     const uint32_t expected[] = {
-        UINT32_C(0x56353232), 39U, 113U, 14U, 20U, 1367U, 20U,
+        UINT32_C(0x56353333), 54U, 171U, 23U, 29U, 1367U, 29U,
     };
     for (unsigned selector = 0; selector < 7U; ++selector) {
         if (call_preserving(core, probe, selector, 0, 0, 0) != expected[selector])
@@ -547,15 +676,19 @@ int main(int argc, char **argv) {
         core, probe, trainer_set, trainer_clear, trainer_has, rematch, configure);
     tv32_trace("rematch_mapping");
     bool rematch_mapping = call_preserving(core, rematch, 89U, 0, 0, 0) == 1354U
+        && call_preserving(core, rematch, 96U, 0, 0, 0) == 1363U
         && call_preserving(core, rematch, 103U, 0, 0, 0) == 1029U
         && call_preserving(core, rematch, 702U, 0, 0, 0) == 702U;
+    tv32_trace("rematch_map_v2");
+    bool rematch_map_v2 =
+        tv34_rematch_map_v2(core, &field, rematch, configure);
     tv32_trace("flag_mapping");
     bool flag_mapping =
         tv32_flag_mapping(core, trainer_set, trainer_clear, trainer_has);
     tv32_trace("ai_records");
     bool ai_records = tv32_ai_records(core, table);
     tv32_trace("exact_rebinds");
-    bool exact_rebinds = tv33_exact_rebinds(core, &field, configure);
+    bool exact_rebinds = tv34_exact_rebinds(core, &field, configure);
 
     tv32_trace("normal_entry");
     struct NaturalFirstBattleObservation natural =
@@ -567,6 +700,8 @@ int main(int argc, char **argv) {
     bool single_party_sidecar = tv32_single_sidecar(core, &field);
     tv32_trace("batch02_sidecar");
     bool batch02_sidecar = tv33_batch02_sidecar(core, &field);
+    tv32_trace("batch03_sidecar");
+    bool batch03_sidecar = tv34_batch03_sidecar(core, &field);
     tv32_trace("double_entry");
     bool double_entry = tv32_double_entry(core, &field, trainer_clear);
     tv32_trace("win_path");
@@ -599,45 +734,50 @@ int main(int argc, char **argv) {
     fprintf(stderr,
             "mgba-trainer-v5-stage32 checks: "
             "probe_and_hook_binding=%s normal_entry=%s "
-            "single_party_sidecar=%s batch02_sidecar=%s ai_records=%s "
-            "exact_rebinds=%s double_entry=%s win_path=%s loss_path=%s "
-            "rematch_mapping=%s flag_mapping=%s save_reload=%s "
+            "single_party_sidecar=%s batch02_sidecar=%s batch03_sidecar=%s "
+            "ai_records=%s exact_rebinds=%s double_entry=%s "
+            "win_path=%s loss_path=%s rematch_mapping=%s rematch_map_v2=%s "
+            "flag_mapping=%s save_reload=%s "
             "warnings_errors=%u\n",
             probe_and_hook_binding ? "PASS" : "FAIL",
             normal_entry ? "PASS" : "FAIL",
             single_party_sidecar ? "PASS" : "FAIL",
             batch02_sidecar ? "PASS" : "FAIL",
+            batch03_sidecar ? "PASS" : "FAIL",
             ai_records ? "PASS" : "FAIL",
             exact_rebinds ? "PASS" : "FAIL",
             double_entry ? "PASS" : "FAIL",
             win_path ? "PASS" : "FAIL",
             loss_path ? "PASS" : "FAIL",
             rematch_mapping ? "PASS" : "FAIL",
+            rematch_map_v2 ? "PASS" : "FAIL",
             flag_mapping ? "PASS" : "FAIL",
             save_reload ? "PASS" : "FAIL",
             log_problem_count);
     if (log_problem_count) tv32_die("mGBA warned/errored during Trainer V5 fixtures");
     if (!(probe_and_hook_binding && normal_entry && single_party_sidecar
-          && batch02_sidecar && ai_records && exact_rebinds && double_entry
-          && win_path && loss_path && rematch_mapping && flag_mapping
-          && save_reload))
+          && batch02_sidecar && batch03_sidecar && ai_records
+          && exact_rebinds && double_entry && win_path && loss_path
+          && rematch_mapping && rematch_map_v2 && flag_mapping && save_reload))
         tv32_die("one or more focused checks failed");
 
-    printf("{\"schema_version\":1,\"status\":\"PASS\"," 
-           "\"fixture\":\"trainer_v5_stage32_exact_rom\"," 
-           "\"checks\":{" 
-           "\"probe_and_hook_binding\":true," 
-           "\"normal_entry\":true," 
-           "\"single_party_sidecar\":true," 
-           "\"batch02_sidecar\":true," 
-           "\"ai_records\":true," 
-           "\"exact_rebinds\":true," 
-           "\"double_entry\":true," 
-           "\"win_path\":true," 
-           "\"loss_path\":true," 
-           "\"rematch_mapping\":true," 
-           "\"flag_mapping\":true," 
-           "\"save_reload\":true}," 
+    printf("{\"schema_version\":1,\"status\":\"PASS\","
+           "\"fixture\":\"trainer_v5_stage32_exact_rom\","
+           "\"checks\":{"
+           "\"probe_and_hook_binding\":true,"
+           "\"normal_entry\":true,"
+           "\"single_party_sidecar\":true,"
+           "\"batch02_sidecar\":true,"
+           "\"batch03_sidecar\":true,"
+           "\"ai_records\":true,"
+           "\"exact_rebinds\":true,"
+           "\"double_entry\":true,"
+           "\"win_path\":true,"
+           "\"loss_path\":true,"
+           "\"rematch_mapping\":true,"
+           "\"rematch_map_v2\":true,"
+           "\"flag_mapping\":true,"
+           "\"save_reload\":true},"
            "\"warnings_errors\":0}\n");
     return 0;
 }

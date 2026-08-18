@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Trainer Redesign V5の累積39戦をStage 32実ROMへ接続する。"""
+"""Trainer Redesign V5の累積54戦をStage 33実ROMへ接続する。"""
 
 from __future__ import annotations
 
@@ -26,30 +26,30 @@ from tools.release import bps as bps_codec  # noqa: E402
 from tools.release.bps import apply_bps  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
 
-TASK = "USER-TRAINER-V5-STAGE32-TOHOKU-BATCH02"
+TASK = "USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03"
 ROM_SIZE = 32 * 1024 * 1024
-INPUT_ROM = Path("build/stages/32_trainer_v5_foundation.gba")
-INPUT_META = Path("build/stages/32_trainer_v5_foundation.json")
-INPUT_ALLOC = Path("build/stages/32_allocation.json")
+INPUT_ROM = Path("build/stages/33_trainer_v5_tohoku_batch02.gba")
+INPUT_META = Path("build/stages/33_trainer_v5_tohoku_batch02.json")
+INPUT_ALLOC = Path("build/stages/33_allocation.json")
 STAGE17_META = Path("build/stages/17_regression.json")
 STAGE07_META = Path("build/stages/07_species.json")
 BASE_ROM = Path("build/final/vega-modern-kanto-v1.4.0.gba")
-OUTPUT_ROM = Path("build/stages/33_trainer_v5_tohoku_batch02.gba")
-OUTPUT_META = Path("build/stages/33_trainer_v5_tohoku_batch02.json")
-OUTPUT_ALLOC = Path("build/stages/33_allocation.json")
+OUTPUT_ROM = Path("build/stages/34_trainer_v5_tohoku_batch03.gba")
+OUTPUT_META = Path("build/stages/34_trainer_v5_tohoku_batch03.json")
+OUTPUT_ALLOC = Path("build/stages/34_allocation.json")
 RUNTIME_BIN = Path("generated/runtime/trainer_v5_stage32_runtime.bin")
 RUNTIME_SYMBOLS = Path("generated/runtime/trainer_v5_stage32_runtime_symbols.json")
 GENERATED_HEADER = Path("generated/runtime/trainer_v5_stage32_generated.h")
 SERIALIZED_JSON = Path("generated/runtime/trainer_v5_stage32_serialized.json")
-BINDING_REPORT = Path("reports/generated/trainer_v5_stage32_bindings.csv")
-MGBA_FIXTURE = Path("build/stages/33_mgba_trainer_v5_tohoku_batch02.json")
-REPORT = Path("reports/generated/trainer_v5_stage32.md")
-PATCH_INCREMENTAL = Path("build/patches/trainer-v5-stage32-to-tohoku-batch02-stage33.bps")
-PATCH_CUMULATIVE = Path("build/patches/vega-modern-kanto-v1.4.0-to-trainer-v5-stage33.bps")
+BINDING_REPORT = Path("reports/generated/trainer_v5_stage33_bindings.csv")
+MGBA_FIXTURE = Path("build/stages/34_mgba_trainer_v5_tohoku_batch03.json")
+REPORT = Path("reports/generated/trainer_v5_stage33.md")
+PATCH_INCREMENTAL = Path("build/patches/trainer-v5-stage33-to-tohoku-batch03-stage34.bps")
+PATCH_CUMULATIVE = Path("build/patches/vega-modern-kanto-v1.4.0-to-trainer-v5-stage34.bps")
 RUNNER = Path("tools/mgba_trainer_v5_stage32_smoke.c")
 SOURCE_DIR = Path("content/trainer_v5_stage32")
 
-EXPECTED_INPUT_SHA256 = "bd426a1fc48d09ee2bdaede9c7d56df3f1a125646852b6b54302589cdb758694"
+EXPECTED_INPUT_SHA256 = "7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0"
 EXPECTED_BASE_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
 PAYLOAD_HEADER_SIZE = 0x100
 TRAMPOLINE_SIZE = 0x10
@@ -61,7 +61,7 @@ HOOK_NAMES = (
     "get_rematch", "build_trainer_party",
 )
 CODE_RELATIVE_OFFSET = PAYLOAD_HEADER_SIZE + TRAMPOLINE_SIZE * len(TRAMPOLINE_NAMES)
-ALLOCATION_NAME = "trainer_v5_stage32_tohoku_batch02_payload"
+ALLOCATION_NAME = "trainer_v5_stage33_tohoku_batch03_payload"
 TRAINER_TABLE_COUNT = 1367
 TRAINER_RECORD_SIZE = 32
 PARTY_MEMBER_SIZE = 16
@@ -112,7 +112,7 @@ MULTI_KINDS: set[int] = set()
 
 
 class TrainerV5BuildError(ValueError):
-    """V5正本、Stage 32 ABI、配置、または受入契約の違反。"""
+    """V5正本、Stage 33 ABI、配置、または受入契約の違反。"""
 
 
 def _fail(message: str) -> NoReturn:
@@ -271,18 +271,18 @@ def _input_contract(root: Path) -> tuple[bytes, bytes, dict[str, Any], dict[str,
     trainer_meta = _read_json(root / STAGE17_META)
     species_meta = _read_json(root / STAGE07_META)
     if len(stage) != ROM_SIZE or _sha(stage) != EXPECTED_INPUT_SHA256:
-        _fail("Stage 32 input size or hash differs")
+        _fail("Stage 33 input size or hash differs")
     if len(base) != ROM_SIZE or _sha(base) != EXPECTED_BASE_SHA256:
         _fail("v1.4.0 base size or hash differs")
     if input_meta.get("output", {}).get("sha256") != EXPECTED_INPUT_SHA256:
-        _fail("Stage 32 metadata output hash differs")
+        _fail("Stage 33 metadata output hash differs")
     if previous_alloc.get("summaries", {}).get("overlap_count") != 0:
-        _fail("Stage 32 allocator overlap contract failed")
+        _fail("Stage 33 allocator overlap contract failed")
     previous_table = input_meta.get("trainer_table", {})
     if (previous_table.get("record_size") != TRAINER_RECORD_SIZE
             or previous_table.get("new_count") != TRAINER_TABLE_COUNT
             or previous_table.get("repoint_count") != 24):
-        _fail("Stage 32 trainer table ABI metadata differs")
+        _fail("Stage 33 trainer table ABI metadata differs")
     trainer = trainer_meta.get("trainers", {})
     if (trainer.get("record_size") != TRAINER_RECORD_SIZE
             or trainer.get("expanded_count") != OLD_TRAINER_TABLE_COUNT
@@ -375,8 +375,8 @@ def load_and_validate_source(root: Path = ROOT, stage: bytes | None = None) -> d
     parties = _rows(source / "trainer_parties_v5.csv")
     members = _rows(source / "trainer_party_members_v5.csv")
     bindings = _rows(source / "trainer_stage32_bindings.csv")
-    if (len(encounters), len(parties), len(members), len(bindings)) != (39, 39, 113, 39):
-        _fail("selected V5 source counts differ from 39/39/113/39")
+    if (len(encounters), len(parties), len(members), len(bindings)) != (54, 54, 171, 54):
+        _fail("selected V5 source counts differ from 54/54/171/54")
     encounter_by_key = _index(encounters, "encounter_key", "encounters")
     party_by_key = _index(parties, "party_key", "parties")
     binding_by_key = _index(bindings, "encounter_key", "bindings")
@@ -384,7 +384,7 @@ def load_and_validate_source(root: Path = ROOT, stage: bytes | None = None) -> d
         _fail("encounter/binding key sets differ")
     if {row["party_key"] for row in encounters} != set(party_by_key):
         _fail("encounter/party key sets differ")
-    if len({row["adoption_reason"] for row in bindings}) != 39 or any(not row["adoption_reason"].strip() for row in bindings):
+    if len({row["adoption_reason"] for row in bindings}) != 54 or any(not row["adoption_reason"].strip() for row in bindings):
         _fail("individual adoption reasons are missing or reused")
     for binding in bindings:
         encounter = encounter_by_key[binding["encounter_key"]]
@@ -443,7 +443,7 @@ def load_and_validate_source(root: Path = ROOT, stage: bytes | None = None) -> d
             expected_kind = int(binding["trainerbattle_kind"], 0)
             expected_source = int(binding["source_trainer_id"], 0)
             if stage[offset] != 0x5C or stage[offset + 1] != expected_kind or _u16(stage, offset + 2, "trainerbattle source") != expected_source:
-                _fail(f"{binding['encounter_key']}: exact Stage32 trainerbattle bytes differ")
+                _fail(f"{binding['encounter_key']}: exact Stage33 trainerbattle bytes differ")
 
     return {
         "manifest": manifest, "schema": schema, "encounters": encounters,
@@ -523,19 +523,26 @@ def _serialize_catalog(source: Mapping[str, Any], stage: bytes, species_meta: Ma
             "party_sha256": _sha(party_raw), "members": serialized_members,
         })
     sidecars.sort(key=lambda row: (row["trainer_id"], row["side"], row["slot"]))
-    if len(sidecars) != 113:
-        _fail("serialized sidecar count differs")
+    if len(sidecars) != 171:
+        _fail("serialized sidecar count differs from 171")
 
-    rematch_targets: dict[int, set[int]] = {}
-    for row in source["bindings"]:
-        if row["runtime_id_resolution"] == "REMATCH_HOOK_SOURCE_TO_V5_ID":
-            source_id = int(row["source_trainer_id"], 0)
-            rematch_targets.setdefault(source_id, set()).add(int(row["trainer_id"], 0))
-    ambiguous_rematch_sources = sorted(source_id for source_id, targets in rematch_targets.items() if len(targets) != 1)
-    rematch_map = sorted(
-        [(source_id, next(iter(targets))) for source_id, targets in rematch_targets.items() if len(targets) == 1]
-        + [(702, 702)]
-    )
+    rematch_map = [{
+        "data_address": int(row["script_instruction_address"], 0) + 1,
+        "stock_trainer_id": int(row["source_trainer_id"], 0),
+        "v5_trainer_id": int(row["trainer_id"], 0),
+        "encounter_key": row["encounter_key"],
+    } for row in source["bindings"]
+        if row["runtime_id_resolution"] == "REMATCH_HOOK_SOURCE_TO_V5_ID"]
+    rooted_double = next(row for row in source["bindings"] if int(row["reference_index"], 0) == 1004)
+    rematch_map.append({
+        "data_address": int(rooted_double["script_instruction_address"], 0) + 1,
+        "stock_trainer_id": 702,
+        "v5_trainer_id": 702,
+        "encounter_key": rooted_double["encounter_key"],
+    })
+    rematch_map.sort(key=lambda row: (row["data_address"], row["stock_trainer_id"], row["v5_trainer_id"]))
+    rematch_source_counts = Counter(row["stock_trainer_id"] for row in rematch_map)
+    shared_rematch_sources = sorted(source for source, count in rematch_source_counts.items() if count > 1)
     flag_map = sorted({
         (FLAG_START + int(row["trainer_id"], 0), FLAG_START + int(row["defeat_flag_owner_trainer_id"], 0))
         for row in source["bindings"]
@@ -550,12 +557,14 @@ def _serialize_catalog(source: Mapping[str, Any], stage: bytes, species_meta: Ma
     } for row in source["bindings"]
         if int(row["trainer_id"], 0) != int(row["source_trainer_id"], 0)),
         key=lambda row: (row["data_address"], row["kind"], row["source_trainer_id"], row["v5_trainer_id"]))
-    if (len(rematch_map), len(flag_map), len(exact_rebinds)) != (14, 20, 20):
+    if (len(rematch_map), len(flag_map), len(exact_rebinds)) != (23, 29, 29):
         _fail(f"runtime map counts differ: {len(rematch_map)}/{len(flag_map)}/{len(exact_rebinds)}")
+    if shared_rematch_sources != [119]:
+        _fail(f"unexpected shared RematchMap V2 sources: {shared_rematch_sources}")
     return {
         "sidecars": sidecars, "rematch_map": rematch_map, "flag_map": flag_map,
         "exact_rebinds": exact_rebinds,
-        "ambiguous_rematch_sources": ambiguous_rematch_sources,
+        "shared_rematch_sources": shared_rematch_sources,
         "party_rows": party_rows, "party_bytes_by_key": party_bytes_by_key,
     }
 
@@ -571,7 +580,10 @@ def _generated_header(serialized: Mapping[str, Any]) -> bytes:
                 row["spd_ev"], row["reserved"],
             )
         )
-    rematch_lines = [f"    {{{source}u, {target}u}}," for source, target in serialized["rematch_map"]]
+    rematch_lines = [
+        f"    {{UINT32_C(0x{row['data_address']:08X}), {row['stock_trainer_id']}u, {row['v5_trainer_id']}u}},"
+        for row in serialized["rematch_map"]
+    ]
     flag_lines = [f"    {{{external}u, {physical}u}}," for external, physical in serialized["flag_map"]]
     exact_lines = [
         f"    {{UINT32_C(0x{row['data_address']:08X}), {row['source_trainer_id']}u, {row['v5_trainer_id']}u, {row['kind']}u, {{0u, 0u, 0u}}}},"
@@ -585,7 +597,7 @@ def _generated_header(serialized: Mapping[str, Any]) -> bytes:
 #define TRAINER_V5_ABILITY_PRIMARY 0u
 #define TRAINER_V5_ABILITY_SECONDARY 1u
 #define TRAINER_V5_ABILITY_HIDDEN 2u
-#define TRAINER_V5_GENERATED_ENCOUNTER_COUNT 39u
+#define TRAINER_V5_GENERATED_ENCOUNTER_COUNT 54u
 #define TRAINER_V5_GENERATED_SIDECAR_COUNT {len(serialized['sidecars'])}u
 #define TRAINER_V5_GENERATED_REMATCH_MAP_COUNT {len(serialized['rematch_map'])}u
 #define TRAINER_V5_GENERATED_FLAG_MAP_COUNT {len(serialized['flag_map'])}u
@@ -608,7 +620,11 @@ struct __attribute__((packed)) TrainerV5MemberSidecarV1 {{
     uint8_t sp_def_ev;
     uint8_t reserved;
 }};
-struct __attribute__((packed)) TrainerV5RematchMapV1 {{ uint16_t source_trainer_id; uint16_t v5_trainer_id; }};
+struct __attribute__((packed)) TrainerV5RematchMapV2 {{
+    uint32_t data_address;
+    uint16_t stock_trainer_id;
+    uint16_t v5_trainer_id;
+}};
 struct __attribute__((packed)) TrainerV5FlagMapV1 {{ uint16_t external_flag; uint16_t physical_flag; }};
 struct __attribute__((packed)) TrainerV5ExactRebindV1 {{
     uint32_t data_address;
@@ -621,7 +637,7 @@ struct __attribute__((packed)) TrainerV5ExactRebindV1 {{
 static const struct TrainerV5MemberSidecarV1 gTrainerV5MemberSidecars[TRAINER_V5_GENERATED_SIDECAR_COUNT] = {{
 {chr(10).join(sidecar_lines)}
 }};
-static const struct TrainerV5RematchMapV1 gTrainerV5RematchMap[TRAINER_V5_GENERATED_REMATCH_MAP_COUNT] = {{
+static const struct TrainerV5RematchMapV2 gTrainerV5RematchMap[TRAINER_V5_GENERATED_REMATCH_MAP_COUNT] = {{
 {chr(10).join(rematch_lines)}
 }};
 static const struct TrainerV5FlagMapV1 gTrainerV5FlagMap[TRAINER_V5_GENERATED_FLAG_MAP_COUNT] = {{
@@ -723,12 +739,12 @@ def _allocation(root: Path, previous: Mapping[str, Any], size: int, digest: str)
     requests.append({
         "name": ALLOCATION_NAME, "region": "integration_modules", "size": size,
         "alignment": 16, "owner": TASK,
-        "purpose": "Trainer V5 cumulative 39 encounters, exact command rebind table, sidecar runtime, save-compatible hooks",
+        "purpose": "Trainer V5 cumulative 54 encounters, RematchMap V2, exact command rebind table, sidecar runtime, save-compatible hooks",
         "content_sha256": digest,
     })
     report = build_allocation_report_from_csv(root / "config/rom_regions.csv", requests)
     if report.get("summaries", {}).get("overlap_count") != 0:
-        _fail("Stage32 allocator overlap detected")
+        _fail("Stage33 allocator overlap detected")
     matches = [row for row in report["allocations"] if row["name"] == ALLOCATION_NAME]
     if len(matches) != 1:
         _fail("Trainer V5 allocation is not unique")
@@ -823,7 +839,7 @@ def _build_payload(
     entrypoints = {name: symbols[name] | 1 for name in sorted(REQUIRED_ENTRYPOINTS)}
     struct.pack_into(
         "<8sIIIIIIIIIIIIIIII",
-        payload, 0, b"VEGATV33", 3, len(payload), len(code), TRAINER_TABLE_COUNT,
+        payload, 0, b"VEGATV34", 4, len(payload), len(code), TRAINER_TABLE_COUNT,
         len(source["bindings"]), len(serialized["sidecars"]), len(serialized["rematch_map"]),
         len(serialized["flag_map"]), payload_address + layout["table_relative"],
         party_base, entrypoints["TrainerV5Runtime_Probe"],
@@ -835,7 +851,7 @@ def _build_payload(
     )
     runtime = {
         "payload": {
-            "magic": "VEGATV33", "offset": payload_offset, "address": payload_address,
+            "magic": "VEGATV34", "offset": payload_offset, "address": payload_address,
             "size": len(payload), "sha256": _sha(payload), "header_size": PAYLOAD_HEADER_SIZE,
             "code_offset": payload_offset + layout["code_relative"], "code_address": code_address,
             "code_size": len(code), "code_sha256": _sha(code),
@@ -893,21 +909,21 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         for row in input_meta["trainer_table"]["repoints"]
     }
     if len(previous_repoints) != len(trainer_meta["trainers"]["repoints"]):
-        _fail("Stage32 trainer table repoint metadata count differs")
+        _fail("Stage33 trainer table repoint metadata count differs")
     for row in trainer_meta["trainers"]["repoints"]:
         site = int(row["site_offset"])
         if site not in previous_repoints:
-            _fail(f"Stage32 trainer table repoint metadata missing 0x{site:X}")
+            _fail(f"Stage33 trainer table repoint metadata missing 0x{site:X}")
         previous = previous_repoints[site]
         delta = int(previous["field_offset"])
         if delta not in (0, 4, 10):
             _fail(f"trainer table repoint delta differs at 0x{site:X}: {delta}")
         expected_pointer = int(previous["replacement_pointer"])
         if expected_pointer != previous_table + delta:
-            _fail(f"Stage32 trainer table repoint metadata differs at 0x{site:X}")
+            _fail(f"Stage33 trainer table repoint metadata differs at 0x{site:X}")
         actual_pointer = _u32(stage, site, row["label"])
         if actual_pointer != expected_pointer:
-            _fail(f"Stage32 trainer table pointer differs at 0x{site:X}: {actual_pointer:#x} != {expected_pointer:#x}")
+            _fail(f"Stage33 trainer table pointer differs at 0x{site:X}: {actual_pointer:#x} != {expected_pointer:#x}")
         replacement = new_table + delta
         struct.pack_into("<I", output, site, replacement)
         declared.append({"start": site, "end_exclusive": site + 4, "kind": "trainer_table_repoint"})
@@ -925,7 +941,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         site = _rom_offset(hook["address"], 8, name)
         expected = bytes.fromhex(previous["replacement_hex"])
         if bytes(stage[site:site + 8]) != expected:
-            _fail(f"{name}: Stage32 replacement stub differs")
+            _fail(f"{name}: Stage33 replacement stub differs")
         target = runtime["entrypoints"][hook["entry"]]
         replacement = _jump_stub(target)
         output[site:site + 8] = replacement
@@ -946,12 +962,12 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
     changed = [index for index, (before, after) in enumerate(zip(stage, output)) if before != after]
     outside = [index for index in changed if not any(row["start"] <= index < row["end_exclusive"] for row in declared)]
     if outside:
-        _fail(f"Stage33 changed bytes outside declared spans: {outside[:16]}")
+        _fail(f"Stage34 changed bytes outside declared spans: {outside[:16]}")
     output_raw = bytes(output)
     incremental = _sparse_bps(stage, output_raw)
     cumulative = _sparse_bps(base, output_raw)
     if apply_bps(stage, incremental) != output_raw or apply_bps(base, cumulative) != output_raw:
-        _fail("Stage33 BPS round-trip differs")
+        _fail("Stage34 BPS round-trip differs")
 
     binding_report_rows: list[dict[str, Any]] = []
     party_doc = {row["party_key"]: row for row in serialized["party_rows"]}
@@ -974,7 +990,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
 
     serialized_doc = {
         "schema_version": 2, "task": TASK, "status": "PASS",
-        "selected_scope": {"encounter_count": 39, "party_count": 39, "member_count": 113},
+        "selected_scope": {"encounter_count": 54, "party_count": 54, "member_count": 171},
         "battle_contracts": source["format_audit"],
         "member_sidecar_v1": {
             "record_size": SIDECAR_SIZE,
@@ -983,10 +999,10 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "ev_runtime_order": ["hp_ev", "atk_ev", "def_ev", "spe_ev", "spa_ev", "spd_ev"],
             "rows": serialized["sidecars"],
         },
-        "rematch_map": [{"source_trainer_id": a, "v5_trainer_id": b} for a, b in serialized["rematch_map"]],
+        "rematch_map_v2": serialized["rematch_map"],
         "flag_map": [{"external_flag": a, "physical_flag": b} for a, b in serialized["flag_map"]],
         "exact_trainerbattle_rebinds": serialized["exact_rebinds"],
-        "ambiguous_rematch_sources": serialized["ambiguous_rematch_sources"],
+        "shared_rematch_sources": serialized["shared_rematch_sources"],
         "parties": serialized["party_rows"],
         "id_rebindings": source["id_rebindings"],
     }
@@ -999,7 +1015,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         **runtime,
         "source": {
             "directory": SOURCE_DIR.as_posix(), "manifest_sha256": _sha((root / SOURCE_DIR / "source_manifest.json").read_bytes()),
-            "encounter_count": 39, "party_count": 39, "member_count": 113,
+            "encounter_count": 54, "party_count": 54, "member_count": 171,
             "reference_archives_verified": 4, "id_rebindings": source["id_rebindings"],
         },
         "serializer": {
@@ -1039,18 +1055,20 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         },
         "change_audit": {"changed_byte_count": len(changed), "declared_spans": declared, "outside_declared_span_count": 0},
         "invariants": {
-            "input_stage32_hash_pinned": _sha(stage) == EXPECTED_INPUT_SHA256,
+            "input_stage33_hash_pinned": _sha(stage) == EXPECTED_INPUT_SHA256,
             "base_v1_4_0_hash_pinned": _sha(base) == EXPECTED_BASE_SHA256,
             "rom_size_32_mib": len(output_raw) == ROM_SIZE,
-            "selected_encounters_39": len(source["bindings"]) == 39,
-            "selected_parties_unique_39": len(serialized["party_rows"]) == 39 and len({row["party_sha256"] for row in serialized["party_rows"]}) == 39,
-            "sidecar_members_113": len(serialized["sidecars"]) == 113,
-            "normal_single_35_double_4": source["format_audit"]["single"] == 35 and source["format_audit"]["double"] == 4,
+            "selected_encounters_54": len(source["bindings"]) == 54,
+            "selected_parties_unique_54": len(serialized["party_rows"]) == 54 and len({row["party_sha256"] for row in serialized["party_rows"]}) == 54,
+            "sidecar_members_171": len(serialized["sidecars"]) == 171,
+            "normal_single_50_double_4": source["format_audit"]["single"] == 50 and source["format_audit"]["double"] == 4,
             "hardcoded_double_rejects_single": source["format_audit"]["hardcoded_double_rejects_single"],
             "trainer_table_repoints_24": len(repoints) == 24,
             "trainer_specific_runtime_hooks_9": len(hook_rows) == 9,
-            "exact_trainerbattle_rebinds_20": len(serialized["exact_rebinds"]) == 20,
-            "ambiguous_source_only_rematch_excluded": serialized["ambiguous_rematch_sources"] == [119],
+            "exact_trainerbattle_rebinds_29": len(serialized["exact_rebinds"]) == 29,
+            "rematch_map_v2_rows_23": len(serialized["rematch_map"]) == 23,
+            "shared_source_119_location_specific": serialized["shared_rematch_sources"] == [119]
+                and len({row["data_address"] for row in serialized["rematch_map"] if row["stock_trainer_id"] == 119}) == 2,
             "initial_double_script_keeps_physical_id":
                 _u16(output, double_site, "initial double output trainer")
                 == int(initial_double_binding["source_trainer_id"], 0),
@@ -1112,8 +1130,8 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: Mapping[str, Any]) -> dict
         payloads: list[str] = []
         processes: list[subprocess.Popen[str]] = []
         for index in (1, 2):
-            rom = temp / f"33_trainer_v5_run{index}.gba"
-            save = temp / f"33_trainer_v5_run{index}.sav"
+            rom = temp / f"34_trainer_v5_run{index}.gba"
+            save = temp / f"34_trainer_v5_run{index}.sav"
             rom.write_bytes(stage)
             processes.append(subprocess.Popen(
                 [str(executable), str(rom), str(save), *common_args], cwd=root,
@@ -1146,17 +1164,17 @@ def _mgba_fixture(root: Path, stage: bytes, metadata: Mapping[str, Any]) -> dict
 
 def _report(metadata: Mapping[str, Any], mgba: Mapping[str, Any]) -> bytes:
     checks = mgba["checks"]
-    text = f"""# Trainer Redesign V5 / Stage 33 Tohoku Batch02
+    text = f"""# Trainer Redesign V5 / Stage 34 Tohoku Batch03
 
 ## 結論
 
-- Stage31の25戦へ物理的に連続する14 encounterを追加し、累積39戦・35 SINGLE / 4 DOUBLEを実ROMへ接続した。
-- 39 partyはすべて一意で、113 memberを16-byte party ABIと16-byte sidecar V1へserializeした。
-- map 3/21、3/22、22/1を採用し、同一物理命令を指す論理別名419/424は除外した。
-- exact trainerbattle data pointer + kind + source IDの20行表で、高ID partyを曖昧なく再束縛する。
-- source 119の複数再戦はsource-only rematch mapから除外し、exact pointer表だけで分離する。
-- global FlagGet/Set/Clearは変更せず、物理defeat flag ownerと既存save ABIを維持する。
-- rooted kind-4 DOUBLE 702→1342の回帰契約も同じexact表で保持する。
+- 検証済みStage33の39戦へ、Gym1直後のmap-script物理命令1件とmap 3/21の連続14命令を追加し、累積54戦・50 SINGLE / 4 DOUBLEを実ROMへ接続した。
+- 54 partyはすべて一意で、171 memberを16-byte party ABIと16-byte sidecar V1へserializeした。
+- 新規15戦は物理rootだけを採用し、同一命令の論理別名ref 0/419/424を除外した。遠隔mapは件数調整に混在させていない。
+- exact trainerbattle data pointer + kind + source IDの29行表で、高ID partyと共有物理IDを正確なcommand位置だけで再束縛する。
+- 再戦は8-byte RematchMap V2を23行生成し、command-data address + physical source IDで解決する。source 119は二つの物理位置から1043/1045へ別々に束縛される。
+- global FlagGet/Set/Clearは変更せず、29行のtrainer-specific defeat flag mapと既存save ABIを維持する。
+- Stage32 rooted kind-4 DOUBLE 702→1342およびStage33 Batch02のsidecar・exact rebindを回帰検証した。
 
 ## ROM結合
 
@@ -1167,6 +1185,7 @@ def _report(metadata: Mapping[str, Any], mgba: Mapping[str, Any]) -> bytes:
 - Trainer table repoints: {metadata['trainer_table']['repoint_count']}
 - Runtime hooks: {len(metadata['hooks'])}
 - Exact rebind rows: {len(metadata['runtime_id_rebindings'])}
+- RematchMap V2 rows: 23
 - Allocator overlap: {metadata['allocation']['overlap_count']}
 - P4B2c forbidden range avoided: {metadata['allocation']['forbidden_range_avoided']}
 - Declared span外変更: {metadata['change_audit']['outside_declared_span_count']}
@@ -1175,19 +1194,21 @@ def _report(metadata: Mapping[str, Any], mgba: Mapping[str, Any]) -> bytes:
 
 - ABI probe / hook binding: {checks['probe_and_hook_binding']}
 - normal field entry to first rival: {checks['normal_entry']}
-- SINGLE party + sidecar live fields: {checks['single_party_sidecar']}
-- Batch02 newly added party + sidecar live fields: {checks['batch02_sidecar']}
-- exact trainerbattle command rebinds: {checks['exact_rebinds']}
+- Stage32 SINGLE party + sidecar live fields: {checks['single_party_sidecar']}
+- Stage33 Batch02 party + sidecar regression: {checks['batch02_sidecar']}
+- Batch03 trainer 1362 party + sidecar live fields: {checks['batch03_sidecar']}
+- exact trainerbattle command rebinds（新15命令を含む）: {checks['exact_rebinds']}
+- location-specific RematchMap V2 / shared source 119: {checks['rematch_map_v2']}
 - trainer AI record consumption: {checks['ai_records']}
 - rooted kind-4 DOUBLE / party sidecar / four-controller entry: {checks['double_entry']}
 - scheduler win path: {checks['win_path']}
 - scheduler loss path: {checks['loss_path']}
-- rematch ID mapping: {checks['rematch_mapping']}
+- unique-source rematch compatibility: {checks['rematch_mapping']}
 - high-ID defeat flag mapping: {checks['flag_mapping']}
 - save/reload persistence: {checks['save_reload']}
 - deterministic process runs: {mgba['process_runs']}
 
-このtaskのbuilder、source hash、schema/format、allocator、変更span、BPS往復、focused libmGBA exact-ROM smokeを実行した。
+このtaskのbuilder、source hash、schema/format、allocator、変更span、BPS往復、2独立processのfocused libmGBA exact-ROM smokeを実行した。
 """
     return text.encode("utf-8")
 
@@ -1243,9 +1264,9 @@ def main() -> int:
         else:
             _check_outputs(ROOT, outputs)
     except (OSError, ValueError, KeyError, json.JSONDecodeError, TrainerV5BuildError) as error:
-        print(f"Trainer V5 Stage32 Tohoku Batch02 failed: {error}", file=sys.stderr)
+        print(f"Trainer V5 Stage33 Tohoku Batch03 failed: {error}", file=sys.stderr)
         return 1
-    print(f"Trainer V5 Stage32 Tohoku Batch02 {args.mode}: PASS stage={_sha(outputs[OUTPUT_ROM.as_posix()])} artifacts={len(outputs)}")
+    print(f"Trainer V5 Stage33 Tohoku Batch03 {args.mode}: PASS stage={_sha(outputs[OUTPUT_ROM.as_posix()])} artifacts={len(outputs)}")
     return 0
 
 

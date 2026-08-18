@@ -133,13 +133,13 @@
     "selected_scope": {
       "properties": {
         "encounter_count": {
-          "const": 39
+          "const": 54
         },
         "max_encounters": {
-          "const": 39
+          "const": 54
         },
         "story_phase": {
-          "const": "TOHOKU_PROLOGUE_PRE_GYM1"
+          "const": "TOHOKU_PROLOGUE_PRE_GYM1+TOHOKU_BADGE1_TO_2"
         }
       },
       "required": [
@@ -156,9 +156,35 @@
     "member_sidecar_v1",
     "selected_scope"
   ],
-  "title": "Stage32 Trainer V5 Tohoku Batch02 cumulative integration",
+  "title": "Stage33 Trainer V5 Tohoku Batch03 cumulative integration",
   "type": "object",
   "x-stage32-contract": {
+    "double_kinds": [
+      4,
+      7
+    ],
+    "hardcoded_double_must_not_accept_single": true,
+    "live_sidecar_fields": [
+      "ability_key",
+      "nature_key",
+      "hp_ev",
+      "atk_ev",
+      "def_ev",
+      "spa_ev",
+      "spd_ev",
+      "spe_ev"
+    ],
+    "multi_kinds": [],
+    "party_member_size": 16,
+    "single_kinds": [
+      0,
+      3,
+      5,
+      9
+    ],
+    "trainer_record_size": 32
+  },
+  "x-stage33-contract": {
     "double_kinds": [
       4,
       7

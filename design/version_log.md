@@ -600,3 +600,14 @@
   - exact pointer＋kind＋source IDで重複sourceと非整列kind-3を解決し、物理flag ownerと既存saveを保持した。
   - stage 33 ROMとincremental/cumulative BPSを決定的に生成した。
 - Verify: `make trainer-v5-tohoku-batch02` / `make trainer-v5-tohoku-batch02-check`、libmGBA独立2 process 12 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `7d3ad7f55d76afdad92cb18965d4bba33ccf0c854f4efdc1268974f9829472f0`。
+
+## 2026-08-19T05:45:47+09:00
+
+- Version: `post-v1.4.0-stage34`（v1.4.0 release identityとstage 27〜33は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03` / Gym1直後＋map 3/21次15物理命令を累積54戦へ接続する
+- Summary:
+  - Gym1直後のmap-script 1命令とmap `3/21`の連続14物理trainerbattle命令を追加し、54戦／171 memberへ累積した。
+  - 共有sourceをcommand-data addressで分離するRematchMap V2 23行と、exact rebind／defeat flag 29行を生成した。
+  - stage 34 ROMとincremental/cumulative BPSを決定的に生成した。
+- Verify: `make trainer-v5-tohoku-batch03` / `make trainer-v5-tohoku-batch03-check`、libmGBA独立2 process 14 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f`。
