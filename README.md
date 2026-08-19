@@ -78,6 +78,12 @@ make trainer-v5-tohoku-batch02 # Tohoku次14物理命令を累積39戦へ接続�
 make trainer-v5-tohoku-batch02-check # exact pointer再束縛・sidecar・DOUBLE・saveを再照合
 make trainer-v5-tohoku-batch03 # Gym1直後＋map 3/21の次15物理命令を累積54戦へ接続してstage 34を生成
 make trainer-v5-tohoku-batch03-check # RematchMap V2・exact rebind・sidecar・旧batch回帰を再照合
+make trainer-changekit-inputs # AUTHORING_KIT＋Task01〜06を補正working copyで全validator検証
+make trainer-changekit-final # 全1302戦・6490体をstage 35へserializeしmGBA quick/fullを実行
+make trainer-changekit-final-check # 生成物byte一致とmGBA quick/fullを副作用なしで再照合
+make trainer-changekit-clean-rebuild # clean ROM→v1.4.0→Stage34→Stage35のexact patch chainを再構築
+make trainer-changekit-clean-rebuild-check # clean起点の3段patch往復・直接BPS・証跡を副作用なしで再照合
+make trainer-changekit-package-check # 入力補正・30 focused tests・1302戦mGBA・clean再構築をまとめて再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
