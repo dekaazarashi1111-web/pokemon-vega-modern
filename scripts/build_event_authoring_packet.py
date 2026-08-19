@@ -20,6 +20,7 @@ from typing import Any, Iterable, Mapping, Sequence
 
 PACKET_NAME = "Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819"
 ZIP_NAME = f"{PACKET_NAME}.zip"
+STAGE35_BASELINE_COMMIT = "993e1419caa0a51d78ac15be8e2caad042470549"
 GBA_ROM_BASE = 0x08000000
 MAP_GROUPS_POINTER_SITE = 0x54B0C
 OBJECT_LIMIT = 15
@@ -681,8 +682,12 @@ def _template(packet: Path) -> None:
 def _manifest(root: Path, packet: Path, counts: dict[str, int]) -> dict[str, Any]:
     stage = root / "build/stages/35_trainer_changekit_final.gba"
     stage_metadata = root / "build/stages/35_trainer_changekit_final.json"
-    commit = subprocess.run(["git", "rev-parse", "HEAD"], cwd=root, text=True,
-                            stdout=subprocess.PIPE, check=True).stdout.strip()
+    baseline_check = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", STAGE35_BASELINE_COMMIT, "HEAD"],
+        cwd=root, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+    )
+    if baseline_check.returncode:
+        raise PacketError("fixed Stage35 baseline commit is not an ancestor of HEAD")
     files = []
     for path in sorted(packet.rglob("*")):
         if path.is_file() and path.name != "PACKET_MANIFEST.json":
@@ -693,7 +698,8 @@ def _manifest(root: Path, packet: Path, counts: dict[str, int]) -> dict[str, Any
         "purpose": "ChatGPT ProからCodex実装可能なKanto event設計bundleを受け取る",
         "baseline": {
             "stage": 35, "rom_sha256": _sha256(stage),
-            "metadata_sha256": _sha256(stage_metadata), "git_commit": commit,
+            "metadata_sha256": _sha256(stage_metadata),
+            "git_commit": STAGE35_BASELINE_COMMIT,
         },
         "privacy": {"rom_included": False, "save_included": False,
                     "private_input_included": False},
