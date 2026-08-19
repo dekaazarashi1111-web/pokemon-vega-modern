@@ -110,7 +110,7 @@ Task 06の会話814行（35固有本文）も、現行1-byte charmapでは814/81
 
 ## 復元状態
 
-- 現在の`/home/dekaa/projects/Pokemon-Vega`は検証済みStage 34 workspaceへのsymlink。
+- 現在のworkspace入口は検証済みStage 34 workspaceへのsymlink。
 - 旧clean workspace（HEAD `408e215b30d60984819cd8bef8f4d5125f763cd8`）は
-  `/home/dekaa/projects/Pokemon-Vega-stage26-backup-20260819-408e215`へ退避済み。
+  sibling directory `Pokemon-Vega-stage26-backup-20260819-408e215`へ退避済み。
 - 元ZIP、ROM、ChangeKit原本は変更していない。

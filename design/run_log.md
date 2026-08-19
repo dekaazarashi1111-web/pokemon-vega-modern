@@ -1466,7 +1466,7 @@
   - `reports/TRAINER_CHANGEKIT_FINAL_INPUT_BLOCKER_20260819.md`
   - `tasks/USER_20260819_TRAINER_CHANGEKIT_FINAL_INTEGRATION.md`
   - `design/current_state.md`、`design/tasks_next.md`、`design/run_log.md`、`design/blockers.md`
-  - workspace入口を検証済みStage 34へ切替。旧HEAD `408e215`は`/home/dekaa/projects/Pokemon-Vega-stage26-backup-20260819-408e215`へ退避した。
+  - workspace入口を検証済みStage 34へ切替。旧HEAD `408e215`はsibling directory `Pokemon-Vega-stage26-backup-20260819-408e215`へ退避した。
 - Verify:
   - package root `python3 VERIFY_SNAPSHOT.py`: PASS。
   - AUTHORING_KIT／Task 01〜04／Task 06 validator: PASS。
