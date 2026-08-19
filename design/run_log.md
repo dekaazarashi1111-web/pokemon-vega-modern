@@ -1476,3 +1476,32 @@
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
 - Commit: `-`（本エントリを含むblocker記録commit）
 - Network: 未使用。ユーザー提供ZIP、Stage 34 ROM、同梱inventory、ローカルvalidatorだけを使用した。
+
+## 2026-08-19T20:08:50+09:00
+
+- Task: `USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION` / Trainer ChangeKit 01〜06最終統合
+- Status: DONE
+- Summary:
+  - RECOVERED Stage 34をbaselineに、Task 01〜06の1,302 encounter／1,302一意party／6,490 memberを4,284行Trainer table、1,302個の一意物理consumerへserializeした。
+  - 1,030 canonical、71 Archive、201 Kanto consumerに分離し、flag命令誤認51行と共有command追加20行を非破壊Archiveへ、Kanto新規188戦と既存13戦をmap eventへ物理接続した。
+  - party/member全field、SINGLE/DOUBLE/kind 6〜9、会話4,662行、報酬1,302行、再戦227、高ID defeat flag/saveを実装した。
+  - Mega 86／Zワザ111／ダイマックス4／テラスタル67をAI、使用slot、one-use、交代、勝敗／abort／save/reload cleanupへ実ROM hookした。
+  - REF_1012は元flag命令を不変としたDOUBLE Archiveへ正規化し、受領ZIP非改変の補正AUTHORING／Task05 ZIPと全7 validator PASS証跡を作成した。
+  - clean FireRed日本版Rev.0→v1.4.0→Stage34→Stage35の固定exact BPS chainとclean直接BPSを完全往復し、別directoryにfresh展開した完全版RC4も自己完結でPASSした。
+- Files changed:
+  - 正規化正本: `content/trainer_changekit_final/**`、`tools/trainer_final/**`
+  - serializer/runtime/test: `scripts/build_trainer_changekit_{content,final}.py`、`scripts/{validate_trainer_changekit_inputs,rebuild_trainer_changekit_final_from_clean}.py`、`overlays/trainer_changekit_final_runtime/**`、`tools/mgba_trainer_changekit_final_smoke.c`、`tests/test_trainer_{changekit_content,final_kanto_events,changekit_final_builder,changekit_final_runtime}.py`
+  - ledger/docs/task: `config/ram_layout.csv`、`Makefile`、`README.md`、`tasks/USER_20260819_TRAINER_CHANGEKIT_FINAL_INTEGRATION.md`、`design/{current_state,tasks_next,run_log,blockers,version_log}.md`
+  - Git管理外成果: Stage35 ROM／3 BPS／allocator／mGBA quick/full／clean rebuild／入力validator／補正ZIP／完全版snapshot。元ROM／save／受領ZIPは変更・追跡していない。
+- Verify:
+  - `make trainer-changekit-package-check`: PASS。入7 validator、focused 30/30、Stage35 byte determinism、mGBA quick/full、clean rebuildを再照合した。
+  - mGBA full: PASS、1,302 encounter／6,490 member／74 DOUBLE／kind8 3／再戦227／直接Ability 924／4種gimmick、warnings/errors 0。
+  - fresh RC4 `python3 VERIFY_SNAPSHOT.py`: PASS。manifest 29,457 files、Git 75 commits/clean/full history、offline doctor、Stage35 SHA、focused package checkの前後tree不変を確認した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - `make clean-build && make final`: Windows更新後の`cmd.exe`／PowerShell fingerprint不一致でupstream toolcheckのfail-closedが発動。manifestを緩和せず、同一ROMに到達する固定exact BPS clean chainで代替してPASSした。
+- Output identity:
+  - Stage35 ROM: 33,554,432 bytes、SHA-256 `2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180`。
+  - clean直接BPS: SHA-256 `9190b913998888a2ea38efb663e24a23fc51a09fe5061a9edf79765ba1320e95`。
+  - 補正AUTHORING／Task05 ZIP: SHA-256 `6ea7c83488702d1ffb3dc20e3673e8ced09eedc5650ad01810040f5aa3302c2b` / `b35000f34fcf7fc1efceed65e818177814a37c34590c514efb3cb1b24d906176`。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network: 未使用。固定済み入力、同梱toolchain、libmGBAだけを使用した。

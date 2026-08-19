@@ -611,3 +611,14 @@
   - 共有sourceをcommand-data addressで分離するRematchMap V2 23行と、exact rebind／defeat flag 29行を生成した。
   - stage 34 ROMとincremental/cumulative BPSを決定的に生成した。
 - Verify: `make trainer-v5-tohoku-batch03` / `make trainer-v5-tohoku-batch03-check`、libmGBA独立2 process 14 check、BPS完全往復、allocator／禁止領域／declared span、task graph／private guard／diff check PASS。stage SHA-256 `84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f`。
+
+## 2026-08-19T20:08:50+09:00
+
+- Version: `post-v1.4.0-stage35`（v1.4.0 release identityとstage 27〜34は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION` / Trainer ChangeKit 01〜06最終統合
+- Summary:
+  - 全1,302戦／6,490 memberを1,030 canonical／71 Archive／201 Kantoの一意物理consumerへ接続し、party・会話・報酬・再戦・saveをStage35へserializeした。
+  - 1,228 SINGLE／74 DOUBLE、Mega 86／Zワザ111／ダイマックス4／テラスタル67をAIと全cleanup境界へ実ROM接続した。
+  - 入力矛盾を非破壊正規化し、clean ROM直接BPS、自己完結完全版snapshot、fresh展開検証まで完了した。
+- Verify: `make trainer-changekit-package-check`、mGBA quick/full、clean exact BPS chain、fresh snapshot `VERIFY_SNAPSHOT.py`、task graph/private guard/diff check PASS。Stage35 SHA-256 `2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180`。
