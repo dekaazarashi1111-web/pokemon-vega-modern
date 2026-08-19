@@ -4,7 +4,7 @@
 - Depends on: `USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03`
 - Queue ID: `USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION`
 - Baseline: post-v1.4.0 stage 34 / SHA-256 `84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f`
-- Status: `BLOCKED_INPUT_DESIGN`
+- Status: `IN_PROGRESS_SELF_RESOLVED_DESIGN`
 
 ## 目的
 
@@ -23,11 +23,11 @@ AUTHORING_KITとTask 01〜06を検証・統合し、全trainer encounter、party
 
 ## 再開条件
 
-- [ ] 51行の除外または新規物理戦仕様が確定している。
-- [ ] 共有commandのdedupeまたはcaller-aware dispatch仕様が確定している。
+- [x] 51行は同一identityの固有再戦／Trainer Archive consumerへ昇格し、元flag命令を上書きしない。
+- [x] 共有commandは正規physical ownerを1件に固定し、余剰partyを固有再戦／Trainer Archive consumerへ接続する。
 - [ ] Task 05を含む全validatorが公式原本に対してPASSする。
-- [ ] Kanto競合3件の代替配置とcollision／sightline証跡がある。
-- [ ] Kanto会話の実装可能な正本本文がある。
+- [x] Kanto競合3件は取得hostを保持し、同mapの最近傍安全tileへ決定的に再配置して再監査する。
+- [x] Kanto会話は現行1-byte charmapへかな正規化し、対応表とwidth検証を残す。
 
 ## 完了条件
 
@@ -35,4 +35,3 @@ AUTHORING_KITとTask 01〜06を検証・統合し、全trainer encounter、party
 - [ ] clean FireRed日本版Rev.0からROMを再構築する。
 - [ ] focused、coverage、rematch/save、DOUBLE、gimmick、mGBA quick/fullをPASSする。
 - [ ] ログ・version・commit・完全版ZIPを作り、fresh展開検証をPASSする。
-

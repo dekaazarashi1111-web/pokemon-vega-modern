@@ -1,0 +1,197 @@
+{
+  "schema": "vega.trainer_changekit_final.hook_contract.v1",
+  "baseline": {
+    "path": "build/stages/34_trainer_v5_tohoku_batch03.gba",
+    "sha256": "84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f",
+    "size": 33554432
+  },
+  "runtime_defines": {
+    "VEGA_GET_TRAINER_FLAG_ADDRESS": "0x0807F7D9",
+    "VEGA_FLAG_SET_ADDRESS": "0x0806DE75",
+    "VEGA_FLAG_CLEAR_ADDRESS": "0x0806DE9D",
+    "VEGA_FLAG_GET_ADDRESS": "0x0806DEC5",
+    "VEGA_CONFIGURE_TRAINER_BATTLE_ADDRESS": "0x0911DF89",
+    "VEGA_CALCULATE_MON_STATS_ADDRESS": "0x090D93A9",
+    "VEGA_ENEMY_PARTY_ADDRESS": "0x02023F8C",
+    "VEGA_TRAINER_OPPONENT_A_ADDRESS": "0x020385E2",
+    "VEGA_CONFIGURE_NEXT_BATTLE_POLICY_ADDRESS": "0x091260A9",
+    "VEGA_CFRU_PENDING_CLEAR_ADDRESS": "0x0910ED2D",
+    "VEGA_BATTLE_POLICY_BEGIN_ADDRESS": "0x091265A9",
+    "VEGA_BATTLE_POLICY_END_ADDRESS": "0x09126815",
+    "VEGA_BATTLE_POLICY_CAN_MEGA_ADDRESS": "0x09126A15",
+    "VEGA_BATTLE_POLICY_MARK_MEGA_ADDRESS": "0x09126A41",
+    "VEGA_BATTLE_POLICY_CAN_Z_ADDRESS": "0x09126A69",
+    "VEGA_BATTLE_POLICY_MARK_Z_ADDRESS": "0x09126A95",
+    "VEGA_BATTLE_POLICY_CAN_DYNAMAX_ADDRESS": "0x09126ABD",
+    "VEGA_BATTLE_POLICY_MARK_DYNAMAX_ADDRESS": "0x09126AE9",
+    "VEGA_BATTLE_POLICY_CAN_TERA_ADDRESS": "0x09126B11",
+    "VEGA_BATTLE_POLICY_MARK_TERA_ADDRESS": "0x09126B3D",
+    "VEGA_BATTLERS_COUNT_ADDRESS": "0x02023B2C",
+    "VEGA_BATTLER_PARTY_INDEXES_ADDRESS": "0x02023B2E",
+    "VEGA_ABSENT_BATTLER_FLAGS_ADDRESS": "0x02023CD0",
+    "VEGA_ACTIVE_BATTLER_ADDRESS": "0x02023B24",
+    "VEGA_BATTLE_MONS_ADDRESS": "0x02023B44",
+    "VEGA_LOAD_PROPER_ABILITY_BATTLE_DATA_ADDRESS": "0x090BB351",
+    "VEGA_TRAINER_CHANGEKIT_STATE_ADDRESS": "0x0203EDC0"
+  },
+  "generated_runtime_defines": [
+    "VEGA_GET_REMATCH_TRAMPOLINE_ADDRESS",
+    "VEGA_BUILD_TRAINER_PARTY_TRAMPOLINE_ADDRESS",
+    "VEGA_SAVE_LOAD_GAME_DATA_TRAMPOLINE_ADDRESS"
+  ],
+  "bl_rewrites": [
+    {
+      "name": "policy_begin",
+      "callsite": "0x090CDBBC",
+      "expected": "58f0f4fc",
+      "original_target": "0x091265A8",
+      "adapter": "TrainerChangeKitFinalRuntime_PolicyBeginAdapter"
+    },
+    {
+      "name": "policy_end",
+      "callsite": "0x090F6E70",
+      "expected": "2ff0d0fc",
+      "original_target": "0x09126814",
+      "adapter": "TrainerChangeKitFinalRuntime_PolicyEndAdapter"
+    },
+    {
+      "name": "can_mega_1",
+      "callsite": "0x090D04BE",
+      "expected": "56f0a9fa",
+      "original_target": "0x09126A14",
+      "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
+    },
+    {
+      "name": "can_mega_2",
+      "callsite": "0x09114AA2",
+      "expected": "11f0b7ff",
+      "original_target": "0x09126A14",
+      "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
+    },
+    {
+      "name": "can_mega_3",
+      "callsite": "0x0912F5E4",
+      "expected": "f7f716fa",
+      "original_target": "0x09126A14",
+      "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
+    },
+    {
+      "name": "mark_mega_1",
+      "callsite": "0x090CED46",
+      "expected": "57f07bfe",
+      "original_target": "0x09126A40",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
+    },
+    {
+      "name": "mark_mega_2",
+      "callsite": "0x090CF290",
+      "expected": "57f0d6fb",
+      "original_target": "0x09126A40",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
+    },
+    {
+      "name": "mark_mega_3",
+      "callsite": "0x090D04D6",
+      "expected": "56f0b3fa",
+      "original_target": "0x09126A40",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
+    },
+    {
+      "name": "mark_mega_4",
+      "callsite": "0x0912FB14",
+      "expected": "f6f794ff",
+      "original_target": "0x09126A40",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
+    },
+    {
+      "name": "can_z",
+      "callsite": "0x0912C18C",
+      "expected": "faf76cfc",
+      "original_target": "0x09126A68",
+      "adapter": "TrainerChangeKitFinalRuntime_CanZAdapter"
+    },
+    {
+      "name": "mark_z",
+      "callsite": "0x090BE844",
+      "expected": "68f026f9",
+      "original_target": "0x09126A94",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkZAdapter"
+    },
+    {
+      "name": "can_dynamax_1",
+      "callsite": "0x090F13F2",
+      "expected": "35f063fb",
+      "original_target": "0x09126ABC",
+      "adapter": "TrainerChangeKitFinalRuntime_CanDynamaxAdapter"
+    },
+    {
+      "name": "can_dynamax_2",
+      "callsite": "0x090F1672",
+      "expected": "35f023fa",
+      "original_target": "0x09126ABC",
+      "adapter": "TrainerChangeKitFinalRuntime_CanDynamaxAdapter"
+    },
+    {
+      "name": "mark_dynamax",
+      "callsite": "0x090CF05C",
+      "expected": "57f044fd",
+      "original_target": "0x09126AE8",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkDynamaxAdapter"
+    },
+    {
+      "name": "can_tera_1",
+      "callsite": "0x09130356",
+      "expected": "f6f7dbfb",
+      "original_target": "0x09126B10",
+      "adapter": "TrainerChangeKitFinalRuntime_CanTeraAdapter"
+    },
+    {
+      "name": "can_tera_2",
+      "callsite": "0x09130446",
+      "expected": "f6f763fb",
+      "original_target": "0x09126B10",
+      "adapter": "TrainerChangeKitFinalRuntime_CanTeraAdapter"
+    },
+    {
+      "name": "mark_tera",
+      "callsite": "0x090CEF3C",
+      "expected": "57f0fefd",
+      "original_target": "0x09126B3C",
+      "adapter": "TrainerChangeKitFinalRuntime_MarkTeraAdapter"
+    }
+  ],
+  "ability_load_rewrite": {
+    "name": "load_authored_ability",
+    "callsite": "0x090973FC",
+    "expected": "23f0a8ff",
+    "original_target": "0x090BB350",
+    "adapter": "TrainerChangeKitFinalRuntime_LoadProperAbilityBattleDataAdapter"
+  },
+  "save_load_entry_rewrite": {
+    "entry": "0x080DB4E4",
+    "expected": "70b50006040e0448",
+    "adapter": "TrainerChangeKitFinalRuntime_SaveLoadAdapter",
+    "entry_stub_template": "004b1847<adapter_thumb_u32_le>",
+    "trampoline_size": 24,
+    "trampoline_bytes": "70b50006040e0248024b184700bf00bf44500003edb40d08",
+    "relocation": {
+      "relocated_instruction": "ldr r0, [pc, #16]",
+      "original_literal_address": "0x080DB4FC",
+      "original_literal_value": "0x03005044",
+      "resume_thumb": "0x080DB4ED"
+    }
+  },
+  "invariants": {
+    "thumb_bl_range_bytes": 4194304,
+    "mechanic_eligibility_callsite_count": 8,
+    "mechanic_activation_callsite_count": 7,
+    "policy_lifetime_callsite_count": 2,
+    "ability_load_callsite_count": 1,
+    "notes": [
+      "BL callsites are rewritten, not the original policy entries; adapters may therefore delegate to the original functions without recursion.",
+      "Every expected byte string is checked against the immutable Stage 34 baseline before writing.",
+      "Save_LoadGameData uses an entry stub because its six callers are outside direct BL range of the final ROM payload.",
+      "The save trampoline relocates the PC-relative literal; copying the original eight bytes verbatim is invalid."
+    ]
+  }
+}
