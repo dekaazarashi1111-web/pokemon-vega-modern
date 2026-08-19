@@ -852,20 +852,25 @@ def build(repo: Path, input_root: Path, output: Path) -> dict[str, object]:
         for filename in REGISTRY_FILES.values()
     )
     source_files.append(repo / "reports/generated/id_inventory.json")
+    # Absolute parent placement differs between the live recovered workspace
+    # and a freshly extracted full snapshot.  Sort by the portable manifest
+    # path so the generated file remains byte-identical in both layouts.
+    source_manifest_inputs = [
+        {
+            "path": (
+                str(path.relative_to(input_root))
+                if path.is_relative_to(input_root)
+                else str(path.relative_to(repo))
+            ),
+            "sha256": _sha256(path),
+            "size": path.stat().st_size,
+        }
+        for path in source_files
+    ]
+    source_manifest_inputs.sort(key=lambda row: str(row["path"]))
     source_manifest = {
         "schema_version": 1,
-        "inputs": [
-            {
-                "path": (
-                    str(path.relative_to(input_root))
-                    if path.is_relative_to(input_root)
-                    else str(path.relative_to(repo))
-                ),
-                "sha256": _sha256(path),
-                "size": path.stat().st_size,
-            }
-            for path in sorted(source_files, key=lambda value: str(value))
-        ],
+        "inputs": source_manifest_inputs,
     }
 
     if output.exists():

@@ -26,6 +26,7 @@ def _task06_dir() -> Path | None:
         candidates.append(Path(os.environ["VEGA_TRAINER_CHANGEKIT_TASK06_DIR"]))
     candidates += [
         ROOT / "userfile/imports/VEGA_TRAINER_CHANGEKIT_TASK06_KANTO",
+        ROOT.parent / "integration_inputs/VEGA_TRAINER_CHANGEKIT_TASK06_KANTO",
         ROOT.parents[1] / "integration_inputs/VEGA_TRAINER_CHANGEKIT_TASK06_KANTO",
     ]
     return next((path for path in candidates
