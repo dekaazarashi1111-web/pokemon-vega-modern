@@ -1451,3 +1451,28 @@
   - v1.4.0→stage 34 BPS: 157,651 bytes、SHA-256 `49c9e27b422e3d4bf78dcd6790b155c266e40d9ed100636034b47bf3333a5fab`
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network: 未使用。検証済みStage 33、同梱V5正本、ローカルtoolchain／libmGBAだけを使用した。
+
+## 2026-08-19T17:07:56+09:00
+
+- Task: `USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION` / Trainer ChangeKit 01〜06最終統合
+- Status: BLOCKED
+- Summary:
+  - RECOVERED Stage 34完全版を隔離展開し、snapshot manifest 28,469件、Git HEAD/tree/clean、Stage 34 ROM、focused checkをPASSした。破損している非RECOVERED版は不採用とした。
+  - AUTHORING_KITとTask 01〜06のZIP／内部hash／BASELINEを確認し、元ZIPのfresh展開に対して公式validatorを実行した。AUTHORINGとTask 01〜04/06はPASS、Task 05は`ENC_TOHOKU_REF_1012`のparty/partition不整合でFAILした。
+  - Stage 34 ROMとT02 rooted graphへTohoku 1,101行を全照合した。実`trainerbattle`は1,050参照／1,030 command addressで、51行はtrainer flag命令だった。51行の実戦闘候補はすべて別encounter所有済みで、1,302固有partyを物理接続するconsumerが欠落している。
+  - Kanto新規188戦の198 source objectは全照合したが、3戦がStage 34取得hostと同一object／座標を競合した。Task 06会話814行は現行charmapで全行encode不能だった。
+  - `FINAL_CODEX_INTEGRATION_JA.txt`の「1件でもvalidator FAILなら実装開始しない」「物理audit未完了値を推測しない」に従い、ROM／runtime／map patch、clean build、mGBA、最終ZIPを生成せず停止した。
+- Files changed:
+  - `reports/TRAINER_CHANGEKIT_FINAL_INPUT_BLOCKER_20260819.md`
+  - `tasks/USER_20260819_TRAINER_CHANGEKIT_FINAL_INTEGRATION.md`
+  - `design/current_state.md`、`design/tasks_next.md`、`design/run_log.md`、`design/blockers.md`
+  - workspace入口を検証済みStage 34へ切替。旧HEAD `408e215`は`/home/dekaa/projects/Pokemon-Vega-stage26-backup-20260819-408e215`へ退避した。
+- Verify:
+  - package root `python3 VERIFY_SNAPSHOT.py`: PASS。
+  - AUTHORING_KIT／Task 01〜04／Task 06 validator: PASS。
+  - Task 05 validator: FAIL（入力設計ブロッカーを正しく検出）。
+  - exact-ROM Tohoku 1,101 row opcode／owner監査: PASS。`trainerbattle=1050`、`flag consumer=51`、未所有の付替先0。
+  - Kanto 201 row source object／baseline owner監査: FAIL。競合3件、会話encode 814/814 FAIL。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むblocker記録commit）
+- Network: 未使用。ユーザー提供ZIP、Stage 34 ROM、同梱inventory、ローカルvalidatorだけを使用した。

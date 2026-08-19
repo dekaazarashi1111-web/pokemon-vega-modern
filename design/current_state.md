@@ -165,7 +165,11 @@
 - 育成・操作QOLをrelease scopeへ追加済み。文章は既定即時表示、ダッシュは25%以上、自転車は50%以上の移動時間短縮を目標にする。現代式孵化、経験アメ、SV式Hyper Training、IV/EV表示、全体学習装置、タマゴPC転送はT10、PC検索・一括操作、field PC、タマゴバスケット、自動戦闘は最初のカントー縦切りを待たせずT17回帰前に統合する。
 - UIと追加eventは最小実装に固定した。新規full-screen UIや長いcutsceneを作らず、既存画面・標準menu・既存NPC/端末・短いflag/reward scriptを再利用する。
 - Trainer AIは固定済みCFRU-JP `src/Battle_AI/**` と既定knowledge modelを移植する。本編は一律scaleせず、一般trainer・boss・野生を進行別profileと実測したmap/batch単位の横強化で調整する。League I→II→Finalを明示flagで順番に解禁し、現行Lv.100 leagueはKanto League＋Sphere完結後のFinalへ移す。
-- ブロッカーなし。
+- Trainer ChangeKit 01〜06最終統合は入力設計でBLOCKED。公式Task 05 validatorが
+  `ENC_TOHOKU_REF_1012`でFAILし、exact-ROM監査ではTohoku 1,101行中51行が戦闘命令でなく
+  trainer flag参照、1,050実参照も1,030 command addressに集約されることを確認した。
+  Kantoでも3戦がStage 34取得hostと同一object／座標を競合する。補正版の必要条件は
+  `reports/TRAINER_CHANGEKIT_FINAL_INPUT_BLOCKER_20260819.md`を正とする。
 
 - v1.4.0最終ROMを入力に、クチバFactory map `96/5`へBPショップNPC local 3を追加したpost-release stage 27を生成した。ACTIVE `BP_SHOP` 18行、Trial共通BP、5件ページmenu、通常save＋sector 31、補償rollbackを接続し、output SHA-256は `c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1`。v1.4.0 tag／配布ROMは不変。
 - post-v1.4.0 stage 28で、Factory Trial完了scriptの`callnative`を既存`FacilityRuntime_Complete`先行wrapperへ接続した。基本9 BP、連勝更新、party exact復元、sector 31保存を保持し、初回XS×5・S×2・追加3 BP、連勝3/7/14/21の4 encounter creditをclaim bit付きで実装した。stage 28 SHA-256は `268b1f8e309f4e877c2aa77256abb81056a03e99044659d5956ede0fe271989a`。
