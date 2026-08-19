@@ -1531,3 +1531,21 @@
   - companion prompt: `Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819_PROMPT_JA.txt`。
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network: OpenAI公式の[ChatGPT Fundamentals](https://learn.chatgpt.com/)と[GPT-5.6 prompting guidance](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6)を参照した。Chatは構想・計画、Codexはcode/test/shipに分け、promptをgoal/context/constraints/success/outputと実行可能validator中心にする根拠として使用した。外部情報でプロジェクト仕様は変更していない。
+
+## 2026-08-20T04:03:41+09:00
+
+- Task: `USER-20260820-QOL-TASK-QUEUE` / QOL production完成タスクをREADYへ追加する
+- Status: DONE
+- Summary:
+  - 既存QOL 35機能を再監査し、旧T17のQOL-Bが簡略`QolBMon` host fixtureと`QolB_RuntimeProbe`中心で、実PC/menu/daycare/battle callback接続を証明していないことをタスク根拠へ固定した。
+  - Stage 35をbaselineとするT19を追加し、35/35 production binding、実UI入力、unlock/save、atomicity、Stage 36 clean rebuild、mGBA quick/fullを完了条件にした。
+  - ChatGPT Proのイベント設計とは所有範囲を分離し、T19はQOL能力本体とsymbolic service ABIだけを所有するため、別Codexセッションで独立着手できるようにした。
+- Files changed:
+  - `tasks/T19_QOL_PRODUCTION_COMPLETION.md`、`tasks/task_graph.json`、`tasks/INDEX.md`
+  - `design/tasks_next.md`、`state/task_status.json`、`MASTER_PLAN.md`
+  - `docs/QOL_POLICY.md`、`design/{current_state,agent_context_map,catalog,PLANS,run_log,version_log}.md`
+- Verify:
+  - `python3 scripts/taskctl.py sync`、`python3 scripts/taskctl.py next`、`python3 scripts/taskctl.py plan`: PASS。T19が唯一の`PRIMARY`／W13 `PENDING`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むタスク追加コミット）
+- Network: 未使用。ローカルのQOL実装、Stage 35 metadata、既存fixtureとtask graphだけを監査した。

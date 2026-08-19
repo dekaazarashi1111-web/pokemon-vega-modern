@@ -181,8 +181,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T18は全て完了し、2026-08-14追加のユーザー直接タスクを順次進める。
+`design/tasks_next.md` を正とする。T00〜T18は完了し、QOLの実ユーザー導線を完成させるT19をREADYとして追加した。
 
+- T19: READY。既存T17のQOL-Bはhost fixture／`QolB_RuntimeProbe`中心で、PC検索・複数選択・一括操作・field PC・PC技編集・タマゴバスケット・自動戦闘のproduction UI callback接続を証明していない。Stage 35を固定baselineに35/35機能の実入口・unlock・save・mGBA実入力を完成させる。ChatGPT Proのイベント設計とは所有範囲を分離し、T19は能力本体とsymbolic service ABIだけを所有する。
 - USER-20260817-BP-SHOP-RUNTIME: DONE。Factory map 96/5へ18品目のmanifest-backed BPショップを物理接続し、通常save／sector 31、成功購入、再読込、残高不足、bag満杯、未解禁をstage 27 exact-ROM 2 processで検証した。
 - USER-20260818-FACTORY-REWARD-RUNTIME: DONE。libmGBA独立2 processで初回12 BP、credit catch-up、反復重複なし、bag満杯時の基本9 BP維持とbonus繰越、通常save item再読込、sector 31 ledger一致、全完了時party exact復元を確認した。declared span外変更0、ROM/RAM overlap 0、incremental/cumulative BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。
 - USER-20260818-FACTORY-REPEAT-REWARD-RUNTIME: DONE。ACTIVE `TRIAL_REPEAT` 2行を反復完走へ接続し、初回非対象、+1 BP／オレン、+2 BP／ハイパーボール、連勝credit共存、bag満杯時の基本9 BP維持、通常save／sector 31再読込、party exact復元をlibmGBA独立2 processで確認した。stage 29のdeclared span外変更0、ROM/RAM overlap 0、BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。

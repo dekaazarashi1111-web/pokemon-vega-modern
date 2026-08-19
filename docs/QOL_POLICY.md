@@ -139,5 +139,8 @@ XS/Sは落とし物・調査・一般再戦、Mはgym・D・H研究依頼・高r
 | T12/T15/T16 | 記号unlock、進行条件、配置、経済、反復報酬 |
 | T17 | QOL-Bを統合してQOL-A/Bと全checkpointを回帰 |
 | T18 | 設定説明、操作方法、release既定値 |
+| T19 | 過去のfixture/probe判定を再監査し、35機能を実ユーザー導線へproduction接続 |
 
 release候補は、固定RNGの孵化matrix、経験アメ境界、IV/EV表示境界、育成道具、box満杯、PC一括操作、移動event、全文字制御code、新規/移行saveの全試験を通過しなければならない。具体的なsmoke IDは `tests/smoke_test_matrix.csv`、詳細戦略は `docs/TEST_STRATEGY.md` を正とする。
+
+T19では`release_default=ENABLED`、host fixture、生成table、ROM probeだけを完成証拠にしない。35機能すべてについて、通常プレイの実入口、production callback、unlock/save owner、実入力mGBA caseを一意に固定し、未接続分類を0にしてから完成とする。

@@ -633,3 +633,14 @@
   - Stage35から253 map／47 logical location／201 Kanto trainer／24 acquisition host／35 QOL featureと安全なphysical host catalogを決定論的に生成するbuilderを追加した。
   - ROM・save・private inputを含まないZIP、companion prompt、checksumをWindows Downloadsへ出力し、再展開・manifest再hash・validator・再pack byte一致を確認した。
 - Verify: focused unit 2 tests、builder、template validator、ZIP CRC／manifest 32件／再pack determinism、task graph／private guard／diff check PASS。ZIP SHA-256 `6426c11fa12f0b8f0b448fa4a1d8c0dee7233d71843a2d48867778ec2a3dc08d`。
+
+## 2026-08-20T04:03:41+09:00
+
+- Version: `post-v1.4.0-stage35-qol-task-queue`（Stage 35 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260820-QOL-TASK-QUEUE` / QOL production完成タスクをREADYへ追加する
+- Summary:
+  - T19をDAGのT18後へ追加し、別Codexセッションで選択可能な唯一のPRIMARYにした。
+  - QOL 35機能のproduction binding、実UI／save／runtime接続、Stage 36 clean rebuildを受入条件として固定した。
+  - ChatGPT Proのイベント設計との所有境界を固定し、イベント成果を待たずにQOL本体を実装できるようにした。
+- Verify: taskctl sync/next/plan、task graph、private guard、diff check PASS。T19=`PENDING`／依存READY。
