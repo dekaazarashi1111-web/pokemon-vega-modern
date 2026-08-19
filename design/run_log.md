@@ -1505,3 +1505,29 @@
   - 補正AUTHORING／Task05 ZIP: SHA-256 `6ea7c83488702d1ffb3dc20e3673e8ced09eedc5650ad01810040f5aa3302c2b` / `b35000f34fcf7fc1efceed65e818177814a37c34590c514efb3cb1b24d906176`。
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network: 未使用。固定済み入力、同梱toolchain、libmGBAだけを使用した。
+
+## 2026-08-19T21:24:06+09:00
+
+- Task: `USER-20260819-CHATGPT-PRO-EVENT-AUTHORING-PACKET` / ChatGPT Pro向け実装可能イベント設計パケットを作成する
+- Status: DONE
+- Summary:
+  - Stage35を基準に、ChatGPT Proがカントー物語・認定進行・sidequest・QOL導線を設計し、Codexが再解釈せず実装できるprompt、技術契約、JSON Schema、出力template、Codex実装写像を作成した。
+  - Stage35 ROMのlive map eventをread-only解析し、253 physical map、47 logical location、1,137 source object host、539 bg host、159 coord host、309 live object、201 Kanto trainer、24 acquisition host、35 QOL featureをsymbolic catalogへ生成した。ROM、save、private inputはパケットへ含めていない。
+  - 独立validatorでschema/cross-reference、host所有・二重使用・object budget、game charmap/18 glyph、step graph、state/reward transaction、failure tests、coverage、batch DAG、open question 0を検査する。Stage35入力から決定論的ZIPを生成し、Windows Downloadsへprompt/checksumとともに出力した。
+- Files changed:
+  - `templates/event_authoring_packet/**`
+  - `scripts/build_event_authoring_packet.py`
+  - `tests/test_event_authoring_packet.py`
+  - `README.md`
+  - `design/run_log.md`、`design/version_log.md`
+  - Git管理外成果: `dist/event_authoring_packet/**`、`reports/generated/event_authoring_packet_stage35.json`、Windows DownloadsのZIP／SHA256／prompt。
+- Verify:
+  - `python3 -m unittest tests.test_event_authoring_packet -v`: PASS（2 tests）。2回生成のZIP byte一致、manifest、CRC、private/ROM非同梱、template self-validation、cross-map host fail-closedを確認した。
+  - `python3 scripts/build_event_authoring_packet.py --output-parent dist/event_authoring_packet --zip <Windows Downloads>/Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819.zip --report reports/generated/event_authoring_packet_stage35.json`: PASS。
+  - Downloads ZIPを別directoryへ再展開し、manifest 32件再hash、同梱validator、template、ZIP CRC、再pack byte determinismをPASSした。
+  - `python3 -m py_compile scripts/build_event_authoring_packet.py templates/event_authoring_packet/tools/validate_submission.py`、task graph、private guard、`git diff --check`: PASS。
+- Output identity:
+  - `Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819.zip`: 103,296 bytes、SHA-256 `6426c11fa12f0b8f0b448fa4a1d8c0dee7233d71843a2d48867778ec2a3dc08d`。
+  - companion prompt: `Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819_PROMPT_JA.txt`。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network: OpenAI公式の[ChatGPT Fundamentals](https://learn.chatgpt.com/)と[GPT-5.6 prompting guidance](https://developers.openai.com/api/docs/guides/model-guidance?model=gpt-5.6)を参照した。Chatは構想・計画、Codexはcode/test/shipに分け、promptをgoal/context/constraints/success/outputと実行可能validator中心にする根拠として使用した。外部情報でプロジェクト仕様は変更していない。

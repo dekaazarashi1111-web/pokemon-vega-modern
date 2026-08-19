@@ -1,0 +1,28 @@
+役割:
+あなたは、Pokémon Vega Modern Stage 35のイベントディレクター兼、実装引き渡しデータの作者です。創作上の品質と、GBA ROMへ安全に実装できる厳密さを両立してください。
+
+目標:
+添付ZIPを唯一の技術的正本として読み、カントー第二地方の物語、認定章進行、町・道路・ダンジョンの会話と小イベント、サブイベント、QOL解禁導線を完成させてください。後続のCodexが追加の聞き取りや大規模な書き直しをせず実装できる、機械検証済みの `submission/` を作ることが成果です。
+
+成功条件:
+- `02_PROJECT_BRIEF_JA.md` から `05_DESIGN_QUALITY_BAR_JA.md` までを読み、catalogの実在キーだけを使う。
+- `04_OUTPUT_CONTRACT_JA.md` と `schemas/event_plan.schema.json` に従い、`submission_template/` を完成版へ置き換える。
+- 47論理地点、主要進行境界、全QOL featureについて `coverage.csv` に判断を1件ずつ残す。
+- 会話は新規の日本語とし、game charmapでencode可能、1行18 glyph以内、1 message 2行以内にする。
+- raw ROM address、数値flag/var/ID、未登録map、占有済みhost、専用map、専用full-screen UI、長いcutscene、escort、minigameを要求しない。
+- 既存1,302 trainer、201 Kanto trainer、201 acquisition eventを担う24 host、Factory、Vega本編を上書きしない。
+- `open_questions` を0件にする。安全に決められる事項は、可逆な仮定として `assumptions` に記録して決める。
+- `python tools/validate_submission.py submission --report submission/VALIDATION_REPORT.json` を実行し、PASSするまで修正する。
+- 最後に `submission/` だけを `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip` へ格納して添付する。
+
+作業境界:
+今回は設計成果物の作成だけを行い、ROM・ソースコード・catalog・validatorを変更しないでください。技術的事実は添付パケットを優先し、外部Web情報で上書きしないでください。元FireRedの台詞を転載せず、このプロジェクト用の短い新規台詞を書いてください。
+
+品質方針:
+構想だけの箇条書きで止めず、各eventをtrigger、condition、step graph、state write、failure behavior、reward、dialogue、acceptance testまで確定してください。物語上の大きな流れは `EVENT_BIBLE_JA.md` に、人と機械が実装に使う正本は `event_plan.json`、`dialogue.csv`、`coverage.csv` に記録してください。
+
+停止条件:
+validatorがPASSし、`open_questions=0`で、完成ZIPを添付した時だけ終了してください。validatorが失敗した場合はエラーを根拠に修正して再実行してください。必要な技術値がcatalogにない場合は数値を推測せず、許可されたsymbolic policyまたは可逆な配置policyを選んでください。
+
+最終回答:
+ZIPを添付し、`VALIDATION=PASS`、各件数、open_questions件数を簡潔に示してください。

@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pokemon-vega.local/schemas/event-plan-stage35-v1.json",
+  "title": "Pokemon Vega Stage35 implementation-ready event plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_key",
+    "bundle_key",
+    "language",
+    "design_status",
+    "design_summary",
+    "assumptions",
+    "open_questions",
+    "arcs",
+    "states",
+    "actors",
+    "placements",
+    "conditions",
+    "rewards",
+    "events",
+    "batches"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "project_key": {"const": "POKEMON_VEGA_MODERN_STAGE35"},
+    "bundle_key": {"$ref": "#/$defs/key"},
+    "language": {"const": "ja"},
+    "design_status": {"enum": ["TEMPLATE", "IMPLEMENTATION_READY"]},
+    "design_summary": {"$ref": "#/$defs/nonEmpty"},
+    "assumptions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/nonEmpty"},
+      "uniqueItems": true
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/nonEmpty"},
+      "uniqueItems": true
+    },
+    "arcs": {"type": "array", "items": {"$ref": "#/$defs/arc"}},
+    "states": {"type": "array", "items": {"$ref": "#/$defs/state"}},
+    "actors": {"type": "array", "items": {"$ref": "#/$defs/actor"}},
+    "placements": {"type": "array", "items": {"$ref": "#/$defs/placement"}},
+    "conditions": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
+    "rewards": {"type": "array", "items": {"$ref": "#/$defs/reward"}},
+    "events": {"type": "array", "items": {"$ref": "#/$defs/event"}},
+    "batches": {"type": "array", "items": {"$ref": "#/$defs/batch"}}
+  },
+  "$defs": {
+    "key": {
+      "type": "string",
+      "pattern": "^(?:[A-Z][A-Z0-9_]*|NONE)$"
+    },
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keyArray": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/key"},
+      "uniqueItems": true
+    },
+    "arc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arc_key", "title", "category", "priority", "start_unlock_key",
+        "completion_state_key", "event_keys", "summary", "player_goal",
+        "failure_policy", "notes"
+      ],
+      "properties": {
+        "arc_key": {"$ref": "#/$defs/key"},
+        "title": {"$ref": "#/$defs/nonEmpty"},
+        "category": {"enum": ["MAIN", "CERTIFICATION", "SIDEQUEST", "QOL", "FACILITY", "FLAVOR"]},
+        "priority": {"enum": ["P0", "P1", "P2"]},
+        "start_unlock_key": {"$ref": "#/$defs/key"},
+        "completion_state_key": {"$ref": "#/$defs/key"},
+        "event_keys": {"$ref": "#/$defs/keyArray"},
+        "summary": {"$ref": "#/$defs/nonEmpty"},
+        "player_goal": {"$ref": "#/$defs/nonEmpty"},
+        "failure_policy": {"enum": ["NO_FAILURE", "RETRY_SAFE"]},
+        "notes": {"type": "string"}
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "state_key", "owner", "storage_policy", "write_policy",
+        "initial_value", "max_value", "save_reload_required", "notes"
+      ],
+      "properties": {
+        "state_key": {"$ref": "#/$defs/key"},
+        "owner": {"const": "EVENT_BUNDLE"},
+        "storage_policy": {"enum": ["FLAG", "VAR", "DERIVED"]},
+        "write_policy": {"enum": ["MONOTONIC_FLAG", "MONOTONIC_STAGE", "COUNTER", "DERIVED_ONLY"]},
+        "initial_value": {"type": "integer", "minimum": 0, "maximum": 65535},
+        "max_value": {"type": "integer", "minimum": 0, "maximum": 65535},
+        "save_reload_required": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_key", "display_name_game", "role", "graphics_id",
+        "home_map_key", "placement_key", "personality", "speech_style", "notes"
+      ],
+      "properties": {
+        "actor_key": {"$ref": "#/$defs/key"},
+        "display_name_game": {"$ref": "#/$defs/nonEmpty"},
+        "role": {"$ref": "#/$defs/nonEmpty"},
+        "graphics_id": {"type": "string", "pattern": "^(?:OBJ_EVENT_GFX_[A-Z0-9_]+|NONE)$"},
+        "home_map_key": {"$ref": "#/$defs/key"},
+        "placement_key": {"$ref": "#/$defs/key"},
+        "personality": {"$ref": "#/$defs/nonEmpty"},
+        "speech_style": {"$ref": "#/$defs/nonEmpty"},
+        "notes": {"type": "string"}
+      }
+    },
+    "placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "placement_key", "map_key", "trigger_type", "host_ref",
+        "allocation_policy", "object_cost", "graphics_id", "movement_type",
+        "collision_audit_required", "notes"
+      ],
+      "properties": {
+        "placement_key": {"$ref": "#/$defs/key"},
+        "map_key": {"$ref": "#/$defs/key"},
+        "trigger_type": {"enum": ["TALK_OBJECT", "READ_SIGN", "STEP_TILE", "MAP_ENTER", "EXISTING_SERVICE", "AUTO_UNLOCK"]},
+        "host_ref": {"$ref": "#/$defs/nonEmpty"},
+        "allocation_policy": {"enum": ["RESTORE_SOURCE_OBJECT", "REPOINT_SOURCE_BG", "REPOINT_SOURCE_COORD", "ALLOCATE_SAFE_TILE", "NO_PHYSICAL_HOST"]},
+        "object_cost": {"type": "integer", "minimum": 0, "maximum": 1},
+        "graphics_id": {"type": "string", "pattern": "^(?:OBJ_EVENT_GFX_[A-Z0-9_]+|NONE)$"},
+        "movement_type": {"type": "string", "pattern": "^(?:MOVEMENT_TYPE_[A-Z0-9_]+|NONE)$"},
+        "collision_audit_required": {"type": "boolean"},
+        "notes": {"type": "string"}
+      }
+    },
+    "conditionTerm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "key", "operator", "value"],
+      "properties": {
+        "kind": {"enum": ["UNLOCK", "STATE", "ITEM", "QOL_FEATURE", "TRAINER_DEFEATED", "ACQUISITION_CLAIMED", "PARTY_SIZE", "CAPTURE_COUNT"]},
+        "key": {"$ref": "#/$defs/key"},
+        "operator": {"enum": ["SET", "NOT_SET", "EQ", "GTE", "LTE", "OWNED", "NOT_OWNED"]},
+        "value": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 65535},
+            {"$ref": "#/$defs/key"}
+          ]
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["condition_key", "all_of", "any_of", "none_of", "notes"],
+      "properties": {
+        "condition_key": {"$ref": "#/$defs/key"},
+        "all_of": {"type": "array", "items": {"$ref": "#/$defs/conditionTerm"}},
+        "any_of": {"type": "array", "items": {"$ref": "#/$defs/conditionTerm"}},
+        "none_of": {"type": "array", "items": {"$ref": "#/$defs/conditionTerm"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "reward": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reward_key", "catalog_reward_key", "quantity", "repeatability",
+        "claim_state_key", "capacity_policy", "atomicity_policy", "unlock_key", "notes"
+      ],
+      "properties": {
+        "reward_key": {"$ref": "#/$defs/key"},
+        "catalog_reward_key": {"$ref": "#/$defs/key"},
+        "quantity": {"type": "integer", "minimum": 0, "maximum": 99},
+        "repeatability": {"enum": ["NONE", "ONCE", "REPEATABLE", "LIMITED_REPEATABLE"]},
+        "claim_state_key": {"$ref": "#/$defs/key"},
+        "capacity_policy": {"enum": ["NOT_APPLICABLE", "PRECHECK_AND_ABORT", "PRECHECK_PARTY_THEN_PC"]},
+        "atomicity_policy": {"enum": ["NO_REWARD", "COMMIT_AFTER_SUCCESS", "EXISTING_OWNER_TRANSACTION"]},
+        "unlock_key": {"$ref": "#/$defs/key"},
+        "notes": {"type": "string"}
+      }
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step_key", "op", "arg_key", "next_step_key", "alt_step_key", "notes"],
+      "properties": {
+        "step_key": {"$ref": "#/$defs/key"},
+        "op": {"enum": ["SHOW_DIALOGUE", "CHECK_CONDITION", "YES_NO", "SET_STATE", "GIVE_REWARD", "START_TRAINER_BATTLE", "CALL_ACQUISITION_HOST", "OPEN_SERVICE", "HEAL_PARTY", "WARP_SAFE", "END"]},
+        "arg_key": {"$ref": "#/$defs/key"},
+        "next_step_key": {"$ref": "#/$defs/key"},
+        "alt_step_key": {"$ref": "#/$defs/key"},
+        "notes": {"type": "string"}
+      }
+    },
+    "failurePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decline", "battle_loss", "bag_full", "party_pc_full", "reset_during_event", "save_reload"],
+      "properties": {
+        "decline": {"enum": ["NOT_APPLICABLE", "NO_STATE_CHANGE", "RETRY"]},
+        "battle_loss": {"enum": ["NOT_APPLICABLE", "RETRY", "RESULT_INDEPENDENT"]},
+        "bag_full": {"enum": ["NOT_APPLICABLE", "NO_STATE_CHANGE", "RETRY"]},
+        "party_pc_full": {"enum": ["NOT_APPLICABLE", "NO_STATE_CHANGE", "RETRY"]},
+        "reset_during_event": {"enum": ["RETRY_FROM_COMMITTED_STATE", "RESUME_PENDING_TRANSACTION"]},
+        "save_reload": {"enum": ["PRESERVE_COMMITTED_STATE", "RECOMPUTE_DERIVED_STATE"]}
+      }
+    },
+    "acceptanceTest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["test_key", "category", "setup_terms", "action", "expected"],
+      "properties": {
+        "test_key": {"$ref": "#/$defs/key"},
+        "category": {"enum": ["UNLOCK_BOUNDARY", "HAPPY_PATH", "REVISIT", "SAVE_RELOAD", "DECLINE", "BATTLE_LOSS", "BAG_FULL", "PARTY_PC_FULL", "RESET"]},
+        "setup_terms": {"type": "array", "items": {"$ref": "#/$defs/nonEmpty"}},
+        "action": {"$ref": "#/$defs/nonEmpty"},
+        "expected": {"$ref": "#/$defs/nonEmpty"}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_key", "title", "region", "arc_key", "batch_key", "map_key",
+        "logical_code", "placement_key", "unlock_key", "condition_key",
+        "presentation_profile", "repeatability", "mandatory", "result_policy",
+        "completion_state_key", "reward_key", "steps", "failure_policy",
+        "acceptance_tests", "notes"
+      ],
+      "properties": {
+        "event_key": {"$ref": "#/$defs/key"},
+        "title": {"$ref": "#/$defs/nonEmpty"},
+        "region": {"enum": ["TOHOKU", "KANTO"]},
+        "arc_key": {"$ref": "#/$defs/key"},
+        "batch_key": {"$ref": "#/$defs/key"},
+        "map_key": {"$ref": "#/$defs/key"},
+        "logical_code": {"type": "string", "pattern": "^(?:K(?:0[1-9]|[1-4][0-9])|VEGA_NATIVE)$"},
+        "placement_key": {"$ref": "#/$defs/key"},
+        "unlock_key": {"$ref": "#/$defs/key"},
+        "condition_key": {"$ref": "#/$defs/key"},
+        "presentation_profile": {"const": "SIMPLE_EVENT"},
+        "repeatability": {"enum": ["ONCE", "REPEATABLE", "STATEFUL"]},
+        "mandatory": {"type": "boolean"},
+        "result_policy": {"enum": ["NO_BATTLE", "WIN_REQUIRED", "RESULT_INDEPENDENT", "ACQUISITION_TRANSACTION"]},
+        "completion_state_key": {"$ref": "#/$defs/key"},
+        "reward_key": {"$ref": "#/$defs/key"},
+        "steps": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/step"}},
+        "failure_policy": {"$ref": "#/$defs/failurePolicy"},
+        "acceptance_tests": {"type": "array", "minItems": 4, "items": {"$ref": "#/$defs/acceptanceTest"}},
+        "notes": {"type": "string"}
+      }
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_key", "title", "priority", "depends_on", "event_keys",
+        "map_keys", "state_keys", "rollback_boundary", "verify_cases", "notes"
+      ],
+      "properties": {
+        "batch_key": {"$ref": "#/$defs/key"},
+        "title": {"$ref": "#/$defs/nonEmpty"},
+        "priority": {"enum": ["P0", "P1", "P2"]},
+        "depends_on": {"$ref": "#/$defs/keyArray"},
+        "event_keys": {"$ref": "#/$defs/keyArray"},
+        "map_keys": {"$ref": "#/$defs/keyArray"},
+        "state_keys": {"$ref": "#/$defs/keyArray"},
+        "rollback_boundary": {"$ref": "#/$defs/nonEmpty"},
+        "verify_cases": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/nonEmpty"}},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

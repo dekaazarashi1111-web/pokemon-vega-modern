@@ -206,3 +206,12 @@ UIと追加イベントは機能優先の最小構成です。既存画面・標
 ## 補助ツール
 
 ChatGPT Webを補助的な相談、要約、レビュー、画像生成に使う場合だけ `tools/chatgpt_browser/README.md` を参照します。私有ROMや非公開データは送信しません。
+
+Stage35の実map／trainer／取得host／QOL catalogから、ChatGPT Proへ渡すROM非同梱のイベント設計パケットを作る場合は次を実行します。ZIP内のschemaとvalidatorを通った返却bundleは、batch単位のCodex実装入力として使えます。
+
+```bash
+python3 scripts/build_event_authoring_packet.py \
+  --output-parent dist/event_authoring_packet \
+  --zip /path/to/Downloads/Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819.zip \
+  --report reports/generated/event_authoring_packet_stage35.json
+```

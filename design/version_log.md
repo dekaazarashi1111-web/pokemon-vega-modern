@@ -622,3 +622,14 @@
   - 1,228 SINGLE／74 DOUBLE、Mega 86／Zワザ111／ダイマックス4／テラスタル67をAIと全cleanup境界へ実ROM接続した。
   - 入力矛盾を非破壊正規化し、clean ROM直接BPS、自己完結完全版snapshot、fresh展開検証まで完了した。
 - Verify: `make trainer-changekit-package-check`、mGBA quick/full、clean exact BPS chain、fresh snapshot `VERIFY_SNAPSHOT.py`、task graph/private guard/diff check PASS。Stage35 SHA-256 `2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180`。
+
+## 2026-08-19T21:24:06+09:00
+
+- Version: `post-v1.4.0-stage35-event-authoring-packet`（Stage35 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260819-CHATGPT-PRO-EVENT-AUTHORING-PACKET` / ChatGPT Pro向け実装可能イベント設計パケットを作成する
+- Summary:
+  - ChatGPT Pro用prompt、技術・出力契約、JSON Schema、self-contained validator、submission templateを追加した。
+  - Stage35から253 map／47 logical location／201 Kanto trainer／24 acquisition host／35 QOL featureと安全なphysical host catalogを決定論的に生成するbuilderを追加した。
+  - ROM・save・private inputを含まないZIP、companion prompt、checksumをWindows Downloadsへ出力し、再展開・manifest再hash・validator・再pack byte一致を確認した。
+- Verify: focused unit 2 tests、builder、template validator、ZIP CRC／manifest 32件／再pack determinism、task graph／private guard／diff check PASS。ZIP SHA-256 `6426c11fa12f0b8f0b448fa4a1d8c0dee7233d71843a2d48867778ec2a3dc08d`。
