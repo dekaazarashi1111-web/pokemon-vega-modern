@@ -688,3 +688,14 @@
   - 各packetへ日本語作業指示、固定catalog、出力schema、submission template、自己検証validatorを収録し、ROM／save／patch／private inputを除外した。
   - 4本をWindows Downloadsへ配置し、内容hash、CRC、privacy、path安全性、validator self-test、決定論的repack、コピーbyte一致を確認した。
 - Verify: builder、4 ZIP CRC／manifest／SHA256／path／privacy／self-test／repack、Windows copy、未記入template negative test、完全再生成2回のbyte一致、py_compile PASS。ZIP SHA-256はReward `9a87f2f97889466b43c77bb7c510e6353b9d1d92f99bcee0ce10ad62d6d4558d`、Move `15b58d0a74f5f76b273ee72aa3e43c872efa3ba1442c81308c8b897f2343b77f`、Factory `9f579998a91784ccbb559c4107e06925517447bcfc42bd62cd70af670d2efb39`、Research `f0ac86d00932c011b069cc6befe9cc6f7ed698ea76e95ff4d619e3d309879ae7`。
+
+## 2026-08-20T19:12:22+09:00
+
+- Version: `post-v1.4.0-stage37-mirage-task-queue`（Stage 37 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260820-MIRAGE-TASK-QUEUE` / 設計済みMirageのproduction実装タスクを追加する
+- Summary:
+  - T21をT20後へ追加し、別Codexセッションで選択可能な唯一のPRIMARYにした。
+  - 既存Mirage map、持込3体、Lv.100、7戦×4周、round別gimmick、仮想item、独立record/save、badge exact restoreをStage 38の受入条件へ固定した。
+  - ChatGPT Pro待ち4領域をT21の読取・変更対象外にし、返却前でも独立実装できる所有境界を固定した。
+- Verify: Stage 37 size/hash、Mirage manifest件数、taskctl sync/next/plan、task graph、private guard、ownership diff guard、diff check PASS。T21=`PENDING`／依存READY。

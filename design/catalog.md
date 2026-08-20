@@ -7,8 +7,9 @@
 - `design/current_state.md`: 現在状態の要約
 - `design/agent_context_map.md`: 読む順番の短縮地図
 - `design/tasks_next.md`: 唯一のタスク状態正本
-- `tasks/task_graph.json`: T00〜T20の依存関係正本
+- `tasks/task_graph.json`: T00〜T21の依存関係正本
 - `tasks/T*.md`: タスクごとの目的、成果物、完了条件
+- `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md`: 設計済みMirage 4周のStage 38 production接続仕様
 - `MASTER_PLAN.md`: 製品・技術ロードマップ
 - `design/PLANS.md`: 運用計画索引
 - `design/decisions.md`: 採択済みADR（追記のみ）

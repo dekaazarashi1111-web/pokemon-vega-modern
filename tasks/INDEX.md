@@ -25,3 +25,4 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T18](T18_RELEASE.md) | Create reproducible release pipeline | platform | T17 |
 | [T19](T19_QOL_PRODUCTION_COMPLETION.md) | Complete production QOL integration | engine/ui/save/qa | T18 |
 | [T20](T20_EVENT_DESIGN_IMPLEMENTATION.md) | Integrate implementation-ready event design | maps/content/engine/save/qa | T19 |
+| [T21](T21_MIRAGE_PRODUCTION_RUNTIME.md) | Connect Mirage modernization to production runtime | maps/content/engine/save/qa | T20 |

@@ -1653,3 +1653,23 @@
   - Research Economy V1: 221,798 bytes、SHA-256 `f0ac86d00932c011b069cc6befe9cc6f7ed698ea76e95ff4d619e3d309879ae7`。
 - Commit: `-`（本エントリを含む完了コミット）
 - Network: 未使用。Stage 37 ROM、ローカルの正本資料と生成済みevent authoring catalogだけを参照した。
+
+## 2026-08-20T19:12:22+09:00
+
+- Task: `USER-20260820-MIRAGE-TASK-QUEUE` / 設計済みMirageのproduction実装タスクを追加する
+- Status: DONE
+- Summary:
+  - Stage 37の設計表、save/CFRU runtime、物理Mirage rootと現行実装状態を照合した。Raid、RESEARCH、trainer gimmick、T20 eventは既にproduction接続済みであり、ChatGPT Proへ渡した4領域と重ならず独立着手できる残件をMirage Battle 1件へ限定した。
+  - T21をT20後の唯一READYへ追加した。既存map `31/1`、持込3体、Lv.100、7戦×4周、NONE/MEGA/Z/MEGA・Z・TERA選択、5段階仮想item、Factoryと分離したrecord/save、badge exact restore、全battle/field退出cleanupをStage 38へ接続する仕様を固定した。
+  - Stage 37のROM identity、旧Mirage physical oracle、symbolic manifest、必須成果物、通常field入口、mGBA quick/full、clean rebuild、BPS往復、Pro待ち4領域の非干渉を受入条件にし、別Codexセッションが追加の仕様判断なしで開始できるようにした。実ROM実装自体はT21へ残した。
+- Files changed:
+  - 新規タスク・DAG・状態: `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md`、`tasks/{task_graph.json,INDEX.md}`、`design/tasks_next.md`、`state/task_status.json`。
+  - 入口・現在状態: `MASTER_PLAN.md`、`design/{PLANS,agent_context_map,catalog,current_state,run_log,version_log}.md`。
+- Verify:
+  - Stage 37 ROM: 33,554,432 bytes、SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`で固定値一致。metadata SHA-256は`712ecdcd15b7fd7ac3003771eca45fd6ffd6e4dcb410436e3204e0862f1d9873`。
+  - focused CSV audit: PASS。Mirage mode 4、trainer pool 4、special opponent 6、virtual-item reward 5、symbolic trainer ID 4。
+  - `python3 scripts/taskctl.py sync` / `next` / `plan`: PASS。T21が唯一の`PRIMARY`、W15 `PENDING`、最長依存鎖終端T21。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - ownership diff guard: PASS。Pro packet、`facility_*`/`trainer_ids` manifest、content、CFRU/save runtimeへの変更0。
+- Commit: `-`（本エントリを含むタスク追加コミット）
+- Network: 未使用。Stage 37 ROM、ローカルの設計正本、生成済みmanifest/runtimeだけを参照した。

@@ -39,6 +39,7 @@ FireRed JPN Rev0 clean
 | T18 | Release pipeline | Platform | T17 | 再現ビルド・差分パッチ・記録 |
 | T19 | Production QOL completion | Engine/UI/Save/QA | T18 | 35機能を実UI・field・PC・預かり屋・battle・saveへ接続 |
 | T20 | Event design implementation | Maps/Content/Engine/Save/QA | T19 | 実装可能設計76件をStage 36にrebaseし、実map event・会話・進行・serviceへ接続 |
+| T21 | Mirage production runtime | Maps/Content/Engine/Save/QA | T20 | 設計済みMirage 4周を既存map・持込party・仮想item・独立記録へproduction接続 |
 
 ## 最短実行戦略
 
@@ -60,7 +61,7 @@ T00 -> T12 ----┴-> T13
 
 `make plan` はDAGから現在の `RESUME` / 推奨 `PRIMARY` / その他の依存READY候補 `PARALLEL_PREP` と準備waveを自動導出します。正本IN_PROGRESSは1件だけとし、同じwaveの他タスクは所有ファイルを分けたsubtaskまたは別worktreeで先行します。準備waveは依存深度を表す論理並列単位であり、正本完了のbarrierや強制統合順ではありません。
 
-正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T20` です。これは強制順ではなく、依存READYであれば待ち時間とfan-outに応じて別候補を選べます。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、T01の待ち時間にはT02のconfig-aware監査parserとT12のsymbolic schema/fixtureを進めます。進行後の現在値は `make plan` と `design/current_state.md` を正とします。
+正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T21` です。これは強制順ではなく、依存READYであれば待ち時間とfan-outに応じて別候補を選べます。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、T01の待ち時間にはT02のconfig-aware監査parserとT12のsymbolic schema/fixtureを進めます。進行後の現在値は `make plan` と `design/current_state.md` を正とします。
 
 ## 高速並列準備waveと統合時の成果基準
 
@@ -81,8 +82,9 @@ T00 -> T12 ----┴-> T13
 | W12 | T18 | clean checkoutからbyte再現buildでき、配布patch再適用hashとprivate guardがPASSする |
 | W13 | T19 | 35/35 release QOLがproduction bindingを持ち、実入力・save/reload・clean Stage 36をPASSする |
 | W14 | T20 | 76 event・63 placement・326会話をStage 36へ再解決し、実入力・保存・回帰・clean Stage 37をPASSする |
+| W15 | T21 | Mirage 7戦×4周を既存mapへ接続し、持込party・gimmick・仮想item・記録・全cleanup・clean Stage 38をPASSする |
 
-最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、返却済み設計の実ROM最終統合はT20です。
+最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、返却済みイベント設計の実ROM最終統合はT20、設計済みMirageのproduction接続はT21です。
 
 受領したV2二地方生態版は完成像・進行・生態・イベントのactive review資料です。V1は来歴保存専用です。V2の47カントー地点はraw map総数ではないため、T11ではclean BPRJとpokefireredから約256候補mapの再現可能なinventoryを作り、論理地点とのcrosswalkを確定します。採用済みデータだけをT12/T16のschemaへ昇格します。
 
