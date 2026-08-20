@@ -119,7 +119,8 @@ Surfは非Surf中だけ許す入口とSurf中だけ許す入口を相互に反�
 - 新規saveとQOL fieldを持たない移行saveの既定値、設定変更後のsave/load/resetを検査する。
 - 固定RNG fixtureで、かわらずの石、あかいいと、power系、タマゴ技、共通level技、ball、通常/隠れ特性、おこう、メタモン、異親ID、リージョンフォームを網羅する。
 - 経験アメ5種の100/800/3000/10000/30000、`x1/x5/x10/すべて`、途中level技・進化、Lv.100、EV非加算、選択個体限定を検査する。
-- 共通複数使用UIを栄養drink、ハネ、ふしぎなアメ、テラピース、coin、単能力/全能力EV resetでも実行し、各上限、対象選択、cancel、効果なし時の非消費を検査する。
+- 共通複数使用UIを栄養drink、ハネ、ふしぎなアメ、単能力EV resetでも実行し、各上限、対象選択、cancel、効果なし時の非消費を検査する。全能力EV resetはitemではなく無料serviceとして確認付きで検査する。
+- canonical Item 0..998に存在しないTera shard、1個消費の進化道具であるコレクレーのコイン、bag外通貨のVega arcade coinをbag数量UIの実在consumerとして数えない。
 - IV判定境界0/1/15/16/25/26/29/30/31、EV各値/252/合計510、実IV31と「きたえた！」を手持ち/PC/タマゴで比較する。
 - mint、特性カプセル/パッチ、銀/金王冠、努力値reset、全体学習装置ON/OFFをparty↔PC、進化、孵化、save/loadで検査する。
 - 手持ち/box満杯、タマゴ5個queue、まとめ受取、孵化NORMAL/FAST/SKIPで個体、図鑑、nicknameの同一性を検査する。まるいおまもりは公式100種/quest境界と生成成功率2倍を固定RNGで比較する。

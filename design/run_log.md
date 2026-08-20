@@ -1549,3 +1549,32 @@
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
 - Commit: `-`（本エントリを含むタスク追加コミット）
 - Network: 未使用。ローカルのQOL実装、Stage 35 metadata、既存fixtureとtask graphだけを監査した。
+
+## 2026-08-20T16:00:46+09:00
+
+- Task: `T19` / Complete production QOL integration
+- Status: DONE
+- Summary:
+  - `content/qol_progression.csv`のリリース対象35機能を35個の一意なLIVE production ownerへ接続し、`MODEL_ONLY`、`PROBE_ONLY`、`CATALOG_ONLY`、`UNBOUND`を0にした。Options、summary、PSS、bag、field、預かり屋、battle、saveの通常入口と97 expected-byte hookをStage 36へ結合した。
+  - 実80-byte BoxPokemon、複数box、物理SELECT/R/L/B入力、標準ListMenu数量UI、預かり親と孵化core、通常random野生の実戦闘controllerを使用した。検索・複数選択・一括移動/逃がし・技/所持品操作、タマゴバスケット255/256歩・5個queue・保存復帰、自動戦闘のPP/状態/瀕死/EXP/EV/Exp. Share/ターンごとcancelを実ROMで確認した。trainer/static/story/legendary/shiny/Factory/Raidは実際の戦闘文脈で自動化を解除した。
+  - 文章速度はcontrol stateを維持したままINSTANTの通常文章と戦闘promptを表示し、移動は実overworld入力でwarp/座標/tile event/段差/歩数/遭遇/孵化checkを保持した。unlock境界、一度限り/反復供給、保存失敗を含むcross-store fault matrixは部分更新・増殖・消失0。
+  - Stage 35の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainer、Mega/Z/Dynamax/Tera、再戦、save cleanupを不変に保ち、clean FireRed日本版Rev.0から同一Stage 36へ決定的に再構築した。
+- Files changed:
+  - production正本/供給: `config/qol_production_bindings.csv`、`config/qol_production_supply_catalog.csv`、`content/qol_{progression,supply}.csv`、`config/{feature_matrix,ram_layout}.csv`、`manifests/{flags,vars,qol_rewards}.csv`。
+  - runtime/build: `overlays/qol_production/**`、`scripts/build_qol_production.py`、`scripts/rebuild_qol_production_from_clean.py`、`scripts/build_engine_vertical_slice.py`、`tools/engine/cfru_qol_runtime.py`。
+  - tests/docs/state: `tools/mgba_qol_production_smoke.c`、`tests/test_qol_production.py`、`tests/test_cfru_qol_runtime.py`、`tests/fixtures/qol_slice.json`、`docs/{QOL_POLICY,RELEASE_README_JA,TEST_STRATEGY}.md`、`design/{decisions,current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。
+  - Git管理外証跡: Stage 36 ROM、3 BPS、allocation/metadata、mGBA quick/full、clean rebuild、audit/coverage report。clean ROM、save、private inputは変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_qol_production.py build` / `check`: PASS。35機能、97 hook、15受入条件、declared changed 67,991 byte、declared span外0、allocator/RAM overlap 0。
+  - `python3 -m unittest tests.test_qol_production`: PASS（20 tests）。`python3 -m unittest tests.test_cfru_qol_runtime`: PASS（9 tests）。
+  - `python3 scripts/rebuild_qol_production_from_clean.py build` / `check`: PASS。Stage35差分BPSとclean直接BPSは完全往復し、両経路のStage 36はbyte一致。
+  - libmGBA quick/full: 独立2 processともPASS、warnings/errors 0、runner/case/ROM identity一致。物理PSS、歩数=孵化tick、戦闘prompt、禁止7文脈の実入力を含む25 checksは全てtrue。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。
+- Output identity:
+  - Stage 36 ROM: 33,554,432 bytes、SHA-256 `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
+  - Stage35差分BPS / clean直接BPS: SHA-256 `0c0d2a862f931156748aa45f22d70a1c6fd4834d0a82a0c3d0f695393cdf3c38` / `1f123d801a62c1bf35471e6c9fef40ff1ff084f50dc7d273429856cd197ae0f3`。
+  - audit / coverage / clean rebuild証跡: SHA-256 `ca21616c22017fb62016b3304e5ce824237064ead0d656cfa01c7c14e65f32d3` / `47804d5c02422b9bfb52b8405c3d35eb2a9aa77dff25a385326d9a946204f08a` / `0425db980dd5a78243e4db068364adda71fd869a48e60b6c7de0fedb848219fe`。
+- Commit: `-`（本エントリを含むT19完了コミット）
+- Network:
+  - <https://developers.openai.com/api/docs/guides/latest-model> — セッション引継ぎ時に目標、制約、成功条件、明確なhandoffを保持する根拠として参照した。
+  - <https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788> — source-lock済みcommitのPC/Help/summary/text構造とstock consumerを参照した。上流pinとプロジェクト仕様は変更していない。

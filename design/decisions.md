@@ -218,3 +218,20 @@
 - 再試行: ROM byteを変えない `v1.3.3` sourceをtag固定し、隔離fresh rebuildで
   final/BPS/ZIP byte一致を最終gateとする。
 - 影響: battle UI入力来歴、v1.3.3 release、fresh-checkout再現性。
+
+## 2026-08-20 — D-024: 共通数量UIのproduction consumerを実在Item ABIへ限定する
+
+- 判定: T10のmodel fixtureは共通数量UIのconsumerとしてTera shardとcoinをPASS扱いしたが、
+  Stage35固定baselineのcanonical Itemは0..998で、Tera shard 18種を含まない。reserved Item
+  589は1枠だけであり、type別item、save、effect、iconの18種ABIを表現できない。
+- coin境界: Item 950のコレクレーのコインは`ITEM_TYPE_EVOLUTION_ITEM`、`PARTY_ONE`の
+  1個消費道具である。Vega arcade coinはbag itemではなくSaveBlock1の暗号化u16通貨であり、
+  いずれもbag数量callbackのconsumerとして扱わない。
+- 決定: Stage36の共通数量UIは実在する経験アメ、栄養drink、ハネ、ふしぎなアメ、
+  単能力EV reset用品へ接続する。汎用数量resolverは維持するが、Item namespace拡張を伴う
+  Tera shardをT19の35 production ownerへ偽装せず、T10 fixture、QOL方針、テスト方針、
+  release操作説明を実buildへ同期する。
+- 根拠: T19のrelease正本は`content/qol_progression.csv`の35行であり、Tera shard/coinは
+  独立行に存在しない。この訂正は35機能の削減ではなく、model-only PASSをproduction実在性へ
+  合わせるT19受入条件の整合修正である。
+- 影響: T10 quantity fixture、QOL方針・テスト・操作説明、T19 Stage36検証。

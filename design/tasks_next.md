@@ -18,7 +18,7 @@
 - [x] T16: 野生・トレーナー・アイテムを生成配置する <!-- id:T16 -->
 - [x] T17: 本編・engine・Kantoの回帰試験を通す <!-- id:T17 -->
 - [x] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->
-- [ ] T19: QOL 35機能を実UI・field・PC・預かり屋・battle・save導線へ接続する <!-- id:T19 -->
+- [x] T19: QOL 35機能を実UI・field・PC・預かり屋・battle・save導線へ接続する <!-- id:T19 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->
 - [x] HM所持だけで対応フィールド技を使用可能にする <!-- id:USER-20260814-HM-FIELD-ACCESS -->
 - [x] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->

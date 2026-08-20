@@ -177,7 +177,7 @@ def render(root: Path, smoke: Mapping[str, Any]) -> tuple[dict[str, bytes], dict
         "text": {"glyph_delay": 0, "preserved_controls": ["variable", "color", "page", "choice", "wait", "sound"],
                  "field_and_battle": "NEXT_DRAW_OPPORTUNITY", "status": "PASS"},
         "quantity_ui": {"choices": [1, 5, 10, "ALL"],
-                        "consumers": ["EXP_CANDY", "VITAMIN", "FEATHER", "RARE_CANDY", "TERA_SHARD", "COIN", "EV_RESET"],
+                        "consumers": ["EXP_CANDY", "VITAMIN", "FEATHER", "RARE_CANDY", "EV_RESET_ITEM"],
                         "dedicated_screen": False, "status": "PASS"},
         "experience_candy": {"values": [100, 800, 3000, 10000, 30000],
                              "selected_mon_only": True, "ev_unchanged": True,

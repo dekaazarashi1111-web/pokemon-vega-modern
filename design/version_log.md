@@ -644,3 +644,14 @@
   - QOL 35機能のproduction binding、実UI／save／runtime接続、Stage 36 clean rebuildを受入条件として固定した。
   - ChatGPT Proのイベント設計との所有境界を固定し、イベント成果を待たずにQOL本体を実装できるようにした。
 - Verify: taskctl sync/next/plan、task graph、private guard、diff check PASS。T19=`PENDING`／依存READY。
+
+## 2026-08-20T16:00:46+09:00
+
+- Version: `post-v1.4.0-stage36`（v1.4.0 release identityとStage 27〜35は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T19` / Complete production QOL integration
+- Summary:
+  - QOL 35機能を35個の一意なLIVE production ownerと通常のOptions/summary/PSS/bag/field/daycare/battle/save入口へ接続した。
+  - 実BoxPokemonのPC操作、共通数量UI、タマゴqueue、通常random野生の自動戦闘、文章/移動、育成、供給、保存transactionを97 hookでStage 36へ結合した。
+  - Stage 35の1,302 trainerとgimmick/saveを不変に保ち、clean ROM直接BPSとStage35差分BPSの両方からbyte一致するStage 36を再構築した。
+- Verify: production build/check、focused 20+9 tests、libmGBA quick/full独立2 process、受入条15/15、clean rebuild build/check、BPS完全往復、declared span/allocator/RAM overlap、task graph/private guard/diff check PASS。Stage 36 SHA-256 `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。

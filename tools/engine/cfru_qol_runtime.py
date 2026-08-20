@@ -360,7 +360,7 @@ def _render_source() -> str:
 
 #define VEGA_QOL_STAT_COUNT 6
 #define VEGA_QOL_INVALID_STAT 0xFF
-#define VEGA_QOL_SPECIES_COUNT 412u
+#define VEGA_QOL_SPECIES_COUNT 1621u
 
 #ifndef VEGA_QOL_HOST_TEST
 extern u8 GetCurrentLevelCap(void);

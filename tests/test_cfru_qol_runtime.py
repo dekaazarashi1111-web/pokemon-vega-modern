@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import csv
 import hashlib
 import json
 import shutil
@@ -30,6 +31,7 @@ from tools.engine.cfru_qol_runtime import (
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_ROOT = ROOT / "vendor/upstream/CFRU-JP"
 MODEL_PATH = ROOT / "generated/engine/ids/id_spaces.json"
+ITEM_MANIFEST = ROOT / "manifests/item_ids.csv"
 
 
 def _digest(path: Path) -> str:
@@ -41,6 +43,26 @@ def _sources() -> dict[str, str]:
         logical: (SOURCE_ROOT / logical).read_text(encoding="utf-8")
         for logical in EXPECTED_SOURCE_HASHES
     }
+
+
+def _id_model() -> dict[str, object]:
+    if MODEL_PATH.is_file():
+        return json.loads(MODEL_PATH.read_text(encoding="utf-8"))
+    # Recovered/local workspaces do not necessarily retain ignored T05
+    # generated files.  The canonical 0..998 item manifest contains every
+    # field this adapter consumes, so project the same checked ABI without
+    # requiring an unrelated upstream rebuild.
+    with ITEM_MANIFEST.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    for index, row in enumerate(rows):
+        row["id"] = index  # type: ignore[assignment]
+        cfru_id = row.get("cfru_id", "NONE")
+        row["cfru_id"] = (  # type: ignore[assignment]
+            None if cfru_id == "NONE" else int(cfru_id)
+        )
+        if row.get("role") == "FIELD_ITEM":
+            row["source_use_type"] = "ITEM_USE_PARTY_MENU"
+    return {"schema_version": 1, "task": "T05", "items": rows}
 
 
 HOST_STUB = r'''#ifndef VEGA_QOL_HOST_STUB_H
@@ -244,6 +266,12 @@ int main(void)
 	CHECK(first.exp == 1 && expResult.consumedItems == 0);
 	first.isEgg = FALSE;
 	first.species = 412;
+	first.exp = 1;
+	first.level = 1;
+	CHECK(VegaQolApplyExpCandy(&first, 988, VEGA_QOL_USE_X1, 1, &expResult));
+	first.evs[STAT_ATK] = 12;
+	CHECK(VegaQolApplyEvResetItem(&first, 994, &evResult));
+	first.species = 1621;
 	CHECK(!VegaQolApplyExpCandy(&first, 988, VEGA_QOL_USE_X1, 1, &expResult));
 	CHECK(!VegaQolApplyEvResetItem(&first, 994, &evResult));
 	first.species = 1;
@@ -294,7 +322,7 @@ int main(void)
 class CFRUQolRuntimeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.id_model = json.loads(MODEL_PATH.read_text(encoding="utf-8"))
+        cls.id_model = _id_model()
         cls.bundle = build_qol_runtime(SOURCE_ROOT, cls.id_model)
 
     def test_t05_qol_rows_and_existing_cfru_adapters_are_fixed(self) -> None:

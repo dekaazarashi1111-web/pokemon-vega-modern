@@ -85,8 +85,9 @@ RTC自動中は現在が「あさ・ひる」か「よる」かも同じ画面�
 - 孵化演出は `HATCH_MODE=FAST`。`NORMAL / FAST / SKIP` を選べ、SKIPでも図鑑登録と
   nickname確認を残す。
 - 全体学習装置は `EXP_SHARE=ON` が既定。戦闘経験値だけを分配する。
-- 数量選択は `x1 / x5 / x10 / ALL`。アメ、栄養、ハネ、ふしぎなアメ、テラピース、
-  coin、EV resetで共通利用する。
+- 数量選択は `x1 / x5 / x10 / ALL`。Stage36ではアメ、栄養、ハネ、
+  ふしぎなアメ、単能力EV resetで共通利用する。Tera shardは現行Item catalogに無く、
+  コレクレーのコインは1個消費の進化道具、arcade coinはbag外通貨なので対象外。
 - Summary/PC欄はSELECTで通常/ジャッジ、L/RでIV/EVを切り替える。PCは既存listの
   文字入力で名前・type・ability検索、SELECT markerで複数選択する。一括移動・逃がし・
   持ち物回収は容量不足や禁止個体があれば全体rollbackする。
