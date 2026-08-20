@@ -1628,3 +1628,28 @@
   - audit / coverage / clean rebuild証跡: SHA-256 `def99e8020f3356dd57ac8b09141d247704f18430e17a3589508d04de71d5fe4` / `6cf37ae62501d8ffcbc7372e2071d273bd22ab7aac443d273cd323a8d2b22638` / `90da3b5201ffc644d7730294d74a85b0c2c33db74227679e144e76f94dd0d515`。
 - Commit: `-`（本エントリを含むT20完了コミット）
 - Network: 未使用。固定済みのユーザー提供ZIP、Stage 35 authoring catalog、Stage 36 ROM/metadata、ローカルsource-lock済み実装だけを参照した。
+
+## 2026-08-20T18:51:50+09:00
+
+- Task: `USER-20260820-CHATGPT-PRO-DESIGN-PACKETS` / 未完成設計4件をChatGPT Proだけで完成できる自己完結ZIPへ梱包する
+- Status: DONE
+- Summary:
+  - Stage 37固定ROMと現行manifest／content／event authoring catalogから、報酬遭遇V2、技習得V4、Factory高難度mode V2、研究経済V1の4本を独立した自己完結入力パケットとして決定論的に生成した。各ZIPは短い「やって」だけでも作業開始できる日本語指示、技術正本、出力契約、submission template、機械検証validatorを含む。
+  - 技習得packetには現行1,621 Species／1,063 Move、level-up 25,674行、egg 6,851行、TM／tutor 184 slotとV3設計を収録した。Factory packetは28 requirement、全25性格、現行Species／Move／Item／Ability／Typeを収録し、報酬遭遇・研究経済packetはStage 37で未占有の1,422 physical hostを収録した。
+  - ROM、save、patch、private inputは一切梱包せず、4本をWindows Downloadsへbyte一致で配置した。未記入templateがvalidatorを誤通過しないnegative testも全4本でPASSした。
+- Files changed:
+  - generator: `scripts/build_chatgpt_pro_design_packets.py`。
+  - 共通validator: `templates/chatgpt_pro_design_packets/tools/validate_submission.py`。
+  - Git管理外成果: `dist/chatgpt_pro_design_packets/**`、`build/chatgpt_pro_design_packets.json`、Windows Downloadsの入力ZIP 4本。
+- Verify:
+  - `python3 -m py_compile scripts/build_chatgpt_pro_design_packets.py templates/chatgpt_pro_design_packets/tools/validate_submission.py`: PASS。
+  - `python3 scripts/build_chatgpt_pro_design_packets.py`: PASS。4 packetすべてCRC、manifest/SHA256、path guard、privacy scan、validator self-test、決定論的repack、Windows copyをPASS。
+  - Windows Downloadsの`sha256sum`、`unzip -tqq`、ローカル生成物との`cmp`: PASS。ZIP root一意、path traversal／symlink／ROM・save・patch・実行形式混入0。
+  - 展開先の未記入`submission_template/`に対するvalidator negative test: 4/4件が期待どおり`VALIDATION=FAIL`。
+- Output identity:
+  - Reward Encounters V2: 153,843 bytes、SHA-256 `d310c9d0fecad53373873ebfa0c8ded3e663b73b940443b8afdc775707a64e4a`。
+  - Move Distribution V4: 635,001 bytes、SHA-256 `42c45f7028b9b9c9ffc7983be058859347e47737e5f6e8fdd8f771c6a9fc9d81`。
+  - Factory High Modes V2: 176,108 bytes、SHA-256 `df555693030259943bccca8196598ebd30674eb8520e51a0d9546b272c04c363`。
+  - Research Economy V1: 221,798 bytes、SHA-256 `2defa272d313f83fa14f710d1f6bc1fd2e1237b2a93f4660a85540dc86988dec`。
+- Commit: `-`（本エントリを含む完了コミット）
+- Network: 未使用。Stage 37 ROM、ローカルの正本資料と生成済みevent authoring catalogだけを参照した。

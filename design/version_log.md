@@ -677,3 +677,14 @@
   - Stage 36実ROMから58 mapのrootを再解決し、既存trainer/acquisition/QOL ownerとsaveを保持した。
   - clean直接BPSとStage 36差分BPSの両経路からbyte一致するStage 37を決定的に再構築した。
 - Verify: event-design build、focused 10 tests、libmGBA quick/full独立2 process・全76 field path、clean rebuild build/check、BPS完全往復、declared span/allocator/RAM/save重複、manifest/task graph/private guard/diff check PASS。Stage 37 SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`。
+
+## 2026-08-20T18:51:50+09:00
+
+- Version: `post-v1.4.0-stage37-chatgpt-pro-design-packets`（Stage 37 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260820-CHATGPT-PRO-DESIGN-PACKETS` / 未完成設計4件の自己完結入力ZIPを作成する
+- Summary:
+  - 報酬遭遇V2、技習得V4、Factory高難度mode V2、研究経済V1を、それぞれZIPだけでChatGPT Proがimplementation-ready成果へ完成できる入力packetにした。
+  - 各packetへ日本語作業指示、固定catalog、出力schema、submission template、自己検証validatorを収録し、ROM／save／patch／private inputを除外した。
+  - 4本をWindows Downloadsへ配置し、内容hash、CRC、privacy、path安全性、validator self-test、決定論的repack、コピーbyte一致を確認した。
+- Verify: builder、4 ZIP CRC／manifest／SHA256／path／privacy／self-test／repack、Windows copy、未記入template negative test、py_compile PASS。ZIP SHA-256はReward `d310c9d0fecad53373873ebfa0c8ded3e663b73b940443b8afdc775707a64e4a`、Move `42c45f7028b9b9c9ffc7983be058859347e47737e5f6e8fdd8f771c6a9fc9d81`、Factory `df555693030259943bccca8196598ebd30674eb8520e51a0d9546b272c04c363`、Research `2defa272d313f83fa14f710d1f6bc1fd2e1237b2a93f4660a85540dc86988dec`。
