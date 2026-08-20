@@ -1,6 +1,6 @@
 # current_state.md
 
-最終更新: 2026-08-20
+最終更新: 2026-08-21
 
 ## 現在地
 
@@ -10,7 +10,9 @@
 - T20で受領済みの実装可能イベント設計を、7 batch・76 event・63 physical placement・326会話としてStage 37へ統合した。80 stateは衝突のないflag `0x13B0..0x13FF`へ割り当て、160 conditionと7 atomic rewardをfield scriptへ一度だけcompileした。58 mapの59 rooted patchをStage 36実ROMからexpected-byte付きで再解決し、未解決host、object上限超過、collision、allocator/RAM/save所有重複は0。
 - 既存trainer 1,302戦・6,490 member・74 DOUBLE・201 Kanto、取得イベント201件、QOL 35機能・97 hookを回帰不変に保った。mGBA quick/full独立2 processで7/76 field path、state、condition、reward、即時map transition、save/reloadをwarnings/errors 0でPASSした。Stage 37は33,554,432 bytes、SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`。
 - clean FireRed日本版Rev.0→Stage 36→Stage 37とclean→Stage 37直接BPSはbyte一致し、34,168 changed byteのdeclared span外0。Stage 36差分BPS / clean直接BPS SHA-256は `56b2eb2583323a76e14878bf4db028690462fc2676f96c676258bda6141cd7d5` / `bb7a417791b2a944a3663cc6d5c69d3b360d5c40f1c01b7bc2b09547826669ce`。
-- Stage 37の設計・runtime・物理入口を再照合し、ChatGPT Proへ渡した4領域と所有範囲が重ならず、設計済みだが通常プレイ入口へ未接続の独立残件としてMirage BattleをT21へ追加した。既存map `31/1`、持込3体、Lv.100、7戦×4周、NONE/MEGA/Z/MEGA・Z・TERA選択、仮想item、Factoryと分離した記録/saveをStage 38へ接続する。Reward Encounters V2、Move Distribution V4、Factory High Modes V2、Research Economy V1はT21で変更しない。
+- T21で既存Mirage map `31/1`の受付を通常NPC A入力へ接続し、標準party UIで選ぶ持込3体を永続partyへ書き戻さずLv.100 battle copy化した。7戦×4周をtrainer ID 745〜748のcanonical `trainerbattle 0x5C/mode3`へ接続し、Round 1〜4のNONE／MEGA／Z／選択MEGA・Z・TERA、AI FULL SMART、SPECIAL 6体poolからの決定的3体選出を実戦hookで確認した。
+- Mirage専用volatile stateはEWRAM `0x0203EE00..0x0203F098`のexact 664 byte（64-byte header＋600-byte party snapshot）とし、既存UI state `0x0203F101`を含めない。既存40-byte `VegaMirageState`の`current_record[4..7]`だけを8-byte active/badge journalとして予約し、stock save＋sector 31の原子的transaction、保存失敗補償、fresh-core reset復旧、256 badge mask×8退出経路のexact restoreをPASSした。
+- Stage 38は33,554,432 bytes、SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`。7 expected-byte root、16 runtime export、変更8,432 byte、declared span外0、allocator/RAM/save overlap 0。mGBA quick/full独立2 processは受入15/15、warnings/errors 0、result identity `MP38:4:4:5:4:28:256:8:600`で一致し、clean→Stage37→Stage38とclean直接Stage38もbyte一致した。Reward Encounters V2、Move Distribution V4、Factory High Modes V2、Research Economy V1は変更していない。
 - `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
 - Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
   拡張し、Gym1直後のmap-script物理命令1件とmap `3/21`の連続14命令をstage 34へ接続した。
@@ -188,9 +190,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T20は完了し、T21が唯一の依存READYタスクである。
+`design/tasks_next.md` を正とする。T00〜T21は完了し、依存READYの正本タスクはない。
 
-- T21: READY。既存Mirage map `31/1`へ持込3体・Lv.100・7戦×4周・round別gimmick・仮想item・独立記録/saveをproduction接続する。全退出時のbadge exact restore、Factory/Pro待ち4領域との非干渉、Stage 38、mGBA quick/full、clean rebuildまでを完了条件とする。
+- T21: DONE。既存Mirage map `31/1`へ持込3体・Lv.100・7戦×4周・round別gimmick・仮想item・独立記録/saveをproduction接続し、全退出時のbadge exact restore、Factory/Pro待ち4領域との非干渉、Stage 38、mGBA quick/full、clean rebuildをPASSした。
 - T20: DONE。76 event / 63 placement / 80 state / 326 dialogue / 7 batchをStage 37の通常入力・保存・既存trainer/acquisition/QOL serviceへ接続し、mGBA quick/fullとclean rebuildをPASSした。
 - T19: DONE。QOL 35機能を実BoxPokemon/PSS/menu/daycare/battle/saveと供給導線へ接続し、Stage 36の実ROM入力、fault injection、save/reload、clean rebuildをPASSした。ChatGPT Proのイベント設計との所有境界は変更していない。
 - USER-20260817-BP-SHOP-RUNTIME: DONE。Factory map 96/5へ18品目のmanifest-backed BPショップを物理接続し、通常save／sector 31、成功購入、再読込、残高不足、bag満杯、未解禁をstage 27 exact-ROM 2 processで検証した。

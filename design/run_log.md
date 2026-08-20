@@ -1673,3 +1673,31 @@
   - ownership diff guard: PASS。Pro packet、`facility_*`/`trainer_ids` manifest、content、CFRU/save runtimeへの変更0。
 - Commit: `-`（本エントリを含むタスク追加コミット）
 - Network: 未使用。Stage 37 ROM、ローカルの設計正本、生成済みmanifest/runtimeだけを参照した。
+
+## 2026-08-21T00:47:46+09:00
+
+- Task: `T21` / Mirage 4周・仮想道具・独立記録を通常プレイ入口へproduction接続する
+- Status: DONE
+- Summary:
+  - Stage 37のmap `31/1`受付を通常NPC A入力へ接続し、標準party UIで持込3体を選ぶLv.100 single 3v3を7戦×4周へ展開した。trainer ID 745〜748、AI FULL SMART、NONE／MEGA／Z／選択MEGA・Z・TERA、SPECIAL 6体poolからの決定的3体選出をcanonical `trainerbattle 0x5C/mode3`と既存CFRU/ChangeKit chainへ接続した。
+  - 5段階のMirage virtual item、streak 7/14/21/28/35、repeatable/once claim、current/best recordをFactoryと分離したownerへ実装した。virtual itemはbattle-localだけに適用し、party/bag/Factoryへ残さず、保存成功後だけclaimを確定するstock save＋sector 31 transactionと両store補償を追加した。
+  - volatile stateはEWRAM `0x0203EE00..0x0203F098`の664 byte（header 64＋party snapshot 600）へ固定し、既存UI state `0x0203F101`を除外した。既存40-byte Mirage台帳の`current_record[4..7]`を8-byte active/badge journalにし、完走、敗北、全滅、辞退、cancel、warp、resetの8退出経路で入場前badgeをexact復元した。
+  - 受付、active-safe map-entry cleanup、旧cleanup 2件、save load、trainer party、abilityの7 rootをexpected-byte付きでrepointした。16 runtime export、変更8,432 byte、declared span外0、allocator/RAM/save重複0。既存1,302 trainer・6,490 member・74 DOUBLE・201 Kanto trainer、QOL 35機能・97 hook、取得201件、T20 59 root、Pro待ち4領域を不変に保った。
+- Files changed:
+  - production契約: `config/mirage_production_bindings.csv`、`config/{ram_layout,save_layout}.csv`。
+  - runtime/build: `overlays/mirage_production/**`、`scripts/build_mirage_production.py`、`scripts/rebuild_mirage_production_from_clean.py`。
+  - QA: `tools/mgba_mirage_production_smoke.c`、`tests/test_mirage_production.py`。
+  - 入口・状態・意思決定: `Makefile`、`README.md`、`design/{current_state,decisions,tasks_next,run_log,version_log}.md`、`state/task_status.json`。
+  - Git管理外成果: Stage 38 ROM、incremental/clean直接BPS、allocation/metadata、audit/coverage、mGBA quick/full、clean rebuild証跡。clean ROM、Stage 37原本、save、private inputは変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_mirage_production.py build` / `check`: PASS。Stage 38 SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`、mode 4、battle 28、artifact 19。check前後のROM/metadata/mGBA/audit/coverageはmtime・byte不変。
+  - libmGBA quick/full: 独立2 processとも23/23 checks・受入15/15・warnings/errors 0。quickは4 badge mask×8 exit、fullは256 mask×8 exit=2,048件、result identity `MP38:4:4:5:4:28:256:8:600`一致。
+  - `python3 -m unittest tests.test_mirage_production -v`: PASS（14 tests）。manifest、ARM `-Werror`、16 export/7 root、通常field、0x5C scheduler、664-byte RAM/save ABI、BPS、上流/private、coverage、check無書換えを確認した。
+  - `python3 scripts/rebuild_mirage_production_from_clean.py build` / `check`: PASS。clean→Stage 37→Stage 38とclean→Stage 38直接経路がbyte一致し、両BPSを完全往復した。check前後のStage 38、clean evidence、reportはmtime不変。
+  - `python3 -m py_compile scripts/build_mirage_production.py scripts/rebuild_mirage_production_from_clean.py tests/test_mirage_production.py`、task graph、private guard、Pro待ち4領域ownership guard、`git diff --check`: PASS。
+- Output identity:
+  - Stage 38 ROM: 33,554,432 bytes、SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`。
+  - Stage37差分BPS / clean直接BPS: SHA-256 `682dadf7877add9e64e288c7c8dc40014ee63c7dc1a307b84f59f42086598764` / `71e4655c7bf9b88a1639a833ac38b56075e3b5a5850a36d0ab3ed44d6301c058`。
+  - audit / coverage / clean rebuild証跡: SHA-256 `dcf67ee2ca2556a54f6f812cc11600fb38c970b04a3968a8831eeba825d9c328` / `02f72707d256893188e7478c8756498a006059734ff144171a8ba2edebd839af` / `77ad462dabab9dd114a05c7ec52a819a22240bb744de8f6afb5eb0e9b90c3000`。
+- Commit: `-`（本エントリを含むT21完了コミット）
+- Network: 未使用。固定済みStage 37、clean ROM、ローカルのmanifest、CFRU/ChangeKit/save実装だけを参照した。

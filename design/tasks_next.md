@@ -20,7 +20,7 @@
 - [x] T18: 再現可能なrelease pipelineを完成させる <!-- id:T18 -->
 - [x] T19: QOL 35機能を実UI・field・PC・預かり屋・battle・save導線へ接続する <!-- id:T19 -->
 - [x] T20: 実装可能イベント設計76件をStage 36基準で実ROMへ最終統合する <!-- id:T20 -->
-- [ ] T21: Mirage 4周・仮想道具・独立記録を通常プレイ入口へproduction接続する <!-- id:T21 -->
+- [x] T21: Mirage 4周・仮想道具・独立記録を通常プレイ入口へproduction接続する <!-- id:T21 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->
 - [x] HM所持だけで対応フィールド技を使用可能にする <!-- id:USER-20260814-HM-FIELD-ACCESS -->
 - [x] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->

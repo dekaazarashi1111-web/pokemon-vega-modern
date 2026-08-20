@@ -235,3 +235,24 @@
   独立行に存在しない。この訂正は35機能の削減ではなく、model-only PASSをproduction実在性へ
   合わせるT19受入条件の整合修正である。
 - 影響: T10 quantity fixture、QOL方針・テスト・操作説明、T19 Stage36検証。
+
+## 2026-08-21 — D-025: Mirageを独立ownerとactive-safe cleanupでproduction接続する
+
+- field: map `31/1`の受付object、map-entry type 3、既存warp先2 cleanupだけをexpected-byte付きで
+  薄いdispatcherへrepointする。受付は標準party UI `special 0x29`、戦闘は初期化とpost-script復帰を
+  両立するcanonical `trainerbattle 0x5C/mode3`を使う。map-entry cleanupはactive challenge中のjournalを
+  保持し、inactive時だけstale stateを復旧する。旧Mirage flag/varと全badge set scriptはownerにしない。
+- party/battle: playerは選択した持込3体の600-byte snapshotを保持し、永続level/EXPを変更せず
+  battle copyだけをLv.100化する。相手はmanifestのSPECIAL 6体から決定的に3体を生成し、既存ChangeKitを
+  exactly once delegateした後にMirage active時だけparty/abilityを上書きする。Factory rental、BP、streak、
+  reward、party snapshotには相乗りしない。
+- RAM/save: volatile stateは`0x0203EE00..0x0203F098`のexact 664 byteとし、既存battle UI state
+  `0x0203F101`を予約外に保つ。既存40-byte `VegaMirageState`は拡張せず、未使用の
+  `current_record[4..7]`をmarker/inverse＋badge/round/gimmick payload/inverseの8-byte journalにする。
+  stock saveとsector 31を一度ずつ書き、片側失敗時は台帳・party・badgeを戻して両storeを補償する。
+- reset検証: fresh coreではstock titleと同じ`SetSaveBlocksPointers→LoadGameSave`順を再現する。
+  save blockだけを初期化して`gPokemonStoragePtr=0`のままload adapterを直呼びするfixtureは、次の通常saveで
+  PC sector checksumを破損するためproduction reset証跡に使わない。256 badge maskを専用save imageから
+  各回開始し、active保存→core破棄→fresh load→exact復旧を確認する。
+- 影響: T21 Stage38、Mirage field/runtime/save/QA。ChatGPT Pro待ち4領域、Factory、Raid、acquisition、
+  T20 event、既存trainer contentは変更しない。

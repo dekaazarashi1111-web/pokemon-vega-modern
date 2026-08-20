@@ -84,6 +84,10 @@ make trainer-changekit-final-check # 生成物byte一致とmGBA quick/fullを副
 make trainer-changekit-clean-rebuild # clean ROM→v1.4.0→Stage34→Stage35のexact patch chainを再構築
 make trainer-changekit-clean-rebuild-check # clean起点の3段patch往復・直接BPS・証跡を副作用なしで再照合
 make trainer-changekit-package-check # 入力補正・30 focused tests・1302戦mGBA・clean再構築をまとめて再照合
+make mirage-production # Stage37の通常受付へ持込3体・7戦×4周Mirageを接続してStage38を生成
+make mirage-production-check # exact-ROM quick/full・保存復旧・badge復元・両BPSを副作用なしで再照合
+make mirage-production-clean-rebuild # clean ROMからStage37→Stage38とclean直接BPSをbyte再現
+make mirage-production-clean-rebuild-check # clean起点のpatch chain・直接BPS・証跡を副作用なしで再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

@@ -699,3 +699,14 @@
   - 既存Mirage map、持込3体、Lv.100、7戦×4周、round別gimmick、仮想item、独立record/save、badge exact restoreをStage 38の受入条件へ固定した。
   - ChatGPT Pro待ち4領域をT21の読取・変更対象外にし、返却前でも独立実装できる所有境界を固定した。
 - Verify: Stage 37 size/hash、Mirage manifest件数、taskctl sync/next/plan、task graph、private guard、ownership diff guard、diff check PASS。T21=`PENDING`／依存READY。
+
+## 2026-08-21T00:47:46+09:00
+
+- Version: `post-v1.4.0-stage38`（v1.4.0 release identityとStage 27〜37は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T21` / Connect Mirage modernization to production runtime
+- Summary:
+  - 既存Mirage受付へ持込3体・Lv.100・7戦×4周・round別gimmick・5段階virtual itemを接続し、16 runtime exportと7 expected-byte rootをStage 38へ配置した。
+  - 664-byte volatile stateと既存40-byte台帳内8-byte journalでparty/badge、record/claim、保存失敗、fresh-core resetをFactoryと分離して原子的に復旧する。
+  - 既存trainer/QOL/acquisition/T20 eventとPro待ち4領域を不変に保ち、clean chain/direct BPSの両方から同一Stage 38を再構築した。
+- Verify: production build/check、focused 14 tests、libmGBA quick/full独立2 process・受入15/15・full 256 badge mask×8 exit、clean rebuild build/check、両BPS完全往復、declared span/allocator/RAM/save overlap、task graph/private guard/diff check PASS。Stage 38 SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`。
