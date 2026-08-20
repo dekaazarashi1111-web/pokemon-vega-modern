@@ -88,6 +88,10 @@ make mirage-production # Stage37の通常受付へ持込3体・7戦×4周Mirage�
 make mirage-production-check # exact-ROM quick/full・保存復旧・badge復元・両BPSを副作用なしで再照合
 make mirage-production-clean-rebuild # clean ROMからStage37→Stage38とclean直接BPSをbyte再現
 make mirage-production-clean-rebuild-check # clean起点のpatch chain・直接BPS・証跡を副作用なしで再照合
+make move-distribution-v4 # Stage38へ技配布V4全表と野生初期技runtimeを結合してStage39を生成
+make move-distribution-v4-check # canonical表・consumer root・mGBA quick/fullを副作用なしで再照合
+make move-distribution-v4-clean-rebuild # clean ROMからStage38→Stage39とclean直接BPSをbyte再現
+make move-distribution-v4-clean-rebuild-check # clean起点のpatch chain・直接BPS・証跡を副作用なしで再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

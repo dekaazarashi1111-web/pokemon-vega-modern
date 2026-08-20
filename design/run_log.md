@@ -1724,3 +1724,26 @@
   - Stage 38 identity: 33,554,432 bytes、ROM SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`、metadata SHA-256 `da027d40dda9ebc0f54f1e217d4442369ab41ebb8d2956b24e844355e2fb2b77`で不変。
 - Commit: `-`（本エントリを含むタスク追加コミット）
 - Network: 未使用。Windows Downloadsのユーザー提供ZIP、ローカルpacket root、Stage 38 ROM/metadataだけを参照した。
+
+## 2026-08-21T02:46:11+09:00
+
+- Task: `T22` / Move Distribution V4をStage 39へproduction統合する
+- Status: DONE
+- Summary:
+  - 読取専用原本ZIPの11 entryを安全なGit管理外一時領域で全件読取り、共通validator、fingerprint、canonical Species/Move manifest、Stage 38の物理rootを再照合した。level-up 28,274、egg 8,219、TM/tutor 0→1追加2,799、form 509、wild/source 1,206を欠落・重複・未解決・範囲外0で決定的にcompileした。
+  - level-up、egg、TM/tutorのcanonical表を既存production rootへrepointし、わざメモリー、預かり屋、孵化、TM/tutor UIから通常入力で到達させた。Stage 38の`CanMonLearnTutorMove`に残っていた旧20-byte strideは、`0x091100F6`のexpected-byte付き1命令adapterで16-byte正本へ揃え、consumer固有の特殊判定を保持した。
+  - form 509件のdomain sourceをruntimeへ配置し、新規生成される通常・釣り・隠れ野生だけへ1,206件の初期技を適用した。既存party/box/save、trainer、Factory、Mirage、Raid、Rewardへのhookは0。10 consumer patchと新規payloadのdeclared span外変更、allocator/ROM/RAM/save/hook overlapはすべて0。
+  - Stage 38差分BPSとclean直接BPSを生成し、clean FireRed日本版Rev.0からのchain/direct経路を同一Stage 39へ再構築した。原本ZIP、clean/Stage 38 ROM、saveは変更・追跡していない。
+- Files changed:
+  - production契約: `content/move_distribution_v4/{PROVENANCE_JA.md,consumer_contract.json}`、`config/move_distribution_v4.json`。
+  - runtime/build: `overlays/move_distribution_v4/**`、`scripts/build_move_distribution_v4.py`、`scripts/rebuild_move_distribution_v4_from_clean.py`。
+  - QA/入口: `tools/mgba_move_distribution_v4_smoke.c`、`tests/test_move_distribution_v4.py`、`Makefile`、`README.md`。
+  - 状態・証跡: `design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。Stage 39 ROM、2 BPS、metadata/allocation、audit/coverage、mGBA quick/full、clean rebuild証跡はGit管理外の再生成領域へ出力した。
+- Verify:
+  - `python3 scripts/build_move_distribution_v4.py build`: PASS。Stage 39は33,554,432 bytes、SHA-256 `c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd`、行数`28274/8219/2799/509/1206`、artifact 19。
+  - `python3 -m unittest tests.test_move_distribution_v4 -v`: PASS（7 tests）。固定入力、root、10 consumer patch、16-byte TM/tutor、加算限定、野生scope、上流回帰、private非複製を確認した。
+  - libmGBA quick/full: 独立2 process、warnings/errors 0、全acceptance PASS、result identity `MD39:28274:8219:2799:509:1206:1621`一致。level/egg move memory、TM/tutor実consumer、form、野生初期技、既存party非変更を実ROMで確認した。
+  - `python3 scripts/rebuild_move_distribution_v4_from_clean.py build`: PASS。`make move-distribution-v4-check` / `make move-distribution-v4-clean-rebuild-check`: PASS。chain/direct BPSはbyte一致し完全往復した。
+  - 原本ZIPは395,446 bytes、mode `0444`、SHA-256 `4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2`で不変。Stage38差分／clean直接BPS SHA-256は`409742d1f5f449260020c72071e662f13451b3e26b8e041fe78965d421a36f35` / `b6f64f91d2f17ae23881f09fbc0ca45c85fdb6ee1b5379e40892079383b1c828`。
+- Commit: `-`（本エントリを含むT22完了コミット）
+- Network: 未使用。固定済みのローカルStage 38、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。

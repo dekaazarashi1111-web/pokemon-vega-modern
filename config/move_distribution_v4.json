@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "task": "T22",
+  "inputs": {
+    "stage38_rom": {
+      "path": "build/stages/38_mirage_production.gba",
+      "size": 33554432,
+      "sha256": "f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941"
+    },
+    "stage38_metadata": {
+      "path": "build/stages/38_mirage_production.json",
+      "sha256": "da027d40dda9ebc0f54f1e217d4442369ab41ebb8d2956b24e844355e2fb2b77"
+    },
+    "stage38_allocation": {
+      "path": "build/stages/38_allocation.json",
+      "sha256": "4508b6123027e66e1dba6d96047658f5505bcfb8586ba0fa705a6dbc65b88c82"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "submission_zip": {
+      "path": "userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip",
+      "size": 395446,
+      "sha256": "4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2",
+      "entry_count": 11,
+      "fingerprint": "d0e014e49beb339668ce3531b8fe6871c793a063f2bff1c8d2b97898f81d02a9"
+    },
+    "packet_root": "dist/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_MOVE-DISTRIBUTION-V4_INPUT_20260820",
+    "packet_spec_sha256": "e9f047cd556b160b4db00ec9e96c658eb3bc64b119ebcfcea9bae90c44bc8c33",
+    "validator": "templates/chatgpt_pro_design_packets/tools/validate_submission.py",
+    "validator_sha256": "57b1da52ac9e6c7c99e7d58a599982b8f6ebed4d782cf36e84b611ce21ea1f1a",
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    }
+  },
+  "counts": {
+    "species": 1621,
+    "moves": 1063,
+    "level_up_rows": 28274,
+    "egg_rows": 8219,
+    "tm_tutor_changes": 2799,
+    "form_rows": 509,
+    "wild_rows": 1206,
+    "source_rows": 1206,
+    "tm_slots": 120,
+    "tutor_slots": 64,
+    "compatibility_stride": 16
+  },
+  "stage38_roots": {
+    "level_up": {"site": "0x0804346C", "expected": "0x09FC0998"},
+    "level_up_runtime_literal": {"site": "0x09FDA1F8", "expected": "0x09FC0998"},
+    "egg": {"site": "0x08045214", "expected": "0x09FC22EC"},
+    "tmhm": {"site": "0x080432B4", "expected": "0x09FC5C90"},
+    "tutor": {"site": "0x08121420", "expected": "0x09FCC1E0"}
+  },
+  "runtime_patches": [
+    {
+      "name": "tutor_stride_16",
+      "address": "0x091100F6",
+      "expected_hex": "c018",
+      "replacement_hex": "c046",
+      "description": "CanMonLearnTutorMoveの旧20-byte加算をNOP化し、canonical 16-byte strideへ接続する"
+    }
+  ],
+  "hooks": [
+    {
+      "name": "initial_moves",
+      "address": "0x0803E174",
+      "expected_hex": "004b18470da2fd09",
+      "target": "MoveDistributionV4_GiveBoxMonInitialMovesetDispatch"
+    },
+    {
+      "name": "wild_land_water",
+      "address": "0x080826D8",
+      "expected_hex": "004b184701733709",
+      "delegate": "0x09377301",
+      "target": "MoveDistributionV4_TryGenerateWildMonAdapter"
+    },
+    {
+      "name": "wild_fishing",
+      "address": "0x08082750",
+      "expected_hex": "004b184745733709",
+      "delegate": "0x09377345",
+      "target": "MoveDistributionV4_GenerateFishingEncounterAdapter"
+    },
+    {
+      "name": "wild_hidden",
+      "address": "0x09220198",
+      "expected_hex": "004b184785733709",
+      "delegate": "0x09377385",
+      "target": "MoveDistributionV4_TryHiddenEncounterAdapter"
+    }
+  ],
+  "outputs": {
+    "rom": "build/stages/39_move_distribution_v4.gba",
+    "metadata": "build/stages/39_move_distribution_v4.json",
+    "allocation": "build/stages/39_allocation.json",
+    "incremental_bps": "build/patches/mirage-production-stage38-to-move-distribution-stage39.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-move-distribution-stage39.bps",
+    "mgba_quick": "build/stages/39_mgba_move_distribution_v4_quick.json",
+    "mgba_full": "build/stages/39_mgba_move_distribution_v4_full.json",
+    "clean_rebuild": "build/stages/39_clean_rebuild.json"
+  }
+}

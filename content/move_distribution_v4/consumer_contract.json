@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "T22",
+  "canonical_owner": "MOVE_DISTRIBUTION_V4_STAGE39_TABLES",
+  "consumers": {
+    "level_up": [
+      "GiveBoxMonInitialMoveset",
+      "MonTryLearningNewMove",
+      "GetMoveRelearnerMoves",
+      "GetLevelUpMovesBySpecies",
+      "GetNumberOfRelearnableMoves",
+      "VegaMoveMemory_GetMoveRelearnerMoves",
+      "trainer_default_moves",
+      "facility_default_moves"
+    ],
+    "egg": [
+      "GetAllEggMoves",
+      "daycare",
+      "hatch",
+      "VegaMoveMemory_GetMoveRelearnerMoves"
+    ],
+    "tm_tutor": [
+      "CanMonLearnTMHM",
+      "CanMonLearnTutorMove",
+      "CanMonLearnTMTutor"
+    ],
+    "wild_initial": [
+      "VegaQolProduction_TryGenerateWildMonAdapter",
+      "VegaQolProduction_GenerateFishingEncounterAdapter",
+      "VegaQolProduction_TryHiddenEncounterAdapter"
+    ]
+  },
+  "runtime_adapters": {
+    "CanMonLearnTutorMove": {
+      "stage38_site": "0x091100F6",
+      "expected_hex": "c018",
+      "replacement_hex": "c046",
+      "effect": "remove legacy +species term so the consumer uses canonical 16-byte stride"
+    }
+  },
+  "wild_exclusions": [
+    "existing_party",
+    "existing_box",
+    "save_load",
+    "trainer",
+    "factory",
+    "mirage",
+    "raid",
+    "reward_encounter"
+  ]
+}

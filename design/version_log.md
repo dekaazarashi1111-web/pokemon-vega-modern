@@ -721,3 +721,14 @@
   - T22 Move、T23 Research、T24 Reward、T25 FactoryをStage 39〜42の直列DAGとして追加し、別セッションが追加設計なしで開始できる実装・検証契約を固定した。
   - Reward tier正常系を誤rejectする共通validatorを修正し、正常系・重複/欠落系の回帰testを追加した。
 - Verify: 4 ZIP CRC/path/privacy/hash/cmp、4 validator PASS、focused 2 tests、py_compile、taskctl sync/next/plan、task graph、private guard、diff check PASS。T22=`PENDING`／唯一の依存READY。
+
+## 2026-08-21T02:46:11+09:00
+
+- Version: `post-v1.4.0-stage39`（v1.4.0 release identityとStage 27〜38は不変）
+- Commit: `-`（本エントリを含むT22完了コミット）
+- Task: `T22` / Integrate Move Distribution V4
+- Summary:
+  - level-up 28,274、egg 8,219、TM/tutor追加2,799、form 509、wild/source 1,206をcanonical IDへ解決し、production consumerへ接続した。
+  - Stage 38のTutor旧20-byte strideをexpected-byte付き1命令adapterで16-byte正本へ統一し、既存TM/tutor許可を除去せず0→1追加だけを反映した。
+  - 新規野生生成だけへ初期技を適用し、既存save個体、trainer、Factory、Mirage、Raid、Rewardを不変に保った。clean chain/direct BPSの両経路から同一Stage 39を再構築した。
+- Verify: production build、focused 7 tests、libmGBA quick/full独立2 process・全acceptance・warnings/errors 0、clean rebuild build、task固有check 2件、BPS完全往復、declared span/allocator/ROM/RAM/save/hook overlap PASS。Stage 39 SHA-256 `c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd`。

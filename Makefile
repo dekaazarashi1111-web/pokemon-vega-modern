@@ -2,7 +2,7 @@ PYTHON ?= python3
 CONFIG ?= config/project.toml
 UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 
-.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check trainer-v5-foundation trainer-v5-foundation-check trainer-v5-tohoku-batch02 trainer-v5-tohoku-batch02-check trainer-v5-tohoku-batch03 trainer-v5-tohoku-batch03-check trainer-changekit-inputs trainer-changekit-inputs-check trainer-changekit-final trainer-changekit-final-check trainer-changekit-clean-rebuild trainer-changekit-clean-rebuild-check trainer-changekit-package-check mirage-production mirage-production-check mirage-production-clean-rebuild mirage-production-clean-rebuild-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check hm-field-access hm-field-access-check battle-rules battle-rules-check battle-ui battle-ui-check move-memory move-memory-check qol-release-smoke qol-release-smoke-check acquisition-events acquisition-events-check fast-rom fast-rom-battle-core fast-rom-battle-ui final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check bp-shop-runtime bp-shop-runtime-check factory-reward-runtime factory-reward-runtime-check factory-repeat-reward-runtime factory-repeat-reward-runtime-check factory-special-event-runtime factory-special-event-runtime-check factory-shiny-memorial-runtime factory-shiny-memorial-runtime-check
+.PHONY: quickstart bootstrap preflight audit references t00 upstream-toolcheck upstream-repro t02-audit t02-check harness harness-check moves moves-check species species-check save-layout save-layout-check species-surface species-surface-check engine-slice engine-slice-check vermilion-slice vermilion-slice-check kanto-maps kanto-maps-check kanto-progression kanto-progression-check content-population content-population-check regression regression-check trainer-rebalance trainer-rebalance-check trainer-v5-foundation trainer-v5-foundation-check trainer-v5-tohoku-batch02 trainer-v5-tohoku-batch02-check trainer-v5-tohoku-batch03 trainer-v5-tohoku-batch03-check trainer-changekit-inputs trainer-changekit-inputs-check trainer-changekit-final trainer-changekit-final-check trainer-changekit-clean-rebuild trainer-changekit-clean-rebuild-check trainer-changekit-package-check mirage-production mirage-production-check mirage-production-clean-rebuild mirage-production-clean-rebuild-check move-distribution-v4 move-distribution-v4-check move-distribution-v4-clean-rebuild move-distribution-v4-clean-rebuild-check facility-runtime facility-runtime-check first-battle-hotfix first-battle-hotfix-check hm-field-access hm-field-access-check battle-rules battle-rules-check battle-ui battle-ui-check move-memory move-memory-check qol-release-smoke qol-release-smoke-check acquisition-events acquisition-events-check fast-rom fast-rom-battle-core fast-rom-battle-ui final release-patch verify-release release-fresh-check validate guard status next plan clean-build test verify imports-check bp-shop-runtime bp-shop-runtime-check factory-reward-runtime factory-reward-runtime-check factory-repeat-reward-runtime factory-repeat-reward-runtime-check factory-special-event-runtime factory-special-event-runtime-check factory-shiny-memorial-runtime factory-shiny-memorial-runtime-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -237,6 +237,18 @@ mirage-production-clean-rebuild:
 
 mirage-production-clean-rebuild-check:
 	$(PYTHON) scripts/rebuild_mirage_production_from_clean.py check
+
+move-distribution-v4:
+	$(PYTHON) scripts/build_move_distribution_v4.py build
+
+move-distribution-v4-check:
+	$(PYTHON) scripts/build_move_distribution_v4.py check
+
+move-distribution-v4-clean-rebuild:
+	$(PYTHON) scripts/rebuild_move_distribution_v4_from_clean.py build
+
+move-distribution-v4-clean-rebuild-check:
+	$(PYTHON) scripts/rebuild_move_distribution_v4_from_clean.py check
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto
