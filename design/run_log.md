@@ -1599,3 +1599,32 @@
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。
 - Commit: `-`（本エントリを含むタスク追加コミット）
 - Network: 未使用。ユーザー提供ZIP、ローカルのStage 35 authoring packet、T19完了済みStage 36成果だけを参照した。
+
+## 2026-08-20T17:45:24+09:00
+
+- Task: `T20` / 実装可能イベント設計76件をStage 36基準で実ROMへ最終統合する
+- Status: DONE
+- Summary:
+  - 読取専用ZIPを再監査し、6 entryのpath/CRC/size/hashとcatalog付きvalidatorをPASSした。6原稿をbyte hash付きのGit管理正本へ正規化し、28 arc、80 state、14 actor、63 placement、160 condition、7 reward、76 event、7 batch、326 dialogue、98 coverage rowを欠落・重複0で固定した。
+  - Stage 36 rooted map graphから58 map・63 placementを再解決した。36 BG復元、16 object復元、9既存host、2 safe objectを57 map-event root・2 map-script rootへexpected-byte付きで結合し、全76 eventを11種のstock field opcode、既存trainer/acquisition/QOL service ABI、即時map-transition dispatcherへ接続した。
+  - 80 stateを未使用flag `0x13B0..0x13FF`へmonotonic割当し、160 conditionと7 rewardをcompileした。報酬は容量確認後に付与・claimし、失敗時rollback、成功後の再claim防止を実ROMで確認した。Stage 36既存saveは未設定=0として移行し、全stateのsave/reloadを確認した。
+  - Stage 36の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainer、全gimmick、取得イベント201件、QOL 35機能・97 hookを宣言root外でbyte不変に保った。Stage 37の変更34,168 byteはすべて宣言span内、allocator/RAM/save/map object所有重複0。
+- Files changed:
+  - 正規化入力・provenance: `content/event_design_implementation/**`。
+  - 原文byte保持: `.gitattributes`（T20受領CSVのみCRLF正規化を無効化）。
+  - production binding/state: `config/event_design_bindings.csv`、`manifests/flags.csv`。
+  - runtime/build/rebuild: `overlays/event_design/**`、`scripts/build_event_design_stage.py`、`scripts/rebuild_event_design_from_clean.py`。
+  - QA/state/docs: `tools/mgba_event_design_smoke.c`、`tests/test_event_design_implementation.py`、`design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。
+  - Git管理外成果: Stage 37 ROM、incremental/clean直接BPS、allocation/metadata、audit/coverage、mGBA quick/full、clean rebuild証跡。clean ROM、受領ZIP、saveは変更・追跡していない。
+- Verify:
+  - `python3 scripts/build_event_design_stage.py build`: PASS。76 event、63 placement、20 artifact、Stage 37 SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`。
+  - `python3 scripts/rebuild_event_design_from_clean.py build` / `check`: PASS。clean→Stage 36→Stage 37とclean→Stage 37直接経路がbyte一致し、両BPSは完全往復した。
+  - `python3 -m unittest tests.test_event_design_implementation -v`: PASS（10 tests）。入力固定、件数/DAG/opcode、80 flag、63 physical root、BPS、回帰、quick/full identityを確認した。
+  - libmGBA quick/full: 独立2 processとも14/14 checks PASS、warnings/errors 0、実field path 7/76、result identity `ED37:76:63:7:80:160:7:326`一致。全state/condition/reward、容量不足atomicity、QOL service、即時map transition、save/reloadを実行した。
+  - `python3 -m py_compile scripts/build_event_design_stage.py scripts/rebuild_event_design_from_clean.py`、`python3 scripts/validate_manifests.py`、task graph、private guard、`git diff --check`、`git diff --cached --check`: PASS。
+- Output identity:
+  - Stage 37 ROM: 33,554,432 bytes、SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`。
+  - Stage 36差分BPS / clean直接BPS: SHA-256 `56b2eb2583323a76e14878bf4db028690462fc2676f96c676258bda6141cd7d5` / `bb7a417791b2a944a3663cc6d5c69d3b360d5c40f1c01b7bc2b09547826669ce`。
+  - audit / coverage / clean rebuild証跡: SHA-256 `def99e8020f3356dd57ac8b09141d247704f18430e17a3589508d04de71d5fe4` / `6cf37ae62501d8ffcbc7372e2071d273bd22ab7aac443d273cd323a8d2b22638` / `90da3b5201ffc644d7730294d74a85b0c2c33db74227679e144e76f94dd0d515`。
+- Commit: `-`（本エントリを含むT20完了コミット）
+- Network: 未使用。固定済みのユーザー提供ZIP、Stage 35 authoring catalog、Stage 36 ROM/metadata、ローカルsource-lock済み実装だけを参照した。

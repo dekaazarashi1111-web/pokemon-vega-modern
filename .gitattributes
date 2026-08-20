@@ -10,6 +10,9 @@ audit_seed/** -text -diff
 design/imported/** -text -diff
 design/imported/README.md text eol=lf diff
 
+# T20受領イベント設計のCSVは原文hashを維持し、CRLFを正規化しない。
+content/event_design_implementation/*.csv -text -diff
+
 # T01実測fingerprintへ固定したrunner sourceはbyte単位で保持する。
 tools/factory_fixture_runner.c whitespace=-blank-at-eol
 tools/mgba_ai_fixture_runner.c whitespace=-blank-at-eol

@@ -1,0 +1,286 @@
+# Pokémon Vega Modern Stage 35 カントーイベントBible
+
+## 一文concept
+
+クチバから始まる任意の高難度遠征で、人・土地・施設を知る八つの生態戦術認定を積み重ね、二地方の記録をFinal Leagueへ共鳴させる。
+
+## 正本関係
+
+本Bibleは物語の人向け正本であり、実装挙動の正本は `event_plan.json`、game textは `dialogue.csv`、網羅判断は `coverage.csv` とする。収録数はarc 28、event 76、batch 7、coverage 98行。
+
+## main arc
+
+- **開始**: `EVENT_KEY_MAIN_PORT_ARRIVAL`で高難度第二地方への到着を短く示し、`EVENT_KEY_MAIN_PORT_REGISTRATION`で任意参加を選ぶ。港の安全網は `ARC_KEY_FACILITY_PORT_SAFETY` が担う。
+- **前半完結**: 認定1〜4と各地の調査を終えると `EVENT_KEY_MAIN_EARLY_FOUR_COMPLETE` が発生し、Vega殿堂入り前の遠征を小さく完結する。
+- **後半再開**: 既存 `VEGA_HALL_OF_FAME` 成立後、`EVENT_KEY_MAIN_POSTHOF_RETURN`が認定5〜8とKanto Leagueを再開する。
+- **League接続**: Route22、認定8、Route23、Victory Road信号、Indigo受付の順で、既存Kanto League五戦へ引き渡す。
+- **最終完結**: 既存Kanto League clear後にCerulean Caveの既存acquisition hostを呼び、`SPHERE_COMPLETE`からFinal Leagueへ接続し、`EVENT_KEY_MAIN_FINAL_LEAGUE_CLEARED`で二地方の記録を短く閉じる。
+- main arc key: `ARC_KEY_MAIN_KANTO_CERTIFICATION`。Kanto進行は全て任意で、Vega badge・HM・本編story stateを書き換えない。
+
+## 主要actorと口調
+
+| actor key | game名 | 役割 | 判断基準 | 口調 |
+|---|---|---|---|---|
+| `ACTOR_KEY_EVENT_MINAMI` | ミナミ | クチバ港の遠征連絡員 | 危険を隠さず、参加と帰還の自由を守る | 短く結論から話す |
+| `ACTOR_KEY_EVENT_SHIO` | シオ | 連絡船の交流担当 | 二地方の道具と知恵を比べるのが好き | 潮と風の比喩を一言だけ使う |
+| `ACTOR_KEY_EVENT_SUZU` | スズ | 森の回廊観察員 | 小さな変化を根気よく記録する | やわらかい依頼口調 |
+| `ACTOR_KEY_EVENT_GAKU` | ガク | ニビの地層研究員 | 証拠の順序を重視する | 観測点を明確に数える |
+| `ACTOR_KEY_EVENT_YUI` | ユイ | 研究所の運用補佐 | 便利機能を生活の手順として説明する | 機能名を詰め込まず用途から話す |
+| `ACTOR_KEY_EVENT_MIO` | ミオ | 育て屋の管理人 | たまごと預かりの安全を最優先する | 落ち着いた確認口調 |
+| `ACTOR_KEY_EVENT_TOKI` | トキ | 岬の時間観測員 | 周期と再現性にこだわる | 時間のずれを短く述べる |
+| `ACTOR_KEY_EVENT_IWA` | イワ | 地下道の保全協力者 | 地面の音から安全を判断する | 低く簡潔な口調 |
+| `ACTOR_KEY_EVENT_NAMI` | ナミ | 水系調査員 | 電気と水の境界を丁寧に見る | 流れを順に説明する |
+| `ACTOR_KEY_EVENT_NAGI` | ナギ | 記憶灯の案内人 | 場所に残る記憶を静かに扱う | 余韻のある短文 |
+| `ACTOR_KEY_EVENT_KAI` | カイ | 湿地の渡り案内人 | 群れを追い立てず道を読む | 観察上の注意を端的に話す |
+| `ACTOR_KEY_EVENT_AO` | アオ | 海流観測員 | 暖流と寒流の差を体感で測る | 明るいが慎重 |
+| `ACTOR_KEY_EVENT_EN` | エン | 火山沿岸の記録員 | 古い研究記録を現在の安全へ生かす | 熱と冷却を対比する |
+| `ACTOR_KEY_EVENT_REN` | レン | セキエイ高原の認定受付 | 結果より手順と帰還可能性を重視する | 規則を短く明確に話す |
+
+## 八認定章とLeague
+
+認定戦はすべて既存gym boss encounterを呼び、party、AI、battle technology、reward、defeat flag、cert gateを既存ownerへ残す。新規eventは開始確認、敗北時の再試行、既存defeatの同期、勝利後・再訪会話だけを持つ。
+
+| 章 | arc key | event key | 既存encounter | 地域テーマ |
+|---:|---|---|---|---|
+| 1 | `ARC_KEY_CERTIFICATION_1` | `EVENT_KEY_CERT_1_PEWTER` | `ENC_KANTO_BOSS_GYM_01` | 地層と耐久 |
+| 2 | `ARC_KEY_CERTIFICATION_2` | `EVENT_KEY_CERT_2_CERULEAN` | `ENC_KANTO_BOSS_GYM_02` | 水流と主導権 |
+| 3 | `ARC_KEY_CERTIFICATION_3` | `EVENT_KEY_CERT_3_VERMILION` | `ENC_KANTO_BOSS_GYM_03` | 潮風と組立 |
+| 4 | `ARC_KEY_CERTIFICATION_4` | `EVENT_KEY_CERT_4_CELADON` | `ENC_KANTO_BOSS_GYM_04` | 交代と盤面更新 |
+| 5 | `ARC_KEY_CERTIFICATION_5` | `EVENT_KEY_CERT_5_FUCHSIA` | `ENC_KANTO_BOSS_GYM_05` | 群れと間合い |
+| 6 | `ARC_KEY_CERTIFICATION_6` | `EVENT_KEY_CERT_6_SAFFRON` | `ENC_KANTO_BOSS_GYM_06` | 情報と先読み |
+| 7 | `ARC_KEY_CERTIFICATION_7` | `EVENT_KEY_CERT_7_CINNABAR` | `ENC_KANTO_BOSS_GYM_07` | 熱量と資源管理 |
+| 8 | `ARC_KEY_CERTIFICATION_8` | `EVENT_KEY_CERT_8_VIRIDIAN` | `ENC_KANTO_BOSS_GYM_08` | 八地域の総合判断 |
+
+Kanto Leagueは `EVENT_KEY_MAIN_KANTO_LEAGUE_ENTRY`が既存五戦sequenceへ案内し、`EVENT_KEY_MAIN_KANTO_LEAGUE_CLEAR`が既存clearを同期する。Final Leagueもavailability・battle・clearの既存ownerを維持し、新規dataは到達理由と完結会話だけを足す。
+
+## sidequest一覧
+
+| arc key | 題名 | event数 | 描くもの | 完了state |
+|---|---|---:|---|---|
+| `ARC_KEY_SIDEQUEST_FOREST_CORRIDOR` | 森の回廊 | 3 | 一番道路から二番道路とトキワの森へ続く花粉と小動物の回廊を記録する。 | `STATE_KEY_EVENT_SIDE_FOREST_CORRIDOR_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_MOON_STRATA` | 月の地層 | 4 | ニビ博物館の研究員と道路・洞窟の地層連続性を調べる。 | `STATE_KEY_EVENT_SIDE_MOON_STRATA_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_UNDERGROUND_BREATH` | 地下の呼吸 | 3 | ディグダの穴とイワヤマトンネルを通る地下風を保全記録へまとめる。 | `STATE_KEY_EVENT_SIDE_UNDERGROUND_BREATH_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_WATER_CURRENT` | 水と電気の境界 | 3 | 九番・十番道路の水音をたどり発電所の既存取得hostへ接続する。 | `STATE_KEY_EVENT_SIDE_WATER_CURRENT_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_MEMORY_LIGHT` | 記憶灯 | 3 | シオンの塔と地下跡地に残る灯りを地域の記憶として記録する。 | `STATE_KEY_EVENT_SIDE_MEMORY_LIGHT_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_CITY_SEEDS` | 都市の種 | 2 | 七番道路の種がタマムシの生活環境へ適応する様子を見る。 | `STATE_KEY_EVENT_SIDE_CITY_SEEDS_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_WETLAND_MIGRATION` | 湿地の渡り | 4 | 十二番から十五番道路まで群れを追い立てず渡り道を記録する。 | `STATE_KEY_EVENT_SIDE_WETLAND_MIGRATION_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_WIND_RING` | 風の輪 | 3 | 十六番から十八番道路の風向を速度競争なしで読み取る。 | `STATE_KEY_EVENT_SIDE_WIND_RING_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_COLD_CURRENT` | 暖流と寒流 | 3 | 十九番・二十番道路とふたごじまの海流差を調べる。 | `STATE_KEY_EVENT_SIDE_COLD_CURRENT_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_VOLCANO_ARCHIVE` | 火山資料 | 3 | 二十一番道路・やしき・研究室の記録を現在の安全知識へつなぐ。 | `STATE_KEY_EVENT_SIDE_VOLCANO_ARCHIVE_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_EGG_COURIER` | たまご搬送 | 3 | 育て屋の保温材を四番道路から運び、既存たまごQOLへ自然に接続する。 | `STATE_KEY_EVENT_SIDE_EGG_COURIER_COMPLETE_DONE` |
+| `ARC_KEY_SIDEQUEST_CAPE_TIME` | 岬の時間差 | 2 | 二十四番・二十五番道路の光周期を観測する。 | `STATE_KEY_EVENT_SIDE_CAPE_TIME_COMPLETE_DONE` |
+
+全sidequestは短い会話、既存signまたは復元可能object、単調state、必要時の既存transactionだけで構成する。escort、timed input、独自minigame、専用map、長いcutsceneは使わない。
+
+## 支援・施設・flavor arc
+
+| arc key | category | 題名 | event数 | 役割 |
+|---|---|---|---:|---|
+| `ARC_KEY_QOL_FOUNDATION` | QOL | 基礎遠征QOL | 2 | 育成・たまご・field操作の既存featureを研究所の運用説明へまとめる。 |
+| `ARC_KEY_QOL_TRAINING` | QOL | 段階育成QOL | 3 | 後半育成・対戦供給・最終育成の既存ownerを段階ごとに案内する。 |
+| `ARC_KEY_QOL_RESEARCH` | QOL | 研究探索QOL | 2 | 研究profile・TM license・DexNavの既存解禁を一つの調査記録として説明する。 |
+| `ARC_KEY_QOL_ENDGAME` | QOL | 終盤戦術QOL | 3 | 高難度raid・League技術・異界供給の既存featureを終盤の観測記録へ接続する。 |
+| `ARC_KEY_FACILITY_PORT_SAFETY` | FACILITY | 港の安全網 | 4 | 高難度警告・無料回復・無料帰還・既存Factory Trial案内をクチバへ集約する。 |
+| `ARC_KEY_FLAVOR_HARBOR_EXCHANGE` | FLAVOR | 港湾交流 | 2 | 連絡船と六番道路で二地方交流と港湾生態を短く描く。 |
+| `ARC_KEY_FLAVOR_SAFARI_OBSERVATION` | FLAVOR | サファリ観察 | 4 | 中央の心得から東・北・西の微環境を観察し、捕獲以外の地域価値を示す。 |
+
+## 町・道路・ダンジョンのcontent方針
+
+- 道路は花粉、風向、海流、渡り、足跡など一地点一観測の短いmarkを置き、長い説明を分散する。
+- 町と施設は港連絡員、研究補佐、育て屋、博物館、Silph console、Indigo受付など生活上の役割を与える。
+- ダンジョンは既存地形・trainer・取得・puzzleを変更せず、sign、復元object、既存acquisition wrapperで新しい意味を足す。
+- Rocket Hideout、Pokémon Tower、SS Anne等は元FireRedの筋書きを復元せず、地域記憶・交流・保全へ役割を置き換える。
+- K01〜K47は全て `coverage.csv` で `NEW_EVENT` とし、各地点の実装eventを少なくとも一件持つ。
+
+### 47論理地点の配置
+
+| code | 地点 | event keys |
+|---|---|---|
+| K01 | 1ばんどうろ | `EVENT_KEY_SIDE_FOREST_CORRIDOR_START` |
+| K02 | 2ばんどうろ | `EVENT_KEY_SIDE_FOREST_CORRIDOR_ROUTE2` |
+| K03 | 3ばんどうろ | `EVENT_KEY_SIDE_MOON_STRATA_ROUTE3` |
+| K04 | 4ばんどうろ | `EVENT_KEY_SIDE_EGG_COURIER_ROUTE4` |
+| K05 | 5ばんどうろ | `EVENT_KEY_SIDE_EGG_COURIER_START`<br>`EVENT_KEY_SIDE_EGG_COURIER_COMPLETE` |
+| K06 | 6ばんどうろ | `EVENT_KEY_FLAVOR_ROUTE6_TIDE` |
+| K07 | 7ばんどうろ | `EVENT_KEY_SIDE_CITY_SEEDS_START` |
+| K08 | 8ばんどうろ | `EVENT_KEY_SIDE_MEMORY_LIGHT_START` |
+| K09 | 9ばんどうろ | `EVENT_KEY_SIDE_WATER_CURRENT_START` |
+| K10 | 10ばんどうろ | `EVENT_KEY_SIDE_WATER_CURRENT_ROUTE10` |
+| K11 | 11ばんどうろ | `EVENT_KEY_SIDE_UNDERGROUND_BREATH_START` |
+| K12 | 12ばんどうろ | `EVENT_KEY_SIDE_WETLAND_MIGRATION_START` |
+| K13 | 13ばんどうろ | `EVENT_KEY_SIDE_WETLAND_MIGRATION_ROUTE13` |
+| K14 | 14ばんどうろ | `EVENT_KEY_SIDE_WETLAND_MIGRATION_ROUTE14` |
+| K15 | 15ばんどうろ | `EVENT_KEY_SIDE_WETLAND_MIGRATION_COMPLETE` |
+| K16 | 16ばんどうろ | `EVENT_KEY_SIDE_WIND_RING_START` |
+| K17 | 17ばんどうろ | `EVENT_KEY_SIDE_WIND_RING_ROUTE17` |
+| K18 | 18ばんどうろ | `EVENT_KEY_SIDE_WIND_RING_COMPLETE` |
+| K19 | 19ばんどうろ | `EVENT_KEY_SIDE_COLD_CURRENT_START` |
+| K20 | 20ばんどうろ | `EVENT_KEY_SIDE_COLD_CURRENT_ROUTE20` |
+| K21 | 21ばんどうろ | `EVENT_KEY_SIDE_VOLCANO_ARCHIVE_START` |
+| K22 | 22ばんどうろ | `EVENT_KEY_MAIN_ROUTE22_BRIEF` |
+| K23 | 23ばんどうろ | `EVENT_KEY_MAIN_ROUTE23_GATE` |
+| K24 | 24ばんどうろ | `EVENT_KEY_SIDE_CAPE_TIME_START` |
+| K25 | 25ばんどうろ | `EVENT_KEY_SIDE_CAPE_TIME_COMPLETE` |
+| K26 | トキワのもり | `EVENT_KEY_SIDE_FOREST_CORRIDOR_COMPLETE`<br>`EVENT_KEY_CERT_8_VIRIDIAN` |
+| K27 | おつきみやま | `EVENT_KEY_SIDE_MOON_STRATA_MT_MOON` |
+| K28 | ディグダのあな | `EVENT_KEY_SIDE_UNDERGROUND_BREATH_DIGLETT` |
+| K29 | サント・アンヌ号 | `EVENT_KEY_FLAVOR_SSANNE_EXCHANGE` |
+| K30 | イワヤマトンネル | `EVENT_KEY_SIDE_UNDERGROUND_BREATH_COMPLETE` |
+| K31 | ポケモンタワー | `EVENT_KEY_SIDE_MEMORY_LIGHT_TOWER` |
+| K32 | ロケットだんアジト跡 | `EVENT_KEY_SIDE_MEMORY_LIGHT_COMPLETE` |
+| K33 | タマムシ温室 | `EVENT_KEY_CERT_4_CELADON`<br>`EVENT_KEY_SIDE_CITY_SEEDS_COMPLETE` |
+| K34 | サファリゾーン中央 | `EVENT_KEY_FACILITY_SAFARI_OFFICE`<br>`EVENT_KEY_CERT_5_FUCHSIA` |
+| K35 | サファリゾーン東 | `EVENT_KEY_FLAVOR_SAFARI_EAST` |
+| K36 | サファリゾーン北 | `EVENT_KEY_FLAVOR_SAFARI_NORTH` |
+| K37 | サファリゾーン西 | `EVENT_KEY_FLAVOR_SAFARI_WEST` |
+| K38 | ふたごじま | `EVENT_KEY_SIDE_COLD_CURRENT_COMPLETE` |
+| K39 | ポケモンやしき | `EVENT_KEY_SIDE_VOLCANO_ARCHIVE_MANSION` |
+| K40 | むじんはつでんしょ | `EVENT_KEY_SIDE_WATER_CURRENT_COMPLETE` |
+| K41 | シルフカンパニー | `EVENT_KEY_QOL_LATE_TRAINING`<br>`EVENT_KEY_CERT_6_SAFFRON`<br>`EVENT_KEY_QOL_LICENSE_SYNC`<br>`EVENT_KEY_QOL_COMPETITIVE_SUPPLY`<br>`EVENT_KEY_QOL_HIGH_RAID`<br>`EVENT_KEY_QOL_LEAGUE_TECH` |
+| K42 | チャンピオンロード | `EVENT_KEY_MAIN_VICTORY_ROAD_SIGNAL`<br>`EVENT_KEY_MAIN_KANTO_LEAGUE_ENTRY`<br>`EVENT_KEY_MAIN_KANTO_LEAGUE_CLEAR`<br>`EVENT_KEY_MAIN_FINAL_LEAGUE_AVAILABLE`<br>`EVENT_KEY_QOL_UB_SUPPLY`<br>`EVENT_KEY_QOL_GOLD_CAP_SUPPLY`<br>`EVENT_KEY_MAIN_FINAL_LEAGUE_CLEARED` |
+| K43 | ハナダのどうくつ | `EVENT_KEY_CERT_2_CERULEAN`<br>`EVENT_KEY_MAIN_CAVE_RESONANCE` |
+| K44 | ニビ博物館・化石研究室 | `EVENT_KEY_SIDE_MOON_STRATA_START`<br>`EVENT_KEY_SIDE_MOON_STRATA_COMPLETE`<br>`EVENT_KEY_CERT_1_PEWTER` |
+| K45 | グレン研究所 | `EVENT_KEY_CERT_7_CINNABAR`<br>`EVENT_KEY_SIDE_VOLCANO_ARCHIVE_COMPLETE` |
+| K46 | クチバ港・連絡船ターミナル | `EVENT_KEY_FACILITY_PORT_WARNING`<br>`EVENT_KEY_MAIN_PORT_ARRIVAL`<br>`EVENT_KEY_MAIN_PORT_REGISTRATION`<br>`EVENT_KEY_FACILITY_PORT_HEAL`<br>`EVENT_KEY_FACILITY_PORT_RETURN`<br>`EVENT_KEY_FACILITY_FACTORY_GUIDE`<br>`EVENT_KEY_CERT_3_VERMILION`<br>`EVENT_KEY_MAIN_EARLY_FOUR_COMPLETE`<br>`EVENT_KEY_MAIN_POSTHOF_RETURN` |
+| K47 | マサラタウン・オーキド研究所 | `EVENT_KEY_QOL_OAK_BASIC_SYNC`<br>`EVENT_KEY_QOL_FIELD_KIT`<br>`EVENT_KEY_QOL_RESEARCH_PROFILE` |
+
+## QOL解禁を世界観へなじませる方針
+
+- `ARC_KEY_QOL_FOUNDATION`: Oak研究所で基礎育成とfield kitを説明する。
+- `ARC_KEY_QOL_TRAINING`: SilphとIndigoで後半・対戦・最終育成の既存供給先を段階表示する。
+- `ARC_KEY_QOL_RESEARCH`: research profile、TM license、DexNavを調査記録の同期として説明する。
+- `ARC_KEY_QOL_ENDGAME`: high raid、League技術、異界供給を終盤観測として説明する。
+- たまご系は `ARC_KEY_SIDEQUEST_EGG_COURIER` の生活questから既存 `SERVICE_PROFILE_EGG_BASKET` へ接続する。
+- QOL eventはfeatureを実装・付与・販売せず、catalogの既存ownerが有効化済みであることをconditionで確認して説明stateだけを書く。
+- TEXT_SPEED_INSTANT、FAST_MOVEMENT、IV_EV_JUDGE、PC_SEARCH_MULTISELECTはcatalog指定どおりAUTO_UNLOCKとし、world eventを重ねない。
+
+## 安全性とtransaction
+
+- 報酬7件はbag precheck後にresourceとclaim stateを同一transactionでcommitし、event完了stateを後段で立てる。reset後はclaimを先に照合して二重付与を防ぐ。
+- 既存acquisition 5件は `CALL_ACQUISITION_HOST`だけを使い、party/PC full時はclaimも完了stateも変えない。
+- 認定8件は既存defeatを先に照合し、勝利済みならlocal会話stateだけを同期する。
+- 追加objectを新規配置するのはDiglett Cave sensorとIndigo受付の2件だけで、どちらも `ALLOCATE_SAFE_TILE` とcollision auditを要求する。
+- 同一NPCまたはconsoleで複数eventを扱う場合はlatest-gate-first dispatcherを使い、各eventの完了stateで再訪文へ分ける。
+
+## implementation batch順
+
+| 順 | batch key | 依存 | event数 | rollback境界 |
+|---:|---|---|---:|---|
+| 1 | `BATCH_KEY_PILOT_VERMILION` | なし | 8 | このbatchで追加するクチバ・連絡船・六番道路のplacements、states、dialoguesだけを一括revertする。既存warp、Factory、trainerは対象外。 |
+| 2 | `BATCH_KEY_NORTHWEST_CORRIDORS` | `BATCH_KEY_PILOT_VERMILION` | 13 | K01-K05、K24-K27、K44、K47の新規placements・states・dialoguesと4 reward/acquisition wrapperだけをrevertする。 |
+| 3 | `BATCH_KEY_CENTRAL_NETWORK` | `BATCH_KEY_NORTHWEST_CORRIDORS` | 15 | 認定1-3、K08-K11、K28-K32、K40-K41の新規dispatchers、states、dialoguesだけをrevertする。 |
+| 4 | `BATCH_KEY_SOUTHERN_ECOLOGY` | `BATCH_KEY_CENTRAL_NETWORK` | 15 | 認定4、K07、K12-K18、K33-K37および前半完結会話の新規dataだけをrevertする。 |
+| 5 | `BATCH_KEY_POSTHOF_REOPEN` | `BATCH_KEY_SOUTHERN_ECOLOGY` | 13 | Vega Hall of Fame後の認定5-7、K19-K21、K38-K39、K45、終盤QOL説明だけをrevertする。 |
+| 6 | `BATCH_KEY_LEAGUE_APPROACH` | `BATCH_KEY_POSTHOF_REOPEN` | 6 | K22-K23、K26、K42の新規sign・signal・Indigo受付とLeague前説明だけをrevertする。 |
+| 7 | `BATCH_KEY_FINAL_RESONANCE` | `BATCH_KEY_LEAGUE_APPROACH` | 6 | Kanto League clear同期、Cerulean Cave wrapper、Indigo終盤説明、Final clear会話だけをrevertする。 |
+
+## batch別event inventory
+
+以下の順序と名称は `event_plan.json` のbatch assignmentから生成している。
+
+### クチバ安全導線 pilot — `BATCH_KEY_PILOT_VERMILION`
+
+1. `EVENT_KEY_FACILITY_PORT_WARNING` — クチバ高難度警告 / `KANTO_OUTDOOR_VERMILION_CITY` / READ_SIGN / REPEATABLE / completion `NONE` / reward `NONE`
+2. `EVENT_KEY_MAIN_PORT_ARRIVAL` — 第二地方への初着岸 / `KANTO_OUTDOOR_VERMILION_CITY` / MAP_ENTER / STATEFUL / completion `STATE_KEY_EVENT_MAIN_PORT_ARRIVAL_DONE` / reward `NONE`
+3. `EVENT_KEY_MAIN_PORT_REGISTRATION` — 生態戦術認定への登録 / `KANTO_OUTDOOR_VERMILION_CITY` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_PORT_REGISTRATION_DONE` / reward `NONE`
+4. `EVENT_KEY_FACILITY_PORT_HEAL` — 港の無料回復 / `KANTO_OUTDOOR_VERMILION_CITY` / TALK_OBJECT / REPEATABLE / completion `NONE` / reward `NONE`
+5. `EVENT_KEY_FACILITY_PORT_RETURN` — 港の無料帰還 / `KANTO_OUTDOOR_VERMILION_CITY` / READ_SIGN / REPEATABLE / completion `NONE` / reward `NONE`
+6. `EVENT_KEY_FACILITY_FACTORY_GUIDE` — ファクトリー試行案内 / `KANTO_OUTDOOR_VERMILION_CITY` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_FACILITY_FACTORY_GUIDE_DONE` / reward `NONE`
+7. `EVENT_KEY_FLAVOR_SSANNE_EXCHANGE` — 甲板の二地方交流 / `KANTO_DUNGEON_SSANNE_DECK` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_FLAVOR_SSANNE_EXCHANGE_DONE` / reward `NONE`
+8. `EVENT_KEY_FLAVOR_ROUTE6_TIDE` — 六番道路の潮読み / `KANTO_OUTDOOR_ROUTE6` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_FLAVOR_ROUTE6_TIDE_DONE` / reward `NONE`
+
+### 北西回廊と育て屋 — `BATCH_KEY_NORTHWEST_CORRIDORS`
+
+1. `EVENT_KEY_QOL_OAK_BASIC_SYNC` — 研究所の基礎運用同期 / `KANTO_INDOOR_PALLET_TOWN_PROFESSOR_OAKS_LAB` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_QOL_OAK_BASIC_SYNC_DONE` / reward `NONE`
+2. `EVENT_KEY_SIDE_FOREST_CORRIDOR_START` — 森の回廊 調査開始 / `KANTO_OUTDOOR_ROUTE1` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_FOREST_CORRIDOR_START_DONE` / reward `NONE`
+3. `EVENT_KEY_SIDE_FOREST_CORRIDOR_ROUTE2` — 二番道路の花粉記録 / `KANTO_OUTDOOR_ROUTE2` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_FOREST_CORRIDOR_ROUTE2_DONE` / reward `NONE`
+4. `EVENT_KEY_SIDE_FOREST_CORRIDOR_COMPLETE` — 森の回廊 調査完了 / `KANTO_DUNGEON_VIRIDIAN_FOREST` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_FOREST_CORRIDOR_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_FOREST_CORRIDOR_COMPLETE`
+5. `EVENT_KEY_SIDE_MOON_STRATA_START` — 月の地層 調査開始 / `KANTO_INDOOR_PEWTER_CITY_MUSEUM_1_F` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MOON_STRATA_START_DONE` / reward `NONE`
+6. `EVENT_KEY_SIDE_MOON_STRATA_ROUTE3` — 三番道路の乾燥層 / `KANTO_OUTDOOR_ROUTE3` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MOON_STRATA_ROUTE3_DONE` / reward `NONE`
+7. `EVENT_KEY_SIDE_MOON_STRATA_MT_MOON` — おつきみやまの内層 / `KANTO_DUNGEON_MT_MOON_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MOON_STRATA_MT_MOON_DONE` / reward `NONE`
+8. `EVENT_KEY_SIDE_MOON_STRATA_COMPLETE` — 月の地層 報告 / `KANTO_INDOOR_PEWTER_CITY_MUSEUM_1_F` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MOON_STRATA_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_MOON_STRATA_COMPLETE`
+9. `EVENT_KEY_SIDE_EGG_COURIER_START` — たまご保温材の依頼 / `KANTO_INDOOR_ROUTE5_POKEMON_DAY_CARE` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_EGG_COURIER_START_DONE` / reward `NONE`
+10. `EVENT_KEY_SIDE_EGG_COURIER_ROUTE4` — 河岸の保温材 / `KANTO_OUTDOOR_ROUTE4` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_EGG_COURIER_ROUTE4_DONE` / reward `NONE`
+11. `EVENT_KEY_SIDE_EGG_COURIER_COMPLETE` — たまご搬送の完了 / `KANTO_INDOOR_ROUTE5_POKEMON_DAY_CARE` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_EGG_COURIER_COMPLETE_DONE` / reward `NONE`
+12. `EVENT_KEY_SIDE_CAPE_TIME_START` — 岬の時間差 調査開始 / `KANTO_OUTDOOR_ROUTE24` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_CAPE_TIME_START_DONE` / reward `NONE`
+13. `EVENT_KEY_SIDE_CAPE_TIME_COMPLETE` — 岬の時間差 共鳴 / `KANTO_OUTDOOR_ROUTE25` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_SIDE_CAPE_TIME_COMPLETE_DONE` / reward `NONE`
+
+### 中央認定と地下水系 — `BATCH_KEY_CENTRAL_NETWORK`
+
+1. `EVENT_KEY_CERT_3_VERMILION` — 第三認定章 潮風の組立 / `KANTO_INDOOR_VERMILION_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_3_VERMILION_DONE` / reward `NONE`
+2. `EVENT_KEY_CERT_1_PEWTER` — 第一認定章 地層の読み合い / `KANTO_INDOOR_PEWTER_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_1_PEWTER_DONE` / reward `NONE`
+3. `EVENT_KEY_CERT_2_CERULEAN` — 第二認定章 水流の切替 / `KANTO_INDOOR_CERULEAN_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_2_CERULEAN_DONE` / reward `NONE`
+4. `EVENT_KEY_SIDE_UNDERGROUND_BREATH_START` — 地下の呼吸 調査開始 / `KANTO_OUTDOOR_ROUTE11` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_UNDERGROUND_BREATH_START_DONE` / reward `NONE`
+5. `EVENT_KEY_SIDE_UNDERGROUND_BREATH_DIGLETT` — ディグダの穴の脈動 / `KANTO_DUNGEON_DIGLETTS_CAVE_B1_F` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_UNDERGROUND_BREATH_DIGLETT_DONE` / reward `NONE`
+6. `EVENT_KEY_SIDE_UNDERGROUND_BREATH_COMPLETE` — 地下の呼吸 調査完了 / `KANTO_DUNGEON_ROCK_TUNNEL_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_UNDERGROUND_BREATH_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_UNDERGROUND_BREATH_COMPLETE`
+7. `EVENT_KEY_SIDE_WATER_CURRENT_START` — 水と電気の境界 調査開始 / `KANTO_OUTDOOR_ROUTE9` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WATER_CURRENT_START_DONE` / reward `NONE`
+8. `EVENT_KEY_SIDE_WATER_CURRENT_ROUTE10` — 十番道路の共振 / `KANTO_OUTDOOR_ROUTE10` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WATER_CURRENT_ROUTE10_DONE` / reward `NONE`
+9. `EVENT_KEY_SIDE_WATER_CURRENT_COMPLETE` — 発電所の未来核 / `KANTO_DUNGEON_POWER_PLANT` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WATER_CURRENT_COMPLETE_DONE` / reward `NONE`
+10. `EVENT_KEY_SIDE_MEMORY_LIGHT_START` — 記憶灯 調査開始 / `KANTO_OUTDOOR_ROUTE8` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MEMORY_LIGHT_START_DONE` / reward `NONE`
+11. `EVENT_KEY_SIDE_MEMORY_LIGHT_TOWER` — 塔の静かな灯り / `KANTO_DUNGEON_POKEMON_TOWER_5_F` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MEMORY_LIGHT_TOWER_DONE` / reward `NONE`
+12. `EVENT_KEY_SIDE_MEMORY_LIGHT_COMPLETE` — 跡地の記憶灯 / `KANTO_DUNGEON_ROCKET_HIDEOUT_ELEVATOR` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_MEMORY_LIGHT_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_MEMORY_LIGHT_COMPLETE`
+13. `EVENT_KEY_QOL_FIELD_KIT` — 遠征用フィールドキット / `KANTO_INDOOR_PALLET_TOWN_PROFESSOR_OAKS_LAB` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_QOL_FIELD_KIT_DONE` / reward `NONE`
+14. `EVENT_KEY_QOL_LATE_TRAINING` — 後半育成メニュー案内 / `KANTO_DUNGEON_SILPH_CO_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_QOL_LATE_TRAINING_DONE` / reward `NONE`
+15. `EVENT_KEY_QOL_RESEARCH_PROFILE` — 研究プロフィール同期 / `KANTO_INDOOR_PALLET_TOWN_PROFESSOR_OAKS_LAB` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_QOL_RESEARCH_PROFILE_DONE` / reward `NONE`
+
+### 南部生態と前半完結 — `BATCH_KEY_SOUTHERN_ECOLOGY`
+
+1. `EVENT_KEY_CERT_4_CELADON` — 第四認定章 交代の庭 / `KANTO_INDOOR_CELADON_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_4_CELADON_DONE` / reward `NONE`
+2. `EVENT_KEY_SIDE_CITY_SEEDS_START` — 都市の種 調査開始 / `KANTO_OUTDOOR_ROUTE7` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_CITY_SEEDS_START_DONE` / reward `NONE`
+3. `EVENT_KEY_SIDE_CITY_SEEDS_COMPLETE` — タマムシ温室の芽 / `KANTO_INDOOR_CELADON_CITY_CONDOMINIUMS_3_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_CITY_SEEDS_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_CITY_SEEDS_COMPLETE`
+4. `EVENT_KEY_SIDE_WETLAND_MIGRATION_START` — 湿地の渡り 調査開始 / `KANTO_OUTDOOR_ROUTE12` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WETLAND_MIGRATION_START_DONE` / reward `NONE`
+5. `EVENT_KEY_SIDE_WETLAND_MIGRATION_ROUTE13` — 十三番道路の羽休め / `KANTO_OUTDOOR_ROUTE13` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WETLAND_MIGRATION_ROUTE13_DONE` / reward `NONE`
+6. `EVENT_KEY_SIDE_WETLAND_MIGRATION_ROUTE14` — 十四番道路の強風 / `KANTO_OUTDOOR_ROUTE14` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WETLAND_MIGRATION_ROUTE14_DONE` / reward `NONE`
+7. `EVENT_KEY_SIDE_WETLAND_MIGRATION_COMPLETE` — 十五番道路の渡り終点 / `KANTO_OUTDOOR_ROUTE15` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WETLAND_MIGRATION_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_WETLAND_MIGRATION_COMPLETE`
+8. `EVENT_KEY_SIDE_WIND_RING_START` — 風の輪 調査開始 / `KANTO_OUTDOOR_ROUTE16` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WIND_RING_START_DONE` / reward `NONE`
+9. `EVENT_KEY_SIDE_WIND_RING_ROUTE17` — 十七番道路の横風 / `KANTO_OUTDOOR_ROUTE17` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WIND_RING_ROUTE17_DONE` / reward `NONE`
+10. `EVENT_KEY_SIDE_WIND_RING_COMPLETE` — 十八番道路の風輪 / `KANTO_OUTDOOR_ROUTE18` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_WIND_RING_COMPLETE_DONE` / reward `REWARD_KEY_EVENT_SIDE_WIND_RING_COMPLETE`
+11. `EVENT_KEY_MAIN_EARLY_FOUR_COMPLETE` — 前半四認定の小完結 / `KANTO_OUTDOOR_VERMILION_CITY` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_EARLY_FOUR_COMPLETE_DONE` / reward `NONE`
+12. `EVENT_KEY_FACILITY_SAFARI_OFFICE` — サファリ観察の心得 / `KANTO_OUTDOOR_FUCHSIA_CITY` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_FACILITY_SAFARI_OFFICE_DONE` / reward `NONE`
+13. `EVENT_KEY_FLAVOR_SAFARI_EAST` — サファリ東区の水跡 / `KANTO_DUNGEON_SAFARI_ZONE_EAST` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_FLAVOR_SAFARI_EAST_DONE` / reward `NONE`
+14. `EVENT_KEY_FLAVOR_SAFARI_NORTH` — サファリ北区の草音 / `KANTO_DUNGEON_SAFARI_ZONE_NORTH` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_FLAVOR_SAFARI_NORTH_DONE` / reward `NONE`
+15. `EVENT_KEY_FLAVOR_SAFARI_WEST` — サファリ西区の風穴 / `KANTO_DUNGEON_SAFARI_ZONE_WEST` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_FLAVOR_SAFARI_WEST_DONE` / reward `NONE`
+
+### 殿堂入り後の再開 — `BATCH_KEY_POSTHOF_REOPEN`
+
+1. `EVENT_KEY_MAIN_POSTHOF_RETURN` — 殿堂入り後の再招集 / `KANTO_OUTDOOR_VERMILION_CITY` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_POSTHOF_RETURN_DONE` / reward `NONE`
+2. `EVENT_KEY_CERT_5_FUCHSIA` — 第五認定章 群れの間合い / `KANTO_INDOOR_FUCHSIA_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_5_FUCHSIA_DONE` / reward `NONE`
+3. `EVENT_KEY_CERT_6_SAFFRON` — 第六認定章 情報の先読み / `KANTO_INDOOR_SAFFRON_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_6_SAFFRON_DONE` / reward `NONE`
+4. `EVENT_KEY_CERT_7_CINNABAR` — 第七認定章 熱量の管理 / `KANTO_INDOOR_CINNABAR_ISLAND_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_7_CINNABAR_DONE` / reward `NONE`
+5. `EVENT_KEY_SIDE_COLD_CURRENT_START` — 暖流と寒流 調査開始 / `KANTO_OUTDOOR_ROUTE19` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_COLD_CURRENT_START_DONE` / reward `NONE`
+6. `EVENT_KEY_SIDE_COLD_CURRENT_ROUTE20` — 二十番道路の寒流線 / `KANTO_OUTDOOR_ROUTE20` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_COLD_CURRENT_ROUTE20_DONE` / reward `NONE`
+7. `EVENT_KEY_SIDE_COLD_CURRENT_COMPLETE` — ふたごじまの光 / `KANTO_DUNGEON_SEAFOAM_ISLANDS_B4_F` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_SIDE_COLD_CURRENT_COMPLETE_DONE` / reward `NONE`
+8. `EVENT_KEY_SIDE_VOLCANO_ARCHIVE_START` — 火山資料 調査開始 / `KANTO_OUTDOOR_ROUTE21_NORTH` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_SIDE_VOLCANO_ARCHIVE_START_DONE` / reward `NONE`
+9. `EVENT_KEY_SIDE_VOLCANO_ARCHIVE_MANSION` — やしきの冷却記録 / `KANTO_DUNGEON_POKEMON_MANSION_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_SIDE_VOLCANO_ARCHIVE_MANSION_DONE` / reward `NONE`
+10. `EVENT_KEY_SIDE_VOLCANO_ARCHIVE_COMPLETE` — グレン研究室の再生核 / `KANTO_INDOOR_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_SIDE_VOLCANO_ARCHIVE_COMPLETE_DONE` / reward `NONE`
+11. `EVENT_KEY_QOL_LICENSE_SYNC` — 探索ライセンス同期 / `KANTO_DUNGEON_SILPH_CO_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_QOL_LICENSE_SYNC_DONE` / reward `NONE`
+12. `EVENT_KEY_QOL_COMPETITIVE_SUPPLY` — 対戦用供給案内 / `KANTO_DUNGEON_SILPH_CO_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_QOL_COMPETITIVE_SUPPLY_DONE` / reward `NONE`
+13. `EVENT_KEY_QOL_HIGH_RAID` — 高難度レイド観測 / `KANTO_DUNGEON_SILPH_CO_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_QOL_HIGH_RAID_DONE` / reward `NONE`
+
+### 第八認定とLeague接続 — `BATCH_KEY_LEAGUE_APPROACH`
+
+1. `EVENT_KEY_MAIN_ROUTE22_BRIEF` — 二十二番道路の最終案内 / `KANTO_OUTDOOR_ROUTE22` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_MAIN_ROUTE22_BRIEF_DONE` / reward `NONE`
+2. `EVENT_KEY_CERT_8_VIRIDIAN` — 第八認定章 総合判断 / `KANTO_INDOOR_VIRIDIAN_CITY_GYM` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_CERT_8_VIRIDIAN_DONE` / reward `NONE`
+3. `EVENT_KEY_MAIN_ROUTE23_GATE` — 二十三番道路の認定門 / `KANTO_OUTDOOR_ROUTE23` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_MAIN_ROUTE23_GATE_DONE` / reward `NONE`
+4. `EVENT_KEY_MAIN_VICTORY_ROAD_SIGNAL` — チャンピオンロード信号 / `KANTO_DUNGEON_VICTORY_ROAD_1_F` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_VICTORY_ROAD_SIGNAL_DONE` / reward `NONE`
+5. `EVENT_KEY_MAIN_KANTO_LEAGUE_ENTRY` — カントーリーグ受付 / `KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_KANTO_LEAGUE_ENTRY_DONE` / reward `NONE`
+6. `EVENT_KEY_QOL_LEAGUE_TECH` — リーグ技術記録 / `KANTO_DUNGEON_SILPH_CO_1_F` / READ_SIGN / STATEFUL / completion `STATE_KEY_EVENT_QOL_LEAGUE_TECH_DONE` / reward `NONE`
+
+### 最終共鳴とFinal League — `BATCH_KEY_FINAL_RESONANCE`
+
+1. `EVENT_KEY_MAIN_KANTO_LEAGUE_CLEAR` — カントーリーグ踏破確認 / `KANTO_DUNGEON_POKEMON_LEAGUE_HALL_OF_FAME` / MAP_ENTER / STATEFUL / completion `STATE_KEY_EVENT_MAIN_KANTO_LEAGUE_CLEAR_DONE` / reward `NONE`
+2. `EVENT_KEY_MAIN_CAVE_RESONANCE` — ハナダ洞窟の最終共鳴 / `KANTO_DUNGEON_CERULEAN_CAVE_B1_F` / EXISTING_SERVICE / STATEFUL / completion `STATE_KEY_EVENT_MAIN_CAVE_RESONANCE_DONE` / reward `NONE`
+3. `EVENT_KEY_MAIN_FINAL_LEAGUE_AVAILABLE` — Final League開放確認 / `KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_MAIN_FINAL_LEAGUE_AVAILABLE_DONE` / reward `NONE`
+4. `EVENT_KEY_QOL_UB_SUPPLY` — 異界エネルギー供給案内 / `KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_QOL_UB_SUPPLY_DONE` / reward `NONE`
+5. `EVENT_KEY_QOL_GOLD_CAP_SUPPLY` — 最終育成供給案内 / `KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR` / TALK_OBJECT / STATEFUL / completion `STATE_KEY_EVENT_QOL_GOLD_CAP_SUPPLY_DONE` / reward `NONE`
+6. `EVENT_KEY_MAIN_FINAL_LEAGUE_CLEARED` — 二地方認定の最終完結 / `KANTO_DUNGEON_POKEMON_LEAGUE_HALL_OF_FAME` / MAP_ENTER / STATEFUL / completion `STATE_KEY_EVENT_MAIN_FINAL_LEAGUE_CLEARED_DONE` / reward `NONE`
+
+## 可逆な実装判断
+
+- 新規stateのnumeric allocationは後続実装の中央allocatorへ委譲し、本bundleはsymbolic keyだけを正本とする。
+- 複数eventが同一placementを共有する場合は、成立済みunlockとconditionのうち最も後段のeventを先に評価するlatest-gate-first dispatcherを使う。
+- KANTO_DAYCARE_QUESTとFINAL_LEAGUE_AVAILABLEの物語上の受渡しは、記載したlocal completion stateを既存progression resolverが読むsymbolic hookとし、数値flagを直接指定しない。
+- 既存trainer defeat、acquisition claim、service transaction、QOL feature、League sequence、Hall of Fame処理は常に既存owner側を正本とする。
+- ALLOCATE_SAFE_TILEの2件は指定map内で入口・warp・trainer視線・puzzle動線を塞がないtileを中央allocatorが選び、collision audit失敗時は同map内の別safe tileへ差し替える。
+- dialogueはgame charmapと18 glyph・2行制限を生成時に再検査し、CSVにはliteral backslash-nだけを書き込む。
+- coverageでEXISTING_CONTENTとしたprogression gateは既存ownerがgateを成立させ、新規eventは到達理由・同期・再訪会話だけを担う。

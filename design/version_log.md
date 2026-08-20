@@ -666,3 +666,14 @@
   - T19完了HEADとStage 36を固定し、Stage 35設計の63 physical placementとQOL serviceを現行実ROMで再解決するT20をDAGへ追加した。
   - 全76 eventの実入力、save/transaction、既存trainer/acquisition/QOL回帰、Stage 37、mGBA quick/full、clean rebuildをT20完了gateに固定した。
 - Verify: ZIP sha256/cmp/CRC/safety、Stage 35 packet validator、taskctl sync/next/plan、task graph/private guard/diff check PASS。T20=`PENDING`／依存READY。
+
+## 2026-08-20T17:45:24+09:00
+
+- Version: `post-v1.4.0-stage37`（v1.4.0 release identityとStage 27〜36は不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `T20` / 実装可能イベント設計76件をStage 36基準で実ROMへ最終統合する
+- Summary:
+  - 7 batch・76 event・63 physical placement・326会話を通常field入口へ接続し、80 state・160 condition・7 atomic rewardをStage 37へserializeした。
+  - Stage 36実ROMから58 mapのrootを再解決し、既存trainer/acquisition/QOL ownerとsaveを保持した。
+  - clean直接BPSとStage 36差分BPSの両経路からbyte一致するStage 37を決定的に再構築した。
+- Verify: event-design build、focused 10 tests、libmGBA quick/full独立2 process・全76 field path、clean rebuild build/check、BPS完全往復、declared span/allocator/RAM/save重複、manifest/task graph/private guard/diff check PASS。Stage 37 SHA-256 `76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c`。

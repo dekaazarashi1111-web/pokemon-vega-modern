@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "normalization_policy": "UTF-8の安全展開後、6ファイルのbyte列を変更せずGit管理正本へ固定",
+  "source_zip": {
+    "path": "userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip",
+    "size": 71084,
+    "sha256": "576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e",
+    "entry_count": 6,
+    "expanded_size": 755156,
+    "submission_sha256": "776d8c911ad3c2705ffdaf840d1b6cdbefe816cf000accdf3ea47a45991c4fec"
+  },
+  "files": [
+    {"path": "EVENT_BIBLE_JA.md", "size": 34685, "sha256": "605db39f2ea4c98d17cf8e29088482c4f124c0ca11cea11aa27b495c5987ee2d"},
+    {"path": "OPEN_QUESTIONS.md", "size": 102, "sha256": "16097225d22be063d0add2400009570f197bf2de8eac4e4b52d3e58bd31ea874"},
+    {"path": "VALIDATION_REPORT.json", "size": 412, "sha256": "fb7dd9f2867c3c90e7917aca13c44989605331ca6250a90a828f41e82fd0e636"},
+    {"path": "coverage.csv", "size": 20748, "sha256": "f4c600cd456b22419d63ae1ba9f302b04de5851dc77bc9d4b85d09ab70dd437a"},
+    {"path": "dialogue.csv", "size": 71102, "sha256": "3ad6581106666721dc659969d4482e215627c19c786d41b9671cdc076230f4c6"},
+    {"path": "event_plan.json", "size": 628107, "sha256": "fde11b9dfdd7e8159d7fa1895985435ddcbe2d2589e9a8b120d7f1f023bd5ae6"}
+  ],
+  "validated_counts": {
+    "arcs": 28,
+    "states": 80,
+    "actors": 14,
+    "placements": 63,
+    "conditions": 160,
+    "rewards": 7,
+    "events": 76,
+    "batches": 7,
+    "dialogues": 326,
+    "coverage_rows": 98
+  },
+  "validator_result": {
+    "status": "PASS",
+    "warnings": 0,
+    "errors": 0,
+    "open_questions": 0
+  }
+}
