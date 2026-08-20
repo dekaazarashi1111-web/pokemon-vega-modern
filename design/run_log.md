@@ -1643,13 +1643,13 @@
   - Git管理外成果: `dist/chatgpt_pro_design_packets/**`、`build/chatgpt_pro_design_packets.json`、Windows Downloadsの入力ZIP 4本。
 - Verify:
   - `python3 -m py_compile scripts/build_chatgpt_pro_design_packets.py templates/chatgpt_pro_design_packets/tools/validate_submission.py`: PASS。
-  - `python3 scripts/build_chatgpt_pro_design_packets.py`: PASS。4 packetすべてCRC、manifest/SHA256、path guard、privacy scan、validator self-test、決定論的repack、Windows copyをPASS。
+  - `python3 scripts/build_chatgpt_pro_design_packets.py`: PASS。4 packetすべてCRC、manifest/SHA256、path guard、privacy scan、validator self-test、決定論的repack、Windows copyをPASS。同一入力からの完全再生成2回も4/4件byte一致。
   - Windows Downloadsの`sha256sum`、`unzip -tqq`、ローカル生成物との`cmp`: PASS。ZIP root一意、path traversal／symlink／ROM・save・patch・実行形式混入0。
   - 展開先の未記入`submission_template/`に対するvalidator negative test: 4/4件が期待どおり`VALIDATION=FAIL`。
 - Output identity:
-  - Reward Encounters V2: 153,843 bytes、SHA-256 `d310c9d0fecad53373873ebfa0c8ded3e663b73b940443b8afdc775707a64e4a`。
-  - Move Distribution V4: 635,001 bytes、SHA-256 `42c45f7028b9b9c9ffc7983be058859347e47737e5f6e8fdd8f771c6a9fc9d81`。
-  - Factory High Modes V2: 176,108 bytes、SHA-256 `df555693030259943bccca8196598ebd30674eb8520e51a0d9546b272c04c363`。
-  - Research Economy V1: 221,798 bytes、SHA-256 `2defa272d313f83fa14f710d1f6bc1fd2e1237b2a93f4660a85540dc86988dec`。
+  - Reward Encounters V2: 153,849 bytes、SHA-256 `9a87f2f97889466b43c77bb7c510e6353b9d1d92f99bcee0ce10ad62d6d4558d`。
+  - Move Distribution V4: 634,996 bytes、SHA-256 `15b58d0a74f5f76b273ee72aa3e43c872efa3ba1442c81308c8b897f2343b77f`。
+  - Factory High Modes V2: 176,105 bytes、SHA-256 `9f579998a91784ccbb559c4107e06925517447bcfc42bd62cd70af670d2efb39`。
+  - Research Economy V1: 221,798 bytes、SHA-256 `f0ac86d00932c011b069cc6befe9cc6f7ed698ea76e95ff4d619e3d309879ae7`。
 - Commit: `-`（本エントリを含む完了コミット）
 - Network: 未使用。Stage 37 ROM、ローカルの正本資料と生成済みevent authoring catalogだけを参照した。

@@ -24,6 +24,7 @@ from typing import Any, Iterable, Mapping, Sequence
 ROOT = Path(__file__).resolve().parents[1]
 STAGE37 = Path("build/stages/37_event_design.gba")
 STAGE37_SHA256 = "76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c"
+STAGE37_SOURCE_COMMIT = "ba3cf63a102f44860917ba855ac383adcabfd106"
 FIXED_ZIP_TIME = (2026, 8, 20, 0, 0, 0)
 PACKET_PREFIX = "Pokemon-Vega_CHATGPT-PRO"
 VALIDATOR = Path("templates/chatgpt_pro_design_packets/tools/validate_submission.py")
@@ -1534,10 +1535,6 @@ def _write_packet_manifest(
                 "size": path.stat().st_size,
                 "sha256": _sha256(path),
             })
-    head = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=root, text=True,
-        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True,
-    ).stdout.strip()
     manifest = {
         "schema_version": 1,
         "packet_name": PACKETS[kind]["packet_name"],
@@ -1546,7 +1543,7 @@ def _write_packet_manifest(
         "expected_output_zip": PACKETS[kind]["output_zip"],
         "baseline": {
             "stage": 37, "rom_sha256": STAGE37_SHA256,
-            "git_commit_at_build": head,
+            "stage37_source_commit": STAGE37_SOURCE_COMMIT,
         },
         "privacy": {
             "rom_included": False, "save_included": False,
