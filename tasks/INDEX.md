@@ -24,3 +24,4 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T17](T17_REGRESSION.md) | Integrate QOL-B and run regression/playtest gates | qa/engine | T10, T13, T16 |
 | [T18](T18_RELEASE.md) | Create reproducible release pipeline | platform | T17 |
 | [T19](T19_QOL_PRODUCTION_COMPLETION.md) | Complete production QOL integration | engine/ui/save/qa | T18 |
+| [T20](T20_EVENT_DESIGN_IMPLEMENTATION.md) | Integrate implementation-ready event design | maps/content/engine/save/qa | T19 |

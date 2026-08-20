@@ -655,3 +655,14 @@
   - 実BoxPokemonのPC操作、共通数量UI、タマゴqueue、通常random野生の自動戦闘、文章/移動、育成、供給、保存transactionを97 hookでStage 36へ結合した。
   - Stage 35の1,302 trainerとgimmick/saveを不変に保ち、clean ROM直接BPSとStage35差分BPSの両方からbyte一致するStage 36を再構築した。
 - Verify: production build/check、focused 20+9 tests、libmGBA quick/full独立2 process、受入条15/15、clean rebuild build/check、BPS完全往復、declared span/allocator/RAM overlap、task graph/private guard/diff check PASS。Stage 36 SHA-256 `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
+
+## 2026-08-20T16:20:42+09:00
+
+- Version: `post-v1.4.0-stage36-event-design-task-queue`（Stage 36 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260820-EVENT-DESIGN-TASK-QUEUE` / 実装可能イベント設計の実ROM統合タスクを追加する
+- Summary:
+  - 76 event・7 batch・326会話の返却ZIPをGit管理外の読取専用原本へ取り込み、size/hash/CRC/path安全性とcatalog付きvalidatorをPASSした。
+  - T19完了HEADとStage 36を固定し、Stage 35設計の63 physical placementとQOL serviceを現行実ROMで再解決するT20をDAGへ追加した。
+  - 全76 eventの実入力、save/transaction、既存trainer/acquisition/QOL回帰、Stage 37、mGBA quick/full、clean rebuildをT20完了gateに固定した。
+- Verify: ZIP sha256/cmp/CRC/safety、Stage 35 packet validator、taskctl sync/next/plan、task graph/private guard/diff check PASS。T20=`PENDING`／依存READY。

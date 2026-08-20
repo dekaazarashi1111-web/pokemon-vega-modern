@@ -24,8 +24,9 @@
 | T02 exact監査 | `config/t02_audit_policy.json` | `tools/t02/`, `reports/generated/address_audit.csv`, `id_inventory.json`, `semantic_conflicts.md` |
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
-| 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17 |
-| 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T19 |
+| 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17/T20 |
+| 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T20 |
+| 実装可能イベント統合 | `tasks/T20_EVENT_DESIGN_IMPLEMENTATION.md` | 受領ZIP、`templates/event_authoring_packet/**`、Stage 36 ROM/metadata、map rooted graph、T19 service ABI |
 | Trainer AI・難易度 | `design/decisions.md` D-015 | 固定CFRU-JP `src/Battle_AI/**`, V2 `06_出現率・トレーナー・報酬バランス.md`, T01/T02/T06/T10/T12/T15〜T18 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
@@ -49,6 +50,7 @@
 - T12/T16: `docs/CONTENT_PIPELINE.md`、`design/import_review.md`、V2の二地方配置・遭遇・イベントCSV、該当タスク。
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 - T19: `tasks/T19_QOL_PRODUCTION_COMPLETION.md`、`docs/QOL_POLICY.md`、`content/qol_progression.csv`、`config/{feature_matrix.csv,qol_b.json}`、`overlays/qol_b/`、Stage 35 ROM／metadata。イベント設計は`templates/event_authoring_packet/**`を参照だけにし、編集しない。
+- T20: `tasks/T20_EVENT_DESIGN_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`、`templates/event_authoring_packet/**`、`config/qol_production_bindings.csv`、`overlays/qol_production/service_abi.md`、Stage 36 ROM/metadata、現行map/trainer/acquisition/save graph。ZIP原本は読取専用とし、Stage 35 catalogの物理値はStage 36で再監査する。
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
 - HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules: `tasks/USER_20260814_BATTLE_RULES.md`、`config/battle_rules.json`、`scripts/build_battle_rules.py`、`tools/mgba_battle_rules_smoke.c`、固定CFRU-JP battle source、stage 22/23、T06 hook/runtime表。

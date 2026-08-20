@@ -7,6 +7,7 @@
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
 - T19で35機能を35個の一意なproduction ownerへ接続し、通常のOptions、summary、PSS、bag、field、預かり屋、battle、save導線から操作できるStage 36を生成した。97 expected-byte hook、リリース対象35/35、受入条15/15、mGBA quick/fullの独立2 processをPASSした。Stage 36 SHA-256は `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
 - clean FireRed日本版Rev.0からStage 36への直接BPSとStage 35からの差分BPSは完全往復し、変更67,991 byteのdeclared span外0、allocator/RAM重複0を確認した。Stage 35の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainerとgimmick/save cleanupはbyte監査で不変。
+- `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
 - Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
   拡張し、Gym1直後のmap-script物理命令1件とmap `3/21`の連続14命令をstage 34へ接続した。
   stage 34 SHA-256は `84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f`。
@@ -183,8 +184,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T19は完了し、現在の依存READYタスクはない。
+`design/tasks_next.md` を正とする。T00〜T19は完了し、T20が唯一の依存READYタスクである。
 
+- T20: READY。Stage 35基準の実装可能設計（76 event / 63 placement / 80 state / 326 dialogue / 7 batch）をStage 36実ROMで再解決し、通常入力・保存・既存trainer/acquisition/QOL serviceへ接続する。Stage 37、mGBA quick/full、clean rebuildまでを完了条件とする。
 - T19: DONE。QOL 35機能を実BoxPokemon/PSS/menu/daycare/battle/saveと供給導線へ接続し、Stage 36の実ROM入力、fault injection、save/reload、clean rebuildをPASSした。ChatGPT Proのイベント設計との所有境界は変更していない。
 - USER-20260817-BP-SHOP-RUNTIME: DONE。Factory map 96/5へ18品目のmanifest-backed BPショップを物理接続し、通常save／sector 31、成功購入、再読込、残高不足、bag満杯、未解禁をstage 27 exact-ROM 2 processで検証した。
 - USER-20260818-FACTORY-REWARD-RUNTIME: DONE。libmGBA独立2 processで初回12 BP、credit catch-up、反復重複なし、bag満杯時の基本9 BP維持とbonus繰越、通常save item再読込、sector 31 ledger一致、全完了時party exact復元を確認した。declared span外変更0、ROM/RAM overlap 0、incremental/cumulative BPS往復はPASS。fresh全体監査とv1.4.0再releaseは実施していない。

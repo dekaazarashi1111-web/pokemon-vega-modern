@@ -4,12 +4,21 @@
 
 受領した設計資料は次の優先順位で使う。
 
-1. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
-2. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
-3. `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4`: Vega本編の編成、技、道具、IV下限、AI段階に関するactive実装入力。
-4. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
-5. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
-6. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+1. `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`: T20の物語、発生条件、state遷移、報酬、失敗時挙動、会話、batch依存に関するactive実装入力。物理配置はStage 36で再監査する。
+2. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
+3. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
+4. `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4`: Vega本編の編成、技、道具、IV下限、AI段階に関するactive実装入力。
+5. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
+6. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
+7. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+
+## 実装可能イベント設計の位置付け
+
+- ZIP: 71,084 bytes、SHA-256 `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。
+- 6ファイル、展開後755,156 bytes。CRC、path traversal、symlink、暗号化を検査し、異常0。
+- Stage 35生成catalog付き公式validatorでstatus PASS、warnings/errors/open questions 0、submission SHA-256 `776d8c911ad3c2705ffdaf840d1b6cdbefe816cf000accdf3ea47a45991c4fec`。
+- 28 arc、80 state、14 actor、63 placement、160 condition、7 reward、76 event、7 batch、326 dialogue、98 coverage rowを含む。
+- 物語とevent意味はactive実装正本とする。ただし生成catalogはStage 35基準のため、numeric address、host availability、object budget、QOL serviceはT19完了済みStage 36で再解決してから実装する。
 
 ## 本編トレーナー再設計V4の位置付け
 

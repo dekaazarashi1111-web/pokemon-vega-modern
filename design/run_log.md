@@ -1578,3 +1578,24 @@
 - Network:
   - <https://developers.openai.com/api/docs/guides/latest-model> — セッション引継ぎ時に目標、制約、成功条件、明確なhandoffを保持する根拠として参照した。
   - <https://github.com/pret/pokefirered/tree/c75f352304d529f6ba92d4f74b9cf8b5c3810788> — source-lock済みcommitのPC/Help/summary/text構造とstock consumerを参照した。上流pinとプロジェクト仕様は変更していない。
+
+## 2026-08-20T16:20:42+09:00
+
+- Task: `USER-20260820-EVENT-DESIGN-TASK-QUEUE` / 実装可能イベント設計の実ROM統合タスクを追加する
+- Status: DONE
+- Summary:
+  - Windows Downloadsの`Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`を`userfile/imports/`へ原名のままコピーし、mode `0444`のGit管理外原本として固定した。元ファイルと取込後ファイルは71,084 bytes、SHA-256 `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`、byte一致。
+  - ZIP 6 entryのCRC、path traversal、symlink、暗号化を読取専用で検査し、異常0。Stage 35生成catalog付きauthoring packet validatorを再実行し、28 arc、80 state、14 actor、63 placement、160 condition、7 reward、76 event、7 batch、326 dialogue、98 coverage row、open question 0、warnings/errors 0でPASSした。submission SHA-256は同梱証跡と同じ`776d8c911ad3c2705ffdaf840d1b6cdbefe816cf000accdf3ea47a45991c4fec`。
+  - T19完了commit `df52e8c89cc1fd6b2352bc7a98fedf3be8ad72be`とStage 36 ROM SHA-256 `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`を固定baselineとするT20を追加した。Stage 35用catalogの物理値はStage 36で全件再解決し、実map event・会話・進行・save・既存trainer/acquisition/QOL service、Stage 37、mGBA quick/full、clean rebuildまでを受入条件にした。実ROM統合自体はこのタスク追加セッションでは開始していない。
+- Files changed:
+  - 新規タスク: `tasks/T20_EVENT_DESIGN_IMPLEMENTATION.md`、`tasks/task_graph.json`、`tasks/INDEX.md`、`design/tasks_next.md`、`state/task_status.json`。
+  - 入口・現在状態: `MASTER_PLAN.md`、`design/{PLANS,agent_context_map,catalog,current_state,import_inventory,import_review,run_log,version_log}.md`。
+  - Git管理外原本: `userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`。
+- Verify:
+  - `sha256sum` / `cmp`: PASS。Downloads原本とworkspace原本のsize/hash/byte一致。
+  - Python `zipfile.testzip` / entry safety audit: PASS。CRC failure 0、unsafe path 0、symlink 0、encrypted entry 0。
+  - 生成済みStage 35 packetの`tools/validate_submission.py`: PASS。warnings/errors/open questions 0、件数/submission hash一致。
+  - `python3 scripts/taskctl.py sync` / `next` / `plan`: PASS。T20が唯一の`PRIMARY`、W14 `PENDING`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。
+- Commit: `-`（本エントリを含むタスク追加コミット）
+- Network: 未使用。ユーザー提供ZIP、ローカルのStage 35 authoring packet、T19完了済みStage 36成果だけを参照した。
