@@ -710,3 +710,14 @@
   - 664-byte volatile stateと既存40-byte台帳内8-byte journalでparty/badge、record/claim、保存失敗、fresh-core resetをFactoryと分離して原子的に復旧する。
   - 既存trainer/QOL/acquisition/T20 eventとPro待ち4領域を不変に保ち、clean chain/direct BPSの両方から同一Stage 38を再構築した。
 - Verify: production build/check、focused 14 tests、libmGBA quick/full独立2 process・受入15/15・full 256 badge mask×8 exit、clean rebuild build/check、両BPS完全往復、declared span/allocator/RAM/save overlap、task graph/private guard/diff check PASS。Stage 38 SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`。
+
+## 2026-08-21T01:56:27+09:00
+
+- Version: `post-v1.4.0-stage38-pro-return-task-queue`（Stage 38 ROM identityは不変）
+- Commit: `-`（本エントリを含むコミット）
+- Task: `USER-20260821-PRO-RETURN-TASK-QUEUE` / ChatGPT Pro返却4設計の検証・実装タスク化
+- Summary:
+  - 返却4 ZIPを安全監査・hash固定・読取専用取込し、全4本のvalidatorとopen question 0を確認した。
+  - T22 Move、T23 Research、T24 Reward、T25 FactoryをStage 39〜42の直列DAGとして追加し、別セッションが追加設計なしで開始できる実装・検証契約を固定した。
+  - Reward tier正常系を誤rejectする共通validatorを修正し、正常系・重複/欠落系の回帰testを追加した。
+- Verify: 4 ZIP CRC/path/privacy/hash/cmp、4 validator PASS、focused 2 tests、py_compile、taskctl sync/next/plan、task graph、private guard、diff check PASS。T22=`PENDING`／唯一の依存READY。

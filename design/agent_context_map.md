@@ -25,9 +25,13 @@
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
 | 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17/T20/T21 |
-| 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T21 |
+| 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T25 |
 | 実装可能イベント統合 | `tasks/T20_EVENT_DESIGN_IMPLEMENTATION.md` | 受領ZIP、`templates/event_authoring_packet/**`、Stage 36 ROM/metadata、map rooted graph、T19 service ABI |
 | Mirage production接続 | `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md` | Stage 37 ROM/metadata、map `31/1` rooted graph、`manifests/facility_*`のMirage行、T02/T06/T08/T10/T16/T17成果 |
+| Move Distribution V4統合 | `tasks/T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md` | 返却ZIP、Stage 38 ROM/metadata、T04/T07/T09/T17、わざメモリー・野生生成consumer |
+| Research Economy V1統合 | `tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md` | 返却ZIP、T22 Stage 39、現行save/currency/activity/map graph |
+| Reward Encounters V2統合 | `tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md` | 返却ZIP、T23 Stage 40、捕獲・BP・research・Factory transaction |
+| Factory High Modes V2統合 | `tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md` | 返却ZIP、T24 Stage 41、既存Factory Trial/save/UI/battle/reward runtime |
 | Trainer AI・難易度 | `design/decisions.md` D-015 | 固定CFRU-JP `src/Battle_AI/**`, V2 `06_出現率・トレーナー・報酬バランス.md`, T01/T02/T06/T10/T12/T15〜T18 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
@@ -52,7 +56,11 @@
 - T17/T18: `docs/TEST_STRATEGY.md`、`docs/RELEASE_POLICY.md`、該当タスク。
 - T19: `tasks/T19_QOL_PRODUCTION_COMPLETION.md`、`docs/QOL_POLICY.md`、`content/qol_progression.csv`、`config/{feature_matrix.csv,qol_b.json}`、`overlays/qol_b/`、Stage 35 ROM／metadata。イベント設計は`templates/event_authoring_packet/**`を参照だけにし、編集しない。
 - T20: `tasks/T20_EVENT_DESIGN_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`、`templates/event_authoring_packet/**`、`config/qol_production_bindings.csv`、`overlays/qol_production/service_abi.md`、Stage 36 ROM/metadata、現行map/trainer/acquisition/save graph。ZIP原本は読取専用とし、Stage 35 catalogの物理値はStage 36で再監査する。
-- T21: `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md`、Stage 37 ROM/metadata、`config/t02_audit_policy.json`のMirage契約、`manifests/{facility_modes,facility_trainers,facility_rentals,facility_rewards,trainer_ids}.csv`のMirage行、`overlays/{cfru,save_migration}/`、map `31/1` rooted graph。ChatGPT Pro待ち4領域のZIP・返却物は読まない／変更しない。
+- T21: `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md`、Stage 37 ROM/metadata、`config/t02_audit_policy.json`のMirage契約、`manifests/{facility_modes,facility_trainers,facility_rentals,facility_rewards,trainer_ids}.csv`のMirage行、`overlays/{cfru,save_migration}/`、map `31/1` rooted graph。完了済みStage 38を後続baselineにする。
+- T22: `tasks/T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip`、Stage 38 ROM/metadata、`manifests/{species,move}_ids.csv`、T09 learnset/form、わざメモリー、預かり屋、TM/tutor、野生生成consumer。ZIPは読取専用、物理値はStage 38で再監査する。
+- T23: `tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_RESEARCH-ECONOMY-V1_IMPLEMENTATION-READY.zip`、T22 Stage 39 ROM/metadata、`config/save_layout.csv`、currency/activity hook、map rooted graph。T21 Mirage、Factory、既存Research encounterのsave ownerを再監査する。
+- T24: `tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip`、T23 Stage 40 ROM/metadata、capture transaction、BP/credit、Research/Factory source、Vermilion host graph。pending同一個体をsave前提で検査する。
+- T25: `tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip`、T24 Stage 41 ROM/metadata、`overlays/facility_runtime/`、Factory Trial save/UI/battle/reward、T24 credit hook、T21 Mirage isolation。既存Trialをbehavior oracleにする。
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
 - HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules: `tasks/USER_20260814_BATTLE_RULES.md`、`config/battle_rules.json`、`scripts/build_battle_rules.py`、`tools/mgba_battle_rules_smoke.c`、固定CFRU-JP battle source、stage 22/23、T06 hook/runtime表。

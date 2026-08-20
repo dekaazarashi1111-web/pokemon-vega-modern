@@ -1701,3 +1701,26 @@
   - audit / coverage / clean rebuild証跡: SHA-256 `dcf67ee2ca2556a54f6f812cc11600fb38c970b04a3968a8831eeba825d9c328` / `02f72707d256893188e7478c8756498a006059734ff144171a8ba2edebd839af` / `77ad462dabab9dd114a05c7ec52a819a22240bb744de8f6afb5eb0e9b90c3000`。
 - Commit: `-`（本エントリを含むT21完了コミット）
 - Network: 未使用。固定済みStage 37、clean ROM、ローカルのmanifest、CFRU/ChangeKit/save実装だけを参照した。
+
+## 2026-08-21T01:56:27+09:00
+
+- Task: `USER-20260821-PRO-RETURN-TASK-QUEUE` / ChatGPT Pro返却4設計を検証し別セッション用実装タスクへ追加する
+- Status: DONE
+- Summary:
+  - Windows DownloadsのMove Distribution V4、Research Economy V1、Reward Encounters V2、Factory High Modes V2を安全監査し、Git管理外の`userfile/imports/`へ原名・読取専用・byte一致で固定した。4 ZIPともCRC、path traversal、symlink、暗号化、ROM/save/patch/実行形式混入は異常0。
+  - 共通validatorで4本すべてstatus PASS、warnings/errors/open questions 0を確認した。Moveは11ファイル、Research 12、Reward 10、Factory 13。Rewardの正常な4 tierを誤ってrejectするvalidatorの`Counter`構築不具合を修正し、正常系と重複/欠落系の回帰testを追加した。
+  - T22〜T25を `Move -> Research -> Reward -> Factory` の直列DAGとして追加した。各ZIP identity、直前Stage、固定仕様、所有境界、必須成果物、mGBA/save/clean rebuild/BPS受入条件をタスク仕様へ固定し、T22を唯一のPRIMARYにした。Stage 38 ROMは変更していない。
+- Files changed:
+  - タスク・DAG・状態: `tasks/T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md`、`tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md`、`tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md`、`tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md`、`tasks/{task_graph.json,INDEX.md}`、`design/tasks_next.md`、`state/task_status.json`。
+  - 入口・受領台帳: `MASTER_PLAN.md`、`design/{PLANS,agent_context_map,catalog,current_state,import_inventory,import_review,run_log,version_log}.md`。
+  - validator回帰: `templates/chatgpt_pro_design_packets/tools/validate_submission.py`、`tests/test_chatgpt_pro_submission_validator.py`。
+  - Git管理外原本: `userfile/imports/Pokemon-Vega_{MOVE-DISTRIBUTION-V4,RESEARCH-ECONOMY-V1,REWARD-ENCOUNTERS-V2,FACTORY-HIGH-MODES-V2}_IMPLEMENTATION-READY.zip`。
+- Verify:
+  - ZIP identity/copy: PASS。Downloads原本と`userfile/imports/`の`cmp`、SHA-256、read-only permission、`.gitignore`を確認した。SHA-256はMove `4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2`、Research `0cd2a68535f5543da919a6502a21321adb826dbff37d356b0cacfc697c7367de`、Reward `b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195`、Factory `7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830`。
+  - 4 packet common validator: PASS。`VALIDATION=PASS`、files `11/12/10/13`、open questions 0。
+  - `python3 -m py_compile templates/chatgpt_pro_design_packets/tools/validate_submission.py tests/test_chatgpt_pro_submission_validator.py`、`python3 -m unittest tests.test_chatgpt_pro_submission_validator -v`: PASS（2 tests）。
+  - `python3 scripts/taskctl.py sync` / `next` / `plan`: PASS。26 task同期、T22が唯一のPRIMARY、W16〜W19がT22〜T25、既定順もT22→T25。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - Stage 38 identity: 33,554,432 bytes、ROM SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`、metadata SHA-256 `da027d40dda9ebc0f54f1e217d4442369ab41ebb8d2956b24e844355e2fb2b77`で不変。
+- Commit: `-`（本エントリを含むタスク追加コミット）
+- Network: 未使用。Windows Downloadsのユーザー提供ZIP、ローカルpacket root、Stage 38 ROM/metadataだけを参照した。

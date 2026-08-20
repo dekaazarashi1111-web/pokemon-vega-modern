@@ -216,6 +216,42 @@
         "T20"
       ],
       "file": "tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md"
+    },
+    {
+      "id": "T22",
+      "title": "Integrate Move Distribution V4",
+      "lane": "engine/content/qa",
+      "depends_on": [
+        "T21"
+      ],
+      "file": "tasks/T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md"
+    },
+    {
+      "id": "T23",
+      "title": "Integrate Research Economy V1",
+      "lane": "content/engine/save/maps/qa",
+      "depends_on": [
+        "T22"
+      ],
+      "file": "tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md"
+    },
+    {
+      "id": "T24",
+      "title": "Integrate Reward Encounters V2",
+      "lane": "content/engine/save/maps/qa",
+      "depends_on": [
+        "T23"
+      ],
+      "file": "tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md"
+    },
+    {
+      "id": "T25",
+      "title": "Integrate Factory High Modes V2",
+      "lane": "content/engine/save/ui/qa",
+      "depends_on": [
+        "T24"
+      ],
+      "file": "tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md"
     }
   ]
 }

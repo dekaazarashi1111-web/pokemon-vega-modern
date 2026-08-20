@@ -363,7 +363,8 @@ def _custom_reward(
 ) -> None:
     expected_prices = spec.get("custom", {}).get("bp_prices", {})
     services = rows.get("encounter_services.csv", [])
-    if Counter(row.get("tier") for row in services) != Counter(expected_prices):
+    expected_tiers = Counter({tier: 1 for tier in expected_prices})
+    if Counter(row.get("tier") for row in services) != expected_tiers:
         errors.append("encounter_services.csv: exactly one service for each tier is required")
     for row in services:
         if row.get("credit_cost") != "1":

@@ -1,6 +1,6 @@
 # import_inventory.md
 
-2026-08-12〜20にユーザー提供ファイルを `userfile/imports/` へ原名のままコピーし、原本とのSHA-256一致を確認した。私有ROM、パッチ、元ZIPはGit管理外かつ読み取り専用である。
+2026-08-12〜21にユーザー提供ファイルを `userfile/imports/` へ原名のままコピーし、原本とのSHA-256一致を確認した。私有ROM、パッチ、元ZIPはGit管理外かつ読み取り専用である。
 
 ## 配置とハッシュ
 
@@ -12,6 +12,10 @@
 | 技調整設計ZIP V3 | `userfile/imports/archives/VEGA_CFRU_DPE_技調整設計_V3.zip` | 159,635 | `51fdf3aa25f49dc0586d2d824117995261527a3ae306d621aa718d273939ce37` | 14ファイル、同梱SHA256SUMS 13/13 PASS、active review |
 | 本編トレーナー再設計ZIP V4 | `userfile/imports/archives/VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4.zip` | 333,031 | `0655648e4d54bd29c49a13deeae997cbf5465f717d7f1513540bc20fdefdbac8` | 21ファイル、同梱SHA256SUMS 20/20 PASS、141戦・610体をactive入力化 |
 | 実装可能イベント設計ZIP | `userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip` | 71,084 | `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e` | 6ファイル、CRC/安全path PASS、76 event・7 batch・326会話、catalog付きvalidator PASS、T20 active入力 |
+| Move Distribution V4返却ZIP | `userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip` | 395,446 | `4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2` | 11ファイル、CRC/安全path・validator PASS、open question 0、T22固定入力 |
+| Research Economy V1返却ZIP | `userfile/imports/Pokemon-Vega_RESEARCH-ECONOMY-V1_IMPLEMENTATION-READY.zip` | 21,503 | `0cd2a68535f5543da919a6502a21321adb826dbff37d356b0cacfc697c7367de` | 12ファイル、CRC/安全path・validator PASS、open question 0、T23固定入力 |
+| Reward Encounters V2返却ZIP | `userfile/imports/Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip` | 19,169 | `b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195` | 10ファイル、CRC/安全path・validator PASS、open question 0、T24固定入力 |
+| Factory High Modes V2返却ZIP | `userfile/imports/Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip` | 30,203 | `7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830` | 13ファイル、CRC/安全path・validator PASS、open question 0、T25固定入力 |
 | 競合監査ZIP | `userfile/imports/archives/vega_cfru_integration_audit.zip` | 55,244 | `5b009797b037c597aac8371140d21d3731bc5329d8addd2356b9756a5e679459` | 監査正本、破損なし |
 | FireRed日本版Rev.0 | `userfile/imports/roms/Pocket Monsters - FireRed (Japan).gba` | 16,777,216 | `1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486` | CRC32 `3B2056E9`、BPRJ01 Rev.00 |
 | Vega参照ROM | `userfile/imports/roms/Pocket Monsters Vega.gba` | 16,777,216 | `f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5` | CRC32 `42A73E62` |
@@ -39,6 +43,10 @@
 | 技調整設計パッケージV3 | 不変のactive review資料 | `design/imported/VEGA_CFRU_DPE_技調整設計_V3/` |
 | 本編トレーナー再設計V4 | 原ZIPはGit管理外、検証済み2 CSVをactive入力化 | `userfile/imports/extracted/VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4/` / `content/trainer_rebalance_v4/` |
 | 実装可能イベント設計 | 読取専用原ZIPをT20入力に固定、正規化・Stage 36 rebaseはT20で実施 | `userfile/imports/Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip` |
+| Move Distribution V4 | 読取専用原ZIPをT22入力に固定、Stage 38へrebaseしてStage 39を生成 | `userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip` |
+| Research Economy V1 | 読取専用原ZIPをT23入力に固定、T22出力へ順次統合 | `userfile/imports/Pokemon-Vega_RESEARCH-ECONOMY-V1_IMPLEMENTATION-READY.zip` |
+| Reward Encounters V2 | 読取専用原ZIPをT24入力に固定、T23出力へ順次統合 | `userfile/imports/Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip` |
+| Factory High Modes V2 | 読取専用原ZIPをT25入力に固定、T24出力へ順次統合 | `userfile/imports/Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip` |
 | 統合設計パッケージV1 | V2へ置換済みの来歴資料 | `design/imported/VEGA_CFRU_DPE_統合設計/` |
 | 元の展開結果 | Git管理外バックアップ | `userfile/imports/extracted/` |
 

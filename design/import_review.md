@@ -4,13 +4,28 @@
 
 受領した設計資料は次の優先順位で使う。
 
-1. `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`: T20の物語、発生条件、state遷移、報酬、失敗時挙動、会話、batch依存に関するactive実装入力。物理配置はStage 36で再監査する。
-2. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
-3. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
-4. `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4`: Vega本編の編成、技、道具、IV下限、AI段階に関するactive実装入力。
-5. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
-6. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技、TM・教え技、習得技、安全な野生初期技に関するactive review資料。
-7. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+1. `Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip`: T22の全習得表・form・野生初期技に関するactive実装入力。
+2. `Pokemon-Vega_RESEARCH-ECONOMY-V1_IMPLEMENTATION-READY.zip`: T23の研究通貨・活動・rank・shop・saveに関するactive実装入力。
+3. `Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip`: T24のtyped credit・pending再戦・報酬遭遇に関するactive実装入力。
+4. `Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip`: T25の24 Factory mode・rental・opponent・rewardに関するactive実装入力。
+5. `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`: T20で実装済みの物語・event入力。Stage 37への統合来歴として保持する。
+6. `vega_modern_codex_playbook`: 再現ビルド基盤、T00〜T18のDAG、検証雛形。
+7. `vega_cfru_integration_audit`: パッチ競合の一次証跡と監査ツール。
+8. `VEGA_CFRU_DPE_ベガ本編トレーナー再設計_V4`: Vega本編の編成、技、道具、IV下限、AI段階に関するactive実装入力。
+9. `VEGA_CFRU_DPE_統合設計_V2_二地方生態版`: トーホク＋カントーの完成像・進行・生態・イベントに関するactive review資料。
+10. `VEGA_CFRU_DPE_技調整設計_V3`: 技効果、ベガ独自技再調整に関するactive review資料。習得配布の現行正本はT22入力を優先する。
+11. `VEGA_CFRU_DPE_統合設計` V1: V2の来歴確認専用。新規判断には使わない。
+
+## ChatGPT Pro返却4設計の位置付け
+
+- 4 ZIPすべてでCRC、path traversal、symlink、暗号化、実行形式、ROM/save/patch混入を検査し、異常0。
+- Move Distribution V4は395,446 bytes、SHA-256 `4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2`、11ファイル。level-up 28,274、egg 8,219、TM/tutor 2,799、form 509、wild/source 1,206、fingerprint `d0e014e49beb339668ce3531b8fe6871c793a063f2bff1c8d2b97898f81d02a9`。
+- Research Economy V1は21,503 bytes、SHA-256 `0cd2a68535f5543da919a6502a21321adb826dbff37d356b0cacfc697c7367de`、12ファイル。activity 6、currency 1、rank 7、shop 23、NPC 9、dialogue 35、batch 7、fingerprint `2ea4497307af6aece808fd9a98158561c7c87e83cd4748b2e6d3ab8c4aa27a8b`。
+- Reward Encounters V2は19,169 bytes、SHA-256 `b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195`、10ファイル。service 4、pool 24、credit source 10、dialogue 56、batch 5、fingerprint `823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df`。
+- Factory High Modes V2は30,203 bytes、SHA-256 `7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830`、13ファイル。mode 24、requirement 28、rental 248、profile 55、reward 16、dialogue 28、batch 7、fingerprint `c48d69f2a64cda65f2a97a2382ddb8bb4dbc66437302a87e3da669428dc20fe1`。
+- 全4本とも公式validatorでstatus PASS、warnings/errors/open questions 0。validatorがReward tierの期待集合を価格値の個数として比較していた不具合は、各tier 1件の集合比較へ修正し、正常系と重複/欠落系の回帰testを追加した。
+- 設計時の技術catalogはStage 37基準なので、意味仕様とstable keyを採用し、address、save offset、map host、allocator spanは各タスクの直前Stageから必ず再解決する。
+- 統合順は `T22 Move -> T23 Research -> T24 Reward -> T25 Factory` に固定する。Moveは野生・rentalの基盤、ResearchはReward credit source、RewardはFactory milestone hookを所有するため、同一branchで4件を並列実装しない。
 
 ## 実装可能イベント設計の位置付け
 

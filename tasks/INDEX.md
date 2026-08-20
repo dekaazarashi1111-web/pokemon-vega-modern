@@ -26,3 +26,7 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T19](T19_QOL_PRODUCTION_COMPLETION.md) | Complete production QOL integration | engine/ui/save/qa | T18 |
 | [T20](T20_EVENT_DESIGN_IMPLEMENTATION.md) | Integrate implementation-ready event design | maps/content/engine/save/qa | T19 |
 | [T21](T21_MIRAGE_PRODUCTION_RUNTIME.md) | Connect Mirage modernization to production runtime | maps/content/engine/save/qa | T20 |
+| [T22](T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md) | Integrate Move Distribution V4 | engine/content/qa | T21 |
+| [T23](T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md) | Integrate Research Economy V1 | content/engine/save/maps/qa | T22 |
+| [T24](T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md) | Integrate Reward Encounters V2 | content/engine/save/maps/qa | T23 |
+| [T25](T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md) | Integrate Factory High Modes V2 | content/engine/save/ui/qa | T24 |
