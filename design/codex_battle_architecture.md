@@ -88,7 +88,9 @@ learnset banや戦略policyには使わない。
 - 正常に結果が確定した直近matchだけがreward windowを開ける。transport abortやstale sessionは対象外。
 - Codexは報酬なし、item、Pokémonを任意に選べる。勝敗と報酬内容の固定tableや価値上限を設けない。
 - itemはcanonical numeric IDと数量、Pokémonは最低限species IDとlevelで指定できる。
-- Pokémonには必要に応じて技、持ち物、性格、色違い等を追加指定できる。
+- Pokémonには必要に応じて技、持ち物、特性、性格、IV/EV、色違い、Tera type、
+  入っているボール（canonical ball item ID）を追加指定できる。ボール指定は道具付与ではなく、
+  生成する個体の捕獲ボール情報としてROM側の正規データへ記録する。
 - PCからparty/save byteを直接書かない。ROM側の`AddBagItem`、`CreateMon`、`GiveMon`と既存transactionを通す。
 - ID範囲、数量、party/box/bag容量、checksum、request sequenceを検査し、失敗時は無変更に戻す。
 - 同じreward requestの再送、reset、save faultで二重付与しない。複数報酬は一意sequenceの複数transactionで扱う。
@@ -119,7 +121,7 @@ vega-codex-battle choose move 2 --gimmick none|mega|z|dynamax|tera --json
 vega-codex-battle choose switch 3 --json
 vega-codex-battle choose forfeit --json
 vega-codex-battle reward item ITEM_ID --quantity N --json
-vega-codex-battle reward mon SPECIES_ID --level N --json
+vega-codex-battle reward mon SPECIES_ID --level N [--ball BALL_ITEM_ID] [optional fields] --json
 vega-codex-battle reward close --json
 ```
 

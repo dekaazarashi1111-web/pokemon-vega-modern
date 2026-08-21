@@ -21,7 +21,10 @@ iPadでルール相談→team登録→3体選出→対戦完走→任意報酬�
 - 正常にresultが確定した直近matchだけがreward windowを持つ。transport abort/stale sessionは対象外。
 - 勝ち、負け、引分、明示forfeitのどれでもCodexが報酬有無を選べる。ROMに勝敗別固定報酬tableを置かない。
 - `reward item ITEM_ID --quantity N`と`reward mon SPECIES_ID --level N`を最低限提供する。
-- Pokémonはoptional team member schemaでmove、held item、ability、nature、IV/EV、shiny、tera type等を指定できる。
+- Pokémonはoptional team member schemaでmove、held item、ability、nature、IV/EV、shiny、tera type、
+  入っているボール（canonical ball item ID）等を指定できる。
+- ボール指定は別の道具報酬として渡さず、生成個体の捕獲ボール情報へ記録する。省略時は標準値を使い、
+  指定時はcanonical itemが有効なボール種別であることを検査し、non-ball IDは無変更で拒否する。
 - item/Pokémonの価値、banlist、数量balanceをsystem ruleにしない。canonical ID、field幅、engine安全性、容量だけを検査する。
 - itemは通常bag API、Pokémonは通常CreateMon/GiveMon経路を使い、PCからparty/save byteを直接書かない。
 - 1 reward requestはsession nonce、match ID、request sequence、payload hashを持つ。
@@ -37,7 +40,7 @@ iPadでルール相談→team登録→3体選出→対戦完走→任意報酬�
 
 - `reward status --json`
 - `reward item ITEM_ID --quantity N --json`
-- `reward mon SPECIES_ID --level N [optional fields] --json`
+- `reward mon SPECIES_ID --level N [--ball BALL_ITEM_ID] [optional fields] --json`
 - `reward close --json`
 - `session guide --json`または同等の短い運用状態表示
 - companion skill sourceとinstallerを用意し、別Codex taskからCLIを発見・利用できるようにする。
@@ -80,7 +83,8 @@ skillはCLIの発見、catalogによる事前構築、doctor→status→wait→a
 - [ ] T27 Stage 44/protocol/CLI identityが一致し、iPad transport/first-turn gateがPASSする。
 - [ ] 正常resultだけがmatch-bound reward windowを持ち、報酬なしでcloseできる。
 - [ ] valid item ID/quantityとvalid Pokémon ID/levelの代表・全境界が通常bag/party/PCへ付与される。
-- [ ] optional move/item/ability/nature/IV/EV/shiny/tera typeがschemaどおりで、invalid fieldは無変更で拒否される。
+- [ ] optional move/item/ability/nature/IV/EV/shiny/tera type/ballがschemaどおりで、選んだボールが
+  付与個体の捕獲ボール情報に保存され、invalid/non-ball fieldは無変更で拒否される。
 - [ ] bag満杯、party満杯、box満杯、全収納満杯、invalid ID、生成失敗、save faultの全分岐がatomic。
 - [ ] duplicate/stale/future/wrong match/wrong nonce/wrong hash/replayed rewardが二重付与0で拒否される。
 - [ ] PREPARED/STAGED/COMMITTEDの各fault pointとreset/reloadから、同一requestがexactly onceへ収束する。

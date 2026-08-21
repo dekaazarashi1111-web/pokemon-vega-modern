@@ -1933,3 +1933,15 @@
   - `python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
 - Commit: `-`（本エントリを含む準備完了コミット）
 - Network: 未使用。T26のローカル成果、固定upstream source、canonical manifest、設計正本だけを参照した。
+
+## 2026-08-21T16:34:36+09:00
+
+- Task: `USER-20260821-CODEX-BATTLE-REWARD-BALL` / T28のPokémon報酬へ捕獲ボール指定を追加
+- Status: DONE
+- Summary:
+  - T28のPokémon報酬で、canonical ball item IDにより付与個体が入っているボールを選べる仕様を追加した。
+  - ボールは別道具として付与せず個体の捕獲ボール情報に保存し、non-ball IDはatomicに拒否するCLI・受入条件を固定した。
+- Files changed: `design/codex_battle_architecture.md`、`tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md`、`design/run_log.md`、`design/version_log.md`
+- Verify: SKIP（ユーザー指示により再検証は実行せず、仕様追記のみ）。
+- Commit: `-`（本エントリを含む仕様追記コミット）
+- Network: 未使用。

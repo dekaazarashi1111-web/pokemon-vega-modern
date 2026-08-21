@@ -810,3 +810,13 @@
   - read-only構築catalog、公平なpending action非公開、Codex対戦限定`UPSTREAM_OPEN` gimmickをT27の固定仕様・CLI・受入条件へ追加した。
   - CLI/skillを能力提供と操作説明だけに限定し、戦略、選出、行動、報酬、理由説明のpolicyを呼出元Codex taskへ残した。
 - Verify: Stage 43 identity、task graph/queue/task仕様/互換ミラー、taskctl next/plan、focused 20 tests、private guard、diff check PASS。T27が唯一のPRIMARY。
+
+## 2026-08-21T16:34:36+09:00
+
+- Version: `post-v1.4.0-stage43-t28-reward-ball-spec`（Stage 43 ROM identityは不変）
+- Commit: `-`（本エントリを含む仕様追記コミット）
+- Task: `USER-20260821-CODEX-BATTLE-REWARD-BALL` / T28 Pokémon報酬の捕獲ボール指定
+- Summary:
+  - `reward mon`のoptional fieldに`--ball BALL_ITEM_ID`を追加した。
+  - 選択ボールを付与個体の捕獲ボール情報へ保存し、invalid/non-ball IDを無変更で拒否する受入条件を固定した。
+- Verify: SKIP（ユーザー指示により再検証なし）。
