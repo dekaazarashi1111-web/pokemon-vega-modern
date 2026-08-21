@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "task": "T25",
+  "inputs": {
+    "stage41_rom": {
+      "path": "build/stages/41_reward_encounters_v2.gba",
+      "size": 33554432,
+      "sha256": "282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352"
+    },
+    "stage41_metadata": {
+      "path": "build/stages/41_reward_encounters_v2.json",
+      "sha256": "526644f807da39367bf31477bcdf63a5ac517a335c958fb829640244c334ae3a"
+    },
+    "stage41_allocation": {
+      "path": "build/stages/41_allocation.json",
+      "sha256": "299592ac7752fe8b74f1c4ea562274798195026b80e102863e3c91d86702b9dd"
+    },
+    "stage41_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-reward-encounters-stage41.bps",
+      "sha256": "1c96648ec178142213e8d86201c2360bcae0e5776f1a0241d50cd502967f4fa6"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "submission_zip": {
+      "path": "userfile/imports/Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip",
+      "size": 30203,
+      "sha256": "7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830",
+      "entry_count": 13,
+      "fingerprint": "c48d69f2a64cda65f2a97a2382ddb8bb4dbc66437302a87e3da669428dc20fe1"
+    },
+    "packet_root": "dist/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_FACTORY-HIGH-MODES-V2_INPUT_20260820",
+    "packet_spec_sha256": "22fcb5af3d82d7379e8d69292e55ef2336c5bbcf5b9007d572dd185abd5b3edf",
+    "validator": "templates/chatgpt_pro_design_packets/tools/validate_submission.py",
+    "validator_sha256": "57b1da52ac9e6c7c99e7d58a599982b8f6ebed4d782cf36e84b611ce21ea1f1a"
+  },
+  "counts": {
+    "modes": 24,
+    "requirements": 28,
+    "rentals": 248,
+    "profiles": 55,
+    "rewards": 16,
+    "dialogues": 28,
+    "batches": 7
+  },
+  "save": {
+    "ledger_address": "0x0203D000",
+    "ledger_size": 2048,
+    "factory_offset": "0x392",
+    "factory_size": 714,
+    "party_snapshot_size": 600,
+    "mode_slot_count": 24
+  },
+  "ram": {
+    "address": "0x0203F220",
+    "end_exclusive": "0x0203F720",
+    "size": 1280,
+    "mirage_address": "0x0203EE00",
+    "mirage_magic": "0x4D505331",
+    "mirage_active_offset": "0x28"
+  },
+  "engine": {
+    "create_mon": "0x0803D1C1",
+    "set_mon_data": "0x0803FA71",
+    "get_mon_data": "0x0803F355",
+    "get_mon_ability": "0x090DA23D",
+    "calculate_mon_stats": "0x0803DBE9",
+    "calculate_pp": "0x0804070D",
+    "heal_player_party": "0x080A1331",
+    "calculate_party_count": "0x08040331",
+    "species_to_national": "0x08042989",
+    "get_set_pokedex": "0x08088A51",
+    "flag_get": "0x0806DEC5",
+    "flag_set": "0x0806DE75",
+    "flag_clear": "0x0806DE9D",
+    "var_set": "0x0806DD79",
+    "check_bag_space": "0x08099A09",
+    "add_bag_item": "0x08099A8D",
+    "remove_bag_item": "0x08099BE1",
+    "save_init_new": "0x092D2649",
+    "try_saving_data": "0x080DB34D",
+    "save_validate": "0x092D10D1",
+    "save_finalize": "0x092D2605",
+    "configure_factory": "0x0912615D"
+  },
+  "delegates": {
+    "trainer_party": "0x093905D5",
+    "ability_load": "0x09390625",
+    "save_load": "0x093BD9A1",
+    "trial_complete": "0x092DDDD1",
+    "shiny_claim": "0x092DD9AD"
+  },
+  "hooks": [
+    {
+      "name": "factory_trainer_party_chain",
+      "address": "0x09096EC4",
+      "expected_hex": "f9f286fb",
+      "mode": "THUMB_BL",
+      "target": "FactoryHighModesV2_BuildTrainerPartyAdapter",
+      "delegate": "MirageProduction_BuildTrainerPartyAdapter"
+    },
+    {
+      "name": "factory_ability_chain",
+      "address": "0x090973FC",
+      "expected_hex": "f9f212f9",
+      "mode": "THUMB_BL",
+      "target": "FactoryHighModesV2_LoadProperAbilityBattleDataAdapter",
+      "delegate": "MirageProduction_LoadProperAbilityBattleDataAdapter"
+    },
+    {
+      "name": "factory_save_load_chain",
+      "address": "0x080DB4E4",
+      "expected_hex": "004b1847a1d93b09",
+      "mode": "THUMB_JUMP",
+      "target": "FactoryHighModesV2_SaveLoadAdapter",
+      "delegate": "ResearchEconomy_SaveLoadAdapter"
+    },
+    {
+      "name": "factory_reception_script",
+      "address": "0x093C2DC0",
+      "expected_hex": "24cf3809",
+      "mode": "POINTER",
+      "target": "script::factory_high_modes_reception",
+      "delegate": "script_facility_npc"
+    },
+    {
+      "name": "factory_trial_completion_chain",
+      "address": "0x092CF57D",
+      "expected_hex": "d1dd2d09",
+      "mode": "POINTER",
+      "target": "FactoryHighModesV2_TrialCompleteAdapter",
+      "delegate": "FactoryShinyMemorialRuntime_Complete"
+    }
+  ],
+  "physical_binding": {
+    "map_group": 96,
+    "map_num": 5,
+    "map_header": "0x092BFDD4",
+    "event_header": "0x093C2E10",
+    "object_array": "0x093C2D98",
+    "object_count": 5,
+    "receptionist_local_id": 2,
+    "receptionist_script_pointer_site": "0x093C2DC0",
+    "trial_script": "0x092CF3DC"
+  },
+  "unlock_flags": {
+    "KANTO_EARLY_ACCESS": "0x0000",
+    "FACTORY_STANDARD": "0x0824",
+    "FACTORY_FULL": "0x082C",
+    "FACTORY_MASTER": "0x13FA"
+  },
+  "outputs": {
+    "rom": "build/stages/42_factory_high_modes_v2.gba",
+    "metadata": "build/stages/42_factory_high_modes_v2.json",
+    "allocation": "build/stages/42_allocation.json",
+    "incremental_bps": "build/patches/reward-encounters-stage41-to-factory-high-modes-stage42.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-factory-high-modes-stage42.bps",
+    "mode_matrix": "build/stages/42_factory_high_modes_v2_mode_matrix.json",
+    "mgba_quick": "build/stages/42_mgba_factory_high_modes_v2_quick.json",
+    "mgba_full": "build/stages/42_mgba_factory_high_modes_v2_full.json",
+    "clean_rebuild": "build/stages/42_clean_rebuild.json"
+  }
+}

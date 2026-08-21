@@ -754,3 +754,14 @@
   - 戦闘前pending persist、非捕獲・reset同一個体再戦、通常捕獲時atomic clear、保存失敗rollback、報酬戦副作用maskを既存ledger/save ownerで実装した。
   - clean chain/direct BPSの両方から同一Stage 41を再構築し、宣言span外変更とallocator/ROM/RAM/save/map/hook overlapを0にした。
 - Verify: production build/check、focused 9+16+19 tests、libmGBA quick/full独立2 process・受入11/11・warnings/errors 0、32 transaction row、clean rebuild build/check、両BPS完全往復、T23回帰 PASS。Stage 41 SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`。
+
+## 2026-08-21T13:33:03+09:00
+
+- Version: `post-v1.4.0-stage42`（v1.4.0 release identityとStage 27〜41は不変）
+- Commit: `-`（本エントリを含むT25完了コミット）
+- Task: `T25` / Integrate Factory High Modes V2
+- Summary:
+  - 既存Trialをslot 0のexact delegateとして保持し、24 mode、28 requirement、248 rental、55 profile、16 reward、28会話を通常Factory受付へ接続した。
+  - 有限generator、reset/reload forfeit、round境界retire、packed ABI、BP・49/100・T24 creditのatomic transaction、Mirage分離を実装した。
+  - clean chain/direct BPSの両方から同一Stage 42を再構築し、宣言span外変更とallocator/ROM/RAM/save/UI/hook overlapを0にした。
+- Verify: production build/check、focused T25 10 tests＋既存81 tests、7,440-row mode matrix、libmGBA quick/full独立2 process・受入11/11・warnings/errors 0、clean rebuild build/check、両BPS完全往復、Stage41回帰 PASS。Stage 42 SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`。

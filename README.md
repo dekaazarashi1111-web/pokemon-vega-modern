@@ -100,6 +100,10 @@ make reward-encounters-v2 # Stage40へ4 tier・24 pool・pending再戦・10 cred
 make reward-encounters-v2-check # 全支払transaction・save/reset・Scientist・mGBA quick/fullを副作用なしで再照合
 make reward-encounters-v2-clean-rebuild # clean ROMからStage40→Stage41とclean直接BPSをbyte再現
 make reward-encounters-v2-clean-rebuild-check # clean起点の両BPS・32 transaction・Stage41証跡を副作用なしで再照合
+make factory-high-modes-v2 # Stage41へ24 mode・248 rental・55 profile・16 rewardを結合してStage42を生成
+make factory-high-modes-v2-check # Trial互換・全mode有限生成・報酬復旧・mGBA quick/fullを副作用なしで再照合
+make factory-high-modes-v2-clean-rebuild # clean ROMからStage41→Stage42とclean直接BPSをbyte再現
+make factory-high-modes-v2-clean-rebuild-check # clean起点の両BPS・7,440-row matrix・Stage42証跡を副作用なしで再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

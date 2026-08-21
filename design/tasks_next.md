@@ -24,7 +24,7 @@
 - [x] T22: 技配布V4をStage 38基準で全習得表・野生初期技へproduction統合する <!-- id:T22 -->
 - [x] T23: 研究経済V1を独立通貨・活動・rank・shop・saveへproduction統合する <!-- id:T23 -->
 - [x] T24: 報酬遭遇V2をtyped credit・pending再戦・実battleへproduction統合する <!-- id:T24 -->
-- [ ] T25: Factory High Modes V2の24 modeを既存Trialを保ってproduction統合する <!-- id:T25 -->
+- [x] T25: Factory High Modes V2の24 modeを既存Trialを保ってproduction統合する <!-- id:T25 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->
 - [x] HM所持だけで対応フィールド技を使用可能にする <!-- id:USER-20260814-HM-FIELD-ACCESS -->
 - [x] 状態異常・急所・天候を固定CFRU-JP既定へ統一する <!-- id:USER-20260814-BATTLE-RULES -->

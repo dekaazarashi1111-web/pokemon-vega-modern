@@ -16,6 +16,7 @@
 - T22でMove Distribution V4のlevel-up 28,274、egg 8,219、TM/tutor 0→1追加2,799、form 509、wild/source 1,206をcanonical IDへ解決し、Stage 39の通常consumerへ接続した。Stage 38に残っていたTutor旧20-byte strideはexpected-byte付き1命令adapterで設計固定の16-byte正本へ統一し、既存特殊判定を維持した。Stage 39は33,554,432 bytes、SHA-256 `c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd`。mGBA quick/full独立2 process、BPS往復、clean再構築、T00〜T21回帰、野生適用境界をPASSした。
 - T23で独立U16研究ポイント、active play 60分の研究日、6活動、7 rank、23品の交換所、9 physical host、35会話をStage 40へproduction接続した。旧modern save v1の193-byte予約末尾から64-byte ownerだけを割り当て、checksum検証済みv1→v2移行、pending transaction、保存失敗rollbackを実装した。21 physical patch（11 hook、2 veneer、7 map root、取得台帳v2互換1）のdeclared span外変更とROM/RAM/save/map/hook overlapは0。Stage 40は33,554,432 bytes、SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`で、mGBA quick/full独立2 processとclean chain/direct BPS再構築をPASSした。
 - T24で4 tier、24 encounter pool、typed credit、BP直接支払い、pending同一個体再戦、10 credit source、56会話をStage 41へproduction接続した。既存2 KiB ledgerのcredit/BP/pending/claimだけを再利用し、戦闘前persist、捕獲時atomic clear、非捕獲・reset無料再戦、保存失敗rollback、報酬戦副作用maskを32 transaction rowで確認した。クチバ共有ScientistとT23 wild-end delegateをexpected-byte付きでrootし、declared span外変更とROM/RAM/save/map/hook overlapは0。Stage 41は33,554,432 bytes、SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`で、mGBA quick/full独立2 processとclean chain/direct BPS再構築をPASSした。
+- T25で既存Trialをslot 0のexact delegateとして保ち、24 mode、28 unlock requirement、248 rental、55 opponent profile、16 reward、28会話を通常Factory受付へproduction接続した。7,440-row有限生成matrix、reset/敗北時forfeit exact restore、round境界retire、packed marker/reward pending、49/100 milestoneとT24 creditのatomic transaction、Mirage分離を実ROMで確認した。5 expected-byte rootと24,115 changed byteはdeclared span内で、allocatorおよびROM/RAM/save/UI/hook overlapは0。Stage 42は33,554,432 bytes、SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`で、mGBA quick/full独立2 process・受入11/11・warnings/errors 0とclean chain/direct BPS再構築をPASSした。
 - ChatGPT Pro返却4 ZIPをGit管理外の読取専用原本として受領した。CRC・安全path・symlink・暗号化・private binary混入は異常0で、共通validatorによりMove 11、Research 12、Reward 10、Factory 13ファイルすべてstatus PASS、open question 0。T22〜T25を `Move -> Research -> Reward -> Factory` の直列DAGとして追加し、各直前Stageで物理値を再監査してStage 39〜42へ順次統合する。
 - `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
 - Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
@@ -194,9 +195,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T24は完了し、T25が唯一の依存READYである。
+`design/tasks_next.md` を正とする。T00〜T25は完了し、現在の依存READYタスクはない。
 
-- T25: READY / PRIMARY。Factory High Modes V2の24 mode、248 rental、55 profile、16 rewardを既存Trial不変でStage 42へ統合する。
+- T25: DONE。Factory High Modes V2の24 mode、248 rental、55 profile、16 rewardを既存Trial不変でStage 42へ接続し、mGBA quick/full、7,440-row有限生成matrix、clean rebuildをPASSした。
 - T24: DONE。Reward Encounters V2の4 tier、24 pool、typed credit/BP、pending同一個体再戦、10 source、ScientistをStage 41へ接続し、mGBA quick/full、32 transaction、clean rebuildをPASSした。
 - T23: DONE。Research Economy V1の独立通貨・6活動・7 rank・23 shop・9 host・35会話、modern save v2 migrationをStage 40へ接続し、mGBA quick/full、clean rebuild、既存取得台帳v2回帰をPASSした。
 - T22: DONE。Move Distribution V4の全canonical行をStage 39へcompileし、level-up、egg、TM/tutor、form、わざメモリー、預かり屋、孵化、野生生成のproduction consumer、mGBA quick/full、clean rebuildをPASSした。

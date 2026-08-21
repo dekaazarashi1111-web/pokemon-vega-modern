@@ -1803,3 +1803,35 @@
   - 原本ZIP: 19,169 bytes、mode `0444`、SHA-256 `b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195`、fingerprint `823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df`で不変。
 - Commit: `-`（本エントリを含むT24完了コミット）
 - Network: 未使用。固定済みのローカルStage 40、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。
+
+## 2026-08-21T13:33:03+09:00
+
+- Task: `T25` / Factory High Modes V2をStage 42へproduction統合する
+- Status: DONE
+- Summary:
+  - 読取専用原本ZIP 13 entryのsize/hash/mode、安全inventory、共通validator、fingerprint、open question 0を再照合し、24 mode、28 unlock requirement、248 rental、55 opponent profile、16 reward、28 dialogue、7 batchをstable keyの欠落・重複・未解決0で決定的にcompileした。
+  - 既存Trialをslot 0のexact delegateとして保持し、残る23 modeを通常Factory受付、標準list/yes-no、draft、7戦round、戦間交換へ接続した。既存16 slotの意味を維持して8 slotを追加し、party size、level、single/double、NPC partner、Little、Monotype、OU、Camomons、Unrestricted/UBER、GS、Region Mix、Ultimateのruleをcanonical表から生成した。
+  - rental/profile生成は最大248/55回の有限scanと明示fallbackに固定し、30 option variant×248 seed同値類の7,440 rowを全件PASSした。seedと選択をchallenge中に固定し、reset/reload・敗北はforfeitして600-byte partyをexact restore、round境界の明示retireだけがstreakを保持する。
+  - marker/reward_pendingのpacked ABI、16 reward、BP、49/100 claim、T24 Factory creditを同一rollback境界へ接続した。保存fault、二重付与、先行claimを防ぎ、Ultimateの1 battle・1 side最大1 gimmickとMirage/Raid/通常battleへのstate非漏洩を実ROMで確認した。
+  - 5 expected-byte rootと24,115 changed byteは全てdeclared span内で、allocatorおよびROM/RAM/save/UI/hook overlapは0。Stage41差分BPSとclean直接BPSを生成し、clean→41→42とclean→42が同一Stage 42になることを確認した。原本ZIP、clean/Stage41 ROM、saveは変更・追跡していない。
+- Files changed:
+  - production契約: `content/factory_high_modes_v2/**`、`config/factory_high_modes_v2.json`、`config/ram_layout.csv`。
+  - runtime/build: `overlays/factory_high_modes_v2/**`、`scripts/build_factory_high_modes_v2.py`、`scripts/rebuild_factory_high_modes_v2_from_clean.py`。
+  - QA/入口: `tools/mgba_factory_high_modes_v2_smoke.c`、`tests/test_factory_high_modes_v2.py`、`Makefile`、`README.md`。
+  - 状態・証跡: `design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。Stage 42 ROM、2 BPS、metadata/allocation、generated runtime/header/cases、audit/coverage、7,440-row mode matrix、mGBA quick/full、clean rebuild証跡はGit管理外の再生成領域へ出力した。
+- Verify:
+  - `python3 scripts/build_factory_high_modes_v2.py build` / `make factory-high-modes-v2-check`: PASS。Stage 42は33,554,432 bytes、SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`、canonical件数 `24/28/248/55/16/28/7`、artifact 21。
+  - `python3 scripts/rebuild_factory_high_modes_v2_from_clean.py build` / `make factory-high-modes-v2-clean-rebuild-check`: PASS。clean chain/direct BPSをbyte一致で完全往復し、独立2 processを再照合した。
+  - `python3 -m unittest tests.test_factory_high_modes_v2 -v`: PASS（10 tests）。固定入力、slot/Trial互換、全mode rule、有限generator、報酬atomicity、物理root、両BPS、clean rebuild、全受入証跡を確認した。
+  - libmGBA quick/full: 独立2 process、10/10 checks、受入11/11、warnings/errors 0、result identity `FH42:2:24:28:248:55:16:28:7:7440`一致。全runtime row、unlock/packed field、reset/敗北/retire、保存fault、49/100 reward、Mirage分離を実ROMで確認した。
+  - `python3 scripts/build_reward_encounters_v2.py check`: PASS。Stage 41 SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`とT24 production/mGBA証跡を再照合した。
+  - `python3 -m unittest tests.test_{reward_encounters_v2,research_economy_v1}`: PASS（25 tests）。`tests.test_{move_distribution_v4,mirage_production}`: PASS（21 tests）。`tests.test_{save_layout,facility_save}`: PASS（5 tests）。`tests.test_qol_production`: PASS（20 tests）。`tests.test_event_design_implementation`: PASS（10 tests）。Stage41直前4段、save/Factory/Mirage、QOL、event、Raid consumerのfocused回帰を確認した。
+  - 追加で試行した旧T16 `tests.test_content_population`と旧stage 23/24 `tests.test_battle_{rules,ui}`は、復旧workspaceにGit管理外の旧生成証跡（`kanto_map_inventory.csv`、stage 06/23/24 metadata）がないためassertion前にERRORとなった。T25 gateには採用せず、対応範囲はStage41固定入力・既存allocationのroot外byte不変、T25実ROMdelegate/isolation、QOL内Raid回帰でPASSした。WSLで旧stage全再構築には広げていない。
+  - `python3 -m py_compile scripts/build_factory_high_modes_v2.py scripts/rebuild_factory_high_modes_v2_from_clean.py tests/test_factory_high_modes_v2.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Output identity:
+  - Stage 42 ROM: 33,554,432 bytes、SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`。
+  - Stage41差分BPS / clean直接BPS: SHA-256 `a8b403601ed473ddeec2bed60aa52441bb172b4295531db7ccd79fc6a4429078` / `6b84f1ab4a854ffb015d4f0cfcdbb09b172c68098d94130b696aea6c2839685c`。
+  - audit / coverage / clean rebuild / mode matrix証跡: SHA-256 `7001632db0b8301bd8bb78ee5cbac772fdcc46f6f1fa209a984d85afd0bb7569` / `a2206b321dc7d498b7bfa2b27163757a228bc3b300f5cc2e03b9d38070c55b03` / `c0dc8bf3d55859c709fcd04b34d89357a0c7d178d6acd537ae0065d5ddbf0428` / `d896beef29b8c20525b55d6740bfcd9a5ddaa97550a72c96eaff3796d6c59ecc`。
+  - 原本ZIP: 30,203 bytes、mode `0444`、SHA-256 `7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830`、fingerprint `c48d69f2a64cda65f2a97a2382ddb8bb4dbc66437302a87e3da669428dc20fe1`で不変。
+- Commit: `-`（本エントリを含むT25完了コミット）
+- Network: 未使用。固定済みのローカルStage 41、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。
