@@ -1,0 +1,2058 @@
+{
+  "batch_order": [
+    "BATCH_KEY_REWARD_DATA_CODEGEN",
+    "BATCH_KEY_REWARD_CREDIT_HOOKS",
+    "BATCH_KEY_REWARD_PAYMENT_RUNTIME",
+    "BATCH_KEY_REWARD_EVENT_WIRING",
+    "BATCH_KEY_REWARD_ACCEPTANCE"
+  ],
+  "batches": [
+    {
+      "batch_key": "BATCH_KEY_REWARD_DATA_CODEGEN",
+      "depends_on": "NONE",
+      "notes": "symbolic keyをgeneratorの固定入力へ昇格",
+      "owned_outputs": "encounter_services.csv|encounter_pool_entries.csv|runtime_contract.json",
+      "priority": "P0",
+      "rollback_boundary": "generated catalog tablesだけを撤去しsave layoutと既存Factoryを変更しない",
+      "service_keys": "SERVICE_KEY_REWARD_RANDOM|SERVICE_KEY_REWARD_HABITAT|SERVICE_KEY_REWARD_TYPE|SERVICE_KEY_REWARD_RARE",
+      "status": "READY",
+      "verify_cases": "4 tier各6体|species reference解決|禁止species 0|価格とunlock一致"
+    },
+    {
+      "batch_key": "BATCH_KEY_REWARD_PAYMENT_RUNTIME",
+      "depends_on": "BATCH_KEY_REWARD_DATA_CODEGEN",
+      "notes": "credit pathは既存API。BP pathは一回persistの合成wrapper",
+      "owned_outputs": "runtime_contract.json|encounter_services.csv",
+      "priority": "P0",
+      "rollback_boundary": "event入口を無効化してpending ABIを残す。typed creditとFactory BPの既存残高は保持",
+      "service_keys": "SERVICE_KEY_REWARD_RANDOM|SERVICE_KEY_REWARD_HABITAT|SERVICE_KEY_REWARD_TYPE|SERVICE_KEY_REWARD_RARE",
+      "status": "READY",
+      "verify_cases": "token 1枚消費|BP 8/15/25/50|二重課金なし|persist失敗rollback|pending再開"
+    },
+    {
+      "batch_key": "BATCH_KEY_REWARD_EVENT_WIRING",
+      "depends_on": "BATCH_KEY_REWARD_PAYMENT_RUNTIME",
+      "notes": "標準message/list/yes-noだけを使用",
+      "owned_outputs": "encounter_services.csv|dialogue.csv",
+      "priority": "P1",
+      "rollback_boundary": "共有Scientist hostのscriptだけを元の空きhost状態へ戻す",
+      "service_keys": "SERVICE_KEY_REWARD_RANDOM|SERVICE_KEY_REWARD_HABITAT|SERVICE_KEY_REWARD_TYPE|SERVICE_KEY_REWARD_RARE",
+      "status": "READY",
+      "verify_cases": "host利用可能|同一placement dispatch|18 glyph|2行|新規mapなし|full-screen UIなし"
+    },
+    {
+      "batch_key": "BATCH_KEY_REWARD_CREDIT_HOOKS",
+      "depends_on": "BATCH_KEY_REWARD_DATA_CODEGEN",
+      "notes": "架空の活動hookを追加しない",
+      "owned_outputs": "credit_economy.csv|runtime_contract.json",
+      "priority": "P1",
+      "rollback_boundary": "source単位でhookを無効化し既存Factory報酬・釣り・調査・BP shop本体を維持",
+      "service_keys": "SERVICE_KEY_REWARD_RANDOM|SERVICE_KEY_REWARD_HABITAT|SERVICE_KEY_REWARD_TYPE|SERVICE_KEY_REWARD_RARE",
+      "status": "READY",
+      "verify_cases": "節目claim exactly-once|活動callback replay|BP voucher原子的購入|overflow無巻戻り"
+    },
+    {
+      "batch_key": "BATCH_KEY_REWARD_ACCEPTANCE",
+      "depends_on": "BATCH_KEY_REWARD_PAYMENT_RUNTIME|BATCH_KEY_REWARD_EVENT_WIRING|BATCH_KEY_REWARD_CREDIT_HOOKS",
+      "notes": "連続saveとhard resetを含む受入れ試験",
+      "owned_outputs": "DESIGN_BIBLE_JA.md|runtime_contract.json|implementation_batches.csv|OPEN_QUESTIONS.md",
+      "priority": "P2",
+      "rollback_boundary": "content pack全体を無効化してStage 37の既存event・save・Factoryへ戻す",
+      "service_keys": "SERVICE_KEY_REWARD_RANDOM|SERVICE_KEY_REWARD_HABITAT|SERVICE_KEY_REWARD_TYPE|SERVICE_KEY_REWARD_RARE",
+      "status": "READY",
+      "verify_cases": "capture atomic save|flee defeat reset free retry|capacity precheck|side effect全無効|open questions 0"
+    }
+  ],
+  "credit_sources": [
+    {
+      "amount": "1",
+      "anti_farm_policy": "Factory claim bitとcredit加算を同一persistで確定し再通知では加算しない",
+      "credit_key": "CREDIT_KEY_HABITAT",
+      "exactly_once_key": "CLAIM_KEY_STREAK_003",
+      "notes": "既存3連勝節目。typed creditは1 tokenとして付与",
+      "repeatability": "ONCE",
+      "source_key": "CREDIT_SOURCE_KEY_FACTORY_STREAK_003_HABITAT",
+      "source_kind": "FACTORY_MILESTONE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "Factory claim bitとcredit加算を同一persistで確定し再通知では加算しない",
+      "credit_key": "CREDIT_KEY_TYPE",
+      "exactly_once_key": "CLAIM_KEY_STREAK_007",
+      "notes": "既存7連勝節目。typed creditは1 tokenとして付与",
+      "repeatability": "ONCE",
+      "source_key": "CREDIT_SOURCE_KEY_FACTORY_STREAK_007_TYPE",
+      "source_kind": "FACTORY_MILESTONE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "Factory claim bitとcredit加算を同一persistで確定し再通知では加算しない",
+      "credit_key": "CREDIT_KEY_RARE",
+      "exactly_once_key": "CLAIM_KEY_STREAK_014",
+      "notes": "既存14連勝節目。RARE解禁前でも保有して後で使用可能",
+      "repeatability": "ONCE",
+      "source_key": "CREDIT_SOURCE_KEY_FACTORY_STREAK_014_RARE",
+      "source_kind": "FACTORY_MILESTONE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "Factory claim bitとcredit加算を同一persistで確定し再通知では加算しない",
+      "credit_key": "CREDIT_KEY_RANDOM",
+      "exactly_once_key": "CLAIM_KEY_STREAK_021",
+      "notes": "既存21連勝節目。typed creditは1 tokenとして付与",
+      "repeatability": "ONCE",
+      "source_key": "CREDIT_SOURCE_KEY_FACTORY_STREAK_021_RANDOM",
+      "source_kind": "FACTORY_MILESTONE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "成功した釣り捕獲の完了transactionごとに一度だけ付与し逃走・失敗・callback再生では付与しない",
+      "credit_key": "CREDIT_KEY_HABITAT",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_FISHING_CATCH_RESULT",
+      "notes": "既存ACTIVITY_HOOK_FISHINGへ接続。新規minigameは作らない",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_ACTIVITY_FISHING_HABITAT",
+      "source_kind": "ACTIVITY_COMPLETION",
+      "status": "ACTIVE",
+      "unlock_key": "VEGA_BADGE_1"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "調査捕獲で標準caught stateが未取得から取得へ変化したtransactionだけを受理し再送を無視",
+      "credit_key": "CREDIT_KEY_RANDOM",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_RESEARCH_CAPTURE",
+      "notes": "既存ACTIVITY_HOOK_RESEARCHへ接続。別speciesの正規更新ごとに反復可能",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_ACTIVITY_ECOLOGY_RANDOM",
+      "source_kind": "ACTIVITY_COMPLETION",
+      "status": "ACTIVE",
+      "unlock_key": "RESEARCH_PROFILE_UNLOCKED"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "BP8減算とtoken加算を一つのshop transactionでpersistしcredit上限時は支払い前に拒否",
+      "credit_key": "CREDIT_KEY_RANDOM",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_BP_TOKEN_RANDOM_PURCHASE",
+      "notes": "任意の前払いvoucher。遭遇時のBP8直払いとは別transactionで自動変換しない",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_BP_TOKEN_RANDOM",
+      "source_kind": "BP_PURCHASE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "BP15減算とtoken加算を一つのshop transactionでpersistしcredit上限時は支払い前に拒否",
+      "credit_key": "CREDIT_KEY_HABITAT",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_BP_TOKEN_HABITAT_PURCHASE",
+      "notes": "任意の前払いvoucher。遭遇時のBP15直払いとは別transactionで自動変換しない",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_BP_TOKEN_HABITAT",
+      "source_kind": "BP_PURCHASE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "BP25減算とtoken加算を一つのshop transactionでpersistしcredit上限時は支払い前に拒否",
+      "credit_key": "CREDIT_KEY_TYPE",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_BP_TOKEN_TYPE_PURCHASE",
+      "notes": "任意の前払いvoucher。遭遇時のBP25直払いとは別transactionで自動変換しない",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_BP_TOKEN_TYPE",
+      "source_kind": "BP_PURCHASE",
+      "status": "ACTIVE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "amount": "1",
+      "anti_farm_policy": "BP50減算とtoken加算を一つのshop transactionでpersistしcredit上限時は支払い前に拒否",
+      "credit_key": "CREDIT_KEY_RARE",
+      "exactly_once_key": "EXACTLY_ONCE_KEY_BP_TOKEN_RARE_PURCHASE",
+      "notes": "任意の前払いvoucher。遭遇時のBP50直払いとは別transactionで自動変換しない",
+      "repeatability": "REPEATABLE",
+      "source_key": "CREDIT_SOURCE_KEY_BP_TOKEN_RARE",
+      "source_kind": "BP_PURCHASE",
+      "status": "ACTIVE",
+      "unlock_key": "RAID_HIGH_UNLOCKED"
+    }
+  ],
+  "dialogue_encoding": {
+    "DIALOGUE_KEY_REWARD_HABITAT_BALANCE": "64ae587e14bcca2dfe0608162e0c1f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_CAPACITY_FULL": "13231114bcc9d216fe01073701281f0e2eff",
+    "DIALOGUE_KEY_REWARD_HABITAT_CAPTURED": "1e06082dfe072b080c1f0c10ff",
+    "DIALOGUE_KEY_REWARD_HABITAT_CONFIRM_BP": "bccaa2a644fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_HABITAT_CONFIRM_CREDIT": "64ae587ea21f0244fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_HABITAT_INSUFFICIENT": "64ae587e23bcca23fe10281f0e2eff",
+    "DIALOGUE_KEY_REWARD_HABITAT_INTRO": "0e020f08110f033903fe03091209440dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_LOCKED": "567e64ae14031134083bfe1206041f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_MENU": "0c1a27021e031e032dfe04272e4408410b02ff",
+    "DIALOGUE_KEY_REWARD_HABITAT_NON_CAPTURE_RETRY": "2128360344fe0b020e2e44071f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_PENDING_RESUME": "1f04190f0339032dfe0b0206020c1f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_REVISIT": "1238190f03390323fe030912091f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_START": "0f0339032dfe1a3d221f0dff",
+    "DIALOGUE_KEY_REWARD_HABITAT_SYSTEM": "5eae9844071f0e2efe2303021145450340ff",
+    "DIALOGUE_KEY_REWARD_RANDOM_BALANCE": "64ae587e14bcca2dfe0608162e0c1f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_CAPACITY_FULL": "13231114bcc9d216fe01073701281f0e2eff",
+    "DIALOGUE_KEY_REWARD_RANDOM_CAPTURED": "1e06082dfe072b080c1f0c10ff",
+    "DIALOGUE_KEY_REWARD_RANDOM_CONFIRM_BP": "bccaa944fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_RANDOM_CONFIRM_CREDIT": "64ae587ea21f0244fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_RANDOM_INSUFFICIENT": "64ae587e23bcca23fe10281f0e2eff",
+    "DIALOGUE_KEY_REWARD_RANDOM_INTRO": "051f060e0f033903fe03091209440dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_LOCKED": "567e64ae14031134083bfe1206041f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_MENU": "0c1a27021e031e032dfe04272e4408410b02ff",
+    "DIALOGUE_KEY_REWARD_RANDOM_NON_CAPTURE_RETRY": "2128360344fe0b020e2e44071f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_PENDING_RESUME": "1f04190f0339032dfe0b0206020c1f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_REVISIT": "1238190f03390323fe030912091f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_START": "0f0339032dfe1a3d221f0dff",
+    "DIALOGUE_KEY_REWARD_RANDOM_SYSTEM": "5eae9844071f0e2efe2303021145450340ff",
+    "DIALOGUE_KEY_REWARD_RARE_BALANCE": "64ae587e14bcca2dfe0608162e0c1f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_CAPACITY_FULL": "13231114bcc9d216fe01073701281f0e2eff",
+    "DIALOGUE_KEY_REWARD_RARE_CAPTURED": "1e06082dfe072b080c1f0c10ff",
+    "DIALOGUE_KEY_REWARD_RARE_CONFIRM_BP": "bccaa6a144fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_RARE_CONFIRM_CREDIT": "64ae587ea21f0244fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_RARE_INSUFFICIENT": "64ae587e23bcca23fe10281f0e2eff",
+    "DIALOGUE_KEY_REWARD_RARE_INTRO": "070c36030f033903fe03091209440dff",
+    "DIALOGUE_KEY_REWARD_RARE_LOCKED": "0a03152e4506021e033bfe1206041f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_MENU": "0c1a27021e031e032dfe04272e4408410b02ff",
+    "DIALOGUE_KEY_REWARD_RARE_NON_CAPTURE_RETRY": "2128360344fe0b020e2e44071f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_PENDING_RESUME": "1f04190f0339032dfe0b0206020c1f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_REVISIT": "1238190f03390323fe030912091f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_START": "0f0339032dfe1a3d221f0dff",
+    "DIALOGUE_KEY_REWARD_RARE_SYSTEM": "5eae9844071f0e2efe2303021145450340ff",
+    "DIALOGUE_KEY_REWARD_TYPE_BALANCE": "64ae587e14bcca2dfe0608162e0c1f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_CAPACITY_FULL": "13231114bcc9d216fe01073701281f0e2eff",
+    "DIALOGUE_KEY_REWARD_TYPE_CAPTURED": "1e06082dfe072b080c1f0c10ff",
+    "DIALOGUE_KEY_REWARD_TYPE_CONFIRM_BP": "bccaa3a644fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_TYPE_CONFIRM_CREDIT": "64ae587ea21f0244fe1a3d221f0d06acff",
+    "DIALOGUE_KEY_REWARD_TYPE_INSUFFICIENT": "64ae587e23bcca23fe10281f0e2eff",
+    "DIALOGUE_KEY_REWARD_TYPE_INTRO": "60529d0f033903fe03091209440dff",
+    "DIALOGUE_KEY_REWARD_TYPE_LOCKED": "567e64ae14031134083bfe1206041f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_MENU": "0c1a27021e031e032dfe04272e4408410b02ff",
+    "DIALOGUE_KEY_REWARD_TYPE_NON_CAPTURE_RETRY": "2128360344fe0b020e2e44071f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_PENDING_RESUME": "1f04190f0339032dfe0b0206020c1f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_REVISIT": "1238190f03390323fe030912091f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_START": "0f0339032dfe1a3d221f0dff",
+    "DIALOGUE_KEY_REWARD_TYPE_SYSTEM": "5eae9844071f0e2efe2303021145450340ff"
+  },
+  "dialogues": [
+    [
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_LOCKED",
+        "notes": "unlock未達時。tierメニューへ進めない",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "カントーとうちゃくご\\nつかえます",
+        "tier": "RANDOM",
+        "usage": "LOCKED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_INTRO",
+        "notes": "論理service選択後の案内",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "おまかせそうぐう\\nうけつけです",
+        "tier": "RANDOM",
+        "usage": "INTRO"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_BALANCE",
+        "notes": "直後の標準listで双方の残高を数値表示",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "トークンとBPを\\nかくにんします",
+        "tier": "RANDOM",
+        "usage": "BALANCE"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_MENU",
+        "notes": "利用可能な支払い方法だけを標準listへ出す",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "しはらいほうほうを\\nえらんでください",
+        "tier": "RANDOM",
+        "usage": "MENU"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_CONFIRM_CREDIT",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "トークン1まいで\\nはじめますか？",
+        "tier": "RANDOM",
+        "usage": "CONFIRM_CREDIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_CONFIRM_BP",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "BP8で\\nはじめますか？",
+        "tier": "RANDOM",
+        "usage": "CONFIRM_BP"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_INSUFFICIENT",
+        "notes": "両方不足。状態変更なし",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "トークンもBPも\\nたりません",
+        "tier": "RANDOM",
+        "usage": "INSUFFICIENT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_CAPACITY_FULL",
+        "notes": "支払い前またはpending再開前に表示",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "てもちとBOXに\\nあきがありません",
+        "tier": "RANDOM",
+        "usage": "CAPACITY_FULL"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_START",
+        "notes": "pending persist成功後だけ表示",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "そうぐうを\\nはじめます",
+        "tier": "RANDOM",
+        "usage": "START"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_CAPTURED",
+        "notes": "捕獲とpending clearの同時保存成功後",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "ほかくを\\nきろくしました",
+        "tier": "RANDOM",
+        "usage": "CAPTURED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_NON_CAPTURE_RETRY",
+        "notes": "tokenとBPの再消費なし。道具消費は通常扱い",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "むりょうで\\nさいせんできます",
+        "tier": "RANDOM",
+        "usage": "NON_CAPTURE_RETRY"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_PENDING_RESUME",
+        "notes": "保存済み個体を同一属性で再開",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "まえのそうぐうを\\nさいかいします",
+        "tier": "RANDOM",
+        "usage": "PENDING_RESUME"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_REVISIT",
+        "notes": "pendingが空の再訪時",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "つぎのそうぐうも\\nうけつけます",
+        "tier": "RANDOM",
+        "usage": "REVISIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RANDOM_SYSTEM",
+        "notes": "保存失敗時は確定前の変更だけをrollback",
+        "service_key": "SERVICE_KEY_REWARD_RANDOM",
+        "text": "セーブできません\\nもういちどどうぞ",
+        "tier": "RANDOM",
+        "usage": "SYSTEM"
+      }
+    ],
+    [
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_LOCKED",
+        "notes": "unlock未達時。tierメニューへ進めない",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "カントーとうちゃくご\\nつかえます",
+        "tier": "HABITAT",
+        "usage": "LOCKED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_INTRO",
+        "notes": "論理service選択後の案内",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "せいそくちそうぐう\\nうけつけです",
+        "tier": "HABITAT",
+        "usage": "INTRO"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_BALANCE",
+        "notes": "直後の標準listで双方の残高を数値表示",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "トークンとBPを\\nかくにんします",
+        "tier": "HABITAT",
+        "usage": "BALANCE"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_MENU",
+        "notes": "利用可能な支払い方法だけを標準listへ出す",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "しはらいほうほうを\\nえらんでください",
+        "tier": "HABITAT",
+        "usage": "MENU"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_CONFIRM_CREDIT",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "トークン1まいで\\nはじめますか？",
+        "tier": "HABITAT",
+        "usage": "CONFIRM_CREDIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_CONFIRM_BP",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "BP15で\\nはじめますか？",
+        "tier": "HABITAT",
+        "usage": "CONFIRM_BP"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_INSUFFICIENT",
+        "notes": "両方不足。状態変更なし",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "トークンもBPも\\nたりません",
+        "tier": "HABITAT",
+        "usage": "INSUFFICIENT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_CAPACITY_FULL",
+        "notes": "支払い前またはpending再開前に表示",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "てもちとBOXに\\nあきがありません",
+        "tier": "HABITAT",
+        "usage": "CAPACITY_FULL"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_START",
+        "notes": "pending persist成功後だけ表示",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "そうぐうを\\nはじめます",
+        "tier": "HABITAT",
+        "usage": "START"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_CAPTURED",
+        "notes": "捕獲とpending clearの同時保存成功後",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "ほかくを\\nきろくしました",
+        "tier": "HABITAT",
+        "usage": "CAPTURED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_NON_CAPTURE_RETRY",
+        "notes": "tokenとBPの再消費なし。道具消費は通常扱い",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "むりょうで\\nさいせんできます",
+        "tier": "HABITAT",
+        "usage": "NON_CAPTURE_RETRY"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_PENDING_RESUME",
+        "notes": "保存済み個体を同一属性で再開",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "まえのそうぐうを\\nさいかいします",
+        "tier": "HABITAT",
+        "usage": "PENDING_RESUME"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_REVISIT",
+        "notes": "pendingが空の再訪時",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "つぎのそうぐうも\\nうけつけます",
+        "tier": "HABITAT",
+        "usage": "REVISIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_HABITAT_SYSTEM",
+        "notes": "保存失敗時は確定前の変更だけをrollback",
+        "service_key": "SERVICE_KEY_REWARD_HABITAT",
+        "text": "セーブできません\\nもういちどどうぞ",
+        "tier": "HABITAT",
+        "usage": "SYSTEM"
+      }
+    ],
+    [
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_LOCKED",
+        "notes": "unlock未達時。tierメニューへ進めない",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "カントーとうちゃくご\\nつかえます",
+        "tier": "TYPE",
+        "usage": "LOCKED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_INTRO",
+        "notes": "論理service選択後の案内",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "タイプそうぐう\\nうけつけです",
+        "tier": "TYPE",
+        "usage": "INTRO"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_BALANCE",
+        "notes": "直後の標準listで双方の残高を数値表示",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "トークンとBPを\\nかくにんします",
+        "tier": "TYPE",
+        "usage": "BALANCE"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_MENU",
+        "notes": "利用可能な支払い方法だけを標準listへ出す",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "しはらいほうほうを\\nえらんでください",
+        "tier": "TYPE",
+        "usage": "MENU"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_CONFIRM_CREDIT",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "トークン1まいで\\nはじめますか？",
+        "tier": "TYPE",
+        "usage": "CONFIRM_CREDIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_CONFIRM_BP",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "BP25で\\nはじめますか？",
+        "tier": "TYPE",
+        "usage": "CONFIRM_BP"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_INSUFFICIENT",
+        "notes": "両方不足。状態変更なし",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "トークンもBPも\\nたりません",
+        "tier": "TYPE",
+        "usage": "INSUFFICIENT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_CAPACITY_FULL",
+        "notes": "支払い前またはpending再開前に表示",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "てもちとBOXに\\nあきがありません",
+        "tier": "TYPE",
+        "usage": "CAPACITY_FULL"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_START",
+        "notes": "pending persist成功後だけ表示",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "そうぐうを\\nはじめます",
+        "tier": "TYPE",
+        "usage": "START"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_CAPTURED",
+        "notes": "捕獲とpending clearの同時保存成功後",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "ほかくを\\nきろくしました",
+        "tier": "TYPE",
+        "usage": "CAPTURED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_NON_CAPTURE_RETRY",
+        "notes": "tokenとBPの再消費なし。道具消費は通常扱い",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "むりょうで\\nさいせんできます",
+        "tier": "TYPE",
+        "usage": "NON_CAPTURE_RETRY"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_PENDING_RESUME",
+        "notes": "保存済み個体を同一属性で再開",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "まえのそうぐうを\\nさいかいします",
+        "tier": "TYPE",
+        "usage": "PENDING_RESUME"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_REVISIT",
+        "notes": "pendingが空の再訪時",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "つぎのそうぐうも\\nうけつけます",
+        "tier": "TYPE",
+        "usage": "REVISIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_TYPE_SYSTEM",
+        "notes": "保存失敗時は確定前の変更だけをrollback",
+        "service_key": "SERVICE_KEY_REWARD_TYPE",
+        "text": "セーブできません\\nもういちどどうぞ",
+        "tier": "TYPE",
+        "usage": "SYSTEM"
+      }
+    ],
+    [
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_LOCKED",
+        "notes": "unlock未達時。tierメニューへ進めない",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "こうなんどかいほうご\\nつかえます",
+        "tier": "RARE",
+        "usage": "LOCKED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_INTRO",
+        "notes": "論理service選択後の案内",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "きしょうそうぐう\\nうけつけです",
+        "tier": "RARE",
+        "usage": "INTRO"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_BALANCE",
+        "notes": "直後の標準listで双方の残高を数値表示",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "トークンとBPを\\nかくにんします",
+        "tier": "RARE",
+        "usage": "BALANCE"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_MENU",
+        "notes": "利用可能な支払い方法だけを標準listへ出す",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "しはらいほうほうを\\nえらんでください",
+        "tier": "RARE",
+        "usage": "MENU"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_CONFIRM_CREDIT",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "トークン1まいで\\nはじめますか？",
+        "tier": "RARE",
+        "usage": "CONFIRM_CREDIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_CONFIRM_BP",
+        "notes": "yes-noで明示確認",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "BP50で\\nはじめますか？",
+        "tier": "RARE",
+        "usage": "CONFIRM_BP"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_INSUFFICIENT",
+        "notes": "両方不足。状態変更なし",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "トークンもBPも\\nたりません",
+        "tier": "RARE",
+        "usage": "INSUFFICIENT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_CAPACITY_FULL",
+        "notes": "支払い前またはpending再開前に表示",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "てもちとBOXに\\nあきがありません",
+        "tier": "RARE",
+        "usage": "CAPACITY_FULL"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_START",
+        "notes": "pending persist成功後だけ表示",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "そうぐうを\\nはじめます",
+        "tier": "RARE",
+        "usage": "START"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_CAPTURED",
+        "notes": "捕獲とpending clearの同時保存成功後",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "ほかくを\\nきろくしました",
+        "tier": "RARE",
+        "usage": "CAPTURED"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_NON_CAPTURE_RETRY",
+        "notes": "tokenとBPの再消費なし。道具消費は通常扱い",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "むりょうで\\nさいせんできます",
+        "tier": "RARE",
+        "usage": "NON_CAPTURE_RETRY"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_PENDING_RESUME",
+        "notes": "保存済み個体を同一属性で再開",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "まえのそうぐうを\\nさいかいします",
+        "tier": "RARE",
+        "usage": "PENDING_RESUME"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_REVISIT",
+        "notes": "pendingが空の再訪時",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "つぎのそうぐうも\\nうけつけます",
+        "tier": "RARE",
+        "usage": "REVISIT"
+      },
+      {
+        "dialogue_key": "DIALOGUE_KEY_REWARD_RARE_SYSTEM",
+        "notes": "保存失敗時は確定前の変更だけをrollback",
+        "service_key": "SERVICE_KEY_REWARD_RARE",
+        "text": "セーブできません\\nもういちどどうぞ",
+        "tier": "RARE",
+        "usage": "SYSTEM"
+      }
+    ]
+  ],
+  "host": {
+    "elevation": "3",
+    "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+    "host_kind": "OBJECT",
+    "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+    "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+    "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+    "notes": "clean FireRed source object record。script/local ID/flagはCodexが再割当",
+    "object_cost": "1",
+    "source_role": "LOCAL_NPC",
+    "status": "AVAILABLE_RESTORE",
+    "x": "25",
+    "y": "7"
+  },
+  "normalization": {
+    "batch_count": 5,
+    "credit_source_count": 10,
+    "dialogue_count": 56,
+    "forbidden_species": 0,
+    "open_questions": 0,
+    "pool_entry_count": 24,
+    "service_count": 4,
+    "stable_key_duplicates": 0,
+    "unresolved_references": 0
+  },
+  "pool_entries": [
+    {
+      "ability1": 49,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_01",
+      "generator_fingerprint": "9abf912519cd9d9a6871cce128dbb6a4",
+      "hidden_ability": 178,
+      "hidden_ability_rate": 5,
+      "index": 0,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の飛行・炎役。高レベル帯で進化停滞を起こさない最終形",
+      "slot": "1",
+      "species_id": 952,
+      "species_key": "SPECIES_KEY_TALONFLAME",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 10,
+      "type2": 2,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 219,
+      "ability2": 81,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_02",
+      "generator_fingerprint": "40a2ef508b4788f750087d8505948839",
+      "hidden_ability": 172,
+      "hidden_ability_rate": 5,
+      "index": 1,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の耐久寄り通常種。安価枠の役割差を確保",
+      "slot": "2",
+      "species_id": 1305,
+      "species_key": "SPECIES_KEY_DUBWOOL",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 0,
+      "type2": 0,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 10,
+      "ability2": 30,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_03",
+      "generator_fingerprint": "5f6cde67cb2267e2249467eb035f3887",
+      "hidden_ability": 90,
+      "hidden_ability_rate": 5,
+      "index": 2,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の電気・格闘役。カントー高レベル任意導線に適合",
+      "slot": "3",
+      "species_id": 1493,
+      "species_key": "SPECIES_KEY_PAWMOT",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 13,
+      "type2": 1,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 270,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_04",
+      "generator_fingerprint": "65a3d07068250b9787abff3beeb4c3b7",
+      "hidden_ability": 140,
+      "hidden_ability_rate": 5,
+      "index": 3,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の草・通常役。特殊寄りの選択肢を追加",
+      "slot": "4",
+      "species_id": 1501,
+      "species_key": "SPECIES_KEY_ARBOLIVA",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 12,
+      "type2": 0,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 33,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_05",
+      "generator_fingerprint": "e345447658111ecc9403415da0331afe",
+      "hidden_ability": 240,
+      "hidden_ability_rate": 5,
+      "index": 4,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の高速水役。海辺の配置テーマとも整合",
+      "slot": "5",
+      "species_id": 1320,
+      "species_key": "SPECIES_KEY_BARRASKEWDA",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 11,
+      "type2": 11,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 273,
+      "ability2": 5,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RANDOM_06",
+      "generator_fingerprint": "c438564ea9c687ea6fd90f7854f8b780",
+      "hidden_ability": 29,
+      "hidden_ability_rate": 5,
+      "index": 5,
+      "iv_floor": 2,
+      "level_max": 100,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "reason": "汎用枠の岩耐久役。六枠内の戦術差を確保",
+      "slot": "6",
+      "species_id": 1508,
+      "species_key": "SPECIES_KEY_GARGANACL",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "type1": 5,
+      "type2": 5,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 27,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_01",
+      "generator_fingerprint": "ba60771836db3b478b1dd8b1bce45402",
+      "hidden_ability": 145,
+      "hidden_ability_rate": 5,
+      "index": 6,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "森林・菌類生息地の代表。最終形で高レベル捕獲後の停滞を回避",
+      "slot": "1",
+      "species_id": 839,
+      "species_key": "SPECIES_KEY_AMOONGUSS",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 12,
+      "type2": 3,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 22,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_02",
+      "generator_fingerprint": "53f48b667732651504b6ffbd8e37f3f0",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 5,
+      "index": 7,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "砂地・乾燥地の代表。地形テーマを明確化",
+      "slot": "2",
+      "species_id": 399,
+      "species_key": "SPECIES_KEY_KROOKODILE",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 4,
+      "type2": 17,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 120,
+      "ability2": 152,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_03",
+      "generator_fingerprint": "3c8d28e57eb03d2d0c66be52fab1382e",
+      "hidden_ability": 141,
+      "hidden_ability_rate": 5,
+      "index": 8,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "洞窟・夜行性生息地の代表。飛行役と竜役を兼ねる",
+      "slot": "3",
+      "species_id": 1004,
+      "species_key": "SPECIES_KEY_NOIVERN",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 2,
+      "type2": 16,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 38,
+      "ability2": 144,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_04",
+      "generator_fingerprint": "e775b7e29da7abc802788eab152bc9ab",
+      "hidden_ability": 92,
+      "hidden_ability_rate": 5,
+      "index": 9,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "海岸・藻場生息地の代表。港町の受付配置と親和",
+      "slot": "4",
+      "species_id": 980,
+      "species_key": "SPECIES_KEY_DRAGALGE",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 3,
+      "type2": 16,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 19,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_05",
+      "generator_fingerprint": "aac2f903f247c6f78ea46286cf5cba24",
+      "hidden_ability": 247,
+      "hidden_ability_rate": 5,
+      "index": 10,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "雪原・寒冷地の代表。生息地の気候幅を確保",
+      "slot": "5",
+      "species_id": 1346,
+      "species_key": "SPECIES_KEY_FROSMOTH",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 15,
+      "type2": 6,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 20,
+      "ability2": 193,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_HABITAT_06",
+      "generator_fingerprint": "3fa7a0db6832a42d775c82f7d2e889a7",
+      "hidden_ability": 39,
+      "hidden_ability_rate": 5,
+      "index": 11,
+      "iv_floor": 2,
+      "level_max": 78,
+      "level_min": 68,
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "reason": "草原・泥地生息地の代表。陸上大型種を補完",
+      "slot": "6",
+      "species_id": 1148,
+      "species_key": "SPECIES_KEY_MUDSDALE",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "type1": 4,
+      "type2": 4,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 68,
+      "ability2": 62,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_01",
+      "generator_fingerprint": "ce69f0130e47df850a40d73396e95b13",
+      "hidden_ability": 154,
+      "hidden_ability_rate": 10,
+      "index": 12,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "虫・格闘の複合タイプ代表。単純な高種族値偏重を避ける",
+      "slot": "1",
+      "species_id": 540,
+      "species_key": "SPECIES_KEY_HERACROSS",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 6,
+      "type2": 1,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 11,
+      "ability2": 75,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_02",
+      "generator_fingerprint": "c77a640aa6ecd23f1e830b8c94e41f33",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 10,
+      "index": 13,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "水・氷の複合タイプ代表。耐久と補助の役割を提供",
+      "slot": "2",
+      "species_id": 324,
+      "species_key": "SPECIES_KEY_LAPRAS",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 11,
+      "type2": 15,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 52,
+      "ability2": 22,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_03",
+      "generator_fingerprint": "a6ca8bd5194901d766b70ae209397afa",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 10,
+      "index": 14,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "鋼・妖精の複合タイプ代表。耐性設計の選択肢を提供",
+      "slot": "3",
+      "species_id": 280,
+      "species_key": "SPECIES_KEY_MAWILE",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 8,
+      "type2": 8,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 26,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_04",
+      "generator_fingerprint": "14f06511a89d5606dad3542dc128c1e1",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 10,
+      "index": 15,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "電気・霊の複合タイプ代表。標準形を固定しフォーム曖昧性を排除",
+      "slot": "4",
+      "species_id": 742,
+      "species_key": "SPECIES_KEY_ROTOM",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 13,
+      "type2": 7,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 75,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_05",
+      "generator_fingerprint": "37ebe012c3f51b2bd2a070f5927eacb7",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 10,
+      "index": 16,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "炎・竜の複合タイプ代表。攻守の役割差を追加",
+      "slot": "5",
+      "species_id": 1174,
+      "species_key": "SPECIES_KEY_TURTONATOR",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 10,
+      "type2": 16,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 38,
+      "ability2": 11,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_TYPE_06",
+      "generator_fingerprint": "1e5d5822543dac35207536fcaf6033b6",
+      "hidden_ability": 110,
+      "hidden_ability_rate": 10,
+      "index": 17,
+      "iv_floor": 3,
+      "level_max": 88,
+      "level_min": 76,
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "reason": "毒・地面の複合タイプ代表。六枠で十二タイプを重複なく網羅",
+      "slot": "6",
+      "species_id": 1557,
+      "species_key": "SPECIES_KEY_CLODSIRE",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "type1": 3,
+      "type2": 4,
+      "uncaught_rerolls": "10",
+      "unlock_key": "KANTO_EARLY_ACCESS",
+      "weight": "100"
+    },
+    {
+      "ability1": 46,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_01",
+      "generator_fingerprint": "2eefeba614c2e5cabdda25c9bda3d4d9",
+      "hidden_ability": 152,
+      "hidden_ability_rate": 20,
+      "index": 18,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "特殊条件で出会う価値を持つ非伝説候補。希少枠の収集性を担当",
+      "slot": "1",
+      "species_id": 726,
+      "species_key": "SPECIES_KEY_SPIRITOMB",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 7,
+      "type2": 17,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    },
+    {
+      "ability1": 49,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_02",
+      "generator_fingerprint": "e5e2ee8b564ed35208a4549734be4a47",
+      "hidden_ability": 68,
+      "hidden_ability_rate": 20,
+      "index": 19,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "晩成かつ高価値の非伝説最終形。希少枠の虫・炎役",
+      "slot": "2",
+      "species_id": 871,
+      "species_key": "SPECIES_KEY_VOLCARONA",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 6,
+      "type2": 10,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    },
+    {
+      "ability1": 29,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_03",
+      "generator_fingerprint": "6a4f3619dd4a1f86075d6c50b45b0180",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 20,
+      "index": 20,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "非伝説の高性能晩成最終形。禁止ownerとの重複なし",
+      "slot": "3",
+      "species_id": 129,
+      "species_key": "SPECIES_KEY_METAGROSS",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 8,
+      "type2": 14,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    },
+    {
+      "ability1": 26,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_04",
+      "generator_fingerprint": "dcaa5db5508c96bac68cee926ba72a9e",
+      "hidden_ability": 0,
+      "hidden_ability_rate": 20,
+      "index": 21,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "非伝説の高性能晩成最終形。高難度解禁に見合う価値",
+      "slot": "4",
+      "species_id": 869,
+      "species_key": "SPECIES_KEY_HYDREIGON",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 17,
+      "type2": 16,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    },
+    {
+      "ability1": 29,
+      "ability2": 152,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_05",
+      "generator_fingerprint": "ae04cbf9813f2dbd4f061320e28d723b",
+      "hidden_ability": 131,
+      "hidden_ability_rate": 20,
+      "index": 22,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "非伝説の高性能晩成最終形。高速役を担当",
+      "slot": "5",
+      "species_id": 1360,
+      "species_key": "SPECIES_KEY_DRAGAPULT",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 16,
+      "type2": 7,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    },
+    {
+      "ability1": 271,
+      "ability2": 0,
+      "capture_policy": "REPEATABLE_NORMAL",
+      "entry_key": "ENCOUNTER_ENTRY_KEY_RARE_06",
+      "generator_fingerprint": "914ca72894ea542c04a74d1c308e1a58",
+      "hidden_ability": 116,
+      "hidden_ability_rate": 20,
+      "index": 23,
+      "iv_floor": 4,
+      "level_max": 100,
+      "level_min": 88,
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "reason": "非伝説の高性能晩成最終形。現代世代の希少価値を担当",
+      "slot": "6",
+      "species_id": 1576,
+      "species_key": "SPECIES_KEY_BAXCALIBUR",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "type1": 16,
+      "type2": 15,
+      "uncaught_rerolls": "10",
+      "unlock_key": "RAID_HIGH_UNLOCKED",
+      "weight": "100"
+    }
+  ],
+  "runtime_contract": {
+    "acceptance_gates": [
+      {
+        "expected": "4_LOGICAL_SERVICES",
+        "gate_key": "GATE_KEY_SERVICE_COUNT"
+      },
+      {
+        "expected": "6_ENTRIES_PER_TIER_24_TOTAL",
+        "gate_key": "GATE_KEY_POOL_COUNT"
+      },
+      {
+        "expected": "24_UNIQUE_SPECIES",
+        "gate_key": "GATE_KEY_SPECIES_UNIQUE"
+      },
+      {
+        "expected": "ZERO",
+        "gate_key": "GATE_KEY_FORBIDDEN_SPECIES"
+      },
+      {
+        "expected": "ONE_TOKEN_ALL_TIERS",
+        "gate_key": "GATE_KEY_CREDIT_COST"
+      },
+      {
+        "expected": "RANDOM_8_HABITAT_15_TYPE_25_RARE_50",
+        "gate_key": "GATE_KEY_BP_PRICES"
+      },
+      {
+        "expected": "NO_DOUBLE_CHARGE",
+        "gate_key": "GATE_KEY_PAYMENT_EXCLUSION"
+      },
+      {
+        "expected": "CHECK_BEFORE_ANY_PAYMENT_AND_BEFORE_RESUME_BATTLE",
+        "gate_key": "GATE_KEY_CAPACITY"
+      },
+      {
+        "expected": "PERSIST_SUCCESS_BEFORE_BATTLE",
+        "gate_key": "GATE_KEY_PENDING_PERSIST"
+      },
+      {
+        "expected": "SAME_PERSISTED_PERSONALITY_AND_ATTRIBUTES",
+        "gate_key": "GATE_KEY_RETRY_IDENTITY"
+      },
+      {
+        "expected": "MON_CAUGHT_STATE_PENDING_CLEAR_ONE_FULL_SAVE",
+        "gate_key": "GATE_KEY_CAPTURE_ATOMICITY"
+      },
+      {
+        "expected": "NO_SHARED_SPECIAL_CAPTURE_BITS",
+        "gate_key": "GATE_KEY_NORMAL_CAPTURE_ONLY"
+      },
+      {
+        "expected": "KEEP_PENDING_NO_ADDITIONAL_PAYMENT",
+        "gate_key": "GATE_KEY_NON_CAPTURE"
+      },
+      {
+        "expected": "NO_LOST_PAYMENT_AND_NO_REROLL",
+        "gate_key": "GATE_KEY_RESET"
+      },
+      {
+        "expected": "ROLLBACK_WITH_NO_PARTIAL_SUCCESS",
+        "gate_key": "GATE_KEY_SAVE_FAILURE"
+      },
+      {
+        "expected": "EXP_EV_MONEY_THEFT_DROP_CHAIN_DISABLED",
+        "gate_key": "GATE_KEY_SIDE_EFFECTS"
+      },
+      {
+        "expected": "FACTORY_ACTIVITY_BP_PURCHASE_PRESENT",
+        "gate_key": "GATE_KEY_CREDIT_SUPPLY"
+      },
+      {
+        "expected": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+        "gate_key": "GATE_KEY_HOST"
+      },
+      {
+        "expected": "STANDARD_MESSAGE_LIST_YES_NO_ONLY",
+        "gate_key": "GATE_KEY_UI"
+      },
+      {
+        "expected": "ZERO",
+        "gate_key": "GATE_KEY_OPEN_QUESTIONS"
+      }
+    ],
+    "assumptions": [
+      {
+        "assumption_key": "ASSUMPTION_KEY_SHARED_SCIENTIST",
+        "basis": "The host is AVAILABLE_RESTORE on the required existing Vermilion map and matches the research role.",
+        "decision": "FOUR_LOGICAL_SERVICES_SHARE_ONE_PHYSICAL_SCIENTIST"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_UNLOCKS",
+        "basis": "Preserves the prior progression boundary while reserving premium final forms for post-Hall-of-Fame high difficulty access.",
+        "decision": "RANDOM_HABITAT_TYPE_USE_KANTO_EARLY_ACCESS_AND_RARE_USES_RAID_HIGH_UNLOCKED"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_EQUAL_WEIGHTS",
+        "basis": "No packet source defines within-tier rarity and equal weights are reproducible and auditable.",
+        "decision": "ALL_SIX_ENTRIES_IN_EACH_TIER_HAVE_EQUAL_WEIGHT"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_FINAL_FORMS",
+        "basis": "Avoids level-cap evolution dead ends and makes each paid encounter immediately usable.",
+        "decision": "HIGH_LEVEL_POOLS_USE_FINAL_OR_NON_EVOLVING_FORMS"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_BP_VOUCHER_PARITY",
+        "basis": "Prevents arbitrage and satisfies repeatable typed-credit supply without replacing the direct BP path.",
+        "decision": "OPTIONAL_BP_TOKEN_EXCHANGE_USES_THE_SAME_8_15_25_50_PRICES_AS_DIRECT_PAYMENT"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_NORMAL_CAPTURE_COMPLETION",
+        "basis": "All selected species are outside the forbidden raid or special-capture owner set and the task permits only standard caught-state updates.",
+        "decision": "A_NEW_NORMAL_CAPTURE_COMPLETION_WRAPPER_CLEARS_PENDING_WITHOUT_SPECIAL_CAPTURE_BITS"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_PENDING_PAYMENT_METHOD",
+        "basis": "After the atomic pending commit no retry or completion path charges or refunds; the existing payload is sufficient.",
+        "decision": "PAYMENT_METHOD_IS_NOT_ADDED_TO_SAVE_ABI"
+      },
+      {
+        "assumption_key": "ASSUMPTION_KEY_EXISTING_ROUTES",
+        "basis": "The task preserves normal acquisition routes and this submission owns only reward encounter data.",
+        "decision": "REWARD_POOLS_ARE_ADDITIVE_AND_DO_NOT_REMOVE_NORMAL_EXPLORATION_ENCOUNTERS"
+      }
+    ],
+    "battle_contract": {
+      "battle_item_consumption": "STANDARD_AND_NOT_REFUNDED",
+      "battle_kind": "SCRIPTED_WILD",
+      "capacity_definition": "PARTY_HAS_SLOT_OR_ANY_WRITABLE_PC_BOX_SLOT",
+      "capacity_full_behavior": "KEEP_PENDING_AND_DO_NOT_START_BATTLE",
+      "capacity_recheck_on_resume": true,
+      "factory_record_mutation": false,
+      "flee_behavior": "RETURN_TO_EVENT_AND_KEEP_PENDING",
+      "launch_payload_source": "PERSISTED_PENDING_ONLY",
+      "launch_source": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "ordinary_capture_commands": true,
+      "party_hp_pp_status_after_non_capture": "STANDARD_SCRIPTED_WILD_BATTLE",
+      "player_defeated_behavior": "STANDARD_HEAL_RETURN_WITHOUT_MONEY_LOSS_AND_KEEP_PENDING",
+      "special_raid_rules": false,
+      "target_defeated_behavior": "NON_CAPTURE_RETRY"
+    },
+    "capture_contract": {
+      "atomic_full_save_mutations": [
+        "WRITE_CAPTURED_MON_TO_PARTY_OR_BOX",
+        "UPDATE_STANDARD_SEEN_AND_CAUGHT_STATE",
+        "CLEAR_PENDING_ENCOUNTER"
+      ],
+      "capture_policy": "REPEATABLE_NORMAL",
+      "completion_entrypoint": "RewardEncounterCompleteNormalCapture",
+      "duplicate_capture_allowed": true,
+      "must_not_call": "VegaSaveCompleteCapture",
+      "normal_exploration_routes_unchanged": true,
+      "not_mutated": [
+        "SHARED_SPECIAL_CAPTURE_BITS",
+        "RAID_REWARD_BITS",
+        "FACTORY_REWARD_BITS",
+        "REWARD_SPECIFIC_CAUGHT_BITS"
+      ],
+      "reason_not_to_call_special_completion": "REWARD_POOL_SPECIES_DO_NOT_OWN_SHARED_SPECIAL_CAPTURE_KEYS",
+      "success_message_after_persist": true
+    },
+    "credit_source_contract": {
+      "activity_sources": [
+        "ACTIVITY_HOOK_FISHING_TO_CREDIT_KEY_HABITAT",
+        "ACTIVITY_HOOK_RESEARCH_TO_CREDIT_KEY_RANDOM"
+      ],
+      "bp_token_exchange_auto_used_by_service": false,
+      "bp_token_exchange_is_optional_prepurchase": true,
+      "bp_token_exchange_prices": {
+        "HABITAT": 15,
+        "RANDOM": 8,
+        "RARE": 50,
+        "TYPE": 25
+      },
+      "credit_overflow_policy": "NO_WRAP;BP_PURCHASE_REJECTS_BEFORE_SPEND;OTHER_SOURCE_COMPLETES_WITH_SATURATED_BALANCE",
+      "factory_milestones": {
+        "14": "CREDIT_KEY_RARE",
+        "21": "CREDIT_KEY_RANDOM",
+        "3": "CREDIT_KEY_HABITAT",
+        "7": "CREDIT_KEY_TYPE",
+        "amount_each": 1,
+        "repeatability": "ONCE_PER_CLAIM_KEY"
+      },
+      "unknown_or_deferred_activity_hooks_added": false
+    },
+    "design_status": "IMPLEMENTATION_READY",
+    "disabled_side_effects": {
+      "activity_completion_reward_hook_from_reward_battle": true,
+      "allowed_standard_updates": [
+        "SEEN_STATE_ON_ENCOUNTER",
+        "CAUGHT_STATE_ON_SUCCESSFUL_CAPTURE_ONLY",
+        "CAPTURED_MON_STORAGE_ON_SUCCESSFUL_CAPTURE_ONLY",
+        "NORMAL_BALL_AND_BATTLE_ITEM_CONSUMPTION",
+        "NORMAL_PARTY_HP_PP_STATUS_CHANGES"
+      ],
+      "blackout_money_loss": true,
+      "dexnav_chain_increment": true,
+      "effort_value_gain": true,
+      "experience_gain": true,
+      "factory_streak_or_record_update": true,
+      "item_theft_persistence": true,
+      "pickup_style_drop_hooks": true,
+      "post_battle_item_drop": true,
+      "prize_money_gain": true,
+      "raid_reward_or_capture_owner_update": true,
+      "research_chain_increment": true,
+      "wild_held_item_generation": true
+    },
+    "generation_contract": {
+      "all_generated_attributes_persisted_before_battle": true,
+      "fingerprint_inputs": [
+        "SCHEMA_VERSION",
+        "SERVICE_KEY",
+        "POOL_KEY",
+        "ENTRY_KEY",
+        "SPECIES_KEY",
+        "LEVEL_RANGE",
+        "IV_FLOOR",
+        "HIDDEN_ABILITY_RATE",
+        "WEIGHT",
+        "UNLOCK_KEY"
+      ],
+      "fingerprint_mismatch_policy": "PERSISTED_STRUCTURALLY_VALID_PAYLOAD_REMAINS_AUTHORITATIVE_AND_IS_NOT_REGENERATED",
+      "form_policy": "CANONICAL_DEFAULT_FORM_ONLY",
+      "gender_policy": "STANDARD_SPECIES_RATIO",
+      "generator_key": "REWARD_ENCOUNTER_GENERATOR_V2",
+      "generator_version": 2,
+      "held_item_policy": "NONE",
+      "hidden_ability_missing_fallback": "SELECT_LEGAL_NORMAL_ABILITY_WITHOUT_SPECIES_REROLL",
+      "hidden_ability_roll": "INTEGER_PERCENT_0_TO_99_LESS_THAN_RATE",
+      "iv_floor_semantics": "COUNT_OF_DISTINCT_STATS_FORCED_TO_PERFECT_IV",
+      "level_policy": "UNIFORM_INCLUSIVE_ENTRY_RANGE",
+      "move_policy": "STANDARD_LEGAL_WILD_INITIAL_MOVES_AT_GENERATED_LEVEL",
+      "nature_policy": "UNIFORM_STANDARD_NATURE",
+      "personality_generated_once": true,
+      "remaining_iv_policy": "UNIFORM_STANDARD_IV_RANGE",
+      "retry_reuses_exact_payload": true,
+      "shiny_policy": "STANDARD_ENGINE_ODDS_NO_TIER_BONUS"
+    },
+    "non_capture_contract": {
+      "ball_and_battle_item_refund": false,
+      "free_retry_means": "NO_ADDITIONAL_TYPED_CREDIT_OR_BP_CHARGE",
+      "new_selection_while_pending": false,
+      "outcomes": {
+        "CAPTURE_COMMAND_NOT_COMPLETED": "KEEP_PENDING",
+        "FLEE": "KEEP_PENDING",
+        "PLAYER_DEFEAT": "KEEP_PENDING",
+        "RESUME_DECLINED": "KEEP_PENDING",
+        "TARGET_DEFEAT": "KEEP_PENDING"
+      },
+      "same_species_form_personality_level_ivs_ability_nature_shiny": true
+    },
+    "open_questions": [],
+    "payment_contract": {
+      "battle_start_before_persist_success": false,
+      "bp_direct_path": {
+        "does_not_mutate": [
+          "TYPED_CREDIT_BALANCE"
+        ],
+        "entrypoint": "RewardEncounterPurchaseWithBp",
+        "implementation_rule": "COPY_BEFORE_SUBTRACT_BP_FILL_PENDING_FINALIZE_AND_PERSIST_ONCE",
+        "must_not_chain": [
+          "VegaFactorySpendBattlePoints",
+          "VegaSavePurchaseEncounter"
+        ],
+        "mutates": [
+          "FACTORY_BP_MINUS_TIER_PRICE",
+          "PENDING_ENCOUNTER_CREATE"
+        ],
+        "persist_count": 1
+      },
+      "bp_direct_price_by_tier": {
+        "HABITAT": 15,
+        "RANDOM": 8,
+        "RARE": 50,
+        "TYPE": 25
+      },
+      "capacity_check_before_payment": true,
+      "charge_after_pending_exists": false,
+      "credit_cost_by_tier": {
+        "HABITAT": 1,
+        "RANDOM": 1,
+        "RARE": 1,
+        "TYPE": 1
+      },
+      "credit_owner": "OWNER_KEY_ENCOUNTER_LEDGER",
+      "currency_owner": "OWNER_KEY_FACTORY_STATE",
+      "menu_policy": {
+        "automatic_payment_choice": false,
+        "credit_balance_positive": "SHOW_TYPED_CREDIT_AND_AFFORDABLE_BP_DIRECT",
+        "credit_balance_zero_and_bp_affordable": "SHOW_BP_DIRECT_ONLY",
+        "neither_affordable": "SHOW_INSUFFICIENT_AND_EXIT",
+        "player_declines": "NO_MUTATION"
+      },
+      "mutual_exclusion_rule": "EXACTLY_ONE_PAYMENT_METHOD_PER_PENDING_TRANSACTION",
+      "payment_methods": [
+        "TYPED_CREDIT",
+        "BP_DIRECT"
+      ],
+      "pending_credit_kind_semantics": "TIER_IDENTITY_ONLY_FOR_BP_DIRECT;NOT_PROOF_OF_TOKEN_SPEND",
+      "preconditions": [
+        "SERVICE_UNLOCKED",
+        "PENDING_SLOT_EMPTY_OR_RESUME_EXISTING",
+        "FACTORY_MARKER_OUTSIDE",
+        "CAPTURE_DESTINATION_AVAILABLE"
+      ],
+      "typed_credit_path": {
+        "entrypoint": "VegaSavePurchaseEncounter",
+        "mutates": [
+          "SELECTED_TYPED_CREDIT_MINUS_ONE",
+          "PENDING_ENCOUNTER_CREATE"
+        ],
+        "persist_count": 1,
+        "request_cost": 1
+      }
+    },
+    "pending_contract": {
+      "abandon_option": false,
+      "clear_condition": "NORMAL_CAPTURE_FULL_SAVE_COMMIT_SUCCESS",
+      "non_clear_conditions": [
+        "DECLINE_RESUME",
+        "FLEE",
+        "PLAYER_DEFEAT",
+        "TARGET_DEFEAT",
+        "RESET",
+        "SAVE_FAILURE"
+      ],
+      "owner": "VegaPendingEncounter",
+      "persist_before_battle": true,
+      "resume_charge": "NONE",
+      "resume_from_any_logical_service_at_shared_host": true,
+      "resume_ignores_new_tier_selection": true,
+      "resume_requires_capacity_recheck": true,
+      "single_global_slot": true,
+      "stored_fields": [
+        "ENCOUNTER_KIND",
+        "POOL",
+        "SPECIES",
+        "FORM",
+        "LEVEL",
+        "NATURE",
+        "ABILITY",
+        "SHINY",
+        "TERA_TYPE",
+        "CREDIT_KIND",
+        "IVS",
+        "PERSONALITY",
+        "GENERATOR_VERSION",
+        "GENERATOR_FINGERPRINT",
+        "TRANSACTION_ID"
+      ],
+      "valid_prevents_new_purchase": true
+    },
+    "placement_contract": {
+      "dedicated_map": false,
+      "dispatch_order": [
+        "SERVICE_KEY_REWARD_RANDOM",
+        "SERVICE_KEY_REWARD_HABITAT",
+        "SERVICE_KEY_REWARD_TYPE",
+        "SERVICE_KEY_REWARD_RARE"
+      ],
+      "facility_state_allowed": false,
+      "full_screen_ui": false,
+      "host_graphics_role": "SCIENTIST",
+      "host_kind": "OBJECT",
+      "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+      "logical_services_share_one_physical_host": true,
+      "long_cutscene": false,
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "presentation_profile": "SIMPLE_EVENT",
+      "ui_components": [
+        "STANDARD_MESSAGE",
+        "STANDARD_LIST",
+        "YES_NO"
+      ]
+    },
+    "reset_contract": {
+      "reset_after_non_capture": "RESUME_SAME_PENDING_FREE",
+      "reset_after_purchase_persist_before_battle": "RESUME_SAME_PENDING_FREE",
+      "reset_before_purchase_persist": "NO_CHARGE_NO_PENDING",
+      "reset_during_battle": "RESUME_SAME_PENDING_FREE",
+      "reset_during_capture_commit": "FULL_SAVE_ATOMICITY_YIELDS_EITHER_CAPTURED_AND_CLEAR_OR_NOT_CAPTURED_AND_PENDING",
+      "save_reload_with_pending": "SHOW_PENDING_RESUME_BEFORE_TIER_MENU"
+    },
+    "save_failure_contract": {
+      "capture_full_save_failure": {
+        "additional_charge_on_retry": false,
+        "not_rolled_back": [
+          "NORMAL_BATTLE_ITEM_CONSUMPTION"
+        ],
+        "pending_after_failure": true,
+        "rollback": [
+          "PARTY_OR_BOX_WRITE",
+          "STANDARD_CAUGHT_STATE",
+          "PENDING_CLEAR"
+        ],
+        "rollback_snapshot_boundary": "AFTER_NORMAL_BATTLE_ITEM_CONSUMPTION_BEFORE_CAPTURE_STORAGE"
+      },
+      "credit_source_persist_failure": {
+        "replay_policy": "RETRY_SAME_SOURCE_TRANSACTION_WITHOUT_DUPLICATE_GRANT",
+        "rollback": [
+          "CREDIT_INCREMENT",
+          "BP_SPEND_IF_ANY",
+          "CLAIM_OR_TRANSACTION_MARKER"
+        ]
+      },
+      "partial_success_allowed": false,
+      "purchase_persist_failure": {
+        "battle_started": false,
+        "message_usage": "SYSTEM",
+        "rollback": [
+          "BP_BALANCE",
+          "TYPED_CREDIT_BALANCE",
+          "PENDING_ENCOUNTER",
+          "SAVE_GENERATION"
+        ]
+      }
+    },
+    "schema_version": 2,
+    "selection_contract": {
+      "all_current_entry_weights": 100,
+      "capture_elsewhere_after_purchase_does_not_reroll_pending": true,
+      "entry_status_required": "ACTIVE",
+      "pending_prevents_reselection": true,
+      "pool_sizes": {
+        "HABITAT": 6,
+        "RANDOM": 6,
+        "RARE": 6,
+        "TYPE": 6
+      },
+      "selection_is_committed_once": true,
+      "service_pool_map": {
+        "SERVICE_KEY_REWARD_HABITAT": "ENCOUNTER_POOL_KEY_HABITAT",
+        "SERVICE_KEY_REWARD_RANDOM": "ENCOUNTER_POOL_KEY_RANDOM",
+        "SERVICE_KEY_REWARD_RARE": "ENCOUNTER_POOL_KEY_RARE",
+        "SERVICE_KEY_REWARD_TYPE": "ENCOUNTER_POOL_KEY_TYPE"
+      },
+      "uncaught_priority": {
+        "algorithm": [
+          "BUILD_UNLOCKED_ACTIVE_POOL",
+          "BUILD_UNCAUGHT_SUBSET",
+          "IF_UNCAUGHT_SUBSET_EMPTY_DRAW_WEIGHTED_FROM_FULL_POOL",
+          "ELSE_TRY_UP_TO_TEN_WEIGHTED_FULL_POOL_DRAWS_AND_ACCEPT_FIRST_UNCAUGHT",
+          "IF_TEN_DRAWS_FIND_NONE_DRAW_WEIGHTED_DIRECTLY_FROM_UNCAUGHT_SUBSET"
+        ],
+        "caught_source": "STANDARD_POKEDEX_CAUGHT_STATE",
+        "duplicate_allowed_only_when_uncaught_subset_empty": true,
+        "max_rejection_rerolls": 10
+      },
+      "unlock_required": true,
+      "weights_are_relative": true
+    },
+    "states": [
+      "IDLE",
+      "LOCKED",
+      "CAPACITY_BLOCKED",
+      "PAYMENT_MENU",
+      "PURCHASE_COMMITTING",
+      "PENDING_READY",
+      "BATTLE_ACTIVE",
+      "RETRY_PENDING",
+      "CAPTURE_COMMITTING",
+      "COMPLETE",
+      "SAVE_ERROR"
+    ],
+    "transitions": [
+      {
+        "event": "INTERACT_UNLOCK_FALSE",
+        "from": "IDLE",
+        "mutation": "NONE",
+        "to": "LOCKED"
+      },
+      {
+        "event": "INTERACT_PENDING_VALID",
+        "from": "IDLE",
+        "mutation": "NONE",
+        "to": "PENDING_READY"
+      },
+      {
+        "event": "INTERACT_CAPACITY_FULL",
+        "from": "IDLE",
+        "mutation": "NONE",
+        "to": "CAPACITY_BLOCKED"
+      },
+      {
+        "event": "INTERACT_READY",
+        "from": "IDLE",
+        "mutation": "NONE",
+        "to": "PAYMENT_MENU"
+      },
+      {
+        "event": "DECLINE",
+        "from": "PAYMENT_MENU",
+        "mutation": "NONE",
+        "to": "IDLE"
+      },
+      {
+        "event": "CONFIRM_ONE_PAYMENT",
+        "from": "PAYMENT_MENU",
+        "mutation": "SCRATCH_ONLY",
+        "to": "PURCHASE_COMMITTING"
+      },
+      {
+        "event": "PERSIST_SUCCESS",
+        "from": "PURCHASE_COMMITTING",
+        "mutation": "ONE_PAYMENT_AND_PENDING",
+        "to": "PENDING_READY"
+      },
+      {
+        "event": "PERSIST_FAILURE",
+        "from": "PURCHASE_COMMITTING",
+        "mutation": "ROLLBACK_ALL",
+        "to": "SAVE_ERROR"
+      },
+      {
+        "event": "CAPACITY_FULL",
+        "from": "PENDING_READY",
+        "mutation": "KEEP_PENDING",
+        "to": "CAPACITY_BLOCKED"
+      },
+      {
+        "event": "START",
+        "from": "PENDING_READY",
+        "mutation": "NONE",
+        "to": "BATTLE_ACTIVE"
+      },
+      {
+        "event": "FLEE_OR_DEFEAT",
+        "from": "BATTLE_ACTIVE",
+        "mutation": "KEEP_PENDING",
+        "to": "RETRY_PENDING"
+      },
+      {
+        "event": "CAPTURE",
+        "from": "BATTLE_ACTIVE",
+        "mutation": "FULL_SAVE_SCRATCH",
+        "to": "CAPTURE_COMMITTING"
+      },
+      {
+        "event": "PERSIST_SUCCESS",
+        "from": "CAPTURE_COMMITTING",
+        "mutation": "CAPTURE_AND_CLEAR_PENDING",
+        "to": "COMPLETE"
+      },
+      {
+        "event": "PERSIST_FAILURE",
+        "from": "CAPTURE_COMMITTING",
+        "mutation": "ROLLBACK_CAPTURE_KEEP_PENDING",
+        "to": "RETRY_PENDING"
+      },
+      {
+        "event": "RESUME",
+        "from": "RETRY_PENDING",
+        "mutation": "NONE",
+        "to": "PENDING_READY"
+      },
+      {
+        "event": "ACKNOWLEDGE",
+        "from": "COMPLETE",
+        "mutation": "NONE",
+        "to": "IDLE"
+      }
+    ]
+  },
+  "schema_version": 1,
+  "services": [
+    {
+      "bp_direct_price": 8,
+      "capacity_check": "true",
+      "credit_cost": 1,
+      "credit_key": "CREDIT_KEY_RANDOM",
+      "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+      "index": 0,
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "notes": "同一Scientistの論理メニュー。安価な汎用枠。tokenまたはBP直払いを一方だけ適用",
+      "persist_pending_before_battle": "true",
+      "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "pool_key": "ENCOUNTER_POOL_KEY_RANDOM",
+      "presentation_profile": "SIMPLE_EVENT",
+      "service_key": "SERVICE_KEY_REWARD_RANDOM",
+      "status": "ACTIVE",
+      "tier": "RANDOM",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "bp_direct_price": 15,
+      "capacity_check": "true",
+      "credit_cost": 1,
+      "credit_key": "CREDIT_KEY_HABITAT",
+      "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+      "index": 1,
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "notes": "同一Scientistの論理メニュー。森林・砂地・洞窟・海岸・雪原・草原の生息地代表",
+      "persist_pending_before_battle": "true",
+      "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "pool_key": "ENCOUNTER_POOL_KEY_HABITAT",
+      "presentation_profile": "SIMPLE_EVENT",
+      "service_key": "SERVICE_KEY_REWARD_HABITAT",
+      "status": "ACTIVE",
+      "tier": "HABITAT",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "bp_direct_price": 25,
+      "capacity_check": "true",
+      "credit_cost": 1,
+      "credit_key": "CREDIT_KEY_TYPE",
+      "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+      "index": 2,
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "notes": "同一Scientistの論理メニュー。重複しない複合タイプを広く提供",
+      "persist_pending_before_battle": "true",
+      "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "pool_key": "ENCOUNTER_POOL_KEY_TYPE",
+      "presentation_profile": "SIMPLE_EVENT",
+      "service_key": "SERVICE_KEY_REWARD_TYPE",
+      "status": "ACTIVE",
+      "tier": "TYPE",
+      "unlock_key": "KANTO_EARLY_ACCESS"
+    },
+    {
+      "bp_direct_price": 50,
+      "capacity_check": "true",
+      "credit_cost": 1,
+      "credit_key": "CREDIT_KEY_RARE",
+      "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+      "index": 3,
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "notes": "同一Scientistの高難度解禁メニュー。非伝説・非幻の希少最終形だけを収録",
+      "persist_pending_before_battle": "true",
+      "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+      "pool_key": "ENCOUNTER_POOL_KEY_RARE",
+      "presentation_profile": "SIMPLE_EVENT",
+      "service_key": "SERVICE_KEY_REWARD_RARE",
+      "status": "ACTIVE",
+      "tier": "RARE",
+      "unlock_key": "RAID_HIGH_UNLOCKED"
+    }
+  ],
+  "submission_audit": {
+    "entry_hashes": {
+      "DESIGN_BIBLE_JA.md": "8c6cbd654a3b84032ba81f9e7dd81d9080de95d0d658c4310d46ff3a56d41253",
+      "OPEN_QUESTIONS.md": "ca6bf4146b190032abbf7bcaf6e4590f3257a8ffd10219d2133c04374cd9bc21",
+      "SUBMISSION_MANIFEST.json": "0a2f5c388bd5c5a90f2cea86652c39212c3c7f264e6b6b705ef1eea099f0b0ce",
+      "VALIDATION_REPORT.json": "50e4195a02370c2b4b629594ba76ea36de016222fbd81c3d3e1324bfca15347f",
+      "credit_economy.csv": "5f5a2cb9f8b4033fd373c794cb028f12bbfcdca8bff80b5947dfcfd9c9453524",
+      "dialogue.csv": "5759f949250fe4a010c856b82c362b731bf4974c95a4c50cb593becf9caf5ed0",
+      "encounter_pool_entries.csv": "7b3a521794d0f3f94546e18ffe1bd792bbcdfcac8fb2f79e1b3b2a858c38b3a2",
+      "encounter_services.csv": "0026cdee12f57a0823fc704c390b68ed2648a707f0827d59c3206cf6c40424ce",
+      "implementation_batches.csv": "5c9b703e23b3feccd5e211287e305aee4255ca74360d889fa74dc77bfca1e891",
+      "runtime_contract.json": "cb605b296e07b678b9c079b29277a4b1dd94149b081d6f20de831fdd8b633c79"
+    },
+    "manifest": {
+      "design_status": "IMPLEMENTATION_READY",
+      "files": [
+        {
+          "path": "DESIGN_BIBLE_JA.md",
+          "sha256": "8c6cbd654a3b84032ba81f9e7dd81d9080de95d0d658c4310d46ff3a56d41253",
+          "size": 11493
+        },
+        {
+          "path": "OPEN_QUESTIONS.md",
+          "sha256": "ca6bf4146b190032abbf7bcaf6e4590f3257a8ffd10219d2133c04374cd9bc21",
+          "size": 79
+        },
+        {
+          "path": "VALIDATION_REPORT.json",
+          "sha256": "50e4195a02370c2b4b629594ba76ea36de016222fbd81c3d3e1324bfca15347f",
+          "size": 504
+        },
+        {
+          "path": "credit_economy.csv",
+          "sha256": "5f5a2cb9f8b4033fd373c794cb028f12bbfcdca8bff80b5947dfcfd9c9453524",
+          "size": 3356
+        },
+        {
+          "path": "dialogue.csv",
+          "sha256": "5759f949250fe4a010c856b82c362b731bf4974c95a4c50cb593becf9caf5ed0",
+          "size": 8825
+        },
+        {
+          "path": "encounter_pool_entries.csv",
+          "sha256": "7b3a521794d0f3f94546e18ffe1bd792bbcdfcac8fb2f79e1b3b2a858c38b3a2",
+          "size": 5381
+        },
+        {
+          "path": "encounter_services.csv",
+          "sha256": "0026cdee12f57a0823fc704c390b68ed2648a707f0827d59c3206cf6c40424ce",
+          "size": 1590
+        },
+        {
+          "path": "implementation_batches.csv",
+          "sha256": "5c9b703e23b3feccd5e211287e305aee4255ca74360d889fa74dc77bfca1e891",
+          "size": 2411
+        },
+        {
+          "path": "runtime_contract.json",
+          "sha256": "cb605b296e07b678b9c079b29277a4b1dd94149b081d6f20de831fdd8b633c79",
+          "size": 18148
+        }
+      ],
+      "packet_type": "REWARD_ENCOUNTERS",
+      "schema_version": 1,
+      "submission_fingerprint": "823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df"
+    },
+    "validation": {
+      "errors": [],
+      "open_questions": 0,
+      "output_zip_name": "Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip",
+      "packet_type": "REWARD_ENCOUNTERS",
+      "row_counts": {
+        "credit_economy.csv": 10,
+        "dialogue.csv": 56,
+        "encounter_pool_entries.csv": 24,
+        "encounter_services.csv": 4,
+        "implementation_batches.csv": 5
+      },
+      "schema_version": 1,
+      "status": "PASS",
+      "submission_fingerprint": "823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df",
+      "warnings": []
+    },
+    "zip_sha256_before_after": "b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195",
+    "zip_unchanged": true
+  },
+  "task": "T24"
+}

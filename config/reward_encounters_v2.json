@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "task": "T24",
+  "inputs": {
+    "stage40_rom": {
+      "path": "build/stages/40_research_economy_v1.gba",
+      "size": 33554432,
+      "sha256": "b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488"
+    },
+    "stage40_metadata": {
+      "path": "build/stages/40_research_economy_v1.json",
+      "sha256": "76e7b5eb74717a27331bde8ce6db6f2c81ff6ebda525eb2b08f1abb8b11d96b0"
+    },
+    "stage40_allocation": {
+      "path": "build/stages/40_allocation.json",
+      "sha256": "3319edd4cab58a09dad4420d303b37c162d618a0bb07806d107412701d8078d5"
+    },
+    "stage40_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-research-economy-stage40.bps",
+      "sha256": "b2510ee390dc1ffb72be752e8d178e9b90d7ac4fd16f1bcbe4207b3360861f05"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "submission_zip": {
+      "path": "userfile/imports/Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip",
+      "size": 19169,
+      "sha256": "b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195",
+      "entry_count": 10,
+      "fingerprint": "823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df"
+    },
+    "packet_root": "dist/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_REWARD-ENCOUNTERS-V2_INPUT_20260820",
+    "packet_spec_sha256": "b1f6d04b92ce66a94dd9b75255ca1e82bf2a3dca1adc7628752d07040d688c9b",
+    "validator": "templates/chatgpt_pro_design_packets/tools/validate_submission.py",
+    "validator_sha256": "57b1da52ac9e6c7c99e7d58a599982b8f6ebed4d782cf36e84b611ce21ea1f1a"
+  },
+  "counts": {
+    "services": 4,
+    "pool_entries": 24,
+    "credit_sources": 10,
+    "dialogues": 56,
+    "batches": 5
+  },
+  "save": {
+    "ledger_address": "0x0203D000",
+    "ledger_size": 2048,
+    "credit_offset": "0x684",
+    "credit_size": 16,
+    "pending_offset": "0x694",
+    "pending_size": 46,
+    "factory_offset": "0x392",
+    "factory_size": 714,
+    "research_offset": "0x73F",
+    "research_size": 64
+  },
+  "ram": {
+    "address": "0x0203F110",
+    "end_exclusive": "0x0203F210",
+    "size": 256,
+    "research_address": "0x0203F0A0",
+    "research_size": 96
+  },
+  "credit_kinds": {
+    "CREDIT_KEY_HABITAT": 0,
+    "CREDIT_KEY_TYPE": 1,
+    "CREDIT_KEY_RARE": 2,
+    "CREDIT_KEY_RANDOM": 3
+  },
+  "delegates": {
+    "research_wild_end": "0x093BE5C1",
+    "research_save_finalize": "0x093BD7FD",
+    "research_save_validate": "0x093BD429"
+  },
+  "engine": {
+    "create_mon": "0x0803D1C1",
+    "calculate_mon_stats": "0x090D93A9",
+    "get_mon_data": "0x0803F355",
+    "set_mon_data": "0x0803FA71",
+    "get_box_mon_data_at": "0x09123A99",
+    "zero_box_mon_at": "0x0912387D",
+    "species_to_national": "0x08042989",
+    "get_set_pokedex": "0x08088A51",
+    "random": "0x0804448D",
+    "start_scripted_wild_battle": "0x0807EEB5",
+    "try_saving_data": "0x080DB34D",
+    "try_write_sector": "0x080DA9C1"
+  },
+  "hooks": [
+    {
+      "name": "wild_end_reward_chain",
+      "address": "0x0807F270",
+      "expected_hex": "004b1847c1e53b09",
+      "target": "RewardEncountersV2_EndWildBattleAdapter",
+      "mode": "THUMB_JUMP",
+      "delegate": "ResearchEconomy_EndWildBattleAdapter"
+    }
+  ],
+  "physical_binding": {
+    "placement_key": "PLACEMENT_KEY_VERMILION_REWARD_ENCOUNTER_SCIENTIST",
+    "host_ref": "OBJHOST::KANTO_OUTDOOR_VERMILION_CITY::007",
+    "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+    "map_group": 96,
+    "map_num": 5,
+    "event_pointer_site": "0x092BFDD8",
+    "expected_event_pointer_hex": "d0fd3809",
+    "source_counts": {
+      "objects": 4,
+      "warps": 10,
+      "coords": 0,
+      "backgrounds": 2
+    },
+    "append_index": 4,
+    "clean_source_index": 7,
+    "clean_record_hex": "08370000190007000301140000000000db201708a1000000"
+  },
+  "factory_inheritance": {
+    "allocation_name": "factory_reward_runtime_payload",
+    "start": 19779376,
+    "size": 1368,
+    "sha256": "fdbd52157bd05b4d7aa6c0112d080191d05d6db86a342fe9da0e5eebaed5906e",
+    "allocation_content_sha256": "9ddf7c5f5c5b663018059a17dcbcb5348b0b1352a78a1bf99e3373484c01c8e4",
+    "thresholds": [3, 7, 14, 21],
+    "claim_bits": [4, 5, 6, 7],
+    "credit_kinds": [0, 1, 2, 3]
+  },
+  "outputs": {
+    "rom": "build/stages/41_reward_encounters_v2.gba",
+    "metadata": "build/stages/41_reward_encounters_v2.json",
+    "allocation": "build/stages/41_allocation.json",
+    "incremental_bps": "build/patches/research-economy-stage40-to-reward-encounters-stage41.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-reward-encounters-stage41.bps",
+    "mgba_quick": "build/stages/41_mgba_reward_encounters_v2_quick.json",
+    "mgba_full": "build/stages/41_mgba_reward_encounters_v2_full.json",
+    "transaction_matrix": "build/stages/41_reward_encounters_v2_transaction_matrix.json",
+    "clean_rebuild": "build/stages/41_clean_rebuild.json"
+  }
+}

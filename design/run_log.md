@@ -1773,3 +1773,33 @@
   - 原本ZIPは21,503 bytes、mode `0444`、SHA-256 `0cd2a68535f5543da919a6502a21321adb826dbff37d356b0cacfc697c7367de`で不変。fingerprintは `2ea4497307af6aece808fd9a98158561c7c87e83cd4748b2e6d3ab8c4aa27a8b`。
 - Commit: `-`（本エントリを含むT23完了コミット）
 - Network: 未使用。固定済みのローカルStage 39、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。
+
+## 2026-08-21T12:03:13+09:00
+
+- Task: `T24` / Reward Encounters V2をStage 41へproduction統合する
+- Status: DONE
+- Summary:
+  - 読取専用原本ZIP 10 entryのsize/hash/mode、共通validator、fingerprint、open question 0を再照合し、4 service、24 pool、10 credit source、56 dialogue、5 batchをstable keyの欠落・重複・未解決0で決定的にcompileした。
+  - typed credit cost 1、BP直接支払い8/15/25/50、BP voucherを排他的transactionとして実装した。party/box容量、残高、cancel、保存失敗を支払い前または一括rollbackで処理し、生成個体を既存2 KiB ledgerへ戦闘前persist、逃走・敗北・reset後は同一pendingへ無料再戦、通常捕獲成功時だけatomic clearする。
+  - 報酬戦へEXP/EV・賞金抑止flagを付け、money、held item、DexNav、研究、Raid、Factory、drop関連ledgerをbattle前像へ復元した。通常のparty/box捕獲と図鑑ownerは維持し、保存失敗時は捕獲個体と新規図鑑bitも補償rollbackする。Stage40のQoL save adapterを唯一のpersist入口として使い、sector 31の重複書込みを除いた。
+  - クチバmap `96/5`の共有Scientistをobject 4→5の安全座標へ追加し、標準window/list/yes-noから全tierへ到達させた。wild-end hookはT23 Research Economyへtail-chainし、Factory 4 milestoneをbyte不変で継承、釣り・生態2 sourceとBP voucher 4種を接続した。
+  - 2 physical patchと10,348 changed byteは全てdeclared span内で、allocatorおよびROM/RAM/save/map/hook overlapは0。Stage40差分BPSとclean直接BPSを生成し、clean→40→41とclean→41が同一Stage 41になることを確認した。原本ZIP、clean/Stage40 ROM、saveは変更・追跡していない。
+- Files changed:
+  - production契約: `content/reward_encounters_v2/**`、`config/reward_encounters_v2.json`、`config/ram_layout.csv`。
+  - runtime/build: `overlays/reward_encounters_v2/**`、`scripts/build_reward_encounters_v2.py`、`scripts/rebuild_reward_encounters_v2_from_clean.py`。
+  - QA/入口: `tools/mgba_reward_encounters_v2_smoke.c`、`tests/test_reward_encounters_v2.py`、`Makefile`、`README.md`。
+  - 状態・証跡: `design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。Stage 41 ROM、2 BPS、metadata/allocation、generated runtime/header/cases、audit/coverage、32-row transaction matrix、mGBA quick/full、clean rebuild証跡はGit管理外の再生成領域へ出力した。
+- Verify:
+  - `python3 scripts/rebuild_reward_encounters_v2_from_clean.py build` / `check`: PASS。内部でtask固有builderの`build` / `check`、mGBA quick/full独立2 processを実行し、clean chain/direct BPSをbyte一致で完全往復した。
+  - `python3 -m unittest tests.test_reward_encounters_v2`: PASS（9 tests）。private identity、canonical件数・価格、単一save owner、決定的static output、物理root、32 transaction、全受入証跡を確認した。
+  - libmGBA quick/full: 独立2 process、13/13 checks、受入11/11、warnings/errors 0、result identity `RE41:2:4:24:10:56:5:32`一致。全tierのcredit/BP/voucher、失敗無変更、保存fault、reset同一pending、捕獲atomicity、非捕獲5結果、副作用復元、source dedupe、Scientist/root/T23 chainを実ROMで確認した。
+  - `python3 scripts/build_research_economy_v1.py check`: PASS。Stage 40 SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`とT23 production/mGBA証跡を再照合した。
+  - `python3 -m unittest tests.test_research_economy_v1`: PASS（16 tests）。`python3 -m unittest tests.test_save_layout tests.test_facility_save tests.test_mirage_production`: PASS（19 tests）。Research、save migration、Factory、Mirageと既存ownerの回帰を確認した。
+  - `python3 -m py_compile scripts/build_reward_encounters_v2.py scripts/rebuild_reward_encounters_v2_from_clean.py tests/test_reward_encounters_v2.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`: PASS。
+- Output identity:
+  - Stage 41 ROM: 33,554,432 bytes、SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`。
+  - Stage40差分BPS / clean直接BPS: SHA-256 `a57fe4e020092ce1ca7f9060a031bc1d489ab856487565d117ec934fdf9ed64a` / `1c96648ec178142213e8d86201c2360bcae0e5776f1a0241d50cd502967f4fa6`。
+  - audit / coverage / clean rebuild / transaction matrix証跡: SHA-256 `28f12b88714adca58f7eda5b083b8cfbbf74107ef98358b7a5c6d02c959943de` / `65fb7fc53a39924a5e20217f133fd60952b6423d4d737ae8e2193d603f1435d1` / `8d767a4990e20c2f16ad6d1e2a5cdec4653460af224d03ab1537e55e790aa3e0` / `91102300aed94c2e46febb2e82b178a215224bbc7b61e27edd8170b3f0b9f556`。
+  - 原本ZIP: 19,169 bytes、mode `0444`、SHA-256 `b293c9f9c65eaf7acf4a6c5707163460b095d761283dc821d920801b38262195`、fingerprint `823664fd0f53a88014f361ba592838084ad660101a724e416f3ddffb507a42df`で不変。
+- Commit: `-`（本エントリを含むT24完了コミット）
+- Network: 未使用。固定済みのローカルStage 40、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。

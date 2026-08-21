@@ -743,3 +743,14 @@
   - 9 host・35会話を通常field入力へ接続し、釣り・生態・Game Cornerを既存production wrapperへchainした。
   - modern save v1→v2 migration、保存失敗rollback、取得runtime v2互換を加え、clean chain/direct BPSの両方から同一Stage 40を再構築した。
 - Verify: production build/check、focused 16+19 tests、libmGBA quick/full独立2 process・受入10/10・warnings/errors 0、clean rebuild build/check、両BPS完全往復、21 physical patch、declared span/allocator/ROM/RAM/save/map/hook overlap PASS。Stage 40 SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`。
+
+## 2026-08-21T12:03:13+09:00
+
+- Version: `post-v1.4.0-stage41`（v1.4.0 release identityとStage 27〜40は不変）
+- Commit: `-`（本エントリを含むT24完了コミット）
+- Task: `T24` / Integrate Reward Encounters V2
+- Summary:
+  - 4 tier、24 pool、typed credit/BP、10 source、56会話を共有Scientistと既存Factory/T23 hookへ接続した。
+  - 戦闘前pending persist、非捕獲・reset同一個体再戦、通常捕獲時atomic clear、保存失敗rollback、報酬戦副作用maskを既存ledger/save ownerで実装した。
+  - clean chain/direct BPSの両方から同一Stage 41を再構築し、宣言span外変更とallocator/ROM/RAM/save/map/hook overlapを0にした。
+- Verify: production build/check、focused 9+16+19 tests、libmGBA quick/full独立2 process・受入11/11・warnings/errors 0、32 transaction row、clean rebuild build/check、両BPS完全往復、T23回帰 PASS。Stage 41 SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`。
