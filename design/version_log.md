@@ -765,3 +765,14 @@
   - 有限generator、reset/reload forfeit、round境界retire、packed ABI、BP・49/100・T24 creditのatomic transaction、Mirage分離を実装した。
   - clean chain/direct BPSの両方から同一Stage 42を再構築し、宣言span外変更とallocator/ROM/RAM/save/UI/hook overlapを0にした。
 - Verify: production build/check、focused T25 10 tests＋既存81 tests、7,440-row mode matrix、libmGBA quick/full独立2 process・受入11/11・warnings/errors 0、clean rebuild build/check、両BPS完全往復、Stage41回帰 PASS。Stage 42 SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`。
+
+## 2026-08-21T14:13:13+09:00
+
+- Version: `tooling-ipad-wifi-ssh-1`（Stage 42 ROM identityは不変）
+- Commit: `-`（本エントリを含む完了コミット）
+- Task: `USER-20260821-IPAD-WIFI-SSH` / iPad Wi-Fi SSH Toolkitの安全取込・導入・実接続確認
+- Summary:
+  - ユーザー提供toolkitを全entry・同梱hashで検証し、秘密鍵を含む原本をGit管理外の読取専用private importへ保管した。
+  - WSL/Codex用runtimeとmode 600のcredentialをユーザー領域へ導入し、固定host key・固定接続先を維持した。
+  - iPadへのWi-Fi SSH doctorとremote command実行に成功し、このworkspaceから`ipad-wifi-ssh`を利用可能にした。
+- Verify: ZIP CRC/SHA-256、同梱10 hash、private import権限、runtime/credential権限、固定鍵fingerprint、実SSH接続、通常PATH、remote `run` PASS。

@@ -1835,3 +1835,25 @@
   - 原本ZIP: 30,203 bytes、mode `0444`、SHA-256 `7e79616dea664f670b8985fe89d23e066df2751225b5a8ee078035b4bb2b9830`、fingerprint `c48d69f2a64cda65f2a97a2382ddb8bb4dbc66437302a87e3da669428dc20fe1`で不変。
 - Commit: `-`（本エントリを含むT25完了コミット）
 - Network: 未使用。固定済みのローカルStage 41、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。
+
+## 2026-08-21T14:13:13+09:00
+
+- Task: `USER-20260821-IPAD-WIFI-SSH` / iPad Wi-Fi SSH Toolkitの安全取込・導入・実接続確認
+- Status: DONE
+- Summary:
+  - ユーザー提供ZIPをpath/CRC/SHA-256監査し、全15 entryにpath traversal・symlink・圧縮破損がないことを確認した。同梱manifestの10 file hashは全件一致した。
+  - 秘密鍵を含む原本ZIPと展開物をGit管理外の`userfile/imports/ipad-wifi-ssh-toolkit-20260821/`へ取り込み、所有者以外の権限を除去して読取専用化した。秘密鍵本文はログ・Git indexへ出力していない。
+  - WSL runtimeを`/home/dekaa/.local/bin/ipad-wifi-ssh`、credentialを`/home/dekaa/.local/share/ipad-wifi-ssh/credentials/`へ導入した。固定host key・client key・Wi-Fi直結を強制する同梱設定を変更せず採用した。
+  - iPadへの実SSH接続と引用済みremote commandを実行し、mobile userでの接続、remote working directory、通常PATHからのコマンド解決を確認した。iPad上のファイル変更は行っていない。
+- Files changed:
+  - Git管理対象: `design/run_log.md`、`design/version_log.md`。
+  - Git管理外private原本: `userfile/imports/ipad-wifi-ssh-toolkit-20260821/**`。
+  - workspace外runtime: `/home/dekaa/.local/bin/ipad-wifi-ssh`、`/home/dekaa/.local/share/ipad-wifi-ssh/**`。
+- Verify:
+  - ZIP SHA-256 `f5efd8674a8c68c816599f57716867403eade8d8c10b42e18791db21acff7897`、`unzip -t`: PASS。
+  - `sha256sum -c SHA256SUMS.txt`: PASS（10/10）。private key、known_hosts、Windows/WSL runtimeを同梱manifestと照合した。
+  - `bash .../wsl/setup-ipad-wifi-ssh.sh --test`: PASS。`PRIVATE_KEY`、`KNOWN_HOSTS`、`PERMISSIONS`、`LOCAL_KEY`、`PINNED_HOST_KEY`、`WIFI_SSH`が全てPASS。
+  - `ipad-wifi-ssh run 'printf ...; id -un; pwd'`: PASS。通常PATHから解決し、remote command実行を確認した。
+  - runtime/credential/private-key mode: `700/700/600`、launcher mode `755`: PASS。
+- Commit: `-`（本エントリを含む完了コミット）
+- Network: 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで接続確認した。インターネットは未使用。
