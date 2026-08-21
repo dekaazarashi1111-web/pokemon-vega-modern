@@ -92,6 +92,10 @@ make move-distribution-v4 # Stage38へ技配布V4全表と野生初期技runtime
 make move-distribution-v4-check # canonical表・consumer root・mGBA quick/fullを副作用なしで再照合
 make move-distribution-v4-clean-rebuild # clean ROMからStage38→Stage39とclean直接BPSをbyte再現
 make move-distribution-v4-clean-rebuild-check # clean起点のpatch chain・直接BPS・証跡を副作用なしで再照合
+make research-economy-v1 # Stage39へ独立研究通貨・6活動・7 rank・23品交換所を結合してStage40を生成
+make research-economy-v1-check # save移行・9 host・activity hook・mGBA quick/fullを副作用なしで再照合
+make research-economy-v1-clean-rebuild # clean ROMからStage39→Stage40とclean直接BPSをbyte再現
+make research-economy-v1-clean-rebuild-check # clean起点の両BPS・migration・Stage40証跡を副作用なしで再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

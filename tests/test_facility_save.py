@@ -67,7 +67,13 @@ class FacilitySaveTests(unittest.TestCase):
             by_symbol["mirage_records_and_item_reward"]["owner"],
         )
         self.assertEqual(by_symbol["battle_local_virtual_item"]["status"], "EXCLUDED")
-        self.assertEqual(by_symbol["research_point_currency"]["status"], "DEFER")
+        research = by_symbol["OWNER_KEY_RESEARCH_ECONOMY_V1"]
+        self.assertEqual(research["status"], "LIVE")
+        self.assertNotEqual(research["owner"], by_symbol["factory_transaction"]["owner"])
+        self.assertNotEqual(
+            research["owner"],
+            by_symbol["mirage_records_and_item_reward"]["owner"],
+        )
 
 
 if __name__ == "__main__":

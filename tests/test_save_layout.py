@@ -60,9 +60,17 @@ class SaveLayoutTests(unittest.TestCase):
             "factory_transaction",
             "pending_encounter",
             "itemObtainedFlags_999",
+            "OWNER_KEY_RESEARCH_ECONOMY_V1",
+            "reserved_v2_tail",
         }
         self.assertTrue(required.issubset(symbols))
-        self.assertEqual(symbols["research_point_currency"]["status"], "DEFER")
+        self.assertNotIn("research_point_currency", symbols)
+        research = symbols["OWNER_KEY_RESEARCH_ECONOMY_V1"]
+        self.assertEqual(research["owner"], "T23_RESEARCH_ECONOMY")
+        self.assertEqual(research["status"], "LIVE")
+        self.assertEqual(int(research["size"]), 64)
+        self.assertEqual(research["migration"], "ZERO_EXTEND_VERSIONED")
+        self.assertEqual(int(symbols["reserved_v2_tail"]["size"]), 129)
         self.assertEqual(symbols["battle_local_virtual_item"]["status"], "EXCLUDED")
         self.assertEqual(symbols["arcade_coin_u16"]["owner"], "VEGA_ARCADE_COIN")
         self.assertEqual(int(symbols["national_dex_seen_1025"]["size"]), 129)

@@ -4,6 +4,12 @@
 
 _Static_assert(sizeof(VegaWarpAnchor) == 8, "warp anchor ABI changed");
 _Static_assert(sizeof(VegaModernSaveData) == VEGA_SAVE_LEDGER_SIZE, "save ledger must fill its allocation");
+_Static_assert(sizeof(VegaResearchEconomyState) == 64u,
+               "research economy owner must be exactly 64 bytes");
+_Static_assert(offsetof(VegaModernSaveData, research_economy) == 0x73Fu,
+               "research economy owner must start at the v1 reserved tail");
+_Static_assert(offsetof(VegaModernSaveData, reserved) == 0x77Fu,
+               "v2 remaining reserved tail offset changed");
 _Static_assert(VEGA_DEX_MIGRATION_RESERVED_BYTES == 15u,
                "acquisition block must preserve the v1 save offsets");
 _Static_assert(offsetof(VegaModernSaveData, acquisition_save_block) % 4u == 0u,
@@ -108,10 +114,33 @@ uint32_t VegaSaveChecksum(const VegaModernSaveData *data)
     return hash;
 }
 
+static void InitializeResearchEconomyOwner(VegaModernSaveData *data)
+{
+    memset(&data->research_economy, 0, sizeof(data->research_economy));
+    data->research_economy.owner_schema_version = 1u;
+    data->research_economy.owner_struct_size =
+        (uint8_t)sizeof(data->research_economy);
+    data->research_economy.economy_rank = 1u;
+    data->research_economy.next_transaction_id = 1u;
+}
+
 void VegaSaveFinalize(VegaModernSaveData *data)
 {
     if (data == NULL)
         return;
+    if (data->version == VEGA_SAVE_LEGACY_VERSION) {
+        /* 壊れたv1予約末尾を初期値で隠してv2へ昇格してはならない。 */
+        if (!BytesAreZero((const uint8_t *)&data->research_economy,
+                          sizeof(data->research_economy))
+            || !BytesAreZero(data->reserved, sizeof(data->reserved)))
+            return;
+        InitializeResearchEconomyOwner(data);
+    } else if (data->version == 0u && data->magic == 0u) {
+        /* VegaSaveInitNewがzero初期化した新規台帳。 */
+        InitializeResearchEconomyOwner(data);
+    } else if (data->version != VEGA_SAVE_VERSION) {
+        return;
+    }
     data->magic = VEGA_SAVE_MAGIC;
     data->version = VEGA_SAVE_VERSION;
     data->struct_size = (uint16_t)sizeof(*data);
@@ -167,7 +196,8 @@ VegaSaveStatus VegaSaveValidate(const VegaModernSaveData *data, size_t available
         return VEGA_SAVE_EMPTY_OR_LEGACY;
     if (data->magic != VEGA_SAVE_MAGIC)
         return VEGA_SAVE_BAD_MAGIC;
-    if (data->version != VEGA_SAVE_VERSION)
+    if (data->version != VEGA_SAVE_LEGACY_VERSION
+        && data->version != VEGA_SAVE_VERSION)
         return VEGA_SAVE_UNSUPPORTED_VERSION;
     if (data->struct_size != sizeof(*data))
         return VEGA_SAVE_BAD_SIZE;
@@ -177,15 +207,52 @@ VegaSaveStatus VegaSaveValidate(const VegaModernSaveData *data, size_t available
                       sizeof(data->reserved_dex_migration_prefix))
         || !AcquisitionBlockIsValid(data->acquisition_save_block)
         || !BytesAreZero(data->reserved_dex_migration,
-                         sizeof(data->reserved_dex_migration))
+                         sizeof(data->reserved_dex_migration)))
+        return VEGA_SAVE_RESERVED_NONZERO;
+    if (data->version == VEGA_SAVE_LEGACY_VERSION) {
+        if (!BytesAreZero((const uint8_t *)&data->research_economy,
+                          sizeof(data->research_economy))
+            || !BytesAreZero(data->reserved, sizeof(data->reserved)))
+            return VEGA_SAVE_RESERVED_NONZERO;
+        return VEGA_SAVE_OK;
+    }
+    if (data->research_economy.owner_schema_version != 1u
+        || data->research_economy.owner_struct_size
+            != sizeof(data->research_economy)
+        || data->research_economy.research_point_balance > 9999u
+        || data->research_economy.economy_rank < 1u
+        || data->research_economy.economy_rank > 7u
+        || data->research_economy.minutes_into_research_day >= 60u
+        || data->research_economy.pending_kind > 4u
+        || data->research_economy.pending_phase > 1u
+        || !BytesAreZero(data->research_economy.owner_reserved,
+                         sizeof(data->research_economy.owner_reserved))
         || !BytesAreZero(data->reserved, sizeof(data->reserved)))
         return VEGA_SAVE_RESERVED_NONZERO;
+    return VEGA_SAVE_OK;
+}
+
+VegaSaveStatus VegaSaveMigrateV1(VegaModernSaveData *data,
+                                 size_t available_size)
+{
+    VegaSaveStatus status = VegaSaveValidate(data, available_size);
+    if (status != VEGA_SAVE_OK)
+        return status;
+    if (data->version == VEGA_SAVE_VERSION)
+        return VEGA_SAVE_OK;
+    InitializeResearchEconomyOwner(data);
+    /* v1のchecksumと予約末尾は上で検証済み。Finalizeへ移行済みと伝える。 */
+    data->version = VEGA_SAVE_VERSION;
+    VegaSaveFinalize(data);
     return VEGA_SAVE_OK;
 }
 
 VegaSaveStatus VegaSaveLoad(VegaModernSaveData *data, size_t available_size)
 {
     VegaSaveStatus status = VegaSaveValidate(data, available_size);
+    if (status != VEGA_SAVE_OK)
+        return status;
+    status = VegaSaveMigrateV1(data, available_size);
     if (status != VEGA_SAVE_OK)
         return status;
     Normalize(data);

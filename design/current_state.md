@@ -14,6 +14,7 @@
 - Mirage専用volatile stateはEWRAM `0x0203EE00..0x0203F098`のexact 664 byte（64-byte header＋600-byte party snapshot）とし、既存UI state `0x0203F101`を含めない。既存40-byte `VegaMirageState`の`current_record[4..7]`だけを8-byte active/badge journalとして予約し、stock save＋sector 31の原子的transaction、保存失敗補償、fresh-core reset復旧、256 badge mask×8退出経路のexact restoreをPASSした。
 - Stage 38は33,554,432 bytes、SHA-256 `f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941`。7 expected-byte root、16 runtime export、変更8,432 byte、declared span外0、allocator/RAM/save overlap 0。mGBA quick/full独立2 processは受入15/15、warnings/errors 0、result identity `MP38:4:4:5:4:28:256:8:600`で一致し、clean→Stage37→Stage38とclean直接Stage38もbyte一致した。Reward Encounters V2、Move Distribution V4、Factory High Modes V2、Research Economy V1は変更していない。
 - T22でMove Distribution V4のlevel-up 28,274、egg 8,219、TM/tutor 0→1追加2,799、form 509、wild/source 1,206をcanonical IDへ解決し、Stage 39の通常consumerへ接続した。Stage 38に残っていたTutor旧20-byte strideはexpected-byte付き1命令adapterで設計固定の16-byte正本へ統一し、既存特殊判定を維持した。Stage 39は33,554,432 bytes、SHA-256 `c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd`。mGBA quick/full独立2 process、BPS往復、clean再構築、T00〜T21回帰、野生適用境界をPASSした。
+- T23で独立U16研究ポイント、active play 60分の研究日、6活動、7 rank、23品の交換所、9 physical host、35会話をStage 40へproduction接続した。旧modern save v1の193-byte予約末尾から64-byte ownerだけを割り当て、checksum検証済みv1→v2移行、pending transaction、保存失敗rollbackを実装した。21 physical patch（11 hook、2 veneer、7 map root、取得台帳v2互換1）のdeclared span外変更とROM/RAM/save/map/hook overlapは0。Stage 40は33,554,432 bytes、SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`で、mGBA quick/full独立2 processとclean chain/direct BPS再構築をPASSした。
 - ChatGPT Pro返却4 ZIPをGit管理外の読取専用原本として受領した。CRC・安全path・symlink・暗号化・private binary混入は異常0で、共通validatorによりMove 11、Research 12、Reward 10、Factory 13ファイルすべてstatus PASS、open question 0。T22〜T25を `Move -> Research -> Reward -> Factory` の直列DAGとして追加し、各直前Stageで物理値を再監査してStage 39〜42へ順次統合する。
 - `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
 - Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
@@ -192,11 +193,11 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T22は完了し、T23が唯一の依存READYである。
+`design/tasks_next.md` を正とする。T00〜T23は完了し、T24が唯一の依存READYである。
 
-- T23: READY / PRIMARY。Research Economy V1をStage 39へ統合し、独立研究通貨・6活動・7 rank・23 shop・save migrationをStage 40で完成させる。
-- T24: WAITING(T23)。Reward Encounters V2の4 tier、24 pool、typed credit、pending再戦、10 sourceをStage 41へ統合する。
+- T24: READY / PRIMARY。Reward Encounters V2の4 tier、24 pool、typed credit、pending再戦、10 sourceをStage 41へ統合する。
 - T25: WAITING(T24)。Factory High Modes V2の24 mode、248 rental、55 profile、16 rewardを既存Trial不変でStage 42へ統合する。
+- T23: DONE。Research Economy V1の独立通貨・6活動・7 rank・23 shop・9 host・35会話、modern save v2 migrationをStage 40へ接続し、mGBA quick/full、clean rebuild、既存取得台帳v2回帰をPASSした。
 - T22: DONE。Move Distribution V4の全canonical行をStage 39へcompileし、level-up、egg、TM/tutor、form、わざメモリー、預かり屋、孵化、野生生成のproduction consumer、mGBA quick/full、clean rebuildをPASSした。
 - T21: DONE。既存Mirage map `31/1`へ持込3体・Lv.100・7戦×4周・round別gimmick・仮想item・独立記録/saveをproduction接続し、全退出時のbadge exact restore、Factory/後続4領域との非干渉、Stage 38、mGBA quick/full、clean rebuildをPASSした。
 - T20: DONE。76 event / 63 placement / 80 state / 326 dialogue / 7 batchをStage 37の通常入力・保存・既存trainer/acquisition/QOL serviceへ接続し、mGBA quick/fullとclean rebuildをPASSした。

@@ -22,7 +22,7 @@
 - [x] T20: 実装可能イベント設計76件をStage 36基準で実ROMへ最終統合する <!-- id:T20 -->
 - [x] T21: Mirage 4周・仮想道具・独立記録を通常プレイ入口へproduction接続する <!-- id:T21 -->
 - [x] T22: 技配布V4をStage 38基準で全習得表・野生初期技へproduction統合する <!-- id:T22 -->
-- [ ] T23: 研究経済V1を独立通貨・活動・rank・shop・saveへproduction統合する <!-- id:T23 -->
+- [x] T23: 研究経済V1を独立通貨・活動・rank・shop・saveへproduction統合する <!-- id:T23 -->
 - [ ] T24: 報酬遭遇V2をtyped credit・pending再戦・実battleへproduction統合する <!-- id:T24 -->
 - [ ] T25: Factory High Modes V2の24 modeを既存Trialを保ってproduction統合する <!-- id:T25 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->

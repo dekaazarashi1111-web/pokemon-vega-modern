@@ -5,7 +5,8 @@
 #include <stdint.h>
 
 #define VEGA_SAVE_MAGIC 0x31534756u /* "VGS1" (little endian) */
-#define VEGA_SAVE_VERSION 1u
+#define VEGA_SAVE_VERSION 2u
+#define VEGA_SAVE_LEGACY_VERSION 1u
 #define VEGA_SAVE_LEDGER_SIZE 0x800u
 #define VEGA_SAVE_EWRAM_ADDRESS 0x0203D000u
 #define VEGA_SAVE_PARASITE_IMAGE_OFFSET 0x1F18u
@@ -143,6 +144,39 @@ typedef struct VEGA_PACKED VegaMirageState {
     uint32_t item_reward_transaction_id;
 } VegaMirageState;
 
+/*
+ * T23は旧v1予約末尾の先頭64 bytesだけを所有する。先頭が奇数address
+ * (0x0203D73F)なので、ROM runtimeはmulti-byte値をbytewiseで読み書きする。
+ * この宣言はflash ABI監査用であり、alignmentを保証しない。
+ */
+typedef struct VEGA_PACKED VegaResearchEconomyState {
+    uint8_t owner_schema_version;
+    uint8_t owner_struct_size;
+    uint16_t owner_flags;
+    uint16_t research_point_balance;
+    uint8_t economy_rank;
+    uint8_t minutes_into_research_day;
+    uint16_t research_day_serial;
+    uint32_t lifetime_credited;
+    uint16_t daily_earned_by_activity[6];
+    uint8_t rank_claim_bits;
+    uint8_t simple_event_claim_bits;
+    uint8_t daily_shop_counts[4];
+    uint32_t shop_once_bits;
+    uint32_t next_transaction_id;
+    uint32_t last_game_corner_source_token;
+    uint32_t pending_transaction_id;
+    uint8_t pending_kind;
+    uint8_t pending_phase;
+    uint8_t pending_key_index;
+    uint8_t pending_aux;
+    uint16_t pending_amount;
+    uint16_t pending_pre_balance;
+    uint16_t pending_pre_daily_value;
+    uint16_t pending_pre_stock_value;
+    uint8_t owner_reserved[4];
+} VegaResearchEconomyState;
+
 typedef struct VEGA_PACKED VegaModernSaveData {
     uint32_t magic;
     uint16_t version;
@@ -189,7 +223,8 @@ typedef struct VEGA_PACKED VegaModernSaveData {
     uint16_t encounter_credits[VEGA_ENCOUNTER_CREDIT_TYPE_COUNT];
     VegaPendingEncounter pending_encounter;
     uint8_t item_obtained_flags[VEGA_ITEM_OBTAINED_BYTES];
-    uint8_t reserved[193];
+    VegaResearchEconomyState research_economy;
+    uint8_t reserved[129];
 } VegaModernSaveData;
 
 #define gVegaModernSaveData ((VegaModernSaveData *)(uintptr_t)VEGA_SAVE_EWRAM_ADDRESS)
@@ -230,6 +265,7 @@ uint32_t VegaSaveChecksum(const VegaModernSaveData *data);
 void VegaSaveFinalize(VegaModernSaveData *data);
 VegaSaveStatus VegaSaveValidate(const VegaModernSaveData *data, size_t available_size);
 VegaSaveStatus VegaSaveLoad(VegaModernSaveData *data, size_t available_size);
+VegaSaveStatus VegaSaveMigrateV1(VegaModernSaveData *data, size_t available_size);
 void VegaSaveInitNew(VegaModernSaveData *data, uint8_t first_badge_owned);
 VegaSaveStatus VegaSaveMigrateLegacy(VegaModernSaveData *data, const VegaLegacySignals *legacy);
 

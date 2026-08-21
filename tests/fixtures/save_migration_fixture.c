@@ -48,6 +48,8 @@ static int RunSaveSuite(void)
     VegaModernSaveData save;
     VegaModernSaveData loaded;
     VegaModernSaveData corrupt;
+    VegaModernSaveData legacy_v1;
+    VegaModernSaveData migrated_once;
     VegaLegacySignals legacy = {.recognized_vega_signature = 1,
                                 .legacy_checksum_valid = 1,
                                 .shiou_complete_flag_0824 = 1,
@@ -85,6 +87,42 @@ static int RunSaveSuite(void)
     CHECK(save.current_region == VEGA_REGION_TOHOKU);
     CHECK(save.encounter_profile[0] == VEGA_PROFILE_NORMAL);
     CHECK(save.encounter_profile[1] == VEGA_PROFILE_NORMAL);
+    CHECK(save.version == VEGA_SAVE_VERSION);
+    CHECK(save.research_economy.owner_schema_version == 1u);
+    CHECK(save.research_economy.owner_struct_size == sizeof(save.research_economy));
+    CHECK(save.research_economy.economy_rank == 1u);
+    CHECK(save.research_economy.next_transaction_id == 1u);
+
+    /* Stage 39 v1 uses all 193 tail bytes as zero-reserved storage. */
+    memcpy(&legacy_v1, &save, sizeof(legacy_v1));
+    legacy_v1.version = VEGA_SAVE_LEGACY_VERSION;
+    legacy_v1.generation = 0x13579BDFu;
+    legacy_v1.kanto_certifications = 0x5Au;
+    memset(&legacy_v1.research_economy, 0, sizeof(legacy_v1.research_economy));
+    memset(legacy_v1.reserved, 0, sizeof(legacy_v1.reserved));
+    legacy_v1.checksum = 0u;
+    legacy_v1.checksum = VegaSaveChecksum(&legacy_v1);
+    CHECK(VegaSaveValidate(&legacy_v1, sizeof(legacy_v1)) == VEGA_SAVE_OK);
+    memcpy(&loaded, &legacy_v1, sizeof(loaded));
+    CHECK(VegaSaveMigrateV1(&loaded, sizeof(loaded)) == VEGA_SAVE_OK);
+    CHECK(loaded.version == VEGA_SAVE_VERSION);
+    CHECK(loaded.generation == 0x13579BDFu);
+    CHECK(loaded.kanto_certifications == 0x5Au);
+    CHECK(loaded.research_economy.owner_schema_version == 1u);
+    CHECK(loaded.research_economy.owner_struct_size == sizeof(loaded.research_economy));
+    CHECK(loaded.research_economy.economy_rank == 1u);
+    CHECK(loaded.research_economy.next_transaction_id == 1u);
+    CHECK(VegaSaveValidate(&loaded, sizeof(loaded)) == VEGA_SAVE_OK);
+    memcpy(&migrated_once, &loaded, sizeof(migrated_once));
+    CHECK(VegaSaveMigrateV1(&loaded, sizeof(loaded)) == VEGA_SAVE_OK);
+    CHECK(memcmp(&loaded, &migrated_once, sizeof(loaded)) == 0);
+
+    memcpy(&corrupt, &legacy_v1, sizeof(corrupt));
+    corrupt.research_economy.owner_reserved[0] = 1u;
+    corrupt.checksum = 0u;
+    corrupt.checksum = VegaSaveChecksum(&corrupt);
+    CHECK(VegaSaveMigrateV1(&corrupt, sizeof(corrupt)) == VEGA_SAVE_RESERVED_NONZERO);
+    CHECK(corrupt.version == VEGA_SAVE_LEGACY_VERSION);
 
     VegaAcqSaveInitialize(
         (VegaAcqSaveBlock *)(void *)save.acquisition_save_block);

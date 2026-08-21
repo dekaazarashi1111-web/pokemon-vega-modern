@@ -1747,3 +1747,29 @@
   - 原本ZIPは395,446 bytes、mode `0444`、SHA-256 `4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2`で不変。Stage38差分／clean直接BPS SHA-256は`409742d1f5f449260020c72071e662f13451b3e26b8e041fe78965d421a36f35` / `b6f64f91d2f17ae23881f09fbc0ca45c85fdb6ee1b5379e40892079383b1c828`。
 - Commit: `-`（本エントリを含むT22完了コミット）
 - Network: 未使用。固定済みのローカルStage 38、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。
+
+## 2026-08-21T10:39:31+09:00
+
+- Task: `T23` / Research Economy V1をStage 40へproduction統合する
+- Status: DONE
+- Summary:
+  - 読取専用原本ZIP 12 entryのidentity、共通validator、fingerprint、open question 0を再照合し、通貨1、活動6、rank 7、shop 23、NPC binding 9、会話35、batch 7をstable keyの欠落・重複・未解決0で決定的にcompileした。
+  - 独立U16研究ポイント、active play 60分の研究日、6活動のdaily cap、rank claim、交換所の不足・満杯・cancel・在庫、一段／二段pending transactionを64-byte packed ownerへ実装した。保存失敗時は残高・cap・claim・bagを一括rollbackし、checksum-validなmodern save v1だけをv2へzero-extendする。
+  - 11 hook、2 branch veneer、7 map rootへ9 hostと35会話を通常field入力で接続した。釣り・生態・Game Cornerは既存wrapperをchainし、スロットは実payoutだけを対象とした。Stage 39取得runtimeの外側version直比較1箇所をexpected-byte付きでv2対応し、v2 save上の取得登録を実ROMで再確認した。
+  - 21 physical patch、12,143 changed byteはdeclared span内で、allocatorおよびROM/RAM/save/map/hook overlapは0。Stage39差分BPSとclean直接BPSを生成し、clean→39→40とclean→40が同一Stage 40になることを確認した。原本ZIP、clean/Stage39 ROM、saveは変更・追跡していない。
+- Files changed:
+  - production契約: `content/research_economy_v1/**`、`config/research_economy_v1.json`、`config/{ram_layout,save_layout}.csv`。
+  - save/runtime/build: `overlays/{save_migration,research_economy_v1}/**`、`scripts/{build,rebuild}_research_economy_v1*.py`、`Makefile`、`README.md`。
+  - QA: `tools/mgba_research_economy_v1_smoke.c`、`tests/test_research_economy_v1.py`、`tests/test_{save_layout,facility_save}.py`、`tests/fixtures/save_migration_fixture.c`。
+  - 状態・証跡: `design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。Stage 40 ROM、2 BPS、metadata/allocation、generated runtime/header/cases、audit/coverage、migration、mGBA quick/full、clean rebuild証跡は再生成領域へ出力した。
+- Verify:
+  - `python3 scripts/build_research_economy_v1.py build` / `check`: PASS。Stage 40は33,554,432 bytes、SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`、canonical件数 `6/1/7/23/9/35/7`、artifact 21。
+  - `python3 scripts/rebuild_research_economy_v1_from_clean.py build` / `check`: PASS。clean chain/direct BPSはbyte一致し完全往復した。Stage39差分／clean直接BPS SHA-256は `00522a0632267935960a284f946777ce208289b9dcd17ee572deb92a1b17cc8f` / `b2510ee390dc1ffb72be752e8d178e9b90d7ac4fd16f1bcbe4207b3360861f05`。
+  - `python3 -m unittest tests.test_research_economy_v1 -v`: PASS（16 tests）。最初の実行ではclean rebuild証跡未生成の1件だけがERRORとなり、書込用clean rebuild後の再実行で全件PASSした。
+  - libmGBA quick/full: 独立2 process、warnings/errors 0、受入10/10、result identity `RE40:1:6:7:23:9:35:64:11`一致。old/new/bad-checksum save、fault recovery、6 cap、rank/shop、Game Corner payout、Acquisition v2 readinessを実ROMで確認した。
+  - `python3 -m unittest tests.test_save_layout tests.test_facility_save tests.test_mirage_production -v`: PASS（19 tests）。64-byte ownerと既存Factory/Mirage/取得台帳の分離、save migration、Stage 38回帰を確認した。
+  - `python3 scripts/build_save_compatibility.py build` / `check`、`python3 -m py_compile scripts/build_research_economy_v1.py scripts/rebuild_research_economy_v1_from_clean.py tests/test_research_economy_v1.py`: PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --cached --check`: PASS。T23はDONEへ同期され、T24が唯一のPRIMARY。private原本・ROM・save・patchのindex混入は0。
+  - 原本ZIPは21,503 bytes、mode `0444`、SHA-256 `0cd2a68535f5543da919a6502a21321adb826dbff37d356b0cacfc697c7367de`で不変。fingerprintは `2ea4497307af6aece808fd9a98158561c7c87e83cd4748b2e6d3ab8c4aa27a8b`。
+- Commit: `-`（本エントリを含むT23完了コミット）
+- Network: 未使用。固定済みのローカルStage 39、clean ROM、manifest、packet、読取専用ユーザー提供ZIPだけを参照した。

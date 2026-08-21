@@ -732,3 +732,14 @@
   - Stage 38のTutor旧20-byte strideをexpected-byte付き1命令adapterで16-byte正本へ統一し、既存TM/tutor許可を除去せず0→1追加だけを反映した。
   - 新規野生生成だけへ初期技を適用し、既存save個体、trainer、Factory、Mirage、Raid、Rewardを不変に保った。clean chain/direct BPSの両経路から同一Stage 39を再構築した。
 - Verify: production build、focused 7 tests、libmGBA quick/full独立2 process・全acceptance・warnings/errors 0、clean rebuild build、task固有check 2件、BPS完全往復、declared span/allocator/ROM/RAM/save/hook overlap PASS。Stage 39 SHA-256 `c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd`。
+
+## 2026-08-21T10:39:31+09:00
+
+- Version: `post-v1.4.0-stage40`（v1.4.0 release identityとStage 27〜39は不変）
+- Commit: `-`（本エントリを含むT23完了コミット）
+- Task: `T23` / Integrate Research Economy V1
+- Summary:
+  - 独立研究ポイント、active play 60分の研究日、6活動、7 rank、23品交換所を64-byte versioned ownerへ実装した。
+  - 9 host・35会話を通常field入力へ接続し、釣り・生態・Game Cornerを既存production wrapperへchainした。
+  - modern save v1→v2 migration、保存失敗rollback、取得runtime v2互換を加え、clean chain/direct BPSの両方から同一Stage 40を再構築した。
+- Verify: production build/check、focused 16+19 tests、libmGBA quick/full独立2 process・受入10/10・warnings/errors 0、clean rebuild build/check、両BPS完全往復、21 physical patch、declared span/allocator/ROM/RAM/save/map/hook overlap PASS。Stage 40 SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`。
