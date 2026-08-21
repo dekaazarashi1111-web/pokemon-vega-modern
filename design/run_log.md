@@ -1857,3 +1857,30 @@
   - runtime/credential/private-key mode: `700/700/600`、launcher mode `755`: PASS。
 - Commit: `-`（本エントリを含む完了コミット）
 - Network: 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで接続確認した。インターネットは未使用。
+
+## 2026-08-21T14:35:17+09:00
+
+- Task: `USER-20260821-CODEX-BATTLE-TASK-QUEUE` / Codex対戦をT26〜T28へ設計固定・タスク追加
+- Status: DONE
+- Summary:
+  - Stage 42を不変baselineとし、Codex対戦をT26 Bridge / T27 Battle / T28 Reward-E2Eの直列DAGへ分割した。Stage 43で実iPad transport、Stage 44で双方6体提示・3体選出対戦、Stage 45で任意item/Pokémon報酬とsave/restartを完成させる。
+  - 実iPadを読取専用監査し、RetroArch configにNetwork Commands設定と既定portが存在すること、現在OFFであること、mGBA frameworkが存在すること、RetroArch binaryがcore-memory read/write commandを含むことを確認した。OFF状態のUDP VERSION probeが無応答である開始状態をT26へ固定した。iPad設定・ROM・saveは変更していない。
+  - GBA link/netplay/save pollingを不採用とし、RetroArch NCI UDPとversioned EWRAM mailboxを採用した。session nonce、sequence/inverse、CRC、phase/legal action、public information境界、trusted LAN、PCからの直接save編集禁止を固定した。
+  - battle regulationはsingle 3v3、双方6→3、Lv.50統一／自由、同一持ち物許可／禁止だけとし、種族banlistと報酬balanceをsystemへhardcodeしない。報酬は正常matchに紐づくROM側transactionでexactly onceへ収束させる。
+  - OpenAI公式のagent-friendly CLI指針を反映し、`vega-codex-battle`を別directoryから実行可能、既定は小さなversioned JSON、read/wait/write分離、setup/doctor、明示safe write、companion skill付きとする受入条件を固定した。
+- Files changed:
+  - 設計・判断・状態: `design/{codex_battle_architecture,agent_context_map,catalog,current_state,decisions,PLANS,tasks_next,run_log,version_log}.md`、`MASTER_PLAN.md`。
+  - タスク: `tasks/{T26_CODEX_BATTLE_BRIDGE,T27_CODEX_BATTLE_RUNTIME,T28_CODEX_BATTLE_REWARDS_RELEASE,INDEX}.md`、`tasks/task_graph.json`。
+  - 生成互換ミラー: `state/task_status.json`。
+- Verify:
+  - `ipad-wifi-ssh doctor`と読取専用inventory: PASS。Network Commands設定/mGBA/core-memory command実在を確認し、端末固有IP、container UUID、credentialをtracked成果へ保存していない。
+  - UDP `VERSION` probe: 現在OFFのため無応答で開始状態と一致。T26のDONE条件には採用せず、T26でenable後の実read/writeを必須化した。
+  - Stage 42 ROM / metadata SHA-256: `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068` / `8692768f22f1ef9c5f0562712c110d063fb743f46ef7e2ebafbc021d084bf5a0`、size 33,554,432 / 21,389 bytesで固定値一致。
+  - `python3 scripts/taskctl.py sync/next/plan`: PASS。29 taskを同期し、T26だけがPRIMARY、T27/T28はW21/W22の依存待ち。
+  - `python3 -m unittest tests.test_task_graph tests.test_task_queue tests.test_private_guard_index -v`: PASS（20 tests）。DAG、queue順、task metadata、状態遷移、index-based private guardを確認した。
+  - `python3 scripts/validate_task_graph.py`、`python3 -m json.tool tasks/task_graph.json`、`git diff --check`: PASS。
+  - 新規4仕様へのmachine-specific path/IP/credential pattern監査: 混入0。
+- Commit: `-`（本エントリを含む完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへSSH read-only inventoryとUDP VERSION probeを実施した。
+  - インターネットは公式一次資料の確認だけに使用した。RetroArch NCI `https://docs.libretro.com/development/retroarch/network-control-interface/`、mGBA libretro memory map `https://github.com/mgba-emu/mgba/blob/master/src/platform/libretro/libretro.c`、OpenAI agent-friendly CLI `https://learn.chatgpt.com/use-cases/agent-friendly-clis`を参照した。

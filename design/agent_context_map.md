@@ -32,6 +32,9 @@
 | Research Economy V1統合 | `tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md` | 返却ZIP、T22 Stage 39、現行save/currency/activity/map graph |
 | Reward Encounters V2統合 | `tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md` | 返却ZIP、T23 Stage 40、捕獲・BP・research・Factory transaction |
 | Factory High Modes V2統合 | `tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md` | 返却ZIP、T24 Stage 41、既存Factory Trial/save/UI/battle/reward runtime |
+| Codex対戦bridge | `tasks/T26_CODEX_BATTLE_BRIDGE.md` | `design/codex_battle_architecture.md`、Stage 42、RetroArch NCI、mGBA memory map、`ipad-wifi-ssh` |
+| Codex 6→3対戦 | `tasks/T27_CODEX_BATTLE_RUNTIME.md` | T26 Stage 43/protocol/CLI、party selection、battle controller、Factory/Mirage cleanup |
+| Codex任意報酬・iPad完走 | `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md` | T27 Stage 44、Acquisition/T24/T25 transaction、save layout、Codex companion skill |
 | Trainer AI・難易度 | `design/decisions.md` D-015 | 固定CFRU-JP `src/Battle_AI/**`, V2 `06_出現率・トレーナー・報酬バランス.md`, T01/T02/T06/T10/T12/T15〜T18 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
@@ -61,6 +64,9 @@
 - T23: `tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_RESEARCH-ECONOMY-V1_IMPLEMENTATION-READY.zip`、T22 Stage 39 ROM/metadata、`config/save_layout.csv`、currency/activity hook、map rooted graph。T21 Mirage、Factory、既存Research encounterのsave ownerを再監査する。
 - T24: `tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_REWARD-ENCOUNTERS-V2_IMPLEMENTATION-READY.zip`、T23 Stage 40 ROM/metadata、capture transaction、BP/credit、Research/Factory source、Vermilion host graph。pending同一個体をsave前提で検査する。
 - T25: `tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md`、`userfile/imports/Pokemon-Vega_FACTORY-HIGH-MODES-V2_IMPLEMENTATION-READY.zip`、T24 Stage 41 ROM/metadata、`overlays/facility_runtime/`、Factory Trial save/UI/battle/reward、T24 credit hook、T21 Mirage isolation。既存Trialをbehavior oracleにする。
+- T26: `tasks/T26_CODEX_BATTLE_BRIDGE.md`、`design/codex_battle_architecture.md`、Stage 42 ROM/metadata、`config/ram_layout.csv`、RetroArch NCI公式仕様、mGBA libretro memory map、`ipad-wifi-ssh`。端末固有IP/path/credentialをtracked文書へ書かず、実iPad read/writeを必須にする。
+- T27: `tasks/T27_CODEX_BATTLE_RUNTIME.md`、T26 Stage 43/protocol/CLI、T06 battle controller/AI、T08 save/RAM、標準party selection、T21/T25 party exact restore、battle UI/rules。報酬transactionはT28まで実装しない。
+- T28: `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md`、T27 Stage 44/protocol/CLI、Acquisition runtime、T24/T25 reward/save transaction、`config/save_layout.csv`、party/box/bag、Codex companion skill。専用iPad ROM/save copyでE2Eする。
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
 - HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules: `tasks/USER_20260814_BATTLE_RULES.md`、`config/battle_rules.json`、`scripts/build_battle_rules.py`、`tools/mgba_battle_rules_smoke.c`、固定CFRU-JP battle source、stage 22/23、T06 hook/runtime表。

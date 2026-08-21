@@ -776,3 +776,14 @@
   - WSL/Codex用runtimeとmode 600のcredentialをユーザー領域へ導入し、固定host key・固定接続先を維持した。
   - iPadへのWi-Fi SSH doctorとremote command実行に成功し、このworkspaceから`ipad-wifi-ssh`を利用可能にした。
 - Verify: ZIP CRC/SHA-256、同梱10 hash、private import権限、runtime/credential権限、固定鍵fingerprint、実SSH接続、通常PATH、remote `run` PASS。
+
+## 2026-08-21T14:35:17+09:00
+
+- Version: `post-v1.4.0-stage42-codex-battle-task-queue`（Stage 42 ROM identityは不変）
+- Commit: `-`（本エントリを含む完了コミット）
+- Task: `USER-20260821-CODEX-BATTLE-TASK-QUEUE` / Codex対戦をT26〜T28へ設計固定・タスク追加
+- Summary:
+  - 実iPadのRetroArch NCI/mGBA開始状態を読取専用監査し、外部controller＋versioned EWRAM mailbox方式を実装正本へ固定した。
+  - T26 Stage 43の実機bridge、T27 Stage 44の双方6→3対戦、T28 Stage 45の任意報酬・Codex skill・iPad E2Eを直列DAGへ追加した。
+  - Lv.50統一／自由、同一持ち物許可／禁止、会話で決めるteam/regulation/reward、ROM側safe transactionを受入条件へ固定した。
+- Verify: iPad SSH read-only inventory、Stage 42 identity、taskctl sync/next/plan、focused 20 tests、task graph、JSON、private pattern、diff check PASS。T26が唯一のPRIMARY。

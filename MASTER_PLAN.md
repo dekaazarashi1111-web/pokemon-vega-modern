@@ -44,6 +44,9 @@ FireRed JPN Rev0 clean
 | T23 | Research Economy V1 | Content/Engine/Save/Maps/QA | T22 | 独立研究通貨・6活動・7 rank・23 shopをStage 40へproduction統合 |
 | T24 | Reward Encounters V2 | Content/Engine/Save/Maps/QA | T23 | 4 tier・typed credit・pending再戦・24 encounterをStage 41へproduction統合 |
 | T25 | Factory High Modes V2 | Content/Engine/Save/UI/QA | T24 | 既存Trialを保って24 Factory modeをStage 42へproduction統合 |
+| T26 | Codex Battle Bridge | Platform/Tooling/Engine/QA | T25 | iPad RetroArch NCIとversioned mailboxをStage 43で実証 |
+| T27 | Codex Battle Runtime | Engine/UI/Content/Tooling/QA | T26 | 双方6体提示・3体選出とCodex行動をStage 44へproduction統合 |
+| T28 | Codex Rewards and iPad Gate | Engine/Save/Tooling/Release/QA | T27 | 任意item/Pokémon報酬とiPad対戦E2EをStage 45で完成 |
 
 ## 最短実行戦略
 
@@ -65,7 +68,7 @@ T00 -> T12 ----┴-> T13
 
 `make plan` はDAGから現在の `RESUME` / 推奨 `PRIMARY` / その他の依存READY候補 `PARALLEL_PREP` と準備waveを自動導出します。正本IN_PROGRESSは1件だけとし、同じwaveの他タスクは所有ファイルを分けたsubtaskまたは別worktreeで先行します。準備waveは依存深度を表す論理並列単位であり、正本完了のbarrierや強制統合順ではありません。
 
-正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T25` です。これは強制順ではないが、返却4設計はshared table/save/hookを安全に継承するため `T22 → T23 → T24 → T25` の依存順を固定する。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、進行後の現在値は `make plan` と `design/current_state.md` を正とする。
+正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T28` です。これは強制順ではないが、返却4設計はshared table/save/hookを安全に継承するため `T22 → T23 → T24 → T25`、Codex対戦はtransport/battle/saveを分離するため `T26 → T27 → T28` の依存順を固定する。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、進行後の現在値は `make plan` と `design/current_state.md` を正とする。
 
 ## 高速並列準備waveと統合時の成果基準
 
@@ -91,8 +94,11 @@ T00 -> T12 ----┴-> T13
 | W17 | T23 | 研究通貨・6活動・7 rank・23 shop・save migrationを通常入口へ接続し、clean Stage 40をPASSする |
 | W18 | T24 | 4 tier・24 pool・typed credit/BP・pending同一個体再戦・10 sourceを接続し、clean Stage 41をPASSする |
 | W19 | T25 | 24 mode・248 rental・55 profile・16 rewardを既存Trial不変で接続し、clean Stage 42をPASSする |
+| W20 | T26 | iPad RetroArch NCIの実memory read/write、versioned mailbox、CLI doctor/PING、clean Stage 43をPASSする |
+| W21 | T27 | 双方6→3選出、2 regulation、Codex move/switch/forfeit、全cleanup、clean Stage 44をPASSする |
+| W22 | T28 | 任意item/Pokémon報酬、exactly-once save、Codex skill、iPad E2E、clean Stage 45をPASSする |
 
-最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、イベント設計統合はT20、Mirage production接続はT21。返却済み4設計はT22〜T25でStage 38から順次rebaseし、Stage 42を次の統合完成点とする。
+最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、イベント設計統合はT20、Mirage production接続はT21。返却済み4設計はT22〜T25でStage 38から順次rebaseしてStage 42を完成点とし、Codex対戦はT26〜T28でStage 45まで段階統合する。
 
 受領したV2二地方生態版は完成像・進行・生態・イベントのactive review資料です。V1は来歴保存専用です。V2の47カントー地点はraw map総数ではないため、T11ではclean BPRJとpokefireredから約256候補mapの再現可能なinventoryを作り、論理地点とのcrosswalkを確定します。採用済みデータだけをT12/T16のschemaへ昇格します。
 

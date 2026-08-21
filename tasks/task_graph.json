@@ -252,6 +252,33 @@
         "T24"
       ],
       "file": "tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md"
+    },
+    {
+      "id": "T26",
+      "title": "Codex対戦ブリッジをStage 43で実証する",
+      "lane": "platform/tooling/engine/qa",
+      "depends_on": [
+        "T25"
+      ],
+      "file": "tasks/T26_CODEX_BATTLE_BRIDGE.md"
+    },
+    {
+      "id": "T27",
+      "title": "Codex操作6→3対戦をStage 44へproduction統合する",
+      "lane": "engine/ui/content/tooling/qa",
+      "depends_on": [
+        "T26"
+      ],
+      "file": "tasks/T27_CODEX_BATTLE_RUNTIME.md"
+    },
+    {
+      "id": "T28",
+      "title": "任意報酬とiPad最終ゲートをStage 45で完成させる",
+      "lane": "engine/save/tooling/release/qa",
+      "depends_on": [
+        "T27"
+      ],
+      "file": "tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md"
     }
   ]
 }

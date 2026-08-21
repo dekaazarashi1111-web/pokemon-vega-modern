@@ -30,3 +30,6 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T23](T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md) | Integrate Research Economy V1 | content/engine/save/maps/qa | T22 |
 | [T24](T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md) | Integrate Reward Encounters V2 | content/engine/save/maps/qa | T23 |
 | [T25](T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md) | Integrate Factory High Modes V2 | content/engine/save/ui/qa | T24 |
+| [T26](T26_CODEX_BATTLE_BRIDGE.md) | Codex対戦ブリッジをStage 43で実証する | platform/tooling/engine/qa | T25 |
+| [T27](T27_CODEX_BATTLE_RUNTIME.md) | Codex操作6→3対戦をStage 44へproduction統合する | engine/ui/content/tooling/qa | T26 |
+| [T28](T28_CODEX_BATTLE_REWARDS_RELEASE.md) | 任意報酬とiPad最終ゲートをStage 45で完成させる | engine/save/tooling/release/qa | T27 |

@@ -256,3 +256,20 @@
   各回開始し、active保存→core破棄→fresh load→exact復旧を確認する。
 - 影響: T21 Stage38、Mirage field/runtime/save/QA。ChatGPT Pro待ち4領域、Factory、Raid、acquisition、
   T20 event、既存trainer contentは変更しない。
+
+## 2026-08-21 — D-026: Codex対戦はRetroArch NCI外部controller方式で段階統合する
+
+- transport: GBA link cable、RetroArch netplay、save file pollingを使わない。iPadで1本のROMを動かし、
+  RetroArch NCIのsystem memory mapからversioned EWRAM mailboxだけをread/writeする。SSHは設定診断、
+  versioned ROM転送、証跡取得だけに使う。plain UDPのためtrusted LAN限定とする。
+- protocol: magic/version/size、Stage identity、boot session nonce、sequence/inverse、CRC、phase、legal actionを
+  fixed-width ABIへ置く。PCは宣言request spanだけを書き、ROMがphase・nonce・sequence・CRC・合法性を
+  検証してからbattle controllerへ渡す。PCからparty/saveを直接編集しない。
+- battle: single 3v3、双方6体preview、プレイヤーは標準party UI、CodexはCLIで3体を選ぶ。
+  固定regulationはLv.50統一／自由と同一持ち物許可／禁止だけ。種族・content banlistと報酬balanceは
+  systemへ固定せず、ユーザーとCodexの会話で決める。
+- reward: 正常resultに紐づくreward windowから、canonical item/Pokémon IDを既存ROM transactionへ渡す。
+  match ID、request sequence、payload hash、journalでreset/save fault/retryをexactly onceへ収束させる。
+- 分割: T26 Stage43で実iPad transport/mailbox、T27 Stage44で6→3 battle、T28 Stage45で任意報酬・
+  Codex companion skill・iPad E2Eを完成させる。T26実機gate不合格時は代替transportを推測実装しない。
+- 影響: T26〜T28、Stage 43〜45、RetroArch local設定、Codex CLI/skill、battle/save/reward QA。

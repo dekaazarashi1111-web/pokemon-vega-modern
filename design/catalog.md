@@ -7,13 +7,17 @@
 - `design/current_state.md`: 現在状態の要約
 - `design/agent_context_map.md`: 読む順番の短縮地図
 - `design/tasks_next.md`: 唯一のタスク状態正本
-- `tasks/task_graph.json`: T00〜T25の依存関係正本
+- `tasks/task_graph.json`: T00〜T28の依存関係正本
 - `tasks/T*.md`: タスクごとの目的、成果物、完了条件
 - `tasks/T21_MIRAGE_PRODUCTION_RUNTIME.md`: 設計済みMirage 4周のStage 38 production接続仕様
 - `tasks/T22_MOVE_DISTRIBUTION_V4_IMPLEMENTATION.md`: 返却済みMove Distribution V4のStage 39統合仕様
 - `tasks/T23_RESEARCH_ECONOMY_V1_IMPLEMENTATION.md`: 返却済みResearch Economy V1のStage 40統合仕様
 - `tasks/T24_REWARD_ENCOUNTERS_V2_IMPLEMENTATION.md`: 返却済みReward Encounters V2のStage 41統合仕様
 - `tasks/T25_FACTORY_HIGH_MODES_V2_IMPLEMENTATION.md`: 返却済みFactory High Modes V2のStage 42統合仕様
+- `design/codex_battle_architecture.md`: iPad RetroArch NCI、Codex CLI、6→3対戦、任意報酬の実装正本
+- `tasks/T26_CODEX_BATTLE_BRIDGE.md`: Codex対戦mailboxと実iPad NCIのStage 43実証仕様
+- `tasks/T27_CODEX_BATTLE_RUNTIME.md`: Codex操作6→3対戦のStage 44統合仕様
+- `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md`: 任意報酬・companion skill・iPad E2EのStage 45完成仕様
 - `MASTER_PLAN.md`: 製品・技術ロードマップ
 - `design/PLANS.md`: 運用計画索引
 - `design/decisions.md`: 採択済みADR（追記のみ）
