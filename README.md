@@ -104,6 +104,10 @@ make factory-high-modes-v2 # Stage41へ24 mode・248 rental・55 profile・16 re
 make factory-high-modes-v2-check # Trial互換・全mode有限生成・報酬復旧・mGBA quick/fullを副作用なしで再照合
 make factory-high-modes-v2-clean-rebuild # clean ROMからStage41→Stage42とclean直接BPSをbyte再現
 make factory-high-modes-v2-clean-rebuild-check # clean起点の両BPS・7,440-row matrix・Stage42証跡を副作用なしで再照合
+make codex-battle-bridge # Stage42へversioned EWRAM mailboxを結合してStage43を生成
+make codex-battle-bridge-check # protocol・BPS・mGBA・実iPad証跡を副作用なしで再照合
+make codex-battle-bridge-clean-rebuild # clean ROMからStage42→Stage43とclean直接BPSをbyte再現
+make codex-battle-bridge-clean-rebuild-check # clean起点の両BPS・mGBA・iPad証跡を再照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

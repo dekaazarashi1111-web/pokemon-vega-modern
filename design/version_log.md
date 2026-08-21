@@ -787,3 +787,15 @@
   - T26 Stage 43の実機bridge、T27 Stage 44の双方6→3対戦、T28 Stage 45の任意報酬・Codex skill・iPad E2Eを直列DAGへ追加した。
   - Lv.50統一／自由、同一持ち物許可／禁止、会話で決めるteam/regulation/reward、ROM側safe transactionを受入条件へ固定した。
 - Verify: iPad SSH read-only inventory、Stage 42 identity、taskctl sync/next/plan、focused 20 tests、task graph、JSON、private pattern、diff check PASS。T26が唯一のPRIMARY。
+
+## 2026-08-21T16:18:30+09:00
+
+- Version: `post-v1.4.0-stage43`（v1.4.0 release identityとStage 27〜42は不変）
+- Commit: `-`（本エントリを含むT26完了コミット）
+- Task: `T26` / Codex対戦ブリッジをStage 43で実証する
+- Summary:
+  - 512-byte EWRAM予約へ256-byte protocol 1.0 mailboxを実装し、旧ReadKeys delegateを保つmain-loop wrapperから初期化・poll・PING/PONGを接続した。
+  - owner-only設定と安定JSON/exit codeを持つ安全な`vega-codex-battle` CLIを追加し、任意memory操作を公開せず宣言済み64-byte request spanだけを書けるようにした。
+  - 実iPad RetroArch 1.22.2 / mGBAでStage 43を起動し、NCI `VERSION` / `GET_STATUS` / EWRAM read / mailbox write / sequence 1 PING/PONGを実証した。端末固有IP、credential、container pathは証跡から除外した。
+  - clean chain/direct BPSの両方から同一Stage 43を再構築し、宣言span外変更とROM/RAM/save/hook overlapを0にした。
+- Verify: production build/check、focused 10 tests、libmGBA quick/full独立2 process・受入11/11・invalid 10・保護span 7・warnings/errors 0、実iPad NCI read/write/PING/PONG、clean rebuild build/check、両BPS完全往復、task graph/private guard/diff check PASS。Stage 43 SHA-256 `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c`、CRC32 `40CE01CE`。

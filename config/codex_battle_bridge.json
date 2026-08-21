@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "task": "T26",
+  "stage": 43,
+  "inputs": {
+    "rom_producing_commit": "279890f7bcf087649517d331a841b62b801f9c24",
+    "stage42_rom": {
+      "path": "build/stages/42_factory_high_modes_v2.gba",
+      "size": 33554432,
+      "sha256": "2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068",
+      "crc32": "EECED58B"
+    },
+    "stage42_metadata": {
+      "path": "build/stages/42_factory_high_modes_v2.json",
+      "size": 21389,
+      "sha256": "8692768f22f1ef9c5f0562712c110d063fb743f46ef7e2ebafbc021d084bf5a0"
+    },
+    "stage42_allocation": {
+      "path": "build/stages/42_allocation.json",
+      "size": 29544,
+      "sha256": "c26c5661b6148f891e98d06ce48f5b8c53d53bd229e34140873ac8984b6eb6d1"
+    },
+    "stage42_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-factory-high-modes-stage42.bps",
+      "size": 16187732,
+      "sha256": "6b84f1ab4a854ffb015d4f0cfcdbb09b172c68098d94130b696aea6c2839685c"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "ram": {
+    "address": "0x0203F800",
+    "end_exclusive": "0x0203FA00",
+    "reserved_size": 512,
+    "mailbox_size": 256,
+    "future_extension_size": 256,
+    "owner": "T26_CODEX_BATTLE_BRIDGE",
+    "persistence": "VOLATILE"
+  },
+  "protocol": {
+    "magic_ascii": "VCBX",
+    "magic_u32": "0x58424356",
+    "major": 1,
+    "minor": 0,
+    "struct_size": 256,
+    "header_size": 80,
+    "snapshot_offset": 80,
+    "snapshot_size": 48,
+    "request_offset": 128,
+    "request_size": 64,
+    "request_payload_max": 32,
+    "capabilities": 7,
+    "stage_number": 43,
+    "stage_identity": "0x0DB5FBE5",
+    "build_identity": "0x43364254",
+    "phase_idle": 1,
+    "command_ping": 1,
+    "pong_magic": "0x474E4F50"
+  },
+  "hook": {
+    "name": "main_read_keys_delegate_pointer",
+    "address": "0x080005EC",
+    "size": 4,
+    "mode": "THUMB_POINTER",
+    "expected_hex": "fd803709",
+    "delegate": "0x093780FD",
+    "target_symbol": "CodexBattleBridge_ReadKeysAdapter"
+  },
+  "device_contract": {
+    "retroarch_version": "1.22.2",
+    "retroarch_build": "497",
+    "mgba_info_version": "0.10-dev",
+    "mgba_core_sha256": "72b25ade2b8c914bdd69c1c30cd836c5a49c1159c4a3e30a481e90fc3706fac2",
+    "network_cmd_port": 55355,
+    "trusted_lan_only": true,
+    "hardcore_write_warning": true
+  },
+  "sources": {
+    "retroarch_nci": "https://docs.libretro.com/development/retroarch/network-control-interface/",
+    "mgba_memory_map": "https://github.com/mgba-emu/mgba/blob/master/src/platform/libretro/libretro.c"
+  },
+  "outputs": {
+    "rom": "build/stages/43_codex_battle_bridge.gba",
+    "metadata": "build/stages/43_codex_battle_bridge.json",
+    "allocation": "build/stages/43_allocation.json",
+    "incremental_bps": "build/patches/factory-high-modes-stage42-to-codex-battle-bridge-stage43.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-codex-battle-bridge-stage43.bps",
+    "generated_header": "generated/runtime/codex_battle_bridge_generated.h",
+    "runtime": "generated/runtime/codex_battle_bridge_runtime.bin",
+    "symbols": "generated/runtime/codex_battle_bridge_symbols.json",
+    "protocol": "generated/runtime/codex_battle_bridge_protocol.json",
+    "cases": "generated/runtime/codex_battle_bridge_mgba_cases.json",
+    "audit": "reports/generated/codex_battle_bridge_audit.json",
+    "coverage": "reports/generated/codex_battle_bridge_coverage.json",
+    "ipad": "reports/generated/codex_battle_bridge_ipad.json",
+    "mgba_quick": "build/stages/43_mgba_codex_battle_bridge_quick.json",
+    "mgba_full": "build/stages/43_mgba_codex_battle_bridge_full.json",
+    "clean_rebuild": "build/stages/43_codex_battle_bridge_clean_rebuild.json"
+  }
+}

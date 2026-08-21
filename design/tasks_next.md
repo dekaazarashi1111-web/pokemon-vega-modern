@@ -25,7 +25,7 @@
 - [x] T23: 研究経済V1を独立通貨・活動・rank・shop・saveへproduction統合する <!-- id:T23 -->
 - [x] T24: 報酬遭遇V2をtyped credit・pending再戦・実battleへproduction統合する <!-- id:T24 -->
 - [x] T25: Factory High Modes V2の24 modeを既存Trialを保ってproduction統合する <!-- id:T25 -->
-- [ ] T26: iPad RetroArch NCIとCodex対戦mailboxをStage 43で実証する <!-- id:T26 -->
+- [x] T26: iPad RetroArch NCIとCodex対戦mailboxをStage 43で実証する <!-- id:T26 -->
 - [ ] T27: Codex操作の6体提示・3体選出対戦をStage 44へproduction統合する <!-- id:T27 -->
 - [ ] T28: Codex任意報酬とiPad対戦E2EをStage 45で完成させる <!-- id:T28 -->
 - [x] 初戦の行動順メッセージ無限ループを修正する <!-- id:USER-20260814-FIRST-BATTLE-LOOP -->

@@ -1884,3 +1884,29 @@
 - Network:
   - 同一private LAN上のユーザー所有iPadへSSH read-only inventoryとUDP VERSION probeを実施した。
   - インターネットは公式一次資料の確認だけに使用した。RetroArch NCI `https://docs.libretro.com/development/retroarch/network-control-interface/`、mGBA libretro memory map `https://github.com/mgba-emu/mgba/blob/master/src/platform/libretro/libretro.c`、OpenAI agent-friendly CLI `https://learn.chatgpt.com/use-cases/agent-friendly-clis`を参照した。
+
+## 2026-08-21T16:18:30+09:00
+
+- Task: `T26` / Codex対戦ブリッジをStage 43で実証する
+- Status: DONE
+- Summary:
+  - 固定Stage 42へEWRAM `0x0203F800..0x0203FA00`の512 byteを中央layoutで割り当て、先頭256 byteをprotocol 1.0 mailbox、後半をT27/T28予約とした。host書込範囲はrequest `0x0203F880..0x0203F8C0`の64 byteだけで、session nonce、sequence/inverse、payload/request/snapshot CRC、phase、command、sizeをROMとCLI双方で検証する。
+  - 既存main-loop ReadKeys delegate pointerをexpected-byte付きwrapperへ置換し、旧delegateを先に実行してからmailboxをpollする。Stage 43の変更1,362 byteは宣言span内、ROM/RAM/save/hook overlapと宣言span外変更は0。party、battle、save、RNG、Factory、Mirage、Rewardの7保護spanは初期化、PING、10 invalid caseの前後で不変だった。
+  - production `vega-codex-battle` CLIへ`doctor`、`device configure/status`、`bridge ping`だけを実装した。任意memory commandは公開せず、接続先はGit管理外のmode `0700/0600`設定へ保存する。wrong ROM/core/protocol、timeout、torn、duplicate、stale/future、wrong nonce/CRC/phase、oversize、unknown commandを安定JSON/exit codeで拒否する。
+  - 実iPadでRetroArch停止、設定原本hash、同一hash backup、変更後照合を行ってNetwork CommandsをONにした。RetroArch 1.22.2 build 497、mGBA `0.10-dev`、EWRAM descriptorを固定し、ユーザー確認のタイトル画面でStage 43 CRC32 `40CE01CE`がPLAYINGになった後、別directoryから`VERSION`、`GET_STATUS`、EWRAM read、64-byte requestの3分割write、sequence 1の`PING/PONG`をproduction CLIでPASSした。
+  - ROMは同名不在を条件にversioned filenameで新規配置し、端末側32 MiB/SHA-256を生成物と照合した。取込で生じた同一SHAの冗長な再生成可能コピー2件だけを削除し、mGBAで利用する1件を保持した。既存ROM/saveは書込・削除対象にせず、NCI writeもmailbox request spanだけに限定した。RetroArchは証跡後に停止し、一時debug loggingをOFFへ戻し、Network CommandsはONのまま保持した。
+  - 実機report、CLI出力、設計ログからIP、credential、container UUID/pathを除外した。NCIがplain UDPでありtrusted LAN限定、RetroAchievements hardcore write警告をprotocol文書へ明記した。
+- Files changed:
+  - 契約・runtime: `config/codex_battle_bridge.json`、`config/ram_layout.csv`、`docs/CODEX_BATTLE_PROTOCOL.md`、`overlays/codex_battle_bridge/**`。
+  - build/CLI/QA: `scripts/build_codex_battle_bridge.py`、`scripts/rebuild_codex_battle_bridge_from_clean.py`、`scripts/install_vega_codex_battle_cli.sh`、`tools/vega_codex_battle.py`、`tools/mgba_codex_battle_bridge_smoke.c`、`tests/test_codex_battle_bridge.py`、`Makefile`、`README.md`。
+  - 状態・証跡: `design/{current_state,tasks_next,run_log,version_log}.md`、`state/task_status.json`。Stage 43 ROM、Stage42差分/clean直接BPS、metadata/allocation、protocol/symbol/case、audit/coverage/iPad、mGBA quick/full、clean rebuild証跡はGit管理外の再生成領域へ出力した。
+- Verify:
+  - `python3 scripts/build_codex_battle_bridge.py build` / `check`: PASS。Stage 43は33,554,432 bytes、SHA-256 `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c`、CRC32 `40CE01CE`、受入11/11、artifact 14。
+  - libmGBA quick/full: 独立2 process、10/10 checks、invalid case 10、保護span 7、warnings/errors 0、result identity `CB43:1:256:512:10:7`一致。rooted delegate、header/snapshot CRC、PING/PONG、全reject、状態不変をexact Stage 43 ROMで確認した。
+  - 実iPad RetroArch/mGBA: `doctor --json`、`device status --json`、`bridge ping --json`: PASS。transport/core/ROM/protocol/capability/session/snapshot、EWRAM read、宣言span3 write、PONG、owner-only設定、repo外directory、秘密情報除外を確認した。実機report SHA-256は `b9fbe7ba32d7d64b5d4730541afbf4dff6acd00b308bb0c289ba7363600e6d67`。
+  - `python3 scripts/rebuild_codex_battle_bridge_from_clean.py build` / `check`: PASS。clean→Stage42→Stage43とclean→Stage43直接BPSがbyte一致し完全往復した。Stage42差分／clean直接BPS SHA-256は `93a08be309d17e7f8bf4c8045c4d5ee5660e5eb31c30fa380c1845baf856d5c4` / `2d14960251b651676e1fd55eb361c7696075a9ace0d2c0162220af64949cf695`。
+  - `python3 -m unittest -v tests.test_codex_battle_bridge`: PASS（10 tests、skip 0）。`python3 -m py_compile ...`、`bash -n scripts/install_vega_codex_battle_cli.sh`、installer self-check、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むT26完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで安全inventory/config/versioned ROM転送を行い、RetroArch NCI plain UDPで実EWRAM read/writeとPING/PONGを実施した。接続先と端末固有pathは保存していない。
+  - インターネットは公式一次資料の確認だけに使用した。検索対象と要点は、RetroArch NCI `https://docs.libretro.com/development/retroarch/network-control-interface/`（UDP command、既定port、core-memory構文）、RetroArch 1.22.2 `command.c` / `libretro-common/net/net_socket.c`（datagram bind/reply）、mGBA libretro `https://github.com/mgba-emu/mgba/blob/master/src/platform/libretro/libretro.c`（writable EWRAM descriptor）、RetroArch iOS `https://docs.libretro.com/guides/install-ios/`（Files/Load Contentによるsandbox取込）。私有ROM、save、秘密情報は外部送信していない。
