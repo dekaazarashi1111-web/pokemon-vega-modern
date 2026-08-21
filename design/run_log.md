@@ -1843,12 +1843,12 @@
 - Summary:
   - ユーザー提供ZIPをpath/CRC/SHA-256監査し、全15 entryにpath traversal・symlink・圧縮破損がないことを確認した。同梱manifestの10 file hashは全件一致した。
   - 秘密鍵を含む原本ZIPと展開物をGit管理外の`userfile/imports/ipad-wifi-ssh-toolkit-20260821/`へ取り込み、所有者以外の権限を除去して読取専用化した。秘密鍵本文はログ・Git indexへ出力していない。
-  - WSL runtimeを`/home/dekaa/.local/bin/ipad-wifi-ssh`、credentialを`/home/dekaa/.local/share/ipad-wifi-ssh/credentials/`へ導入した。固定host key・client key・Wi-Fi直結を強制する同梱設定を変更せず採用した。
+  - WSL runtimeを`${XDG_BIN_HOME:-$HOME/.local/bin}/ipad-wifi-ssh`、credentialを`${XDG_DATA_HOME:-$HOME/.local/share}/ipad-wifi-ssh/credentials/`へ導入した。固定host key・client key・Wi-Fi直結を強制する同梱設定を変更せず採用した。
   - iPadへの実SSH接続と引用済みremote commandを実行し、mobile userでの接続、remote working directory、通常PATHからのコマンド解決を確認した。iPad上のファイル変更は行っていない。
 - Files changed:
   - Git管理対象: `design/run_log.md`、`design/version_log.md`。
   - Git管理外private原本: `userfile/imports/ipad-wifi-ssh-toolkit-20260821/**`。
-  - workspace外runtime: `/home/dekaa/.local/bin/ipad-wifi-ssh`、`/home/dekaa/.local/share/ipad-wifi-ssh/**`。
+  - workspace外runtime: `${XDG_BIN_HOME:-$HOME/.local/bin}/ipad-wifi-ssh`、`${XDG_DATA_HOME:-$HOME/.local/share}/ipad-wifi-ssh/**`。
 - Verify:
   - ZIP SHA-256 `f5efd8674a8c68c816599f57716867403eade8d8c10b42e18791db21acff7897`、`unzip -t`: PASS。
   - `sha256sum -c SHA256SUMS.txt`: PASS（10/10）。private key、known_hosts、Windows/WSL runtimeを同梱manifestと照合した。
