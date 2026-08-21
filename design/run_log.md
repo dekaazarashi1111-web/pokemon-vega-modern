@@ -1910,3 +1910,26 @@
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで安全inventory/config/versioned ROM転送を行い、RetroArch NCI plain UDPで実EWRAM read/writeとPING/PONGを実施した。接続先と端末固有pathは保存していない。
   - インターネットは公式一次資料の確認だけに使用した。検索対象と要点は、RetroArch NCI `https://docs.libretro.com/development/retroarch/network-control-interface/`（UDP command、既定port、core-memory構文）、RetroArch 1.22.2 `command.c` / `libretro-common/net/net_socket.c`（datagram bind/reply）、mGBA libretro `https://github.com/mgba-emu/mgba/blob/master/src/platform/libretro/libretro.c`（writable EWRAM descriptor）、RetroArch iOS `https://docs.libretro.com/guides/install-ios/`（Files/Load Contentによるsandbox取込）。私有ROM、save、秘密情報は外部送信していない。
+
+## 2026-08-21T16:29:10+09:00
+
+- Task: `USER-20260821-CODEX-BATTLE-T27-PREP` / T27を別セッション向けimplementation-ready仕様へ更新
+- Status: DONE
+- Summary:
+  - T26完了commit `6f058ccbd4d079cba4dc2446d30275feabcbaae3`、Stage 43 ROM／metadata／protocol 1.0のhashをT27固定入力へ記録し、T27が唯一のPRIMARYであることを確認した。T27は開始せずTODOのまま保持した。
+  - canonical Species/Move/Item/Abilityとlevel/egg/TM/tutor/form learnsetを参照できるread-only catalogをT27へ追加した。bounded searchとID exact readを既定とし、全件はfile exportへ書いて毎turnのcontextへ混ぜず、learnset banや構築policyを強制しない。
+  - プレイヤーのpending move/switch/target/gimmick/private commandをCodex commit前にmailboxへ出さず、ROM内private bufferへsealして双方commit後だけ解決する公平性契約を固定した。
+  - Codex対戦中だけMega/Z/Dynamax/Terastalを`UPSTREAM_OPEN`にし、物語/key item gateだけをbattle-localに外す。fixed CFRU-JPの適合性・使用済み・相互作用を維持し、T06の通常戦・Factory・Mirage等のglobal mechanic policyを変更しない。
+  - CLI/companion skillは状態、公開情報、合法候補、wait、明示write、操作方法だけを提供し、戦略、team、選出、行動、gimmick、乱数報酬、理由説明、発話頻度を自動決定または強制しない方針をT27/T28へ固定した。
+- Files changed:
+  - `design/{codex_battle_architecture,current_state,decisions,agent_context_map,PLANS,run_log,version_log}.md`
+  - `tasks/{T27_CODEX_BATTLE_RUNTIME,T28_CODEX_BATTLE_REWARDS_RELEASE}.md`
+  - `MASTER_PLAN.md`
+- Verify:
+  - Stage 43 ROM / metadata / protocol SHA-256: `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c` / `0e1017542f8481fbcc2145632869803e3b84dfec91d0e8b3fb5e4c6cce9edee4` / `a014e6b219d2daf8ab1d15c7ce3aa76c5daf050de741bda76c2dabda76331664`、固定値一致PASS。
+  - `python3 scripts/validate_task_graph.py`: PASS。task graph、queue、task仕様、互換ミラー整合。
+  - `python3 scripts/taskctl.py next/plan`: PASS。T27だけがPRIMARY、T28は依存待ち。
+  - `python3 -m unittest -v tests.test_task_graph tests.test_task_queue tests.test_private_guard_index`: PASS（20 tests、skip 0）。
+  - `python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む準備完了コミット）
+- Network: 未使用。T26のローカル成果、固定upstream source、canonical manifest、設計正本だけを参照した。

@@ -45,7 +45,7 @@ FireRed JPN Rev0 clean
 | T24 | Reward Encounters V2 | Content/Engine/Save/Maps/QA | T23 | 4 tier・typed credit・pending再戦・24 encounterをStage 41へproduction統合 |
 | T25 | Factory High Modes V2 | Content/Engine/Save/UI/QA | T24 | 既存Trialを保って24 Factory modeをStage 42へproduction統合 |
 | T26 | Codex Battle Bridge | Platform/Tooling/Engine/QA | T25 | iPad RetroArch NCIとversioned mailboxをStage 43で実証 |
-| T27 | Codex Battle Runtime | Engine/UI/Content/Tooling/QA | T26 | 双方6体提示・3体選出とCodex行動をStage 44へproduction統合 |
+| T27 | Codex Battle Runtime | Engine/UI/Content/Tooling/QA | T26 | 構築catalog、双方6体提示・3体選出、公平な非公開commit、自由gimmick、Codex行動をStage 44へproduction統合 |
 | T28 | Codex Rewards and iPad Gate | Engine/Save/Tooling/Release/QA | T27 | 任意item/Pokémon報酬とiPad対戦E2EをStage 45で完成 |
 
 ## 最短実行戦略
@@ -95,7 +95,7 @@ T00 -> T12 ----┴-> T13
 | W18 | T24 | 4 tier・24 pool・typed credit/BP・pending同一個体再戦・10 sourceを接続し、clean Stage 41をPASSする |
 | W19 | T25 | 24 mode・248 rental・55 profile・16 rewardを既存Trial不変で接続し、clean Stage 42をPASSする |
 | W20 | T26 | iPad RetroArch NCIの実memory read/write、versioned mailbox、CLI doctor/PING、clean Stage 43をPASSする |
-| W21 | T27 | 双方6→3選出、2 regulation、Codex move/switch/forfeit、全cleanup、clean Stage 44をPASSする |
+| W21 | T27 | catalog、双方6→3選出、2 regulation、`UPSTREAM_OPEN` gimmick、pending action非公開、Codex move/switch/forfeit、全cleanup、clean Stage 44をPASSする |
 | W22 | T28 | 任意item/Pokémon報酬、exactly-once save、Codex skill、iPad E2E、clean Stage 45をPASSする |
 
 最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、イベント設計統合はT20、Mirage production接続はT21。返却済み4設計はT22〜T25でStage 38から順次rebaseしてStage 42を完成点とし、Codex対戦はT26〜T28でStage 45まで段階統合する。

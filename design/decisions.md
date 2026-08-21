@@ -273,3 +273,19 @@
 - 分割: T26 Stage43で実iPad transport/mailbox、T27 Stage44で6→3 battle、T28 Stage45で任意報酬・
   Codex companion skill・iPad E2Eを完成させる。T26実機gate不合格時は代替transportを推測実装しない。
 - 影響: T26〜T28、Stage 43〜45、RetroArch local設定、Codex CLI/skill、battle/save/reward QA。
+
+## 2026-08-21 — D-027: Codex対戦CLIは能力提供に限定し、公平な公開情報と自由gimmickを採用する
+
+- CLI責務: `vega-codex-battle`は接続診断、read-only catalog、状態・公開情報・合法候補の取得、wait、
+  明示されたteam/選出/action/rewardの送信だけを担う。戦略、構築、選出、行動、gimmick、乱数報酬、
+  理由説明、発話頻度を自動決定または強制せず、Codex taskのpromptへ残す。
+- 公平性: プレイヤーが現turnで確定したmove、switch先、target、gimmick、入力時刻、private command bytesを
+  Codex action commit前にmailbox/CLIへ出さない。ROM内private bufferへsealし、双方commit後だけ通常battle
+  controllerへ渡す。選出順、未公開move/item/ability/Tera typeも通常の公開時点まで秘匿する。
+- 構築資料: canonical Species/Move/Item/Abilityとlevel/egg/TM/tutor/form learnsetをread-only catalogへ生成する。
+  bounded searchとID exact readを既定にし、全件は明示file exportへ書く。毎turnの入力contextへ全catalogを
+  混ぜず、learnsetは参考情報であってsystem banにしない。
+- gimmick: Codex対戦は`UPSTREAM_OPEN`固定とし、双方の物語進行/key item gateだけをbattle-localに外す。
+  Mega/Z/Dynamax/TerastalのSpecies/item/move/Tera type適合性、使用済み状態、相互作用はfixed CFRU-JPを正とする。
+  T06の通常戦・Factory・Mirage等のbattle-wide mechanic modeを変えず、個々の自主縛りは会話で扱う。
+- 影響: T27 Stage 44のprotocol/team/catalog/action/privacy/gimmick/QA、T28 companion skillとoperator guide。

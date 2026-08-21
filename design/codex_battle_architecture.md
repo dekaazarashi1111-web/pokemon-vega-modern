@@ -45,6 +45,13 @@ RetroArch netplayを対戦transportにしない。
 - system上の固定regulationは次の2項目だけとする。
   - `level_mode`: `FLAT_50` / `OPEN`
   - `duplicate_held_items`: `ALLOW` / `DENY`
+- battle gimmickはregulation toggleへ増やさず、Codex対戦では`UPSTREAM_OPEN`を固定する。Mega、Z-Move、
+  Dynamax、Terastalを双方へbattle-localに解禁し、物語進行やkey itemの所持はCodex対戦中だけ要求しない。
+  Species、held item、move、Tera type等の適合性、使用済み状態、gimmick間の相互作用は固定CFRU-JPの
+  `CanMegaEvolve` / `CanUseZMove` / `CanDynamax` / `CanTerastal`を正とし、独自の回数・組合せ規則を足さない。
+- T06の通常戦・Factory・Mirage等が使うbattle-wide mechanic modeは変更せず、`UPSTREAM_OPEN`は
+  Codex対戦active中だけの薄いpolicy adapterとして実装する。個々の対戦で「Teraなし」等を決めても、
+  それはユーザーとCodexが守る任意regulationであり、CLI/ROMは強制しない。
 - `OPEN`のlevelはengine-safeな1〜100。`FLAT_50`はbattle copyだけをLv.50相当にし、永続個体を変更しない。
 - battle中のbag item、捕獲、逃走、賞金、EXP、EV、friendship、held item消費の永続化を禁止する。
 - 合法行動は`MOVE`、`SWITCH`、`FORFEIT`。disconnect時は`WAIT`、`CPU_FALLBACK`、`FORFEIT`を選べる。
@@ -52,17 +59,28 @@ RetroArch netplayを対戦transportにしない。
 ### 3.2 Codex側team入力
 
 team JSONはversion付きで、6 memberを持つ。各memberは最低限`species_id`と`level`を持ち、
-`moves`、`held_item_id`、`ability_slot`、`nature_id`、`ivs`、`evs`、`shiny`を省略可能にする。
+`moves`、`held_item_id`、`ability_slot`、`nature_id`、`ivs`、`evs`、`shiny`、`tera_type`を省略可能にする。
 省略値はROM側で決定的に生成し、同じJSONとsession seedから同じ個体を作る。
 
 指定内容の対戦バランスや通常の習得可否はユーザーとCodexの会話で決める。ROM/CLIはcanonical ID、
 field幅、個体値・努力値合計、技数、item pocket等の構造安全性だけを検証する。
+
+構築時だけ使うread-only catalogをCLIへ持たせる。Speciesの名前・type・base stats・ability、Moveの
+type/category/power/accuracy/PP、Itemのheld effect、level/egg/TM/tutor/form learnsetをcanonical IDで引けるようにする。
+検索/listは既定件数を小さくし、ID exact readを用意する。全件は明示`catalog export --output ...`へ書いて
+pathとhashだけを返し、毎turnのsnapshotへcatalogを混ぜない。catalogは構築の参考であり、team upload時の
+learnset banや戦略policyには使わない。
 
 ### 3.3 情報境界
 
 - team previewでは双方の6 speciesと公開情報を見せ、選出した3体の順番は公開しない。
 - Codexは自分のteam情報を全て読める。
 - プレイヤー側の技、持ち物、能力等はbattleで公開された範囲だけをsnapshotへ載せる。
+- プレイヤーが現在turnで確定済みのmove slot、switch先、target、gimmick指定、入力時刻、private command bytesは、
+  Codexの行動commit前にはsnapshot、error、sequence差分、CLI出力のいずれにも載せない。ROM内のprivate action bufferへ
+  sealし、双方の行動が揃ってから通常battle controllerへ渡す。
+- `legal_gimmicks`はCodex自身のactive battlerとmoveごとの候補だけを返す。プレイヤー側の未発動gimmick、
+  held item、Tera typeや使用予定は、通常の戦闘演出で公開されるまで返さない。
 - CLIはROM構造体や未公開save領域を任意読取するdebug commandをproduction interfaceへ公開しない。
 
 ### 3.4 任意報酬
@@ -84,12 +102,20 @@ vega-codex-battle doctor --json
 vega-codex-battle device configure --host HOST --port 55355 --json
 vega-codex-battle device status --json
 vega-codex-battle bridge ping --json
+vega-codex-battle catalog species search --query TEXT --limit N --json
+vega-codex-battle catalog species get SPECIES_ID --json
+vega-codex-battle catalog move search --query TEXT --limit N --json
+vega-codex-battle catalog move get MOVE_ID --json
+vega-codex-battle catalog item search --query TEXT --limit N --json
+vega-codex-battle catalog item get ITEM_ID --json
+vega-codex-battle catalog learnset get SPECIES_ID --json
+vega-codex-battle catalog export --output PATH --json
 vega-codex-battle team validate --file TEAM.json --json
 vega-codex-battle match configure --level flat50|open --duplicate-items allow|deny --json
 vega-codex-battle match upload-team --file TEAM.json --json
 vega-codex-battle choose team 1,3,6 --json
 vega-codex-battle wait --timeout 55 --json
-vega-codex-battle choose move 2 --json
+vega-codex-battle choose move 2 --gimmick none|mega|z|dynamax|tera --json
 vega-codex-battle choose switch 3 --json
 vega-codex-battle choose forfeit --json
 vega-codex-battle reward item ITEM_ID --quantity N --json
@@ -103,6 +129,8 @@ vega-codex-battle reward close --json
 - exit codeとerror codeを固定し、timeout、接続不能、wrong core、wrong ROM、stale command、illegal actionを区別する。
 - source folder外から`command -v vega-codex-battle`、`--help`、`doctor`が成功するようにinstallする。
 - 対戦中のCodexは`wait --timeout 55 --json`で次の入力要求を待てる。OpenAI API keyや常駐daemonは必須にしない。
+- CLIはteam、3体、move、switch、gimmick、報酬を自動選択せず、乱数policyや説明要求も持たない。
+  Codexへ現在状態、公開情報、合法候補、安定error、操作方法だけを渡し、判断と発話は呼出元taskのpromptへ残す。
 
 この方針はOpenAI公式のagent-friendly CLI指針に合わせ、composable command、predictable JSON、
 setup/auth診断、safe write、別directoryからの実行検証を完了条件にする。
@@ -144,6 +172,9 @@ IDLE
 transport abort     -> ABORTED -> exact cleanup -> IDLE
 ```
 
+`BATTLE_AWAITING_PLAYER`で受けたcommandはprivate action bufferへsealするだけでmailboxへ写さない。
+Codex actionも同様にcommitし、双方が揃った時だけ通常battle controllerへ同時選択済み入力として渡す。
+
 ## 7. iPad運用境界
 
 - Network Commandsは可能ならRetroArch UIで有効化する。設定fileを直接変える場合はRetroArch停止、原本hash、
@@ -156,7 +187,8 @@ transport abort     -> ABORTED -> exact cleanup -> IDLE
 ## 8. タスク分割
 
 - T26 / Stage 43: NCIを実機で有効化し、versioned mailbox、CLI doctor/status/ping、read/writeを実証する。
-- T27 / Stage 44: 6体team登録、双方3体選出、2 regulation、Codexのmove/switch/forfeit、cleanupを完成させる。
+- T27 / Stage 44: 6体team登録、read-only構築catalog、双方3体選出、2 regulation、`UPSTREAM_OPEN` gimmick、
+  pending action非公開、Codexのmove/switch/forfeit、cleanupを完成させる。
 - T28 / Stage 45: 任意item/Pokémon報酬、exactly-once save、Codex companion skill、iPad実戦完走を完成させる。
 
 ## 9. 参照

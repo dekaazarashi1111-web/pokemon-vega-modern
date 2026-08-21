@@ -26,4 +26,4 @@ FireRed JPN Rev.0 clean
 - 並列化は `WORKSTREAMS.md` の所有権に従い、親側の正本IN_PROGRESSは1件に保つ。
 - 育成・操作QOLの固定scope、既定値、解禁時期は `docs/QOL_POLICY.md` を正とし、QOL-A/QOL-Bともrelease対象にする。
 - T21はStage 38で完了済み。返却済み4設計は `T22 Move -> T23 Research -> T24 Reward -> T25 Factory` の順でStage 39〜42へ統合する。各タスクは前タスクの完了commitとROM metadataをbaselineとし、同じbranchで並列実装しない。
-- Stage 42以後は `T26 Bridge -> T27 Battle -> T28 Reward/E2E` の順でCodex対戦をStage 43〜45へ統合する。NCI実機read/write、対戦runtime、save報酬を別gateにし、T26が失敗した場合はsave pollingやnetplayへ暗黙fallbackしない。
+- Stage 42以後は `T26 Bridge -> T27 Battle -> T28 Reward/E2E` の順でCodex対戦をStage 43〜45へ統合する。NCI実機read/write、構築catalog・公開情報だけの対戦runtime・自由gimmick、save報酬を別gateにし、T26が失敗した場合はsave pollingやnetplayへ暗黙fallbackしない。

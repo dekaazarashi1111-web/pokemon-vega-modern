@@ -799,3 +799,14 @@
   - 実iPad RetroArch 1.22.2 / mGBAでStage 43を起動し、NCI `VERSION` / `GET_STATUS` / EWRAM read / mailbox write / sequence 1 PING/PONGを実証した。端末固有IP、credential、container pathは証跡から除外した。
   - clean chain/direct BPSの両方から同一Stage 43を再構築し、宣言span外変更とROM/RAM/save/hook overlapを0にした。
 - Verify: production build/check、focused 10 tests、libmGBA quick/full独立2 process・受入11/11・invalid 10・保護span 7・warnings/errors 0、実iPad NCI read/write/PING/PONG、clean rebuild build/check、両BPS完全往復、task graph/private guard/diff check PASS。Stage 43 SHA-256 `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c`、CRC32 `40CE01CE`。
+
+## 2026-08-21T16:29:10+09:00
+
+- Version: `post-v1.4.0-stage43-t27-prep`（Stage 43 ROM identityは不変）
+- Commit: `-`（本エントリを含む準備完了コミット）
+- Task: `USER-20260821-CODEX-BATTLE-T27-PREP` / T27 implementation-ready仕様更新
+- Summary:
+  - T26完了commitとStage 43 ROM／metadata／protocol hashをT27の固定入力へ記録した。
+  - read-only構築catalog、公平なpending action非公開、Codex対戦限定`UPSTREAM_OPEN` gimmickをT27の固定仕様・CLI・受入条件へ追加した。
+  - CLI/skillを能力提供と操作説明だけに限定し、戦略、選出、行動、報酬、理由説明のpolicyを呼出元Codex taskへ残した。
+- Verify: Stage 43 identity、task graph/queue/task仕様/互換ミラー、taskctl next/plan、focused 20 tests、private guard、diff check PASS。T27が唯一のPRIMARY。
