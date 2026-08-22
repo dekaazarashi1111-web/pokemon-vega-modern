@@ -108,6 +108,11 @@ make codex-battle-bridge # Stage42へversioned EWRAM mailboxを結合してStage
 make codex-battle-bridge-check # protocol・BPS・mGBA・実iPad証跡を副作用なしで再照合
 make codex-battle-bridge-clean-rebuild # clean ROMからStage42→Stage43とclean直接BPSをbyte再現
 make codex-battle-bridge-clean-rebuild-check # clean起点の両BPS・mGBA・iPad証跡を再照合
+make codex-battle-runtime # Stage43へ双方6→3・Codex明示行動・private commitを結合してStage44を生成
+make codex-battle-runtime-check # catalog・protocol matrix・mGBA・実iPad複数turn証跡を副作用なしで再照合
+make codex-battle-runtime-clean-rebuild # clean ROMからStage43→Stage44とclean直接BPSをbyte再現
+make codex-battle-runtime-clean-rebuild-check # clean起点の両BPS・exact-ROM・iPad証跡を再照合
+make codex-battle-ipad-bootstrap # ROM自身の通常保存を2回通し、両save slotをfresh-core検証したiPad QA saveを.localへ生成
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
@@ -205,6 +210,32 @@ canonical名、clean ROMからのBPS往復を検証し、Factory ROMのbyteは�
 固定捕獲、ギフト、タマゴ、化石、進化支援、交換エミュレータ、サービスを共通transactionで扱い、
 捕獲後だけの確定、孵化時の図鑑登録、party/PC満杯、道具rollback、通常saveとsector 31台帳の
 再読込を実ROMで検証する。通信進化30経路はItem 395「リンクケーブル」で単独ROM進化できる。
+
+追加stage 44は、Stage 43の実iPad NCI transportへ双方6→3のシングル対戦を接続する。
+Codexの6体構築・3体選出・技・gimmick・交代・降参は`vega-codex-battle`から毎回明示し、
+`CHOOSEACTION` / `CHOOSEMOVE` / `CHOOSEPOKEMON`以外の通常controller commandだけを既存処理へ委譲する。
+`choose team`の受理時には、実際の双方6体を
+Stage 44 ROM内の正規icon/paletteで描いた左右対称PNGをPCへ自動保存する。画像に選出3体や順番は
+表示せず、iPadでは既存の標準party UIだけを使ってプレイヤー側の3体を選ぶ。保存先とSHA-256は
+`choose team --json`の`preview_image`に返り、owner-only権限で管理される。
+対戦中はCodex選出3体の現在HP／最大HP、自activeのlive技ID・PP・item・ability・type・level、
+実能力値、プレイヤーactiveの公開species・level・性別・色違い・HP割合・瀕死を返す。team previewでは
+相手6体の公開level・性別・色違いも返す。さらに双方の状態異常、能力ランク、
+公開volatile、天候・terrain・room、壁・hazard・side timer、Wish/Future Sight等の遅延効果、
+Mega/Z/Dynamax/Terastal状態をShowdown型の公開情報境界で返す。画面へ出た標準369種の日本語
+戦闘文テンプレートとCFRU追加文のCRC候補を`CONTROLLER_PRINTSTRING`から記録し、技・道具・
+特性が実際に文面で参照されたかも区別する。加えてcommand 52のうちCFRU特性ポップアップだけを
+明示的な特性発動eventとして記録する。`wait`は50 ms間隔でイベントを回収しsequence欠落を
+明示する。プレイヤーの未確定／確定済みpending action、睡眠の内部残りturn、Illusionの真のidentity等は
+公開しない。通常交代継続と瀕死後強制交代を分け、HP 0は合法交代先から除外する。
+相手の既出個体は選出順を示さない初登場順opaque IDで追跡し、交代後も画面で判明済みの技・道具・
+特性・最終HP/状態を保持する。通常のCodex判断読取は`match view --json`または
+`wait --compact --json`を使い、現在盤面は自己完結、戦闘eventは前回cursor以後の差分だけを返す。
+全event履歴、0/neutral効果、コード、raw構造体、計算後に不要なIV/EVを毎turn繰り返さず、完全監査用の
+`match status --json`とは分離する。
+対戦終了時はparty/saveのexact cleanup後も受付スクリプトの最終メッセージが閉じるまで
+`field_completion_pending`を保持し、その間の新規configureを`BUSY`で拒否する。最終表示後の
+`FieldFinish`だけが`IDLE`へ戻すため、旧対戦の遅延release/cleanupが次のmatchへ作用しない。
 
 v1.4.0統合gateはstage 20→26のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 26を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・

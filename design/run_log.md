@@ -233,6 +233,36 @@
 - Commit: `-`（本エントリを含むコミット）
 - Network: 未使用。
 
+## 2026-08-22T16:05:07+09:00
+
+- Task: `T27` / Codex操作6→3対戦をStage 44へproduction統合する
+- Status: DONE
+- Summary:
+  - Stage 43の実iPad NCI bridgeへ、双方6体previewから3体を非公開順で選ぶsingle 3v3、versioned team JSON、`FLAT_50|OPEN`、手動Codex controller、move/switch/forfeit、`UPSTREAM_OPEN` Mega/Z/Dynamax/Terastal、disconnect、通常施設入口をStage 44として統合した。`CHOOSEACTION` / `CHOOSEMOVE` / `CHOOSEPOKEMON`だけをCodex入力待ちにし、それ以外のcontroller commandは固定CFRU-JPへdelegateする。
+  - Codex選出3体の現在HP／最大HP実数、activeのlive species/level/move ID/現在PP/item/ability/type/5実能力値、player activeの画面公開HP割合・瀕死・appearanceを公開した。双方の状態異常、7能力ランク、volatile、Disable/Encore、field/side/hazard、遅延効果、gimmick状態を180-byte public stateへ圧縮し、画面表示文と明示的な特性popupだけを公開event化した。player既出個体は選出順を漏らさない`P1..P3`で追跡し、撃破後もHP 0・公開技・状態を保持する。
+  - playerのpending move/switch/target/gimmick/private bytesをROM内private bufferへsealし、Codex commit前は値・長さ・sequence・timing・errorからも復元できない境界を維持した。通常判断用に自己完結した最新盤面とcursor以後の新着eventだけを返す`match view` / `wait --compact`を追加し、既読event、neutral/0効果、コード、raw構造体、計算後のraw IV/EVを毎turn繰り返さないようにした。
+  - battle中は`givenExpMons=0x3F`を毎poll再assertし、全exitでplayer party 600 bytes、SaveBlock再配置・暗号鍵rotation後のmoney/Pokédex/game statsを論理exact restoreする。終了cleanup後も受付の最終msgbox完了までは`field_completion_pending`で新規configureを`BUSY`にし、`FieldFinish`後だけ`IDLE`へ戻すことで、旧対戦scriptの遅延cleanupが次matchへ作用する実機競合を修正した。
+  - 実iPadへ既存fileを上書きしないversioned ROM/saveを正しい各領域へ配置し、remote size/SHA-256を照合した。実戦では双方選出、pending非公開、Dynamax付きmove、次turnの通常move、通常交代1入力、公開技と能力ランク、Codex側HP 0／forced switch／HP 0除外／交代先1入力、player撃破後の`P1` HP 0保持、EXP表示なし、8 cycle以上、safe abort、`cleanup_exact=true`、マップ復帰、次match configure受理を確認した。
+  - 実機中に観測した固定CFRU側のきあいのタスキ表示／挙動はユーザー指示によりT27とは分離して保留し、本taskでは変更していない。clean rebuildが安定化済みJSON objectのtest key順を意味的に扱わず失敗したため、18件完全一致・全trueを保ったまま順序非依存の集合検査へ修正した。
+- Files changed:
+  - build/設定/設計: `Makefile`、`README.md`、`config/{ram_layout,codex_battle_runtime}.csv/.json`、`design/{codex_battle_architecture,tasks_next,run_log,version_log}.md`、`tasks/T27_CODEX_BATTLE_RUNTIME.md`、`state/task_status.json`。
+  - runtime/content: `content/codex_battle/**`、`overlays/codex_battle_runtime/**`。
+  - CLI/build/QA: `scripts/{install_vega_codex_battle_cli,build_codex_battle_runtime,rebuild_codex_battle_runtime_from_clean}.sh/.py`、`tools/{vega_codex_battle,mgba_codex_battle_runtime_smoke,mgba_codex_battle_ipad_bootstrap}.py/.c`、`tests/test_codex_battle_runtime.py`、`tests/fixtures/codex_battle_teams/**`。
+  - Git管理外の再生成証跡: Stage 44 ROM、Stage43差分/clean直接BPS、metadata/allocation/protocol/symbol/case/catalog/audit/coverage/matrix/privacy/gimmick、mGBA quick/full、iPad、clean rebuild、bootstrap save。
+- Verify:
+  - `make codex-battle-runtime` / `make codex-battle-runtime-check`: PASS。Stage 44は33,554,432 bytes、SHA-256 `96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256`、CRC32 `04CB658E`、artifact 19。
+  - `make codex-battle-runtime-clean-rebuild` / `make codex-battle-runtime-clean-rebuild-check`: PASS。clean→Stage43→Stage44とclean→Stage44直接BPSがbyte一致し、Stage43差分／clean直接BPS SHA-256は `6e5aff0c50fabc3347dc909963f6692a4283c898e271a9a939f2fce3b8663053` / `609faa0ee3987e1e2703c00753a1e1c08354633b1685f36ddae8917e1384364d`。
+  - libmGBA quick/full: 独立2 process、各18/18 tests、3 request cycles、warnings 0、result identity `CB44:2:256:1536:6x3:manual`一致。voluntary/forced switch各1入力、own HP実数、player HP割合、live move/PP、pending privacy、終了世代gateをexact ROMで確認した。
+  - `python3 -m unittest tests.test_codex_battle_runtime`: PASS（9 tests）。`py_compile`、config/iPad JSON構文、CLI installer self-check、`/tmp`からの実機`doctor` protocol 2.2 / 12 checksもPASS。
+  - 実iPad RetroArch 1.22.2: Stage 44 CRC32 `04CB658E`、ROM SHA-256 `96820c78...`、bootstrap save SHA-256 `19f6b01b50b880035755f32dc28f5eada8466ba19a18f7b598d006f02ca6ec61`。必須12 test、turn cycles 8、秘密情報除外を`build/stages/44_codex_battle_runtime_ipad.json`へ記録した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Output identity:
+  - metadata / allocation / protocol / clean rebuild / iPad証跡 SHA-256: `523b5844f552d20aef8ae35ce8600f52fc455a4efff47b84152f02ff0d848b49` / `e244841077c2d1cb68720ef5c5f339afb375132cf59b0604075d0c8cce397af8` / `fdb11db14666d59f55b548546a81b027682999dfa944e99d2ad5db8f1611fb07` / `f3d3b176339c55eba12084ec9e377d18f92fec23cc2f86666db9122bd3ddf534` / `4d35832df0df1ffc5a41d4a9676f14b0504489fadeb6df6358b969c87c417921`。
+- Commit: `-`（本エントリを含むT27完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでversioned ROM/saveを新規配置・hash照合し、RetroArch NCI plain UDPで実対戦read/writeを行った。接続先、credential、container UUID/private pathは証跡・tracked fileへ保存していない。
+  - インターネット検索語は「Pokémon Showdown battle protocol public HP status events」「CFRU BattlePokemon BattleStruct」「pokefirered battle controller ABI」。一次資料のPokémon Showdown `https://github.com/smogon/pokemon-showdown/blob/master/sim/SIM-PROTOCOL.md`、CFRU `https://github.com/Skeli789/Complete-Fire-Red-Upgrade/blob/master/include/battle.h`、pret FireRed `https://github.com/pret/pokefirered/blob/master/include/battle.h`を公開情報境界、battle state、controller ABIの比較根拠に使用した。私有ROM/save・未公開仕様は外部送信していない。
+
 ## 2026-08-13T05:33:08+09:00
 
 - Task: `T02` / Exact ROM/RAM/save/ID audit

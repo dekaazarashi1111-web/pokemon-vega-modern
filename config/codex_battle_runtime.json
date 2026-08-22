@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "task": "T27",
+  "stage": 44,
+  "inputs": {
+    "rom_producing_commit": "6f058ccbd4d079cba4dc2446d30275feabcbaae3",
+    "stage43_rom": {
+      "path": "build/stages/43_codex_battle_bridge.gba",
+      "size": 33554432,
+      "sha256": "4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c",
+      "crc32": "40CE01CE"
+    },
+    "stage43_metadata": {
+      "path": "build/stages/43_codex_battle_bridge.json",
+      "size": 6360,
+      "sha256": "0e1017542f8481fbcc2145632869803e3b84dfec91d0e8b3fb5e4c6cce9edee4"
+    },
+    "stage43_allocation": {
+      "path": "build/stages/43_allocation.json",
+      "size": 30111,
+      "sha256": "89cf18a9ceec88ae179135b622b11a99b154e6a2555aef50c34d7dfcf2ea4313"
+    },
+    "stage43_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-codex-battle-bridge-stage43.bps",
+      "size": 16189117,
+      "sha256": "2d14960251b651676e1fd55eb361c7696075a9ace0d2c0162220af64949cf695"
+    },
+    "stage43_protocol": {
+      "path": "generated/runtime/codex_battle_bridge_protocol.json",
+      "sha256": "a014e6b219d2daf8ab1d15c7ce3aa76c5daf050de741bda76c2dabda76331664"
+    },
+    "stage43_ipad": {
+      "path": "reports/generated/codex_battle_bridge_ipad.json",
+      "sha256": "b9fbe7ba32d7d64b5d4730541afbf4dff6acd00b308bb0c289ba7363600e6d67"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "species_manifest": "manifests/species_ids.csv",
+    "move_manifest": "manifests/move_ids.csv",
+    "item_manifest": "manifests/item_ids.csv",
+    "ability_manifest": "manifests/ability_ids.csv",
+    "learnset_zip": {
+      "path": "userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip",
+      "sha256": "4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2"
+    },
+    "factory_symbols": {
+      "path": "generated/runtime/factory_high_modes_v2_symbols.json",
+      "sha256": "a9984d68c5e858cb520d4fd88000ea0a33602ff32d63257702f08c287d2e5bec"
+    },
+    "trainer_changekit_symbols": {
+      "path": "generated/runtime/trainer_changekit_final_symbols.json",
+      "sha256": "8bc8133eabd894dee8a95878e4742ade594d10e3b25435baa111dd97fbe06749"
+    }
+  },
+  "ram": {
+    "extension_address": "0x0203F900",
+    "extension_end_exclusive": "0x0203FA00",
+    "extension_size": 256,
+    "state_address": "0x0203FA00",
+    "state_end_exclusive": "0x02040000",
+    "state_size": 1536,
+    "public_state_address": "0x0203FF4C",
+    "public_state_offset": 1356,
+    "public_state_size": 180,
+    "public_state_version": 2,
+    "public_event_capacity": 4,
+    "owner": "T27_CODEX_BATTLE_RUNTIME",
+    "persistence": "VOLATILE_RESET_RECOVERABLE"
+  },
+  "protocol": {
+    "magic_ascii": "CBR2",
+    "magic_u32": "0x32524243",
+    "major": 2,
+    "minor": 2,
+    "struct_size": 256,
+    "header_size": 64,
+    "snapshot_offset": 64,
+    "snapshot_size": 96,
+    "request_offset": 160,
+    "request_size": 96,
+    "request_payload_max": 64,
+    "capabilities": 8191,
+    "stage_number": 44,
+    "stage_identity": "0x34345242",
+    "build_identity": "0x32524243",
+    "phases": {
+      "idle": 1,
+      "configuring": 2,
+      "team_preview": 3,
+      "awaiting_player_selection": 4,
+      "awaiting_codex_selection": 5,
+      "battle_awaiting_action": 6,
+      "battle_awaiting_move": 7,
+      "battle_awaiting_switch": 8,
+      "battle_resolving": 9,
+      "result": 10,
+      "disconnected": 11,
+      "aborted": 12
+    },
+    "commands": {
+      "configure": 1,
+      "upload_member": 2,
+      "commit_team": 3,
+      "choose_team": 4,
+      "move": 5,
+      "switch": 6,
+      "forfeit": 7,
+      "disconnect_cpu": 8,
+      "disconnect_forfeit": 9,
+      "abort": 10
+    }
+  },
+  "battle": {
+    "format": "SINGLE_3V3",
+    "team_size": 6,
+    "selection_size": 3,
+    "species_max": 1620,
+    "move_max": 1062,
+    "item_max": 998,
+    "ability_slot_max": 2,
+    "nature_max": 24,
+    "type_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 23, 24],
+    "level_modes": ["FLAT_50", "OPEN"],
+    "enforced_team_rules": [],
+    "gimmick_policy": "UPSTREAM_OPEN"
+  },
+  "engine": {
+    "create_mon": "0x0803D1C1",
+    "set_mon_data": "0x0803FA71",
+    "get_mon_data": "0x0803F355",
+    "get_mon_ability": "0x090DA23D",
+    "calculate_stats": "0x0803DBE9",
+    "calculate_pp": "0x0804070D",
+    "get_gender": "0x0803EEF9",
+    "is_shiny": "0x08043AE5",
+    "calculate_party_count": "0x08040331",
+    "heal_party": "0x080A1331",
+    "experience_tables": "0x0914FF10",
+    "experience_table_levels": 256,
+    "experience_growth_count": 6,
+    "var_get": "0x0806DD5D",
+    "var_set": "0x0806DD79",
+    "flag_get": "0x0806DEC5",
+    "flag_set": "0x0806DE75",
+    "flag_clear": "0x0806DE9D",
+    "prepare_buffer": "0x0800D2D5",
+    "emit_two_return_values": "0x0800E1FD",
+    "emit_chosen_mon": "0x0800E229",
+    "opponent_complete": "0x08035CA5",
+    "battle_main_func": "0x03004FC4",
+    "end_turn_funcs": "0x0820CAE8",
+    "can_mega_evolve": "0x09114DAD",
+    "can_use_z_move": "0x0912C17D",
+    "can_dynamax": "0x090F13ED",
+    "can_terastal": "0x09130441"
+  },
+  "hooks": {
+    "read_keys": {
+      "name": "codex_runtime_read_keys_chain",
+      "address": "0x080005EC",
+      "expected_hex": "2d943c09",
+      "mode": "THUMB_POINTER",
+      "target": "CodexBattleRuntime_ReadKeysAdapter",
+      "delegate": "0x093C942D"
+    },
+    "trainer_party": {
+      "name": "codex_runtime_trainer_party_chain",
+      "address": "0x09096EC4",
+      "expected_hex": "2cf388ff",
+      "mode": "THUMB_BL",
+      "target": "CodexBattleRuntime_BuildTrainerPartyAdapter",
+      "delegate": "0x093C3DD9"
+    },
+    "save_load": {
+      "name": "codex_runtime_save_load_chain",
+      "address": "0x080DB4E4",
+      "expected_hex": "004b1847a13e3c09",
+      "mode": "THUMB_JUMP",
+      "target": "CodexBattleRuntime_SaveLoadAdapter",
+      "delegate": "0x093C3EA1"
+    },
+    "reception": {
+      "name": "codex_runtime_reception",
+      "address": "0x093C2DC0",
+      "expected_hex": "108e3c09",
+      "mode": "POINTER",
+      "target": "script::codex_battle_reception",
+      "delegate": "0x093C8E10"
+    },
+    "dynamax_band_calls": {
+      "delegate": "0x090F1061",
+      "target": "CodexBattleRuntime_FindDynamaxBandAdapter",
+      "sites": [
+        {
+          "name": "codex_runtime_dynamax_band_execution",
+          "address": "0x090F1494",
+          "expected_hex": "fff7e4fd"
+        },
+        {
+          "name": "codex_runtime_gigantamax_band_execution",
+          "address": "0x090F14C8",
+          "expected_hex": "fff7cafd"
+        },
+        {
+          "name": "codex_runtime_dynamax_band_ui",
+          "address": "0x090F1688",
+          "expected_hex": "fff7eafc"
+        }
+      ]
+    }
+  },
+  "physical_binding": {
+    "map_group": 96,
+    "map_num": 5,
+    "receptionist_local_id": 2,
+    "trainer_id": 745,
+    "trainer_local_id": 2,
+    "party_selection_special": "0x0029",
+    "selection_confirmation_bridge": {
+      "name": "codex_runtime_selection_order_confirmation_bridge",
+      "address": "0x081280B8",
+      "expected_pointer": "0x0203B048",
+      "replacement_pointer": "0x0203C6C8"
+    },
+    "opponent_choice_dispatch": {
+      "table_address": "0x0820D43C",
+      "entries": [
+        {
+          "name": "codex_runtime_opponent_choose_action_dispatch",
+          "command": 18,
+          "address": "0x0820D484",
+          "expected_pointer": "0x08037D01",
+          "target": "CodexBattleRuntime_OpponentController"
+        },
+        {
+          "name": "codex_runtime_opponent_choose_move_dispatch",
+          "command": 20,
+          "address": "0x0820D48C",
+          "expected_pointer": "0x08037D1D",
+          "target": "CodexBattleRuntime_OpponentController"
+        },
+        {
+          "name": "codex_runtime_opponent_choose_pokemon_dispatch",
+          "command": 22,
+          "address": "0x0820D494",
+          "expected_pointer": "0x08037EB1",
+          "target": "CodexBattleRuntime_OpponentController"
+        }
+      ]
+    }
+  },
+  "catalog": {
+    "path": "content/codex_battle/catalog.json",
+    "default_limit": 10,
+    "maximum_limit": 50,
+    "base_stats_address": "0x09600000",
+    "base_stats_stride": 32,
+    "base_stats_growth_rate_offset": 19,
+    "move_table_address": "0x090421F4",
+    "move_table_stride": 12
+  },
+  "preview_assets": {
+    "mode": "PC_AUTO_PNG",
+    "icon_pointer_table": "0x09F5CAA0",
+    "palette_index_table": "0x09F5E3F4",
+    "palette_table": "0x0839C540",
+    "palette_count": 6,
+    "icon_width": 32,
+    "icon_height": 32,
+    "selection_order_visible": false
+  },
+  "outputs": {
+    "rom": "build/stages/44_codex_battle_runtime.gba",
+    "metadata": "build/stages/44_codex_battle_runtime.json",
+    "allocation": "build/stages/44_allocation.json",
+    "incremental_bps": "build/patches/codex-battle-bridge-stage43-to-codex-battle-runtime-stage44.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-codex-battle-runtime-stage44.bps",
+    "generated_header": "generated/runtime/codex_battle_runtime_generated.h",
+    "runtime": "generated/runtime/codex_battle_runtime.bin",
+    "symbols": "generated/runtime/codex_battle_runtime_symbols.json",
+    "protocol": "generated/runtime/codex_battle_runtime_protocol.json",
+    "cases": "generated/runtime/codex_battle_runtime_mgba_cases.json",
+    "audit": "reports/generated/codex_battle_runtime_audit.json",
+    "coverage": "reports/generated/codex_battle_runtime_coverage.json",
+    "matrix": "reports/generated/codex_battle_runtime_matrix.json",
+    "catalog_report": "reports/generated/codex_battle_runtime_catalog.json",
+    "privacy": "reports/generated/codex_battle_runtime_privacy.json",
+    "gimmick": "reports/generated/codex_battle_runtime_gimmick.json",
+    "ipad": "build/stages/44_codex_battle_runtime_ipad.json",
+    "mgba_quick": "build/stages/44_mgba_codex_battle_runtime_quick.json",
+    "mgba_full": "build/stages/44_mgba_codex_battle_runtime_full.json",
+    "clean_rebuild": "build/stages/44_codex_battle_runtime_clean_rebuild.json"
+  }
+}

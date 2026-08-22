@@ -29,7 +29,9 @@ T26の実iPad検証済みtransport/mailboxを使い、プレイヤー6体とCode
 - Codexはversioned team JSONで正確に6体を登録し、CLIで3 slotを選ぶ。
 - team JSONはmove/item/ability/nature/IV/EV/shiny/tera typeを指定でき、省略fieldは同じsession seedから
   決定的に補完する。canonical ID/幅/個体安全性はfail-closedにするが、通常習得可否をbanとして強制しない。
-- 種族重複とcontent banlistは設けない。regulationは`FLAT_50|OPEN`と同一持ち物`ALLOW|DENY`だけ。
+- ROM/CLIが強制する対戦構築ルールは設けない。種族・伝説・同一持ち物・技・構築の制限は、対戦ごとに
+  ユーザーとCodexが合意して自分たちで守る。技術的にbattle engineへ渡せない壊れた個体だけを拒否する。
+- レベル処理だけは対戦用optionとして`FLAT_50|OPEN`を用意する。
 - gimmickはregulation項目へ増やさず`UPSTREAM_OPEN`固定とする。Codex対戦中だけ双方の物語進行/key item gateを
   battle-localに外し、Mega/Z/Dynamax/Terastalの適合性、使用済み状態、相互作用はfixed CFRU-JPを正とする。
   T06のbattle-wide mechanic modeや他battle modeを変更せず、Codex対戦active時だけ専用adapterを使う。
@@ -39,6 +41,14 @@ T26の実iPad検証済みtransport/mailboxを使い、プレイヤー6体とCode
 - Codex合法行動はmove、switch、forfeitで、moveは`none|mega|z|dynamax|tera`のgimmick指定を伴える。
   ROMがmoveごとに公開した`legal_gimmicks`を含むlegal maskにない入力は同じphaseのまま拒否する。
 - Codexへは自team全情報と公開済みplayer情報だけを渡す。未公開move/item/ability/Tera typeやraw save dumpを渡さない。
+- Codex選出3体は現在HP／最大HPの実数、自activeはlive species/level/move ID/PP/item/ability/typeを返す。
+  player activeは公開species/level/HP割合/瀕死だけを返し、HP 0、強制交代、通常交代継続を別状態にする。
+- team previewのplayer 6体は公開level/gender/shinyも返す。live中はCodex activeの5実能力値と双方の
+  appearanceを返し、playerの既出個体は選出順を漏らさない初登場順opaque IDで交代後も追跡する。
+- 公開stateは主要状態異常、7能力ランク、公開volatile、Disable/Encore、field/side/hazard、遅延効果、
+  gimmick状態を含む。command 16の画面表示とcommand 52のCFRU特性ポップアップだけをevent化し、
+  標準日本語template/CFRU追加文候補と実参照contextを返す。command 17、それ以外のcontroller data、
+  内部乱数counter、Illusion真identityは含めない。
 - プレイヤーが現turnで確定したmove、switch先、target、gimmick、入力時刻、private command bytesはCodex actionの
   commit前に一切返さない。player commandはROM内private bufferへsealし、双方commit後だけbattle controllerへ渡す。
 - Codex入力待ちはgame内に明示し、無期限WAITを既定とする。disconnect時はWAIT、CPU fallback、forfeitを選べる。
@@ -47,6 +57,8 @@ T26の実iPad検証済みtransport/mailboxを使い、プレイヤー6体とCode
 - production入口は既存施設内の通常NPC/端末と標準menuを使い、debug menuだけにしない。
 - CLIは状態、公開情報、合法候補、操作方法だけを提供し、team/選出/行動/gimmickを自動決定しない。
   戦略、乱数policy、理由説明、発話頻度は呼出元Codex taskのpromptに委ねる。
+- `match view`と`wait --compact`は現在の判断盤面を自己完結で返し、戦闘eventだけを前回cursor以後の差分にする。
+  既読全文、neutral/0効果、コード、raw構造体、計算後のraw IV/EVを毎turn反復しない。完全監査は`match status`へ分ける。
 - read-only catalogはSpecies/Move/Itemのbounded searchとexact get、learnset get、全件file exportを提供する。
   list/search既定出力を小さくし、全catalogを各turn snapshotへ含めない。
 
@@ -61,14 +73,16 @@ T26の実iPad検証済みtransport/mailboxを使い、プレイヤー6体とCode
 - `catalog item get ITEM_ID --json`
 - `catalog learnset get SPECIES_ID --json`
 - `catalog export --output PATH --json`
-- `match configure --level flat50|open --duplicate-items allow|deny --json`
+- `match configure --level flat50|open --json`
 - `match upload-team --file ... --json`
 - `choose team 1,3,6 --json`
 - `wait --timeout 55 --json`
+- `wait --timeout 55 --compact --json`
 - `choose move N [--target N] --gimmick none|mega|z|dynamax|tera --json`
 - `choose switch N --json`
 - `choose forfeit --json`
 - `match status --json`
+- `match view [--reset-events] --json`
 
 全writeはsession/match/phase/request sequenceを明示し、成功時に受理されたsequenceと次phaseを返す。
 
@@ -105,18 +119,29 @@ T26の実iPad検証済みtransport/mailboxを使い、プレイヤー6体とCode
 - [ ] T26 Stage 43/protocol/CLI identityが一致し、iPad NCI doctorがPASSする。
 - [ ] player 6→3とCodex 6→3が通常入口から完了し、双方の選出順を相手に漏らさない。
 - [ ] exact 6-member team JSON、全省略値、invalid ID/width/EV/IV/move count、duplicate fieldを決定的に検査する。
-- [ ] 種族重複は許可し、level 2 mode×duplicate item 2 modeの全4 regulationが仕様どおり動く。
+- [ ] `FLAT_50|OPEN`の2 level modeが仕様どおり動き、種族・同一持ち物・content banlist等の
+      対戦構築ルールをROM/CLIが強制しない。
 - [ ] catalogのSpecies/Move/Item/learnset exact read、bounded search、全件exportがcanonical入力と一致し、
       full exportはfile path/hashだけを返してteam validationのlearnset banにならない。
 - [ ] `UPSTREAM_OPEN`でMega/Z/Dynamax/Terastalの代表合法入力が双方で発動し、不適合・再使用・相互作用は
       fixed CFRU-JPどおり拒否される。通常戦、Factory、Mirage、Raidのmechanic policyはbyte/挙動不変である。
 - [ ] move＋各gimmick、switch、forfeitの全合法分岐とillegal/stale/duplicate command拒否を実battle controllerで確認する。
-- [ ] public snapshotが自team全情報、player公開情報、Codex legal actionだけを含み、未公開情報を含まない。
+- [ ] public snapshotが自team全情報（選出3体のHP実数、active live技/PPを含む）、player公開情報
+      （active species/level/HP割合/瀕死、公開済み技/item/abilityを含む）、能力ランク、状態・場・side・
+      遅延効果、公開battle event、Codex legal actionだけを含み、未公開情報を含まない。
+- [ ] 対戦前player level/gender/shiny、live Codex実能力値、双方appearance、初登場順opaque IDを公開し、
+      交代後も既知のplayer技/item/ability/最終HP・状態を同一公開IDへ保持する。実slot・選出順は復元できない。
+- [ ] `match view`/`wait --compact`が自己完結した最新判断盤面＋新着eventだけを返し、2回目の無変化読取は
+      event 0件となる。full statusより十分小さく、コードやraw dumpを含まない。
+- [ ] player撃破をHP 0＋forced switchとして公開し、HP 0 slotをlegal switchから除外する。通常交代は
+      voluntary continuationとして1回の明示入力で完了し、forced switch先も1回の明示入力でactive更新する。
 - [ ] player pending move/switch/target/gimmick/private bytesを値、長さ、error、sequence、timing metadataのいずれからも
       Codex action commit前に復元できず、双方commit後だけ通常turnが解決される。
 - [ ] CLI/ROMがteam、選出、行動、gimmick、説明を自動決定せず、`wait`と明示writeだけで対戦を進められる。
 - [ ] disconnect WAIT、再接続、CPU fallback、forfeitがdeadlock・二重turn・無限loopなしで完了する。
 - [ ] 勝敗・降参・通信abort・resetの全exitでplayer party、level、EXP/EV、item、badge、RNG ownerをexact restoreする。
+- [ ] exact cleanup後も受付の最終msgbox完了までは新規configureを`BUSY`で拒否し、field completion後の
+      新matchが旧世代の遅延release/cleanupで終了しない。
 - [ ] battle後にEXP/EV/賞金/捕獲/永続item消費がなく、通常saveへ意図しないwriteがない。
 - [ ] Codex stateが通常battle、Factory、Mirage、Raid、Reward encounterへ漏れない。
 - [ ] `wait`→明示actionを3 request cycle以上繰り返し、task側の戦略や説明policyなしで同一matchを継続できる。

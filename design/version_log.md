@@ -820,3 +820,15 @@
   - `reward mon`のoptional fieldに`--ball BALL_ITEM_ID`を追加した。
   - 選択ボールを付与個体の捕獲ボール情報へ保存し、invalid/non-ball IDを無変更で拒否する受入条件を固定した。
 - Verify: SKIP（ユーザー指示により再検証なし）。
+
+## 2026-08-22T16:05:07+09:00
+
+- Version: `post-v1.4.0-stage44`（v1.4.0 release identityとStage 27〜43は不変）
+- Commit: `-`（本エントリを含むT27完了コミット）
+- Task: `T27` / Codex操作6→3対戦をStage 44へproduction統合する
+- Summary:
+  - 双方6→3、Codexの全選出・技・交代・gimmick判断、pending player action非公開、`FLAT_50|OPEN`、`UPSTREAM_OPEN`を通常施設入口へ統合した。
+  - own 3体のHP実数とactive live技/PP、player公開HP割合、状態・能力ランク・場・gimmick・公開event、opaque個体追跡、forced/voluntary switchをオンライン対戦相当のcompact stateとして実装した。
+  - 全exitのparty/save exact restore、EXP等の副作用抑止、結果msgbox完了まで次matchを隔離するfield completion gateを実装し、実iPadで8 cycle以上の対戦と安全終了・マップ復帰を実証した。
+  - clean chain/direct BPSの両方から同一Stage 44を再構築し、宣言span外変更とROM/RAM/save/UI/hook overlapを0にした。
+- Verify: production build/check、focused 9 tests、libmGBA quick/full各18/18・warnings 0、実iPad必須12 test・pending privacy・Dynamax・通常/強制交代・EXPなし・exact cleanup、clean rebuild build/check、CLI installer/doctor、task graph/private guard/diff check PASS。Stage 44 SHA-256 `96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256`、CRC32 `04CB658E`。
