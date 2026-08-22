@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 43/44 Codex Battle用の安全なRetroArch NCIクライアント。"""
+"""Stage 43〜45 Codex Battle用の安全なRetroArch NCIクライアント。"""
 
 from __future__ import annotations
 
@@ -64,6 +64,13 @@ ROM_ERROR_NAMES = {
     15: "ILLEGAL_ACTION",
     16: "BUSY",
     17: "PRIVATE_BOUNDARY",
+    18: "WINDOW_CLOSED",
+    19: "SAVE_FAILED",
+    20: "STORAGE_FULL",
+    21: "INVALID_ITEM",
+    22: "INVALID_MON",
+    23: "WRONG_HASH",
+    24: "TRANSACTION_CONFLICT",
 }
 
 PHASE_NAMES = {
@@ -210,8 +217,10 @@ def _protocol_path() -> Path:
         return Path(explicit)
     here = Path(__file__).resolve()
     candidates = (
+        here.with_name("codex_battle_rewards_protocol.json"),
         here.with_name("codex_battle_runtime_protocol.json"),
         here.with_name("codex_battle_bridge_protocol.json"),
+        here.parents[1] / "generated/runtime/codex_battle_rewards_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_runtime_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_bridge_protocol.json",
     )
@@ -227,13 +236,18 @@ def load_protocol(path: Path | None = None) -> dict[str, Any]:
         _fail(EXIT_CONFIG, "protocol metadata is unavailable or invalid")
     if (not isinstance(value, dict) or value.get("schema_version") != 1
             or (value.get("task"), value.get("stage")) not in {
-                ("T26", 43), ("T27", 44)
+                ("T26", 43), ("T27", 44), ("T28", 45)
             }
             or not isinstance(value.get("mailbox"), dict)
             or not isinstance(value.get("rom"), dict)):
         _fail(EXIT_CONFIG, "protocol metadata contract differs")
-    if value.get("stage") == 44 and not isinstance(value.get("base_mailbox"), dict):
-        _fail(EXIT_CONFIG, "Stage 44 base mailbox contract differs")
+    if (value.get("stage") in {44, 45}
+            and not isinstance(value.get("base_mailbox"), dict)):
+        _fail(EXIT_CONFIG, "runtime base mailbox contract differs")
+    if (value.get("stage") == 45
+            and (not isinstance(value.get("reward"), dict)
+                 or not isinstance(value["reward"].get("owner"), dict))):
+        _fail(EXIT_CONFIG, "Stage 45 reward contract differs")
     return value
 
 
@@ -252,6 +266,10 @@ def _match_state_path() -> Path:
     return _config_root() / "vega-codex-battle" / "match.json"
 
 
+def _reward_pending_path() -> Path:
+    return _config_root() / "vega-codex-battle" / "reward-pending.json"
+
+
 def _view_cursor_path() -> Path:
     return _config_root() / "vega-codex-battle" / "view-cursor.json"
 
@@ -261,7 +279,9 @@ def _preview_rom_path(protocol: Mapping[str, Any]) -> Path:
     here = Path(__file__).resolve()
     candidates = tuple(filter(None, (
         Path(explicit) if explicit else None,
+        here.with_name("codex_battle_rewards.gba"),
         here.with_name("codex_battle_runtime.gba"),
+        here.parents[1] / "build/stages/45_codex_battle_rewards.gba",
         here.parents[1] / "build/stages/44_codex_battle_runtime.gba",
     )))
     expected = str(protocol.get("rom", {}).get("sha256", ""))
@@ -272,7 +292,7 @@ def _preview_rom_path(protocol: Mapping[str, Any]) -> Path:
             continue
         if hashlib.sha256(raw).hexdigest() == expected:
             return candidate
-    _fail(EXIT_CONFIG, "exact Stage 44 ROM for the PC team preview is unavailable")
+    _fail(EXIT_CONFIG, "exact runtime ROM for the PC team preview is unavailable")
 
 
 def _preview_font_path() -> Path | None:
@@ -290,7 +310,7 @@ def _preview_font_path() -> Path | None:
 def _rom_span(rom: bytes, address: int, size: int, label: str) -> bytes:
     offset = address - 0x08000000
     if address < 0x08000000 or size < 0 or offset + size > len(rom):
-        _fail(EXIT_CONFIG, f"team preview {label} lies outside Stage 44")
+        _fail(EXIT_CONFIG, f"team preview {label} lies outside the runtime ROM")
     return rom[offset:offset + size]
 
 
@@ -500,9 +520,57 @@ def load_match_state(*, required: bool = True) -> dict[str, Any] | None:
             _fail(EXIT_CONFIG, "owner-only match state is unavailable")
         return None
     if (not isinstance(value, dict) or value.get("schema_version") != 1
-            or value.get("stage") != 44):
+            or value.get("stage") not in {44, 45}):
         _fail(EXIT_CONFIG, "owner-only match state contract differs")
     return value
+
+
+def load_reward_pending(*, required: bool = False) -> dict[str, Any] | None:
+    path = _reward_pending_path()
+    try:
+        if stat.S_IMODE(path.stat().st_mode) != 0o600:
+            raise OSError("permissions")
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        if required:
+            _fail(EXIT_CONFIG, "owner-only reward retry state is unavailable")
+        return None
+    except (OSError, ValueError, json.JSONDecodeError):
+        _fail(EXIT_CONFIG, "owner-only reward retry state is invalid")
+    if (not isinstance(value, dict) or value.get("schema_version") != 1
+            or value.get("stage") != 45
+            or not all(isinstance(value.get(key), int) for key in (
+                "session_nonce", "match_id", "command", "sequence",
+                "payload_hash",
+            ))
+            or not isinstance(value.get("payload_hex"), str)):
+        _fail(EXIT_CONFIG, "owner-only reward retry contract differs")
+    try:
+        payload = bytes.fromhex(value["payload_hex"])
+    except ValueError:
+        _fail(EXIT_CONFIG, "owner-only reward payload encoding differs")
+    if (len(payload) > 64
+            or zlib.crc32(payload) & 0xFFFFFFFF != value["payload_hash"]
+            or not 11 <= value["command"] <= 14
+            or not 1 <= value["sequence"] <= 0xFFFFFFFF):
+        _fail(EXIT_CONFIG, "owner-only reward retry identity differs")
+    return value
+
+
+def _clear_reward_pending(expected: Mapping[str, Any]) -> None:
+    current = load_reward_pending(required=False)
+    if current is None:
+        return
+    identity = ("session_nonce", "match_id", "command", "sequence",
+                "payload_hash", "payload_hex")
+    if any(current.get(key) != expected.get(key) for key in identity):
+        _fail(EXIT_CONFIG_WRITE, "owner-only reward retry state changed")
+    try:
+        _reward_pending_path().unlink()
+    except FileNotFoundError:
+        return
+    except OSError:
+        _fail(EXIT_CONFIG_WRITE, "owner-only reward retry state could not be cleared")
 
 
 def _validate_host(host: str) -> str:
@@ -793,8 +861,19 @@ def build_ping_request(
 
 
 def _runtime_protocol(protocol: Mapping[str, Any]) -> None:
-    if protocol.get("task") != "T27" or protocol.get("stage") != 44:
-        _fail(EXIT_CONFIG, "this command requires the Stage 44 protocol")
+    if (protocol.get("task"), protocol.get("stage")) not in {
+        ("T27", 44), ("T28", 45),
+    }:
+        _fail(EXIT_CONFIG, "this command requires the Stage 44/45 protocol")
+
+
+def _reward_protocol(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
+    if (protocol.get("task"), protocol.get("stage")) != ("T28", 45):
+        _fail(EXIT_CONFIG, "this command requires the Stage 45 reward protocol")
+    reward = protocol.get("reward")
+    if not isinstance(reward, Mapping):
+        _fail(EXIT_CONFIG, "Stage 45 reward metadata is unavailable")
+    return reward
 
 
 def runtime_snapshot_crc32(raw: bytes) -> int:
@@ -802,6 +881,95 @@ def runtime_snapshot_crc32(raw: bytes) -> int:
         _fail(EXIT_PROTOCOL, "runtime mailbox size differs")
     crc = zlib.crc32(raw[:56])
     return zlib.crc32(raw[68:160], crc) & 0xFFFFFFFF
+
+
+def reward_owner_crc32(raw: bytes) -> int:
+    if len(raw) != 128:
+        _fail(EXIT_PROTOCOL, "reward owner size differs")
+    image = bytearray(raw)
+    image[12:16] = b"\0\0\0\0"
+    return zlib.crc32(image) & 0xFFFFFFFF
+
+
+def parse_reward_owner(
+    raw: bytes, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    reward = _reward_protocol(protocol)
+    owner = reward["owner"]
+    size = int(owner["size"])
+    if len(raw) != size or size != 128:
+        _fail(EXIT_PROTOCOL, "reward owner size differs")
+    u16 = lambda offset: struct.unpack_from("<H", raw, offset)[0]
+    u32 = lambda offset: struct.unpack_from("<I", raw, offset)[0]
+    magic = int(owner["magic"])
+    if (u32(0) != magic or u32(4) != (~magic & 0xFFFFFFFF)
+            or u16(8) != int(owner["version"]) or u16(10) != size
+            or u32(12) != reward_owner_crc32(raw)):
+        _fail(EXIT_PROTOCOL, "reward owner identity/version/CRC differs")
+    window = raw[20]
+    phase = raw[21]
+    window_names = list(owner["window_names"])
+    phase_names = list(owner["journal_phase_names"])
+    if window >= len(window_names) or phase >= len(phase_names):
+        _fail(EXIT_PROTOCOL, "reward owner state differs")
+    pending_sequence = u32(40)
+    pending_hash = u32(44)
+    if ((phase in {1, 2}) != (pending_sequence != 0)
+            or (pending_sequence == 0 and pending_hash != 0)):
+        _fail(EXIT_PROTOCOL, "reward journal identity differs")
+    destination_kind = raw[112]
+    if destination_kind > 2:
+        _fail(EXIT_PROTOCOL, "reward destination kind differs")
+    moves = list(struct.unpack_from("<4H", raw, 76))
+    result_names = {0: "NONE", 1: "WIN", 2: "LOSS", 3: "DRAW", 4: "FORFEIT"}
+    last_result = u16(102)
+    return {
+        "valid": True,
+        "version": u16(8),
+        "generation": u32(16),
+        "window": window,
+        "window_name": window_names[window],
+        "journal_phase": phase,
+        "journal_phase_name": phase_names[phase],
+        "result_kind": raw[22],
+        "result_name": result_names.get(raw[22], "UNKNOWN"),
+        "last_command": raw[23],
+        "session_nonce": u32(24),
+        "match_id": u32(28),
+        "last_request_sequence": u32(32),
+        "last_payload_hash": u32(36),
+        "pending_sequence": pending_sequence,
+        "pending_payload_hash": pending_hash,
+        "transaction_id": u32(48),
+        "destination_token": u32(52),
+        "personality": u32(56),
+        "ot_id": u32(60),
+        "item": {
+            "id": u16(64), "quantity": u16(66),
+            "bag_quantity_before": u16(68),
+        },
+        "mon": {
+            "species_id": u16(70), "held_item_id": u16(72),
+            "ball_item_id": u16(74), "moves": moves,
+            "level": raw[84], "ability_slot": raw[85],
+            "nature_id": raw[86], "presence": raw[87],
+            "ivs": list(raw[88:94]), "evs": list(raw[94:100]),
+            "shiny": bool(raw[100]), "tera_type": raw[101],
+        },
+        "last_result": last_result,
+        "last_result_name": ROM_ERROR_NAMES.get(last_result, "UNKNOWN"),
+        "committed_count": u16(104),
+        "error_count": u16(106),
+        "recovery_count": u16(108),
+        "flags": u16(110),
+        "destination": {
+            "kind": destination_kind,
+            "kind_name": ("NONE", "PARTY", "BOX")[destination_kind],
+            "box": raw[113], "slot": raw[114],
+        },
+        "delivery_fingerprint": u32(116),
+        "public_read_only": bool(owner.get("public_read_only", True)),
+    }
 
 
 def parse_runtime_mailbox(
@@ -1288,15 +1456,20 @@ def parse_public_battle_state(
 
 def build_runtime_request(
     state: Mapping[str, Any], protocol: Mapping[str, Any], command: int,
-    payload: bytes,
+    payload: bytes, *, sequence: int | None = None,
 ) -> tuple[bytes, int]:
     _runtime_protocol(protocol)
     mailbox = protocol["mailbox"]
-    if not 1 <= command <= 10 or len(payload) > int(mailbox["request_payload_max"]):
+    maximum_command = 14 if protocol.get("stage") == 45 else 10
+    if (not 1 <= command <= maximum_command
+            or len(payload) > int(mailbox["request_payload_max"])):
         _fail(EXIT_REQUEST, "runtime request command/payload is invalid")
-    sequence = (int(state["last_accepted_sequence"]) + 1) & 0xFFFFFFFF
-    if sequence == 0:
-        sequence = 1
+    if sequence is None:
+        sequence = (int(state["last_accepted_sequence"]) + 1) & 0xFFFFFFFF
+        if sequence == 0:
+            sequence = 1
+    if not 1 <= sequence <= 0xFFFFFFFF:
+        _fail(EXIT_REQUEST, "runtime request sequence is invalid")
     request = bytearray(int(mailbox["request_size"]))
     struct.pack_into(
         "<IIHHHHI", request, 0,
@@ -1585,7 +1758,7 @@ def _check_content(status: Mapping[str, Any], protocol: Mapping[str, Any]) -> No
 
 def _read_valid_mailbox(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
     mailbox = protocol["mailbox"]
-    if protocol.get("stage") == 44:
+    if protocol.get("stage") in {44, 45}:
         public_spec = protocol["public_state"]
         last_error: CliError | None = None
         # Poll publishes the fixed mailbox and public state with commit words.
@@ -1606,6 +1779,15 @@ def _read_valid_mailbox(client: NciClient, protocol: Mapping[str, Any]) -> dict[
                         result["public_battle_state"] = parse_public_battle_state(
                             public_raw, protocol,
                         )
+                        if protocol.get("stage") == 45:
+                            reward_owner = protocol["reward"]["owner"]
+                            reward_raw = client.read_memory(
+                                int(reward_owner["address"]),
+                                int(reward_owner["size"]),
+                            )
+                            result["reward_owner"] = parse_reward_owner(
+                                reward_raw, protocol,
+                            )
                         return result
                     except CliError as error:
                         last_error = error
@@ -1622,7 +1804,9 @@ def _read_valid_mailbox(client: NciClient, protocol: Mapping[str, Any]) -> dict[
 def _read_valid_base_mailbox(
     client: NciClient, protocol: Mapping[str, Any],
 ) -> dict[str, Any]:
-    mailbox = protocol["base_mailbox"] if protocol.get("stage") == 44 else protocol["mailbox"]
+    mailbox = (protocol["base_mailbox"]
+               if protocol.get("stage") in {44, 45}
+               else protocol["mailbox"])
     raw = client.read_memory(int(mailbox["address"]), int(mailbox["struct_size"]))
     return parse_mailbox(raw, {"mailbox": mailbox})
 
@@ -1632,7 +1816,7 @@ def device_status(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, A
     status = client.status()
     _check_content(status, protocol)
     mailbox = _read_valid_mailbox(client, protocol)
-    return {
+    result = {
         "transport": "retroarch_nci_udp",
         "retroarch_version": version,
         "core_system": "GBA",
@@ -1640,7 +1824,7 @@ def device_status(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, A
         "stage": int(protocol["stage"]),
         "phase": mailbox["phase"],
         "phase_name": (mailbox.get("phase_name")
-                       if protocol.get("stage") == 44 else "IDLE"),
+                       if protocol.get("stage") in {44, 45} else "IDLE"),
         "match_id": mailbox.get("match_id", 0),
         "turn": mailbox.get("turn", 0),
         "snapshot_sequence": mailbox["snapshot_sequence"],
@@ -1648,6 +1832,13 @@ def device_status(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, A
         "capabilities": int(protocol["mailbox"]["capabilities"]),
         "owner_only_config": True,
     }
+    if isinstance(mailbox.get("reward_owner"), Mapping):
+        result["reward"] = {
+            "window": mailbox["reward_owner"]["window_name"],
+            "journal": mailbox["reward_owner"]["journal_phase_name"],
+            "last_sequence": mailbox["reward_owner"]["last_request_sequence"],
+        }
+    return result
 
 
 def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
@@ -1656,8 +1847,8 @@ def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
     _check_content(status, protocol)
     mailbox = _read_valid_mailbox(client, protocol)
     base = (_read_valid_base_mailbox(client, protocol)
-            if protocol.get("stage") == 44 else mailbox)
-    expected_capabilities = 8191 if protocol.get("stage") == 44 else 7
+            if protocol.get("stage") in {44, 45} else mailbox)
+    expected_capabilities = 8191 if protocol.get("stage") in {44, 45} else 7
     checks = {
         "transport": bool(version),
         "core_system_gba": True,
@@ -1668,11 +1859,21 @@ def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
         "session_nonce": mailbox["session_nonce"] != 0,
         "snapshot_crc": True,
         "public_battle_state_crc": (
-            protocol.get("stage") != 44 or "public_battle_state" in mailbox
+            protocol.get("stage") not in {44, 45}
+            or "public_battle_state" in mailbox
         ),
         "t26_base_bridge": base["session_nonce"] != 0,
         "owner_only_config": True,
     }
+    if protocol.get("stage") == 45:
+        reward_owner = mailbox.get("reward_owner")
+        checks["reward_owner_crc"] = bool(
+            isinstance(reward_owner, Mapping) and reward_owner.get("valid")
+        )
+        checks["reward_owner_read_only"] = bool(
+            isinstance(reward_owner, Mapping)
+            and reward_owner.get("public_read_only")
+        )
     if not all(checks.values()):
         _fail(EXIT_PROTOCOL, "doctor checks did not all pass")
     return {
@@ -1684,7 +1885,7 @@ def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
         "protocol": (
             f"{int(protocol['mailbox']['major'])}."
             f"{int(protocol['mailbox']['minor'])}"
-            if protocol.get("stage") == 44 else "1.0"
+            if protocol.get("stage") in {44, 45} else "1.0"
         ),
         "capabilities": int(protocol["mailbox"]["capabilities"]),
         "security": {
@@ -1702,7 +1903,7 @@ def bridge_ping(
     status = client.status()
     _check_content(status, protocol)
     bridge_protocol = ({**protocol, "mailbox": protocol["base_mailbox"]}
-                       if protocol.get("stage") == 44 else protocol)
+                       if protocol.get("stage") in {44, 45} else protocol)
     before = _read_valid_base_mailbox(client, protocol)
     token = secrets.randbits(32) or 1
     request, sequence = build_ping_request(before, bridge_protocol, token)
@@ -2195,7 +2396,7 @@ def public_runtime_status(
                             for key in ("level", "gender", "shiny")})
         player_preview_rows.append(row)
     return {
-        "stage": 44,
+        "stage": int(protocol["stage"]) if protocol is not None else 44,
         "battle_live": bool(state.get("battle_live")),
         "phase": state["phase"], "phase_name": state["phase_name"],
         "match_id": state["match_id"], "turn": state["turn"],
@@ -2646,6 +2847,487 @@ def send_runtime_request(
     return result, after
 
 
+def _reward_status_from_state(
+    state: Mapping[str, Any], protocol: Mapping[str, Any],
+    catalog: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    _reward_protocol(protocol)
+    owner = state.get("reward_owner")
+    if not isinstance(owner, Mapping):
+        _fail(EXIT_PROTOCOL, "reward owner was not published")
+    bound = (int(owner["session_nonce"]) == int(state["session_nonce"])
+             and int(owner["match_id"]) == int(state["match_id"]))
+    result: dict[str, Any] = {
+        "read_only": True,
+        "stage": 45,
+        "window": owner["window_name"],
+        "journal": owner["journal_phase_name"],
+        "result": owner["result_name"],
+        "bound_to_current_match": bound,
+        "available": bool(
+            bound and owner["window_name"] == "OPEN"
+            and state["phase_name"] == "RESULT"
+        ),
+        "session_nonce": owner["session_nonce"],
+        "match_id": owner["match_id"],
+        "last_request_sequence": owner["last_request_sequence"],
+        "last_command": owner["last_command"],
+        "last_payload_hash": owner["last_payload_hash"],
+        "pending_sequence": owner["pending_sequence"],
+        "pending_payload_hash": owner["pending_payload_hash"],
+        "last_result": owner["last_result_name"],
+        "committed_count": owner["committed_count"],
+        "error_count": owner["error_count"],
+        "recovery_count": owner["recovery_count"],
+        "destination": owner["destination"],
+        "retry_file_present": load_reward_pending(required=False) is not None,
+        "public_boundary": "reward owner only; no private player input",
+    }
+    if int(owner["item"]["id"]) != 0:
+        item = dict(owner["item"])
+        if catalog is not None and int(item["id"]) < len(catalog["items"]):
+            item["name"] = catalog["items"][int(item["id"])]["name"]
+        result["last_item"] = item
+    if int(owner["mon"]["species_id"]) != 0:
+        mon = copy.deepcopy(owner["mon"])
+        if catalog is not None:
+            species_id = int(mon["species_id"])
+            if species_id < len(catalog["species"]):
+                mon["species_name"] = catalog["species"][species_id]["name"]
+            mon["move_names"] = [
+                catalog["moves"][int(move)]["name"]
+                for move in mon["moves"] if 0 < int(move) < len(catalog["moves"])
+            ]
+            held = int(mon["held_item_id"])
+            ball = int(mon["ball_item_id"])
+            mon["held_item_name"] = catalog["items"][held]["name"]
+            mon["ball_name"] = catalog["items"][ball]["name"]
+        result["last_mon"] = mon
+    return result
+
+
+def reward_status(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    _reward_protocol(protocol)
+    _check_content(client.status(), protocol)
+    return _reward_status_from_state(
+        _read_valid_mailbox(client, protocol), protocol, load_catalog(protocol),
+    )
+
+
+def _reward_pending_document(
+    state: Mapping[str, Any], protocol: Mapping[str, Any],
+    command: int, payload: bytes,
+) -> tuple[dict[str, Any], bool]:
+    _reward_protocol(protocol)
+    owner = state.get("reward_owner")
+    if not isinstance(owner, Mapping):
+        _fail(EXIT_PROTOCOL, "reward owner was not published")
+    if (owner["window_name"] != "OPEN"
+            or int(owner["session_nonce"]) != int(state["session_nonce"])
+            or int(owner["match_id"]) != int(state["match_id"])
+            or state["phase_name"] != "RESULT"):
+        _fail(EXIT_REQUEST, "current match has no open reward window")
+    payload_hash = zlib.crc32(payload) & 0xFFFFFFFF
+    existing = load_reward_pending(required=False)
+    if existing is not None:
+        expected = {
+            "session_nonce": int(state["session_nonce"]),
+            "match_id": int(state["match_id"]),
+            "command": command,
+            "payload_hash": payload_hash,
+            "payload_hex": payload.hex(),
+        }
+        matches_requested = all(
+            existing.get(key) == value for key, value in expected.items()
+        )
+        same_session = (
+            existing["session_nonce"] == int(state["session_nonce"])
+            and existing["match_id"] == int(state["match_id"])
+        )
+        committed = (
+            same_session
+            and int(owner["last_request_sequence"]) == existing["sequence"]
+            and int(owner["last_payload_hash"]) == existing["payload_hash"]
+            and int(owner["last_command"]) == existing["command"]
+            and owner["journal_phase_name"] == "COMMITTED"
+        )
+        if committed and matches_requested:
+            return existing, True
+        if committed:
+            _clear_reward_pending(existing)
+            existing = None
+        elif (not same_session and int(owner["pending_sequence"]) == 0):
+            _clear_reward_pending(existing)
+            existing = None
+    if existing is not None:
+        if any(existing.get(key) != value for key, value in expected.items()):
+            _fail(
+                EXIT_REQUEST,
+                "a different reward request is awaiting an exact retry",
+                detail="run reward status, then retry the original command",
+            )
+        return existing, True
+    if int(owner["pending_sequence"]) != 0:
+        _fail(
+            EXIT_REQUEST,
+            "ROM has an in-flight reward without the owner-only retry payload",
+            detail="do not submit a different reward request",
+        )
+    # The independently durable reward owner is authoritative across reset.
+    # A freshly rebuilt T27 mailbox can transiently publish zero before the
+    # reward-aware result snapshot is refreshed, so never derive a reward
+    # sequence from that volatile field.
+    sequence = (int(owner["last_request_sequence"]) + 1) & 0xFFFFFFFF
+    if sequence == 0:
+        sequence = 1
+    document = {
+        "schema_version": 1,
+        "stage": 45,
+        "session_nonce": int(state["session_nonce"]),
+        "match_id": int(state["match_id"]),
+        "command": command,
+        "sequence": sequence,
+        "payload_hash": payload_hash,
+        "payload_hex": payload.hex(),
+    }
+    _owner_write(_reward_pending_path(), document)
+    return document, False
+
+
+def send_reward_request(
+    client: NciClient, protocol: Mapping[str, Any], command: int,
+    payload: bytes, *, timeout: float = 12.0,
+) -> dict[str, Any]:
+    reward = _reward_protocol(protocol)
+    if command not in {int(value) for value in reward["commands"].values()}:
+        _fail(EXIT_REQUEST, "reward command differs")
+    status = client.status()
+    _check_content(status, protocol)
+    before = _read_valid_mailbox(client, protocol)
+    pending, resumed = _reward_pending_document(
+        before, protocol, command, payload,
+    )
+    owner = before["reward_owner"]
+    if (int(owner["last_request_sequence"]) == pending["sequence"]
+            and int(owner["last_payload_hash"]) == pending["payload_hash"]
+            and int(owner["last_command"]) == command
+            and owner["journal_phase_name"] == "COMMITTED"):
+        _clear_reward_pending(pending)
+        return {
+            "accepted_sequence": pending["sequence"],
+            "match_id": before["match_id"],
+            "exactly_once": True,
+            "response_lost_recovered": True,
+            "write_operations": 0,
+            "write_bytes": 0,
+            "request_span_only": True,
+        }
+    request, sequence = build_runtime_request(
+        before, protocol, command, payload, sequence=pending["sequence"],
+    )
+    mailbox = protocol["mailbox"]
+    address = int(mailbox["address"]) + int(mailbox["request_offset"])
+    written = [
+        client.write_memory(address, request[:88]),
+        client.write_memory(address + 88, request[88:92]),
+        client.write_memory(address + 92, request[92:96]),
+    ]
+    deadline = time.monotonic() + timeout
+    after: dict[str, Any] | None = None
+    while time.monotonic() < deadline:
+        candidate = _read_valid_mailbox(client, protocol)
+        reward_owner = candidate["reward_owner"]
+        if (int(reward_owner["session_nonce"]) != pending["session_nonce"]
+                or int(reward_owner["match_id"]) != pending["match_id"]):
+            _fail(EXIT_REQUEST, "reward session changed during write")
+        if int(candidate["response_sequence"]) == sequence:
+            after = candidate
+            break
+        time.sleep(0.025)
+    if after is None:
+        _fail(
+            EXIT_TRANSPORT,
+            "reward response was not published before timeout",
+            detail="the owner-only exact request was retained for retry",
+        )
+    if int(after["response_status"]) == 3:
+        error = int(after["response_error"])
+        if error not in {16, 19, 20, 24}:
+            _clear_reward_pending(pending)
+        _fail(
+            EXIT_REQUEST, "ROM rejected the explicit reward command",
+            detail=ROM_ERROR_NAMES.get(error, "UNKNOWN"),
+        )
+    reward_owner = after["reward_owner"]
+    if (int(after["response_status"]) != 2
+            or int(after["response_error"]) != 0
+            or int(after["last_command"]) != command
+            or int(after["last_accepted_sequence"]) != sequence
+            or int(reward_owner["last_request_sequence"]) != sequence
+            or int(reward_owner["last_payload_hash"]) != pending["payload_hash"]
+            or int(reward_owner["last_command"]) != command
+            or reward_owner["journal_phase_name"] != "COMMITTED"):
+        _fail(
+            EXIT_REQUEST, "reward acceptance/journal response differs",
+            detail="the owner-only exact request was retained for retry",
+        )
+    _clear_reward_pending(pending)
+    return {
+        "accepted_sequence": sequence,
+        "match_id": after["match_id"],
+        "exactly_once": True,
+        "retry_resumed": resumed,
+        "response_lost_recovered": False,
+        "journal": reward_owner["journal_phase_name"],
+        "destination": reward_owner["destination"],
+        "committed_count": reward_owner["committed_count"],
+        "window": reward_owner["window_name"],
+        "write_operations": 3,
+        "write_bytes": sum(written),
+        "request_span_only": True,
+        "host_save_or_party_write": False,
+    }
+
+
+def reward_item(
+    client: NciClient, protocol: Mapping[str, Any], item_id: int,
+    quantity: int,
+) -> dict[str, Any]:
+    reward = _reward_protocol(protocol)
+    limits = reward["limits"]
+    item_id = _exact_int(item_id, 1, int(limits["item_max"]), "reward item ID")
+    quantity = _exact_int(
+        quantity, 1, int(limits["quantity_max"]), "reward quantity",
+    )
+    catalog = load_catalog(protocol)
+    item = catalog_get(catalog, "item", item_id)["entry"]
+    command = int(reward["commands"]["reward_item"])
+    result = send_reward_request(
+        client, protocol, command, struct.pack("<HH", item_id, quantity),
+    )
+    return {
+        **result,
+        "reward": {"kind": "item", "item_id": item_id,
+                   "item_name": item["name"], "quantity": quantity},
+        "automatic_reward": False,
+    }
+
+
+def _parse_int_list(
+    value: str | None, *, count: int, minimum: int, maximum: int,
+    label: str, default: Sequence[int], allow_short: bool = False,
+) -> list[int]:
+    if value is None:
+        return list(default)
+    fields = value.split(",")
+    if (not fields or any(not field.strip() for field in fields)
+            or (len(fields) > count if allow_short else len(fields) != count)):
+        _fail(EXIT_REQUEST, f"{label} must contain comma-separated integers")
+    try:
+        result = [int(field, 10) for field in fields]
+    except ValueError:
+        _fail(EXIT_REQUEST, f"{label} must contain decimal integers")
+    if any(not minimum <= item <= maximum for item in result):
+        _fail(EXIT_REQUEST, f"{label} value is out of range")
+    return result
+
+
+def build_reward_mon_payload(
+    protocol: Mapping[str, Any], catalog: Mapping[str, Any],
+    species_id: int, level: int, *, moves_text: str | None,
+    held_item_id: int, ability_id: int | None, ability_slot: int | None,
+    nature_id: int, ivs_text: str | None, evs_text: str | None,
+    shiny: bool, tera_type: int | None, ball_item_id: int | None,
+) -> tuple[bytes, dict[str, Any]]:
+    reward = _reward_protocol(protocol)
+    limits = reward["limits"]
+    species_id = _exact_int(
+        species_id, 1, int(limits["species_max"]), "reward species ID",
+    )
+    level = _exact_int(level, 1, int(limits["level_max"]), "reward level")
+    species = catalog_get(catalog, "species", species_id)["entry"]
+    held_item_id = _exact_int(
+        held_item_id, 0, int(limits["item_max"]), "reward held item ID",
+    )
+    held_item = catalog_get(catalog, "item", held_item_id)["entry"]
+    if (held_item_id and (int(held_item["importance"]) != 0
+            or held_item["pocket"] == "POCKET_KEY_ITEMS"
+            or held_item["role"] in {"KEY_ITEM", "STORY_KEY"})):
+        _fail(EXIT_REQUEST, "reward held item is engine-unsafe")
+    moves = _parse_int_list(
+        moves_text, count=4, minimum=1, maximum=int(limits["move_max"]),
+        label="reward moves", default=(33,), allow_short=True,
+    )
+    moves += [0] * (4 - len(moves))
+    move_rows = [catalog_get(catalog, "move", move)["entry"]
+                 for move in moves if move]
+    abilities = list(species.get("abilities", []))
+    if ability_id is not None and ability_slot is not None:
+        _fail(EXIT_REQUEST, "specify either reward ability ID or ability slot")
+    if ability_id is not None:
+        matches = [index for index, row in enumerate(abilities)
+                   if int(row.get("id", -1)) == ability_id]
+        if not matches:
+            _fail(EXIT_REQUEST, "reward ability is unavailable for the species")
+        selected_ability_slot = matches[0]
+    else:
+        selected_ability_slot = 0 if ability_slot is None else _exact_int(
+            ability_slot, 0, int(limits["ability_slot_max"]),
+            "reward ability slot",
+        )
+    if selected_ability_slot >= len(abilities):
+        _fail(EXIT_REQUEST, "reward ability slot is unavailable for the species")
+    selected_ability = abilities[selected_ability_slot]
+    nature_id = _exact_int(
+        nature_id, 0, int(limits["nature_max"]), "reward nature ID",
+    )
+    ivs = _parse_int_list(
+        ivs_text, count=6, minimum=0, maximum=int(limits["iv_max"]),
+        label="reward IVs", default=(31, 31, 31, 31, 31, 31),
+    )
+    evs = _parse_int_list(
+        evs_text, count=6, minimum=0, maximum=int(limits["ev_max"]),
+        label="reward EVs", default=(0, 0, 0, 0, 0, 0),
+    )
+    if sum(evs) > int(limits["ev_total_max"]):
+        _fail(EXIT_REQUEST, "reward EV total exceeds the engine limit")
+    if tera_type is None:
+        tera_type = int(species["types"][0])
+    tera_type = _exact_int(tera_type, 0, 255, "reward tera type")
+    if tera_type not in {int(value) for value in limits["type_ids"]}:
+        _fail(EXIT_REQUEST, "reward tera type is not canonical")
+    if ball_item_id is None:
+        ball_item_id = int(reward["default_ball_item_id"])
+    ball_item_id = _exact_int(
+        ball_item_id, 1, int(limits["item_max"]), "reward ball item ID",
+    )
+    if ball_item_id not in {int(value)
+                            for value in reward["canonical_ball_item_ids"]}:
+        _fail(EXIT_REQUEST, "reward ball item ID is not a canonical ball")
+    ball = catalog_get(catalog, "item", ball_item_id)["entry"]
+    raw = bytearray(32)
+    struct.pack_into("<HBBH", raw, 0, species_id, level,
+                     selected_ability_slot, held_item_id)
+    struct.pack_into("<4H", raw, 6, *moves)
+    raw[14] = nature_id
+    raw[15:21] = bytes(ivs)
+    raw[21:27] = bytes(evs)
+    raw[27] = int(bool(shiny))
+    raw[28] = tera_type
+    raw[29] = 0xFF
+    struct.pack_into("<H", raw, 30, ball_item_id)
+    resolved = {
+        "kind": "mon",
+        "species_id": species_id,
+        "species_name": species["name"],
+        "level": level,
+        "moves": [{"id": row["id"], "name": row["name"]}
+                  for row in move_rows],
+        "held_item_id": held_item_id,
+        "held_item_name": held_item["name"],
+        "ability_slot": selected_ability_slot,
+        "ability_id": int(selected_ability["id"]),
+        "ability_name": selected_ability["name"],
+        "nature_id": nature_id,
+        "nature_name": NATURE_NAMES_JA[nature_id],
+        "ivs": ivs, "evs": evs, "shiny": bool(shiny),
+        "tera_type": tera_type,
+        "ball_item_id": ball_item_id, "ball_name": ball["name"],
+        "presence": 0xFF,
+    }
+    return bytes(raw), resolved
+
+
+def reward_mon(
+    client: NciClient, protocol: Mapping[str, Any], species_id: int,
+    level: int, **options: Any,
+) -> dict[str, Any]:
+    catalog = load_catalog(protocol)
+    payload, resolved = build_reward_mon_payload(
+        protocol, catalog, species_id, level, **options,
+    )
+    command = int(_reward_protocol(protocol)["commands"]["reward_mon"])
+    result = send_reward_request(client, protocol, command, payload)
+    return {**result, "reward": resolved, "automatic_reward": False}
+
+
+def reward_close(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    reward = _reward_protocol(protocol)
+    _check_content(client.status(), protocol)
+    state = _read_valid_mailbox(client, protocol)
+    owner = state["reward_owner"]
+    command = int(reward["commands"]["reward_close"])
+    if owner["window_name"] == "CLOSED":
+        pending = load_reward_pending(required=False)
+        recovered = False
+        if (pending is not None and pending["command"] == command
+                and pending["session_nonce"] == int(owner["session_nonce"])
+                and pending["match_id"] == int(owner["match_id"])
+                and pending["sequence"] == int(owner["last_request_sequence"])
+                and pending["payload_hash"] == int(owner["last_payload_hash"])):
+            _clear_reward_pending(pending)
+            recovered = True
+        return {
+            "already_closed": True,
+            "response_lost_recovered": recovered,
+            "match_id": owner["match_id"],
+            "last_sequence": owner["last_request_sequence"],
+            "window": "CLOSED",
+            "write_operations": 0,
+            "automatic_reward": False,
+        }
+    result = send_reward_request(client, protocol, command, b"")
+    return {**result, "closed": True, "automatic_reward": False}
+
+
+def session_guide(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    _runtime_protocol(protocol)
+    _check_content(client.status(), protocol)
+    state = _read_valid_mailbox(client, protocol)
+    steps: list[dict[str, Any]] = [
+        {"order": 1, "category": "read", "command": "doctor --json",
+         "purpose": "transport/core/ROM/protocolを確認"},
+        {"order": 2, "category": "read", "command": "match status --json",
+         "purpose": "現在phaseと公開情報だけを確認"},
+        {"order": 3, "category": "wait", "command": "wait --compact --json",
+         "purpose": "次の明示入力要求まで待機"},
+        {"order": 4, "category": "write", "command": "choose ... --json",
+         "purpose": "呼出元が選んだteam/action/gimmickだけを送信"},
+    ]
+    reward_summary: dict[str, Any] | None = None
+    if protocol.get("stage") == 45:
+        reward_summary = _reward_status_from_state(
+            state, protocol, load_catalog(protocol),
+        )
+        steps.extend([
+            {"order": 5, "category": "read", "command": "reward status --json",
+             "purpose": "resultとreward windowを送信直前に再確認"},
+            {"order": 6, "category": "write",
+             "command": "reward item|mon ... --json",
+             "purpose": "呼出元が選んだ任意報酬だけをexactly-once送信"},
+            {"order": 7, "category": "write", "command": "reward close --json",
+             "purpose": "追加報酬がなければwindowを不可逆に閉じる"},
+        ])
+    return {
+        "stage": int(protocol["stage"]),
+        "phase": state["phase_name"],
+        "match_id": state["match_id"],
+        "steps": steps,
+        "reward": reward_summary,
+        "automatic_strategy": False,
+        "automatic_team_or_action": False,
+        "automatic_reward": False,
+        "mandatory_reason_explanation": False,
+        "public_information_only": True,
+    }
+
+
 def match_configure(
     client: NciClient, protocol: Mapping[str, Any], level: str,
 ) -> dict[str, Any]:
@@ -2655,7 +3337,7 @@ def match_configure(
         bytes((modes[level],)),
     )
     owner = {
-        "schema_version": 1, "stage": 44,
+        "schema_version": 1, "stage": int(protocol["stage"]),
         "session_nonce": state["session_nonce"], "match_id": state["match_id"],
         "regulation": {
             "level": level.upper() if level == "open" else "FLAT_50",
@@ -2867,7 +3549,7 @@ def _add_json_flag(parser: argparse.ArgumentParser) -> None:
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="vega-codex-battle", description=__doc__)
-    parser.add_argument("--version", action="version", version="vega-codex-battle 2.2")
+    parser.add_argument("--version", action="version", version="vega-codex-battle 2.3")
     commands = parser.add_subparsers(dest="command", required=True)
 
     doctor_parser = commands.add_parser("doctor", help="transport/core/ROM/protocol診断")
@@ -2920,7 +3602,7 @@ def _parser() -> argparse.ArgumentParser:
     export.add_argument("--output", required=True, type=Path)
     _add_json_flag(export)
 
-    match_parser = commands.add_parser("match", help="Stage 44 match操作")
+    match_parser = commands.add_parser("match", help="Stage 44/45 match操作")
     match_commands = match_parser.add_subparsers(dest="match_command", required=True)
     match_config = match_commands.add_parser("configure")
     match_config.add_argument("--level", choices=("flat50", "open"), required=True)
@@ -2968,6 +3650,53 @@ def _parser() -> argparse.ArgumentParser:
     )
     wait_parser.add_argument("--reset-events", action="store_true")
     _add_json_flag(wait_parser)
+
+    reward_parser = commands.add_parser(
+        "reward", help="Stage 45 match-bound任意報酬",
+    )
+    reward_commands = reward_parser.add_subparsers(
+        dest="reward_command", required=True,
+    )
+    reward_status_parser = reward_commands.add_parser(
+        "status", help="reward ownerをread-only表示",
+    )
+    _add_json_flag(reward_status_parser)
+    reward_item_parser = reward_commands.add_parser(
+        "item", help="canonical item IDをexactly-once付与",
+    )
+    reward_item_parser.add_argument("item_id", type=int)
+    reward_item_parser.add_argument("--quantity", type=int, required=True)
+    _add_json_flag(reward_item_parser)
+    reward_mon_parser = reward_commands.add_parser(
+        "mon", help="canonical species IDの個体をexactly-once付与",
+    )
+    reward_mon_parser.add_argument("species_id", type=int)
+    reward_mon_parser.add_argument("--level", type=int, required=True)
+    reward_mon_parser.add_argument("--moves", help="move IDを1〜4件、カンマ区切り")
+    reward_mon_parser.add_argument("--held-item", type=int, default=0)
+    ability = reward_mon_parser.add_mutually_exclusive_group()
+    ability.add_argument("--ability", type=int, help="speciesのcanonical ability ID")
+    ability.add_argument("--ability-slot", type=int, choices=(0, 1, 2))
+    reward_mon_parser.add_argument("--nature", type=int, default=0)
+    reward_mon_parser.add_argument("--ivs", help="HP,Atk,Def,Spe,SpA,SpD")
+    reward_mon_parser.add_argument("--evs", help="HP,Atk,Def,Spe,SpA,SpD")
+    reward_mon_parser.add_argument("--shiny", action="store_true")
+    reward_mon_parser.add_argument("--tera-type", type=int)
+    reward_mon_parser.add_argument("--ball", type=int)
+    _add_json_flag(reward_mon_parser)
+    reward_close_parser = reward_commands.add_parser(
+        "close", help="reward windowを不可逆に閉じる",
+    )
+    _add_json_flag(reward_close_parser)
+
+    session_parser = commands.add_parser("session", help="短い運用状態案内")
+    session_commands = session_parser.add_subparsers(
+        dest="session_command", required=True,
+    )
+    session_guide_parser = session_commands.add_parser(
+        "guide", help="read/wait/writeの順序を表示",
+    )
+    _add_json_flag(session_guide_parser)
     return parser
 
 
@@ -2989,6 +3718,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         command_label += "." + str(args.match_command)
     elif args.command == "choose":
         command_label += "." + str(args.choose_command)
+    elif args.command == "reward":
+        command_label += "." + str(args.reward_command)
+    elif args.command == "session":
+        command_label += "." + str(args.session_command)
     try:
         if args.command == "device" and args.device_command == "configure":
             result = configure_device(args.host, args.port)
@@ -3077,6 +3810,25 @@ def main(argv: Sequence[str] | None = None) -> int:
                 client, protocol, args.timeout, compact=args.compact,
                 reset_events=args.reset_events,
             ))
+        elif args.command == "reward" and args.reward_command == "status":
+            _emit(command_label, "ok", **reward_status(client, protocol))
+        elif args.command == "reward" and args.reward_command == "item":
+            _emit(command_label, "ok", **reward_item(
+                client, protocol, args.item_id, args.quantity,
+            ))
+        elif args.command == "reward" and args.reward_command == "mon":
+            _emit(command_label, "ok", **reward_mon(
+                client, protocol, args.species_id, args.level,
+                moves_text=args.moves, held_item_id=args.held_item,
+                ability_id=args.ability, ability_slot=args.ability_slot,
+                nature_id=args.nature, ivs_text=args.ivs,
+                evs_text=args.evs, shiny=args.shiny,
+                tera_type=args.tera_type, ball_item_id=args.ball,
+            ))
+        elif args.command == "reward" and args.reward_command == "close":
+            _emit(command_label, "ok", **reward_close(client, protocol))
+        elif args.command == "session" and args.session_command == "guide":
+            _emit(command_label, "ok", **session_guide(client, protocol))
         else:
             _fail(EXIT_CONFIG, "command is unavailable in this protocol")
         return EXIT_OK

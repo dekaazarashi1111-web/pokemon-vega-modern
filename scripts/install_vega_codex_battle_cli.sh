@@ -8,29 +8,29 @@ data_dir=${XDG_DATA_HOME:-${HOME}/.local/share}/vega-codex-battle
 libexec_dir=${data_dir}/libexec
 launcher=${bin_dir}/vega-codex-battle
 installed_cli=${libexec_dir}/vega_codex_battle.py
-installed_protocol=${libexec_dir}/codex_battle_runtime_protocol.json
+installed_protocol=${libexec_dir}/codex_battle_rewards_protocol.json
 installed_catalog=${libexec_dir}/catalog.json
-installed_rom=${libexec_dir}/codex_battle_runtime.gba
+installed_rom=${libexec_dir}/codex_battle_rewards.gba
 
 source_cli=${workspace_dir}/tools/vega_codex_battle.py
-source_protocol=${workspace_dir}/generated/runtime/codex_battle_runtime_protocol.json
+source_protocol=${workspace_dir}/generated/runtime/codex_battle_rewards_protocol.json
 source_catalog=${workspace_dir}/content/codex_battle/catalog.json
-source_rom=${workspace_dir}/build/stages/44_codex_battle_runtime.gba
+source_rom=${workspace_dir}/build/stages/45_codex_battle_rewards.gba
 
 test -f "${source_cli}" || {
     printf '%s\n' "CLI source is missing" >&2
     exit 1
 }
 test -f "${source_protocol}" || {
-    printf '%s\n' "Run the Stage 44 builder before installing the CLI" >&2
+    printf '%s\n' "Run the Stage 45 builder before installing the CLI" >&2
     exit 1
 }
 test -f "${source_catalog}" || {
-    printf '%s\n' "Stage 44 read-only catalog is missing" >&2
+    printf '%s\n' "Stage 45 read-only catalog is missing" >&2
     exit 1
 }
 test -f "${source_rom}" || {
-    printf '%s\n' "Stage 44 ROM is missing" >&2
+    printf '%s\n' "Stage 45 ROM is missing" >&2
     exit 1
 }
 python3 -c 'import PIL' || {

@@ -832,3 +832,15 @@
   - 全exitのparty/save exact restore、EXP等の副作用抑止、結果msgbox完了まで次matchを隔離するfield completion gateを実装し、実iPadで8 cycle以上の対戦と安全終了・マップ復帰を実証した。
   - clean chain/direct BPSの両方から同一Stage 44を再構築し、宣言span外変更とROM/RAM/save/UI/hook overlapを0にした。
 - Verify: production build/check、focused 9 tests、libmGBA quick/full各18/18・warnings 0、実iPad必須12 test・pending privacy・Dynamax・通常/強制交代・EXPなし・exact cleanup、clean rebuild build/check、CLI installer/doctor、task graph/private guard/diff check PASS。Stage 44 SHA-256 `96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256`、CRC32 `04CB658E`。
+
+## 2026-08-23T07:43:08+09:00
+
+- Version: `post-v1.4.0-stage45`（v1.4.0 release identityとStage 27〜44は不変）
+- Commit: `-`（本エントリを含むT28完了コミット）
+- Task: `T28` / 任意報酬とiPad最終ゲートをStage 45で完成させる
+- Summary:
+  - 正常resultに束縛した任意item/Pokémon報酬を、通常engine API、exactly-once journal、不可逆close、save migration付きでStage 45へ接続した。
+  - Codex戦の賞金・全滅ワープを抑止し、party/money exact復元、PC Storage cache再水和、box/summary UIのlevel・技・特性・性格・ボール表示を修正した。
+  - reward CLI、会話運用用companion skill、日本語operator guideを追加し、戦略・選出・報酬内容の判断は呼出元Codex taskへ残した。
+  - 実iPadで6→3対戦、交代、双方Dynamax、通常敗北、指定カイリュー1回付与、通常save/restart/load、close再送無書込、最終PC残存まで完走した。
+- Verify: production build、61 transaction、focused 17 tests、libmGBA quick/full各16/16・warnings 0、実iPad doctor/5 turn/reward/UI/save/restart/owner CRC、clean rebuild build/check、3 BPS完全往復、declared span外0、ROM/RAM/save/UI/hook overlap 0 PASS。Stage 45 SHA-256 `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`、CRC32 `8FFD6131`。

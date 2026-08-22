@@ -54,6 +54,9 @@ RetroArch netplayを対戦transportにしない。
   それはユーザーとCodexが守る任意regulationであり、CLI/ROMは強制しない。
 - `OPEN`のlevelはengine-safeな1〜100。`FLAT_50`はbattle copyだけをLv.50相当にし、永続個体を変更しない。
 - battle中のbag item、捕獲、逃走、賞金、EXP、EV、friendship、held item消費の永続化を禁止する。
+- Codex戦の勝敗確定時だけstock result dispatcherを施設戦終端へ委譲し、賞金表示・授受と全滅ワープを抑止する。
+  `gMain.savedCallback`も受付script継続callbackへscoped差替えし、結果表示後はtrainerbattleの呼出元へ戻す。
+  T27 ownerがparty/money/flagsをexact復元してからT28 reward windowを開く。
 - 合法行動は`MOVE`、`SWITCH`、`FORFEIT`。disconnect時は`WAIT`、`CPU_FALLBACK`、`FORFEIT`を選べる。
 
 ### 3.2 Codex側team入力
@@ -117,8 +120,25 @@ learnset banや戦略policyには使わない。
   入っているボール（canonical ball item ID）を追加指定できる。ボール指定は道具付与ではなく、
   生成する個体の捕獲ボール情報としてROM側の正規データへ記録する。
 - PCからparty/save byteを直接書かない。ROM側の`AddBagItem`、`CreateMon`、`GiveMon`と既存transactionを通す。
+- 付与個体は旧Vega UIの固定strideへ戻さず、PCカーソルでは保存EXPからlevelを求める。概要画面では
+  canonical 16-byte技名を日本語表示幅9 byteへbufferし、特性名9 byteと説明23 byteを既存のpacked
+  Summary ABI `0x318C..0x31AC`へ収める。後続のegg/mode/input control fieldへ書き込まない。
+- 概要画面のabsolute Thumb jumpは4-byte境界へ置き、literal loadのPC alignmentをbuild時とexact-ROM
+  mGBAで検査する。報酬transactionから生成した個体を通常のSTART→ポケモン→様子を見るで開く実UI経路も
+  quick/fullの双方で通す。
 - ID範囲、数量、party/box/bag容量、checksum、request sequenceを検査し、失敗時は無変更に戻す。
 - 同じreward requestの再送、reset、save faultで二重付与しない。複数報酬は一意sequenceの複数transactionで扱う。
+- 既存のload chainが復元するのはT08の2 KiB台帳までであるため、Stage 45 ownerはload callback内でflashを
+  読まない。callback完了時は独立ownerを有効な未確認sentinelへ戻し、通常field callback、座標、partyが
+  255 frame安定した後にsector 31 tailだけを`ReadFlash`で読み、独立CRCを検査してからEWRAM ownerへ反映する。
+  これによりfresh new-gameの起動traceとstock save workspaceを変えず、OPEN/COMMITTED/CLOSED履歴を再起動後に復元する。
+- `0x0203D800..0x0203D880`はsector 31正本のfield-lifetime cacheであり、PC Storage画面のlegacy workspace
+  teardownでclearされ得る。PC画面中はこの領域へ書かず、通常fieldへ戻って座標・partyが安定してから同じ
+  255 frame gateと独立CRCを通して正本を再読込する。invalid cacheをCLOSED履歴として確定せず、報酬の
+  OPEN/COMMITTED/once性はsector 31側を権威として維持する。
+- 復元時はownerの`last_request_sequence`をT27 stateと公開snapshotの`last_accepted_sequence`へ同期する。
+  CLIもreward系の次sequenceをvolatile snapshotではなくdurable ownerから求め、Continue直後の一時的な
+  snapshot再構築順に依存しない。復元後の`reward close`もownerの次sequenceで受理される。
 
 ## 4. CLI契約
 
@@ -188,6 +208,18 @@ Stage 44 protocol 2.2はSnapshotV2の96 byteとpublic stateの180 byteを固定�
 対戦中は旧Codex preview 12 byteをactiveの5実能力値とappearance/opaque IDへ、対戦前はlive HP領域12 byteを
 player 6体のlevel/gender/shinyへ割り当てる。phaseと`battle_live`を確認せずunionを解釈しない。
 `gBattlerPartyIndexes`はCFRU/FireRedどおり`u16[4]`としてbank 1を`+2` byteで読む。
+
+Stage 45はStage 44 mailboxをABI不変で使い、報酬ownerをEWRAM `0x0203D800..0x0203D880`と
+sector 31 parasite image offset `0x2718..0x2798`へ独立配置する。ownerはmagic/version/sizeと独立CRC32を持ち、
+T08 outer CRCやAcquisition/Research/Reward/Factory/Mirage ownerへ相乗りしない。request 11〜14だけを
+Stage 45 pollが処理し、1〜10はStage 44へdelegateする。canonical ball itemはitem manifestの
+`ball_kind`からCFRUの保存ball typeへ変換し、ownerにはitem ID、個体にはball typeを保存する。
+追加item順とenum順は同一ではなく、パークボール510は16、ドリームボール509は26になる。
+PC level hook、概要画面の特性・技buffer hook、特性描画offsetはexpected-byte付きでStage 45だけが所有する。
+特性hookはword-aligned siteを使い、描画先はname `0x318C`、description `0x3195`である。
+save-load hookはsector tailを同期読込せず、owner内の未確認状態だけを初期化する。field安定後の遅延読込は
+128 byteだけをscratch bufferへ取得し、ownerの独立CRCが一致した場合だけ採用する。EWRAM側はPC Storageが
+再利用するvolatile cacheとして扱い、画面終了時にinvalid化されてもfield安定後に同じ正本から再構築する。
 
 ## 6. 状態機械
 

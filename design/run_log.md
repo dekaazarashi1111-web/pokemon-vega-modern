@@ -1975,3 +1975,30 @@
 - Verify: SKIP（ユーザー指示により再検証は実行せず、仕様追記のみ）。
 - Commit: `-`（本エントリを含む仕様追記コミット）
 - Network: 未使用。
+
+## 2026-08-23T07:43:08+09:00
+
+- Task: `T28` / 任意報酬とiPad最終ゲートをStage 45で完成させる
+- Status: DONE
+- Summary:
+  - Stage 44の正常resultに束縛した任意item/Pokémon reward windowを追加し、session nonce、match ID、request sequence、payload hashとPREPARED/STAGED/COMMITTED journalにより再送・reset・応答lostからexactly onceへ収束させた。`reward close`は不可逆で、close後の再送は無書込で拒否する。
+  - itemは`AddBagItem`、Pokémonは`CreateMon`／`GiveMonToPlayer`を使用し、move、held item、ability、nature、IV/EV、shiny、tera type、捕獲ボールを指定可能にした。bag/party/box満杯、invalid ID、生成・save faultをatomicに処理し、既存save ownerとの重複を0にした。
+  - Codex戦の勝敗を賞金授受・全滅ワープなしで受付へ戻し、party/moneyを対戦前へexact復元した。PC StorageがEWRAM field cacheを消去する経路と、load直後のsector 31 owner遅延復元を修正し、PCカーソル／ステータス画面のlevel、技名、特性名・説明、性格、ボール表示を保存値へ統一した。
+  - production CLIへreward status/item/mon/closeとsession guideを追加し、doctor→status→wait→action→rewardを案内するcompanion skillとinstallerを作成・導入した。skill/CLIは戦略、選出、行動、報酬内容、理由説明を自動決定しない。
+  - 実iPadでルール相談、双方6体登録・3体選出、5 turn cycle、交代、双方Dynamax、通常敗北を完走した。賞金・全滅ワープなしを確認し、指定カイリューをBOX 0 slot 0へ1回だけ付与、全UI確認、通常save、再起動・再読込、owner CRC、repeat close無書込、最終PC残存を確認した。既存versioned ROM/saveは上書きしていない。
+- Files changed:
+  - runtime/config: `config/{codex_battle_rewards.json,ram_layout.csv,save_layout.csv}`、`overlays/codex_battle_rewards/**`。
+  - build/CLI/skill/QA: `scripts/{build_codex_battle_rewards.py,rebuild_codex_battle_rewards_from_clean.py,install_vega_codex_battle_cli.sh,install_vega_codex_battle_skill.sh}`、`tools/vega_codex_battle.py`、`tools/codex_skills/vega-codex-battle/**`、`tools/mgba_codex_battle_rewards_{smoke,ui_smoke}.c`、`tests/test_codex_battle_rewards.py`、`tests/fixtures/codex_battle_reward_transactions.json`、`Makefile`。
+  - 文書・状態: `README.md`、`docs/CODEX_BATTLE_OPERATOR_JA.md`、`design/{codex_battle_architecture,current_state,tasks_next,run_log,version_log}.md`、`tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md`、`state/task_status.json`。
+  - Git管理外再生成物: Stage 45 ROM、Stage44差分／clean直接BPS、metadata、audit/coverage/transaction/iPad、mGBA quick/full、clean rebuild証跡。
+- Verify:
+  - `python3 scripts/build_codex_battle_rewards.py build`: PASS。Stage 45は33,554,432 bytes、SHA-256 `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`、CRC32 `8FFD6131`、artifact 16、受入16/16。
+  - transaction matrix: PASS（61 cases）。item/mon境界、optional field、capacity、identity/replay、fault point、recovery、migration、multiple/closeを確認した。
+  - libmGBA quick/full: PASS。各16/16、独立2 processずつ計4、warnings 0、field owner cache再水和、restart sequence同期、summary UI実導線、Stage42〜44非干渉を確認した。
+  - `python3 scripts/rebuild_codex_battle_rewards_from_clean.py build` / `check`: PASS。clean→Stage44→Stage45とclean→Stage45直接がbyte一致し、3 BPSが完全往復した。変更6,919 byte、declared span外0、ROM/RAM/save/UI/hook overlap 0。
+  - 実iPad E2E: PASS。doctor全13項目、5 turn cycle、通常LOSS、賞金・全滅ワープなし、カイリュー1体、UI、通常save/restart/load、physical owner independent CRC、window CLOSED、journal COMMITTED、sequence 16、repeat close write 0、最終PC残存を確認した。
+  - `python3 -m unittest -v tests.test_codex_battle_rewards tests.test_codex_battle_runtime`: PASS（17 tests）。`python3 -m py_compile ...`、両installerの`bash -n`、`make codex-battle-skill-check`: PASS。
+- Commit: `-`（本エントリを含むT28完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHとRetroArch NCIで、versioned ROM/save配置、宣言済みmailbox request spanの操作、状態読取、通常save取得・CRC確認を行った。PCからsave/partyを直接編集していない。
+  - インターネットは未使用。接続先、credential、端末固有path、container UUID、private ROM/saveはtracked成果へ保存していない。

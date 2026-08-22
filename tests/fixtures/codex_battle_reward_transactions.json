@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "task": "T28",
+  "stage": 45,
+  "matrix": {
+    "normal_results": [
+      {"result": "WIN", "window": "OPEN"},
+      {"result": "LOSS", "window": "OPEN"},
+      {"result": "DRAW", "window": "OPEN"},
+      {"result": "FORFEIT", "window": "OPEN"},
+      {"result": "TRANSPORT_ABORT", "window": "CLOSED"}
+    ],
+    "item_boundaries": [
+      {"item_id": 1, "quantity": 1, "expected": "COMMITTED"},
+      {"item_id": 998, "quantity": 999, "expected": "ENGINE_CAPACITY"},
+      {"item_id": 0, "quantity": 1, "expected": "INVALID_ITEM"},
+      {"item_id": 999, "quantity": 1, "expected": "INVALID_ITEM"},
+      {"item_id": 1, "quantity": 0, "expected": "INVALID_ITEM"},
+      {"item_id": 1, "quantity": 1000, "expected": "INVALID_ITEM"}
+    ],
+    "mon_boundaries": [
+      {"species_id": 1, "level": 1, "destination": "PARTY"},
+      {"species_id": 1620, "level": 100, "destination": "PC"},
+      {"species_id": 0, "level": 1, "expected": "INVALID_MON"},
+      {"species_id": 1621, "level": 100, "expected": "INVALID_MON"},
+      {"species_id": 1, "level": 0, "expected": "INVALID_MON"},
+      {"species_id": 1, "level": 101, "expected": "INVALID_MON"}
+    ],
+    "optional_fields": [
+      {"field": "moves", "values": [1, 1062, 0, 0], "expected": "PERSIST"},
+      {"field": "held_item", "values": [0, 998], "expected": "PERSIST"},
+      {"field": "ability_slot", "values": [0, 1, 2], "expected": "PERSIST"},
+      {"field": "nature", "values": [0, 24], "expected": "PERSIST"},
+      {"field": "ivs", "values": [0, 31], "expected": "PERSIST"},
+      {"field": "evs", "values": [0, 252, 510], "expected": "PERSIST"},
+      {"field": "shiny", "values": [false, true], "expected": "PERSIST"},
+      {"field": "tera_type", "values": [0, 17, 23, 24], "expected": "PERSIST"},
+      {"field": "ball", "values": [1, 4, 12, 496, 510], "expected": "MON_METADATA"},
+      {"field": "ball", "values": [13, 495, 511, 998], "expected": "INVALID_ITEM_ATOMIC"}
+    ],
+    "capacity_failures": [
+      {"case": "BAG_STACK_FULL", "expected": "NO_CHANGE"},
+      {"case": "PARTY_FULL_BOX_AVAILABLE", "expected": "PC"},
+      {"case": "PARTY_AVAILABLE_BOX_FULL", "expected": "PARTY"},
+      {"case": "PARTY_AND_ALL_BOXES_FULL", "expected": "NO_CHANGE"},
+      {"case": "CREATE_MON_MISMATCH", "expected": "NO_CHANGE"}
+    ],
+    "identity_rejections": [
+      {"case": "DUPLICATE_MATCHING", "expected": "REPLAY_SUCCESS_ZERO_GRANT"},
+      {"case": "DUPLICATE_WRONG_HASH", "expected": "WRONG_HASH"},
+      {"case": "STALE_SEQUENCE", "expected": "STALE_SEQUENCE"},
+      {"case": "FUTURE_SEQUENCE", "expected": "FUTURE_SEQUENCE"},
+      {"case": "WRONG_NONCE", "expected": "WRONG_NONCE"},
+      {"case": "WRONG_MATCH", "expected": "WRONG_MATCH"},
+      {"case": "WRONG_PHASE", "expected": "WRONG_PHASE"},
+      {"case": "WRONG_TURN", "expected": "WRONG_TURN"},
+      {"case": "TORN_COMMIT", "expected": "IGNORED"}
+    ],
+    "fault_points": [
+      {"point": "PREPARE_SECTOR", "durable_grants": 0},
+      {"point": "STAGED_SECTOR", "durable_grants": 0},
+      {"point": "STANDARD_SAVE", "state": "STAGED"},
+      {"point": "COMMIT_SECTOR", "state": "STAGED"},
+      {"point": "OPEN_SECTOR", "window": "CLOSED"},
+      {"point": "CLOSE_SECTOR", "window": "OPEN"}
+    ],
+    "recovery": [
+      {"from": "PREPARED", "delivery_present": false, "converges": "COMMITTED_ONCE"},
+      {"from": "STAGED", "delivery_present": true, "converges": "COMMITTED_ONCE"},
+      {"from": "STAGED", "delivery_present": false, "converges": "COMMITTED_ONCE"},
+      {"from": "COMMITTED", "response_lost": true, "converges": "REPLAY_SUCCESS_ZERO_GRANT"}
+    ],
+    "multiple_and_close": [
+      {"sequence": 1, "kind": "ITEM", "expected": "COMMITTED"},
+      {"sequence": 2, "kind": "MON", "expected": "COMMITTED"},
+      {"sequence": 3, "kind": "CLOSE", "expected": "COMMITTED_CLOSED"},
+      {"sequence": 4, "kind": "ITEM", "expected": "WINDOW_CLOSED"},
+      {"sequence": 3, "kind": "CLOSE_REPLAY", "expected": "REPLAY_SUCCESS"}
+    ],
+    "migration": [
+      {"input": "ALL_ZERO", "expected": "V1_CLOSED"},
+      {"input": "ALL_FF", "expected": "V1_CLOSED"},
+      {"input": "UNKNOWN_VERSION", "expected": "V1_CLOSED_MIGRATED"},
+      {"input": "BAD_CRC", "expected": "V1_CLOSED_MIGRATED"},
+      {"input": "VALID_V1", "expected": "KEEP"}
+    ]
+  }
+}

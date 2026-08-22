@@ -20,9 +20,12 @@ iPadでルール相談→team登録→3体選出→対戦完走→任意報酬�
 
 - 正常にresultが確定した直近matchだけがreward windowを持つ。transport abort/stale sessionは対象外。
 - 勝ち、負け、引分、明示forfeitのどれでもCodexが報酬有無を選べる。ROMに勝敗別固定報酬tableを置かない。
+- Codex戦の勝敗は通常の賞金授受や全滅ワープを発生させず、受付へ戻って対戦前のparty/moneyをexact復元する。
 - `reward item ITEM_ID --quantity N`と`reward mon SPECIES_ID --level N`を最低限提供する。
 - Pokémonはoptional team member schemaでmove、held item、ability、nature、IV/EV、shiny、tera type、
   入っているボール（canonical ball item ID）等を指定できる。
+- 付与個体はPCカーソルとステータス画面でもlevel、move名、ability名・説明、nature、ball iconが
+  保存値どおり表示され、旧Vega UIのstride/table経路へ誤って戻らない。
 - ボール指定は別の道具報酬として渡さず、生成個体の捕獲ボール情報へ記録する。省略時は標準値を使い、
   指定時はcanonical itemが有効なボール種別であることを検査し、non-ball IDは無変更で拒否する。
 - item/Pokémonの価値、banlist、数量balanceをsystem ruleにしない。canonical ID、field幅、engine安全性、容量だけを検査する。
@@ -80,22 +83,24 @@ skillはCLIの発見、catalogによる事前構築、doctor→status→wait→a
 
 ## 受入条件
 
-- [ ] T27 Stage 44/protocol/CLI identityが一致し、iPad transport/first-turn gateがPASSする。
-- [ ] 正常resultだけがmatch-bound reward windowを持ち、報酬なしでcloseできる。
-- [ ] valid item ID/quantityとvalid Pokémon ID/levelの代表・全境界が通常bag/party/PCへ付与される。
-- [ ] optional move/item/ability/nature/IV/EV/shiny/tera type/ballがschemaどおりで、選んだボールが
+- [x] T27 Stage 44/protocol/CLI identityが一致し、iPad transport/first-turn gateがPASSする。
+- [x] 正常resultだけがmatch-bound reward windowを持ち、報酬なしでcloseできる。
+- [x] valid item ID/quantityとvalid Pokémon ID/levelの代表・全境界が通常bag/party/PCへ付与される。
+- [x] optional move/item/ability/nature/IV/EV/shiny/tera type/ballがschemaどおりで、選んだボールが
   付与個体の捕獲ボール情報に保存され、invalid/non-ball fieldは無変更で拒否される。
-- [ ] bag満杯、party満杯、box満杯、全収納満杯、invalid ID、生成失敗、save faultの全分岐がatomic。
-- [ ] duplicate/stale/future/wrong match/wrong nonce/wrong hash/replayed rewardが二重付与0で拒否される。
-- [ ] PREPARED/STAGED/COMMITTEDの各fault pointとreset/reloadから、同一requestがexactly onceへ収束する。
-- [ ] 複数reward sequenceと`reward close`が正しく、close後の追加・再送を拒否する。
-- [ ] reward save ownerが既存Acquisition/Research/Reward/Factory/Mirageと重複せず、version migrationを通す。
-- [ ] companion skillが別task相当環境でCLIを発見し、doctor→status→wait→action→rewardの順を案内する。
-- [ ] companion skillとCLIが戦略・自動乱数報酬・理由説明を要求せず、呼出元promptだけで発話や自主縛りを変更できる。
-- [ ] OpenAI API keyなしの通常Codex taskから会話ベースで対戦を運用できる。
-- [ ] iPadでrule設定、6体登録、双方3体選出、複数turn、交代、勝敗、itemまたはPokémon報酬、save/restartを完走する。
-- [ ] iPad既存ROM/saveを上書きせず、端末固有path/IP/credentialをtracked reportへ残さない。
-- [ ] Stage 45のROM/RAM/save/UI/hook overlap、declared span外変更が0で、clean rebuild/BPS/mGBA回帰がPASSする。
+- [x] PCカーソルとステータス画面でlevel、move名、ability名・説明、nature、ball iconが指定値と一致する。
+- [x] bag満杯、party満杯、box満杯、全収納満杯、invalid ID、生成失敗、save faultの全分岐がatomic。
+- [x] duplicate/stale/future/wrong match/wrong nonce/wrong hash/replayed rewardが二重付与0で拒否される。
+- [x] PREPARED/STAGED/COMMITTEDの各fault pointとreset/reloadから、同一requestがexactly onceへ収束する。
+- [x] 複数reward sequenceと`reward close`が正しく、close後の追加・再送を拒否する。
+- [x] reward save ownerが既存Acquisition/Research/Reward/Factory/Mirageと重複せず、version migrationを通す。
+- [x] companion skillが別task相当環境でCLIを発見し、doctor→status→wait→action→rewardの順を案内する。
+- [x] companion skillとCLIが戦略・自動乱数報酬・理由説明を要求せず、呼出元promptだけで発話や自主縛りを変更できる。
+- [x] OpenAI API keyなしの通常Codex taskから会話ベースで対戦を運用できる。
+- [x] Codex戦の勝ち/負け/引分で賞金授受と全滅ワープがなく、受付帰還後のparty/moneyが対戦前と一致する。
+- [x] iPadでrule設定、6体登録、双方3体選出、複数turn、交代、勝敗、itemまたはPokémon報酬、save/restartを完走する。
+- [x] iPad既存ROM/saveを上書きせず、端末固有path/IP/credentialをtracked reportへ残さない。
+- [x] Stage 45のROM/RAM/save/UI/hook overlap、declared span外変更が0で、clean rebuild/BPS/mGBA回帰がPASSする。
 
 ## 禁止する完了判定
 

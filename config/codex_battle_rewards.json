@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "task": "T28",
+  "stage": 45,
+  "inputs": {
+    "rom_producing_commit": "76db2bac18fec95f8b25a8f0616ebf6e0f495e19",
+    "stage44_rom": {
+      "path": "build/stages/44_codex_battle_runtime.gba",
+      "size": 33554432,
+      "sha256": "96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256",
+      "crc32": "04CB658E"
+    },
+    "stage44_metadata": {
+      "path": "build/stages/44_codex_battle_runtime.json",
+      "size": 28349,
+      "sha256": "523b5844f552d20aef8ae35ce8600f52fc455a4efff47b84152f02ff0d848b49"
+    },
+    "stage44_allocation": {
+      "path": "build/stages/44_allocation.json",
+      "size": 30695,
+      "sha256": "e244841077c2d1cb68720ef5c5f339afb375132cf59b0604075d0c8cce397af8"
+    },
+    "stage44_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-codex-battle-runtime-stage44.bps",
+      "size": 16205276,
+      "sha256": "609faa0ee3987e1e2703c00753a1e1c08354633b1685f36ddae8917e1384364d"
+    },
+    "stage44_protocol": {
+      "path": "generated/runtime/codex_battle_runtime_protocol.json",
+      "size": 961659,
+      "sha256": "fdb11db14666d59f55b548546a81b027682999dfa944e99d2ad5db8f1611fb07"
+    },
+    "stage44_symbols": {
+      "path": "generated/runtime/codex_battle_runtime_symbols.json",
+      "size": 16482,
+      "sha256": "3df75687bfaf53bf0f1de1fb950677a51af23850acb4e8b4374590b6444bc276"
+    },
+    "stage44_ipad": {
+      "path": "build/stages/44_codex_battle_runtime_ipad.json",
+      "size": 1345,
+      "sha256": "4d35832df0df1ffc5a41d4a9676f14b0504489fadeb6df6358b969c87c417921"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "species_manifest": "manifests/species_ids.csv",
+    "move_manifest": "manifests/move_ids.csv",
+    "item_manifest": "manifests/item_ids.csv",
+    "ability_manifest": "manifests/ability_ids.csv",
+    "catalog": {
+      "path": "content/codex_battle/catalog.json",
+      "size": 3739856,
+      "sha256": "65fcdf65451454ac75e1d1b95823a2b531ac542ff09a7c60e6cb24b9e37e62b0"
+    }
+  },
+  "mailbox": {
+    "address": "0x0203F900",
+    "size": 256,
+    "request_offset": 160,
+    "request_size": 96,
+    "request_payload_max": 64,
+    "commands": {
+      "reward_status": 11,
+      "reward_item": 12,
+      "reward_mon": 13,
+      "reward_close": 14
+    }
+  },
+  "reward_owner": {
+    "address": "0x0203D800",
+    "end_exclusive": "0x0203D880",
+    "size": 128,
+    "parasite_offset": "0x2718",
+    "parasite_end_exclusive": "0x2798",
+    "sector": 31,
+    "sector_image_address": "0x0203CF9C",
+    "sector_data_size": 4080,
+    "magic": "0x31525743",
+    "version": 1,
+    "public_read_only": true,
+    "phases": {
+      "none": 0,
+      "prepared": 1,
+      "staged": 2,
+      "committed": 3
+    },
+    "window": {"closed": 0, "open": 1}
+  },
+  "limits": {
+    "species_max": 1620,
+    "move_max": 1062,
+    "item_max": 998,
+    "quantity_max": 999,
+    "level_max": 100,
+    "ability_slot_max": 2,
+    "nature_max": 24,
+    "iv_max": 31,
+    "ev_max": 252,
+    "ev_total_max": 510,
+    "type_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 23, 24],
+    "default_ball_item_id": 4
+  },
+  "engine": {
+    "add_bag_item": "0x08099A8D",
+    "remove_bag_item": "0x08099BE1",
+    "check_bag_has_item": "0x08099949",
+    "create_mon": "0x0803D1C1",
+    "set_mon_data": "0x0803FA71",
+    "get_mon_data": "0x0803F355",
+    "get_mon_ability": "0x090DA23D",
+    "calculate_stats": "0x0803DBE9",
+    "calculate_pp": "0x0804070D",
+    "calculate_party_count": "0x08040331",
+    "give_mon_to_player": "0x08040209",
+    "get_box_mon_data_at": "0x0808B4B5",
+    "zero_box_mon_at": "0x0808B751",
+    "try_write_sector": "0x080DA9C1",
+    "read_flash": "0x081C2A55",
+    "try_saving_data": "0x09378465",
+    "var_get": "0x0806DD5D",
+    "var_set": "0x0806DD79",
+    "battle_won_handler": "0x08014E91",
+    "battle_lost_handler": "0x08014FA5",
+    "set_main_callback2": "0x08000545",
+    "end_trainer_battle_callback": "0x0807FBCD",
+    "return_to_field_continue_script": "0x080561A1",
+    "ability_names": "0x0904B770",
+    "ability_descriptions": "0x0904CC28",
+    "ability_count": 312,
+    "move_names": "0x090453C8",
+    "move_name_count": 1063,
+    "summary_hyphen": "0x083DD83E",
+    "buffer_mon_move": "0x08136FD1"
+  },
+  "stage44_entrypoints": {
+    "initialize": "0x093C96D1",
+    "read_keys_adapter": "0x093CA879",
+    "read_keys_base_delegate": "0x093C942D",
+    "save_load_adapter": "0x093CAB2D",
+    "after_battle": "0x093CB2A1",
+    "field_finish": "0x093CB2D9"
+  },
+  "mgba_ui": {
+    "qol_probe": "0x0937816D"
+  },
+  "hooks": {
+    "box_level": {
+      "address": "0x0803DF9C",
+      "expected_hex": "70b5051c0b210022",
+      "mode": "THUMB_JUMP",
+      "target": "CodexBattleRewards_GetLevelFromBoxMonExpAdapter"
+    },
+    "summary_ability": {
+      "address": "0x08136F04",
+      "expected_hex": "004b184715853709",
+      "mode": "THUMB_JUMP_CONTINUE",
+      "target": "CodexBattleRewards_SummaryAbilityAdapter",
+      "continuation": "0x08136F1B"
+    },
+    "summary_render_offsets": [
+      {
+        "name": "ability_name",
+        "address": "0x081382D0",
+        "expected_hex": "90310000",
+        "replacement_hex": "8c310000"
+      },
+      {
+        "name": "ability_description",
+        "address": "0x08138434",
+        "expected_hex": "98310000",
+        "replacement_hex": "95310000"
+      }
+    ],
+    "summary_moves": {
+      "address": "0x08136F98",
+      "expected_hex": "10b50024201c00f0",
+      "mode": "THUMB_JUMP",
+      "target": "CodexBattleRewards_BufferSummaryMovesAdapter"
+    },
+    "read_keys": {
+      "address": "0x080005EC",
+      "expected_hex": "79a83c09",
+      "mode": "THUMB_POINTER",
+      "target": "CodexBattleRewards_ReadKeysAdapter"
+    },
+    "save_load": {
+      "address": "0x080DB4E4",
+      "expected_hex": "004b18472dab3c09",
+      "mode": "THUMB_JUMP",
+      "target": "CodexBattleRewards_SaveLoadAdapter"
+    },
+    "battle_result_dispatch": [
+      {
+        "name": "won",
+        "address": "0x0820CAEC",
+        "expected_pointer": "0x08014E91",
+        "mode": "THUMB_POINTER",
+        "target": "CodexBattleRewards_BattleWonAdapter"
+      },
+      {
+        "name": "lost",
+        "address": "0x0820CAF0",
+        "expected_pointer": "0x08014FA5",
+        "mode": "THUMB_POINTER",
+        "target": "CodexBattleRewards_BattleLostAdapter"
+      },
+      {
+        "name": "drew",
+        "address": "0x0820CAF4",
+        "expected_pointer": "0x08014FA5",
+        "mode": "THUMB_POINTER",
+        "target": "CodexBattleRewards_BattleLostAdapter"
+      }
+    ],
+    "after_battle_callnative": {
+      "script": "script::codex_battle_launch",
+      "expected_pointer": "0x093CB2A1",
+      "target": "CodexBattleRewards_AfterBattleAdapter"
+    },
+    "field_finish_callnative": {
+      "scripts": ["script::codex_battle_launch", "script::codex_battle_error"],
+      "expected_pointer": "0x093CB2D9",
+      "target": "CodexBattleRewards_FieldFinishAdapter"
+    }
+  },
+  "outputs": {
+    "rom": "build/stages/45_codex_battle_rewards.gba",
+    "metadata": "build/stages/45_codex_battle_rewards.json",
+    "allocation": "build/stages/45_allocation.json",
+    "incremental_bps": "build/patches/codex-battle-runtime-stage44-to-codex-battle-rewards-stage45.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-codex-battle-rewards-stage45.bps",
+    "generated_header": "generated/runtime/codex_battle_rewards_generated.h",
+    "runtime": "generated/runtime/codex_battle_rewards.bin",
+    "symbols": "generated/runtime/codex_battle_rewards_symbols.json",
+    "protocol": "generated/runtime/codex_battle_rewards_protocol.json",
+    "cases": "generated/runtime/codex_battle_rewards_mgba_cases.json",
+    "audit": "reports/generated/codex_battle_rewards_audit.json",
+    "coverage": "reports/generated/codex_battle_rewards_coverage.json",
+    "transactions": "reports/generated/codex_battle_rewards_transactions.json",
+    "ipad": "reports/generated/codex_battle_rewards_ipad_e2e.json",
+    "mgba_quick": "build/stages/45_mgba_codex_battle_rewards_quick.json",
+    "mgba_full": "build/stages/45_mgba_codex_battle_rewards_full.json",
+    "clean_rebuild": "build/stages/45_codex_battle_rewards_clean_rebuild.json"
+  }
+}

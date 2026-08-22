@@ -1,6 +1,6 @@
 # current_state.md
 
-最終更新: 2026-08-21
+最終更新: 2026-08-23
 
 ## 現在地
 
@@ -17,8 +17,10 @@
 - T23で独立U16研究ポイント、active play 60分の研究日、6活動、7 rank、23品の交換所、9 physical host、35会話をStage 40へproduction接続した。旧modern save v1の193-byte予約末尾から64-byte ownerだけを割り当て、checksum検証済みv1→v2移行、pending transaction、保存失敗rollbackを実装した。21 physical patch（11 hook、2 veneer、7 map root、取得台帳v2互換1）のdeclared span外変更とROM/RAM/save/map/hook overlapは0。Stage 40は33,554,432 bytes、SHA-256 `b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488`で、mGBA quick/full独立2 processとclean chain/direct BPS再構築をPASSした。
 - T24で4 tier、24 encounter pool、typed credit、BP直接支払い、pending同一個体再戦、10 credit source、56会話をStage 41へproduction接続した。既存2 KiB ledgerのcredit/BP/pending/claimだけを再利用し、戦闘前persist、捕獲時atomic clear、非捕獲・reset無料再戦、保存失敗rollback、報酬戦副作用maskを32 transaction rowで確認した。クチバ共有ScientistとT23 wild-end delegateをexpected-byte付きでrootし、declared span外変更とROM/RAM/save/map/hook overlapは0。Stage 41は33,554,432 bytes、SHA-256 `282ab4af1f4f509c2c4ce40bf77b1881a0b69b05b9cb509708f13735a93cc352`で、mGBA quick/full独立2 processとclean chain/direct BPS再構築をPASSした。
 - T25で既存Trialをslot 0のexact delegateとして保ち、24 mode、28 unlock requirement、248 rental、55 opponent profile、16 reward、28会話を通常Factory受付へproduction接続した。7,440-row有限生成matrix、reset/敗北時forfeit exact restore、round境界retire、packed marker/reward pending、49/100 milestoneとT24 creditのatomic transaction、Mirage分離を実ROMで確認した。5 expected-byte rootと24,115 changed byteはdeclared span内で、allocatorおよびROM/RAM/save/UI/hook overlapは0。Stage 42は33,554,432 bytes、SHA-256 `2e3c796b1deff84c83b68fde29c2eddf8672b1870f1ebe3e8308969fafde1068`で、mGBA quick/full独立2 process・受入11/11・warnings/errors 0とclean chain/direct BPS再構築をPASSした。
-- T26でStage 42へ512-byte EWRAM予約と256-byte protocol 1.0 mailboxを追加し、Stage 43を生成した。production CLIは任意address操作を公開せず、宣言済み64-byte request spanだけを3分割commitで書く。実iPad RetroArch 1.22.2 / mGBAで`VERSION`、`GET_STATUS`、EWRAM read、mailbox write、sequence 1の`PING/PONG`をPASSし、Network Commandsは現在ON。Stage 43 SHA-256は `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c`、CRC32は `40CE01CE`。端末固有IP、credential、container pathは証跡から除外した。T27で双方6体提示・3体選出とCodex行動のStage 44、T28で会話ベースの任意item/Pokémon報酬とiPad完走のStage 45を完成させる。GBA link/netplay、save polling、PCからの直接save編集は採用しない。
+- T26でStage 42へ512-byte EWRAM予約と256-byte protocol 1.0 mailboxを追加し、Stage 43を生成した。production CLIは任意address操作を公開せず、宣言済み64-byte request spanだけを3分割commitで書く。実iPad RetroArch 1.22.2 / mGBAで`VERSION`、`GET_STATUS`、EWRAM read、mailbox write、sequence 1の`PING/PONG`をPASSした。Stage 43 SHA-256は `4834d42bc28d044e99b2686263808718441f4abe2347353a9eca1592224d8a9c`、CRC32は `40CE01CE`。端末固有IP、credential、container pathは証跡から除外した。GBA link/netplay、save polling、PCからの直接save編集は採用しない。
 - T27の実装前契約をStage 43完了identityへ固定した。CLIは判断や理由説明を強制せず、read-only構築catalog、wait、明示actionだけを提供する。プレイヤーのpending move/switch/target/gimmickはCodex commit前にmailboxへ出さず、双方commit後に解決する。Codex対戦中はMega/Z/Dynamax/Terastalをfixed CFRU-JPの適合性・相互作用どおり`UPSTREAM_OPEN`で利用でき、個々の自主縛りは会話側へ残す。
+- T27で双方6体提示・3体選出、Lv.50統一／自由、同一持ち物許可／禁止、`UPSTREAM_OPEN` gimmick、公平なpending action非公開、Codexの技・交代・降参をStage 44へproduction接続した。実iPadでtransport、first-turn、複数turn、交代、双方Dynamax、正常resultを完走し、Stage 44 SHA-256は `96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256`。
+- T28で正常resultに束縛したitem/Pokémon任意報酬、PREPARED/STAGED/COMMITTED journal、不可逆close、通常bag/party/PC API、Codex companion skillをStage 45へ接続した。実iPadの敗北で賞金授受・全滅ワープなしを確認し、指定カイリューを一度だけPCへ付与、UI確認、通常save、再起動、再読込、repeat close無書込までPASSした。Stage 45 SHA-256は `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`、CRC32は `8FFD6131`。61 transaction、mGBA quick/full各16検査、clean chain/direct BPS、ROM/RAM/save/UI/hook重複0、declared span外変更0を確認した。
 - ChatGPT Pro返却4 ZIPをGit管理外の読取専用原本として受領した。CRC・安全path・symlink・暗号化・private binary混入は異常0で、共通validatorによりMove 11、Research 12、Reward 10、Factory 13ファイルすべてstatus PASS、open question 0。T22〜T25を `Move -> Research -> Reward -> Factory` の直列DAGとして追加し、各直前Stageで物理値を再監査してStage 39〜42へ順次統合する。
 - `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
 - Trainer Redesign V5を累積54 encounter（50 SINGLE / 4 DOUBLE、54一意party、171 member）へ
@@ -197,10 +199,10 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T26は完了し、T27が唯一の依存READYである。
+`design/tasks_next.md` を正とする。T00〜T28は完了し、現在キューに未完了の正本タスクはない。
 
-- T27: READY / PRIMARY。構築catalog、双方6体提示・3体選出、Lv.50統一／自由、同一持ち物許可／禁止、`UPSTREAM_OPEN` gimmick、公平なpending action非公開、Codexの技・交代・降参をStage 44へproduction接続する。
-- T28: WAITING(T27)。対戦後の任意item/Pokémon報酬、exactly-once save、Codex companion skill、iPad実戦完走をStage 45で完成させる。
+- T28: DONE。対戦後の任意item/Pokémon報酬、exactly-once save、Codex companion skill、iPad実戦完走をStage 45で完成した。
+- T27: DONE。双方6体提示・3体選出、対戦規則、gimmick、公平なpending action非公開、Codex行動をStage 44へproduction接続した。
 - T26: DONE。Stage 43のversioned mailbox、安全な`vega-codex-battle` CLI、実iPad RetroArch/mGBAのNCI EWRAM read/write・PING/PONG、mGBA quick/full、clean chain/direct BPSをPASSした。
 - T25: DONE。Factory High Modes V2の24 mode、248 rental、55 profile、16 rewardを既存Trial不変でStage 42へ接続し、mGBA quick/full、7,440-row有限生成matrix、clean rebuildをPASSした。
 - T24: DONE。Reward Encounters V2の4 tier、24 pool、typed credit/BP、pending同一個体再戦、10 source、ScientistをStage 41へ接続し、mGBA quick/full、32 transaction、clean rebuildをPASSした。

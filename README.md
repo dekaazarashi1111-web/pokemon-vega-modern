@@ -237,6 +237,14 @@ Mega/Z/Dynamax/Terastal状態をShowdown型の公開情報境界で返す。画�
 `field_completion_pending`を保持し、その間の新規configureを`BUSY`で拒否する。最終表示後の
 `FieldFinish`だけが`IDLE`へ戻すため、旧対戦の遅延release/cleanupが次のmatchへ作用しない。
 
+追加stage 45は、正常に結果が確定したStage 44 matchへ任意item/Pokémon報酬窓を結びつける。
+`reward item` / `reward mon` / `reward close`は独立sector 31 ownerの
+`PREPARED → STAGED → COMMITTED`を通り、reset、応答喪失、同一request再送でも二重付与しない。
+Pokémonは技、特性、性格、IV/EV、色違い、Tera type、捕獲ボールを指定でき、通常のparty/PCと
+Summary UIで保存値を表示する。PC StorageがEWRAM cacheをclearしても、通常field復帰後に
+独立CRCを検査して永続ownerから自動復元する。運用は`docs/CODEX_BATTLE_OPERATOR_JA.md`と
+`tools/codex_skills/vega-codex-battle/SKILL.md`を正とする。
+
 v1.4.0統合gateはstage 20→26のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 26を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
 sector 31 save、8 HM、状態異常・急所・天候、技選択UI、わざメモリーの通常／タマゴ技／

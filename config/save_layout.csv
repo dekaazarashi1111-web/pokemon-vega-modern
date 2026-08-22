@@ -41,4 +41,5 @@ SAVE_PARASITE_IMAGE_OFFSET,0x000025AC,0x000025DA,46,T08_ENCOUNTER,pending_encoun
 SAVE_PARASITE_IMAGE_OFFSET,0x000025DA,0x00002657,125,T08_ITEM_FLAGS,itemObtainedFlags_999,1,ZERO_EXTEND,LIVE,overlays/save_migration/save_migration.h,Canonical item IDs 0 through 998
 SAVE_PARASITE_IMAGE_OFFSET,0x00002657,0x00002697,64,T23_RESEARCH_ECONOMY,OWNER_KEY_RESEARCH_ECONOMY_V1,2,ZERO_EXTEND_VERSIONED,LIVE,overlays/research_economy_v1/research_economy_v1.h,独立U16研究ポイントownerとactive-play日次cap・rank claim・在庫・単一pending transaction; packed bytewise access必須
 SAVE_PARASITE_IMAGE_OFFSET,0x00002697,0x00002718,129,T08_RESERVED,reserved_v2_tail,2,ZERO,LIVE,overlays/save_migration/save_migration.h,T23の64-byte versioned owner割当後も未使用の予約領域
+SAVE_PARASITE_IMAGE_OFFSET,0x00002718,0x00002798,128,T28_CODEX_BATTLE_REWARDS,codex_battle_reward_owner,1,INNER_VERSION_SIZE_CRC,LIVE,overlays/codex_battle_rewards/codex_battle_rewards.h,sector 31未使用領域を独立所有; PREPARED/STAGED/COMMITTEDとmatch-bound replay情報を保存
 BATTLE_LOCAL,,,,CFRU_VIRTUAL_ITEM,battle_local_virtual_item,-,NONE,EXCLUDED,config/cfru_vega_minimal.h,Never serialized
