@@ -2200,3 +2200,24 @@
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network:
   - 未使用。local固定ROM、既存vendor snapshot、libmGBAだけを利用した。
+
+## 2026-08-24T08:41:45+09:00
+
+- Task: `USER-20260824-STAGE49-IPAD-ROM-SAVE` / Stage49 ROMとCodex対戦NPC前セーブをiPadへ配置する
+- Status: DONE
+- Summary:
+  - fixed host key付きWi-Fi SSHで、Stage49 exact ROMをiPadの既存RetroArch downloadsへ`49_world_item_recovery_780504cda088.gba`として新規配置した。既存ROM、既存save、savestateは変更していない。
+  - iPad上のStage47候補をsave sector単位で監査し、有効generation 56がCodex受付map `96/5`／座標`20/20`にある`47_windows_box14_vault_5f4794c5dd46.srm`を正しい複製元として採用した。同内容を`49_world_item_recovery_780504cda088.srm`へ複製した。
+  - 最初に選んだ別Stage47候補はgeneration 68／map `98/35`／座標`11/3`でNPC前ではないことを配置後検出したため完成扱いにせず、置換前コピーをiPad上の同じsaveディレクトリへrecoverable backupとして退避してから正しいNPC前セーブへ差し替えた。両Stage47原本は不変。
+- Files changed:
+  - tracked証跡: `design/current_state.md`、`design/run_log.md`、`design/version_log.md`。
+  - iPad側Git管理外成果物: Stage49 ROM、同名`.srm`、初回候補コピーの退避`.bak`。
+  - local Git管理外検証物: `.local/stage49-ipad-transfer/**`。
+- Verify:
+  - `ipad-wifi-ssh doctor`: PASS。client key、固定host key、Wi-Fi直結SSHを確認した。RetroArch NCIは利用不可だったためcontent起動や実機write commandは行っていない。
+  - iPad最終配置: ROM／save各1件。ROMは33,554,432 bytes、SHA-256 `780504cda0884bf53ed88f30fce18cbb54985740162210cb4724df0c6570ef5a`。saveは131,072 bytes、SHA-256 `4a83b7d20a46d6a9b4de9e3aac8fb79023a5a569b3c31f6a265c05edcdc7b69a`でStage47 NPC前原本とbyte一致した。
+  - save sector監査: active generation 56、14/14 section、map `96/5`、座標`20/20` PASS。iPadから再取得したexact saveをStage49へattachし、自然Continueを独立2 processで実行して同位置へ到達、save hash不変を確認した。
+  - `python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む実機配置証跡コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでROM転送、save複製、read-back検証を行った。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。

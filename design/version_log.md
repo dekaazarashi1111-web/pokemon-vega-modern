@@ -939,3 +939,14 @@
   - T501〜T523の物理wild束縛をStage09 map-sectionへ固定し、95-row／294 candidate表を現行ROMへ反映した。低レベルRaid 6件を既存Raid ownerへ追加した。
   - stock Mystery2 accessorの旧item-count clampを0..998対応へ修正し、Focus Sashの満タン判定と正式消費を実ROMで回復した。
 - Verify: Stage49 build/check、libmGBA 2 process、focused 34 tests、全678 map graph、1,302 trainer／6,490 member、BPS完全往復、allocator overlap 0、declared span外0、task graph/private guard/diff check PASS。Stage49 SHA-256 `780504cda0884bf53ed88f30fce18cbb54985740162210cb4724df0c6570ef5a`。
+
+## 2026-08-24T08:41:45+09:00
+
+- Version: `post-v1.4.0-stage49-ipad-npc-save`（Stage49 ROM identity／save ABIは不変）
+- Commit: `-`（本エントリを含む実機配置証跡コミット）
+- Task: `USER-20260824-STAGE49-IPAD-ROM-SAVE` / Stage49 ROMとCodex対戦NPC前セーブをiPadへ配置する
+- Summary:
+  - Stage49 exact ROMをiPadへversioned filenameで新規配置した。
+  - Stage47 save候補をsector監査し、有効generation 56／Codex受付map `96/5`／座標`20/20`のセーブをStage49同名セーブへbyte同一複製した。
+  - NPC前でない初回候補は完成扱いにせずrecoverable backupへ退避し、既存ROM／save／savestateと両Stage47原本を保持した。
+- Verify: Wi-Fi SSH固定host key、iPad側ROM／save一意性・size・SHA-256、save 14/14 active section、Stage49自然Continue 2 process、save hash不変、private guard、diff check PASS。ROM `780504cd...`、save `4a83b7d2...`。
