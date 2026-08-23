@@ -623,6 +623,12 @@ def load_catalog_pending(*, required: bool = False) -> dict[str, Any] | None:
             or value["command"] not in {15, 16}
             or not 1 <= value["sequence"] <= 0xFFFFFFFF):
         _fail(EXIT_CONFIG, "owner-only catalog retry identity differs")
+    request_salt = value.get("request_salt", 0)
+    if type(request_salt) is not int or not 0 <= request_salt <= 0xFFFFFFFF:
+        _fail(EXIT_CONFIG, "owner-only catalog retry salt differs")
+    # Retry files written by CLI 2.4 before the contextual-retry fix did not
+    # carry a salt.  Treat them as the original all-zero request padding.
+    value["request_salt"] = request_salt
     return value
 
 
@@ -631,7 +637,7 @@ def _clear_catalog_pending(expected: Mapping[str, Any]) -> None:
     if current is None:
         return
     identity = ("session_nonce", "match_id", "command", "sequence",
-                "payload_hash", "payload_hex")
+                "payload_hash", "payload_hex", "request_salt")
     if any(current.get(key) != expected.get(key) for key in identity):
         _fail(EXIT_CONFIG_WRITE, "owner-only catalog retry state changed")
     try:
@@ -3469,14 +3475,38 @@ def _catalog_pending_document(
     sequence = (int(state["last_accepted_sequence"]) + 1) & 0xFFFFFFFF
     if sequence == 0:
         sequence = 1
+    request_salt = (int(state["rejected_count"]) + 1) & 0xFFFFFFFF
+    if request_salt == 0:
+        request_salt = 1
     document = {
         "schema_version": 1,
         "stage": int(protocol["stage"]),
         **expected,
         "sequence": sequence,
+        "request_salt": request_salt,
     }
     _owner_write(_catalog_pending_path(), document)
     return document, False
+
+
+def _catalog_response_is_fresh(
+    before: Mapping[str, Any], candidate: Mapping[str, Any], sequence: int,
+) -> bool:
+    if int(candidate["response_sequence"]) != sequence:
+        return False
+    if int(before["response_sequence"]) != sequence:
+        return True
+    # A context retry deliberately keeps its unaccepted sequence.  Do not
+    # mistake the previous response for the result of the newly salted
+    # envelope; acceptance advances last_accepted_sequence and every newly
+    # evaluated rejection advances rejected_count.
+    return (
+        int(candidate["last_accepted_sequence"])
+        != int(before["last_accepted_sequence"])
+        or int(candidate["rejected_count"]) != int(before["rejected_count"])
+        or int(candidate["response_status"]) != int(before["response_status"])
+        or int(candidate["response_error"]) != int(before["response_error"])
+    )
 
 
 def send_catalog_request(
@@ -3510,9 +3540,27 @@ def send_catalog_request(
     request, sequence = build_runtime_request(
         before, protocol, command, payload, sequence=pending["sequence"],
     )
+    if len(payload) > 60:
+        _fail(EXIT_PROTOCOL, "catalog payload leaves no retry salt padding")
+    # A physical-context rejection is intentionally not accepted, so the ROM
+    # requires the same sequence on a later attempt.  It also suppresses an
+    # exact rejected sequence+CRC pair.  Salt only unused request padding and
+    # recompute the envelope CRC: the semantic payload and its hash stay exact,
+    # while a newly created retry is re-evaluated after the player moves.
+    request_buffer = bytearray(request)
+    struct.pack_into("<I", request_buffer, 80, int(pending["request_salt"]))
+    struct.pack_into(
+        "<I", request_buffer, 84,
+        zlib.crc32(request_buffer[:84]) & 0xFFFFFFFF,
+    )
+    request = bytes(request_buffer)
     mailbox = protocol["mailbox"]
     address = int(mailbox["address"]) + int(mailbox["request_offset"])
     written = [
+        # Invalidate the previous commit marker before replacing the body.
+        # Otherwise the ROM can observe a valid old sequence paired with the
+        # next payload and publish a harmless but expensive WRONG_HASH reject.
+        client.write_memory(address + 92, b"\0\0\0\0"),
         client.write_memory(address, request[:88]),
         client.write_memory(address + 88, request[88:92]),
         client.write_memory(address + 92, request[92:96]),
@@ -3521,7 +3569,7 @@ def send_catalog_request(
     after: dict[str, Any] | None = None
     while time.monotonic() < deadline:
         candidate = _read_valid_mailbox(client, protocol)
-        if int(candidate["response_sequence"]) == sequence:
+        if _catalog_response_is_fresh(before, candidate, sequence):
             after = candidate
             break
         time.sleep(0.025)
@@ -3564,7 +3612,7 @@ def send_catalog_request(
         "destination": owner["destination"],
         "committed_count": owner["committed_count"],
         "window": owner["window_name"],
-        "write_operations": 3,
+        "write_operations": 4,
         "write_bytes": sum(written),
         "request_span_only": True,
         "host_save_or_party_write": False,
@@ -4015,7 +4063,9 @@ def _add_json_flag(parser: argparse.ArgumentParser) -> None:
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="vega-codex-battle", description=__doc__)
-    parser.add_argument("--version", action="version", version="vega-codex-battle 2.4")
+    parser.add_argument(
+        "--version", action="version", version="vega-codex-battle 2.4.1",
+    )
     commands = parser.add_subparsers(dest="command", required=True)
 
     doctor_parser = commands.add_parser("doctor", help="transport/core/ROM/protocol診断")

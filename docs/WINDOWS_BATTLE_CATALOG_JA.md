@@ -110,6 +110,11 @@ vega-codex-battle bank batch --file batch.json --start-index 4 --json
 応答喪失、`SAVE_FAILED`、`STORAGE_FULL`ではowner-onlyの`catalog-pending.json`を保持する。
 引数を変えず同じ行を再実行すれば、ROMのjournalへ再接続し、同じrequestを二重生成しない。
 
+CLI 2.4.1以降は、別mapなどの物理境界で拒否された後にNPC前へ戻って同じ行を再実行した場合も、
+未受理のsequenceと意味上のpayloadを維持したまま未使用paddingだけを更新し、ROMへ安全に再評価させる。
+前回の拒否応答はaccepted sequenceまたはrejected countが進むまで完了扱いにせず、request bodyの
+更新前には旧commit markerを無効化するため、中間状態を新しい応答と誤認しない。
+
 ## 不要個体の回収
 
 既存PC画面で`SELECT`を押すと個体を複数選択でき、箱をまたいで選択できる。

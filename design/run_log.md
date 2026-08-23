@@ -2061,3 +2061,29 @@
 - Commit: `-`（本エントリを含むセーブ配置証跡コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでread/copy/hash照合を行った。接続先、credential、端末固有path、container UUID、セーブ内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-23T17:16:17+09:00
+
+- Task: `USER-20260823-STAGE46-LIVE-CATALOG-BATCH` / 実iPadへ対戦用30体と道具を一括生成する
+- Status: DONE
+- Summary:
+  - Stage 46をCodex対戦NPC前の通常field、runtime `IDLE`、reward window `CLOSED`で確認し、指定12体とMega進化候補18体の計30体を全員Lv.50・6IV・対戦用EV／性格／持ち物付きで通常PCへ生成した。手持ち6体は変更していない。
+  - 特性パッチ、特性カプセル、いじっぱり／ひかえめ／おくびょう／ようきミント、白いハーブ、命の珠、こだわり3種、きあいのタスキ、食べ残し、とつげきチョッキ、じゃくてんほけん、ゴツゴツメット、ラム／オボンのみ、クリアチャーム、隠密マント、ブーストエナジーの21種を通常bagへ生成した。
+  - NPC前へ移動する前の`PRIVATE_BOUNDARY`拒否が同一sequence／request CRCを重複抑止し、移動後も旧応答を即時取得するCLI問題を修正した。CLI 2.4.1はowner-only retryへ未使用padding saltを保存し、accepted sequence／rejected countの進行で新応答を識別する。さらにbody staging前に旧commit markerを無効化して中間payloadの誤処理を防ぐ。ROMの物理安全境界、意味上のpayload、exactly-once journalは緩和していない。
+  - 先頭ギルガルドは旧CLI表示上の失敗後にROM側でsequence 1として正常commit済みだったため、公開ownerを確認してbatchをindex 1から再開し、重複させなかった。最終的にsequence 1〜51、response status ACCEPTED、error 0、pending 0、journal COMMITTEDへ収束した。
+  - Windows catalogは減算されないtemplateで、固有個体の退避機能ではない。既存カイリューの回収は設計どおりゲーム内PCのSELECT複数選択・SELECT+START一括逃がしで行うため、今回のNPC前host batchでは削除していない。
+- Files changed:
+  - `tools/vega_codex_battle.py`
+  - `tests/test_windows_battle_catalog.py`
+  - `docs/WINDOWS_BATTLE_CATALOG_JA.md`
+  - `design/current_state.md`、`design/run_log.md`、`design/version_log.md`
+  - Git管理外: `.local/stage46_user_batch_20260823.json`、iPad上の通常save更新。
+- Verify:
+  - 実iPad live batch: PASS。51/51 commit、Pokémon 30体、item 21種、最終accepted/response sequence 51、status 2、error 0、pending 0、journal COMMITTED。
+  - `python3 -m unittest -v tests.test_windows_battle_catalog`: PASS（10 tests）。物理境界再試行、同一sequence旧応答無視、旧commit marker無効化、30件停止／再開、将来Stage protocol互換を確認した。
+  - `python3 -m py_compile tools/vega_codex_battle.py`、`git diff --check`: PASS。
+  - `bash scripts/install_vega_codex_battle_cli.sh`: PASS。ユーザー領域CLI 2.4.1を導入し、`bank status` available true、retry fileなしを確認した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`: PASS。task正本／互換ミラー整合、private成果混入0。
+- Commit: `-`（本エントリを含む実機batch／CLI修正コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ既存RetroArch NCI接続を使い、versioned mailboxの宣言済みrequest spanだけを書いた。PC/save/party byteはhostから直接編集せず、端末固有接続情報とprivate ROM/save内容はtracked成果へ保存していない。インターネットは未使用。

@@ -22,7 +22,10 @@ ROM = ROOT / "build/stages/46_windows_battle_catalog.gba"
 
 
 class FakeCatalogNci(FakeRewardNci):
-    def __init__(self, protocol: dict, *, fail_sequence_once: int | None = None):
+    def __init__(
+        self, protocol: dict, *, fail_sequence_once: int | None = None,
+        private_boundary_once: bool = False,
+    ):
         super().__init__(protocol)
         self.phase = 1
         self.match_id = 0
@@ -35,6 +38,9 @@ class FakeCatalogNci(FakeRewardNci):
         self.owner_generation = 1
         self.owner_committed = 0
         self.fail_sequence_once = fail_sequence_once
+        self.private_boundary_once = private_boundary_once
+        self.last_rejected_sequence = 0
+        self.last_rejected_request_crc32 = 0
         self.owner[:] = bytes(128)
         self._initialize_owner()
         self.owner[20] = 0
@@ -66,6 +72,10 @@ class FakeCatalogNci(FakeRewardNci):
             "<IIHHHHI", request, 0,
         )
         payload = request[20:20 + size]
+        request_crc = struct.unpack_from("<I", request, 84)[0]
+        if (sequence == self.last_rejected_sequence
+                and request_crc == self.last_rejected_request_crc32):
+            return
         owner_last = struct.unpack_from("<I", self.owner, 32)[0]
         owner_hash = struct.unpack_from("<I", self.owner, 36)[0]
         replay = (sequence == owner_last and command == self.owner[23]
@@ -74,6 +84,9 @@ class FakeCatalogNci(FakeRewardNci):
         if self.fail_sequence_once == sequence:
             error = 20
             self.fail_sequence_once = None
+        elif self.private_boundary_once:
+            error = 17
+            self.private_boundary_once = False
         elif not replay and sequence != self.accepted + 1:
             error = 2 if sequence < self.accepted + 1 else 1
         elif nonce != self.nonce or match_id != self.match_id:
@@ -94,6 +107,9 @@ class FakeCatalogNci(FakeRewardNci):
         if error:
             self.response_status, self.response_error = 3, error
             self.rejected += 1
+            if error == 17:
+                self.last_rejected_sequence = sequence
+                self.last_rejected_request_crc32 = request_crc
             self._publish()
             return
         if replay:
@@ -103,6 +119,8 @@ class FakeCatalogNci(FakeRewardNci):
             return
         self.response_status, self.response_error = 2, 0
         self.accepted = sequence
+        self.last_rejected_sequence = 0
+        self.last_rejected_request_crc32 = 0
         self.owner_generation += 1
         self.owner[21] = 3
         self.owner[23] = command
@@ -211,6 +229,27 @@ class WindowsBattleCatalogTests(unittest.TestCase):
             self.assertTrue(status["available"])
             self.assertTrue(status["templates_are_reusable"])
 
+    def test_catalog_request_invalidates_old_commit_before_staging(self) -> None:
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as raw, \
+                mock.patch.dict(os.environ, {"XDG_CONFIG_HOME": raw}), \
+                FakeCatalogNci(self.protocol) as server:
+            client = cli.NciClient("127.0.0.1", server.port)
+            result = cli.catalog_access_item(
+                client, self.protocol, 100, 3,
+            )
+            request_address = (
+                int(self.protocol["mailbox"]["address"])
+                + int(self.protocol["mailbox"]["request_offset"])
+            )
+            self.assertEqual(
+                [(request_address + 92, 4), (request_address, 88),
+                 (request_address + 88, 4), (request_address + 92, 4)],
+                [(address, len(value)) for address, value in server.writes],
+            )
+            self.assertEqual(b"\0\0\0\0", server.writes[0][1])
+            self.assertEqual(4, result["write_operations"])
+            self.assertEqual(100, result["write_bytes"])
+
     def test_batch_30_stops_and_resumes_at_exact_index(self) -> None:
         with tempfile.TemporaryDirectory(dir=ROOT / ".local") as raw, mock.patch.dict(
                 os.environ, {"XDG_CONFIG_HOME": raw}), \
@@ -231,6 +270,44 @@ class WindowsBattleCatalogTests(unittest.TestCase):
             self.assertEqual(26, resumed["completed_count"])
             self.assertIsNone(resumed["resume_index"])
             self.assertEqual(30, server.owner_committed)
+
+    def test_private_boundary_retry_changes_only_request_padding(self) -> None:
+        with tempfile.TemporaryDirectory(dir=ROOT / ".local") as raw, \
+                mock.patch.dict(os.environ, {"XDG_CONFIG_HOME": raw}), \
+                FakeCatalogNci(
+                    self.protocol, private_boundary_once=True,
+                ) as server:
+            client = cli.NciClient("127.0.0.1", server.port)
+            with self.assertRaises(cli.CliError) as rejected:
+                cli.catalog_access_item(client, self.protocol, 100, 3)
+            self.assertEqual("PRIVATE_BOUNDARY", rejected.exception.detail)
+            self.assertEqual(0, server.accepted)
+            accepted = cli.catalog_access_item(
+                client, self.protocol, 100, 3,
+            )
+            self.assertEqual(1, accepted["accepted_sequence"])
+            self.assertEqual(1, server.accepted)
+            self.assertEqual(1, server.owner_committed)
+
+    def test_same_sequence_wait_ignores_stale_rejection_response(self) -> None:
+        before = {
+            "response_sequence": 1, "response_status": 3,
+            "response_error": 17, "last_accepted_sequence": 0,
+            "rejected_count": 1,
+        }
+        self.assertFalse(cli._catalog_response_is_fresh(before, before, 1))
+        accepted = {
+            **before, "response_status": 2, "response_error": 0,
+            "last_accepted_sequence": 1,
+        }
+        self.assertTrue(cli._catalog_response_is_fresh(before, accepted, 1))
+        rejected_again = {**before, "rejected_count": 2}
+        self.assertTrue(
+            cli._catalog_response_is_fresh(before, rejected_again, 1),
+        )
+        self.assertFalse(
+            cli._catalog_response_is_fresh(before, accepted, 2),
+        )
 
     def test_inflight_retry_survives_runtime_session_change(self) -> None:
         payload = struct.pack("<HH", 100, 1)

@@ -875,3 +875,14 @@
   - Stage 45の128 KiBセーブをbyte不変のままStage 46用filenameへ複製した。
   - 既存Stage 46セーブは同じsaveディレクトリへ退避し、元Stage 45セーブ、ROM、savestateは変更していない。
 - Verify: 元／適用後セーブの131,072 bytesとSHA-256 `1289b8c3d4caf135c778f98523d6937c86d0ec9609c0043e348fcdc3298af2e2`一致、退避セーブSHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`一致 PASS。
+
+## 2026-08-23T17:16:17+09:00
+
+- Version: `post-v1.4.0-stage46-cli-2.4.1-live-batch`（Stage 46 ROM identity／save ABIは不変）
+- Commit: `-`（本エントリを含む実機batch／CLI修正コミット）
+- Task: `USER-20260823-STAGE46-LIVE-CATALOG-BATCH` / 実iPad対戦用30体・道具一括生成
+- Summary:
+  - 実iPadのStage 46へ指定12体＋Mega候補18体を全員Lv.50で通常PCへ、対戦用道具21種を通常bagへexactly onceで生成した。
+  - CLI 2.4.1で物理境界拒否後の同一sequence再評価、旧応答識別、request staging前の旧commit marker無効化を追加した。
+  - sequence 1〜51、response ACCEPTED、pending 0、journal COMMITTEDを公開ownerで確認し、ROM/save ABIは変更していない。
+- Verify: 実iPad 51/51 commit PASS。`python3 -m unittest -v tests.test_windows_battle_catalog` 10 tests、`python3 -m py_compile tools/vega_codex_battle.py`、installer、`bank status`、task graph、private guard、`git diff --check` PASS。
