@@ -2002,3 +2002,25 @@
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHとRetroArch NCIで、versioned ROM/save配置、宣言済みmailbox request spanの操作、状態読取、通常save取得・CRC確認を行った。PCからsave/partyを直接編集していない。
   - インターネットは未使用。接続先、credential、端末固有path、container UUID、private ROM/saveはtracked成果へ保存していない。
+
+## 2026-08-23T08:43:54+09:00
+
+- Task: `T29` / Windows対戦カタログをNPC前の一括生成導線へ接続する
+- Status: DONE
+- Summary:
+  - T29をtask graph、queue、index、仕様へ追加してから実装した。Stage 45のT28報酬runtimeをfeature flag付きで再compileし、既存128-byte exactly-once owner、通常`AddBagItem`／`CreateMon`／`GiveMonToPlayer`、通常saveを再利用するStage 46へ11 hookを再束縛した。新規RAM/save ownerとPC箱数拡張は0。
+  - catalog command 15/16はCodex受付map `96/5`、field callback、T27 `IDLE`、active 0、reward window `CLOSED`だけで受理し、別map、PC/UI、battle/result、open rewardでは無変更拒否する。新sessionのsequence 1が旧sessionのcommitを誤replayしないよう、journal未処理がない時だけcatalog replay namespaceを現T27 sessionへ同期した。
+  - Windows CLI 2.4へ`bank status/item/mon/batch`を追加した。canonical Species `1..1620`とItem `1..998`を検索・検査し、batch全行を事前検査後、1件ずつcommitする。最初の失敗で成功件数、失敗行、0始まりの`resume_index`を返し、owner-only exact retry fileから同じ行を再開できる。特定`FINALFIX`名は参照せず、protocol contractからROMを発見し、Stage 47以降も同じCLI／installerで扱える。
+  - Windows catalogは減算しないtemplateとし、固有個体cloud bankやPC save直接編集は実装していない。不要個体の回収はT19の箱をまたぐSELECT複数選択・SELECT+START一括逃がし、持ち物返却、all-or-rollbackをそのまま使用する。
+- Files changed:
+  - task/config/runtime/build: `tasks/T29_WINDOWS_BATTLE_CATALOG.md`、`tasks/{INDEX.md,task_graph.json}`、`design/tasks_next.md`、`state/task_status.json`、`config/windows_battle_catalog.json`、`overlays/windows_battle_catalog/**`、`overlays/codex_battle_rewards/**`、`scripts/{build_codex_battle_rewards.py,build_windows_battle_catalog.py}`、`Makefile`。
+  - CLI/QA/docs: `tools/vega_codex_battle.py`、`tools/mgba_windows_battle_catalog_smoke.c`、`tests/test_windows_battle_catalog.py`、`tests/fixtures/windows_battle_catalog_batch.json`、`scripts/install_vega_codex_battle_cli.sh`、`tools/codex_skills/vega-codex-battle/SKILL.md`、`docs/WINDOWS_BATTLE_CATALOG_JA.md`、`README.md`、`MASTER_PLAN.md`、`design/{agent_context_map,current_state,run_log,version_log}.md`。
+  - Git管理外再生成物: Stage 46 ROM、Stage45差分／clean直接BPS、metadata、allocation、runtime、symbols、protocol、cases、audit/coverage、mGBA quick/full。
+- Verify:
+  - `python3 scripts/build_windows_battle_catalog.py build` / `check`: PASS。Stage 46は33,554,432 bytes、SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`、CRC32 `3D8B62B1`、artifact 13。変更7,293 byte、runtime 8,356 byte、11 hook再束縛、declared span外0、ROM/RAM/save/hook overlap 0、差分／clean直接BPS完全往復。
+  - libmGBA quick/full: PASS。各8/8、warnings 0。Stage45 identity/hook再束縛、item再送exactly-once、party→PC、別map/UI/script/result拒否、6体連続と満杯停止、match-bound reward回帰、T19 PSS一括逃がしroot不変をexact Stage 46 ROMで確認した。
+  - `python3 -m unittest tests.test_windows_battle_catalog tests.test_codex_battle_rewards tests.test_codex_battle_runtime -v`: PASS（24 tests）。1／6／30件host batch、30件のindex 4停止→再開、session変更をまたぐin-flight retry、全ID境界、Stage 47相当の将来protocol発見、既存reward/runtime回帰を確認した。
+  - T28既定static再構築: PASS。Stage 45 ROM/runtime/symbols/protocol/header/cases/allocation/両BPSが既存成果とbyte一致し、SHA-256 `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`を維持した。
+  - `python3 -m py_compile ...`、両installerの`bash -n`、JSON parse、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むT29完了コミット）
+- Network: 未使用。ローカルの固定Stage 45、canonical catalog、mGBA、既存T19/T28成果だけを使用し、private ROM/saveを外部送信していない。

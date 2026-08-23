@@ -6,6 +6,10 @@
 
 #include "codex_battle_rewards_generated.h"
 
+#if CODEX_WINDOWS_CATALOG_ENABLED
+#include "../windows_battle_catalog/windows_battle_catalog.h"
+#endif
+
 enum CodexBattleRewardWindow {
     CODEX_REWARD_WINDOW_CLOSED = 0,
     CODEX_REWARD_WINDOW_OPEN = 1,
@@ -23,6 +27,10 @@ enum CodexBattleRewardCommand {
     CODEX_REWARD_COMMAND_ITEM = 12,
     CODEX_REWARD_COMMAND_MON = 13,
     CODEX_REWARD_COMMAND_CLOSE = 14,
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    CODEX_CATALOG_COMMAND_ITEM = WINDOWS_BATTLE_CATALOG_COMMAND_ITEM,
+    CODEX_CATALOG_COMMAND_MON = WINDOWS_BATTLE_CATALOG_COMMAND_MON,
+#endif
 };
 
 enum CodexBattleRewardError {

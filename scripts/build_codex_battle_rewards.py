@@ -312,7 +312,13 @@ def _generated_header(
     return "\n".join(lines).encode("ascii")
 
 
-def _compile_runtime(load_address: int, header: bytes) -> tuple[bytes, dict[str, int], dict[str, int]]:
+def _compile_runtime(
+    load_address: int,
+    header: bytes,
+    *,
+    defines: Sequence[str] = (),
+    required_entrypoints: set[str] | None = None,
+) -> tuple[bytes, dict[str, int], dict[str, int]]:
     compiler = _arm_tool(ROOT, "arm-none-eabi-gcc")
     objcopy = _arm_tool(ROOT, "arm-none-eabi-objcopy")
     nm = _arm_tool(ROOT, "arm-none-eabi-nm")
@@ -330,6 +336,7 @@ def _compile_runtime(load_address: int, header: bytes) -> tuple[bytes, dict[str,
             "-Wno-address-of-packed-member", "-ffreestanding", "-fno-builtin",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables",
             "-fdata-sections", "-ffunction-sections", "-fno-common",
+            *(f"-D{value}" for value in defines),
             f"-I{directory}", f"-I{ROOT / 'generated/runtime'}", f"-I{ROOT}",
             "-c", str(source), "-o", str(obj),
         ], "compile Codex Battle rewards runtime")
@@ -369,7 +376,8 @@ def _compile_runtime(load_address: int, header: bytes) -> tuple[bytes, dict[str,
             symbols[name], sizes[name] = address, size
             if kind in {"B", "b", "C", "c", "D", "d", "G", "g", "S", "s"}:
                 mutable.append(name)
-        missing = sorted(REQUIRED_ENTRYPOINTS - set(symbols))
+        required = required_entrypoints or REQUIRED_ENTRYPOINTS
+        missing = sorted(required - set(symbols))
         if missing or mutable:
             _fail(f"reward runtime symbols differ: missing={missing}, mutable={mutable}")
         _run([objcopy, "-O", "binary", str(elf), str(binary)], "reward objcopy")

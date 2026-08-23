@@ -844,3 +844,14 @@
   - reward CLI、会話運用用companion skill、日本語operator guideを追加し、戦略・選出・報酬内容の判断は呼出元Codex taskへ残した。
   - 実iPadで6→3対戦、交代、双方Dynamax、通常敗北、指定カイリュー1回付与、通常save/restart/load、close再送無書込、最終PC残存まで完走した。
 - Verify: production build、61 transaction、focused 17 tests、libmGBA quick/full各16/16・warnings 0、実iPad doctor/5 turn/reward/UI/save/restart/owner CRC、clean rebuild build/check、3 BPS完全往復、declared span外0、ROM/RAM/save/UI/hook overlap 0 PASS。Stage 45 SHA-256 `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`、CRC32 `8FFD6131`。
+
+## 2026-08-23T08:43:54+09:00
+
+- Version: `post-v1.4.0-stage46`（v1.4.0 release identityとStage 27〜45は不変）
+- Commit: `-`（本エントリを含むT29完了コミット）
+- Task: `T29` / Windows対戦カタログをNPC前の一括生成導線へ接続する
+- Summary:
+  - NPC前の通常field・T27 `IDLE`・reward window `CLOSED`だけでcanonical item/Pokémon templateを通常bag／party／PCへ生成するcatalog command 15/16をStage 46へ追加した。
+  - CLI 2.4へ`bank status/item/mon/batch`、1件単位commit、停止位置と再開index、owner-only exact retryを追加し、特定ROM filenameではなくprotocol contractから現行・将来Stageを発見する運用へした。
+  - PCは14箱×30枠と既存save ABIのまま、回収はT19の複数box選択・一括逃がしを再利用した。Stage45既定runtimeとmatch-bound reward契約はbyte／実行回帰とも不変。
+- Verify: Stage 46 build/check、libmGBA quick/full各8/8、focused 24 tests、1／6／30件batch、Stage45 byte identity、Stage47相当protocol互換、両BPS往復、declared span外0、ROM/RAM/save/hook overlap 0、task graph/private guard/diff check PASS。Stage 46 SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`、CRC32 `3D8B62B1`。

@@ -1,4 +1,21 @@
-/* T28 Stage 45: match-bound, exactly-once Codex Battle rewards. */
+/* T28 Stage 45: match-bound, exactly-once Codex Battle rewards.
+ *
+ * T29 recompiles this same owner/runtime with
+ * CODEX_WINDOWS_CATALOG_ENABLED=1.  The default remains byte-compatible with
+ * the completed Stage 45 artifact; the enabled build adds an IDLE-only
+ * Windows catalog context without weakening the match-bound reward window. */
+
+#ifndef CODEX_WINDOWS_CATALOG_ENABLED
+#define CODEX_WINDOWS_CATALOG_ENABLED 0
+#endif
+
+#ifndef CODEX_CATALOG_MAP_GROUP
+#define CODEX_CATALOG_MAP_GROUP 96u
+#endif
+
+#ifndef CODEX_CATALOG_MAP_NUMBER
+#define CODEX_CATALOG_MAP_NUMBER 5u
+#endif
 
 #include "codex_battle_rewards.h"
 
@@ -89,6 +106,9 @@ enum {
     CWR_OWNER_FLAG_MIGRATED = 0x0001u,
     CWR_OWNER_FLAG_RECOVERED = 0x0002u,
     CWR_OWNER_FLAG_BALL_EXPLICIT = 0x0004u,
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    CWR_OWNER_FLAG_CATALOG = 0x0008u,
+#endif
     CWR_TEST_MAGIC = 0x54323846u,
     CWR_OWNER_LOAD_CHECKED = 0xA5u,
     CWR_OWNER_LOAD_STABLE_FRAMES = 0xFFu,
@@ -171,6 +191,9 @@ enum {
 #define FN_END_TRAINER_BATTLE PTR(VoidFn, CODEX_REWARD_END_TRAINER_BATTLE)
 #define FN_RETURN_TO_FIELD PTR(VoidFn, CODEX_REWARD_RETURN_TO_FIELD)
 #define FN_BUFFER_MON_MOVE PTR(BufferMonMoveFn, CODEX_REWARD_BUFFER_MON_MOVE)
+#if CODEX_WINDOWS_CATALOG_ENABLED
+#define FN_SCRIPT_CONTEXT2_ENABLED PTR(U16Fn, 0x08069219u)
+#endif
 
 void CodexBattleRewards_ReturnToFieldAdapter(void);
 
@@ -975,6 +998,13 @@ static void prepare_common(u32 sequence, u16 command, u32 payload_hash)
 {
     volatile CodexBattleRewardOwnerV1 *owner = gCodexBattleRewardOwner;
     clear_transaction_payload();
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (command == CODEX_CATALOG_COMMAND_ITEM
+        || command == CODEX_CATALOG_COMMAND_MON)
+        owner->flags |= CWR_OWNER_FLAG_CATALOG;
+    else
+        owner->flags &= (u16)~CWR_OWNER_FLAG_CATALOG;
+#endif
     owner->pending_sequence = sequence;
     owner->pending_payload_hash = payload_hash;
     owner->transaction_id = mix32(owner->session_nonce ^ owner->match_id
@@ -1128,9 +1158,19 @@ static u16 start_or_resume_transaction(u16 command, u32 sequence,
         if (owner->pending_sequence != sequence
             || owner->pending_payload_hash != payload_hash)
             return CODEX_REWARD_ERROR_BUSY;
+#if CODEX_WINDOWS_CATALOG_ENABLED
+        if (command == CODEX_REWARD_COMMAND_ITEM
+            || command == CODEX_CATALOG_COMMAND_ITEM)
+#else
         if (command == CODEX_REWARD_COMMAND_ITEM)
+#endif
             return resume_item(command, sequence, payload_hash);
+#if CODEX_WINDOWS_CATALOG_ENABLED
+        if (command == CODEX_REWARD_COMMAND_MON
+            || command == CODEX_CATALOG_COMMAND_MON)
+#else
         if (command == CODEX_REWARD_COMMAND_MON)
+#endif
             return resume_mon(command, sequence, payload_hash);
         return resume_simple(command, sequence, payload_hash);
     }
@@ -1158,7 +1198,12 @@ static u16 start_or_resume_transaction(u16 command, u32 sequence,
             return CODEX_REWARD_ERROR_SAVE_FAILED;
         return resume_simple(command, sequence, payload_hash);
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (command == CODEX_REWARD_COMMAND_ITEM
+        || command == CODEX_CATALOG_COMMAND_ITEM) {
+#else
     if (command == CODEX_REWARD_COMMAND_ITEM) {
+#endif
         u16 item;
         u16 quantity;
         if (size != 4u)
@@ -1185,7 +1230,12 @@ static u16 start_or_resume_transaction(u16 command, u32 sequence,
             return CODEX_REWARD_ERROR_SAVE_FAILED;
         return resume_item(command, sequence, payload_hash);
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (command == CODEX_REWARD_COMMAND_MON
+        || command == CODEX_CATALOG_COMMAND_MON) {
+#else
     if (command == CODEX_REWARD_COMMAND_MON) {
+#endif
         CodexBattleRewardMonV1 mon;
         if (size != sizeof(mon))
             return CODEX_REWARD_ERROR_PAYLOAD_FORMAT;
@@ -1213,6 +1263,41 @@ static u16 start_or_resume_transaction(u16 command, u32 sequence,
     }
     return CODEX_REWARD_ERROR_UNKNOWN_COMMAND;
 }
+
+#if CODEX_WINDOWS_CATALOG_ENABLED
+static u8 catalog_command(u16 command)
+{
+    return (u8)(command == CODEX_CATALOG_COMMAND_ITEM
+                || command == CODEX_CATALOG_COMMAND_MON);
+}
+
+static u8 catalog_field_context_valid(
+    const volatile CodexBattleRuntimeState *state)
+{
+    const volatile u8 *save1 = *G_SAVE_BLOCK1_PTR;
+    u32 address = (u32)(uintptr_t)save1;
+    return (u8)(state->phase == CWR_T27_PHASE_IDLE
+        && state->active == 0u
+        && *G_MAIN_CALLBACK2 == CWR_FIELD_MAIN_CALLBACK
+        && FN_SCRIPT_CONTEXT2_ENABLED() == 0u
+        && address >= 0x02000000u && address < 0x02040000u
+        && save1[4] == CODEX_CATALOG_MAP_GROUP
+        && save1[5] == CODEX_CATALOG_MAP_NUMBER);
+}
+
+static void publish_catalog_capability(void)
+{
+    volatile CodexBattleRuntimeMailboxV2 *mailbox =
+        gCodexBattleRuntimeMailbox;
+    u32 sequence = next_sequence(mailbox->snapshot_sequence);
+    mailbox->capabilities |= WINDOWS_BATTLE_CATALOG_CAPABILITY;
+    mailbox->snapshot.crc32 = snapshot_crc();
+    barrier();
+    mailbox->snapshot_sequence_inverse = ~sequence;
+    barrier();
+    mailbox->snapshot_sequence = sequence;
+}
+#endif
 
 static void reward_poll(void)
 {
@@ -1244,8 +1329,14 @@ static void reward_poll(void)
         || request->request_sequence_inverse != inverse_before)
         return;
     command = read16(local + 10u);
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if ((command < CODEX_REWARD_COMMAND_STATUS
+         || command > CODEX_REWARD_COMMAND_CLOSE)
+        && !catalog_command(command))
+#else
     if (command < CODEX_REWARD_COMMAND_STATUS
         || command > CODEX_REWARD_COMMAND_CLOSE)
+#endif
         return;
     request_crc = read32(local + 84u);
     if (sequence_after == state->last_rejected_sequence
@@ -1270,6 +1361,31 @@ static void reward_poll(void)
                       CODEX_REWARD_ERROR_REQUEST_CRC, request_crc);
         return;
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (catalog_command(command)) {
+        if (owner->window != CODEX_REWARD_WINDOW_CLOSED
+            || !catalog_field_context_valid(state)
+            || phase != state->phase) {
+            reward_reject(sequence_after, command,
+                          CODEX_REWARD_ERROR_PRIVATE_BOUNDARY, request_crc);
+            return;
+        }
+        /* Catalog sequence numbers belong to the current T27 session.  A
+         * cleanly committed owner from an older boot remains durable evidence
+         * for the host retry file, but must not turn sequence 1 of the new
+         * session into a false replay.  Never reset an in-flight journal. */
+        if (owner->pending_sequence == 0u
+            && (owner->session_nonce != state->session_nonce
+                || owner->match_id != state->match_id)) {
+            owner->last_request_sequence = state->last_request_sequence;
+            owner->last_payload_hash = 0u;
+            owner->last_command = 0u;
+        }
+        owner->session_nonce = state->session_nonce;
+        owner->match_id = state->match_id;
+        owner_finalize();
+    }
+#endif
     if (read32(local) != state->session_nonce
         || read32(local) != owner->session_nonce) {
         reward_reject(sequence_after, command,
@@ -1295,6 +1411,16 @@ static void reward_poll(void)
         }
         return;
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (catalog_command(command)) {
+        if (owner->pending_sequence != 0u
+            && (owner->flags & CWR_OWNER_FLAG_CATALOG) == 0u) {
+            reward_reject(sequence_after, command,
+                          CODEX_REWARD_ERROR_BUSY, request_crc);
+            return;
+        }
+    } else {
+#endif
     if (owner->window != CODEX_REWARD_WINDOW_OPEN) {
         reward_reject(sequence_after, command,
                       CODEX_REWARD_ERROR_WINDOW_CLOSED, request_crc);
@@ -1305,6 +1431,15 @@ static void reward_poll(void)
                       CODEX_REWARD_ERROR_WRONG_PHASE, request_crc);
         return;
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if (owner->pending_sequence != 0u
+        && (owner->flags & CWR_OWNER_FLAG_CATALOG) != 0u) {
+        reward_reject(sequence_after, command,
+                      CODEX_REWARD_ERROR_BUSY, request_crc);
+        return;
+    }
+    }
+#endif
     if (turn != state->turn) {
         reward_reject(sequence_after, command,
                       CODEX_REWARD_ERROR_WRONG_TURN, request_crc);
@@ -1370,13 +1505,25 @@ void CodexBattleRewards_ReadKeysAdapter(void)
 {
     u16 command = gCodexBattleRuntimeMailbox->request.command;
     finish_durable_owner_restore();
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    if ((command >= CODEX_REWARD_COMMAND_STATUS
+         && command <= CODEX_REWARD_COMMAND_CLOSE)
+        || catalog_command(command)) {
+#else
     if (command >= CODEX_REWARD_COMMAND_STATUS
         && command <= CODEX_REWARD_COMMAND_CLOSE) {
+#endif
         FN_BASE_READ_KEYS();
         reward_poll();
     } else {
         FN_T27_READ_KEYS();
     }
+#if CODEX_WINDOWS_CATALOG_ENABLED
+    /* Both inherited delegates rebuild/publish the mailbox.  Advertise the
+     * Stage46 capability after that write so the live host sees protocol
+     * 2.4 rather than the Stage45 capability mask. */
+    publish_catalog_capability();
+#endif
 }
 
 CWR_EXPORT(CodexBattleRewards_SaveLoadAdapter)

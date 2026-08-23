@@ -1,6 +1,6 @@
 ---
 name: vega-codex-battle
-description: ユーザーがiPad上のPokémon Vega Stage 45 Codex対戦の開始・継続・確認・完了、明示的な対戦操作、または対戦後の任意報酬を依頼した時に、安全なCLI運用を案内する。
+description: ユーザーがPokémon Vega Stage 46 Codex対戦の開始・継続・確認・完了、明示的な対戦操作、対戦後の任意報酬、またはWindows対戦カタログからの個体・道具生成を依頼した時に、安全なCLI運用を案内する。
 ---
 
 # Vega Codex Battle
@@ -27,10 +27,18 @@ regulation、team、3体選出、move、switch、gimmick、forfeit、disconnect�
 commandを次の3分類で扱う。
 
 - Read: `doctor`、`device status`、`catalog`、`team validate`、`match status`、
-  `match view`、`reward status`、`session guide`。
+  `match view`、`reward status`、`bank status`、`session guide`。
 - Wait: `wait`。ゲームまたはプレイヤーが次の入力権を持つ間に使う。
 - Write: `match configure`、`match upload-team`、`choose ...`、明示的な
-  disconnect/abort、`reward item`、`reward mon`、`reward close`。
+  disconnect/abort、`reward item`、`reward mon`、`reward close`、
+  `bank item`、`bank mon`、`bank batch`。
+
+Windows対戦カタログの依頼では、ROM内でCodex対戦NPCの前、runtime `IDLE`、reward window
+`CLOSED`、通常field入力中であることを`bank status`で確認する。単件は`bank item`／`bank mon`、
+複数件は`bank batch --file ...`を使う。batchが停止したら`resume_index`と同じJSONを保持し、
+PCを整理して`--start-index`から再開する。カタログは減算されないtemplateであり、固有個体を
+Windowsへ退避する機能だとは説明しない。不要個体は既存PCのSELECT複数選択と
+SELECT+START一括逃がしを案内する。
 
 各write直前に`match status`または`match view`を読み直す。報酬write直前には`reward status`も
 読み直し、現在matchにboundされたwindowが`OPEN`の時だけ送る。複数報酬は別々の呼出しにする。

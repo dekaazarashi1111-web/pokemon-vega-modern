@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 43〜45 Codex Battle用の安全なRetroArch NCIクライアント。"""
+"""Stage 43以降のCodex Battle／Windowsカタログ用NCIクライアント。"""
 
 from __future__ import annotations
 
@@ -217,9 +217,11 @@ def _protocol_path() -> Path:
         return Path(explicit)
     here = Path(__file__).resolve()
     candidates = (
+        here.with_name("windows_battle_catalog_protocol.json"),
         here.with_name("codex_battle_rewards_protocol.json"),
         here.with_name("codex_battle_runtime_protocol.json"),
         here.with_name("codex_battle_bridge_protocol.json"),
+        here.parents[1] / "generated/runtime/windows_battle_catalog_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_rewards_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_runtime_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_bridge_protocol.json",
@@ -234,20 +236,28 @@ def load_protocol(path: Path | None = None) -> dict[str, Any]:
         value = json.loads(target.read_text(encoding="utf-8"))
     except (OSError, ValueError, json.JSONDecodeError):
         _fail(EXIT_CONFIG, "protocol metadata is unavailable or invalid")
+    stage = value.get("stage") if isinstance(value, dict) else None
+    known = (value.get("task"), stage) in {
+        ("T26", 43), ("T27", 44), ("T28", 45), ("T29", 46)
+    } if isinstance(value, dict) else False
+    future_catalog = (type(stage) is int and stage >= 46
+                      and isinstance(value.get("task"), str)
+                      and bool(value.get("task"))) if isinstance(value, dict) else False
     if (not isinstance(value, dict) or value.get("schema_version") != 1
-            or (value.get("task"), value.get("stage")) not in {
-                ("T26", 43), ("T27", 44), ("T28", 45)
-            }
+            or not (known or future_catalog)
             or not isinstance(value.get("mailbox"), dict)
             or not isinstance(value.get("rom"), dict)):
         _fail(EXIT_CONFIG, "protocol metadata contract differs")
-    if (value.get("stage") in {44, 45}
+    if (int(stage) >= 44
             and not isinstance(value.get("base_mailbox"), dict)):
         _fail(EXIT_CONFIG, "runtime base mailbox contract differs")
-    if (value.get("stage") == 45
+    if (int(stage) >= 45
             and (not isinstance(value.get("reward"), dict)
                  or not isinstance(value["reward"].get("owner"), dict))):
-        _fail(EXIT_CONFIG, "Stage 45 reward contract differs")
+        _fail(EXIT_CONFIG, "reward contract differs")
+    if (int(stage) >= 46
+            and not isinstance(value.get("catalog_access"), dict)):
+        _fail(EXIT_CONFIG, "Windows catalog access contract differs")
     return value
 
 
@@ -270,6 +280,10 @@ def _reward_pending_path() -> Path:
     return _config_root() / "vega-codex-battle" / "reward-pending.json"
 
 
+def _catalog_pending_path() -> Path:
+    return _config_root() / "vega-codex-battle" / "catalog-pending.json"
+
+
 def _view_cursor_path() -> Path:
     return _config_root() / "vega-codex-battle" / "view-cursor.json"
 
@@ -277,12 +291,16 @@ def _view_cursor_path() -> Path:
 def _preview_rom_path(protocol: Mapping[str, Any]) -> Path:
     explicit = os.environ.get("VEGA_CODEX_BATTLE_ROM")
     here = Path(__file__).resolve()
+    configured = protocol.get("rom", {}).get("path")
     candidates = tuple(filter(None, (
         Path(explicit) if explicit else None,
+        here.with_name("windows_battle_catalog.gba"),
         here.with_name("codex_battle_rewards.gba"),
         here.with_name("codex_battle_runtime.gba"),
+        here.parents[1] / "build/stages/46_windows_battle_catalog.gba",
         here.parents[1] / "build/stages/45_codex_battle_rewards.gba",
         here.parents[1] / "build/stages/44_codex_battle_runtime.gba",
+        here.parents[1] / str(configured) if configured else None,
     )))
     expected = str(protocol.get("rom", {}).get("sha256", ""))
     for candidate in candidates:
@@ -520,7 +538,8 @@ def load_match_state(*, required: bool = True) -> dict[str, Any] | None:
             _fail(EXIT_CONFIG, "owner-only match state is unavailable")
         return None
     if (not isinstance(value, dict) or value.get("schema_version") != 1
-            or value.get("stage") not in {44, 45}):
+            or type(value.get("stage")) is not int
+            or value.get("stage") < 44):
         _fail(EXIT_CONFIG, "owner-only match state contract differs")
     return value
 
@@ -538,7 +557,8 @@ def load_reward_pending(*, required: bool = False) -> dict[str, Any] | None:
     except (OSError, ValueError, json.JSONDecodeError):
         _fail(EXIT_CONFIG, "owner-only reward retry state is invalid")
     if (not isinstance(value, dict) or value.get("schema_version") != 1
-            or value.get("stage") != 45
+            or type(value.get("stage")) is not int
+            or value.get("stage") < 45
             or not all(isinstance(value.get(key), int) for key in (
                 "session_nonce", "match_id", "command", "sequence",
                 "payload_hash",
@@ -571,6 +591,55 @@ def _clear_reward_pending(expected: Mapping[str, Any]) -> None:
         return
     except OSError:
         _fail(EXIT_CONFIG_WRITE, "owner-only reward retry state could not be cleared")
+
+
+def load_catalog_pending(*, required: bool = False) -> dict[str, Any] | None:
+    path = _catalog_pending_path()
+    try:
+        if stat.S_IMODE(path.stat().st_mode) != 0o600:
+            raise OSError("permissions")
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        if required:
+            _fail(EXIT_CONFIG, "owner-only catalog retry state is unavailable")
+        return None
+    except (OSError, ValueError, json.JSONDecodeError):
+        _fail(EXIT_CONFIG, "owner-only catalog retry state is invalid")
+    if (not isinstance(value, dict) or value.get("schema_version") != 1
+            or type(value.get("stage")) is not int
+            or value.get("stage") < 46
+            or not all(isinstance(value.get(key), int) for key in (
+                "session_nonce", "match_id", "command", "sequence",
+                "payload_hash",
+            ))
+            or not isinstance(value.get("payload_hex"), str)):
+        _fail(EXIT_CONFIG, "owner-only catalog retry contract differs")
+    try:
+        payload = bytes.fromhex(value["payload_hex"])
+    except ValueError:
+        _fail(EXIT_CONFIG, "owner-only catalog payload encoding differs")
+    if (len(payload) > 64
+            or zlib.crc32(payload) & 0xFFFFFFFF != value["payload_hash"]
+            or value["command"] not in {15, 16}
+            or not 1 <= value["sequence"] <= 0xFFFFFFFF):
+        _fail(EXIT_CONFIG, "owner-only catalog retry identity differs")
+    return value
+
+
+def _clear_catalog_pending(expected: Mapping[str, Any]) -> None:
+    current = load_catalog_pending(required=False)
+    if current is None:
+        return
+    identity = ("session_nonce", "match_id", "command", "sequence",
+                "payload_hash", "payload_hex")
+    if any(current.get(key) != expected.get(key) for key in identity):
+        _fail(EXIT_CONFIG_WRITE, "owner-only catalog retry state changed")
+    try:
+        _catalog_pending_path().unlink()
+    except FileNotFoundError:
+        return
+    except OSError:
+        _fail(EXIT_CONFIG_WRITE, "owner-only catalog retry state could not be cleared")
 
 
 def _validate_host(host: str) -> str:
@@ -861,19 +930,33 @@ def build_ping_request(
 
 
 def _runtime_protocol(protocol: Mapping[str, Any]) -> None:
-    if (protocol.get("task"), protocol.get("stage")) not in {
-        ("T27", 44), ("T28", 45),
-    }:
-        _fail(EXIT_CONFIG, "this command requires the Stage 44/45 protocol")
+    if (type(protocol.get("stage")) is not int
+            or int(protocol["stage"]) < 44
+            or not isinstance(protocol.get("base_mailbox"), Mapping)):
+        _fail(EXIT_CONFIG, "this command requires a Stage 44+ runtime protocol")
 
 
 def _reward_protocol(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
-    if (protocol.get("task"), protocol.get("stage")) != ("T28", 45):
-        _fail(EXIT_CONFIG, "this command requires the Stage 45 reward protocol")
+    if (type(protocol.get("stage")) is not int
+            or int(protocol["stage"]) < 45):
+        _fail(EXIT_CONFIG, "this command requires a reward protocol")
     reward = protocol.get("reward")
     if not isinstance(reward, Mapping):
-        _fail(EXIT_CONFIG, "Stage 45 reward metadata is unavailable")
+        _fail(EXIT_CONFIG, "reward metadata is unavailable")
     return reward
+
+
+def _catalog_access_protocol(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
+    if (type(protocol.get("stage")) is not int
+            or int(protocol["stage"]) < 46):
+        _fail(EXIT_CONFIG, "this command requires the Windows catalog protocol")
+    access = protocol.get("catalog_access")
+    if (not isinstance(access, Mapping)
+            or access.get("semantics") != "REUSABLE_TEMPLATES"
+            or access.get("batch", {}).get("failure_policy")
+            != "STOP_ON_FIRST_ERROR_WITH_RESUME_INDEX"):
+        _fail(EXIT_CONFIG, "Windows catalog metadata is unavailable")
+    return access
 
 
 def runtime_snapshot_crc32(raw: bytes) -> int:
@@ -1460,7 +1543,12 @@ def build_runtime_request(
 ) -> tuple[bytes, int]:
     _runtime_protocol(protocol)
     mailbox = protocol["mailbox"]
-    maximum_command = 14 if protocol.get("stage") == 45 else 10
+    maximum_command = 14 if int(protocol["stage"]) >= 45 else 10
+    access = protocol.get("catalog_access")
+    if isinstance(access, Mapping) and isinstance(access.get("commands"), Mapping):
+        maximum_command = max(
+            maximum_command, *(int(value) for value in access["commands"].values()),
+        )
     if (not 1 <= command <= maximum_command
             or len(payload) > int(mailbox["request_payload_max"])):
         _fail(EXIT_REQUEST, "runtime request command/payload is invalid")
@@ -1758,7 +1846,7 @@ def _check_content(status: Mapping[str, Any], protocol: Mapping[str, Any]) -> No
 
 def _read_valid_mailbox(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
     mailbox = protocol["mailbox"]
-    if protocol.get("stage") in {44, 45}:
+    if int(protocol["stage"]) >= 44:
         public_spec = protocol["public_state"]
         last_error: CliError | None = None
         # Poll publishes the fixed mailbox and public state with commit words.
@@ -1779,7 +1867,7 @@ def _read_valid_mailbox(client: NciClient, protocol: Mapping[str, Any]) -> dict[
                         result["public_battle_state"] = parse_public_battle_state(
                             public_raw, protocol,
                         )
-                        if protocol.get("stage") == 45:
+                        if int(protocol["stage"]) >= 45:
                             reward_owner = protocol["reward"]["owner"]
                             reward_raw = client.read_memory(
                                 int(reward_owner["address"]),
@@ -1805,7 +1893,7 @@ def _read_valid_base_mailbox(
     client: NciClient, protocol: Mapping[str, Any],
 ) -> dict[str, Any]:
     mailbox = (protocol["base_mailbox"]
-               if protocol.get("stage") in {44, 45}
+               if int(protocol["stage"]) >= 44
                else protocol["mailbox"])
     raw = client.read_memory(int(mailbox["address"]), int(mailbox["struct_size"]))
     return parse_mailbox(raw, {"mailbox": mailbox})
@@ -1824,7 +1912,7 @@ def device_status(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, A
         "stage": int(protocol["stage"]),
         "phase": mailbox["phase"],
         "phase_name": (mailbox.get("phase_name")
-                       if protocol.get("stage") in {44, 45} else "IDLE"),
+                       if int(protocol["stage"]) >= 44 else "IDLE"),
         "match_id": mailbox.get("match_id", 0),
         "turn": mailbox.get("turn", 0),
         "snapshot_sequence": mailbox["snapshot_sequence"],
@@ -1847,25 +1935,30 @@ def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
     _check_content(status, protocol)
     mailbox = _read_valid_mailbox(client, protocol)
     base = (_read_valid_base_mailbox(client, protocol)
-            if protocol.get("stage") in {44, 45} else mailbox)
-    expected_capabilities = 8191 if protocol.get("stage") in {44, 45} else 7
+            if int(protocol["stage"]) >= 44 else mailbox)
+    stage = int(protocol["stage"])
+    expected_capabilities = 7 if stage == 43 else 8191
+    if stage >= 46:
+        expected_capabilities |= int(_catalog_access_protocol(protocol)["capability"])
     checks = {
         "transport": bool(version),
         "core_system_gba": True,
         "rom_identity": status["crc32"] == protocol["rom"]["crc32"],
         "core_memory_map": True,
         "protocol": True,
-        "capabilities": int(protocol["mailbox"]["capabilities"]) == expected_capabilities,
+        "capabilities": (
+            int(protocol["mailbox"]["capabilities"]) & expected_capabilities
+        ) == expected_capabilities,
         "session_nonce": mailbox["session_nonce"] != 0,
         "snapshot_crc": True,
         "public_battle_state_crc": (
-            protocol.get("stage") not in {44, 45}
+            int(protocol["stage"]) < 44
             or "public_battle_state" in mailbox
         ),
         "t26_base_bridge": base["session_nonce"] != 0,
         "owner_only_config": True,
     }
-    if protocol.get("stage") == 45:
+    if int(protocol["stage"]) >= 45:
         reward_owner = mailbox.get("reward_owner")
         checks["reward_owner_crc"] = bool(
             isinstance(reward_owner, Mapping) and reward_owner.get("valid")
@@ -1885,7 +1978,7 @@ def doctor(client: NciClient, protocol: Mapping[str, Any]) -> dict[str, Any]:
         "protocol": (
             f"{int(protocol['mailbox']['major'])}."
             f"{int(protocol['mailbox']['minor'])}"
-            if protocol.get("stage") in {44, 45} else "1.0"
+            if int(protocol["stage"]) >= 44 else "1.0"
         ),
         "capabilities": int(protocol["mailbox"]["capabilities"]),
         "security": {
@@ -1903,7 +1996,7 @@ def bridge_ping(
     status = client.status()
     _check_content(status, protocol)
     bridge_protocol = ({**protocol, "mailbox": protocol["base_mailbox"]}
-                       if protocol.get("stage") in {44, 45} else protocol)
+                       if int(protocol["stage"]) >= 44 else protocol)
     before = _read_valid_base_mailbox(client, protocol)
     token = secrets.randbits(32) or 1
     request, sequence = build_ping_request(before, bridge_protocol, token)
@@ -2859,7 +2952,7 @@ def _reward_status_from_state(
              and int(owner["match_id"]) == int(state["match_id"]))
     result: dict[str, Any] = {
         "read_only": True,
-        "stage": 45,
+        "stage": int(protocol["stage"]),
         "window": owner["window_name"],
         "journal": owner["journal_phase_name"],
         "result": owner["result_name"],
@@ -2984,7 +3077,7 @@ def _reward_pending_document(
         sequence = 1
     document = {
         "schema_version": 1,
-        "stage": 45,
+        "stage": int(protocol["stage"]),
         "session_nonce": int(state["session_nonce"]),
         "match_id": int(state["match_id"]),
         "command": command,
@@ -3284,6 +3377,364 @@ def reward_close(
     return {**result, "closed": True, "automatic_reward": False}
 
 
+def catalog_access_status(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    access = _catalog_access_protocol(protocol)
+    _check_content(client.status(), protocol)
+    state = _read_valid_mailbox(client, protocol)
+    owner = state.get("reward_owner")
+    if not isinstance(owner, Mapping):
+        _fail(EXIT_PROTOCOL, "catalog transaction owner was not published")
+    available = (state["phase_name"] == "IDLE"
+                 and owner["window_name"] == "CLOSED"
+                 and int(owner["pending_sequence"]) == 0)
+    return {
+        "stage": int(protocol["stage"]),
+        "read_only": True,
+        "available": available,
+        "runtime_phase": state["phase_name"],
+        "reward_window": owner["window_name"],
+        "journal": owner["journal_phase_name"],
+        "pending_sequence": owner["pending_sequence"],
+        "retry_file_present": load_catalog_pending(required=False) is not None,
+        "context": access["context"],
+        "physical_context_checked_by_rom_on_write": True,
+        "templates_are_reusable": True,
+        "host_save_or_party_write": False,
+    }
+
+
+def _catalog_pending_document(
+    state: Mapping[str, Any], protocol: Mapping[str, Any],
+    command: int, payload: bytes,
+) -> tuple[dict[str, Any], bool]:
+    _catalog_access_protocol(protocol)
+    owner = state.get("reward_owner")
+    if not isinstance(owner, Mapping):
+        _fail(EXIT_PROTOCOL, "catalog transaction owner was not published")
+    if state["phase_name"] != "IDLE" or owner["window_name"] != "CLOSED":
+        _fail(EXIT_REQUEST, "Windows catalog is available only before the NPC battle")
+    payload_hash = zlib.crc32(payload) & 0xFFFFFFFF
+    expected = {
+        "session_nonce": int(state["session_nonce"]),
+        "match_id": int(state["match_id"]),
+        "command": command,
+        "payload_hash": payload_hash,
+        "payload_hex": payload.hex(),
+    }
+    existing = load_catalog_pending(required=False)
+    if existing is not None:
+        matches_payload = all(
+            existing.get(key) == value
+            for key, value in expected.items()
+            if key not in {"session_nonce", "match_id"}
+        )
+        committed = (
+            int(owner["last_request_sequence"]) == existing["sequence"]
+            and int(owner["last_payload_hash"]) == existing["payload_hash"]
+            and int(owner["last_command"]) == existing["command"]
+            and owner["journal_phase_name"] == "COMMITTED"
+            and (int(owner["flags"]) & 0x0008) != 0
+        )
+        if committed and matches_payload:
+            return existing, True
+        same_session = (
+            existing["session_nonce"] == int(state["session_nonce"])
+            and existing["match_id"] == int(state["match_id"])
+        )
+        if committed or (not same_session
+                         and int(owner["pending_sequence"]) == 0):
+            _clear_catalog_pending(existing)
+            existing = None
+    if existing is not None:
+        owner_resumable = (
+            int(owner["pending_sequence"]) == existing["sequence"]
+            and int(owner["pending_payload_hash"]) == existing["payload_hash"]
+        )
+        same_request = matches_payload and (same_session or owner_resumable)
+        if not same_request:
+            _fail(
+                EXIT_REQUEST,
+                "a different catalog request is awaiting an exact retry",
+                detail="retry the same bank operation before starting another",
+            )
+        return existing, True
+    if int(owner["pending_sequence"]) != 0:
+        _fail(
+            EXIT_REQUEST,
+            "ROM has an in-flight catalog transaction without its retry payload",
+            detail="do not submit a different catalog operation",
+        )
+    sequence = (int(state["last_accepted_sequence"]) + 1) & 0xFFFFFFFF
+    if sequence == 0:
+        sequence = 1
+    document = {
+        "schema_version": 1,
+        "stage": int(protocol["stage"]),
+        **expected,
+        "sequence": sequence,
+    }
+    _owner_write(_catalog_pending_path(), document)
+    return document, False
+
+
+def send_catalog_request(
+    client: NciClient, protocol: Mapping[str, Any], command: int,
+    payload: bytes, *, timeout: float = 12.0,
+) -> dict[str, Any]:
+    access = _catalog_access_protocol(protocol)
+    if command not in {int(value) for value in access["commands"].values()}:
+        _fail(EXIT_REQUEST, "catalog command differs")
+    _check_content(client.status(), protocol)
+    before = _read_valid_mailbox(client, protocol)
+    pending, resumed = _catalog_pending_document(
+        before, protocol, command, payload,
+    )
+    owner = before["reward_owner"]
+    if (int(owner["last_request_sequence"]) == pending["sequence"]
+            and int(owner["last_payload_hash"]) == pending["payload_hash"]
+            and int(owner["last_command"]) == command
+            and owner["journal_phase_name"] == "COMMITTED"
+            and (int(owner["flags"]) & 0x0008) != 0):
+        _clear_catalog_pending(pending)
+        return {
+            "accepted_sequence": pending["sequence"],
+            "exactly_once": True,
+            "response_lost_or_restart_recovered": True,
+            "write_operations": 0,
+            "write_bytes": 0,
+            "request_span_only": True,
+            "host_save_or_party_write": False,
+        }
+    request, sequence = build_runtime_request(
+        before, protocol, command, payload, sequence=pending["sequence"],
+    )
+    mailbox = protocol["mailbox"]
+    address = int(mailbox["address"]) + int(mailbox["request_offset"])
+    written = [
+        client.write_memory(address, request[:88]),
+        client.write_memory(address + 88, request[88:92]),
+        client.write_memory(address + 92, request[92:96]),
+    ]
+    deadline = time.monotonic() + timeout
+    after: dict[str, Any] | None = None
+    while time.monotonic() < deadline:
+        candidate = _read_valid_mailbox(client, protocol)
+        if int(candidate["response_sequence"]) == sequence:
+            after = candidate
+            break
+        time.sleep(0.025)
+    if after is None:
+        _fail(
+            EXIT_TRANSPORT,
+            "catalog response was not published before timeout",
+            detail="the owner-only exact request was retained for retry",
+        )
+    if int(after["response_status"]) == 3:
+        error = int(after["response_error"])
+        if error not in {16, 19, 20, 24}:
+            _clear_catalog_pending(pending)
+        _fail(
+            EXIT_REQUEST, "ROM rejected the catalog operation",
+            detail=ROM_ERROR_NAMES.get(error, "UNKNOWN"),
+        )
+    owner = after["reward_owner"]
+    if (int(after["response_status"]) != 2
+            or int(after["response_error"]) != 0
+            or int(after["last_command"]) != command
+            or int(after["last_accepted_sequence"]) != sequence
+            or int(owner["last_request_sequence"]) != sequence
+            or int(owner["last_payload_hash"]) != pending["payload_hash"]
+            or int(owner["last_command"]) != command
+            or owner["journal_phase_name"] != "COMMITTED"
+            or owner["window_name"] != "CLOSED"
+            or (int(owner["flags"]) & 0x0008) == 0):
+        _fail(
+            EXIT_REQUEST, "catalog acceptance/journal response differs",
+            detail="the owner-only exact request was retained for retry",
+        )
+    _clear_catalog_pending(pending)
+    return {
+        "accepted_sequence": sequence,
+        "exactly_once": True,
+        "retry_resumed": resumed,
+        "response_lost_or_restart_recovered": False,
+        "journal": owner["journal_phase_name"],
+        "destination": owner["destination"],
+        "committed_count": owner["committed_count"],
+        "window": owner["window_name"],
+        "write_operations": 3,
+        "write_bytes": sum(written),
+        "request_span_only": True,
+        "host_save_or_party_write": False,
+    }
+
+
+def catalog_access_item(
+    client: NciClient, protocol: Mapping[str, Any], item_id: int,
+    quantity: int,
+) -> dict[str, Any]:
+    access = _catalog_access_protocol(protocol)
+    limits = _reward_protocol(protocol)["limits"]
+    item_id = _exact_int(item_id, 1, int(limits["item_max"]), "catalog item ID")
+    quantity = _exact_int(
+        quantity, 1, int(limits["quantity_max"]), "catalog quantity",
+    )
+    item = catalog_get(load_catalog(protocol), "item", item_id)["entry"]
+    result = send_catalog_request(
+        client, protocol, int(access["commands"]["catalog_item"]),
+        struct.pack("<HH", item_id, quantity),
+    )
+    return {
+        **result,
+        "catalog_entry": {"kind": "item", "item_id": item_id,
+                          "item_name": item["name"], "quantity": quantity},
+        "templates_are_reusable": True,
+    }
+
+
+def catalog_access_mon(
+    client: NciClient, protocol: Mapping[str, Any], species_id: int,
+    level: int, **options: Any,
+) -> dict[str, Any]:
+    access = _catalog_access_protocol(protocol)
+    catalog = load_catalog(protocol)
+    payload, resolved = build_reward_mon_payload(
+        protocol, catalog, species_id, level, **options,
+    )
+    result = send_catalog_request(
+        client, protocol, int(access["commands"]["catalog_mon"]), payload,
+    )
+    return {**result, "catalog_entry": resolved,
+            "templates_are_reusable": True}
+
+
+def _batch_list_text(value: Any, label: str) -> str | None:
+    if value is None:
+        return None
+    if (not isinstance(value, list) or not value
+            or any(type(item) is not int for item in value)):
+        _fail(EXIT_REQUEST, f"batch {label} must be a non-empty integer list")
+    return ",".join(str(item) for item in value)
+
+
+def _prepare_catalog_operation(
+    protocol: Mapping[str, Any], catalog: Mapping[str, Any],
+    operation: Any, index: int,
+) -> tuple[int, bytes, dict[str, Any]]:
+    if not isinstance(operation, dict) or operation.get("kind") not in {"item", "mon"}:
+        _fail(EXIT_REQUEST, f"batch operation {index} kind differs")
+    kind = str(operation["kind"])
+    access = _catalog_access_protocol(protocol)
+    if kind == "item":
+        allowed = {"kind", "item_id", "quantity"}
+        if set(operation) - allowed or not allowed.issubset(operation):
+            _fail(EXIT_REQUEST, f"batch item operation {index} fields differ")
+        limits = _reward_protocol(protocol)["limits"]
+        item_id = _exact_int(
+            operation["item_id"], 1, int(limits["item_max"]),
+            f"batch operation {index} item ID",
+        )
+        quantity = _exact_int(
+            operation["quantity"], 1, int(limits["quantity_max"]),
+            f"batch operation {index} quantity",
+        )
+        item = catalog_get(catalog, "item", item_id)["entry"]
+        return (int(access["commands"]["catalog_item"]),
+                struct.pack("<HH", item_id, quantity),
+                {"kind": "item", "item_id": item_id,
+                 "item_name": item["name"], "quantity": quantity})
+    allowed = {
+        "kind", "species_id", "level", "moves", "held_item_id",
+        "ability_id", "ability_slot", "nature_id", "ivs", "evs",
+        "shiny", "tera_type", "ball_item_id",
+    }
+    required = {"kind", "species_id", "level"}
+    if set(operation) - allowed or not required.issubset(operation):
+        _fail(EXIT_REQUEST, f"batch mon operation {index} fields differ")
+    payload, resolved = build_reward_mon_payload(
+        protocol, catalog, operation["species_id"], operation["level"],
+        moves_text=_batch_list_text(operation.get("moves"), "moves"),
+        held_item_id=operation.get("held_item_id", 0),
+        ability_id=operation.get("ability_id"),
+        ability_slot=operation.get("ability_slot"),
+        nature_id=operation.get("nature_id", 0),
+        ivs_text=_batch_list_text(operation.get("ivs"), "IVs"),
+        evs_text=_batch_list_text(operation.get("evs"), "EVs"),
+        shiny=operation.get("shiny", False),
+        tera_type=operation.get("tera_type"),
+        ball_item_id=operation.get("ball_item_id"),
+    )
+    return int(access["commands"]["catalog_mon"]), payload, resolved
+
+
+def catalog_access_batch(
+    client: NciClient, protocol: Mapping[str, Any], path: Path,
+    *, start_index: int = 0,
+) -> dict[str, Any]:
+    access = _catalog_access_protocol(protocol)
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError, json.JSONDecodeError):
+        _fail(EXIT_REQUEST, "catalog batch JSON is unavailable or invalid")
+    operations = document.get("operations") if isinstance(document, dict) else None
+    if (not isinstance(document, dict) or document.get("schema_version") != 1
+            or set(document) != {"schema_version", "operations"}
+            or not isinstance(operations, list) or not operations
+            or len(operations) > int(access["batch"]["max_operations"])):
+        _fail(EXIT_REQUEST, "catalog batch contract differs")
+    start_index = _exact_int(
+        start_index, 0, len(operations), "catalog batch start index",
+    )
+    catalog = load_catalog(protocol)
+    prepared = [
+        _prepare_catalog_operation(protocol, catalog, operation, index)
+        for index, operation in enumerate(operations)
+    ]
+    completed: list[dict[str, Any]] = []
+    for index in range(start_index, len(prepared)):
+        command, payload, resolved = prepared[index]
+        try:
+            result = send_catalog_request(client, protocol, command, payload)
+        except CliError as error:
+            failure: dict[str, Any] = {
+                "index": index,
+                "operation": operations[index],
+                "error": {"code": error.error_code, "message": str(error)},
+            }
+            if error.detail:
+                failure["error"]["detail"] = error.detail
+            return {
+                "batch_status": "STOPPED",
+                "operation_count": len(operations),
+                "start_index": start_index,
+                "completed_count": len(completed),
+                "completed": completed,
+                "failure": failure,
+                "resume_index": index,
+                "failure_policy": access["batch"]["failure_policy"],
+                "host_save_or_party_write": False,
+            }
+        completed.append({
+            "index": index,
+            "kind": resolved["kind"],
+            "accepted_sequence": result["accepted_sequence"],
+            "destination": result.get("destination"),
+        })
+    return {
+        "batch_status": "COMPLETE",
+        "operation_count": len(operations),
+        "start_index": start_index,
+        "completed_count": len(completed),
+        "completed": completed,
+        "failure": None,
+        "resume_index": None,
+        "failure_policy": access["batch"]["failure_policy"],
+        "host_save_or_party_write": False,
+    }
+
+
 def session_guide(
     client: NciClient, protocol: Mapping[str, Any],
 ) -> dict[str, Any]:
@@ -3301,7 +3752,7 @@ def session_guide(
          "purpose": "呼出元が選んだteam/action/gimmickだけを送信"},
     ]
     reward_summary: dict[str, Any] | None = None
-    if protocol.get("stage") == 45:
+    if int(protocol["stage"]) >= 45:
         reward_summary = _reward_status_from_state(
             state, protocol, load_catalog(protocol),
         )
@@ -3314,12 +3765,27 @@ def session_guide(
             {"order": 7, "category": "write", "command": "reward close --json",
              "purpose": "追加報酬がなければwindowを不可逆に閉じる"},
         ])
+    catalog_summary: dict[str, Any] | None = None
+    if int(protocol["stage"]) >= 46:
+        owner = state.get("reward_owner", {})
+        catalog_summary = {
+            "available": state["phase_name"] == "IDLE"
+            and owner.get("window_name") == "CLOSED",
+            "command": "bank status|item|mon|batch --json",
+            "templates_are_reusable": True,
+        }
+        steps.append({
+            "order": 8, "category": "write",
+            "command": "bank item|mon|batch ... --json",
+            "purpose": "NPC前IDLEで通常bag／party／boxへ順次生成",
+        })
     return {
         "stage": int(protocol["stage"]),
         "phase": state["phase_name"],
         "match_id": state["match_id"],
         "steps": steps,
         "reward": reward_summary,
+        "windows_catalog": catalog_summary,
         "automatic_strategy": False,
         "automatic_team_or_action": False,
         "automatic_reward": False,
@@ -3549,7 +4015,7 @@ def _add_json_flag(parser: argparse.ArgumentParser) -> None:
 
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="vega-codex-battle", description=__doc__)
-    parser.add_argument("--version", action="version", version="vega-codex-battle 2.3")
+    parser.add_argument("--version", action="version", version="vega-codex-battle 2.4")
     commands = parser.add_subparsers(dest="command", required=True)
 
     doctor_parser = commands.add_parser("doctor", help="transport/core/ROM/protocol診断")
@@ -3602,7 +4068,7 @@ def _parser() -> argparse.ArgumentParser:
     export.add_argument("--output", required=True, type=Path)
     _add_json_flag(export)
 
-    match_parser = commands.add_parser("match", help="Stage 44/45 match操作")
+    match_parser = commands.add_parser("match", help="Stage 44以降のmatch操作")
     match_commands = match_parser.add_subparsers(dest="match_command", required=True)
     match_config = match_commands.add_parser("configure")
     match_config.add_argument("--level", choices=("flat50", "open"), required=True)
@@ -3651,8 +4117,48 @@ def _parser() -> argparse.ArgumentParser:
     wait_parser.add_argument("--reset-events", action="store_true")
     _add_json_flag(wait_parser)
 
+    bank_parser = commands.add_parser(
+        "bank", help="NPC前Windows対戦カタログから通常収納へ生成",
+    )
+    bank_commands = bank_parser.add_subparsers(
+        dest="bank_command", required=True,
+    )
+    bank_status_parser = bank_commands.add_parser(
+        "status", help="生成可能状態をread-only表示",
+    )
+    _add_json_flag(bank_status_parser)
+    bank_item_parser = bank_commands.add_parser(
+        "item", help="canonical item templateをbagへ生成",
+    )
+    bank_item_parser.add_argument("item_id", type=int)
+    bank_item_parser.add_argument("--quantity", type=int, required=True)
+    _add_json_flag(bank_item_parser)
+    bank_mon_parser = bank_commands.add_parser(
+        "mon", help="canonical species templateをparty／boxへ生成",
+    )
+    bank_mon_parser.add_argument("species_id", type=int)
+    bank_mon_parser.add_argument("--level", type=int, required=True)
+    bank_mon_parser.add_argument("--moves", help="move IDを1〜4件、カンマ区切り")
+    bank_mon_parser.add_argument("--held-item", type=int, default=0)
+    bank_ability = bank_mon_parser.add_mutually_exclusive_group()
+    bank_ability.add_argument("--ability", type=int)
+    bank_ability.add_argument("--ability-slot", type=int, choices=(0, 1, 2))
+    bank_mon_parser.add_argument("--nature", type=int, default=0)
+    bank_mon_parser.add_argument("--ivs", help="HP,Atk,Def,Spe,SpA,SpD")
+    bank_mon_parser.add_argument("--evs", help="HP,Atk,Def,Spe,SpA,SpD")
+    bank_mon_parser.add_argument("--shiny", action="store_true")
+    bank_mon_parser.add_argument("--tera-type", type=int)
+    bank_mon_parser.add_argument("--ball", type=int)
+    _add_json_flag(bank_mon_parser)
+    bank_batch_parser = bank_commands.add_parser(
+        "batch", help="JSONの複数templateを1件ずつcommit",
+    )
+    bank_batch_parser.add_argument("--file", required=True, type=Path)
+    bank_batch_parser.add_argument("--start-index", type=int, default=0)
+    _add_json_flag(bank_batch_parser)
+
     reward_parser = commands.add_parser(
-        "reward", help="Stage 45 match-bound任意報酬",
+        "reward", help="Stage 45以降のmatch-bound任意報酬",
     )
     reward_commands = reward_parser.add_subparsers(
         dest="reward_command", required=True,
@@ -3720,6 +4226,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         command_label += "." + str(args.choose_command)
     elif args.command == "reward":
         command_label += "." + str(args.reward_command)
+    elif args.command == "bank":
+        command_label += "." + str(args.bank_command)
     elif args.command == "session":
         command_label += "." + str(args.session_command)
     try:
@@ -3809,6 +4317,25 @@ def main(argv: Sequence[str] | None = None) -> int:
             _emit(command_label, "ok", **wait_runtime(
                 client, protocol, args.timeout, compact=args.compact,
                 reset_events=args.reset_events,
+            ))
+        elif args.command == "bank" and args.bank_command == "status":
+            _emit(command_label, "ok", **catalog_access_status(client, protocol))
+        elif args.command == "bank" and args.bank_command == "item":
+            _emit(command_label, "ok", **catalog_access_item(
+                client, protocol, args.item_id, args.quantity,
+            ))
+        elif args.command == "bank" and args.bank_command == "mon":
+            _emit(command_label, "ok", **catalog_access_mon(
+                client, protocol, args.species_id, args.level,
+                moves_text=args.moves, held_item_id=args.held_item,
+                ability_id=args.ability, ability_slot=args.ability_slot,
+                nature_id=args.nature, ivs_text=args.ivs,
+                evs_text=args.evs, shiny=args.shiny,
+                tera_type=args.tera_type, ball_item_id=args.ball,
+            ))
+        elif args.command == "bank" and args.bank_command == "batch":
+            _emit(command_label, "ok", **catalog_access_batch(
+                client, protocol, args.file, start_index=args.start_index,
             ))
         elif args.command == "reward" and args.reward_command == "status":
             _emit(command_label, "ok", **reward_status(client, protocol))
