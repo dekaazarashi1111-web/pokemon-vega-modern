@@ -855,3 +855,13 @@
   - CLI 2.4へ`bank status/item/mon/batch`、1件単位commit、停止位置と再開index、owner-only exact retryを追加し、特定ROM filenameではなくprotocol contractから現行・将来Stageを発見する運用へした。
   - PCは14箱×30枠と既存save ABIのまま、回収はT19の複数box選択・一括逃がしを再利用した。Stage45既定runtimeとmatch-bound reward契約はbyte／実行回帰とも不変。
 - Verify: Stage 46 build/check、libmGBA quick/full各8/8、focused 24 tests、1／6／30件batch、Stage45 byte identity、Stage47相当protocol互換、両BPS往復、declared span外0、ROM/RAM/save/hook overlap 0、task graph/private guard/diff check PASS。Stage 46 SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`、CRC32 `3D8B62B1`。
+
+## 2026-08-23T16:35:51+09:00
+
+- Version: `post-v1.4.0-stage46-ipad-copy`（Stage 46 ROM identityは不変）
+- Commit: `-`（本エントリを含む転送証跡コミット）
+- Task: `USER-20260823-STAGE46-IPAD-TRANSFER` / Stage 46対戦ROMをiPadへ別名配置する
+- Summary:
+  - Stage 46 ROMを既存Stage 45と同じiPadディレクトリへversioned filenameで新規配置した。
+  - 既存ROM/save/savestateを変更せず、contentの起動とRetroArch操作は行っていない。
+- Verify: 固定host key付きWi-Fi SSH、転送元identity、iPad側33,554,432 bytes、SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`一致 PASS。

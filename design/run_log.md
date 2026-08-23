@@ -2024,3 +2024,22 @@
   - `python3 -m py_compile ...`、両installerの`bash -n`、JSON parse、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
 - Commit: `-`（本エントリを含むT29完了コミット）
 - Network: 未使用。ローカルの固定Stage 45、canonical catalog、mGBA、既存T19/T28成果だけを使用し、private ROM/saveを外部送信していない。
+
+## 2026-08-23T16:35:51+09:00
+
+- Task: `USER-20260823-STAGE46-IPAD-TRANSFER` / Stage 46対戦ROMをiPadへ別名配置する
+- Status: DONE
+- Summary:
+  - T29で生成したStage 46 ROMを、固定host key検査済みのWi-Fi SSHでユーザー所有iPadへ転送した。
+  - iPad上の既存Stage 45 ROMを一意に確認し、その同じディレクトリへ`46_windows_battle_catalog_7941e7b59772.gba`として新規配置した。既存ROM、save、savestateは上書き・変更していない。
+  - ユーザー指示どおりcontentの起動、RetroArch操作、対戦開始は行っていない。
+- Files changed:
+  - iPad側Git管理外成果物: `46_windows_battle_catalog_7941e7b59772.gba`。
+  - tracked変更: `design/run_log.md`、`design/version_log.md`の転送証跡のみ。
+- Verify:
+  - `ipad-wifi-ssh doctor`: PASS。client keyと固定host keyを照合し、Wi-Fi SSH接続を確認した。
+  - 転送前に既存Stage 45 ROMの一致数が1件であることをread-only確認した。
+  - 転送後のiPad側ファイルは33,554,432 bytes、SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`でローカルStage 46と一致した。
+- Commit: `-`（本エントリを含む転送証跡コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでGBAファイル1件だけを送信した。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。
