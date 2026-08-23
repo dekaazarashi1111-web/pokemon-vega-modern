@@ -2043,3 +2043,21 @@
 - Commit: `-`（本エントリを含む転送証跡コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでGBAファイル1件だけを送信した。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-23T16:41:09+09:00
+
+- Task: `USER-20260823-STAGE46-SAVE-COPY` / Stage 45セーブをStage 46用へ複製する
+- Status: DONE
+- Summary:
+  - iPad上の`45_codex_battle_rewards_FINALFIX_2eedbe64.srm`を一意に確認し、内容を変更せず`46_windows_battle_catalog_7941e7b59772.srm`へ複製した。
+  - Stage 46側には異なる既存セーブがあったため、上書き前に`46_windows_battle_catalog_7941e7b59772.srm.pre-stage45-copy-b5a41c375876.bak`として同じsaveディレクトリへ退避した。
+  - ROM、元のStage 45セーブ、savestateは変更せず、contentの起動とゲーム内書き込みは行っていない。
+- Files changed:
+  - iPad側Git管理外成果物: Stage 46用`.srm`と置換前`.bak`。
+  - tracked変更: `design/run_log.md`、`design/version_log.md`の転送証跡のみ。
+- Verify:
+  - Stage 45元セーブとStage 46適用後セーブは各131,072 bytes、SHA-256 `1289b8c3d4caf135c778f98523d6937c86d0ec9609c0043e348fcdc3298af2e2`でbyte一致した。
+  - 退避セーブは131,072 bytes、SHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`で置換前identityを維持した。
+- Commit: `-`（本エントリを含むセーブ配置証跡コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでread/copy/hash照合を行った。接続先、credential、端末固有path、container UUID、セーブ内容はtracked成果へ保存していない。インターネットは未使用。

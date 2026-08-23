@@ -865,3 +865,13 @@
   - Stage 46 ROMを既存Stage 45と同じiPadディレクトリへversioned filenameで新規配置した。
   - 既存ROM/save/savestateを変更せず、contentの起動とRetroArch操作は行っていない。
 - Verify: 固定host key付きWi-Fi SSH、転送元identity、iPad側33,554,432 bytes、SHA-256 `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`一致 PASS。
+
+## 2026-08-23T16:41:09+09:00
+
+- Version: `post-v1.4.0-stage46-ipad-save-copy`（ROM identityは不変）
+- Commit: `-`（本エントリを含むセーブ配置証跡コミット）
+- Task: `USER-20260823-STAGE46-SAVE-COPY` / Stage 45セーブをStage 46用へ複製する
+- Summary:
+  - Stage 45の128 KiBセーブをbyte不変のままStage 46用filenameへ複製した。
+  - 既存Stage 46セーブは同じsaveディレクトリへ退避し、元Stage 45セーブ、ROM、savestateは変更していない。
+- Verify: 元／適用後セーブの131,072 bytesとSHA-256 `1289b8c3d4caf135c778f98523d6937c86d0ec9609c0043e348fcdc3298af2e2`一致、退避セーブSHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`一致 PASS。
