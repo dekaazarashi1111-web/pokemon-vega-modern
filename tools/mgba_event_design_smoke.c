@@ -8,7 +8,6 @@ enum {
     ED_STATE_FLAG_BASE = 0x13B0U,
     ED_CERT_FLAG_BASE = 0x1400U,
     ED_CERT_FLAG_COUNT = 13U,
-    ED_TRAINER_SET_FLAG = 0x09302841U,
     ED_SCRIPT_CONTEXT_SETUP = 0x080693A5U,
     ED_RUN_SCRIPT_IMMEDIATELY = 0x08069409U,
     ED_CHECK_BAG_SPACE = 0x08099A09U,
@@ -34,6 +33,8 @@ struct EventDesignSymbols {
     uint32_t payload_size;
     uint32_t orphan_dispatcher;
     uint32_t transition_script;
+    uint32_t trainer_set_flag;
+    uint32_t save_finalize;
 };
 
 struct EventDesignCase {
@@ -177,7 +178,8 @@ static bool ed_probe_contract(struct mCore *core,
     return true;
 }
 
-static bool ed_enable_all_prerequisites(struct mCore *core)
+static bool ed_enable_all_prerequisites(
+    struct mCore *core, const struct EventDesignSymbols *symbols)
 {
     for (uint16_t flag = QOL_FLAG_BADGE_1; flag <= QOL_FLAG_BADGE_8; ++flag)
         (void)call_preserving(core, QOL_FLAG_SET, flag, 0, 0, 0);
@@ -187,13 +189,15 @@ static bool ed_enable_all_prerequisites(struct mCore *core)
         (void)call_preserving(core, QOL_FLAG_SET,
                               ED_CERT_FLAG_BASE + offset, 0, 0, 0);
     for (uint16_t trainer = 751U; trainer <= 758U; ++trainer)
-        (void)call_preserving(core, ED_TRAINER_SET_FLAG, trainer, 0, 0, 0);
+        (void)call_preserving(core, symbols->trainer_set_flag,
+                              trainer, 0, 0, 0);
     write8(core, QOL_LEDGER + QOL_LEDGER_KANTO_UNLOCKED, 1U);
     write8(core, QOL_LEDGER + QOL_LEDGER_KANTO_VISITED, 1U);
     write8(core, QOL_LEDGER + QOL_LEDGER_HALL_OF_FAME, 1U);
     write8(core, QOL_LEDGER + QOL_LEDGER_LEAGUE_II, 1U);
     write8(core, QOL_LEDGER + QOL_LEDGER_CERTIFICATIONS, 0xFFU);
-    (void)call_preserving(core, QOL_SAVE_FINALIZE, QOL_LEDGER, 0, 0, 0);
+    (void)call_preserving(core, symbols->save_finalize,
+                          QOL_LEDGER, 0, 0, 0);
     uint32_t save = read32(core, QOL_SAVE_BLOCK1_SLOT);
     if (save < 0x02000000U || save + QOL_DAYCARE_OFFSET + QOL_BOX_MON_SIZE
         >= 0x02040000U)
@@ -213,7 +217,7 @@ static bool ed_initial_and_monotonic_state(struct mCore *core,
     for (unsigned index = 0U; index < EVENT_DESIGN_STATE_COUNT; ++index)
         (void)call_preserving(core, QOL_FLAG_CLEAR,
                               gEventDesignStateFlags[index], 0, 0, 0);
-    if (!ed_enable_all_prerequisites(core))
+    if (!ed_enable_all_prerequisites(core, symbols))
         return false;
     for (unsigned index = 0U; index < tested; ++index) {
         if (call_preserving(core, QOL_FLAG_GET,
@@ -295,7 +299,7 @@ static bool ed_reward_capacity(struct mCore *core,
 static bool ed_full_progression(struct mCore *core,
                                 const struct EventDesignSymbols *symbols)
 {
-    if (!ed_enable_all_prerequisites(core))
+    if (!ed_enable_all_prerequisites(core, symbols))
         return false;
     for (unsigned index = 0U; index < EVENT_DESIGN_STATE_COUNT; ++index) {
         if (call_preserving(core, symbols->set_state, index, 0, 0, 0) != 1U)
@@ -357,19 +361,31 @@ static bool ed_field_script_paths(struct mCore *core,
         batch_seen[batch] = true;
 
         restore_snapshot(core, progressed);
+        run_key_frames(core, 0U, 2U);
         unsigned logs = log_problem_count;
         (void)call_preserving(core, ED_SCRIPT_CONTEXT_SETUP,
                               rows[index].dispatcher, 0, 0, 0);
-        if (call_preserving(core, QOL_SCRIPT_CONTEXT_ENABLED, 0, 0, 0, 0) != 1U)
+        if (call_preserving(core, QOL_SCRIPT_CONTEXT_ENABLED,
+                            0, 0, 0, 0) != 1U) {
+            fprintf(stderr, "event field dispatcher context failed index=%u "
+                    "event=%s address=%08" PRIx32 "\n", index,
+                    rows[index].event, rows[index].dispatcher);
             return false;
+        }
         restore_snapshot(core, progressed);
+        run_key_frames(core, 0U, 2U);
         (void)call_preserving(core, ED_SCRIPT_CONTEXT_SETUP,
                               rows[index].first_step, 0, 0, 0);
         run_key_frames(core, 0U, 4U);
         uint32_t pc = (uint32_t)read_register(core, "pc");
         if (pc < 0x08000000U || pc >= 0x0A000000U
-            || log_problem_count != logs)
+            || log_problem_count != logs) {
+            fprintf(stderr, "event field first-step failed index=%u "
+                    "event=%s address=%08" PRIx32 " pc=%08" PRIx32
+                    " logs=%u/%u\n", index, rows[index].event,
+                    rows[index].first_step, pc, logs, log_problem_count);
             return false;
+        }
         ++*executed;
     }
     return *executed == (full ? ED_CASE_COUNT : ED_BATCH_COUNT);
@@ -420,8 +436,8 @@ static bool ed_save_reload(struct mCore *core, bool full)
 
 int main(int argc, char **argv)
 {
-    if (argc != 17) {
-        fprintf(stderr, "usage: %s ROM SAVE CASES quick|full 12_VALUES\n", argv[0]);
+    if (argc != 19) {
+        fprintf(stderr, "usage: %s ROM SAVE CASES quick|full 14_VALUES\n", argv[0]);
         return 2;
     }
     bool full = !strcmp(argv[4], "full");
@@ -441,6 +457,8 @@ int main(int argc, char **argv)
     symbols.payload_size = qol_number(argv[argument++], "payload_size");
     symbols.orphan_dispatcher = qol_number(argv[argument++], "orphan_dispatcher");
     symbols.transition_script = qol_number(argv[argument++], "transition_script");
+    symbols.trainer_set_flag = qol_number(argv[argument++], "trainer_set_flag");
+    symbols.save_finalize = qol_number(argv[argument++], "save_finalize");
     if (argument != (unsigned)argc)
         return 2;
 

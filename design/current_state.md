@@ -1,10 +1,14 @@
 # current_state.md
 
-最終更新: 2026-08-23
+最終更新: 2026-08-24
 
 ## 現在地
 
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
+- USER-20260823-SPECIES-FORM-BACKSPRITE-COMPATで、固定CFRU-JPの全Species/Form・Ability参照を`species_ids.csv`／`ability_ids.csv`生成aliasへ統一した。canonical Ability 312行、Species 1,621行、C/ASM 84ファイルのAbility 4,024参照・Species 8,641参照を監査し、未変換0。source定数、manifest、consumer、indexed tableの変更はfingerprintとfail-closed監査で再buildを要求する。
+- Stage48 exact-ROM回帰でHunger Switch 4ターン、Disguise初撃1/8・二撃目通常・終了復元、Battle Bond、Schooling、Zen Mode、Ice Face、Power Construct、Intimidate、Speed BoostをPASSした。表示14種、player back 7種を64×64 OAM／2,048-byte OBJ tile、front/back、palette、icon、healthboxまで検査した。upstream vendor変更は0。
+- canonical修正をclean FireRedからStage06〜47へ再生成した現行identityは、Stage06 `32b3e4d7...`、Stage09 `4bc51545...`、Stage42 `cc5b1afd...`、Stage43 `66700e6d...`、Stage44 `432e3052...`、Stage45 `f580f6df...`、Stage46 `35fea920...`、Stage47/48 `b8244d5d...`（CRC32 `CA37AC3D`）。この文書内の旧Stage06〜47 hash記録は各完了時点の履歴であり、現行配布候補はStage48を正とする。
+- Stage48は再生成済みStage47とbyte同一で追加ROM変更0。旧不具合Stage47 `fccc882e...`との差分BPSとclean直接BPSを完全往復した。旧iPad証跡はROM identityが異なるため流用せず、Stage48実機確認は`PENDING_EXACT_STAGE48_ROM`としてlocal完了条件から分離する。
 - T19で35機能を35個の一意なproduction ownerへ接続し、通常のOptions、summary、PSS、bag、field、預かり屋、battle、save導線から操作できるStage 36を生成した。97 expected-byte hook、リリース対象35/35、受入条15/15、mGBA quick/fullの独立2 processをPASSした。Stage 36 SHA-256は `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
 - clean FireRed日本版Rev.0からStage 36への直接BPSとStage 35からの差分BPSは完全往復し、変更67,991 byteのdeclared span外0、allocator/RAM重複0を確認した。Stage 35の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainerとgimmick/save cleanupはbyte監査で不変。
 - T20で受領済みの実装可能イベント設計を、7 batch・76 event・63 physical placement・326会話としてStage 37へ統合した。80 stateは衝突のないflag `0x13B0..0x13FF`へ割り当て、160 conditionと7 atomic rewardをfield scriptへ一度だけcompileした。58 mapの59 rooted patchをStage 36実ROMからexpected-byte付きで再解決し、未解決host、object上限超過、collision、allocator/RAM/save所有重複は0。
@@ -203,8 +207,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T30は完了し、現在キューに未完了の正本タスクはない。
+`design/tasks_next.md` を正とする。T00〜T30と明示USERタスクは完了し、現在キューに未完了の正本タスクはない。
 
+- USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT: DONE。全Species/Form/Ability canonical監査、フォーム特性、64×64背面画像、Stage48、2系統BPS、下流Stage42〜47回帰を完成した。
 - T30: DONE。任意mapで使えるBox 14⇔Windows exact個体庫、通常save、Stage 47、実iPad 6体depositを完成した。
 - T29: DONE。NPC前IDLEのWindows対戦カタログ、通常収納、1件単位batch停止・再開、Stage 46を完成した。
 - T28: DONE。対戦後の任意item/Pokémon報酬、exactly-once save、Codex companion skill、iPad実戦完走をStage 45で完成した。

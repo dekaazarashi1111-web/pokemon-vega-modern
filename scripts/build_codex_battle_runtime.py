@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import hashlib
 import io
@@ -591,6 +592,141 @@ def _patch(output: bytearray, stage: bytes, declared: list[dict[str, Any]],
             "replacement_hex": replacement.hex()}
 
 
+def _thumb_bl_target(address: int, raw: bytes) -> int:
+    """Decode a Thumb-1 BL and return its odd callable address."""
+    if len(raw) != 4:
+        _fail("Thumb BL decode length differs")
+    high, low = struct.unpack("<HH", raw)
+    if high & 0xF800 != 0xF000 or low & 0xF800 != 0xF800:
+        _fail(f"0x{address:08X} is not a Thumb BL: {raw.hex()}")
+    delta = ((high & 0x07FF) << 12) | ((low & 0x07FF) << 1)
+    if delta & (1 << 22):
+        delta -= 1 << 23
+    return (address + 4 + delta) | 1
+
+
+def _resolve_stage43_bindings(
+    source: Mapping[str, Any], stage: bytes,
+    battle_core: Mapping[str, Any], bridge_symbols: Mapping[str, Any],
+    factory_symbols: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Resolve relocatable CFRU/downstream hooks from their generated SoT."""
+    config = copy.deepcopy(source)
+    fingerprint = str(battle_core.get("fingerprint", ""))
+    if not re.fullmatch(r"[0-9a-f]{64}", fingerprint):
+        _fail("Stage06 fingerprint is missing/invalid")
+    runs = battle_core.get("upstream_runs")
+    if not isinstance(runs, list) or len(runs) != 2:
+        _fail("Stage06 reproducible upstream runs differ")
+    offsets_path = ROOT / "build/battle-core" / fingerprint / "run-1/offsets.ini"
+    if not offsets_path.is_file():
+        _fail("Stage06 linked offsets are missing")
+    offsets_raw = offsets_path.read_bytes()
+    if (_sha(offsets_raw) != runs[0].get("offsets", {}).get("sha256")
+            or runs[0].get("offsets") != runs[1].get("offsets")):
+        _fail("Stage06 linked offsets identity differs")
+    offsets: dict[str, int] = {}
+    for line in offsets_raw.decode("utf-8").splitlines():
+        match = re.match(r"^([^:\s][^:]*):\s*([0-9A-Fa-f]{8})\s*$", line)
+        if match:
+            offsets[match.group(1).strip()] = int(match.group(2), 16)
+    required = {
+        "BuildTrainerPartyHook", "GetMonAbility", "CanMegaEvolve",
+        "CanUseZMove", "CanDynamax", "CanTerastal",
+        "FindBankDynamaxBand", "gExperienceTables",
+    }
+    if not required.issubset(offsets):
+        _fail("Stage06 linked CFRU downstream symbols are incomplete")
+
+    engine = config["engine"]
+    engine.update({
+        "get_mon_ability": f"0x{offsets['GetMonAbility'] | 1:08X}",
+        "can_mega_evolve": f"0x{offsets['CanMegaEvolve'] | 1:08X}",
+        "can_use_z_move": f"0x{offsets['CanUseZMove'] | 1:08X}",
+        "can_dynamax": f"0x{offsets['CanDynamax'] | 1:08X}",
+        "can_terastal": f"0x{offsets['CanTerastal'] | 1:08X}",
+        "experience_tables": f"0x{offsets['gExperienceTables']:08X}",
+    })
+
+    hooks = config["hooks"]
+    bridge_hook = bridge_symbols.get("hook", {})
+    read_address = int(bridge_hook.get("address", -1))
+    read_expected = stage[_rom_offset(read_address, 4):
+                          _rom_offset(read_address, 4) + 4]
+    read_delegate = int.from_bytes(read_expected, "little")
+    bridge_target = int(bridge_hook.get("target", -1))
+    if (bridge_hook.get("mode") != "THUMB_POINTER"
+            or read_delegate != bridge_target
+            or not (GBA_ROM_BASE <= read_delegate < GBA_ROM_BASE + ROM_SIZE)
+            or read_delegate & 1 == 0):
+        _fail("Stage43 ReadKeys symbol chain differs")
+    hooks["read_keys"].update({
+        "address": f"0x{read_address:08X}",
+        "expected_hex": read_expected.hex(),
+        "delegate": f"0x{read_delegate:08X}",
+    })
+
+    party_address = offsets["BuildTrainerPartyHook"]
+    party_expected = stage[_rom_offset(party_address, 4):
+                           _rom_offset(party_address, 4) + 4]
+    party_delegate = _thumb_bl_target(party_address, party_expected)
+    factory_party = int(factory_symbols.get("symbols", {}).get(
+        "FactoryHighModesV2_BuildTrainerPartyAdapter", {}).get("address", -1))
+    if party_delegate != factory_party:
+        _fail("Stage43 trainer party delegate chain differs")
+    hooks["trainer_party"].update({
+        "address": f"0x{party_address:08X}",
+        "expected_hex": party_expected.hex(),
+        "delegate": f"0x{party_delegate:08X}",
+    })
+
+    save_address = _integer(hooks["save_load"]["address"], "save hook")
+    save_expected = stage[_rom_offset(save_address, 8):
+                          _rom_offset(save_address, 8) + 8]
+    if save_expected[:4] != b"\x00\x4B\x18\x47":
+        _fail("Stage43 save-load delegate chain is not a Thumb jump")
+    save_delegate = int.from_bytes(save_expected[4:], "little")
+    if not (GBA_ROM_BASE <= save_delegate < GBA_ROM_BASE + ROM_SIZE) \
+            or save_delegate & 1 == 0:
+        _fail("Stage43 save-load delegate target differs")
+    hooks["save_load"].update({
+        "expected_hex": save_expected.hex(),
+        "delegate": f"0x{save_delegate:08X}",
+    })
+
+    reception_delegate = int(factory_symbols.get("field", {}).get(
+        "reception_script", -1))
+    reception_pointer = struct.pack("<I", reception_delegate)
+    reception_sites = [
+        GBA_ROM_BASE + offset for offset in range(0, len(stage) - 3, 4)
+        if stage[offset:offset + 4] == reception_pointer
+    ]
+    if len(reception_sites) != 1:
+        _fail("Stage43 Factory reception pointer is missing/ambiguous")
+    hooks["reception"].update({
+        "address": f"0x{reception_sites[0]:08X}",
+        "expected_hex": reception_pointer.hex(),
+        "delegate": f"0x{reception_delegate:08X}",
+    })
+
+    band_delegate = offsets["FindBankDynamaxBand"] | 1
+    band_sites: list[dict[str, Any]] = []
+    for address in range(0x09000000, 0x09200000, 2):
+        expected = _thumb_bl(address, band_delegate)
+        offset = _rom_offset(address, 4)
+        if stage[offset:offset + 4] == expected:
+            band_sites.append({
+                "name": f"codex_runtime_dynamax_band_call_{len(band_sites) + 1}",
+                "address": f"0x{address:08X}",
+                "expected_hex": expected.hex(),
+            })
+    if len(band_sites) != 3:
+        _fail(f"FindBankDynamaxBand callsite count differs: {len(band_sites)}")
+    hooks["dynamax_band_calls"]["delegate"] = f"0x{band_delegate:08X}"
+    hooks["dynamax_band_calls"]["sites"] = band_sites
+    return config
+
+
 def _apply_hooks(config: Mapping[str, Any], stage: bytes, output: bytearray,
                  runtime: Mapping[str, Any], declared: list[dict[str, Any]]) -> list[dict[str, Any]]:
     patches: list[dict[str, Any]] = []
@@ -685,24 +821,20 @@ def _apply_hooks(config: Mapping[str, Any], stage: bytes, output: bytearray,
     band_target = entrypoints[band_target_name]
     band_delegate = _integer(
         band_calls["delegate"], "FindBankDynamaxBand delegate")
-    expected_band_sites = {
-        0x090F1494: "fff7e4fd",
-        0x090F14C8: "fff7cafd",
-        0x090F1688: "fff7eafc",
-    }
     actual_band_sites = {
         _integer(value["address"], "Dynamax band callsite"): value
         for value in band_calls["sites"]
     }
-    if (band_delegate != 0x090F1061
+    if (not (0x09000001 <= band_delegate < 0x09200000)
+            or band_delegate & 1 == 0
             or band_target_name
                 != "CodexBattleRuntime_FindDynamaxBandAdapter"
-            or set(actual_band_sites) != set(expected_band_sites)):
+            or len(actual_band_sites) != 3):
         _fail("Dynamax band adapter binding differs")
     for address in sorted(actual_band_sites):
         value = actual_band_sites[address]
         expected = bytes.fromhex(str(value["expected_hex"]))
-        if expected.hex() != expected_band_sites[address]:
+        if expected != _thumb_bl(address, band_delegate):
             _fail(f"Dynamax band callsite 0x{address:08X} differs")
         row = _patch(
             output, stage, declared, address, expected,
@@ -1311,6 +1443,15 @@ def _ipad_evidence(config: Mapping[str, Any], output: bytes) -> tuple[dict[str, 
         "codex_switch", "safe_abort_cleanup", "party_exact_restore",
         "nci_request_span_only", "normal_mode_unaffected",
     }
+    # iPad evidence is immutable evidence for one exact ROM.  A source rebuild
+    # changes the ROM identity, so keep the old file intact and treat it as
+    # pending instead of either blessing the new ROM or blocking local rebuilds.
+    if (document.get("schema_version") == 1
+            and document.get("task") == TASK
+            and document.get("stage") == 44
+            and document.get("status") == "PASS"
+            and document.get("rom_sha256") != _sha(output)):
+        return None, None
     tests = document.get("tests")
     if (document.get("schema_version") != 1 or document.get("task") != TASK
             or document.get("stage") != 44 or document.get("status") != "PASS"
@@ -1334,16 +1475,34 @@ def _static_outputs() -> dict[str, bytes]:
     stage43_bps = _identity(Path(inputs["stage43_clean_bps"]["path"]), inputs["stage43_clean_bps"], "Stage43 clean BPS")
     _identity(Path(inputs["stage43_protocol"]["path"]), inputs["stage43_protocol"], "Stage43 protocol")
     ipad43 = _identity(Path(inputs["stage43_ipad"]["path"]), inputs["stage43_ipad"], "Stage43 iPad evidence")
+    battle_core_raw = _identity(
+        Path(inputs["stage06_metadata"]["path"]),
+        inputs["stage06_metadata"], "Stage06 battle core metadata")
+    bridge_symbols_raw = _identity(
+        Path(inputs["stage43_symbols"]["path"]),
+        inputs["stage43_symbols"], "Stage43 bridge symbols")
     clean = _identity(Path(inputs["clean_rom"]["path"]), inputs["clean_rom"], "clean FireRed")
-    _identity(Path(inputs["factory_symbols"]["path"]), inputs["factory_symbols"], "Factory symbols")
+    factory_symbols_raw = _identity(
+        Path(inputs["factory_symbols"]["path"]),
+        inputs["factory_symbols"], "Factory symbols")
     _identity(Path(inputs["trainer_changekit_symbols"]["path"]), inputs["trainer_changekit_symbols"], "Trainer ChangeKit symbols")
+    config = _resolve_stage43_bindings(
+        config, stage, json.loads(battle_core_raw),
+        json.loads(bridge_symbols_raw), json.loads(factory_symbols_raw),
+    )
     previous_meta = json.loads(metadata_raw)
     previous_alloc = json.loads(allocation_raw)
-    if (previous_meta.get("task") != "T26" or previous_meta.get("status") != "PASS"
+    previous_status = previous_meta.get("status")
+    previous_ipad_status = previous_meta.get("ipad", {}).get("status")
+    previous_local_ok = (
+        previous_status in {"PASS", "PASS_LOCAL"}
+        and previous_meta.get("mgba", {}).get("status") == "PASS"
+        and previous_ipad_status in {"PASS", "PENDING"}
+    )
+    if (previous_meta.get("task") != "T26" or not previous_local_ok
             or previous_meta.get("output", {}).get("sha256") != _sha(stage)
-            or previous_meta.get("ipad", {}).get("status") != "PASS"
             or previous_alloc.get("summaries", {}).get("overlap_count") != 0
-            or json.loads(ipad43).get("status") != "PASS"
+            or previous_meta.get("ipad", {}).get("sha256") != _sha(ipad43)
             or apply_bps(clean, stage43_bps) != stage):
         _fail("Stage43 prerequisite identity/evidence differs")
     ownership = _validate_ram(config)
@@ -1531,6 +1690,32 @@ def _validate_mgba(document: Mapping[str, Any], mode: str,
 def _finalize_outputs(static: Mapping[str, bytes]) -> dict[str, bytes]:
     config = _read_json(CONFIG)
     outputs = config["outputs"]
+    static_metadata = json.loads(static[outputs["metadata"]])
+    patches = static_metadata["patches"]
+    party_patch = next(
+        row for row in patches
+        if row.get("target_symbol")
+        == "CodexBattleRuntime_BuildTrainerPartyAdapter"
+    )
+    reception_patch = next(
+        row for row in patches
+        if row.get("target_symbol") == "script::codex_battle_reception"
+    )
+    band_patches = sorted(
+        (row for row in patches
+         if row.get("target_symbol")
+         == "CodexBattleRuntime_FindDynamaxBandAdapter"),
+        key=lambda row: int(row["address"]),
+    )
+    if len(band_patches) != 3:
+        _fail("Stage44 mGBA dynamic root callsites differ")
+    dynamic_roots = [
+        f"-DCBR_TRAINER_PARTY_SITE=0x{int(party_patch['address']):08X}U",
+        f"-DCBR_RECEPTION_POINTER=0x{int(reception_patch['address']):08X}U",
+        f"-DCBR_DYNAMAX_BAND_EXECUTION_SITE=0x{int(band_patches[0]['address']):08X}U",
+        f"-DCBR_GIGANTAMAX_BAND_EXECUTION_SITE=0x{int(band_patches[1]['address']):08X}U",
+        f"-DCBR_DYNAMAX_BAND_UI_SITE=0x{int(band_patches[2]['address']):08X}U",
+    ]
     runner = ROOT / "tools/mgba_codex_battle_runtime_smoke.c"
     if not runner.is_file():
         _fail("Codex Battle mGBA runner is missing")
@@ -1554,6 +1739,7 @@ def _finalize_outputs(static: Mapping[str, bytes]) -> dict[str, bytes]:
         symbols.write_bytes(static[outputs["symbols"]])
         cases.write_bytes(static[outputs["cases"]])
         _run([_host_cc(ROOT), "-std=c11", "-Wall", "-Wextra", "-Werror",
+              *dynamic_roots,
               str(runner), "-o", str(executable), "-lmgba"],
              "Codex Battle libmGBA compile")
         identities = {**source_identities,

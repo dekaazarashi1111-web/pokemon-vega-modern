@@ -30,7 +30,7 @@ ROM_SIZE = 32 * 1024 * 1024
 CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE21 = Path("build/stages/21_first_battle_hotfix.gba")
-STAGE21_SHA256 = "40d0c53e1f624eee2ead523f8b37f3bc30e5695e0e0b0e164658ef78184999f2"
+STAGE21_SHA256 = "2e5b4a744891a71b943d0ac0decb37e756626b21a2f7ec2b2894d26e53408efb"
 STAGE21_META = Path("build/stages/21_first_battle_hotfix.json")
 STAGE21_ALLOCATION = Path("build/stages/21_allocation.json")
 STAGE06_META = Path("build/stages/06_battle_core.json")
@@ -79,18 +79,18 @@ T06_PATCH_ANCHOR_LEGACY_ADDRESS = 0x0911F748
 PATCHES = (
     ("field capability branch", 0x0911F748,
      bytes.fromhex("f8 b5 ce 46 47 46 81 46"), "capability_stub"),
-    ("badge common", 0x091224A4, bytes.fromhex("4c 22 08 4b"), bytes.fromhex("01 20 70 47")),
-    ("badge Surf", 0x091224D4, bytes.fromhex("10 b5 03 4b"), bytes.fromhex("01 20 70 47")),
-    ("badge Flash", 0x091224EC, bytes.fromhex("82 20 10 b5"), bytes.fromhex("01 20 70 47")),
-    ("Cut script badge", 0x091226A2, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
-    ("Rock Smash script badge", 0x091226D6, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
-    ("Strength script badge", 0x0912270A, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
-    ("party Cut badge", 0x0912240C, bytes.fromhex("00 d1"), bytes.fromhex("00 e0")),
-    ("party Cut compatibility", 0x0912242A, bytes.fromhex("06 1e"), bytes.fromhex("00 26")),
-    ("party Cut Vega item", 0x091224A0, struct.pack("<I", 570), struct.pack("<I", 339)),
-    ("party Fly badge", 0x0912237E, bytes.fromhex("93 d0"), bytes.fromhex("c0 46")),
-    ("party Fly compatibility", 0x0912239A, bytes.fromhex("05 1e"), bytes.fromhex("00 25")),
-    ("party Fly Vega item", 0x09122494, struct.pack("<I", 571), struct.pack("<I", 340)),
+    ("badge common", 0x091224A8, bytes.fromhex("4c 22 08 4b"), bytes.fromhex("01 20 70 47")),
+    ("badge Surf", 0x091224D8, bytes.fromhex("10 b5 03 4b"), bytes.fromhex("01 20 70 47")),
+    ("badge Flash", 0x091224F0, bytes.fromhex("82 20 10 b5"), bytes.fromhex("01 20 70 47")),
+    ("Cut script badge", 0x091226A6, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
+    ("Rock Smash script badge", 0x091226DA, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
+    ("Strength script badge", 0x0912270E, bytes.fromhex("05 d0"), bytes.fromhex("c0 46")),
+    ("party Cut badge", 0x09122410, bytes.fromhex("00 d1"), bytes.fromhex("00 e0")),
+    ("party Cut compatibility", 0x0912242E, bytes.fromhex("06 1e"), bytes.fromhex("00 26")),
+    ("party Cut Vega item", 0x091224A4, struct.pack("<I", 570), struct.pack("<I", 339)),
+    ("party Fly badge", 0x09122382, bytes.fromhex("93 d0"), bytes.fromhex("c0 46")),
+    ("party Fly compatibility", 0x0912239E, bytes.fromhex("05 1e"), bytes.fromhex("00 25")),
+    ("party Fly Vega item", 0x09122498, struct.pack("<I", 571), struct.pack("<I", 340)),
 )
 
 

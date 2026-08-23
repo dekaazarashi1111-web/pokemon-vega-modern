@@ -48,3 +48,4 @@
 - [x] Trainer ChangeKit 01〜06を検証し全戦を最終統合する <!-- id:USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION -->
 - [x] T29: Windows対戦カタログをNPC前の一括生成導線へ接続する <!-- id:T29 -->
 - [x] T30: Box 14とWindows固有個体庫を双方向exact移動へ接続する <!-- id:T30 -->
+- [x] Species依存フォームとプレイヤー側背面戦闘画像を正規化する <!-- id:USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT -->

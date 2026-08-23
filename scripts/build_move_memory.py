@@ -55,10 +55,10 @@ EMBEDDED_RUNNER_SOURCES = (
 ALLOCATION_NAME = "move_memory_runtime"
 PAYLOAD_HEADER_SIZE = 64
 
-EXPECTED_STAGE24_SHA256 = "66b6762f9c8969e118e306f4bc3d2429712fdb2c2ea066774b8191d67802d962"
+EXPECTED_STAGE24_SHA256 = "dc0fdd490eceb087ccfe6d14685f22bb39b2dad46808d78f9269b542c0012130"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
+EXPECTED_T06_FINGERPRINT = "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717"
 
 
 def _expected_stage24(root: Path) -> str:
@@ -115,13 +115,13 @@ REQUIRED_SYMBOLS = {
 }
 
 UPSTREAM_SYMBOLS = {
-    "GetAllEggMoves": 0x090EB820,
-    "GetMoveRelearnerMoves": 0x09114088,
-    "GetNumberOfRelearnableMoves": 0x091141C0,
-    "SetMonMoveSlot": 0x09114548,
+    "GetAllEggMoves": 0x090EB970,
+    "GetMoveRelearnerMoves": 0x091141D4,
+    "GetNumberOfRelearnableMoves": 0x0911430C,
+    "SetMonMoveSlot": 0x09114698,
     "RemoveMonPPBonus": 0x08040755,
     "ShiftMoveSlot": 0x080C0C79,
-    "RandomizeMove": 0x091141E8,
+    "RandomizeMove": 0x09114334,
 }
 
 TEXTS = {

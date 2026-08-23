@@ -37,6 +37,7 @@
 | Codex任意報酬・iPad完走 | `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md` | T27 Stage 44、Acquisition/T24/T25 transaction、save layout、Codex companion skill |
 | Windows対戦カタログ | `tasks/T29_WINDOWS_BATTLE_CATALOG.md` | T28 Stage 45/protocol/symbols、canonical catalog、T19 PC複数選択・一括逃がし、Windows CLI |
 | Windows Box 14固有個体庫 | `tasks/T30_WINDOWS_BOX14_VAULT.md` | T29 Stage 46/protocol/symbols、BoxPokemon ABI、T19 PC/save transaction、Windows owner-only storage |
+| Speciesフォーム・背面画像互換 | `tasks/USER_20260823_SPECIES_FORM_BACKSPRITE_COMPAT.md` | `tools/engine/cfru_canonical_ids.py`、Stage06/09、Stage48 builder/report、canonical manifests、mGBAフォーム回帰 |
 | Trainer AI・難易度 | `design/decisions.md` D-015 | 固定CFRU-JP `src/Battle_AI/**`, V2 `06_出現率・トレーナー・報酬バランス.md`, T01/T02/T06/T10/T12/T15〜T18 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
@@ -78,6 +79,7 @@
 - わざメモリー: `tasks/USER_20260814_MOVE_MEMORY.md`、`config/move_memory.json`、`overlays/move_memory/`、`scripts/build_move_memory.py`、`tools/mgba_move_memory_smoke.c`、T09 learnset、stage 24/25。
 - QOL release: `tasks/USER_20260814_QOL_RELEASE.md`、`scripts/build_qol_release.py`、`scripts/build_release.py`、`docs/RELEASE_POLICY.md`、stage 20〜25 metadataと統合fixture。
 - Species名6文字: `tasks/USER_20260815_SPECIES_NAME_LENGTH.md`、`scripts/build_species_surface.py`の`compatibility_species_names`と40 direct consumer、`overlays/species_surface/species_runtime.{c,h}`、`generated/engine/species/species_names{,_legacy}.bin`、`manifests/species_ids.csv`、`tools/mgba_{species_runtime,battle_ui}_smoke.c`、stage 09/24以降。
+- Species依存form／back sprite: `tasks/USER_20260823_SPECIES_FORM_BACKSPRITE_COMPAT.md`、`tools/engine/cfru_canonical_ids.py`、`scripts/build_species_form_compat.py`、`tools/mgba_species_form_compat_smoke.c`、`reports/generated/species_form_backsprite_compat.{json,md}`、Stage 06/09/48、`manifests/{species,ability}_ids.csv`。vendorは参照専用で、全C/ASM consumerのfail-closed監査と実ROMフォーム／64×64背面回帰をproject側で維持する。
 
 ## 読みすぎ・やり直し防止
 

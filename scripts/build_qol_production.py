@@ -42,6 +42,7 @@ ROM_SIZE = 32 * 1024 * 1024
 INPUT_ROM = Path("build/stages/35_trainer_changekit_final.gba")
 INPUT_META = Path("build/stages/35_trainer_changekit_final.json")
 INPUT_ALLOC = Path("build/stages/35_allocation.json")
+BATTLE_CORE_META = Path("build/stages/06_battle_core.json")
 BASE_ROM = Path("build/final/vega-modern-kanto-v1.4.0.gba")
 CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 OUTPUT_ROM = Path("build/stages/36_qol_production.gba")
@@ -60,9 +61,10 @@ OUTPUT_MGBA_FULL = Path("build/stages/36_mgba_qol_production_full.json")
 PATCH_INCREMENTAL = Path("build/patches/trainer-stage35-to-qol-production-stage36.bps")
 PATCH_CUMULATIVE = Path("build/patches/vega-modern-kanto-v1.4.0-to-qol-production-stage36.bps")
 
-EXPECTED_STAGE35_SHA256 = "2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180"
-EXPECTED_STAGE35_META_SHA256 = "d452395c0282a3fe6973f73fecd6e015828a87dfed443b59c6bb2af2ff812cf1"
-EXPECTED_STAGE35_ALLOC_SHA256 = "df7ac6d5274cbf8d5abeb0492437e7d387319c5e3fd764d7c23c3b13f734fc2d"
+EXPECTED_STAGE35_SHA256 = "60b00504b7c90ee026c15ee285be69edc43c12c0eedcc64096fcadd1f290aa7b"
+EXPECTED_STAGE35_META_SHA256 = "51240a82f53eaa59eae3dd5dda1c802afac870a8ec2e36a2611876d09fc96c14"
+EXPECTED_STAGE35_ALLOC_SHA256 = "34412386b4e93b15b8c2214147f7aa444cb3e0f973ccae086b8998ceded75767"
+EXPECTED_STAGE06_SHA256 = "32b3e4d72b538c2bd085d39cc69af81c79d1319bf71e943fe888c911265366d3"
 EXPECTED_BASE_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
 EXPECTED_CLEAN_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 EXPECTED_RESEARCH_SHA256 = "da96838351dfa2f003f70378d40699d3d1208932781535d8cca6729463999b15"
@@ -123,6 +125,34 @@ TRAINER_RUNTIME_CONSUMERS = Path(
     "content/trainer_changekit_final/trainer_runtime_consumers.csv"
 )
 HOOK_CONTRACT = Path("overlays/qol_production/hook_contract_stage35.json")
+
+
+def _cfru_symbol_handoff() -> tuple[dict[str, int], str]:
+    metadata_path = ROOT / BATTLE_CORE_META
+    metadata = _read_json(metadata_path)
+    output = metadata.get("output")
+    symbols = metadata.get("downstream_symbols")
+    if (
+        metadata.get("status") != "PASS"
+        or not isinstance(output, dict)
+        or output.get("sha256") != EXPECTED_STAGE06_SHA256
+        or not isinstance(symbols, dict)
+    ):
+        _fail("Stage06 CFRU downstream symbol handoff is missing/stale")
+    resolved: dict[str, int] = {}
+    for name, value in symbols.items():
+        if (
+            not isinstance(name, str)
+            or isinstance(value, bool)
+            or not isinstance(value, int)
+            or not 0x09000000 <= value < 0x09200000
+            or value & 1
+        ):
+            _fail(f"Stage06 CFRU downstream symbol is invalid: {name}")
+        resolved[name] = value
+    if not resolved or len(set(resolved.values())) != len(resolved):
+        _fail("Stage06 CFRU downstream symbol handoff is empty/aliased")
+    return resolved, _sha(metadata_path.read_bytes())
 
 UNLOCK_CODES = {
     "VEGA_PRE_ENTRY": 0,
@@ -260,12 +290,38 @@ def _input_contract() -> dict[str, Any]:
         row for row in alloc.get("allocations", [])
         if row.get("name") == "trainer_changekit_final_stage35_payload"
     ]
-    if len(stage35) != 1 or int(stage35[0]["start"]) != 0x013025D0:
+    if len(stage35) != 1 or int(stage35[0]["start"]) != 0x01302B50:
         _fail("Stage35 allocation pin differs")
     return {
         "stage": stage, "base": base, "clean": clean,
         "meta": meta, "allocation": alloc,
     }
+
+
+def _stage35_runtime_handoff(metadata: Mapping[str, Any]) -> dict[str, int]:
+    entrypoints = metadata.get("runtime", {}).get("entrypoints", {})
+    probe = entrypoints.get("TrainerV5Runtime_Probe")
+    rows = metadata.get("physical_bindings", {}).get("rows", [])
+    selected: dict[int, int] = {}
+    for trainer_id in (130, 208):
+        matches = [
+            row for row in rows
+            if int(row.get("target_trainer_id", -1)) == trainer_id
+        ]
+        if len(matches) != 1:
+            _fail(
+                f"Stage35 trainer {trainer_id} physical binding is not unique"
+            )
+        selected[trainer_id] = int(matches[0]["data_address"])
+    values = {
+        "trainer_probe": int(probe) if probe is not None else 0,
+        "dynamax_command_data": selected[130],
+        "tera_command_data": selected[208],
+    }
+    if any(not 0x08000000 <= address < 0x0A000000
+           for address in values.values()):
+        _fail("Stage35 runtime handoff address is outside GBA ROM")
+    return values
 
 
 def _validate_ram_and_state() -> dict[str, Any]:
@@ -915,6 +971,8 @@ def _mgba_cases(model: Mapping[str, Any]) -> bytes:
 
 def build_outputs() -> dict[str, bytes]:
     inputs = _input_contract()
+    cfru_symbols, cfru_metadata_sha256 = _cfru_symbol_handoff()
+    stage35_handoff = _stage35_runtime_handoff(inputs["meta"])
     ram = _validate_ram_and_state()
     model = _load_model()
     header = _generated_header(model)
@@ -962,14 +1020,23 @@ def build_outputs() -> dict[str, bytes]:
         expected = bytes.fromhex(row["expected"])
         mode = row["mode"]
         target_value: int | None = None
-        if mode.startswith("symbol"):
+        if mode == "cfru_symbol_jump":
+            target = row["target"]
+            if target not in cfru_symbols:
+                _fail(f"CFRU hook target symbol is missing: {target}")
+            target_value = cfru_symbols[target] | 1
+        elif mode.startswith("symbol"):
             target = row["target"]
             if target not in entrypoints:
                 _fail(f"hook target symbol is missing: {target}")
             target_value = entrypoints[target]
         elif mode == "absolute_jump":
             target_value = int(row["target"], 0)
-        if mode in {"symbol_jump", "absolute_jump"}:
+            if 0x09000000 <= target_value < 0x09200000:
+                _fail(
+                    f"relocatable CFRU target must use cfru_symbol_jump: {row['name']}"
+                )
+        if mode in {"symbol_jump", "cfru_symbol_jump", "absolute_jump"}:
             replacement = _jump_stub(target_value)
         elif mode == "symbol_jump_unaligned":
             replacement = _unaligned_jump_stub(address, target_value)
@@ -1034,6 +1101,12 @@ def build_outputs() -> dict[str, bytes]:
                         "size": len(payload), "sha256": _sha(payload),
                         "code_address": code_address, "code_size": len(code), "code_sha256": _sha(code)},
             "entrypoints": entrypoints,
+            "cfru_symbol_handoff": {
+                "metadata_path": BATTLE_CORE_META.as_posix(),
+                "metadata_sha256": cfru_metadata_sha256,
+                "symbols": cfru_symbols,
+            },
+            "stage35_runtime_handoff": stage35_handoff,
         },
         "runtime_ram": ram,
         "hooks": {"count": len(hook_rows), "rows": hook_rows},
@@ -1460,6 +1533,12 @@ def _mgba_outputs(outputs: Mapping[str, bytes]) -> dict[str, bytes]:
     bindings, case_rows = _binding_evidence(outputs)
     feature_keys = {str(row["feature_key"]) for row in bindings}
     entry = metadata["runtime"]["entrypoints"]
+    stage35_handoff = metadata["runtime"].get("stage35_runtime_handoff", {})
+    handoff_names = (
+        "trainer_probe", "dynamax_command_data", "tera_command_data",
+    )
+    if set(stage35_handoff) != set(handoff_names):
+        _fail("QOL mGBA Stage35 runtime handoff differs")
     names = [
         "VegaQolProduction_Probe", "VegaQolProduction_Dispatch",
         "VegaQolProduction_ReadKeysAdapter", "VegaQolProduction_PssHandleInputAdapter",
@@ -1512,6 +1591,7 @@ def _mgba_outputs(outputs: Mapping[str, bytes]) -> dict[str, bytes]:
             stdout = _run([
                 str(executable), str(rom), str(save), str(cases), mode,
                 *[hex(entry[name]) for name in names],
+                *[hex(stage35_handoff[name]) for name in handoff_names],
             ], f"QOL mGBA {mode}", timeout=timeout)
             try:
                 document = json.loads(stdout)

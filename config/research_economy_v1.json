@@ -5,19 +5,19 @@
     "stage39_rom": {
       "path": "build/stages/39_move_distribution_v4.gba",
       "size": 33554432,
-      "sha256": "c6d9d118e329512235e27efd876108d630b827bd8f2a8eb5b2bce63748e3f6dd"
+      "sha256": "383776875a121428cca394dbc16580b356f3d45b6cef422b22630c0ffbf2a208"
     },
     "stage39_metadata": {
       "path": "build/stages/39_move_distribution_v4.json",
-      "sha256": "1113f0d258ceae5148a6f0f9e8c79e12ea4f1f5199a663b700f52828e3b3f98a"
+      "sha256": "c39a7903d1801c791fae6f983f766a8a4a009e6d3c360bfa3ca533290b9527b3"
     },
     "stage39_allocation": {
       "path": "build/stages/39_allocation.json",
-      "sha256": "366331c4944acef8c23090b4b2f7045437e493b3c934b3ea03684f38e8932c2e"
+      "sha256": "fc206faadb8358c32c30e22185652d02024b5276e0bdd88fc5df196307ba2f37"
     },
     "stage39_clean_bps": {
       "path": "build/patches/firered-jpn-rev0-to-move-distribution-stage39.bps",
-      "sha256": "b6f64f91d2f17ae23881f09fbc0ca45c85fdb6ee1b5379e40892079383b1c828"
+      "sha256": "7b7a8c9f677d87bde43edc0953f3a2b4998dcfb53fefbb7fcba9d97ac0a8b96e"
     },
     "clean_rom": {
       "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
@@ -64,24 +64,24 @@
     "size": 96
   },
   "delegates": {
-    "mirage_save_load": "0x09390B6D",
-    "qol_save": "0x093770E1",
-    "move_land_water": "0x0939216D",
-    "move_fishing": "0x09392195",
-    "move_hidden": "0x093921BD",
-    "qol_wild_end": "0x093784F3",
+    "mirage_save_load": "0x093910ED",
+    "qol_save": "0x09377695",
+    "move_land_water": "0x093926ED",
+    "move_fishing": "0x09392715",
+    "move_hidden": "0x0939273D",
+    "qol_wild_end": "0x09378A73",
     "play_time_update": "0x08054131",
     "add_coins": "0x080D16C1"
   },
   "hooks": [
-    {"name":"save_validate_service","address":"0x092D10D0","expected_hex":"f7b5040006250028","target":"ResearchEconomy_SaveValidate","mode":"THUMB_JUMP"},
-    {"name":"save_finalize_service","address":"0x092D2604","expected_hex":"10b5041e1bd05622","target":"ResearchEconomy_SaveFinalize","mode":"THUMB_JUMP"},
-    {"name":"save_init_service","address":"0x092D2648","expected_hex":"70b504000d000028","target":"ResearchEconomy_SaveInitNew","mode":"THUMB_JUMP"},
-    {"name":"save_load_chain","address":"0x080DB4E4","expected_hex":"004b18476d0b3909","target":"ResearchEconomy_SaveLoadAdapter","mode":"THUMB_JUMP"},
-    {"name":"wild_land_water_chain","address":"0x080826D8","expected_hex":"004b18476d213909","target":"ResearchEconomy_TryGenerateWildMonAdapter","mode":"THUMB_JUMP"},
-    {"name":"wild_fishing_chain","address":"0x08082750","expected_hex":"004b184795213909","target":"ResearchEconomy_GenerateFishingEncounterAdapter","mode":"THUMB_JUMP"},
-    {"name":"wild_hidden_chain","address":"0x09220198","expected_hex":"004b1847bd213909","target":"ResearchEconomy_TryHiddenEncounterAdapter","mode":"THUMB_JUMP"},
-    {"name":"wild_end_chain","address":"0x0807F270","expected_hex":"004b1847f3843709","target":"ResearchEconomy_EndWildBattleAdapter","mode":"THUMB_JUMP"},
+    {"name":"save_validate_service","address":"0x092D12E0","expected_hex":"f7b5040006250028","target":"ResearchEconomy_SaveValidate","mode":"THUMB_JUMP"},
+    {"name":"save_finalize_service","address":"0x092D28D8","expected_hex":"10b5041e41d04379","target":"ResearchEconomy_SaveFinalize","mode":"THUMB_JUMP"},
+    {"name":"save_init_service","address":"0x092D2978","expected_hex":"70b504000d000028","target":"ResearchEconomy_SaveInitNew","mode":"THUMB_JUMP"},
+    {"name":"save_load_chain","address":"0x080DB4E4","expected_hex":"004b1847ed103909","target":"ResearchEconomy_SaveLoadAdapter","mode":"THUMB_JUMP"},
+    {"name":"wild_land_water_chain","address":"0x080826D8","expected_hex":"004b1847ed263909","target":"ResearchEconomy_TryGenerateWildMonAdapter","mode":"THUMB_JUMP"},
+    {"name":"wild_fishing_chain","address":"0x08082750","expected_hex":"004b184715273909","target":"ResearchEconomy_GenerateFishingEncounterAdapter","mode":"THUMB_JUMP"},
+    {"name":"wild_hidden_chain","address":"0x09220198","expected_hex":"004b18473d273909","target":"ResearchEconomy_TryHiddenEncounterAdapter","mode":"THUMB_JUMP"},
+    {"name":"wild_end_chain","address":"0x0807F270","expected_hex":"004b1847738a3709","target":"ResearchEconomy_EndWildBattleAdapter","mode":"THUMB_JUMP"},
     {"name":"active_play_minute_call","address":"0x0800049E","expected_hex":"53f047fe","target":"ResearchEconomy_PlayTimeAdapter","mode":"THUMB_BL","veneer":"active_play_minute_veneer"},
     {"name":"game_corner_bulk_payout","address":"0x0814061A","expected_hex":"91f751f8","target":"ResearchEconomy_GameCornerPayoutAdapter","mode":"THUMB_BL","veneer":"game_corner_payout_veneer"},
     {"name":"game_corner_animated_payout","address":"0x0814065A","expected_hex":"91f731f8","target":"ResearchEconomy_GameCornerPayoutAdapter","mode":"THUMB_BL","veneer":"game_corner_payout_veneer"}
@@ -106,23 +106,14 @@
       "reference_count_before": 0
     }
   ],
-  "compatibility_patches": [
-    {
-      "name": "acquisition_save_version_v2",
-      "address": "0x092D140E",
-      "expected_hex": "012a",
-      "replacement_hex": "022a",
-      "owner": "T16_ACQUISITION_RUNTIME",
-      "reason": "Stage39取得runtimeの外側save version直比較をmodern save v2へ追随させる"
-    }
-  ],
+  "compatibility_patches": [],
   "physical_bindings": [
     {
       "binding_key": "BINDING_KEY_RESEARCH_COUNTER",
       "map_group": 98,
       "map_num": 3,
       "event_pointer_site": "0x092C2AE0",
-      "expected_event_pointer_hex": "80ed3809",
+      "expected_event_pointer_hex": "00f33809",
       "source_counts": {"objects": 3, "warps": 3, "coords": 0, "backgrounds": 0},
       "append_kind": "OBJECT",
       "append_index": 3,
@@ -133,7 +124,7 @@
       "map_group": 98,
       "map_num": 3,
       "event_pointer_site": "0x092C2AE0",
-      "expected_event_pointer_hex": "80ed3809",
+      "expected_event_pointer_hex": "00f33809",
       "source_counts": {"objects": 3, "warps": 3, "coords": 0, "backgrounds": 0},
       "append_kind": "BACKGROUND",
       "append_index": 0,
@@ -144,7 +135,7 @@
       "map_group": 98,
       "map_num": 3,
       "event_pointer_site": "0x092C2AE0",
-      "expected_event_pointer_hex": "80ed3809",
+      "expected_event_pointer_hex": "00f33809",
       "source_counts": {"objects": 3, "warps": 3, "coords": 0, "backgrounds": 0},
       "append_kind": "BACKGROUND",
       "append_index": 1,
@@ -155,7 +146,7 @@
       "map_group": 97,
       "map_num": 0,
       "event_pointer_site": "0x092C0B80",
-      "expected_event_pointer_hex": "e8e93809",
+      "expected_event_pointer_hex": "68ef3809",
       "source_counts": {"objects": 10, "warps": 6, "coords": 0, "backgrounds": 1},
       "append_kind": "OBJECT",
       "append_index": 10,
@@ -177,7 +168,7 @@
       "map_group": 96,
       "map_num": 37,
       "event_pointer_site": "0x092C0B20",
-      "expected_event_pointer_hex": "44fa3809",
+      "expected_event_pointer_hex": "c4ff3809",
       "source_counts": {"objects": 5, "warps": 1, "coords": 0, "backgrounds": 0},
       "append_kind": "BACKGROUND",
       "append_index": 0,

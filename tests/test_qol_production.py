@@ -50,9 +50,9 @@ MGBA_CASES = ROOT / "generated/runtime/qol_production_mgba_cases.csv"
 MGBA_QUICK = ROOT / "build/stages/36_mgba_qol_production_quick.json"
 MGBA_FULL = ROOT / "build/stages/36_mgba_qol_production_full.json"
 
-STAGE35_SHA256 = "2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180"
-STAGE35_META_SHA256 = "d452395c0282a3fe6973f73fecd6e015828a87dfed443b59c6bb2af2ff812cf1"
-STAGE35_ALLOC_SHA256 = "df7ac6d5274cbf8d5abeb0492437e7d387319c5e3fd764d7c23c3b13f734fc2d"
+STAGE35_SHA256 = "60b00504b7c90ee026c15ee285be69edc43c12c0eedcc64096fcadd1f290aa7b"
+STAGE35_META_SHA256 = "51240a82f53eaa59eae3dd5dda1c802afac870a8ec2e36a2611876d09fc96c14"
+STAGE35_ALLOC_SHA256 = "34412386b4e93b15b8c2214147f7aa444cb3e0f973ccae086b8998ceded75767"
 RESEARCH_SHA256 = "da96838351dfa2f003f70378d40699d3d1208932781535d8cca6729463999b15"
 
 LIVE_CLASSIFICATIONS = {"LIVE_ENGINE_UI", "LIVE_SERVICE", "LIVE_SUPPLY"}
@@ -528,7 +528,7 @@ class QolProductionRuntimeContractTests(unittest.TestCase):
             runner, "static bool qol_auto_live_forbidden_case"
         )
         self.assertIn("setup_trainer(core, field)", case)
-        self.assertIn("setup_wild(core, field)", case)
+        self.assertIn("qol_setup_random_auto_battle(", case)
         self.assertIn("core->setKeys(core, QOL_KEY_SELECT);", case)
         self.assertIn("QOL_STATE_BATTLE_AUTO_ELIGIBLE", case)
 
@@ -569,7 +569,7 @@ class QolProductionInputAndHookTests(unittest.TestCase):
             self.assertEqual(occupied & span, set(), msg=name)
             occupied |= span
             mode = row["mode"]
-            if mode in {"symbol_jump", "absolute_jump"}:
+            if mode in {"symbol_jump", "cfru_symbol_jump", "absolute_jump"}:
                 self.assertEqual(len(expected), 8, msg=name)
             elif mode == "symbol_jump_nop":
                 self.assertGreaterEqual(len(expected), 8, msg=name)
@@ -590,6 +590,12 @@ class QolProductionInputAndHookTests(unittest.TestCase):
                 self.fail(f"unknown hook mode: {name}:{mode}")
         self.assertTrue({"wild_standard_end", "daycare_oval_charm",
                          "pss_input_callsite", "candy_quantity"} <= names)
+        cfru_hooks = [row for row in hooks if row["mode"] == "cfru_symbol_jump"]
+        self.assertEqual(len(cfru_hooks), 9)
+        self.assertFalse(any(row["mode"] == "absolute_jump" for row in hooks))
+        metadata = _json(ROOT / build_qol_production.BATTLE_CORE_META)
+        symbols = metadata["downstream_symbols"]
+        self.assertEqual({row["target"] for row in cfru_hooks}, set(symbols))
 
     def test_authored_research_special_and_field_map_counts(self) -> None:
         self.assertEqual(_sha(RESEARCH), RESEARCH_SHA256)
@@ -664,7 +670,13 @@ class QolProductionInputAndHookTests(unittest.TestCase):
         payload = [row for row in allocation["allocations"]
                    if row["name"] == "trainer_changekit_final_stage35_payload"]
         self.assertEqual(len(payload), 1)
-        self.assertEqual(int(payload[0]["start"]), 0x013025D0)
+        self.assertEqual(
+            int(payload[0]["start"]), int(metadata["runtime"]["payload"]["offset"]),
+        )
+        self.assertEqual(
+            int(payload[0]["gba_start"]),
+            int(metadata["runtime"]["payload"]["address"]),
+        )
 
     def test_stage36_preserves_stage35_trainer_table_and_commands(self) -> None:
         self.assertTrue(STAGE36.is_file(), "Stage36 ROM evidence is missing")

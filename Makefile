@@ -6,6 +6,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: codex-battle-rewards codex-battle-rewards-check codex-battle-rewards-clean-rebuild codex-battle-rewards-clean-rebuild-check codex-battle-skill-check
 .PHONY: windows-battle-catalog windows-battle-catalog-check
 .PHONY: windows-box14-vault windows-box14-vault-check
+.PHONY: species-form-compat species-form-compat-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -194,10 +195,10 @@ trainer-v5-foundation-check:
 	$(PYTHON) scripts/build_trainer_v5_stage31.py check
 
 trainer-v5-tohoku-batch02:
-	$(PYTHON) scripts/build_trainer_v5_stage32.py build
+	$(PYTHON) scripts/build_trainer_v5_stage32_batch02.py build
 
 trainer-v5-tohoku-batch02-check:
-	$(PYTHON) scripts/build_trainer_v5_stage32.py check
+	$(PYTHON) scripts/build_trainer_v5_stage32_batch02.py check
 
 trainer-v5-tohoku-batch03:
 	$(PYTHON) scripts/build_trainer_v5_stage32.py build
@@ -336,6 +337,12 @@ windows-box14-vault:
 
 windows-box14-vault-check:
 	$(PYTHON) scripts/build_windows_box14_vault.py check
+
+species-form-compat:
+	$(PYTHON) scripts/build_species_form_compat.py build
+
+species-form-compat-check:
+	$(PYTHON) scripts/build_species_form_compat.py check
 
 codex-battle-skill-check:
 	test -s tools/codex_skills/vega-codex-battle/SKILL.md

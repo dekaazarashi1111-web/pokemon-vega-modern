@@ -132,8 +132,8 @@ enum {
     QOL_CHECK_BAG_ITEM = 0x08099949U,
     QOL_ADD_BAG_ITEM = 0x08099A8DU,
     QOL_TRY_SAVING_DATA = 0x080DB34DU,
-    QOL_SAVE_FINALIZE = 0x092D2605U,
-    QOL_SAVE_INIT = 0x092D2649U,
+    QOL_SAVE_FINALIZE = 0x092D28D9U,
+    QOL_SAVE_INIT = 0x092D2979U,
     QOL_LOAD_GAME_DATA = 0x080DB4E5U,
     QOL_SCRIPT_CONTEXT_ENABLED = 0x08069219U,
     QOL_SET_WARP_DESTINATION = 0x08054C4DU,
@@ -151,10 +151,7 @@ enum {
     QOL_BATTLE_FRONTIER = 0x06000100U,
     QOL_BATTLE_DYNAMAX = 0x40000000U,
     QOL_BATTLE_INGAME_PARTNER = 0x00400000U,
-    QOL_STAGE35_TRAINER_PROBE = 0x09302811U,
     QOL_TRAINER_OPPONENT_A = 0x020385E2U,
-    QOL_DYNAMAX_COMMAND_DATA = 0x0936BF8DU,
-    QOL_TERA_COMMAND_DATA = 0x0936D95CU,
     QOL_MON_DATA_NICKNAME = 2U,
     QOL_MON_DATA_SPECIES = 11U,
     QOL_MON_DATA_HELD_ITEM = 12U,
@@ -190,7 +187,7 @@ enum {
     QOL_START_MENU_CURSOR = 0x02037028U,
     QOL_START_MENU_COUNT = 0x02037029U,
     QOL_START_MENU_ORDER = 0x0203702AU,
-    QOL_CALCULATE_MON_STATS = 0x090D93A9U,
+    QOL_CALCULATE_MON_STATS = 0x090D939DU,
     QOL_IS_MON_SHINY = 0x08043AB9U,
     QOL_MON_DATA_HP = 57U,
     QOL_MON_DATA_MAX_HP = 58U,
@@ -228,7 +225,14 @@ struct QolSymbols {
     uint32_t inject_persist_fault;
     uint32_t open_supply_shop;
     uint32_t configure_trainer;
+    uint32_t trainer_probe;
+    uint32_t dynamax_command_data;
+    uint32_t tera_command_data;
 };
+
+static bool qol_setup_random_auto_battle(
+    struct mCore *core, const struct QolSymbols *s,
+    const struct Snapshot *field, bool exp_share, bool poisoned);
 
 static const char *const QOL_FEATURE_KEYS[QOL_FEATURE_COUNT] = {
     "TEXT_SPEED_INSTANT", "FAST_MOVEMENT", "IV_EV_JUDGE",
@@ -482,6 +486,8 @@ static bool qol_run_field_trace(struct mCore *core) {
     bool stable = default_instant && loaded && log_problem_count == 0U
         && read32(core, BATTLE_CORE_MAIN_CALLBACK2) == 0x08055E75U
         && save >= 0x02000000U && save < 0x02040000U
+        && read8(core, save + QOL_SAVE_LOCATION_OFFSET) == 4U
+        && read8(core, save + QOL_SAVE_LOCATION_OFFSET + 1U) == 0U
         && (int16_t)read16(core, save) == 8
         && (int16_t)read16(core, save + 2U) == 5
         && read8(core, QOL_PLAYER_PARTY_COUNT) >= 1U
@@ -565,14 +571,26 @@ static bool qol_prepare_loaded_field(struct mCore *core)
 {
     /* Fixture setup only: install a valid starter and enter the authored
      * group 4/map 0 research-town host through the stock warp/load callbacks.
-     * Every feature action after this point is driven through normal input. */
+     * Latch the released key state through two real frames first.  Without
+     * that boundary, linked-code timing can leave the boot trace's final key
+     * sample active and trigger the GBA soft-reset chord during map load. */
+    run_key_frames(core, 0U, 2U);
+    uint32_t save = read32(core, QOL_SAVE_BLOCK1_SLOT);
+    if (save < 0x02000000U || save >= 0x02040000U
+        || read32(core, BATTLE_CORE_MAIN_CALLBACK2) != 0x08055E75U
+        || read8(core, save + QOL_SAVE_LOCATION_OFFSET) != 4U
+        || read8(core, save + QOL_SAVE_LOCATION_OFFSET + 1U) != 0U
+        || call_preserving(core, QOL_SCRIPT_CONTEXT_ENABLED,
+                           0, 0, 0, 0) != 0U)
+        return false;
     create_mon(core, QOL_PLAYER_PARTY, 1U, 5U);
     write8(core, QOL_PLAYER_PARTY_COUNT, 1U);
-    /* The linked Stage17 wrapper owns the five-argument ABI and the complete
-     * SetWarp/ResetAvatar/Warp/FieldCallback/CB2 sequence. */
     (void)call_preserving(core, QOL_B_RETURN_WARP, 0, 0, 0, 0);
     run_key_frames(core, 0U, 1200U);
-    return read32(core, BATTLE_CORE_MAIN_CALLBACK2) == 0x08055E75U
+    return call_preserving(core, BATTLE_CORE_GET_MON_DATA,
+                           QOL_PLAYER_PARTY, 11U, 0, 0) == 1U
+        && read32(core, BATTLE_CORE_MAIN_CALLBACK2) == 0x08055E75U
+        && read8(core, QOL_PLAYER_PARTY_COUNT) == 1U
         && call_preserving(core, QOL_SCRIPT_CONTEXT_ENABLED,
                            0, 0, 0, 0) == 0U;
 }
@@ -1059,8 +1077,8 @@ static bool qol_auto_live_forbidden_case(
         if (!qol_setup_shiny_auto_battle(core, field))
             return false;
     } else {
-        struct CallObservation setup = setup_wild(core, field);
-        if (!setup.payload_pc_seen)
+        if (!qol_setup_random_auto_battle(
+                core, s, field, false, false))
             return false;
     }
     for (unsigned prompt = 0U; prompt < 12U; ++prompt) {
@@ -1106,6 +1124,9 @@ static bool qol_auto_live_forbidden_matrix(
     const struct Snapshot *field)
 {
     restore_snapshot(core, field);
+    /* A restored field snapshot must observe the host-side released key
+     * state before a battle entrypoint can evaluate the soft-reset chord. */
+    run_key_frames(core, 0U, 2U);
     (void)call_preserving(core, QOL_FLAG_SET,
                           QOL_FLAG_DH_CLEAR, 0, 0, 0);
     struct Snapshot unlocked = take_snapshot(core);
@@ -1167,6 +1188,7 @@ static bool qol_setup_random_auto_battle(
     uint8_t lead[POKEMON_SIZE];
     uint8_t bench[POKEMON_SIZE];
     restore_snapshot(core, field);
+    run_key_frames(core, 0U, 2U);
     create_mon_image(core, 4U, 20U, lead_moves, lead_pp, lead);
     create_mon_image(core, 7U, 20U, NULL, NULL, bench);
     clear_parties(core);
@@ -1579,15 +1601,15 @@ static bool qol_raid_story_consumers(struct mCore *core,
     restore_snapshot(core, base);
     qol_clear_progression(core);
     uint32_t next = call_preserving(core, s->configure_trainer,
-                                    QOL_DYNAMAX_COMMAND_DATA, 0, 0, 0);
+                                    s->dynamax_command_data, 0, 0, 0);
     if (next == 0U
         || read16(core, QOL_TRAINER_OPPONENT_A) != 130U
-        || call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        || call_preserving(core, s->trainer_probe,
                            9U, 0, 0, 0) != 0U
         || call_preserving(core, s->probe, 11U, 0, 0, 0) != 0U) {
         fprintf(stderr, "raid-story locked trainer failed next=%08" PRIx32
                 " phase=%" PRIu32 " probe=%" PRIu32 "\n", next,
-                call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+                call_preserving(core, s->trainer_probe,
                                 9U, 0, 0, 0),
                 call_preserving(core, s->probe, 11U, 0, 0, 0));
         return false;
@@ -1596,23 +1618,23 @@ static bool qol_raid_story_consumers(struct mCore *core,
     write8(core, QOL_LEDGER + QOL_LEDGER_LEAGUE_II, 1U);
     (void)call_preserving(core, QOL_SAVE_FINALIZE, QOL_LEDGER, 0, 0, 0);
     next = call_preserving(core, s->configure_trainer,
-                           QOL_DYNAMAX_COMMAND_DATA, 0, 0, 0);
+                           s->dynamax_command_data, 0, 0, 0);
     if (next == 0U
-        || call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        || call_preserving(core, s->trainer_probe,
                            9U, 0, 0, 0) != 1U
-        || call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        || call_preserving(core, s->trainer_probe,
                            12U, 0, 0, 0) != 130U
         || call_preserving(core, s->probe, 11U, 0, 0, 0) != 1U
         || call_preserving(core, s->save_load, 0U, 0, 0, 0) != 1U
-        || call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        || call_preserving(core, s->trainer_probe,
                            9U, 0, 0, 0) != 0U
         || call_preserving(core, s->probe, 11U, 0, 0, 0) != 0U) {
         fprintf(stderr, "raid-story live dyna failed next=%08" PRIx32
                 " phase=%" PRIu32 " trainer=%" PRIu32
                 " probe=%" PRIu32 "\n", next,
-                call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+                call_preserving(core, s->trainer_probe,
                                 9U, 0, 0, 0),
-                call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+                call_preserving(core, s->trainer_probe,
                                 12U, 0, 0, 0),
                 call_preserving(core, s->probe, 11U, 0, 0, 0));
         return false;
@@ -1622,23 +1644,23 @@ static bool qol_raid_story_consumers(struct mCore *core,
     write8(core, QOL_LEDGER + QOL_LEDGER_LEAGUE_II, 1U);
     (void)call_preserving(core, QOL_SAVE_FINALIZE, QOL_LEDGER, 0, 0, 0);
     next = call_preserving(core, s->configure_trainer,
-                           QOL_TERA_COMMAND_DATA, 0, 0, 0);
+                           s->tera_command_data, 0, 0, 0);
     bool result = next != 0U
-        && call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        && call_preserving(core, s->trainer_probe,
                            9U, 0, 0, 0) == 1U
-        && call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        && call_preserving(core, s->trainer_probe,
                            12U, 0, 0, 0) == 208U
         && call_preserving(core, s->probe, 11U, 0, 0, 0) == 1U
         && call_preserving(core, s->save_load, 0U, 0, 0, 0) == 1U
-        && call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+        && call_preserving(core, s->trainer_probe,
                            9U, 0, 0, 0) == 0U;
     if (!result)
         fprintf(stderr, "raid-story tera failed next=%08" PRIx32
                 " phase=%" PRIu32 " trainer=%" PRIu32
                 " probe=%" PRIu32 "\n", next,
-                call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+                call_preserving(core, s->trainer_probe,
                                 9U, 0, 0, 0),
-                call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+                call_preserving(core, s->trainer_probe,
                                 12U, 0, 0, 0),
                 call_preserving(core, s->probe, 11U, 0, 0, 0));
     return result;
@@ -2852,13 +2874,13 @@ static bool qol_feature_case(struct mCore *core,
             && call_preserving(core, s->probe, 10U, 0, 0, 0) == 0U;
     case 32U:
         return call_preserving(core, s->configure_trainer,
-                               QOL_DYNAMAX_COMMAND_DATA, 0, 0, 0)
+                               s->dynamax_command_data, 0, 0, 0)
                    != 0U
-            && call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+            && call_preserving(core, s->trainer_probe,
                                9U, 0, 0, 0) == 1U
             && call_preserving(core, s->probe, 11U, 0, 0, 0) == 1U
             && call_preserving(core, s->save_load, 0U, 0, 0, 0) == 1U
-            && call_preserving(core, QOL_STAGE35_TRAINER_PROBE,
+            && call_preserving(core, s->trainer_probe,
                                9U, 0, 0, 0) == 0U;
     case 33U:
         return qol_purchase_case(core, s, 48U, 957U, 64U, 1U);
@@ -2932,8 +2954,8 @@ static bool qol_verify_persistent_state(struct mCore *core,
 
 #ifndef QOL_PRODUCTION_EMBEDDED
 int main(int argc, char **argv) {
-    if (argc != 36) {
-        fprintf(stderr, "usage: %s ROM SAVE CASES quick|full 31_SYMBOLS\n", argv[0]);
+    if (argc != 39) {
+        fprintf(stderr, "usage: %s ROM SAVE CASES quick|full 31_SYMBOLS 3_STAGE35_VALUES\n", argv[0]);
         return 2;
     }
     bool full = strcmp(argv[4], "full") == 0;
@@ -2971,6 +2993,9 @@ int main(int argc, char **argv) {
     s.inject_persist_fault = qol_number(argv[arg++], "inject_persist_fault");
     s.open_supply_shop = qol_number(argv[arg++], "open_supply_shop");
     s.configure_trainer = qol_number(argv[arg++], "configure_trainer");
+    s.trainer_probe = qol_number(argv[arg++], "trainer_probe");
+    s.dynamax_command_data = qol_number(argv[arg++], "dynamax_command_data");
+    s.tera_command_data = qol_number(argv[arg++], "tera_command_data");
     if (arg != (unsigned)argc) return 2;
 
     qol_initialize_save(argv[2]);

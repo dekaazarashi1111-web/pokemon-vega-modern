@@ -190,7 +190,7 @@ NICKNAME_END_DIRECT_CALLS = (
     0x0A17C6, 0x0CD302, 0x0D933A, 0x0D95CA, 0x0D9640,
     0x11FD8C, 0x120ADE, 0x1369DA,
 )
-NICKNAME_END_LONG_CALL_LITERALS = (0x10D1828, 0x10D1BE0, 0x1128E2C)
+NICKNAME_END_LONG_CALL_LITERALS = (0x10D1818, 0x10D1BD0, 0x1128F78)
 
 
 class SurfaceError(RuntimeError):
@@ -1007,6 +1007,9 @@ def run_species_runtime_smoke(root: Path, rom: bytes) -> dict[str, Any]:
             "form_base_names_checked": 3,
             "battle_name_cases": 2, "battle_messages": 2,
             "healthbox_tile_cases": 2, "level100_form_cases": 2,
+            "back_sprite_full_64x64_cases": 2,
+            "canonical_form_ability_families": 7,
+            "canonical_form_transitions": 8,
         }
         if any(result.get(key) != value for key, value in expected.items()):
             fail(f"T09 Species runtime smoke contract differs: {result}")
@@ -1407,6 +1410,45 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
             output_rom, stage, site, bytes.fromhex("07dd"),
             bytes.fromhex("07e0"), label,
         ))
+    # The JP routine has the same three Species<=412 position limiters as DPE,
+    # but invalid/sentinel Species (notably 0xFFFF) must retain the stock safe
+    # fallback.  Replacing the conditional branch unconditionally would index
+    # the canonical coord tables out of range and eventually exhaust the field
+    # heap through repeated zero-sized sprite allocations.  Reuse the old
+    # fallback literal slot for the exact canonical max, then repoint the
+    # fallback load to the following duplicate table-pointer literal.
+    for site, fallback_load, bound_literal, fallback_literal, label in (
+        (0x73DFC, 0x73E04, 0x73E08, 0x73E14,
+         "canonical front sprite coordinate bound"),
+        (0x73ECC, 0x73ED4, 0x73ED8, 0x73EEC,
+         "canonical back sprite coordinate bound"),
+        (0x73F2C, 0x73F34, 0x73F38, 0x73F4C,
+         "canonical battler Y coordinate bound"),
+    ):
+        target = 0x08000000 + fallback_literal
+        literal_pc = (0x08000000 + fallback_load + 4) & ~3
+        literal_delta = target - literal_pc
+        if literal_delta < 0 or literal_delta > 1020 or literal_delta % 4:
+            fail(f"{label}: fallback literal is outside Thumb LDR range")
+        replacement = (
+            bytes.fromhex("02488442")  # ldr r0,[pc,#8]; cmp r4,r0
+            + bytes.fromhex("04d900bf")  # bls canonical; nop
+        )
+        runtime_patches.append(patch_exact(
+            output_rom, stage, site, bytes.fromhex("ce204000844203d9"),
+            replacement, label,
+        ))
+        runtime_patches.append(patch_exact(
+            output_rom, stage, fallback_load, bytes.fromhex("0048"),
+            struct.pack("<H", 0x4800 | (literal_delta // 4)),
+            f"{label} safe fallback literal",
+        ))
+        runtime_patches.append(patch_exact(
+            output_rom, stage, bound_literal,
+            bytes(stage[bound_literal:bound_literal + 4]),
+            struct.pack("<I", len(rows) - 1),
+            f"{label} canonical max literal",
+        ))
     # Unown B starts at canonical 650 after reserving 412 for the Egg sentinel;
     # the stock routine receives letters 1..27, hence its new base delta is 649.
     for site, label in (
@@ -1449,20 +1491,6 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
                       "target": target | 1,
                       "register": int(row["register"])})
         learn_hooks.append(patch)
-
-    # The fixed CFRU object was compiled in its source Species namespace.
-    # Toxtricity's two IDs retain the same delta (52), so correcting the three
-    # literal constants preserves form selection without touching other forms.
-    toxtricity_patches = []
-    for site, expected, replacement, label in (
-        (0x1100DC0, 0xFFFFFB8B, (-1322) & 0xFFFFFFFF, "Toxtricity amped compare"),
-        (0x1100DC4, 0xFFFFFB57, (-1374) & 0xFFFFFFFF, "Toxtricity low-key compare"),
-        (0x1100DC8, 0x000004A9, 1374, "Toxtricity canonical base"),
-    ):
-        toxtricity_patches.append(patch_exact(
-            output_rom, stage, site, struct.pack("<I", expected),
-            struct.pack("<I", replacement), label,
-        ))
 
     runtime_smoke = run_species_runtime_smoke(root, bytes(output_rom))
 
@@ -1584,7 +1612,6 @@ Status: PASS
                 "runtime_smoke": runtime_smoke,
                 "species_names": species_name_model,
                 "species_name_consumers": name_consumer_model,
-                "toxtricity_namespace_patches": toxtricity_patches,
                 "assets": asset_model, "evolutions": {k: v for k, v in evolution_model.items() if k != "rows"},
                 "learnsets": learn_model, "v2": {k: v for k, v in v2.items() if k != "rows"},
                 "breeding": {"cases": len(fixture["cases"]), "status": fixture["status"]}}

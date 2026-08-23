@@ -10,18 +10,18 @@
     "stage_rom": {
       "path": "build/stages/23_battle_rules.gba",
       "size": 33554432,
-      "sha256": "54a36507d0ca5e85408c5c2f4f8984feb2a396e15d67d5cc75b8af621bd7dc97"
+      "sha256": "194443d05e8b9c3a240f2f470e68a6e76e98a1dd383a963643d16bf2ab47c0d5"
     },
     "allocation": {
       "path": "build/stages/23_allocation.json",
-      "sha256": "1f891e26fecf8b3a094016f673cc8d5df7602fe915313ed2edae2df78324e2a4"
+      "sha256": "a1c7725ada6384661aafef829e9074bace41b7df96dba0b3609fa5c27646acd6"
     },
     "battle_core_metadata": {
       "path": "build/stages/06_battle_core.json",
-      "fingerprint": "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03",
-      "rom_sha256": "61a525502e758f927c8b7af15babce87e6c6280ca279ae6c5014778234df2591",
-      "offsets_sha256": "2be0882f8c2812cd3dd924d7b16df3501cd0d0bb78e7dbed8264455b0622a56b",
-      "linked_object_sha256": "8c0ac2be2b77fa97b974a7a2377aaf99b796fb49c369d10a7faf9432ce2040f6"
+      "fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+      "rom_sha256": "32b3e4d72b538c2bd085d39cc69af81c79d1319bf71e943fe888c911265366d3",
+      "offsets_sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+      "linked_object_sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb"
     },
     "address_audit": {
       "path": "reports/generated/address_audit.csv",
@@ -33,7 +33,7 @@
     },
     "id_model": {
       "path": "generated/engine/ids/id_spaces.json",
-      "sha256": "e224539fcc2900e8cdd4b8a8a345b1890d468ad754ae7cc2648cdfb29f72bb73"
+      "sha256": "1a94b67379606e1c8b777f2b82855a66af3542d6b658bbe59aa77b90ffd8059d"
     },
     "species_model": {
       "path": "generated/engine/species/species_port.json",
@@ -45,7 +45,7 @@
     },
     "first_battle_fixture": {
       "path": "build/stages/21_mgba_first_battle_loop.json",
-      "sha256": "8f40b09891bf45e50a2a747c8aa171de83ee1117b4a57c7c1a941962bb650c59"
+      "sha256": "645c0ad704925db65cccd72a3cef9c282b5090c189731934304b6e87057def68"
     }
   },
   "owners": {
@@ -55,26 +55,26 @@
     },
     "handle_input_choose_move": {
       "hook": "0x0802E1EC",
-      "target": "0x09116E41",
-      "entry": "0x09116E40",
+      "target": "0x09116F91",
+      "entry": "0x09116F90",
       "expected_hex": "90 22 F0 B5 4E 46 57 46"
     },
     "init_move_selection": {
       "hook": "0x08032428",
-      "target": "0x09116311",
-      "entry": "0x09116310",
+      "target": "0x09116461",
+      "entry": "0x09116460",
       "expected_hex": "F0 B5 DE 46 4E 46 57 46"
     },
     "display_move_type": {
       "hook": "0x080300D0",
-      "target": "0x0911570D",
-      "entry": "0x0911570C",
+      "target": "0x0911585D",
+      "entry": "0x0911585C",
       "expected_hex": "30b5234b1a782349"
     },
     "display_effectiveness": {
       "hook": "0x08030024",
-      "target": "0x09116DF1",
-      "entry": "0x09116DF0",
+      "target": "0x09116F41",
+      "entry": "0x09116F40",
       "expected_hex": "fc2310b50b4c2370"
     },
     "help_open_guard": {

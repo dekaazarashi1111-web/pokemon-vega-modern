@@ -49,7 +49,7 @@ PATCH_CUMULATIVE = Path("build/patches/vega-modern-kanto-v1.4.0-to-trainer-v5-st
 RUNNER = Path("tools/mgba_trainer_v5_stage31_smoke.c")
 SOURCE_DIR = Path("content/trainer_v5_stage31")
 
-EXPECTED_INPUT_SHA256 = "3a962877175d837ddb18d446182e6a63f5b72247567b93b0cc8982c74f1c8703"
+EXPECTED_INPUT_SHA256 = "46b668346def44c9fe9bc11590f961db3133543342165052c91fcaab92e70d5f"
 EXPECTED_BASE_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
 PAYLOAD_HEADER_SIZE = 0x100
 TRAMPOLINE_SIZE = 0x10
@@ -72,7 +72,7 @@ FORBIDDEN_GBA_START = 0x092DBEF4
 FORBIDDEN_GBA_END = 0x092DD0E4
 
 HOOKS = {
-    "configure_trainer_battle": {"address": 0x0807F948, "expected": bytes.fromhex("0049084789df1109"), "entry": "TrainerV5Runtime_ConfigureTrainerBattle"},
+    "configure_trainer_battle": {"address": 0x0807F948, "expected": bytes.fromhex("00490847d9e01109"), "entry": "TrainerV5Runtime_ConfigureTrainerBattle"},
     "script_flag_get": {"address": 0x0807FB04, "expected": bytes.fromhex("00b5fff767fe0004"), "entry": "TrainerV5Runtime_ScriptFlagGet"},
     "script_flag_set": {"address": 0x0807FB1C, "expected": bytes.fromhex("00b5fff75bfe0004"), "entry": "TrainerV5Runtime_ScriptFlagSet"},
     "script_flag_set_alt": {"address": 0x0807FB30, "expected": bytes.fromhex("00b5fff751fe0004"), "entry": "TrainerV5Runtime_ScriptFlagSet"},
@@ -80,14 +80,14 @@ HOOKS = {
     "set_trainer_flag": {"address": 0x0807FB5C, "expected": bytes.fromhex("00b50004a021c904"), "entry": "TrainerV5Runtime_SetTrainerFlag"},
     "clear_trainer_flag": {"address": 0x0807FB70, "expected": bytes.fromhex("00b50004a021c904"), "entry": "TrainerV5Runtime_ClearTrainerFlag"},
     "get_rematch": {"address": 0x0810D93C, "expected": bytes.fromhex("30b581b0011c0904"), "entry": "TrainerV5Runtime_GetRematchTrainerId"},
-    "build_trainer_party": {"address": 0x090DD198, "expected": bytes.fromhex("f0b5de464e464546"), "entry": "TrainerV5Runtime_BuildTrainerPartySetup"},
+    "build_trainer_party": {"address": 0x090DD2A4, "expected": bytes.fromhex("f0b5de464e464546"), "entry": "TrainerV5Runtime_BuildTrainerPartySetup"},
 }
-CONFIGURE_TRAINER_BATTLE_ADDRESS = 0x0911DF89
+CONFIGURE_TRAINER_BATTLE_ADDRESS = 0x0911E0D9
 GET_TRAINER_FLAG_ADDRESS = 0x0807F7D9
 FLAG_SET_ADDRESS = 0x0806DE75
 FLAG_CLEAR_ADDRESS = 0x0806DE9D
 FLAG_GET_ADDRESS = 0x0806DEC5
-CALCULATE_MON_STATS_ADDRESS = 0x090D93A9
+CALCULATE_MON_STATS_ADDRESS = 0x090D939D
 ENEMY_PARTY_ADDRESS = 0x02023F8C
 TRAINER_OPPONENT_A_ADDRESS = 0x020385E2
 REQUIRED_ENTRYPOINTS = {

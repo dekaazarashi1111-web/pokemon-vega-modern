@@ -46,7 +46,7 @@ PATCH_INCREMENTAL = Path("build/patches/bp-shop-stage27-to-factory-reward-stage2
 PATCH_CUMULATIVE = Path("build/patches/vega-modern-kanto-v1.4.0-to-factory-reward-stage28.bps")
 RUNNER = Path("tools/mgba_factory_reward_smoke.c")
 
-EXPECTED_INPUT_SHA256 = "c1266a414fcb80b5d3754adec1158effd0326aa8d8d75a8365a0fa0363b5e0b1"
+EXPECTED_INPUT_SHA256 = "efeec95f16adfcd7d0076339cc4930f2c0c1f56af9cc85cd93fad0c9b9599611"
 EXPECTED_BASE_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
 PAYLOAD_HEADER_SIZE = 0x80
 ALLOCATION_NAME = "factory_reward_runtime_payload"

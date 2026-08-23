@@ -62,9 +62,8 @@ enum {
     RE_SAVE_MAGIC = 0x31534756U,
     RE_SAVE_RESERVED_NONZERO = 15U,
     RE_ACQUISITION_INNER_OFFSET = 0x44U,
-    RE_ACQUISITION_COMPAT_SITE = 0x092D140EU,
-    RE_ACQUISITION_SAVE_INITIALIZE = 0x092D0FA9U,
-    RE_ACQUISITION_SET_SPECIES = 0x092D1D7DU,
+    RE_ACQUISITION_SAVE_INITIALIZE = 0x092D11B9U,
+    RE_ACQUISITION_SET_SPECIES = 0x092D2011U,
 
     RE_ACTIVITY_FISHING = 0U,
     RE_ACTIVITY_ECOLOGY = 1U,
@@ -75,9 +74,9 @@ enum {
     RE_ACTIVITY_COUNT = 6U,
     RE_POINT_CAP = 9999U,
 
-    RE_HOOK_SAVE_VALIDATE = 0x092D10D0U,
-    RE_HOOK_SAVE_FINALIZE = 0x092D2604U,
-    RE_HOOK_SAVE_INIT = 0x092D2648U,
+    RE_HOOK_SAVE_VALIDATE = 0x092D12E0U,
+    RE_HOOK_SAVE_FINALIZE = 0x092D28D8U,
+    RE_HOOK_SAVE_INIT = 0x092D2978U,
     RE_HOOK_SAVE_LOAD = 0x080DB4E4U,
     RE_HOOK_WILD_LAND = 0x080826D8U,
     RE_HOOK_WILD_FISH = 0x08082750U,
@@ -453,10 +452,7 @@ static bool re_symbols_and_hooks(struct mCore *core,
         }
         roots = roots && target == hooks[index].target;
     }
-    bool acquisition_v2_patch = read8(
-        core, RE_ACQUISITION_COMPAT_SITE) == 0x02U
-        && read8(core, RE_ACQUISITION_COMPAT_SITE + 1U) == 0x2AU;
-    return symbols_live && roots && acquisition_v2_patch;
+    return symbols_live && roots;
 }
 
 static bool re_initialize(struct mCore *core, const struct ReSymbols *symbols,

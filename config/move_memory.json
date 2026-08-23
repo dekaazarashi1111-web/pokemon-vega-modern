@@ -10,35 +10,35 @@
     "stage_rom": {
       "path": "build/stages/24_battle_ui.gba",
       "size": 33554432,
-      "sha256": "66b6762f9c8969e118e306f4bc3d2429712fdb2c2ea066774b8191d67802d962"
+      "sha256": "dc0fdd490eceb087ccfe6d14685f22bb39b2dad46808d78f9269b542c0012130"
     },
     "stage_metadata": {
       "path": "build/stages/24_battle_ui.json",
-      "sha256": "a6934186752bb433f2e380268f03ead12b1194db53c0a2f6a3036109f5f12ff8"
+      "sha256": "49f2ce544f9f104ef7177ac3fe49d8cde9af723c198c612491218cf6e07e26e0"
     },
     "allocation": {
       "path": "build/stages/24_allocation.json",
-      "sha256": "66e6140733086c1518067d4ac7c00f28e3c6ff89663fd16fd149964a275182e3"
+      "sha256": "05ec51d0cf0ef3c1bdf3c47967073fbbd3378000ceceec06ec736b63664d0278"
     },
     "charmap": {
       "path": "vendor/upstream/CFRU-JP/charmap.tbl",
       "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"
     },
     "linked_object": {
-      "path": "build/battle-core/0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03/run-1/linked.o",
-      "sha256": "8c0ac2be2b77fa97b974a7a2377aaf99b796fb49c369d10a7faf9432ce2040f6"
+      "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/linked.o",
+      "sha256": "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb"
     },
     "species_surface_metadata": {
       "path": "build/stages/09_species_surface.json",
-      "sha256": "0e77ef1d63adfbace78225cd03c2eaebe7cb2a3fd1c89e7995f51f638d5a6145"
+      "sha256": "3996b97c8741ab1e3e8a41cdc315998040999bca0b48a8de2b0f3080495580f1"
     },
     "level_up_pointers": {
       "path": "generated/engine/learnsets/level_up_pointers.bin",
-      "sha256": "64cb3404a7394119f1748aceb75c3e8c2ddaaba76838b1fa81b485a19b870c94"
+      "sha256": "a3559c327f61a0f9ced3f676b6f646cc2250e37577c62334fd8dc1bdacf1a70f"
     },
     "level_up_data": {
       "path": "generated/engine/learnsets/level_up_data.bin",
-      "sha256": "c61197f05286e89eae8d7c8b9429ba10e299c5afc53fc9556fd9f6c1e717f7b1"
+      "sha256": "4544753386775f0330073d879222e4bf9527a49183c3a06d83559a32d73440c3"
     },
     "move_manifest": {
       "path": "manifests/move_ids.csv",
@@ -60,7 +60,7 @@
   },
   "patches": {
     "move_relearner": {
-      "address": "0x09114088",
+      "address": "0x091141D4",
       "expected_hex": "f0b5c646542300b5"
     },
     "shiou_npc": {

@@ -14,9 +14,12 @@ enum {
     CWC_SCRIPT_CONTEXT1_DISABLE = 0x08069231U,
     CWC_SCRIPT_CONTEXT2_DISABLE = 0x0806920DU,
     CWC_PSS_INPUT_SITE = 0x0808CD48U,
-    CWC_PSS_CALLSITE_HOOK = 0x093784DBU,
     CWC_CAPABILITIES = 16383U,
 };
+
+#ifndef CWC_PSS_CALLSITE_HOOK
+#define CWC_PSS_CALLSITE_HOOK 0x09378A5BU
+#endif
 
 static const char *const cwc_test_names[] = {
     "stage45_identity_and_rebound_hooks",

@@ -3,6 +3,7 @@
 #include "mgba_regression_smoke.c"
 #undef main
 
+#include <signal.h>
 #include <string.h>
 
 #define REWARD_MAX_CALL_STEPS UINT64_C(60000000)
@@ -38,6 +39,19 @@
 #define REWARD_RNG_STATE UINT32_C(0x03005040)
 #define REWARD_RESULT UINT32_C(9)
 #define REWARD_MARKER_BATTLE_ACTIVE UINT32_C(2)
+
+static volatile sig_atomic_t reward_active_function;
+static volatile sig_atomic_t reward_last_pc;
+
+static void reward_crash_signal(int signal_number)
+{
+    fprintf(stderr,
+            "mgba-factory-reward-smoke: host-signal=%d function=%#010x "
+            "last-pc=%#010x\n",
+            signal_number, (unsigned int)reward_active_function,
+            (unsigned int)reward_last_pc);
+    _Exit(128 + signal_number);
+}
 
 static void reward_die(const char *message)
 {
@@ -118,6 +132,19 @@ static void reward_clear_region(struct mCore *core, uint32_t address,
         reward_write8(core, address + (uint32_t)index, 0U);
 }
 
+static void reward_settle_flash(struct mCore *core)
+{
+    const uint32_t wait_loop = UINT32_C(0x02000000);
+    struct CpuContext original = capture_cpu(core);
+    uint16_t preserved = read16(core, wait_loop);
+    reward_write16(core, wait_loop, UINT16_C(0xE7FE));
+    write_register(core, "cpsr", original.registers[16] | 0xA0);
+    write_register(core, "pc", (int32_t)(wait_loop | 1U));
+    run_frames(core, 4U, 0U);
+    restore_cpu(core, &original);
+    reward_write16(core, wait_loop, preserved);
+}
+
 static bool reward_memory_equals(struct mCore *core, uint32_t address,
                                  const uint8_t *expected, size_t size)
 {
@@ -140,6 +167,7 @@ static uint32_t reward_call_thumb(struct mCore *core, uint32_t function,
     write_register(core, "r2", (int32_t)r2);
     write_register(core, "r3", (int32_t)r3);
     write_register(core, "pc", (int32_t)function);
+    reward_active_function = (sig_atomic_t)function;
     uint64_t steps = 0;
     while ((((uint32_t)read_register(core, "pc")) & ~1U)
            != UINT32_C(0x08000002)) {
@@ -150,10 +178,13 @@ static uint32_t reward_call_thumb(struct mCore *core, uint32_t function,
                     function, (uint32_t)read_register(core, "pc"));
             reward_die("runtime instruction limit exceeded");
         }
+        reward_last_pc = (sig_atomic_t)read_register(core, "pc");
         core->step(core);
     }
     uint32_t result = (uint32_t)read_register(core, "r0");
     restore_cpu(core, &original);
+    reward_active_function = 0;
+    reward_last_pc = 0;
     return result;
 }
 
@@ -317,6 +348,7 @@ static void reward_expect_credits(struct mCore *core,
 
 int main(int argc, char **argv)
 {
+    (void)signal(SIGSEGV, reward_crash_signal);
     if (argc != 9) {
         fprintf(stderr,
                 "usage: %s ROM SAVE PROBE COMPLETE FINALIZE ENSURE "
@@ -436,22 +468,42 @@ int main(int argc, char **argv)
     reward_require_flash_ledger(core, "repeat Ultra");
 
     reward_phase("normal-save-reload");
-    if (reward_call_thumb(core, REWARD_REMOVE_BAG,
-                          REWARD_ITEM_XS, 5U, 0U, 0U) == 0U
-        || reward_call_thumb(core, REWARD_REMOVE_BAG,
-                             REWARD_ITEM_S, 2U, 0U, 0U) == 0U
-        || reward_call_thumb(core, REWARD_REMOVE_BAG,
-                             REWARD_ITEM_ORAN, 1U, 0U, 0U) == 0U
-        || reward_call_thumb(core, REWARD_REMOVE_BAG,
-                             REWARD_ITEM_ULTRA, 1U, 0U, 0U) == 0U)
+    /*
+     * The direct-call harness can complete several save transactions in one
+     * host timeslice.  Let the emulated flash controller settle as normal
+     * gameplay would before invoking the engine load path.
+    */
+    reward_settle_flash(core);
+    reward_phase("normal-save-reload-remove-items");
+    reward_empty_item(core, REWARD_ITEM_XS);
+    reward_empty_item(core, REWARD_ITEM_S);
+    reward_empty_item(core, REWARD_ITEM_ORAN);
+    reward_empty_item(core, REWARD_ITEM_ULTRA);
+    if (reward_item_count(core, REWARD_ITEM_XS) != 0U
+        || reward_item_count(core, REWARD_ITEM_S) != 0U
+        || reward_item_count(core, REWARD_ITEM_ORAN) != 0U
+        || reward_item_count(core, REWARD_ITEM_ULTRA) != 0U)
         reward_die("normal-save reload fixture could not remove rewards");
+    reward_phase("normal-save-reload-clear-ledger");
     reward_clear_region(core, REWARD_LEDGER, REWARD_LEDGER_SIZE);
-    if (reward_call_thumb(core, REWARD_SAVE_LOAD, 0U, 0U, 0U, 0U) != 1U
-        || reward_item_count(core, REWARD_ITEM_XS) != 5U
-        || reward_item_count(core, REWARD_ITEM_S) != 2U
-        || reward_item_count(core, REWARD_ITEM_ORAN) != 1U
-        || reward_item_count(core, REWARD_ITEM_ULTRA) != 1U)
+    reward_phase("normal-save-reload-engine-load");
+    uint32_t load_result = reward_call_thumb(
+        core, REWARD_SAVE_LOAD, 0U, 0U, 0U, 0U
+    );
+    uint32_t reload_xs = reward_item_count(core, REWARD_ITEM_XS);
+    uint32_t reload_s = reward_item_count(core, REWARD_ITEM_S);
+    uint32_t reload_oran = reward_item_count(core, REWARD_ITEM_ORAN);
+    uint32_t reload_ultra = reward_item_count(core, REWARD_ITEM_ULTRA);
+    if (load_result != 1U || reload_xs != 5U || reload_s != 2U
+        || reload_oran != 1U || reload_ultra != 1U) {
+        fprintf(stderr,
+                "mgba-factory-reward-smoke: reload result=%" PRIu32
+                " xs=%" PRIu32 " s=%" PRIu32 " oran=%" PRIu32
+                " ultra=%" PRIu32 "\n",
+                load_result, reload_xs, reload_s, reload_oran, reload_ultra);
         reward_die("normal save did not reload repeat rewards");
+    }
+    reward_phase("normal-save-reload-ensure");
     if (reward_invoke(core, ensure) != 1U
         || read16(core, factory + REWARD_BP_OFFSET) != 133U
         || read32(core, factory + REWARD_CLAIM_BITS_OFFSET) != 0x1FU)

@@ -5,19 +5,19 @@
     "stage40_rom": {
       "path": "build/stages/40_research_economy_v1.gba",
       "size": 33554432,
-      "sha256": "b46e28935675198db09f5947e6701918deafb49db27c03343f4b5b2ddaceb488"
+      "sha256": "b143ca7a9c0369f431e267a77fa8c75763d79d23ed001ad5b4751a5fd895959b"
     },
     "stage40_metadata": {
       "path": "build/stages/40_research_economy_v1.json",
-      "sha256": "76e7b5eb74717a27331bde8ce6db6f2c81ff6ebda525eb2b08f1abb8b11d96b0"
+      "sha256": "ae441a7015f559ea6e156b9dbed4ac9132776ecb0f2036e3c61c5c42e6946386"
     },
     "stage40_allocation": {
       "path": "build/stages/40_allocation.json",
-      "sha256": "3319edd4cab58a09dad4420d303b37c162d618a0bb07806d107412701d8078d5"
+      "sha256": "0ec9bb914dc638c0fa3233eef9a82fe62b3d9ad7f723c0f4719623bd3a14b438"
     },
     "stage40_clean_bps": {
       "path": "build/patches/firered-jpn-rev0-to-research-economy-stage40.bps",
-      "sha256": "b2510ee390dc1ffb72be752e8d178e9b90d7ac4fd16f1bcbe4207b3360861f05"
+      "sha256": "07432116532f9512db667c697926b827e946619e62a464f7873efd3fde3a8716"
     },
     "clean_rom": {
       "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
@@ -69,9 +69,9 @@
     "CREDIT_KEY_RANDOM": 3
   },
   "delegates": {
-    "research_wild_end": "0x093BE5C1",
-    "research_save_finalize": "0x093BD7FD",
-    "research_save_validate": "0x093BD429"
+    "research_wild_end": "0x093BEB41",
+    "research_save_finalize": "0x093BDD7D",
+    "research_save_validate": "0x093BD9A9"
   },
   "engine": {
     "create_mon": "0x0803D1C1",
@@ -91,7 +91,7 @@
     {
       "name": "wild_end_reward_chain",
       "address": "0x0807F270",
-      "expected_hex": "004b1847c1e53b09",
+      "expected_hex": "004b184741eb3b09",
       "target": "RewardEncountersV2_EndWildBattleAdapter",
       "mode": "THUMB_JUMP",
       "delegate": "ResearchEconomy_EndWildBattleAdapter"
@@ -104,7 +104,7 @@
     "map_group": 96,
     "map_num": 5,
     "event_pointer_site": "0x092BFDD8",
-    "expected_event_pointer_hex": "d0fd3809",
+    "expected_event_pointer_hex": "50033909",
     "source_counts": {
       "objects": 4,
       "warps": 10,
@@ -117,10 +117,10 @@
   },
   "factory_inheritance": {
     "allocation_name": "factory_reward_runtime_payload",
-    "start": 19779376,
-    "size": 1368,
-    "sha256": "fdbd52157bd05b4d7aa6c0112d080191d05d6db86a342fe9da0e5eebaed5906e",
-    "allocation_content_sha256": "9ddf7c5f5c5b663018059a17dcbcb5348b0b1352a78a1bf99e3373484c01c8e4",
+    "start": 19780480,
+    "size": 1672,
+    "sha256": "8094ce3dd299752c6ec99a74efd3f2cc8d3bb6db162c417f3b96c7d649a95d88",
+    "allocation_content_sha256": "5842cd209f74034bda244d54989812555c53d641c6fd3304619e38106d734cef",
     "thresholds": [3, 7, 14, 21],
     "claim_bits": [4, 5, 6, 7],
     "credit_kinds": [0, 1, 2, 3]

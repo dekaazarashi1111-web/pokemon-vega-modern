@@ -58,10 +58,10 @@ EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_ai_fixture_runner.c"),
 )
 ALLOCATION_NAME = "battle_ui_runtime"
-EXPECTED_STAGE23_SHA256 = "54a36507d0ca5e85408c5c2f4f8984feb2a396e15d67d5cc75b8af621bd7dc97"
+EXPECTED_STAGE23_SHA256 = "194443d05e8b9c3a240f2f470e68a6e76e98a1dd383a963643d16bf2ab47c0d5"
 EXPECTED_CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 EXPECTED_CFRU_TREE = "f4424af017abd01afe2d2deb833fb67275f03804"
-EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
+EXPECTED_T06_FINGERPRINT = "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717"
 
 
 def _expected_stage23(root: Path) -> str:
@@ -87,26 +87,26 @@ REQUIRED_SYMBOLS = {
 }
 
 UPSTREAM_SYMBOLS = {
-    "InitMoveSelectionsVarsAndStrings": (0x09116310, 0x2C8),
-    "HandleInputChooseMove": (0x09116E40, 0x119C),
-    "MoveSelectionDisplayMoveType": (0x0911570C, 0xB8),
-    "MoveSelectionDisplayMoveEffectiveness": (0x09116DF0, 0x50),
-    "HandleInputChooseTarget": (0x09115CEC, 0x624),
-    "CountAliveMonsInBattle": (0x090E8120, 0x138),
-    "TeraTypeActive": (0x09130528, 0x2C),
-    "CheckTableForMoveEffect": (0x09130E14, 0x30),
-    "gUserInterfaceGfx_TypeHighlightingPal": (0x091B66A0, 0x20),
-    "PSSIconsTiles": (0x091B5348, 0x240),
-    "sText_StabMoveInterfaceType": (0x091683DC, 0x09),
-    "gTypeEffectiveness": (0x09164A8C, 0x4E2),
+    "InitMoveSelectionsVarsAndStrings": (0x09116460, 0x2C8),
+    "HandleInputChooseMove": (0x09116F90, 0x119C),
+    "MoveSelectionDisplayMoveType": (0x0911585C, 0xB8),
+    "MoveSelectionDisplayMoveEffectiveness": (0x09116F40, 0x50),
+    "HandleInputChooseTarget": (0x09115E3C, 0x624),
+    "CountAliveMonsInBattle": (0x090E8234, 0x138),
+    "TeraTypeActive": (0x09130674, 0x2C),
+    "CheckTableForMoveEffect": (0x09130F60, 0x30),
+    "gUserInterfaceGfx_TypeHighlightingPal": (0x091B67BC, 0x20),
+    "PSSIconsTiles": (0x091B5464, 0x240),
+    "sText_StabMoveInterfaceType": (0x091684F8, 0x09),
+    "gTypeEffectiveness": (0x09164BE0, 0x4E2),
 }
 
 UPSTREAM_ADDRESS_ONLY = {
-    "gText_BattleUI_SuperEffective": 0x091430E3,
-    "gText_BattleUI_NotVeryEffective": 0x091430E6,
-    "gText_BattleUI_NoEffect": 0x091430E9,
-    "gText_BattleUI_STAB": 0x091430EB,
-    "gText_Acc": 0x09143100,
+    "gText_BattleUI_SuperEffective": 0x09143237,
+    "gText_BattleUI_NotVeryEffective": 0x0914323A,
+    "gText_BattleUI_NoEffect": 0x0914323D,
+    "gText_BattleUI_STAB": 0x0914323F,
+    "gText_Acc": 0x09143254,
     "StringNull": 0x09001CB5,
     "gMoveEffectsThatIgnoreWeaknessResistance": 0x0903FE65,
 }

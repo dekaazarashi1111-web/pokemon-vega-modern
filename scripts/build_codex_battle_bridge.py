@@ -440,6 +440,11 @@ def _ipad_evidence(
     cli = evidence.get("cli", {})
     safety = evidence.get("safety", {})
     mailbox = evidence.get("mailbox", {})
+    # Device evidence is immutable historical evidence.  A rebuilt base ROM
+    # gets a new CRC32 and must return to PENDING until it is exercised on the
+    # iPad again; never rewrite or silently bless the old observation.
+    if mailbox.get("rom_crc32") != protocol_document["rom"]["crc32"]:
+        return None, _sha(raw)
     if (evidence.get("schema_version") != 1 or evidence.get("task") != TASK
             or evidence.get("status") != "PASS"
             or inventory.get("retroarch_version") != expected_device["retroarch_version"]
@@ -455,7 +460,6 @@ def _ipad_evidence(
                 "stable_json_exit_codes", "owner_only_config"))
             or mailbox.get("address") != protocol_document["mailbox"]["address"]
             or mailbox.get("stage_identity") != protocol_document["mailbox"]["stage_identity"]
-            or mailbox.get("rom_crc32") != protocol_document["rom"]["crc32"]
             or any(safety.get(key) is not True for key in (
                 "retroarch_stopped_before_config", "backup_hash_match",
                 "versioned_rom_new_file", "existing_rom_unchanged",

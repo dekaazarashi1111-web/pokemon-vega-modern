@@ -68,9 +68,9 @@ enum {
     FH_TRAINER_HOOK = 0x09096EC4U,
     FH_ABILITY_HOOK = 0x090973FCU,
     FH_SAVE_HOOK = 0x080DB4E4U,
-    FH_RECEPTION_POINTER = 0x093C2DC0U,
-    FH_TRIAL_COMPLETION_POINTER = 0x092CF57DU,
-    FH_TRIAL_SCRIPT = 0x092CF3DCU,
+    FH_RECEPTION_POINTER = 0x093C3340U,
+    FH_TRIAL_COMPLETION_POINTER = 0x092CF791U,
+    FH_TRIAL_SCRIPT = 0x092CF790U,
 };
 
 #define FH_SYMBOL_LIST(X) \
@@ -317,12 +317,13 @@ static bool fh_initialize(struct mCore *core, const struct FhSymbols *symbols)
 static bool fh_roots(struct mCore *core, const struct FhSymbols *s,
                      const struct FhCases *cases)
 {
-    static const uint8_t trial_prefix[] = {
-        0x6A, 0x5A, 0x0F, 0x00, 0x08, 0xF3, 0x2C, 0x09,
+    static const uint8_t trial_suffix[] = {
+        0x0F, 0x00, 0x9C, 0xF5, 0x2C, 0x09, 0x09, 0x04, 0x6C, 0x02,
     };
-    bool trial = true;
-    for (unsigned index = 0U; index < ARRAY_LEN(trial_prefix); ++index)
-        trial = trial && read8(core, FH_TRIAL_SCRIPT + index) == trial_prefix[index];
+    bool trial = read8(core, FH_TRIAL_SCRIPT) == 0x23U;
+    for (unsigned index = 0U; index < ARRAY_LEN(trial_suffix); ++index)
+        trial = trial
+            && read8(core, FH_TRIAL_SCRIPT + 5U + index) == trial_suffix[index];
     bool passed = fh_bl_target(core, FH_TRAINER_HOOK) == s->trainer_adapter
         && fh_bl_target(core, FH_ABILITY_HOOK) == s->ability_adapter
         && fh_jump_target(core, FH_SAVE_HOOK) == s->save_adapter

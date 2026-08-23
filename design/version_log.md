@@ -907,3 +907,14 @@
   - Windows owner-only個体庫の互換6体を、持ち物を含む80-byte原本のまま実iPadのBox 14へ戻した。
   - 各個体の通常save確定後だけWindows在庫を減算し、Box 14 slot 0〜5の6体、Windows在庫0、pendingなしで終了した。
 - Verify: 実iPad doctor 13項目、`vault withdraw` COMPLETE／moved 6、終了後`vault status` Box 14 occupied 6／Windows record 0／pendingなし PASS。
+
+## 2026-08-24T01:46:34+09:00
+
+- Version: `post-v1.4.0-stage48`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Task: `USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT` / Species依存フォームとプレイヤー側背面戦闘画像を正規化する
+- Summary:
+  - Species/Form 1,621行とAbility 312行をmanifest生成aliasへ統一し、固定CFRU-JPのC/ASM 84ファイル・12,665参照を未変換0でfail-closed監査した。直接数値候補17件も全件review済み、unreviewed 0とした。
+  - Hunger Switch、Disguise、Battle Bond、Schooling、Zen Mode、Ice Face、Power Constructと既存特性を実ROMで検証し、form後のbattle/party/type/stats/ability/表示と終了復元を固定した。
+  - 追加Speciesのplayer backを64×64 OAM／2,048-byte OBJ tileとして検査し、Stage06〜47を再生成した。Stage48と旧Stage47差分／clean直接BPS、再生成可能reportを追加した。
+- Verify: canonical Stage06/07/09 check、focused 87 tests、Stage36/42/46/47 check、Stage48 build/check、mGBA 2 process、BPS完全往復、task graph/private guard/diff check PASS。Stage48 SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`、CRC32 `CA37AC3D`。

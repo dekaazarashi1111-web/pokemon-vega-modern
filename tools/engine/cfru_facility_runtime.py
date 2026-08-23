@@ -266,6 +266,23 @@ _SPREAD_SELECTED_NEW = (
     "\t\t\tspecies = spread->species;"
 )
 
+_RENTAL_ACCEPT_OLD = """\t\t\tif (!IsPokemonBannedBasedOnStreak(species, item, builder->speciesArray, monsCount, trainerId, tier, forPlayer)
+\t\t\t&& (!builder->speciesOnTeam[dexNum] || tier == BATTLE_FACILITY_NO_RESTRICTIONS)
+\t\t\t&& (!ItemAlreadyOnTeam(item, monsCount, builder->itemArray) || tier == BATTLE_FACILITY_NO_RESTRICTIONS)
+\t\t\t&& (tier == BATTLE_FACILITY_MEGA_BRAWL || itemEffect != ITEM_EFFECT_MEGA_STONE || item == ITEM_ULTRANECROZIUM_Z || !builder->itemEffectOnTeam[ITEM_EFFECT_MEGA_STONE])
+\t\t\t&& ((itemEffect != ITEM_EFFECT_Z_CRYSTAL && item != ITEM_ULTRANECROZIUM_Z) || !builder->itemEffectOnTeam[ITEM_EFFECT_Z_CRYSTAL])
+\t\t\t&& !PokemonTierBan(species, item, spread, NULL, tier, CHECK_BATTLE_TOWER_SPREADS)
+\t\t\t&& !(tier == BATTLE_FACILITY_MONOTYPE && TeamNotAllSameType(species, item, monsCount, builder->speciesArray, builder->itemArray))
+\t\t\t&& !(tier == BATTLE_FACILITY_GS_CUP && !IsFrontierSingles(battleType) && TooManyLegendariesOnGSCupTeam(species, monsCount, builder->speciesArray))
+\t\t\t&& !((trainerId == BATTLE_TOWER_TID || forPlayer || (trainerId == BATTLE_FACILITY_MULTI_TRAINER_TID && IsRandomBattleTowerBattle())) && TeamDoesntHaveSynergy(spread, builder, forPlayer)))
+\t\t\t{
+\t\t\t\tloop = FALSE;
+\t\t\t}"""
+_RENTAL_ACCEPT_NEW = _RENTAL_ACCEPT_OLD.replace(
+    "&& !PokemonTierBan(species, item, spread, NULL, tier, CHECK_BATTLE_TOWER_SPREADS)",
+    "&& (VegaFacilitySpreadIsCurated(spread) || !PokemonTierBan(species, item, spread, NULL, tier, CHECK_BATTLE_TOWER_SPREADS))",
+)
+
 _SPREAD_FALLBACK_START = "\n#else\n\nconst struct BattleTowerSpread gFrontierSpreads[] ="
 _SPREAD_FALLBACK_END = "\n#endif\n\nconst u16 gNumFrontierSpreads = ARRAY_COUNT(gFrontierSpreads);"
 _TRAINER_FALLBACK_START = "\n#else\n\tconst struct BattleTowerTrainer gTowerTrainers[] ="
@@ -303,11 +320,14 @@ def patch_builder_safety(source: str, *, verify_fixed_hash: bool = True) -> str:
         _fail(f"{BUILD_SOURCE} SHA-256不一致: {actual} != {expected}")
     patched = _replace_once(source, _RETRY_DECL_OLD, _RETRY_DECL_NEW, "rental retry counter")
     patched = _replace_once(patched, _RETRY_LOOP_OLD, _RETRY_LOOP_NEW, "rental retry guard")
-    return _replace_once(
+    patched = _replace_once(
         patched,
         _SPREAD_SELECTED_OLD,
         _SPREAD_SELECTED_NEW,
         "dedicated monotype pool selection",
+    )
+    return _replace_once(
+        patched, _RENTAL_ACCEPT_OLD, _RENTAL_ACCEPT_NEW, "rental rejection classifier"
     )
 
 
@@ -470,6 +490,18 @@ def _render_spread_fallback(spreads: Sequence[FacilitySpreadSpec]) -> tuple[str,
     ]
     rendered = "#else\n\n/* T06: deterministic Vega-safe non-UNBOUND rental pools. */\n\n"
     rendered += "\n\n".join(arrays)
+    range_checks = "\n\t\t|| ".join(
+        f"(value >= (u32){name} && value < (u32)({name} + ARRAY_COUNT({name})))"
+        for name, _indices in selections
+    )
+    rendered += f"""
+
+/* Generated pools are the reviewed Vega Species namespace authority. */
+static bool8 VegaFacilitySpreadIsCurated(const struct BattleTowerSpread* spread)
+{{
+\tu32 value = (u32)spread;
+\treturn {range_checks};
+}}"""
     return rendered, {name: len(indices) for name, indices in selections}
 
 
@@ -709,6 +741,7 @@ def apply_facility_runtime_patches(
             {"key": "ELIGIBILITY_LOOP_BOUNDED_INDEX", "count": 1},
             {"key": "BATTLE_STYLE_MAX_INDEX", "count": 1},
             {"key": "RENTAL_RETRY_LIMIT_4096", "count": 1},
+            {"key": "CURATED_VEGA_SPECIES_TIER_AUTHORITY", "count": 1},
         ],
         "rental": {
             "level": 50,

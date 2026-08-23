@@ -394,6 +394,7 @@ int main(int argc, char **argv)
     reward_require_flash_ledger(core, "first-clear");
 
     reward_phase("normal-save-reload");
+    reward_phase("normal-save-reload-remove-items");
     if (reward_call_thumb(core, REWARD_REMOVE_BAG,
                           REWARD_ITEM_XS, 5U, 0U, 0U) == 0U
         || reward_call_thumb(core, REWARD_REMOVE_BAG,
@@ -401,11 +402,14 @@ int main(int argc, char **argv)
         || reward_item_count(core, REWARD_ITEM_XS) != 0U
         || reward_item_count(core, REWARD_ITEM_S) != 0U)
         reward_die("normal-save reload fixture could not remove rewards");
+    reward_phase("normal-save-reload-clear-ledger");
     reward_clear_region(core, REWARD_LEDGER, REWARD_LEDGER_SIZE);
+    reward_phase("normal-save-reload-engine-load");
     if (reward_call_thumb(core, REWARD_SAVE_LOAD, 0U, 0U, 0U, 0U) != 1U
         || reward_item_count(core, REWARD_ITEM_XS) != 5U
         || reward_item_count(core, REWARD_ITEM_S) != 2U)
         reward_die("normal save did not reload reward items");
+    reward_phase("normal-save-reload-ensure");
     if (reward_invoke(core, ensure) != 1U
         || read16(core, factory + REWARD_BP_OFFSET) != 112U
         || read32(core, factory + REWARD_CLAIM_BITS_OFFSET) != 0x1FU)

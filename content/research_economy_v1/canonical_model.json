@@ -126,7 +126,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_INTRO",
       "encoded_hex": "092e0735032dfe1a3d222603adff",
       "notes": "初回受付。",
-      "runtime_address": 154925757,
+      "runtime_address": 154927165,
       "text": "けんきゅうを\\nはじめよう。",
       "usage": "INTRO"
     },
@@ -135,7 +135,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_BALANCE",
       "encoded_hex": "9f527e642dfe0608162e0c1f0dadff",
       "notes": "続けて標準数値bufferを表示。",
-      "runtime_address": 154925771,
+      "runtime_address": 154927179,
       "text": "ポイントを\\nかくにんします。",
       "usage": "BALANCE"
     },
@@ -144,7 +144,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_ACTIVITY_1",
       "encoded_hex": "1228141136030b44fe9f527e64371c0429adff",
       "notes": "既存hook説明。",
-      "runtime_address": 154925786,
+      "runtime_address": 154927194,
       "text": "つりとちょうさで\\nポイントがふえる。",
       "usage": "ACTIVITY"
     },
@@ -153,7 +153,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_ACTIVITY_2",
       "encoded_hex": "210c14022c14fe0c340c2e23012926adff",
       "notes": "SIMPLE_EVENT説明。",
-      "runtime_address": 154925805,
+      "runtime_address": 154927213,
       "text": "むしといわと\\nしゃしんもあるよ。",
       "usage": "ACTIVITY"
     },
@@ -162,7 +162,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_DAILY_CAP",
       "encoded_hex": "07360319482e1afe0a0a1f444126adff",
       "notes": "activity cap到達。",
-      "runtime_address": 154925822,
+      "runtime_address": 154927230,
       "text": "きょうのぶんは\\nここまでだよ。",
       "usage": "DAILY_CAP"
     },
@@ -171,7 +171,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_REVISIT",
       "encoded_hex": "1f10072b082dfe01122213071318adff",
       "notes": "通常終了。",
-      "runtime_address": 154925838,
+      "runtime_address": 154927246,
       "text": "またきろくを\\nあつめてきてね。",
       "usage": "REVISIT"
     },
@@ -180,7 +180,7 @@
       "dialogue_key": "DIALOGUE_KEY_COUNTER_SAVE_FAIL",
       "encoded_hex": "5eae9844071502adfe1d2e0a031a1502adff",
       "notes": "transaction rollback済み。",
-      "runtime_address": 154925854,
+      "runtime_address": 154927262,
       "text": "セーブできない。\\nへんこうはない。",
       "usage": "SYSTEM"
     },
@@ -189,7 +189,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_OPEN",
       "encoded_hex": "9f527e640a03062e2dfe1a3d221f0d06acff",
       "notes": "shop入口。",
-      "runtime_address": 154925872,
+      "runtime_address": 154927280,
       "text": "ポイントこうかんを\\nはじめますか？",
       "usage": "SHOP"
     },
@@ -198,7 +198,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_CONFIRM",
       "encoded_hex": "0a2a140a03062efe0c1f0d06acff",
       "notes": "標準Yes/No。",
-      "runtime_address": 154925890,
+      "runtime_address": 154927298,
       "text": "これとこうかん\\nしますか？",
       "usage": "CONFIRM"
     },
@@ -207,7 +207,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_INSUFFICIENT",
       "encoded_hex": "9f527e6437fe1028150226adff",
       "notes": "mutationなし。",
-      "runtime_address": 154925904,
+      "runtime_address": 154927312,
       "text": "ポイントが\\nたりないよ。",
       "usage": "INSUFFICIENT"
     },
@@ -216,7 +216,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_BAG_FULL",
       "encoded_hex": "231123193702504b02adfe0a03062e0c1502adff",
       "notes": "capacity preflight failure。",
-      "runtime_address": 154925917,
+      "runtime_address": 154927325,
       "text": "もちものがいっぱい。\\nこうかんしない。",
       "usage": "SYSTEM"
     },
@@ -225,7 +225,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_DAILY_LIMIT",
       "encoded_hex": "073603193c020a1afe0a0a1f44440dadff",
       "notes": "DAILY_LIMITED stock。",
-      "runtime_address": 154925937,
+      "runtime_address": 154927345,
       "text": "きょうのざいこは\\nここまでです。",
       "usage": "DAILY_CAP"
     },
@@ -234,7 +234,7 @@
       "dialogue_key": "DIALOGUE_KEY_SHOP_REWARD",
       "encoded_hex": "0a03062e0c1026adfe41023d161206501318adff",
       "notes": "final save後。",
-      "runtime_address": 154925954,
+      "runtime_address": 154927362,
       "text": "こうかんしたよ。\\nだいじにつかってね。",
       "usage": "REWARD"
     },
@@ -243,7 +243,7 @@
       "dialogue_key": "DIALOGUE_KEY_RANK_UP",
       "encoded_hex": "777e5837fe0137501026abff",
       "notes": "rank commit後。",
-      "runtime_address": 154925974,
+      "runtime_address": 154927382,
       "text": "ランクが\\nあがったよ！",
       "usage": "RANK_UP"
     },
@@ -252,7 +252,7 @@
       "dialogue_key": "DIALOGUE_KEY_RANK_CONFIRM",
       "encoded_hex": "1e030c35032dfe030914281f0d06acff",
       "notes": "未claim reward。",
-      "runtime_address": 154925986,
+      "runtime_address": 154927394,
       "text": "ほうしゅうを\\nうけとりますか？",
       "usage": "CONFIRM"
     },
@@ -261,7 +261,7 @@
       "dialogue_key": "DIALOGUE_KEY_RANK_REWARD",
       "encoded_hex": "1e030c35032dfe030914501026adff",
       "notes": "claim commit後。",
-      "runtime_address": 154926002,
+      "runtime_address": 154927410,
       "text": "ほうしゅうを\\nうけとったよ。",
       "usage": "REWARD"
     },
@@ -270,7 +270,7 @@
       "dialogue_key": "DIALOGUE_KEY_RANK_BAG_FULL",
       "encoded_hex": "010737150226adfe0114440309142a29adff",
       "notes": "claim bitを立てない。",
-      "runtime_address": 154926017,
+      "runtime_address": 154927425,
       "text": "あきがないよ。\\nあとでうけとれる。",
       "usage": "SYSTEM"
     },
@@ -279,7 +279,7 @@
       "dialogue_key": "DIALOGUE_KEY_RANK_REVISIT",
       "encoded_hex": "123819777e581f44fe072b082d0112222603adff",
       "notes": "threshold未達。",
-      "runtime_address": 154926035,
+      "runtime_address": 154927443,
       "text": "つぎのランクまで\\nきろくをあつめよう。",
       "usage": "REVISIT"
     },
@@ -288,7 +288,7 @@
       "dialogue_key": "DIALOGUE_KEY_BUG_PROMPT",
       "encoded_hex": "210c9f59737e2dfe200e13082a29acff",
       "notes": "party check開始。",
-      "runtime_address": 154926055,
+      "runtime_address": 154927463,
       "text": "むしポケモンを\\nみせてくれる？",
       "usage": "ACTIVITY"
     },
@@ -297,7 +297,7 @@
       "dialogue_key": "DIALOGUE_KEY_BUG_MISSING",
       "encoded_hex": "210c9f59737e37fe13231116021502adff",
       "notes": "mutationなし。",
-      "runtime_address": 154926071,
+      "runtime_address": 154927479,
       "text": "むしポケモンが\\nてもちにいない。",
       "usage": "LOCKED"
     },
@@ -306,7 +306,7 @@
       "dialogue_key": "DIALOGUE_KEY_BUG_REWARD",
       "encoded_hex": "062e0b12062e283603adfea99f527e644126adff",
       "notes": "commit後。",
-      "runtime_address": 154926088,
+      "runtime_address": 154927496,
       "text": "かんさつかんりょう。\\n8ポイントだよ。",
       "usage": "REWARD"
     },
@@ -315,7 +315,7 @@
       "dialogue_key": "DIALOGUE_KEY_BUG_CAP",
       "encoded_hex": "07360319210c1afe072b083e204126adff",
       "notes": "daily claim済み。",
-      "runtime_address": 154926108,
+      "runtime_address": 154927516,
       "text": "きょうのむしは\\nきろくずみだよ。",
       "usage": "DAILY_CAP"
     },
@@ -324,7 +324,7 @@
       "dialogue_key": "DIALOGUE_KEY_MINING_PROMPT",
       "encoded_hex": "0a19022c2dfe0c27491f0d06acff",
       "notes": "standard Rock Smashへ。",
-      "runtime_address": 154926125,
+      "runtime_address": 154927533,
       "text": "このいわを\\nしらべますか？",
       "usage": "ACTIVITY"
     },
@@ -333,7 +333,7 @@
       "dialogue_key": "DIALOGUE_KEY_MINING_LOCKED",
       "encoded_hex": "021f1a0a19022c2dfe0a2c0e1502adff",
       "notes": "field action不可。",
-      "runtime_address": 154926139,
+      "runtime_address": 154927547,
       "text": "いまはこのいわを\\nこわせない。",
       "usage": "LOCKED"
     },
@@ -342,7 +342,7 @@
       "dialogue_key": "DIALOGUE_KEY_MINING_REWARD",
       "encoded_hex": "0a030e0719072b08adfea2a19f527e644126adff",
       "notes": "commit後。",
-      "runtime_address": 154926155,
+      "runtime_address": 154927563,
       "text": "こうせきのきろく。\\n10ポイントだよ。",
       "usage": "REWARD"
     },
@@ -351,7 +351,7 @@
       "dialogue_key": "DIALOGUE_KEY_MINING_CAP",
       "encoded_hex": "073603190b0208121afe052c50130229adff",
       "notes": "daily claim済み。",
-      "runtime_address": 154926175,
+      "runtime_address": 154927583,
       "text": "きょうのさいくつは\\nおわっている。",
       "usage": "DAILY_CAP"
     },
@@ -360,7 +360,7 @@
       "dialogue_key": "DIALOGUE_KEY_PHOTO_PROMPT",
       "encoded_hex": "090c072dfe072b080c1f0d06acff",
       "notes": "標準Yes/No。",
-      "runtime_address": 154926193,
+      "runtime_address": 154927601,
       "text": "けしきを\\nきろくしますか？",
       "usage": "ACTIVITY"
     },
@@ -369,7 +369,7 @@
       "dialogue_key": "DIALOGUE_KEY_PHOTO_REWARD",
       "encoded_hex": "0c340c2e2d072b08adfea79f527e644126adff",
       "notes": "commit後。",
-      "runtime_address": 154926207,
+      "runtime_address": 154927615,
       "text": "しゃしんをきろく。\\n6ポイントだよ。",
       "usage": "REWARD"
     },
@@ -378,7 +378,7 @@
       "dialogue_key": "DIALOGUE_KEY_PHOTO_CAP",
       "encoded_hex": "073603190c340c2e1afe072b083e204126adff",
       "notes": "daily claim済み。",
-      "runtime_address": 154926226,
+      "runtime_address": 154927634,
       "text": "きょうのしゃしんは\\nきろくずみだよ。",
       "usage": "DAILY_CAP"
     },
@@ -387,7 +387,7 @@
       "dialogue_key": "DIALOGUE_KEY_FISHING_GUIDE",
       "encoded_hex": "1228440c2e0c352dfe12061f042914a59f527e64adff",
       "notes": "初回caught限定。",
-      "runtime_address": 154926245,
+      "runtime_address": 154927653,
       "text": "つりでしんしゅを\\nつかまえると4ポイント。",
       "usage": "ACTIVITY"
     },
@@ -396,7 +396,7 @@
       "dialogue_key": "DIALOGUE_KEY_FISHING_CAP",
       "encoded_hex": "12281aa21611fea3a59f527e641f44adff",
       "notes": "research day上限。",
-      "runtime_address": 154926267,
+      "runtime_address": 154927675,
       "text": "つりは1にち\\n24ポイントまで。",
       "usage": "DAILY_CAP"
     },
@@ -405,7 +405,7 @@
       "dialogue_key": "DIALOGUE_KEY_GAME_GUIDE",
       "encoded_hex": "a2a1a15a527e023d360319fe1a02140344a49f527e64adff",
       "notes": "net gain条件。",
-      "runtime_address": 154926284,
+      "runtime_address": 154927692,
       "text": "100コインいじょうの\\nはいとうで3ポイント。",
       "usage": "ACTIVITY"
     },
@@ -414,7 +414,7 @@
       "dialogue_key": "DIALOGUE_KEY_GAME_CAP",
       "encoded_hex": "8aae711aa21611fea2a99f527e641f44adff",
       "notes": "research day上限。",
-      "runtime_address": 154926308,
+      "runtime_address": 154927716,
       "text": "ゲームは1にち\\n18ポイントまで。",
       "usage": "DAILY_CAP"
     },
@@ -423,7 +423,7 @@
       "dialogue_key": "DIALOGUE_KEY_ECOLOGY_GUIDE",
       "encoded_hex": "1136030b9f59737e2dfe1a121e060844a2a19f527e64adff",
       "notes": "research caught初回遷移。",
-      "runtime_address": 154926326,
+      "runtime_address": 154927734,
       "text": "ちょうさポケモンを\\nはつほかくで10ポイント。",
       "usage": "ACTIVITY"
     },
@@ -432,7 +432,7 @@
       "dialogue_key": "DIALOGUE_KEY_ECOLOGY_CAP",
       "encoded_hex": "0e0210021136030b1afea6a19f527e641f44adff",
       "notes": "research day上限。",
-      "runtime_address": 154926350,
+      "runtime_address": 154927758,
       "text": "せいたいちょうさは\\n50ポイントまで。",
       "usage": "DAILY_CAP"
     }

@@ -77,13 +77,13 @@ RAM_LAYOUT = Path("config/ram_layout.csv")
 SAVE_LAYOUT = Path("config/save_layout.csv")
 
 EXPECTED_STAGE37_SHA256 = (
-    "76d4f6a4005a815e6faf33f2ae24c18c2a7b4a1fe6f1f313e6f1837ecaf5cb7c"
+    "5de7180a699077b89c40d04ef1e2ec09b08734d8431b1d3d202e2bdab08556c9"
 )
 EXPECTED_STAGE37_META_SHA256 = (
-    "712ecdcd15b7fd7ac3003771eca45fd6ffd6e4dcb410436e3204e0862f1d9873"
+    "d6d3992d883ca820f72870cdd43d4456080d03aae7d0b92a80907a828b3548cb"
 )
 EXPECTED_STAGE37_ALLOC_SHA256 = (
-    "a7d2fc5dbcc4b31920fe05f45ccde49abf211db03ca0b459efa3512e9ac8660c"
+    "1e5c07c99b8e18400fcfd2f8502401703ddf07ac59792e5333a7b80c6985f817"
 )
 EXPECTED_CLEAN_SHA256 = (
     "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
@@ -94,7 +94,7 @@ ALLOCATION_NAME = "mirage_production_stage38_payload"
 TRAINER_TABLE_ADDRESS = 0x09328AF0
 TRAINER_TABLE_COUNT = 4284
 TRAINER_RECORD_SIZE = 32
-QOL_SAVE_LOAD_ADDRESS = 0x09377115
+QOL_SAVE_LOAD_ADDRESS = 0x09377695
 SPECIAL_VAR_RESULT = 0x02037004
 SPECIAL_VAR_ARG0 = 0x02036FEC
 MIRAGE_MAP = (31, 1)
@@ -122,8 +122,8 @@ STATUS_LOST = 12
 
 EXTERNAL_ENTRYPOINTS = {
     "MIRAGE_FLAG_GET_ADDRESS": 0x0806DEC5,
-    "MIRAGE_ORIGINAL_FLAG_SET_ADDRESS": 0x09378473,
-    "MIRAGE_ORIGINAL_FLAG_CLEAR_ADDRESS": 0x0937847F,
+    "MIRAGE_ORIGINAL_FLAG_SET_ADDRESS": 0x093789F3,
+    "MIRAGE_ORIGINAL_FLAG_CLEAR_ADDRESS": 0x093789FF,
     "MIRAGE_GET_MON_DATA_ADDRESS": 0x0803F355,
     "MIRAGE_SET_MON_DATA_ADDRESS": 0x0803FA71,
     "MIRAGE_CREATE_MON_ADDRESS": 0x0803D1C1,
@@ -136,16 +136,16 @@ EXTERNAL_ENTRYPOINTS = {
     "MIRAGE_CALCULATE_PP_ADDRESS": 0x0804070D,
     "MIRAGE_HEAL_PLAYER_PARTY_ADDRESS": 0x080A1331,
     "MIRAGE_RANDOM_ADDRESS": 0x0804448D,
-    "MIRAGE_CONFIGURE_BATTLE_POLICY_ADDRESS": 0x091260A9,
-    "MIRAGE_CONFIGURE_VIRTUAL_ITEM_ADDRESS": 0x091261BD,
-    "MIRAGE_CFRU_PENDING_CLEAR_ADDRESS": 0x0910ED2D,
-    "MIRAGE_SAVE_VALIDATE_ADDRESS": 0x092D10D1,
-    "MIRAGE_SAVE_FINALIZE_ADDRESS": 0x092D2605,
-    "MIRAGE_ORIGINAL_TRY_SAVING_DATA_ADDRESS": 0x09378465,
+    "MIRAGE_CONFIGURE_BATTLE_POLICY_ADDRESS": 0x091261F5,
+    "MIRAGE_CONFIGURE_VIRTUAL_ITEM_ADDRESS": 0x09126309,
+    "MIRAGE_CFRU_PENDING_CLEAR_ADDRESS": 0x0910EE79,
+    "MIRAGE_SAVE_VALIDATE_ADDRESS": 0x092D12E1,
+    "MIRAGE_SAVE_FINALIZE_ADDRESS": 0x092D28D9,
+    "MIRAGE_ORIGINAL_TRY_SAVING_DATA_ADDRESS": 0x093789E5,
     "MIRAGE_TRY_WRITE_SECTOR_ADDRESS": 0x080DA9C1,
     "MIRAGE_QOL_SAVE_LOAD_ADAPTER_ADDRESS": QOL_SAVE_LOAD_ADDRESS,
-    "MIRAGE_CHANGEKIT_BUILD_TRAINER_PARTY_ADDRESS": 0x09302871,
-    "MIRAGE_CHANGEKIT_LOAD_PROPER_ABILITY_ADAPTER_ADDRESS": 0x09302F31,
+    "MIRAGE_CHANGEKIT_BUILD_TRAINER_PARTY_ADDRESS": 0x09302DF1,
+    "MIRAGE_CHANGEKIT_LOAD_PROPER_ABILITY_ADAPTER_ADDRESS": 0x093034B1,
     "MIRAGE_SET_WARP_DESTINATION_ADDRESS": 0x08054C4D,
     "MIRAGE_RESET_INITIAL_AVATAR_ADDRESS": 0x080552A5,
     "MIRAGE_WARP_INTO_MAP_ADDRESS": 0x08054C39,
@@ -334,9 +334,9 @@ def _input_contract() -> dict[str, Any]:
         "MIRAGE_CREATE_MON_ADDRESS": bytes.fromhex(
             "f0b5474680b487b080460e1c0d9c0e9f"
         ),
-        "MIRAGE_CALCULATE_MON_STATS_ADDRESS": bytes.fromhex("00490847a9930d09"),
+        "MIRAGE_CALCULATE_MON_STATS_ADDRESS": bytes.fromhex("004908479d930d09"),
         "MIRAGE_GET_MON_ABILITY_ADDRESS": bytes.fromhex(
-            "f8b500220b21144f040003f042fc4723"
+            "f8b500220b21144f040003f0c6fc4723"
         ),
         "MIRAGE_CALCULATE_PP_ADDRESS": bytes.fromhex(
             "10b50004000c1206120e0d4c43001b18"
@@ -371,8 +371,8 @@ def _input_contract() -> dict[str, Any]:
         offset = _rom_offset(physical, len(signature))
         if stage[offset:offset + len(signature)] != signature:
             _fail(f"Stage37 external entrypoint signature differs: {name}")
-    old_changekit_trampoline = bytes.fromhex("004b184771283009")
-    old_trampoline_offset = _rom_offset(0x090DD198, len(old_changekit_trampoline))
+    old_changekit_trampoline = bytes.fromhex("004b1847f12d3009")
+    old_trampoline_offset = _rom_offset(0x090DD2A4, len(old_changekit_trampoline))
     if (
         stage[old_trampoline_offset:old_trampoline_offset + len(old_changekit_trampoline)]
         != old_changekit_trampoline
@@ -382,7 +382,7 @@ def _input_contract() -> dict[str, Any]:
     if (
         changekit_meta.get("status") != "PASS"
         or changekit_meta.get("output", {}).get("sha256")
-        != "2ff8d61d7e17d120eaf60a81863dc29f6666d84c48a245e1be3d8dfa2447d180"
+        != "60b00504b7c90ee026c15ee285be69edc43c12c0eedcc64096fcadd1f290aa7b"
         or changekit_meta.get("runtime", {}).get("entrypoints", {}).get(
             "TrainerV5Runtime_BuildTrainerPartySetup"
         ) != EXTERNAL_ENTRYPOINTS["MIRAGE_CHANGEKIT_BUILD_TRAINER_PARTY_ADDRESS"]
@@ -1722,16 +1722,16 @@ def _upstream_regression(
         if stage[start:end] != output[start:end]:
             _fail(f"Stage38 changed upstream allocation: {row['name']}")
 
-    old_changekit = _rom_offset(0x090DD198, 8)
+    old_changekit = _rom_offset(0x090DD2A4, 8)
     if stage[old_changekit:old_changekit + 8] != output[old_changekit:old_changekit + 8]:
         _fail("Stage38 changed the old BuildTrainerParty trampoline")
-    changekit_runtime = _rom_offset(0x09302870, 12)
+    changekit_runtime = _rom_offset(0x09302DF0, 12)
     if (
         stage[changekit_runtime:changekit_runtime + 12]
         != output[changekit_runtime:changekit_runtime + 12]
     ):
         _fail("Stage38 changed the pinned ChangeKit BuildTrainerParty runtime entry")
-    changekit_ability = _rom_offset(0x09302F30, 16)
+    changekit_ability = _rom_offset(0x093034B0, 16)
     if (
         stage[changekit_ability:changekit_ability + 16]
         != output[changekit_ability:changekit_ability + 16]
@@ -1768,14 +1768,14 @@ def _upstream_regression(
         "previous_allocations_changed": 0,
         "rooted_trainer_party_caller_patches": 1,
         "rooted_ability_load_caller_patches": 1,
-        "trainer_changekit_runtime_entry_address": 0x09302871,
+        "trainer_changekit_runtime_entry_address": 0x09302DF1,
         "trainer_changekit_entry_unchanged": True,
         "trainer_changekit_runtime_entry_unchanged": True,
-        "trainer_changekit_old_trampoline_address": 0x090DD199,
+        "trainer_changekit_old_trampoline_address": 0x090DD2A5,
         "trainer_changekit_old_trampoline_unchanged": True,
         "trainer_changekit_chained_once": True,
         "non_mirage_trainer_party_delegate_unchanged": True,
-        "trainer_changekit_ability_adapter_address": 0x09302F31,
+        "trainer_changekit_ability_adapter_address": 0x093034B1,
         "trainer_changekit_ability_adapter_unchanged": True,
         "trainer_changekit_ability_chained_once": (
             runtime["source_contract"]["changekit_delegate_call_count"] == 1
@@ -2168,10 +2168,10 @@ def build_outputs() -> dict[str, bytes]:
             ],
             "old_flags_reused": False, "old_vars_reused": False,
             "legacy_all_badges_set_bypassed": True,
-            "trainer_party_old_trampoline": "0x090DD199",
-            "trainer_party_runtime_delegate": "0x09302871",
+            "trainer_party_old_trampoline": "0x090DD2A5",
+            "trainer_party_runtime_delegate": "0x09302DF1",
             "ability_load_caller": "0x090973FC",
-            "ability_load_changekit_delegate": "0x09302F31",
+            "ability_load_changekit_delegate": "0x093034B1",
             "map_non_root_regression": {
                 "header_non_script_bytes_unchanged": True,
                 "original_map_script_pointer": upstream[

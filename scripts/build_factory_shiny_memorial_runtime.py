@@ -49,7 +49,7 @@ PATCH_CUMULATIVE = Path(
 )
 RUNNER = Path("tools/mgba_factory_shiny_memorial_smoke.c")
 
-EXPECTED_INPUT_SHA256 = "e605841d83c6f8e9acd7dbd58b5b4f3d7b262d0274c4c5b4369f0728dc25bf38"
+EXPECTED_INPUT_SHA256 = "9bba4e797f984254af9edc61e47fa96141d4bb3f964fa358fe725238c7ff6d66"
 EXPECTED_BASE_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
 PAYLOAD_HEADER_SIZE = 0x100
 ALLOCATION_NAME = "factory_shiny_memorial_runtime_payload"
@@ -58,7 +58,7 @@ EXPECTED_THRESHOLD = 100
 EXPECTED_CLAIM_BIT = 9
 EXPECTED_CLAIM_MASK = 1 << EXPECTED_CLAIM_BIT
 EXPECTED_POOL_COUNT = 137
-EXPECTED_RECOVERY_BYTES = bytes.fromhex("f0b587b000f0a0ff")
+EXPECTED_RECOVERY_PROLOGUE = bytes.fromhex("f0b587b0")
 RECOVERY_PATCH_SIZE = 8
 REQUIRED_ENTRYPOINTS = {
     "FactoryShinyMemorialRuntime_Probe",
@@ -124,6 +124,22 @@ def _thumb(address: int, label: str) -> int:
     return address | 1
 
 
+def _thumb_bl(site_address: int, target_address: int) -> bytes:
+    site = site_address & ~1
+    target = target_address & ~1
+    delta = target - (site + 4)
+    if delta & 1 or not -0x400000 <= delta < 0x400000:
+        _fail(f"Thumb BL out of range: 0x{site:08X} -> 0x{target:08X}")
+    return struct.pack(
+        "<HH", 0xF000 | ((delta >> 12) & 0x7FF),
+        0xF800 | ((delta >> 1) & 0x7FF),
+    )
+
+
+def _recovery_entry_bytes(recovery: int, get_pending: int) -> bytes:
+    return EXPECTED_RECOVERY_PROLOGUE + _thumb_bl(recovery + 4, get_pending)
+
+
 def _input_contract(
     root: Path,
 ) -> tuple[
@@ -162,10 +178,11 @@ def _input_contract(
     symbols = {name: int(raw_symbols[name]) for name in ACQ_REQUIRED_SYMBOLS}
     recovery = symbols["VegaAcq_RecoverPending"]
     recovery_offset = _rom_offset(recovery, RECOVERY_PATCH_SIZE, "VegaAcq_RecoverPending")
-    if stage[recovery_offset:recovery_offset + RECOVERY_PATCH_SIZE] != EXPECTED_RECOVERY_BYTES:
+    expected_recovery = _recovery_entry_bytes(
+        recovery, symbols["VegaAcqEngine_GetPending"],
+    )
+    if stage[recovery_offset:recovery_offset + RECOVERY_PATCH_SIZE] != expected_recovery:
         _fail("VegaAcq_RecoverPending entry bytes differ")
-    if symbols["VegaAcqEngine_GetPending"] != recovery + 0xF48:
-        _fail("acquisition recover/GetPending relative ABI differs")
 
     linked = stage26_meta.get("runtime", {}).get("linked_abi", {})
     if not isinstance(linked, dict) or not LINKED_REQUIRED <= set(linked):
@@ -585,6 +602,9 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
     recovery_offset = _rom_offset(
         recovery_address, RECOVERY_PATCH_SIZE, "VegaAcq_RecoverPending"
     )
+    expected_recovery = _recovery_entry_bytes(
+        recovery_address, int(acq_symbols["VegaAcqEngine_GetPending"]),
+    )
 
     preliminary, _ = _build_payload(
         root, generated_header, 0, stage30_meta, stage26_meta, acq_symbols,
@@ -617,7 +637,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
 
     dispatch = int(runtime["entrypoints"]["FactoryShinyMemorialRuntime_RecoverDispatch"])
     recovery_jump = struct.pack("<HHI", 0x4B00, 0x4718, dispatch)
-    if output[recovery_offset:recovery_offset + RECOVERY_PATCH_SIZE] != EXPECTED_RECOVERY_BYTES:
+    if output[recovery_offset:recovery_offset + RECOVERY_PATCH_SIZE] != expected_recovery:
         _fail("recovery entry changed before Stage31 patch")
     output[recovery_offset:recovery_offset + RECOVERY_PATCH_SIZE] = recovery_jump
 
@@ -635,7 +655,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "label": "acquisition pending recovery Stage31 dispatch",
             "site_address": recovery_address,
             "site_offset": recovery_offset,
-            "expected_bytes": EXPECTED_RECOVERY_BYTES.hex(),
+            "expected_bytes": expected_recovery.hex(),
             "replacement_bytes": recovery_jump.hex(),
             "replacement_pointer": dispatch,
             "continuation": (recovery_address + RECOVERY_PATCH_SIZE) | 1,
@@ -713,7 +733,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         },
         "recovery_hook": {
             "original_entry": recovery_address,
-            "expected_bytes": EXPECTED_RECOVERY_BYTES.hex(),
+            "expected_bytes": expected_recovery.hex(),
             "dispatch": dispatch,
             "continuation": (recovery_address + RECOVERY_PATCH_SIZE) | 1,
             "normal_pending_behavior": "trampoline reproduces overwritten prologue then resumes original +8 body",

@@ -24,7 +24,7 @@ typedef u8 (*HiddenGenerateFn)(void);
 
 #define FN_GET_MON_DATA PTR(GetMonDataFn, 0x0803F355u)
 #define FN_REMOVE_MON_PP_BONUS PTR(RemoveMonPpBonusFn, 0x08040755u)
-#define FN_SET_MON_MOVE_SLOT PTR(SetMonMoveSlotFn, 0x09114549u)
+#define FN_SET_MON_MOVE_SLOT PTR(SetMonMoveSlotFn, 0x09114699u)
 #define FN_GIVE_MOVE_TO_BOX_MON PTR(GiveMoveToBoxMonFn, 0x0803E01Du)
 #define FN_DELETE_FIRST_MOVE_AND_GIVE_MOVE_TO_BOX_MON \
     PTR(DeleteFirstMoveAndGiveMoveToBoxMonFn, 0x0803E3ADu)

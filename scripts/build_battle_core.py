@@ -42,6 +42,11 @@ from tools.engine.cfru_battle_patchset import (  # noqa: E402
     BattlePatchset,
     build_patchset,
 )
+from tools.engine.cfru_canonical_ids import (  # noqa: E402
+    CanonicalIdCompatibilityError,
+    canonicalize_linked_species_tables,
+    install_canonical_id_compatibility,
+)
 from tools.engine.cfru_facility_runtime import (  # noqa: E402
     build_facility_runtime,
     make_vega_species_model,
@@ -125,6 +130,21 @@ POLICY_SMOKE_SYMBOLS = (
     "HandleInputChooseAction",
     "HandleInputChooseMove",
     "HandleInputChooseTarget",
+)
+
+# Downstream stages must never freeze addresses inside the relocatable CFRU
+# payload. Publish this deliberately small ABI from the same offsets.ini that
+# produced Stage06 so consumers can name functions instead of copying addresses.
+CFRU_DOWNSTREAM_SYMBOLS = (
+    "CreateEgg",
+    "CreateHatchedMon",
+    "GetDaycareCompatibilityScore",
+    "GetLevelAfterDaycareSteps",
+    "DaycareLevelCapHook",
+    "GetAllEggMoves",
+    "DiveSpeedHook",
+    "BikeTurboBoostHook",
+    "GetPlayerSpeed",
 )
 
 
@@ -2882,6 +2902,10 @@ def prepare_source_tree(
     for logical, include in header_bindings:
         with (tree / logical).open("a", encoding="utf-8", newline="\n") as stream:
             stream.write(f'\n#include "{include}"\n')
+    canonical_id_aliases, canonical_id_compatibility = (
+        install_canonical_id_compatibility(root, tree, aliases)
+    )
+    aliases.update(canonical_id_aliases)
     mega_item_aliases = install_mega_item_aliases(tree, id_model)
 
     # include/pokemon.h and include/constants/pokemon.h duplicate the type
@@ -2978,6 +3002,7 @@ def prepare_source_tree(
         "qol_runtime": qol_runtime,
         "rom_integration": rom_integration,
         "alias_count": len(aliases),
+        "canonical_id_compatibility": canonical_id_compatibility,
         "header_bindings": len(header_bindings),
         "assembly_rewrites": asm_counts,
         "cacophony": cacophony,
@@ -3123,6 +3148,22 @@ def _integration_contract(offsets: Mapping[str, int]) -> dict[str, int]:
         result[symbol] = address
     if len(set(result.values())) != len(result):
         _fail("T06 ROM integration symbols unexpectedly alias")
+    return result
+
+
+def _downstream_symbol_contract(offsets: Mapping[str, int]) -> dict[str, int]:
+    """Publish the relocatable CFRU ABI consumed by later build stages."""
+
+    result: dict[str, int] = {}
+    for symbol in CFRU_DOWNSTREAM_SYMBOLS:
+        address = offsets.get(symbol)
+        if address is None or not PAYLOAD_BASE <= address < PAYLOAD_BASE + 0x200000:
+            _fail(f"T06 downstream symbol missing/outside payload: {symbol}")
+        if address & 1:
+            _fail(f"T06 downstream symbol must be an aligned address: {symbol}")
+        result[symbol] = address
+    if len(set(result.values())) != len(result):
+        _fail("T06 downstream symbols unexpectedly alias")
     return result
 
 
@@ -3308,8 +3349,16 @@ def _build_upstream_once(
 ) -> dict[str, Any]:
     source = _relative(root, str(config["source"]["path"]), "CFRU source")
     stage04 = _relative(root, str(config["inputs"]["stage04"]["path"]), "stage04")
-    sandbox_parent = root / "build"
-    sandbox_parent.mkdir(exist_ok=True)
+    # grit/wav2agb/mid2agb are pinned Windows executables.  Recent WSL builds
+    # no longer preserve the Linux UNC working directory when launching them,
+    # so a source tree below the long repository path makes valid assets look
+    # missing.  Keep the disposable build on the same short ASCII DrvFS root
+    # used by T01; published artifacts still return to the workspace below.
+    sandbox_parent = Path("/mnt/c/codex_tools/PokemonVegaT06")
+    sandbox_parent.mkdir(parents=True, exist_ok=True)
+    if sandbox_parent.is_symlink() or not sandbox_parent.is_dir():
+        _fail("T06 Windows converter sandbox is missing/non-directory")
+    sandbox_parent.chmod(0o700)
     started = time.monotonic()
     with tempfile.TemporaryDirectory(prefix=f".t06-cfru-{run_number}-", dir=sandbox_parent) as raw:
         work = Path(raw)
@@ -3348,12 +3397,27 @@ def _build_upstream_once(
                 _fail(f"CFRU integration build output missing: {label}")
         if required["test.gba"].stat().st_size != _integer(config["rom"]["size"], "rom.size"):
             _fail("CFRU integration ROM size mismatch")
+        offsets_text = required["offsets.ini"].read_text(encoding="utf-8")
+        offsets = parse_offsets(offsets_text)
+        canonical_rom, canonical_payload, linked_species_tables = (
+            canonicalize_linked_species_tables(
+                root,
+                required["test.gba"].read_bytes(),
+                required["output.bin"].read_bytes(),
+                offsets,
+            )
+        )
+        required["test.gba"].write_bytes(canonical_rom)
+        required["output.bin"].write_bytes(canonical_payload)
+        canonical_report = integration.get("canonical_id_compatibility")
+        if not isinstance(canonical_report, dict):
+            _fail("canonical ID compatibility preparation report is missing")
+        canonical_report["linked_species_tables"] = linked_species_tables
+        canonical_report["status"] = "CANONICAL"
         output_size = required["output.bin"].stat().st_size
         payload_capacity = _integer(config["rom"]["payload_end_exclusive"], "payload end") - _integer(config["rom"]["payload_start"], "payload start")
         if output_size > payload_capacity:
             _fail(f"CFRU payload overflow: {output_size:#x} > {payload_capacity:#x}")
-        offsets_text = required["offsets.ini"].read_text(encoding="utf-8")
-        offsets = parse_offsets(offsets_text)
         tables = _table_contract(config, offsets)
         generated_blobs = _generated_blob_contract(offsets)
         integration_symbols = _integration_contract(offsets)
@@ -3392,7 +3456,10 @@ def _fingerprint_inputs(root: Path, config: Mapping[str, Any], fixed: Mapping[st
         "scripts/build_battle_core.py",
         "scripts/build_upstream.py",
         "build/stages/04_moves.json",
+        "manifests/species_ids.csv",
+        "manifests/ability_ids.csv",
         "tools/engine/cfru_battle_patchset.py",
+        "tools/engine/cfru_canonical_ids.py",
         "tools/engine/cfru_facility_runtime.py",
         "tools/engine/cfru_move_effect_lowering.py",
         "tools/engine/cfru_qol_runtime.py",
@@ -4893,6 +4960,16 @@ def build(root: Path) -> dict[str, Any]:
     for name in ("output.bin", "test.gba", "offsets.ini"):
         if (cache / "run-1" / name).read_bytes() != (cache / "run-2" / name).read_bytes():
             _fail(f"two consecutive T06 CFRU builds differ: {name}")
+    canonical_id_compatibility = run1.get("integration", {}).get(
+        "canonical_id_compatibility"
+    )
+    if (
+        not isinstance(canonical_id_compatibility, Mapping)
+        or canonical_id_compatibility.get("status") != "CANONICAL"
+        or run2.get("integration", {}).get("canonical_id_compatibility")
+        != canonical_id_compatibility
+    ):
+        _fail("canonical Species/Ability compatibility differs across builds")
 
     # Runtime table bytes are generated only after linked source symbols exist.
     from tools.engine.cfru_runtime_tables import (
@@ -4902,6 +4979,7 @@ def build(root: Path) -> dict[str, Any]:
     )
 
     offsets = parse_offsets((cache / "run-1/offsets.ini").read_text(encoding="utf-8"))
+    downstream_symbols = _downstream_symbol_contract(offsets)
     assets = build_runtime_assets(root, runtime_moves, ids, offsets)
     if not isinstance(assets, Mapping):
         _fail("runtime asset generator returned a non-mapping")
@@ -5120,6 +5198,8 @@ def build(root: Path) -> dict[str, Any]:
         "output": {"size": len(output), "sha256": _sha256(output)},
         "payload": {"size": len(payload_bytes), "sha256": _sha256(payload_bytes), "start": config["rom"]["payload_start"]},
         "models": {"moves": len(moves["moves"]), "types": len(ids["types"]), "abilities": len(ids["abilities"]), "items": len(ids["items"])},
+        "canonical_id_compatibility": canonical_id_compatibility,
+        "downstream_symbols": downstream_symbols,
         "runtime_tables": runtime_records,
         "canonical_runtime_roots": canonical_runtime_roots,
         "runtime_abi_bridges": runtime_abi_bridges,
@@ -5287,6 +5367,9 @@ def check(root: Path) -> dict[str, Any]:
 
     run1 = _mapping(upstream_runs[0], "published upstream run 1")
     offsets = parse_offsets((cache / "run-1/offsets.ini").read_text(encoding="utf-8"))
+    downstream_symbols = _downstream_symbol_contract(offsets)
+    if metadata.get("downstream_symbols") != downstream_symbols:
+        _fail("published T06 downstream symbol handoff differs")
     linked_reference = (cache / "run-1/test.gba").read_bytes()
     integration_symbols = _mapping(
         run1.get("integration_symbols"), "published integration symbols"

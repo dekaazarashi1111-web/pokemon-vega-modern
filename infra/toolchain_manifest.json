@@ -120,9 +120,9 @@
       },
       {
         "name": "linux-libc-dev",
-        "version": "6.8.0-137.137",
+        "version": "6.8.0-138.138",
         "install": true,
-        "deb_sha256": "2b2cb11434e5f72703e7133219dc00a59cf2a966d8c4ff0ff0133992369da3f0"
+        "deb_sha256": "f4186f788e64662d7b10a489b45d7bc953a3b382748ef14f84b2159cd659ff3b"
       },
       {
         "name": "libbinutils",
@@ -745,7 +745,7 @@
   "windows_bridge": {
     "cmd": {
       "path": "/mnt/c/WINDOWS/system32/cmd.exe",
-      "version": "10.0.26200.8875",
+      "version": "10.0.26200.9168",
       "version_command": [
         "/mnt/c/WINDOWS/system32/cmd.exe",
         "/d",
@@ -753,12 +753,12 @@
         "/c",
         "ver"
       ],
-      "version_contains": "10.0.26200.8875",
-      "sha256": "65ec268add3973b6dca64222985da47caeaee44a340b0ec1466782914fd743d9"
+      "version_contains": "10.0.26200.9168",
+      "sha256": "8dd1ebb0b969370c70a5ee7f7ee347949aa7046aa5e1a33fcd7b1e9415b21fc3"
     },
     "powershell": {
       "path": "/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe",
-      "version": "5.1.26100.8875",
+      "version": "5.1.26100.9168",
       "version_command": [
         "/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe",
         "-NoLogo",
@@ -767,7 +767,7 @@
         "-Command",
         "$PSVersionTable.PSVersion.ToString()"
       ],
-      "version_contains": "5.1.26100.8875",
+      "version_contains": "5.1.26100.9168",
       "sha256": "7600ffe12da441fe89d035b13801e8e91d064bc544a27b19a5cf49f6ab8b18f5"
     },
     "icacls": {
@@ -874,7 +874,7 @@
         {
           "binary_package": "linux-libc-dev:amd64",
           "apt_package": "linux-libc-dev",
-          "package_version": "6.8.0-137.137",
+          "package_version": "6.8.0-138.138",
           "verification": "aggregate",
           "expected_count": 5
         },

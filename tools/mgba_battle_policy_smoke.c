@@ -554,6 +554,20 @@ static struct CallObservation policy_start_facility_trainer(
     for (uint32_t battler = 0; battler < expected_battlers; ++battler) {
         if (read8(core, ADDR_BATTLER_POSITIONS + battler) != battler
             || read16(core, ADDR_BATTLE_MONS + battler * BATTLE_MON_SIZE) == 0) {
+            fprintf(stderr,
+                    "mgba-battle-policy-smoke: format=%u battler=%u "
+                    "position=%u species=%u expected_battlers=%u\n",
+                    format, battler,
+                    read8(core, ADDR_BATTLER_POSITIONS + battler),
+                    read16(core, ADDR_BATTLE_MONS
+                           + battler * BATTLE_MON_SIZE),
+                    expected_battlers);
+            fprintf(stderr,
+                    "mgba-battle-policy-smoke: enemy-party=%u,%u,%u,%u\n",
+                    read16(core, ADDR_ENEMY_PARTY),
+                    read16(core, ADDR_ENEMY_PARTY + POKEMON_SIZE),
+                    read16(core, ADDR_ENEMY_PARTY + 2U * POKEMON_SIZE),
+                    read16(core, ADDR_ENEMY_PARTY + 3U * POKEMON_SIZE));
             policy_die("facility format controller/party mapping is incomplete");
         }
     }

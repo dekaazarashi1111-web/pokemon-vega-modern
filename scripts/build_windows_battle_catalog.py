@@ -90,7 +90,7 @@ def _load_config(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
         _fail(f"T28 reward configが不正です: {error}")
     if (reward_config.get("task"), reward_config.get("stage")) != ("T28", 45):
         _fail("T28 reward config契約が一致しません")
-    return config, reward_config
+    return config, rewards.resolve_declared_upstream_bindings(reward_config)
 
 
 def _allocation(
@@ -239,8 +239,9 @@ def _static_outputs(config_path: Path) -> dict[str, bytes]:
     previous = json.loads(allocation_raw)
     protocol45 = json.loads(protocol_raw)
     symbols45 = json.loads(symbols_raw)
-    if (metadata.get("task"), metadata.get("stage"), metadata.get("status")) \
-            != ("T28", 45, "PASS"):
+    if ((metadata.get("task"), metadata.get("stage")) != ("T28", 45)
+            or metadata.get("status") not in {"PASS", "PASS_LOCAL"}
+            or metadata.get("mgba", {}).get("status") != "PASS"):
         _fail("Stage45 metadata完了identityが一致しません")
     if metadata.get("output", {}).get("sha256") != _sha(stage):
         _fail("Stage45 metadata ROM hashが一致しません")
@@ -422,8 +423,13 @@ def _run(command: Sequence[str], label: str, timeout: int = 360) -> str:
 def _finalize_outputs(
     config_path: Path, static: Mapping[str, bytes],
 ) -> dict[str, bytes]:
-    config, _ = _load_config(config_path)
+    config, reward_config = _load_config(config_path)
     outputs = config["outputs"]
+    qol_input = reward_config["inputs"]["qol_symbols"]
+    qol_symbols = json.loads(rewards._identity(
+        Path(qol_input["path"]), qol_input, "QOL generated symbols"))
+    pss_hook = int(qol_symbols["entrypoints"][
+        "VegaQolProduction_PssCallsiteHook"])
     runner = ROOT / "tools/mgba_windows_battle_catalog_smoke.c"
     if not runner.is_file():
         _fail("T29 mGBA runnerがありません")
@@ -442,6 +448,7 @@ def _finalize_outputs(
         cases.write_bytes(static[outputs["cases"]])
         _run([
             rewards._host_cc(ROOT), "-std=c11", "-Wall", "-Wextra", "-Werror",
+            f"-DCWC_PSS_CALLSITE_HOOK=0x{pss_hook:08X}U",
             str(runner), "-o", str(executable), "-lmgba",
         ], "T29 mGBA compile")
         for mode, key, timeout in (

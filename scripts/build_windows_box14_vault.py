@@ -117,7 +117,7 @@ def _load_config(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     if (reward_config.get("task"), reward_config.get("stage")) != ("T28", 45):
         _fail("T28 reward config契約が一致しません")
     _abi_model(config)
-    return config, reward_config
+    return config, rewards.resolve_declared_upstream_bindings(reward_config)
 
 
 def _allocation(

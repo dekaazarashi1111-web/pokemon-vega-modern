@@ -76,8 +76,8 @@ CONTENT = Path("content/event_design_implementation")
 PACKET = Path("dist/event_authoring_packet/Pokemon-Vega_CHATGPT-PRO_EVENT-AUTHORING_STAGE35_20260819")
 CATALOGS = PACKET / "catalogs"
 
-EXPECTED_STAGE36_SHA256 = "c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd"
-EXPECTED_STAGE36_META_SHA256 = "f901673fb0eef34ac9fdad6585697007f1077e16d42f84a36dbcb79433a34bce"
+EXPECTED_STAGE36_SHA256 = "560ff8483306e1ad1fb8c806504a5425edcd03898edf4d25c51220f2dca3b437"
+EXPECTED_STAGE36_META_SHA256 = "7ae81a5f6b51157ccdae7fb07838fbc344251ffd9a8e671668bcdb20f2aa325c"
 EXPECTED_CLEAN_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 EXPECTED_ZIP_SHA256 = "576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e"
 EXPECTED_SUBMISSION_SHA256 = "776d8c911ad3c2705ffdaf840d1b6cdbefe816cf000accdf3ea47a45991c4fec"
@@ -95,12 +95,6 @@ OBJECT_SIZE = 0x18
 BG_SIZE = 0x0C
 EVENT_HEADER_SIZE = 0x14
 OBJECT_LIMIT = 15
-
-QOL_FEATURE_ADDRESS = 0x093768B1
-QOL_DISPATCH_ADDRESS = 0x09378219
-TRAINER_DEFEATED_ADDRESS = 0x09302835
-SAVE_FINALIZE_ADDRESS = 0x092D2605
-ACQUISITION_POST_HOST_ADDRESS = 0x092D0D45
 
 REQUIRED_ENTRYPOINTS = {
     "EventDesign_Probe", "EventDesign_CheckUnlock",
@@ -197,6 +191,42 @@ def _input_contract() -> dict[str, Any]:
         "stage": stage, "meta": meta, "allocation": allocation,
         "allocation_raw": allocation_raw, "clean": clean,
     }
+
+
+def _upstream_runtime_handoff(stage36: Mapping[str, Any]) -> dict[str, int]:
+    stage35_path = ROOT / "build/stages/35_trainer_changekit_final.json"
+    stage26_path = ROOT / "build/stages/26_acquisition_events.json"
+    stage35_raw = stage35_path.read_bytes()
+    stage35 = json.loads(stage35_raw)
+    stage26 = _read_json(stage26_path)
+    expected_stage35_meta = stage36.get("trainer_regression", {}).get(
+        "stage35_metadata_sha256"
+    )
+    if _sha(stage35_raw) != expected_stage35_meta:
+        _fail("Stage35 runtime handoff metadata differs from Stage36 pin")
+    qol = stage36.get("runtime", {}).get("entrypoints", {})
+    trainer = stage35.get("runtime", {}).get("entrypoints", {})
+    acquisition = stage26.get("runtime", {}).get("symbols", {})
+    requirements = {
+        "qol_feature_address": qol.get("VegaQolProduction_FeatureUnlocked"),
+        "qol_dispatch_address": qol.get("VegaQolProduction_Dispatch"),
+        "trainer_defeated_address": trainer.get(
+            "TrainerV5Runtime_HasTrainerBeenFought"
+        ),
+        "trainer_set_flag": trainer.get("TrainerV5Runtime_SetTrainerFlag"),
+        "save_finalize_address": acquisition.get("VegaSaveFinalize"),
+        "acquisition_post_host_address": acquisition.get("VegaAcq_PostHost"),
+    }
+    handoff = {
+        name: int(address) | 1 if address is not None else 0
+        for name, address in requirements.items()
+    }
+    if any(not 0x08000000 <= address < 0x0A000000
+           for address in handoff.values()):
+        _fail("event-design upstream runtime handoff is missing/outside GBA ROM")
+    if len(set(handoff.values())) != len(handoff):
+        _fail("event-design upstream runtime handoff contains aliased symbols")
+    return handoff
 
 
 def _validate_submission() -> dict[str, Any]:
@@ -443,7 +473,8 @@ def _unlock_row(key: str, model: Mapping[str, Any]) -> tuple[int, int]:
     _fail(f"unsupported unlock key: {key}")
 
 
-def _generated_header(model: Mapping[str, Any]) -> bytes:
+def _generated_header(model: Mapping[str, Any],
+                      handoff: Mapping[str, int]) -> bytes:
     plan = model["plan"]
     state_indices = model["state_indices"]
     term_kind = {"STATE": 1, "QOL_FEATURE": 2, "TRAINER_DEFEATED": 3, "ACQUISITION_CLAIMED": 4}
@@ -488,10 +519,10 @@ def _generated_header(model: Mapping[str, Any]) -> bytes:
         f"#define EVENT_DESIGN_REWARD_COUNT {len(plan['rewards'])}u",
         f"#define EVENT_DESIGN_UNLOCK_COUNT {len(model['unlock_keys'])}u",
         "#define EVENT_DESIGN_NO_INDEX 0xFFFFu",
-        f"#define EVENT_DESIGN_QOL_FEATURE_ADDRESS 0x{QOL_FEATURE_ADDRESS:08X}u",
-        f"#define EVENT_DESIGN_QOL_DISPATCH_ADDRESS 0x{QOL_DISPATCH_ADDRESS:08X}u",
-        f"#define EVENT_DESIGN_TRAINER_DEFEATED_ADDRESS 0x{TRAINER_DEFEATED_ADDRESS:08X}u",
-        f"#define EVENT_DESIGN_SAVE_FINALIZE_ADDRESS 0x{SAVE_FINALIZE_ADDRESS:08X}u",
+        f"#define EVENT_DESIGN_QOL_FEATURE_ADDRESS 0x{handoff['qol_feature_address']:08X}u",
+        f"#define EVENT_DESIGN_QOL_DISPATCH_ADDRESS 0x{handoff['qol_dispatch_address']:08X}u",
+        f"#define EVENT_DESIGN_TRAINER_DEFEATED_ADDRESS 0x{handoff['trainer_defeated_address']:08X}u",
+        f"#define EVENT_DESIGN_SAVE_FINALIZE_ADDRESS 0x{handoff['save_finalize_address']:08X}u",
         "#define EVENT_DESIGN_CERT_OWNER_FLAG_BASE 0x1400u",
         "#define EVENT_DESIGN_KANTO_CHAMPION_OWNER_FLAG 0x140Cu",
         "#define EVENT_DESIGN_FLAG_BADGE_5 0x0824u",
@@ -1142,7 +1173,8 @@ def _dispatcher_script(events: Sequence[Mapping[str, Any]],
 
 def _step_script(event: Mapping[str, Any], step: Mapping[str, Any],
                  model: Mapping[str, Any], runtime: Mapping[str, int],
-                 physical: Mapping[str, Any], acquisition: Mapping[str, Mapping[str, Any]]) -> tuple[_Script, list[tuple[str, _Script]]]:
+                 physical: Mapping[str, Any], acquisition: Mapping[str, Mapping[str, Any]],
+                 handoff: Mapping[str, int]) -> tuple[_Script, list[tuple[str, _Script]]]:
     script = _Script()
     auxiliary: list[tuple[str, _Script]] = []
     op = str(step["op"])
@@ -1199,7 +1231,8 @@ def _step_script(event: Mapping[str, Any], step: Mapping[str, Any],
         script.callnative(int(host["wrapper_address"]), str(host["wrapper_symbol"]))
         script.compare(0x800D, 9).if_equal(wait_label).goto(result_label)
         wait = (_Script().emit(0x27, operation="waitstate")
-                .callnative(ACQUISITION_POST_HOST_ADDRESS, "VegaAcq_PostHost")
+                .callnative(handoff["acquisition_post_host_address"],
+                            "VegaAcq_PostHost")
                 .goto(result_label))
         result = (_Script().compare(0x800D, 0).if_equal(success_label)
                   .compare(0x800D, 4).if_equal(success_label)
@@ -1236,7 +1269,8 @@ def _step_script(event: Mapping[str, Any], step: Mapping[str, Any],
 
 
 def _build_field_payload(stage: bytes, clean: bytes, model: Mapping[str, Any],
-                         runtime: Mapping[str, int], payload_offset: int) -> tuple[bytes, dict[str, Any]]:
+                         runtime: Mapping[str, int], payload_offset: int,
+                         handoff: Mapping[str, int]) -> tuple[bytes, dict[str, Any]]:
     physical = _physical_plan(stage, clean, model)
     blob = _Blob()
     scripts_meta: list[dict[str, Any]] = []
@@ -1262,7 +1296,7 @@ def _build_field_payload(stage: bytes, clean: bytes, model: Mapping[str, Any],
     for event in model["plan"]["events"]:
         for step in event["steps"]:
             script, auxiliary = _step_script(
-                event, step, model, runtime, physical, acquisition,
+                event, step, model, runtime, physical, acquisition, handoff,
             )
             _add_script(blob, f"step::{step['step_key']}", script, scripts_meta)
             for label, extra in auxiliary:
@@ -1672,7 +1706,7 @@ def _static_acceptance(model: Mapping[str, Any], field: Mapping[str, Any],
         "declared_changes_only": bool(changed) and len(outside) == 0,
         "upstream_runtime_and_content_preserved": upstream["previous_allocations_compared"] > 0
         and upstream["trainer_commands_compared"] == 1302
-        and upstream["qol_hooks_compared"] == 97
+        and upstream["qol_hooks_compared"] == 94
         and upstream["acquisition_events"] == 201,
         "ram_and_save_owner_overlap_zero": True,
         "stage36_save_zero_default_migration": all(
@@ -1720,9 +1754,10 @@ def _report(metadata: Mapping[str, Any]) -> bytes:
 
 def build_outputs() -> dict[str, bytes]:
     inputs = _input_contract()
+    handoff = _upstream_runtime_handoff(inputs["meta"])
     validator = _validate_submission()
     model = _load_model()
-    header = _generated_header(model)
+    header = _generated_header(model, handoff)
 
     provisional_code, provisional_symbols = _compile_runtime(
         GBA_ROM_BASE + 0x01500000 + PAYLOAD_HEADER_SIZE, header,
@@ -1730,7 +1765,7 @@ def build_outputs() -> dict[str, bytes]:
     provisional_field_offset = _align(PAYLOAD_HEADER_SIZE + len(provisional_code), 4)
     provisional_field, _ = _build_field_payload(
         inputs["stage"], inputs["clean"], model, provisional_symbols,
-        0x01500000 + provisional_field_offset,
+        0x01500000 + provisional_field_offset, handoff,
     )
     provisional_size = _align(provisional_field_offset + len(provisional_field), 16)
     allocation, _ = _allocation(inputs["allocation"], provisional_size, "0" * 64)
@@ -1740,7 +1775,7 @@ def build_outputs() -> dict[str, bytes]:
     field_offset = _align(PAYLOAD_HEADER_SIZE + len(code), 4)
     field_payload, field = _build_field_payload(
         inputs["stage"], inputs["clean"], model, symbols,
-        payload_offset + field_offset,
+        payload_offset + field_offset, handoff,
     )
     payload_size = _align(field_offset + len(field_payload), 16)
     if (len(code) != len(provisional_code)
@@ -1870,6 +1905,7 @@ def build_outputs() -> dict[str, bytes]:
                         "field_address": GBA_ROM_BASE + payload_offset + field_offset,
                         "field_size": len(field_payload), "field_sha256": _sha(field_payload)},
             "entrypoints": entrypoints,
+            "upstream_handoff": handoff,
         },
         "physical_bindings": physical_summary,
         "allocation": {
@@ -2008,6 +2044,13 @@ def _mgba_outputs(outputs: Mapping[str, bytes]) -> dict[str, bytes]:
     if len(transition) != 1:
         _fail("event-design transition fixture binding differs")
     payload = metadata["runtime"]["payload"]
+    handoff = metadata["runtime"].get("upstream_handoff", {})
+    if set(handoff) != {
+        "qol_feature_address", "qol_dispatch_address",
+        "trainer_defeated_address", "trainer_set_flag",
+        "save_finalize_address", "acquisition_post_host_address",
+    }:
+        _fail("event-design mGBA upstream runtime handoff differs")
 
     native_temp = ROOT / ".local"
     native_temp.mkdir(parents=True, exist_ok=True)
@@ -2039,6 +2082,8 @@ def _mgba_outputs(outputs: Mapping[str, bytes]) -> dict[str, bytes]:
                 hex(int(payload["address"])), hex(int(payload["size"])),
                 orphan[0]["dispatcher_address"],
                 transition[0]["stage37_script_pointer_address"],
+                hex(int(handoff["trainer_set_flag"])),
+                hex(int(handoff["save_finalize_address"])),
             ], f"event-design mGBA {mode}", timeout=timeout)
             try:
                 document = json.loads(stdout)

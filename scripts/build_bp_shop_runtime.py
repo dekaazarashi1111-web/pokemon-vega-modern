@@ -29,7 +29,7 @@ from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  
 
 TASK = "USER-20260817-BP-SHOP-RUNTIME"
 ROM_SIZE = 32 * 1024 * 1024
-INPUT_ROM = Path("build/final/vega-modern-kanto-v1.4.0.gba")
+INPUT_ROM = Path("build/stages/26_acquisition_events.gba")
 INPUT_META = Path("build/stages/26_acquisition_events.json")
 INPUT_ALLOC = Path("build/stages/26_allocation.json")
 STAGE17_META = Path("build/stages/17_regression.json")
@@ -45,7 +45,7 @@ REPORT = Path("reports/generated/bp_shop_runtime.md")
 PATCH = Path("build/patches/vega-modern-kanto-v1.4.0-to-bp-shop-stage27.bps")
 RUNNER = Path("tools/mgba_bp_shop_smoke.c")
 
-EXPECTED_INPUT_SHA256 = "30f19ee3ebab856379393a572bfde33c2ccfdac7351e73ff3a7f3e231f3f553e"
+EXPECTED_INPUT_SHA256 = "5a4d1b68c619be291f35a201ada97d6a7921ff89d4d48cc3b3396f04195db2ea"
 MAP_GROUPS_POINTER_SITE = 0x00054B0C
 GBA_ENTRY = (96, 5)
 PAYLOAD_HEADER_SIZE = 0x80

@@ -160,7 +160,7 @@ def build_outputs(root: Path) -> dict[str, bytes]:
            or row["release_enabled"] != "true" for row in qol):
         raise ContentError("QOL requires release-enabled existing/SIMPLE_EVENT presentation")
     expected_qol = {
-        "EXP_SHARE": "VEGA_BADGE_1", "FREE_MOVE_RELEARN": "VEGA_BADGE_2",
+        "EXP_SHARE": "VEGA_BADGE_1", "FREE_MOVE_RELEARN": "VEGA_BADGE_1",
         "FIELD_PC": "VEGA_DH_CLEAR", "POWER_ITEMS": "VEGA_BADGE_5",
         "EXP_CANDY_L_SILVER_CAP": "VEGA_BADGE_7",
         "ABILITY_PATCH_ALL_MINTS": "VEGA_BADGE_8",

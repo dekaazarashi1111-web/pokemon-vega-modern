@@ -1963,8 +1963,8 @@ def build_outputs() -> dict[str, bytes]:
 
     if (
         len(config["hooks"]) != 11 or len(map_root_patches) != 7
-        or len(branch_islands) != 2 or len(compatibility_patches) != 1
-        or len(patches) != 21
+        or len(branch_islands) != 2 or compatibility_patches
+        or len(patches) != 20
     ):
         _fail("Stage40 hook/root/compatibility patch cardinality differs")
     oak_roots = [
@@ -2155,14 +2155,14 @@ def build_outputs() -> dict[str, bytes]:
 
     delegates = {key: _integer(value, key) for key, value in config["delegates"].items()}
     chain_audit = {
-        "save_load": delegates["mirage_save_load"] == 0x09390B6D,
-        "wild_land": delegates["move_land_water"] == 0x0939216D,
-        "wild_fishing": delegates["move_fishing"] == 0x09392195,
-        "wild_hidden": delegates["move_hidden"] == 0x093921BD,
-        "wild_end": delegates["qol_wild_end"] == 0x093784F3,
+        "save_load": delegates["mirage_save_load"] == 0x093910ED,
+        "wild_land": delegates["move_land_water"] == 0x093926ED,
+        "wild_fishing": delegates["move_fishing"] == 0x09392715,
+        "wild_hidden": delegates["move_hidden"] == 0x0939273D,
+        "wild_end": delegates["qol_wild_end"] == 0x09378A73,
         "play_time": delegates["play_time_update"] == 0x08054131,
         "add_coins": delegates["add_coins"] == 0x080D16C1,
-        "qol_save": delegates["qol_save"] == 0x093770E1,
+        "qol_save": delegates["qol_save"] == 0x09377695,
     }
     if any(value is not True for value in chain_audit.values()):
         _fail(f"Stage39 wrapper delegate chain differs: {chain_audit}")
@@ -2211,8 +2211,7 @@ def build_outputs() -> dict[str, bytes]:
         "UPSTREAM_REGRESSION_OVERLAP_ZERO": not overlaps and not outside
             and previous_changed_outside_patches == 0
             and allocation_report["summaries"]["overlap_count"] == 0
-            and len(compatibility_patches) == 1
-            and compatibility_patches[0]["replacement_hex"] == "022a",
+            and not compatibility_patches,
         "CLEAN_REBUILD_BPS_MGBA_TWO_PROCESS": False,
     }
     if any(
@@ -2268,8 +2267,9 @@ def build_outputs() -> dict[str, bytes]:
         },
         "save_v2_compatibility": {
             "patch_count": len(compatibility_patches),
-            "stage39_version_compare": 1,
+            "stage39_version_compare": 2,
             "stage40_version_compare": 2,
+            "already_current": True,
             "rows": compatibility_patches,
         },
         "change_audit": {

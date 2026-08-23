@@ -5,15 +5,15 @@
     "stage38_rom": {
       "path": "build/stages/38_mirage_production.gba",
       "size": 33554432,
-      "sha256": "f66c4823e50d9db86a7c5ef07436558dd4c25c2f41ee3a94e413eadc4a37d941"
+      "sha256": "17240646e2aa58be929bbb73c8176673f2c31d841733d7712ae2fab912f87e39"
     },
     "stage38_metadata": {
       "path": "build/stages/38_mirage_production.json",
-      "sha256": "da027d40dda9ebc0f54f1e217d4442369ab41ebb8d2956b24e844355e2fb2b77"
+      "sha256": "5a2b87aac17d4887f8f8928c95782d81f442929bfcd0d4dfb1a6fe4a6e735985"
     },
     "stage38_allocation": {
       "path": "build/stages/38_allocation.json",
-      "sha256": "4508b6123027e66e1dba6d96047658f5505bcfb8586ba0fa705a6dbc65b88c82"
+      "sha256": "c1d8643a0e89e9ef82ae41ac7a03b2b4f8e8ef464dc16db8740720f714cdcced"
     },
     "clean_rom": {
       "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
@@ -63,7 +63,7 @@
   "runtime_patches": [
     {
       "name": "tutor_stride_16",
-      "address": "0x091100F6",
+      "address": "0x09110242",
       "expected_hex": "c018",
       "replacement_hex": "c046",
       "description": "CanMonLearnTutorMoveの旧20-byte加算をNOP化し、canonical 16-byte strideへ接続する"
@@ -79,22 +79,22 @@
     {
       "name": "wild_land_water",
       "address": "0x080826D8",
-      "expected_hex": "004b184701733709",
-      "delegate": "0x09377301",
+      "expected_hex": "004b184781783709",
+      "delegate": "0x09377881",
       "target": "MoveDistributionV4_TryGenerateWildMonAdapter"
     },
     {
       "name": "wild_fishing",
       "address": "0x08082750",
-      "expected_hex": "004b184745733709",
-      "delegate": "0x09377345",
+      "expected_hex": "004b1847c5783709",
+      "delegate": "0x093778C5",
       "target": "MoveDistributionV4_GenerateFishingEncounterAdapter"
     },
     {
       "name": "wild_hidden",
       "address": "0x09220198",
-      "expected_hex": "004b184785733709",
-      "delegate": "0x09377385",
+      "expected_hex": "004b184705793709",
+      "delegate": "0x09377905",
       "target": "MoveDistributionV4_TryHiddenEncounterAdapter"
     }
   ],

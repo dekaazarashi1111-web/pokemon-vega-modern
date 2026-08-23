@@ -81,6 +81,10 @@ class CFRUFacilityRuntimeTests(unittest.TestCase):
             patched_builder,
         )
         self.assertIn("VEGA_FACILITY_SPREAD_SELECTED:", patched_builder)
+        self.assertIn(
+            "VegaFacilitySpreadIsCurated(spread) || !PokemonTierBan",
+            patched_builder,
+        )
 
     def test_non_unbound_fallbacks_are_nonempty_and_vega_safe(self) -> None:
         rendered = self.bundle.render()
@@ -106,6 +110,18 @@ class CFRUFacilityRuntimeTests(unittest.TestCase):
         self.assertIn("extern const u8 sTrainerName_Red[];", fallback)
         self.assertEqual(fallback.count(".name = sTrainerName_Red,"), 4)
         self.assertEqual(manifest["rental"]["spread_count"], 19)
+        self.assertIn(
+            "static bool8 VegaFacilitySpreadIsCurated(", spreads
+        )
+        self.assertEqual(
+            [row["key"] for row in manifest["safety_patches"]],
+            [
+                "ELIGIBILITY_LOOP_BOUNDED_INDEX",
+                "BATTLE_STYLE_MAX_INDEX",
+                "RENTAL_RETRY_LIMIT_4096",
+                "CURATED_VEGA_SPECIES_TIER_AUTHORITY",
+            ],
+        )
         self.assertEqual(manifest["rental"]["array_counts"]["gFrontierSpreads"], 19)
         self.assertEqual(manifest["rental"]["array_counts"]["gVegaMonotypeSpreads"], 6)
         self.assertEqual(manifest["rental"]["array_counts"]["gLittleCupSpreads"], 6)

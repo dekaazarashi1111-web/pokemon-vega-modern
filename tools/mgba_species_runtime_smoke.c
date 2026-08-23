@@ -18,7 +18,7 @@ enum {
     STRING_COPY_PADDED = 0x08008DAD,
     STRING_GET_END_10 = 0x080088A5,
     UPDATE_NICK_IN_HEALTHBOX = 0x08048CC1,
-    BUFFER_STRING_BATTLE = 0x090D2031,
+    BUFFER_STRING_BATTLE = 0x090D2021,
     NATIONAL_DEX_TO_SPECIES = 0x080428F1,
     SPECIES_TO_NATIONAL_DEX = 0x08042989,
     DECOMPRESS_PIC_FROM_TABLE = 0x0800EA95,
@@ -41,6 +41,7 @@ enum {
     NAME_MAX_GLYPHS = 6,
     DISPLAYED_BATTLE_STRING = 0x020228FC,
     HEALTHBOX_SPRITE_IDS = 0x03005030,
+    BATTLER_SPRITE_IDS = 0x02023CA4,
     SPRITES = 0x020205B8,
     SPRITE_SIZE = 68,
     OBJ_VRAM = 0x06010000,
@@ -48,6 +49,39 @@ enum {
     PIC_SCRATCH = 0x0203A000,
     PIC_EXPECTED = 0x0203A800,
     PIC_SIZE = 2048,
+
+    ABILITY_BATTLE_EFFECTS = 0x090B667D,
+    ATK49_MOVEEND = 0x090DF7A1,
+    TURN_BASED_EFFECTS = 0x090F7F11,
+    ATK0C_DATA_HP_UPDATE = 0x0910561D,
+    BATTLE_STRUCT_POINTER = 0x02023F48,
+    BATTLE_SCRIPTING = 0x02023F24,
+    BATTLE_SCRIPT_POINTER = 0x02023CD4,
+    BATTLE_EXEC_BUFFER = 0x02023B28,
+    BANKS_BY_TURN_ORDER = 0x02023B3E,
+    BANK_ATTACKER = 0x02023CCB,
+    BANK_TARGET = 0x02023CCC,
+    CURRENT_MOVE = 0x02023CAA,
+    BATTLE_MOVE_DAMAGE = 0x02023CB0,
+    MOVE_RESULT_FLAGS = 0x02023D2C,
+    STATUSES3 = 0x02023D5C,
+    SPECIAL_STATUSES = 0x02023E2C,
+    SPECIAL_STATUS_SIZE = 20,
+    FORM_SCRIPT_SCRATCH = 0x0203FFF0,
+    BATTLE_MON_ABILITY = 0x38,
+    BATTLE_MON_MAX_HP = 0x2C,
+    BATTLE_MON_STATUS2 = 0x50,
+    TURN_EFFECT_FORM_CHANGE = 70,
+    ATK49_STATE_OFFSET = 0x14,
+    ATK49_MAGICIAN_MOXIE_BATTLE_BOND = 30,
+
+    ABILITY_ZEN_MODE = 162,
+    ABILITY_SCHOOLING = 209,
+    ABILITY_DISGUISE = 210,
+    ABILITY_BATTLE_BOND = 211,
+    ABILITY_POWER_CONSTRUCT = 212,
+    ABILITY_ICE_FACE = 249,
+    ABILITY_HUNGER_SWITCH = 259,
 };
 
 static void clear_runtime_bytes(struct mCore *core, uint32_t address,
@@ -169,6 +203,94 @@ static void verify_pic_path(struct mCore *core, uint16_t species,
     (void)call_preserving(core, DECOMPRESS_PIC_FROM_TABLE,
                           row, PIC_SCRATCH, species, 0);
     require_equal_runtime_bytes(core, PIC_SCRATCH, PIC_EXPECTED, PIC_SIZE, label);
+}
+
+static void verify_full_back_sprite(struct mCore *core, uint16_t species)
+{
+    uint8_t sprite_id = 0xFFU;
+    uint8_t flags = 0U;
+    for (unsigned attempt = 0; attempt < 8U; ++attempt) {
+        sprite_id = read8(core, BATTLER_SPRITE_IDS);
+        if (sprite_id < 128U) {
+            flags = read8(core, SPRITES + (uint32_t)sprite_id * SPRITE_SIZE
+                                + 0x3EU);
+            if ((flags & 1U) != 0U && (flags & 4U) == 0U) break;
+        }
+        core->setKeys(core, 1U);
+        core->runFrame(core);
+        core->runFrame(core);
+        core->setKeys(core, 0U);
+        for (unsigned frame = 0; frame < 90U; ++frame)
+            core->runFrame(core);
+    }
+    if (sprite_id >= 128U)
+        battle_core_die("player battler sprite ID is outside sprite storage");
+    uint32_t sprite = SPRITES + (uint32_t)sprite_id * SPRITE_SIZE;
+    uint16_t attr0 = read16(core, sprite);
+    uint16_t attr1 = read16(core, sprite + 2U);
+    uint16_t attr2 = read16(core, sprite + 4U);
+    flags = read8(core, sprite + 0x3EU);
+    int16_t x = (int16_t)read16(core, sprite + 0x20U);
+    int16_t y = (int16_t)read16(core, sprite + 0x22U);
+    if ((flags & 1U) == 0U || (flags & 4U) != 0U) {
+        fprintf(stderr,
+                "mgba-species-runtime-smoke: battler-sprite-ids="
+                "%u,%u,%u,%u selected=%u flags=0x%02x "
+                "oam=%04x/%04x/%04x pos=%d,%d\n",
+                read8(core, BATTLER_SPRITE_IDS),
+                read8(core, BATTLER_SPRITE_IDS + 1U),
+                read8(core, BATTLER_SPRITE_IDS + 2U),
+                read8(core, BATTLER_SPRITE_IDS + 3U),
+                sprite_id, flags, attr0, attr1, attr2, x, y);
+        battle_core_die("player back sprite is unused or invisible");
+    }
+    if ((attr0 & 0xC000U) != 0U || (attr1 & 0xC000U) != 0xC000U) {
+        fprintf(stderr,
+                "mgba-species-runtime-smoke: back-sprite species=%u id=%u "
+                "flags=0x%02x oam=%04x/%04x/%04x pos=%d,%d\n",
+                species, sprite_id, flags, attr0, attr1, attr2, x, y);
+        battle_core_die("player back sprite is not a full 64x64 square");
+    }
+    if (x < 0 || x >= 240 || y < 0 || y >= 160)
+        battle_core_die("player back sprite position is outside the display");
+
+    uint32_t back = read32(core, BACK_TABLE_POINTER);
+    uint32_t row = back + (uint32_t)species * 8U;
+    uint32_t compressed = read32(core, row);
+    clear_runtime_bytes(core, PIC_EXPECTED, PIC_SIZE);
+    (void)call_preserving(core, LZ77_UNCOMP_WRAM,
+                          compressed, PIC_EXPECTED, 0, 0);
+    uint32_t object_tiles = OBJ_VRAM + (uint32_t)(attr2 & 0x03FFU) * 32U;
+
+    unsigned opaque_top = 0;
+    unsigned opaque_bottom = 0;
+    unsigned loaded_top = 0;
+    unsigned loaded_bottom = 0;
+    for (unsigned tile_y = 0; tile_y < 8U; ++tile_y) {
+        for (unsigned tile_x = 0; tile_x < 8U; ++tile_x) {
+            uint32_t tile = PIC_EXPECTED + (tile_y * 8U + tile_x) * 32U;
+            uint32_t loaded = object_tiles + (tile_y * 8U + tile_x) * 32U;
+            for (unsigned byte = 0; byte < 32U; ++byte) {
+                uint8_t pixels = read8(core, tile + byte);
+                unsigned count = (pixels & 0x0FU ? 1U : 0U)
+                    + (pixels & 0xF0U ? 1U : 0U);
+                uint8_t loaded_pixels = read8(core, loaded + byte);
+                unsigned loaded_count = (loaded_pixels & 0x0FU ? 1U : 0U)
+                    + (loaded_pixels & 0xF0U ? 1U : 0U);
+                if (tile_y < 4U) {
+                    opaque_top += count;
+                    loaded_top += loaded_count;
+                } else {
+                    opaque_bottom += count;
+                    loaded_bottom += loaded_count;
+                }
+            }
+        }
+    }
+    if (opaque_top == 0U || opaque_bottom == 0U)
+        battle_core_die("back picture does not occupy both 32px vertical halves");
+    if (loaded_top == 0U || loaded_bottom == 0U)
+        battle_core_die("battle OBJ VRAM omits one 32px vertical half");
 }
 
 static void verify_display_species(struct mCore *core, uint16_t species)
@@ -386,6 +508,129 @@ static void verify_battle_name_surface(
                           player_species, false);
     verify_healthbox_name(core, 1, ADDR_ENEMY_PARTY,
                           enemy_species, true);
+    verify_full_back_sprite(core, player_species);
+}
+
+static void prepare_form_battle(struct mCore *core, const struct Snapshot *field,
+                                uint16_t species, uint16_t ability)
+{
+    install_level100_name_battle(core, field, species, 10U);
+    run_fixed_frames(core);
+    write16(core, ADDR_BATTLE_MONS + BATTLE_MON_ABILITY, ability);
+    write32_bytes(core, ADDR_BATTLE_MONS + BATTLE_MON_STATUS2, 0U);
+}
+
+static void require_form_species(struct mCore *core, uint16_t expected,
+                                 const char *label)
+{
+    uint16_t actual = read16(core, ADDR_BATTLE_MONS);
+    if (actual != expected) {
+        fprintf(stderr,
+                "mgba-species-runtime-smoke: %s form=%u expected=%u "
+                "ability=%u hp=%u/%u\n",
+                label, actual, expected,
+                read16(core, ADDR_BATTLE_MONS + BATTLE_MON_ABILITY),
+                read16(core, ADDR_BATTLE_MONS + BATTLE_CORE_MON_HP),
+                read16(core, ADDR_BATTLE_MONS + BATTLE_MON_MAX_HP));
+        battle_core_die("canonical ability form transition differs");
+    }
+}
+
+static void verify_switch_in_schooling(struct mCore *core,
+                                       const struct Snapshot *field)
+{
+    prepare_form_battle(core, field, 1144U, ABILITY_SCHOOLING);
+    write32_bytes(core, STATUSES3, 0U);
+    uint32_t effect = call_preserving(
+        core, ABILITY_BATTLE_EFFECTS, 0U, 0U, 0U, 0U);
+    if (effect != 1U)
+        battle_core_die("Schooling switch-in handler did not activate");
+    require_form_species(core, 1228U, "Wishiwashi Schooling");
+}
+
+static void verify_end_turn_form(struct mCore *core,
+                                 const struct Snapshot *field,
+                                 uint16_t base_species, uint16_t ability,
+                                 uint16_t expected_species, bool low_hp,
+                                 const char *label)
+{
+    prepare_form_battle(core, field, base_species, ability);
+    uint16_t max_hp = read16(core, ADDR_BATTLE_MONS + BATTLE_MON_MAX_HP);
+    if (max_hp < 4U)
+        battle_core_die("form fixture maximum HP is too small");
+    write16(core, ADDR_BATTLE_MONS + BATTLE_CORE_MON_HP,
+            low_hp ? (uint16_t)(max_hp / 4U) : max_hp);
+    uint32_t battle_struct = read32(core, BATTLE_STRUCT_POINTER);
+    if (battle_struct < 0x02000000U || battle_struct >= 0x02040000U)
+        battle_core_die("form fixture BattleStruct pointer is invalid");
+    write8(core, battle_struct, TURN_EFFECT_FORM_CHANGE);
+    write8(core, battle_struct + 1U, 0U);
+    write8(core, BANKS_BY_TURN_ORDER, 0U);
+    write8(core, BANKS_BY_TURN_ORDER + 1U, 1U);
+    uint32_t effect = call_preserving(core, TURN_BASED_EFFECTS, 0U, 0U, 0U, 0U);
+    if (effect != 1U)
+        battle_core_die("end-turn form handler did not activate");
+    require_form_species(core, expected_species, label);
+}
+
+static void verify_damage_form(struct mCore *core,
+                               const struct Snapshot *field,
+                               uint16_t base_species, uint16_t ability,
+                               uint16_t expected_species, const char *label)
+{
+    prepare_form_battle(core, field, base_species, ability);
+    write8(core, BANK_ATTACKER, 1U);
+    write8(core, BANK_TARGET, 0U);
+    write16(core, CURRENT_MOVE, BATTLE_CORE_MOVE_TACKLE);
+    write32_bytes(core, BATTLE_MOVE_DAMAGE, 10U);
+    write32_bytes(core, MOVE_RESULT_FLAGS, 0U);
+    write32_bytes(core, BATTLE_EXEC_BUFFER, 0U);
+    write8(core, FORM_SCRIPT_SCRATCH, 0x0CU);
+    write8(core, FORM_SCRIPT_SCRATCH + 1U, 0U);
+    write32_bytes(core, BATTLE_SCRIPT_POINTER, FORM_SCRIPT_SCRATCH);
+    (void)call_preserving(core, ATK0C_DATA_HP_UPDATE, 0U, 0U, 0U, 0U);
+    require_form_species(core, expected_species, label);
+}
+
+static void verify_battle_bond(struct mCore *core,
+                               const struct Snapshot *field)
+{
+    prepare_form_battle(core, field, 947U, ABILITY_BATTLE_BOND);
+    create_mon(core, ADDR_ENEMY_PARTY + POKEMON_SIZE, 11U, 100U);
+    write8(core, BATTLE_CORE_ENEMY_PARTY_COUNT, 2U);
+    write8(core, BANK_ATTACKER, 0U);
+    write8(core, BANK_TARGET, 1U);
+    write16(core, CURRENT_MOVE, BATTLE_CORE_MOVE_SCRATCH);
+    write16(core, ADDR_BATTLE_MONS + BATTLE_MON_SIZE + BATTLE_CORE_MON_HP, 0U);
+    write32_bytes(core, MOVE_RESULT_FLAGS, 0U);
+    write32_bytes(core, SPECIAL_STATUSES + SPECIAL_STATUS_SIZE + 8U, 1U);
+    write8(core, BATTLE_SCRIPTING + ATK49_STATE_OFFSET,
+           ATK49_MAGICIAN_MOXIE_BATTLE_BOND);
+    write8(core, FORM_SCRIPT_SCRATCH, 0x49U);
+    write8(core, FORM_SCRIPT_SCRATCH + 1U, 0U);
+    write8(core, FORM_SCRIPT_SCRATCH + 2U, 0U);
+    write32_bytes(core, BATTLE_SCRIPT_POINTER, FORM_SCRIPT_SCRATCH);
+    (void)call_preserving(core, ATK49_MOVEEND, 0U, 0U, 0U, 0U);
+    require_form_species(core, 1020U, "Greninja Battle Bond");
+}
+
+static void verify_canonical_form_abilities(struct mCore *core,
+                                            const struct Snapshot *field)
+{
+    verify_switch_in_schooling(core, field);
+    verify_end_turn_form(core, field, 807U, ABILITY_ZEN_MODE, 918U, true,
+                         "Darmanitan Zen Mode");
+    verify_end_turn_form(core, field, 1007U, ABILITY_POWER_CONSTRUCT, 1019U,
+                         true, "Zygarde Power Construct");
+    verify_end_turn_form(core, field, 1350U, ABILITY_HUNGER_SWITCH, 1385U,
+                         false, "Morpeko Hunger Switch");
+    verify_end_turn_form(core, field, 1385U, ABILITY_HUNGER_SWITCH, 1350U,
+                         false, "Morpeko Hunger Switch reverse");
+    verify_damage_form(core, field, 1176U, ABILITY_DISGUISE, 1253U,
+                       "Mimikyu Disguise");
+    verify_damage_form(core, field, 1348U, ABILITY_ICE_FACE, 1383U,
+                       "Eiscue Ice Face");
+    verify_battle_bond(core, field);
 }
 
 int main(int argc, char **argv)
@@ -552,6 +797,7 @@ int main(int argc, char **argv)
     }
     verify_battle_name_surface(core, &field, 1055, 1288);
     verify_battle_name_surface(core, &field, 1448, 1363);
+    verify_canonical_form_abilities(core, &field);
     printf(
         "{\"status\":\"PASS\",\"species_created\":%u,"
         "\"species_named\":%u,\"species_with_level5_moves\":%u,"
@@ -561,6 +807,9 @@ int main(int argc, char **argv)
         "\"form_base_names_checked\":%zu,"
         "\"battle_name_cases\":2,\"battle_messages\":2,"
         "\"healthbox_tile_cases\":2,\"level100_form_cases\":2,"
+        "\"back_sprite_full_64x64_cases\":2,"
+        "\"canonical_form_ability_families\":7,"
+        "\"canonical_form_transitions\":8,"
         "\"display_species_checked\":%zu,\"egg_species\":%u,"
         "\"dex_species_checked\":%zu,"
         "\"caterpie_species\":%u,\"canonical_species_count\":%u}\n",

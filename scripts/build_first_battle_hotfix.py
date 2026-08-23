@@ -29,7 +29,7 @@ ROM_SIZE = 32 * 1024 * 1024
 CLEAN_ROM = Path("inputs/private/FireRed_JPN_Rev0_clean.gba")
 CLEAN_ROM_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
 STAGE20 = Path("build/stages/20_facility_runtime.gba")
-STAGE20_SHA256 = "d82f280c4d9c6ca6b5268c287c9534c0e556bc9ba2ad2075d027af6a7580d4cd"
+STAGE20_SHA256 = "69279dbccb2237be32b0924a6e394ecf2ddf317e652c4e8197e5066fdb9decea"
 STAGE20_META = Path("build/stages/20_facility_runtime.json")
 STAGE20_ALLOCATION = Path("build/stages/20_allocation.json")
 STAGE06_META = Path("build/stages/06_battle_core.json")
@@ -45,11 +45,11 @@ RUNTIME_BIN = Path("generated/runtime/first_battle_hotfix.bin")
 RUNTIME_SYMBOLS = Path("generated/runtime/first_battle_hotfix_symbols.json")
 ALLOCATION_NAME = "first_battle_priority_guard"
 
-ITEM_PATCH_ADDRESS = 0x090CEAFC
+ITEM_PATCH_ADDRESS = 0x090CEAEC
 ITEM_PATCH_OFFSET = ITEM_PATCH_ADDRESS - GBA_ROM_BASE
 EXPECTED = bytes.fromhex("60 28 04 d1 01 3c 24 06 24 0e 02 2c 2a d9")
 REPLACEMENT = bytes.fromhex("1a 28 04 d0 60 28 c6 d1 01 3c 02 2c 2a d9")
-SOURCE_GUARD_ADDRESS = 0x090CEAFC
+SOURCE_GUARD_ADDRESS = 0x090CEAEC
 SOURCE_GUARD_OFFSET = SOURCE_GUARD_ADDRESS - GBA_ROM_BASE
 SOURCE_GUARD = bytes.fromhex(
     "02 00 1a 3a 51 1e 8a 41 01 00 60 39 4d 1e a9 41 11 42 bf d1"

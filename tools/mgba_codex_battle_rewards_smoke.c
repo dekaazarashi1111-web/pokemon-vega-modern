@@ -86,9 +86,6 @@ enum {
     CWR_SUMMARY_ABILITY_NAME_RENDER = 0x081382D0U,
     CWR_SUMMARY_ABILITY_DESC_RENDER = 0x08138434U,
     CWR_SAVE_LOAD_SITE = 0x080DB4E4U,
-    CWR_AFTER_POINTER_SITE = 0x093CD57BU,
-    CWR_FINISH_LAUNCH_SITE = 0x093CD588U,
-    CWR_FINISH_ERROR_SITE = 0x093CD5AAU,
     CWR_BATTLE_WON_SITE = 0x0820CAECU,
     CWR_BATTLE_LOST_SITE = 0x0820CAF0U,
     CWR_BATTLE_DREW_SITE = 0x0820CAF4U,
@@ -135,6 +132,16 @@ enum {
     CWR_TOKEN_PARTY = 0x10000000U,
     CWR_TOKEN_BOX = 0x20000000U,
 };
+
+#ifndef CWR_AFTER_POINTER_SITE
+#define CWR_AFTER_POINTER_SITE 0x093CDAFBU
+#endif
+#ifndef CWR_FINISH_LAUNCH_SITE
+#define CWR_FINISH_LAUNCH_SITE 0x093CDB08U
+#endif
+#ifndef CWR_FINISH_ERROR_SITE
+#define CWR_FINISH_ERROR_SITE 0x093CDB2AU
+#endif
 
 #define CWR_SYMBOL_LIST(X) \
     X(buffer_summary_moves, "CodexBattleRewards_BufferSummaryMovesAdapter") \
@@ -189,8 +196,9 @@ static uint32_t cwr_call(struct mCore *core, uint32_t function,
     while ((((uint32_t)read_register(core, "pc")) & ~1U) != 0x08000002U) {
         if (++steps > UINT64_C(60000000)) {
             fprintf(stderr, "cwr call limit function=%08" PRIx32
-                    " pc=%08" PRIx32 "\n", function,
-                    (uint32_t)read_register(core, "pc"));
+                    " pc=%08" PRIx32 " args=%08" PRIx32 "/%08" PRIx32
+                    "/%08" PRIx32 "/%08" PRIx32 "\n", function,
+                    (uint32_t)read_register(core, "pc"), r0, r1, r2, r3);
             cwr_die("direct call exceeded instruction limit");
         }
         core->step(core);

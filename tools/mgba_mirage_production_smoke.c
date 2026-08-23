@@ -622,7 +622,7 @@ static bool mp_symbols_live(struct mCore *core,
         0x5DU, 0x5EU, 0x04U, 0xFCU, 0x2EU, 0x19U, 0x08U,
     };
     static const uint8_t configure_veneer[] = {
-        0x00U, 0x4BU, 0x18U, 0x47U, 0x3DU, 0x74U, 0x37U, 0x09U,
+        0x00U, 0x4BU, 0x18U, 0x47U, 0xBDU, 0x79U, 0x37U, 0x09U,
     };
     bool physical_continuation = true;
     for (unsigned index = 0U; index < ARRAY_LEN(postbattle_tail); ++index)
@@ -1125,6 +1125,10 @@ static bool mp_run_reception_field_trace(
         }
     }
     core->setKeys(core, 0U);
+    /* The final boot-trace key sample is host state, not snapshot state.
+     * Latch the released value before the asynchronous reception warp so the
+     * stock soft-reset chord cannot be observed during map loading. */
+    run_key_frames(core, 0U, 2U);
     /* Finish all direct fixture construction before map load.  ROM calls made
      * after CB2_Overworld becomes live can advance old new-game tasks and are
      * not part of the physical root+A path being verified. */
@@ -2023,7 +2027,7 @@ static void mp_diagnose_fresh_load_chain(
     const struct Snapshot *before)
 {
     static const uint32_t functions[] = {
-        0U, 0x09377115U, 0x093031DDU, 0x093027F1U,
+        0U, 0x09377695U, 0x0930375DU, 0x09302D71U,
     };
     static const char *const names[] = {
         "mirage", "qol", "stage35", "original_trampoline",

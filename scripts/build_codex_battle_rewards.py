@@ -785,6 +785,18 @@ def _ipad_evidence(config: Mapping[str, Any], output: bytes) -> tuple[bytes, dic
             "secrets_redacted": True,
         }
         return _stable(pending), pending, False
+    if (document.get("schema_version") == 1
+            and document.get("task") == TASK
+            and document.get("stage") == 45
+            and document.get("status") == "PASS"
+            and document.get("rom_sha256") != _sha(output)):
+        pending = {
+            "schema_version": 1, "task": TASK, "stage": 45,
+            "status": "PENDING", "rom_sha256": _sha(output),
+            "tests": {name: False for name in sorted(expected_tests)},
+            "secrets_redacted": True,
+        }
+        return _stable(pending), pending, False
     tests = document.get("tests")
     if (document.get("schema_version") != 1 or document.get("task") != TASK
             or document.get("stage") != 45 or document.get("status") != "PASS"
@@ -796,6 +808,100 @@ def _ipad_evidence(config: Mapping[str, Any], output: bytes) -> tuple[bytes, dic
             or document.get("secrets_redacted") is not True):
         _fail("Stage45 iPad full E2E evidence differs")
     return raw, document, True
+
+
+def _resolve_stage44_bindings(
+    source: Mapping[str, Any], stage: bytes,
+    symbols44: Mapping[str, Any], qol_symbols: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Bind Stage45 to generated Stage44/QOL symbols, never frozen addresses."""
+    config = copy.deepcopy(source)
+    symbol_rows = symbols44.get("symbols", {})
+    mapping = {
+        "initialize": "CodexBattleRuntime_Initialize",
+        "read_keys_adapter": "CodexBattleRuntime_ReadKeysAdapter",
+        "save_load_adapter": "CodexBattleRuntime_SaveLoadAdapter",
+        "after_battle": "CodexBattleRuntime_AfterBattle",
+        "field_finish": "CodexBattleRuntime_FieldFinish",
+    }
+    for key, symbol in mapping.items():
+        row = symbol_rows.get(symbol)
+        if not isinstance(row, Mapping) or not isinstance(row.get("address"), int):
+            _fail(f"Stage44 generated symbol is missing: {symbol}")
+        config["stage44_entrypoints"][key] = f"0x{int(row['address']):08X}"
+    read_patch = next((
+        row for row in symbols44.get("patches", [])
+        if row.get("target_symbol") == "CodexBattleRuntime_ReadKeysAdapter"
+    ), None)
+    if not isinstance(read_patch, Mapping):
+        _fail("Stage44 ReadKeys delegate evidence is missing")
+    config["stage44_entrypoints"]["read_keys_base_delegate"] = (
+        f"0x{int(read_patch['delegate']):08X}"
+    )
+
+    qol_entrypoints = qol_symbols.get("entrypoints", {})
+    expected_qol = {
+        "VegaQolProduction_Probe",
+        "VegaQolProduction_OriginalTrySavingData",
+        "VegaQolProduction_SummaryAbilityDescriptionHook",
+    }
+    if not expected_qol.issubset(qol_entrypoints):
+        _fail("QOL generated downstream symbols are incomplete")
+    config["mgba_ui"]["qol_probe"] = (
+        f"0x{int(qol_entrypoints['VegaQolProduction_Probe']):08X}"
+    )
+    config["engine"]["try_saving_data"] = (
+        f"0x{int(qol_entrypoints['VegaQolProduction_OriginalTrySavingData']):08X}"
+    )
+
+    hooks = config["hooks"]
+    for key in ("summary_ability", "read_keys", "save_load"):
+        hook = hooks[key]
+        address = _integer(hook["address"], f"{key} hook")
+        size = 4 if hook["mode"] == "THUMB_POINTER" else 8
+        raw = stage[_rom_offset(address, size):_rom_offset(address, size) + size]
+        hooks[key]["expected_hex"] = raw.hex()
+    summary_raw = bytes.fromhex(hooks["summary_ability"]["expected_hex"])
+    if (summary_raw[:4] != b"\x00\x4B\x18\x47"
+            or int.from_bytes(summary_raw[4:], "little")
+            != int(qol_entrypoints[
+                "VegaQolProduction_SummaryAbilityDescriptionHook"])):
+        _fail("Stage44 Summary ability QOL chain differs")
+    if int.from_bytes(bytes.fromhex(hooks["read_keys"]["expected_hex"]),
+                      "little") != int(symbol_rows[
+                          "CodexBattleRuntime_ReadKeysAdapter"]["address"]):
+        _fail("Stage44 ReadKeys runtime chain differs")
+    save_raw = bytes.fromhex(hooks["save_load"]["expected_hex"])
+    if (save_raw[:4] != b"\x00\x4B\x18\x47"
+            or int.from_bytes(save_raw[4:], "little")
+            != int(symbol_rows[
+                "CodexBattleRuntime_SaveLoadAdapter"]["address"])):
+        _fail("Stage44 SaveLoad runtime chain differs")
+    hooks["after_battle_callnative"]["expected_pointer"] = (
+        config["stage44_entrypoints"]["after_battle"]
+    )
+    hooks["field_finish_callnative"]["expected_pointer"] = (
+        config["stage44_entrypoints"]["field_finish"]
+    )
+    return config
+
+
+def resolve_declared_upstream_bindings(
+    source: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Resolve the reward ABI for downstream Stage46/47 recompilation."""
+    inputs = source["inputs"]
+    stage = _identity(
+        Path(inputs["stage44_rom"]["path"]), inputs["stage44_rom"],
+        "Stage44 ROM")
+    symbols_raw = _identity(
+        Path(inputs["stage44_symbols"]["path"]), inputs["stage44_symbols"],
+        "Stage44 symbols")
+    qol_raw = _identity(
+        Path(inputs["qol_symbols"]["path"]), inputs["qol_symbols"],
+        "QOL generated symbols")
+    return _resolve_stage44_bindings(
+        source, stage, json.loads(symbols_raw), json.loads(qol_raw))
 
 
 def _static_outputs() -> dict[str, bytes]:
@@ -813,11 +919,16 @@ def _static_outputs() -> dict[str, bytes]:
     ipad44_raw = _identity(Path(inputs["stage44_ipad"]["path"]), inputs["stage44_ipad"], "Stage44 iPad")
     clean = _identity(Path(inputs["clean_rom"]["path"]), inputs["clean_rom"], "clean FireRed")
     _identity(Path(inputs["catalog"]["path"]), inputs["catalog"], "Codex catalog")
+    qol_symbols_raw = _identity(
+        Path(inputs["qol_symbols"]["path"]), inputs["qol_symbols"],
+        "QOL generated symbols")
     previous_meta = json.loads(metadata_raw)
     previous_alloc = json.loads(allocation_raw)
     protocol44 = json.loads(protocol44_raw)
     symbols44 = json.loads(symbols44_raw)
     ipad44 = json.loads(ipad44_raw)
+    config = _resolve_stage44_bindings(
+        config, stage, symbols44, json.loads(qol_symbols_raw))
     configured = {key: _integer(value, f"T27 {key}")
                   for key, value in config["stage44_entrypoints"].items()
                   if key != "read_keys_base_delegate"}
@@ -829,12 +940,17 @@ def _static_outputs() -> dict[str, bytes]:
         "field_finish": "CodexBattleRuntime_FieldFinish",
     }
     actual_symbols = symbols44["symbols"]
-    if (previous_meta.get("task") != "T27" or previous_meta.get("status") != "PASS"
+    previous_status = previous_meta.get("status")
+    previous_local_ok = (
+        previous_status in {"PASS", "PASS_LOCAL"}
+        and previous_meta.get("mgba", {}).get("status") == "PASS"
+        and previous_meta.get("ipad", {}).get("status") in {"PASS", "PENDING"}
+    )
+    if (previous_meta.get("task") != "T27" or not previous_local_ok
             or previous_meta.get("output", {}).get("sha256") != _sha(stage)
-            or previous_meta.get("ipad", {}).get("status") != "PASS"
             or previous_alloc.get("summaries", {}).get("overlap_count") != 0
             or protocol44.get("task") != "T27" or protocol44.get("stage") != 44
-            or ipad44.get("status") != "PASS"
+            or ipad44.get("status") not in {"PASS", "PENDING"}
             or apply_bps(clean, stage44_bps) != stage
             or any(int(actual_symbols[symbol]["address"]) != configured[key]
                    for key, symbol in expected_symbols.items())):
@@ -1005,6 +1121,21 @@ def _validate_ui_mgba(document: Mapping[str, Any], mode: str) -> None:
 def _finalize_outputs(static: Mapping[str, bytes]) -> dict[str, bytes]:
     config = _read_json(CONFIG)
     outputs = config["outputs"]
+    static_metadata = json.loads(static[outputs["metadata"]])
+    patches_by_name = {
+        row["name"]: row for row in static_metadata["patches"]
+    }
+    dynamic_roots = [
+        ("CWR_AFTER_POINTER_SITE", "codex_rewards_after_battle_callnative"),
+        ("CWR_FINISH_LAUNCH_SITE",
+         "codex_rewards_field_finish_codex_battle_launch"),
+        ("CWR_FINISH_ERROR_SITE",
+         "codex_rewards_field_finish_codex_battle_error"),
+    ]
+    root_defines = [
+        f"-D{macro}=0x{int(patches_by_name[name]['address']):08X}U"
+        for macro, name in dynamic_roots
+    ]
     runner = ROOT / "tools/mgba_codex_battle_rewards_smoke.c"
     ui_runner = ROOT / "tools/mgba_codex_battle_rewards_ui_smoke.c"
     if not runner.is_file() or not ui_runner.is_file():
@@ -1022,7 +1153,10 @@ def _finalize_outputs(static: Mapping[str, bytes]) -> dict[str, bytes]:
         reward_entrypoints["CodexBattleRewards_TestOpen"]["address"])
     reward_poll = int(
         reward_entrypoints["CodexBattleRewards_Poll"]["address"])
-    qol_probe = _integer(config["mgba_ui"]["qol_probe"], "QOL probe")
+    qol_input = config["inputs"]["qol_symbols"]
+    qol_document = json.loads(_identity(
+        Path(qol_input["path"]), qol_input, "QOL generated symbols"))
+    qol_probe = int(qol_document["entrypoints"]["VegaQolProduction_Probe"])
     result: dict[str, bytes] = {}
     documents: dict[str, dict[str, Any]] = {}
     (ROOT / ".local").mkdir(exist_ok=True)
@@ -1038,6 +1172,7 @@ def _finalize_outputs(static: Mapping[str, bytes]) -> dict[str, bytes]:
         symbols.write_bytes(static[outputs["symbols"]])
         cases.write_bytes(static[outputs["cases"]])
         _run([_host_cc(ROOT), "-std=c11", "-Wall", "-Wextra", "-Werror",
+              *root_defines,
               str(runner), "-o", str(executable), "-lmgba"],
              "Codex rewards libmGBA compile")
         _run([_host_cc(ROOT), "-std=c11", "-Wall", "-Wextra", "-Werror",

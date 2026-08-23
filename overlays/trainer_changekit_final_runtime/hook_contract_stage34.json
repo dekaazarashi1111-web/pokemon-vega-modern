@@ -2,7 +2,7 @@
   "schema": "vega.trainer_changekit_final.hook_contract.v1",
   "baseline": {
     "path": "build/stages/34_trainer_v5_tohoku_batch03.gba",
-    "sha256": "84395df49b5cee3fa83b501714828fa03db29bc24b1ed0f1a9cb292e1437946f",
+    "sha256": "6cb980539001977a88d92b1388a5d917653a6331a2f17f183c7ac6a683f0bd20",
     "size": 33554432
   },
   "runtime_defines": {
@@ -10,28 +10,28 @@
     "VEGA_FLAG_SET_ADDRESS": "0x0806DE75",
     "VEGA_FLAG_CLEAR_ADDRESS": "0x0806DE9D",
     "VEGA_FLAG_GET_ADDRESS": "0x0806DEC5",
-    "VEGA_CONFIGURE_TRAINER_BATTLE_ADDRESS": "0x0911DF89",
-    "VEGA_CALCULATE_MON_STATS_ADDRESS": "0x090D93A9",
+    "VEGA_CONFIGURE_TRAINER_BATTLE_ADDRESS": "0x0911E0D9",
+    "VEGA_CALCULATE_MON_STATS_ADDRESS": "0x090D939D",
     "VEGA_ENEMY_PARTY_ADDRESS": "0x02023F8C",
     "VEGA_TRAINER_OPPONENT_A_ADDRESS": "0x020385E2",
-    "VEGA_CONFIGURE_NEXT_BATTLE_POLICY_ADDRESS": "0x091260A9",
-    "VEGA_CFRU_PENDING_CLEAR_ADDRESS": "0x0910ED2D",
-    "VEGA_BATTLE_POLICY_BEGIN_ADDRESS": "0x091265A9",
-    "VEGA_BATTLE_POLICY_END_ADDRESS": "0x09126815",
-    "VEGA_BATTLE_POLICY_CAN_MEGA_ADDRESS": "0x09126A15",
-    "VEGA_BATTLE_POLICY_MARK_MEGA_ADDRESS": "0x09126A41",
-    "VEGA_BATTLE_POLICY_CAN_Z_ADDRESS": "0x09126A69",
-    "VEGA_BATTLE_POLICY_MARK_Z_ADDRESS": "0x09126A95",
-    "VEGA_BATTLE_POLICY_CAN_DYNAMAX_ADDRESS": "0x09126ABD",
-    "VEGA_BATTLE_POLICY_MARK_DYNAMAX_ADDRESS": "0x09126AE9",
-    "VEGA_BATTLE_POLICY_CAN_TERA_ADDRESS": "0x09126B11",
-    "VEGA_BATTLE_POLICY_MARK_TERA_ADDRESS": "0x09126B3D",
+    "VEGA_CONFIGURE_NEXT_BATTLE_POLICY_ADDRESS": "0x091261F5",
+    "VEGA_CFRU_PENDING_CLEAR_ADDRESS": "0x0910EE79",
+    "VEGA_BATTLE_POLICY_BEGIN_ADDRESS": "0x091266F5",
+    "VEGA_BATTLE_POLICY_END_ADDRESS": "0x09126961",
+    "VEGA_BATTLE_POLICY_CAN_MEGA_ADDRESS": "0x09126B61",
+    "VEGA_BATTLE_POLICY_MARK_MEGA_ADDRESS": "0x09126B8D",
+    "VEGA_BATTLE_POLICY_CAN_Z_ADDRESS": "0x09126BB5",
+    "VEGA_BATTLE_POLICY_MARK_Z_ADDRESS": "0x09126BE1",
+    "VEGA_BATTLE_POLICY_CAN_DYNAMAX_ADDRESS": "0x09126C09",
+    "VEGA_BATTLE_POLICY_MARK_DYNAMAX_ADDRESS": "0x09126C35",
+    "VEGA_BATTLE_POLICY_CAN_TERA_ADDRESS": "0x09126C5D",
+    "VEGA_BATTLE_POLICY_MARK_TERA_ADDRESS": "0x09126C89",
     "VEGA_BATTLERS_COUNT_ADDRESS": "0x02023B2C",
     "VEGA_BATTLER_PARTY_INDEXES_ADDRESS": "0x02023B2E",
     "VEGA_ABSENT_BATTLER_FLAGS_ADDRESS": "0x02023CD0",
     "VEGA_ACTIVE_BATTLER_ADDRESS": "0x02023B24",
     "VEGA_BATTLE_MONS_ADDRESS": "0x02023B44",
-    "VEGA_LOAD_PROPER_ABILITY_BATTLE_DATA_ADDRESS": "0x090BB351",
+    "VEGA_LOAD_PROPER_ABILITY_BATTLE_DATA_ADDRESS": "0x090BB34D",
     "VEGA_TRAINER_CHANGEKIT_STATE_ADDRESS": "0x0203EDC0"
   },
   "generated_runtime_defines": [
@@ -42,129 +42,129 @@
   "bl_rewrites": [
     {
       "name": "policy_begin",
-      "callsite": "0x090CDBBC",
-      "expected": "58f0f4fc",
-      "original_target": "0x091265A8",
+      "callsite": "0x090CDBAC",
+      "expected": "58f0a2fd",
+      "original_target": "0x091266F4",
       "adapter": "TrainerChangeKitFinalRuntime_PolicyBeginAdapter"
     },
     {
       "name": "policy_end",
-      "callsite": "0x090F6E70",
-      "expected": "2ff0d0fc",
-      "original_target": "0x09126814",
+      "callsite": "0x090F6FC4",
+      "expected": "2ff0ccfc",
+      "original_target": "0x09126960",
       "adapter": "TrainerChangeKitFinalRuntime_PolicyEndAdapter"
     },
     {
       "name": "can_mega_1",
-      "callsite": "0x090D04BE",
-      "expected": "56f0a9fa",
-      "original_target": "0x09126A14",
+      "callsite": "0x090D04AE",
+      "expected": "56f057fb",
+      "original_target": "0x09126B60",
       "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
     },
     {
       "name": "can_mega_2",
-      "callsite": "0x09114AA2",
-      "expected": "11f0b7ff",
-      "original_target": "0x09126A14",
+      "callsite": "0x09114BF2",
+      "expected": "11f0b5ff",
+      "original_target": "0x09126B60",
       "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
     },
     {
       "name": "can_mega_3",
-      "callsite": "0x0912F5E4",
+      "callsite": "0x0912F730",
       "expected": "f7f716fa",
-      "original_target": "0x09126A14",
+      "original_target": "0x09126B60",
       "adapter": "TrainerChangeKitFinalRuntime_CanMegaAdapter"
     },
     {
       "name": "mark_mega_1",
-      "callsite": "0x090CED46",
-      "expected": "57f07bfe",
-      "original_target": "0x09126A40",
+      "callsite": "0x090CED36",
+      "expected": "57f029ff",
+      "original_target": "0x09126B8C",
       "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
     },
     {
       "name": "mark_mega_2",
-      "callsite": "0x090CF290",
-      "expected": "57f0d6fb",
-      "original_target": "0x09126A40",
+      "callsite": "0x090CF280",
+      "expected": "57f084fc",
+      "original_target": "0x09126B8C",
       "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
     },
     {
       "name": "mark_mega_3",
-      "callsite": "0x090D04D6",
-      "expected": "56f0b3fa",
-      "original_target": "0x09126A40",
+      "callsite": "0x090D04C6",
+      "expected": "56f061fb",
+      "original_target": "0x09126B8C",
       "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
     },
     {
       "name": "mark_mega_4",
-      "callsite": "0x0912FB14",
+      "callsite": "0x0912FC60",
       "expected": "f6f794ff",
-      "original_target": "0x09126A40",
+      "original_target": "0x09126B8C",
       "adapter": "TrainerChangeKitFinalRuntime_MarkMegaAdapter"
     },
     {
       "name": "can_z",
-      "callsite": "0x0912C18C",
+      "callsite": "0x0912C2D8",
       "expected": "faf76cfc",
-      "original_target": "0x09126A68",
+      "original_target": "0x09126BB4",
       "adapter": "TrainerChangeKitFinalRuntime_CanZAdapter"
     },
     {
       "name": "mark_z",
-      "callsite": "0x090BE844",
-      "expected": "68f026f9",
-      "original_target": "0x09126A94",
+      "callsite": "0x090BE838",
+      "expected": "68f0d2f9",
+      "original_target": "0x09126BE0",
       "adapter": "TrainerChangeKitFinalRuntime_MarkZAdapter"
     },
     {
       "name": "can_dynamax_1",
-      "callsite": "0x090F13F2",
-      "expected": "35f063fb",
-      "original_target": "0x09126ABC",
+      "callsite": "0x090F1546",
+      "expected": "35f05ffb",
+      "original_target": "0x09126C08",
       "adapter": "TrainerChangeKitFinalRuntime_CanDynamaxAdapter"
     },
     {
       "name": "can_dynamax_2",
-      "callsite": "0x090F1672",
-      "expected": "35f023fa",
-      "original_target": "0x09126ABC",
+      "callsite": "0x090F17C6",
+      "expected": "35f01ffa",
+      "original_target": "0x09126C08",
       "adapter": "TrainerChangeKitFinalRuntime_CanDynamaxAdapter"
     },
     {
       "name": "mark_dynamax",
-      "callsite": "0x090CF05C",
-      "expected": "57f044fd",
-      "original_target": "0x09126AE8",
+      "callsite": "0x090CF04C",
+      "expected": "57f0f2fd",
+      "original_target": "0x09126C34",
       "adapter": "TrainerChangeKitFinalRuntime_MarkDynamaxAdapter"
     },
     {
       "name": "can_tera_1",
-      "callsite": "0x09130356",
+      "callsite": "0x091304A2",
       "expected": "f6f7dbfb",
-      "original_target": "0x09126B10",
+      "original_target": "0x09126C5C",
       "adapter": "TrainerChangeKitFinalRuntime_CanTeraAdapter"
     },
     {
       "name": "can_tera_2",
-      "callsite": "0x09130446",
+      "callsite": "0x09130592",
       "expected": "f6f763fb",
-      "original_target": "0x09126B10",
+      "original_target": "0x09126C5C",
       "adapter": "TrainerChangeKitFinalRuntime_CanTeraAdapter"
     },
     {
       "name": "mark_tera",
-      "callsite": "0x090CEF3C",
-      "expected": "57f0fefd",
-      "original_target": "0x09126B3C",
+      "callsite": "0x090CEF2C",
+      "expected": "57f0acfe",
+      "original_target": "0x09126C88",
       "adapter": "TrainerChangeKitFinalRuntime_MarkTeraAdapter"
     }
   ],
   "ability_load_rewrite": {
     "name": "load_authored_ability",
     "callsite": "0x090973FC",
-    "expected": "23f0a8ff",
-    "original_target": "0x090BB350",
+    "expected": "23f0a6ff",
+    "original_target": "0x090BB34C",
     "adapter": "TrainerChangeKitFinalRuntime_LoadProperAbilityBattleDataAdapter"
   },
   "save_load_entry_rewrite": {

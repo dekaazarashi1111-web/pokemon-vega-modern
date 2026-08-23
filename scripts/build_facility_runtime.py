@@ -58,6 +58,7 @@ REQUIRED_ENTRYPOINTS = {
     "FacilityRuntime_Complete",
     "FacilityRuntime_Abort",
 }
+SAVE_VALIDATOR_SYMBOL = "VegaSaveValidate"
 
 
 class FacilityRuntimeError(ValueError):
@@ -215,11 +216,19 @@ def _compile_runtime(
         symbols: dict[str, int] = {}
         for line in symbol_text.splitlines():
             fields = line.split()
-            if len(fields) == 3 and fields[2].startswith("FacilityRuntime_"):
+            if (
+                len(fields) == 3
+                and (
+                    fields[2].startswith("FacilityRuntime_")
+                    or fields[2] == SAVE_VALIDATOR_SYMBOL
+                )
+            ):
                 symbols[fields[2]] = int(fields[0], 16)
         missing = REQUIRED_ENTRYPOINTS - set(symbols)
         if missing:
             _fail(f"facility entrypoints missing: {sorted(missing)}")
+        if SAVE_VALIDATOR_SYMBOL not in symbols:
+            _fail("facility save validator symbol is missing")
         raw = binary.read_bytes()
         if not raw or len(raw) > 32 * 1024:
             _fail(f"unexpected facility runtime size: {len(raw)}")
@@ -492,6 +501,14 @@ def _build_payload(root: Path, stage: bytes, stage17_meta: dict[str, Any],
         "entrypoints": {
             name: code_symbols[name] | 1 for name in sorted(REQUIRED_ENTRYPOINTS)
         },
+        "save_validator": {
+            "address": code_symbols[SAVE_VALIDATOR_SYMBOL],
+            "entry_signature_hex": code[
+                code_symbols[SAVE_VALIDATOR_SYMBOL] - code_load:
+                code_symbols[SAVE_VALIDATOR_SYMBOL] - code_load + 8
+            ].hex(),
+            "symbol": SAVE_VALIDATOR_SYMBOL,
+        },
         "scripts": {
             "npc_address": GBA_ROM_BASE + payload_offset + blob.labels["script_facility_npc"],
             "recover_address": GBA_ROM_BASE + payload_offset + blob.labels["script_facility_recover"],
@@ -639,6 +656,7 @@ def build_runtime_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "schema_version": 1,
         "payload": metadata["payload"],
         "entrypoints": metadata["entrypoints"],
+        "save_validator": metadata["save_validator"],
         "scripts": metadata["scripts"],
         "map": metadata["map"],
     }

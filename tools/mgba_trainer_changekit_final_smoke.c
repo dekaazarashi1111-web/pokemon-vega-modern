@@ -221,7 +221,7 @@ static uint32_t tcf_decode_bl_target(struct mCore *core, uint32_t site) {
 static bool tcf_hook_contract(struct mCore *core, const struct TcfSymbols *s) {
     const uint32_t jump_sites[][2] = {
         {0x0807F948U, s->configure},
-        {0x090DD198U, s->build_party},
+        {0x090DD2A4U, s->build_party},
         {0x080DB4E4U, s->save_adapter},
     };
     for (unsigned index = 0; index < ARRAY_LEN(jump_sites); ++index) {
@@ -229,14 +229,14 @@ static bool tcf_hook_contract(struct mCore *core, const struct TcfSymbols *s) {
         if (read16(core, site) != 0x4B00U || read16(core, site + 2U) != 0x4718U
             || read32(core, site + 4U) != jump_sites[index][1]) return false;
     }
-    if (tcf_decode_bl_target(core, 0x090CDBBCU) != s->policy_begin
-        || tcf_decode_bl_target(core, 0x090F6E70U) != s->policy_end
+    if (tcf_decode_bl_target(core, 0x090CDBACU) != s->policy_begin
+        || tcf_decode_bl_target(core, 0x090F6FC4U) != s->policy_end
         || tcf_decode_bl_target(core, 0x090973FCU) != s->ability_adapter)
         return false;
-    const uint32_t can_sites[5] = {0U, 0x090D04BEU, 0x0912C18CU,
-                                   0x090F13F2U, 0x09130356U};
-    const uint32_t mark_sites[5] = {0U, 0x090CED46U, 0x090BE844U,
-                                    0x090CF05CU, 0x090CEF3CU};
+    const uint32_t can_sites[5] = {0U, 0x090D04AEU, 0x0912C2D8U,
+                                   0x090F1546U, 0x091304A2U};
+    const uint32_t mark_sites[5] = {0U, 0x090CED36U, 0x090BE838U,
+                                    0x090CF04CU, 0x090CEF2CU};
     for (unsigned mode = 1; mode <= 4U; ++mode) {
         if (tcf_decode_bl_target(core, can_sites[mode]) != s->can[mode]
             || tcf_decode_bl_target(core, mark_sites[mode]) != s->mark[mode])

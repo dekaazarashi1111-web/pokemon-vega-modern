@@ -69,10 +69,15 @@ class SpeciesSurfaceTests(unittest.TestCase):
         self.assertTrue(all(isinstance(row["from_national_dex"], int) for row in v2["rows"]))
 
     def test_stage_roots_and_cry_adapter_are_installed(self) -> None:
+        runtime_sites = {
+            row["site"] for row in self.metadata["runtime"]["patches"]
+        }
         for key, row in self.metadata["repoints"].items():
             sites = row.get("sites", [row.get("site")])
             self.assertTrue(sites, key)
             for site in sites:
+                if site in runtime_sites:
+                    continue
                 expected = row["old"] if row.get("applied") is False else row["new"]
                 self.assertEqual(struct.unpack_from("<I", self.rom, site)[0], expected)
         self.assertGreater(self.metadata["repoints"]["evolution_runtime"]["count"], 0)
@@ -141,9 +146,10 @@ class SpeciesSurfaceTests(unittest.TestCase):
             struct.unpack_from("<I", self.rom, native["site"])[0],
             native["old"],
         )
-        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC0)[0], (-1322) & 0xFFFFFFFF)
-        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC4)[0], (-1374) & 0xFFFFFFFF)
-        self.assertEqual(struct.unpack_from("<I", self.rom, 0x1100DC8)[0], 1374)
+        form_namespace = struct.pack(
+            "<III", (-1322) & 0xFFFFFFFF, (-1374) & 0xFFFFFFFF, 1374,
+        )
+        self.assertEqual(self.rom.count(form_namespace), 1)
 
     def test_six_glyph_names_and_all_stock_consumers_are_closed(self) -> None:
         inventory = json.loads(self.artifacts[
@@ -224,13 +230,34 @@ class SpeciesSurfaceTests(unittest.TestCase):
 
     def test_exact_rom_display_hooks_and_samples_are_live(self) -> None:
         patches = self.metadata["runtime"]["patches"]
-        self.assertEqual(len(patches), 21)
+        self.assertEqual(len(patches), 30)
         for patch in patches:
             replacement = bytes.fromhex(patch["replacement_hex"])
             self.assertEqual(
                 self.rom[patch["site"]:patch["site"] + len(replacement)],
                 replacement,
                 patch["label"],
+            )
+        for compare_site, fallback_load, bound_literal, fallback_literal in (
+            (0x73DFC, 0x73E04, 0x73E08, 0x73E14),
+            (0x73ECC, 0x73ED4, 0x73ED8, 0x73EEC),
+            (0x73F2C, 0x73F34, 0x73F38, 0x73F4C),
+        ):
+            self.assertEqual(
+                self.rom[compare_site:compare_site + 8],
+                bytes.fromhex("0248844204d900bf"),
+            )
+            literal_pc = (0x08000000 + fallback_load + 4) & ~3
+            literal_delta = 0x08000000 + fallback_literal - literal_pc
+            self.assertEqual(
+                struct.unpack_from("<H", self.rom, fallback_load)[0],
+                0x4800 | (literal_delta // 4),
+            )
+            self.assertEqual(
+                struct.unpack_from("<I", self.rom, bound_literal)[0], 1620,
+            )
+            self.assertNotEqual(
+                struct.unpack_from("<I", self.rom, fallback_literal)[0], 1620,
             )
         smoke = self.metadata["runtime_smoke"]
         self.assertEqual(smoke["status"], "PASS")

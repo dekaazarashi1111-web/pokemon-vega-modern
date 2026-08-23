@@ -47,6 +47,7 @@ STAGE26_META = Path("build/stages/26_acquisition_events.json")
 STAGE26_ALLOCATION = Path("build/stages/26_allocation.json")
 RUNTIME_BIN = Path("generated/runtime/acquisition_events.bin")
 RUNTIME_SYMBOLS = Path("generated/runtime/acquisition_events_symbols.json")
+FACILITY_RUNTIME_SYMBOLS = Path("generated/runtime/facility_runtime_symbols.json")
 MAP_BIN = Path("generated/runtime/acquisition_map_events.bin")
 MAP_SYMBOLS = Path("generated/runtime/acquisition_map_events_symbols.json")
 EVOLUTION_REPORT = Path("generated/runtime/acquisition_evolution_routes.json")
@@ -61,9 +62,9 @@ EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_ai_fixture_runner.c"),
 )
 
-EXPECTED_STAGE25_SHA256 = "0f7406c70021adf9778f0e7a9220f4e014feaac73d7e988ba39700a63be97fcd"
-EXPECTED_T06_FINGERPRINT = "0a4c04b64ee012db93c6b6bda92aa0e277fc79f63aa0e133f47f3f2cd0b17b03"
-EXPECTED_T06_LINKED_SHA256 = "8c0ac2be2b77fa97b974a7a2377aaf99b796fb49c369d10a7faf9432ce2040f6"
+EXPECTED_STAGE25_SHA256 = "0b1d4d5c0a1aea1befcfb4e956c105dfae77dc755bd8d8172cca2187a44ea981"
+EXPECTED_T06_FINGERPRINT = "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717"
+EXPECTED_T06_LINKED_SHA256 = "52bbd57a7d2649164c4706ee45dc17ef1f8357862d8dbd79bdcd439c2b0a36fb"
 
 MAP_GROUPS_POINTER_SITE = 0x00054B0C
 WILD_HEADERS_POINTER_SITE = 0x0008257C
@@ -76,8 +77,6 @@ EVOLUTION_SLOTS = 16
 EVOLUTION_ROW_SIZE = 8
 EVOLUTION_SPECIES_STRIDE = EVOLUTION_SLOTS * EVOLUTION_ROW_SIZE
 
-VALIDATOR_SITE = 0x012CEEE0
-VALIDATOR_EXPECTED = bytes.fromhex("70b504000620002c")
 EGG_HATCH_SCRIPT_SITE = 0x001A59C4
 EGG_HATCH_SCRIPT_EXPECTED = bytes.fromhex(
     "690f00795d1a08090425c200276b02"
@@ -204,7 +203,29 @@ def _pointer(raw: bytes | bytearray, offset: int, label: str) -> int:
     return value
 
 
-def _input_audit(root: Path) -> tuple[bytes, dict[str, Any], bytes, dict[str, Any]]:
+def _facility_save_validator(
+    root: Path, stage: bytes
+) -> tuple[int, bytes, dict[str, Any]]:
+    document = _read_json(root / FACILITY_RUNTIME_SYMBOLS)
+    row = document.get("save_validator")
+    if not isinstance(row, dict) or row.get("symbol") != "VegaSaveValidate":
+        _fail("facility runtime save validator symbol evidence is missing")
+    try:
+        address = int(row["address"])
+        expected = bytes.fromhex(str(row["entry_signature_hex"]))
+    except (KeyError, TypeError, ValueError) as error:
+        _fail(f"facility save validator evidence is invalid: {error}")
+    if len(expected) != 8:
+        _fail("facility save validator entry signature must be exactly 8 bytes")
+    site = _rom_offset(address, len(expected), limit=len(stage))
+    if stage[site:site + len(expected)] != expected:
+        _fail("stage 25 save validator differs from facility symbol evidence")
+    return site, expected, row
+
+
+def _input_audit(
+    root: Path,
+) -> tuple[bytes, dict[str, Any], bytes, dict[str, Any], int, bytes]:
     stage = (root / STAGE25).read_bytes()
     metadata = _read_json(root / STAGE25_META)
     clean = (root / CLEAN_ROM).read_bytes()
@@ -227,8 +248,7 @@ def _input_audit(root: Path) -> tuple[bytes, dict[str, Any], bytes, dict[str, An
         _fail("stage 25 map group root differs")
     if _u32(stage, WILD_HEADERS_POINTER_SITE, "stage wild root") != EXPECTED_WILD_HEADERS_ROOT:
         _fail("stage 25 wild header root differs")
-    if stage[VALIDATOR_SITE:VALIDATOR_SITE + 8] != VALIDATOR_EXPECTED:
-        _fail("stage 25 save validator entry signature differs")
+    validator_site, validator_expected, _ = _facility_save_validator(root, stage)
     if (
         stage[EGG_HATCH_SCRIPT_SITE:
               EGG_HATCH_SCRIPT_SITE + len(EGG_HATCH_SCRIPT_EXPECTED)]
@@ -252,7 +272,7 @@ def _input_audit(root: Path) -> tuple[bytes, dict[str, Any], bytes, dict[str, An
     linked = root / "build/battle-core" / EXPECTED_T06_FINGERPRINT / "run-1/linked.o"
     if not linked.is_file() or _sha(linked.read_bytes()) != EXPECTED_T06_LINKED_SHA256:
         _fail("fixed T06 linked object differs")
-    return stage, metadata, clean, pin
+    return stage, metadata, clean, pin, validator_site, validator_expected
 
 
 def _linked_symbols(root: Path) -> dict[str, int]:
@@ -1005,7 +1025,7 @@ def _tool_identity(root: Path) -> dict[str, str]:
 
 def _mgba_selected(
     root: Path, runtime: dict[str, Any], map_runtime: dict[str, Any],
-    evolution: dict[str, Any], wild: dict[str, Any],
+    evolution: dict[str, Any], wild: dict[str, Any], validator_site: int,
 ) -> dict[str, int]:
     symbols = runtime["symbols"]
     linked = runtime["linked_abi"]
@@ -1051,7 +1071,7 @@ def _mgba_selected(
         "get_box_mon_data": linked["GetBoxMonDataAt"],
         "get_compressed_mon_ptr": linked["GetCompressedMonPtr"],
         "create_compressed_mon": linked["CreateCompressedMonFromBoxMon"],
-        "validator_site": GBA_ROM_BASE + VALIDATOR_SITE,
+        "validator_site": GBA_ROM_BASE + validator_site,
         "map_header": int(map_row["map_header_address"]),
         "event_header": int(map_row["event_after_address"]),
         "object_record": int(host["object_record_address"]),
@@ -1129,8 +1149,11 @@ def _validate_mgba_fixture(value: dict[str, Any], rom_sha256: str) -> None:
 def _mgba_fixture(
     root: Path, rom: bytes, runtime: dict[str, Any],
     map_runtime: dict[str, Any], evolution: dict[str, Any], wild: dict[str, Any],
+    validator_site: int,
 ) -> dict[str, Any]:
-    selected = _mgba_selected(root, runtime, map_runtime, evolution, wild)
+    selected = _mgba_selected(
+        root, runtime, map_runtime, evolution, wild, validator_site,
+    )
     rom_sha256 = _sha(rom)
     key, provenance = _runner_cache_key(root, rom_sha256, selected)
     cache = root / MGBA_FIXTURE
@@ -1163,7 +1186,9 @@ def _mgba_fixture(
 
 def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     root = Path(root)
-    stage, stage_meta, clean, pin = _input_audit(root)
+    (
+        stage, stage_meta, clean, pin, validator_site, validator_expected,
+    ) = _input_audit(root)
     package_counts = _package_counts(root)
     linked = _linked_symbols(root)
     preliminary_runtime, preliminary_symbols = _compile_runtime(root, 0x09200000, linked)
@@ -1240,10 +1265,10 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
 
     validator_target = symbols["VegaSaveValidate"] | 1
     validator_replacement = b"\x00\x4B\x18\x47" + struct.pack("<I", validator_target)
-    if output[VALIDATOR_SITE:VALIDATOR_SITE + 8] != VALIDATOR_EXPECTED:
+    if output[validator_site:validator_site + 8] != validator_expected:
         _fail("save validator trampoline signature changed during build")
-    output[VALIDATOR_SITE:VALIDATOR_SITE + 8] = validator_replacement
-    allowed.append((VALIDATOR_SITE, VALIDATOR_SITE + 8))
+    output[validator_site:validator_site + 8] = validator_replacement
+    allowed.append((validator_site, validator_site + 8))
 
     evolution = _patch_evolutions(root, output)
     allowed += [tuple(span) for span in evolution.pop("mutation_spans")]
@@ -1286,6 +1311,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     ram = _ram_audit(root)
     fixture = _mgba_fixture(
         root, output_raw, runtime_meta, map_runtime, evolution, wild,
+        validator_site,
     )
     metadata = {
         "schema_version": 1,
@@ -1300,8 +1326,9 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "map_pointer_patches": map_pointer_patches,
         "egg_hatch_patch": egg_hatch_patch,
         "save_validator": {
-            "site": GBA_ROM_BASE + VALIDATOR_SITE,
-            "expected_hex": VALIDATOR_EXPECTED.hex(),
+            "site": GBA_ROM_BASE + validator_site,
+            "expected_hex": validator_expected.hex(),
+            "source": FACILITY_RUNTIME_SYMBOLS.as_posix(),
             "replacement_hex": validator_replacement.hex(),
             "target": validator_target,
             "nested_acquisition_bytes": 240,

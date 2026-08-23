@@ -2130,3 +2130,32 @@
 - Commit: `-`（本エントリを含む実機withdraw証跡コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ既存RetroArch NCI接続を使い、versioned request／transfer spanだけを操作した。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save/blob内容はtracked成果へ保存していない。
+
+## 2026-08-24T01:46:34+09:00
+
+- Task: `USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT` / Species依存フォームとプレイヤー側背面戦闘画像を正規化する
+- Status: DONE
+- Summary:
+  - `manifests/species_ids.csv`／`manifests/ability_ids.csv`を正本に、固定CFRU-JPのC/ASM 84ファイルへ生成canonical aliasを適用した。Ability 312行、Species/Form 1,621行、Ability参照4,024件、Species参照8,641件、未変換0をfail-closed監査し、source-indexed野生BGM表も1,621行へ正規化した。upstream vendor原本は変更していない。
+  - fixed CFRU symbol、manifest、consumer sourceをfingerprint入力へ加え、未定義、source ID残存、重複変換、入力driftをbuild/checkで拒否する。T06からStage47までclean起点で再生成し、下流builderの固定addressをexact upstream symbolsへ束縛し直した。
+  - Stage09のback coordinate境界、safe fallback、battle buffer境界をcanonical 1,621種へ直し、追加Speciesのback spriteを64×64 OAM／2,048-byte OBJ tileとして読み込む経路を固定した。
+  - Stage48 mGBAでHunger Switch 4ターン交互変化、Disguise初撃基礎HP 1/8・二撃目通常・party form・終了復元、Battle Bond KO、Schooling、Zen Mode、Ice Face、Power Construct、Intimidate、Speed Boostを確認した。14種のfront/back/palette/iconと7種のplayer back全身表示を2独立processで検証した。
+  - 再生成済みStage47をbyte不変のStage48として発行し、旧不具合Stage47差分BPSとclean直接BPSを生成した。旧iPad ROM証跡はexact identityが異なるため流用せず、外部実機確認だけを`PENDING_EXACT_STAGE48_ROM`として分離した。
+- Files changed:
+  - canonical/build: `tools/engine/cfru_canonical_ids.py`、`scripts/build_battle_core.py`、`scripts/build_species_surface.py`、`scripts/build_species_form_compat.py`、関連Stage10〜47 builder/config、`Makefile`。
+  - runtime/QA: `tools/mgba_species_runtime_smoke.c`、`tools/mgba_species_form_compat_smoke.c`、関連Stage06〜47 mGBA runner、`tests/test_species_surface.py`、`tests/test_qol_production.py`、`tests/test_cfru_facility_runtime.py`。
+  - task/docs: `tasks/USER_20260823_SPECIES_FORM_BACKSPRITE_COMPAT.md`、`design/{tasks_next,current_state,agent_context_map,run_log,version_log}.md`、`KNOWN_ISSUES.md`。
+  - Git管理外再生成物: Stage06〜48 ROM/metadata、Stage48旧Stage47差分／clean直接BPS、`reports/generated/species_form_backsprite_compat.{json,md}`、mGBA証跡。
+- Verify:
+  - `python3 scripts/build_battle_core.py check`: PASS。fingerprint `a356f976...`、hook 955、Stage06 SHA-256 `32b3e4d72b538c2bd085d39cc69af81c79d1319bf71e943fe888c911265366d3`。
+  - `python3 scripts/build_species_port.py build && ... check`: PASS。1,621種、append 1,209、Stage07 SHA-256 `06c4f559...`。
+  - `python3 scripts/build_species_surface.py check`: PASS。1,621種、free 155,076 byte、Stage09 SHA-256 `4bc51545...`。
+  - `python3 -m unittest tests.test_species_surface tests.test_cfru_facility_runtime tests.test_qol_production`: PASS（40 tests）。`tests.test_build_battle_core tests.test_build_id_spaces tests.test_build_species_port`: PASS（47 tests、18 skip）。
+  - `python3 scripts/build_qol_production.py check`: PASS。35機能、94 hook、Stage36 SHA-256 `560ff848...`。
+  - `python3 scripts/build_factory_high_modes_v2.py check`: PASS。Stage42 SHA-256 `cc5b1afd...`。
+  - Stage46／47 build/check: PASS。Stage46 `35fea920...`／CRC32 `D71AC113`、Stage47 `b8244d5d...`／CRC32 `CA37AC3D`。
+  - `make species-form-compat` / `make species-form-compat-check`: PASS。Stage48 33,554,432 bytes、SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`、CRC32 `CA37AC3D`、artifact 7。Species/Ability直値候補17件はsentinel／slot selectorとして全件review済み、unreviewed 0。旧Stage47差分BPS SHA-256 `4b296c75...`、clean直接BPS `7a7be0f3...`、完全往復。
+  - task graph、private guard、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network:
+  - 未使用。local固定入力、既存vendor snapshot、libmGBAだけを使用した。
