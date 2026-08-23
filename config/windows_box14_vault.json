@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "task": "T30",
+  "stage": 47,
+  "reward_config": {
+    "path": "config/codex_battle_rewards.json",
+    "size": 8356,
+    "sha256": "57dc6737b22939f35430a44bc972ce111d85fad43b625ae19e8ea183933fd301"
+  },
+  "inputs": {
+    "baseline_rom": {
+      "path": "build/stages/46_windows_battle_catalog.gba",
+      "size": 33554432,
+      "sha256": "7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c",
+      "crc32": "3D8B62B1"
+    },
+    "baseline_metadata": {
+      "path": "build/stages/46_windows_battle_catalog.json",
+      "size": 11417,
+      "sha256": "4ace39af7eac5a6880e4ce703844dd2cd1c2dd7ccf7fa825a65d3b4690077293"
+    },
+    "baseline_allocation": {
+      "path": "build/stages/46_allocation.json",
+      "size": 31845,
+      "sha256": "c89ba26939115dcf6922974d3f070014dd337fd9f283b32d9fe2d7119dbfc326"
+    },
+    "baseline_protocol": {
+      "path": "generated/runtime/windows_battle_catalog_protocol.json",
+      "size": 971814,
+      "sha256": "7318f55c3081f5ac12c4ab50d363d8828a33a5912506f997e5da30e6aad02a46"
+    },
+    "baseline_symbols": {
+      "path": "generated/runtime/windows_battle_catalog_symbols.json",
+      "size": 13374,
+      "sha256": "93646da81d4124ace5e0128ec2349049bdb03af2675ccdfc96be49d0fe877fb3"
+    },
+    "baseline_clean_bps": {
+      "path": "build/patches/firered-jpn-rev0-to-windows-battle-catalog-stage46.bps",
+      "size": 16219618,
+      "sha256": "d9e95c52ee82520d8add40c1345609990bb2edb1251f06e399cfacb4fb690704"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "catalog": {
+      "path": "content/codex_battle/catalog.json",
+      "size": 3739856,
+      "sha256": "65fcdf65451454ac75e1d1b95823a2b531ac542ff09a7c60e6cb24b9e37e62b0"
+    }
+  },
+  "physical_binding": {
+    "map_scope": "ALL_NORMAL_FIELDS",
+    "field_main_callback": "0x08055E75",
+    "runtime_phase": "IDLE",
+    "reward_window": "CLOSED",
+    "pc_ui": "CLOSED"
+  },
+  "protocol": {
+    "major": 1,
+    "minor": 0,
+    "capability": 16384,
+    "commands": {
+      "vault_scan": 17,
+      "vault_export": 18,
+      "vault_remove": 19,
+      "vault_import": 20
+    },
+    "transfer": {
+      "address": "0x0203D880",
+      "size": 128,
+      "record_offset": 44,
+      "record_size": 80,
+      "block_crc_offset": 124
+    },
+    "box_index": 13,
+    "box_display_number": 14,
+    "slot_count": 30,
+    "save_semantics": "ONE_SLOT_ONE_NORMAL_SAVE_WITH_HOST_BATCH_RESUME"
+  },
+  "engine": {
+    "get_box_mon_data_at": "0x0808B4B5",
+    "get_boxed_mon_ptr": "0x0808B7CD",
+    "set_box_mon_at": "0x0808B651",
+    "zero_box_mon_at": "0x0808B751",
+    "is_mail": "0x08097AE9"
+  },
+  "abi": {
+    "schema": "VEGA_BOX_POKEMON_RAW_V1",
+    "box_mon_size": 80,
+    "box_index": 13,
+    "slots": 30,
+    "sha256": "66148cf044de52104ead73b4e51911a26ab24328d2a26e83ebc568a26246c505",
+    "crc32": "41876DF7",
+    "namespaces": {
+      "species": {
+        "path": "manifests/species_ids.csv",
+        "size": 207095,
+        "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+      },
+      "moves": {
+        "path": "manifests/move_ids.csv",
+        "size": 128694,
+        "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+      },
+      "items": {
+        "path": "manifests/item_ids.csv",
+        "size": 447424,
+        "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"
+      },
+      "abilities": {
+        "path": "manifests/ability_ids.csv",
+        "size": 70348,
+        "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"
+      }
+    }
+  },
+  "outputs": {
+    "rom": "build/stages/47_windows_box14_vault.gba",
+    "metadata": "build/stages/47_windows_box14_vault.json",
+    "allocation": "build/stages/47_allocation.json",
+    "incremental_bps": "build/patches/windows-battle-catalog-stage46-to-windows-box14-vault-stage47.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-windows-box14-vault-stage47.bps",
+    "runtime": "generated/runtime/windows_box14_vault.bin",
+    "symbols": "generated/runtime/windows_box14_vault_symbols.json",
+    "protocol": "generated/runtime/windows_box14_vault_protocol.json",
+    "cases": "generated/runtime/windows_box14_vault_mgba_cases.json",
+    "audit": "reports/generated/windows_box14_vault_audit.json",
+    "coverage": "reports/generated/windows_box14_vault_coverage.json",
+    "mgba_quick": "build/stages/47_mgba_windows_box14_vault_quick.json"
+  }
+}

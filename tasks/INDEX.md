@@ -34,3 +34,4 @@ Codexは `task_graph.json` の依存関係と `../design/tasks_next.md` の状�
 | [T27](T27_CODEX_BATTLE_RUNTIME.md) | Codex操作6→3対戦をStage 44へproduction統合する | engine/ui/content/tooling/qa | T26 |
 | [T28](T28_CODEX_BATTLE_REWARDS_RELEASE.md) | 任意報酬とiPad最終ゲートをStage 45で完成させる | engine/save/tooling/release/qa | T27 |
 | [T29](T29_WINDOWS_BATTLE_CATALOG.md) | Windows対戦カタログをNPC前の一括生成導線へ接続する | engine/save/tooling/qa | T28 |
+| [T30](T30_WINDOWS_BOX14_VAULT.md) | Box 14とWindows固有個体庫を双方向exact移動へ接続する | engine/save/tooling/qa | T29 |

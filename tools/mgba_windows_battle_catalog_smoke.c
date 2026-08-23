@@ -234,6 +234,7 @@ static bool cwc_pc_runtime_unchanged(struct mCore *core)
         && read16(core, CWC_PSS_CALLSITE_HOOK & ~1U) != 0xFFFFU;
 }
 
+#ifndef CWC_RUNTIME_EMBEDDED
 int main(int argc, char **argv)
 {
     if (argc != 5)
@@ -318,3 +319,4 @@ int main(int argc, char **argv)
     core->deinit(core);
     return passed ? 0 : 1;
 }
+#endif

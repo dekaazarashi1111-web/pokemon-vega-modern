@@ -2087,3 +2087,27 @@
 - Commit: `-`（本エントリを含む実機batch／CLI修正コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ既存RetroArch NCI接続を使い、versioned mailboxの宣言済みrequest spanだけを書いた。PC/save/party byteはhostから直接編集せず、端末固有接続情報とprivate ROM/save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-23T18:28:05+09:00
+
+- Task: `T30` / Box 14とWindows固有個体庫を双方向exact移動へ接続する
+- Status: DONE
+- Summary:
+  - T30をtask graph、queue、index、仕様へ追加してから実装した。Stage 46 exact baselineへ128-byte transfer blockとcommand 17〜20を結合し、Box 14のCFRU展開済み80-byte `BoxPokemon`原本をslot単位でscan／export／remove／importするStage 47を生成した。持ち物をbagへ複製せず個体と一緒に移動し、各remove／importは通常saveで確定する。
+  - Windows CLI 2.5.1へ`vault status/deposit/withdraw`を追加した。owner-only manifest／binary blob／pendingをatomic write＋fsyncし、depositはWindows永続化後だけGBAから削除、withdrawはGBA通常save後だけWindows在庫を減算する。Species／Move／Item／Ability namespaceを含むABI fingerprintが一致する後続ROMでも同じ在庫を使い、hostはsave／party／boxを直接編集しない。
+  - ユーザー指示によりStage 47の預け入れ・引き出し・Windows catalog生成からCodex対戦NPC／map位置条件を廃止した。PC、会話、戦闘が閉じた任意mapの通常fieldで受理し、対戦後報酬も従来どおりresult windowだけに束縛してNPC位置へ依存しない。exact-ROM mGBAで別mapのvault scanとcatalog item生成を確認した。
+  - 実iPadへ`47_windows_box14_vault_fccc882e7b11.gba`と同名saveを配置し、Box 14のslot 0、1、2、3、4、10にいた6体をWindowsへdepositした。最終Box 14は0体、Windows在庫はリープン、ファマー、アクタシ、オオスバメ、ルカリオ、カイリューの6体、pendingなし。全blobは80 bytes、manifest記載SHA-256一致、blob／manifest mode 0600、vault root 0700を確認した。
+  - live blobはCFRU平文BoxPokemon layoutだったため、標準GBA暗号化想定の表示decoderをCFRU offsetへ修正した。personality、OT、性格／ミント、王冠、Tera、持ち物、経験値、技／PP、EV／IV、特性、色違い、リボン等を原本から正しく索引し直した。blob identityとABIは変更していない。
+- Files changed:
+  - task/config/runtime/build: `tasks/T30_WINDOWS_BOX14_VAULT.md`、`tasks/{INDEX.md,task_graph.json}`、`design/tasks_next.md`、`state/task_status.json`、`config/{windows_box14_vault.json,ram_layout.csv}`、`overlays/windows_box14_vault/**`、`overlays/codex_battle_rewards/**`、`scripts/build_windows_box14_vault.py`、`Makefile`。
+  - CLI/QA/docs: `tools/vega_codex_battle.py`、`tools/mgba_windows_box14_vault_smoke.c`、`tools/mgba_windows_battle_catalog_smoke.c`、`tests/{test_windows_box14_vault.py,test_windows_battle_catalog.py}`、`scripts/install_vega_codex_battle_cli.sh`、`tools/codex_skills/vega-codex-battle/SKILL.md`、`docs/{WINDOWS_BOX14_VAULT_JA.md,WINDOWS_BATTLE_CATALOG_JA.md}`、`README.md`、`MASTER_PLAN.md`、`design/{agent_context_map,current_state,run_log,version_log}.md`。
+  - Git管理外再生成物: Stage 47 ROM、Stage46差分／clean直接BPS、metadata、allocation、runtime、symbols、protocol、cases、audit/coverage、mGBA quick、Windows owner-only vault 6 blob。private ROM/save/blobは追跡していない。
+- Verify:
+  - `python3 scripts/build_windows_box14_vault.py build` / `check`: PASS。Stage 47は33,554,432 bytes、SHA-256 `fccc882e7b11315a36b146715396d63348b726268e7560a99a55f4ccbad3d3c9`、CRC32 `51C5114B`、artifact 12。変更8,435 byte、11 hook再束縛、declared span外0、ROM/RAM/save/hook overlap 0、差分／clean直接BPS完全往復。
+  - libmGBA quick: PASS 7/7、warnings 0。Stage46 identity/hook再束縛、scan/export exact80、remove通常save、import exact80＋reload、任意map受理とbusy/mail拒否、catalog／reward回帰を確認した。
+  - `python3 -m unittest tests.test_windows_box14_vault tests.test_windows_battle_catalog -v`: PASS（17 tests）。0／1／6／30体、穴あき、同一raw往復、応答喪失からのdeposit再開、容量不足、ABI不一致、破損blob、Stage46／将来protocol、catalog回帰を確認した。
+  - 実iPad: doctor全13項目PASS。開始時Box 14 6体、`vault deposit` moved 6／COMPLETE、終了時Box 14 0体、Windows compatible 6、pendingなし。6 blobの80-byte長・SHA-256・owner-only modeを再照合した。
+  - `python3 -m py_compile ...`、両installerの`bash -n`／install、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むT30完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでStage 47 ROM／同名saveを配置し、RetroArch NCIのversioned request／transfer spanだけを操作した。インターネットは未使用。接続先、credential、端末固有path、container UUID、private ROM/save/blob内容はtracked成果へ保存していない。

@@ -22,6 +22,7 @@
 - T27で双方6体提示・3体選出、Lv.50統一／自由、同一持ち物許可／禁止、`UPSTREAM_OPEN` gimmick、公平なpending action非公開、Codexの技・交代・降参をStage 44へproduction接続した。実iPadでtransport、first-turn、複数turn、交代、双方Dynamax、正常resultを完走し、Stage 44 SHA-256は `96820c78d6e43ef82951c23121618aac55f54579d4f196c27d6a24185ed7a256`。
 - T28で正常resultに束縛したitem/Pokémon任意報酬、PREPARED/STAGED/COMMITTED journal、不可逆close、通常bag/party/PC API、Codex companion skillをStage 45へ接続した。実iPadの敗北で賞金授受・全滅ワープなしを確認し、指定カイリューを一度だけPCへ付与、UI確認、通常save、再起動、再読込、repeat close無書込までPASSした。Stage 45 SHA-256は `2eedbe64a50664d9077af19920bcffb2cf1953d0a0c2b5e3c419c2b2410b1eb7`、CRC32は `8FFD6131`。61 transaction、mGBA quick/full各16検査、clean chain/direct BPS、ROM/RAM/save/UI/hook重複0、declared span外変更0を確認した。
 - T29でWindows canonical catalogを減算しない対戦用templateとして扱い、Codex受付map `96/5`の通常field・runtime `IDLE`・reward window `CLOSED`だけでitem/Pokémonを通常bag／party／PCへ生成するStage 46を追加した。CLIの`bank item`／`bank mon`／`bank batch`は1件ずつT28 journalへcommitし、最初の失敗位置と再開indexを返す。Species `1..1620`、Item `1..998`、1／6／30件batch、再送、満杯停止、別map/UI/script/result拒否、従来報酬、T19 PC一括逃がしをPASSした。protocol contractからROMを発見するため、今後のStage 47以降も固有filenameなしで同じCLI／installerを利用できる。Stage 46 SHA-256は `7941e7b59772b60829aa80a67eea26b982b397851a9e8e02d0e26be17459f44c`、CRC32は `3D8B62B1`。変更7,293 byte、11 hook再束縛、ROM/RAM/save/hook重複とdeclared span外変更は0で、Stage 45既定buildは`2eedbe64...`からbyte不変。
+- T30でBox 14のCFRU展開済み80-byte `BoxPokemon`原本をWindows owner-only個体庫へexact移動するStage 47を追加した。`vault deposit`はWindows blob／pendingを先にfsyncしてから1slotずつ通常saveでBox 14から削除し、`vault withdraw`は通常save後だけWindows在庫を減算する。持ち物を含む全bitを再生成せず保持し、ABI fingerprintが一致する今後のROMで再利用できる。Stage 47では預け入れ・引き出し・Windows catalog生成のmap／NPC位置条件を廃止し、PC・会話・戦闘を閉じた任意mapの通常fieldで利用する。対戦後報酬もNPC位置へ依存しない。Stage 47 SHA-256は `fccc882e7b11315a36b146715396d63348b726268e7560a99a55f4ccbad3d3c9`、CRC32は `51C5114B`。
 - USER-20260823-STAGE46-LIVE-CATALOG-BATCHで実iPadのStage 46へLv.50 Pokémon 30体とitem 21種をsequence 1〜51で連続commitした。CLI 2.4.1は、物理境界拒否後の同一sequenceを未使用padding saltで安全に再評価し、古い応答をaccepted sequence／rejected countの進行まで無視する。request body更新前に旧commit markerを無効化し、中間payloadへの誤反応も防ぐ。ROM identityとsave ABIは不変。
 - ChatGPT Pro返却4 ZIPをGit管理外の読取専用原本として受領した。CRC・安全path・symlink・暗号化・private binary混入は異常0で、共通validatorによりMove 11、Research 12、Reward 10、Factory 13ファイルすべてstatus PASS、open question 0。T22〜T25を `Move -> Research -> Reward -> Factory` の直列DAGとして追加し、各直前Stageで物理値を再監査してStage 39〜42へ順次統合する。
 - `Pokemon-Vega_EVENT-DESIGN_IMPLEMENTATION-READY.zip`をGit管理外の読取専用原本として受領した。ZIP SHA-256は `576847447f0c659c3db639179aa1fa71057b909d8eff5b408ba725ee285fee8e`。Stage 35用生成catalog付きvalidatorで28 arc、76 event、7 batch、326会話、open question 0、warnings/errors 0をPASSし、Stage 36への物理host再解決と実ROM統合をT20の唯一READYとした。
@@ -201,8 +202,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T29は完了し、現在キューに未完了の正本タスクはない。
+`design/tasks_next.md` を正とする。T00〜T30は完了し、現在キューに未完了の正本タスクはない。
 
+- T30: DONE。任意mapで使えるBox 14⇔Windows exact個体庫、通常save、Stage 47、実iPad 6体depositを完成した。
 - T29: DONE。NPC前IDLEのWindows対戦カタログ、通常収納、1件単位batch停止・再開、Stage 46を完成した。
 - T28: DONE。対戦後の任意item/Pokémon報酬、exactly-once save、Codex companion skill、iPad実戦完走をStage 45で完成した。
 - T27: DONE。双方6体提示・3体選出、対戦規則、gimmick、公平なpending action非公開、Codex行動をStage 44へproduction接続した。

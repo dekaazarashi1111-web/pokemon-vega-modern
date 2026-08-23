@@ -47,3 +47,4 @@
 - [x] Trainer V5のGym1直後＋map 3/21次15物理命令を累積54戦へ接続する <!-- id:USER-TRAINER-V5-STAGE33-TOHOKU-BATCH03 -->
 - [x] Trainer ChangeKit 01〜06を検証し全戦を最終統合する <!-- id:USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION -->
 - [x] T29: Windows対戦カタログをNPC前の一括生成導線へ接続する <!-- id:T29 -->
+- [x] T30: Box 14とWindows固有個体庫を双方向exact移動へ接続する <!-- id:T30 -->

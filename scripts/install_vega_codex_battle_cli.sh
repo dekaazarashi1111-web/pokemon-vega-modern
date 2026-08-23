@@ -8,12 +8,12 @@ data_dir=${XDG_DATA_HOME:-${HOME}/.local/share}/vega-codex-battle
 libexec_dir=${data_dir}/libexec
 launcher=${bin_dir}/vega-codex-battle
 installed_cli=${libexec_dir}/vega_codex_battle.py
-installed_protocol=${libexec_dir}/windows_battle_catalog_protocol.json
+installed_protocol=${libexec_dir}/windows_box14_vault_protocol.json
 installed_catalog=${libexec_dir}/catalog.json
-installed_rom=${libexec_dir}/windows_battle_catalog.gba
+installed_rom=${libexec_dir}/windows_box14_vault.gba
 
 source_cli=${workspace_dir}/tools/vega_codex_battle.py
-source_protocol=${VEGA_CODEX_BATTLE_PROTOCOL_SOURCE:-${workspace_dir}/generated/runtime/windows_battle_catalog_protocol.json}
+source_protocol=${VEGA_CODEX_BATTLE_PROTOCOL_SOURCE:-${workspace_dir}/generated/runtime/windows_box14_vault_protocol.json}
 source_catalog=${workspace_dir}/content/codex_battle/catalog.json
 source_rom=${VEGA_CODEX_BATTLE_ROM_SOURCE:-}
 
@@ -22,7 +22,7 @@ test -f "${source_cli}" || {
     exit 1
 }
 test -f "${source_protocol}" || {
-    printf '%s\n' "Run the Windows battle catalog builder before installing the CLI" >&2
+    printf '%s\n' "Run the Windows Box 14 vault builder before installing the CLI" >&2
     exit 1
 }
 if test -z "${source_rom}"; then
@@ -47,7 +47,7 @@ test -f "${source_catalog}" || {
     exit 1
 }
 test -f "${source_rom}" || {
-    printf '%s\n' "Windows battle catalog ROM is missing" >&2
+    printf '%s\n' "Windows Box 14 vault ROM is missing" >&2
     exit 1
 }
 python3 -c 'import PIL' || {

@@ -2,7 +2,7 @@
 
 ## これは何か
 
-Windows上のcanonical catalogを再利用可能なテンプレート集として扱い、Codex対戦NPCの前で
+Windows上のcanonical catalogを再利用可能なテンプレート集として扱い、任意mapの通常fieldで
 指定したPokémonを通常の手持ち／PCへ、道具を通常のバッグへ生成する機能である。
 GBAのPCは従来どおり14箱×30枠で、セーブ形式や箱数は拡張しない。
 
@@ -11,9 +11,9 @@ GBAのPCは従来どおり14箱×30枠で、セーブ形式や箱数は拡張し
 
 ## 安全境界
 
-ROMは次の条件をすべて満たす時だけ`bank`書込みを受理する。
+Stage 47以降のROMは次の条件をすべて満たす時だけ`bank`書込みを受理する。
 
-- Codex対戦受付マップ`96/5`の通常フィールドにいる。
+- mapやNPC位置を問わず、通常フィールドにいる。
 - 対戦runtimeが`IDLE`で、対戦・選出・結果処理中ではない。
 - 対戦後の任意報酬windowが`CLOSED`である。
 - PC、メニュー、scriptなど別のUIを開いていない。
@@ -23,13 +23,13 @@ mailboxの宣言済みrequest領域だけを書き、セーブ、party、boxを�
 
 ## 準備
 
-Stage 46を生成する。
+任意map対応を含む現行Stage 47を生成する。
 
 ```bash
-make windows-battle-catalog
+make windows-box14-vault
 ```
 
-成果物は`build/stages/46_windows_battle_catalog.gba`。CLIをユーザー領域へ入れる場合は次を使う。
+成果物は`build/stages/47_windows_box14_vault.gba`。CLIをユーザー領域へ入れる場合は次を使う。
 
 ```bash
 scripts/install_vega_codex_battle_cli.sh
@@ -42,7 +42,7 @@ vega-codex-battle device configure --host 127.0.0.1 --json
 vega-codex-battle doctor --json
 ```
 
-ROMを起動してCodex対戦NPCの前に立ち、メニューを閉じてから状態を確認する。
+ROMを起動し、任意mapの通常fieldでPC・メニュー・会話を閉じてから状態を確認する。
 
 ```bash
 vega-codex-battle bank status --json
@@ -110,7 +110,7 @@ vega-codex-battle bank batch --file batch.json --start-index 4 --json
 応答喪失、`SAVE_FAILED`、`STORAGE_FULL`ではowner-onlyの`catalog-pending.json`を保持する。
 引数を変えず同じ行を再実行すれば、ROMのjournalへ再接続し、同じrequestを二重生成しない。
 
-CLI 2.4.1以降は、別mapなどの物理境界で拒否された後にNPC前へ戻って同じ行を再実行した場合も、
+CLI 2.4.1以降は、PC・会話・戦闘などの実行境界で拒否された後に通常fieldへ戻って同じ行を再実行した場合も、
 未受理のsequenceと意味上のpayloadを維持したまま未使用paddingだけを更新し、ROMへ安全に再評価させる。
 前回の拒否応答はaccepted sequenceまたはrejected countが進むまで完了扱いにせず、request bodyの
 更新前には旧commit markerを無効化するため、中間状態を新しい応答と誤認しない。
@@ -125,8 +125,8 @@ CLI 2.4.1以降は、別mapなどの物理境界で拒否された後にNPC前�
 ## 後続ROMでの再利用
 
 CLIは特定の`FINALFIX`ファイル名を参照しない。既定では隣接または
-`generated/runtime/windows_battle_catalog_protocol.json`を発見し、そのprotocol内のROM identity、
-mailbox、command、catalog metadataを使う。後続ROMではStage 46 builderと同じように、直前stageの
+`generated/runtime/windows_box14_vault_protocol.json`を優先して発見し、そのprotocol内のROM identity、
+mailbox、command、catalog metadataを使う。後続ROMではStage 47 builderと同じように、直前stageの
 metadata／symbols／protocolをconfigへ固定し、同じruntimeを再配置・再束縛すればよい。
 
 検証や別配置で明示する場合だけ、次の環境変数を使う。

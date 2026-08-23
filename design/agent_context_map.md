@@ -36,6 +36,7 @@
 | Codex 6→3対戦 | `tasks/T27_CODEX_BATTLE_RUNTIME.md` | T26 Stage 43/protocol/CLI、canonical catalog/learnset、party selection、battle controller、CFRU gimmick、privacy、Factory/Mirage cleanup |
 | Codex任意報酬・iPad完走 | `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md` | T27 Stage 44、Acquisition/T24/T25 transaction、save layout、Codex companion skill |
 | Windows対戦カタログ | `tasks/T29_WINDOWS_BATTLE_CATALOG.md` | T28 Stage 45/protocol/symbols、canonical catalog、T19 PC複数選択・一括逃がし、Windows CLI |
+| Windows Box 14固有個体庫 | `tasks/T30_WINDOWS_BOX14_VAULT.md` | T29 Stage 46/protocol/symbols、BoxPokemon ABI、T19 PC/save transaction、Windows owner-only storage |
 | Trainer AI・難易度 | `design/decisions.md` D-015 | 固定CFRU-JP `src/Battle_AI/**`, V2 `06_出現率・トレーナー・報酬バランス.md`, T01/T02/T06/T10/T12/T15〜T18 |
 | テスト | `docs/TEST_STRATEGY.md` | 選択タスクのacceptance gate |
 | レポート状態 | `design/report_lifecycle_index.md` | `reports/`, `reports/generated/` |
@@ -69,6 +70,7 @@
 - T27: `tasks/T27_CODEX_BATTLE_RUNTIME.md`、T26 Stage 43/protocol/CLI、T06 battle controller/AI/gimmick、T08 save/RAM、標準party selection、T21/T25 party exact restore、battle UI/rules、`manifests/{species,move,item,ability}_ids.csv`、T09/T22 learnset。`UPSTREAM_OPEN`はCodex active時だけとし、pending player commandをhostへ公開しない。報酬transactionはT28まで実装しない。
 - T28: `tasks/T28_CODEX_BATTLE_REWARDS_RELEASE.md`、T27 Stage 44/protocol/CLI、Acquisition runtime、T24/T25 reward/save transaction、`config/save_layout.csv`、party/box/bag、Codex companion skill。専用iPad ROM/save copyでE2Eする。
 - T29: `tasks/T29_WINDOWS_BATTLE_CATALOG.md`、T28 Stage 45/protocol/symbols、`content/codex_battle/catalog.json`、T19 PSS複数選択・一括逃がし、`tools/vega_codex_battle.py`。箱数/save ABIは拡張せず、NPC前IDLEの通常生成とhost batchだけを接続する。
+- T30: `tasks/T30_WINDOWS_BOX14_VAULT.md`、T29 Stage 46/protocol/symbols、BoxPokemon 80-byte ABI、Box 14 storage root、T19 PC一括処理／save rollback、`tools/vega_codex_battle.py`。Box 14だけを搬送箱とし、hostは宣言済みtransfer span以外のsave／party／boxを直接編集しない。
 - 初戦ループ: `tasks/USER_20260814_FIRST_BATTLE_LOOP.md`、`scripts/build_first_battle_hotfix.py`、`tools/mgba_first_battle_loop_smoke.c`、`scripts/build_battle_core.py`、stage 20/21。
 - HM field能力: `tasks/USER_20260814_HM_FIELD_ACCESS.md`、`overlays/hm_field_access/`、`scripts/build_hm_field_access.py`、`tools/mgba_hm_field_access_smoke.c`、stage 21/22、`docs/QOL_POLICY.md`。
 - battle rules: `tasks/USER_20260814_BATTLE_RULES.md`、`config/battle_rules.json`、`scripts/build_battle_rules.py`、`tools/mgba_battle_rules_smoke.c`、固定CFRU-JP battle source、stage 22/23、T06 hook/runtime表。

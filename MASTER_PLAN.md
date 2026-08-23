@@ -48,6 +48,7 @@ FireRed JPN Rev0 clean
 | T27 | Codex Battle Runtime | Engine/UI/Content/Tooling/QA | T26 | 構築catalog、双方6体提示・3体選出、公平な非公開commit、自由gimmick、Codex行動をStage 44へproduction統合 |
 | T28 | Codex Rewards and iPad Gate | Engine/Save/Tooling/Release/QA | T27 | 任意item/Pokémon報酬とiPad対戦E2EをStage 45で完成 |
 | T29 | Windows Battle Catalog | Engine/Save/Tooling/QA | T28 | NPC前IDLEでcanonical templateを通常収納へ一括生成するStage 46を完成 |
+| T30 | Windows Box 14 Vault | Engine/Save/Tooling/QA | T29 | Box 14とWindows owner-only個体庫の双方向exact移動をStage 47で完成 |
 
 ## 最短実行戦略
 
@@ -69,7 +70,7 @@ T00 -> T12 ----┴-> T13
 
 `make plan` はDAGから現在の `RESUME` / 推奨 `PRIMARY` / その他の依存READY候補 `PARALLEL_PREP` と準備waveを自動導出します。正本IN_PROGRESSは1件だけとし、同じwaveの他タスクは所有ファイルを分けたsubtaskまたは別worktreeで先行します。準備waveは依存深度を表す論理並列単位であり、正本完了のbarrierや強制統合順ではありません。
 
-正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T29` です。これは強制順ではないが、返却4設計はshared table/save/hookを安全に継承するため `T22 → T23 → T24 → T25`、Codex対戦とWindowsカタログはtransport/battle/save/toolingを分離するため `T26 → T27 → T28 → T29` の依存順を固定する。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、進行後の現在値は `make plan` と `design/current_state.md` を正とする。
+正本の既定優先順は `design/tasks_next.md` の `T01 → T02 → T03 → … → T30` です。これは強制順ではないが、返却4設計はshared table/save/hookを安全に継承するため `T22 → T23 → T24 → T25`、Codex対戦・Windowsカタログ・Box 14固有個体庫はtransport/battle/save/toolingを分離するため `T26 → T27 → T28 → T29 → T30` の依存順を固定する。W1開始時はT01を推奨PRIMARY、T02とT12をREADY候補とし、進行後の現在値は `make plan` と `design/current_state.md` を正とする。
 
 ## 高速並列準備waveと統合時の成果基準
 
@@ -99,8 +100,9 @@ T00 -> T12 ----┴-> T13
 | W21 | T27 | catalog、双方6→3選出、2 regulation、`UPSTREAM_OPEN` gimmick、pending action非公開、Codex move/switch/forfeit、全cleanup、clean Stage 44をPASSする |
 | W22 | T28 | 任意item/Pokémon報酬、exactly-once save、Codex skill、iPad E2E、clean Stage 45をPASSする |
 | W23 | T29 | NPC前Windows catalog、1件単位batch停止・再開、通常収納、Stage45/報酬/PC回帰、Stage 46をPASSする |
+| W24 | T30 | Box 14全枠の固有個体export/import、Windows原子的在庫、移動確定後だけの削除、Stage 47をPASSする |
 
-最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、イベント設計統合はT20、Mirage production接続はT21。返却済み4設計はT22〜T25でStage 38から順次rebaseしてStage 42を完成点とし、Codex対戦とWindowsカタログはT26〜T29でStage 46まで段階統合する。
+最初のEngine動作成果はT03の「32 MiB no-op Vega ROM」です。T11の「独立したKanto 1-map importer検証」はT02後に先行でき、依存READYになった時点で正本へ選択・統合できます。最初の製品経路としての二地方往復はT13、配布可能候補はT18、QOL production completionはT19、イベント設計統合はT20、Mirage production接続はT21。返却済み4設計はT22〜T25でStage 38から順次rebaseしてStage 42を完成点とし、Codex対戦・Windowsカタログ・Box 14固有個体庫はT26〜T30でStage 47まで段階統合する。
 
 受領したV2二地方生態版は完成像・進行・生態・イベントのactive review資料です。V1は来歴保存専用です。V2の47カントー地点はraw map総数ではないため、T11ではclean BPRJとpokefireredから約256候補mapの再現可能なinventoryを作り、論理地点とのcrosswalkを確定します。採用済みデータだけをT12/T16のschemaへ昇格します。
 

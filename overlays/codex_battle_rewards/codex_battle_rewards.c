@@ -9,6 +9,14 @@
 #define CODEX_WINDOWS_CATALOG_ENABLED 0
 #endif
 
+#ifndef CODEX_WINDOWS_BOX14_VAULT_ENABLED
+#define CODEX_WINDOWS_BOX14_VAULT_ENABLED 0
+#endif
+
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED && !CODEX_WINDOWS_CATALOG_ENABLED
+#error "Box 14 vault requires the Windows catalog field context"
+#endif
+
 #ifndef CODEX_CATALOG_MAP_GROUP
 #define CODEX_CATALOG_MAP_GROUP 96u
 #endif
@@ -47,6 +55,11 @@ typedef u8 (*CalculatePartyCountFn)(void);
 typedef u8 (*GiveMonFn)(void *);
 typedef u32 (*GetBoxMonDataAtFn)(u8, u8, int);
 typedef void (*ZeroBoxMonAtFn)(u8, u8);
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+typedef void *(*GetBoxedMonPtrFn)(u8, u8);
+typedef void (*SetBoxMonAtFn)(u8, u8, void *);
+typedef u8 (*IsMailFn)(u16);
+#endif
 typedef u8 (*TryWriteSectorFn)(u16, const void *);
 typedef void (*ReadFlashFn)(u16, u32, void *, u32);
 typedef u8 (*TrySavingDataFn)(u8);
@@ -108,6 +121,9 @@ enum {
     CWR_OWNER_FLAG_BALL_EXPLICIT = 0x0004u,
 #if CODEX_WINDOWS_CATALOG_ENABLED
     CWR_OWNER_FLAG_CATALOG = 0x0008u,
+#endif
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+    CWR_OWNER_FLAG_VAULT = 0x0010u,
 #endif
     CWR_TEST_MAGIC = 0x54323846u,
     CWR_OWNER_LOAD_CHECKED = 0xA5u,
@@ -179,6 +195,11 @@ enum {
 #define FN_GIVE_MON PTR(GiveMonFn, CODEX_REWARD_GIVE_MON)
 #define FN_GET_BOX_MON_DATA PTR(GetBoxMonDataAtFn, CODEX_REWARD_GET_BOX_MON_DATA)
 #define FN_ZERO_BOX_MON_AT PTR(ZeroBoxMonAtFn, CODEX_REWARD_ZERO_BOX_MON_AT)
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+#define FN_GET_BOXED_MON PTR(GetBoxedMonPtrFn, CODEX_VAULT_GET_BOXED_MON_PTR)
+#define FN_SET_BOX_MON_AT PTR(SetBoxMonAtFn, CODEX_VAULT_SET_BOX_MON_AT)
+#define FN_IS_MAIL PTR(IsMailFn, CODEX_VAULT_IS_MAIL)
+#endif
 #define FN_TRY_WRITE_SECTOR PTR(TryWriteSectorFn, CODEX_REWARD_TRY_WRITE_SECTOR)
 #define FN_READ_FLASH PTR(ReadFlashFn, CODEX_REWARD_READ_FLASH)
 #define FN_TRY_SAVING_DATA PTR(TrySavingDataFn, CODEX_REWARD_TRY_SAVING_DATA)
@@ -1271,7 +1292,7 @@ static u8 catalog_command(u16 command)
                 || command == CODEX_CATALOG_COMMAND_MON);
 }
 
-static u8 catalog_field_context_valid(
+static u8 private_field_context_valid(
     const volatile CodexBattleRuntimeState *state)
 {
     const volatile u8 *save1 = *G_SAVE_BLOCK1_PTR;
@@ -1281,9 +1302,253 @@ static u8 catalog_field_context_valid(
         && *G_MAIN_CALLBACK2 == CWR_FIELD_MAIN_CALLBACK
         && FN_SCRIPT_CONTEXT2_ENABLED() == 0u
         && address >= 0x02000000u && address < 0x02040000u
+#if !CODEX_WINDOWS_BOX14_VAULT_ENABLED
         && save1[4] == CODEX_CATALOG_MAP_GROUP
-        && save1[5] == CODEX_CATALOG_MAP_NUMBER);
+        && save1[5] == CODEX_CATALOG_MAP_NUMBER
+#endif
+        );
 }
+
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+static u8 vault_command(u16 command)
+{
+    return (u8)(command >= CODEX_VAULT_COMMAND_SCAN
+                && command <= CODEX_VAULT_COMMAND_IMPORT);
+}
+
+static u32 vault_occupancy_mask(void)
+{
+    u32 mask = 0u;
+    u8 slot;
+    for (slot = 0u; slot < WINDOWS_BOX14_VAULT_SLOT_COUNT; ++slot) {
+        if (FN_GET_BOX_MON_DATA(WINDOWS_BOX14_VAULT_BOX_INDEX, slot,
+                                CWR_MON_DATA_SPECIES) != 0u)
+            mask |= (u32)1u << slot;
+    }
+    return mask;
+}
+
+static u8 vault_slot_has_mail(u8 slot)
+{
+    u16 item = (u16)FN_GET_BOX_MON_DATA(
+        WINDOWS_BOX14_VAULT_BOX_INDEX, slot, CWR_MON_DATA_HELD_ITEM);
+    return item != 0u ? FN_IS_MAIL(item) : 0u;
+}
+
+static u8 vault_mask_has_mail(u32 mask)
+{
+    u8 slot;
+    for (slot = 0u; slot < WINDOWS_BOX14_VAULT_SLOT_COUNT; ++slot) {
+        if ((mask & ((u32)1u << slot)) != 0u && vault_slot_has_mail(slot))
+            return 1u;
+    }
+    return 0u;
+}
+
+static u32 vault_transfer_crc(const WindowsBox14VaultTransferV1 *transfer)
+{
+    return crc32_bytes((const volatile u8 *)transfer,
+                       offsetof(WindowsBox14VaultTransferV1, block_crc32));
+}
+
+static u8 vault_read_input(WindowsBox14VaultTransferV1 *out,
+                           u32 expected_generation, u8 expected_slot,
+                           u32 expected_record_crc, u32 session_nonce)
+{
+    const volatile WindowsBox14VaultTransferV1 *shared =
+        gWindowsBox14VaultTransfer;
+    u32 generation = shared->generation;
+    u32 inverse = shared->generation_inverse;
+    if (generation == 0u || inverse != ~generation)
+        return 0u;
+    copy_bytes(out, shared, sizeof(*out));
+    barrier();
+    if (shared->generation != generation
+        || shared->generation_inverse != inverse)
+        return 0u;
+    return (u8)(generation == expected_generation
+        && out->magic == WINDOWS_BOX14_VAULT_MAGIC
+        && out->magic_inverse == ~WINDOWS_BOX14_VAULT_MAGIC
+        && out->version == WINDOWS_BOX14_VAULT_VERSION
+        && out->struct_size == WINDOWS_BOX14_VAULT_TRANSFER_SIZE
+        && out->generation_inverse == ~out->generation
+        && out->command == CODEX_VAULT_COMMAND_IMPORT
+        && out->status == WINDOWS_BOX14_VAULT_TRANSFER_INPUT
+        && out->box == WINDOWS_BOX14_VAULT_BOX_INDEX
+        && out->slot == expected_slot
+        && out->record_size == WINDOWS_BOX14_VAULT_RECORD_SIZE
+        && out->record_crc32 == expected_record_crc
+        && out->abi_crc32 == CODEX_VAULT_ABI_CRC32
+        && out->session_nonce == session_nonce
+        && out->record_crc32 == crc32_bytes(
+            out->record, WINDOWS_BOX14_VAULT_RECORD_SIZE)
+        && out->block_crc32 == vault_transfer_crc(out));
+}
+
+static void vault_publish(u16 command, u8 slot, const volatile u8 *record,
+                          u32 occupancy_mask, u32 session_nonce)
+{
+    volatile WindowsBox14VaultTransferV1 *shared =
+        gWindowsBox14VaultTransfer;
+    WindowsBox14VaultTransferV1 image;
+    u32 generation = shared->generation;
+    if (generation == 0u || shared->generation_inverse != ~generation)
+        generation = 0u;
+    generation = next_sequence(generation);
+    clear_bytes(&image, sizeof(image));
+    image.magic = WINDOWS_BOX14_VAULT_MAGIC;
+    image.magic_inverse = ~WINDOWS_BOX14_VAULT_MAGIC;
+    image.version = WINDOWS_BOX14_VAULT_VERSION;
+    image.struct_size = WINDOWS_BOX14_VAULT_TRANSFER_SIZE;
+    image.generation = generation;
+    image.generation_inverse = ~generation;
+    image.command = command;
+    image.status = WINDOWS_BOX14_VAULT_TRANSFER_OUTPUT;
+    image.box = WINDOWS_BOX14_VAULT_BOX_INDEX;
+    image.slot = slot;
+    image.occupancy_mask = occupancy_mask;
+    image.abi_crc32 = CODEX_VAULT_ABI_CRC32;
+    image.session_nonce = session_nonce;
+    if (record != (const volatile u8 *)0) {
+        image.record_size = WINDOWS_BOX14_VAULT_RECORD_SIZE;
+        copy_bytes(image.record, record, WINDOWS_BOX14_VAULT_RECORD_SIZE);
+        image.record_crc32 = crc32_bytes(
+            image.record, WINDOWS_BOX14_VAULT_RECORD_SIZE);
+    }
+    image.block_crc32 = vault_transfer_crc(&image);
+    shared->generation = 0u;
+    barrier();
+    copy_bytes(shared, &image,
+               offsetof(WindowsBox14VaultTransferV1, generation));
+    copy_bytes((volatile u8 *)shared
+                   + offsetof(WindowsBox14VaultTransferV1, command),
+               (const volatile u8 *)&image
+                   + offsetof(WindowsBox14VaultTransferV1, command),
+               sizeof(image)
+                   - offsetof(WindowsBox14VaultTransferV1, command));
+    shared->generation_inverse = ~generation;
+    barrier();
+    shared->generation = generation;
+}
+
+static void vault_commit_volatile(u16 command, u32 sequence,
+                                  u32 payload_hash)
+{
+    volatile CodexBattleRewardOwnerV1 *owner = gCodexBattleRewardOwner;
+    owner->flags &= (u16)~CWR_OWNER_FLAG_CATALOG;
+    owner->flags |= CWR_OWNER_FLAG_VAULT;
+    owner->journal_phase = CODEX_REWARD_JOURNAL_COMMITTED;
+    owner->last_command = (u8)command;
+    owner->last_request_sequence = sequence;
+    owner->last_payload_hash = payload_hash;
+    owner->pending_sequence = 0u;
+    owner->pending_payload_hash = 0u;
+    owner->last_result = CODEX_REWARD_ERROR_NONE;
+    ++owner->committed_count;
+    ++owner->generation;
+    owner_finalize();
+}
+
+static u16 vault_execute(u16 command, u32 sequence, u32 payload_hash,
+                         const volatile u8 *payload, u16 size,
+                         u32 session_nonce)
+{
+    u32 occupancy = vault_occupancy_mask();
+    u8 slot = 0xFFu;
+    if (command == CODEX_VAULT_COMMAND_SCAN) {
+        if (size != 0u)
+            return CODEX_REWARD_ERROR_PAYLOAD_FORMAT;
+        if (vault_mask_has_mail(occupancy))
+            return CODEX_REWARD_ERROR_VAULT_MAIL;
+        vault_publish(command, slot, (const volatile u8 *)0,
+                      occupancy, session_nonce);
+    } else if (command == CODEX_VAULT_COMMAND_EXPORT) {
+        const volatile u8 *record;
+        if (size != 1u || payload[0] >= WINDOWS_BOX14_VAULT_SLOT_COUNT)
+            return CODEX_REWARD_ERROR_PAYLOAD_FORMAT;
+        slot = payload[0];
+        if ((occupancy & ((u32)1u << slot)) == 0u)
+            return CODEX_REWARD_ERROR_VAULT_EMPTY;
+        if (vault_slot_has_mail(slot))
+            return CODEX_REWARD_ERROR_VAULT_MAIL;
+        record = (const volatile u8 *)FN_GET_BOXED_MON(
+            WINDOWS_BOX14_VAULT_BOX_INDEX, slot);
+        if (record == (const volatile u8 *)0)
+            return CODEX_REWARD_ERROR_VAULT_CHANGED;
+        vault_publish(command, slot, record, occupancy, session_nonce);
+    } else if (command == CODEX_VAULT_COMMAND_REMOVE) {
+        u8 backup[WINDOWS_BOX14_VAULT_RECORD_SIZE];
+        const volatile u8 *record;
+        u32 expected_crc;
+        if (size != 5u || payload[0] >= WINDOWS_BOX14_VAULT_SLOT_COUNT)
+            return CODEX_REWARD_ERROR_PAYLOAD_FORMAT;
+        slot = payload[0];
+        expected_crc = read32(payload + 1u);
+        if ((occupancy & ((u32)1u << slot)) == 0u)
+            return CODEX_REWARD_ERROR_VAULT_EMPTY;
+        if (vault_slot_has_mail(slot))
+            return CODEX_REWARD_ERROR_VAULT_MAIL;
+        record = (const volatile u8 *)FN_GET_BOXED_MON(
+            WINDOWS_BOX14_VAULT_BOX_INDEX, slot);
+        if (record == (const volatile u8 *)0
+            || crc32_bytes(record, WINDOWS_BOX14_VAULT_RECORD_SIZE)
+                != expected_crc)
+            return CODEX_REWARD_ERROR_VAULT_CHANGED;
+        copy_bytes(backup, record, sizeof(backup));
+        FN_ZERO_BOX_MON_AT(WINDOWS_BOX14_VAULT_BOX_INDEX, slot);
+        if (!persist_standard()) {
+            FN_SET_BOX_MON_AT(WINDOWS_BOX14_VAULT_BOX_INDEX, slot, backup);
+            return CODEX_REWARD_ERROR_SAVE_FAILED;
+        }
+        occupancy = vault_occupancy_mask();
+        vault_publish(command, slot, backup, occupancy, session_nonce);
+    } else if (command == CODEX_VAULT_COMMAND_IMPORT) {
+        WindowsBox14VaultTransferV1 input;
+        u32 generation;
+        u32 expected_crc;
+        u16 species;
+        u16 item;
+        if (size != 9u || payload[0] >= WINDOWS_BOX14_VAULT_SLOT_COUNT)
+            return CODEX_REWARD_ERROR_PAYLOAD_FORMAT;
+        slot = payload[0];
+        generation = read32(payload + 1u);
+        expected_crc = read32(payload + 5u);
+        if ((occupancy & ((u32)1u << slot)) != 0u)
+            return CODEX_REWARD_ERROR_VAULT_SLOT_OCCUPIED;
+        if (!vault_read_input(&input, generation, slot, expected_crc,
+                              session_nonce))
+            return CODEX_REWARD_ERROR_VAULT_ABI;
+        species = (u16)FN_GET_MON_DATA(
+            input.record, CWR_MON_DATA_SPECIES, (u8 *)0);
+        item = (u16)FN_GET_MON_DATA(
+            input.record, CWR_MON_DATA_HELD_ITEM, (u8 *)0);
+        if (species == 0u || species > CODEX_REWARD_SPECIES_MAX)
+            return CODEX_REWARD_ERROR_INVALID_MON;
+        if (item != 0u && FN_IS_MAIL(item))
+            return CODEX_REWARD_ERROR_VAULT_MAIL;
+        FN_SET_BOX_MON_AT(WINDOWS_BOX14_VAULT_BOX_INDEX, slot,
+                          input.record);
+        if (crc32_bytes((const volatile u8 *)FN_GET_BOXED_MON(
+                            WINDOWS_BOX14_VAULT_BOX_INDEX, slot),
+                        WINDOWS_BOX14_VAULT_RECORD_SIZE) != expected_crc
+            || FN_GET_BOX_MON_DATA(WINDOWS_BOX14_VAULT_BOX_INDEX, slot,
+                                   CWR_MON_DATA_SPECIES) != species) {
+            FN_ZERO_BOX_MON_AT(WINDOWS_BOX14_VAULT_BOX_INDEX, slot);
+            return CODEX_REWARD_ERROR_VAULT_CHANGED;
+        }
+        if (!persist_standard()) {
+            FN_ZERO_BOX_MON_AT(WINDOWS_BOX14_VAULT_BOX_INDEX, slot);
+            return CODEX_REWARD_ERROR_SAVE_FAILED;
+        }
+        occupancy = vault_occupancy_mask();
+        vault_publish(command, slot, input.record, occupancy, session_nonce);
+    } else {
+        return CODEX_REWARD_ERROR_UNKNOWN_COMMAND;
+    }
+    vault_commit_volatile(command, sequence, payload_hash);
+    return CODEX_REWARD_ERROR_NONE;
+}
+#endif
 
 static void publish_catalog_capability(void)
 {
@@ -1291,6 +1556,9 @@ static void publish_catalog_capability(void)
         gCodexBattleRuntimeMailbox;
     u32 sequence = next_sequence(mailbox->snapshot_sequence);
     mailbox->capabilities |= WINDOWS_BATTLE_CATALOG_CAPABILITY;
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+    mailbox->capabilities |= WINDOWS_BOX14_VAULT_CAPABILITY;
+#endif
     mailbox->snapshot.crc32 = snapshot_crc();
     barrier();
     mailbox->snapshot_sequence_inverse = ~sequence;
@@ -1332,7 +1600,11 @@ static void reward_poll(void)
 #if CODEX_WINDOWS_CATALOG_ENABLED
     if ((command < CODEX_REWARD_COMMAND_STATUS
          || command > CODEX_REWARD_COMMAND_CLOSE)
-        && !catalog_command(command))
+        && !catalog_command(command)
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+        && !vault_command(command)
+#endif
+        )
 #else
     if (command < CODEX_REWARD_COMMAND_STATUS
         || command > CODEX_REWARD_COMMAND_CLOSE)
@@ -1362,16 +1634,21 @@ static void reward_poll(void)
         return;
     }
 #if CODEX_WINDOWS_CATALOG_ENABLED
-    if (catalog_command(command)) {
+    if (catalog_command(command)
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+        || vault_command(command)
+#endif
+        ) {
         if (owner->window != CODEX_REWARD_WINDOW_CLOSED
-            || !catalog_field_context_valid(state)
+            || !private_field_context_valid(state)
             || phase != state->phase) {
             reward_reject(sequence_after, command,
                           CODEX_REWARD_ERROR_PRIVATE_BOUNDARY, request_crc);
             return;
         }
-        /* Catalog sequence numbers belong to the current T27 session.  A
-         * cleanly committed owner from an older boot remains durable evidence
+        /* Private field command sequence numbers belong to the current T27
+         * session.  A cleanly committed owner from an older boot remains
+         * durable evidence
          * for the host retry file, but must not turn sequence 1 of the new
          * session into a false replay.  Never reset an in-flight journal. */
         if (owner->pending_sequence == 0u
@@ -1412,9 +1689,19 @@ static void reward_poll(void)
         return;
     }
 #if CODEX_WINDOWS_CATALOG_ENABLED
-    if (catalog_command(command)) {
+    if (catalog_command(command)
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+        || vault_command(command)
+#endif
+        ) {
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+        if (owner->pending_sequence != 0u
+            && (vault_command(command)
+                || (owner->flags & CWR_OWNER_FLAG_CATALOG) == 0u)) {
+#else
         if (owner->pending_sequence != 0u
             && (owner->flags & CWR_OWNER_FLAG_CATALOG) == 0u) {
+#endif
             reward_reject(sequence_after, command,
                           CODEX_REWARD_ERROR_BUSY, request_crc);
             return;
@@ -1454,8 +1741,14 @@ static void reward_poll(void)
             request_crc);
         return;
     }
-    error = start_or_resume_transaction(
-        command, sequence_after, payload_hash, local + 20u, size);
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+    if (vault_command(command))
+        error = vault_execute(command, sequence_after, payload_hash,
+                              local + 20u, size, state->session_nonce);
+    else
+#endif
+        error = start_or_resume_transaction(
+            command, sequence_after, payload_hash, local + 20u, size);
     if (error != CODEX_REWARD_ERROR_NONE) {
         reward_reject(sequence_after, command, error, request_crc);
         return;
@@ -1508,7 +1801,11 @@ void CodexBattleRewards_ReadKeysAdapter(void)
 #if CODEX_WINDOWS_CATALOG_ENABLED
     if ((command >= CODEX_REWARD_COMMAND_STATUS
          && command <= CODEX_REWARD_COMMAND_CLOSE)
-        || catalog_command(command)) {
+        || catalog_command(command)
+#if CODEX_WINDOWS_BOX14_VAULT_ENABLED
+        || vault_command(command)
+#endif
+        ) {
 #else
     if (command >= CODEX_REWARD_COMMAND_STATUS
         && command <= CODEX_REWARD_COMMAND_CLOSE) {
@@ -1520,8 +1817,8 @@ void CodexBattleRewards_ReadKeysAdapter(void)
     }
 #if CODEX_WINDOWS_CATALOG_ENABLED
     /* Both inherited delegates rebuild/publish the mailbox.  Advertise the
-     * Stage46 capability after that write so the live host sees protocol
-     * 2.4 rather than the Stage45 capability mask. */
+     * Stage46/47 capabilities after that write so the live host sees the
+     * newest private field protocol rather than the Stage45 mask. */
     publish_catalog_capability();
 #endif
 }

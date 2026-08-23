@@ -157,16 +157,18 @@ class WindowsBattleCatalogTests(unittest.TestCase):
         self.assertEqual("REUSABLE_TEMPLATES",
                          self.protocol["catalog_access"]["semantics"])
         self.assertEqual(16383, self.protocol["mailbox"]["capabilities"])
-        self.assertEqual(PROTOCOL, cli._protocol_path())
         self.assertEqual(("T29", 46),
+                         (cli.load_protocol(PROTOCOL)["task"],
+                          cli.load_protocol(PROTOCOL)["stage"]))
+        self.assertEqual(("T30", 47),
                          (cli.load_protocol()["task"], cli.load_protocol()["stage"]))
         self.assertTrue(ROM.is_file())
         self.assertNotIn("FINALFIX", Path(cli._protocol_path()).name)
 
     def test_future_stage_uses_the_same_versioned_catalog_contract(self) -> None:
-        future = json.loads(json.dumps(self.protocol))
-        future["task"] = "T30"
-        future["stage"] = 47
+        future = json.loads((
+            ROOT / "generated/runtime/windows_box14_vault_protocol.json"
+        ).read_text(encoding="utf-8"))
         with tempfile.TemporaryDirectory(dir=ROOT / ".local") as raw:
             path = Path(raw) / "future-protocol.json"
             path.write_text(json.dumps(future), encoding="utf-8")

@@ -71,6 +71,11 @@ ROM_ERROR_NAMES = {
     22: "INVALID_MON",
     23: "WRONG_HASH",
     24: "TRANSACTION_CONFLICT",
+    25: "VAULT_CHANGED",
+    26: "VAULT_EMPTY",
+    27: "VAULT_ABI",
+    28: "VAULT_SLOT_OCCUPIED",
+    29: "VAULT_MAIL",
 }
 
 PHASE_NAMES = {
@@ -217,10 +222,12 @@ def _protocol_path() -> Path:
         return Path(explicit)
     here = Path(__file__).resolve()
     candidates = (
+        here.with_name("windows_box14_vault_protocol.json"),
         here.with_name("windows_battle_catalog_protocol.json"),
         here.with_name("codex_battle_rewards_protocol.json"),
         here.with_name("codex_battle_runtime_protocol.json"),
         here.with_name("codex_battle_bridge_protocol.json"),
+        here.parents[1] / "generated/runtime/windows_box14_vault_protocol.json",
         here.parents[1] / "generated/runtime/windows_battle_catalog_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_rewards_protocol.json",
         here.parents[1] / "generated/runtime/codex_battle_runtime_protocol.json",
@@ -258,6 +265,9 @@ def load_protocol(path: Path | None = None) -> dict[str, Any]:
     if (int(stage) >= 46
             and not isinstance(value.get("catalog_access"), dict)):
         _fail(EXIT_CONFIG, "Windows catalog access contract differs")
+    if (int(stage) >= 47
+            and not isinstance(value.get("box14_vault"), dict)):
+        _fail(EXIT_CONFIG, "Windows Box 14 vault contract differs")
     return value
 
 
@@ -284,6 +294,22 @@ def _catalog_pending_path() -> Path:
     return _config_root() / "vega-codex-battle" / "catalog-pending.json"
 
 
+def _vault_root() -> Path:
+    return _config_root() / "vega-codex-battle" / "windows-vault"
+
+
+def _vault_manifest_path() -> Path:
+    return _vault_root() / "manifest.json"
+
+
+def _vault_pending_path() -> Path:
+    return _vault_root() / "pending.json"
+
+
+def _vault_records_path() -> Path:
+    return _vault_root() / "records"
+
+
 def _view_cursor_path() -> Path:
     return _config_root() / "vega-codex-battle" / "view-cursor.json"
 
@@ -294,9 +320,11 @@ def _preview_rom_path(protocol: Mapping[str, Any]) -> Path:
     configured = protocol.get("rom", {}).get("path")
     candidates = tuple(filter(None, (
         Path(explicit) if explicit else None,
+        here.with_name("windows_box14_vault.gba"),
         here.with_name("windows_battle_catalog.gba"),
         here.with_name("codex_battle_rewards.gba"),
         here.with_name("codex_battle_runtime.gba"),
+        here.parents[1] / "build/stages/47_windows_box14_vault.gba",
         here.parents[1] / "build/stages/46_windows_battle_catalog.gba",
         here.parents[1] / "build/stages/45_codex_battle_rewards.gba",
         here.parents[1] / "build/stages/44_codex_battle_runtime.gba",
@@ -965,6 +993,23 @@ def _catalog_access_protocol(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
     return access
 
 
+def _box14_vault_protocol(protocol: Mapping[str, Any]) -> Mapping[str, Any]:
+    if (type(protocol.get("stage")) is not int
+            or int(protocol["stage"]) < 47):
+        _fail(EXIT_CONFIG, "this command requires the Windows Box 14 vault protocol")
+    vault = protocol.get("box14_vault")
+    if (not isinstance(vault, Mapping)
+            or vault.get("record_semantics")
+            != "EXACT_CFRU_PLAINTEXT_BOX_POKEMON_80_BYTES"
+            or int(vault.get("box", {}).get("index", -1)) != 13
+            or int(vault.get("box", {}).get("slot_count", -1)) != 30
+            or int(vault.get("transfer", {}).get("size", -1)) != 128
+            or int(vault.get("transfer", {}).get("record_size", -1)) != 80
+            or not isinstance(vault.get("abi", {}).get("sha256"), str)):
+        _fail(EXIT_CONFIG, "Windows Box 14 vault metadata is unavailable")
+    return vault
+
+
 def runtime_snapshot_crc32(raw: bytes) -> int:
     if len(raw) != 256:
         _fail(EXIT_PROTOCOL, "runtime mailbox size differs")
@@ -1554,6 +1599,11 @@ def build_runtime_request(
     if isinstance(access, Mapping) and isinstance(access.get("commands"), Mapping):
         maximum_command = max(
             maximum_command, *(int(value) for value in access["commands"].values()),
+        )
+    vault = protocol.get("box14_vault")
+    if isinstance(vault, Mapping) and isinstance(vault.get("commands"), Mapping):
+        maximum_command = max(
+            maximum_command, *(int(value) for value in vault["commands"].values()),
         )
     if (not 1 <= command <= maximum_command
             or len(payload) > int(mailbox["request_payload_max"])):
@@ -3420,7 +3470,7 @@ def _catalog_pending_document(
     if not isinstance(owner, Mapping):
         _fail(EXIT_PROTOCOL, "catalog transaction owner was not published")
     if state["phase_name"] != "IDLE" or owner["window_name"] != "CLOSED":
-        _fail(EXIT_REQUEST, "Windows catalog is available only before the NPC battle")
+        _fail(EXIT_REQUEST, "Windows catalog is available only in a normal field")
     payload_hash = zlib.crc32(payload) & 0xFFFFFFFF
     expected = {
         "session_nonce": int(state["session_nonce"]),
@@ -3783,6 +3833,747 @@ def catalog_access_batch(
     }
 
 
+def _vault_atomic_write(path: Path, raw: bytes) -> None:
+    temporary: Path | None = None
+    try:
+        path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        os.chmod(path.parent, 0o700)
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent, prefix=".vault-", delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(raw)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.chmod(temporary, 0o600)
+        os.replace(temporary, path)
+        temporary = None
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+        directory_fd = os.open(path.parent, flags)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    except OSError:
+        if temporary is not None:
+            try:
+                temporary.unlink()
+            except OSError:
+                pass
+        _fail(EXIT_CONFIG_WRITE, "owner-only Windows vault could not be written")
+
+
+def _vault_write_json(path: Path, value: Mapping[str, Any]) -> None:
+    _vault_atomic_write(path, _json_bytes(value, pretty=True))
+
+
+def _vault_fsync_unlink(path: Path) -> None:
+    try:
+        path.unlink()
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0)
+        directory_fd = os.open(path.parent, flags)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    except FileNotFoundError:
+        return
+    except OSError:
+        _fail(EXIT_CONFIG_WRITE, "owner-only Windows vault cleanup failed")
+
+
+def _vault_load_manifest() -> dict[str, Any]:
+    path = _vault_manifest_path()
+    try:
+        if stat.S_IMODE(path.stat().st_mode) != 0o600:
+            raise OSError("permissions")
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {"schema_version": 1, "records": []}
+    except (OSError, ValueError, json.JSONDecodeError):
+        _fail(EXIT_CONFIG, "owner-only Windows vault manifest is invalid")
+    records = value.get("records") if isinstance(value, dict) else None
+    if (not isinstance(value, dict) or value.get("schema_version") != 1
+            or set(value) != {"schema_version", "records"}
+            or not isinstance(records, list)):
+        _fail(EXIT_CONFIG, "owner-only Windows vault manifest contract differs")
+    seen: set[str] = set()
+    for record in records:
+        if (not isinstance(record, dict)
+                or not re.fullmatch(r"[0-9a-f]{32}", str(record.get("id", "")))
+                or record["id"] in seen
+                or record.get("state") not in {"pending_deposit", "available"}
+                or not re.fullmatch(r"[0-9a-f]{64}", str(record.get("raw_sha256", "")))
+                or not re.fullmatch(r"[0-9A-F]{8}", str(record.get("raw_crc32", "")))
+                or not re.fullmatch(r"[0-9a-f]{64}", str(record.get("abi_sha256", "")))
+                or type(record.get("source_slot")) is not int
+                or not 0 <= record["source_slot"] < 30
+                or not isinstance(record.get("metadata"), dict)):
+            _fail(EXIT_CONFIG, "owner-only Windows vault record contract differs")
+        seen.add(record["id"])
+    return value
+
+
+def _vault_write_manifest(value: Mapping[str, Any]) -> None:
+    _vault_write_json(_vault_manifest_path(), value)
+
+
+def _vault_load_pending() -> dict[str, Any] | None:
+    path = _vault_pending_path()
+    try:
+        if stat.S_IMODE(path.stat().st_mode) != 0o600:
+            raise OSError("permissions")
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+    except (OSError, ValueError, json.JSONDecodeError):
+        _fail(EXIT_CONFIG, "owner-only Windows vault pending state is invalid")
+    if (not isinstance(value, dict) or value.get("schema_version") != 1
+            or value.get("operation") not in {"deposit", "withdraw"}
+            or not re.fullmatch(r"[0-9a-f]{64}", str(value.get("abi_sha256", "")))
+            or not isinstance(value.get("rows"), list)
+            or not value["rows"]):
+        _fail(EXIT_CONFIG, "owner-only Windows vault pending contract differs")
+    for row in value["rows"]:
+        if (not isinstance(row, dict)
+                or not re.fullmatch(r"[0-9a-f]{32}", str(row.get("record_id", "")))
+                or type(row.get("slot")) is not int
+                or not 0 <= row["slot"] < 30
+                or not re.fullmatch(r"[0-9a-f]{64}", str(row.get("raw_sha256", "")))
+                or not re.fullmatch(r"[0-9A-F]{8}", str(row.get("raw_crc32", "")))
+                or type(row.get("done")) is not bool):
+            _fail(EXIT_CONFIG, "owner-only Windows vault pending row differs")
+        if value["operation"] == "deposit" and not isinstance(row.get("record"), dict):
+            _fail(EXIT_CONFIG, "owner-only deposit recovery record differs")
+    return value
+
+
+def _vault_write_pending(value: Mapping[str, Any]) -> None:
+    _vault_write_json(_vault_pending_path(), value)
+
+
+def _vault_record_path(record_id: str) -> Path:
+    if not re.fullmatch(r"[0-9a-f]{32}", record_id):
+        _fail(EXIT_CONFIG, "Windows vault record ID differs")
+    return _vault_records_path() / f"{record_id}.boxmon"
+
+
+def _vault_write_record(record_id: str, raw: bytes) -> None:
+    if len(raw) != 80:
+        _fail(EXIT_PROTOCOL, "Windows vault raw record size differs")
+    _vault_atomic_write(_vault_record_path(record_id), raw)
+
+
+def _vault_read_record(record: Mapping[str, Any]) -> bytes:
+    path = _vault_record_path(str(record["id"]))
+    try:
+        if stat.S_IMODE(path.stat().st_mode) != 0o600:
+            raise OSError("permissions")
+        raw = path.read_bytes()
+    except OSError:
+        _fail(EXIT_CONFIG, "owner-only Windows vault record is unavailable")
+    if (len(raw) != 80 or hashlib.sha256(raw).hexdigest() != record["raw_sha256"]
+            or f"{zlib.crc32(raw) & 0xFFFFFFFF:08X}" != record["raw_crc32"]):
+        _fail(EXIT_CONFIG, "owner-only Windows vault record identity differs")
+    return raw
+
+
+def decode_box_mon_metadata(raw: bytes) -> dict[str, Any]:
+    if len(raw) != 80:
+        _fail(EXIT_PROTOCOL, "BoxPokemon record size differs")
+    personality, ot_id = struct.unpack_from("<II", raw, 0)
+    species_id, held_item_id, experience = struct.unpack_from("<HHI", raw, 32)
+    moves = list(struct.unpack_from("<4H", raw, 44))
+    iv_word = struct.unpack_from("<I", raw, 72)[0]
+    met_info = struct.unpack_from("<H", raw, 70)[0]
+    personality_nature = personality % 25
+    nature_mint = raw[15]
+    effective_nature = nature_mint - 1 if nature_mint else personality_nature
+    shiny_value = ((ot_id & 0xFFFF) ^ (ot_id >> 16)
+                   ^ (personality & 0xFFFF) ^ (personality >> 16))
+    checksum = struct.unpack_from("<H", raw, 28)[0]
+    return {
+        "storage_layout": "CFRU_PLAINTEXT_BOX_POKEMON_80",
+        "species_id": species_id,
+        "held_item_id": held_item_id,
+        "personality": personality,
+        "ot_id": ot_id,
+        "personality_nature_id": personality_nature,
+        "nature_mint": nature_mint,
+        "nature_id": effective_nature,
+        "hyper_training_mask": raw[16],
+        "tera_type": raw[17],
+        "language": raw[18],
+        "is_bad_egg": bool(raw[19] & 0x01),
+        "has_species": bool(raw[19] & 0x02),
+        "is_egg": bool((raw[19] & 0x04) or ((iv_word >> 30) & 1)),
+        "markings": raw[27],
+        "checksum": checksum,
+        "checksum_used": False,
+        "experience": experience,
+        "pp_bonuses": raw[40],
+        "friendship": raw[41],
+        "ball_id": raw[42],
+        "moves": moves,
+        "pp": list(raw[52:56]),
+        "evs": list(raw[56:62]),
+        "condition": list(raw[62:68]),
+        "pokerus": raw[68],
+        "met_location": raw[69],
+        "met_level": met_info & 0x7F,
+        "met_game": (met_info >> 7) & 0x0F,
+        "gigantamax": bool((met_info >> 11) & 1),
+        "hidden_ability": bool((met_info >> 12) & 1),
+        "ot_gender": (met_info >> 15) & 1,
+        "ivs": [(iv_word >> (index * 5)) & 0x1F for index in range(6)],
+        "ability_num": (iv_word >> 31) & 1,
+        "ribbon_bits": struct.unpack_from("<I", raw, 76)[0],
+        "shiny": shiny_value < 8,
+    }
+
+
+def _vault_refresh_manifest_metadata(manifest: dict[str, Any]) -> None:
+    changed = False
+    for record in manifest["records"]:
+        metadata = decode_box_mon_metadata(_vault_read_record(record))
+        if record.get("metadata") != metadata:
+            record["metadata"] = metadata
+            changed = True
+    if changed:
+        _vault_write_manifest(manifest)
+
+
+def _vault_transfer_address(vault: Mapping[str, Any]) -> int:
+    value = vault["transfer"]["address"]
+    return int(value, 0) if isinstance(value, str) else int(value)
+
+
+def _vault_abi_crc(vault: Mapping[str, Any]) -> int:
+    value = vault["abi"]["crc32"]
+    return int(value, 16) if isinstance(value, str) else int(value)
+
+
+def parse_box14_transfer(
+    raw: bytes, vault: Mapping[str, Any], *, session_nonce: int,
+    command: int, slot: int | None = None, status: int = 1,
+) -> dict[str, Any]:
+    transfer = vault["transfer"]
+    if len(raw) != int(transfer["size"]):
+        _fail(EXIT_PROTOCOL, "Box 14 transfer size differs")
+    u16 = lambda offset: struct.unpack_from("<H", raw, offset)[0]
+    u32 = lambda offset: struct.unpack_from("<I", raw, offset)[0]
+    generation = u32(12)
+    record_size = u16(26)
+    occupancy = u32(28)
+    record_offset = int(transfer["record_offset"])
+    block_crc_offset = int(transfer["block_crc_offset"])
+    if (u32(0) != 0x31564257 or u32(4) != (~0x31564257 & 0xFFFFFFFF)
+            or u16(8) != 1 or u16(10) != len(raw)
+            or generation == 0 or u32(16) != (~generation & 0xFFFFFFFF)
+            or u16(20) != command or u16(22) != status
+            or raw[24] != int(vault["box"]["index"])
+            or (slot is not None and raw[25] != slot)
+            or u32(36) != _vault_abi_crc(vault)
+            or u32(40) != session_nonce
+            or occupancy & ~((1 << int(vault["box"]["slot_count"])) - 1)
+            or u32(block_crc_offset)
+            != zlib.crc32(raw[:block_crc_offset]) & 0xFFFFFFFF):
+        _fail(EXIT_PROTOCOL, "Box 14 transfer identity/commit differs")
+    record = raw[record_offset:record_offset + record_size]
+    if (record_size not in {0, int(transfer["record_size"])}
+            or len(record) != record_size
+            or (record_size and u32(32) != zlib.crc32(record) & 0xFFFFFFFF)):
+        _fail(EXIT_PROTOCOL, "Box 14 transfer record CRC differs")
+    return {
+        "generation": generation,
+        "command": command,
+        "slot": raw[25],
+        "occupancy_mask": occupancy,
+        "occupied_slots": [index for index in range(30)
+                           if occupancy & (1 << index)],
+        "record_crc32": u32(32),
+        "record": record,
+    }
+
+
+def _build_box14_input_transfer(
+    vault: Mapping[str, Any], *, session_nonce: int, slot: int,
+    generation: int, record: bytes,
+) -> bytes:
+    transfer = vault["transfer"]
+    raw = bytearray(int(transfer["size"]))
+    command = int(vault["commands"]["vault_import"])
+    struct.pack_into("<IIHHIIHHBBHIII", raw, 0,
+                     0x31564257, ~0x31564257 & 0xFFFFFFFF,
+                     1, len(raw), generation, ~generation & 0xFFFFFFFF,
+                     command, 2, int(vault["box"]["index"]), slot,
+                     len(record), 0, zlib.crc32(record) & 0xFFFFFFFF,
+                     _vault_abi_crc(vault))
+    struct.pack_into("<I", raw, 40, session_nonce)
+    offset = int(transfer["record_offset"])
+    raw[offset:offset + len(record)] = record
+    crc_offset = int(transfer["block_crc_offset"])
+    struct.pack_into("<I", raw, crc_offset,
+                     zlib.crc32(raw[:crc_offset]) & 0xFFFFFFFF)
+    return bytes(raw)
+
+
+def _write_box14_transfer(
+    client: NciClient, vault: Mapping[str, Any], raw: bytes,
+) -> dict[str, int]:
+    address = _vault_transfer_address(vault)
+    generation = raw[12:16]
+    inverse = raw[16:20]
+    written = [
+        client.write_memory(address + 12, b"\0\0\0\0"),
+        client.write_memory(address, raw[:12]),
+        client.write_memory(address + 20, raw[20:]),
+        client.write_memory(address + 16, inverse),
+        client.write_memory(address + 12, generation),
+    ]
+    return {"write_operations": len(written), "write_bytes": sum(written)}
+
+
+def _send_box14_request(
+    client: NciClient, protocol: Mapping[str, Any], command: int,
+    payload: bytes, *, timeout: float = 12.0,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    if command not in {int(value) for value in vault["commands"].values()}:
+        _fail(EXIT_REQUEST, "Box 14 vault command differs")
+    _check_content(client.status(), protocol)
+    before = _read_valid_mailbox(client, protocol)
+    owner = before.get("reward_owner")
+    if not isinstance(owner, Mapping):
+        _fail(EXIT_PROTOCOL, "Box 14 vault owner was not published")
+    if (before["phase_name"] != "IDLE" or owner["window_name"] != "CLOSED"
+            or int(owner["pending_sequence"]) != 0):
+        _fail(EXIT_REQUEST, "Windows vault is available only in a normal field")
+    sequence = (int(before["last_accepted_sequence"]) + 1) & 0xFFFFFFFF
+    if sequence == 0:
+        sequence = 1
+    request, actual = build_runtime_request(
+        before, protocol, command, payload, sequence=sequence,
+    )
+    if actual != sequence or len(payload) > 60:
+        _fail(EXIT_PROTOCOL, "Box 14 vault request envelope differs")
+    request_buffer = bytearray(request)
+    salt = (int(before["rejected_count"]) + 1) & 0xFFFFFFFF or 1
+    struct.pack_into("<I", request_buffer, 80, salt)
+    struct.pack_into("<I", request_buffer, 84,
+                     zlib.crc32(request_buffer[:84]) & 0xFFFFFFFF)
+    request = bytes(request_buffer)
+    mailbox = protocol["mailbox"]
+    address = int(mailbox["address"]) + int(mailbox["request_offset"])
+    written = [
+        client.write_memory(address + 92, b"\0\0\0\0"),
+        client.write_memory(address, request[:88]),
+        client.write_memory(address + 88, request[88:92]),
+        client.write_memory(address + 92, request[92:96]),
+    ]
+    deadline = time.monotonic() + timeout
+    after: dict[str, Any] | None = None
+    while time.monotonic() < deadline:
+        candidate = _read_valid_mailbox(client, protocol)
+        if _catalog_response_is_fresh(before, candidate, sequence):
+            after = candidate
+            break
+        time.sleep(0.025)
+    if after is None:
+        _fail(EXIT_TRANSPORT, "Box 14 vault response timed out",
+              detail="owner-only batch pending state was retained")
+    if int(after["response_status"]) == 3:
+        error = int(after["response_error"])
+        _fail(EXIT_REQUEST, "ROM rejected the Box 14 vault operation",
+              detail=ROM_ERROR_NAMES.get(error, "UNKNOWN"))
+    owner = after["reward_owner"]
+    payload_hash = zlib.crc32(payload) & 0xFFFFFFFF
+    if (int(after["response_status"]) != 2
+            or int(after["response_error"]) != 0
+            or int(after["last_command"]) != command
+            or int(after["last_accepted_sequence"]) != sequence
+            or int(owner["last_request_sequence"]) != sequence
+            or int(owner["last_payload_hash"]) != payload_hash
+            or int(owner["last_command"]) != command
+            or owner["journal_phase_name"] != "COMMITTED"
+            or owner["window_name"] != "CLOSED"
+            or (int(owner["flags"]) & 0x0010) == 0):
+        _fail(EXIT_REQUEST, "Box 14 vault acceptance differs",
+              detail="owner-only batch pending state was retained")
+    return {
+        "before": before, "after": after,
+        "accepted_sequence": sequence,
+        "write_operations": len(written),
+        "write_bytes": sum(written),
+    }
+
+
+def _read_box14_output(
+    client: NciClient, vault: Mapping[str, Any], state: Mapping[str, Any],
+    command: int, slot: int | None,
+) -> dict[str, Any]:
+    raw = client.read_memory(_vault_transfer_address(vault),
+                             int(vault["transfer"]["size"]))
+    return parse_box14_transfer(
+        raw, vault, session_nonce=int(state["session_nonce"]),
+        command=command, slot=slot,
+    )
+
+
+def box14_scan(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    command = int(vault["commands"]["vault_scan"])
+    result = _send_box14_request(client, protocol, command, b"")
+    output = _read_box14_output(
+        client, vault, result["after"], command, 0xFF,
+    )
+    if output["record"]:
+        _fail(EXIT_PROTOCOL, "Box 14 scan unexpectedly published a record")
+    return {**output, "accepted_sequence": result["accepted_sequence"]}
+
+
+def box14_export(
+    client: NciClient, protocol: Mapping[str, Any], slot: int,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    slot = _exact_int(slot, 0, 29, "Box 14 slot")
+    command = int(vault["commands"]["vault_export"])
+    result = _send_box14_request(client, protocol, command, bytes((slot,)))
+    output = _read_box14_output(
+        client, vault, result["after"], command, slot,
+    )
+    if len(output["record"]) != 80:
+        _fail(EXIT_PROTOCOL, "Box 14 export record differs")
+    return {**output, "accepted_sequence": result["accepted_sequence"]}
+
+
+def box14_remove(
+    client: NciClient, protocol: Mapping[str, Any], slot: int,
+    record_crc32: int,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    slot = _exact_int(slot, 0, 29, "Box 14 slot")
+    command = int(vault["commands"]["vault_remove"])
+    payload = struct.pack("<BI", slot, record_crc32)
+    result = _send_box14_request(client, protocol, command, payload)
+    output = _read_box14_output(
+        client, vault, result["after"], command, slot,
+    )
+    return {**output, "accepted_sequence": result["accepted_sequence"]}
+
+
+def box14_import(
+    client: NciClient, protocol: Mapping[str, Any], slot: int, record: bytes,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    slot = _exact_int(slot, 0, 29, "Box 14 slot")
+    if len(record) != 80:
+        _fail(EXIT_PROTOCOL, "Box 14 import record size differs")
+    address = _vault_transfer_address(vault)
+    current = client.read_memory(address, int(vault["transfer"]["size"]))
+    generation = struct.unpack_from("<I", current, 12)[0]
+    inverse = struct.unpack_from("<I", current, 16)[0]
+    if generation == 0 or inverse != (~generation & 0xFFFFFFFF):
+        generation = secrets.randbits(32) or 1
+    else:
+        generation = (generation + 1) & 0xFFFFFFFF or 1
+    state = _read_valid_mailbox(client, protocol)
+    transfer = _build_box14_input_transfer(
+        vault, session_nonce=int(state["session_nonce"]), slot=slot,
+        generation=generation, record=record,
+    )
+    transfer_write = _write_box14_transfer(client, vault, transfer)
+    command = int(vault["commands"]["vault_import"])
+    record_crc = zlib.crc32(record) & 0xFFFFFFFF
+    payload = struct.pack("<BII", slot, generation, record_crc)
+    result = _send_box14_request(client, protocol, command, payload)
+    output = _read_box14_output(
+        client, vault, result["after"], command, slot,
+    )
+    if output["record"] != record:
+        _fail(EXIT_PROTOCOL, "Box 14 imported record response differs")
+    return {
+        **output, "accepted_sequence": result["accepted_sequence"],
+        "transfer_write_operations": transfer_write["write_operations"],
+        "transfer_write_bytes": transfer_write["write_bytes"],
+    }
+
+
+def _vault_record_summary(
+    record: Mapping[str, Any], catalog: Mapping[str, Any],
+) -> dict[str, Any]:
+    metadata = record["metadata"]
+    species_id = int(metadata.get("species_id", 0))
+    held_item_id = int(metadata.get("held_item_id", 0))
+    try:
+        species_name = catalog_get(catalog, "species", species_id)["entry"]["name"]
+    except CliError:
+        species_name = None
+    try:
+        held_name = (catalog_get(catalog, "item", held_item_id)["entry"]["name"]
+                     if held_item_id else None)
+    except CliError:
+        held_name = None
+    return {
+        "record_id": record["id"], "state": record["state"],
+        "species_id": species_id, "species_name": species_name,
+        "held_item_id": held_item_id, "held_item_name": held_name,
+        "nature_id": metadata.get("nature_id"),
+        "raw_sha256": record["raw_sha256"],
+        "source_slot": record["source_slot"],
+        "abi_sha256": record["abi_sha256"],
+    }
+
+
+def windows_vault_status(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    scan = box14_scan(client, protocol)
+    manifest = _vault_load_manifest()
+    _vault_refresh_manifest_metadata(manifest)
+    pending = _vault_load_pending()
+    catalog = load_catalog(protocol)
+    abi = str(vault["abi"]["sha256"])
+    records = [_vault_record_summary(record, catalog)
+               for record in manifest["records"]]
+    return {
+        "stage": int(protocol["stage"]),
+        "box_display_number": 14,
+        "box14_occupied_count": len(scan["occupied_slots"]),
+        "box14_occupied_slots": scan["occupied_slots"],
+        "windows_record_count": len(records),
+        "compatible_available_count": sum(
+            record["state"] == "available" and record["abi_sha256"] == abi
+            for record in records
+        ),
+        "records": records,
+        "pending": None if pending is None else {
+            "operation": pending["operation"],
+            "completed": sum(bool(row["done"]) for row in pending["rows"]),
+            "total": len(pending["rows"]),
+        },
+        "abi_sha256": abi,
+        "exact_raw_bytes": 80,
+        "owner_only_storage": str(_vault_root()),
+        "host_direct_save_party_or_box_write": False,
+    }
+
+
+def _new_vault_record(
+    protocol: Mapping[str, Any], slot: int, raw: bytes,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    return {
+        "id": secrets.token_hex(16),
+        "state": "pending_deposit",
+        "abi_sha256": str(vault["abi"]["sha256"]),
+        "raw_sha256": hashlib.sha256(raw).hexdigest(),
+        "raw_crc32": f"{zlib.crc32(raw) & 0xFFFFFFFF:08X}",
+        "source_slot": slot,
+        "source_stage": int(protocol["stage"]),
+        "source_rom_sha256": str(protocol["rom"]["sha256"]),
+        "created_unix": int(time.time()),
+        "metadata": decode_box_mon_metadata(raw),
+    }
+
+
+def windows_vault_deposit(
+    client: NciClient, protocol: Mapping[str, Any],
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    abi = str(vault["abi"]["sha256"])
+    pending = _vault_load_pending()
+    manifest = _vault_load_manifest()
+    _vault_refresh_manifest_metadata(manifest)
+    if pending is not None and pending["operation"] != "deposit":
+        _fail(EXIT_REQUEST, "a Windows vault withdrawal must be resumed first")
+    if pending is None:
+        scan = box14_scan(client, protocol)
+        if not scan["occupied_slots"]:
+            return {
+                "batch_status": "COMPLETE", "moved_count": 0,
+                "box14_empty": True, "records": [], "resumed": False,
+            }
+        rows: list[dict[str, Any]] = []
+        for slot in scan["occupied_slots"]:
+            exported = box14_export(client, protocol, slot)
+            raw = exported["record"]
+            record = _new_vault_record(protocol, slot, raw)
+            _vault_write_record(record["id"], raw)
+            rows.append({
+                "record_id": record["id"], "slot": slot,
+                "raw_sha256": record["raw_sha256"],
+                "raw_crc32": record["raw_crc32"],
+                "done": False, "record": record,
+            })
+        pending = {
+            "schema_version": 1, "operation": "deposit",
+            "abi_sha256": abi, "created_unix": int(time.time()),
+            "rows": rows,
+        }
+        _vault_write_pending(pending)
+        known = {record["id"] for record in manifest["records"]}
+        manifest["records"].extend(
+            row["record"] for row in rows if row["record_id"] not in known
+        )
+        _vault_write_manifest(manifest)
+        resumed = False
+    else:
+        if pending["abi_sha256"] != abi:
+            _fail(EXIT_REQUEST, "pending deposit ABI differs from the loaded ROM")
+        known = {record["id"] for record in manifest["records"]}
+        changed = False
+        for row in pending["rows"]:
+            if row["record_id"] not in known:
+                manifest["records"].append(row["record"])
+                known.add(row["record_id"])
+                changed = True
+            _vault_read_record(row["record"])
+        if changed:
+            _vault_write_manifest(manifest)
+        resumed = True
+
+    moved: list[dict[str, Any]] = []
+    catalog = load_catalog(protocol)
+    for row in pending["rows"]:
+        if row["done"]:
+            continue
+        raw = _vault_read_record(row["record"])
+        scan = box14_scan(client, protocol)
+        if row["slot"] in scan["occupied_slots"]:
+            current = box14_export(client, protocol, row["slot"])["record"]
+            if hashlib.sha256(current).hexdigest() != row["raw_sha256"]:
+                _fail(EXIT_REQUEST, "Box 14 slot changed after Windows persistence")
+            box14_remove(
+                client, protocol, row["slot"], zlib.crc32(raw) & 0xFFFFFFFF,
+            )
+        row["done"] = True
+        for record in manifest["records"]:
+            if record["id"] == row["record_id"]:
+                record["state"] = "available"
+                moved.append(_vault_record_summary(record, catalog))
+                break
+        _vault_write_manifest(manifest)
+        _vault_write_pending(pending)
+    _vault_fsync_unlink(_vault_pending_path())
+    final_scan = box14_scan(client, protocol)
+    if final_scan["occupied_slots"]:
+        _fail(EXIT_REQUEST, "Box 14 was not empty after the completed deposit")
+    return {
+        "batch_status": "COMPLETE",
+        "moved_count": len(pending["rows"]),
+        "box14_empty": True,
+        "records": moved,
+        "resumed": resumed,
+        "held_items_moved_with_mons": True,
+        "exact_raw_bytes_per_mon": 80,
+        "host_direct_save_party_or_box_write": False,
+    }
+
+
+def windows_vault_withdraw(
+    client: NciClient, protocol: Mapping[str, Any],
+    record_ids: Sequence[str] | None = None,
+) -> dict[str, Any]:
+    vault = _box14_vault_protocol(protocol)
+    abi = str(vault["abi"]["sha256"])
+    pending = _vault_load_pending()
+    manifest = _vault_load_manifest()
+    _vault_refresh_manifest_metadata(manifest)
+    if pending is not None and pending["operation"] != "withdraw":
+        _fail(EXIT_REQUEST, "a Windows vault deposit must be resumed first")
+    records_by_id = {record["id"]: record for record in manifest["records"]}
+    if pending is None:
+        available = [record for record in manifest["records"]
+                     if record["state"] == "available"
+                     and record["abi_sha256"] == abi]
+        if record_ids:
+            requested = list(dict.fromkeys(record_ids))
+            if len(requested) != len(record_ids):
+                _fail(EXIT_REQUEST, "duplicate Windows vault record ID")
+            selected: list[dict[str, Any]] = []
+            for record_id in requested:
+                record = records_by_id.get(record_id)
+                if (record is None or record["state"] != "available"
+                        or record["abi_sha256"] != abi):
+                    _fail(EXIT_REQUEST, "requested Windows vault record is unavailable")
+                selected.append(record)
+        else:
+            selected = available
+        if not selected:
+            return {
+                "batch_status": "COMPLETE", "moved_count": 0,
+                "records": [], "resumed": False,
+            }
+        scan = box14_scan(client, protocol)
+        empty = [slot for slot in range(30)
+                 if slot not in scan["occupied_slots"]]
+        if len(selected) > len(empty):
+            _fail(EXIT_REQUEST, "Box 14 has insufficient empty slots")
+        rows = [{
+            "record_id": record["id"], "slot": empty[index],
+            "raw_sha256": record["raw_sha256"],
+            "raw_crc32": record["raw_crc32"], "done": False,
+        } for index, record in enumerate(selected)]
+        pending = {
+            "schema_version": 1, "operation": "withdraw",
+            "abi_sha256": abi, "created_unix": int(time.time()),
+            "rows": rows,
+        }
+        _vault_write_pending(pending)
+        resumed = False
+    else:
+        if pending["abi_sha256"] != abi:
+            _fail(EXIT_REQUEST, "pending withdrawal ABI differs from the loaded ROM")
+        resumed = True
+
+    moved: list[dict[str, Any]] = []
+    catalog = load_catalog(protocol)
+    for row in pending["rows"]:
+        if row["done"]:
+            continue
+        record = records_by_id.get(row["record_id"])
+        if record is None:
+            _fail(EXIT_CONFIG, "pending Windows withdrawal record is unavailable")
+        raw = _vault_read_record(record)
+        scan = box14_scan(client, protocol)
+        if row["slot"] in scan["occupied_slots"]:
+            current = box14_export(client, protocol, row["slot"])["record"]
+            if current != raw:
+                _fail(EXIT_REQUEST, "Box 14 withdrawal destination changed")
+        else:
+            box14_import(client, protocol, row["slot"], raw)
+        row["done"] = True
+        _vault_write_pending(pending)
+        moved.append(_vault_record_summary(record, catalog))
+
+    completed_ids = {row["record_id"] for row in pending["rows"] if row["done"]}
+    manifest["records"] = [record for record in manifest["records"]
+                           if record["id"] not in completed_ids]
+    _vault_write_manifest(manifest)
+    for record_id in completed_ids:
+        _vault_fsync_unlink(_vault_record_path(record_id))
+    _vault_fsync_unlink(_vault_pending_path())
+    final_scan = box14_scan(client, protocol)
+    for row in pending["rows"]:
+        if row["slot"] not in final_scan["occupied_slots"]:
+            _fail(EXIT_REQUEST, "withdrawn Box 14 slot is unexpectedly empty")
+    return {
+        "batch_status": "COMPLETE",
+        "moved_count": len(pending["rows"]),
+        "records": moved,
+        "destination_box_display_number": 14,
+        "destination_slots": [row["slot"] for row in pending["rows"]],
+        "resumed": resumed,
+        "held_items_moved_with_mons": True,
+        "exact_raw_bytes_per_mon": 80,
+        "host_direct_save_party_or_box_write": False,
+    }
+
+
 def session_guide(
     client: NciClient, protocol: Mapping[str, Any],
 ) -> dict[str, Any]:
@@ -3825,7 +4616,7 @@ def session_guide(
         steps.append({
             "order": 8, "category": "write",
             "command": "bank item|mon|batch ... --json",
-            "purpose": "NPC前IDLEで通常bag／party／boxへ順次生成",
+            "purpose": "任意mapの通常fieldでbag／party／boxへ順次生成",
         })
     return {
         "stage": int(protocol["stage"]),
@@ -4064,7 +4855,7 @@ def _add_json_flag(parser: argparse.ArgumentParser) -> None:
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="vega-codex-battle", description=__doc__)
     parser.add_argument(
-        "--version", action="version", version="vega-codex-battle 2.4.1",
+        "--version", action="version", version="vega-codex-battle 2.5.1",
     )
     commands = parser.add_subparsers(dest="command", required=True)
 
@@ -4168,7 +4959,7 @@ def _parser() -> argparse.ArgumentParser:
     _add_json_flag(wait_parser)
 
     bank_parser = commands.add_parser(
-        "bank", help="NPC前Windows対戦カタログから通常収納へ生成",
+        "bank", help="Windows対戦カタログから任意mapの通常収納へ生成",
     )
     bank_commands = bank_parser.add_subparsers(
         dest="bank_command", required=True,
@@ -4206,6 +4997,26 @@ def _parser() -> argparse.ArgumentParser:
     bank_batch_parser.add_argument("--file", required=True, type=Path)
     bank_batch_parser.add_argument("--start-index", type=int, default=0)
     _add_json_flag(bank_batch_parser)
+
+    vault_parser = commands.add_parser(
+        "vault", help="Box 14とWindows固有個体庫をexact移動",
+    )
+    vault_commands = vault_parser.add_subparsers(
+        dest="vault_command", required=True,
+    )
+    vault_status_parser = vault_commands.add_parser(
+        "status", help="Box 14とWindows固有個体の状態を表示",
+    )
+    _add_json_flag(vault_status_parser)
+    vault_deposit_parser = vault_commands.add_parser(
+        "deposit", help="Box 14の全個体をWindowsへ移動",
+    )
+    _add_json_flag(vault_deposit_parser)
+    vault_withdraw_parser = vault_commands.add_parser(
+        "withdraw", help="Windows個体をBox 14へ移動（省略時は全体）",
+    )
+    vault_withdraw_parser.add_argument("record_ids", nargs="*")
+    _add_json_flag(vault_withdraw_parser)
 
     reward_parser = commands.add_parser(
         "reward", help="Stage 45以降のmatch-bound任意報酬",
@@ -4278,6 +5089,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         command_label += "." + str(args.reward_command)
     elif args.command == "bank":
         command_label += "." + str(args.bank_command)
+    elif args.command == "vault":
+        command_label += "." + str(args.vault_command)
     elif args.command == "session":
         command_label += "." + str(args.session_command)
     try:
@@ -4386,6 +5199,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         elif args.command == "bank" and args.bank_command == "batch":
             _emit(command_label, "ok", **catalog_access_batch(
                 client, protocol, args.file, start_index=args.start_index,
+            ))
+        elif args.command == "vault" and args.vault_command == "status":
+            _emit(command_label, "ok", **windows_vault_status(client, protocol))
+        elif args.command == "vault" and args.vault_command == "deposit":
+            _emit(command_label, "ok", **windows_vault_deposit(client, protocol))
+        elif args.command == "vault" and args.vault_command == "withdraw":
+            _emit(command_label, "ok", **windows_vault_withdraw(
+                client, protocol, args.record_ids,
             ))
         elif args.command == "reward" and args.reward_command == "status":
             _emit(command_label, "ok", **reward_status(client, protocol))

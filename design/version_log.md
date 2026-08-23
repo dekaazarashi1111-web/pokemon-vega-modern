@@ -886,3 +886,14 @@
   - CLI 2.4.1で物理境界拒否後の同一sequence再評価、旧応答識別、request staging前の旧commit marker無効化を追加した。
   - sequence 1〜51、response ACCEPTED、pending 0、journal COMMITTEDを公開ownerで確認し、ROM/save ABIは変更していない。
 - Verify: 実iPad 51/51 commit PASS。`python3 -m unittest -v tests.test_windows_battle_catalog` 10 tests、`python3 -m py_compile tools/vega_codex_battle.py`、installer、`bank status`、task graph、private guard、`git diff --check` PASS。
+
+## 2026-08-23T18:28:05+09:00
+
+- Version: `post-v1.4.0-stage47`（v1.4.0 release identityとStage 27〜46は不変）
+- Commit: `-`（本エントリを含むT30完了コミット）
+- Task: `T30` / Box 14とWindows固有個体庫を双方向exact移動へ接続する
+- Summary:
+  - Box 14のCFRU展開済み80-byte `BoxPokemon`原本をowner-only Windows blobへdepositし、ABI互換ROMからwithdrawできるStage 47とCLI 2.5.1を追加した。
+  - Windows先行永続化、slot単位通常save、pending再開、GBA確定後だけの在庫減算により、持ち物を含む個体原本を再生成せず移動する。
+  - 預け入れ・引き出し・Windows catalog生成のNPC／map位置条件を廃止し、任意mapの通常fieldへ広げた。実iPadのBox 14から6体をWindowsへ移し、Box 14空・在庫6・pendingなしで終了した。
+- Verify: Stage 47 build/check、libmGBA quick 7/7・warnings 0、focused 17 tests、0／1／6／30体exact往復、応答喪失再開、容量／ABI／破損拒否、実iPad doctor 13項目・6体deposit、blob SHA-256／mode、BPS往復、declared span外0、ROM/RAM/save/hook overlap 0、task graph/private guard/diff check PASS。Stage 47 SHA-256 `fccc882e7b11315a36b146715396d63348b726268e7560a99a55f4ccbad3d3c9`、CRC32 `51C5114B`。

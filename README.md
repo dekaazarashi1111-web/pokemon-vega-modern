@@ -114,8 +114,10 @@ make codex-battle-runtime-clean-rebuild # clean ROMからStage43→Stage44とcle
 make codex-battle-runtime-clean-rebuild-check # clean起点の両BPS・exact-ROM・iPad証跡を再照合
 make codex-battle-rewards # Stage44へmatch-bound任意報酬を結合してStage45を生成
 make codex-battle-rewards-check # exactly-once journal・通常bag/party/PC・mGBAを副作用なしで再照合
-make windows-battle-catalog # Stage45へNPC前Windowsカタログ入口を結合してStage46を生成
+make windows-battle-catalog # Stage45へWindowsカタログ入口を結合してStage46を生成
 make windows-battle-catalog-check # 1/6/30件batch・境界拒否・報酬/PC回帰を副作用なしで再照合
+make windows-box14-vault # Stage46へBox14⇔Windows固有個体庫を結合してStage47を生成
+make windows-box14-vault-check # raw80往復・通常save・catalog/reward回帰を副作用なしで再照合
 make codex-battle-ipad-bootstrap # ROM自身の通常保存を2回通し、両save slotをfresh-core検証したiPad QA saveを.localへ生成
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
@@ -250,11 +252,20 @@ Summary UIで保存値を表示する。PC StorageがEWRAM cacheをclearして�
 `tools/codex_skills/vega-codex-battle/SKILL.md`を正とする。
 
 追加stage 46は、Windows上のcanonical catalogを減算しない対戦用templateとして扱う。
-Codex対戦NPC前の通常field、runtime `IDLE`、reward window `CLOSED`の時だけ、`bank item`、
+runtime `IDLE`、reward window `CLOSED`の時に、`bank item`、
 `bank mon`、`bank batch`を通常`AddBagItem`／`CreateMon`／`GiveMon`とT28のexactly-once journalへ
 接続する。GBAのPCは14箱×30枠のままとし、不要個体はT19のSELECT複数選択・SELECT+START一括逃がしで
 整理する。batchは1件ずつcommitし、最初の失敗位置を返して再開できる。運用は
 `docs/WINDOWS_BATTLE_CATALOG_JA.md`を正とする。
+
+追加stage 47は、Box 14をWindowsとの固有個体移動boxとして予約する。`vault deposit`はBox 14の
+全個体をCFRUの展開済みBoxPokemon 80 byte原本と持ち物のままowner-only Windows storageへ先に永続化し、
+1slotずつ通常saveしてBox 14から消す。`vault withdraw`は逆順で互換個体をBox 14へ戻し、ROM側の
+通常save成功後にWindows recordを減算する。中断時はowner-only batchから再開し、今後のROMも
+Species／Move／Item／Ability namespaceを含むABI fingerprintが同じなら利用できる。Stage 47では
+預け入れ・引き出し・Windows catalog生成のNPC／map位置条件を廃止し、PC・会話・戦闘を閉じた
+任意mapの通常fieldで利用できる。対戦後報酬もNPC位置には依存しない。運用は
+`docs/WINDOWS_BOX14_VAULT_JA.md`を正とする。
 
 v1.4.0統合gateはstage 20→26のhash chainと全allocator overlap 0を確認したうえで、同じ最終
 stage 26を既存runnerへ渡す。自然new game・御三家3分岐、Kanto往復、Factory選択・交換・
