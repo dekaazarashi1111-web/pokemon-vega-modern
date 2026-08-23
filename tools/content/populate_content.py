@@ -10,7 +10,7 @@ import re
 import struct
 import unicodedata
 import zlib
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -306,10 +306,67 @@ def _physical_bindings(root: Path, map_rows: Sequence[Mapping[str, object]]) -> 
     ))
     if len(normal_maps) < len(tohoku_rows):
         raise PopulationError("not enough rooted Vega NORMAL maps for Tohoku binding")
-    # Select evenly across the rooted level curve instead of silently mapping
-    # every logical overlay to one convenient fixture map.
-    selected = [normal_maps[round(index * (len(normal_maps) - 1) / (len(tohoku_rows) - 1))]
-                for index in range(len(tohoku_rows))]
+    # Route overlays must follow the physical map-section identity.  The old
+    # level-curve assignment silently bound T501..T523 to unrelated maps,
+    # which made the right species appear under the wrong place name and left
+    # the real routes without their authored overlay.  Non-route design rows
+    # remain virtual ecology zones until their own physical host is authored.
+    stage09 = (root / STAGE09).read_bytes()
+    if len(stage09) != 32 * 1024 * 1024:
+        raise PopulationError("stage09 ROM size differs while binding Tohoku routes")
+
+    def u32(offset: int) -> int:
+        if offset < 0 or offset + 4 > len(stage09):
+            raise PopulationError("Tohoku map pointer read is outside Stage09")
+        return struct.unpack_from("<I", stage09, offset)[0]
+
+    def rom_offset(pointer: int) -> int:
+        offset = (pointer & ~1) - GBA_ROM_BASE
+        if offset < 0 or offset >= len(stage09):
+            raise PopulationError(f"Tohoku map pointer is outside Stage09: {pointer:#x}")
+        return offset
+
+    groups = rom_offset(u32(0x00054B0C))
+
+    def map_section(group: int, map_id: int) -> int:
+        group_table = rom_offset(u32(groups + group * 4))
+        header = rom_offset(u32(group_table + map_id * 4))
+        if header + 0x15 > len(stage09):
+            raise PopulationError("Tohoku MapHeader is truncated")
+        return stage09[header + 0x14]
+
+    by_section: dict[int, list[tuple[int, int, float, int]]] = defaultdict(list)
+    for candidate in normal_maps:
+        by_section[map_section(candidate[0], candidate[1])].append(candidate)
+    route_sections = {
+        **{f"T{number}": 0x65 + number - 501 for number in range(501, 521)},
+        "T521": 0x7C, "T522": 0x7A, "T523": 0x7D,
+    }
+    selected: list[tuple[int, int, float, int]] = []
+    used: set[tuple[int, int]] = set()
+    for index, logical in enumerate(tohoku_rows):
+        code = str(logical["logical_location_key"])
+        candidates = by_section.get(route_sections.get(code, -1), [])
+        if code in route_sections:
+            if len(candidates) != 1:
+                raise PopulationError(
+                    f"{code}: expected one encounter-bearing physical map section, "
+                    f"found {[(row[0], row[1]) for row in candidates]}"
+                )
+            physical = candidates[0]
+        else:
+            # Preserve the earlier one-to-one virtual-zone assignment only for
+            # names that do not yet have a dedicated physical map-section ID.
+            choices = [row for row in normal_maps if (row[0], row[1]) not in used]
+            if not choices:
+                raise PopulationError("Tohoku virtual ecology hosts are exhausted")
+            target = round(index * (len(normal_maps) - 1) / (len(tohoku_rows) - 1))
+            physical = min(
+                choices,
+                key=lambda row: (abs(normal_maps.index(row) - target), row[0], row[1]),
+            )
+        selected.append(physical)
+        used.add((physical[0], physical[1]))
     if len({(row[0], row[1]) for row in selected}) != len(selected):
         raise PopulationError("Tohoku physical binding is not one-to-one")
 
@@ -957,6 +1014,26 @@ def _raids(specials: Sequence[dict[str, str]], maps: Mapping[str, dict[str, obje
                 "presentation_profile": "SIMPLE_EVENT", "dedicated_map": "false", "custom_ui": "false",
                 "status": "ACTIVE", "notes": f"{region}; primary={primary}; {row['design_note']}",
             })
+    low_raids = (
+        ("TOHOKU_01", "T501", "SPECIES_KEY_CATERPIE", 5),
+        ("TOHOKU_02", "T503", "SPECIES_KEY_PIKACHU", 12),
+        ("TOHOKU_03", "T505", "SPECIES_KEY_EEVEE", 20),
+        ("KANTO_01", "K01", "SPECIES_KEY_RALTS", 35),
+        ("KANTO_02", "K26", "SPECIES_KEY_SHINX", 45),
+        ("KANTO_03", "K46", "SPECIES_KEY_RIOLU", 55),
+    )
+    for key, code, species_key, level in low_raids:
+        result.append({
+            "raid_key": f"RAID_KEY_LOW_{key}", "map_key": maps[code]["map_key"],
+            "species_key": species_key, "level": level,
+            "partner_pool_key": "TRAINER_POOL_KEY_BASIC", "shield_policy": "SHIELD_NONE",
+            "capture_policy": "REPEATABLE_NORMAL", "shared_capture_key": "NONE",
+            "reward_pool_key": "REWARD_POOL_KEY_RAID_LOW", "reward_repeatability": "REPEATABLE",
+            "claim_key": "NONE", "retry_policy": "FREE_AFTER_NON_CAPTURE",
+            "unlock_key": maps[code]["unlock_key"], "mechanic_policy": "RAID_DYNAMAX",
+            "presentation_profile": "SIMPLE_EVENT", "dedicated_map": "false", "custom_ui": "false",
+            "status": "ACTIVE", "notes": "Stage49 low-tier physical Raid host; normal wild table is unchanged",
+        })
     return result
 
 
@@ -1156,7 +1233,17 @@ def build_outputs(root: Path) -> dict[str, bytes]:
     outputs["content/activity_hooks.csv"] = _csv_bytes([
         "hook_key", "activity", "source_owner", "reward_key", "completion_semantics", "status", "notes",
     ], _activity_hooks())
-    flags = _flags(root, flag_count)
+    existing_flag_path = root / "manifests/flags.csv"
+    downstream_flags: list[dict[str, object]] = []
+    if existing_flag_path.is_file():
+        downstream_flags = [
+            dict(row) for row in _rows(existing_flag_path)
+            if row.get("owner") != TASK
+        ]
+    flags = sorted(
+        [*downstream_flags, *_flags(root, flag_count)],
+        key=lambda row: (int(str(row["id"]), 0), str(row["flag_key"])),
+    )
     outputs["manifests/flags.csv"] = _csv_bytes([
         "flag_key", "id", "owner", "scope", "status", "notes"
     ], flags)
@@ -1189,7 +1276,8 @@ def _content_report(counts: Mapping[str, int], maps: Sequence[Mapping[str, objec
                     manifests: Mapping[str, Sequence[Mapping[str, object]]], metadata: Mapping[str, Any]) -> bytes:
     by_region = Counter(row["region"] for row in maps if row["logical_location_key"] != "VEGA_NATIVE")
     field_allowed = Counter((row["region"], row["field_pc_allowed"]) for row in maps)
-    shared = {row["shared_capture_key"] for row in manifests["raid_encounters.csv"]}
+    shared = {row["shared_capture_key"] for row in manifests["raid_encounters.csv"]
+              if row["shared_capture_key"] != "NONE"}
     reviewed = [row for row in maps if row["logical_location_key"] != "VEGA_NATIVE"]
     review_lines = "\n".join(
         f"| {row['region']} | {row['logical_location_key']} | {row['map_kind']} | "

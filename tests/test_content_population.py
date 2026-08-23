@@ -28,8 +28,9 @@ class ContentPopulationTest(unittest.TestCase):
         self.assertEqual(self.fixture["physical_bindings"], {"TOHOKU": 49, "KANTO": 47})
         self.assertEqual(len(self.manifests["kanto_encounters.csv"]), 541)
         self.assertEqual(len(self.manifests["research_encounters.csv"]), 1082)
-        self.assertEqual(len(self.manifests["raid_encounters.csv"]), 250)
-        shared = {row["shared_capture_key"] for row in self.manifests["raid_encounters.csv"]}
+        self.assertEqual(len(self.manifests["raid_encounters.csv"]), 256)
+        shared = {row["shared_capture_key"] for row in self.manifests["raid_encounters.csv"]
+                  if row["shared_capture_key"] != "NONE"}
         self.assertEqual(len(shared), 125)
         maps = rows(self.outputs["content/maps.csv"])
         bindings = rows(self.outputs["content/map_bindings.csv"])
@@ -40,6 +41,24 @@ class ContentPopulationTest(unittest.TestCase):
             (first_route["group_id"], first_route["map_id"]), ("3", "19")
         )
         self.assertIn("Lv3.3", first_route["notes"])
+        route_bindings = {
+            row["logical_location_key"]: (int(row["group_id"]), int(row["map_id"]))
+            for row in bindings if row["region"] == "TOHOKU"
+        }
+        expected_routes = {
+            "T501": (3, 19), "T502": (3, 20), "T503": (3, 21),
+            "T504": (3, 44), "T505": (3, 23), "T506": (3, 24),
+            "T507": (3, 25), "T508": (3, 26), "T509": (3, 27),
+            "T510": (3, 28), "T511": (3, 29), "T512": (3, 31),
+            "T513": (3, 30), "T514": (3, 32), "T515": (3, 33),
+            "T516": (3, 34), "T517": (3, 35), "T518": (3, 36),
+            "T519": (3, 37), "T520": (3, 42), "T521": (3, 43),
+            "T522": (3, 41), "T523": (3, 38),
+        }
+        self.assertEqual({key: route_bindings[key] for key in expected_routes}, expected_routes)
+        low_raids = [row for row in self.manifests["raid_encounters.csv"]
+                     if row["raid_key"].startswith("RAID_KEY_LOW_")]
+        self.assertEqual(sorted(int(row["level"]) for row in low_raids), [5, 12, 20, 35, 45, 55])
         league = next(row for row in maps if row["logical_location_key"] == "K42")
         self.assertEqual(league["unlock_key"], "KANTO_LEAGUE")
         self.assertEqual(league["warning_key"], "WARNING_KANTO_LEAGUE")

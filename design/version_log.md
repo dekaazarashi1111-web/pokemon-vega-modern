@@ -928,3 +928,14 @@
   - Stage48 ROMをiPadの既存RetroArch ROMディレクトリへversioned filenameで新規配置した。
   - 既存ROM、save、savestateを変更せず、content起動やRetroArch操作も行っていない。
 - Verify: fixed host key付きWi-Fi SSH、同名不在、iPad側33,554,432 bytes、SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`一致、private guard、diff check PASS。
+
+## 2026-08-24T08:20:39+09:00
+
+- Version: `post-v1.4.0-stage49`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Task: `USER-20260824-STAGE48-WORLD-ITEM-RECOVERY` / Stage 48のworld・item境界を総合復旧する
+- Summary:
+  - T17 serializerで失われたカントー一般NPC、回復／店service、看板／ごみ箱を安全scriptへ復旧し、全678 mapとtrainer 1,302戦／6,490 memberを再監査した。
+  - T501〜T523の物理wild束縛をStage09 map-sectionへ固定し、95-row／294 candidate表を現行ROMへ反映した。低レベルRaid 6件を既存Raid ownerへ追加した。
+  - stock Mystery2 accessorの旧item-count clampを0..998対応へ修正し、Focus Sashの満タン判定と正式消費を実ROMで回復した。
+- Verify: Stage49 build/check、libmGBA 2 process、focused 34 tests、全678 map graph、1,302 trainer／6,490 member、BPS完全往復、allocator overlap 0、declared span外0、task graph/private guard/diff check PASS。Stage49 SHA-256 `780504cda0884bf53ed88f30fce18cbb54985740162210cb4724df0c6570ef5a`。

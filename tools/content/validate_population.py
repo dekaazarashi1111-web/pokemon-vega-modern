@@ -232,16 +232,26 @@ def collect_population_errors(root: Path,
             errors.append(f"research_encounters.csv:{line}: Kanto RESEARCH below 68")
 
     raids = rows["raid_encounters.csv"]
-    raid_shared = {row["shared_capture_key"] for row in raids}
-    raid_shared_counts = Counter(row["shared_capture_key"] for row in raids)
-    if len(raids) != 250 or len(raid_shared) != 125 or set(raid_shared_counts.values()) != {2}:
+    high_raids = [row for row in raids if row["unlock_key"] == "RAID_HIGH_UNLOCKED"]
+    low_raids = [row for row in raids if row["raid_key"].startswith("RAID_KEY_LOW_")]
+    raid_shared = {row["shared_capture_key"] for row in high_raids}
+    raid_shared_counts = Counter(row["shared_capture_key"] for row in high_raids)
+    if len(high_raids) != 250 or len(raid_shared) != 125 or set(raid_shared_counts.values()) != {2}:
         errors.append("raid_encounters.csv: exact two-region rows for 125 shared captures required")
+    if len(low_raids) != 6 or sorted(int(row["level"]) for row in low_raids) != [5, 12, 20, 35, 45, 55]:
+        errors.append("raid_encounters.csv: exact six Stage49 low-tier Raid rows required")
     _check_refs(raids, {"map_key": maps, "species_key": species}, "raid_encounters.csv", errors)
-    for line, row in enumerate(raids, 2):
+    for line, row in enumerate(high_raids, 2):
         if (row["unlock_key"] != "RAID_HIGH_UNLOCKED" or row["capture_policy"] != "SHARED_ONCE"
                 or row["presentation_profile"] != "SIMPLE_EVENT" or row["dedicated_map"] != "false"
                 or row["custom_ui"] != "false"):
             errors.append(f"raid_encounters.csv:{line}: high-raid/simple-event boundary violation")
+    for line, row in enumerate(low_raids, 2):
+        if (row["capture_policy"] != "REPEATABLE_NORMAL" or row["shared_capture_key"] != "NONE"
+                or row["shield_policy"] != "SHIELD_NONE" or row["reward_repeatability"] != "REPEATABLE"
+                or row["presentation_profile"] != "SIMPLE_EVENT" or row["dedicated_map"] != "false"
+                or row["custom_ui"] != "false"):
+            errors.append(f"raid_encounters.csv:{line}: low-raid/simple-event boundary violation")
     research_shared = Counter(row["shared_capture_key"] for row in research if row["shared_capture_key"] != "NONE")
     if not set(research_shared) <= raid_shared or set(research_shared.values()) != {2}:
         errors.append("research_encounters.csv: represented special-family keys must occur once per region")
@@ -331,7 +341,7 @@ def collect_population_errors(root: Path,
     _check_refs(rewards, {"species_key": species}, "reward_encounters.csv", errors)
     if len(rewards) != 24 or Counter(row["tier"] for row in rewards) != Counter({"HABITAT": 6, "TYPE": 6, "RARE": 6, "RANDOM": 6}):
         errors.append("reward_encounters.csv: expected six rows in each of four tiers")
-    raid_species = {row["species_key"] for row in raids}
+    raid_species = {row["species_key"] for row in high_raids}
     for line, row in enumerate(rewards, 2):
         if (row["species_key"] in raid_species or row["max_uncaught_rerolls"] != "10"
                 or any(row[field] != "DISABLED" for field in ("exp_ev_money_policy", "item_theft_policy", "drop_policy", "chain_policy"))

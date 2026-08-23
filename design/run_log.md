@@ -2177,3 +2177,26 @@
 - Commit: `-`（本エントリを含む実機ROM転送証跡コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでGBAファイル1件だけを送信した。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-24T08:20:39+09:00
+
+- Task: `USER-20260824-STAGE48-WORLD-ITEM-RECOVERY` / Stage 48のworld・item境界を総合復旧する
+- Status: DONE
+- Summary:
+  - Stage48 SHA-256 `b8244d5d...`を固定して678 mapを走査し、T17 serializerがFireRed由来のobject 1,137件、bg event 539件、coord event 159件を落としていたことを特定した。FireRed story／hidden item scriptを取り込まず、採択済み`LOCAL_NPC`と通常看板だけをproject所有scriptへ結び直し、一般NPC 688、看護師12、店員15、看板360、ジムごみ箱15をStage49へ復旧した。object上限で15件を明示省略し、trainer／warp／coordは保持した。
+  - T501〜T523の野生overlayが平均level順で無関係な物理mapへ束縛されていたため、Stage09 map-section IDによるexact一対一束縛へ変更した。T501=`3/19`、T511=`3/29`、T523=`3/38`を含む95-row／294 candidate表を現行Stage49へ再直列化し、通常wild tableは変更していない。
+  - Focus Sash ID897の40-byte rowは正しかったが、stock `ItemId_GetMystery2`が旧item-count sanitizerで897をITEM_NONEへclampしていた。0..998境界付き40-byte accessorへexpected-byte hookし、mGBAでhold effect 39／param 100／Mystery2 1／SecondaryId 0、満タンtrue、99/100・HP1・未所持false、正式`atk6A_removeitem`消費を確認した。
+  - 既存250 high Raidを保持し、Lv.5／12／20／35／45／55の6 low Raidをmanifestへ追加した。5地点はNPC、既にobject pressureが高い`3/21`は足元調査hostとし、CFRUの既存finite Raid ownerへ接続した。
+  - trainer 1,302戦／party 1,302／member 6,490を全件走査し、command opcode、target ID、party pointer、member count 1..6、level／Species／Move／Item範囲をPASSした。シンイチは`ENC_TOHOKU_REF_0391`／ID299へ一意に束縛され、Stage49でtrainer byte変更は0。T17 root serializerと回帰runnerのEV=0／T35 proxy誤判定も修正した。
+- Files changed:
+  - task/content/runtime: `tasks/USER_20260824_STAGE48_WORLD_ITEM_RECOVERY.md`、`design/tasks_next.md`、`content/map_bindings.csv`、`manifests/raid_encounters.csv`、`tools/content/{populate_content,validate_population}.py`、`overlays/qol_production/qol_production.{c,h}`、`tools/regression/{rom_runtime,model}.py`、`tools/world_item_recovery.py`。
+  - build/QA: `scripts/{build_qol_production,build_world_item_recovery}.py`、`tools/mgba_{regression,world_item_recovery}_smoke.c`、`tests/test_{content_population,qol_production,regression,world_item_recovery}.py`、関連fixture／report。
+  - docs/state: `design/{current_state,run_log,version_log}.md`。Git管理外再生成物はStage49 ROM、allocation、metadata、mGBA fixture、Stage48差分／clean直接BPS、world recovery report。
+- Verify:
+  - `python3 scripts/build_world_item_recovery.py build` / `check`: PASS。Stage49 33,554,432 bytes、SHA-256 `780504cda0884bf53ed88f30fce18cbb54985740162210cb4724df0c6570ef5a`、payload 35,556 bytes、allocator overlap 0、36,339 changed bytes、declared span外0。
+  - libmGBA exact Stage49独立2 process: PASS／stdout一致。boot、map event、Focus Sash ABI／predicate／消費、シンイチ束縛、low-Raid Thumb ABIを確認した。
+  - BPS: Stage48差分 `1d02f8e4...`（37,293 bytes）、clean直接 `1d245606...`（16,265,541 bytes）を完全往復した。
+  - `python3 -m unittest tests.test_world_item_recovery tests.test_content_population tests.test_qol_production tests.test_regression`: PASS（34 tests）。`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network:
+  - 未使用。local固定ROM、既存vendor snapshot、libmGBAだけを利用した。

@@ -2872,6 +2872,22 @@ u8 VegaQolProduction_ConfigureHighRaid(void)
     return VEGA_QOL_OK;
 }
 
+/* Low-tier Raid hosts are available from the normal story routes.  They use
+ * the same one-shot CFRU pending-state owner as high Raids, but deliberately
+ * have no partner and no shield so an early-game party cannot be trapped in
+ * a high-difficulty controller contract. */
+PUBLIC_TEXT(VegaQolProduction_ConfigureLowRaid)
+u8 VegaQolProduction_ConfigureLowRaid(void)
+{
+    ensure_state();
+    clear_owned_high_raid_pending();
+    if (VEGA_QOL_LOW_RAID_COUNT == 0u
+        || !FN_CONFIGURE_HIGH_RAID(0u, 0u, 0u, 10u, 1u))
+        return VEGA_QOL_CONTEXT_FORBIDDEN;
+    G_QOL_STATE->auto_move_slot |= QOL_STATE_HIGH_RAID_PENDING;
+    return VEGA_QOL_OK;
+}
+
 PUBLIC_TEXT(VegaQolProduction_ClearBattleAutoState)
 void VegaQolProduction_ClearBattleAutoState(void)
 {
@@ -4610,6 +4626,9 @@ u32 VegaQolProduction_Dispatch(u16 service, u32 a, u32 b, u32 c)
         break;
     case VEGA_QOL_SERVICE_CONFIGURE_HIGH_RAID:
         status = (VegaQolStatus)VegaQolProduction_ConfigureHighRaid();
+        break;
+    case VEGA_QOL_SERVICE_CONFIGURE_LOW_RAID:
+        status = (VegaQolStatus)VegaQolProduction_ConfigureLowRaid();
         break;
     default:
         status = VEGA_QOL_INVALID_ARGUMENT;

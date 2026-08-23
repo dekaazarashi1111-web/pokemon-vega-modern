@@ -1004,6 +1004,75 @@ def _script_main(root: Path, blob: _Blob, qol_probe: str,
     blob.add("script_map_none", b"\x00", 1)
 
 
+def _install_safe_world_scripts(root: Path, blob: _Blob) -> None:
+    """Install project-owned scripts for reviewed clean-map NPC/sign geometry.
+
+    FireRed story scripts are deliberately never imported.  Only LOCAL_NPC and
+    normal sign records may point at these self-contained handlers.
+    """
+
+    mapping, tokens = _charmap(root)
+    texts = {
+        "world::text_civilian": "カントーへ ようこそ！\nゆっくり していってね。",
+        "world::text_sign": "カントーの あんないが\nかかれている。",
+        "world::text_trash": "ごみばこを しらべた。\nなにも はいっていない。",
+        "world::text_heal": "ポケモンは げんきに なりました！",
+        "world::text_mart": "ぼうけんに ひつような\nどうぐを そろえています。",
+    }
+    for label, text in texts.items():
+        blob.add(label, _encode_text(text, mapping, tokens), 1)
+
+    def text_script(label: str, text_label: str, callstd: int, *, lock: bool) -> None:
+        raw = bytearray((0x6A, 0x5A)) if lock else bytearray()
+        raw += bytes((0x0F, 0x00)) + bytes(4) + bytes((0x09, callstd))
+        if lock:
+            raw += bytes((0x6C,))
+        raw += bytes((0x02,))
+        at = blob.add(label, bytes(raw), 4)
+        blob.pointer(at + (4 if lock else 2), text_label)
+
+    text_script("world::script_civilian", "world::text_civilian", 4, lock=True)
+    text_script("world::script_sign", "world::text_sign", 3, lock=False)
+    text_script("world::script_trash", "world::text_trash", 3, lock=False)
+
+    heal = bytearray((0x6A, 0x5A, 0x25, 0x00, 0x00, 0x0F, 0x00)) + bytes(4)
+    heal += bytes((0x09, 0x04, 0x6C, 0x02))
+    at = blob.add("world::script_heal", bytes(heal), 4)
+    blob.pointer(at + 7, "world::text_heal")
+
+    blob.add("world::mart_items", struct.pack("<9H", 4, 13, 14, 15, 17, 18, 22, 86, 0), 2)
+    mart = bytearray((0x6A, 0x5A, 0x0F, 0x00)) + bytes(4)
+    mart += bytes((0x09, 0x04, 0x86)) + bytes(4) + bytes((0x6C, 0x02))
+    at = blob.add("world::script_mart", bytes(mart), 4)
+    blob.pointer(at + 4, "world::text_mart")
+    blob.pointer(at + 11, "world::mart_items")
+
+
+def _clean_event_arrays(clean: bytes, header_offset: int, label: str) -> dict[str, Any]:
+    pointer = _u32(clean, header_offset + 4, f"{label} clean events")
+    events = _rom_offset(pointer, 0x14, f"{label} clean events")
+    counts = tuple(clean[events:events + 4])
+    pointers = struct.unpack_from("<IIII", clean, events + 4)
+    widths = (0x18, 8, 16, 12)
+    arrays: list[bytes] = []
+    for name, count, source, width in zip(
+            ("objects", "warps", "coords", "bg"), counts, pointers, widths):
+        size = count * width
+        arrays.append(b"" if size == 0 else clean[
+            _rom_offset(source, size, f"{label} clean {name}"):
+            _rom_offset(source, size, f"{label} clean {name}") + size
+        ])
+    return {"counts": counts, "arrays": arrays}
+
+
+def _world_script_for_graphics(graphics: str) -> str:
+    if "NURSE" in graphics:
+        return "world::script_heal"
+    if "CLERK" in graphics:
+        return "world::script_mart"
+    return "world::script_civilian"
+
+
 def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> tuple[bytes, dict[str, Any]]:
     maps = _canonical_maps(root)
     locations, clean_group_pointers = _source_locations(root, clean)
@@ -1086,6 +1155,7 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
         blob.labels[f"qol::{name}"] = qol_offset + relative
     _script_main(root, blob, "qol::QolB_RuntimeProbe",
                  "qol::QolB_PortalWarp", "qol::QolB_ReturnWarp")
+    _install_safe_world_scripts(root, blob)
     trainer_meta = _trainer_runtime(root, blob, stage)
     trainer_ids, _, _ = _trainer_party_rows(root)
     _progression_scripts(root, blob, trainer_ids)
@@ -1196,6 +1266,7 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
     map_header_labels: dict[str, str] = {}
     map_meta: list[dict[str, Any]] = []
     redirected_runtime_warps = 0
+    world_recovery: Counter[str] = Counter()
     for row in maps:
         header = row["map_header"]
         key = header["map_key"]
@@ -1262,19 +1333,95 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             object_raw += progression_object
             object_scripts.append(f"progress::{source_name}")
 
+        # The old serializer stopped here and silently discarded 1,137 clean
+        # objects plus every background event.  Restore reviewed geometry only:
+        # LOCAL_NPC records get project-owned scripts; story and hidden-item
+        # scripts remain excluded.
+        clean_events = _clean_event_arrays(
+            clean, source_header_offsets[source_name], source_name,
+        )
+        clean_objects = clean_events["arrays"][0]
+        current_records = [
+            bytes(object_raw[index:index + 0x18])
+            for index in range(0, len(object_raw), 0x18)
+        ]
+        identities = {
+            (raw[1], struct.unpack_from("<H", raw, 4)[0],
+             struct.unpack_from("<H", raw, 6)[0])
+            for raw in current_records
+        }
+        candidates: list[tuple[int, Mapping[str, Any], bytes]] = []
+        for index, authored in enumerate(row.get("objects", [])):
+            if index >= int(clean_events["counts"][0]) \
+                    or authored.get("source_role") != "LOCAL_NPC" \
+                    or authored.get("graphics_id") == "0":
+                continue
+            world_recovery["eligible_local_npc"] += 1
+            raw = clean_objects[index * 0x18:(index + 1) * 0x18]
+            identity = (raw[1], struct.unpack_from("<H", raw, 4)[0],
+                        struct.unpack_from("<H", raw, 6)[0])
+            if identity not in identities:
+                candidates.append((index, authored, raw))
+                identities.add(identity)
+        candidates.sort(key=lambda item: (
+            0 if ("NURSE" in str(item[1]["graphics_id"])
+                  or "CLERK" in str(item[1]["graphics_id"])) else 1,
+            item[0],
+        ))
+        room = max(0, 15 - len(object_scripts))
+        for _, authored, template in candidates[:room]:
+            rebuilt = bytearray(template)
+            used = {raw[0] for raw in current_records}
+            local_id = next((value for value in range(1, 0x100) if value not in used), None)
+            if local_id is None:
+                raise RuntimeBuildError(f"{key}: local object ID exhausted")
+            rebuilt[0] = local_id
+            rebuilt[2] = 0
+            rebuilt[8] = 3
+            rebuilt[0x0A:0x10] = bytes(6)
+            struct.pack_into("<I", rebuilt, 0x10, 0)
+            struct.pack_into("<H", rebuilt, 0x14, 0)
+            object_raw += rebuilt
+            current_records.append(bytes(rebuilt))
+            script = _world_script_for_graphics(str(authored["graphics_id"]))
+            object_scripts.append(script)
+            world_recovery[script] += 1
+        world_recovery["omitted_object_limit"] += max(0, len(candidates) - room)
+
         object_count = len(object_scripts)
         if object_count:
             object_offset = blob.add(object_label, bytes(object_raw), 4)
             for index, script_label in enumerate(object_scripts):
                 blob.pointer(object_offset + index * 0x18 + 0x10, script_label)
 
-        events = bytearray(struct.pack("<BBBBIIII", object_count, len(warp_raw) // 8, 0, 0,
+        bg_label = f"map::{key}::bg"
+        bg_raw = bytearray()
+        bg_scripts: list[str] = []
+        clean_bg = clean_events["arrays"][3]
+        for index, authored in enumerate(row.get("bg_events", [])):
+            if index >= int(clean_events["counts"][3]) or authored.get("type") != "sign":
+                continue
+            raw = bytearray(clean_bg[index * 12:(index + 1) * 12])
+            struct.pack_into("<I", raw, 8, 0)
+            bg_raw += raw
+            trash = source_name == "VermilionCity_Gym" and index >= 2
+            bg_scripts.append("world::script_trash" if trash else "world::script_sign")
+            world_recovery["trash" if trash else "sign"] += 1
+        bg_count = len(bg_scripts)
+        if bg_count:
+            bg_offset = blob.add(bg_label, bytes(bg_raw), 4)
+            for index, script_label in enumerate(bg_scripts):
+                blob.pointer(bg_offset + index * 12 + 8, script_label)
+
+        events = bytearray(struct.pack("<BBBBIIII", object_count, len(warp_raw) // 8, 0, bg_count,
                                        0, 0, 0, 0))
         events_offset = blob.add(f"map::{key}::events", bytes(events), 4)
         if object_count:
             blob.pointer(events_offset + 4, object_label)
         if warp_raw:
             blob.pointer(events_offset + 8, warp_label)
+        if bg_count:
+            blob.pointer(events_offset + 16, bg_label)
 
         connection_raw = bytearray()
         for connection in row["connections"]:
@@ -1317,7 +1464,8 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             "map_key": key, "source_map": header["source_map"], "group": group,
             "map": number, "layout_id": layout_ids[header["layout"]],
             "warp_count": len(warp_raw) // 8, "connection_count": len(connection_raw) // 12,
-            "object_count": object_count, "logical_code": header["logical_code"],
+            "object_count": object_count, "bg_count": bg_count,
+            "logical_code": header["logical_code"],
             "classification": header["classification"],
         })
 
@@ -1425,6 +1573,15 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             blob.pointer(record_offset + 4 + index * 4, label)
     blob.data.extend(terminator)
 
+    if world_recovery["world::script_heal"] != 12:
+        raise RuntimeBuildError(
+            f"safe Kanto nurse coverage drift: {world_recovery['world::script_heal']}"
+        )
+    if world_recovery["world::script_mart"] < 8:
+        raise RuntimeBuildError(
+            f"safe Kanto mart coverage too small: {world_recovery['world::script_mart']}"
+        )
+
     runtime_size = len(blob.data)
     struct.pack_into(
         "<8sIIIIIIII", blob.data, runtime_header_offset,
@@ -1457,6 +1614,18 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             "existing_groups_preserved": EXISTING_MAP_GROUP_COUNT,
             "expanded_group_count": EXPANDED_MAP_GROUP_COUNT,
             "safe_redirected_runtime_warps": redirected_runtime_warps,
+            "safe_world_recovery": {
+                "policy": "LOCAL_NPC_AND_NORMAL_SIGN_ONLY",
+                "eligible_local_npc": world_recovery["eligible_local_npc"],
+                "civilian_objects": world_recovery["world::script_civilian"],
+                "nurses": world_recovery["world::script_heal"],
+                "mart_clerks": world_recovery["world::script_mart"],
+                "signs": world_recovery["sign"],
+                "trash_events": world_recovery["trash"],
+                "omitted_object_limit": world_recovery["omitted_object_limit"],
+                "fire_red_story_scripts_imported": False,
+                "hidden_items_imported": False,
+            },
             "rows": map_meta,
         },
         "layouts": {

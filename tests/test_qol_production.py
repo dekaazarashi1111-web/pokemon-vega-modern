@@ -490,6 +490,11 @@ class QolProductionRuntimeContractTests(unittest.TestCase):
             bindings["HIGH_DIFFICULTY_RAID"]["entry_symbol"],
             "VegaQolProduction_ConfigureHighRaid",
         )
+        low_raid = _function_body(
+            self.runtime, "u8 VegaQolProduction_ConfigureLowRaid",
+        )
+        self.assertIn("FN_CONFIGURE_HIGH_RAID(0u, 0u, 0u, 10u, 1u)", low_raid)
+        self.assertIn("VEGA_QOL_LOW_RAID_COUNT", low_raid)
         self.assertEqual(
             bindings["TERA_DYNAMAX_STORY"]["entry_symbol"],
             "VegaQolProduction_ConfigureTrainerBattleAdapter",

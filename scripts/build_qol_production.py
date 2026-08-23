@@ -187,6 +187,7 @@ REQUIRED_ENTRYPOINTS = {
     "VegaQolProduction_HandleInputChooseMoveAdapter",
     "VegaQolProduction_ConfigureTrainerBattleAdapter",
     "VegaQolProduction_ConfigureHighRaid",
+    "VegaQolProduction_ConfigureLowRaid",
 }
 
 
@@ -519,10 +520,16 @@ def _load_model() -> dict[str, Any]:
         _fail("special release-protection catalog differs from 125")
     raid_rows = [row for row in _rows(ROOT / RAIDS)
                  if row["status"] == "ACTIVE"]
-    if (not raid_rows
-        or {row["mechanic_policy"] for row in raid_rows} != {"RAID_DYNAMAX"}
-        or {row["unlock_key"] for row in raid_rows} != {"RAID_HIGH_UNLOCKED"}):
-        _fail("high-Raid manifest has no uniform active production consumer")
+    high_raid_rows = [row for row in raid_rows
+                      if row["unlock_key"] == "RAID_HIGH_UNLOCKED"]
+    low_raid_rows = [row for row in raid_rows
+                     if row["raid_key"].startswith("RAID_KEY_LOW_")]
+    if (len(high_raid_rows) != 250
+        or {row["mechanic_policy"] for row in high_raid_rows} != {"RAID_DYNAMAX"}
+        or len(low_raid_rows) != 6
+        or {row["mechanic_policy"] for row in low_raid_rows} != {"RAID_DYNAMAX"}
+        or {row["shield_policy"] for row in low_raid_rows} != {"SHIELD_NONE"}):
+        _fail("high/low Raid manifest production boundary differs")
     gimmick_rows = [
         row for row in _rows(ROOT / TRAINER_RUNTIME_CONSUMERS)
         if row["gimmick_type"] in {"DYNAMAX", "TERASTAL"}
@@ -540,7 +547,8 @@ def _load_model() -> dict[str, Any]:
         "capability_count": len(capabilities), "field_maps": field_maps,
         "research": research_rows, "protected": protected,
         "late_gimmick_trainers": late_gimmick_trainers,
-        "raid_count": len(raid_rows),
+        "raid_count": len(high_raid_rows),
+        "low_raid_count": len(low_raid_rows),
         "official_dex": official_dex, "supply_catalog": supply_catalog,
         "search_types": [{"id": int(row["id"]), "name": row["display_name"]}
                          for row in type_rows],
@@ -608,6 +616,7 @@ def _generated_header(model: Mapping[str, Any]) -> bytes:
         f"#define VEGA_QOL_SEARCH_ABILITY_COUNT {len(model['search_abilities'])}u",
         f"#define VEGA_QOL_MOVE_COUNT {len(model['moves'])}u",
         f"#define VEGA_QOL_HIGH_RAID_COUNT {model['raid_count']}u",
+        f"#define VEGA_QOL_LOW_RAID_COUNT {model['low_raid_count']}u",
         f"#define VEGA_QOL_LATE_GIMMICK_TRAINER_COUNT {len(model['late_gimmick_trainers'])}u",
         "#define VEGA_RESEARCH_UNLOCK_GAME_START 0u",
         "#define VEGA_RESEARCH_UNLOCK_BADGE_1 1u",

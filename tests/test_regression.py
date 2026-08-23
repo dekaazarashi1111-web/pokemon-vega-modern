@@ -142,6 +142,17 @@ class RegressionReleaseCandidateTest(unittest.TestCase):
         self.assertIn("progress::PewterCity_Gym", self.meta["symbols"])
         self.assertIn("progress::PokemonLeague_ChampionsRoom", self.meta["symbols"])
 
+    def test_kanto_safe_world_events_are_not_discarded(self):
+        recovery = self.meta["maps"]["safe_world_recovery"]
+        self.assertEqual(recovery["policy"], "LOCAL_NPC_AND_NORMAL_SIGN_ONLY")
+        self.assertEqual(recovery["nurses"], 12)
+        self.assertGreaterEqual(recovery["mart_clerks"], 8)
+        self.assertGreaterEqual(recovery["civilian_objects"], 700)
+        self.assertGreaterEqual(recovery["signs"], 350)
+        self.assertFalse(recovery["fire_red_story_scripts_imported"])
+        self.assertFalse(recovery["hidden_items_imported"])
+        self.assertTrue(all(row["object_count"] <= 15 for row in self.meta["maps"]["rows"]))
+
     def test_regression_model_matches_generated_artifacts(self):
         mgba = json.loads((ROOT / "build/stages/17_mgba_smoke.json").read_text())
         qol = json.loads((ROOT / "tests/fixtures/qol_b.json").read_text())

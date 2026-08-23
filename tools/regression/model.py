@@ -519,6 +519,13 @@ def build_outputs(root: Path, runtime: Mapping[str, Any], mgba: Mapping[str, Any
   shop/報酬遭遇はmanifest・進行定義・回帰fixtureのみで、NPCからは開始できない。
 - Workaround: Trialを利用する。未接続modeを実装済みと扱わず、後続releaseで個別に結合する。
 
+## post-v1.4.0 Stage 48で解決済み
+
+- 固定CFRU-JPのSpecies/Form・Ability source IDをVega保持canonical IDとして直接使い、
+  ジガルデ、ミミッキュ、モルペコ等のフォーム特性や多数の通常特性が誤作動する問題。
+- 追加Speciesのplayer back spriteがstock座標境界と32px想定経路に入り、下半分等が欠ける問題。
+  64×64 OAM／2,048-byte OBJ tileとpaletteを実ROMで継続検査する。
+
 ## v1.3.9で解決済み
 
 - canonicalでは6文字あるSpecies名がstock UI互換表とnickname表示処理で5文字へ切られ、

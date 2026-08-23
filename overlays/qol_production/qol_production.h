@@ -91,7 +91,8 @@ typedef enum VegaQolService {
     VEGA_QOL_SERVICE_CLAIM_ONE_TIME_REWARD = 21,
     VEGA_QOL_SERVICE_PURCHASE_SUPPLY = 22,
     VEGA_QOL_SERVICE_SUPPLY_AVAILABLE = 23,
-    VEGA_QOL_SERVICE_CONFIGURE_HIGH_RAID = 24
+    VEGA_QOL_SERVICE_CONFIGURE_HIGH_RAID = 24,
+    VEGA_QOL_SERVICE_CONFIGURE_LOW_RAID = 25
 } VegaQolService;
 
 typedef enum VegaQolOneTimeReward {
@@ -135,6 +136,7 @@ void VegaQolProduction_HandleInputChooseMoveAdapter(void);
 const uint8_t *VegaQolProduction_ConfigureTrainerBattleAdapter(
     const uint8_t *data);
 uint8_t VegaQolProduction_ConfigureHighRaid(void);
+uint8_t VegaQolProduction_ConfigureLowRaid(void);
 void VegaQolProduction_TriggerPendingDaycareEggAdapter(void *daycare);
 uint8_t VegaQolProduction_IsEggPendingAdapter(void *daycare);
 void VegaQolProduction_GiveEggFromDaycareAdapter(void *daycare);
