@@ -2159,3 +2159,21 @@
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network:
   - 未使用。local固定入力、既存vendor snapshot、libmGBAだけを使用した。
+
+## 2026-08-24T06:51:41+09:00
+
+- Task: `USER-20260824-STAGE48-IPAD-ROM-TRANSFER` / Stage 48修正版ROMだけをiPadへ配置する
+- Status: DONE
+- Summary:
+  - fixed host key付きWi-Fi SSHで、Stage48 ROMを既存Stage47と同じiPad RetroArch downloadsディレクトリへversioned filenameで新規配置した。
+  - 同名不在を事前確認し、既存ROM、save、savestateを上書き・変更していない。ユーザー指示どおりRetroArch操作やcontent起動も行っていない。
+- Files changed:
+  - tracked証跡: `design/current_state.md`、`design/run_log.md`、`design/version_log.md`。
+  - iPad側Git管理外成果物: `48_species_form_backsprite_compat_b8244d5d6fcd.gba`。
+- Verify:
+  - `ipad-wifi-ssh doctor`: PASS。client key、固定host key、Wi-Fi直結SSHを確認した。
+  - 転送前に同名不在と十分な空き容量を確認した。転送後のiPad側ファイルは33,554,432 bytes、SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`でローカルStage48と一致した。
+  - `python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む実機ROM転送証跡コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでGBAファイル1件だけを送信した。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。

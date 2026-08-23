@@ -918,3 +918,13 @@
   - Hunger Switch、Disguise、Battle Bond、Schooling、Zen Mode、Ice Face、Power Constructと既存特性を実ROMで検証し、form後のbattle/party/type/stats/ability/表示と終了復元を固定した。
   - 追加Speciesのplayer backを64×64 OAM／2,048-byte OBJ tileとして検査し、Stage06〜47を再生成した。Stage48と旧Stage47差分／clean直接BPS、再生成可能reportを追加した。
 - Verify: canonical Stage06/07/09 check、focused 87 tests、Stage36/42/46/47 check、Stage48 build/check、mGBA 2 process、BPS完全往復、task graph/private guard/diff check PASS。Stage48 SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`、CRC32 `CA37AC3D`。
+
+## 2026-08-24T06:51:41+09:00
+
+- Version: `post-v1.4.0-stage48-ipad-copy`（Stage48 ROM identityは不変）
+- Commit: `-`（本エントリを含む実機ROM転送証跡コミット）
+- Task: `USER-20260824-STAGE48-IPAD-ROM-TRANSFER` / Stage 48修正版ROMだけをiPadへ配置する
+- Summary:
+  - Stage48 ROMをiPadの既存RetroArch ROMディレクトリへversioned filenameで新規配置した。
+  - 既存ROM、save、savestateを変更せず、content起動やRetroArch操作も行っていない。
+- Verify: fixed host key付きWi-Fi SSH、同名不在、iPad側33,554,432 bytes、SHA-256 `b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243`一致、private guard、diff check PASS。
