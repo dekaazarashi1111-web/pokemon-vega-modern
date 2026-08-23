@@ -897,3 +897,13 @@
   - Windows先行永続化、slot単位通常save、pending再開、GBA確定後だけの在庫減算により、持ち物を含む個体原本を再生成せず移動する。
   - 預け入れ・引き出し・Windows catalog生成のNPC／map位置条件を廃止し、任意mapの通常fieldへ広げた。実iPadのBox 14から6体をWindowsへ移し、Box 14空・在庫6・pendingなしで終了した。
 - Verify: Stage 47 build/check、libmGBA quick 7/7・warnings 0、focused 17 tests、0／1／6／30体exact往復、応答喪失再開、容量／ABI／破損拒否、実iPad doctor 13項目・6体deposit、blob SHA-256／mode、BPS往復、declared span外0、ROM/RAM/save/hook overlap 0、task graph/private guard/diff check PASS。Stage 47 SHA-256 `fccc882e7b11315a36b146715396d63348b726268e7560a99a55f4ccbad3d3c9`、CRC32 `51C5114B`。
+
+## 2026-08-23T18:36:21+09:00
+
+- Version: `post-v1.4.0-stage47-live-withdraw-6`（Stage 47 ROM identity／save ABIは不変）
+- Commit: `-`（本エントリを含む実機withdraw証跡コミット）
+- Task: `USER-20260823-STAGE47-VAULT-WITHDRAW-6` / Windows個体庫の6体をBox 14へ引き出す
+- Summary:
+  - Windows owner-only個体庫の互換6体を、持ち物を含む80-byte原本のまま実iPadのBox 14へ戻した。
+  - 各個体の通常save確定後だけWindows在庫を減算し、Box 14 slot 0〜5の6体、Windows在庫0、pendingなしで終了した。
+- Verify: 実iPad doctor 13項目、`vault withdraw` COMPLETE／moved 6、終了後`vault status` Box 14 occupied 6／Windows record 0／pendingなし PASS。

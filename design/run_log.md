@@ -2111,3 +2111,22 @@
 - Commit: `-`（本エントリを含むT30完了コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでStage 47 ROM／同名saveを配置し、RetroArch NCIのversioned request／transfer spanだけを操作した。インターネットは未使用。接続先、credential、端末固有path、container UUID、private ROM/save/blob内容はtracked成果へ保存していない。
+
+## 2026-08-23T18:36:21+09:00
+
+- Task: `USER-20260823-STAGE47-VAULT-WITHDRAW-6` / Windows個体庫の6体をBox 14へ引き出す
+- Status: DONE
+- Summary:
+  - Stage 47の公開状態がruntime `IDLE`、Box 14空、Windows互換在庫6、pendingなしであることを確認し、`vault withdraw`を1回実行した。
+  - リープン、ファマー、アクタシ、オオスバメ、ルカリオ、カイリューのCFRU展開済み80-byte原本を、持ち物を含め再生成せずBox 14のslot 0〜5へ戻した。
+  - 各個体の通常save成功後だけWindows recordを減算し、最終Box 14は6体、Windows在庫0、pendingなしへ収束した。
+- Files changed:
+  - tracked変更: `design/current_state.md`、`design/run_log.md`、`design/version_log.md`の実機運用証跡のみ。
+  - Git管理外: iPad上の通常save、Windows owner-only個体庫の在庫減算。
+- Verify:
+  - `vega-codex-battle doctor --json`: PASS（Stage 47、ROM CRC32 `51C5114B`、13 checks）。
+  - `vega-codex-battle vault withdraw --json`: PASS（`COMPLETE`、moved 6、destination slot 0〜5、80 bytes/体、持ち物同伴）。
+  - 終了後`vault status`: PASS（Box 14 occupied 6、Windows record 0、compatible 0、pendingなし）。
+- Commit: `-`（本エントリを含む実機withdraw証跡コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ既存RetroArch NCI接続を使い、versioned request／transfer spanだけを操作した。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save/blob内容はtracked成果へ保存していない。
