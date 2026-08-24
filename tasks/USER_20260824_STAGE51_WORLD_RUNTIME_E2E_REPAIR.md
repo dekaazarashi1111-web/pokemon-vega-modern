@@ -1,6 +1,6 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `IN_PROGRESS`（`PASS_LOCAL_AWAITING_IPAD`。Stage 52を別名配置済み、iPad実プレイ承認待ち）
+- Status: `IN_PROGRESS`（`PASS_LOCAL_AWAITING_IPAD`。Stage 53を全18 fresh-core fixtureで再構築済み、iPad実プレイ承認待ち）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
@@ -17,6 +17,10 @@ Stage 51はContinue直後のillegal opcodeと強制進行save由来のmap view�
 3. 対戦NPC以外にもA入力で話せない一般NPCが残る。ヒスイシティの「手軽なレイドです」と表示するNPCはmessage後に進行不能になる。
 4. ユーザー報告の551番水道の草むらでは野生が一切出現しない。
 5. 知恵の洞窟では方向転換または1歩ごとに野生が再出現し、逃走後も抜け出せない場合がある。
+
+Stage 52のiPad実プレイでも、ヒスイシティ506番道路入口側の話せないNPC、博士風NPCの会話freeze、506番道路入口の視線double戦で技選択後に進まない症状、551番水道の出現0、知恵の洞窟の毎歩遭遇とライノスLv.100を確認した。従来E2Eはヒスイを`3/5`、知恵の洞窟を`3/59`、水道を`96/12`としており、正しい物理mapを通していなかったためStage 52のローカルPASSは無効とする。以後は問題saveに依存せず、fresh mGBA coreの自然new game／Continueと通常キー入力から再現する。
+
+Stage 53では、ユーザー報告地点を物理mapへ再同定した。ヒスイ506番道路入口は`3/2`、506番道路double戦は`3/24`、名称上「551番水道」と報告された地点は実データ上の511番水道`3/29`、知恵の洞窟は`1/83`、`1/84`、`1/85`、`1/11`、`1/100`、`3/59`である。知恵の洞窟の老人部屋`1/11`／`1/100`のnative land tableはムチュールLv.49〜51、デリバードLv.49〜51、アスイーツLv.48〜51、ニューラLv.49〜51、ルージュラLv.51、フリージオLv.49〜50であり、ライノスLv.100は野生表ではなくCodex報酬復元が通常fieldの共有battle/save workspaceを上書きした残留敵partyだった。
 
 ## 確認済みのデータと、未確認の実行導線
 
@@ -77,9 +81,9 @@ Stage 51はContinue直後のillegal opcodeと強制進行save由来のmap view�
 - [x] Stage 51を非release基準として固定し、再現save／入力trace／失敗oracleを作る。
 - [x] 通常item／hidden itemが設定済みitemを既存汎用取得flowで正しく渡し、全transaction境界をPASSする。
 - [x] 全field objectのowner台帳が完成し、いあいぎり等の誤会話rootが0になる。
-- [x] 全trainer objectから正しい1,302 command／partyへのrootが成立し、代表的な視線戦を実入力で完走する。
+- [x] 全trainer objectから正しい1,302 command／partyへのrootが成立し、代表的な視線戦（通常doubleを含む）を実入力で完走する。
 - [ ] 全接触可能な非trainer NPCが実入力で応答し、意図した有限script後にfield操作へ戻る。
-- [x] 551番水道の草むらと知恵の洞窟を含むwild cadenceが通常歩行・方向転換・逃走後の各境界で正しい。
+- [x] 551番水道の草むらと知恵の洞窟を含むwild cadence・species・levelが通常歩行・方向転換・逃走後の各境界で正しい。
 - [x] Dark Pulse、Focus Sash、battle、HM、Codex、Factory、Raid、T20、save／Continue回帰がPASSする。
 - [x] clean FireRed日本版Rev.0起点の再生成、差分／直接BPS往復、allocator／ROM／RAM／save overlap、declared span外変更0をPASSする。
 - [ ] Stage 52以降を旧成果物と別名でiPadへ配置し、ユーザーの実プレイで既知症状の解消を確認する。

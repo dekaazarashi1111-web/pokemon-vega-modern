@@ -212,9 +212,7 @@ enum {
 #define FN_END_TRAINER_BATTLE PTR(VoidFn, CODEX_REWARD_END_TRAINER_BATTLE)
 #define FN_RETURN_TO_FIELD PTR(VoidFn, CODEX_REWARD_RETURN_TO_FIELD)
 #define FN_BUFFER_MON_MOVE PTR(BufferMonMoveFn, CODEX_REWARD_BUFFER_MON_MOVE)
-#if CODEX_WINDOWS_CATALOG_ENABLED
 #define FN_SCRIPT_CONTEXT2_ENABLED PTR(U16Fn, 0x08069219u)
-#endif
 
 void CodexBattleRewards_ReturnToFieldAdapter(void);
 
@@ -491,7 +489,7 @@ static void finish_durable_owner_restore(void)
     volatile CodexBattleRewardOwnerV1 *owner = gCodexBattleRewardOwner;
     const volatile CodexBattleRewardOwnerV1 *candidate =
         PTR(const volatile CodexBattleRewardOwnerV1 *,
-            CODEX_REWARD_SAVE_BUFFER_ADDRESS);
+            CODEX_REWARD_TRANSACTION_SCRATCH_ADDRESS);
     u32 owner_offset = CODEX_REWARD_OWNER_ADDRESS
         - CODEX_REWARD_SECTOR31_IMAGE_ADDRESS;
     volatile u8 *save1;
@@ -503,6 +501,11 @@ static void finish_durable_owner_restore(void)
     if (owner_valid() && owner->reserved0 == CWR_OWNER_LOAD_CHECKED)
         return;
     if (*G_MAIN_CALLBACK2 != CWR_FIELD_MAIN_CALLBACK)
+        return;
+    /* Sector reads use the engine's shared save workspace.  Field scripts
+     * (item pickup, doors, trainer/wild transitions) may own that workspace
+     * even though callback2 has already returned to the field dispatcher. */
+    if (FN_SCRIPT_CONTEXT2_ENABLED() != 0u)
         return;
     save1 = *G_SAVE_BLOCK1_PTR;
     if ((u32)(uintptr_t)save1 < 0x02000000u
@@ -529,7 +532,7 @@ static void finish_durable_owner_restore(void)
         return;
     }
     FN_READ_FLASH(CWR_SAVE_SECTOR, owner_offset,
-                  PTR(void *, CODEX_REWARD_SAVE_BUFFER_ADDRESS),
+                  PTR(void *, CODEX_REWARD_TRANSACTION_SCRATCH_ADDRESS),
                   CODEX_REWARD_OWNER_SIZE);
     if (owner_valid_at(candidate))
         copy_bytes(owner, candidate, sizeof(*candidate));
@@ -1797,7 +1800,6 @@ CWR_EXPORT(CodexBattleRewards_ReadKeysAdapter)
 void CodexBattleRewards_ReadKeysAdapter(void)
 {
     u16 command = gCodexBattleRuntimeMailbox->request.command;
-    finish_durable_owner_restore();
 #if CODEX_WINDOWS_CATALOG_ENABLED
     if ((command >= CODEX_REWARD_COMMAND_STATUS
          && command <= CODEX_REWARD_COMMAND_CLOSE)
@@ -1810,6 +1812,10 @@ void CodexBattleRewards_ReadKeysAdapter(void)
     if (command >= CODEX_REWARD_COMMAND_STATUS
         && command <= CODEX_REWARD_COMMAND_CLOSE) {
 #endif
+        /* Read sector 31 only for an explicit private command.  The flash
+         * reader owns broad engine save workspace and must never be polled
+         * from ordinary overworld input. */
+        finish_durable_owner_restore();
         FN_BASE_READ_KEYS();
         reward_poll();
     } else {

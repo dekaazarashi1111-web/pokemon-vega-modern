@@ -2340,3 +2340,39 @@
 - Commit: `-`（本エントリを含むsave配置修復コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査とsaveの退避・復元を行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-25T03:02:11+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage52実機不合格を物理mapと共通runtimeから再修正してStage53を生成する
+- Status: STOPPED（Stage53ローカルPASS、iPad実プレイ承認待ち）
+- Summary:
+  - Stage52のfixture誤同定を撤回し、ヒスイ入口`3/2`、506番道路double`3/24`、511番水道`3/29`、知恵の洞窟`1/83`・`1/84`・`1/85`・`1/11`・`1/100`・`3/59`を自然Continue後の通常GBA入力へ固定した。
+  - stock wild headerの検索・遭遇率・生成に残っていた13個のlegacy literalを全て拡張265件正本へ統一した。実player object座標の完了歩だけをstock encounterへ渡す8-byte EWRAM stateを追加し、方向転換、load直後、blocked入力を歩数として扱わない。511番水道の対象primary metatileはmap固有cloneでland属性へ接続した。
+  - ライノスLv.100は知恵の洞窟のnative野生表ではなく、通常field毎frameに常駐していたCodex報酬復元が共有battle/save workspaceへ残した敵partyだった。報酬復元を明示private command時だけへ隔離しscratchを`0x0203E300`へ移動、通常worldのReadKeysをT26 bridgeへ戻した。老人部屋`1/11`／`1/100`のnative表はムチュールLv.49〜51、デリバードLv.49〜51、アスイーツLv.48〜51、ニューラLv.49〜51、ルージュラLv.51、フリージオLv.49〜50で、ライノスは含まれない。
+  - 通常doubleのopponent bank 3経路をCodex active時だけCodexへ渡すrouterへ変更し、command bufferをactive bank×`0x200`で参照する。trainer flag external→physical表、enemy party countのadapter順序も共通修正した。通常trainer戦を停止させていたbattle transition 4はstock関数入口でtransition 8へ正規化した。
+  - ヒスイ入口の話せないNPCと博士風NPCは`3/2`のfinite dialogueへ接続した。全678 map／3,093 object／1,422 BG eventを再監査し、接触可能なinvalid script root 0、trainer direct root 825、authored sight mismatch 0。Continueのあらすじ再生はユーザー許可に基づき無効化し、通常の「つづきから」とsave ABIは保持した。
+  - セーブは失われた旧データを復元せず、自然new game→2世代save→fresh coreの自然Continueで検証した。実機ではROMと同一basenameの`.srm`をmGBAの正規save directoryへ置く必要があり、別basenameまたはROM横の誤配置は新規ゲーム扱いになる。
+- Files changed:
+  - `config/ram_layout.csv`
+  - `overlays/codex_battle_rewards/codex_battle_rewards.c`
+  - `overlays/codex_battle_runtime/codex_battle_runtime.c`
+  - `tools/world_runtime_e2e_repair.py`
+  - `tools/mgba_world_runtime_input_e2e.c`
+  - `scripts/build_world_runtime_e2e_repair.py`
+  - `tests/test_world_runtime_e2e_repair.py`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: Stage53 ROM／metadata／allocation／owner ledger／mGBA証跡／Stage51差分BPS／clean直接BPS／report。
+- Verify:
+  - `python3 scripts/build_world_runtime_e2e_repair.py build`: PASS。Stage53 33,554,432 bytes、SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`、payload 93,160 bytes、changed 94,469 bytes、declared span外0、allocator overlap 0。
+  - fresh-core実入力18 fixtureを独立2 processで実行し、結果JSON完全一致、warning/error 0。通常／hidden item、いあいぎり、ヒスイ一般・506入口2会話、clean source会話、旧Raid否定、縦横trainer、506通常double、511番水道、知恵の洞窟6 mapをPASS。野生fixtureは方向転換32回遭遇0、通常歩行で遭遇、逃走後10歩以上、field復帰を確認した。
+  - 全件監査: physical map 678、object 3,093、BG 1,422、trainer direct root 825／非runtime 4、command/party 1,302、member 6,490、item ball 262、hidden 124、contactable invalid root 0、wild header 265、legacy consumer残存0、511番水道land cell 105。
+  - BPS完全往復: Stage51差分 SHA-256 `920591d5418a9a1d0406bf98cf4c6f8da2f6b531aab079f7fc769b26ec61fe75`、clean直接 `59259ad6b0e6e548223a85d0973b6c176fe7de2d820a37746cce060b3132244c`。
+  - `WORLD_E2E_FIXTURE=trainer_horizontal`、`trainer_vertical`、`route506_double`、`wisdom_cave_deep`の各focused build: 独立2 process PASS。
+  - `python3 -m unittest tests.test_world_runtime_e2e_repair`: PASS（8 tests）。最終task graph、private guard、関連回帰、index guard、diff checkはコミット前に実行する。
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Network:
+  - インターネット検索語: `site:github.com/pret/pokefirered ProcessPlayerFieldInput FieldInput PlayerAvatar`。一次資料として `https://github.com/pret/pokefirered/blob/master/src/field_control_avatar.c`、`include/field_control_avatar.h`、`include/global.fieldmap.h`、`src/wild_encounter.c`を参照した。`FieldInput` bit配置、`PlayerAvatar.runningState`／`tileTransitionState`、stock `ProcessPlayerFieldInput`順序、全wild consumerが同じ`gWildMonHeaders`を参照する契約を確認した。
+  - iPadへの接続・配置は本エントリでは行っていない。

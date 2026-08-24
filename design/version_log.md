@@ -1005,3 +1005,15 @@
   - 誤った新規saveとROM横の無効な同名saveを復旧可能に退避し、RetroArch停止中に正常なStage51互換saveを正規mGBA save先へ復元した。
   - Stage52のROMは変更せず、ユーザー実プレイ承認待ちを継続する。
 - Verify: 正規Stage52 save 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、RetroArch停止、誤配置元不在 PASS。
+
+## 2026-08-25T03:02:11+09:00
+
+- Version: `post-v1.4.0-stage53-world-runtime-root-repair-candidate`
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage52実機不合格の共通runtime修正
+- Summary:
+  - 誤っていたfixtureを実物理mapへ固定し、全13 wild-header consumer、完了歩判定、511番水道terrain、知恵の洞窟6 mapを共通修正した。
+  - Codex ReadKeys／報酬復元／通常double入力を通常worldから隔離し、trainer flag・enemy count・停止transitionをstock通常戦の共通経路で修正した。
+  - ヒスイ506入口の2 NPCをfinite dialogueへ戻し、Continueのあらすじだけを無効化した。save ABIと通常の「つづきから」は保持する。
+  - Stage53はiPad未確認の非release候補であり、taskは`IN_PROGRESS`のまま保持する。
+- Verify: Stage53 build、18 fresh-core fixture×独立2 process・完全一致・warnings 0、全678 map／1,302 trainer／6,490 member／265 wild header監査、BPS完全往復、declared span外0、allocator overlap 0、focused trainer/double/wild、unit、task graph、private guard、diff check PASS。ROM `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`。

@@ -245,6 +245,10 @@ enum {
     G_ENEMY_PARTY_ADDRESS = 0x02023F8Cu,
     G_PLAYER_COUNT_ADDRESS = 0x02023F89u,
     G_ENEMY_COUNT_ADDRESS = 0x02023F8Au,
+    G_TRAINER_OPPONENT_A_ADDRESS = 0x020385E2u,
+    G_TRAINER_TABLE_ADDRESS = 0x09329070u,
+    CBR_TRAINER_RECORD_SIZE = 0x20u,
+    CBR_TRAINER_PARTY_SIZE_OFFSET = 0x18u,
     G_SELECTED_ORDER_ADDRESS = 0x0203C6C8u,
     G_SPECIAL_RESULT_ADDRESS = 0x02037004u,
     G_BATTLE_OUTCOME_ADDRESS = 0x02023DEAu,
@@ -296,6 +300,9 @@ enum {
 #define G_ENEMY_PARTY PTR(Pokemon100 *, G_ENEMY_PARTY_ADDRESS)
 #define G_PLAYER_COUNT PTR(volatile u8 *, G_PLAYER_COUNT_ADDRESS)
 #define G_ENEMY_COUNT PTR(volatile u8 *, G_ENEMY_COUNT_ADDRESS)
+#define G_TRAINER_OPPONENT_A \
+    PTR(volatile u16 *, G_TRAINER_OPPONENT_A_ADDRESS)
+#define G_TRAINER_TABLE PTR(const u8 *, G_TRAINER_TABLE_ADDRESS)
 #define G_SELECTED PTR(volatile u8 *, G_SELECTED_ORDER_ADDRESS)
 #define G_SPECIAL_RESULT PTR(volatile u16 *, G_SPECIAL_RESULT_ADDRESS)
 #define G_BATTLE_OUTCOME PTR(volatile u8 *, G_BATTLE_OUTCOME_ADDRESS)
@@ -2455,7 +2462,8 @@ CBR_EXPORT(CodexBattleRuntime_OpponentController)
 void CodexBattleRuntime_OpponentController(void)
 {
     volatile CodexBattleRuntimeState *state = gCodexBattleRuntimeState;
-    u8 command = G_BATTLE_BUFFER_A[0x200u];
+    u8 active_bank = (u8)(*G_ACTIVE_BATTLER & 3u);
+    u8 command = G_BATTLE_BUFFER_A[(u32)active_bank * 0x200u];
     if (!runtime_active()
         || !state->player_selection_valid
         || (state->disconnect_mode == CBR_DISCONNECT_CPU
@@ -2696,7 +2704,15 @@ void CodexBattleRuntime_ReadKeysAdapter(void)
 CBR_EXPORT(CodexBattleRuntime_BuildTrainerPartyAdapter)
 void CodexBattleRuntime_BuildTrainerPartyAdapter(void)
 {
+    u16 trainer_id;
+    u8 party_size;
+
     FN_TRAINER_PARTY_DELEGATE();
+    trainer_id = *G_TRAINER_OPPONENT_A;
+    party_size = G_TRAINER_TABLE[(u32)trainer_id * CBR_TRAINER_RECORD_SIZE
+                                + CBR_TRAINER_PARTY_SIZE_OFFSET];
+    if (trainer_id != 0u && party_size >= 1u && party_size <= CBR_TEAM_SIZE)
+        *G_ENEMY_COUNT = party_size;
     if (runtime_active())
         (void)build_codex_selection();
 }
