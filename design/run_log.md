@@ -2288,3 +2288,35 @@
   - `git diff --check`: PASS。
 - Commit: `-`（本エントリを含む計画登録コミット）
 - Network: 未使用。iPad／ROM／saveへの操作なし。
+
+## 2026-08-24T14:13:41+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage51 world runtimeを全map ownerと実入力E2Eから再構築する
+- Status: STOPPED（ローカルPASS、Stage52 iPad実プレイ承認待ち）
+- Summary:
+  - Stage49〜51を失敗oracleとして差分化し、症状別wrapperの追加ではなく全678 physical map／3,093 object／1,422 BG eventを単一owner台帳へ再構築した。380 map event headerを再発行し、Stage50の誤owner root到達を0にした。
+  - runtime trainer 825体を到達可能な先頭`trainerbattle`へ直結し、4体を非runtime actorへ分類、authored sightを復元した。全party builder共通継続点でlive enemy countとbattle snapshotを同期し、定義済み1,302戦／6,490体を保持した。
+  - 通常item 262件を`STD_FIND_ITEM`、hidden item 124件を`STD_OBTAIN_ITEM`成功後commitへ戻した。clean sourceのobject owner 469件／BG owner 375件をscript root単位で復元し、動的actor 24件とVega map-script actor 85件を明示分類した。
+  - Stage50/51のglobal wild wrapperと最低歩数patchを撤去してstock処理へ戻した。カントー草むらと知恵の洞窟で方向転換、通常歩行、逃走後移動を実入力検証した。
+  - Stage52 ROMとStage51互換saveをiPadへ旧Stage49〜51と別stemで新規配置し、size／SHA-256をread-back一致させた。既存ROM、save、savestateは変更していない。taskはユーザー実プレイ承認まで`IN_PROGRESS`のまま保持する。
+- Files changed:
+  - `tools/world_runtime_e2e_repair.py`
+  - `tools/mgba_world_runtime_input_e2e.c`
+  - `scripts/build_world_runtime_e2e_repair.py`
+  - `tests/test_world_runtime_e2e_repair.py`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: Stage52 ROM／metadata／allocation／owner ledger／mGBA証跡／Stage51差分BPS／clean直接BPS／report。
+- Verify:
+  - `python3 scripts/build_world_runtime_e2e_repair.py build` / `check`: PASS。Stage52 33,554,432 bytes、SHA-256 `8e407a1547826c61c6fab7306cfb792ca56d4f2bfac8855b485229028be4f096`、payload 83,212 bytes、changed 84,395 bytes、declared span外0、allocator overlap 0。
+  - fresh-core実入力10 fixtureを独立2 processで実行し、結果JSON完全一致、warning/error 0。通常／hidden item取得・flag・重複防止、いあいぎり、ヒスイ一般会話、clean source会話、旧Raid否定、縦横trainer全party完走、カントー草むら／知恵の洞窟の方向転換32回遭遇0・通常遭遇・逃走後移動・field復帰をPASS。
+  - 全件監査: physical map 678、trainer root 825／非runtime 4、command/party 1,302、member 6,490、item ball 262、hidden 124、stage50 bad owner root 0、wild header 265、authored sight mismatch 0。
+  - BPS完全往復: Stage51差分 SHA-256 `6e522e4dbc32eb8335e2d72d2115410eef64a383b3750828f818c71d3f4ca55a`、clean直接 `c5c87f75cba031b50e8eb64ccc4c2301ca0aa6247bee624a4e5734de37e78f2d`。
+  - `python3 -m unittest tests.test_world_runtime_e2e_repair tests.test_continue_save_freeze_repair tests.test_interaction_ownership_repair`: PASS（15 tests）。Species/Form Stage48 check、task graph、private guard、`git diff --check`: PASS。
+  - iPad側: ROM 33,554,432 bytes／SHA-256 `8e407a154782...`、save 131,072 bytes／`406bc49cf298...`でローカル一致。
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでStage52 ROM／互換saveを新規転送し、size／SHA-256をread-backした。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。

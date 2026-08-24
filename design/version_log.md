@@ -983,3 +983,14 @@
   - trainer、item／field object、非trainer NPC、wild cadenceを既存データから実入力E2Eで再構築するTODOを追加した。
   - 実装、ROM／save生成、iPad配置は行っていない。
 - Verify: task graph、private guard、`git diff --check` PASS。
+
+## 2026-08-24T14:13:41+09:00
+
+- Version: `post-v1.4.0-stage52-world-runtime-e2e-repair-candidate`
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage51 world runtimeの全map根本修復
+- Summary:
+  - 全678 mapのtrainer／item／field object／会話／wild ownerを再構築し、症状別global patchを撤去した。
+  - trainer root／authored sightとparty人数snapshotの共通順序を修正し、通常item／hidden itemをstock transactionへ戻した。
+  - Stage52 ROMと互換saveを旧成果物と別名でiPadへ配置した。ユーザー実プレイ承認までは非release候補／task IN_PROGRESSとする。
+- Verify: Stage52 build/check、fresh-core実入力10 fixture×独立2 process・結果一致・warnings 0、全678 map／1,302 trainer／6,490 member監査、BPS完全往復、declared span外0、allocator overlap 0、focused 15 tests、task graph、private guard、diff check、iPad size／SHA-256一致 PASS。ROM `8e407a1547826c61c6fab7306cfb792ca56d4f2bfac8855b485229028be4f096`。

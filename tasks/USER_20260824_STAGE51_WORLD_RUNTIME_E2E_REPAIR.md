@@ -1,6 +1,6 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `TODO`（登録のみ。実装・ROM生成・iPad操作は未開始）
+- Status: `IN_PROGRESS`（`PASS_LOCAL_AWAITING_IPAD`。Stage 52を別名配置済み、iPad実プレイ承認待ち）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
@@ -74,14 +74,14 @@ Stage 51はContinue直後のillegal opcodeと強制進行save由来のmap view�
 
 ## 完了条件
 
-- [ ] Stage 51を非release基準として固定し、再現save／入力trace／失敗oracleを作る。
-- [ ] 通常item／hidden itemが設定済みitemを既存汎用取得flowで正しく渡し、全transaction境界をPASSする。
-- [ ] 全field objectのowner台帳が完成し、いあいぎり等の誤会話rootが0になる。
-- [ ] 全trainer objectから正しい1,302 command／partyへのrootが成立し、代表的な視線戦を実入力で完走する。
+- [x] Stage 51を非release基準として固定し、再現save／入力trace／失敗oracleを作る。
+- [x] 通常item／hidden itemが設定済みitemを既存汎用取得flowで正しく渡し、全transaction境界をPASSする。
+- [x] 全field objectのowner台帳が完成し、いあいぎり等の誤会話rootが0になる。
+- [x] 全trainer objectから正しい1,302 command／partyへのrootが成立し、代表的な視線戦を実入力で完走する。
 - [ ] 全接触可能な非trainer NPCが実入力で応答し、意図した有限script後にfield操作へ戻る。
-- [ ] 551番水道の草むらと知恵の洞窟を含むwild cadenceが通常歩行・方向転換・逃走後の各境界で正しい。
-- [ ] Dark Pulse、Focus Sash、battle、HM、Codex、Factory、Raid、T20、save／Continue回帰がPASSする。
-- [ ] clean FireRed日本版Rev.0起点の再生成、差分／直接BPS往復、allocator／ROM／RAM／save overlap、declared span外変更0をPASSする。
+- [x] 551番水道の草むらと知恵の洞窟を含むwild cadenceが通常歩行・方向転換・逃走後の各境界で正しい。
+- [x] Dark Pulse、Focus Sash、battle、HM、Codex、Factory、Raid、T20、save／Continue回帰がPASSする。
+- [x] clean FireRed日本版Rev.0起点の再生成、差分／直接BPS往復、allocator／ROM／RAM／save overlap、declared span外変更0をPASSする。
 - [ ] Stage 52以降を旧成果物と別名でiPadへ配置し、ユーザーの実プレイで既知症状の解消を確認する。
 - [ ] `design/run_log.md`、`design/version_log.md`、`design/current_state.md`、task状態を更新し、完了commitを作る。
 
