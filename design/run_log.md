@@ -2376,3 +2376,25 @@
 - Network:
   - インターネット検索語: `site:github.com/pret/pokefirered ProcessPlayerFieldInput FieldInput PlayerAvatar`。一次資料として `https://github.com/pret/pokefirered/blob/master/src/field_control_avatar.c`、`include/field_control_avatar.h`、`include/global.fieldmap.h`、`src/wild_encounter.c`を参照した。`FieldInput` bit配置、`PlayerAvatar.runningState`／`tileTransitionState`、stock `ProcessPlayerFieldInput`順序、全wild consumerが同じ`gWildMonHeaders`を参照する契約を確認した。
   - iPadへの接続・配置は本エントリでは行っていない。
+
+## 2026-08-25T05:44:15+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage53修正版GBAをiPadへ別名配置する
+- Status: STOPPED（iPad配置PASS、実プレイ承認待ち）
+- Summary:
+  - ローカル検証済みStage53 GBAだけを、iPad上のStage52と同じRetroArch ROMフォルダへ`53_world_runtime_e2e_repair.gba`として新規配置した。
+  - 一時ファイルへ転送後、iPad側のsize／SHA-256一致を確認して原子的に確定した。既存Stage52 ROM、save、savestateは変更していない。
+  - taskはユーザーのiPad実プレイ確認まで`IN_PROGRESS`／非release候補のまま保持する。
+- Files changed:
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上の`53_world_runtime_e2e_repair.gba`。
+- Verify:
+  - iPad Stage53: 33,554,432 bytes、SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`でローカルROMと一致。
+  - 旧Stage52 SHA-256 `8e407a1547826c61c6fab7306cfb792ca56d4f2bfac8855b485229028be4f096`は不変。転送一時ファイル0、save変更0。
+  - task graph、private guard、index guard、diff checkはコミット前に実行する。
+- Commit: `-`（本エントリを含むiPad配置コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ、固定host key付きWi-Fi SSHで新規GBA 1件を転送しread-backした。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。

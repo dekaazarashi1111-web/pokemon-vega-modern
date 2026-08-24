@@ -1017,3 +1017,14 @@
   - ヒスイ506入口の2 NPCをfinite dialogueへ戻し、Continueのあらすじだけを無効化した。save ABIと通常の「つづきから」は保持する。
   - Stage53はiPad未確認の非release候補であり、taskは`IN_PROGRESS`のまま保持する。
 - Verify: Stage53 build、18 fresh-core fixture×独立2 process・完全一致・warnings 0、全678 map／1,302 trainer／6,490 member／265 wild header監査、BPS完全往復、declared span外0、allocator overlap 0、focused trainer/double/wild、unit、task graph、private guard、diff check PASS。ROM `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`。
+
+## 2026-08-25T05:44:15+09:00
+
+- Version: `post-v1.4.0-stage53-ipad-rom-placement`（ROM identity不変）
+- Commit: `-`（本エントリを含むiPad配置コミット）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage53修正版GBAのiPad配置
+- Summary:
+  - Stage53 GBAをiPadのStage52と同じROMフォルダへ別名で新規配置した。
+  - 既存Stage52、save、savestateには触れず、転送一時ファイルも残していない。
+  - ユーザー実プレイ承認まではtaskを`IN_PROGRESS`のまま保持する。
+- Verify: iPad read-back 33,554,432 bytes／SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`、旧Stage52不変、一時ファイル0、save変更0 PASS。

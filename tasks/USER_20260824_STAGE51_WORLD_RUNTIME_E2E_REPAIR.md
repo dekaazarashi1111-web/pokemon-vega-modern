@@ -1,6 +1,6 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `IN_PROGRESS`（`PASS_LOCAL_AWAITING_IPAD`。Stage 53を全18 fresh-core fixtureで再構築済み、iPad実プレイ承認待ち）
+- Status: `IN_PROGRESS`（`PASS_LOCAL_IPAD_ROM_PLACED_AWAITING_PLAY`。Stage 53を全18 fresh-core fixtureで再構築しiPadへ別名配置済み、実プレイ承認待ち）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
