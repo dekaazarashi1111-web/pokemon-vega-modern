@@ -2423,3 +2423,32 @@
 - Commit: `-`（本エントリを含むsave復元・runbookコミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査、既存save退避、正常save配置、read-backを行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-25T06:44:40+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage53誤判定を撤回して次セッション用引き継ぎを固定する
+- Status: STOPPED（引き継ぎ作成完了、実装修正は未着手）
+- Summary:
+  - 原作Vega攻略資料と2018-02-23版参照ROMを再照合し、原作「ちえのどうくつ」がmap section `131`の`1/36`・`1/37`・`1/38`・`1/73`であることを確定した。Stage53が試験した6 mapはsection `139`の別map群だったため、洞窟fixtureとwild合格判定を撤回した。
+  - 原作B1F `1/73`はディグダLv.6〜9、ダンゴロウLv.7〜9、ライノスLv.7〜8、バルキーLv.6〜8。ライノス出現自体は正常だが、Lv.100／毎歩遭遇は異常と分類した。
+  - 改変前の通常版Vegaに通常プレイ可能なカントー地方はなく、現プロジェクトのカントーはclean FireRed日本版Rev.0からのimportであることを既存設計資料と攻略導線から確認した。
+  - 博士風NPCの`3/2 local 9 (4,16)`は外見からの推測で、ユーザーが指したNPCを同定していなかった。未特定・未修正へ訂正し、506 doubleと「551番水道」の物理map推定も次回の通常プレイtraceで再確認する。
+  - セッション再開時に古い長大な履歴を読み直さないため、確定事項、破棄する証跡、未解決事項、最短手順を`docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`へ集約した。
+- Files changed:
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`
+  - `design/current_state.md`
+  - `design/agent_context_map.md`
+  - `design/run_log.md`
+- Verify:
+  - `reports/generated/vega_map_inventory.csv`の該当10 mapを照合し、正しい4 mapがsection `131`、Stage53 fixture 6 mapがsection `139`であることを確認。
+  - 原作参照ROMのB1F `1/73` wild tableを抽出し、公開されている原作Vega野生データとspecies／levelが一致。
+  - `git diff --check`、task graph、private guard、index guardをコミット前に実行する。
+  - ROM、save、iPad配置、runtimeコードは変更していない。バージョン成果物変更がないため`design/version_log.md`は追記しない。
+- Commit: `-`（本エントリを含む引き継ぎコミット）
+- Network:
+  - 検索語: `ポケットモンスター ベガ 攻略 ちえのどうくつ カントー`、`Pokemon Vega Wiseman's Cave Tohoak`。
+  - <https://w.atwiki.jp/np369/pages/58.html> — 503番道路からちえのどうくつを通る本編導線と、殿堂入り後B2F調査を確認。
+  - <https://w.atwiki.jp/altair1/pages/56.html> — ちえのどうくつB1F／B2Fの原作野生species・levelを確認。
+  - <https://pokemon-vega.fandom.com/wiki/Wiseman%27s_Cave> — トーホク地方503番道路中央にある洞窟であることを補助確認。
+  - <https://pokemon-vega.fandom.com/wiki/Tohoak> — Vegaの舞台がトーホク地方であることを補助確認。
