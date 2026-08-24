@@ -2267,3 +2267,24 @@
 - Network:
   - 一次情報としてpret/pokefirered `src/fieldmap.c`の`SaveMapView`／`LoadSavedMapView`を参照し、15×14 map viewの保存・復帰契約を確認した。検索語: `pret pokefirered SaveMapView source`、URL: `https://github.com/pret/pokefirered/blob/master/src/fieldmap.c`。
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで報告saveのread-back、Stage51 ROM／新save転送、size／hash照合を行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。
+
+## 2026-08-24T11:35:14+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR-REGISTRATION` / Stage51 world runtime再修正タスクを登録する
+- Status: DONE
+- Summary:
+  - iPad実プレイで残存が確定した視線trainer、通常item／field object、話せない一般NPC、ヒスイシティRaid会話停止、551番水道の出現0、知恵の洞窟の過剰遭遇を、単一の実入力E2E再修正タスクへ固定した。正本taskはTODOのままで、実装・ROM生成・save変更・iPad操作は開始していない。
+  - 通常item 129件／hidden item 124件にitem IDがあり、trainer command／party 1,302件・member 6,490体も定義済みであることを引継ぎへ明記した。未設計扱いにせず、既存`finditem`等へのruntime rootと通常入力契約を直す。
+  - Stage51をworld interactionの修正版・配布候補から外し、関数直呼びやstatic pointerだけでは完了にしないこと、全object監査＋自然入力fixture＋iPad実プレイを完了gateにした。
+- Files changed:
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 scripts/validate_task_graph.py`: PASS。
+  - `python3 scripts/guard_private_files.py`: PASS。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含む計画登録コミット）
+- Network: 未使用。iPad／ROM／saveへの操作なし。

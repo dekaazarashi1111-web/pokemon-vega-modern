@@ -52,3 +52,4 @@
 - [x] Stage 48のmap・NPC・trainer・wild・item境界を総合復旧しRaidを拡充する <!-- id:USER-20260824-STAGE48-WORLD-ITEM-RECOVERY -->
 - [x] Stage 49のinteraction ownerを再構築しNPC・field object・Codex対戦・Raid停止を修正する <!-- id:USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR -->
 - [x] Stage 50の続きから再開時の描画破損・1歩後入力停止を修正し正常セーブを再発行する <!-- id:USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR -->
+- [ ] Stage 51のworld runtimeを実入力E2Eで再構築しtrainer・item・field object・会話NPC・wildをまとめて修正する <!-- id:USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR -->

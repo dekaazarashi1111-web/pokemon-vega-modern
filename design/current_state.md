@@ -20,6 +20,7 @@
 - USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIRで、Stage50の移動時遭遇wrapperがGBAのARM7TDMI（ARMv4T）に存在しないThumb `BLX register`命令`0x4798`を実行していたことを、iPadからbyte同一回収した報告saveの自然Continue＋実歩行で再現した。従来smokeは方向転換側だけを直接callし、実移動経路と2歩目を検査していなかった。ARMv4T互換tail-callへ置換し、既存28-byte wrapper内20 changed byte、宣言外変更0でStage51を生成した。
 - Stage47由来の強制進行saveはContinue直後のlive map viewが210 word中1種類だけで、破損地形を保存していた。通常new game→stock warp/load→SaveMapView→2世代saveでCodex受付前saveを再発行し、map view 77種類、framebuffer正常、両save slot、自然Continue、右／左／下の全3経路で2歩以上、overworld callback、script context無効、mGBA warning/error 0を確認した。旧saveをStage51へ付けた場合も左右2歩とwarning 0になり、入力停止がROM原因、描画がsave原因であることを分離した。
 - Stage51は33,554,432 bytes、SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`。正常saveは131,072 bytes、SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。iPadへ同じstemのversioned ROM／saveとして新規配置し、size／hash一致を確認した。旧Stage49／50、既存save、savestateは不変。
+- その後のiPad実プレイにより、Stage51でも視線trainer不発／1マスずれ、通常itemの固定文だけの表示、いあいぎり等field objectの誤会話、話せない一般NPC、ヒスイシティRaid会話後停止、551番水道の草むらで出現0、知恵の洞窟で方向転換または毎歩遭遇が残ることが判明した。Stage51はContinue停止を切り分けた診断用基準であり、world interactionの修正版・配布候補ではない。通常item 129件とhidden item 124件にはitem IDが存在し、trainer command／party 1,302件・member 6,490体も存在するため、未設計ではなく可視objectから既存汎用処理へのruntime root／実行契約の不良として扱う。`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`をTODO登録し、実装・ROM生成・iPad操作はまだ開始していない。
 - T19で35機能を35個の一意なproduction ownerへ接続し、通常のOptions、summary、PSS、bag、field、預かり屋、battle、save導線から操作できるStage 36を生成した。97 expected-byte hook、リリース対象35/35、受入条15/15、mGBA quick/fullの独立2 processをPASSした。Stage 36 SHA-256は `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
 - clean FireRed日本版Rev.0からStage 36への直接BPSとStage 35からの差分BPSは完全往復し、変更67,991 byteのdeclared span外0、allocator/RAM重複0を確認した。Stage 35の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainerとgimmick/save cleanupはbyte監査で不変。
 - T20で受領済みの実装可能イベント設計を、7 batch・76 event・63 physical placement・326会話としてStage 37へ統合した。80 stateは衝突のないflag `0x13B0..0x13FF`へ割り当て、160 conditionと7 atomic rewardをfield scriptへ一度だけcompileした。58 mapの59 rooted patchをStage 36実ROMからexpected-byte付きで再解決し、未解決host、object上限超過、collision、allocator/RAM/save所有重複は0。
@@ -218,7 +219,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T30と明示USERタスクは完了し、現在キューに未完了の正本タスクはない。
+`design/tasks_next.md` を正とする。T00〜T30と既存の明示USERタスクは完了しているが、iPad実プレイでStage51のworld runtimeが不合格になったため、`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`を未開始TODOとして登録した。
+
+- USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR: TODO。既存item／trainerデータを保持したまま、field object、一般NPC、trainer視線、wild cadenceを実入力E2Eで再構築する。iPad確認までDONEにしない。
 
 - USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT: DONE。全Species/Form/Ability canonical監査、フォーム特性、64×64背面画像、Stage48、2系統BPS、下流Stage42〜47回帰を完成した。
 - T30: DONE。任意mapで使えるBox 14⇔Windows exact個体庫、通常save、Stage 47、実iPad 6体depositを完成した。

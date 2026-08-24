@@ -972,3 +972,14 @@
   - 強制進行saveの破損map viewを切り分け、正常なstock map viewと両slotを持つCodex受付前saveを再発行した。
   - Stage51 ROM／同名saveをiPadへ別名配置し、旧Stage49／50と既存save／savestateを保持した。
 - Verify: Stage51 build/check、libmGBA interaction／自然Continue各2 process、3方向2歩以上、warning 0、focused 10 tests、Stage50回帰check、BPS完全往復、iPad ROM/save size・SHA-256一致 PASS。Stage51 SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`、save `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。
+
+## 2026-08-24T11:35:14+09:00
+
+- Version: `planning-only-stage51-world-runtime-e2e-repair`（ROM／save identity変更なし）
+- Commit: `-`（本エントリを含む計画登録コミット）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR-REGISTRATION` / Stage51 world runtime再修正タスクの登録
+- Summary:
+  - Stage51のiPad実プレイ不合格を記録し、Stage51をworld interactionの配布候補から外した。
+  - trainer、item／field object、非trainer NPC、wild cadenceを既存データから実入力E2Eで再構築するTODOを追加した。
+  - 実装、ROM／save生成、iPad配置は行っていない。
+- Verify: task graph、private guard、`git diff --check` PASS。
