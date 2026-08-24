@@ -406,6 +406,231 @@ def _custom_research(
         errors.append("rank_progression.csv: thresholds must be unique and increasing")
 
 
+def _custom_collection_supply(
+    packet: Path,
+    rows: dict[str, list[dict[str, str]]],
+    errors: list[str],
+) -> None:
+    def baseline(relative: str, key: str) -> dict[str, dict[str, str]]:
+        path = packet / relative
+        try:
+            with path.open(encoding="utf-8-sig", newline="") as stream:
+                values = list(csv.DictReader(stream))
+        except OSError as exc:
+            errors.append(f"{relative}: baseline read failed: {exc}")
+            return {}
+        return {row.get(key, ""): row for row in values if row.get(key, "")}
+
+    form_baseline = baseline(
+        "catalogs/form_availability_baseline.csv", "form_record_key"
+    )
+    gmax_baseline = baseline("catalogs/gmax_factor_baseline.csv", "form_record_key")
+    item_baseline = baseline("catalogs/item_availability_baseline.csv", "item_key")
+    raid_baseline = baseline("catalogs/raid_availability_baseline.csv", "raid_key")
+
+    form_rows = rows.get("form_acquisition_plan.csv", [])
+    form_by_key = {row.get("form_record_key", ""): row for row in form_rows}
+    for line, row in enumerate(form_rows, 2):
+        source = form_baseline.get(row.get("form_record_key", ""), {})
+        for field in (
+            "species_key", "base_species_key", "form_category", "current_target_status",
+        ):
+            if source and row.get(field) != source.get(field):
+                errors.append(
+                    f"form_acquisition_plan.csv:{line}: baseline drift {field}="
+                    f"{row.get(field)!r} != {source.get(field)!r}"
+                )
+        status = row.get("current_target_status")
+        category = row.get("form_category")
+        policy = row.get("collection_policy")
+        method = row.get("acquisition_method")
+        system = row.get("source_system")
+        if status == "REQUIRED_ENABLING_FORM" and (
+            policy != "REQUIRED_ENABLING"
+            or method != "KEEP_STAGE26_ROUTE"
+            or system != "STAGE26_ACQUISITION"
+        ):
+            errors.append(
+                f"form_acquisition_plan.csv:{line}: Stage26 enabling route must be preserved"
+            )
+        elif status == "BATTLE_ONLY_EXCLUDED":
+            expected_method = (
+                "GMAX_FACTOR_ONLY"
+                if category == "GIGANTAMAX_BATTLE_FORM"
+                else None
+            )
+            if policy != "BATTLE_ONLY_EXCLUDED" or (
+                expected_method is not None and method != expected_method
+            ) or (
+                expected_method is None
+                and method not in {"BATTLE_TRANSFORM_ONLY", "DO_NOT_DISTRIBUTE"}
+            ):
+                errors.append(
+                    f"form_acquisition_plan.csv:{line}: battle-only form distribution is invalid"
+                )
+        elif status == "UNOBTAINABLE_EVENT_FORM_EXCLUDED" and (
+            policy != "UNOBTAINABLE_CANON_EXCLUDED" or method != "DO_NOT_DISTRIBUTE"
+        ):
+            errors.append(
+                f"form_acquisition_plan.csv:{line}: unavailable canon form must remain excluded"
+            )
+        elif status == "OPTIONAL_FORM":
+            if policy in {"BATTLE_ONLY_EXCLUDED", "UNOBTAINABLE_CANON_EXCLUDED"}:
+                errors.append(
+                    f"form_acquisition_plan.csv:{line}: optional form has invalid policy"
+                )
+            if policy == "INTERNAL_HELPER_EXCLUDED":
+                if method != "DO_NOT_DISTRIBUTE" or system != "EXCLUDED":
+                    errors.append(
+                        f"form_acquisition_plan.csv:{line}: helper exclusion must not distribute"
+                    )
+            elif method == "DO_NOT_DISTRIBUTE" or system == "EXCLUDED":
+                errors.append(
+                    f"form_acquisition_plan.csv:{line}: persistent form needs an acquisition route"
+                )
+
+    for row in rows.get("gmax_factor_plan.csv", []):
+        form = form_by_key.get(row.get("form_record_key", ""))
+        if form and form.get("acquisition_method") != "GMAX_FACTOR_ONLY":
+            errors.append(
+                "form_acquisition_plan.csv: Gigantamax rows must use GMAX_FACTOR_ONLY"
+            )
+        if row.get("item_key") != "ITEM_KEY_DYNAMAX_CANDY":
+            errors.append("gmax_factor_plan.csv: item_key must be ITEM_KEY_DYNAMAX_CANDY")
+        if row.get("direct_gmax_species_distribution") != "false":
+            errors.append(
+                "gmax_factor_plan.csv: direct Gigantamax species distribution is forbidden"
+            )
+        source = gmax_baseline.get(row.get("form_record_key", ""), {})
+        for field in ("gmax_species_key", "base_species_key"):
+            if source and row.get(field) != source.get(field):
+                errors.append(f"gmax_factor_plan.csv: baseline drift {field}")
+        if row.get("raid_capture_sets_factor") != "true":
+            errors.append("gmax_factor_plan.csv: every G-Max raid capture must set the factor")
+
+    item_by_key = {
+        row.get("item_key", ""): row
+        for row in rows.get("item_availability_plan.csv", [])
+    }
+    for line, row in enumerate(rows.get("item_availability_plan.csv", []), 2):
+        source = item_baseline.get(row.get("item_key", ""), {})
+        if source and row.get("item_role") != source.get("role"):
+            errors.append(f"item_availability_plan.csv:{line}: item_role baseline drift")
+        if source and row.get("current_evidence_class") != source.get(
+            "current_evidence_class"
+        ):
+            errors.append(
+                f"item_availability_plan.csv:{line}: current_evidence_class baseline drift"
+            )
+    none_item = item_by_key.get("ITEM_KEY_NONE")
+    if none_item and none_item.get("target_policy") != "INTERNAL_UNUSED_EXCLUDED":
+        errors.append("item_availability_plan.csv: ITEM_KEY_NONE must remain excluded")
+    dynamax_candy = item_by_key.get("ITEM_KEY_DYNAMAX_CANDY")
+    if dynamax_candy and dynamax_candy.get("target_policy") not in {
+        "OBTAINABLE_REPEATABLE", "OBTAINABLE_LIMITED_REPEATABLE"
+    }:
+        errors.append(
+            "item_availability_plan.csv: Dynamax Candy must have a renewable supply"
+        )
+
+    for line, row in enumerate(rows.get("raid_host_plan.csv", []), 2):
+        if row.get("physical_binding_policy") != "POST_WORLD_FIX_EXACT_REAUDIT":
+            errors.append(
+                f"raid_host_plan.csv:{line}: physical binding must wait for exact re-audit"
+            )
+        combined = " ".join(row.values())
+        if re.search(r"(?:group|map|local|object)[ _-]*id\s*[:=]?\s*(?:0x)?[0-9]", combined,
+                     re.IGNORECASE):
+            errors.append(
+                f"raid_host_plan.csv:{line}: raw physical IDs are forbidden in Pro design"
+            )
+
+    host_pools = {
+        row.get("pool_key", "") for row in rows.get("raid_host_plan.csv", [])
+    }
+    host_reward_pools = {
+        row.get("reward_pool_key", "") for row in rows.get("raid_host_plan.csv", [])
+    }
+    pool_rows = rows.get("raid_pool_entries.csv", [])
+    source_raid_counts: Counter[str] = Counter()
+    gmax_bases = {
+        row.get("base_species_key", "")
+        for row in rows.get("gmax_factor_plan.csv", [])
+    }
+    gmax_pool_bases: set[str] = set()
+    for line, row in enumerate(pool_rows, 2):
+        source_key = row.get("source_raid_key", "")
+        if source_key != "NONE":
+            source_raid_counts[source_key] += 1
+            source = raid_baseline.get(source_key, {})
+            for field in ("species_key", "capture_policy", "unlock_key"):
+                if source and row.get(field) != source.get(field):
+                    errors.append(
+                        f"raid_pool_entries.csv:{line}: source raid baseline drift {field}"
+                    )
+        if row.get("pool_key") not in host_pools:
+            errors.append(f"raid_pool_entries.csv:{line}: pool has no physical host plan")
+        try:
+            gmax_chance = int(row.get("gmax_factor_chance", "0"))
+            level_min = int(row.get("level_min", "0"))
+            level_max = int(row.get("level_max", "0"))
+        except ValueError:
+            continue
+        if level_min > level_max:
+            errors.append(f"raid_pool_entries.csv:{line}: level_min exceeds level_max")
+        if gmax_chance:
+            if row.get("species_key") not in gmax_bases:
+                errors.append(
+                    f"raid_pool_entries.csv:{line}: G-Max chance used by non-G-Max base"
+                )
+            else:
+                gmax_pool_bases.add(row.get("species_key", ""))
+    duplicate_sources = sorted(
+        key for key, count in source_raid_counts.items() if count != 1
+    )
+    if duplicate_sources:
+        errors.append(
+            f"raid_pool_entries.csv: source raid must appear once: {duplicate_sources[:16]}"
+        )
+    missing_gmax = sorted(gmax_bases - gmax_pool_bases)
+    if missing_gmax:
+        errors.append(
+            f"raid_pool_entries.csv: G-Max-capable bases missing from Raid pools: {missing_gmax[:16]}"
+        )
+    used_pools = {row.get("pool_key", "") for row in pool_rows}
+    empty_host_pools = sorted(host_pools - used_pools)
+    if empty_host_pools:
+        errors.append(f"raid_host_plan.csv: pools without entries: {empty_host_pools[:16]}")
+
+    reward_rows = rows.get("raid_reward_entries.csv", [])
+    used_reward_pools = set()
+    for line, row in enumerate(reward_rows, 2):
+        pool = row.get("reward_pool_key", "")
+        used_reward_pools.add(pool)
+        if pool not in host_reward_pools:
+            errors.append(
+                f"raid_reward_entries.csv:{line}: reward pool has no physical host plan"
+            )
+        try:
+            if int(row.get("quantity_min", "0")) > int(row.get("quantity_max", "0")):
+                errors.append(
+                    f"raid_reward_entries.csv:{line}: quantity_min exceeds quantity_max"
+                )
+        except ValueError:
+            pass
+    empty_reward_pools = sorted(host_reward_pools - used_reward_pools)
+    if empty_reward_pools:
+        errors.append(
+            f"raid_host_plan.csv: reward pools without entries: {empty_reward_pools[:16]}"
+        )
+
+    for line, row in enumerate(rows.get("host_requirements.csv", []), 2):
+        if row.get("post_world_fix_audit") != "REQUIRED":
+            errors.append(
+                f"host_requirements.csv:{line}: post-world-fix audit must be REQUIRED"
+            )
+
+
 def _custom_checks(
     packet: Path,
     spec: dict[str, Any],
@@ -423,6 +648,8 @@ def _custom_checks(
         _custom_reward(rows, spec, catalogs, errors)
     elif packet_type == "RESEARCH_ECONOMY":
         _custom_research(rows, spec, errors)
+    elif packet_type == "COLLECTION_SUPPLY":
+        _custom_collection_supply(packet, rows, errors)
     else:
         errors.append(f"unknown packet_type: {packet_type!r}")
 

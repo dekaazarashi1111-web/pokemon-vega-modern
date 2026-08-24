@@ -29,6 +29,7 @@
 - `design/blockers.md`: ブロッカー記録
 - `design/feature_ideas.md`: 将来案、気づき
 - `design/report_lifecycle_index.md`: レポート類の状態管理
+- `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md`: 全フォーム・G-Max・全Item・Raid・NPC再利用をChatGPT Proへ渡す設計パケットの監査結論、利用手順、実装境界
 
 ## Scripts
 
@@ -61,6 +62,7 @@
 - `scripts/build_battle_ui.py`: stage 23へ固定CFRUの実タイプ・有効度・STAB表示adapterを結合し、stage 24・canonical文字列・全battle mode・BPS往復を決定的に生成・照合
 - `scripts/build_move_memory.py`: stage 24へだいじなもの/NPC共通の無料技管理coreを結合し、stage 25・通常/タマゴ候補・技忘れ・BPS往復を決定的に生成・照合
 - `scripts/build_qol_release.py`: stage 20→25のhash/save契約を確認し、同じ最終stage 25でKanto/Factoryと全QOLを横断再観測する統合fixture・reportを生成・照合
+- `scripts/build_chatgpt_pro_collection_supply_packet.py`: canonical Species／form、Item供給証跡、Raid、会話のみNPC候補を監査し、validator付きChatGPT Pro入力ZIPを決定的生成してWindows Downloadsへ配置
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査

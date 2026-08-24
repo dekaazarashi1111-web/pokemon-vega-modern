@@ -2452,3 +2452,37 @@
   - <https://w.atwiki.jp/altair1/pages/56.html> — ちえのどうくつB1F／B2Fの原作野生species・levelを確認。
   - <https://pokemon-vega.fandom.com/wiki/Wiseman%27s_Cave> — トーホク地方503番道路中央にある洞窟であることを補助確認。
   - <https://pokemon-vega.fandom.com/wiki/Tohoak> — Vegaの舞台がトーホク地方であることを補助確認。
+
+## 2026-08-25T08:13:08+09:00
+
+- Task: `USER-20260825-CHATGPT-PRO-COLLECTION-SUPPLY-PACKET` / 全収集・供給設計をChatGPT Proへ渡す再現可能ZIPを作成する
+- Status: DONE
+- Summary:
+  - Stage26の通常図鑑完成1,206種＋進化入口フォーム10件を保持しつつ、未設計のoptional form 272件を含む全form 388件、G-Max 34件、Item 999件、Raid 256件を一行単位でChatGPT Proへ渡すcatalogと返却schemaを作成した。
+  - Item供給証跡を明示source 109、Vega既存供給宣言のみ362、明示sourceなし528に分離した。用途不明表示68件を一律配布せず、機能品、story key、内部／予約、危険な無効化対象へ分類させる。
+  - Raidは12〜24のsymbolic hostへ集約し、既存256行を一度ずつpoolへ割り当てる契約へ変更した。125共有捕獲keyを保持し、撤回済み低レベル6入口を安全なhostへ再束縛できるようにした。
+  - G-Maxは巨大化Speciesの直接配布を禁止し、base個体のG-Max bit、反復可能な`ITEM_KEY_DYNAMAX_CANDY`、対応34 base種のRaid捕獲時bit付与をvalidatorで固定した。
+  - 会話だけに見えるNPC 118件は候補一覧に限定した。Stage53 world runtime修正後にCodexが原作Vegaの意味と実A入力を再監査し、exact map／NPC IDへ束縛する境界を明記した。
+  - 28-file入力ZIPを決定的生成し、Windows Downloadsへ配置した。ROM、save、patch、world runtime、進行中task状態は変更していない。
+- Files changed:
+  - `scripts/build_chatgpt_pro_collection_supply_packet.py`
+  - `templates/chatgpt_pro_design_packets/tools/validate_submission.py`
+  - `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md`
+  - `design/agent_context_map.md`
+  - `design/catalog.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外受け渡し: `userfile/chatgpt_pro_design_packets/**`、Windows Downloadsの`Pokemon-Vega_CHATGPT-PRO_COLLECTION-SUPPLY-V1_INPUT_20260825.zip`。
+- Verify:
+  - `python3 -m py_compile scripts/build_chatgpt_pro_collection_supply_packet.py templates/chatgpt_pro_design_packets/tools/validate_submission.py`: PASS。
+  - `python3 scripts/build_chatgpt_pro_collection_supply_packet.py`: PASS。catalog件数、manifest、SHA256SUMS、privacy、ZIP CRC、path guard、展開後self-test、byte再梱包決定性、Windows copy hashを確認。
+  - 完成submission人工fixture: `VALIDATION=PASS packet_type=COLLECTION_SUPPLY files=12 open_questions=0`。388 form、34 G-Max、999 Item、256既存Raid＋G-Max補完、12 host、32 reward、4 host requirement、5 batchを通過。
+  - `python3 -m unittest tests.test_event_authoring_packet`: PASS（2 tests）。共有validatorの既存event packet回帰を確認。
+  - `python3 scripts/validate_task_graph.py`: PASS。`python3 scripts/guard_private_files.py`: PASS。
+  - `unzip -t`、workspace copyとWindows copyの`cmp`／SHA-256: PASS。97,131 bytes、SHA-256 `b93d0b8cdf758694084e98d7101074ea5c1886b9985fca1bd526c55404a28c27`。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network:
+  - OpenAI公式 <https://help.openai.com/en/articles/8983675> を確認し、一般的な文書／表形式の対応は案内されているがZIPの自動展開は明記されていないため、ZIPが読めない場合の展開アップロード手順を同梱した。
+  - OpenAI Projects公式 <https://help.openai.com/en/articles/10169521> を確認し、ProのProject上限40ファイルに対して本パケット28ファイルが収まることを記録した。

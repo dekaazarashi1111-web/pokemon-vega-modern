@@ -25,6 +25,7 @@
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
 | iPad RetroArch/mGBA save配置 | `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md` | 有効な`retroarch.cfg`、実機mGBA save directory、対象ROM basename |
 | Stage53 world runtime再調査 | `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md` | `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`、原作Vega参照ROM、map/wild inventory |
+| ChatGPT Pro 全収集・供給設計 | `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md` | `scripts/build_chatgpt_pro_collection_supply_packet.py`、取得／Item／Raid manifest、Stage53 handoff |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
 | 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17/T20/T21 |
 | 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T25 |
@@ -82,6 +83,7 @@
 - QOL release: `tasks/USER_20260814_QOL_RELEASE.md`、`scripts/build_qol_release.py`、`scripts/build_release.py`、`docs/RELEASE_POLICY.md`、stage 20〜25 metadataと統合fixture。
 - Species名6文字: `tasks/USER_20260815_SPECIES_NAME_LENGTH.md`、`scripts/build_species_surface.py`の`compatibility_species_names`と40 direct consumer、`overlays/species_surface/species_runtime.{c,h}`、`generated/engine/species/species_names{,_legacy}.bin`、`manifests/species_ids.csv`、`tools/mgba_{species_runtime,battle_ui}_smoke.c`、stage 09/24以降。
 - Species依存form／back sprite: `tasks/USER_20260823_SPECIES_FORM_BACKSPRITE_COMPAT.md`、`tools/engine/cfru_canonical_ids.py`、`scripts/build_species_form_compat.py`、`tools/mgba_species_form_compat_smoke.c`、`reports/generated/species_form_backsprite_compat.{json,md}`、Stage 06/09/48、`manifests/{species,ability}_ids.csv`。vendorは参照専用で、全C/ASM consumerのfail-closed監査と実ROMフォーム／64×64背面回帰をproject側で維持する。
+- ChatGPT Pro全収集・供給設計: `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md`、`scripts/build_chatgpt_pro_collection_supply_packet.py`、`templates/chatgpt_pro_design_packets/tools/validate_submission.py`、`vendor/vega_acquisition/content/{collectible_species_registry,species_acquisition_routes}.csv`、`manifests/{species_ids,item_ids,raid_encounters}.csv`、`reports/generated/world_runtime_owner_ledger.json`。Proは物理IDを確定せず、Stage53修正後にCodexが束縛する。
 
 ## 読みすぎ・やり直し防止
 

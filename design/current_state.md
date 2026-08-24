@@ -1,6 +1,6 @@
 # current_state.md
 
-最終更新: 2026-08-24
+最終更新: 2026-08-25
 
 ## 現在地
 
@@ -26,6 +26,7 @@
 - Stage52のiPad再検証で、ヒスイ入口`3/2`、506番道路double`3/24`、511番水道`3/29`、知恵の洞窟`1/83`・`1/84`・`1/85`・`1/11`・`1/100`・`3/59`を従来fixtureが外していたことを確定し、Stage52のローカル合格判定を撤回した。Stage53では全13 stock wild-header consumerを拡張265件正本へ統一し、実player objectの完了歩だけstock encounterへ渡す。Codexの通常field常駐pollと共有save workspace使用を明示request時だけへ隔離し、通常doubleの3入力router、trainer flag物理表、enemy party count順序を共通修正した。停止するbattle transition 4はstock transition 8へ正規化し、Continueのあらすじ再生は無効化した。
 - Stage53は33,554,432 bytes、SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`。fresh-core自然new game／2世代save／自然Continueから18 fixtureを独立2 processで完全一致、warnings 0でPASSした。縦横trainerと506通常doubleは技選択・勝利・field復帰、ヒスイ2 NPCは有限会話、511番水道と知恵の洞窟6 mapは方向転換32回遭遇0・通常歩行遭遇・逃走後10歩以上を確認した。老人部屋のnative表はムチュールLv.49〜51、デリバードLv.49〜51、アスイーツLv.48〜51、ニューラLv.49〜51、ルージュラLv.51、フリージオLv.49〜50で、ライノスLv.100は表に存在しない。2026-08-25にGBAをiPadのStage52と同じROMフォルダへ`53_world_runtime_e2e_repair.gba`として新規配置した。続いて新規ゲーム側のStage53 saveを退避し、実`savefile_directory`配下のmGBA directoryへ正常な`53_world_runtime_e2e_repair.srm`を配置した。131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、source不変、一時ファイル0をread-back確認済み。配置正本は`docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`とする。iPad実プレイ承認までは`IN_PROGRESS`／非release候補とする。
 - 2026-08-25の原作Vega資料と参照ROM再照合で、直前のStage53判定を撤回した。原作「ちえのどうくつ」はmap section `131`の`1/36`・`1/37`・`1/38`・`1/73`であり、Stage53が試験した6 mapは全てsection `139`の別map群だった。原作B1FはディグダLv.6〜9、ダンゴロウLv.7〜9、ライノスLv.7〜8、バルキーLv.6〜8で、ユーザー報告のライノスLv.100／毎歩遭遇は異常。博士風NPCも`3/2 local 9`を外見から推測しただけで、ユーザーが指したNPCは未特定・未修正だった。Stage53の洞窟・NPC合格を取り消し、配布候補ではない。再開正本は`docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`。
+- USER-20260825-CHATGPT-PRO-COLLECTION-SUPPLY-PACKETで、バグ修正後に実装する全収集・供給設計をChatGPT Proへ渡す入力ZIPを作成した。canonical Species 1,621、form 388、G-Max 34、Item 999、Raid 256、会話のみNPC候補118を同梱し、既存Raid全行割当、G-Max bit、反復供給、物理ID後決めをvalidatorで固定した。Windows Downloadsへの配置と利用正本は`docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md`。ROM／save／world runtimeは変更していない。
 - T19で35機能を35個の一意なproduction ownerへ接続し、通常のOptions、summary、PSS、bag、field、預かり屋、battle、save導線から操作できるStage 36を生成した。97 expected-byte hook、リリース対象35/35、受入条15/15、mGBA quick/fullの独立2 processをPASSした。Stage 36 SHA-256は `c262fbb121957950f890c7b28ab64b19f9bc8fdf541b543747c39ab1f7c381dd`。
 - clean FireRed日本版Rev.0からStage 36への直接BPSとStage 35からの差分BPSは完全往復し、変更67,991 byteのdeclared span外0、allocator/RAM重複0を確認した。Stage 35の1,302 trainer、74 DOUBLE、6,490 member、201 Kanto trainerとgimmick/save cleanupはbyte監査で不変。
 - T20で受領済みの実装可能イベント設計を、7 batch・76 event・63 physical placement・326会話としてStage 37へ統合した。80 stateは衝突のないflag `0x13B0..0x13FF`へ割り当て、160 conditionと7 atomic rewardをfield scriptへ一度だけcompileした。58 mapの59 rooted patchをStage 36実ROMからexpected-byte付きで再解決し、未解決host、object上限超過、collision、allocator/RAM/save所有重複は0。

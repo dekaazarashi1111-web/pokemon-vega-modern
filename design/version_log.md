@@ -1039,3 +1039,14 @@
   - ROM横配置を禁止し、`retroarch.cfg`の`savefile_directory`とsort設定から都度解決するrunbookを追加した。
   - ROM、save ABI、正常source save、旧Stage52、savestateは変更していない。
 - Verify: Stage53 `.srm` 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、source不変、一時ファイル0、既存新規ゲームsave退避、実mGBA directory／basename一致 PASS。
+
+## 2026-08-25T08:13:08+09:00
+
+- Version: `chatgpt-pro-collection-supply-v1`（ROM／save identity変更なし）
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Task: `USER-20260825-CHATGPT-PRO-COLLECTION-SUPPLY-PACKET` / 全収集・供給設計をChatGPT Proへ渡す再現可能ZIPを作成する
+- Summary:
+  - 全1,621 Species、388 form、34 G-Max、999 Item、256 Raid、118 NPC候補を監査済みcatalogへ固定した。
+  - 全件coverage、G-Max bit、反復供給、既存Raid state保持、post-world-fix物理束縛を検証する返却schema／validatorを追加した。
+  - 決定的入力ZIPをWindows Downloadsへ配置し、再生成・Pro利用・Codex実装境界の正本を追加した。
+- Verify: generator、完成submission fixture、共有validator回帰2 tests、task graph、private guard、ZIP CRC／決定性／copy hash、diff check PASS。ZIP SHA-256 `b93d0b8cdf758694084e98d7101074ea5c1886b9985fca1bd526c55404a28c27`。
