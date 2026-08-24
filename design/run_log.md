@@ -2221,3 +2221,26 @@
 - Commit: `-`（本エントリを含む実機配置証跡コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでROM転送、save複製、read-back検証を行った。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。
+
+## 2026-08-24T10:01:30+09:00
+
+- Task: `USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR` / Stage49のinteraction ownerを再構築してStage50を発行する
+- Status: DONE
+- Summary:
+  - Stage49の一般NPC一律復旧を撤回し、Stage48 event arrayとFireRedの物理座標だけからownerを再構築した。通常item ball 129、hidden item 124、いあいぎり33、いわくだき40、回復12、店員16を固有処理へ接続し、誤った「カントーへようこそ」payloadへのmap到達を0にした。bag満杯時はflagを立てず、成功時だけitem追加→flag→object除去する。
+  - ヒスイシティlocal 4を含む無効script NPC 86体をfinite会話へ接続した。残るscript 0は動的clone／不可視runtime actor 13件だけ。Stage49の未完成low Raid host 6件はStage48 eventへ戻して停止経路を除去した。
+  - trainer template 829体のscript ownerを保持し、range 2以上652体だけを1マス補正した。trainer 1,302戦／party 1,302／member 6,490とCodex受付`96/5` local 2は不変。511番水道`3/29`にland encounterを追加し、方向転換を遭遇処理から除外、最低10歩内の早期乱数を除去した。
+  - `あくのはどう`は20% rowとcompiled strict `<`を確認し、4,096回中821回。Inner Focus／行動済み無効を維持した。Focus Sash満タン発動・非満タン不発・正式消費とStage48 Species／Ability回帰も維持した。
+  - iPadへStage50 ROMをversioned filenameで新規配置し、Stage47由来Codex受付前saveを同名saveへbyte同一複製した。旧Stage49、既存save、savestateは不変。NCI unavailableのため実機content起動は行っていない。
+- Files changed:
+  - task/runtime/build/test: `tasks/USER_20260824_STAGE49_INTERACTION_OWNERSHIP_REPAIR.md`、`manifests/flags.csv`、`tools/interaction_ownership_repair.py`、`tools/mgba_interaction_ownership_smoke.c`、`scripts/build_interaction_ownership_repair.py`、`tests/test_interaction_ownership_repair.py`。
+  - docs/state: `design/{current_state,tasks_next,run_log,version_log}.md`。Git管理外再生成物はStage50 ROM、allocation、metadata、mGBA、Stage49差分／clean直接BPS、interaction report。iPad側はStage50 ROM／同名save。
+- Verify:
+  - `python3 scripts/build_interaction_ownership_repair.py build` / `check`: PASS。Stage50 33,554,432 bytes、SHA-256 `af9bd50194e16fc409a31b6c179ec8c53a15d6961220daf29a0bd38a2b7dc92d`、payload 71,720 bytes、allocator overlap 0、declared span外0。
+  - libmGBA exact Stage50独立2 process: PASS／stdout一致。boot、Hisui、Codex受付、511 land、方向転換抑止、最低歩数、Dark Pulse確率、Focus Sash、シンイチ束縛を確認した。
+  - `python3 -m unittest tests.test_interaction_ownership_repair`: PASS（6 tests）。`python3 scripts/build_species_form_compat.py check`、`python3 scripts/validate_manifests.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - BPS: Stage49差分 `360ce615...`（74,948 bytes）、clean直接 `6d10f38d...`（16,337,520 bytes）を完全往復した。
+  - iPad: Wi-Fi SSH固定host key、同名不在、ROM 33,554,432 bytes／SHA-256 `af9bd501...`、save 131,072 bytes／SHA-256 `4a83b7d2...`一致。既検証のsave generation 56／map `96/5`／座標`20/20`をbyte同一継承した。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでROM転送、save複製、hash照合を行った。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。

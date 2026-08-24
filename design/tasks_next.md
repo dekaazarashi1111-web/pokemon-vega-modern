@@ -50,3 +50,4 @@
 - [x] T30: Box 14とWindows固有個体庫を双方向exact移動へ接続する <!-- id:T30 -->
 - [x] Species依存フォームとプレイヤー側背面戦闘画像を正規化する <!-- id:USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT -->
 - [x] Stage 48のmap・NPC・trainer・wild・item境界を総合復旧しRaidを拡充する <!-- id:USER-20260824-STAGE48-WORLD-ITEM-RECOVERY -->
+- [x] Stage 49のinteraction ownerを再構築しNPC・field object・Codex対戦・Raid停止を修正する <!-- id:USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR -->

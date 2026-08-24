@@ -950,3 +950,14 @@
   - Stage47 save候補をsector監査し、有効generation 56／Codex受付map `96/5`／座標`20/20`のセーブをStage49同名セーブへbyte同一複製した。
   - NPC前でない初回候補は完成扱いにせずrecoverable backupへ退避し、既存ROM／save／savestateと両Stage47原本を保持した。
 - Verify: Wi-Fi SSH固定host key、iPad側ROM／save一意性・size・SHA-256、save 14/14 active section、Stage49自然Continue 2 process、save hash不変、private guard、diff check PASS。ROM `780504cd...`、save `4a83b7d2...`。
+
+## 2026-08-24T10:01:30+09:00
+
+- Version: `post-v1.4.0-stage50-interaction-owner-repair`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Task: `USER-20260824-STAGE49-INTERACTION-OWNERSHIP-REPAIR` / Stage49のinteraction ownerを再構築する
+- Summary:
+  - NPC、trainer、item、field move、service、sign、hidden itemを別ownerへ再構築し、無効script NPC 86体と誤った一律会話を修正した。未完成low Raid host 6件は撤回した。
+  - trainer視線652体を1マス補正し、511番水道land owner、移動時だけの遭遇判定、最低歩数猶予を追加した。
+  - Dark Pulse 20%／Inner Focus／行動済み無効、Focus Sash、Species／Ability、Codex受付を回帰し、Stage50 ROMとCodex受付前saveをiPadへ別名配置した。
+- Verify: Stage50 build/check、libmGBA exact-ROM 2 process、focused 6 tests、Species/Form Stage48 check、manifest、private guard、diff check、BPS完全往復、iPad ROM/save size・SHA-256一致 PASS。Stage50 SHA-256 `af9bd50194e16fc409a31b6c179ec8c53a15d6961220daf29a0bd38a2b7dc92d`。
