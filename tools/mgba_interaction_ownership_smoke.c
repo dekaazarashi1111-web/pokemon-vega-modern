@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <mgba/core/config.h>
 #include <mgba/core/core.h>
@@ -276,10 +277,13 @@ static void check_focus_sash(struct mCore *core)
 
 int main(int argc, char **argv)
 {
-    if (argc != 9) {
-        fprintf(stderr, "usage: %s ROM MAP_ROOT PAYLOAD_START PAYLOAD_END HISUI_SCRIPT WILD_WRAPPER TRAINER_ROOT SHINICHI_COMMAND\n", argv[0]);
+    if (argc != 9 && argc != 10) {
+        fprintf(stderr, "usage: %s ROM MAP_ROOT PAYLOAD_START PAYLOAD_END HISUI_SCRIPT WILD_WRAPPER TRAINER_ROOT SHINICHI_COMMAND [armv4t-tail]\n", argv[0]);
         return 2;
     }
+    bool armv4t_tail = argc == 10 && strcmp(argv[9], "armv4t-tail") == 0;
+    if (argc == 10 && !armv4t_tail)
+        die("unknown wild-wrapper ABI");
     uint32_t map_root = parse_u32(argv[2], "map root");
     uint32_t payload_start = parse_u32(argv[3], "payload start");
     uint32_t payload_end = parse_u32(argv[4], "payload end");
@@ -322,12 +326,18 @@ int main(int argc, char **argv)
     check_511_wild(core);
     if (read16(core, COOLDOWN_BRANCH) != 0xE009U)
         die("minimum encounter grace branch differs");
-    static const uint16_t wrapper[] = {
+    static const uint16_t legacy_wrapper[] = {
         0xB510U, 0x4904U, 0x7889U, 0x2902U, 0xD102U,
         0x4B03U, 0x4798U, 0xBD10U, 0x2000U, 0xBD10U,
     };
+    static const uint16_t armv4t_wrapper[] = {
+        0x4904U, 0x7889U, 0x2902U, 0xD101U, 0x4B03U,
+        0x4718U, 0x2000U, 0x4770U, 0x46C0U, 0x46C0U,
+    };
+    const uint16_t *wrapper = armv4t_tail ? armv4t_wrapper : legacy_wrapper;
+    size_t wrapper_count = sizeof(legacy_wrapper) / sizeof(legacy_wrapper[0]);
     uint32_t wrapper_address = wild_wrapper & ~1U;
-    for (size_t index = 0; index < sizeof(wrapper) / sizeof(wrapper[0]); ++index) {
+    for (size_t index = 0; index < wrapper_count; ++index) {
         if (read16(core, wrapper_address + (uint32_t)index * 2U) != wrapper[index])
             die("moving-only wild wrapper ABI differs");
     }
@@ -350,10 +360,12 @@ int main(int argc, char **argv)
            "\"checks\":{\"boot\":true,\"hisui_npc\":true,"
            "\"codex_reception\":true,"
            "\"waterway_land\":true,\"turning_no_encounter\":true,"
+           "%s"
            "\"minimum_grace\":true,\"dark_pulse_probability\":true,"
            "\"focus_sash\":true,\"trainer_binding\":true},"
            "\"framebuffer_transitions\":%" PRIu32 ","
            "\"flinch_hits_per_4096\":%" PRIu32 "}\n",
+           armv4t_tail ? "\"armv4t_wild_wrapper\":true," : "",
            transitions, flinch_hits);
     free(video);
     core->deinit(core);

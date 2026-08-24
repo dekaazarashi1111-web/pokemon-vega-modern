@@ -2244,3 +2244,26 @@
 - Commit: `-`（本エントリを含むタスク完了コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHでROM転送、save複製、hash照合を行った。インターネットは未使用。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。
+
+## 2026-08-24T10:31:42+09:00
+
+- Task: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR` / Stage50のContinue描画破損・1歩後入力停止を修正する
+- Status: DONE
+- Summary:
+  - iPadで報告されたStage50 saveをbyte同一回収し、fresh libmGBA coreの自然Continueでmap `96/5`／座標`20/20`へ復帰後、右または左へ1歩進むと2歩目を受け付けない症状を再現した。Continue直後のlive map viewは210 word中1種類だけで、画面も反復模様になっており、強制進行saveが破損map viewを保持していた。
+  - 1歩目からmGBAがillegal opcode `0x4798`を反復記録した。Stage50の方向転換除外wrapperがARM7TDMIにないThumb `BLX register`を使っていたことが入力停止のROM原因だった。元遭遇関数へLRを保持したままtail-callするARMv4T命令列へ置換し、既存wrapper 28 byte内の20 changed byteだけでStage51を生成した。
+  - 通常new game、stock warp/load、SaveMapView、2世代saveを通るCodex受付前saveを再発行した。新saveはlive map view 77種類で正常描画し、両slot、自然Continue、右／左／下の全3経路で2歩以上、overworld callback、script context無効、warning/error 0。旧報告save＋Stage51でも左右2歩とwarning 0になり、描画はsave、停止はROMと切り分けた。
+  - Stage51 ROMと正常saveを同じversioned stemでiPadへ新規配置した。旧Stage49／50、既存save、savestateは変更していない。RetroArch NCI unavailableのためcontent起動は行っていない。
+- Files changed:
+  - task/runtime/build/test: `tasks/USER_20260824_STAGE50_CONTINUE_SAVE_FREEZE_REPAIR.md`、`tools/continue_save_freeze_repair.py`、`tools/mgba_continue_field_smoke.c`、`tools/mgba_codex_battle_ipad_bootstrap.c`、`tools/mgba_interaction_ownership_smoke.c`、`scripts/build_continue_save_freeze_repair.py`、`tests/test_continue_save_freeze_repair.py`。
+  - docs/state: `design/{current_state,tasks_next,run_log,version_log}.md`。Git管理外再生成物はStage51 ROM、allocation、metadata、mGBA、Stage50差分／clean直接BPS、repair report、正常save、framebuffer。iPad側はStage51 ROM／同名save。
+- Verify:
+  - `python3 scripts/build_continue_save_freeze_repair.py build` / `check`: PASS。Stage51 33,554,432 bytes、SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`、changed byte 20、wrapper外0、allocation／save ABI／map graph／trainer data不変。
+  - libmGBA exact Stage51: interaction回帰2 process／stdout一致、自然Continue 2 process／stdout一致。Hisui、Codex受付、511番水道land、方向転換除外、最低歩数、Dark Pulse 4,096回中821、Focus Sash、trainer束縛、ARMv4T wrapperをPASS。自然Continueは全3方向で2歩以上、script lock 0、warning/error 0。
+  - 報告save SHA-256 `4a83b7d2...`をStage50／51で比較し、Stage50は1歩目からillegal opcode、Stage51は左右2歩以上・warning 0。新save 131,072 bytes、SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、両slot fresh load、map `96/5`／座標`20/20`、framebuffer hash `88cb4c1fdbe9a4c4`。
+  - `python3 -m unittest tests.test_continue_save_freeze_repair tests.test_interaction_ownership_repair`: PASS（10 tests）。`python3 scripts/build_interaction_ownership_repair.py check`: PASS。BPSはStage50差分100 bytes／SHA-256 `417e0d52...`、clean直接16,337,519 bytes／`257ff199...`を完全往復した。
+  - iPad側ROM／saveは33,554,432／131,072 bytes、SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`／`406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`でローカルと一致した。
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Network:
+  - 一次情報としてpret/pokefirered `src/fieldmap.c`の`SaveMapView`／`LoadSavedMapView`を参照し、15×14 map viewの保存・復帰契約を確認した。検索語: `pret pokefirered SaveMapView source`、URL: `https://github.com/pret/pokefirered/blob/master/src/fieldmap.c`。
+  - 同一private LAN上のユーザー所有iPadへ固定Wi-Fi SSHで報告saveのread-back、Stage51 ROM／新save転送、size／hash照合を行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。

@@ -961,3 +961,14 @@
   - trainer視線652体を1マス補正し、511番水道land owner、移動時だけの遭遇判定、最低歩数猶予を追加した。
   - Dark Pulse 20%／Inner Focus／行動済み無効、Focus Sash、Species／Ability、Codex受付を回帰し、Stage50 ROMとCodex受付前saveをiPadへ別名配置した。
 - Verify: Stage50 build/check、libmGBA exact-ROM 2 process、focused 6 tests、Species/Form Stage48 check、manifest、private guard、diff check、BPS完全往復、iPad ROM/save size・SHA-256一致 PASS。Stage50 SHA-256 `af9bd50194e16fc409a31b6c179ec8c53a15d6961220daf29a0bd38a2b7dc92d`。
+
+## 2026-08-24T10:31:42+09:00
+
+- Version: `post-v1.4.0-stage51-continue-save-freeze-repair`
+- Commit: `-`（本エントリを含むタスク完了コミット）
+- Task: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR` / Stage50のContinue描画破損・1歩後入力停止を修正する
+- Summary:
+  - Stage50のARMv5専用Thumb `BLX register`をARM7TDMI互換tail-callへ置換し、1歩後のillegal opcodeと入力停止を修正した。
+  - 強制進行saveの破損map viewを切り分け、正常なstock map viewと両slotを持つCodex受付前saveを再発行した。
+  - Stage51 ROM／同名saveをiPadへ別名配置し、旧Stage49／50と既存save／savestateを保持した。
+- Verify: Stage51 build/check、libmGBA interaction／自然Continue各2 process、3方向2歩以上、warning 0、focused 10 tests、Stage50回帰check、BPS完全往復、iPad ROM/save size・SHA-256一致 PASS。Stage51 SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`、save `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。

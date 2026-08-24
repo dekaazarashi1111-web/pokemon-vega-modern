@@ -407,6 +407,7 @@ static void bootstrap_generate(const char *rom_path, const char *save_path)
     bootstrap_close_core(core);
 }
 
+#ifndef CODEX_IPAD_BOOTSTRAP_EMBEDDED
 int main(int argc, char **argv)
 {
     color_t *video;
@@ -472,3 +473,4 @@ int main(int argc, char **argv)
            BOOTSTRAP_TEAM_SIZE, framebuffer, transitions);
     return 0;
 }
+#endif
