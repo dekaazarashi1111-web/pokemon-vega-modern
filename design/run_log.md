@@ -2320,3 +2320,23 @@
 - Commit: `-`（iPad実プレイ待ちcheckpoint commit）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでStage52 ROM／互換saveを新規転送し、size／SHA-256をread-backした。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-24T14:46:17+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage52のiPad save配置を修復する
+- Status: STOPPED（save配置修復PASS、Stage52 iPad実プレイ承認待ち）
+- Summary:
+  - iPad実プレイでStage52が最初から開始するとの報告を受け、RetroArchの`savefile_directory`、core別sort設定、Stage49〜52の実配置を読取監査した。
+  - Stage52の正規mGBA save先が14:43に新規ゲームsaveへ上書きされていたことをhashで確定した。RetroArch停止中に当該saveを退避し、Stage51互換の正常saveを正規mGBA save先へ復元した。
+  - ROM横に残っていた無効な同名saveも削除せず退避し、有効なStage52 saveを1か所へ正規化した。task状態は実プレイ再確認まで`IN_PROGRESS`のままとする。
+- Files changed:
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - iPad RetroArch設定: `savefile_directory`とcore別save sortを確認。Stage49〜51の既知正常saveが同じmGBA save先にあることを確認。
+  - 修復前: 正規Stage52 save SHA-256 `b5a41c3758763bbec72769fab4a2533bf2db0b6312d93d25a695f9e4b9e02260`（新規ゲーム）、退避元正常save `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。
+  - 修復後: 正規Stage52 save 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、RetroArch process停止、誤配置元不在を確認してPASS。
+- Commit: `-`（本エントリを含むsave配置修復コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査とsaveの退避・復元を行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。

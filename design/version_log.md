@@ -994,3 +994,14 @@
   - trainer root／authored sightとparty人数snapshotの共通順序を修正し、通常item／hidden itemをstock transactionへ戻した。
   - Stage52 ROMと互換saveを旧成果物と別名でiPadへ配置した。ユーザー実プレイ承認までは非release候補／task IN_PROGRESSとする。
 - Verify: Stage52 build/check、fresh-core実入力10 fixture×独立2 process・結果一致・warnings 0、全678 map／1,302 trainer／6,490 member監査、BPS完全往復、declared span外0、allocator overlap 0、focused 15 tests、task graph、private guard、diff check、iPad size／SHA-256一致 PASS。ROM `8e407a1547826c61c6fab7306cfb792ca56d4f2bfac8855b485229028be4f096`。
+
+## 2026-08-24T14:46:17+09:00
+
+- Version: `post-v1.4.0-stage52-ipad-save-placement-repair`（ROM identity／save ABI不変）
+- Commit: `-`（本エントリを含むsave配置修復コミット）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage52のiPad save配置を修復する
+- Summary:
+  - RetroArch起動中のin-memory新規saveが正規Stage52 saveを上書きしていたことを、設定・既存save配置・hashから確定した。
+  - 誤った新規saveとROM横の無効な同名saveを復旧可能に退避し、RetroArch停止中に正常なStage51互換saveを正規mGBA save先へ復元した。
+  - Stage52のROMは変更せず、ユーザー実プレイ承認待ちを継続する。
+- Verify: 正規Stage52 save 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、RetroArch停止、誤配置元不在 PASS。
