@@ -1,12 +1,13 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `IN_PROGRESS`（`PASS_LOCAL_IPAD_ROM_PLACED_AWAITING_PLAY`。Stage 53を全18 fresh-core fixtureで再構築しiPadへ別名配置済み、実プレイ承認待ち）
+- Status: `IN_PROGRESS`（`PASS_LOCAL_IPAD_ROM_SAVE_PLACED_AWAITING_PLAY`。Stage 53を全18 fresh-core fixtureで再構築しiPadへROM／正常saveを別名配置済み、実プレイ承認待ち）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
 - Baseline: Stage 51 / ROM SHA-256 `6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4`
 - Baseline save: SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`
 - Baseline commit: `86846ca`
+- iPad mGBA save配置正本: `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
 
 ## 現在の判定
 

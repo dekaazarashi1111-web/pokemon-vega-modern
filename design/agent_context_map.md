@@ -23,6 +23,7 @@
 | パッチ競合 | `audit_seed/PHASE_01_STATUS.md` | `audit_seed/reports/conflict_report.md`, `semantic_hotspots.md` |
 | T02 exact監査 | `config/t02_audit_policy.json` | `tools/t02/`, `reports/generated/address_audit.csv`, `id_inventory.json`, `semantic_conflicts.md` |
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
+| iPad RetroArch/mGBA save配置 | `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md` | 有効な`retroarch.cfg`、実機mGBA save directory、対象ROM basename |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |
 | 二地方・カントー復元 | `docs/KANTO_PORT_POLICY.md` | `design/decisions.md` D-011, `design/kanto_feasibility.md`, V2 `00_採用仕様_V2.md`, `04_カントー地方_クリア後出現・イベント詳細.md`, T02/T08/T11〜T17/T20/T21 |
 | 育成・操作QOL | `docs/QOL_POLICY.md` | T01/T02/T05/T06/T08〜T10/T12/T15〜T25 |

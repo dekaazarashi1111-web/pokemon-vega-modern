@@ -2398,3 +2398,28 @@
 - Commit: `-`（本エントリを含むiPad配置コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ、固定host key付きWi-Fi SSHで新規GBA 1件を転送しread-backした。接続先、credential、端末固有path、container UUIDはtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-25T06:28:37+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage53の正常セーブを正規mGBA save先へ復元し配置規則を固定する
+- Status: STOPPED（save復元PASS、iPad実プレイ承認待ち）
+- Summary:
+  - Stage53が新規ゲームになった報告を受け、iPadの有効RetroArch container、`retroarch.cfg`、save sort設定、Stage52正常saveをread-onlyで再同定した。
+  - RetroArch停止状態を確認し、新規ゲーム側のStage53 `.srm`を削除せず`.pre-restore-<timestamp>`付きで同じdirectoryへ退避した。正常なStage52互換saveを`53_world_runtime_e2e_repair.srm`として、実`savefile_directory`配下のmGBA directoryへ原子的に配置した。
+  - 現在の実機設定は`sort_savefiles_enable = true`、`sort_savefiles_by_content_enable = false`、実save directory末尾`mGBA/`。ROM横へ置かず、GBAと完全一致するbasenameにする規則を`docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`へ固定した。
+- Files changed:
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/agent_context_map.md`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上のStage53 `.srm`と、復旧可能な新規ゲームsave退避1件。
+- Verify:
+  - 正規Stage53 save: 131,072 bytes、SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。
+  - 正常Stage52 source save不変、転送一時ファイル0、新規ゲーム側Stage53 save退避1、RetroArchは配置前から停止状態。
+  - 実設定: `retroarch.cfg` 1件、mGBA save directory末尾`mGBA/`、save sort有効、content別sort無効。
+  - task graph、private guard、index guard、diff checkはコミット前に実行する。
+- Commit: `-`（本エントリを含むsave復元・runbookコミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査、既存save退避、正常save配置、read-backを行った。接続先、credential、端末固有path、container UUID、private save内容はtracked成果へ保存していない。インターネットは未使用。

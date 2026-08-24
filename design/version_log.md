@@ -1028,3 +1028,14 @@
   - 既存Stage52、save、savestateには触れず、転送一時ファイルも残していない。
   - ユーザー実プレイ承認まではtaskを`IN_PROGRESS`のまま保持する。
 - Verify: iPad read-back 33,554,432 bytes／SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`、旧Stage52不変、一時ファイル0、save変更0 PASS。
+
+## 2026-08-25T06:28:37+09:00
+
+- Version: `post-v1.4.0-stage53-ipad-save-placement-repair`（ROM identity／save ABI不変）
+- Commit: `-`（本エントリを含むsave復元・runbookコミット）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage53のiPad mGBA save配置修復
+- Summary:
+  - 新規ゲーム側Stage53 saveを復旧可能に退避し、正常Stage52互換saveをStage53と同じbasenameで正規mGBA save directoryへ配置した。
+  - ROM横配置を禁止し、`retroarch.cfg`の`savefile_directory`とsort設定から都度解決するrunbookを追加した。
+  - ROM、save ABI、正常source save、旧Stage52、savestateは変更していない。
+- Verify: Stage53 `.srm` 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、source不変、一時ファイル0、既存新規ゲームsave退避、実mGBA directory／basename一致 PASS。
