@@ -1,5 +1,5 @@
 /*
- * Stage53 world runtime input E2E.
+ * Stage54 world runtime input E2E.
  *
  * Each fixture is created from a natural new game and stock warp/save, then
  * reopened in a fresh core through the title-screen Continue path.  All
@@ -13,6 +13,7 @@
 
 enum {
     WORLD_FLAG_GET = 0x0806DEC5U,
+    WORLD_FLAG_SET = 0x0806DE75U,
     WORLD_MAP_GRID_FIELD = 0x08058805U,
     WORLD_MAP_GRID_COLLISION = 0x08058681U,
     WORLD_TRAINER_OPPONENT_A = 0x020385E2U,
@@ -23,6 +24,13 @@ enum {
     WORLD_QUEST_LOG_STATE = 0x0203AD72U,
     WORLD_QUEST_LOG_PLAYBACK_STATE = 0x03005ED8U,
     WORLD_FIELD_CONTROLS_LOCKED = 0x03000F9CU,
+    WORLD_REWARD_STATE = 0x0203F110U,
+    WORLD_REWARD_LAST_RESULT_OFFSET = 46U,
+    WORLD_REWARD_MENU_ACTIVE_OFFSET = 57U,
+    WORLD_SPECIAL_RESULT = 0x02037004U,
+    WORLD_REWARD_BUSY = 9U,
+    WORLD_REWARD_CANCELLED = 2U,
+    WORLD_REWARD_TEST_INITIALIZE = 0x093C12EDU,
     WORLD_PLAYER_AVATAR = 0x02036FACU,
     WORLD_PLAYER_RUNNING_STATE_OFFSET = 2U,
     WORLD_PLAYER_TILE_TRANSITION_STATE_OFFSET = 3U,
@@ -47,6 +55,8 @@ enum FixtureKind {
     FIXTURE_CUT,
     FIXTURE_DIALOGUE,
     FIXTURE_FACING_DIALOGUE,
+    FIXTURE_REWARD_SCIENTIST,
+    FIXTURE_WARP_ROUTE,
     FIXTURE_RAID_REMOVED,
     FIXTURE_TRAINER,
     FIXTURE_WILD,
@@ -73,19 +83,21 @@ static const struct Fixture WORLD_FIXTURES[] = {
     {"cut_tree", FIXTURE_CUT, 3U, 3U, 11U, 17U, WORLD_KEY_A, 0U, 0U, 0U, 9U},
     {"hisui_general", FIXTURE_DIALOGUE, 3U, 5U, 4U, 20U, WORLD_KEY_A, 0U, 0U, 0U, 4U},
     {"hisui_506_untalkable", FIXTURE_FACING_DIALOGUE, 3U, 2U, 3U, 15U, WORLD_KEY_DOWN, 0U, 0U, 0U, 5U},
-    {"hisui_506_scientist", FIXTURE_FACING_DIALOGUE, 3U, 2U, 5U, 16U, WORLD_KEY_LEFT, 0U, 0U, 0U, 9U},
+    {"hisui_506_west_boundary_local9", FIXTURE_FACING_DIALOGUE, 3U, 2U, 5U, 16U, WORLD_KEY_LEFT, 0U, 0U, 0U, 9U},
+    {"hisui_506_west_path_local8", FIXTURE_FACING_DIALOGUE, 3U, 2U, 11U, 15U, WORLD_KEY_UP, 0U, 0U, 0U, 8U},
+    {"reward_encounter_scientist", FIXTURE_REWARD_SCIENTIST, 96U, 5U, 25U, 8U, WORLD_KEY_UP, 0U, 0U, 0U, 5U},
+    {"reward_encounter_scientist_menu", FIXTURE_REWARD_SCIENTIST, 96U, 5U, 25U, 8U, WORLD_KEY_UP, 0U, 0U, 0U, 5U},
     {"kanto_authored_dialogue", FIXTURE_DIALOGUE, 98U, 96U, 12U, 5U, WORLD_KEY_A, 0U, 0U, 0U, 6U},
     {"stage49_raid_removed", FIXTURE_RAID_REMOVED, 3U, 19U, 19U, 7U, WORLD_KEY_A, 0U, 0U, 0U, 0U},
     {"trainer_vertical", FIXTURE_TRAINER, 3U, 19U, 27U, 11U, WORLD_KEY_UP, 0U, 1369U, 89U, 6U},
     {"trainer_horizontal", FIXTURE_TRAINER, 3U, 19U, 50U, 10U, WORLD_KEY_RIGHT, 0U, 1373U, 93U, 3U},
     {"route506_double", FIXTURE_TRAINER, 3U, 24U, 11U, 8U, WORLD_KEY_UP, 0U, 0x07ADU, 1338U, 10U},
     {"waterway_511_land", FIXTURE_WILD, 3U, 29U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_entrance", FIXTURE_WILD, 1U, 83U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_b1f", FIXTURE_WILD, 1U, 84U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_deep", FIXTURE_WILD, 1U, 85U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_old_man_room_a", FIXTURE_WILD_WALK_ONLY, 1U, 11U, 10U, 5U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_old_man_room_b", FIXTURE_WILD_WALK_ONLY, 1U, 100U, 10U, 5U, 0U, 0U, 0U, 0U, 0U},
-    {"wisdom_cave_upper", FIXTURE_WILD, 3U, 59U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
+    {"wisdom_cave_north_route", FIXTURE_WARP_ROUTE, 3U, 21U, 15U, 57U, WORLD_KEY_UP, 0U, 0U, 0U, 0U},
+    {"wisdom_cave_south_route", FIXTURE_WARP_ROUTE, 3U, 21U, 8U, 75U, WORLD_KEY_RIGHT, 0U, 0U, 0U, 0U},
+    {"wisdom_cave_b2f_route", FIXTURE_WARP_ROUTE, 1U, 73U, 31U, 18U, WORLD_KEY_DOWN, 0U, 0U, 0U, 0U},
+    {"wisdom_cave_b1f", FIXTURE_WILD, 1U, 73U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
+    {"wisdom_cave_b2f", FIXTURE_WILD, 1U, 37U, 10U, 10U, 0U, 0U, 0U, 0U, 0U},
 };
 
 struct FixtureResult {
@@ -100,10 +112,13 @@ struct FixtureResult {
     bool encounter_found;
     bool fled_and_moved;
     bool duplicate_prevented;
+    bool reward_menu_seen;
+    bool route_exited;
     unsigned key_pulses;
     unsigned successful_steps;
     unsigned encounters;
     unsigned rotations;
+    unsigned warp_transitions;
     uint16_t first_wild_species;
     uint8_t first_wild_level;
     uint8_t minimum_wild_level;
@@ -111,6 +126,7 @@ struct FixtureResult {
     uint8_t battle_outcome;
     uint8_t trainer_flag_seen;
     uint16_t trainer_external_flag;
+    uint16_t reward_result;
     uint16_t start_x;
     uint16_t start_y;
     uint16_t end_x;
@@ -119,6 +135,8 @@ struct FixtureResult {
 
 static const char *world_phase = "startup";
 static color_t world_video[240U * 160U];
+
+static void world_continue(struct mCore *core, const struct Fixture *fixture);
 
 static void world_die(const char *fixture, const char *message)
 {
@@ -249,13 +267,36 @@ static void world_generate_save(const char *rom_path, const char *save_path,
 {
     struct mCore *core;
     uint32_t save1;
-    world_phase = "natural-new-game";
-    bootstrap_write_blank_save(save_path);
-    core = bootstrap_open_core(rom_path, save_path, NULL);
-    run_trace_prefix(core);
-    run_fixed_frames(core);
-    save1 = world_save1(core, fixture->name);
-    (void)save1;
+    const char *seed_save = getenv("WORLD_SEED_SAVE");
+    if (seed_save != NULL && seed_save[0] != '\0') {
+        world_phase = "copy-progression-seed";
+        FILE *source = fopen(seed_save, "rb");
+        FILE *destination = fopen(save_path, "wb");
+        if (source == NULL || destination == NULL)
+            world_die(fixture->name, "progression seed could not be opened");
+        unsigned char buffer[4096];
+        size_t amount;
+        while ((amount = fread(buffer, 1U, sizeof(buffer), source)) != 0U) {
+            if (fwrite(buffer, 1U, amount, destination) != amount)
+                world_die(fixture->name, "progression seed copy failed");
+        }
+        if (ferror(source) || fclose(source) != 0 || fclose(destination) != 0)
+            world_die(fixture->name, "progression seed copy did not close cleanly");
+        core = bootstrap_open_core(rom_path, save_path, NULL);
+        struct Fixture seed_fixture = *fixture;
+        seed_fixture.group = 96U;
+        seed_fixture.map = 5U;
+        world_continue(core, &seed_fixture);
+        world_wait_player_ready(core, &seed_fixture);
+    } else {
+        world_phase = "natural-new-game";
+        bootstrap_write_blank_save(save_path);
+        core = bootstrap_open_core(rom_path, save_path, NULL);
+        run_trace_prefix(core);
+        run_fixed_frames(core);
+        save1 = world_save1(core, fixture->name);
+        (void)save1;
+    }
 
     world_phase = "stock-warp-save";
     (void)call_preserving(core, BOOTSTRAP_KANTO_WARP,
@@ -288,6 +329,18 @@ static void world_generate_save(const char *rom_path, const char *save_path,
         set_mon_data_u32(core, mon, MON_DATA_PP1, 63U);
     }
     write8(core, BOOTSTRAP_PLAYER_COUNT, BOOTSTRAP_TEAM_SIZE);
+    if (strcmp(fixture->name, "reward_encounter_scientist_menu") == 0
+        && call_preserving(core, WORLD_REWARD_TEST_INITIALIZE,
+                           0U, 0U, 0U, 0U) != 0U)
+        world_die(fixture->name,
+                  "reward menu progression-state preparation failed");
+    if (strcmp(fixture->name, "wisdom_cave_south_route") == 0) {
+        (void)call_preserving(core, WORLD_FLAG_SET, 0x0567U, 0U, 0U, 0U);
+        if (call_preserving(core, WORLD_FLAG_GET,
+                            0x0567U, 0U, 0U, 0U) != 1U)
+            world_die(fixture->name,
+                      "unrelated route trainer flag preparation failed");
+    }
     bootstrap_prepare_save_map_view(core);
     if (call_preserving(core, BOOTSTRAP_TRY_SAVE, 0U, 0U, 0U, 0U)
             != BOOTSTRAP_STATUS_OK
@@ -349,6 +402,40 @@ static bool world_wait_script_release(struct mCore *core,
     return false;
 }
 
+static bool world_wait_reward_scientist_release(
+    struct mCore *core, struct FixtureResult *result, uint16_t result_before)
+{
+    for (unsigned frame = 0U; frame < 3600U; ++frame) {
+        uint16_t reward_result = read16(
+            core, WORLD_REWARD_STATE + WORLD_REWARD_LAST_RESULT_OFFSET);
+        bool menu_active = read8(
+            core, WORLD_REWARD_STATE + WORLD_REWARD_MENU_ACTIVE_OFFSET) != 0U;
+        if (world_script_enabled(core)
+            || menu_active
+            || reward_result != result_before
+            || read16(core, WORLD_SPECIAL_RESULT) != result_before)
+            result->script_seen = true;
+        if (menu_active) {
+            result->reward_menu_seen = true;
+            world_pulse(core, WORLD_KEY_B, 2U, 45U);
+            ++result->key_pulses;
+        } else {
+            run_key_frames(core, 0U, 1U);
+        }
+        reward_result = read16(
+            core, WORLD_REWARD_STATE + WORLD_REWARD_LAST_RESULT_OFFSET);
+        if (result->script_seen && !world_script_enabled(core)
+            && world_overworld(core) && reward_result != WORLD_REWARD_BUSY) {
+            result->reward_result = reward_result;
+            run_key_frames(core, 0U, 90U);
+            return true;
+        }
+    }
+    result->reward_result = read16(
+        core, WORLD_REWARD_STATE + WORLD_REWARD_LAST_RESULT_OFFSET);
+    return false;
+}
+
 static void world_print_object_debug(struct mCore *core,
                                      const struct Fixture *fixture)
 {
@@ -385,6 +472,7 @@ static void world_interaction(struct mCore *core,
 {
     uint32_t bag_before = 0U;
     uint32_t flag_before = 0U;
+    uint16_t reward_result_before = read16(core, WORLD_SPECIAL_RESULT);
     if (fixture->item != 0U)
         bag_before = call_preserving(core, BATTLE_CORE_CHECK_BAG_HAS_ITEM,
                                      fixture->item, 1U, 0U, 0U);
@@ -396,6 +484,7 @@ static void world_interaction(struct mCore *core,
 
     world_phase = "gba-a-interaction";
     if (fixture->kind == FIXTURE_FACING_DIALOGUE
+        || fixture->kind == FIXTURE_REWARD_SCIENTIST
         || fixture->kind == FIXTURE_ITEM) {
         world_pulse(core, fixture->action_key, 2U, 8U);
         ++result->key_pulses;
@@ -417,7 +506,20 @@ static void world_interaction(struct mCore *core,
     world_pulse(core, WORLD_KEY_A, 2U, 8U);
     result->key_pulses++;
     result->script_seen = world_script_enabled(core);
-    result->field_returned = world_wait_script_release(core, result);
+    if (fixture->kind == FIXTURE_REWARD_SCIENTIST) {
+        result->field_returned = world_wait_reward_scientist_release(
+            core, result, reward_result_before);
+        if (result->reward_menu_seen
+            && result->reward_result != WORLD_REWARD_CANCELLED)
+            world_die(fixture->name,
+                      "B did not cancel the asynchronous reward menu");
+        if (strcmp(fixture->name, "reward_encounter_scientist_menu") == 0
+            && !result->reward_menu_seen)
+            world_die(fixture->name,
+                      "prepared progression state did not exercise the reward menu");
+    } else {
+        result->field_returned = world_wait_script_release(core, result);
+    }
     if (!result->script_seen || !result->field_returned) {
         world_print_object_debug(core, fixture);
         world_die(fixture->name, "A interaction did not start and release finite script");
@@ -514,6 +616,163 @@ static bool world_walk_to_new_tile(struct mCore *core, uint16_t key,
     }
     run_key_frames(core, 0U, 4U);
     return false;
+}
+
+static void world_walk_one(struct mCore *core, const struct Fixture *fixture,
+                           struct FixtureResult *result, uint16_t key)
+{
+    uint32_t save1 = world_save1(core, fixture->name);
+    uint8_t group = read8(core, save1 + 4U);
+    uint8_t map = read8(core, save1 + 5U);
+    uint16_t x = read16(core, save1);
+    uint16_t y = read16(core, save1 + 2U);
+    bool changed = false;
+    ++result->key_pulses;
+    for (unsigned frame = 0U; frame < 90U; ++frame) {
+        run_key_frames(core, key, 1U);
+        save1 = world_save1(core, fixture->name);
+        if (read8(core, save1 + 4U) != group
+            || read8(core, save1 + 5U) != map)
+            break;
+        if (read16(core, save1) != x || read16(core, save1 + 2U) != y) {
+            changed = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0U);
+    if (!changed || read8(core, save1 + 4U) != group
+        || read8(core, save1 + 5U) != map) {
+        fprintf(stderr,
+                "route step debug: from=%u/%u %u,%u key=%u got=%u/%u %u,%u"
+                " callback=%08" PRIX32 " lock=%u\n",
+                group, map, x, y, key,
+                read8(core, save1 + 4U), read8(core, save1 + 5U),
+                read16(core, save1), read16(core, save1 + 2U),
+                read32(core, BATTLE_CORE_MAIN_CALLBACK2),
+                read8(core, WORLD_FIELD_CONTROLS_LOCKED));
+        world_die(fixture->name, "normal route step did not remain on its map");
+    }
+    unsigned stable = 0U;
+    for (unsigned frame = 0U; frame < 600U; ++frame) {
+        run_key_frames(core, 0U, 1U);
+        save1 = world_save1(core, fixture->name);
+        bool stationary = read8(
+            core, WORLD_PLAYER_AVATAR + WORLD_PLAYER_RUNNING_STATE_OFFSET) == 0U
+            && read8(core, WORLD_PLAYER_AVATAR
+                     + WORLD_PLAYER_TILE_TRANSITION_STATE_OFFSET) == 0U;
+        stable = stationary ? stable + 1U : 0U;
+        if (stable >= 30U) {
+            ++result->successful_steps;
+            return;
+        }
+    }
+    world_die(fixture->name, "normal route step did not settle");
+}
+
+static void world_take_warp(struct mCore *core, const struct Fixture *fixture,
+                            struct FixtureResult *result, uint16_t key,
+                            uint8_t expected_group, uint8_t expected_map)
+{
+    uint32_t save1 = world_save1(core, fixture->name);
+    uint8_t initial_group = read8(core, save1 + 4U);
+    uint8_t initial_map = read8(core, save1 + 5U);
+    bool changed = false;
+    ++result->key_pulses;
+    for (unsigned frame = 0U; frame < 900U; ++frame) {
+        run_key_frames(core, key, 1U);
+        save1 = world_save1(core, fixture->name);
+        if (read8(core, save1 + 4U) != initial_group
+            || read8(core, save1 + 5U) != initial_map) {
+            changed = true;
+            break;
+        }
+    }
+    core->setKeys(core, 0U);
+    if (!changed) {
+        fprintf(stderr,
+                "warp start debug: from=%u/%u pos=%u,%u key=%u wanted=%u/%u"
+                " callback=%08" PRIX32 " lock=%u collision=%u\n",
+                initial_group, initial_map,
+                read16(core, save1), read16(core, save1 + 2U), key,
+                expected_group, expected_map,
+                read32(core, BATTLE_CORE_MAIN_CALLBACK2),
+                read8(core, WORLD_FIELD_CONTROLS_LOCKED),
+                call_preserving(core, WORLD_MAP_GRID_COLLISION,
+                                read16(core, save1),
+                                read16(core, save1 + 2U), 0U, 0U));
+        world_die(fixture->name, "normal key input did not start a warp");
+    }
+    unsigned stable = 0U;
+    for (unsigned frame = 0U; frame < 3600U; ++frame) {
+        run_key_frames(core, 0U, 1U);
+        save1 = world_save1(core, fixture->name);
+        uint8_t object_id = read8(core, WORLD_PLAYER_AVATAR + 5U);
+        uint32_t object = WORLD_OBJECT_EVENTS + object_id * 0x24U;
+        bool stationary = read8(
+            core, WORLD_PLAYER_AVATAR + WORLD_PLAYER_RUNNING_STATE_OFFSET) == 0U
+            && read8(core, WORLD_PLAYER_AVATAR
+                     + WORLD_PLAYER_TILE_TRANSITION_STATE_OFFSET) == 0U;
+        bool ready = read8(core, save1 + 4U) == expected_group
+            && read8(core, save1 + 5U) == expected_map
+            && world_overworld(core) && !world_script_enabled(core)
+            && object_id < 16U && (read8(core, object) & 1U) && stationary;
+        stable = ready ? stable + 1U : 0U;
+        if (stable >= 60U) {
+            ++result->warp_transitions;
+            return;
+        }
+    }
+    save1 = world_save1(core, fixture->name);
+    fprintf(stderr,
+            "warp settle debug: wanted=%u/%u got=%u/%u pos=%u,%u callback=%08" PRIX32
+            " lock=%u\n",
+            expected_group, expected_map,
+            read8(core, save1 + 4U), read8(core, save1 + 5U),
+            read16(core, save1), read16(core, save1 + 2U),
+            read32(core, BATTLE_CORE_MAIN_CALLBACK2),
+            read8(core, WORLD_FIELD_CONTROLS_LOCKED));
+    world_die(fixture->name, "warp did not settle on the expected map");
+}
+
+static void world_warp_route(struct mCore *core, const struct Fixture *fixture,
+                             struct FixtureResult *result)
+{
+    world_phase = "gba-normal-warp-route";
+    world_wait_player_ready(core, fixture);
+    if (strcmp(fixture->name, "wisdom_cave_north_route") == 0) {
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 36U);
+        world_walk_one(core, fixture, result, WORLD_KEY_RIGHT);
+        world_walk_one(core, fixture, result, WORLD_KEY_RIGHT);
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 73U);
+        world_walk_one(core, fixture, result, WORLD_KEY_DOWN);
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 36U);
+        world_walk_one(core, fixture, result, WORLD_KEY_DOWN);
+        world_walk_one(core, fixture, result, WORLD_KEY_LEFT);
+        world_walk_one(core, fixture, result, WORLD_KEY_LEFT);
+        world_take_warp(core, fixture, result, WORLD_KEY_DOWN, 3U, 21U);
+    } else if (strcmp(fixture->name, "wisdom_cave_south_route") == 0) {
+        world_take_warp(core, fixture, result, WORLD_KEY_RIGHT, 1U, 38U);
+        world_walk_one(core, fixture, result, WORLD_KEY_RIGHT);
+        world_walk_one(core, fixture, result, WORLD_KEY_RIGHT);
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 73U);
+        world_walk_one(core, fixture, result, WORLD_KEY_DOWN);
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 38U);
+        world_walk_one(core, fixture, result, WORLD_KEY_DOWN);
+        world_walk_one(core, fixture, result, WORLD_KEY_LEFT);
+        world_walk_one(core, fixture, result, WORLD_KEY_LEFT);
+        world_take_warp(core, fixture, result, WORLD_KEY_DOWN, 3U, 21U);
+    } else if (strcmp(fixture->name, "wisdom_cave_b2f_route") == 0) {
+        world_take_warp(core, fixture, result, WORLD_KEY_DOWN, 1U, 37U);
+        world_walk_one(core, fixture, result, WORLD_KEY_DOWN);
+        world_take_warp(core, fixture, result, WORLD_KEY_UP, 1U, 73U);
+    } else {
+        world_die(fixture->name, "unknown normal warp route fixture");
+    }
+    result->route_exited = result->warp_transitions >= 2U;
+    result->field_returned = world_overworld(core) && !world_script_enabled(core);
+    result->state_committed = true;
+    if (!result->route_exited || !result->field_returned)
+        world_die(fixture->name, "normal warp route did not return to the field");
 }
 
 static void world_finish_battle(struct mCore *core,
@@ -987,15 +1246,22 @@ static void world_record_wild(struct mCore *core,
     if (strcmp(fixture->name, "waterway_511_land") == 0) {
         minimum = 25U;
         maximum = 31U;
-    } else if (strcmp(fixture->name, "wisdom_cave_entrance") == 0
-               || strcmp(fixture->name, "wisdom_cave_b1f") == 0) {
-        minimum = 34U;
-        maximum = 38U;
-    } else if (strncmp(fixture->name, "wisdom_cave_", 12U) == 0) {
-        minimum = 48U;
-        maximum = 51U;
+    } else if (strcmp(fixture->name, "wisdom_cave_b1f") == 0) {
+        minimum = 6U;
+        maximum = 9U;
+        if (species != 16U && species != 46U
+            && species != 50U && species != 81U)
+            world_die(fixture->name,
+                      "B1F species differs from the original Vega table");
+    } else if (strcmp(fixture->name, "wisdom_cave_b2f") == 0) {
+        minimum = 44U;
+        maximum = 48U;
+        if (species != 50U && species != 312U && species != 363U
+            && species != 386U && species != 387U)
+            world_die(fixture->name,
+                      "B2F species differs from the original Vega table");
     }
-    if (species == 50U || level == 100U
+    if (level == 100U
         || (minimum != 0U && (level < minimum || level > maximum)))
         world_die(fixture->name, "wild species/level differs from the native map table");
 }
@@ -1217,6 +1483,8 @@ static struct FixtureResult world_run_fixture(const char *rom_path,
     result.start_y = read16(core, world_save1(core, fixture->name) + 2U);
     if (fixture->kind == FIXTURE_TRAINER) {
         world_trainer(core, fixture, &result);
+    } else if (fixture->kind == FIXTURE_WARP_ROUTE) {
+        world_warp_route(core, fixture, &result);
     } else if (fixture->kind == FIXTURE_WILD
                || fixture->kind == FIXTURE_WILD_WALK_ONLY) {
         world_wild(core, fixture, &result, turn_key);
@@ -1251,6 +1519,8 @@ static void world_print_result(const struct Fixture *fixture,
            "\"sight_triggered\":%s,\"old_raid_absent\":%s,"
            "\"encounter_found\":%s,\"fled_and_moved\":%s,"
            "\"duplicate_prevented\":%s,"
+           "\"reward_menu_seen\":%s,\"reward_result\":%u,"
+           "\"route_exited\":%s,\"warp_transitions\":%u,"
            "\"key_pulses\":%u,\"successful_steps\":%u,"
            "\"encounters\":%u,\"rotations\":%u,"
            "\"first_wild_species\":%u,\"first_wild_level\":%u,"
@@ -1270,6 +1540,10 @@ static void world_print_result(const struct Fixture *fixture,
            result->encounter_found ? "true" : "false",
            result->fled_and_moved ? "true" : "false",
            result->duplicate_prevented ? "true" : "false",
+           result->reward_menu_seen ? "true" : "false",
+           result->reward_result,
+           result->route_exited ? "true" : "false",
+           result->warp_transitions,
            result->key_pulses, result->successful_steps,
            result->encounters, result->rotations,
            result->first_wild_species, result->first_wild_level,

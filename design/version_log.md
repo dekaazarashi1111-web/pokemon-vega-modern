@@ -1050,3 +1050,14 @@
   - 全件coverage、G-Max bit、反復供給、既存Raid state保持、post-world-fix物理束縛を検証する返却schema／validatorを追加した。
   - 決定的入力ZIPをWindows Downloadsへ配置し、再生成・Pro利用・Codex実装境界の正本を追加した。
 - Verify: generator、完成submission fixture、共有validator回帰2 tests、task graph、private guard、ZIP CRC／決定性／copy hash、diff check PASS。ZIP SHA-256 `b93d0b8cdf758694084e98d7101074ea5c1886b9985fca1bd526c55404a28c27`。
+
+## 2026-08-25T09:10:50+09:00
+
+- Version: `post-v1.4.0-stage54-world-runtime-correct-map-candidate`
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / 正しい博士NPCと知恵の洞窟の再修正
+- Summary:
+  - 博士NPCを`96/5 local 5 (25,7)`へ固定し、Reward Scientistの同期終了だけ無条件waitstateを迂回する。旧`3/2 local 9`から博士表記・専用会話を削除した。
+  - 正しい洞窟`1/36`・`1/37`・`1/38`・`1/73`を北口・南口・B2Fの通常warp往復とB1F/B2F wild入力で回帰した。
+  - Stage54はiPad未確認の非release候補で、taskは`IN_PROGRESS`のまま。旧Stage53は元の不合格identity `b6ed65...`へ復元・保持した。
+- Verify: Stage54 build、20 fresh-core fixture×独立2 process・完全一致・warnings 0、博士同期／非同期復帰、洞窟10 normal warp、B1F Species 16 Lv.9、B2F Species 387 Lv.45、BPS完全往復、declared span外0、allocator overlap 0、unit 9 tests PASS。ROM `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。

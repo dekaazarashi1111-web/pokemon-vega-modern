@@ -12,10 +12,18 @@
    - 正しい原作Vegaの「ちえのどうくつ」: map section `131`、map `1/36`、`1/37`、`1/38`、`1/73`。
    - Stage 53が試験したmap: `1/83`、`1/84`、`1/85`、`1/11`、`1/100`、`3/59`。全てmap section `139`の別map群。
    - よって「知恵の洞窟6 mapをPASS」「老人部屋は氷ポケモンLv.49〜51」というStage 53の判定を破棄する。
-2. ヒスイシティ506番道路入口側の博士風NPCは未特定・未修正。
-   - 前回の`3/2 local 9 (4,16)`は外見からの推測で、ユーザーが指したNPCだと実証していない。
-   - ユーザーがiPadで「治っていない」と確認済み。finite dialogueへの差し替えを合格証跡にしない。
+2. ユーザー報告の博士NPCは`96/5 local 5 (25,7)`で確定した。プレイヤーは`(25,8)`から上向きにA入力する。
+   - script rootは`0x093C330C`、既存のReward Encounters V2 Scientistで、`callnative`の同期終了後にも無条件で`waitstate`していたことが停止原因。
+   - 前回の`3/2 local 9 (4,16)`は別NPCであり、博士・Scientistとして扱わない。専用表記と506番道路調査会話を削除し、通常の汎用finite dialogue ownerへ戻す。
 3. Stage 53のiPad用ROMとsaveは置かれているが、上記2点により候補自体が不合格。上書きや再配置をしない。
+
+## 2026-08-25 再開結果
+
+- 修正版は旧Stage 53と分離したStage 54として生成した。ROM SHA-256は`b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。
+- 博士NPCは`96/5 local 5 (25,7)`、player `(25,8)`上向きA入力で固定した。同期終了は即releaseし、進行済みの非同期メニューはBキャンセル後にreleaseする2 fixtureを独立2 processでPASSした。
+- 旧`3/2 local 9 (4,16)`は`VEGA_RECOVERED_FINITE_DIALOGUE`として扱い、博士・Scientist・506番道路調査という専用表記を削除した。
+- 知恵の洞窟は北口・南口から`3/21 → 1/36/38 → 1/73 → 3/21`、B2Fは`1/73 ↔ 1/37`を通常キー入力で往復した。B1FはSpecies `16` Lv.9、B2FはSpecies `387` Lv.45を通常歩行で取得し、方向転換32回遭遇0、逃走後通常移動もPASSした。
+- 全20 fixture×独立2 processは完全一致、warnings 0。Stage 54はiPad未確認の非release候補で、taskは`IN_PROGRESS`のまま。
 
 ## 原作Vegaについて確定したこと
 
@@ -35,7 +43,7 @@
 1. `README.md`、`AGENTS.md`、本書、正本タスク、`design/current_state.md`の訂正行だけ読む。古いrun log全体を読み直さない。
 2. `reports/generated/vega_map_inventory.csv`でmap section `131`と`139`を再確認し、`inputs/reference/vega_reference_provided.gba`のmap/wildをbehavior oracleにする。
 3. fresh mGBAの通常new game／通常Continueから、本物の`1/73`へ通常ワープ・歩行で入り、方向転換、通常歩行、逃走後、出口到達、species、levelを独立2 processで測る。map直書きだけのfixtureを完了根拠にしない。
-4. 博士風NPCはユーザーの通常移動経路にある全objectをmap/local ID、座標、sprite、script root、隣接A入力traceで列挙する。候補を外見だけで選ばない。実際の停止scriptを特定してからownerを直す。
+4. 博士NPCは`96/5 local 5 (25,7)`へ固定し、`(25,8)`上向きA入力から、同期終了（未解放等）と非同期メニュー終了の双方が有限時間でfieldへ戻ることを測る。旧`3/2 local 9`を博士fixtureへ戻さない。
 5. 506番道路入口double戦と「551番水道」も同じ方法でruntime map/local IDとheaderを取得し、`3/24`／`3/29`を仮定せず確定する。
 6. 症状別のmap差し替えを足さず、通常NPC script、通常double controller、wild header/cadence、Codex inactive分岐の共通ownerを根本から修正する。
 7. 全fixture合格後も、iPad実プレイ承認まではタスクをDONEにしない。
@@ -59,8 +67,9 @@
 
 ## 未解決事項
 
-- 博士風NPCの正しいmap/local ID、座標、script root。
+- 博士NPCの正しい物理位置は解決済み。`96/5 local 5 (25,7)`、player `(25,8)`上向き、script root `0x093C330C`。
+- 博士NPCのStage 54修正版をiPad実プレイで再確認すること。ローカルでは同期終了とメニューBキャンセルの2経路を独立2 processで確認済み。
 - 506番道路入口double戦の正しい物理objectと、Codex inactive時に技選択後停止する正確なcontroller状態。
 - ユーザーが「551番水道」と呼ぶ草むらの正しいmap/header。511番水道`3/29`という前回推定は未確定。
-- 正しい知恵の洞窟に対するStage 53 ROMの実挙動。
+- 正しい知恵の洞窟に対するStage 54のiPad実挙動。ローカル通常warp／歩行／wild／退出は確認済み。
 - Lv.100敵partyの原因。Codex報酬workspace汚染という前回説明は、誤map fixtureを根拠にしていたため再証明が必要。

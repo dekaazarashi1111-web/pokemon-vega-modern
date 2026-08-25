@@ -14,6 +14,8 @@ from tools.world_runtime_e2e_repair import (
     FIELD_INPUT_STOCK_BODY,
     SCRIPT_CONTEXT_IS_ENABLED,
     SAFE_BATTLE_TRANSITION,
+    REWARD_BUSY,
+    REWARD_SCIENTIST_FIELD_NATIVE,
     STOCK_BATTLE_TRANSITION_START_BODY,
     TRAINER_PARTY_DELEGATE,
     TRAINER_TABLE_ADDRESS,
@@ -24,6 +26,7 @@ from tools.world_runtime_e2e_repair import (
     _add_field_input_script_owner,
     _add_hidden_flag_runtime,
     _add_hidden_item,
+    _add_reward_scientist_safe_script,
     _add_trainer_party_count_wrapper,
     _add_world_read_keys_router,
     _select_initial_trainer,
@@ -31,6 +34,29 @@ from tools.world_runtime_e2e_repair import (
 
 
 class WorldRuntimeE2ERepairTest(unittest.TestCase):
+    def test_reward_scientist_waits_only_for_busy_async_menu(self) -> None:
+        blob = _Blob()
+        _add_reward_scientist_safe_script(blob)
+        payload_offset = 0x1000
+        raw = blob.finish(payload_offset)
+        root = blob.labels["script::reward_encounter_scientist_safe"]
+        wait = blob.labels["script::reward_encounter_scientist_wait"]
+        self.assertEqual(raw[root:root + 3], bytes((0x6A, 0x5A, 0x23)))
+        self.assertEqual(
+            struct.unpack_from("<I", raw, root + 3)[0],
+            REWARD_SCIENTIST_FIELD_NATIVE,
+        )
+        self.assertEqual(
+            raw[root + 7:root + 14],
+            bytes((0x21, 0x0D, 0x80, REWARD_BUSY, 0x00, 0x06, 0x01)),
+        )
+        self.assertEqual(
+            struct.unpack_from("<I", raw, root + 14)[0],
+            0x08000000 + payload_offset + wait,
+        )
+        self.assertEqual(raw[root + 18:root + 20], bytes((0x6C, 0x02)))
+        self.assertEqual(raw[wait:wait + 3], bytes((0x27, 0x6C, 0x02)))
+
     def test_initial_trainer_prefers_authored_kind_two(self) -> None:
         rows = [
             {"command_address": 0x09000020, "kind": 3, "trainer_id": 8},

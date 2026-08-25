@@ -2486,3 +2486,37 @@
 - Network:
   - OpenAI公式 <https://help.openai.com/en/articles/8983675> を確認し、一般的な文書／表形式の対応は案内されているがZIPの自動展開は明記されていないため、ZIPが読めない場合の展開アップロード手順を同梱した。
   - OpenAI Projects公式 <https://help.openai.com/en/articles/10169521> を確認し、ProのProject上限40ファイルに対して本パケット28ファイルが収まることを記録した。
+
+## 2026-08-25T09:10:50+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / 正しい博士NPCと知恵の洞窟をStage54で再修正する
+- Status: STOPPED（Stage54ローカルPASS、iPad配置・実プレイ承認待ち）
+- Summary:
+  - ユーザー訂正を正として博士NPCをmap `96/5`、local ID `5`、座標`(25,7)`、player `(25,8)`上向きA入力へ固定した。旧`3/2 local 9 (4,16)`は別NPCなので博士表記・専用会話を削除し、汎用finite dialogueへ戻した。
+  - Reward Encounters Scientistのscript root `0x093C330C`がnative同期終了後にも無条件で`waitstate`へ入り、非同期完了通知が存在しない結果で停止する原因を特定した。result `BUSY`の時だけwaitstateし、同期終了は即releaseするscriptへ置換した。
+  - 博士は未解放の同期終了と、進行済み状態でmenuを開いてBキャンセルする非同期終了の2 fixtureを追加した。Stage51互換の実進行saveからの通常Continueでも同期終了後のfield復帰を確認した。
+  - 正しい知恵の洞窟を`1/36`・`1/37`・`1/38`・`1/73`へ固定した。北口・南口から`3/21 → 1/36/38 → 1/73 → 3/21`、B2Fは`1/73 ↔ 1/37`を通常キー入力で往復し、直接map書換えだけを合格根拠にしないfixtureへ変更した。
+  - B1Fは原作Species `16/46/50/81`・Lv.6〜9、B2Fは`50/312/363/386/387`・Lv.44〜48をgate化した。Stage54の実runはB1F Species 16 Lv.9、B2F Species 387 Lv.45、各方向転換32回遭遇0、通常歩行遭遇、逃走後通常移動をPASSした。
+  - Stage54 ROMは33,554,432 bytes、SHA-256 `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。旧Stage53番号付き成果物は隔離worktreeの旧generatorから再生成し、ROM SHA-256 `b6ed65b8b7010bf652b55e0314c7202bcfe1bcf8b43c32a2547b1f4961ce6226`、18 fixture×2 processへ復元した。
+- Files changed:
+  - `tools/world_runtime_e2e_repair.py`
+  - `tools/mgba_world_runtime_input_e2e.c`
+  - `scripts/build_world_runtime_e2e_repair.py`
+  - `tests/test_world_runtime_e2e_repair.py`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: Stage54 ROM／metadata／allocation／mGBA証跡／Stage51差分BPS／clean直接BPS／report／owner ledger。
+- Verify:
+  - `python3 scripts/build_world_runtime_e2e_repair.py build`: PASS。20 fresh-core fixture×独立2 process、完全一致、warnings 0、changed bytes 94,457、declared span外0、allocator overlap 0、BPS往復PASS。
+  - 博士fixture: `96/5` `(25,8)`上向きA。同期終了result 3でfield復帰、進行済みmenu表示後Bキャンセルresult 2でfield復帰、各2 process一致。
+  - 洞窟通常導線: 北口4 warp、南口4 warp、B2F往復2 warpをPASS。B1F/B2Fのwild species／level、方向転換、通常歩行、逃走後移動PASS。
+  - `WORLD_SEED_SAVE=.local/stage51-ipad-transfer/51_continue_save_freeze_repair_6cda0c65836f.srm ... reward_encounter_scientist`: PASS。自然Continue、script開始、同期終了、field復帰、warnings 0。
+  - `python3 -m unittest tests.test_world_runtime_e2e_repair`: PASS（9 tests）。C runnerは`-std=c11 -O2 -Wall -Wextra -Werror -pedantic`でcompile PASS。
+  - 旧Stage53保全再生成: ROM `b6ed65...`、18 fixture×2 process、warnings 0。Stage54は`b130c0...`、20 fixture×2 process、warnings 0。
+- Commit: `-`（本エントリを含むiPad実プレイ待ちcheckpoint commit）
+- Network:
+  - インターネット未使用。iPadへの接続・配置・既存ROM／save変更なし。

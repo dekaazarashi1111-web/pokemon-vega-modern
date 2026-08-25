@@ -104,6 +104,12 @@ BATTLE_TRANSITION_START_HOOK_EXPECTED = bytes.fromhex("30b5041c2406240e")
 STOCK_BATTLE_TRANSITION_START_BODY = 0x080D1981
 BROKEN_BATTLE_TRANSITION = 4
 SAFE_BATTLE_TRANSITION = 8
+REWARD_SCIENTIST_COORDINATE = (96, 5, 5)
+REWARD_SCIENTIST_POSITION = (25, 7)
+REWARD_SCIENTIST_SCRIPT_ADDRESS = 0x093C330C
+REWARD_SCIENTIST_FIELD_NATIVE = 0x093C10E9
+REWARD_SCIENTIST_SCRIPT_EXPECTED = bytes.fromhex("6a5a23e9103c09276c02")
+REWARD_BUSY = 9
 
 
 class WorldRuntimeRepairError(ValueError):
@@ -403,6 +409,25 @@ def _add_text_host(blob: _Blob, label: str, text: bytes, *, object_host: bool) -
     raw.extend(bytes((0x09, 0x04, 0x6C, 0x02)) if object_host else (0x09, 0x03, 0x6B, 0x02))
     start = blob.add(label, bytes(raw), 4)
     blob.pointer(start + fixup, text_label)
+
+
+def _add_reward_scientist_safe_script(blob: _Blob) -> None:
+    """同期終了時だけwaitstateを迂回し、非同期メニューだけ完了を待つ。"""
+    root = bytearray((0x6A, 0x5A, 0x23))
+    root.extend(struct.pack("<I", REWARD_SCIENTIST_FIELD_NATIVE))
+    root.append(0x21)  # compare LASTRESULT, REWARD_BUSY
+    root.extend(struct.pack("<HH", 0x800D, REWARD_BUSY))
+    root.extend((0x06, 0x01))  # goto_if equal
+    wait_fixup = len(root)
+    root.extend(bytes(4))
+    root.extend((0x6C, 0x02))
+    start = blob.add("script::reward_encounter_scientist_safe", bytes(root), 4)
+    blob.pointer(start + wait_fixup, "script::reward_encounter_scientist_wait")
+    blob.add(
+        "script::reward_encounter_scientist_wait",
+        bytes((0x27, 0x6C, 0x02)),
+        1,
+    )
 
 
 def _add_opponent_choice_router(blob: _Blob, label: str, stock: int) -> int:
@@ -719,10 +744,7 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
         "この ばしょを\nみまもっています。", mapping, tokens
     )
     _add_text_host(blob, "script::recovered_npc", recovered_text, object_host=True)
-    scientist_text = _encode_text(
-        "506ばんどうろの\nちょうさを しています。", mapping, tokens
-    )
-    _add_text_host(blob, "script::hisui_506_scientist", scientist_text, object_host=True)
+    _add_reward_scientist_safe_script(blob)
     for address, row in sorted(item_contract.items()):
         label = f"script::{row['kind'].lower()}::{address:08X}"
         if row["kind"] == "ITEM_BALL":
@@ -792,7 +814,29 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
             role = "EXISTING_PROJECT_OWNER"
             detail: dict[str, Any] = {}
             trainer_patch = trainer_patches.get((group, number, index))
-            if trainer_patch is not None:
+            object_key = (group, number, int(fields["local_id"]))
+            if object_key == REWARD_SCIENTIST_COORDINATE:
+                if (
+                    (int(fields["x"]), int(fields["y"]))
+                    != REWARD_SCIENTIST_POSITION
+                    or old_script != REWARD_SCIENTIST_SCRIPT_ADDRESS
+                    or stage51[
+                        old_script - GBA_ROM_BASE:
+                        old_script - GBA_ROM_BASE + len(REWARD_SCIENTIST_SCRIPT_EXPECTED)
+                    ] != REWARD_SCIENTIST_SCRIPT_EXPECTED
+                ):
+                    raise WorldRuntimeRepairError(
+                        "96/5 local 5 reward scientist physical/script contract differs"
+                    )
+                label_or_pointer = "script::reward_encounter_scientist_safe"
+                role = "REWARD_ENCOUNTER_SCIENTIST_FINITE_WAIT"
+                detail = {
+                    "original_script": old_script,
+                    "field_native": REWARD_SCIENTIST_FIELD_NATIVE,
+                    "synchronous_waitstate_bypassed": True,
+                }
+                changed = True
+            elif trainer_patch is not None:
                 raw = _patch_record(
                     raw,
                     script=int(trainer_patch["script"]),
@@ -831,12 +875,8 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
                     }
                 changed = True
             elif old_script == repaired:
-                if (group, number, int(fields["local_id"])) == (3, 2, 9):
-                    label_or_pointer = "script::hisui_506_scientist"
-                    role = "HISUI_506_SCIENTIST_DIALOGUE"
-                else:
-                    label_or_pointer = "script::recovered_npc"
-                    role = "VEGA_RECOVERED_FINITE_DIALOGUE"
+                label_or_pointer = "script::recovered_npc"
+                role = "VEGA_RECOVERED_FINITE_DIALOGUE"
                 changed = True
             elif old_script == hisui:
                 label_or_pointer = "script::hisui_general"
@@ -1009,8 +1049,8 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
         "FIELD_CUT": 47,
         "FIELD_ROCK_SMASH": 124,
         "HISUI_AUTHORED_DIALOGUE": 1,
-        "VEGA_RECOVERED_FINITE_DIALOGUE": 84,
-        "HISUI_506_SCIENTIST_DIALOGUE": 1,
+        "VEGA_RECOVERED_FINITE_DIALOGUE": 85,
+        "REWARD_ENCOUNTER_SCIENTIST_FINITE_WAIT": 1,
         "EXISTING_INVALID_RECOVERED_FINITE_DIALOGUE": 10,
     }
     for key, value in required.items():
