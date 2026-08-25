@@ -23,7 +23,7 @@
 - 博士NPCは`96/5 local 5 (25,7)`、player `(25,8)`上向きA入力で固定した。同期終了は即releaseし、進行済みの非同期メニューはBキャンセル後にreleaseする2 fixtureを独立2 processでPASSした。
 - 旧`3/2 local 9 (4,16)`は`VEGA_RECOVERED_FINITE_DIALOGUE`として扱い、博士・Scientist・506番道路調査という専用表記を削除した。
 - 知恵の洞窟は北口・南口から`3/21 → 1/36/38 → 1/73 → 3/21`、B2Fは`1/73 ↔ 1/37`を通常キー入力で往復した。B1FはSpecies `16` Lv.9、B2FはSpecies `387` Lv.45を通常歩行で取得し、方向転換32回遭遇0、逃走後通常移動もPASSした。
-- 全20 fixture×独立2 processは完全一致、warnings 0。Stage 54はiPad未確認の非release候補で、taskは`IN_PROGRESS`のまま。
+- 全20 fixture×独立2 processは完全一致、warnings 0。Stage 54 ROMと正常進行saveは2026-08-25にiPadへ別basenameで配置済み。実プレイ未確認の非release候補で、taskは`IN_PROGRESS`のまま。
 
 ## 原作Vegaについて確定したこと
 

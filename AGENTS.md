@@ -174,6 +174,12 @@ WSLでは `make validate guard test` を一括実行しない。変更内容に�
 - DPE-JPを種族拡張の基盤にしつつ、Vega既存Species/Move IDを固定する。追加IDはmanifestから生成する。
 - 同じアドレスを双方が変更する場合、片方のbyteを盲目的に採用せず、統合・ラッパー・再実装・32 MiB側への再配置で解決する。
 
+## 6.2 iPadへのGBA／save配置
+
+- iPadへGBAファイルを配置する作業では、書き込み前に必ず`docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`を読み、その時点の手順を確認する。
+- `.srm`を扱う場合は、RetroArch停止、有効containerとlive `retroarch.cfg`からの配置先解決、ROMとのbasename一致、一時名転送、size／SHA-256照合、原子的な確定、既存成果物の保全を同文書どおりに行う。
+- 端末IP、credential、container UUID、端末固有の絶対pathをtracked成果へ記録しない。
+
 ## 7. ネットワーク利用
 
 - ネット検索・Web調査は、最新技術、依存、ライブラリ、公式仕様確認が必要な場合に使ってよい。

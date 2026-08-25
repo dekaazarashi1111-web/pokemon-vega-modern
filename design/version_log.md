@@ -1061,3 +1061,14 @@
   - 正しい洞窟`1/36`・`1/37`・`1/38`・`1/73`を北口・南口・B2Fの通常warp往復とB1F/B2F wild入力で回帰した。
   - Stage54はiPad未確認の非release候補で、taskは`IN_PROGRESS`のまま。旧Stage53は元の不合格identity `b6ed65...`へ復元・保持した。
 - Verify: Stage54 build、20 fresh-core fixture×独立2 process・完全一致・warnings 0、博士同期／非同期復帰、洞窟10 normal warp、B1F Species 16 Lv.9、B2F Species 387 Lv.45、BPS完全往復、declared span外0、allocator overlap 0、unit 9 tests PASS。ROM `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。
+
+## 2026-08-25T12:44:02+09:00
+
+- Version: `post-v1.4.0-stage54-ipad-rom-save-placement`（ROM identity／save ABI不変）
+- Commit: `-`（本エントリを含むiPad配置・運用規則コミット）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage54 GBAと正常進行saveのiPad配置
+- Summary:
+  - Stage54 ROMを旧Stage53と別basenameでiPadへ配置した。
+  - 正常進行saveをROMと同一basenameの`.srm`として正規mGBA save directoryへ配置した。
+  - iPad GBA配置前に正本runbookを必ず参照する規則を`AGENTS.md`へ追加した。
+- Verify: iPad read-backでROM 33,554,432 bytes／`b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`、save 131,072 bytes／`406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`一致。RetroArch停止、一時ファイル0、既存Stage53不変 PASS。

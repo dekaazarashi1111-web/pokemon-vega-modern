@@ -226,9 +226,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T30と既存の明示USERタスクは完了している。`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`はStage54ローカル修正版のiPad実プレイ承認待ちで、唯一の正本IN_PROGRESSとして保持する。
+`design/tasks_next.md` を正とする。T00〜T30と既存の明示USERタスクは完了している。`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`はiPad配置済みStage54の実プレイ承認待ちで、唯一の正本IN_PROGRESSとして保持する。
 
-- USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR: IN_PROGRESS（`STAGE54_LOCAL_PASS_AWAITING_IPAD`）。正しい知恵の洞窟section `131`と`96/5 local 5`博士NPCの共通runtime修正はローカルPASS。506 double／551番水道を含め、Stage54をiPad通常プレイで再検証する。再開時は`docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`だけを先に読む。
+- USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR: IN_PROGRESS（`STAGE54_IPAD_PLACED_AWAITING_PLAY`）。正しい知恵の洞窟section `131`と`96/5 local 5`博士NPCの共通runtime修正はローカルPASS。Stage54 ROMと正常進行saveはiPadへ別basenameで配置済み。506 double／551番水道を含め、iPad通常プレイで再検証する。再開時は`docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`だけを先に読む。
 
 - USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT: DONE。全Species/Form/Ability canonical監査、フォーム特性、64×64背面画像、Stage48、2系統BPS、下流Stage42〜47回帰を完成した。
 - T30: DONE。任意mapで使えるBox 14⇔Windows exact個体庫、通常save、Stage 47、実iPad 6体depositを完成した。

@@ -1,6 +1,6 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `IN_PROGRESS`（`STAGE54_LOCAL_PASS_AWAITING_IPAD`。Stage 53の誤fixtureは不合格のまま保持し、Stage 54で正しい洞窟4 mapと`96/5 local 5`博士NPCを再検証。iPad実プレイ承認待ち）
+- Status: `IN_PROGRESS`（`STAGE54_IPAD_PLACED_AWAITING_PLAY`。Stage 53の誤fixtureは不合格のまま保持し、Stage 54のROMと正常進行saveをiPadへ別basenameで配置済み。iPad実プレイ承認待ち）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`

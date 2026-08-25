@@ -26,14 +26,14 @@
 - 正常save SHA-256: `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`
 - 2026-08-25に新規ゲーム側のStage53 saveを復旧可能な名前へ退避し、上記正常saveを配置済み。
 
-## Stage54の配置待ち対応
+## Stage54の確認済み対応
 
 - ROM: `54_world_runtime_e2e_repair.gba`
 - ROM SHA-256: `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`
 - 互換save: `54_world_runtime_e2e_repair.srm`
 - save size／SHA-256: 131,072 bytes／`406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`
-- Stage53を上書きしない。RetroArch停止と有効container／`savefile_directory`を再確認してから、ROMとsaveをStage54の別basenameで新規配置する。
-- 2026-08-25時点ではローカル20 fixture PASSまで。iPad配置・実プレイ承認は未実施。
+- Stage53を上書きせず、RetroArch停止と有効container／`savefile_directory`を再確認して、ROMとsaveをStage54の別basenameで配置済み。
+- 2026-08-25にiPad側でROM／saveのsizeとSHA-256をread-back一致、一時ファイル0、既存Stage53不変を確認した。実プレイ承認は未実施。
 
 ## 失敗判定
 

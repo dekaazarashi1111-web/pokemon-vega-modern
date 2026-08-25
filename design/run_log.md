@@ -2520,3 +2520,28 @@
 - Commit: `-`（本エントリを含むiPad実プレイ待ちcheckpoint commit）
 - Network:
   - インターネット未使用。iPadへの接続・配置・既存ROM／save変更なし。
+
+## 2026-08-25T12:44:02+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage54 GBAと正常進行saveをiPadへ配置する
+- Status: STOPPED（iPad配置PASS、実プレイ承認待ち）
+- Summary:
+  - Stage54 ROMを旧Stage53と別basenameでiPadの既存RetroArch ROM directoryへ配置した。
+  - 前回の正常進行saveを`54_world_runtime_e2e_repair.srm`としてlive `retroarch.cfg`が示すmGBA save directoryへ配置した。ROM横には置いていない。
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`の規則が実機設定と一致することを確認してStage54配置済みに更新し、今後のiPad GBA配置前に同文書を必ず読む規則を`AGENTS.md`へ追加した。
+- Files changed:
+  - `AGENTS.md`
+  - `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上のStage54 ROM／同名`.srm`。
+- Verify:
+  - Stage54 ROM: 33,554,432 bytes、SHA-256 `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`、iPad read-back一致。
+  - Stage54 save: 131,072 bytes、SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`、正規mGBA save directory／ROMと同一basename／iPad read-back一致。
+  - RetroArch停止、live config一意、save sort有効、content別sort無効、転送一時ファイル0、既存Stage53 ROM／save不変。
+- Commit: `-`（本エントリを含むiPad配置・運用規則コミット）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／save転送とread-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。インターネットは未使用。
