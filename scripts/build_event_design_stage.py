@@ -906,11 +906,15 @@ def _physical_plan(stage: bytes, clean: bytes,
             plan["objects"].append(record)
             plan["occupied"].add((x, y))
             plan["object_bindings"].append({"placement_key": key, "index": index})
-            if any(step["op"] == "OPEN_SERVICE" and step["arg_key"] == "SERVICE_PROFILE_DAYCARE"
-                   for event in events_by_placement[key] for step in event["steps"]):
-                if old_script == 0:
-                    _fail(f"{key}: daycare fallback script is null")
-                fallback[key] = old_script
+            # A restored talk object must retain its authored conversation
+            # whenever no event-design rank is currently active.  Previously
+            # this fallback was wired only for the daycare service even though
+            # every restored object's source pointer was recorded in the
+            # binding ledger.  That made the other NPC dispatchers silently
+            # release on an ordinary A interaction.
+            if old_script == 0:
+                _fail(f"{key}: restored talk-object fallback script is null")
+            fallback[key] = old_script
             binding.update({
                 "stage36_host_address": f"clean:{source_name}:object:{root}",
                 "stage36_expected_hex": source_objects[root].hex(),

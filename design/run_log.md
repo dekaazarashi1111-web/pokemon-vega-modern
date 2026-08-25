@@ -2545,3 +2545,36 @@
 - Commit: `-`（本エントリを含むiPad配置・運用規則コミット）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／save転送とread-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-25T13:34:25+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / 博士と一般NPCの無表示終了を共通dispatcherから修正する
+- Status: STOPPED（Stage55ローカルPASS・iPad配置PASS、実プレイ承認待ち）
+- Summary:
+  - Stage54でfreeze解消後も博士NPCと近隣NPCが無表示だった原因を、event-design復元TALK_OBJECT 15件のsource fallbackが台帳にだけ存在し、runtime dispatcherにはdaycare 1件しか設定されていなかった共通generator不良へ特定した。条件不一致時に残り14件が`release/end`へ落ちていた。
+  - source builderで全TALK_OBJECTにsource fallbackを必須化し、Stage55 retrofitでも15 dispatcherをclone／修正してmap pointerを再接続した。博士は`BUSY=9`だけ`waitstate`し、同期result 13種を6種類の可視メッセージへ接続した。
+  - 全678 map／3,093 objectを監査し、接触可能な無効script root 0、可視応答契約違反0、event-design可視fallback 15、博士同期可視root 1を確認した。博士同期／メニュー、歩行中の近隣port coordinator、通常walkerを含む22 fixtureを独立2 processで完走した。
+  - Stage55 ROMと正常進行saveをWi-Fi SSHでiPadの正規RetroArch ROM／mGBA save directoryへ同一basenameで配置した。read-back byte一致、旧Stage54不変、一時ファイル0、RetroArch停止を確認した。
+- Files changed:
+  - `scripts/build_event_design_stage.py`
+  - `scripts/build_world_runtime_e2e_repair.py`
+  - `tests/test_world_runtime_e2e_repair.py`
+  - `tools/mgba_world_runtime_input_e2e.c`
+  - `tools/world_runtime_e2e_repair.py`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: Stage55 ROM／metadata／allocation／mGBA証跡／2種BPS／report／owner ledger。
+  - Git管理外外部配置: iPad上のStage55 ROM／同名`.srm`。
+- Verify:
+  - `python3 scripts/build_world_runtime_e2e_repair.py build`: PASS。22 fresh-core fixture×独立2 process、完全一致、warnings 0、changed bytes 96,450、declared span外0、allocator overlap 0、BPS往復PASS。
+  - Stage54 failure oracle: 博士同期結果と近隣port coordinatorが可視応答なしでFAIL。Stage55では博士同期frame差分9,581、メニュー差分38,137、port coordinator差分9,631、通常walker差分9,660で可視応答とfield復帰PASS。
+  - `python3 -m unittest tests.test_world_runtime_e2e_repair -v`: PASS（9 tests）。C runnerは厳格警告設定でcompile PASS。
+  - Stage55 ROM: 33,554,432 bytes／SHA-256 `b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`。save: 131,072 bytes／SHA-256 `406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`。iPad read-back `cmp`／SHA-256一致、既存Stage54不変、一時ファイル0、RetroArch停止PASS。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含むiPad実プレイ待ちcheckpoint commit）
+- Network:
+  - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／save転送とread-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。インターネットは未使用。

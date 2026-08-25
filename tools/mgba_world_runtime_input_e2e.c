@@ -1,5 +1,5 @@
 /*
- * Stage54 world runtime input E2E.
+ * Stage55 world runtime input E2E.
  *
  * Each fixture is created from a natural new game and stock warp/save, then
  * reopened in a fresh core through the title-screen Continue path.  All
@@ -55,6 +55,7 @@ enum FixtureKind {
     FIXTURE_CUT,
     FIXTURE_DIALOGUE,
     FIXTURE_FACING_DIALOGUE,
+    FIXTURE_MOVING_DIALOGUE,
     FIXTURE_REWARD_SCIENTIST,
     FIXTURE_WARP_ROUTE,
     FIXTURE_RAID_REMOVED,
@@ -87,6 +88,8 @@ static const struct Fixture WORLD_FIXTURES[] = {
     {"hisui_506_west_path_local8", FIXTURE_FACING_DIALOGUE, 3U, 2U, 11U, 15U, WORLD_KEY_UP, 0U, 0U, 0U, 8U},
     {"reward_encounter_scientist", FIXTURE_REWARD_SCIENTIST, 96U, 5U, 25U, 8U, WORLD_KEY_UP, 0U, 0U, 0U, 5U},
     {"reward_encounter_scientist_menu", FIXTURE_REWARD_SCIENTIST, 96U, 5U, 25U, 8U, WORLD_KEY_UP, 0U, 0U, 0U, 5U},
+    {"vermilion_port_coordinator", FIXTURE_MOVING_DIALOGUE, 96U, 5U, 17U, 11U, WORLD_KEY_RIGHT, 0U, 0U, 0U, 4U},
+    {"vermilion_nearby_walker", FIXTURE_FACING_DIALOGUE, 96U, 5U, 17U, 10U, WORLD_KEY_UP, 0U, 0U, 0U, 7U},
     {"kanto_authored_dialogue", FIXTURE_DIALOGUE, 98U, 96U, 12U, 5U, WORLD_KEY_A, 0U, 0U, 0U, 6U},
     {"stage49_raid_removed", FIXTURE_RAID_REMOVED, 3U, 19U, 19U, 7U, WORLD_KEY_A, 0U, 0U, 0U, 0U},
     {"trainer_vertical", FIXTURE_TRAINER, 3U, 19U, 27U, 11U, WORLD_KEY_UP, 0U, 1369U, 89U, 6U},
@@ -113,12 +116,14 @@ struct FixtureResult {
     bool fled_and_moved;
     bool duplicate_prevented;
     bool reward_menu_seen;
+    bool visible_response_seen;
     bool route_exited;
     unsigned key_pulses;
     unsigned successful_steps;
     unsigned encounters;
     unsigned rotations;
     unsigned warp_transitions;
+    unsigned maximum_frame_difference;
     uint16_t first_wild_species;
     uint8_t first_wild_level;
     uint8_t minimum_wild_level;
@@ -135,8 +140,12 @@ struct FixtureResult {
 
 static const char *world_phase = "startup";
 static color_t world_video[240U * 160U];
+static color_t world_video_before[240U * 160U];
 
 static void world_continue(struct mCore *core, const struct Fixture *fixture);
+static bool world_walk_to_new_tile(struct mCore *core, uint16_t key,
+                                   uint16_t *x, uint16_t *y,
+                                   struct FixtureResult *result);
 
 static void world_die(const char *fixture, const char *message)
 {
@@ -175,6 +184,31 @@ static void world_pulse(struct mCore *core, uint16_t key,
 {
     run_key_frames(core, key, pressed);
     run_key_frames(core, 0U, released);
+}
+
+static unsigned world_frame_difference(void)
+{
+    unsigned changed = 0U;
+    for (unsigned pixel = 0U; pixel < 240U * 160U; ++pixel) {
+        if (world_video[pixel] != world_video_before[pixel])
+            ++changed;
+    }
+    return changed;
+}
+
+static void world_capture_visible_response(struct mCore *core,
+                                           struct FixtureResult *result)
+{
+    for (unsigned frame = 0U; frame < 180U; ++frame) {
+        run_key_frames(core, 0U, 1U);
+        unsigned difference = world_frame_difference();
+        if (difference > result->maximum_frame_difference)
+            result->maximum_frame_difference = difference;
+        /* Dialogue/menu windows alter a broad screen region. Facing and
+         * walking sprite changes remain well below this threshold. */
+        if (difference >= 2000U)
+            result->visible_response_seen = true;
+    }
 }
 
 static uint8_t world_direction_for_key(uint16_t key)
@@ -419,6 +453,13 @@ static bool world_wait_reward_scientist_release(
             result->reward_menu_seen = true;
             world_pulse(core, WORLD_KEY_B, 2U, 45U);
             ++result->key_pulses;
+        } else if (reward_result != WORLD_REWARD_BUSY
+                   && world_script_enabled(core)
+                   && frame % 45U == 0U) {
+            /* Synchronous scientist results now have a normal field message;
+             * dismiss it through the same A input a player uses. */
+            world_pulse(core, WORLD_KEY_A, 2U, 8U);
+            ++result->key_pulses;
         } else {
             run_key_frames(core, 0U, 1U);
         }
@@ -450,20 +491,110 @@ static void world_print_object_debug(struct mCore *core,
             && read8(core, row + 9U) == fixture->map
             && read8(core, row + 10U) == fixture->group) {
             fprintf(stderr,
-                    "object debug: slot=%u local=%u current=%u,%u facing=%u active=%u\n",
+                    "object debug: slot=%u local=%u current=%u,%u facing=%u"
+                    " elevation=%u movement=%u flags=%08" PRIX32 "\n",
                     index, fixture->local_id, read16(core, row + 0x10U),
                     read16(core, row + 0x12U), read8(core, row + 0x18U) & 0xFU,
-                    read8(core, row) & 1U);
+                    read8(core, row + 0x0BU) & 0xFU,
+                    read8(core, row + 0x06U), read32(core, row));
+            for (unsigned template_index = 0U; template_index < 64U;
+                 ++template_index) {
+                uint32_t object_template = save1 + 0x08E0U
+                    + template_index * 0x18U;
+                if (read8(core, object_template) == fixture->local_id) {
+                    fprintf(stderr,
+                            "template debug: index=%u local=%u gfx=%u kind=%u"
+                            " pos=%u,%u elevation=%u movement=%u"
+                            " range=%02X trainer=%u/%u script=%08" PRIX32
+                            " flag=%04X\n",
+                            template_index, read8(core, object_template),
+                            read8(core, object_template + 1U),
+                            read8(core, object_template + 2U),
+                            read16(core, object_template + 4U),
+                            read16(core, object_template + 6U),
+                            read8(core, object_template + 8U),
+                            read8(core, object_template + 9U),
+                            read8(core, object_template + 10U),
+                            read16(core, object_template + 12U),
+                            read16(core, object_template + 14U),
+                            read32(core, object_template + 16U),
+                            read16(core, object_template + 20U));
+                }
+            }
             return;
         }
         if ((read8(core, row) & 1U) != 0U) {
-            fprintf(stderr, "active object: slot=%u local=%u map=%u/%u current=%u,%u\n",
+            fprintf(stderr, "active object: slot=%u local=%u map=%u/%u"
+                    " current=%u,%u facing=%u elevation=%u movement=%u"
+                    " flags=%08" PRIX32 "\n",
                     index, read8(core, row + 8U), read8(core, row + 10U),
                     read8(core, row + 9U), read16(core, row + 0x10U),
-                    read16(core, row + 0x12U));
+                    read16(core, row + 0x12U), read8(core, row + 0x18U) & 0xFU,
+                    read8(core, row + 0x0BU) & 0xFU,
+                    read8(core, row + 0x06U), read32(core, row));
         }
     }
     fprintf(stderr, "object debug: local=%u is not active\n", fixture->local_id);
+}
+
+static uint32_t world_find_fixture_object(struct mCore *core,
+                                          const struct Fixture *fixture)
+{
+    for (unsigned index = 0U; index < 16U; ++index) {
+        uint32_t row = WORLD_OBJECT_EVENTS + index * 0x24U;
+        if ((read8(core, row) & 1U) != 0U
+            && read8(core, row + 8U) == fixture->local_id
+            && read8(core, row + 9U) == fixture->map
+            && read8(core, row + 10U) == fixture->group)
+            return row;
+    }
+    return 0U;
+}
+
+static void world_approach_moving_dialogue(struct mCore *core,
+                                           const struct Fixture *fixture,
+                                           struct FixtureResult *result)
+{
+    world_phase = "gba-approach-moving-dialogue";
+    for (unsigned attempt = 0U; attempt < 96U; ++attempt) {
+        uint32_t target = world_find_fixture_object(core, fixture);
+        uint8_t player_id = read8(core, WORLD_PLAYER_AVATAR + 5U);
+        if (target == 0U || player_id >= 16U)
+            world_die(fixture->name, "moving dialogue object is not active");
+        uint32_t player = WORLD_OBJECT_EVENTS + player_id * 0x24U;
+        uint16_t player_x = read16(core, player + 0x10U);
+        uint16_t player_y = read16(core, player + 0x12U);
+        uint16_t target_x = read16(core, target + 0x10U);
+        uint16_t target_y = read16(core, target + 0x12U);
+        if (player_y != target_y)
+            world_die(fixture->name, "moving dialogue target left its authored row");
+        if ((player_x + 1U == target_x) || (target_x + 1U == player_x)) {
+            uint16_t key = player_x < target_x
+                ? WORLD_KEY_RIGHT : WORLD_KEY_LEFT;
+            world_pulse(core, key, 1U, 4U);
+            ++result->key_pulses;
+            target_x = read16(core, target + 0x10U);
+            target_y = read16(core, target + 0x12U);
+            player_x = read16(core, player + 0x10U);
+            player_y = read16(core, player + 0x12U);
+            if (player_y == target_y
+                && ((player_x + 1U == target_x)
+                    || (target_x + 1U == player_x))
+                && world_player_facing(core)
+                   == world_direction_for_key(key))
+                return;
+            continue;
+        }
+        uint16_t key = player_x < target_x ? WORLD_KEY_RIGHT : WORLD_KEY_LEFT;
+        uint32_t save1 = world_save1(core, fixture->name);
+        uint16_t save_x = read16(core, save1);
+        uint16_t save_y = read16(core, save1 + 2U);
+        (void)world_walk_to_new_tile(core, key, &save_x, &save_y, result);
+        if (!world_overworld(core) || world_script_enabled(core))
+            world_die(fixture->name, "moving dialogue approach started another event");
+    }
+    world_print_object_debug(core, fixture);
+    world_die(fixture->name, "GBA movement could not approach moving dialogue object");
 }
 
 static void world_interaction(struct mCore *core,
@@ -483,6 +614,8 @@ static void world_interaction(struct mCore *core,
         world_die(fixture->name, "fixture starts already committed");
 
     world_phase = "gba-a-interaction";
+    if (fixture->kind == FIXTURE_MOVING_DIALOGUE)
+        world_approach_moving_dialogue(core, fixture, result);
     if (fixture->kind == FIXTURE_FACING_DIALOGUE
         || fixture->kind == FIXTURE_REWARD_SCIENTIST
         || fixture->kind == FIXTURE_ITEM) {
@@ -503,9 +636,15 @@ static void world_interaction(struct mCore *core,
                           "hidden-item facing input moved the player");
         }
     }
+    memcpy(world_video_before, world_video, sizeof(world_video_before));
     world_pulse(core, WORLD_KEY_A, 2U, 8U);
     result->key_pulses++;
     result->script_seen = world_script_enabled(core);
+    if (fixture->kind == FIXTURE_DIALOGUE
+        || fixture->kind == FIXTURE_FACING_DIALOGUE
+        || fixture->kind == FIXTURE_MOVING_DIALOGUE
+        || fixture->kind == FIXTURE_REWARD_SCIENTIST)
+        world_capture_visible_response(core, result);
     if (fixture->kind == FIXTURE_REWARD_SCIENTIST) {
         result->field_returned = world_wait_reward_scientist_release(
             core, result, reward_result_before);
@@ -523,6 +662,14 @@ static void world_interaction(struct mCore *core,
     if (!result->script_seen || !result->field_returned) {
         world_print_object_debug(core, fixture);
         world_die(fixture->name, "A interaction did not start and release finite script");
+    }
+    if ((fixture->kind == FIXTURE_DIALOGUE
+         || fixture->kind == FIXTURE_FACING_DIALOGUE
+         || fixture->kind == FIXTURE_MOVING_DIALOGUE
+         || fixture->kind == FIXTURE_REWARD_SCIENTIST)
+        && !result->visible_response_seen) {
+        world_print_object_debug(core, fixture);
+        world_die(fixture->name, "A interaction returned without visible feedback");
     }
     if (fixture->item != 0U) {
         uint32_t bag_after = call_preserving(
@@ -1520,9 +1667,11 @@ static void world_print_result(const struct Fixture *fixture,
            "\"encounter_found\":%s,\"fled_and_moved\":%s,"
            "\"duplicate_prevented\":%s,"
            "\"reward_menu_seen\":%s,\"reward_result\":%u,"
+           "\"visible_response_seen\":%s,"
            "\"route_exited\":%s,\"warp_transitions\":%u,"
            "\"key_pulses\":%u,\"successful_steps\":%u,"
            "\"encounters\":%u,\"rotations\":%u,"
+           "\"maximum_frame_difference\":%u,"
            "\"first_wild_species\":%u,\"first_wild_level\":%u,"
            "\"minimum_wild_level\":%u,\"maximum_wild_level\":%u,"
            "\"battle_outcome\":%u,\"trainer_flag_seen\":%u,"
@@ -1542,10 +1691,12 @@ static void world_print_result(const struct Fixture *fixture,
            result->duplicate_prevented ? "true" : "false",
            result->reward_menu_seen ? "true" : "false",
            result->reward_result,
+           result->visible_response_seen ? "true" : "false",
            result->route_exited ? "true" : "false",
            result->warp_transitions,
            result->key_pulses, result->successful_steps,
            result->encounters, result->rotations,
+           result->maximum_frame_difference,
            result->first_wild_species, result->first_wild_level,
            result->minimum_wild_level, result->maximum_wild_level,
            result->battle_outcome, result->trainer_flag_seen,

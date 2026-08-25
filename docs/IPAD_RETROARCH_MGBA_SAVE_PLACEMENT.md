@@ -35,6 +35,15 @@
 - Stage53を上書きせず、RetroArch停止と有効container／`savefile_directory`を再確認して、ROMとsaveをStage54の別basenameで配置済み。
 - 2026-08-25にiPad側でROM／saveのsizeとSHA-256をread-back一致、一時ファイル0、既存Stage53不変を確認した。実プレイ承認は未実施。
 
+## Stage55の確認済み対応
+
+- ROM: `55_world_runtime_visible_feedback_repair.gba`
+- ROM SHA-256: `b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`
+- 互換save: `55_world_runtime_visible_feedback_repair.srm`
+- save size／SHA-256: 131,072 bytes／`406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`
+- 2026-08-25にWi-Fi SSHでlive `retroarch.cfg`と実mGBA save directoryを再解決し、RetroArch停止中に一時名から原子的に配置した。
+- iPadからROM／saveをread-backしてsourceとbyte一致、一時ファイル0、既存Stage54 ROM／saveのSHA-256不変を確認した。実プレイ承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

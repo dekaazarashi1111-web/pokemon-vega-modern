@@ -6,6 +6,7 @@ Stage50の症状別wrapperを継ぎ足さず、FireRedのobject/trainer/item/wil
 
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import struct
@@ -110,6 +111,25 @@ REWARD_SCIENTIST_SCRIPT_ADDRESS = 0x093C330C
 REWARD_SCIENTIST_FIELD_NATIVE = 0x093C10E9
 REWARD_SCIENTIST_SCRIPT_EXPECTED = bytes.fromhex("6a5a23e9103c09276c02")
 REWARD_BUSY = 9
+REWARD_RESULT_CODES = tuple(range(14))
+REWARD_RESULT_MESSAGE_KEYS = {
+    0: "done",
+    1: "done",
+    2: "done",
+    3: "locked",
+    4: "capacity",
+    5: "capacity",
+    6: "done",
+    7: "funds",
+    8: "error",
+    10: "error",
+    11: "factory",
+    12: "error",
+    13: "funds",
+}
+EVENT_DESIGN_TALK_BINDINGS = "config/event_design_bindings.csv"
+EVENT_DESIGN_DISPATCHER_HEADER_SIZE = 7
+EVENT_DESIGN_DISPATCHER_EVENT_SIZE = 63
 
 
 class WorldRuntimeRepairError(ValueError):
@@ -151,6 +171,72 @@ def _raw_pointer(raw: bytes) -> int:
 def _movement_type(raw: bytes) -> int:
     # ObjectEventTemplate ABI: byte 9。従来helperのbyte 3はpaddingである。
     return raw[9]
+
+
+def _event_design_talk_fallbacks(
+    root: Path, stage51: bytes
+) -> dict[tuple[int, int, int], dict[str, Any]]:
+    """全restored TALK_OBJECTを通常会話へ必ず戻すdispatcherにする。"""
+    path = root / EVENT_DESIGN_TALK_BINDINGS
+    with path.open(encoding="utf-8", newline="") as handle:
+        rows = [
+            row for row in csv.DictReader(handle)
+            if row["trigger_type"] == "TALK_OBJECT"
+            and row["fallback_address"]
+        ]
+    if len(rows) != 15:
+        raise WorldRuntimeRepairError(
+            f"event-design TALK_OBJECT inventory differs: {len(rows)} != 15"
+        )
+    result: dict[tuple[int, int, int], dict[str, Any]] = {}
+    for row in rows:
+        placement = row["placement_key"]
+        dispatcher = int(row["dispatcher_address"], 0)
+        fallback = int(row["fallback_address"], 0)
+        event_count = len([key for key in row["event_keys"].split("|") if key])
+        if not fallback or not event_count:
+            raise WorldRuntimeRepairError(
+                f"{placement}: dispatcher fallback/event inventory is empty"
+            )
+        start = dispatcher - GBA_ROM_BASE
+        terminal = (
+            start + EVENT_DESIGN_DISPATCHER_HEADER_SIZE
+            + EVENT_DESIGN_DISPATCHER_EVENT_SIZE * event_count
+        )
+        if stage51[start:start + EVENT_DESIGN_DISPATCHER_HEADER_SIZE] \
+                != bytes.fromhex("6a5a1601800000"):
+            raise WorldRuntimeRepairError(
+                f"{placement}: dispatcher header differs"
+            )
+        prefix = stage51[start:terminal]
+        existing_terminal = stage51[terminal:terminal + 5]
+        if existing_terminal[:2] == bytes((0x6C, 0x02)):
+            prior_fallback = False
+        elif (
+            existing_terminal[:1] == bytes((0x05,))
+            and struct.unpack_from("<I", existing_terminal, 1)[0] == fallback
+        ):
+            prior_fallback = True
+        else:
+            raise WorldRuntimeRepairError(
+                f"{placement}: dispatcher terminal is neither release nor source fallback"
+            )
+        script = prefix + bytes((0x05,)) + struct.pack("<I", fallback)
+        key = (int(row["group_id"]), int(row["map_id"]), int(row["local_id"]))
+        if key in result:
+            raise WorldRuntimeRepairError(
+                f"{placement}: duplicate TALK_OBJECT physical identity {key}"
+            )
+        result[key] = {
+            "placement_key": placement,
+            "dispatcher": dispatcher,
+            "fallback": fallback,
+            "event_count": event_count,
+            "prior_fallback": prior_fallback,
+            "script": script,
+            "label": f"script::event_design_fallback::{placement}",
+        }
+    return result
 
 
 def _trainer_candidates(stage51: bytes, roots: Mapping[int, list[str]]) -> dict[int, list[dict[str, int]]]:
@@ -411,8 +497,29 @@ def _add_text_host(blob: _Blob, label: str, text: bytes, *, object_host: bool) -
     blob.pointer(start + fixup, text_label)
 
 
-def _add_reward_scientist_safe_script(blob: _Blob) -> None:
-    """同期終了時だけwaitstateを迂回し、非同期メニューだけ完了を待つ。"""
+def _add_reward_result_message(blob: _Blob, key: str, text: bytes) -> None:
+    label = f"script::reward_encounter_scientist_message::{key}"
+    text_label = f"{label}::text"
+    blob.add(text_label, text, 1)
+    raw = bytearray((0x0F, 0x00))
+    fixup = len(raw)
+    raw.extend(bytes(4))
+    raw.extend((0x09, 0x04, 0x6C, 0x02))
+    start = blob.add(label, bytes(raw), 4)
+    blob.pointer(start + fixup, text_label)
+
+
+def _add_reward_scientist_safe_script(
+    blob: _Blob, messages: Mapping[str, bytes]
+) -> None:
+    """非同期メニューを待ち、全同期結果は必ず可視メッセージを返す。"""
+    required_messages = set(REWARD_RESULT_MESSAGE_KEYS.values())
+    if set(messages) != required_messages:
+        raise WorldRuntimeRepairError(
+            "reward scientist result-message inventory differs"
+        )
+    for key, text in sorted(messages.items()):
+        _add_reward_result_message(blob, key, text)
     root = bytearray((0x6A, 0x5A, 0x23))
     root.extend(struct.pack("<I", REWARD_SCIENTIST_FIELD_NATIVE))
     root.append(0x21)  # compare LASTRESULT, REWARD_BUSY
@@ -420,9 +527,29 @@ def _add_reward_scientist_safe_script(blob: _Blob) -> None:
     root.extend((0x06, 0x01))  # goto_if equal
     wait_fixup = len(root)
     root.extend(bytes(4))
-    root.extend((0x6C, 0x02))
+    result_fixups: list[tuple[int, str]] = []
+    for result in REWARD_RESULT_CODES:
+        if result == REWARD_BUSY:
+            continue
+        root.append(0x21)
+        root.extend(struct.pack("<HH", 0x800D, result))
+        root.extend((0x06, 0x01))
+        result_fixups.append((len(root), REWARD_RESULT_MESSAGE_KEYS[result]))
+        root.extend(bytes(4))
+    root.append(0x05)
+    default_fixup = len(root)
+    root.extend(bytes(4))
     start = blob.add("script::reward_encounter_scientist_safe", bytes(root), 4)
     blob.pointer(start + wait_fixup, "script::reward_encounter_scientist_wait")
+    for fixup, key in result_fixups:
+        blob.pointer(
+            start + fixup,
+            f"script::reward_encounter_scientist_message::{key}",
+        )
+    blob.pointer(
+        start + default_fixup,
+        "script::reward_encounter_scientist_message::error",
+    )
     blob.add(
         "script::reward_encounter_scientist_wait",
         bytes((0x27, 0x6C, 0x02)),
@@ -744,7 +871,32 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
         "この ばしょを\nみまもっています。", mapping, tokens
     )
     _add_text_host(blob, "script::recovered_npc", recovered_text, object_host=True)
-    _add_reward_scientist_safe_script(blob)
+    reward_messages = {
+        "done": _encode_text(
+            "うけつけを しゅうりょうしました。", mapping, tokens
+        ),
+        "locked": _encode_text(
+            "まだ じゅんびが\nととのっていません。", mapping, tokens
+        ),
+        "capacity": _encode_text(
+            "てもちと ボックスの\nあきを かくにんしてください。", mapping, tokens
+        ),
+        "funds": _encode_text(
+            "ひつような ポイントが\nたりません。", mapping, tokens
+        ),
+        "factory": _encode_text(
+            "ファクトリーの りようちゅうは\nうけつけできません。", mapping, tokens
+        ),
+        "error": _encode_text(
+            "いまは うけつけできません。\nあとで もういちど ためしてください。",
+            mapping,
+            tokens,
+        ),
+    }
+    _add_reward_scientist_safe_script(blob, reward_messages)
+    event_design_fallbacks = _event_design_talk_fallbacks(root, stage51)
+    for row in event_design_fallbacks.values():
+        blob.add(str(row["label"]), bytes(row["script"]), 4)
     for address, row in sorted(item_contract.items()):
         label = f"script::{row['kind'].lower()}::{address:08X}"
         if row["kind"] == "ITEM_BALL":
@@ -834,6 +986,23 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
                     "original_script": old_script,
                     "field_native": REWARD_SCIENTIST_FIELD_NATIVE,
                     "synchronous_waitstate_bypassed": True,
+                }
+                changed = True
+            elif object_key in event_design_fallbacks:
+                fallback_row = event_design_fallbacks[object_key]
+                if old_script != int(fallback_row["dispatcher"]):
+                    raise WorldRuntimeRepairError(
+                        f"{fallback_row['placement_key']}: rooted dispatcher differs"
+                    )
+                label_or_pointer = str(fallback_row["label"])
+                role = "EVENT_DESIGN_OBJECT_FALLBACK_REPAIRED"
+                detail = {
+                    "placement_key": str(fallback_row["placement_key"]),
+                    "event_design_dispatcher": int(fallback_row["dispatcher"]),
+                    "source_fallback": int(fallback_row["fallback"]),
+                    "event_count": int(fallback_row["event_count"]),
+                    "prior_fallback": bool(fallback_row["prior_fallback"]),
+                    "visible_feedback_contract": "EVENT_OR_SOURCE_DIALOGUE",
                 }
                 changed = True
             elif trainer_patch is not None:
@@ -1051,6 +1220,7 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
         "HISUI_AUTHORED_DIALOGUE": 1,
         "VEGA_RECOVERED_FINITE_DIALOGUE": 85,
         "REWARD_ENCOUNTER_SCIENTIST_FINITE_WAIT": 1,
+        "EVENT_DESIGN_OBJECT_FALLBACK_REPAIRED": 15,
         "EXISTING_INVALID_RECOVERED_FINITE_DIALOGUE": 10,
     }
     for key, value in required.items():
@@ -1085,6 +1255,25 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
             "object_dynamic_count": counts["SOURCE_RECOVERED_FINITE_DIALOGUE"],
             "bg_direct_count": counts["SOURCE_DIRECT_BG_OWNER"],
             "strategy": "EXACT_CLEAN_SOURCE_SCRIPT_ROOT_OR_FINITE_CONTACT_FALLBACK",
+        },
+        "visible_feedback": {
+            "reward_sync_result_codes": [
+                result for result in REWARD_RESULT_CODES if result != REWARD_BUSY
+            ],
+            "reward_sync_result_branch_count": len(REWARD_RESULT_MESSAGE_KEYS),
+            "reward_sync_message_variant_count": len(
+                set(REWARD_RESULT_MESSAGE_KEYS.values())
+            ),
+            "reward_busy_waitstate_only": True,
+            "event_design_talk_object_count": len(event_design_fallbacks),
+            "event_design_talk_source_fallback_count": sum(
+                1 for row in event_design_fallbacks.values() if row["fallback"]
+            ),
+            "event_design_previously_silent_count": sum(
+                1 for row in event_design_fallbacks.values()
+                if not row["prior_fallback"]
+            ),
+            "contract": "EVERY_SYNC_RESULT_OR_INACTIVE_DISPATCHER_HAS_VISIBLE_TEXT",
         },
         "wild": {
             "moving_gate_rebuilt": True, "minimum_step_patch_removed": True,

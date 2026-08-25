@@ -1072,3 +1072,14 @@
   - 正常進行saveをROMと同一basenameの`.srm`として正規mGBA save directoryへ配置した。
   - iPad GBA配置前に正本runbookを必ず参照する規則を`AGENTS.md`へ追加した。
 - Verify: iPad read-backでROM 33,554,432 bytes／`b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`、save 131,072 bytes／`406bc49cf298eed9a15ad83d5ff8161512d95a4815d8db486ee88ccbce0d15d2`一致。RetroArch停止、一時ファイル0、既存Stage53不変 PASS。
+
+## 2026-08-25T13:34:25+09:00
+
+- Version: `post-v1.4.0-stage55-world-runtime-visible-feedback-candidate`
+- Commit: `-`（iPad実プレイ待ちcheckpoint commit）
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / 博士と一般NPCの可視応答を共通修正する
+- Summary:
+  - event-design TALK_OBJECTのsource fallbackがruntimeへ反映されない共通generator不良を修正し、15 dispatcherを可視応答可能なsource ownerへ接続した。
+  - 博士の同期result 13種を可視メッセージへ接続し、`BUSY=9`の非同期待機だけを保持した。
+  - Stage55 ROMと正常進行saveをWi-Fi SSHでiPadへ別basename配置し、旧Stage54を不変に保った。
+- Verify: Stage55 build、22 fresh-core fixture×独立2 process・完全一致・warnings 0、全678 map／3,093 object可視応答契約監査、BPS往復、declared span外0、allocator overlap 0、unit 9 tests、iPad ROM／save read-back、旧Stage54不変、一時ファイル0 PASS。ROM `b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`。

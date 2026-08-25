@@ -15,6 +15,8 @@ from tools.world_runtime_e2e_repair import (
     SCRIPT_CONTEXT_IS_ENABLED,
     SAFE_BATTLE_TRANSITION,
     REWARD_BUSY,
+    REWARD_RESULT_CODES,
+    REWARD_RESULT_MESSAGE_KEYS,
     REWARD_SCIENTIST_FIELD_NATIVE,
     STOCK_BATTLE_TRANSITION_START_BODY,
     TRAINER_PARTY_DELEGATE,
@@ -36,7 +38,8 @@ from tools.world_runtime_e2e_repair import (
 class WorldRuntimeE2ERepairTest(unittest.TestCase):
     def test_reward_scientist_waits_only_for_busy_async_menu(self) -> None:
         blob = _Blob()
-        _add_reward_scientist_safe_script(blob)
+        messages = {key: bytes((0xFF,)) for key in set(REWARD_RESULT_MESSAGE_KEYS.values())}
+        _add_reward_scientist_safe_script(blob, messages)
         payload_offset = 0x1000
         raw = blob.finish(payload_offset)
         root = blob.labels["script::reward_encounter_scientist_safe"]
@@ -54,8 +57,35 @@ class WorldRuntimeE2ERepairTest(unittest.TestCase):
             struct.unpack_from("<I", raw, root + 14)[0],
             0x08000000 + payload_offset + wait,
         )
-        self.assertEqual(raw[root + 18:root + 20], bytes((0x6C, 0x02)))
+        cursor = root + 18
+        for result in REWARD_RESULT_CODES:
+            if result == REWARD_BUSY:
+                continue
+            self.assertEqual(
+                raw[cursor:cursor + 7],
+                bytes((0x21, 0x0D, 0x80, result, 0x00, 0x06, 0x01)),
+            )
+            target = struct.unpack_from("<I", raw, cursor + 7)[0]
+            expected = (
+                0x08000000 + payload_offset
+                + blob.labels[
+                    "script::reward_encounter_scientist_message::"
+                    + REWARD_RESULT_MESSAGE_KEYS[result]
+                ]
+            )
+            self.assertEqual(target, expected)
+            cursor += 11
+        self.assertEqual(raw[cursor], 0x05)
+        self.assertEqual(
+            struct.unpack_from("<I", raw, cursor + 1)[0],
+            0x08000000 + payload_offset
+            + blob.labels["script::reward_encounter_scientist_message::error"],
+        )
         self.assertEqual(raw[wait:wait + 3], bytes((0x27, 0x6C, 0x02)))
+        for key in set(REWARD_RESULT_MESSAGE_KEYS.values()):
+            message = blob.labels[f"script::reward_encounter_scientist_message::{key}"]
+            self.assertEqual(raw[message:message + 2], bytes((0x0F, 0x00)))
+            self.assertEqual(raw[message + 6:message + 10], bytes((0x09, 0x04, 0x6C, 0x02)))
 
     def test_initial_trainer_prefers_authored_kind_two(self) -> None:
         rows = [

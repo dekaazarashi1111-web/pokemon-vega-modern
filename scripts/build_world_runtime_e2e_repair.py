@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage51の全world ownerを再構築し、独立したStage54を生成する。"""
+"""Stage51の全world ownerを再構築し、独立したStage55を生成する。"""
 
 from __future__ import annotations
 
@@ -35,7 +35,12 @@ from tools.trainer_final.kanto_events import (  # noqa: E402
 from tools.world_runtime_e2e_repair import (  # noqa: E402
     COOLDOWN_OFFSET,
     COOLDOWN_STOCK,
+    EVENT_DESIGN_DISPATCHER_EVENT_SIZE,
+    EVENT_DESIGN_DISPATCHER_HEADER_SIZE,
     GBA_ROM_BASE,
+    REWARD_BUSY,
+    REWARD_RESULT_CODES,
+    REWARD_RESULT_MESSAGE_KEYS,
     ROM_SIZE,
     TASK,
     TRAINER_RECORD_SIZE,
@@ -49,12 +54,12 @@ from tools.world_runtime_e2e_repair import (  # noqa: E402
 )
 
 
-STAGE = 54
+STAGE = 55
 STAGE51_SHA256 = "6cda0c65836fa389c27e18bdcd500df4410348bb2176a85c2ab2fa4d41ed96e4"
 STAGE48_SHA256 = "b8244d5d6fcde027aa33bc432b5d3eb11951d71f43ba2bebf2c1d29a50dd7243"
 STAGE03_SHA256 = "fd01903a3507e25ae62377e3549962709ca207d5871b55fd4dcbb57813d5bbaf"
 CLEAN_SHA256 = "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
-ALLOCATION_NAME = "world_runtime_e2e_repair_stage54_payload"
+ALLOCATION_NAME = "world_runtime_e2e_repair_stage55_payload"
 
 STAGE51_ROM = Path("build/stages/51_continue_save_freeze_repair.gba")
 STAGE48_ROM = Path("build/stages/48_species_form_backsprite_compat.gba")
@@ -65,20 +70,20 @@ PREVIOUS_ALLOCATION = Path("build/stages/51_allocation.json")
 ID_INVENTORY = Path("reports/generated/id_inventory.json")
 
 OUTPUTS = {
-    "rom": Path("build/stages/54_world_runtime_e2e_repair.gba"),
-    "metadata": Path("build/stages/54_world_runtime_e2e_repair.json"),
-    "allocation": Path("build/stages/54_allocation.json"),
-    "mgba": Path("build/stages/54_mgba_world_runtime_e2e.json"),
-    "incremental_bps": Path("build/patches/stage51-to-world-runtime-stage54.bps"),
-    "clean_bps": Path("build/patches/clean-to-world-runtime-stage54.bps"),
-    "report_json": Path("reports/generated/world_runtime_e2e_repair.json"),
-    "report_md": Path("reports/generated/world_runtime_e2e_repair.md"),
-    "owner_ledger": Path("reports/generated/world_runtime_owner_ledger.json"),
+    "rom": Path("build/stages/55_world_runtime_visible_feedback_repair.gba"),
+    "metadata": Path("build/stages/55_world_runtime_visible_feedback_repair.json"),
+    "allocation": Path("build/stages/55_allocation.json"),
+    "mgba": Path("build/stages/55_mgba_world_runtime_e2e.json"),
+    "incremental_bps": Path("build/patches/stage51-to-world-runtime-stage55.bps"),
+    "clean_bps": Path("build/patches/clean-to-world-runtime-stage55.bps"),
+    "report_json": Path("reports/generated/world_runtime_e2e_repair_stage55.json"),
+    "report_md": Path("reports/generated/world_runtime_e2e_repair_stage55.md"),
+    "owner_ledger": Path("reports/generated/world_runtime_owner_ledger_stage55.json"),
 }
 
 
 class WorldRuntimeBuildError(RuntimeError):
-    """Stage54の入力・配置・全件監査・E2E証跡が不一致。"""
+    """Stage55の入力・配置・全件監査・E2E証跡が不一致。"""
 
 
 def _fail(message: str) -> NoReturn:
@@ -129,10 +134,10 @@ def _allocation(size: int, digest: str) -> tuple[dict[str, Any], dict[str, Any]]
     })
     report = build_allocation_report_from_csv(ROOT / "config/rom_regions.csv", requests)
     if report.get("summaries", {}).get("overlap_count") != 0:
-        _fail("Stage54 allocator overlap")
+        _fail("Stage55 allocator overlap")
     rows = [row for row in report["allocations"] if row["name"] == ALLOCATION_NAME]
     if len(rows) != 1:
-        _fail("Stage54 payload allocationが一意ではありません")
+        _fail("Stage55 payload allocationが一意ではありません")
     return rows[0], report
 
 
@@ -161,6 +166,16 @@ def _map_owner_audit(output: bytes, stage48: bytes, plan: Mapping[str, Any],
     noncontactable_invalid_roots = 0
     object_count = 0
     bg_count = 0
+    feedback_rows = {
+        (int(row["group"]), int(row["map"]), int(row["index"])): row
+        for row in plan["owner_rows"]
+        if row.get("role") in {
+            "EVENT_DESIGN_OBJECT_FALLBACK_REPAIRED",
+            "REWARD_ENCOUNTER_SCIENTIST_FINITE_WAIT",
+        }
+    }
+    event_design_feedback = 0
+    reward_feedback = 0
     for group, number in _coordinates(ROOT, group_sizes):
         try:
             state = _stage_map_state(output, group, number)
@@ -179,6 +194,62 @@ def _map_owner_audit(output: bytes, stage48: bytes, plan: Mapping[str, Any],
         for index, raw in enumerate(state["objects"]):
             fields = _object_fields(raw)
             pointer = int(fields["script_pointer"])
+            feedback = feedback_rows.get((group, number, index))
+            if feedback is not None and feedback["role"] \
+                    == "EVENT_DESIGN_OBJECT_FALLBACK_REPAIRED":
+                at = pointer - GBA_ROM_BASE
+                terminal = (
+                    at + EVENT_DESIGN_DISPATCHER_HEADER_SIZE
+                    + EVENT_DESIGN_DISPATCHER_EVENT_SIZE
+                    * int(feedback["event_count"])
+                )
+                expected_terminal = bytes((0x05,)) + struct.pack(
+                    "<I", int(feedback["source_fallback"])
+                )
+                if (
+                    output[at:at + EVENT_DESIGN_DISPATCHER_HEADER_SIZE]
+                    != bytes.fromhex("6a5a1601800000")
+                    or output[terminal:terminal + 5] != expected_terminal
+                ):
+                    _fail(
+                        "event-design source dialogue fallback不一致: "
+                        f"{group}/{number}/{index}"
+                    )
+                event_design_feedback += 1
+            elif feedback is not None and feedback["role"] \
+                    == "REWARD_ENCOUNTER_SCIENTIST_FINITE_WAIT":
+                at = pointer - GBA_ROM_BASE
+                if output[at:at + 7] != bytes.fromhex("6a5a23e9103c09"):
+                    _fail("reward scientist visible-result root不一致")
+                wait_pointer = struct.unpack_from("<I", output, at + 14)[0]
+                if output[wait_pointer - GBA_ROM_BASE:
+                          wait_pointer - GBA_ROM_BASE + 3] != bytes((0x27, 0x6C, 0x02)):
+                    _fail("reward scientist busy waitstate branch不一致")
+                cursor = at + 18
+                visible_targets: set[int] = set()
+                for result in REWARD_RESULT_CODES:
+                    if result == REWARD_BUSY:
+                        continue
+                    if output[cursor:cursor + 7] != bytes(
+                        (0x21, 0x0D, 0x80, result, 0x00, 0x06, 0x01)
+                    ):
+                        _fail(f"reward scientist result branch不一致: {result}")
+                    target = struct.unpack_from("<I", output, cursor + 7)[0]
+                    target_at = target - GBA_ROM_BASE
+                    if (
+                        output[target_at:target_at + 2] != bytes((0x0F, 0x00))
+                        or output[target_at + 6:target_at + 10]
+                        != bytes((0x09, 0x04, 0x6C, 0x02))
+                    ):
+                        _fail(f"reward scientist result message不一致: {result}")
+                    visible_targets.add(target)
+                    cursor += 11
+                if (
+                    output[cursor] != 0x05
+                    or len(visible_targets) != len(set(REWARD_RESULT_MESSAGE_KEYS.values()))
+                ):
+                    _fail("reward scientist default/visible message inventory不一致")
+                reward_feedback += 1
             if pointer in forbidden_roots:
                 forbidden_reachable.append({"group": group, "map": number, "index": index})
             if pointer in (0, GBA_ROM_BASE):
@@ -212,6 +283,7 @@ def _map_owner_audit(output: bytes, stage48: bytes, plan: Mapping[str, Any],
     disabled_special = int(plan["trainer"]["dispositions"]["NON_RUNTIME_SPECIAL_ACTOR"])
     if (active_trainers != 825 or direct_trainers != 825
             or disabled_special != 4
+            or event_design_feedback != 15 or reward_feedback != 1
             or forbidden_reachable or contactable_invalid_roots):
         _fail(
             f"world owner audit不一致: trainer={active_trainers}, direct={direct_trainers}, "
@@ -227,6 +299,9 @@ def _map_owner_audit(output: bytes, stage48: bytes, plan: Mapping[str, Any],
         "stage50_bad_owner_roots_reachable": 0,
         "contactable_invalid_script_roots": 0,
         "noncontactable_invalid_script_roots": noncontactable_invalid_roots,
+        "event_design_talk_visible_source_fallbacks": event_design_feedback,
+        "reward_scientist_visible_sync_result_roots": reward_feedback,
+        "visible_feedback_contract_failures": 0,
     }
 
 
@@ -320,11 +395,11 @@ def _land_terrain_audit(output: bytes, group_sizes: Sequence[int]) -> dict[str, 
 
 def _markdown(report: Mapping[str, Any]) -> bytes:
     counts = report["owner_plan"]["owner_counts"]
-    return (f"""# Stage54 world runtime E2E repair
+    return (f"""# Stage55 world runtime visible-feedback repair
 
 - Status: **{report['status']}**（iPad実プレイ承認待ち）
 - Input Stage51: `{report['input']['sha256']}`
-- Output Stage54: `{report['output']['sha256']}`
+- Output Stage55: `{report['output']['sha256']}`
 
 ## 根本修復
 
@@ -339,6 +414,8 @@ def _markdown(report: Mapping[str, Any]) -> bytes:
 - trainer party生成が人数snapshotより後になる共通順序不良を補正し、live countとbattle snapshotを全builder経路で同期。
 - 通常戦を停止させるbattle transition 4だけをstock transition 8へ共通正規化し、Codex active bank以外はstock対戦入力へ戻す。
 - Continueのあらすじ再生を無効化し、通常の「つづきから」とsave ABIは保持。
+- 博士NPCはBUSYだけwaitstateし、同期結果13種は必ず結果メッセージを表示。
+- event-design復元会話NPC 15体は、進行イベント非該当時に元の会話へ必ずfallback（旧ROMで無言終了した14体を一括補修）。
 
 ## 検証
 
@@ -349,7 +426,7 @@ def _markdown(report: Mapping[str, Any]) -> bytes:
 - clean直接BPS・Stage51差分BPS往復、allocator overlap、宣言外変更: PASS
 - fresh-core実入力fixture: {report['mgba'].get('status', 'PENDING')}
 
-Stage54は旧ROM/saveを上書きしない独立候補であり、task DONEはiPad実プレイ確認後に行う。
+Stage55は旧ROM/saveを上書きしない独立候補であり、task DONEはiPad実プレイ確認後に行う。
 """).encode("utf-8")
 
 
@@ -360,7 +437,7 @@ def _world_input_e2e(output: bytes) -> dict[str, Any]:
         _fail("fresh-core world input E2Eのcompiler/sourceがありません")
     (ROOT / "build").mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(
-        prefix=".stage54-world-input-", dir=ROOT / "build"
+        prefix=".stage55-world-input-", dir=ROOT / "build"
     ) as raw:
         work = Path(raw)
         candidate = work / "candidate.gba"
@@ -378,7 +455,7 @@ def _world_input_e2e(output: bytes) -> dict[str, Any]:
                 + (compiled.stderr or compiled.stdout or str(compiled.returncode))[-2000:]
             )
         fixture_filter = os.environ.get("WORLD_E2E_FIXTURE", "")
-        expected_fixture_count = 1 if fixture_filter else 20
+        expected_fixture_count = 1 if fixture_filter else 22
         runs: list[dict[str, Any]] = []
         stdout_hashes: list[str] = []
         for run_index in range(2):
@@ -583,10 +660,10 @@ def _build_outputs() -> dict[Path, bytes]:
         "world_input_fixtures": world_input,
     }
 
-    incremental = create_bps(stage51, output_raw, metadata=b"Stage51 to Stage54 world runtime E2E repair")
-    direct = create_bps(clean, output_raw, metadata=b"Clean FireRed JPN Rev0 to Stage54 world runtime E2E repair")
+    incremental = create_bps(stage51, output_raw, metadata=b"Stage51 to Stage55 world visible feedback repair")
+    direct = create_bps(clean, output_raw, metadata=b"Clean FireRed JPN Rev0 to Stage55 world visible feedback repair")
     if apply_bps(stage51, incremental) != output_raw or apply_bps(clean, direct) != output_raw:
-        _fail("Stage54 BPS round-trip不一致")
+        _fail("Stage55 BPS round-trip不一致")
     report = {
         "schema_version": 1, "task": TASK, "stage": STAGE,
         "status": "PASS_LOCAL_AWAITING_IPAD",
@@ -647,7 +724,7 @@ def _check(outputs: Mapping[Path, bytes]) -> None:
     drift = [str(path) for path, raw in outputs.items()
              if not (ROOT / path).is_file() or (ROOT / path).read_bytes() != raw]
     if drift:
-        _fail("Stage54生成物drift: " + ", ".join(drift))
+        _fail("Stage55生成物drift: " + ", ".join(drift))
 
 
 def main() -> int:
@@ -659,7 +736,7 @@ def main() -> int:
         _write(outputs) if args.mode == "build" else _check(outputs)
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError,
             WorldRuntimeBuildError) as error:
-        print(f"Stage54 world runtime {args.mode} failed: {error}", file=__import__("sys").stderr)
+        print(f"Stage55 world runtime {args.mode} failed: {error}", file=__import__("sys").stderr)
         return 1
     report = json.loads(outputs[OUTPUTS["metadata"]])
     print(json.dumps({
