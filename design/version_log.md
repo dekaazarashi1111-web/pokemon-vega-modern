@@ -1105,3 +1105,14 @@
   - Item／form／G-Max／Raid／world／sector 31 save／Box 14 raw80を実ROMへ接続し、既存Stage55とStage26〜30の契約を保持した。
   - iPad実機を完了条件から外したまま、決定的Stage56 ROMを確定した。任意のiPad配置は安全終了不可のため既存ファイル無変更で見送った。
 - Verify: build、clean 3経路、差分／直接BPS、Collection quick／full各9 test、Stage55自然入力22 fixture×独立2 process、focused unit 17 tests、task graph、private guard、diff check PASS。ROM SHA-256 `9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`。
+
+## 2026-08-27T15:59:19+09:00
+
+- Version: `post-v1.4.0-stage56-test-ready-save-v1`（ROM identity不変）
+- Commit: `-`（実装checkpoint `6cfef3f`、本エントリを含む完了commit）
+- Task: `USER-20260827-STAGE56-TEST-READY-SAVE` / Stage56標準テスト用セーブを生成・配置する
+- Summary:
+  - Stage56以降の標準テストsave profileと、blank flashから通常ROM APIだけで生成する決定的generator／exact-ROM verifierを正本化した。
+  - Codex受付前、序盤取得済み、全Lv.服従、先頭Lv.100ミュウツー＋ミュウツナイトY＋4タイプ攻撃技、手持ち6体をfresh-loadで固定した。
+  - Stage56 ROM／同名saveをiPadへ原子的に配置し、read-back byte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は要求していない。
+- Verify: generator独立2 process、full／slot 0／slot 1、自然Continue、Codex受付A入力、focused unit 5 tests、iPad size／SHA／`cmp`、task graph、private guard、diff check PASS。save SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。

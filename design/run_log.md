@@ -2664,3 +2664,40 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査とRetroArch通常終了要求だけを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。iPad上のファイル変更なし。
+
+## 2026-08-27T15:59:19+09:00
+
+- Task: `USER-20260827-STAGE56-TEST-READY-SAVE` / Stage56標準テスト用セーブを生成・配置する
+- Status: DONE
+- Summary:
+  - `config/test_ready_save.json`へStage56以降の標準profileを固定した。Codex受付前、博士のアクタシ／図鑑／ランニングシューズ取得済み、badge 8件による全Lv.服従、先頭Lv.100ミュウツー＋ミュウツナイトY＋サイコキネシス／れいとうビーム／10まんボルト／はどうだん、手持ち6体とした。
+  - blank flashからStage56 ROM自身の`FlagSet`、`CreateMon`、`SetMonData`、`CalculatePP`、`CalculateMonStats`、`GetSetPokedexFlag`、`TrySavingData`を通して2世代saveを生成した。host側でserialized party／checksumを編集していない。
+  - 独立2 processのsaveはbyte一致し、full save、slot 0／1単独fresh-load、自然Continue、通常A入力によるCodex受付表示、進行flag、badge flag、party／held item／move／PPを確認した。標準saveは131,072 bytes、SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。
+  - iPadでは残存RetroArch processへ通常終了シグナルを送り0件を確認した。active container metadataとlive `retroarch.cfg`から配置先を再解決し、Stage56 ROM／同名saveを一時名から原子的に配置した。read-backはsourceとbyte一致し、既存Stage55不変、一時ファイル0、既存Stage56退避0だった。実機プレイ／人手承認は実施せず、完了gateにも使用していない。
+- Files changed:
+  - `Makefile`
+  - `README.md`
+  - `config/test_ready_save.json`
+  - `scripts/build_test_ready_save.py`
+  - `tools/mgba_test_ready_save.c`
+  - `tests/test_test_ready_save.py`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/agent_context_map.md`
+  - `tasks/USER_20260827_STAGE56_TEST_READY_SAVE.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: `.local/56_collection_supply_v1.srm`、Stage56 save report、iPad read-back ROM／save。
+  - Git管理外外部配置: iPad上のStage56 ROM／同名`.srm`。
+- Verify:
+  - `python3 scripts/build_test_ready_save.py build`: PASS。独立2 process byte一致、full／slot 0／slot 1 fresh-load、自然Continue、Codex受付可視応答、mGBA warnings 0。
+  - `python3 scripts/build_test_ready_save.py check`: PASS。profile、ROM／save identity、source hash一致。
+  - `python3 -m unittest tests.test_test_ready_save`: PASS（5 tests）。
+  - C runnerは`-std=c11 -O2 -Wall -Wextra -Werror`でcompile PASS。
+  - 固定CFRU-JP `e24a16fe...`の`OBEDIENCE_BY_BADGE_AMOUNT`と`FLAG_BADGE01_GET..08`を照合し、8件設定時の即時服従契約を確認した。
+  - iPad: 固定host key、RetroArch process 0、live設定、ROM 33,554,432 bytes／SHA-256 `9309c073...`、save 131,072 bytes／SHA-256 `bdc4eea8...`、read-back `cmp`、Stage55不変、一時ファイル0 PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、staged index private guard: PASS。
+- Commit: `-`（実装checkpoint `6cfef3f`、本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止確認、ROM／save転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。

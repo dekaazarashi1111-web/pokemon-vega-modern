@@ -52,6 +52,15 @@
 - 2026-08-25にWi-Fi SSHでlive `retroarch.cfg`と実mGBA save directoryを再解決し、RetroArch停止中に一時名から原子的に配置した。
 - iPadからROM／saveをread-backしてsourceとbyte一致、一時ファイル0、既存Stage54 ROM／saveのSHA-256不変を確認した。実プレイ承認は未実施。
 
+## Stage56の確認済み対応
+
+- ROM: `56_collection_supply_v1.gba`
+- ROM SHA-256: `9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`
+- 標準save: `56_collection_supply_v1.srm`
+- save size／SHA-256: 131,072 bytes／`bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`
+- 2026-08-27にRetroArch停止、active container metadata、live `retroarch.cfg`、mGBA save directoryを再解決し、一時名からROM／saveを原子的に配置した。
+- iPadから両ファイルをread-backしてsourceとbyte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は未実施で、完了条件にも含めていない。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

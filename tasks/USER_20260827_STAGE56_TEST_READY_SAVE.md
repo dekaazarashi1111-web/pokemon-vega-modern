@@ -1,6 +1,6 @@
 # USER-20260827-STAGE56-TEST-READY-SAVE — Stage56標準テスト用セーブを生成・配置する
 
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Lane: `qa/save/codex-battle/ipad`
 - Depends on: `USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`、`T27`〜`T30`
 - Queue ID: `USER-20260827-STAGE56-TEST-READY-SAVE`
@@ -28,12 +28,20 @@
 
 ## 受入条件
 
-- [ ] Stage56 ROM identityが固定値と一致し、ROM・既存save・原本を変更しない。
-- [ ] blank saveから通常ROM APIで2世代saveを作り、full saveとslot 0／1単独をfresh coreで読める。
-- [ ] 自然Continue後にgroup 96 / map 5 / `(20,20)`の通常fieldへ復帰し、Codex受付が利用可能である。
-- [ ] ポケモン取得、図鑑取得、ランニングシューズ取得の3 flagがsave/reload後も設定済みである。
-- [ ] badge flag 8件がsave/reload後も設定済みで、CFRUのbadge-count服従契約上Lv.100まで服従する。
-- [ ] party 6体、先頭ミュウツーLv.100、held item 761、move `94/58/85/366`と各正規PP、slot 2アクタシをfresh-loadで確認する。
-- [ ] profile、generator、runbookを正本化し、今後のStage配置で同じ標準profileを再利用できる。
-- [ ] RetroArch停止、live config／mGBA save directory再解決、一時名転送、size／SHA-256 read-back、既存成果保全を満たす。
-- [ ] 実機プレイ／人手承認を要求せず、focused test、task graph、private guard、diff checkをPASSする。
+- [x] Stage56 ROM identityが固定値と一致し、ROM・既存save・原本を変更しない。
+- [x] blank saveから通常ROM APIで2世代saveを作り、full saveとslot 0／1単独をfresh coreで読める。
+- [x] 自然Continue後にgroup 96 / map 5 / `(20,20)`の通常fieldへ復帰し、Codex受付が利用可能である。
+- [x] ポケモン取得、図鑑取得、ランニングシューズ取得の3 flagがsave/reload後も設定済みである。
+- [x] badge flag 8件がsave/reload後も設定済みで、CFRUのbadge-count服従契約上Lv.100まで服従する。
+- [x] party 6体、先頭ミュウツーLv.100、held item 761、move `94/58/85/366`と各正規PP、slot 2アクタシをfresh-loadで確認する。
+- [x] profile、generator、runbookを正本化し、今後のStage配置で同じ標準profileを再利用できる。
+- [x] RetroArch停止、live config／mGBA save directory再解決、一時名転送、size／SHA-256 read-back、既存成果保全を満たす。
+- [x] 実機プレイ／人手承認を要求せず、focused test、task graph、private guard、diff checkをPASSする。
+
+## 完了証跡
+
+- 標準saveは131,072 bytes、SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。独立2 processでbyte一致した。
+- full save、slot 0単独、slot 1単独、自然Continue、Codex受付の通常A入力、進行flag 3件、badge flag 8件、party／held item／move／PPをexact Stage56 ROMで確認した。
+- 固定CFRU-JPの`OBEDIENCE_BY_BADGE_AMOUNT`はbadge count 8以上で即時服従を返す。save内の`0x0820..0x0827`全設定をfresh-loadで確認したため、交換個体を含むLv.100まで服従する。
+- RetroArch残存processは通常終了シグナル後に0件を確認した。live container metadata／`retroarch.cfg`からROM directoryとmGBA save directoryを再解決し、Stage56 ROM／同名saveを原子的に配置した。
+- iPadから両ファイルを新規ローカル領域へread-backし、sourceとbyte一致した。既存Stage55 ROM／saveは不変、一時ファイル0、既存Stage56退避0。実機プレイ／人手承認は実施せず、完了条件にも使用していない。
