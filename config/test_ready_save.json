@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
-  "profile_key": "STAGE56_TEST_READY_V2_OVERPOWERED_PARTY",
-  "task": "USER-20260827-STAGE56-OVERPOWERED-QA-PARTY",
+  "stage": 57,
+  "profile_key": "STAGE57_TEST_READY_V2_OVERPOWERED_PARTY",
+  "task": "USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT",
   "input": {
-    "rom": "build/stages/56_collection_supply_v1.gba",
+    "rom": "build/stages/57_comprehensive_debug_repair.gba",
     "size": 33554432,
-    "sha256": "9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778"
+    "sha256": "546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d"
   },
   "output": {
-    "save": ".local/56_collection_supply_v1.srm",
-    "report": "build/stages/56_test_ready_save.json",
+    "save": ".local/57_comprehensive_debug_repair.srm",
+    "report": "build/stages/57_test_ready_save.json",
     "size": 131072,
     "save_generations": 2
   },
@@ -221,7 +222,7 @@
     "deterministic_process_runs": 2
   },
   "ipad_policy": {
-    "rom_basename": "56_collection_supply_v1",
+    "rom_basename": "57_comprehensive_debug_repair",
     "save_directory_from_live_retroarch_config": true,
     "real_play_approval_required": false
   }

@@ -2774,3 +2774,34 @@
 - Commit: `-`（登録commit `dfa0386`、本エントリを含む完了commit）
 - Network:
   - インターネット、外部端末、ChatGPT Webは未使用。すべてローカルの固定入力とlibmGBAで実施した。
+
+## 2026-08-28T01:10:08+09:00
+
+- Task: `USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT` / Stage57 ROMと標準QAセーブをiPadへ配置する
+- Status: DONE
+- Summary:
+  - 標準save profileをStage57 exact ROMと`57_comprehensive_debug_repair` basenameへ更新した。生成器のstage判定を56固定からprofile連動へ一般化し、今後のStage58以降でもROM identityとbasenameを更新して再利用できるようにした。
+  - Stage57 ROM自身の通常`FlagSet`／`CreateMon`／`SetMonData`／`CalculatePP`／`CalculateMonStats`／`GetSetPokedexFlag`／`TrySavingData`だけで2世代saveを独立2 process生成した。saveは131,072 bytes、SHA-256 `3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。
+  - 固定host keyのWi-Fi SSHで接続診断をPASSし、RetroArchを通常終了してprocess `1→0`を確認した。active container metadataとlive `retroarch.cfg`から`sort_savefiles_enable=true`、content別sort=false、ROM directory、`~/Documents/RetroArch/saves/mGBA`の実配置先を一意に再解決した。
+  - ROM／saveをremote一時名へ転送し、iPad側でsize／SHAを照合してから、同一directory内の一時名を`57_comprehensive_debug_repair.gba/.srm`へ原子的に確定した。同名既存成果0、退避0。確定後にiPadから両方を新規ローカル領域へread-backし、sourceと`cmp`一致した。
+  - RetroArchは停止したまま、remote一時ファイル0。既存Stage56 ROMと、ユーザーの進行を含むStage56 saveは配置前後でbyte不変。iPad上の実機プレイ／人手承認は行っていない。
+- Files changed:
+  - `config/test_ready_save.json`
+  - `scripts/build_test_ready_save.py`
+  - `tests/test_test_ready_save.py`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `tasks/USER_20260828_STAGE57_IPAD_ROM_SAVE_PLACEMENT.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: `.local/57_comprehensive_debug_repair.srm`、Stage57 save report、iPad read-back ROM／save。
+  - Git管理外外部配置: iPad上のStage57 ROM／同名`.srm`。
+- Verify:
+  - `make test-ready-save`／`make test-ready-save-check`: PASS。独立2 process byte一致、full／slot 0／slot 1 fresh-load、自然Continue、Codex受付、進行flag、badge、Lv.100攻撃型6体、warnings 0。
+  - `python3 -m unittest tests.test_test_ready_save -v`: PASS（5 tests）。`python3 -m py_compile scripts/build_test_ready_save.py`もPASS。
+  - iPad: fixed host key doctor、RetroArch process 0、active metadata／live設定、ROM 33,554,432 bytes／SHA-256 `546136a6...`、save 131,072 bytes／SHA-256 `31921002...`、read-back `cmp`、Stage56不変、一時ファイル0 PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。staged indexにROM／save／private path／credentialなし。
+- Commit: `-`（登録commit `3b9bd12`、本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止、転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

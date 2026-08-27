@@ -1138,3 +1138,14 @@
   - 通常story戦26件の再戦Lv.80〜100誤流入をLv.6〜47へ戻し、共有カントー高難度戦を別ID分離で保持した。
   - 7 domainの高速QA、全678 map／5,432 root／8,925 script、505番道路66遭遇、全Species、全14 Collection host、world 22経路をStage57へ固定した。
 - Verify: mGBA全7 domain×独立2 process、warning 0、focused unit 18 tests、build／check、clean 3経路byte一致、差分／直接BPS往復、declared span外0、全overlap 0、task graph、private guard、staged diff PASS。ROM SHA-256 `546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d`。
+
+## 2026-08-28T01:10:08+09:00
+
+- Version: `post-v1.4.0-stage57-ipad-rom-save-placement`（ROM identity／save ABI不変）
+- Commit: `-`（登録commit `3b9bd12`、本エントリを含む完了commit）
+- Task: `USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT` / Stage57 ROMと標準QAセーブのiPad配置
+- Summary:
+  - 標準save profileをStage57 exact ROMへ進め、ROM自身の通常APIでLv.100攻撃型6体saveを独立2 process生成した。
+  - RetroArch停止とlive設定再解決後、Stage57 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
+  - 既存Stage56 ROM／saveを不変に保ち、remote一時ファイルを0にした。端末固有情報はtracked成果へ保存していない。
+- Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage56不変、一時ファイル0、task graph、private guard、staged diff PASS。ROM `546136a6...`、save `31921002...`。

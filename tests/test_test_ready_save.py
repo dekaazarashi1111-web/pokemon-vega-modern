@@ -24,6 +24,15 @@ class TestTestReadySave(unittest.TestCase):
 
     def test_profile_and_canonical_ids(self) -> None:
         MODULE.validate_profile(self.config)
+        self.assertEqual(self.config["stage"], 57)
+        self.assertEqual(
+            self.config["profile_key"],
+            "STAGE57_TEST_READY_V2_OVERPOWERED_PARTY",
+        )
+        self.assertEqual(
+            Path(self.config["input"]["rom"]).stem,
+            self.config["ipad_policy"]["rom_basename"],
+        )
 
     def test_progression_and_obedience_contract(self) -> None:
         self.assertEqual(

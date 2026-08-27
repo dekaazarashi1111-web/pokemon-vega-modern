@@ -57,4 +57,4 @@
 - [x] Stage56の標準テスト用セーブを生成してiPadへ配置する <!-- id:USER-20260827-STAGE56-TEST-READY-SAVE -->
 - [x] Stage56標準QAセーブの手持ちをLv.100攻撃型6体へ更新する <!-- id:USER-20260827-STAGE56-OVERPOWERED-QA-PARTY -->
 - [x] Stage56の野生個体・NPCメニュー・ストーリー導線を横断デバッグしてStage57へ修復する <!-- id:USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR -->
-- [>] Stage57 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT -->
+- [x] Stage57 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT -->

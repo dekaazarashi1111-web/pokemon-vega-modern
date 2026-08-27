@@ -62,6 +62,16 @@
 - 同日にLv.100攻撃型6体profileへ更新し、旧save（SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`）を日時付きで保全してから同名saveを原子的に置換した。
 - iPadから更新saveをread-backしてsourceとbyte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は未実施で、完了条件にも含めていない。
 
+## Stage57の確認済み対応
+
+- ROM: `57_comprehensive_debug_repair.gba`
+- ROM SHA-256: `546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d`
+- 標準save: `57_comprehensive_debug_repair.srm`
+- save size／SHA-256: 131,072 bytes／`3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`
+- 2026-08-28にStage57 exact ROM自身の通常save APIで標準Lv.100攻撃型6体saveを独立2 process生成し、full save、slot 0／1、自然Continue、Codex受付をPASSした。
+- RetroArchを通常終了してprocess 0を確認し、active container metadataとlive `retroarch.cfg`からROM directoryと実mGBA save directoryを再解決した。一時名転送、iPad側size／SHA確認、同一directory内の原子的確定を行った。
+- iPadからROM／saveを新規ローカル領域へread-backしてsourceとbyte一致した。既存Stage57同名成果はなかったため退避0、remote一時ファイル0、既存Stage56 ROM／saveは不変。実機プレイ／人手承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

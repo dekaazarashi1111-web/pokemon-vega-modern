@@ -90,7 +90,12 @@ def _source_hashes() -> dict[str, str]:
 def validate_profile(config: dict[str, Any], *, require_rom: bool = True) -> None:
     if config.get("schema_version") != 1:
         _fail("profile schema_versionが1ではありません")
-    if config.get("profile_key") != "STAGE56_TEST_READY_V2_OVERPOWERED_PARTY":
+    stage = config.get("stage")
+    if not isinstance(stage, int) or stage < 56:
+        _fail("標準profileのstageが56以降ではありません")
+    if config.get("profile_key") != (
+        f"STAGE{stage}_TEST_READY_V2_OVERPOWERED_PARTY"
+    ):
         _fail("標準profile keyが一致しません")
 
     input_config = config.get("input")
@@ -115,9 +120,12 @@ def validate_profile(config: dict[str, Any], *, require_rom: bool = True) -> Non
         _fail("ROMとsaveのbasenameが一致しません")
     if require_rom:
         if not rom.is_file() or rom.stat().st_size != input_config.get("size"):
-            _fail("Stage56 ROMが存在しないかsizeが一致しません")
+            _fail(f"Stage{stage} ROMが存在しないかsizeが一致しません")
         if _sha256(rom) != input_config.get("sha256"):
-            _fail("Stage56 ROM SHA-256が一致しません")
+            _fail(f"Stage{stage} ROM SHA-256が一致しません")
+    ipad = config.get("ipad_policy")
+    if not isinstance(ipad, dict) or ipad.get("rom_basename") != rom.stem:
+        _fail("iPad ROM basenameが入力ROMと一致しません")
 
     progression = config.get("progression_flags")
     if not isinstance(progression, list) or [row.get("id") for row in progression] != [
@@ -341,7 +349,7 @@ def build(config_path: Path) -> dict[str, Any]:
     }
     _write_json_atomic(report_path, result)
     print(
-        "Stage56 standard test-ready save: PASS "
+        f"Stage{config['stage']} standard test-ready save: PASS "
         f"sha256={save_sha256} size={output.stat().st_size}"
     )
     return result
@@ -367,7 +375,7 @@ def check(config_path: Path) -> dict[str, Any]:
         _fail("標準save生成source hashが一致しません")
     _validate_runner_report(config, report.get("mgba", {}))
     print(
-        "Stage56 standard test-ready save check: PASS "
+        f"Stage{config['stage']} standard test-ready save check: PASS "
         f"sha256={report['output']['sha256']}"
     )
     return report
@@ -385,7 +393,7 @@ def main() -> int:
         else:
             check(config_path)
     except (TestReadySaveError, OSError, subprocess.TimeoutExpired) as exc:
-        print(f"Stage56 standard test-ready save: FAIL: {exc}")
+        print(f"standard test-ready save: FAIL: {exc}")
         return 1
     return 0
 
