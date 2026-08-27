@@ -2578,3 +2578,25 @@
 - Commit: `-`（本エントリを含むiPad実プレイ待ちcheckpoint commit）
 - Network:
   - 同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／save転送とread-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。インターネットは未使用。
+
+## 2026-08-27T13:12:20+09:00
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR` / Stage 55実機承認待ちを明示しCollection Supply実装へ切り替える
+- Status: BLOCKED
+- Summary:
+  - Stage 55のローカルE2EとiPad配置は完了済みだが、タスク完了条件のユーザー実プレイ承認が未受領のため正本状態を`BLOCKED`へ変更した。
+  - ChatGPT Pro返却済みCollection Supply V1を元パケットvalidatorで再検証し、388 form、34 G-Max、999 Item、14 host、292 pool、217 reward、open question 0をPASSした。
+  - 新規`USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`を唯一の`IN_PROGRESS`として登録し、Stage 55を非release baselineにP0／P1／P2を実装する境界を固定した。
+- Files changed:
+  - `design/tasks_next.md`
+  - `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`
+  - `tasks/USER_20260827_COLLECTION_SUPPLY_V1_IMPLEMENTATION.md`
+  - `design/blockers.md`
+  - `design/run_log.md`
+- Verify:
+  - `unzip -t Pokemon-Vega_COLLECTION-SUPPLY-V1_IMPLEMENTATION-READY.zip`: PASS（12 entries）。
+  - 元パケット同梱`validate_submission.py`: `VALIDATION=PASS packet_type=COLLECTION_SUPPLY files=12 open_questions=0`。
+  - 返却ZIP: 41,513 bytes、SHA-256 `8a1b271e9b321f6409f2b766a1b469cec15a8353dfb023d99184cd305fb641db`。
+- Commit: `-`（本エントリを含む実装開始checkpoint commit）
+- Network:
+  - インターネット未使用。Windows Downloadsのユーザー提供ZIPを読み取り専用で監査した。iPad接続・配置・既存ROM／save変更なし。
