@@ -227,7 +227,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。現時点で正本IN_PROGRESSはない。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
+`design/tasks_next.md` を正とする。現在は`USER-20260827-STAGE56-OVERPOWERED-QA-PARTY`を実行中。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
+
+- USER-20260827-STAGE56-OVERPOWERED-QA-PARTY: IN_PROGRESS。標準QAセーブのpartyを、先頭ミュウツーを含むLv.100攻撃型6体へ差し替え、各個体へダブルバトル用の複数対象技を持たせる。ROM本体と既存の進行profileは変更しない。
 
 - USER-20260827-STAGE56-TEST-READY-SAVE: DONE。Codex受付前、博士のポケモン／図鑑／ランニングシューズ取得済み、badge 8件による全個体服従、Lv.100ミュウツー先頭の標準profileを通常save APIから決定的に生成した。save SHA-256は`bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。Stage56 ROM／同名saveをlive iPad配置先へ原子的に配置し、read-back byte一致、既存Stage55不変、一時ファイル0を確認した。
 - USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION: DONE。検証済み返却ZIPの388 form、34 G-Max、999 Item、14 host、292 Raid pool、217 rewardをStage55完了baselineからStage56へproduction統合した。Stage56 SHA-256は`9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`。mGBA quick／full、Stage55自然入力22 fixture×独立2 process、clean 3経路、BPS往復、owner overlap監査をPASSした。iPadは任意配置であり、今回の安全終了不可による未配置は合否を左右しない。
