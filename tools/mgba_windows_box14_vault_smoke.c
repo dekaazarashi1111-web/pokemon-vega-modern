@@ -298,6 +298,7 @@ static bool vw_catalog_reward_regression(struct mCore *core,
     return catalog && cwc_reward_regression(core, symbols);
 }
 
+#ifndef VW_RUNTIME_EMBEDDED
 int main(int argc, char **argv)
 {
     if (argc != 5 || strcmp(argv[4], "quick"))
@@ -374,3 +375,4 @@ int main(int argc, char **argv)
     core->deinit(core);
     return passed ? 0 : 1;
 }
+#endif

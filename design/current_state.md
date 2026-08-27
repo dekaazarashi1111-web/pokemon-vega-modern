@@ -227,9 +227,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T30と`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`までの明示USERタスクは完了している。iPad配置・実機プレイ・人手承認は任意の運用確認であり、今後のtask完了／release／READY判定には含めない。`USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`を唯一の正本IN_PROGRESSとして保持する。
+`design/tasks_next.md` を正とする。T00〜T30、`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`、`USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`までの明示USERタスクは完了しており、現在の正本IN_PROGRESSはない。iPad配置・実機プレイ・人手承認は任意の運用確認であり、今後のtask完了／release／READY判定には含めない。
 
-- USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION: IN_PROGRESS。検証済み返却ZIPの388 form、34 G-Max、999 Item、14 host、292 Raid pool、217 rewardをStage55完了baselineからStage56へproduction統合する。iPadは任意配置であり合否を左右しない。
+- USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION: DONE。検証済み返却ZIPの388 form、34 G-Max、999 Item、14 host、292 Raid pool、217 rewardをStage55完了baselineからStage56へproduction統合した。Stage56 SHA-256は`9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`。mGBA quick／full、Stage55自然入力22 fixture×独立2 process、clean 3経路、BPS往復、owner overlap監査をPASSした。iPadは任意配置であり、今回の安全終了不可による未配置は合否を左右しない。
 - USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR: DONE。Stage55の22 fresh-core fixture×独立2 process、全map owner監査、BPS往復、declared span外0、allocator overlap 0、warnings 0をローカル完了gateとした。Stage55 ROM／saveのiPad配置は既存の任意証跡として保持する。
 
 - USER-20260823-SPECIES-FORM-BACKSPRITE-COMPAT: DONE。全Species/Form/Ability canonical監査、フォーム特性、64×64背面画像、Stage48、2系統BPS、下流Stage42〜47回帰を完成した。

@@ -2627,3 +2627,40 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。iPad接続・配置・既存ROM／save変更なし。
+
+## 2026-08-27T14:56:40+09:00
+
+- Task: `USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION` / 全収集・供給V1をStage 56へproduction統合する
+- Status: DONE
+- Summary:
+  - 読取専用の返却ZIPを毎buildで元validatorへ通し、388 form、34 G-Max、999 Item、14 host、既存256＋追加36の292 Raid pool、217 rewardをcanonical IDへ解決した。
+  - Item通貨／一度限りclaim、可逆form service、G-Max factor、Raid rotation／捕獲／報酬、14物理host、独立sector 31 save、Box 14 raw80をStage55の実runtimeへ接続した。既存1,206種完成契約、Raid 256行、取得／研究／Factory／Codex／world ownerを保持した。
+  - mGBAで非公開mid-functionの誤った能力再計算addressを検出し、公開bridge `0x0803DBE9`へ修正した。最終Stage56は33,554,432 bytes、SHA-256 `9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`、CRC32 `7360A0CB`。
+  - iPad配置、実機プレイ、人手承認は完了条件に含めていない。任意配置はlive設定と既存Stage55を読取確認したが、RetroArchが通常終了しなかったため強制終了せず、iPad上のROM／saveを変更しなかった。
+- Files changed:
+  - `config/collection_supply_v1.json`
+  - `config/ram_layout.csv`
+  - `config/save_layout.csv`
+  - `content/collection_supply_v1/**`
+  - `overlays/collection_supply_v1/**`
+  - `scripts/build_collection_supply_v1.py`
+  - `scripts/rebuild_collection_supply_v1_from_clean.py`
+  - `tools/mgba_collection_supply_v1_smoke.c`
+  - `tools/mgba_windows_box14_vault_smoke.c`
+  - `tests/test_collection_supply_v1.py`
+  - `tasks/USER_20260827_COLLECTION_SUPPLY_V1_IMPLEMENTATION.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: Stage56 ROM／metadata／allocation／2種BPS／mGBA quick・full／audit・coverage・world binding／clean rebuild証跡。
+- Verify:
+  - `python3 scripts/build_collection_supply_v1.py build`: PASS。Collection Supply quick／fullは各9 test、Stage55 world回帰は22 fixture×独立2 process、warnings／errors 0、declared span外0、ROM／RAM／save／map／hook overlap 0。
+  - `python3 scripts/rebuild_collection_supply_v1_from_clean.py build`および`check`: PASS。clean→Stage55→Stage56、clean→Stage56直接、同一source 2回buildがbyte一致し、Stage55差分／clean直接BPSが完全往復した。
+  - `python3 -m unittest tests.test_save_layout tests.test_windows_box14_vault tests.test_collection_supply_v1`: PASS（17 tests）。
+  - `python3 -m py_compile scripts/build_collection_supply_v1.py scripts/rebuild_collection_supply_v1_from_clean.py`: PASS。
+  - mGBA C runnerを`-std=c11 -O2 -Wall -Wextra -Werror`でcompileし、quick／fullともPASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、staged index private guard: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで読取監査とRetroArch通常終了要求だけを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。iPad上のファイル変更なし。

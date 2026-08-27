@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION",
+  "stage": 56,
+  "inputs": {
+    "stage55_rom": {
+      "path": "build/stages/55_world_runtime_visible_feedback_repair.gba",
+      "size": 33554432,
+      "sha256": "b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8"
+    },
+    "stage55_metadata": {
+      "path": "build/stages/55_world_runtime_visible_feedback_repair.json",
+      "size": 2224389,
+      "sha256": "e520f161900d47f1106e0186639c6636070f104903f06d767c784e0a60584ca9"
+    },
+    "stage55_allocation": {
+      "path": "build/stages/55_allocation.json",
+      "size": 34197,
+      "sha256": "068b49e9b2f3795daa2baea8af8eaef0c10a010ba67de500068c88dcdaf838af"
+    },
+    "stage55_owner_ledger": {
+      "path": "reports/generated/world_runtime_owner_ledger_stage55.json",
+      "size": 1717606,
+      "sha256": "de76956fd2531ea23e7bc8ec7f6b6cfc6a8a2804a00e56bd969c2ae33884e853"
+    },
+    "stage26_rom": {
+      "path": "build/stages/26_acquisition_events.gba",
+      "size": 33554432,
+      "sha256": "5a4d1b68c619be291f35a201ada97d6a7921ff89d4d48cc3b3396f04195db2ea"
+    },
+    "stage26_metadata": {
+      "path": "build/stages/26_acquisition_events.json",
+      "size": 38977,
+      "sha256": "0f901534a04efb54f07a5773a91d4dc738a681e854328d0eec4d330da708fe31"
+    },
+    "stage26_allocation": {
+      "path": "build/stages/26_allocation.json",
+      "size": 20322,
+      "sha256": "2e11abc4a037674f5c0f651fb594c37edfdf0eaed1b9cb6af4ddd8784a09f1b6"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "submission_zip": {
+      "path": "userfile/imports/Pokemon-Vega_COLLECTION-SUPPLY-V1_IMPLEMENTATION-READY.zip",
+      "size": 41513,
+      "sha256": "8a1b271e9b321f6409f2b766a1b469cec15a8353dfb023d99184cd305fb641db",
+      "entry_count": 12,
+      "fingerprint": "bf957958e2fa3e1672cddb484cb35e8f1d2c3df46a5eef34759ec5007c1de4bd"
+    },
+    "packet_root": "userfile/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_COLLECTION-SUPPLY-V1_INPUT_20260825",
+    "packet_manifest": {
+      "path": "userfile/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_COLLECTION-SUPPLY-V1_INPUT_20260825/PACKET_MANIFEST.json",
+      "size": 6170,
+      "sha256": "057e4d2f263c498b04ca21d9717b736569e19e0c89220410d86f9a1295635172"
+    },
+    "validator": "templates/chatgpt_pro_design_packets/tools/validate_submission.py",
+    "validator_sha256": "c79c3a24b981febaff03473308952375d4b564740de3e7a408938485694d99fe",
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "item_manifest": {
+      "path": "manifests/item_ids.csv",
+      "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"
+    },
+    "shared_captures": {
+      "path": "content/normalized/shared_captures.csv",
+      "sha256": "45fc15ea83fe0798df69efe3284664a17252c9d7883d1ec26fd3cd772496bdf6"
+    },
+    "downstream_symbols": {
+      "path": "generated/runtime/windows_box14_vault_symbols.json",
+      "sha256": "5c3aaba30fa28787beef81a35e5196861f8abeb29bc6bef9f499eb566fa17cb7"
+    },
+    "qol_symbols": {
+      "path": "generated/runtime/qol_production_symbols.json",
+      "size": 32803,
+      "sha256": "2772eb2cf6042eb4043ceec815ef6b8588bed71166b820cafaade9bf4c6e11f8"
+    },
+    "research_symbols": {
+      "path": "generated/runtime/research_economy_v1_symbols.json",
+      "size": 25404,
+      "sha256": "99d6ecceeb407f82f564f56da5e4987476f714c439b107a3deb1991388c5f495"
+    }
+  },
+  "counts": {
+    "forms": 388,
+    "gmax": 34,
+    "items": 999,
+    "hosts": 14,
+    "pool_entries": 292,
+    "reward_entries": 217,
+    "host_requirements": 9,
+    "batches": 8,
+    "source_raids": 256,
+    "added_gmax_raids": 32,
+    "added_form_raids": 4,
+    "shared_captures": 125
+  },
+  "save_owner": {
+    "address": "0x0203D900",
+    "end_exclusive": "0x0203DB00",
+    "size": 512,
+    "parasite_offset": "0x2818",
+    "parasite_end_exclusive": "0x2A18",
+    "sector": 31,
+    "sector_image_address": "0x0203CF9C",
+    "sector_data_size": 4080,
+    "magic": "0x31565343",
+    "version": 1
+  },
+  "ram": {
+    "address": "0x0203F720",
+    "end_exclusive": "0x0203F800",
+    "size": 224
+  },
+  "engine": {
+    "flag_get": "0x0806DEC5",
+    "add_bag_item": "0x08099A8D",
+    "remove_bag_item": "0x08099BE1",
+    "count_bag_item": "0x0809A1E5",
+    "try_write_sector": "0x080DA9C1",
+    "read_flash": "0x081C2A55",
+    "create_mon": "0x0803D1C1",
+    "give_mon": "0x08040209",
+    "get_mon_data": "0x0803F355",
+    "set_mon_data": "0x0803FA71",
+    "calculate_stats": "0x0803DBE9",
+    "calculate_party_count": "0x08040331",
+    "get_box_mon_data_at": "0x09123A99",
+    "random": "0x0804448D",
+    "configure_raid": "0x0912632D",
+    "start_scripted_wild_battle": "0x0807EEB5",
+    "script_context2_enabled": "0x08069219",
+    "script_context2_enable": "0x08069201",
+    "enable_both_script_contexts": "0x080693F5",
+    "create_task": "0x08076BB5",
+    "destroy_task": "0x08076CA1",
+    "add_window": "0x08003CB1",
+    "remove_window": "0x08003E09",
+    "copy_window_to_vram": "0x08003EED",
+    "put_window_tilemap": "0x08003F6D",
+    "fill_window_pixel_buffer": "0x08004429",
+    "add_text_printer": "0x08002C45",
+    "schedule_bg_copy": "0x080F77FD",
+    "draw_std_window_frame": "0x080F7F7D",
+    "clear_std_window_frame": "0x080F7FFD",
+    "get_std_window_base_tile": "0x080F89CD",
+    "menu_init_cursor": "0x0811030D",
+    "menu_process_input": "0x08110BF9",
+    "play_se": "0x08071A71"
+  },
+  "hooks": {
+    "read_keys": {
+      "address": "0x080005EC",
+      "mode": "THUMB_POINTER",
+      "expected_hex": "45e73e09",
+      "delegate": "0x093EE745",
+      "target": "CollectionSupply_ReadKeysAdapter"
+    },
+    "save_load": {
+      "address": "0x080DB4E4",
+      "mode": "THUMB_JUMP",
+      "expected_hex": "004b184701203d09",
+      "delegate": "0x093D2001",
+      "target": "CollectionSupply_SaveLoadAdapter"
+    },
+    "land_water": {
+      "address": "0x080826D8",
+      "mode": "THUMB_JUMP",
+      "expected_hex": "004b184741ea3b09",
+      "delegate": "0x093BEA41",
+      "target": "CollectionSupply_TryGenerateWildMonAdapter"
+    },
+    "wild_end": {
+      "address": "0x0807F270",
+      "mode": "THUMB_JUMP",
+      "expected_hex": "004b1847d5103c09",
+      "delegate": "0x093C10D5",
+      "target": "CollectionSupply_EndWildBattleAdapter"
+    }
+  },
+  "physical_hosts": [
+    {"host_key":"RAID_HOST_TOHOKU_LOW","map_group":3,"map_num":2,"x":19,"y":26,"elevation":3,"service":"MONEY"},
+    {"host_key":"RAID_HOST_TOHOKU_WILDS","map_group":3,"map_num":21,"x":15,"y":57,"elevation":3,"service":"RESEARCH"},
+    {"host_key":"RAID_HOST_TOHOKU_DEPTHS","map_group":3,"map_num":29,"x":10,"y":10,"elevation":3,"service":"RESEARCH"},
+    {"host_key":"RAID_HOST_TOHOKU_SKY","map_group":1,"map_num":36,"x":6,"y":3,"elevation":3,"service":"FORM"},
+    {"host_key":"RAID_HOST_TOHOKU_MASTER","map_group":1,"map_num":37,"x":6,"y":4,"elevation":3,"service":"RELIC"},
+    {"host_key":"RAID_HOST_TOHOKU_SPECIAL","map_group":1,"map_num":73,"x":21,"y":3,"elevation":3,"service":"GIFT"},
+    {"host_key":"RAID_HOST_TOHOKU_GMAX","map_group":31,"map_num":1,"x":5,"y":6,"elevation":3,"service":"GMAX"},
+    {"host_key":"RAID_HOST_KANTO_MID","map_group":96,"map_num":5,"x":22,"y":33,"elevation":3,"service":"MONEY"},
+    {"host_key":"RAID_HOST_KANTO_WILDS","map_group":96,"map_num":37,"x":51,"y":5,"elevation":3,"service":"RESEARCH"},
+    {"host_key":"RAID_HOST_KANTO_DEPTHS","map_group":97,"map_num":0,"x":29,"y":61,"elevation":3,"service":"RESEARCH"},
+    {"host_key":"RAID_HOST_KANTO_SKY","map_group":97,"map_num":82,"x":37,"y":28,"elevation":3,"service":"FORM"},
+    {"host_key":"RAID_HOST_KANTO_MASTER","map_group":98,"map_num":3,"x":6,"y":11,"elevation":3,"service":"BP"},
+    {"host_key":"RAID_HOST_KANTO_SPECIAL","map_group":98,"map_num":56,"x":9,"y":12,"elevation":3,"service":"GIFT"},
+    {"host_key":"RAID_HOST_KANTO_GMAX","map_group":98,"map_num":110,"x":2,"y":7,"elevation":3,"service":"GMAX"}
+  ],
+  "outputs": {
+    "rom": "build/stages/56_collection_supply_v1.gba",
+    "metadata": "build/stages/56_collection_supply_v1.json",
+    "allocation": "build/stages/56_allocation.json",
+    "incremental_bps": "build/patches/world-runtime-stage55-to-collection-supply-stage56.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-collection-supply-stage56.bps",
+    "model": "content/collection_supply_v1/canonical_model.json",
+    "generated_header": "generated/runtime/collection_supply_v1_generated.h",
+    "runtime": "generated/runtime/collection_supply_v1.bin",
+    "symbols": "generated/runtime/collection_supply_v1_symbols.json",
+    "cases": "generated/runtime/collection_supply_v1_mgba_cases.json",
+    "audit": "reports/generated/collection_supply_v1_audit.json",
+    "coverage": "reports/generated/collection_supply_v1_coverage.json",
+    "world_binding": "reports/generated/collection_supply_v1_world_binding.json",
+    "mgba_quick": "build/stages/56_mgba_collection_supply_v1_quick.json",
+    "mgba_full": "build/stages/56_mgba_collection_supply_v1_full.json",
+    "clean_rebuild": "build/stages/56_collection_supply_v1_clean_rebuild.json"
+  }
+}

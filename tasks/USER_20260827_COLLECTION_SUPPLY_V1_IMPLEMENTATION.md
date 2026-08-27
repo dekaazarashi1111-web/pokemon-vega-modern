@@ -1,6 +1,6 @@
 # USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION — 全収集・供給V1をStage 56へproduction統合する
 
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Lane: `collection/form/item/raid/world/save/vault/qa/release`
 - Depends on: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`のStage 55ローカル成果、`T19`、`T23`〜`T25`、`T30`
 - Queue ID: `USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`
@@ -76,18 +76,25 @@ ChatGPT Pro返却済みのCollection Supply V1を、Stage 55へproduction統合�
 
 ## 受入条件
 
-- [ ] Stage 55と返却ZIPのsize／hash／fingerprintが一致し、原本ZIP、ROM、saveを変更しない。
-- [ ] form 388、G-Max 34、Item 999、既存Raid 256＋追加36、reward 217、host 14を欠落・重複0でcanonical IDへcompileする。
-- [ ] Stage 26の1,206種＋進化入口10件、既存trainer／world／QOL／Factory／Research／Reward encounter／Codexを回帰不変に保つ。
-- [ ] 保存可能formの全行に実取得／変換経路があり、helper／Mega／Tera／一時形態／G-Max表示Speciesを直接受け取れない。
-- [ ] Dynamax Candyの反復取得、対象可否、factor付与／解除、Raid捕獲、save／Continue、vault往復が実ROMで成立する。
-- [ ] 機能Itemに供給があり、除外69行がshop／reward／held itemへ混入しない。必須消耗品は反復取得でき、Mega／Z claimは各key一度だけである。
-- [ ] 既存Raid 256行の意味契約を保持し、14 host／全pool／全reward poolが通常field入力から到達できる。捕獲、非捕獲、捕獲済み報酬、reset、first-clearを原子的に処理する。
-- [ ] Box 14 raw80の30体batch往復でform、G-Max bit、Tera、持ち物、checksumが一致し、mail個体を拒否する。
-- [ ] changed byteがdeclared span内で、ROM／RAM／save／map／hook overlapが0。
-- [ ] clean FireRed日本版Rev.0からStage 56を決定的に再構築でき、Stage 55差分／clean直接BPSが完全往復する。
-- [ ] mGBA quick/fullの独立2 processがwarnings/errors 0で一致する。
-- [ ] Stage 55 world修復を含むStage 56をfresh-core自然入力で独立2 process再現し、iPad実機の有無に依存せずrelease判定できる。
+- [x] Stage 55と返却ZIPのsize／hash／fingerprintが一致し、原本ZIP、ROM、saveを変更しない。
+- [x] form 388、G-Max 34、Item 999、既存Raid 256＋追加36、reward 217、host 14を欠落・重複0でcanonical IDへcompileする。
+- [x] Stage 26の1,206種＋進化入口10件、既存trainer／world／QOL／Factory／Research／Reward encounter／Codexを回帰不変に保つ。
+- [x] 保存可能formの全行に実取得／変換経路があり、helper／Mega／Tera／一時形態／G-Max表示Speciesを直接受け取れない。
+- [x] Dynamax Candyの反復取得、対象可否、factor付与／解除、Raid捕獲、save／Continue、vault往復が実ROMで成立する。
+- [x] 機能Itemに供給があり、除外69行がshop／reward／held itemへ混入しない。必須消耗品は反復取得でき、Mega／Z claimは各key一度だけである。
+- [x] 既存Raid 256行の意味契約を保持し、14 host／全pool／全reward poolが通常field入力から到達できる。捕獲、非捕獲、捕獲済み報酬、reset、first-clearを原子的に処理する。
+- [x] Box 14 raw80の30体batch往復でform、G-Max bit、Tera、持ち物、checksumが一致し、mail個体を拒否する。
+- [x] changed byteがdeclared span内で、ROM／RAM／save／map／hook overlapが0。
+- [x] clean FireRed日本版Rev.0からStage 56を決定的に再構築でき、Stage 55差分／clean直接BPSが完全往復する。
+- [x] mGBA quick/fullの独立2 processがwarnings/errors 0で一致する。
+- [x] Stage 55 world修復を含むStage 56をfresh-core自然入力で独立2 process再現し、iPad実機の有無に依存せずrelease判定できる。
+
+## 完了証跡
+
+- Stage 56 ROM: 33,554,432 bytes、SHA-256 `9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`、CRC32 `7360A0CB`。
+- Collection Supply mGBA quick／fullは各9 test、Stage 55 world自然入力回帰は22 fixture×独立2 processで一致し、warnings／errors 0。
+- clean起点のStage 55経由、Stage 56直接、同一source 2回buildがbyte一致し、Stage 55差分／clean直接BPSが完全往復した。
+- iPad配置・実機プレイ・人手承認は完了条件に含めない。今回の任意配置はRetroArchを安全に終了できなかったため、既存ROM／saveを変更せず見送った。
 
 ## 禁止する完了判定
 
