@@ -227,8 +227,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。現時点で正本IN_PROGRESSはない。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
+`design/tasks_next.md` を正とする。`USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR`を唯一の正本IN_PROGRESSとして保持する。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
 
+- USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR: IN_PROGRESS。505番道路の野生個体名／外見不一致、NPC／BG eventの壊れたメニューと入力停止を実ROMで再現し、全野生表・全14 Collection host・接触可能script・story critical pathへ高速な自動監査を広げてStage57へ修復する。
 - USER-20260827-STAGE56-OVERPOWERED-QA-PARTY: DONE。標準QA partyをミュウツー／カイオーガ／グラードン／レックウザ／ゼルネアス／ムゲンダイナのLv.100攻撃型6体へ更新した。全24技が攻撃技で各個体に複数対象技がある。save SHA-256は`3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。iPadの旧Stage56 saveを日時付きで保全して原子的に置換し、read-back byte一致、Stage55不変、一時ファイル0を確認した。
 
 - USER-20260827-STAGE56-TEST-READY-SAVE: DONE。Codex受付前、博士のポケモン／図鑑／ランニングシューズ取得済み、badge 8件による全個体服従、Lv.100ミュウツー先頭の標準profileを通常save APIから決定的に生成した。save SHA-256は`bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。Stage56 ROM／同名saveをlive iPad配置先へ原子的に配置し、read-back byte一致、既存Stage55不変、一時ファイル0を確認した。

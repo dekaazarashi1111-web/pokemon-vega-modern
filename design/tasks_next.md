@@ -56,3 +56,4 @@
 - [x] 全フォーム・G-Max・全Item供給・Raid rotationをStage 56へproduction統合する <!-- id:USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION -->
 - [x] Stage56の標準テスト用セーブを生成してiPadへ配置する <!-- id:USER-20260827-STAGE56-TEST-READY-SAVE -->
 - [x] Stage56標準QAセーブの手持ちをLv.100攻撃型6体へ更新する <!-- id:USER-20260827-STAGE56-OVERPOWERED-QA-PARTY -->
+- [>] Stage56の野生個体・NPCメニュー・ストーリー導線を横断デバッグしてStage57へ修復する <!-- id:USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR -->
