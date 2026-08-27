@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR",
+  "stage": 57,
+  "inputs": {
+    "stage56_rom": {
+      "path": "build/stages/56_collection_supply_v1.gba",
+      "size": 33554432,
+      "sha256": "9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778"
+    },
+    "stage56_metadata": {
+      "path": "build/stages/56_collection_supply_v1.json",
+      "sha256": "fc3e67a39afee9dfecabdb6f4eeec58ea3ea3cf4b34a8df41a0f2782f6493e6b"
+    },
+    "stage56_allocation": {
+      "path": "build/stages/56_allocation.json",
+      "sha256": "d1d45168690ce359aa1f475e2b02005af23cf2ed5b4960e62342ac233010ee7f"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "menu_tile_base": 56,
+  "outputs": {
+    "rom": "build/stages/57_comprehensive_debug_repair.gba",
+    "metadata": "build/stages/57_comprehensive_debug_repair.json",
+    "allocation": "build/stages/57_allocation.json",
+    "incremental_bps": "build/patches/stage56-to-comprehensive-debug-repair-stage57.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-comprehensive-debug-repair-stage57.bps",
+    "runtime": "generated/runtime/stage57_comprehensive_debug_repair.bin",
+    "symbols": "generated/runtime/stage57_comprehensive_debug_repair_symbols.json",
+    "cases": "generated/runtime/stage57_comprehensive_debug_repair_cases.json",
+    "audit": "reports/generated/stage57_comprehensive_debug_repair.json",
+    "report": "reports/generated/stage57_comprehensive_debug_repair.md",
+    "debug_quick": "build/stages/57_comprehensive_debug_quick.json",
+    "debug_full": "build/stages/57_comprehensive_debug_full.json",
+    "mgba": "build/stages/57_mgba_comprehensive_debug.json",
+    "clean_rebuild": "build/stages/57_comprehensive_debug_repair_clean_rebuild.json"
+  }
+}

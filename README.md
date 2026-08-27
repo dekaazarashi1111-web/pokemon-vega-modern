@@ -121,6 +121,14 @@ make windows-box14-vault-check # raw80往復・通常save・catalog/reward回帰
 make codex-battle-ipad-bootstrap # ROM自身の通常保存を2回通し、両save slotをfresh-core検証したiPad QA saveを.localへ生成
 make test-ready-save # 最新Stage用の標準テストsave（Codex受付前・序盤取得済み・全服従・攻撃型Lv.100伝説6体）を生成
 make test-ready-save-check # 生成済み標準テストsaveとprofile/source hashを副作用なしで照合
+make stage57-debug-repair # Stage56のNPC/menu/野生identity/story進行を横断修復してStage57を生成
+make stage57-debug-repair-check # Stage57 ROM・BPS・宣言span・高速監査を副作用なしで再照合
+make stage57-debug-quick # 678 mapを含む修復契約の短時間static quick
+make stage57-debug-full # 5,432 root／8,925 script、全野生表、story trainerをfull scan
+make stage57-debug-story # 通常66戦／再戦66戦と共有trainer分離をROM CFGから監査
+make stage57-mgba-quick # 1秒前後の反復用（static＋story、独立2回一致）
+make stage57-mgba-smoke # menu／Species／Collectionを含む中時間mGBA smoke
+make stage57-mgba-all # Route505自然66遭遇・world 22経路を含む全domainを2 processで確定
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
@@ -281,6 +289,15 @@ v1.3.9のトーホク外来生態runtimeは、設計293行を草むら・洞窟�
 日替わり群れを自動選択する。1個目のバッジ報酬「せいたいレーダー」（Item 348）では
 現在modeを確認し、RTCに依存せず朝昼・夜・群れへ固定したり、現在mapの隠れ枠を直接探索したりできる。
 既存saveで未所持の場合はシオウの技管理NPCが補う。釣りは実際の竿入力経路と竿条件を使う。
+
+Stage57はStage56の実プレイ報告を起点に全678 mapへ監査を広げた横断修復版である。
+505番道路のRESEARCH／Field PCが古いmap bindingを参照して別mapのSpeciesを生成する問題、
+CollectionのSpecies変更後にdefault nickname／初期技が同期しない問題、9 NPCの消去済みscript
+pointer、3本のstory control-flow、BG eventの不正終端、10 menuのframe tile/content tile衝突、
+Factory cursorの`numChoices=0`を修復する。さらに通常story戦26件へ再戦用Lv.80～100 partyが
+流入していた問題を修正し、共有trainer 348は通常戦だけ未使用ID 1384へ分離して、カントーの
+Lv.89～91戦と撃破flag 348を保持する。`stage57-mgba-*`はdomainを選べ、各runnerを独立作業領域で
+並列化する。ROM SHA、2 process一致、mGBA warning 0を満たした`all`だけが最終metadataをPASSへ昇格する。
 
 ## 効率方針
 

@@ -264,6 +264,35 @@ def _trainer_candidates(stage51: bytes, roots: Mapping[int, list[str]]) -> dict[
     return by_root
 
 
+def _script_root_is_finite(rom_raw: bytes, address: int) -> bool:
+    """明示rootが有効なevent scriptとして有限終了する場合だけ真を返す。
+
+    imported clean-mapのpointerは数値範囲内でも、0xFF erased領域を指す場合が
+    ある。pointer rangeだけで所有権を移すと、NPCのA入力直後にscript contextが
+    壊れるため、実際のFireRed bytecode graphを移管前に検証する。
+    """
+    rom = RomImage("world source script", rom_raw)
+    if not rom.contains(address) or rom.u8(address) == 0xFF:
+        return False
+    walker = ScriptWalker(rom)
+    walker.add_root(ScriptRoot(address=address, label="source", kind="object"))
+    graph = walker.walk()
+    root = next(
+        (row for row in graph["nodes"] if int(row["address"]) == address),
+        None,
+    )
+    return bool(
+        root is not None
+        and int(root["instruction_count"]) > 0
+        and not graph["diagnostics"]
+        and all(
+            row["end_reason"] not in {"unknown_opcode", "invalid_instruction",
+                                      "instruction_limit"}
+            for row in graph["nodes"]
+        )
+    )
+
+
 def _select_initial_trainer(rows: Sequence[Mapping[str, int]]) -> dict[str, int] | None:
     initial = [dict(row) for row in rows if int(row["kind"]) not in REMATCH_TRAINER_KINDS]
     if not initial:
@@ -1030,9 +1059,13 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
             elif old_script in generic_object_addresses:
                 source = _match_source_object(raw, source_objects)
                 source_pointer = _raw_pointer(source) if source is not None else 0
-                if source_pointer == 0:
+                if not _script_root_is_finite(stage51, source_pointer):
                     label_or_pointer = "script::recovered_npc"
                     role = "SOURCE_RECOVERED_FINITE_DIALOGUE"
+                    detail = {
+                        "rejected_source_script_pointer": source_pointer,
+                        "recovery_reason": "SOURCE_SCRIPT_NOT_FINITE",
+                    }
                 else:
                     label_or_pointer = source_pointer
                     authored = _source_authored_row(source, source_authored_objects)
@@ -1209,8 +1242,10 @@ def build_payload(root: Path, stage51: bytes, stage48: bytes, stage03: bytes,
     payload = blob.finish(payload_offset)
     trainer_counts = Counter(row["disposition"] for row in trainer_ledger)
     required = {
-        "SOURCE_DIRECT_OBJECT_OWNER": 469,
-        "SOURCE_RECOVERED_FINITE_DIALOGUE": 24,
+        # 9 clean-source pointers resolve to erased 0xFF and must stay on the
+        # finite recovered dialogue instead of being accepted by range alone.
+        "SOURCE_DIRECT_OBJECT_OWNER": 460,
+        "SOURCE_RECOVERED_FINITE_DIALOGUE": 33,
         "SOURCE_DIRECT_BG_OWNER": 375,
         "ITEM_BALL_STD_FIND_ITEM": 126,
         "HIDDEN_ITEM_STD_OBTAIN_ITEM": 124,

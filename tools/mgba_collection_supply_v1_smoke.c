@@ -557,6 +557,7 @@ static bool cs_world_hosts_test(struct mCore *core,
     return true;
 }
 
+#if !defined(COLLECTION_SUPPLY_EMBEDDED)
 int main(int argc, char **argv)
 {
     if (argc != 6) {
@@ -648,3 +649,4 @@ int main(int argc, char **argv)
     core->deinit(core);
     return passed ? 0 : 1;
 }
+#endif

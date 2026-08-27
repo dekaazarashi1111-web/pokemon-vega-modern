@@ -8,6 +8,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: windows-box14-vault windows-box14-vault-check
 .PHONY: species-form-compat species-form-compat-check
 .PHONY: test-ready-save test-ready-save-check
+.PHONY: stage57-debug-repair stage57-debug-repair-check stage57-debug-clean-rebuild stage57-debug-clean-rebuild-check stage57-debug-quick stage57-debug-full stage57-debug-story stage57-mgba-quick stage57-mgba-smoke stage57-mgba-all
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -359,6 +360,36 @@ test-ready-save:
 
 test-ready-save-check:
 	$(PYTHON) scripts/build_test_ready_save.py check
+
+stage57-debug-repair:
+	$(PYTHON) scripts/build_stage57_comprehensive_debug_repair.py build
+
+stage57-debug-repair-check:
+	$(PYTHON) scripts/build_stage57_comprehensive_debug_repair.py check
+
+stage57-debug-clean-rebuild:
+	$(PYTHON) scripts/rebuild_stage57_comprehensive_debug_repair_from_clean.py build
+
+stage57-debug-clean-rebuild-check:
+	$(PYTHON) scripts/rebuild_stage57_comprehensive_debug_repair_from_clean.py check
+
+stage57-debug-quick:
+	$(PYTHON) tools/stage57_debug_suite.py build/stages/57_comprehensive_debug_repair.gba --mode quick --metadata build/stages/57_comprehensive_debug_repair.json
+
+stage57-debug-full:
+	$(PYTHON) tools/stage57_debug_suite.py build/stages/57_comprehensive_debug_repair.gba --mode full --metadata build/stages/57_comprehensive_debug_repair.json
+
+stage57-debug-story:
+	$(PYTHON) tools/stage57_story_trainer_audit.py build/stages/57_comprehensive_debug_repair.gba
+
+stage57-mgba-quick:
+	$(PYTHON) scripts/run_stage57_mgba_validation.py --domain quick --no-write
+
+stage57-mgba-smoke:
+	$(PYTHON) scripts/run_stage57_mgba_validation.py --domain smoke --collection-mode quick --no-write
+
+stage57-mgba-all:
+	$(PYTHON) scripts/run_stage57_mgba_validation.py --domain all --collection-mode full
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto

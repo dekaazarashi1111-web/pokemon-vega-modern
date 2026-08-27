@@ -1698,7 +1698,7 @@ static void draw_rows(const u8 *const *rows, u8 count)
                             (u8)(index * 16u), 0u, NULL);
     FN_COPY_WINDOW_TO_VRAM(window, HIGH_COPYWIN_BOTH);
     (void)FN_MENU_INIT_CURSOR(window, 2u, 0u, 0u,
-                              count, 0u, 0u);
+                              16u, count, 0u);
 }
 
 static void show_reception_menu(u8 stage)

@@ -1127,3 +1127,14 @@
   - 全24技を攻撃技とし、各個体へダブルバトル向けの複数対象技を設定した。Codex受付前、序盤取得済み、全個体服従は維持した。
   - iPadの旧Stage56 saveを日時付きで保全して更新saveを原子的に配置し、read-back byte一致を確認した。実機プレイ／人手承認は要求していない。
 - Verify: standard save build／check、focused unit 5 tests、iPad size／SHA／`cmp`、旧save保全、Stage55不変、一時ファイル0、task graph、private guard、diff check PASS。save SHA-256 `3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。
+
+## 2026-08-28T00:00:12+09:00
+
+- Version: `post-v1.4.0-stage57-comprehensive-debug-repair`
+- Commit: `-`（登録commit `dfa0386`、本エントリを含む完了commit）
+- Task: `USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR` / 野生identity・NPCメニュー・ストーリー導線の横断修復
+- Summary:
+  - 505番道路の古いmap binding、Species変更後の名前／技非同期、NPC script 9件、control-flow 3件、menu tile衝突10件、Factory cursorを修復した。
+  - 通常story戦26件の再戦Lv.80〜100誤流入をLv.6〜47へ戻し、共有カントー高難度戦を別ID分離で保持した。
+  - 7 domainの高速QA、全678 map／5,432 root／8,925 script、505番道路66遭遇、全Species、全14 Collection host、world 22経路をStage57へ固定した。
+- Verify: mGBA全7 domain×独立2 process、warning 0、focused unit 18 tests、build／check、clean 3経路byte一致、差分／直接BPS往復、declared span外0、全overlap 0、task graph、private guard、staged diff PASS。ROM SHA-256 `546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d`。

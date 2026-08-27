@@ -4,6 +4,7 @@ import struct
 import unittest
 
 from tools.regression.rom_runtime import _Blob
+from tools.t02.rom_inventory import COMMAND_LENGTHS
 from tools.world_runtime_e2e_repair import (
     COOLDOWN_STOCK,
     BATTLE_TRANSITION_START_HOOK_EXPECTED,
@@ -31,11 +32,25 @@ from tools.world_runtime_e2e_repair import (
     _add_reward_scientist_safe_script,
     _add_trainer_party_count_wrapper,
     _add_world_read_keys_router,
+    _script_root_is_finite,
     _select_initial_trainer,
 )
 
 
 class WorldRuntimeE2ERepairTest(unittest.TestCase):
+    def test_script_walker_uses_firered_warp_and_showmonpic_sizes(self) -> None:
+        for opcode in (
+            0x39, 0x3A, 0x3B, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0xC4, 0xD1,
+        ):
+            self.assertEqual(COMMAND_LENGTHS[opcode], 8)
+        self.assertEqual(COMMAND_LENGTHS[0x75], 5)
+
+    def test_erased_source_script_is_rejected_before_owner_transfer(self) -> None:
+        self.assertFalse(_script_root_is_finite(bytes((0xFF,)), 0x08000000))
+        self.assertTrue(
+            _script_root_is_finite(bytes((0x6C, 0x02)), 0x08000000)
+        )
+
     def test_reward_scientist_waits_only_for_busy_async_menu(self) -> None:
         blob = _Blob()
         messages = {key: bytes((0xFF,)) for key in set(REWARD_RESULT_MESSAGE_KEYS.values())}

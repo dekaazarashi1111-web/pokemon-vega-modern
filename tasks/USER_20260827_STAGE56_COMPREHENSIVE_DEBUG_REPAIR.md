@@ -1,6 +1,6 @@
 # USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR — Stage56を横断デバッグしてStage57へ修復する
 
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Lane: `qa/wild/species/world/npc/menu/story/save/battle/release`
 - Depends on: `USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`、`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`、`USER-20260827-STAGE56-TEST-READY-SAVE`
 - Queue ID: `USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR`
@@ -41,17 +41,17 @@
 
 ## 受入条件
 
-- [ ] Stage56、metadata、allocation、canonical入力のidentityを固定し、私有原本、旧ROM、saveを変更しない。
-- [ ] 505番道路の報告症状を修正前ROMで再現し、原因をSpecies生成／名前／画像／palette／table pointerのどの境界か証明する。
-- [ ] 修正後は505番道路の全通常／overlay枠で、生成Species、名前、front sprite、palette、icon、BaseStatsが同一canonical個体を示す。
-- [ ] 全wild header／slot／overlayのSpecies範囲、pointer、stride、consumer identityを監査し、不一致0にする。
-- [ ] 全14 Collection hostでmenu open、全page境界、first／last、B cancel、成功／失敗、再open、field入力復帰を独立2 processで通す。
-- [ ] 全接触可能NPC／BG eventで無効root、不正menu pointer／count、非同期でない無条件wait、到達可能な無表示終了、入力復帰不能を0にする。
-- [ ] story critical path、warp、trainer、item、field、battle、save／Continueの機械可読coverageを生成し、必須edgeの到達不能を0にする。
-- [ ] `quick`は開発中の主要回帰を短時間で実行でき、`full`は全生成caseをexact Stage57上で独立2 process一致、warning／error 0で完走する。
-- [ ] changed byteがdeclared span内で、ROM／RAM／save／map／hook overlapが0。
-- [ ] Stage56差分BPS、clean直接BPS、clean→Stage56→Stage57の3経路がbyte一致する。
-- [ ] focused unit、task graph、private guard、staged private guard、`git diff --check`をPASSし、ログ／version／状態を更新して完了コミットする。
+- [x] Stage56、metadata、allocation、canonical入力のidentityを固定し、私有原本、旧ROM、saveを変更しない。
+- [x] 505番道路の報告症状を修正前ROMで再現し、原因をSpecies生成／名前／画像／palette／table pointerのどの境界か証明する。
+- [x] 修正後は505番道路の全通常／overlay枠で、生成Species、名前、front sprite、palette、icon、BaseStatsが同一canonical個体を示す。
+- [x] 全wild header／slot／overlayのSpecies範囲、pointer、stride、consumer identityを監査し、不一致0にする。
+- [x] 全14 Collection hostでmenu open、全page境界、first／last、B cancel、成功／失敗、再open、field入力復帰を独立2 processで通す。
+- [x] 全接触可能NPC／BG eventで無効root、不正menu pointer／count、非同期でない無条件wait、到達可能な無表示終了、入力復帰不能を0にする。
+- [x] story critical path、warp、trainer、item、field、battle、save／Continueの機械可読coverageを生成し、必須edgeの到達不能を0にする。
+- [x] `quick`は開発中の主要回帰を短時間で実行でき、`full`は全生成caseをexact Stage57上で独立2 process一致、warning／error 0で完走する。
+- [x] changed byteがdeclared span内で、ROM／RAM／save／map／hook overlapが0。
+- [x] Stage56差分BPS、clean直接BPS、clean→Stage56→Stage57の3経路がbyte一致する。
+- [x] focused unit、task graph、private guard、staged private guard、`git diff --check`をPASSし、ログ／version／状態を更新して完了コミットする。
 
 ## 禁止する完了判定
 

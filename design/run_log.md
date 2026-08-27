@@ -2734,3 +2734,43 @@
 - Commit: `-`（登録commit `b59848e`、本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止確認、save転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-28T00:00:12+09:00
+
+- Task: `USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR` / Stage56の野生個体・NPCメニュー・ストーリー導線を横断デバッグしてStage57へ修復する
+- Status: DONE
+- Summary:
+  - Stage56の505番道路で自然遭遇66回中にSpecies 717が流入する報告境界を再現した。原因はStage36由来のRESEARCH／Field PC表が古いmap bindingを保持したことだった。現行physical bindingから846研究rule／69 Field PC mapを再生成し、Stage57では66遭遇×独立2 process、旧T503 Species流入0、Species 92／717／804のparty・戦闘Species・canonical名・front画像一致を確認した。
+  - 全678 map／5,432 root／8,925 reachable scriptを監査し、消去済みscriptを受理した9 NPC、control-flow 3件、BG-safe終端1件を修復した。標準frame tileとcontent tileが衝突した10 menu callsite、Factory cursorの`numChoices=0`も修正し、非Collection 9系統＋Collection 14 hostの23 caseでopen、DOWN／UP／A／B、再open、field復帰を2 process一致させた。
+  - CollectionでSpecies変更後にdefault nickname／初期技が同期しない境界と野生生成hookを共通adapterへ接続した。全265 wild header／6,175 slot／846研究rule／78 Collection wild form、canonical Species 1,621行を監査し、不一致0にした。
+  - 追加監査で通常story戦26件へ再戦用Lv.80〜100 partyが流入していた問題を検出した。Stage34正本のLv.6〜47へ復元し、共有trainer 348は通常戦だけ未使用ID 1384へ分離して、カントーのLv.89〜91戦と撃破flagを保持した。
+  - `quick`／domain選択／`all`を持つStage57 QA入口を追加した。最終ROMは33,554,432 bytes、SHA-256 `546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d`、CRC32 `4E2EFEDB`。iPad、既存ROM、save、私有原本は変更していない。
+- Files changed:
+  - `config/stage57_comprehensive_debug_repair.json`
+  - `overlays/stage57_debug_repair/stage57_debug_repair.c`
+  - `overlays/factory_high_modes_v2/factory_high_modes_v2.c`
+  - `scripts/build_stage57_comprehensive_debug_repair.py`
+  - `scripts/rebuild_stage57_comprehensive_debug_repair_from_clean.py`
+  - `scripts/run_stage57_mgba_validation.py`
+  - `tools/stage57_debug_suite.py`
+  - `tools/stage57_story_trainer_audit.py`
+  - `tools/mgba_stage57_menu_smoke.c`
+  - `tools/mgba_stage57_route505_smoke.c`
+  - `tools/mgba_stage57_collection_smoke.c`
+  - `tools/mgba_collection_supply_v1_smoke.c`
+  - `tools/t02/rom_inventory.py`
+  - `tools/world_runtime_e2e_repair.py`
+  - `tests/test_stage57_debug_repair.py`
+  - `tests/test_world_runtime_e2e_repair.py`
+  - `reports/generated/stage57_comprehensive_debug_repair.{json,md}`
+  - `Makefile`、`README.md`、task／state／log正本
+  - Git管理外再生成物: `generated/runtime/stage57_comprehensive_debug_repair*`、Stage57 ROM／metadata／allocation／差分・clean直接BPS／全mGBA JSON／clean rebuild証跡。
+- Verify:
+  - `python3 scripts/run_stage57_mgba_validation.py --domain all --collection-mode full`: PASS。static、story、menu、route505、species、collection、worldの7 domain、動的5 domain各2 process一致、warnings／errors 0。world 22 fixture、Collection full 9/9、14 hostを含む。
+  - `python3 scripts/build_stage57_comprehensive_debug_repair.py build`／`check`: PASS。3,392 changed byte、declared span外0、ROM／RAM／save／map／hook overlap 0、差分／clean直接BPS往復PASS。
+  - `python3 scripts/rebuild_stage57_comprehensive_debug_repair_from_clean.py build`／`check`: PASS。clean直接、clean→Stage56→Stage57、同一source 2回buildが最終ROMとbyte一致。
+  - `python3 -m unittest tests.test_stage57_debug_repair tests.test_world_runtime_e2e_repair -v`: PASS（18 tests）。対象Pythonの`py_compile`とmGBA C runnerの`-std=c11 -O2 -Wall -Wextra -Werror -pedantic` compileもPASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。staged indexにROM／save／BPS／私有入力なし。
+- Commit: `-`（登録commit `dfa0386`、本エントリを含む完了commit）
+- Network:
+  - インターネット、外部端末、ChatGPT Webは未使用。すべてローカルの固定入力とlibmGBAで実施した。

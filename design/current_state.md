@@ -1,9 +1,12 @@
 # current_state.md
 
-最終更新: 2026-08-27
+最終更新: 2026-08-28
 
 ## 現在地
 
+- USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIRで、505番道路がStage36時点の古いRESEARCH／Field PC map bindingを参照して別mapのSpeciesを生成する問題を修正した。Stage56では報告境界のSpecies 717流入を自然遭遇66回で再現し、Stage57では自然遭遇66回×独立2 processで旧T503 Species流入0、Species 92／717／804のparty・戦闘Species・canonical名・front画像一致を確認した。全265 wild header／6,175 slot／846研究rule／78 Collection wild formの範囲・stride・consumer不一致は0。
+- NPC／menuは、消去済み`0xFF` scriptを有効pointerとしてowner移管した9 NPC、壊れたcontrol-flow 3件、BG event終端1件、標準frame tile `0x214`をcontentへ再利用した10 menu callsite、Factory cursorの`numChoices=0`を修復した。全678 map、5,432 event root、8,925 reachable scriptのdiagnosticは0。非Collection 9系統とCollection全14 hostのopen／DOWN／UP／A／B／再open／field復帰を23 case×独立2 processでPASSし、cursor 255、mGBA warning／errorは0。
+- 追加監査で、本編8 mapの通常戦26件へ再戦用Lv.80〜100 partyが流入していた問題を修正した。通常戦はLv.6〜47へ復元し、共有trainer 348のカントーLv.89〜91戦は保持、通常戦だけ未使用ID 1384へ分離した。Stage57はstatic、story、menu、Route505、全Species、Collection、world 22経路の7 domainをexact ROMで独立2 process一致、warning 0で完走した。ROMは33,554,432 bytes、SHA-256 `546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d`、CRC32 `4E2EFEDB`。clean直接／Stage56経由／同一source再build、差分／直接BPS往復、declared span外0、ROM／RAM／save／map／hook overlap 0。iPad上のROM／saveは変更していない。
 - マイルストーン: T00〜T18、本編トレーナー再設計V4、実ROM Factory Trialをstage 20へ結合し、初戦の行動順通知防御をstage 21、HM所持field能力をstage 22、固定CFRU-JP battle rule監査をstage 23、技タイプ・有効度UIをstage 24、無料の共通技管理をstage 25へ追加した。v1.3.7でトーホク外来生態293行を実ROMの全遭遇layerへ接続し、v1.3.8で追加Species全体の画像・palette・icon表示とタマゴ／キャタピーID衝突、v1.3.9で6文字Species名のstock UI欠落を修正し、v1.4.0で全コレクション対象の取得経路と201件の取得イベントをstage 26へ結合した。
 - USER-20260823-SPECIES-FORM-BACKSPRITE-COMPATで、固定CFRU-JPの全Species/Form・Ability参照を`species_ids.csv`／`ability_ids.csv`生成aliasへ統一した。canonical Ability 312行、Species 1,621行、C/ASM 84ファイルのAbility 4,024参照・Species 8,641参照を監査し、未変換0。source定数、manifest、consumer、indexed tableの変更はfingerprintとfail-closed監査で再buildを要求する。
 - Stage48 exact-ROM回帰でHunger Switch 4ターン、Disguise初撃1/8・二撃目通常・終了復元、Battle Bond、Schooling、Zen Mode、Ice Face、Power Construct、Intimidate、Speed BoostをPASSした。表示14種、player back 7種を64×64 OAM／2,048-byte OBJ tile、front/back、palette、icon、healthboxまで検査した。upstream vendor変更は0。

@@ -237,6 +237,16 @@ _COMMAND_LENGTHS_LIST = [
 ]
 COMMAND_LENGTHS = {opcode: length for opcode, length in enumerate(_COMMAND_LENGTHS_LIST)}
 
+# FireRedのformatwarp群は共通の8-byte ABIであり、showmonpicは5 byte。
+# 旧表の9/6 byte定義では次命令を1 byte飛ばし、正常な日本語Vega scriptを
+# unknown opcodeやROM外edgeとして誤検出していた。ここで明示的に正規化し、
+# ScriptWalkerを利用する全監査で同じ命令境界を使う。
+for _formatwarp_opcode in (
+    0x39, 0x3A, 0x3B, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0xC4, 0xD1,
+):
+    COMMAND_LENGTHS[_formatwarp_opcode] = 8
+COMMAND_LENGTHS[0x75] = 5
+
 _COMMAND_NAMES = {
     0x02: "end",
     0x03: "return",
