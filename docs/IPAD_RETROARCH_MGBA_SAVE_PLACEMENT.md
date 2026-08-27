@@ -13,7 +13,7 @@
 
 - 新しいstageを軽く確認するiPad配置では、特別な指定がない限り`config/test_ready_save.json`の標準profileを使う。
 - `make test-ready-save`でblank flashからROM自身の通常save APIを2回通し、full save、slot 0／1単独、自然ContinueをmGBAで検証する。生成済み`.srm`をhex editorやhost側checksum再計算で加工しない。
-- 標準profileはCodex対戦受付前、博士のポケモン／図鑑／ランニングシューズ取得済み、badge 8件設定による全Lv.服従、先頭Lv.100ミュウツー＋ミュウツナイトY＋4タイプ攻撃技、手持ち6体とする。
+- 標準profileはCodex対戦受付前、博士のポケモン／図鑑／ランニングシューズ取得済み、badge 8件設定による全Lv.服従とする。手持ちはミュウツー先頭、カイオーガ、グラードン、レックウザ、ゼルネアス、ムゲンダイナのLv.100攻撃型6体で、全24技を攻撃技、各個体の1技以上を複数対象技とする。
 - 新しいstageではconfigのROM identityとbasenameを更新して同じgeneratorを再実行する。旧stageの`.srm`をbasename変更だけで使い回さない。
 - 実機プレイと人手承認はtask／release gateに含めない。配置を依頼された時だけ、下記の停止・退避・原子的転送・read-backを行う。
 
@@ -57,9 +57,10 @@
 - ROM: `56_collection_supply_v1.gba`
 - ROM SHA-256: `9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`
 - 標準save: `56_collection_supply_v1.srm`
-- save size／SHA-256: 131,072 bytes／`bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`
+- save size／SHA-256: 131,072 bytes／`3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`
 - 2026-08-27にRetroArch停止、active container metadata、live `retroarch.cfg`、mGBA save directoryを再解決し、一時名からROM／saveを原子的に配置した。
-- iPadから両ファイルをread-backしてsourceとbyte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は未実施で、完了条件にも含めていない。
+- 同日にLv.100攻撃型6体profileへ更新し、旧save（SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`）を日時付きで保全してから同名saveを原子的に置換した。
+- iPadから更新saveをread-backしてsourceとbyte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は未実施で、完了条件にも含めていない。
 
 ## 失敗判定
 

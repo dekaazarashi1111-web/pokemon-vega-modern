@@ -55,4 +55,4 @@
 - [x] Stage 51のworld runtimeを実入力E2Eで再構築しtrainer・item・field object・会話NPC・wildをまとめて修正する <!-- id:USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR -->
 - [x] 全フォーム・G-Max・全Item供給・Raid rotationをStage 56へproduction統合する <!-- id:USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION -->
 - [x] Stage56の標準テスト用セーブを生成してiPadへ配置する <!-- id:USER-20260827-STAGE56-TEST-READY-SAVE -->
-- [>] Stage56標準QAセーブの手持ちをLv.100攻撃型6体へ更新する <!-- id:USER-20260827-STAGE56-OVERPOWERED-QA-PARTY -->
+- [x] Stage56標準QAセーブの手持ちをLv.100攻撃型6体へ更新する <!-- id:USER-20260827-STAGE56-OVERPOWERED-QA-PARTY -->

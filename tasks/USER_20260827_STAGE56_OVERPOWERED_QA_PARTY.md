@@ -1,6 +1,6 @@
 # USER-20260827-STAGE56-OVERPOWERED-QA-PARTY — Stage56標準QA手持ちを更新する
 
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Lane: `qa/save/codex-battle/ipad`
 - Depends on: `USER-20260827-STAGE56-TEST-READY-SAVE`
 - Queue ID: `USER-20260827-STAGE56-OVERPOWERED-QA-PARTY`
@@ -12,8 +12,16 @@
 
 ## 受入条件
 
-- [ ] 標準profileと生成器のpartyが、先頭のミュウツー＋強力な5体、全員Lv.100になる。
-- [ ] 全24技が攻撃技で、各個体がダブルバトル向けの複数対象技を1つ以上持つ。
-- [ ] 生成した131,072-byte saveが既存Stage56 ROMで読み込める。
-- [ ] iPadの同名Stage56 saveを停止状態で更新し、size／SHA-256／read-back一致を確認する。実機プレイ／人手承認は要求しない。
-- [ ] focused verification、ログ、version記録、task完了commitを残す。
+- [x] 標準profileと生成器のpartyが、先頭のミュウツー＋強力な5体、全員Lv.100になる。
+- [x] 全24技が攻撃技で、各個体がダブルバトル向けの複数対象技を1つ以上持つ。
+- [x] 生成した131,072-byte saveが既存Stage56 ROMで読み込める。
+- [x] iPadの同名Stage56 saveを停止状態で更新し、size／SHA-256／read-back一致を確認する。実機プレイ／人手承認は要求しない。
+- [x] focused verification、ログ、version記録、task完了commitを残す。
+
+## 完了証跡
+
+- 手持ちはミュウツー／カイオーガ／グラードン／レックウザ／ゼルネアス／ムゲンダイナの順で全員Lv.100。持ち物はミュウツナイトY／ものしりメガネ／ちからのハチマキ／いのちのたま／たつじんのおび／とつげきチョッキ。
+- ミュウツーはサイコブレイク／ふぶき／かみなり／はどうだん、カイオーガはしおふき／こんげんのはどう／かみなり／れいとうビーム、グラードンはだんがいのつるぎ／じしん／いわなだれ／ねっぷう。
+- レックウザはガリョウテンセイ／しんそく／じしん／かみくだく、ゼルネアスはマジカルシャイン／ムーンフォース／10まんボルト／ラスターカノン、ムゲンダイナはドラゴンエナジー／ヘドロばくだん／かえんほうしゃ／エナジーボール。全24技が攻撃技で、各個体に複数対象技がある。
+- 生成saveは131,072 bytes、SHA-256 `3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。既存Stage56 ROMは不変。
+- iPadの旧Stage56 saveを日時付きで保全し、更新saveを原子的に配置した。read-back byte一致、Stage55不変、一時ファイル0、RetroArch process 0。実機プレイ／人手承認は行っていない。

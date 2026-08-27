@@ -90,7 +90,7 @@ def _source_hashes() -> dict[str, str]:
 def validate_profile(config: dict[str, Any], *, require_rom: bool = True) -> None:
     if config.get("schema_version") != 1:
         _fail("profile schema_versionが1ではありません")
-    if config.get("profile_key") != "STAGE56_TEST_READY_V1":
+    if config.get("profile_key") != "STAGE56_TEST_READY_V2_OVERPOWERED_PARTY":
         _fail("標準profile keyが一致しません")
 
     input_config = config.get("input")
@@ -142,10 +142,36 @@ def validate_profile(config: dict[str, Any], *, require_rom: bool = True) -> Non
     species = _manifest(ROOT / "manifests/species_ids.csv", "species_key")
     items = _manifest(ROOT / "manifests/item_ids.csv", "item_key")
     moves = _manifest(ROOT / "manifests/move_ids.csv", "move_key")
+    expected_species_ids = [150, 643, 644, 645, 1005, 1363]
+    if [row.get("species_id") for row in party] != expected_species_ids:
+        _fail("標準Lv.100攻撃型partyのSpecies順が一致しません")
+    if any(row.get("level") != 100 for row in party):
+        _fail("標準partyにLv.100ではない個体があります")
+
+    catalog = _read_json(ROOT / "content/codex_battle/catalog.json")
+    move_catalog = {row["id"]: row for row in catalog.get("moves", [])}
     for row in party:
         key = row.get("species_key")
         if key not in species or int(species[key]["id"]) != row.get("species_id"):
             _fail(f"party Species canonical IDが一致しません: {key}")
+        item_key = row.get("held_item_key")
+        if item_key not in items or int(items[item_key]["id"]) != row.get("held_item_id"):
+            _fail(f"party Item canonical IDが一致しません: {item_key}")
+        move_rows = row.get("moves")
+        if not isinstance(move_rows, list) or len(move_rows) != 4:
+            _fail(f"partyの4技がありません: slot {row.get('slot')}")
+        selected = []
+        for move_row in move_rows:
+            move_key = move_row.get("move_key")
+            move_id = move_row.get("move_id")
+            if move_key not in moves or int(moves[move_key]["id"]) != move_id:
+                _fail(f"move canonical IDが一致しません: {move_key}")
+            move = move_catalog.get(move_id)
+            if move is None or move.get("category") == 2 or move.get("power", 0) <= 0:
+                _fail(f"partyに攻撃技ではない技があります: {move_key}")
+            selected.append(move)
+        if not any(move["target"] & (0x08 | 0x20) for move in selected):
+            _fail(f"複数対象技がない個体があります: slot {row.get('slot')}")
     lead = party[0]
     if (
         lead.get("species_key") != "SPECIES_KEY_MEWTWO"
@@ -155,31 +181,11 @@ def validate_profile(config: dict[str, Any], *, require_rom: bool = True) -> Non
         or lead.get("held_item_id") != 761
     ):
         _fail("先頭Lv.100ミュウツーprofileが一致しません")
-    item_key = str(lead["held_item_key"])
-    if item_key not in items or int(items[item_key]["id"]) != lead["held_item_id"]:
-        _fail("ミュウツナイトY canonical IDが一致しません")
-    if party[1].get("species_key") != "SPECIES_KEY_VEGA_007" or party[1].get("level") != 5:
-        _fail("博士のアクタシがslot 2にありません")
-
     move_rows = lead.get("moves")
-    expected_move_ids = [94, 58, 85, 366]
+    expected_move_ids = [600, 59, 87, 366]
     if not isinstance(move_rows, list) or [row.get("move_id") for row in move_rows] != expected_move_ids:
         _fail("ミュウツーの4攻撃技が一致しません")
-    for row in move_rows:
-        key = row.get("move_key")
-        if key not in moves or int(moves[key]["id"]) != row.get("move_id"):
-            _fail(f"move canonical IDが一致しません: {key}")
-
-    catalog = _read_json(ROOT / "content/codex_battle/catalog.json")
-    move_catalog = {row["id"]: row for row in catalog.get("moves", [])}
-    selected = [move_catalog.get(move_id) for move_id in expected_move_ids]
-    if any(row is None for row in selected):
-        _fail("4技がCodex catalogにありません")
-    if any(row["category"] == 0 or row["power"] <= 0 for row in selected):
-        _fail("4技に変化技が混入しています")
-    if len({row["type"] for row in selected}) != 4:
-        _fail("4技の攻撃typeが重複しています")
-    if [row["pp"] for row in selected] != [10, 10, 15, 20]:
+    if [move_catalog[move_id]["pp"] for move_id in expected_move_ids] != [10, 5, 10, 20]:
         _fail("4技の基礎PPが一致しません")
 
     policy = config.get("generation_policy")
@@ -271,7 +277,7 @@ def _validate_runner_report(config: dict[str, Any], report: dict[str, Any]) -> N
         "level": lead["level"],
         "held_item_id": lead["held_item_id"],
         "moves": [row["move_id"] for row in lead["moves"]],
-        "pp": [10, 10, 15, 20],
+        "pp": [10, 5, 10, 20],
     }:
         _fail("mGBA reportの先頭ミュウツーが一致しません")
 

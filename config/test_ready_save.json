@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "profile_key": "STAGE56_TEST_READY_V1",
-  "task": "USER-20260827-STAGE56-TEST-READY-SAVE",
+  "profile_key": "STAGE56_TEST_READY_V2_OVERPOWERED_PARTY",
+  "task": "USER-20260827-STAGE56-OVERPOWERED-QA-PARTY",
   "input": {
     "rom": "build/stages/56_collection_supply_v1.gba",
     "size": 33554432,
@@ -47,18 +47,19 @@
       "level": 100,
       "held_item_key": "ITEM_KEY_MEWTWONITE_Y",
       "held_item_id": 761,
+      "role": "SPECIAL_MEGA_LEAD",
       "moves": [
         {
-          "move_key": "MOVE_KEY_PSYCHIC",
-          "move_id": 94
+          "move_key": "MOVE_KEY_PSYSTRIKE",
+          "move_id": 600
         },
         {
-          "move_key": "MOVE_KEY_ICEBEAM",
-          "move_id": 58
+          "move_key": "MOVE_KEY_BLIZZARD",
+          "move_id": 59
         },
         {
-          "move_key": "MOVE_KEY_THUNDERBOLT",
-          "move_id": 85
+          "move_key": "MOVE_KEY_THUNDER",
+          "move_id": 87
         },
         {
           "move_key": "MOVE_KEY_AURASPHERE",
@@ -68,34 +69,138 @@
     },
     {
       "slot": 2,
-      "species_key": "SPECIES_KEY_VEGA_007",
-      "species_id": 7,
-      "level": 5,
-      "role": "PROFESSOR_STARTER_ACTASHI"
+      "species_key": "SPECIES_KEY_KYOGRE",
+      "species_id": 643,
+      "level": 100,
+      "held_item_key": "ITEM_KEY_WISE_GLASSES",
+      "held_item_id": 889,
+      "role": "SPECIAL_RAIN_SWEEPER",
+      "moves": [
+        {
+          "move_key": "MOVE_KEY_WATERSPOUT",
+          "move_id": 323
+        },
+        {
+          "move_key": "MOVE_KEY_ORIGINPULSE",
+          "move_id": 589
+        },
+        {
+          "move_key": "MOVE_KEY_THUNDER",
+          "move_id": 87
+        },
+        {
+          "move_key": "MOVE_KEY_ICEBEAM",
+          "move_id": 58
+        }
+      ]
     },
     {
       "slot": 3,
-      "species_key": "SPECIES_KEY_VEGA_001",
-      "species_id": 1,
-      "level": 50
+      "species_key": "SPECIES_KEY_GROUDON",
+      "species_id": 644,
+      "level": 100,
+      "held_item_key": "ITEM_KEY_MUSCLE_BAND",
+      "held_item_id": 888,
+      "role": "PHYSICAL_SUN_SWEEPER",
+      "moves": [
+        {
+          "move_key": "MOVE_KEY_PRECIPICEBLADES",
+          "move_id": 590
+        },
+        {
+          "move_key": "MOVE_KEY_EARTHQUAKE",
+          "move_id": 89
+        },
+        {
+          "move_key": "MOVE_KEY_ROCKSLIDE",
+          "move_id": 157
+        },
+        {
+          "move_key": "MOVE_KEY_HEATWAVE",
+          "move_id": 257
+        }
+      ]
     },
     {
       "slot": 4,
-      "species_key": "SPECIES_KEY_VEGA_004",
-      "species_id": 4,
-      "level": 50
+      "species_key": "SPECIES_KEY_RAYQUAZA",
+      "species_id": 645,
+      "level": 100,
+      "held_item_key": "ITEM_KEY_LIFE_ORB",
+      "held_item_id": 892,
+      "role": "MIXED_PRIORITY_SWEEPER",
+      "moves": [
+        {
+          "move_key": "MOVE_KEY_DRAGONASCENT",
+          "move_id": 630
+        },
+        {
+          "move_key": "MOVE_KEY_EXTREMESPEED",
+          "move_id": 245
+        },
+        {
+          "move_key": "MOVE_KEY_EARTHQUAKE",
+          "move_id": 89
+        },
+        {
+          "move_key": "MOVE_KEY_CRUNCH",
+          "move_id": 242
+        }
+      ]
     },
     {
       "slot": 5,
-      "species_key": "SPECIES_KEY_TAILLOW",
-      "species_id": 10,
-      "level": 50
+      "species_key": "SPECIES_KEY_XERNEAS",
+      "species_id": 1005,
+      "level": 100,
+      "held_item_key": "ITEM_KEY_EXPERT_BELT",
+      "held_item_id": 890,
+      "role": "SPECIAL_FAIRY_SWEEPER",
+      "moves": [
+        {
+          "move_key": "MOVE_KEY_DAZZLINGGLEAM",
+          "move_id": 548
+        },
+        {
+          "move_key": "MOVE_KEY_MOONBLAST",
+          "move_id": 546
+        },
+        {
+          "move_key": "MOVE_KEY_THUNDERBOLT",
+          "move_id": 85
+        },
+        {
+          "move_key": "MOVE_KEY_FLASHCANNON",
+          "move_id": 397
+        }
+      ]
     },
     {
       "slot": 6,
-      "species_key": "SPECIES_KEY_LUCARIO",
-      "species_id": 13,
-      "level": 50
+      "species_key": "SPECIES_KEY_ETERNATUS",
+      "species_id": 1363,
+      "level": 100,
+      "held_item_key": "ITEM_KEY_ASSAULT_VEST",
+      "held_item_id": 925,
+      "role": "SPECIAL_DRAGON_SWEEPER",
+      "moves": [
+        {
+          "move_key": "MOVE_KEY_DRAGONENERGY",
+          "move_id": 811
+        },
+        {
+          "move_key": "MOVE_KEY_SLUDGEBOMB",
+          "move_id": 188
+        },
+        {
+          "move_key": "MOVE_KEY_FLAMETHROWER",
+          "move_id": 53
+        },
+        {
+          "move_key": "MOVE_KEY_ENERGYBALL",
+          "move_id": 382
+        }
+      ]
     }
   ],
   "generation_policy": {

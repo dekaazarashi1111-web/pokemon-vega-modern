@@ -2701,3 +2701,36 @@
 - Commit: `-`（実装checkpoint `6cfef3f`、本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止確認、ROM／save転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-27T20:29:55+09:00
+
+- Task: `USER-20260827-STAGE56-OVERPOWERED-QA-PARTY` / Stage56標準QA手持ちをLv.100攻撃型6体へ更新する
+- Status: DONE
+- Summary:
+  - 標準profileと通常ROM API生成器のpartyを、ミュウツー先頭、カイオーガ、グラードン、レックウザ、ゼルネアス、ムゲンダイナのLv.100 6体へ差し替えた。既存のCodex受付前、序盤取得済み、badge 8件による全個体服従は維持した。
+  - 全24技を攻撃技とし、各個体に少なくとも1つの複数対象技を設定した。6体すべてに攻撃向けの持ち物を設定し、今後の標準saveも同じprofileから生成する。
+  - 既存Stage56 ROM自身の通常save APIで131,072-byte saveを再生成した。SHA-256は`3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`で、ROM identityは不変。
+  - iPadの残存RetroArch processを通常終了して0件を確認し、live設定からmGBA save directoryを再解決した。旧Stage56 saveを日時付きで保全して同名saveを原子的に置換し、read-back byte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は行っていない。
+- Files changed:
+  - `README.md`
+  - `config/test_ready_save.json`
+  - `scripts/build_test_ready_save.py`
+  - `tools/mgba_test_ready_save.c`
+  - `tests/test_test_ready_save.py`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `tasks/USER_20260827_STAGE56_OVERPOWERED_QA_PARTY.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: `.local/56_collection_supply_v1.srm`、Stage56 save report、iPad read-back save。
+  - Git管理外外部配置: iPad上のStage56同名`.srm`と旧saveの日時付き退避。
+- Verify:
+  - `make test-ready-save`: PASS。既存generatorのfull save、slot 0／1、自然Continue、Codex受付確認を通過。
+  - `make test-ready-save-check`: PASS。profile、ROM／save identity、source hash一致。
+  - `python3 -m unittest tests.test_test_ready_save`: PASS（5 tests）。
+  - iPad: 固定host key、RetroArch process 0、live設定、save 131,072 bytes／SHA-256 `31921002...`、read-back `cmp`、旧Stage56保全、Stage55不変、一時ファイル0 PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、staged index private guard: PASS。
+- Commit: `-`（登録commit `b59848e`、本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止確認、save転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有path、private save内容はtracked成果へ保存していない。

@@ -35,9 +35,14 @@ class TestTestReadySave(unittest.TestCase):
         )
         self.assertEqual(self.config["obedience"]["max_obedient_level"], 100)
 
-    def test_mewtwo_and_starter_party_contract(self) -> None:
+    def test_overpowered_level_100_party_contract(self) -> None:
         party = self.config["party"]
         self.assertEqual(len(party), 6)
+        self.assertEqual(
+            [row["species_id"] for row in party],
+            [150, 643, 644, 645, 1005, 1363],
+        )
+        self.assertEqual([row["level"] for row in party], [100] * 6)
         self.assertEqual(
             (
                 party[0]["species_id"],
@@ -45,9 +50,9 @@ class TestTestReadySave(unittest.TestCase):
                 party[0]["held_item_id"],
                 [move["move_id"] for move in party[0]["moves"]],
             ),
-            (150, 100, 761, [94, 58, 85, 366]),
+            (150, 100, 761, [600, 59, 87, 366]),
         )
-        self.assertEqual((party[1]["species_id"], party[1]["level"]), (7, 5))
+        self.assertTrue(all(len(row["moves"]) == 4 for row in party))
 
     def test_only_rom_apis_generate_serialized_save(self) -> None:
         policy = self.config["generation_policy"]

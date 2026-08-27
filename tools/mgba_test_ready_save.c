@@ -31,31 +31,33 @@ enum {
     QA_POKEDEX_GET_CAUGHT = 1U,
     QA_POKEDEX_SET_SEEN = 2U,
     QA_POKEDEX_SET_CAUGHT = 3U,
-    QA_SPECIES_MEWTWO = 150U,
-    QA_ITEM_MEWTWONITE_Y = 761U,
-    QA_LEVEL_MEWTWO = 100U,
-    QA_MOVE_PSYCHIC = 94U,
-    QA_MOVE_ICE_BEAM = 58U,
-    QA_MOVE_THUNDERBOLT = 85U,
-    QA_MOVE_AURA_SPHERE = 366U,
+    QA_LEVEL_100 = 100U,
     QA_FLAG_POKEMON_GET = 0x0828U,
     QA_FLAG_POKEDEX_GET = 0x0829U,
     QA_FLAG_B_DASH = 0x082FU,
 };
 
 static const uint16_t qa_party_species[BOOTSTRAP_TEAM_SIZE] = {
-    QA_SPECIES_MEWTWO, 7U, 1U, 4U, 10U, 13U,
+    150U, 643U, 644U, 645U, 1005U, 1363U,
 };
 
 static const uint8_t qa_party_levels[BOOTSTRAP_TEAM_SIZE] = {
-    QA_LEVEL_MEWTWO, 5U, 50U, 50U, 50U, 50U,
+    QA_LEVEL_100, QA_LEVEL_100, QA_LEVEL_100,
+    QA_LEVEL_100, QA_LEVEL_100, QA_LEVEL_100,
 };
 
-static const uint16_t qa_mewtwo_moves[BATTLE_CORE_MOVE_SLOTS] = {
-    QA_MOVE_PSYCHIC,
-    QA_MOVE_ICE_BEAM,
-    QA_MOVE_THUNDERBOLT,
-    QA_MOVE_AURA_SPHERE,
+static const uint16_t qa_party_items[BOOTSTRAP_TEAM_SIZE] = {
+    761U, 889U, 888U, 892U, 890U, 925U,
+};
+
+static const uint16_t qa_party_moves[BOOTSTRAP_TEAM_SIZE]
+                                    [BATTLE_CORE_MOVE_SLOTS] = {
+    {600U, 59U, 87U, 366U},
+    {323U, 589U, 87U, 58U},
+    {590U, 89U, 157U, 257U},
+    {630U, 245U, 89U, 242U},
+    {548U, 546U, 85U, 397U},
+    {811U, 188U, 53U, 382U},
 };
 
 static const uint16_t qa_progression_flags[] = {
@@ -107,22 +109,22 @@ static void qa_install_profile(struct mCore *core)
         uint32_t mon = BOOTSTRAP_PLAYER_PARTY + slot * BOOTSTRAP_MON_SIZE;
         create_mon(core, mon, qa_party_species[slot], qa_party_levels[slot]);
         qa_mark_caught(core, qa_party_species[slot]);
+        set_mon_data_u32(core, mon, QA_MON_DATA_HELD_ITEM,
+                         qa_party_items[slot]);
+        for (unsigned move_slot = 0U;
+             move_slot < BATTLE_CORE_MOVE_SLOTS; ++move_slot) {
+            uint8_t pp = qa_move_pp(
+                core, qa_party_moves[slot][move_slot], move_slot);
+            if (pp == 0U)
+                bootstrap_die("standard QA move PP is zero");
+            set_mon_data_u32(core, mon, QA_MON_DATA_MOVE1 + move_slot,
+                             qa_party_moves[slot][move_slot]);
+            set_mon_data_u32(core, mon, QA_MON_DATA_PP1 + move_slot, pp);
+        }
+        (void)call_preserving(core, QA_CALCULATE_STATS,
+                              mon, 0U, 0U, 0U);
     }
     write8(core, BOOTSTRAP_PLAYER_COUNT, BOOTSTRAP_TEAM_SIZE);
-
-    set_mon_data_u32(core, BOOTSTRAP_PLAYER_PARTY,
-                     QA_MON_DATA_HELD_ITEM, QA_ITEM_MEWTWONITE_Y);
-    for (unsigned slot = 0U; slot < BATTLE_CORE_MOVE_SLOTS; ++slot) {
-        uint8_t pp = qa_move_pp(core, qa_mewtwo_moves[slot], slot);
-        if (pp == 0U)
-            bootstrap_die("standard QA move PP is zero");
-        set_mon_data_u32(core, BOOTSTRAP_PLAYER_PARTY,
-                         QA_MON_DATA_MOVE1 + slot, qa_mewtwo_moves[slot]);
-        set_mon_data_u32(core, BOOTSTRAP_PLAYER_PARTY,
-                         QA_MON_DATA_PP1 + slot, pp);
-    }
-    (void)call_preserving(core, QA_CALCULATE_STATS,
-                          BOOTSTRAP_PLAYER_PARTY, 0U, 0U, 0U);
 
     for (unsigned index = 0U; index < ARRAY_LEN(qa_progression_flags); ++index)
         qa_set_and_require_flag(core, qa_progression_flags[index]);
@@ -142,22 +144,21 @@ static void qa_verify_resident_profile(struct mCore *core)
                                mon, QA_MON_DATA_LEVEL, 0U, 0U)
                    != qa_party_levels[slot])
             bootstrap_die("standard QA party identity differs");
-    }
-    if (call_preserving(core, BATTLE_CORE_GET_MON_DATA,
-                        BOOTSTRAP_PLAYER_PARTY,
-                        QA_MON_DATA_HELD_ITEM, 0U, 0U)
-            != QA_ITEM_MEWTWONITE_Y)
-        bootstrap_die("standard QA Mewtwo held item differs");
-    for (unsigned slot = 0U; slot < BATTLE_CORE_MOVE_SLOTS; ++slot) {
         if (call_preserving(core, BATTLE_CORE_GET_MON_DATA,
-                            BOOTSTRAP_PLAYER_PARTY,
-                            QA_MON_DATA_MOVE1 + slot, 0U, 0U)
-                != qa_mewtwo_moves[slot]
-            || call_preserving(core, BATTLE_CORE_GET_MON_DATA,
-                               BOOTSTRAP_PLAYER_PARTY,
-                               QA_MON_DATA_PP1 + slot, 0U, 0U)
-                   != qa_move_pp(core, qa_mewtwo_moves[slot], slot))
-            bootstrap_die("standard QA Mewtwo move or PP differs");
+                            mon, QA_MON_DATA_HELD_ITEM, 0U, 0U)
+                != qa_party_items[slot])
+            bootstrap_die("standard QA party held item differs");
+        for (unsigned move_slot = 0U;
+             move_slot < BATTLE_CORE_MOVE_SLOTS; ++move_slot) {
+            if (call_preserving(core, BATTLE_CORE_GET_MON_DATA,
+                                mon, QA_MON_DATA_MOVE1 + move_slot, 0U, 0U)
+                    != qa_party_moves[slot][move_slot]
+                || call_preserving(core, BATTLE_CORE_GET_MON_DATA,
+                                   mon, QA_MON_DATA_PP1 + move_slot, 0U, 0U)
+                       != qa_move_pp(
+                           core, qa_party_moves[slot][move_slot], move_slot))
+                bootstrap_die("standard QA party move or PP differs");
+        }
     }
     for (unsigned index = 0U; index < ARRAY_LEN(qa_progression_flags); ++index) {
         if (call_preserving(core, QA_FLAG_GET,
@@ -291,7 +292,7 @@ int main(int argc, char **argv)
     core = bootstrap_open_core(argv[1], argv[2], video);
     qa_verify_loaded(core);
     for (unsigned slot = 0U; slot < BATTLE_CORE_MOVE_SLOTS; ++slot)
-        lead_pp[slot] = qa_move_pp(core, qa_mewtwo_moves[slot], slot);
+        lead_pp[slot] = qa_move_pp(core, qa_party_moves[0][slot], slot);
     bootstrap_close_core(core);
 
     memset(video, 0, 240U * 160U * sizeof(*video));
@@ -320,7 +321,7 @@ int main(int argc, char **argv)
 
     sha256_file(argv[1], rom_sha256);
     sha256_file(argv[2], save_sha256);
-    printf("{\"schema_version\":%u,\"task\":\"USER-20260827-STAGE56-TEST-READY-SAVE\","
+    printf("{\"schema_version\":%u,\"task\":\"USER-20260827-STAGE56-OVERPOWERED-QA-PARTY\","
            "\"status\":\"PASS\",\"rom_sha256\":\"%s\",\"save_sha256\":\"%s\","
            "\"save_size\":%u,\"save_generations\":2,"
            "\"slot0_fresh_load\":true,\"slot1_fresh_load\":true,"
@@ -328,10 +329,10 @@ int main(int argc, char **argv)
            "\"map\":{\"group\":%u,\"number\":%u,\"x\":%u,\"y\":%u},"
            "\"progression_flags\":[2088,2089,2095],"
            "\"badge_flags\":[2080,2081,2082,2083,2084,2085,2086,2087],"
-           "\"party_species\":[150,7,1,4,10,13],"
-           "\"party_levels\":[100,5,50,50,50,50],"
+           "\"party_species\":[150,643,644,645,1005,1363],"
+           "\"party_levels\":[100,100,100,100,100,100],"
            "\"lead\":{\"species_id\":150,\"level\":100,\"held_item_id\":761,"
-           "\"moves\":[94,58,85,366],\"pp\":[%u,%u,%u,%u]},"
+           "\"moves\":[600,59,87,366],\"pp\":[%u,%u,%u,%u]},"
            "\"field_framebuffer_fnv1a64\":\"%016" PRIx64 "\","
            "\"reception_framebuffer_fnv1a64\":\"%016" PRIx64 "\","
            "\"pixel_transitions\":%u,\"warnings\":0}\n",

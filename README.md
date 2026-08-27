@@ -119,7 +119,7 @@ make windows-battle-catalog-check # 1/6/30件batch・境界拒否・報酬/PC回
 make windows-box14-vault # Stage46へBox14⇔Windows固有個体庫を結合してStage47を生成
 make windows-box14-vault-check # raw80往復・通常save・catalog/reward回帰を副作用なしで再照合
 make codex-battle-ipad-bootstrap # ROM自身の通常保存を2回通し、両save slotをfresh-core検証したiPad QA saveを.localへ生成
-make test-ready-save # 最新Stage用の標準テストsave（Codex受付前・序盤取得済み・全服従・Lv.100ミュウツー先頭）を生成
+make test-ready-save # 最新Stage用の標準テストsave（Codex受付前・序盤取得済み・全服従・攻撃型Lv.100伝説6体）を生成
 make test-ready-save-check # 生成済み標準テストsaveとprofile/source hashを副作用なしで照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合

@@ -1116,3 +1116,14 @@
   - Codex受付前、序盤取得済み、全Lv.服従、先頭Lv.100ミュウツー＋ミュウツナイトY＋4タイプ攻撃技、手持ち6体をfresh-loadで固定した。
   - Stage56 ROM／同名saveをiPadへ原子的に配置し、read-back byte一致、既存Stage55不変、一時ファイル0を確認した。実機プレイ／人手承認は要求していない。
 - Verify: generator独立2 process、full／slot 0／slot 1、自然Continue、Codex受付A入力、focused unit 5 tests、iPad size／SHA／`cmp`、task graph、private guard、diff check PASS。save SHA-256 `bdc4eea8dacf093734be6fcaa26eb55351126bbe39654d156f61829a3b90a5f7`。
+
+## 2026-08-27T20:29:55+09:00
+
+- Version: `post-v1.4.0-stage56-test-ready-save-v2-overpowered-party`（ROM identity不変）
+- Commit: `-`（登録commit `b59848e`、本エントリを含む完了commit）
+- Task: `USER-20260827-STAGE56-OVERPOWERED-QA-PARTY` / Stage56標準QA手持ちをLv.100攻撃型6体へ更新する
+- Summary:
+  - 今後の標準QA partyを、ミュウツー先頭＋カイオーガ／グラードン／レックウザ／ゼルネアス／ムゲンダイナのLv.100 6体へ更新した。
+  - 全24技を攻撃技とし、各個体へダブルバトル向けの複数対象技を設定した。Codex受付前、序盤取得済み、全個体服従は維持した。
+  - iPadの旧Stage56 saveを日時付きで保全して更新saveを原子的に配置し、read-back byte一致を確認した。実機プレイ／人手承認は要求していない。
+- Verify: standard save build／check、focused unit 5 tests、iPad size／SHA／`cmp`、旧save保全、Stage55不変、一時ファイル0、task graph、private guard、diff check PASS。save SHA-256 `3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。
