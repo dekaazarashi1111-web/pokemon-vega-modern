@@ -48,3 +48,12 @@
   - Stage 55で既知症状が解消したか、iPad実プレイ結果の承認または再現地点を受領する必要がある。
 - Next step:
   - 承認受領後にタスクを再開してDONEへ更新する。不具合報告の場合はStage 55のexact map／local ID／入力列へ固定して修正する。
+
+## 2026-08-27T13:26:18+09:00 解消
+
+- Task: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
+- Resolution:
+  - ユーザー指示によりiPad配置、実機プレイ、人手承認を今後の完了／release gateから分離した。
+  - Stage55は既に22 fresh-core fixture×独立2 process、全map owner監査、BPS往復、
+    declared span外0、allocator overlap 0、warnings 0をPASSしているためDONEへ確定した。
+  - iPadへのROM／save配置は希望時だけ行う任意運用とし、未実施や接続不能をblockerにしない。

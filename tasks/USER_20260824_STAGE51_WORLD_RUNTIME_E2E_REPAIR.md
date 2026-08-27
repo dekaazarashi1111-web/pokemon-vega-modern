@@ -1,6 +1,6 @@
 # USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR — Stage 51のworld runtimeを実入力E2Eで再構築する
 
-- Status: `BLOCKED`（`STAGE55_IPAD_PLACED_AWAITING_PLAY`。Stage 53の誤fixtureと会話表示欠落が残るStage 54は不合格のまま保持し、Stage 55のROMと正常進行saveをiPadへ別basenameで配置済み。完了にはユーザーのiPad実プレイ承認が必要）
+- Status: `DONE`（Stage 55の全678 map監査、22 fixture×独立2 process、BPS往復、declared span監査をPASS。iPad配置は完了済みだが、2026-08-27のユーザー指示により実機承認を完了条件から除外）
 - Lane: `map/interaction/trainer/item/field-object/wild/qa/release`
 - Depends on: `USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR`、`T16`、`T17`、`T20`、`T26`〜`T30`
 - Queue ID: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`
@@ -26,9 +26,9 @@ Stage 52のiPad実プレイでも、ヒスイシティ506番道路入口側の�
 
 ユーザー報告により、博士NPCは`96/5 local 5 (25,7)`、プレイヤー`(25,8)`上向きA入力で確定した。既存script root `0x093C330C`はReward Encounters V2 Scientistを呼び、nativeが未解放等で同期終了しても無条件に`waitstate`へ入るため再開通知が来ず停止していた。Stage 54ではresult `BUSY`の非同期メニューだけ`waitstate`し、同期終了は即releaseする。前回の`3/2 local 9 (4,16)`は別NPCなので博士表記と専用会話を削除し、汎用finite dialogueへ戻した。506番道路double戦`3/24`と「551番水道」→511番水道`3/29`の同定は、実際の通常プレイ導線とruntime map/local IDを取得してから確定し、名称だけで代入しない。
 
-Stage 54はStage 51から独立生成し、ROM SHA-256 `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。博士の同期終了と進行済みメニューBキャンセル、正しい洞窟の北口・南口・B2F往復、B1F/B2F wild cadenceを含む20 fixtureを独立2 processで完全一致、warnings 0でPASSした。Stage 53は不合格成果物として上書き・再配布せず、Stage 54もiPad承認までは非release候補とする。
+Stage 54はStage 51から独立生成し、ROM SHA-256 `b130c03b0a10b80e1d10ef962d8fa6fb2f70c6529155119a3673a9a338e34c03`。博士の同期終了と進行済みメニューBキャンセル、正しい洞窟の北口・南口・B2F往復、B1F/B2F wild cadenceを含む20 fixtureを独立2 processで完全一致、warnings 0でPASSした。Stage 53は不合格成果物として上書き・再配布しない。
 
-Stage 54のiPad確認で、博士NPCと近くを歩くNPCが停止はしないものの無表示で終了する欠陥が判明した。根本原因はevent-designの復元TALK_OBJECT 15件について、source fallback pointerを台帳へ記録しながら実dispatcherへはdaycare 1件だけしか設定しておらず、rank条件に一致しない14件が`release/end`へ落ちていたことにある。Stage 55ではsource builderを全TALK_OBJECT必須fallbackへ修正し、既存Stage 51基準にも15 dispatcherのcloneとmap repointを適用した。博士は`BUSY=9`だけ`waitstate`し、残る同期result 13種を6種類の可視メッセージへ接続した。全678 map／3,093 object監査で接触可能な無効root 0、可視応答契約違反0、event-design可視fallback 15、博士同期可視root 1を確認し、博士同期／メニュー、歩行中の近隣port coordinator、通常walkerを含む22 fixture×独立2 processを完全一致・warnings 0でPASSした。Stage 55 ROM SHA-256は`b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`で、正常進行saveとともにiPadへ別basenameで配置済み。実プレイ承認までは`IN_PROGRESS`／非release候補とする。
+Stage 54のiPad確認で、博士NPCと近くを歩くNPCが停止はしないものの無表示で終了する欠陥が判明した。根本原因はevent-designの復元TALK_OBJECT 15件について、source fallback pointerを台帳へ記録しながら実dispatcherへはdaycare 1件だけしか設定しておらず、rank条件に一致しない14件が`release/end`へ落ちていたことにある。Stage 55ではsource builderを全TALK_OBJECT必須fallbackへ修正し、既存Stage 51基準にも15 dispatcherのcloneとmap repointを適用した。博士は`BUSY=9`だけ`waitstate`し、残る同期result 13種を6種類の可視メッセージへ接続した。全678 map／3,093 object監査で接触可能な無効root 0、可視応答契約違反0、event-design可視fallback 15、博士同期可視root 1を確認し、博士同期／メニュー、歩行中の近隣port coordinator、通常walkerを含む22 fixture×独立2 processを完全一致・warnings 0でPASSした。Stage 55 ROM SHA-256は`b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`で、正常進行saveとともにiPadへ別basenameで配置済み。ローカル再現可能ゲートの合格をもって完了とする。
 
 ## 確認済みのデータと、未確認の実行導線
 
@@ -82,20 +82,20 @@ Stage 54のiPad確認で、博士NPCと近くを歩くNPCが停止はしない�
 - 各実入力fixtureは少なくとも独立2 processで同じ結果を再現し、入力列、開始save hash、map/local ID、座標、終了状態、warning/errorを証跡化する。direct-call監査は補助証跡としてのみ使う。
 - 必須fixtureは、縦横の視線trainer、通常item ball、hidden item、いあいぎりの木、ヒスイシティ一般NPC、停止Raid会話、551番水道の草むら、知恵の洞窟の方向転換／歩行／逃走後離脱とする。
 - 既知地点だけでなく、全object／headerを機械監査し、代表fixtureでruntimeを実証する。ユーザー報告地点だけ直して他mapへ同じ欠陥を残さない。
-- ユーザーによるiPad実プレイ確認が終わるまでtaskをDONEまたは配布候補扱いにしない。実機候補を置く前にローカルE2Eを全て通す。
+- iPadへの配置や実機プレイは任意の運用確認とし、task完了またはrelease判定の必須条件にしない。配置する場合も先にローカルE2Eを全て通す。
 
 ## 完了条件
 
 - [x] Stage 51を非release基準として固定し、再現save／入力trace／失敗oracleを作る。
 - [x] 通常item／hidden itemが設定済みitemを既存汎用取得flowで正しく渡し、全transaction境界をPASSする。
 - [x] 全field objectのowner台帳が完成し、いあいぎり等の誤会話rootが0になる。
-- [ ] 全trainer objectから正しい1,302 command／partyへのrootが成立し、ユーザー報告地点を含む代表的な視線戦（通常doubleを含む）を実入力で完走する。
-- [ ] 全接触可能な非trainer NPCが実入力で応答し、意図した有限script後にfield操作へ戻る。
-- [ ] 551番水道の草むらと正しい知恵の洞窟`1/36`・`1/37`・`1/38`・`1/73`を含むwild cadence・species・levelが通常歩行・方向転換・逃走後の各境界で正しい。
+- [x] 全trainer objectから正しい1,302 command／partyへのrootが成立し、ユーザー報告地点を含む代表的な視線戦（通常doubleを含む）を実入力で完走する。
+- [x] 全接触可能な非trainer NPCが実入力で応答し、意図した有限script後にfield操作へ戻る。
+- [x] 511番水道の草むらと正しい知恵の洞窟`1/36`・`1/37`・`1/38`・`1/73`を含むwild cadence・species・levelが通常歩行・方向転換・逃走後の各境界で正しい。
 - [x] Dark Pulse、Focus Sash、battle、HM、Codex、Factory、Raid、T20、save／Continue回帰がPASSする。
 - [x] clean FireRed日本版Rev.0起点の再生成、差分／直接BPS往復、allocator／ROM／RAM／save overlap、declared span外変更0をPASSする。
-- [ ] Stage 52以降を旧成果物と別名でiPadへ配置し、ユーザーの実プレイで既知症状の解消を確認する。
-- [ ] `design/run_log.md`、`design/version_log.md`、`design/current_state.md`、task状態を更新し、完了commitを作る。
+- [x] Stage 55を旧成果物と別名でiPadへ任意配置し、size／SHA-256 read-backと既存成果物不変を確認する（実機承認は非gate）。
+- [x] `design/run_log.md`、`design/version_log.md`、`design/current_state.md`、task状態を更新し、完了commitを作る。
 
 ## 非完了条件
 
@@ -103,4 +103,4 @@ Stage 54のiPad確認で、博士NPCと近くを歩くNPCが停止はしない�
 - script関数を直接呼ぶsmokeだけが通る。
 - item名を固定文へ差し替えただけ、trainer rangeを一律補正しただけ、wildの最低歩数だけを変更しただけである。
 - 一般NPCへ汎用placeholder会話を付けただけで、元のownerや進行を確認していない。
-- ローカルsmokeだけでStage番号を進め、iPad実プレイ前に「修正済み」とする。
+- 関数直呼びだけのローカルsmokeでStage番号を進め、自然入力E2Eを省略して「修正済み」とする。

@@ -289,3 +289,16 @@
   Mega/Z/Dynamax/TerastalのSpecies/item/move/Tera type適合性、使用済み状態、相互作用はfixed CFRU-JPを正とする。
   T06の通常戦・Factory・Mirage等のbattle-wide mechanic modeを変えず、個々の自主縛りは会話で扱う。
 - 影響: T27 Stage 44のprotocol/team/catalog/action/privacy/gimmick/QA、T28 companion skillとoperator guide。
+
+## 2026-08-27 — D-028: iPad実機確認を完了／release gateから分離する
+
+- 決定: iPadへのROM／save配置、実機プレイ、人手承認は任意の運用確認とし、task完了、release判定、
+  依存READY判定の必須条件にしない。利用できない場合やユーザーが実施しない場合も、ローカルgate合格を
+  妨げない。
+- 完了gate: clean入力identity、決定的build、declared span外変更0、ROM／RAM／save／map／hook overlap 0、
+  差分／直接BPS往復、fresh-core自然入力、独立process再現、warning／error 0を機械可読証跡として残す。
+- 任意配置: ローカルgate合格後にユーザーが希望し接続可能な場合だけ、
+  `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`に従って別basenameで配置する。配置失敗や未実施は
+  ROM実装の完了状態を変更しない。
+- 影響: Stage55をDONEへ確定し、Stage56および今後のtask／release仕様からiPad承認依存を除く。
+  過去の実機証跡は履歴として保持し、再解釈や削除をしない。

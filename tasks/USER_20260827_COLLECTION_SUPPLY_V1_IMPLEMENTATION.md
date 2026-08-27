@@ -5,7 +5,7 @@
 - Depends on: `USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`のStage 55ローカル成果、`T19`、`T23`〜`T25`、`T30`
 - Queue ID: `USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`
 - Baseline: Stage 55 / ROM SHA-256 `b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`
-- Target: Stage 56（Stage 55の実機承認前は非release候補）
+- Target: Stage 56（ローカル再現可能ゲート合格をrelease判定に使い、iPad実機承認は要求しない）
 
 ## 目的
 
@@ -22,7 +22,7 @@ ChatGPT Pro返却済みのCollection Supply V1を、Stage 55へproduction統合�
 - ROM SHA-256: `b0a825cb7d3886419e4122f2de54a069fdf8e7a5fe41a9fef0bc3235e68cbcf8`
 - metadata: `build/stages/55_world_runtime_visible_feedback_repair.json`
 - owner ledger: `reports/generated/world_runtime_owner_ledger_stage55.json`
-- Stage 55はローカル22 fixture×独立2 processをPASS済みだが、iPad実プレイ承認前なので非release baselineとして扱う。
+- Stage 55はローカル22 fixture×独立2 process、BPS往復、declared span監査をPASSした完了baselineとして扱う。
 
 ### 返却済み設計
 
@@ -33,7 +33,7 @@ ChatGPT Pro返却済みのCollection Supply V1を、Stage 55へproduction統合�
 - validator結果: PASS、open question 0、warning/error 0
 - canonical rows: form 388、G-Max 34、Item 999、Raid host 14、pool 292、reward 217、host requirement 9、batch 8
 - validator: `templates/chatgpt_pro_design_packets/tools/validate_submission.py`
-- packet root: `dist/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_COLLECTION-SUPPLY-V1_INPUT_20260825/`
+- packet root: `userfile/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_COLLECTION-SUPPLY-V1_INPUT_20260825/`
 
 原本ZIPは読取専用・Git管理外とし、直接編集・再圧縮しない。全12 entryを安全な一時領域で読み、共通validatorを毎buildの入力gateにする。
 
@@ -57,7 +57,7 @@ ChatGPT Pro返却済みのCollection Supply V1を、Stage 55へproduction統合�
 5. `BATCH_P1_RAID_REWARDS`: 217 reward行とfirst-clear／repeatable transactionを接続する。
 6. `BATCH_P1_WORLD_BINDING_AUDIT`: Stage 55 owner台帳から物理hostをexact再監査して束縛する。
 7. `BATCH_P2_VAULT_REGRESSION`: raw80の30体往復、form／factor／持ち物、mail拒否を検証する。
-8. `BATCH_P2_EXACT_ROM_ACCEPTANCE`: Stage 56、BPS、clean再構築、mGBA、iPadを受入確認する。
+8. `BATCH_P2_EXACT_ROM_ACCEPTANCE`: Stage 56、BPS、clean再構築、mGBAを受入確認する。iPad配置は任意の運用作業として別記録する。
 
 ## 必須成果物
 
@@ -87,7 +87,7 @@ ChatGPT Pro返却済みのCollection Supply V1を、Stage 55へproduction統合�
 - [ ] changed byteがdeclared span内で、ROM／RAM／save／map／hook overlapが0。
 - [ ] clean FireRed日本版Rev.0からStage 56を決定的に再構築でき、Stage 55差分／clean直接BPSが完全往復する。
 - [ ] mGBA quick/fullの独立2 processがwarnings/errors 0で一致する。
-- [ ] Stage 55 world修復とStage 56 collection supplyをiPad実プレイで確認し、承認されたbuildだけをrelease候補へ昇格する。
+- [ ] Stage 55 world修復を含むStage 56をfresh-core自然入力で独立2 process再現し、iPad実機の有無に依存せずrelease判定できる。
 
 ## 禁止する完了判定
 
