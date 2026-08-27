@@ -23,7 +23,7 @@
 | パッチ競合 | `audit_seed/PHASE_01_STATUS.md` | `audit_seed/reports/conflict_report.md`, `semantic_hotspots.md` |
 | T02 exact監査 | `config/t02_audit_policy.json` | `tools/t02/`, `reports/generated/address_audit.csv`, `id_inventory.json`, `semantic_conflicts.md` |
 | ビルド/ROM配置 | `docs/BUILD_PIPELINE.md` | `docs/ROM_LAYOUT_POLICY.md`, `docs/INPUT_CONTRACT.md` |
-| iPad RetroArch/mGBA save配置 | `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md` | 有効な`retroarch.cfg`、実機mGBA save directory、対象ROM basename |
+| iPad RetroArch/mGBA save配置 | `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md` | `config/test_ready_save.json`、`scripts/build_test_ready_save.py`、有効な`retroarch.cfg`、実機mGBA save directory、対象ROM basename |
 | Stage53 world runtime再調査 | `docs/HANDOFF_STAGE53_WORLD_RUNTIME_REOPEN.md` | `tasks/USER_20260824_STAGE51_WORLD_RUNTIME_E2E_REPAIR.md`、原作Vega参照ROM、map/wild inventory |
 | ChatGPT Pro 全収集・供給設計 | `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md` | `scripts/build_chatgpt_pro_collection_supply_packet.py`、取得／Item／Raid manifest、Stage53 handoff |
 | ID統合 | `docs/ID_POLICY.md` | `manifests/*.csv`, T04/T05/T07 |

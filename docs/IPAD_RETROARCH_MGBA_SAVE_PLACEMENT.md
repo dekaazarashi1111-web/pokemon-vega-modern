@@ -9,6 +9,14 @@
   - save: `53_world_runtime_e2e_repair.srm`
 - iOSのApplication container UUID、端末IP、credential、絶対pathは固定値として記録しない。アプリ更新・再インストールで変わり得るため、container metadataと`retroarch.cfg`から都度解決する。
 
+## Stage56以降の標準テスト用セーブ
+
+- 新しいstageを軽く確認するiPad配置では、特別な指定がない限り`config/test_ready_save.json`の標準profileを使う。
+- `make test-ready-save`でblank flashからROM自身の通常save APIを2回通し、full save、slot 0／1単独、自然ContinueをmGBAで検証する。生成済み`.srm`をhex editorやhost側checksum再計算で加工しない。
+- 標準profileはCodex対戦受付前、博士のポケモン／図鑑／ランニングシューズ取得済み、badge 8件設定による全Lv.服従、先頭Lv.100ミュウツー＋ミュウツナイトY＋4タイプ攻撃技、手持ち6体とする。
+- 新しいstageではconfigのROM identityとbasenameを更新して同じgeneratorを再実行する。旧stageの`.srm`をbasename変更だけで使い回さない。
+- 実機プレイと人手承認はtask／release gateに含めない。配置を依頼された時だけ、下記の停止・退避・原子的転送・read-backを行う。
+
 ## 配置手順
 
 1. RetroArchを終了し、processが停止したことを確認する。起動中に置くと、メモリ上の新規ゲームsaveで正規`.srm`が再上書きされる。

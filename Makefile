@@ -7,6 +7,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: windows-battle-catalog windows-battle-catalog-check
 .PHONY: windows-box14-vault windows-box14-vault-check
 .PHONY: species-form-compat species-form-compat-check
+.PHONY: test-ready-save test-ready-save-check
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -352,6 +353,12 @@ codex-battle-ipad-bootstrap:
 	mkdir -p .local
 	$(CC) -std=c11 -Wall -Wextra -Werror tools/mgba_codex_battle_ipad_bootstrap.c -o .local/mgba-codex-battle-ipad-bootstrap -lmgba
 	.local/mgba-codex-battle-ipad-bootstrap build/stages/44_codex_battle_runtime.gba .local/44_codex_battle_runtime_verified.srm
+
+test-ready-save:
+	$(PYTHON) scripts/build_test_ready_save.py build
+
+test-ready-save-check:
+	$(PYTHON) scripts/build_test_ready_save.py check
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto
