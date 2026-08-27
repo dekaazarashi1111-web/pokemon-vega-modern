@@ -227,8 +227,9 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。T00〜T30、`USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR`、`USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION`までの明示USERタスクは完了しており、現在の正本IN_PROGRESSはない。iPad配置・実機プレイ・人手承認は任意の運用確認であり、今後のtask完了／release／READY判定には含めない。
+`design/tasks_next.md` を正とする。`USER-20260827-STAGE56-TEST-READY-SAVE`を唯一の正本IN_PROGRESSとして保持する。iPad配置はこの直接依頼の成果物だが、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
 
+- USER-20260827-STAGE56-TEST-READY-SAVE: IN_PROGRESS。Codex受付前、序盤取得済み、全個体服従、Lv.100ミュウツー先頭の標準profileを通常save APIから生成し、Stage56 ROM／同名saveをiPadへ安全配置する。
 - USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION: DONE。検証済み返却ZIPの388 form、34 G-Max、999 Item、14 host、292 Raid pool、217 rewardをStage55完了baselineからStage56へproduction統合した。Stage56 SHA-256は`9309c073798dc363174458ebcb75bf3f1e86d475dcd129b74875d5a6bb875778`。mGBA quick／full、Stage55自然入力22 fixture×独立2 process、clean 3経路、BPS往復、owner overlap監査をPASSした。iPadは任意配置であり、今回の安全終了不可による未配置は合否を左右しない。
 - USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR: DONE。Stage55の22 fresh-core fixture×独立2 process、全map owner監査、BPS往復、declared span外0、allocator overlap 0、warnings 0をローカル完了gateとした。Stage55 ROM／saveのiPad配置は既存の任意証跡として保持する。
 

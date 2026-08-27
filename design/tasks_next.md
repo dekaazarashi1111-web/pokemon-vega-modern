@@ -54,3 +54,4 @@
 - [x] Stage 50の続きから再開時の描画破損・1歩後入力停止を修正し正常セーブを再発行する <!-- id:USER-20260824-STAGE50-CONTINUE-SAVE-FREEZE-REPAIR -->
 - [x] Stage 51のworld runtimeを実入力E2Eで再構築しtrainer・item・field object・会話NPC・wildをまとめて修正する <!-- id:USER-20260824-STAGE51-WORLD-RUNTIME-E2E-REPAIR -->
 - [x] 全フォーム・G-Max・全Item供給・Raid rotationをStage 56へproduction統合する <!-- id:USER-20260827-COLLECTION-SUPPLY-V1-IMPLEMENTATION -->
+- [>] Stage56の標準テスト用セーブを生成してiPadへ配置する <!-- id:USER-20260827-STAGE56-TEST-READY-SAVE -->
