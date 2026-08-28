@@ -19,7 +19,7 @@ ZIPの作成はpackage rootの`PACKAGE_NEXT_FULL_SNAPSHOT.py`、展開後の検�
 ChatGPTへ単一ファイルで渡す版は、package rootの生成器へ`--profile chatgpt-512mb`を指定する。
 このprofileは512,000,000 bytesを上限として強制し、Stage58の現行作業に不要な過去BPSと、
 現行source／Git履歴へ統合済みのtrainer checkpoint ZIPだけを除外する。ROM原本、Stage57／58、
-QA save、全source、Git全履歴、固定上流、host／ARM toolchain、mGBAは保持する。
+Stage58 full監査用Stage50 oracle、QA save、全source、Git全履歴、固定上流、host／ARM toolchain、mGBAは保持する。
 
 ## 容量削減のための除外
 

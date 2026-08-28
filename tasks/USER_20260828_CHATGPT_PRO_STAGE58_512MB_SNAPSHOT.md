@@ -7,7 +7,7 @@ ChatGPTの単一ファイル上限に合わせ、Stage58の開発・再生成・
 
 ## 完了条件
 
-- ROM原本、Stage57／58、標準QA save、全source、Git全履歴、固定上流、toolchain、mGBAを保持する。
+- ROM原本、Stage57／58、full監査用Stage50 oracle、標準QA save、全source、Git全履歴、固定上流、toolchain、mGBAを保持する。
 - Stage58のcheckとclean再生成に必要なBPSだけを保持する。
 - 現行source／Gitへ統合済みの過去BPSとtrainer checkpoint ZIPだけを除外する。
 - ZIP sizeを512,000,000 bytes以下にし、単一root、unsafe path 0、duplicate 0、CRC不一致0とする。
