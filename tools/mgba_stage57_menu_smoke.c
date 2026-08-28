@@ -86,8 +86,10 @@ enum {
     S57_KEY_PRESS_FRAMES = 8U,
 };
 
+#ifndef S57_EXPECTED_ROM_SHA256
 #define S57_EXPECTED_ROM_SHA256 \
     "546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d"
+#endif
 
 enum S57OpenKind {
     S57_OPEN_WILD,

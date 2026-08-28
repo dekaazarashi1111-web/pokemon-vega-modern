@@ -2805,3 +2805,37 @@
 - Commit: `-`（登録commit `3b9bd12`、本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止、転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-28T15:50:47+09:00
+
+- Task: `USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG` / Stage57のQOL・世界・Codex拠点・野生・売買を再監査してStage58へ改善する
+- Status: DONE
+- Summary:
+  - Stage57を固定入力としてQOL 36機能を通常Bagの5ポケット、効果あり／なし、cancel、通常save／fresh reloadまで分類した。Bag UI終了後にテスト側が`SetBagPocketsPointers`を再実行してcallbackを壊す問題を除去し、Bottle Cap境界9/9、全36機能の保存復帰36/36をexact ROMでPASSした。
+  - save key rotationへ追加していたproduct wrapperが、実行位相を1 cycle規模で変えて知恵の洞窟B2Fの自然ContinueをGBA resetへ導くことを127／128／129 cycle比較で特定した。wrapperを撤回してstock `SetSaveBlocksPointers`→Bag rebindとstock `ApplyNewEncryptionKeyToAllEncryptedData`へ戻し、host `Load`／Bag書換えなしの独立descriptor gate 15/15を通した。
+  - Codex受付map `96/5`の既存受付`(20,19)`、BP shop、warp、BG eventを保持し、左隣`(19,19)`へ通常PC Storage、右隣`(21,19)`へポケモンセンター同等の全回復人物、`(23,19)`へ通常money martを追加した。PC deposit／fresh reload、通常・瀕死・状態異常・タマゴ・0体、mart購入／売却／bag満杯無課金、field復帰を通常A入力で検証した。
+  - Codex対戦は自然11 request、CPU勝利、disconnect fallback、forfeit、win／loss／draw result kind、reward closed/open、seen／personality／owned mirror不変を確認した。Windows bank、Box 14 vault、mailbox transaction境界に新しいRAM／save ownerを追加していない。
+  - Route 5、Diglett's Cave、S.S. Anne、Pokémon Tower、Rocket Hideout、Indigo Plateauへ短い任意item eventを6件追加した。全件で取得成功後だけflagをcommitし、bag満杯では無減算・無flagのまま再試行でき、quest logとfresh reloadをPASSした。
+  - Kanto wild 133物理headerを再直列化し、実行tableをland 52、water 11、fishing 13、rock 1へ整理した。屋外7／洞窟10／水上2／岩砕き25／釣り20のrate方針と、通常歩行・水上・岩砕き・3段階釣りのSpecies／level／field復帰を実ROMで確認した。Tohoku 132 headerとVega固有生態は保持した。
+  - economy 121 patchを監査し、研究71価格、Honey無限利益防止、低難度Raid XS境界、Ability Patch反復供給を確定した。通常trainer 89の賞金`3000→3128`、Honey購入後`2228`、Factory 3勝`BP 55→64`、Ability Patch購入`BP 0／1個`をproduction ownerと通常saveで確認した。Factory fixtureのNormal技がGhost相手に停滞するテスト不良はtypeless Struggleへ限定修正し、outcome／BP／rewardは書き換えていない。
+  - 全678 map、5,441 script root、8,961 reachable script、256 field item transaction、265 wild header／2,733 slot、story trainerを横断監査し診断0。Stage58 ROMは33,554,432 bytes、SHA-256 `501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c`、CRC32 `673F2B41`。iPad、私有ROM、既存saveは変更していない。
+- Files changed:
+  - `config/stage58_qol_world_convenience_debug.json`、`config/save_layout.csv`
+  - `manifests/flags.csv`、`manifests/kanto_encounters.csv`
+  - `overlays/stage58_qol_world_convenience/**`
+  - `scripts/build_stage58_qol_world_convenience_debug.py`、`scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py`、`scripts/run_stage58_mgba_validation.py`、`scripts/run_stage58_bag_descriptor_validation.py`
+  - `tools/stage58_debug_suite.py`、`tools/stage58_world_balance.py`、`tools/stage58_qol_economy_audit.py`、Stage58 mGBA runner 4件
+  - Stage58 focused test 10件、既存save／mGBA回帰runnerの互換修正
+  - `Makefile`、`README.md`、task／state／log正本
+  - Git管理外再生成物: Stage58 ROM／metadata／allocation／Stage57差分BPS／clean直接BPS／full mGBA JSON／clean rebuild証跡。
+- Verify:
+  - `python3 scripts/run_stage58_mgba_validation.py --domain all --runs 2 --collection-mode full`: PASS。10 domain、動的22 process、full coverage、独立結果一致、warnings 0。QOL 36、Codex／PC／回復／mart、economy 14＋transaction 5、world 22 fixtureを含む。
+  - `python3 scripts/run_stage58_bag_descriptor_validation.py ...`: PASS。phase1 9/9、fresh reload 6/6、独立2 process、host `Load`／`SetBagPocketsPointers`／descriptor writeなし。
+  - `python3 scripts/build_stage58_qol_world_convenience_debug.py build --require-mgba`／`check --require-mgba`: PASS。metadata `PASS`、declared span外0、ROM／RAM／save／map／hook overlap 0、差分／clean直接BPS往復PASS。
+  - `python3 scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py build --require-mgba`／`check --require-mgba`: PASS。clean直接、clean→Stage57→Stage58、同一source再buildがbyte一致。
+  - `python3 tools/stage58_debug_suite.py`: PASS。全678 map、5,441 root、8,961 script、265 wild header／2,733 slot、256 item transaction、story trainer、stock save key rotationに不一致0。
+  - Focused unitは累計173実行PASS。`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。staged indexにROM／save／BPS／private pathなし。
+- Commit: `-`（登録commit `63d118e`、本エントリを含む完了commit）
+- Network:
+  - primary source照合のため `https://github.com/pret/pokefirered.git` を `.local/pokefirered` へcloneし、取得時HEAD `c75f352304d529f6ba92d4f74b9cf8b5c3810788` のstock save／Bag実装を参照した。tracked vendorや`state/source-lock.json`は変更していない。
+  - iPad、ChatGPT Web、外部対戦hostは未使用。実動作はローカルの固定入力とlibmGBAで検証した。

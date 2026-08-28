@@ -1,6 +1,6 @@
 # USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG — Stage57のQOL・世界・利便性を再監査してStage58へ改善する
 
-- Status: `IN_PROGRESS`
+- Status: `DONE`
 - Lane: `qa/qol/item/economy/world/event/npc/wild/facility/save/release`
 - Depends on: `USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR`、`T19`、`T20`、`T29`、`T30`
 - Queue ID: `USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG`

@@ -9,6 +9,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: species-form-compat species-form-compat-check
 .PHONY: test-ready-save test-ready-save-check
 .PHONY: stage57-debug-repair stage57-debug-repair-check stage57-debug-clean-rebuild stage57-debug-clean-rebuild-check stage57-debug-quick stage57-debug-full stage57-debug-story stage57-mgba-quick stage57-mgba-smoke stage57-mgba-all
+.PHONY: stage58-qol-world stage58-qol-world-check stage58-qol-world-clean-rebuild stage58-qol-world-clean-rebuild-check stage58-debug-full stage58-economy-audit stage58-world-audit stage58-mgba-all stage58-final-gate
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -390,6 +391,40 @@ stage57-mgba-smoke:
 
 stage57-mgba-all:
 	$(PYTHON) scripts/run_stage57_mgba_validation.py --domain all --collection-mode full
+
+stage58-qol-world:
+	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py build
+
+stage58-qol-world-check:
+	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py check
+
+stage58-qol-world-clean-rebuild:
+	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py build
+
+stage58-qol-world-clean-rebuild-check:
+	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py check
+
+stage58-debug-full:
+	$(PYTHON) tools/stage58_debug_suite.py
+
+stage58-economy-audit:
+	$(PYTHON) tools/stage58_qol_economy_audit.py \
+		--rom build/stages/58_qol_world_convenience_debug.gba \
+		--metadata build/stages/58_qol_world_convenience_debug.json
+
+stage58-world-audit:
+	$(PYTHON) tools/stage58_world_balance.py
+
+stage58-mgba-all:
+	$(PYTHON) scripts/run_stage58_mgba_validation.py --domain all --collection-mode full
+
+stage58-final-gate:
+	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py build
+	$(PYTHON) scripts/run_stage58_mgba_validation.py --domain all --collection-mode full
+	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py build --require-mgba
+	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py check --require-mgba
+	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py build --require-mgba
+	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py check --require-mgba
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto

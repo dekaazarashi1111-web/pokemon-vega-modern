@@ -89,6 +89,25 @@ enum {
     BATTLE_CORE_ACTION_SWITCH = 2,
     BATTLE_CORE_MASTER_BALL = 1,
     BATTLE_CORE_BAG_BALL_POCKET = 2,
+
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+#if !defined(BATTLE_CORE_HOST_STACK_BOTTOM_ADDRESS) \
+    || !defined(BATTLE_CORE_HOST_STACK_TOP_ADDRESS)
+#error "isolated host calls require explicit scratch-stack bounds"
+#endif
+    /*
+     * Host-direct calls must not borrow either the interrupted System stack
+     * or the banked IRQ stack.  The including runner must select an interval
+     * whose normal owner is inactive for every direct-call target.  Every
+     * byte is restored before the emulated scheduler resumes.
+     */
+    BATTLE_CORE_HOST_STACK_BOTTOM = BATTLE_CORE_HOST_STACK_BOTTOM_ADDRESS,
+    BATTLE_CORE_HOST_STACK_TOP = BATTLE_CORE_HOST_STACK_TOP_ADDRESS,
+    BATTLE_CORE_HOST_STACK_SIZE =
+        BATTLE_CORE_HOST_STACK_TOP - BATTLE_CORE_HOST_STACK_BOTTOM,
+    BATTLE_CORE_HOST_STACK_GUARD_SIZE = 64,
+    BATTLE_CORE_HOST_STACK_MAX_ARGUMENTS = 8,
+#endif
 };
 
 _Static_assert(ARRAY_LEN(BOOT_TRACE) >= BATTLE_CORE_FIELD_TRACE_SEGMENTS,
@@ -144,6 +163,24 @@ static const struct HookContract TRAINER_SETUP_HOOK = {
 struct CpuState {
     int32_t registers[17];
 };
+
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+struct HostCallStack {
+    uint8_t original[BATTLE_CORE_HOST_STACK_SIZE];
+    uint32_t entry_sp;
+};
+
+_Static_assert((BATTLE_CORE_HOST_STACK_BOTTOM & 7U) == 0U,
+               "host-call scratch-stack bottom must be 8-byte aligned");
+_Static_assert((BATTLE_CORE_HOST_STACK_TOP & 7U) == 0U,
+               "host-call scratch-stack top must be 8-byte aligned");
+_Static_assert(BATTLE_CORE_HOST_STACK_BOTTOM >= 0x02000000U
+                   && BATTLE_CORE_HOST_STACK_TOP <= 0x02040000U,
+               "host-call scratch stack must stay inside EWRAM");
+_Static_assert(BATTLE_CORE_HOST_STACK_SIZE
+                   > BATTLE_CORE_HOST_STACK_GUARD_SIZE + 256U,
+               "host-call scratch stack is too small");
+#endif
 
 static const char *const CPU_REGISTER_NAMES[17] = {
     "r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8",
@@ -342,11 +379,66 @@ static void restore_cpu_state(struct mCore *core, const struct CpuState *state) 
     write_register(core, "pc", (uint32_t)state->registers[15]);
 }
 
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+static uint8_t host_stack_guard_byte(unsigned index) {
+    return (uint8_t)(0xA5U ^ (uint8_t)(index * 29U));
+}
+
+static void begin_host_call_stack(struct mCore *core,
+                                  struct HostCallStack *stack,
+                                  const uint32_t *arguments,
+                                  unsigned argument_count) {
+    if (argument_count > BATTLE_CORE_HOST_STACK_MAX_ARGUMENTS
+        || (argument_count != 0U && arguments == NULL)) {
+        battle_core_die("host-call scratch-stack argument contract failed");
+    }
+    for (unsigned byte = 0U; byte < BATTLE_CORE_HOST_STACK_SIZE; ++byte) {
+        stack->original[byte] = read8(
+            core, BATTLE_CORE_HOST_STACK_BOTTOM + byte);
+    }
+    for (unsigned byte = 0U;
+         byte < BATTLE_CORE_HOST_STACK_GUARD_SIZE; ++byte) {
+        write8(core, BATTLE_CORE_HOST_STACK_BOTTOM + byte,
+               host_stack_guard_byte(byte));
+    }
+
+    uint32_t argument_bytes = argument_count * 4U;
+    uint32_t aligned_bytes = (argument_bytes + 7U) & ~7U;
+    stack->entry_sp = BATTLE_CORE_HOST_STACK_TOP - aligned_bytes;
+    for (unsigned index = 0U; index < argument_count; ++index) {
+        write32_bytes(core, stack->entry_sp + index * 4U, arguments[index]);
+    }
+    write_register(core, "sp", stack->entry_sp);
+}
+
+static bool restore_host_call_stack(struct mCore *core,
+                                    const struct HostCallStack *stack) {
+    bool guard_intact = true;
+    for (unsigned byte = 0U;
+         byte < BATTLE_CORE_HOST_STACK_GUARD_SIZE; ++byte) {
+        guard_intact = guard_intact
+            && read8(core, BATTLE_CORE_HOST_STACK_BOTTOM + byte)
+                == host_stack_guard_byte(byte);
+    }
+    bool stack_balanced = (uint32_t)read_register(core, "sp")
+        == stack->entry_sp;
+    for (unsigned byte = 0U; byte < BATTLE_CORE_HOST_STACK_SIZE; ++byte) {
+        write8(core, BATTLE_CORE_HOST_STACK_BOTTOM + byte,
+               stack->original[byte]);
+    }
+    return guard_intact && stack_balanced;
+}
+#endif
+
 static struct CallObservation call_bounded(struct mCore *core, uint32_t function,
                                            uint32_t r0, uint32_t r1,
                                            uint32_t r2, uint32_t r3) {
     struct CallObservation result = {0};
     struct CpuState original = capture_cpu_state(core);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    struct HostCallStack call_stack;
+    begin_host_call_stack(core, &call_stack, NULL, 0U);
+#endif
     uint32_t cpsr = (uint32_t)original.registers[16];
     write_register(core, "cpsr", cpsr | 0xA0U);
     write_register(core, "lr", 0x08000001U);
@@ -364,7 +456,14 @@ static struct CallObservation call_bounded(struct mCore *core, uint32_t function
         core->step(core);
     }
     result.result = (uint32_t)read_register(core, "r0");
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    bool stack_ok = restore_host_call_stack(core, &call_stack);
+#endif
     restore_cpu_state(core, &original);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    if (!stack_ok)
+        battle_core_die("bounded direct call overflowed its scratch stack");
+#endif
     return result;
 }
 
@@ -448,8 +547,19 @@ static uint32_t call_preserving(struct mCore *core, uint32_t function,
                                 uint32_t r0, uint32_t r1,
                                 uint32_t r2, uint32_t r3) {
     struct CpuState original = capture_cpu_state(core);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    struct HostCallStack call_stack;
+    begin_host_call_stack(core, &call_stack, NULL, 0U);
+#endif
     uint32_t result = call_rom_args(core, function, r0, r1, r2, r3).return_value;
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    bool stack_ok = restore_host_call_stack(core, &call_stack);
+#endif
     restore_cpu_state(core, &original);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    if (!stack_ok)
+        battle_core_die("direct call overflowed its scratch stack");
+#endif
     return result;
 }
 
@@ -468,13 +578,27 @@ static void set_mon_data_u32(struct mCore *core, uint32_t mon,
 static void create_mon(struct mCore *core, uint32_t destination,
                        uint16_t species, uint8_t level) {
     struct CpuState original = capture_cpu_state(core);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    static const uint32_t stack_arguments[4] = {0U, 0U, 0U, 0U};
+    struct HostCallStack call_stack;
+    begin_host_call_stack(
+        core, &call_stack, stack_arguments, ARRAY_LEN(stack_arguments));
+#else
     uint32_t original_sp = (uint32_t)original.registers[13];
     uint32_t call_sp = (original_sp - 16U) & ~7U;
     for (unsigned byte = 0; byte < 16; ++byte) write8(core, call_sp + byte, 0);
     write_register(core, "sp", call_sp);
+#endif
     (void)call_rom_args(core, BATTLE_CORE_CREATE_MON,
                         destination, species, level, 0);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    bool stack_ok = restore_host_call_stack(core, &call_stack);
+#endif
     restore_cpu_state(core, &original);
+#if defined(BATTLE_CORE_ISOLATE_HOST_CALL_STACK)
+    if (!stack_ok)
+        battle_core_die("CreateMon overflowed its scratch stack");
+#endif
     if (call_preserving(core, BATTLE_CORE_GET_MON_DATA,
                         destination, 11, 0, 0) != species) {
         battle_core_die("CreateMon species readback failed");

@@ -527,12 +527,15 @@ static bool cs_raid_test(struct mCore *core,
 
 static bool cs_world_hosts_test(struct mCore *core,
                                 const struct CsSymbols *symbols,
-                                const struct CsCases *cases)
+    const struct CsCases *cases)
 {
     for (unsigned host = 0U; host < CS_HOST_COUNT; ++host) {
-        if (read32(core, cases->map_site[host]) != cases->map_target[host])
+        /* Later stages may relocate an event header while preserving and
+         * extending its arrays.  Follow the live map pointer instead of
+         * rejecting a safe relocation solely because its address changed. */
+        uint32_t event = read32(core, cases->map_site[host]);
+        if (event < 0x08000000U || event >= 0x0A000000U)
             return false;
-        uint32_t event = cases->map_target[host];
         uint32_t count = read8(core, event + 3U);
         uint32_t bg = read32(core, event + 16U);
         if (count != cases->map_bg_count[host] || !count

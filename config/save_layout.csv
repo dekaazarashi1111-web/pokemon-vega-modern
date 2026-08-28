@@ -1,7 +1,13 @@
 address_space,start,end_exclusive,size,owner,symbol,version,migration,status,source_ref,notes
 SAVE_BLOCK1_OFFSET,0x00000294,0x00000296,2,VEGA_ARCADE_COIN,arcade_coin_u16,legacy,KEEP,LIVE,reports/generated/save_map.csv,XOR SaveBlock2 encryption key; cap 9999
-SAVE_BLOCK1_OFFSET,0x00000310,0x00000391,129,T08_DEX,national_dex_seen_1025,1,ZERO_EXTEND,LIVE,vendor/upstream/CFRU-JP/include/global.h:717,Authoritative first 1025 bits of the existing 150-byte field
-SAVE_BLOCK1_OFFSET,0x000003A6,0x00000427,129,T08_DEX,national_dex_caught_1025,1,ZERO_EXTEND,LIVE,vendor/upstream/CFRU-JP/include/global.h:718,Authoritative first 1025 bits of the existing 150-byte field
+SAVE_BLOCK1_OFFSET,0x00000310,0x00000391,129,T08_DEX_LEGACY_MISIDENTIFIED,national_dex_seen_1025_legacy_misidentified,legacy,NONE,RETIRED,vendor/upstream/CFRU-JP/include/global.h:717,Historical CFRU layout import was invalid for Vega; this interval is the live Bag items pocket and must never be snapshotted as Dex
+SAVE_BLOCK1_OFFSET,0x000003A6,0x00000427,129,T08_DEX_LEGACY_MISIDENTIFIED,national_dex_caught_1025_legacy_misidentified,legacy,NONE,RETIRED,vendor/upstream/CFRU-JP/include/global.h:718,Historical CFRU layout import was invalid for Vega; this interval spans live Bag items and key-items pockets
+SAVE_BLOCK1_OFFSET,0x00000310,0x000005F8,744,VEGA_BAG_POCKETS,bag_pockets_items_keyitems_balls_tmhm_berries,legacy,KEEP,LIVE,rom:0x0809984C SetBagPocketsPointers,42 Items + 30 Key Items + 13 Balls + 58 TMHM + 43 Berries entries at 4 bytes each; quantities use SaveBlock2 encryption key
+SAVE_BLOCK1_OFFSET,0x000005F8,0x0000062C,52,VEGA_POKEDEX,seen_primary_412,legacy,KEEP,LIVE,rom:0x08088A50 wrapper to 0x0810586C owner,Vega authoritative primary seen bitmap for species IDs 0..411
+SAVE_BLOCK1_OFFSET,0x00003A18,0x00003A4C,52,VEGA_POKEDEX,seen_secondary_412,legacy,KEEP,LIVE,rom:0x08088A50 wrapper to 0x0810586C owner,Vega secondary seen mirror; keep byte-identical with both other seen mirrors
+SAVE_BLOCK2_OFFSET,0x00000018,0x00000028,16,VEGA_POKEDEX,pokedex_header_and_personality,legacy,KEEP,LIVE,rom:0x08088A50 wrapper to 0x0810586C owner,Pokedex header plus Unown and Spinda personality words at offsets 0x1C..0x24
+SAVE_BLOCK2_OFFSET,0x00000028,0x0000005C,52,VEGA_POKEDEX,owned_412,legacy,KEEP,LIVE,rom:0x08088A50 wrapper to 0x0810586C owner,Vega authoritative owned bitmap for species IDs 0..411
+SAVE_BLOCK2_OFFSET,0x0000005C,0x00000090,52,VEGA_POKEDEX,seen_save2_412,legacy,KEEP,LIVE,rom:0x08088A50 wrapper to 0x0810586C owner,Vega SaveBlock2 seen mirror; keep byte-identical with both SaveBlock1 seen mirrors
 SAVE_BLOCK1_OFFSET,0x00000EE0,0x00001000,288,VEGA_EVENT_FLAGS,vega_badges_hm_story_flags,legacy,KEEP,LIVE,reports/generated/save_map.csv,T08 never rewrites or aliases this bitmap
 SAVE_BLOCK1_OFFSET,0x00001000,0x00001200,512,VEGA_EVENT_VARS,vega_event_vars,legacy,KEEP,LIVE,reports/generated/save_map.csv,Preserved in place
 SAVE_BLOCK1_OFFSET,0x00002F18,0x00002F80,104,CFRU_ITEM_FLAGS_LEGACY,itemObtainedFlags_legacy_832,legacy,TRANSLATE,RETIRED,vendor/upstream/CFRU-JP/include/global.h:761,Translated to the 999-item T08 bitmap

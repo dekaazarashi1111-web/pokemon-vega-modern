@@ -86,8 +86,10 @@ transaction scratchは保存領域外の`0x0203E300..0x0203E400`へ名前付き�
 
 正本は `config/save_layout.csv`（live interval {save_count}件）。
 
-- 全国図鑑1025: 既存CFRU `SaveBlock1` の150-byte seen/caught fieldの先頭129 byteを正本とし、
-  ledgerへ重複保存しない。
+- Vega図鑑: `SaveBlock1 +0x5F8/+0x3A18`と`SaveBlock2 +0x5C`のseen三鏡、
+  `SaveBlock2 +0x28`のownedを各52 byteで保持する。`SaveBlock2 +0x18`の16-byte headerには
+  Unown／Spinda personalityを含む。旧CFRU配置由来の`SaveBlock1 +0x310/+0x3A6`宣言は、
+  実際にはBag 5 pocket（`+0x310..+0x5F8`）なのでRETIREDとし、図鑑として扱わない。
 - 個体育成値: `natureMint` / Hyper Training / Tera typeを80-byte BoxPokemon ABI内に保持する。
 - QOL: text `INSTANT`、hatch `FAST`、Exp Shareは1個目badge取得済みならON。最大5個のタマゴを
   80-byte単位のFIFOで保持する。badge等から導出可能なunlockは保存しない。

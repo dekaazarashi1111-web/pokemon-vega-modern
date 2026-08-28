@@ -1149,3 +1149,14 @@
   - RetroArch停止とlive設定再解決後、Stage57 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
   - 既存Stage56 ROM／saveを不変に保ち、remote一時ファイルを0にした。端末固有情報はtracked成果へ保存していない。
 - Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage56不変、一時ファイル0、task graph、private guard、staged diff PASS。ROM `546136a6...`、save `31921002...`。
+
+## 2026-08-28T15:50:47+09:00
+
+- Version: `post-v1.4.0-stage58-qol-world-convenience-debug`
+- Commit: `-`（登録commit `63d118e`、本エントリを含む完了commit）
+- Task: `USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG` / QOL実使用、Codex拠点、薄い場所、野生、item／shopをStage58へ改善する
+- Summary:
+  - QOL 36機能を通常Bag／cancel／効果／save／fresh reloadへ接続し、save key rotationをstock Bag ownerへ戻して知恵の洞窟B2F resetを根治した。
+  - Codex受付の左右へ通常PC Storageと全回復人物、近隣へmoney martを追加し、既存BP shop／Codex／Windows bank／Box 14契約を保持した。
+  - 薄い6地点のatomic item event、Kanto wild 133物理header、研究・Honey・Raid・Ability Patch経済を実ROMとmachine-readable監査で調整した。
+- Verify: mGBA 10 domain・動的22 process・warnings 0、QOL 36／Bag 15／world 22、全678 map／265 wild header／2,733 slot／256 item transaction、build／check、clean 3経路、BPS往復、span／overlap、focused unit 173、task graph／private guard／diff check PASS。ROM SHA-256 `501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c`、CRC32 `673F2B41`。

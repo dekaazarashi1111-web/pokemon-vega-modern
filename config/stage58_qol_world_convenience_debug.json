@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG",
+  "stage": 58,
+  "inputs": {
+    "stage57_rom": {
+      "path": "build/stages/57_comprehensive_debug_repair.gba",
+      "size": 33554432,
+      "sha256": "546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d"
+    },
+    "stage57_metadata": {
+      "path": "build/stages/57_comprehensive_debug_repair.json",
+      "sha256": "0c9381574c9eb925ef02099e8a0ecb7b3d8d183da64794c26245b8ff37ff9d2b"
+    },
+    "stage57_allocation": {
+      "path": "build/stages/57_allocation.json",
+      "sha256": "4626e3ad3bc143d4a3a8eb70b0d73dc2c030e161d0f5cf6b4a6ebbcb9df0b943"
+    },
+    "stage17_metadata": {
+      "path": "build/stages/17_regression.json",
+      "sha256": "ad013b67fb9b74235e5f446a1ea08decc800c937c2eb055bdf1070e2e8d25d86"
+    },
+    "kanto_encounters": {
+      "path": "manifests/kanto_encounters.csv",
+      "sha256": "4457027fda2955cfb78b93fa5a786243ceda02b15ad55fb6d3702011132e77ee"
+    },
+    "species_ids": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "item_ids": {
+      "path": "manifests/item_ids.csv",
+      "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"
+    },
+    "flags": {
+      "path": "manifests/flags.csv",
+      "sha256": "9bbaf18e36b41bede706cf55564bb70a7fcf0313a0e5f4ce8c2430070775fbb6"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "codex_hub": {
+    "group": 96,
+    "map": 5,
+    "npc_local_id": 2,
+    "pc": {"local_id": 11, "graphics_id": 94, "x": 19, "y": 19, "elevation": 3},
+    "healer": {"local_id": 12, "graphics_id": 64, "x": 21, "y": 19, "elevation": 3},
+    "mart": {"local_id": 13, "graphics_id": 68, "x": 23, "y": 19, "elevation": 3},
+    "mart_item_ids": [2, 3, 19, 21, 23, 24, 34, 35, 69, 84, 85]
+  },
+  "thin_events": [
+    {"key": "ROUTE5", "group": 96, "map": 16, "x": 22, "y": 26, "elevation": 3, "graphics_id": 55, "flag": "0x1498", "item_id": 84, "quantity": 3, "map_key": "KANTO_OUTDOOR_ROUTE5", "reward_tier": "MID_EXPLORATION"},
+    {"key": "DIGLETTS_CAVE", "group": 97, "map": 37, "x": 2, "y": 4, "elevation": 3, "graphics_id": 55, "flag": "0x1499", "item_id": 85, "quantity": 3, "map_key": "KANTO_DUNGEON_DIGLETTS_CAVE_B1_F", "reward_tier": "EARLY_CONSUMABLE"},
+    {"key": "SSANNE", "group": 97, "map": 5, "x": 18, "y": 2, "elevation": 3, "graphics_id": 55, "flag": "0x149a", "item_id": 35, "quantity": 2, "map_key": "KANTO_DUNGEON_SSANNE_1_F_CORRIDOR", "reward_tier": "MID_EXPLORATION"},
+    {"key": "POKEMON_TOWER", "group": 97, "map": 89, "x": 4, "y": 8, "elevation": 3, "graphics_id": 55, "flag": "0x149b", "item_id": 25, "quantity": 2, "map_key": "KANTO_DUNGEON_POKEMON_TOWER_2_F", "reward_tier": "LATE_EXPLORATION"},
+    {"key": "ROCKET_HIDEOUT", "group": 97, "map": 43, "x": 19, "y": 2, "elevation": 3, "graphics_id": 55, "flag": "0x149c", "item_id": 69, "quantity": 1, "map_key": "KANTO_DUNGEON_ROCKET_HIDEOUT_B2_F", "reward_tier": "LATE_EXPLORATION"},
+    {"key": "INDIGO_PLATEAU", "group": 96, "map": 9, "x": 10, "y": 7, "elevation": 3, "graphics_id": 55, "flag": "0x149d", "item_id": 68, "quantity": 2, "map_key": "KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR", "reward_tier": "POSTGAME_RARE"}
+  ],
+  "wild_rates": {"land_outdoor": 7, "land_dungeon": 10, "water": 2, "rock": 25, "fishing": 20},
+  "wild_rate_policy": {
+    "land_outdoor": {"min": 5, "max": 8},
+    "land_dungeon": {"min": 8, "max": 12},
+    "water": {"min": 1, "max": 5},
+    "rock": {"min": 15, "max": 30},
+    "fishing": {"min": 15, "max": 25}
+  },
+  "thin_reward_value_policy": {
+    "EARLY_CONSUMABLE": {"min": 1000, "max": 2500},
+    "MID_EXPLORATION": {"min": 2000, "max": 5000},
+    "LATE_EXPLORATION": {"min": 6000, "max": 10000},
+    "POSTGAME_RARE": {"min": 8000, "max": 15000}
+  },
+  "qol_item_graphics": {
+    "legacy_table": "0x0839C79C",
+    "canonical_table": "0x09056D20",
+    "item_count": 999,
+    "consumer_pointer_sites": ["0x080981FC", "0x080982DC", "0x080983A4"],
+    "legacy_cancel_icon_item": 375,
+    "canonical_cancel_icon_item": 589,
+    "cancel_icon_item_sites": ["0x0809ADE4", "0x08109148", "0x0810E4E0"]
+  },
+  "qol_item_id_clamp": {
+    "site": "0x0809A2AC",
+    "size": 24,
+    "legacy_max_inclusive": 748,
+    "valid_max_exclusive": 999,
+    "expected": "00b50004010cbb208000814201d8081c00e0002002bc0847",
+    "replacement": "0004000cfa2189000139884201d2001c00e0002071467047"
+  },
+  "qol_item_bag_adapter": {
+    "source": "overlays/stage58_qol_world_convenience/stage58_qol_item_adapter.c",
+    "item_table": "0x0904D108",
+    "row_size": 40,
+    "id_offset": 10,
+    "pocket_offset": 22,
+    "type_offset": 23,
+    "field_callback_offset": 24,
+    "expected_pocket": 1,
+    "expected_type": 4,
+    "replacement_type": 1,
+    "expected_field_callback": "0x080A34F9",
+    "item_ids": [853, 854],
+    "replacement_symbol": "Stage58QolItemAdapter_FieldUseBottleCapAdapter"
+  },
+  "saveblock_key_rotation_stock_contract": {
+    "policy": "preserve_stock_no_runtime_rebind",
+    "move_save_blocks_reset_heap": "0x0804B85D",
+    "apply_all_call_site": "0x0804B8FA",
+    "expected_stock_apply_all_call": "00f02ffa",
+    "callback_restore_site": "0x0804B8DE",
+    "expected_early_callback_restore": "019820610099e160",
+    "original_apply_new_encryption": "0x0804BD5D",
+    "bag_encryption_call_site": "0x0804BD76",
+    "expected_bag_encryption_call": "4df063fd",
+    "original_bag_encryption": "0x08099841",
+    "set_bag_pockets_pointers": "0x0809984D",
+    "save_block1_pointer": "0x03005048",
+    "save_block2_pointer": "0x0300504C",
+    "bag_pockets": "0x020397D8",
+    "descriptor_stride": 8,
+    "bag_pocket_descriptors": [
+      {"name": "items", "save1_offset": "0x0310", "capacity": 42},
+      {"name": "key_items", "save1_offset": "0x03B8", "capacity": 30},
+      {"name": "poke_balls", "save1_offset": "0x0430", "capacity": 13},
+      {"name": "tm_case", "save1_offset": "0x0464", "capacity": 58},
+      {"name": "berry_pouch", "save1_offset": "0x054C", "capacity": 43}
+    ],
+    "veneer": {
+      "address": "0x0837BEAC",
+      "size": 8,
+      "alignment": 4,
+      "expected": "ffffffffffffffff",
+      "reference_count_before": 0
+    }
+  },
+  "codex_save_layout_repair": {
+    "bitmap_size": 52,
+    "save1": {
+      "bag_items_offset": "0x310",
+      "seen_primary_offset": "0x5F8",
+      "seen_secondary_offset": "0x3A18"
+    },
+    "save2": {
+      "header_offset": "0x18",
+      "header_size": 16,
+      "personality_offset": "0x1C",
+      "personality_size": 8,
+      "owned_offset": "0x28",
+      "seen_offset": "0x5C"
+    },
+    "legacy_misidentified": {
+      "save1_offset": "0x310",
+      "save1_size": 150,
+      "save2_offset": "0x18",
+      "save2_size": 16
+    },
+    "snapshot_buffers": {
+      "primary_address": "0x0203FDA6",
+      "primary_size": 150,
+      "spill_address": "0x0203FF3C",
+      "spill_size": 16
+    },
+    "symbols": {
+      "snapshot": "Stage58QolItemAdapter_CodexSnapshotSeenMirrors",
+      "restore": "Stage58QolItemAdapter_CodexRestoreSeenMirrors",
+      "hash": "Stage58QolItemAdapter_CodexContinueSeenHash"
+    },
+    "patches": {
+      "snapshot_save1": {
+        "site": "0x093CB45A",
+        "size": 12,
+        "expected": "903be1189622314800f0acfa"
+      },
+      "snapshot_save2_legacy": {
+        "site": "0x093CB48A",
+        "size": 12,
+        "expected": "290010222848183100f094fa"
+      },
+      "restore_save1": {
+        "site": "0x093CD66A",
+        "size": 18,
+        "expected": "c423fe3a9b004e490700ff3ae818fef7a1f9"
+      },
+      "restore_save2_legacy": {
+        "site": "0x093CD6B0",
+        "size": 12,
+        "expected": "300010223f491830fef781f9"
+      },
+      "hash_save1": {
+        "site": "0x093CCEAC",
+        "size": 22,
+        "expected": "c423224a9b00eb18a9181a78013354407c438b42f9d1"
+      },
+      "hash_save2_legacy": {
+        "site": "0x093CCF0A",
+        "size": 18,
+        "expected": "3300283618331a78013354407c43b342f9d1"
+      }
+    }
+  },
+  "codex_mailbox_compat": {
+    "read_keys_pointer_site": "0x080005EC",
+    "expected_delegate": "0x09405D65",
+    "stage44_initializer_capability_literal_site": "0x093C9CEC",
+    "stage44_validator_capability_literal_site": "0x093CA24C",
+    "stage44_embedded_config_capability_site": "0x093C9B90",
+    "stage44_capabilities": "0x1FFF",
+    "stage47_capabilities": "0x7FFF"
+  },
+  "codex_result_compat": {
+    "end_turn_function_table": "0x0820CAE8",
+    "inherited_win_adapter": "0x093D203D",
+    "inherited_loss_adapter": "0x093D2059",
+    "inherited_draw_adapter": "0x093D2059",
+    "inherited_return_to_field_adapter": "0x093D1E01",
+    "nonpunitive_result_script": "0x081BC8BB"
+  },
+  "codex_reward_result_kind": {
+    "inherited_after_battle_adapter": "0x093D2075",
+    "mapping_patch_site": "0x093D20B8",
+    "mapping_patch_size": 24,
+    "expected": "124b1a787f231a407b3b052a03d0104b1b881b061b0eab75"
+  },
+  "outputs": {
+    "rom": "build/stages/58_qol_world_convenience_debug.gba",
+    "metadata": "build/stages/58_qol_world_convenience_debug.json",
+    "allocation": "build/stages/58_allocation.json",
+    "incremental_bps": "build/patches/stage57-to-qol-world-convenience-stage58.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-qol-world-convenience-stage58.bps",
+    "payload": "generated/runtime/stage58_qol_world_convenience_debug.bin",
+    "symbols": "generated/runtime/stage58_qol_world_convenience_debug_symbols.json",
+    "cases": "generated/runtime/stage58_qol_world_convenience_debug_cases.json",
+    "economy_audit": "reports/generated/stage58_qol_economy_audit.json",
+    "audit": "reports/generated/stage58_qol_world_convenience_debug.json",
+    "report": "reports/generated/stage58_qol_world_convenience_debug.md",
+    "mgba": "build/stages/58_mgba_qol_world_convenience_debug.json",
+    "clean_rebuild": "build/stages/58_qol_world_convenience_debug_clean_rebuild.json"
+  }
+}

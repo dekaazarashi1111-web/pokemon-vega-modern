@@ -53,8 +53,12 @@ class SaveLayoutTests(unittest.TestCase):
             "VEGA_HALL_OF_FAME",
             "kanto_certifications_8bit",
             "region_heal_return_anchors",
-            "national_dex_seen_1025",
-            "national_dex_caught_1025",
+            "bag_pockets_items_keyitems_balls_tmhm_berries",
+            "seen_primary_412",
+            "seen_secondary_412",
+            "pokedex_header_and_personality",
+            "owned_412",
+            "seen_save2_412",
             "shared_special_capture_125",
             "egg_queue_box_mon_5x80",
             "factory_transaction",
@@ -73,7 +77,32 @@ class SaveLayoutTests(unittest.TestCase):
         self.assertEqual(int(symbols["reserved_v2_tail"]["size"]), 129)
         self.assertEqual(symbols["battle_local_virtual_item"]["status"], "EXCLUDED")
         self.assertEqual(symbols["arcade_coin_u16"]["owner"], "VEGA_ARCADE_COIN")
-        self.assertEqual(int(symbols["national_dex_seen_1025"]["size"]), 129)
+        self.assertEqual(
+            (symbols["national_dex_seen_1025_legacy_misidentified"]["status"],
+             symbols["national_dex_caught_1025_legacy_misidentified"]["status"]),
+            ("RETIRED", "RETIRED"),
+        )
+        self.assertEqual(
+            (int(symbols["bag_pockets_items_keyitems_balls_tmhm_berries"]["start"], 0),
+             int(symbols["bag_pockets_items_keyitems_balls_tmhm_berries"]["end_exclusive"], 0),
+             int(symbols["bag_pockets_items_keyitems_balls_tmhm_berries"]["size"])),
+            (0x310, 0x5F8, 744),
+        )
+        self.assertEqual(
+            {
+                name: (row["address_space"], int(row["start"], 0),
+                       int(row["size"]))
+                for name, row in symbols.items()
+                if name in {"seen_primary_412", "seen_secondary_412",
+                            "owned_412", "seen_save2_412"}
+            },
+            {
+                "seen_primary_412": ("SAVE_BLOCK1_OFFSET", 0x5F8, 52),
+                "seen_secondary_412": ("SAVE_BLOCK1_OFFSET", 0x3A18, 52),
+                "owned_412": ("SAVE_BLOCK2_OFFSET", 0x28, 52),
+                "seen_save2_412": ("SAVE_BLOCK2_OFFSET", 0x5C, 52),
+            },
+        )
         self.assertEqual(int(symbols["shared_special_capture_125"]["size"]), 16)
         self.assertEqual(int(symbols["itemObtainedFlags_999"]["size"]), 125)
 

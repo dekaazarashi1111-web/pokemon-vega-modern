@@ -129,6 +129,12 @@ make stage57-debug-story # 通常66戦／再戦66戦と共有trainer分離をROM
 make stage57-mgba-quick # 1秒前後の反復用（static＋story、独立2回一致）
 make stage57-mgba-smoke # menu／Species／Collectionを含む中時間mGBA smoke
 make stage57-mgba-all # Route505自然66遭遇・world 22経路を含む全domainを2 processで確定
+make stage58-qol-world # QOL・Codex拠点・薄い場所・野生・経済をStage58へ統合
+make stage58-qol-world-check # Stage58 ROM・BPS・span・overlap・static証跡を副作用なしで照合
+make stage58-economy-audit # 36 QOL品・shop owner・換金率・解禁境界を再監査
+make stage58-world-audit # 全map／野生method／薄い場所／追加event配置を定量監査
+make stage58-mgba-all # 継承7＋新規3 domainをexact ROM・独立2 processで確定
+make stage58-final-gate # mGBA証跡を必須化してbuild/check/clean 3経路を最終確定
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
@@ -298,6 +304,13 @@ Factory cursorの`numChoices=0`を修復する。さらに通常story戦26件へ
 流入していた問題を修正し、共有trainer 348は通常戦だけ未使用ID 1384へ分離して、カントーの
 Lv.89～91戦と撃破flag 348を保持する。`stage57-mgba-*`はdomainを選べ、各runnerを独立作業領域で
 並列化する。ROM SHA、2 process一致、mGBA warning 0を満たした`all`だけが最終metadataをPASSへ昇格する。
+
+Stage58はQOL道具36品を通常Bag UIから取消・成功・無効対象・通常save・fresh-core reloadまで
+検証し、Codex受付map 96/5の受付左右へ通常PC端末と全回復人物、同室へ通常money店を追加する。
+探索価値が薄い6 mapにはbag満杯時に再取得できる一回性field itemを置き、Kanto 133 wild headerを
+land／water／rock／fishingの物理methodと進行帯へ再分配する。重複BP owner、研究品の過大換金、
+解禁前Raid報酬、Honey売買、Ability Patch再取得を同じ経済監査で補正する。Codex戦でBagを図鑑と
+誤認して復元していたsave-layout不具合も、Bag領域とseen三鏡／ownedを分離して修正する。
 
 ## 効率方針
 

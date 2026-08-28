@@ -2,8 +2,10 @@
 #define COLLECTION_SUPPLY_EMBEDDED
 #include "mgba_collection_supply_v1_smoke.c"
 
+#ifndef S57_COLLECTION_EXPECTED_ROM_SHA256
 #define S57_COLLECTION_EXPECTED_ROM_SHA256 \
     "546136a6baa26efd7a70c2b6826bf902c4841a4a1113cb53bfdc44c77971663d"
+#endif
 
 static bool s57_collection_probe_test(
     struct mCore *core,
