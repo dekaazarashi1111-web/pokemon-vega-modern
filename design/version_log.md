@@ -1182,3 +1182,14 @@
   - 大容量cache、一時検証域、旧Stage ROMを除外し、manifestと実行権限復元表を生成する選択梱包へ固定した。
   - fresh展開環境でprivate入力、Git、toolchain、mGBA boot、ROM／save identity、Stage58 focused checkをネットワークなしで確認した。
 - Verify: 事前ZIP生成、ZIP構造検査、fresh `python3 VERIFY_SNAPSHOT.py` PASS。31,544 member、展開対象31,543 files／1,564,991,937 bytes、事前ZIP 801,925,136 bytes。
+
+## 2026-08-28T20:47:20+09:00
+
+- Version: `post-v1.4.0-stage58-chatgpt-pro-512mb-snapshot`
+- Commit: `-`（仕様commit `8bd07f8`、完全検証入力commit `b7e0656`、本エントリを含む完了commit）
+- Task: `USER-20260828-CHATGPT-PRO-STAGE58-512MB-SNAPSHOT` / 512MB以下のStage58完全版ZIPを作成する
+- Summary:
+  - ROM、save、source、Git全履歴、固定上流、toolchain、mGBAを維持し、再生成可能な過去BPSと統合済みtrainer checkpointだけを除外する512MB profileを追加した。
+  - Stage58 full監査用Stage50 oracleと現行BPS 3本を保持し、同梱compilerのmGBA header扱いを修正して最大強度gateを自己完結させた。
+  - 事前ZIPを507,339,821 bytesへ縮小し、512,000,000-byte上限を生成器で強制した。
+- Verify: fresh `VERIFY_SNAPSHOT.py`、fresh `BUILD_CURRENT_FROM_SOURCE.py`、Stage58 final gate、mGBA全domain、clean 3経路、task graph、private guard、diff check PASS。

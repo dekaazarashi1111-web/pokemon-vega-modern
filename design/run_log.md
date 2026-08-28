@@ -2894,3 +2894,31 @@
 - Commit: `-`（基盤checkpoint `5e7d0ad`、本エントリを含む完了commit）
 - Network:
   - OpenAI公式ドキュメント内で`ChatGPT Pro ZIP file uploads`を検索し、`https://learn.chatgpt.com/use-cases`を確認した。今回確認した公式ページではChatGPT Pro UIのexact ZIP上限を確定できなかったため、upload可否を完了条件にせずローカル成果物と自己検証を確定した。
+
+## 2026-08-28T20:47:20+09:00
+
+- Task: `USER-20260828-CHATGPT-PRO-STAGE58-512MB-SNAPSHOT` / 512MB以下のStage58完全版ZIPを作成する
+- Status: DONE
+- Summary:
+  - 801,413,240-byte完全版の圧縮内訳を監査し、`workspace/build/patches`が307,550,926 compressed bytes、統合済みtrainer checkpoint `REFERENCES`が26,278,767 compressed bytesを占めることを確定した。
+  - `chatgpt-512mb` profileを追加し、現行Stage58に必要なStage57／58 BPS 3本だけを保持した。trainer checkpoint ZIPは現行source／manifest／content／全Git履歴へ統合済みのため除外した。
+  - ROM原本、Stage57／58、標準QA save、全source、非shallow Git全履歴、固定上流、host／ARM toolchain、mGBAは保持した。Stage58 full監査が直接比較するStage50 oracle ROMも追加保持した。
+  - 同梱host compilerがmGBA public headerの既存macro末尾semicolonを`-Werror=pedantic`で拒否する問題を、mGBA includeだけをsystem header扱いにして修正した。workspace sourceの警告強度は変更していない。
+  - 事前ZIPは507,339,821 bytesで512,000,000-byte上限より4,660,179 bytes小さい。31,486 member、SHA-256 `709bccf2c1b0a3911e1bda4f327998225bc749059c3e96da7d8ea7821f6f6806`。
+  - ChatGPTへのupload、ROM／save／iPadの変更は行っていない。元801MB完全版ZIPも削除していない。
+- Files changed:
+  - `docs/CHATGPT_PRO_STAGE58_FULL_SNAPSHOT_JA.md`
+  - `tasks/USER_20260828_CHATGPT_PRO_STAGE58_512MB_SNAPSHOT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - package rootの`PACKAGE_NEXT_FULL_SNAPSHOT.py`、`CHATGPT_512MB_PROFILE_JA.md`、開始／収録文書、同梱host compiler wrapper（workspace Git外、ZIP収録基盤）。
+  - Git管理外成果物: 512MB profile事前ZIPとfresh展開検証環境。private ROM／save／BPSはtracked indexへ追加していない。
+- Verify:
+  - 同梱host compilerで`tools/mgba_stage57_collection_smoke.c`を`-std=c11 -O2 -Wall -Wextra -Werror -pedantic -lmgba` compile: PASS。
+  - `python3 ../PACKAGE_NEXT_FULL_SNAPSHOT.py ... --profile chatgpt-512mb`: PASS。507,339,821 bytes、単一root、unsafe path 0、duplicate 0、CRC不一致0、512,000,000-byte gate PASS。
+  - fresh展開後`python3 VERIFY_SNAPSHOT.py`: PASS。31,485 files／1,167,455,313 bytesのmanifest、Git、Stage58、QA save、doctor、focused check、検査後tracked cleanを確認した。
+  - fresh展開後`python3 BUILD_CURRENT_FROM_SOURCE.py`: PASS。`make stage58-final-gate` returncode 0、Stage58 build、mGBA全domain、証跡必須build／check、clean 3経路、candidate SHA-256 `501c3fdd...`一致。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（仕様commit `8bd07f8`、完全検証入力commit `b7e0656`、本エントリを含む完了commit）
+- Network:
+  - OpenAI DocsでChatGPT file upload limitを検索し、`https://learn.chatgpt.com/`を確認した。今回取得できた同domainページはexact 512MB上限を確定しなかったため、ユーザーUIで観測された上限を512,000,000 bytesの保守的な生成gateとして採用した。
