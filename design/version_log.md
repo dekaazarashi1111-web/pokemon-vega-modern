@@ -1171,3 +1171,14 @@
   - RetroArch停止とlive設定再解決後、Stage58 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
   - 既存Stage57 ROM／saveを不変に保ち、remote一時ファイルを0にした。端末固有情報はtracked成果へ保存していない。
 - Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage57不変、一時ファイル0、task graph、private guard、diff check PASS。ROM `501c3fdd...`、save `f6bfdb10...`。
+
+## 2026-08-28T18:42:24+09:00
+
+- Version: `post-v1.4.0-stage58-chatgpt-pro-full-snapshot`
+- Commit: `-`（基盤checkpoint `5e7d0ad`、本エントリを含む完了commit）
+- Task: `USER-20260828-CHATGPT-PRO-STAGE58-FULL-SNAPSHOT` / Stage58完全版ZIPを作成する
+- Summary:
+  - Stage58 candidate、Stage57 focused入力、標準QA save、private原本、固定toolchain、mGBA、全source／Git履歴を単一rootの自己完結ZIPへ収録する基盤を更新した。
+  - 大容量cache、一時検証域、旧Stage ROMを除外し、manifestと実行権限復元表を生成する選択梱包へ固定した。
+  - fresh展開環境でprivate入力、Git、toolchain、mGBA boot、ROM／save identity、Stage58 focused checkをネットワークなしで確認した。
+- Verify: 事前ZIP生成、ZIP構造検査、fresh `python3 VERIFY_SNAPSHOT.py` PASS。31,544 member、展開対象31,543 files／1,564,991,937 bytes、事前ZIP 801,925,136 bytes。

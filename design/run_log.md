@@ -2868,3 +2868,29 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHで停止確認、転送、hash照合、read-backを行った。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-28T18:42:24+09:00
+
+- Task: `USER-20260828-CHATGPT-PRO-STAGE58-FULL-SNAPSHOT` / Stage58完全版ZIPを作成する
+- Status: DONE
+- Summary:
+  - 前回Stage35完全版の単一root／自己検証方式をStage58へ更新した。全sourceと非shallow Git履歴、固定上流、private ROM／IPS／UPS／参照archive、host／ARM toolchain、mGBAを収録対象にした。
+  - Stage58 candidate 33,554,432 bytes／SHA-256 `501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c`、focused入力Stage57、標準QA save 131,072 bytes／SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`を固定した。
+  - 旧Stage ROM、battle-core／upstream cache、一時mGBA作業域、過去完全版ZIPを除外した。Stage58以降では同梱candidate／直前入力を正本とし、現行buildで再生成され得るStage27～31旧累積BPSをdoctorが誤適用しないようにした。
+  - 事前ZIPは801,925,136 bytes、31,544 member、SHA-256 `038e42ddabdf6d730c3944d5bd1b05a084a38f3bdca56d3ec766fc2ccbaae27e`。fresh展開後のmanifestは31,543 files／1,564,991,937 bytesで全hash一致した。
+  - ChatGPT Web、iPad、ゲームROM／save内容は変更していない。最終ZIPは本エントリを含む完了commit後に同じ生成器でDownloadsへ作る。
+- Files changed:
+  - `docs/CHATGPT_PRO_STAGE58_FULL_SNAPSHOT_JA.md`
+  - `tasks/USER_20260828_CHATGPT_PRO_STAGE58_FULL_SNAPSHOT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - package rootの`PACKAGE_NEXT_FULL_SNAPSHOT.py`、`VERIFY_SNAPSHOT.py`、`BUILD_CURRENT_FROM_SOURCE.py`、`SNAPSHOT_STATE.json`、handoff文書、`OFFLINE_TESTKIT/**`（workspace Git外、ZIP収録基盤）。
+  - Git管理外成果物: 事前完全版ZIPとfresh展開検証環境。ROM／save／private入力はtracked indexへ追加していない。
+- Verify:
+  - `make stage58-qol-world-check`: PASS。Stage58 SHA-256 `501c3fdd...`、CRC32 `673F2B41`、11 artifact。
+  - `python3 ../OFFLINE_TESTKIT/doctor.py`: PASS。private入力、Git全履歴／固定上流、ARM／host toolchain、mGBA boot、candidate identityを確認した。
+  - `python3 ../PACKAGE_NEXT_FULL_SNAPSHOT.py ...PREFLIGHT3.zip`: PASS。単一root、31,544 member、unsafe path 0、duplicate 0、CRC不一致0。
+  - fresh展開後`python3 VERIFY_SNAPSHOT.py`: PASS。manifest、Git、Stage58、QA save、doctor、`make stage58-qol-world-check`、検査後tracked cleanを確認した。
+- Commit: `-`（基盤checkpoint `5e7d0ad`、本エントリを含む完了commit）
+- Network:
+  - OpenAI公式ドキュメント内で`ChatGPT Pro ZIP file uploads`を検索し、`https://learn.chatgpt.com/use-cases`を確認した。今回確認した公式ページではChatGPT Pro UIのexact ZIP上限を確定できなかったため、upload可否を完了条件にせずローカル成果物と自己検証を確定した。
