@@ -24,10 +24,10 @@ class TestTestReadySave(unittest.TestCase):
 
     def test_profile_and_canonical_ids(self) -> None:
         MODULE.validate_profile(self.config)
-        self.assertEqual(self.config["stage"], 57)
+        self.assertEqual(self.config["stage"], 58)
         self.assertEqual(
             self.config["profile_key"],
-            "STAGE57_TEST_READY_V2_OVERPOWERED_PARTY",
+            "STAGE58_TEST_READY_V2_OVERPOWERED_PARTY",
         )
         self.assertEqual(
             Path(self.config["input"]["rom"]).stem,

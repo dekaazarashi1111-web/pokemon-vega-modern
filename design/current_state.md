@@ -4,6 +4,7 @@
 
 ## 現在地
 
+- USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENTで、`config/test_ready_save.json`をStage58 exact ROMへ進め、通常ROM APIだけで標準Lv.100攻撃型6体saveを独立2 process生成した。131,072 bytes、SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`。full save、両slot、自然Continue、Codex受付をPASS。RetroArch停止とlive設定再解決後、`58_qol_world_convenience_debug.gba/.srm`をiPadへ原子的に配置し、read-back byte一致、一時ファイル0、既存Stage57 ROM／save不変を確認した。
 - USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUGでStage58を生成した。QOL 36機能を通常Bagの5ポケット、効果あり／なし、cancel、save／fresh reloadまで実ROMで再検証し、Bottle Cap境界9/9とstock Bag descriptor／save key rotation 15/15をhost側補助なしでPASSした。Codex受付`96/5 (20,19)`の真横へ通常Storage端末`(19,19)`と全回復人物`(21,19)`を追加し、通常PC deposit、0体／タマゴ／瀕死／状態異常、field復帰と保存を確認した。通常money mart`(23,19)`と既存BP shopを共存させ、通常trainer賞金、Factory 3勝BP、Ability Patch、Honey売買、bag満杯、rollbackを実ROMで検証した。薄い6地点へbag満杯時にflagを立てない再試行可能item eventを追加し、Kanto wild 133物理headerをland 52／water 11／fishing 13／rock 1へ再構築した。全678 map、5,441 root、8,961 reachable script、265 wild header／2,733 slot、256 field item transactionに診断0。mGBA 10 domain・動的22 process・world 22 fixture・warnings 0、clean 3経路byte一致をPASSした。ROMは33,554,432 bytes、SHA-256 `501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c`、CRC32 `673F2B41`。iPad上のROM／saveは変更していない。
 - USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENTで、`config/test_ready_save.json`をStage57 exact ROMへ進め、通常ROM APIだけで標準Lv.100攻撃型6体saveを独立2 process生成した。131,072 bytes、SHA-256 `3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。full save、両slot、自然Continue、Codex受付をPASS。RetroArch停止とlive設定再解決後、`57_comprehensive_debug_repair.gba/.srm`をiPadへ原子的に配置し、read-back byte一致、一時ファイル0、既存Stage56 ROM／save不変を確認した。
 - USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIRで、505番道路がStage36時点の古いRESEARCH／Field PC map bindingを参照して別mapのSpeciesを生成する問題を修正した。Stage56では報告境界のSpecies 717流入を自然遭遇66回で再現し、Stage57では自然遭遇66回×独立2 processで旧T503 Species流入0、Species 92／717／804のparty・戦闘Species・canonical名・front画像一致を確認した。全265 wild header／6,175 slot／846研究rule／78 Collection wild formの範囲・stride・consumer不一致は0。
@@ -232,9 +233,10 @@
 
 ## 次の正本タスク
 
-`design/tasks_next.md` を正とする。`USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG`を唯一の正本IN_PROGRESSとして保持する。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
+`design/tasks_next.md` を正とする。現在IN_PROGRESS／依存READYタスクはない。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
 
-- USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG: IN_PROGRESS。QOL道具の実使用、全world owner、薄い場所、野生確率、item／shop経済をStage57 exact ROMで再監査し、Codex受付横のPC端末・全回復人物と採用改善をStage58へ分離統合する。
+- USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENT: DONE。Stage58 exact ROM自身から標準Lv.100攻撃型6体saveを生成し、ROM／同名saveをiPadへ原子的に配置した。read-back byte一致、既存Stage57不変、一時ファイル0を確認した。
+- USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG: DONE。QOL道具の実使用、全world owner、薄い場所、野生確率、item／shop経済をStage57 exact ROMで再監査し、Codex受付横のPC端末・全回復人物と採用改善をStage58へ分離統合した。
 - USER-20260827-STAGE56-COMPREHENSIVE-DEBUG-REPAIR: DONE。505番道路の野生identity、NPC／BG eventの壊れたmenu、通常story trainerへの再戦party流入を修復し、全wild表・全14 Collection host・全接触可能script・story critical pathをStage57 exact ROMで完走した。
 - USER-20260827-STAGE56-OVERPOWERED-QA-PARTY: DONE。標準QA partyをミュウツー／カイオーガ／グラードン／レックウザ／ゼルネアス／ムゲンダイナのLv.100攻撃型6体へ更新した。全24技が攻撃技で各個体に複数対象技がある。save SHA-256は`3192100245672e13baa2d4398d115c2288758e901033e7b4c9830124164f90df`。iPadの旧Stage56 saveを日時付きで保全して原子的に置換し、read-back byte一致、Stage55不変、一時ファイル0を確認した。
 

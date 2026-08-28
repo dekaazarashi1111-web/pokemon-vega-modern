@@ -72,6 +72,16 @@
 - RetroArchを通常終了してprocess 0を確認し、active container metadataとlive `retroarch.cfg`からROM directoryと実mGBA save directoryを再解決した。一時名転送、iPad側size／SHA確認、同一directory内の原子的確定を行った。
 - iPadからROM／saveを新規ローカル領域へread-backしてsourceとbyte一致した。既存Stage57同名成果はなかったため退避0、remote一時ファイル0、既存Stage56 ROM／saveは不変。実機プレイ／人手承認は未実施。
 
+## Stage58の確認済み対応
+
+- ROM: `58_qol_world_convenience_debug.gba`
+- ROM SHA-256: `501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c`
+- 標準save: `58_qol_world_convenience_debug.srm`
+- save size／SHA-256: 131,072 bytes／`f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`
+- 2026-08-28にStage58 exact ROM自身の通常save APIで標準Lv.100攻撃型6体saveを独立2 process生成し、full save、slot 0／1、自然Continue、Codex受付をPASSした。
+- RetroArch process 0、active container metadata、live `retroarch.cfg`、実mGBA save directoryを再解決し、一時名転送、iPad側size／SHA照合、同一directory内の原子的確定を行った。
+- iPadからROM／saveを新規ローカル領域へread-backしてsourceとbyte一致した。既存Stage58同名成果はなかったため退避0、remote一時ファイル0、既存Stage57 ROM／saveは不変。実機プレイ／人手承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。
