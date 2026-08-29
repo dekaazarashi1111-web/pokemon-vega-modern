@@ -1247,3 +1247,14 @@
   - RetroArch停止とlive設定再解決後、Stage60 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
   - 確定前のRetroArch再起動はprocess gateで拒否して再停止し、既存Stage59 ROM／save不変、remote一時ファイル0を確認した。端末固有情報はtracked成果へ保存していない。
 - Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage59不変、一時ファイル0、task graph、private guard、diff check PASS。ROM `3f9983eb...`、save `f6bfdb10...`。
+
+## 2026-08-30T04:05:23+09:00
+
+- Version: `stage60-known-issues-memo`（ROM identity不変）
+- Commit: `-`（本エントリを含む記録commit）
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-ISSUE-MEMO` / 表示名衝突とNPC自動配置不具合の記録
+- Summary:
+  - ディグダのあなの誤表示をmap section ID名前空間衝突疑いとして記録した。
+  - B1Fの十字状Archive NPCで中央が到達不能になる最終配置不具合を記録した。
+  - 他mapを含む横断監査・根本修正を未着手の別タスクとしてキュー登録した。ROM／生成器／配置は変更していない。
+- Verify: task graph、private guard、diff check PASS。Stage 60 runtime artifact変更なし。

@@ -3055,3 +3055,26 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／saveを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-30T04:05:23+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-ISSUE-MEMO` / 表示名衝突とNPC自動配置不具合を別タスク用に記録する
+- Status: DONE
+- Summary:
+  - カントーのディグダのあなが「ちえのどうくつ」と表示される現象を、FireRed／Vega間の`regionMapSectionId=131`名前空間衝突疑いとして記録した。
+  - ディグダのあなB1F `97/37`のTrainer Archive 5人が十字配置され、中央local ID 1 `(42,40)`の全隣接tileを永続NPCが塞ぐため通常入力では対戦不能になる現象を記録した。
+  - 同根不具合が他のmapにも存在する前提で、全map表示名consumerと全自動追加objectの最終到達可能性を監査・修正する未着手タスクをキューへ追加した。
+  - ユーザー指示どおり、Stage 60 ROM、生成器、map header、文字列table、NPC座標、event script、saveは変更していない。
+- Files changed:
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/tasks_next.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 scripts/validate_task_graph.py`: PASS。
+  - `python3 scripts/guard_private_files.py`: PASS。
+  - `git diff --check`／`git diff --cached --check`: PASS。
+  - Stage 60 ROM／BPS／save／生成物の変更なしを`git status`と対象差分で確認した。
+- Commit: `-`（本エントリを含む記録commit）
+- Network:
+  - インターネット未使用。Stage 60 exact ROM、既存のevent plan、trainer serialization、固定ソースだけを参照した。
