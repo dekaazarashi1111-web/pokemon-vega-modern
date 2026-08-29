@@ -46,6 +46,7 @@ enum {
     TRAINER_CHANGEKIT_ABILITY_NUM_MASK = 0x80000000u,
     TRAINER_CHANGEKIT_ABILITY_SECONDARY = 1,
     TRAINER_CHANGEKIT_ABILITY_HIDDEN = 2,
+    TRAINER_CHANGEKIT_BATTLE_TYPE_TRAINER = 0x00000008u,
     TRAINER_CHANGEKIT_RUNTIME_MAGIC = 0x54434631u /* TCF1 */
 };
 
@@ -89,6 +90,7 @@ extern void TrainerChangeKitHost_LoadProperAbilityBattleData(void);
 extern u32 TrainerChangeKitHost_CommandAddress(const u8 *data);
 extern u8 gTrainerChangeKitHostEnemyParty[600];
 extern volatile u16 gTrainerChangeKitHostOpponentA;
+extern volatile u32 gTrainerChangeKitHostBattleTypeFlags;
 extern volatile u8 gTrainerChangeKitHostBattlersCount;
 extern volatile u8 gTrainerChangeKitHostAbsentBattlerFlags;
 extern volatile u16 gTrainerChangeKitHostBattlerPartyIndexes[4];
@@ -120,6 +122,7 @@ extern u8 gTrainerChangeKitHostBattleMons[352];
     TrainerChangeKitHost_LoadProperAbilityBattleData
 #define G_ENEMY_PARTY gTrainerChangeKitHostEnemyParty
 #define G_TRAINER_OPPONENT_A gTrainerChangeKitHostOpponentA
+#define G_BATTLE_TYPE_FLAGS gTrainerChangeKitHostBattleTypeFlags
 #define G_BATTLERS_COUNT gTrainerChangeKitHostBattlersCount
 #define G_ABSENT_BATTLER_FLAGS gTrainerChangeKitHostAbsentBattlerFlags
 #define G_BATTLER_PARTY_INDEXES gTrainerChangeKitHostBattlerPartyIndexes
@@ -156,6 +159,9 @@ extern u8 gTrainerChangeKitHostBattleMons[352];
 #endif
 #ifndef VEGA_TRAINER_OPPONENT_A_ADDRESS
 #error "VEGA_TRAINER_OPPONENT_A_ADDRESS is required"
+#endif
+#ifndef VEGA_BATTLE_TYPE_FLAGS_ADDRESS
+#error "VEGA_BATTLE_TYPE_FLAGS_ADDRESS is required"
 #endif
 #ifndef VEGA_CONFIGURE_NEXT_BATTLE_POLICY_ADDRESS
 #error "VEGA_CONFIGURE_NEXT_BATTLE_POLICY_ADDRESS is required"
@@ -262,6 +268,8 @@ extern u8 gTrainerChangeKitHostBattleMons[352];
 #define G_ENEMY_PARTY PTR(u8 *, VEGA_ENEMY_PARTY_ADDRESS)
 #define G_TRAINER_OPPONENT_A \
     (*PTR(volatile u16 *, VEGA_TRAINER_OPPONENT_A_ADDRESS))
+#define G_BATTLE_TYPE_FLAGS \
+    (*PTR(volatile u32 *, VEGA_BATTLE_TYPE_FLAGS_ADDRESS))
 #define G_BATTLERS_COUNT \
     (*PTR(volatile u8 *, VEGA_BATTLERS_COUNT_ADDRESS))
 #define G_ABSENT_BATTLER_FLAGS \
@@ -313,6 +321,8 @@ static u32 sCommandDataAddress;
 static u16 sCommandSource;
 static u16 sCommandDispatch;
 static u8 sCommandKind;
+static u8 sPartySetupPending;
+static u16 sPartySetupTrainerId;
 static u32 sAmbiguousBindings;
 static u32 sPolicyFailures;
 
@@ -334,7 +344,8 @@ struct __attribute__((packed)) TrainerChangeKitRuntimeStorage {
     u16 command_source;
     u16 command_dispatch;
     u8 command_kind;
-    u8 reserved0[3];
+    u8 party_setup_pending;
+    u16 party_setup_trainer_id;
     const struct TrainerChangeKitGimmickV1 *current_gimmick;
     u32 ambiguous_bindings;
     u32 policy_failures;
@@ -356,6 +367,9 @@ _Static_assert(sizeof(struct TrainerChangeKitRuntimeStorage)
 #define sCommandSource (TRAINER_CHANGEKIT_STORAGE->command_source)
 #define sCommandDispatch (TRAINER_CHANGEKIT_STORAGE->command_dispatch)
 #define sCommandKind (TRAINER_CHANGEKIT_STORAGE->command_kind)
+#define sPartySetupPending (TRAINER_CHANGEKIT_STORAGE->party_setup_pending)
+#define sPartySetupTrainerId \
+    (TRAINER_CHANGEKIT_STORAGE->party_setup_trainer_id)
 #define sAmbiguousBindings (TRAINER_CHANGEKIT_STORAGE->ambiguous_bindings)
 #define sPolicyFailures (TRAINER_CHANGEKIT_STORAGE->policy_failures)
 
@@ -441,6 +455,8 @@ static void reset_runtime_state(void)
     sRuntimeState.user_present = 0u;
     sRuntimeState.user_seen = 0u;
     sCurrentGimmick = NULL;
+    sPartySetupPending = 0u;
+    sPartySetupTrainerId = 0u;
 }
 
 static void clear_command_context(void)
@@ -991,6 +1007,9 @@ const u8 *TrainerChangeKitFinalRuntime_ConfigureTrainerBattle(const u8 *data)
     }
     G_TRAINER_OPPONENT_A = target;
     configure_gimmick_policy(target, dispatch, physical_flag, kind);
+    sPartySetupPending = (u8)(sCurrentGimmick != NULL
+        && sRuntimeState.phase == TRAINER_CHANGEKIT_PHASE_PENDING);
+    sPartySetupTrainerId = sPartySetupPending ? target : 0u;
 
     sArchiveSelection = 0u;
     clear_command_context();
@@ -1013,7 +1032,26 @@ void TrainerChangeKitFinalRuntime_BuildTrainerPartySetup(void)
     u8 index;
 
     FN_BUILD_TRAINER_PARTY();
-    trainer_id = G_TRAINER_OPPONENT_A;
+    ensure_runtime_storage();
+    /* BuildTrainerPartySetup is also reached by wild and scripted-wild
+     * battles.  G_TRAINER_OPPONENT_A is deliberately not cleared by every
+     * one of those entrances, so it may still name the preceding trainer.
+     * Never use that stale global as ownership: only a command configured by
+     * this ChangeKit runtime may receive its generated sidecars. */
+    trainer_id = sPartySetupTrainerId;
+    if (!sPartySetupPending
+        || (G_BATTLE_TYPE_FLAGS & TRAINER_CHANGEKIT_BATTLE_TYPE_TRAINER) == 0u
+        || (sRuntimeState.phase != TRAINER_CHANGEKIT_PHASE_PENDING
+            && sRuntimeState.phase != TRAINER_CHANGEKIT_PHASE_ACTIVE)
+        || sCurrentGimmick == NULL
+        || trainer_id != G_TRAINER_OPPONENT_A
+        || sRuntimeState.trainer_id != trainer_id) {
+        sPartySetupPending = 0u;
+        sPartySetupTrainerId = 0u;
+        return;
+    }
+    sPartySetupPending = 0u;
+    sPartySetupTrainerId = 0u;
     for (index = 0u; index < TRAINER_CHANGEKIT_MAX_PARTY_SIZE; ++index) {
         const struct TrainerChangeKitMemberSidecarV1 *row =
             find_sidecar(trainer_id, TRAINER_CHANGEKIT_OPPONENT_SIDE, index);

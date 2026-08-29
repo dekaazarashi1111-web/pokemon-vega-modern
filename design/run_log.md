@@ -2978,3 +2978,33 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／saveを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-08-29T17:03:08+09:00
+
+- Task: `USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR` / Stage59野生Species混線を全地域・全遭遇経路の共有所有境界で根本修正する
+- Status: DONE
+- Summary:
+  - 開いたままのmGBAへ入力・reset・終了を行う前に、X11 game surface、process／window情報、EWRAM／IWRAM／VRAM／OAM／palette／registerをGit外`.local/stage59_root_cause/live_evidence`へ採取した。表示名スバメに対しparty／BattleMon Species 4、capture後図鑑・type・abilityもSpecies 4である元症状を保全した。
+  - blank saveから電源投入、通常キー入力だけで御三家選択、最初のライバル戦、501番道路の草むらまで進み、Species 10生成直後に前戦のSpecies 1へ変わる一般化再現を得た。最初の破壊命令は`TrainerChangeKitFinalRuntime_BuildTrainerPartySetup`内`0x093033E0 strb r2, [r1, #31]`で、stale `gTrainerBattleOpponent_A`から選んだChangeKit sidecarが新しいwild partyを上書きしていた。
+  - `ConfigureTrainerBattle`で発行しparty setupで一度だけ消費するfreshness token、TRAINER flag、有効phase／gimmick、live trainer ID一致をChangeKit sidecarの必須所有条件にした。全wild producerが通る公開`BuildTrainerPartySetup` hookに加え、旧wrapperを直呼びしていたbattle scheduler `0x09390B54`のリテラルも同じgateへ接続し、PolicyEndでtokenを消去した。map／Route／Species固有分岐、名前だけの補正はない。
+  - 修正版exact ROMをmGBA 0.10.2で実RUNし、power-onから通常GBA inputだけで501番道路へ到達した。host warp、savestate load、直接game function callは0。intended party Species 10、BattleMon Species 10、canonical名スバメ、trainer flag off、ChangeKit context IDLEをrequired=trueでPASSし、修正後画像を保存した。
+  - 全265 wild header、land 164／water 44／rock 17／fishing 46の271 mode table、全2,733 slotをROMから機械可読列挙した。地上、水上、釣り、岩砕き、hidden／scanner、swarm／DexNav／ecology、Collection Supply、form置換、scripted wild、その他enemy party配置を共有owner gateの対象として監査した。
+  - 修正版ROM、Stage59差分BPS、clean直接BPS、metadata、allocation、audit、required mGBA JSON、全slot列挙、原因／修正画像、再構築sourceをユーザーのDownloadsへ配置した。入力`59_root_cause_repair.gba`と開いていた元saveは変更していない。
+- Files changed:
+  - `overlays/trainer_changekit_final_runtime/trainer_changekit_final_runtime.c`、`hook_contract_stage34.json`
+  - `overlays/stage60_wild_species_root_repair/stage60_wild_species_root_repair.c`
+  - `config/stage60_wild_species_root_repair.json`
+  - `scripts/build_stage60_wild_species_root_repair.py`、`scripts/validate_stage60_wild_species_root_repair.py`、`scripts/build_trainer_changekit_final.py`
+  - `tools/mgba_stage60_wild_species_root_repair.c`
+  - `tests/test_trainer_changekit_final_runtime.py`、`Makefile`
+  - `design/run_log.md`、`design/version_log.md`
+  - Git管理外成果物: Stage60 ROM／BPS／metadata／allocation／audit、mGBA JSON、全wild slot列挙、原因／修正画像、live memory evidence。
+- Verify:
+  - `make stage60-final-gate`: PASS。決定的build／check、mGBA 0.10.2 required実RUN、power-on通常入力、party／BattleMon Species 10一致、canonical名、ChangeKit IDLE。
+  - `python3 -m unittest tests.test_trainer_changekit_final_runtime -v`: 4 tests PASS。wild stale-owner拒否とfresh ChangeKit trainer sidecar維持、ARM7TDMI compileを確認した。
+  - 全265 header／271 mode table／2,733 slot: PASS。不正level／Species／pointer 0、列挙漏れ0。
+  - allocation overlap 0、declared外変更0、Stage59差分BPS／clean直接BPS round-trip PASS。ROM 33,554,432 bytes、SHA-256 `3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1`。
+  - `python3 -m py_compile ...`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。ユーザー提供ROM／metadata／allocation、固定ARM toolchain、ローカルmGBA 0.10.2だけを使用した。

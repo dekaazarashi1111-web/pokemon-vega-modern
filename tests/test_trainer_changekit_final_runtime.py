@@ -142,6 +142,7 @@ HOST_FIXTURE = r"""
 
 uint8_t gTrainerChangeKitHostEnemyParty[600];
 volatile uint16_t gTrainerChangeKitHostOpponentA;
+volatile uint32_t gTrainerChangeKitHostBattleTypeFlags = 8u;
 volatile uint8_t gTrainerChangeKitHostBattlersCount = 4u;
 volatile uint8_t gTrainerChangeKitHostAbsentBattlerFlags;
 volatile uint16_t gTrainerChangeKitHostBattlerPartyIndexes[4] = {
@@ -469,14 +470,26 @@ int main(void)
     CHECK(gTrainerChangeKitHostOpponentA == 40u);
     CHECK(TrainerChangeKitFinalRuntime_Probe(10) >= 1u);
 
-    /* Sidecar application remains the Stage 34 100-byte party ABI. */
+    /* A stale opponent ID after a trainer battle must never grant ownership
+     * of a later wild/scripted-wild party to ChangeKit. */
     gTrainerChangeKitHostOpponentA = 200u;
+    gTrainerChangeKitHostBattleTypeFlags = 0u;
+    TrainerChangeKitFinalRuntime_BuildTrainerPartySetup();
+    CHECK(gTrainerChangeKitHostEnemyParty[0x0F] == 0u);
+    CHECK(gTrainerChangeKitHostEnemyParty[0x38] == 0u);
+    gTrainerChangeKitHostBattleTypeFlags = 8u;
+
+    /* A freshly configured ChangeKit trainer still receives the Stage 34
+     * 100-byte party sidecar. */
+    CHECK(TrainerChangeKitFinalRuntime_ConfigureTrainerBattle(command_b)
+          == command_b + 3);
     TrainerChangeKitFinalRuntime_BuildTrainerPartySetup();
     CHECK(gTrainerChangeKitHostEnemyParty[0x0F] == 8u);
     CHECK(gTrainerChangeKitHostEnemyParty[0x38] == 1u);
     CHECK(gTrainerChangeKitHostEnemyParty[0x3B] == 4u);
     CHECK(gTrainerChangeKitHostEnemyParty[0x54] == 50u);
     CHECK(gTrainerChangeKitHostEnemyParty[0x56] == 123u);
+    TrainerChangeKitFinalRuntime_BattleEnd(0u);
 
     /* High allocated trainer flags translate only at trainer consumers. */
     CHECK(TrainerChangeKitFinalRuntime_SetTrainerFlag(4096u));

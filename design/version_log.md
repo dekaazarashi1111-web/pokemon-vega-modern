@@ -1215,3 +1215,14 @@
   - RetroArch停止とlive設定再解決後、Stage59 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
   - 既存Stage58 ROM／進行saveを不変に保ち、remote一時ファイルを0にした。端末固有情報はtracked成果へ保存していない。
 - Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage58不変、一時ファイル0、task graph、private guard、diff check PASS。ROM `8ed4c959...`、save `f6bfdb10...`。
+
+## 2026-08-29T17:03:08+09:00
+
+- Version: `post-v1.4.0-stage60-wild-species-root-repair`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR` / 全地域・全遭遇経路の野生Species混線根本修正
+- Summary:
+  - stale trainer IDでChangeKit sidecarをwild partyへ適用していた最初の破壊命令`0x093033E0`を特定した。
+  - fresh configure tokenとbattle所有条件を導入し、公開party hookとbattle scheduler直呼びを同一owner gateへ統一した。
+  - map／Species固有補正なしで、全wild producerをtrainer専用sidecarから分離した。
+- Verify: `make stage60-final-gate`、host／ARM unit 4 tests、mGBA 0.10.2 power-on通常入力、Species 10 party／BattleMon／canonical名一致、265 header／271 table／2,733 slot全列挙、BPS 2本往復、span／allocation、task graph／private guard／diff check PASS。ROM SHA-256 `3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1`。

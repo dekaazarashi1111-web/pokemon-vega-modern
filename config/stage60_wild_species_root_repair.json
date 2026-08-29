@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR",
+  "stage": 60,
+  "inputs": {
+    "stage59_rom": {
+      "path": "userfile/imports/stage59_root_cause_repair/59_root_cause_repair.gba",
+      "size": 33554432,
+      "sha256": "67d7d2cb1b56b1641f85dad0362e0453f6b94ee4e10b816210a919354af5be51"
+    },
+    "stage59_metadata": {
+      "path": "userfile/imports/stage59_root_cause_repair/59_root_cause_repair.json",
+      "sha256": "e4bdbd70889f7e7ea8c1fe612e909b1a6a178223935c6b2a7517bb40a81b2ff1"
+    },
+    "stage59_allocation": {
+      "path": "userfile/imports/stage59_root_cause_repair/59_allocation.json",
+      "sha256": "0f89045914a20579373ee6cfd307bc4138e29a30ce31a6fd310ce9e1622f8e4c"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "runtime_source": "overlays/stage60_wild_species_root_repair/stage60_wild_species_root_repair.c",
+  "hooks": [
+    {
+      "name": "configure_trainer_party_freshness_token",
+      "address": "0x0807F948",
+      "expected": "004b184731764109",
+      "symbol": "Stage60WildSpeciesRootRepair_ConfigureTrainerBattle"
+    },
+    {
+      "name": "global_build_trainer_party_owner_gate",
+      "address": "0x090DD2A4",
+      "expected": "004b1847f12d3009",
+      "symbol": "Stage60WildSpeciesRootRepair_BuildTrainerPartySetup"
+    },
+    {
+      "name": "policy_end_freshness_cleanup",
+      "kind": "thumb_bl",
+      "address": "0x090F6FC4",
+      "expected": "0cf2bafb",
+      "symbol": "Stage60WildSpeciesRootRepair_PolicyEnd"
+    },
+    {
+      "name": "battle_scheduler_direct_party_delegate",
+      "kind": "thumb_pointer",
+      "address": "0x09390B8C",
+      "expected": "f12d3009",
+      "symbol": "Stage60WildSpeciesRootRepair_BuildTrainerPartySetup"
+    }
+  ],
+  "outputs": {
+    "rom": "build/stages/60_wild_species_root_repair.gba",
+    "metadata": "build/stages/60_wild_species_root_repair.json",
+    "allocation": "build/stages/60_allocation.json",
+    "incremental_bps": "build/patches/stage59-root-cause-to-stage60-wild-species-root-repair.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage60-wild-species-root-repair.bps",
+    "runtime": "generated/runtime/stage60_wild_species_root_repair.bin",
+    "symbols": "generated/runtime/stage60_wild_species_root_repair_symbols.json",
+    "audit": "reports/generated/stage60_wild_species_root_repair.json",
+    "report": "reports/generated/stage60_wild_species_root_repair.md"
+  }
+}
