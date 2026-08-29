@@ -1226,3 +1226,13 @@
   - fresh configure tokenとbattle所有条件を導入し、公開party hookとbattle scheduler直呼びを同一owner gateへ統一した。
   - map／Species固有補正なしで、全wild producerをtrainer専用sidecarから分離した。
 - Verify: `make stage60-final-gate`、host／ARM unit 4 tests、mGBA 0.10.2 power-on通常入力、Species 10 party／BattleMon／canonical名一致、265 header／271 table／2,733 slot全列挙、BPS 2本往復、span／allocation、task graph／private guard／diff check PASS。ROM SHA-256 `3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1`。
+
+## 2026-08-29T17:07:09+09:00
+
+- Version: `post-v1.4.0-stage60-wild-species-root-repair-capture-proof`
+- Commit: `-`（本エントリを含む補完commit）
+- Task: `USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR` / 捕獲・図鑑登録証跡
+- Summary:
+  - required自然入力gate後に通常catch scriptと同じ公開engine関数で捕獲partyと図鑑caught stateを追跡した。
+  - Species 10、全国番号10、caught flag trueを機械可読mGBA証跡へ追加した。
+- Verify: Stage60 mGBA validation PASS。captured party Species 10／national dex 10／caught flag true。

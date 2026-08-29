@@ -3008,3 +3008,20 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。ユーザー提供ROM／metadata／allocation、固定ARM toolchain、ローカルmGBA 0.10.2だけを使用した。
+
+## 2026-08-29T17:07:09+09:00
+
+- Task: `USER-20260829-STAGE59-WILD-SPECIES-ROOT-REPAIR` / 捕獲・図鑑登録downstream証跡の追加
+- Status: DONE
+- Summary:
+  - power-on通常入力gateでparty／BattleMon／canonical名を確定した後、実battle scriptと同じ公開`GiveMonToPlayer`、`SpeciesToNationalPokedexNum`、`GetSetPokedexFlag`を補助的に実行した。
+  - 捕獲先party Species 10、全国図鑑番号10、caught flag=trueを確認した。補助呼出しは自然遭遇の生成・戦闘identity判定と画像採取より後であり、required通常入力gateへ影響しない。
+- Files changed:
+  - `tools/mgba_stage60_wild_species_root_repair.c`
+  - `design/run_log.md`、`design/version_log.md`
+  - Git管理外再生成物: required mGBA JSON／normal-input log／修正後画像。
+- Verify:
+  - `python3 scripts/validate_stage60_wild_species_root_repair.py`: PASS。captured party Species 10、national dex 10、caught flag true。
+- Commit: `-`（本エントリを含む補完commit）
+- Network:
+  - インターネット未使用。

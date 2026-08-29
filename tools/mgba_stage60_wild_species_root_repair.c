@@ -11,6 +11,12 @@ enum {
     S60_DOWN = 128U,
     S60_OVERWORLD = 0x08055E75U,
     S60_GET_SPECIES_NAME = 0x080406C5U,
+    S60_GIVE_MON_TO_PLAYER = 0x08040209U,
+    S60_SPECIES_TO_NATIONAL = 0x08042989U,
+    S60_GET_SET_POKEDEX = 0x08088A51U,
+    S60_POKEDEX_GET_CAUGHT = 1U,
+    S60_POKEDEX_SET_SEEN = 2U,
+    S60_POKEDEX_SET_CAUGHT = 3U,
     S60_NICKNAME_SCRATCH = 0x0203F000U,
     S60_CANONICAL_SCRATCH = 0x0203F020U,
     S60_NAME_SIZE = 11U,
@@ -125,6 +131,26 @@ int main(int argc, char **argv)
     s60_verify_name(core, party_species);
     bootstrap_write_ppm(argv[3], video);
 
+    /* Supplemental downstream proof uses the same public functions called by
+     * the caught-mon battle scripts.  It runs only after the no-host-assist
+     * natural-input gate and therefore cannot influence encounter identity. */
+    uint32_t give_result = call_preserving(
+        core, S60_GIVE_MON_TO_PLAYER, ADDR_ENEMY_PARTY, 0U, 0U, 0U);
+    uint16_t captured_species = read16(
+        core, ADDR_PLAYER_PARTY + POKEMON_SIZE
+            + BATTLE_CORE_PARTY_SPECIES_OFFSET);
+    uint32_t national = call_preserving(
+        core, S60_SPECIES_TO_NATIONAL, party_species, 0U, 0U, 0U);
+    (void)call_preserving(core, S60_GET_SET_POKEDEX, national,
+                          S60_POKEDEX_SET_SEEN, 0U, 0U);
+    (void)call_preserving(core, S60_GET_SET_POKEDEX, national,
+                          S60_POKEDEX_SET_CAUGHT, 0U, 0U);
+    uint32_t caught = call_preserving(core, S60_GET_SET_POKEDEX, national,
+                                      S60_POKEDEX_GET_CAUGHT, 0U, 0U);
+    if (give_result != 0U || read8(core, ADDR_PLAYER_PARTY_COUNT) != 2U
+        || captured_species != party_species || national == 0U || caught != 1U)
+        bootstrap_die("caught-mon party or Pokedex identity differs");
+
     printf("{\"schema_version\":1,\"status\":\"PASS\","
            "\"emulator\":\"libmGBA\",\"required\":true,"
            "\"actual_run\":true,\"power_on\":true,"
@@ -133,9 +159,13 @@ int main(int argc, char **argv)
            "\"map_group\":3,\"map_number\":19,"
            "\"intended_species\":10,\"party_species\":%u,"
            "\"battle_mon_species\":%u,\"canonical_name\":true,"
+           "\"capture_pipeline\":{\"public_engine_functions\":true,"
+           "\"captured_party_species\":%u,\"national_dex\":%" PRIu32 ","
+           "\"caught_flag\":true},"
            "\"trainer_flag\":false,\"changekit_context_idle\":true,"
            "\"frame\":%" PRIu32 "}\n",
-           party_species, battle_species, core->frameCounter(core));
+           party_species, battle_species, captured_species, national,
+           core->frameCounter(core));
     bootstrap_close_core(core);
     free(video);
     return 0;
