@@ -58,4 +58,3 @@
 - Stage 60 ROM、BPS、saveの更新。
 - map header、表示文字列table、NPC座標、object flag、event scriptの変更。
 - ディグダのあなだけを対象にした暫定的なすり抜け、消去、座標移動。
-
