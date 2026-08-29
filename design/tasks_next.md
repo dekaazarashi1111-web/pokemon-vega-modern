@@ -60,3 +60,4 @@
 - [x] Stage57 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260828-STAGE57-IPAD-ROM-SAVE-PLACEMENT -->
 - [x] Stage57のQOL・世界・Codex拠点・野生・売買を再監査してStage58へ改善する <!-- id:USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG -->
 - [x] Stage58 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENT -->
+- [x] Stage59 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260829-STAGE59-IPAD-ROM-SAVE-PLACEMENT -->

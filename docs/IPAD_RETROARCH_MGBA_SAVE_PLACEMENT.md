@@ -82,6 +82,16 @@
 - RetroArch process 0、active container metadata、live `retroarch.cfg`、実mGBA save directoryを再解決し、一時名転送、iPad側size／SHA照合、同一directory内の原子的確定を行った。
 - iPadからROM／saveを新規ローカル領域へread-backしてsourceとbyte一致した。既存Stage58同名成果はなかったため退避0、remote一時ファイル0、既存Stage57 ROM／saveは不変。実機プレイ／人手承認は未実施。
 
+## Stage59の確認済み対応
+
+- ROM: `59_wild_identity_npc_regression_repair.gba`
+- ROM SHA-256: `8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`
+- 標準save: `59_wild_identity_npc_regression_repair.srm`
+- save size／SHA-256: 131,072 bytes／`f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`
+- 2026-08-29にStage59 exact ROM自身の通常save APIで標準Lv.100攻撃型6体saveを独立2 process生成し、full save、slot 0／1、自然Continue、Codex受付をPASSした。
+- RetroArch停止とlive設定を再解決し、ROM／同名saveを一時名から原子的に配置した。iPad上のStage58セーブは以前の配置後に進行済みだったため、現在値を保全基準として配置前後不変を確認した。
+- iPadからROM／saveをread-backしてsourceとbyte一致、remote一時ファイル0、既存Stage58 ROM／save不変を確認した。実機プレイ／人手承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

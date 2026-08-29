@@ -1204,3 +1204,14 @@
   - 軽量診断bundleの0 byte patch、build失敗、空save／空label由来のNPC誤検出を切り分け、再現しないNPC scriptへ推測変更を入れなかった。
   - 全Species identity guard、全生成方式、自然歩行戦闘、fresh／既存QA save menuのexact-ROM回帰をStage59の必須gateへ固定した。
 - Verify: build／check、全1620 Species、生成193件、自然歩行・逃走・field復帰、fresh／QA save各23 menu case、warnings 0、changed bytes 206、declared span外0、全overlap 0、BPS 2本往復、task graph、private guard、diff check PASS。ROM SHA-256 `8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`。
+
+## 2026-08-29T11:17:47+09:00
+
+- Version: `post-v1.4.0-stage59-ipad-rom-save-placement`（ROM identity／save ABI不変）
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260829-STAGE59-IPAD-ROM-SAVE-PLACEMENT` / Stage59 ROMと標準QAセーブのiPad配置
+- Summary:
+  - 標準save profileをStage59 exact ROMへ進め、ROM自身の通常APIでLv.100攻撃型6体saveを独立2 process生成した。
+  - RetroArch停止とlive設定再解決後、Stage59 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
+  - 既存Stage58 ROM／進行saveを不変に保ち、remote一時ファイルを0にした。端末固有情報はtracked成果へ保存していない。
+- Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage58不変、一時ファイル0、task graph、private guard、diff check PASS。ROM `8ed4c959...`、save `f6bfdb10...`。
