@@ -92,6 +92,16 @@
 - RetroArch停止とlive設定を再解決し、ROM／同名saveを一時名から原子的に配置した。iPad上のStage58セーブは以前の配置後に進行済みだったため、現在値を保全基準として配置前後不変を確認した。
 - iPadからROM／saveをread-backしてsourceとbyte一致、remote一時ファイル0、既存Stage58 ROM／save不変を確認した。実機プレイ／人手承認は未実施。
 
+## Stage60の確認済み対応
+
+- ROM: `60_wild_species_root_repair.gba`
+- ROM SHA-256: `3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1`
+- 標準save: `60_wild_species_root_repair.srm`
+- save size／SHA-256: 131,072 bytes／`f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`
+- 2026-08-29にStage60 exact ROM自身の通常save APIで標準Lv.100攻撃型6体saveを独立2 process生成し、full save、slot 0／1、自然Continue、Codex受付をPASSした。
+- active container metadataとlive `retroarch.cfg`から配置先を再解決した。転送後にRetroArchの再起動をprocess gateで検知して正規確定を中断し、再停止とprocess 0確認後に同じ処理内でROM／saveを一時名から原子的に確定した。
+- iPadからROM／saveをread-backしてsourceとbyte一致、remote一時ファイル0、既存Stage59 ROM／save不変を確認した。同名既存Stage60成果はなく退避0。実機プレイ／人手承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

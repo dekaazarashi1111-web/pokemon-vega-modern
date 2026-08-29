@@ -3025,3 +3025,33 @@
 - Commit: `-`（本エントリを含む補完commit）
 - Network:
   - インターネット未使用。
+
+## 2026-08-29T17:18:05+09:00
+
+- Task: `USER-20260829-STAGE60-IPAD-ROM-SAVE-PLACEMENT` / Stage60 ROMと標準Lv.100攻撃型6体セーブをiPadへ配置する
+- Status: DONE
+- Summary:
+  - 標準save profileをStage60 exact ROMと`60_wild_species_root_repair` basenameへ更新した。Stage60 ROM自身の通常`FlagSet`／`CreateMon`／`SetMonData`／`CalculatePP`／`CalculateMonStats`／`GetSetPokedexFlag`／`TrySavingData`だけで2世代saveを独立2 process生成した。saveは131,072 bytes、SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`。
+  - 固定host keyのWi-Fi SSHで接続診断をPASSし、active container metadataとlive `retroarch.cfg`からsave sort有効、content別sort無効、ROM directory、実mGBA save directoryを一意に再解決した。
+  - RetroArchを通常終了してprocess 0を確認後、ROM／saveをremote一時名へ転送した。確定直前にRetroArch再起動1件を検知して書込み前に拒否し、再度通常終了して同一処理内でprocess 0確認、iPad側size／SHA照合、原子的確定を行った。同名既存Stage60成果0、退避0。
+  - 確定後にiPadからROM／saveを新規ローカル領域へread-backしてsourceとbyte一致した。RetroArchは停止したまま、remote一時ファイル0、既存Stage59 ROM／saveは配置前後で不変。実機プレイ／人手承認は行っていない。
+- Files changed:
+  - `config/test_ready_save.json`
+  - `tests/test_test_ready_save.py`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `tasks/USER_20260829_STAGE60_IPAD_ROM_SAVE_PLACEMENT.md`
+  - `design/tasks_next.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外再生成物: `.local/60_wild_species_root_repair.srm`、Stage60 save report、iPad read-back ROM／save。
+  - Git管理外外部配置: iPad上のStage60 ROM／同名`.srm`。
+- Verify:
+  - `make test-ready-save`／`make test-ready-save-check`: PASS。独立2 process byte一致、full save、slot 0／1 fresh-load、自然Continue、Codex受付、進行flag、badge、Lv.100攻撃型6体を確認した。
+  - `python3 -m unittest tests.test_test_ready_save`: 5 tests PASS。
+  - `ipad-wifi-ssh doctor`、active設定preflight、原子的install、postcheck: PASS。確定前process gateは再起動1件を安全に拒否し、再停止後に確定した。
+  - iPad側ROM 33,554,432 bytes／SHA-256 `3f9983eb...`、save 131,072 bytes／SHA-256 `f6bfdb10...`。read-back `cmp`一致、既存Stage59 ROM／save不変、RetroArch process 0、remote一時ファイル0。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROM／saveを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

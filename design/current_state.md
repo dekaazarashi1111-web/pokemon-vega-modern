@@ -4,6 +4,7 @@
 
 ## 現在地
 
+- USER-20260829-STAGE60-IPAD-ROM-SAVE-PLACEMENTで、`config/test_ready_save.json`をStage60 exact ROMへ進め、通常ROM APIだけで標準Lv.100攻撃型6体saveを独立2 process生成した。131,072 bytes、SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`。full save、両slot、自然Continue、Codex受付をPASSした。RetroArch停止とlive設定再解決後、`60_wild_species_root_repair.gba/.srm`をiPadへ原子的に配置し、read-back byte一致、一時ファイル0、既存Stage59 ROM／save不変を確認した。
 - USER-20260829-STAGE59-IPAD-ROM-SAVE-PLACEMENTで、`config/test_ready_save.json`をStage59 exact ROMへ進め、通常ROM APIだけで標準Lv.100攻撃型6体saveを独立2 process生成した。131,072 bytes、SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`。full save、両slot、自然Continue、Codex受付をPASSした。RetroArch停止とlive設定再解決後、`59_wild_identity_npc_regression_repair.gba/.srm`をiPadへ原子的に配置し、read-back byte一致、一時ファイル0、既存Stage58 ROM／進行save不変を確認した。
 - USER-20260829-STAGE59-WILD-IDENTITY-NPC-REGRESSION-REPAIRで、Stage57の地上／水上だけにあった野生個体identity postconditionを、釣りと隠し／scannerを含む3生成入口へ統一した。成功生成後のdefault nicknameを現在Speciesのcanonical名へ同期し、釣り／隠しの特殊技は保持する。全1620 Speciesで破損名の復元・Species不変・4 move slot不変、地上／水上96・釣り96・隠し1の計193生成、Route505通常歩行からの戦闘／逃走／field復帰、fresh／Stage58 QA saveの各23 menu caseをexact ROMでPASSした。軽量診断bundleはsource差分0、build失敗、全`0xFF`旧saveと空label解決由来の1588 unresolved labelだったため、runtime不具合件数として採用せず、再現しないNPC scriptへ推測patchを加えていない。Stage59は33,554,432 bytes、SHA-256 `8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`、CRC32 `0DEC0405`。declared span外0、allocator overlap 0、Stage58差分／clean直接BPS往復PASS。iPad、既存ROM／saveは変更していない。
 - USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENTで、`config/test_ready_save.json`をStage58 exact ROMへ進め、通常ROM APIだけで標準Lv.100攻撃型6体saveを独立2 process生成した。131,072 bytes、SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`。full save、両slot、自然Continue、Codex受付をPASS。RetroArch停止とlive設定再解決後、`58_qol_world_convenience_debug.gba/.srm`をiPadへ原子的に配置し、read-back byte一致、一時ファイル0、既存Stage57 ROM／save不変を確認した。
@@ -237,6 +238,7 @@
 
 `design/tasks_next.md` を正とする。現在IN_PROGRESS／依存READYタスクはない。iPad配置は直接依頼がある場合だけ行い、実機プレイ・人手承認は今後もtask完了／release／READY判定に含めない。
 
+- USER-20260829-STAGE60-IPAD-ROM-SAVE-PLACEMENT: DONE。Stage60 exact ROM自身から標準Lv.100攻撃型6体saveを生成し、ROM／同名saveをiPadへ原子的に配置した。read-back byte一致、既存Stage59 ROM／save不変、一時ファイル0を確認した。
 - USER-20260829-STAGE59-IPAD-ROM-SAVE-PLACEMENT: DONE。Stage59 exact ROM自身から標準Lv.100攻撃型6体saveを生成し、ROM／同名saveをiPadへ原子的に配置した。read-back byte一致、既存Stage58 ROM／進行save不変、一時ファイル0を確認した。
 - USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENT: DONE。Stage58 exact ROM自身から標準Lv.100攻撃型6体saveを生成し、ROM／同名saveをiPadへ原子的に配置した。read-back byte一致、既存Stage57不変、一時ファイル0を確認した。
 - USER-20260828-STAGE57-QOL-WORLD-CONVENIENCE-DEBUG: DONE。QOL道具の実使用、全world owner、薄い場所、野生確率、item／shop経済をStage57 exact ROMで再監査し、Codex受付横のPC端末・全回復人物と採用改善をStage58へ分離統合した。

@@ -1236,3 +1236,14 @@
   - required自然入力gate後に通常catch scriptと同じ公開engine関数で捕獲partyと図鑑caught stateを追跡した。
   - Species 10、全国番号10、caught flag trueを機械可読mGBA証跡へ追加した。
 - Verify: Stage60 mGBA validation PASS。captured party Species 10／national dex 10／caught flag true。
+
+## 2026-08-29T17:18:05+09:00
+
+- Version: `post-v1.4.0-stage60-ipad-rom-save-placement`（ROM identity／save ABI不変）
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260829-STAGE60-IPAD-ROM-SAVE-PLACEMENT` / Stage60 ROMと標準QAセーブのiPad配置
+- Summary:
+  - 標準save profileをStage60 exact ROMへ進め、ROM自身の通常APIでLv.100攻撃型6体saveを独立2 process生成した。
+  - RetroArch停止とlive設定再解決後、Stage60 ROM／同名saveをiPadへ原子的に配置し、確定後read-backをsourceとbyte一致させた。
+  - 確定前のRetroArch再起動はprocess gateで拒否して再停止し、既存Stage59 ROM／save不変、remote一時ファイル0を確認した。端末固有情報はtracked成果へ保存していない。
+- Verify: save build／check、full／両slot／自然Continue、focused unit 5 tests、iPad size／SHA／`cmp`、Stage59不変、一時ファイル0、task graph、private guard、diff check PASS。ROM `3f9983eb...`、save `f6bfdb10...`。
