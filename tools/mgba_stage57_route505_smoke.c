@@ -306,8 +306,17 @@ static void world_generate_wild_save(const char *rom_path,
     bootstrap_close_core(core);
 }
 
+#ifndef S57_ROUTE505_ENCOUNTER_TARGET
+#define S57_ROUTE505_ENCOUNTER_TARGET 66U
+#endif
+
+#ifndef S57_ROUTE505_MIN_POST_FLEE_STREAK
+#define S57_ROUTE505_MIN_POST_FLEE_STREAK 10U
+#endif
+
 enum {
-    S57_ENCOUNTER_TARGET = 66U,
+    S57_ENCOUNTER_TARGET = S57_ROUTE505_ENCOUNTER_TARGET,
+    S57_MINIMUM_POST_FLEE_STREAK = S57_ROUTE505_MIN_POST_FLEE_STREAK,
     S57_ATTEMPT_LIMIT = 8000U,
     S57_QOL_DISPATCH = 0x09378799U,
     S57_FLAG_BADGE_1 = 0x0820U,
@@ -349,6 +358,7 @@ struct S57RouteAudit {
     unsigned counts[ARRAY_LEN(s57_allowed_species)];
     unsigned encounters;
     unsigned natural_species_checks;
+    unsigned natural_name_checks;
     unsigned direct_species_checks;
     unsigned direct_name_checks;
     unsigned direct_front_checks;
@@ -573,6 +583,12 @@ static void s57_record_natural_encounter(struct mCore *core,
                 species, level);
         s57_die("encounter-species", "Species/level is outside T505 contract");
     }
+    /* Natural encounters must prove the same identity contract as the
+     * direct fixtures.  This specifically covers Collection Supply's
+     * post-generation form replacement, which the old species/level-only
+     * assertion could not detect. */
+    s57_verify_name(core, ADDR_ENEMY_PARTY, species, true);
+    ++audit->natural_name_checks;
     ++audit->counts[(unsigned)allowed];
     ++audit->encounters;
     ++audit->natural_species_checks;
@@ -651,10 +667,13 @@ static void s57_run_natural_encounters(struct mCore *core,
         key = key == WORLD_KEY_RIGHT ? WORLD_KEY_LEFT : WORLD_KEY_RIGHT;
     }
     if (audit->encounters != S57_ENCOUNTER_TARGET)
-        s57_die("encounter-count", "66 natural encounters were not reached");
-    if (!world_overworld(core) || !world_result.battle_completed
-        || audit->maximum_post_flee_streak < 10U)
+        s57_die("encounter-count", "natural encounter target was not reached");
+    if (!world_overworld(core) || !world_result.battle_completed)
         s57_die("field-return", "flee/field movement cadence did not recover");
+#if S57_ROUTE505_MIN_POST_FLEE_STREAK > 0
+    if (audit->maximum_post_flee_streak < S57_MINIMUM_POST_FLEE_STREAK)
+        s57_die("field-return", "post-flee movement streak was too short");
+#endif
     audit->successful_steps = world_result.successful_steps;
     audit->key_pulses = world_result.key_pulses;
 }
@@ -730,7 +749,9 @@ static void s57_print_result(const char *rom_sha256,
                         ARRAY_LEN(s57_identity_targets));
     printf(",\"identity_contract\":{\"natural_encounters\":["
            "\"battlemon_species_in_t505_allowlist\","
-           "\"old_t503_species_forbidden\"],\"direct_targets\":["
+           "\"old_t503_species_forbidden\","
+           "\"party_nickname_equals_canonical_species_name\"],"
+           "\"direct_targets\":["
            "\"party_and_battlemon_species_equal_target\","
            "\"party_and_battle_nickname_equal_canonical_species_name\","
            "\"front_table_lz77_equals_battle_obj_vram\"]}},"
@@ -738,14 +759,15 @@ static void s57_print_result(const char *rom_sha256,
            "\"key_pulses\":%u,\"maximum_post_flee_streak\":%u,"
            "\"first_species\":%u,\"first_level\":%u,"
            "\"minimum_level\":%u,\"maximum_level\":%u,"
-           "\"natural_species_checks\":%u,\"direct_species_checks\":%u,"
-           "\"direct_name_checks\":%u,\"direct_front_checks\":%u,"
-           "\"observed_species\":[",
+           "\"natural_species_checks\":%u,\"natural_name_checks\":%u,"
+           "\"direct_species_checks\":%u,\"direct_name_checks\":%u,"
+           "\"direct_front_checks\":%u,\"observed_species\":[",
            audit->encounters, audit->successful_steps, audit->key_pulses,
            audit->maximum_post_flee_streak, audit->first_species,
            audit->first_level, audit->minimum_level, audit->maximum_level,
-           audit->natural_species_checks, audit->direct_species_checks,
-           audit->direct_name_checks, audit->direct_front_checks);
+           audit->natural_species_checks, audit->natural_name_checks,
+           audit->direct_species_checks, audit->direct_name_checks,
+           audit->direct_front_checks);
     bool first = true;
     for (unsigned index = 0U; index < ARRAY_LEN(s57_allowed_species);
          ++index) {
@@ -818,6 +840,7 @@ int main(int argc, char **argv)
     bootstrap_close_core(core);
 
     if (audit.natural_species_checks != S57_ENCOUNTER_TARGET
+        || audit.natural_name_checks != S57_ENCOUNTER_TARGET
         || audit.direct_species_checks != ARRAY_LEN(s57_identity_targets)
         || audit.direct_name_checks != ARRAY_LEN(s57_identity_targets)
         || audit.direct_front_checks != ARRAY_LEN(s57_identity_targets))

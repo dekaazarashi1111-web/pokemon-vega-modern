@@ -10,6 +10,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: test-ready-save test-ready-save-check
 .PHONY: stage57-debug-repair stage57-debug-repair-check stage57-debug-clean-rebuild stage57-debug-clean-rebuild-check stage57-debug-quick stage57-debug-full stage57-debug-story stage57-mgba-quick stage57-mgba-smoke stage57-mgba-all
 .PHONY: stage58-qol-world stage58-qol-world-check stage58-qol-world-clean-rebuild stage58-qol-world-clean-rebuild-check stage58-debug-full stage58-economy-audit stage58-world-audit stage58-mgba-all stage58-final-gate
+.PHONY: stage59-wild-identity stage59-wild-identity-check stage59-mgba-all stage59-final-gate
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -425,6 +426,20 @@ stage58-final-gate:
 	$(PYTHON) scripts/build_stage58_qol_world_convenience_debug.py check --require-mgba
 	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py build --require-mgba
 	$(PYTHON) scripts/rebuild_stage58_qol_world_convenience_debug_from_clean.py check --require-mgba
+
+stage59-wild-identity:
+	$(PYTHON) scripts/build_stage59_wild_identity_npc_regression_repair.py build
+
+stage59-wild-identity-check:
+	$(PYTHON) scripts/build_stage59_wild_identity_npc_regression_repair.py check
+
+stage59-mgba-all:
+	$(PYTHON) scripts/run_stage59_mgba_validation.py --domain all
+
+stage59-final-gate:
+	$(PYTHON) scripts/build_stage59_wild_identity_npc_regression_repair.py build
+	$(PYTHON) scripts/run_stage59_mgba_validation.py --domain all
+	$(PYTHON) scripts/build_stage59_wild_identity_npc_regression_repair.py check
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto

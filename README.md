@@ -135,6 +135,10 @@ make stage58-economy-audit # 36 QOL品・shop owner・換金率・解禁境界�
 make stage58-world-audit # 全map／野生method／薄い場所／追加event配置を定量監査
 make stage58-mgba-all # 継承7＋新規3 domainをexact ROM・独立2 processで確定
 make stage58-final-gate # mGBA証跡を必須化してbuild/check/clean 3経路を最終確定
+make stage59-wild-identity # 3野生生成入口のcanonical-name guardをStage59へ結合
+make stage59-wild-identity-check # Stage59 ROM・BPS・span・allocation・継承修復を副作用なしで照合
+make stage59-mgba-all # 全1620種、3生成方式、自然歩行、fresh／QA-save menuをexact ROMで検証
+make stage59-final-gate # 決定的build→全mGBA domain→artifact drift checkを連続実行
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成
@@ -311,6 +315,15 @@ Stage58はQOL道具36品を通常Bag UIから取消・成功・無効対象・�
 land／water／rock／fishingの物理methodと進行帯へ再分配する。重複BP owner、研究品の過大換金、
 解禁前Raid報酬、Honey売買、Ability Patch再取得を同じ経済監査で補正する。Codex戦でBagを図鑑と
 誤認して復元していたsave-layout不具合も、Bag領域とseen三鏡／ownedを分離して修正する。
+
+Stage59は、Stage57の地上／水上側だけに存在した野生identity postconditionを、釣りと
+隠し／scannerを含む3生成入口へ統一する。成功した生成個体のdefault nicknameを現在Speciesの
+canonical名へ同期し、釣り／隠し側の特殊技構成は保持する。全1620 Speciesの破損名復元では
+Speciesと4 move slot不変、地上／水上96・釣り96・隠し1の実生成、Route505の通常歩行→戦闘→
+逃走→field復帰、fresh／標準QA saveそれぞれの非Collection 9＋Collection 14 menuを検査する。
+軽量診断bundleの空patchと全`0xFF`旧save由来の1588 unresolved labelはruntime不具合件数として
+採用せず、再現しないNPC scriptへ推測patchを加えない。Stage59 ROM SHA-256は
+`8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`。
 
 ## 効率方針
 

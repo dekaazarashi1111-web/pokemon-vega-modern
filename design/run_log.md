@@ -2922,3 +2922,29 @@
 - Commit: `-`（仕様commit `8bd07f8`、完全検証入力commit `b7e0656`、本エントリを含む完了commit）
 - Network:
   - OpenAI DocsでChatGPT file upload limitを検索し、`https://learn.chatgpt.com/`を確認した。今回取得できた同domainページはexact 512MB上限を確定しなかったため、ユーザーUIで観測された上限を512,000,000 bytesの保守的な生成gateとして採用した。
+
+## 2026-08-29T09:53:04+09:00
+
+- Task: `USER-20260829-STAGE59-WILD-IDENTITY-NPC-REGRESSION-REPAIR` / 軽量診断bundleとStage58完全workspaceを再監査し、野生identity回帰とNPC診断をStage59へ修復する
+- Status: DONE
+- Summary:
+  - 軽量Stage59診断bundleを完全workspaceと比較し、`stage59_source_changes.patch`が0 byteでsource修正を含まないこと、clean ROM不足でbuildに失敗していたこと、同梱済みmGBA／Stage58 ROM／QA saveを検出できていなかったことを確認した。
+  - 軽量bundleのNPC監査は全byte `0xFF`の旧Stage56 saveと空のscript label解決結果を入力にしていたため、`unresolved_labels=1588`／overlap 260をruntime defectとして採用しなかった。Stage58 exact ROMのfresh／標準QA saveでは非Collection 9 menuとCollection Supply 14 hostを全件再現し、常時NPC不具合は観測できなかったため、NPC scriptへ推測patchを入れていない。
+  - Stage57で地上／水上にだけ存在した最終identity同期をStage59で地上／水上、釣り、隠し／scannerの3生成入口へ統一した。地上／水上は既存の初期技同期を保持し、釣り／隠しはauthored move setを壊さずdefault nicknameだけを現在Speciesのcanonical名へ同期する。
+  - 全1620 Speciesの破損名復元、Species不変、4 move slot不変をexact ROMで確認した。さらに地上／水上96、釣り96、隠し1の計193生成、Route505の通常歩行から野生戦闘・逃走・field復帰、fresh／QA save各23 menu caseをmGBAでPASSした。warning／errorは0。
+  - Stage59 ROMは33,554,432 bytes、SHA-256 `8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`、CRC32 `0DEC0405`。changed bytes 206、declared span外0、allocator overlap 0。Stage58差分BPSとclean直接BPSはいずれも往復PASSした。ROM／saveは配布成果へ含めない。
+- Files changed:
+  - `config/stage59_wild_identity_npc_regression_repair.json`
+  - `overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c`
+  - `scripts/build_stage59_wild_identity_npc_regression_repair.py`、`scripts/run_stage59_mgba_validation.py`
+  - `tools/mgba_stage59_identity_guard_smoke.c`、`tools/mgba_stage59_wild_methods_smoke.c`
+  - `tools/mgba_stage57_route505_smoke.c`、`tools/mgba_regression_smoke.c`
+  - `Makefile`、`README.md`、`design/current_state.md`、task／run log／version log正本
+  - Git管理外再生成物: Stage59 ROM、allocation／symbols／audit／mGBA JSON、Stage58差分BPS、clean直接BPS。
+- Verify:
+  - `python3 scripts/build_stage59_wild_identity_npc_regression_repair.py build`／`check`: PASS。決定的再build、metadata `PASS`、changed bytes 206、declared span外0、allocator overlap 0、BPS 2本の往復PASS。
+  - `python3 scripts/run_stage59_mgba_validation.py --domain all --route505-encounter-target 1`: PASS。全1620 Species、3生成方式193件、通常歩行遭遇1件、fresh／QA save各23 menu case、warnings 0。Stage58基準では強化後のRoute505自然遭遇66件もcanonical nicknameまでPASS。
+  - `python3 -m py_compile scripts/build_stage59_wild_identity_npc_regression_repair.py scripts/run_stage59_mgba_validation.py`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。staged indexにROM／save／BPS／private inputなし。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。ユーザー提供ZIP、完全workspace内の固定ROM／save／ARM toolchain／libmGBAだけを使用した。原本ZIP、ROM、saveは変更・Git追跡していない。

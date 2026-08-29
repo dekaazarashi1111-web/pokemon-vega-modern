@@ -25,6 +25,11 @@
 #define MAIN_CALLBACK2 UINT32_C(0x03003134)
 #define SCRIPT_CONTEXT1_SETUP UINT32_C(0x080693A5)
 #define GET_MON_DATA UINT32_C(0x0803F355)
+#define GET_SPECIES_NAME UINT32_C(0x080406C5)
+#define IDENTITY_NICKNAME_SCRATCH UINT32_C(0x0203E800)
+#define IDENTITY_CANONICAL_SCRATCH UINT32_C(0x0203E820)
+#define IDENTITY_MON_DATA_NICKNAME 2U
+#define IDENTITY_NAME_SIZE 11U
 #define ADD_BAG_ITEM UINT32_C(0x08099A8D)
 #define FLAG_CLEAR UINT32_C(0x0806DE9D)
 #define CREATE_TASK UINT32_C(0x08076BB5)
@@ -210,6 +215,36 @@ static uint32_t call_thumb(struct mCore *core, uint32_t function,
     uint32_t result = (uint32_t)read_register(core, "r0");
     restore_cpu(core, &original);
     return result;
+}
+
+static void verify_canonical_nickname(struct mCore *core,
+                                      uint32_t mon, uint16_t species)
+{
+    bool terminated = false;
+    for (unsigned index = 0U; index < IDENTITY_NAME_SIZE; ++index) {
+        write8(core, IDENTITY_NICKNAME_SCRATCH + index, 0U);
+        write8(core, IDENTITY_CANONICAL_SCRATCH + index, 0U);
+    }
+    (void)call_thumb(core, GET_MON_DATA, mon, IDENTITY_MON_DATA_NICKNAME,
+                     IDENTITY_NICKNAME_SCRATCH, 0U);
+    (void)call_thumb(core, GET_SPECIES_NAME,
+                     IDENTITY_CANONICAL_SCRATCH, species, 0U, 0U);
+    for (unsigned index = 0U; index < IDENTITY_NAME_SIZE; ++index) {
+        uint8_t nickname = read8(core, IDENTITY_NICKNAME_SCRATCH + index);
+        uint8_t canonical = read8(core, IDENTITY_CANONICAL_SCRATCH + index);
+        if (nickname != canonical) {
+            fprintf(stderr,
+                    "nickname mismatch species=%u index=%u actual=%02X expected=%02X\n",
+                    species, index, nickname, canonical);
+            die("generated wild nickname differs from canonical Species name");
+        }
+        if (canonical == 0xFFU) {
+            terminated = true;
+            break;
+        }
+    }
+    if (!terminated)
+        die("canonical Species name is unterminated");
 }
 
 static bool rom_pointer(uint32_t pointer)
@@ -679,6 +714,7 @@ int main(int argc, char **argv)
         }
         if (!valid)
             die("wild generation hook created a species outside native/overlay tables");
+        verify_canonical_nickname(core, ENEMY_PARTY, species);
     }
     if (generated_overlay_species == 0U)
         die("first-route generation hook never created an overlay species");
@@ -785,6 +821,7 @@ int main(int argc, char **argv)
             core, GET_MON_DATA, ENEMY_PARTY, 11U, 0U, 0U);
         if (species != generated)
             die("fishing dispatcher return/species differ");
+        verify_canonical_nickname(core, ENEMY_PARTY, species);
         if (ecology_entry_has_species(core, fishing_entry, species)) {
             fishing_species = species;
             continue;
@@ -820,6 +857,7 @@ int main(int argc, char **argv)
         core, GET_MON_DATA, ENEMY_PARTY, 11U, 0U, 0U);
     if (!ecology_entry_has_species(core, hidden_entry, hidden_species))
         die("ecology radar generated outside the hidden authored pool");
+    verify_canonical_nickname(core, ENEMY_PARTY, hidden_species);
     for (unsigned call = 0; call < 64U; ++call) {
         uint16_t species = (uint16_t)call_thumb(
             core, wild_select, 1U, 0U, 0U, 0U);

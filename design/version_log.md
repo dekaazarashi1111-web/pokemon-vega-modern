@@ -1193,3 +1193,14 @@
   - Stage58 full監査用Stage50 oracleと現行BPS 3本を保持し、同梱compilerのmGBA header扱いを修正して最大強度gateを自己完結させた。
   - 事前ZIPを507,339,821 bytesへ縮小し、512,000,000-byte上限を生成器で強制した。
 - Verify: fresh `VERIFY_SNAPSHOT.py`、fresh `BUILD_CURRENT_FROM_SOURCE.py`、Stage58 final gate、mGBA全domain、clean 3経路、task graph、private guard、diff check PASS。
+
+## 2026-08-29T09:53:04+09:00
+
+- Version: `post-v1.4.0-stage59-wild-identity-npc-regression-repair`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260829-STAGE59-WILD-IDENTITY-NPC-REGRESSION-REPAIR` / 野生identity回帰とNPC診断をStage59へ修復する
+- Summary:
+  - 地上／水上、釣り、隠し／scannerの3生成入口へcanonical default nicknameの共通postconditionを追加した。釣り／隠しの特殊技構成は保持する。
+  - 軽量診断bundleの0 byte patch、build失敗、空save／空label由来のNPC誤検出を切り分け、再現しないNPC scriptへ推測変更を入れなかった。
+  - 全Species identity guard、全生成方式、自然歩行戦闘、fresh／既存QA save menuのexact-ROM回帰をStage59の必須gateへ固定した。
+- Verify: build／check、全1620 Species、生成193件、自然歩行・逃走・field復帰、fresh／QA save各23 menu case、warnings 0、changed bytes 206、declared span外0、全overlap 0、BPS 2本往復、task graph、private guard、diff check PASS。ROM SHA-256 `8ed4c9597fa73e9b30afd940d3855f99c4759297d9f48e584eaf9df8c3a303da`。

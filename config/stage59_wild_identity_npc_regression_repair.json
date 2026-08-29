@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260829-STAGE59-WILD-IDENTITY-NPC-REGRESSION-REPAIR",
+  "stage": 59,
+  "inputs": {
+    "stage58_rom": {
+      "path": "build/stages/58_qol_world_convenience_debug.gba",
+      "size": 33554432,
+      "sha256": "501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c"
+    },
+    "stage58_metadata": {
+      "path": "build/stages/58_qol_world_convenience_debug.json",
+      "sha256": "d6e45d9069fd59a82d29a0ec1ce1b83ecdbe73915aabc21d80206fc495a7e54e"
+    },
+    "stage58_allocation": {
+      "path": "build/stages/58_allocation.json",
+      "sha256": "8ba3ed04751463be21181d0a37678c35b9391956c243252e1888c8a268ada768"
+    },
+    "stage17_metadata": {
+      "path": "build/stages/17_regression.json",
+      "sha256": "ad013b67fb9b74235e5f446a1ea08decc800c937c2eb055bdf1070e2e8d25d86"
+    },
+    "qa_save": {
+      "path": ".local/58_qol_world_convenience_debug.srm",
+      "size": 131072,
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "runtime_source": "overlays/stage59_wild_identity_npc_regression_repair/stage59_wild_identity_npc_regression_repair.c",
+  "hooks": [
+    {
+      "name": "land_water_identity_guard",
+      "address": "0x080826D8",
+      "expected": "004b1847bd414109",
+      "symbol": "Stage59Repair_TryGenerateWildMonAdapter"
+    },
+    {
+      "name": "fishing_identity_guard",
+      "address": "0x08082750",
+      "expected": "004b184769ea3b09",
+      "symbol": "Stage59Repair_GenerateFishingEncounterAdapter"
+    },
+    {
+      "name": "hidden_identity_guard",
+      "address": "0x09220198",
+      "expected": "004b184799ea3b09",
+      "symbol": "Stage59Repair_TryHiddenEncounterAdapter"
+    }
+  ],
+  "atomic_species_calls": [
+    {"name": "collection_wild_species", "address": "0x09405E9C", "expected": "0ef000f9"},
+    {"name": "collection_form_service", "address": "0x09407022", "expected": "0df03df8"},
+    {"name": "collection_form_rollback", "address": "0x0940703E", "expected": "0df02ff8"}
+  ],
+  "outputs": {
+    "rom": "build/stages/59_wild_identity_npc_regression_repair.gba",
+    "metadata": "build/stages/59_wild_identity_npc_regression_repair.json",
+    "allocation": "build/stages/59_allocation.json",
+    "incremental_bps": "build/patches/stage58-to-wild-identity-npc-regression-repair-stage59.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-wild-identity-npc-regression-repair-stage59.bps",
+    "runtime": "generated/runtime/stage59_wild_identity_npc_regression_repair.bin",
+    "symbols": "generated/runtime/stage59_wild_identity_npc_regression_repair_symbols.json",
+    "audit": "reports/generated/stage59_wild_identity_npc_regression_repair.json",
+    "report": "reports/generated/stage59_wild_identity_npc_regression_repair.md",
+    "mgba": "build/stages/59_mgba_wild_identity_npc_regression_repair.json"
+  }
+}
