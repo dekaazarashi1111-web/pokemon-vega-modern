@@ -3078,3 +3078,28 @@
 - Commit: `-`（本エントリを含む記録commit）
 - Network:
   - インターネット未使用。Stage 60 exact ROM、既存のevent plan、trainer serialization、固定ソースだけを参照した。
+
+## 2026-08-30T09:27:21+09:00
+
+- Task: `USER-20260830-STAGE60-EVENT-NPC-DIALOGUE-ISSUE-MEMO` / フジ老人Item付与不能と全イベント／全NPC実表示監査を既知不具合タスクへ追加する
+- Status: DONE
+- Summary:
+  - 12ばんどうろの寝ているobjectが見た目、笛の進行条件、固定戦闘Speciesの3境界で不整合を持つことを記録した。ベガ本編のItem 350取得元はflag `0x119E`を立てる一方、カントー側はFireRed flag `0x023D`を読み、旧Species 143も現行canonicalカビゴン491へ変換されていない。
+  - シオンタウン・ポケモンハウスのフジ老人が、Vegaで上書き済みのFireRed数値addressへ`SOURCE_DIRECT_OBJECT_OWNER`として再接続され、3命令のメッセージ表示／終了でItem付与命令へ到達しないことを記録した。
+  - 全`SOURCE_DIRECT_*` ownerと全event dependencyをCFG、表示、参照ID、副作用まで監査し、全mapの同根進行不能を個別patchではなくscript再配置／名前空間変換／共通validatorで根本修正する条件を追加した。
+  - ユーザー観測の空メッセージNPCを既知不具合へ追加し、全678 physical mapの全NPC・全到達可能会話branchをexact ROMで通常interactionし、実際に何が表示されたか、入力復帰、side effectまで記録する受入条件を追加した。未レビュー空表示、未テストbranch、未解決同根不具合はいずれも0件を完了条件とした。
+  - ユーザー指示どおり、Stage 60 ROM、BPS、save、生成器、map、object、event scriptは変更していない。
+- Files changed:
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/tasks_next.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - Stage 60 exact ROMのobject rootとevent CFGを再確認し、Vega笛取得root `0x087700B1`、12ばんどうろroot `0x081769BB`、フジ老人root `0x08181B5D`の参照Item／flag／Speciesと到達命令を記録内容へ照合した: PASS。
+  - `python3 scripts/validate_task_graph.py`: PASS。
+  - `python3 scripts/guard_private_files.py`: PASS。
+  - `git diff --check`／`git diff --cached --check`: PASS。
+  - Stage 60 runtime artifact変更なしを対象差分と`git status`で確認した。
+- Commit: `-`（本エントリを含む記録commit）
+- Network:
+  - インターネット未使用。Stage 60 exact ROM、FireRed日本版Rev.0参照ROM、固定上流source、既存manifest／runtime metadataだけを参照した。

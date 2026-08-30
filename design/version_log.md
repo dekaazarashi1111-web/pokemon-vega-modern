@@ -1258,3 +1258,15 @@
   - B1Fの十字状Archive NPCで中央が到達不能になる最終配置不具合を記録した。
   - 他mapを含む横断監査・根本修正を未着手の別タスクとしてキュー登録した。ROM／生成器／配置は変更していない。
 - Verify: task graph、private guard、diff check PASS。Stage 60 runtime artifact変更なし。
+
+## 2026-08-30T09:27:21+09:00
+
+- Version: `stage60-known-issues-memo-v2`（ROM identity不変）
+- Commit: `-`（本エントリを含む記録commit）
+- Task: `USER-20260830-STAGE60-EVENT-NPC-DIALOGUE-ISSUE-MEMO` / 全イベント・全NPC実表示の横断監査条件を追加
+- Summary:
+  - フジ老人のItem付与不能、ベガの笛とカントー通行止めのflag未接続、固定カビゴンのgraphics／Species ID不整合を既知不具合へ追加した。
+  - 全source直結eventをCFG／表示／ID／副作用まで検証し、全event dependencyの進行不能を共通のscript再配置・名前空間変換・validatorで根本修正する条件を追加した。
+  - 全678 mapの全NPC・全会話branchをexact ROMで通常interactionし、実表示内容と入力復帰／副作用を記録する。空表示、未テスト、未解決を0件とする完了gateへ拡張した。
+  - ROM／BPS／save／runtimeは変更していない。
+- Verify: event root／CFG／Item／flag／Species照合、task graph、private guard、diff check PASS。Stage 60 runtime artifact変更なし。
