@@ -3290,3 +3290,31 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-03T02:25:04+09:00
+
+- Task: `USER-20260903-STAGE61-TRAINER-SIGHT-HOTFIX` / Stage61視線トレーナー入口ABI修復
+- Status: DONE（hotfixのみ。元の全件監査taskはIN_PROGRESS）
+- Summary:
+  - Route501の物理trainer command `0x09376713`は旧Stage61で`05 64 e4 42 09 ...`に上書きされ、直接parserがmode 100／trainer ID 17124と誤読してLv.0「？」と誤battle graphicsを生んでいた。Stage60正本の`5C 00 59 00 ...`を基準に原因を固定した。
+  - 478個の物理`trainerbattle`はopcode／mode／trainer ID／continuationを原状保持し、`command+6`のEOS-only intro pointerだけを通常文面へ変更するようbuilderを修正した。478 proxy rootがadapterへ入る既存構造は維持し、生成時に全件の`0x5C`／mode／ID／intro pointerをfail-closed検査する。
+  - 非trainerのgraphics/object表、map-section、save、multichoiceを別経路で読取り監査したが、同種のbase／stride／先頭`goto`ずれは確認できなかった。実害の根拠がない領域に推測patchを入れていない。
+  - 再生成候補は33,554,432 bytes、SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。ローカルのユーザーsaveは131,088 bytes、SHA-256 `b2ec0d97d2d559eda29ecfa9fc1a838a9a768cdcad74b233a483cfd022dc4d70`で不変。iPad配置ROMは更新していない。
+  - critical Gift検査の初回停止は、critical-release経路が更新しない旧共通fixtureの`0x020370E0`と、現ROMのGetFlagAddr literal／runnerの`0x02037014`がcase実行前に衝突したため。現ROM literalと一致するembedded fixture経路で同caseを再実行し、ROM回帰でないことを確認した。
+- Files changed:
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `tests/test_stage61_trainer_sight_entry_repair.py`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 -m unittest -v tests.test_stage61_trainer_sight_entry_repair`: 3 tests PASS。
+  - `python3 scripts/build_stage61_display_npc_event_audit.py critical-release`／`critical-release-check`: PASS。payload SHA-256 `ef473a22e5aa2b4d3fda85f97a2285b2ef48bf176c59e931cd38cc570b0bf40b`。
+  - 生成ROMの478 commandを全数検査し、opcode／mode／trainer ID／intro pointer不一致0。Route501はID 89を保持し、差分はintro pointerのみ。
+  - 自然入力trainer `89` / `93` / `1338`: 視線発火、期待trainer ID、戦闘、field復帰、撃破flag保存をPASS。
+  - critical runtime 5 case×2、Gift 6経路×2、育て屋2 case×2: PASS。`run_stage61_critical_release_validation.py`: `PLAYTEST_CANDIDATE_READY`、crash／softlock／save corruption／progression blockage全0。
+  - 全678 map×全owner×全branchのstrict audit: SKIP（ユーザー指定どおり重大系に限定、`DEFERRED_AUDIT`）。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むhotfix checkpoint commit）
+- Network:
+  - インターネット未使用。固定ローカルROM／sourceとlibmGBAだけを使用した。

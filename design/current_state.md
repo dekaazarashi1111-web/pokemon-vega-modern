@@ -1,10 +1,10 @@
 # current_state.md
 
-最終更新: 2026-09-02
+最終更新: 2026-09-03
 
 ## 進行中タスクの再開点
 
-- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-02 22:31のcritical-release WIP checkpointを唯一の正とする。ユーザー指定の中間出口に合わせ、既存strict build／oracleを変更せず、専用`CRITICAL_RELEASE`経路からStage61候補ROMを生成した。候補は33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。Stage60差分／clean直接BPS再構成、実変更6,202 span・220,250 bytesの宣言領域内収束、boot／Continue／通常START save 2世代／raw 128 KiB reload、移動／connection／Fly、会話／笛／canonical Species 491固定戦／戦闘後field、Gift全6経路、party／PC storage、Four Island／Route5育て屋を対象別2 processでPASSし、crash／softlock／save破損／進行阻害は0。集約正本は`reports/generated/stage61_critical_release_validation.json`、候補は`build/stages/61_critical_release_candidate.gba`。全678 map×全owner×全branch×runs=2、unused state、全owner exact ordinal、coverage 0 omissionとstrictで観測した非critical不一致9件は`DEFERRED_AUDIT`であり、元taskを完了扱いにしない。詳細・再開順は`design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`末尾。
+- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-03の視線トレーナー入口hotfix checkpointを最新とする。旧候補は478個の物理`trainerbattle`命令先頭を`goto`で上書きし、エンジンがopcode／mode／trainer IDを命令直下から読む経路を破壊していた。現候補は物理命令の`0x5C`／mode／trainer IDを保持し、intro pointerのみを正常文面へ修復、proxy rootだけをadapterへ接続する。33,554,432 bytes、SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。Route501 trainer 89、横視線trainer 93、Route506 double trainer 1338の自然入力・戦闘・field復帰・撃破flag、critical 5 case、Gift 6経路、育て屋2系統を各2 processでPASSし、集約判定は`PLAYTEST_CANDIDATE_READY`。非trainerのgraphics/object、map-section、save、multichoiceに同種のglobal shiftは確認できず、推測ROM変更は加えていない。候補は`build/stages/61_critical_release_candidate.gba`。ローカルsaveは不変、iPad上の同名ROMは旧SHA `e736acd0...3669`のままで未更新。全678 map×全owner×全branchのstrict監査は`DEFERRED_AUDIT`で、元taskを完了扱いにしない。
 
 ## 現在地
 

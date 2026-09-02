@@ -1281,3 +1281,14 @@
   - iPad側size／SHA照合と端末からのread-back `cmp`をPASSし、同名既存ROMなし、退避0、remote一時ファイル0を確認した。
   - ユーザー指定どおりsaveは生成・転送・配置せず、mGBA save directory全56件の配置前後manifestを不変に保った。進行中のStage61全件監査taskはIN_PROGRESSのまま変更していない。
 - Verify: Wi-Fi SSH doctor／live設定preflight／ROM-only atomic install／read-back／postcheck、task graph、private guard、diff check PASS。ROM 33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。
+
+## 2026-09-03T02:25:04+09:00
+
+- Version: `stage61-trainer-sight-entry-hotfix-candidate`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-20260903-STAGE61-TRAINER-SIGHT-HOTFIX` / Stage61視線トレーナー入口ABI修復
+- Summary:
+  - 478個の物理`trainerbattle`命令先頭への誤`goto`上書きをやめ、opcode／mode／trainer IDを保持した。
+  - 通常intro pointerのみを修復し、proxy経由adapterと視線／VS Seekerの直接parserを両立させた。
+  - 非trainer領域に同種の一律ずれはなく、推測ROM修正は行っていない。元の全件監査taskはIN_PROGRESSのまま。
+- Verify: focused unit 3 tests、478 command全数static検査、自然入力trainer 3戦、critical 5 case×2、Gift 6経路×2、育て屋2 case×2、critical集約、task graph、private guard、diff check PASS。ROM SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。

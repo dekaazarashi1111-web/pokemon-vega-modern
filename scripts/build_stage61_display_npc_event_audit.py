@@ -3142,6 +3142,44 @@ def _trainer_intro_repair_plan(stage60: bytes) -> dict[str, Any]:
     }
 
 
+def _trainer_intro_entry_patch_specs(
+    repair: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Return the two legal Stage61 entry repairs for one trainer command.
+
+    A field interaction may enter the generated proxy, but trainer sight and
+    VS Seeker consumers read the physical trainerbattle command in place.  The
+    proxy may therefore become a goto; the command opcode/mode/id prefix may
+    not.  Repair its visible normal intro by changing only the pointer operand
+    at command+6.
+    """
+
+    target = int(repair["adapter_address"])
+    normal_text = int(repair["normal_text_pointer"])
+    if normal_text == TRAINER_EMPTY_TEXT_POINTER:
+        _fail("trainer normal intro pointerがEOS-onlyのままです")
+    return (
+        {
+            "entry_kind": "proxy_root",
+            "address": int(repair["proxy_root"]),
+            "expected": bytes.fromhex(
+                str(repair["proxy_root_expected_hex"])
+            ),
+            "replacement": b"\x05" + struct.pack("<I", target),
+        },
+        {
+            "entry_kind": "battle_intro_pointer",
+            "address": int(repair["command_address"]) + 6,
+            "expected": bytes.fromhex(
+                str(repair["intro_pointer_expected_hex"])
+            ),
+            "replacement": bytes.fromhex(
+                str(repair["intro_pointer_replacement_hex"])
+            ),
+        },
+    )
+
+
 def _add_runtime_event_repair_payloads(
     blob: _Blob, *, stage60: bytes, clean: bytes,
     namespace_policy: NamespacePolicy, charmap: Mapping[int, str],
@@ -3303,6 +3341,13 @@ def _add_runtime_event_repair_payloads(
             "common_post_offset": common_offset,
             "proxy_root_expected_hex": bytes(source["proxy_preimage"])[:5].hex(),
             "command_expected_hex": command_raw[:5].hex(),
+            "command_prefix_expected_hex": command_raw[:6].hex(),
+            "intro_pointer_expected_hex": struct.pack(
+                "<I", TRAINER_EMPTY_TEXT_POINTER
+            ).hex(),
+            "intro_pointer_replacement_hex": struct.pack(
+                "<I", int(source["normal_text_pointer"])
+            ).hex(),
             "entry_patch_count": 2,
         })
 
@@ -14757,21 +14802,11 @@ def build(
 
     trainer_entry_patch_count = 0
     for repair in runtime_repairs["trainer_intro"]["repairs"]:
-        target = int(repair["adapter_address"])
-        replacement = b"\x05" + struct.pack("<I", target)
-        for entry_kind, address, expected_hex in (
-            (
-                "proxy_root",
-                int(repair["proxy_root"]),
-                str(repair["proxy_root_expected_hex"]),
-            ),
-            (
-                "battle_command",
-                int(repair["command_address"]),
-                str(repair["command_expected_hex"]),
-            ),
-        ):
-            expected = bytes.fromhex(expected_hex)
+        for patch in _trainer_intro_entry_patch_specs(repair):
+            entry_kind = str(patch["entry_kind"])
+            address = int(patch["address"])
+            expected = bytes(patch["expected"])
+            replacement = bytes(patch["replacement"])
             _apply_patch(
                 stage60, output, declared,
                 name=(
@@ -14820,6 +14855,24 @@ def build(
                     "PINNED_STAGE35_AUTHORED_NORMAL_REMATCH_INTRO"
                 ),
             })
+        command_address = int(repair["command_address"])
+        command_offset = command_address - GBA_BASE
+        command_prefix = bytes.fromhex(
+            str(repair["command_prefix_expected_hex"])
+        )
+        if output[
+            command_offset:command_offset + len(command_prefix)
+        ] != command_prefix \
+                or output[command_offset] != 0x5C \
+                or output[command_offset + 1] != int(repair["kind"]) \
+                or struct.unpack_from("<H", output, command_offset + 2)[0] \
+                    != int(repair["trainer_id"]) \
+                or struct.unpack_from("<I", output, command_offset + 6)[0] \
+                    != int(repair["normal_text_pointer"]):
+            _fail(
+                "trainer sight direct-parser ABI不一致: "
+                f"{command_address:#010x}"
+            )
     if trainer_entry_patch_count != 956:
         _fail(
             "trainer intro dual-entry patch count不一致: "
