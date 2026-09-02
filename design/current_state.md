@@ -1,6 +1,10 @@
 # current_state.md
 
-最終更新: 2026-08-29
+最終更新: 2026-09-02
+
+## 進行中タスクの再開点
+
+- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-02 22:31のcritical-release WIP checkpointを唯一の正とする。ユーザー指定の中間出口に合わせ、既存strict build／oracleを変更せず、専用`CRITICAL_RELEASE`経路からStage61候補ROMを生成した。候補は33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。Stage60差分／clean直接BPS再構成、実変更6,202 span・220,250 bytesの宣言領域内収束、boot／Continue／通常START save 2世代／raw 128 KiB reload、移動／connection／Fly、会話／笛／canonical Species 491固定戦／戦闘後field、Gift全6経路、party／PC storage、Four Island／Route5育て屋を対象別2 processでPASSし、crash／softlock／save破損／進行阻害は0。集約正本は`reports/generated/stage61_critical_release_validation.json`、候補は`build/stages/61_critical_release_candidate.gba`。全678 map×全owner×全branch×runs=2、unused state、全owner exact ordinal、coverage 0 omissionとstrictで観測した非critical不一致9件は`DEFERRED_AUDIT`であり、元taskを完了扱いにしない。詳細・再開順は`design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`末尾。
 
 ## 現在地
 

@@ -16,11 +16,20 @@ from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
+from tools.world_final_state import (
+    allocate_objects_with_stances,
+    audit_conversation_placements,
+    entrance_seeds,
+    exact_reverse_entrance_seed_index,
+)
+
 GBA_ROM_BASE = 0x08000000
 MAP_GROUPS_POINTER_SITE = 0x54B0C
 OBJECT_SIZE = 0x18
 EVENT_HEADER_SIZE = 0x14
 OBJECT_LIMIT = 15
+LEGACY_PUBLISHED = "legacy_published"
+STAGE61_STRICT = "stage61_strict"
 FLAG_SYS_GAME_CLEAR = 0x082C
 FLAG_BADGE01_GET = 0x0824
 FLAG_KANTO_PORTAL_READY = 0x114B
@@ -36,7 +45,7 @@ _SCRIPT_OP = {
     "checkflag": 0x2B,
     "trainerbattle": 0x5C,
     "faceplayer": 0x5A,
-    "lock": 0x6B,
+    "lock": 0x6A,
     "release": 0x6C,
 }
 
@@ -155,6 +164,29 @@ def _clean_source_objects(repo_root: Path, clean_rom: bytes,
 
 
 def _object_fields(raw: bytes) -> dict[str, int]:
+    if len(raw) != OBJECT_SIZE:
+        raise KantoPlanError("object event record must be 24 bytes")
+    return {
+        "local_id": raw[0], "graphics_id": raw[1], "kind": raw[2],
+        # ObjectEventTemplate byte 3 is compiler padding.  The live movement
+        # type is byte 9, immediately after elevation.
+        "movement_type": raw[9], "x": struct.unpack_from("<h", raw, 4)[0],
+        "y": struct.unpack_from("<h", raw, 6)[0], "elevation": raw[8],
+        "trainer_type": struct.unpack_from("<H", raw, 12)[0],
+        "sight_range": struct.unpack_from("<H", raw, 14)[0],
+        "script_pointer": struct.unpack_from("<I", raw, 16)[0],
+        "flag": struct.unpack_from("<H", raw, 20)[0],
+    }
+
+
+def _legacy_object_fields(raw: bytes) -> dict[str, int]:
+    """Decode the byte layout used by the published Stage35 generator.
+
+    Stage35 accidentally treated compiler padding byte 3 as movement and
+    decoded coordinates unsigned.  Its checked-in artifacts are historical
+    inputs, so this decoder exists only behind ``LEGACY_PUBLISHED``; all public
+    validators and Stage61 generation continue to use the corrected ABI above.
+    """
     if len(raw) != OBJECT_SIZE:
         raise KantoPlanError("object event record must be 24 bytes")
     return {
@@ -297,13 +329,17 @@ def _msgbox_script(text_key: str, *, release: bool = True) -> dict[str, Any]:
 
 def build_trainer_scripts(script_key: str, trainer_id: int, local_id: int,
                           battle_format: str, unlock_expression: str,
-                          defeat_flag: int, text_keys: Mapping[str, str]) -> list[dict[str, Any]]:
+                          defeat_flag: int, text_keys: Mapping[str, str], *,
+                          policy: str = STAGE61_STRICT) -> list[dict[str, Any]]:
     """Emit gate/battle/locked script fragments with symbolic pointer fixups."""
     if not 0 <= trainer_id <= 0xFFFF or not 0 <= defeat_flag <= 0xFFFF:
         raise KantoPlanError("trainer id/defeat flag outside event ABI")
     if battle_format not in {"SINGLE", "DOUBLE"}:
         raise KantoPlanError(f"unsupported battle format: {battle_format}")
-    gate = bytearray([_SCRIPT_OP["lock"], _SCRIPT_OP["faceplayer"]])
+    if policy not in {LEGACY_PUBLISHED, STAGE61_STRICT}:
+        raise KantoPlanError(f"unknown Kanto event policy: {policy}")
+    lock_opcode = 0x6B if policy == LEGACY_PUBLISHED else _SCRIPT_OP["lock"]
+    gate = bytearray([lock_opcode, _SCRIPT_OP["faceplayer"]])
     gate_fixups: list[dict[str, Any]] = []
 
     def check(flag: int, condition: int, target: str) -> None:
@@ -617,8 +653,14 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
                            task06_dir: Path, *,
                            archive_rows: Sequence[Mapping[str, object]] = (),
                            archive_dialogue_rows: Sequence[Mapping[str, object]] = (),
-                           acquisition_metadata: Mapping[str, object] | None = None) -> dict[str, Any]:
+                           acquisition_metadata: Mapping[str, object] | None = None,
+                           policy: str = STAGE61_STRICT) -> dict[str, Any]:
     """Build the complete JSON-safe Kanto/Trainer Archive physical event plan."""
+    if policy not in {LEGACY_PUBLISHED, STAGE61_STRICT}:
+        raise KantoPlanError(f"unknown Kanto event policy: {policy}")
+    object_fields = (
+        _legacy_object_fields if policy == LEGACY_PUBLISHED else _object_fields
+    )
     repo_root, task06_dir = Path(repo_root), Path(task06_dir)
     encounters = _csv(task06_dir / "data/trainer_encounters.csv")
     dialogues = _csv(task06_dir / "data/trainer_dialogue.csv")
@@ -686,6 +728,18 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
         map_states[key] = _stage_map_state(stage_rom, group, number)
         map_grids[key] = _layout_blockdata(repo_root, row)
 
+    # An outgoing WarpEvent belongs to the map being left; it is not evidence
+    # that the same coordinate is a legal arrival on that map.  Resolve every
+    # concrete incoming warp/connection across the complete Kanto catalog once
+    # and use those destination-side positions for strict placement.  The
+    # legacy policy intentionally retains the historical single-map heuristic
+    # so already-published Stage35 bytes remain reproducible.
+    reverse_entrances: dict[str, dict[str, object]] | None = None
+    if policy == STAGE61_STRICT:
+        reverse_entrances = exact_reverse_entrance_seed_index(
+            catalog, map_grids,
+        )
+
     acquisition_hosts: set[tuple[int, int, int, int]] = set()
     if acquisition_metadata:
         scripts = acquisition_metadata.get("map_scripts", acquisition_metadata)
@@ -704,16 +758,32 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
     scripts: list[dict[str, Any]] = []
     relocations: list[dict[str, Any]] = []
     occupied_by_map: dict[str, set[tuple[int, int]]] = {}
+    object_tiles_by_map: dict[str, set[tuple[int, int]]] = {}
+    event_tiles_by_map: dict[str, set[tuple[int, int]]] = {}
     ids_by_map: dict[str, set[int]] = {}
     for key, state in map_states.items():
-        occupied_by_map[key] = {(_object_fields(raw)["x"], _object_fields(raw)["y"])
-                                for raw in state["objects"]}
-        ids_by_map[key] = {_object_fields(raw)["local_id"] for raw in state["objects"]}
+        object_tiles_by_map[key] = {
+            (object_fields(raw)["x"], object_fields(raw)["y"])
+            for raw in state["objects"]
+        }
+        occupied_by_map[key] = set(object_tiles_by_map[key])
+        ids_by_map[key] = {object_fields(raw)["local_id"] for raw in state["objects"]}
         row = catalog[key]
-        occupied_by_map[key].update((int(w["x"]), int(w["y"])) for w in row.get("warps", []))
-        occupied_by_map[key].update((int(e["x"]), int(e["y"]))
-                                    for kind in ("coord_events", "bg_events")
-                                    for e in row.get(kind, []))
+        event_tiles_by_map[key] = {
+            (int(w["x"]), int(w["y"])) for w in row.get("warps", [])
+        }
+        event_tiles_by_map[key].update(
+            (int(e["x"]), int(e["y"]))
+            for kind in ("coord_events", "bg_events")
+            for e in row.get(kind, [])
+        )
+        group = int(row["map_header"]["group_id"])
+        number = int(row["map_header"]["map_id"])
+        event_tiles_by_map[key].update(
+            (x, y) for host_group, host_map, x, y in acquisition_hosts
+            if (host_group, host_map) == (group, number)
+        )
+        occupied_by_map[key].update(event_tiles_by_map[key])
 
     def allocate_id(map_key: str) -> int:
         for value in range(1, 0x100):
@@ -741,10 +811,10 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
                 existing_template_ids.append(template_id)
             desired_local = _split_ints(encounter["local_id"])[0]
             live_objects = [raw for raw in map_states[map_key]["objects"]
-                            if _object_fields(raw)["local_id"] == desired_local]
+                            if object_fields(raw)["local_id"] == desired_local]
             if len(live_objects) != 1:
                 raise KantoPlanError(f"{key}: existing local object {desired_local} is not unique")
-            live_script = _object_fields(live_objects[0])["script_pointer"]
+            live_script = object_fields(live_objects[0])["script_pointer"]
             live_command = _rooted_trainer_command(stage_rom, live_script,
                                                    int(encounter["trainer_id"]),
                                                    f"existing::{key}")
@@ -795,7 +865,7 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
             if root >= len(source_objects):
                 raise KantoPlanError(f"{key}: source object index {root} outside {source_name}")
             source = source_objects[root]
-            fields = _object_fields(source)
+            fields = object_fields(source)
             template_trainer_id, template_audit = _source_template_trainer_id(
                 clean_rom, source, source_map=source_name, root_index=root
             )
@@ -836,6 +906,7 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
                                          talk_start=effective_sight == 0)
             record["fixups"][0]["target"] = encounter["script_key"]
             occupied_by_map[map_key].add((x, y))
+            object_tiles_by_map[map_key].add((x, y))
             new_by_map[map_key].append({"owner_kind": owner_kind, "encounter_key": key,
                                         "component": component, "local_id": local_id,
                                         "x": x, "y": y, "elevation": fields["elevation"],
@@ -862,7 +933,8 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
         scripts.extend(build_trainer_scripts(encounter["script_key"],
                                              int(encounter["trainer_id"]), component_ids[0],
                                              battle_format, encounter["unlock_expression"],
-                                             defeat_flag, text_keys))
+                                             defeat_flag, text_keys,
+                                             policy=policy))
         bindings.append({"encounter_key": key, "owner_kind": owner_kind,
                          "map_key": map_key, "group_id": int(encounter["group_id"]),
                          "map_id": int(encounter["map_id"]), "local_ids": component_ids,
@@ -891,50 +963,155 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
     archive_map_counts: dict[str, int] = defaultdict(int)
     archive_flags: set[int] = set()
     archive_keys: set[str] = set()
+    archive_preplanned: dict[int, tuple[str, int, int, dict[str, Any]]] = {}
+    if policy == LEGACY_PUBLISHED:
+        # Reproduce the already-published Stage35 byte stream exactly.  This is
+        # intentionally isolated from the strict final-state allocator.
+        for index, archive in enumerate(archive_rows):
+            archive_key, _trainer_id, _battle_format = _archive_identity(
+                archive, index
+            )
+            selected: tuple[str, int, int, dict[str, Any]] | None = None
+            for map_key in archive_candidates:
+                current = (len(map_states[map_key]["objects"])
+                           + len(new_by_map[map_key])
+                           + archive_map_counts[map_key])
+                if archive_map_counts[map_key] >= 5 or current >= OBJECT_LIMIT:
+                    continue
+                width, height, blocks = map_grids[map_key]
+                center = (width // 2, height // 2)
+                reachable = _reachable_tiles(
+                    catalog[map_key], blocks, width, height
+                )
+                if not reachable:
+                    continue
+                try:
+                    x, y = _nearest_safe_tile(
+                        blocks, width, height, center, 3,
+                        occupied_by_map[map_key], allowed=reachable,
+                    )
+                except KantoPlanError:
+                    continue
+                audit = _placement_audit(
+                    blocks, width, height, x, y, 3, 0,
+                    "MOVEMENT_TYPE_FACE_DOWN", occupied_by_map[map_key],
+                )
+                if (audit["walkable"] and audit["avoidable_path"]
+                        and audit["adjacent_walkable"]):
+                    audit["reachable_from_entry"] = True
+                    audit["reachable_component_size"] = len(reachable)
+                    selected = map_key, x, y, audit
+                    break
+            if selected is None:
+                raise KantoPlanError(
+                    f"Archive {archive_key}: no map has safe object budget"
+                )
+            archive_preplanned[index] = selected
+            map_key, x, y, _audit = selected
+            occupied_by_map[map_key].add((x, y))
+            archive_map_counts[map_key] += 1
+    else:
+        # Strict Stage61 policy assigns every map first, then allocates all
+        # objects and conversation stances jointly against the final set.
+        archive_map_by_index: list[str] = []
+        for index, _archive in enumerate(archive_rows):
+            selected_map: str | None = None
+            for map_key in archive_candidates:
+                current = (len(map_states[map_key]["objects"])
+                           + len(new_by_map[map_key])
+                           + archive_map_counts[map_key])
+                if archive_map_counts[map_key] >= 5 or current >= OBJECT_LIMIT:
+                    continue
+                width, height, blocks = map_grids[map_key]
+                if reverse_entrances is None:  # pragma: no cover - policy gate
+                    raise KantoPlanError("strict reverse entrance index missing")
+                seeds = set(reverse_entrances[map_key]["seeds"])
+                if not seeds:
+                    continue
+                selected_map = map_key
+                break
+            if selected_map is None:
+                raise KantoPlanError(
+                    f"Archive index {index}: no map has final-state object budget"
+                )
+            archive_map_by_index.append(selected_map)
+            archive_map_counts[selected_map] += 1
+
+        for map_key in sorted(set(archive_map_by_index)):
+            indices = [
+                index for index, candidate in enumerate(archive_map_by_index)
+                if candidate == map_key
+            ]
+            width, height, blocks = map_grids[map_key]
+            if reverse_entrances is None:  # pragma: no cover - policy gate
+                raise KantoPlanError("strict reverse entrance index missing")
+            seeds = set(reverse_entrances[map_key]["seeds"])
+            center = (width // 2, height // 2)
+            placements = allocate_objects_with_stances(
+                blocks, width, height, seeds, object_tiles_by_map[map_key],
+                [center for _ in indices],
+                reserved_tiles=event_tiles_by_map[map_key], elevation=3,
+            )
+            final_audit = audit_conversation_placements(
+                blocks, width, height, seeds, object_tiles_by_map[map_key],
+                placements, reserved_tiles=event_tiles_by_map[map_key],
+                elevation=3,
+            )
+            if final_audit["status"] != "PASS":
+                raise KantoPlanError(
+                    f"{map_key}: Archive final-state audit failed: {final_audit}"
+                )
+            ordered_seeds = sorted(seeds, key=lambda point: (point[1], point[0]))
+            seed_sha256 = _sha(json.dumps(
+                ordered_seeds, separators=(",", ":"),
+            ).encode("ascii"))
+            for target_index, placement in zip(
+                    indices, placements, strict=True):
+                archive_preplanned[target_index] = (
+                    map_key, placement.x, placement.y,
+                    {
+                        "walkable": True,
+                        "adjacent_walkable": 1,
+                        "avoidable_path": True,
+                        "sightline": [],
+                        "reachable_from_local_exact_incoming": True,
+                        "globally_reachable_from_new_game": None,
+                        "reachable_component_size": int(
+                            final_audit["reachable_player_tile_count"]
+                        ),
+                        "conversation_stance": [
+                            placement.stance_x, placement.stance_y,
+                        ],
+                        "post_batch_final_audit": "PASS",
+                        "entry_seed_basis": (
+                            "LOCAL_EXACT_REVERSE_INCOMING_WARP_OR_CONNECTION_"
+                            "NOT_GLOBAL_ROOT_PROOF"
+                        ),
+                        "entry_seed_count": len(ordered_seeds),
+                        "entry_seed_sha256": seed_sha256,
+                    },
+                )
+
     for index, archive in enumerate(archive_rows):
         archive_key, trainer_id, battle_format = _archive_identity(archive, index)
         if archive_key in archive_keys:
             raise KantoPlanError(f"duplicate Archive command key: {archive_key}")
         archive_keys.add(archive_key)
-        selected: tuple[str, int, int, dict[str, Any]] | None = None
-        for map_key in archive_candidates:
-            current = len(map_states[map_key]["objects"]) + len(new_by_map[map_key])
-            if archive_map_counts[map_key] >= 5 or current >= OBJECT_LIMIT:
-                continue
-            width, height, blocks = map_grids[map_key]
-            center = (width // 2, height // 2)
-            reachable = _reachable_tiles(catalog[map_key], blocks, width, height)
-            if not reachable:
-                continue
-            try:
-                x, y = _nearest_safe_tile(blocks, width, height, center, 3,
-                                          occupied_by_map[map_key], allowed=reachable)
-            except KantoPlanError:
-                continue
-            audit = _placement_audit(blocks, width, height, x, y, 3, 0,
-                                     "MOVEMENT_TYPE_FACE_DOWN", occupied_by_map[map_key])
-            if audit["walkable"] and audit["avoidable_path"] and audit["adjacent_walkable"]:
-                audit["reachable_from_entry"] = True
-                audit["reachable_component_size"] = len(reachable)
-                selected = map_key, x, y, audit
-                break
-        if selected is None:
-            raise KantoPlanError(f"Archive {archive_key}: no map has safe object budget")
-        map_key, x, y, audit = selected
+        map_key, x, y, audit = archive_preplanned[index]
         local_id = allocate_id(map_key)
         script_key = f"SCRIPT_TRAINER_ARCHIVE_{index + 1:03d}"
         record = build_object_record(archive_template, local_id=local_id, x=x, y=y,
                                      elevation=3, sight_range=0, talk_start=True)
         record["fixups"][0]["target"] = script_key
         occupied_by_map[map_key].add((x, y))
-        archive_map_counts[map_key] += 1
+        object_tiles_by_map[map_key].add((x, y))
         defeat_flag = 0x1800 + index
         if defeat_flag in archive_flags:
             raise KantoPlanError("Archive defeat flag collision")
         archive_flags.add(defeat_flag)
         new_by_map[map_key].append({"owner_kind": "ARCHIVE", "encounter_key": archive_key,
                                     "component": 0, "local_id": local_id, "x": x, "y": y,
-                                    "elevation": 3, "graphics_id": _object_fields(archive_template)["graphics_id"],
+                                    "elevation": 3, "graphics_id": object_fields(archive_template)["graphics_id"],
                                     "movement_type": "MOVEMENT_TYPE_FACE_DOWN", "sight_range": 0,
                                     "source_template_trainer_id": archive_template_id,
                                     "record": record,
@@ -958,7 +1135,8 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
                      "locked": archive_text("LOCKED", generic["archive_locked"]),
                      "not_enough": archive_text("NOT_ENOUGH_POKEMON", generic["not_enough"])}
         scripts.extend(build_trainer_scripts(script_key, trainer_id, local_id, battle_format,
-                                             "POSTGAME", defeat_flag, text_keys))
+                                             "POSTGAME", defeat_flag, text_keys,
+                                             policy=policy))
         header = catalog[map_key]["map_header"]
         bindings.append({"encounter_key": archive_key, "owner_kind": "ARCHIVE",
                          "archive_index": index, "map_key": map_key,
@@ -996,7 +1174,7 @@ def build_kanto_event_plan(stage_rom: bytes, clean_rom: bytes, repo_root: Path,
                      "old_event_header_address": state["event_header_address"],
                      "old_event_header_hex": state["event_header_hex"],
                      "preserved_objects": [{"index": i, "record_hex": raw.hex(),
-                                            **_object_fields(raw)}
+                                            **object_fields(raw)}
                                            for i, raw in enumerate(preserved)],
                      "new_objects": additions, "object_table_hex": object_table.hex(),
                      "object_table_fixups": fixups, "new_event_header": event,

@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+  "stage": 61,
+  "source_stage": 58,
+  "provenance": {
+    "stage58_rom": {
+      "path": "build/stages/58_qol_world_convenience_debug.gba",
+      "size": 33554432,
+      "sha256": "501c3fdda825abfb167bc62da63c189671fa2f026d7b866001fbfbac36700a0c"
+    },
+    "stage58_metadata": {
+      "path": "build/stages/58_qol_world_convenience_debug.json",
+      "sha256": "d6e45d9069fd59a82d29a0ec1ce1b83ecdbe73915aabc21d80206fc495a7e54e"
+    },
+    "stage58_runtime_cases": {
+      "path": "generated/runtime/stage58_qol_world_convenience_debug_cases.json",
+      "sha256": "b76f97bf2768b1dde28c104bda9a4cee409d6d7219e2b40e56bf6940c89699dc"
+    },
+    "stage58_builder": {
+      "path": "scripts/build_stage58_qol_world_convenience_debug.py",
+      "sha256": "9178bd3b096bb1c6c395103631b5781e959f6226987c212d448106d2ad5c3176"
+    },
+    "stage58_config": {
+      "path": "config/stage58_qol_world_convenience_debug.json",
+      "sha256": "8df8d067776bedaf1ad8c429afd04bcb9997faab2e0a4d168ad17978796ff27b"
+    }
+  },
+  "owners": [
+    {
+      "npc_id": "OBJECT:096/005:010",
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "group": 96,
+      "map": 5,
+      "object_index": 10,
+      "local_id": 11,
+      "script_pointer": 135873057,
+      "role": "STAGE58_CODEX_HUB_PC",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/hub/additions/0",
+      "object": {
+        "graphics_id": 94,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 19,
+        "y": 19,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:096/005:011",
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "group": 96,
+      "map": 5,
+      "object_index": 11,
+      "local_id": 12,
+      "script_pointer": 155045704,
+      "role": "STAGE58_CODEX_HUB_HEAL",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/hub/additions/1",
+      "object": {
+        "graphics_id": 64,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 21,
+        "y": 19,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:096/005:012",
+      "map_key": "KANTO_OUTDOOR_VERMILION_CITY",
+      "group": 96,
+      "map": 5,
+      "object_index": 12,
+      "local_id": 13,
+      "script_pointer": 155272296,
+      "role": "STAGE58_CODEX_HUB_MART",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/hub/additions/2",
+      "object": {
+        "graphics_id": 68,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 23,
+        "y": 19,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:096/009:003",
+      "map_key": "KANTO_OUTDOOR_INDIGO_PLATEAU_EXTERIOR",
+      "group": 96,
+      "map": 9,
+      "object_index": 3,
+      "local_id": 4,
+      "script_pointer": 155273768,
+      "role": "STAGE58_THIN_EVENT_INDIGO_PLATEAU",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/5",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 10,
+        "y": 7,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:096/016:000",
+      "map_key": "KANTO_OUTDOOR_ROUTE5",
+      "group": 96,
+      "map": 16,
+      "object_index": 0,
+      "local_id": 1,
+      "script_pointer": 155272648,
+      "role": "STAGE58_THIN_EVENT_ROUTE5",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/0",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 22,
+        "y": 26,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:097/005:002",
+      "map_key": "KANTO_DUNGEON_SSANNE_1_F_CORRIDOR",
+      "group": 97,
+      "map": 5,
+      "object_index": 2,
+      "local_id": 3,
+      "script_pointer": 155273096,
+      "role": "STAGE58_THIN_EVENT_SSANNE",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/2",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 18,
+        "y": 2,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:097/037:006",
+      "map_key": "KANTO_DUNGEON_DIGLETTS_CAVE_B1_F",
+      "group": 97,
+      "map": 37,
+      "object_index": 6,
+      "local_id": 7,
+      "script_pointer": 155272800,
+      "role": "STAGE58_THIN_EVENT_DIGLETTS_CAVE",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/1",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 2,
+        "y": 4,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:097/043:005",
+      "map_key": "KANTO_DUNGEON_ROCKET_HIDEOUT_B2_F",
+      "group": 97,
+      "map": 43,
+      "object_index": 5,
+      "local_id": 6,
+      "script_pointer": 155273496,
+      "role": "STAGE58_THIN_EVENT_ROCKET_HIDEOUT",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/4",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 19,
+        "y": 2,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "npc_id": "OBJECT:097/089:002",
+      "map_key": "KANTO_DUNGEON_POKEMON_TOWER_2_F",
+      "group": 97,
+      "map": 89,
+      "object_index": 2,
+      "local_id": 3,
+      "script_pointer": 155273296,
+      "role": "STAGE58_THIN_EVENT_POKEMON_TOWER",
+      "branches": ["DEFAULT"],
+      "provenance_record": "/world/thin_events/3",
+      "object": {
+        "graphics_id": 55,
+        "kind": 0,
+        "movement_type": 8,
+        "x": 4,
+        "y": 8,
+        "elevation": 3,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    }
+  ]
+}

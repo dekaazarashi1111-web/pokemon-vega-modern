@@ -13,6 +13,7 @@ SAVE_BLOCK1_OFFSET,0x00001000,0x00001200,512,VEGA_EVENT_VARS,vega_event_vars,leg
 SAVE_BLOCK1_OFFSET,0x00002F18,0x00002F80,104,CFRU_ITEM_FLAGS_LEGACY,itemObtainedFlags_legacy_832,legacy,TRANSLATE,RETIRED,vendor/upstream/CFRU-JP/include/global.h:761,Translated to the 999-item T08 bitmap
 SAVE_PARASITE_IMAGE_OFFSET,0x00000000,0x00000200,512,CFRU_SAVE_EXPANSION,expanded_flags,legacy,KEEP,LIVE,reports/generated/save_map.csv,Flag IDs 2304 through 6399
 SAVE_PARASITE_IMAGE_OFFSET,0x00000200,0x00000600,1024,CFRU_SAVE_EXPANSION,expanded_vars,legacy,KEEP,LIVE,reports/generated/save_map.csv,Var IDs 0x5000 through 0x51FF
+SAVE_PARASITE_IMAGE_OFFSET,0x00000604,0x00000606,2,CFRU_SAVE_EXPANSION,last_used_ball_u16,legacy,KEEP,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:9,Lボタン再使用UI向け捕獲ボールID; Stage61ではchunk13 tail内S61E recordへcompact serialize
 SAVE_PARASITE_IMAGE_OFFSET,0x000006A4,0x000006A8,4,CFRU_EXPANDED_COINS,cfru_player_coins_u32,legacy,KEEP,LIVE,reports/generated/save_map.csv,Not used as Vega arcade coin Factory BP or Mirage reward
 POKEMON_ABI_OFFSET,0x0000000F,0x00000010,1,POKEMON_PERSISTENT,natureMint,1,KEEP,LIVE,vendor/upstream/CFRU-JP/include/pokemon.h:288,Present in both 80-byte BoxPokemon and 100-byte party Pokemon ABI
 POKEMON_ABI_OFFSET,0x00000010,0x00000011,1,POKEMON_PERSISTENT,hyperTraining_6bit,1,KEEP,LIVE,vendor/upstream/CFRU-JP/include/pokemon.h:289,Upper two bits must remain zero

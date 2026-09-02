@@ -527,7 +527,9 @@ def _add_map_runtime(stage: bytes, stage17: dict[str, Any], blob: _Blob) -> dict
         "shop_object": {
             "local_id": 3,
             "graphics_id": shop[1],
-            "movement_type": shop[3],
+            # ObjectEventTemplate byte 3 is compiler padding.  The live
+            # movement type follows elevation at byte 9.
+            "movement_type": shop[9],
             "x": 22,
             "y": 19,
             "source_clone_local_id": 2,

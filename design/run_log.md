@@ -3103,3 +3103,166 @@
 - Commit: `-`（本エントリを含む記録commit）
 - Network:
   - インターネット未使用。Stage 60 exact ROM、FireRed日本版Rev.0参照ROM、固定上流source、既存manifest／runtime metadataだけを参照した。
+
+## 2026-08-31T01:17:20+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / Stage61 表示・NPC・全イベント実機相当監査
+- Status: STOPPED（ユーザー要請によるセッション切替。正本taskはIN_PROGRESSのまま）
+- Summary:
+  - 長時間セッションを安全に切り替えるため、現在のroot cause、実装済み範囲、未統合の安全なMapScripts projection／League state machine、interaction oracle／mGBA harnessの停止位置、旧生成物の非final警告、再開順とコマンドを単一handoffへ固定した。
+  - サブエージェント3系統を新規実装停止にし、所有ファイル、最終検証、未完、次の一手を回収した。Stage61 taskをDONE/BLOCKEDへ変更せず、次回`taskctl.py next`でRESUMEできる状態を保持した。
+  - 停止直前のnamespace追加、TEMP_FLAG 0x0001 producer/consumer identity、Seafoam layout clone、League scene 0..5、COW／signed RAM script／stale checkflagの再走条件を記録した。既存Stage61 ROMとcompile-only reportを最終証跡として使わないことを明記した。
+- Files changed:
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `design/current_state.md`
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/run_log.md`
+  - 停止直前の継続差分: `scripts/build_stage61_display_npc_event_audit.py`、`config/stage61_namespace_registry.json`、`config/stage61_display_npc_event_audit.json`、`tools/stage61_state_namespace_collision_audit.py`
+- Verify:
+  - `python3 -m unittest -v tests.test_stage61_map_script_projection`: 15 tests PASS。
+  - `python3 tools/stage61_map_script_projection.py --require-ready`: READY、plan SHA-256 `3b948dc6...`。
+  - builder、namespace collision、interaction oracle、mGBA runner/testの対象`py_compile`: PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - final Stage61 build／最新ROMでのmGBA full run: SKIP（handoff記載の統合前）。
+- Commit: `-`（未完taskの作業tree checkpoint。完了commitではない）
+- Network:
+  - インターネット未使用。
+
+## 2026-09-01T13:34:59+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / Stage61 表示・NPC・全イベント実機相当監査
+- Status: STOPPED（ユーザー要請によるセッション切替。正本taskはIN_PROGRESSのまま）
+- Summary:
+  - 旧checkpoint後のSCRIPT dispatcher hook、effect observer、artifact retention、FLASH closure、SAVE_LINK fault検証、BG cyclic path回帰、stateful menu実物理mGBA 56 witnessの進捗を最新handoffへ固定した。
+  - MAP conditional tableのfirst-match precedenceをROM evidence付きで実装し、COMMON静的oracleをstandard root直呼出しから物理OBJECT caller起点へ変更した。event TSVを63列へ拡張し、declared root／physical root／caller bytecode PCを分離した。
+  - 読取専用監査により、COMMON C captureがevent bytecode PCをCPU instruction PCへ混同するP0、oracle raw relationとrunner 13-key exact postconditionのP0、MAP ownerを単一rootでなくTEMP clear・全sibling tag・tag2反復・field returnまで合成すべきP0を確定した。
+  - P0の修正方針、negative test、実engine順、既存証跡hash、core source hash、次の実装／build／mGBA順を`design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`末尾へ追記した。重いproduction build、task完了化、commit、pushは行っていない。
+- Files changed:
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `design/current_state.md`
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/run_log.md`
+  - 継続中の未完差分: Stage61 oracle／builder／runner／mGBA C／tests／overlay／config一式。既存ユーザー変更と未追跡実装は戻していない。
+- Verify:
+  - `python3 -m py_compile tools/stage61_interaction_oracle.py scripts/run_stage61_mgba_validation.py`: PASS。
+  - COMMON物理caller、MAP precedence、COMMON effective OBJECT、63列MAP resumeのfocused unit 4件: PASS。
+  - `cc -std=c11 -O2 -Wall -Wextra -Werror -pedantic tools/mgba_stage61_display_npc_event_e2e.c -o .local/stage61-handoff-common-prefix-compile -lmgba`: PASS。
+  - `.local/stage61-stateful-final61d-WCPGjd/result.json`: 旧ROM上の実stock warp／歩行／向き／Aによる56 witness、failed／untested／warnings 0、direct root call 0: PASS。最終ROMのfull gateには代用しない。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`taskctl.py next`のRESUME照合: PASS。
+  - production build／新ROM全owner mGBA／`--require-mgba`: SKIP（handoff記載の3 P0修正前）。
+- Commit: `-`（未完taskのworktree checkpoint。完了commitではない）
+- Network:
+  - インターネット未使用。固定ROM、固定上流source、ローカルmGBAと既存証跡だけを使用した。
+
+## 2026-09-01T13:59:50+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / Stage61 表示・NPC・全イベント実機相当監査
+- Status: STOPPED（ユーザー要請によるセッション切替。正本taskはIN_PROGRESSのまま）
+- Summary:
+  - COMMON C captureをCPU dispatcher `0x0806911A`上のR2 event bytecode PC観測へ修正し、物理OBJECT root、exact caller opcode、隣接COMMON root、standard index、ScriptContext、実local IDをfail-closedで照合するsource／runner／negative testを回収した。新ROMでの実COMMON mGBA proofはproduction build後へ残した。
+  - runner-ready 13-key changed-only postcondition converterの途中実装をoracleへ回収した。ordinary／hiddenは切替済みだが、OBJECT、catalog schema、runner persistent二重比較、battle field-return、PC item projection、focused testは未完であることを明示した。
+  - ROMの`gMapGroups`から全678面のMapScripts outer／conditional tableを独立復号する`tools/stage61_map_lifecycle.py`と回帰を追加した。scriptあり189面、conditional 370 row、TEMP var clear、first-match、connectionのtag4省略、tag5／tag7別phaseを確認した。composite oracle／C ordered bufferは未統合である。
+  - 上記の正確な差分hash、PASS／FAIL、未完行、旧ROM警告、次の実装順をhandoff末尾の2026-09-01 13:58 checkpointへ固定した。重いbuild、task完了化、commit、pushは行っていない。
+- Files changed:
+  - `tools/mgba_stage61_display_npc_event_e2e.c`
+  - `scripts/run_stage61_mgba_validation.py`
+  - `tests/test_stage61_mgba_validation.py`
+  - `tools/stage61_interaction_oracle.py`
+  - `tools/stage61_map_lifecycle.py`
+  - `tests/test_stage61_map_lifecycle.py`
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+- Verify:
+  - COMMON dispatcher focused unit 5件: PASS。
+  - `tools/mgba_stage61_display_npc_event_e2e.c`の`-std=c11 -O2 -Wall -Wextra -Werror -pedantic -lmgba` compile: PASS。
+  - MAP lifecycle全678面／exact fixture／duplicate拒否の5 tests: PASS。
+  - Stage61 oracle／catalog／runner／test／MAP decoderの対象`py_compile`: PASS。
+  - `tests.test_stage61_interaction_oracle`全体: FAIL。37 tests後の`setUpClass`で旧generated semantic reportに`stage61_namespace_policy.engine_system_flag`がなく`ENGINE_SYSTEM_FLAG_IDENTITY_CONTRACT_REQUIRED`。新postcondition converterの合否証明には使わず、focused test追加と最終artifact再生成後に再走する。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`taskctl.py next`のRESUME照合: PASS。
+  - production build／新ROM全owner mGBA／`--require-mgba`: SKIP（P0-2／P0-3統合前）。
+- Commit: `-`（未完taskのworktree checkpoint。完了commitではない）
+- Network:
+  - インターネット未使用。固定ROM、固定source、ローカルmGBA library、既存生成物だけを使用した。
+
+## 2026-09-02T07:26:25+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / Stage61 表示・NPC・全イベント実機相当監査
+- Status: STOPPED（ユーザー要請によるセッション切替。正本taskはIN_PROGRESSのまま）
+- Summary:
+  - CreateBoxMon friendshipの1-byte修復とGetSpeciesName 11-byte padding修復、Gift 30-layout／Fossil 13 prefix／RFU 20 scenarioのoracle、runtime aggregate cap、OBJECT 14-key exact、catalog external kindを統合した。
+  - runner／CはDayCare／Move、Gift fixture／opcode79／30-layout C sweep、RFU static attachまで進んだ。独立helperは全678面MAP decoderとMirage 33／Factory 10／Codex 6 scenarioを固定した。
+  - 残件をrunner／Cのparty 600 bytes／storage `0x83D0` bytes raw SHA-256貫通、`FOSSIL_REVIVAL_STATE`、Gift production登録、MAP composite、facility／Ruin／RFU final coverageの順に固定した。
+  - 完了済み成果、core hash、既知FAIL、未完行、次回の最初のコマンドとproduction build前後の順序をhandoff末尾の2026-09-02 07:26 checkpointへ固定した。
+- Files changed:
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `tools/stage61_catalog_state_matrix.py`
+  - `tests/test_stage61_catalog_state_matrix.py`
+  - `tests/test_stage61_create_box_mon_friendship_repair.py`
+  - `tools/stage61_interaction_oracle.py`
+  - `tools/stage61_cyclic_decision_contracts.py`
+  - `tests/test_stage61_interaction_oracle.py`
+  - `tests/test_stage61_cyclic_decision_contracts.py`
+  - `scripts/run_stage61_mgba_validation.py`
+  - `tools/mgba_stage61_display_npc_event_e2e.c`
+  - `tests/test_stage61_mgba_validation.py`
+  - `tools/stage61_facility_sessions.py`
+  - `tests/test_stage61_facility_sessions.py`
+  - `tools/stage61_map_lifecycle.py`
+  - `tests/test_stage61_map_lifecycle.py`
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `design/current_state.md`
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/run_log.md`
+- Verify:
+  - 対象builder／oracle／cyclic／catalog／runner／facility／MAP／対応testの`py_compile`、runner／catalog／oracle module import: PASS。
+  - mGBA C／RFU peripheralの`-std=c11 -O2 -Wall -Wextra -Werror -pedantic -lmgba` compile: PASS。
+  - CreateBoxMon 6／MAP lifecycle 8／facility 19の合計33 tests: PASS。catalog focused 4 tests: PASS。
+  - oracle RFU focused 3件505 paths／blocker 0、aggregate cap 2件、RFU 20 materialization: PASS。
+  - runner focused 10件: 7 PASS／2 FAIL／1 ERROR。原因はoracleに追加済みの`FOSSIL_REVIVAL_STATE`がrunner external kindに未統合の1点。
+  - full oracle／full catalog: 旧generated report不足の既知FAIL。production buildで再生成後に再検証する。
+  - production build／修復後ROM実mGBA／`--require-mgba`: SKIP（未完統合前）。
+- Commit: `-`（未完taskの作業tree checkpoint。task完了化／commit／pushなし）
+- Network:
+  - プロジェクト調査でインターネット未使用。固定ROM／source、ローカルmGBA、既存証跡だけを使用した。
+
+## 2026-09-02T22:31:48+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / Stage61 critical-release候補WIP checkpoint
+- Status: STOPPED（critical候補出口はPASS。元の全件監査taskはIN_PROGRESS）
+- Summary:
+  - 進行中だったstrict production buildを最後まで回収し、`RUNTIME_CONTROL_MATERIALIZATION_UNRESOLVED:0x0936B5A3`（REMATCH_STATE source byte evidenceと汎用relation normalizerの未接続）でexit 1を確認した。ROMのゲーム進行障害ではないため期待値を変更せず`DEFERRED_AUDIT`とし、同buildを原因探索で再実行していない。
+  - 既定strict経路を保持したまま、専用`critical-release`／`critical-release-check`経路を分離した。候補ROMは33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`、payload SHA-256 `ef473a22e5aa2b4d3fda85f97a2285b2ef48bf176c59e931cd38cc570b0bf40b`。
+  - Stage60差分／clean直接BPSの両再構成、実変更6,202 span・220,250 bytesとbuilder報告の完全一致、宣言領域外0、全678 physical mapの構造catalog、3,108 ObjectEventTemplate、6,417 event ownerをPASSした。
+  - mGBAで主要進行5 case、Gift 6経路、Four Island／Route5育て屋2系統をそれぞれ独立2 process実走した。boot／Continue、通常START save 2世代、canonical 128 KiB raw reload一致、移動／connection／Fly、可視会話、笛取得、Species 491固定戦、戦闘後field、party／PC storage、deposit／payment／withdrawをPASS。crash／softlock／save破損／進行阻害は0。
+  - strict側のrematch、Vermilion path、League／Seafoam trace、注入save retry、RTC footer、旧capture schema、warp preview、Snorlax flee outcomeの9観測は期待値を変えず`DEFERRED_AUDIT`として集約した。全678 map×全owner×全branch×runs=2、unused state、全owner exact ordinal、coverage 0 omissionも後続へ残し、task状態`[>]`を維持した。
+- Files changed:
+  - Stage61継続worktree一式。
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `scripts/run_stage61_critical_runtime.py`
+  - `scripts/run_stage61_critical_daycare.py`
+  - `scripts/run_stage61_critical_release_validation.py`
+  - `tools/mgba_stage61_display_npc_event_e2e.c`
+  - `tools/mgba_stage61_event_lifecycle_e2e.c`
+  - `tools/mgba_stage61_progression_lifecycle_e2e.c`
+  - `tools/mgba_stage61_save_ui_cow_e2e.c`
+  - `tools/mgba_stage61_rfu_peripheral.c`
+  - `tools/mgba_stage61_rfu_peripheral.h`
+  - `tests/test_stage61_critical_release.py`
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `design/current_state.md`
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/run_log.md`
+- Verify:
+  - `critical-release`生成／`critical-release-check`: PASS。
+  - `python3 scripts/run_stage61_critical_runtime.py ... --runs 2`: 5 case×2 process PASS、result hash一致、failed／untested／warnings 0。
+  - `python3 scripts/run_stage61_mgba_validation.py ... --case giveegg_result_contract --runs 2`: 6 Gift経路 PASS、result hash一致、warnings 0。
+  - `python3 scripts/run_stage61_critical_daycare.py ... --runs 2`: 2育て屋×2 process PASS、result hash一致、failed／untested／warnings 0。
+  - `python3 scripts/run_stage61_critical_release_validation.py`: PASS、`PLAYTEST_CANDIDATE_READY`、critical failure 4分類すべて0。
+  - `python3 -m unittest tests.test_stage61_critical_release`: 6 tests PASS。
+  - event lifecycle／progression lifecycle／save UI COW／main runner strict compile-only contract: 4 tests PASS。
+  - critical 3 scriptsの`py_compile`、C runnerの`-std=c11 -O2 -Wall -Wextra -Werror -pedantic` compile、`git diff --check`: PASS。
+  - 元の全件strict acceptance: `DEFERRED_AUDIT`。完了扱いにしていない。
+- Commit: WIP checkpoint（本記録を含むcommit。task完了commitではない）
+- Network:
+  - インターネット未使用。固定ローカルROM／source、ローカルlibmGBA、既存上流固定物だけを使用した。

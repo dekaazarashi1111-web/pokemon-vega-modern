@@ -62,4 +62,4 @@
 - [x] Stage58 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260828-STAGE58-IPAD-ROM-SAVE-PLACEMENT -->
 - [x] Stage59 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260829-STAGE59-IPAD-ROM-SAVE-PLACEMENT -->
 - [x] Stage60 ROMと標準Lv.100攻撃型6体セーブをiPadへ安全に配置する <!-- id:USER-20260829-STAGE60-IPAD-ROM-SAVE-PLACEMENT -->
-- [ ] Stage60の表示・NPC配置・全イベント／全NPC会話を全map監査・根本修正する <!-- id:USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT -->
+- [>] Stage60の表示・NPC配置・全イベント／全NPC会話を全map監査・根本修正する <!-- id:USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT -->

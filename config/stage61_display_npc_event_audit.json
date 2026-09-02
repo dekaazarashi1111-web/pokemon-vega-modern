@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+  "stage": 61,
+  "inputs": {
+    "stage60_rom": {
+      "path": "build/stages/60_wild_species_root_repair.gba",
+      "size": 33554432,
+      "sha256": "3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1"
+    },
+    "stage60_metadata": {
+      "path": "build/stages/60_wild_species_root_repair.json",
+      "sha256": "6dfc8c9bdca9dae6beae25afd29e48dcf8cfc011258206513f0b652970fb4a5b"
+    },
+    "stage60_allocation": {
+      "path": "build/stages/60_allocation.json",
+      "sha256": "117a22cc414f5e341ff443b902dd79179a41c15883bd71cc100598285ef537ea"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "vega_reference_rom": {
+      "path": "build/reference/vega.gba",
+      "size": 16777216,
+      "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5"
+    },
+    "vega_map_inventory": {
+      "path": "reports/generated/vega_map_inventory.csv",
+      "size": 39007,
+      "sha256": "a9101030c79d3d18a4a24fe9de04eb1df889e78ba4499252c67daf5f5b590e95"
+    },
+    "owner_ledger": {
+      "path": "reports/generated/world_runtime_owner_ledger.json",
+      "sha256": "c2190bae4ee842c8a6d30f1404f8bef58d37c0c7cfdd8933eba57ed53fa4dcbd"
+    },
+    "trainer_event_plan": {
+      "path": "generated/runtime/trainer_changekit_final_event_plan.json",
+      "sha256": "88787033ab905832f6d14ac8d4879801ee8f038e2dd3d77c679425c4d89e0aa8"
+    },
+    "trainer_dialogue": {
+      "path": "content/trainer_changekit_final/trainer_dialogue.csv",
+      "size": 1062265,
+      "sha256": "eea6321167f1ee6214340751d97d0011228cff16abe84391a3395546b070b8d9"
+    },
+    "map_sections": {
+      "path": "content/kanto_map_sections.csv",
+      "sha256": "1e548de2712821c041f4b20d432ecd23cfd5d08aeece009a7a4baad68f42de05"
+    },
+    "namespace_registry": {
+      "path": "config/stage61_namespace_registry.json",
+      "sha256": "1805d84d139b9a94acc2aad589b539b9604d4afc4dc8f817adc115b982fd00c8"
+    },
+    "rom_regions": {
+      "path": "config/rom_regions.csv",
+      "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"
+    },
+    "ram_layout": {
+      "path": "config/ram_layout.csv",
+      "sha256": "89e1540fbe33a6dfa9feb138b10aad725f29c823a7e7ca06ecb51124706a90dc"
+    },
+    "save_layout": {
+      "path": "config/save_layout.csv",
+      "sha256": "1f84b47301f5e2b45b612c5a8e1009ec7c1932407d8050081ca290ce3423cb98"
+    }
+  },
+  "runtime_source": "overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c",
+  "hooks": {
+    "get_map_name": {
+      "address": "0x080C5F5C",
+      "expected": "70b5061c09041204",
+      "symbol": "Stage61DisplayNpcEvent_GetMapName"
+    },
+    "set_fly_warp_destination": {
+      "address": "0x080C6460",
+      "expected": "30b5000408494018",
+      "symbol": "Stage61DisplayNpcEvent_SetFlyWarpDestination"
+    },
+    "dungeon_name_resolver": {
+      "address": "0x080C1DCE",
+      "expected": "041c583c2404240c0120002104f051f8286822494018012101802348a40024182468",
+      "symbol": "Stage61DisplayNpcEvent_ResolveNamePointer"
+    },
+    "object_graphics_id_limit": {
+      "address": "0x0805EBA0",
+      "expected": "9729",
+      "replacement": "ef29"
+    },
+    "object_graphics_table_pointer": {
+      "address": "0x0805EBB4",
+      "expected": "383e3608"
+    }
+  },
+  "story": {
+    "tohoku_flute_flag": "0x119E",
+    "route12_hidden_flag": "0x149E",
+    "route16_hidden_flag": "0x149F",
+    "flute_item": 350,
+    "canonical_snorlax_species": 491,
+    "snorlax_graphics_id": 239
+  },
+  "outputs": {
+    "rom": "build/stages/61_display_npc_event_audit.gba",
+    "metadata": "build/stages/61_display_npc_event_audit.json",
+    "allocation": "build/stages/61_allocation.json",
+    "incremental_bps": "build/patches/stage60-to-stage61-display-npc-event-audit.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage61-display-npc-event-audit.bps",
+    "runtime": "generated/runtime/stage61_display_npc_event_audit.bin",
+    "symbols": "generated/runtime/stage61_display_npc_event_audit_symbols.json",
+    "audit": "reports/generated/stage61_display_npc_event_audit.json",
+    "report": "reports/generated/stage61_display_npc_event_audit.md",
+    "map_catalog": "reports/generated/stage61_map_display_catalog.json",
+    "npc_catalog": "reports/generated/stage61_npc_interaction_catalog.json",
+    "legacy_npc_catalog": "reports/generated/stage61_npc_interaction_catalog_legacy.json",
+    "npc_state_matrix": "reports/generated/stage61_npc_state_matrix.json",
+    "placement_audit": "reports/generated/stage61_final_placement_audit.json",
+    "object_template_contracts": "reports/generated/stage61_object_template_contracts.json",
+    "event_owner_inventory": "reports/generated/stage61_event_owner_inventory.json",
+    "interaction_repair_manifest": "reports/generated/stage61_interaction_repair_manifest.json",
+    "interaction_abi_manifest": "reports/generated/stage61_interaction_abi_manifest.json",
+    "hidden_item_script_consumers": "reports/generated/stage61_hidden_item_script_consumers.json",
+    "map_field_return_callbacks": "reports/generated/stage61_map_field_return_callbacks.json",
+    "runtime_trigger_inputs": "reports/generated/stage61_runtime_trigger_inputs.json",
+    "runtime_control_contract": "reports/generated/stage61_runtime_control_expansion.json",
+    "effect_raw_watch_plan": "reports/generated/stage61_effect_raw_watch_plan.json",
+    "interaction_oracle_catalog": "reports/generated/stage61_interaction_oracles.json",
+    "stateful_menu_loop_contracts": "reports/generated/stage61_stateful_menu_loop_contracts.json",
+    "cyclic_decision_contracts": "reports/generated/stage61_cyclic_decision_contracts.json",
+    "all_event_owner_integrity": "reports/generated/stage61_all_event_owner_integrity.json",
+    "event_graph": "reports/generated/stage61_event_dependency_graph.json",
+    "semantic_plan": "reports/generated/stage61_event_semantic_relocation.json",
+    "mgba_fixtures": "reports/generated/stage61_mgba_fixtures.json"
+  }
+}

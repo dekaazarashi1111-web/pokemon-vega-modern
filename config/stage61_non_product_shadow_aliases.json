@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+  "stage": 61,
+  "expected_alias_count": 2,
+  "aliases": [
+    {
+      "source_owner_id": "OBJECT:003/022:000",
+      "source_map": [3, 22],
+      "source_map_key": "Route4",
+      "source_object_index": 0,
+      "source_local_id": 1,
+      "source_script_pointer": "0x0817589D",
+      "source_diagnostic_stance": [9, 7],
+      "source_diagnostic_action": "DOWN",
+      "canonical_owner_id": "OBJECT:096/015:007",
+      "canonical_map": [96, 15],
+      "canonical_map_key": "KANTO_OUTDOOR_ROUTE4",
+      "canonical_object_index": 7,
+      "canonical_local_id": 8,
+      "canonical_source_script_pointer": "0x0817589D",
+      "canonical_walk_start": [12, 5],
+      "canonical_walk_sequence": ["DOWN", "LEFT", "LEFT", "LEFT", "DOWN"],
+      "canonical_stance": [9, 7],
+      "canonical_action": "DOWN",
+      "shared_template_fields": {
+        "graphics_id": 23,
+        "x": 9,
+        "y": 8,
+        "elevation": 3,
+        "movement_type": 2,
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    },
+    {
+      "source_owner_id": "OBJECT:003/022:003",
+      "source_map": [3, 22],
+      "source_map_key": "Route4",
+      "source_object_index": 3,
+      "source_local_id": 4,
+      "source_script_pointer": "0x0819A366",
+      "source_diagnostic_stance": [15, 13],
+      "source_diagnostic_action": "DOWN",
+      "canonical_owner_id": "OBJECT:096/015:008",
+      "canonical_map": [96, 15],
+      "canonical_map_key": "KANTO_OUTDOOR_ROUTE4",
+      "canonical_object_index": 8,
+      "canonical_local_id": 9,
+      "canonical_source_script_pointer": "0x0819A366",
+      "canonical_walk_start": [12, 19],
+      "canonical_walk_sequence": ["UP", "UP", "UP", "UP", "UP", "UP", "RIGHT", "RIGHT", "RIGHT"],
+      "canonical_stance": [15, 13],
+      "canonical_action": "DOWN",
+      "shared_template_fields": {
+        "graphics_id": 19,
+        "x": 15,
+        "y": 14,
+        "elevation": 3,
+        "movement_type": 5,
+        "movement_range_x": 1,
+        "movement_range_y": 1,
+        "trainer_type": 0,
+        "sight_range": 0,
+        "flag": 0
+      }
+    }
+  ]
+}

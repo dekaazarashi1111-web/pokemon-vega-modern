@@ -8,6 +8,7 @@ from pathlib import Path
 
 from tools.trainer_final.kanto_events import (
     KantoPlanError,
+    _object_fields,
     build_event_header,
     build_kanto_event_plan,
     build_object_record,
@@ -37,16 +38,23 @@ class KantoEventPrimitiveTests(unittest.TestCase):
     def test_object_and_event_images_are_relocatable(self) -> None:
         template = bytearray(24)
         template[1] = 7
-        template[3] = 8
+        template[3] = 0xA5  # ABI padding。movementとして読んではならない。
+        template[9] = 8
         struct.pack_into("<HH", template, 12, 1, 4)
         record = build_object_record(bytes(template), local_id=9, x=12, y=13,
                                      elevation=3, sight_range=2)
         raw = bytes.fromhex(record["data_hex"])
         self.assertEqual(len(raw), 24)
-        self.assertEqual((raw[0], raw[1], raw[3]), (9, 7, 8))
+        self.assertEqual((raw[0], raw[1], raw[3], raw[9]), (9, 7, 0xA5, 8))
         self.assertEqual(struct.unpack_from("<HH", raw, 4), (12, 13))
         self.assertEqual(struct.unpack_from("<HH", raw, 12), (1, 2))
         self.assertEqual(record["fixups"], [{"offset": 16, "target": "SCRIPT_KEY"}])
+
+        signed = bytearray(template)
+        struct.pack_into("<hh", signed, 4, -2, -3)
+        fields = _object_fields(bytes(signed))
+        self.assertEqual((fields["x"], fields["y"], fields["movement_type"]),
+                         (-2, -3, 8))
 
         event = build_event_header(12, {"warps": 2, "coords": 1, "bg": 3})
         self.assertEqual(bytes.fromhex(event["data_hex"])[:4], bytes((12, 2, 1, 3)))
@@ -59,6 +67,8 @@ class KantoEventPrimitiveTests(unittest.TestCase):
         scripts = build_trainer_scripts("SCRIPT_TEST", 4096, 2, "DOUBLE",
                                         "KANTO_CERT_COUNT>=3", 0x1500, texts)
         battle = next(row for row in scripts if row["role"] == "trainerbattle")
+        gate = next(row for row in scripts if row["role"] == "gate")
+        self.assertEqual(bytes.fromhex(gate["data_hex"])[:2], b"\x6a\x5a")
         raw = bytes.fromhex(battle["data_hex"])
         self.assertEqual(raw[:2], b"\x5c\x04")
         self.assertEqual(struct.unpack_from("<HH", raw, 2), (4096, 0))
@@ -155,7 +165,19 @@ class KantoEventFullPlanTests(unittest.TestCase):
                 self.assertTrue(obj["audit"]["walkable"])
                 self.assertTrue(obj["audit"]["avoidable_path"])
                 if obj["owner_kind"] == "ARCHIVE":
-                    self.assertTrue(obj["audit"]["reachable_from_entry"])
+                    self.assertTrue(
+                        obj["audit"]["reachable_from_local_exact_incoming"]
+                    )
+                    self.assertIsNone(
+                        obj["audit"]["globally_reachable_from_new_game"]
+                    )
+                    self.assertEqual(
+                        obj["audit"]["entry_seed_basis"],
+                        "LOCAL_EXACT_REVERSE_INCOMING_WARP_OR_CONNECTION_"
+                        "NOT_GLOBAL_ROOT_PROOF",
+                    )
+                    self.assertGreater(obj["audit"]["entry_seed_count"], 0)
+                    self.assertEqual(len(obj["audit"]["entry_seed_sha256"]), 64)
                 self.assertGreaterEqual(obj["source_template_trainer_id"], 0)
                 self.assertLessEqual(obj["source_template_trainer_id"], 742)
                 self.assertEqual(obj["audit"]["source_template"]["candidate_trainer_ids"],

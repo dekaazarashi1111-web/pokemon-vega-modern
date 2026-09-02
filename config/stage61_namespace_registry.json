@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+  "stage": 61,
+  "policy": "PROJECT_OWNED_NUMERIC_NAMESPACES_ARE_DISJOINT_AND_FAIL_CLOSED",
+  "flags": [
+    {
+      "owner": "CFRU_RAID_COMPLETION_FLAGS",
+      "start": "0x15C0",
+      "end_inclusive": "0x162C",
+      "count": 109,
+      "allocation": "raid_map_section_id_ascending"
+    },
+    {
+      "owner": "KANTO_MAP_TOPOLOGY_SOURCE_FLAGS",
+      "start": "0x162D",
+      "end_inclusive": "0x163E",
+      "count": 18,
+      "allocation": "source_flag_0x0040_through_0x004D_then_0x0058_0x0059_0x02D2_0x02D3",
+      "storage": "CFRU_EXPANDED_PERSISTENT_SAVE"
+    },
+    {
+      "owner": "TRAINER_ARCHIVE_DEFEAT_FLAGS",
+      "start": "0x1800",
+      "end_inclusive": "0x1846",
+      "count": 71,
+      "allocation": "archive_index_ascending"
+    },
+    {
+      "owner": "KANTO_FULL_CFG_SOURCE_FLAGS",
+      "start": "0x1847",
+      "end_inclusive": "0x18C3",
+      "count": 125,
+      "allocation": "source_flag_id_ascending_excluding_engine_abi_0x0805_and_shadow_0x18B3",
+      "allocated_count": 124,
+      "reserved_holes": ["0x18B3"],
+      "engine_identity_exclusions": ["0x0805"]
+    },
+    {
+      "owner": "STAGE61_UNALLOCATED_SCRIPT_FLAG_GUARD",
+      "start": "0x18C4",
+      "end_inclusive": "0x18C4",
+      "count": 1,
+      "allocation": "reserved_unallocated_engine_special_flag_regression_guard"
+    },
+    {
+      "owner": "KANTO_SOURCE_OBJECT_VISIBILITY_FLAGS",
+      "start": "0x18C5",
+      "end_inclusive": "0x18DF",
+      "count": 27,
+      "allocation": "source_flag_id_ascending_excluding_full_cfg_domain"
+    },
+    {
+      "owner": "KANTO_REGION_VISIT_FLAGS",
+      "start": "0x18E0",
+      "end_inclusive": "0x18FB",
+      "count": 28,
+      "allocation": "runtime_map_section_id_ascending"
+    },
+    {
+      "owner": "STAGE61_EXPANDED_FLAG_BUFFER",
+      "start": "0x18FC",
+      "end_inclusive": "0x18FF",
+      "count": 4,
+      "allocation": "reserved_unallocated"
+    }
+  ],
+  "vars": [
+    {
+      "owner": "KANTO_MAP_TOPOLOGY_PERSISTENT_VARS",
+      "start": "0x5167",
+      "end_inclusive": "0x516B",
+      "count": 5,
+      "allocation": "source_var_0x4063_through_0x4067",
+      "storage": "CFRU_EXPANDED_PERSISTENT_SAVE"
+    },
+    {
+      "owner": "KANTO_LEAGUE_PROJECT_SCENE_VAR",
+      "start": "0x516C",
+      "end_inclusive": "0x516C",
+      "count": 1,
+      "allocation": "project_owned_scene_state_0_through_5",
+      "storage": "CFRU_EXPANDED_PERSISTENT_SAVE"
+    },
+    {
+      "owner": "KANTO_FULL_CFG_PERSISTENT_VARS",
+      "start": "0x516D",
+      "end_inclusive": "0x517F",
+      "count": 19,
+      "allocation": "source_var_id_ascending",
+      "storage": "CFRU_EXPANDED_PERSISTENT_SAVE"
+    },
+    {
+      "owner": "T19_QOL_VOLATILE_AND_COUNTERS",
+      "start": "0x5180",
+      "end_inclusive": "0x51FF",
+      "count": 128,
+      "allocation": "manifests/vars.csv",
+      "storage": "CFRU_EXPANDED_SAVE"
+    }
+  ]
+}

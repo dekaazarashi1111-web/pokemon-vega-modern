@@ -10,7 +10,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.build_species_surface import ARTIFACTS, build_model, check
+from scripts.build_species_surface import (
+    ARTIFACTS,
+    SPECIES_PICTURE_BOUND_THUNK_CAVE,
+    build_model,
+    check,
+    thumb_bl,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -230,13 +236,44 @@ class SpeciesSurfaceTests(unittest.TestCase):
 
     def test_exact_rom_display_hooks_and_samples_are_live(self) -> None:
         patches = self.metadata["runtime"]["patches"]
-        self.assertEqual(len(patches), 30)
+        self.assertEqual(len(patches), 31)
         for patch in patches:
             replacement = bytes.fromhex(patch["replacement_hex"])
             self.assertEqual(
                 self.rom[patch["site"]:patch["site"] + len(replacement)],
                 replacement,
                 patch["label"],
+            )
+        self.assertEqual(
+            self.rom[
+                SPECIES_PICTURE_BOUND_THUNK_CAVE:
+                SPECIES_PICTURE_BOUND_THUNK_CAVE + 8
+            ],
+            bytes.fromhex("0048704754060000"),
+        )
+        self.assertEqual(
+            self.metadata["species_name_consumers"]
+                ["species_picture_bound_thunk_cave"],
+            SPECIES_PICTURE_BOUND_THUNK_CAVE,
+        )
+        self.assertEqual(
+            self.metadata["species_name_consumers"]
+                ["species_picture_bound_thunk_pointer_references"],
+            0,
+        )
+        for site, compare in (
+            (0x0E648, 0x4285),
+            (0x0EA98, 0x4282),
+            (0x0E720, 0x4287),
+            (0x0EB64, 0x4287),
+        ):
+            self.assertEqual(
+                self.rom[site:site + 4],
+                thumb_bl(site, SPECIES_PICTURE_BOUND_THUNK_CAVE),
+            )
+            self.assertEqual(
+                struct.unpack_from("<HH", self.rom, site + 4),
+                (compare, 0xD907),
             )
         for compare_site, fallback_load, bound_literal, fallback_literal in (
             (0x73DFC, 0x73E04, 0x73E08, 0x73E14),

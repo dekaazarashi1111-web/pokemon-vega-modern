@@ -9,6 +9,7 @@ EWRAM,0x020398D8,0x020398DC,4,DPE_UI,sNamingScreenData,naming_screen,VOLATILE,LI
 EWRAM,0x0203AC68,0x0203AC6C,4,DPE_UI,gPokedexScreenDataPtr,pokedex_screen,VOLATILE,LIVE,vendor/upstream/DPE-JP/BPRJ.ld:10,Named relocatable pointer slot
 EWRAM,0x0203B0E8,0x0203B2E8,512,CFRU_SAVE_EXPANSION,gExpandedFlags,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:143,Expanded flags
 EWRAM,0x0203B2E8,0x0203B6E8,1024,CFRU_SAVE_EXPANSION,gExpandedVars,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:144,Expanded vars; T19は0x5180..0x51FDをload時clearするvolatile UI stateとして予約し0x51FEをbasket counterに使用
+EWRAM,0x0203B6EC,0x0203B6EE,2,CFRU_SAVE_EXPANSION,gLastUsedBall,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/BPRJ.ld:9,Lボタン再使用UIが参照する最後の捕獲ボールID; Stage61 S61E recordで永続化
 EWRAM,0x0203B78C,0x0203B790,4,CFRU_SAVE_EXPANSION,gPlayerCoins,save_session,FLASH,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:158,CFRU u32 coin field is not the Vega arcade coin ABI
 EWRAM,0x0203C6C8,0x0203C6CE,6,CFRU_PARTY_SELECTION,gSelectedOrderFromParty,party_selection,VOLATILE,LIVE,vendor/upstream/CFRU-JP/include/new/ram_locs.h:170,Outside the T08 ledger allocation
 EWRAM,0x0203D000,0x0203D800,2048,T08_SAVE_LEDGER,gVegaModernSaveData,save_session,FLASH,LIVE,overlays/save_migration/save_migration.h,Backed by CFRU sector 30/31 payload offset 0x1054

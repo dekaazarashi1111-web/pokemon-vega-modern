@@ -174,6 +174,7 @@ SPECIES_NAME_PATCHES = (
 # policy.  Only these four audited party-to-BattlePokemon transfers target the
 # eight-byte nickname field and are safe to widen to six glyphs plus EOS.
 BATTLE_NICKNAME_COPY_CAVE = 0x18C350
+SPECIES_PICTURE_BOUND_THUNK_CAVE = 0x18C358
 BATTLE_NICKNAME_TRANSFER_SITES = (
     (0x03069A, "d8f7e9f8", "player party to local BattlePokemon"),
     (0x036072, "d2f7fdfb", "opponent party to local BattlePokemon"),
@@ -763,6 +764,21 @@ def species_name_consumer_model(stage: bytes) -> dict[str, Any]:
     ]
     if cave_references:
         fail(f"battle nickname veneer cave gained pointer users: {cave_references}")
+    if (stage[SPECIES_PICTURE_BOUND_THUNK_CAVE:
+              SPECIES_PICTURE_BOUND_THUNK_CAVE + 8] != cave_expected):
+        fail("audited Species picture-bound thunk cave is no longer empty")
+    bound_cave_pointer = struct.pack(
+        "<I", ROM_BASE + SPECIES_PICTURE_BOUND_THUNK_CAVE,
+    )
+    bound_cave_references = [
+        index for index in range(0, len(stage) - 3, 4)
+        if stage[index:index + 4] == bound_cave_pointer
+    ]
+    if bound_cave_references:
+        fail(
+            "Species picture-bound thunk cave gained pointer users: "
+            f"{bound_cave_references}"
+        )
     battle_transfers = []
     for site, expected_hex, purpose in BATTLE_NICKNAME_TRANSFER_SITES:
         expected = bytes.fromhex(expected_hex)
@@ -830,6 +846,9 @@ def species_name_consumer_model(stage: bytes) -> dict[str, Any]:
         "consumers": consumers,
         "battle_nickname_transfer_count": len(battle_transfers),
         "battle_nickname_veneer_cave": BATTLE_NICKNAME_COPY_CAVE,
+        "species_picture_bound_thunk_cave":
+            SPECIES_PICTURE_BOUND_THUNK_CAVE,
+        "species_picture_bound_thunk_pointer_references": 0,
         "battle_nickname_transfers": battle_transfers,
         "nickname_display_bound": {
             "site": NICKNAME_END_BOUND_SITE,
@@ -1396,19 +1415,37 @@ def build_model(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any], by
             absolute_thumb_hook(register, runtime_symbols[symbol]), label,
         ))
 
-    # Preserve the stock image/palette routines and only remove their native
-    # Species 412 ceiling.  Replacing these whole functions changes battle
-    # setup timing and controller state in CFRU facilities/Raids even when the
-    # resulting image bytes are identical.
-    for site, label in (
-        (0x0E64E, "canonical DecompressPicFromTable bound"),
-        (0x0EA9E, "canonical DecompressPicFromTable no-Deoxys bound"),
-        (0x0E726, "canonical HandleLoadSpecialPokePic bound"),
-        (0x0EB6A, "canonical HandleLoadSpecialPokePic no-Deoxys bound"),
+    # Preserve the stock image/palette routines and widen their native 412
+    # ceiling without deleting the row-0 fallback.  The 0xFFFF sentinel is a
+    # legitimate caught-summary input; an unconditional branch here indexed
+    # past the 1,621-row canonical table, treated arbitrary bytes as an LZ
+    # stream, and corrupted the field heap.  A nearby audited eight-byte cave
+    # returns the exact canonical max in r0, so every call site retains its
+    # original register contract and conditional fallback.
+    picture_bound_thunk = bytes.fromhex("00487047") + struct.pack(
+        "<I", len(rows) - 1,
+    )
+    runtime_patches.append(patch_exact(
+        output_rom, stage, SPECIES_PICTURE_BOUND_THUNK_CAVE, b"\xFF" * 8,
+        picture_bound_thunk, "canonical picture Species-bound thunk",
+    ))
+    for site, compare, expected_hex, label in (
+        (0x0E648, 0x4285, "ce204000854207dd",
+         "canonical DecompressPicFromTable bound"),
+        (0x0EA98, 0x4282, "ce204000824207dd",
+         "canonical DecompressPicFromTable no-Deoxys bound"),
+        (0x0E720, 0x4287, "ce204000874207dd",
+         "canonical HandleLoadSpecialPokePic bound"),
+        (0x0EB64, 0x4287, "ce204000874207dd",
+         "canonical HandleLoadSpecialPokePic no-Deoxys bound"),
     ):
+        replacement = (
+            thumb_bl(site, SPECIES_PICTURE_BOUND_THUNK_CAVE)
+            + struct.pack("<HH", compare, 0xD907)
+        )
         runtime_patches.append(patch_exact(
-            output_rom, stage, site, bytes.fromhex("07dd"),
-            bytes.fromhex("07e0"), label,
+            output_rom, stage, site, bytes.fromhex(expected_hex),
+            replacement, label,
         ))
     # The JP routine has the same three Species<=412 position limiters as DPE,
     # but invalid/sentinel Species (notably 0xFFFF) must retain the stock safe

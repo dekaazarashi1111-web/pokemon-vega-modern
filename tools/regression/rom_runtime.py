@@ -20,6 +20,14 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
+from tools.map_import.full_kanto_import import (
+    COORD_PRODUCER_ROLE,
+    DEFERRED_PRODUCER_POLICY,
+    TOPOLOGY_PRODUCER_ROLE,
+    source_coord_evidence,
+    source_object_evidence,
+    source_object_role,
+)
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv
 
 
@@ -689,6 +697,7 @@ def _canonical_maps(root: Path) -> list[dict[str, Any]]:
             continue
         if value["map_header"]["scope_decision"] not in {"INCLUDE", "REBUILD"}:
             continue
+        _validate_canonical_event_evidence(root, value)
         value["_path"] = path.relative_to(root).as_posix()
         result.append(value)
     result.sort(key=lambda row: (
@@ -703,6 +712,66 @@ def _canonical_maps(root: Path) -> list[dict[str, Any]]:
     if set(group for group, _ in coordinates) != set(KANTO_GROUPS):
         raise RuntimeBuildError("Kanto physical maps must use groups 96..98")
     return result
+
+
+def _validate_canonical_event_evidence(root: Path, canonical: Mapping[str, Any]) -> None:
+    """Fail closed if T14 discarded source event semantics.
+
+    The runtime still does not install FireRed story scripts.  This contract
+    instead proves that every destructive stub conversion has exact source
+    evidence and that topology/coord producers are delegated to Stage61.
+    """
+
+    header = canonical.get("map_header")
+    if not isinstance(header, Mapping):
+        raise RuntimeBuildError("canonical map is missing map_header")
+    map_key = str(header.get("map_key", "<unknown>"))
+    source_map = str(header.get("source_map", ""))
+    source_path = root / f"vendor/upstream/pokefirered/data/maps/{source_map}/map.json"
+    try:
+        source = json.loads(source_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise RuntimeBuildError(f"{map_key}: cannot read source event evidence: {exc}") from exc
+
+    objects = canonical.get("objects")
+    source_objects = source.get("object_events")
+    if not isinstance(objects, list) or not isinstance(source_objects, list) \
+            or len(objects) != len(source_objects):
+        raise RuntimeBuildError(f"{map_key}: canonical object evidence count differs")
+    for index, (authored, event) in enumerate(zip(objects, source_objects)):
+        expected_evidence = source_object_evidence(index, event)
+        if authored.get("source_evidence") != expected_evidence:
+            raise RuntimeBuildError(
+                f"{map_key}: object {index} source trainer/script/flag evidence differs"
+            )
+        expected_role = source_object_role(event)
+        if authored.get("source_role") != expected_role:
+            raise RuntimeBuildError(
+                f"{map_key}: object {index} source role differs: "
+                f"{authored.get('source_role')!r} != {expected_role!r}"
+            )
+        expected_policy = (
+            DEFERRED_PRODUCER_POLICY
+            if expected_role == TOPOLOGY_PRODUCER_ROLE
+            else "KANTO_NAMESPACED_STUB"
+        )
+        if authored.get("runtime_policy") != expected_policy:
+            raise RuntimeBuildError(
+                f"{map_key}: object {index} runtime policy differs"
+            )
+
+    coords = canonical.get("coord_events")
+    source_coords = source.get("coord_events")
+    if not isinstance(coords, list) or not isinstance(source_coords, list) \
+            or len(coords) != len(source_coords):
+        raise RuntimeBuildError(f"{map_key}: canonical coord producer count differs")
+    for index, (authored, event) in enumerate(zip(coords, source_coords)):
+        if authored.get("source_role") != COORD_PRODUCER_ROLE \
+                or authored.get("runtime_policy") != DEFERRED_PRODUCER_POLICY \
+                or authored.get("source_evidence") != source_coord_evidence(index, event):
+            raise RuntimeBuildError(
+                f"{map_key}: coord {index} deferred producer evidence differs"
+            )
 
 
 def _source_locations(root: Path, clean: bytes) -> tuple[dict[str, tuple[int, int]], list[int]]:
@@ -1267,6 +1336,10 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
     map_meta: list[dict[str, Any]] = []
     redirected_runtime_warps = 0
     world_recovery: Counter[str] = Counter()
+    deferred_producers: dict[str, list[dict[str, Any]]] = {
+        "objects": [],
+        "coord_events": [],
+    }
     for row in maps:
         header = row["map_header"]
         key = header["map_key"]
@@ -1340,7 +1413,42 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
         clean_events = _clean_event_arrays(
             clean, source_header_offsets[source_name], source_name,
         )
+        if len(row.get("objects", [])) != int(clean_events["counts"][0]):
+            raise RuntimeBuildError(f"{key}: clean object count differs from source evidence")
+        if len(row.get("coord_events", [])) != int(clean_events["counts"][2]):
+            raise RuntimeBuildError(f"{key}: clean coord count differs from source evidence")
         clean_objects = clean_events["arrays"][0]
+        clean_coords = clean_events["arrays"][2]
+        for index, authored in enumerate(row.get("objects", [])):
+            if authored.get("source_role") != TOPOLOGY_PRODUCER_ROLE:
+                continue
+            raw = clean_objects[index * 0x18:(index + 1) * 0x18]
+            deferred_producers["objects"].append({
+                "map_key": key,
+                "source_map": source_name,
+                "source_role": TOPOLOGY_PRODUCER_ROLE,
+                "runtime_policy": DEFERRED_PRODUCER_POLICY,
+                "x": int(authored["x"]),
+                "y": int(authored["y"]),
+                "elevation": int(authored["elevation"]),
+                "source_evidence": authored["source_evidence"],
+                "clean_record_sha256": _sha(raw),
+            })
+            world_recovery["deferred_topology_objects"] += 1
+        for index, authored in enumerate(row.get("coord_events", [])):
+            raw = clean_coords[index * 16:(index + 1) * 16]
+            deferred_producers["coord_events"].append({
+                "map_key": key,
+                "source_map": source_name,
+                "source_role": COORD_PRODUCER_ROLE,
+                "runtime_policy": DEFERRED_PRODUCER_POLICY,
+                "x": int(authored["x"]),
+                "y": int(authored["y"]),
+                "elevation": int(authored["elevation"]),
+                "source_evidence": authored["source_evidence"],
+                "clean_record_sha256": _sha(raw),
+            })
+            world_recovery["deferred_coord_producers"] += 1
         current_records = [
             bytes(object_raw[index:index + 0x18])
             for index in range(0, len(object_raw), 0x18)
@@ -1413,6 +1521,9 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             for index, script_label in enumerate(bg_scripts):
                 blob.pointer(bg_offset + index * 12 + 8, script_label)
 
+        # Coord producers are deliberately absent from the frozen safe runtime.
+        # Their complete source identity is emitted in metadata below so a
+        # namespaced Stage61 adapter can materialize only reviewed mechanics.
         events = bytearray(struct.pack("<BBBBIIII", object_count, len(warp_raw) // 8, 0, bg_count,
                                        0, 0, 0, 0))
         events_offset = blob.add(f"map::{key}::events", bytes(events), 4)
@@ -1464,7 +1575,12 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
             "map_key": key, "source_map": header["source_map"], "group": group,
             "map": number, "layout_id": layout_ids[header["layout"]],
             "warp_count": len(warp_raw) // 8, "connection_count": len(connection_raw) // 12,
-            "object_count": object_count, "bg_count": bg_count,
+            "object_count": object_count, "coord_count": 0, "bg_count": bg_count,
+            "deferred_topology_object_count": sum(
+                1 for authored in row.get("objects", [])
+                if authored.get("source_role") == TOPOLOGY_PRODUCER_ROLE
+            ),
+            "deferred_coord_count": len(row.get("coord_events", [])),
             "logical_code": header["logical_code"],
             "classification": header["classification"],
         })
@@ -1623,8 +1739,20 @@ def _build_blob(root: Path, stage: bytes, clean: bytes, payload_offset: int) -> 
                 "signs": world_recovery["sign"],
                 "trash_events": world_recovery["trash"],
                 "omitted_object_limit": world_recovery["omitted_object_limit"],
+                "deferred_topology_objects": world_recovery["deferred_topology_objects"],
+                "deferred_coord_producers": world_recovery["deferred_coord_producers"],
+                "deferred_producer_policy": DEFERRED_PRODUCER_POLICY,
+                "source_event_evidence_preserved": True,
                 "fire_red_story_scripts_imported": False,
                 "hidden_items_imported": False,
+            },
+            "deferred_event_producers": {
+                "schema_version": 1,
+                "policy": DEFERRED_PRODUCER_POLICY,
+                "object_count": len(deferred_producers["objects"]),
+                "coord_event_count": len(deferred_producers["coord_events"]),
+                "evidence_sha256": _sha(_stable(deferred_producers)),
+                **deferred_producers,
             },
             "rows": map_meta,
         },

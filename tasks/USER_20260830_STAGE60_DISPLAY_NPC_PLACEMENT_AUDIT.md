@@ -3,8 +3,9 @@
 ## 状態
 
 - Queue ID: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`
-- Status: TODO
+- Status: IN_PROGRESS
 - Baseline: Stage 60 `60_wild_species_root_repair`
+- 2026-09-02最新セッション切替時の実装checkpointと再開手順: `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`末尾
 - 本文書は2026-08-30時点の既知不具合メモである。ユーザー指示により、記録時点ではROM、生成器、配置manifestを修正しない。
 - 後続修正では既知地点だけを個別補修せず、全map・全interaction owner・全NPC会話を対象に、同根不具合を列挙して共通の所有境界から根本修正する。
 
@@ -123,3 +124,11 @@
 - Stage 60 ROM、BPS、saveの更新。
 - map header、表示文字列table、NPC座標、object flag、event scriptの変更。
 - ディグダのあな、12ばんどうろ、フジ老人、既知の空会話NPCだけを対象にした暫定的なすり抜け、消去、座標移動、flag強制、個別文言差替え。
+
+## 2026-09-02 critical-release中間出口
+
+- ユーザー指示により、元の全件監査を完了扱いにしないまま、先に「重大なゲーム進行不具合を検出しないStage61候補ROM」をWIP checkpointとして固定する。
+- 既存strict build、oracle、期待値は削除・緩和・追認変更しない。候補生成は専用`CRITICAL_RELEASE` profileへ分離し、既定strict経路を維持する。
+- 中間必須gateは、ROM再現性、宣言領域外変更0、boot／Continue／通常save／reload、移動／warp、可視会話、主要進行、鍵Item、固定遭遇、Gift／party／PC storage、両育て屋、戦闘後field復帰、crash／softlock／save破損／進行阻害0とする。
+- 全678 map×全owner×全branch×runs=2、unused state完全列挙、全owner exact trace ordinal、coverage 0 omissionは`DEFERRED_AUDIT`として後続へ残す。strict実行で観測した非critical差異も期待値へ合わせず同分類で保存する。
+- 中間判定正本は`reports/generated/stage61_critical_release_validation.json`。候補ROMは`build/stages/61_critical_release_candidate.gba`、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。元taskの完了条件と`[>]`状態は変更しない。

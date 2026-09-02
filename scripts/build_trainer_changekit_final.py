@@ -46,7 +46,10 @@ from scripts.build_trainer_v5_stage32 import (  # noqa: E402
 )
 from tools.release.bps import apply_bps  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
-from tools.trainer_final.kanto_events import build_kanto_event_plan  # noqa: E402
+from tools.trainer_final.kanto_events import (  # noqa: E402
+    LEGACY_PUBLISHED,
+    build_kanto_event_plan,
+)
 
 
 TASK = "USER-20260819-TRAINER-CHANGEKIT-FINAL-INTEGRATION"
@@ -1015,6 +1018,7 @@ def build_event_blob(
         stage, clean, root, _discover_task06(root),
         archive_rows=archive_rows,
         acquisition_metadata=acquisition_meta,
+        policy=LEGACY_PUBLISHED,
     )
     summary = plan.get("summary", {})
     if (
@@ -1435,6 +1439,8 @@ def compile_runtime(
     load_address: int,
     header: bytes,
     trampolines: Mapping[str, int],
+    *,
+    legacy_published: bool = False,
 ) -> tuple[bytes, dict[str, int]]:
     compiler = _arm_tool(root, "arm-none-eabi-gcc")
     objcopy = _arm_tool(root, "arm-none-eabi-objcopy")
@@ -1482,7 +1488,12 @@ def compile_runtime(
             "-Wall", "-Wextra", "-Werror", "-ffreestanding", "-fno-builtin",
             "-fno-unwind-tables", "-fno-asynchronous-unwind-tables", "-fdata-sections",
             "-ffunction-sections", "-fno-common", f"-I{directory}", f"-I{root}",
-        ] + [f"-D{name}=0x{value:08X}u" for name, value in macros.items()]
+        ]
+        if legacy_published:
+            command.append("-DTRAINER_CHANGEKIT_LEGACY_PUBLISHED=1")
+        command += [
+            f"-D{name}=0x{value:08X}u" for name, value in macros.items()
+        ]
         _run([*command, "-c", str(source), "-o", str(obj)], "compile final Trainer ChangeKit runtime")
         linker = directory / "linker.ld"
         linker.write_text(
@@ -1714,7 +1725,9 @@ def _build_payload(
         name: payload_address + TRAMPOLINE_RELATIVES[name] for name in TRAMPOLINE_NAMES
     }
     code_address = payload_address + layout["code"]
-    code, symbols = compile_runtime(root, code_address, header, trampolines)
+    code, symbols = compile_runtime(
+        root, code_address, header, trampolines, legacy_published=True,
+    )
     if len(code) != provisional_code_size or _layout(len(code)) != layout:
         _fail("final runtime code size changed after absolute table linking")
     party_blob, party_pointers = _party_blob(
@@ -1804,7 +1817,10 @@ def _provisional_link(
     trampolines = {
         name: GBA_ROM_BASE + TRAMPOLINE_RELATIVES[name] for name in TRAMPOLINE_NAMES
     }
-    code, _ = compile_runtime(root, GBA_ROM_BASE + CODE_RELATIVE_OFFSET, header, trampolines)
+    code, _ = compile_runtime(
+        root, GBA_ROM_BASE + CODE_RELATIVE_OFFSET, header, trampolines,
+        legacy_published=True,
+    )
     return len(code)
 
 
