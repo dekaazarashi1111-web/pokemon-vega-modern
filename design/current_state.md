@@ -4,7 +4,7 @@
 
 ## 進行中タスクの再開点
 
-- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-03の視線トレーナー入口hotfix checkpointを最新とする。旧候補は478個の物理`trainerbattle`命令先頭を`goto`で上書きし、エンジンがopcode／mode／trainer IDを命令直下から読む経路を破壊していた。現候補は物理命令の`0x5C`／mode／trainer IDを保持し、intro pointerのみを正常文面へ修復、proxy rootだけをadapterへ接続する。33,554,432 bytes、SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。Route501 trainer 89、横視線trainer 93、Route506 double trainer 1338の自然入力・戦闘・field復帰・撃破flag、critical 5 case、Gift 6経路、育て屋2系統を各2 processでPASSし、集約判定は`PLAYTEST_CANDIDATE_READY`。非trainerのgraphics/object、map-section、save、multichoiceに同種のglobal shiftは確認できず、推測ROM変更は加えていない。候補は`build/stages/61_critical_release_candidate.gba`。ローカルsaveは不変、iPad上の同名ROMは旧SHA `e736acd0...3669`のままで未更新。全678 map×全owner×全branchのstrict監査は`DEFERRED_AUDIT`で、元taskを完了扱いにしない。
+- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-03の視線トレーナー入口hotfix checkpointを最新とする。旧候補は478個の物理`trainerbattle`命令先頭を`goto`で上書きし、エンジンがopcode／mode／trainer IDを命令直下から読む経路を破壊していた。現候補は物理命令の`0x5C`／mode／trainer IDを保持し、intro pointerのみを正常文面へ修復、proxy rootだけをadapterへ接続する。33,554,432 bytes、SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。Route501 trainer 89、横視線trainer 93、Route506 double trainer 1338の自然入力・戦闘・field復帰・撃破flag、critical 5 case、Gift 6経路、育て屋2系統を各2 processでPASSし、集約判定は`PLAYTEST_CANDIDATE_READY`。非trainerのgraphics/object、map-section、save、multichoiceに同種のglobal shiftは確認できず、推測ROM変更は加えていない。候補は`build/stages/61_critical_release_candidate.gba`。ローカルsaveは不変。iPad上の同名ROMも新SHA `5d1f3230...8f3e`へ更新し、旧ROMを日時付きで退避、既存save 57件は前後不変。全678 map×全owner×全branchのstrict監査は`DEFERRED_AUDIT`で、元taskを完了扱いにしない。
 
 ## 現在地
 

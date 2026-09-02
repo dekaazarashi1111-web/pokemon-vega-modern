@@ -105,10 +105,9 @@
 ## Stage61候補ROMの確認済み対応
 
 - ROM: `61_critical_release_candidate.gba`
-- ROM SHA-256: `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`
-- ユーザー指定によりsaveは生成・転送・配置していない。配置前の同名ROM／同名saveはともに0件だった。
-- 2026-09-02に固定host key付きWi-Fi SSHでactive container metadataとlive `retroarch.cfg`を再解決し、RetroArch process 0を確認してROMだけを一時名から原子的に配置した。同名既存ROMはなく退避0。
-- iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。配置前に固定したmGBA save directory全56件のmanifestは配置後も不変で、既存Stage60 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。実機プレイ／人手承認は未実施。
+- ROM SHA-256: `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`
+- 2026-09-03に固定host key付きWi-Fi SSHでactive container metadataとlive `retroarch.cfg`を再解決し、RetroArch process 0を確認して修正済みROMだけを一時名から原子的に配置した。旧ROM `e736acd0...3669`は日時付きで退避した。
+- iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件のmanifestは配置前後不変で、同名saveを含むsaveの生成・転送・変更は0。既存Stage60 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
 
 ## 失敗判定
 

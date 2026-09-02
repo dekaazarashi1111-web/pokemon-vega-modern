@@ -1292,3 +1292,13 @@
   - 通常intro pointerのみを修復し、proxy経由adapterと視線／VS Seekerの直接parserを両立させた。
   - 非trainer領域に同種の一律ずれはなく、推測ROM修正は行っていない。元の全件監査taskはIN_PROGRESSのまま。
 - Verify: focused unit 3 tests、478 command全数static検査、自然入力trainer 3戦、critical 5 case×2、Gift 6経路×2、育て屋2 case×2、critical集約、task graph、private guard、diff check PASS。ROM SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。
+
+## 2026-09-03T02:32:01+09:00
+
+- Version: `stage61-trainer-sight-entry-hotfix-ipad-rom-only-placement`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-HOTFIX-IPAD-ROM-ONLY-PLACEMENT` / Stage61 hotfix候補ROMだけのiPad配置
+- Summary:
+  - 修正済みStage61 ROMをiPadの同名ROMへ原子的に配置し、旧ROMを日時付きで退避した。
+  - ユーザー指定どおりsaveは生成・転送・変更せず、save directory全57件を不変に保った。
+- Verify: RetroArch停止、live配置先、iPad側size／SHA-256、read-back byte一致、save manifest不変、remote一時ファイル0をPASS。ROM SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。
