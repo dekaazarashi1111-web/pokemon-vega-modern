@@ -3266,3 +3266,27 @@
 - Commit: WIP checkpoint（本記録を含むcommit。task完了commitではない）
 - Network:
   - インターネット未使用。固定ローカルROM／source、ローカルlibmGBA、既存上流固定物だけを使用した。
+
+## 2026-09-02T23:11:41+09:00
+
+- Task: `USER-20260902-STAGE61-IPAD-ROM-ONLY-PLACEMENT` / Stage61 critical-release候補ROMだけをiPadへ配置する
+- Status: DONE
+- Summary:
+  - ユーザー指定の`build/stages/61_critical_release_candidate.gba`を33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`として固定した。進行中のStage61全件監査task、候補ROM、save生成設定は変更していない。
+  - 固定host key付きWi-Fi SSHで接続診断をPASSし、active container metadataとlive `retroarch.cfg`からROM directory、save sort設定、実mGBA save directoryを一意に再解決した。RetroArch process 0、同名ROM 0、同名save 0を確認した。
+  - mGBA save directory全56件のhash manifestを配置前に固定し、ROMだけをremote一時名へ転送した。iPad側size／SHA確認後に同一directory内で原子的に確定し、同名既存ROMがなかったため退避は0件だった。
+  - 確定ROMをiPadから新規ローカル一時領域へread-backし、sourceとbyte一致を確認した。save manifestは前後不変で、saveの生成・転送・配置・変更は0、既存Stage60 ROM不変、RetroArch process 0、remote一時ファイル0だった。実機プレイ／人手承認は行っていない。
+- Files changed:
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外一時処理: `.local/ipad_stage61_rom_transfer.sh`、`.local/run_ipad_stage61_rom_transfer.sh`（read-back ROMは照合後に削除）。
+  - Git管理外外部配置: iPad上の`61_critical_release_candidate.gba`。saveは未配置。
+- Verify:
+  - local source `stat`／`sha256sum`／GBA header: PASS。33,554,432 bytes、SHA-256 `e736acd0...3669`、`POKEMON FIRE`／`BPRJ01`／Rev.00。
+  - `ipad-wifi-ssh doctor`、active設定preflight、ROM-only atomic install、postcheck: PASS。固定client key／host key、Wi-Fi direct、RetroArch process 0、live config、mGBA directoryを確認した。
+  - iPad側ROM size／SHA、read-back `cmp`: PASS。save manifest 56件前後一致、同名save未作成、既存Stage60 ROM不変、remote一時ファイル0、source ROM不変。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`、`git diff --cached --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

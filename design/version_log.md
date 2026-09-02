@@ -1270,3 +1270,14 @@
   - 全678 mapの全NPC・全会話branchをexact ROMで通常interactionし、実表示内容と入力復帰／副作用を記録する。空表示、未テスト、未解決を0件とする完了gateへ拡張した。
   - ROM／BPS／save／runtimeは変更していない。
 - Verify: event root／CFG／Item／flag／Species照合、task graph、private guard、diff check PASS。Stage 60 runtime artifact変更なし。
+
+## 2026-09-02T23:11:41+09:00
+
+- Version: `stage61-critical-release-candidate-ipad-rom-only-placement`（候補ROM identity不変、save未配置）
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260902-STAGE61-IPAD-ROM-ONLY-PLACEMENT` / Stage61 critical-release候補ROMだけのiPad配置
+- Summary:
+  - Stage61候補ROMを固定host key付きWi-Fi SSHでactive RetroArch containerへ原子的に配置した。
+  - iPad側size／SHA照合と端末からのread-back `cmp`をPASSし、同名既存ROMなし、退避0、remote一時ファイル0を確認した。
+  - ユーザー指定どおりsaveは生成・転送・配置せず、mGBA save directory全56件の配置前後manifestを不変に保った。進行中のStage61全件監査taskはIN_PROGRESSのまま変更していない。
+- Verify: Wi-Fi SSH doctor／live設定preflight／ROM-only atomic install／read-back／postcheck、task graph、private guard、diff check PASS。ROM 33,554,432 bytes、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。

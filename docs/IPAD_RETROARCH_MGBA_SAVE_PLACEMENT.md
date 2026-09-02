@@ -102,6 +102,14 @@
 - active container metadataとlive `retroarch.cfg`から配置先を再解決した。転送後にRetroArchの再起動をprocess gateで検知して正規確定を中断し、再停止とprocess 0確認後に同じ処理内でROM／saveを一時名から原子的に確定した。
 - iPadからROM／saveをread-backしてsourceとbyte一致、remote一時ファイル0、既存Stage59 ROM／save不変を確認した。同名既存Stage60成果はなく退避0。実機プレイ／人手承認は未実施。
 
+## Stage61候補ROMの確認済み対応
+
+- ROM: `61_critical_release_candidate.gba`
+- ROM SHA-256: `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`
+- ユーザー指定によりsaveは生成・転送・配置していない。配置前の同名ROM／同名saveはともに0件だった。
+- 2026-09-02に固定host key付きWi-Fi SSHでactive container metadataとlive `retroarch.cfg`を再解決し、RetroArch process 0を確認してROMだけを一時名から原子的に配置した。同名既存ROMはなく退避0。
+- iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。配置前に固定したmGBA save directory全56件のmanifestは配置後も不変で、既存Stage60 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。実機プレイ／人手承認は未実施。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。
