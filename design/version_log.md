@@ -1302,3 +1302,14 @@
   - 修正済みStage61 ROMをiPadの同名ROMへ原子的に配置し、旧ROMを日時付きで退避した。
   - ユーザー指定どおりsaveは生成・転送・変更せず、save directory全57件を不変に保った。
 - Verify: RetroArch停止、live配置先、iPad側size／SHA-256、read-back byte一致、save manifest不変、remote一時ファイル0をPASS。ROM SHA-256 `5d1f3230fdbb402dea51c5f83025b2b436d75f05fa982f59db0d0ceba3708f3e`。
+
+## 2026-09-03T05:20:24+09:00
+
+- Version: `stage61-vega-dialogue-wild-rate-candidate`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-WILD-RATE-VEGA-DIALOGUE-RESTORE` / 場所別外来生態率調整とVega既存トレーナー会話復元
+- Summary:
+  - 通常外来生態48 entryを候補数別20～50%へ調整し、特殊47 entryは不変にした。
+  - Vega既存trainer 1,030戦は現行手持ちを保持し、原版会話と勝利後／撃破済み継続edgeを復元した。
+  - 追加trainer 272戦、save、iPadは変更していない。元の全件監査taskはIN_PROGRESSのまま。
+- Verify: focused unit 7件、critical build／check、ROM全件byte照合、critical 5 case×2、Route501自然入力戦、独立runtimeレビュー、task graph、private guard、diff check PASS。ROM SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。

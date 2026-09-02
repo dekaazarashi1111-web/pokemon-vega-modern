@@ -3341,3 +3341,35 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへWi-Fi SSHを使用した。端末固有情報はtracked成果へ保存していない。
+
+## 2026-09-03T05:20:24+09:00
+
+- Task: `USER-20260903-STAGE61-WILD-RATE-VEGA-DIALOGUE-RESTORE` / 場所別外来生態率調整とVega既存トレーナー会話復元
+- Status: DONE（本変更のみ。元の全件監査taskはIN_PROGRESS）
+- Summary:
+  - 通常外来生態48 entryを候補数別に1種20%、2～3種30%、4～5種40%、6種以上50%へ変更した。Species、候補順、解禁条件は保持し、昼夜・大量発生・釣り・隠し47 entryはbyte不変。T501は追加8種で50%。実変更は各rowのthreshold／rateだけの96 bytes。
+  - canonical Vega trainer 1,030 encounterはChangeKitのopcode／mode／runtime trainer ID／flags／手持ちを保持したまま、原版のintro／defeat／not-enough／victory／continuationへ再接続した。固定追加文だった855件を復元、175件は既に原版一致。35-byte intro 478件と8-byte外付けintro 21件、固定post 855件を迂回した。
+  - explicit victory continuation 30件は、勝利後のstory edgeと撃破済み再会話のimplicit post edgeを別々に保持した。原文1,366資産はVega参照ROM・Stage60・最終ROMでbyte一致。KANTO_NEW 201件とARCHIVE 71件はcommand不変で、復元patchとの重複0。
+  - 最終候補は33,554,432 bytes、SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。payload SHA-256 `ef473a22e5aa2b4d3fda85f97a2285b2ef48bf176c59e931cd38cc570b0bf40b`は前候補から不変。途中候補はレビューで外付けintroとcontinuation edgeを検出した時点で破棄し、実行中検査も停止して最終候補を再生成した。
+  - save生成・変更、iPad配置は行っていない。iPad上の同名ROMは一つ前の`5d1f3230...8f3e`のまま。
+- Files changed:
+  - `config/stage61_display_npc_event_audit.json`
+  - `config/stage61_wild_overlay_rate_policy.json`
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `tests/test_stage61_trainer_sight_entry_repair.py`
+  - `tests/test_stage61_wild_overlay_rate_policy.py`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 -m py_compile scripts/build_stage61_display_npc_event_audit.py`: PASS。
+  - focused unittest 7件: PASS。
+  - `critical-release`／`critical-release-check`: PASS。
+  - 最終ROM実バイト: trainer patch 2,209/2,209、canonical command 1,030/1,030、Vega text 1,366/1,366、追加trainer 272/272、wild patch 48/48をPASS。wild table SHA-256 `da77542c7070098485aa98d268101b6c88ef50df2842485cfae40d2964a5d4f5`。
+  - critical runtime 5 case×2 process: PASS。Route501 trainer 89の自然Continue／視線／通常入力勝利／field復帰: PASS、warnings 0。
+  - 独立レビュー: 視線直結825件、rematch 227件、physical／victory／already-fought CFG、追加trainer 272件でruntime P1/P2 0。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+  - 全678 map×全owner×全branchのstrict監査と旧dead-adapter証跡更新: `DEFERRED_AUDIT`。候補runtimeの完了条件には含めず、元taskを完了扱いにしていない。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。固定ローカルROM／sourceとlibmGBAだけを使用した。

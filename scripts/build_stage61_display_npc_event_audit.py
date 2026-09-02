@@ -3180,6 +3180,665 @@ def _trainer_intro_entry_patch_specs(
     )
 
 
+def _trainer_original_dialogue_restore_plan(
+    stage60: bytes,
+    vega_reference: bytes,
+    consumers_raw: bytes,
+) -> dict[str, Any]:
+    """Keep ChangeKit parties while restoring every canonical Vega message.
+
+    Stage35 redirected the physical Vega command to a generated command.  The
+    generated command owns the new trainer ID/party, so replacing the physical
+    command would also replace rematch identity.  Instead this plan keeps that
+    command header byte-exact, copies only the original Vega text/continuation
+    pointers, skips the generated generic post message, and bypasses the 35-byte
+    generic normal/rematch prelude where one exists.
+    """
+
+    try:
+        consumer_rows = list(csv.DictReader(
+            consumers_raw.decode("utf-8-sig").splitlines()
+        ))
+        serialized_raw = (ROOT / TRAINER_SERIALIZED_PATH).read_bytes()
+        serialized = json.loads(serialized_raw)
+    except (UnicodeDecodeError, csv.Error, OSError, json.JSONDecodeError) as exc:
+        _fail(f"Vega trainer dialogue provenanceを読めません: {exc}")
+    if _sha(serialized_raw) != TRAINER_SERIALIZED_SHA256:
+        _fail("Vega trainer dialogue serialized SHA-256不一致")
+    if len(consumer_rows) != 1302:
+        _fail(
+            "trainer runtime consumer count不一致: "
+            f"{len(consumer_rows)}"
+        )
+    required_fields = {
+        "encounter_key", "runtime_trainer_id", "source_trainer_id",
+        "binding_mode", "command_address", "trainerbattle_kind",
+    }
+    if not consumer_rows or not required_fields.issubset(consumer_rows[0]):
+        _fail("trainer runtime consumer schema不正")
+    battle_rows = serialized.get("battle_rows")
+    if not isinstance(battle_rows, list) or len(battle_rows) != 1302:
+        _fail("serialized trainerbattle inventory不一致")
+    battle_by_key: dict[str, Mapping[str, Any]] = {}
+    for index, row in enumerate(battle_rows):
+        if not isinstance(row, Mapping):
+            _fail(f"serialized trainerbattle row不正:{index}")
+        key = str(row.get("encounter_key", ""))
+        if not key or key in battle_by_key:
+            _fail(f"serialized trainerbattle encounter重複:{key}")
+        battle_by_key[key] = row
+
+    canonical = [
+        row for row in consumer_rows if row["binding_mode"] == "CANONICAL"
+    ]
+    if len(canonical) != 1030:
+        _fail(f"canonical Vega trainer count不一致: {len(canonical)}")
+    additional = [
+        row for row in consumer_rows if row["binding_mode"] != "CANONICAL"
+    ]
+    additional_mode_counts = Counter(
+        row["binding_mode"] for row in additional
+    )
+    if additional_mode_counts != {"ARCHIVE": 71, "KANTO_NEW": 201}:
+        _fail(
+            "additional trainer binding inventory不一致: "
+            f"{dict(additional_mode_counts)}"
+        )
+    additional_command_ranges: list[tuple[int, int]] = []
+    additional_validations: list[dict[str, Any]] = []
+    for consumer in additional:
+        key = consumer["encounter_key"]
+        serialized_row = battle_by_key.get(key)
+        kind = int(consumer["trainerbattle_kind"])
+        size = TRAINERBATTLE_SIZES.get(kind)
+        if serialized_row is None or size is None \
+                or serialized_row.get("binding_mode") \
+                    != consumer["binding_mode"] \
+                or int(serialized_row["kind"]) != kind:
+            _fail(f"additional trainer serialized binding不一致:{key}")
+        command = int(serialized_row["command_address"])
+        offset = _rom_offset(command, size, f"additional trainer {key}")
+        raw = stage60[offset:offset + size]
+        if raw[:2] != bytes((0x5C, kind)) \
+                or struct.unpack_from("<H", raw, 2)[0] \
+                    != int(consumer["runtime_trainer_id"]):
+            _fail(f"additional trainer command identity不一致:{key}")
+        additional_command_ranges.append((command, command + size))
+        additional_validations.append({
+            "encounter_key": key,
+            "command_address": command,
+            "expected_command": raw,
+        })
+    patches: list[dict[str, Any]] = []
+    validations: list[dict[str, Any]] = []
+    role_changes: Counter[str] = Counter()
+    kind_counts: Counter[int] = Counter()
+    proxy_delta_counts: Counter[int] = Counter()
+    proxy_shape_counts: Counter[str] = Counter()
+    original_text_assets: dict[int, str] = {}
+    changed_encounters = 0
+    unchanged_encounters = 0
+    proxy_bypass_count = 0
+    split_continuation_count = 0
+    restored_split_continuation_count = 0
+    generic_post_pointers: set[int] = set()
+    route501: dict[str, Any] | None = None
+
+    for consumer in sorted(
+        canonical, key=lambda row: int(row["command_address"], 0)
+    ):
+        key = consumer["encounter_key"]
+        serialized_row = battle_by_key.get(key)
+        if serialized_row is None \
+                or serialized_row.get("binding_mode") != "CANONICAL":
+            _fail(f"canonical trainer serialized binding不一致:{key}")
+        original_command = int(consumer["command_address"], 0)
+        current_command = int(serialized_row["command_address"])
+        kind = int(consumer["trainerbattle_kind"])
+        roles = TRAINERBATTLE_POINTER_ROLES.get(kind)
+        size = TRAINERBATTLE_SIZES.get(kind)
+        runtime_trainer_id = int(consumer["runtime_trainer_id"])
+        source_trainer_id = int(consumer["source_trainer_id"])
+        if roles is None or size is None \
+                or int(serialized_row["kind"]) != kind \
+                or int(serialized_row["target_trainer_id"]) \
+                    != runtime_trainer_id:
+            _fail(f"canonical trainer identity不一致:{key}")
+        original_offset = _rom_offset(
+            original_command, size, f"Vega original trainer command {key}"
+        )
+        current_offset = _rom_offset(
+            current_command, size, f"Stage60 trainer command {key}"
+        )
+        if original_offset + size > len(vega_reference):
+            _fail(f"Vega original trainer command範囲外:{key}")
+        original_raw = vega_reference[
+            original_offset:original_offset + size
+        ]
+        current_raw = stage60[current_offset:current_offset + size]
+        if original_raw[:2] != bytes((0x5C, kind)) \
+                or current_raw[:2] != bytes((0x5C, kind)) \
+                or struct.unpack_from("<H", original_raw, 2)[0] \
+                    != source_trainer_id \
+                or struct.unpack_from("<H", current_raw, 2)[0] \
+                    != runtime_trainer_id:
+            _fail(f"canonical trainer command header不一致:{key}")
+
+        original_pointers = {
+            role: struct.unpack_from("<I", original_raw, 6 + index * 4)[0]
+            for index, role in enumerate(roles)
+        }
+        current_pointers = {
+            role: struct.unpack_from("<I", current_raw, 6 + index * 4)[0]
+            for index, role in enumerate(roles)
+        }
+        replacement_raw = bytearray(current_raw)
+        changed_roles: list[str] = []
+        for index, role in enumerate(roles):
+            pointer = original_pointers[role]
+            if role != "continuation":
+                if not GBA_BASE <= pointer < GBA_BASE + len(vega_reference):
+                    _fail(f"Vega trainer text pointer範囲外:{key}/{role}")
+                text_raw = _read_text(
+                    vega_reference, pointer,
+                    f"Vega original trainer text {key}/{role}",
+                )
+                stage60_text_raw = _read_text(
+                    stage60, pointer,
+                    f"Stage60 Vega trainer text {key}/{role}",
+                )
+                if text_raw == b"\xFF":
+                    _fail(f"Vega original trainer textがEOS-only:{key}/{role}")
+                if stage60_text_raw != text_raw:
+                    _fail(f"Vega trainer text Stage60実体不一致:{key}/{role}")
+                digest = _sha(text_raw)
+                previous = original_text_assets.setdefault(pointer, digest)
+                if previous != digest:
+                    _fail(f"Vega trainer text provenance競合:{pointer:#010x}")
+            elif not GBA_BASE <= pointer < GBA_BASE + len(vega_reference):
+                _fail(f"Vega trainer continuation範囲外:{key}")
+            struct.pack_into("<I", replacement_raw, 6 + index * 4, pointer)
+            if current_pointers[role] != pointer:
+                changed_roles.append(role)
+                role_changes[role] += 1
+
+        site_raw = stage60[original_offset:original_offset + 5]
+        if site_raw[:1] != b"\x05":
+            _fail(f"Stage60 physical trainer redirect不一致:{key}")
+        proxy_root = struct.unpack_from("<I", site_raw, 1)[0]
+        proxy_delta = current_command - proxy_root
+        if proxy_delta not in {0, 8, 35}:
+            _fail(f"Stage60 trainer proxy layout不一致:{key}/{proxy_delta}")
+        proxy_delta_counts[proxy_delta] += 1
+        kind_counts[kind] += 1
+
+        post_address = current_command + size
+        post_offset = _rom_offset(post_address, 13, f"trainer post {key}")
+        post_raw = stage60[post_offset:post_offset + 13]
+        generic_post = (
+            post_raw[:2] == b"\x0F\x00"
+            and post_raw[6:9] == b"\x09\x04\x05"
+        )
+        victory_next = original_pointers.get(
+            "continuation", original_command + size
+        )
+        already_fought_next = original_command + size
+        if victory_next != already_fought_next:
+            split_continuation_count += 1
+        direct_post = (
+            post_raw[:1] == b"\x05"
+            and struct.unpack_from("<I", post_raw, 1)[0]
+                == already_fought_next
+            and post_raw[5:] == b"\xFF" * 8
+        )
+        changed = bool(changed_roles)
+        if changed and (
+            not generic_post
+            or struct.unpack_from("<I", post_raw, 9)[0] != victory_next
+        ):
+            _fail(f"trainer generic dialogue ownership不一致:{key}")
+        if not changed and not direct_post:
+            _fail(f"trainer original post edge不一致:{key}")
+
+        generic_intro_proxy = False
+        if proxy_delta:
+            proxy_offset = _rom_offset(
+                proxy_root, proxy_delta, f"trainer dialogue proxy {key}"
+            )
+            proxy_raw = stage60[proxy_offset:proxy_offset + proxy_delta]
+            direct_bypass = (
+                proxy_raw[:1] == b"\x05"
+                and struct.unpack_from("<I", proxy_raw, 1)[0]
+                    == current_command
+                and proxy_raw[5:] == b"\xFF" * (proxy_delta - 5)
+            )
+            external_intro = (
+                proxy_delta == 8
+                and proxy_raw[:2] == b"\x0F\x00"
+                and proxy_raw[6:8] == b"\x09\x04"
+                and GBA_BASE <= struct.unpack_from("<I", proxy_raw, 2)[0]
+                    < GBA_BASE + len(stage60)
+            )
+            normal_rematch_intro = (
+                proxy_delta == 35
+                and proxy_raw[0] == 0x2B
+                and proxy_raw[3:5] == b"\x06\x01"
+                and proxy_raw[9:11] == b"\x0F\x00"
+                and proxy_raw[15:18] == b"\x09\x04\x05"
+                and struct.unpack_from("<I", proxy_raw, 18)[0]
+                    == current_command
+                and proxy_raw[22:24] == b"\x0F\x00"
+                and proxy_raw[28:31] == b"\x09\x04\x05"
+                and struct.unpack_from("<I", proxy_raw, 31)[0]
+                    == current_command
+            )
+            if direct_bypass:
+                proxy_shape_counts[f"{proxy_delta}_direct_bypass"] += 1
+            elif external_intro or normal_rematch_intro:
+                generic_intro_proxy = True
+                proxy_shape_counts[
+                    f"{proxy_delta}_generated_intro"
+                ] += 1
+                patches.append({
+                    "entry_kind": "generic_intro_proxy_bypass",
+                    "encounter_key": key,
+                    "address": proxy_root,
+                    "expected": proxy_raw[:5],
+                    "replacement": (
+                        b"\x05" + struct.pack("<I", current_command)
+                    ),
+                    "kind": kind,
+                    "runtime_trainer_id": runtime_trainer_id,
+                    "source_trainer_id": source_trainer_id,
+                    "proxy_size": proxy_delta,
+                })
+                proxy_bypass_count += 1
+            else:
+                _fail(f"trainer dialogue proxy形状不一致:{key}")
+        if generic_intro_proxy != changed and proxy_delta in {8, 35}:
+            _fail(f"trainer intro proxy ownership不一致:{key}")
+        if not changed:
+            unchanged_encounters += 1
+            validations.append({
+                "encounter_key": key,
+                "command_address": current_command,
+                "expected_command": current_raw,
+                "pointer_roles": original_pointers,
+            })
+            continue
+
+        changed_encounters += 1
+        generic_post_pointers.add(struct.unpack_from("<I", post_raw, 2)[0])
+        if victory_next != already_fought_next:
+            restored_split_continuation_count += 1
+
+        patches.extend((
+            {
+                "entry_kind": "trainerbattle_original_pointer_set",
+                "encounter_key": key,
+                "address": current_command,
+                "expected": current_raw,
+                "replacement": bytes(replacement_raw),
+                "kind": kind,
+                "runtime_trainer_id": runtime_trainer_id,
+                "source_trainer_id": source_trainer_id,
+                "changed_roles": changed_roles,
+            },
+            {
+                "entry_kind": "generic_post_bypass",
+                "encounter_key": key,
+                "address": post_address,
+                "expected": post_raw[:5],
+                "replacement": (
+                    b"\x05" + struct.pack("<I", already_fought_next)
+                ),
+                "kind": kind,
+                "runtime_trainer_id": runtime_trainer_id,
+                "source_trainer_id": source_trainer_id,
+                "victory_next": victory_next,
+                "already_fought_next": already_fought_next,
+            },
+        ))
+        validations.append({
+            "encounter_key": key,
+            "command_address": current_command,
+            "expected_command": bytes(replacement_raw),
+            "pointer_roles": original_pointers,
+        })
+        if original_command == 0x08E03080:
+            route501 = {
+                "encounter_key": key,
+                "original_command_address": f"0x{original_command:08X}",
+                "generated_command_address": f"0x{current_command:08X}",
+                "runtime_trainer_id": runtime_trainer_id,
+                "source_trainer_id": source_trainer_id,
+                "restored_roles": changed_roles,
+                "original_command_sha256": _sha(original_raw),
+            }
+
+    expected_roles = {
+        "continuation": 20,
+        "defeat": 855,
+        "intro": 834,
+        "not_enough": 60,
+    }
+    if changed_encounters != 855 or unchanged_encounters != 175 \
+            or proxy_bypass_count != 499 \
+            or dict(sorted(role_changes.items())) != expected_roles \
+            or dict(sorted(proxy_shape_counts.items())) != {
+                "35_direct_bypass": 3,
+                "35_generated_intro": 478,
+                "8_direct_bypass": 150,
+                "8_generated_intro": 21,
+            } \
+            or split_continuation_count != 30 \
+            or restored_split_continuation_count != 20 \
+            or generic_post_pointers != {0x09364546} \
+            or route501 is None:
+        _fail(
+            "Vega trainer dialogue restore inventory不一致: "
+            f"changed={changed_encounters}, unchanged={unchanged_encounters}, "
+            f"proxy={proxy_bypass_count}, roles={dict(role_changes)}"
+        )
+    patch_ranges = sorted(
+        (int(row["address"]), int(row["address"]) + len(row["expected"]))
+        for row in patches
+    )
+    if len(patch_ranges) != len(set(patch_ranges)) or any(
+        right_start < left_end
+        for (_left_start, left_end), (right_start, _right_end)
+        in zip(patch_ranges, patch_ranges[1:])
+    ):
+        _fail("Vega trainer dialogue restore patch range重複")
+    if any(
+        patch_start < additional_end
+        and additional_start < patch_end
+        for patch_start, patch_end in patch_ranges
+        for additional_start, additional_end in additional_command_ranges
+    ):
+        _fail("Vega trainer dialogue patchがadditional trainerと重複")
+    patch_projection = [
+        {
+            "encounter_key": row["encounter_key"],
+            "entry_kind": row["entry_kind"],
+            "address": f"0x{int(row['address']):08X}",
+            "expected_sha256": _sha(bytes(row["expected"])),
+            "replacement_sha256": _sha(bytes(row["replacement"])),
+        }
+        for row in patches
+    ]
+    report = {
+        "status": "PASS",
+        "policy": "VEGA_ORIGINAL_DIALOGUE_KEEP_CHANGEKIT_PARTIES",
+        "canonical_vega_trainer_count": len(canonical),
+        "restored_encounter_count": changed_encounters,
+        "already_original_encounter_count": unchanged_encounters,
+        "additional_trainer_count_untouched": len(additional),
+        "additional_trainer_mode_counts": dict(sorted(
+            additional_mode_counts.items()
+        )),
+        "generic_intro_proxy_bypass_count": proxy_bypass_count,
+        "restored_pointer_count": sum(role_changes.values()),
+        "restored_role_counts": dict(sorted(role_changes.items())),
+        "explicit_victory_continuation_count": split_continuation_count,
+        "restored_split_victory_and_already_fought_edge_count": (
+            restored_split_continuation_count
+        ),
+        "trainerbattle_kind_counts": dict(sorted(kind_counts.items())),
+        "proxy_delta_counts": {
+            str(key): value for key, value in sorted(proxy_delta_counts.items())
+        },
+        "proxy_shape_counts": dict(sorted(proxy_shape_counts.items())),
+        "original_text_asset_count": len(original_text_assets),
+        "patch_count": len(patches),
+        "patch_projection_sha256": _sha(_stable(patch_projection)),
+        "serialized_path": str(TRAINER_SERIALIZED_PATH),
+        "serialized_sha256": TRAINER_SERIALIZED_SHA256,
+        "consumer_sha256": _sha(consumers_raw),
+        "vega_reference_sha256": _sha(vega_reference),
+        "route501_regression": route501,
+        "assertions": {
+            "trainerbattle_opcode_mode_id_and_flags_preserved": True,
+            "all_visible_and_continuation_pointers_from_vega_reference": True,
+            "generated_generic_intro_and_post_bypassed": True,
+            "victory_and_already_fought_edges_distinguished": True,
+            "kanto_and_archive_trainers_untouched": True,
+        },
+    }
+    text_validations = [
+        {
+            "pointer": pointer,
+            "expected_text": _read_text(
+                vega_reference, pointer, "Vega trainer text final validation"
+            ),
+        }
+        for pointer in sorted(original_text_assets)
+    ]
+    return {
+        "report": report,
+        "patches": patches,
+        "validations": validations,
+        "text_validations": text_validations,
+        "additional_validations": additional_validations,
+    }
+
+
+def _wild_overlay_rate_plan(stage60: bytes, policy_raw: bytes) -> dict[str, Any]:
+    """Derive normal-layer rates from each location's added-species count."""
+
+    try:
+        policy = json.loads(policy_raw)
+    except json.JSONDecodeError as exc:
+        _fail(f"wild overlay rate policy JSON不正: {exc}")
+    if not isinstance(policy, Mapping) \
+            or policy.get("schema_version") != 1 \
+            or policy.get("stage") != STAGE \
+            or policy.get("policy_id") \
+                != "LOCATION_CANDIDATE_COUNT_DEFAULT_V1" \
+            or policy.get("preserve_non_normal_layers") is not True:
+        _fail("wild overlay rate policy schema不一致")
+    table = policy.get("table")
+    rules = policy.get("rates_by_candidate_count")
+    if not isinstance(table, Mapping) or not isinstance(rules, list):
+        _fail("wild overlay rate policy table/rules不正")
+    address = int(str(table.get("address")), 0)
+    entry_size = int(table.get("entry_size", 0))
+    entry_count = int(table.get("entry_count", 0))
+    table_size = int(table.get("size", 0))
+    if entry_size != 104 or entry_count != 95 \
+            or table_size != entry_size * entry_count:
+        _fail("wild overlay table shape不一致")
+    table_offset = _rom_offset(address, table_size, "wild overlay table")
+    table_raw = stage60[table_offset:table_offset + table_size]
+    if _sha(table_raw) != table.get("stage60_sha256"):
+        _fail("wild overlay Stage60 table SHA-256不一致")
+    normalized_rules: list[tuple[int, int, int]] = []
+    for index, row in enumerate(rules):
+        if not isinstance(row, Mapping):
+            _fail(f"wild overlay rate rule不正:{index}")
+        lower = int(row.get("min_inclusive", 0))
+        upper = int(row.get("max_inclusive", 0))
+        rate = int(row.get("rate_percent", 0))
+        if not 1 <= lower <= upper <= 12 or not 1 <= rate <= 100:
+            _fail(f"wild overlay rate rule range不正:{index}")
+        normalized_rules.append((lower, upper, rate))
+    coverage = {
+        candidate_count: [
+            rate for lower, upper, rate in normalized_rules
+            if lower <= candidate_count <= upper
+        ]
+        for candidate_count in range(1, 13)
+    }
+    if any(len(values) != 1 for values in coverage.values()):
+        _fail("wild overlay candidate-count policyにgap/overlapがあります")
+
+    normal_layer = int(policy.get("normal_layer", -1))
+    patches: list[dict[str, Any]] = []
+    normal_rows: list[dict[str, Any]] = []
+    before_counts: Counter[int] = Counter()
+    after_counts: Counter[int] = Counter()
+    layer_counts: Counter[int] = Counter()
+    simulated = bytearray(table_raw)
+    seen_keys: set[tuple[int, int, int, int]] = set()
+    selection_thresholds: dict[tuple[int, int, int], dict[int, int]] = (
+        defaultdict(dict)
+    )
+    for index in range(entry_count):
+        relative = index * entry_size
+        raw = table_raw[relative:relative + entry_size]
+        group, map_number, area, layer = raw[:4]
+        threshold, candidate_count, rate, reserved = raw[4:8]
+        key = (group, map_number, area, layer)
+        if key in seen_keys or reserved != 0 \
+                or not 1 <= candidate_count <= 12 \
+                or threshold != min(255, (rate * 256 + 50) // 100):
+            _fail(f"wild overlay table row不正:{index}/{key}")
+        seen_keys.add(key)
+        candidates = struct.unpack_from(
+            f"<{candidate_count}H", raw, 8
+        )
+        if not candidates or any(value == 0 for value in candidates):
+            _fail(f"wild overlay candidate不正:{index}/{key}")
+        layer_counts[layer] += 1
+        selection_thresholds[(group, map_number, area)][layer] = threshold
+        if layer != normal_layer:
+            continue
+        if len(set(raw[80:80 + candidate_count])) != 1 \
+                or len(set(raw[92:92 + candidate_count])) != 1:
+            _fail(f"wild overlay normal candidate unlock不統一:{index}/{key}")
+        target_rate = coverage[candidate_count][0]
+        target_threshold = min(255, (target_rate * 256 + 50) // 100)
+        selection_thresholds[(group, map_number, area)][
+            normal_layer
+        ] = target_threshold
+        expected = raw[4:8]
+        replacement = bytes((
+            target_threshold, candidate_count, target_rate, reserved,
+        ))
+        before_counts[rate] += 1
+        after_counts[target_rate] += 1
+        normal_rows.append({
+            "index": index,
+            "group": group,
+            "map": map_number,
+            "area": area,
+            "candidate_count": candidate_count,
+            "before_rate_percent": rate,
+            "after_rate_percent": target_rate,
+            "after_threshold": target_threshold,
+        })
+        if expected != replacement:
+            patches.append({
+                "entry_kind": "normal_layer_rate",
+                "index": index,
+                "address": address + relative + 4,
+                "expected": expected,
+                "replacement": replacement,
+                "group": group,
+                "map": map_number,
+                "area": area,
+                "candidate_count": candidate_count,
+                "before_rate_percent": rate,
+                "after_rate_percent": target_rate,
+            })
+            simulated[relative + 4:relative + 8] = replacement
+    expected_layer_counts = {0: 48, 1: 3, 2: 13, 3: 9, 4: 8, 5: 14}
+    changed_offsets = [
+        index for index, (before, after) in enumerate(zip(table_raw, simulated))
+        if before != after
+    ]
+    special_rows_preserved = all(
+        table_raw[index * entry_size:(index + 1) * entry_size]
+        == simulated[index * entry_size:(index + 1) * entry_size]
+        for index in range(entry_count)
+        if table_raw[index * entry_size + 3] != normal_layer
+    )
+    if len(normal_rows) != int(policy.get("normal_entry_count", -1)) \
+            or len(patches) != len(normal_rows) \
+            or dict(sorted(after_counts.items())) \
+                != {20: 19, 30: 11, 40: 6, 50: 12} \
+            or dict(sorted(layer_counts.items())) != expected_layer_counts \
+            or len(changed_offsets) != 96 \
+            or {offset % entry_size for offset in changed_offsets} != {4, 6} \
+            or not special_rows_preserved:
+        _fail(
+            "wild overlay normal-layer inventory不一致: "
+            f"rows={len(normal_rows)}, patches={len(patches)}, "
+            f"rates={dict(after_counts)}"
+        )
+    route501 = next((
+        row for row in normal_rows
+        if (row["group"], row["map"], row["area"]) == (3, 19, 0)
+    ), None)
+    if route501 is None or route501["candidate_count"] != 8 \
+            or route501["after_rate_percent"] != 50:
+        _fail("T501 wild overlay policy regression不一致")
+    # AUTO mode tries an active swarm, then day/night, then normal.  Guard the
+    # most crowded possible location so the native Vega table always retains
+    # at least one third of encounters even when all optional layers align.
+    composed: list[tuple[float, tuple[int, int, int], int]] = []
+    for location, layers in selection_thresholds.items():
+        for phase_layer in (1, 2):
+            miss = 1.0
+            for layer in (3, phase_layer, normal_layer):
+                if layer in layers:
+                    miss *= 1.0 - layers[layer] / 256.0
+            composed.append((1.0 - miss, location, phase_layer))
+    max_composed, max_location, max_phase = max(composed)
+    route501_layers = selection_thresholds[(3, 19, 0)]
+    route501_miss = 1.0
+    for layer in (3, normal_layer):
+        if layer in route501_layers:
+            route501_miss *= 1.0 - route501_layers[layer] / 256.0
+    route501_composed = 1.0 - route501_miss
+    if max_composed >= 2.0 / 3.0:
+        _fail(f"wild overlay composed rate過大:{max_composed}")
+    report = {
+        "status": "PASS",
+        "policy_id": policy["policy_id"],
+        "policy_sha256": _sha(policy_raw),
+        "table_address": f"0x{address:08X}",
+        "entry_count": entry_count,
+        "normal_entry_count": len(normal_rows),
+        "non_normal_entry_count": entry_count - len(normal_rows),
+        "patch_count": len(patches),
+        "before_rate_counts": {
+            str(key): value for key, value in sorted(before_counts.items())
+        },
+        "after_rate_counts": {
+            str(key): value for key, value in sorted(after_counts.items())
+        },
+        "layer_counts": {
+            str(key): value for key, value in sorted(layer_counts.items())
+        },
+        "stage60_table_sha256": _sha(table_raw),
+        "stage61_table_sha256": _sha(bytes(simulated)),
+        "normal_rows_sha256": _sha(_stable(normal_rows)),
+        "route501_regression": route501,
+        "route501_max_swarm_composed_percent": round(
+            route501_composed * 100.0, 8
+        ),
+        "maximum_auto_composed": {
+            "group": max_location[0],
+            "map": max_location[1],
+            "area": max_location[2],
+            "phase_layer": max_phase,
+            "overlay_percent": round(max_composed * 100.0, 8),
+            "native_percent_floor": round((1.0 - max_composed) * 100.0, 8),
+        },
+        "actual_changed_byte_count": len(changed_offsets),
+        "actual_changed_entry_offsets": [4, 6],
+        "assertions": {
+            "normal_rate_selected_by_location_candidate_count": True,
+            "non_normal_day_night_swarm_fishing_hidden_rows_preserved": True,
+            "candidate_species_and_order_preserved": True,
+            "normal_candidate_unlocks_uniform_within_each_location": True,
+            "maximum_auto_overlay_below_two_thirds": True,
+        },
+    }
+    return {"report": report, "patches": patches}
+
+
 def _add_runtime_event_repair_payloads(
     blob: _Blob, *, stage60: bytes, clean: bytes,
     namespace_policy: NamespacePolicy, charmap: Mapping[int, str],
@@ -13693,6 +14352,8 @@ def _build_critical_release_artifacts(
     sevii_ferry_menu_namespace_audit: Mapping[str, Any],
     physical_map_provenance_audit: Mapping[str, Any],
     map_section_consumer_proof: Mapping[str, Any],
+    trainer_dialogue_restore_report: Mapping[str, Any],
+    wild_overlay_rate_report: Mapping[str, Any],
 ) -> dict[str, bytes]:
     """Publish the structurally safe candidate before exhaustive oracle work."""
 
@@ -13796,6 +14457,12 @@ def _build_critical_release_artifacts(
         ),
         "map_section_consumer_policy": deepcopy(
             dict(map_section_consumer_proof)
+        ),
+        "vega_trainer_dialogue_restore": deepcopy(
+            dict(trainer_dialogue_restore_report)
+        ),
+        "wild_overlay_rate_policy": deepcopy(
+            dict(wild_overlay_rate_report)
         ),
         "object_template_contract": {
             "contract_sha256": object_template_contracts[
@@ -13938,6 +14605,13 @@ def build(
     trainer_dialogue_raw = _identity(
         inputs["trainer_dialogue"], "trainer dialogue canonical CSV"
     )
+    trainer_consumers_raw = _identity(
+        inputs["trainer_runtime_consumers"],
+        "trainer runtime consumers canonical CSV",
+    )
+    wild_overlay_rate_policy_raw = _identity(
+        inputs["wild_overlay_rate_policy"], "wild overlay rate policy"
+    )
     section_raw = _identity(inputs["map_sections"], "Kanto map sections")
     namespace_registry_raw = _identity(
         inputs["namespace_registry"], "Stage61 namespace registry"
@@ -13958,6 +14632,12 @@ def build(
     )
     if metadata60.get("output", {}).get("sha256") != _sha(stage60):
         _fail("Stage60 metadataが入力ROMを所有していません")
+    trainer_dialogue_restore = _trainer_original_dialogue_restore_plan(
+        stage60, vega_reference, trainer_consumers_raw,
+    )
+    wild_overlay_rates = _wild_overlay_rate_plan(
+        stage60, wild_overlay_rate_policy_raw,
+    )
     # 重いsemantic/map buildより前に旧0x020370E0推測値を拒否し、生成ROMは
     # lifecycle fixture生成時にもう一度検証する。
     _engine_special_flag_owner_literal_contract(stage60, stage60)
@@ -14225,6 +14905,20 @@ def build(
         "size": len(built_payload), "expected_hex": None,
         "replacement_sha256": _sha(built_payload),
     }]
+
+    for patch in wild_overlay_rates["patches"]:
+        _apply_patch(
+            stage60, output, declared,
+            name=(
+                "wild_overlay_rate::normal::"
+                f"{int(patch['group']):03d}_{int(patch['map']):03d}_"
+                f"{int(patch['area'])}"
+            ),
+            offset=int(patch["address"]) - GBA_BASE,
+            expected=bytes(patch["expected"]),
+            replacement=bytes(patch["replacement"]),
+            category="WILD_OVERLAY_LOCATION_CANDIDATE_RATE",
+        )
 
     factory_prepare_error_adapter = _apply_factory_prepare_error_adapter(
         stage60, output, declared, symbols, nm_text,
@@ -14800,85 +15494,49 @@ def build(
             ],
         })
 
-    trainer_entry_patch_count = 0
-    for repair in runtime_repairs["trainer_intro"]["repairs"]:
-        for patch in _trainer_intro_entry_patch_specs(repair):
-            entry_kind = str(patch["entry_kind"])
-            address = int(patch["address"])
-            expected = bytes(patch["expected"])
-            replacement = bytes(patch["replacement"])
-            _apply_patch(
-                stage60, output, declared,
-                name=(
-                    "event_repair::trainer_intro::"
-                    f"{repair['encounter_key']}::{entry_kind}"
-                ),
-                offset=address - GBA_BASE,
-                expected=expected,
-                replacement=replacement,
-                category="EVENT_TRAINER_VISIBLE_INTRO_REPAIR",
-            )
-            trainer_entry_patch_count += 1
-            runtime_event_repair_patch_rows.append({
-                "repair_id": (
-                    f"TRAINER_INTRO_{repair['encounter_key']}::{entry_kind}"
-                ),
-                "family": "TRAINERBATTLE_VISIBLE_EOS_ONLY",
-                "address": address,
-                "expected_hex": expected.hex(),
-                "replacement_hex": replacement.hex(),
-                "encounter_key": repair["encounter_key"],
-                "proxy_root": repair["proxy_root"],
-                "source_script_root": repair["source_script_root"],
-                "source_instruction": repair["source_instruction"],
-                "adapter_address": repair["adapter_address"],
-                "trainerbattle_type": repair["kind"],
-                "source_data_address": repair["source_data_address"],
-                "source_trainer_id": repair["source_trainer_id"],
-                "rematch_target_trainer_id": (
-                    repair["rematch_target_trainer_id"]
-                ),
-                "normal_command_address": repair[
-                    "normal_command_address"
-                ],
-                "normal_data_address": repair["normal_data_address"],
-                "rematch_command_address": repair[
-                    "rematch_command_address"
-                ],
-                "rematch_data_address": repair["rematch_data_address"],
-                "proxy_closure": dict(repair["proxy_closure"]),
-                "source_closure": dict(repair["source_closure"]),
-                "visible_text_assets": [
-                    dict(row) for row in repair["visible_text_assets"]
-                ],
-                "source_provenance": (
-                    "PINNED_STAGE35_AUTHORED_NORMAL_REMATCH_INTRO"
-                ),
-            })
-        command_address = int(repair["command_address"])
-        command_offset = command_address - GBA_BASE
-        command_prefix = bytes.fromhex(
-            str(repair["command_prefix_expected_hex"])
+    trainer_dialogue_patch_count = 0
+    for patch in trainer_dialogue_restore["patches"]:
+        entry_kind = str(patch["entry_kind"])
+        address = int(patch["address"])
+        expected = bytes(patch["expected"])
+        replacement = bytes(patch["replacement"])
+        encounter_key = str(patch["encounter_key"])
+        _apply_patch(
+            stage60, output, declared,
+            name=(
+                "vega_trainer_dialogue::"
+                f"{encounter_key}::{entry_kind}"
+            ),
+            offset=address - GBA_BASE,
+            expected=expected,
+            replacement=replacement,
+            category="VEGA_ORIGINAL_TRAINER_DIALOGUE_RESTORE",
         )
-        if output[
-            command_offset:command_offset + len(command_prefix)
-        ] != command_prefix \
-                or output[command_offset] != 0x5C \
-                or output[command_offset + 1] != int(repair["kind"]) \
-                or struct.unpack_from("<H", output, command_offset + 2)[0] \
-                    != int(repair["trainer_id"]) \
-                or struct.unpack_from("<I", output, command_offset + 6)[0] \
-                    != int(repair["normal_text_pointer"]):
-            _fail(
-                "trainer sight direct-parser ABI不一致: "
-                f"{command_address:#010x}"
-            )
-    if trainer_entry_patch_count != 956:
+        trainer_dialogue_patch_count += 1
+        runtime_event_repair_patch_rows.append({
+            "repair_id": (
+                f"VEGA_TRAINER_DIALOGUE_{encounter_key}::{entry_kind}"
+            ),
+            "family": "VEGA_ORIGINAL_TRAINER_DIALOGUE",
+            "address": address,
+            "expected_hex": expected.hex(),
+            "replacement_hex": replacement.hex(),
+            "encounter_key": encounter_key,
+            "trainerbattle_type": int(patch["kind"]),
+            "runtime_trainer_id": int(patch["runtime_trainer_id"]),
+            "source_trainer_id": int(patch["source_trainer_id"]),
+            "changed_roles": list(patch.get("changed_roles", [])),
+            "source_provenance": (
+                "PINNED_VEGA_ORIGINAL_TRAINER_DIALOGUE_WITH_"
+                "STAGE35_PARTY_BINDING"
+            ),
+        })
+    if trainer_dialogue_patch_count \
+            != trainer_dialogue_restore["report"]["patch_count"]:
         _fail(
-            "trainer intro dual-entry patch count不一致: "
-            f"{trainer_entry_patch_count}"
+            "Vega trainer dialogue patch count不一致: "
+            f"{trainer_dialogue_patch_count}"
         )
-
     rematch_alias_table = runtime_repairs["trainer_intro"][
         "rematch_alias_table"
     ]
@@ -15620,6 +16278,35 @@ def build(
         engine_entries,
     )
     output_raw = bytes(output)
+    for validation in trainer_dialogue_restore["validations"]:
+        command_address = int(validation["command_address"])
+        expected_command = bytes(validation["expected_command"])
+        command_offset = command_address - GBA_BASE
+        if output_raw[
+            command_offset:command_offset + len(expected_command)
+        ] != expected_command:
+            _fail(
+                "Vega trainer dialogue final command不一致: "
+                f"{validation['encounter_key']}"
+            )
+    for validation in trainer_dialogue_restore["text_validations"]:
+        pointer = int(validation["pointer"])
+        expected_text = bytes(validation["expected_text"])
+        if _read_text(
+            output_raw, pointer, "Vega trainer final visible text"
+        ) != expected_text:
+            _fail(f"Vega trainer final text実体不一致:{pointer:#010x}")
+    for validation in trainer_dialogue_restore["additional_validations"]:
+        command_address = int(validation["command_address"])
+        expected_command = bytes(validation["expected_command"])
+        command_offset = command_address - GBA_BASE
+        if output_raw[
+            command_offset:command_offset + len(expected_command)
+        ] != expected_command:
+            _fail(
+                "additional trainer final command変更を検出: "
+                f"{validation['encounter_key']}"
+            )
     # Canonical group 96..98 object templates are part of the materialized
     # Stage61 payload.  The common final allocator is allowed to relocate
     # those templates, so bind allocation/declaration provenance to the exact
@@ -16203,6 +16890,10 @@ def build(
                 physical_map_provenance_audit
             ),
             map_section_consumer_proof=map_section_consumer_proof,
+            trainer_dialogue_restore_report=(
+                trainer_dialogue_restore["report"]
+            ),
+            wild_overlay_rate_report=wild_overlay_rates["report"],
         )
     cyclic_decision_source_blobs = (
         load_stage61_cyclic_decision_source_blobs(ROOT)
@@ -17236,6 +17927,12 @@ def build(
         },
         "namespace_policy": namespace_report,
         "namespace_registry": namespace_registry,
+        "vega_trainer_dialogue_restore": deepcopy(
+            trainer_dialogue_restore["report"]
+        ),
+        "wild_overlay_rate_policy": deepcopy(
+            wild_overlay_rates["report"]
+        ),
         "bill_sevii_scope_guard": blob_meta[
             "bill_sevii_scope_guard"
         ],

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "stage": 61,
+  "policy_id": "LOCATION_CANDIDATE_COUNT_DEFAULT_V1",
+  "table": {
+    "address": "0x0921D98C",
+    "entry_size": 104,
+    "entry_count": 95,
+    "size": 9880,
+    "stage60_sha256": "cd73a07f323055679bc8ecd9754633754513c6ae582e3aec7dfd9ee8c980c2de"
+  },
+  "normal_layer": 0,
+  "normal_entry_count": 48,
+  "preserve_non_normal_layers": true,
+  "rates_by_candidate_count": [
+    {
+      "min_inclusive": 1,
+      "max_inclusive": 1,
+      "rate_percent": 20
+    },
+    {
+      "min_inclusive": 2,
+      "max_inclusive": 3,
+      "rate_percent": 30
+    },
+    {
+      "min_inclusive": 4,
+      "max_inclusive": 5,
+      "rate_percent": 40
+    },
+    {
+      "min_inclusive": 6,
+      "max_inclusive": 12,
+      "rate_percent": 50
+    }
+  ]
+}
