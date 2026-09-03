@@ -3425,3 +3425,40 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - 未使用。
+## 2026-09-03T12:36:18+09:00
+
+- Task: `USER-20260903-STAGE61-CODEX-CLI-RECOVERY` / 現行Stage61のCodex対戦・アイテム／Pokémon送付CLI復旧
+- Status: DONE（実機へのきんのたま送付だけはiPad上のRetroArch起動待ち）
+- Summary:
+  - Stage61では`gMain.readKeys`がCollection Supply経由のworld routerへ差し替わり、cold boot時にゼロのCodex runtime mailboxを初期化するtop adapterへ到達できなかった。CLIはROM CRC照合後のmailbox identityで安全停止しており、save／bag／partyへの書込みは発生していなかった。
+  - Stage61にmailboxとruntime stateのmagic、ABI、identity、nonceを検査するReadKeys bootstrap adapterを追加した。未初期化時だけ既存Codex top adapterを呼び、初期化済みならStage60のCollection Supply／world routerへ委譲する。変更入口は`0x080005EC`の4-byte pointer 1件だけである。
+  - CLI installerへ後続ROM protocol rebinderを追加した。`VEGA_CODEX_BATTLE_ROM_SOURCE`と任意の`VEGA_CODEX_BATTLE_STAGE`からROM size／SHA-256／CRC32／Stage番号だけを再固定し、mailbox、catalog、Box 14 ABIはversioned Stage47 protocolを保持する。
+  - Stage61 focused libmGBA smokeでcold boot初期化、きんのたま1個のexactly-once追加、Pokémonのparty／PC送付、Codex configure、warnings 0をPASSした。試験ROMコピー内だけを変更し、ユーザーsaveは使っていない。
+  - 新候補ROMは33,554,432 bytes、SHA-256 `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`、CRC32 `F6ECC7F0`。iPadへROMだけを原子的に更新し、旧ROMを日時付きで保全、save directory全57件を前後不変にした。
+- Files changed:
+  - `overlays/stage61_display_npc_event_audit/stage61_display_npc_event_audit.c`
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `scripts/install_vega_codex_battle_cli.sh`
+  - `tools/rebind_vega_codex_battle_protocol.py`
+  - `tools/mgba_stage61_codex_cli_smoke.c`
+  - `tests/test_stage61_codex_runtime_bootstrap.py`
+  - `tests/test_vega_codex_battle_protocol_rebind.py`
+  - `design/active_play_baseline.md`
+  - `design/current_state.md`
+  - `docs/CODEX_BATTLE_OPERATOR_JA.md`
+  - `docs/WINDOWS_BATTLE_CATALOG_JA.md`
+  - `docs/WINDOWS_BOX14_VAULT_JA.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上の`61_critical_release_candidate.gba`。saveは未変更。
+- Verify:
+  - `python3 -m unittest tests.test_stage61_codex_runtime_bootstrap tests.test_vega_codex_battle_protocol_rebind`: 5 tests PASS。
+  - `python3 scripts/build_stage61_display_npc_event_audit.py critical-release`: PASS、`DEFERRED_AUDIT`を維持。
+  - `tools/mgba_stage61_codex_cli_smoke.c`: ReadKeys root、cold boot runtime、catalog item、catalog mon、Codex configure、warnings 0の6項目PASS。
+  - CLI再導入後protocol: Stage 61、ROM size 33,554,432、SHA-256 `60b83b8c...5aff0e`、CRC32 `F6ECC7F0`一致。
+  - iPad ROM-only配置: RetroArch process 0、active container／live config／mGBA save directory、remote size／SHA、read-back `cmp`、save 57件manifest不変、既存Stage60不変、remote一時ファイル0をPASS。3回のpreflight停止は正規ROM置換前で、最後の実行だけが確定した。
+  - strict全件監査: SKIP（ユーザー指定どおり再開せず、元taskはIN_PROGRESSのまま）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

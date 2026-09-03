@@ -8,12 +8,16 @@ Box 14に置いた個体だけを`vega-codex-battle`経由でまとめて預け�
 
 ## 使い方
 
-ROMとCLIを生成・導入する。
+現行プレイ基準ROMへCLIを導入する。
 
 ```bash
-make windows-box14-vault
+VEGA_CODEX_BATTLE_ROM_SOURCE="$PWD/build/stages/61_critical_release_candidate.gba" \
+VEGA_CODEX_BATTLE_STAGE=61 \
 bash scripts/install_vega_codex_battle_cli.sh
 ```
+
+installerは指定ROMのsize／SHA-256／CRC32とStage番号をprotocolへ自動固定する。Box 14 ABI、
+mailbox、commandは既存のversioned protocolをそのまま使う。
 
 任意mapの通常fieldで、PC・menu・会話・戦闘を閉じて状態を確認する。NPC前へ移動する必要はない。
 

@@ -13,12 +13,18 @@ installed_catalog=${libexec_dir}/catalog.json
 installed_rom=${libexec_dir}/windows_box14_vault.gba
 
 source_cli=${workspace_dir}/tools/vega_codex_battle.py
+source_rebinder=${workspace_dir}/tools/rebind_vega_codex_battle_protocol.py
 source_protocol=${VEGA_CODEX_BATTLE_PROTOCOL_SOURCE:-${workspace_dir}/generated/runtime/windows_box14_vault_protocol.json}
 source_catalog=${workspace_dir}/content/codex_battle/catalog.json
 source_rom=${VEGA_CODEX_BATTLE_ROM_SOURCE:-}
+source_stage=${VEGA_CODEX_BATTLE_STAGE:-}
 
 test -f "${source_cli}" || {
     printf '%s\n' "CLI source is missing" >&2
+    exit 1
+}
+test -f "${source_rebinder}" || {
+    printf '%s\n' "Protocol ROM rebinder is missing" >&2
     exit 1
 }
 test -f "${source_protocol}" || {
@@ -58,9 +64,20 @@ python3 -c 'import PIL' || {
 install -d -m 0755 "${bin_dir}"
 install -d -m 0700 "${data_dir}" "${libexec_dir}"
 install -m 0755 "${source_cli}" "${installed_cli}"
-install -m 0644 "${source_protocol}" "${installed_protocol}"
 install -m 0644 "${source_catalog}" "${installed_catalog}"
 install -m 0600 "${source_rom}" "${installed_rom}"
+
+rebind_args=(
+    --protocol "${source_protocol}"
+    --rom "${installed_rom}"
+    --output "${installed_protocol}"
+    --rom-path "windows_box14_vault.gba"
+)
+if test -n "${source_stage}"; then
+    rebind_args+=(--stage "${source_stage}")
+fi
+python3 "${source_rebinder}" "${rebind_args[@]}"
+chmod 0644 "${installed_protocol}"
 
 if test -e "${launcher}" && ! test -L "${launcher}"; then
     printf '%s\n' "Refusing to replace a non-symlink vega-codex-battle launcher" >&2

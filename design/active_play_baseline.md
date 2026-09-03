@@ -7,13 +7,13 @@
 
 ## 現在の基準
 
-- 呼称: Stage61 Vega会話復元・外来生態率調整版
+- 呼称: Stage61 Vega会話復元・外来生態率調整・Codex CLI復旧版
 - ローカルROM: `build/stages/61_critical_release_candidate.gba`
 - サイズ: 33,554,432 bytes
-- SHA-256: `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`
-- CRC32: `7E2FAB88`
-- ROM内容checkpoint: `5c48340`（Vega会話と外来生態率を復元調整）
-- iPad配置記録: `9f8e437`（同一SHAのROMだけを配置）
+- SHA-256: `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`
+- CRC32: `F6ECC7F0`
+- ROM内容checkpoint: 本基準更新と同じ作業（起動直後のCodex runtime初期化入口を復旧）
+- iPad配置記録: 2026-09-03（同一SHAのROMだけを配置、save 57件不変）
 - 状態: ユーザー指定の現行プレイ基準。strict全件監査完了版ではない。
 
 このROMはiPadのRetroArch/mGBAへ配置済みである。配置時にはsaveを生成・転送・変更していない。
@@ -46,6 +46,15 @@ vega-codex-battle match status --json
 
 ROM identity、runtime、save状態が一致した時だけwriteへ進む。2026-09-03時点の導入済みCLIは
 `vega-codex-battle 2.5.1`であるが、固定filenameではなくCLIが読むprotocolのROM identityを正とする。
+
+現行ROMへCLIを再導入する時は次を使う。installerは指定ROMのsize／SHA-256／CRC32とStage番号を
+protocolへ再固定してから配置するため、Stage47の古いROM identityを手編集しない。
+
+```bash
+VEGA_CODEX_BATTLE_ROM_SOURCE="$PWD/build/stages/61_critical_release_candidate.gba" \
+VEGA_CODEX_BATTLE_STAGE=61 \
+bash scripts/install_vega_codex_battle_cli.sh
+```
 
 - 通常フィールドでのアイテム／Pokémon送付は`bank status`を確認して`bank item`／`bank mon`を使う。
 - 対戦結果に紐づく報酬は`reward status`が現在matchの`OPEN`を示す時だけ送る。

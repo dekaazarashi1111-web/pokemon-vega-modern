@@ -26,17 +26,16 @@ mailboxの宣言済みrequest領域だけを書き、セーブ、party、boxを�
 
 ## 準備
 
-任意map対応を含む現行Stage 47を生成する。
+現在遊んでいるStage61へCLIを導入する。
 
 ```bash
-make windows-box14-vault
+VEGA_CODEX_BATTLE_ROM_SOURCE="$PWD/build/stages/61_critical_release_candidate.gba" \
+VEGA_CODEX_BATTLE_STAGE=61 \
+bash scripts/install_vega_codex_battle_cli.sh
 ```
 
-成果物は`build/stages/47_windows_box14_vault.gba`。CLIをユーザー領域へ入れる場合は次を使う。
-
-```bash
-scripts/install_vega_codex_battle_cli.sh
-```
+installerはStage47 protocolのmailbox／command／catalog／Box 14 ABIを保ち、指定した後続ROMの
+size／SHA-256／CRC32とStage番号だけを再固定する。古いROM identityを手編集しない。
 
 RetroArchのNetwork Command Interfaceを有効にし、初回だけ接続先を登録する。
 
@@ -129,13 +128,17 @@ CLI 2.4.1以降は、PC・会話・戦闘などの実行境界で拒否された
 
 CLIは特定の`FINALFIX`ファイル名を参照しない。既定では隣接または
 `generated/runtime/windows_box14_vault_protocol.json`を優先して発見し、そのprotocol内のROM identity、
-mailbox、command、catalog metadataを使う。後続ROMではStage 47 builderと同じように、直前stageの
-metadata／symbols／protocolをconfigへ固定し、同じruntimeを再配置・再束縛すればよい。
+mailbox、command、catalog metadataを使う。後続ROMでは`VEGA_CODEX_BATTLE_ROM_SOURCE`と
+`VEGA_CODEX_BATTLE_STAGE`を指定してinstallerを再実行すれば、ROM identityを自動更新できる。
+ROM側はStage61のReadKeys bootstrap入口を継承し、cold boot後にもruntime mailboxを初期化すること。
 
 検証や別配置で明示する場合だけ、次の環境変数を使う。
 
 - `VEGA_CODEX_BATTLE_PROTOCOL`
 - `VEGA_CODEX_BATTLE_ROM`
 - `VEGA_CODEX_BATTLE_CATALOG`
+- installer用: `VEGA_CODEX_BATTLE_PROTOCOL_SOURCE`
+- installer用: `VEGA_CODEX_BATTLE_ROM_SOURCE`
+- installer用: `VEGA_CODEX_BATTLE_STAGE`
 
 通常運用では設定不要である。

@@ -238,6 +238,7 @@ typedef u8 (*CreateMonIconFn)(
     u16, SpriteCallbackFn, s16, s16, u8, u32, u32);
 typedef u16 (*FactoryPrepareBattleFn)(void);
 typedef u16 (*GetRematchTrainerIdFn)(u16);
+typedef void (*VoidFn)(void);
 
 struct Stage61TrainerRematchAlias {
     u32 command_data_address;
@@ -268,6 +269,14 @@ _Static_assert(sizeof(struct Stage61TrainerRematchAlias) == 8u,
     PTR(volatile const u16 *, 0x0203EDDCu)
 #define G_FACTORY_SPECIAL_RESULT \
     PTR(volatile u16 *, STAGE61_FACTORY_SPECIAL_RESULT)
+#define G_CODEX_RUNTIME_MAILBOX \
+    PTR(volatile u8 *, 0x0203F900u)
+#define G_CODEX_RUNTIME_STATE \
+    PTR(volatile u8 *, 0x0203FA00u)
+#define FN_CODEX_READ_KEYS_TOP \
+    PTR(VoidFn, 0x093D1F99u)
+#define FN_STAGE60_READ_KEYS \
+    PTR(VoidFn, 0x09405D65u)
 #define FN_MAP_HEADER_RUN_SCRIPT_TYPE \
     PTR(MapHeaderRunScriptTypeFn, 0x08069481u)
 #define FN_DECOMPRESS_BG PTR(DecompressBgFn, 0x080F78D1u)
@@ -632,6 +641,42 @@ static u32 stage61_read32(const volatile u8 *bytes)
         | ((u32)bytes[1] << 8)
         | ((u32)bytes[2] << 16)
         | ((u32)bytes[3] << 24);
+}
+
+static u8 stage61_codex_runtime_requires_bootstrap(void)
+{
+    volatile u8 *mailbox = G_CODEX_RUNTIME_MAILBOX;
+    volatile u8 *state = G_CODEX_RUNTIME_STATE;
+    u32 nonce;
+
+    if (stage61_read32(state) != 0x32524243u
+            || stage61_read32(state + 4u) != ~0x32524243u)
+        return 1u;
+    if (stage61_read32(mailbox) != 0x32524243u
+            || stage61_read16(mailbox + 4u) != 2u
+            || stage61_read16(mailbox + 6u) != 2u
+            || stage61_read16(mailbox + 8u) != 0x100u
+            || stage61_read16(mailbox + 10u) != 0x40u
+            || stage61_read16(mailbox + 12u) != 0x40u
+            || stage61_read16(mailbox + 14u) != 0x60u
+            || stage61_read16(mailbox + 16u) != 0xA0u
+            || stage61_read16(mailbox + 18u) != 0x60u
+            || stage61_read16(mailbox + 20u) != 0x40u
+            || stage61_read16(mailbox + 22u) != 44u
+            || stage61_read32(mailbox + 28u) != 0x34345242u
+            || stage61_read32(mailbox + 32u) != 0x32524243u)
+        return 1u;
+    nonce = stage61_read32(mailbox + 36u);
+    return nonce == 0u || stage61_read32(mailbox + 40u) != ~nonce;
+}
+
+STAGE61_EXPORT(Stage61Codex_ReadKeysBootstrapAdapter)
+void Stage61Codex_ReadKeysBootstrapAdapter(void)
+{
+    if (stage61_codex_runtime_requires_bootstrap() != 0u)
+        FN_CODEX_READ_KEYS_TOP();
+    else
+        FN_STAGE60_READ_KEYS();
 }
 
 static void stage61_write16(volatile u8 *bytes, u16 value)

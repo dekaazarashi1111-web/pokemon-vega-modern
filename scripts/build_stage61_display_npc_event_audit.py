@@ -336,6 +336,13 @@ FACTORY_PREPARE_SOURCE_PATHS = (
     Path("scripts/build_stage61_display_npc_event_audit.py"),
     Path("tools/stage61_facility_sessions.py"),
 )
+CODEX_READ_KEYS_ROOT = 0x080005EC
+CODEX_READ_KEYS_STAGE60_POINTER = 0x09405D65
+CODEX_READ_KEYS_STAGE60_PREIMAGE = struct.pack(
+    "<I", CODEX_READ_KEYS_STAGE60_POINTER,
+)
+CODEX_READ_KEYS_TOP_ADAPTER = 0x093D1F99
+CODEX_BOOTSTRAP_ADAPTER_SYMBOL = "Stage61Codex_ReadKeysBootstrapAdapter"
 INTERACTION_ABI_GENERATOR_SOURCES = (
     "tools/world_runtime_e2e_repair.py",
     "scripts/build_stage58_qol_world_convenience_debug.py",
@@ -958,6 +965,7 @@ BILL_SEVII_SOURCE_EVIDENCE_PATHS = (
 REQUIRED_SYMBOLS = {
     FACTORY_PREPARE_ADAPTER_SYMBOL,
     FACTORY_PREPARE_FAULT_SETTER_SYMBOL,
+    CODEX_BOOTSTRAP_ADAPTER_SYMBOL,
     "Stage61DisplayNpcEvent_GetMapName",
     "Stage61DisplayNpcEvent_ResolveNamePointer",
     "Stage61DisplayNpcEvent_SetFlyWarpDestination",
@@ -6342,6 +6350,44 @@ def _apply_patch(
         "end_exclusive": offset + len(replacement), "size": len(replacement),
         "expected_hex": expected.hex(), "replacement_hex": replacement.hex(),
     })
+
+
+def _apply_codex_runtime_bootstrap_adapter(
+    stage60: bytes, output: bytearray, declared: list[dict[str, Any]],
+    symbols: Mapping[str, int],
+) -> dict[str, Any]:
+    symbol = symbols.get(CODEX_BOOTSTRAP_ADAPTER_SYMBOL)
+    if symbol is None or symbol & 1:
+        _fail("Stage61 Codex bootstrap adapter symbol不正")
+    replacement_pointer = symbol | 1
+    _apply_patch(
+        stage60,
+        output,
+        declared,
+        name="codex_runtime::cold_boot_read_keys_adapter",
+        offset=CODEX_READ_KEYS_ROOT - GBA_BASE,
+        expected=CODEX_READ_KEYS_STAGE60_PREIMAGE,
+        replacement=struct.pack("<I", replacement_pointer),
+        category="CODEX_RUNTIME_COLD_BOOT_INITIALIZATION",
+    )
+    return {
+        "status": "PASS",
+        "repair_id": "CODEX_RUNTIME_COLD_BOOT_READ_KEYS_STAGE61",
+        "family": "CODEX_RUNTIME_FIELD_ENTRY",
+        "address": CODEX_READ_KEYS_ROOT,
+        "expected_hex": CODEX_READ_KEYS_STAGE60_PREIMAGE.hex(),
+        "replacement_hex": struct.pack("<I", replacement_pointer).hex(),
+        "adapter_symbol": CODEX_BOOTSTRAP_ADAPTER_SYMBOL,
+        "adapter_target": f"0x{replacement_pointer:08X}",
+        "valid_runtime_delegate": f"0x{CODEX_READ_KEYS_STAGE60_POINTER:08X}",
+        "cold_boot_delegate": f"0x{CODEX_READ_KEYS_TOP_ADAPTER:08X}",
+        "assertions": {
+            "stage60_root_pointer_exact": True,
+            "cold_boot_delegates_to_codex_top_adapter": True,
+            "valid_runtime_delegates_to_stage60_collection_router": True,
+            "single_root_pointer_patch_only": True,
+        },
+    }
 
 
 def _runtime_nm_symbol_span(
@@ -14906,6 +14952,12 @@ def build(
         "replacement_sha256": _sha(built_payload),
     }]
 
+    codex_runtime_bootstrap_adapter = (
+        _apply_codex_runtime_bootstrap_adapter(
+            stage60, output, declared, symbols,
+        )
+    )
+
     for patch in wild_overlay_rates["patches"]:
         _apply_patch(
             stage60, output, declared,
@@ -15058,6 +15110,10 @@ def build(
     }:
         _fail("Factory PrepareBattle runtime repair provenance不一致")
     runtime_event_repair_patch_rows: list[dict[str, Any]] = [{
+        key: value
+        for key, value in codex_runtime_bootstrap_adapter.items()
+        if key != "status"
+    }, {
         "repair_id": "FACTORY_PREPARE_ERROR_STAGE61_ADAPTER_POINTER",
         "family": "FACILITY_PHYSICAL_PREPARE_ERROR_VALIDATION_SEAM",
         "address": FACTORY_PREPARE_POINTER_SITE,

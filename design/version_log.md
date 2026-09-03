@@ -1334,3 +1334,13 @@
   - Codex対戦、任意報酬、Windows送付、Box 14移動、バグ修正の全入口を新しい基準文書へ集約した。
   - 通常プレイsaveの無断置換禁止と、旧stage／別SHAへ自動で戻らない規則を明記した。
 - Verify: ROM size／SHA-256、CLI 2.5.1、文書参照、task graph、private guard、diff check PASS。ROM／iPad／saveは変更なし。
+## 2026-09-03T12:36:18+09:00
+
+- Version: `stage61-codex-cli-cold-boot-recovery`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-CODEX-CLI-RECOVERY` / 現行Stage61のCodex対戦・送付CLI復旧
+- Summary:
+  - cold boot時だけCodex runtimeを初期化し、通常時はStage60 Collection Supply／world routerへ戻すReadKeys adapterを追加した。
+  - installerが後続ROMのsize／SHA-256／CRC32／Stage番号をprotocolへ自動固定するようにした。
+  - item、Pokémon、Codex configureをfocused libmGBAで通し、ROMだけをiPadへ更新してsave 57件を不変に保った。
+- Verify: focused unit 5件、critical-release build、Stage61 Codex CLI smoke 6項目、CLI protocol identity、iPad ROM-only atomic install／read-back／save manifest、task graph、private guard、diff check PASS。ROM SHA-256 `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`。

@@ -15,14 +15,18 @@ spanだけで、PCからsave、bag、party、boxを直接編集しない。NCI�
 
 ## 導入
 
-Stage 45をbuildしたワークスペースで次を実行する。
+現行プレイ基準ROMを使う場合は、そのROM identityを指定して次を実行する。
 
 ```bash
+VEGA_CODEX_BATTLE_ROM_SOURCE="$PWD/build/stages/61_critical_release_candidate.gba" \
+VEGA_CODEX_BATTLE_STAGE=61 \
 bash scripts/install_vega_codex_battle_cli.sh
 bash scripts/install_vega_codex_battle_skill.sh
 ```
 
-CLIはStage 45 ROM、protocol、read-only catalogを個人用data directoryへ配置する。skill installerは
+CLI installerは指定ROMからsize／SHA-256／CRC32を再計算し、Stage番号とともにprotocolへ固定する。
+ROM指定を省略した場合だけprotocol既定のROMを使う。CLIはROM、protocol、read-only catalogを
+個人用data directoryへ配置する。skill installerは
 `${CODEX_HOME}/skills/vega-codex-battle`へsourceを配置する。device hostはCLIのowner-only設定へだけ保存し、
 repository、skill、reportへ書かない。
 
