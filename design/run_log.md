@@ -3319,6 +3319,28 @@
 - Network:
   - インターネット未使用。固定ローカルROM／sourceとlibmGBAだけを使用した。
 
+## 2026-09-03T09:39:45+09:00
+
+- Task: `USER-20260903-STAGE61-DIALOGUE-WILD-IPAD-ROM-ONLY-PLACEMENT` / 最新Stage61候補ROMだけをiPadへ配置
+- Status: DONE
+- Summary:
+  - `build/stages/61_critical_release_candidate.gba`を33,554,432 bytes、SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`として固定し、ROMだけをiPadの既存同名ROMへ原子的に配置した。
+  - active containerとlive `retroarch.cfg`から配置先を再解決し、RetroArch process 0を確認した。旧ROM `5d1f3230...8f3e`は日時付きで退避した。
+  - ユーザー指定どおりsaveは生成・転送・変更していない。mGBA save directory全57件は配置前後のhash manifestが一致した。
+- Files changed:
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上の`61_critical_release_candidate.gba`。saveは未変更。
+- Verify:
+  - `ipad-wifi-ssh doctor`、active container／live config／ROM directory／mGBA save directory、RetroArch process 0: PASS。
+  - iPad側ROM size／SHA-256、端末からのread-back `cmp`: PASS。
+  - save manifest 57件前後一致、同名save未変更、既存Stage60 ROM不変、remote一時ファイル0、local source ROM不変: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送しread-backした。端末固有情報はtracked成果へ保存していない。
+
 ## 2026-09-03T02:32:01+09:00
 
 - Task: `USER-20260903-STAGE61-HOTFIX-IPAD-ROM-ONLY-PLACEMENT` / Stage61 hotfix候補ROMだけのiPad配置

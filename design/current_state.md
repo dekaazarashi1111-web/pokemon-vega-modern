@@ -4,7 +4,7 @@
 
 ## 進行中タスクの再開点
 
-- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-03のVega既存trainer会話復元＋外来生態率調整checkpointを最新とする。ChangeKitの手持ち・trainer ID・battle flagsは保持し、Vega既存1,030 encounterの原版会話を再接続した。固定追加文の855件、35-byte intro 478件、8-byte外付けintro 21件、固定post 855件を迂回し、勝利後と撃破済み再会話の継続先が異なる30件も原版どおり分離した。KANTO_NEW／ARCHIVE 272件は不変。通常外来生態48 entryは1種20%、2～3種30%、4～5種40%、6種以上50%とし、昼夜・大量発生・釣り・隠し47 entryはbyte不変。T501は追加8種で50%。候補は`build/stages/61_critical_release_candidate.gba`、33,554,432 bytes、SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。critical 5 case×2 processとRoute501 trainer 89の自然入力戦をPASS。ローカルsaveとiPadは未変更で、iPad上は一つ前の`5d1f3230...8f3e`のまま。strict全件監査は`DEFERRED_AUDIT`で、元taskはIN_PROGRESSを維持する。
+- `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`はIN_PROGRESS。2026-09-03のVega既存trainer会話復元＋外来生態率調整checkpointを最新とする。ChangeKitの手持ち・trainer ID・battle flagsは保持し、Vega既存1,030 encounterの原版会話を再接続した。固定追加文の855件、35-byte intro 478件、8-byte外付けintro 21件、固定post 855件を迂回し、勝利後と撃破済み再会話の継続先が異なる30件も原版どおり分離した。KANTO_NEW／ARCHIVE 272件は不変。通常外来生態48 entryは1種20%、2～3種30%、4～5種40%、6種以上50%とし、昼夜・大量発生・釣り・隠し47 entryはbyte不変。T501は追加8種で50%。候補は`build/stages/61_critical_release_candidate.gba`、33,554,432 bytes、SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。critical 5 case×2 processとRoute501 trainer 89の自然入力戦をPASS。ローカルsaveは未変更。iPad上の同名ROMも同SHAへ更新し、旧`5d1f3230...8f3e`を日時付きで退避、save 57件は前後不変。strict全件監査は`DEFERRED_AUDIT`で、元taskはIN_PROGRESSを維持する。
 
 ## 現在地
 
