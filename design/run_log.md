@@ -3462,3 +3462,22 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-03T12:39:19+09:00
+
+- Task: `USER-20260903-STAGE61-NUGGET-DELIVERY` / 現行Stage61へきんのたま1個を送付
+- Status: DONE
+- Summary:
+  - iPad上で現行Stage61を起動した状態から、versioned CLIのbank APIでitem ID 110「きんのたま」を数量1だけ送付した。
+  - command sequence 1が`COMMITTED`となり、`committed_count=1`と`exactly_once=true`を確認した。同じ送付コマンドは再実行していない。
+  - CLIはrequest spanだけを書き込み、host側からsave／partyを直接変更していない。
+- Files changed:
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - 送付直前`vega-codex-battle bank status --json`: PASS（Stage 61、available、runtime IDLE、reward window CLOSED、PC UI CLOSED）。
+  - `vega-codex-battle bank item 110 --quantity 1 --json`: PASS（きんのたま×1、accepted sequence 1、journal COMMITTED、exactly-once）。
+  - 送付直後`vega-codex-battle bank status --json`: PASS（pending sequence 0、journal COMMITTED、retry fileなし）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadとversioned CLIで通信した。接続先、credential、端末固有path、private save内容はtracked成果へ保存していない。

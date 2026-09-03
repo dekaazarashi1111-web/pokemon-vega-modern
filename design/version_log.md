@@ -1344,3 +1344,13 @@
   - installerが後続ROMのsize／SHA-256／CRC32／Stage番号をprotocolへ自動固定するようにした。
   - item、Pokémon、Codex configureをfocused libmGBAで通し、ROMだけをiPadへ更新してsave 57件を不変に保った。
 - Verify: focused unit 5件、critical-release build、Stage61 Codex CLI smoke 6項目、CLI protocol identity、iPad ROM-only atomic install／read-back／save manifest、task graph、private guard、diff check PASS。ROM SHA-256 `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`。
+
+## 2026-09-03T12:39:19+09:00
+
+- Version: `stage61-active-play-item-delivery-1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-NUGGET-DELIVERY` / 現行Stage61へきんのたま1個を送付
+- Summary:
+  - versioned CLIからitem ID 110「きんのたま」を数量1だけ送付した。
+  - command sequence 1のexactly-once commitを確認し、重複送付は行っていない。
+- Verify: 送付前後のbank status、`bank item 110 --quantity 1`のCOMMITTED応答、pending sequence 0、retry fileなしをPASS。
