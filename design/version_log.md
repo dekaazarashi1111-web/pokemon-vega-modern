@@ -1354,3 +1354,14 @@
   - versioned CLIからitem ID 110「きんのたま」を数量1だけ送付した。
   - command sequence 1のexactly-once commitを確認し、重複送付は行っていない。
 - Verify: 送付前後のbank status、`bank item 110 --quantity 1`のCOMMITTED応答、pending sequence 0、retry fileなしをPASS。
+
+## 2026-09-03T13:21:31+09:00
+
+- Version: `stage61-play-wiki-1.0.0`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-WIKI` / 現行Stage61プレイWikiの生成
+- Summary:
+  - 全1,621 Speciesの能力、特性、入手、進化、現ROM習得技を1種族1ページで収録した。
+  - 全技・全特性・全アイテム・主要アイテム入手・タイプ相性・通常野生・生態オーバーレイとCodex用検索索引を生成した。
+  - 現行ROM SHAをhard gateにし、継承取得情報と現ROM直接抽出、TM/HM・教え技の実consumer制約を明示した。
+- Verify: `make stage61-wiki`、`make stage61-wiki-check`、focused unit 6件、task graph、private guard、diff check PASS。

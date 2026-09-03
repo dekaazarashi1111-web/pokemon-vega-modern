@@ -3481,3 +3481,34 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadとversioned CLIで通信した。接続先、credential、端末固有path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-03T13:21:31+09:00
+
+- Task: `USER-20260903-STAGE61-WIKI` / 現行Stage61プレイWikiの生成
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - 現行Stage61 ROM SHA-256 `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`をhard gateにし、全1,621 Speciesの個別ページを生成した。各ページにタイプ、種族値、努力値、3特性と説明、入手経路、通常野生、生態オーバーレイ、Raid、フォーム供給、進化元／先、現ROM習得技を収録した。
+  - 全1,063技、全312特性、全999アイテム、主要392アイテムの複数入手経路、タイプ相性、通常野生265 header／2,733 slot、生態95 table／294候補をMarkdownとJSONLへ整理した。
+  - `CODEX_INDEX.md`と`data/search_index.jsonl`を最短入口にし、README、agent context map、minimap、catalogからWikiへ直行できるようにした。
+  - 既存V4設計と実ROM consumerのTM/HM・教え技slot不整合を隠さず、実行時に参照されるTM/HM 58枠・教え技15枠だけを「覚えられる技」として掲載した。未接続枠とStage61 strict全経路監査の未完了は`RUNTIME_LIMITATIONS.md`へ明記した。
+- Files changed:
+  - `docs/wiki/stage61/**`（Markdown／JSONL 1,640 files）
+  - `scripts/build_stage61_wiki.py`
+  - `tests/test_stage61_wiki.py`
+  - `Makefile`
+  - `README.md`
+  - `design/agent_context_map.md`
+  - `docs/agent_context_minimap.md`
+  - `design/catalog.md`
+  - `reports/generated/stage61_wiki.json`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `make stage61-wiki`: PASS（同一入力から1,640 filesを決定的生成）。
+  - `make stage61-wiki-check`: PASS（active ROM identity、入力hash、全公開成果byte一致）。
+  - `python3 -m unittest tests.test_stage61_wiki -v`: 6 tests PASS（全entity件数、全Species page、能力／入手／習得表、実consumer slot、検索anchor、相対link、公開byte一致）。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+  - Stage61 strict全経路の実機走破: SKIP（現行baselineどおり`DEFERRED_AUDIT`。Wikiでは継承情報と現ROM直接抽出を区別）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。固定ローカルROMとtracked正本だけを使用した。

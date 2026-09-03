@@ -30,6 +30,7 @@ python3 scripts/taskctl.py next
 - タスク完了条件: `tasks/T*.md`
 - 現在地: `design/current_state.md`
 - 現在遊ぶROM・実機操作の基準: `design/active_play_baseline.md`
+- Stage61のポケモン・技・特性・主要アイテム入手Wiki: `docs/wiki/stage61/README.md`
 - 採択済み判断: `design/decisions.md`
 - 全体ロードマップ: `MASTER_PLAN.md`
 - 入力・上流pin: `state/source-lock.json`
@@ -140,6 +141,8 @@ make stage59-wild-identity # 3野生生成入口のcanonical-name guardをStage5
 make stage59-wild-identity-check # Stage59 ROM・BPS・span・allocation・継承修復を副作用なしで照合
 make stage59-mgba-all # 全1620種、3生成方式、自然歩行、fresh／QA-save menuをexact ROMで検証
 make stage59-final-gate # 決定的build→全mGBA domain→artifact drift checkを連続実行
+make stage61-wiki # 現行Stage61 ROMと統合済み正本からプレイWikiを決定的生成
+make stage61-wiki-check # ROM identity、全件数、生成済みWikiのbyte一致を副作用なしで照合
 make facility-runtime # クチバFactory Trialの受付・6候補・交換・保存復旧をstage 20へ実結合
 make facility-runtime-check # stage 20と実ROMスモークを副作用なしで再照合
 make first-battle-hotfix # 初戦の不正な行動順通知を防ぐstage 21を生成

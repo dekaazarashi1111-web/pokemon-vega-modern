@@ -30,6 +30,8 @@
 - `design/feature_ideas.md`: 将来案、気づき
 - `design/report_lifecycle_index.md`: レポート類の状態管理
 - `docs/CHATGPT_PRO_COLLECTION_SUPPLY_PACKET_JA.md`: 全フォーム・G-Max・全Item・Raid・NPC再利用をChatGPT Proへ渡す設計パケットの監査結論、利用手順、実装境界
+- `docs/wiki/stage61/README.md`: 現行Stage61 ROMに固定したポケモン・技・特性・主要アイテム入手Wiki
+- `docs/wiki/stage61/CODEX_INDEX.md`: プレイ質問時に必要なWikiページだけを検索するCodex用入口
 
 ## Scripts
 
@@ -63,6 +65,7 @@
 - `scripts/build_move_memory.py`: stage 24へだいじなもの/NPC共通の無料技管理coreを結合し、stage 25・通常/タマゴ候補・技忘れ・BPS往復を決定的に生成・照合
 - `scripts/build_qol_release.py`: stage 20→25のhash/save契約を確認し、同じ最終stage 25でKanto/Factoryと全QOLを横断再観測する統合fixture・reportを生成・照合
 - `scripts/build_chatgpt_pro_collection_supply_packet.py`: canonical Species／form、Item供給証跡、Raid、会話のみNPC候補を監査し、validator付きChatGPT Pro入力ZIPを決定的生成してWindows Downloadsへ配置
+- `scripts/build_stage61_wiki.py`: 現行Stage61 ROMと統合済み取得正本からMarkdown／JSONL Wikiを決定的生成・照合
 - `scripts/taskctl.py`: `design/tasks_next.md` の安全な状態操作
 - `scripts/guard_private_files.py`: 私有バイナリのGit混入防止
 - `scripts/verify_imported_packages.py`: 受領した監査/設計資料の整合性検査

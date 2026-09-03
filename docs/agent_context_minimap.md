@@ -5,6 +5,7 @@
 - プロジェクト入口: `README.md`
 - 運用ルール: `AGENTS.md`
 - 現在状態: `design/current_state.md`
+- Stage61プレイWiki: `docs/wiki/stage61/CODEX_INDEX.md`
 - 次タスク: `design/tasks_next.md`
 - 依存関係: `tasks/task_graph.json`
 - タスク完了条件: `tasks/T*.md`

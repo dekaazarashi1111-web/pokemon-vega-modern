@@ -17,6 +17,7 @@
 | 運用・安全・効率 | `AGENTS.md` | `WORKSTREAMS.md`, `docs/FAIL_FAST_POLICY.md` |
 | 現在状態 | `design/current_state.md` | `design/run_log.md`末尾 |
 | 現在遊ぶROM、Codex対戦、アイテム送付、バグ修正 | `design/active_play_baseline.md` | `docs/CODEX_BATTLE_OPERATOR_JA.md`, `docs/WINDOWS_BATTLE_CATALOG_JA.md`, `docs/WINDOWS_BOX14_VAULT_JA.md`, `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md` |
+| Stage61プレイ中のポケモン・技・特性・アイテム入手質問 | `docs/wiki/stage61/CODEX_INDEX.md` | `docs/wiki/stage61/data/search_index.jsonl`, 対象entityのMarkdown、`docs/wiki/stage61/RUNTIME_LIMITATIONS.md` |
 | 次タスク | `design/tasks_next.md` | `tasks/task_graph.json`, 対応する`tasks/T*.md` |
 | 入力・hash | `design/import_inventory.md` | `docs/INPUT_CONTRACT.md`, `state/source-lock.json` |
 | 受領資料の評価 | `design/import_review.md` | `design/imported/README.md`, `design/imported/VEGA_CFRU_DPE_統合設計_V2_二地方生態版/README.md` |
