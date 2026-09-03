@@ -1873,7 +1873,9 @@ def _ecology_radar_item_row(root: Path, source: bytes, description: int,
     row[14] = 0
     row[15] = 0
     struct.pack_into("<I", row, 16, description)
-    row[20:24] = bytes((1, 1, 2, 4))
+    # このitemはBag終了後に専用field callbackを実行する。BAG_MENU (4)では
+    # 汎用menu callbackが先に登録され、primary callbackが未実行のまま消去される。
+    row[20:24] = bytes((1, 1, 2, 2))
     struct.pack_into("<I", row, 24, field_callback | 1)
     struct.pack_into("<III", row, 28, 0, 0, 0)
     return bytes(row)

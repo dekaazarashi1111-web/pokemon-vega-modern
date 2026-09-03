@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260903-STAGE61-RUNTIME-HOTFIX",
+  "stage": 61,
+  "inputs": {
+    "stage61_rom": {
+      "path": "userfile/imports/stage61_runtime_hotfix/61_critical_release_candidate_original.gba",
+      "size": 33554432,
+      "sha256": "60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e"
+    },
+    "stage61_metadata": {
+      "path": "userfile/imports/stage61_runtime_hotfix/61_critical_release_candidate_original.json",
+      "sha256": "aba2cdc552a404f6299cd0d9ff8c0d90315147826714caa92d0b4bfbcad6a108"
+    },
+    "stage61_allocation": {
+      "path": "userfile/imports/stage61_runtime_hotfix/61_critical_release_allocation_original.json",
+      "sha256": "7cc4843f10afde226823a6d9316460ffb02cc0598ee8ecff200ce1124a27462b"
+    },
+    "stage38_rom": {
+      "path": "build/stages/38_mirage_production.gba",
+      "size": 33554432,
+      "sha256": "17240646e2aa58be929bbb73c8176673f2c31d841733d7712ae2fab912f87e39"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "move_distribution_v4_zip": {
+      "path": "userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip",
+      "size": 395446,
+      "sha256": "4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2",
+      "changes_entry": "tm_tutor_changes.csv",
+      "changes_sha256": "d86f56010cdd7281a8f92cfa303f389c6e7d3960a0082518361c1bb0c1099809",
+      "changes_count": 2799
+    },
+    "v4_tm_tutor_catalog": {
+      "path": "dist/chatgpt_pro_design_packets/unpacked/Pokemon-Vega_CHATGPT-PRO_MOVE-DISTRIBUTION-V4_INPUT_20260820/catalogs/tm_tutor_slots.csv",
+      "size": 51989,
+      "sha256": "e6b705b559697a78eb9b834ee240baabb0d065a5cb305c895774b4ba2f44ac2f"
+    },
+    "mgba_seed_save": {
+      "path": "build/stages/61_critical_release_candidate.sav",
+      "size": 131088,
+      "sha256": "b2ec0d97d2d559eda29ecfa9fc1a838a9a768cdcad74b233a483cfd022dc4d70"
+    }
+  },
+  "rom_contract": {
+    "species_count": 1621,
+    "compatibility_stride": 16,
+    "stage38_tmhm_root_site": "0x080432B4",
+    "stage38_tmhm_root_expected": "0x09FC5C90",
+    "stage61_tmhm_root_site": "0x080432B4",
+    "stage61_tmhm_root_expected": "0x093AB5D8",
+    "tmhm_moves_root_site": "0x081263D8",
+    "tmhm_moves_root_expected": "0x08419F9C",
+    "tutor_moves_root_site": "0x081213D4",
+    "tutor_moves_root_expected": "0x084192F0",
+    "tutor_learn_limit_site": "0x09110238",
+    "tutor_learn_limit_expected_hex": "972c",
+    "tutor_move_limit_site": "0x091103C2",
+    "tutor_move_limit_expected_hex": "972a",
+    "item_table_root_site": "0x080001C8",
+    "item_table_root_expected": "0x0904D108",
+    "item_row_size": 40,
+    "item_mystery_offset": 21,
+    "item_pocket_offset": 22,
+    "item_type_offset": 23,
+    "canonical_tm_item_first": 289,
+    "canonical_tm_item_last": 338,
+    "alias_tm_item_first": 520,
+    "alias_tm_item_last": 569,
+    "tm_item_first": 590,
+    "tm_item_last": 659,
+    "hm_item_first": 339,
+    "hm_item_last": 346,
+    "alias_hm_item_first": 570,
+    "alias_hm_item_last": 577,
+    "move_memory_item": 347,
+    "ecology_radar_item": 348,
+    "tutor_stride_site": "0x09110242",
+    "tutor_stride_expected_hex": "c046"
+  },
+  "hooks": [
+    {"name":"CanMonLearnTMHM","address":"0x08043278","register":2,"expected_hex":"30b509060c0e251c","target":"0x09110184","target_expected_hex":"002210b5254b0c00"},
+    {"name":"CanMonLearnTMTutor","address":"0x08121310","register":3,"expected_hex":"f0b5474680b4051c","target":"0x09110740","target_expected_hex":"70b5324b0d001600"},
+    {"name":"ItemIdToBattleMoveId","address":"0x081263C4","register":1,"expected_hex":"0004034940180349","target":"0x0911047C","target_expected_hex":"10b50b4b040001f0"},
+    {"name":"RemoveTMPPRestoreHook","address":"0x08126910","register":2,"expected_hex":"301c2a1c17f7dcfb","target":"0x09098768","target_expected_hex":"301c78f031fa0148"},
+    {"name":"LoadTMNameWithNo","address":"0x08132548","register":2,"expected_hex":"f0b5071c09040d0c","target":"0x09110504","target_expected_hex":"f0b54e464546de46"},
+    {"name":"SortTmHms","address":"0x0809A02C","register":1,"expected_hex":"39180888b0421ed9","target":"0x090987D0","target_expected_hex":"7cb43918088878f0"},
+    {"name":"FixTmHmDiscLoader","address":"0x08133EA8","register":0,"expected_hex":"201c291c00f028f8","target":"0x090987F0","target_expected_hex":"201c311c78f044f8"},
+    {"name":"FixTmHmDiscLoader2","address":"0x08134040","register":0,"expected_hex":"094a111ce88d0918","target":"0x09098804","target_expected_hex":"e98d281c78f03af8"},
+    {"name":"FixTmHmDiscPos","address":"0x08133F84","register":2,"expected_hex":"ff2c04d11b263621","target":"0x09098844","target_expected_hex":"ff2c04d0211c78f0"},
+    {"name":"FixTmHmDiscPal","address":"0x08133F34","register":1,"expected_hex":"6400241821884900","target":"0x09098818","target_expected_hex":"0eb4201c78f0d0f9"},
+    {"name":"CheckIsHmMove_party","address":"0x081263DC","register":1,"expected_hex":"00b50004020c0021","target":"0x09110828","target_expected_hex":"074b19680b000131"},
+    {"name":"CheckIsHmMove_daycare","address":"0x08043800","register":1,"expected_hex":"10b50004030c074a","target":"0x09110828","target_expected_hex":"074b19680b000131"},
+    {"name":"FixMartTmListing","address":"0x0809AE94","register":0,"expected_hex":"1c483918201c0222","target":"0x09098778","target_expected_hex":"381c77f09dff0149"},
+    {"name":"GetExpandedTutorMove","address":"0x08121398","register":1,"expected_hex":"00b50006010e1029","target":"0x091103A8","target_expected_hex":"030068331b060200"},
+    {"name":"HmSymbolFix","address":"0x0813268A","register":1,"expected_hex":"0004000c67f787fe0006","target":"0x09098788","target_expected_hex":"0004000c78f0c4f8051c"},
+    {"name":"SelectedTmSymbolFix","address":"0x08132D08","register":0,"expected_hex":"308867f749fb0006","target":"0x090987B4","target_expected_hex":"308878f0aff80028"}
+  ],
+  "outputs": {
+    "rom": "build/stages/61_critical_release_candidate.gba",
+    "metadata": "build/stages/61_critical_release_candidate.json",
+    "allocation": "build/stages/61_critical_release_allocation.json",
+    "incremental_bps": "build/patches/stage61-critical-release-to-runtime-hotfix.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage61-runtime-hotfix.bps",
+    "payload": "generated/runtime/stage61_runtime_hotfix.bin",
+    "tables": "generated/runtime/stage61_runtime_hotfix_tables.json",
+    "audit": "reports/generated/stage61_runtime_hotfix.json",
+    "report": "reports/generated/stage61_runtime_hotfix.md",
+    "mgba": "build/stages/61_mgba_runtime_hotfix.json"
+  }
+}

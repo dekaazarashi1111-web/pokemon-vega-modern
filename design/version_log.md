@@ -1365,3 +1365,14 @@
   - 全技・全特性・全アイテム・主要アイテム入手・タイプ相性・通常野生・生態オーバーレイとCodex用検索索引を生成した。
   - 現行ROM SHAをhard gateにし、継承取得情報と現ROM直接抽出、TM/HM・教え技の実consumer制約を明示した。
 - Verify: `make stage61-wiki`、`make stage61-wiki-check`、focused unit 6件、task graph、private guard、diff check PASS。
+
+## 2026-09-03T18:58:00+09:00
+
+- Version: `stage61-runtime-hotfix-1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-RUNTIME-HOTFIX` / TM・教え技runtime接続とfield item復帰修正
+- Summary:
+  - V4のTM120＋HM8と教え技64を実行時table／consumerへ接続し、TM51–58と旧HMのslot衝突、教え技16件目以降の越境を解消した。
+  - わざメモリー／せいたいレーダーを正しいfield-item復帰経路へ修正し、生成元にも再発防止を反映した。
+  - Wikiを128／64枠の現ROM直接抽出へ再生成し、ROMだけをiPadへ原子的に配置してsave 57件を不変に保った。
+- Verify: runtime build/check、libmGBA 15項目×独立2 process、Wiki build/check＋unit 6件、iPad size／SHA／read-back／save manifest、CLI protocol、task graph、private guard、diff check PASS。

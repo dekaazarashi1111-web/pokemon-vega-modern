@@ -105,11 +105,12 @@
 ## Stage61候補ROMの確認済み対応
 
 - ROM: `61_critical_release_candidate.gba`
-- 現行ROM SHA-256: `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`
+- 現行ROM SHA-256: `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`
 - 2026-09-03に固定host key付きWi-Fi SSHでactive container metadataとlive `retroarch.cfg`を再解決し、RetroArch process 0を確認して修正済みROMだけを一時名から原子的に配置した。旧ROM `e736acd0...3669`は日時付きで退避した。
 - iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件のmanifestは配置前後不変で、同名saveを含むsaveの生成・転送・変更は0。既存Stage60 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、Vega既存trainer会話復元・外来生態率調整後の現行ROM `4c2cda81...538b`へ再更新した。旧ROM `5d1f3230...8f3e`を日時付きで退避し、iPadからのread-backをsourceとbyte一致させた。save directory全57件は前後不変、同名save未変更、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、Codex runtime cold-boot入口を復旧した現行ROM `60b83b8c...5aff0e`へ再更新した。旧ROM `4c2cda81...538b`を日時付きで保全し、iPadからのread-backをsourceとbyte一致させた。save directory全57件は前後不変、同名save未変更、remote一時ファイル0、RetroArch process 0を確認した。
+- 同日、TM120＋HM8／教え技64のruntime接続と、わざメモリー／せいたいレーダーのfield復帰を修正した現行ROM `44e951e2...ae4e`へ再更新した。旧ROMを日時付きで保全し、iPad側33,554,432 bytes／同一SHAとread-back byte一致を確認した。save directory全57件は前後不変、同名save未変更、既存Stage60不変、remote一時ファイル0、RetroArch process 0を確認した。
 
 ## 失敗判定
 

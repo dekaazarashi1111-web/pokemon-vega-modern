@@ -11,4 +11,4 @@ rg 'リープン|SPECIES_KEY_VEGA_001' docs/wiki/stage61/data/search_index.jsonl
 rg 'マスターボール|ITEM_KEY_MASTER_BALL' docs/wiki/stage61/data/search_index.jsonl
 ```
 
-現行ROM SHA-256: `60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e`。ROMが変わった場合は `make stage61-wiki` で再生成し、`make stage61-wiki-check` を通すまで旧Wikiを現行扱いしません。
+現行ROM SHA-256: `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`。ROMが変わった場合は `make stage61-wiki` で再生成し、`make stage61-wiki-check` を通すまで旧Wikiを現行扱いしません。

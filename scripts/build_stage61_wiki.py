@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs/wiki/stage61"
 REPORT = ROOT / "reports/generated/stage61_wiki.json"
 ROM_REL = "build/stages/61_critical_release_candidate.gba"
-ROM_SHA256 = "60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e"
+ROM_SHA256 = "44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e"
 ROM_SIZE = 33_554_432
 SPECIES_COUNT = 1_621
 MOVE_COUNT = 1_063
@@ -47,6 +47,7 @@ SOURCE_PATHS = (
     "content/collection_supply_v1/canonical_model.json",
     "reports/generated/stage58_qol_economy_audit.json",
     "reports/generated/stage61_critical_release_map_display_catalog.json",
+    "config/stage61_runtime_hotfix.json",
     "manifests/kanto_items.csv",
     "manifests/tohoku_items.csv",
     "manifests/qol_rewards.csv",
@@ -480,10 +481,10 @@ def _species_page(record: dict[str, Any], move_names: dict[int, str]) -> bytes:
         "",
         f"- レベル技（現ROM）: {move_list(record['learnsets']['level_up'], True)}",
         f"- タマゴ技（現ROM）: {move_list(record['learnsets']['egg'])}",
-        f"- TM/HM互換（実行時58枠）: {move_list(record['learnsets']['machine_runtime'])}",
-        f"- 教え技互換（実行時15枠）: {move_list(record['learnsets']['tutor_runtime'])}",
+        f"- TM/HM互換（実行時128枠：TM120＋HM8）: {move_list(record['learnsets']['machine_runtime'])}",
+        f"- 教え技互換（実行時64枠）: {move_list(record['learnsets']['tutor_runtime'])}",
         "",
-        "> TM/HM 128-bit互換表には未接続のV4設計枠があり、HMと追加TMのslot 51–58も衝突しています。このページはゲーム内consumerが実際に読む58枠だけを表示します。教え技も実move tableで有効な15枠だけです。詳細は [実行時の既知制約](../RUNTIME_LIMITATIONS.md)。",
+        "> TM01–120、HM01–08、教え技01–64は現行ROMの実行時tableと互換bitsetを直接読み取って表示しています。接続修正の詳細は [実行時の状態](../RUNTIME_LIMITATIONS.md)。",
         "",
         "## 証拠区分",
         "",
@@ -596,8 +597,8 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         raise ValueError("Stage61 BaseStats hash不一致")
     level_moves = _load_level_moves(raw)
     egg_moves = _load_egg_moves(raw)
-    machine_move_ids, machine_rows = _load_compatibility(raw, 0x432B4, 0x1263D8, 58)
-    tutor_move_ids, tutor_rows = _load_compatibility(raw, 0x121420, 0x1213D4, 15)
+    machine_move_ids, machine_rows = _load_compatibility(raw, 0x432B4, 0x1263D8, 128)
+    tutor_move_ids, tutor_rows = _load_compatibility(raw, 0x121420, 0x1213D4, 64)
     evolutions, evolution_count = _load_evolutions(raw, species_by_key, item_by_id, move_by_id)
     wild = _load_wild(raw)
     ecology = _load_ecology(raw)
@@ -914,13 +915,14 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 - 通常野生、ecology、種族値、技性能、習得表、進化表は現ROMから直接抽出しています。
 - 取得イベント、Raid、フォーム供給、item供給は統合済みのStage26/56/58正本を継承していますが、現SHAで全経路を手動走破したという意味ではありません。
 
-## TM/HMと教え技
+## TM/HMと教え技（接続修正済み）
 
-現ROMの互換bitsetは1種族16 byteです。しかし、実際の `gTMHMMoves` は58件（TM01–50＋HM01–08）だけで、V4設計資料の追加TM 51–120は実move tableへ接続されていません。さらにV4設計のTM51–58は、実行時HM slot 51–58と衝突します。
+`gTMHMMoves` は128件（TM01–120＋HM01–08）へ再配置し、TM51–58と旧HM slotの衝突を解消しました。HM互換は実行時index 121–128へ移し、V4のTM51–58互換は設計入力から再構築しています。
 
-教え技も互換bitsetは64枠設計ですが、実 `gTutorMoves` に有効なMove IDがあるのは15件です。16件目は0、以後は別データをmove IDとして誤読するため使えません。
+`gTutorMoves` はV4の64件を全件接続し、通常教え技consumerの上限をslot 01–64へ修正しました。16件目以降が終端や隣接dataをMove IDとして誤読する状態はありません。
 
-このWikiの各ポケモンページは、誤った「覚えられる技」を案内しないため、ゲーム内consumerが実際に参照できるTM/HM 58件と教え技15件だけを掲載します。未接続の設計bitは掲載対象外です。
+このWikiの各ポケモンページは、現ROMの実行時tableと互換bitsetからTM/HM 128件・教え技64件を直接抽出して掲載します。
+ここで示すのは互換判定の接続状態であり、NPC配置・価格・解禁経路の一覧ではありません。
 """.encode()
 
     files["CODEX_INDEX.md"] = f"""# Codex用 Stage61 Wiki索引

@@ -3512,3 +3512,42 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。固定ローカルROMとtracked正本だけを使用した。
+
+## 2026-09-03T18:58:00+09:00
+
+- Task: `USER-20260903-STAGE61-RUNTIME-HOTFIX` / TM・教え技runtime接続とfield item復帰修正
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - 旧Stage61をimmutable入力へ退避し、V4正本からTM01–120、教え技01–64をcanonical Move IDへ解決した。`gTMHMMoves`をTM120＋HM8へ再配置し、旧HM互換をindex 121–128へ移送、TM51–58はV4変更から再構築してslot衝突を除去した。
+  - `gTutorMoves`をV4の有効64件へ再配置し、通常consumerをslot 0–63へ制限した。TM/HM/tutor expansionのproduction入口16か所、canonical／alias／expanded item index、table root、互換境界をexpected-byte付きで接続した。
+  - わざメモリーとせいたいレーダーのitem typeを`BAG_MENU(4)`から`FIELD(2)`へ修正した。生成元2か所にも同じ訂正を反映し、Bag終了時にprimary field callbackが破棄される再発経路を閉じた。
+  - Stage61 Wikiを現ROMのTM/HM 128枠・教え技64枠の直接抽出へ更新した。互換tableの接続とNPC配置／価格／解禁経路は別情報であることも明記した。
+  - 修正版ROMだけをiPadへ原子的に配置し、旧ROMを日時付きで保全した。通常プレイsaveは生成・転送・変更せず、全57件を前後不変に保った。versioned CLI 2.5.1のprotocolも新ROM identityへ再固定した。
+- Files changed:
+  - `config/stage61_runtime_hotfix.json`
+  - `scripts/build_stage61_runtime_hotfix.py`
+  - `scripts/run_stage61_runtime_hotfix_smoke.py`
+  - `tools/mgba_stage61_runtime_hotfix_smoke.c`
+  - `scripts/build_move_memory.py`
+  - `tools/regression/rom_runtime.py`
+  - `scripts/build_stage61_wiki.py`
+  - `tests/test_stage61_wiki.py`
+  - `docs/wiki/stage61/**`（1,640 filesを再生成）
+  - `reports/generated/stage61_wiki.json`
+  - `design/active_play_baseline.md`
+  - `design/current_state.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外成果: 修正版ROM／metadata／allocation／BPS／runtime audit／mGBA結果、iPad上の同名ROM、導入済みCLI protocol。saveは未変更。
+- Verify:
+  - `python3 scripts/build_stage61_runtime_hotfix.py check`: PASS（ROM 33,554,432 bytes、SHA-256 `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`、CRC32 `21A93A0E`、TM120＋HM8／Tutor64、差分・clean BPS往復、declared span外0、allocator overlap 0）。
+  - `python3 scripts/run_stage61_runtime_hotfix_smoke.py --process-runs 2`: 15項目PASS、独立2 process一致、warnings/errors 0。実Bagから両menu起動、各B cancel、おもいだす→party cancel、夜固定→mode 2、field復帰を確認。入力seed saveはbyte不変。
+  - `python3 scripts/build_stage61_wiki.py build`／`check`、`python3 -m unittest tests.test_stage61_wiki -v`: PASS（1,640 files、6 tests、TM/HM 128枠・教え技64枠）。
+  - iPad ROM-only配置: RetroArch process 0、active container／live config、remote size／SHA、read-back `cmp`、save 57件manifest不変、既存Stage60不変、remote一時ファイル0をPASS。
+  - CLI再導入: version 2.5.1、protocol Stage 61／size 33,554,432／SHA-256／CRC32一致をPASS。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+  - Stage61 strict全経路の実機走破: SKIP（現行baselineどおり`DEFERRED_AUDIT`）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

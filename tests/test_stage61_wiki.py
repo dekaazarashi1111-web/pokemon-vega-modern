@@ -28,7 +28,7 @@ class Stage61WikiTest(unittest.TestCase):
     def test_active_rom_and_complete_entity_counts(self):
         self.assertEqual(
             self.index["active_rom"]["sha256"],
-            "60b83b8c50e54c3af42daa23b9d82e96c1b769d816ce28ef8bfda1d5005aff0e",
+            "44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e",
         )
         self.assertEqual(self.index["counts"]["species"], 1621)
         self.assertEqual(self.index["counts"]["moves"], 1063)
@@ -39,16 +39,17 @@ class Stage61WikiTest(unittest.TestCase):
         self.assertEqual(self.index["counts"]["egg_moves"], 8831)
         self.assertEqual(self.index["counts"]["evolutions"], 856)
 
-    def test_runtime_consumer_slots_are_not_confused_with_design_slots(self):
-        self.assertEqual(self.index["counts"]["machine_runtime_slots"], 58)
-        self.assertEqual(self.index["counts"]["machine_runtime_compatibilities"], 33968)
-        self.assertEqual(self.index["counts"]["tutor_runtime_slots"], 15)
-        self.assertEqual(self.index["counts"]["tutor_runtime_compatibilities"], 5383)
-        self.assertEqual(len(self.index["runtime_move_slots"]["machine"]), 58)
-        self.assertEqual(len(self.index["runtime_move_slots"]["tutor"]), 15)
+    def test_runtime_consumer_slots_match_the_connected_v4_tables(self):
+        self.assertEqual(self.index["counts"]["machine_runtime_slots"], 128)
+        self.assertEqual(self.index["counts"]["machine_runtime_compatibilities"], 60214)
+        self.assertEqual(self.index["counts"]["tutor_runtime_slots"], 64)
+        self.assertEqual(self.index["counts"]["tutor_runtime_compatibilities"], 21883)
+        self.assertEqual(len(self.index["runtime_move_slots"]["machine"]), 128)
+        self.assertEqual(len(self.index["runtime_move_slots"]["tutor"]), 64)
         limitations = self.files["RUNTIME_LIMITATIONS.md"].decode()
-        self.assertIn("TM01–50＋HM01–08", limitations)
-        self.assertIn("V4設計のTM51–58", limitations)
+        self.assertIn("128件（TM01–120＋HM01–08）", limitations)
+        self.assertIn("V4の64件を全件接続", limitations)
+        self.assertNotIn("実際の `gTMHMMoves` は58件", limitations)
 
     def test_every_species_has_page_stats_abilities_route_and_learnsets(self):
         self.assertEqual([row["id"] for row in self.species], list(range(1621)))

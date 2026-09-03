@@ -854,7 +854,10 @@ def _build_item_row(root: Path, source: bytes, description: int,
     row[14] = 0
     row[15] = 0
     struct.pack_into("<I", row, 16, description)
-    row[20:24] = bytes((1, 1, 2, 4))
+    # フィールド用たいせつなものはfield-item復帰経路を使う。BAG_MENU (4)は
+    # CB2_ReturnToFieldWithOpenMenuを先に登録し、Bag終了後にgFieldCallbackより
+    # 優先されるため、VegaMoveMemory_FieldUseが呼ばれず破棄される。
+    row[20:24] = bytes((1, 1, 2, 2))
     struct.pack_into("<I", row, 24, field_callback | 1)
     struct.pack_into("<III", row, 28, 0, 0, 0)
     return bytes(row)
@@ -959,7 +962,7 @@ def _build_stage(root: Path = ROOT) -> tuple[dict[str, bytes], dict[str, Any]]:
     item_final = _rom_slice(output_raw, item_address, ITEM_DATA_STRIDE)
     if (
         struct.unpack_from("<H", item_final, 10)[0] != ITEM_ID
-        or item_final[20:24] != bytes((1, 1, 2, 4))
+        or item_final[20:24] != bytes((1, 1, 2, 2))
         or struct.unpack_from("<I", item_final, 24)[0]
         != (symbols["VegaMoveMemory_FieldUse"] | 1)
         or struct.unpack_from("<I", item_final, 16)[0] != description
