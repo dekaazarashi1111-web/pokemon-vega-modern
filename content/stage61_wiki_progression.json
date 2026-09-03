@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "title": "Pokémon Vega Stage61 進行ガイド",
+  "route_source_url": "https://w.atwiki.jp/np369/pages/58.html",
+  "item_source_url": "https://w.atwiki.jp/altair0/pages/664.html",
+  "scope_note": "トーホク本編の道順は既存Vega攻略情報を骨格にし、戦闘レベル、解禁、フィールド能力、カントー進行はStage61の現行正本で上書きする。",
+  "field_abilities": [
+    {
+      "hm": "HM05",
+      "move": "フラッシュ",
+      "received": "502ばんどうろ北西の男性",
+      "timing": "ジム1前",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM03",
+      "move": "なみのり",
+      "received": "リムけんきゅうじょ攻略後、システムかいはつしつのカラマツ",
+      "timing": "ジム3前後",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM06",
+      "move": "いわくだき",
+      "received": "D・Hビル4Fのカウンターにいる研究員",
+      "timing": "ジム3後、D・Hビル攻略中",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM04",
+      "move": "かいりき",
+      "received": "ハクジのもり北西の山男",
+      "timing": "ジム4後",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM01",
+      "move": "いあいぎり",
+      "received": "ダークタワー6Fで隠れている男性",
+      "timing": "ジム5前",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM02",
+      "move": "そらをとぶ",
+      "received": "514ばんどうろの助手",
+      "timing": "ジム5後",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM07",
+      "move": "たきのぼり",
+      "received": "D・Hだんアジト攻略後、B1Fで取り残された団員",
+      "timing": "ジム7後",
+      "status": "受領地点はVega攻略情報、バッグ所持による使用条件はStage61現行仕様"
+    },
+    {
+      "hm": "HM08",
+      "move": "ダイビング",
+      "received": "Stage61の現行入力では精密受領地点未確定",
+      "timing": "終盤以降の探索用",
+      "status": "バッグ所持による使用条件と技の対応だけ現行仕様で確定。地点は推測しない"
+    }
+  ],
+  "story_steps": [
+    {
+      "id": "S00",
+      "checkpoint": "ゲーム開始〜1個目のジム",
+      "state_key": "VEGA_PRE_ENTRY",
+      "level_guide": "Lv.2〜15",
+      "map_order": ["ハクジタウン", "501ばんどうろ", "502ばんどうろ", "アヤメシティ", "アヤメシティジム"],
+      "objectives": ["ハクジ研究所で御三家とライバル初戦", "502ばんどうろでHM05フラッシュを受け取る", "アヤメのゲートにいる3人を倒してジムへ", "アマナを倒してエルナトバッジを得る"],
+      "major_battles": ["RIVAL01_PLAYER_FAMER", "RIVAL01_PLAYER_ACTASHI", "RIVAL01_PLAYER_LEEPUN", "GYM01_AMANA"],
+      "next_access": "503ばんどうろ、ちえのどうくつ方面",
+      "notes": ["ライバルの御三家は主人公が選んだ御三家に応じて3分岐する。"]
+    },
+    {
+      "id": "S01",
+      "checkpoint": "1個目のジム後〜2個目のジム",
+      "state_key": "VEGA_BADGE_1",
+      "level_guide": "Lv.13〜25",
+      "map_order": ["503ばんどうろ", "ちえのどうくつ", "504ばんどうろ", "505ばんどうろ", "ミルシティ", "こころのやかた", "ミルシティジム"],
+      "objectives": ["ちえのどうくつを抜けてミルシティへ", "こころのやかた周辺のイベントを進める", "ナギナタを倒してアルネブバッジを得る"],
+      "major_battles": ["GYM02_NAGINATA"],
+      "next_access": "博物館へ重要書類を返すと505ばんどうろの封鎖が解除され、506ばんどうろへ進める",
+      "notes": ["Stage61ではバッジ1個で学習装置、かわらずのいし供給、タマゴPC転送、無料技思い出しが解禁される。"]
+    },
+    {
+      "id": "S02",
+      "checkpoint": "2個目のジム後〜3個目のジム",
+      "state_key": "VEGA_BADGE_2",
+      "level_guide": "Lv.23〜31",
+      "map_order": ["505ばんどうろ", "506ばんどうろ", "519ばんどうろ・育て屋", "シオウシティ", "リムけんきゅうじょ", "シオウシティジム"],
+      "objectives": ["重要書類を返して506ばんどうろを開通させる", "519ばんどうろで育て屋を利用可能にする", "シオウ到着後、リムけんきゅうじょでナバリを倒す", "研究所攻略後にHM03なみのりを受け取る", "キリを倒してファクトバッジを得る"],
+      "major_battles": ["RIVAL02_PLAYER_FAMER", "RIVAL02_PLAYER_ACTASHI", "RIVAL02_PLAYER_LEEPUN", "NABARI01", "GYM03_KIRI"],
+      "next_access": "507ばんすいどうから海路へ。ジム3とD・Hビル初回攻略後は高レベルのカントー早期渡航も開く",
+      "notes": ["捕獲要員や次の手持ち相談では、この時点で506・519・シオウ・研究所までを候補範囲に含める。"]
+    },
+    {
+      "id": "S03",
+      "checkpoint": "3個目のジム後〜D・Hビル攻略",
+      "state_key": "VEGA_SHIOU_BADGE_3",
+      "level_guide": "Lv.31〜38",
+      "map_order": ["507ばんすいどう", "508ばんすいどう", "かいていトンネル", "509ばんすいどう", "アーシアとう", "D・Hビル"],
+      "objectives": ["なみのりで507〜509ばんすいどうを進む", "かいていトンネルでライバル＆モスギスとのタッグ戦を行い、バトルサーチャーを得る", "アーシアとうのD・Hビルを攻略してナバリを倒す", "D・Hビル4FでHM06いわくだきを受け取る"],
+      "major_battles": ["MOS_RIVAL_TAG_PLAYER_FAMER", "MOS_RIVAL_TAG_PLAYER_ACTASHI", "MOS_RIVAL_TAG_PLAYER_LEEPUN", "NABARI02", "DH_RAID01_REVAVROOM"],
+      "next_access": "D・Hビル攻略で520ばんどうろの封鎖が解除される。カントー早期渡航はLv.68以上の任意高難度ルート",
+      "notes": ["カントーは本編の適正レベルを大きく上回るため、進行必須ではない。"]
+    },
+    {
+      "id": "S04",
+      "checkpoint": "D・Hビル攻略後〜4個目のジム",
+      "state_key": "VEGA_DH_CLEAR",
+      "level_guide": "Lv.35〜41",
+      "map_order": ["520ばんどうろ", "521ばんどうろ", "ヒスイシティ", "レンジャーベース周辺", "サファリ関連イベント", "ヒスイシティジム"],
+      "objectives": ["解除された520ばんどうろからヒスイへ", "レンジャー4連戦とジャッキー戦を突破する", "サファリ関連の届け物を済ませる", "ハンザを倒してセルファバッジを得る"],
+      "major_battles": ["JACKIE01", "GYM04_HANZA"],
+      "next_access": "518ばんどうろとハクジのもり北西、さらに522ばんどうろからオウニ方面",
+      "notes": ["Stage61のD・Hビル攻略後にはフィールドPC、自動戦闘、経験アメXS/S、特性カプセル・ミント系など多くのQOLが解禁される。"]
+    },
+    {
+      "id": "S05",
+      "checkpoint": "4個目のジム後〜5個目のジム",
+      "state_key": "VEGA_BADGE_4",
+      "level_guide": "Lv.41〜50",
+      "map_order": ["518ばんどうろ", "ハクジのもり北西", "522ばんどうろ", "オウニシティ", "ダークタワー", "オウニシティジム"],
+      "objectives": ["いわくだきで518ばんどうろ方面へ進む", "ハクジのもり北西でHM04かいりきを受け取る", "かいりきで522ばんどうろを抜けてオウニへ", "オウニの橋でライバル戦", "ダークタワー6FでHM01いあいぎりを受け取る", "モク＆レンとのダブル戦に勝ち、ゲンマバッジを得る"],
+      "major_battles": ["RIVAL03_PLAYER_FAMER", "RIVAL03_PLAYER_ACTASHI", "RIVAL03_PLAYER_LEEPUN", "GYM05_MOKU_REN"],
+      "next_access": "514ばんどうろをいあいぎりで進み、カラスバ方面へ",
+      "notes": ["ジム5はダブルバトル。単体火力だけでなく、全体技・まもる・素早さ操作も準備候補になる。"]
+    },
+    {
+      "id": "S06",
+      "checkpoint": "5個目のジム後〜6個目のジム",
+      "state_key": "VEGA_BADGE_5",
+      "level_guide": "Lv.48〜56",
+      "map_order": ["514ばんどうろ", "カラスバシティ", "ときのようかん", "517ばんどうろ", "ユキユキやま", "カラスバシティジム"],
+      "objectives": ["514ばんどうろの助手からHM02そらをとぶを受け取る", "カラスバでライバル戦", "ときのようかん最奥で過去のダイゴ＆ミクリとのイベント戦", "517ばんどうろ・ユキユキやまで救出イベントを進める", "サザンカを倒してハダルバッジを得る"],
+      "major_battles": ["RIVAL04_PLAYER_FAMER", "RIVAL04_PLAYER_ACTASHI", "RIVAL04_PLAYER_LEEPUN", "PAST_DAIGO_MIKURI", "GYM06_SAZANKA"],
+      "next_access": "オウニでいんせきを受け取り、515ばんどうろからラピスラ方面へ",
+      "notes": ["Stage61ではバッジ5個で育成用パワー系道具の供給が解禁される。", "ときのようかんは既存Vega順路ではジム6前。PAST_DAIGO_MIKURIのV4戦闘表には『6個目後』という履歴ラベルも残るため、戦闘表側ではdirect binding未確定として区別する。"]
+    },
+    {
+      "id": "S07",
+      "checkpoint": "6個目のジム後〜7個目のジム",
+      "state_key": "VEGA_BADGE_6",
+      "level_guide": "Lv.54〜60",
+      "map_order": ["オウニシティ", "515ばんどうろ", "ラピスラシティ", "ラピスラシティジム"],
+      "objectives": ["オウニでいんせきを受け取って515ばんどうろを開く", "ラピスラへ進む", "コナギを倒してプリオルバッジを得る"],
+      "major_battles": ["GYM07_KONAGI"],
+      "next_access": "D・Hだんアジトの終盤イベント",
+      "notes": ["Stage61ではバッジ6個で経験アメMの反復供給が解禁される。"]
+    },
+    {
+      "id": "S08",
+      "checkpoint": "7個目のジム後〜8個目のジム",
+      "state_key": "VEGA_BADGE_7",
+      "level_guide": "Lv.59〜67",
+      "map_order": ["D・Hだんアジト", "アーシアとう", "510ばんすいどう", "513ばんすいどう", "島部・任意探索", "ニューアイランド", "ニューアイランドジム"],
+      "objectives": ["D・HだんアジトB1Fでナバリ、ジョージ、ターナーを倒す", "攻略後にHM07たきのぼりを受け取る", "アーシアから510・513ばんすいどうを進む", "島部の固定伝説は必要条件を満たしたものだけ任意で回収する", "ニューアイランドでミュウツーを倒してミラクバッジを得る"],
+      "major_battles": ["NABARI03", "GEORGE01", "TURNER01", "GYM08_MEWTWO"],
+      "next_access": "ポケモンじょう、523ばんすいどう、チャンピオンロード、トーホクリーグ",
+      "notes": ["バッジ7個で経験アメLとぎんのおうかん系供給が解禁される。"]
+    },
+    {
+      "id": "S09",
+      "checkpoint": "8個目のジム後〜初回殿堂入り",
+      "state_key": "VEGA_BADGE_8",
+      "level_guide": "Lv.67〜82",
+      "map_order": ["ポケモンじょう", "オウニシティ", "523ばんすいどう", "チャンピオンロード", "シャクドウとう", "トーホクポケモンリーグ"],
+      "objectives": ["ポケモンじょうでターナーを倒す", "オウニ経由で523ばんすいどうへ", "チャンピオンロードで最後のライバル戦", "523ばんすいどうでモスギスを倒す", "四天王ホオノキ・ミヤマ・ヤチヨ・カンゾウを順に倒す", "チャンピオンのギンノを倒して初回殿堂入り"],
+      "major_battles": ["TURNER02", "RIVAL05_PLAYER_FAMER", "RIVAL05_PLAYER_ACTASHI", "RIVAL05_PLAYER_LEEPUN", "MOSUGISU_PRELEAGUE", "LEAGUE01_HOONOKI", "LEAGUE02_MIYAMA", "LEAGUE03_YACHIYO", "LEAGUE04_KANZO", "CHAMPION_GINNO"],
+      "next_access": "研究プロフィール、TM再利用、隠れ特性DexNav、強化リーグ、カントー認定章5以降などの殿堂入り後要素",
+      "notes": ["Stage61ではバッジ8個で特性パッチ・全ミント・努力値リセット品・標準育成ショップが解禁される。"]
+    },
+    {
+      "id": "S10",
+      "checkpoint": "任意のカントー早期渡航〜認定章4個",
+      "state_key": "KANTO_EARLY_ACCESS",
+      "level_guide": "Lv.68〜89",
+      "map_order": ["カントー渡航ターミナル", "序盤認定エリア", "認定章1〜4の各エリア", "安全帰還ターミナル"],
+      "objectives": ["ジム3とD・Hビル初回攻略後から任意で渡航", "Lv.68以上の固定高難度帯として認定章を順に集める", "危険ならターミナルからトーホクへ戻り本編を続ける"],
+      "major_battles": [],
+      "next_access": "殿堂入りと認定章4個の両方で対戦用供給・高難度Raid、強化リーグIIが段階解禁",
+      "notes": ["カントーはプレイヤーレベル連動ではなく固定高レベル。本編の近道ではない。"]
+    },
+    {
+      "id": "S11",
+      "checkpoint": "殿堂入り後〜最終章",
+      "state_key": "VEGA_HALL_OF_FAME",
+      "level_guide": "Lv.84〜100",
+      "map_order": ["トーホク再訪・強化リーグ", "カントー認定章5〜8", "カントーリーグ", "スフィアいせき", "最終リーグ・D・H無限炉心"],
+      "objectives": ["強化リーグIを攻略", "カントー認定章8個とカントーリーグを攻略", "各世代の伝説アーク・スフィアいせきを進める", "リーグII・スフィア完了・カントーリーグ完了後に最終リーグへ", "最終章のターナー戦へ"],
+      "major_battles": [],
+      "next_access": "Factory Master、UB・パラドックス研究、最終伝説イベント、全国収集完成",
+      "notes": ["固定捕獲イベントはLEGENDARY_ENCOUNTERS.mdで解禁条件・場所・レベル・遭遇時技を検索できる。"]
+    }
+  ],
+  "major_battle_sections": [
+    {
+      "title": "ジムリーダー初戦",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["GYM01_AMANA", "GYM02_NAGINATA", "GYM03_KIRI", "GYM04_HANZA", "GYM05_MOKU_REN", "GYM06_SAZANKA", "GYM07_KONAGI", "GYM08_MEWTWO"]
+    },
+    {
+      "title": "四天王・チャンピオン初戦",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["LEAGUE01_HOONOKI", "LEAGUE02_MIYAMA", "LEAGUE03_YACHIYO", "LEAGUE04_KANZO", "CHAMPION_GINNO"]
+    },
+    {
+      "title": "ライバル戦（御三家別）",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["RIVAL01_PLAYER_FAMER", "RIVAL01_PLAYER_ACTASHI", "RIVAL01_PLAYER_LEEPUN", "RIVAL02_PLAYER_FAMER", "RIVAL02_PLAYER_ACTASHI", "RIVAL02_PLAYER_LEEPUN", "RIVAL03_PLAYER_FAMER", "RIVAL03_PLAYER_ACTASHI", "RIVAL03_PLAYER_LEEPUN", "RIVAL04_PLAYER_FAMER", "RIVAL04_PLAYER_ACTASHI", "RIVAL04_PLAYER_LEEPUN", "RIVAL05_PLAYER_FAMER", "RIVAL05_PLAYER_ACTASHI", "RIVAL05_PLAYER_LEEPUN"]
+    },
+    {
+      "title": "D・H団・レンジャーなど本編主要戦",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["NABARI01", "NABARI02", "JACKIE01", "NABARI03", "GEORGE01", "TURNER01", "TURNER02", "MOSUGISU_PRELEAGUE"]
+    },
+    {
+      "title": "複数trainerで構成され直接IDを一つに結べないイベント戦",
+      "evidence": "V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING",
+      "battle_ids": ["MOS_RIVAL_TAG_PLAYER_FAMER", "MOS_RIVAL_TAG_PLAYER_ACTASHI", "MOS_RIVAL_TAG_PLAYER_LEEPUN", "PAST_DAIGO_MIKURI", "DH_RAID01_REVAVROOM"]
+    },
+    {
+      "title": "殿堂入り後・ジムリーダー再戦I",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["GYM_R1_AMANA", "GYM_R1_NAGINATA", "GYM_R1_KIRI", "GYM_R1_HANZA", "GYM_R1_MOKU_REN", "GYM_R1_SAZANKA", "GYM_R1_KONAGI", "GYM_R1_MEWTWO"]
+    },
+    {
+      "title": "殿堂入り後・強化四天王と強化チャンピオンI",
+      "evidence": "V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING",
+      "battle_ids": ["LEAGUE_R1_HOONOKI", "LEAGUE_R1_MIYAMA", "LEAGUE_R1_YACHIYO", "LEAGUE_R1_KANZO", "LEAGUE_R1_GINNO"]
+    },
+    {
+      "title": "カントーリーグ後・ジムリーダー最終再戦",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["GYM_RF_AMANA", "GYM_RF_NAGINATA", "GYM_RF_KIRI", "GYM_RF_HANZA", "GYM_RF_MOKU_REN", "GYM_RF_SAZANKA", "GYM_RF_KONAGI", "GYM_RF_MEWTWO"]
+    },
+    {
+      "title": "カントーリーグ後・最終四天王と最終チャンピオン",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["LEAGUE_FINAL_HOONOKI", "LEAGUE_FINAL_MIYAMA", "LEAGUE_FINAL_YACHIYO", "LEAGUE_FINAL_KANZO", "LEAGUE_FINAL_GINNO"]
+    },
+    {
+      "title": "カントーリーグ後・直接binding済み主要最終戦",
+      "evidence": "LIVE_CURRENT_ABI",
+      "battle_ids": ["AREA_KAZUKI_FINAL", "AREA_MIDORI_FINAL", "JACKIE_FINAL", "MOSUGISU_FINAL", "TURNER03_FINAL"]
+    },
+    {
+      "title": "直接binding未確定の主要最終戦",
+      "evidence": "V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING",
+      "battle_ids": ["GEORGE_FINAL", "NABARI_FINAL", "RIVAL_FINAL_PLAYER_FAMER", "RIVAL_FINAL_PLAYER_ACTASHI", "RIVAL_FINAL_PLAYER_LEEPUN"]
+    }
+  ]
+}

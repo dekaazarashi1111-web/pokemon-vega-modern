@@ -23,6 +23,9 @@ Wikiに答えがない、または記述が矛盾する場合は、不足して�
 ## 読む順番
 
 - Codexの検索手順: [CODEX_INDEX.md](CODEX_INDEX.md)
+- マップ・ストーリー順・現在地ごとの解禁: [STORY_PROGRESSION.md](STORY_PROGRESSION.md)
+- ジムリーダー・四天王・主要NPCの手持ちと技: [MAJOR_BATTLES.md](MAJOR_BATTLES.md)
+- 伝説・幻・UB・パラドックス固定捕獲の場所・条件・遭遇時技: [LEGENDARY_ENCOUNTERS.md](LEGENDARY_ENCOUNTERS.md)
 - ポケモンの入手・能力・特性・全習得技: [POKEMON_INDEX.md](POKEMON_INDEX.md)
 - 主要アイテムの入手: [ITEM_GUIDE.md](ITEM_GUIDE.md)
 - 全アイテム索引: [ITEM_INDEX.md](ITEM_INDEX.md)
@@ -50,4 +53,4 @@ make stage61-wiki
 make stage61-wiki-check
 ```
 
-生成物は時刻を含まず、同じ入力から同じbyteになります。機械可読の完全データは `data/*.jsonl` です。
+生成物は時刻を含まず、同じ入力から同じbyteになります。機械可読の完全データは `data/` 内のJSON/JSONLです。

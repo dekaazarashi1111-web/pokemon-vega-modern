@@ -9,6 +9,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 import struct
 import tempfile
 from collections import defaultdict
@@ -44,6 +45,18 @@ SOURCE_PATHS = (
     "vendor/vega_acquisition/content/species_acquisition_routes.csv",
     "vendor/vega_acquisition/content/evolution_requirements_553.csv",
     "vendor/vega_acquisition/content/acquisition_events.csv",
+    "content/stage61_wiki_progression.json",
+    "content/kanto_progression.csv",
+    "content/qol_progression.csv",
+    "content/maps.csv",
+    "content/map_bindings.csv",
+    "content/trainer_rebalance_v4/battles.csv",
+    "content/trainer_rebalance_v4/parties.csv",
+    "config/trainer_rebalance_v4.json",
+    "content/trainer_changekit_final/trainer_encounters.csv",
+    "content/trainer_changekit_final/trainer_parties.csv",
+    "content/trainer_changekit_final/trainer_party_members.csv",
+    "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
     "content/collection_supply_v1/canonical_model.json",
     "reports/generated/stage58_qol_economy_audit.json",
     "reports/generated/stage61_critical_release_map_display_catalog.json",
@@ -98,7 +111,8 @@ REPEAT_NAMES = {
 UNLOCK_NAMES = {
     "": "条件なし", "NONE": "条件なし", "UNLOCK_EXISTING_MAP_PROGRESSION": "Vega従来マップの進行条件",
     "UNLOCK_EVOLUTION_GLOBAL": "進化機能解禁", "UNLOCK_FOSSIL_SERVICE": "化石復元サービス解禁",
-    "UNLOCK_HALL_OF_FAME": "殿堂入り", "UNLOCK_KANTO_EARLY_ACCESS": "カントー早期渡航解禁",
+    "UNLOCK_KANTO_EARLY_ACCESS": "カントー早期渡航解禁", "UNLOCK_SPECIAL_ARCHIVE": "特別アーカイブ解禁",
+    "UNLOCK_HALL_OF_FAME": "殿堂入り",
     "UNLOCK_MOVE_CONDITION_TUTOR": "指定技条件を満たせる技教え解禁", "UNLOCK_PARADOX_RESEARCH": "パラドックス研究解禁",
     "UNLOCK_REGIONAL_NURSERY": "地方育て屋解禁", "UNLOCK_RESEARCH_RANK_4": "研究ランク4",
     "UNLOCK_RESEARCH_RANK_5": "研究ランク5", "UNLOCK_SPECIAL_ARCHIVE": "特別アーカイブ解禁",
@@ -114,6 +128,42 @@ UNLOCK_NAMES = {
     "VEGA_BADGE_8": "Vegaバッジ8個", "VEGA_HALL_OF_FAME": "Vega殿堂入り",
     "VEGA_SHIOU_BADGE_3": "シオウのバッジ3個", "KANTO_LEAGUE": "カントーリーグ解禁",
     "UNLOCK_BEAST_BALL": "ウルトラボール系供給解禁", "VEGA_DH_CLEAR": "D・Hビル初回攻略後",
+    "VEGA_BADGE_3": "Vegaバッジ3個", "VEGA_BADGE_4": "Vegaバッジ4個",
+}
+
+FEATURE_NAMES = {
+    "TEXT_SPEED_INSTANT": "文章の即時表示", "FAST_MOVEMENT": "高速移動",
+    "IV_EV_JUDGE": "個体値・努力値ジャッジ", "PC_SEARCH_MULTISELECT": "PC検索・複数選択",
+    "EXP_SHARE": "学習装置", "EVERSTONE_SUPPLY": "かわらずのいし供給",
+    "EGG_PC_TRANSFER": "タマゴのPC転送", "EGG_QUEUE_5": "タマゴ受取待ち5個",
+    "FREE_MOVE_RELEARN": "無料の技思い出し", "PC_MOVE_EDIT": "PC内技編集",
+    "EXP_CANDY_XS_S": "経験アメXS/S供給", "EXP_CANDY_M_ONCE": "経験アメM初回分",
+    "ABILITY_CAPSULE_MINTS": "特性カプセル・初期ミント供給", "EV_RESET_ALL": "努力値全リセット",
+    "FIELD_PC": "フィールドPC", "PC_HELD_ITEM_BULK": "PC持ち物一括操作",
+    "AUTO_BATTLE": "自動戦闘", "DESTINY_KNOT": "あかいいと",
+    "EGG_BASKET": "タマゴバスケット", "OVAL_CHARM": "まるいおまもり",
+    "POWER_ITEMS": "パワー系道具", "EXP_CANDY_M_REPEAT": "経験アメM反復供給",
+    "EXP_CANDY_L_SILVER_CAP": "経験アメL・ぎんのおうかん",
+    "ABILITY_PATCH_ALL_MINTS": "特性パッチ・全ミント",
+    "EV_RESET_ITEMS": "努力値リセット品", "STANDARD_TRAINING_SHOP": "標準育成ショップ",
+    "EXP_CANDY_XL_ONCE": "経験アメXL初回分", "RESEARCH_PROFILE": "研究プロフィール",
+    "TM_REUSE_LICENSE": "TM再利用ライセンス", "HIDDEN_ABILITY_DEXNAV": "隠れ特性DexNav",
+    "COMPETITIVE_ITEM_SUPPLY": "対戦用道具供給", "HIGH_DIFFICULTY_RAID": "高難度Raid",
+    "TERA_DYNAMAX_STORY": "テラ・ダイマックス終盤機能",
+    "BOOST_ENERGY_UB_PARADOX": "ブーストエナジー・UB/パラドックス供給",
+    "EXP_CANDY_XL_GOLD_CAP": "経験アメXL・きんのおうかん反復供給",
+}
+
+ARC_NAMES = {
+    "ARC_LEGACY_GUARDIANS": "Vega既存伝説・遺産救済", "ARC_VEGA_LEGACY_ARCHIVE": "Vega固有伝説アーカイブ",
+    "ARC_JOHTO_TIME": "時渡りと三獣", "ARC_ANCIENT_GIANTS": "古代巨人の封印",
+    "ARC_HOENN_RESONANCE": "海・陸・空と星", "ARC_SINNOH_RIFT": "湖と時空の裂け目",
+    "ARC_UNOVA_OATH": "聖剣・四風・白黒炉心", "ARC_KALOS_BALANCE": "生命・破壊・秩序",
+    "ARC_ALOLA_LIGHT": "四島と星雲の子", "ARC_ULTRA_BREACH": "ウルトラホール",
+    "ARC_GALAR_CROWN": "ガラルの王冠", "ARC_HISUI_MEMORY": "ヒスイの記憶",
+    "ARC_PARADOX_PAST": "古代の時代裂け目", "ARC_PARADOX_FUTURE": "未来の時代裂け目",
+    "ARC_RUINOUS_SEALS": "災厄の封印", "ARC_AREA_ZERO_CORE": "エリアゼロ炉心",
+    "ARC_KITAKAMI_MASK": "仮面祭とくさりもち", "ARC_FINAL_CREATION": "結晶と創世",
 }
 
 
@@ -263,6 +313,18 @@ def _load_level_moves(raw: bytes) -> list[list[dict[str, int]]]:
     if sum(map(len, rows)) != 28_859:
         raise ValueError("Stage61レベル技件数不一致")
     return rows
+
+
+def _default_level_moves(rows: list[dict[str, int]], level: int) -> list[int]:
+    """CreateMonが設定する標準初期技を、現ROMのレベル技順から再現する。"""
+    known: list[int] = []
+    for row in rows:
+        if row["level"] > level or row["move_id"] in known:
+            continue
+        if len(known) == 4:
+            known.pop(0)
+        known.append(row["move_id"])
+    return known
 
 
 def _load_egg_moves(raw: bytes) -> list[list[int]]:
@@ -545,10 +607,36 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     move_port = _read_json("generated/engine/moves/move_port.json")
     supply = _read_json("content/collection_supply_v1/canonical_model.json")
     route_rows = _read_csv("vendor/vega_acquisition/content/species_acquisition_routes.csv")
+    acquisition_events = _read_csv("vendor/vega_acquisition/content/acquisition_events.csv")
+    progression = _read_json("content/stage61_wiki_progression.json")
+    kanto_progression = _read_csv("content/kanto_progression.csv")
+    qol_progression = [row for row in _read_csv("content/qol_progression.csv") if row["release_enabled"] == "true"]
+    logical_maps = _read_csv("content/maps.csv")
+    map_binding_rows = _read_csv("content/map_bindings.csv")
+    trainer_config = _read_json("config/trainer_rebalance_v4.json")
+    trainer_battle_rows = _read_csv("content/trainer_rebalance_v4/battles.csv")
+    trainer_design_members = _read_csv("content/trainer_rebalance_v4/parties.csv")
+    trainer_encounters = _read_csv("content/trainer_changekit_final/trainer_encounters.csv")
+    trainer_parties = _read_csv("content/trainer_changekit_final/trainer_parties.csv")
+    trainer_party_members = _read_csv("content/trainer_changekit_final/trainer_party_members.csv")
     map_catalog = _read_json("reports/generated/stage61_critical_release_map_display_catalog.json")
     if map_catalog["stage"] != 61 or map_catalog["status"] != "PASS" or len(map_catalog["maps"]) != 678:
         raise ValueError("Stage61 map display catalog不正")
     map_names = {(row["group"], row["map"]): row["actual_name"] for row in map_catalog["maps"]}
+    binding_by_key = {row["map_key"]: row for row in map_binding_rows}
+    kanto_map_rows = []
+    for row in logical_maps:
+        if row["region"] != "KANTO":
+            continue
+        binding = binding_by_key[row["map_key"]]
+        pair = (int(binding["group_id"]), int(binding["map_id"]))
+        kanto_map_rows.append({
+            "logical_location_key": row["logical_location_key"], "map_key": row["map_key"],
+            "name": map_names.get(pair, binding["physical_map_key"]),
+            "physical_map_key": binding["physical_map_key"], "group": pair[0], "map": pair[1],
+            "unlock_key": row["unlock_key"], "map_kind": row["map_kind"],
+            "field_pc_allowed": row["field_pc_allowed"] == "true",
+        })
 
     species_by_id = {int(row["id"]): row for row in species_manifest}
     species_by_key = {row["species_key"]: row for row in species_manifest}
@@ -788,6 +876,124 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
             "page": f"pokemon/{species_id:04d}.md",
         })
 
+    species_record_by_key = {row["key"]: row for row in species_records}
+    move_name_by_key = {row["key"]: row["name"] for row in move_records}
+    item_name_by_key = {row["key"]: row["name"] for row in item_records}
+
+    battle_meta_by_id = {row["battle_id"]: row for row in trainer_battle_rows}
+    design_members_by_id: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in trainer_design_members:
+        design_members_by_id[row["battle_id"]].append(row)
+    encounter_by_original_id = {int(row["original_trainer_id"]): row for row in trainer_encounters}
+    party_by_key = {row["party_key"]: row for row in trainer_parties}
+    members_by_party: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in trainer_party_members:
+        members_by_party[row["party_key"]].append(row)
+    direct_id_by_battle = {battle_id: int(trainer_id) for trainer_id, battle_id in trainer_config["direct_bindings"].items()}
+
+    def display_key(key: str, names: dict[str, str]) -> str:
+        if key in {"", "NONE", "ITEM_KEY_NONE", "MOVE_KEY_NONE"}:
+            return "なし"
+        return names.get(key, key)
+
+    major_battles: list[dict[str, Any]] = []
+    for section in progression["major_battle_sections"]:
+        for battle_id in section["battle_ids"]:
+            meta = battle_meta_by_id.get(battle_id)
+            if meta is None:
+                raise ValueError(f"主要戦闘metadata不在: {battle_id}")
+            if section["evidence"] == "LIVE_CURRENT_ABI":
+                trainer_id = direct_id_by_battle.get(battle_id)
+                if trainer_id is None or trainer_id not in encounter_by_original_id:
+                    raise ValueError(f"主要戦闘のdirect binding不在: {battle_id}")
+                encounter = encounter_by_original_id[trainer_id]
+                party = party_by_key[encounter["party_key"]]
+                members = []
+                for member in sorted(members_by_party[party["party_key"]], key=lambda row: int(row["slot"])):
+                    species = species_record_by_key[member["species_key"]]
+                    moves = [
+                        display_key(member[key], move_name_by_key)
+                        for key in ("move1_key", "move2_key", "move3_key", "move4_key")
+                        if member[key] not in {"", "NONE", "MOVE_KEY_NONE"}
+                    ]
+                    members.append({
+                        "slot": int(member["slot"]), "species_key": member["species_key"],
+                        "species_id": species["id"], "species": species["name"],
+                        "form": member["form_key"], "level": int(member["level"]),
+                        "held_item_key": member["held_item_key"],
+                        "held_item": display_key(member["held_item_key"], item_name_by_key),
+                        "moves": moves, "iv_floor": int(member["iv_floor"]),
+                        "role": member["tactical_role"], "position": member["lead_or_ace"],
+                        "field_runtime_status": member["field_runtime_status"],
+                    })
+                try:
+                    trainer_item_keys = json.loads(encounter["trainer_item_keys"])
+                except json.JSONDecodeError as exc:
+                    raise ValueError(f"trainer item JSON不正: {battle_id}") from exc
+                major_battles.append({
+                    "section": section["title"], "battle_id": battle_id, "trainer_id": trainer_id,
+                    "phase": meta["phase"], "category": meta["category"], "trainer": meta["trainer_name"],
+                    "location": meta["location"], "battle_format": party["battle_format"],
+                    "party_size": len(members), "ai_profile": encounter["ai_profile_key"],
+                    "trainer_items": [display_key(key, item_name_by_key) for key in trainer_item_keys],
+                    "reward": meta["reward"], "unlock_condition": meta["unlock_condition"],
+                    "members": members, "evidence": "LIVE_CURRENT_ABI",
+                    "runtime_note": "species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。",
+                })
+            else:
+                members = []
+                for member in sorted(design_members_by_id[battle_id], key=lambda row: int(row["party_slot"])):
+                    members.append({
+                        "slot": int(member["party_slot"]), "species": member["species"], "form": member["form"],
+                        "level": int(member["level"]), "held_item": member["item"] or "なし",
+                        "moves": [member[key] for key in ("move1", "move2", "move3", "move4") if member[key] and member[key] != "なし"],
+                        "iv_floor": int(member["iv_floor"]), "role": member["role"], "position": "ACE" if member["gimmick_user"] == "yes" else "",
+                    })
+                major_battles.append({
+                    "section": section["title"], "battle_id": battle_id, "trainer_id": None,
+                    "phase": meta["phase"], "category": meta["category"], "trainer": meta["trainer_name"],
+                    "location": meta["location"], "battle_format": meta["battle_format"],
+                    "party_size": len(members), "ai_profile": f"V4 rank {meta['ai_rank']}",
+                    "trainer_items": [meta["trainer_items"] or "なし"], "reward": meta["reward"],
+                    "unlock_condition": meta["unlock_condition"], "members": members,
+                    "evidence": "V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING",
+                    "runtime_note": "現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。",
+                })
+
+    fixed_capture_encounters: list[dict[str, Any]] = []
+    for event in acquisition_events:
+        if event["battle_or_gift"] != "CAPTURE":
+            continue
+        species_key = event["target_species_keys"].split("|")[0]
+        species = species_record_by_key[species_key]
+        route = route_by_id[species["id"]]
+        levels = [int(value) for value in re.findall(r"\d+", event["capture_level"])]
+        level = levels[0] if levels else None
+        group = int(event["group_id"]) if event["group_id"] else None
+        map_id = int(event["map_id"]) if event["map_id"] else None
+        location = map_names.get((group, map_id), event["physical_map_key"]) if group is not None else event["physical_map_key"]
+        condition = event["condition_expression"]
+        if "既存条件文=" in event["notes"]:
+            condition = event["notes"].split("既存条件文=", 1)[1]
+        move_ids = _default_level_moves(species["learnsets"]["level_up"], level) if level is not None else []
+        if "UNVERIFIED" in event["runtime_status"] or "AUDIT_REQUIRED" in event["runtime_status"]:
+            evidence = "INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED"
+        elif level is None:
+            evidence = "LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED"
+        else:
+            evidence = "INHERITED_INTEGRATED"
+        fixed_capture_encounters.append({
+            "event_key": event["event_key"], "arc_key": event["event_arc"],
+            "arc": ARC_NAMES.get(event["event_arc"], event["event_arc"]),
+            "species_key": species_key, "species_id": species["id"], "species": species["name"],
+            "level": level, "location": location, "logical_location_key": event["logical_location_key"],
+            "physical_map_key": event["physical_map_key"], "method_detail": route["method_detail"],
+            "unlock_key": event["unlock_key"], "condition": condition,
+            "moves": [{"move_id": move_id, "move": move_names[move_id]} for move_id in move_ids],
+            "retry_policy": event["retry_policy"], "runtime_status": event["runtime_status"],
+            "evidence": evidence,
+        })
+
     files: dict[str, bytes] = {}
     source_hashes = {path: _sha((ROOT / path).read_bytes()) for path in SOURCE_PATHS}
     files["data/species.jsonl"] = _jsonl_bytes(species_records)
@@ -796,6 +1002,13 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     files["data/items.jsonl"] = _jsonl_bytes(item_records)
     files["data/wild_encounters.jsonl"] = _jsonl_bytes(wild_rows)
     files["data/ecology_encounters.jsonl"] = _jsonl_bytes(ecology_rows)
+    files["data/story_progression.json"] = _json_bytes({
+        "schema_version": 1, "stage": 61, "scope_note": progression["scope_note"],
+        "field_abilities": progression["field_abilities"], "story_steps": progression["story_steps"],
+        "kanto_progression": kanto_progression, "kanto_maps": kanto_map_rows, "qol_progression": qol_progression,
+    })
+    files["data/major_battles.json"] = _json_bytes({"schema_version": 1, "stage": 61, "battles": major_battles})
+    files["data/fixed_capture_encounters.json"] = _json_bytes({"schema_version": 1, "stage": 61, "encounters": fixed_capture_encounters})
 
     search_rows = []
     for record in species_records:
@@ -803,7 +1016,152 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     for kind, records, page in (("move", move_records, "MOVE_INDEX.md"), ("ability", ability_records, "ABILITY_INDEX.md"), ("item", item_records, "ITEM_INDEX.md")):
         for record in records:
             search_rows.append({"kind": kind, "id": record["id"], "name": record["name"], "aliases": [record["key"]], "page": page, "anchor": f"{kind}-{record['id']:04d}"})
+    for step in progression["story_steps"]:
+        search_rows.append({"kind": "story", "id": step["id"], "name": step["checkpoint"], "aliases": [step["state_key"], *step["map_order"]], "page": "STORY_PROGRESSION.md", "anchor": f"story-{step['id'].lower()}"})
+    for row in kanto_map_rows:
+        search_rows.append({"kind": "map", "id": row["logical_location_key"], "name": row["name"], "aliases": [row["map_key"], row["physical_map_key"], row["unlock_key"]], "page": "STORY_PROGRESSION.md", "anchor": f"kanto-map-{row['logical_location_key'].lower()}"})
+    for battle in major_battles:
+        search_rows.append({"kind": "battle", "id": battle["battle_id"], "name": battle["trainer"], "aliases": [battle["battle_id"], battle["location"], battle["phase"]], "page": "MAJOR_BATTLES.md", "anchor": f"battle-{battle['battle_id'].lower()}"})
+    for encounter in fixed_capture_encounters:
+        search_rows.append({"kind": "fixed_capture", "id": encounter["event_key"], "name": encounter["species"], "aliases": [encounter["species_key"], encounter["arc"], encounter["location"]], "page": "LEGENDARY_ENCOUNTERS.md", "anchor": f"capture-{encounter['event_key'].lower()}"})
     files["data/search_index.jsonl"] = _jsonl_bytes(search_rows)
+
+    qol_by_unlock: dict[str, list[str]] = defaultdict(list)
+    for row in qol_progression:
+        qol_by_unlock[row["unlock_key"]].append(FEATURE_NAMES.get(row["feature_key"], row["feature_key"]))
+    story_page = [
+        "# Stage61 マップ・ストーリー進行ガイド", "", "[Wiki入口へ](README.md)", "",
+        "現在地を『バッジ何個・直前に倒した相手・今いる町』で照合し、同じ項目の到達済みマップまでを捕獲・育成候補として扱ってください。トーホクの順路は既存Vegaを骨格にし、レベル帯、QOL、カントー分岐、フィールド能力はStage61の現行正本を反映しています。", "",
+        "## 早見表", "", "| 区間 | 目安レベル | 主な順路 | 次に開く場所 |", "|---|---:|---|---|",
+    ]
+    for step in progression["story_steps"]:
+        story_page.append(f"| [{_md(step['checkpoint'])}](#story-{step['id'].lower()}) | {_md(step['level_guide'])} | {_md(' → '.join(step['map_order']))} | {_md(step['next_access'])} |")
+    story_page += [
+        "", "## 進行区間の詳細", "",
+        "> バッジ数だけで曖昧な場合は、直前のボス名と現在地も照合します。例:『2個目のジムに勝った』ならS02を現在区間とし、S00〜S01とS02の到達途中マップを候補にできます。", "",
+    ]
+    for step in progression["story_steps"]:
+        story_page += [
+            f'<a id="story-{step["id"].lower()}"></a>',
+            f"### {step['id']} {step['checkpoint']}", "",
+            f"- 進行key: `{step['state_key']}`",
+            f"- 目安レベル: **{step['level_guide']}**",
+            f"- マップ順: **{' → '.join(step['map_order'])}**",
+            "- 主目的:",
+            *[f"  - {objective}" for objective in step["objectives"]],
+            f"- 次の行先・解禁: {step['next_access']}",
+        ]
+        if step["major_battles"]:
+            links = "、".join(f"[{battle_id}](MAJOR_BATTLES.md#battle-{battle_id.lower()})" for battle_id in step["major_battles"])
+            story_page.append(f"- 主要戦: {links}")
+        features = qol_by_unlock.get(step["state_key"], [])
+        story_page.append(f"- Stage61 QOL解禁: {'、'.join(features) if features else 'このkeyでの追加解禁なし'}")
+        story_page += [*[f"- 注意: {note}" for note in step["notes"]], ""]
+    story_page += [
+        "## フィールド能力とHM受領時期", "",
+        "Stage61では対応するVega既存HM（Item 339〜346）をバッグに持っていれば使えます。バッジ、手持ち数、その技を覚えたポケモン、適性は要求しません。受領前の順路をHM使用で飛ばせるという意味ではありません。", "",
+        "| HM | 能力 | 受領場所 | 時期 | 根拠状態 |", "|---|---|---|---|---|",
+    ]
+    for row in progression["field_abilities"]:
+        story_page.append(f"| {row['hm']} | {_md(row['move'])} | {_md(row['received'])} | {_md(row['timing'])} | {_md(row['status'])} |")
+    story_page += [
+        "", "## Stage61のカントー・終盤解禁グラフ", "",
+        "カントーはジム3＋D・Hビル初回攻略後から任意で入れますが、固定高レベルです。`predecessor_keys`を満たす順に進み、危険なら安全帰還ターミナルからトーホク本編へ戻れます。", "",
+        "| 順 | 解禁key | 地方 | 前提 | 推奨Lv | 必須 | 使用可能ギミック |", "|---:|---|---|---|---:|---|---|",
+    ]
+    for row in kanto_progression:
+        story_page.append(
+            f"| {row['sequence']} | `{row['unlock_key']}` | {row['region']} | `{row['predecessor_keys']}` | "
+            f"{row['recommended_level_min']}-{row['recommended_level_max']} | {'必須' if row['mandatory'] == 'true' else '任意'} | {_md(row['allowed_gimmicks'])} |"
+        )
+    story_page += [
+        "", "## カントー論理マップ対応表", "",
+        "固定捕獲・野生遭遇で使うK01〜K47を、現行ROMの代表物理マップ名と解禁keyへ対応づけます。同じ論理コードに複数階・複数区画が属する場合、表は代表マップを示します。", "",
+        "| 論理コード | 代表マップ | 物理map key | 解禁 | 種別 | Field PC |", "|---|---|---|---|---|---|",
+    ]
+    for row in kanto_map_rows:
+        story_page.append(
+            f'| <a id="kanto-map-{row["logical_location_key"].lower()}"></a>`{row["logical_location_key"]}` | {_md(row["name"])} | `{row["physical_map_key"]}` | '
+            f"`{row['unlock_key']}` | {row['map_kind']} | {'可' if row['field_pc_allowed'] else '不可'} |"
+        )
+    story_page += [
+        "", "## 出典境界", "",
+        f"- トーホクの道順・HM01〜07受領地点: [既存Vega攻略チャート]({progression['route_source_url']}) / [既存Vegaアイテム表]({progression['item_source_url']})",
+        "- ボスの現行レベル・手持ち・技: Stage61 trainer final正本（[主要戦一覧](MAJOR_BATTLES.md)）",
+        "- カントー・QOL・フィールド能力: Stage61統合済み正本",
+        "- HM08の精密受領地点など、現行入力で確定できないものは推測していません。", "",
+    ]
+    files["STORY_PROGRESSION.md"] = "\n".join(story_page).encode()
+
+    major_page = [
+        "# Stage61 主要トレーナー・ボス手持ち", "", "[Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)", "",
+        "ジムリーダー、四天王・チャンピオン、ライバル、本編で通るD・H団・レンジャー戦から、殿堂入り後の再戦・最終章までを引ける一覧です。`LIVE_CURRENT_ABI`の行では、種族・フォーム・レベル・持ち物・4技・IV下限・トレーナー道具・AIが現行実使用です。特性・性格・努力値は現行trainer ABIではcatalog-onlyのため、実使用情報として掲載しません。", "",
+    ]
+    battles_by_section: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for battle in major_battles:
+        battles_by_section[battle["section"]].append(battle)
+    for section in progression["major_battle_sections"]:
+        section_title = section["title"]
+        major_page += [f"## {section_title}", ""]
+        if section["evidence"] != "LIVE_CURRENT_ABI":
+            major_page += ["> この節はV4設計入力です。現行ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。", ""]
+        for battle in battles_by_section[section_title]:
+            trainer_items = "、".join(battle["trainer_items"]) if battle["trainer_items"] else "なし"
+            major_page += [
+                f'<a id="battle-{battle["battle_id"].lower()}"></a>',
+                f"### {battle['phase']} — {battle['trainer']}（`{battle['battle_id']}`）", "",
+                f"- 区分・場所: {battle['category']} / **{battle['location']}**",
+                f"- 形式・人数: {battle['battle_format']} / {battle['party_size']}体",
+                f"- AI・トレーナー道具: `{battle['ai_profile']}` / {trainer_items}",
+                f"- 勝利報酬: {battle['reward'] or 'なし'}",
+                f"- 条件: {battle['unlock_condition'] or '通常進行'}",
+                f"- 証拠: `{battle['evidence']}` — {battle['runtime_note']}", "",
+                "| 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |", "|---:|---|---:|---|---|---:|---|",
+            ]
+            for member in battle["members"]:
+                species_label = member["species"]
+                if "species_id" in member:
+                    species_label = f"[{member['species']}](pokemon/{member['species_id']:04d}.md)"
+                if member.get("form") not in {None, "", "NONE"}:
+                    species_label += f"（{member['form']}）"
+                role = member.get("role", "")
+                if member.get("position"):
+                    role = f"{role} / {member['position']}"
+                major_page.append(
+                    f"| {member['slot']} | {species_label} | {member['level']} | {_md(member['held_item'])} | "
+                    f"{_md(' / '.join(member['moves']))} | {member['iv_floor']} | {_md(role)} |"
+                )
+            major_page.append("")
+    files["MAJOR_BATTLES.md"] = "\n".join(major_page).encode()
+
+    legendary_page = [
+        "# Stage61 伝説・幻・UB・パラドックス固定捕獲", "", "[Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)", "",
+        f"固定捕獲イベント全{len(fixed_capture_encounters)}件。場所、解禁、遭遇レベル、捕獲戦開始時の技をまとめています。レベルが明示されたイベントの技は、現行ROMのレベル技表と、実装が呼ぶ標準`CreateMon`処理から算出した直近4技です。イベント側が個別技を上書きする実装ではありません。", "",
+        "`LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED`は既存Vegaイベントの値を保持する枠で、レベルまたは精密な入口を現行入力だけでは確定できないため、技を推測していません。`INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED`はカントー側の救済経路は用意済みでも、従来トーホク側の正確なscript入口が未監査であることを示します。撃破・逃走時は捕獲済み記録を確定せず、イベント定義のretry policyに従って再試行できます。", "",
+    ]
+    captures_by_arc: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for encounter in fixed_capture_encounters:
+        captures_by_arc[encounter["arc"]].append(encounter)
+    for arc, encounters in captures_by_arc.items():
+        legendary_page += [f"## {arc}", "", "| ポケモン | 場所 | 解禁・追加条件 | Lv | 遭遇時の技 | 状態 |", "|---|---|---|---:|---|---|"]
+        for encounter in encounters:
+            moves = " / ".join(move["move"] for move in encounter["moves"]) or "既存値保持（未確定）"
+            level = encounter["level"] if encounter["level"] is not None else "—"
+            location = f"{encounter['location']} (`{encounter['logical_location_key']}` / `{encounter['physical_map_key']}`)"
+            condition = f"{_unlock(encounter['unlock_key'])} / {encounter['condition']}"
+            legendary_page.append(
+                f'| <a id="capture-{encounter["event_key"].lower()}"></a>[{_md(encounter["species"])}](pokemon/{encounter["species_id"]:04d}.md) | '
+                f"{_md(location)} | {_md(condition)} | {level} | {_md(moves)} | "
+                f"`{_md(encounter['evidence'])}`<br>`{_md(encounter['runtime_status'])}` |"
+            )
+        legendary_page.append("")
+    legendary_page += [
+        "## 再試行と捕獲前の注意", "",
+        "- 捕獲戦はボックスを含む保存先の空きがないと開始しません。",
+        "- 捕獲成功時だけ共有capture ledgerへ確定し、敗北・逃走・中断では再試行可能な設計です。",
+        "- 固定個体の現在技だけでなく、捕獲率・覚える状態異常技・みねうち互換を調べる場合は各ポケモンページと技索引を併用してください。", "",
+    ]
+    files["LEGENDARY_ENCOUNTERS.md"] = "\n".join(legendary_page).encode()
 
     for record in species_records:
         files[record["page"]] = _species_page(record, move_names)
@@ -978,14 +1336,25 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
 プレイ中の閲覧質問では、このWikiだけを読み、生成・検査・ROM照合・実装調査へ脱線しません。`make stage61-wiki`、`make stage61-wiki-check`、テスト、ROM hash計算、generator・source・config・report・Git履歴の調査は絶対に実行しません。ユーザーが再生成、検査、修正、実装根拠の確認を明示的に依頼した場合だけ、別の保守作業として行います。
 
-1. 出現場所・条件は [WILD_ENCOUNTERS.md](WILD_ENCOUNTERS.md) 内で場所名を検索する。通常野生、生態オーバーレイ、Raidの順に該当箇所だけ読む。
-2. 名前・key・IDは `docs/wiki/stage61/data/search_index.jsonl` で検索する。
-3. `page` で示されたMarkdownだけを読む。
-4. Wikiに答えがない、または記述が矛盾する場合は、その不足を明示して回答を止める。閲覧依頼の最中にWiki外の検査や実装調査を勝手に始めない。
+1. 「今バッジ何個」「次はどこ」「今の到達範囲でおすすめ」は [STORY_PROGRESSION.md](STORY_PROGRESSION.md) で区間を確定する。バッジ数が曖昧なら、直前のボス名・現在地・所持HMも照合する。
+2. ジムリーダー、四天王、ライバル、D・H団などの手持ち・技は [MAJOR_BATTLES.md](MAJOR_BATTLES.md) でbattle IDまたは名前を検索する。
+3. 伝説・幻・UB・パラドックスの固定捕獲は [LEGENDARY_ENCOUNTERS.md](LEGENDARY_ENCOUNTERS.md) で名前を検索する。場所、解禁、レベル、遭遇時技、証拠状態を一緒に読む。
+4. 出現場所・条件は [WILD_ENCOUNTERS.md](WILD_ENCOUNTERS.md) 内で場所名を検索する。通常野生、生態オーバーレイ、Raidの順に該当箇所だけ読む。
+5. 名前・key・IDは `docs/wiki/stage61/data/search_index.jsonl` で検索し、`page`で示されたMarkdownだけを読む。
+6. Wikiに答えがない、または記述が矛盾する場合は、その不足を明示して回答を止める。閲覧依頼の最中にWiki外の検査や実装調査を勝手に始めない。
+
+## 進行地点つき質問の解釈
+
+- 「2個目のジムに勝ったところ」なら進行ガイドのS02を現在区間とする。
+- 候補ポケモンは、それ以前の区間＋S02で既に通過したとユーザーが述べた場所に限定して探す。
+- 次のボス対策ならS02の主要戦リンクと、次のS03へ進むための道順を読む。
+- カントー早期渡航は解禁済みでも固定高レベルの任意ルートなので、通常の本編おすすめへ自動的に混ぜない。
 
 ```bash
 rg 'リープン|SPECIES_KEY_VEGA_001' docs/wiki/stage61/data/search_index.jsonl
 rg 'マスターボール|ITEM_KEY_MASTER_BALL' docs/wiki/stage61/data/search_index.jsonl
+rg '2個目のジム|VEGA_BADGE_2|ナギナタ' docs/wiki/stage61/data/search_index.jsonl
+rg 'ミュウツー|CHAMPION_GINNO' docs/wiki/stage61/data/search_index.jsonl
 ```
 
 現行ROM SHA-256: `{ROM_SHA256}`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、再生成後に一致確認を行います。通常の閲覧質問では実行しません。
@@ -1016,6 +1385,9 @@ Wikiに答えがない、または記述が矛盾する場合は、不足して�
 ## 読む順番
 
 - Codexの検索手順: [CODEX_INDEX.md](CODEX_INDEX.md)
+- マップ・ストーリー順・現在地ごとの解禁: [STORY_PROGRESSION.md](STORY_PROGRESSION.md)
+- ジムリーダー・四天王・主要NPCの手持ちと技: [MAJOR_BATTLES.md](MAJOR_BATTLES.md)
+- 伝説・幻・UB・パラドックス固定捕獲の場所・条件・遭遇時技: [LEGENDARY_ENCOUNTERS.md](LEGENDARY_ENCOUNTERS.md)
 - ポケモンの入手・能力・特性・全習得技: [POKEMON_INDEX.md](POKEMON_INDEX.md)
 - 主要アイテムの入手: [ITEM_GUIDE.md](ITEM_GUIDE.md)
 - 全アイテム索引: [ITEM_INDEX.md](ITEM_INDEX.md)
@@ -1043,7 +1415,7 @@ make stage61-wiki
 make stage61-wiki-check
 ```
 
-生成物は時刻を含まず、同じ入力から同じbyteになります。機械可読の完全データは `data/*.jsonl` です。
+生成物は時刻を含まず、同じ入力から同じbyteになります。機械可読の完全データは `data/` 内のJSON/JSONLです。
 """.encode()
 
     index = {
@@ -1056,6 +1428,9 @@ make stage61-wiki-check
             "evolutions": evolution_count, "wild_headers": wild["header_count"], "wild_slots": wild["slot_count"],
             "ecology_tables": len(ecology), "ecology_assignments": len(ecology_rows),
             "raid_assignments": len(raid_rows), "major_items": len(major_ids),
+            "story_steps": len(progression["story_steps"]), "progression_nodes": len(kanto_progression),
+            "qol_features": len(qol_progression), "major_battles": len(major_battles),
+            "fixed_capture_encounters": len(fixed_capture_encounters),
         },
         "runtime_move_slots": {"machine": machine_move_ids, "tutor": tutor_move_ids},
         "source_hashes": source_hashes,

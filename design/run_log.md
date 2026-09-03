@@ -3463,6 +3463,30 @@
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
 
+## 2026-09-03T20:12:40+09:00
+
+- Task: `USER-20260903-STAGE61-WIKI-PROGRESSION-BATTLES` / 進行順・主要戦・固定捕獲のWiki化
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - 本編開始から8個のジム、初回殿堂入り、任意のカントー早期渡航、殿堂入り後・最終章までを12区間に整理し、マップ順、目的、次の解禁、目安レベル、HM入手時期、QOL解禁、関連ボスを掲載した。
+  - ジムリーダー、四天王・チャンピオン、ライバル、D・H団、レンジャー、再戦・最終章を含む主要戦77件を収録した。現行trainer ABIに直結する62件と、V4設計入力だけの15件を明確に区別した。
+  - 伝説・幻・UB・パラドックスの固定捕獲117件を、場所、解禁、追加条件、レベル、遭遇時4技、証拠状態つきで収録した。標準`CreateMon`から決まる技だけを現行ROMレベル技表から算出し、未確定のlegacy入口やlevelは推測せず要監査表示にした。
+  - Codex向け索引へ「バッジ数→現在区間→到達済みマップ→候補」の読解規則を追加し、通常のWiki閲覧では生成・検査・実装調査を行わない既存方針を維持した。
+- Files changed:
+  - `content/stage61_wiki_progression.json`
+  - `scripts/build_stage61_wiki.py`
+  - `docs/wiki/stage61/**`（1,646 filesへ再生成）
+  - `reports/generated/stage61_wiki.json`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 scripts/build_stage61_wiki.py check`: PASS（1,646 files、1,621 Species、現行ROM SHA-256一致）。
+  - Wiki局所整合確認: PASS（story 12区間、major battles 77件、fixed captures 117件、新規3ページが非空）。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - 既存Vegaの本編順路とイベント順を `https://w.atwiki.jp/np369/pages/58.html`、HM01〜HM07の入手場所を `https://w.atwiki.jp/altair0/pages/664.html` で確認した。Stage61固有の解禁・手持ち・技・固定捕獲はtracked正本と現行ROMを使用し、外部情報で補完していない。
+
 ## 2026-09-03T19:31:10+09:00
 
 - Task: `USER-20260903-STAGE61-WIKI-READING-POLICY` / Wiki閲覧の無検査化と野生遭遇条件の完全化

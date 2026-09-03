@@ -12,21 +12,26 @@
     "ecology_tables": 95,
     "egg_moves": 8831,
     "evolutions": 856,
+    "fixed_capture_encounters": 117,
     "items": 999,
     "level_move_records_raw": 28874,
     "level_moves": 28859,
     "machine_runtime_compatibilities": 60214,
     "machine_runtime_slots": 128,
+    "major_battles": 77,
     "major_items": 392,
     "moves": 1063,
+    "progression_nodes": 39,
+    "qol_features": 35,
     "raid_assignments": 292,
     "species": 1621,
+    "story_steps": 12,
     "tutor_runtime_compatibilities": 21883,
     "tutor_runtime_slots": 64,
     "wild_headers": 265,
     "wild_slots": 2733
   },
-  "file_count": 1640,
+  "file_count": 1646,
   "files": [
     {
       "path": "ABILITY_INDEX.md",
@@ -35,8 +40,8 @@
     },
     {
       "path": "CODEX_INDEX.md",
-      "sha256": "8e850b0bd7df9823a87372e7af1ae58a2fca4e40121b7083e483c7f028ec0727",
-      "size": 1465
+      "sha256": "a111cca89421e93a8982688276f559dd9c845388eac7d2ec528017faaeb4bdb1",
+      "size": 2788
     },
     {
       "path": "GLOSSARY.md",
@@ -54,6 +59,16 @@
       "size": 264962
     },
     {
+      "path": "LEGENDARY_ENCOUNTERS.md",
+      "sha256": "e937126a67c0f410df3c63e7329c303c5aab17b73ed1e66b9c31073a2fca3c9d",
+      "size": 49078
+    },
+    {
+      "path": "MAJOR_BATTLES.md",
+      "sha256": "c6d12c41c12494efe199643ec2a8c6b190f8817e4c40d27d6d5a08896641f3c2",
+      "size": 133108
+    },
+    {
       "path": "MOVE_INDEX.md",
       "sha256": "4a8e9d9780bbae40cd7b3c449cf0eba568dc6cf606696abd166d5fa68fb4601b",
       "size": 236447
@@ -65,13 +80,18 @@
     },
     {
       "path": "README.md",
-      "sha256": "93002dabed0a9b542b556008a8b2badeff7d64c9117a5dcfccd9b262557200f7",
-      "size": 3002
+      "sha256": "afa7410d0a8bc310e995bccf5b598ec2b41370c330ec992d04a267595543b791",
+      "size": 3356
     },
     {
       "path": "RUNTIME_LIMITATIONS.md",
       "sha256": "344484013f58b7004d2c9326c494b90b96b4ca23bd402e447d4ee8acfcbeeb91",
       "size": 1345
+    },
+    {
+      "path": "STORY_PROGRESSION.md",
+      "sha256": "8030bbb5b575f979f21fc3470d569b182bc037226660a9708333bb5eb8f3d98e",
+      "size": 30997
     },
     {
       "path": "TYPE_CHART.md",
@@ -94,14 +114,24 @@
       "size": 78731
     },
     {
+      "path": "data/fixed_capture_encounters.json",
+      "sha256": "195ee0da341085b49aac7f61b1c34a9828067a2c6fe24cc43e013cc4e061f48e",
+      "size": 127788
+    },
+    {
       "path": "data/index.json",
-      "sha256": "583f3c663646d329854285762133fb9fc879c892381729413729a01554ea6afc",
-      "size": 5462
+      "sha256": "325a3526f998dfb2ce7d22ceb5caab53f9db51e0b882eee3bee2fca196637127",
+      "size": 6980
     },
     {
       "path": "data/items.jsonl",
       "sha256": "ded15f460d87d1d1f4af4187a02e629e89f7aaa9dbf0181016118a7c31d248d6",
       "size": 1003600
+    },
+    {
+      "path": "data/major_battles.json",
+      "sha256": "c4925192cd1c1c77260a9a3f283f187239d7a0b37c2b3206abaee88c23befa9e",
+      "size": 354498
     },
     {
       "path": "data/moves.jsonl",
@@ -110,13 +140,18 @@
     },
     {
       "path": "data/search_index.jsonl",
-      "sha256": "151bbe3a70ef3dc6f23e217f14da1a788dd36d2c2d222324eda4117f75351b95",
-      "size": 549502
+      "sha256": "91869efc87e6981ab9ded7b09cb7ed82ee5ca747234a6e6c0dca2d75476b076f",
+      "size": 607874
     },
     {
       "path": "data/species.jsonl",
       "sha256": "42c225d543f7a0738c57e997235bd6230d8ebf629d4e1e520d3217ddd694ec48",
       "size": 4567683
+    },
+    {
+      "path": "data/story_progression.json",
+      "sha256": "1d0b35aa6a9c1bef4e6df58b72a878173ce81d0648deb7d6b0fd7d45861a0094",
+      "size": 59385
     },
     {
       "path": "data/wild_encounters.jsonl",

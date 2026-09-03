@@ -1398,3 +1398,14 @@
   - 生態オーバーレイの率、候補、level、バッジ・竿、RTC・手動mode、fallback、隠れ探索、釣りの意味と判定順を野生遭遇Wikiへ詳記した。
   - 全292 Raid候補を場所・pool・Species・level・weight・解禁・捕獲区分で検索できる一覧へ統合した。
 - Verify: `make stage61-wiki` PASS、focused unit 8件 PASS、task graph／private guard／`git diff --check` PASS。
+
+## 2026-09-03T20:12:40+09:00
+
+- Version: `stage61-wiki-progression-battles-1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-WIKI-PROGRESSION-BATTLES` / 進行順・主要戦・固定捕獲のWiki化
+- Summary:
+  - 本編・カントー・殿堂入り後を12区間でたどれるマップ／ストーリー進行ガイドを追加した。
+  - 主要戦77件の手持ち・持ち物・技・条件と、固定捕獲117件の場所・解禁・レベル・遭遇時技・証拠状態を検索可能にした。
+  - Codexがバッジ数から現在区間と到達済み候補を判断する読解規則を追加し、通常閲覧の無検査方針を維持した。
+- Verify: `python3 scripts/build_stage61_wiki.py check`、Wiki局所整合確認、`git diff --check` PASS。
