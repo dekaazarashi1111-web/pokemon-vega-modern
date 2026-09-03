@@ -883,14 +883,63 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     ]
     files["GLOSSARY.md"] = "\n".join(glossary).encode()
 
-    wild_page = ["# Stage61 野生遭遇一覧", "", "[Wiki入口へ](README.md)", "", f"現行ROMから直接抽出: 通常野生 {wild['header_count']} header / {wild['slot_count']} slot、生態オーバーレイ {len(ecology)} table / {len(ecology_rows)} candidate assignment。", "", "## 通常野生", "", "| map | 場所 | 方法 | 種族 | Lv. | rate値 | slots |", "|---|---|---|---|---:|---:|---|"]
+    wild_page = [
+        "# Stage61 野生遭遇一覧", "", "[Wiki入口へ](README.md)", "",
+        f"現行ROMから直接抽出: 通常野生 {wild['header_count']} header / {wild['slot_count']} slot、"
+        f"生態オーバーレイ {len(ecology)} table / {len(ecology_rows)} candidate assignment。", "",
+        "## このページだけで出現条件を読む", "",
+        "通常の場所別質問は、このページ内で場所名を検索すれば、通常野生、生態オーバーレイ、Raidをまとめて確認できます。閲覧のためにROM、generator、config、report、テストを調べたり、生成・検査コマンドを実行したりする必要はありません。", "",
+        "### 通常野生", "",
+        "- 現行ROMが持つ元の遭遇表です。生態オーバーレイが成立しなかった場合は、この表で選ばれた種族とレベルがそのまま出現します。",
+        "- `rate値` はROM内の遭遇密度設定であり、パーセントや各種族の個別出現率ではありません。`slots` は元の遭遇表でその種族が占めるslot番号です。",
+        "- 同じ場所に草むら、水上、いわくだき、釣りがある場合は、方法ごとに別の表として読みます。", "",
+        "### 生態オーバーレイ", "",
+        "- 元の遭遇slotとレベルを選んだ後、場所・方法・modeに一致する追加候補へ置き換える抽選です。元の遭遇表を消したり、恒久的に書き換えたりはしません。",
+        "- `置換率` は同じ`table`番号の候補群全体に対する抽選率です。同じ率が候補行ごとに表示されても、各候補がその率で個別抽選される意味ではありません。成立後は、その時点で解禁済みの候補から均等に1体を選びます。",
+        "- `殿堂入り前Lv.`と`殿堂入り後Lv.`は、Vega殿堂入りflagの前後で使用するレベル範囲です。両方が同じなら殿堂入りによる変化はありません。",
+        "- `badge 0`は必要バッジなしです。釣り表の`rod 0 / 1 / 2`は、それぞれボロ／いい／すごい釣り竿以上を表します。釣り以外の表では`rod 0`が竿条件なしです。候補ごとにバッジと竿の両条件を満たしたものだけが抽選対象になります。",
+        "- 通常層の抽選率は候補数に応じて、1種20%、2～3種30%、4～5種40%、6～12種50%です。昼・夜・大量発生・釣り・隠し遭遇の率は各表の値を保持します。", "",
+        "### 生態レーダーのmodeと判定順", "",
+        "- 生態レーダー（Item 348）は1個目のバッジ報酬です。既存saveで未所持ならシオウの技管理NPCが1個だけ補います。手動modeの選択にはバッグから生態レーダーを使います。",
+        "- `RTC自動`: その日の日替わり大量発生が現在地なら大量発生層、次に現在時刻の朝昼／夜層、次に通常層、最後に元の遭遇表の順です。",
+        "- `朝昼固定` / `夜固定` / `群れ固定`: 指定した特殊層、通常層、元の遭遇表の順です。現在地に指定層がなければ通常層から始まります。",
+        "- 朝昼は6:00～17:59、夜は18:00～翌5:59です。RTC自動の日替わり大量発生は日付から対象表を1つ選び、群れ固定は時計や日付に関係なく現在地の大量発生層を使います。",
+        "- `隠れ探索`: 現在地の隠し遭遇候補から、その場で1体を探して戦闘を開始します。通常歩行の置換率ではありません。隠れ探索modeを選んだ後の通常歩行は、通常層、元の遭遇表の順です。",
+        "- 釣り層はmodeに関係なく、実際に釣り竿を使った時だけ判定します。釣り層が外れた場合は元の釣り表へ戻ります。", "",
+        "### 複数層がある場所の読み方", "",
+        "特殊層の抽選に外れると通常層を続けて判定し、それにも外れた時だけ元の遭遇表になります。したがって、特殊層が有効な時も通常層と元の種族は出現候補に残ります。候補1体の最終確率を求める時は、各層へ到達する確率、表の置換率、その時点の解禁候補数を順に掛けます。", "",
+        "## 通常野生", "", "| map | 場所 | 方法 | 種族 | Lv. | rate値 | slots |",
+        "|---|---|---|---|---:|---:|---|",
+    ]
     for row in wild_rows:
         species = species_by_id[row["species_id"]]
         wild_page.append(f"| `{row['group']}/{row['map']}` | {_md(row['location'])} | {row['mode']} | [{_md(species['display_name'])}](pokemon/{row['species_id']:04d}.md) | {row['level_min']}-{row['level_max']} | {row['rate']} | {','.join(map(str,row['slots']))} |")
-    wild_page += ["", "## 生態オーバーレイ", "", "| table | map | 場所 | 層 | 種族 | 置換率 | 変更前Lv. | 変更後Lv. | 条件 |", "|---:|---|---|---|---|---:|---:|---:|---|"]
+    wild_page += ["", "## 生態オーバーレイ", "", "| table | map | 場所 | 層 | 種族 | 置換率 | 殿堂入り前Lv. | 殿堂入り後Lv. | 条件 |", "|---:|---|---|---|---|---:|---:|---:|---|"]
     for row in ecology_rows:
         species = species_by_id[row["species_id"]]
         wild_page.append(f"| {row['table_index']} | `{row['group']}/{row['map']}` | {_md(row['location'])} | {row['area']}・{row['layer']} | [{_md(species['display_name'])}](pokemon/{row['species_id']:04d}.md) | {row['rate_percent']}% | {row['pre_level'][0]}-{row['pre_level'][1]} | {row['post_level'][0]}-{row['post_level'][1]} | badge {row['min_badges']} / rod {row['min_rod']} |")
+    raid_rows = []
+    for record in species_records:
+        for raid in record["acquisition"]["raids"]:
+            raid_rows.append({"species_id": record["id"], "species_name": record["name"], **raid})
+    raid_rows.sort(key=lambda row: (
+        row["group"], row["map"], row["location"], row["pool"],
+        row["species_id"],
+    ))
+    wild_page += [
+        "", "## Raid", "",
+        "通常野生・生態オーバーレイとは別のRaid候補です。場所名で検索すると、その場所の全候補、レベル、weight、解禁条件、捕獲区分を確認できます。`weight`は同じpool内の相対抽選重みです。", "",
+        "この表はStage56で統合済みの正本をStage61が継承した情報です。現ROMから直接抽出した通常野生・生態オーバーレイとは証拠区分が異なり、現SHAで全候補を手動走破したという意味ではありません。", "",
+        "| map | 場所 | pool | 種族 | Lv. | weight | 解禁 | 捕獲区分 |",
+        "|---|---|---|---|---:|---:|---|---|",
+    ]
+    for row in raid_rows:
+        wild_page.append(
+            f"| `{row['group']}/{row['map']}` | {_md(row['location'])} | `{_md(row['pool'])}` | "
+            f"[{_md(row['species_name'])}](pokemon/{row['species_id']:04d}.md) | "
+            f"{row['level_min']}-{row['level_max']} | {row['weight']} | `{_md(row['unlock'])}` | "
+            f"`{_md(row['capture_policy'])}` |"
+        )
     files["WILD_ENCOUNTERS.md"] = ("\n".join(wild_page) + "\n").encode()
 
     type_rows = [row for row in ids["types"] if row["id"] in TYPE_NAMES]
@@ -927,18 +976,19 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
     files["CODEX_INDEX.md"] = f"""# Codex用 Stage61 Wiki索引
 
-プレイ中の質問では、原則としてスクリプトやgeneratorを調べる前にこのWikiを使います。
+プレイ中の閲覧質問では、このWikiだけを読み、生成・検査・ROM照合・実装調査へ脱線しません。`make stage61-wiki`、`make stage61-wiki-check`、テスト、ROM hash計算、generator・source・config・report・Git履歴の調査は絶対に実行しません。ユーザーが再生成、検査、修正、実装根拠の確認を明示的に依頼した場合だけ、別の保守作業として行います。
 
-1. 名前・key・IDを `docs/wiki/stage61/data/search_index.jsonl` で検索する。
-2. `page` で示されたMarkdownだけを読む。
-3. 精密な再検証が必要な場合だけ `data/*.jsonl` と [証拠・制約](RUNTIME_LIMITATIONS.md) を確認する。
+1. 出現場所・条件は [WILD_ENCOUNTERS.md](WILD_ENCOUNTERS.md) 内で場所名を検索する。通常野生、生態オーバーレイ、Raidの順に該当箇所だけ読む。
+2. 名前・key・IDは `docs/wiki/stage61/data/search_index.jsonl` で検索する。
+3. `page` で示されたMarkdownだけを読む。
+4. Wikiに答えがない、または記述が矛盾する場合は、その不足を明示して回答を止める。閲覧依頼の最中にWiki外の検査や実装調査を勝手に始めない。
 
 ```bash
 rg 'リープン|SPECIES_KEY_VEGA_001' docs/wiki/stage61/data/search_index.jsonl
 rg 'マスターボール|ITEM_KEY_MASTER_BALL' docs/wiki/stage61/data/search_index.jsonl
 ```
 
-現行ROM SHA-256: `{ROM_SHA256}`。ROMが変わった場合は `make stage61-wiki` で再生成し、`make stage61-wiki-check` を通すまで旧Wikiを現行扱いしません。
+現行ROM SHA-256: `{ROM_SHA256}`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、再生成後に一致確認を行います。通常の閲覧質問では実行しません。
 """.encode()
 
     files["README.md"] = f"""# Pokémon Vega Stage61 プレイWiki
@@ -951,6 +1001,17 @@ rg 'マスターボール|ITEM_KEY_MASTER_BALL' docs/wiki/stage61/data/search_in
 - 技: {MOVE_COUNT} ID
 - 特性: {ABILITY_COUNT} ID
 - アイテム: {ITEM_COUNT} ID
+
+## 閲覧時の最優先ルール
+
+通常のプレイ質問や「Wikiを見て教えて」という依頼では、該当する公開済みWikiページだけを読み、すぐ回答します。閲覧中に次の処理は絶対に実行しません。
+
+- `make stage61-wiki` / `make stage61-wiki-check`などの生成・検査
+- テスト、ROMのhash・byte照合、ビルド、エミュレータ実行
+- generator、実装source、config、report、Git履歴、設計ログの追加調査
+- 回答に不要な全ファイル走査や証拠の再検証
+
+Wikiに答えがない、または記述が矛盾する場合は、不足している点とWikiだけから言える範囲を明示します。閲覧依頼の途中で勝手に検査へ進みません。ユーザーが再生成、検査、修正、または実装根拠の確認を明示的に依頼した場合だけ、閲覧とは別の保守作業として実行します。
 
 ## 読む順番
 
@@ -973,7 +1034,9 @@ rg 'マスターボール|ITEM_KEY_MASTER_BALL' docs/wiki/stage61/data/search_in
 
 取得場所が複数ある場合、各ポケモンページは現ROMの通常野生・生態オーバーレイ、Raid、基本取得経路を併記します。`VEGA_EXISTING` itemなど精密場所が未抽出の情報は、推測で補いません。
 
-## 再生成・検査
+## 保守専用の再生成・検査（閲覧時は実行禁止）
+
+以下はWikiを更新する担当者向けです。通常の閲覧、プレイ質問、Wiki検索では絶対に実行しません。ユーザーから再生成・検査・修正を明示的に依頼された時だけ使います。
 
 ```bash
 make stage61-wiki
@@ -991,7 +1054,8 @@ make stage61-wiki-check
             "machine_runtime_slots": len(machine_move_ids), "machine_runtime_compatibilities": sum(map(len, machine_rows)),
             "tutor_runtime_slots": len(tutor_move_ids), "tutor_runtime_compatibilities": sum(map(len, tutor_rows)),
             "evolutions": evolution_count, "wild_headers": wild["header_count"], "wild_slots": wild["slot_count"],
-            "ecology_tables": len(ecology), "ecology_assignments": len(ecology_rows), "major_items": len(major_ids),
+            "ecology_tables": len(ecology), "ecology_assignments": len(ecology_rows),
+            "raid_assignments": len(raid_rows), "major_items": len(major_ids),
         },
         "runtime_move_slots": {"machine": machine_move_ids, "tutor": tutor_move_ids},
         "source_hashes": source_hashes,

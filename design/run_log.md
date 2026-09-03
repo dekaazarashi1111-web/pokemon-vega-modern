@@ -3463,6 +3463,30 @@
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
 
+## 2026-09-03T19:31:10+09:00
+
+- Task: `USER-20260903-STAGE61-WIKI-READING-POLICY` / Wiki閲覧の無検査化と野生遭遇条件の完全化
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - Stage61 WikiのREADMEとCodex索引へ、通常のプレイ質問・Wiki閲覧では生成、検査、ROM照合、テスト、実装調査、全件走査を絶対に実行せず、該当Wikiだけを読んですぐ回答する規則を追加した。
+  - Wikiに答えがない、または矛盾する場合は不足を明示して止め、ユーザーが再生成・検査・修正・実装根拠確認を明示した場合だけ別の保守作業へ進む境界を固定した。
+  - 野生遭遇Wikiへ通常表と置換率の意味、候補選択、殿堂入り前後level、バッジ・竿条件、生態レーダーの全mode、RTC時刻、特殊層から通常層へのfallback、隠れ探索、釣りの判定順を追記した。
+  - Stage56継承のRaid 292候補を場所別に検索できる全件表として追加し、場所、pool、Species、level、weight、解禁、捕獲区分、証拠区分をWiki内で完結させた。
+- Files changed:
+  - `scripts/build_stage61_wiki.py`
+  - `tests/test_stage61_wiki.py`
+  - `docs/wiki/stage61/{README.md,CODEX_INDEX.md,WILD_ENCOUNTERS.md,data/index.json}`
+  - `reports/generated/stage61_wiki.json`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `make stage61-wiki`: PASS（1,640 filesを決定的生成、Raid 292候補を索引化）。
+  - `python3 -m unittest tests.test_stage61_wiki -v`: 8 tests PASS（閲覧時の保守処理禁止、野生条件説明、場所別Raid、公開byte一致、相対linkを含む）。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。ローカルの現行Wiki、生成元、統合済み正本だけを使用した。
+
 ## 2026-09-03T12:39:19+09:00
 
 - Task: `USER-20260903-STAGE61-NUGGET-DELIVERY` / 現行Stage61へきんのたま1個を送付

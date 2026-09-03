@@ -1387,3 +1387,14 @@
   - stale trainer battle bitを再現する実Bagテストを追加し、menu表示、選択、キャンセル、field復帰を確認した。
   - Wiki／CLIを新ROM identityへ更新し、ROMだけをiPadへ原子的に配置してsave 57件を不変に保った。
 - Verify: runtime build/check、libmGBA 16項目×独立2 process、Wiki build/check＋unit 6件、CLI protocol identity、iPad size／SHA／read-back／save manifest、task graph、private guard、diff check PASS。ROM SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`、CRC32 `232D05EA`。
+
+## 2026-09-03T19:31:10+09:00
+
+- Version: `stage61-wiki-reading-policy-1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-WIKI-READING-POLICY` / Wiki閲覧の無検査化と野生遭遇条件の完全化
+- Summary:
+  - 通常のWiki閲覧では生成・検査・ROM照合・実装調査を絶対に行わず、該当ページだけを読んですぐ回答する最優先規則を追加した。
+  - 生態オーバーレイの率、候補、level、バッジ・竿、RTC・手動mode、fallback、隠れ探索、釣りの意味と判定順を野生遭遇Wikiへ詳記した。
+  - 全292 Raid候補を場所・pool・Species・level・weight・解禁・捕獲区分で検索できる一覧へ統合した。
+- Verify: `make stage61-wiki` PASS、focused unit 8件 PASS、task graph／private guard／`git diff --check` PASS。

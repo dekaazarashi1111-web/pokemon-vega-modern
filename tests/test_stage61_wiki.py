@@ -51,6 +51,29 @@ class Stage61WikiTest(unittest.TestCase):
         self.assertIn("V4の64件を全件接続", limitations)
         self.assertNotIn("実際の `gTMHMMoves` は58件", limitations)
 
+    def test_reading_policy_forbids_maintenance_work_during_lookup(self):
+        readme = self.files["README.md"].decode()
+        codex_index = self.files["CODEX_INDEX.md"].decode()
+        for text in (readme, codex_index):
+            self.assertIn("絶対に実行しません", text)
+            self.assertIn("make stage61-wiki-check", text)
+            self.assertIn("明示的に依頼", text)
+        self.assertIn("閲覧依頼の途中で勝手に検査へ進みません", readme)
+
+    def test_wild_guide_explains_conditions_and_lists_raids_by_location(self):
+        page = self.files["WILD_ENCOUNTERS.md"].decode()
+        for phrase in (
+            "候補群全体に対する抽選率",
+            "特殊層の抽選に外れると通常層",
+            "朝昼は6:00～17:59、夜は18:00～翌5:59",
+            "隠れ探索",
+            "## Raid",
+            "503ばんどうろ",
+            "[ミュウツー](pokemon/0150.md)",
+        ):
+            self.assertIn(phrase, page)
+        self.assertGreater(self.index["counts"]["raid_assignments"], 0)
+
     def test_every_species_has_page_stats_abilities_route_and_learnsets(self):
         self.assertEqual([row["id"] for row in self.species], list(range(1621)))
         for record in self.species:

@@ -4,6 +4,37 @@
 
 現行ROMから直接抽出: 通常野生 265 header / 2733 slot、生態オーバーレイ 95 table / 294 candidate assignment。
 
+## このページだけで出現条件を読む
+
+通常の場所別質問は、このページ内で場所名を検索すれば、通常野生、生態オーバーレイ、Raidをまとめて確認できます。閲覧のためにROM、generator、config、report、テストを調べたり、生成・検査コマンドを実行したりする必要はありません。
+
+### 通常野生
+
+- 現行ROMが持つ元の遭遇表です。生態オーバーレイが成立しなかった場合は、この表で選ばれた種族とレベルがそのまま出現します。
+- `rate値` はROM内の遭遇密度設定であり、パーセントや各種族の個別出現率ではありません。`slots` は元の遭遇表でその種族が占めるslot番号です。
+- 同じ場所に草むら、水上、いわくだき、釣りがある場合は、方法ごとに別の表として読みます。
+
+### 生態オーバーレイ
+
+- 元の遭遇slotとレベルを選んだ後、場所・方法・modeに一致する追加候補へ置き換える抽選です。元の遭遇表を消したり、恒久的に書き換えたりはしません。
+- `置換率` は同じ`table`番号の候補群全体に対する抽選率です。同じ率が候補行ごとに表示されても、各候補がその率で個別抽選される意味ではありません。成立後は、その時点で解禁済みの候補から均等に1体を選びます。
+- `殿堂入り前Lv.`と`殿堂入り後Lv.`は、Vega殿堂入りflagの前後で使用するレベル範囲です。両方が同じなら殿堂入りによる変化はありません。
+- `badge 0`は必要バッジなしです。釣り表の`rod 0 / 1 / 2`は、それぞれボロ／いい／すごい釣り竿以上を表します。釣り以外の表では`rod 0`が竿条件なしです。候補ごとにバッジと竿の両条件を満たしたものだけが抽選対象になります。
+- 通常層の抽選率は候補数に応じて、1種20%、2～3種30%、4～5種40%、6～12種50%です。昼・夜・大量発生・釣り・隠し遭遇の率は各表の値を保持します。
+
+### 生態レーダーのmodeと判定順
+
+- 生態レーダー（Item 348）は1個目のバッジ報酬です。既存saveで未所持ならシオウの技管理NPCが1個だけ補います。手動modeの選択にはバッグから生態レーダーを使います。
+- `RTC自動`: その日の日替わり大量発生が現在地なら大量発生層、次に現在時刻の朝昼／夜層、次に通常層、最後に元の遭遇表の順です。
+- `朝昼固定` / `夜固定` / `群れ固定`: 指定した特殊層、通常層、元の遭遇表の順です。現在地に指定層がなければ通常層から始まります。
+- 朝昼は6:00～17:59、夜は18:00～翌5:59です。RTC自動の日替わり大量発生は日付から対象表を1つ選び、群れ固定は時計や日付に関係なく現在地の大量発生層を使います。
+- `隠れ探索`: 現在地の隠し遭遇候補から、その場で1体を探して戦闘を開始します。通常歩行の置換率ではありません。隠れ探索modeを選んだ後の通常歩行は、通常層、元の遭遇表の順です。
+- 釣り層はmodeに関係なく、実際に釣り竿を使った時だけ判定します。釣り層が外れた場合は元の釣り表へ戻ります。
+
+### 複数層がある場所の読み方
+
+特殊層の抽選に外れると通常層を続けて判定し、それにも外れた時だけ元の遭遇表になります。したがって、特殊層が有効な時も通常層と元の種族は出現候補に残ります。候補1体の最終確率を求める時は、各層へ到達する確率、表の置換率、その時点の解禁候補数を順に掛けます。
+
 ## 通常野生
 
 | map | 場所 | 方法 | 種族 | Lv. | rate値 | slots |
@@ -1367,7 +1398,7 @@
 
 ## 生態オーバーレイ
 
-| table | map | 場所 | 層 | 種族 | 置換率 | 変更前Lv. | 変更後Lv. | 条件 |
+| table | map | 場所 | 層 | 種族 | 置換率 | 殿堂入り前Lv. | 殿堂入り後Lv. | 条件 |
 |---:|---|---|---|---|---:|---:|---:|---|
 | 0 | `3/19` | 501ばんどうろ | 草むら・通常 | [ドードー](pokemon/0464.md) | 50% | 2-5 | 2-5 | badge 0 / rod 0 |
 | 0 | `3/19` | 501ばんどうろ | 草むら・通常 | [ヒメグマ](pokemon/0541.md) | 50% | 2-5 | 2-5 | badge 0 / rod 0 |
@@ -1663,3 +1694,304 @@
 | 92 | `1/11` | こおりのしま | 隠し遭遇・隠し遭遇 | [タイレーツ](pokemon/1343.md) | 4% | 58-66 | 70-88 | badge 0 / rod 0 |
 | 93 | `1/106` | ポケモンじょう | 草むら・通常 | [キラーメ](pokemon/1544.md) | 20% | 55-70 | 55-70 | badge 0 / rod 0 |
 | 94 | `1/106` | ポケモンじょう | 隠し遭遇・隠し遭遇 | [コレクレー](pokemon/1577.md) | 4% | 55-70 | 55-70 | badge 0 / rod 0 |
+
+## Raid
+
+通常野生・生態オーバーレイとは別のRaid候補です。場所名で検索すると、その場所の全候補、レベル、weight、解禁条件、捕獲区分を確認できます。`weight`は同じpool内の相対抽選重みです。
+
+この表はStage56で統合済みの正本をStage61が継承した情報です。現ROMから直接抽出した通常野生・生態オーバーレイとは証拠区分が異なり、現SHAで全候補を手動走破したという意味ではありません。
+
+| map | 場所 | pool | 種族 | Lv. | weight | 解禁 | 捕獲区分 |
+|---|---|---|---|---:|---:|---|---|
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [フリーザー](pokemon/0136.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [サンダー](pokemon/0137.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ファイヤー](pokemon/0138.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ディアルガ](pokemon/0145.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [パルキア](pokemon/0146.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ルギア](pokemon/0148.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ホウオウ](pokemon/0149.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [セレビィ](pokemon/0552.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [レックウザ](pokemon/0645.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ジラーチ](pokemon/0646.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [デオキシス](pokemon/0647.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ギラティナ](pokemon/0747.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [トルネロス](pokemon/0875.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ボルトロス](pokemon/0876.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ランドロス](pokemon/0879.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [イベルタル](pokemon/1006.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ソルガレオ](pokemon/1189.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ルナアーラ](pokemon/1190.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ネクロズマ](pokemon/1198.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ムゲンダイナ](pokemon/1363.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/36` | ちえのどうくつ | `POOL_TOHOKU_HIGH_SKY` | [ファイヤー](pokemon/1404.md) | 85-85 | 8 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ウツロイド](pokemon/1191.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [マッシブーン](pokemon/1192.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [フェローチェ](pokemon/1193.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [デンジュモク](pokemon/1194.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テッカグヤ](pokemon/1195.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [カミツルギ](pokemon/1196.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [アクジキング](pokemon/1197.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ベベノム](pokemon/1255.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [アーゴヨン](pokemon/1256.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ツンデツンデ](pokemon/1257.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ズガドーン](pokemon/1258.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [イダイナキバ](pokemon/1562.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [サケブシッポ](pokemon/1563.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [アラブルタケ](pokemon/1564.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ハバタクカミ](pokemon/1565.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [チヲハウハネ](pokemon/1566.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [スナノケガワ](pokemon/1567.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノワダチ](pokemon/1568.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノツツミ](pokemon/1569.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノカイナ](pokemon/1570.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノコウベ](pokemon/1571.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノドクガ](pokemon/1572.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノイバラ](pokemon/1573.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [チオンジェン](pokemon/1580.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [パオジアン](pokemon/1581.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ディンルー](pokemon/1582.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [イーユイ](pokemon/1583.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [トドロクツキ](pokemon/1584.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノブジン](pokemon/1585.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ウネルミナモ](pokemon/1588.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノイサハ](pokemon/1589.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [ウガツホムラ](pokemon/1613.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [タケルライコ](pokemon/1614.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノイワオ](pokemon/1615.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/37` | ちえのどうくつ | `POOL_TOHOKU_MASTER` | [テツノカシラ](pokemon/1616.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/73` | ちえのどうくつ | `POOL_TOHOKU_SPECIAL` | [アルセウス](pokemon/0750.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/73` | ちえのどうくつ | `POOL_TOHOKU_SPECIAL` | [コライドン](pokemon/1586.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/73` | ちえのどうくつ | `POOL_TOHOKU_SPECIAL` | [ミライドン](pokemon/1587.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `1/73` | ちえのどうくつ | `POOL_TOHOKU_SPECIAL` | [テラパゴス](pokemon/1617.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/2` | ミルシティ | `POOL_TOHOKU_LOW` | [ピカチュウ](pokemon/0025.md) | 12-12 | 100 | `VEGA_PRE_ENTRY` | `REPEATABLE_NORMAL` |
+| `3/2` | ミルシティ | `POOL_TOHOKU_LOW` | [イーブイ](pokemon/0483.md) | 20-20 | 100 | `VEGA_BADGE_1` | `REPEATABLE_NORMAL` |
+| `3/2` | ミルシティ | `POOL_TOHOKU_LOW` | [キャタピー](pokemon/0649.md) | 5-5 | 100 | `VEGA_PRE_ENTRY` | `REPEATABLE_NORMAL` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ライコウ](pokemon/0139.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ミュウツー](pokemon/0150.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ラティアス](pokemon/0407.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ラティオス](pokemon/0408.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ユクシー](pokemon/0743.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [エムリット](pokemon/0744.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [アグノム](pokemon/0745.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [レジギガス](pokemon/0746.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [クレセリア](pokemon/0748.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [シェイミ](pokemon/0749.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [コバルオン](pokemon/0872.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ビリジオン](pokemon/0874.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ゼクロム](pokemon/0878.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [キュレム](pokemon/0880.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [メロエッタ](pokemon/0882.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ゲノセクト](pokemon/0883.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [フーパ](pokemon/1009.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ボルケニオン](pokemon/1011.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [カプ・コケコ](pokemon/1183.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [カプ・テテフ](pokemon/1184.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [カプ・ブルル](pokemon/1185.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [コスモウム](pokemon/1188.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [マギアナ](pokemon/1199.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ゼラオラ](pokemon/1259.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ダクマ](pokemon/1364.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ウーラオス](pokemon/1365.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ザルード](pokemon/1366.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [レジエレキ](pokemon/1367.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ブリザポス](pokemon/1369.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [バドレックス](pokemon/1371.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [ガチグマ](pokemon/1594.md) | 85-85 | 8 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [イイネイヌ](pokemon/1600.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [キチキギス](pokemon/1602.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [オーガポン](pokemon/1603.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/21` | 503ばんどうろ | `POOL_TOHOKU_HIGH_WILDS` | [モモワロウ](pokemon/1620.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [エンテイ](pokemon/0140.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [スイクン](pokemon/0141.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ダークライ](pokemon/0147.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ミュウ](pokemon/0151.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ヒードラン](pokemon/0403.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [フィオネ](pokemon/0404.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [マナフィ](pokemon/0405.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レジロック](pokemon/0640.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レジアイス](pokemon/0641.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レジスチル](pokemon/0642.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [カイオーガ](pokemon/0643.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [グラードン](pokemon/0644.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ビクティニ](pokemon/0751.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [テラキオン](pokemon/0873.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レシラム](pokemon/0877.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ケルディオ](pokemon/0881.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ゼルネアス](pokemon/1005.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ジガルデ](pokemon/1007.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ディアンシー](pokemon/1008.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [タイプ:ヌル](pokemon/1170.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [シルヴァディ](pokemon/1171.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [カプ・レヒレ](pokemon/1186.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [コスモッグ](pokemon/1187.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [マーシャドー](pokemon/1200.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [メルタン](pokemon/1264.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [メルメタル](pokemon/1265.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ザシアン](pokemon/1361.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ザマゼンタ](pokemon/1362.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レジドラゴ](pokemon/1368.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [レイスポス](pokemon/1370.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [ラブトロス](pokemon/1439.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `3/29` | 511ばんすいどう | `POOL_TOHOKU_HIGH_DEPTHS` | [マシマシラ](pokemon/1601.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [カメックス](pokemon/0160.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [ラプラス](pokemon/0324.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [イーブイ](pokemon/0483.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [カビゴン](pokemon/0491.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [ダストダス](pokemon/0817.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [メルメタル](pokemon/1265.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [ゴリランダー](pokemon/1285.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [エースバーン](pokemon/1288.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [インテレオン](pokemon/1291.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [イオルブ](pokemon/1299.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [カジリガメ](pokemon/1307.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [マルヤクデ](pokemon/1324.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [オーロンゲ](pokemon/1334.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [マホイップ](pokemon/1342.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [ダイオウドウ](pokemon/1352.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `31/1` | はなれのことう | `POOL_TOHOKU_GMAX` | [ウーラオス](pokemon/1365.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `96/5` | クチバシティ | `POOL_KANTO_MID` | [リオル](pokemon/0012.md) | 55-55 | 100 | `KANTO_EARLY_ACCESS` | `REPEATABLE_NORMAL` |
+| `96/5` | クチバシティ | `POOL_KANTO_MID` | [ラルトス](pokemon/0315.md) | 35-35 | 100 | `KANTO_EARLY_ACCESS` | `REPEATABLE_NORMAL` |
+| `96/5` | クチバシティ | `POOL_KANTO_MID` | [コリンク](pokemon/0693.md) | 45-45 | 100 | `KANTO_EARLY_ACCESS` | `REPEATABLE_NORMAL` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ライコウ](pokemon/0139.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ミュウツー](pokemon/0150.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ラティアス](pokemon/0407.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ラティオス](pokemon/0408.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ユクシー](pokemon/0743.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [エムリット](pokemon/0744.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [アグノム](pokemon/0745.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [レジギガス](pokemon/0746.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [クレセリア](pokemon/0748.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [シェイミ](pokemon/0749.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [コバルオン](pokemon/0872.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ビリジオン](pokemon/0874.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ゼクロム](pokemon/0878.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [キュレム](pokemon/0880.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [メロエッタ](pokemon/0882.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ゲノセクト](pokemon/0883.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [フーパ](pokemon/1009.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ボルケニオン](pokemon/1011.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [カプ・コケコ](pokemon/1183.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [カプ・テテフ](pokemon/1184.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [カプ・ブルル](pokemon/1185.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [コスモウム](pokemon/1188.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [マギアナ](pokemon/1199.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ゼラオラ](pokemon/1259.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ダクマ](pokemon/1364.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ウーラオス](pokemon/1365.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ザルード](pokemon/1366.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [レジエレキ](pokemon/1367.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [ブリザポス](pokemon/1369.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [バドレックス](pokemon/1371.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [サンダー](pokemon/1403.md) | 85-85 | 8 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [イイネイヌ](pokemon/1600.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [キチキギス](pokemon/1602.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [オーガポン](pokemon/1603.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `96/37` | 25ばん どうろ | `POOL_KANTO_HIGH_WILDS` | [モモワロウ](pokemon/1620.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [エンテイ](pokemon/0140.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [スイクン](pokemon/0141.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ダークライ](pokemon/0147.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ミュウ](pokemon/0151.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ヒードラン](pokemon/0403.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [フィオネ](pokemon/0404.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [マナフィ](pokemon/0405.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レジロック](pokemon/0640.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レジアイス](pokemon/0641.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レジスチル](pokemon/0642.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [カイオーガ](pokemon/0643.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [グラードン](pokemon/0644.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ビクティニ](pokemon/0751.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [テラキオン](pokemon/0873.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レシラム](pokemon/0877.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ケルディオ](pokemon/0881.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ゼルネアス](pokemon/1005.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ジガルデ](pokemon/1007.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ディアンシー](pokemon/1008.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [タイプ:ヌル](pokemon/1170.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [シルヴァディ](pokemon/1171.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [カプ・レヒレ](pokemon/1186.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [コスモッグ](pokemon/1187.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [マーシャドー](pokemon/1200.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [メルタン](pokemon/1264.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [メルメタル](pokemon/1265.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ザシアン](pokemon/1361.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ザマゼンタ](pokemon/1362.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レジドラゴ](pokemon/1368.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [レイスポス](pokemon/1370.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [ラブトロス](pokemon/1439.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/0` | トキワのもり | `POOL_KANTO_HIGH_DEPTHS` | [マシマシラ](pokemon/1601.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [フリーザー](pokemon/0136.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [サンダー](pokemon/0137.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ファイヤー](pokemon/0138.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ディアルガ](pokemon/0145.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [パルキア](pokemon/0146.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ルギア](pokemon/0148.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ホウオウ](pokemon/0149.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [セレビィ](pokemon/0552.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [レックウザ](pokemon/0645.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ジラーチ](pokemon/0646.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [デオキシス](pokemon/0647.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ギラティナ](pokemon/0747.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [トルネロス](pokemon/0875.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ボルトロス](pokemon/0876.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ランドロス](pokemon/0879.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [イベルタル](pokemon/1006.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ソルガレオ](pokemon/1189.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ルナアーラ](pokemon/1190.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ネクロズマ](pokemon/1198.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [ムゲンダイナ](pokemon/1363.md) | 85-85 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `97/82` | イワヤマトンネル | `POOL_KANTO_HIGH_SKY` | [フリーザー](pokemon/1402.md) | 85-85 | 8 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ウツロイド](pokemon/1191.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [マッシブーン](pokemon/1192.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [フェローチェ](pokemon/1193.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [デンジュモク](pokemon/1194.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テッカグヤ](pokemon/1195.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [カミツルギ](pokemon/1196.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [アクジキング](pokemon/1197.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ベベノム](pokemon/1255.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [アーゴヨン](pokemon/1256.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ツンデツンデ](pokemon/1257.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ズガドーン](pokemon/1258.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [イダイナキバ](pokemon/1562.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [サケブシッポ](pokemon/1563.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [アラブルタケ](pokemon/1564.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ハバタクカミ](pokemon/1565.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [チヲハウハネ](pokemon/1566.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [スナノケガワ](pokemon/1567.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノワダチ](pokemon/1568.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノツツミ](pokemon/1569.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノカイナ](pokemon/1570.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノコウベ](pokemon/1571.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノドクガ](pokemon/1572.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノイバラ](pokemon/1573.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [チオンジェン](pokemon/1580.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [パオジアン](pokemon/1581.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ディンルー](pokemon/1582.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [イーユイ](pokemon/1583.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [トドロクツキ](pokemon/1584.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノブジン](pokemon/1585.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ウネルミナモ](pokemon/1588.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノイサハ](pokemon/1589.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [ウガツホムラ](pokemon/1613.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [タケルライコ](pokemon/1614.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノイワオ](pokemon/1615.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/3` | マサラタウン | `POOL_KANTO_MASTER` | [テツノカシラ](pokemon/1616.md) | 90-90 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/56` | タマムシシティ | `POOL_KANTO_SPECIAL` | [アルセウス](pokemon/0750.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/56` | タマムシシティ | `POOL_KANTO_SPECIAL` | [コライドン](pokemon/1586.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/56` | タマムシシティ | `POOL_KANTO_SPECIAL` | [ミライドン](pokemon/1587.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/56` | タマムシシティ | `POOL_KANTO_SPECIAL` | [テラパゴス](pokemon/1617.md) | 100-100 | 40 | `RAID_HIGH_UNLOCKED` | `SHARED_ONCE` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ピカチュウ](pokemon/0025.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ゲンガー](pokemon/0065.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [フシギバナ](pokemon/0154.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [リザードン](pokemon/0157.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [キングラー](pokemon/0232.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [バタフリー](pokemon/0414.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ニャース](pokemon/0440.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [カイリキー](pokemon/0456.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [アーマーガア](pokemon/1296.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [セキタンザン](pokemon/1312.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [アップリュー](pokemon/1314.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [タルップル](pokemon/1315.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [サダイジャ](pokemon/1317.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ストリンダー](pokemon/1322.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ブリムオン](pokemon/1331.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
+| `98/110` | 12ばん どうろ | `POOL_KANTO_GMAX` | [ジュラルドン](pokemon/1357.md) | 70-80 | 45 | `RAID_HIGH_UNLOCKED` | `REPEATABLE_NORMAL` |
