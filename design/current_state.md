@@ -1,11 +1,11 @@
 # current_state.md
 
-最終更新: 2026-09-03
+最終更新: 2026-09-04
 
 ## 現在のプレイ基準
 
 - ユーザーが現在遊ぶ基準は`design/active_play_baseline.md`に固定した。対象は`build/stages/61_critical_release_candidate.gba`、33,554,432 bytes、SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`、CRC32 `232D05EA`。V4のTM120＋HM8と教え技64を実行時table／consumerへ接続し、TM51–58と旧HMの互換slot衝突を解消した。わざメモリー／せいたいレーダーはfield item復帰経路へ修正し、さらに戦闘終了後に残る`gBattleTypeFlags`によるわざメモリーの誤拒否を解消した。Bagからの起動、選択、キャンセル、field復帰をmGBA独立2 processでPASSした。iPadへ同一SHAのROMだけを原子的に配置し、read-back byte一致、通常プレイsave 57件不変を確認した。Codex対戦、任意報酬、Windowsカタログ送付、Box 14移動、バグ再現・修正は明示的な切替までこのROMを使う。
-- NPC配置修復済みStage62候補は`build/stages/62_npc_placement_integrity_repair.gba`、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。現行プレイ基準への切替、iPad配置、save生成・転送は行っていない。
+- NPC配置修復済みStage62候補は`build/stages/62_npc_placement_integrity_repair.gba`、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。2026-09-04にiPadへStage61と別名でROMだけを配置し、read-back byte一致とsave 57件不変を確認した。現行プレイ基準への切替、save生成・転送、CLI protocol更新は行っていない。
 
 ## 進行中タスクの再開点
 

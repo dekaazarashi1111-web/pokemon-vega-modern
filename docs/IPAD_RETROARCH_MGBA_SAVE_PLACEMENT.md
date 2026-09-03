@@ -113,6 +113,13 @@
 - 同日、TM120＋HM8／教え技64のruntime接続と、わざメモリー／せいたいレーダーのfield復帰を修正した現行ROM `44e951e2...ae4e`へ再更新した。旧ROMを日時付きで保全し、iPad側33,554,432 bytes／同一SHAとread-back byte一致を確認した。save directory全57件は前後不変、同名save未変更、既存Stage60不変、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、戦闘後に残るbattle type値でわざメモリーが誤って使用不可になる問題を修正した現行ROM `73454180...01f3b`へ再更新した。旧ROMを日時付きで保全し、iPad側33,554,432 bytes／同一SHAとread-back byte一致を確認した。save directory全57件は前後不変、同名save未変更、既存Stage60不変、remote一時ファイル0、RetroArch process 0を確認した。
 
+## Stage62候補ROMの確認済み対応
+
+- ROM: `62_npc_placement_integrity_repair.gba`
+- ROM SHA-256: `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`
+- 2026-09-04にactive container metadataとlive `retroarch.cfg`から配置先を再解決し、RetroArch process 0を確認してStage61とは別名でROMだけを一時名から原子的に新規配置した。同名既存ROMはなく退避0。
+- iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件は配置前後のmanifestが一致し、同名saveの生成・転送・変更は0。既存Stage61 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
+
 ## 失敗判定
 
 - ROM横に同名`.srm`があるだけでは合格にしない。

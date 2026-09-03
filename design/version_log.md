@@ -1421,3 +1421,13 @@
   - `1/73 local 1`を原作`(4,11)`へ戻し、全object操作をexact targetへ索引化してposition anchor漏れを0にした。
   - Stage62 ROMは33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。現行Stage61／iPad／saveは不変で、元taskはIN_PROGRESSを維持する。
 - Verify: Stage62 build／check、既存再配置0・全678 map配置安全監査、BPS 2経路往復、focused unit 26件、mGBA 6 fixture×2 fresh process（3穴・ライバル戦・化石・通常save・fresh Continueを含む）PASS。
+
+## 2026-09-04T01:53:18+09:00
+
+- Version: `stage62-npc-placement-integrity-repair-ipad-rom-only-placement`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260904-STAGE62-IPAD-ROM-ONLY-PLACEMENT` / Stage62候補ROMだけをiPadへ配置
+- Summary:
+  - Stage62候補ROMをStage61とは別名でiPadへ原子的に新規配置した。同名既存ROMはなく退避0。
+  - saveは生成・転送・変更せず、mGBA save directory全57件を不変に保った。
+- Verify: RetroArch停止、live配置先、iPad側size／SHA-256、read-back byte一致、save manifest不変、既存Stage61 ROM不変、remote一時ファイル0をPASS。ROM SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。

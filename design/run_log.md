@@ -3677,3 +3677,25 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-04T01:53:18+09:00
+
+- Task: `USER-20260904-STAGE62-IPAD-ROM-ONLY-PLACEMENT` / Stage62候補ROMだけをiPadへ配置
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - `build/stages/62_npc_placement_integrity_repair.gba`を33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`として固定し、Stage61とは別名でROMだけをiPadへ原子的に新規配置した。
+  - active containerとlive `retroarch.cfg`から配置先を再解決し、配置の全段階でRetroArch process 0を確認した。同名既存ROMはなく退避0。
+  - saveは生成・転送・変更していない。mGBA save directory全57件のhash manifestは配置前後で一致し、同名saveも未作成のまま保持した。
+- Files changed:
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上の`62_npc_placement_integrity_repair.gba`。saveは未変更。
+- Verify:
+  - `ipad-wifi-ssh doctor`、active container／live config／ROM directory／mGBA save directory、RetroArch process 0: PASS。
+  - iPad側ROM size／SHA-256、端末からのread-back `cmp`: PASS。
+  - save manifest 57件前後一致、同名save未作成、既存Stage61 ROM不変、remote一時ファイル0、local source ROM不変: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
