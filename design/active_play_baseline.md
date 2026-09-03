@@ -7,12 +7,12 @@
 
 ## 現在の基準
 
-- 呼称: Stage61 runtime table・field item修正版
+- 呼称: Stage61 runtime table・field item・わざメモリー戦闘後誤判定修正版
 - ローカルROM: `build/stages/61_critical_release_candidate.gba`
 - サイズ: 33,554,432 bytes
-- SHA-256: `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`
-- CRC32: `21A93A0E`
-- ROM内容checkpoint: 本基準更新と同じ作業（TM120＋HM8・教え技64のruntime接続、わざメモリー／せいたいレーダーのfield復帰修正）
+- SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
+- CRC32: `232D05EA`
+- ROM内容checkpoint: 本基準更新と同じ作業（TM120＋HM8・教え技64のruntime接続、わざメモリー／せいたいレーダーのfield復帰修正、戦闘後に残るbattle type値によるわざメモリー誤拒否の修正）
 - iPad配置記録: 2026-09-03（同一SHAのROMだけを配置、save manifest不変）
 - 状態: ユーザー指定の現行プレイ基準。strict全件監査完了版ではない。
 

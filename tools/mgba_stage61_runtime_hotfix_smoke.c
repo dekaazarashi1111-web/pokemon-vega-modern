@@ -51,6 +51,7 @@ enum {
     S61_FIELD_RETURN_CALLBACK = 0x0805609DU,
     S61_FIELD_ITEM_CALLBACK = 0x080A2359U,
     S61_FIELD_ITEM_WAITER = 0x080A2371U,
+    S61_BATTLE_TYPE_FLAGS = 0x02022AACU,
     S61_ITEM_USE_ON_FIELD_CB = 0x02039910U,
     S61_MOVE_MEMORY_ITEM_CB = 0x092D04F1U,
     S61_ECOLOGY_ITEM_CB = 0x092205B5U,
@@ -476,7 +477,11 @@ int main(int argc, char **argv)
             }
         }
     }
+    /* 実プレイで確認した、戦闘終了後にtrainer bitが残る状態を再現する。 */
+    write16(core, S61_BATTLE_TYPE_FLAGS, 4U);
+    write16(core, S61_BATTLE_TYPE_FLAGS + 2U, 0U);
     struct Snapshot field = take_snapshot(core);
+    bool stale_battle_flag = read32(core, S61_BATTLE_TYPE_FLAGS) == 4U;
     bool item_rows = roots && s61_item_rows(core, item_table);
     bool tm_runtime = roots && s61_tm_runtime(core, tm_table, tm_compat);
     restore_snapshot(core, &field);
@@ -522,7 +527,7 @@ int main(int argc, char **argv)
     bool passed = boot && roots && hooks && tables && item_rows && tm_runtime
         && tutor_runtime && move_open && move_cancel && move_result_zero
         && move_party && move_select && ecology_open && ecology_cancel
-        && ecology_select && logs;
+        && ecology_select && stale_battle_flag && logs;
     qol_close(core);
 
 #define JSON_BOOL(value) ((value) ? "true" : "false")
@@ -533,6 +538,7 @@ int main(int argc, char **argv)
            "\"move_memory_cancel_return\":%s,\"move_memory_selection_result\":%s,"
            "\"move_memory_party_return\":%s,\"ecology_menu\":%s,"
            "\"ecology_cancel_return\":%s,\"ecology_night_return\":%s,"
+           "\"move_memory_stale_battle_flag\":%s,"
            "\"warnings_errors_zero\":%s},"
            "\"coverage\":{\"tm\":120,\"hm\":8,\"tutor\":64,"
            "\"runtime_hooks\":16,\"physical_bag_items\":2,"
@@ -543,7 +549,8 @@ int main(int argc, char **argv)
            JSON_BOOL(tm_runtime), JSON_BOOL(tutor_runtime), JSON_BOOL(move_open),
            JSON_BOOL(move_cancel), JSON_BOOL(move_result_zero),
            JSON_BOOL(move_party && move_select), JSON_BOOL(ecology_open),
-           JSON_BOOL(ecology_cancel), JSON_BOOL(ecology_select), JSON_BOOL(logs),
+           JSON_BOOL(ecology_cancel), JSON_BOOL(ecology_select),
+           JSON_BOOL(stale_battle_flag && move_open), JSON_BOOL(logs),
            log_problem_count);
 #undef JSON_BOOL
     return passed ? 0 : 1;

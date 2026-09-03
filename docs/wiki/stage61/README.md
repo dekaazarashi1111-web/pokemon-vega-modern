@@ -3,7 +3,7 @@
 現行Stage61 ROMに固定した、プレイヤー向け・Codex向けの参照資料です。
 
 - ROM: `build/stages/61_critical_release_candidate.gba`
-- SHA-256: `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`
+- SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
 - ポケモン: 1621 ID（内部・フォームを含む）
 - 技: 1063 ID
 - 特性: 312 ID

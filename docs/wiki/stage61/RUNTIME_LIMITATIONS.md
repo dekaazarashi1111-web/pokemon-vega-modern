@@ -4,7 +4,7 @@
 
 ## ROM候補の状態
 
-- SHA-256: `44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e`
+- SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
 - `candidate_status=CANDIDATE`
 - strict全件監査: `DEFERRED_AUDIT`
 - 通常野生、ecology、種族値、技性能、習得表、進化表は現ROMから直接抽出しています。

@@ -28,7 +28,7 @@ class Stage61WikiTest(unittest.TestCase):
     def test_active_rom_and_complete_entity_counts(self):
         self.assertEqual(
             self.index["active_rom"]["sha256"],
-            "44e951e20e7985b6f4480a04ff997cc77e6305dd0945eb90cfed7e3c6d85ae4e",
+            "734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b",
         )
         self.assertEqual(self.index["counts"]["species"], 1621)
         self.assertEqual(self.index["counts"]["moves"], 1063)

@@ -3551,3 +3551,41 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-03T19:14:40+09:00
+
+- Task: `USER-20260903-STAGE61-MOVE-MEMORY-STALE-BATTLE-FLAG-FIX` / 戦闘後のわざメモリー使用不可誤判定修正
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - iPad実機の通常fieldで、わざメモリー使用時に`gBattleTypeFlags=0x4`（直前のtrainer battle bit）が残り、facility／Raidではないにもかかわらず使用不可へ分岐することをlive RAMで特定した。ユーザーの操作経路は正しかった。
+  - field-use item入口自体が戦闘中の使用を遮断するため、わざメモリー固有context gate `0x092CFFA4`を`D102`から`46C0`へ修正し、staleなbattle type値だけを使用不可条件から除外した。facility flagとRaid flagによる拒否は維持した。
+  - 同じ条件をoverlay sourceと再生成contractへ反映した。focused mGBAにはtrainer battle bitを残した実Bag操作を追加し、専用menu表示、選択、キャンセル、field復帰を検証した。
+  - ROMは33,554,432 bytes、SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`、CRC32 `232D05EA`。Wikiと現行プレイ基準を同じidentityへ再生成し、versioned CLI protocolも再固定した。
+  - 修正版ROMだけをiPadの同名・同位置へ原子的に配置し、旧ROMを日時付きで保全した。通常プレイsaveは生成・転送・変更せず、save directory全57件を前後不変に保った。
+- Files changed:
+  - `config/stage61_runtime_hotfix.json`
+  - `overlays/move_memory/move_memory.c`
+  - `scripts/build_stage61_runtime_hotfix.py`
+  - `tools/mgba_move_memory_smoke.c`
+  - `tools/mgba_stage61_runtime_hotfix_smoke.c`
+  - `scripts/build_stage61_wiki.py`
+  - `tests/test_stage61_wiki.py`
+  - `docs/wiki/stage61/**`（1,640 filesを再生成）
+  - `reports/generated/stage61_wiki.json`
+  - `design/active_play_baseline.md`
+  - `design/current_state.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外成果: 修正版ROM／metadata／allocation／BPS／runtime audit／mGBA結果、iPad上の同名ROM、導入済みCLI protocol。saveは未変更。
+- Verify:
+  - `python3 scripts/build_stage61_runtime_hotfix.py check`: PASS（TM120＋HM8／Tutor64、stale battle type guard patch、ROM SHA-256／CRC32、declared span外0、BPS往復）。
+  - `python3 scripts/run_stage61_runtime_hotfix_smoke.py --process-runs 2`: 16項目PASS、独立2 process一致、warnings/errors 0。`gBattleTypeFlags=0x4`を再現した実Bag経路でもわざメモリーmenuが起動し、両field itemの選択／キャンセル／field復帰を確認した。
+  - `python3 scripts/build_stage61_wiki.py build`／`check`、`python3 -m unittest tests.test_stage61_wiki -v`: PASS（1,640 files、6 tests、現ROM identity、TM/HM 128枠・教え技64枠）。
+  - CLI再導入: protocol Stage 61、33,554,432 bytes、SHA-256 `73454180...01f3b`、CRC32 `232D05EA`一致をPASS。
+  - iPad ROM-only配置: RetroArch process 0、旧ROM日時付き保全、remote size／SHA、read-back byte一致、save 57件manifest不変、既存Stage60不変、remote一時ファイル0をPASS。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+  - Stage61 strict全経路の実機走破: SKIP（依頼どおり再開せず、field-item遷移へ限定）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

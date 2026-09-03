@@ -447,7 +447,7 @@ int main(int argc, char **argv)
         if (observed != egg_cases[index][4]) mm_die("egg policy matrix differs");
     }
     const uint32_t context_cases[][4] = {
-        {0, 0, 0, 1}, {1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0},
+        {0, 0, 0, 1}, {1, 0, 0, 1}, {0, 1, 0, 0}, {0, 0, 1, 0},
     };
     for (unsigned index = 0; index < ARRAY_LEN(context_cases); ++index) {
         uint32_t observed = call_bounded(

@@ -1376,3 +1376,14 @@
   - わざメモリー／せいたいレーダーを正しいfield-item復帰経路へ修正し、生成元にも再発防止を反映した。
   - Wikiを128／64枠の現ROM直接抽出へ再生成し、ROMだけをiPadへ原子的に配置してsave 57件を不変に保った。
 - Verify: runtime build/check、libmGBA 15項目×独立2 process、Wiki build/check＋unit 6件、iPad size／SHA／read-back／save manifest、CLI protocol、task graph、private guard、diff check PASS。
+
+## 2026-09-03T19:14:40+09:00
+
+- Version: `stage61-move-memory-stale-battle-flag-fix`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-MOVE-MEMORY-STALE-BATTLE-FLAG-FIX` / 戦闘後のわざメモリー使用不可誤判定修正
+- Summary:
+  - 戦闘後に残る`gBattleTypeFlags`を通常fieldの使用不可条件から除外し、facility／Raid拒否は維持した。
+  - stale trainer battle bitを再現する実Bagテストを追加し、menu表示、選択、キャンセル、field復帰を確認した。
+  - Wiki／CLIを新ROM identityへ更新し、ROMだけをiPadへ原子的に配置してsave 57件を不変に保った。
+- Verify: runtime build/check、libmGBA 16項目×独立2 process、Wiki build/check＋unit 6件、CLI protocol identity、iPad size／SHA／read-back／save manifest、task graph、private guard、diff check PASS。ROM SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`、CRC32 `232D05EA`。

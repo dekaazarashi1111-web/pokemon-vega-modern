@@ -467,6 +467,15 @@ def _build_artifacts(config_path: Path) -> tuple[dict[str, bytes], dict[str, Any
             raise BuildError(f"{label} item type expected 4 got {actual}")
         patch(address, b"\x04", b"\x02", f"{label}_field_item_type", "ITEM_ROW")
 
+    context_gate = _number(
+        contract["move_memory_context_battle_gate_site"],
+        "move memory context battle gate")
+    patch(
+        context_gate,
+        bytes.fromhex(contract["move_memory_context_battle_gate_expected_hex"]),
+        bytes.fromhex(contract["move_memory_context_battle_gate_replacement_hex"]),
+        "move_memory_ignore_stale_battle_type", "THUMB_INSTRUCTION")
+
     hook_rows: list[dict[str, Any]] = []
     for hook in config["hooks"]:
         address = _number(hook["address"], f"hook {hook['name']} address")
@@ -532,12 +541,14 @@ def _build_artifacts(config_path: Path) -> tuple[dict[str, bytes], dict[str, Any
             "tm": "gTMHMMovesがTM50+HM8の58要素で、TM51以降とHM indexが衝突",
             "tutor": "gTutorMovesは15要素の直後が0で、16以降が別dataへ越境",
             "field_items": "item type=4がCB2_ReturnToFieldWithOpenMenuを選び、gFieldCallback2が専用callbackを破棄",
+            "move_memory_context": "gBattleTypeFlagsが戦闘終了後も直前の種別を保持し、通常fieldを戦闘中と誤判定",
         },
         "repair": {
             "tm_slots": 120, "hm_slots": 8, "tutor_slots": 64,
             "canonical_tm_item_indices_patched": 50,
             "canonical_hm_item_indices_patched": 8,
             "field_item_type_patches": 2,
+            "stale_battle_type_guard_patches": 1,
             "runtime_hook_count": len(hook_rows), "hooks": hook_rows,
             "tutor_regular_cap": 64, "tutor_stride": 16,
             "tm51_58_v4_change_counts": collision_change_counts,
@@ -573,6 +584,7 @@ def _build_artifacts(config_path: Path) -> tuple[dict[str, bytes], dict[str, Any
 - 教え技: `gTutorMoves`をV4の64件へ再配置し、16-byte strideの通常枠を0..63へ制限。
 - consumer: CFRU-JP固定buildにあるTM/HM/tutor expansion入口を{len(hook_rows)}か所接続。
 - field item: わざメモリー／せいたいレーダーのtypeを`BAG_MENU(4)`から`FIELD(2)`へ修正。
+- context: 戦闘終了後に残る`gBattleTypeFlags`をfield使用不可条件から除外し、facility／Raid中だけを拒否。
 - ROM SHA-256: `{_sha(output_raw)}` / CRC32: `{binascii.crc32(output_raw) & 0xFFFFFFFF:08X}`
 - declared span外変更: 0 / BPS往復: PASS
 """.encode("utf-8")

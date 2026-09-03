@@ -214,7 +214,10 @@ PUBLIC_TEXT(VegaMoveMemory_ContextAllowedFromState)
 u8 VegaMoveMemory_ContextAllowedFromState(u32 battle_type_flags, u8 facility,
                                            u8 raid)
 {
-    return battle_type_flags == 0 && facility == 0 && raid == 0;
+    /* field-use item入口そのものが戦闘中の呼出しを遮断する。gBattleTypeFlagsは
+     * 戦闘終了後も直前の種別を保持するため、フィールド判定には使わない。 */
+    (void)battle_type_flags;
+    return facility == 0 && raid == 0;
 }
 
 PUBLIC_TEXT(VegaMoveMemory_CheckContext)
