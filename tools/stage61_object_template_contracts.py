@@ -427,6 +427,7 @@ def _apply_exact_patch_rows(
     provenance: dict[str, list[dict[str, Any]]], *,
     kind: str, default_offset: int | None = None,
     exact_size: int | None = None,
+    mutable_owner_ids: set[str] | None = None,
 ) -> int:
     seen: set[tuple[str, int, int]] = set()
     count = 0
@@ -455,6 +456,13 @@ def _apply_exact_patch_rows(
         # in that case replacement_hex (the already-current bytes), not the
         # dormant Stage60 patch preimage, must match this derivation stage.
         patch_applied = _value(row, "patch_applied")
+        if patch_applied is not False \
+                and mutable_owner_ids is not None \
+                and owner_id not in mutable_owner_ids:
+            _fail(
+                f"{label}: 既存object ownerへの自動配置変更は禁止です: "
+                f"{owner_id}"
+            )
         required_current = replacement if patch_applied is False else expected
         if actual != required_current:
             _fail(
@@ -475,6 +483,7 @@ def _apply_exact_patch_rows(
 def _apply_archive_rows(
     rows: Iterable[Any], records: dict[str, bytearray],
     provenance: dict[str, list[dict[str, Any]]],
+    mutable_owner_ids: set[str],
 ) -> int:
     count = 0
     seen: set[str] = set()
@@ -513,6 +522,11 @@ def _apply_archive_rows(
                     for value in after_point
                 ),
             )
+            if expected != replacement and owner_id not in mutable_owner_ids:
+                _fail(
+                    f"{label}: 既存object ownerへのArchive配置変更は禁止です: "
+                    f"{owner_id}"
+                )
             current = records[owner_id]
             if bytes(current[4:8]) != expected:
                 _fail(f"{label}: Stage60 Archive座標preimage mismatch")
@@ -582,6 +596,7 @@ def build_stage61_object_template_contracts(
     archive_placement_rows: Iterable[Any] = (),
     pre_placement_patches: Iterable[Any] = (),
     placement_repairs: Iterable[Any] = (),
+    placement_mutable_owner_ids: Iterable[str] = (),
     snorlax_sites: Iterable[Any] = (),
     supplemental_owners: Iterable[Any] | Mapping[Any, Any] = (),
     expected_owner_count: int | None = None,
@@ -816,8 +831,18 @@ def build_stage61_object_template_contracts(
             )
             semantic_count += 1
 
+    mutable_placement_owners = {
+        str(owner_id) for owner_id in placement_mutable_owner_ids
+    }
+    unknown_mutable_owners = sorted(mutable_placement_owners - set(records))
+    if unknown_mutable_owners:
+        _fail(
+            "placement mutable ownerがobject inventory外です: "
+            f"{unknown_mutable_owners[:8]}"
+        )
     archive_count = _apply_archive_rows(
         _rows(archive_placement_rows), records, provenance,
+        mutable_placement_owners,
     )
     preplacement_count = _apply_exact_patch_rows(
         _rows(pre_placement_patches), records, provenance,
@@ -826,6 +851,7 @@ def build_stage61_object_template_contracts(
     placement_count = _apply_exact_patch_rows(
         _rows(placement_repairs, nested_keys=("repairs",)), records, provenance,
         kind="FINAL_INTERACTION_PLACEMENT", default_offset=4, exact_size=7,
+        mutable_owner_ids=mutable_placement_owners,
     )
 
     snorlax_count = 0
@@ -927,6 +953,11 @@ def build_stage61_object_template_contracts(
         ),
         "owner_count": len(result_rows),
         "transform_counts": transform_counts,
+        "placement_mutability_policy": {
+            "kind": "EXPLICIT_PROJECT_ADDITION_ALLOWLIST_ONLY",
+            "mutable_owner_count": len(mutable_placement_owners),
+            "mutable_owner_ids": sorted(mutable_placement_owners),
+        },
         "assertions": {
             "owner_identity_unique": len(result_rows) == len(owners),
             "every_owner_has_exact_24_bytes": all(
@@ -950,6 +981,7 @@ def build_stage61_object_template_contracts(
                 for row in result_rows
             ),
             "final_rom_not_an_expectation_input": True,
+            "placement_changes_limited_to_explicit_project_additions": True,
         },
         "owners": result_rows,
     }

@@ -7,9 +7,14 @@
  * point use only GBA keys.  Direct calls only prepare saves or read results.
  */
 #define CODEX_IPAD_BOOTSTRAP_EMBEDDED
+#define BOOTSTRAP_IGNORE_DETERMINISTIC_RTC_OFFSET
 #include "mgba_codex_battle_ipad_bootstrap.c"
 
 #include <sys/stat.h>
+
+#ifndef WORLD_BATTLE_MENU_INPUT_WAIT
+#define WORLD_BATTLE_MENU_INPUT_WAIT BATTLE_CORE_MENU_INPUT_WAIT
+#endif
 
 enum {
     WORLD_FLAG_GET = 0x0806DEC5U,
@@ -1004,7 +1009,7 @@ static void world_finish_battle(struct mCore *core,
         }
         if (declined_optional_switch)
             continue;
-        world_pulse(core, WORLD_KEY_A, 2U, BATTLE_CORE_MENU_INPUT_WAIT);
+        world_pulse(core, WORLD_KEY_A, 2U, WORLD_BATTLE_MENU_INPUT_WAIT);
         ++result->key_pulses;
         if (world_overworld(core) && !world_script_enabled(core)) {
             run_key_frames(core, 0U, 120U);
@@ -1703,7 +1708,10 @@ static void world_print_result(const struct Fixture *fixture,
            result->trainer_external_flag);
 }
 
-int main(int argc, char **argv)
+#ifndef WORLD_RUNTIME_ENTRY_POINT
+#define WORLD_RUNTIME_ENTRY_POINT main
+#endif
+int WORLD_RUNTIME_ENTRY_POINT(int argc, char **argv)
 {
     if (argc != 3 && argc != 4) {
         fprintf(stderr, "usage: %s ROM WORK_DIRECTORY [FIXTURE]\n", argv[0]);

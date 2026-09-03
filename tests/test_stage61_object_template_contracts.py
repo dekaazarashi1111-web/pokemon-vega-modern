@@ -181,6 +181,7 @@ class _Fixture:
                 "expected_hex": placement_expected.hex(),
                 "replacement_hex": placement_replacement.hex(),
             }],
+            "placement_mutable_owner_ids": [self.A],
             "snorlax_sites": [(0, 2, 15)],
             "supplemental_owners": [{
                 "npc_id": self.S,
@@ -363,6 +364,13 @@ class Stage61ObjectTemplateContractTests(unittest.TestCase):
             Stage61ObjectTemplateContractError, "preimage mismatch",
         ):
             self.fixture.build(placement_repairs=repairs)
+
+    def test_existing_owner_placement_change_is_rejected(self) -> None:
+        with self.assertRaisesRegex(
+            Stage61ObjectTemplateContractError,
+            "既存object ownerへの.*配置変更は禁止",
+        ):
+            self.fixture.build(placement_mutable_owner_ids=[])
 
     def test_unapplied_placement_row_binds_already_current_replacement(self) -> None:
         kwargs = self.fixture.kwargs()

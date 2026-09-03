@@ -3463,6 +3463,46 @@
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送・read-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
 
+## 2026-09-04T00:00:32+09:00
+
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / NPC自動配置の既存object改変を禁止しStage62へ復元
+- Status: DONE（NPC配置修復スコープ。元taskはIN_PROGRESSを維持）
+- Summary:
+  - Stage61 SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`をimmutable入力とし、明示追加282体だけを自動配置可能にした。既存2,830体はVega／clean FireRedの固定原典を正として変更禁止にした。
+  - Stage61の配置patch 356体を再分類し、既存316体／77 mapの`x/y/elevation/movement_type/movement_range`とruntime座標operand 2件を復元した。script pointer、trainer type、trainer sightの変更は0件。既存復元後の衝突・到達不能は追加NPCだけをjoint配置し直し、11体／7 mapを移動した。
+  - 全678 map、3,112 object、5,333 root／3,647 unique script rootを走査した。`*_AT`の埋込mapを含むobject操作をexact ownerへ解決し、未認識external/static参照0、最終collision／追加NPC重複／event tile占有／到達port欠落／通路component欠落／入口・event tileへのtrainer sight捕捉0を確認した。
+  - `1/73`をVega「ちえのどうくつ」B1Fへ固定し、local 1を原作`(4,11)`・elevation 3・movement 8・range `1/1`へ復元した。coord 9配下のexternal movement 5件＋remove 1件でposition-anchoredと分類し、同mapの既存変更6体を全復元した。
+  - Stage62は33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。変更879 byte、許可外0、Stage61差分／clean直接BPSとも完全往復した。現行Stage61、iPad、saveは変更していない。
+  - mGBA通常入力で北口・南口・B2F往復、B1F Lv.6〜9、B2F Lv.44〜48、3穴・段差切替・coord 9・ライバル移動・trainer 360戦・actor 1〜4消去・南口脱出・ねっこのカセキ・通常2世代save・fresh Continueを完走した。6 fixture×2 fresh processは完全一致、warnings 0。
+- Files changed:
+  - `config/stage62_npc_placement_integrity_repair.json`
+  - `scripts/build_stage61_display_npc_event_audit.py`
+  - `scripts/build_stage62_npc_placement_integrity_repair.py`
+  - `tools/npc_placement_integrity.py`
+  - `tools/stage61_object_template_contracts.py`
+  - `tools/mgba_codex_battle_ipad_bootstrap.c`
+  - `tools/mgba_world_runtime_input_e2e.c`
+  - `tools/mgba_stage62_wisdom_cave_story_e2e.c`
+  - `tests/test_npc_placement_integrity.py`
+  - `tests/test_stage61_object_template_contracts.py`
+  - `tasks/USER_20260830_STAGE60_DISPLAY_NPC_PLACEMENT_AUDIT.md`
+  - `design/current_state.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外成果: Stage62 ROM／metadata／差分BPS／clean直接BPS／配置audit／NPC catalog／洞窟静的・mGBAレポート。
+- Verify:
+  - `python3 scripts/build_stage62_npc_placement_integrity_repair.py build`／`check`: PASS（3,112 object、既存復元316、追加移動11、既存再配置0、許可外byte 0、BPS往復）。
+  - `python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2`: PASS（6 fixture、各2 fresh process、全結果一致、warnings 0）。
+  - `python3 -m unittest tests.test_npc_placement_integrity tests.test_stage61_object_template_contracts`: 20 tests PASS。
+  - `python3 -m unittest tests.test_stage61_critical_release`: 6 tests PASS。
+  - `python3 -m unittest tests.test_stage61_catalog_state_matrix`: 配置とcatalogを含む69 tests PASS、今回の変更行外にある既存runtime toolchain manifest 1件だけERROR（rematch macro 3種不足）。本タスクの配置build／check／mGBA gateには非該当で、未関連コードへ推測修正を加えていない。
+  - `python3 -m py_compile ...`、汎用／洞窟story mGBA runnerの`cc -Wall -Wextra -Werror -pedantic`: PASS。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network:
+  - 洞窟の原作攻略順を補助確認するため、検索語`ポケットモンスター ベガ ちえのどうくつ 攻略 ワープ 穴`、`Pokemon Vega Wiseman's Cave walkthrough teleport holes rival`を使用した。
+  - 参照URL: <https://torik0419.com/2023/01/05/%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3-%E3%83%99%E3%82%AC%E6%94%BB%E7%95%A5-part2%EF%BC%88%EF%BD%9E%E3%82%B8%E3%83%A0%E3%83%90%E3%83%83%E3%82%B82%E3%81%A4%E7%9B%AE%EF%BC%89/>、<https://pokemon-vega.fandom.com/wiki/Wiseman%27s_Cave>、<https://takatumuri.com/conquer-pokemon-vega-images/>。3つの足場／穴、段差後の行先切替、イベント後の出口と化石導線を補助確認した。実装判断と合否は固定ROMのevent bytecodeとmGBA実入力を正とした。
+
 ## 2026-09-03T20:12:40+09:00
 
 - Task: `USER-20260903-STAGE61-WIKI-PROGRESSION-BATTLES` / 進行順・主要戦・固定捕獲のWiki化

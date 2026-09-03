@@ -1409,3 +1409,15 @@
   - 主要戦77件の手持ち・持ち物・技・条件と、固定捕獲117件の場所・解禁・レベル・遭遇時技・証拠状態を検索可能にした。
   - Codexがバッジ数から現在区間と到達済み候補を判断する読解規則を追加し、通常閲覧の無検査方針を維持した。
 - Verify: `python3 scripts/build_stage61_wiki.py check`、Wiki局所整合確認、`git diff --check` PASS。
+
+## 2026-09-04T00:00:32+09:00
+
+- Version: `stage62-npc-placement-integrity-repair-candidate`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT` / NPC自動配置の既存object改変を禁止しStage62へ復元
+- Summary:
+  - 明示追加282体だけを配置可変とし、既存2,830体を固定Vega／clean FireRed原典へimmutable化した。
+  - Stage61で誤変更された既存316体／77 mapとruntime座標operand 2件を復元し、追加11体だけを安全再配置した。script pointer／trainer type／sightは不変。
+  - `1/73 local 1`を原作`(4,11)`へ戻し、全object操作をexact targetへ索引化してposition anchor漏れを0にした。
+  - Stage62 ROMは33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。現行Stage61／iPad／saveは不変で、元taskはIN_PROGRESSを維持する。
+- Verify: Stage62 build／check、既存再配置0・全678 map配置安全監査、BPS 2経路往復、focused unit 26件、mGBA 6 fixture×2 fresh process（3穴・ライバル戦・化石・通常save・fresh Continueを含む）PASS。

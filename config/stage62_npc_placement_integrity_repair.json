@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT",
+  "stage": 62,
+  "inputs": {
+    "stage61_rom": {
+      "path": "build/stages/61_critical_release_candidate.gba",
+      "size": 33554432,
+      "sha256": "734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b"
+    },
+    "stage61_metadata": {
+      "path": "build/stages/61_critical_release_candidate.json",
+      "sha256": "eb278de4257adc0fa8a937ff82296454ced8d08f9b0e1b4408b60dcb6447e8da"
+    },
+    "stage60_rom": {
+      "path": "build/stages/60_wild_species_root_repair.gba",
+      "size": 33554432,
+      "sha256": "3f9983eb099c2ca7205c14047460c8b2ed73a6180bd2a131a09c74af9d359ff1"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "vega_reference_rom": {
+      "path": "inputs/reference/vega_reference_provided.gba",
+      "size": 16777216,
+      "sha256": "f600fb3faa565bd335ea75114f9233f9a4fe97c12cfed145e0a7b48784d0c9d5"
+    },
+    "placement_audit": {
+      "path": "reports/generated/stage61_critical_release_placement_audit.json",
+      "sha256": "313a1b1912255ce691f02ec286c30b15a00fda31c36790aa534c9de033f1e84c"
+    },
+    "npc_catalog": {
+      "path": "reports/generated/stage61_critical_release_npc_catalog.json",
+      "sha256": "25763cbcef3edbcb851c50f619c57618776963b8c6c86029a05140efa2a982e0"
+    },
+    "map_catalog": {
+      "path": "reports/generated/stage61_critical_release_map_display_catalog.json",
+      "sha256": "a1f9802e954f704757fef84dcd0dfdf997f25142b14848b467d622ce611c6869"
+    },
+    "trainer_event_plan": {
+      "path": "generated/runtime/trainer_changekit_final_event_plan.json",
+      "sha256": "88787033ab905832f6d14ac8d4879801ee8f038e2dd3d77c679425c4d89e0aa8"
+    },
+    "post_ledger_owners": {
+      "path": "config/stage61_post_ledger_event_owners.json",
+      "sha256": "d135a5d9f1ccab4f331e750caf0991ddd5f9e5df797803c9dda17dfa88f5f083"
+    },
+    "event_design_bindings": {
+      "path": "config/event_design_bindings.csv",
+      "sha256": "d0761e7809d111475054b47a448163f70f0fe1e51182200606a3c4d4dafdd213"
+    },
+    "vega_map_inventory": {
+      "path": "reports/generated/vega_map_inventory.csv",
+      "sha256": "a9101030c79d3d18a4a24fe9de04eb1df889e78ba4499252c67daf5f5b590e95"
+    }
+  },
+  "outputs": {
+    "rom": "build/stages/62_npc_placement_integrity_repair.gba",
+    "metadata": "build/stages/62_npc_placement_integrity_repair.json",
+    "incremental_bps": "build/patches/stage61-runtime-hotfix-to-stage62-npc-placement-integrity-repair.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage62-npc-placement-integrity-repair.bps",
+    "audit": "reports/generated/stage62_npc_placement_integrity_audit.json",
+    "npc_catalog": "reports/generated/stage62_npc_catalog.json",
+    "wisdom_cave": "reports/generated/stage62_wisdom_cave_regression.json",
+    "mgba": "reports/generated/stage62_wisdom_cave_mgba.json"
+  }
+}

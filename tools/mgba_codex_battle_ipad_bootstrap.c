@@ -61,6 +61,17 @@ static void bootstrap_log(struct mLogger *logger, int category,
     (void)logger;
     if (!(level & (mLOG_FATAL | mLOG_ERROR | mLOG_WARN)))
         return;
+#if defined(BOOTSTRAP_IGNORE_DETERMINISTIC_RTC_OFFSET)
+    /* Pokemon writes its deterministic RTC epoch into the temporary flash
+     * save during a natural-new-game fixture.  libmGBA reports the resulting
+     * offset as a warning even though it is expected test setup, not an
+     * emulator/game fault.  Keep the exemption exact and opt-in so every
+     * other warning remains fatal. */
+    if (!(level & mLOG_FATAL)
+            && strcmp(mLogCategoryName(category), "GBA Savedata") == 0
+            && strncmp(format, "Savegame time offset set to ", 28U) == 0)
+        return;
+#endif
     ++log_problem_count;
     if (log_problem_count <= 8U) {
         fprintf(stderr, "mGBA[%s][0x%02x][%s]: ",

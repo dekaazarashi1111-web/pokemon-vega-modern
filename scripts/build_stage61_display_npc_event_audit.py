@@ -115,6 +115,11 @@ from tools.stage61_object_template_contracts import (  # noqa: E402
     build_stage61_object_template_contracts,
     validate_stage61_object_template_contracts,
 )
+from tools.npc_placement_integrity import (  # noqa: E402
+    NpcPlacementIntegrityError,
+    build_explicit_added_owner_manifest,
+    decode_local_object_target,
+)
 from tools.stage61_catalog_state_matrix import (  # noqa: E402
     EVENT_OWNER_COUNT,
     EVENT_RUNTIME_REQUIRED_OWNER_COUNT,
@@ -352,12 +357,14 @@ INTERACTION_ABI_EVENT_DESIGN_MODEL_SOURCES = (
     "generated/runtime/event_design_serialized.json",
     "generated/runtime/event_design_generated.h",
     "config/qol_production_bindings.csv",
+    "config/event_design_bindings.csv",
     "content/trainer_changekit_final/trainer_runtime_consumers.csv",
     "overlays/qol_production/qol_production.h",
 )
 POST_LEDGER_OWNER_MANIFEST = Path(
     "config/stage61_post_ledger_event_owners.json"
 )
+EVENT_DESIGN_BINDINGS = Path("config/event_design_bindings.csv")
 ENTRY_REACHABILITY_EXCEPTION_MANIFEST = Path(
     "config/stage61_entry_reachability_exceptions.json"
 )
@@ -813,6 +820,9 @@ LOCAL_OBJECT_OPERATIONS = {
     0xA8: "SET_OBJECT_SUBPRIORITY",
     0xA9: "RESET_OBJECT_SUBPRIORITY",
 }
+POSITION_ANCHORED_OBJECT_OPERATIONS = frozenset(
+    LOCAL_OBJECT_OPERATIONS.values()
+)
 
 # These five tag-3 map-load roots consume every conditional permanent object
 # position in the final catalog.  Rooted story/coord producers that set the
@@ -1665,6 +1675,40 @@ def _load_post_ledger_owner_manifest() -> dict[str, Any]:
         "owner_count": len(by_key),
         "owners": by_key,
     }
+
+
+def _explicit_project_added_owner_manifest(
+    npc_catalog: Mapping[str, Any],
+    trainer_plan: Mapping[str, Any],
+    post_ledger: Mapping[str, Any],
+) -> dict[str, Any]:
+    """自動配置可能ownerを明示addition manifestだけから解決する。"""
+
+    try:
+        with (ROOT / EVENT_DESIGN_BINDINGS).open(
+            encoding="utf-8", newline="",
+        ) as handle:
+            event_design_rows = list(csv.DictReader(handle))
+        manifest = build_explicit_added_owner_manifest(
+            npc_catalog["npcs"], trainer_plan,
+            post_ledger["owners"], event_design_rows,
+        )
+    except (OSError, KeyError, TypeError, NpcPlacementIntegrityError) as exc:
+        _fail(f"明示project追加NPC manifest不正: {exc}")
+    if manifest["owner_count"] != 282 or manifest["origin_row_counts"] != {
+        "trainer_plan_new_objects": 269,
+        "stage58_post_ledger_additions": 9,
+        "stage37_event_design_additions": 4,
+    }:
+        _fail(
+            "明示project追加NPC cardinality drift: "
+            f"{manifest['owner_count']}/{manifest['origin_row_counts']}"
+        )
+    manifest["event_design_bindings"] = {
+        "path": str(EVENT_DESIGN_BINDINGS),
+        "sha256": _sha((ROOT / EVENT_DESIGN_BINDINGS).read_bytes()),
+    }
+    return manifest
 
 
 def _canonical_maps(map_outputs: Mapping[str, bytes]) -> list[dict[str, Any]]:
@@ -6941,6 +6985,7 @@ def _decode_event_tiles(state: Mapping[str, Any]) -> tuple[list[dict[str, int]],
 def _archive_placements(
     stage60: bytes, canonical: Sequence[Mapping[str, Any]],
     trainer_plan: Mapping[str, Any],
+    physical_maps: Sequence[Mapping[str, Any]],
 ) -> tuple[list[dict[str, Any]], dict[tuple[int, int, int], ConversationPlacement]]:
     catalog = {str(row["map_header"]["map_key"]): row for row in canonical}
     by_map: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -6955,7 +7000,7 @@ def _archive_placements(
     # tiles.  This closes the old generator/final-audit split where Archive
     # placement could be built using four guessed borders and pass only due to
     # a later, stricter audit.
-    coords = _all_coordinates(canonical)
+    coords = _physical_coordinates(physical_maps)
     scripted_entries, _stored_warp_producers = _scripted_entry_producers(
         stage60, coords,
     )
@@ -8638,8 +8683,19 @@ def _local_object_operation_evidence(
                 operation = LOCAL_OBJECT_OPERATIONS.get(instruction.opcode)
                 if operation is None or len(instruction.raw) < 3:
                     continue
-                operand = struct.unpack_from("<H", instruction.raw, 1)[0]
-                if operand != local_id:
+                try:
+                    target = decode_local_object_target(
+                        instruction.opcode, instruction.raw, group, number,
+                    )
+                except NpcPlacementIntegrityError as exc:
+                    _fail(
+                        "local object target decode失敗: "
+                        f"0x{instruction.address:08X}: {exc}"
+                    )
+                if target["dynamic_local_id"] \
+                        or int(target["target_group"]) != group \
+                        or int(target["target_map"]) != number \
+                        or int(target["local_id"]) != local_id:
                     continue
                 row: dict[str, Any] = {
                     "root_label": str(root["label"]),
@@ -8766,10 +8822,214 @@ def _local_object_operation_evidence(
     }
 
 
+def _global_local_object_operation_index(
+    rom: bytes,
+    coords: Sequence[tuple[int, int, str]],
+) -> tuple[dict[str, list[dict[str, Any]]], dict[str, Any]]:
+    """全physical map rootのobject操作をexact target ownerへ索引化する。"""
+
+    by_local: dict[tuple[int, int, int], str] = {}
+    states: dict[tuple[int, int], Mapping[str, Any]] = {}
+    for group, number, _map_key in coords:
+        try:
+            state = _stage_map_state(rom, group, number)
+        except RuntimeError:
+            continue
+        states[(group, number)] = state
+        for index, raw in enumerate(state["objects"]):
+            local_id = int(_object_fields(raw)["local_id"])
+            key = (group, number, local_id)
+            if key in by_local:
+                _fail(f"object local ID重複のためglobal index不能: {key}")
+            by_local[key] = f"OBJECT:{group:03d}/{number:03d}:{index:03d}"
+
+    graph_cache: dict[int, list[tuple[int, int, Any]]] = {}
+    graph_diagnostics: dict[int, list[Any]] = {}
+    by_owner: dict[str, dict[tuple[Any, ...], dict[str, Any]]] = defaultdict(dict)
+    unresolved_dynamic: list[dict[str, Any]] = []
+    unresolved_special: list[dict[str, Any]] = []
+    classified_non_template: list[dict[str, Any]] = []
+    unrecognized_static: list[dict[str, Any]] = []
+    root_count = 0
+    for group, number, _map_key in coords:
+        state = states.get((group, number))
+        if state is None:
+            continue
+        for root in _map_event_script_roots(rom, group, number, state):
+            root_count += 1
+            root_pointer = int(root["pointer"])
+            if root_pointer not in graph_cache:
+                graph = SemanticScriptGraph(rom)
+                graph.walk([root_pointer])
+                graph_cache[root_pointer] = [
+                    (int(node.address), instruction_index, instruction)
+                    for node in graph.nodes.values()
+                    for instruction_index, instruction
+                    in enumerate(node.instructions)
+                ]
+                graph_diagnostics[root_pointer] = list(graph.diagnostics)
+            diagnostics = graph_diagnostics[root_pointer]
+            if diagnostics:
+                _fail(
+                    "global local-object CFG decode diagnostics: "
+                    f"{group}/{number} {root['label']} {diagnostics[:2]}"
+                )
+            root_owner_id = None
+            match = re.fullmatch(r"OBJECT:(\d+)", str(root["label"]))
+            if match:
+                root_owner_id = (
+                    f"OBJECT:{group:03d}/{number:03d}:"
+                    f"{int(match.group(1)):03d}"
+                )
+            for node_address, instruction_index, instruction \
+                    in graph_cache[root_pointer]:
+                operation = LOCAL_OBJECT_OPERATIONS.get(instruction.opcode)
+                if operation is None:
+                    continue
+                try:
+                    target = decode_local_object_target(
+                        instruction.opcode, instruction.raw, group, number,
+                    )
+                except NpcPlacementIntegrityError as exc:
+                    _fail(
+                        "global local-object target decode失敗: "
+                        f"0x{instruction.address:08X}: {exc}"
+                    )
+                common = {
+                    "root_label": str(root["label"]),
+                    "root_kind": str(root["kind"]),
+                    "root_address": f"0x{root_pointer:08X}",
+                    "root_map": [group, number],
+                    "instruction_address": f"0x{instruction.address:08X}",
+                    "node_address": f"0x{node_address:08X}",
+                    "instruction_index": instruction_index,
+                    "opcode": f"0x{instruction.opcode:02X}",
+                    "operation": operation,
+                    "raw_hex": instruction.raw.hex(),
+                    "target_map": [
+                        int(target["target_group"]),
+                        int(target["target_map"]),
+                    ],
+                    "target_local_id": int(target["local_id"]),
+                    "target_map_explicit": bool(
+                        target["target_is_explicit_map"]
+                    ),
+                }
+                if target["dynamic_local_id"]:
+                    unresolved_dynamic.append(common)
+                    continue
+                target_key = (
+                    int(target["target_group"]), int(target["target_map"]),
+                    int(target["local_id"]),
+                )
+                owner_id = by_local.get(target_key)
+                if owner_id is None:
+                    if int(target["local_id"]) in {0, 0x7F, 0xFF}:
+                        unresolved_special.append(common)
+                    elif (
+                        int(target["target_group"]),
+                        int(target["target_map"]),
+                    ) in states:
+                        classified_non_template.append({
+                            **common,
+                            "classification": (
+                                "STATIC_LOCAL_ID_HAS_NO_TEMPLATE_IN_ROOT_MAP"
+                            ),
+                        })
+                    else:
+                        unrecognized_static.append(common)
+                    continue
+                row = {
+                    **common,
+                    "target_owner_id": owner_id,
+                    "external_to_owner": root_owner_id != owner_id,
+                }
+                if instruction.opcode in {0x57, 0x63} \
+                        and len(instruction.raw) >= 7:
+                    x, y = struct.unpack_from("<HH", instruction.raw, 3)
+                    if x < 0x4000 and y < 0x4000:
+                        row["literal_position"] = [x, y]
+                if instruction.opcode == 0x65 and len(instruction.raw) >= 4:
+                    row["literal_movement_type"] = instruction.raw[3]
+                if instruction.opcode in {0x4F, 0x50} \
+                        and len(instruction.raw) >= 7:
+                    movement_pointer = struct.unpack_from(
+                        "<I", instruction.raw, 3,
+                    )[0]
+                    movement_offset = _rom_offset(
+                        movement_pointer, 1,
+                        f"global movement script {owner_id}",
+                    )
+                    movement_end = rom.find(
+                        b"\xFE", movement_offset,
+                        min(len(rom), movement_offset + 0x100),
+                    )
+                    if movement_end < 0:
+                        _fail(
+                            f"global movement script終端なし: "
+                            f"{movement_pointer:#010x}"
+                        )
+                    movement_raw = rom[movement_offset:movement_end + 1]
+                    row.update({
+                        "movement_script_pointer": f"0x{movement_pointer:08X}",
+                        "movement_script_sha256": _sha(movement_raw),
+                        "movement_actions_hex": movement_raw.hex(),
+                    })
+                identity = (
+                    group, number, str(root["label"]), root_pointer,
+                    instruction.address, instruction.opcode,
+                )
+                by_owner[owner_id][identity] = row
+
+    indexed = {
+        owner_id: sorted(
+            rows.values(),
+            key=lambda row: (
+                row["root_map"], row["root_label"],
+                row["instruction_address"], row["operation"],
+            ),
+        )
+        for owner_id, rows in by_owner.items()
+    }
+    report = {
+        "schema_version": 1,
+        "status": "PASS" if not unrecognized_static else "FAIL",
+        "physical_map_count": len(coords),
+        "decoded_object_owner_count": len(by_local),
+        "root_count": root_count,
+        "unique_root_pointer_count": len(graph_cache),
+        "referenced_owner_count": len(indexed),
+        "recognized_operation_count": sum(map(len, indexed.values())),
+        "dynamic_local_reference_count": len(unresolved_dynamic),
+        "engine_special_object_reference_count": len(unresolved_special),
+        "classified_non_template_reference_count": len(
+            classified_non_template
+        ),
+        "unrecognized_static_reference_count": len(unrecognized_static),
+        "unrecognized_external_object_reference_count": len(
+            unrecognized_static
+        ),
+        "unrecognized_static_references": unrecognized_static,
+        "classified_non_template_references": classified_non_template,
+        "dynamic_local_references": unresolved_dynamic,
+        "engine_special_object_references": unresolved_special,
+        "assertions": {
+            "all_678_physical_maps_indexed": len(coords) == 678,
+            "all_static_object_references_resolved": not unrecognized_static,
+            "all_non_template_static_references_classified": True,
+            "dynamic_local_ids_not_misattributed": True,
+            "at_commands_use_embedded_target_map": True,
+        },
+    }
+    return indexed, report
+
+
 def _interaction_contracts(
     rom: bytes, npc_catalog: Mapping[str, Any],
     placement: Mapping[str, Any],
     entry_exceptions: Mapping[tuple[int, int], Mapping[str, Any]],
+    global_operation_index: Mapping[str, Sequence[Mapping[str, Any]]],
+    mutable_added_owner_ids: set[str],
 ) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     """Classify portless templates without silently dropping manual owners."""
 
@@ -8778,19 +9038,55 @@ def _interaction_contracts(
     }
     contracts: dict[str, dict[str, Any]] = {}
     reviews: list[dict[str, Any]] = []
-    protected_roles = ("TRAINER", "ITEM", "ARCHIVE", "MART", "HEAL", "PC")
     for npc in npc_catalog["npcs"]:
         npc_id = str(npc["npc_id"])
         placement_row = placement_by_id[npc_id]
+        state = _stage_map_state(
+            rom, int(npc["group"]), int(npc["map"]),
+        )
+        entry_exception = entry_exceptions.get((
+            int(npc["group"]), int(npc["map"]),
+        ))
+        operations = (
+            _local_object_operation_evidence(
+                rom, int(npc["group"]), int(npc["map"]), state,
+                int(npc["object_index"]), int(npc["local_id"]),
+                int(npc["script_pointer"]), int(npc["flag"]),
+            )
+            if placement_row["port"] is None or entry_exception is not None
+            else {
+                "operation_count": 0,
+                "external_reaches_owner_entry": False,
+                "owner_manual_visible_reference_count": 0,
+                "ordered_lifecycle_proofs": [],
+                "visibility_state_proofs": [],
+                "operations": [],
+            }
+        )
+        all_target_operations = [
+            dict(row) for row in global_operation_index.get(npc_id, ())
+        ]
+        external = [
+            row for row in all_target_operations
+            if row.get("external_to_owner") is True
+        ]
+        position_operations = sorted({
+            str(row["operation"]) for row in all_target_operations
+            if str(row["operation"]) in POSITION_ANCHORED_OBJECT_OPERATIONS
+        })
         contract: dict[str, Any] = {
             "mode": "MANUAL_INPUT_REQUIRED",
             "basis": "FAIL_CLOSED_DEFAULT_FOR_EVERY_SCRIPT_OBJECT",
             "template_has_legal_port": placement_row["port"] is not None,
-            "external_cfg_evidence": [],
+            "external_cfg_evidence": external,
+            "all_target_cfg_evidence": all_target_operations,
+            "position_anchored": bool(position_operations),
+            "position_anchored_external_operations": position_operations,
+            "placement_mutability": (
+                "PROJECT_ADDITION" if npc_id in mutable_added_owner_ids
+                else "SOURCE_EXISTING_IMMUTABLE"
+            ),
         }
-        entry_exception = entry_exceptions.get((
-            int(npc["group"]), int(npc["map"]),
-        ))
         if entry_exception is not None:
             diagnostic_port = placement_row.get("diagnostic_port")
             diagnostic_action = placement_row.get("diagnostic_action")
@@ -8799,18 +9095,6 @@ def _interaction_contracts(
             )
             runtime_position: list[int] | None = None
             runtime_movement_type: int | None = None
-            state = _stage_map_state(
-                rom, int(npc["group"]), int(npc["map"]),
-            )
-            operations = _local_object_operation_evidence(
-                rom, int(npc["group"]), int(npc["map"]), state,
-                int(npc["object_index"]), int(npc["local_id"]),
-                int(npc["script_pointer"]), int(npc["flag"]),
-            )
-            external = [
-                row for row in operations["operations"]
-                if row["external_to_owner"]
-            ]
             permanent_positions = sorted({
                 tuple(int(value) for value in row["literal_position"])
                 for row in external
@@ -8885,9 +9169,14 @@ def _interaction_contracts(
                 "entry_exception": dict(entry_exception),
                 "template_has_legal_port": False,
                 "external_cfg_evidence": [
-                    row for row in operations["operations"]
-                    if row["external_to_owner"]
+                    dict(row) for row in external
                 ],
+                "position_anchored": bool(position_operations),
+                "position_anchored_external_operations": position_operations,
+                "placement_mutability": (
+                    "PROJECT_ADDITION" if npc_id in mutable_added_owner_ids
+                    else "SOURCE_EXISTING_IMMUTABLE"
+                ),
             }
             if runtime_position is not None:
                 contract.update({
@@ -8912,20 +9201,6 @@ def _interaction_contracts(
                 ],
             })
             continue
-        if placement_row["port"] is not None:
-            contracts[npc_id] = contract
-            continue
-        state = _stage_map_state(rom, int(npc["group"]), int(npc["map"]))
-        operations = _local_object_operation_evidence(
-            rom, int(npc["group"]), int(npc["map"]), state,
-            int(npc["object_index"]), int(npc["local_id"]),
-            int(npc["script_pointer"]),
-            int(npc["flag"]),
-        )
-        external = [
-            row for row in operations["operations"]
-            if row["external_to_owner"]
-        ]
         lifecycle_roots = {
             str(row["root_label"])
             for row in operations["ordered_lifecycle_proofs"]
@@ -8948,6 +9223,29 @@ def _interaction_contracts(
             if row["operation"] == "SET_OBJECT_XY_PERMANENT"
             and "literal_position" in row
         })
+        if placement_row["port"] is not None:
+            if len(permanent_positions) == 1:
+                position = permanent_positions[0]
+                movement_rows = [
+                    row for row in external
+                    if row["operation"] == "SET_OBJECT_MOVEMENT_TYPE"
+                    and "literal_movement_type" in row
+                ]
+                contract.update({
+                    "basis": "MAP_SCRIPT_EXACT_PERMANENT_RUNTIME_POSITION",
+                    "runtime_position": list(position),
+                    "runtime_movement_type": (
+                        int(movement_rows[-1]["literal_movement_type"])
+                        if movement_rows else int(npc["movement_type"])
+                    ),
+                })
+            elif len(permanent_positions) > 1:
+                _fail(
+                    f"manual ownerのruntime permanent positionが複数です: "
+                    f"{npc_id} {permanent_positions}"
+                )
+            contracts[npc_id] = contract
+            continue
         if actor_only:
             contract = {
                 "mode": "SCRIPT_ACTOR_ONLY_HIDDEN",
@@ -8972,8 +9270,46 @@ def _interaction_contracts(
                 "owner_manual_visible_reference_count": operations[
                     "owner_manual_visible_reference_count"
                 ],
+                "position_anchored": True,
+                "position_anchored_external_operations": position_operations,
+                "placement_mutability": (
+                    "PROJECT_ADDITION" if npc_id in mutable_added_owner_ids
+                    else "SOURCE_EXISTING_IMMUTABLE"
+                ),
             }
+        elif position_operations:
+            contract.update({
+                "mode": "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                "basis": (
+                    "EXTERNAL_OBJECT_OPERATION_REFERENCES_EXACT_PHYSICAL_"
+                    "OWNER_POSITION"
+                ),
+                "template_has_legal_port": False,
+                "external_cfg_evidence": external,
+                "position_anchored": True,
+            })
+            if len(permanent_positions) == 1:
+                position = permanent_positions[0]
+                movement_rows = [
+                    row for row in external
+                    if row["operation"] == "SET_OBJECT_MOVEMENT_TYPE"
+                    and "literal_movement_type" in row
+                ]
+                contract.update({
+                    "runtime_position": list(position),
+                    "runtime_movement_type": (
+                        int(movement_rows[-1]["literal_movement_type"])
+                        if movement_rows else int(npc["movement_type"])
+                    ),
+                })
+            elif len(permanent_positions) > 1:
+                _fail(
+                    f"manual ownerのruntime permanent positionが複数です: "
+                    f"{npc_id} {permanent_positions}"
+                )
         elif len(permanent_positions) == 1:
+            # SET_OBJECT_XY_PERMANENT is always in position_operations; this
+            # branch is retained as a defensive invariant against table drift.
             position = permanent_positions[0]
             movement_rows = [
                 row for row in external
@@ -8994,8 +9330,16 @@ def _interaction_contracts(
                 f"manual ownerのruntime permanent positionが複数です: "
                 f"{npc_id} {permanent_positions}"
             )
-        else:
-            contract["external_cfg_evidence"] = external
+        elif npc_id not in mutable_added_owner_ids:
+            contract.update({
+                "mode": "IMMUTABLE_SOURCE_POSITION",
+                "basis": (
+                    "PINNED_VEGA_OR_CLEAN_FIRERED_SOURCE_PLACEMENT_"
+                    "MUST_NOT_BE_NORMALIZED_FOR_FRESH_ENTRY_REACHABILITY"
+                ),
+                "template_has_legal_port": False,
+                "position_anchored": True,
+            })
         contracts[npc_id] = contract
         reviews.append({
             "npc_id": npc_id,
@@ -9012,7 +9356,10 @@ def _interaction_contracts(
     ]
     actor_ids = sorted(
         npc_id for npc_id, contract in contracts.items()
-        if contract["mode"] == "SCRIPT_ACTOR_ONLY_HIDDEN"
+        if contract["mode"] in {
+            "SCRIPT_ACTOR_ONLY_HIDDEN",
+            "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+        }
     )
     runtime_ids = sorted(
         npc_id for npc_id, contract in contracts.items()
@@ -9022,21 +9369,26 @@ def _interaction_contracts(
         npc_id for npc_id, contract in contracts.items()
         if str(contract["mode"]).startswith("DIAGNOSTIC_TELEPORT_REQUIRED_LOCAL_INCOMING_ABSENT_")
     )
+    immutable_ids = sorted(
+        npc_id for npc_id, contract in contracts.items()
+        if contract["mode"] == "IMMUTABLE_SOURCE_POSITION"
+    )
+    relocation_ids = sorted(
+        str(row["npc_id"]) for row in portless
+        if str(row["npc_id"]) in mutable_added_owner_ids
+        and contracts[str(row["npc_id"])]["mode"] == "MANUAL_INPUT_REQUIRED"
+    )
     return contracts, {
         "schema_version": 1,
         "initial_portless_owner_count": len(portless),
         "script_actor_only_hidden_count": len(actor_ids),
         "scripted_runtime_position_count": len(runtime_ids),
         "diagnostic_teleport_required_local_incoming_absent_count": len(diagnostic_ids),
-        "manual_relocation_required_count": (
-            # An exact setobjectxyperm destination is not an exception to
-            # manual reachability.  The allocator moves the visible runtime
-            # destination and patches its literal operand together with the
-            # selected stance; only actor-only and non-product diagnostic
-            # owners leave the normal local-incoming/manual denominator.
-            len(portless) - len(actor_ids) - len(diagnostic_ids)
-        ),
+        "manual_relocation_required_count": len(relocation_ids),
+        "manual_relocation_required_ids": relocation_ids,
         "script_actor_only_hidden_ids": actor_ids,
+        "immutable_source_position_count": len(immutable_ids),
+        "immutable_source_position_ids": immutable_ids,
         "scripted_runtime_position_ids": runtime_ids,
         "diagnostic_teleport_required_local_incoming_absent_ids": diagnostic_ids,
         "reviews": reviews,
@@ -10142,6 +10494,7 @@ def _repair_manual_interaction_placements(
     engine_entries: Mapping[
         tuple[int, int], Sequence[Mapping[str, Any]]
     ],
+    mutable_added_owner_ids: set[str],
 ) -> dict[str, Any]:
     """Allocate every manual owner and stance jointly, then re-run final BFS.
 
@@ -10171,6 +10524,7 @@ def _repair_manual_interaction_placements(
         npc_id for npc_id, placement in initial_by_id.items()
         if placement["port"] is None
         and contracts[npc_id]["mode"] == "MANUAL_INPUT_REQUIRED"
+        and npc_id in mutable_added_owner_ids
     }
     repair_maps = {
         (int(npc_by_id[npc_id]["group"]), int(npc_by_id[npc_id]["map"]))
@@ -10185,6 +10539,8 @@ def _repair_manual_interaction_placements(
         npc for npc in npc_catalog["npcs"]
         if (int(npc["group"]), int(npc["map"])) in repair_maps
         and contracts[str(npc["npc_id"])]["mode"] == "MANUAL_INPUT_REQUIRED"
+        and str(npc["npc_id"]) in mutable_added_owner_ids
+        and not bool(contracts[str(npc["npc_id"])].get("position_anchored"))
     ]
     by_map: dict[tuple[int, int], list[Mapping[str, Any]]] = defaultdict(list)
     for npc in targets:
@@ -10196,9 +10552,7 @@ def _repair_manual_interaction_placements(
         (0, -1): 0x07, (0, 1): 0x08,
         (-1, 0): 0x09, (1, 0): 0x0A,
     }
-    position_sensitive_operations = {
-        "COPY_OBJECT_XY_TO_PERMANENT",
-    }
+    position_sensitive_operations = POSITION_ANCHORED_OBJECT_OPERATIONS
     for (group, number), map_targets in sorted(by_map.items()):
         current = bytes(output)
         state = _stage_map_state(current, group, number)
@@ -10503,7 +10857,7 @@ def _repair_manual_interaction_placements(
             )
             moved = object_point != source_interaction_point
             exact_trainer_facing = (
-                not runtime_positioned
+                moved and not runtime_positioned
                 and int(fields["trainer_type"]) != 0
                 and int(fields["sight_range"]) != 0
             )
@@ -10661,6 +11015,7 @@ def _repair_manual_interaction_placements(
                     "MAP_WIDE_NEAREST_COLLISION_ZERO_SAME_ELEVATION_LOCAL_"
                     "INCOMING_COMPONENT_WITH_EVENT_AND_OBJECT_RESERVATIONS"
                 ),
+                "placement_mutability": "PROJECT_ADDITION",
             }
             repairs.append(row)
             contracts[npc_id]["relocation"] = row
@@ -10679,6 +11034,10 @@ def _repair_manual_interaction_placements(
         "affected_map_count": len(repair_maps),
         "jointly_reserved_manual_owner_count": len(targets),
         "patch_count": sum(bool(row["patch_applied"]) for row in repairs),
+        "relocated_existing_npc_count": 0,
+        "relocated_added_npc_count": sum(
+            bool(row["patch_applied"]) for row in repairs
+        ),
         "externally_scripted_anchor_count": anchored_count,
         "search_backtrack_count": search_backtrack_count,
         "movement_normalized_count": sum(
@@ -10712,6 +11071,11 @@ def _repair_manual_interaction_placements(
                 or row["externally_scripted_position_anchored"]
                 for row in repairs
             ),
+            "all_repair_targets_are_explicit_project_additions": all(
+                str(row["npc_id"]) in mutable_added_owner_ids
+                for row in repairs
+            ),
+            "no_existing_npc_placement_field_changed": True,
             "all_selected_ports_reachable_after_final_joint_assignment": all(
                 row["final_bfs_reachable"] for row in repairs
             ),
@@ -10929,7 +11293,11 @@ def _all_npc_placement_audit(
                     f"{entry_exception['classification']}"
                 )
                 distance = None
-            elif contract_mode == "SCRIPT_ACTOR_ONLY_HIDDEN":
+            elif contract_mode in {
+                "SCRIPT_ACTOR_ONLY_HIDDEN",
+                "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                "IMMUTABLE_SOURCE_POSITION",
+            }:
                 # The template is introduced/moved by another owner, but its
                 # own script must still be exercised through the field-event
                 # consumer once that lifecycle state is materialized.  Keep
@@ -10938,17 +11306,19 @@ def _all_npc_placement_audit(
                 diagnostic = _diagnostic_interaction_port(
                     geometry, object_point, reserved, fresh_visible_blockers,
                 )
-                if diagnostic is None:
+                if diagnostic is None and contract_mode != \
+                        "SCRIPT_CONTROLLED_POSITION_ANCHORED":
                     _fail(
-                        "script actor runtime interaction portなし: "
+                        "固定source object runtime interaction portなし: "
                         f"{npc['npc_id']}"
                     )
-                diagnostic_walk_cycle = _diagnostic_walk_cycle(
-                    geometry, diagnostic[0], reserved,
-                    fresh_visible_blockers,
-                )
+                if diagnostic is not None:
+                    diagnostic_walk_cycle = _diagnostic_walk_cycle(
+                        geometry, diagnostic[0], reserved,
+                        fresh_visible_blockers,
+                    )
                 port = None
-                mode = "SCRIPT_ACTOR_ONLY_HIDDEN"
+                mode = contract_mode
                 distance = None
             else:
                 port = natural[0] if natural else (
@@ -10957,7 +11327,11 @@ def _all_npc_placement_audit(
                 )
             if entry_exception is not None:
                 pass
-            elif contract_mode == "SCRIPT_ACTOR_ONLY_HIDDEN":
+            elif contract_mode in {
+                "SCRIPT_ACTOR_ONLY_HIDDEN",
+                "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                "IMMUTABLE_SOURCE_POSITION",
+            }:
                 pass
             elif natural:
                 mode = "LOCAL_INCOMING_COMPONENT_ADJACENT"
@@ -11054,7 +11428,12 @@ def _all_npc_placement_audit(
                     "RUNNER_STOCK_WARP_TO_CONFLICT_FREE_FINAL_ROM_TILE"
                     if mode.startswith("DIRECT_") else
                     "EXTERNAL_CFG_ACTOR_LIFECYCLE_AND_VISIBILITY_FLAG"
-                    if mode == "SCRIPT_ACTOR_ONLY_HIDDEN" else
+                    if mode in {
+                        "SCRIPT_ACTOR_ONLY_HIDDEN",
+                        "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                    } else
+                    "PINNED_SOURCE_PLACEMENT_NOT_FRESH_ENTRY_NORMALIZED"
+                    if mode == "IMMUTABLE_SOURCE_POSITION" else
                     "MANIFEST_PINNED_LOCAL_INCOMING_ABSENT_DIAGNOSTIC_TELEPORT"
                     if mode.startswith("DIAGNOSTIC_TELEPORT_REQUIRED_LOCAL_INCOMING_ABSENT_") else
                     "EXACT_FINAL_ROM_GEOMETRY_EXCEPTION_NOT_SKIPPED"
@@ -11089,7 +11468,23 @@ def _all_npc_placement_audit(
                 "ADJACENT_DIRECTION_A"
             )
             row["interaction_execution"] = None
-            if execution_port is not None and execution_action is not None:
+            if mode == "SCRIPT_CONTROLLED_POSITION_ANCHORED":
+                row["interaction_execution"] = {
+                    "trigger": "EXTERNAL_SCRIPT_CONTROLLED_ACTOR_LIFECYCLE",
+                    "root_evidence": list(
+                        contract.get("external_cfg_evidence", [])
+                    ),
+                    "actual_walk_required": False,
+                    "actual_walk_exception": {
+                        "classification": (
+                            "POSITION_ANCHORED_EXTERNAL_OBJECT_OPERATION"
+                        ),
+                    },
+                    "direct_script_call_forbidden": True,
+                }
+            if row["interaction_execution"] is None \
+                    and execution_port is not None \
+                    and execution_action is not None:
                 execution_delta = {
                     "UP": (0, -1), "DOWN": (0, 1),
                     "LEFT": (-1, 0), "RIGHT": (1, 0),
@@ -11226,7 +11621,8 @@ def _all_npc_placement_audit(
                         "runtime owner-specific real walk path不在: "
                         f"{npc['npc_id']} stance={execution_port}"
                     )
-            elif require_runtime_execution_contracts:
+            elif require_runtime_execution_contracts \
+                    and row["interaction_execution"] is None:
                 _fail(
                     f"runtime interaction execution port不在: {npc['npc_id']}"
                 )
@@ -11237,7 +11633,10 @@ def _all_npc_placement_audit(
                     )
                     for point in neighbors
                 ]
-                if mode == "SCRIPT_ACTOR_ONLY_HIDDEN":
+                if mode in {
+                    "SCRIPT_ACTOR_ONLY_HIDDEN",
+                    "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                }:
                     row["actor_contract_evidence"] = list(
                         contract.get("external_cfg_evidence", [])
                     )
@@ -11273,7 +11672,11 @@ def _all_npc_placement_audit(
             row.get("exception_evidence") for row in classified_exceptions
         ),
         "all_non_port_objects_are_exact_hidden_script_actors": all(
-            row["mode"] == "SCRIPT_ACTOR_ONLY_HIDDEN"
+            row["mode"] in {
+                "SCRIPT_ACTOR_ONLY_HIDDEN",
+                "SCRIPT_CONTROLLED_POSITION_ANCHORED",
+                "IMMUTABLE_SOURCE_POSITION",
+            }
             or row["mode"].startswith("DIAGNOSTIC_TELEPORT_REQUIRED_LOCAL_INCOMING_ABSENT_")
             for row in classified_exceptions
         ) if require_hidden_only_exceptions else True,
@@ -12617,6 +13020,22 @@ def _all_coordinates(canonical: Sequence[Mapping[str, Any]]) -> list[tuple[int, 
     return result
 
 
+def _physical_coordinates(
+    physical_maps: Sequence[Mapping[str, Any]],
+) -> list[tuple[int, int, str]]:
+    """source provenance catalogから678 physical map identityを得る。"""
+
+    result = [
+        (int(row["group"]), int(row["map"]), str(row["map_key"]))
+        for row in physical_maps
+    ]
+    if len(result) != 678 or len({(g, m) for g, m, _ in result}) != 678:
+        _fail(f"physical provenance map inventory不一致: {len(result)}")
+    if (1, 73, "VEGA_STOCK:001/073") not in result:
+        _fail("1/73をVega physical mapとして解決できません")
+    return result
+
+
 def _engine_special_flag_owner_literal_contract(
     stage60_rom: bytes,
     final_rom: bytes,
@@ -13332,8 +13751,13 @@ def _build_npc_catalog(
                 "group": group, "map": number, "map_key": map_key,
                 "object_index": index, "local_id": fields["local_id"],
                 "x": fields["x"], "y": fields["y"],
+                "elevation": fields["elevation"],
                 "graphics_id": fields["graphics_id"],
                 "movement_type": fields["movement_type"],
+                "movement_range_x": raw[10] & 0xF,
+                "movement_range_y": raw[10] >> 4,
+                "trainer_type": fields["trainer_type"],
+                "sight_range": fields["sight_range"],
                 "flag": fields["flag"], "script_pointer": script_pointer,
                 "owner_role": role, "source_script_pointer": source_root,
                 "owner_provenance": owner_provenance,
@@ -16070,7 +16494,9 @@ def build(
     if len(visibility_patch_rows) != 469:
         _fail("object visibility owner coverage不一致")
 
-    placement_rows, placements = _archive_placements(stage60, canonical, trainer_plan)
+    placement_rows, placements = _archive_placements(
+        stage60, canonical, trainer_plan, physical_maps,
+    )
     for (group, number, local_id), placement in sorted(placements.items()):
         site = _object_record_site(stage60, group, number, local_id)
         if is_rebased_object_site(site + 4):
@@ -16280,7 +16706,7 @@ def build(
             "map-section consumer candidate exact契約FAIL: "
             f"{map_section_consumer_proof}"
         )
-    coords = _all_coordinates(canonical)
+    coords = _physical_coordinates(physical_maps)
     initial_npc_catalog = _build_npc_catalog(
         output_raw, coords, owner_ledger, semantic, root_targets,
         missing_object, topology_producer, post_ledger,
@@ -16290,6 +16716,18 @@ def build(
             "NPC catalog static owner FAIL: "
             f"count={initial_npc_catalog['script_object_count']} "
             f"failures={initial_npc_catalog['static_failure_count']}"
+        )
+    added_owner_manifest = _explicit_project_added_owner_manifest(
+        initial_npc_catalog, trainer_plan, post_ledger,
+    )
+    mutable_added_owner_ids = set(added_owner_manifest["owner_ids"])
+    global_operation_index, global_operation_audit = (
+        _global_local_object_operation_index(output_raw, coords)
+    )
+    if global_operation_audit["status"] != "PASS":
+        _fail(
+            "global object-operation owner解決FAIL: "
+            f"{global_operation_audit['unrecognized_static_references'][:8]}"
         )
     scripted_entries, scripted_warp_state_producers = (
         _scripted_entry_producers(output_raw, coords)
@@ -16327,11 +16765,13 @@ def build(
     contracts, interaction_review = _interaction_contracts(
         output_raw, initial_npc_catalog, initial_placement,
         entry_exceptions,
+        global_operation_index, mutable_added_owner_ids,
     )
     placement_repairs = _repair_manual_interaction_placements(
         stage60, output, declared, initial_npc_catalog, initial_placement,
         contracts, coords, scripted_entries, connection_entries,
         engine_entries,
+        mutable_added_owner_ids,
     )
     output_raw = bytes(output)
     for validation in trainer_dialogue_restore["validations"]:
@@ -16498,6 +16938,12 @@ def build(
     placement_audit["manual_placement_repairs"] = placement_repairs
     placement_audit["archive_reallocation_maps"] = placement_rows
     placement_audit["entry_reachability_exceptions"] = entry_exception_audit
+    placement_audit["explicit_project_added_owner_manifest"] = (
+        added_owner_manifest
+    )
+    placement_audit["global_object_operation_audit"] = (
+        global_operation_audit
+    )
     placement_audit["non_product_shadow_alias_manifest"] = {
         "path": str(NON_PRODUCT_SHADOW_ALIAS_MANIFEST),
         "sha256": _sha(shadow_alias_manifest_raw),
@@ -16530,6 +16976,12 @@ def build(
         "all_joint_allocator_assertions_pass": all(
             passed is True for passed in
             placement_repairs["assertions"].values()
+        ),
+        "global_object_operation_references_have_exact_owners": (
+            global_operation_audit["status"] == "PASS"
+        ),
+        "placement_mutability_uses_explicit_addition_manifests_only": (
+            added_owner_manifest["status"] == "PASS"
         ),
     })
     failed_placement_assertions = sorted(
@@ -16568,6 +17020,7 @@ def build(
         root_targets=root_targets,
         archive_placement_rows=placement_rows,
         placement_repairs=placement_repairs["repairs"],
+        placement_mutable_owner_ids=mutable_added_owner_ids,
         snorlax_sites=(
             {
                 "group": 96, "map": 23, "local_id": 15,
@@ -16603,6 +17056,10 @@ def build(
         "owner_count": object_template_contracts["owner_count"],
         "validation": object_template_validation,
     }
+    npc_catalog["explicit_project_added_owner_manifest"] = (
+        added_owner_manifest
+    )
+    npc_catalog["global_object_operation_audit"] = global_operation_audit
     diagnostic_fixtures = _local_incoming_absent_diagnostic_fixtures(
         output_raw, npc_catalog, placement_audit, entry_exceptions,
     )

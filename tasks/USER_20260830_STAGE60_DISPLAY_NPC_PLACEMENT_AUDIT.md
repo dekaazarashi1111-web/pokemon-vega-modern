@@ -132,3 +132,17 @@
 - 中間必須gateは、ROM再現性、宣言領域外変更0、boot／Continue／通常save／reload、移動／warp、可視会話、主要進行、鍵Item、固定遭遇、Gift／party／PC storage、両育て屋、戦闘後field復帰、crash／softlock／save破損／進行阻害0とする。
 - 全678 map×全owner×全branch×runs=2、unused state完全列挙、全owner exact trace ordinal、coverage 0 omissionは`DEFERRED_AUDIT`として後続へ残す。strict実行で観測した非critical差異も期待値へ合わせず同分類で保存する。
 - 中間判定正本は`reports/generated/stage61_critical_release_validation.json`。候補ROMは`build/stages/61_critical_release_candidate.gba`、SHA-256 `e736acd0828be5ccb583b85b4a07c940f08a7f880026c8e14bd4e520b0433669`。元taskの完了条件と`[>]`状態は変更しない。
+
+## 2026-09-04 NPC配置整合性Stage62 checkpoint
+
+- 本checkpointは、ユーザー報告の「ちえのどうくつ」B1F早期ライバル戦を含むNPC配置修復スコープを完了した。元task全体は、全owner／全会話branchのstrict実表示監査が残るため`IN_PROGRESS`を維持し、新規・重複taskは作成しない。
+- 入力はStage61 `build/stages/61_critical_release_candidate.gba`、SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`へ固定した。入力ROMは不変で、Stage62は`build/stages/62_npc_placement_integrity_repair.gba`、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`として別生成した。
+- 根本原因は、Stage61配置器が明示追加owner allowlistを持たず既存objectまで移動したこと、一部rootだけを見るanchor判定がportを持つactorと`*_AT`の埋込target mapを落としたこと、Vega母体425 mapへFireRed同値数値名を当てたこと、変更後配置を期待値にして自己承認したことの4点だった。
+- `trainer_plan.new_objects` 269体、Stage58 ledger 9体、Stage37 event-design 4体の計282体だけを明示的な追加NPCとした。全3,112 objectの残る2,830体をimmutableとし、Stage61で変更された既存316体／77 mapの`x/y/elevation/movement_type/movement_range`とruntime座標operand 2件を固定原典へ復元した。script pointer、trainer type、trainer sightの変更は0件である。
+- トーホク425 mapの有効object 2,042体は固定Vega参照ROM、カントー側は固定clean FireRed由来のpre-placement記録を正とした。physical map `1/73`は`VEGA_STOCK:001/073`「ちえのどうくつ B1F」へhard bindし、FireRed `CeruleanCave_2F`として扱わない。
+- 全5,333 root／3,647 unique rootからobject操作を走査し、3,476件をexact `(group,map,local ID)`へ解決した。dynamic local 984件、engine special 5,820件、templateなし54件を別分類し、未認識external/static参照は0件。`APPLY_MOVEMENT(_AT)`、`MOVE_OBJECT(_AT)`、`SET_OBJECT_XY(_AT)`、`REMOVE_OBJECT(_AT)`等をposition anchorとした。
+- `1/73 local 1`は原作位置`(4,11)`、elevation 3、movement type 8、range `1/1`へ戻した。coord 9配下のexternal `APPLY_MOVEMENT` 5件と`REMOVE_OBJECT` 1件を記録し、`externally_scripted_position_anchored=True`とした。local 3／5／6／7／8を含む同map既存変更もすべて原作値へ復元した。
+- 既存NPC復元後に不安全となった7 mapでは追加NPCだけをjoint allocatorへ渡し、11体を再配置した。最終状態は、追加NPCのcollision、重複tile、warp／coord／BG tile占有、到達可能な会話port欠落、通路component欠落、trainer sightによる入口／event強制捕捉がすべて0件。安全候補がない場合はmap・local ID・理由付きでbuildをFAILする。
+- 静的レポートは`reports/generated/stage62_npc_placement_integrity_audit.json`、全NPC catalogは`reports/generated/stage62_npc_catalog.json`、洞窟契約は`reports/generated/stage62_wisdom_cave_regression.json`を正とする。追加NPCの全評価行と移動11件はaudit内`added_npc_reallocation.rows`に機械可読で保存した。
+- mGBAは北口`3/21→1/36→1/73`、南口`3/21→1/38→1/73`、B2F`1/73↔1/37`、B1F原作Lv.6〜9、B2F殿堂入り後Lv.44〜48に加え、通常キー117歩で3穴・段差切替・coord 9・ライバル移動・trainer 360勝利・actor 1〜4消去・南口脱出・ねっこのカセキ取得・通常2世代save・fresh Continueを完走した。6 fixtureを各2 fresh processで実行し、全結果一致、warnings 0である。
+- 現行プレイ基準、iPad上のROM、通常プレイsaveは変更していない。残件は元taskの`DEFERRED_AUDIT`（全678 map×全owner×全branchの実表示・side effect完全列挙）であり、NPC配置修復の残件はない。
