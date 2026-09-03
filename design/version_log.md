@@ -1323,3 +1323,14 @@
   - 最新Stage61候補ROMをiPadの同名ROMへ原子的に配置し、旧ROMを日時付きで退避した。
   - saveは生成・転送・変更せず、mGBA save directory全57件を不変に保った。
 - Verify: RetroArch停止、live配置先、iPad側size／SHA-256、read-back byte一致、save manifest不変、既存Stage60 ROM不変、remote一時ファイル0をPASS。ROM SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。
+
+## 2026-09-03T11:49:37+09:00
+
+- Version: `stage61-active-play-baseline`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260903-STAGE61-ACTIVE-PLAY-BASELINE` / 現行Stage61を今後の実機操作基準へ固定
+- Summary:
+  - SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`のStage61を、明示的な切替まで現行プレイ基準とした。
+  - Codex対戦、任意報酬、Windows送付、Box 14移動、バグ修正の全入口を新しい基準文書へ集約した。
+  - 通常プレイsaveの無断置換禁止と、旧stage／別SHAへ自動で戻らない規則を明記した。
+- Verify: ROM size／SHA-256、CLI 2.5.1、文書参照、task graph、private guard、diff check PASS。ROM／iPad／saveは変更なし。

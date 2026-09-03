@@ -3395,3 +3395,33 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。固定ローカルROM／sourceとlibmGBAだけを使用した。
+
+## 2026-09-03T11:49:37+09:00
+
+- Task: `USER-20260903-STAGE61-ACTIVE-PLAY-BASELINE` / 現行Stage61をプレイ・Codex対戦・送付・バグ修正の基準へ固定
+- Status: DONE（元の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - `design/active_play_baseline.md`を新設し、Stage61候補のパス、size、SHA-256、CRC32、ROM内容checkpoint、iPad配置記録を一つの正本へ固定した。
+  - Codex対戦、任意報酬、Windowsカタログ送付、Box 14移動、バグ再現・修正では、ユーザーが切替を明示するまで同ROMを使い、別stage／別SHAで代用しない運用を明記した。
+  - 現行の通常プレイsaveをテストsaveで上書きしないこと、修正版はユーザー採用まで別候補にすること、strict全件監査を自動再開しないことを固定した。
+  - README、現在状態、目的別索引、Codex／Windows運用3文書、既存Stage61引継ぎから正本へ案内し、古いStage45／47や「iPad未配置」記述の誤用を防いだ。
+- Files changed:
+  - `design/active_play_baseline.md`
+  - `README.md`
+  - `design/current_state.md`
+  - `design/agent_context_map.md`
+  - `design/HANDOFF_STAGE61_DISPLAY_NPC_EVENT_AUDIT_20260831.md`
+  - `docs/CODEX_BATTLE_OPERATOR_JA.md`
+  - `docs/WINDOWS_BATTLE_CATALOG_JA.md`
+  - `docs/WINDOWS_BOX14_VAULT_JA.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `sha256sum`／`stat`: PASS。ROMは33,554,432 bytes、SHA-256 `4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`。
+  - `vega-codex-battle --version`: PASS（2.5.1）。
+  - 正本と参照する運用4文書の存在確認: PASS。
+  - `python3 scripts/validate_task_graph.py`／`python3 scripts/guard_private_files.py`／`git diff --check`: PASS。
+  - ROM再ビルド、ゲームruntime検査、iPad／save操作: SKIP（文書固定だけの依頼であり、既存検証済みROMを不変に保った）。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - 未使用。

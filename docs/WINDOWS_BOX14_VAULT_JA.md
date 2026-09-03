@@ -1,5 +1,8 @@
 # Box 14⇔Windows固有個体庫
 
+> Stage 47は機能導入時の名称である。現在の実機依頼では古いStage 47を再生成せず、
+> `design/active_play_baseline.md`に固定された現行ROMを使う。
+
 Stage 47以降では、ゲーム内のBox 14をWindowsとの移動専用boxとして扱える。既存PCの箱数は変えず、
 Box 14に置いた個体だけを`vega-codex-battle`経由でまとめて預け入れ・引き出しする。
 

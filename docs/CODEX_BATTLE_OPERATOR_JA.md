@@ -1,5 +1,8 @@
 # Codex対戦 Stage 45 運用ガイド
 
+> Stage 45は機能導入時の名称である。現在の実機依頼では古いStage 45を再生成せず、
+> `design/active_play_baseline.md`に固定された現行ROMを使う。
+
 ## 対象と安全境界
 
 Stage 45は、Stage 44の6体登録・双方3体選出・手動対戦に、対戦結果へ紐づく任意報酬を追加する。

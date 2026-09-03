@@ -1,5 +1,8 @@
 # Windows対戦カタログ運用手順
 
+> Stage 46／47は機能導入時の名称である。現在の実機依頼ではそれらを再生成せず、
+> `design/active_play_baseline.md`に固定された現行ROMを使う。
+
 ## これは何か
 
 Windows上のcanonical catalogを再利用可能なテンプレート集として扱い、任意mapの通常fieldで

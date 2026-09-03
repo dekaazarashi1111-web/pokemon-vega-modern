@@ -29,6 +29,7 @@ python3 scripts/taskctl.py next
 - 依存関係: `tasks/task_graph.json`
 - タスク完了条件: `tasks/T*.md`
 - 現在地: `design/current_state.md`
+- 現在遊ぶROM・実機操作の基準: `design/active_play_baseline.md`
 - 採択済み判断: `design/decisions.md`
 - 全体ロードマップ: `MASTER_PLAN.md`
 - 入力・上流pin: `state/source-lock.json`

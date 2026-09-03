@@ -2010,3 +2010,12 @@ git diff --check
 
 checkpoint時点でStage61／mGBA／builder関連の実行プロセスは残っていない。
 今回のcommitはtask完了commitではなくWIP checkpointである。pushしない。
+
+## 2026-09-03 現行プレイ基準による更新
+
+この引継ぎ内の「iPad配置は未実施」は当時点の履歴であり、現在状態ではない。現在は
+`design/active_play_baseline.md`を正とし、SHA-256
+`4c2cda81e772db942824e61ae4bd8735b3d529644cb91a585813b5c58485538b`の
+`build/stages/61_critical_release_candidate.gba`をユーザーの現行プレイ、Codex対戦、
+アイテム／個体送付、バグ再現・修正の基準にする。同一SHAのROMはiPadへ配置済みで、
+配置時にsaveは変更していない。ユーザーが別ROMへの切替を明示するまで古いstageや別SHAへ戻さない。
