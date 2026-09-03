@@ -119,6 +119,8 @@
 - ROM SHA-256: `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`
 - 2026-09-04にactive container metadataとlive `retroarch.cfg`から配置先を再解決し、RetroArch process 0を確認してStage61とは別名でROMだけを一時名から原子的に新規配置した。同名既存ROMはなく退避0。
 - iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件は配置前後のmanifestが一致し、同名saveの生成・転送・変更は0。既存Stage61 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
+- 同日、ユーザー指定によりiPad上の最新Stage61通常プレイsaveをStage62 basenameへ引き継いだ。131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`。Stage62起動時に作られていた同名saveは日時付きで退避し、一時名から原子的に配置した。
+- Stage61 save原本とその他の保護対象save全57件は前後不変。Stage62正規saveを端末からread-backしてStage61原本とbyte一致させ、remote一時ファイル0、RetroArch process 0、Stage62 ROM identity不変を確認した。
 
 ## 失敗判定
 

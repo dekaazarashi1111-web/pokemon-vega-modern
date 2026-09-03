@@ -3699,3 +3699,25 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPadへ固定host key付きWi-Fi SSHでROMだけを転送しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-04T02:04:41+09:00
+
+- Task: `USER-20260904-STAGE61-TO-STAGE62-SAVE-CARRYOVER` / 最新Stage61通常プレイsaveをStage62へ引き継ぎ
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - iPad上の最新`61_critical_release_candidate.srm`を正本とし、131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`のbyte同一コピーを`62_npc_placement_integrity_repair.srm`へ原子的に配置した。
+  - Stage62起動時に作られていた同名saveは削除せず日時付きで退避した。Stage61 save原本とその他の保護対象save全57件は変更していない。
+  - Stage62で続きから起動できる状態にした。現行プレイ基準とCodex CLI protocolは、明示的な採用切替までStage61のまま維持した。
+- Files changed:
+  - `design/current_state.md`
+  - `docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外外部配置: iPad上の`62_npc_placement_integrity_repair.srm`と旧同名saveの日時付き退避。Stage61 saveは不変。
+- Verify:
+  - RetroArch process 0、active container／live config／mGBA save directory、Stage62 ROM size／SHA-256: PASS。
+  - Stage61 source save size／SHA-256不変、Stage62 target save同一SHA、端末からのread-back byte一致: PASS。
+  - その他の保護対象save全57件不変、旧Stage62 save退避、remote一時ファイル0: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - インターネット未使用。同一private LAN上のユーザー所有iPad内でsaveを複製しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。

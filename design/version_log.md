@@ -1431,3 +1431,14 @@
   - Stage62候補ROMをStage61とは別名でiPadへ原子的に新規配置した。同名既存ROMはなく退避0。
   - saveは生成・転送・変更せず、mGBA save directory全57件を不変に保った。
 - Verify: RetroArch停止、live配置先、iPad側size／SHA-256、read-back byte一致、save manifest不変、既存Stage61 ROM不変、remote一時ファイル0をPASS。ROM SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。
+
+## 2026-09-04T02:04:41+09:00
+
+- Version: `stage62-stage61-live-save-carryover`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260904-STAGE61-TO-STAGE62-SAVE-CARRYOVER` / 最新Stage61通常プレイsaveをStage62へ引き継ぎ
+- Summary:
+  - 最新Stage61通常プレイsaveをStage62 basenameへbyte同一複製し、既存Stage62 saveは日時付きで保全した。
+  - Stage61原本とその他の保護対象save全57件を不変に保った。
+  - 現行プレイ基準とCodex CLI protocolは、明示的な採用切替までStage61のまま維持した。
+- Verify: RetroArch停止、live save directory、Stage62 ROM identity、source／target save 131,072 bytes・SHA-256一致、read-back byte一致、Stage61原本・保護対象save不変、remote一時ファイル0をPASS。save SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`。
