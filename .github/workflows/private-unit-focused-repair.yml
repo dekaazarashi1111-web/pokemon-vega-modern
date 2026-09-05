@@ -1,0 +1,140 @@
+name: private-unit-focused-repair
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: private-unit-focused-repair-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  apply-reviewed-plan:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.number == 2 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905'
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      head: ${{ steps.apply.outputs.head }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: 固定hash差分を実ファイルへ適用して作業branchだけへcommit
+        id: apply
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, re, subprocess
+          from pathlib import Path
+          from scripts.github_private_environment import SECRET_PATTERNS
+          branch = 'chatgpt/fix-private-full-unit-20260905'
+          def git(*args):
+              return subprocess.check_output(['git', *args], text=True).strip()
+          if git('rev-parse', 'HEAD') != os.environ['EXPECTED_HEAD']:
+              raise SystemExit('checkout HEAD mismatch')
+          remote = git('ls-remote', 'origin', 'refs/heads/' + branch).split()[0]
+          if remote != os.environ['EXPECTED_HEAD']:
+              raise SystemExit('PR HEAD advanced; no write')
+          plan = json.loads(Path('config/private_unit_repair_plan.json').read_text())
+          if plan['schema_version'] != 1 or plan['task'] != 'USER-20260905-PRIVATE-FULL-UNIT':
+              raise SystemExit('unrecognized repair plan')
+          changed = []
+          staged = []
+          for row in plan['files']:
+              path = Path(row['path'])
+              if not re.fullmatch(r'tests/[A-Za-z0-9_/]+\.py', path.as_posix()) or path.is_symlink():
+                  raise SystemExit('repair path outside reviewed test boundary')
+              raw = path.read_bytes()
+              current = hashlib.sha256(raw).hexdigest()
+              if current == row['after_sha256']:
+                  continue
+              if current != row['before_sha256']:
+                  raise SystemExit('repair source SHA mismatch: ' + str(path))
+              text = raw.decode('utf-8')
+              for replacement in row['replacements']:
+                  if text.count(replacement['old']) != 1:
+                      raise SystemExit('repair context not unique: ' + str(path))
+                  text = text.replace(replacement['old'], replacement['new'], 1)
+              result = text.encode('utf-8')
+              if hashlib.sha256(result).hexdigest() != row['after_sha256']:
+                  raise SystemExit('repair result SHA mismatch: ' + str(path))
+              if any(pattern.search(result) for pattern in SECRET_PATTERNS.values()):
+                  raise SystemExit('secret candidate rejected')
+              staged.append((path, result))
+          for path, result in staged:
+              path.write_bytes(result)
+              changed.append(str(path))
+          if changed:
+              subprocess.run(['git', 'diff', '--check'], check=True)
+              subprocess.run(['python3', 'scripts/guard_private_files.py'], check=True)
+              subprocess.run(['python3', '-m', 'unittest',
+                  'tests.test_build_upstream.SandboxPathTests',
+                  'tests.test_stage61_normal_save_cow_contract.Stage61NormalSaveCowMetadataContractTest'], check=True)
+              subprocess.run(['git', 'add', '--', *changed], check=True)
+              if set(git('diff', '--cached', '--name-only').splitlines()) != set(changed):
+                  raise SystemExit('unexpected staged file')
+              subprocess.run(['git', '-c', 'user.name=github-actions[bot]',
+                  '-c', 'user.email=41898282+github-actions[bot]@users.noreply.github.com',
+                  'commit', '-m', 'USER-20260905-PRIVATE-FULL-UNIT: WIP portable unitと現行契約を修復'], check=True)
+              subprocess.run(['git', 'push', 'origin', 'HEAD:refs/heads/' + branch], check=True)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('head=' + git('rev-parse', 'HEAD') + '\n')
+          print(json.dumps({'changed_files': changed, 'head': git('rev-parse', 'HEAD')}))
+          PY
+  focused:
+    needs: apply-reviewed-plan
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.apply-reviewed-plan.outputs.head }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 原失敗の集計だけを秘密情報なしで抽出
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/private_unit_diagnostics.py baseline
+      - name: Git管理source検証
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest tests.test_github_private_environment tests.test_run_github_battle_command
+      - name: Toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Private Release取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .local/github-private-environment/assets
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern 'private-environment-*.zip' --dir .local/github-private-environment/assets
+      - name: 外側・member hashを維持して復元
+        run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
+      - name: 復元時の非秘密metadataを採取
+        run: python3 scripts/private_unit_diagnostics.py snapshot
+      - name: 修正対象focused tests
+        run: python3 scripts/private_unit_diagnostics.py focus
+      - name: 証跡をPrivate artifactへ保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: private-unit-diagnostics-${{ needs.apply-reviewed-plan.outputs.head }}
+          path: build/private-unit-diagnostics/*.json
+          retention-days: 1
+          if-no-files-found: error
