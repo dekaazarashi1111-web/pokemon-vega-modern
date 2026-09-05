@@ -3798,3 +3798,13 @@
 - Network:
   - OpenAI公式のconnector資料（`https://learn.chatgpt.com/es-419/docs/enterprise/apps-and-connectors`、`https://learn.chatgpt.com/es-419/docs/plugins`）でconnector actionと権限制御を確認した。
   - GitHub公式API／CLIでworkflow登録、push、PRコメント、Actions実行、ログ／結果コメント読戻しを行った。credential、token、private Release内容、device情報は会話またはtracked成果へ保存していない。
+
+## 2026-09-06 USER-20260905-PRIVATE-FULL-UNIT-R2（作業中）
+
+最新main `3139b2997eea28d544e7ef9cbe6db16edf7a7781`を再取得し、既存PR #1/#2を変更せず新規branch `chatgpt/fix-private-full-unit-20260905-r2` / Draft PR #3を作成した。既存Stage60監査タスクのIN_PROGRESSを維持する。
+
+元run `33967241290` / job `101309429531`の生ログをActions内で独立再取得した。監査run `33975817811`は1594 tests /1230.020s/17 failures/41 errors/29 skips/capstone 0を確認し、厳密な58件の失敗見出し・29件のskipと一致した。生ログ本文は転載せず許可した診断項目のみ保存する。
+
+commit `8a064dcc8fecd118ec60b14e875ccfa72a58099e`ではportable WSL境界fixture、Git祖先temp履歴、ARM/RFU依存、manifest検証の例外境界、COW要約、Wiki4248件の生成元照合、歴史的release契約を修正した。根拠は`docs/PRIVATE_UNIT_REPAIR_R2_20260905.md`。source-validation `33976377698` PASS、コメント起動battle-cli-offline `33976391154` SUCCESSと自動PR返信を確認した。
+
+focused run `33976377781`はPrivate Release 4 ZIP取得・外側/全member hash復元に成功し、88 tests /0 failures/1 error/0 skips。残るerrorはStage60 save生成前のprovenance照合である。Stage62 ROMの前後SHA-256は一致したが、Stage62 check/mGBAの再実行済みを意味しない。元saveの上書き、iPad操作、ROM/saveのcommit、public化、mainへの直接commit/mergeは行っていない。全unit/allは未完了のため完了タスク・完了commitとして扱わない。
