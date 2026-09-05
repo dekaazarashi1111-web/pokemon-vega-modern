@@ -30,7 +30,7 @@ def prepare(root: Path, plan: dict) -> list[tuple[str, bytes]]:
     for row in plan['files']:
         name = row['path']
         rel = PurePosixPath(name)
-        permitted = name in LOGS or name == 'overlays/vega_adapter/build_module.py' or re.fullmatch(r'(scripts|tests|tools|config|infra)/[A-Za-z0-9_/]+\.(py|json|sh)', name)
+        permitted = name in LOGS or name in {'Makefile', 'overlays/vega_adapter/build_module.py'} or re.fullmatch(r'(scripts|tests|tools|config|infra)/[A-Za-z0-9_/]+\.(py|json|sh)', name)
         if not permitted or rel.is_absolute() or '..' in rel.parts or '\\' in name or name in seen:
             raise ValueError('source edit path rejected')
         seen.add(name)

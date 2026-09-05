@@ -7399,6 +7399,33 @@ class Stage61MgbaValidationTests(unittest.TestCase):
                 party_move_transaction, storage, signed, pokedex,
             )
         )
+        # Source-defined controls added since the original 27-domain fixture.
+        # Keep complete-domain equality and independently exercise their transports.
+        gift_schema = self._gift_storage_sweep_schema()
+        gift_control = RUNNER.gift_storage_transaction_sweep_controls(gift_schema)[0]
+        gift_ref = gift_control["required_value_in_matrix_case"]["layout_ref"]
+        fossil, ruin, facility = (
+            self._fossil_revival_fixture(), self._ruin_seal_fixture(),
+            self._facility_fixture(),
+        )
+        fossil_ref, ruin_ref, facility_ref = (
+            RUNNER._runner_fixture_key(payload)
+            for payload in (fossil, ruin, facility)
+        )
+        fixtures.update(gift_schema["runner_fixtures"])
+        fixtures.update({fossil_ref: fossil, ruin_ref: ruin, facility_ref: facility})
+        from tools.stage61_interaction_oracle import _gift_storage_dedicated_sweep_manifest
+        gift_manifest = _gift_storage_dedicated_sweep_manifest()
+        matrix["dedicated_fixture_sweeps"] = {
+            "GIFT_STORAGE_TRANSACTION_STATE": {
+                key: gift_manifest[key] for key in (
+                    "schema_version", "fixture_kind", "relation",
+                    "executor_representative_count", "runner_exhaustive_layout_count",
+                    "executor_representative_scenario_ids", "runner_exhaustive_scenario_ids",
+                    "runner_sweep_root", "runner_sweep_map_section_id", "scenarios", "assertions",
+                )
+            }
+        }
         matrix["runner_fixtures"] = fixtures
         matrix["runner_projection"]["required_columns"].append(
             "control_requirements"
@@ -7481,6 +7508,14 @@ class Stage61MgbaValidationTests(unittest.TestCase):
                     party_move_transaction_ref,
                 ),
                 self._rfu_external("mode0-leader-result5"),
+                self._center_link_external("group0-leader-result5"),
+                external("GIFT_STORAGE_TRANSACTION_STATE", 0,
+                    gift_control["required_value_in_matrix_case"],
+                    gift_control["relations"],
+                    list(RUNNER._GIFT_STORAGE_TRANSACTION_EXECUTOR_SCENARIO_IDS)),
+                self._fossil_revival_external(fossil_ref),
+                self._ruin_seal_external(ruin_ref),
+                self._facility_external(facility_ref),
                 external("PARTY_OR_STORAGE_CAPACITY", 25, {
                     "expected_result": 0,
                     "party_layout_ref": party_ref,
@@ -7595,7 +7630,10 @@ class Stage61MgbaValidationTests(unittest.TestCase):
             self.assertEqual(
                 sorted(path.stat().st_size for path in (root / "fixtures").iterdir()),
                 sorted([186 * 4, 30 * 4, 600, 600, 0x83D0,
-                        1028, 764, 4 + 0x14C + 0x3EC, 4 + 4 * 52]),
+                        1028, 764, 4 + 0x14C + 0x3EC, 4 + 4 * 52,
+                        # Gift: fixed header, party, storage, four Pokédex maps.
+                        148, 188, 280 + len(RUNNER._facility_canonical_bytes(facility))]
+                       + [192 + 600 + 0x83D0 + 4 * 52] * 30),
             )
             self.assertTrue(all(
                 len(line.split("\t")) == 59
