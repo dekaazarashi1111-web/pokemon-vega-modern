@@ -39,7 +39,12 @@ class Stage61FactoryPrepareErrorAdapterTest(unittest.TestCase):
         cls.code, cls.symbols, cls.nm_text, _manifest = _compile_runtime(
             RUNTIME_SOURCE,
             TEST_LOAD_ADDRESS,
-            {"STAGE61_KANTO_NAME_TABLE": 0x09D00000},
+            {
+                "STAGE61_KANTO_NAME_TABLE": 0x09D00000,
+                "STAGE61_TRAINER_REMATCH_ALIAS_TABLE": 0x09D01000,
+                "STAGE61_TRAINER_REMATCH_ALIAS_COUNT": 1,
+                "STAGE61_CHANGEKIT_GET_REMATCH": 0x09302DD9,
+            },
         )
 
     def _materialize(self) -> tuple[bytearray, list[dict], dict]:

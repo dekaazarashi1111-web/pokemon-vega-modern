@@ -22,9 +22,17 @@ class SandboxPathTests(unittest.TestCase):
     def test_accepts_ascii_path_on_windows_mount(self) -> None:
         path = Path("/mnt/c/CodexT01/upstream")
 
-        result = upstream.safe_sandbox_root(path)
-
+        responses = [
+            upstream.subprocess.CompletedProcess([], 0, "/mnt/c drvfs\n"),
+            upstream.subprocess.CompletedProcess([], 0, "C:\\CodexT01\\upstream\n"),
+        ]
+        with mock.patch.object(upstream, "_run_text", side_effect=responses) as run:
+            result = upstream.safe_sandbox_root(path)
         self.assertEqual(Path(result), path)
+        self.assertEqual(run.call_args_list, [
+            mock.call(["/usr/bin/findmnt", "-T", "/mnt/c", "-n", "-o", "TARGET,FSTYPE"], timeout=10),
+            mock.call(["/usr/bin/wslpath", "-w", str(path)], timeout=10),
+        ])
 
     def test_rejects_unc_non_ascii_spaces_and_ext4_paths(self) -> None:
         unsafe_paths = (
@@ -45,36 +53,48 @@ class SandboxPathTests(unittest.TestCase):
             upstream.safe_sandbox_root("/mnt/c/../../tmp/CodexT01/upstream")
 
     def test_rejects_existing_symlink_in_parent_chain(self) -> None:
-        with tempfile.TemporaryDirectory(prefix="t01-sandbox-", dir="/mnt/c") as temporary:
+        with tempfile.TemporaryDirectory(prefix="t01-sandbox-") as temporary:
             root = Path(temporary)
             real_parent = root / "real"
             real_parent.mkdir()
-            symlink_parent = root / "alias"
-            symlink_parent.symlink_to(real_parent, target_is_directory=True)
+            (root / "alias").symlink_to(real_parent, target_is_directory=True)
+            virtual = Path("/mnt/c/CodexT01")
+            exists, is_symlink = Path.exists, Path.is_symlink
 
-            with self.assertRaises(ValueError):
-                upstream.safe_sandbox_root(symlink_parent / "upstream")
+            def mapped(path):
+                return root / path.relative_to(virtual) if path.is_relative_to(virtual) else path
+
+            with mock.patch.object(Path, "exists", lambda path: exists(mapped(path))), \
+                    mock.patch.object(Path, "is_symlink", lambda path: is_symlink(mapped(path))), \
+                    mock.patch.object(upstream, "_run_text") as run:
+                with self.assertRaisesRegex(ValueError, "祖先にsymlink"):
+                    upstream.safe_sandbox_root(virtual / "alias" / "upstream")
+                run.assert_not_called()
 
     def test_rejects_drive_letter_that_is_not_mounted(self) -> None:
-        unmounted = next(
-            (
-                Path("/mnt") / letter
-                for letter in reversed(string.ascii_lowercase)
-                if not (Path("/mnt") / letter).is_mount()
-            ),
-            None,
-        )
-        if unmounted is None:
-            self.skipTest("全drive letterがmount済みのため未mount検査を作れません")
+        response = upstream.subprocess.CompletedProcess([], 0, "/ ext4\n")
+        with mock.patch.object(upstream, "_run_text", return_value=response) as run:
+            with self.assertRaisesRegex(ValueError, "mountされていません"):
+                upstream.safe_sandbox_root("/mnt/z/CodexT01/upstream")
+        self.assertEqual(run.call_count, 1)
 
-        with self.assertRaises(ValueError):
-            upstream.safe_sandbox_root(unmounted / "CodexT01" / "upstream")
+    def test_rejects_ext4_even_at_the_expected_drive_mount(self) -> None:
+        response = upstream.subprocess.CompletedProcess([], 0, "/mnt/c ext4\n")
+        with mock.patch.object(upstream, "_run_text", return_value=response) as run:
+            with self.assertRaisesRegex(ValueError, "DrvFS/9p"):
+                upstream.safe_sandbox_root("/mnt/c/CodexT01/upstream")
+        self.assertEqual(run.call_count, 1)
 
     def test_rejects_path_longer_than_windows_safe_limit(self) -> None:
         overlong = Path("/mnt/c/CodexT01") / ("a" * 241)
 
-        with self.assertRaises(ValueError):
-            upstream.safe_sandbox_root(overlong)
+        responses = [
+            upstream.subprocess.CompletedProcess([], 0, "/mnt/c drvfs\n"),
+            upstream.subprocess.CompletedProcess([], 0, "C:\\CodexT01\\" + "a" * 241),
+        ]
+        with mock.patch.object(upstream, "_run_text", side_effect=responses):
+            with self.assertRaisesRegex(ValueError, "長すぎます"):
+                upstream.safe_sandbox_root(overlong)
 
     def test_rejects_windows_shell_metacharacters_used_by_acl_command(self) -> None:
         unsafe_paths = (

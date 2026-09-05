@@ -41,12 +41,18 @@ class ReleaseContractTests(unittest.TestCase):
         stage, metadata = build_release._validate_stage()
         self.assertEqual(len(stage), 32 * 1024 * 1024)
         self.assertEqual(metadata["task"], build_release.STAGE_TASK)
-        self.assertTrue(all(metadata["acceptance"].values()))
+        self.assertTrue(metadata["invariants"])
+        self.assertTrue(all(value is True for value in metadata["invariants"].values()))
+        self.assertEqual(metadata["exact_case_matrix"]["case_count"], 2035)
         self.assertFalse(metadata["ram_audit"]["flash_serialized"])
         chain = build_release.build_qol_release.validate_stage_chain()
-        fixture = build_release.build_qol_release.validate_published_fixture()
-        self.assertEqual(chain["final_sha256"], metadata["output"]["sha256"])
-        self.assertEqual(fixture["rom_sha256"], metadata["output"]["sha256"])
+        stage25_sha = metadata["input"]["sha256"]
+        fixture = build_release._validate_qol_fixture(stage25_sha)
+        self.assertEqual(chain["final_sha256"], stage25_sha)
+        self.assertEqual(fixture["rom_sha256"], stage25_sha)
+        acquisition = build_release._read_json(build_release.ROOT / build_release.ACQUISITION_FIXTURE)
+        self.assertEqual(acquisition["rom_sha256"], metadata["output"]["sha256"])
+        self.assertEqual(acquisition["process_runs"], 2)
         self.assertTrue(all(fixture["continuous_save_contract"].values()))
 
     def test_factory_trial_remains_bound_below_final_stage(self) -> None:
@@ -63,9 +69,10 @@ class ReleaseContractTests(unittest.TestCase):
             (6, 3, 3, 600),
         )
 
-    def test_release_identity_is_v1_3_9(self) -> None:
-        self.assertEqual(build_release.VERSION, "1.3.9")
-        self.assertEqual(build_release.STAGE.name, "25_move_memory.gba")
+    def test_release_identity_is_v1_4_0_acquisition_package(self) -> None:
+        self.assertEqual(build_release.VERSION, "1.4.0")
+        self.assertEqual(build_release.STAGE.name, "26_acquisition_events.gba")
+        self.assertEqual(build_release.STAGE_TASK, "USER-20260816-ACQUISITION-EVENTS")
 
     def test_release_docs_cover_feature_matrix(self) -> None:
         files = {

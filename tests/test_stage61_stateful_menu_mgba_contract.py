@@ -404,7 +404,9 @@ class Stage61StatefulMenuMgbaContractTests(unittest.TestCase):
         completed = subprocess.run(
             [
                 "cc", "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror",
-                "-pedantic", str(SOURCE), "-o", str(cls.executable), "-lmgba",
+                "-pedantic", str(SOURCE),
+                str(ROOT / "tools/mgba_stage61_rfu_peripheral.c"),
+                "-o", str(cls.executable), "-lmgba",
             ],
             cwd=ROOT, text=True, stdout=subprocess.PIPE,
             stderr=subprocess.PIPE, timeout=120, check=False,

@@ -492,6 +492,11 @@ def _full_t05_fixture() -> tuple[
 
 def _write_complete_manifest_fixture(root: Path) -> None:
     shutil.copytree(ROOT / 'manifests', root / 'manifests')
+    # This fixture models completed T05 before population, not a partial T16 build.
+    # Later tracked manifests must not silently add private generated prerequisites.
+    from tools.content.populate_content import HEADERS as population_headers
+    for filename, header in population_headers.items():
+        _write_csv(root / 'manifests' / filename, header, [])
     loaded, t05_ranges, _ = _full_t05_fixture()
     for filename, rows in loaded.items():
         _write_csv(root / 'manifests' / filename, validator.EXPECTED[filename], rows)
