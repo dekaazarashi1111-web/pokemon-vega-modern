@@ -6,6 +6,8 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import shutil
+import tempfile
 import subprocess
 import sys
 import unittest
@@ -127,13 +129,23 @@ class FixedVegaMoveExtractionTests(unittest.TestCase):
             extract_vega_moves(REPO_ROOT, self.rom, policy)
 
     def test_cli_reads_only_fixed_config_and_reference_and_emits_json(self) -> None:
-        completed = subprocess.run(
-            [sys.executable, str(REPO_ROOT / "tools/engine/extract_vega_moves.py"), "--root", str(REPO_ROOT)],
-            check=False,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-        )
+        # The CLI owns fixed paths relative to --root; the user's ignored config
+        # is not a test prerequisite and must never be created or overwritten.
+        with tempfile.TemporaryDirectory(prefix="extract-vega-cli-") as temporary:
+            root = Path(temporary)
+            (root / "config").mkdir()
+            shutil.copyfile(REPO_ROOT / "config/project.example.toml", root / "config/project.toml")
+            for logical in ("build/reference/vega.gba", "vendor/upstream/CFRU-JP/charmap.tbl"):
+                target = root / logical
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(REPO_ROOT / logical, target)
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "tools/engine/extract_vega_moves.py"), "--root", str(root)],
+                check=False,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertEqual(completed.stderr, "")
         parsed = json.loads(completed.stdout)

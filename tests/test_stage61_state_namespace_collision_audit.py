@@ -9,6 +9,7 @@ from pathlib import Path
 from unittest import mock
 
 from tools import stage61_state_namespace_collision_audit as audit
+from tests.fixtures.private_unit_fixtures import ensure_stage60_test_ready_save
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        ensure_stage60_test_ready_save()
         cls.raw = (ROOT / audit.STAGE60_ROM_RELATIVE).read_bytes()
         cls.report = audit.build_stage61_state_namespace_collision_audit(ROOT)
         cls.installed_report = audit._build_stage61_installed_state_namespace_audit(

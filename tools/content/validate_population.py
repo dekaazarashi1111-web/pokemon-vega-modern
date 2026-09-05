@@ -166,8 +166,13 @@ def collect_population_errors(root: Path,
         (row["map_key"], int(row["group_id"]), int(row["map_id"]))
         for row in _rows(root / "manifests/map_ids.csv")
     }
-    audit = json.loads((root / "reports/generated/id_inventory.json").read_text(encoding="utf-8"))
-    vega_physical = {(int(row["group"]), int(row["map"])) for row in audit["map_details"]}
+    audit_path = root / "reports/generated/id_inventory.json"
+    try:
+        audit = json.loads(audit_path.read_text(encoding="utf-8"))
+        vega_physical = {(int(row["group"]), int(row["map"])) for row in audit["map_details"]}
+    except (OSError, ValueError, TypeError, KeyError):
+        errors.append("reports/generated/id_inventory.json: missing or invalid T16 physical map inventory")
+        return errors
     tohoku_nodes: set[tuple[int, int]] = set()
     for line, row in enumerate(bindings, 2):
         pair = (int(row["group_id"]), int(row["map_id"]))

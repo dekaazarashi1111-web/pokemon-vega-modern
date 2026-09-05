@@ -2,14 +2,17 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 import zipfile
 from pathlib import Path
 
+from scripts import build_event_authoring_packet as packet_builder
 from scripts.build_event_authoring_packet import PACKET_NAME, build_packet
 
 
@@ -21,8 +24,34 @@ HAS_STAGE35_INPUTS = all((ROOT / path).is_file() for path in (
 )) and (ROOT / "generated/maps/kanto").is_dir()
 
 
+def _fixture_history(base: Path) -> tuple[Path, str, str]:
+    repo = base / "history"
+    repo.mkdir()
+    def git(*args: str) -> str:
+        return subprocess.check_output(
+            ["git", "-c", "user.name=Unit Fixture", "-c", "user.email=fixture@example.invalid", *args],
+            cwd=repo, stderr=subprocess.PIPE, text=True,
+        ).strip()
+    git("init", "--quiet")
+    git("commit", "--allow-empty", "--quiet", "-m", "baseline")
+    baseline = git("rev-parse", "HEAD")
+    git("commit", "--allow-empty", "--quiet", "-m", "descendant")
+    head = git("rev-parse", "HEAD")
+    return repo, baseline, head
+
+
 @unittest.skipUnless(HAS_STAGE35_INPUTS, "Stage35 generated inputs are not present")
 class EventAuthoringPacketTests(unittest.TestCase):
+    def setUp(self) -> None:
+        temporary = self.enterContext(tempfile.TemporaryDirectory(prefix="packet-history-"))
+        repo, baseline, _ = _fixture_history(Path(temporary))
+        # The packet contract is exercised with real Git ancestry, independent
+        # of the enclosing checkout's shallow boundary or branch history.
+        self.enterContext(mock.patch.object(packet_builder, "STAGE35_BASELINE_COMMIT", baseline))
+        self.enterContext(mock.patch.dict(os.environ, {
+            "GIT_DIR": str(repo / ".git"), "GIT_WORK_TREE": str(repo),
+        }))
+
     def _build(self, base: Path, name: str) -> tuple[dict[str, object], Path, Path]:
         output = base / f"packet-{name}"
         archive = base / f"{name}.zip"
@@ -85,6 +114,32 @@ class EventAuthoringPacketTests(unittest.TestCase):
             report = json.loads(run.stdout)
             self.assertEqual(report["status"], "FAIL")
             self.assertTrue(any("bg host belongs to" in error for error in report["errors"]))
+
+
+class EventAuthoringHistoryBoundaryTests(unittest.TestCase):
+    def test_real_git_ancestry_is_required_even_for_a_valid_packet(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="packet-ancestry-") as temporary:
+            root = Path(temporary)
+            repo, baseline, head = _fixture_history(root)
+            stages = root / "build/stages"
+            stages.mkdir(parents=True)
+            (stages / "35_trainer_changekit_final.gba").write_bytes(b"synthetic unit fixture, not a ROM")
+            (stages / "35_trainer_changekit_final.json").write_text("{}")
+            packet = root / "packet"
+            packet.mkdir()
+            (packet / "README.md").write_text("synthetic packet")
+            with mock.patch.dict(os.environ, {"GIT_DIR": str(repo / ".git"), "GIT_WORK_TREE": str(repo)}):
+                with mock.patch.object(packet_builder, "STAGE35_BASELINE_COMMIT", baseline):
+                    manifest = packet_builder._manifest(root, packet, {})
+                    self.assertEqual(manifest["baseline"]["git_commit"], baseline)
+                    # A shallow boundary must not be mistaken for proof of ancestry.
+                    (repo / ".git/shallow").write_text(head + "\n")
+                    with self.assertRaisesRegex(packet_builder.PacketError, "not an ancestor"):
+                        packet_builder._manifest(root, packet, {})
+                    (repo / ".git/shallow").unlink()
+                with mock.patch.object(packet_builder, "STAGE35_BASELINE_COMMIT", "f" * 40):
+                    with self.assertRaisesRegex(packet_builder.PacketError, "not an ancestor"):
+                        packet_builder._manifest(root, packet, {})
 
 
 if __name__ == "__main__":
