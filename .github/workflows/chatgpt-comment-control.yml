@@ -1,0 +1,197 @@
+name: chatgpt-comment-control
+run-name: ChatGPT PR command #${{ github.event.issue.number }}
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: chatgpt-comment-${{ github.event.comment.id }}
+  cancel-in-progress: false
+
+jobs:
+  authorize:
+    if: >-
+      github.event.issue.pull_request != null &&
+      github.actor == github.repository_owner &&
+      (startsWith(github.event.comment.body, '/vega-test ') ||
+       startsWith(github.event.comment.body, '/vega-live ') ||
+       startsWith(github.event.comment.body, '/vega-live-write '))
+    runs-on: ubuntu-24.04
+    outputs:
+      kind: ${{ steps.parse.outputs.kind }}
+      suite: ${{ steps.parse.outputs.suite }}
+      action: ${{ steps.parse.outputs.action }}
+      request_json: ${{ steps.parse.outputs.request_json }}
+      confirm_write: ${{ steps.parse.outputs.confirm_write }}
+      head_sha: ${{ steps.pr.outputs.head_sha }}
+      head_ref: ${{ steps.pr.outputs.head_ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 固定commandを解析
+        id: parse
+        env:
+          GITHUB_COMMENT_BODY: ${{ github.event.comment.body }}
+        run: >-
+          python3 scripts/github_comment_control.py
+          --github-output "$GITHUB_OUTPUT"
+      - name: 同一repositoryのPR HEADへ固定
+        id: pr
+        uses: actions/github-script@v7
+        env:
+          EXPECTED_SHA: ${{ steps.parse.outputs.expected_sha }}
+        with:
+          script: |
+            const response = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+            const pull = response.data;
+            if (pull.head.repo.full_name !== `${context.repo.owner}/${context.repo.repo}`) {
+              core.setFailed('fork PRではcomment commandを実行しません');
+              return;
+            }
+            const expected = process.env.EXPECTED_SHA;
+            if (expected && pull.head.sha.toLowerCase() !== expected.toLowerCase()) {
+              core.setFailed(`PR HEAD不一致 expected=${expected} actual=${pull.head.sha}`);
+              return;
+            }
+            core.setOutput('head_sha', pull.head.sha);
+            core.setOutput('head_ref', pull.head.ref);
+
+  private_test:
+    needs: authorize
+    if: needs.authorize.outputs.kind == 'test'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.authorize.outputs.head_sha }}
+          persist-credentials: false
+      - name: 固定toolchainを導入
+        run: bash infra/setup_github_actions.sh --install
+      - name: Private Release資材を取得
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          mkdir -p .local/github-private-environment/assets
+          gh release download "$tag" \
+            --pattern 'pokemon-vega-private-env-v1-*.zip' \
+            --dir .local/github-private-environment/assets
+      - name: Private環境をhash検証して復元
+        run: >-
+          python3 scripts/github_private_environment.py restore
+          --archive-dir .local/github-private-environment/assets
+      - name: 固定suiteを実行
+        env:
+          SUITE: ${{ needs.authorize.outputs.suite }}
+        # issue_comment workflowは既定branch上のこのallowlistを実行する。
+        # checkout先が制御script追加前のPR HEADでも検証できるようinlineに保つ。
+        run: |
+          set -euo pipefail
+          case "$SUITE" in
+            battle-cli-offline)
+              python3 -m unittest \
+                tests.test_codex_battle_runtime \
+                tests.test_codex_battle_rewards \
+                tests.test_windows_battle_catalog \
+                tests.test_windows_box14_vault \
+                tests.test_vega_codex_battle_protocol_rebind
+              python3 tools/vega_codex_battle.py --version
+              python3 tools/vega_codex_battle.py \
+                catalog species search --query ピカチュウ --limit 3 --json
+              ;;
+            stage62-check)
+              python3 scripts/build_stage62_npc_placement_integrity_repair.py check --runs 2
+              ;;
+            stage62-mgba)
+              python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2
+              ;;
+            full-unit)
+              make test
+              ;;
+            all)
+              python3 scripts/build_stage62_npc_placement_integrity_repair.py check --runs 2
+              python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2
+              make test
+              python3 tools/vega_codex_battle.py --version
+              python3 tools/vega_codex_battle.py \
+                catalog species search --query ピカチュウ --limit 3 --json
+              ;;
+            *)
+              printf '%s\n' "unknown suite: $SUITE" >&2
+              exit 2
+              ;;
+          esac
+
+  live_battle:
+    needs: authorize
+    if: needs.authorize.outputs.kind == 'live'
+    runs-on: [self-hosted, linux, x64, pokemon-vega-live]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.authorize.outputs.head_sha }}
+          persist-credentials: false
+      - name: host-local CLIのidentity確認
+        run: vega-codex-battle --version
+      - name: read-only commandを状態再読付きで実行
+        if: needs.authorize.outputs.confirm_write != 'true'
+        env:
+          VEGA_BATTLE_REQUEST: ${{ needs.authorize.outputs.request_json }}
+        run: python3 scripts/run_github_battle_command.py
+      - name: 明示確認済みwrite commandを状態再読付きで実行
+        if: needs.authorize.outputs.confirm_write == 'true'
+        env:
+          VEGA_BATTLE_REQUEST: ${{ needs.authorize.outputs.request_json }}
+        run: python3 scripts/run_github_battle_command.py --confirm-write
+
+  report:
+    needs: [authorize, private_test, live_battle]
+    if: always() && needs.authorize.result == 'success'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: PRへ実行結果を返す
+        uses: actions/github-script@v7
+        env:
+          KIND: ${{ needs.authorize.outputs.kind }}
+          SUITE: ${{ needs.authorize.outputs.suite }}
+          ACTION: ${{ needs.authorize.outputs.action }}
+          HEAD_REF: ${{ needs.authorize.outputs.head_ref }}
+          HEAD_SHA: ${{ needs.authorize.outputs.head_sha }}
+          PRIVATE_RESULT: ${{ needs.private_test.result }}
+          LIVE_RESULT: ${{ needs.live_battle.result }}
+        with:
+          script: |
+            const kind = process.env.KIND;
+            const result = kind === 'test'
+              ? process.env.PRIVATE_RESULT : process.env.LIVE_RESULT;
+            const label = kind === 'test'
+              ? `private suite ${process.env.SUITE}`
+              : `live action ${process.env.ACTION}`;
+            const url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: [
+                `ChatGPT comment command: **${result.toUpperCase()}**`,
+                '',
+                `- command: \`${label}\``,
+                `- ref: \`${process.env.HEAD_REF}\``,
+                `- SHA: \`${process.env.HEAD_SHA}\``,
+                `- run: ${url}`,
+              ].join('\n'),
+            });

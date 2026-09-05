@@ -520,7 +520,7 @@ github-private-assets-restore:
 	$(PYTHON) scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
 
 github-battle-wrapper-test:
-	$(PYTHON) -m unittest tests.test_run_github_battle_command tests.test_github_private_environment
+	$(PYTHON) -m unittest tests.test_run_github_battle_command tests.test_github_private_environment tests.test_github_comment_control tests.test_run_github_private_suite
 
 clean-build:
 	@for dir in build generated reports/generated dist; do \

@@ -5,10 +5,10 @@
 この文書は、private GitHub repositoryをChatGPT Webへ接続し、現行ソース・全テスト・固定mGBA・
 ROM開発資材・対戦CLIの状態を同じhashで参照／検証するための入口を定める。
 
-通常のChatGPT WebのGitHubアプリはrepositoryの読取・検索専用であり、shell実行、commit、push、
-Pull Request作成、GitHub Actions起動は行わない。コードを直接編集してpushする機能はCodex製品の
-境界である。このrepositoryは、ChatGPT Webには設計・コード読取を、GitHub Actionsには実行と証跡を
-担当させる。ChatGPT Webのブラウザ操作でActions画面を扱える場合でも、GitHubアプリの権限とは別である。
+GitHub connectorの操作範囲は、利用中のplugin、connector action control、GitHub側認可で変わる。
+このrepositoryではChatGPT Webから読取、branch／commit、Draft PR、PRコメント、既存Actions再実行まで
+実証済みだが、新しい`workflow_dispatch` actionは提供されていなかった。その差を吸収するため、
+ChatGPT Webが実行できるownerのPRコメントを、固定allowlistのActions要求へ変換する。
 
 ## Repository構成
 
@@ -54,6 +54,31 @@ Actionsの`private-runtime`を手動実行し、次から選ぶ。
 - `stage62-check`: 現行Stage61入力からStage62成果を副作用なしで照合。
 - `stage62-mgba`: Stage62のmGBA fixtureを独立2 processで実行。
 - `full-unit`: private環境を復元して全unit testを実行。
+- `all`: Stage62 check、Stage62 mGBA、全unit test、CLI起動／catalog読取を1回の復元で実行。
+
+### ChatGPT WebからPRコメントで起動する
+
+ChatGPT Webは、同一repository内の対象branchでDraft PRを作成し、そのPRへ次のいずれかを1行だけ
+コメントする。新しい`workflow_dispatch` toolやtoken貼付は不要である。
+
+```text
+/vega-test stage62-check
+/vega-test stage62-mgba
+/vega-test full-unit
+/vega-test battle-cli-offline
+/vega-test all
+```
+
+特定のPR HEADだけを許可する場合は40桁commit SHAを末尾へ付ける。
+
+```text
+/vega-test all 93bd5d67da52eca6c99f58b15850713f3d9e0ee6
+```
+
+既定branch上の`chatgpt-comment-control`が、コメント投稿者がrepository ownerであること、対象がPRで
+あること、PR headが同一repositoryであること、任意のexpected SHAが一致することを確認する。
+成功した要求だけがexact PR HEADをcheckoutし、private Releaseをhash検証して復元する。結果とrun URLは
+同じPRへ自動コメントされる。
 
 GitHub-hosted runnerはprivate LANのiPadへ到達できないため、実機対戦には使わない。
 
@@ -64,6 +89,23 @@ versioned `vega-codex-battle`とowner-only device設定が必要である。
 
 Actionsの`live-battle-cli`へJSON requestを渡す。全commandは最初に`doctor`、`session guide`、
 `match status`を再読する。write actionは`confirm_write=true`の時だけ実行する。
+
+ChatGPT Webからは、対象PRへread actionを次の形式でコメントする。
+
+```text
+/vega-live {"action":"doctor"}
+/vega-live {"action":"match_status"}
+/vega-live {"action":"match_view"}
+```
+
+write actionは明示的に別prefixを使う。このprefixだけがwrapperへ`--confirm-write`を渡す。
+
+```text
+/vega-live-write {"action":"match_configure","level":"flat50"}
+```
+
+read prefixへwrite actionを渡すこと、write prefixへread actionを渡すこと、allowlist外action、owner以外、
+fork PRはすべて拒否する。live結果も同じPRへrun URL付きで自動コメントする。
 
 読取例:
 

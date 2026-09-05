@@ -14,6 +14,7 @@ on:
           - stage62-check
           - stage62-mgba
           - full-unit
+          - all
 
 permissions:
   contents: read
@@ -47,31 +48,4 @@ jobs:
       - name: 選択suiteを実行
         env:
           SUITE: ${{ inputs.suite }}
-        run: |
-          set -euo pipefail
-          case "$SUITE" in
-            battle-cli-offline)
-              python3 -m unittest \
-                tests.test_codex_battle_runtime \
-                tests.test_codex_battle_rewards \
-                tests.test_windows_battle_catalog \
-                tests.test_windows_box14_vault \
-                tests.test_vega_codex_battle_protocol_rebind
-              python3 tools/vega_codex_battle.py --version
-              python3 tools/vega_codex_battle.py \
-                catalog species search --query ピカチュウ --limit 3 --json
-              ;;
-            stage62-check)
-              python3 scripts/build_stage62_npc_placement_integrity_repair.py check --runs 2
-              ;;
-            stage62-mgba)
-              python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2
-              ;;
-            full-unit)
-              make test
-              ;;
-            *)
-              printf '%s\n' "unknown suite: $SUITE" >&2
-              exit 2
-              ;;
-          esac
+        run: python3 scripts/run_github_private_suite.py "$SUITE"

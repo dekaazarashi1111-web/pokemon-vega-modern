@@ -27,7 +27,8 @@ ChatGPT Webからprivate GitHub repositoryを読む場合は、
 `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`と
 `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`を入口にします。ROM／生成済みstateは通常Gitへ入れず、
 hash固定したprivate ReleaseからGitHub Actionsへ復元します。実iPad対戦CLIはLANへ到達できる
-self-hosted runnerだけで実行します。
+self-hosted runnerだけで実行します。ChatGPT Webに新規`workflow_dispatch`操作が無い場合は、対象PRへ
+`/vega-test all <HEAD SHA>`をコメントするとowner限定workflowが同等の新規test runを起動します。
 
 ## 重要な正本
 
