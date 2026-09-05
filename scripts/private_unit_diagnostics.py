@@ -62,7 +62,7 @@ def baseline() -> None:
     if os.environ.get('GITHUB_REPOSITORY') != REPO:
         raise SystemExit('repository mismatch')
     # gh handles authenticated GitHub redirects; never print the token or raw log.
-    raw = subprocess.run(['gh', 'api', 'repos/' + REPO + '/actions/jobs/101309429531/logs'],
+    raw = subprocess.run(['gh', 'api', '--allow-escape-sequences', 'repos/' + REPO + '/actions/jobs/101309429531/logs'],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90, check=True).stdout
     text = raw.decode('utf-8', errors='replace')
     lines = [re.sub(r'^\d{4}-\d\d-\d\dT[^ ]+ ', '', line) for line in text.splitlines()]
