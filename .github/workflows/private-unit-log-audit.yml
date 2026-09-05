@@ -1,0 +1,45 @@
+name: private-unit-log-audit
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905-r2'
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: exact HEADとsource境界を確認
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest tests.test_audit_private_unit_log
+      - name: 元runの生ログを再取得し許可項目だけを集計
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/audit_private_unit_log.py --output build/private-unit-log-audit/report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-unit-log-audit-${{ github.event.pull_request.head.sha }}
+          path: build/private-unit-log-audit/report.json
+          retention-days: 1
+          if-no-files-found: error
