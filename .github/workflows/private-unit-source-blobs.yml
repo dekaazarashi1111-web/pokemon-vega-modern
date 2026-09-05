@@ -1,0 +1,37 @@
+name: private-unit-source-blobs
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  prepare:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.number == 3 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905-r2'
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest tests.test_prepare_private_unit_source_blobs
+      - name: 固定差分から未参照blobだけを準備（ref更新なし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -m scripts.prepare_private_unit_source_blobs --plan config/private_unit_source_edits.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-unit-source-blobs-${{ github.event.pull_request.head.sha }}
+          path: build/private-unit-source-blobs/result.json
+          retention-days: 1
+          if-no-files-found: error

@@ -73,6 +73,8 @@ jobs:
           done
       - name: 外側と全member hashを維持して復元
         run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
+      - name: 非秘密hashの状態を採取
+        run: python3 -m scripts.probe_private_unit_state > /dev/null 2>&1
       - name: focused unit実行（生の出力は破棄、許可した結果だけ保存）
         run: |
           status=0
@@ -91,6 +93,6 @@ jobs:
         if: always()
         with:
           name: private-unit-focus-${{ github.event.pull_request.head.sha }}
-          path: build/private-unit-focus/result.json
+          path: build/private-unit-focus/*.json
           retention-days: 1
           if-no-files-found: error
