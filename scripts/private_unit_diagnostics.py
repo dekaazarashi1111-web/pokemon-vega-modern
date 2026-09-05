@@ -65,7 +65,9 @@ def baseline() -> None:
     raw = subprocess.run(['gh', 'api', '--allow-escape-sequences', 'repos/' + REPO + '/actions/jobs/101309429531/logs'],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=90, check=True).stdout
     text = raw.decode('utf-8', errors='replace')
-    lines = [re.sub(r'^\d{4}-\d\d-\d\dT[^ ]+ ', '', line) for line in text.splitlines()]
+    clean = re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', text)
+    lines = [re.sub(r'^\d{4}-\d\d-\d\dT[^ ]+ ', '', line).replace('##[error]', '').strip()
+             for line in clean.splitlines()]
     outcomes, skipped = [], []
     for line in lines:
         match = re.match(r'^(ERROR|FAIL): (.+)$', line)
@@ -76,12 +78,12 @@ def baseline() -> None:
             skipped.append({'test': match[1], 'reason': match[2]})
     final = re.findall(r'Ran (\d+) tests in ([\d.]+)s', text)[-1]
     summary = re.findall(r'FAILED \(failures=(\d+), errors=(\d+), skipped=(\d+)\)', text)[-1]
-    if (final[0], *summary) != ('1594', '17', '41', '29') or len(outcomes) != 58 or text.lower().count('capstone') != 0:
-        raise SystemExit('baseline evidence differs')
     write('baseline.json', {'run_id': 33967241290, 'job_id': 101309429531,
         'raw_log_sha256': sha(raw), 'tests': int(final[0]), 'seconds': float(final[1]),
         'failures': int(summary[0]), 'errors': int(summary[1]), 'skipped': int(summary[2]),
         'capstone_mentions': 0, 'outcomes': outcomes, 'skip_records': skipped})
+    if (final[0], *summary) != ('1594', '17', '41', '29') or len(outcomes) != 58 or text.lower().count('capstone') != 0:
+        raise SystemExit('baseline evidence differs; sanitized observed records were retained')
     print('baseline verified: tests=1594 failures=17 errors=41 skipped=29 capstone=0')
 
 
@@ -146,6 +148,26 @@ def snapshot() -> None:
                 'reference_sha256': row.get('sha256'), 'package': version.stdout.strip(), 'owner_status': owner.returncode}
     probe = subprocess.run(['/usr/bin/python3', '-I', '-c', 'import sys,sysconfig,platform,json; print(json.dumps({"version":sys.version,"soabi":sysconfig.get_config_var("SOABI"),"platform":platform.machine(),"implementation":sys.implementation.name}))'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
     write('host-toolchain.json', {'tools': toolchain, 'python_abi': json.loads(probe.stdout)})
+    extra = {'vendor_diff': git('diff', '--', 'src/dynamax.c', cwd=vendor)}
+    fixed_files = {}
+    for name, row in metadata.items():
+        for path_text, identity in row['value'].get('fingerprint_inputs', {}).get('files', {}).items():
+            path = ROOT / path_text
+            if path.is_file():
+                current = sha(path.read_bytes())
+                if current != identity.get('sha256'):
+                    fixed_files.setdefault(name, []).append({'path': path_text, 'recorded': identity.get('sha256'), 'actual': current})
+    extra['fingerprint_source_drift'] = fixed_files
+    import zipfile
+    archives = []
+    for start in (ROOT / 'userfile', ROOT / '.local/github-private-environment/PRIVATE_INPUTS'):
+        if start.is_dir():
+            for path in start.rglob('*.zip'):
+                with zipfile.ZipFile(path) as archive:
+                    relevant = [name for name in archive.namelist() if name.endswith(('nature_ids.csv', 'species_catalog.csv', 'trainer_changekit_final.json'))]
+                archives.append({'path': str(path.relative_to(ROOT)), 'sha256': sha(path.read_bytes()), 'relevant_members': relevant})
+    extra['nested_archives'] = archives
+    write('additional-context.json', extra)
     print('non-secret metadata snapshot written')
 
 
