@@ -121,7 +121,10 @@ jobs:
         run: |
           mkdir -p .local/github-private-environment/assets
           tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
-          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern 'private-environment-*.zip' --dir .local/github-private-environment/assets
+          mapfile -t archives < <(python3 -c 'import json; print("\n".join(row["name"] for row in json.load(open("config/github_private_environment.json"))["archives"]))')
+          for name in "${archives[@]}"; do
+            gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern "$name" --dir .local/github-private-environment/assets
+          done
       - name: 外側・member hashを維持して復元
         run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
       - name: 復元時の非秘密metadataを採取
