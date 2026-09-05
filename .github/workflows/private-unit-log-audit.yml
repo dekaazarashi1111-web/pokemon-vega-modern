@@ -43,3 +43,36 @@ jobs:
           path: build/private-unit-log-audit/report.json
           retention-days: 1
           if-no-files-found: error
+  comment-evidence:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.number == 3 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905-r2' &&
+      contains(github.event.pull_request.body, '<!-- collect-current-head -->')
+    permissions:
+      contents: read
+      actions: read
+      issues: read
+      pull-requests: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: 証跡集計器の境界テスト
+        run: python3 -m unittest tests.test_collect_comment_suite_evidence
+      - name: 同一HEADの3つのcomment起動結果を照合
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -m scripts.collect_comment_suite_evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: private-comment-evidence-${{ github.event.pull_request.head.sha }}
+          path: build/private-comment-evidence/result.json
+          retention-days: 1
+          if-no-files-found: error
