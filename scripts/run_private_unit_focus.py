@@ -15,6 +15,9 @@ sys.path.insert(0, str(ROOT))
 TARGETS = (
     'tests.test_audit_private_unit_log',
     'tests.test_run_private_unit_focus',
+    'tests.test_portable_python_identity',
+    'tests.test_prepare_private_unit_source_blobs',
+    'tests.test_vega_adapter',
     'tests.test_build_upstream.SandboxPathTests',
     'tests.test_event_authoring_packet',
     'tests.test_extract_vega_moves.FixedVegaMoveExtractionTests.test_cli_reads_only_fixed_config_and_reference_and_emits_json',

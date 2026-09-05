@@ -156,6 +156,18 @@ def _verify_toolchain(manifest_path: Path) -> dict[str, dict[str, str]]:
         ):
             raise AdapterBuildError(f"invalid pinned tool contract: {key}")
         observed_digest = _sha256_file(path)
+        if key == "python" and raw.get("identity_policy") == "UBUNTU_CPYTHON_PACKAGE_ABI_V1":
+            # This script is launched by the module Makefile with an isolated PATH.
+            root = Path(__file__).resolve().parents[2]
+            sys.path.insert(0, str(root))
+            from scripts.portable_python_identity import PythonIdentityError, verify
+            try:
+                identities[key] = verify(path, digest, version)
+            except PythonIdentityError as error:
+                raise AdapterBuildError(str(error)) from error
+            if Path(sys.executable).resolve() != path.resolve():
+                raise AdapterBuildError("builder must run with the pinned /usr/bin/python3")
+            continue
         if observed_digest != digest:
             raise AdapterBuildError(
                 f"pinned tool SHA-256 mismatch for {key}: {observed_digest}"

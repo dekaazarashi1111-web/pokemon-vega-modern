@@ -181,10 +181,21 @@ class VegaAdapterTests(unittest.TestCase):
         }
         self.assertEqual(set(self.metadata["toolchain"]), expected_tools)
         for key in expected_tools:
-            self.assertEqual(
-                self.metadata["toolchain"][key]["sha256"],
-                manifest["tools"][key]["sha256"],
-            )
+            identity = self.metadata["toolchain"][key]
+            if key == "python":
+                self.assertEqual(identity["sha256"], sha256(Path("/usr/bin/python3").read_bytes()))
+                self.assertEqual(identity["reference_sha256"], manifest["tools"][key]["sha256"])
+                self.assertEqual(identity["identity_policy"], "UBUNTU_CPYTHON_PACKAGE_ABI_V1")
+                self.assertEqual(identity["package"], "python3.12-minimal")
+                self.assertRegex(identity["package_version"], r"^3\.12\.3-1ubuntu0\.[0-9]+$")
+                self.assertEqual(identity["package_architecture"], "amd64")
+                self.assertEqual(identity["soabi"], "cpython-312-x86_64-linux-gnu")
+                self.assertEqual(identity["function_probe"], "PASS")
+                if identity["sha256"] != identity["reference_sha256"]:
+                    self.assertEqual(identity["verification"], "APT_PACKAGE_SHA256_MEMBER_SHA256_ABI")
+                    self.assertRegex(identity["package_sha256"], r"^[0-9a-f]{64}$")
+            else:
+                self.assertEqual(identity["sha256"], manifest["tools"][key]["sha256"])
 
     def test_old_dpe_overlapping_and_unaligned_origins_are_rejected(self) -> None:
         with tempfile.TemporaryDirectory(prefix="t03-vega-adapter-negative-") as raw:
