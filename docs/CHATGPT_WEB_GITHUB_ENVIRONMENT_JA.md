@@ -19,6 +19,10 @@ Pull Request作成、GitHub Actions起動は行わない。コードを直接編
   Stage62 mGBA、対戦CLIのoffline回帰を実行する。
 - self-hosted Actions: 現在のWSLと同じLAN／owner-only device設定を使い、実iPadの対戦CLIを実行する。
 
+GitHub-hosted runnerではUbuntuのsecurity revisionは現行配布版を使い、Python、host GCC、ARM GCC、
+mGBAの実行版を`infra/toolchain_manifest.json`と照合する。OS package revisionやLAN／device状態まで
+現行WSLと同一にする役割はself-hosted runnerが持つ。
+
 private ReleaseはGit履歴へROMを入れない。各assetの外側SHA-256と全memberのsize／SHA-256を
 `config/github_private_environment.json`およびasset内manifestで固定する。復元処理はpath traversal、
 symlink、未宣言member、hash不一致を拒否する。

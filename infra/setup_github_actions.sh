@@ -32,7 +32,9 @@ with open(sys.argv[1], encoding="utf-8") as stream:
     manifest = json.load(stream)
 for package in manifest["apt"]["packages"]:
     if package.get("install", False):
-        print(f'{package["name"]}={package["version"]}')
+        # GitHub-hosted Ubuntuのsecurity revisionは継続更新されるため、
+        # package revisionではなく下段の実行tool identityを固定する。
+        print(package["name"])
 PY
   )
   /usr/bin/sudo /usr/bin/apt-get update
