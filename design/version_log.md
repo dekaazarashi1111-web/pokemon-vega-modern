@@ -1442,3 +1442,14 @@
   - Stage61原本とその他の保護対象save全57件を不変に保った。
   - 現行プレイ基準とCodex CLI protocolは、明示的な採用切替までStage61のまま維持した。
 - Verify: RetroArch停止、live save directory、Stage62 ROM identity、source／target save 131,072 bytes・SHA-256一致、read-back byte一致、Stage61原本・保護対象save不変、remote一時ファイル0をPASS。save SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`。
+
+## 2026-09-05T20:59:09+09:00
+
+- Version: `github-private-environment-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260905-CHATGPT-WEB-GITHUB-ENVIRONMENT` / ChatGPT Web向けprivate GitHub開発・テスト環境
+- Summary:
+  - 現行workspaceをprivate GitHub repositoryへpushし、Git管理外のROM／save／build stateをhash固定した4分割private Releaseとして安全に復元可能にした。
+  - source CIとprivate full-runtime CI、versioned対戦CLIのself-hosted workflowを追加した。mGBA 0.10.2を含むtoolchain導入とGitHub上の対戦CLI offline回帰を実証した。
+  - private key／credentialは検出・除外し、Git履歴とReleaseへ入れていない。self-hosted runnerをowner-onlyで常駐・online化した。
+- Verify: local asset build／secret scan／22,090 member hash／clean restore、focused unit 37件、source validation、private guard、manifest、toolchain、actionlint PASS。GitHub Actions source run `33964354969`、private runtime run `33964356063` PASS。live doctorはCLI identityまでPASSし、実機RetroArch NCI未起動で安全停止。

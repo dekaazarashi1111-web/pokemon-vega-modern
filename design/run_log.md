@@ -3721,3 +3721,45 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - インターネット未使用。同一private LAN上のユーザー所有iPad内でsaveを複製しread-backした。接続先、credential、container UUID、端末固有絶対path、private save内容はtracked成果へ保存していない。
+
+## 2026-09-05T20:59:09+09:00
+
+- Task: `USER-20260905-CHATGPT-WEB-GITHUB-ENVIRONMENT` / ChatGPT Web向けprivate GitHub開発・テスト環境
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - GitHub認証をtoken非表示で確認し、private repository `dekaazarashi1111-web/pokemon-vega-modern`を作成した。現行ソース、全tracked test、履歴branch、既存version tagをpushし、`main`を既定branchにした。
+  - Git管理外のROM、patch、save、vendor、generated report、Stage61／Stage62を含むbuild stateを、4個・合計1,902,616,082 bytesのversioned private Release assetへ格納した。外側と全22,090 memberのsize／SHA-256を固定し、安全な復元とprivate input link再構成を実装した。
+  - 受領済みiPad toolkit内のOpenSSH private keyを検出し、credential subtreeと秘密鍵入り元ZIPをReleaseから除外した。Git履歴にもReleaseにもcredential、GitHub token、device hostを入れていない。
+  - GitHub-hostedの`source-validation`と`private-runtime`、self-hostedの`live-battle-cli`を追加した。private runtimeはmGBA 0.10.2、ARM GCC、Pillowを導入し、Releaseをhash検証して復元後、対戦CLI offline回帰を実行する。
+  - self-hosted runner `pokemon-vega-live-wsl` v2.337.0をSHA-256検証してowner-only領域へ登録し、linger有効なuser systemd serviceとして常駐・online化した。versioned CLI 2.5.1のGitHub job呼出しを確認した。実機preflightはRetroArch NCI未起動のため`TRANSPORT`で停止し、ROM／saveへの書込みは行っていない。
+  - 通常のChatGPT Web GitHubアプリはrepository読取用であり、実行はActionsへ分離した。ユーザーからChatGPT Web側は接続済みと確認された。
+- Files changed:
+  - `.github/workflows/ci.yml`
+  - `.github/workflows/private-runtime.yml`
+  - `.github/workflows/live-battle-cli.yml`
+  - `config/github_private_environment.json`
+  - `infra/setup_github_actions.sh`
+  - `infra/toolchain_manifest.json`
+  - `scripts/github_private_environment.py`
+  - `scripts/run_github_battle_command.py`
+  - `tests/test_github_private_environment.py`
+  - `tests/test_run_github_battle_command.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `README.md`
+  - `Makefile`
+  - `design/run_log.md`
+  - `design/version_log.md`
+  - Git管理外成果: private Release asset 4個、self-hosted Actions runner本体とowner-only認証、user systemd service。
+- Verify:
+  - `python3 -m py_compile scripts/github_private_environment.py scripts/run_github_battle_command.py`: PASS。
+  - `python3 -m unittest tests.test_github_private_environment tests.test_run_github_battle_command`: 7件PASS。
+  - 対戦CLI focused unit: 37件PASS。`python3 scripts/validate_manifests.py`、`bash infra/setup_github_actions.sh --check`、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - actionlint v1.7.12を公式SHA-256検証後に3 workflowへ実行: PASS（既知custom runner labelのみ明示許可）。
+  - private asset build／secret scan／outer+全member hash check: 4 asset、22,090 files PASS。clean一時workspaceへの全復元、private input link 6件、clean ROM／Stage61／Stage62 SHA-256照合: PASS。
+  - GitHub `source-validation`: run `33964354969` PASS。GitHub `private-runtime / battle-cli-offline`: run `33964356063` PASS（toolchain、1.9 GB Release取得、hash復元、suiteの全step PASS）。
+  - GitHub Release `private-environment-v1`: 4 assetのstate、size、GitHub表示digestがlocal manifestと一致。self-hosted runner API status `online`、systemd service `active`を確認。
+  - GitHub `live-battle-cli / doctor`: runner checkoutとCLI 2.5.1 identityはPASS、live stateは`RetroArch NCI is unavailable`で停止。外部実機が未起動のため想定された非書込みpreflight結果。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - OpenAI公式資料でChatGPT Web GitHub接続と実行環境の境界を確認した。GitHub公式API／CLIでprivate repository作成、push、Release upload、Actions実行、runner登録を行った。runner配布物v2.337.0はGitHub公式Release記載SHA-256 `70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613`と照合した。credential、token、device情報は出力・tracked成果へ保存していない。
