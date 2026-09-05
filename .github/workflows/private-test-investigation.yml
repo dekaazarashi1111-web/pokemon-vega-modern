@@ -1,0 +1,81 @@
+name: private-test-investigation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  source-context:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Git管理内の境界を検査
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+      - name: 調査用のsourceだけをprivate artifactへまとめる
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import subprocess
+          import zipfile
+          from scripts.github_private_environment import SECRET_FILENAMES, SECRET_PATTERNS
+
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          if head != os.environ['EXPECTED_HEAD']:
+              raise SystemExit('exact HEAD mismatch')
+          allowed = {'.py', '.json', '.jsonl', '.csv', '.toml', '.yml', '.yaml', '.c', '.h',
+                     '.s', '.S', '.ld', '.inc', '.asm', '.sh', '.ps1', '.md', '.txt', '.mk'}
+          roots = {'scripts', 'tests', 'config', 'infra', 'tools', 'manifests', 'overlays',
+                   'templates', 'content', 'data', 'tasks', 'state', 'design', '.github', 'docs'}
+          names = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          out = Path('build/private-investigation')
+          out.mkdir(parents=True, exist_ok=True)
+          rows = []
+          excluded = 0
+          with zipfile.ZipFile(out / 'source-context.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(filter(None, names)):
+                  path = Path(name)
+                  if name not in {'Makefile', 'README.md', '.gitignore'} and (
+                          path.parts[0] not in roots or path.suffix not in allowed):
+                      continue
+                  if path.is_symlink() or not path.is_file() or path.name.lower() in SECRET_FILENAMES:
+                      excluded += 1
+                      continue
+                  payload = path.read_bytes()
+                  if any(pattern.search(payload) for pattern in SECRET_PATTERNS.values()):
+                      excluded += 1
+                      continue
+                  archive.writestr(name, payload)
+                  rows.append({'path': name, 'size': len(payload),
+                               'sha256': hashlib.sha256(payload).hexdigest()})
+              archive.writestr('SOURCE_CONTEXT_MANIFEST.json', json.dumps(
+                  {'head': head, 'files': rows, 'excluded_sensitive_files': excluded},
+                  ensure_ascii=False, sort_keys=True, indent=2))
+          digest = hashlib.sha256((out / 'source-context.zip').read_bytes()).hexdigest()
+          print(json.dumps({'head': head, 'source_files': len(rows),
+                            'excluded_sensitive_files': excluded, 'sha256': digest}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-context-${{ github.event.pull_request.head.sha }}
+          path: build/private-investigation/source-context.zip
+          retention-days: 1
+          if-no-files-found: error
