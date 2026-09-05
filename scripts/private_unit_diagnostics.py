@@ -134,6 +134,18 @@ def snapshot() -> None:
     write('fixture-locations.json', {'authoring_registries': located,
         'project_config_exists': (ROOT / 'config/project.toml').is_file(),
         'stage60_save_exists': (ROOT / '.local/60_wild_species_root_repair.srm').is_file()})
+    toolchain = {}
+    manifest = json.loads((ROOT / 'infra/toolchain_manifest.json').read_text())
+    for key, row in manifest['tools'].items():
+        path = Path(row['path'])
+        if path.is_file():
+            owner = subprocess.run(['/usr/bin/dpkg-query', '-S', str(path.resolve())], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            package = owner.stdout.partition(': ')[0]
+            version = subprocess.run(['/usr/bin/dpkg-query', '-W', '-f=${Package} ${Version} ${Architecture}', package], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            toolchain[key] = {'path': str(path), 'resolved': str(path.resolve()), 'sha256': sha(path.read_bytes()),
+                'reference_sha256': row.get('sha256'), 'package': version.stdout.strip(), 'owner_status': owner.returncode}
+    probe = subprocess.run(['/usr/bin/python3', '-I', '-c', 'import sys,sysconfig,platform,json; print(json.dumps({"version":sys.version,"soabi":sysconfig.get_config_var("SOABI"),"platform":platform.machine(),"implementation":sys.implementation.name}))'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
+    write('host-toolchain.json', {'tools': toolchain, 'python_abi': json.loads(probe.stdout)})
     print('non-secret metadata snapshot written')
 
 
