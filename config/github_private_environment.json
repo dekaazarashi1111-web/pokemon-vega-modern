@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "release": {
+    "tag": "private-environment-v1",
+    "title": "Private development environment v1"
+  },
+  "archives": [
+    {
+      "name": "pokemon-vega-private-env-v1-inputs.zip",
+      "size": 101188064,
+      "sha256": "931da72bdbac42d4d24e6ae1ee237d6203d792f4369775f28b878e579c1f9065",
+      "sources": [
+        {
+          "source": "@workspace_parent/PRIVATE_INPUTS",
+          "destination": ".local/github-private-environment/PRIVATE_INPUTS",
+          "exclude": []
+        },
+        {
+          "source": "userfile",
+          "destination": "userfile",
+          "exclude": [
+            "imports/ipad-wifi-ssh-toolkit-20260821/iPad-WiFi-SSH-Toolkit.zip",
+            "imports/ipad-wifi-ssh-toolkit-20260821/unpacked/iPad-WiFi-SSH-Toolkit/credentials"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pokemon-vega-private-env-v1-state.zip",
+      "size": 219004812,
+      "sha256": "b4a180abbecf4743db86269043b0461b92cd435e2d589d03b971488bd03eb63d",
+      "sources": [
+        {
+          "source": "vendor",
+          "destination": "vendor",
+          "exclude": []
+        },
+        {
+          "source": "generated",
+          "destination": "generated",
+          "exclude": []
+        },
+        {
+          "source": "reports/generated",
+          "destination": "reports/generated",
+          "exclude": []
+        },
+        {
+          "source": "dist",
+          "destination": "dist",
+          "exclude": []
+        },
+        {
+          "source": ".local/stage61-mgba-0.10.2",
+          "destination": ".local/stage61-mgba-0.10.2",
+          "exclude": [
+            ".git/index.lock"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pokemon-vega-private-env-v1-build-stages.zip",
+      "size": 857520972,
+      "sha256": "c33761fe388c0086e8af21f8b1d82e6ae97a314372a8497ae67751001c3d6514",
+      "sources": [
+        {
+          "source": "build/stages",
+          "destination": "build/stages",
+          "exclude": []
+        },
+        {
+          "source": "build/reference",
+          "destination": "build/reference",
+          "exclude": []
+        },
+        {
+          "source": "build/final",
+          "destination": "build/final",
+          "exclude": []
+        },
+        {
+          "source": "build/validated_inputs",
+          "destination": "build/validated_inputs",
+          "exclude": []
+        },
+        {
+          "source": "build/modules",
+          "destination": "build/modules",
+          "exclude": []
+        }
+      ]
+    },
+    {
+      "name": "pokemon-vega-private-env-v1-build-cache.zip",
+      "size": 724902234,
+      "sha256": "bf1053779eb1301d324c8f192d00ca07a1a830c734e3a05034f0bd90f46f143f",
+      "sources": [
+        {
+          "source": "build/patches",
+          "destination": "build/patches",
+          "exclude": []
+        },
+        {
+          "source": "build/battle-core",
+          "destination": "build/battle-core",
+          "exclude": []
+        },
+        {
+          "source": "build/upstream-cache",
+          "destination": "build/upstream-cache",
+          "exclude": [
+            ".locks"
+          ]
+        }
+      ]
+    }
+  ],
+  "input_links": [
+    {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/roms/FireRed_JPN_Rev0_clean.gba"
+    },
+    {
+      "path": "inputs/private/Vega_20180223.ips",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/patches/Pokemon_Vega_20180223.ips"
+    },
+    {
+      "path": "inputs/private/factory_test_20260524.ups",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/patches/Factory_reference_20260524.ups"
+    },
+    {
+      "path": "inputs/reference/factory_reference_provided.gba",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/reference/Factory_reference_20260524.gba"
+    },
+    {
+      "path": "inputs/reference/vega_cfru_integration_audit.zip",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/original_archives/vega_cfru_integration_audit.zip"
+    },
+    {
+      "path": "inputs/reference/vega_reference_provided.gba",
+      "target": ".local/github-private-environment/PRIVATE_INPUTS/roms/Pokemon_Vega_20180223_clean-patched.gba"
+    }
+  ]
+}

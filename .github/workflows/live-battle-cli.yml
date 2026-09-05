@@ -1,0 +1,42 @@
+name: live-battle-cli
+
+on:
+  workflow_dispatch:
+    inputs:
+      request_json:
+        description: 対戦CLIのversioned JSON request
+        required: true
+        type: string
+        default: '{"action":"doctor"}'
+      confirm_write:
+        description: ROMへ書くactionを明示許可する
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vega-live-battle
+  cancel-in-progress: false
+
+jobs:
+  command:
+    runs-on: [self-hosted, linux, x64, pokemon-vega-live]
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: host-local CLIのidentity確認
+        run: vega-codex-battle --version
+      - name: 状態再読付きでCLIを実行
+        env:
+          VEGA_BATTLE_REQUEST: ${{ inputs.request_json }}
+          CONFIRM_WRITE: ${{ inputs.confirm_write }}
+        run: |
+          set -euo pipefail
+          args=()
+          if test "$CONFIRM_WRITE" = true; then
+            args+=(--confirm-write)
+          fi
+          python3 scripts/run_github_battle_command.py "${args[@]}"

@@ -12,6 +12,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: stage58-qol-world stage58-qol-world-check stage58-qol-world-clean-rebuild stage58-qol-world-clean-rebuild-check stage58-debug-full stage58-economy-audit stage58-world-audit stage58-mgba-all stage58-final-gate
 .PHONY: stage59-wild-identity stage59-wild-identity-check stage59-mgba-all stage59-final-gate stage60-wild-species-root-repair stage60-wild-species-root-repair-check stage60-mgba-normal-input stage60-final-gate
 .PHONY: stage61-wiki stage61-wiki-check
+.PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
 	bash scripts/quickstart.sh
@@ -508,6 +509,18 @@ verify: validate guard test
 
 imports-check:
 	$(PYTHON) scripts/verify_imported_packages.py
+
+github-private-assets:
+	$(PYTHON) scripts/github_private_environment.py build
+
+github-private-assets-check:
+	$(PYTHON) scripts/github_private_environment.py check --archive-dir .local/github-private-environment/assets
+
+github-private-assets-restore:
+	$(PYTHON) scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
+
+github-battle-wrapper-test:
+	$(PYTHON) -m unittest tests.test_run_github_battle_command tests.test_github_private_environment
 
 clean-build:
 	@for dir in build generated reports/generated dist; do \

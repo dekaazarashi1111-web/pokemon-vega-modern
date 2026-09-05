@@ -23,6 +23,12 @@ python3 scripts/taskctl.py next
 
 詳細資料を全件読み直さず、`design/agent_context_map.md` から目的別に絞ります。
 
+ChatGPT Webからprivate GitHub repositoryを読む場合は、
+`docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`と
+`prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`を入口にします。ROM／生成済みstateは通常Gitへ入れず、
+hash固定したprivate ReleaseからGitHub Actionsへ復元します。実iPad対戦CLIはLANへ到達できる
+self-hosted runnerだけで実行します。
+
 ## 重要な正本
 
 - 状態: `design/tasks_next.md`
