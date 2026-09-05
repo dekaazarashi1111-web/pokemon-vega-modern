@@ -947,7 +947,12 @@ class Stage61CatalogStateMatrixUnitTests(unittest.TestCase):
                 "stage61_display_npc_event_audit.c"
             ),
             0x09E00000,
-            {"STAGE61_KANTO_NAME_TABLE": 0x09D00000},
+            {
+                "STAGE61_KANTO_NAME_TABLE": 0x09D00000,
+                "STAGE61_TRAINER_REMATCH_ALIAS_TABLE": 0x09D01000,
+                "STAGE61_TRAINER_REMATCH_ALIAS_COUNT": 1,
+                "STAGE61_CHANGEKIT_GET_REMATCH": 0x09302DD9,
+            },
         )
         self.assertFalse(
             implicit_cc1_output.exists(),

@@ -1,3 +1,4 @@
+from collections import Counter
 import importlib.util
 import json
 import re
@@ -92,7 +93,22 @@ class Stage61WikiTest(unittest.TestCase):
 
     def test_search_index_and_species_links_are_resolvable(self):
         search = [json.loads(line) for line in self.files["data/search_index.jsonl"].decode().splitlines()]
-        self.assertEqual(len(search), 1621 + 1063 + 312 + 999)
+        expected_counts = {
+            "species": 1621, "move": 1063, "ability": 312, "item": 999,
+            "story": 12, "map": 47, "battle": 77, "fixed_capture": 117,
+        }
+        self.assertEqual(Counter(row["kind"] for row in search), expected_counts)
+        self.assertEqual(len(search), sum(expected_counts.values()))
+        progression = json.loads(self.files["data/story_progression.json"])
+        source_ids = {
+            "story": {row["id"] for row in progression["story_steps"]},
+            "map": {row["logical_location_key"] for row in progression["kanto_maps"]},
+            "battle": {row["battle_id"] for row in json.loads(self.files["data/major_battles.json"])["battles"]},
+            "fixed_capture": {row["event_key"] for row in json.loads(self.files["data/fixed_capture_encounters.json"])["encounters"]},
+        }
+        for kind, ids in source_ids.items():
+            self.assertEqual({row["id"] for row in search if row["kind"] == kind}, ids)
+        self.assertEqual(len({(row["kind"], row["id"]) for row in search}), len(search))
         species_search = [row for row in search if row["kind"] == "species"]
         self.assertEqual(len(species_search), 1621)
         for row in search:

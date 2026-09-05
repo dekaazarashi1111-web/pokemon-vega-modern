@@ -314,9 +314,20 @@ class Stage61NormalSaveCowMetadataContractTest(unittest.TestCase):
                         {"__builtins__": {}, "list": list, "range": range},
                         {},
                     ))
-        self.assertEqual(
-            declarations, [audit.stage61_normal_save_cow_metadata_contract()]
-        )
+        expected = audit.stage61_normal_save_cow_metadata_contract()
+        full = [row for row in declarations if "stock_entry_address" in row]
+        summary = [row for row in declarations if "stock_entry_address" not in row]
+        self.assertEqual(full, [expected])
+        self.assertEqual(len(summary), 1)
+        self.assertEqual(set(summary[0]), {
+            "runtime_symbol", "save_type", "stock_handle_saving_data_delegated",
+            "stock_try_write_sector_used", "protected_bank_flash_policy",
+            "preinvalidation_callback_failure_is_not_ignored",
+            "save_failed_screen_wipe_retry_mgba_required",
+            "natural_start_menu_second_retry_mgba_required",
+            "fresh_core_continue_mgba_required",
+        })
+        self.assertEqual(summary[0], {key: expected[key] for key in summary[0]})
 
 
 class Stage61NormalSaveCowObjectContractTest(unittest.TestCase):
