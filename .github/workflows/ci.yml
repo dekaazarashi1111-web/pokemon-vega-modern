@@ -4,12 +4,21 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: make validate guard test
+      - name: Git管理内の整合性を検証
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest \
+            tests.test_github_private_environment \
+            tests.test_run_github_battle_command

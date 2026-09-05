@@ -39,6 +39,10 @@ ROM identityは設定・metadata・Actions結果から確認する。
 
 ## GitHub-hosted test
 
+通常のpush／Pull Requestでは`source-validation`がGit管理内だけで完結するtask graph、private guard、
+GitHub環境bundle／対戦wrapperのunit testを実行する。Git管理外成果まで必要な検証は、以下の
+`private-runtime`を手動実行する。
+
 Actionsの`private-runtime`を手動実行し、次から選ぶ。
 
 - `battle-cli-offline`: 対戦runtime／報酬／Windows catalog／Box 14／protocol rebindのunit testと
