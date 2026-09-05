@@ -1453,3 +1453,14 @@
   - source CIとprivate full-runtime CI、versioned対戦CLIのself-hosted workflowを追加した。mGBA 0.10.2を含むtoolchain導入とGitHub上の対戦CLI offline回帰を実証した。
   - private key／credentialは検出・除外し、Git履歴とReleaseへ入れていない。self-hosted runnerをowner-onlyで常駐・online化した。
 - Verify: local asset build／secret scan／22,090 member hash／clean restore、focused unit 37件、source validation、private guard、manifest、toolchain、actionlint PASS。GitHub Actions source run `33964354969`、private runtime run `33964356063` PASS。live doctorはCLI identityまでPASSし、実機RetroArch NCI未起動で安全停止。
+
+## 2026-09-05T21:48:08+09:00
+
+- Version: `github-comment-control-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260905-CHATGPT-COMMENT-CONTROL` / ChatGPT WebからのPRコメントによるActions新規起動
+- Summary:
+  - ownerのPRコメントを固定allowlistのprivate suite／対戦CLI要求へ変換し、新規`workflow_dispatch`操作なしでexact PR HEADのActionsを起動できるようにした。
+  - Stage62 check／mGBA、全unit、対戦CLI offlineをまとめる`all` suiteと、read／writeを別prefixにしたlive経路を追加した。
+  - fork、owner以外、HEAD不一致、未知suite／action、read prefixからのwriteを拒否し、結果を同じPRへ自動返信する。
+- Verify: focused unit 17件、対戦CLI offline 37件、task graph、private guard、manifest、actionlint、source-validation run `33966833761` PASS。PRコメント起動run `33966843927`でprivate復元とStage62 checkと結果返信をPASS。live doctor run `33967012849`はCLI経路と失敗返信をPASSし、実機NCI未起動で安全停止。

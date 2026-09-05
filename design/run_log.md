@@ -3763,3 +3763,38 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - OpenAI公式資料でChatGPT Web GitHub接続と実行環境の境界を確認した。GitHub公式API／CLIでprivate repository作成、push、Release upload、Actions実行、runner登録を行った。runner配布物v2.337.0はGitHub公式Release記載SHA-256 `70920811a4f8ad4328818682bca5c6469c1c942fab52448868071d0063816613`と照合した。credential、token、device情報は出力・tracked成果へ保存していない。
+
+## 2026-09-05T21:48:08+09:00
+
+- Task: `USER-20260905-CHATGPT-COMMENT-CONTROL` / ChatGPT WebからのPRコメントによるActions新規起動
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - ChatGPT WebのGitHub接続で新規`workflow_dispatch`操作が提供されない場合でも、ownerのPRコメントを`issue_comment` workflowが受け取り、exact PR HEADでprivate testまたはself-hosted対戦CLIを新規起動できるようにした。
+  - `/vega-test <suite> [expected-sha]`、read専用`/vega-live <JSON>`、明示write専用`/vega-live-write <JSON>`を追加した。owner、同一repository PR、固定suite／action allowlist、任意の40桁HEAD SHAを検査し、任意shellとfork PRを拒否する。
+  - `all` suiteを追加し、Stage62 check、Stage62 mGBA、全unit test、対戦CLI identity／catalog読取を1回のprivate環境復元で実行可能にした。
+  - PR #1の既存HEAD `93bd5d67...`へコメントし、run `33966843927`で新規`issue_comment`起動、Private Release取得、hash復元、Stage62 check、結果コメント返信まで実証した。
+  - read専用`doctor`もrun `33967012849`でself-hosted runnerとCLI 2.5.1まで到達した。実機側RetroArch NCI未起動のため`TRANSPORT`で安全停止し、失敗結果をPRへ自動返信した。ROM／saveへの書込みは行っていない。
+- Files changed:
+  - `.github/workflows/chatgpt-comment-control.yml`
+  - `.github/workflows/private-runtime.yml`
+  - `scripts/github_comment_control.py`
+  - `scripts/run_github_private_suite.py`
+  - `tests/test_github_comment_control.py`
+  - `tests/test_run_github_private_suite.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `README.md`
+  - `Makefile`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `python3 scripts/run_github_private_suite.py battle-cli-offline`: 37件PASS、CLI 2.5.1、catalog読取PASS。
+  - 制御／private環境focused unit: 17件PASS。`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`python3 scripts/validate_manifests.py`、`git diff --check`: PASS。
+  - actionlint v1.7.12を全4 workflowへ実行: PASS（既知custom runner labelのみ明示許可）。
+  - GitHub `source-validation`: run `33966833761` PASS。
+  - GitHub comment control Stage62 check: run `33966843927` PASS。PR結果コメント `5551914950`を読戻し確認した。
+  - GitHub comment control live doctor: run `33967012849`はcomment受付、owner／HEAD検査、self-hosted runner、CLI identity、結果返信をPASS。実機RetroArch NCI未起動によるread-only preflight失敗を正しく報告した。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - OpenAI公式のconnector資料（`https://learn.chatgpt.com/es-419/docs/enterprise/apps-and-connectors`、`https://learn.chatgpt.com/es-419/docs/plugins`）でconnector actionと権限制御を確認した。
+  - GitHub公式API／CLIでworkflow登録、push、PRコメント、Actions実行、ログ／結果コメント読戻しを行った。credential、token、private Release内容、device情報は会話またはtracked成果へ保存していない。
