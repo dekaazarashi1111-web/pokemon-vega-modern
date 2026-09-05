@@ -66,6 +66,12 @@ for name, command in checks.items():
         )
     print(f"[OK] {name}: {manifest['tools'][name]['version']}")
 
+try:
+    from PIL import __version__ as pillow_version
+except ImportError as error:
+    raise SystemExit("GitHub Actions toolchain: FAIL Pillow") from error
+print(f"[OK] pillow: {pillow_version}")
+
 library = Path("/usr/lib/x86_64-linux-gnu/libmgba.so")
 header = Path("/usr/include/mgba/core/core.h")
 if not library.is_file() or not header.is_file():
