@@ -15,9 +15,11 @@ sys.path.insert(0, str(ROOT))
 TARGETS = (
     'tests.test_audit_private_unit_log',
     'tests.test_run_private_unit_focus',
+    'tests.test_run_full_unit',
     'tests.test_portable_python_identity',
     'tests.test_prepare_private_unit_source_blobs',
     'tests.test_vega_adapter',
+    'tests.test_stage61_mgba_validation.Stage61MgbaValidationTests.test_control_abi_registry_all_domains_and_internal_trace_fail_closed',
     'tests.test_build_upstream.SandboxPathTests',
     'tests.test_event_authoring_packet',
     'tests.test_extract_vega_moves.FixedVegaMoveExtractionTests.test_cli_reads_only_fixed_config_and_reference_and_emits_json',
@@ -91,7 +93,8 @@ def main() -> int:
     tracked = set(subprocess.check_output(['git', 'ls-files', '-z', '--', '*.py'], cwd=ROOT).decode().split('\0'))
     rom = ROOT / 'build/stages/62_npc_placement_integrity_repair.gba'
     before = digest(rom)
-    result = Result(tracked)
+    from scripts.run_full_unit import PrivateResult
+    result = PrivateResult(tracked)
     suite = unittest.defaultTestLoader.loadTestsFromNames(TARGETS)
     suite.run(result)
     after = digest(rom)

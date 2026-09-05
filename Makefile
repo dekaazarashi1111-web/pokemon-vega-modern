@@ -503,7 +503,7 @@ plan:
 	$(PYTHON) scripts/taskctl.py plan
 
 test:
-	$(PYTHON) -m unittest discover -s tests -v
+	$(PYTHON) scripts/run_full_unit.py
 
 verify: validate guard test
 

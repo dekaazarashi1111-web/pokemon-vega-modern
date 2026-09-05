@@ -51,8 +51,32 @@ def main() -> int:
                                         'content_sha256': hashlib.sha256(archive.read(info)).hexdigest(), 'size': info.file_size})
                 if members:
                     archives.append({'archive_sha256': sha(path), 'members': members})
+    from tools import stage61_state_namespace_collision_audit as state
+    metadata = json.loads((ROOT / state.STAGE61_METADATA_RELATIVE).read_text())
+    generated = json.loads((ROOT / state.STAGE61_AUDIT_RELATIVE).read_text())
+    required = ('Stage61State_HandleWriteSector', 'Stage61State_HandleReplaceSector',
+                'Stage61State_EnsureBackupGeneration', 'Stage61State_UpdateRecordOnly',
+                'Stage61State_HandleSavingData', 'Stage61State_GetSaveValidStatus',
+                'Stage61State_HandleLoadSector', 'stage61_save_normal_copy_on_write')
+    runtime = metadata.get('runtime', {})
+    report_runtime = generated.get('runtime', {})
+    source = (ROOT / state.STAGE61_RUNTIME_SOURCE_RELATIVE).read_text()
+    def checked_hash(value):
+        return value if isinstance(value, str) and HEX.fullmatch(value) else None
+    custom_save = {
+        'current_source_sha256': sha(ROOT / state.STAGE61_RUNTIME_SOURCE_RELATIVE),
+        'metadata_source_sha256': checked_hash(runtime.get('source_sha256')),
+        'report_source_sha256': checked_hash(report_runtime.get('source_sha256')),
+        'rom_sha256': sha(ROOT / state.STAGE61_ROM_RELATIVE),
+        'rom_matches_metadata': sha(ROOT / state.STAGE61_ROM_RELATIVE) == metadata.get('output', {}).get('sha256'),
+        'required_symbols': {name: {
+            'metadata': name in runtime.get('symbols', {}),
+            'report': name in report_runtime.get('symbols', {}),
+            'source': name in source,
+        } for name in required},
+    }
     output = {'head_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
-              'stage60_fixture': namespaces, 'nested_sources': archives}
+              'stage60_fixture': namespaces, 'nested_sources': archives, 'stage61_custom_save': custom_save}
     path = ROOT / 'build/private-unit-focus/state-probe.json'
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(output, sort_keys=True, indent=2) + '\n', encoding='utf-8')
