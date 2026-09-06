@@ -13,6 +13,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 TARGETS = (
+    "tests.test_reconstruct_trainer_csv_inputs",
+    "tests.test_gift_storage_root_seed",
     "tests.test_move_memory_source_provenance",
     "tests.test_stage61_cyclic_decision_contracts",
     "tests.test_stage61_interaction_oracle",

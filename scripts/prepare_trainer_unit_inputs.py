@@ -49,11 +49,19 @@ def _rows(root: Path) -> list[dict]:
     return rows
 
 
-def restore_inputs(root: Path) -> Path:
+def restore_inputs(root: Path, *, profile: str = "all") -> Path:
     """ファイル名/件数での推測をせず、size+SHA-256で58入力を一意に復元する。"""
     root = root.resolve()
     rows = _rows(root)
-    target = root / DESTINATION
+    if profile == 'task06':
+        rows = [row for row in rows if row['path'].startswith('VEGA_TRAINER_CHANGEKIT_TASK06_KANTO/data/')]
+    elif profile == 'registries':
+        rows = [row for row in rows if '/source/v5/registries/' in row['path']]
+    elif profile != 'all':
+        raise TrainerInputError('Unknown Trainer input profile')
+    if not rows:
+        raise TrainerInputError('Trainer input profile is empty')
+    target = root / DESTINATION if profile == 'all' else root / '.local/trainer-unit-inputs' / profile / 'integration_inputs'
     if any(p.is_symlink() for p in (target, *target.parents)):
         raise TrainerInputError('Trainer destination symlink rejected')
     if target.exists():
@@ -66,7 +74,8 @@ def restore_inputs(root: Path) -> Path:
     expected = {}
     for row in rows:
         expected.setdefault((Path(row['path']).name, row['size']), []).append(row)
-    found = {}
+    from scripts.reconstruct_trainer_csv_inputs import reconstruct
+    found = reconstruct(root, rows)
     visited_archives = set()
 
     def accept(name: str, raw: bytes) -> None:
@@ -99,6 +108,8 @@ def restore_inputs(root: Path) -> Path:
                             scan_zip(io.BytesIO(raw), depth + 1)
 
     for role in ('userfile', '.local/github-private-environment/PRIVATE_INPUTS', 'build/validated_inputs', 'dist'):
+        if len(found) == len(rows):
+            break
         base = root / role
         if not base.exists():
             continue
@@ -111,8 +122,8 @@ def restore_inputs(root: Path) -> Path:
                 scan_zip(path)
     missing = [row['path'] for row in rows if row['path'] not in found]
     report = {'schema_version': 1, 'required': len(rows), 'matched': len(found),
-              'missing': missing, 'manifest_sha256': _sha((root / MANIFEST).read_bytes())}
-    report_path = root / 'build/private-unit-focus/trainer-input-restoration.json'
+              'profile': profile, 'missing': missing, 'manifest_sha256': _sha((root / MANIFEST).read_bytes())}
+    report_path = root / ('build/private-unit-focus/trainer-input-restoration-' + profile + '.json')
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + '\n')
     if missing:

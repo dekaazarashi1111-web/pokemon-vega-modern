@@ -95,13 +95,31 @@ def main():
                             'diff_sha256': hashlib.sha256(diff).hexdigest(), 'source_patch': diff.decode()})
     write('vendor-source-review.json', {'changed_files': changed, 'review': source_rows})
     # checkcoins実装の未解決codeだけを取得し、private byteや例外本文は出さない。
+    historical = []
+    name = 'templates/chatgpt_pro_design_packets/tools/validate_submission.py'
+    for commit in ('18463fee860b4211357da8d80f131cb7858a9b28', '7ea5558955cfb13e7ed8dd1cef21805ca8a1ae3e'):
+        raw = subprocess.check_output(['git', 'show', commit + ':' + name])
+        blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+        historical.append({'commit': commit, 'path': name, 'git_blob_sha': blob, 'sha256': hashlib.sha256(raw).hexdigest(), 'size': len(raw)})
+    write('historical-validator-identity.json', historical)
     from scripts.run_full_unit import private_output
     from tests.test_stage61_interaction_oracle import Stage61CoinsABIFocusedTests as Coins
     from tools import stage61_interaction_oracle as oracle
     from tools.stage61_event_semantic_relocator import SemanticScriptGraph
     result = {}
+    from unittest.mock import patch
+    from tests import test_stage61_interaction_oracle as oracle_tests
+    original_executor = oracle_tests._runtime_execute_with_seed_discovery
+    observed_blockers = []
+    def capture(*args, **kwargs):
+        executions, blockers = original_executor(*args, **kwargs)
+        for blocker in blockers:
+            detail = str(blocker.get('detail', '')).split(':')
+            safe = [part for part in detail[:3] if re.fullmatch(r'[A-Z][A-Z0-9_]*|(?:0x)?[0-9A-Fa-f]{1,10}', part)]
+            observed_blockers.append({'kind': blocker.get('kind'), 'codes': safe})
+        return executions, blockers
     try:
-        with private_output():
+        with private_output(), patch.object(oracle_tests, '_runtime_execute_with_seed_discovery', side_effect=capture):
             Coins.setUpClass()
             case = Coins('test_product_prize_room_checkcoins_result_is_path_exact')
             case.test_product_prize_room_checkcoins_result_is_path_exact()
@@ -122,6 +140,7 @@ def main():
             except ValueError:
                 continue
             result['frames'].append({'path': relative, 'line': line})
+    result['blockers'] = observed_blockers
     write('checkcoins-diagnostic.json', result)
     from scripts.inspect_trainer_input_sources import main as inspect_trainer
     inspect_trainer()

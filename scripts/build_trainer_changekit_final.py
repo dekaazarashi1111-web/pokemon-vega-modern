@@ -405,7 +405,7 @@ def _discover_authoring_registry(root: Path) -> Path:
         if (candidate / "nature_ids.csv").is_file():
             return candidate
     from scripts.prepare_trainer_unit_inputs import restore_inputs
-    return restore_inputs(root) / "Pokemon-Vega_Trainer-AUTHORING-KIT_STAGE34_20260819/source/v5/registries"
+    return restore_inputs(root, profile="registries") / "Pokemon-Vega_Trainer-AUTHORING-KIT_STAGE34_20260819/source/v5/registries"
 
 
 def _discover_task06(root: Path) -> Path:
@@ -418,7 +418,7 @@ def _discover_task06(root: Path) -> Path:
         if (candidate / "KIT_MANIFEST.json").is_file():
             return candidate
     from scripts.prepare_trainer_unit_inputs import restore_inputs
-    return restore_inputs(root) / "VEGA_TRAINER_CHANGEKIT_TASK06_KANTO"
+    return restore_inputs(root, profile="task06") / "VEGA_TRAINER_CHANGEKIT_TASK06_KANTO"
 
 
 def load_source(root: Path, stage: bytes, species_meta: Mapping[str, Any]) -> dict[str, Any]:

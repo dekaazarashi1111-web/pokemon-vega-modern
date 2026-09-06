@@ -21189,6 +21189,15 @@ def _static_control_domains(
             compared, max(0, compared - 1), min(0xFFFF, compared + 1),
         })
     unsupported: set[str] = set()
+    # 景品受付はgivemonより前にparty/storage状態を読む。固定gift rootの
+    # 相関した全状態をroot入口で宣言し、0x79到達後だけのseedにしない。
+    if root in GIFT_STORAGE_ROOTS:
+        add(
+            GIFT_STORAGE_TRANSACTION_KIND, GIFT_STORAGE_TRANSACTION_CONTROL_ID,
+            GIFT_STORAGE_TRANSACTION_CONTROL_ID, root,
+            candidates=GIFT_STORAGE_EXECUTOR_SCENARIO_IDS,
+            relation={"operator": GIFT_STORAGE_TRANSACTION_RELATION},
+        )
     if root == FOSSIL_REVIVAL_ROOT:
         add(
             FOSSIL_REVIVAL_KIND, FOSSIL_REVIVAL_CONTROL_ID,
