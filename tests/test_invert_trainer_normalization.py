@@ -39,3 +39,54 @@ class TrainerNormalizationInverseTests(unittest.TestCase):
         self.assertEqual(got[0]['decision'], 'ARCHIVE')
         self.assertEqual(got[0]['notes'], 'designed')
         self.assertEqual(rows[0]['notes'], 'designed; archive_consumer=A1')
+
+
+    def test_archive_encounter_preserves_task_ledger_and_unlock(self):
+        from scripts.invert_trainer_normalization import ENCOUNTER_OWNER_FIELDS
+        original = {field: 'authoring_' + field for field in ENCOUNTER_OWNER_FIELDS}
+        original.update(status='PENDING_EXACT_AUDIT', unlock_expression='OLD_UNLOCK')
+        row = dict(original)
+        row.update(encounter_key='E1', trainer_id='1000', battle_type='NORMALIZED',
+                   notes='Task design | original ROM command non-destructive ARCHIVE_REMATCH normalization',
+                   evidence='Task evidence; original command preserved; archive_consumer=ARCHIVE_REMATCH_0001',
+                   unlock_expression='ARCHIVE_REMATCH_AVAILABLE && ARCHIVE_ENTRY_0001_UNLOCKED && (TASK_UNLOCK && (BADGE_2 || BADGE_3))')
+        change = {'archive_consumer_key': 'ARCHIVE_REMATCH_0001',
+                  'normalization_action': 'MOVE_TO_ARCHIVE_REMATCH:OWNER',
+                  'original_trainer_id': '12', 'original_battle_type': 'UNKNOWN',
+                  'original_physical_map_key': 'TASK_MAP',
+                  'original_script_key': 'TASK_SCRIPT',
+                  'original_defeat_state_key': 'TASK_DEFEATED'}
+        before = copy.deepcopy(row)
+        got = inverse_rows('trainer_encounters.csv', 'TASK03_TOHOKU_MID', [row],
+                           {'E1': change}, {'trainer_encounters.csv': {'E1': original}})[0]
+        self.assertEqual(row, before)
+        self.assertEqual(got['physical_map_key'], 'TASK_MAP')
+        self.assertEqual(got['script_key'], 'TASK_SCRIPT')
+        self.assertEqual(got['defeat_state_key'], 'TASK_DEFEATED')
+        self.assertEqual(got['unlock_expression'], 'TASK_UNLOCK && (BADGE_2 || BADGE_3)')
+        self.assertEqual(got['notes'], 'Task design')
+        self.assertEqual(got['evidence'], 'Task evidence')
+        self.assertEqual(got['battle_type'], 'UNKNOWN')
+        self.assertEqual(got['trainer_id'], '12')
+        self.assertEqual(got['status'], 'PENDING_EXACT_AUDIT')
+        for bad in ('ARCHIVE_REMATCH_AVAILABLE && ARCHIVE_ENTRY_0002_UNLOCKED && (TASK_UNLOCK)',
+                    'TASK_UNLOCK', 'ARCHIVE_REMATCH_AVAILABLE && ARCHIVE_ENTRY_0001_UNLOCKED && (TASK_UNLOCK'):
+            with self.subTest(kind='invalid-wrapper'):
+                changed = dict(row, unlock_expression=bad)
+                with self.assertRaisesRegex(ValueError, 'unlock contract'):
+                    inverse_rows('trainer_encounters.csv', 'TASK03_TOHOKU_MID', [changed],
+                                 {'E1': change}, {'trainer_encounters.csv': {'E1': original}})
+
+    def test_archive_inverse_preserves_original_unlock_spelling_when_provable(self):
+        from scripts.invert_trainer_normalization import ENCOUNTER_OWNER_FIELDS
+        for original_unlock in ('', '  FLAG_BASE  ', 'TRUE'):
+            original = {field: 'authoring_' + field for field in ENCOUNTER_OWNER_FIELDS}
+            original.update(status='PENDING', unlock_expression=original_unlock)
+            row = dict(original, encounter_key='E1', notes='design', evidence='source',
+                       unlock_expression='ARCHIVE_REMATCH_AVAILABLE && ARCHIVE_ENTRY_0007_UNLOCKED && (' + (original_unlock.strip() or 'TRUE') + ')')
+            change = {'archive_consumer_key': 'ARCHIVE_REMATCH_0007',
+                      'normalization_action': 'ARCHIVE', 'original_trainer_id': '12',
+                      'original_battle_type': 'UNKNOWN'}
+            got = inverse_rows('trainer_encounters.csv', 'TASK03_TOHOKU_MID', [row],
+                               {'E1': change}, {'trainer_encounters.csv': {'E1': original}})[0]
+            self.assertEqual(got['unlock_expression'], original_unlock)

@@ -22,6 +22,7 @@ TARGETS = (
     "tests.test_build_id_spaces",
     "tests.test_cfru_id_space_inventory",
     "tests.test_trainer_changekit_content",
+    "tests.test_trainer_historical_input_identity",
     "tests.test_trainer_changekit_final_builder",
     "tests.test_trainer_final_kanto_events",
     'tests.test_audit_private_unit_log',

@@ -70,8 +70,26 @@ def inverse_rows(name: str, task: str, records: list[dict[str, str]],
             row['battle_type'] = change['original_battle_type']
             row['notes'] = row['notes'].removesuffix(' | original ROM command non-destructive ARCHIVE_REMATCH normalization').removesuffix(' | exact ROM audit: kind 9 EARLY_RIVAL/SINGLE')
             if archive:
+                normalized_unlock = row['unlock_expression']
                 for field in ENCOUNTER_OWNER_FIELDS:
                     row[field] = original[field]
+                # 台帳は最終Task設計を正規化する直前の値。authoring原型で上書きしない。
+                for field in ('physical_map_key', 'script_key', 'defeat_state_key'):
+                    if 'original_' + field in change:
+                        row[field] = change['original_' + field]
+                consumer = change['archive_consumer_key']
+                number = consumer.removeprefix('ARCHIVE_REMATCH_')
+                if not (consumer.startswith('ARCHIVE_REMATCH_')
+                        and len(number) == 4 and number.isascii() and number.isdigit()):
+                    raise ValueError('Trainer inverse archive consumer identity differs')
+                prefix = f'ARCHIVE_REMATCH_AVAILABLE && ARCHIVE_ENTRY_{number}_UNLOCKED && ('
+                if not normalized_unlock.startswith(prefix) or not normalized_unlock.endswith(')'):
+                    raise ValueError('Trainer inverse archive unlock contract differs')
+                preserved = normalized_unlock[len(prefix):-1]
+                # strip/空文字変換の情報が原型に残る場合は元のbyte表現を保持する。
+                # Taskで変更された式は生成器のwrapperだけを外して戻す。
+                if preserved != (original['unlock_expression'].strip() or 'TRUE'):
+                    row['unlock_expression'] = preserved
                 row['evidence'] = row['evidence'].split('; original command preserved; archive_consumer=')[0]
         else:
             row['evidence'] = row['evidence'].split('; original binding preserved; archive_consumer=')[0].removesuffix('; exact ROM kind=9 TRAINER_BATTLE_EARLY_RIVAL')
