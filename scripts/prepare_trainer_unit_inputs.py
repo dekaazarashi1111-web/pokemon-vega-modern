@@ -125,6 +125,8 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
             if path.suffix.lower() == '.zip' and zipfile.is_zipfile(path):
                 scan_zip(path)
     found.update(reconstruct(root, rows, source_tables=source_tables))
+    from scripts.reconstruct_trainer_metadata import recover_metadata
+    found.update(recover_metadata(root, rows, found))
     missing = [row['path'] for row in rows if row['path'] not in found]
     report = {'schema_version': 1, 'required': len(rows), 'matched': len(found),
               'profile': profile, 'missing': missing, 'manifest_sha256': _sha((root / MANIFEST).read_bytes())}
