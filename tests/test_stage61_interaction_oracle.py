@@ -12267,11 +12267,26 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
             (wrap["current_box"], wrap["expected_mon_box_id"]), (13, 0),
         )
 
+        # runner_fixture_key separates schema rejection from canonical-layout
+        # rejection. Keep both boundaries strict; never accept an unknown key.
+        for mutation in ("extra_key", "missing_key", "unknown_scenario"):
+            forged = deepcopy(wrap)
+            if mutation == "extra_key":
+                forged["unregistered"] = True
+            elif mutation == "missing_key":
+                del forged["party_count"]
+            else:
+                forged["scenario_id"] = "unregistered"
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(
+                Stage61InteractionOracleError,
+                "runner GIFT_STORAGE_TRANSACTION_STATE fixture schema不正",
+            ):
+                runner_fixture_key(forged)
         forged = deepcopy(wrap)
-        forged["unregistered"] = True
+        forged["expected_mon_box_id"] = 1
         with self.assertRaisesRegex(
             Stage61InteractionOracleError,
-            "GIFT_STORAGE fixture exact key不一致",
+            "runner GIFT_STORAGE_TRANSACTION_STATE source layout不一致",
         ):
             runner_fixture_key(forged)
         path = "vendor/upstream/CFRU-JP/src/build_pokemon.c"

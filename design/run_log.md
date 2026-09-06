@@ -3818,3 +3818,14 @@ focused run `33976377781`はPrivate Release 4 ZIP取得・外側/全member hash�
 残るfocused errorは復元済みStage61 runtime metadataに現行custom-save監査の必須symbolが不足する点である。原本ROMとmetadataの照合を維持し、存在しないsymbolをmetadataへ捏造していない。Task06 authoring registry、古いStage09/Stage61証跡、vendor dirty差分、物理hook/命令byte/意味論の残件も未修復。全unit/allの完走は未証明であり、DONE/完了commitとして扱わない。
 
 制御ABIの純粋unitに不足した現行5種類を追加し、全種類集合・binary size・負例検証を残してlocal PASS。全unit向けrunnerは標準discoveryの全テストと結果種別を維持し、任意の例外本文・Python/native/child出力をログから除外する。通常unittestとの結果同値および出力遮断の8 testsを追加した。最終HEADのStage62/CLI検証結果はPRのexact SHA付き自動返信と照合する。ゲームのsource/ROMを変更せず、iPad/端末を操作せず、private guard/Release hash検証を維持している。
+
+
+## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 Trainer metadata・gift schema継続（IN_PROGRESS）
+
+開始HEADは`e4a08aca954bfa5ec782c12cf5b0170ef838b047`。テスト結果の正本をPR #3の`<!-- vega-private-test-result -->`限定コメントに固定した。開始時の正本はhttps://github.com/dekaazarashi1111-web/pokemon-vega-modern/pull/3#issuecomment-5560079732 、run https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34040024389 、445 tests /20 failures /3 errors /0 skipped、Stage62 ROM unchanged=true。Actions生ログ・artifactは取得していない。
+
+commit `ac992a3951711fcd3b99e84bf1ce0a1889a5c38e`でTrainer metadata回収を追加した。CSVではない5つのKIT_MANIFESTとAUTHORING_MANIFESTは、元source_manifestのsize/SHA完全一致以外を受け入れない。validatorのJSON snapshot回収、およびhash照合済みAUTOFIXED package内の既存生成器によるREF_1012 UNKNOWN→DOUBLE補正の逆生成を実装。原本・期待hash・受領ZIPは変更しない。純粋unit 7件PASSをローカルで実測した。private入力の復元完了は未証明であり、同HEADのfocused-unitをコメント5560430972で要求済み。
+
+Stage61 gift負例は`runner_fixture_key`のschema拒否（source 19731–19736）と、テストが要求する別の例外文言が不整合だった。未知キー拒否は維持し、必須キー欠落・不明scenario・canonical layout改変の負例を追加した。巨大test sourceとappend-onlyログは既存/vega-patch経路で必要箇所だけ適用し、workflow・結果取得経路は追加しない。適用後の最新HEADを再取得してfocused-unitを要求し、限定結果で確認するまではPASSと扱わない。
+
+残る調査は4つの図鑑保存領域のspecies由来bit検証、runtime object preimage、現行候補ROMと旧repair manifestの世代混在。provenance照合を緩めず、Stage62へ差し替えず、既存のStage60監査IN_PROGRESSと無関係差分を維持する。main直接commit、merge、PR close、新branch/PR、ROM/save/Private Release資材のGit追加は行っていない。focused完全PASS前のfull-unit、full-unit完全PASS前のallは実行しない。全体DONEではない。

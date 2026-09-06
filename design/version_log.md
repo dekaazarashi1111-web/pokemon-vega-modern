@@ -1484,3 +1484,10 @@ focused run `33976377781`はPrivate Release 4 ZIP取得・外側/全member hash�
 残るfocused errorは復元済みStage61 runtime metadataに現行custom-save監査の必須symbolが不足する点である。原本ROMとmetadataの照合を維持し、存在しないsymbolをmetadataへ捏造していない。Task06 authoring registry、古いStage09/Stage61証跡、vendor dirty差分、物理hook/命令byte/意味論の残件も未修復。全unit/allの完走は未証明であり、DONE/完了commitとして扱わない。
 
 制御ABIの純粋unitに不足した現行5種類を追加し、全種類集合・binary size・負例検証を残してlocal PASS。全unit向けrunnerは標準discoveryの全テストと結果種別を維持し、任意の例外本文・Python/native/child出力をログから除外する。通常unittestとの結果同値および出力遮断の8 testsを追加した。最終HEADのStage62/CLI検証結果はPRのexact SHA付き自動返信と照合する。ゲームのsource/ROMを変更せず、iPad/端末を操作せず、private guard/Release hash検証を維持している。
+
+
+## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 metadata回収とgift schema負例（未完了）
+
+Trainer回収commit `ac992a3951711fcd3b99e84bf1ce0a1889a5c38e`：元metadataのsize/SHA完全一致、検証済みpackageの既存生成器による補正逆生成、純粋unit 7件PASS。元fixtureの期待値・元ZIP・ROM/saveは変更していない。Stage61 giftのschema/layout拒否を区別し、未知キー・欠落キー・不明scenario・layout改変をそれぞれ負例で検証する。元の負例を削除・skip化していない。
+
+開始時限定結果：HEAD e4a08aca954bfa5ec782c12cf5b0170ef838b047、445 tests /20 failures /3 errors /0 skipped、Stage62 unchanged=true（PR #3 comment5560079732、run34040024389）。ac992a3のfocusedを要求済みだが、この追記時点では修正後の限定結果未確認。結果は限定PRコメントのみを正本とし、生ログ・artifact取得は行わない。既存branch・Draft/open/unmergedを維持し、main直接変更なし。focused/full-unit/allの完了ゲート未達のため完了版ではない。
