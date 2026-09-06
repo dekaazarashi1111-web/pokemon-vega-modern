@@ -13,7 +13,7 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905-r2'
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,38 +27,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
-      - name: 追跡済みsourceだけを固定digest付きで保存
-        run: |
-          python3 - <<'PY'
-          import hashlib, json, subprocess, zipfile
-          from pathlib import Path
-          from scripts.github_private_environment import SECRET_FILENAMES, SECRET_PATTERNS
-          allowed = {'.py', '.json', '.jsonl', '.csv', '.toml', '.yml', '.yaml', '.c', '.h', '.s', '.S', '.ld', '.inc', '.asm', '.sh', '.ps1', '.md', '.txt', '.mk'}
-          roots = {'scripts', 'tests', 'config', 'infra', 'tools', 'manifests', 'overlays', 'templates', 'content', 'data', 'tasks', 'state', 'design', '.github', 'docs'}
-          out = Path('build/private-unit-focus')
-          out.mkdir(parents=True, exist_ok=True)
-          rows = []
-          with zipfile.ZipFile(out / 'source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              names = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-              for name in sorted(filter(None, names)):
-                  p = Path(name)
-                  if name not in {'Makefile', 'README.md', '.gitignore'} and (p.parts[0] not in roots or p.suffix not in allowed):
-                      continue
-                  if p.is_symlink() or not p.is_file() or p.name.lower() in SECRET_FILENAMES:
-                      continue
-                  raw = p.read_bytes()
-                  if any(pattern.search(raw) for pattern in SECRET_PATTERNS.values()):
-                      continue
-                  archive.writestr(name, raw)
-                  rows.append({'path': name, 'sha256': hashlib.sha256(raw).hexdigest(), 'size': len(raw)})
-              archive.writestr('SOURCE_CONTEXT_MANIFEST.json', json.dumps({'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(), 'files': rows}, sort_keys=True))
-          PY
-      - uses: actions/upload-artifact@v4
-        with:
-          name: reviewed-source-${{ github.event.pull_request.head.sha }}
-          path: build/private-unit-focus/source.zip
-          retention-days: 1
-          if-no-files-found: error
+          python3 -m unittest tests.test_regenerate_stage61_unit_state
       - name: Toolchain
         run: bash infra/setup_github_actions.sh --install
       - name: Private Release 4 ZIPを取得
@@ -73,6 +42,8 @@ jobs:
           done
       - name: 外側と全member hashを維持して復元
         run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
+      - name: 既存ROMを保護して現行Stage61生成元を再実行
+        run: python3 scripts/regenerate_stage61_unit_state.py
       - name: 非秘密hashの状態を採取
         run: python3 -m scripts.probe_private_unit_state > /dev/null 2>&1
       - name: focused unit実行（生の出力は破棄、許可した結果だけ保存）
