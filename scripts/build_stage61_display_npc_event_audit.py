@@ -14703,6 +14703,357 @@ def _complete_repair_manifest_with_abi(
     repair_manifest["manifest_sha256"] = _sha(_stable(repair_manifest))
 
 
+def _persistent_state_compatibility_metadata() -> dict[str, Any]:
+    """strict生成物と状態unit候補が共有する完全なsave契約。"""
+    return {
+    "stock_save_section_offsets_retained": "0x083C4B28",
+    "bounded_read_entry_hooks": [
+        {
+            "name": "GetSaveValidStatus",
+            "address": "0x080DAEF4",
+            "preimage_hex": "f0b557464e464546",
+            "runtime_symbol": "Stage61State_GetSaveValidStatus",
+            "stock_trampoline_allowed": False,
+        },
+        {
+            "name": "HandleLoadSector",
+            "address": "0x080DAE3C",
+            "preimage_hex": "f0b5474680b48846",
+            "runtime_symbol": "Stage61State_HandleLoadSector",
+            "stock_trampoline_allowed": False,
+        },
+    ],
+    "bounded_read_contract": {
+        "descriptor_row_count": 14,
+        "footer_id_must_be_below_row_count_before_index": True,
+        "descriptor_destination_must_be_ewram": True,
+        "descriptor_size_must_match_stock_table": True,
+        "signature_checksum_counter_and_parity_validated": True,
+        "duplicate_ids_rejected": True,
+        "required_id_mask": "0x3FFF",
+        "generation_order": {
+            "algorithm": "HALF_RANGE_MODULAR_U32",
+            "delta_expression": "second_counter - first_counter",
+            "second_is_newer_when": (
+                "delta != 0 && delta < 0x80000000"
+            ),
+            "equal_counter_selection": "FIRST",
+            "exact_half_range_tie_selection": "FIRST",
+            "physical_slot_parity": (
+                "slot_base == 14 * (counter & 1)"
+            ),
+            "mgba_reachable_wrap_pair": (
+                "slot0=0xFFFFFFFE,slot1=0x00000001"
+            ),
+            "other_comparator_vectors": "UNIT_LEVEL_EXPRESSION_GATE",
+            "wrap_examples": {
+                "0xFFFFFFFE_vs_0x00000001": "SECOND",
+                "0x00000001_vs_0xFFFFFFFE": "FIRST",
+            },
+        },
+        "slot_sector_rotation_policy": {
+            "first_sector_definition": (
+                "PHYSICAL_INDEX_OF_LOGICAL_ID_0"
+            ),
+            "expected_physical_index_by_logical_id": (
+                "(first + logical_id) % 14"
+            ),
+            "all_14_logical_ids_require_exact_relative_rotation": (
+                True
+            ),
+            "permuted_full_bank_status": "ERROR",
+            "newest_permuted_full_bank_selection": (
+                "FALL_BACK_TO_OLDER_EXACT_ROTATION"
+            ),
+            "both_banks_permuted_status": "INVALID_NO_RAM_COPY",
+            "mgba_required": True,
+        },
+        "partial_newer_generation_falls_back_to_complete_older": True,
+        "ram_copy_only_after_selected_slot_full_validation": True,
+        "both_slots_invalid_copy_count": 0,
+        "both_slots_invalid_expanded_state": "CLEAR",
+    },
+    "normal_save_copy_on_write": {
+        "stock_entry_address": "0x080DB230",
+        "stock_entry_modified": False,
+        "runtime_symbol": "Stage61State_HandleSavingData",
+        "save_type": "SAVE_NORMAL_ONLY_0",
+        "stock_prewrite_semantics": [
+            "UpdateSaveAddresses",
+            "SaveSerializedGame",
+        ],
+        "stock_prewrite_semantics_each_called_once": True,
+        "stock_handle_saving_data_delegated": False,
+        "stock_try_write_sector_used": False,
+        "root_cause": (
+            "STOCK_BAD_SECTOR_REPLACEMENT_CAN_ERASE_A_PHYSICAL_"
+            "SECTOR_IN_THE_PROTECTED_BANK_AFTER_TARGET_FAILURE"
+        ),
+        "source_selection": (
+            "NEWEST_COMPLETE_HALF_RANGE_U32_WITH_EXACT_ROTATION"
+        ),
+        "protected_bank_flash_policy": "READ_ONLY_BYTE_EXACT",
+        "target_counter_expression": "source_counter + 1 (u32)",
+        "target_slot_expression": "14 * ((source_counter + 1) & 1)",
+        "target_first_sector_expression": (
+            "(source_first_sector + 1) % 14"
+        ),
+        "record_bearing_logical_sector": 13,
+        "target_record_preinvalidated_before_first_live_write": True,
+        "preinvalidation_callback_failure_is_not_ignored": True,
+        "logical_sector_order": list(range(14)),
+        "record_bearing_sector_committed_last": True,
+        "per_sector_commit_marker_offset": "0x0FF8",
+        "per_sector_commit_marker_programmed_last": True,
+        "per_sector_full_4096_byte_readback": True,
+        "final_full_generation_rotation_validation": True,
+        "final_all_14_sector_live_owner_byte_exact_readback": True,
+        "failure_selector": (
+            "PROTECTED_SOURCE_OR_ORIGINAL_PREWRITE_COUNTER_AND_"
+            "ROTATION"
+        ),
+        "failure_damaged_bits": "TARGET_BANK_ONLY",
+        "success_selector_promotion": (
+            "AFTER_ALL_14_TARGET_SECTORS_AND_FINAL_READBACK"
+        ),
+        "first_save_without_complete_generation_supported": True,
+        "save_failed_screen_wipe_retry_mgba_required": True,
+        "natural_start_menu_second_retry_mgba_required": True,
+        "fresh_core_continue_mgba_required": True,
+    },
+    "link_save_record_commit": {
+        "stock_entry_address": "0x080DB230",
+        "stock_entry_modified": False,
+        "stock_entry_thumb_pointer": "0x080DB231",
+        "runtime_symbol": "Stage61State_HandleSavingData",
+        "near_veneer": {
+            "address": "0x080C6480",
+            "preimage_hex": "5ff07ef811e00000",
+            "abi": "R0_SAVE_TYPE_PRESERVED_R3_CALLER_SAVED_TAIL_BX",
+        },
+        "direct_callers": [{
+            "address": f"0x{address:08X}",
+            "preimage_hex": expected.hex(),
+        } for address, expected in SAVE_LINK_RECORD_CALLSITES],
+        "record_only_symbol": "Stage61State_UpdateRecordOnly",
+        "save_type": "SAVE_LINK_ONLY_1",
+        "stock_must_succeed": True,
+        "damaged_sector_bits_must_be_zero": True,
+        "stock_damaged_side_channel_normalized_to_error": True,
+        "save_ereader_type_2_intercepted": False,
+        "record_failure_sets_damaged_bit_and_returns_error": True,
+        "outer_post_failure_additional_mark": False,
+        "outer_record_result_non_ok_action": "RETURN_STATUS_ERROR_ONLY",
+        "target_invalidation_early_guard_non_ok_caller_marks_"
+        "target_id13": True,
+        "phase_failure_damaged_bank": {
+            "post_descriptor_rebuild_failure": (
+                "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
+            ),
+            "source_record_before_or_during_program_failure": (
+                "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
+            ),
+            "source_record_exact_readback_failure": (
+                "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
+            ),
+            "target_invalidation_failure": (
+                "TARGET_PHYSICAL_LOGICAL_ID13_ONLY"
+            ),
+            "target_clone_failure": (
+                "TARGET_PHYSICAL_FAILED_LOGICAL_SECTOR_ONLY"
+            ),
+            "target_final_validation_failure": (
+                "TARGET_PHYSICAL_LOGICAL_ID13_ONLY"
+            ),
+            "both_banks_marked_by_one_post_failure": False,
+        },
+        "save_failed_screen_wipe_and_retry_mgba_required": True,
+        "live_descriptor_snapshot": {
+            "stock_cache_address": "0x03005400",
+            "stock_cache_refresh_owner": (
+                "STOCK_UPDATE_SAVE_ADDRESSES_INSIDE_HANDLE_SAVING_DATA"
+            ),
+            "preflight_runs_before_stock_cache_refresh": True,
+            "source": (
+                "LIVE_SAVE_BLOCK2_SAVE_BLOCK1_POKEMON_STORAGE_OWNERS"
+            ),
+            "descriptor_count": 14,
+            "data_size_padding_exactly_rebuilt": True,
+            "preflight_and_post_snapshots_are_distinct": True,
+            "snapshot_helpers_noinline": True,
+            "snapshot_stack_lifetime_excludes_stock_save_call": True,
+            "normal_continue_stale_cache_regression": "MGBA_REQUIRED",
+        },
+        "preflight_before_stock": {
+            "runtime_function": (
+                "Stage61State_EnsureBackupGeneration"
+            ),
+            "stock_called_when_preflight_fails": False,
+            "required_complete_generation_count_before_stock": 2,
+            "backup_action": (
+                "ALWAYS_SELECT_NEWEST_COMPLETE_THEN_REFRESH_OPPOSITE_"
+                "AS_COUNTER_PLUS_ONE_EXACT_OLD_CLONE_WITHOUT_RECORD_"
+                "INJECTION"
+            ),
+            "preflight_promotes_global_counter": False,
+            "stock_writes_counter": "SOURCE_C_IN_PLACE",
+            "fresh_boot_during_stock_selects": (
+                "PROTECTED_EXACT_OLD_BACKUP_C_PLUS_ONE"
+            ),
+            "retry_after_torn_stock": (
+                "SELECT_PROTECTED_C_PLUS_ONE_AS_AUTHORITY_THEN_CLONE_"
+                "C_PLUS_TWO"
+            ),
+            "purpose": (
+                "PROTECT_STOCK_SAVE_LINK_IN_PLACE_IDS_0_TO_4"
+            ),
+            "stock_partial_logical_ids": [0, 1, 2, 3, 4],
+            "stock_fault_invariant": (
+                "OPPOSITE_COMPLETE_GENERATION_REMAINS_VALID"
+            ),
+        },
+        "record_only_transaction": {
+            "strategy": (
+                "SOURCE_RECORD_ATOMIC_COMMIT_THEN_COPY_ON_WRITE"
+            ),
+            "fault_injection_granularity": (
+                "MGBA_STOCK_FLASH_CALLBACK_BEFORE_AND_AFTER_EACH_"
+                "ERASE_OR_PROGRAM_BYTE"
+            ),
+            "analog_flash_cell_threshold_during_callback_modelled": (
+                False
+            ),
+            "scope_basis": (
+                "MGBA_EMULATOR_AND_STOCK_FLASH_API_OBSERVABLE_"
+                "BOUNDARIES"
+            ),
+            "source_generation_erased_or_programmed": True,
+            "source_record_atomic_commit": {
+                "logical_sector": 13,
+                "source_counter": "c",
+                "record_policy": "S61E_ONLY_REWRITE_IN_SOURCE_SECTOR",
+                "erase_callback_boundaries": 1,
+                "program_byte_callback_boundaries": 0x1000,
+                "callback_boundaries": 1 + 0x1000,
+                "signature_commit_marker_offset": "0x0FF8",
+                "signature_first_byte_programmed_last": True,
+                "exact_readback_before_next_phase": [
+                    "FULL_SECTOR_READ",
+                    "FULL_SECTOR_CRC32_MATCH",
+                    "FOOTER_ID_13",
+                    "FOOTER_CHECKSUM",
+                    "FOOTER_SIGNATURE",
+                    "S61E_HEADER_PAYLOAD_AND_CRC_ALL_BYTES_EXACT_MATCH",
+                ],
+            },
+            "at_least_one_exact_generation_remains_valid_at_every_"
+            "fault_offset": True,
+            "protected_old_backup_valid_during_source_rewrite": True,
+            "source_exact_new_valid_after_atomic_commit": True,
+            "source_all_14_sectors_revalidated_after_commit": True,
+            "generation_selector_rerun_during_transaction": False,
+            "target_invalidation_after_source_commit": True,
+            "target_invalidated_before_first_clone": {
+                "logical_sector": 13,
+                "operation": "ERASE_TARGET_RECORD_SECTOR",
+                "purpose": (
+                    "PREVENT_COUNTER_PLUS_ONE_MIXED_FULL_GENERATION_"
+                    "BETWEEN_CALLBACK_RETURNS"
+                ),
+            },
+            "target_counter_expression": "source_counter + 1 (u32)",
+            "target_slot_expression": (
+                "14 * ((source_counter + 1) & 1)"
+            ),
+            "logical_sector_order": list(range(14)),
+            "record_bearing_logical_sector": 13,
+            "record_bearing_sector_committed_last": True,
+            "per_sector_commit_marker_offset": "0x0FF8",
+            "per_sector_commit_marker_programmed_last": True,
+            "global_counter_and_first_sector_switch": (
+                "AFTER_ALL_14_TARGET_SIGNATURE_COMMITS"
+            ),
+            "flash_operations_per_sector": 1 + 0x1000,
+            "preflight_callback_boundaries": 14 * (1 + 0x1000),
+            "stock_callback_boundaries": 5 * (1 + 0x1000),
+            "post_source_record_callback_boundaries": 1 + 0x1000,
+            "post_source_revalidation_callback_boundaries": 0,
+            "post_target_invalidation_callback_boundaries": 1,
+            "post_clone_callback_boundaries": 14 * (1 + 0x1000),
+            "post_callback_boundaries": (
+                (1 + 0x1000) + 1 + 14 * (1 + 0x1000)
+            ),
+            "target_clone": {
+                "source": "EXACT_NEW_SOURCE_C",
+                "target": "COUNTER_C_PLUS_ONE_INACTIVE_SLOT",
+                "inject_record": 0,
+                "callback_boundaries": 14 * (1 + 0x1000),
+            },
+            "required_backup_initial_states": [
+                "TWO_VALID", "EMPTY", "ERROR",
+                "PARTIAL_OR_SINGLE_GENERATION", "TORN_STOCK_RETRY",
+            ],
+            "invariant": "AT_LEAST_ONE_EXACT_GENERATION_ALWAYS",
+            "fresh_boot_selection_by_phase": {
+                "preflight": "EXACT_OLD_SOURCE_OR_COMPLETED_BACKUP",
+                "stock": "EXACT_OLD_BACKUP_C_PLUS_ONE",
+                "post_source_record_rewrite_in_progress": (
+                    "PROTECTED_EXACT_OLD_BACKUP_C_PLUS_ONE"
+                ),
+                "post_source_record_commit_before_target_"
+                "invalidation": (
+                    "SOURCE_C_EXACT_NEW_AND_PROTECTED_OLD_BACKUP_VALID"
+                ),
+                "post_target_invalidated_or_clone_in_progress": (
+                    "SOURCE_C_EXACT_NEW"
+                ),
+                "post_target_final_id13_signature_committed": (
+                    "SOURCE_C_AND_TARGET_C_PLUS_ONE_EXACT_NEW"
+                ),
+            },
+        },
+        "transaction_sequence": [
+            "PREFLIGHT_ENSURE_TWO_COMPLETE_GENERATIONS",
+            "STOCK_SAVE_LINK_IDS_0_TO_4_IN_PLACE",
+            (
+                "POST_STOCK_ATOMIC_SOURCE_RECORD_COMMIT_WITH_"
+                "OLD_BACKUP_VALID"
+            ),
+            (
+                "POST_STOCK_COPY_ON_WRITE_FULL_GENERATION_FROM_"
+                "EXACT_NEW_SOURCE"
+            ),
+        ],
+    },
+    "record": {
+        "magic_little_endian": "S61E",
+        "version": 1,
+        "header_size": 16,
+        "payload_size": 1542,
+        "record_size": 1558,
+        "crc": "CRC32_IEEE_AND_ONES_COMPLEMENT",
+    },
+    "payload": [
+        {"owner": "gExpandedFlags", "address": "0x0203B0E8", "size": 512},
+        {"owner": "gExpandedVars", "address": "0x0203B2E8", "size": 1024},
+        {"owner": "gLastUsedBall", "address": "0x0203B6EC", "size": 2},
+        {"owner": "gPlayerCoins", "address": "0x0203B78C", "size": 4},
+    ],
+    "stock_tail_fragments": [
+        {"logical_chunk": 13, "stock_size": 0x7D0, "size": 0x616},
+    ],
+    "partial_save_policy": (
+        "ATOMIC_SOURCE_CHUNK13_S61E_COMMIT_THEN_EXACT_SOURCE_"
+        "FULL_GENERATION_COPY_ON_WRITE"
+    ),
+    "link_full_replace_policy": (
+        "DELAYED_SIGNATURE_ATOMIC_CLONE_WITH_RECORD_INJECTION"
+    ),
+    "legacy_without_record": "LOAD_STOCK_DATA_AND_ZERO_EXPANDED_STATE",
+    "sector31_transaction_owner": "STAGE36_QOL_PRODUCTION_UNCHANGED",
+}
+
+
 def _critical_release_persistent_state_contract() -> dict[str, Any]:
     """Return only the save contracts required by the critical runtime gate.
 
@@ -15064,7 +15415,7 @@ def _build_critical_release_artifacts(
 def build(
     config_path: Path = DEFAULT_CONFIG, *, release_profile: str = "STRICT",
 ) -> dict[str, bytes]:
-    if release_profile not in {"STRICT", "CRITICAL_RELEASE"}:
+    if release_profile not in {"STRICT", "CRITICAL_RELEASE", "STATE_NAMESPACE_FIXTURE"}:
         _fail(f"unknown Stage61 release profile: {release_profile}")
     config = _load_config(config_path)
     inputs, outputs = config["inputs"], config["outputs"]
@@ -16718,6 +17069,21 @@ def build(
             "map-section consumer candidate exact契約FAIL: "
             f"{map_section_consumer_proof}"
         )
+    if release_profile == "STATE_NAMESPACE_FIXTURE":
+        # 全owner/配置/branchのstrictゲートは未実行と明示する。状態unitは
+        # 同じcompiler・payload・exact patch生成元から専用候補を作り、別の
+        # namespace監査でROM命令列とCOW全契約を検証する。通常成果へは書かない。
+        from tools.stage61_state_fixture import build_artifacts
+        return build_artifacts(
+            root=ROOT, config=config, stage60=stage60, output_raw=output_raw,
+            payload_offset=payload_offset, payload_size=len(built_payload),
+            data_address=data_address, data_size=len(data), code_offset=code_offset,
+            code=code, symbols=symbols, nm_text=nm_text,
+            runtime_toolchain=runtime_toolchain, declared=declared,
+            semantic_report=semantic_complete.to_report(full_cfg),
+            namespace_report=namespace_report, blob_meta=blob_meta,
+            map_section_consumer_proof=map_section_consumer_proof,
+        )
     coords = _physical_coordinates(physical_maps)
     initial_npc_catalog = _build_npc_catalog(
         output_raw, coords, owner_ledger, semantic, root_targets,
@@ -18103,353 +18469,7 @@ def build(
                 "api_adapter_literal_count": len(CFRU_RAID_FLAG_API_LITERALS),
             },
         },
-        "persistent_state_compatibility": {
-            "stock_save_section_offsets_retained": "0x083C4B28",
-            "bounded_read_entry_hooks": [
-                {
-                    "name": "GetSaveValidStatus",
-                    "address": "0x080DAEF4",
-                    "preimage_hex": "f0b557464e464546",
-                    "runtime_symbol": "Stage61State_GetSaveValidStatus",
-                    "stock_trampoline_allowed": False,
-                },
-                {
-                    "name": "HandleLoadSector",
-                    "address": "0x080DAE3C",
-                    "preimage_hex": "f0b5474680b48846",
-                    "runtime_symbol": "Stage61State_HandleLoadSector",
-                    "stock_trampoline_allowed": False,
-                },
-            ],
-            "bounded_read_contract": {
-                "descriptor_row_count": 14,
-                "footer_id_must_be_below_row_count_before_index": True,
-                "descriptor_destination_must_be_ewram": True,
-                "descriptor_size_must_match_stock_table": True,
-                "signature_checksum_counter_and_parity_validated": True,
-                "duplicate_ids_rejected": True,
-                "required_id_mask": "0x3FFF",
-                "generation_order": {
-                    "algorithm": "HALF_RANGE_MODULAR_U32",
-                    "delta_expression": "second_counter - first_counter",
-                    "second_is_newer_when": (
-                        "delta != 0 && delta < 0x80000000"
-                    ),
-                    "equal_counter_selection": "FIRST",
-                    "exact_half_range_tie_selection": "FIRST",
-                    "physical_slot_parity": (
-                        "slot_base == 14 * (counter & 1)"
-                    ),
-                    "mgba_reachable_wrap_pair": (
-                        "slot0=0xFFFFFFFE,slot1=0x00000001"
-                    ),
-                    "other_comparator_vectors": "UNIT_LEVEL_EXPRESSION_GATE",
-                    "wrap_examples": {
-                        "0xFFFFFFFE_vs_0x00000001": "SECOND",
-                        "0x00000001_vs_0xFFFFFFFE": "FIRST",
-                    },
-                },
-                "slot_sector_rotation_policy": {
-                    "first_sector_definition": (
-                        "PHYSICAL_INDEX_OF_LOGICAL_ID_0"
-                    ),
-                    "expected_physical_index_by_logical_id": (
-                        "(first + logical_id) % 14"
-                    ),
-                    "all_14_logical_ids_require_exact_relative_rotation": (
-                        True
-                    ),
-                    "permuted_full_bank_status": "ERROR",
-                    "newest_permuted_full_bank_selection": (
-                        "FALL_BACK_TO_OLDER_EXACT_ROTATION"
-                    ),
-                    "both_banks_permuted_status": "INVALID_NO_RAM_COPY",
-                    "mgba_required": True,
-                },
-                "partial_newer_generation_falls_back_to_complete_older": True,
-                "ram_copy_only_after_selected_slot_full_validation": True,
-                "both_slots_invalid_copy_count": 0,
-                "both_slots_invalid_expanded_state": "CLEAR",
-            },
-            "normal_save_copy_on_write": {
-                "stock_entry_address": "0x080DB230",
-                "stock_entry_modified": False,
-                "runtime_symbol": "Stage61State_HandleSavingData",
-                "save_type": "SAVE_NORMAL_ONLY_0",
-                "stock_prewrite_semantics": [
-                    "UpdateSaveAddresses",
-                    "SaveSerializedGame",
-                ],
-                "stock_prewrite_semantics_each_called_once": True,
-                "stock_handle_saving_data_delegated": False,
-                "stock_try_write_sector_used": False,
-                "root_cause": (
-                    "STOCK_BAD_SECTOR_REPLACEMENT_CAN_ERASE_A_PHYSICAL_"
-                    "SECTOR_IN_THE_PROTECTED_BANK_AFTER_TARGET_FAILURE"
-                ),
-                "source_selection": (
-                    "NEWEST_COMPLETE_HALF_RANGE_U32_WITH_EXACT_ROTATION"
-                ),
-                "protected_bank_flash_policy": "READ_ONLY_BYTE_EXACT",
-                "target_counter_expression": "source_counter + 1 (u32)",
-                "target_slot_expression": "14 * ((source_counter + 1) & 1)",
-                "target_first_sector_expression": (
-                    "(source_first_sector + 1) % 14"
-                ),
-                "record_bearing_logical_sector": 13,
-                "target_record_preinvalidated_before_first_live_write": True,
-                "preinvalidation_callback_failure_is_not_ignored": True,
-                "logical_sector_order": list(range(14)),
-                "record_bearing_sector_committed_last": True,
-                "per_sector_commit_marker_offset": "0x0FF8",
-                "per_sector_commit_marker_programmed_last": True,
-                "per_sector_full_4096_byte_readback": True,
-                "final_full_generation_rotation_validation": True,
-                "final_all_14_sector_live_owner_byte_exact_readback": True,
-                "failure_selector": (
-                    "PROTECTED_SOURCE_OR_ORIGINAL_PREWRITE_COUNTER_AND_"
-                    "ROTATION"
-                ),
-                "failure_damaged_bits": "TARGET_BANK_ONLY",
-                "success_selector_promotion": (
-                    "AFTER_ALL_14_TARGET_SECTORS_AND_FINAL_READBACK"
-                ),
-                "first_save_without_complete_generation_supported": True,
-                "save_failed_screen_wipe_retry_mgba_required": True,
-                "natural_start_menu_second_retry_mgba_required": True,
-                "fresh_core_continue_mgba_required": True,
-            },
-            "link_save_record_commit": {
-                "stock_entry_address": "0x080DB230",
-                "stock_entry_modified": False,
-                "stock_entry_thumb_pointer": "0x080DB231",
-                "runtime_symbol": "Stage61State_HandleSavingData",
-                "near_veneer": {
-                    "address": "0x080C6480",
-                    "preimage_hex": "5ff07ef811e00000",
-                    "abi": "R0_SAVE_TYPE_PRESERVED_R3_CALLER_SAVED_TAIL_BX",
-                },
-                "direct_callers": [{
-                    "address": f"0x{address:08X}",
-                    "preimage_hex": expected.hex(),
-                } for address, expected in SAVE_LINK_RECORD_CALLSITES],
-                "record_only_symbol": "Stage61State_UpdateRecordOnly",
-                "save_type": "SAVE_LINK_ONLY_1",
-                "stock_must_succeed": True,
-                "damaged_sector_bits_must_be_zero": True,
-                "stock_damaged_side_channel_normalized_to_error": True,
-                "save_ereader_type_2_intercepted": False,
-                "record_failure_sets_damaged_bit_and_returns_error": True,
-                "outer_post_failure_additional_mark": False,
-                "outer_record_result_non_ok_action": "RETURN_STATUS_ERROR_ONLY",
-                "target_invalidation_early_guard_non_ok_caller_marks_"
-                "target_id13": True,
-                "phase_failure_damaged_bank": {
-                    "post_descriptor_rebuild_failure": (
-                        "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
-                    ),
-                    "source_record_before_or_during_program_failure": (
-                        "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
-                    ),
-                    "source_record_exact_readback_failure": (
-                        "SOURCE_PHYSICAL_LOGICAL_ID13_ONLY"
-                    ),
-                    "target_invalidation_failure": (
-                        "TARGET_PHYSICAL_LOGICAL_ID13_ONLY"
-                    ),
-                    "target_clone_failure": (
-                        "TARGET_PHYSICAL_FAILED_LOGICAL_SECTOR_ONLY"
-                    ),
-                    "target_final_validation_failure": (
-                        "TARGET_PHYSICAL_LOGICAL_ID13_ONLY"
-                    ),
-                    "both_banks_marked_by_one_post_failure": False,
-                },
-                "save_failed_screen_wipe_and_retry_mgba_required": True,
-                "live_descriptor_snapshot": {
-                    "stock_cache_address": "0x03005400",
-                    "stock_cache_refresh_owner": (
-                        "STOCK_UPDATE_SAVE_ADDRESSES_INSIDE_HANDLE_SAVING_DATA"
-                    ),
-                    "preflight_runs_before_stock_cache_refresh": True,
-                    "source": (
-                        "LIVE_SAVE_BLOCK2_SAVE_BLOCK1_POKEMON_STORAGE_OWNERS"
-                    ),
-                    "descriptor_count": 14,
-                    "data_size_padding_exactly_rebuilt": True,
-                    "preflight_and_post_snapshots_are_distinct": True,
-                    "snapshot_helpers_noinline": True,
-                    "snapshot_stack_lifetime_excludes_stock_save_call": True,
-                    "normal_continue_stale_cache_regression": "MGBA_REQUIRED",
-                },
-                "preflight_before_stock": {
-                    "runtime_function": (
-                        "Stage61State_EnsureBackupGeneration"
-                    ),
-                    "stock_called_when_preflight_fails": False,
-                    "required_complete_generation_count_before_stock": 2,
-                    "backup_action": (
-                        "ALWAYS_SELECT_NEWEST_COMPLETE_THEN_REFRESH_OPPOSITE_"
-                        "AS_COUNTER_PLUS_ONE_EXACT_OLD_CLONE_WITHOUT_RECORD_"
-                        "INJECTION"
-                    ),
-                    "preflight_promotes_global_counter": False,
-                    "stock_writes_counter": "SOURCE_C_IN_PLACE",
-                    "fresh_boot_during_stock_selects": (
-                        "PROTECTED_EXACT_OLD_BACKUP_C_PLUS_ONE"
-                    ),
-                    "retry_after_torn_stock": (
-                        "SELECT_PROTECTED_C_PLUS_ONE_AS_AUTHORITY_THEN_CLONE_"
-                        "C_PLUS_TWO"
-                    ),
-                    "purpose": (
-                        "PROTECT_STOCK_SAVE_LINK_IN_PLACE_IDS_0_TO_4"
-                    ),
-                    "stock_partial_logical_ids": [0, 1, 2, 3, 4],
-                    "stock_fault_invariant": (
-                        "OPPOSITE_COMPLETE_GENERATION_REMAINS_VALID"
-                    ),
-                },
-                "record_only_transaction": {
-                    "strategy": (
-                        "SOURCE_RECORD_ATOMIC_COMMIT_THEN_COPY_ON_WRITE"
-                    ),
-                    "fault_injection_granularity": (
-                        "MGBA_STOCK_FLASH_CALLBACK_BEFORE_AND_AFTER_EACH_"
-                        "ERASE_OR_PROGRAM_BYTE"
-                    ),
-                    "analog_flash_cell_threshold_during_callback_modelled": (
-                        False
-                    ),
-                    "scope_basis": (
-                        "MGBA_EMULATOR_AND_STOCK_FLASH_API_OBSERVABLE_"
-                        "BOUNDARIES"
-                    ),
-                    "source_generation_erased_or_programmed": True,
-                    "source_record_atomic_commit": {
-                        "logical_sector": 13,
-                        "source_counter": "c",
-                        "record_policy": "S61E_ONLY_REWRITE_IN_SOURCE_SECTOR",
-                        "erase_callback_boundaries": 1,
-                        "program_byte_callback_boundaries": 0x1000,
-                        "callback_boundaries": 1 + 0x1000,
-                        "signature_commit_marker_offset": "0x0FF8",
-                        "signature_first_byte_programmed_last": True,
-                        "exact_readback_before_next_phase": [
-                            "FULL_SECTOR_READ",
-                            "FULL_SECTOR_CRC32_MATCH",
-                            "FOOTER_ID_13",
-                            "FOOTER_CHECKSUM",
-                            "FOOTER_SIGNATURE",
-                            "S61E_HEADER_PAYLOAD_AND_CRC_ALL_BYTES_EXACT_MATCH",
-                        ],
-                    },
-                    "at_least_one_exact_generation_remains_valid_at_every_"
-                    "fault_offset": True,
-                    "protected_old_backup_valid_during_source_rewrite": True,
-                    "source_exact_new_valid_after_atomic_commit": True,
-                    "source_all_14_sectors_revalidated_after_commit": True,
-                    "generation_selector_rerun_during_transaction": False,
-                    "target_invalidation_after_source_commit": True,
-                    "target_invalidated_before_first_clone": {
-                        "logical_sector": 13,
-                        "operation": "ERASE_TARGET_RECORD_SECTOR",
-                        "purpose": (
-                            "PREVENT_COUNTER_PLUS_ONE_MIXED_FULL_GENERATION_"
-                            "BETWEEN_CALLBACK_RETURNS"
-                        ),
-                    },
-                    "target_counter_expression": "source_counter + 1 (u32)",
-                    "target_slot_expression": (
-                        "14 * ((source_counter + 1) & 1)"
-                    ),
-                    "logical_sector_order": list(range(14)),
-                    "record_bearing_logical_sector": 13,
-                    "record_bearing_sector_committed_last": True,
-                    "per_sector_commit_marker_offset": "0x0FF8",
-                    "per_sector_commit_marker_programmed_last": True,
-                    "global_counter_and_first_sector_switch": (
-                        "AFTER_ALL_14_TARGET_SIGNATURE_COMMITS"
-                    ),
-                    "flash_operations_per_sector": 1 + 0x1000,
-                    "preflight_callback_boundaries": 14 * (1 + 0x1000),
-                    "stock_callback_boundaries": 5 * (1 + 0x1000),
-                    "post_source_record_callback_boundaries": 1 + 0x1000,
-                    "post_source_revalidation_callback_boundaries": 0,
-                    "post_target_invalidation_callback_boundaries": 1,
-                    "post_clone_callback_boundaries": 14 * (1 + 0x1000),
-                    "post_callback_boundaries": (
-                        (1 + 0x1000) + 1 + 14 * (1 + 0x1000)
-                    ),
-                    "target_clone": {
-                        "source": "EXACT_NEW_SOURCE_C",
-                        "target": "COUNTER_C_PLUS_ONE_INACTIVE_SLOT",
-                        "inject_record": 0,
-                        "callback_boundaries": 14 * (1 + 0x1000),
-                    },
-                    "required_backup_initial_states": [
-                        "TWO_VALID", "EMPTY", "ERROR",
-                        "PARTIAL_OR_SINGLE_GENERATION", "TORN_STOCK_RETRY",
-                    ],
-                    "invariant": "AT_LEAST_ONE_EXACT_GENERATION_ALWAYS",
-                    "fresh_boot_selection_by_phase": {
-                        "preflight": "EXACT_OLD_SOURCE_OR_COMPLETED_BACKUP",
-                        "stock": "EXACT_OLD_BACKUP_C_PLUS_ONE",
-                        "post_source_record_rewrite_in_progress": (
-                            "PROTECTED_EXACT_OLD_BACKUP_C_PLUS_ONE"
-                        ),
-                        "post_source_record_commit_before_target_"
-                        "invalidation": (
-                            "SOURCE_C_EXACT_NEW_AND_PROTECTED_OLD_BACKUP_VALID"
-                        ),
-                        "post_target_invalidated_or_clone_in_progress": (
-                            "SOURCE_C_EXACT_NEW"
-                        ),
-                        "post_target_final_id13_signature_committed": (
-                            "SOURCE_C_AND_TARGET_C_PLUS_ONE_EXACT_NEW"
-                        ),
-                    },
-                },
-                "transaction_sequence": [
-                    "PREFLIGHT_ENSURE_TWO_COMPLETE_GENERATIONS",
-                    "STOCK_SAVE_LINK_IDS_0_TO_4_IN_PLACE",
-                    (
-                        "POST_STOCK_ATOMIC_SOURCE_RECORD_COMMIT_WITH_"
-                        "OLD_BACKUP_VALID"
-                    ),
-                    (
-                        "POST_STOCK_COPY_ON_WRITE_FULL_GENERATION_FROM_"
-                        "EXACT_NEW_SOURCE"
-                    ),
-                ],
-            },
-            "record": {
-                "magic_little_endian": "S61E",
-                "version": 1,
-                "header_size": 16,
-                "payload_size": 1542,
-                "record_size": 1558,
-                "crc": "CRC32_IEEE_AND_ONES_COMPLEMENT",
-            },
-            "payload": [
-                {"owner": "gExpandedFlags", "address": "0x0203B0E8", "size": 512},
-                {"owner": "gExpandedVars", "address": "0x0203B2E8", "size": 1024},
-                {"owner": "gLastUsedBall", "address": "0x0203B6EC", "size": 2},
-                {"owner": "gPlayerCoins", "address": "0x0203B78C", "size": 4},
-            ],
-            "stock_tail_fragments": [
-                {"logical_chunk": 13, "stock_size": 0x7D0, "size": 0x616},
-            ],
-            "partial_save_policy": (
-                "ATOMIC_SOURCE_CHUNK13_S61E_COMMIT_THEN_EXACT_SOURCE_"
-                "FULL_GENERATION_COPY_ON_WRITE"
-            ),
-            "link_full_replace_policy": (
-                "DELAYED_SIGNATURE_ATOMIC_CLONE_WITH_RECORD_INJECTION"
-            ),
-            "legacy_without_record": "LOAD_STOCK_DATA_AND_ZERO_EXPANDED_STATE",
-            "sector31_transaction_owner": "STAGE36_QOL_PRODUCTION_UNCHANGED",
-        },
+        "persistent_state_compatibility": _persistent_state_compatibility_metadata(),
         "namespace_policy": namespace_report,
         "namespace_registry": namespace_registry,
         "vega_trainer_dialogue_restore": deepcopy(

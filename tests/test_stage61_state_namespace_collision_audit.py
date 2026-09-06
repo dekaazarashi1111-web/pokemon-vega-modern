@@ -10,6 +10,7 @@ from unittest import mock
 
 from tools import stage61_state_namespace_collision_audit as audit
 from tests.fixtures.private_unit_fixtures import ensure_stage60_test_ready_save
+from scripts.regenerate_stage61_unit_state import ensure_stage61_state_fixture
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,10 +20,11 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         ensure_stage60_test_ready_save()
-        cls.raw = (ROOT / audit.STAGE60_ROM_RELATIVE).read_bytes()
-        cls.report = audit.build_stage61_state_namespace_collision_audit(ROOT)
+        cls.root = ensure_stage61_state_fixture()
+        cls.raw = (cls.root / audit.STAGE60_ROM_RELATIVE).read_bytes()
+        cls.report = audit.build_stage61_state_namespace_collision_audit(cls.root)
         cls.installed_report = audit._build_stage61_installed_state_namespace_audit(
-            ROOT, cls.report
+            cls.root, cls.report
         )
 
     def test_exact_stage60_and_all_top_level_assertions(self) -> None:
@@ -69,7 +71,7 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which("cc"), "C compiler unavailable")
     def test_mgba_global_fallback_preserves_engine_special_flag_owner(self) -> None:
-        probe = audit.run_mgba_flag_probe(ROOT)
+        probe = audit.run_mgba_flag_probe(self.root)
         self.assertEqual(probe["status"], "PASS")
         for label in ("stage60_unconnected", "candidate_hooks_connected"):
             row = next(
@@ -482,7 +484,7 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
         )
 
     def test_registry_keeps_topology_flags_in_collision_math_and_audits_vars(self) -> None:
-        registry = audit._namespace_registry_inventory(ROOT)
+        registry = audit._namespace_registry_inventory(self.root)
         project_ids = set(registry["project_ids_excluding_raid_owner"])
         topology_ids = set(range(0x162D, 0x163F))
         self.assertEqual(set(registry["topology_owner_ids"]), topology_ids)
@@ -528,7 +530,7 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
             "build_stage61_state_namespace_collision_audit",
             return_value=self.report,
         ):
-            report = audit.build_stage61_installed_state_namespace_audit(ROOT)
+            report = audit.build_stage61_installed_state_namespace_audit(self.root)
         self.assertEqual(report["mode"], "STAGE61_INSTALLED_CANDIDATE")
         self.assertEqual((report["audit_status"], report["status"]), ("PASS", "READY"))
         self.assertTrue(all(report["assertions"].values()))
@@ -636,14 +638,14 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
                 audit.RAM_LAYOUT_RELATIVE,
                 audit.SAVE_LAYOUT_RELATIVE,
             ):
-                shutil.copy2(ROOT / relative, root / relative)
+                shutil.copy2(self.root / relative, root / relative)
 
             ram_path = root / audit.RAM_LAYOUT_RELATIVE
             ram_path.write_bytes(ram_path.read_bytes() + b"\n")
             with self.assertRaises(audit.StateNamespaceCollisionAuditError):
                 audit._stage61_layout_ownership_contract(root)
 
-            shutil.copy2(ROOT / audit.RAM_LAYOUT_RELATIVE, ram_path)
+            shutil.copy2(self.root / audit.RAM_LAYOUT_RELATIVE, ram_path)
             text = ram_path.read_text(encoding="utf-8")
             old = "0x0203B6EC,0x0203B6EE,2,CFRU_SAVE_EXPANSION,gLastUsedBall"
             new = "0x0203B6ED,0x0203B6EF,2,CFRU_SAVE_EXPANSION,gLastUsedBall"
