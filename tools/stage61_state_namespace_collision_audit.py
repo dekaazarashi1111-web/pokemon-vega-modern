@@ -3647,6 +3647,7 @@ def _stage61_custom_save_compatibility_contract(root: Path) -> dict[str, Any]:
     required_symbols = {
         "Stage61State_HandleWriteSector",
         "Stage61State_HandleReplaceSector",
+        "Stage61State_CommitSignatureByte",
         "Stage61State_EnsureBackupGeneration",
         "Stage61State_UpdateRecordOnly",
         "Stage61State_HandleSavingData",
@@ -3828,6 +3829,8 @@ def _stage61_custom_save_compatibility_contract(root: Path) -> dict[str, Any]:
     patch_names = (
         "stage61_save_compatibility::handle_write_sector",
         "stage61_save_compatibility::handle_replace_sector",
+        "stage61_save_compatibility::commit_replace_sector_signature_a",
+        "stage61_save_compatibility::commit_replace_sector_signature_b",
         "stage61_save_compatibility::get_save_valid_status",
         "stage61_save_compatibility::handle_load_sector",
         "stage61_save_link_record_near_veneer",
@@ -3858,7 +3861,33 @@ def _stage61_custom_save_compatibility_contract(root: Path) -> dict[str, Any]:
                 "category": declaration["category"],
             }
         )
+    # 現行生成元は遅延signature commitの両stock入口もread-back付きownerへ接続する。
+    # Stage60の固定preimageと現在ROMのpostimageを両方検証し、件数だけを増やさない。
+    signature_preimages = {
+        "stage61_save_compatibility::commit_replace_sector_signature_a": (0x080DACD8, "70b50004154e000c"),
+        "stage61_save_compatibility::commit_replace_sector_signature_b": (0x080DAD70, "70b50004134e000c"),
+    }
+    baseline_rom = (root / STAGE60_ROM_RELATIVE).read_bytes()
+    if _sha(baseline_rom) != STAGE60_ROM_SHA256:
+        _fail("signature commit input ROM identity differs")
+    for name, (address, expected) in signature_preimages.items():
+        row = next(item for item in active_patches if item["name"] == name)
+        if row["address"] != address or row["expected_hex"] != expected:
+            _fail(f"signature commit declaration preimage differs: {name}")
+        _require_rom_bytes(baseline_rom, address, bytes.fromhex(expected), name)
     custom_specs = (
+        (
+            "stage61_save_compatibility::commit_replace_sector_signature_a",
+            0x080DACD8,
+            "Stage61State_CommitSignatureByte",
+            2,
+        ),
+        (
+            "stage61_save_compatibility::commit_replace_sector_signature_b",
+            0x080DAD70,
+            "Stage61State_CommitSignatureByte",
+            2,
+        ),
         (
             "stage61_save_compatibility::handle_write_sector",
             0x080DA858,
@@ -5411,7 +5440,7 @@ def _stage61_installed_declaration_contract(
     custom_save: Mapping[str, Any],
     raid: Mapping[str, Any],
 ) -> dict[str, Any]:
-    """全persistent-state宣言26件と最終ROM postimageをexact検証する。"""
+    """全persistent-state宣言28件と最終ROM postimageをexact検証する。"""
 
     rom = (root / STAGE61_ROM_RELATIVE).read_bytes()
     generated = json.loads(
@@ -5422,7 +5451,7 @@ def _stage61_installed_declaration_contract(
         if str(row.get("category", "")).startswith("PERSISTENT_STATE_")
     ]
     names = [str(row.get("name")) for row in declaration_rows]
-    if len(names) != 26 or len(set(names)) != 26:
+    if len(names) != 28 or len(set(names)) != 28:
         _fail(f"Stage61 persistent declaration count differs: {len(names)}")
     combined_names = {
         str(row["name"]) for row in custom_save.get("active_exact_patches", [])
@@ -5443,7 +5472,7 @@ def _stage61_installed_declaration_contract(
         str(row["name"]) for row in custom_save.get("active_exact_patches", [])
     }
     expected_names = custom_names | raid_generated_names
-    if set(names) != expected_names or len(expected_names) != 26:
+    if set(names) != expected_names or len(expected_names) != 28:
         _fail(
             "Stage61 persistent declaration owner set differs: "
             f"missing={sorted(expected_names - set(names))}, "
@@ -5451,7 +5480,7 @@ def _stage61_installed_declaration_contract(
         )
     # Keep this temporary set calculation visible in the report construction
     # above without accepting consumer aliases as declaration identities.
-    if len(combined_names) != 26:
+    if len(combined_names) != 28:
         _fail("Stage61 custom/Raid exact patch union count differs")
 
     spans: list[tuple[int, int, str]] = []
@@ -5497,7 +5526,7 @@ def _stage61_installed_declaration_contract(
             )
     expected_categories = Counter(
         {
-            "PERSISTENT_STATE_SAVE_COMPATIBILITY": 7,
+            "PERSISTENT_STATE_SAVE_COMPATIBILITY": 9,
             "PERSISTENT_STATE_SAVE_LIFECYCLE": 3,
             "PERSISTENT_STATE_NAMESPACE_HOOK": 2,
             "PERSISTENT_STATE_RAID_FLAG_NAMESPACE": 9,
@@ -5519,7 +5548,7 @@ def _stage61_installed_declaration_contract(
         ):
             _fail(f"Stage61 installed global hook declaration differs: {expected['name']}")
     return {
-        "status": "ALL_26_POSTIMAGES_EXACT_NON_OVERLAPPING",
+        "status": "ALL_28_POSTIMAGES_EXACT_NON_OVERLAPPING",
         "declaration_count": len(installed),
         "category_counts": dict(sorted(categories.items())),
         "all_postimages_exact": True,
@@ -5699,7 +5728,7 @@ def _build_stage61_installed_state_namespace_audit(
             len(layout["ram_save_affine_crosswalk"]) == 4
         ),
         "all_persistent_declarations_have_exact_postimages": (
-            declarations["declaration_count"] == 26
+            declarations["declaration_count"] == 28
             and declarations["all_postimages_exact"] is True
             and declarations["all_spans_non_overlapping"] is True
         ),

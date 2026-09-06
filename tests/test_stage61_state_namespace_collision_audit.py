@@ -203,9 +203,15 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
         self.assertTrue(custom["stock_orchestration_retained"])
         self.assertTrue(custom["delayed_signature_replace_retained"])
         self.assertTrue(custom["unsafe_cfru_direct_plan_rejected"])
-        self.assertEqual(custom["active_patch_count"], 12)
+        self.assertEqual(custom["active_patch_count"], 14)
         by_name = {row["name"]: row for row in custom["active_exact_patches"]}
         custom_hooks = {
+            "stage61_save_compatibility::commit_replace_sector_signature_a": (
+                0x080DACD8, "Stage61State_CommitSignatureByte"
+            ),
+            "stage61_save_compatibility::commit_replace_sector_signature_b": (
+                0x080DAD70, "Stage61State_CommitSignatureByte"
+            ),
             "stage61_save_compatibility::handle_write_sector": (
                 0x080DA858, "Stage61State_HandleWriteSector"
             ),
@@ -594,19 +600,19 @@ class Stage61StateNamespaceCollisionAuditTest(unittest.TestCase):
             (0x10, 0x606, 0x616, 13, 0x7D0, 0x20A),
         )
 
-    def test_installed_all_26_declarations_and_postimages_are_exact(self) -> None:
+    def test_installed_all_28_declarations_and_postimages_are_exact(self) -> None:
         declarations = self.installed_report["installed_declarations"]
         self.assertEqual(
-            declarations["status"], "ALL_26_POSTIMAGES_EXACT_NON_OVERLAPPING"
+            declarations["status"], "ALL_28_POSTIMAGES_EXACT_NON_OVERLAPPING"
         )
-        self.assertEqual(declarations["declaration_count"], 26)
+        self.assertEqual(declarations["declaration_count"], 28)
         self.assertEqual(
             declarations["category_counts"],
             {
                 "PERSISTENT_STATE_NAMESPACE_HOOK": 2,
                 "PERSISTENT_STATE_RAID_FLAG_API_GUARD": 5,
                 "PERSISTENT_STATE_RAID_FLAG_NAMESPACE": 9,
-                "PERSISTENT_STATE_SAVE_COMPATIBILITY": 7,
+                "PERSISTENT_STATE_SAVE_COMPATIBILITY": 9,
                 "PERSISTENT_STATE_SAVE_LIFECYCLE": 3,
             },
         )
