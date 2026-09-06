@@ -66,7 +66,9 @@ def main():
         path = ROOT / f'build/stages/{name}.json'
         value = json.loads(path.read_text())
         rows = []
-        for rel, identity in value.get('fingerprint_inputs', {}).get('files', {}).items():
+        source_inputs = value.get('fingerprint_inputs', {})
+        source_items = source_inputs.get('files', {}).items() if isinstance(source_inputs, dict) else ((row['path'], row) for row in source_inputs)
+        for rel, identity in source_items:
             actual = sha(ROOT / rel) if (ROOT / rel).is_file() else None
             if actual != identity['sha256']:
                 rows.append({'path': rel, 'recorded_sha256': identity['sha256'], 'current_sha256': actual})
@@ -121,6 +123,8 @@ def main():
                 continue
             result['frames'].append({'path': relative, 'line': line})
     write('checkcoins-diagnostic.json', result)
+    from scripts.inspect_trainer_input_sources import main as inspect_trainer
+    inspect_trainer()
     print('fixed contracts and current source diagnostics recorded; no input modified')
 
 

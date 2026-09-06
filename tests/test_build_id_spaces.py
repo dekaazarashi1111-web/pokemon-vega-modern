@@ -417,19 +417,44 @@ class IdSpaceBuilderTests(unittest.TestCase):
             validate_id_space_model(broken)
 
     def test_check_is_read_only_and_matches_published_bytes(self) -> None:
-        if not all((ROOT / logical).is_file() for logical in ARTIFACT_PATHS):
-            self.skipTest("published T05 artifacts are unavailable")
-        before = {
-            logical: hashlib.sha256((ROOT / logical).read_bytes()).hexdigest()
-            for logical in ARTIFACT_PATHS
-        }
-        result = check(ROOT)
-        after = {
-            logical: hashlib.sha256((ROOT / logical).read_bytes()).hexdigest()
-            for logical in ARTIFACT_PATHS
-        }
-        self.assertEqual(result["side_effects"], "NONE")
-        self.assertEqual(before, after)
+        # Releaseは過去の検証source fingerprintを含むため、現行generatorで
+        # 独立workspaceへ生成してcheckを検証する。復元済み成果は変更しない。
+        from scripts.build_id_spaces import FINGERPRINT_FILES, build as publish
+        original = {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+                    for name in ARTIFACT_PATHS}
+        with tempfile.TemporaryDirectory(prefix="t05-published-fixture-") as directory:
+            root = Path(directory)
+            for name in ("vendor/upstream/CFRU-JP", "vendor/upstream/DPE-JP"):
+                shutil.copytree(ROOT / name, root / name)
+            inputs = set(FINGERPRINT_FILES) | {
+                "reports/generated/upstream_repro.json",
+                self.config["vega"]["rom_path"],
+                self.config["cfru"]["baseline_rom_path"],
+                self.config["cfru"]["offsets_path"],
+            }
+            for name in sorted(inputs):
+                target = root / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(ROOT / name, target)
+            (root / "build").mkdir(exist_ok=True)
+            published = publish(root)
+            self.assertEqual(published["fingerprint"], self.model["fingerprint"])
+            for name, expected in self.artifacts.items():
+                self.assertEqual((root / name).read_bytes(), expected, name)
+            before = {name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+                      for name in ARTIFACT_PATHS}
+            result = check(root)
+            after = {name: hashlib.sha256((root / name).read_bytes()).hexdigest()
+                     for name in ARTIFACT_PATHS}
+            self.assertEqual(result["side_effects"], "NONE")
+            self.assertEqual(before, after)
+            # stale byte拒否を負例で維持する。実generator/checkをmockしない。
+            corrupt = root / "generated/engine/ids/ids_generated.h"
+            corrupt.write_bytes(corrupt.read_bytes() + b"\n/* deliberate drift */\n")
+            with self.assertRaisesRegex(IdSpaceBuildError, "published artifact is stale"):
+                check(root)
+        self.assertEqual(original, {name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+                                    for name in ARTIFACT_PATHS})
 
 
 if __name__ == "__main__":
