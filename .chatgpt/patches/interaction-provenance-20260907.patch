@@ -1,0 +1,136 @@
+diff --git a/scripts/build_stage61_display_npc_event_audit.py b/scripts/build_stage61_display_npc_event_audit.py
+--- a/scripts/build_stage61_display_npc_event_audit.py
++++ b/scripts/build_stage61_display_npc_event_audit.py
+@@ -17076,3 +17076,34 @@
+         from tools.stage61_state_fixture import build_artifacts
+-        return build_artifacts(
++        # 状態unitも、ROMだけを新しくして旧repair/ABI証跡を流用しない。
++        # 通常buildと同じ宣言済み修復範囲・source・現行linkから再検証する。
++        fixture_catalog = _build_npc_catalog(
++            output_raw, _physical_coordinates(physical_maps), owner_ledger,
++            semantic, root_targets, missing_object, topology_producer, post_ledger,
++        )
++        if fixture_catalog["status"] != "PASS":
++            _fail("unit candidate NPC catalog static owner FAIL")
++        fixture_inventory = build_all_event_owner_inventory(
++            output_raw, physical_maps, owner_ledger,
++        )
++        fixture_repair = _build_interaction_repair_manifest(
++            stage60, output_raw, fixture_catalog,
++            runtime_event_repair_patch_rows,
++            null_event_script_repairs, invalid_map_script_repairs,
++        )
++        fixture_repair["scope_adapters"] = [blob_meta["bill_sevii_scope_guard"]]
++        fixture_repair["assertions"].update({
++            "out_of_scope_story_adapters_explicit": True,
++            "bill_sevii_atomic_adapter_exact": True,
++        })
++        fixture_sources, fixture_symbols = _interaction_abi_pinned_inputs()
++        fixture_symbols[Path(config["outputs"]["symbols"]).as_posix()] = {
++            "symbols": dict(symbols), "nm": nm_text,
++        }
++        fixture_abi = build_pinned_interaction_abi_manifest(
++            clean, stage60, output_raw, fixture_catalog,
++            source_blobs=fixture_sources, runtime_symbol_reports=fixture_symbols,
++            event_owner_inventory=fixture_inventory, require_complete=True,
++        )
++        _complete_repair_manifest_with_abi(fixture_repair, fixture_abi)
++        artifacts = build_artifacts(
+             root=ROOT, config=config, stage60=stage60, output_raw=output_raw,
+@@ -17086,2 +17117,12 @@
+         )
++        # 全配置/全会話のstrict PASSを示す成果物は生成しない。
++        # これらもcandidate manifestへhash登録され、旧ROOT reportを参照しない。
++        for output_key, document in (
++            ("legacy_npc_catalog", fixture_catalog),
++            ("event_owner_inventory", fixture_inventory),
++            ("interaction_repair_manifest", fixture_repair),
++            ("interaction_abi_manifest", fixture_abi),
++        ):
++            artifacts[config["outputs"][output_key]] = _stable(document)
++        return artifacts
+     coords = _physical_coordinates(physical_maps)
+diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_interaction_oracle.py
+--- a/tests/test_stage61_interaction_oracle.py
++++ b/tests/test_stage61_interaction_oracle.py
+@@ -5937,3 +5937,3 @@
+         cls.catalog = json.loads(
+-            (ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json").read_text()
++            (fixture_root / "reports/generated/stage61_npc_interaction_catalog_legacy.json").read_text()
+         )
+@@ -5943,3 +5943,3 @@
+         cls.repair_manifest = json.loads(
+-            (ROOT / "reports/generated/stage61_interaction_repair_manifest.json")
++            (fixture_root / "reports/generated/stage61_interaction_repair_manifest.json")
+             .read_text()
+@@ -12087,2 +12087,37 @@
+ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
++    def test_fixture_reports_reject_mixed_rom_generations(self) -> None:
++        from scripts.regenerate_stage61_unit_state import ensure_stage61_state_fixture
++
++        fixture_root = ensure_stage61_state_fixture()
++        marker = json.loads((fixture_root / "STATE_FIXTURE_MANIFEST.json").read_text())
++        for name in (
++            "stage61_npc_interaction_catalog_legacy.json",
++            "stage61_event_owner_inventory.json",
++            "stage61_interaction_repair_manifest.json",
++            "stage61_interaction_abi_manifest.json",
++        ):
++            relative = "reports/generated/" + name
++            path = fixture_root / relative
++            with self.subTest(report=name):
++                self.assertFalse(path.is_symlink())
++                self.assertEqual(
++                    hashlib.sha256(path.read_bytes()).hexdigest(),
++                    marker["artifacts"][relative],
++                )
++        catalog = json.loads((fixture_root /
++            "reports/generated/stage61_npc_interaction_catalog_legacy.json"
++        ).read_text())
++        self.assertEqual(
++            self.repair_manifest["stage61_sha256"],
++            hashlib.sha256(self.stage61).hexdigest(),
++        )
++        result = audit_repaired_stage61_runtime_integrity(
++            self.stage61, catalog, self.repair_manifest,
++        )
++        self.assertEqual(result["status"], "PASS")
++        forged = deepcopy(self.repair_manifest)
++        forged["stage61_sha256"] = "0" * 64
++        with self.assertRaises(Stage61InteractionOracleError):
++            audit_repaired_stage61_runtime_integrity(self.stage61, catalog, forged)
++
+     MAP_SECTIONS = {
+@@ -12130,6 +12165,6 @@
+         cls.repair_manifest = json.loads((
+-            ROOT / "reports/generated/stage61_interaction_repair_manifest.json"
++            fixture_root / "reports/generated/stage61_interaction_repair_manifest.json"
+         ).read_text())
+         catalog = json.loads((
+-            ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json"
++            fixture_root / "reports/generated/stage61_npc_interaction_catalog_legacy.json"
+         ).read_text())
+diff --git a/design/run_log.md b/design/run_log.md
+--- a/design/run_log.md
++++ b/design/run_log.md
+@@ -3840 +3840,10 @@
+ 限定source周辺行から作った差分の構文・hunk適合をローカル確認し、全国図鑑番号1/8/9/18/416と成功/満杯の合成データで期待値検証の受理・改変拒否を確認した。これはprivate suite実測の代替ではない。適用後HEADでfocusedを再要求し、完全PASSまでfull-unit/allへ進めない。runtime object preimageと世代の異なるrepair manifest、およびTrainer原本metadataのprivate結果は継続確認中。ROM/save/Private Release資材・main・workflowは変更していない。
++
++
++## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 現行候補とinteraction証跡の世代統一（IN_PROGRESS）
++
++限定結果comment5560557357はac992a3951711fcd3b99e84bf1ce0a1889a5c38e、445 tests /20 failures /3 errors /0 skippedで、Trainer metadata 6件は未解決。comment5560680822はd1fdee6c27d020262f88fdaacc406d0eaff102ac、445 tests /19 failures /3 errors /0 skipped、Stage62 ROM unchanged=trueでschema負例修復の1件減少を確認した。図鑑修復は既存bridgeでdac899faaa837828ccbb7a4ee6d794cd54c27082へ適用され、対象改変拒否testを通過（comment5560671892 /run34046165292）。同HEADのfocusedをcomment5560675148で要求済み。対象testだけの成功をsuite PASSとは扱わない。
++
++Stage61InteractionOracleTests.setUpClassは現行Cから生成した候補ROMと、ROOTに復元された旧repair manifestを組み合わせ、oracleのstage61_sha256照合で拒否されていた。STATE_NAMESPACE_FIXTURE分岐で同一output_raw・既存patch宣言・元Stage60・現行source/リンクsymbolsから、通常buildと同じfactory/264 ABI照合を経てlegacy catalog・全owner inventory・repair manifest・ABIを再生成する。候補保存器の既存artifact hash登録で固定し、関連2クラスは候補側のcatalog/repairを読む。単なるhash転記・期待値変更・Stage62差し替えはしない。候補のunit専用scopeと全配置/全会話strict NOT_RUNは維持し、通常release分岐のゲートは変更しない。
++
++新しい回帰testは4 reportが旧reportへのsymlinkでないこと、候補markerのhash一致、現行ROMとrepairの一致、正規runtime監査PASS、不一致ROM hashの拒否を検証する。巨大builder/testとappend-only証跡のみ既存bridgeの限定patch対象とした。構文・差分の適合をローカル確認し、private生成/回帰は既存bridgeと適用後HEADのfocusedで確認する。Trainer 6 metadataとgiftのobject preimageは継続調査中。全体は未完了、full-unit/all未実行。ROM/save/Release資材・main・workflow・結果取得経路は変更していない。
+diff --git a/design/version_log.md b/design/version_log.md
+--- a/design/version_log.md
++++ b/design/version_log.md
+@@ -1498 +1498,6 @@
+ 全国番号18の固定書き込みを全14rootへ流用していたtest契約を、入力species・物理givemon・ROMのspecies-to-national表・既存scenario preimageから独立導出する検証へ変更。4 owner全byteと書き込み集合、満杯時無変更、欠落/誤bit/誤offset/重複拒否を検証する。元のclosure/object/party/storage/fossil検証は残した。直前の適用HEADはd1fdee6c27d020262f88fdaacc406d0eaff102ac、focused要求comment5560556544。修正後のsuite件数・Stage62 unchangedは限定結果未確認につき更新しない。全体IN_PROGRESSであり、full-unit/allのPASSや完了版を意味しない。
++
++
++## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 unit候補のinteraction provenance再生成（未完了）
++
++現行候補ROMと旧interaction証跡の混在を解消するため、既存repair factory・source/symbol固定ABI監査で同一世代のcatalog/inventory/repair/ABIを生成し、候補の既存hash manifestに登録する。関連unitは候補側reportを参照し、旧世代hash混入の拒否とreport非symlink/hash一致を追加検証する。状態unit専用scope・通常releaseのstrictゲートを維持する。直近の限定結果はd1fdee6c27d020262f88fdaacc406d0eaff102acで445 tests /19 failures /3 errors /0 skipped、Stage62 unchanged=true（comment5560680822）。図鑑修復dac899faaa837828ccbb7a4ee6d794cd54c27082のfocusedは要求済み。Trainer metadataとobject preimageは未解決であり、全体DONEではない。
