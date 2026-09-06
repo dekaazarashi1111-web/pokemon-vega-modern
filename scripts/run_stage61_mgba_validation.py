@@ -3147,10 +3147,10 @@ _PARTY_MOVE_TRANSACTION_MODEL_SOURCES = {
         "8a3f0eb4a475633477bda6d65396205dfbb29db04dabb9f5f0d99df9f0c1ef40"
     ),
     "overlays/move_memory/move_memory.c": (
-        "ccf816ba5a7fff11a2f370cb90f55846444ccccec5b65fe53f6f8cfbc051b3a5"
+        "369f46588477ec7a2a581ec938ccbbab42992ec7cde444ca5920889f5639e1c3"
     ),
     "scripts/build_move_memory.py": (
-        "579976cacf8b75638e1c053db68ecfe1d4a5a804c8773e5bab11b8658f074c13"
+        "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817"
     ),
     "vendor/upstream/pokefirered/data/maps/TwoIsland_House/scripts.inc": (
         "90552c52f1096ad37ab30de988882a7477eb2d99f72d1e9c22c989927ad89157"

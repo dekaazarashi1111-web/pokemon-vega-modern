@@ -13,6 +13,9 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 TARGETS = (
+    "tests.test_move_memory_source_provenance",
+    "tests.test_stage61_cyclic_decision_contracts",
+    "tests.test_stage61_interaction_oracle",
     "tests.test_prepare_trainer_unit_inputs",
     "tests.test_build_id_spaces",
     "tests.test_cfru_id_space_inventory",

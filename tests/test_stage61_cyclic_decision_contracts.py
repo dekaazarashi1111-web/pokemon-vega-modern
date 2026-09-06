@@ -862,9 +862,9 @@ class Stage61CyclicDecisionContractTests(unittest.TestCase):
             "vendor/upstream/pokefirered/data/maps/FuchsiaCity_House3/scripts.inc":
                 "2c0bc780afd36a7d9ac791176fe6c6dfaa5c03e691cdb1b95e56ac47dbb1ba9f",
             "overlays/move_memory/move_memory.c":
-                "ccf816ba5a7fff11a2f370cb90f55846444ccccec5b65fe53f6f8cfbc051b3a5",
+                "369f46588477ec7a2a581ec938ccbbab42992ec7cde444ca5920889f5639e1c3",
             "scripts/build_move_memory.py":
-                "579976cacf8b75638e1c053db68ecfe1d4a5a804c8773e5bab11b8658f074c13",
+                "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817",
         })
 
     def test_party_move_policy_and_source_forges_fail_closed(self) -> None:

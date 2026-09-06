@@ -44,6 +44,16 @@ jobs:
         run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
       - name: 固定契約と正本sourceの差を読取専用で採取
         run: python3 -m scripts.inspect_private_unit_contracts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-unit-contracts-${{ github.event.pull_request.head.sha }}
+          path: |
+            build/private-unit-focus/fixed-contract-drift.json
+            build/private-unit-focus/vendor-source-review.json
+            build/private-unit-focus/checkcoins-diagnostic.json
+            build/private-unit-focus/trainer-source-candidates.json
+          retention-days: 1
+          if-no-files-found: error
       - name: 既存ROMを保護して現行Stage61生成元を再実行
         run: python3 scripts/regenerate_stage61_unit_state.py
       - name: 非秘密hashの状態を採取
