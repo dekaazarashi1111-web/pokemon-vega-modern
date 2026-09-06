@@ -3829,3 +3829,12 @@ commit `ac992a3951711fcd3b99e84bf1ce0a1889a5c38e`でTrainer metadata回収を追
 Stage61 gift負例は`runner_fixture_key`のschema拒否（source 19731–19736）と、テストが要求する別の例外文言が不整合だった。未知キー拒否は維持し、必須キー欠落・不明scenario・canonical layout改変の負例を追加した。巨大test sourceとappend-onlyログは既存/vega-patch経路で必要箇所だけ適用し、workflow・結果取得経路は追加しない。適用後の最新HEADを再取得してfocused-unitを要求し、限定結果で確認するまではPASSと扱わない。
 
 残る調査は4つの図鑑保存領域のspecies由来bit検証、runtime object preimage、現行候補ROMと旧repair manifestの世代混在。provenance照合を緩めず、Stage62へ差し替えず、既存のStage60監査IN_PROGRESSと無関係差分を維持する。main直接commit、merge、PR close、新branch/PR、ROM/save/Private Release資材のGit追加は行っていない。focused完全PASS前のfull-unit、full-unit完全PASS前のallは実行しない。全体DONEではない。
+
+
+## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 gift図鑑の入力由来完全一致検証（IN_PROGRESS）
+
+schema負例と前項の証跡追記は既存bridgeによりcommit `d1fdee6c27d020262f88fdaacc406d0eaff102ac`へ適用された（PR comment5560539490）。HEAD再取得後にfocused-unitをcomment5560556544で要求した。修正後のsuite件数は限定結果コメントを確認するまで未確定とする。
+
+gift全14rootテストが全国番号18の書き込みoffset/bitを全speciesへ固定していた。これは専用Game Corner sweepの入力species18（source 1560–1570）を一般化しており、実装の入力species→ROM table 0x09F79290→national-1 bitという契約（38174–38198）に反していた。期待値を失敗時の出力へ合わせず、givemonの解決済み入力speciesと物理命令を照合し、ROM表を独立decodeして4 owner全byteと書き込み集合を完全一致検証する。保存領域はsource1619–1623のSB2 0x28/0x5C、SB1 0x5F8/0x3A18。入力preimageは既存scenario生成器から取得し、満杯時は全byte不変・図鑑書き込みゼロを要求する。欠落owner/誤bit/誤offset/重複書き込みの負例を追加した。元のall14root/closure/object/RNG/party/storage/fossil検証は維持し、図鑑だけを独立に検証する追加テストでobject例外による途中終了を分離する。
+
+限定source周辺行から作った差分の構文・hunk適合をローカル確認し、全国図鑑番号1/8/9/18/416と成功/満杯の合成データで期待値検証の受理・改変拒否を確認した。これはprivate suite実測の代替ではない。適用後HEADでfocusedを再要求し、完全PASSまでfull-unit/allへ進めない。runtime object preimageと世代の異なるrepair manifest、およびTrainer原本metadataのprivate結果は継続確認中。ROM/save/Private Release資材・main・workflowは変更していない。

@@ -12383,6 +12383,113 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
         ):
             _multichoice_rows(forged, 67)
 
+    def _assert_gift_pokedex_projection(self, context, state, persistent) -> None:
+        # Species is the resolved givemon INPUT, not the generated mon/dex output.
+        # Decode the pinned native species-to-national table independently of
+        # _gift_storage_national_dex_number and _gift_storage_pokedex_after.
+        transactions = [
+            row for row in state.decisions
+            if row.get("kind") == "GIFT_STORAGE_TRANSACTION_EXACT"
+        ]
+        self.assertEqual(len(transactions), 1)
+        transaction = transactions[0]
+        species = transaction["species"]
+        self.assertIs(type(species), int)
+        self.assertGreater(species, 0)
+        command_offset = int(transaction["instruction_address"], 16) - 0x08000000
+        self.assertGreaterEqual(command_offset, 0)
+        raw = context.stage61_rom[command_offset:command_offset + 15]
+        self.assertEqual(len(raw), 15)
+        self.assertEqual(raw[0], 0x79)
+        operand = int.from_bytes(raw[1:3], "little")
+        if operand < 0x4000:
+            self.assertEqual(species, operand)
+        table_offset = 0x09F79290 - 0x08000000 + (species - 1) * 2
+        table_row = context.stage61_rom[table_offset:table_offset + 2]
+        self.assertEqual(len(table_row), 2)
+        national = int.from_bytes(table_row, "little")
+        payload = _gift_storage_scenario_payload(state.gift_storage_scenario_id)
+        self.assertEqual(transaction["result_value"], payload["expected_result"])
+        self.assertEqual(state.gift_storage_national_dex_number, national)
+        success = payload["expected_result"] in (0, 1)
+        expected_writes = set()
+        owner_ranges = []
+        for field, block, base in (
+            ("owned", "SB2", 0x28), ("seen", "SB2", 0x5C),
+            ("seen1", "SB1", 0x5F8), ("seen2", "SB1", 0x3A18),
+        ):
+            before = bytes.fromhex(payload[f"pokedex_{field}_raw_hex"])
+            self.assertIn(national, range(1, len(before) * 8 + 1))
+            after = bytearray(before)
+            if success:
+                after[(national - 1) // 8] |= 1 << ((national - 1) % 8)
+            self.assertEqual(
+                getattr(state, f"gift_storage_pokedex_{field}_current_hex"),
+                after.hex(),
+            )
+            owner_ranges.append((block, base, base + len(before)))
+            expected_writes.update(
+                (block, base + index, value)
+                for index, value in enumerate(after) if before[index] != value
+            )
+        actual_writes = [
+            (row["block"], row["offset"], row["value"])
+            for row in persistent
+            if any(row["block"] == block and start <= row["offset"] < end
+                   for block, start, end in owner_ranges)
+        ]
+        self.assertEqual(len(actual_writes), len(expected_writes))
+        self.assertEqual(set(actual_writes), expected_writes)
+
+    def test_gift_dex_projection_uses_each_roots_input_species(self) -> None:
+        from tools.stage61_interaction_oracle import (
+            _runner_effect_rows, _runner_persistent_postconditions,
+        )
+        for root in sorted(GIFT_STORAGE_ROOTS):
+            with self.subTest(root=f"0x{root:08X}"):
+                executions, blockers, _graph = self._run_root(root)
+                self.assertEqual(blockers, [])
+                gift_executions = [
+                    (context, state) for context, state in executions
+                    if state.gift_storage_rng_consumed
+                ]
+                self.assertTrue(gift_executions)
+                for context, state in gift_executions:
+                    persistent = _runner_persistent_postconditions(
+                        state, _runner_effect_rows(state, None),
+                    )
+                    self._assert_gift_pokedex_projection(context, state, persistent)
+
+    def test_gift_dex_projection_rejects_missing_or_wrong_native_write(self) -> None:
+        from tools.stage61_interaction_oracle import (
+            _runner_effect_rows, _runner_persistent_postconditions,
+        )
+        context, state = next(
+            (context, state) for context, state in self._run_root(0x081859FA)[0]
+            if state.gift_storage_rng_consumed
+            and state.gift_storage_scenario_id == "party_space"
+        )
+        persistent = _runner_persistent_postconditions(
+            state, _runner_effect_rows(state, None),
+        )
+        self._assert_gift_pokedex_projection(context, state, persistent)
+        owned_index = next(
+            index for index, row in enumerate(persistent)
+            if row["block"] == "SB2" and 0x28 <= row["offset"] < 0x5C
+        )
+        for mutation in ("missing_owner", "wrong_bit", "wrong_offset", "duplicate"):
+            forged = deepcopy(persistent)
+            if mutation == "missing_owner":
+                del forged[owned_index]
+            elif mutation == "wrong_bit":
+                forged[owned_index]["value"] ^= 1
+            elif mutation == "wrong_offset":
+                forged[owned_index]["offset"] += 1
+            else:
+                forged.append(deepcopy(forged[owned_index]))
+            with self.subTest(mutation=mutation), self.assertRaises(AssertionError):
+                self._assert_gift_pokedex_projection(context, state, forged)
+
     def test_all_fourteen_roots_close_under_cap_with_exact_transactions(
         self,
     ) -> None:
@@ -12429,14 +12536,9 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
                         self.assertIsNone(required["storage"])
                     else:
                         self.assertIsNotNone(required["storage"])
-                    if state.gift_storage_scenario_id != "storage_full":
-                        self.assertTrue({
-                            ("SB2", 0x2A, 2), ("SB2", 0x5E, 2),
-                            ("SB1", 0x5FA, 2), ("SB1", 0x3A1A, 2),
-                        } <= {
-                            (row["block"], row["offset"], row["value"])
-                            for row in required["persistent"]
-                        })
+                    self._assert_gift_pokedex_projection(
+                        context, state, required["persistent"],
+                    )
         fossil_executions = self._run_root(FOSSIL_REVIVAL_ROOT)[0]
         self.assertEqual({
             state.fossil_revival_scenario_id

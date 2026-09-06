@@ -1491,3 +1491,8 @@ focused run `33976377781`はPrivate Release 4 ZIP取得・外側/全member hash�
 Trainer回収commit `ac992a3951711fcd3b99e84bf1ce0a1889a5c38e`：元metadataのsize/SHA完全一致、検証済みpackageの既存生成器による補正逆生成、純粋unit 7件PASS。元fixtureの期待値・元ZIP・ROM/saveは変更していない。Stage61 giftのschema/layout拒否を区別し、未知キー・欠落キー・不明scenario・layout改変をそれぞれ負例で検証する。元の負例を削除・skip化していない。
 
 開始時限定結果：HEAD e4a08aca954bfa5ec782c12cf5b0170ef838b047、445 tests /20 failures /3 errors /0 skipped、Stage62 unchanged=true（PR #3 comment5560079732、run34040024389）。ac992a3のfocusedを要求済みだが、この追記時点では修正後の限定結果未確認。結果は限定PRコメントのみを正本とし、生ログ・artifact取得は行わない。既存branch・Draft/open/unmergedを維持し、main直接変更なし。focused/full-unit/allの完了ゲート未達のため完了版ではない。
+
+
+## 2026-09-07 USER-20260905-PRIVATE-FULL-UNIT-R2 gift図鑑期待値のsource契約修復（未完了）
+
+全国番号18の固定書き込みを全14rootへ流用していたtest契約を、入力species・物理givemon・ROMのspecies-to-national表・既存scenario preimageから独立導出する検証へ変更。4 owner全byteと書き込み集合、満杯時無変更、欠落/誤bit/誤offset/重複拒否を検証する。元のclosure/object/party/storage/fossil検証は残した。直前の適用HEADはd1fdee6c27d020262f88fdaacc406d0eaff102ac、focused要求comment5560556544。修正後のsuite件数・Stage62 unchangedは限定結果未確認につき更新しない。全体IN_PROGRESSであり、full-unit/allのPASSや完了版を意味しない。
