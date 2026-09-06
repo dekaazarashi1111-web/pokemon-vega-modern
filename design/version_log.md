@@ -1475,3 +1475,14 @@
   - exact HEADに置いた小さいunified diffを、Private Release復元、guard、単一focused test、変更path監査後だけ同じPR branchへbot commitする更新経路を追加した。
   - default branchへPR #4で有効化し、PR #3の2 MiB超sourceに対するfind/readと、検証用PR #5に対するpatch commit/pushを実動確認した。
 - Verify: local unit 28件、task graph、private guard、YAML、actionlint、source-validation run `34030833020`／`34030834580` PASS。find run `34030880040`、read run `34030917831`、Private Release復元を含むpatch run `34031017038` PASS。main merge commit `eb50f7e7defc4c2a93eca753efe84c6789b80c03`。
+
+## 2026-09-07T00:01:47+09:00
+
+- Version: `github-private-test-result-comment-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260906-CHATGPT-RESULT-COMMENT-BRIDGE` / ChatGPT Web向けprivate test限定結果コメント
+- Summary:
+  - `focused-unit`、`full-unit`、`all`の限定結果を、default branchの固定schema検査後に同じPRへ自動返信する経路を追加した。
+  - exact HEAD、件数、失敗test ID、exception type、tracked source frame、skip分類、Stage62 ROM identityだけを許可し、例外本文・subtest値・private入力・生ログを除外した。
+  - PR #3のfocused失敗結果をartifact取得なしで自動コメントできることを実証した。
+- Verify: local unit 35件、task graph、private guard、YAML、actionlint、実artifact sanitizer PASS。source-validation run `34039975170`／`34039977210` PASS。comment control run `34040024389`でprivate復元・artifact・sanitizer・限定PRコメント `5560079732` PASS。main実装merge commit `8ff0393a64d2406274235692cbb660cdecc1bf78`。
