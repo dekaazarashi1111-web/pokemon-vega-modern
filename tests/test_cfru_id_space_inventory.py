@@ -61,10 +61,11 @@ class CFRUIdSpaceInventoryTests(unittest.TestCase):
         baseline = metadata["t01_baseline"]
         self.assertEqual(baseline["report_identity"], "SEMANTIC_CONTRACT_V1")
         self.assertRegex(baseline["report_contract_sha256"], r"^[0-9a-f]{64}$")
-        self.assertEqual(
-            baseline["fingerprint"],
-            "893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2",
-        )
+        policy = json.loads((ROOT / "config/id_spaces.json").read_text())["cfru"]
+        expected_cache = Path(policy["baseline_rom_path"]).parts[2]
+        self.assertRegex(expected_cache, r"^[0-9a-f]{64}$")
+        self.assertEqual(baseline["fingerprint"], expected_cache)
+        self.assertEqual(baseline["rom_sha256"], policy["baseline_rom_sha256"])
         self.assertEqual(
             baseline["rom_sha256"],
             "140aa67a38046bcbf3d211550d900929039a4e7c41e55572f9503b6f27d71922",

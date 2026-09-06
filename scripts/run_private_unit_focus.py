@@ -13,6 +13,12 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 TARGETS = (
+    "tests.test_prepare_trainer_unit_inputs",
+    "tests.test_build_id_spaces",
+    "tests.test_cfru_id_space_inventory",
+    "tests.test_trainer_changekit_content",
+    "tests.test_trainer_changekit_final_builder",
+    "tests.test_trainer_final_kanto_events",
     'tests.test_audit_private_unit_log',
     'tests.test_run_private_unit_focus',
     'tests.test_run_full_unit',

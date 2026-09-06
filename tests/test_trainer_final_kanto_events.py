@@ -30,8 +30,12 @@ def _task06_dir() -> Path | None:
         ROOT.parent / "integration_inputs/VEGA_TRAINER_CHANGEKIT_TASK06_KANTO",
         ROOT.parents[1] / "integration_inputs/VEGA_TRAINER_CHANGEKIT_TASK06_KANTO",
     ]
-    return next((path for path in candidates
-                 if (path / "data/trainer_encounters.csv").is_file()), None)
+    selected = next((path for path in candidates
+                     if (path / "data/trainer_encounters.csv").is_file()), None)
+    if selected is not None:
+        return selected
+    from scripts.build_trainer_changekit_content import discover_input_root
+    return discover_input_root(ROOT) / "VEGA_TRAINER_CHANGEKIT_TASK06_KANTO"
 
 
 class KantoEventPrimitiveTests(unittest.TestCase):
@@ -82,7 +86,7 @@ class KantoEventPrimitiveTests(unittest.TestCase):
             normalize_dialogue_text("正本にない本文")
 
 
-@unittest.skipUnless(_task06_dir() is not None, "Task06 private ChangeKit is not available")
+# 私有入力不足はskipにせず、固定manifestから復元して実際のplanを検証する。
 class KantoEventFullPlanTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:

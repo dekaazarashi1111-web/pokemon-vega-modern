@@ -175,7 +175,9 @@ def discover_input_root(repo: Path) -> Path:
     for candidate in candidates:
         if all((candidate / name).is_dir() for name in (*TASK_DIRS, AUTHORING_DIR, GLOBAL_DIR)):
             return candidate.resolve()
-    raise BuildError("integration_inputsを自動検出できません。--input-rootを指定してください")
+    # Release内の階層ではなく、正本manifestのsize/SHAで私有入力を照合する。
+    from scripts.prepare_trainer_unit_inputs import restore_inputs
+    return restore_inputs(repo)
 
 
 def _load_union(input_root: Path) -> dict[str, SourceTable]:

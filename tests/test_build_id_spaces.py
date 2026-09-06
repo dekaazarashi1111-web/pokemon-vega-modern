@@ -31,20 +31,14 @@ from scripts.build_id_spaces import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config/id_spaces.json"
 VEGA_ROM = ROOT / "build/reference/vega.gba"
-CFRU_ROM = (
-    ROOT
-    / "build/upstream-cache/893768977db000f14ec7620a4768c425679a3559d8bec75ec58b4bd6a45231e2/cfru/baseline/run-1/test.gba"
-)
-
-
-@unittest.skipUnless(
-    CONFIG_PATH.is_file() and VEGA_ROM.is_file() and CFRU_ROM.is_file(),
-    "T05 fixed inputs are unavailable",
-)
+# baseline path/hashは現行configで固定済み。古いcache pathでskipしない。
 class IdSpaceBuilderTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+        baseline = ROOT / cls.config["cfru"]["baseline_rom_path"]
+        if hashlib.sha256(baseline.read_bytes()).hexdigest() != cls.config["cfru"]["baseline_rom_sha256"]:
+            raise ValueError("T05 configured baseline ROM hash differs")
         cls.model = build_id_space_model(ROOT, cls.config)
         cls.artifacts = render_artifacts(cls.model)
 
