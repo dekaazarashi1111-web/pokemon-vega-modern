@@ -79,9 +79,16 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
     visited_archives = set()
     from scripts.invert_trainer_normalization import SOURCE_INPUTS
     source_tables = {}
+    from scripts.reconstruct_trainer_metadata import METADATA, MAX_TEXT, recover_metadata
+    metadata_needed = any(Path(row['path']).name in METADATA for row in rows)
+    metadata_candidates: dict[str, bytes] = {}
 
     def accept(name: str, raw: bytes) -> None:
         digest = _sha(raw)
+        if metadata_needed and Path(name).name in METADATA and len(raw) <= MAX_TEXT:
+            metadata_candidates[digest] = raw
+            if sum(map(len, metadata_candidates.values())) > MAX_NESTED_ZIP:
+                raise TrainerInputError('Trainer metadata candidate size limit')
         if (len(raw), digest) == SOURCE_INPUTS.get(Path(name).name):
             source_tables[Path(name).name] = raw
         for row in expected.get((Path(name).name, len(raw)), ()):
@@ -94,7 +101,8 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
                 if info.is_dir():
                     continue
                 rel = PurePosixPath(info.filename)
-                selected = (rel.name, info.file_size) in expected or (rel.name in SOURCE_INPUTS and info.file_size == SOURCE_INPUTS[rel.name][0])
+                metadata = metadata_needed and rel.name in METADATA and info.file_size <= MAX_TEXT
+                selected = metadata or (rel.name, info.file_size) in expected or (rel.name in SOURCE_INPUTS and info.file_size == SOURCE_INPUTS[rel.name][0])
                 nested = rel.suffix.lower() == '.zip' and depth < 3 and info.file_size <= MAX_NESTED_ZIP
                 if not selected and not nested:
                     continue
@@ -120,13 +128,14 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
         for path in sorted(base.rglob('*')):
             if path.is_symlink() or not path.is_file():
                 continue
-            if (path.name, path.stat().st_size) in expected or (path.name in SOURCE_INPUTS and path.stat().st_size == SOURCE_INPUTS[path.name][0]):
+            metadata = metadata_needed and path.name in METADATA and path.stat().st_size <= MAX_TEXT
+            if metadata or (path.name, path.stat().st_size) in expected or (path.name in SOURCE_INPUTS and path.stat().st_size == SOURCE_INPUTS[path.name][0]):
                 accept(path.name, path.read_bytes())
             if path.suffix.lower() == '.zip' and zipfile.is_zipfile(path):
                 scan_zip(path)
     found.update(reconstruct(root, rows, source_tables=source_tables))
-    from scripts.reconstruct_trainer_metadata import recover_metadata
-    found.update(recover_metadata(root, rows, found))
+    found.update(recover_metadata(root, rows, found,
+                                  metadata_candidates=metadata_candidates.values()))
     missing = [row['path'] for row in rows if row['path'] not in found]
     report = {'schema_version': 1, 'required': len(rows), 'matched': len(found),
               'profile': profile, 'missing': missing, 'manifest_sha256': _sha((root / MANIFEST).read_bytes())}

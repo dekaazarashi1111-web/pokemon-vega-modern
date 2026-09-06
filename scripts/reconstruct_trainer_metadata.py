@@ -6,6 +6,7 @@ JSON snapshotと、同処理のREF_1012補正を逆適用したauthoring生成�
 """
 from __future__ import annotations
 
+from collections.abc import Iterable
 import csv
 import hashlib
 import io
@@ -63,7 +64,10 @@ def _undo_ref1012(raw: bytes) -> bytes:
     return output.getvalue().encode('utf-8')
 
 
-def recover_metadata(root: Path, entries: list[dict], available: dict[str, bytes]) -> dict[str, bytes]:
+def recover_metadata(
+    root: Path, entries: list[dict], available: dict[str, bytes], *,
+    metadata_candidates: Iterable[bytes] = (),
+) -> dict[str, bytes]:
     expected = {
         (row['size'], row['sha256']): row['path'] for row in entries
         if Path(row['path']).name in METADATA and row['path'] not in available
@@ -83,10 +87,18 @@ def recover_metadata(root: Path, entries: list[dict], available: dict[str, bytes
         if name is not None:
             found[name] = raw
 
+    def accept_transport(raw: bytes) -> None:
+        # 受領JSON/TSVの値は変更しない。改行/BOMの輸送表現を元hashで判定する。
+        normalized = raw.removeprefix(b'\xef\xbb\xbf').replace(b'\r\n', b'\n')
+        for payload in (normalized, normalized.replace(b'\n', b'\r\n')):
+            accept(payload)
+            accept(b'\xef\xbb\xbf' + payload)
+
     def inspect(raw: bytes) -> None:
         if len(raw) > MAX_TEXT:
             return
         accept(raw)
+        accept_transport(raw)
         normalized = raw.removeprefix(b'\xef\xbb\xbf').replace(b'\r\n', b'\n')
         accept(normalized)
         try:
@@ -112,8 +124,15 @@ def recover_metadata(root: Path, entries: list[dict], available: dict[str, bytes
                             for ensure_ascii in (False, True):
                                 payload = json.dumps(candidate, ensure_ascii=ensure_ascii,
                                                      sort_keys=sort_keys, indent=indent).encode('utf-8')
-                                accept(payload)
-                                accept(payload + b'\n')
+                                accept_transport(payload)
+                                accept_transport(payload + b'\n')
+
+    # 既存の復元scannerから受領する。sizeの異なる候補を読むことと、
+    # 異なるsize/hashを採用することは別であり、後者はacceptが常に拒否する。
+    for candidate in metadata_candidates:
+        inspect(candidate)
+    if len(found) == len(expected):
+        return found
 
     report_path = root / REPORT
     if not _safe_file(report_path) or report_path.stat().st_size > MAX_TEXT:
