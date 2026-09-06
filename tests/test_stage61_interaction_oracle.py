@@ -12084,7 +12084,35 @@ class Stage61PartyMoveTransactionFocusedTests(unittest.TestCase):
             )
 
 
+def _gift_root_postcondition_test(root: int):
+    """各rootを別IDで検証し、一括testの先行例外で他rootを隠さない。"""
+    def test(self) -> None:
+        from tools.stage61_interaction_oracle import (
+            _RUNNER_REQUIRED_POSTCONDITION_KEYS, _runner_required_postconditions,
+        )
+
+        executions, blockers, _graph = self._run_root(root)
+        self.assertEqual(blockers, [])
+        gifted = [(context, state) for context, state in executions
+                  if state.gift_storage_rng_consumed]
+        self.assertTrue(gifted)
+        for context, state in gifted:
+            required = _runner_required_postconditions(context, state)
+            self.assertEqual(set(required), _RUNNER_REQUIRED_POSTCONDITION_KEYS)
+            self._assert_gift_pokedex_projection(
+                context, state, required["persistent"],
+            )
+    test.__name__ = f"test_gift_root_{root:08x}_runtime_postconditions"
+    return test
+
+
 class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
+    for _gift_root in sorted(GIFT_STORAGE_ROOTS):
+        locals()[f"test_gift_root_{_gift_root:08x}_runtime_postconditions"] = (
+            _gift_root_postcondition_test(_gift_root)
+        )
+    del _gift_root
+
     MAP_SECTIONS = {
         0x081859FA: 92,
         0x0869B090: 142,
