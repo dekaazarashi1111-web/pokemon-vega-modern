@@ -63,6 +63,9 @@ def build_artifacts(*, root: Path, config: Mapping[str, Any], stage60: bytes,
     semantics = deepcopy(dict(semantic_report))
     semantics.update({
         'status_scope': SCOPE, 'stage61_namespace_policy': deepcopy(dict(namespace_report)),
+        # 同じ候補に配置したscript/textのprovenanceを通常生成経路と揃える。
+        # unit専用scopeとstrict未実行の扱いは変更しない。
+        'stage61_materialization': deepcopy(blob_meta['semantic_materialization']),
         'stage61_bill_sevii_scope_guard': deepcopy(blob_meta['bill_sevii_scope_guard']),
     })
     audit = {

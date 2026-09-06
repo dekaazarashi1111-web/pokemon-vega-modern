@@ -9590,11 +9590,22 @@ class Stage61CoinsABIFocusedTests(unittest.TestCase):
     def test_product_prize_room_checkcoins_result_is_path_exact(
         self,
     ) -> None:
+        from scripts.regenerate_stage61_unit_state import (
+            ensure_stage61_state_fixture,
+        )
         from tools.stage61_event_semantic_relocator import SemanticScriptGraph
 
         root = 0x081859FA
         owner_id = "OBJECT:010/015:002"
-        semantic = deepcopy(self.semantic)
+        # 復元済み旧Stage61ではなく、HEAD・生成元・成果物hashを検証した
+        # 同一候補のROMとsemantic reportを使う。通常releaseの認定ではない。
+        fixture_root = ensure_stage61_state_fixture()
+        stage61 = (
+            fixture_root / "build/stages/61_display_npc_event_audit.gba"
+        ).read_bytes()
+        semantic = json.loads((
+            fixture_root / "reports/generated/stage61_event_semantic_relocation.json"
+        ).read_text())
         builder_path = "scripts/build_stage61_display_npc_event_audit.py"
         builder_sha = hashlib.sha256(
             self.source_blobs[builder_path]
@@ -9612,7 +9623,7 @@ class Stage61CoinsABIFocusedTests(unittest.TestCase):
             if row["owner_id"] == owner_id
         )
         self.assertEqual(owner["root"], root)
-        graph = SemanticScriptGraph(self.stage61)
+        graph = SemanticScriptGraph(stage61)
         graph.walk([root])
         self.assertEqual(graph.diagnostics, [])
         abi_entries = self._fresh_abi_entries()
@@ -9634,11 +9645,11 @@ class Stage61CoinsABIFocusedTests(unittest.TestCase):
             coin_domain["candidate_values"],
         ))
         text_assets, _provenance = _independent_runtime_text_assets(
-            self.clean, self.stage60, self.stage61, semantic,
+            self.clean, self.stage60, stage61, semantic,
             self.repair_manifest, graph, source_blobs=self.source_blobs,
         )
         executions, blockers = _runtime_execute_with_seed_discovery(
-            self.clean, self.stage60, self.stage61, semantic, owner, graph,
+            self.clean, self.stage60, stage61, semantic, owner, graph,
             text_assets, abi_entries, self.source_blobs,
             shared_script_bytes=_runtime_graph_script_bytes(graph),
             shared_root_plan=_runtime_root_plan(graph, root),
