@@ -117,6 +117,38 @@ def fixture_identity(root: Path) -> dict:
     }
 
 
+def placement_failure_evidence(error: Exception) -> dict:
+    """特定のbuilder停止点から数値座標・CFG識別子だけを採取する。"""
+    from scripts.github_private_environment import SECRET_PATTERNS
+    def safe(value):
+        if type(value) in (int, bool) or value is None:
+            return value
+        if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_:/().+\- ]{1,240}', value):
+            return value
+        if isinstance(value, (list, tuple)) and len(value) <= 16 and all(type(item) is int for item in value):
+            return list(value)
+        return None
+    trace = error.__traceback__
+    while trace is not None:
+        frame = trace.tb_frame
+        if frame.f_code.co_name == '_interaction_contracts' and Path(frame.f_code.co_filename).name == 'build_stage61_display_npc_event_audit.py':
+            values = frame.f_locals
+            operations = []
+            allowed = {'root_map', 'root_label', 'root_pointer', 'root_owner_id', 'instruction_address', 'opcode', 'operation', 'target_owner_id', 'external_to_owner', 'literal_position', 'literal_movement_type', 'target_map', 'local_id'}
+            for row in values.get('external', []):
+                operations.append({key: safe(value) for key, value in row.items() if key in allowed})
+            npc_keys = {'npc_id', 'group', 'map', 'object_index', 'local_id', 'x', 'y', 'movement_type', 'script_pointer', 'flag'}
+            result = {'npc_id': safe(values.get('npc_id')), 'permanent_positions': [safe(row) for row in values.get('permanent_positions', [])],
+                      'npc': {key: safe(value) for key, value in values.get('npc', {}).items() if key in npc_keys},
+                      'external_operations': operations}
+            raw = json.dumps(result, sort_keys=True).encode()
+            if any(pattern.search(raw) for pattern in SECRET_PATTERNS.values()):
+                raise ValueError('placement evidence secret candidate rejected')
+            return result
+        trace = trace.tb_next
+    return {}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--probe-critical', action='store_true')
@@ -142,7 +174,8 @@ def main() -> int:
             result['critical_generator'] = {'status': 'PASS', 'scope': 'DIAGNOSTIC_BUILD_NOT_FULL_UNIT',
                 'artifacts': {name: digest(raw) for name, raw in artifacts.items()}}
         except Exception as error:
-            result['critical_generator'] = {'status': 'FAIL', 'error': exception_record(error)}
+            result['critical_generator'] = {'status': 'FAIL', 'error': exception_record(error),
+                'placement_evidence': placement_failure_evidence(error)}
     result['existing_rom_save_unchanged'] = before == {name: sha(ROOT / name) for name in before}
     (out / 'result.json').write_text(json.dumps(result, sort_keys=True, indent=2) + '\n')
     if not result['existing_rom_save_unchanged']:
