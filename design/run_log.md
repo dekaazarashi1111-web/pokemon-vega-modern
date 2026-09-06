@@ -3798,3 +3798,38 @@
 - Network:
   - OpenAI公式のconnector資料（`https://learn.chatgpt.com/es-419/docs/enterprise/apps-and-connectors`、`https://learn.chatgpt.com/es-419/docs/plugins`）でconnector actionと権限制御を確認した。
   - GitHub公式API／CLIでworkflow登録、push、PRコメント、Actions実行、ログ／結果コメント読戻しを行った。credential、token、private Release内容、device情報は会話またはtracked成果へ保存していない。
+
+## 2026-09-06T20:45:57+09:00
+
+- Task: `USER-20260906-CHATGPT-WEB-LARGE-FILE-BRIDGE` / ChatGPT Web向け巨大source読取・更新bridge
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - ChatGPT WebのGitHub connectorで約0.6〜2.1 MBのtracked text本文が空・400・省略になる事象を、repository権限やprivate設定ではなくfile転送上限として切り分けた。
+  - ownerのPRコメントから、exact HEADの1ファイルを空白なし文字列で検索する`/vega-find`、最大200行だけ返す`/vega-read`、小さいtracked unified diffを検証して同じPR branchへcommitする`/vega-patch`を追加した。
+  - patchは64 KiB・既存UTF-8 text・最大4ファイルに制限し、fork、owner以外、HEAD不一致、path traversal、secret候補、binary／作成／削除／rename、workflow／bridge／guard／private設定／source lock／task status／ROM／save／生成物の変更を拒否する。Private Releaseのhash復元、task graph、private guard、指定した単一unittest、対象外tracked差分検査が全てPASSした時だけpushする。
+  - PR #4を通常マージしてdefault branchへ有効化した。PR #3の2,062,906 bytes・46,071行の`tools/stage61_interaction_oracle.py`を対象に、検索と81行sliceを新規ActionsからPRコメントへ返す経路を実証した。
+  - 検証専用PR #5ではpatch request commit `51424521...`から、Private Release復元とfocused testを通してActions bot commit `7c28b2bb...`を同一branchへpushし、patch request削除と変更path限定を確認した。PR #5はmainへmergeせずcloseし、検証用remote branch 2本を削除した。
+- Files changed:
+  - `.github/workflows/chatgpt-comment-control.yml`
+  - `.github/workflows/ci.yml`
+  - `scripts/github_comment_control.py`
+  - `scripts/github_large_file_bridge.py`
+  - `tests/test_github_comment_control.py`
+  - `tests/test_github_large_file_bridge.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `README.md`
+  - `Makefile`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - `make github-battle-wrapper-test`: 28件PASS。bridge／parser focused unit: 18件PASS。実在する2 MiB超sourceのfind／81行read: PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、PyYAML parse、`git diff --check`: PASS。
+  - actionlint v1.7.12: PASS（既知のself-hosted custom runner labelのみ明示許可）。
+  - GitHub source-validation: run `34030833020`と`34030834580` PASS。PR #4 merge commit `eb50f7e7defc4c2a93eca753efe84c6789b80c03`。
+  - GitHub large-file find: run `34030880040` PASS、PRコメント `5558966803`。large-file read: run `34030917831` PASS、PRコメント `5558970737`。どちらもPR #3 HEAD `558bab725e6f6379bd2691915d87867cee4d88d1`を照合した。
+  - GitHub large-file patch: run `34031017038` PASS。Private Release取得／hash復元、focused test、対象外差分検査、bot commit/push、自動結果コメント `5558990298`を確認した。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - OpenAI公式のChatGPT Work／GitHub Action資料でWeb実行環境とcheckout済みrunnerの役割を確認した（`https://learn.chatgpt.com/ja-JP/docs/enterprise/chatgpt-work-overview`、`https://learn.chatgpt.com/de-DE/docs/github-action`）。
+  - GitHub公式API／CLIでrepository権限、PR、Actions、限定結果コメントを確認した。Actions生ログ、private Release本文、ROM／save、credential、tokenは会話またはtracked成果へ転載していない。

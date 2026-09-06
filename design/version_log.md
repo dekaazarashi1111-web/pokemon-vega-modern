@@ -1464,3 +1464,14 @@
   - Stage62 check／mGBA、全unit、対戦CLI offlineをまとめる`all` suiteと、read／writeを別prefixにしたlive経路を追加した。
   - fork、owner以外、HEAD不一致、未知suite／action、read prefixからのwriteを拒否し、結果を同じPRへ自動返信する。
 - Verify: focused unit 17件、対戦CLI offline 37件、task graph、private guard、manifest、actionlint、source-validation run `33966833761` PASS。PRコメント起動run `33966843927`でprivate復元とStage62 checkと結果返信をPASS。live doctor run `33967012849`はCLI経路と失敗返信をPASSし、実機NCI未起動で安全停止。
+
+## 2026-09-06T20:45:57+09:00
+
+- Version: `github-large-file-bridge-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260906-CHATGPT-WEB-LARGE-FILE-BRIDGE` / ChatGPT Web向け巨大source読取・更新bridge
+- Summary:
+  - GitHub connectorのsize上限を受ける巨大tracked textを、owner限定PRコメントから検索・最大200行の部分読取ができるbridgeを追加した。
+  - exact HEADに置いた小さいunified diffを、Private Release復元、guard、単一focused test、変更path監査後だけ同じPR branchへbot commitする更新経路を追加した。
+  - default branchへPR #4で有効化し、PR #3の2 MiB超sourceに対するfind/readと、検証用PR #5に対するpatch commit/pushを実動確認した。
+- Verify: local unit 28件、task graph、private guard、YAML、actionlint、source-validation run `34030833020`／`34030834580` PASS。find run `34030880040`、read run `34030917831`、Private Release復元を含むpatch run `34031017038` PASS。main merge commit `eb50f7e7defc4c2a93eca753efe84c6789b80c03`。
