@@ -1,0 +1,61 @@
+name: private-unit-source-snapshot
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  source:
+    if: >-
+      github.event.repository.private == true &&
+      github.actor == github.repository_owner &&
+      github.event.pull_request.number == 3 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/fix-private-full-unit-20260905-r2'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 差分sourceだけを秘密検査とhash付きで記録
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          python3 scripts/guard_private_files.py
+          python3 - <<'PY'
+          import hashlib, json, os, subprocess, zipfile
+          from pathlib import Path
+          from scripts.github_private_environment import SECRET_PATTERNS, SECRET_FILENAMES
+          def git(*args):
+              return subprocess.check_output(['git', *args]).decode()
+          head = git('rev-parse', 'HEAD').strip()
+          if head != os.environ['EXPECTED_HEAD']:
+              raise SystemExit('exact HEAD mismatch')
+          names = git('diff', '--name-only', '-z', '30431d56176e630f1590888d6d050a5948ae493d', head).split('\0')
+          out = Path('build/private-source-snapshot')
+          out.mkdir(parents=True, exist_ok=True)
+          rows = []
+          with zipfile.ZipFile(out / 'source.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(filter(None, names)):
+                  path = Path(name)
+                  if path.parts[0] not in {'scripts', 'tools', 'tests', 'config', 'infra', 'overlays', '.github'} or path.suffix not in {'.py', '.json', '.yml', '.sh', '.c', '.h'}:
+                      continue
+                  if not path.is_file() or any(p.is_symlink() for p in (path, *path.parents)) or path.name.lower() in SECRET_FILENAMES:
+                      continue
+                  raw = path.read_bytes()
+                  if any(pattern.search(raw) for pattern in SECRET_PATTERNS.values()):
+                      continue
+                  archive.writestr(name, raw)
+                  rows.append({'path': name, 'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+              archive.writestr('SOURCE_CONTEXT_MANIFEST.json', json.dumps({'head': head, 'base': '30431d56176e630f1590888d6d050a5948ae493d', 'files': rows}, sort_keys=True))
+          print(json.dumps({'head': head, 'source_files': len(rows), 'sha256': hashlib.sha256((out / 'source.zip').read_bytes()).hexdigest()}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: private-source-snapshot-${{ github.event.pull_request.head.sha }}
+          path: build/private-source-snapshot/source.zip
+          retention-days: 1
+          if-no-files-found: error
