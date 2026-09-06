@@ -28,6 +28,7 @@ except ModuleNotFoundError:  # `python3 scripts/github_comment_control.py`
 
 PRIVATE_SUITES = {
     "battle-cli-offline",
+    "focused-unit",
     "stage62-check",
     "stage62-mgba",
     "full-unit",

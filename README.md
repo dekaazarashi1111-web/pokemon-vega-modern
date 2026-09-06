@@ -32,6 +32,8 @@ self-hosted runnerだけで実行します。ChatGPT Webに新規`workflow_dispa
 GitHub connectorで取得できない巨大text sourceは、同じworkflowの`/vega-read`で最大200行ずつ読み、
 `.chatgpt/patches/*.patch`を経由する`/vega-patch`で単一focused testに合格した変更だけを同じPR branchへ
 commitできます。詳細と安全境界は`docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`を参照します。
+focused／full-unit／allの限定結果もPRへ自動返信され、ChatGPT WebがActions artifactや生ログを直接
+取得せず次の修正へ進めます。
 
 ## 重要な正本
 

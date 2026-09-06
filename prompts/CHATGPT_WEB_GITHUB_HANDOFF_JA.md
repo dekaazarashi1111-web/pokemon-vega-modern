@@ -19,6 +19,11 @@
 1行コメントし、`chatgpt-comment-control`の新規runと自動結果コメントを確認してください。一通りの検証は
 `/vega-test all <HEAD SHA>`を使います。
 
+現在HEADのfocused全体は`/vega-test focused-unit <HEAD SHA>`で起動してください。`focused-unit`、
+`full-unit`、`all`は、artifactを直接取得しなくても、件数、失敗test ID、exception type、source frame、
+skip分類、Stage62 ROM identityを`Vega private test: limited result`コメントとして自動返信します。
+この限定コメントを正とし、Actions生ログやartifact本文を再取得しないでください。
+
 巨大なtracked text sourceの取得本文が空、400、size制限、または応答省略になった場合、それを権限不足や
 private資材不足として停止理由にしないでください。対象PRへ次を1行コメントし、返された最大200行の
 sliceだけを読んでください。
