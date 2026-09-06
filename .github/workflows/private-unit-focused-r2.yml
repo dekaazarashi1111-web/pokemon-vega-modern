@@ -42,6 +42,8 @@ jobs:
           done
       - name: 外側と全member hashを維持して復元
         run: python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets
+      - name: 固定契約と正本sourceの差を読取専用で採取
+        run: python3 -m scripts.inspect_private_unit_contracts
       - name: 既存ROMを保護して現行Stage61生成元を再実行
         run: python3 scripts/regenerate_stage61_unit_state.py
       - name: 非秘密hashの状態を採取
