@@ -13,8 +13,10 @@ PHASES = ('TOHOKU_PROLOGUE_PRE_GYM1', *(f'TOHOKU_BADGE{i}_TO_{i+1}' for i in ran
           'TOHOKU_LEAGUE_APPROACH', 'TOHOKU_INITIAL_LEAGUE', 'TOHOKU_POSTGAME')
 
 
-def reconstruct(root: Path, rows: list[dict]) -> dict[str, bytes]:
+def reconstruct(root: Path, rows: list[dict], *, source_tables: dict[str, bytes] | None = None) -> dict[str, bytes]:
     """値を推測・上書きせず、元SHAに一致した再構成だけを返す。"""
+    from scripts.invert_trainer_normalization import read_pinned_sources, inverse_rows
+    sources = read_pinned_sources(source_tables or {})
     content = root / CONTENT
     def read(name):
         with (content / name).open(encoding='utf-8', newline='') as stream:
@@ -43,6 +45,8 @@ def reconstruct(root: Path, rows: list[dict]) -> dict[str, bytes]:
             if relative.name in {'trainer_encounters.csv', 'trainer_physical_bindings.csv'}:
                 for row in records:
                     row['trainer_id'] = ledger[row['encounter_key']]['original_trainer_id']
+            if sources:
+                records = inverse_rows(relative.name, task, records, ledger, sources)
             def order(row):
                 key = row.get('encounter_key', parties.get(row.get('party_key')))
                 phase = encounters[key]['story_phase']

@@ -77,9 +77,13 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
     from scripts.reconstruct_trainer_csv_inputs import reconstruct
     found = reconstruct(root, rows)
     visited_archives = set()
+    from scripts.invert_trainer_normalization import SOURCE_INPUTS
+    source_tables = {}
 
     def accept(name: str, raw: bytes) -> None:
         digest = _sha(raw)
+        if (len(raw), digest) == SOURCE_INPUTS.get(Path(name).name):
+            source_tables[Path(name).name] = raw
         for row in expected.get((Path(name).name, len(raw)), ()):
             if digest == row['sha256']:
                 found[row['path']] = raw
@@ -90,7 +94,7 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
                 if info.is_dir():
                     continue
                 rel = PurePosixPath(info.filename)
-                selected = (rel.name, info.file_size) in expected
+                selected = (rel.name, info.file_size) in expected or (rel.name in SOURCE_INPUTS and info.file_size == SOURCE_INPUTS[rel.name][0])
                 nested = rel.suffix.lower() == '.zip' and depth < 3 and info.file_size <= MAX_NESTED_ZIP
                 if not selected and not nested:
                     continue
@@ -116,10 +120,11 @@ def restore_inputs(root: Path, *, profile: str = "all") -> Path:
         for path in sorted(base.rglob('*')):
             if path.is_symlink() or not path.is_file():
                 continue
-            if (path.name, path.stat().st_size) in expected:
+            if (path.name, path.stat().st_size) in expected or (path.name in SOURCE_INPUTS and path.stat().st_size == SOURCE_INPUTS[path.name][0]):
                 accept(path.name, path.read_bytes())
             if path.suffix.lower() == '.zip' and zipfile.is_zipfile(path):
                 scan_zip(path)
+    found.update(reconstruct(root, rows, source_tables=source_tables))
     missing = [row['path'] for row in rows if row['path'] not in found]
     report = {'schema_version': 1, 'required': len(rows), 'matched': len(found),
               'profile': profile, 'missing': missing, 'manifest_sha256': _sha((root / MANIFEST).read_bytes())}

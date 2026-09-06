@@ -27,7 +27,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
-          python3 -m unittest tests.test_regenerate_stage61_unit_state tests.test_inspect_private_unit_remaining
+          python3 -m unittest tests.test_regenerate_stage61_unit_state tests.test_inspect_private_unit_remaining tests.test_invert_trainer_normalization tests.test_reconstruct_trainer_csv_inputs tests.test_prepare_trainer_unit_inputs
       - name: Toolchain
         run: bash infra/setup_github_actions.sh --install
       - name: Private Release 4 ZIPを取得
@@ -60,7 +60,9 @@ jobs:
       - name: 既存ROMを保護して現行Stage61生成元を再実行
         run: python3 scripts/regenerate_stage61_unit_state.py
       - name: 残件の入力identityと現行生成器を非破壊で診断
-        run: python3 -m scripts.inspect_private_unit_remaining --probe-critical
+        run: |
+          python3 -m scripts.inspect_private_unit_release_context
+          python3 -m scripts.inspect_private_unit_remaining --probe-critical
       - uses: actions/upload-artifact@v4
         if: always()
         with:
