@@ -34,6 +34,15 @@ PRIVATE_SUITES = {
     "all",
 }
 SHA_PATTERN = re.compile(r"^[0-9a-fA-F]{40}$")
+PATCH_PATH_PATTERN = re.compile(
+    r"^\.chatgpt/patches/[A-Za-z0-9][A-Za-z0-9._-]{0,80}\.patch$"
+)
+TEST_ID_PATTERN = re.compile(
+    r"^tests(?:\.[A-Za-z_][A-Za-z0-9_]*){2,}$"
+)
+SOURCE_PATH_PATTERN = re.compile(r"^[A-Za-z0-9_./+-]+$")
+FIND_QUERY_PATTERN = re.compile(r"^[A-Za-z0-9_.:/@+-]{1,120}$")
+MAX_READ_LINES = 200
 
 
 class CommentCommandError(ValueError):
@@ -59,6 +68,12 @@ def _test_command(raw: str) -> dict[str, Any]:
         "action": "",
         "request_json": "",
         "confirm_write": False,
+        "path": "",
+        "start_line": "",
+        "end_line": "",
+        "query": "",
+        "patch_path": "",
+        "test_id": "",
     }
 
 
@@ -89,6 +104,85 @@ def _live_command(raw: str, *, write: bool) -> dict[str, Any]:
             request, ensure_ascii=False, sort_keys=True, separators=(",", ":")
         ),
         "confirm_write": write,
+        "path": "",
+        "start_line": "",
+        "end_line": "",
+        "query": "",
+        "patch_path": "",
+        "test_id": "",
+    }
+
+
+def _read_command(raw: str) -> dict[str, Any]:
+    fields = raw.split()
+    if len(fields) not in {4, 5} or fields[0] != "/vega-read":
+        raise CommentCommandError(
+            "read commandは /vega-read <path> <start> <end> [expected-sha] です"
+        )
+    path = fields[1]
+    if (not SOURCE_PATH_PATTERN.fullmatch(path) or path.startswith("/")
+            or "\\" in path or ".." in path.split("/")):
+        raise CommentCommandError("read pathは安全なPOSIX相対pathでなければなりません")
+    try:
+        start, end = int(fields[2]), int(fields[3])
+    except ValueError as exc:
+        raise CommentCommandError("start/endは整数でなければなりません") from exc
+    if start <= 0 or end < start or end - start + 1 > MAX_READ_LINES:
+        raise CommentCommandError(f"read範囲は1〜{MAX_READ_LINES}行です")
+    expected_sha = fields[4].lower() if len(fields) == 5 else ""
+    if expected_sha and not SHA_PATTERN.fullmatch(expected_sha):
+        raise CommentCommandError("expected-shaは40桁hexでなければなりません")
+    return {
+        "kind": "read", "suite": "", "expected_sha": expected_sha,
+        "action": "", "request_json": "", "confirm_write": False,
+        "path": path, "start_line": str(start), "end_line": str(end),
+        "query": "", "patch_path": "", "test_id": "",
+    }
+
+
+def _find_command(raw: str) -> dict[str, Any]:
+    fields = raw.split()
+    if len(fields) not in {3, 4} or fields[0] != "/vega-find":
+        raise CommentCommandError(
+            "find commandは /vega-find <path> <query> [expected-sha] です"
+        )
+    path, query = fields[1], fields[2]
+    if (not SOURCE_PATH_PATTERN.fullmatch(path) or path.startswith("/")
+            or "\\" in path or ".." in path.split("/")):
+        raise CommentCommandError("find pathは安全なPOSIX相対pathでなければなりません")
+    if not FIND_QUERY_PATTERN.fullmatch(query):
+        raise CommentCommandError("find queryは安全な空白なし120文字以下に限定されます")
+    expected_sha = fields[3].lower() if len(fields) == 4 else ""
+    if expected_sha and not SHA_PATTERN.fullmatch(expected_sha):
+        raise CommentCommandError("expected-shaは40桁hexでなければなりません")
+    return {
+        "kind": "find", "suite": "", "expected_sha": expected_sha,
+        "action": "", "request_json": "", "confirm_write": False,
+        "path": path, "start_line": "", "end_line": "", "query": query,
+        "patch_path": "", "test_id": "",
+    }
+
+
+def _patch_command(raw: str) -> dict[str, Any]:
+    fields = raw.split()
+    if len(fields) != 4 or fields[0] != "/vega-patch":
+        raise CommentCommandError(
+            "patch commandは /vega-patch <patch-path> <expected-sha> <test-id> です"
+        )
+    patch_path, expected_sha, test_id = fields[1], fields[2].lower(), fields[3]
+    if not PATCH_PATH_PATTERN.fullmatch(patch_path):
+        raise CommentCommandError(
+            "patch-pathは.chatgpt/patches/<safe-name>.patch限定です"
+        )
+    if not SHA_PATTERN.fullmatch(expected_sha):
+        raise CommentCommandError("expected-shaは40桁hexでなければなりません")
+    if not TEST_ID_PATTERN.fullmatch(test_id):
+        raise CommentCommandError("test-idはtests.から始まるunittest ID限定です")
+    return {
+        "kind": "patch", "suite": "", "expected_sha": expected_sha,
+        "action": "", "request_json": "", "confirm_write": False,
+        "path": "", "start_line": "", "end_line": "",
+        "query": "", "patch_path": patch_path, "test_id": test_id,
     }
 
 
@@ -96,6 +190,12 @@ def parse_comment(body: str) -> dict[str, Any]:
     raw = body.strip()
     if raw.startswith("/vega-test "):
         return _test_command(raw)
+    if raw.startswith("/vega-read "):
+        return _read_command(raw)
+    if raw.startswith("/vega-find "):
+        return _find_command(raw)
+    if raw.startswith("/vega-patch "):
+        return _patch_command(raw)
     if raw.startswith("/vega-live-write "):
         return _live_command(raw, write=True)
     if raw.startswith("/vega-live "):
@@ -107,6 +207,7 @@ def _write_github_output(path: Path, result: dict[str, Any]) -> None:
     lines = []
     for key in (
         "kind", "suite", "expected_sha", "action", "request_json",
+        "path", "start_line", "end_line", "query", "patch_path", "test_id",
     ):
         lines.append(f"{key}={result[key]}")
     lines.append(

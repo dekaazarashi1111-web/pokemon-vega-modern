@@ -25,6 +25,51 @@ class GitHubCommentControlTests(unittest.TestCase):
         with self.assertRaises(CommentCommandError):
             parse_comment("/vega-test stage62-check deadbeef")
 
+    def test_large_file_read_with_exact_head(self) -> None:
+        sha = "b" * 40
+        result = parse_comment(
+            "/vega-read tools/stage61_interaction_oracle.py 21000 21199 "
+            + sha
+        )
+        self.assertEqual(result["kind"], "read")
+        self.assertEqual(result["path"], "tools/stage61_interaction_oracle.py")
+        self.assertEqual(result["start_line"], "21000")
+        self.assertEqual(result["end_line"], "21199")
+        self.assertEqual(result["expected_sha"], sha)
+
+    def test_large_file_read_rejects_traversal_and_oversized_range(self) -> None:
+        with self.assertRaises(CommentCommandError):
+            parse_comment("/vega-read ../secret 1 2")
+        with self.assertRaises(CommentCommandError):
+            parse_comment("/vega-read tools/large.py 1 201")
+
+    def test_large_file_find_with_exact_head(self) -> None:
+        sha = "d" * 40
+        result = parse_comment(
+            "/vega-find scripts/large.py target_symbol " + sha
+        )
+        self.assertEqual(result["kind"], "find")
+        self.assertEqual(result["path"], "scripts/large.py")
+        self.assertEqual(result["query"], "target_symbol")
+        self.assertEqual(result["expected_sha"], sha)
+
+    def test_large_file_patch_requires_safe_path_head_and_test(self) -> None:
+        sha = "c" * 40
+        test_id = "tests.test_module.TestClass.test_case"
+        result = parse_comment(
+            f"/vega-patch .chatgpt/patches/fix.patch {sha} {test_id}"
+        )
+        self.assertEqual(result["kind"], "patch")
+        self.assertEqual(result["patch_path"], ".chatgpt/patches/fix.patch")
+        self.assertEqual(result["test_id"], test_id)
+        self.assertEqual(result["expected_sha"], sha)
+        with self.assertRaises(CommentCommandError):
+            parse_comment(f"/vega-patch ../fix.patch {sha} {test_id}")
+        with self.assertRaises(CommentCommandError):
+            parse_comment(
+                f"/vega-patch .chatgpt/patches/fix.patch {sha} shell.command"
+            )
+
     def test_read_action_requires_read_prefix(self) -> None:
         result = parse_comment('/vega-live {"action":"doctor"}')
         self.assertEqual(result["kind"], "live")

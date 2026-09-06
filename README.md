@@ -29,6 +29,9 @@ ChatGPT Webからprivate GitHub repositoryを読む場合は、
 hash固定したprivate ReleaseからGitHub Actionsへ復元します。実iPad対戦CLIはLANへ到達できる
 self-hosted runnerだけで実行します。ChatGPT Webに新規`workflow_dispatch`操作が無い場合は、対象PRへ
 `/vega-test all <HEAD SHA>`をコメントするとowner限定workflowが同等の新規test runを起動します。
+GitHub connectorで取得できない巨大text sourceは、同じworkflowの`/vega-read`で最大200行ずつ読み、
+`.chatgpt/patches/*.patch`を経由する`/vega-patch`で単一focused testに合格した変更だけを同じPR branchへ
+commitできます。詳細と安全境界は`docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`を参照します。
 
 ## 重要な正本
 
