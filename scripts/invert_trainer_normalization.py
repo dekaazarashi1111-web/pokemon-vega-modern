@@ -51,9 +51,16 @@ def inverse_rows(name: str, task: str, records: list[dict[str, str]],
             if archive:
                 row['notes'] = row['notes'].split('; archive_consumer=')[0]
             # Task02/04は無加工の同task全行が同一decision。最終hashも別途要求する。
-            # 個別decisionのTask03は復元根拠不足なのでここでは変更しない。
             if (archive or kind9) and task.endswith(('TASK02_TOHOKU_EARLY', 'TASK04_TOHOKU_LATE')) and len(ordinary_decisions) == 1:
                 row['decision'] = next(iter(ordinary_decisions))
+            # Task03: 34 UNKNOWN行のfail-closed注記と4 general行の設計注記。
+            # 復元CSV 93981 bytesは歴史的SHA 1e20d1da...f7c576と完全一致する。
+            # 元decisionの識別だけを戻し、現在の実装の成功条件は変更しない。
+            if archive and task.endswith('TASK03_TOHOKU_MID'):
+                if change.get('original_battle_type') == 'UNKNOWN' and row['notes'].endswith('exact-ROM audit pending, no inference made'):
+                    row['decision'] = 'FAIL_CLOSED_SOURCE_PRESERVED'
+                elif row['notes'].startswith('role=TOHOKU_GENERAL_') and row['notes'].endswith('physical ownership preserved'):
+                    row['decision'] = 'INDIVIDUAL_MIDGAME_DESIGN'
             continue
         row['trainer_id'] = change['original_trainer_id']
         original = sources[name].get(key)
