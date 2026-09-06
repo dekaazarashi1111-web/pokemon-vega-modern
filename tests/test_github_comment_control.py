@@ -17,6 +17,11 @@ class GitHubCommentControlTests(unittest.TestCase):
     def test_all_suite(self) -> None:
         self.assertEqual(parse_comment("/vega-test all")["suite"], "all")
 
+    def test_focused_unit_suite(self) -> None:
+        result = parse_comment("/vega-test focused-unit " + "d" * 40)
+        self.assertEqual(result["suite"], "focused-unit")
+        self.assertEqual(result["expected_sha"], "d" * 40)
+
     def test_unknown_suite_is_rejected(self) -> None:
         with self.assertRaises(CommentCommandError):
             parse_comment("/vega-test arbitrary-shell")

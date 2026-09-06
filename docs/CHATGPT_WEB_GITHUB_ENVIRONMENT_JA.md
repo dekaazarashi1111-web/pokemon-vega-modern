@@ -64,6 +64,7 @@ ChatGPT Webは、同一repository内の対象branchでDraft PRを作成し、そ
 ```text
 /vega-test stage62-check
 /vega-test stage62-mgba
+/vega-test focused-unit
 /vega-test full-unit
 /vega-test battle-cli-offline
 /vega-test all
@@ -79,6 +80,20 @@ ChatGPT Webは、同一repository内の対象branchでDraft PRを作成し、そ
 あること、PR headが同一repositoryであること、任意のexpected SHAが一致することを確認する。
 成功した要求だけがexact PR HEADをcheckoutし、private Releaseをhash検証して復元する。結果とrun URLは
 同じPRへ自動コメントされる。
+
+`focused-unit`、`full-unit`、`all`では、artifactをChatGPT Webが直接取得できない場合にも継続できるよう、
+schema、exact HEAD、件数、test ID、exception type、tracked Python source frame、skip分類、Stage62 ROM
+identityをdefault branch上の固定sanitizerで検査し、限定結果を別のPRコメントへ自動返信する。例外本文、
+subtest値、private入力、Actions生ログは返信しない。重複subtest failureは同じidentity／frame単位で集約する。
+
+現在HEADのfocused全体を再測定する場合は、PRのclose／reopenやartifact取得を使わず、次を使う。
+
+```text
+/vega-test focused-unit <PR HEAD SHA>
+```
+
+返信された`Vega private test: limited result`を次の修正入力とする。`full-unit`と`all`も同じ形式で
+限定結果を自動返信するため、通常は`collect-unit` markerや生ログ再取得を必要としない。
 
 GitHub-hosted runnerはprivate LANのiPadへ到達できないため、実機対戦には使わない。
 

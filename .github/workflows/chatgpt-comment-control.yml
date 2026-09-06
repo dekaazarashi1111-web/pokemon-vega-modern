@@ -103,6 +103,8 @@ jobs:
           python3 scripts/github_private_environment.py restore
           --archive-dir .local/github-private-environment/assets
       - name: 固定suiteを実行
+        id: suite
+        continue-on-error: true
         env:
           SUITE: ${{ needs.authorize.outputs.suite }}
         # issue_comment workflowは既定branch上のこのallowlistを実行する。
@@ -120,6 +122,12 @@ jobs:
               python3 tools/vega_codex_battle.py --version
               python3 tools/vega_codex_battle.py \
                 catalog species search --query ピカチュウ --limit 3 --json
+              ;;
+            focused-unit)
+              test -f scripts/regenerate_stage61_unit_state.py
+              test -f scripts/run_private_unit_focus.py
+              python3 scripts/regenerate_stage61_unit_state.py >/dev/null
+              python3 scripts/run_private_unit_focus.py >/dev/null
               ;;
             stage62-check)
               python3 scripts/build_stage62_npc_placement_integrity_repair.py check --runs 2
@@ -143,6 +151,25 @@ jobs:
               exit 2
               ;;
           esac
+      - name: 限定result JSONをrun内だけで受け渡す
+        if: >-
+          always() &&
+          (needs.authorize.outputs.suite == 'focused-unit' ||
+           needs.authorize.outputs.suite == 'full-unit' ||
+           needs.authorize.outputs.suite == 'all')
+        uses: actions/upload-artifact@v4
+        with:
+          name: vega-private-result-${{ github.event.comment.id }}
+          path: |
+            build/private-unit-focus/result.json
+            build/github-private/full-unit-result.json
+          retention-days: 1
+          if-no-files-found: warn
+      - name: suiteの失敗をjob結論へ反映
+        if: always()
+        env:
+          SUITE_OUTCOME: ${{ steps.suite.outcome }}
+        run: test "$SUITE_OUTCOME" = success
 
   live_battle:
     needs: authorize
@@ -416,8 +443,55 @@ jobs:
       always() && needs.authorize.result == 'success' &&
       (needs.authorize.outputs.kind == 'test' ||
        needs.authorize.outputs.kind == 'live')
+    permissions:
+      actions: read
+      contents: read
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-24.04
     steps:
+      - name: default branchの固定sanitizerを取得
+        if: >-
+          needs.authorize.outputs.kind == 'test' &&
+          (needs.authorize.outputs.suite == 'focused-unit' ||
+           needs.authorize.outputs.suite == 'full-unit' ||
+           needs.authorize.outputs.suite == 'all')
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: control
+          persist-credentials: false
+      - name: 限定result JSONを取得
+        id: download_result
+        if: >-
+          needs.authorize.outputs.kind == 'test' &&
+          (needs.authorize.outputs.suite == 'focused-unit' ||
+           needs.authorize.outputs.suite == 'full-unit' ||
+           needs.authorize.outputs.suite == 'all')
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: vega-private-result-${{ github.event.comment.id }}
+          path: ${{ runner.temp }}/vega-private-result
+      - name: schema固定の短いPRコメントへ変換
+        if: steps.download_result.outcome == 'success'
+        continue-on-error: true
+        env:
+          SUITE: ${{ needs.authorize.outputs.suite }}
+          HEAD_SHA: ${{ needs.authorize.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          if test "$SUITE" = focused-unit; then
+            mapfile -t results < <(find "$RUNNER_TEMP/vega-private-result" -type f -name result.json)
+          else
+            mapfile -t results < <(find "$RUNNER_TEMP/vega-private-result" -type f -name full-unit-result.json)
+          fi
+          test "${#results[@]}" -eq 1
+          python3 control/scripts/github_result_summary.py \
+            --kind "$SUITE" \
+            --input "${results[0]}" \
+            --expected-sha "$HEAD_SHA" \
+            --output "$RUNNER_TEMP/vega-private-result.md"
       - name: PRへ実行結果を返す
         uses: actions/github-script@v7
         env:
@@ -428,8 +502,10 @@ jobs:
           HEAD_SHA: ${{ needs.authorize.outputs.head_sha }}
           PRIVATE_RESULT: ${{ needs.private_test.result }}
           LIVE_RESULT: ${{ needs.live_battle.result }}
+          SUMMARY_PATH: ${{ runner.temp }}/vega-private-result.md
         with:
           script: |
+            const fs = require('fs');
             const kind = process.env.KIND;
             const result = kind === 'test'
               ? process.env.PRIVATE_RESULT : process.env.LIVE_RESULT;
@@ -450,3 +526,11 @@ jobs:
                 `- run: ${url}`,
               ].join('\n'),
             });
+            if (kind === 'test' && fs.existsSync(process.env.SUMMARY_PATH)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: fs.readFileSync(process.env.SUMMARY_PATH, 'utf8'),
+              });
+            }
