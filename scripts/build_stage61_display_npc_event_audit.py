@@ -8312,6 +8312,9 @@ def _build_local_static_incoming_exception_audit(
 
     manifest_raw, manifest = _load_local_static_incoming_exception_manifest()
     coord_keys = {(group, number): key for group, number, key in coords}
+    # 旧manifest名はclean参照資料の索引でありVega物理mapのprovenanceではない。
+    legacy_keys = {(g, m): name for g, m, name in _all_coordinates(canonical)}
+    from tools.stage61_entry_reference_identity import reference_key
     canonical_by_source: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
     for row in canonical:
         canonical_by_source[str(row["map_header"]["source_map"])].append(row)
@@ -8415,10 +8418,17 @@ def _build_local_static_incoming_exception_audit(
         group, number = key
         actual = observed[key]
         expected = manifest_rows[key]
-        if str(expected["map_key"]) != coord_keys[key] \
-                or str(actual["map_key"]) != str(expected["map_key"]):
-            _fail(f"entry exception map key drift: {key}")
-        source_artifacts = _source_map_artifact_hashes(str(actual["map_key"]))
+        if str(actual["map_key"]) != coord_keys[key]:
+            _fail(f"entry exception physical map key drift: {key}")
+        try:
+            source_reference = reference_key(
+                group=group, number=number, physical_key=coord_keys[key],
+                declared_reference=str(expected["map_key"]),
+                legacy_coordinates=legacy_keys,
+            )
+        except ValueError as error:
+            _fail(str(error))
+        source_artifacts = _source_map_artifact_hashes(source_reference)
         if expected["source_artifacts"] != {
             "tree_sha256": source_artifacts["tree_sha256"]
         }:
@@ -8434,7 +8444,7 @@ def _build_local_static_incoming_exception_audit(
                 f"actual={actual['producer_contract']} "
                 f"expected={expected['expected_producer_contract']}"
             )
-        clones = canonical_by_source.get(str(actual["map_key"]), [])
+        clones = canonical_by_source.get(source_reference, [])
         clone_contract = expected["canonical_clone"]
         classification = str(expected["classification"])
         clone_report: dict[str, Any] | None = None
@@ -8572,6 +8582,8 @@ def _build_local_static_incoming_exception_audit(
         report_rows.append({
             "group": group, "map": number,
             "map_key": actual["map_key"],
+            "legacy_reference_map_key": source_reference,
+            "legacy_reference_is_physical_provenance": False,
             **contract,
             "source_artifacts": source_artifacts,
             "stage60_fingerprint": stage60_fingerprint,
