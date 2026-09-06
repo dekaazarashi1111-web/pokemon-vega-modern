@@ -20,6 +20,9 @@ jobs:
       github.event.issue.pull_request != null &&
       github.actor == github.repository_owner &&
       (startsWith(github.event.comment.body, '/vega-test ') ||
+       startsWith(github.event.comment.body, '/vega-read ') ||
+       startsWith(github.event.comment.body, '/vega-find ') ||
+       startsWith(github.event.comment.body, '/vega-patch ') ||
        startsWith(github.event.comment.body, '/vega-live ') ||
        startsWith(github.event.comment.body, '/vega-live-write '))
     runs-on: ubuntu-24.04
@@ -29,6 +32,12 @@ jobs:
       action: ${{ steps.parse.outputs.action }}
       request_json: ${{ steps.parse.outputs.request_json }}
       confirm_write: ${{ steps.parse.outputs.confirm_write }}
+      path: ${{ steps.parse.outputs.path }}
+      start_line: ${{ steps.parse.outputs.start_line }}
+      end_line: ${{ steps.parse.outputs.end_line }}
+      query: ${{ steps.parse.outputs.query }}
+      patch_path: ${{ steps.parse.outputs.patch_path }}
+      test_id: ${{ steps.parse.outputs.test_id }}
       head_sha: ${{ steps.pr.outputs.head_sha }}
       head_ref: ${{ steps.pr.outputs.head_ref }}
     steps:
@@ -158,9 +167,255 @@ jobs:
           VEGA_BATTLE_REQUEST: ${{ needs.authorize.outputs.request_json }}
         run: python3 scripts/run_github_battle_command.py --confirm-write
 
+  source_read:
+    needs: authorize
+    if: >-
+      needs.authorize.outputs.kind == 'read' ||
+      needs.authorize.outputs.kind == 'find'
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    steps:
+      - name: default branchの固定bridgeを取得
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: control
+          persist-credentials: false
+      - name: exact PR HEADを取得
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.authorize.outputs.head_sha }}
+          path: target
+          persist-credentials: false
+      - name: 指定行だけを安全に抽出
+        env:
+          SOURCE_PATH: ${{ needs.authorize.outputs.path }}
+          START_LINE: ${{ needs.authorize.outputs.start_line }}
+          END_LINE: ${{ needs.authorize.outputs.end_line }}
+          QUERY: ${{ needs.authorize.outputs.query }}
+        run: |
+          set -euo pipefail
+          if test -n "$QUERY"; then
+            python3 control/scripts/github_large_file_bridge.py find \
+              --root target \
+              --path "$SOURCE_PATH" \
+              --query "$QUERY" \
+              --output "$RUNNER_TEMP/vega-read.md"
+          else
+            python3 control/scripts/github_large_file_bridge.py read \
+              --root target \
+              --path "$SOURCE_PATH" \
+              --start "$START_LINE" \
+              --end "$END_LINE" \
+              --output "$RUNNER_TEMP/vega-read.md"
+          fi
+      - name: 短いsliceを同一run内だけで受け渡す
+        uses: actions/upload-artifact@v4
+        with:
+          name: vega-read-${{ github.event.comment.id }}
+          path: ${{ runner.temp }}/vega-read.md
+          retention-days: 1
+          if-no-files-found: error
+
+  source_patch:
+    needs: authorize
+    if: needs.authorize.outputs.kind == 'patch'
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    outputs:
+      new_sha: ${{ steps.commit.outputs.new_sha }}
+      targets_json: ${{ steps.apply.outputs.targets_json }}
+    steps:
+      - name: default branchの固定bridgeを取得
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: control
+          persist-credentials: false
+      - name: exact PR HEADをwrite可能なworktreeへ取得
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.authorize.outputs.head_sha }}
+          fetch-depth: 0
+          path: target
+      - name: 小さいtracked patchを検査して適用
+        id: apply
+        env:
+          PATCH_PATH: ${{ needs.authorize.outputs.patch_path }}
+          EXPECTED_SHA: ${{ needs.authorize.outputs.head_sha }}
+        run: >-
+          python3 control/scripts/github_large_file_bridge.py apply
+          --root target
+          --patch "$PATCH_PATH"
+          --expected-sha "$EXPECTED_SHA"
+          --github-output "$GITHUB_OUTPUT"
+      - name: tracked source境界を検証
+        working-directory: target
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+      - name: 固定toolchainを導入
+        working-directory: target
+        run: bash infra/setup_github_actions.sh --install
+      - name: Private Release資材を取得
+        working-directory: target
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          mkdir -p .local/github-private-environment/assets
+          gh release download "$tag" \
+            --pattern 'pokemon-vega-private-env-v1-*.zip' \
+            --dir .local/github-private-environment/assets
+      - name: Private環境をhash検証して復元
+        working-directory: target
+        run: >-
+          python3 scripts/github_private_environment.py restore
+          --archive-dir .local/github-private-environment/assets
+      - name: PR固有の生成済みfixtureを必要時だけ準備
+        working-directory: target
+        run: |
+          if test -f scripts/regenerate_stage61_unit_state.py; then
+            python3 scripts/regenerate_stage61_unit_state.py >/dev/null
+          fi
+      - name: 指定された単一unittest IDを実行
+        working-directory: target
+        env:
+          TEST_ID: ${{ needs.authorize.outputs.test_id }}
+        run: |
+          mkdir -p build/chatgpt-large-file-bridge
+          python3 -m unittest "$TEST_ID" \
+            >build/chatgpt-large-file-bridge/test.log 2>&1
+      - name: テスト中に対象外tracked差分がないことを確認
+        working-directory: target
+        env:
+          PATCH_PATH: ${{ needs.authorize.outputs.patch_path }}
+          TARGETS_JSON: ${{ steps.apply.outputs.targets_json }}
+        run: >-
+          python3 ../control/scripts/github_large_file_bridge.py verify-worktree
+          --root .
+          --patch "$PATCH_PATH"
+          --targets-json "$TARGETS_JSON"
+      - name: 検証済みpatchをcommitして同じPR branchへpush
+        id: commit
+        working-directory: target
+        env:
+          HEAD_REF: ${{ needs.authorize.outputs.head_ref }}
+          PATCH_PATH: ${{ needs.authorize.outputs.patch_path }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u -- .
+          git commit -m "CHATGPT-BRIDGE: apply $(basename "$PATCH_PATH" .patch)"
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          printf 'new_sha=%s\n' "$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  report_read:
+    needs: [authorize, source_read]
+    if: >-
+      always() && needs.authorize.result == 'success' &&
+      (needs.authorize.outputs.kind == 'read' ||
+       needs.authorize.outputs.kind == 'find')
+    permissions:
+      actions: read
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: 成功したsliceだけを取得
+        if: needs.source_read.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: vega-read-${{ github.event.comment.id }}
+          path: ${{ runner.temp }}/vega-read
+      - name: PRへbounded read結果を返す
+        uses: actions/github-script@v7
+        env:
+          READ_RESULT: ${{ needs.source_read.result }}
+          READ_PATH: ${{ needs.authorize.outputs.path }}
+          START_LINE: ${{ needs.authorize.outputs.start_line }}
+          END_LINE: ${{ needs.authorize.outputs.end_line }}
+          QUERY: ${{ needs.authorize.outputs.query }}
+          HEAD_REF: ${{ needs.authorize.outputs.head_ref }}
+          HEAD_SHA: ${{ needs.authorize.outputs.head_sha }}
+          OUTPUT_PATH: ${{ runner.temp }}/vega-read/vega-read.md
+        with:
+          script: |
+            const fs = require('fs');
+            let body;
+            if (process.env.READ_RESULT === 'success') {
+              body = fs.readFileSync(process.env.OUTPUT_PATH, 'utf8');
+            } else {
+              body = [
+                '<!-- vega-large-file-read -->',
+                '### Vega source slice: **FAILURE**',
+                '',
+                `- path: \`${process.env.READ_PATH}\``,
+                `- lines: \`${process.env.START_LINE}-${process.env.END_LINE}\``,
+                `- query: \`${process.env.QUERY || '-'}\``,
+                `- ref: \`${process.env.HEAD_REF}\``,
+                `- SHA: \`${process.env.HEAD_SHA}\``,
+                `- run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ].join('\n');
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
+  report_patch:
+    needs: [authorize, source_patch]
+    if: always() && needs.authorize.result == 'success' && needs.authorize.outputs.kind == 'patch'
+    permissions:
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: PRへpatch結果を返す
+        uses: actions/github-script@v7
+        env:
+          PATCH_RESULT: ${{ needs.source_patch.result }}
+          PATCH_PATH: ${{ needs.authorize.outputs.patch_path }}
+          TEST_ID: ${{ needs.authorize.outputs.test_id }}
+          HEAD_REF: ${{ needs.authorize.outputs.head_ref }}
+          OLD_SHA: ${{ needs.authorize.outputs.head_sha }}
+          NEW_SHA: ${{ needs.source_patch.outputs.new_sha }}
+          TARGETS_JSON: ${{ needs.source_patch.outputs.targets_json }}
+        with:
+          script: |
+            const success = process.env.PATCH_RESULT === 'success';
+            const body = [
+              '<!-- vega-large-file-patch -->',
+              `### Vega large-file patch: **${success ? 'SUCCESS' : 'FAILURE'}**`,
+              '',
+              `- patch: \`${process.env.PATCH_PATH}\``,
+              `- test: \`${process.env.TEST_ID}\``,
+              `- ref: \`${process.env.HEAD_REF}\``,
+              `- old SHA: \`${process.env.OLD_SHA}\``,
+              `- new SHA: \`${process.env.NEW_SHA || '-'}\``,
+              `- changed: \`${process.env.TARGETS_JSON || '[]'}\``,
+              `- run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+
   report:
     needs: [authorize, private_test, live_battle]
-    if: always() && needs.authorize.result == 'success'
+    if: >-
+      always() && needs.authorize.result == 'success' &&
+      (needs.authorize.outputs.kind == 'test' ||
+       needs.authorize.outputs.kind == 'live')
     runs-on: ubuntu-24.04
     steps:
       - name: PRへ実行結果を返す

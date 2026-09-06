@@ -82,6 +82,60 @@ ChatGPT Webは、同一repository内の対象branchでDraft PRを作成し、そ
 
 GitHub-hosted runnerはprivate LANのiPadへ到達できないため、実機対戦には使わない。
 
+## 巨大sourceの読取と最小patch
+
+GitHub connectorのfile取得応答にはsize上限がある。権限やprivate設定に問題がなくても、数百KiBから
+数MiBのtracked textでは本文が空になったり、応答が省略されたりする場合がある。この場合は停止せず、
+ownerが同一repositoryのPRへ次を1行コメントする。
+
+```text
+/vega-find tools/stage61_interaction_oracle.py gift_storage_validate_create_mon_rom <PR HEAD SHA>
+/vega-read tools/stage61_interaction_oracle.py 38020 38120 <PR HEAD SHA>
+```
+
+`chatgpt-comment-control`はdefault branch上の固定bridgeでexact PR HEADをcheckoutし、最大200行の
+UTF-8 text、または空白なしの検索語に一致する先頭20行だけを行番号付きで同じPRへ返す。指定できるのは
+Git管理中のsource／test／文書領域だけで、
+`.github`、private入力、生成物、credential候補、binaryは拒否する。必要なsymbolは通常のGitHub検索で
+見つからない場合も`/vega-find`で行番号を特定し、その周辺だけを複数回読む。
+
+修正内容が確定したら、ChatGPT WebはGitHubの通常の新規ファイル作成で次のような小さいunified diffを
+対象branchへ追加する。pathは`.chatgpt/patches/<safe-name>.patch`限定で、patch file追加後の新しい
+PR HEAD SHAを必ず再取得する。
+
+```diff
+diff --git a/tools/example.py b/tools/example.py
+--- a/tools/example.py
++++ b/tools/example.py
+@@ -10,3 +10,3 @@
+-old_value = 1
++old_value = 2
+```
+
+次に、patch fileを含むHEADを指定してコメントする。
+
+```text
+/vega-patch .chatgpt/patches/fix-example.patch <patch追加後のPR HEAD SHA> tests.test_example.ExampleTests.test_value
+```
+
+Actionsはtrusted default branchのbridgeを使い、次をすべて満たす時だけ同じPR branchへ1 commitをpushする。
+
+- 投稿者がrepository ownerで、forkではなく、指定HEADが現在のPR HEADと一致する。
+- patchは64 KiB以下、既存tracked UTF-8 textの更新だけ、最大4ファイルである。
+- workflow、bridge／guard、private設定、source lock、task status、ROM／save／生成物を変更しない。
+- secret候補、binary、新規作成、削除、rename、mode変更、path traversalがない。
+- task graphとprivate file guardがPASSする。
+- Private Releaseをhash検証して復元後、指定した単一`unittest` IDがPASSする。
+- テスト中にpatch対象外のtracked差分が生じない。
+
+成功時はpatch request fileを削除し、対象変更だけを`CHATGPT-BRIDGE: apply <name>`でcommitする。結果、
+old／new SHA、変更path、run URLはPRへ自動返信される。失敗時はcommit／pushしない。Actionsの成功pushは
+別workflowを自動起動しないため、必要ならnew SHAを付けた`/vega-test <suite> <new SHA>`を続けて使う。
+
+このbridgeは巨大ファイルに対するGitHub connectorの転送上限を回避するためのものに限定する。通常サイズの
+ファイル、branch、PR、コメントはGitHub connectorをそのまま使う。ROM、save、Private Release本文を
+PRコメントやpatchへ入れない。
+
 ## self-hosted実機対戦
 
 repositoryのActions runnerへ`pokemon-vega-live` labelを付け、現在のWSLで起動する。runner userには

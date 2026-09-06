@@ -21,4 +21,6 @@ jobs:
           python3 scripts/guard_private_files.py
           python3 -m unittest \
             tests.test_github_private_environment \
+            tests.test_github_comment_control \
+            tests.test_github_large_file_bridge \
             tests.test_run_github_battle_command
