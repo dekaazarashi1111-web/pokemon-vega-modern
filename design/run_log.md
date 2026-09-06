@@ -3833,3 +3833,34 @@
 - Network:
   - OpenAI公式のChatGPT Work／GitHub Action資料でWeb実行環境とcheckout済みrunnerの役割を確認した（`https://learn.chatgpt.com/ja-JP/docs/enterprise/chatgpt-work-overview`、`https://learn.chatgpt.com/de-DE/docs/github-action`）。
   - GitHub公式API／CLIでrepository権限、PR、Actions、限定結果コメントを確認した。Actions生ログ、private Release本文、ROM／save、credential、tokenは会話またはtracked成果へ転載していない。
+
+## 2026-09-07T00:01:47+09:00
+
+- Task: `USER-20260906-CHATGPT-RESULT-COMMENT-BRIDGE` / ChatGPT Web向けprivate test限定結果コメント
+- Status: DONE（PR #3のunit修復自体は継続中、既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - ChatGPT Webで長いセッション中にActions artifactの取得応答が省略されても作業を継続できるよう、`focused-unit`、`full-unit`、`all`の限定結果を同じPRへ自動返信する経路を追加した。
+  - default branch上の固定sanitizerがexact HEADと厳密schemaを検証し、件数、test ID、exception type、tracked Python source frame、skip分類、Stage62 ROM identityだけを返信する。例外本文、subtest値、private入力、Actions生ログは含めない。
+  - owner・同一repository PR・固定suiteの既存境界を維持し、失敗suiteでもresult artifactを先に1日だけ保存してからjob結論をfailureへ戻す。artifact欠落やschema不一致時は限定コメントを出さずfail closedとする。
+  - PR #7をmainへマージして有効化後、PR #3のexact HEAD `e4a08aca...`へ`/vega-test focused-unit`を投稿した。run `34040024389`でPrivate Release取得・hash復元・result保存・固定schema変換・PR自動返信を実証した。
+- Files changed:
+  - `.github/workflows/chatgpt-comment-control.yml`
+  - `.github/workflows/ci.yml`
+  - `scripts/github_comment_control.py`
+  - `scripts/github_result_summary.py`
+  - `tests/test_github_comment_control.py`
+  - `tests/test_github_result_summary.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `README.md`
+  - `Makefile`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - result/comment/large-file/private suite関連unit: 35件PASS。PyYAML parse、actionlint、`python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 既存focused artifact（run `34036942892`）をsanitizerへ入力し、`445 tests / 20 failures / 3 errors / 0 skips`を3,304 bytesの限定Markdownへ変換: PASS。
+  - GitHub source-validation: run `34039975170`／`34039977210` PASS。PR #7 merge commit `8ff0393a64d2406274235692cbb660cdecc1bf78`。
+  - GitHub comment control focused-unit: run `34040024389`。Private Release取得・hash復元・artifact保存・report jobはPASS。focused残件によりrun全体は意図どおりfailure、限定結果コメント `5560079732`のHEAD・件数・Stage62 ROM不変・秘匿境界を読戻し確認した。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - GitHub公式API／CLIでPR #7の作成・CI・merge、PR #3のowner comment起動、run結論と限定結果コメントの読戻しを行った。Actions生ログ、private Release本文、ROM／save、credential、tokenは取得・転載していない。
