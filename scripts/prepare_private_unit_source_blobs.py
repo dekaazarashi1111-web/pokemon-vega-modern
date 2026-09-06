@@ -42,6 +42,11 @@ def prepare(root: Path, plan: dict) -> list[tuple[str, bytes]]:
         if before != row['before_sha256']:
             raise ValueError('source before SHA-256 mismatch')
         text = raw.decode('utf-8')
+        if row.get('extract_stage61_metadata') is True:
+            if name != 'scripts/build_stage61_display_npc_event_audit.py':
+                raise ValueError('metadata extraction path rejected')
+            from scripts.extract_stage61_metadata_function import transform
+            text = transform(text)
         if name in LOGS:
             if 'replacements' in row or not isinstance(row.get('append'), str) or not row['append'].startswith('\n'):
                 raise ValueError('logs are append-only')
