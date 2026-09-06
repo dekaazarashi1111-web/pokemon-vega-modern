@@ -48,3 +48,16 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
              text_assets, abi_entries, self.source_blobs,
              shared_script_bytes=_runtime_graph_script_bytes(graph),
              shared_root_plan=_runtime_root_plan(graph, root),
+diff --git a/tools/stage61_state_fixture.py b/tools/stage61_state_fixture.py
+--- a/tools/stage61_state_fixture.py
++++ b/tools/stage61_state_fixture.py
+@@ -63,6 +63,9 @@
+     semantics = deepcopy(dict(semantic_report))
+     semantics.update({
+         'status_scope': SCOPE, 'stage61_namespace_policy': deepcopy(dict(namespace_report)),
++        # 同じ候補に配置したscript/textのprovenanceを通常生成経路と揃える。
++        # unit専用scopeとstrict未実行の扱いは変更しない。
++        'stage61_materialization': deepcopy(blob_meta['semantic_materialization']),
+         'stage61_bill_sevii_scope_guard': deepcopy(blob_meta['bill_sevii_scope_guard']),
+     })
+     audit = {
