@@ -3864,3 +3864,30 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式API／CLIでPR #7の作成・CI・merge、PR #3のowner comment起動、run結論と限定結果コメントの読戻しを行った。Actions生ログ、private Release本文、ROM／save、credential、tokenは取得・転載していない。
+
+## 2026-09-07T13:52:02+09:00
+
+- Task: `USER-20260907-PRIVATE-INTEGRATION-INPUTS` / ChatGPT Web向けTrainer私有原本の決定的復元
+- Status: DONE（PR #3のStage61系3 errorsと既存の全件監査taskは継続中）
+- Summary:
+  - Private Releaseの入力bundleへworkspace親の`integration_inputs`を明示的に収録し、ChatGPT Web／GitHub Actionsのclean環境でもTrainer原本metadata 7件をhash固定で復元できるようにした。
+  - Stage34のTrainer生成契約が固定する歴史的`reports/generated/id_inventory.json`を私有入力側から優先利用し、現行workspaceの同名reportへ誤ってフォールバックしないようにした。
+  - `pokemon-vega-private-env-v1-inputs.zip`を672 files、104,736,629 bytes、SHA-256 `c7e982c7a6445f41e8926b17c548e64205df736ed83be13dd7676549543a23fe`として再構築し、Release tag `private-environment-v1`の同名assetを更新した。ROM／save／私有原本はGitへ追加していない。
+  - PR #3では未完了Trainer診断3 commitsを履歴改変せず前進commitで整理し、本修復を既存branchへ反映した。Actions限定結果でTrainer identity 6 failuresと`TrainerChangeKitContentTest.setUpClass`がすべて消え、残件がStage61系3 errorsだけになった。
+- Files changed:
+  - `scripts/github_private_environment.py`
+  - `config/github_private_environment.json`
+  - `scripts/build_trainer_changekit_content.py`
+  - `tests/test_github_private_environment.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - Private assetを2回構築しZIPをbyte同一確認。remote asset再取得後に外側SHA-256、672 member全hash、clean restoreをPASS。
+  - clean restore入力からTrainer contentを再生成し、tracked `content/trainer_changekit_final`と全file byte一致をPASS。
+  - private環境／Trainer関連local unit 85件、task graph、private guard、`git diff --check`: PASS。
+  - GitHub source-validation: PR #9／#10でPASS。main merge commitは`78eccc2e32ed93402b90687b9e70ac316fd53071`と`bb8621aac512657e7acb765fbc1805105b481bc2`。
+  - PR #3 exact HEAD `9b3f7d80047b7d08be0809a9a3f3bbe3dfff6468`のfocused run `34083238827`: 471 tests / 0 failures / 3 errors / 0 skips、Stage62 ROM unchanged。Private Release 4 ZIP取得、外側／全member hash復元PASS。限定証跡コメント`5565207950`。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - GitHub公式API／CLIでPrivate Release asset更新、remote再取得、PR #9／#10の作成・CI・merge、PR #3への反映・focused run・限定結果コメントを実行した。credential、token、ROM／save、private metadata本文はtracked成果へ保存していない。
