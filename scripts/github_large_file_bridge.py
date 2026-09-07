@@ -48,7 +48,9 @@ DENIED_PATCH_PATHS = {
     "state/task_status.json",
     "scripts/github_comment_control.py",
     "scripts/github_large_file_bridge.py",
+    "scripts/github_patch_test_summary.py",
     "scripts/github_private_environment.py",
+    "scripts/run_github_patch_test.py",
     "scripts/guard_private_files.py",
     "scripts/validate_task_graph.py",
 }

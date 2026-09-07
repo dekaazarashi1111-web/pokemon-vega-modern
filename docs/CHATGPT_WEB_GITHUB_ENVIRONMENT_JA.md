@@ -152,6 +152,14 @@ Actionsはtrusted default branchのbridgeを使い、次をすべて満たす時
 old／new SHA、変更path、run URLはPRへ自動返信される。失敗時はcommit／pushしない。Actionsの成功pushは
 別workflowを自動起動しないため、必要ならnew SHAを付けた`/vega-test <suite> <new SHA>`を続けて使う。
 
+指定unittestは専用runnerがPython、native code、child processの標準出力・標準エラーを破棄して実行する。
+PASS／FAIL／ERROR／SKIPのいずれでも、artifactへ渡すのは固定schemaの`test-result.json`だけである。返信に
+表示できるのはexact test ID、outcome、tests／failures／errors／skips、例外class、exact HEADでGit管理中の
+Python source frameと行番号に限る。例外本文、assertionのactual／expected値、subtest値、private path、
+ROM／save／metadata、環境変数、credential、token、生の`test.log`は保存・upload・返信しない。default branchの
+固定sanitizerがschema、HEAD、test ID、tracked regular file、行番号を再検証できない場合は、PRコメントを
+作らずfail closedとする。通常のテスト失敗では限定結果を返信するが、bot commit／pushは行わない。
+
 このbridgeは巨大ファイルに対するGitHub connectorの転送上限を回避するためのものに限定する。通常サイズの
 ファイル、branch、PR、コメントはGitHub connectorをそのまま使う。ROM、save、Private Release本文を
 PRコメントやpatchへ入れない。
