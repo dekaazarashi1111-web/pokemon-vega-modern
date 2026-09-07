@@ -7,12 +7,17 @@
   "archives": [
     {
       "name": "pokemon-vega-private-env-v1-inputs.zip",
-      "size": 101188064,
-      "sha256": "931da72bdbac42d4d24e6ae1ee237d6203d792f4369775f28b878e579c1f9065",
+      "size": 104196471,
+      "sha256": "5da00b03f11d82fc4ec0179ca2c3dab761f5b37e0d79e38b1d877566f401ff83",
       "sources": [
         {
           "source": "@workspace_parent/PRIVATE_INPUTS",
           "destination": ".local/github-private-environment/PRIVATE_INPUTS",
+          "exclude": []
+        },
+        {
+          "source": "@workspace_parent/integration_inputs",
+          "destination": "userfile/imports/integration_inputs",
           "exclude": []
         },
         {
