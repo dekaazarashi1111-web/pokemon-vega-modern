@@ -24,4 +24,9 @@ jobs:
             tests.test_github_comment_control \
             tests.test_github_large_file_bridge \
             tests.test_github_result_summary \
-            tests.test_run_github_battle_command
+            tests.test_run_github_battle_command \
+            tests.test_modernization_ids
+      - name: P01 現行用IDカタログの生成と決定的再照合（ROM検証ではない）
+        run: |
+          python3 scripts/build_modernization_catalog.py build
+          python3 scripts/build_modernization_catalog.py check
