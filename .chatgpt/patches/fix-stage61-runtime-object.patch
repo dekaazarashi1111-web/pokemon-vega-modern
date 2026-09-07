@@ -1,0 +1,187 @@
+--- a/tools/stage61_interaction_oracle.py
++++ b/tools/stage61_interaction_oracle.py
+@@ -16042,5 +16042,35 @@
+         runtime_before[local_id] = deepcopy(runtime_value)
+         runtime_after[local_id] = deepcopy(runtime_value)
++
++    # playerはInitPlayerAvatarが生成するruntime objectで、NPC templateにはない。
++    # 既存の物理位置／操作開始fixtureからのみ初期化する。存在しないNPCや
++    # 未指定のplayer座標を、便宜的な初期状態で補わない。
++    player_effects = [
++        effect for effect in object_effects
++        if effect.get("owner") == "LOCAL_OBJECT:255"
++        and effect.get("relation") in {
++            "APPLY_ORDERED_MOVEMENT", "SET_OBJECT_XY",
++            "SHOW_OBJECT_AT_MAP", "HIDE_OBJECT_AT_MAP",
++            "REMOVE_CURRENT_MAP_OBJECT", "REMOVE_OBJECT_AT_MAP",
++        }
++    ]
++    if player_effects:
++        if 255 in by_local:
++            _fail("RUNNER_PLAYER_OBJECT_STATIC_TEMPLATE_COLLISION")
++        at = _as_address(
++            player_effects[0].get("instruction_address"),
++            "runner player object instruction",
++        )
++        position = _exact_player_position_fixture(context, at)
++        if (position["group"], position["map"]) != (group, number):
++            _fail("RUNNER_PLAYER_OBJECT_MAP_PREIMAGE_MISMATCH")
++        player = {
++            "map": f"{group}/{number}", "invisible": False, "visible": True,
++            "current": [position["x"] + 7, position["y"] + 7],
++            "previous": [position["x"] + 7, position["y"] + 7],
++        }
++        runtime_before[255] = deepcopy(player)
++        runtime_after[255] = deepcopy(player)
+ 
+     def current_object(local_id: int) -> dict[str, Any]:
+         value = runtime_after.get(local_id)
+@@ -16060,6 +16090,8 @@
+         target_group = group if target is None else int(target.get("group", -1))
+         target_map = number if target is None else int(target.get("map", -1))
+-        loaded = (target_group, target_map) == (group, number)
++        # 固定元GetObjectEventIdByLocalIdAndMapはplayerに限りmap引数を無視する。
++        # 通常のlocal objectでは従来どおりmapの一致を必要とする。
++        loaded = local_id == 255 or (target_group, target_map) == (group, number)
+         if relation == "APPLY_ORDERED_MOVEMENT":
+             if not loaded:
+                 continue
+--- a/tests/test_stage61_interaction_oracle.py
++++ b/tests/test_stage61_interaction_oracle.py
+@@ -12177,3 +12177,4 @@
++        cls.catalog = catalog
+         cls.source_blobs, symbol_reports = _interaction_abi_pinned_inputs()
+         cls.manifest = build_pinned_interaction_abi_manifest(
+             cls.clean, cls.stage60, cls.stage61, catalog,
+@@ -12239,4 +12240,12 @@
+         if graph.diagnostics:
+             raise AssertionError(graph.diagnostics)
++        player_movement = any(
++            instruction.opcode in (0x4F, 0x50)
++            and int.from_bytes(instruction.raw[1:3], "little") == 255
++            for address in graph.distances(root)
++            for instruction in graph.nodes[address].instructions
++        )
++        if player_movement:
++            owner = cls._owner_with_catalog_player_position(owner)
+         binding = _bind_cyclic_decision_root_contract(
+             cls.cyclic_index, cls.semantic,
+@@ -12267,3 +12276,52 @@
++    @classmethod
++    def _owner_with_catalog_player_position(cls, owner: dict) -> dict:
++        """既存の操作開始stanceを、現候補のobject記録と照合して使う。"""
++        rows = [row for row in cls.catalog["npcs"]
++                if row["npc_id"] == owner["owner_id"]]
++        if len(rows) != 1:
++            raise AssertionError("gift player fixture catalog owner is not unique")
++        npc = rows[0]
++        offset = owner["record_address"] - 0x08000000
++        raw = cls.stage61[offset:offset + 0x18]
++        if len(raw) != 0x18 or (
++            npc["group"], npc["map"], npc["object_index"],
++            npc["script_pointer"], npc["local_id"], npc["flag"],
++        ) != (
++            owner["group"], owner["map"], owner["index"],
++            owner["root"], raw[0], int.from_bytes(raw[0x14:0x16], "little"),
++        ) or int.from_bytes(raw[0x10:0x14], "little") != owner["root"]:
++            raise AssertionError("gift player fixture current object identity differs")
++        execution = npc.get("interaction_execution")
++        if not isinstance(execution, dict):
++            raise AssertionError("gift player fixture interaction execution is missing")
++        stance = execution.get("stance")
++        target = npc.get("interaction_object")
++        distance = execution.get("interaction_distance")
++        facing = execution.get("facing")
++        deltas = {"UP": (0, -1), "DOWN": (0, 1),
++                  "LEFT": (-1, 0), "RIGHT": (1, 0)}
++        if (not isinstance(stance, list) or len(stance) != 2
++                or not isinstance(target, list) or len(target) != 2
++                or any(isinstance(value, bool) or not isinstance(value, int)
++                       or not 0 <= value <= 0xFFFF for value in stance + target)
++                or isinstance(distance, bool) or not isinstance(distance, int)
++                or distance not in {1, 2} or facing not in deltas
++                or not npc.get("interaction_object_basis")):
++            raise AssertionError("gift player fixture catalog stance is invalid")
++        dx, dy = deltas[facing]
++        if [stance[0] + dx * distance, stance[1] + dy * distance] != target:
++            raise AssertionError("gift player fixture does not face its source object")
++        bound = deepcopy(owner)
++        bound["interaction_object"] = {"x": target[0], "y": target[1]}
++        bound["interaction_distance"] = distance
++        bound["interaction_object_basis"] = npc["interaction_object_basis"]
++        bound["interaction_execution"] = deepcopy(execution)
++        bound["physical_player_position"] = {
++            "group": owner["group"], "map": owner["map"],
++            "x": stance[0], "y": stance[1],
++        }
++        return bound
++
+     def test_four_executor_representatives_and_thirty_runner_layouts(
+         self,
+     ) -> None:
+@@ -12780,3 +12838,65 @@
++    def test_player_movement_uses_exact_runtime_only_preimage(self) -> None:
++        from tools.stage61_interaction_oracle import _runner_object_postconditions
++
++        effect = {
++            "domain": "objects", "owner": "LOCAL_OBJECT:255",
++            "relation": "APPLY_ORDERED_MOVEMENT",
++            "instruction_address": "0x08000000", "target_map": None,
++            "movement": {"actions": [0x0F, 0x0F, 0x0D]},
++        }
++        expected = [{"local_id": 255, "after": {
++            "map": "2/3", "invisible": False, "visible": True,
++            "current": [19, 26], "previous": [19, 27],
++        }}]
++        for initial in (
++            {"physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20}},
++            {"interaction_execution": {"stance": [10, 20]}},
++        ):
++            context = self._context(case={
++                "interaction": {"group": 2, "map": 3}, **initial,
++            })
++            with self.subTest(initial=initial), patch(
++                "tools.stage61_interaction_oracle._runner_map_object_templates",
++                return_value=[],
++            ):
++                self.assertEqual(_runner_object_postconditions(context, [effect]), expected)
++                at_other_map = dict(effect, target_map={"group": 9, "map": 8})
++                self.assertEqual(
++                    _runner_object_postconditions(context, [at_other_map]), expected,
++                )
++
++    def test_player_movement_rejects_missing_or_mismatched_preimage(self) -> None:
++        from tools.stage61_interaction_oracle import _runner_object_postconditions
++
++        effect = {
++            "domain": "objects", "owner": "LOCAL_OBJECT:255",
++            "relation": "APPLY_ORDERED_MOVEMENT",
++            "instruction_address": "0x08000000", "target_map": None,
++            "movement": {"actions": [0x0F]},
++        }
++        for initial in ({}, {"physical_player_position": {
++            "group": 9, "map": 8, "x": 10, "y": 20,
++        }}):
++            context = self._context(case={
++                "interaction": {"group": 2, "map": 3}, **initial,
++            })
++            with self.subTest(initial=initial), patch(
++                "tools.stage61_interaction_oracle._runner_map_object_templates",
++                return_value=[],
++            ), self.assertRaises(Stage61InteractionOracleError):
++                _runner_object_postconditions(context, [effect])
++        context = self._context(case={
++            "interaction": {"group": 2, "map": 3},
++            "physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20},
++        })
++        with patch(
++            "tools.stage61_interaction_oracle._runner_map_object_templates",
++            return_value=[],
++        ), self.assertRaisesRegex(
++            Stage61InteractionOracleError, "active runtime object欠落:2",
++        ):
++            _runner_object_postconditions(context, [dict(effect, owner="LOCAL_OBJECT:2")])
++
+     def test_relocated_rematch_uses_exact_changekit_alias_target(self) -> None:
+         instruction = 0x09420000
+         local_id = 11
