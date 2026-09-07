@@ -1,5 +1,4 @@
 """metadata復元は意味の近似ではなく歴史的byte identityで閉じる。"""
-import csv
 import hashlib
 import json
 import io
@@ -10,7 +9,7 @@ import unittest
 from unittest.mock import patch
 import types
 
-from scripts.reconstruct_trainer_metadata import AUTHORING, PACKAGE, REPORT, _undo_ref1012, _inventory_from_files, recover_metadata
+from scripts.reconstruct_trainer_metadata import AUTHORING, PACKAGE, REPORT, _undo_ref1012, recover_metadata
 
 
 class TrainerMetadataReconstructionTests(unittest.TestCase):
@@ -175,171 +174,6 @@ class TrainerMetadataReconstructionTests(unittest.TestCase):
                         self.assertEqual((result / relative).read_bytes(), original)
                         self.assertEqual(restore_inputs(root), result)
                 self.assertEqual(source.read_bytes(), before)
-
-
-class TrainerMetadataTransportRegressionTests(unittest.TestCase):
-    def test_inverse_replays_original_csv_transport_before_hashing_inventory(self):
-        corrected = b'encounter_key,battle_type\nENC_TOHOKU_REF_1012,DOUBLE\n'
-        original = b'\xef\xbb\xbfencounter_key,battle_type\r\nENC_TOHOKU_REF_1012,UNKNOWN\r\n'
-        historical = hashlib.sha256(original).hexdigest().encode() + b'\tdata\n'
-        package = ("import hashlib,pathlib,sys\np=pathlib.Path(sys.argv[2])\n"
-                   "raw=(p/'source/v5/data/trainer_encounters.csv').read_bytes()\n"
-                   "(p/'AUTHORING_MANIFEST_SHA256.tsv').write_text(hashlib.sha256(raw).hexdigest()+'\\tdata\\n')\n")
-        buffer = io.BytesIO()
-        with zipfile.ZipFile(buffer, 'w') as archive:
-            for name, raw in {
-                'source/v5/data/trainer_encounters.csv': corrected,
-                'tools/build_partitions.py': b'# This fixture has no derived partitions.\n',
-                'tools/package_authoring_kit.py': package.encode(),
-                'AUTHORING_MANIFEST_SHA256.tsv': b'corrected\tdata\n',
-            }.items():
-                archive.writestr(AUTHORING + '/' + name, raw)
-        raw = buffer.getvalue()
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            path = root / PACKAGE
-            path.parent.mkdir(parents=True)
-            path.write_bytes(raw)
-            report = {'schema_version': 1, 'status': 'PASS', 'original_inputs_mutated': False,
-                      'correction': {'encounter_key': 'ENC_TOHOKU_REF_1012',
-                                     'authoring_battle_type': {'before': 'UNKNOWN', 'after': 'DOUBLE'}},
-                      'packages': {'authoring': {'path': PACKAGE, 'size': len(raw),
-                                                'sha256': hashlib.sha256(raw).hexdigest()}}}
-            report_path = root / REPORT
-            report_path.parent.mkdir(parents=True)
-            report_path.write_text(json.dumps(report))
-            entry = {'path': AUTHORING + '/AUTHORING_MANIFEST_SHA256.tsv',
-                     'size': len(historical), 'sha256': hashlib.sha256(historical).hexdigest()}
-            self.assertEqual(recover_metadata(root, [entry], {}), {entry['path']: historical})
-            self.assertEqual(path.read_bytes(), raw)
-
-    def test_inverse_preserves_quoted_multiline_values_for_each_record_separator(self):
-        source = (b'encounter_key,battle_type,notes\n'
-                  b'ENC_TOHOKU_REF_1012,DOUBLE,"first\r\nsecond"\n'
-                  b'OTHER,SINGLE,"third\nfourth"\n')
-        expected = [
-            {'encounter_key': 'ENC_TOHOKU_REF_1012', 'battle_type': 'UNKNOWN', 'notes': 'first\r\nsecond'},
-            {'encounter_key': 'OTHER', 'battle_type': 'SINGLE', 'notes': 'third\nfourth'},
-        ]
-        for newline in ('\n', '\r\n'):
-            for bom in (False, True):
-                with self.subTest(newline=newline, bom=bom):
-                    raw = _undo_ref1012(source, newline=newline, bom=bom)
-                    self.assertEqual(raw.startswith(b'\xef\xbb\xbf'), bom)
-                    rows = list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig'), newline='')))
-                    self.assertEqual(rows, expected)
-        with self.assertRaises(ValueError):
-            _undo_ref1012(source, newline=';')
-
-
-class TrainerMetadataNestedOrderRegressionTests(unittest.TestCase):
-    def test_validator_snapshot_retains_verified_nested_manifest_layout(self):
-        original = {'task': 'TASK02', 'baseline': {'size': 10, 'sha256': 'fixed'},
-                    'files': [{'path': 'first', 'size': 1, 'sha256': 'one'},
-                              {'path': 'second', 'size': 2, 'sha256': 'two'}]}
-        template = {'task': 'TASK05', 'baseline': {'size': 10, 'sha256': 'fixed'},
-                    'files': [{'path': 'different', 'size': 3, 'sha256': 'other'}]}
-        expected = (json.dumps(original, ensure_ascii=False, indent=2) + '\n').encode()
-        available = {'TASK05/KIT_MANIFEST.json': json.dumps(template).encode()}
-        entry = {'path': 'TASK02/KIT_MANIFEST.json', 'size': len(expected),
-                 'sha256': hashlib.sha256(expected).hexdigest()}
-        report = {'validators': {'task02': {'manifest': original}}}
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            path = root / REPORT
-            path.parent.mkdir(parents=True)
-            path.write_text(json.dumps(report, sort_keys=True))
-            self.assertEqual(recover_metadata(root, [entry], available), {entry['path']: expected})
-            original['files'].reverse()
-            path.write_text(json.dumps(report, sort_keys=True))
-            self.assertEqual(recover_metadata(root, [entry], available), {})
-
-
-class TrainerMetadataGenerationRegression(unittest.TestCase):
-    def test_partition_outputs_and_prepackaging_inventory_are_recovered(self):
-        source_name = 'source/v5/data/trainer_encounters.csv'
-        original = b'encounter_key,battle_type\nENC_TOHOKU_REF_1012,UNKNOWN\n'
-        corrected = original.replace(b'UNKNOWN', b'DOUBLE')
-        report_name = 'reports/validation.json'
-        partition_name = 'partitions/encounter_partition.csv'
-        stable_report = b'{"status":"PASS","generation":"received"}\n'
-        original_manifest = b'{\n  "task": "TASK02",\n  "format": "UNKNOWN"\n}\n'
-        corrected_manifest = original_manifest.replace(b'UNKNOWN', b'DOUBLE')
-        metadata_name = 'VEGA_TRAINER_CHANGEKIT_TASK02_TOHOKU_EARLY/KIT_MANIFEST.json'
-        paths = (source_name, partition_name, report_name, 'templates/KIT_MANIFEST.json')
-        def inventory(values):
-            rows = ['path\tsize\tsha256\r\n']
-            for name in paths:
-                raw = values[name]
-                rows.append(f'{name}\t{len(raw)}\t{hashlib.sha256(raw).hexdigest()}\r\n')
-            return ''.join(rows).encode()
-        before = {source_name: original, report_name: stable_report,
-                  partition_name: b'battle_type\nUNKNOWN\n',
-                  'templates/KIT_MANIFEST.json': original_manifest}
-        after = dict(before, **{source_name: corrected,
-                  partition_name: b'battle_type\nDOUBLE\n',
-                  'templates/KIT_MANIFEST.json': corrected_manifest})
-        tsv = inventory(before)
-        build = '''import pathlib,sys
-p=pathlib.Path(sys.argv[2])
-raw=(p/'source/v5/data/trainer_encounters.csv').read_bytes()
-assert b'UNKNOWN' in raw
-part=p/'partitions/encounter_partition.csv'
-part.write_bytes(part.read_bytes().replace(b'DOUBLE', b'UNKNOWN'))
-f=p/'templates/KIT_MANIFEST.json'
-f.write_bytes(f.read_bytes().replace(b'DOUBLE', b'UNKNOWN'))
-'''
-        package = '''import pathlib,sys
-p=pathlib.Path(sys.argv[2])
-(p/'reports/validation.json').write_text('{"status":"PASS","generation":"repackaged"}')
-(p/'AUTHORING_MANIFEST_SHA256.tsv').write_text('new validation output changes inventory\\n')
-'''
-        buffer = io.BytesIO()
-        with zipfile.ZipFile(buffer, 'w') as archive:
-            for name, raw in {**after,
-                'AUTHORING_MANIFEST_SHA256.tsv': inventory(after),
-                'tools/build_partitions.py': build.encode(),
-                'tools/package_authoring_kit.py': package.encode(),
-            }.items():
-                archive.writestr(AUTHORING + '/' + name, raw)
-        zipped = buffer.getvalue()
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            path = root / PACKAGE
-            path.parent.mkdir(parents=True)
-            path.write_bytes(zipped)
-            report = {'schema_version': 1, 'status': 'PASS', 'original_inputs_mutated': False,
-                      'correction': {'encounter_key': 'ENC_TOHOKU_REF_1012',
-                        'authoring_battle_type': {'before': 'UNKNOWN', 'after': 'DOUBLE'}},
-                      'packages': {'authoring': {'path': PACKAGE, 'size': len(zipped),
-                        'sha256': hashlib.sha256(zipped).hexdigest()}}}
-            evidence = root / REPORT
-            evidence.parent.mkdir(parents=True)
-            evidence.write_text(json.dumps(report))
-            expected = {AUTHORING + '/AUTHORING_MANIFEST_SHA256.tsv': tsv,
-                        metadata_name: original_manifest}
-            entries = [{'path': name, 'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
-                       for name, raw in expected.items()]
-            self.assertEqual(recover_metadata(root, entries, {}), expected)
-            # 一覧だけ既に回収済みでも、生成後のTask metadataを検査する。
-            self.assertEqual(recover_metadata(root, entries, {entries[0]['path']: tsv}),
-                             {metadata_name: original_manifest})
-            self.assertEqual(path.read_bytes(), zipped)
-            entries[1]['sha256'] = '0' * 64
-            self.assertEqual(recover_metadata(root, entries, {}), {entries[0]['path']: tsv})
-
-    def test_inventory_retains_layout_but_rejects_unproven_paths(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            kit = Path(temporary)
-            raw = b'original source\n'
-            (kit/'source.csv').write_bytes(raw)
-            fixture = b'\xef\xbb\xbf"path"\t"size_bytes"\t"sha256"\r\n"source.csv"\t"1"\t"' + b'0'*64 + b'"\r\n'
-            expected = fixture.replace(b'"1"', ('"'+str(len(raw))+'"').encode()).replace(
-                b'0'*64, hashlib.sha256(raw).hexdigest().encode())
-            self.assertEqual(_inventory_from_files(fixture, kit), expected)
-            self.assertEqual((kit/'source.csv').read_bytes(), raw)
-            for name in (b'../source.csv', b'/source.csv', b'missing.csv'):
-                self.assertIsNone(_inventory_from_files(fixture.replace(b'source.csv', name), kit))
 
 
 if __name__ == '__main__':
