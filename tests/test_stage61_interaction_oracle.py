@@ -12169,6 +12169,7 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
         catalog = json.loads((
             ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json"
         ).read_text())
+        cls.catalog = catalog
         cls.source_blobs, symbol_reports = _interaction_abi_pinned_inputs()
         cls.manifest = build_pinned_interaction_abi_manifest(
             cls.clean, cls.stage60, cls.stage61, catalog,
@@ -12222,6 +12223,14 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
         graph.walk([root])
         if graph.diagnostics:
             raise AssertionError(graph.diagnostics)
+        player_movement = any(
+            instruction.opcode in (0x4F, 0x50)
+            and int.from_bytes(instruction.raw[1:3], "little") == 255
+            for address in graph.distances(root)
+            for instruction in graph.nodes[address].instructions
+        )
+        if player_movement:
+            owner = cls._owner_with_catalog_player_position(owner)
         binding = _bind_cyclic_decision_root_contract(
             cls.cyclic_index, cls.semantic,
             owner_ids=[owner["owner_id"]],
@@ -12241,6 +12250,98 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
         )
         cls.runtime_cache[root] = executions, blockers, graph
         return cls.runtime_cache[root]
+
+    @classmethod
+    def _owner_with_catalog_player_position(cls, owner: dict) -> dict:
+        """Bind a current-ROM unit trigger, not missing legacy catalog geometry."""
+        from scripts.build_stage61_display_npc_event_audit import (
+            _diagnostic_interaction_port, _diagnostic_walk_cycle,
+        )
+        from tools.stage61_runtime_trigger_inputs import _FinalRomMaps, _object_path
+        from tools.stage61_interaction_oracle import (
+            _runtime_object_player_position_fixture, _validated_runtime_trigger_path,
+        )
+
+        rows = [row for row in cls.catalog["npcs"]
+                if row["npc_id"] == owner["owner_id"]]
+        if owner.get("owner_kind") != "OBJECT" or len(rows) != 1:
+            raise AssertionError("gift player fixture catalog owner is not unique")
+        npc = rows[0]
+        offset = owner["record_address"] - 0x08000000
+        raw = cls.stage61[offset:offset + 0x18] if offset >= 0 else b""
+        if len(raw) != 0x18 or (
+            npc["group"], npc["map"], npc["object_index"],
+            npc["script_pointer"], npc["local_id"], npc["flag"],
+        ) != (
+            owner["group"], owner["map"], owner["index"],
+            owner["root"], raw[0], int.from_bytes(raw[0x14:0x16], "little"),
+        ) or int.from_bytes(raw[0x10:0x14], "little") != owner["root"]:
+            raise AssertionError("gift player fixture current object identity differs")
+
+        # STATE_NAMESPACE_FIXTURE does not produce the final placement-enriched
+        # catalog. Its linked legacy report is identity input only. Derive this
+        # unit's real walk using the existing placement producer on this ROM;
+        # never invent an absent catalog field or relabel an old report's hash.
+        group, number = owner["group"], owner["map"]
+        state = _FinalRomMaps(cls.stage61, [(group, number)], {}).state(group, number)
+        index = owner["index"]
+        if not 0 <= index < len(state.objects) or state.objects[index] != raw:
+            raise AssertionError("gift player fixture map object identity differs")
+        target = (int.from_bytes(raw[4:6], "little", signed=True),
+                  int.from_bytes(raw[6:8], "little", signed=True))
+        geometry = {key: getattr(state.geometry, key)
+                    for key in ("width", "height", "blocks", "behaviors")}
+        reserved, blockers = set(state.reserved_tiles), set(state.object_tiles)
+        port = _diagnostic_interaction_port(geometry, target, reserved, blockers)
+        if port is None or not state.geometry.in_bounds(target):
+            raise AssertionError("gift player fixture current ROM stance is missing")
+        stance, action, _kind = port
+        walk = _diagnostic_walk_cycle(geometry, stance, reserved, blockers)
+        if not walk or not state.geometry.collision_zero(stance):
+            raise AssertionError("gift player fixture verified real walk is missing")
+        distance = abs(target[0] - stance[0]) + abs(target[1] - stance[1])
+        execution = {
+            "trigger": "TELEPORT_TO_WALK_START_REAL_WALK_TO_STANCE_FACE_AND_A",
+            "start": list(stance), "walk_sequence": list(walk),
+            "stance": list(stance), "action": action,
+            "interaction_distance": distance,
+            "counter_tile": [(target[0] + stance[0]) // 2,
+                             (target[1] + stance[1]) // 2] if distance == 2 else None,
+            "actual_walk_required": True, "actual_walk_exception": None,
+            "walk_path_basis": "FINAL_STANCE_CLOSED_ONE_TILE_CYCLE",
+            "direct_script_call_forbidden": True,
+        }
+        # This is a separate, generated unit owner. The restored catalog and
+        # inventory remain untouched. _object_path rechecks every walk token,
+        # collision, object/counter relation and the complete execution schema.
+        generated = deepcopy(npc)
+        generated["interaction_execution"] = execution
+        generated["_stage61_runtime_object"] = list(target)
+        generated["_stage61_interaction_object_basis"] = "FINAL_OBJECT_TEMPLATE"
+        trigger, evidence = _object_path(cls.stage61, owner, generated, state)
+        if evidence["base_static_walk_path"] is not True \
+                or trigger["runtime_topology_probe_required"] is not False:
+            raise AssertionError("gift player fixture requires unverified runtime topology")
+        bound = deepcopy(owner)
+        bound["interaction_object"] = {"x": target[0], "y": target[1]}
+        bound["interaction_object_basis"] = "FINAL_OBJECT_TEMPLATE"
+        bound["interaction_distance"] = distance
+        bound["interaction_execution"] = deepcopy(execution)
+        trigger = _validated_runtime_trigger_path(cls.stage61, bound, trigger)
+        bound["physical_player_position"] = _runtime_object_player_position_fixture(
+            bound, trigger,
+        )
+        # Diagnostic unit input is not a production placement/global-reachability
+        # PASS. Retain its actual generation identity, not the producer's global
+        # placement-report labels (no such report was generated by this fixture).
+        bound["physical_player_position_provenance"] = {
+            "kind": "GIFT_UNIT_CURRENT_ROM_DIAGNOSTIC_WALK",
+            "rom_sha256": hashlib.sha256(cls.stage61).hexdigest(),
+            "record_address": owner["record_address"],
+            "record_sha256": hashlib.sha256(raw).hexdigest(),
+            "trigger_path": deepcopy(trigger),
+        }
+        return bound
 
     def test_four_executor_representatives_and_thirty_runner_layouts(
         self,
@@ -12765,6 +12866,227 @@ class Stage61P02RunnerPostconditionFocusedTests(unittest.TestCase):
             instruction_repairs={}, source_suppression_contract=None,
             stage61_script_bytes=frozenset(range(root, root + script_size)),
         )
+
+    @staticmethod
+    def _ordered_object_effects(specifications: list[tuple]) -> list[dict]:
+        from tools.stage61_interaction_oracle import (
+            _record_effect, _runner_effect_rows,
+        )
+
+        state = _Execution(pc=0x08000000)
+        for at, opcode, owner, relation, detail in specifications:
+            state.execution_trace.append(at)
+            state.current_instruction_address = at
+            state.current_opcode = opcode
+            _record_effect(state, "objects", owner, relation, at, **detail)
+        # Deliberately reverse append order; instruction PCs are not time order.
+        return _runner_effect_rows(state, list(reversed(state.effects)))
+
+    def test_player_movement_uses_ordered_runtime_only_preimage(self) -> None:
+        from tools.stage61_interaction_oracle import (
+            _exact_player_position_fixture, _runner_object_postconditions,
+        )
+
+        expected = [{"local_id": 255, "after": {
+            "map": "2/3", "invisible": False, "visible": True,
+            "current": [19, 26], "previous": [19, 27],
+        }}]
+        for initial in (
+            {"physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20}},
+            {"interaction_execution": {"stance": [10, 20]}},
+        ):
+            for target_map in (None, {"group": 9, "map": 8}):
+                context = self._context(case={
+                    "interaction": {"group": 2, "map": 3}, **initial,
+                })
+                effects = self._ordered_object_effects([
+                    (0x08000040, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
+                     {"target_map": target_map, "movement": {"actions": [0x0F, 0x0F]}}),
+                    (0x08000010, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
+                     {"target_map": target_map, "movement": {"actions": [0x0D]}}),
+                ])
+                self.assertEqual(effects[0]["owner"], "LOCAL_OBJECT:255")
+                self.assertEqual(effects[0]["instruction_address"], "0x08000040")
+                with self.subTest(initial=initial, target_map=target_map), patch(
+                    "tools.stage61_interaction_oracle._runner_map_object_templates",
+                    return_value=[],
+                ), patch(
+                    "tools.stage61_interaction_oracle._exact_player_position_fixture",
+                    wraps=_exact_player_position_fixture,
+                ) as position:
+                    self.assertEqual(
+                        _runner_object_postconditions(context, effects), expected,
+                    )
+                    position.assert_called_once_with(context, 0x08000040)
+
+    def test_player_movement_rejects_missing_or_mismatched_preimage(self) -> None:
+        from tools.stage61_interaction_oracle import _runner_object_postconditions
+
+        effects = self._ordered_object_effects([
+            (0x08000000, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
+             {"target_map": None, "movement": {"actions": [0x0F]}}),
+        ])
+        for initial, error in (
+            ({}, "PLAYER_POSITION_EXACT_PHYSICAL_FIXTURE_REQUIRED"),
+            ({"physical_player_position": {"group": 9, "map": 8, "x": 10, "y": 20}},
+             "PLAYER_POSITION_PHYSICAL_MAP_IDENTITY_MISMATCH"),
+            ({"physical_player_position": {"group": 2, "map": 3, "x": True, "y": 20}},
+             "PLAYER_POSITION_EXACT_PHYSICAL_FIXTURE_INVALID"),
+        ):
+            context = self._context(case={
+                "interaction": {"group": 2, "map": 3}, **initial,
+            })
+            with self.subTest(error=error), patch(
+                "tools.stage61_interaction_oracle._runner_map_object_templates",
+                return_value=[],
+            ), self.assertRaisesRegex(Stage61InteractionOracleError, error):
+                _runner_object_postconditions(context, effects)
+        context = self._context(case={
+            "interaction": {"group": 2, "map": 3},
+            "physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20},
+        })
+        with patch(
+            "tools.stage61_interaction_oracle._runner_map_object_templates",
+            return_value=[],
+        ), self.assertRaisesRegex(
+            Stage61InteractionOracleError, "active runtime object欠落:2",
+        ):
+            _runner_object_postconditions(
+                context, [dict(effects[0], owner="LOCAL_OBJECT:2")],
+            )
+
+    def test_player_runtime_never_creates_template_or_reinitializes(self) -> None:
+        from tools.stage61_interaction_oracle import _runner_object_postconditions
+
+        context = self._context(case={
+            "interaction": {"group": 2, "map": 3},
+            "physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20},
+        })
+        movement = (0x08000010, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
+                    {"target_map": None, "movement": {"actions": [0x0F]}})
+        effects = self._ordered_object_effects([
+            movement,
+            (0x08000020, 0x64, "LOCAL_OBJECT:255", "COPY_OBJECT_XY_TO_PERMANENT", {}),
+        ])
+        with patch(
+            "tools.stage61_interaction_oracle._runner_map_object_templates",
+            return_value=[],
+        ):
+            self.assertEqual(_runner_object_postconditions(context, effects), [
+                {"local_id": 255, "after": {
+                    "map": "2/3", "invisible": False, "visible": True,
+                    "current": [18, 27], "previous": [17, 27],
+                }},
+            ])
+            removed = self._ordered_object_effects([
+                (0x08000040, 0x53, "LOCAL_OBJECT:255", "REMOVE_CURRENT_MAP_OBJECT", {}),
+                movement,
+            ])
+            with self.assertRaisesRegex(
+                Stage61InteractionOracleError, "active runtime object欠落:255",
+            ):
+                _runner_object_postconditions(context, removed)
+        template = bytearray(0x18)
+        template[0] = 255
+        with patch(
+            "tools.stage61_interaction_oracle._runner_map_object_templates",
+            return_value=[template],
+        ), self.assertRaisesRegex(
+            Stage61InteractionOracleError, "RUNNER_PLAYER_OBJECT_STATIC_TEMPLATE_COLLISION",
+        ):
+            _runner_object_postconditions(context, effects)
+
+    @staticmethod
+    def _gift_player_geometry_fixture() -> tuple:
+        from tests.test_stage61_runtime_trigger_inputs import _Fixture
+
+        source = _Fixture()
+        owner = next(row for row in source.inventory["owners"]
+                     if row["owner_kind"] == "OBJECT")
+        npc = deepcopy(source.npc_catalog["npcs"][0])
+        # Reproduce the restored legacy schema, not a fabricated enriched row.
+        del npc["interaction_execution"]
+        record = owner["record_address"] - 0x08000000
+        npc["flag"] = int.from_bytes(source.rom[record + 20:record + 22], "little")
+        return SimpleNamespace(stage61=source.rom, catalog={"npcs": [npc]}), owner
+
+    def test_gift_player_fixture_uses_current_rom_without_legacy_execution(self) -> None:
+        fixture, owner = self._gift_player_geometry_fixture()
+        before, owner_before = deepcopy(fixture.catalog), deepcopy(owner)
+        bind = Stage61GiftStorageFossilFocusedTests._owner_with_catalog_player_position.__func__
+        bound = bind(fixture, owner)
+        self.assertEqual(bound["physical_player_position"], {
+            "group": 0, "map": 1, "x": 4, "y": 3,
+        })
+        self.assertEqual(fixture.catalog, before)
+        self.assertEqual(owner, owner_before)
+        self.assertNotIn("interaction_execution", fixture.catalog["npcs"][0])
+        evidence = bound["physical_player_position_provenance"]
+        self.assertEqual(evidence["rom_sha256"], hashlib.sha256(fixture.stage61).hexdigest())
+        self.assertEqual(evidence["record_address"], owner["record_address"])
+        path = evidence["trigger_path"]
+        self.assertEqual(path["root_pc"], owner["root"])
+        self.assertEqual(path["stance_tile"], {"x": 4, "y": 3})
+        self.assertEqual(path["walk_sequence"], ["UP", "DOWN"])
+        self.assertEqual(path["required_facing"], "DOWN")
+        self.assertFalse(path["runtime_topology_probe_required"])
+
+    def test_gift_player_fixture_counter_is_current_rom_bound(self) -> None:
+        from tests.test_stage61_runtime_trigger_inputs import _Fixture
+
+        fixture, owner = self._gift_player_geometry_fixture()
+        raw = bytearray(fixture.stage61)
+        for x, y in ((4, 3), (3, 4), (5, 4), (4, 5)):
+            site = _Fixture.TARGET_BLOCKS - 0x08000000 + 2 * (y * 8 + x)
+            raw[site:site + 2] = (0x0C02 if (x, y) == (4, 3) else 0x0C00).to_bytes(2, "little")
+        attribute = _Fixture.PRIMARY_ATTRIBUTES - 0x08000000 + 2 * 4
+        raw[attribute:attribute + 4] = (0x80).to_bytes(4, "little")
+        fixture.stage61 = bytes(raw)
+        bind = Stage61GiftStorageFossilFocusedTests._owner_with_catalog_player_position.__func__
+        bound = bind(fixture, owner)
+        self.assertEqual(bound["physical_player_position"], {
+            "group": 0, "map": 1, "x": 4, "y": 2,
+        })
+        self.assertEqual(bound["interaction_distance"], 2)
+        self.assertEqual(bound["interaction_execution"]["counter_tile"], [4, 3])
+        self.assertEqual(bound["physical_player_position_provenance"]["rom_sha256"],
+                         hashlib.sha256(fixture.stage61).hexdigest())
+
+    def test_gift_player_fixture_rejects_unbound_identity_walk_and_trigger(self) -> None:
+        from tools.stage61_runtime_trigger_inputs import _object_path
+
+        fixture, owner = self._gift_player_geometry_fixture()
+        bind = Stage61GiftStorageFossilFocusedTests._owner_with_catalog_player_position.__func__
+        for key in ("group", "map", "object_index", "script_pointer", "local_id", "flag"):
+            forged = deepcopy(fixture)
+            forged.catalog["npcs"][0][key] += 1
+            with self.subTest(identity=key), self.assertRaises(AssertionError):
+                bind(forged, owner)
+        for producer in ("_diagnostic_interaction_port", "_diagnostic_walk_cycle"):
+            with self.subTest(producer=producer), patch(
+                "scripts.build_stage61_display_npc_event_audit." + producer,
+                return_value=None,
+            ), self.assertRaises(AssertionError):
+                bind(fixture, owner)
+        for mutation in ("walk", "stance", "facing", "map", "runtime_probe"):
+            def forged_trigger(*args):
+                trigger, evidence = _object_path(*args)
+                if mutation == "walk":
+                    trigger["walk_sequence"] = []
+                elif mutation == "stance":
+                    trigger["stance_tile"]["x"] += 1
+                elif mutation == "facing":
+                    trigger["required_facing"] = "UP"
+                elif mutation == "map":
+                    trigger["map"] += 1
+                else:
+                    trigger["runtime_topology_probe_required"] = True
+                return trigger, evidence
+
+            with self.subTest(mutation=mutation), patch(
+                "tools.stage61_runtime_trigger_inputs._object_path", side_effect=forged_trigger,
+            ), self.assertRaises((AssertionError, Stage61InteractionOracleError)):
+                bind(fixture, owner)
 
     def test_relocated_rematch_uses_exact_changekit_alias_target(self) -> None:
         instruction = 0x09420000

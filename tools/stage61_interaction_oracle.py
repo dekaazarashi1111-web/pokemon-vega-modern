@@ -16042,6 +16042,38 @@ def _runner_object_postconditions(
         runtime_before[local_id] = deepcopy(runtime_value)
         runtime_after[local_id] = deepcopy(runtime_value)
 
+    # InitPlayerAvatar creates the player outside the NPC template table.
+    # Use the exact field-entry preimage once, before folding ordered effects.
+    # instruction_address identifies the first use; it does not select a tile.
+    player_effects = [
+        effect for effect in object_effects
+        if effect.get("relation") in {
+            "APPLY_ORDERED_MOVEMENT", "SET_OBJECT_XY",
+            "SHOW_OBJECT_AT_MAP", "HIDE_OBJECT_AT_MAP",
+            "REMOVE_CURRENT_MAP_OBJECT", "REMOVE_OBJECT_AT_MAP",
+        }
+        and _runner_parse_owner(
+            effect.get("owner"), "LOCAL_OBJECT:", maximum=255,
+        ) == 255
+    ]
+    if player_effects:
+        if 255 in by_local:
+            _fail("RUNNER_PLAYER_OBJECT_STATIC_TEMPLATE_COLLISION")
+        at = _as_address(
+            player_effects[0].get("instruction_address"),
+            "runner player object instruction",
+        )
+        position = _exact_player_position_fixture(context, at)
+        if (position["group"], position["map"]) != (group, number):
+            _fail("RUNNER_PLAYER_OBJECT_MAP_PREIMAGE_MISMATCH")
+        player = {
+            "map": f"{group}/{number}", "invisible": False, "visible": True,
+            "current": [position["x"] + 7, position["y"] + 7],
+            "previous": [position["x"] + 7, position["y"] + 7],
+        }
+        runtime_before[255] = deepcopy(player)
+        runtime_after[255] = deepcopy(player)
+
     def current_object(local_id: int) -> dict[str, Any]:
         value = runtime_after.get(local_id)
         if not isinstance(value, dict):
@@ -16059,7 +16091,9 @@ def _runner_object_postconditions(
         target = effect.get("target_map")
         target_group = group if target is None else int(target.get("group", -1))
         target_map = number if target is None else int(target.get("map", -1))
-        loaded = (target_group, target_map) == (group, number)
+        # GetObjectEventIdByLocalIdAndMap ignores map operands for the player.
+        # Ordinary NPCs must still belong to the loaded map.
+        loaded = local_id == 255 or (target_group, target_map) == (group, number)
         if relation == "APPLY_ORDERED_MOVEMENT":
             if not loaded:
                 continue
