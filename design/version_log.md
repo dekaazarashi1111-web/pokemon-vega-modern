@@ -1519,3 +1519,13 @@
   - CLI installer、導入済みprotocol、companion skill、ChatGPT Web引継ぎ、実機運用文書をStage62へ同期した。
   - Stage61 Wikiは履歴スナップショットとして現行基準から分離し、決定的再生成と検索索引カテゴリ検査を維持した。
 - Verify: active baseline exact identity、関連unit 17件、Stage61 Wiki 1,646 files、battle-cli-offline 38件、Stage62 check 2 runs、task graph、private guard、shell構文、`git diff --check` PASS。
+
+## 2026-09-07T23:42:12+09:00
+
+- Version: `stage62-active-play-baseline-github`
+- Commit: `-`（本エントリを含む公開記録commit）
+- Task: `USER-20260907-STAGE62-BASELINE-GITHUB-PUBLISH` / Stage62現行基準をGitHubへ公開
+- Summary:
+  - Stage62現行基準化commit `5191409d54dc02a5d42d452a80379562fdc4679e`を`origin/main`へfast-forward pushした。
+  - GitHub上の正本とChatGPT Web引継ぎをStage62基準へ更新した。
+- Verify: remote ref／GitHub commits API一致、source-validation run `34134327411` PASS。
