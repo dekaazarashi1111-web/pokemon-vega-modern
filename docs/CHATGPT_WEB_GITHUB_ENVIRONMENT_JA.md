@@ -56,7 +56,7 @@ Actionsの`private-runtime`を手動実行し、次から選ぶ。
 
 - `battle-cli-offline`: 対戦runtime／報酬／Windows catalog／Box 14／protocol rebindのunit testと
   catalog実読取。
-- `stage62-check`: 現行Stage61入力からStage62成果を副作用なしで照合。
+- `stage62-check`: 固定済みStage61入力からStage62成果を副作用なしで照合。
 - `stage62-mgba`: Stage62のmGBA fixtureを独立2 processで実行。
 - `full-unit`: private環境を復元して全unit testを実行。
 - `all`: Stage62 check、Stage62 mGBA、全unit test、CLI起動／catalog読取を1回の復元で実行。

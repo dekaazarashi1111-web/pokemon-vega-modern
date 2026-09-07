@@ -1,6 +1,6 @@
 # Pokémon Vega Stage61 プレイWiki
 
-現行Stage61 ROMに固定した、プレイヤー向け・Codex向けの参照資料です。
+Stage61 ROMに固定した、プレイヤー向け・Codex向けの履歴スナップショットです。現在のプレイ基準ROMは`../../../design/active_play_baseline.md`で確認してください。
 
 - ROM: `build/stages/61_critical_release_candidate.gba`
 - SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
@@ -8,6 +8,8 @@
 - 技: 1063 ID
 - 特性: 312 ID
 - アイテム: 999 ID
+
+機械可読データの`active_rom`／`active_rom_sha256`は既存schemaとの互換名であり、このStage61スナップショット内の抽出元を表します。プロジェクト全体の現行プレイ基準を意味しません。
 
 ## 閲覧時の最優先ルール
 
@@ -38,11 +40,11 @@ Wikiに答えがない、または記述が矛盾する場合は、不足して�
 
 ## 情報の信頼度
 
-- `EXACT_ROM`: 現行ROMから直接抽出・参照整合を検査。
+- `EXACT_ROM`: 上記Stage61固定ROMから直接抽出・参照整合を検査。
 - `INHERITED_INTEGRATED`: 以前のstageで統合・検証済みの正本をStage61が継承。
-- `DEFERRED_AUDIT`: 現行候補ROMでの全経路手動走破は未完了。
+- `DEFERRED_AUDIT`: Stage61固定ROMでの全経路手動走破は未完了。
 
-取得場所が複数ある場合、各ポケモンページは現ROMの通常野生・生態オーバーレイ、Raid、基本取得経路を併記します。`VEGA_EXISTING` itemなど精密場所が未抽出の情報は、推測で補いません。
+取得場所が複数ある場合、各ポケモンページはStage61固定ROMの通常野生・生態オーバーレイ、Raid、基本取得経路を併記します。`VEGA_EXISTING` itemなど精密場所が未抽出の情報は、推測で補いません。
 
 ## 保守専用の再生成・検査（閲覧時は実行禁止）
 

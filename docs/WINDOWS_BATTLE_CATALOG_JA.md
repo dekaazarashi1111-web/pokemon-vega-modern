@@ -26,11 +26,9 @@ mailboxの宣言済みrequest領域だけを書き、セーブ、party、boxを�
 
 ## 準備
 
-現在遊んでいるStage61へCLIを導入する。
+明示採用済みの現行プレイ基準ROMへCLIを導入する。
 
 ```bash
-VEGA_CODEX_BATTLE_ROM_SOURCE="$PWD/build/stages/61_critical_release_candidate.gba" \
-VEGA_CODEX_BATTLE_STAGE=61 \
 bash scripts/install_vega_codex_battle_cli.sh
 ```
 
@@ -126,11 +124,10 @@ CLI 2.4.1以降は、PC・会話・戦闘などの実行境界で拒否された
 
 ## 後続ROMでの再利用
 
-CLIは特定の`FINALFIX`ファイル名を参照しない。既定では隣接または
-`generated/runtime/windows_box14_vault_protocol.json`を優先して発見し、そのprotocol内のROM identity、
-mailbox、command、catalog metadataを使う。後続ROMでは`VEGA_CODEX_BATTLE_ROM_SOURCE`と
-`VEGA_CODEX_BATTLE_STAGE`を指定してinstallerを再実行すれば、ROM identityを自動更新できる。
-ROM側はStage61のReadKeys bootstrap入口を継承し、cold boot後にもruntime mailboxを初期化すること。
+CLIは特定の`FINALFIX`ファイル名を参照しない。installerは
+`config/active_play_baseline.json`に明示採用されたROMを検証し、Stage47 protocolのmailbox、command、
+catalog metadataを保ったままROM identityを再固定する。後続ROMは検証・採用後に同manifestを更新して
+installerを再実行する。ROM側はStage61で確立したReadKeys bootstrap入口を継承し、cold boot後にもruntime mailboxを初期化すること。
 
 検証や別配置で明示する場合だけ、次の環境変数を使う。
 
@@ -138,6 +135,7 @@ ROM側はStage61のReadKeys bootstrap入口を継承し、cold boot後にもrunt
 - `VEGA_CODEX_BATTLE_ROM`
 - `VEGA_CODEX_BATTLE_CATALOG`
 - installer用: `VEGA_CODEX_BATTLE_PROTOCOL_SOURCE`
+- installer用: `VEGA_CODEX_BATTLE_BASELINE_SOURCE`
 - installer用: `VEGA_CODEX_BATTLE_ROM_SOURCE`
 - installer用: `VEGA_CODEX_BATTLE_STAGE`
 

@@ -14,6 +14,8 @@ installed_rom=${libexec_dir}/windows_box14_vault.gba
 
 source_cli=${workspace_dir}/tools/vega_codex_battle.py
 source_rebinder=${workspace_dir}/tools/rebind_vega_codex_battle_protocol.py
+baseline_resolver=${workspace_dir}/tools/active_play_baseline.py
+baseline_manifest=${VEGA_CODEX_BATTLE_BASELINE_SOURCE:-${workspace_dir}/config/active_play_baseline.json}
 source_protocol=${VEGA_CODEX_BATTLE_PROTOCOL_SOURCE:-${workspace_dir}/generated/runtime/windows_box14_vault_protocol.json}
 source_catalog=${workspace_dir}/content/codex_battle/catalog.json
 source_rom=${VEGA_CODEX_BATTLE_ROM_SOURCE:-}
@@ -27,26 +29,26 @@ test -f "${source_rebinder}" || {
     printf '%s\n' "Protocol ROM rebinder is missing" >&2
     exit 1
 }
+test -f "${baseline_resolver}" || {
+    printf '%s\n' "Active play baseline resolver is missing" >&2
+    exit 1
+}
 test -f "${source_protocol}" || {
     printf '%s\n' "Run the Windows Box 14 vault builder before installing the CLI" >&2
     exit 1
 }
 if test -z "${source_rom}"; then
-    relative_rom=$(python3 -c '
-import json, sys
-from pathlib import PurePosixPath
-value = json.load(open(sys.argv[1], encoding="utf-8"))
-path = value.get("rom", {}).get("path")
-parsed = PurePosixPath(path) if isinstance(path, str) else None
-if (parsed is None or not path or parsed.is_absolute()
-        or ".." in parsed.parts):
-    raise SystemExit(1)
-print(path)
-' "${source_protocol}") || {
-        printf '%s\n' "Protocol ROM path is missing" >&2
+    baseline_resolution=$(python3 "${baseline_resolver}" resolve \
+        --manifest "${baseline_manifest}" --workspace "${workspace_dir}") || {
+        printf '%s\n' "Active play baseline is unavailable or invalid" >&2
         exit 1
     }
-    source_rom=${workspace_dir}/${relative_rom}
+    IFS=$'\t' read -r source_rom baseline_stage <<< "${baseline_resolution}"
+    if test -n "${source_stage}" && test "${source_stage}" != "${baseline_stage}"; then
+        printf '%s\n' "Active play baseline stage conflicts with VEGA_CODEX_BATTLE_STAGE" >&2
+        exit 1
+    fi
+    source_stage=${baseline_stage}
 fi
 test -f "${source_catalog}" || {
     printf '%s\n' "Canonical battle catalog is missing" >&2

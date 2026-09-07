@@ -2,6 +2,7 @@ import importlib.util
 import json
 import re
 import unittest
+from collections import Counter
 from pathlib import Path
 
 
@@ -25,7 +26,7 @@ class Stage61WikiTest(unittest.TestCase):
         cls.files, cls.index = cls.builder._build()
         cls.species = [json.loads(line) for line in cls.files["data/species.jsonl"].decode().splitlines()]
 
-    def test_active_rom_and_complete_entity_counts(self):
+    def test_snapshot_rom_and_complete_entity_counts(self):
         self.assertEqual(
             self.index["active_rom"]["sha256"],
             "734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b",
@@ -92,7 +93,17 @@ class Stage61WikiTest(unittest.TestCase):
 
     def test_search_index_and_species_links_are_resolvable(self):
         search = [json.loads(line) for line in self.files["data/search_index.jsonl"].decode().splitlines()]
-        self.assertEqual(len(search), 1621 + 1063 + 312 + 999)
+        counts = self.index["counts"]
+        self.assertEqual(Counter(row["kind"] for row in search), Counter({
+            "species": counts["species"],
+            "move": counts["moves"],
+            "ability": counts["abilities"],
+            "item": counts["items"],
+            "story": counts["story_steps"],
+            "fixed_capture": counts["fixed_capture_encounters"],
+            "battle": counts["major_battles"],
+            "map": counts["kanto_maps"],
+        }))
         species_search = [row for row in search if row["kind"] == "species"]
         self.assertEqual(len(species_search), 1621)
         for row in search:

@@ -2,9 +2,9 @@
 
 [Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)
 
-固定捕獲イベント全117件。場所、解禁、遭遇レベル、捕獲戦開始時の技をまとめています。レベルが明示されたイベントの技は、現行ROMのレベル技表と、実装が呼ぶ標準`CreateMon`処理から算出した直近4技です。イベント側が個別技を上書きする実装ではありません。
+固定捕獲イベント全117件。場所、解禁、遭遇レベル、捕獲戦開始時の技をまとめています。レベルが明示されたイベントの技は、Stage61固定ROMのレベル技表と、実装が呼ぶ標準`CreateMon`処理から算出した直近4技です。イベント側が個別技を上書きする実装ではありません。
 
-`LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED`は既存Vegaイベントの値を保持する枠で、レベルまたは精密な入口を現行入力だけでは確定できないため、技を推測していません。`INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED`はカントー側の救済経路は用意済みでも、従来トーホク側の正確なscript入口が未監査であることを示します。撃破・逃走時は捕獲済み記録を確定せず、イベント定義のretry policyに従って再試行できます。
+`LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED`は既存Vegaイベントの値を保持する枠で、レベルまたは精密な入口をStage61固定入力だけでは確定できないため、技を推測していません。`INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED`はカントー側の救済経路は用意済みでも、従来トーホク側の正確なscript入口が未監査であることを示します。撃破・逃走時は捕獲済み記録を確定せず、イベント定義のretry policyに従って再試行できます。
 
 ## Vega既存伝説・遺産救済
 

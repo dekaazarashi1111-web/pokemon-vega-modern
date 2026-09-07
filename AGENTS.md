@@ -44,6 +44,8 @@
 - ログ: `design/run_log.md`（追記のみ）、`design/blockers.md`（追記のみ）
 - 意思決定: `design/decisions.md`（追記のみ）
 - バージョン履歴: `design/version_log.md`（追記のみ）
+- 現行プレイ基準の方針: `design/active_play_baseline.md`
+- 現行プレイ基準の機械可読identity: `config/active_play_baseline.json`
 - 製品・技術ロードマップ: `MASTER_PLAN.md`（通常は参照のみ）
 - 運用計画索引: `design/PLANS.md`
 - 入力と上流の固定記録: `state/source-lock.json`
@@ -191,6 +193,7 @@ WSLでは `make validate guard test` を一括実行しない。変更内容に�
 ## 7.1 ChatGPT Web ブリッジ利用
 
 - ChatGPT Webを使う場合の説明は `tools/chatgpt_browser/README.md` を正本として参照する。
+- プレイROMを扱う依頼では`design/active_play_baseline.md`と`config/active_play_baseline.json`を読み、明示採用されていない最大Stageを自動選択しない。
 - 事前確認は `npm run chatgpt:check` を使う。CDP未起動なら `npm run chatgpt:open -- --sessions 1` で専用Chromiumを起動し、必要なら表示ブラウザで手動ログインする。
 - 通常メッセージ送信は `npm run chatgpt:send -- --session-count 1 --session-index 0 --new-chat --raw -- "<prompt>"` を使う。
 - 既存会話の読み書きは `npm run chatgpt:conversation -- --url "<ChatGPT conversation URL>" ...` を使う。

@@ -23,4 +23,4 @@ rg '2個目のジム|VEGA_BADGE_2|ナギナタ' docs/wiki/stage61/data/search_in
 rg 'ミュウツー|CHAMPION_GINNO' docs/wiki/stage61/data/search_index.jsonl
 ```
 
-現行ROM SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、再生成後に一致確認を行います。通常の閲覧質問では実行しません。
+Stage61固定スナップショットSHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、別versionのWikiとして再生成後に一致確認を行います。通常の閲覧質問では実行しません。

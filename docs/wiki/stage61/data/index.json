@@ -1,9 +1,9 @@
 {
   "active_rom": {
-    "candidate_status": "CANDIDATE",
     "path": "build/stages/61_critical_release_candidate.gba",
     "sha256": "734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b",
     "size": 33554432,
+    "snapshot_status": "FIXED_REFERENCE",
     "strict_audit": "DEFERRED_AUDIT"
   },
   "build": "python3 scripts/build_stage61_wiki.py build",
@@ -16,6 +16,7 @@
     "evolutions": 856,
     "fixed_capture_encounters": 117,
     "items": 999,
+    "kanto_maps": 47,
     "level_move_records_raw": 28874,
     "level_moves": 28859,
     "machine_runtime_compatibilities": 60214,
@@ -34,8 +35,8 @@
     "wild_slots": 2733
   },
   "evidence_levels": {
-    "DEFERRED_AUDIT": "現行候補ROMでの全経路実機走破は未完了",
-    "EXACT_ROM": "現行Stage61 ROMから直接抽出またはbyte照合",
+    "DEFERRED_AUDIT": "Stage61固定ROMでの全経路実機走破は未完了",
+    "EXACT_ROM": "Stage61固定スナップショットから直接抽出またはbyte照合",
     "INHERITED_INTEGRATED": "過去stageで統合済みのtracked正本をStage61が継承"
   },
   "runtime_move_slots": {
@@ -245,13 +246,12 @@
     "content/map_bindings.csv": "9197d8b6c4a593c2096158c2730b6b4879aecd339776cbd3b1519e4c68ceaeac",
     "content/maps.csv": "8045b843383ecffcb8612a3a437d1a3bbdfcd81b7d9be5377e930ef22a18b287",
     "content/qol_progression.csv": "bfe918f30eeac4677a760113a2e11ee6e5f11262bfdd0e8be97fa09165b6f6e1",
-    "content/stage61_wiki_progression.json": "ca2ff0842ba70b36766ffe57c703972102c8735457ba1c0e8701e12118c12917",
+    "content/stage61_wiki_progression.json": "7b78d6ffdda0d746686e5c86d835efc235d6a6588025af079062b1c8fdab12f6",
     "content/trainer_changekit_final/trainer_encounters.csv": "fa654afaad4a39274c4c0661aac1dec8651e492b25292f94dd017ffbfc363dfd",
     "content/trainer_changekit_final/trainer_parties.csv": "16f17f454edefa5bcad971dac573ca9bd9d7f20bc37b17ae135da109e0a19352",
     "content/trainer_changekit_final/trainer_party_members.csv": "136c49e8462a36bdaee2a55a601f549dad0651be227d6fefc295ead8b2e85227",
     "content/trainer_rebalance_v4/battles.csv": "255e1c2c3e6f199abb8e0813ad3738555fb899cfd7670242860fce86b374450d",
     "content/trainer_rebalance_v4/parties.csv": "afa351bfba80b5ad157f6e63bbc82691986bcde3c73f5ce7fcafabe29841c326",
-    "design/active_play_baseline.md": "4432196f8a55fd876dd970614b25c45c39c92bda124741af9f6350094cbac08d",
     "generated/engine/ids/id_spaces.json": "1a94b67379606e1c8b777f2b82855a66af3542d6b658bbe59aa77b90ffd8059d",
     "generated/engine/moves/move_port.json": "0c1e38aac41eb6b96a5fbeb695c0a60bcc15b92e6b5dffb3490e346fa260f442",
     "manifests/ability_ids.csv": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf",

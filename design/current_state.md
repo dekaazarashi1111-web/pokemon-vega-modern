@@ -1,11 +1,11 @@
 # current_state.md
 
-最終更新: 2026-09-04
+最終更新: 2026-09-07
 
 ## 現在のプレイ基準
 
-- ユーザーが現在遊ぶ基準は`design/active_play_baseline.md`に固定した。対象は`build/stages/61_critical_release_candidate.gba`、33,554,432 bytes、SHA-256 `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`、CRC32 `232D05EA`。V4のTM120＋HM8と教え技64を実行時table／consumerへ接続し、TM51–58と旧HMの互換slot衝突を解消した。わざメモリー／せいたいレーダーはfield item復帰経路へ修正し、さらに戦闘終了後に残る`gBattleTypeFlags`によるわざメモリーの誤拒否を解消した。Bagからの起動、選択、キャンセル、field復帰をmGBA独立2 processでPASSした。iPadへ同一SHAのROMだけを原子的に配置し、read-back byte一致、通常プレイsave 57件不変を確認した。Codex対戦、任意報酬、Windowsカタログ送付、Box 14移動、バグ再現・修正は明示的な切替までこのROMを使う。
-- NPC配置修復済みStage62候補は`build/stages/62_npc_placement_integrity_repair.gba`、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。2026-09-04にiPadへStage61と別名でROMを配置し、最新Stage61通常プレイsaveをStage62 basenameへbyte同一複製した。Stage62起動時に作られていた既存saveは日時付きで退避。引継ぎsaveは131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`でread-back一致し、Stage61原本とその他の保護対象save全57件は不変。現行プレイ基準とCodex CLI protocolの切替は行っていない。
+- ユーザーが現在遊ぶ基準をStage62へ切り替えた。人向け正本は`design/active_play_baseline.md`、機械可読identity正本は`config/active_play_baseline.json`。対象は`build/stages/62_npc_placement_integrity_repair.gba`、33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`、CRC32 `73E4FB73`。Codex対戦、任意報酬、Windowsカタログ送付、Box 14移動、バグ再現・修正は、次の明示採用切替までこのROMを使う。ディスク上の最大Stageを自動採用しない。
+- Stage62は2026-09-04にiPadへStage61と別名で配置済みで、最新Stage61通常プレイsaveをStage62 basenameへbyte同一複製した。Stage62起動時に作られていた既存saveは日時付きで退避。引継ぎsaveは131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`でread-back一致し、Stage61原本とその他の保護対象save全57件は不変。Stage61はStage62の入力・差分監査・Wiki snapshot用の履歴として保持するが、現行実機操作対象ではない。
 
 ## 進行中タスクの再開点
 

@@ -2,7 +2,7 @@
 
 [Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)
 
-ジムリーダー、四天王・チャンピオン、ライバル、本編で通るD・H団・レンジャー戦から、殿堂入り後の再戦・最終章までを引ける一覧です。`LIVE_CURRENT_ABI`の行では、種族・フォーム・レベル・持ち物・4技・IV下限・トレーナー道具・AIが現行実使用です。特性・性格・努力値は現行trainer ABIではcatalog-onlyのため、実使用情報として掲載しません。
+ジムリーダー、四天王・チャンピオン、ライバル、本編で通るD・H団・レンジャー戦から、殿堂入り後の再戦・最終章までを引ける一覧です。`LIVE_CURRENT_ABI`の行では、種族・フォーム・レベル・持ち物・4技・IV下限・トレーナー道具・AIがStage61で実使用です。特性・性格・努力値はStage61 trainer ABIではcatalog-onlyのため、実使用情報として掲載しません。
 
 ## ジムリーダー初戦
 
@@ -14,7 +14,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: エルナトバッジ／わざマシン15（シグナルビーム）
 - 条件: 通常進行
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -32,7 +32,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: アルネブバッジ／わざマシン37（どろばくだん）
 - 条件: アヤメジム後にZパワー試作リングを入手
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -51,7 +51,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / いいキズぐすり
 - 勝利報酬: ファクトバッジ／わざマシン18（アクアボルト）
 - 条件: リム研究所事件後にテラオーブ試作品を入手
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -70,7 +70,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / いいキズぐすり
 - 勝利報酬: セルファバッジ／わざマシン32（トライアタック）
 - 条件: D・Hビル初回攻略後、ヒスイ研究所でキーストーンと選択式メガストーンを入手
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -89,7 +89,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: ゲンマバッジ／わざマシン02（エアスラッシュ）
 - 条件: 4個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -108,7 +108,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: ハダルバッジ／わざマシン30（シャドーボール）
 - 条件: 5個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -127,7 +127,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: プリオルバッジ／わざマシン29（サイコキネシス）
 - 条件: 6個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -146,7 +146,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ミラクバッジ／わざマシン50（だいばくはつ）
 - 条件: 7個目バッジ取得後。D・Hビルの試作レイドでダイマックス機能を習得済み
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -167,7 +167,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 初回リーグ進行
 - 条件: 8個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -186,7 +186,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 初回リーグ進行
 - 条件: ホオノキ撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -205,7 +205,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 初回リーグ進行
 - 条件: ミヤマ撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -224,7 +224,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 初回リーグ進行
 - 条件: ヤチヨ撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -243,7 +243,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 初回殿堂入り／全国研究計画・クリア後レイド解禁
 - 条件: 四天王4人撃破
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -264,7 +264,7 @@
 - AI・トレーナー道具: `AI_BASIC` / なし
 - 勝利報酬: なし
 - 条件: 主人公がファマーを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -278,7 +278,7 @@
 - AI・トレーナー道具: `AI_BASIC` / なし
 - 勝利報酬: なし
 - 条件: 主人公がアクタシを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -292,7 +292,7 @@
 - AI・トレーナー道具: `AI_BASIC` / なし
 - 勝利報酬: なし
 - 条件: 主人公がリープンを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -306,7 +306,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: 現代型がくしゅうそうち
 - 条件: 主人公がファマーを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -325,7 +325,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: 現代型がくしゅうそうち
 - 条件: 主人公がアクタシを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -344,7 +344,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: 現代型がくしゅうそうち
 - 条件: 主人公がリープンを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -363,7 +363,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がファマーを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -382,7 +382,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がアクタシを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -401,7 +401,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がリープンを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -420,7 +420,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がファマーを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -439,7 +439,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がアクタシを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -458,7 +458,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: なし
 - 条件: 主人公がリープンを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -477,7 +477,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: なし
 - 条件: 主人公がファマーを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -496,7 +496,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: なし
 - 条件: 主人公がアクタシを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -515,7 +515,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: なし
 - 条件: 主人公がリープンを選択
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -536,7 +536,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / キズぐすり
 - 勝利報酬: ひでんマシン03入手イベント進行
 - 条件: リム研究所侵入
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -555,7 +555,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / いいキズぐすり
 - 勝利報酬: 520番道路開通／カントー渡航・試作レイド解禁
 - 条件: 3個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -574,7 +574,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / いいキズぐすり
 - 勝利報酬: レンジャーベース進行
 - 条件: D・Hビル後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -592,7 +592,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: ターナー戦への進行
 - 条件: ジョージ撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -611,7 +611,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: アジト奥への通行
 - 条件: 7個目バッジ取得後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -630,7 +630,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / すごいキズぐすり
 - 勝利報酬: ひでんマシン07／ニューアイランド進行
 - 条件: ナバリ3回目撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -649,7 +649,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: D・H団本編壊滅／リーグ進行
 - 条件: ミュウツー撃破後
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -668,7 +668,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: シャクドウ島への進行
 - 条件: チャンピオンロード突破前
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -681,7 +681,7 @@
 
 ## 複数trainerで構成され直接IDを一つに結べないイベント戦
 
-> この節はV4設計入力です。現行ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
+> この節はV4設計入力です。Stage61 ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
 
 <a id="battle-mos_rival_tag_player_famer"></a>
 ### 本編・3個目後 — ライバル＆モスギス（`MOS_RIVAL_TAG_PLAYER_FAMER`）
@@ -691,7 +691,7 @@
 - AI・トレーナー道具: `V4 rank 4` / なし
 - 勝利報酬: バトルサーチャー
 - 条件: 主人公がファマーを選択
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -710,7 +710,7 @@
 - AI・トレーナー道具: `V4 rank 4` / なし
 - 勝利報酬: バトルサーチャー
 - 条件: 主人公がアクタシを選択
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -729,7 +729,7 @@
 - AI・トレーナー道具: `V4 rank 4` / なし
 - 勝利報酬: バトルサーチャー
 - 条件: 主人公がリープンを選択
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -748,7 +748,7 @@
 - AI・トレーナー道具: `V4 rank 5` / なし
 - 勝利報酬: ときのようかんイベント完了
 - 条件: カラスバジム後
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -767,7 +767,7 @@
 - AI・トレーナー道具: `V4 rank 4` / NPC研究員が1回だけ全体回復
 - 勝利報酬: ダイマックスバンド正式登録／けいけんアメS×3
 - 条件: ナバリ2回目撃破直後
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -783,7 +783,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: むしタイプ教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -802,7 +802,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: じめんタイプ教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -821,7 +821,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: みずタイプ教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -840,7 +840,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ノーマルタイプ教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -859,7 +859,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ダブル教え技I解禁／BP12
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -878,7 +878,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ゴースト教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -897,7 +897,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: エスパー教え技解禁／BP10
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -916,7 +916,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ボス個体研究報酬／BP15
 - 条件: 初回殿堂入り
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -929,7 +929,7 @@
 
 ## 殿堂入り後・強化四天王と強化チャンピオンI
 
-> この節はV4設計入力です。現行ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
+> この節はV4設計入力です。Stage61 ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
 
 <a id="battle-league_r1_hoonoki"></a>
 ### 殿堂入り後・強化リーグI — ホオノキ（`LEAGUE_R1_HOONOKI`）
@@ -939,7 +939,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: リーグBP15
 - 条件: 初回殿堂入り＋強化リーグ受付
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -958,7 +958,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: リーグBP15
 - 条件: 初回殿堂入り＋強化リーグ受付
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -977,7 +977,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: リーグBP15
 - 条件: 初回殿堂入り＋強化リーグ受付
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -996,7 +996,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: リーグBP15
 - 条件: 初回殿堂入り＋強化リーグ受付
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1015,7 +1015,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: リーグBP25／強化リーグII解禁
 - 条件: 初回殿堂入り＋強化リーグ受付
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1036,7 +1036,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: むしマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1055,7 +1055,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: じめんマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1074,7 +1074,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: みずマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1093,7 +1093,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ノーマルマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1112,7 +1112,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ダブルマスター証／BP30
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1131,7 +1131,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ゴーストマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1150,7 +1150,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: エスパーマスター証／BP25
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1169,7 +1169,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: ニューアイランド最終証／BP30
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1190,7 +1190,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 最終リーグBP25
 - 条件: カントーリーグ制覇＋スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1209,7 +1209,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 最終リーグBP25
 - 条件: カントーリーグ制覇＋スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1228,7 +1228,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 最終リーグBP25
 - 条件: カントーリーグ制覇＋スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1247,7 +1247,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 最終リーグBP25
 - 条件: カントーリーグ制覇＋スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1266,7 +1266,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: トーホク最終王冠／BP50
 - 条件: カントーリーグ制覇＋スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1287,7 +1287,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 大量経験値／調査ポイント350
 - 条件: 初回殿堂入り＋エリア調査再戦
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1306,7 +1306,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 大量経験値／調査ポイント350
 - 条件: 初回殿堂入り＋エリア調査再戦
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1325,7 +1325,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: レンジャー最終証／BP20
 - 条件: カントーリーグ制覇
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1344,7 +1344,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 異常生態パス／BP30
 - 条件: スフィアいせき深層解禁
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1363,7 +1363,7 @@
 - AI・トレーナー道具: `AI_FULL_SMART` / かいふくのくすり、かいふくのくすり
 - 勝利報酬: 無限炉心停止／ダイマックス最終機能
 - 条件: カントーリーグ制覇＋D・H最終章
-- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。
+- 証拠: `LIVE_CURRENT_ABI` — species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1376,7 +1376,7 @@
 
 ## 直接binding未確定の主要最終戦
 
-> この節はV4設計入力です。現行ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
+> この節はV4設計入力です。Stage61 ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。
 
 <a id="battle-george_final"></a>
 ### カントーリーグ後 — ジョージ（`GEORGE_FINAL`）
@@ -1386,7 +1386,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: 研究ポイント500／BP20
 - 条件: カントーリーグ制覇
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1405,7 +1405,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: D・H研究キー／BP30
 - 条件: カントーリーグ制覇
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1424,7 +1424,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: ライバル記念証／各種ミント×3
 - 条件: カントーリーグ制覇＋ライバルイベント完了
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1443,7 +1443,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: ライバル記念証／各種ミント×3
 - 条件: カントーリーグ制覇＋ライバルイベント完了
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|
@@ -1462,7 +1462,7 @@
 - AI・トレーナー道具: `V4 rank 5` / かいふくのくすり×2
 - 勝利報酬: ライバル記念証／各種ミント×3
 - 条件: カントーリーグ制覇＋ライバルイベント完了
-- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — 現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。
+- 証拠: `V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING` — Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。
 
 | 枠 | ポケモン | Lv | 持ち物 | 技 | IV下限 | 役割 |
 |---:|---|---:|---|---|---:|---|

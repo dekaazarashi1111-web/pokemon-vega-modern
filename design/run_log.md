@@ -3922,3 +3922,31 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式API／CLIでorigin/main、PR #12、Actions結果を確認した。actionlint公式release `https://github.com/rhysd/actionlint/releases/tag/v1.7.12`からLinux amd64版を取得し、公式SHA-256 `8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`を照合した。credential、token、ROM／save、private asset内容は取得・記録していない。
+
+## 2026-09-07T23:29:10+09:00
+
+- Task: `USER-20260907-STAGE62-ACTIVE-BASELINE` / Stage62を現行プレイ基準へ昇格
+- Status: DONE（既存の全件監査taskはIN_PROGRESSのまま）
+- Summary:
+  - Stage62 `62_npc_placement_integrity_repair.gba`をユーザー明示採用済みの現行プレイ基準とし、Stage61を実機操作対象から履歴・固定入力・Wiki再現用スナップショットへ移した。
+  - `config/active_play_baseline.json`を機械可読identity正本として追加した。`LATEST_EXPLICITLY_ADOPTED`だけを許可し、最大Stageの自動選択、workspace外path、ROM identity driftを拒否するresolverとunitを追加した。
+  - CLI installerの既定入力を同manifestへ切り替え、導入済みCLI protocol／ROMをStage62のsize 33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`、CRC32 `73E4FB73`へ再固定した。companion skillも現行基準確認手順へ更新・再導入した。
+  - 現在状態、ChatGPT Web引継ぎ、対戦・送付・Box 14・iPad手順をStage62基準へ同期した。Stage61 Wikiは現行基準文書への依存を外して固定スナップショットとして再生成し、検索索引testが既存4カテゴリしか数えていなかった不整合も正本カテゴリ別検証へ修正した。
+- Files changed:
+  - `AGENTS.md`、`README.md`
+  - `config/active_play_baseline.json`
+  - `design/active_play_baseline.md`、`design/current_state.md`、`design/agent_context_map.md`、`design/catalog.md`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`、`docs/CODEX_BATTLE_OPERATOR_JA.md`、`docs/WINDOWS_BATTLE_CATALOG_JA.md`、`docs/WINDOWS_BOX14_VAULT_JA.md`、`docs/IPAD_RETROARCH_MGBA_SAVE_PLACEMENT.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `tools/active_play_baseline.py`、`scripts/install_vega_codex_battle_cli.sh`、`tools/codex_skills/vega-codex-battle/SKILL.md`
+  - `scripts/build_stage61_wiki.py`、`content/stage61_wiki_progression.json`、`docs/wiki/stage61/**`、`reports/generated/stage61_wiki.json`
+  - `tests/test_active_play_baseline.py`、`tests/test_vega_codex_battle_protocol_rebind.py`、`tests/test_stage61_wiki.py`
+  - `design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 tools/active_play_baseline.py check`: PASS。Stage62のsize／SHA-256／CRC32一致。
+  - baseline／protocol rebind／Stage61 Wiki unit: 17件PASS。`python3 scripts/build_stage61_wiki.py check`: 1,646 files、1,621 speciesでPASS。
+  - `python3 scripts/run_github_private_suite.py battle-cli-offline`: 38件PASS、CLI 2.5.1起動・catalog読取PASS。
+  - `python3 scripts/run_github_private_suite.py stage62-check`: 2 runs PASS。Stage62 SHA-256不変、既存NPC復元316、配置failure 0。
+  - CLI／skill再導入、導入先protocol stage 62・ROM identity照合、task graph、private guard、shell構文、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network: 未使用。

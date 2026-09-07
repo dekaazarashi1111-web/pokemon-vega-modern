@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""現行Stage61 ROMから、プレイ質問向けの決定的Wikiを生成・検査する。"""
+"""Stage61固定スナップショットから、プレイ質問向けWikiを生成・検査する。"""
 
 from __future__ import annotations
 
@@ -35,7 +35,6 @@ ECOLOGY_ROW_SIZE = 104
 PTR_BASE = 0x08000000
 
 SOURCE_PATHS = (
-    "design/active_play_baseline.md",
     "manifests/species_ids.csv",
     "manifests/move_ids.csv",
     "manifests/ability_ids.csv",
@@ -237,15 +236,12 @@ def _require_contiguous(rows: list[dict[str, str]], field: str, count: int, labe
 def _identity(raw: bytes) -> dict[str, Any]:
     digest = _sha(raw)
     if len(raw) != ROM_SIZE or digest != ROM_SHA256:
-        raise ValueError(f"active Stage61 ROM不一致: size={len(raw)} sha256={digest}")
-    baseline = (ROOT / "design/active_play_baseline.md").read_text(encoding="utf-8")
-    if ROM_REL not in baseline or ROM_SHA256 not in baseline or "DEFERRED_AUDIT" not in baseline:
-        raise ValueError("design/active_play_baseline.mdが固定したStage61 identityと一致しません")
+        raise ValueError(f"Stage61 snapshot ROM不一致: size={len(raw)} sha256={digest}")
     return {
         "path": ROM_REL,
         "size": len(raw),
         "sha256": digest,
-        "candidate_status": "CANDIDATE",
+        "snapshot_status": "FIXED_REFERENCE",
         "strict_audit": "DEFERRED_AUDIT",
     }
 
@@ -316,7 +312,7 @@ def _load_level_moves(raw: bytes) -> list[list[dict[str, int]]]:
 
 
 def _default_level_moves(rows: list[dict[str, int]], level: int) -> list[int]:
-    """CreateMonが設定する標準初期技を、現ROMのレベル技順から再現する。"""
+    """CreateMonが設定する標準初期技を、Stage61固定ROMのレベル技順から再現する。"""
     known: list[int] = []
     for row in rows:
         if row["level"] > level or row["move_id"] in known:
@@ -657,9 +653,9 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         effect, power, type_id, accuracy, pp, secondary, target, priority, flags, z_power, split, z_effect = struct.unpack_from("<BBBBBBBBBBBB", live_move_blob, mid * 12)
         battle = move["battle"]
         live = {"effect": effect, "power": power, "type": type_id, "accuracy": accuracy, "pp": pp, "secondary": secondary, "target": target, "priority": priority if priority < 128 else priority - 256, "flags": flags, "split": split, "z_move_power": z_power, "z_move_effect": z_effect}
-        # Vega固有技39件のeffectだけは移植metadataが0のため、現ROM値を正とする。
+        # Vega固有技39件のeffectだけは移植metadataが0のため、Stage61固定ROM値を正とする。
         if any(live[key] != battle[key] for key in live if key != "effect"):
-            raise ValueError(f"Move {mid} metadataと現ROMが不一致")
+            raise ValueError(f"Move {mid} metadataとStage61固定ROMが不一致")
         move_records.append({
             "id": mid,
             "key": move["move_key"],
@@ -938,7 +934,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
                     "trainer_items": [display_key(key, item_name_by_key) for key in trainer_item_keys],
                     "reward": meta["reward"], "unlock_condition": meta["unlock_condition"],
                     "members": members, "evidence": "LIVE_CURRENT_ABI",
-                    "runtime_note": "species/form/level/held item/moves/IV/trainer items/AIは現行trainer ABIで実使用。ability/nature/EVは掲載対象外。",
+                    "runtime_note": "species/form/level/held item/moves/IV/trainer items/AIはStage61 trainer ABIで実使用。ability/nature/EVは掲載対象外。",
                 })
             else:
                 members = []
@@ -957,7 +953,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
                     "trainer_items": [meta["trainer_items"] or "なし"], "reward": meta["reward"],
                     "unlock_condition": meta["unlock_condition"], "members": members,
                     "evidence": "V4_DESIGN_INPUT_NOT_DIRECT_LIVE_BINDING",
-                    "runtime_note": "現行の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。現ROM実使用の断定には使わない。",
+                    "runtime_note": "Stage61の単一trainer IDへのdirect bindingがないため、以下はV4設計入力。Stage61 ROM実使用の断定には使わない。",
                 })
 
     fixed_capture_encounters: list[dict[str, Any]] = []
@@ -1031,7 +1027,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         qol_by_unlock[row["unlock_key"]].append(FEATURE_NAMES.get(row["feature_key"], row["feature_key"]))
     story_page = [
         "# Stage61 マップ・ストーリー進行ガイド", "", "[Wiki入口へ](README.md)", "",
-        "現在地を『バッジ何個・直前に倒した相手・今いる町』で照合し、同じ項目の到達済みマップまでを捕獲・育成候補として扱ってください。トーホクの順路は既存Vegaを骨格にし、レベル帯、QOL、カントー分岐、フィールド能力はStage61の現行正本を反映しています。", "",
+        "現在地を『バッジ何個・直前に倒した相手・今いる町』で照合し、同じ項目の到達済みマップまでを捕獲・育成候補として扱ってください。トーホクの順路は既存Vegaを骨格にし、レベル帯、QOL、カントー分岐、フィールド能力はStage61固定スナップショットを反映しています。", "",
         "## 早見表", "", "| 区間 | 目安レベル | 主な順路 | 次に開く場所 |", "|---|---:|---|---|",
     ]
     for step in progression["story_steps"]:
@@ -1076,7 +1072,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         )
     story_page += [
         "", "## カントー論理マップ対応表", "",
-        "固定捕獲・野生遭遇で使うK01〜K47を、現行ROMの代表物理マップ名と解禁keyへ対応づけます。同じ論理コードに複数階・複数区画が属する場合、表は代表マップを示します。", "",
+        "固定捕獲・野生遭遇で使うK01〜K47を、Stage61固定ROMの代表物理マップ名と解禁keyへ対応づけます。同じ論理コードに複数階・複数区画が属する場合、表は代表マップを示します。", "",
         "| 論理コード | 代表マップ | 物理map key | 解禁 | 種別 | Field PC |", "|---|---|---|---|---|---|",
     ]
     for row in kanto_map_rows:
@@ -1087,15 +1083,15 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     story_page += [
         "", "## 出典境界", "",
         f"- トーホクの道順・HM01〜07受領地点: [既存Vega攻略チャート]({progression['route_source_url']}) / [既存Vegaアイテム表]({progression['item_source_url']})",
-        "- ボスの現行レベル・手持ち・技: Stage61 trainer final正本（[主要戦一覧](MAJOR_BATTLES.md)）",
+        "- ボスのStage61時点のレベル・手持ち・技: Stage61 trainer final正本（[主要戦一覧](MAJOR_BATTLES.md)）",
         "- カントー・QOL・フィールド能力: Stage61統合済み正本",
-        "- HM08の精密受領地点など、現行入力で確定できないものは推測していません。", "",
+        "- HM08の精密受領地点など、Stage61固定入力で確定できないものは推測していません。", "",
     ]
     files["STORY_PROGRESSION.md"] = "\n".join(story_page).encode()
 
     major_page = [
         "# Stage61 主要トレーナー・ボス手持ち", "", "[Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)", "",
-        "ジムリーダー、四天王・チャンピオン、ライバル、本編で通るD・H団・レンジャー戦から、殿堂入り後の再戦・最終章までを引ける一覧です。`LIVE_CURRENT_ABI`の行では、種族・フォーム・レベル・持ち物・4技・IV下限・トレーナー道具・AIが現行実使用です。特性・性格・努力値は現行trainer ABIではcatalog-onlyのため、実使用情報として掲載しません。", "",
+        "ジムリーダー、四天王・チャンピオン、ライバル、本編で通るD・H団・レンジャー戦から、殿堂入り後の再戦・最終章までを引ける一覧です。`LIVE_CURRENT_ABI`の行では、種族・フォーム・レベル・持ち物・4技・IV下限・トレーナー道具・AIがStage61で実使用です。特性・性格・努力値はStage61 trainer ABIではcatalog-onlyのため、実使用情報として掲載しません。", "",
     ]
     battles_by_section: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for battle in major_battles:
@@ -1104,7 +1100,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         section_title = section["title"]
         major_page += [f"## {section_title}", ""]
         if section["evidence"] != "LIVE_CURRENT_ABI":
-            major_page += ["> この節はV4設計入力です。現行ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。", ""]
+            major_page += ["> この節はV4設計入力です。Stage61 ROMの単一trainer IDへのdirect bindingがないため、実使用が確定した表とは区別してください。", ""]
         for battle in battles_by_section[section_title]:
             trainer_items = "、".join(battle["trainer_items"]) if battle["trainer_items"] else "なし"
             major_page += [
@@ -1136,8 +1132,8 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
     legendary_page = [
         "# Stage61 伝説・幻・UB・パラドックス固定捕獲", "", "[Wiki入口へ](README.md) / [進行ガイドへ](STORY_PROGRESSION.md)", "",
-        f"固定捕獲イベント全{len(fixed_capture_encounters)}件。場所、解禁、遭遇レベル、捕獲戦開始時の技をまとめています。レベルが明示されたイベントの技は、現行ROMのレベル技表と、実装が呼ぶ標準`CreateMon`処理から算出した直近4技です。イベント側が個別技を上書きする実装ではありません。", "",
-        "`LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED`は既存Vegaイベントの値を保持する枠で、レベルまたは精密な入口を現行入力だけでは確定できないため、技を推測していません。`INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED`はカントー側の救済経路は用意済みでも、従来トーホク側の正確なscript入口が未監査であることを示します。撃破・逃走時は捕獲済み記録を確定せず、イベント定義のretry policyに従って再試行できます。", "",
+        f"固定捕獲イベント全{len(fixed_capture_encounters)}件。場所、解禁、遭遇レベル、捕獲戦開始時の技をまとめています。レベルが明示されたイベントの技は、Stage61固定ROMのレベル技表と、実装が呼ぶ標準`CreateMon`処理から算出した直近4技です。イベント側が個別技を上書きする実装ではありません。", "",
+        "`LEGACY_VALUE_PRESERVED_LOCATION_OR_LEVEL_AUDIT_REQUIRED`は既存Vegaイベントの値を保持する枠で、レベルまたは精密な入口をStage61固定入力だけでは確定できないため、技を推測していません。`INHERITED_KANTO_RESCUE_READY_LEGACY_ENTRY_UNVERIFIED`はカントー側の救済経路は用意済みでも、従来トーホク側の正確なscript入口が未監査であることを示します。撃破・逃走時は捕獲済み記録を確定せず、イベント定義のretry policyに従って再試行できます。", "",
     ]
     captures_by_arc: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for encounter in fixed_capture_encounters:
@@ -1178,7 +1174,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     pokemon_index.append("")
     files["POKEMON_INDEX.md"] = "\n".join(pokemon_index).encode()
 
-    move_index = ["# Stage61 技索引", "", "[Wiki入口へ](README.md)", "", "全1,063 ID。性能値は現ROMの12-byte move tableから照合済みです。", "", "| ID | 技 | タイプ | 分類 | 威力 | 命中 | PP | 優先度 | 説明 |", "|---:|---|---|---|---:|---:|---:|---:|---|"]
+    move_index = ["# Stage61 技索引", "", "[Wiki入口へ](README.md)", "", "全1,063 ID。性能値はStage61固定ROMの12-byte move tableから照合済みです。", "", "| ID | 技 | タイプ | 分類 | 威力 | 命中 | PP | 優先度 | 説明 |", "|---:|---|---|---|---:|---:|---:|---:|---|"]
     for move in move_records:
         move_index.append(f'| <a id="move-{move["id"]:04d}"></a>{move["id"]} | {_md(move["name"])} | {move["type"]["name"]} | {move["category"]} | {move["power"]} | {move["accuracy"]} | {move["pp"]} | {move["priority"]} | {_md(move["description"])} |')
     files["MOVE_INDEX.md"] = ("\n".join(move_index) + "\n").encode()
@@ -1243,12 +1239,12 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
     wild_page = [
         "# Stage61 野生遭遇一覧", "", "[Wiki入口へ](README.md)", "",
-        f"現行ROMから直接抽出: 通常野生 {wild['header_count']} header / {wild['slot_count']} slot、"
+        f"Stage61固定ROMから直接抽出: 通常野生 {wild['header_count']} header / {wild['slot_count']} slot、"
         f"生態オーバーレイ {len(ecology)} table / {len(ecology_rows)} candidate assignment。", "",
         "## このページだけで出現条件を読む", "",
         "通常の場所別質問は、このページ内で場所名を検索すれば、通常野生、生態オーバーレイ、Raidをまとめて確認できます。閲覧のためにROM、generator、config、report、テストを調べたり、生成・検査コマンドを実行したりする必要はありません。", "",
         "### 通常野生", "",
-        "- 現行ROMが持つ元の遭遇表です。生態オーバーレイが成立しなかった場合は、この表で選ばれた種族とレベルがそのまま出現します。",
+        "- Stage61固定ROMが持つ元の遭遇表です。生態オーバーレイが成立しなかった場合は、この表で選ばれた種族とレベルがそのまま出現します。",
         "- `rate値` はROM内の遭遇密度設定であり、パーセントや各種族の個別出現率ではありません。`slots` は元の遭遇表でその種族が占めるslot番号です。",
         "- 同じ場所に草むら、水上、いわくだき、釣りがある場合は、方法ごとに別の表として読みます。", "",
         "### 生態オーバーレイ", "",
@@ -1287,7 +1283,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     wild_page += [
         "", "## Raid", "",
         "通常野生・生態オーバーレイとは別のRaid候補です。場所名で検索すると、その場所の全候補、レベル、weight、解禁条件、捕獲区分を確認できます。`weight`は同じpool内の相対抽選重みです。", "",
-        "この表はStage56で統合済みの正本をStage61が継承した情報です。現ROMから直接抽出した通常野生・生態オーバーレイとは証拠区分が異なり、現SHAで全候補を手動走破したという意味ではありません。", "",
+        "この表はStage56で統合済みの正本をStage61が継承した情報です。Stage61固定ROMから直接抽出した通常野生・生態オーバーレイとは証拠区分が異なり、固定SHAで全候補を手動走破したという意味ではありません。", "",
         "| map | 場所 | pool | 種族 | Lv. | weight | 解禁 | 捕獲区分 |",
         "|---|---|---|---|---:|---:|---|---|",
     ]
@@ -1314,13 +1310,13 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
 [Wiki入口へ](README.md)
 
-## ROM候補の状態
+## 固定スナップショットの状態
 
 - SHA-256: `{ROM_SHA256}`
-- `candidate_status=CANDIDATE`
+- `snapshot_status=FIXED_REFERENCE`
 - strict全件監査: `DEFERRED_AUDIT`
-- 通常野生、ecology、種族値、技性能、習得表、進化表は現ROMから直接抽出しています。
-- 取得イベント、Raid、フォーム供給、item供給は統合済みのStage26/56/58正本を継承していますが、現SHAで全経路を手動走破したという意味ではありません。
+- 通常野生、ecology、種族値、技性能、習得表、進化表はStage61固定ROMから直接抽出しています。
+- 取得イベント、Raid、フォーム供給、item供給は統合済みのStage26/56/58正本を継承していますが、固定SHAで全経路を手動走破したという意味ではありません。
 
 ## TM/HMと教え技（接続修正済み）
 
@@ -1328,7 +1324,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
 
 `gTutorMoves` はV4の64件を全件接続し、通常教え技consumerの上限をslot 01–64へ修正しました。16件目以降が終端や隣接dataをMove IDとして誤読する状態はありません。
 
-このWikiの各ポケモンページは、現ROMの実行時tableと互換bitsetからTM/HM 128件・教え技64件を直接抽出して掲載します。
+このWikiの各ポケモンページは、Stage61固定ROMの実行時tableと互換bitsetからTM/HM 128件・教え技64件を直接抽出して掲載します。
 ここで示すのは互換判定の接続状態であり、NPC配置・価格・解禁経路の一覧ではありません。
 """.encode()
 
@@ -1357,12 +1353,12 @@ rg '2個目のジム|VEGA_BADGE_2|ナギナタ' docs/wiki/stage61/data/search_in
 rg 'ミュウツー|CHAMPION_GINNO' docs/wiki/stage61/data/search_index.jsonl
 ```
 
-現行ROM SHA-256: `{ROM_SHA256}`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、再生成後に一致確認を行います。通常の閲覧質問では実行しません。
+Stage61固定スナップショットSHA-256: `{ROM_SHA256}`。新ROMへのWiki更新をユーザーから明示的に依頼された保守作業では、別versionのWikiとして再生成後に一致確認を行います。通常の閲覧質問では実行しません。
 """.encode()
 
     files["README.md"] = f"""# Pokémon Vega Stage61 プレイWiki
 
-現行Stage61 ROMに固定した、プレイヤー向け・Codex向けの参照資料です。
+Stage61 ROMに固定した、プレイヤー向け・Codex向けの履歴スナップショットです。現在のプレイ基準ROMは`../../../design/active_play_baseline.md`で確認してください。
 
 - ROM: `{ROM_REL}`
 - SHA-256: `{ROM_SHA256}`
@@ -1370,6 +1366,8 @@ rg 'ミュウツー|CHAMPION_GINNO' docs/wiki/stage61/data/search_index.jsonl
 - 技: {MOVE_COUNT} ID
 - 特性: {ABILITY_COUNT} ID
 - アイテム: {ITEM_COUNT} ID
+
+機械可読データの`active_rom`／`active_rom_sha256`は既存schemaとの互換名であり、このStage61スナップショット内の抽出元を表します。プロジェクト全体の現行プレイ基準を意味しません。
 
 ## 閲覧時の最優先ルール
 
@@ -1400,11 +1398,11 @@ Wikiに答えがない、または記述が矛盾する場合は、不足して�
 
 ## 情報の信頼度
 
-- `EXACT_ROM`: 現行ROMから直接抽出・参照整合を検査。
+- `EXACT_ROM`: 上記Stage61固定ROMから直接抽出・参照整合を検査。
 - `INHERITED_INTEGRATED`: 以前のstageで統合・検証済みの正本をStage61が継承。
-- `DEFERRED_AUDIT`: 現行候補ROMでの全経路手動走破は未完了。
+- `DEFERRED_AUDIT`: Stage61固定ROMでの全経路手動走破は未完了。
 
-取得場所が複数ある場合、各ポケモンページは現ROMの通常野生・生態オーバーレイ、Raid、基本取得経路を併記します。`VEGA_EXISTING` itemなど精密場所が未抽出の情報は、推測で補いません。
+取得場所が複数ある場合、各ポケモンページはStage61固定ROMの通常野生・生態オーバーレイ、Raid、基本取得経路を併記します。`VEGA_EXISTING` itemなど精密場所が未抽出の情報は、推測で補いません。
 
 ## 保守専用の再生成・検査（閲覧時は実行禁止）
 
@@ -1431,13 +1429,14 @@ make stage61-wiki-check
             "story_steps": len(progression["story_steps"]), "progression_nodes": len(kanto_progression),
             "qol_features": len(qol_progression), "major_battles": len(major_battles),
             "fixed_capture_encounters": len(fixed_capture_encounters),
+            "kanto_maps": len(kanto_map_rows),
         },
         "runtime_move_slots": {"machine": machine_move_ids, "tutor": tutor_move_ids},
         "source_hashes": source_hashes,
         "evidence_levels": {
-            "EXACT_ROM": "現行Stage61 ROMから直接抽出またはbyte照合",
+            "EXACT_ROM": "Stage61固定スナップショットから直接抽出またはbyte照合",
             "INHERITED_INTEGRATED": "過去stageで統合済みのtracked正本をStage61が継承",
-            "DEFERRED_AUDIT": "現行候補ROMでの全経路実機走破は未完了",
+            "DEFERRED_AUDIT": "Stage61固定ROMでの全経路実機走破は未完了",
         },
         "build": "python3 scripts/build_stage61_wiki.py build",
         "check": "python3 scripts/build_stage61_wiki.py check",

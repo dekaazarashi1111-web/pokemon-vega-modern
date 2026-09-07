@@ -9,6 +9,11 @@ description: ユーザーがPokémon Vega Stage 47以降のCodex対戦、任意�
 `tools/vega_codex_battle.py`を探し、どちらもなければCLI/skill installerが必要だと報告する。
 端末addressやcredentialを推測しない。
 
+ワークスペースが利用できる場合は、最初に`design/active_play_baseline.md`と
+`config/active_play_baseline.json`を読む。CLI protocolのROM identityは同manifestが固定する
+明示採用済みROMと一致させ、未採用の最大Stageを自動選択しない。不一致ならwriteへ進まず、
+`scripts/install_vega_codex_battle_cli.sh`で現行基準を再導入する。
+
 実機セッションの開始時は、最初に次のread-only検査を実行する。
 
 ```bash

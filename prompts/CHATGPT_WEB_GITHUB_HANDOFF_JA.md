@@ -10,8 +10,10 @@
 4. `design/agent_context_map.md`
 5. `design/tasks_next.md`
 6. `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+7. `design/active_play_baseline.md`
+8. `config/active_play_baseline.json`
 
-現行プレイ基準はStage61、NPC配置修復候補はStage62です。タスク正本は
+現行プレイ基準は機械可読正本に明示採用されたStage62です。未採用の最大Stageを自動選択しません。タスク正本は
 `USER-20260830-STAGE60-DISPLAY-NPC-PLACEMENT-AUDIT`がIN_PROGRESSであり、勝手にDONEへしません。
 
 このGitHub接続では読取、branch／commit、Draft PR、PRコメント、既存run再実行を確認済みです。

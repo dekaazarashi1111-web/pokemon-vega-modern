@@ -102,10 +102,10 @@
 - active container metadataとlive `retroarch.cfg`から配置先を再解決した。転送後にRetroArchの再起動をprocess gateで検知して正規確定を中断し、再停止とprocess 0確認後に同じ処理内でROM／saveを一時名から原子的に確定した。
 - iPadからROM／saveをread-backしてsourceとbyte一致、remote一時ファイル0、既存Stage59 ROM／save不変を確認した。同名既存Stage60成果はなく退避0。実機プレイ／人手承認は未実施。
 
-## Stage61候補ROMの確認済み対応
+## Stage61旧基準ROMの確認済み対応
 
 - ROM: `61_critical_release_candidate.gba`
-- 現行ROM SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
+- 最終Stage61基準ROM SHA-256: `734541807df91ca6f82211b57e0a56e6af6c1c70ec46b9f89cd6a89b3f701f3b`
 - 2026-09-03に固定host key付きWi-Fi SSHでactive container metadataとlive `retroarch.cfg`を再解決し、RetroArch process 0を確認して修正済みROMだけを一時名から原子的に配置した。旧ROM `e736acd0...3669`は日時付きで退避した。
 - iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件のmanifestは配置前後不変で、同名saveを含むsaveの生成・転送・変更は0。既存Stage60 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、Vega既存trainer会話復元・外来生態率調整後の現行ROM `4c2cda81...538b`へ再更新した。旧ROM `5d1f3230...8f3e`を日時付きで退避し、iPadからのread-backをsourceとbyte一致させた。save directory全57件は前後不変、同名save未変更、remote一時ファイル0、RetroArch process 0を確認した。
@@ -113,7 +113,7 @@
 - 同日、TM120＋HM8／教え技64のruntime接続と、わざメモリー／せいたいレーダーのfield復帰を修正した現行ROM `44e951e2...ae4e`へ再更新した。旧ROMを日時付きで保全し、iPad側33,554,432 bytes／同一SHAとread-back byte一致を確認した。save directory全57件は前後不変、同名save未変更、既存Stage60不変、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、戦闘後に残るbattle type値でわざメモリーが誤って使用不可になる問題を修正した現行ROM `73454180...01f3b`へ再更新した。旧ROMを日時付きで保全し、iPad側33,554,432 bytes／同一SHAとread-back byte一致を確認した。save directory全57件は前後不変、同名save未変更、既存Stage60不変、remote一時ファイル0、RetroArch process 0を確認した。
 
-## Stage62候補ROMの確認済み対応
+## Stage62現行基準ROMの確認済み対応
 
 - ROM: `62_npc_placement_integrity_repair.gba`
 - ROM SHA-256: `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`
@@ -121,6 +121,7 @@
 - iPad側33,554,432 bytes／SHA-256を照合し、端末からのread-backをsourceとbyte一致させた。mGBA save directory全57件は配置前後のmanifestが一致し、同名saveの生成・転送・変更は0。既存Stage61 ROM不変、remote一時ファイル0、RetroArch process 0を確認した。
 - 同日、ユーザー指定によりiPad上の最新Stage61通常プレイsaveをStage62 basenameへ引き継いだ。131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`。Stage62起動時に作られていた同名saveは日時付きで退避し、一時名から原子的に配置した。
 - Stage61 save原本とその他の保護対象save全57件は前後不変。Stage62正規saveを端末からread-backしてStage61原本とbyte一致させ、remote一時ファイル0、RetroArch process 0、Stage62 ROM identity不変を確認した。
+- 2026-09-07にユーザーがStage62を現行プレイ基準として明示採用した。配置済みROM／saveのbyteは変更していない。
 
 ## 失敗判定
 

@@ -1508,3 +1508,14 @@
   - exact HEAD／test ID／tracked Python frameを固定sanitizerで再検証し、malformed時はコメントせずfail closedとした。
   - FAIL／ERROR／SKIPでは安全な限定結果だけをPRへ返し、bot commit／pushを禁止する。PASS時の既存適用経路は維持した。
 - Verify: 関連unit 44件、task graph、private guard、YAML parse、actionlint v1.7.12、`git diff --check`、PR #12 source-validation run `34122126008`／`34122129285` PASS。
+
+## 2026-09-07T23:29:10+09:00
+
+- Version: `stage62-active-play-baseline`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260907-STAGE62-ACTIVE-BASELINE` / Stage62を現行プレイ基準へ昇格
+- Summary:
+  - Stage62を人向け・機械可読の現行プレイ基準へ昇格し、未採用の最大Stageを自動選択しない契約を固定した。
+  - CLI installer、導入済みprotocol、companion skill、ChatGPT Web引継ぎ、実機運用文書をStage62へ同期した。
+  - Stage61 Wikiは履歴スナップショットとして現行基準から分離し、決定的再生成と検索索引カテゴリ検査を維持した。
+- Verify: active baseline exact identity、関連unit 17件、Stage61 Wiki 1,646 files、battle-cli-offline 38件、Stage62 check 2 runs、task graph、private guard、shell構文、`git diff --check` PASS。
