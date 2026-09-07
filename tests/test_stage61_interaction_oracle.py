@@ -5874,11 +5874,16 @@ class Stage61RuntimeControlFocusedTests(unittest.TestCase):
 
 
 def _current_stage61_interaction_fixture() -> tuple:
-    """同じ現行候補にROM・semantic・all-event inventoryを結び付ける。"""
+    """状態unit専用候補を必要とするfocused testの入力。"""
     from scripts.regenerate_stage61_unit_state import ensure_stage61_state_fixture
+
+    return _stage61_interaction_fixture(ensure_stage61_state_fixture())
+
+
+def _stage61_interaction_fixture(fixture_root: Path) -> tuple:
+    """選択した生成世代のROMからinventoryを再decodeする。"""
     from tools.stage61_interaction_oracle import build_all_event_owner_inventory
 
-    fixture_root = ensure_stage61_state_fixture()
     stage61 = (
         fixture_root / "build/stages/61_display_npc_event_audit.gba"
     ).read_bytes()
@@ -5926,23 +5931,26 @@ def _current_stage61_interaction_fixture() -> tuple:
 class Stage61InteractionOracleTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        # 最終repair integrityは、builderが同時に出力した修復済み一式を検証。
+        # STATE_NAMESPACE_FIXTUREは最終event repair前にreturnする別scopeであり、
+        # その候補ROMと復元済み最終repair manifestを混ぜてはならない。
         (
             fixture_root, cls.stage61, cls.physical_maps,
             cls.owner_ledger, cls.event_owner_inventory,
-        ) = _current_stage61_interaction_fixture()
+        ) = _stage61_interaction_fixture(ROOT)
         cls.clean = (ROOT / "inputs/private/FireRed_JPN_Rev0_clean.gba").read_bytes()
         cls.stage60 = (ROOT / "build/stages/60_wild_species_root_repair.gba").read_bytes()
         cls.semantic = json.loads(
             (fixture_root / "reports/generated/stage61_event_semantic_relocation.json").read_text()
         )
         cls.catalog = json.loads(
-            (ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json").read_text()
+            (fixture_root / "reports/generated/stage61_npc_interaction_catalog_legacy.json").read_text()
         )
         cls.matrix = json.loads(
-            (ROOT / "reports/generated/stage61_npc_state_matrix.json").read_text()
+            (fixture_root / "reports/generated/stage61_npc_state_matrix.json").read_text()
         )
         cls.repair_manifest = json.loads(
-            (ROOT / "reports/generated/stage61_interaction_repair_manifest.json")
+            (fixture_root / "reports/generated/stage61_interaction_repair_manifest.json")
             .read_text()
         )
         cls.case_by_id = {row["case_id"]: row for row in cls.matrix["cases"]}
@@ -12498,6 +12506,19 @@ class Stage61GiftStorageFossilFocusedTests(unittest.TestCase):
                 context, interaction["group"], interaction["map"],
             )
             self.assertNotIn(0xFF, {row[0] for row in templates})
+
+    def test_restored_final_repair_fixture_is_rom_bound(self) -> None:
+        # State-only regeneration is not the final event-repair generation.
+        # Verify the restored producer outputs before using that cohort.
+        rom = (ROOT / "build/stages/61_display_npc_event_audit.gba").read_bytes()
+        manifest = json.loads((
+            ROOT / "reports/generated/stage61_interaction_repair_manifest.json"
+        ).read_text())
+        catalog = json.loads((
+            ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json"
+        ).read_text())
+        self.assertEqual(hashlib.sha256(rom).hexdigest(), manifest["stage61_sha256"])
+        audit_repaired_stage61_runtime_integrity(rom, catalog, manifest)
 
     def test_gift_dex_projection_uses_each_roots_input_species(self) -> None:
         from tools.stage61_interaction_oracle import (
