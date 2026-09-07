@@ -56,7 +56,7 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
                         {
                             "source": "userfile",
                             "destination": "userfile",
-                            "exclude": [],
+                            "exclude": ["imports/integration_inputs"],
                         },
                     ],
                 }
@@ -76,6 +76,11 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         temporary, root, config_path = self.make_fixture()
         self.addCleanup(temporary.cleanup)
         config = private_env._load_config(config_path)
+        restored_copy = root / "userfile/imports/integration_inputs/trainer-kit"
+        restored_copy.mkdir(parents=True)
+        (restored_copy / "KIT_MANIFEST.json").write_text(
+            "stale restored copy\n", encoding="utf-8"
+        )
         first = root / "first/inputs.zip"
         second = root / "second/inputs.zip"
         result = private_env.build_archive(root, config["archives"][0], first)
@@ -84,6 +89,8 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
 
         config["archives"][0]["size"] = result["size"]
         config["archives"][0]["sha256"] = result["sha256"]
+        (restored_copy / "KIT_MANIFEST.json").unlink()
+        restored_copy.rmdir()
         (root.parent / "PRIVATE_INPUTS/roms/clean.gba").unlink()
         (root / "userfile/imports/design.txt").unlink()
         restored = private_env.restore_archive(
