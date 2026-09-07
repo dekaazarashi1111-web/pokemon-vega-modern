@@ -1486,3 +1486,14 @@
   - exact HEAD、件数、失敗test ID、exception type、tracked source frame、skip分類、Stage62 ROM identityだけを許可し、例外本文・subtest値・private入力・生ログを除外した。
   - PR #3のfocused失敗結果をartifact取得なしで自動コメントできることを実証した。
 - Verify: local unit 35件、task graph、private guard、YAML、actionlint、実artifact sanitizer PASS。source-validation run `34039975170`／`34039977210` PASS。comment control run `34040024389`でprivate復元・artifact・sanitizer・限定PRコメント `5560079732` PASS。main実装merge commit `8ff0393a64d2406274235692cbb660cdecc1bf78`。
+
+## 2026-09-07T13:52:02+09:00
+
+- Version: `github-private-integration-inputs-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260907-PRIVATE-INTEGRATION-INPUTS` / ChatGPT Web向けTrainer私有原本の決定的復元
+- Summary:
+  - 親workspaceの`integration_inputs`と固定済みStage34 inventoryをPrivate Releaseの入力bundleへ追加し、clean Actions環境でTrainer原本を決定的に復元できるようにした。
+  - Trainer content生成器はprivate入力rootの歴史的inventoryを優先し、現行生成reportとの差を混在させない。
+  - PR #3の未完了一時診断を整理して本修復を反映し、Trainer系7件をfocused結果から解消した。残る3 errorsはStage61系に限定された。
+- Verify: 104,736,629 bytes／672 filesのassetを2回byte同一構築、remote再取得・外側／全member hash・clean restore・Trainer全file再生成一致PASS。local関連unit 85件PASS。GitHub run `34083238827`は471 tests / 0 failures / 3 errors / 0 skips、Stage62 ROM unchanged。
