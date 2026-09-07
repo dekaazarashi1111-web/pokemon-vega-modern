@@ -1,3 +1,4 @@
+diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
 --- a/tools/stage61_interaction_oracle.py
 +++ b/tools/stage61_interaction_oracle.py
 @@ -16042,5 +16042,35 @@
@@ -46,6 +47,7 @@
          if relation == "APPLY_ORDERED_MOVEMENT":
              if not loaded:
                  continue
+diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_interaction_oracle.py
 --- a/tests/test_stage61_interaction_oracle.py
 +++ b/tests/test_stage61_interaction_oracle.py
 @@ -12177,3 +12177,4 @@
@@ -185,3 +187,37 @@
      def test_relocated_rematch_uses_exact_changekit_alias_target(self) -> None:
          instruction = 0x09420000
          local_id = 11
+diff --git a/design/run_log.md b/design/run_log.md
+--- a/design/run_log.md
++++ b/design/run_log.md
+@@ -3851,3 +3851,16 @@
+ giftの残る例外は_runner_object_postconditionsのAPPLY_ORDERED_MOVEMENTでactive object preimageがない箇所。VAR_LAST_TALKEDは既に実際のcontext.npc.local_idから導出され、未知objectを黙認する修正はしていない。元のall14root検証を残し、同じ入力・完全なrequired postconditions・独立図鑑検証をrootごとの別test IDでも実行する回帰を追加した。一括testの先行例外で他rootの検証が隠れず、従来の限定結果コメントだけでroot別残件を識別できる。ROM byte・例外本文・subtest値を新たな経路で出力しない。source変更はなく、テスト削除/skip/検証無効化もない。
+ 
+ 未解決群はTrainer metadata6件とTrainerChangeKitContentTest.setUpClass、Stage61InteractionOracleTests.setUpClassの新ROM/旧repair混在、gift移動object preimage。full-unit/allはfocused完全PASS前なので未実行。既存Draft/open/unmerged・main直接変更なし・別Stage60監査IN_PROGRESSを維持する。Actions生ログ・artifact本文は取得していない。全体DONEではなく、適用後HEADでfocusedを要求し最新限定結果を引き継ぐ。
++
++
++## 2026-09-07 USER-20260907-STAGE61-FOCUSED player runtime object修復（検証中）
++
++PR #3開始時の実HEADは060f2d6ea0aa243cebe2cc8f7007347b473ad2a8。指定済み9b3f7d80047b7d08be0809a9a3f3bbe3dfff6468から9 commits進んでいたため最新履歴を保持した。前回の471 tests /0 failures /3 errors /0 skipped、Stage62 unchanged=trueとTrainer修復済みはcomment5565207950に記録済み。Trainer、Private Release、integration_inputsの再修正はしない。
++
++残るgift 2 errorsは同じ_runner_required_postconditions経路。既存operand回帰はroot0x088B3190の0x4F/0x50 operand=0x00FF、解決後LOCAL_OBJECT:255、NPC local IDとは別、静的templateに255がないことを検証する。source-lock固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788のScrCmd_applymovement、GetObjectEventIdByLocalIdAndMap、InitPlayerAvatarを照合した。playerは別生成runtime objectであり、map引数によらずlocal IDで解決される。通常NPCの欠落検出は保持する。
++
++既存pending patchの意味を維持し、player初期状態だけを_exact_player_position_fixtureから作る。gift fixtureは既存catalogの操作開始stanceを現候補ROMのobject identity、script、flag、map、対面距離と照合して引き渡す。未指定位置や不一致は拒否し、現在/前座標にengineの+7境界を適用する。player移動の正例と位置欠落/map不一致/通常NPC欠落の拒否回帰を追加し、既存expected・テスト・strict検証は変更しない。
++
++Stage61InteractionOracleTests.setUpClassの世代混在は先行cc5b3bb04daf7b437625fb7cd7fc9fa08ec11708で分離済み。STATE_NAMESPACE_FIXTURE候補と最終repair manifestを混ぜず、最終修復ROM・semantic・catalog・matrix・manifestを同じROOTから読む。現ROMからinventoryを再decodeし、既存test_restored_final_repair_fixture_is_rom_boundと36005行のROM hash/provenance拒否を維持する。根拠sliceはPR comment5566720196。
++
++前回patch run34092794849はchanged=[]、new SHAなし。tracked patchにbridge必須のdiff --git headerがなかったため、headerと末尾改行を修復した。workflow/bridge/guard/source-lockは変更しない。ローカルはhunk行数とgit apply --numstat構文を検査し、実privateテストは未実行。新HEADへの単一giftテスト付きpatch適用後にHEADを再取得し、focused-unitを一度だけ要求する。最終成否はPRのVega private test: limited resultを正とし、ここではPASS/DONEを主張しない。ROM/save/private byteは取得・Git追加せず、main直接commit、新規branch/PR、merge、full-unit/allは行わない。
+diff --git a/design/version_log.md b/design/version_log.md
+--- a/design/version_log.md
++++ b/design/version_log.md
+@@ -1503,3 +1503,10 @@
+ 最新限定結果comment5560798053 /run34046470593 /HEAD dac899faaa837828ccbb7a4ee6d794cd54c27082は447 tests /6 failures /3 errors /0 skipped、Stage62 ROM unchanged=true。schema1件に続き、入力species由来の独立した図鑑検証で13失敗を解消した。元期待値を失敗actualへ合わせず4 owner完全一致と改変拒否を維持する。f8dfafbed7dbc0dc5fe676ea36594c6bd182d2c7はmetadata候補のsize事前除外を修正し、元size/SHAのみ採用する10回帰をローカルPASS、focused要求comment5560797312。private成功は未確認。
+ 
+ interaction証跡同時生成の前案はbridge失敗で未適用（comment5560772064）。builder/repair/ABIを変えず、その準備patchをroot別回帰と本証跡に置換した。giftの元all14root検証を残して個別rootの完全postcondition検証を追加し、既存限定コメントで残件を特定する。Trainer metadataとStage61証跡混在/移動objectが未解決で、full-unit/allは未実行。ROM/save/Private Release資材・main・workflowは変更せず、Draft/open/unmergedと別タスクIN_PROGRESSを維持。全体完了版ではない。
++
++
++## 2026-09-07 USER-20260907-STAGE61-FOCUSED player初期状態と世代分離の検証
++
++開始実HEAD060f2d6ea0aa243cebe2cc8f7007347b473ad2a8の未適用patchにdiff --git headerを補い、既存branchへ前進commitする。giftの共通例外はplayer255がNPC template由来runtime集合に存在しないこと。固定上流仕様と既存operand回帰に基づき、照合済み操作開始位置からplayer runtimeだけを初期化する。通常NPC欠落、未指定位置、map不一致の拒否を維持する。setUpClassの最終repair一式への世代分離は先行cc5b3bbを保持し再修正しない。
++
++既存expected・strict検証は不変。Trainer/Private Release/integration_inputs、workflow/guard/source-lock、ROM/save/private資材は変更対象外。単一giftテストでpatch検証後、再取得HEADでfocused-unitを一度だけ実行し限定結果を記録する。現在は検証中でPASS/DONEではない。full-unit/allには進まず、PR #3をDraft/open/unmergedのまま維持する。
