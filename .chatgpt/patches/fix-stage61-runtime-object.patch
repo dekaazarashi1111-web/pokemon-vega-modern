@@ -1,14 +1,60 @@
 diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
 --- a/tools/stage61_interaction_oracle.py
 +++ b/tools/stage61_interaction_oracle.py
-@@ -16045,6 +16045,10 @@
-     def current_object(local_id: int) -> dict[str, Any]:
-         value = runtime_after.get(local_id)
-         if not isinstance(value, dict):
-+            if local_id == 0xFF:
-+                _fail("RUNNER_RUNTIME_PLAYER_PREIMAGE_MISSING")
-+            if local_id == context.npc.get("local_id"):
-+                _fail("RUNNER_RUNTIME_INTERACTED_OBJECT_PREIMAGE_MISSING")
-             _fail(f"runner postcondition active runtime object欠落:{local_id}")
-         return value
- 
+@@ -16063,5 +16063,11 @@
+         if relation == "APPLY_ORDERED_MOVEMENT":
+             if not loaded:
++                continue
++            # Pinned script_movement.c:20-24 returns without starting a
++            # movement when the active local-id/map lookup fails.  Template
++            # absence is not evidence for LOCALID_PLAYER (255), whose engine
++            # lookup is separate; keep that missing preimage fail-closed.
++            if local_id < 0xFF and runtime_after.get(local_id) is None:
+                 continue
+             value = current_object(local_id)
+             movement = effect.get("movement")
+diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_interaction_oracle.py
+--- a/tests/test_stage61_interaction_oracle.py
++++ b/tests/test_stage61_interaction_oracle.py
+@@ -12632,3 +12632,41 @@
++    def test_ordered_movement_requires_active_local_object_not_template(self) -> None:
++        from tools.stage61_interaction_oracle import _runner_object_postconditions
++        import struct
++
++        context = self._context(case={"interaction": {"group": 1, "map": 2}})
++        template = bytearray(0x18)
++        template[0] = 7
++        struct.pack_into("<hh", template, 4, 2, 3)
++        struct.pack_into("<H", template, 0x14, 0x200)
++        effect = {
++            "domain": "objects", "owner": "LOCAL_OBJECT:7",
++            "relation": "APPLY_ORDERED_MOVEMENT", "target_map": None,
++            "movement": {"actions": [0x08]},
++        }
++        with patch(
++            "tools.stage61_interaction_oracle._runner_map_object_templates",
++            return_value=[template],
++        ):
++            self.assertEqual(_runner_object_postconditions(context, [effect]), [{
++                "local_id": 7, "after": {
++                    "map": "1/2", "invisible": False, "visible": True,
++                    "current": [9, 11], "previous": [9, 10],
++                },
++            }])
++            context.case["state"]["flags"] = [{"id": 0x200, "value": True}]
++            self.assertEqual(_runner_object_postconditions(context, [effect]), [])
++        context.case["state"]["flags"] = []
++        with patch(
++            "tools.stage61_interaction_oracle._runner_map_object_templates",
++            return_value=[],
++        ):
++            self.assertEqual(_runner_object_postconditions(context, [effect]), [])
++            player = {**effect, "owner": "LOCAL_OBJECT:255"}
++            with self.assertRaisesRegex(
++                Stage61InteractionOracleError, "active runtime object欠落:255",
++            ):
++                _runner_object_postconditions(context, [player])
++
+     def test_public_sequence_keeps_post_battle_continuation(self) -> None:
+         continuation = {
+             "phase": "POST_BATTLE_CONTINUATION",
