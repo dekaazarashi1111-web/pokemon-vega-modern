@@ -3891,3 +3891,34 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式API／CLIでPrivate Release asset更新、remote再取得、PR #9／#10の作成・CI・merge、PR #3への反映・focused run・限定結果コメントを実行した。credential、token、ROM／save、private metadata本文はtracked成果へ保存していない。
+
+## 2026-09-07T21:30:29+09:00
+
+- Task: `USER-20260907-VEGA-PATCH-SAFE-FAILURE` / `/vega-patch`の安全な失敗理由返信
+- Status: DONE
+- Summary:
+  - 単一unittestのPython/native/child出力を破棄し、PASS／FAIL／ERROR／SKIPを固定schema JSONへ変換する専用runnerを追加した。例外本文、actual／expected値、subtest値、private path、生ログは出力しない。
+  - default branchの固定sanitizerがexact HEAD、test ID、件数整合、例外class、Git管理中Python frameと実在行番号を再検証する。schema不正、untracked／repository外frame、stale結果はコメントせずfail closedにした。
+  - 通常のテスト失敗でも安全JSON artifactだけをreport jobへ渡して限定結果をPRへ返信し、成功時だけ従来のpatch削除・変更監査・bot commit／pushへ進む。生`test.log`の作成・uploadを廃止し、runner／sanitizer自身をpatch禁止対象へ追加した。
+- Files changed:
+  - `.github/workflows/chatgpt-comment-control.yml`
+  - `scripts/run_github_patch_test.py`
+  - `scripts/github_patch_test_summary.py`
+  - `scripts/github_large_file_bridge.py`
+  - `tests/test_run_github_patch_test.py`
+  - `tests/test_github_patch_test_summary.py`
+  - `tests/test_github_patch_workflow.py`
+  - `tests/test_github_large_file_bridge.py`
+  - `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`
+  - `prompts/CHATGPT_WEB_GITHUB_HANDOFF_JA.md`
+  - `README.md`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - runner／sanitizer／workflow／既存bridge・結果・command制御の局所unit 44件: PASS。
+  - PASS、assertion failure、setUpClass error、SKIP、不正test ID、repository外frame除外、stale結果除去、秘密値非出力、malformed拒否、failed commit禁止、success commit維持を回帰で確認した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、PyYAML parse、actionlint v1.7.12、`git diff --check`: PASS。
+  - PR #12 source-validation run `34122126008`／`34122129285`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - GitHub公式API／CLIでorigin/main、PR #12、Actions結果を確認した。actionlint公式release `https://github.com/rhysd/actionlint/releases/tag/v1.7.12`からLinux amd64版を取得し、公式SHA-256 `8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`を照合した。credential、token、ROM／save、private asset内容は取得・記録していない。
