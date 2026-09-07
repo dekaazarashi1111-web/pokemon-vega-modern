@@ -1,21 +1,23 @@
 diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
 --- a/tools/stage61_interaction_oracle.py
 +++ b/tools/stage61_interaction_oracle.py
-@@ -16042,5 +16042,35 @@
+@@ -16042,5 +16042,37 @@
          runtime_before[local_id] = deepcopy(runtime_value)
          runtime_after[local_id] = deepcopy(runtime_value)
-+
-+    # playerはInitPlayerAvatarが生成するruntime objectで、NPC templateにはない。
-+    # 既存の物理位置／操作開始fixtureからのみ初期化する。存在しないNPCや
-+    # 未指定のplayer座標を、便宜的な初期状態で補わない。
+ 
++    # InitPlayerAvatar creates the player outside the NPC template table.
++    # Use the exact field-entry preimage once, before folding ordered effects.
++    # instruction_address identifies the first use; it does not select a tile.
 +    player_effects = [
 +        effect for effect in object_effects
-+        if effect.get("owner") == "LOCAL_OBJECT:255"
-+        and effect.get("relation") in {
++        if effect.get("relation") in {
 +            "APPLY_ORDERED_MOVEMENT", "SET_OBJECT_XY",
 +            "SHOW_OBJECT_AT_MAP", "HIDE_OBJECT_AT_MAP",
 +            "REMOVE_CURRENT_MAP_OBJECT", "REMOVE_OBJECT_AT_MAP",
 +        }
++        and _runner_parse_owner(
++            effect.get("owner"), "LOCAL_OBJECT:", maximum=255,
++        ) == 255
 +    ]
 +    if player_effects:
 +        if 255 in by_local:
@@ -34,15 +36,15 @@ diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_ora
 +        }
 +        runtime_before[255] = deepcopy(player)
 +        runtime_after[255] = deepcopy(player)
- 
++
      def current_object(local_id: int) -> dict[str, Any]:
          value = runtime_after.get(local_id)
-@@ -16060,6 +16090,8 @@
+@@ -16060,6 +16092,8 @@
          target_group = group if target is None else int(target.get("group", -1))
          target_map = number if target is None else int(target.get("map", -1))
 -        loaded = (target_group, target_map) == (group, number)
-+        # 固定元GetObjectEventIdByLocalIdAndMapはplayerに限りmap引数を無視する。
-+        # 通常のlocal objectでは従来どおりmapの一致を必要とする。
++        # GetObjectEventIdByLocalIdAndMap ignores map operands for the player.
++        # Ordinary NPCs must still belong to the loaded map.
 +        loaded = local_id == 255 or (target_group, target_map) == (group, number)
          if relation == "APPLY_ORDERED_MOVEMENT":
              if not loaded:
@@ -50,12 +52,13 @@ diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_ora
 diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_interaction_oracle.py
 --- a/tests/test_stage61_interaction_oracle.py
 +++ b/tests/test_stage61_interaction_oracle.py
-@@ -12177,3 +12177,4 @@
+@@ -12171,4 +12171,5 @@
+         ).read_text())
 +        cls.catalog = catalog
          cls.source_blobs, symbol_reports = _interaction_abi_pinned_inputs()
          cls.manifest = build_pinned_interaction_abi_manifest(
              cls.clean, cls.stage60, cls.stage61, catalog,
-@@ -12239,4 +12240,12 @@
+@@ -12223,4 +12224,12 @@
          if graph.diagnostics:
              raise AssertionError(graph.diagnostics)
 +        player_movement = any(
@@ -68,17 +71,17 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
 +            owner = cls._owner_with_catalog_player_position(owner)
          binding = _bind_cyclic_decision_root_contract(
              cls.cyclic_index, cls.semantic,
-@@ -12267,3 +12276,52 @@
+@@ -12245,3 +12254,60 @@
 +    @classmethod
 +    def _owner_with_catalog_player_position(cls, owner: dict) -> dict:
-+        """既存の操作開始stanceを、現候補のobject記録と照合して使う。"""
++        """Bind catalog input geometry only after checking the current object."""
 +        rows = [row for row in cls.catalog["npcs"]
 +                if row["npc_id"] == owner["owner_id"]]
 +        if len(rows) != 1:
 +            raise AssertionError("gift player fixture catalog owner is not unique")
 +        npc = rows[0]
 +        offset = owner["record_address"] - 0x08000000
-+        raw = cls.stage61[offset:offset + 0x18]
++        raw = cls.stage61[offset:offset + 0x18] if offset >= 0 else b""
 +        if len(raw) != 0x18 or (
 +            npc["group"], npc["map"], npc["object_index"],
 +            npc["script_pointer"], npc["local_id"], npc["flag"],
@@ -93,24 +96,32 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
 +        stance = execution.get("stance")
 +        target = npc.get("interaction_object")
 +        distance = execution.get("interaction_distance")
-+        facing = execution.get("facing")
++        # The catalog and _runtime_object_player_position_fixture use action,
++        # not facing. Do not accept a guessed key or silently invent a stance.
++        action = execution.get("action")
 +        deltas = {"UP": (0, -1), "DOWN": (0, 1),
 +                  "LEFT": (-1, 0), "RIGHT": (1, 0)}
++        basis = npc.get("interaction_object_basis")
 +        if (not isinstance(stance, list) or len(stance) != 2
 +                or not isinstance(target, list) or len(target) != 2
 +                or any(isinstance(value, bool) or not isinstance(value, int)
 +                       or not 0 <= value <= 0xFFFF for value in stance + target)
 +                or isinstance(distance, bool) or not isinstance(distance, int)
-+                or distance not in {1, 2} or facing not in deltas
-+                or not npc.get("interaction_object_basis")):
++                or distance not in {1, 2} or not isinstance(action, str)
++                or action not in deltas or not isinstance(basis, str) or not basis):
 +            raise AssertionError("gift player fixture catalog stance is invalid")
-+        dx, dy = deltas[facing]
++        if basis == "FINAL_OBJECT_TEMPLATE" and target != [
++            int.from_bytes(raw[4:6], "little", signed=True),
++            int.from_bytes(raw[6:8], "little", signed=True),
++        ]:
++            raise AssertionError("gift player fixture template target differs")
++        dx, dy = deltas[action]
 +        if [stance[0] + dx * distance, stance[1] + dy * distance] != target:
 +            raise AssertionError("gift player fixture does not face its source object")
 +        bound = deepcopy(owner)
 +        bound["interaction_object"] = {"x": target[0], "y": target[1]}
 +        bound["interaction_distance"] = distance
-+        bound["interaction_object_basis"] = npc["interaction_object_basis"]
++        bound["interaction_object_basis"] = basis
 +        bound["interaction_execution"] = deepcopy(execution)
 +        bound["physical_player_position"] = {
 +            "group": owner["group"], "map": owner["map"],
@@ -121,16 +132,27 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
      def test_four_executor_representatives_and_thirty_runner_layouts(
          self,
      ) -> None:
-@@ -12780,3 +12838,65 @@
-+    def test_player_movement_uses_exact_runtime_only_preimage(self) -> None:
-+        from tools.stage61_interaction_oracle import _runner_object_postconditions
+@@ -12769,3 +12835,180 @@
++    @staticmethod
++    def _ordered_object_effects(specifications: list[tuple]) -> list[dict]:
++        from tools.stage61_interaction_oracle import (
++            _record_effect, _runner_effect_rows,
++        )
 +
-+        effect = {
-+            "domain": "objects", "owner": "LOCAL_OBJECT:255",
-+            "relation": "APPLY_ORDERED_MOVEMENT",
-+            "instruction_address": "0x08000000", "target_map": None,
-+            "movement": {"actions": [0x0F, 0x0F, 0x0D]},
-+        }
++        state = _Execution(pc=0x08000000)
++        for at, opcode, owner, relation, detail in specifications:
++            state.execution_trace.append(at)
++            state.current_instruction_address = at
++            state.current_opcode = opcode
++            _record_effect(state, "objects", owner, relation, at, **detail)
++        # Deliberately reverse append order; instruction PCs are not time order.
++        return _runner_effect_rows(state, list(reversed(state.effects)))
++
++    def test_player_movement_uses_ordered_runtime_only_preimage(self) -> None:
++        from tools.stage61_interaction_oracle import (
++            _exact_player_position_fixture, _runner_object_postconditions,
++        )
++
 +        expected = [{"local_id": 255, "after": {
 +            "map": "2/3", "invisible": False, "visible": True,
 +            "current": [19, 26], "previous": [19, 27],
@@ -139,39 +161,52 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
 +            {"physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20}},
 +            {"interaction_execution": {"stance": [10, 20]}},
 +        ):
-+            context = self._context(case={
-+                "interaction": {"group": 2, "map": 3}, **initial,
-+            })
-+            with self.subTest(initial=initial), patch(
-+                "tools.stage61_interaction_oracle._runner_map_object_templates",
-+                return_value=[],
-+            ):
-+                self.assertEqual(_runner_object_postconditions(context, [effect]), expected)
-+                at_other_map = dict(effect, target_map={"group": 9, "map": 8})
-+                self.assertEqual(
-+                    _runner_object_postconditions(context, [at_other_map]), expected,
-+                )
++            for target_map in (None, {"group": 9, "map": 8}):
++                context = self._context(case={
++                    "interaction": {"group": 2, "map": 3}, **initial,
++                })
++                effects = self._ordered_object_effects([
++                    (0x08000040, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
++                     {"target_map": target_map, "movement": {"actions": [0x0F, 0x0F]}}),
++                    (0x08000010, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
++                     {"target_map": target_map, "movement": {"actions": [0x0D]}}),
++                ])
++                self.assertEqual(effects[0]["owner"], "LOCAL_OBJECT:255")
++                self.assertEqual(effects[0]["instruction_address"], "0x08000040")
++                with self.subTest(initial=initial, target_map=target_map), patch(
++                    "tools.stage61_interaction_oracle._runner_map_object_templates",
++                    return_value=[],
++                ), patch(
++                    "tools.stage61_interaction_oracle._exact_player_position_fixture",
++                    wraps=_exact_player_position_fixture,
++                ) as position:
++                    self.assertEqual(
++                        _runner_object_postconditions(context, effects), expected,
++                    )
++                    position.assert_called_once_with(context, 0x08000040)
 +
 +    def test_player_movement_rejects_missing_or_mismatched_preimage(self) -> None:
 +        from tools.stage61_interaction_oracle import _runner_object_postconditions
 +
-+        effect = {
-+            "domain": "objects", "owner": "LOCAL_OBJECT:255",
-+            "relation": "APPLY_ORDERED_MOVEMENT",
-+            "instruction_address": "0x08000000", "target_map": None,
-+            "movement": {"actions": [0x0F]},
-+        }
-+        for initial in ({}, {"physical_player_position": {
-+            "group": 9, "map": 8, "x": 10, "y": 20,
-+        }}):
++        effects = self._ordered_object_effects([
++            (0x08000000, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
++             {"target_map": None, "movement": {"actions": [0x0F]}}),
++        ])
++        for initial, error in (
++            ({}, "PLAYER_POSITION_EXACT_PHYSICAL_FIXTURE_REQUIRED"),
++            ({"physical_player_position": {"group": 9, "map": 8, "x": 10, "y": 20}},
++             "PLAYER_POSITION_PHYSICAL_MAP_IDENTITY_MISMATCH"),
++            ({"physical_player_position": {"group": 2, "map": 3, "x": True, "y": 20}},
++             "PLAYER_POSITION_EXACT_PHYSICAL_FIXTURE_INVALID"),
++        ):
 +            context = self._context(case={
 +                "interaction": {"group": 2, "map": 3}, **initial,
 +            })
-+            with self.subTest(initial=initial), patch(
++            with self.subTest(error=error), patch(
 +                "tools.stage61_interaction_oracle._runner_map_object_templates",
 +                return_value=[],
-+            ), self.assertRaises(Stage61InteractionOracleError):
-+                _runner_object_postconditions(context, [effect])
++            ), self.assertRaisesRegex(Stage61InteractionOracleError, error):
++                _runner_object_postconditions(context, effects)
 +        context = self._context(case={
 +            "interaction": {"group": 2, "map": 3},
 +            "physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20},
@@ -182,42 +217,99 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
 +        ), self.assertRaisesRegex(
 +            Stage61InteractionOracleError, "active runtime object欠落:2",
 +        ):
-+            _runner_object_postconditions(context, [dict(effect, owner="LOCAL_OBJECT:2")])
++            _runner_object_postconditions(
++                context, [dict(effects[0], owner="LOCAL_OBJECT:2")],
++            )
++
++    def test_player_runtime_never_creates_template_or_reinitializes(self) -> None:
++        from tools.stage61_interaction_oracle import _runner_object_postconditions
++
++        context = self._context(case={
++            "interaction": {"group": 2, "map": 3},
++            "physical_player_position": {"group": 2, "map": 3, "x": 10, "y": 20},
++        })
++        movement = (0x08000010, 0x4F, "LOCAL_OBJECT:255", "APPLY_ORDERED_MOVEMENT",
++                    {"target_map": None, "movement": {"actions": [0x0F]}})
++        effects = self._ordered_object_effects([
++            movement,
++            (0x08000020, 0x64, "LOCAL_OBJECT:255", "COPY_OBJECT_XY_TO_PERMANENT", {}),
++        ])
++        with patch(
++            "tools.stage61_interaction_oracle._runner_map_object_templates",
++            return_value=[],
++        ):
++            self.assertEqual(_runner_object_postconditions(context, effects), [
++                {"local_id": 255, "after": {
++                    "map": "2/3", "invisible": False, "visible": True,
++                    "current": [18, 27], "previous": [17, 27],
++                }},
++            ])
++            removed = self._ordered_object_effects([
++                (0x08000040, 0x53, "LOCAL_OBJECT:255", "REMOVE_CURRENT_MAP_OBJECT", {}),
++                movement,
++            ])
++            with self.assertRaisesRegex(
++                Stage61InteractionOracleError, "active runtime object欠落:255",
++            ):
++                _runner_object_postconditions(context, removed)
++        template = bytearray(0x18)
++        template[0] = 255
++        with patch(
++            "tools.stage61_interaction_oracle._runner_map_object_templates",
++            return_value=[template],
++        ), self.assertRaisesRegex(
++            Stage61InteractionOracleError, "RUNNER_PLAYER_OBJECT_STATIC_TEMPLATE_COLLISION",
++        ):
++            _runner_object_postconditions(context, effects)
++
++    def test_gift_player_fixture_uses_catalog_action_not_facing(self) -> None:
++        owner = {
++            "owner_id": "OBJECT:002/003:000", "owner_kind": "OBJECT",
++            "group": 2, "map": 3, "index": 0,
++            "root": 0x088B3190, "record_address": 0x08000000,
++        }
++        raw = bytearray(0x18)
++        raw[0] = 1
++        raw[4:6] = (10).to_bytes(2, "little")
++        raw[6:8] = (19).to_bytes(2, "little")
++        raw[0x10:0x14] = owner["root"].to_bytes(4, "little")
++        npc = {
++            "npc_id": owner["owner_id"], "group": 2, "map": 3,
++            "object_index": 0, "script_pointer": owner["root"],
++            "local_id": 1, "flag": 0, "interaction_object": [10, 19],
++            "interaction_object_basis": "FINAL_OBJECT_TEMPLATE",
++            "interaction_execution": {
++                "stance": [10, 20], "action": "UP", "interaction_distance": 1,
++            },
++        }
++        fixture = SimpleNamespace(stage61=bytes(raw), catalog={"npcs": [npc]})
++        bind = (
++            Stage61GiftStorageFossilFocusedTests
++            ._owner_with_catalog_player_position.__func__
++        )
++        bound = bind(fixture, owner)
++        self.assertEqual(bound["physical_player_position"], {
++            "group": 2, "map": 3, "x": 10, "y": 20,
++        })
++        self.assertNotIn("physical_player_position", owner)
++        for mutation in (
++            "facing_only", "wrong_action", "wrong_map", "wrong_root", "wrong_target",
++        ):
++            forged = deepcopy(fixture)
++            row = forged.catalog["npcs"][0]
++            if mutation == "facing_only":
++                row["interaction_execution"]["facing"] = row["interaction_execution"].pop("action")
++            elif mutation == "wrong_action":
++                row["interaction_execution"]["action"] = "DOWN"
++            elif mutation == "wrong_map":
++                row["map"] = 8
++            elif mutation == "wrong_root":
++                row["script_pointer"] += 1
++            else:
++                row["interaction_object"][0] += 1
++            with self.subTest(mutation=mutation), self.assertRaises(AssertionError):
++                bind(forged, owner)
 +
      def test_relocated_rematch_uses_exact_changekit_alias_target(self) -> None:
          instruction = 0x09420000
          local_id = 11
-diff --git a/design/run_log.md b/design/run_log.md
---- a/design/run_log.md
-+++ b/design/run_log.md
-@@ -3851,3 +3851,16 @@
- giftの残る例外は_runner_object_postconditionsのAPPLY_ORDERED_MOVEMENTでactive object preimageがない箇所。VAR_LAST_TALKEDは既に実際のcontext.npc.local_idから導出され、未知objectを黙認する修正はしていない。元のall14root検証を残し、同じ入力・完全なrequired postconditions・独立図鑑検証をrootごとの別test IDでも実行する回帰を追加した。一括testの先行例外で他rootの検証が隠れず、従来の限定結果コメントだけでroot別残件を識別できる。ROM byte・例外本文・subtest値を新たな経路で出力しない。source変更はなく、テスト削除/skip/検証無効化もない。
- 
- 未解決群はTrainer metadata6件とTrainerChangeKitContentTest.setUpClass、Stage61InteractionOracleTests.setUpClassの新ROM/旧repair混在、gift移動object preimage。full-unit/allはfocused完全PASS前なので未実行。既存Draft/open/unmerged・main直接変更なし・別Stage60監査IN_PROGRESSを維持する。Actions生ログ・artifact本文は取得していない。全体DONEではなく、適用後HEADでfocusedを要求し最新限定結果を引き継ぐ。
-+
-+
-+## 2026-09-07 USER-20260907-STAGE61-FOCUSED player runtime object修復（検証中）
-+
-+PR #3開始時の実HEADは060f2d6ea0aa243cebe2cc8f7007347b473ad2a8。指定済み9b3f7d80047b7d08be0809a9a3f3bbe3dfff6468から9 commits進んでいたため最新履歴を保持した。前回の471 tests /0 failures /3 errors /0 skipped、Stage62 unchanged=trueとTrainer修復済みはcomment5565207950に記録済み。Trainer、Private Release、integration_inputsの再修正はしない。
-+
-+残るgift 2 errorsは同じ_runner_required_postconditions経路。既存operand回帰はroot0x088B3190の0x4F/0x50 operand=0x00FF、解決後LOCAL_OBJECT:255、NPC local IDとは別、静的templateに255がないことを検証する。source-lock固定pret/pokefirered c75f352304d529f6ba92d4f74b9cf8b5c3810788のScrCmd_applymovement、GetObjectEventIdByLocalIdAndMap、InitPlayerAvatarを照合した。playerは別生成runtime objectであり、map引数によらずlocal IDで解決される。通常NPCの欠落検出は保持する。
-+
-+既存pending patchの意味を維持し、player初期状態だけを_exact_player_position_fixtureから作る。gift fixtureは既存catalogの操作開始stanceを現候補ROMのobject identity、script、flag、map、対面距離と照合して引き渡す。未指定位置や不一致は拒否し、現在/前座標にengineの+7境界を適用する。player移動の正例と位置欠落/map不一致/通常NPC欠落の拒否回帰を追加し、既存expected・テスト・strict検証は変更しない。
-+
-+Stage61InteractionOracleTests.setUpClassの世代混在は先行cc5b3bb04daf7b437625fb7cd7fc9fa08ec11708で分離済み。STATE_NAMESPACE_FIXTURE候補と最終repair manifestを混ぜず、最終修復ROM・semantic・catalog・matrix・manifestを同じROOTから読む。現ROMからinventoryを再decodeし、既存test_restored_final_repair_fixture_is_rom_boundと36005行のROM hash/provenance拒否を維持する。根拠sliceはPR comment5566720196。
-+
-+前回patch run34092794849はchanged=[]、new SHAなし。tracked patchにbridge必須のdiff --git headerがなかったため、headerと末尾改行を修復した。workflow/bridge/guard/source-lockは変更しない。ローカルはhunk行数とgit apply --numstat構文を検査し、実privateテストは未実行。新HEADへの単一giftテスト付きpatch適用後にHEADを再取得し、focused-unitを一度だけ要求する。最終成否はPRのVega private test: limited resultを正とし、ここではPASS/DONEを主張しない。ROM/save/private byteは取得・Git追加せず、main直接commit、新規branch/PR、merge、full-unit/allは行わない。
-diff --git a/design/version_log.md b/design/version_log.md
---- a/design/version_log.md
-+++ b/design/version_log.md
-@@ -1503,3 +1503,10 @@
- 最新限定結果comment5560798053 /run34046470593 /HEAD dac899faaa837828ccbb7a4ee6d794cd54c27082は447 tests /6 failures /3 errors /0 skipped、Stage62 ROM unchanged=true。schema1件に続き、入力species由来の独立した図鑑検証で13失敗を解消した。元期待値を失敗actualへ合わせず4 owner完全一致と改変拒否を維持する。f8dfafbed7dbc0dc5fe676ea36594c6bd182d2c7はmetadata候補のsize事前除外を修正し、元size/SHAのみ採用する10回帰をローカルPASS、focused要求comment5560797312。private成功は未確認。
- 
- interaction証跡同時生成の前案はbridge失敗で未適用（comment5560772064）。builder/repair/ABIを変えず、その準備patchをroot別回帰と本証跡に置換した。giftの元all14root検証を残して個別rootの完全postcondition検証を追加し、既存限定コメントで残件を特定する。Trainer metadataとStage61証跡混在/移動objectが未解決で、full-unit/allは未実行。ROM/save/Private Release資材・main・workflowは変更せず、Draft/open/unmergedと別タスクIN_PROGRESSを維持。全体完了版ではない。
-+
-+
-+## 2026-09-07 USER-20260907-STAGE61-FOCUSED player初期状態と世代分離の検証
-+
-+開始実HEAD060f2d6ea0aa243cebe2cc8f7007347b473ad2a8の未適用patchにdiff --git headerを補い、既存branchへ前進commitする。giftの共通例外はplayer255がNPC template由来runtime集合に存在しないこと。固定上流仕様と既存operand回帰に基づき、照合済み操作開始位置からplayer runtimeだけを初期化する。通常NPC欠落、未指定位置、map不一致の拒否を維持する。setUpClassの最終repair一式への世代分離は先行cc5b3bbを保持し再修正しない。
-+
-+既存expected・strict検証は不変。Trainer/Private Release/integration_inputs、workflow/guard/source-lock、ROM/save/private資材は変更対象外。単一giftテストでpatch検証後、再取得HEADでfocused-unitを一度だけ実行し限定結果を記録する。現在は検証中でPASS/DONEではない。full-unit/allには進まず、PR #3をDraft/open/unmergedのまま維持する。
