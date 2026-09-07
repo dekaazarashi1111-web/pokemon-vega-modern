@@ -1,7 +1,7 @@
 diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
 --- a/tools/stage61_interaction_oracle.py
 +++ b/tools/stage61_interaction_oracle.py
-@@ -16045,7 +16045,11 @@
+@@ -16045,6 +16045,10 @@
      def current_object(local_id: int) -> dict[str, Any]:
          value = runtime_after.get(local_id)
          if not isinstance(value, dict):
