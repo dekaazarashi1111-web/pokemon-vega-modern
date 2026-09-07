@@ -1,0 +1,106 @@
+name: p01-record-verified-checkpoint
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: p01-checkpoint-record-14
+  cancel-in-progress: false
+
+jobs:
+  record:
+    if: >-
+      github.event.pull_request.number == 14 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/user-modernization-p01-20260908' &&
+      github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+      TARGET_BRANCH: chatgpt/user-modernization-p01-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 既存focused testsと既存source gateを実行
+        run: |
+          python3 scripts/guard_private_files.py
+          python3 scripts/validate_task_graph.py
+          python3 - <<'PY'
+          import json, os, unittest
+          from pathlib import Path
+          suite = unittest.defaultTestLoader.loadTestsFromName('tests.test_modernization_ids')
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          evidence = {'tests':result.testsRun, 'failures':len(result.failures), 'errors':len(result.errors), 'skipped':len(result.skipped)}
+          Path(os.environ['RUNNER_TEMP'], 'p01-focused.json').write_text(json.dumps(evidence))
+          raise SystemExit(0 if result.wasSuccessful() and not result.skipped else 1)
+          PY
+          python3 scripts/build_modernization_catalog.py build
+          python3 scripts/build_modernization_catalog.py check
+      - name: 実行結果だけをappendし、P01をBLOCKEDとして記録
+        env:
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          marker = '<!-- USER-MODERNIZATION-P01-20260908-SOURCE-CHECKPOINT -->'
+          result = json.loads(Path(os.environ['RUNNER_TEMP'], 'p01-focused.json').read_text())
+          raw = Path('content/modernization/identity_contract.json').read_bytes()
+          result['identity_contract_size'] = len(raw)
+          result['identity_contract_sha256'] = hashlib.sha256(raw).hexdigest()
+          text = '\n\n' + marker + '\n## 2026-09-08 USER-MODERNIZATION-P01 検証済みsource checkpoint\n\n'
+          text += '- 結果: BLOCKED。P01受入未完了。P02/P03未開始。ROM/save/プレイ基準は未変更。\n'
+          text += '- 検証source HEAD: `' + os.environ['EXPECTED_HEAD'] + '`\n'
+          text += '- Actions: ' + os.environ['RUN_URL'] + '\n'
+          text += '- 既存focused testsと既存カタログのbuild/check・guard・task整合性が成功。新投影の全consumer接続とROM検証の成功を意味しない。\n'
+          text += '- 限定結果: `' + json.dumps(result, sort_keys=True) + '`\n'
+          text += '- 採用入力・変更理由・親候補・残件・再開点: design/modernization_p01_checkpoint.md、config/modernization_inputs.json、config/modernization_candidate.json。\n'
+          for name in ('design/run_log.md', 'design/version_log.md', 'design/modernization_handoff.md'):
+              path = Path(name)
+              if path.is_symlink() or not path.is_file():
+                  raise SystemExit('記録先は既存の通常fileである必要があります')
+              if marker not in path.read_text(encoding='utf-8'):
+                  with path.open('a', encoding='utf-8') as f:
+                      f.write(text)
+          queue = Path('design/tasks_next.md')
+          identity = '<!-- id:USER-MODERNIZATION-P01 -->'
+          if identity not in queue.read_text(encoding='utf-8'):
+              with queue.open('a', encoding='utf-8') as f:
+                  f.write('\n- [!] USER-MODERNIZATION-P01 ID意味・対象区分監査: source checkpoint。consumer接続・非公開runner復元・現行ROM gateは未完了。 ' + identity + '\n')
+          print(json.dumps(result, sort_keys=True))
+          PY
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+      - name: HEAD再照合後に記録fileだけを通常commit・push
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          actual=$(gh api "repos/$GITHUB_REPOSITORY/pulls/14" --jq .head.sha)
+          test "$actual" = "$EXPECTED_HEAD"
+          git add -- design/run_log.md design/version_log.md design/modernization_handoff.md design/tasks_next.md
+          if git diff --cached --quiet; then
+            echo '既に記録済み。再commitしません。'
+            exit 0
+          fi
+          test "$(git diff --cached --name-only | grep -Ev '^design/(run_log|version_log|modernization_handoff|tasks_next)\.md$' | wc -l)" -eq 0
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'WIP USER-MODERNIZATION-P01: Actions検証済みcheckpointと未完了を追記'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          local_head=$(git rev-parse HEAD)
+          remote_head=$(gh api "repos/$GITHUB_REPOSITORY/pulls/14" --jq .head.sha)
+          test "$local_head" = "$remote_head"
+          printf '記録commit: %s\n' "$local_head"
