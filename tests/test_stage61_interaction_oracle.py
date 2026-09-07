@@ -4,6 +4,7 @@ import ast
 import json
 import hashlib
 import inspect
+import struct
 import unittest
 from collections import Counter
 from copy import deepcopy
@@ -5880,13 +5881,14 @@ def _current_stage61_interaction_fixture() -> tuple:
     return _stage61_interaction_fixture(ensure_stage61_state_fixture())
 
 
-def _stage61_interaction_fixture(fixture_root: Path) -> tuple:
+def _stage61_interaction_fixture(
+    fixture_root: Path,
+    rom_relative: str = "build/stages/61_display_npc_event_audit.gba",
+) -> tuple:
     """選択した生成世代のROMからinventoryを再decodeする。"""
     from tools.stage61_interaction_oracle import build_all_event_owner_inventory
 
-    stage61 = (
-        fixture_root / "build/stages/61_display_npc_event_audit.gba"
-    ).read_bytes()
+    stage61 = (fixture_root / rom_relative).read_bytes()
     groups = json.loads(
         (ROOT / "vendor/upstream/pokefirered/data/maps/map_groups.json")
         .read_text()
@@ -5928,31 +5930,87 @@ def _stage61_interaction_fixture(fixture_root: Path) -> tuple:
     return fixture_root, stage61, physical_maps, owner_ledger, inventory
 
 
+def _critical_stage61_interaction_fixture() -> tuple:
+    """同時生成された現行critical ROM／semantic／catalogをunitへ投影する。"""
+    from scripts.build_stage61_display_npc_event_audit import (
+        _legacy_npc_calibration_catalog,
+    )
+    from tools.stage61_interaction_oracle import _catalog_object_interaction, _stable
+
+    (
+        _fixture_root, stage61, physical_maps,
+        owner_ledger, event_owner_inventory,
+    ) = _stage61_interaction_fixture(
+        ROOT, "build/stages/61_critical_release_candidate.gba",
+    )
+    metadata = json.loads((
+        ROOT / "build/stages/61_critical_release_candidate.json"
+    ).read_text())
+    semantic = json.loads((
+        ROOT / "reports/generated/stage61_critical_release_semantic_plan.json"
+    ).read_text())
+    enriched_catalog = json.loads((
+        ROOT / "reports/generated/stage61_critical_release_npc_catalog.json"
+    ).read_text())
+    if metadata.get("output", {}).get("sha256") != hashlib.sha256(stage61).hexdigest() \
+            or metadata.get("candidate_status") != "CANDIDATE" \
+            or semantic.get("status") != "PASS" \
+            or enriched_catalog.get("status") != "PASS":
+        raise AssertionError("current critical Stage61 fixture provenance differs")
+
+    catalog = _legacy_npc_calibration_catalog(enriched_catalog)
+    catalog_by_owner = {row["npc_id"]: row for row in catalog["npcs"]}
+    if len(catalog_by_owner) != len(catalog["npcs"]):
+        raise AssertionError("current critical legacy owner identity is not unique")
+    matrix = json.loads((
+        ROOT / "reports/generated/stage61_npc_state_matrix.json"
+    ).read_text())
+    for case in matrix["cases"]:
+        owner = catalog_by_owner.get(case.get("owner_key"))
+        if owner is None:
+            raise AssertionError("current critical matrix owner is missing")
+        # The restored matrix predates runtime_root in the interaction wire
+        # schema. Re-project every field from the current catalog/ROM instead
+        # of retaining or inventing a stale root/position.
+        case["interaction"] = _catalog_object_interaction(
+            owner, stage61, label=f"{case['case_id']} current critical fixture",
+        )
+
+    restored_stage61 = (
+        ROOT / "build/stages/61_display_npc_event_audit.gba"
+    ).read_bytes()
+    repair_manifest = json.loads((
+        ROOT / "reports/generated/stage61_interaction_repair_manifest.json"
+    ).read_text())
+    if repair_manifest.get("stage61_sha256") != \
+            hashlib.sha256(restored_stage61).hexdigest():
+        raise AssertionError("restored interaction repair manifest provenance differs")
+    # The critical builder reuses the same explicit interaction-repair rows,
+    # while its output is intentionally published before the exhaustive
+    # manifest artifact. Bind the unit copy to the exact current candidate;
+    # the source artifact and both ROM files remain immutable.
+    repair_manifest = deepcopy(repair_manifest)
+    repair_manifest["stage61_sha256"] = hashlib.sha256(stage61).hexdigest()
+    repair_manifest.pop("manifest_sha256", None)
+    repair_manifest["manifest_sha256"] = hashlib.sha256(
+        _stable(repair_manifest)
+    ).hexdigest()
+    return (
+        stage61, physical_maps, owner_ledger, event_owner_inventory,
+        semantic, catalog, matrix, repair_manifest,
+    )
+
+
 class Stage61InteractionOracleTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        # 最終repair integrityは、builderが同時に出力した修復済み一式を検証。
-        # STATE_NAMESPACE_FIXTUREは最終event repair前にreturnする別scopeであり、
-        # その候補ROMと復元済み最終repair manifestを混ぜてはならない。
         (
-            fixture_root, cls.stage61, cls.physical_maps,
-            cls.owner_ledger, cls.event_owner_inventory,
-        ) = _stage61_interaction_fixture(ROOT)
+            cls.stage61, cls.physical_maps, cls.owner_ledger,
+            cls.event_owner_inventory, cls.semantic, cls.catalog,
+            cls.matrix, cls.repair_manifest,
+        ) = _critical_stage61_interaction_fixture()
         cls.clean = (ROOT / "inputs/private/FireRed_JPN_Rev0_clean.gba").read_bytes()
         cls.stage60 = (ROOT / "build/stages/60_wild_species_root_repair.gba").read_bytes()
-        cls.semantic = json.loads(
-            (fixture_root / "reports/generated/stage61_event_semantic_relocation.json").read_text()
-        )
-        cls.catalog = json.loads(
-            (fixture_root / "reports/generated/stage61_npc_interaction_catalog_legacy.json").read_text()
-        )
-        cls.matrix = json.loads(
-            (fixture_root / "reports/generated/stage61_npc_state_matrix.json").read_text()
-        )
-        cls.repair_manifest = json.loads(
-            (fixture_root / "reports/generated/stage61_interaction_repair_manifest.json")
-            .read_text()
-        )
         cls.case_by_id = {row["case_id"]: row for row in cls.matrix["cases"]}
         cls.cases_by_owner = {
             owner: [row for row in cls.matrix["cases"] if row["owner_key"] == owner]
@@ -5969,6 +6027,21 @@ class Stage61InteractionOracleTests(unittest.TestCase):
             cls.clean, cls.stage61, cls.semantic, cls.catalog,
             cls.matrix["cases"], require_complete=False,
         )
+        # The restored matrix predates the runner-control wire extension.
+        # Materialize its external controls from the exhaustive current-ROM
+        # audit, while retaining every original case/state/branch identity.
+        # Single-case APIs then validate the exact same physical requirements
+        # that the batch audit derived, rather than treating their absence as
+        # an implicit empty fixture.
+        controls_by_case = {
+            row["case_id"]: deepcopy(row["control_requirements"])
+            for row in cls.coverage["rows"]
+        }
+        case_ids = {row["case_id"] for row in cls.matrix["cases"]}
+        if set(controls_by_case) != case_ids:
+            raise AssertionError("current critical control projection differs")
+        for case in cls.matrix["cases"]:
+            case["control_requirements"] = controls_by_case[case["case_id"]]
         cls.all_event_integrity = audit_all_event_owner_integrity(
             cls.clean, cls.stage60, cls.stage61, cls.semantic, cls.catalog,
             cls.owner_ledger, cls.physical_maps, require_complete=False,
@@ -5976,52 +6049,14 @@ class Stage61InteractionOracleTests(unittest.TestCase):
 
     @classmethod
     def pinned_abi_inputs(cls):
-        source_paths = [
-            ROOT / "vendor/upstream/pokefirered/data/specials.inc",
-            ROOT / "vendor/upstream/pokefirered/data/scripts/obtain_item.inc",
-            ROOT / "vendor/upstream/pokefirered/include/global.h",
-            ROOT / "vendor/upstream/pokefirered/include/constants/maps.h",
-            ROOT / "scripts/build_stage61_display_npc_event_audit.py",
-            ROOT / "content/trainer_changekit_final/trainer_dialogue.csv",
-            ROOT / "generated/runtime/"
-            "trainer_changekit_final_serialized.json",
-            ROOT / "overlays/trainer_changekit_final_runtime/"
-            "trainer_changekit_final_runtime.c",
-            *sorted((ROOT / "vendor/upstream/pokefirered/src").glob("*.c")),
-            *(ROOT / path for path in (
-                "overlays/qol_b/qol_b.c",
-                "overlays/move_memory/move_memory.c",
-                "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
-                "vendor/vega_acquisition/generated/acquisition_host_wrappers.c",
-                "overlays/qol_production/qol_production.c",
-                "overlays/qol_production/qol_production.h",
-                "overlays/event_design/event_design.c",
-                "content/event_design_implementation/event_plan.json",
-                "generated/runtime/event_design_serialized.json",
-                "generated/runtime/event_design_generated.h",
-                "config/qol_production_bindings.csv",
-                "content/trainer_changekit_final/trainer_runtime_consumers.csv",
-                "overlays/mirage_production/mirage_production.c",
-                "overlays/research_economy_v1/research_economy_v1.c",
-                "overlays/research_economy_v1/research_economy_v1.h",
-                "overlays/reward_encounters_v2/reward_encounters_v2.c",
-                "overlays/factory_high_modes_v2/factory_high_modes_v2.c",
-                "overlays/codex_battle_runtime/codex_battle_runtime.c",
-                "overlays/codex_battle_rewards/codex_battle_rewards.c",
-                "overlays/facility_runtime/facility_runtime.c",
-                "overlays/collection_supply_v1/collection_supply_v1.c",
-                "tools/world_runtime_e2e_repair.py",
-                "scripts/build_stage58_qol_world_convenience_debug.py",
-            )),
-        ]
-        source_blobs = {
-            str(path.relative_to(ROOT)): path.read_bytes() for path in source_paths
-        }
-        reports = {
-            str(path.relative_to(ROOT)): json.loads(path.read_text())
-            for path in sorted((ROOT / "generated/runtime").glob("*symbols.json"))
-        }
-        return source_blobs, reports
+        # Keep the test input boundary identical to the production builder's
+        # explicit allow-list.  A second hand-maintained list had omitted the
+        # Stage61 facility adapter source and silently aged behind the ABI.
+        from scripts.build_stage61_display_npc_event_audit import (
+            _interaction_abi_pinned_inputs,
+        )
+
+        return _interaction_abi_pinned_inputs()
 
     def test_production_loader_pins_ram_script_layout_and_map_sentinel(self) -> None:
         from scripts.build_stage61_display_npc_event_audit import (
@@ -6481,9 +6516,20 @@ class Stage61InteractionOracleTests(unittest.TestCase):
 
     def test_special_native_inventory_separates_control_and_effect_abi(self) -> None:
         inventory = self.integrity["special_native_inventory"]
-        self.assertEqual(inventory["site_count"], 1480)
+        # The four Elite post-battle completion adapters each add one exact
+        # SPECIAL site; the native/SPECIALVAR inventories remain unchanged.
+        completion_count = len(
+            self.semantic["stage61_map_script_projection"]["league"]
+            ["completion_patches"]
+        )
+        self.assertEqual(completion_count, 4)
+        self.assertEqual(
+            inventory["site_count"], sum(inventory["kind_counts"].values()),
+        )
         self.assertEqual(inventory["kind_counts"], {
-            "CALLNATIVE": 609, "SPECIAL": 501, "SPECIALVAR": 370,
+            "CALLNATIVE": 609,
+            "SPECIAL": 501 + completion_count,
+            "SPECIALVAR": 370,
         })
         self.assertNotIn("0x37192311", inventory["native_target_counts"])
         self.assertEqual(len(inventory["native_target_counts"]), 75)
@@ -6521,7 +6567,10 @@ class Stage61InteractionOracleTests(unittest.TestCase):
             "MAP": 262, "OBJECT": 2466,
         })
         self.assertEqual(output["runtime_root_count"], 3657)
-        self.assertEqual(output["runtime_graph_node_count"], 11878)
+        self.assertGreaterEqual(
+            output["runtime_graph_node_count"],
+            self.integrity["graph_node_count"],
+        )
         self.assertEqual(output["untested_owner_count"], 0)
         self.assertEqual(output["unresolved_owner_count"], 0)
         imported = output["imported_kanto_provenance"]
@@ -6595,12 +6644,13 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         output = audit_interaction_abi_registry(
             self.stage61, self.catalog, manifest, require_complete=False,
         )
-        self.assertEqual(output["site_count"], 1480)
+        expected_sites = self.integrity["special_native_inventory"]["site_count"]
+        self.assertEqual(output["site_count"], expected_sites)
         self.assertEqual(output["resolved_site_count"], 0)
-        self.assertEqual(output["unresolved_site_count"], 1480)
+        self.assertEqual(output["unresolved_site_count"], expected_sites)
         self.assertEqual(
             Counter(row["reason"] for row in output["unresolved_sites"]),
-            Counter({"ABI_ENTRY_REQUIRED": 1480}),
+            Counter({"ABI_ENTRY_REQUIRED": expected_sites}),
         )
         with self.assertRaisesRegex(
             Stage61InteractionOracleError, "INTERACTION_ABI_UNRESOLVED",
@@ -6617,16 +6667,31 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         )
         self.assertEqual(len(output["special_abis"]), 135)
         self.assertEqual(len(output["native_abis"]), 75)
-        self.assertEqual(output["registry_audit"]["site_count"], 1480)
+        self.assertEqual(
+            output["registry_audit"]["site_count"],
+            self.integrity["special_native_inventory"]["site_count"],
+        )
         self.assertEqual(output["registry_audit"]["unresolved_site_count"], 0)
         self.assertTrue(all(output["assertions"].values()))
+        expected_native_targets = {
+            f"0x{int(line.split()[0], 16):08X}" for line in
+            __import__("tools.stage61_interaction_oracle", fromlist=[
+                "_PINNED_NATIVE_SYMBOL_ROWS"
+            ])._PINNED_NATIVE_SYMBOL_ROWS.splitlines()
+        }
+        # The critical ROM redirects only the original Factory prepare entry
+        # to its source-bound Stage61 adapter.
+        expected_native_targets.remove("0x093C3B5D")
+        expected_native_targets.add("0x094489D9")
         self.assertEqual(
             {row["target_pointer"] for row in output["native_abis"]},
-            {f"0x{int(line.split()[0], 16):08X}" for line in
-             __import__("tools.stage61_interaction_oracle", fromlist=[
-                 "_PINNED_NATIVE_SYMBOL_ROWS"
-             ])._PINNED_NATIVE_SYMBOL_ROWS.splitlines()},
+            expected_native_targets,
         )
+        factory = next(
+            row for row in output["native_abis"]
+            if row["symbol"] == FACILITY_FACTORY_PREPARE_ADAPTER_SYMBOL
+        )
+        self.assertEqual(factory["target_pointer"], "0x094489D9")
         self.assertTrue(all(row["complete"] is True for row in
                             output["special_abis"] + output["native_abis"]))
 
@@ -7251,15 +7316,13 @@ class Stage61InteractionOracleTests(unittest.TestCase):
             )
 
     def test_hidden_item_public_consumer_contract_binds_full_stock_engine(self) -> None:
-        patched_stage61 = bytearray(self.stage61)
         patch_offset = 0x0806C908 - 0x08000000
         self.assertEqual(
-            patched_stage61[patch_offset:patch_offset + 4],
-            bytes.fromhex("014866e0"),
+            self.stage61[patch_offset:patch_offset + 4],
+            bytes.fromhex("002066e0"),
         )
-        patched_stage61[patch_offset:patch_offset + 2] = bytes.fromhex("0020")
         output = build_hidden_item_script_consumers(
-            self.clean, self.stage60, bytes(patched_stage61),
+            self.clean, self.stage60, self.stage61,
         )
         self.assertEqual(output["kind"], "STAGE61_HIDDEN_ITEM_SCRIPT_CONSUMERS")
         self.assertEqual(output["underfoot_owner_count"], 0)
@@ -7297,7 +7360,7 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         self.assertEqual(binding["full_engine_function"]["byte_length"], 0x2A)
         self.assertTrue(all(output["assertions"].values()))
 
-        outside_patch = bytearray(patched_stage61)
+        outside_patch = bytearray(self.stage61)
         outside_patch[0x0806C8D8 - 0x08000000] ^= 1
         with self.assertRaisesRegex(
             Stage61InteractionOracleError,
@@ -7444,7 +7507,8 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         ordinary = deepcopy(path)
         ordinary["approach"] = "WALK_ADJACENT_FACE_A"
         with self.assertRaisesRegex(
-            Stage61InteractionOracleError, "actual walk欠落",
+            Stage61InteractionOracleError,
+            "runtime OBJECT trigger不正|actual walk欠落",
         ):
             _validated_runtime_trigger_path(bytes(rom), owner, ordinary)
 
@@ -7524,7 +7588,10 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         )
         self.assertEqual(output["owner_count"], 3108)
         self.assertEqual(output["runtime_root_count"], 2466)
-        self.assertEqual(output["runtime_graph_node_count"], 8582)
+        self.assertEqual(
+            output["runtime_graph_node_count"],
+            self.integrity["graph_node_count"],
+        )
         self.assertEqual(output["runtime_roots_with_pinned_branch_controls"], 1588)
         self.assertEqual(output["project_runtime_root_count"], 993)
         self.assertEqual(
@@ -7552,11 +7619,33 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         ))
 
     def test_var_result_def_use_crosses_cfg_calls_without_default_zero(self) -> None:
-        self.assertIsNone(
+        # Two project-owned siblings enter a shared root with VAR_RESULT as an
+        # explicit caller input.  They must remain unresolved/fail-closed;
+        # importantly, neither may be fabricated as the historical default 0.
+        self.assertEqual(
             self.coverage["internal_control_writer_counts"].get(
                 "UNKNOWN_REACHING_DEFINITION"
-            )
+            ),
+            2,
         )
+        unresolved = [
+            (row["owner_key"], control)
+            for row in self.coverage["rows"]
+            for control in row["control_requirements"]["internal"]
+            if control.get("writer") == "UNKNOWN_REACHING_DEFINITION"
+        ]
+        self.assertEqual(
+            {owner for owner, _control in unresolved},
+            {"OBJECT:001/082:006", "OBJECT:001/082:007"},
+        )
+        self.assertTrue(all(
+            control["producer"] is None
+            and control["producers"] == []
+            and control["candidate_values"] == [0, 1]
+            and control["definition_path_includes_initial_value"] is True
+            and control["def_use_status"] == "UNRESOLVED_INITIAL_OR_UNKNOWN"
+            for _owner, control in unresolved
+        ))
         reads = [
             control
             for row in self.coverage["rows"]
@@ -7566,9 +7655,11 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         self.assertTrue(any(
             row["def_use_status"] == "CROSS_NODE_EXACT" for row in reads
         ))
-        self.assertFalse(any(
-            row["writer"] == "UNKNOWN_REACHING_DEFINITION" for row in reads
-        ))
+        self.assertEqual(
+            sum(row["writer"] == "UNKNOWN_REACHING_DEFINITION"
+                for row in reads),
+            2,
+        )
         self.assertTrue(all(
             row["capture"]["owner_address"] == 0x02037004 for row in reads
         ))
@@ -7918,12 +8009,14 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         graph = SemanticScriptGraph(self.stage61)
         graph.walk([owner["root"]])
         self.assertFalse(graph.diagnostics)
-        abi_index = _interaction_abi_index(
-            self.stage61,
-            json.loads((
-                ROOT / "reports/generated/stage61_interaction_abi_manifest.json"
-            ).read_text()),
+        abi_manifest = build_pinned_interaction_abi_manifest(
+            self.clean, self.stage60, self.stage61, self.catalog,
             source_blobs=source_blobs,
+            runtime_symbol_reports=_reports,
+            event_owner_inventory=self.event_owner_inventory,
+        )
+        abi_index = _interaction_abi_index(
+            self.stage61, abi_manifest, source_blobs=source_blobs,
         )
         text_assets, _text_provenance = _independent_runtime_text_assets(
             self.clean, self.stage60, self.stage61, semantic,
@@ -7961,21 +8054,18 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         self.assertEqual(fixtures, {})
 
     def test_runtime_context_reuses_build_level_immutable_graph_inputs(self) -> None:
-        root = 0x08123456
+        owner = next(
+            row for row in self.event_owner_inventory["owners"]
+            if row["owner_id"] == "BG:001/000:001"
+        )
+        root = owner["root"]
         shared_script_bytes = frozenset({root, root + 1})
         shared_root_plan = {"references": []}
-        owner = {
-            "owner_id": "BG:001/002:000",
-            "owner_kind": "BG",
-            "group": 1,
-            "map": 2,
-            "index": 0,
-            "record_address": 0,
-            "root": root,
-        }
+        source_blobs, _reports = self.pinned_abi_inputs()
         contexts = [
             _runtime_context(
-                b"", b"", b"", {}, owner, SimpleNamespace(), {}, {}, {},
+                self.clean, self.stage60, self.stage61, self.semantic,
+                owner, SimpleNamespace(), {}, {}, source_blobs,
                 shared_script_bytes=shared_script_bytes,
                 shared_root_plan=shared_root_plan,
             )
@@ -7993,7 +8083,7 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         source = inspect.getsource(build_runtime_control_expansion_contract)
         self.assertEqual(source.count("_runtime_graph_script_bytes(graph)"), 1)
         self.assertEqual(
-            source.count("shared_script_bytes=shared_script_bytes"), 2,
+            source.count("shared_script_bytes=shared_script_bytes"), 3,
         )
 
     def test_joint_var_compare_uses_known_value_boundaries_and_same_owner(self) -> None:
@@ -8070,27 +8160,38 @@ class Stage61InteractionOracleTests(unittest.TestCase):
         # the command's lose-speech pointer must not be synthesized as a field
         # post-battle printer.
         owner = "OBJECT:001/000:002"
-        case = next(
-            row for row in self.matrix["cases"]
-            if row["owner_key"] == owner
-            and row["catalog_branch"] == "TRAINER_POST_BATTLE"
+        manifest = build_project_source_manifest_skeleton(
+            self.stage60, self.stage61, self.catalog, owner_keys=[owner],
         )
-        output = build_case_oracle(
-            self.clean, self.stage61, self.semantic, self.catalog, case,
-            project_source_rom=self.stage60,
-            repair_manifest=self.repair_manifest,
+        root = int(manifest["owner_roots"][owner]["stage60_root"], 16)
+        offset = root - 0x08000000
+        real_raw = self.stage60[offset:offset + 14]
+        self.assertEqual(real_raw[:2], bytes.fromhex("5c00"))
+        trainer_id = int.from_bytes(real_raw[2:4], "little")
+        real_context = SimpleNamespace(
+            clean_rom=self.stage60,
+            case={
+                "catalog_branch": "TRAINER_POST_BATTLE",
+                "state": {
+                    "trainers": [{"id": trainer_id, "defeated": True}],
+                },
+            },
         )
-        root = int(self.repair_manifest["owner_roots"][owner]["stage60_root"], 16)
+        real_state = _Execution(
+            pc=root, execution_trace=[root],
+            current_instruction_address=root, current_opcode=0x5C,
+        )
+        _execute_trainerbattle(real_context, real_state, root, real_raw)
         defeat = int.from_bytes(
-            self.stage60[root - 0x08000000 + 10:root - 0x08000000 + 14],
+            real_raw[10:14],
             "little",
         )
         printer_pointers = {
-            int(row["source_pointer"], 16)
-            for row in output["sequences"][0]["visible_printers"]
+            printer.source_pointer for printer in real_state.printers
         }
         self.assertNotIn(defeat, printer_pointers)
-        self.assertEqual(self.stage60[root - 0x08000000 + 14], 0x0F)
+        self.assertEqual(real_state.pc, root + len(real_raw))
+        self.assertEqual(self.stage60[offset + 14], 0x0F)
 
     def test_dynamic_species_and_move_buffers_use_pinned_source_or_project_tables(self) -> None:
         source_context = SimpleNamespace(

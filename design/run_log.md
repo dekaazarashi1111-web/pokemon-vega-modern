@@ -3851,3 +3851,24 @@ commit `f8dfafbed7dbc0dc5fe676ea36594c6bd182d2c7`では、既存復元scannerが
 giftの残る例外は_runner_object_postconditionsのAPPLY_ORDERED_MOVEMENTでactive object preimageがない箇所。VAR_LAST_TALKEDは既に実際のcontext.npc.local_idから導出され、未知objectを黙認する修正はしていない。元のall14root検証を残し、同じ入力・完全なrequired postconditions・独立図鑑検証をrootごとの別test IDでも実行する回帰を追加した。一括testの先行例外で他rootの検証が隠れず、従来の限定結果コメントだけでroot別残件を識別できる。ROM byte・例外本文・subtest値を新たな経路で出力しない。source変更はなく、テスト削除/skip/検証無効化もない。
 
 未解決群はTrainer metadata6件とTrainerChangeKitContentTest.setUpClass、Stage61InteractionOracleTests.setUpClassの新ROM/旧repair混在、gift移動object preimage。full-unit/allはfocused完全PASS前なので未実行。既存Draft/open/unmerged・main直接変更なし・別Stage60監査IN_PROGRESSを維持する。Actions生ログ・artifact本文は取得していない。全体DONEではなく、適用後HEADでfocusedを要求し最新限定結果を引き継ぐ。
+
+## 2026-09-07T21:02:14+09:00
+
+- Task: `USER-20260907-STAGE61-FOCUSED-REPAIR` / PR #3のStage61 focused errors修復
+- Status: IN_PROGRESS（local受入PASS、exact HEADのGitHub focused待ち）
+- Summary:
+  - PR #3の最新HEAD `9de7143911cdeaacb1a25bf3c05af611567e44db`を正として隔離worktreeへprivate環境をhash復元した。既存patch requestは同HEADでsourceへ適用・削除済みであることを確認した。
+  - gift root `0x088B3190`は、legacy catalogにない`interaction_execution`を捏造せず、現ROMのruntime trigger geometryから同一provenanceのplayer位置を得る既適用修復を実測した。playerはlocal ID 255のruntime-only objectで、NPC templateへ追加しない。
+  - `Stage61InteractionOracleTests.setUpClass`は、旧strict ROMと新namespace reportを混在させず、ROM・semantic・enriched catalogが同時生成されSHA結合された現行critical cohortへ統一した。legacy catalog/matrixのinteractionとexternal controlは現ROMから再投影し、欠落を空fixtureとして扱わない。
+  - テスト側の手書きABI source一覧を本番builderのallowlistへ統一し、Stage61 Factory adapter sourceを含むexact source境界を維持した。未知VAR_RESULT 2件は既定値0を捏造せず、ownerを固定してfail-closedのまま検証する。
+- Files changed:
+  - `tests/test_stage61_interaction_oracle.py`
+  - `design/run_log.md`
+- Verify:
+  - 指定gift単体: 1件PASS（37.135秒）。gift class: 23件PASS（178.775秒）。
+  - `Stage61InteractionOracleTests`: 54件PASS（197.839秒）。
+  - `python3 scripts/validate_task_graph.py`: PASS。`python3 scripts/guard_private_files.py`: PASS。`git diff --check`: PASS。
+  - Stage62 ROM SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。local検証中の変更なし。
+- Commit: `-`（本エントリを含むforward commit）
+- Network:
+  - GitHub API/CLIでPR #3のDraft/open/未merge、最新HEAD、既存Actionsを確認した。秘密情報、private asset、ROM/save内容は送信・記録していない。
