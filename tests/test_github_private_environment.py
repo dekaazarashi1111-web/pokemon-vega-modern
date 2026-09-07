@@ -27,6 +27,11 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         private_root = root.parent / "PRIVATE_INPUTS"
         (private_root / "roms").mkdir(parents=True)
         (private_root / "roms/clean.gba").write_bytes(b"owned-rom")
+        integration_root = root.parent / "integration_inputs"
+        (integration_root / "trainer-kit").mkdir(parents=True)
+        (integration_root / "trainer-kit/KIT_MANIFEST.json").write_text(
+            '{"source":"original"}\n', encoding="utf-8"
+        )
         (root / "userfile/imports").mkdir(parents=True)
         (root / "userfile/imports/design.txt").write_text("design", encoding="utf-8")
         config = {
@@ -41,6 +46,11 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
                         {
                             "source": "@workspace_parent/PRIVATE_INPUTS",
                             "destination": ".local/github-private-environment/PRIVATE_INPUTS",
+                            "exclude": [],
+                        },
+                        {
+                            "source": "@workspace_parent/integration_inputs",
+                            "destination": "userfile/imports/integration_inputs",
                             "exclude": [],
                         },
                         {
@@ -79,7 +89,7 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         restored = private_env.restore_archive(
             root, first, config["archives"][0], force=False
         )
-        self.assertEqual(restored["restored"], 2)
+        self.assertEqual(restored["restored"], 3)
         self.assertEqual(
             private_env.restore_links(root, config, force=False), 1
         )
@@ -87,6 +97,11 @@ class GitHubPrivateEnvironmentTests(unittest.TestCase):
         self.assertEqual(
             (root / "userfile/imports/design.txt").read_text(encoding="utf-8"),
             "design",
+        )
+        self.assertEqual(
+            (root / "userfile/imports/integration_inputs/trainer-kit/KIT_MANIFEST.json")
+            .read_text(encoding="utf-8"),
+            '{"source":"original"}\n',
         )
 
     def test_secret_material_and_nested_private_key_are_rejected(self) -> None:

@@ -104,6 +104,8 @@ def _load_config(path: Path) -> dict:
 def _resolve_source(root: Path, value: object) -> Path:
     if value == "@workspace_parent/PRIVATE_INPUTS":
         return root.parent / "PRIVATE_INPUTS"
+    if value == "@workspace_parent/integration_inputs":
+        return root.parent / "integration_inputs"
     path = _safe_relative(value, "source")
     return root.joinpath(*path.parts)
 
