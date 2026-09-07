@@ -47,6 +47,12 @@ Actionsがprivate資材を復元し、guardと指定テストを通した時だ�
 branchへcommit／pushします。PRの自動返信からnew SHAを取得してください。失敗時にexpected値の緩和、
 skip化、ROM／save／Release資材のGit追加、workflowやguardの変更で回避しないでください。
 
+指定テストがFAIL／ERROR／SKIPの場合も、PRの自動返信にexact test ID、outcome、4種の件数、例外class、
+Git管理中Python sourceのframeと行番号だけが表示されます。その限定結果を次の修正入力にし、例外本文、
+actual／expected値、subtest値、private path、生ログやartifact本文を要求・転載しないでください。限定結果の
+schema、HEAD、test ID、tracked frameを検証できない場合はコメントせずfail closedとなり、修正のcommit／pushも
+行われません。
+
 通常サイズのファイルは従来どおりGitHub connectorで直接編集してください。`/vega-read`と
 `/vega-patch`の詳細な制約は`docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md`を正とします。
 

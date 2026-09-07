@@ -135,6 +135,34 @@ class GitHubLargeFileBridgeTests(unittest.TestCase):
                 self.root, ".chatgpt/patches/change.patch", head,
             )
 
+    def test_patch_rejects_safe_result_runner_and_sanitizer_targets(self) -> None:
+        for target in (
+            "scripts/run_github_patch_test.py",
+            "scripts/github_patch_test_summary.py",
+        ):
+            subprocess.run(
+                ["git", "reset", "--hard", "-q", self.head],
+                cwd=self.root, check=True,
+            )
+            (self.root / "scripts").mkdir(exist_ok=True)
+            (self.root / target).write_text("old\n", encoding="utf-8")
+            subprocess.run(["git", "add", target], cwd=self.root, check=True)
+            subprocess.run(
+                ["git", "commit", "-qm", "protected source"],
+                cwd=self.root, check=True,
+            )
+            head = self._commit_patch(
+                f"""diff --git a/{target} b/{target}
+--- a/{target}
++++ b/{target}
+@@ -1 +1 @@
+-old
++new
+"""
+            )
+            with self.subTest(target=target), self.assertRaises(BridgeError):
+                apply_patch(self.root, ".chatgpt/patches/change.patch", head)
+
     def test_patch_rejects_create_delete_and_secret_candidates(self) -> None:
         head = self._commit_patch(
             """diff --git a/tools/new.py b/tools/new.py

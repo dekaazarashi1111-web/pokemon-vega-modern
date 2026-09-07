@@ -1497,3 +1497,14 @@
   - Trainer content生成器はprivate入力rootの歴史的inventoryを優先し、現行生成reportとの差を混在させない。
   - PR #3の未完了一時診断を整理して本修復を反映し、Trainer系7件をfocused結果から解消した。残る3 errorsはStage61系に限定された。
 - Verify: 104,736,629 bytes／672 filesのassetを2回byte同一構築、remote再取得・外側／全member hash・clean restore・Trainer全file再生成一致PASS。local関連unit 85件PASS。GitHub run `34083238827`は471 tests / 0 failures / 3 errors / 0 skips、Stage62 ROM unchanged。
+
+## 2026-09-07T21:30:29+09:00
+
+- Version: `github-vega-patch-safe-failure-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-20260907-VEGA-PATCH-SAFE-FAILURE` / `/vega-patch`の安全な失敗理由返信
+- Summary:
+  - 単一unittestの全process出力を破棄し、成否を固定schema JSONだけで受け渡すrunnerを追加した。
+  - exact HEAD／test ID／tracked Python frameを固定sanitizerで再検証し、malformed時はコメントせずfail closedとした。
+  - FAIL／ERROR／SKIPでは安全な限定結果だけをPRへ返し、bot commit／pushを禁止する。PASS時の既存適用経路は維持した。
+- Verify: 関連unit 44件、task graph、private guard、YAML parse、actionlint v1.7.12、`git diff --check`、PR #12 source-validation run `34122126008`／`34122129285` PASS。
