@@ -195,8 +195,16 @@ def _load_union(input_root: Path) -> dict[str, SourceTable]:
     return union
 
 
-def _load_inventory(repo: Path) -> list[dict[str, object]]:
-    path = repo / "reports/generated/id_inventory.json"
+def _inventory_path(repo: Path, input_root: Path) -> Path:
+    snapshot = input_root / "reports/generated/id_inventory.json"
+    if snapshot.exists() or snapshot.is_symlink():
+        if snapshot.is_symlink() or not snapshot.is_file():
+            raise BuildError(f"Trainer固定T02 inventoryが通常fileではありません: {snapshot}")
+        return snapshot
+    return repo / "reports/generated/id_inventory.json"
+
+
+def _load_inventory(path: Path) -> list[dict[str, object]]:
     data = json.loads(path.read_text(encoding="utf-8"))
     references = data.get("script_references")
     if not isinstance(references, list):
@@ -826,7 +834,8 @@ def build(repo: Path, input_root: Path, output: Path) -> dict[str, object]:
     union = _load_union(input_root)
     encounters = list(union["trainer_encounters.csv"].rows)
     _validate_unique(encounters, "encounter_key", "union encounter")
-    inventory = _load_inventory(repo)
+    inventory_path = _inventory_path(repo, input_root)
+    inventory = _load_inventory(inventory_path)
     archive, kind9 = _classify_archives(encounters, inventory)
     allocations = _allocate_runtime_ids(encounters, archive)
     normalized, ledger, consumers = _normalize(union, archive, kind9, allocations)
@@ -851,7 +860,7 @@ def build(repo: Path, input_root: Path, output: Path) -> dict[str, object]:
         input_root / AUTHORING_DIR / "source/v5/registries" / filename
         for filename in REGISTRY_FILES.values()
     )
-    source_files.append(repo / "reports/generated/id_inventory.json")
+    source_files.append(inventory_path)
     # Absolute parent placement differs between the live recovered workspace
     # and a freshly extracted full snapshot.  Sort by the portable manifest
     # path so the generated file remains byte-identical in both layouts.
