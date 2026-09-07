@@ -3967,3 +3967,14 @@
   - GitHub Actions `source-validation` run `34134327411`: PASS。
 - Commit: `-`（本エントリを含む公開記録commit）
 - Network: GitHub remoteへのpush、GitHub API／Actions結果の読戻しに使用。credential／tokenは記録していない。
+
+
+<!-- USER-MODERNIZATION-P01-20260908-SOURCE-CHECKPOINT -->
+## 2026-09-08 USER-MODERNIZATION-P01 検証済みsource checkpoint
+
+- 結果: BLOCKED。P01受入未完了。P02/P03未開始。ROM/save/プレイ基準は未変更。
+- 検証source HEAD: `62b0c76e4b402de8d3253566a3f606f99b0cfd21`
+- Actions: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34147922725
+- 既存focused testsと既存カタログのbuild/check・guard・task整合性が成功。新投影の全consumer接続とROM検証の成功を意味しない。
+- 限定結果: `{"errors": 0, "failures": 0, "identity_contract_sha256": "00fa015276eef8506c57caa660ec3093ce137bd0506cb7db5af062cea6b1b265", "identity_contract_size": 9549, "skipped": 0, "tests": 27}`
+- 採用入力・変更理由・親候補・残件・再開点: design/modernization_p01_checkpoint.md、config/modernization_inputs.json、config/modernization_candidate.json。
