@@ -10,7 +10,6 @@ permissions:
 jobs:
   focused:
     if: >-
-      github.event.repository.private == true &&
       github.actor == github.repository_owner &&
       ((github.event_name == 'pull_request' &&
         github.event.pull_request.number == 3 &&

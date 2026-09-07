@@ -3872,3 +3872,21 @@ giftの残る例外は_runner_object_postconditionsのAPPLY_ORDERED_MOVEMENTでa
 - Commit: `-`（本エントリを含むforward commit）
 - Network:
   - GitHub API/CLIでPR #3のDraft/open/未merge、最新HEAD、既存Actionsを確認した。秘密情報、private asset、ROM/save内容は送信・記録していない。
+
+## 2026-09-07T21:17:03+09:00
+
+- Task: `USER-20260907-STAGE61-FOCUSED-REPAIR` / public repositoryでのfocused実行境界修復
+- Status: IN_PROGRESS（exact HEADのGitHub focused待ち）
+- Summary:
+  - push run `34119785024`はテストを開始せず、repositoryがPublicであるのにjob条件が`github.event.repository.private == true`を要求したためskipされた。
+  - owner、PR #3、同一repository、固定branch、exact HEAD、Draft/open/未mergeの検査は維持し、visibilityだけに依存する実行不能条件を除去した。
+- Files changed:
+  - `.github/workflows/private-unit-focused-r2.yml`
+  - `design/run_log.md`
+- Verify:
+  - `python3 scripts/validate_task_graph.py`: PASS。
+  - `python3 scripts/guard_private_files.py`: PASS。
+  - `git diff --check`: PASS。
+- Commit: `-`（本エントリを含むforward commit）
+- Network:
+  - GitHub API/CLIでrepository visibilityがPublicであること、PR #3のDraft/open/未merge、runのjob-level skipを確認した。秘密情報、private asset、ROM/save内容は取得・記録していない。
