@@ -1,0 +1,14 @@
+diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
+--- a/tools/stage61_interaction_oracle.py
++++ b/tools/stage61_interaction_oracle.py
+@@ -16045,7 +16045,11 @@
+     def current_object(local_id: int) -> dict[str, Any]:
+         value = runtime_after.get(local_id)
+         if not isinstance(value, dict):
++            if local_id == 0xFF:
++                _fail("RUNNER_RUNTIME_PLAYER_PREIMAGE_MISSING")
++            if local_id == context.npc.get("local_id"):
++                _fail("RUNNER_RUNTIME_INTERACTED_OBJECT_PREIMAGE_MISSING")
+             _fail(f"runner postcondition active runtime object欠落:{local_id}")
+         return value
+ 
