@@ -29,7 +29,8 @@ symlink、未宣言member、hash不一致を拒否する。
 
 workspace親の`integration_inputs`はinputs asset内の`userfile/imports/integration_inputs`へ復元する。
 Trainer原本metadataを派生成果から逆生成せず、`source_manifest.json`のsize／SHA-256と照合できる
-受領byteをGitHub-hosted testでも使用する。
+受領byteをGitHub-hosted testでも使用する。Trainer最終統合が参照したStage34時点のT02
+`id_inventory.json`も同じ固定入力rootへ収録し、後続stageで更新された現行reportと混同しない。
 
 SSH private key、device host、credentialはReleaseへ入れない。受領済みiPad toolkitのうち
 `credentials/**`と秘密鍵を含む元ZIPは明示除外する。実機接続はself-hosted runner userの
