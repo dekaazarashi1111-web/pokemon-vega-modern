@@ -49,3 +49,20 @@ diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_inter
              .read_text()
          )
          cls.case_by_id = {row["case_id"]: row for row in cls.matrix["cases"]}
+@@ -12502,3 +12510,16 @@
++    def test_restored_final_repair_fixture_is_rom_bound(self) -> None:
++        # State-only regeneration is not the final event-repair generation.
++        # Verify the restored producer outputs before using that cohort.
++        rom = (ROOT / "build/stages/61_display_npc_event_audit.gba").read_bytes()
++        manifest = json.loads((
++            ROOT / "reports/generated/stage61_interaction_repair_manifest.json"
++        ).read_text())
++        catalog = json.loads((
++            ROOT / "reports/generated/stage61_npc_interaction_catalog_legacy.json"
++        ).read_text())
++        self.assertEqual(hashlib.sha256(rom).hexdigest(), manifest["stage61_sha256"])
++        audit_repaired_stage61_runtime_integrity(rom, catalog, manifest)
++
+     def test_gift_dex_projection_uses_each_roots_input_species(self) -> None:
+         from tools.stage61_interaction_oracle import (
+             _runner_effect_rows, _runner_persistent_postconditions,
