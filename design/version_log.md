@@ -1503,3 +1503,14 @@ Trainer回収commit `ac992a3951711fcd3b99e84bf1ce0a1889a5c38e`：元metadataのs
 最新限定結果comment5560798053 /run34046470593 /HEAD dac899faaa837828ccbb7a4ee6d794cd54c27082は447 tests /6 failures /3 errors /0 skipped、Stage62 ROM unchanged=true。schema1件に続き、入力species由来の独立した図鑑検証で13失敗を解消した。元期待値を失敗actualへ合わせず4 owner完全一致と改変拒否を維持する。f8dfafbed7dbc0dc5fe676ea36594c6bd182d2c7はmetadata候補のsize事前除外を修正し、元size/SHAのみ採用する10回帰をローカルPASS、focused要求comment5560797312。private成功は未確認。
 
 interaction証跡同時生成の前案はbridge失敗で未適用（comment5560772064）。builder/repair/ABIを変えず、その準備patchをroot別回帰と本証跡に置換した。giftの元all14root検証を残して個別rootの完全postcondition検証を追加し、既存限定コメントで残件を特定する。Trainer metadataとStage61証跡混在/移動objectが未解決で、full-unit/allは未実行。ROM/save/Private Release資材・main・workflowは変更せず、Draft/open/unmergedと別タスクIN_PROGRESSを維持。全体完了版ではない。
+
+## 2026-09-07T21:46:45+09:00
+
+- Version: `stage61-focused-interaction-repair-r2`
+- Commit: `-`（本エントリを含むforward完了commit）
+- Task: `USER-20260907-STAGE61-FOCUSED-REPAIR` / PR #3のStage61 focused errors修復
+- Summary:
+  - gift playerを正確なphysical positionからruntime-only objectとして初期化し、NPC templateへlocal ID 255を追加しない修復を反映した。
+  - interaction fixtureを現行critical生成cohortへ統一し、旧ROM／repair世代混在とABI入力の手書き差を解消した。
+  - PR #3はDraft/open/未mergeのまま維持し、Public repositoryでもowner・PR・branch・exact HEAD境界付きfocusedを実行可能にした。
+- Verify: local gift 1件／gift class 23件／interaction 54件、task graph、private guard、actionlint、diff check PASS。GitHub run `34121107539`は533 tests / 0 failures / 0 errors / 0 skips、Stage62 ROM unchanged=true。

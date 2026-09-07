@@ -3890,3 +3890,28 @@ giftの残る例外は_runner_object_postconditionsのAPPLY_ORDERED_MOVEMENTでa
 - Commit: `-`（本エントリを含むforward commit）
 - Network:
   - GitHub API/CLIでrepository visibilityがPublicであること、PR #3のDraft/open/未merge、runのjob-level skipを確認した。秘密情報、private asset、ROM/save内容は取得・記録していない。
+
+## 2026-09-07T21:46:45+09:00
+
+- Task: `USER-20260907-STAGE61-FOCUSED-REPAIR` / PR #3のStage61 focused errors修復
+- Status: DONE
+- Summary:
+  - gift movement operand `0x00FF`をNPC templateで代用せず、現行runtime trigger geometryと同一provenanceのphysical player positionからlocal ID 255のruntime-only player objectを初期化する修復を確認した。通常NPC欠落、map不一致、位置fixture不足の拒否は維持した。
+  - Stage61 interaction fixtureを現行critical ROM・metadata・semantic plan・enriched catalogの同時生成cohortへ統一し、旧strict ROM／repair manifestとの世代混在を解消した。legacy interaction／external controlは現ROMから再投影し、欠落を捏造または空集合化しない。
+  - 本番builderのABI入力allowlistをテストでも使用し、Stage61 Factory adapter sourceを含むexact入力境界へ統一した。patch request `.chatgpt/patches/fix-stage61-runtime-object.patch`はsource適用済みで削除された状態を維持した。
+  - Public repositoryで実行不能だったvisibility条件だけを除去し、owner、PR #3、同一repository、固定branch、exact HEAD、Draft/open/未mergeの境界を維持してfocusedを実行した。
+- Files changed:
+  - `tools/stage61_interaction_oracle.py`（既存patch適用commitを確認）
+  - `tests/test_stage61_interaction_oracle.py`
+  - `.github/workflows/private-unit-focused-r2.yml`
+  - `.chatgpt/patches/fix-stage61-runtime-object.patch`（削除済み）
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - 指定gift単体1件、gift class 23件、`Stage61InteractionOracleTests` 54件: local PASS。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、actionlint v1.7.12、`git diff --check`: PASS。
+  - exact HEAD `183dc344f411765b31752f676500130bc308a4df`のprivate-unit-focused-r2 run `34121107539`: 533 tests / 0 failures / 0 errors / 0 skips、expected failures 0、unexpected successes 0、対象3 error IDとTrainer系再発なし。
+  - Stage62 ROM unchanged=true、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`。
+- Commit: `-`（本エントリを含むforward完了commit）
+- Network:
+  - GitHub API/CLIでPR #3のDraft/open/未merge、focused runと限定`result.json`を確認した。Actions生ログ、ROM／save、private asset本文、credential、tokenは取得・記録していない。
