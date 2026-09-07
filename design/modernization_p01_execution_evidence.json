@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P01",
+  "status": "BLOCKED_NOT_ACCEPTANCE_PASS",
+  "source_validation": {
+    "run": 34147040199,
+    "conclusion": "success",
+    "pr_head": "1a8cb71622850f35e5f62cb2d551cd8f3bcea7a0",
+    "tested_checkout": "c6dd095e4d2e10a6cd8a597d0f3fd29cb999648b",
+    "checkout_kind": "SYNTHETIC_PR_MERGE_INTO_UNCHANGED_MAIN",
+    "tests": 60,
+    "catalog_build_check": "PASS"
+  },
+  "exact_head_focused": {
+    "run": 34147922725,
+    "job": 101823847975,
+    "tested_checkout": "62b0c76e4b402de8d3253566a3f606f99b0cfd21",
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "catalog_build_check": "PASS",
+    "private_file_guard": "PASS",
+    "task_graph_before_after_recording": "PASS",
+    "record_commit": "88fb5031a6849d38410bb845c29fb9ae1169fe1e",
+    "record_push": "SUCCESS_CONFIRMED_BY_REMOTE_PR_HEAD",
+    "overall_run": "failure",
+    "failed_operation": "POST_PUSH_LOCAL_HEAD_EQUALS_PR_METADATA_HEAD",
+    "observed_timing_utc": {
+      "push_success": "2026-09-07T17:31:23.9648838Z",
+      "comparison_failure": "2026-09-07T17:31:24.5911748Z",
+      "pr_updated_at": "2026-09-07T17:31:25Z"
+    },
+    "diagnosis": "PR metadataの反映遅延と整合する。失敗時の返却SHA自体はlog未記録のため断定はしない。push成功と後続remote HEAD一致は確認済み。",
+    "repair": "write前はPR HEADとremote git refをともに確認。write後はremote git refの完全一致を上限5回で検査する。force push・期待SHA緩和は行わない。"
+  },
+  "catalog": {
+    "path": "generated/modernization/current_catalog.json",
+    "size": 4433264,
+    "sha256": "f3738379b987bd3df3be99aa5fd3462d653bebf97d7e7f370b886bf28caaf30a",
+    "species": 1621,
+    "moves": 1063,
+    "abilities": 312,
+    "items": 999,
+    "types": 25,
+    "evolution_key_pairs": 553,
+    "form_key_pairs_checked": 388,
+    "form_excluded_methods": 115,
+    "item_supply_key_pairs": 999,
+    "move_ability_runtime_refs": "NOT_RUN_PRIVATE_GENERATED_INPUT_REQUIRED"
+  },
+  "implementation_update_rejection": {
+    "operation": "GitHub.create_tree",
+    "result": "OpenAI safety verification block",
+    "branch_updated": false,
+    "same_rejected_update_retried_through_other_route": false,
+    "remaining": "追加の全投影consumer・現行Wiki・ROM側訂正生成は未反映"
+  },
+  "rom": {
+    "read_or_generated_in_this_execution": false,
+    "runtime_verified": false,
+    "new_rom_hash": null,
+    "save_or_collection_bit_changed": false,
+    "active_play_baseline_changed": false
+  }
+}

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "task": "USER-MODERNIZATION-P01",
   "candidate_key": "P01_IDENTITY_SOURCE_CHECKPOINT",
-  "status": "IN_PROGRESS_NOT_ROM_VALIDATED",
+  "status": "BLOCKED",
   "candidate_kind": "SOURCE_AND_NORMALIZED_METADATA_ONLY",
   "parent_selection": "INITIAL_MODERNIZATION_USES_EXPLICIT_ACTIVE_PLAY_BASELINE",
   "parent": {
@@ -24,16 +24,30 @@
   },
   "adopted_delta": [
     "Canonical keyとIDの意味照合・旧取得表のCaterpie/Egg訂正を現行用生成へ限定する",
-    "Caterpie649だけを原作習得の採用対象へ戻す。内部Egg412と他の除外を維持する"
+    "Caterpie649だけを原作習得の採用対象へ戻す方針。内部Egg412と他の除外を維持する"
   ],
+  "verified_source_checkpoint": {
+    "head": "62b0c76e4b402de8d3253566a3f606f99b0cfd21",
+    "run": 34147922725,
+    "focused_tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "catalog_size": 4433264,
+    "catalog_sha256": "f3738379b987bd3df3be99aa5fd3462d653bebf97d7e7f370b886bf28caaf30a",
+    "overall_run_status": "FAILURE_POST_PUSH_PR_METADATA_CHECK_ONLY",
+    "record_commit_confirmed_remote": "88fb5031a6849d38410bb845c29fb9ae1169fe1e",
+    "details": "design/modernization_p01_execution_evidence.json"
+  },
   "rom_delta": null,
   "rom_generated": false,
   "save_or_collection_bit_change": false,
   "play_baseline_switch": false,
   "stage61_learnset_archive_is_parent_rom": false,
   "unverified_gates": [
+    "正規化投影の全consumer接続と現行用Wiki生成",
     "非公開ROM入力の安全なrunner復元経路",
-    "同じStage62 byte上のID consumer実測と必要なmGBA回帰"
+    "同じStage62 byte上のID consumer実測・実容量・必要なmGBA回帰"
   ],
   "next_phase": {"P02": "NOT_STARTED", "P03": "NOT_STARTED"}
 }

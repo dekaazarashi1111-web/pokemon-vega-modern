@@ -18,7 +18,7 @@
     },
     {
       "input_key": "RESTORATION_AUDIT",
-      "version": "2026-09-05",
+      "version": "UNDECLARED_IDENTIFY_BY_SHA256",
       "received_name": "Vega_Stage61_ID固定_原作復元監査資料(2).zip",
       "size": 67698,
       "sha256": "448608de12a431bef8eaaaf2dc3024743bfd77ad7925e5fb6ae01b6086cfac08",
@@ -30,6 +30,14 @@
       "runner_normalized_restore": "EXACT_HEAD_GIT_CHECKOUT:content/modernization/identity_contract.json"
     }
   ],
+  "normalized_projection": {
+    "path": "content/modernization/identity_contract.json",
+    "size": 9549,
+    "sha256": "00fa015276eef8506c57caa660ec3093ce137bd0506cb7db5af062cea6b1b265",
+    "runner_measurement_run": 34147922725,
+    "runner_measurement_head": "62b0c76e4b402de8d3253566a3f606f99b0cfd21",
+    "verification_scope": "NORMALIZED_FILE_BYTES_ONLY_NOT_ALL_CONSUMER_ADOPTION_OR_ORIGINAL_ZIP_RESTORE"
+  },
   "safe_reacquisition": {
     "originals": "ユーザーの非公開Libraryで内容のsize/SHA-256により識別する。複製番号や一時コンテナpathをidentityにしない。",
     "runner": "公開Gitにはレビュー済みのID・対象集合・hash投影のみを置く。Actionsはexact HEADから復元する。元ZIPをActionsが自動取得できるとは扱わない。",
