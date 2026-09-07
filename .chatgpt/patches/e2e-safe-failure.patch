@@ -1,0 +1,12 @@
+diff --git a/tests/test_github_patch_test_summary.py b/tests/test_github_patch_test_summary.py
+--- a/tests/test_github_patch_test_summary.py
++++ b/tests/test_github_patch_test_summary.py
+@@ -85,7 +85,7 @@ class GitHubPatchTestSummaryTests(unittest.TestCase):
+                 self.assertIn(f"test: `{TEST_ID}`", text)
+                 self.assertIn("例外本文・actual/expected値", text)
+         failure = self.render(self.result("FAIL"))
+-        self.assertIn("AssertionError", failure)
++        self.assertIn("E2E_DELIVERATELY_ABSENT", failure)
+         self.assertIn("tests/test_example.py:2", failure)
+ 
+     def test_schema_head_test_and_counts_are_exact(self) -> None:
