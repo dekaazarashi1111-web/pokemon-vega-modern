@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P01",
+  "candidate_key": "P01_IDENTITY_SOURCE_CHECKPOINT",
+  "status": "IN_PROGRESS_NOT_ROM_VALIDATED",
+  "candidate_kind": "SOURCE_AND_NORMALIZED_METADATA_ONLY",
+  "parent_selection": "INITIAL_MODERNIZATION_USES_EXPLICIT_ACTIVE_PLAY_BASELINE",
+  "parent": {
+    "stage": 62,
+    "rom_path": "build/stages/62_npc_placement_integrity_repair.gba",
+    "size": 33554432,
+    "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+    "crc32": "73E4FB73",
+    "identity_source": "config/active_play_baseline.json",
+    "verification_scope": "INHERITED_RECORDED_IDENTITY_NOT_REMEASURED_ROM_IN_THIS_TASK"
+  },
+  "source_lineage": {
+    "default_branch": "main",
+    "default_head_at_start": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
+    "resumed_head": "98081d0ac4bbac38dd99407a2e10ed665165f45f",
+    "branch": "chatgpt/user-modernization-p01-20260908",
+    "pull_request": 14,
+    "preserve_previous_p01_commits": true
+  },
+  "adopted_delta": [
+    "Canonical keyとIDの意味照合・旧取得表のCaterpie/Egg訂正を現行用生成へ限定する",
+    "Caterpie649だけを原作習得の採用対象へ戻す。内部Egg412と他の除外を維持する"
+  ],
+  "rom_delta": null,
+  "rom_generated": false,
+  "save_or_collection_bit_change": false,
+  "play_baseline_switch": false,
+  "stage61_learnset_archive_is_parent_rom": false,
+  "unverified_gates": [
+    "非公開ROM入力の安全なrunner復元経路",
+    "同じStage62 byte上のID consumer実測と必要なmGBA回帰"
+  ],
+  "next_phase": {"P02": "NOT_STARTED", "P03": "NOT_STARTED"}
+}
