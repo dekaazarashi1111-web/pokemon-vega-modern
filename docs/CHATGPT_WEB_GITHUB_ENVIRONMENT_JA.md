@@ -13,8 +13,8 @@ ChatGPT Webが実行できるownerのPRコメントを、固定allowlistのActio
 ## Repository構成
 
 - 通常Git: ソース、manifest、全unit test、mGBA runner、対戦CLI、設計正本。
-- private Release `private-environment-v1`: Git管理外のROM、patch、save、受領原本、固定source、
-  generated report、現行build state。
+- private Release `private-environment-v1`: Git管理外のROM、patch、save、受領原本、Trainer
+  `integration_inputs`、固定source、generated report、現行build state。
 - GitHub-hosted Actions: private ReleaseをSHA-256検証して復元し、unit test、Stage62 check、
   Stage62 mGBA、対戦CLIのoffline回帰を実行する。
 - self-hosted Actions: 現在のWSLと同じLAN／owner-only device設定を使い、実iPadの対戦CLIを実行する。
@@ -26,6 +26,10 @@ mGBAの実行版を`infra/toolchain_manifest.json`と照合する。OS package r
 private ReleaseはGit履歴へROMを入れない。各assetの外側SHA-256と全memberのsize／SHA-256を
 `config/github_private_environment.json`およびasset内manifestで固定する。復元処理はpath traversal、
 symlink、未宣言member、hash不一致を拒否する。
+
+workspace親の`integration_inputs`はinputs asset内の`userfile/imports/integration_inputs`へ復元する。
+Trainer原本metadataを派生成果から逆生成せず、`source_manifest.json`のsize／SHA-256と照合できる
+受領byteをGitHub-hosted testでも使用する。
 
 SSH private key、device host、credentialはReleaseへ入れない。受領済みiPad toolkitのうち
 `credentials/**`と秘密鍵を含む元ZIPは明示除外する。実機接続はself-hosted runner userの
