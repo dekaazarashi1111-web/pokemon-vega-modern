@@ -1,60 +1,37 @@
-diff --git a/tools/stage61_interaction_oracle.py b/tools/stage61_interaction_oracle.py
---- a/tools/stage61_interaction_oracle.py
-+++ b/tools/stage61_interaction_oracle.py
-@@ -16063,5 +16063,11 @@
-         if relation == "APPLY_ORDERED_MOVEMENT":
-             if not loaded:
-+                continue
-+            # Pinned script_movement.c:20-24 returns without starting a
-+            # movement when the active local-id/map lookup fails.  Template
-+            # absence is not evidence for LOCALID_PLAYER (255), whose engine
-+            # lookup is separate; keep that missing preimage fail-closed.
-+            if local_id < 0xFF and runtime_after.get(local_id) is None:
-                 continue
-             value = current_object(local_id)
-             movement = effect.get("movement")
 diff --git a/tests/test_stage61_interaction_oracle.py b/tests/test_stage61_interaction_oracle.py
 --- a/tests/test_stage61_interaction_oracle.py
 +++ b/tests/test_stage61_interaction_oracle.py
-@@ -12632,3 +12632,41 @@
-+    def test_ordered_movement_requires_active_local_object_not_template(self) -> None:
-+        from tools.stage61_interaction_oracle import _runner_object_postconditions
-+        import struct
+@@ -12472,3 +12472,33 @@
++    def test_gift_root_088b3190_player_movement_operand_and_resolution(self) -> None:
++        from tools.stage61_interaction_oracle import (
++            _runner_effect_rows, _runner_map_object_templates,
++        )
 +
-+        context = self._context(case={"interaction": {"group": 1, "map": 2}})
-+        template = bytearray(0x18)
-+        template[0] = 7
-+        struct.pack_into("<hh", template, 4, 2, 3)
-+        struct.pack_into("<H", template, 0x14, 0x200)
-+        effect = {
-+            "domain": "objects", "owner": "LOCAL_OBJECT:7",
-+            "relation": "APPLY_ORDERED_MOVEMENT", "target_map": None,
-+            "movement": {"actions": [0x08]},
-+        }
-+        with patch(
-+            "tools.stage61_interaction_oracle._runner_map_object_templates",
-+            return_value=[template],
-+        ):
-+            self.assertEqual(_runner_object_postconditions(context, [effect]), [{
-+                "local_id": 7, "after": {
-+                    "map": "1/2", "invisible": False, "visible": True,
-+                    "current": [9, 11], "previous": [9, 10],
-+                },
-+            }])
-+            context.case["state"]["flags"] = [{"id": 0x200, "value": True}]
-+            self.assertEqual(_runner_object_postconditions(context, [effect]), [])
-+        context.case["state"]["flags"] = []
-+        with patch(
-+            "tools.stage61_interaction_oracle._runner_map_object_templates",
-+            return_value=[],
-+        ):
-+            self.assertEqual(_runner_object_postconditions(context, [effect]), [])
-+            player = {**effect, "owner": "LOCAL_OBJECT:255"}
-+            with self.assertRaisesRegex(
-+                Stage61InteractionOracleError, "active runtime object欠落:255",
-+            ):
-+                _runner_object_postconditions(context, [player])
++        executions, blockers, graph = self._run_root(0x088B3190)
++        self.assertEqual(blockers, [])
++        self.assertTrue(any(
++            instruction.raw[0] in {0x4F, 0x50}
++            and int.from_bytes(instruction.raw[1:3], "little") == 0xFF
++            for node in graph.nodes.values() for instruction in node.instructions
++        ))
++        player_contexts = [
++            context for context, state in executions
++            if any(
++                row.get("domain") == "objects"
++                and row.get("relation") == "APPLY_ORDERED_MOVEMENT"
++                and row.get("owner") == "LOCAL_OBJECT:255"
++                for row in _runner_effect_rows(state, None)
++            )
++        ]
++        self.assertTrue(player_contexts)
++        for context in player_contexts:
++            self.assertNotEqual(context.npc["local_id"], 0xFF)
++            interaction = context.case["interaction"]
++            templates = _runner_map_object_templates(
++                context, interaction["group"], interaction["map"],
++            )
++            self.assertNotIn(0xFF, {row[0] for row in templates})
 +
-     def test_public_sequence_keeps_post_battle_continuation(self) -> None:
-         continuation = {
-             "phase": "POST_BATTLE_CONTINUATION",
+     def test_gift_dex_projection_uses_each_roots_input_species(self) -> None:
+         from tools.stage61_interaction_oracle import (
+             _runner_effect_rows, _runner_persistent_postconditions,
