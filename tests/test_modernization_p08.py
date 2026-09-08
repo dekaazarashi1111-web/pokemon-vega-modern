@@ -70,7 +70,7 @@ class ModernizationP08Tests(unittest.TestCase):
             self.matrix["integration_summary"]["completed_phases"], ["P01"]
         )
         self.assertEqual(
-            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 74
+            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 76
         )
         self.assertFalse(self.matrix["integration_summary"]["release_ready"])
         self.assertFalse(self.matrix["release_ready"])
@@ -154,6 +154,27 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             phases["P03"]["adoption"]["withheld_own_tempo_rockruff_routes"], 38
         )
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage75_own_tempo_rockruff_species_id"],
+            1670,
+        )
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage75_own_tempo_rockruff_ability_id"],
+            20,
+        )
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage75_pre_evolution_carry_paths_resolved"],
+            38,
+        )
+        self.assertEqual(phases["P03"]["adoption"]["stage75_missing_owner_paths"], 0)
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage75_source_owner_clone_routes"], 60
+        )
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage75_route_accounting_delta"], 0
+        )
+        self.assertEqual(phases["P03"]["adoption"]["stage75_allocation_sequence"], 78)
+        self.assertEqual(phases["P03"]["adoption"]["stage75_allocation_count"], 79)
         self.assertEqual(phases["P03"]["adoption"]["browt_pombon_gecqua_materialized"], 0)
         self.assertEqual(phases["P03"]["adoption"]["prohibited_coercions_materialized"], 0)
         self.assertEqual(phases["P03"]["adoption"]["stage67_future_tail_remaining_bytes"], 62_510)
@@ -198,7 +219,12 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P05"]["adoption"]["ability_rom_hook_count"], 29)
         self.assertTrue(phases["P05"]["adoption"]["ability_rom_linked"])
         self.assertFalse(phases["P05"]["adoption"]["ability_runtime_exact_mgba"])
-        self.assertEqual(phases["P05"]["adoption"]["documented_ai_ui_edges_pending"], 4)
+        self.assertEqual(phases["P05"]["adoption"]["documented_ai_ui_edges_implemented"], 3)
+        self.assertEqual(phases["P05"]["adoption"]["documented_ai_ui_edges_pending"], 1)
+        self.assertEqual(phases["P05"]["adoption"]["stage76_allocation_sequence"], 79)
+        self.assertEqual(phases["P05"]["adoption"]["stage76_allocation_count"], 80)
+        self.assertEqual(phases["P05"]["adoption"]["stage76_changed_bytes"], 2_081)
+        self.assertEqual(phases["P05"]["adoption"]["stage76_allowlist_outside"], 0)
         self.assertEqual(
             phases["P02"]["adoption"]["stage71_acceptance_status"],
             "STOPPED_EXACT_UI_PENDING",
@@ -210,11 +236,11 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P06"]["adoption"]["species_adjustment_records"], 0)
         self.assertEqual(phases["P07"]["adoption"]["normal_to_vega_move"], 0)
         self.assertTrue(phases["P03"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 74)
+        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 75)
         self.assertTrue(phases["P04"]["rom_reflection"]["reflected"])
         self.assertEqual(phases["P04"]["rom_reflection"]["stage"], 71)
         self.assertTrue(phases["P05"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P05"]["rom_reflection"]["stage"], 72)
+        self.assertEqual(phases["P05"]["rom_reflection"]["stage"], 76)
         self.assertEqual(
             phases["P04"]["adoption"]["asset_staging"],
             {
@@ -257,12 +283,12 @@ class ModernizationP08Tests(unittest.TestCase):
             },
         )
 
-    def test_stage74_chain_is_exact_but_not_release_candidate(self) -> None:
+    def test_stage76_chain_is_exact_but_not_release_candidate(self) -> None:
         chain = self.matrix["candidate_chain"]
         self.assertEqual(chain["active_stage"], 62)
-        self.assertEqual(chain["selected_checkpoint_stage"], 74)
+        self.assertEqual(chain["selected_checkpoint_stage"], 76)
         self.assertTrue(chain["parent_chain_verified"])
-        for stage in range(65, 75):
+        for stage in range(65, 77):
             self.assertTrue(chain[f"stage{stage}_integrated"])
         self.assertFalse(chain["release_candidate"])
         self.assertEqual(
@@ -314,6 +340,16 @@ class ModernizationP08Tests(unittest.TestCase):
                 74,
                 73,
                 "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+            ),
+            (
+                75,
+                74,
+                "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+            ),
+            (
+                76,
+                75,
+                "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
             ),
         ]
         for row, (stage, parent_stage, digest) in zip(
@@ -417,6 +453,52 @@ class ModernizationP08Tests(unittest.TestCase):
             + stage73["existing_owner_accounted_routes"],
             stage74["cumulative_accounted_routes"],
         )
+        stage75 = chain["stage75_scope"]
+        self.assertEqual(stage75["internal_species_id"], 1670)
+        self.assertEqual(stage75["normal_species_id"], 1142)
+        self.assertEqual(stage75["dusk_species_id"], 1263)
+        self.assertEqual(stage75["national_dex"], 744)
+        self.assertEqual(stage75["ability_id"], 20)
+        self.assertEqual(stage75["species_count"], 1671)
+        self.assertEqual(stage75["pre_evolution_carry_paths"], 38)
+        self.assertEqual(stage75["missing_owner_paths"], 0)
+        self.assertEqual(stage75["source_owner_clone_routes"], 60)
+        self.assertEqual(stage75["route_accounting_delta"], 0)
+        self.assertEqual(stage75["cumulative_runtime_materialized_routes"], 83_162)
+        self.assertEqual(stage75["cumulative_accounted_routes"], 118_369)
+        self.assertFalse(stage75["save_layout_changed"])
+        self.assertEqual(stage75["archive_economy"], "PROVISIONAL_REPLACEABLE")
+        self.assertEqual(stage75["allocation_sequence"], 78)
+        self.assertEqual(stage75["allocation_count"], 79)
+        self.assertFalse(stage75["full_p03_done"])
+        self.assertFalse(stage75["exact_mgba"])
+        stage76 = chain["stage76_scope"]
+        self.assertEqual(stage76["implemented_edge_count"], 3)
+        self.assertEqual(stage76["pending_edge_count"], 1)
+        self.assertEqual(
+            stage76["edges"],
+            {
+                "eelevate_dedicated_switch": (
+                    "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT"
+                ),
+                "mega_sol_solar_charge_popup": "IMPLEMENT",
+                "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+                "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+            },
+        )
+        self.assertEqual(stage76["allocation_parent_count"], 79)
+        self.assertEqual(stage76["allocation_count"], 80)
+        self.assertEqual(stage76["allocation_sequence"], 79)
+        self.assertTrue(stage76["parent_first79_rows_all_fields_preserved"])
+        self.assertEqual(stage76["rom_diff_allowlist_interval_count"], 5)
+        self.assertEqual(stage76["changed_bytes_inside_allowlist"], 2_081)
+        self.assertEqual(stage76["changed_bytes_outside_allowlist"], 0)
+        self.assertEqual(stage76["eelevate_unsafe_hooks_installed"], 0)
+        self.assertEqual(stage76["side_change_materialized"], 0)
+        self.assertEqual(stage76["browt_pombon_gecqua_materialized"], 0)
+        self.assertFalse(stage76["full_p05_done"])
+        self.assertFalse(stage76["release_ready"])
+        self.assertFalse(stage76["exact_mgba"])
         expected_latest_bps = [
             (
                 "build/stages/69_modernization_floette_gift.gba",
@@ -443,6 +525,16 @@ class ModernizationP08Tests(unittest.TestCase):
                 "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
                 "build/stages/74_modernization_p03_supply_runtime.gba",
             ),
+            (
+                "build/stages/74_modernization_p03_supply_runtime.gba",
+                "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+                "build/stages/75_modernization_rockruff_own_tempo.gba",
+            ),
+            (
+                "build/stages/75_modernization_rockruff_own_tempo.gba",
+                "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+                "build/stages/76_modernization_p05_edges.gba",
+            ),
         ]
         self.assertEqual(
             [
@@ -453,29 +545,29 @@ class ModernizationP08Tests(unittest.TestCase):
         )
         self.assertEqual(
             [row["status"] for row in chain["latest_incremental_bps"]],
-            ["PASS_EXACT_APPLY"] * 5,
+            ["PASS_EXACT_APPLY"] * 7,
         )
         self.assertEqual(
             chain["registry"],
             {
                 "path": "config/modernization_candidate.json",
                 "schema_version": 2,
-                "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+                "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
                 "completed_through": "USER-MODERNIZATION-P01",
-                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
-                "checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-                "last_committed_checkpoint": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
+                "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
+                "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+                "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
                 "release_ready": False,
                 "active_parent_stage": 62,
-                "parent_stage": 73,
-                "candidate_stage": 74,
+                "parent_stage": 75,
+                "candidate_stage": 76,
             },
         )
 
     def test_checkpointed_through_does_not_extend_completed_through(self) -> None:
         registry = self.matrix["candidate_chain"]["registry"]
         self.assertEqual(registry["completed_through"], "USER-MODERNIZATION-P01")
-        self.assertIn("STAGE74", registry["checkpointed_through"])
+        self.assertIn("STAGE76", registry["checkpointed_through"])
 
         false_done = copy.deepcopy(self.matrix)
         false_done["candidate_chain"]["registry"]["completed_through"] = (
@@ -500,6 +592,14 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             PARALLEL_OUTPUTS["P03_STAGE74_DIRECT_SUPPLY_RUNTIME"]["status"],
             "INTEGRATED_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE",
+        )
+        self.assertEqual(
+            PARALLEL_OUTPUTS["P03_STAGE75_OWN_TEMPO_ROCKRUFF"]["status"],
+            "INTEGRATED_INTERNAL_FORM_CHECKPOINT_NOT_P03_DONE",
+        )
+        self.assertEqual(
+            PARALLEL_OUTPUTS["P05_STAGE76_SAFE_AI_UI_EDGES"]["status"],
+            "INTEGRATED_THREE_EDGES_EELEVATE_MGBA_PENDING_NOT_P05_DONE",
         )
         self.assertIn("content/modernization/p03_stage65_checkpoint.json", pinned)
         self.assertIn("content/modernization/p03_stage65_mgba_runtime_gate.json", pinned)
@@ -540,6 +640,12 @@ class ModernizationP08Tests(unittest.TestCase):
             "config/modernization_p05_ability_rom_runtime.json",
             "content/modernization/p05_ability_rom_runtime_checkpoint.json",
             "content/modernization/p05_ability_rom_runtime_surface_matrix.json",
+            "config/modernization_rockruff_own_tempo_stage75.json",
+            "content/modernization/rockruff_own_tempo_stage75_contract.json",
+            "content/modernization/rockruff_own_tempo_stage75_checkpoint.json",
+            "config/modernization_p05_stage76_edges.json",
+            "content/modernization/p05_stage76_edges_contract.json",
+            "content/modernization/p05_stage76_edges_checkpoint.json",
         }
         self.assertTrue(latest_tracked <= pinned)
         artifacts = {row["path"] for row in self.matrix["candidate_artifacts"]}
@@ -587,6 +693,21 @@ class ModernizationP08Tests(unittest.TestCase):
                 "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json",
                 "generated/runtime/modernization_p03_stage74_supply_runtime_audit.json",
                 "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
+                "build/stages/75_modernization_rockruff_own_tempo.gba",
+                "build/stages/75_modernization_rockruff_own_tempo.json",
+                "build/stages/75_modernization_rockruff_own_tempo_allocation.json",
+                "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+                "generated/runtime/modernization_rockruff_own_tempo_stage75.bin",
+                "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json",
+                "generated/runtime/modernization_rockruff_own_tempo_stage75_audit.json",
+                "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json",
+                "build/stages/76_modernization_p05_edges.gba",
+                "build/stages/76_modernization_p05_edges.json",
+                "build/stages/76_modernization_p05_edges_allocation.json",
+                "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+                "generated/runtime/modernization_p05_stage76_edges.bin",
+                "generated/runtime/modernization_p05_stage76_edges_symbols.json",
+                "generated/runtime/modernization_p05_stage76_edges_audit.json",
             }
             <= artifacts
         )
@@ -671,6 +792,20 @@ class ModernizationP08Tests(unittest.TestCase):
             "scripts/run_modernization_p02_stage71_acceptance.py",
             "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
             "tests/test_modernization_p02_stage71_acceptance.py",
+            "scripts/build_modernization_rockruff_own_tempo_stage75.sh",
+            "tools/modernization_rockruff_own_tempo_stage75.py",
+            "tests/test_modernization_rockruff_own_tempo_stage75.py",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.c",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.h",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.ld",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
+            "scripts/build_modernization_p05_stage76_edges.sh",
+            "tools/modernization_p05_stage76_edges.py",
+            "tests/test_modernization_p05_stage76_edges.py",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S",
         }
         self.assertTrue(
             required_direct_implementation_inputs
@@ -758,6 +893,79 @@ class ModernizationP08Tests(unittest.TestCase):
         false_p03_done["candidate_chain"]["stage74_scope"]["full_p03_done"] = True
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_p03_done)
+
+        stage75_mutations = (
+            ("internal_species_id", 1669),
+            ("ability_id", 21),
+            ("pre_evolution_carry_paths", 37),
+            ("missing_owner_paths", 1),
+            ("source_owner_clone_routes", 59),
+            ("route_accounting_delta", 1),
+            ("allocation_sequence", 77),
+            ("allocation_count", 78),
+            ("save_layout_changed", True),
+            ("archive_economy", "FINAL_FREE"),
+            ("full_p03_done", True),
+            ("exact_mgba", True),
+        )
+        for key, value in stage75_mutations:
+            mutated = copy.deepcopy(self.matrix)
+            mutated["candidate_chain"]["stage75_scope"][key] = value
+            with self.subTest(stage75_scope=key):
+                with self.assertRaises(ModernizationP08Error):
+                    validate_integration_matrix(mutated)
+
+        stage76_mutations = (
+            ("implemented_edge_count", 4),
+            ("pending_edge_count", 0),
+            ("allocation_parent_count", 78),
+            ("allocation_count", 79),
+            ("allocation_sequence", 78),
+            ("parent_first79_rows_all_fields_preserved", False),
+            ("rom_diff_allowlist_interval_count", 6),
+            ("changed_bytes_inside_allowlist", 2_080),
+            ("changed_bytes_outside_allowlist", 1),
+            ("eelevate_unsafe_hooks_installed", 1),
+            ("full_p05_done", True),
+            ("release_ready", True),
+            ("exact_mgba", True),
+        )
+        for key, value in stage76_mutations:
+            mutated = copy.deepcopy(self.matrix)
+            mutated["candidate_chain"]["stage76_scope"][key] = value
+            with self.subTest(stage76_scope=key):
+                with self.assertRaises(ModernizationP08Error):
+                    validate_integration_matrix(mutated)
+
+        false_eelevate = copy.deepcopy(self.matrix)
+        false_eelevate["candidate_chain"]["stage76_scope"]["edges"][
+            "eelevate_dedicated_switch"
+        ] = "IMPLEMENT"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_eelevate)
+
+        false_stage76_rom = copy.deepcopy(self.matrix)
+        next(
+            row
+            for row in false_stage76_rom["candidate_artifacts"]
+            if row["path"] == "build/stages/76_modernization_p05_edges.gba"
+        )["sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage76_rom)
+
+        false_stage75_bps = copy.deepcopy(self.matrix)
+        false_stage75_bps["candidate_chain"]["latest_incremental_bps"][-2][
+            "target"
+        ] = "build/stages/74_modernization_p03_supply_runtime.gba"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage75_bps)
+
+        false_stage76_bps = copy.deepcopy(self.matrix)
+        false_stage76_bps["candidate_chain"]["latest_incremental_bps"][-1][
+            "source"
+        ] = "build/stages/74_modernization_p03_supply_runtime.gba"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage76_bps)
 
         stage74_mutations = (
             ("direct_supply_materialized_routes", 26_647),
@@ -986,6 +1194,54 @@ class ModernizationP08Tests(unittest.TestCase):
                 documents["config/modernization_candidate.json"],
             )
 
+        false_stage75_owner = copy.deepcopy(documents)
+        false_stage75_owner["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p03_stage75_own_tempo_checkpoint"]["internal_species_id"] = 1669
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage75_owner["config/modernization_candidate.json"],
+            )
+
+        false_stage75_accounting = copy.deepcopy(documents)
+        false_stage75_accounting["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p03_stage75_own_tempo_checkpoint"]["route_accounting_delta"] = 1
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage75_accounting["config/modernization_candidate.json"],
+            )
+
+        false_stage76_edges = copy.deepcopy(documents)
+        false_stage76_edges["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p05_stage76_edges_checkpoint"]["pending_edge_count"] = 0
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage76_edges["config/modernization_candidate.json"],
+            )
+
+        false_stage76_allowlist = copy.deepcopy(documents)
+        false_stage76_allowlist["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p05_stage76_edges_checkpoint"]["changed_bytes_outside_allowlist"] = 1
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage76_allowlist["config/modernization_candidate.json"],
+            )
+
         false_sequence77 = copy.deepcopy(metadata)
         allocation74 = false_sequence77[
             "build/stages/74_modernization_p03_supply_runtime_allocation.json"
@@ -1000,6 +1256,50 @@ class ModernizationP08Tests(unittest.TestCase):
                 false_sequence77,
                 documents["config/modernization_candidate.json"],
             )
+
+        false_sequence78 = copy.deepcopy(metadata)
+        allocation75 = false_sequence78[
+            "build/stages/75_modernization_rockruff_own_tempo_allocation.json"
+        ]
+        next(
+            row for row in allocation75["allocations"] if row["sequence"] == 78
+        )["content_sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                false_sequence78,
+                documents["config/modernization_candidate.json"],
+            )
+
+        false_sequence79 = copy.deepcopy(metadata)
+        allocation76 = false_sequence79[
+            "build/stages/76_modernization_p05_edges_allocation.json"
+        ]
+        next(
+            row for row in allocation76["allocations"] if row["sequence"] == 79
+        )["start"] += 16
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                false_sequence79,
+                documents["config/modernization_candidate.json"],
+            )
+
+        false_stage75_contract = copy.deepcopy(documents)
+        false_stage75_contract[
+            "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+        ]["p03"]["missing_owner_paths"] = 1
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_stage75_contract)
+
+        false_stage76_contract = copy.deepcopy(documents)
+        false_stage76_contract[
+            "content/modernization/p05_stage76_edges_checkpoint.json"
+        ]["edges"]["eelevate_dedicated_switch"] = "IMPLEMENT"
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_stage76_contract)
 
         false_checkpoint_preservation = copy.deepcopy(documents)
         false_checkpoint_preservation[
@@ -1028,6 +1328,14 @@ class ModernizationP08Tests(unittest.TestCase):
             by_requirement["P03_STAGE74_DIRECT_SUPPLY"]["test_evidence"],
             "tests/test_modernization_p03_stage74_supply.py",
         )
+        self.assertEqual(
+            by_requirement["P03_STAGE75_OWN_TEMPO_ROCKRUFF"]["test_evidence"],
+            "tests/test_modernization_rockruff_own_tempo_stage75.py",
+        )
+        self.assertEqual(
+            by_requirement["P05_STAGE76_SAFE_AI_UI_EDGES"]["test_evidence"],
+            "tests/test_modernization_p05_stage76_edges.py",
+        )
         for row in trace:
             self.assertTrue(row["implementation_evidence"])
             self.assertTrue(row["test_evidence"])
@@ -1051,7 +1359,7 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(release["release_ready"])
         self.assertFalse(release["promotion"]["authorized"])
         self.assertEqual(release["completed_phases"], ["P01"])
-        self.assertEqual(release["candidate_stage"], 74)
+        self.assertEqual(release["candidate_stage"], 76)
         self.assertEqual(
             release["integration_fingerprint"],
             self.matrix["snapshot"]["integration_fingerprint"],

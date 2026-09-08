@@ -159,6 +159,28 @@
           "size": 33554432
         },
         "stage": 74
+      },
+      {
+        "parent_stage": 74,
+        "role": "P03_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "1511F429",
+          "path": "build/stages/75_modernization_rockruff_own_tempo.gba",
+          "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+          "size": 33554432
+        },
+        "stage": 75
+      },
+      {
+        "parent_stage": 75,
+        "role": "P05_THREE_SAFE_AI_UI_EDGES_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "0A78B46A",
+          "path": "build/stages/76_modernization_p05_edges.gba",
+          "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+          "size": 33554432
+        },
+        "stage": 76
       }
     ],
     "latest_incremental_bps": [
@@ -191,24 +213,36 @@
         "source": "build/stages/73_modernization_p03_consumer_runtime.gba",
         "status": "PASS_EXACT_APPLY",
         "target": "build/stages/74_modernization_p03_supply_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+        "source": "build/stages/74_modernization_p03_supply_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/75_modernization_rockruff_own_tempo.gba"
+      },
+      {
+        "patch": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+        "source": "build/stages/75_modernization_rockruff_own_tempo.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/76_modernization_p05_edges.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 74,
-      "checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
+      "candidate_stage": 76,
+      "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-      "parent_stage": 73,
+      "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+      "parent_stage": 75,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 74,
+    "selected_checkpoint_stage": 76,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -367,33 +401,78 @@
       "side_change_materialized": 0,
       "unlock_flag": "0x082C",
       "withheld_own_tempo_rockruff_routes": 38
+    },
+    "stage75_integrated": true,
+    "stage75_scope": {
+      "ability_id": 20,
+      "allocation_count": 79,
+      "allocation_sequence": 78,
+      "archive_economy": "PROVISIONAL_REPLACEABLE",
+      "cumulative_accounted_routes": 118369,
+      "cumulative_runtime_materialized_routes": 83162,
+      "dusk_species_id": 1263,
+      "exact_mgba": false,
+      "full_p03_done": false,
+      "internal_species_id": 1670,
+      "missing_owner_paths": 0,
+      "national_dex": 744,
+      "normal_species_id": 1142,
+      "pre_evolution_carry_paths": 38,
+      "route_accounting_delta": 0,
+      "save_layout_changed": false,
+      "source_owner_clone_routes": 60,
+      "species_count": 1671
+    },
+    "stage76_integrated": true,
+    "stage76_scope": {
+      "allocation_count": 80,
+      "allocation_parent_count": 79,
+      "allocation_sequence": 79,
+      "browt_pombon_gecqua_materialized": 0,
+      "changed_bytes_inside_allowlist": 2081,
+      "changed_bytes_outside_allowlist": 0,
+      "edges": {
+        "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+        "mega_sol_solar_charge_popup": "IMPLEMENT",
+        "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+        "spicy_spray_friendly_fire_ai_score": "IMPLEMENT"
+      },
+      "eelevate_unsafe_hooks_installed": 0,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "implemented_edge_count": 3,
+      "parent_first79_rows_all_fields_preserved": true,
+      "pending_edge_count": 1,
+      "release_ready": false,
+      "rom_diff_allowlist_interval_count": 5,
+      "side_change_materialized": 0
     }
   },
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 57,
-        "sha256": "22861c4a0cae1bd431ed8482875f63a18477beb0b033657136586879ae9cacec"
+        "count": 72,
+        "sha256": "efb7437c3ed04843b2e85376c78ba693b698ad5978c71a08c3914ce0d6589722"
       },
       "implementation_inputs": {
-        "count": 140,
-        "sha256": "60eabe4260897afd9e519287bd950668a3f3c1f4be820bf3692371731e5cf02a"
+        "count": 154,
+        "sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "34fc1327ee443fcc5e44dc41c2e683b6dbc75ad07e3961e90506a9913a1e1c7a"
+        "sha256": "090b30693a3fbbce291309effef761b9dfb84dc0f9a3746078e462af6984a08d"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 68,
-        "sha256": "cdd8813c93e65dee83e89e33b5f2f85432212f3572346fc00a90b1c61da585f0"
+        "count": 74,
+        "sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902"
       }
     },
-    "sha256": "5ecc0f32346e568526d24ff33e72267834a73160d379183dbee63eeac729d707"
+    "sha256": "84ebd946288510346f13f3b261b5f61228b139a98ac24360a25589dd87c4feff"
   },
   "phase_runtime": [
     {
@@ -482,7 +561,6 @@
     },
     {
       "blockers": [
-        "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_OWNER_38_ROUTE_SEMANTICS_REVIEW",
         "ARCHIVE_ECONOMY_PROVISIONAL_REPLACEABLE",
         "FINAL_CUMULATIVE_MGBA_NOT_RUN"
       ],
@@ -550,6 +628,14 @@
         },
         {
           "evidence": [
+            "content/modernization/rockruff_own_tempo_stage75_contract.json",
+            "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+          ],
+          "gate": "STAGE75_OWN_TEMPO_ROCKRUFF",
+          "status": "PASS_INTERNAL_FORM_38_CARRY_PATHS_ZERO_ACCOUNTING_DELTA"
+        },
+        {
+          "evidence": [
             "config/modernization_adoption_decisions.json",
             "content/modernization/p03_runtime_handoff.json"
           ],
@@ -567,8 +653,8 @@
       "rom_reflection": {
         "ancestor_stage": 67,
         "reflected": true,
-        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY",
-        "stage": 74
+        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_SUPPLY_PLUS_STAGE75_OWN_TEMPO_OWNER_FORM",
+        "stage": 75
       }
     },
     {
@@ -642,8 +728,8 @@
     },
     {
       "blockers": [
-        "ABILITY_EXACT_MGBA_NOT_RUN",
-        "FOUR_DOCUMENTED_AI_UI_EDGES_PENDING"
+        "ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN",
+        "EELEVATE_DEDICATED_SWITCH_AI_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "phase": "P05",
@@ -686,12 +772,21 @@
           ],
           "gate": "P04_NEW_ABILITIES_ROM_LINK",
           "status": "PASS_STATIC_6_IDS_29_HOOKS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_stage76_edges_contract.json",
+            "content/modernization/p05_stage76_edges_checkpoint.json"
+          ],
+          "gate": "STAGE76_SAFE_AI_UI_EDGES",
+          "status": "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING"
         }
       ],
       "rom_reflection": {
+        "ancestor_stage": 72,
         "reflected": true,
-        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS",
-        "stage": 72
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
+        "stage": 76
       }
     },
     {

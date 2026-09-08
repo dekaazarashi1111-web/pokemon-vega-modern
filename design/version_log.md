@@ -1708,3 +1708,14 @@
   - Detect／Max Guard／Dynamax、実Protect、Present／Future Sight／Doom Desire／Pollen Puffを含む誤評価境界をfail closedで固定した。
   - Eelevate専用switch AIは意味を壊す近似を採らず保留し、Side Changeと追加対象外3種は0を維持した。
 - Verify: focused unittest 17/17、Stage76 builder `--check`、BPS roundtrip、pointer 1＋hook 3、fixed function 8、allocation lineage、allowlist外0、独立runtime／artifact監査High／Medium／Lowなし PASS。ROM SHA-256 `f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac`。mGBAは最終累積候補へ集約し未実行。
+
+## 2026-09-09T04:28:41+09:00
+
+- Version: `modernization-p08-stage76-integration-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P08-STAGE76-INTEGRATION` / P08累積候補のStage76再固定
+- Summary:
+  - P08をStage76へ再固定し、Stage75／76の実装・成果identity・incremental BPSを統合した。
+  - Stage67→76 exact chain、allocator lineage、candidate registry、release blockerの改ざんguardを拡張した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
+- Verify: focused unittest 17/17、P08 builder `--check`、INPUTS=74、Stage74→75→76 BPS exact apply、`git diff --check` PASS。重いmGBAは未実行。

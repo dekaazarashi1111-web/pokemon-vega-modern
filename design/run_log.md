@@ -4356,3 +4356,24 @@
   - 重いmGBAはユーザー指定どおり最新累積候補の1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal Stage75 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:28:41+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE76-INTEGRATION` / P08累積候補のStage76再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage74からStage76へ更新し、Stage75 Own Tempo RockruffとStage76 P05安全edge 3件の固定入力、生成実装、ROM／metadata／allocation／BPSを統合した。
+  - Stage67→76 chainとStage74→75→76の追加BPSをexact applyし、allocator lineage、hook／pointer、Browt／Pombon／GecquaおよびSide Changeの採用0をfail closedで固定した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持し、Eelevate、暫定archive経済、P02通常UI、Floette full／fresh reload、最終累積mGBAをblockerとして残した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=74、COMPLETED=1、ACTIVE=62、CANDIDATE=76、RELEASE=false）。
+  - P08生成3成果はmatrix 135,456 bytes／SHA-256 `11a154336287cc8bb0c31a23f21f128b2c4dcbf2eaedcab013994ec6323dd38e`、runtime handoff 30,370 bytes／`8ebef8980c8ef795e6b3e4285a6786f8cccfa4caea1d51c8518bdc45173b7db5`、release handoff 2,446 bytes／`070a0a5db25924aaa261d8453752cd01abf3eb8756f3fba24c63acd409e7c408`。
+  - `git diff --check`: PASS。重いmGBAはStage77後の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

@@ -312,6 +312,83 @@
       "path": "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
       "sha256": "64b7f72f99bc01d777045536ff5ba82ab049e4e008035fe3760d377355334f10",
       "size": 680038
+    },
+    {
+      "crc32": "1511F429",
+      "path": "build/stages/75_modernization_rockruff_own_tempo.gba",
+      "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/75_modernization_rockruff_own_tempo.json",
+      "sha256": "be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4",
+      "size": 151435
+    },
+    {
+      "path": "build/stages/75_modernization_rockruff_own_tempo_allocation.json",
+      "sha256": "90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09",
+      "size": 45230
+    },
+    {
+      "path": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+      "sha256": "23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7",
+      "size": 336487
+    },
+    {
+      "path": "generated/runtime/modernization_rockruff_own_tempo_stage75.bin",
+      "sha256": "18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206",
+      "size": 565280
+    },
+    {
+      "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json",
+      "sha256": "48b2251110325dcc5a03b32a0bf820d73f02fca74a51ab5ff1073a6dcc8ac769",
+      "size": 7027
+    },
+    {
+      "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_audit.json",
+      "sha256": "51c564a4b372e15cf43edb1899760a705c528be4af826f2a9dc8d077dac6ac99",
+      "size": 1086089
+    },
+    {
+      "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json",
+      "sha256": "ac3deebaa4eb190ab1e581666bb5d56aa98540e2fa15e72a2ffd22ffb1c255a5",
+      "size": 2604
+    },
+    {
+      "crc32": "0A78B46A",
+      "path": "build/stages/76_modernization_p05_edges.gba",
+      "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/76_modernization_p05_edges.json",
+      "sha256": "46eb197ba064f4380d6bfd31b16b7ad04bc63599707b72254adde2231aa4d792",
+      "size": 6059
+    },
+    {
+      "path": "build/stages/76_modernization_p05_edges_allocation.json",
+      "sha256": "64f992d8288b3d861a8e2cc160af880991e76de1eb1ae7dd4081ee4e8c59ae3e",
+      "size": 45818
+    },
+    {
+      "path": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+      "sha256": "f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810",
+      "size": 2191
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage76_edges.bin",
+      "sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+      "size": 2066
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage76_edges_symbols.json",
+      "sha256": "15291753650a4d7d3af61016e2fd6960233c0b4142db5e23e7ce44c044f8faf8",
+      "size": 1518
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage76_edges_audit.json",
+      "sha256": "c15e42cd1fc405bf3bb007c0959fcb989f6f896e8b2bb54744cbea85b469facc",
+      "size": 10537
     }
   ],
   "candidate_chain": {
@@ -459,6 +536,28 @@
           "size": 33554432
         },
         "stage": 74
+      },
+      {
+        "parent_stage": 74,
+        "role": "P03_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "1511F429",
+          "path": "build/stages/75_modernization_rockruff_own_tempo.gba",
+          "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+          "size": 33554432
+        },
+        "stage": 75
+      },
+      {
+        "parent_stage": 75,
+        "role": "P05_THREE_SAFE_AI_UI_EDGES_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "0A78B46A",
+          "path": "build/stages/76_modernization_p05_edges.gba",
+          "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+          "size": 33554432
+        },
+        "stage": 76
       }
     ],
     "latest_incremental_bps": [
@@ -491,24 +590,36 @@
         "source": "build/stages/73_modernization_p03_consumer_runtime.gba",
         "status": "PASS_EXACT_APPLY",
         "target": "build/stages/74_modernization_p03_supply_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+        "source": "build/stages/74_modernization_p03_supply_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/75_modernization_rockruff_own_tempo.gba"
+      },
+      {
+        "patch": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+        "source": "build/stages/75_modernization_rockruff_own_tempo.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/76_modernization_p05_edges.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 74,
-      "checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
+      "candidate_stage": 76,
+      "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-      "parent_stage": 73,
+      "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+      "parent_stage": 75,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 74,
+    "selected_checkpoint_stage": 76,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -667,6 +778,51 @@
       "side_change_materialized": 0,
       "unlock_flag": "0x082C",
       "withheld_own_tempo_rockruff_routes": 38
+    },
+    "stage75_integrated": true,
+    "stage75_scope": {
+      "ability_id": 20,
+      "allocation_count": 79,
+      "allocation_sequence": 78,
+      "archive_economy": "PROVISIONAL_REPLACEABLE",
+      "cumulative_accounted_routes": 118369,
+      "cumulative_runtime_materialized_routes": 83162,
+      "dusk_species_id": 1263,
+      "exact_mgba": false,
+      "full_p03_done": false,
+      "internal_species_id": 1670,
+      "missing_owner_paths": 0,
+      "national_dex": 744,
+      "normal_species_id": 1142,
+      "pre_evolution_carry_paths": 38,
+      "route_accounting_delta": 0,
+      "save_layout_changed": false,
+      "source_owner_clone_routes": 60,
+      "species_count": 1671
+    },
+    "stage76_integrated": true,
+    "stage76_scope": {
+      "allocation_count": 80,
+      "allocation_parent_count": 79,
+      "allocation_sequence": 79,
+      "browt_pombon_gecqua_materialized": 0,
+      "changed_bytes_inside_allowlist": 2081,
+      "changed_bytes_outside_allowlist": 0,
+      "edges": {
+        "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+        "mega_sol_solar_charge_popup": "IMPLEMENT",
+        "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+        "spicy_spray_friendly_fire_ai_score": "IMPLEMENT"
+      },
+      "eelevate_unsafe_hooks_installed": 0,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "implemented_edge_count": 3,
+      "parent_first79_rows_all_fields_preserved": true,
+      "pending_edge_count": 1,
+      "release_ready": false,
+      "rom_diff_allowlist_interval_count": 5,
+      "side_change_materialized": 0
     }
   },
   "integration_summary": {
@@ -676,7 +832,7 @@
     "completed_phases": [
       "P01"
     ],
-    "highest_pinned_candidate_stage": 74,
+    "highest_pinned_candidate_stage": 76,
     "phase_count": 8,
     "release_ready": false,
     "runtime_reflected_phase_count": 5
@@ -853,10 +1009,17 @@
         "stage74_direct_supply_materialized_routes": 26648,
         "stage74_direct_tutor_routes": 369,
         "stage74_hook_count": 2,
+        "stage75_allocation_count": 79,
+        "stage75_allocation_sequence": 78,
+        "stage75_missing_owner_paths": 0,
+        "stage75_own_tempo_rockruff_ability_id": 20,
+        "stage75_own_tempo_rockruff_species_id": 1670,
+        "stage75_pre_evolution_carry_paths_resolved": 38,
+        "stage75_route_accounting_delta": 0,
+        "stage75_source_owner_clone_routes": 60,
         "withheld_own_tempo_rockruff_routes": 38
       },
       "blockers": [
-        "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_OWNER_38_ROUTE_SEMANTICS_REVIEW",
         "ARCHIVE_ECONOMY_PROVISIONAL_REPLACEABLE",
         "FINAL_CUMULATIVE_MGBA_NOT_RUN"
       ],
@@ -869,12 +1032,13 @@
         "STAGE67_CONSUMER_CHECKPOINT",
         "STAGE73_FIVE_GROUP_CONSUMER_CHECKPOINT",
         "STAGE74_DIRECT_SUPPLY_CHECKPOINT",
-        "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"
+        "STAGE75_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT",
+        "STATIC_ONLY_FINAL_MGBA_PENDING"
       ],
       "not_adopted": [
         "SIDE_CHANGE_1063_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT",
         "BROWTPOMBONGECQUA_USER_EXCLUDED",
-        "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_DIRECT_CONVERSION_FORBIDDEN",
+        "OWN_TEMPO_ROCKRUFF_0744_01_DIRECT_CONVERSION_FORBIDDEN_OWNER_FORM_CONNECTED",
         "FULL_CUMULATIVE_MGBA"
       ],
       "phase": "P03",
@@ -940,6 +1104,14 @@
         },
         {
           "evidence": [
+            "content/modernization/rockruff_own_tempo_stage75_contract.json",
+            "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+          ],
+          "gate": "STAGE75_OWN_TEMPO_ROCKRUFF",
+          "status": "PASS_INTERNAL_FORM_38_CARRY_PATHS_ZERO_ACCOUNTING_DELTA"
+        },
+        {
+          "evidence": [
             "config/modernization_adoption_decisions.json",
             "content/modernization/p03_runtime_handoff.json"
           ],
@@ -957,8 +1129,8 @@
       "rom_reflection": {
         "ancestor_stage": 67,
         "reflected": true,
-        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY",
-        "stage": 74
+        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_SUPPLY_PLUS_STAGE75_OWN_TEMPO_OWNER_FORM",
+        "stage": 75
       }
     },
     {
@@ -1132,7 +1304,8 @@
         "ability_rom_runtime_count": 6,
         "ability_runtime_exact_mgba": false,
         "data_only_patches": 0,
-        "documented_ai_ui_edges_pending": 4,
+        "documented_ai_ui_edges_implemented": 3,
+        "documented_ai_ui_edges_pending": 1,
         "existing_official_assignments": 29,
         "new_abilities": 6,
         "new_move_requirements": 0,
@@ -1140,22 +1313,28 @@
         "non_adopted_p04_records": 3,
         "performance_adjustments": 0,
         "side_change_1063_adopted": false,
+        "stage76_allocation_count": 80,
+        "stage76_allocation_sequence": 79,
+        "stage76_allowlist_outside": 0,
+        "stage76_changed_bytes": 2081,
         "temporary_ability_assignments": 14
       },
       "blockers": [
-        "ABILITY_EXACT_MGBA_NOT_RUN",
-        "FOUR_DOCUMENTED_AI_UI_EDGES_PENDING"
+        "ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN",
+        "EELEVATE_DEDICATED_SWITCH_AI_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
         "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
         "HOST_RUNTIME_VERIFIED",
-        "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING"
+        "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED",
+        "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_MGBA_PENDING"
       ],
       "not_adopted": [
         "SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION",
         "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION",
-        "EXACT_MGBA_AND_FOUR_AI_UI_EDGES"
+        "EELEVATE_UNSAFE_SWITCH_AI",
+        "EXACT_MGBA"
       ],
       "phase": "P05",
       "required_gates": [
@@ -1197,12 +1376,21 @@
           ],
           "gate": "P04_NEW_ABILITIES_ROM_LINK",
           "status": "PASS_STATIC_6_IDS_29_HOOKS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_stage76_edges_contract.json",
+            "content/modernization/p05_stage76_edges_checkpoint.json"
+          ],
+          "gate": "STAGE76_SAFE_AI_UI_EDGES",
+          "status": "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING"
         }
       ],
       "rom_reflection": {
+        "ancestor_stage": 72,
         "reflected": true,
-        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS",
-        "stage": 72
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
+        "stage": 76
       }
     },
     {
@@ -1562,12 +1750,12 @@
   ],
   "release_blockers": [
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
-    "P03_STAGE74_DIRECT_SUPPLY_CONNECTED_BUT_OWN_TEMPO_ROCKRUFF_38_ROUTE_SEMANTICS_PROVISIONAL_ECONOMY_AND_FINAL_MGBA_REMAIN",
+    "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
-    "P05_STAGE72_SIX_ABILITIES_29_HOOKS_CONNECTED_BUT_FINAL_MGBA_AND_FOUR_AI_UI_EDGES_REMAIN",
+    "P05_STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE74_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE76_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "runtime_execution": {
@@ -1579,8 +1767,8 @@
   "schema_version": 1,
   "snapshot": {
     "auto_discovery": false,
-    "implementation_input_count": 140,
-    "implementation_input_fingerprint_sha256": "60eabe4260897afd9e519287bd950668a3f3c1f4be820bf3692371731e5cf02a",
+    "implementation_input_count": 154,
+    "implementation_input_fingerprint_sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e",
     "implementation_inputs": [
       {
         "path": "config/modernization_p01_runtime.json",
@@ -1943,6 +2131,48 @@
         "size": 8408
       },
       {
+        "path": "scripts/build_modernization_rockruff_own_tempo_stage75.sh",
+        "phase": "P03",
+        "sha256": "f02fa4a7ac75c40540ba5672835df8bc8609a3c21fbdc9b2942267db3a769313",
+        "size": 195
+      },
+      {
+        "path": "tools/modernization_rockruff_own_tempo_stage75.py",
+        "phase": "P03",
+        "sha256": "af8cd647d791c92cc63b1c71852a5de1cf02995e8365ce0dc79544adc5120136",
+        "size": 54667
+      },
+      {
+        "path": "tests/test_modernization_rockruff_own_tempo_stage75.py",
+        "phase": "P03",
+        "sha256": "5402fb55613d9bc697b78796200a010cd1f0893c246e316ff867b133b9b894d2",
+        "size": 24477
+      },
+      {
+        "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.c",
+        "phase": "P03",
+        "sha256": "5a086502aef744fdcf2917c99dd379dd2c5bb50623668852dbedef6aeb6c9c8a",
+        "size": 15656
+      },
+      {
+        "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.h",
+        "phase": "P03",
+        "sha256": "99283cb4e9f5f965ac305937734f12e17d2f43ab6d17be3822dd37e4498fe0e4",
+        "size": 986
+      },
+      {
+        "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.ld",
+        "phase": "P03",
+        "sha256": "f8c5fcdcad3846fb75c43709fe8e102a920b272a1572575d95ebdac3563da606",
+        "size": 347
+      },
+      {
+        "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
+        "phase": "P03",
+        "sha256": "3710892921c1424af3d3d02fcd22a2bab8c7ad9dc65507983257d9ad2dcfe122",
+        "size": 6746
+      },
+      {
         "path": "scripts/build_modernization_p04_assets.py",
         "phase": "P04",
         "sha256": "55b62d51ed7e0b061381b6cb1cbf36d5b704433cb6445fed00dd00d479355552",
@@ -2285,6 +2515,48 @@
         "size": 9372
       },
       {
+        "path": "scripts/build_modernization_p05_stage76_edges.sh",
+        "phase": "P05",
+        "sha256": "646f71f302a2b7847bb54f5f34dfbc08308df8fed3584dcbae7b66a17cb891c4",
+        "size": 270
+      },
+      {
+        "path": "tools/modernization_p05_stage76_edges.py",
+        "phase": "P05",
+        "sha256": "648c1d2cda379fabd86a0971ea2f3bf3856d0dfb0d91d8c24c62443454406741",
+        "size": 53321
+      },
+      {
+        "path": "tests/test_modernization_p05_stage76_edges.py",
+        "phase": "P05",
+        "sha256": "db334092a15f2566e6e84e73e1f570912729ba1744b9d9c511b5cb59006af5fd",
+        "size": 29814
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c",
+        "phase": "P05",
+        "sha256": "95dafaf26e9c1909126d963ea8416e15c9a8b114a0e9b8eeef3a434b7739817b",
+        "size": 25657
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
+        "phase": "P05",
+        "sha256": "acd37b5f7074ea9ec3f55969c2b10cb8fdedbe5a8f4ffdcdd4236152c1b503a6",
+        "size": 2475
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld",
+        "phase": "P05",
+        "sha256": "ce7b005b698f91aaaf79dd6f189cab096b012d6a4e749ea382fb3f994651235e",
+        "size": 347
+      },
+      {
+        "path": "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S",
+        "phase": "P05",
+        "sha256": "e2ca683fd677ae125a221883cec902f6a3c3935cf9ef45ffe1df2762c59f5e9a",
+        "size": 2649
+      },
+      {
         "path": "scripts/run_modernization_p02_stage71_acceptance.py",
         "phase": "P02",
         "sha256": "33dc497617785713b2d979060b8156f4be0be64abaf8afde5166aa95881484ac",
@@ -2353,14 +2625,14 @@
       {
         "path": "tools/modernization_p08_integration.py",
         "phase": "P08",
-        "sha256": "1d568586928f7fdc308f8b58c354039204fe0744fab80c2102bc52f82e904001",
-        "size": 249460
+        "sha256": "4567ba27141f6b560a3e059de95265103018ef5edaecd5c5c0a930f53082a218",
+        "size": 292887
       },
       {
         "path": "tests/test_modernization_p08.py",
         "phase": "P08",
-        "sha256": "15d32b8ad02cd89a334e93e2eba0c156e497e8b7a59233646b60f2bbe1065747",
-        "size": 55934
+        "sha256": "3012ecadb17413aad51668bad0a243a683655aaa305c858d85c33014ba404999",
+        "size": 71146
       },
       {
         "path": "tests/test_run_github_private_suite.py",
@@ -2427,27 +2699,27 @@
       "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
       "components": {
         "candidate_artifacts": {
-          "count": 57,
-          "sha256": "22861c4a0cae1bd431ed8482875f63a18477beb0b033657136586879ae9cacec"
+          "count": 72,
+          "sha256": "efb7437c3ed04843b2e85376c78ba693b698ad5978c71a08c3914ce0d6589722"
         },
         "implementation_inputs": {
-          "count": 140,
-          "sha256": "60eabe4260897afd9e519287bd950668a3f3c1f4be820bf3692371731e5cf02a"
+          "count": 154,
+          "sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e"
         },
         "phase_projection": {
           "count": 8,
-          "sha256": "34fc1327ee443fcc5e44dc41c2e683b6dbc75ad07e3961e90506a9913a1e1c7a"
+          "sha256": "090b30693a3fbbce291309effef761b9dfb84dc0f9a3746078e462af6984a08d"
         },
         "referenced_source_bindings": {
           "count": 30,
           "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
         },
         "tracked_inputs": {
-          "count": 68,
-          "sha256": "cdd8813c93e65dee83e89e33b5f2f85432212f3572346fc00a90b1c61da585f0"
+          "count": 74,
+          "sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902"
         }
       },
-      "sha256": "5ecc0f32346e568526d24ff33e72267834a73160d379183dbee63eeac729d707"
+      "sha256": "84ebd946288510346f13f3b261b5f61228b139a98ac24360a25589dd87c4feff"
     },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {
@@ -2558,6 +2830,22 @@
         ],
         "included": true,
         "status": "INTEGRATED_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE"
+      },
+      "P03_STAGE75_OWN_TEMPO_ROCKRUFF": {
+        "expected_paths": [
+          "config/modernization_rockruff_own_tempo_stage75.json",
+          "content/modernization/rockruff_own_tempo_stage75_contract.json",
+          "content/modernization/rockruff_own_tempo_stage75_checkpoint.json",
+          "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.c",
+          "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.h",
+          "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.ld",
+          "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
+          "scripts/build_modernization_rockruff_own_tempo_stage75.sh",
+          "tests/test_modernization_rockruff_own_tempo_stage75.py",
+          "tools/modernization_rockruff_own_tempo_stage75.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_INTERNAL_FORM_CHECKPOINT_NOT_P03_DONE"
       },
       "P04_ASSET_IMPORTER": {
         "expected_paths": [
@@ -2675,12 +2963,28 @@
         ],
         "included": true,
         "status": "INTEGRATED_STATIC_RUNTIME_MGBA_AI_UI_EDGES_PENDING_NOT_P05_DONE"
+      },
+      "P05_STAGE76_SAFE_AI_UI_EDGES": {
+        "expected_paths": [
+          "config/modernization_p05_stage76_edges.json",
+          "content/modernization/p05_stage76_edges_contract.json",
+          "content/modernization/p05_stage76_edges_checkpoint.json",
+          "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c",
+          "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
+          "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld",
+          "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S",
+          "scripts/build_modernization_p05_stage76_edges.sh",
+          "tests/test_modernization_p05_stage76_edges.py",
+          "tools/modernization_p05_stage76_edges.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_THREE_EDGES_EELEVATE_MGBA_PENDING_NOT_P05_DONE"
       }
     },
     "rule": "後発成果は存在だけで採用せず、固定path listと生成済みsnapshot hashを明示更新して再監査する",
-    "selection_base_head": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
-    "tracked_input_count": 68,
-    "tracked_input_fingerprint_sha256": "cdd8813c93e65dee83e89e33b5f2f85432212f3572346fc00a90b1c61da585f0",
+    "selection_base_head": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+    "tracked_input_count": 74,
+    "tracked_input_fingerprint_sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902",
     "tracked_inputs": [
       {
         "path": "config/active_play_baseline.json",
@@ -2703,8 +3007,8 @@
       {
         "path": "config/modernization_candidate.json",
         "phase": "CANDIDATE_CHAIN",
-        "sha256": "ecc4677b0d85f935d71b6f5d8776e6ba88896dd011f1716e2088304f6908cb12",
-        "size": 19161
+        "sha256": "1f0b6fd470291d20ec05c7771e9399c4bf840ac1d2c1e2ffc3bd970ddc3aacfa",
+        "size": 22897
       },
       {
         "path": "content/modernization/identity_contract.json",
@@ -3037,6 +3341,24 @@
         "size": 4162
       },
       {
+        "path": "config/modernization_rockruff_own_tempo_stage75.json",
+        "phase": "P03",
+        "sha256": "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121",
+        "size": 8066
+      },
+      {
+        "path": "content/modernization/rockruff_own_tempo_stage75_contract.json",
+        "phase": "P03",
+        "sha256": "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684",
+        "size": 5799
+      },
+      {
+        "path": "content/modernization/rockruff_own_tempo_stage75_checkpoint.json",
+        "phase": "P03",
+        "sha256": "c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705",
+        "size": 4874
+      },
+      {
         "path": "config/modernization_p04_species_runtime.json",
         "phase": "P04",
         "sha256": "260537ad559a5891bf238058159623e506d6901bb46839aa40e831ef6ede7e11",
@@ -3089,6 +3411,24 @@
         "phase": "P05",
         "sha256": "0cff6c86ac2d18d3858d0921931df3de8457cd0951d3defcf250362fd8a5d94b",
         "size": 3737
+      },
+      {
+        "path": "config/modernization_p05_stage76_edges.json",
+        "phase": "P05",
+        "sha256": "98da12855ec46c456e0a01912d33659ce2a4d7d49fb250e131355ff6e48eb26f",
+        "size": 11451
+      },
+      {
+        "path": "content/modernization/p05_stage76_edges_contract.json",
+        "phase": "P05",
+        "sha256": "e7bb30ccd0fe8540970295d0ad3f9ced6ce6aeb67bfcd1c67ab7cd4cf0ba295b",
+        "size": 3469
+      },
+      {
+        "path": "content/modernization/p05_stage76_edges_checkpoint.json",
+        "phase": "P05",
+        "sha256": "f2951cd2a1cb770d5d325e8f1f596f6251f855e19b2e92d7c05b4f5ce205aa23",
+        "size": 7018
       }
     ]
   },
@@ -3187,6 +3527,13 @@
       "test_evidence": "tests/test_modernization_p03_stage74_supply.py"
     },
     {
+      "implementation_evidence": "Stage75 internal Species1670 Own Tempo owner + 38 carry paths",
+      "phase": "P03",
+      "requirement_key": "P03_STAGE75_OWN_TEMPO_ROCKRUFF",
+      "status": "INTEGRATED_STATIC_FINAL_MGBA_PENDING",
+      "test_evidence": "tests/test_modernization_rockruff_own_tempo_stage75.py"
+    },
+    {
       "implementation_evidence": "49 Mega採用候補 + Winds/Waves 3種非採用 + 2 hold",
       "phase": "P04",
       "requirement_key": "P04_CANDIDATE_SCOPE",
@@ -3255,6 +3602,13 @@
       "requirement_key": "P05_STAGE72_ABILITY_ROM_RUNTIME",
       "status": "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING",
       "test_evidence": "tests/test_modernization_p05_ability_rom_runtime.py"
+    },
+    {
+      "implementation_evidence": "Mega Sol popup + Piercing Drill AI + Spicy Spray AI",
+      "phase": "P05",
+      "requirement_key": "P05_STAGE76_SAFE_AI_UI_EDGES",
+      "status": "THREE_EDGES_CONNECTED_EELEVATE_AND_MGBA_PENDING",
+      "test_evidence": "tests/test_modernization_p05_stage76_edges.py"
     },
     {
       "implementation_evidence": "empty adopted delta + review projection",

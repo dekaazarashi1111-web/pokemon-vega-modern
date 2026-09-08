@@ -508,3 +508,17 @@
 - 完了境界: pointer 1件＋hook 3件＋payload 2,066 bytesをStage76へ接続する。focused test、
   builder check、独立runtime／artifact監査はPASSしたが、mGBAとP05全体は未完了、release-readyは
   false、active baselineはStage62のままとする。
+
+## 2026-09-09 — D-044: P08の選択候補をStage76へ再固定する
+
+- 選択: P08の累積候補をStage76 `f753f137…0100100ac`へ更新する。Stage75のOwn Tempo Rockruffと
+  Stage76のP05安全edge 3件を統合し、現行プレイ基準Stage62、完了工程P01のみ、P02〜P08未完了、
+  release-ready=falseを維持する。
+- 継承監査: Stage74→75→76のincremental BPSを含むStage67→76 chainを実byteへexact applyし、
+  ROM／metadata／allocation、Stage75の24表・310 pointer・19 count consumer・5 hook、Stage76の
+  pointer 1件＋hook 3件をfail closedで固定する。
+- 境界: P03のmaterialized 83,162、accounted 118,369、直接供給残0、Browt／Pombon／Gecquaと
+  Side Changeの採用0を維持する。Eelevate専用switch AI、暫定archive経済、P02通常UI、Floette
+  full／fresh reload、最終累積mGBAはrelease blockerとして残す。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。iPad、save、Release、現行プレイ基準は変更しない。

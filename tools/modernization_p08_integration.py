@@ -22,7 +22,8 @@ from tools.release.bps import apply_bps
 SCHEMA_VERSION = 1
 TASK = "USER-MODERNIZATION-P08"
 STATUS = "CHECKPOINT_NOT_RELEASE_CANDIDATE"
-SNAPSHOT_BASE_HEAD = "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7"
+SNAPSHOT_BASE_HEAD = "cbf98eddf712ee677eef011e6fc106a67e536c08"
+STAGE75_IMPLEMENTATION_COMMIT = "595909446b6ad67749c9894b23fdc536f82c638e"
 
 LATEST_INCREMENTAL_BPS_PATHS: tuple[tuple[str, str, str], ...] = (
     (
@@ -49,6 +50,16 @@ LATEST_INCREMENTAL_BPS_PATHS: tuple[tuple[str, str, str], ...] = (
         "build/stages/73_modernization_p03_consumer_runtime.gba",
         "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
         "build/stages/74_modernization_p03_supply_runtime.gba",
+    ),
+    (
+        "build/stages/74_modernization_p03_supply_runtime.gba",
+        "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+        "build/stages/75_modernization_rockruff_own_tempo.gba",
+    ),
+    (
+        "build/stages/75_modernization_rockruff_own_tempo.gba",
+        "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+        "build/stages/76_modernization_p05_edges.gba",
     ),
 )
 
@@ -90,21 +101,33 @@ CANDIDATE_PATCH_CHAIN_PATHS: tuple[tuple[str, str, str, str], ...] = (
         "build/stages/73_modernization_p03_consumer_runtime.gba",
     ),
     (
-        "from_parent",
+        "stage73_to_stage74",
         "build/stages/73_modernization_p03_consumer_runtime.gba",
         "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
         "build/stages/74_modernization_p03_supply_runtime.gba",
+    ),
+    (
+        "stage74_to_stage75",
+        "build/stages/74_modernization_p03_supply_runtime.gba",
+        "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+        "build/stages/75_modernization_rockruff_own_tempo.gba",
+    ),
+    (
+        "from_parent",
+        "build/stages/75_modernization_rockruff_own_tempo.gba",
+        "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+        "build/stages/76_modernization_p05_edges.gba",
     ),
 )
 
 RELEASE_BLOCKERS: tuple[str, ...] = (
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
-    "P03_STAGE74_DIRECT_SUPPLY_CONNECTED_BUT_OWN_TEMPO_ROCKRUFF_38_ROUTE_SEMANTICS_PROVISIONAL_ECONOMY_AND_FINAL_MGBA_REMAIN",
+    "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
-    "P05_STAGE72_SIX_ABILITIES_29_HOOKS_CONNECTED_BUT_FINAL_MGBA_AND_FOUR_AI_UI_EDGES_REMAIN",
+    "P05_STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE74_IS_NOT_ACTIVE_STAGE62",
+    "CANDIDATE_STAGE76_IS_NOT_ACTIVE_STAGE62",
 )
 
 # 完成済みとして引き渡されたtracked pathだけを固定する。globによる自動追加禁止。
@@ -119,7 +142,7 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
         5266, "b872a9793f6c29944d6c86d603aab8fbdf78df9c2f0ccf4595b6d308d23825f4", "P01"
     ),
     "config/modernization_candidate.json": (
-        19161, "ecc4677b0d85f935d71b6f5d8776e6ba88896dd011f1716e2088304f6908cb12", "CANDIDATE_CHAIN"
+        22897, "1f0b6fd470291d20ec05c7771e9399c4bf840ac1d2c1e2ffc3bd970ddc3aacfa", "CANDIDATE_CHAIN"
     ),
     "content/modernization/identity_contract.json": (
         1461322, "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443", "P01"
@@ -286,6 +309,15 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     "content/modernization/p03_stage74_supply_runtime_checkpoint.json": (
         4162, "5e73c008a866d579a7939f64eb02f78d2d55eb7efb31f18c4ce2b221ee977ba2", "P03"
     ),
+    "config/modernization_rockruff_own_tempo_stage75.json": (
+        8066, "2accef3c5cb3e45e3b032035acfbc727b2785deafd652a45f56ca0db3ebbf121", "P03"
+    ),
+    "content/modernization/rockruff_own_tempo_stage75_contract.json": (
+        5799, "f57efb88124fdf18681a012d520d4382b715763c917fd40eb56a30ba6dce5684", "P03"
+    ),
+    "content/modernization/rockruff_own_tempo_stage75_checkpoint.json": (
+        4874, "c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705", "P03"
+    ),
     "config/modernization_p04_species_runtime.json": (
         11675, "260537ad559a5891bf238058159623e506d6901bb46839aa40e831ef6ede7e11", "P04"
     ),
@@ -312,6 +344,15 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     ),
     "content/modernization/p05_ability_rom_runtime_surface_matrix.json": (
         3737, "0cff6c86ac2d18d3858d0921931df3de8457cd0951d3defcf250362fd8a5d94b", "P05"
+    ),
+    "config/modernization_p05_stage76_edges.json": (
+        11451, "98da12855ec46c456e0a01912d33659ce2a4d7d49fb250e131355ff6e48eb26f", "P05"
+    ),
+    "content/modernization/p05_stage76_edges_contract.json": (
+        3469, "e7bb30ccd0fe8540970295d0ad3f9ced6ce6aeb67bfcd1c67ab7cd4cf0ba295b", "P05"
+    ),
+    "content/modernization/p05_stage76_edges_checkpoint.json": (
+        7018, "f2951cd2a1cb770d5d325e8f1f596f6251f855e19b2e92d7c05b4f5ce205aa23", "P05"
     ),
 }
 
@@ -487,6 +528,51 @@ CANDIDATE_ARTIFACTS: Mapping[str, tuple[int, str, str | None]] = {
     "generated/runtime/modernization_p03_stage74_supply_route_audit.json": (
         680038, "64b7f72f99bc01d777045536ff5ba82ab049e4e008035fe3760d377355334f10", None
     ),
+    "build/stages/75_modernization_rockruff_own_tempo.gba": (
+        33554432, "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3", "1511F429"
+    ),
+    "build/stages/75_modernization_rockruff_own_tempo.json": (
+        151435, "be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4", None
+    ),
+    "build/stages/75_modernization_rockruff_own_tempo_allocation.json": (
+        45230, "90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09", None
+    ),
+    "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps": (
+        336487, "23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7", None
+    ),
+    "generated/runtime/modernization_rockruff_own_tempo_stage75.bin": (
+        565280, "18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206", None
+    ),
+    "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json": (
+        7027, "48b2251110325dcc5a03b32a0bf820d73f02fca74a51ab5ff1073a6dcc8ac769", None
+    ),
+    "generated/runtime/modernization_rockruff_own_tempo_stage75_audit.json": (
+        1086089, "51c564a4b372e15cf43edb1899760a705c528be4af826f2a9dc8d077dac6ac99", None
+    ),
+    "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json": (
+        2604, "ac3deebaa4eb190ab1e581666bb5d56aa98540e2fa15e72a2ffd22ffb1c255a5", None
+    ),
+    "build/stages/76_modernization_p05_edges.gba": (
+        33554432, "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac", "0A78B46A"
+    ),
+    "build/stages/76_modernization_p05_edges.json": (
+        6059, "46eb197ba064f4380d6bfd31b16b7ad04bc63599707b72254adde2231aa4d792", None
+    ),
+    "build/stages/76_modernization_p05_edges_allocation.json": (
+        45818, "64f992d8288b3d861a8e2cc160af880991e76de1eb1ae7dd4081ee4e8c59ae3e", None
+    ),
+    "build/patches/stage75-to-stage76-modernization-p05-edges.bps": (
+        2191, "f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810", None
+    ),
+    "generated/runtime/modernization_p05_stage76_edges.bin": (
+        2066, "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e", None
+    ),
+    "generated/runtime/modernization_p05_stage76_edges_symbols.json": (
+        1518, "15291753650a4d7d3af61016e2fd6960233c0b4142db5e23e7ce44c044f8faf8", None
+    ),
+    "generated/runtime/modernization_p05_stage76_edges_audit.json": (
+        10537, "c15e42cd1fc405bf3bb007c0959fcb989f6f896e8b2bb54744cbea85b469facc", None
+    ),
 }
 
 PARALLEL_OUTPUTS = {
@@ -656,6 +742,22 @@ PARALLEL_OUTPUTS = {
             "tools/modernization_p03_stage74_supply.py",
         ],
     },
+    "P03_STAGE75_OWN_TEMPO_ROCKRUFF": {
+        "status": "INTEGRATED_INTERNAL_FORM_CHECKPOINT_NOT_P03_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_rockruff_own_tempo_stage75.json",
+            "content/modernization/rockruff_own_tempo_stage75_contract.json",
+            "content/modernization/rockruff_own_tempo_stage75_checkpoint.json",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.c",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.h",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.ld",
+            "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
+            "scripts/build_modernization_rockruff_own_tempo_stage75.sh",
+            "tests/test_modernization_rockruff_own_tempo_stage75.py",
+            "tools/modernization_rockruff_own_tempo_stage75.py",
+        ],
+    },
     "P04_STAGE70_SPECIES_RUNTIME": {
         "status": "INTEGRATED_STATIC_RUNTIME_MGBA_PENDING_NOT_P04_DONE",
         "included": True,
@@ -713,6 +815,22 @@ PARALLEL_OUTPUTS = {
             "scripts/build_modernization_p05_ability_rom_runtime.py",
             "tests/test_modernization_p05_ability_rom_runtime.py",
             "tools/modernization_p05_ability_rom_runtime.py",
+        ],
+    },
+    "P05_STAGE76_SAFE_AI_UI_EDGES": {
+        "status": "INTEGRATED_THREE_EDGES_EELEVATE_MGBA_PENDING_NOT_P05_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_p05_stage76_edges.json",
+            "content/modernization/p05_stage76_edges_contract.json",
+            "content/modernization/p05_stage76_edges_checkpoint.json",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld",
+            "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S",
+            "scripts/build_modernization_p05_stage76_edges.sh",
+            "tests/test_modernization_p05_stage76_edges.py",
+            "tools/modernization_p05_stage76_edges.py",
         ],
     },
 }
@@ -781,6 +899,13 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.h": "P03",
     "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.ld": "P03",
     "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime_scripts.S": "P03",
+    "scripts/build_modernization_rockruff_own_tempo_stage75.sh": "P03",
+    "tools/modernization_rockruff_own_tempo_stage75.py": "P03",
+    "tests/test_modernization_rockruff_own_tempo_stage75.py": "P03",
+    "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.c": "P03",
+    "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.h": "P03",
+    "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75.ld": "P03",
+    "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S": "P03",
     "scripts/build_modernization_p04_assets.py": "P04",
     "scripts/build_modernization_p04_capacity.py": "P04",
     "scripts/build_modernization_p04_sources.py": "P04",
@@ -838,6 +963,13 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.h": "P05",
     "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.ld": "P05",
     "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime_hooks.S": "P05",
+    "scripts/build_modernization_p05_stage76_edges.sh": "P05",
+    "tools/modernization_p05_stage76_edges.py": "P05",
+    "tests/test_modernization_p05_stage76_edges.py": "P05",
+    "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.c": "P05",
+    "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h": "P05",
+    "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld": "P05",
+    "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S": "P05",
     "scripts/run_modernization_p02_stage71_acceptance.py": "P02",
     "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": "P02",
     "tests/test_modernization_p02_stage71_acceptance.py": "P02",
@@ -1078,6 +1210,8 @@ def _candidate_inheritance(
         {"stage": 72, "role": "P05_ABILITY_ROM_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 71, "rom": rom("build/stages/72_modernization_p05_ability_rom_runtime.gba")},
         {"stage": 73, "role": "P03_FIVE_GROUP_CONSUMER_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 72, "rom": rom("build/stages/73_modernization_p03_consumer_runtime.gba")},
         {"stage": 74, "role": "P03_DIRECT_SUPPLY_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 73, "rom": rom("build/stages/74_modernization_p03_supply_runtime.gba")},
+        {"stage": 75, "role": "P03_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT_NOT_DONE", "parent_stage": 74, "rom": rom("build/stages/75_modernization_rockruff_own_tempo.gba")},
+        {"stage": 76, "role": "P05_THREE_SAFE_AI_UI_EDGES_CHECKPOINT_NOT_DONE", "parent_stage": 75, "rom": rom("build/stages/76_modernization_p05_edges.gba")},
     ]
 
 
@@ -1095,8 +1229,12 @@ def _candidate_patch_declarations() -> dict[str, dict[str, Any]]:
         }
         if key == "stage72_to_stage73":
             row["source_classification"] = "STAGE72_EXACT_ROM"
-        elif key == "from_parent":
+        elif key == "stage73_to_stage74":
             row["source_classification"] = "STAGE73_EXACT_ROM"
+        elif key == "stage74_to_stage75":
+            row["source_classification"] = "STAGE74_EXACT_ROM"
+        elif key == "from_parent":
+            row["source_classification"] = "STAGE75_EXACT_ROM"
         declarations[key] = row
     return declarations
 
@@ -1134,6 +1272,8 @@ def _validate_candidate_chain(
     s72 = by_path["build/stages/72_modernization_p05_ability_rom_runtime.gba"]
     s73 = by_path["build/stages/73_modernization_p03_consumer_runtime.gba"]
     s74 = by_path["build/stages/74_modernization_p03_supply_runtime.gba"]
+    s75 = by_path["build/stages/75_modernization_rockruff_own_tempo.gba"]
+    s76 = by_path["build/stages/76_modernization_p05_edges.gba"]
     m63 = metadata["build/stages/63_modernization_p01_identity_repair.json"]
     m64 = metadata["build/stages/64_modernization_p02_rayquaza_parameter_repair.json"]
     m65 = metadata["build/stages/65_modernization_p03_caterpie_slice.json"]
@@ -1154,6 +1294,10 @@ def _validate_candidate_chain(
     a73 = metadata["build/stages/73_modernization_p03_consumer_runtime_allocation.json"]
     m74 = metadata["build/stages/74_modernization_p03_supply_runtime.json"]
     a74 = metadata["build/stages/74_modernization_p03_supply_runtime_allocation.json"]
+    m75 = metadata["build/stages/75_modernization_rockruff_own_tempo.json"]
+    a75 = metadata["build/stages/75_modernization_rockruff_own_tempo_allocation.json"]
+    m76 = metadata["build/stages/76_modernization_p05_edges.json"]
+    a76 = metadata["build/stages/76_modernization_p05_edges_allocation.json"]
     _require(m63.get("task") == "USER-MODERNIZATION-P01" and m63.get("status") == "PASS", "Stage63 metadata identity不正")
     _require(m63.get("stage") == 63 and m63.get("scope", {}).get("active_play_baseline_changed") is False, "Stage63 scope不正")
     _require(m63.get("input", {}).get("parent", {}).get("sha256") == s62["sha256"], "Stage63親がStage62ではありません")
@@ -1536,6 +1680,109 @@ def _validate_candidate_chain(
         and len(m74.get("hooks", [])) == 2,
         "Stage74 supply metadata/parent/output/CRC/allocation/BPS境界不正",
     )
+    _require(
+        m75.get("task") == "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+        and m75.get("stage") == 75
+        and m75.get("status") == "CHECKPOINT_OWN_TEMPO_ROCKRUFF_RUNTIME_CONNECTED"
+        and m75.get("full_p03_done") is False
+        and m75.get("release_candidate") is False
+        and m75.get("parent", {}).get("path") == s74["path"]
+        and m75.get("parent", {}).get("sha256") == s74["sha256"]
+        and m75.get("output", {}).get("path") == s75["path"]
+        and m75.get("output", {}).get("sha256") == s75["sha256"]
+        and str(m75.get("output", {}).get("crc32", "")).upper() == s75["crc32"]
+        and m75.get("source_evidence", {}).get("config_sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_rockruff_own_tempo_stage75.json"][1]
+        and m75.get("source_evidence", {}).get("parent_metadata_sha256")
+        == by_path["build/stages/74_modernization_p03_supply_runtime.json"]["sha256"]
+        and m75.get("source_evidence", {}).get("parent_allocation_sha256")
+        == by_path["build/stages/74_modernization_p03_supply_runtime_allocation.json"]["sha256"],
+        "Stage75 Own Tempo Rockruff metadata/親/output/CRC/config identity不正",
+    )
+    identity75 = m75.get("identity", {})
+    route75 = m75.get("route_audit", {})
+    _require(
+        identity75 == {
+            "ability_id": 20,
+            "ability_slots": [20, 20, 20],
+            "classification": "INTERNAL_CONDITIONAL_FORM",
+            "collection_class": 4,
+            "collection_weight": 0,
+            "dusk_species_id": 1263,
+            "form_key": "FORM_KEY_ROCKRUFF_OWN_TEMPO",
+            "national_dex": 744,
+            "normal_species_id": 1142,
+            "reference_id": "scarletviolet:0744.01",
+            "save_layout_changed": False,
+            "species_id": 1670,
+            "species_key": "SPECIES_KEY_ROCKRUFF_OWN_TEMPO",
+        }
+        and route75.get("pre_evolution_carry", {}).get("path_count") == 38
+        and route75.get("pre_evolution_carry", {}).get("missing_owner_path_count") == 0
+        and route75.get("pre_evolution_carry", {}).get("reference_owner") == 1670
+        and route75.get("pre_evolution_carry", {}).get("target_species") == 1263
+        and route75.get("pre_evolution_carry", {}).get("direct_conversion") == "FORBIDDEN"
+        and route75.get("pre_evolution_carry", {}).get("resolution_counts")
+        == {"reference_existing_slot": 21, "reference_stage74_archive": 17}
+        and route75.get("source_route_clone", {}).get("route_count") == 60
+        and route75.get("accounting", {}).get("materialized_routes_before") == 83162
+        and route75.get("accounting", {}).get("materialized_routes_after") == 83162
+        and route75.get("accounting", {}).get("selected_routes_before") == 118369
+        and route75.get("accounting", {}).get("selected_routes_after") == 118369
+        and route75.get("accounting", {}).get("route_accounting_delta") == 0
+        and route75.get("exclusions", {}).get("side_change_materialized") == 0
+        and route75.get("exclusions", {}).get("browt_pombon_gecqua_materialized") == 0
+        and route75.get("exclusions", {}).get("prohibited_coercions_materialized") == 0,
+        "Stage75 internal form/38 carry/route accounting/除外境界不正",
+    )
+    expected_edges76 = {
+        "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+        "mega_sol_solar_charge_popup": "IMPLEMENT",
+        "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+        "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+    }
+    _require(
+        m76.get("task") == "USER-MODERNIZATION-P05-STAGE76-EDGES"
+        and m76.get("stage") == 76
+        and m76.get("status") == "THREE_EDGES_ROM_MATERIALIZED_EELEVATE_AND_MGBA_PENDING"
+        and m76.get("parent") == {
+            "commit": STAGE75_IMPLEMENTATION_COMMIT,
+            "path": s75["path"],
+            "sha256": s75["sha256"],
+            "size": 33554432,
+            "stage": 75,
+        }
+        and m76.get("output", {}).get("path") == s76["path"]
+        and m76.get("output", {}).get("sha256") == s76["sha256"]
+        and str(m76.get("output", {}).get("crc32", "")).upper() == s76["crc32"]
+        and m76.get("edges") == expected_edges76
+        and m76.get("implemented_edge_count") == 3
+        and m76.get("pending_edge_count") == 1
+        and m76.get("done") is False
+        and m76.get("full_p05_done") is False
+        and m76.get("release_ready") is False,
+        "Stage76 P05 3実装/1 pending/親commit/output/未完了境界不正",
+    )
+    checks76 = m76.get("checks", {})
+    _require(
+        checks76.get("active_play_baseline_unchanged") == "PASS"
+        and checks76.get("parent_stage75_implementation_cross_link") == "PASS"
+        and checks76.get("parent_first79_rows_all_fields_preserved") == "PASS"
+        and checks76.get("rom_diff_outside_payload_plus_four_patches") == 0
+        and checks76.get("eelevate_parent_sites_preserved") == "PASS"
+        and checks76.get("eelevate_unsafe_hooks_installed") == 0
+        and checks76.get("side_change_added") == 0
+        and checks76.get("browt_pombon_gecqua_added") == 0
+        and checks76.get("mgba_runtime") == "NOT_RUN"
+        and m76.get("bps", {}).get("path")
+        == "build/patches/stage75-to-stage76-modernization-p05-edges.bps"
+        and m76.get("bps", {}).get("sha256")
+        == by_path["build/patches/stage75-to-stage76-modernization-p05-edges.bps"]["sha256"]
+        and m76.get("bps", {}).get("source_sha256") == s75["sha256"]
+        and m76.get("bps", {}).get("target_sha256") == s76["sha256"]
+        and m76.get("bps", {}).get("round_trip") is True,
+        "Stage76 checks/BPS/Eelevate/除外/mGBA境界不正",
+    )
     accounting73 = m73.get("consumer_accounting", {})
     accounting74 = m74.get("accounting", {})
     direct74 = m74.get("direct_supply", {})
@@ -1545,10 +1792,14 @@ def _validate_candidate_chain(
     allocation_rows72 = {row.get("sequence"): row for row in a72.get("allocations", [])}
     allocation_rows73 = {row.get("sequence"): row for row in a73.get("allocations", [])}
     allocation_rows74 = {row.get("sequence"): row for row in a74.get("allocations", [])}
+    allocation_rows75 = {row.get("sequence"): row for row in a75.get("allocations", [])}
+    allocation_rows76 = {row.get("sequence"): row for row in a76.get("allocations", [])}
     stage73_rom = _regular_bytes(root, str(s73["path"]))
     stage74_rom = _regular_bytes(root, str(s74["path"]))
     stage74_sequence33_slice_sha256 = _sha256(stage74_rom[19726128:19729096])
     stage74_sequence77_slice_sha256 = _sha256(stage74_rom[22256768:22327340])
+    stage75_rom = _regular_bytes(root, str(s75["path"]))
+    stage76_rom = _regular_bytes(root, str(s76["path"]))
 
     def allocation_layout_projection(row: Mapping[str, Any]) -> dict[str, Any]:
         return {
@@ -1768,20 +2019,116 @@ def _validate_candidate_chain(
         == allocation_rows74[77].get("content_sha256"),
         "Stage70～74 allocation lineage/sequence33 mutation/sequence77 identity不正",
     )
+    mutation_sequences75 = [25, 27, 33, 34, 44, 48, 61, 62, 66]
+    mutations75 = m75.get("allocation_mutations", [])
+    _require(
+        set(allocation_rows75) == set(range(79))
+        and set(allocation_rows76) == set(range(80))
+        and a74.get("regions") == a75.get("regions") == a76.get("regions")
+        and all(
+            allocation_layout_projection(allocation_rows74[sequence])
+            == allocation_layout_projection(allocation_rows75[sequence])
+            for sequence in range(78)
+        )
+        and all(
+            allocation_rows74[sequence] == allocation_rows75[sequence]
+            for sequence in range(78) if sequence not in mutation_sequences75
+        )
+        and [row.get("sequence") for row in mutations75] == mutation_sequences75
+        and all(
+            row.get("name") == allocation_rows75[row["sequence"]].get("name")
+            and row.get("parent_declared_sha256")
+            == allocation_rows74[row["sequence"]].get("content_sha256")
+            and row.get("parent_effective_sha256")
+            == _sha256(stage74_rom[
+                allocation_rows74[row["sequence"]]["start"]:
+                allocation_rows74[row["sequence"]]["end_exclusive"]
+            ])
+            and row.get("output_effective_sha256")
+            == allocation_rows75[row["sequence"]].get("content_sha256")
+            and row.get("output_effective_sha256")
+            == _sha256(stage75_rom[
+                allocation_rows75[row["sequence"]]["start"]:
+                allocation_rows75[row["sequence"]]["end_exclusive"]
+            ])
+            for row in mutations75
+        )
+        and allocation_rows75[78] == {
+            "alignment": 16,
+            "content_sha256": "18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206",
+            "end_exclusive": 22892624,
+            "gba_end_exclusive": 157110352,
+            "gba_start": 156545072,
+            "name": "modernization_rockruff_own_tempo_stage75_payload",
+            "owner": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+            "placement": "FIRST_FIT",
+            "purpose": "Own Tempo Rockruff internal form species tables, evolution, breeding, acquisition, and P03 owner runtime",
+            "region": "integration_modules",
+            "sequence": 78,
+            "size": 565280,
+            "start": 22327344,
+        }
+        and _sha256(stage75_rom[22327344:22892624])
+        == allocation_rows75[78]["content_sha256"]
+        and a75.get("summaries", {}).get("allocation_count") == 79
+        and a75.get("summaries", {}).get("overlap_count") == 0
+        and a75.get("summaries", {}).get("remaining_allocatable_bytes") == 223723,
+        "Stage75 allocation first78 layout/mutation/new sequence78境界不正",
+    )
+    _require(
+        all(allocation_rows75[sequence] == allocation_rows76[sequence] for sequence in range(79))
+        and _sha256(stable_json(a75.get("allocations", [])))
+        == "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a"
+        and _sha256(stable_json(a76.get("allocations", [])[:79]))
+        == "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a"
+        and allocation_rows76[79] == {
+            "alignment": 16,
+            "content_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+            "end_exclusive": 22894690,
+            "gba_end_exclusive": 157112418,
+            "gba_start": 157110352,
+            "name": "modernization_p05_stage76_edges_payload",
+            "owner": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+            "placement": "FIRST_FIT",
+            "purpose": "Mega Sol production Solar Beam popup plus Piercing Drill and Spicy Spray AI edge adapters",
+            "region": "integration_modules",
+            "sequence": 79,
+            "size": 2066,
+            "start": 22892624,
+        }
+        and _sha256(stage76_rom[22892624:22894690])
+        == allocation_rows76[79]["content_sha256"]
+        and a76.get("summaries", {}).get("allocation_count") == 80
+        and a76.get("summaries", {}).get("overlap_count") == 0
+        and a76.get("summaries", {}).get("remaining_allocatable_bytes") == 221657
+        and m76.get("allocation_lineage") == {
+            "first79_all_fields_equal": True,
+            "new_count": 80,
+            "new_first79_sha256": "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a",
+            "new_sequence": 79,
+            "parent_count": 79,
+            "parent_first79_sha256": "8cf50825cd00551477106946878c76e6ecdfd9339d86ae212fb9812e08e72d3a",
+            "parent_last_sequence": 78,
+            "payload_slice_sha256": "c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e",
+        }
+        and sum(left != right for left, right in zip(stage74_rom, stage75_rom)) == 540757
+        and sum(left != right for left, right in zip(stage75_rom, stage76_rom)) == 2081,
+        "Stage76 allocation first79完全保持/new sequence79/ROM差分境界不正",
+    )
     latest_bps_audit = [
         _verify_incremental_bps(root, source, patch, target)
         for source, patch, target in LATEST_INCREMENTAL_BPS_PATHS
     ]
     # 累積candidate registryでは「最後に完了した工程」と「最後のcheckpoint」を
-    # 別フィールドとして扱う。Stage74まで接続してもP02～P07をDONEへ昇格させない。
+    # 別フィールドとして扱う。Stage76まで接続してもP02～P07をDONEへ昇格させない。
     source = registry.get("source", {})
     _require(
         registry.get("schema_version") == 2
         and registry.get("status")
-        == "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+        == "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and registry.get("completed_through") == "USER-MODERNIZATION-P01"
         and registry.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
         and source.get("stage68_checkpoint_commit")
         == "2a7197f6134509749da780aec61bf0db29147a0e"
         and source.get("stage69_checkpoint_commit")
@@ -1794,7 +2141,10 @@ def _validate_candidate_chain(
         == "bbab6b2e943186cf437a6dca90712c01f0319ded"
         and source.get("stage73_checkpoint_commit")
         == "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e"
-        and source.get("stage74_checkpoint_commit") == SNAPSHOT_BASE_HEAD
+        and source.get("stage74_checkpoint_commit")
+        == "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7"
+        and source.get("stage75_checkpoint_commit") == STAGE75_IMPLEMENTATION_COMMIT
+        and source.get("stage76_checkpoint_commit") == SNAPSHOT_BASE_HEAD
         and source.get("stage73_preflight_commit")
         == "c2bb0afb26085a6815d5bd10a2d5b29db80f966d"
         and source.get("p02_stage71_acceptance_commit")
@@ -1802,26 +2152,36 @@ def _validate_candidate_chain(
         and source.get("uncommitted_checkpoint_identity") is None
         and registry.get("release_ready") is False
         and registry.get("active_play_baseline_changed") is False,
-        "candidate v2 Stage74 registryの完了/checkpoint/release境界不正",
+        "candidate v2 Stage76 registryの完了/checkpoint/release境界不正",
     )
     _require(
         registry.get("active_parent", {}).get("stage") == 62
         and registry.get("active_parent", {}).get("sha256") == s62["sha256"]
-        and registry.get("parent", {}).get("stage") == 73
-        and registry.get("parent", {}).get("sha256") == s73["sha256"]
-        and registry.get("candidate", {}).get("stage") == 74
-        and registry.get("candidate", {}).get("sha256") == s74["sha256"]
+        and registry.get("parent", {}).get("stage") == 75
+        and registry.get("parent", {}).get("sha256") == s75["sha256"]
+        and registry.get("parent", {}).get("metadata", {}).get("sha256")
+        == by_path["build/stages/75_modernization_rockruff_own_tempo.json"]["sha256"]
+        and registry.get("parent", {}).get("allocation", {}).get("sha256")
+        == by_path["build/stages/75_modernization_rockruff_own_tempo_allocation.json"]["sha256"]
+        and registry.get("candidate", {}).get("stage") == 76
+        and registry.get("candidate", {}).get("sha256") == s76["sha256"]
+        and registry.get("candidate", {}).get("metadata", {}).get("sha256")
+        == by_path["build/stages/76_modernization_p05_edges.json"]["sha256"]
+        and registry.get("candidate", {}).get("allocation", {}).get("sha256")
+        == by_path["build/stages/76_modernization_p05_edges_allocation.json"]["sha256"]
         and registry.get("p02_overlay_parent", {}).get("sha256")
         == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
         and registry.get("p02_overlay_parent", {}).get("changed_bytes_from_stage66")
         == 60,
-        "candidate v2 Stage73 parent/Stage74 candidate identity不正",
+        "candidate v2 Stage75 parent/Stage76 candidate identity不正",
     )
     adopted = registry.get("adopted_delta", {})
     p03_73 = adopted.get("p03_stage73_consumer_checkpoint", {})
     p03_74 = adopted.get("p03_stage74_supply_checkpoint", {})
+    p03_75 = adopted.get("p03_stage75_own_tempo_checkpoint", {})
     p04_scope = adopted.get("p04_adoption_scope", {})
     p05_72 = adopted.get("p05_stage72_ability_runtime", {})
+    p05_76 = adopted.get("p05_stage76_edges_checkpoint", {})
     p02_71 = adopted.get("p02_stage71_acceptance", {})
     _require(
         p03_73.get("new_runtime_materialized_routes") == 5363
@@ -1877,22 +2237,50 @@ def _validate_candidate_chain(
         == p03_74.get("cumulative_accounted_routes"),
         "candidate v2 P03 Stage74 supply/preservation/capacity/economy/除外境界不正",
     )
+    _require(
+        p03_75 == {
+            "internal_species_id": 1670,
+            "normal_species_id": 1142,
+            "dusk_species_id": 1263,
+            "national_dex": 744,
+            "ability_id": 20,
+            "species_count": 1671,
+            "pre_evolution_carry_paths": 38,
+            "missing_owner_paths": 0,
+            "source_owner_clone_routes": 60,
+            "route_accounting_delta": 0,
+            "cumulative_runtime_materialized_routes": 83162,
+            "cumulative_accounted_routes": 118369,
+            "save_layout_changed": False,
+            "archive_economy": "PROVISIONAL_REPLACEABLE",
+            "allocation_sequence": 78,
+            "allocation_count": 79,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "prohibited_coercions_materialized": 0,
+            "full_p03_done": False,
+        },
+        "candidate v2 P03 Stage75 Own Tempo/accounting/save/economy/除外境界不正",
+    )
     checkpoints = registry.get("checkpoints", {})
     deferred = registry.get("deferred", {})
     _require(
-        adopted.get("changed_bytes_by_stage", {}).get("p03_stage74_from_stage73")
-        == 70480
+        adopted.get("changed_bytes_by_stage", {}).get("p03_stage74_from_stage73") == 70480
+        and adopted.get("changed_bytes_by_stage", {}).get("p03_stage75_from_stage74") == 540757
+        and adopted.get("changed_bytes_by_stage", {}).get("p05_stage76_from_stage75") == 2081
         and checkpoints.get("p03")
-        == "STAGE74_DIRECT_SUPPLY_CHECKPOINT_ROCKRUFF_MGBA_PENDING_NOT_P03_DONE"
+        == "STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_PROVISIONAL_ECONOMY_FINAL_MGBA_PENDING_NOT_P03_DONE"
         and checkpoints.get("p03_stage73_consumer")
         == "FIVE_GROUP_CONSUMER_BOUNDARY_CONNECTED_SUPPLY_MGBA_PENDING_NOT_P03_DONE"
         and checkpoints.get("p03_stage74_supply")
         == "DIRECT_MACHINE_TUTOR_SUPPLY_CONNECTED_ROCKRUFF_MGBA_PENDING_NOT_P03_DONE"
+        and checkpoints.get("p03_stage75_own_tempo")
+        == "OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CONNECTED_PROVISIONAL_ECONOMY_FINAL_MGBA_PENDING_NOT_P03_DONE"
         and deferred.get("p03_full_materialization")
-        == "DIRECT_SUPPLY_COMPLETE_OWN_TEMPO_ROCKRUFF_0744_01_38_ROUTE_SEMANTICS_AND_FINAL_MGBA_REMAIN"
+        == "DIRECT_SUPPLY_AND_OWN_TEMPO_ROCKRUFF_0744_01_CONNECTED_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN"
         and deferred.get("p03_machine_tutor_supply")
         == "RESOLVED_STAGE74_26648_DIRECT_ROUTES_CONNECTED",
-        "candidate v2 Stage74 checkpoint/deferred解決・残件境界不正",
+        "candidate v2 Stage75/76 checkpoint/deferred解決・残件境界不正",
     )
     _require(
         p04_scope.get("mega_species_and_forms") == 49
@@ -1916,30 +2304,55 @@ def _validate_candidate_chain(
         and p05_72.get("rom_linked") is True
         and p05_72.get("exact_mgba") is False
         and p05_72.get("documented_ai_ui_edges_pending") == 4
+        and p05_76 == {
+            "implemented_edge_count": 3,
+            "pending_edge_count": 1,
+            "mega_sol_solar_charge_popup": "IMPLEMENT",
+            "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+            "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+            "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+            "allocation_parent_count": 79,
+            "allocation_count": 80,
+            "allocation_sequence": 79,
+            "parent_first79_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 5,
+            "changed_bytes_inside_allowlist": 2081,
+            "changed_bytes_outside_allowlist": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+        }
+        and checkpoints.get("p05")
+        == "STAGE76_THREE_EDGES_CONNECTED_EELEVATE_AND_FINAL_MGBA_REMAIN"
+        and checkpoints.get("p05_stage76_edges")
+        == "THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_AND_FINAL_MGBA_PENDING_NOT_P05_DONE"
+        and deferred.get("p05_new_abilities")
+        == "6_ROM_LINKED_AND_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_PENDING"
         and p02_71 == {
             "status": "STOPPED_EXACT_UI_PENDING",
             "production_runtime": "UNJUDGED",
             "exact_ui_acceptance": False,
             "additional_mgba_deferred": True,
         },
-        "candidate v2 P02 Stage71/P05 Stage72境界不正",
+        "candidate v2 P02 Stage71/P05 Stage72/76境界不正",
     )
     return {
         "active_stage": 62,
-        "selected_checkpoint_stage": 74,
+        "selected_checkpoint_stage": 76,
         "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
         "registry": {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+            "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
+            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
             "checkpoint_commit": SNAPSHOT_BASE_HEAD,
             "last_committed_checkpoint": SNAPSHOT_BASE_HEAD,
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 73,
-            "candidate_stage": 74,
+            "parent_stage": 75,
+            "candidate_stage": 76,
         },
         "inheritance": _candidate_inheritance(by_path),
         "parent_chain_verified": True,
@@ -2077,6 +2490,46 @@ def _validate_candidate_chain(
             "browt_pombon_gecqua_materialized": 0,
             "prohibited_coercions_materialized": 0,
             "full_p03_done": False,
+        },
+        "stage75_integrated": True,
+        "stage75_scope": {
+            "internal_species_id": 1670,
+            "normal_species_id": 1142,
+            "dusk_species_id": 1263,
+            "national_dex": 744,
+            "ability_id": 20,
+            "species_count": 1671,
+            "pre_evolution_carry_paths": 38,
+            "missing_owner_paths": 0,
+            "source_owner_clone_routes": 60,
+            "route_accounting_delta": 0,
+            "cumulative_runtime_materialized_routes": 83162,
+            "cumulative_accounted_routes": 118369,
+            "save_layout_changed": False,
+            "archive_economy": "PROVISIONAL_REPLACEABLE",
+            "allocation_sequence": 78,
+            "allocation_count": 79,
+            "full_p03_done": False,
+            "exact_mgba": False,
+        },
+        "stage76_integrated": True,
+        "stage76_scope": {
+            "implemented_edge_count": 3,
+            "pending_edge_count": 1,
+            "edges": expected_edges76,
+            "allocation_parent_count": 79,
+            "allocation_count": 80,
+            "allocation_sequence": 79,
+            "parent_first79_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 5,
+            "changed_bytes_inside_allowlist": 2081,
+            "changed_bytes_outside_allowlist": 0,
+            "eelevate_unsafe_hooks_installed": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+            "exact_mgba": False,
         },
         "latest_incremental_bps": latest_bps_audit,
         "release_candidate": False,
@@ -2268,6 +2721,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p03_stage74 = documents[
         "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
     ]
+    p03_stage75_config = documents["config/modernization_rockruff_own_tempo_stage75.json"]
+    p03_stage75_contract = documents[
+        "content/modernization/rockruff_own_tempo_stage75_contract.json"
+    ]
+    p03_stage75 = documents[
+        "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+    ]
     p04_manifest = documents["content/modernization/p04_candidate_manifest.json"]
     p04_official = documents["content/modernization/p04_official_sources.json"]
     p04_assets = documents["content/modernization/p04_asset_sources.json"]
@@ -2313,6 +2773,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p05_stage72_surface = documents[
         "content/modernization/p05_ability_rom_runtime_surface_matrix.json"
     ]
+    p05_stage76_config = documents["config/modernization_p05_stage76_edges.json"]
+    p05_stage76_contract = documents[
+        "content/modernization/p05_stage76_edges_contract.json"
+    ]
+    p05_stage76 = documents[
+        "content/modernization/p05_stage76_edges_checkpoint.json"
+    ]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
     p07_runtime = documents["content/modernization/p07_runtime_handoff.json"]
@@ -2335,13 +2802,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     _require(
         p01_candidate.get("schema_version") == 2
         and p01_candidate.get("status")
-        == "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+        == "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and p01_candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and p01_candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
         and p01_candidate.get("release_ready") is False
         and p01_candidate.get("active_play_baseline_changed") is False,
-        "candidate v2のP01完了/Stage74 checkpoint/release境界不正",
+        "candidate v2のP01完了/Stage76 checkpoint/release境界不正",
     )
     _require(
         p01_candidate.get("active_parent", {}).get("stage") == 62
@@ -2352,32 +2819,32 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         "candidate v2 active_parentがStage62 exact identityではありません",
     )
     _require(
-        p01_candidate.get("parent", {}).get("stage") == 73
+        p01_candidate.get("parent", {}).get("stage") == 75
         and p01_candidate.get("parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/73_modernization_p03_consumer_runtime.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
         and p01_candidate.get("parent", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/73_modernization_p03_consumer_runtime.json"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.json"][1]
         and p01_candidate.get("parent", {}).get("allocation", {}).get("sha256")
         == CANDIDATE_ARTIFACTS[
-            "build/stages/73_modernization_p03_consumer_runtime_allocation.json"
+            "build/stages/75_modernization_rockruff_own_tempo_allocation.json"
         ][1],
-        "candidate v2 parentがStage73 exact identityではありません",
+        "candidate v2 parentがStage75 exact identityではありません",
     )
     _require(
-        p01_candidate.get("candidate", {}).get("stage") == 74
+        p01_candidate.get("candidate", {}).get("stage") == 76
         and p01_candidate.get("candidate", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
         and p01_candidate.get("candidate", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.json"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.json"][1]
         and p01_candidate.get("candidate", {}).get("allocation", {}).get("sha256")
         == CANDIDATE_ARTIFACTS[
-            "build/stages/74_modernization_p03_supply_runtime_allocation.json"
+            "build/stages/76_modernization_p05_edges_allocation.json"
         ][1],
-        "candidate v2 candidateがStage74 exact identityではありません",
+        "candidate v2 candidateがStage76 exact identityではありません",
     )
     _require(
         p01_candidate.get("patches") == _candidate_patch_declarations(),
-        "candidate v2 Stage67～74 BPS path/size/source/target/hash/round-trip不正",
+        "candidate v2 Stage67～76 BPS path/size/source/target/hash/round-trip不正",
     )
     expected_stage_chain = [
         (63, "USER-MODERNIZATION-P01", "COMPLETED", 10,
@@ -2404,9 +2871,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
          CANDIDATE_ARTIFACTS["build/stages/73_modernization_p03_consumer_runtime.gba"][1]),
         (74, "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME", "P03_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE", 70480,
          CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.gba"][1]),
+        (75, "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75", "P03_OWN_TEMPO_ROCKRUFF_CHECKPOINT_NOT_P03_DONE", 540757,
+         CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]),
+        (76, "USER-MODERNIZATION-P05-STAGE76-EDGES", "P05_THREE_EDGES_CHECKPOINT_NOT_P05_DONE", 2081,
+         CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]),
     ]
     stage_chain = p01_candidate.get("stage_chain")
-    _require(isinstance(stage_chain, list) and len(stage_chain) == 12, "candidate v2 stage_chain件数不正")
+    _require(isinstance(stage_chain, list) and len(stage_chain) == 14, "candidate v2 stage_chain件数不正")
     for row, (stage, task, state, changed, digest) in zip(stage_chain, expected_stage_chain):
         _require(
             row.get("stage") == stage and row.get("task") == task
@@ -2415,9 +2886,12 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
             f"candidate v2 stage_chain不正: Stage{stage}",
         )
     _require(
-        stage_chain[-1].get("exact_runtime_gate")
-        == "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING",
-        "candidate v2 Stage74 exact runtime gate境界不正",
+        stage_chain[-3].get("exact_runtime_gate")
+        == "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"
+        and stage_chain[-2].get("exact_runtime_gate") == "STATIC_ONLY_FINAL_MGBA_PENDING"
+        and stage_chain[-1].get("exact_runtime_gate")
+        == "HOST_STATIC_EELEVATE_AND_MGBA_PENDING",
+        "candidate v2 Stage74～76 exact runtime gate境界不正",
     )
     _require(
         p02_checkpoint.get("input", {}).get("p02_static_contract", {}).get("sha256")
@@ -3223,6 +3697,174 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         ],
         "P03 Stage74 checkpoint allocation sequence33/77 lineage境界不正",
     )
+    identity75 = {
+        "ability_id": 20,
+        "ability_slots": [20, 20, 20],
+        "classification": "INTERNAL_CONDITIONAL_FORM",
+        "collection_class": 4,
+        "collection_weight": 0,
+        "dusk_species_id": 1263,
+        "form_key": "FORM_KEY_ROCKRUFF_OWN_TEMPO",
+        "national_dex": 744,
+        "normal_species_id": 1142,
+        "reference_id": "scarletviolet:0744.01",
+        "save_layout_changed": False,
+        "species_id": 1670,
+        "species_key": "SPECIES_KEY_ROCKRUFF_OWN_TEMPO",
+    }
+    save75 = {
+        "existing_1142_preserved": True,
+        "existing_1263_preserved": True,
+        "layout_changed": False,
+        "migration_required": False,
+        "new_species_field_width": "existing_u16",
+    }
+    _require(
+        p03_stage75_config.get("task") == "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+        and p03_stage75_config.get("stage") == 75
+        and p03_stage75_config.get("identity") == identity75
+        and p03_stage75_config.get("evolution", {}).get("row_u16") == [28, 25, 1263, 4372]
+        and p03_stage75_config.get("p03", {}).get("withheld_carry_paths") == 38
+        and p03_stage75_config.get("p03", {}).get("carry_resolution_counts")
+        == {"reference_existing_slot": 21, "reference_stage74_archive": 17}
+        and p03_stage75_config.get("p03", {}).get("route_accounting_delta") == 0
+        and p03_stage75_config.get("inputs", {}).get("rom", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.gba"][1]
+        and p03_stage75_config.get("inputs", {}).get("metadata", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.json"][1]
+        and p03_stage75_config.get("inputs", {}).get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime_allocation.json"][1]
+        and p03_stage75_config.get("exclusions") == {
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p03_done": False,
+            "prohibited_coercions_materialized": 0,
+            "side_change_materialized": 0,
+            "side_change_project_move_id": 1063,
+        },
+        "P03 Stage75 config identity/evolution/38 carry/親/除外境界不正",
+    )
+    contract_p03_75 = p03_stage75_contract.get("p03", {})
+    _require(
+        p03_stage75_contract.get("task") == "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+        and p03_stage75_contract.get("stage") == 75
+        and p03_stage75_contract.get("status") == "STAGE75_OWN_TEMPO_INTERNAL_FORM_CONTRACT"
+        and p03_stage75_contract.get("identity") == identity75
+        and p03_stage75_contract.get("save") == save75
+        and p03_stage75_contract.get("table_contract", {}).get("old_species_count") == 1670
+        and p03_stage75_contract.get("table_contract", {}).get("new_species_count") == 1671
+        and p03_stage75_contract.get("table_contract", {}).get("pointer_consumers") == 310
+        and p03_stage75_contract.get("table_contract", {}).get("count_consumers") == 19
+        and contract_p03_75.get("pre_evolution_carry", {}).get("path_count") == 38
+        and contract_p03_75.get("pre_evolution_carry", {}).get("missing_owner_path_count") == 0
+        and contract_p03_75.get("pre_evolution_carry", {}).get("direct_conversion") == "FORBIDDEN"
+        and contract_p03_75.get("source_route_clone", {}).get("route_count") == 60
+        and contract_p03_75.get("accounting", {}).get("route_accounting_delta") == 0
+        and contract_p03_75.get("accounting", {}).get("materialized_routes_after") == 83162
+        and contract_p03_75.get("accounting", {}).get("selected_routes_after") == 118369,
+        "P03 Stage75 contract species table/save/route accounting境界不正",
+    )
+    _require(
+        p03_stage75.get("task") == "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+        and p03_stage75.get("stage") == 75
+        and p03_stage75.get("status") == "ROM_MATERIALIZED_CHECKPOINT"
+        and p03_stage75.get("done") is False
+        and p03_stage75.get("release_candidate") is False
+        and p03_stage75.get("p03", {}).get("full_p03_done") is False
+        and p03_stage75.get("p03", {}).get("missing_owner_paths") == 0
+        and p03_stage75.get("identity") == identity75
+        and p03_stage75.get("save") == save75
+        and p03_stage75.get("parent", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.gba"][1]
+        and p03_stage75.get("output", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
+        and str(p03_stage75.get("output", {}).get("crc32", "")).upper() == "1511F429"
+        and p03_stage75.get("metadata", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.json"][1]
+        and p03_stage75.get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo_allocation.json"][1]
+        and p03_stage75.get("allocation", {}).get("new_sequence") == 78
+        and p03_stage75.get("allocation", {}).get("mutated_content_hash_sequences")
+        == [25, 27, 33, 34, 44, 48, 61, 62, 66]
+        and p03_stage75.get("bps", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps"][1]
+        and p03_stage75.get("bps", {}).get("source_sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/74_modernization_p03_supply_runtime.gba"][1]
+        and p03_stage75.get("bps", {}).get("target_sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
+        and p03_stage75.get("bps", {}).get("round_trip") is True
+        and p03_stage75.get("mgba") == "DEFERRED_TO_ROOT_FINAL_CUMULATIVE_ONCE",
+        "P03 Stage75 checkpoint identity/allocation/BPS/未完了/mGBA境界不正",
+    )
+    expected_edges76 = {
+        "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+        "mega_sol_solar_charge_popup": "IMPLEMENT",
+        "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+        "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+    }
+    parent76 = p05_stage76_config.get("parent_identity", {})
+    _require(
+        p05_stage76_config.get("task") == "USER-MODERNIZATION-P05-STAGE76-EDGES"
+        and p05_stage76_config.get("stage") == 76
+        and p05_stage76_config.get("status") == "STAGE75_IDENTITY_PINNED"
+        and parent76.get("stage75_commit") == STAGE75_IMPLEMENTATION_COMMIT
+        and parent76.get("policy")
+        == "FAIL_CLOSED_EXACT_STAGE75_IMPLEMENTATION_COMMIT_AND_FIVE_IDENTITIES"
+        and parent76.get("rom", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
+        and parent76.get("metadata", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.json"][1]
+        and parent76.get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo_allocation.json"][1]
+        and parent76.get("tracked_config", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_rockruff_own_tempo_stage75.json"][1]
+        and parent76.get("checkpoint", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["content/modernization/rockruff_own_tempo_stage75_checkpoint.json"][1]
+        and p05_stage76_config.get("edges") == expected_edges76
+        and p05_stage76_config.get("edge_contract", {}).get("eelevate", {}).get("release_blocker") is True,
+        "P05 Stage76 config Stage75 commit/5 identity/3実装+Eelevate pending境界不正",
+    )
+    for label, document, status in (
+        ("contract", p05_stage76_contract, "THREE_P05_EDGES_MATERIALIZED_EELEVATE_PENDING"),
+        ("checkpoint", p05_stage76, "THREE_EDGES_ROM_MATERIALIZED_EELEVATE_AND_MGBA_PENDING"),
+    ):
+        _require(
+            document.get("task") == "USER-MODERNIZATION-P05-STAGE76-EDGES"
+            and document.get("stage") == 76
+            and document.get("status") == status
+            and document.get("edges") == expected_edges76
+            and document.get("done") is False
+            and document.get("full_p05_done") is False
+            and document.get("release_ready") is False
+            and document.get("output", {}).get("sha256")
+            == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
+            and str(document.get("output", {}).get("crc32", "")).upper() == "0A78B46A"
+            and document.get("bps", {}).get("sha256")
+            == CANDIDATE_ARTIFACTS["build/patches/stage75-to-stage76-modernization-p05-edges.bps"][1]
+            and document.get("bps", {}).get("source_sha256")
+            == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
+            and document.get("bps", {}).get("target_sha256")
+            == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
+            and document.get("bps", {}).get("round_trip") is True
+            and document.get("allocation_lineage", {}).get("first79_all_fields_equal") is True
+            and document.get("allocation_lineage", {}).get("parent_count") == 79
+            and document.get("allocation_lineage", {}).get("new_count") == 80
+            and document.get("allocation_lineage", {}).get("new_sequence") == 79
+            and document.get("checks", {}).get("rom_diff_outside_payload_plus_four_patches") == 0
+            and document.get("checks", {}).get("eelevate_unsafe_hooks_installed") == 0
+            and document.get("checks", {}).get("mgba_runtime") == "NOT_RUN",
+            f"P05 Stage76 {label} identity/allocation/BPS/Eelevate/未完了境界不正",
+        )
+    _require(
+        p05_stage76.get("implemented_edge_count") == 3
+        and p05_stage76.get("pending_edge_count") == 1
+        and p05_stage76.get("parent", {}).get("commit") == STAGE75_IMPLEMENTATION_COMMIT
+        and p05_stage76.get("rom_diff", {}).get("allowlist_interval_count") == 5
+        and p05_stage76.get("rom_diff", {}).get("changed_bytes_inside_allowlist") == 2081
+        and p05_stage76.get("rom_diff", {}).get("changed_bytes_outside_allowlist") == 0
+        and p05_stage76.get("artifact_manifest", {}).get("artifact_count") == 9
+        and p05_stage76.get("artifact_manifest", {}).get("all_paths_sizes_sha256_present") is True,
+        "P05 Stage76 checkpoint 3/1 edge・allowlist・9成果境界不正",
+    )
     _require(
         p04_stage70_config.get("status") == "STAGE70_ROM_MATERIALIZED"
         and p04_stage70_config.get("inputs", {}).get("rom", {}).get("sha256")
@@ -3454,6 +4096,9 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p03_stage74 = documents[
         "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
     ]
+    p03_stage75 = documents[
+        "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
+    ]
     p04 = documents["content/modernization/p04_candidate_manifest.json"]
     p04_import = documents["content/modernization/p04_asset_import_manifest.json"]
     p04_capacity = documents[
@@ -3478,6 +4123,9 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p05_stage72 = documents[
         "content/modernization/p05_ability_rom_runtime_checkpoint.json"
     ]
+    p05_stage76 = documents[
+        "content/modernization/p05_stage76_edges_checkpoint.json"
+    ]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p06_projection = documents["content/modernization/p06_review_projection.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
@@ -3488,10 +4136,10 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(
         candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
         and candidate.get("release_ready") is False
         and candidate.get("active_play_baseline_changed") is False,
-        "P01 completion evidenceとStage74 checkpoint境界不正",
+        "P01 completion evidenceとStage76 checkpoint境界不正",
     )
 
     _require(p02.get("status") == "PASS" and p02.get("release_gate") == "BLOCKED_BY_REQUIRED_FIXES_AND_DEFERRED_RUNTIME_ACCEPTANCE", "P02 static/blocked境界不正")
@@ -3644,6 +4292,23 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         and all(value == 0 for value in p03_stage74.get("exclusions", {}).values()),
         "P03 Stage74 direct supply/preservation/capacity/economy/Rockruff境界不正",
     )
+    _require(
+        p03_stage75.get("status") == "ROM_MATERIALIZED_CHECKPOINT"
+        and p03_stage75.get("stage") == 75
+        and p03_stage75.get("done") is False
+        and p03_stage75.get("release_candidate") is False
+        and p03_stage75.get("full_p03_done", p03_stage75.get("p03", {}).get("full_p03_done")) is False
+        and p03_stage75.get("identity", {}).get("species_id") == 1670
+        and p03_stage75.get("identity", {}).get("ability_id") == 20
+        and p03_stage75.get("identity", {}).get("dusk_species_id") == 1263
+        and p03_stage75.get("p03", {}).get("missing_owner_paths") == 0
+        and p03_stage75.get("p03", {}).get("accounting", {}).get("route_accounting_delta") == 0
+        and p03_stage75.get("p03", {}).get("accounting", {}).get("materialized_routes_after") == 83162
+        and p03_stage75.get("p03", {}).get("accounting", {}).get("selected_routes_after") == 118369
+        and p03_stage75.get("save", {}).get("layout_changed") is False
+        and p03_stage75.get("mgba") == "DEFERRED_TO_ROOT_FINAL_CUMULATIVE_ONCE",
+        "P03 Stage75 Own Tempo/accounting/save/未完了境界不正",
+    )
 
     counts04 = p04.get("expected_counts", {})
     _require(
@@ -3762,6 +4427,20 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         and len(p05_stage72.get("release_blockers", [])) == 5,
         "P05 Stage72 Ability ROM runtime checkpoint境界不正",
     )
+    _require(
+        p05_stage76.get("status") == "THREE_EDGES_ROM_MATERIALIZED_EELEVATE_AND_MGBA_PENDING"
+        and p05_stage76.get("implemented_edge_count") == 3
+        and p05_stage76.get("pending_edge_count") == 1
+        and p05_stage76.get("edges", {}).get("eelevate_dedicated_switch")
+        == "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT"
+        and p05_stage76.get("done") is False
+        and p05_stage76.get("full_p05_done") is False
+        and p05_stage76.get("release_ready") is False
+        and p05_stage76.get("checks", {}).get("mgba_runtime") == "NOT_RUN"
+        and p05_stage76.get("checks", {}).get("side_change_added") == 0
+        and p05_stage76.get("checks", {}).get("browt_pombon_gecqua_added") == 0,
+        "P05 Stage76 3実装/Eelevate・mGBA pending/未完了境界不正",
+    )
 
     adoption06 = p06.get("adoption", {})
     _require(p06.get("status") == "CHECKPOINT_ADOPTED_DELTA_EMPTY", "P06 checkpoint境界不正")
@@ -3817,7 +4496,8 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
                 "STAGE67_CONSUMER_CHECKPOINT",
                 "STAGE73_FIVE_GROUP_CONSUMER_CHECKPOINT",
                 "STAGE74_DIRECT_SUPPLY_CHECKPOINT",
-                "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING",
+                "STAGE75_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT",
+                "STATIC_ONLY_FINAL_MGBA_PENDING",
             ],
             "adoption": {
                 "reference_records": 1300,
@@ -3863,6 +4543,14 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
                 "archive_unlock_flag": "0x082C",
                 "archive_economy": "PROVISIONAL_REPLACEABLE",
                 "withheld_own_tempo_rockruff_routes": 38,
+                "stage75_own_tempo_rockruff_species_id": 1670,
+                "stage75_own_tempo_rockruff_ability_id": 20,
+                "stage75_pre_evolution_carry_paths_resolved": 38,
+                "stage75_missing_owner_paths": 0,
+                "stage75_source_owner_clone_routes": 60,
+                "stage75_route_accounting_delta": 0,
+                "stage75_allocation_sequence": 78,
+                "stage75_allocation_count": 79,
                 "browt_pombon_gecqua_materialized": 0,
                 "prohibited_coercions_materialized": 0,
                 "stage67_changed_rom_bytes_from_overlay": 46455,
@@ -3872,14 +4560,14 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
             "not_adopted": [
                 "SIDE_CHANGE_1063_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT",
                 "BROWTPOMBONGECQUA_USER_EXCLUDED",
-                "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_DIRECT_CONVERSION_FORBIDDEN",
+                "OWN_TEMPO_ROCKRUFF_0744_01_DIRECT_CONVERSION_FORBIDDEN_OWNER_FORM_CONNECTED",
                 "FULL_CUMULATIVE_MGBA",
             ],
             "rom_reflection": {
                 "reflected": True,
-                "stage": 74,
+                "stage": 75,
                 "ancestor_stage": 67,
-                "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY",
+                "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_SUPPLY_PLUS_STAGE75_OWN_TEMPO_OWNER_FORM",
             },
             "required_gates": [
                 _gate("STREAMING_CONTRACT_AND_INDEX", "PASS", ["content/modernization/p03_learnset_contract.json", "content/modernization/p03_compiled_index.json"]),
@@ -3889,11 +4577,11 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
                 _gate("STAGE73_FIVE_GROUP_CONSUMER_RUNTIME", "STATIC_CONNECTED", ["content/modernization/p03_stage73_consumer_runtime_checkpoint.json", "content/modernization/p03_stage73_consumer_runtime_route_audit.json"]),
                 _gate("STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY", "PASS_STATIC_26648_ZERO_SILENT_DROP", ["config/modernization_p03_stage74_supply.json", "content/modernization/p03_stage74_supply_runtime_checkpoint.json"]),
                 _gate("STAGE74_BUILD_LEARNABLE_PRESERVATION", "PASS_2223_PAIRS_CAPACITY_238_OF_429", ["content/modernization/p03_stage74_supply_runtime_checkpoint.json"]),
+                _gate("STAGE75_OWN_TEMPO_ROCKRUFF", "PASS_INTERNAL_FORM_38_CARRY_PATHS_ZERO_ACCOUNTING_DELTA", ["content/modernization/rockruff_own_tempo_stage75_contract.json", "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"]),
                 _gate("SIDE_CHANGE_NON_ADOPTION", "PASS_EXCLUDED_159_NO_REPLACEMENT", ["config/modernization_adoption_decisions.json", "content/modernization/p03_runtime_handoff.json"]),
                 _gate("FULL_SELECTED_ROUTE_SUPPLY", "PASS_DIRECT_SUPPLY_ZERO_REMAINING_NOT_FULL_P03", ["content/modernization/p03_stage74_supply_runtime_checkpoint.json"]),
             ],
             "blockers": [
-                "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_OWNER_38_ROUTE_SEMANTICS_REVIEW",
                 "ARCHIVE_ECONOMY_PROVISIONAL_REPLACEABLE",
                 "FINAL_CUMULATIVE_MGBA_NOT_RUN",
             ],
@@ -3940,18 +4628,19 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
             "blockers": ["FINAL_CUMULATIVE_MEGA_RUNTIME_MGBA_NOT_RUN", "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"],
         },
         {
-            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED", "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING"],
-            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "new_move_requirements": 0, "non_adopted_move_candidates": 1, "side_change_1063_adopted": False, "temporary_ability_assignments": 14, "existing_official_assignments": 29, "new_abilities": 6, "non_adopted_p04_records": 3, "ability_host_runtime_cases": 46, "ability_host_runtime_processes": 2, "ability_ids": [312, 313, 314, 315, 316, 317], "ability_rom_runtime_count": 6, "ability_rom_hook_count": 29, "ability_rom_linked": True, "ability_runtime_exact_mgba": False, "documented_ai_ui_edges_pending": 4},
-            "not_adopted": ["SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION", "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION", "EXACT_MGBA_AND_FOUR_AI_UI_EDGES"],
-            "rom_reflection": {"reflected": True, "stage": 72, "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS"},
+            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED", "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED", "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_MGBA_PENDING"],
+            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "new_move_requirements": 0, "non_adopted_move_candidates": 1, "side_change_1063_adopted": False, "temporary_ability_assignments": 14, "existing_official_assignments": 29, "new_abilities": 6, "non_adopted_p04_records": 3, "ability_host_runtime_cases": 46, "ability_host_runtime_processes": 2, "ability_ids": [312, 313, 314, 315, 316, 317], "ability_rom_runtime_count": 6, "ability_rom_hook_count": 29, "ability_rom_linked": True, "ability_runtime_exact_mgba": False, "documented_ai_ui_edges_implemented": 3, "documented_ai_ui_edges_pending": 1, "stage76_allocation_sequence": 79, "stage76_allocation_count": 80, "stage76_changed_bytes": 2081, "stage76_allowlist_outside": 0},
+            "not_adopted": ["SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION", "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION", "EELEVATE_UNSAFE_SWITCH_AI", "EXACT_MGBA"],
+            "rom_reflection": {"reflected": True, "stage": 76, "ancestor_stage": 72, "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES"},
             "required_gates": [
                 _gate("BATTLE_CONTENT_CONTRACT", "PASS", ["content/modernization/p05_battle_content_contract.json"]),
                 _gate("SIDE_CHANGE_1063_EXCLUSION", "PASS_NON_ADOPTED_NO_REPLACEMENT", ["config/modernization_adoption_decisions.json", "content/modernization/p05_runtime_handoff.json"]),
                 _gate("WINDS_WAVES_NEW_SPECIES_EXCLUSION", "PASS_NON_ADOPTED_NO_ID_ASSET_RUNTIME", ["content/modernization/p04_candidate_manifest.json", "content/modernization/p04_capacity_allocation_manifest.json", "content/modernization/p05_runtime_handoff.json"]),
                 _gate("P04_NEW_ABILITIES_HOST_RUNTIME", "PASS_46_CASES_X2", ["content/modernization/p05_ability_runtime_checkpoint.json"]),
                 _gate("P04_NEW_ABILITIES_ROM_LINK", "PASS_STATIC_6_IDS_29_HOOKS", ["content/modernization/p05_ability_rom_runtime_checkpoint.json", "content/modernization/p05_ability_rom_runtime_surface_matrix.json"]),
+                _gate("STAGE76_SAFE_AI_UI_EDGES", "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING", ["content/modernization/p05_stage76_edges_contract.json", "content/modernization/p05_stage76_edges_checkpoint.json"]),
             ],
-            "blockers": ["ABILITY_EXACT_MGBA_NOT_RUN", "FOUR_DOCUMENTED_AI_UI_EDGES_PENDING"],
+            "blockers": ["ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN", "EELEVATE_DEDICATED_SWITCH_AI_PENDING"],
         },
         {
             "phase": "P06", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CHECKPOINT_ADOPTED_DELTA_EMPTY"],
@@ -4007,6 +4696,7 @@ def _traceability() -> list[dict[str, Any]]:
         ("P03_STAGE67_CONSUMERS", "P03", "Stage67 evolution/tutor/normal-egg 3,603-route consumer checkpoint", "tests/test_modernization_p03_stage67.py", "INTEGRATED_CHECKPOINT_NOT_P03_DONE"),
         ("P03_STAGE73_FIVE_GROUP_CONSUMERS", "P03", "Stage73 5-group consumer boundary 40,570 routes accounted", "tests/test_modernization_p03_stage73_runtime.py", "INTEGRATED_STATIC_MGBA_AND_SUPPLY_PENDING"),
         ("P03_STAGE74_DIRECT_SUPPLY", "P03", "Stage74 family-separated machine/tutor 26,648 direct routes + BuildLearnable preservation", "tests/test_modernization_p03_stage74_supply.py", "INTEGRATED_STATIC_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"),
+        ("P03_STAGE75_OWN_TEMPO_ROCKRUFF", "P03", "Stage75 internal Species1670 Own Tempo owner + 38 carry paths", "tests/test_modernization_rockruff_own_tempo_stage75.py", "INTEGRATED_STATIC_FINAL_MGBA_PENDING"),
         ("P04_CANDIDATE_SCOPE", "P04", "49 Mega採用候補 + Winds/Waves 3種非採用 + 2 hold", "tests/test_modernization_p04_sources.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P04_ASSET_IMPORT", "P04", "private-use asset import manifest", "tests/test_modernization_p04_asset_importer.py", "INTEGRATED_STAGING_ONLY_NOT_ROM_READY"),
         ("P04_CAPACITY_RESERVATION", "P04", "49/45/6/0 append reservation + 34-table capacity audit", "tests/test_modernization_p04_capacity.py", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"),
@@ -4017,6 +4707,7 @@ def _traceability() -> list[dict[str, Any]]:
         ("P05_MOVE_ABILITY", "P05", "Side Change/Winds・Waves 3種非採用 + battle content contract", "tests/test_modernization_p05.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P05_ABILITY_HOST_RUNTIME", "P05", "6 Ability portable runtime", "tests/test_modernization_p05_ability_runtime.py", "HOST_VERIFIED_46_CASES_X2_HISTORICAL_PRE_ROM_CHECKPOINT"),
         ("P05_STAGE72_ABILITY_ROM_RUNTIME", "P05", "Ability 312..317 and 29 ROM hooks", "tests/test_modernization_p05_ability_rom_runtime.py", "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING"),
+        ("P05_STAGE76_SAFE_AI_UI_EDGES", "P05", "Mega Sol popup + Piercing Drill AI + Spicy Spray AI", "tests/test_modernization_p05_stage76_edges.py", "THREE_EDGES_CONNECTED_EELEVATE_AND_MGBA_PENDING"),
         ("P06_SPECIES_ADJUSTMENT", "P06", "empty adopted delta + review projection", "tests/test_modernization_p06.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P07_CROSS_DISTRIBUTION", "P07", "empty explicit layered delta", "tests/test_modernization_p07.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P08_INPUT_AND_COMPLETION_GUARD", "P08", "pinned integration validator", "tests/test_modernization_p08.py", "IMPLEMENTED_CHECKPOINT_ONLY"),
@@ -4095,7 +4786,7 @@ def build_integration_matrix(root: Path) -> dict[str, Any]:
             "completed_phases": ["P01"],
             "checkpoint_or_blocked_phase_count": 7,
             "active_stage": 62,
-            "highest_pinned_candidate_stage": 74,
+            "highest_pinned_candidate_stage": 76,
             "runtime_reflected_phase_count": 5,
             "release_ready": False,
         },
@@ -4188,24 +4879,24 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(
         isinstance(chain, Mapping)
         and chain.get("active_stage") == 62
-        and chain.get("selected_checkpoint_stage") == 74
-        and all(chain.get(f"stage{stage}_integrated") is True for stage in range(65, 75))
+        and chain.get("selected_checkpoint_stage") == 76
+        and all(chain.get(f"stage{stage}_integrated") is True for stage in range(65, 77))
         and chain.get("release_candidate") is False,
-        "P08候補Stage74 chain境界不正",
+        "P08候補Stage76 chain境界不正",
     )
     _require(
         chain.get("registry") == {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+            "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
+            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
             "checkpoint_commit": SNAPSHOT_BASE_HEAD,
             "last_committed_checkpoint": SNAPSHOT_BASE_HEAD,
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 73,
-            "candidate_stage": 74,
+            "parent_stage": 75,
+            "candidate_stage": 76,
         },
         "P08 candidate v2 registryの完了/checkpoint/親chain境界不正",
     )
@@ -4383,10 +5074,59 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         == chain.get("stage67_scope", {}).get("selected_routes"),
         "P03 Stage74 supply/preservation/capacity/economy/除外scope境界不正",
     )
+    _require(
+        chain.get("stage75_scope") == {
+            "internal_species_id": 1670,
+            "normal_species_id": 1142,
+            "dusk_species_id": 1263,
+            "national_dex": 744,
+            "ability_id": 20,
+            "species_count": 1671,
+            "pre_evolution_carry_paths": 38,
+            "missing_owner_paths": 0,
+            "source_owner_clone_routes": 60,
+            "route_accounting_delta": 0,
+            "cumulative_runtime_materialized_routes": 83162,
+            "cumulative_accounted_routes": 118369,
+            "save_layout_changed": False,
+            "archive_economy": "PROVISIONAL_REPLACEABLE",
+            "allocation_sequence": 78,
+            "allocation_count": 79,
+            "full_p03_done": False,
+            "exact_mgba": False,
+        },
+        "P03 Stage75 Own Tempo/accounting/save/economy scope境界不正",
+    )
+    _require(
+        chain.get("stage76_scope") == {
+            "implemented_edge_count": 3,
+            "pending_edge_count": 1,
+            "edges": {
+                "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+                "mega_sol_solar_charge_popup": "IMPLEMENT",
+                "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+                "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+            },
+            "allocation_parent_count": 79,
+            "allocation_count": 80,
+            "allocation_sequence": 79,
+            "parent_first79_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 5,
+            "changed_bytes_inside_allowlist": 2081,
+            "changed_bytes_outside_allowlist": 0,
+            "eelevate_unsafe_hooks_installed": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+            "exact_mgba": False,
+        },
+        "P05 Stage76 3実装/1 pending/allocation/allowlist scope境界不正",
+    )
     inheritance = chain.get("inheritance")
     _require(
         inheritance == _candidate_inheritance(artifact_by_path),
-        "P08 Stage62～74 inheritance role/ROM/parent chain不正",
+        "P08 Stage62～76 inheritance role/ROM/parent chain不正",
     )
     latest_bps = chain.get("latest_incremental_bps")
     expected_latest_bps = [
@@ -4400,7 +5140,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     ]
     _require(
         latest_bps == expected_latest_bps,
-        "P08 Stage69～74 incremental BPS exact apply監査不正",
+        "P08 Stage69～76 incremental BPS exact apply監査不正",
     )
     _require(snapshot.get("parallel_outputs") == PARALLEL_OUTPUTS, "P08並行成果の非統合境界不正")
     source_bindings = matrix.get("referenced_source_bindings")
@@ -4476,7 +5216,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     )
     p03_adoption = by_phase["P03"].get("adoption", {})
     _require(
-        by_phase["P03"].get("rom_reflection", {}).get("stage") == 74
+        by_phase["P03"].get("rom_reflection", {}).get("stage") == 75
         and p03_adoption.get("stage65_preserved_ancestor_routes") == 4
         and p03_adoption.get("stage66_routes_materialized") == 47548
         and p03_adoption.get("runtime_selected_routes") == 118369
@@ -4510,6 +5250,14 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         and p03_adoption.get("archive_unlock_flag") == "0x082C"
         and p03_adoption.get("archive_economy") == "PROVISIONAL_REPLACEABLE"
         and p03_adoption.get("withheld_own_tempo_rockruff_routes") == 38
+        and p03_adoption.get("stage75_own_tempo_rockruff_species_id") == 1670
+        and p03_adoption.get("stage75_own_tempo_rockruff_ability_id") == 20
+        and p03_adoption.get("stage75_pre_evolution_carry_paths_resolved") == 38
+        and p03_adoption.get("stage75_missing_owner_paths") == 0
+        and p03_adoption.get("stage75_source_owner_clone_routes") == 60
+        and p03_adoption.get("stage75_route_accounting_delta") == 0
+        and p03_adoption.get("stage75_allocation_sequence") == 78
+        and p03_adoption.get("stage75_allocation_count") == 79
         and p03_adoption.get("browt_pombon_gecqua_materialized") == 0
         and p03_adoption.get("prohibited_coercions_materialized") == 0
         and 56514 + p03_adoption.get("stage74_direct_supply_materialized_routes")
@@ -4517,7 +5265,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         and p03_adoption.get("cumulative_routes_materialized")
         + p03_adoption.get("stage73_existing_owner_accounted_routes")
         == p03_adoption.get("cumulative_routes_accounted"),
-        "P03 Stage74 direct supply/preservation/Rockruff checkpointの統合境界不正",
+        "P03 Stage74 supply/Stage75 Own Tempo checkpointの統合境界不正",
     )
     _require(
         by_phase["P05"].get("adoption", {}).get("new_move_requirements") == 0
@@ -4536,13 +5284,21 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         is False
         and by_phase["P05"].get("adoption", {}).get(
             "documented_ai_ui_edges_pending"
-        ) == 4
+        ) == 1
+        and by_phase["P05"].get("adoption", {}).get(
+            "documented_ai_ui_edges_implemented"
+        ) == 3
+        and by_phase["P05"].get("adoption", {}).get("stage76_allocation_sequence") == 79
+        and by_phase["P05"].get("adoption", {}).get("stage76_allocation_count") == 80
+        and by_phase["P05"].get("adoption", {}).get("stage76_changed_bytes") == 2081
+        and by_phase["P05"].get("adoption", {}).get("stage76_allowlist_outside") == 0
         and by_phase["P05"].get("rom_reflection") == {
             "reflected": True,
-            "stage": 72,
-            "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS",
+            "stage": 76,
+            "ancestor_stage": 72,
+            "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
         },
-        "P05 Side Change非採用/Stage72 6 Ability ROM runtime境界不正",
+        "P05 Side Change非採用/Stage72 ability/Stage76 edge runtime境界不正",
     )
     p04_staging = by_phase["P04"].get("adoption", {}).get("asset_staging", {})
     p04_adoption = by_phase["P04"].get("adoption", {})
@@ -4623,7 +5379,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(isinstance(trace, list) and len(trace) >= 14, "要件→実装→test対応が不足しています")
     _require(all(row.get("requirement_key") and row.get("implementation_evidence") and row.get("test_evidence") and row.get("status") for row in trace), "traceability rowが不完全です")
     summary = matrix.get("integration_summary")
-    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 74 and summary.get("runtime_reflected_phase_count") == 5 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage74 checkpointと不一致です")
+    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 76 and summary.get("runtime_reflected_phase_count") == 5 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage76 checkpointと不一致です")
     _require(
         matrix.get("release_blockers") == list(RELEASE_BLOCKERS),
         "P08 release blocker集合/内容/順序不一致",
@@ -4662,14 +5418,14 @@ def build_release_handoff(matrix: Mapping[str, Any]) -> dict[str, Any]:
         "status": STATUS,
         "release_ready": False,
         "active_stage": 62,
-        "candidate_stage": 74,
+        "candidate_stage": 76,
         "completed_phases": ["P01"],
         "not_completed_phases": ["P02", "P03", "P04", "P05", "P06", "P07", "P08"],
         "release_blockers": matrix["release_blockers"],
         "promotion": {
             "authorized": False,
             "active_play_baseline_changed": False,
-            "reason": "P02～P07のruntime acceptance未完了。Stage74は45種Mega Stoneの16BP販売、Species1029のLv50取得、49 Mega form、Ability 312～317、5群consumer境界、26,648 direct machine/tutor供給を統合したが、P02 exact UI、Own Tempo Rockruff 38経路のsemantic review、暫定archive economy、最終累積mGBA、Floette full/fresh reload、4件のAI/UI edgeが残るためrelease candidateではない",
+            "reason": "P02～P07のruntime acceptance未完了。Stage76はStage75のOwn Tempo Rockruff内部フォームと38 carry経路解決、Mega Sol popup・Piercing Drill AI・Spicy Spray AIの3安全edgeまで統合したが、P02 exact UI、暫定archive economy、最終累積mGBA、Floette full/fresh reload、Eelevate専用switch AIが残るためrelease candidateではない",
         },
         "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
         "integration_fingerprint": matrix["snapshot"]["integration_fingerprint"],
