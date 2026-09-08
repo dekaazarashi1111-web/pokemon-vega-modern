@@ -1529,3 +1529,24 @@
   - Stage62現行基準化commit `5191409d54dc02a5d42d452a80379562fdc4679e`を`origin/main`へfast-forward pushした。
   - GitHub上の正本とChatGPT Web引継ぎをStage62基準へ更新した。
 - Verify: remote ref／GitHub commits API一致、source-validation run `34134327411` PASS。
+
+## 2026-09-08T00:43:04Z
+
+- Version: `modernization-p01-v1`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-MODERNIZATION-P01` / ID・対象区分・共通処理の固定と取得runtime修復
+- Summary:
+  - 五つのentity namespaceをstable keyで固定し、数値IDだけの誤結合を拒否する共通identity契約を追加した。
+  - Egg 412／Caterpie 649の取得意味をconsumer、runtime、Wikiで修復し、Stage62から10 bytesだけ変更したStage63候補を決定的生成した。
+  - 容量監査、専用mGBA runtime gate、GitHub private復元bundle／suiteを追加し、後続工程の安全な入口を固定した。
+- Verify: 専用unit 27件、Wiki／CI構成15件、identity／Stage63 build-check、容量監査、Stage63 mGBA 2 process、既存Stage26 strict mGBA 2 process、private asset remote restore、task graph、private guard、YAML、`git diff --check` PASS。
+
+## 2026-09-08T00:55:05Z
+
+- Version: `modernization-p01-private-restore-v2`
+- Commit: `-`（本エントリを含む完了commit）
+- Task: `USER-MODERNIZATION-P01-PRIVATE-RESTORE-FIX` / 工程1のGitHub private runner復元衝突修復
+- Summary:
+  - 訂正済みtracked Wikiと旧private state memberの衝突を、state bundleからtracked生成物を除外して解消した。
+  - state assetを再構築・remote照合し、fail closed復元と工程1suiteを最終コードHEADで完走した。
+- Verify: private environment unit 3件、state archive check／remote hash、source-validation `34174693932`、private-runtime `34174696902` PASS。先行失敗run `34174387157`は証跡として保持。

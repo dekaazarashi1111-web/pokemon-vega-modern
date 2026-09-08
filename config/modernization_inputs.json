@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P01",
+  "policy": "IMMUTABLE_PRIVATE_ARCHIVES_WITH_TRACKED_NORMALIZED_PROJECTION",
+  "source": {
+    "default_branch": "main",
+    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2"
+  },
+  "runner_restore": {
+    "release_tag": "private-environment-v1",
+    "asset": "pokemon-vega-private-env-v1-modernization-inputs.zip",
+    "size": 81236580,
+    "sha256": "bef64d08c470beb9b58321635d8f43d6d4e4fa657a2e5a26e4d081f097f5615e",
+    "visibility": "PRIVATE_REPOSITORY_RELEASE",
+    "restore_command": "python3 scripts/github_private_environment.py restore --archive-dir .local/github-private-environment/assets"
+  },
+  "archives": {
+    "learnset_v1_3": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "size": 82683251,
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "root": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905/",
+      "role": "P03向け習得仕様。P01ではID・対象区分と参照整合だけを採用し、ROM習得表へは適用しない",
+      "members": {
+        "release_summary": {
+          "path": "RELEASE_SUMMARY.json",
+          "size": 1202,
+          "sha256": "89c00dae7e946059e1a9035c41914dc80676726dd2381977a1898f59c6452c15"
+        },
+        "build_summary": {
+          "path": "BUILD_SUMMARY.json",
+          "size": 5998,
+          "sha256": "e788350e3e057449bb1d1fa72bbdd0aa9c378841bc5facbf7c4d7696aa892a32"
+        },
+        "record_decisions": {
+          "path": "data/stage61_record_decisions.csv",
+          "size": 332961,
+          "sha256": "64ba8ef9e39187056d267d385595daf8f529d9a83164f79b2a42c870186dff48"
+        },
+        "move_crosswalk": {
+          "path": "data/move_id_crosswalk.csv",
+          "size": 189708,
+          "sha256": "17bded79b9df09bbf7b040ecfced62631757d3b4b27e55782aaca614fb1f2475"
+        },
+        "new_move_definitions": {
+          "path": "implementation/new_move_definitions.json",
+          "size": 771,
+          "sha256": "d5e87b2e07e6094f23780f82684812d5362eb67be7b077e731e320ba1415a696"
+        }
+      }
+    },
+    "original_restoration_audit": {
+      "path": "userfile/imports/modernization_p01/Vega_Stage61_ID固定_原作復元監査資料.zip",
+      "size": 67698,
+      "sha256": "448608de12a431bef8eaaaf2dc3024743bfd77ad7925e5fb6ae01b6086cfac08",
+      "root": "Vega_Stage61_ID固定_原作復元監査/",
+      "role": "レビュー専用候補。P01では一括採用せず、ID assertionと後工程への引継ぎに限定する",
+      "members": {
+        "readme": {
+          "path": "README_読んでください.txt",
+          "size": 5961,
+          "sha256": "49eef1f2fab8cae1183e91172e91ad845cd9ed8d5d2804ba150add09a0bbffb6"
+        },
+        "review_candidates": {
+          "path": "11_ID固定_内容更新候補_未適用.json",
+          "size": 112948,
+          "sha256": "262b7e437565abb860f1f4c49e041283cf6d238c2e52d642acd5eb32f706fd0a"
+        }
+      }
+    }
+  },
+  "active_parent": {
+    "identity_source": "config/active_play_baseline.json",
+    "identity_source_sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+    "stage": 62,
+    "rom": {
+      "path": "build/stages/62_npc_placement_integrity_repair.gba",
+      "size": 33554432,
+      "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+      "crc32": "73E4FB73"
+    },
+    "metadata": {
+      "path": "build/stages/62_npc_placement_integrity_repair.json",
+      "sha256": "0bf888d394c852d0b1a5d04bbfc54c493ae9a192e511b08de6c9cabd2107e491"
+    },
+    "allocation": {
+      "path": "build/stages/61_critical_release_allocation.json",
+      "sha256": "c816b0479dd0d8dbffc3ef76d381c6fc83740ca34a66a4a9fdd4a582a3f85ab2",
+      "inheritance": "Stage62は新規allocationを追加せずStage61 critical allocationを継承"
+    }
+  },
+  "clean_rom": {
+    "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+    "size": 16777216,
+    "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+  },
+  "tracked_identity_sources": {
+    "species": ["manifests/species_ids.csv", "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"],
+    "moves": ["manifests/move_ids.csv", "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"],
+    "abilities": ["manifests/ability_ids.csv", "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"],
+    "items": ["manifests/item_ids.csv", "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"],
+    "types": ["manifests/type_ids.csv", "b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb"]
+  },
+  "adoption": {
+    "p01": [
+      "全ID表は数値だけでなくstable keyと意味を照合する",
+      "SPECIES_KEY_CATERPIEは既存ID649の通常基本種として原作習得対象へ戻す",
+      "SPECIES_KEY_EGGは既存ID412の内部slotとして除外を維持する",
+      "他のapply=false・OPTIONAL_FORM・内部slotは一括有効化しない",
+      "復元監査の能力・種族値・タイプ・進化候補はP02/P05/P06まで未採用を維持する"
+    ],
+    "p02": "NOT_STARTED",
+    "p03": "NOT_STARTED"
+  }
+}

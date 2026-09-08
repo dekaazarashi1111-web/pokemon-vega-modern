@@ -25,6 +25,7 @@
           "destination": "userfile",
           "exclude": [
             "imports/integration_inputs",
+            "imports/modernization_p01",
             "imports/ipad-wifi-ssh-toolkit-20260821/iPad-WiFi-SSH-Toolkit.zip",
             "imports/ipad-wifi-ssh-toolkit-20260821/unpacked/iPad-WiFi-SSH-Toolkit/credentials"
           ]
@@ -32,9 +33,21 @@
       ]
     },
     {
+      "name": "pokemon-vega-private-env-v1-modernization-inputs.zip",
+      "size": 81236580,
+      "sha256": "bef64d08c470beb9b58321635d8f43d6d4e4fa657a2e5a26e4d081f097f5615e",
+      "sources": [
+        {
+          "source": "userfile/imports/modernization_p01",
+          "destination": "userfile/imports/modernization_p01",
+          "exclude": []
+        }
+      ]
+    },
+    {
       "name": "pokemon-vega-private-env-v1-state.zip",
-      "size": 219004812,
-      "sha256": "b4a180abbecf4743db86269043b0461b92cd435e2d589d03b971488bd03eb63d",
+      "size": 218929898,
+      "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
       "sources": [
         {
           "source": "vendor",
@@ -49,7 +62,9 @@
         {
           "source": "reports/generated",
           "destination": "reports/generated",
-          "exclude": []
+          "exclude": [
+            "stage61_wiki.json"
+          ]
         },
         {
           "source": "dist",

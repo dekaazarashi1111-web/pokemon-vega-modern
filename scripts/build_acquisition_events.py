@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 import os
+import re
 import shutil
 import struct
 import subprocess
@@ -31,6 +32,7 @@ from tools.regression.rom_runtime import (  # noqa: E402
     _source_locations,
 )
 from tools.release.bps import apply_bps, create_bps  # noqa: E402
+from tools.modernization_identity import load_manifests  # noqa: E402
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv  # noqa: E402
 
 
@@ -56,6 +58,15 @@ MGBA_FIXTURE = Path("build/stages/26_mgba_acquisition.json")
 REPORT = Path("reports/generated/acquisition_events.md")
 PATCH = Path("build/patches/vega-modern-kanto-v1.4.0.bps")
 PACKAGE = Path("vendor/vega_acquisition")
+SPECIES_MANIFEST = Path("manifests/species_ids.csv")
+ACQUISITION_REGISTRY = PACKAGE / "content/collectible_species_registry.csv"
+ACQUISITION_ROUTES = PACKAGE / "content/species_acquisition_routes.csv"
+ACQUISITION_EVENTS = PACKAGE / "content/acquisition_events.csv"
+ACQUISITION_LEDGER = PACKAGE / "manifests/collection_ledger_bits.csv"
+ACQUISITION_COLLECTION_C = PACKAGE / "generated/acquisition_collection_defs.c"
+ACQUISITION_EVENT_C = PACKAGE / "generated/acquisition_event_defs.c"
+ACQUISITION_SAVE_LAYOUT_H = PACKAGE / "generated/acquisition_save_layout.h"
+PROJECT_SAVE_LAYOUT = Path("config/save_layout.csv")
 RUNNER = Path("tools/mgba_acquisition_smoke.c")
 EMBEDDED_RUNNER_SOURCES = (
     Path("tools/mgba_battle_core_smoke.c"),
@@ -138,9 +149,43 @@ SPECIAL_FORM_KEYS = {
     556: ("SPECIES_KEY_PUMPKABOO_M", "SPECIES_KEY_GOURGEIST_M"),
 }
 
+TARGET_CLASS_VALUES = {
+    "REQUIRED_BASE": 1,
+    "REQUIRED_VEGA_ORIGINAL": 2,
+    "REQUIRED_ENABLING_FORM": 3,
+    "OPTIONAL_FORM": 4,
+    "BATTLE_ONLY_EXCLUDED": 5,
+    "BATTLE_ONLY_EXCLUDED_COPY": 5,
+    "UNOBTAINABLE_EVENT_FORM_EXCLUDED": 6,
+}
+NO_INDEX = 0xFFFF
+
+_COLLECTION_DEF_RE = re.compile(
+    r"^\s*\{(\d+)u,\s*(\d+)u,\s*(\d+)u,\s*(\d+)u,\s*(\d+)u,\s*(\d+)u\},\s*$"
+)
+_EVENT_DEF_RE = re.compile(
+    r'^(?P<prefix>\s*\{"(?P<event_key>[^"]*)",\s*"(?P<species_key>[^"]*)",'
+    r'\s*"[^"]*",\s*"[^"]*",\s*"[^"]*",\s*)'
+    r'(?P<species_id>\d+)u(?P<suffix>,.*)$'
+)
+
 
 class AcquisitionBuildError(ValueError):
     """入力固定、ROM ABI、配置、または受入条件の違反。"""
+
+
+@dataclass(frozen=True)
+class _SpeciesIdentityContract:
+    """旧取得台帳の論理identityを現行Species IDへ束縛した結果。"""
+
+    species_id_by_key: dict[str, int]
+    source_species_id_by_key: dict[str, int]
+    registry_by_species_key: dict[str, dict[str, str]]
+    route_by_species_key: dict[str, dict[str, Any]]
+    collection_by_runtime_id: tuple[dict[str, Any], ...]
+    ledger_bit_by_collection_key: dict[str, int]
+    corrections: tuple[dict[str, Any], ...]
+    save_abi: dict[str, Any]
 
 
 def _fail(message: str) -> NoReturn:
@@ -165,6 +210,403 @@ def _read_json(path: Path) -> dict[str, Any]:
 def _rows(path: Path) -> list[dict[str, str]]:
     with path.open(encoding="utf-8-sig", newline="") as stream:
         return list(csv.DictReader(stream))
+
+
+def _unique_rows(
+    rows: Sequence[dict[str, str]], field: str, label: str,
+) -> dict[str, dict[str, str]]:
+    result: dict[str, dict[str, str]] = {}
+    for index, row in enumerate(rows):
+        value = row.get(field, "")
+        if not value:
+            _fail(f"{label}: row {index} has no {field}")
+        if value in result:
+            _fail(f"{label}: duplicate {field}: {value}")
+        result[value] = row
+    return result
+
+
+def _header_decimal_define(text: str, name: str) -> int:
+    match = re.search(rf"^#define\s+{re.escape(name)}\s+(\d+)u\s*$", text, re.MULTILINE)
+    if match is None:
+        _fail(f"acquisition save ABI define is missing: {name}")
+    return int(match.group(1))
+
+
+def _load_species_identity_contract(
+    root: Path = ROOT,
+) -> _SpeciesIdentityContract:
+    """取得packageを論理keyで監査し、現行manifestの物理IDへ束縛する。
+
+    ``canonical_id`` はpackage作成時の物理IDなので、それだけでjoinしない。
+    ``collection_key`` と ``species_key`` の組を固定identityとし、名称・全国図鑑
+    番号・form・区分も照合した後にだけ現行IDへ解決する。collection ledgerの
+    bit番号とsave内配置は既存値をそのまま保持する。
+    """
+
+    root = Path(root)
+    species_manifest = load_manifests(root)["species"]
+    manifest_rows = list(species_manifest.rows)
+    registry_rows = _rows(root / ACQUISITION_REGISTRY)
+    route_rows = _rows(root / ACQUISITION_ROUTES)
+    ledger_rows = _rows(root / ACQUISITION_LEDGER)
+    if len(manifest_rows) != SPECIES_COUNT or len(registry_rows) != SPECIES_COUNT:
+        _fail(
+            "species identity row count differs: "
+            f"manifest={len(manifest_rows)} registry={len(registry_rows)}"
+        )
+
+    manifest_by_key = species_manifest.by_key
+    manifest_by_id = species_manifest.by_id
+
+    registry_by_key = _unique_rows(
+        registry_rows, "species_key", "acquisition registry species",
+    )
+    registry_by_collection = _unique_rows(
+        registry_rows, "collection_key", "acquisition registry collection",
+    )
+    if set(registry_by_key) != set(manifest_by_key):
+        missing = sorted(set(manifest_by_key) - set(registry_by_key))[:8]
+        extra = sorted(set(registry_by_key) - set(manifest_by_key))[:8]
+        _fail(f"registry/manifest species_key set differs: missing={missing} extra={extra}")
+
+    source_id_by_key: dict[str, int] = {}
+    source_ids: set[int] = set()
+    for species_key, row in registry_by_key.items():
+        manifest = manifest_by_key[species_key]
+        try:
+            source_id = int(row["canonical_id"])
+            source_national = int(row["national_no"] or 0)
+            manifest_national = int(manifest["canonical_national_dex"] or 0)
+        except (KeyError, ValueError) as error:
+            _fail(f"{species_key}: registry identity value is invalid: {error}")
+        if source_id in source_ids:
+            _fail(f"acquisition registry duplicate source canonical_id: {source_id}")
+        source_ids.add(source_id)
+        source_id_by_key[species_key] = source_id
+        identity_pairs = (
+            ("display_name", row["display_name"], manifest["display_name"]),
+            ("national_no", source_national, manifest_national),
+            ("form_key", row["form_key"], manifest["form_key"]),
+            ("is_official", row["is_official"], manifest["is_official"]),
+            (
+                "classification", row["source_classification"],
+                manifest["classification"],
+            ),
+        )
+        for field, source_value, current_value in identity_pairs:
+            if source_value != current_value:
+                _fail(
+                    f"{species_key}: semantic identity mismatch for {field}: "
+                    f"{source_value!r} != {current_value!r}"
+                )
+    if source_ids != set(range(SPECIES_COUNT)):
+        _fail("acquisition registry source IDs are not the complete 0..1620 space")
+
+    route_by_key = _unique_rows(route_rows, "species_key", "acquisition routes")
+    route_by_collection = _unique_rows(
+        route_rows, "collection_key", "acquisition route collections",
+    )
+    if (
+        set(route_by_key) != set(registry_by_key)
+        or set(route_by_collection) != set(registry_by_collection)
+    ):
+        _fail("acquisition route identity set differs from registry")
+    bound_routes: dict[str, dict[str, Any]] = {}
+    for collection_key, registry in registry_by_collection.items():
+        route = route_by_collection[collection_key]
+        species_key = registry["species_key"]
+        for field in ("species_key", "canonical_id", "display_name", "target_status"):
+            if route[field] != registry[field]:
+                _fail(
+                    f"{collection_key}: route/registry {field} differs: "
+                    f"{route[field]!r} != {registry[field]!r}"
+                )
+        resolved_id = int(manifest_by_key[species_key]["id"])
+        bound_routes[species_key] = {
+            **route,
+            "source_canonical_id": int(route["canonical_id"]),
+            "resolved_species_id": resolved_id,
+            "identity_resolution": (
+                "CORRECTED_FROM_SOURCE_CANONICAL_ID"
+                if int(route["canonical_id"]) != resolved_id else "EXACT_KEY_ID_MATCH"
+            ),
+        }
+
+    ledger_by_collection = _unique_rows(
+        ledger_rows, "collection_key", "acquisition collection ledger",
+    )
+    ledger_bits: set[int] = set()
+    for collection_key, ledger in ledger_by_collection.items():
+        registry = registry_by_collection.get(collection_key)
+        if registry is None:
+            _fail(f"ledger collection_key is absent from registry: {collection_key}")
+        for field in (
+            "species_key", "canonical_id", "display_name", "target_status",
+            "completion_weight",
+        ):
+            if ledger[field] != registry[field]:
+                _fail(
+                    f"{collection_key}: ledger/registry {field} differs: "
+                    f"{ledger[field]!r} != {registry[field]!r}"
+                )
+        try:
+            ledger_bit = int(ledger["ledger_bit_index"])
+        except ValueError as error:
+            _fail(f"{collection_key}: invalid ledger bit: {error}")
+        if ledger_bit in ledger_bits:
+            _fail(f"duplicate collection ledger bit: {ledger_bit}")
+        ledger_bits.add(ledger_bit)
+    if ledger_bits != set(range(len(ledger_rows))):
+        _fail("collection ledger bits are not contiguous from zero")
+    expected_ledger_collections = {
+        row["collection_key"] for row in registry_rows
+        if row["completion_weight"] == "1"
+        or row["target_status"] == "REQUIRED_ENABLING_FORM"
+    }
+    if set(ledger_by_collection) != expected_ledger_collections:
+        _fail("collection ledger target set differs from registry semantics")
+    ledger_bit_by_collection = {
+        key: int(row["ledger_bit_index"])
+        for key, row in ledger_by_collection.items()
+    }
+
+    save_rows = [
+        row for row in _rows(root / PROJECT_SAVE_LAYOUT)
+        if row.get("symbol") == "acquisition_save_block"
+    ]
+    if len(save_rows) != 1:
+        _fail("acquisition save placement is absent or ambiguous")
+    save_row = save_rows[0]
+    save_placement = {
+        "address_space": save_row["address_space"],
+        "start": int(save_row["start"], 0),
+        "end_exclusive": int(save_row["end_exclusive"], 0),
+        "size": int(save_row["size"], 0),
+        "owner": save_row["owner"],
+        "symbol": save_row["symbol"],
+        "version": int(save_row["version"], 0),
+        "migration": save_row["migration"],
+        "status": save_row["status"],
+    }
+    expected_placement = {
+        "address_space": "SAVE_PARASITE_IMAGE_OFFSET",
+        "start": 0x1F5C,
+        "end_exclusive": 0x204C,
+        "size": 240,
+        "owner": "USER_20260816_ACQUISITION",
+        "symbol": "acquisition_save_block",
+        "version": 1,
+        "migration": "INNER_VERSION_CRC",
+        "status": "LIVE",
+    }
+    if save_placement != expected_placement:
+        _fail(f"acquisition save placement changed: {save_placement}")
+    save_header = (root / ACQUISITION_SAVE_LAYOUT_H).read_text(encoding="utf-8")
+    collection_bytes = _header_decimal_define(save_header, "VEGA_ACQ_COLLECTION_BYTES")
+    save_block_bytes = _header_decimal_define(save_header, "VEGA_ACQ_SAVE_BLOCK_BYTES")
+    if collection_bytes != (len(ledger_rows) + 7) // 8 or save_block_bytes != 240:
+        _fail("acquisition collection/save ABI size differs")
+    save_abi = {
+        "collection_ledger_bit_count": len(ledger_rows),
+        "collection_ledger_bytes": collection_bytes,
+        "save_block_bytes": save_block_bytes,
+        "placement": save_placement,
+    }
+
+    source_collection_defs = []
+    for line in (root / ACQUISITION_COLLECTION_C).read_text(encoding="utf-8").splitlines():
+        match = _COLLECTION_DEF_RE.match(line)
+        if match:
+            source_collection_defs.append(tuple(int(value) for value in match.groups()))
+    if len(source_collection_defs) != SPECIES_COUNT:
+        _fail(
+            "generated acquisition collection table shape differs: "
+            f"{len(source_collection_defs)}"
+        )
+
+    collection_by_runtime_id: list[dict[str, Any] | None] = [None] * SPECIES_COUNT
+    corrections: list[dict[str, Any]] = []
+    for collection_key, registry in registry_by_collection.items():
+        species_key = registry["species_key"]
+        source_id = source_id_by_key[species_key]
+        runtime_id = int(manifest_by_key[species_key]["id"])
+        ledger_bit = ledger_bit_by_collection.get(collection_key, NO_INDEX)
+        expected_source_def = (
+            source_id,
+            ledger_bit,
+            int(registry["completion_weight"]),
+            1 if registry["route_required"] == "yes" else 0,
+            TARGET_CLASS_VALUES.get(registry["target_status"], 0),
+            0,
+        )
+        if source_collection_defs[source_id] != expected_source_def:
+            _fail(
+                f"{collection_key}: generated collection C differs from source identity: "
+                f"{source_collection_defs[source_id]} != {expected_source_def}"
+            )
+        if collection_by_runtime_id[runtime_id] is not None:
+            _fail(f"resolved runtime Species ID is duplicated: {runtime_id}")
+        collection_by_runtime_id[runtime_id] = {
+            "collection_key": collection_key,
+            "species_key": species_key,
+            "source_canonical_id": source_id,
+            "runtime_species_id": runtime_id,
+            "display_name": registry["display_name"],
+            "target_status": registry["target_status"],
+            "completion_weight": int(registry["completion_weight"]),
+            "route_required": registry["route_required"] == "yes",
+            "target_class": TARGET_CLASS_VALUES.get(registry["target_status"], 0),
+            "ledger_bit_index": ledger_bit,
+        }
+        if source_id != runtime_id:
+            corrections.append({
+                "collection_key": collection_key,
+                "species_key": species_key,
+                "display_name": registry["display_name"],
+                "source_canonical_id": source_id,
+                "resolved_species_id": runtime_id,
+                "ledger_bit_index": None if ledger_bit == NO_INDEX else ledger_bit,
+                "target_status": registry["target_status"],
+            })
+    if any(row is None for row in collection_by_runtime_id):
+        _fail("resolved acquisition collection table has empty runtime slots")
+
+    return _SpeciesIdentityContract(
+        species_id_by_key={key: int(row["id"]) for key, row in manifest_by_key.items()},
+        source_species_id_by_key=source_id_by_key,
+        registry_by_species_key=registry_by_key,
+        route_by_species_key=bound_routes,
+        collection_by_runtime_id=tuple(
+            row for row in collection_by_runtime_id if row is not None
+        ),
+        ledger_bit_by_collection_key=ledger_bit_by_collection,
+        corrections=tuple(sorted(corrections, key=lambda row: row["collection_key"])),
+        save_abi=save_abi,
+    )
+
+
+def _resolved_species_reference(
+    contract: _SpeciesIdentityContract,
+    row: dict[str, str],
+    *,
+    key_field: str,
+    source_id_field: str | None = None,
+    label: str,
+) -> int:
+    species_key = row.get(key_field, "")
+    if species_key not in contract.species_id_by_key:
+        _fail(f"{label}: unresolved species_key: {species_key!r}")
+    if source_id_field is not None:
+        try:
+            source_id = int(row[source_id_field])
+        except (KeyError, ValueError) as error:
+            _fail(f"{label}: invalid source canonical ID: {error}")
+        expected_source = contract.source_species_id_by_key[species_key]
+        if source_id != expected_source:
+            _fail(
+                f"{label}: species_key/source ID identity differs for {species_key}: "
+                f"{source_id} != {expected_source}"
+            )
+    return contract.species_id_by_key[species_key]
+
+
+def _identity_bound_c_sources(
+    root: Path = ROOT,
+    contract: _SpeciesIdentityContract | None = None,
+) -> dict[str, bytes]:
+    """save ABIを変えず、取得C表だけを現行manifest IDへ束縛する。"""
+
+    root = Path(root)
+    contract = contract or _load_species_identity_contract(root)
+    collection_lines = [
+        '#include "acquisition_collection_defs.h"',
+        "",
+        (
+            "const VegaAcqCollectionDef "
+            "gVegaAcqCollectionDefs[VEGA_ACQ_CANONICAL_SPECIES_COUNT] = {"
+        ),
+    ]
+    for row in contract.collection_by_runtime_id:
+        collection_lines.append(
+            "    {"
+            f"{row['runtime_species_id']}u, {row['ledger_bit_index']}u, "
+            f"{row['completion_weight']}u, {1 if row['route_required'] else 0}u, "
+            f"{row['target_class']}u, 0u"
+            "},"
+        )
+    collection_lines += ["};", ""]
+
+    events = _rows(root / ACQUISITION_EVENTS)
+    generated_lines = (root / ACQUISITION_EVENT_C).read_text(encoding="utf-8").splitlines()
+    bound_event_lines: list[str] = []
+    event_index = 0
+    for line in generated_lines:
+        match = _EVENT_DEF_RE.match(line)
+        if match is None:
+            bound_event_lines.append(line)
+            continue
+        if event_index >= len(events):
+            _fail("generated acquisition event C has more rows than event source")
+        event = events[event_index]
+        targets = [value for value in event["target_species_keys"].split("|") if value]
+        species_key = targets[0] if targets else ""
+        if (
+            match.group("event_key") != event["event_key"]
+            or match.group("species_key") != species_key
+        ):
+            _fail(
+                "generated acquisition event C order/identity differs at "
+                f"row {event_index}"
+            )
+        source_id = int(match.group("species_id"))
+        expected_source_id = (
+            contract.source_species_id_by_key[species_key] if species_key else 0
+        )
+        if source_id != expected_source_id:
+            _fail(
+                f"{event['event_key']}: generated event source ID differs: "
+                f"{source_id} != {expected_source_id}"
+            )
+        runtime_id = contract.species_id_by_key[species_key] if species_key else 0
+        bound_event_lines.append(
+            f"{match.group('prefix')}{runtime_id}u{match.group('suffix')}"
+        )
+        event_index += 1
+    if event_index != len(events):
+        _fail(
+            "generated acquisition event C row count differs: "
+            f"generated={event_index} source={len(events)}"
+        )
+
+    return {
+        "acquisition_collection_defs.c": "\n".join(collection_lines).encode(),
+        "acquisition_event_defs.c": ("\n".join(bound_event_lines) + "\n").encode(),
+    }
+
+
+def _species_identity_audit(
+    root: Path,
+    contract: _SpeciesIdentityContract,
+    bound_sources: dict[str, bytes] | None = None,
+) -> dict[str, Any]:
+    sources = bound_sources or _identity_bound_c_sources(root, contract)
+    return {
+        "schema_version": 1,
+        "status": "CORRECTED" if contract.corrections else "EXACT_MATCH",
+        "authoritative_id_source": SPECIES_MANIFEST.as_posix(),
+        "source_registry": ACQUISITION_REGISTRY.as_posix(),
+        "identity_key": "collection_key+species_key",
+        "species_count": len(contract.collection_by_runtime_id),
+        "correction_count": len(contract.corrections),
+        "corrections": list(contract.corrections),
+        "ledger_binding": "collection_key",
+        "save_abi": contract.save_abi,
+        "bound_c_tables": {
+            name: {"size": len(raw), "sha256": _sha(raw)}
+            for name, raw in sorted(sources.items())
+        },
+    }
 
 
 def _run(command: Sequence[str], label: str, *, cwd: Path = ROOT) -> str:
@@ -306,7 +748,10 @@ def _linked_symbols(root: Path) -> dict[str, int]:
 
 
 def _compile_runtime(
-    root: Path, load_address: int, linked: dict[str, int]
+    root: Path,
+    load_address: int,
+    linked: dict[str, int],
+    identity: _SpeciesIdentityContract | None = None,
 ) -> tuple[bytes, dict[str, int]]:
     compiler = shutil.which("arm-none-eabi-gcc")
     objcopy = shutil.which("arm-none-eabi-objcopy")
@@ -314,20 +759,8 @@ def _compile_runtime(
     if not compiler or not objcopy or not nm:
         _fail("ARM GNU toolchain is required for acquisition runtime")
     package = root / PACKAGE
-    sources = [
-        package / "overlays/acquisition_runtime/acquisition_runtime.c",
-        package / "overlays/acquisition_runtime/acquisition_save_migration.c",
-        package / "generated/acquisition_event_defs.c",
-        package / "generated/acquisition_collection_defs.c",
-        package / "generated/acquisition_host_defs.c",
-        package / "generated/acquisition_host_wrappers.c",
-        root / "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
-        root / "overlays/acquisition_runtime/acquisition_libc.c",
-        root / "overlays/save_migration/save_migration.c",
-    ]
-    for source in sources:
-        if not source.is_file():
-            _fail(f"acquisition runtime source missing: {source}")
+    identity = identity or _load_species_identity_contract(root)
+    bound_sources = _identity_bound_c_sources(root, identity)
     defines = [
         "-DVEGA_SAVE_ROM_RUNTIME=1",
         f"-DVEGA_ACQ_CREATE_MON_ADDRESS=0x{linked['CreateMonWithNatureLetter'] | 1:08X}u",
@@ -340,6 +773,25 @@ def _compile_runtime(
     ]
     with tempfile.TemporaryDirectory(prefix="vega-acquisition-runtime-") as raw:
         directory = Path(raw)
+        bound_paths: dict[str, Path] = {}
+        for name, source_raw in bound_sources.items():
+            path = directory / name
+            path.write_bytes(source_raw)
+            bound_paths[name] = path
+        sources = [
+            package / "overlays/acquisition_runtime/acquisition_runtime.c",
+            package / "overlays/acquisition_runtime/acquisition_save_migration.c",
+            bound_paths["acquisition_event_defs.c"],
+            bound_paths["acquisition_collection_defs.c"],
+            package / "generated/acquisition_host_defs.c",
+            package / "generated/acquisition_host_wrappers.c",
+            root / "overlays/acquisition_runtime/acquisition_engine_adapter_rom.c",
+            root / "overlays/acquisition_runtime/acquisition_libc.c",
+            root / "overlays/save_migration/save_migration.c",
+        ]
+        for source in sources:
+            if not source.is_file():
+                _fail(f"acquisition runtime source missing: {source}")
         objects: list[Path] = []
         common = [
             compiler, "-mthumb", "-mcpu=arm7tdmi", "-mthumb-interwork",
@@ -347,7 +799,7 @@ def _compile_runtime(
             "-ffreestanding", "-fno-builtin", "-fno-unwind-tables",
             "-fno-asynchronous-unwind-tables", "-fdata-sections",
             "-ffunction-sections", "-fno-common", *defines,
-            f"-I{root}", f"-I{package}",
+            f"-I{root}", f"-I{package}", f"-I{package / 'generated'}",
         ]
         for index, source in enumerate(sources):
             obj = directory / f"{index:02d}_{source.stem}.o"
@@ -750,11 +1202,12 @@ def _build_map_payload(
     }
 
 
-def _patch_evolutions(root: Path, output: bytearray) -> dict[str, Any]:
-    registry = {
-        row["species_key"]: int(row["canonical_id"])
-        for row in _rows(root / PACKAGE / "content/collectible_species_registry.csv")
-    }
+def _patch_evolutions(
+    root: Path,
+    output: bytearray,
+    identity: _SpeciesIdentityContract | None = None,
+) -> dict[str, Any]:
+    identity = identity or _load_species_identity_contract(root)
     catalog = _rows(root / PACKAGE / "content/trade_alternative_catalog_30.csv")
     if len(catalog) != 30:
         _fail(f"trade-alternative catalog count differs: {len(catalog)}")
@@ -766,10 +1219,13 @@ def _patch_evolutions(root: Path, output: bytearray) -> dict[str, Any]:
         from_key, to_key = SPECIAL_FORM_KEYS.get(
             evolution_id, (row["from_species_key"], row["to_species_key"]),
         )
-        if from_key not in registry or to_key not in registry:
+        if (
+            from_key not in identity.species_id_by_key
+            or to_key not in identity.species_id_by_key
+        ):
             _fail(f"trade route species key unresolved: {evolution_id}")
-        source = registry[from_key]
-        target = registry[to_key]
+        source = identity.species_id_by_key[from_key]
+        target = identity.species_id_by_key[to_key]
         requirement = row["required_held_item_or_partner"]
         held = HELD_ITEMS.get(requirement)
         expected = (
@@ -866,13 +1322,35 @@ def _wild_slots(raw: bytes | bytearray) -> list[dict[str, Any]]:
     return slots
 
 
-def _patch_wild(root: Path, output: bytearray) -> dict[str, Any]:
+def _patch_wild(
+    root: Path,
+    output: bytearray,
+    identity: _SpeciesIdentityContract | None = None,
+) -> dict[str, Any]:
+    identity = identity or _load_species_identity_contract(root)
     internal = {
-        int(row["canonical_id"])
+        _resolved_species_reference(
+            identity,
+            row,
+            key_field="species_key",
+            source_id_field="canonical_id",
+            label="internal species blocklist",
+        )
         for row in _rows(root / PACKAGE / "content/internal_species_blocklist_25.csv")
     }
     rules = {
-        (int(row["map_group"]), int(row["map_id"]), row["encounter_kind"], int(row["from_canonical_id"])): row
+        (
+            int(row["map_group"]),
+            int(row["map_id"]),
+            row["encounter_kind"],
+            _resolved_species_reference(
+                identity,
+                row,
+                key_field="from_species_key",
+                source_id_field="from_canonical_id",
+                label=f"wild correction {row['correction_key']} source",
+            ),
+        ): row
         for row in _rows(root / PACKAGE / "content/wild_source_corrections.csv")
     }
     before = [slot for slot in _wild_slots(output) if slot["species_id"] in internal]
@@ -885,7 +1363,13 @@ def _patch_wild(root: Path, output: bytearray) -> dict[str, Any]:
         rule = rules.get(key)
         if rule is None:
             _fail(f"internal wild species lacks correction: {slot}")
-        replacement = int(rule["to_canonical_id"])
+        replacement = _resolved_species_reference(
+            identity,
+            rule,
+            key_field="to_species_key",
+            source_id_field="to_canonical_id",
+            label=f"wild correction {rule['correction_key']} target",
+        )
         struct.pack_into("<H", output, slot["species_offset"], replacement)
         matches[key] += 1
         patches.append({
@@ -1026,7 +1510,9 @@ def _tool_identity(root: Path) -> dict[str, str]:
 def _mgba_selected(
     root: Path, runtime: dict[str, Any], map_runtime: dict[str, Any],
     evolution: dict[str, Any], wild: dict[str, Any], validator_site: int,
+    identity: _SpeciesIdentityContract | None = None,
 ) -> dict[str, int]:
+    identity = identity or _load_species_identity_contract(root)
     symbols = runtime["symbols"]
     linked = runtime["linked_abi"]
     host = map_runtime["patches"][0]
@@ -1043,12 +1529,6 @@ def _mgba_selected(
     if len(wild_rows) != 2:
         _fail("representative acquisition wild fixtures differ")
     event_rows = _rows(root / PACKAGE / "content/acquisition_events.csv")
-    registry = {
-        row["species_key"]: int(row["canonical_id"])
-        for row in _rows(
-            root / PACKAGE / "content/collectible_species_registry.csv"
-        )
-    }
     egg_event = event_rows[30]
     if egg_event["battle_or_gift"] != "EGG":
         _fail("representative egg event index differs")
@@ -1060,6 +1540,7 @@ def _mgba_selected(
         "recover": symbols["VegaAcq_RecoverPending"],
         "hatch_register": symbols["VegaAcq_RegisterHatchedPartyMon"],
         "is_registered": symbols["VegaAcqEngine_IsSpeciesRegistered"],
+        "set_registered": symbols["VegaAcqEngine_SetSpeciesRegistered"],
         "save_init": symbols["VegaSaveInitNew"],
         "save_finalize": symbols["VegaSaveFinalize"],
         "save_validate": symbols["VegaSaveValidate"],
@@ -1081,7 +1562,12 @@ def _mgba_selected(
         "egg_script_runtime": int(
             map_runtime["egg_hatch"]["replacement_script_address"]
         ),
-        "egg_species": registry[egg_event["target_species_keys"]],
+        "egg_species": _resolved_species_reference(
+            identity,
+            egg_event,
+            key_field="target_species_keys",
+            label="representative egg event",
+        ),
         "evo_pure": EVOLUTION_TABLE_ROOT
         + int(pure["from_species_id"]) * EVOLUTION_SPECIES_STRIDE
         + int(pure["slot"]) * EVOLUTION_ROW_SIZE,
@@ -1112,7 +1598,9 @@ def _runner_cache_key(
     return _sha(_stable(provenance)), provenance
 
 
-def _validate_mgba_fixture(value: dict[str, Any], rom_sha256: str) -> None:
+def _validate_mgba_fixture(
+    value: dict[str, Any], rom_sha256: str, *, require_physical_host_chain: bool = True,
+) -> None:
     save = value.get("save", {})
     modes = value.get("modes", {})
     transactions = value.get("transactions", {})
@@ -1123,7 +1611,14 @@ def _validate_mgba_fixture(value: dict[str, Any], rom_sha256: str) -> None:
         or value.get("rom_sha256") != rom_sha256
         or value.get("warnings_errors") != 0
         or not value.get("read_only_host")
-        or not value.get("physical_host_chain")
+        or (
+            require_physical_host_chain
+            and not value.get("physical_host_chain")
+        )
+        or (
+            not require_physical_host_chain
+            and not value.get("physical_host_chain_skipped")
+        )
         or not value.get("egg_hatch_hook")
         or value.get("artifacts_written") != []
         or not all(save.get(key) for key in (
@@ -1146,21 +1641,54 @@ def _validate_mgba_fixture(value: dict[str, Any], rom_sha256: str) -> None:
         _fail("acquisition exact-ROM mGBA fixture differs")
 
 
+def _validate_identity_mgba_fixture(value: dict[str, Any], rom_sha256: str) -> None:
+    if (
+        value.get("status") != "PASS"
+        or value.get("fixture") != "acquisition_identity_v1"
+        or value.get("rom_sha256") != rom_sha256
+        or value.get("warnings_errors") != 0
+        or value.get("physical_host_chain") is not False
+        or not value.get("physical_host_chain_skipped")
+        or value.get("caterpie_id") != 649
+        or value.get("caterpie_ledger_bit") != 386
+        or not value.get("caterpie_registration_round_trip")
+        or value.get("internal_egg_id") != 412
+        or not value.get("internal_egg_registration_excluded")
+        or not value.get("save_layout_preserved")
+        or value.get("artifacts_written") != []
+    ):
+        _fail("acquisition identity-only exact-ROM mGBA fixture differs")
+
+
 def _mgba_fixture(
     root: Path, rom: bytes, runtime: dict[str, Any],
     map_runtime: dict[str, Any], evolution: dict[str, Any], wild: dict[str, Any],
     validator_site: int,
+    identity: _SpeciesIdentityContract | None = None,
+    *,
+    runtime_only: bool = False,
+    identity_only: bool = False,
 ) -> dict[str, Any]:
     selected = _mgba_selected(
-        root, runtime, map_runtime, evolution, wild, validator_site,
+        root, runtime, map_runtime, evolution, wild, validator_site, identity,
     )
+    if runtime_only or identity_only:
+        selected["skip_host_chain"] = 1
+    if identity_only:
+        selected["identity_only"] = 1
     rom_sha256 = _sha(rom)
     key, provenance = _runner_cache_key(root, rom_sha256, selected)
     cache = root / MGBA_FIXTURE
     if cache.is_file():
         value = _read_json(cache)
         if value.get("cache", {}).get("key") == key:
-            _validate_mgba_fixture(value, rom_sha256)
+            if identity_only:
+                _validate_identity_mgba_fixture(value, rom_sha256)
+            else:
+                _validate_mgba_fixture(
+                    value, rom_sha256,
+                    require_physical_host_chain=not runtime_only,
+                )
             return value
     with tempfile.TemporaryDirectory(prefix="vega-acquisition-mgba-") as raw:
         directory = Path(raw)
@@ -1180,18 +1708,29 @@ def _mgba_fixture(
             _fail("acquisition exact-ROM fixture is not process deterministic")
         first["process_runs"] = 2
         first["cache"] = {"key": key, "provenance": provenance}
-        _validate_mgba_fixture(first, rom_sha256)
+        if identity_only:
+            _validate_identity_mgba_fixture(first, rom_sha256)
+        else:
+            _validate_mgba_fixture(
+                first, rom_sha256,
+                require_physical_host_chain=not runtime_only,
+            )
         return first
 
 
 def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     root = Path(root)
+    identity = _load_species_identity_contract(root)
+    identity_sources = _identity_bound_c_sources(root, identity)
+    identity_audit = _species_identity_audit(root, identity, identity_sources)
     (
         stage, stage_meta, clean, pin, validator_site, validator_expected,
     ) = _input_audit(root)
     package_counts = _package_counts(root)
     linked = _linked_symbols(root)
-    preliminary_runtime, preliminary_symbols = _compile_runtime(root, 0x09200000, linked)
+    preliminary_runtime, preliminary_symbols = _compile_runtime(
+        root, 0x09200000, linked, identity,
+    )
     preliminary_map, _ = _build_map_payload(
         root, stage, clean, preliminary_symbols, 0,
     )
@@ -1200,7 +1739,9 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     )
     runtime_offset = int(runtime_allocation["start"])
     map_offset = int(map_allocation["start"])
-    runtime, symbols = _compile_runtime(root, GBA_ROM_BASE + runtime_offset, linked)
+    runtime, symbols = _compile_runtime(
+        root, GBA_ROM_BASE + runtime_offset, linked, identity,
+    )
     map_payload, map_runtime = _build_map_payload(
         root, stage, clean, symbols, map_offset,
     )
@@ -1270,9 +1811,9 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     output[validator_site:validator_site + 8] = validator_replacement
     allowed.append((validator_site, validator_site + 8))
 
-    evolution = _patch_evolutions(root, output)
+    evolution = _patch_evolutions(root, output, identity)
     allowed += [tuple(span) for span in evolution.pop("mutation_spans")]
-    wild = _patch_wild(root, output)
+    wild = _patch_wild(root, output, identity)
     allowed += [
         (_rom_offset(int(row["address"]), 2), _rom_offset(int(row["address"]), 2) + 2)
         for row in wild["patches"]
@@ -1302,6 +1843,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "symbols": {name: symbols[name] for name in sorted(symbols) if name.startswith("Vega")},
         "wrapper_symbol_count": sum(name.startswith("VegaAcqHost_") for name in symbols),
         "linked_abi": linked,
+        "species_identity": identity_audit,
     }
     map_runtime.update({
         "allocation_address": GBA_ROM_BASE + map_offset,
@@ -1311,7 +1853,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
     ram = _ram_audit(root)
     fixture = _mgba_fixture(
         root, output_raw, runtime_meta, map_runtime, evolution, wild,
-        validator_site,
+        validator_site, identity,
     )
     metadata = {
         "schema_version": 1,
@@ -1322,6 +1864,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "output": {"path": STAGE26.as_posix(), "size": len(output_raw), "sha256": output_sha},
         "output_sha256": output_sha,
         "runtime": runtime_meta,
+        "species_identity": identity_audit,
         "map_scripts": map_runtime,
         "map_pointer_patches": map_pointer_patches,
         "egg_hatch_patch": egg_hatch_patch,
@@ -1390,6 +1933,9 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
             "party_pc_standard_save_durable": fixture["save"][
                 "standard_party_round_trip"
             ],
+            "species_key_runtime_binding": True,
+            "collection_ledger_bits_preserved": True,
+            "acquisition_save_placement_preserved": True,
         },
         "source_pin": pin,
         "upstream_metadata_task": stage_meta.get("task"),
@@ -1400,6 +1946,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
         "base_address": GBA_ROM_BASE + runtime_offset,
         "payload_sha256": _sha(runtime),
         "symbols": {name: symbols[name] for name in sorted(symbols) if name.startswith("Vega")},
+        "species_identity": identity_audit,
     }
     map_symbol_doc = {
         "schema_version": 1,
@@ -1424,6 +1971,7 @@ def build_outputs(root: Path = ROOT) -> dict[str, bytes]:
 - Output: stage 26 `{output_sha}`
 - 取得イベント: 201件 / 物理ホスト: 24件（19マップ）
 - 図鑑完成対象: 1,206種 + 必須フォーム10種
+- Species identity補正: {len(identity.corrections)}件（species_keyで現行IDへ解決、collection_keyのledger bitを維持）
 - exact受入ケース: 2,035件（定義・event/host/runtime binding PASS）
 - mGBA exact-ROM: 7方式 / 孵化時登録 / 通常save再読込 / party→PC / 全収納満杯を独立2 processでPASS
 - 単独ROM交換進化: 30経路（ROM table exact audit PASS）

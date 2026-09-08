@@ -418,7 +418,7 @@
 | 409 | — | オルマリア | — | ゴースト | EVOLUTION: セキエイこうげん | [開く](pokemon/0409.md) |
 | 410 | — | アスフィア | — | ほのお/ドラゴン | FIXED_CAPTURE: セキエイこうげん | [開く](pokemon/0410.md) |
 | 411 | 604 | シビルドン | — | でんき | WILD_TABLE: スフィアいせき | [開く](pokemon/0411.md) |
-| 412 | — | タマゴ | — | ノーマル | ECOLOGY_OVERLAY: 503ばんどうろ | [開く](pokemon/0412.md) |
+| 412 | — | タマゴ | — | ノーマル | EXCLUDED: — | [開く](pokemon/0412.md) |
 | 413 | 11 | トランセル | — | むし | EVOLUTION: GLOBAL_EVOLUTION | [開く](pokemon/0413.md) |
 | 414 | 12 | バタフリー | — | むし/ひこう | EVOLUTION: GLOBAL_EVOLUTION | [開く](pokemon/0414.md) |
 | 415 | 13 | ビードル | — | むし/どく | ECOLOGY_OVERLAY: こころのやかた | [開く](pokemon/0415.md) |
@@ -655,7 +655,7 @@
 | 646 | 385 | ジラーチ | — | はがね/エスパー | FIXED_CAPTURE: ポケモンやしき | [開く](pokemon/0646.md) |
 | 647 | 386 | デオキシス | — | エスパー | FIXED_CAPTURE: ポケモンやしき | [開く](pokemon/0647.md) |
 | 648 | 358 | チリーン | — | エスパー | EVOLUTION: GLOBAL_EVOLUTION | [開く](pokemon/0648.md) |
-| 649 | 10 | キャタピー | — | むし | EXCLUDED: — | [開く](pokemon/0649.md) |
+| 649 | 10 | キャタピー | — | むし | ECOLOGY_OVERLAY: 503ばんどうろ | [開く](pokemon/0649.md) |
 | 650 | 201 | アンノーン | FORM_KEY_UNOWN_B | エスパー | OPTIONAL_FORM_TRANSFORMATION: — | [開く](pokemon/0650.md) |
 | 651 | 201 | アンノーン | FORM_KEY_UNOWN_C | エスパー | OPTIONAL_FORM_TRANSFORMATION: — | [開く](pokemon/0651.md) |
 | 652 | 201 | アンノーン | FORM_KEY_UNOWN_D | エスパー | OPTIONAL_FORM_TRANSFORMATION: — | [開く](pokemon/0652.md) |

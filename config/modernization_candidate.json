@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "program": "USER-MODERNIZATION-P01-P08",
+  "status": "P01_VERIFIED_CANDIDATE",
+  "completed_through": "USER-MODERNIZATION-P01",
+  "active_play_baseline_changed": false,
+  "source": {
+    "branch": "codex/user-modernization-p01-20260908",
+    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2"
+  },
+  "parent": {
+    "stage": 62,
+    "path": "build/stages/62_npc_placement_integrity_repair.gba",
+    "size": 33554432,
+    "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+    "crc32": "73E4FB73"
+  },
+  "candidate": {
+    "stage": 63,
+    "label": "Modernization P01 ID意味修復候補",
+    "path": "build/stages/63_modernization_p01_identity_repair.gba",
+    "size": 33554432,
+    "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+    "crc32": "FB09EF2D",
+    "metadata": {
+      "path": "build/stages/63_modernization_p01_identity_repair.json",
+      "size": 5585,
+      "sha256": "9e5b1d6de4074271b7da8631a0b1908dc631d368cb57e0269b70b9a41bc580cf"
+    }
+  },
+  "patches": {
+    "from_parent": {
+      "path": "build/patches/stage62-to-stage63-modernization-p01-identity-repair.bps",
+      "size": 47,
+      "sha256": "7b400a62944bb976d94afdee2983c48bcf4f4482010f881f18bf7924eab0f352"
+    },
+    "from_clean": {
+      "path": "build/patches/firered-jpn-rev0-to-stage63-modernization-p01-identity-repair.bps",
+      "size": 16726235,
+      "sha256": "f6fa12ebdd68882a0ff08d1c344151d4b792eaa1dfde1a22f3b9241ccb4a8680"
+    }
+  },
+  "adopted_delta": {
+    "changed_bytes": 10,
+    "outside_declared_spans": 0,
+    "species_ids_changed": false,
+    "collection_ledger_mapping_changed": false,
+    "save_layout_changed": false,
+    "allocation_changed": false,
+    "corrections": [
+      {
+        "species_key": "SPECIES_KEY_EGG",
+        "source_id": 649,
+        "runtime_id": 412,
+        "policy": "INTERNAL_EXCLUDED"
+      },
+      {
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "source_id": 412,
+        "runtime_id": 649,
+        "policy": "REQUIRED_BASE",
+        "ledger_bit": 386
+      }
+    ]
+  },
+  "deferred": {
+    "p02_evolutions": "PREPARATION_IN_PROGRESS",
+    "p03_learnsets": "PREPARATION_IN_PROGRESS",
+    "p04_new_species_and_megas": "RESEARCH_IN_PROGRESS",
+    "move_1063_ally_switch": "SPEC_ONLY_REQUIRES_ENGINE_IMPLEMENTATION",
+    "restoration_review_candidates": "REVIEW_ONLY_NOT_APPLIED"
+  }
+}

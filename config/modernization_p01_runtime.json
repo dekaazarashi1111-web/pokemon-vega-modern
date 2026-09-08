@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P01",
+  "stage": 63,
+  "inputs": {
+    "modernization_inputs": "config/modernization_inputs.json",
+    "identity_contract": {
+      "path": "content/modernization/identity_contract.json",
+      "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443"
+    },
+    "vendor_registry": {
+      "path": "vendor/vega_acquisition/content/collectible_species_registry.csv",
+      "sha256": "29494a2b5b50cf73394b769a7ac58a05ed5d5892c1612671c738d97dcd8772eb"
+    },
+    "vendor_routes": {
+      "path": "vendor/vega_acquisition/content/species_acquisition_routes.csv",
+      "sha256": "1cab4da97fb3cc55f83a7bfd5bac11689e3d271522ef0a9cb6ed6ac01a9d6756"
+    },
+    "vendor_ledger": {
+      "path": "vendor/vega_acquisition/manifests/collection_ledger_bits.csv",
+      "sha256": "95d92ef6aa8cf47372e34229e223c9fd9782e7156deb70c09d928256630719e8"
+    },
+    "vendor_collection_c": {
+      "path": "vendor/vega_acquisition/generated/acquisition_collection_defs.c",
+      "sha256": "a23b351ff8fc486a508aa8272177042e281042079a3d802def74c9b289e7e68b"
+    }
+  },
+  "runtime_table": {
+    "name": "gVegaAcqCollectionDefs",
+    "rom_offset": 19760432,
+    "gba_address": "0x092D8530",
+    "row_size": 8,
+    "row_count": 1621,
+    "old_sha256": "f0595cd90e7bbb2bfc8badf19c3eb6504ddaeab7cb321c77fa92cc5467b7a984",
+    "corrected_sha256": "49264abb5c085d84bad782e9152c9c3b91f901452c6f04d903e07b8ddeb9f959",
+    "corrections": [
+      {
+        "species_key": "SPECIES_KEY_EGG",
+        "source_id": 649,
+        "resolved_id": 412,
+        "ledger_bit_index": 65535,
+        "completion_weight": 0,
+        "route_required": 0,
+        "target_class": 0
+      },
+      {
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "source_id": 412,
+        "resolved_id": 649,
+        "ledger_bit_index": 386,
+        "completion_weight": 1,
+        "route_required": 1,
+        "target_class": 1
+      }
+    ]
+  },
+  "outputs": {
+    "rom": "build/stages/63_modernization_p01_identity_repair.gba",
+    "metadata": "build/stages/63_modernization_p01_identity_repair.json",
+    "incremental_bps": "build/patches/stage62-to-stage63-modernization-p01-identity-repair.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage63-modernization-p01-identity-repair.bps",
+    "audit": "reports/generated/modernization_p01_rom_audit.json",
+    "report": "reports/generated/modernization_p01_rom_audit.md"
+  }
+}
