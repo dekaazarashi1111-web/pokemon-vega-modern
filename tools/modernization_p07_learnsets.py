@@ -43,11 +43,11 @@ EXPECTED_INPUTS = {
     "content/modernization/p03_compiled_index.json":
         "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
     "content/modernization/p03_runtime_handoff.json":
-        "0ae2b8e10ded4105e7634e9ef91bb95cee0b5733ddb59ef16ef18619b42f1eb9",
+        "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
     "content/modernization/p04_candidate_manifest.json":
         "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
     "content/modernization/p05_battle_content_contract.json":
-        "2684a0cf398adcc17724a3b9b82cd0192b49cea93c78b40012f744e7f332932e",
+        "fccc56f3d812473b8b90b3bfe82b181c263030477219a5b49f55ba305b4a35ca",
     "content/modernization/p06_species_adjustment_contract.json":
         "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
     "content/modernization/p06_review_projection.json":

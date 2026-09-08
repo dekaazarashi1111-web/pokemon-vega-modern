@@ -14,6 +14,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: stage61-wiki stage61-wiki-check
 .PHONY: modernization-identity modernization-identity-check modernization-p01 modernization-p01-check modernization-p01-capacity-audit modernization-p01-mgba modernization-p01-focused-test
 .PHONY: modernization-p02-contract-check modernization-p02-stage64 modernization-p02-stage64-check modernization-p02-mgba modernization-p02-mgba-check modernization-p02-focused-test
+.PHONY: modernization-p03-check modernization-p05-check modernization-p06-check modernization-p07-check modernization-contracts-focused-test
 .PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
@@ -503,6 +504,21 @@ modernization-p02-mgba-check:
 
 modernization-p02-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p02_species_surface_policy tests.test_modernization_p02 tests.test_modernization_p02_mgba tests.test_modernization_p02_stage64 -v
+
+modernization-p03-check:
+	$(PYTHON) scripts/build_modernization_p03.py --check
+
+modernization-p05-check:
+	$(PYTHON) scripts/build_modernization_p05.py --check
+
+modernization-p06-check:
+	$(PYTHON) scripts/build_modernization_p06.py --compact
+
+modernization-p07-check:
+	$(PYTHON) scripts/build_modernization_p07.py --check
+
+modernization-contracts-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p03 tests.test_modernization_p05 tests.test_modernization_p06 tests.test_modernization_p07 -v
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto

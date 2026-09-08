@@ -11,6 +11,7 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
             "battle-cli-offline", "stage62-check", "stage62-mgba",
             "modernization-p01",
             "modernization-p02",
+            "modernization-contracts",
             "full-unit", "all",
         ):
             with self.subTest(suite=suite):
@@ -34,6 +35,20 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         self.assertLess(plan.index(build), plan.index(run))
         self.assertLess(plan.index(run), plan.index(check))
         self.assertIn(["make", "modernization-p02-focused-test"], plan)
+        self.assertNotIn(["make", "test"], plan)
+
+    def test_modernization_contracts_are_focused_and_read_only(self) -> None:
+        plan = command_plan("modernization-contracts", python="python3")
+        self.assertEqual(
+            [
+                ["python3", "scripts/build_modernization_p03.py", "--check"],
+                ["python3", "scripts/build_modernization_p05.py", "--check"],
+                ["python3", "scripts/build_modernization_p06.py", "--compact"],
+                ["python3", "scripts/build_modernization_p07.py", "--check"],
+                ["make", "modernization-contracts-focused-test"],
+            ],
+            plan,
+        )
         self.assertNotIn(["make", "test"], plan)
 
     def test_all_does_not_repeat_focused_battle_unit(self) -> None:
