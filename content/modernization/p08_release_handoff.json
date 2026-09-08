@@ -1,0 +1,36 @@
+{
+  "active_stage": 62,
+  "candidate_stage": 65,
+  "completed_phases": [
+    "P01"
+  ],
+  "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
+  "not_completed_phases": [
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08"
+  ],
+  "promotion": {
+    "active_play_baseline_changed": false,
+    "authorized": false,
+    "reason": "P02～P07のruntime acceptance未完了。Stage65はP03代表4経路だけのcheckpointでありrelease candidateではない"
+  },
+  "release_blockers": [
+    "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
+    "P03_STAGE65_SLICE_INTEGRATED_BUT_FULL_LEARNSET_RUNTIME_NOT_COMPLETE",
+    "P04_ASSET_STAGING_INTEGRATED_BUT_ID_ROM_AND_GAPS_NOT_COMPLETE",
+    "P05_MOVE_AND_ABILITY_RUNTIME_NOT_COMPLETE",
+    "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
+    "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
+    "CANDIDATE_STAGE65_IS_NOT_ACTIVE_STAGE62"
+  ],
+  "release_ready": false,
+  "schema_version": 1,
+  "snapshot_fingerprint_sha256": "f2507c4436770cc4bf507987aea753ddaf7cc26796e33007c752206d6f69695c",
+  "status": "CHECKPOINT_NOT_RELEASE_CANDIDATE",
+  "task": "USER-MODERNIZATION-P08"
+}

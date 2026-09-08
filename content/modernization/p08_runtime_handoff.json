@@ -1,0 +1,391 @@
+{
+  "active_play_baseline": {
+    "candidate_auto_promoted": false,
+    "changed": false,
+    "config_path": "config/active_play_baseline.json",
+    "config_sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+    "documentation_path": "design/active_play_baseline.md",
+    "documentation_sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+    "rom": {
+      "crc32": "73E4FB73",
+      "path": "build/stages/62_npc_placement_integrity_repair.gba",
+      "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+      "size": 33554432
+    },
+    "stage": 62
+  },
+  "candidate_chain": {
+    "active_stage": 62,
+    "inheritance": [
+      {
+        "role": "ACTIVE_PLAY_BASELINE",
+        "rom": {
+          "crc32": "73E4FB73",
+          "path": "build/stages/62_npc_placement_integrity_repair.gba",
+          "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+          "size": 33554432
+        },
+        "stage": 62
+      },
+      {
+        "parent_stage": 62,
+        "role": "P01_COMPLETED_CANDIDATE",
+        "rom": {
+          "crc32": "FB09EF2D",
+          "path": "build/stages/63_modernization_p01_identity_repair.gba",
+          "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+          "size": 33554432
+        },
+        "stage": 63
+      },
+      {
+        "parent_stage": 63,
+        "role": "P02_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "BCD9417F",
+          "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+          "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+          "size": 33554432
+        },
+        "stage": 64
+      },
+      {
+        "parent_stage": 64,
+        "role": "P03_INTEGRATED_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "7FB7F282",
+          "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+          "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+          "size": 33554432
+        },
+        "stage": 65
+      }
+    ],
+    "parent_chain_verified": true,
+    "registry": {
+      "active_parent_stage": 62,
+      "candidate_stage": 65,
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "completed_through": "USER-MODERNIZATION-P01",
+      "parent_stage": 64,
+      "path": "config/modernization_candidate.json",
+      "release_ready": false,
+      "schema_version": 2,
+      "status": "P03_STAGE65_VERIFIED_CHECKPOINT"
+    },
+    "release_candidate": false,
+    "selected_checkpoint_stage": 65,
+    "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
+    "stage65_integrated": true,
+    "stage65_scope": {
+      "consumers_exercised": [
+        "level_up",
+        "machine"
+      ],
+      "full_p03_done": false,
+      "representative_species": 1,
+      "routes_materialized": 4,
+      "routes_remaining": 118524
+    }
+  },
+  "phase_runtime": [
+    {
+      "blockers": [],
+      "completion_state": "COMPLETED",
+      "phase": "P01",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/identity_contract.json"
+          ],
+          "gate": "IDENTITY_CONTRACT",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "build/stages/63_modernization_p01_identity_repair.json"
+          ],
+          "gate": "STAGE63_EXACT_ROM_AND_BPS",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "config/modernization_candidate.json"
+          ],
+          "gate": "TASK_COMPLETION",
+          "status": "PASS"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": true,
+        "stage": 63
+      }
+    },
+    {
+      "blockers": [
+        "ABILITY_MOVE_CANCEL_ITEM_SAVE_RELOAD_GATE_NOT_RUN",
+        "FULL_EVOLUTION_ACCEPTANCE_FALSE"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P02",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p02_evolution_contract.json"
+          ],
+          "gate": "STATIC_CONTRACT",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p02_stage64_mgba_runtime_gate.json"
+          ],
+          "gate": "BOUNDED_DIRECT_CALL_MGBA",
+          "status": "PASS_NOT_FULL_E2E"
+        },
+        {
+          "evidence": [
+            "content/modernization/p02_stage64_checkpoint.json"
+          ],
+          "gate": "FULL_EVOLUTION_ACCEPTANCE",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": true,
+        "scope": "RAYQUAZA_PARAMETER_FIX_ONLY",
+        "stage": 64
+      }
+    },
+    {
+      "blockers": [
+        "ROUTES_REMAINING_118524",
+        "SUPPLY_REQUIRED_ROWS_26720",
+        "MOVE_1063_NOT_IMPLEMENTED",
+        "FULL_SCHEDULER_AND_SAVE_RELOAD_NOT_RUN"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P03",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p03_learnset_contract.json",
+            "content/modernization/p03_compiled_index.json"
+          ],
+          "gate": "STREAMING_CONTRACT_AND_INDEX",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p03_stage65_checkpoint.json",
+            "content/modernization/p03_stage65_mgba_runtime_gate.json"
+          ],
+          "gate": "STAGE65_REPRESENTATIVE_RUNTIME",
+          "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE"
+        },
+        {
+          "evidence": [
+            "content/modernization/p03_runtime_handoff.json"
+          ],
+          "gate": "FULL_ROUTE_SUPPLY_AND_MOVE_1063",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": true,
+        "scope": "CATERPIE_4_ROUTE_LEVEL_AND_MACHINE_SLICE_ONLY",
+        "stage": 65
+      }
+    },
+    {
+      "blockers": [
+        "SPECIES_ITEM_ABILITY_FREE_SLOTS_ZERO",
+        "NEW_SPECIES_ASSETS_MISSING_3",
+        "PALETTE_GAPS_2",
+        "RIGHTS_REVIEW",
+        "ROM_AND_ID_NOT_INTEGRATED"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P04",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p04_candidate_manifest.json",
+            "content/modernization/p04_official_sources.json"
+          ],
+          "gate": "OFFICIAL_SOURCE_AND_CANDIDATE_SET",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_asset_import_manifest.json"
+          ],
+          "gate": "ASSET_IMPORTER",
+          "status": "INTEGRATED_STAGING_ONLY_NOT_ROM_READY"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_candidate_manifest.json"
+          ],
+          "gate": "ID_CAPACITY_AND_RUNTIME",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": false,
+        "stage": null
+      }
+    },
+    {
+      "blockers": [
+        "MOVE_1063_ID_EFFECT_AI_UI_ANIMATION_SAVE",
+        "SIX_ABILITIES_UNALLOCATED"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P05",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p05_battle_content_contract.json"
+          ],
+          "gate": "BATTLE_CONTENT_CONTRACT",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_runtime_handoff.json"
+          ],
+          "gate": "SIDE_CHANGE_1063_FULL_RUNTIME",
+          "status": "BLOCKED"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_runtime_handoff.json"
+          ],
+          "gate": "P04_NEW_ABILITIES",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": false,
+        "stage": null
+      }
+    },
+    {
+      "blockers": [
+        "NO_EXPLICIT_SPECIES_ADJUSTMENT_SPEC",
+        "CHECKPOINT_NOT_P06_DONE"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P06",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p06_review_projection.json"
+          ],
+          "gate": "REVIEW_PARTITION",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p06_species_adjustment_contract.json"
+          ],
+          "gate": "EXPLICIT_ADOPTION_SPEC",
+          "status": "MISSING"
+        },
+        {
+          "evidence": [
+            "content/modernization/p06_species_adjustment_contract.json"
+          ],
+          "gate": "SPECIES_RUNTIME_AND_SAVE",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": false,
+        "stage": null
+      }
+    },
+    {
+      "blockers": [
+        "NO_ADOPTED_DISTRIBUTION_ROWS",
+        "P06_NOT_DONE",
+        "ROUTE_RUNTIME_NOT_IMPLEMENTED"
+      ],
+      "completion_state": "CHECKPOINT_NOT_DONE",
+      "phase": "P07",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p07_layered_learnset_contract.json"
+          ],
+          "gate": "LAYER_PRECEDENCE_AND_CONFLICT",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p07_runtime_handoff.json"
+          ],
+          "gate": "P06_REVIEW_DEPENDENCY",
+          "status": "BLOCKED"
+        },
+        {
+          "evidence": [
+            "content/modernization/p07_runtime_handoff.json"
+          ],
+          "gate": "ROUTE_RUNTIME_UI_SAVE",
+          "status": "BLOCKED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": false,
+        "stage": null
+      }
+    },
+    {
+      "blockers": [
+        "P02_TO_P07_NOT_DONE",
+        "RELEASE_READY_FALSE"
+      ],
+      "completion_state": "CHECKPOINT_NOT_RELEASE_CANDIDATE",
+      "phase": "P08",
+      "required_gates": [
+        {
+          "evidence": [
+            "content/modernization/p08_integration_matrix.json"
+          ],
+          "gate": "PINNED_INPUT_HASH_CHAIN",
+          "status": "PASS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p08_release_handoff.json"
+          ],
+          "gate": "ALL_PHASE_RUNTIME_ACCEPTANCE",
+          "status": "BLOCKED"
+        },
+        {
+          "evidence": [
+            "config/active_play_baseline.json"
+          ],
+          "gate": "ACTIVE_BASELINE_PROMOTION",
+          "status": "NOT_AUTHORIZED"
+        }
+      ],
+      "rom_reflection": {
+        "reflected": false,
+        "stage": null
+      }
+    }
+  ],
+  "release_ready": false,
+  "runtime_execution": {
+    "active_baseline_written": false,
+    "existing_evidence_reused": true,
+    "heavy_rom_execution_performed_by_p08": false,
+    "new_rom_written": false
+  },
+  "schema_version": 1,
+  "status": "CHECKPOINT_NOT_RELEASE_CANDIDATE",
+  "task": "USER-MODERNIZATION-P08"
+}
