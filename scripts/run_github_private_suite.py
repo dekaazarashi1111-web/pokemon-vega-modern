@@ -57,6 +57,9 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
     ]
     modernization_p02 = [
         [python, "scripts/build_modernization_p02.py", "--check"],
+        # private復元bundleはStage62まで。固定入力から親Stage63も再生成し、
+        # 保存済み生成物に依存せずStage64へ進む。
+        [python, "scripts/build_modernization_p01.py", "build"],
         [python, "scripts/build_modernization_p02_stage64.py", "build"],
         [python, "scripts/run_modernization_p02_mgba.py", "run"],
         [python, "scripts/run_modernization_p02_mgba.py", "check"],

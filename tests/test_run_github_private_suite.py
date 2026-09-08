@@ -26,9 +26,11 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
 
     def test_modernization_p02_rebuilds_before_exact_rom_gate(self) -> None:
         plan = command_plan("modernization-p02", python="python3")
+        parent = ["python3", "scripts/build_modernization_p01.py", "build"]
         build = ["python3", "scripts/build_modernization_p02_stage64.py", "build"]
         run = ["python3", "scripts/run_modernization_p02_mgba.py", "run"]
         check = ["python3", "scripts/build_modernization_p02_stage64.py", "check"]
+        self.assertLess(plan.index(parent), plan.index(build))
         self.assertLess(plan.index(build), plan.index(run))
         self.assertLess(plan.index(run), plan.index(check))
         self.assertIn(["make", "modernization-p02-focused-test"], plan)
