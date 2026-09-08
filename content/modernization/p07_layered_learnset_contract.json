@@ -1,0 +1,471 @@
+{
+  "adopted_delta": {
+    "explicit_deletions": [],
+    "invented_rows": [],
+    "normal_species_to_vega_move": [],
+    "submission_status": "NO_P07_DISTRIBUTION_ROWS_SUBMITTED",
+    "vega_species_to_normal_move": []
+  },
+  "dependencies": [
+    {
+      "dependency": "MOVE_KEY_ALLYSWITCH_RUNTIME",
+      "impact": "P03の159経路は保持するがruntime-ready Moveとしてserializeしない",
+      "status": "BLOCKED_CANONICAL_ID_EFFECT_AI_UI_ANIMATION_SAVE_TESTS"
+    },
+    {
+      "dependency": "P04_SPECIES_AND_FORM_ID_ALLOCATION",
+      "impact": "未割当P04候補を工程7target keyとして採用しない",
+      "status": "BLOCKED_52_CANDIDATES_UNALLOCATED"
+    },
+    {
+      "dependency": "P06_SPECIES_BALANCE_REVIEW",
+      "impact": "強力な種族/特性/技組合せのreview keyが無い非空差分を採用しない",
+      "status": "CHECKPOINT_NOT_P06_DONE_BLOCKING_RUNTIME_ADOPTION"
+    },
+    {
+      "dependency": "P03_MACHINE_TUTOR_SUPPLY",
+      "impact": "compatibility bitだけで実装済みとしない",
+      "status": "BLOCKED_26720_ORIGINAL_ROUTE_ROWS_REQUIRE_SUPPLY"
+    }
+  ],
+  "inputs": {
+    "learnsets_archive": {
+      "archive_root": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905",
+      "evidence_members": [
+        {
+          "path": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905/README_JA.md",
+          "sha256": "2a33bc7a2499c75134e8f7b543fff49b4dc3664dfb0838db3fe3c488afdbaeb3",
+          "size": 7097
+        },
+        {
+          "path": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905/SCHEMA_JA.md",
+          "sha256": "7f873ab9aa3853d9d926d3d6fb8ea4b9fbc3e8396f3717d2cb301f6c8951ef80",
+          "size": 8067
+        }
+      ],
+      "member_count": 1817,
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "role": "learnsets",
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "size": 82683251
+    },
+    "manifests": {
+      "abilities": {
+        "count": 312,
+        "path": "manifests/ability_ids.csv",
+        "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"
+      },
+      "items": {
+        "count": 999,
+        "path": "manifests/item_ids.csv",
+        "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"
+      },
+      "moves": {
+        "count": 1063,
+        "path": "manifests/move_ids.csv",
+        "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+      },
+      "species": {
+        "count": 1621,
+        "path": "manifests/species_ids.csv",
+        "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+      },
+      "types": {
+        "count": 25,
+        "path": "manifests/type_ids.csv",
+        "sha256": "b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb"
+      }
+    },
+    "p06": {
+      "adopted_delta_count": 0,
+      "artifact_count": 2,
+      "contract_status": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
+      "observed_artifacts": [
+        {
+          "path": "content/modernization/p06_species_adjustment_contract.json",
+          "sha256": "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
+          "size": 6648
+        },
+        {
+          "path": "content/modernization/p06_review_projection.json",
+          "sha256": "04efc32cb54e2f0adf8cbb5d4de480c322188e709856d876198f57d27427f01f",
+          "size": 206313
+        }
+      ],
+      "p06_ready_for_p07": false,
+      "projection_status": "REVIEW_PROJECTION_ONLY_NOT_ADOPTED",
+      "rule": "P06完了契約と採用review keyが接続されるまで非空P07差分をruntime採用しない",
+      "runtime_patch_authorized": false,
+      "status": "CHECKPOINT_NOT_P06_DONE_BLOCKING_RUNTIME_ADOPTION"
+    },
+    "restoration_archive": {
+      "archive_root": "Vega_Stage61_ID固定_原作復元監査",
+      "evidence_members": [
+        {
+          "path": "Vega_Stage61_ID固定_原作復元監査/README_読んでください.txt",
+          "sha256": "49eef1f2fab8cae1183e91172e91ad845cd9ed8d5d2804ba150add09a0bbffb6",
+          "size": 5961
+        }
+      ],
+      "member_count": 13,
+      "path": "userfile/imports/modernization_p01/Vega_Stage61_ID固定_原作復元監査資料.zip",
+      "role": "restoration_audit",
+      "sha256": "448608de12a431bef8eaaaf2dc3024743bfd77ad7925e5fb6ae01b6086cfac08",
+      "size": 67698
+    },
+    "upstream_contracts": {
+      "content/modernization/p03_compiled_index.json": {
+        "path": "content/modernization/p03_compiled_index.json",
+        "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+        "size": 1380994
+      },
+      "content/modernization/p03_learnset_contract.json": {
+        "path": "content/modernization/p03_learnset_contract.json",
+        "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+        "size": 9095
+      },
+      "content/modernization/p03_runtime_handoff.json": {
+        "path": "content/modernization/p03_runtime_handoff.json",
+        "sha256": "0ae2b8e10ded4105e7634e9ef91bb95cee0b5733ddb59ef16ef18619b42f1eb9",
+        "size": 8980
+      },
+      "content/modernization/p04_candidate_manifest.json": {
+        "path": "content/modernization/p04_candidate_manifest.json",
+        "sha256": "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
+        "size": 59501
+      },
+      "content/modernization/p05_battle_content_contract.json": {
+        "path": "content/modernization/p05_battle_content_contract.json",
+        "sha256": "2684a0cf398adcc17724a3b9b82cd0192b49cea93c78b40012f744e7f332932e",
+        "size": 78145
+      },
+      "content/modernization/p06_review_projection.json": {
+        "path": "content/modernization/p06_review_projection.json",
+        "sha256": "04efc32cb54e2f0adf8cbb5d4de480c322188e709856d876198f57d27427f01f",
+        "size": 206313
+      },
+      "content/modernization/p06_species_adjustment_contract.json": {
+        "path": "content/modernization/p06_species_adjustment_contract.json",
+        "sha256": "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
+        "size": 6648
+      }
+    }
+  },
+  "layer_model": {
+    "conflict_rules": [
+      "DUPLICATE_CHANGE_KEY_IS_ERROR",
+      "SAME_SPECIES_FORM_MOVE_CONSUMER_MULTIPLE_ADDITIONS_IS_ERROR",
+      "DIRECTION_MUST_MATCH_MANIFEST_SPECIES_AND_MOVE_DOMAINS",
+      "FORM_KEY_MUST_MATCH_SPECIES_MANIFEST",
+      "DELETE_MUST_REFERENCE_EXACT_LOWER_LAYER_IDENTITY",
+      "P03_CARRY_SHARED_EGG_FORM_ROUTES_MUST_NOT_BECOME_DIRECT_ROUTES",
+      "MACHINE_OR_TUTOR_REQUIRES_SUPPLY_SLOT_COST_UNLOCK_AND_CANCEL_POLICY"
+    ],
+    "layers": {
+      "BASE_EXISTING": {
+        "operation": "PRESERVE_UNLESS_HIGHER_LAYER_TARGETS_EXACT_IDENTITY",
+        "owner": "existing_runtime"
+      },
+      "P03_ORIGINAL_RESTORATION": {
+        "custom_distribution": false,
+        "operation": "REPLACE_TARGET_LEARNSET_WITH_FIXED_REFERENCE",
+        "records": 1300,
+        "routes": 118528
+      },
+      "P07_EXPLICIT_DELETION": {
+        "operation": "DELETE_EXACT_REFERENCED_ROUTE_ONLY",
+        "records": []
+      },
+      "P07_NORMAL_SPECIES_TO_VEGA_MOVE": {
+        "operation": "ADD_EXACT_ROUTE",
+        "records": []
+      },
+      "P07_VEGA_SPECIES_TO_NORMAL_MOVE": {
+        "operation": "ADD_EXACT_ROUTE",
+        "records": []
+      }
+    },
+    "precedence_low_to_high": [
+      "BASE_EXISTING",
+      "P03_ORIGINAL_RESTORATION",
+      "P07_NORMAL_SPECIES_TO_VEGA_MOVE",
+      "P07_VEGA_SPECIES_TO_NORMAL_MOVE",
+      "P07_EXPLICIT_DELETION"
+    ]
+  },
+  "policy": {
+    "conflicts": "FAIL_CLOSED_NO_SILENT_LAST_WRITER_WINS",
+    "existing_party_box_trainer": "NEVER_BULK_REWRITE_FROM_LEARNSET_CHANGE",
+    "missing_submission": "ZERO_DELTA_DO_NOT_INFER",
+    "numeric_identity": "SPECIES_AND_MOVE_KEY_FIRST_MANIFEST_ID_ASSERTION_ONLY",
+    "p03": "ORIGINAL_RESTORATION_LAYER_IMMUTABLE_NOT_UNIONED_WITH_CUSTOM",
+    "p04": "CANDIDATE_IDENTITY_DOES_NOT_IMPLY_MOVE_DISTRIBUTION",
+    "p05": "ONLY_RUNTIME_READY_ADOPTED_MOVE_MAY_ENTER_CUSTOM_LAYER",
+    "p06": "REQUIRED_REVIEW_DEPENDENCY_BEFORE_NONEMPTY_RUNTIME_ADOPTION",
+    "selection": "EXPLICIT_ADOPTED_ROWS_ONLY"
+  },
+  "preservation": {
+    "existing_party_box_save": "NO_FOUR_MOVE_REWRITE",
+    "form_change": "CONDITION_REQUIRED_NOT_PERMANENT_ALL_FORM_LEARNSET",
+    "mega": "BATTLE_ONLY_FORM_DOES_NOT_GAIN_PERMANENT_LEARNSET_WITHOUT_EXPLICIT_ROW",
+    "move_memory": "QUERY_SAME_LAYERED_SOURCE_WITH_ROUTE_CONDITIONS",
+    "pre_evolution_carry": "SEPARATE_CONSUMER_NEVER_TARGET_DIRECT_LEVEL",
+    "shared_egg": "SEPARATE_FROM_DIRECT_EGG",
+    "trainer_facility": "EXPLICIT_PARTIES_REMAIN_SEPARATE",
+    "wild_generation": "NEW_GENERATION_ONLY_FROM_LAYERED_SOURCE"
+  },
+  "row_schema": {
+    "directions": [
+      "NORMAL_SPECIES_TO_VEGA_MOVE",
+      "VEGA_SPECIES_TO_NORMAL_MOVE"
+    ],
+    "machine_tutor_availability_fields": [
+      "cancel_policy",
+      "cost_policy",
+      "runtime_slot_key",
+      "supply_key",
+      "unlock_key"
+    ],
+    "required_availability_fields": [
+      "relearn_policy",
+      "restriction_ja",
+      "timing_ja"
+    ],
+    "required_fields": [
+      "availability",
+      "change_key",
+      "conditions",
+      "direction",
+      "existing_moveset_policy",
+      "intent_ja",
+      "level",
+      "method",
+      "move_key",
+      "p06_review_key",
+      "route_kind",
+      "source_decision_ref",
+      "target_form_key",
+      "target_species_key"
+    ],
+    "route_to_consumer": [
+      {
+        "consumer": "form_change",
+        "method": "battle_transform",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "egg",
+        "method": "egg",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "evolution",
+        "method": "evolution",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "form_change",
+        "method": "form_move",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "level_up",
+        "method": "level_up",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "reminder",
+        "method": "reminder",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "egg",
+        "method": "special_breeding",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "machine",
+        "method": "tm",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "machine",
+        "method": "tr",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "tutor",
+        "method": "tutor",
+        "route_kind": "direct"
+      },
+      {
+        "consumer": "form_change",
+        "method": "battle_transform",
+        "route_kind": "form_change"
+      },
+      {
+        "consumer": "form_change",
+        "method": "form_move",
+        "route_kind": "form_change"
+      },
+      {
+        "consumer": "form_change",
+        "method": "level_up",
+        "route_kind": "form_change"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "egg",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "evolution",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "level_up",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "reminder",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "tm",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "tr",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "pre_evolution_carry",
+        "method": "tutor",
+        "route_kind": "pre_evolution"
+      },
+      {
+        "consumer": "shared_egg",
+        "method": "shared_egg",
+        "route_kind": "shared_egg"
+      }
+    ]
+  },
+  "runtime_handoff": {
+    "checkpoint_only": true,
+    "required_when_rows_are_submitted": [
+      "compile_each_direction_as_separate_layer",
+      "resolve_all_keys_to_current_manifest_ids",
+      "validate_p06_review_keys",
+      "compile_route_specific_consumers_without_flattening",
+      "connect_machine_tutor_ui_supply_cost_unlock_cancel",
+      "use_same_source_for_generation_and_move_memory",
+      "test_full_moveset_cancel_and_save_roundtrip",
+      "prove_exact_added_and_deleted_route_sets"
+    ],
+    "rom_changed": false,
+    "runtime_implemented": false
+  },
+  "schema_version": 1,
+  "source_evidence": {
+    "learnsets_zip": [
+      "VEGA_ORIGINAL_181_PRESERVED_WITHOUT_INVENTED_LEARNSETS",
+      "APPLY_TARGETS_EXCLUDE_VEGA_ORIGINAL_AND_INTERNAL_ROWS"
+    ],
+    "restoration_zip": [
+      "VEGA_MOVE_DISTRIBUTION_REQUIRES_SEPARATE_EXPLICIT_DELTA",
+      "RESTORATION_REVIEW_JSON_DOES_NOT_BULK_CHANGE_LEARNSETS"
+    ],
+    "upstream_contract_audit": {
+      "p03_original_restoration_records": 1300,
+      "p03_original_restoration_routes": 118528,
+      "p03_species_classifications": {
+        "DPE_FORM_APPEND": 275,
+        "DPE_SPECIES_APPEND": 820,
+        "VEGA_DPE_CANONICAL": 205
+      },
+      "p03_vega_original_target_count": 0,
+      "p04_candidate_records": 52,
+      "p04_learnset_distribution_fields": 0,
+      "p04_unallocated_species_keys": [
+        "SPECIES_KEY_ABSOL_MEGA_Z",
+        "SPECIES_KEY_BARBARACLE_MEGA",
+        "SPECIES_KEY_BAXCALIBUR_MEGA",
+        "SPECIES_KEY_BROWT",
+        "SPECIES_KEY_CHANDELURE_MEGA",
+        "SPECIES_KEY_CHESNAUGHT_MEGA",
+        "SPECIES_KEY_CHIMECHO_MEGA",
+        "SPECIES_KEY_CLEFABLE_MEGA",
+        "SPECIES_KEY_CRABOMINABLE_MEGA",
+        "SPECIES_KEY_DARKRAI_MEGA",
+        "SPECIES_KEY_DELPHOX_MEGA",
+        "SPECIES_KEY_DRAGALGE_MEGA",
+        "SPECIES_KEY_DRAGONITE_MEGA",
+        "SPECIES_KEY_DRAMPA_MEGA",
+        "SPECIES_KEY_EELEKTROSS_MEGA",
+        "SPECIES_KEY_EMBOAR_MEGA",
+        "SPECIES_KEY_EXCADRILL_MEGA",
+        "SPECIES_KEY_FALINKS_MEGA",
+        "SPECIES_KEY_FERALIGATR_MEGA",
+        "SPECIES_KEY_FLOETTE_ETERNAL_MEGA",
+        "SPECIES_KEY_FROSLASS_MEGA",
+        "SPECIES_KEY_GARCHOMP_MEGA_Z",
+        "SPECIES_KEY_GECQUA",
+        "SPECIES_KEY_GLIMMORA_MEGA",
+        "SPECIES_KEY_GOLISOPOD_MEGA",
+        "SPECIES_KEY_GOLURK_MEGA",
+        "SPECIES_KEY_GRENINJA_MEGA",
+        "SPECIES_KEY_HAWLUCHA_MEGA",
+        "SPECIES_KEY_HEATRAN_MEGA",
+        "SPECIES_KEY_LUCARIO_MEGA_Z",
+        "SPECIES_KEY_MAGEARNA_MEGA",
+        "SPECIES_KEY_MAGEARNA_ORIGINAL_MEGA",
+        "SPECIES_KEY_MALAMAR_MEGA",
+        "SPECIES_KEY_MEGANIUM_MEGA",
+        "SPECIES_KEY_MEOWSTIC_FEMALE_MEGA",
+        "SPECIES_KEY_MEOWSTIC_MALE_MEGA",
+        "SPECIES_KEY_POMBON",
+        "SPECIES_KEY_PYROAR_MEGA",
+        "SPECIES_KEY_RAICHU_MEGA_X",
+        "SPECIES_KEY_RAICHU_MEGA_Y",
+        "SPECIES_KEY_SCOLIPEDE_MEGA",
+        "SPECIES_KEY_SCOVILLAIN_MEGA",
+        "SPECIES_KEY_SCRAFTY_MEGA",
+        "SPECIES_KEY_SKARMORY_MEGA",
+        "SPECIES_KEY_STARAPTOR_MEGA",
+        "SPECIES_KEY_STARMIE_MEGA",
+        "SPECIES_KEY_TATSUGIRI_MEGA",
+        "SPECIES_KEY_TATSUGIRI_RED_MEGA",
+        "SPECIES_KEY_TATSUGIRI_YELLOW_MEGA",
+        "SPECIES_KEY_VICTREEBEL_MEGA",
+        "SPECIES_KEY_ZERAORA_MEGA",
+        "SPECIES_KEY_ZYGARDE_COMPLETE_MEGA"
+      ],
+      "p05_adopted_performance_adjustments": 0,
+      "p05_p04_new_move_requests": 0,
+      "side_change_1063": {
+        "canonical_id": null,
+        "move_key": "MOVE_KEY_ALLYSWITCH",
+        "p03_route_count": 159,
+        "requested_project_id": 1063,
+        "status": "P03_ORIGINAL_RESTORATION_RUNTIME_BLOCKED_NOT_P07_CUSTOM"
+      }
+    }
+  },
+  "status": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
+  "summary": {
+    "explicit_deletions_adopted": 0,
+    "normal_species_to_vega_move_adopted": 0,
+    "p03_original_restoration_routes_preserved": 118528,
+    "p04_move_distribution_rows": 0,
+    "p05_runtime_unready_move_dependencies": 1,
+    "p06_ready": false,
+    "runtime_implemented": false,
+    "vega_species_to_normal_move_adopted": 0
+  },
+  "task": "USER-MODERNIZATION-P07"
+}
