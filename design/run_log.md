@@ -4169,3 +4169,25 @@
   - task graph、private guard、`git diff --check`はcommit直前に実行する。ROM build／mGBAは実施していない。
 - Commit: `-`（本エントリを含むpreflight checkpoint commit）
 - Network: なし。固定済みlocal ZIPとtracked P03契約だけを読み、外部取得／push／Release変更は行っていない。
+
+## 2026-09-08T18:54:36+09:00
+
+- Task: `USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE` / Stage71通常UI受入ハーネスのfail-closed checkpoint
+- Status: STOPPED（P02 exact UI受入のみpending。Stage72／Stage73の作業は継続）
+- Summary:
+  - Stage71 exact ROMに対する1回目は233区間のnew-game trace後にfixture専用`QOL_B_RETURN_WARP`を余分に呼び、`CB2_Intro`へsoft resetした。2回目は自然fieldと6種level＋所持道具／代表条件matrixまで到達後、通常Start→Bag→party導線へ入れず停止した。いずれも製品runtime判定前のハーネス失敗であり、ROM不具合を主張しない。
+  - P02 production runtimeを`UNJUDGED`、通常進化cancel／success、Sun Stone、4技・ability slot・hidden ability／form、stock save＋fresh-core reloadをpendingに保持した。追加mGBAは実行せず、Stage72後の累積1セットへ統合する。
+  - 次回用ハーネスは既知正常Stage60 QA save 131,072 bytes／SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`をprocess別にbyte-copy／SHA照合し、通常title→Continue→input-ready field到達後だけparty／item fixtureを置く。元saveは変更せず、fresh coreも通常Continueで再読込する。
+- Files changed:
+  - `config/modernization_p02_stage71_acceptance_gate.json`
+  - `scripts/run_modernization_p02_stage71_acceptance.py`
+  - `tools/mgba_modernization_p02_stage71_acceptance_smoke.c`
+  - `tests/test_modernization_p02_stage71_acceptance.py`
+  - `content/modernization/p02_stage71_acceptance_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p02_stage71_acceptance`: 7/7 PASS。
+  - `python3 scripts/run_modernization_p02_stage71_acceptance.py check`: PASS、status `STOPPED_EXACT_UI_PENDING`、Stage71 identity pinned、full acceptance false。
+  - C harnessは`-std=c11 -O2 -Wall -Wextra -Werror -Itools -lmgba`で警告／error 0。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ROM／saveのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。

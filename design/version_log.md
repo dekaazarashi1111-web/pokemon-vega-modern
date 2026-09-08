@@ -1618,3 +1618,14 @@
   - shared egg重複、carryの未供給依存、form transition ownerを分け、既存挙動を新規materializationへ数えない契約を追加した。
   - Side Change非採用と禁止consumer転記0を固定し、Stage72親identity待ちではROM工程を拒否する。
 - Verify: focused unittest 4/4、全route 1 stream、task graph、private guard、`git diff --check` PASS。ROM／mGBAは未実施。
+
+## 2026-09-08T18:54:36+09:00
+
+- Version: `modernization-p02-stage71-ui-harness-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE` / Stage71通常UI受入ハーネスのfail-closed checkpoint
+- Summary:
+  - 2回のexact-ROM失敗を製品runtime未判定のハーネス導線失敗として分離し、P02全受入を過大にPASS／BLOCKED扱いしないcheckpointへ固定した。
+  - 既知正常saveをprocess別に複製し、通常Continue後だけfixtureを置き、fresh coreも通常Continueで読む次回累積run用ハーネスを準備した。
+  - 追加mGBAを実行せず、通常UI・scene後identity・fresh-core reloadをStage72後の累積1セットへ保留した。
+- Verify: focused unittest 7/7、published checkpoint check、C harness compile（`-Werror`）PASS。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。

@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE",
+  "status": "STAGE71_FINAL_IDENTITY_PINNED",
+  "inputs": {
+    "stage71_rom": {
+      "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+      "size": 33554432,
+      "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb"
+    },
+    "stage71_metadata": {
+      "path": "build/stages/71_modernization_p04_mega_runtime.json",
+      "sha256": "7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c"
+    },
+    "stage71_allocation": {
+      "path": "build/stages/71_modernization_p04_mega_runtime_allocation.json",
+      "sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf"
+    },
+    "preflight_reference_rom": {
+      "path": "build/stages/70_modernization_p04_species_runtime.gba",
+      "size": 33554432,
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef"
+    },
+    "historical_acceptance_checkpoint": {
+      "path": "content/modernization/p02_acceptance_checkpoint.json",
+      "size": 18455,
+      "sha256": "cf2acf56cbe932786c1a610a02b2798098ed0b06dd2c8cd53c2063951ca1d179"
+    },
+    "historical_rayquaza_gate": {
+      "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
+      "size": 5206,
+      "sha256": "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea"
+    },
+    "known_good_continue_save": {
+      "path": ".local/60_wild_species_root_repair.srm",
+      "size": 131072,
+      "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+    }
+  },
+  "evolution_table": {
+    "address": "0x094FE8E0",
+    "count": 1670,
+    "stride": 128,
+    "entry_size": 8,
+    "level_held_item_repairs": [
+      {
+        "species_id": 499,
+        "source": "SPECIES_KEY_QUILAVA",
+        "regular_entry": [4, 36, 500, 0],
+        "conditional_entry": [35, 36, 1419, 710]
+      },
+      {
+        "species_id": 759,
+        "source": "SPECIES_KEY_DEWOTT",
+        "regular_entry": [4, 36, 760, 0],
+        "conditional_entry": [35, 36, 1422, 719]
+      },
+      {
+        "species_id": 861,
+        "source": "SPECIES_KEY_RUFFLET",
+        "regular_entry": [4, 54, 862, 0],
+        "conditional_entry": [35, 54, 1427, 716]
+      },
+      {
+        "species_id": 993,
+        "source": "SPECIES_KEY_GOOMY",
+        "regular_entry": [4, 40, 994, 0],
+        "conditional_entry": [35, 40, 1428, 711]
+      },
+      {
+        "species_id": 1001,
+        "source": "SPECIES_KEY_BERGMITE",
+        "regular_entry": [4, 37, 1002, 0],
+        "conditional_entry": [35, 37, 1430, 708]
+      },
+      {
+        "species_id": 1121,
+        "source": "SPECIES_KEY_DARTRIX",
+        "regular_entry": [4, 34, 1122, 0],
+        "conditional_entry": [35, 34, 1431, 704]
+      }
+    ]
+  },
+  "runtime": {
+    "gate_script": "scripts/run_modernization_p02_stage71_acceptance.py",
+    "runner_source": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+    "transitive_sources": [
+      "tools/mgba_qol_production_smoke.c",
+      "tools/mgba_battle_core_smoke.c",
+      "tools/mgba_ai_fixture_runner.c"
+    ],
+    "compiler": "cc",
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ],
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+    },
+    "process_runs": 2,
+    "timeout_seconds": 240,
+    "boot_fixture": {
+      "policy": "PINNED_KNOWN_GOOD_SAVE_NORMAL_TITLE_CONTINUE_THEN_RAM_FIXTURE_REPLACEMENT",
+      "per_process_seed_copy": true,
+      "source_save_never_mutated": true,
+      "stable_field_callback": "0x08055E75",
+      "map_group": 96,
+      "map_num": 5,
+      "x": 20,
+      "y": 20,
+      "quest_log_state": 0,
+      "quest_log_playback_state": 0,
+      "field_lock": 0,
+      "fixture_mutation_boundary": "AFTER_NORMAL_CONTINUE_INPUT_READY_FIELD_ONLY",
+      "forbidden_synthetic_post_trace_call": "QOL_B_RETURN_WARP",
+      "rejected_reset_callback": {
+        "address": "0x080ED8D1",
+        "symbol": "CB2_Intro",
+        "classification": "SOFT_RESET_INTRO_NOT_FIELD"
+      }
+    },
+    "symbols": {
+      "BeginEvolutionScene": {
+        "address": "0x080CEF00",
+        "entry_bytes": "70b50c1c151c1e1c"
+      },
+      "GetEvolutionTargetSpecies": {
+        "address": "0x090FB774",
+        "entry_bytes": "f0b557464e464546"
+      },
+      "ItemEvolutionRemoval": {
+        "address": "0x090FB630",
+        "entry_bytes": "10b50c4b040082b0"
+      },
+      "GetMonAbility": {
+        "address": "0x090DA23C",
+        "entry_bytes": "f8b500220b21144f"
+      },
+      "CalculateMonStats": {
+        "address": "0x090D939C",
+        "entry_bytes": "f0b5de4657464e46"
+      },
+      "ItemUseCB_EvolutionStone": {
+        "address": "0x09122C8C",
+        "entry_bytes": "f0b5d6464f464646"
+      },
+      "TrySavingData": {
+        "address": "0x080DB34C",
+        "entry_bytes": "004b184761763709"
+      },
+      "Save_LoadGameData": {
+        "address": "0x080DB4E4",
+        "entry_bytes": "004b1847815d4009"
+      }
+    }
+  },
+  "acceptance": {
+    "required_routes": [
+      "six_level_held_item_runtime_matrix",
+      "normal_evolution_scene_cancel",
+      "normal_evolution_scene_success",
+      "bag_evolution_stone_success",
+      "bag_evolution_stone_missing",
+      "pre_evolution_four_moves_retained",
+      "post_scene_species_and_conditional_form",
+      "post_scene_ability_slot",
+      "post_scene_hidden_ability",
+      "condition_method_representatives",
+      "stock_save_fresh_core_reload"
+    ],
+    "normal_cancel": {
+      "source_species_id": 1,
+      "source_species_key": "SPECIES_KEY_VEGA_001",
+      "source_display_name_ja": "リープン",
+      "target_species_id": 2,
+      "target_species_key": "SPECIES_KEY_VEGA_002",
+      "target_display_name_ja": "リーティン",
+      "start_level": 15,
+      "trigger_item_id": 68
+    },
+    "conditional_form": {
+      "source_species_id": 499,
+      "target_species_id": 1419,
+      "start_level": 35,
+      "trigger_item_id": 68,
+      "held_condition_item_id": 710
+    },
+    "bag_item": {
+      "source_species_id": 19,
+      "source_species_key": "SPECIES_KEY_TOGETIC",
+      "target_species_id": 20,
+      "target_species_key": "SPECIES_KEY_TOGEKISS",
+      "item_id": 93,
+      "item_key": "ITEM_KEY_SUN_STONE",
+      "stage71_evolution_row": [7, 93, 20, 0]
+    },
+    "retained_moves": [246, 33, 45, 52]
+  },
+  "output": "content/modernization/p02_stage71_acceptance_checkpoint.json"
+}

@@ -8,7 +8,7 @@
 
 - 現行プレイ基準はStage62のまま。開発中の最大StageをiPad、通常save、Codex対戦へ自動採用しない。
 - P01はDONE。Stage63はEgg 412／Caterpie 649の意味逆転をstable keyで修復し、ROM SHA-256は`6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`。
-- P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSしたが、通常UI cancel、bag、scene後特性/form、save/reloadを含む全受入は未完了。
+- P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSした。Stage71累積ROMの全受入は2回とも通常UIの製品判定前にハーネス側で停止したため、production runtimeを`UNJUDGED`、全受入をpendingに保った。次回は既知正常saveをprocess別に私有コピーし、通常Continueでinput-ready fieldへ到達後だけfixtureを置くハーネスを使う。追加mGBAはStage72後の累積runへ集約する。
 - P03はStage66 bulkを継承し、Stage67 consumer checkpointまで進んだ。Stage67 ROM SHA-256は`13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32は`D94758FF`。core checkpoint commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
 - P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。P08のselected candidateへは未統合である。
@@ -70,6 +70,8 @@ python3 scripts/build_modernization_p04_species_runtime.py --check
 python3 -m unittest tests.test_modernization_p04_species_runtime
 python3 scripts/build_modernization_p04_mega_runtime.py --check
 python3 -m unittest tests.test_modernization_p04_mega_runtime
+python3 scripts/run_modernization_p02_stage71_acceptance.py check
+python3 -m unittest tests.test_modernization_p02_stage71_acceptance
 python3 scripts/build_modernization_p05.py --check
 python3 scripts/build_modernization_p05_ability_runtime.py --check --compact
 python3 scripts/build_modernization_p07.py --check
@@ -83,10 +85,9 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. P02の未検証UIキャンセル・bag・scene後特性/form・save/reloadを実consumerで閉じる。
-2. P03の67,218選択済み保留経路をconsumer別に小分けし、供給方針と実ROM testを付けてStage67へ積み上げる。Side Change 159件は対象外のまま保持する。
-3. Stage71の49順逆Mega対応を入力に、Ability 6件の効果／AI／UIをStage72 ROMへlinkする。公式特性未判明の形態はreplacement key付き仮特性を使い、中央bindingで後から差し替える。新Move 1063は実装しない。
-4. Stage72後の最終累積mGBAで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了と新Ability代表を1セットだけ検証する。
-5. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
+1. Stage71の49順逆Mega対応を入力に、Ability 6件の効果／AI／UIをStage72 ROMへlinkする。公式特性未判明の形態はreplacement key付き仮特性を使い、中央bindingで後から差し替える。新Move 1063は実装しない。
+2. P03の67,218選択済み保留経路をconsumer別に小分けし、供給方針と実ROM testを付けてStage72以降へ積み上げる。Side Change 159件は対象外のまま保持する。
+3. Stage72後の最終累積mGBAで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表に加え、P02の通常UI cancel／bag／scene後identity／fresh-core reloadを同じ1セットで検証する。
+4. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。
