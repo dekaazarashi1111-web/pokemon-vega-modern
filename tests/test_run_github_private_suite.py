@@ -73,9 +73,9 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         run = ["python3", "scripts/run_modernization_p03_stage65_mgba.py", "run"]
         check = ["python3", "scripts/build_modernization_p03_stage65.py", "check"]
         self.assertLess(plan.index(p01), plan.index(p02))
-        self.assertLess(plan.index(p02), plan.index(p03))
-        self.assertLess(plan.index(p03), plan.index(run))
-        self.assertLess(plan.index(run), plan.index(check))
+        self.assertLess(plan.index(p02), plan.index(run))
+        self.assertLess(plan.index(run), plan.index(p03))
+        self.assertLess(plan.index(p03), plan.index(check))
         self.assertIn(["make", "modernization-p03-stage65-focused-test"], plan)
         self.assertNotIn(["make", "test"], plan)
 

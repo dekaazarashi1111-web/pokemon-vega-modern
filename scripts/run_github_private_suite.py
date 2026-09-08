@@ -87,8 +87,10 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
         [python, "scripts/build_modernization_p03.py", "--check"],
         [python, "scripts/build_modernization_p01.py", "build"],
         [python, "scripts/build_modernization_p02_stage64.py", "build"],
-        [python, "scripts/build_modernization_p03_stage65.py", "build"],
+        # mGBA runnerはStage65をmemory上で決定的生成して証跡を公開する。
+        # 最終builderはその証跡を検証してcheckpointへ結合する。
         [python, "scripts/run_modernization_p03_stage65_mgba.py", "run"],
+        [python, "scripts/build_modernization_p03_stage65.py", "build"],
         [python, "scripts/run_modernization_p03_stage65_mgba.py", "check"],
         [python, "scripts/build_modernization_p03_stage65.py", "check"],
         ["make", "modernization-p03-stage65-focused-test"],
