@@ -38,3 +38,29 @@ jobs:
         run: |
           printf '検証HEAD: %s\n' "$TESTED_HEAD" >> "$GITHUB_STEP_SUMMARY"
           printf '現行対象consumer・対象集合・実C save処理: PASS\nROM反映: 未実施\n' >> "$GITHUB_STEP_SUMMARY"
+  rom-reference-inspection:
+    needs: current-target-consumer
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: 参照parserと保全処理の回帰
+        run: python3 -m unittest -v tests.test_p01_restore tests.test_p01_rom_audit
+      - name: 既存hash固定資材の取得と両report保全復元
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          mkdir -p .local/github-private-environment/assets
+          gh release download "$tag" --pattern 'pokemon-vega-private-env-v1-*.zip' --dir .local/github-private-environment/assets
+          python3 scripts/restore_p01_environment.py --archive-dir .local/github-private-environment/assets
+          git diff --exit-code
+      - name: 現行Stage62の参照・容量をread-only実測（mGBAとは独立）
+        run: |
+          python3 scripts/audit_p01_rom.py
+          git diff --exit-code
