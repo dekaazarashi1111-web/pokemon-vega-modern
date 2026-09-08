@@ -1,0 +1,111 @@
+name: p01-independent-evidence
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: p01-independent-evidence
+  cancel-in-progress: false
+jobs:
+  evidence:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/p01-independent-evidence-20260908' &&
+      github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+      TARGET_BRANCH: chatgpt/p01-independent-evidence-20260908
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
+      - name: 正本ROM identity・独立run証跡を再照合（ROMの再実行ではない）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import datetime, json, os, subprocess
+          from pathlib import Path
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          expected = {'size':33554432,'sha256':'6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd','crc32':'FB09EF2D'}
+          config = json.loads(Path('config/modernization_candidate.json').read_text())
+          actual = {key:config['candidate'][key] for key in expected}
+          if actual != expected or config['active_play_baseline_changed']:
+              raise SystemExit('正本候補と独立生成ROMのidentity不一致')
+          pins = [
+              (34174073406,'efc2662dc6d1cc59732da13411b5569ea8525577','p01-candidate-validation'),
+              (34172673504,'a89cd50f4a065a399553619456a4a17dc66de3a3','p01-runtime-validation'),
+              (34173113076,'a3c8423f443eac29de1afec7840d94260da1c34c','p01-target-validation'),
+              (34173283267,'0b9fd7a70d50670a6baa289e2c2e78aa225c6182','p01-target-validation'),
+              (34174354489,'ad1f9b0d114da9ad31bb8a2922baf3ffa1cef8a3','p01-reference-validation'),
+              (34174954995,'51edbebc2aa6260e0c09a0a53c2eed63b0e85fac','source-validation'),
+              (34174952611,'69ab9fa03f300387b46833ff01ac0a13a3a23f66','source-validation'),
+          ]
+          verified = []
+          for run_id, head, name in pins:
+              row = json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/actions/runs/{run_id}']))
+              if (row['id'],row['head_sha'],row['name'],row['status'],row['conclusion']) != (run_id,head,name,'completed','success'):
+                  raise SystemExit('独立runの固定HEAD・成功証跡が不一致')
+              verified.append({'run':run_id,'head':head,'name':name,'conclusion':'success'})
+          pull = json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/pulls/15']))
+          if not pull['merged'] or pull['merge_commit_sha'] != '69ab9fa03f300387b46833ff01ac0a13a3a23f66':
+              raise SystemExit('既存P01 merge記録が不一致')
+          marker = '<!-- P01-INDEPENDENT-EVIDENCE-20260908 -->'
+          if marker not in Path('design/run_log.md').read_text():
+              timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+              text = '\n\n' + marker + '\n## ' + timestamp + '\n'
+              text += '- Task: USER-MODERNIZATION-P01 / 既存候補の独立検証記録を統合\n- Status: DONE（補足記録のみ。既存task状態は変更しない）\n- Version: P01 independent verification\n'
+              text += '- Summary: PR #14側で実装・生成・実ROM検証した候補は、先にmergeされたPR #15のStage63とsize/SHA-256/CRC32が一致した。二重実装を上書きmergeせず、独立検証と容量上位bitの注意点だけを記録する。\n'
+              text += '- ROM: `' + json.dumps(expected,sort_keys=True) + '`。変更10byte/2行、宣言外0、valid save240byte/bit番号/配置/現行プレイ基準は不変。\n'
+              text += '- Verify: 固定HEADの成功run7件・既存PR #15 merge・正本candidate identityをGitHub API/checkoutから照合PASS。過去の実ARM検証を新規ROM実行と装わない。\n'
+              text += '- Evidence: `' + json.dumps(verified,sort_keys=True) + '`\n'
+              text += '- Files changed: design/modernization_p01_independent_verification.md、補足証跡workflow、design/run_log.md、design/version_log.md、design/modernization_handoff.md。\n'
+              text += '- 残件・次工程: P02/P03/P04はこの作業で開始しない。通常プレイ全経路E2Eや他task strict監査の完了を意味しない。正本候補と生成元はconfig/modernization_candidate.jsonを維持。\n'
+              text += '- Commit: 本記録を含むcommit（push後remote refを完全照合）。独立実装sourceは51edbebc2aa6260e0c09a0a53c2eed63b0e85fac。既存mergeは69ab9fa03f300387b46833ff01ac0a13a3a23f66。\n'
+              text += '- Network: GitHub API/Actions証跡読取。新規ROM/save/元ZIP/credentialの取得・uploadはこの補足workflowでは行わない。\n'
+              for name in ('design/run_log.md','design/version_log.md','design/modernization_handoff.md'):
+                  path = Path(name)
+                  if path.is_symlink() or not path.is_file():
+                      raise SystemExit('記録先が通常fileではない')
+                  with path.open('a',encoding='utf-8') as f:
+                      f.write(text)
+          print(json.dumps({'status':'PASS','candidate':expected,'evidence':verified,'rom_reexecuted':False},sort_keys=True))
+          PY
+          python3 scripts/validate_task_graph.py
+      - name: 記録3fileだけを最終guard・exact HEAD照合後に通常commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" --jq .head.sha)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote --exit-code origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')" = "$EXPECTED_HEAD"
+          git add -- design/run_log.md design/version_log.md design/modernization_handoff.md
+          python3 - <<'PY'
+          import subprocess
+          allowed = {'design/run_log.md','design/version_log.md','design/modernization_handoff.md'}
+          changed = set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().rstrip('\0').split('\0')) - {''}
+          if not changed <= allowed:
+              raise SystemExit('補足記録以外の変更は禁止')
+          PY
+          python3 scripts/guard_private_files.py
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION-P01: 既存候補と独立検証の一致を日本語で記録'
+            git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          fi
+          local_head=$(git rev-parse HEAD)
+          matched=0
+          for attempt in 1 2 3 4 5; do
+            if test "$(git ls-remote --exit-code origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')" = "$local_head"; then matched=1; break; fi
+            sleep 2
+          done
+          test "$matched" -eq 1
+          printf '確認済みremote HEAD: %s\n' "$local_head"
