@@ -1,0 +1,147 @@
+{
+  "acceptance": {
+    "ability_move_cancel_item_save_reload_gate": "NOT_RUN",
+    "clean_bps_round_trip": "PASS",
+    "incremental_bps_round_trip": "PASS",
+    "mgba_runtime_gate": "PASS",
+    "static_patch_gate": "PASS",
+    "task_completion": "CHECKPOINT_NOT_DONE"
+  },
+  "bps": {
+    "clean": {
+      "path": "build/patches/firered-jpn-rev0-to-stage64-modernization-p02-rayquaza-parameter-repair.bps",
+      "round_trip": true,
+      "sha256": "6adfcadd0c64ccf24bfa687fc1265efe25e0b26224c59d9108e44d78fdf62edc",
+      "size": 16726245
+    },
+    "incremental": {
+      "path": "build/patches/stage63-to-stage64-modernization-p02-rayquaza-parameter-repair.bps",
+      "round_trip": true,
+      "sha256": "6b27b12ffb0d8eca1bfa119848d35abb0b172e177dac5769630cca56af5ec852",
+      "size": 35
+    }
+  },
+  "change_audit": {
+    "changed_byte_count": 2,
+    "changed_span_count": 1,
+    "outside_declared_span_count": 0,
+    "rom_size_changed": false
+  },
+  "done": false,
+  "input": {
+    "p02_mgba_runtime_gate": {
+      "classification": "DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+      "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
+      "process_runs": 2,
+      "sha256": "6fe34cd1101705cd0a3bd678223ad044d129f38906981760ec878528048d09e6",
+      "size": 4665,
+      "status": "PASS"
+    },
+    "p02_static_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b",
+      "static_gate": "PASS"
+    },
+    "parent_metadata": {
+      "path": "build/stages/63_modernization_p01_identity_repair.json",
+      "sha256": "9e5b1d6de4074271b7da8631a0b1908dc631d368cb57e0269b70b9a41bc580cf"
+    },
+    "parent_rom": {
+      "path": "build/stages/63_modernization_p01_identity_repair.gba",
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+      "size": 33554432
+    }
+  },
+  "output": {
+    "crc32": "BCD9417F",
+    "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+    "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+    "size": 33554432
+  },
+  "patch": {
+    "after_hex": "fe00760244040200",
+    "after_move_id": 630,
+    "after_move_key": "MOVE_KEY_DRAGONASCENT",
+    "before_hex": "fe00050344040200",
+    "before_move_id": 773,
+    "before_move_key": "MOVE_KEY_OVERDRIVE",
+    "changed_bytes": 2,
+    "changed_spans": [
+      {
+        "end_exclusive": 33087932,
+        "size": 2,
+        "start": 33087930
+      }
+    ],
+    "entry_rom_offset": 33087928,
+    "entry_runtime_address": "0x09F8E1B8",
+    "mega_variant": 2,
+    "method_id": 254,
+    "parameter_policy": {
+      "historical_default_output_preserved": true,
+      "historical_default_policy": "T09_LEGACY_ITEM_0XFE_V1",
+      "historical_resolved_parameter_id": 773,
+      "modernization_policy": "MODERNIZATION_P02_WISH_MOVE_V2",
+      "modernization_resolved_parameter_id": 630,
+      "source_move_id": 559,
+      "status": "PASS"
+    },
+    "parameter_rom_offset": 33087930,
+    "parameter_runtime_address": "0x09F8E1BA",
+    "patch_key": "P02-EVO-RAYQUAZA-MOVE-NAMESPACE",
+    "slot": 0,
+    "species_id": 645,
+    "species_key": "SPECIES_KEY_RAYQUAZA",
+    "target_species_id": 1092,
+    "target_species_key": "SPECIES_KEY_RAYQUAZA_MEGA"
+  },
+  "producer_boundary": {
+    "historical_outputs_overwritten": false,
+    "note_ja": "build_species_surface.pyは履歴互換policyを既定値として保持し、modernization policyでWish MegaをMove namespaceへ修正した。Stage64はStage63を上書きせず決定的に2 bytesを修復する。",
+    "policy_verification": {
+      "historical_default_output_preserved": true,
+      "historical_default_policy": "T09_LEGACY_ITEM_0XFE_V1",
+      "historical_resolved_parameter_id": 773,
+      "modernization_policy": "MODERNIZATION_P02_WISH_MOVE_V2",
+      "modernization_resolved_parameter_id": 630,
+      "source_move_id": 559,
+      "status": "PASS"
+    },
+    "root_fix_applied": true,
+    "stage64_builder": "scripts/build_modernization_p02_stage64.py",
+    "upstream_generator": {
+      "dpe_append_policy": "SPECIES_412_TO_1620_ALIAS_TRANSLATED",
+      "function": "merge_evolutions",
+      "line": 450,
+      "parameter_namespace_policy": {
+        "historical_default_output_preserved": true,
+        "historical_default_policy": "T09_LEGACY_ITEM_0XFE_V1",
+        "legacy_item_alias_key": "ITEM_KEY_MAWILITE",
+        "legacy_resolved_parameter_id": 773,
+        "modernization_policy": "MODERNIZATION_P02_WISH_MOVE_V2",
+        "modernization_resolved_parameter_id": 630,
+        "required_modernization_parameter_id": 630,
+        "required_modernization_parameter_key": "MOVE_KEY_DRAGONASCENT",
+        "status": "PASS",
+        "wish_source_move_id": 559
+      },
+      "path": "scripts/build_species_surface.py",
+      "rom_write": "allocator.put('evolutions', evolutions) then repoint old T06 root literals",
+      "vega_prefix_policy": "SPECIES_0_TO_411_COPIED_BYTE_FOR_BYTE_FROM_T06"
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "active_play_baseline_changed": false,
+    "changed_evolution_rows": 1,
+    "changed_parameter_bytes": 2,
+    "move_ids_changed": false,
+    "other_evolution_rows_changed": 0,
+    "review_only_branches_applied": false,
+    "save_layout_changed": false,
+    "species_ids_changed": false
+  },
+  "stage": 64,
+  "status": "CHECKPOINT",
+  "task": "USER-MODERNIZATION-P02-RAYQUAZA"
+}

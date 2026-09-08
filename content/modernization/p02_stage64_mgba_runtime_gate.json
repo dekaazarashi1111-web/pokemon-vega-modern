@@ -1,0 +1,159 @@
+{
+  "artifacts_written": [
+    "content/modernization/p02_stage64_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "dragon_ascent_630_selects_mega_rayquaza_1092": true,
+    "exact_stage64_rom": true,
+    "full_evolution_acceptance": false,
+    "get_mega_species_thumb_executed": true,
+    "historical_773_does_not_select_wish_mega": true,
+    "null_moves_does_not_select_wish_mega": true,
+    "scheduler_e2e": false
+  },
+  "classification": "DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+  "execution": {
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "compiler": "/usr/bin/cc",
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "identical_results": true,
+    "independent_processes": true,
+    "link_flags": [
+      "-lmgba"
+    ],
+    "process_runs": 2,
+    "runner_result_sha256": "73f18cc0267052b983d4703a85721e9a99584f333efed65417e48c8f980abd08"
+  },
+  "inputs": {
+    "battle_core_fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+    "changed_rom_offsets": [
+      33087930,
+      33087931
+    ],
+    "config": {
+      "path": "config/modernization_p02_mgba_gate.json",
+      "sha256": "cec97dd45593a35ffac3a2f64ab04275ad77efa66496bfeb0cb0840b53b0dade",
+      "size": 2512
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "offsets": [
+      {
+        "get_mega_species": "0x09114CF0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      },
+      {
+        "get_mega_species": "0x09114CF0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      }
+    ],
+    "p02_static_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b",
+      "size": 1440826
+    },
+    "sources": [
+      {
+        "path": "scripts/run_modernization_p02_mgba.py",
+        "sha256": "64b41ff621eb6b95555a02bff17c4fa5442dab39e52f8cf0517feb8075821e2e",
+        "size": 17758
+      },
+      {
+        "path": "tools/mgba_modernization_p02_evolution_smoke.c",
+        "sha256": "93dcf7107e74d9743f9bf901eb3a47ce76772d3483d3918b11f8cb4101802cf1",
+        "size": 5018
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "stage63": {
+      "path": "build/stages/63_modernization_p01_identity_repair.gba",
+      "rayquaza_entry": [
+        254,
+        773,
+        1092,
+        2
+      ],
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+      "size": 33554432
+    },
+    "stage64": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+      "rayquaza_entry": [
+        254,
+        630,
+        1092,
+        2
+      ],
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+      "size": 33554432
+    }
+  },
+  "runtime_result": {
+    "artifacts_written": [],
+    "cases": {
+      "dragon_ascent": {
+        "instructions": 45,
+        "moves": [
+          630,
+          0,
+          0,
+          0
+        ],
+        "result": 1092
+      },
+      "historical_773": {
+        "instructions": 70,
+        "moves": [
+          773,
+          0,
+          0,
+          0
+        ],
+        "result": 0
+      },
+      "null_moves": {
+        "instructions": 40,
+        "moves": null,
+        "result": 0
+      }
+    },
+    "classification": "DIRECT_CALL_BOUNDED",
+    "get_mega_species_symbol": "0x09114CF0",
+    "get_mega_species_thumb": "0x09114CF1",
+    "item_id": 0,
+    "payload_pc_seen": true,
+    "read_only": true,
+    "rom_sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+    "schema_version": 1,
+    "species_id": 645,
+    "status": "PASS",
+    "target_species_id": 1092,
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P02-MGBA-GATE"
+}

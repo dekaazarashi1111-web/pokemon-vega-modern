@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P02-MGBA-GATE",
+  "inputs": {
+    "stage64_config_path": "config/modernization_p02_stage64.json",
+    "stage63_rom": {
+      "path": "build/stages/63_modernization_p01_identity_repair.gba",
+      "size": 33554432,
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd"
+    },
+    "stage64_rom": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+      "size": 33554432,
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3"
+    },
+    "p02_static_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "size": 1440826,
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b"
+    },
+    "battle_core_offsets": {
+      "fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+      "run_1_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+      "run_2_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+      "size": 971694,
+      "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523"
+    }
+  },
+  "runtime": {
+    "gate_script": "scripts/run_modernization_p02_mgba.py",
+    "runner_source": "tools/mgba_modernization_p02_evolution_smoke.c",
+    "transitive_sources": [
+      "tools/mgba_battle_core_smoke.c",
+      "tools/mgba_ai_fixture_runner.c"
+    ],
+    "compiler": "cc",
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ],
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+    },
+    "process_runs": 2,
+    "timeout_seconds": 30,
+    "get_mega_species_symbol": "0x09114CF0"
+  },
+  "patch_contract": {
+    "entry_rom_offset": "0x01F8E1B8",
+    "stage63_entry": [254, 773, 1092, 2],
+    "stage64_entry": [254, 630, 1092, 2],
+    "changed_rom_offsets": [33087930, 33087931]
+  },
+  "expectations": {
+    "species_id": 645,
+    "target_species_id": 1092,
+    "item_id": 0,
+    "dragon_ascent_move_id": 630,
+    "historical_wrong_move_id": 773,
+    "dragon_ascent_result": 1092,
+    "historical_wrong_result": 0,
+    "null_moves_result": 0
+  },
+  "output": "content/modernization/p02_stage64_mgba_runtime_gate.json"
+}
