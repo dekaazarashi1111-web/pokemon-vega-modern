@@ -548,3 +548,19 @@
   P01だけをDONE、P02〜P08未完了、release-ready=false、active baseline Stage62とする。
 - 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff。
   iPad、save、Release、現行プレイ基準は変更しない。
+
+## 2026-09-09 — D-047: Eelevateは交代AIの比較境界だけでEarth Eaterへ写像する
+
+- 決定: Ability 313 Eelevateを全域でEarth Eater 298へ置換せず、`FindMonThatAbsorbsOpponentsMove`の
+  active ability比較とparty候補比較の2 siteだけへ専用adapterを接続する。foe1の有効予測を優先し、
+  予測なし／switch／Move上限外の時だけfoe2へfallbackする。
+- 成立条件: 動的Move typeがGround、damage move、Thousand Arrows以外、候補が非接地、Abilityが
+  非抑制である時だけ313を比較用298へ写像する。Gravity／Iron Ball／Ingrain／Smack Down、Gastro Acid、
+  Battle Circus特性無効は拒否する。
+- 無効化境界: 選択した攻撃側の予測AbilityとMoveを`IsTargetAbilityIgnored`へ渡し、Mold Breaker／
+  Teravolt／Turboblaze／対象Moveを判定する。交代後も残る生存Neutralizing Gasをoutgoing active以外から
+  探し、いずれも有効なAbility Shieldだけが上書きできる。
+- 完了境界: Stage78 payload 688 bytes、hook 2件、allocation sequence 81を接続する。focused 12件、
+  32-case Python＋host C、builder check、BPS roundtrip、allowlist外0、独立監査2件はPASSした。
+  mGBAは`NOT_RUN`のままStage79累積runへ集約し、P05／release完了、P08昇格、active baseline変更は
+  主張しない。

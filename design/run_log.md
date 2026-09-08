@@ -4422,3 +4422,27 @@
   - `git diff --check`: PASS。重いmGBAはStage78最終累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T06:31:00+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI` / Eelevate専用交代AI
+- Status: DONE（Stage78製品checkpoint。最終累積mGBA、P05本体、P08統合は未完了）
+- Summary:
+  - Stage77を親に、`FindMonThatAbsorbsOpponentsMove`のactive／party 2 siteへEelevate専用adapterを接続した。有効な予測Ground damageだけでAbility 313を比較用Earth Eater 298へ写像する。
+  - 予測なし／switch／Move上限外、status、Thousand Arrows、Gravity／Iron Ball／Ingrain／Smack Down、Gastro Acid、Battle Circus、Mold Breaker系、残存Neutralizing Gas、Ability Shieldをfail closedで扱った。
+  - 親81 allocation、Stage77の29 hook、Stage76のpointer 1＋hook 3を保持した。Browt／Pombon／GecquaとSide Changeの採用0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`、CRC32 `BFF0203C`。payloadは688 bytes、`0x095D5D40`、allocation sequence 81、SHA-256 `a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905`。
+- Files changed:
+  - `config/modernization_p05_stage78_eelevate_switch_ai.json`
+  - `content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json`、`content/modernization/p05_stage78_eelevate_switch_ai_contract.json`
+  - `overlays/modernization_p05_stage78_eelevate_switch_ai/**`
+  - `tools/modernization_p05_stage78_eelevate_switch_ai.py`、`scripts/build_modernization_p05_stage78_eelevate_switch_ai.sh`
+  - `tests/test_modernization_p05_stage78_eelevate_switch_ai.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage78_eelevate_switch_ai -v`: 12/12 PASS。32-case Python＋compiled host C matrix、2 entry ABI、脅威fallback、親identity／allocation、BPS、artifact manifestを照合した。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage78_eelevate_switch_ai.py --check`: PASS。ROM差分はpayload＋2 hookだけ、allowlist外0、BPS roundtrip PASS。
+  - metadata SHA-256 `1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8`、allocation `b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b`、incremental BPS `2a5dfc6574f42b06f6339061a7af087b4f0ef5fa872cedf92599ddbb70a9ca9e`、checkpoint `19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f`。
+  - 独立read-only監査2件はHigh／Mediumなし。重いmGBAはユーザー指定どおりStage79の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage77 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

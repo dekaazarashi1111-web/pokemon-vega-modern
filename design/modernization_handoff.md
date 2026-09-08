@@ -12,8 +12,8 @@
 - P03はStage66/67 bulk、Stage73 consumer runtime、Stage74 direct supplyを継承し、Stage75 Own Tempo Rockruff checkpointまで進んだ。Stage74でmachine 26,279＋tutor 369の26,648経路をfamily分離archiveへ接続して直接供給残を0にし、Stage75で0744.01の欠落owner 38経路を内部条件フォームSpecies 1670へ解決した。Stage75 ROM SHA-256は`a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`、CRC32は`1511F429`。この継承chainはStage77のP08 selected candidateへ統合済みである。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
 - P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。Stage77までの継承chainとしてP08へ統合済みである。
-- P05のAbility ROM checkpointはStage77まで進んだ。Stage72のAbility 312〜317／29 battle hookとStage76の安全な3 edgeを継承し、Battle Circusの全特性無効時だけ29 hookをStage72 original trampolineへ迂回させた。通常時はStage72 wrapperを維持し、Gastro Acid／Neutralizing Gas／Mold Breakerの既存抑制も変更しない。Stage77 ROM SHA-256は`245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`、CRC32は`F1CE0EAC`。P08 selected candidateはこのStage77へ統合済み。Eelevate専用switch AIと最終累積mGBAは未完了のまま保持する。
-- P04〜P08は依然として未完了。Stage75でOwn Tempo Rockruff 0744.01、Stage76でP05の安全な3 edge、Stage77でBattle Circus特性無効境界は解決済みだが、Eelevate専用switch AI、P02通常UI／Floette full・fresh reloadを含む最終累積mGBAが残る。P01以外をDONEと扱わない。
+- P05のAbility ROM checkpointはStage78まで進んだ。Stage72のAbility 312〜317／29 battle hook、Stage76の安全な3 edge、Stage77のBattle Circus全特性無効dispatcherを継承し、Stage78でEelevate専用switch AIをactive／party 2 siteへ接続した。Stage78 ROM SHA-256は`98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`、CRC32は`BFF0203C`。P08 selected candidateは次の統合checkpointまでStage77のまま。最終累積mGBAは未実行である。
+- P04〜P08は依然として未完了。Stage75でOwn Tempo Rockruff 0744.01、Stage76でP05の安全な3 edge、Stage77でBattle Circus特性無効境界、Stage78でEelevate専用switch AIは解決済みだが、P02通常UI／Floette full・fresh reloadを含む最終累積mGBAが残る。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
 
@@ -47,10 +47,10 @@
 ## P05〜P08の境界
 
 - P05の新Move要件は0件。Side Change／Ally Switch候補159経路は非採用decisionへ固定し、効果・AI・UI・アニメーション・save・習得を要求しない。技性能の提出済み採用差分は0。
-- 新Ability 6件はstable key順ID 312〜317とu16 ABIを固定し、発動／不発／抑制／複数対象／AI／save、Fairy 23／Stellar 24を含む46 caseを独立2 processのhost C runtimeでPASSした。Stage72では固定表、6 Mega form binding、日本語説明と29 battle hookをROMへ接続した。Stage76ではMega SolのSolar charge時popup、Piercing Drillの予測Protect damage 1/4、Spicy Sprayの味方発火評価を追加した。DetectはProtectへ正規化し、Max Guard／ダイマックス、実Protect二重quarter、planned protection／semi-invulnerable、Present／Future Sight／Doom Desire／Pollen Puffを保守的に除外する。Stage77ではBattle Circus bit 26かつ特性無効bit 31の時だけ全29 hook／33 surfaceをStage72 originalへ委譲し、それ以外はStage72 wrapperへ委譲する。Eelevate専用switch AIは不完全な313→298置換を採らず、exact-ROM mGBAとともに未完了とする。
+- 新Ability 6件はstable key順ID 312〜317とu16 ABIを固定し、発動／不発／抑制／複数対象／AI／save、Fairy 23／Stellar 24を含む46 caseを独立2 processのhost C runtimeでPASSした。Stage72では固定表、6 Mega form binding、日本語説明と29 battle hookをROMへ接続した。Stage76ではMega SolのSolar charge時popup、Piercing Drillの予測Protect damage 1/4、Spicy Sprayの味方発火評価を追加した。DetectはProtectへ正規化し、Max Guard／ダイマックス、実Protect二重quarter、planned protection／semi-invulnerable、Present／Future Sight／Doom Desire／Pollen Puffを保守的に除外する。Stage77ではBattle Circus bit 26かつ特性無効bit 31の時だけ全29 hook／33 surfaceをStage72 originalへ委譲し、それ以外はStage72 wrapperへ委譲する。Stage78ではEelevateを有効な予測Ground攻撃の比較時だけEarth Eaterへ写像し、Thousand Arrows、接地、各種抑制、Ability Shieldを含む境界を保持した。exact-ROM mGBAはStage79累積runまで未完了とする。
 - 公式特性が不明な対象は、stable replacement key、`TEMPORARY_REPLACEABLE`、非公式表示guardを持つ仮特性14件として保持した。分類保留2件を含め、後から中央bindingだけを差し替えられる。
 - P06の提出済み種族調整差分は0、P07の追加習得差分も0。review-only資料を自動採用していない。
-- P08はStage77までのcheckpoint hash、生成実装、ignored ROM/BPS、evidence sourceを統合監査済み。Stage74→75→76→77のincremental BPSとallocator lineageをfail closedで固定した。active baseline Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持する。
+- P08はStage77までのcheckpoint hash、生成実装、ignored ROM/BPS、evidence sourceを統合監査済み。Stage74→75→76→77のincremental BPSとallocator lineageをfail closedで固定した。Stage78は製品checkpointを生成済みだが、次のP08統合まではselected candidateへ昇格しない。active baseline Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持する。
 
 ## 入力・GitHub・権利境界
 
@@ -88,6 +88,8 @@ python3 -m unittest tests.test_modernization_p05_stage76_edges
 python3 tools/modernization_p05_stage76_edges.py --check
 python3 -m unittest tests.test_modernization_p05_stage77_suppression
 python3 tools/modernization_p05_stage77_suppression.py --check
+python3 -m unittest tests.test_modernization_p05_stage78_eelevate_switch_ai
+python3 tools/modernization_p05_stage78_eelevate_switch_ai.py --check
 python3 scripts/build_modernization_p07.py --check
 python3 scripts/run_modernization_p02_acceptance.py check
 python3 scripts/build_modernization_p03_stage67.py check
@@ -99,9 +101,8 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. Stage76を親に、Battle Circusの特性無効ルールを通常戦へ漏らさないStage77 checkpointを統合する。
-2. Eelevate専用switch AIはGround／Thousand Arrows／接地／Gravity／Mold Breaker／Ability Shieldを保持できる設計に限って別checkpointで実装する。
-3. 49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表、P02通常UI、Stage73〜75 egg／Move Memory／ロトム／Rockruff保存、Floette full・fresh reloadを同じmGBAセットで一度だけ検証する。
-4. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
+1. Stage79累積mGBAハーネスをStage78のROM／metadata／allocation／payload／symbols／audit／contract identityへfail closedで固定する。
+2. 49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表とEelevate active／party hook、P02通常UI、Stage73〜75 egg／Move Memory／ロトム／Rockruff保存、Floette full・fresh reloadを同じmGBAセットで一度だけ検証する。
+3. runtime結果をP08 selected candidateへ統合し、提出済み採用差分が入った場合だけP06/P07を実装してrelease gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。

@@ -1741,3 +1741,14 @@
   - Stage76→77 BPS、allocation 81行／sequence 80、通常経路・Stage76 patch保持を改ざんguardへ追加した。
   - Browt／Pombon／GecquaとSide Changeは0、active Stage62、P01のみDONE、release-ready=falseを維持した。
 - Verify: focused unittest 17/17、P08 builder `--check`（INPUTS=77、CANDIDATE=77）、Stage67→77 exact chain、`git diff --check` PASS。重いmGBAは未実行。
+
+## 2026-09-09T06:31:00+09:00
+
+- Version: `modernization-stage78-p05-eelevate-switch-ai-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI` / Eelevate専用交代AI
+- Summary:
+  - Eelevateを有効な予測Ground damageのactive／party比較時だけEarth Eaterへ写像する2 hookを接続した。
+  - Thousand Arrows、接地、Gastro Acid／Circus、Mold Breaker系／Neutralizing Gas、Ability Shieldの境界を保持した。
+  - Browt／Pombon／GecquaとSide Changeは0、P05／release未完了、active Stage62を維持した。
+- Verify: focused unittest 12/12、32-case Python＋host C、Stage78 builder `--check`、BPS roundtrip、親81 allocation／既存33 hook・pointer保持、allowlist外0、独立read-only監査2件High／Mediumなし PASS。ROM SHA-256 `98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`。mGBAはStage79累積runへ集約し未実行。
