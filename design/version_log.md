@@ -1663,3 +1663,14 @@
   - inheritance／BPS／release blocker／candidate patch／allocator lineageの改ざんguardを強化した。
   - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
 - Verify: focused unittest 17/17、P08 builder `--check`、4 BPS exact apply、task graph、private guard、`git diff --check` PASS。重いmGBAは未実行。
+
+## 2026-09-08T23:48:28+09:00
+
+- Version: `modernization-stage74-p03-supply-runtime-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME` / P03 machine・tutor直接供給archive
+- Summary:
+  - 残るmachine 26,279＋tutor 369をfamily分離archiveへ接続し、直接供給残を0にした。
+  - 退化時の合法技消去防止専用2,223 target-moveをUIと経路勘定から分離し、全1,621種の最大238/429を固定した。
+  - Side Changeと追加対象外3種を0に保ち、Rockruff意味整理と最終累積mGBAを未完了として残した。
+- Verify: focused unittest 12/12、Stage74 build／check各9 artifacts、BPS roundtrip、2 hook ABI、全route／capacity／allocator／allowlist、独立High／Medium review PASS。ROM SHA-256 `481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`。mGBAは未実行。

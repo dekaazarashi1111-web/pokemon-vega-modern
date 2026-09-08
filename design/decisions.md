@@ -440,3 +440,22 @@
   blockerとして維持する。本checkpointでは重いmGBAを実行しない。
 - 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
   modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-08 — D-040: 残るmachine／tutorはfamily分離archiveで供給し退化時保持を別表にする
+
+- 決定: Stage73に残ったmachine 26,279＋tutor 369の26,648経路は、既存128 TM/HM slot／64 tutor
+  slotへ押し込まず、殿堂入り後のBagわざメモリーにfamily分離したindexed archiveとして接続する。
+  machineは40件×最大4ページ、tutorは1ページとし、暫定価格は無料で後続の中央経済設定から
+  差し替え可能にする。
+- 保全: `BuildLearnableMoveset`を使うBenjamin Butterfree退化処理は、Stage73のshared egg／reminderや
+  持越し合法技を知らない。全118,369選択経路から、現行level／egg family／TM／tutorとStage74直接
+  archiveで既に合法と判定できる集合を引き、残る4,014 path／2,223 target-moveを削除防止専用表へ
+  入れる。この表はUIへ公開せず、供給数とaccountingへ加算しない。
+- 容量: 全1,621種の実buffer最大は238、unique最大234、構造上限319で、呼出し側429 u16に対する
+  overflowは0。Move Memoryの既存allocation #33はlayoutを動かさず実ROM slice hashだけを更新し、
+  Stage74 payloadをsequence 77へ追加する。
+- 完了境界: 新規runtime materializationは累積83,162、既存owner込みaccountedは118,369、直接供給残0。
+  Side Change、Browt／Pombon／Gecqua、family統合、level／egg coercionは0を維持する。Own Tempo Rockruff
+  0744.01の38持越し経路と最終累積mGBAが残るため、P03／release completionは主張しない。
+- 影響: Stage74、P03、Move Memory、Benjamin Butterfree、P08、最終累積mGBA。active baseline、iPad、
+  save、Releaseは変更しない。

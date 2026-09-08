@@ -1,0 +1,109 @@
+{
+  "allocation": {
+    "inherited_layout_changes": 0,
+    "mutated_content_hash_sequences": [
+      33
+    ],
+    "new_sequence": 77,
+    "parent_declared_effective_known_diff_spans": [
+      {
+        "end_exclusive": 19726246,
+        "size": 2,
+        "start": 19726244
+      },
+      {
+        "end_exclusive": 19726370,
+        "size": 4,
+        "start": 19726366
+      },
+      {
+        "end_exclusive": 19726941,
+        "size": 1,
+        "start": 19726940
+      },
+      {
+        "end_exclusive": 19728921,
+        "size": 4,
+        "start": 19728917
+      }
+    ],
+    "path": "build/stages/74_modernization_p03_supply_runtime_allocation.json",
+    "reason": "effective owner normalization plus ItemScriptPointer replacement",
+    "sequence33_output_content_sha256": "ac6a2008d9dc66c5ca8d4f224daa003ed752bcc4b6d92208dad83c62085cb53c",
+    "sequence33_parent_declared_content_sha256": "f62631fbfabd7e1a3af77c0640140a0a27fab2cfe8f9076556aee7cab4cee40a",
+    "sequence33_parent_effective_rom_sha256": "3b0e990853da8e4fa1a1f0c859ab624e7dbced767bf562891820f281bdb317af",
+    "sha256": "d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23",
+    "size": 44607
+  },
+  "bps": {
+    "path": "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+    "round_trip": true,
+    "sha256": "8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd",
+    "size": 70627,
+    "source_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+    "target_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e"
+  },
+  "build_learnable_preservation": {
+    "caller_capacity_u16": 429,
+    "maximum_runtime_buffer_entries": 238,
+    "missing_paths": 4014,
+    "overflow_species_count": 0,
+    "route_accounting_added": 0,
+    "selected_routes_checked": 118369,
+    "species": 501,
+    "target_move_pairs": 2223,
+    "target_move_set_sha256": "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+    "ui_supply_routes_added": 0
+  },
+  "completion_claim": "DIRECT_MACHINE_TUTOR_SUPPLY_26648_COMPLETE_CHECKPOINT_NOT_FULL_P03_DONE",
+  "cumulative_accounted_routes": 118369,
+  "cumulative_runtime_materialized_routes": 83162,
+  "direct_supply_materialized_routes": 26648,
+  "direct_supply_species_family_move_pairs": 26648,
+  "done": false,
+  "economy": "PROVISIONAL_REPLACEABLE",
+  "exclusions": {
+    "browt_pombon_gecqua_materialized": 0,
+    "prohibited_coercions_materialized": 0,
+    "side_change_materialized": 0
+  },
+  "full_p03_done": false,
+  "metadata": {
+    "path": "build/stages/74_modernization_p03_supply_runtime.json",
+    "sha256": "2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7",
+    "size": 7600
+  },
+  "mgba": "DEFERRED_TO_ROOT_FINAL_CUMULATIVE_ONCE",
+  "output_crc32": "C9929F79",
+  "output_path": "build/stages/74_modernization_p03_supply_runtime.gba",
+  "output_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+  "output_size": 33554432,
+  "parent_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+  "parent_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+  "release_candidate": false,
+  "remaining_direct_supply_routes": 0,
+  "route_audit": {
+    "path": "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
+    "sha256": "64b7f72f99bc01d777045536ff5ba82ab049e4e008035fe3760d377355334f10",
+    "size": 680038
+  },
+  "runtime_audit": {
+    "path": "generated/runtime/modernization_p03_stage74_supply_runtime_audit.json",
+    "sha256": "ac2899119bed544079edce56e0e13c26e9c762807e7467f9ef1117b01685eb55",
+    "size": 615290
+  },
+  "schema_version": 1,
+  "stage": 74,
+  "status": "CHECKPOINT_DIRECT_MACHINE_TUTOR_SUPPLY_CONNECTED_FULL_P03_WITHHELD",
+  "symbols": {
+    "path": "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json",
+    "sha256": "49a9e87097acc46270e80f4f3bccb69f670b7c9353d3ac4b7a86d270b1542da3",
+    "size": 4333
+  },
+  "task": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+  "withheld_route_semantics": {
+    "count": 38,
+    "direct_conversion": "FORBIDDEN",
+    "scope": "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_OWNER"
+  }
+}

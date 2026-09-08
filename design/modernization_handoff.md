@@ -9,11 +9,11 @@
 - 現行プレイ基準はStage62のまま。開発中の最大StageをiPad、通常save、Codex対戦へ自動採用しない。
 - P01はDONE。Stage63はEgg 412／Caterpie 649の意味逆転をstable keyで修復し、ROM SHA-256は`6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`。
 - P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSした。Stage71累積ROMの全受入は2回とも通常UIの製品判定前にハーネス側で停止したため、production runtimeを`UNJUDGED`、全受入をpendingに保った。次回は既知正常saveをprocess別に私有コピーし、通常Continueでinput-ready fieldへ到達後だけfixtureを置くハーネスを使う。追加mGBAはStage72後の累積runへ集約する。
-- P03はStage66/67 bulkを継承し、Stage73 consumer runtime checkpointまで進んだ。Stage73はStage72 commit `bbab6b2e943186cf437a6dca90712c01f0319ded`と4 artifact identityへfail closedで固定し、条件付きegg／shared egg／reminder／ロトムform moveを3 hookで接続した。ROM SHA-256は`25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32は`B4907165`。P08のselected candidateへ統合済みである。
+- P03はStage66/67 bulk、Stage73 consumer runtimeを継承し、Stage74 direct supply checkpointまで進んだ。Stage74はmachine 26,279＋tutor 369の26,648経路をfamily分離archiveへ接続し、直接供給残を0にした。ROM SHA-256は`481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`、CRC32は`C9929F79`。このcommit時点のP08 selected candidateはStage73のままで、次の専用統合checkpointでStage74へ再固定する。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
 - P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。Stage73までの継承chainとしてP08へ統合済みである。
 - P05のAbility ROM checkpointはStage72まで進んだ。Ability 312〜317を6 Megaへ結合し、説明／rating／Mold表と29 battle hookを接続した。ROM SHA-256は`f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32は`F981D1CB`、変更7,257 bytes／許可7,436 bytes／許可外0。focused 15件とbuilder byte比較はPASS、mGBAは未実行。Stage73の親としてP08へ統合済みである。
-- P04〜P08は依然として未完了。Stage73は5群consumer境界までのcheckpointで、machine／tutor直接供給26,648経路、Solar charge時popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect 1/4予測、Spicy Spray味方発火AI評価、最終累積mGBAはrelease readyではない。P01以外をDONEと扱わない。
+- P04〜P08は依然として未完了。Stage74でmachine／tutor直接供給26,648経路は接続済みだが、Own Tempo Rockruff 0744.01の38持越し経路の意味整理、Solar charge時popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect 1/4予測、Spicy Spray味方発火AI評価、最終累積mGBAが残る。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
 
@@ -26,6 +26,7 @@
 - P02 overlayから46,455 bytes変更、4,343 spans、宣言外変更0。Stage66からはP02の60 bytesを含む46,515 bytes差分。追加payload後の`future_tail`末尾残量は62,510 bytes。
 - mGBAはStage67で追加した全evolution 341、tutor positive 740＋negative 290、normal egg 2,522を独立2 processで実consumer実行した。scheduler、breeding、4枠満杯、save/reloadは未検証なのでP03完了ではない。
 - Stage73は上記5群40,570経路のconsumer境界をROMへ接続した。新規materializationはalias／incense衝突7種のexact egg 40、shared egg 5,023、reminder 295、ロトム5 form moveの計5,363。既存owner照合はPichu＋Light BallのVolt Tackle 1、pre-evolution 4技保持35,141、generic form保持61、固定form transition 4の計35,207。通常／共有技候補は40枠内で最大28／19、drop 0で、Browt／Pombon／Gecqua、Side Change、意味を潰すconsumer転記はいずれも0。残るmachine 26,279／tutor 369は供給未実装のためP03完了とは数えない。
+- Stage74は残るmachine 26,279／tutor 369を、殿堂入りflag `0x082C`後にBagのわざメモリーから使える無料の暫定archiveへ接続した。machineは40件単位の最大4ページ、tutorは最大12件の1ページで、既知技filter、4枠交換／cancel、空ページ再選択、全終了時mode resetを既存UIと共用する。固定TM／教え技slotやlevel／eggへの転記は0、family同一Move ID 10件も別表のまま、Side ChangeとBrowt／Pombon／Gecquaは0。全118,369選択経路と現行`BuildLearnableMoveset`を照合し、退化後にも合法な4,014 path／2,223 target-moveをUI非公開の削除防止表へ追加した。これは新規供給や経路勘定に含めず、全1,621種で最大238/429、overflow 0。累積runtime materialized 83,162、accounted 118,369、直接供給残0だが、Rockruff 38経路と最終mGBAが残るためP03完了とは数えない。
 
 ## P04の素材・取得経路・容量
 

@@ -4261,3 +4261,27 @@
   - 独立read-only reviewでHighなし。指摘されたallocator content hashとP08 mutation guardを補強した。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-08T23:48:28+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME` / P03 machine・tutor直接供給archive
+- Status: DONE（Stage74供給checkpoint。P03本体、Rockruff意味整理、最終累積mGBAは未完了）
+- Summary:
+  - Stage73に残ったmachine 26,279＋tutor 369の26,648経路を、殿堂入り後のBagわざメモリー内のfamily分離archiveへ接続した。machineは40件単位の最大4ページ、tutorは1ページで、既存の4技交換／cancelを再利用する。固定TM／教え技slot、level／eggへの転記は0。
+  - 2ページ時の取消が「3ページ」と見える初版表示ずれと、全既知時のmachine選択loopを独立監査で検出して修正した。同期menu失敗はwait前sentinel、空filtered pageは明示message後にページ再選択、全archive終了はmode 0へ戻す。
+  - Benjamin Butterfree退化時の合法技消去を防ぐため、全118,369選択経路から現行`BuildLearnableMoveset`＋直接archiveとの差分4,014 path／2,223 target-move／501種を削除防止専用表へ追加した。UI供給とroute accountingへの加算は0。全1,621種で最大238/429、overflow 0。
+  - ROMは33,554,432 bytes、SHA-256 `481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`、CRC32 `C9929F79`。新規runtime materialization累積83,162、accounted 118,369、直接供給残0。Side ChangeとBrowt／Pombon／Gecquaは0を維持した。
+- Files changed:
+  - `config/modernization_p03_stage74_supply.json`
+  - `overlays/modernization_p03_stage74_supply_runtime/**`
+  - `tools/modernization_p03_stage74_supply.py`、`scripts/build_modernization_p03_stage74_supply.sh`
+  - `tests/test_modernization_p03_stage74_supply.py`
+  - `content/modernization/p03_stage74_supply_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p03_stage74_supply`: 12/12 PASS。
+  - `bash scripts/build_modernization_p03_stage74_supply.sh build`／`check`: 各9 artifacts PASS。BPS roundtrip、2 hook／trampoline、family分離、全route hash、allocation sequence #33 hash更新＋#77追加、allowlist外0を照合した。
+  - metadata SHA-256 `2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7`、allocation SHA-256 `d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23`、incremental BPS SHA-256 `8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd`、checkpoint SHA-256 `5e73c008a866d579a7939f64eb02f78d2d55eb7efb31f18c4ce2b221ee977ba2`。
+  - 独立read-only最終レビューはHigh／Mediumなし。重いmGBAは最新累積候補の最終1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage73 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
