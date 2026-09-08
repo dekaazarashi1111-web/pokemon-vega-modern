@@ -1,0 +1,36 @@
+name: p01-reference-validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  references:
+    if: >-
+      github.event.pull_request.number == 14 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/user-modernization-p01-20260908' &&
+      github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: タマゴ技参照と別候補の変更範囲を検証
+        run: |
+          python3 -m unittest -v tests.test_p01_references tests.test_p01_rom_build
+          python3 scripts/guard_private_files.py
+      - name: 固定資材の復元と旧report保全
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          mkdir -p .local/github-private-environment/assets
+          gh release download "$tag" --pattern 'pokemon-vega-private-env-v1-*.zip' --dir .local/github-private-environment/assets
+          python3 scripts/restore_p01_environment.py --archive-dir .local/github-private-environment/assets
+      - name: 実generatorのMove・Ability・Item・Typeとタマゴ技のkey/IDを照合
+        run: |
+          python3 scripts/audit_p01_references.py
+          git diff --exit-code

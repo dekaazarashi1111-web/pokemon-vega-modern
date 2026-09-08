@@ -25,8 +25,18 @@ jobs:
             tests.test_github_large_file_bridge \
             tests.test_github_result_summary \
             tests.test_run_github_battle_command \
-            tests.test_modernization_ids
-      - name: P01 現行用IDカタログの生成と決定的再照合（ROM検証ではない）
+            tests.test_modernization_ids \
+            tests.test_modernization_targets \
+            tests.test_p01_collection_consumer \
+            tests.test_p01_restore \
+            tests.test_p01_rom_audit \
+            tests.test_p01_rom_build
+      - name: P01現行用generatorと実consumerの決定的再照合
         run: |
           python3 scripts/build_modernization_catalog.py build
           python3 scripts/build_modernization_catalog.py check
+          python3 scripts/build_modernization_targets.py build
+          python3 scripts/build_modernization_targets.py check
+          python3 scripts/build_p01_collection_table.py build
+          python3 scripts/build_p01_collection_table.py check
+          git diff --exit-code
