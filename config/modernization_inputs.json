@@ -13,7 +13,7 @@
       "verification": "CHAT_LIBRARY_ORIGINAL_BYTES_SHA256_MATCH_USER_RECEIPT",
       "role": "REFERENCE_LEARNSET_SPEC_NOT_CUMULATIVE_ROM",
       "adoption": "IDENTITY_METADATA_ONLY_CATERPIE_TARGET_CORRECTION; FULL_LEARNSETS_DEFERRED_P03",
-      "runner_original_restore": "BLOCKED_NO_VERIFIED_NONPUBLIC_TRANSFER",
+      "runner_original_restore": "NOT_TRANSFERRED_NOT_REQUIRED_FOR_P01_NORMALIZED_IDENTITY_GATE",
       "runner_normalized_restore": "EXACT_HEAD_GIT_CHECKOUT:content/modernization/identity_contract.json"
     },
     {
@@ -26,7 +26,7 @@
       "verification": "CHAT_LIBRARY_ORIGINAL_BYTES; COPY_2_AND_COPY_3_IDENTICAL",
       "role": "UNAPPROVED_RESTORATION_AND_EVOLUTION_PROPOSALS",
       "adoption": "IDENTITY_PROJECTION_ONLY; NO_STATS_ABILITIES_TYPES_OR_EVOLUTIONS_ADOPTED",
-      "runner_original_restore": "BLOCKED_NO_VERIFIED_NONPUBLIC_TRANSFER",
+      "runner_original_restore": "NOT_TRANSFERRED_NOT_REQUIRED_FOR_P01_NORMALIZED_IDENTITY_GATE",
       "runner_normalized_restore": "EXACT_HEAD_GIT_CHECKOUT:content/modernization/identity_contract.json"
     }
   ],
@@ -36,13 +36,28 @@
     "sha256": "00fa015276eef8506c57caa660ec3093ce137bd0506cb7db5af062cea6b1b265",
     "runner_measurement_run": 34147922725,
     "runner_measurement_head": "62b0c76e4b402de8d3253566a3f606f99b0cfd21",
-    "verification_scope": "NORMALIZED_FILE_BYTES_ONLY_NOT_ALL_CONSUMER_ADOPTION_OR_ORIGINAL_ZIP_RESTORE"
+    "verification_scope": "ORIGINAL_MEASUREMENT_RETAINED; CURRENT_CONSUMER_KEY_ID_AND_TARGET_SETS_VERIFIED_IN_P01",
+    "consumer_verification_run": 34173113076,
+    "consumer_verification_head": "a3c8423f443eac29de1afec7840d94260da1c34c"
   },
   "safe_reacquisition": {
-    "originals": "ユーザーの非公開Libraryで内容のsize/SHA-256により識別する。複製番号や一時コンテナpathをidentityにしない。",
-    "runner": "公開Gitにはレビュー済みのID・対象集合・hash投影のみを置く。Actionsはexact HEADから復元する。元ZIPをActionsが自動取得できるとは扱わない。",
+    "originals": "ユーザーのLibraryでsize/SHA-256により識別する。元ZIPは不変。複製番号や一時コンテナpathをidentityにしない。",
+    "runner": "公開Gitにはレビュー済みのID・対象集合・hash投影のみを置き、exact HEADから復元する。原作習得の元ZIPをrunnerが受領したとは扱わない。P03で元データを採用する前に受渡しを検証する。",
     "repository_visibility_observed": "public",
     "private_release_label_is_not_confidentiality": true,
     "original_zip_rom_save_upload_permitted": false
+  },
+  "rom_build_inputs": {
+    "source": "EXISTING_RELEASE_ASSETS_TO_EPHEMERAL_RUNNER_NO_NEW_UPLOAD",
+    "visibility_observed": "public",
+    "archive_pins": "config/github_private_environment.json",
+    "restore": "python3 scripts/restore_p01_environment.py --archive-dir .local/github-private-environment/assets",
+    "outer_and_all_member_hashes_verified": true,
+    "force_restore_permitted": false,
+    "verification_run": 34174073406,
+    "clean_rom": {"size": 16777216, "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"},
+    "parent_clean_patch": {"path": "build/patches/firered-jpn-rev0-to-stage62-npc-placement-integrity-repair.bps", "size": 16726226, "sha256": "e137392cc69c4d492dcc1767c8bcb66a0f8e5a2c10e400f8b72de7330c972dc4"},
+    "candidate_regeneration": "python3 scripts/build_p01_rom.py build; python3 scripts/build_p01_rom.py check; python3 scripts/run_p01_identity_mgba.py",
+    "new_rom_save_or_patch_publication": false
   }
 }

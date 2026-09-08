@@ -1,18 +1,14 @@
 name: p01-record-verified-checkpoint
-
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-
+    types: [opened, synchronize, reopened, edited]
 permissions:
   contents: write
-  issues: write
+  actions: read
   pull-requests: read
-
 concurrency:
   group: p01-checkpoint-record-14
   cancel-in-progress: false
-
 jobs:
   record:
     if: >-
@@ -33,107 +29,144 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 既存focused testsと既存source gateを実行
+      - name: P01 focused回帰・既存guard・候補記録の整合性
         run: |
           python3 scripts/guard_private_files.py
           python3 scripts/validate_task_graph.py
           python3 - <<'PY'
           import hashlib, json, os, unittest
           from pathlib import Path
-          suite = unittest.defaultTestLoader.loadTestsFromName('tests.test_modernization_ids')
-          result = unittest.TextTestRunner(verbosity=2).run(suite)
-          evidence = {'tests':result.testsRun, 'failures':len(result.failures), 'errors':len(result.errors), 'skipped':len(result.skipped)}
-          Path(os.environ['RUNNER_TEMP'], 'p01-focused.json').write_text(json.dumps(evidence))
+          modules = ['tests.test_modernization_ids','tests.test_modernization_targets','tests.test_p01_collection_consumer','tests.test_p01_restore','tests.test_p01_rom_audit','tests.test_p01_rom_build','tests.test_p01_references','tests.test_p01_baseline_reuse']
+          result = unittest.TextTestRunner(verbosity=1).run(unittest.defaultTestLoader.loadTestsFromNames(modules))
+          evidence = {'tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'skipped':len(result.skipped)}
+          Path(os.environ['RUNNER_TEMP'],'p01-focused.json').write_text(json.dumps(evidence))
           if not result.wasSuccessful() or result.skipped:
               raise SystemExit(1)
           inputs = json.loads(Path('config/modernization_inputs.json').read_text())
           pin = inputs['normalized_projection']
           raw = Path(pin['path']).read_bytes()
           if len(raw) != pin['size'] or hashlib.sha256(raw).hexdigest() != pin['sha256']:
-              raise SystemExit('正規化投影の固定size/hashが不一致')
+              raise SystemExit('正規化入力のsize/hash不一致')
           candidate = json.loads(Path('config/modernization_candidate.json').read_text())
           baseline = json.loads(Path('config/active_play_baseline.json').read_text())
-          if candidate['status'] != 'BLOCKED' or candidate['rom_generated'] or candidate['save_or_collection_bit_change'] or candidate['play_baseline_switch']:
-              raise SystemExit('P01 checkpointの未完了・保全契約が不一致')
-          if candidate['parent']['stage'] != baseline['stage'] or candidate['parent']['rom_path'] != baseline['rom']['path']:
-              raise SystemExit('明示採用baselineと親候補が不一致')
+          if candidate['status'] != 'VALIDATED_DEVELOPMENT_CANDIDATE' or not candidate['rom_generated'] or candidate['save_or_collection_bit_change'] or candidate['play_baseline_switch']:
+              raise SystemExit('開発候補と保全契約の不一致')
           if any(candidate['parent'][key] != baseline['rom'][key] for key in ('size','sha256','crc32')):
-              raise SystemExit('親ROMの既存記録identityが不一致')
-          print('正規化投影hash・親候補の記録一致: PASS（ROM実測ではない）')
+              raise SystemExit('明示プレイ基準と累積親の不一致')
+          if candidate['rom'] != {'path':'build/modernization/P01_identity_collection_repair.gba','size':33554432,'sha256':'6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd','crc32':'FB09EF2D'}:
+              raise SystemExit('実測済み候補identityの不一致')
+          print(json.dumps(evidence, sort_keys=True))
           PY
           python3 scripts/build_modernization_catalog.py build
           python3 scripts/build_modernization_catalog.py check
-      - name: 実行結果だけをappendし、P01をBLOCKEDとして記録
+          python3 scripts/build_modernization_targets.py build
+          python3 scripts/build_modernization_targets.py check
+          python3 scripts/build_p01_collection_table.py build
+          python3 scripts/build_p01_collection_table.py check
+      - name: ownerのexact HEAD受入要求と全必須gateの成功を確認して追記
         env:
+          GH_TOKEN: ${{ github.token }}
           RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           python3 - <<'PY'
-          import hashlib, json, os
+          import datetime, json, os, re, subprocess
           from pathlib import Path
-          marker = '<!-- USER-MODERNIZATION-P01-20260908-SOURCE-CHECKPOINT -->'
-          result = json.loads(Path(os.environ['RUNNER_TEMP'], 'p01-focused.json').read_text())
-          raw = Path('content/modernization/identity_contract.json').read_bytes()
-          result['identity_contract_size'] = len(raw)
-          result['identity_contract_sha256'] = hashlib.sha256(raw).hexdigest()
-          text = '\n\n' + marker + '\n## 2026-09-08 USER-MODERNIZATION-P01 検証済みsource checkpoint\n\n'
-          text += '- 結果: BLOCKED。P01受入未完了。P02/P03未開始。ROM/save/プレイ基準は未変更。\n'
-          text += '- 検証source HEAD: `' + os.environ['EXPECTED_HEAD'] + '`\n'
-          text += '- Actions: ' + os.environ['RUN_URL'] + '\n'
-          text += '- 既存focused testsと既存カタログのbuild/check・guard・task整合性が成功。新投影の全consumer接続とROM検証の成功を意味しない。\n'
-          text += '- 限定結果: `' + json.dumps(result, sort_keys=True) + '`\n'
-          text += '- 採用入力・変更理由・親候補・残件・再開点: design/modernization_p01_checkpoint.md、config/modernization_inputs.json、config/modernization_candidate.json。\n'
-          for name in ('design/run_log.md', 'design/version_log.md', 'design/modernization_handoff.md'):
+          from scripts.taskctl import parse_task_queue_text
+          event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
+          commands = re.findall(r'<!-- P01-(ACCEPT|CHECKPOINT): ([0-9a-f]{40}) -->', event['pull_request'].get('body') or '')
+          if not commands:
+              print('記録要求なし。検証のみ。')
+              raise SystemExit(0)
+          if len(commands) != 1:
+              raise SystemExit('記録要求の重複')
+          command, head = commands[0]
+          if head != os.environ['EXPECTED_HEAD']:
+              print('別HEADの過去記録要求。新しい状態変更は行わない。')
+              raise SystemExit(0)
+          marker = '<!-- P01-' + command + '-RECORDED:' + head + ' -->'
+          if marker in Path('design/run_log.md').read_text():
+              print('同じHEADは記録済み。')
+              raise SystemExit(0)
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          runs = json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/actions/runs?head_sha={head}&per_page=100']))['workflow_runs']
+          required = {'source-validation','p01-target-validation','p01-runtime-validation','p01-reference-validation','p01-candidate-validation'}
+          gates = {}
+          for name in sorted(required):
+              matching = [r for r in runs if r['name'] == name and r['head_sha'] == head]
+              if matching:
+                  row = max(matching, key=lambda r:r['id'])
+                  gates[name] = {key:row[key] for key in ('id','status','conclusion','html_url')}
+          if command == 'ACCEPT' and (set(gates) != required or any(r['status'] != 'completed' or r['conclusion'] != 'success' for r in gates.values())):
+              raise SystemExit('当HEADの全必須gateが成功するまでDONE記録は禁止')
+          focused = json.loads(Path(os.environ['RUNNER_TEMP'],'p01-focused.json').read_text())
+          candidate = json.loads(Path('config/modernization_candidate.json').read_text())
+          status = 'DONE' if command == 'ACCEPT' else 'STOPPED'
+          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          changed = subprocess.check_output(['git','diff','--name-only', '--no-renames', 'HEAD'], text=True).strip()
+          if changed:
+              raise SystemExit('記録開始前にtracked変更が存在')
+          text = '\n\n' + marker + '\n## ' + now + '\n'
+          text += '- Task: USER-MODERNIZATION-P01 / ID・対象区分・共通処理の根本修正\n'
+          text += '- Status: ' + status + '\n- Version: P01_COLLECTION_IDENTITY_REPAIR\n'
+          text += '- Summary: 現行対象consumer・全key/ID集合・収集表2行10byteを根本修正。内部タマゴ除外、bit番号、valid save240byte、ROM/RAM/save配置、プレイ基準を保持。P02/P03未開始。\n'
+          text += '- 検証HEAD: `' + head + '`\n- 候補ROM: `' + json.dumps(candidate['rom'],sort_keys=True) + '`\n'
+          text += '- Verify（実行済みfocused）: `' + json.dumps(focused,sort_keys=True) + '`\n'
+          text += '- Verify（同一HEAD必須gate）: `' + json.dumps(gates,sort_keys=True) + '`\n'
+          text += '- 候補はclean起点2回再生成・順逆/clean BPS往復・実ARM consumer各2processで検証。通常プレイ全経路E2Eや元Stage60 strict監査の完了を意味しない。\n'
+          text += '- Files changed: P01 generators、validators、C/mGBA fixtures、focused tests、専用Actions、config/modernization*、design/modernization_p01_audit.md、tasks/USER_MODERNIZATION_P01.md、および本記録4file。全差分はPR #14のFiles changedを正とする。\n'
+          text += '- 採用入力・再取得経路・理由・容量・候補生成元・残件・次工程入口: config/modernization_inputs.json、config/modernization_candidate.json、design/modernization_p01_audit.md。\n'
+          text += '- Commit: 本エントリを含む記録commit（push後remote refで照合）。通常mergeの最終結果はPR #14。\n'
+          text += '- Network: GitHub source/API/Actionsおよび既存hash固定Releaseのrunner取得。新規ROM/save/原本ZIP/credentialのGit追加・公開なし。\n'
+          text += '- 記録Actions: ' + os.environ['RUN_URL'] + '\n'
+          for name in ('design/run_log.md','design/version_log.md','design/modernization_handoff.md'):
               path = Path(name)
               if path.is_symlink() or not path.is_file():
-                  raise SystemExit('記録先は既存の通常fileである必要があります')
-              if marker not in path.read_text(encoding='utf-8'):
-                  with path.open('a', encoding='utf-8') as f:
-                      f.write(text)
-          queue = Path('design/tasks_next.md')
-          identity = '<!-- id:USER-MODERNIZATION-P01 -->'
-          if identity not in queue.read_text(encoding='utf-8'):
-              with queue.open('a', encoding='utf-8') as f:
-                  f.write('\n- [!] USER-MODERNIZATION-P01 ID意味・対象区分監査: source checkpoint。consumer接続・非公開runner復元・現行ROM gateは未完了。 ' + identity + '\n')
-          print(json.dumps(result, sort_keys=True))
+                  raise SystemExit('記録先が通常fileではない')
+              with path.open('a',encoding='utf-8') as f:
+                  f.write(text)
+          if command == 'ACCEPT':
+              queue = Path('design/tasks_next.md')
+              original = queue.read_bytes().decode('utf-8')
+              entries = [r for r in parse_task_queue_text(original) if r.task_id == 'USER-MODERNIZATION-P01']
+              if len(entries) != 1 or entries[0].marker not in ('!','>','x'):
+                  raise SystemExit('当工程taskの状態が不正')
+              pos = entries[0].marker_offset
+              updated = original[:pos] + 'x' + original[pos+1:]
+              if sum(a != b for a,b in zip(original,updated)) > 1:
+                  raise SystemExit('当工程状態以外の差分')
+              queue.write_bytes(updated.encode('utf-8'))
+          print('当工程の記録を追記: ' + status)
           PY
           python3 scripts/validate_task_graph.py
-          python3 scripts/guard_private_files.py
-      - name: HEAD再照合後に記録fileだけを通常commit・push
+      - name: 最終indexのguard・HEAD再照合後、許可した記録fileだけを通常push
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           actual=$(gh api "repos/$GITHUB_REPOSITORY/pulls/14" --jq .head.sha)
           test "$actual" = "$EXPECTED_HEAD"
-          ref_head=$(git ls-remote --exit-code origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
-          test "$ref_head" = "$EXPECTED_HEAD"
+          test "$(git ls-remote --exit-code origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')" = "$EXPECTED_HEAD"
           git add -- design/run_log.md design/version_log.md design/modernization_handoff.md design/tasks_next.md
           python3 - <<'PY'
           import subprocess
           allowed = {'design/run_log.md','design/version_log.md','design/modernization_handoff.md','design/tasks_next.md'}
           staged = set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().rstrip('\0').split('\0')) - {''}
           if not staged <= allowed:
-              raise SystemExit('記録file以外の変更はpush禁止')
+              raise SystemExit('記録file以外はpush禁止')
           PY
-          if git diff --cached --quiet; then
-            echo '既に記録済み。再commitしません。'
-          else
+          python3 scripts/guard_private_files.py
+          if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m 'WIP USER-MODERNIZATION-P01: Actions検証済みcheckpointと未完了を追記'
+            git commit -m 'USER-MODERNIZATION-P01: 検証結果・候補・工程状態を日本語で記録'
             git push origin "HEAD:refs/heads/$TARGET_BRANCH"
           fi
           local_head=$(git rev-parse HEAD)
-          # PR metadataはpush直後に旧SHAを返すことがある。正本のremote refを厳密照合する。
           matched=0
           for attempt in 1 2 3 4 5; do
             remote_head=$(git ls-remote --exit-code origin "refs/heads/$TARGET_BRANCH" | awk '{print $1}')
-            if test "$local_head" = "$remote_head"; then
-              matched=1
-              break
-            fi
+            if test "$local_head" = "$remote_head"; then matched=1; break; fi
             sleep 2
           done
           test "$matched" -eq 1
           printf '確認済みremote HEAD: %s\n' "$local_head"
-          printf 'source-only検証HEAD: %s\nremote確認HEAD: %s\nROM検証: 未実施\n' "$EXPECTED_HEAD" "$local_head" >> "$GITHUB_STEP_SUMMARY"

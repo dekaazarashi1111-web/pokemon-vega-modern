@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
   "task": "USER-MODERNIZATION-P01",
-  "candidate_key": "P01_IDENTITY_SOURCE_CHECKPOINT",
-  "status": "BLOCKED",
-  "candidate_kind": "SOURCE_AND_NORMALIZED_METADATA_ONLY",
+  "task_status_source": "design/tasks_next.md",
+  "candidate_key": "P01_COLLECTION_IDENTITY_REPAIR",
+  "status": "VALIDATED_DEVELOPMENT_CANDIDATE",
+  "candidate_kind": "CLEAN_REGENERATED_ROM_AND_NORMALIZED_METADATA",
   "parent_selection": "INITIAL_MODERNIZATION_USES_EXPLICIT_ACTIVE_PLAY_BASELINE",
   "parent": {
     "stage": 62,
@@ -12,19 +13,29 @@
     "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
     "crc32": "73E4FB73",
     "identity_source": "config/active_play_baseline.json",
-    "verification_scope": "INHERITED_RECORDED_IDENTITY_NOT_REMEASURED_ROM_IN_THIS_TASK"
+    "verification_scope": "REMEASURED_ROM_AND_BASELINE_CHECK_MGBA_PASS",
+    "verification_run": 34172673504
+  },
+  "rom": {
+    "path": "build/modernization/P01_identity_collection_repair.gba",
+    "size": 33554432,
+    "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+    "crc32": "FB09EF2D"
   },
   "source_lineage": {
     "default_branch": "main",
     "default_head_at_start": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
     "resumed_head": "98081d0ac4bbac38dd99407a2e10ed665165f45f",
+    "resumed_again_head": "b55af346c8eb0a9c402accb7e3790cba23c8039b",
     "branch": "chatgpt/user-modernization-p01-20260908",
     "pull_request": 14,
-    "preserve_previous_p01_commits": true
+    "preserve_previous_p01_commits": true,
+    "first_verified_rom_generation_head": "efc2662dc6d1cc59732da13411b5569ea8525577"
   },
   "adopted_delta": [
-    "Canonical keyとIDの意味照合・旧取得表のCaterpie/Egg訂正を現行用生成へ限定する",
-    "Caterpie649だけを原作習得の採用対象へ戻す方針。内部Egg412と他の除外を維持する"
+    "species_keyと現行IDの意味照合を対象JSON/CSV/Wiki索引および収集C表consumerへ接続",
+    "Caterpie649だけを原作習得対象へ追加。内部Egg412・他の除外フォームを維持",
+    "累積親Stage62の収集表412/649の非ID属性のみを10byte訂正。bit番号とsave ABIは不変"
   ],
   "verified_source_checkpoint": {
     "head": "62b0c76e4b402de8d3253566a3f606f99b0cfd21",
@@ -39,15 +50,36 @@
     "record_commit_confirmed_remote": "88fb5031a6849d38410bb845c29fb9ae1169fe1e",
     "details": "design/modernization_p01_execution_evidence.json"
   },
-  "rom_delta": null,
-  "rom_generated": false,
+  "verified_candidate": {
+    "run": 34174073406,
+    "head": "efc2662dc6d1cc59732da13411b5569ea8525577",
+    "status": "PASS",
+    "clean_rebuilds": 2,
+    "incremental_reverse_clean_patch_roundtrips": true,
+    "parent_mgba_processes": 2,
+    "candidate_mgba_processes": 2,
+    "cases_per_process": 3,
+    "runtime_scope": "REAL_ARM_COLLECTION_SAVE_CONSUMER_NOT_NORMAL_PLAY_ALL_PATHS_E2E",
+    "valid_save_block_bytes_preserved": 240
+  },
+  "generator": {
+    "policy": "config/modernization_rom_repair.json",
+    "table": "scripts/build_p01_collection_table.py",
+    "rom": "scripts/build_p01_rom.py",
+    "runner_restore": "scripts/restore_p01_environment.py",
+    "input_assets": "config/github_private_environment.json"
+  },
+  "rom_delta": {
+    "changed_bytes": 10,
+    "declared_spans": [{"offset": 19763728, "size": 8, "species_id": 412}, {"offset": 19765624, "size": 8, "species_id": 649}],
+    "undeclared_changes": 0,
+    "new_allocation": false
+  },
+  "rom_generated": true,
   "save_or_collection_bit_change": false,
   "play_baseline_switch": false,
   "stage61_learnset_archive_is_parent_rom": false,
-  "unverified_gates": [
-    "正規化投影の全consumer接続と現行用Wiki生成",
-    "非公開ROM入力の安全なrunner復元経路",
-    "同じStage62 byte上のID consumer実測・実容量・必要なmGBA回帰"
-  ],
-  "next_phase": {"P02": "NOT_STARTED", "P03": "NOT_STARTED"}
+  "unverified_gates": ["最終HEADの完了記録・CI・通常PR mergeはPRとtask正本で確認する"],
+  "out_of_scope_unverified": ["通常プレイ全経路E2E", "実機saveの現在状態", "Stage60全owner全会話strict監査", "未承認の進化・全習得・能力変更"],
+  "next_phase": {"P02": "NOT_STARTED", "P03": "NOT_STARTED", "cumulative_parent": "P01_COLLECTION_IDENTITY_REPAIR", "requires_explicit_user_instruction": true}
 }

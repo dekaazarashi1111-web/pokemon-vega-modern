@@ -4,8 +4,9 @@ on:
     types: [opened, synchronize, reopened]
 permissions:
   contents: read
+  actions: read
 concurrency:
-  group: p01-runtime-14
+  group: p01-runtime-${{ github.event.pull_request.head.sha }}
   cancel-in-progress: false
 jobs:
   baseline-and-restore:
@@ -21,11 +22,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
-      - name: 復元保全・ROM参照parserのfocused回帰と既存guard
+      - name: 保全・ROM参照・証跡再利用のfocused回帰と既存guard
         run: |
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
-          python3 -m unittest -v tests.test_p01_restore tests.test_p01_rom_audit tests.test_github_private_environment
+          python3 -m unittest -v tests.test_p01_restore tests.test_p01_rom_audit tests.test_p01_baseline_reuse tests.test_github_private_environment
       - name: 固定toolchainを導入
         run: bash infra/setup_github_actions.sh --install
       - name: 既存固定資材をephemeral runnerへ取得（新規公開なし）
@@ -40,12 +41,13 @@ jobs:
         run: |
           python3 scripts/restore_p01_environment.py --archive-dir .local/github-private-environment/assets
           git diff --exit-code
-      - name: P01 現行ROMの参照・容量をread-only実測
+      - name: P01現行ROMの参照・容量をread-only実測
         run: python3 scripts/audit_p01_rom.py
-      - name: Stage62 baselineを同一HEADでcheck（新ROM候補の検証とは別）
-        id: baseline_check
+      - name: Stage62 baselineを同一HEADでcheck
         run: python3 scripts/run_p01_baseline_gate.py stage62-check
-      - name: Stage62 baselineの独立2 process mGBA
-        run: python3 scripts/run_p01_baseline_gate.py stage62-mgba
+      - name: 同一source・ROMのmGBA成功証跡を再照合し、差異・証跡不足なら実行
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/reuse_p01_baseline.py
       - name: Git管理sourceの不変を確認
         run: git diff --exit-code

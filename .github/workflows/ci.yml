@@ -1,12 +1,9 @@
 name: source-validation
-
 on:
   push:
   pull_request:
-
 permissions:
   contents: read
-
 jobs:
   validate:
     runs-on: ubuntu-24.04
@@ -15,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Git管理内の整合性を検証
+      - name: Git管理内の整合性とP01のfocused回帰
         run: |
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
@@ -30,7 +27,9 @@ jobs:
             tests.test_p01_collection_consumer \
             tests.test_p01_restore \
             tests.test_p01_rom_audit \
-            tests.test_p01_rom_build
+            tests.test_p01_rom_build \
+            tests.test_p01_references \
+            tests.test_p01_baseline_reuse
       - name: P01現行用generatorと実consumerの決定的再照合
         run: |
           python3 scripts/build_modernization_catalog.py build
