@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P04",
+  "research_cutoff_date": "2026-09-08",
+  "retrieved_at": "2026-09-08T00:44:00Z",
+  "policy": {
+    "authority": "OFFICIAL_PRIMARY_ONLY",
+    "exclude_rumors_leaks_and_inference": true,
+    "unknown_gameplay_values": "TEMPORARY_REPLACEABLE",
+    "post_cutoff_material": "EXCLUDED",
+    "notes_ja": "公式サイト、公式作品、公式Pokédexにより確認できる同一性だけを採用候補とする。名称が付いただけの特殊な外観は恒常フォームと推定しない。"
+  },
+  "sources": [
+    {
+      "source_key": "OFFICIAL_ZA_RELEASE",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_PRODUCT_NEWS",
+      "title": "Your Pokémon Legends: Z-A Adventure Begins Now",
+      "publication_date": "2025-10-16",
+      "work": "Pokemon Legends: Z-A",
+      "version": "BASE_GAME",
+      "url": "https://www.pokemon.com/uk/pokemon-news/your-pokemon-legends-z-a-adventure-begins-now",
+      "claims": ["base_game_release", "base_game_mega_evolution_context"]
+    },
+    {
+      "source_key": "OFFICIAL_ZA_POKEDEX_UPDATE",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_POKEDEX_UPDATE",
+      "title": "New Mega Evolutions Added to the Pokemon.com Pokédex",
+      "publication_date": "2026-01-13",
+      "work": "Pokemon Legends: Z-A",
+      "version": "BASE_GAME_AND_MEGA_DIMENSION",
+      "url": "https://www.pokemon.com/us/pokemon-news/new-mega-evolutions-added-to-the-pokemon-com-pokedex",
+      "claims": ["over_40_new_mega_forms", "official_pokedex_entries_available"]
+    },
+    {
+      "source_key": "OFFICIAL_ZA_SEASON8",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_GAME_NEWS",
+      "title": "Earn Mega Shards in a Special Season of Pokemon Legends: Z-A Ranked Battles (Season 8)",
+      "publication_date": "2026-03-05",
+      "work": "Pokemon Legends: Z-A",
+      "version": "SEASON_8",
+      "url": "https://www.pokemon.com/us/news/earn-mega-shards-in-a-special-season-of-pokemon-legends-z-a-ranked-battles-season-8",
+      "claims": ["complete_new_mega_eligibility_roster", "new_mega_stones_exist"]
+    },
+    {
+      "source_key": "OFFICIAL_ZA_DLC_RELEASE",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_PRODUCT_NEWS",
+      "title": "Mega Dimension DLC Launch",
+      "publication_date": "2025-12-10",
+      "work": "Pokemon Legends: Z-A",
+      "version": "MEGA_DIMENSION",
+      "url": "https://legends.pokemon.com/en-us/news/mega-dimension-launch",
+      "claims": ["mega_dimension_release", "dlc_mega_evolution_context"]
+    },
+    {
+      "source_key": "OFFICIAL_ZA_DLC_PAGE",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_PRODUCT_PAGE",
+      "title": "Pokemon Legends: Z-A Mega Dimension DLC",
+      "publication_date": "2025-09-12",
+      "work": "Pokemon Legends: Z-A",
+      "version": "MEGA_DIMENSION",
+      "url": "https://legends.pokemon.com/en-us/dlc",
+      "claims": ["mega_raichu_x", "mega_raichu_y", "dlc_megas"]
+    },
+    {
+      "source_key": "OFFICIAL_ZA_STARTER_STONES",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_GAME_NEWS",
+      "title": "Earn Mega Stones for Chesnaught, Delphox, and Greninja",
+      "publication_date": "2025-09-12",
+      "work": "Pokemon Legends: Z-A",
+      "version": "BASE_GAME",
+      "url": "https://legends.pokemon.com/en-us/news/mega-stones",
+      "claims": ["chesnaughtite", "delphoxite", "greninjite"]
+    },
+    {
+      "source_key": "OFFICIAL_MEGA_LUCARIO_Z",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_GAME_NEWS",
+      "title": "Mega Lucario Z",
+      "publication_date": "2025-12-02",
+      "work": "Pokemon Legends: Z-A",
+      "version": "MEGA_DIMENSION",
+      "url": "https://legends.pokemon.com/en-us/news/mega_lucario_z",
+      "claims": ["mega_lucario_z"]
+    },
+    {
+      "source_key": "OFFICIAL_MEGA_ZERAORA",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_GAME_NEWS",
+      "title": "Mega Zeraora",
+      "publication_date": "2025-11-19",
+      "work": "Pokemon Legends: Z-A",
+      "version": "MEGA_DIMENSION",
+      "url": "https://legends.pokemon.com/en-us/news/mega_zeraora",
+      "claims": ["mega_zeraora"]
+    },
+    {
+      "source_key": "OFFICIAL_MEGA_GARCHOMP_Z",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_CHAMPIONS_NEWS",
+      "title": "Mega Garchomp Z Comes to Pokemon Legends: Z-A Mega Dimension",
+      "publication_date": "2026-02-27",
+      "work": "Pokemon Legends: Z-A / Pokemon Champions",
+      "version": "MEGA_DIMENSION_AND_CHAMPIONS",
+      "url": "https://www.pokemon.com/us/news/mega-garchomp-z-comes-to-pokemon-legends-z-a-mega-dimension",
+      "claims": ["mega_garchomp_z"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_LAUNCH",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_GAME_NEWS",
+      "title": "Pokemon Champions Releases on Nintendo Switch and Nintendo Switch 2 on April 8, 2026",
+      "publication_date": "2026-03-24",
+      "work": "Pokemon Champions",
+      "version": "LAUNCH",
+      "url": "https://www.pokemon.com/uk/news/pokemon-champions-releases-on-nintendo-switch-and-nintendo-switch-2-on-april-8-2026",
+      "claims": ["turn_based_reference", "mega_emboar_mold_breaker", "mega_feraligatr_dragonize"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_MOBILE",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_GAME_NEWS",
+      "title": "Pokemon Champions Comes to Android and iOS on June 17",
+      "publication_date": "2026-06-03",
+      "work": "Pokemon Champions",
+      "version": "MOBILE_LAUNCH",
+      "url": "https://www.pokemon.com/us/pokemon-news/pokemon-champions-comes-to-android-and-ios-on-june-17",
+      "claims": ["mega_raichu_x_electric_surge", "mega_raichu_y_no_guard"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_MB",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_STRATEGY",
+      "title": "Pokemon Champions Regulation M-B Double Battles Overview",
+      "publication_date": "2026-07-24",
+      "work": "Pokemon Champions",
+      "version": "REGULATION_M_B",
+      "url": "https://www.pokemon.com/us/features/pokemon-champions-regulation-m-b-double-battles-overview",
+      "claims": ["official_turn_based_mega_abilities_and_types"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_MEGA_MEGANIUM",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_STRATEGY",
+      "title": "Pokemon Champions: How to Build a Mega Meganium Team",
+      "publication_date": "2026-05-13",
+      "work": "Pokemon Champions",
+      "version": "LAUNCH",
+      "url": "https://www.pokemon.com/us/strategy/pokemon-champions-how-to-build-a-mega-meganium-team",
+      "claims": ["mega_meganium_mega_sol"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_MEGA_MALAMAR",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_STRATEGY",
+      "title": "Pokemon Champions: How to Build a Mega Malamar Team",
+      "publication_date": "2026-07-13",
+      "work": "Pokemon Champions",
+      "version": "REGULATION_M_B",
+      "url": "https://www.pokemon.com/us/features/pokemon-champions-how-to-build-a-mega-malamar-team",
+      "claims": ["mega_malamar_contrary"]
+    },
+    {
+      "source_key": "OFFICIAL_CHIMECHO_POKEDEX",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_POKEDEX",
+      "title": "Chimecho Pokédex",
+      "publication_date": "2026-01-13",
+      "work": "Pokemon Legends: Z-A / Pokemon Champions",
+      "version": "CURRENT_AT_CUTOFF",
+      "url": "https://www.pokemon.com/us/pokedex/chimecho",
+      "claims": ["mega_chimecho_type", "mega_chimecho_levitate"]
+    },
+    {
+      "source_key": "OFFICIAL_CHAMPIONS_MC",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_TURN_BASED_REGULATION",
+      "title": "Get Ready for Regulation Set M-C in Pokemon Champions",
+      "publication_date": "2026-09-02",
+      "work": "Pokemon Champions",
+      "version": "REGULATION_M_C_ANNOUNCEMENT",
+      "url": "https://www.pokemon.com/us/news/get-ready-for-regulation-set-m-c-in-pokemon-champions",
+      "claims": ["mega_golisopod", "mega_baxcalibur", "mega_absol_z", "mega_garchomp_z", "mega_lucario_z"],
+      "cutoff_note_ja": "発表は締切内。Regulation M-C開始は2026-09-08 19:00 PDT（日本時間では締切翌日）のため、発表された同一性だけを採用し未公開能力値を確定しない。"
+    },
+    {
+      "source_key": "OFFICIAL_WINDS_WAVES_ANNOUNCEMENT",
+      "authority": "THE_POKEMON_COMPANY_INTERNATIONAL",
+      "kind": "OFFICIAL_PRODUCT_PAGE",
+      "title": "Pokemon Winds and Pokemon Waves Announcement",
+      "publication_date": "2026-02-27",
+      "work": "Pokemon Winds / Pokemon Waves",
+      "version": "ANNOUNCEMENT",
+      "url": "https://windswaves.pokemon.com/en-us/?pubDate=20260307",
+      "claims": ["browt", "pombon", "gecqua", "special_pikachu_appearance_only"]
+    },
+    {
+      "source_key": "TECHNICAL_PLACEHOLDER_POKEEMERALD_EXPANSION",
+      "authority": "RH_HIDEOUT_COMMUNITY_REPOSITORY",
+      "kind": "TECHNICAL_REFERENCE_NOT_OFFICIAL",
+      "title": "pokeemerald-expansion technical source",
+      "publication_date": "2026-09-06",
+      "work": "pokeemerald-expansion",
+      "version": "cafe0221cefb2a991cc0ece429174ade877d037d",
+      "url": "https://github.com/rh-hideout/pokeemerald-expansion/commit/cafe0221cefb2a991cc0ece429174ade877d037d",
+      "claims": ["temporary_ability_mapping", "gba_asset_layout"],
+      "official": false
+    }
+  ]
+}
