@@ -4191,3 +4191,27 @@
   - C harnessは`-std=c11 -O2 -Wall -Wextra -Werror -Itools -lmgba`で警告／error 0。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal ROM／saveのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:40:59+09:00
+
+- Task: `USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72` / Ability 312〜317のCFRU戦闘runtime接続
+- Status: DONE（Stage72静的checkpoint。P04／P05本体、専用AI/UI境界、最終累積mGBAは未完了）
+- Summary:
+  - Ability ID 312〜317（Dragonize／Eelevate／Fire Mane／Mega Sol／Piercing Drill／Spicy Spray）を6 Megaの全3 u16 ability slot、最終日本語説明、rating、Mold Breaker表へ固定し、29箇所のCFRU-JP battle consumerへ薄いadapterで接続した。既存Ability 0〜311と名前0〜317はbyte一致を保持した。
+  - DragonizeのIon Deluge／Electrify／Tera／Max／Z順、Mega Solの個人晴れ・Utility Umbrella・実晴れ時popup抑制・Flower Gift分離、EelevateのAbility Shield・visual記録境界・通常/Future Sight KO、Piercing Drillの個人/side/Max guard、Spicy Sprayの実damage／元攻撃者解決を固定した。
+  - 独立レビューでMega Solの不要popup、visualで未記録Ability Shieldを読む境界、Future Sight partner bank復元時期の3件を修正した。さらに`atk49`がstate29から30へ同一呼出し内で進むHighを検出し、元`SetMoveEffect2`がFALSEかつopcode `0x49`・state29・完全なEelevate KO候補の時だけTRUEを返す狭いyield hookを追加した。Moxie script完了後のstate31で元攻撃者へ復元し、対象bankは保持する。最終再レビューはHigh／Mediumなし。
+  - 検討中の中間ROM `6723…`、`1c39…`、`e371…`は撤回し、Stage72正本候補をSHA-256 `f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32 `F981D1CB`へ固定した。現行プレイ基準Stage62とP08 selected Stage69は変更していない。
+- Files changed:
+  - `config/modernization_p05_ability_rom_runtime.json`
+  - `overlays/modernization_p05_ability_rom_runtime/**`
+  - `tools/modernization_p05_ability_rom_runtime.py`、`scripts/build_modernization_p05_ability_rom_runtime.py`
+  - `tests/test_modernization_p05_ability_rom_runtime.py`
+  - `content/modernization/p05_ability_rom_runtime_checkpoint.json`、`content/modernization/p05_ability_rom_runtime_surface_matrix.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_ability_rom_runtime -v`: 15/15 PASS。
+  - `python3 scripts/build_modernization_p05_ability_rom_runtime.py --check`: 9 artifacts byte一致PASS。BPS roundtrip、29 hook preimage／Thumb veneer／trampoline、Ability旧prefix、6 Mega binding、allocator sequence 74、変更7,257 bytes／許可7,436 bytes／許可外0を再照合した。
+  - ROM 33,554,432 bytes、metadata SHA-256 `d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f`、allocation SHA-256 `8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2`、incremental BPS SHA-256 `9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a`、checkpoint SHA-256 `1683e4fa6d2ed8d445e8ffd7d78aa97004a52e537453d1abf1394afbeb9f71bb`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。重いmGBAはStage73以降の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal CFRU-JP／Stage71 ROMのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。

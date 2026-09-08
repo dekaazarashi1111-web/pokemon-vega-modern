@@ -392,3 +392,20 @@
   adapter候補とし、無条件eggへ統合しない。
 - 親固定: Stage73 ROM工程はStage72のcommit、ROM path／size／SHA-256が揃うまでfail closedとする。
 - 影響: P03 Stage73 consumer実装、後続machine／tutor供給、P08統合。
+
+## 2026-09-08 — D-037: Ability 312〜317は薄いCFRU adapterとしてStage72へ接続する
+
+- 決定: Dragonize／Eelevate／Fire Mane／Mega Sol／Piercing Drill／Spicy SprayをAbility ID
+  312〜317のu16 ABIで固定し、6 Mega形態の全3 ability slot、説明、rating、Mold Breaker表と
+  29箇所の既存CFRU-JP consumerへ薄いadapterで接続する。既存Ability 0〜311と名前表0〜317は保持する。
+- 優先順位: DragonizeはIon Delugeを上書きするがElectrifyを上書きせず、Max／Z／active Teraでは
+  不正なtype／power変更を行わない。Mega Solはfield天候を永続変更せず、使用者のUtility Umbrellaより
+  personal sunを優先し、damage計算中に味方Flower Giftを誤発火させない。
+- 防御境界: Eelevateはdamaging GroundだけをLevitate相当にし、Ability ShieldとFuture Sight元使用者を
+  保持する。KO処理はstate29で効果なしの時だけstate30へyieldし、Moxie script完了後に元bankへ戻す。
+  Piercing Drillは単体contactの個人Protectだけを1/4 damageで貫通し、side guard／Max Guardと
+  contact shield反応を保持する。Spicy Sprayは実damageと存在する元攻撃者だけを対象にする。
+- 未完了: Solar Beam系charge省略時のability popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect
+  1/4予測、Spicy Sprayの味方発火AI評価、exact-ROM mGBAをrelease blockerとして残す。Stage72は
+  checkpointであり、P04／P05完了や現行プレイ基準への昇格を意味しない。
+- 影響: Stage72 Ability runtime、Stage73親identity、P04／P05／P08、最終累積mGBA。

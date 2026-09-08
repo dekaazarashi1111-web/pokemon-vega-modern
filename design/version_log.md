@@ -1629,3 +1629,14 @@
   - 既知正常saveをprocess別に複製し、通常Continue後だけfixtureを置き、fresh coreも通常Continueで読む次回累積run用ハーネスを準備した。
   - 追加mGBAを実行せず、通常UI・scene後identity・fresh-core reloadをStage72後の累積1セットへ保留した。
 - Verify: focused unittest 7/7、published checkpoint check、C harness compile（`-Werror`）PASS。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。
+
+## 2026-09-08T20:40:59+09:00
+
+- Version: `modernization-stage72-ability-runtime-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72` / Ability 312〜317のCFRU戦闘runtime接続
+- Summary:
+  - 6 Abilityを対応Megaの全3 u16 slot、説明／rating／Mold表と29 battle hookへ接続し、既存Ability表prefixを保持した。
+  - type／power／天候／命中／回復／Ground無効／Protect貫通／被damage火傷と、Future Sight使用者解決・Ability Shield visual境界を固定した。
+  - state29→30の狭いyieldとMoxie完了後state31復元を追加し、独立最終レビューHigh／Mediumなし。専用AI、Solar charge popup、最終mGBAはrelease blockerとして残した。
+- Verify: focused unittest 15/15、Stage72 builder `--check`、BPS roundtrip、29 hook ABI、allocator／allowlist、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`。mGBAは最終累積候補へ集約し未実行。
