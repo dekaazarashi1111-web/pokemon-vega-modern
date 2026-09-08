@@ -1,9 +1,35 @@
 {
   "active_stage": 62,
-  "candidate_stage": 65,
+  "candidate_stage": 66,
   "completed_phases": [
     "P01"
   ],
+  "integration_fingerprint": {
+    "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
+    "components": {
+      "candidate_artifacts": {
+        "count": 20,
+        "sha256": "fe6c810ea21c96f7c1bb59350236a08f7b62ad55fabc9a1ee901579673353506"
+      },
+      "implementation_inputs": {
+        "count": 71,
+        "sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61"
+      },
+      "phase_projection": {
+        "count": 8,
+        "sha256": "980119583df831001d526ce833b5e759007b9e560b0fd50454aad92e1234e4ae"
+      },
+      "referenced_source_bindings": {
+        "count": 27,
+        "sha256": "4c1f5ecd5f5102f1d36fcfe8413b6ab6da8519d362f8f0f9a4c542425ec60403"
+      },
+      "tracked_inputs": {
+        "count": 31,
+        "sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44"
+      }
+    },
+    "sha256": "c5ee0e1f58183de9877f4a638b954fbf3ee7f6519ca9248c86c70fea6a1118c1"
+  },
   "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
   "not_completed_phases": [
     "P02",
@@ -17,20 +43,19 @@
   "promotion": {
     "active_play_baseline_changed": false,
     "authorized": false,
-    "reason": "P02～P07のruntime acceptance未完了。Stage65はP03代表4経路だけのcheckpointでありrelease candidateではない"
+    "reason": "P02～P07のruntime acceptance未完了。Stage66は47,548経路を反映したbulk checkpointだが70,980経路が残り、release candidateではない"
   },
   "release_blockers": [
     "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
-    "P03_STAGE65_SLICE_INTEGRATED_BUT_FULL_LEARNSET_RUNTIME_NOT_COMPLETE",
-    "P04_ASSET_STAGING_INTEGRATED_BUT_ID_ROM_AND_GAPS_NOT_COMPLETE",
+    "P03_STAGE66_BULK_CHECKPOINT_INTEGRATED_BUT_70980_ROUTES_REMAIN",
+    "P04_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_GAPS_NOT_COMPLETE",
     "P05_MOVE_AND_ABILITY_RUNTIME_NOT_COMPLETE",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE65_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE66_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "schema_version": 1,
-  "snapshot_fingerprint_sha256": "f2507c4436770cc4bf507987aea753ddaf7cc26796e33007c752206d6f69695c",
   "status": "CHECKPOINT_NOT_RELEASE_CANDIDATE",
   "task": "USER-MODERNIZATION-P08"
 }

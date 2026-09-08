@@ -7,6 +7,7 @@ import copy
 import hashlib
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -19,8 +20,11 @@ from scripts.build_modernization_p08 import render_outputs  # noqa: E402
 from tools.modernization_p08_integration import (  # noqa: E402
     ModernizationP08Error,
     PARALLEL_OUTPUTS,
+    PINNED_IMPLEMENTATION_PATHS,
     PINNED_TRACKED_INPUTS,
     STATUS,
+    audit_declared_source_rows,
+    build_integration_fingerprint,
     build_integration_matrix,
     build_release_handoff,
     build_runtime_handoff,
@@ -79,52 +83,87 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P02"]["adoption"]["stage64_changed_rom_bytes"], 2)
         self.assertEqual(phases["P03"]["adoption"]["reference_routes"], 118_528)
         self.assertEqual(phases["P03"]["adoption"]["side_change_1063_routes"], 159)
-        self.assertEqual(phases["P03"]["adoption"]["stage65_routes_materialized"], 4)
+        self.assertEqual(phases["P03"]["adoption"]["stage65_preserved_ancestor_routes"], 4)
         self.assertEqual(phases["P03"]["adoption"]["stage65_changed_rom_bytes"], 17)
+        self.assertEqual(phases["P03"]["adoption"]["stage66_routes_materialized"], 47_548)
+        self.assertEqual(phases["P03"]["adoption"]["stage66_routes_remaining"], 70_980)
+        self.assertEqual(phases["P03"]["adoption"]["stage66_changed_rom_bytes"], 81_693)
         self.assertEqual(phases["P04"]["adoption"]["selected_candidate_records"], 52)
         self.assertEqual(phases["P04"]["adoption"]["runtime_adopted_records"], 0)
         self.assertEqual(phases["P05"]["adoption"]["performance_adjustments"], 0)
         self.assertEqual(phases["P06"]["adoption"]["species_adjustment_records"], 0)
         self.assertEqual(phases["P07"]["adoption"]["normal_to_vega_move"], 0)
         self.assertTrue(phases["P03"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 65)
+        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 66)
         self.assertEqual(
             phases["P04"]["adoption"]["asset_staging"],
             {
                 "mega_covered": 49, "mega_required": 49,
                 "stones_covered": 45, "stones_required": 45,
-                "palette_ready": 47, "palette_required": 49,
+                "palette_ready": 49, "palette_required": 49,
                 "winds_waves_covered": 0, "winds_waves_required": 3,
-                "asset_set_sha256": "ffd5e1f9c04646299af566f450f02f11e4b894e1c121dfb944637a56e24bef86",
+                "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
+            },
+        )
+        self.assertEqual(
+            phases["P04"]["adoption"]["capacity_reservation"],
+            {
+                "species_form": [1621, 1672],
+                "item": [999, 1043],
+                "ability": [312, 317],
+                "move": [1063, 1063],
+                "capacity_basis_stage": 65,
+                "fixed_table_count": 39,
+                "fixed_table_delta_bytes": 20905,
+                "aligned_bundle_bytes": 676772,
+                "integration_modules_remaining_bytes": 1083916,
+                "stage66_cross_check": {
+                    "allocation_region": "future_tail",
+                    "allocation_start": 33399368,
+                    "allocation_size": 60116,
+                    "allocation_end_exclusive": 33459484,
+                    "stage65_future_tail_remaining_bytes": 155064,
+                    "stage66_future_tail_remaining_bytes": 94948,
+                    "p04_candidate_region": "integration_modules",
+                    "p04_candidate_start": 21307984,
+                    "p04_candidate_end_exclusive": 23068672,
+                    "overlap": False,
+                },
+                "runtime_ready": False,
             },
         )
 
-    def test_stage65_chain_is_exact_but_not_release_candidate(self) -> None:
+    def test_stage66_chain_is_exact_but_not_release_candidate(self) -> None:
         chain = self.matrix["candidate_chain"]
         self.assertEqual(chain["active_stage"], 62)
-        self.assertEqual(chain["selected_checkpoint_stage"], 65)
+        self.assertEqual(chain["selected_checkpoint_stage"], 66)
         self.assertTrue(chain["parent_chain_verified"])
         self.assertTrue(chain["stage65_integrated"])
+        self.assertTrue(chain["stage66_integrated"])
         self.assertFalse(chain["release_candidate"])
         self.assertEqual(
-            chain["inheritance"][3]["rom"]["sha256"],
-            "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+            chain["inheritance"][4]["rom"]["sha256"],
+            "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
         )
-        self.assertEqual(chain["inheritance"][3]["parent_stage"], 64)
+        self.assertEqual(chain["inheritance"][4]["parent_stage"], 65)
         self.assertEqual(chain["stage65_scope"]["routes_materialized"], 4)
         self.assertFalse(chain["stage65_scope"]["full_p03_done"])
+        self.assertEqual(chain["stage66_scope"]["routes_materialized"], 47_548)
+        self.assertEqual(chain["stage66_scope"]["routes_remaining"], 70_980)
+        self.assertFalse(chain["stage66_scope"]["full_p03_done"])
         self.assertEqual(
             chain["registry"],
             {
                 "path": "config/modernization_candidate.json",
                 "schema_version": 2,
-                "status": "P03_STAGE65_VERIFIED_CHECKPOINT",
+                "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT",
                 "completed_through": "USER-MODERNIZATION-P01",
-                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+                "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
                 "release_ready": False,
                 "active_parent_stage": 62,
-                "parent_stage": 64,
-                "candidate_stage": 65,
+                "parent_stage": 65,
+                "candidate_stage": 66,
             },
         )
 
@@ -135,7 +174,7 @@ class ModernizationP08Tests(unittest.TestCase):
 
         false_done = copy.deepcopy(self.matrix)
         false_done["candidate_chain"]["registry"]["completed_through"] = (
-            "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE"
+            "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT"
         )
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_done)
@@ -150,16 +189,88 @@ class ModernizationP08Tests(unittest.TestCase):
             self.assertIn("INTEGRATED", lane["status"])
         self.assertIn("content/modernization/p03_stage65_checkpoint.json", pinned)
         self.assertIn("content/modernization/p03_stage65_mgba_runtime_gate.json", pinned)
+        self.assertIn("config/modernization_p03_stage66.json", pinned)
+        self.assertIn("content/modernization/p03_stage66_bulk_route_audit.json", pinned)
+        self.assertIn("content/modernization/p03_stage66_change_audit.json", pinned)
+        self.assertIn("content/modernization/p03_stage66_checkpoint.json", pinned)
+        self.assertIn("content/modernization/p03_stage66_mgba_runtime_gate.json", pinned)
         self.assertIn("content/modernization/p04_asset_import_manifest.json", pinned)
+        self.assertIn(
+            "content/modernization/p04_capacity_allocation_manifest.json", pinned
+        )
+        artifacts = {row["path"] for row in self.matrix["candidate_artifacts"]}
+        self.assertTrue(
+            {
+                "build/stages/66_modernization_p03_bulk_learnsets.gba",
+                "build/stages/66_modernization_p03_bulk_learnsets.json",
+                "build/stages/66_modernization_p03_allocation.json",
+                "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
+                "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
+            }
+            <= artifacts
+        )
 
     def test_pinned_input_and_referenced_source_hashes_pass(self) -> None:
         snapshot = self.matrix["snapshot"]
         self.assertEqual(snapshot["tracked_input_count"], len(PINNED_TRACKED_INPUTS))
-        self.assertEqual(len(snapshot["tracked_inputs"]), 25)
-        self.assertEqual(len(self.matrix["referenced_source_bindings"]), 7)
+        self.assertEqual(len(snapshot["tracked_inputs"]), 31)
+        self.assertEqual(snapshot["implementation_input_count"], len(PINNED_IMPLEMENTATION_PATHS))
+        self.assertEqual(
+            len(snapshot["implementation_inputs"]), len(PINNED_IMPLEMENTATION_PATHS)
+        )
+        self.assertIn(
+            "scripts/run_modernization_p03_stage66_mgba.py",
+            {row["path"] for row in snapshot["implementation_inputs"]},
+        )
+        required_direct_implementation_inputs = {
+            "scripts/build_trainer_v5_stage32.py",
+            "tools/rom_allocator.py",
+            "tools/release/__init__.py",
+            "tools/release/bps.py",
+            "Makefile",
+            ".github/workflows/private-runtime.yml",
+            ".github/workflows/chatgpt-comment-control.yml",
+            "infra/setup_github_actions.sh",
+            "infra/toolchain_manifest.json",
+            "scripts/build_modernization_p03_stage66.py",
+            "scripts/run_modernization_p03_stage66_mgba.py",
+            "tools/modernization_p03_stage66.py",
+            "tools/mgba_modernization_p03_stage66_smoke.c",
+            "tests/test_modernization_p03_stage66.py",
+        }
+        self.assertTrue(
+            required_direct_implementation_inputs
+            <= {row["path"] for row in snapshot["implementation_inputs"]}
+        )
+        self.assertEqual(len(self.matrix["referenced_source_bindings"]), 27)
         self.assertTrue(
             all(row["status"] == "PASS" for row in self.matrix["referenced_source_bindings"])
         )
+
+    def test_declared_evidence_source_drift_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            relative = "tools/source.py"
+            path = root / relative
+            path.parent.mkdir(parents=True)
+            original = b"print('fixed')\n"
+            path.write_bytes(original)
+            row = {
+                "path": relative,
+                "size": len(original),
+                "sha256": hashlib.sha256(original).hexdigest(),
+            }
+            self.assertEqual(
+                audit_declared_source_rows(
+                    root, [row], {relative}, binding="FIXTURE",
+                )[0]["status"],
+                "PASS",
+            )
+            path.write_bytes(b"print('drift')\n")
+            with self.assertRaises(ModernizationP08Error):
+                audit_declared_source_rows(
+                    root, [row], {relative}, binding="FIXTURE",
+                )
 
     def test_hash_drift_is_rejected(self) -> None:
         raw = b"fixed input\n"
@@ -174,6 +285,13 @@ class ModernizationP08Tests(unittest.TestCase):
         mutated["snapshot"]["tracked_inputs"][0]["sha256"] = "0" * 64
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(mutated)
+
+        implementation_drift = copy.deepcopy(self.matrix)
+        implementation_drift["snapshot"]["implementation_inputs"][0]["sha256"] = (
+            "0" * 64
+        )
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(implementation_drift)
 
     def test_active_baseline_change_is_rejected(self) -> None:
         active_doc = json.loads((ROOT / "config/active_play_baseline.json").read_text())
@@ -200,7 +318,7 @@ class ModernizationP08Tests(unittest.TestCase):
             validate_integration_matrix(false_release)
 
         false_p03_done = copy.deepcopy(self.matrix)
-        false_p03_done["candidate_chain"]["stage65_scope"]["full_p03_done"] = True
+        false_p03_done["candidate_chain"]["stage66_scope"]["full_p03_done"] = True
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_p03_done)
 
@@ -211,7 +329,7 @@ class ModernizationP08Tests(unittest.TestCase):
 
     def test_every_requirement_has_implementation_and_test_mapping(self) -> None:
         trace = self.matrix["traceability"]
-        self.assertEqual(len(trace), 14)
+        self.assertEqual(len(trace), 16)
         self.assertEqual(len({row["requirement_key"] for row in trace}), len(trace))
         for row in trace:
             self.assertTrue(row["implementation_evidence"])
@@ -228,12 +346,41 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(runtime["status"], STATUS)
         self.assertFalse(runtime["release_ready"])
         self.assertFalse(runtime["runtime_execution"]["new_rom_written"])
+        self.assertEqual(
+            runtime["integration_fingerprint"],
+            self.matrix["snapshot"]["integration_fingerprint"],
+        )
         self.assertEqual(release["status"], STATUS)
         self.assertFalse(release["release_ready"])
         self.assertFalse(release["promotion"]["authorized"])
         self.assertEqual(release["completed_phases"], ["P01"])
-        self.assertEqual(release["candidate_stage"], 65)
+        self.assertEqual(release["candidate_stage"], 66)
+        self.assertEqual(
+            release["integration_fingerprint"],
+            self.matrix["snapshot"]["integration_fingerprint"],
+        )
         self.assertEqual(len(release["release_blockers"]), 7)
+
+    def test_composite_fingerprint_changes_for_one_byte_implementation_drift(self) -> None:
+        snapshot = self.matrix["snapshot"]
+        original = snapshot["integration_fingerprint"]
+        implementation = copy.deepcopy(snapshot["implementation_inputs"])
+        source_path = ROOT / implementation[0]["path"]
+        one_byte_drift = source_path.read_bytes() + b"\x00"
+        implementation[0]["size"] = len(one_byte_drift)
+        implementation[0]["sha256"] = hashlib.sha256(one_byte_drift).hexdigest()
+        changed = build_integration_fingerprint(
+            snapshot["tracked_inputs"],
+            implementation,
+            self.matrix["referenced_source_bindings"],
+            self.matrix["candidate_artifacts"],
+            self.matrix["phases"],
+        )
+        self.assertNotEqual(changed["sha256"], original["sha256"])
+        self.assertNotEqual(
+            changed["components"]["implementation_inputs"]["sha256"],
+            original["components"]["implementation_inputs"]["sha256"],
+        )
 
     def test_generated_outputs_are_deterministic(self) -> None:
         outputs = render_outputs(self.matrix)

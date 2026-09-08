@@ -4020,3 +4020,37 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式CLI／APIでstate Release assetの置換・remote再取得とActions再実行・結果読戻しを行った。credential、token、private member本文は記録していない。
+
+## 2026-09-08T12:42:25+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08` / Stage66 bulk習得・P04容量／素材・P08統合checkpoint
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02 mGBA runnerをStage63からStage64の2-byte修正をmemory生成できるclean bootstrapへ変更し、生成config、実行source、ROM identityを証跡へ固定した。Rayquaza修正以外の全進化受入は未完了のまま保持した。
+  - P03はStage65のCaterpie 4経路からStage66 bulkへ展開した。全1,300対象／118,528経路を照合し、level-up 18,515＋machine 29,033の計47,548経路を実装、残70,980を理由付き保留にした。Stage65→66は81,693 changed bytes、宣言外0。Stage66専用10ファイルをcommit `90a1811964a19e3c058448af173007678b42a7e3`へ先行固定した。
+  - P04外部素材importerを固定source commitから再生成し、Mega 49/49のfront/back/icon/paletteとStone 45/45をprivate-use stagingへ変換した。Tatsugiri Droopy／Stretchyはupstream共通Mega paletteへ修正し、palette readyを49/49にした。Winds/Waves 3種は完全素材未確認のためplaceholderを生成していない。
+  - P04容量checkpointでSpecies/Form 52、Item 45、Ability 6、Move 1をappend予約し、39固定表、allocator、numeric width、save ABI、実Windows public-state readerを監査した。既存88-bit eventはItem 1043に89 bit必要、legacy Ability u8とsave item bitmap 125→131 bytesをruntime blockerとして維持した。
+  - P05は新Move 1／新Ability 6、P06/P07は提出済み採用差分0を維持した。P03 runtime handoffが実際にGit tracked fileであることを検証し、同byte untracked fallbackを拒否した。
+  - P08へStage66 tracked 5件／ignored 5件、mGBA source 8件、直接BPS依存、CI toolchain依存を追加した。P04容量がStage65基準でStage66と非衝突、Stage66後future-tail残94,948 bytesであることを明示し、3 handoffへ同じcomposite fingerprintを収載した。active Stage62、P01のみ完了、release-ready=falseを維持した。
+  - private bundleのsource／restore双方で全path componentのsymlink脱出を拒否し、rights manifest欠落をfail closedにした。GitHub repositoryがPublicのままROM／save入りReleaseを公開していたことを検出し、ユーザー指示でrepository全体をPrivateへ変更した。全private-download workflowへAPI可視性gateを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage65.json`、`config/github_private_environment.json`
+  - `config/modernization_p03_stage66.json`、`content/modernization/p03_stage66_*.json`、`tools/modernization_p03_stage66.py`、Stage66 builder／mGBA runner／focused test
+  - `content/modernization/p02_stage64_*.json`、`scripts/run_modernization_p02_mgba.py`、P02 mGBA test
+  - `content/modernization/p04_asset_*.json`、`tools/modernization_p04_asset_importer.py`、asset source/import tests
+  - `content/modernization/p04_capacity_allocation_manifest.json`、`tools/modernization_p04_capacity.py`、capacity builder／test
+  - P05／P07 contract、builder、test
+  - P08 integration matrix／runtime handoff／release handoff、builder、integration tool／test
+  - `scripts/github_private_environment.py`、`scripts/run_github_private_suite.py`、private environment／suite tests
+  - `.github/workflows/private-runtime.yml`、`.github/workflows/chatgpt-comment-control.yml`、`Makefile`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - Stage66専用focused 12件、実consumer mGBA 4代表×独立2 process、deterministic build/check、incremental／clean BPS往復、change audit、private guard: PASS。ROM 33,554,432 bytes、SHA-256 `0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32 `808D5140`。
+  - P04 source/importer 24件、asset check、capacity 10件／check: PASS。生成asset 670 files、426,648 bytes、asset-set SHA-256 `462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c`。capacity manifest 451,027 bytes、SHA-256 `6b8e13bc22bff1e76371aca7bc814d754da56dadad10153ec0e007522e710752`。
+  - P05 focused 11件／check、P07 check、private environment 10件、private suite／workflow 17件、P02 mGBA focused 8件: PASS。途中でcapacityを既定check modeのまま実行して差分FAIL、P05 testの定数import漏れで1 errorとなったが、`--write`の明示とtest import修正後に各全件PASSした。
+  - P08 focused 16件と追加workflow回帰を含む34件、deterministic `--check`: PASS。tracked inputs 31、completed phases 1、active Stage62、candidate Stage66、release false。
+  - task graph、private guard、workflow YAML parse、`git diff --check`: PASS。repository全体の重いtestと同じmGBA chainの再反復は省略した。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage66専用先行commitは`90a1811964a19e3c058448af173007678b42a7e3`）
+- Network:
+  - P04素材は`https://github.com/rh-hideout/pokeemerald-expansion`の固定commit `cafe0221cefb2a991cc0ece429174ade877d037d`を主採用した。`https://github.com/xirosrh/wah-20-anniversary`の`076b1f930594352a4a105d60be0511e24be22772`、DPE-JP／Shiny-Miner DPE、TeamAquasHideout系、`Schn4pper/pokenigme`も不足素材の有無を比較したが、権利／形式／欠落のため追加採用しなかった。
+  - GitHub公式CLI／APIでrepository visibilityとRelease状態を照合した。Public時に5 assets（合計約1.99 GB）が非draft公開だったため、ユーザー明示指示後にrepositoryをPrivateへ変更し、`private=true`を読み戻した。Release assetは削除・置換・downloadせず、新P04素材もuploadしていない。credential／ROM／save／private member本文は記録していない。

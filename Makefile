@@ -16,8 +16,9 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: modernization-p02-contract-check modernization-p02-stage64 modernization-p02-stage64-check modernization-p02-mgba modernization-p02-mgba-check modernization-p02-focused-test
 .PHONY: modernization-p03-check modernization-p05-check modernization-p06-check modernization-p07-check modernization-contracts-focused-test
 .PHONY: modernization-p03-stage65 modernization-p03-stage65-check modernization-p03-stage65-mgba modernization-p03-stage65-mgba-check modernization-p03-stage65-focused-test
+.PHONY: modernization-p03-stage66 modernization-p03-stage66-check modernization-p03-stage66-mgba modernization-p03-stage66-mgba-check modernization-p03-stage66-focused-test
 .PHONY: modernization-p08-check modernization-p08-focused-test
-.PHONY: modernization-p04-source-fetch modernization-p04-assets modernization-p04-assets-check modernization-p04-assets-focused-test
+.PHONY: modernization-p04-source-fetch modernization-p04-assets modernization-p04-assets-check modernization-p04-assets-focused-test modernization-p04-capacity-check modernization-p04-capacity-focused-test
 .PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
@@ -526,6 +527,21 @@ modernization-p03-stage65-mgba-check:
 modernization-p03-stage65-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p03_stage65 -v
 
+modernization-p03-stage66:
+	$(PYTHON) scripts/build_modernization_p03_stage66.py build
+
+modernization-p03-stage66-check:
+	$(PYTHON) scripts/build_modernization_p03_stage66.py check
+
+modernization-p03-stage66-mgba:
+	$(PYTHON) scripts/run_modernization_p03_stage66_mgba.py run
+
+modernization-p03-stage66-mgba-check:
+	$(PYTHON) scripts/run_modernization_p03_stage66_mgba.py check
+
+modernization-p03-stage66-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p03_stage66 -v
+
 modernization-p08-check:
 	$(PYTHON) scripts/build_modernization_p08.py --check
 
@@ -543,6 +559,12 @@ modernization-p04-assets-check:
 
 modernization-p04-assets-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p04_sources tests.test_modernization_p04_asset_importer -v
+
+modernization-p04-capacity-check:
+	$(PYTHON) scripts/build_modernization_p04_capacity.py --check --compact
+
+modernization-p04-capacity-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p04_capacity -v
 
 modernization-p05-check:
 	$(PYTHON) scripts/build_modernization_p05.py --check

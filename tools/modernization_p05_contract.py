@@ -33,7 +33,6 @@ RESTORATION_ZIP = (
     "Vega_Stage61_ID固定_原作復元監査資料.zip"
 )
 
-P03_CHECKPOINT = "a671312bfa5cafc901b61e288129354c355a123e"
 P03_RUNTIME_PATH = "content/modernization/p03_runtime_handoff.json"
 
 NEW_MOVE_MEMBER = "implementation/new_move_definitions.json"
@@ -77,6 +76,7 @@ EXPECTED_PRESERVE_DIFFS = {
 
 TECHNICAL_SOURCE_COMMIT = "cafe0221cefb2a991cc0ece429174ade877d037d"
 TECHNICAL_SOURCE_ROOT = ".local/modernization_sources/pokeemerald-expansion"
+TECHNICAL_SOURCE_REPOSITORY = "https://github.com/rh-hideout/pokeemerald-expansion"
 TECHNICAL_ID_PATH = "include/constants/abilities.h"
 TECHNICAL_TEXT_PATH = "src/data/abilities.h"
 
@@ -86,7 +86,7 @@ EXPECTED_P04_FILES = {
     "content/modernization/p04_official_sources.json":
         "eadd2eea75b5a3d4c7aacf9315b3025e0e7ece945354970ac9c372eb59548fcd",
     "content/modernization/p04_asset_sources.json":
-        "cc1717b2dbabdbdb60382318c426d9d5433dddf66aabb7f044e126992df7be32",
+        "133c6b8dd56dc0afdb80acbb943c2e5b3ed1b72247bcc07350c78933e93e0636",
 }
 
 
@@ -164,31 +164,35 @@ def _integer(value: Any, label: str) -> int:
 
 
 def _load_p03_runtime(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    """worktreeを優先し、分離branch中だけ固定checkpointから読む。"""
+    """現行tracked worktreeのP03 handoffだけを読む。古いfallbackは禁止する。"""
 
-    path = root / P03_RUNTIME_PATH
-    if path.is_file() and not path.is_symlink():
-        raw = path.read_bytes()
-    else:
-        try:
-            raw = subprocess.run(
-                ["git", "show", f"{P03_CHECKPOINT}:{P03_RUNTIME_PATH}"],
-                cwd=root,
-                check=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-            ).stdout
-        except (OSError, subprocess.CalledProcessError) as error:
-            _fail(f"P03 runtime契約をworktree/checkpointから読めません: {error}")
+    workspace = root.resolve()
+    path = workspace
+    for component in Path(P03_RUNTIME_PATH).parts:
+        path = path / component
+        if path.is_symlink():
+            _fail(f"現行P03 runtime契約pathのsymlinkは禁止です: {P03_RUNTIME_PATH}")
+    raw = _regular_file(path, "現行P03 runtime契約")
+    completed = subprocess.run(
+        ["git", "-C", str(workspace), "ls-files", "--error-unmatch", "--", P03_RUNTIME_PATH],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0 \
+            or completed.stdout.strip().splitlines() != [P03_RUNTIME_PATH]:
+        _fail(
+            "現行P03 runtime契約がGit tracked worktree fileではありません: "
+            f"{P03_RUNTIME_PATH}"
+        )
     value = _json_bytes(raw, "P03 runtime契約")
     if not isinstance(value, dict):
         _fail("P03 runtime契約のrootがobjectではありません")
-    # outputはsourceの所在に依存させず、同一内容ならbranch切替でも再現させる。
     return value, {
         "path": P03_RUNTIME_PATH,
         "content_sha256": _sha256(raw),
-        "checkpoint": P03_CHECKPOINT,
-        "resolution": "WORKTREE_OR_PINNED_CHECKPOINT_WITH_IDENTICAL_CONTENT",
+        "resolution": "CURRENT_TRACKED_WORKTREE_REQUIRED_NO_HISTORICAL_FALLBACK",
     }
 
 
@@ -422,21 +426,52 @@ def _build_new_move_requirement(
     }
 
 
+def _normalize_repository_url(value: str) -> str:
+    return value.strip().rstrip("/").removesuffix(".git")
+
+
+def _verify_technical_checkout(
+    source_root: Path,
+    *,
+    expected_commit: str = TECHNICAL_SOURCE_COMMIT,
+    expected_repository: str = TECHNICAL_SOURCE_REPOSITORY,
+) -> dict[str, Any]:
+    if source_root.is_symlink() or not source_root.is_dir():
+        _fail(f"P04固定technical source checkoutがありません: {source_root}")
+
+    def git_output(*args: str) -> str:
+        try:
+            return subprocess.run(
+                ["git", *args], cwd=source_root, check=True,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+            ).stdout.strip()
+        except (OSError, subprocess.CalledProcessError) as error:
+            _fail(f"P04 technical source git identityを確認できません: {error}")
+
+    commit = git_output("rev-parse", "HEAD")
+    if commit != expected_commit:
+        _fail(f"P04 technical source commitが固定値と不一致です: {commit}")
+    repository = git_output("remote", "get-url", "origin")
+    if _normalize_repository_url(repository) != _normalize_repository_url(
+        expected_repository
+    ):
+        _fail(f"P04 technical source repositoryが固定値と不一致です: {repository}")
+    dirty = git_output("status", "--porcelain", "--untracked-files=all")
+    if dirty:
+        _fail("P04 technical source checkoutがdirtyです")
+    return {
+        "repository": _normalize_repository_url(repository),
+        "commit": commit,
+        "checkout_clean_observed": True,
+        "checkout_clean_required": True,
+    }
+
+
 def _parse_technical_ability_source(
     root: Path, selected_keys: Sequence[str]
 ) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
     source_root = root / TECHNICAL_SOURCE_ROOT
-    if source_root.is_symlink() or not source_root.is_dir():
-        _fail(f"P04固定technical source checkoutがありません: {source_root}")
-    try:
-        commit = subprocess.run(
-            ["git", "rev-parse", "HEAD"], cwd=source_root, check=True,
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-        ).stdout.strip()
-    except (OSError, subprocess.CalledProcessError) as error:
-        _fail(f"P04 technical source commitを確認できません: {error}")
-    if commit != TECHNICAL_SOURCE_COMMIT:
-        _fail(f"P04 technical source commitが固定値と不一致です: {commit}")
+    checkout = _verify_technical_checkout(source_root)
 
     id_path = source_root / TECHNICAL_ID_PATH
     text_path = source_root / TECHNICAL_TEXT_PATH
@@ -504,9 +539,10 @@ def _parse_technical_ability_source(
             "occurrences": occurrences,
             "status": "PINNED_TECHNICAL_REFERENCE_PORT_REQUIRED",
         }
+    if _verify_technical_checkout(source_root) != checkout:
+        _fail("P04 technical source identityが走査中に変化しました")
     return refs, {
-        "repository": "https://github.com/rh-hideout/pokeemerald-expansion",
-        "commit": commit,
+        **checkout,
         "local_checkout": TECHNICAL_SOURCE_ROOT,
         "authority": "TECHNICAL_REFERENCE_NOT_OFFICIAL_SPECIFICATION",
         "files": sorted(evidence_files.values(), key=lambda row: row["path"]),

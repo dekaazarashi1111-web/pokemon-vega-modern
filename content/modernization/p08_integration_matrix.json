@@ -45,7 +45,7 @@
     },
     {
       "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
-      "sha256": "0f382303e44e6de83e5b0cdf5ad2860a603f9b9bee194052a023007c5d60452d",
+      "sha256": "0f9948fc9484361fd8b38bec06592845a97e7a4cefd43f16f59a3b228666ed1e",
       "size": 3741
     },
     {
@@ -76,7 +76,7 @@
     },
     {
       "path": "build/stages/65_modernization_p03_caterpie_slice.json",
-      "sha256": "5133e5632a973c7b7d33a226e1ae0259e22afd7758fb33f9a0c97923711d8661",
+      "sha256": "ad5210529a62cc42571fcc255f98f53d183b8c8419bf0effbb9e1ecaa262aa2c",
       "size": 8362
     },
     {
@@ -93,6 +93,32 @@
       "path": "build/patches/firered-jpn-rev0-to-stage65-modernization-p03-caterpie-slice.bps",
       "sha256": "5efba3ca37e3bbf3dbd3a128b2444eb8bc8f278e4ea14e0a8d0df09526f40211",
       "size": 16726260
+    },
+    {
+      "crc32": "808D5140",
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.json",
+      "sha256": "c0d7f9e1c77005f5f3921f2d4316458291a1c2a79c71d5ad8f3fd2c74d789e45",
+      "size": 7304
+    },
+    {
+      "path": "build/stages/66_modernization_p03_allocation.json",
+      "sha256": "d454fdde5fbece67e5411895b929980a43d64bcfa99f8b947093f5db37b706cc",
+      "size": 39372
+    },
+    {
+      "path": "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "sha256": "6d3bd8f75b8603f00d0f729ae0fe8bbcedce515ecaaaeecc423d13e0f0e14ed0",
+      "size": 86322
+    },
+    {
+      "path": "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "sha256": "9a84725f6c52e200a2275507d1fe6655736cfe4e2fe277ab4ddcb05778baed19",
+      "size": 16785814
     }
   ],
   "candidate_chain": {
@@ -140,22 +166,34 @@
           "size": 33554432
         },
         "stage": 65
+      },
+      {
+        "parent_stage": 65,
+        "role": "P03_BULK_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "808D5140",
+          "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+          "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+          "size": 33554432
+        },
+        "stage": 66
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 65,
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "candidate_stage": 66,
+      "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "parent_stage": 64,
+      "parent_stage": 65,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P03_STAGE65_VERIFIED_CHECKPOINT"
+      "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 65,
+    "selected_checkpoint_stage": 66,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -167,6 +205,22 @@
       "representative_species": 1,
       "routes_materialized": 4,
       "routes_remaining": 118524
+    },
+    "stage66_integrated": true,
+    "stage66_scope": {
+      "consumers_exercised": [
+        "level_up",
+        "machine"
+      ],
+      "corrected_targets": 1300,
+      "full_p03_done": false,
+      "level_up_routes_materialized": 18515,
+      "machine_existing_slot_routes_materialized": 29033,
+      "machine_supply_required_routes_deferred": 26347,
+      "move_1063_routes_deferred": 159,
+      "routes_materialized": 47548,
+      "routes_remaining": 70980,
+      "source_routes_validated": 118528
     }
   },
   "integration_summary": {
@@ -176,7 +230,7 @@
     "completed_phases": [
       "P01"
     ],
-    "highest_pinned_candidate_stage": 65,
+    "highest_pinned_candidate_stage": 66,
     "phase_count": 8,
     "release_ready": false,
     "runtime_reflected_phase_count": 3
@@ -282,27 +336,33 @@
         "reference_routes": 118528,
         "side_change_1063_routes": 159,
         "stage65_changed_rom_bytes": 17,
-        "stage65_representative_species": 1,
-        "stage65_routes_materialized": 4
+        "stage65_preserved_ancestor_routes": 4,
+        "stage66_changed_rom_bytes": 81693,
+        "stage66_corrected_targets": 1300,
+        "stage66_level_up_routes_materialized": 18515,
+        "stage66_machine_existing_slot_routes_materialized": 29033,
+        "stage66_routes_materialized": 47548,
+        "stage66_routes_remaining": 70980
       },
       "blockers": [
-        "ROUTES_REMAINING_118524",
-        "SUPPLY_REQUIRED_ROWS_26720",
-        "MOVE_1063_NOT_IMPLEMENTED",
+        "ROUTES_REMAINING_70980",
+        "MACHINE_SUPPLY_REQUIRED_ROWS_26347",
+        "MOVE_1063_ROUTES_159_NOT_IMPLEMENTED",
         "FULL_SCHEDULER_AND_SAVE_RELOAD_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
         "PASS",
         "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS",
-        "INTEGRATED_CHECKPOINT",
+        "STAGE65_ANCESTOR_CHECKPOINT",
+        "STAGE66_BULK_CHECKPOINT",
         "PASS_NOT_FULL_P03_ACCEPTANCE"
       ],
       "not_adopted": [
-        "FULL_RUNTIME_TABLES",
-        "ROUTES_REMAINING_118524",
-        "UNMAPPED_MACHINE_TUTOR_SUPPLY",
-        "MOVE_1063_RUNTIME",
+        "ROUTES_REMAINING_70980",
+        "MACHINE_SUPPLY_REQUIRED_26347",
+        "NON_LEVEL_MACHINE_CONSUMERS",
+        "MOVE_1063_RUNTIME_159",
         "FULL_SCHEDULER_AND_SAVE_RELOAD"
       ],
       "phase": "P03",
@@ -321,11 +381,22 @@
             "content/modernization/p03_stage65_mgba_runtime_gate.json"
           ],
           "gate": "STAGE65_REPRESENTATIVE_RUNTIME",
+          "status": "PRESERVED_ANCESTOR_CHECKPOINT"
+        },
+        {
+          "evidence": [
+            "content/modernization/p03_stage66_checkpoint.json",
+            "content/modernization/p03_stage66_mgba_runtime_gate.json",
+            "content/modernization/p03_stage66_bulk_route_audit.json",
+            "content/modernization/p03_stage66_change_audit.json"
+          ],
+          "gate": "STAGE66_BULK_RUNTIME",
           "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE"
         },
         {
           "evidence": [
-            "content/modernization/p03_runtime_handoff.json"
+            "content/modernization/p03_runtime_handoff.json",
+            "content/modernization/p03_stage66_bulk_route_audit.json"
           ],
           "gate": "FULL_ROUTE_SUPPLY_AND_MOVE_1063",
           "status": "BLOCKED"
@@ -333,22 +404,58 @@
       ],
       "rom_reflection": {
         "reflected": true,
-        "scope": "CATERPIE_4_ROUTE_LEVEL_AND_MACHINE_SLICE_ONLY",
-        "stage": 65
+        "scope": "BULK_LEVEL_UP_AND_EXISTING_SLOT_MACHINE_CHECKPOINT",
+        "stage": 66
       }
     },
     {
       "adoption": {
         "asset_staging": {
-          "asset_set_sha256": "ffd5e1f9c04646299af566f450f02f11e4b894e1c121dfb944637a56e24bef86",
+          "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
           "mega_covered": 49,
           "mega_required": 49,
-          "palette_ready": 47,
+          "palette_ready": 49,
           "palette_required": 49,
           "stones_covered": 45,
           "stones_required": 45,
           "winds_waves_covered": 0,
           "winds_waves_required": 3
+        },
+        "capacity_reservation": {
+          "ability": [
+            312,
+            317
+          ],
+          "aligned_bundle_bytes": 676772,
+          "capacity_basis_stage": 65,
+          "fixed_table_count": 39,
+          "fixed_table_delta_bytes": 20905,
+          "integration_modules_remaining_bytes": 1083916,
+          "item": [
+            999,
+            1043
+          ],
+          "move": [
+            1063,
+            1063
+          ],
+          "runtime_ready": false,
+          "species_form": [
+            1621,
+            1672
+          ],
+          "stage66_cross_check": {
+            "allocation_end_exclusive": 33459484,
+            "allocation_region": "future_tail",
+            "allocation_size": 60116,
+            "allocation_start": 33399368,
+            "overlap": false,
+            "p04_candidate_end_exclusive": 23068672,
+            "p04_candidate_region": "integration_modules",
+            "p04_candidate_start": 21307984,
+            "stage65_future_tail_remaining_bytes": 155064,
+            "stage66_future_tail_remaining_bytes": 94948
+          }
         },
         "held_records": 2,
         "mega_records": 49,
@@ -358,22 +465,24 @@
         "stone_records": 45
       },
       "blockers": [
-        "SPECIES_ITEM_ABILITY_FREE_SLOTS_ZERO",
+        "FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT",
+        "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS",
+        "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN",
+        "SAVE_MIGRATION_NOT_DESIGNED",
         "NEW_SPECIES_ASSETS_MISSING_3",
-        "PALETTE_GAPS_2",
         "RIGHTS_REVIEW",
         "ROM_AND_ID_NOT_INTEGRATED"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
         "CANDIDATE_MANIFEST_ONLY",
-        "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS"
+        "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS",
+        "CAPACITY_RESERVATION_CHECKPOINT_NOT_RUNTIME_READY"
       ],
       "not_adopted": [
-        "ID_ALLOCATION",
-        "ROM_TABLES",
+        "SHARED_ID_MATERIALIZATION",
+        "ROM_TABLE_RELOCATION",
         "WINDS_WAVES_ASSETS_3",
-        "TATSUGIRI_PALETTE_READY_2",
         "PUBLIC_REDISTRIBUTION"
       ],
       "phase": "P04",
@@ -395,9 +504,16 @@
         },
         {
           "evidence": [
-            "content/modernization/p04_candidate_manifest.json"
+            "content/modernization/p04_capacity_allocation_manifest.json"
           ],
-          "gate": "ID_CAPACITY_AND_RUNTIME",
+          "gate": "ID_CAPACITY_RESERVATION",
+          "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_capacity_allocation_manifest.json"
+          ],
+          "gate": "ID_MATERIALIZATION_AND_RUNTIME",
           "status": "BLOCKED"
         }
       ],
@@ -599,56 +715,203 @@
   ],
   "referenced_source_bindings": [
     {
+      "binding": "P02_STAGE64_MGBA",
+      "path": "scripts/run_modernization_p02_mgba.py",
+      "sha256": "08f6cfa8506c3aecf41e8bd5c70ec298fa87288c0e057569bfdc4d0f5e319c03",
+      "size": 23083,
+      "status": "PASS"
+    },
+    {
+      "binding": "P02_STAGE64_MGBA",
+      "path": "tools/mgba_modernization_p02_evolution_smoke.c",
+      "sha256": "93dcf7107e74d9743f9bf901eb3a47ce76772d3483d3918b11f8cb4101802cf1",
+      "size": 5018,
+      "status": "PASS"
+    },
+    {
+      "binding": "P02_STAGE64_MGBA",
+      "path": "tools/mgba_battle_core_smoke.c",
+      "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+      "size": 94532,
+      "status": "PASS"
+    },
+    {
+      "binding": "P02_STAGE64_MGBA",
+      "path": "tools/mgba_ai_fixture_runner.c",
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "scripts/build_species_surface.py",
       "sha256": "d032f6cbf3e38914e332899deed99168873d85746f3c340cdafc5bc5db791bad",
       "size": 88276,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "scripts/build_move_distribution_v4.py",
       "sha256": "b2487d1a50c200467a2e892ebfcdbd58b4c5695f4f95ce56b55a37c86599a1c4",
       "size": 59171,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "scripts/build_move_memory.py",
       "sha256": "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817",
       "size": 54175,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "scripts/build_stage61_runtime_hotfix.py",
       "sha256": "6601d8cf33bfc172763f51150376b472efe70d1f5430efd0dc55c94070733550",
       "size": 29701,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "config/move_distribution_v4.json",
       "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
       "size": 4181,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "config/stage61_runtime_hotfix.json",
       "sha256": "ddcf5f96ba78586fc575bb448e75c0ededee648eebf9bf86864c8c13b7338d18",
       "size": 7204,
       "status": "PASS"
     },
     {
+      "binding": "P03_RUNTIME_HANDOFF",
       "path": "content/move_distribution_v4/consumer_contract.json",
       "sha256": "953645dbba17b3ec9e00234027d5ec154635f5581b057541eb907d5ce1b83e44",
       "size": 1267,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "config/modernization_p03_stage65.json",
+      "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00",
+      "size": 6733,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "tools/modernization_p03_stage65.py",
+      "sha256": "431486a0c2bec952b0f1c780819bf0632d4d862f3946b34bcbfd38327593edcc",
+      "size": 30494,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "scripts/run_modernization_p03_stage65_mgba.py",
+      "sha256": "f9232d7a2924ee9859b68a4af2369d8f7a0676f47326ed505c6e5fba869a4e71",
+      "size": 17413,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "tools/mgba_modernization_p03_stage65_smoke.c",
+      "sha256": "08971a3ef5b5a8aab48d545fb58de44ac1d9505019d1e057e4fa72f966cc6bdf",
+      "size": 8617,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "tools/mgba_battle_core_smoke.c",
+      "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+      "size": 94532,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE65_MGBA",
+      "path": "tools/mgba_ai_fixture_runner.c",
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "config/modernization_p03_stage66.json",
+      "sha256": "a6f1cdfff3bca980305c3284c3760a95765df65bcf8414e9e683aa9cdba444d1",
+      "size": 7580,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/modernization_p03_stage66.py",
+      "sha256": "108fe651c8549ab9d90c115df136ad1d252b9017f04ed462b512fac63582dcc2",
+      "size": 46977,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/modernization_learnsets.py",
+      "sha256": "3d0eae7a5d1cf81780d1028d78bf6d1b80be7e2b1ba304d23f5558d113bb5ecb",
+      "size": 59117,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/modernization_identity.py",
+      "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9",
+      "size": 41461,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "scripts/run_modernization_p03_stage66_mgba.py",
+      "sha256": "01ebd36396324bb97d41093eae50a4f7b2e2ebfe4112ab40f6f7776c5fa7582f",
+      "size": 18570,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/mgba_modernization_p03_stage66_smoke.c",
+      "sha256": "9afef942a586c132311879c5a9977a69b36197c65c227663559b85f2737ff8a8",
+      "size": 11757,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/mgba_battle_core_smoke.c",
+      "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+      "size": 94532,
+      "status": "PASS"
+    },
+    {
+      "binding": "P03_STAGE66_MGBA",
+      "path": "tools/mgba_ai_fixture_runner.c",
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272,
+      "status": "PASS"
+    },
+    {
+      "binding": "P02_MGBA_CONFIG",
+      "path": "config/modernization_p02_mgba_gate.json",
+      "sha256": "cec97dd45593a35ffac3a2f64ab04275ad77efa66496bfeb0cb0840b53b0dade",
+      "size": 2512,
+      "status": "PASS"
+    },
+    {
+      "binding": "P02_STAGE64_BUILDER_CONFIG",
+      "path": "config/modernization_p02_stage64.json",
+      "sha256": "cf5b6ec25cf3c4502272d385f6a32455d738e0450acd2c8ae373797ed32f0394",
+      "size": 2609,
       "status": "PASS"
     }
   ],
   "release_blockers": [
     "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
-    "P03_STAGE65_SLICE_INTEGRATED_BUT_FULL_LEARNSET_RUNTIME_NOT_COMPLETE",
-    "P04_ASSET_STAGING_INTEGRATED_BUT_ID_ROM_AND_GAPS_NOT_COMPLETE",
+    "P03_STAGE66_BULK_CHECKPOINT_INTEGRATED_BUT_70980_ROUTES_REMAIN",
+    "P04_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_GAPS_NOT_COMPLETE",
     "P05_MOVE_AND_ABILITY_RUNTIME_NOT_COMPLETE",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE65_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE66_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "runtime_execution": {
@@ -660,6 +923,462 @@
   "schema_version": 1,
   "snapshot": {
     "auto_discovery": false,
+    "implementation_input_count": 71,
+    "implementation_input_fingerprint_sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61",
+    "implementation_inputs": [
+      {
+        "path": "config/modernization_p01_runtime.json",
+        "phase": "P01",
+        "sha256": "fee7b466f374881b9f7db3f2279f49eae975a89b0952ee646b1956006ff0bc5d",
+        "size": 2454
+      },
+      {
+        "path": "scripts/audit_modernization_p01_rom.py",
+        "phase": "P01",
+        "sha256": "fdfa06078fcd9d53505afeb6d0ed60596e689078fb2445f5918283e6b7e53ce6",
+        "size": 1999
+      },
+      {
+        "path": "scripts/build_modernization_identity.py",
+        "phase": "P01",
+        "sha256": "cbd83278eb24d0af8f65017949f960a624c48eeacf2bc8e60bc988a68f072646",
+        "size": 2902
+      },
+      {
+        "path": "scripts/build_modernization_p01.py",
+        "phase": "P01",
+        "sha256": "23f1af62548b1fd1fe539eceb49f50ae4ea20bb68738769978e88d33395de507",
+        "size": 21554
+      },
+      {
+        "path": "scripts/run_modernization_p01_mgba.py",
+        "phase": "P01",
+        "sha256": "ed160de7651c409dc31fa63c725154e813a114855329168fd13f7bf9ddfbd54d",
+        "size": 4567
+      },
+      {
+        "path": "tools/modernization_capacity.py",
+        "phase": "P01",
+        "sha256": "20adc251ebce1bb556873dcb4eda0da2534a2a48f4d332a9746449d60b8e77c8",
+        "size": 54667
+      },
+      {
+        "path": "tools/modernization_identity.py",
+        "phase": "P01",
+        "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9",
+        "size": 41461
+      },
+      {
+        "path": "tests/test_modernization_consumer_identity.py",
+        "phase": "P01",
+        "sha256": "365f0d4c221a378a4e8d48f56d98c08aea17885ae2d355851228011acb3faa8f",
+        "size": 10737
+      },
+      {
+        "path": "tests/test_modernization_identity.py",
+        "phase": "P01",
+        "sha256": "c4ea4d97b92bc36b90c22b967ac5fb5731e92cb38c11a5ca118af006fdccaaa3",
+        "size": 8970
+      },
+      {
+        "path": "tests/test_modernization_p01.py",
+        "phase": "P01",
+        "sha256": "4eb0e91231e4eef8751b909e8dc91779b226f8d78a26763dbdad9a38a95dd536",
+        "size": 2426
+      },
+      {
+        "path": "tests/test_modernization_p01_rom.py",
+        "phase": "P01",
+        "sha256": "d568ab3036d98cc4fc6ff405b9ba33c96756406ac597ed04dcd5def1f0537604",
+        "size": 6300
+      },
+      {
+        "path": "scripts/build_modernization_p02.py",
+        "phase": "P02",
+        "sha256": "57491be0b38dac506362e90dc00c91969d21b526eec1dd84157492d1c9df9105",
+        "size": 2783
+      },
+      {
+        "path": "config/modernization_p02_mgba_gate.json",
+        "phase": "P02",
+        "sha256": "cec97dd45593a35ffac3a2f64ab04275ad77efa66496bfeb0cb0840b53b0dade",
+        "size": 2512
+      },
+      {
+        "path": "config/modernization_p02_stage64.json",
+        "phase": "P02",
+        "sha256": "cf5b6ec25cf3c4502272d385f6a32455d738e0450acd2c8ae373797ed32f0394",
+        "size": 2609
+      },
+      {
+        "path": "scripts/build_modernization_p02_stage64.py",
+        "phase": "P02",
+        "sha256": "a076c6a7f741e4c5c84b1fcd9cfc6d882b97cea1f0c59a12c03441b050d1b7ea",
+        "size": 22816
+      },
+      {
+        "path": "scripts/run_modernization_p02_mgba.py",
+        "phase": "P02",
+        "sha256": "08f6cfa8506c3aecf41e8bd5c70ec298fa87288c0e057569bfdc4d0f5e319c03",
+        "size": 23083
+      },
+      {
+        "path": "tools/modernization_evolution.py",
+        "phase": "P02",
+        "sha256": "7c984fd85f04e4fdf8834933b8726637b766587aa503e959ceead3adc6560599",
+        "size": 63458
+      },
+      {
+        "path": "tools/mgba_modernization_p02_evolution_smoke.c",
+        "phase": "P02",
+        "sha256": "93dcf7107e74d9743f9bf901eb3a47ce76772d3483d3918b11f8cb4101802cf1",
+        "size": 5018
+      },
+      {
+        "path": "tests/test_modernization_p02.py",
+        "phase": "P02",
+        "sha256": "ad7da4ccced18ab811cf590d7f8d5b48ecd5ce59157f15cd5a03c770770abd8a",
+        "size": 12360
+      },
+      {
+        "path": "tests/test_modernization_p02_mgba.py",
+        "phase": "P02",
+        "sha256": "c5d2c352738d887d11d06ed67a1785434545db4365ae69e8200f3251b6f017a2",
+        "size": 7222
+      },
+      {
+        "path": "tests/test_modernization_p02_species_surface_policy.py",
+        "phase": "P02",
+        "sha256": "de8e56dbdb7b02edc6ad2611453774d7002c95f5309dc11828e1ffcdb23d74d8",
+        "size": 3599
+      },
+      {
+        "path": "tests/test_modernization_p02_stage64.py",
+        "phase": "P02",
+        "sha256": "0ea301033a80d2d03c75cf37c4a2fcf64afb5c6525a16b00906e833206d172aa",
+        "size": 5871
+      },
+      {
+        "path": "scripts/build_modernization_p03.py",
+        "phase": "P03",
+        "sha256": "21153c59b0824fc72b84ce34da352644970c990be08297c466d99f2a0020bb08",
+        "size": 2709
+      },
+      {
+        "path": "config/modernization_p03_stage65.json",
+        "phase": "P03",
+        "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00",
+        "size": 6733
+      },
+      {
+        "path": "scripts/build_modernization_p03_stage65.py",
+        "phase": "P03",
+        "sha256": "113e364ce6398d1813e49f6ad5776956558a82bdcfef61aab81c4d125b1c6466",
+        "size": 9773
+      },
+      {
+        "path": "scripts/run_modernization_p03_stage65_mgba.py",
+        "phase": "P03",
+        "sha256": "f9232d7a2924ee9859b68a4af2369d8f7a0676f47326ed505c6e5fba869a4e71",
+        "size": 17413
+      },
+      {
+        "path": "tools/modernization_learnsets.py",
+        "phase": "P03",
+        "sha256": "3d0eae7a5d1cf81780d1028d78bf6d1b80be7e2b1ba304d23f5558d113bb5ecb",
+        "size": 59117
+      },
+      {
+        "path": "tools/modernization_p03_stage65.py",
+        "phase": "P03",
+        "sha256": "431486a0c2bec952b0f1c780819bf0632d4d862f3946b34bcbfd38327593edcc",
+        "size": 30494
+      },
+      {
+        "path": "tools/mgba_modernization_p03_stage65_smoke.c",
+        "phase": "P03",
+        "sha256": "08971a3ef5b5a8aab48d545fb58de44ac1d9505019d1e057e4fa72f966cc6bdf",
+        "size": 8617
+      },
+      {
+        "path": "tests/test_modernization_p03.py",
+        "phase": "P03",
+        "sha256": "73439568ffe27b0ac5fa0117e5afd630be220ab97df4f2fd638f3c6bff8513d2",
+        "size": 6876
+      },
+      {
+        "path": "tests/test_modernization_p03_stage65.py",
+        "phase": "P03",
+        "sha256": "e77a9902b6cfbb6d13dc8249baedbcb3618ddba987b4169dcdb2e08174021dc5",
+        "size": 12518
+      },
+      {
+        "path": "scripts/build_modernization_p03_stage66.py",
+        "phase": "P03",
+        "sha256": "c8d7b107ea519f2933667bd1b19536fc1f7e983056a2c9c99ab817cd60ac4e45",
+        "size": 12142
+      },
+      {
+        "path": "scripts/run_modernization_p03_stage66_mgba.py",
+        "phase": "P03",
+        "sha256": "01ebd36396324bb97d41093eae50a4f7b2e2ebfe4112ab40f6f7776c5fa7582f",
+        "size": 18570
+      },
+      {
+        "path": "tools/modernization_p03_stage66.py",
+        "phase": "P03",
+        "sha256": "108fe651c8549ab9d90c115df136ad1d252b9017f04ed462b512fac63582dcc2",
+        "size": 46977
+      },
+      {
+        "path": "tools/mgba_modernization_p03_stage66_smoke.c",
+        "phase": "P03",
+        "sha256": "9afef942a586c132311879c5a9977a69b36197c65c227663559b85f2737ff8a8",
+        "size": 11757
+      },
+      {
+        "path": "tests/test_modernization_p03_stage66.py",
+        "phase": "P03",
+        "sha256": "0120d1256e4221b254aa4415731cf45e9d1e40fd9bfad88f1e0fd6b973cb7d5b",
+        "size": 14458
+      },
+      {
+        "path": "scripts/build_modernization_p04_assets.py",
+        "phase": "P04",
+        "sha256": "55b62d51ed7e0b061381b6cb1cbf36d5b704433cb6445fed00dd00d479355552",
+        "size": 2608
+      },
+      {
+        "path": "scripts/build_modernization_p04_capacity.py",
+        "phase": "P04",
+        "sha256": "f50c5fc548815a6938c75299d7ac0ff9905b246723eb89810b5e042e9d37b24e",
+        "size": 2372
+      },
+      {
+        "path": "scripts/build_modernization_p04_sources.py",
+        "phase": "P04",
+        "sha256": "069fc94b9be78ec9d8550aaeb2bf47efba466e1c021816e7a4a82e60909862c7",
+        "size": 3602
+      },
+      {
+        "path": "scripts/github_private_environment.py",
+        "phase": "P04",
+        "sha256": "b894f70c02f94337eab9268a29cddbaf0be6e14eaf7f3f25a4ab18fbee73fad2",
+        "size": 23278
+      },
+      {
+        "path": "tools/modernization_p04_asset_importer.py",
+        "phase": "P04",
+        "sha256": "70b2b61fb625165e8b90fc2681f88cd11287cc1c6ef0a3b68099e5b1dee0dc9d",
+        "size": 45542
+      },
+      {
+        "path": "tools/modernization_p04_capacity.py",
+        "phase": "P04",
+        "sha256": "58090207fe7a1895bddbad1749b9b0288727dfb0806f5e8b7a5aca16b3de3bfe",
+        "size": 181659
+      },
+      {
+        "path": "tools/modernization_p04_sources.py",
+        "phase": "P04",
+        "sha256": "beb620d2047f717e791d517edf4b013f3aaae619c6fe564da48eaeb1f84525f6",
+        "size": 29612
+      },
+      {
+        "path": "config/github_private_environment.json",
+        "phase": "P04",
+        "sha256": "33ff93eb2a1183ccdc3fea5c08b986271d75e9a8e349627072b36dd4c6abb56a",
+        "size": 5007
+      },
+      {
+        "path": "tests/test_github_private_environment.py",
+        "phase": "P04",
+        "sha256": "68ea12908af2e8f6ca6201f629c39d7c1c3d6fcbce7a87b31d098b9348a56b43",
+        "size": 12897
+      },
+      {
+        "path": "tests/test_modernization_p04_asset_importer.py",
+        "phase": "P04",
+        "sha256": "d345f704044ab508e64cbb75be95fca6aa90d515d1d5eede70f5d254773c0869",
+        "size": 14327
+      },
+      {
+        "path": "tests/test_modernization_p04_capacity.py",
+        "phase": "P04",
+        "sha256": "052a6f2f7ff1df2794382644de770b56bf481bda25f68daf4ee71717388298f9",
+        "size": 12855
+      },
+      {
+        "path": "tests/test_modernization_p04_sources.py",
+        "phase": "P04",
+        "sha256": "acaaddb1e7928e7608633ce1ebd31180210b7c80d8c5cfd619d58d60b0b6d5a8",
+        "size": 7766
+      },
+      {
+        "path": "scripts/build_modernization_p05.py",
+        "phase": "P05",
+        "sha256": "8a88b4159f17872435b0c7391afa290b1223f38fa84861395ffe993011af99eb",
+        "size": 3567
+      },
+      {
+        "path": "tools/modernization_p05_contract.py",
+        "phase": "P05",
+        "sha256": "dbe767342d7db3381e855074012c4861ac23cb05ddbb2511502815e4e97ff80b",
+        "size": 51222
+      },
+      {
+        "path": "tests/test_modernization_p05.py",
+        "phase": "P05",
+        "sha256": "019f66719b72e13c78e4c9a3f9cc616a4778718d733edb51c8148b5ca8dec2cc",
+        "size": 12858
+      },
+      {
+        "path": "scripts/build_modernization_p06.py",
+        "phase": "P06",
+        "sha256": "bd08be510115d2715217ab51b83ae253d6cabe06b3641b507514c84dc58108b5",
+        "size": 2163
+      },
+      {
+        "path": "tools/modernization_p06_species.py",
+        "phase": "P06",
+        "sha256": "dd75f9a78356f91f468aad872f1ce5f46bb945ebdd3a694291ac4f08a19ed1f2",
+        "size": 23899
+      },
+      {
+        "path": "tests/test_modernization_p06.py",
+        "phase": "P06",
+        "sha256": "e321dec71f6691b750b55b88087a8a04a44a978ef7b77cd313277aa226a78f41",
+        "size": 5956
+      },
+      {
+        "path": "scripts/build_modernization_p07.py",
+        "phase": "P07",
+        "sha256": "fd01015196b3cae27007079a7eb2f1a28126ca6088e7db17a96053503396687d",
+        "size": 3104
+      },
+      {
+        "path": "tools/modernization_p07_learnsets.py",
+        "phase": "P07",
+        "sha256": "54d51dca33cd3b1c995626cddbd7037dcc50832544ccc866cdad74b22262ec34",
+        "size": 40268
+      },
+      {
+        "path": "tests/test_modernization_p07.py",
+        "phase": "P07",
+        "sha256": "116ec7aab5de6480afc3a9ddbb1c2b6afd6c4c9765b3ce270e0f41bac173925f",
+        "size": 13681
+      },
+      {
+        "path": "scripts/build_modernization_p08.py",
+        "phase": "P08",
+        "sha256": "bf57c2840726e3a239bd76ff9b567d8a912cd5861b48b467d807601a80aa591f",
+        "size": 2921
+      },
+      {
+        "path": "scripts/run_github_private_suite.py",
+        "phase": "P08",
+        "sha256": "83e1cb1996a297839719743e97036f9311fe30444769a9b8099cdb6e13ec1a4a",
+        "size": 12630
+      },
+      {
+        "path": "tools/modernization_p08_integration.py",
+        "phase": "P08",
+        "sha256": "28078c817e6036c95a9d4d7a2bfde539b4562f40431e0e848cad88464b2c90a3",
+        "size": 99161
+      },
+      {
+        "path": "tests/test_modernization_p08.py",
+        "phase": "P08",
+        "sha256": "274b4afaf009ece357a096461ccdbac5b9fb1f3ff171d30ec585216b1116489b",
+        "size": 18683
+      },
+      {
+        "path": "tests/test_run_github_private_suite.py",
+        "phase": "P08",
+        "sha256": "7a588cf737d4f445060bb184beed4d81078feb515824b68fcd06e69e3f2760dc",
+        "size": 13514
+      },
+      {
+        "path": "scripts/build_trainer_v5_stage32.py",
+        "phase": "SHARED",
+        "sha256": "1e51f0b33a9e19680b6e6523dbaf1c0adcc1245c673d43baf8764932de93bc23",
+        "size": 65989
+      },
+      {
+        "path": "tools/rom_allocator.py",
+        "phase": "SHARED",
+        "sha256": "65b26fe7339c8be19fe9c13973157cb90157ab4a28838afb93d43d2c5e6668e8",
+        "size": 22314
+      },
+      {
+        "path": "tools/release/__init__.py",
+        "phase": "SHARED",
+        "sha256": "93ada871fd6e282d2d36cb47040167dfa287e4d3465424f2d8fbb0644102b36f",
+        "size": 137
+      },
+      {
+        "path": "tools/release/bps.py",
+        "phase": "SHARED",
+        "sha256": "49818ca722499ce508a9caa3578ef42081c53235d92ecdcd0d6df05b8604c054",
+        "size": 8606
+      },
+      {
+        "path": "Makefile",
+        "phase": "CI",
+        "sha256": "c8e88ce7eecd9b130e1d9dbc5dc90ad88a73cf7979bee99b9cccb0325b97ec71",
+        "size": 24290
+      },
+      {
+        "path": ".github/workflows/private-runtime.yml",
+        "phase": "CI",
+        "sha256": "a20229acfbeec6f8b99bd6a55c539202e615999c5e7ef912a9590f073a333909",
+        "size": 2196
+      },
+      {
+        "path": ".github/workflows/chatgpt-comment-control.yml",
+        "phase": "CI",
+        "sha256": "a40c3e4a59078a983a71326e8d88a5dadfb97cb9c5ff877053661b6a51de57e6",
+        "size": 24948
+      },
+      {
+        "path": "infra/setup_github_actions.sh",
+        "phase": "CI",
+        "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+        "size": 2571
+      },
+      {
+        "path": "infra/toolchain_manifest.json",
+        "phase": "CI",
+        "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+        "size": 33230
+      }
+    ],
+    "integration_fingerprint": {
+      "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
+      "components": {
+        "candidate_artifacts": {
+          "count": 20,
+          "sha256": "fe6c810ea21c96f7c1bb59350236a08f7b62ad55fabc9a1ee901579673353506"
+        },
+        "implementation_inputs": {
+          "count": 71,
+          "sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61"
+        },
+        "phase_projection": {
+          "count": 8,
+          "sha256": "980119583df831001d526ce833b5e759007b9e560b0fd50454aad92e1234e4ae"
+        },
+        "referenced_source_bindings": {
+          "count": 27,
+          "sha256": "4c1f5ecd5f5102f1d36fcfe8413b6ab6da8519d362f8f0f9a4c542425ec60403"
+        },
+        "tracked_inputs": {
+          "count": 31,
+          "sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44"
+        }
+      },
+      "sha256": "c5ee0e1f58183de9877f4a638b954fbf3ee7f6519ca9248c86c70fea6a1118c1"
+    },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {
       "P03_STAGE65": {
@@ -676,6 +1395,22 @@
         "included": true,
         "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE"
       },
+      "P03_STAGE66": {
+        "expected_paths": [
+          "config/modernization_p03_stage66.json",
+          "content/modernization/p03_stage66_bulk_route_audit.json",
+          "content/modernization/p03_stage66_change_audit.json",
+          "content/modernization/p03_stage66_checkpoint.json",
+          "content/modernization/p03_stage66_mgba_runtime_gate.json",
+          "scripts/build_modernization_p03_stage66.py",
+          "scripts/run_modernization_p03_stage66_mgba.py",
+          "tests/test_modernization_p03_stage66.py",
+          "tools/mgba_modernization_p03_stage66_smoke.c",
+          "tools/modernization_p03_stage66.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE"
+      },
       "P04_ASSET_IMPORTER": {
         "expected_paths": [
           "content/modernization/p04_asset_import_manifest.json",
@@ -685,12 +1420,22 @@
         ],
         "included": true,
         "status": "INTEGRATED_STAGING_ONLY_NOT_ROM_READY"
+      },
+      "P04_CAPACITY_RESERVATION": {
+        "expected_paths": [
+          "content/modernization/p04_capacity_allocation_manifest.json",
+          "scripts/build_modernization_p04_capacity.py",
+          "tests/test_modernization_p04_capacity.py",
+          "tools/modernization_p04_capacity.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"
       }
     },
-    "rule": "後発成果は存在だけで採用せず、固定list/hashを明示更新して再監査する",
+    "rule": "後発成果は存在だけで採用せず、固定path listと生成済みsnapshot hashを明示更新して再監査する",
     "selection_base_head": "52b21d0b4ee1b6b889cd3da56ff5cd3b783fc67c",
-    "tracked_input_count": 25,
-    "tracked_input_fingerprint_sha256": "f2507c4436770cc4bf507987aea753ddaf7cc26796e33007c752206d6f69695c",
+    "tracked_input_count": 31,
+    "tracked_input_fingerprint_sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44",
     "tracked_inputs": [
       {
         "path": "config/active_play_baseline.json",
@@ -713,8 +1458,8 @@
       {
         "path": "config/modernization_candidate.json",
         "phase": "CANDIDATE_CHAIN",
-        "sha256": "9ef88986ad8fe22be38161ac6539c2ba1ae9930cd1677bcd664262ef3b379063",
-        "size": 5404
+        "sha256": "b168fcd7b40b26098f1fcc48c093157de0f91d8e1d53773aca50ac930ffa69e1",
+        "size": 6145
       },
       {
         "path": "content/modernization/identity_contract.json",
@@ -731,14 +1476,14 @@
       {
         "path": "content/modernization/p02_stage64_checkpoint.json",
         "phase": "P02",
-        "sha256": "1722f9d2260a467c093ca28cdd4db1dfe35ff82f6b4fb687276cf2ed054e1204",
+        "sha256": "36730cfc31c4beebe74137db29dae28c931e927ae2436192b8bdd5a9a71c2276",
         "size": 5462
       },
       {
         "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
         "phase": "P02",
-        "sha256": "6fe34cd1101705cd0a3bd678223ad044d129f38906981760ec878528048d09e6",
-        "size": 4665
+        "sha256": "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea",
+        "size": 5206
       },
       {
         "path": "content/modernization/p03_compiled_index.json",
@@ -761,26 +1506,56 @@
       {
         "path": "config/modernization_p03_stage65.json",
         "phase": "P03",
-        "sha256": "afc5598feb4123c1cd6560bf0259a0ba1cc9b92b385c893e5bd5c588e0eb43c8",
+        "sha256": "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00",
         "size": 6733
       },
       {
         "path": "content/modernization/p03_stage65_checkpoint.json",
         "phase": "P03",
-        "sha256": "5417b01cd16e4de2ade465e51b2ab00b5879c5c10c1e947779d1bc6c0cabd4eb",
+        "sha256": "3956ebc238c0acc9e715e87a8587051221a824d31a81bd24ba4dea4e04c7823d",
         "size": 9522
       },
       {
         "path": "content/modernization/p03_stage65_mgba_runtime_gate.json",
         "phase": "P03",
-        "sha256": "d69ebe7be3f22be5ce30ce21764b76678aec31495082d8c4916c8f18c9a94fa3",
+        "sha256": "d2acc9d2051e3043bbcd59666dc96f0dfd333771272a7d8201aaa2827a022816",
         "size": 6744
+      },
+      {
+        "path": "config/modernization_p03_stage66.json",
+        "phase": "P03",
+        "sha256": "a6f1cdfff3bca980305c3284c3760a95765df65bcf8414e9e683aa9cdba444d1",
+        "size": 7580
+      },
+      {
+        "path": "content/modernization/p03_stage66_bulk_route_audit.json",
+        "phase": "P03",
+        "sha256": "fbd211961c03bbd7df02247c4251edd94685f2a89084134ad90bee35a38e7df6",
+        "size": 15348
+      },
+      {
+        "path": "content/modernization/p03_stage66_change_audit.json",
+        "phase": "P03",
+        "sha256": "9a02a00b14b63a7677ebcbc85204cb0bb521fdd78ac84d319cb66137e45b2d5e",
+        "size": 317023
+      },
+      {
+        "path": "content/modernization/p03_stage66_checkpoint.json",
+        "phase": "P03",
+        "sha256": "c542f388479a18d10eae5adc7fce267a0654c857f1d65816be43b2bf2ae452d4",
+        "size": 8156
+      },
+      {
+        "path": "content/modernization/p03_stage66_mgba_runtime_gate.json",
+        "phase": "P03",
+        "sha256": "9201a22bfb341c997867c76050e9383c135823cfecb6488bb7d112ad6b1da13a",
+        "size": 10456
       },
       {
         "path": "content/modernization/p04_asset_sources.json",
         "phase": "P04",
-        "sha256": "cc1717b2dbabdbdb60382318c426d9d5433dddf66aabb7f044e126992df7be32",
-        "size": 6754
+        "sha256": "133c6b8dd56dc0afdb80acbb943c2e5b3ed1b72247bcc07350c78933e93e0636",
+        "size": 6748
       },
       {
         "path": "content/modernization/p04_candidate_manifest.json",
@@ -797,14 +1572,20 @@
       {
         "path": "content/modernization/p04_asset_import_manifest.json",
         "phase": "P04",
-        "sha256": "96bb7610bf5c105ff2a9413a7b0ec1741d0a501d61d85b4541ee8664ec58f2ca",
-        "size": 500939
+        "sha256": "107f6830b0faf4c3372a872c2f91f6945145ad7503f17f64c4dd1d17c5168235",
+        "size": 498441
+      },
+      {
+        "path": "content/modernization/p04_capacity_allocation_manifest.json",
+        "phase": "P04",
+        "sha256": "6b8e13bc22bff1e76371aca7bc814d754da56dadad10153ec0e007522e710752",
+        "size": 451027
       },
       {
         "path": "content/modernization/p05_battle_content_contract.json",
         "phase": "P05",
-        "sha256": "fccc56f3d812473b8b90b3bfe82b181c263030477219a5b49f55ba305b4a35ca",
-        "size": 78145
+        "sha256": "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3",
+        "size": 78163
       },
       {
         "path": "content/modernization/p05_data_only_patch_plan.json",
@@ -833,7 +1614,7 @@
       {
         "path": "content/modernization/p07_layered_learnset_contract.json",
         "phase": "P07",
-        "sha256": "497c3b80f05fcfd36757edc3b3171accff67e257e20b98ecfd8736b96776a1aa",
+        "sha256": "bc5e5a87b1cd01b4ae4f003b6df789fdebff8868b0fc4bfcbc1219292fedac20",
         "size": 16172
       },
       {
@@ -890,11 +1671,18 @@
       "test_evidence": "tests/test_modernization_p03.py"
     },
     {
-      "implementation_evidence": "Stage65 Caterpie 4-route ROM checkpoint",
+      "implementation_evidence": "Stage65 Caterpie 4-route ancestor checkpoint",
       "phase": "P03",
       "requirement_key": "P03_STAGE65_SLICE",
-      "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE",
+      "status": "PRESERVED_ANCESTOR_CHECKPOINT",
       "test_evidence": "tests/test_modernization_p03_stage65.py"
+    },
+    {
+      "implementation_evidence": "Stage66 47,548-route bulk ROM checkpoint",
+      "phase": "P03",
+      "requirement_key": "P03_STAGE66_BULK",
+      "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE",
+      "test_evidence": "tests/test_modernization_p03_stage66.py"
     },
     {
       "implementation_evidence": "54-record candidate manifest",
@@ -909,6 +1697,13 @@
       "requirement_key": "P04_ASSET_IMPORT",
       "status": "INTEGRATED_STAGING_ONLY_NOT_ROM_READY",
       "test_evidence": "tests/test_modernization_p04_asset_importer.py"
+    },
+    {
+      "implementation_evidence": "52/45/6/1 append reservation + 39-table capacity audit",
+      "phase": "P04",
+      "requirement_key": "P04_CAPACITY_RESERVATION",
+      "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY",
+      "test_evidence": "tests/test_modernization_p04_capacity.py"
     },
     {
       "implementation_evidence": "battle content contract",

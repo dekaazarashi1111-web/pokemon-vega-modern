@@ -69,8 +69,8 @@
     "sources": [
       {
         "path": "scripts/run_modernization_p02_mgba.py",
-        "sha256": "64b41ff621eb6b95555a02bff17c4fa5442dab39e52f8cf0517feb8075821e2e",
-        "size": 17758
+        "sha256": "08f6cfa8506c3aecf41e8bd5c70ec298fa87288c0e057569bfdc4d0f5e319c03",
+        "size": 23083
       },
       {
         "path": "tools/mgba_modernization_p02_evolution_smoke.c",
@@ -107,8 +107,24 @@
         1092,
         2
       ],
+      "resolution": "GENERATED_IN_MEMORY_FROM_STAGE63",
       "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
       "size": 33554432
+    },
+    "stage64_generation": {
+      "builder_config": {
+        "path": "config/modernization_p02_stage64.json",
+        "sha256": "cf5b6ec25cf3c4502272d385f6a32455d738e0450acd2c8ae373797ed32f0394",
+        "size": 2609
+      },
+      "changed_rom_offsets": [
+        33087930,
+        33087931
+      ],
+      "disk_stage64_required": false,
+      "entry_rom_offset": 33087928,
+      "method": "IN_MEMORY_FROM_STAGE63_EXACT_TWO_BYTE_PATCH",
+      "parameter_rom_offset": 33087930
     }
   },
   "runtime_result": {

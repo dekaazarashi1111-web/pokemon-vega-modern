@@ -17,7 +17,9 @@ on:
           - modernization-p02
           - modernization-contracts
           - modernization-p04-assets
+          - modernization-p04-capacity
           - modernization-p03-stage65
+          - modernization-p03-stage66
           - full-unit
           - all
 
@@ -34,6 +36,16 @@ jobs:
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
+      - name: Repositoryがprivateであることを検証
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.private')
+          test "$private" = true || {
+            echo 'ERROR: private Release資材はprivate repositoryでのみ利用できます' >&2
+            exit 1
+          }
       - name: 固定toolchainを導入
         run: bash infra/setup_github_actions.sh --install
       - name: Private Release資材を取得

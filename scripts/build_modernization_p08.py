@@ -62,7 +62,10 @@ def main(argv: list[str] | None = None) -> int:
                 "P08_CHECK=PASS STATUS=CHECKPOINT_NOT_RELEASE_CANDIDATE "
                 f"INPUTS={matrix['snapshot']['tracked_input_count']} "
                 f"COMPLETED={matrix['integration_summary']['completed_phase_count']} "
-                "ACTIVE_STAGE=62 CANDIDATE_STAGE=65 RELEASE_READY=false"
+                "ACTIVE_STAGE=62 "
+                "CANDIDATE_STAGE="
+                f"{matrix['integration_summary']['highest_pinned_candidate_stage']} "
+                "RELEASE_READY=false"
             )
             return 0
 

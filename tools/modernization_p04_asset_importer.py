@@ -643,14 +643,17 @@ def build_p04_asset_import(root: Path, *, source_root: Path | None = None) -> P0
         source_set_hash == source_checkout_audit["asset_set_sha256"],
         f"既存P04 source auditと素材集合hashが一致しません: {source_set_hash}",
     )
-    _require(len(source_files) == 330, f"source固有file件数不一致: {len(source_files)}")
+    # Tatsugiriの3種のMegaフォームは上流でも共通normal/shiny paletteを参照する。
+    # front/back/iconはフォーム別だが、2 palette x 残り2フォームの重複を除くため
+    # source上の固有file数は330ではなく326になる。
+    _require(len(source_files) == 326, f"source固有file件数不一致: {len(source_files)}")
     _require(len(payload) == 670, f"出力file件数不一致: {len(payload)}")
-    _require(len(palette_coverage_issues) == 4, f"既知palette coverage issue件数不一致: {len(palette_coverage_issues)}")
+    _require(not palette_coverage_issues, f"palette coverage issueが残っています: {len(palette_coverage_issues)}")
     ready_species = sum(
         item["gba_consumer_measurement"]["status"] == "READY_FOR_GBA_TILE_AND_PALETTE_STAGING"
         for item in species_assets
     )
-    _require(ready_species == 47, f"GBA consumer-ready Mega件数不一致: {ready_species}")
+    _require(ready_species == 49, f"GBA consumer-ready Mega件数不一致: {ready_species}")
 
     _assert_checkout_state(checkout, expected_commit)
     manifest: dict[str, Any] = {
@@ -850,11 +853,79 @@ def _report(build: P04AssetBuild, *, mode: str, output_state: str, manifest_stat
         "manifest_sha256": _sha256_bytes(manifest_bytes),
         "license_status": build.manifest["rights"]["source_contract_license_status"],
         "staging_scope": build.manifest["rights"]["staging_scope"],
+        "output_logical_root": build.manifest["output"]["logical_root"],
+        "output_git_ignore_verified": True,
         "output_state": output_state,
         "manifest_state": manifest_state,
         "rom_modified": False,
         "id_assignments_created": False,
     }
+
+
+def _resolve_fixed_workspace_path(
+    root: Path,
+    requested: Path | None,
+    relative: str,
+    *,
+    label: str,
+) -> Path:
+    """固定workspace pathだけを許可し、途中のsymlinkによるroot外逸脱を拒否する。"""
+
+    root = root.resolve()
+    expected = root.joinpath(*PurePosixPath(relative).parts)
+    candidate = requested if requested is not None else expected
+    if not candidate.is_absolute():
+        candidate = root / candidate
+    actual = Path(os.path.abspath(candidate))
+    _require(
+        actual == expected,
+        f"{label}は固定pathのみ許可します: "
+        f"expected={expected} actual={actual}",
+    )
+    current = root
+    for component in PurePosixPath(relative).parts:
+        current = current / component
+        _require(not current.is_symlink(), f"{label}のpathにsymlinkがあります: {current}")
+    return expected
+
+
+def _resolve_private_output_root(root: Path, requested: Path | None) -> Path:
+    """manifestが宣言するGit外private root以外への書込・監査を拒否する。"""
+
+    root = root.resolve()
+    actual = _resolve_fixed_workspace_path(
+        root,
+        requested,
+        DEFAULT_OUTPUT_RELATIVE,
+        label="素材出力root",
+    )
+    try:
+        ignored = subprocess.run(
+            ["git", "check-ignore", "--quiet", "--", DEFAULT_OUTPUT_RELATIVE],
+            cwd=root,
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+    except OSError as exc:
+        raise P04AssetImportError(f"Git ignore状態を確認できません: {exc}") from exc
+    _require(
+        ignored.returncode == 0,
+        f"素材出力rootがGit ignore対象ではありません: {DEFAULT_OUTPUT_RELATIVE}",
+    )
+    return actual
+
+
+def _resolve_manifest_path(root: Path, requested: Path | None) -> Path:
+    """tracked manifestを固定path以外へ書き出さない。"""
+
+    return _resolve_fixed_workspace_path(
+        root,
+        requested,
+        DEFAULT_MANIFEST_RELATIVE,
+        label="asset import manifest",
+    )
 
 
 def generate_p04_asset_import(
@@ -866,8 +937,8 @@ def generate_p04_asset_import(
 ) -> dict[str, Any]:
     """私用出力とtracked manifestを明示的に生成する。"""
     root = root.resolve()
-    output_root = output_root or root / DEFAULT_OUTPUT_RELATIVE
-    manifest_path = manifest_path or root / DEFAULT_MANIFEST_RELATIVE
+    output_root = _resolve_private_output_root(root, output_root)
+    manifest_path = _resolve_manifest_path(root, manifest_path)
     build = build_p04_asset_import(root, source_root=source_root)
     output_state = install_asset_payload(output_root, build.payload)
     manifest_state = write_manifest(manifest_path, build.manifest)
@@ -883,8 +954,8 @@ def audit_p04_asset_import(
 ) -> dict[str, Any]:
     """source・manifest・私用出力を一切更新せず再計算して照合する。"""
     root = root.resolve()
-    output_root = output_root or root / DEFAULT_OUTPUT_RELATIVE
-    manifest_path = manifest_path or root / DEFAULT_MANIFEST_RELATIVE
+    output_root = _resolve_private_output_root(root, output_root)
+    manifest_path = _resolve_manifest_path(root, manifest_path)
     build = build_p04_asset_import(root, source_root=source_root)
     actual_manifest = _load_json_object(manifest_path)
     _require(actual_manifest == build.manifest, f"asset import manifestが再計算結果と一致しません: {manifest_path}")

@@ -302,3 +302,16 @@
   ROM実装の完了状態を変更しない。
 - 影響: Stage55をDONEへ確定し、Stage56および今後のtask／release仕様からiPad承認依存を除く。
   過去の実機証跡は履歴として保持し、再解釈や削除をしない。
+
+## 2026-09-08 — D-029: 私有開発資材を持つGitHub repositoryをPrivate固定する
+
+- 発見: `private-environment-v1` Releaseの名称だけをprivateと解釈していたが、GitHub APIで
+  repository自体がPublic、Releaseが非draft公開状態であることを確認した。assetにはROM／save／
+  受領原本を含むため、repository可視性を実際の公開境界として扱う必要がある。
+- 決定: ユーザーの明示指示により`dekaazarashi1111-web/pokemon-vega-modern`全体をPrivateへ変更し、
+  APIの`private=true`／`visibility=private`を読み戻した。既存Release 5 assetは削除せず保持する。
+- 再発防止: private Releaseを取得するGitHub-hosted workflowは、downloadより前にGitHub APIの
+  `.private == true`を必須確認し、Publicなら資材を取得せずfail closedする。名称、tag、過去状態だけを
+  非公開性の根拠にしない。
+- 運用: 通常の開発・重い検証はローカルを優先し、必要なcheckpointだけを後からGitHubへ反映する。
+  P04のroot license不在素材はPrivate化後も再配布可能とは扱わず、Releaseへ追加しない。

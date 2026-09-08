@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import copy
 import json
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -18,6 +20,9 @@ from scripts.build_modernization_p05 import render_outputs  # noqa: E402
 from tools.modernization_p05_contract import (  # noqa: E402
     ModernizationP05Error,
     P04_ALLOWED_NEW_ABILITY_KEYS,
+    P03_RUNTIME_PATH,
+    _load_p03_runtime,
+    _verify_technical_checkout,
     build_p05_contract,
     validate_p05_contract,
 )
@@ -140,6 +145,79 @@ class ModernizationP05ContractTests(unittest.TestCase):
         self.assertEqual(
             self.contract["inputs"]["ability_technical_source"]["commit"],
             "cafe0221cefb2a991cc0ece429174ade877d037d",
+        )
+        self.assertTrue(
+            self.contract["inputs"]["ability_technical_source"][
+                "checkout_clean_observed"
+            ]
+        )
+
+    def test_technical_checkout_rejects_dirty_worktree(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary)
+            subprocess.run(["git", "init", "-q"], cwd=source, check=True)
+            subprocess.run(
+                ["git", "config", "user.email", "fixture@example.invalid"],
+                cwd=source,
+                check=True,
+            )
+            subprocess.run(
+                ["git", "config", "user.name", "fixture"], cwd=source, check=True,
+            )
+            subprocess.run(
+                ["git", "remote", "add", "origin", "https://example.invalid/source.git"],
+                cwd=source,
+                check=True,
+            )
+            tracked = source / "tracked.txt"
+            tracked.write_text("fixed\n", encoding="utf-8")
+            subprocess.run(["git", "add", "tracked.txt"], cwd=source, check=True)
+            subprocess.run(["git", "commit", "-qm", "fixture"], cwd=source, check=True)
+            commit = subprocess.run(
+                ["git", "rev-parse", "HEAD"], cwd=source, check=True,
+                stdout=subprocess.PIPE, text=True,
+            ).stdout.strip()
+            identity = _verify_technical_checkout(
+                source,
+                expected_commit=commit,
+                expected_repository="https://example.invalid/source",
+            )
+            self.assertTrue(identity["checkout_clean_observed"])
+            (source / "untracked.txt").write_text("dirty\n", encoding="utf-8")
+            with self.assertRaisesRegex(ModernizationP05Error, "dirty"):
+                _verify_technical_checkout(
+                    source,
+                    expected_commit=commit,
+                    expected_repository="https://example.invalid/source",
+                )
+
+    def test_p03_runtime_requires_current_regular_worktree_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            with self.assertRaisesRegex(ModernizationP05Error, "現行P03 runtime契約"):
+                _load_p03_runtime(Path(temporary))
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            handoff = root / "content/modernization/p03_runtime_handoff.json"
+            handoff.parent.mkdir(parents=True)
+            handoff.write_text("{}\n", encoding="utf-8")
+            with self.assertRaisesRegex(
+                ModernizationP05Error, "Git tracked worktree file"
+            ):
+                _load_p03_runtime(root)
+            subprocess.run(
+                ["git", "add", "content/modernization/p03_runtime_handoff.json"],
+                cwd=root,
+                check=True,
+            )
+            loaded, identity = _load_p03_runtime(root)
+            self.assertEqual({}, loaded)
+            self.assertEqual(P03_RUNTIME_PATH, identity["path"])
+
+        self.assertEqual(
+            self.contract["inputs"]["p03_runtime"]["resolution"],
+            "CURRENT_TRACKED_WORKTREE_REQUIRED_NO_HISTORICAL_FALLBACK",
         )
 
     def test_existing_evolution_trigger_moves_are_not_redefined(self) -> None:

@@ -23,6 +23,8 @@ from tools.modernization_p04_asset_importer import (
     _canonical_json_bytes,
     _encode_gba_4bpp,
     _parse_indexed_png,
+    _resolve_manifest_path,
+    _resolve_private_output_root,
     _validate_relative_path,
     audit_p04_asset_import,
     build_p04_asset_import,
@@ -55,16 +57,16 @@ class ModernizationP04AssetImporterTest(unittest.TestCase):
 
     def test_counts_source_hash_and_output_hash_are_fixed(self) -> None:
         manifest = self.build.manifest
-        self.assertEqual(330, manifest["source"]["source_unique_file_count"])
+        self.assertEqual(326, manifest["source"]["source_unique_file_count"])
         self.assertEqual(335, manifest["source"]["source_reference_count"])
         self.assertEqual(
-            "8c1f9d4b58fd175be9f4160b55e0934dbaef664ed3c1e722e725b3ef4c7dc5d5",
+            "d42d9d6570caf34c3dfeb39b1d524ed7ac53176aa7cf4ececb9157f139dd00f6",
             manifest["source"]["source_asset_set_sha256"],
         )
         self.assertEqual(670, manifest["output"]["payload_file_count"])
-        self.assertEqual(426490, manifest["output"]["payload_total_size"])
+        self.assertEqual(426648, manifest["output"]["payload_total_size"])
         self.assertEqual(
-            "ffd5e1f9c04646299af566f450f02f11e4b894e1c121dfb944637a56e24bef86",
+            "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
             manifest["output"]["asset_set_sha256"],
         )
         self.assertEqual(335, manifest["output"]["source_mirror_file_count"])
@@ -89,25 +91,39 @@ class ModernizationP04AssetImporterTest(unittest.TestCase):
         self.assertEqual(288, stone["png_asset"]["gba_conversion"]["size"])
         self.assertEqual(32, stone["palette_asset"]["gba_conversion"]["size"])
 
-    def test_contract_palette_gaps_are_measured_without_fake_colors(self) -> None:
+    def test_all_mega_palettes_are_consumer_ready_without_fake_colors(self) -> None:
         manifest = self.build.manifest
-        self.assertEqual({"ready": 47, "required": 49}, manifest["coverage"]["gba_full_species_palette_compatibility"])
+        self.assertEqual({"ready": 49, "required": 49}, manifest["coverage"]["gba_full_species_palette_compatibility"])
         issues = manifest["palette_coverage_issues"]
-        self.assertEqual(4, len(issues))
-        self.assertEqual(
-            {"P04_MEGA_TATSUGIRI_DROOPY", "P04_MEGA_TATSUGIRI_STRETCHY"},
-            {item["record_key"] for item in issues},
-        )
-        self.assertTrue(all(item["required_entries_from_front_back_indices"] == 16 for item in issues))
-        self.assertTrue(all(item["fake_or_inferred_colors_added"] is False for item in issues))
+        self.assertEqual([], issues)
         self.assertEqual("NONE", manifest["output"]["normalization"]["palette_padding_or_inferred_colors"])
         readiness = {
             item["record_key"]: item["gba_consumer_measurement"]["consumer_ready"]
             for item in manifest["species_assets"]
         }
-        self.assertFalse(readiness["P04_MEGA_TATSUGIRI_DROOPY"])
-        self.assertFalse(readiness["P04_MEGA_TATSUGIRI_STRETCHY"])
+        self.assertTrue(readiness["P04_MEGA_TATSUGIRI_DROOPY"])
+        self.assertTrue(readiness["P04_MEGA_TATSUGIRI_STRETCHY"])
         self.assertTrue(readiness["P04_MEGA_TATSUGIRI_CURLY"])
+        tatsugiri = [
+            item for item in manifest["species_assets"]
+            if item["record_key"].startswith("P04_MEGA_TATSUGIRI_")
+        ]
+        self.assertEqual(3, len(tatsugiri))
+        self.assertEqual(
+            {
+                (
+                    "graphics/pokemon/tatsugiri/mega/normal.pal",
+                    "1b16577853e69ac12363fe18e9e856ce4821f76a67d0e63b6a8d4ac85bf5965f",
+                ),
+            },
+            {
+                (
+                    next(asset for asset in item["palette_assets"] if asset["role"] == "NORMAL_PALETTE")["source"]["relative_path"],
+                    next(asset for asset in item["palette_assets"] if asset["role"] == "NORMAL_PALETTE")["source"]["sha256"],
+                )
+                for item in tatsugiri
+            },
+        )
 
     def test_winds_waves_assets_remain_explicitly_missing(self) -> None:
         missing = self.build.manifest["missing_assets"]
@@ -191,6 +207,8 @@ class ModernizationP04AssetImporterTest(unittest.TestCase):
         report = json.loads(completed.stdout)
         self.assertEqual("PASS", report["status"])
         self.assertEqual("CHECK", report["mode"])
+        self.assertEqual(DEFAULT_OUTPUT_RELATIVE, report["output_logical_root"])
+        self.assertTrue(report["output_git_ignore_verified"])
         after = {path: (path.stat().st_size, path.stat().st_mtime_ns) for path in observed}
         self.assertEqual(before, after)
 
@@ -200,6 +218,67 @@ class ModernizationP04AssetImporterTest(unittest.TestCase):
         self.assertEqual("VERIFIED_EXACT", report["output_state"])
         tracked = json.loads((ROOT / DEFAULT_MANIFEST_RELATIVE).read_text(encoding="utf-8"))
         self.assertEqual(self.build.manifest, tracked)
+
+
+class ModernizationP04AssetImporterPureSafetyTest(unittest.TestCase):
+    """外部checkoutが無くても必ず走るfail-closed test。"""
+
+    def test_path_traversal_is_rejected_without_external_checkout(self) -> None:
+        for value in ("../escape.png", "/absolute.png", "a//b.png", "a\\b.png"):
+            with self.subTest(value=value), self.assertRaises(P04AssetImportError):
+                _validate_relative_path(value, context="pure safety test")
+
+    def test_output_override_cannot_claim_the_fixed_ignored_root(self) -> None:
+        self.assertEqual(
+            (ROOT / DEFAULT_OUTPUT_RELATIVE).resolve(),
+            _resolve_private_output_root(ROOT, None),
+        )
+        with self.assertRaisesRegex(P04AssetImportError, "固定path"):
+            _resolve_private_output_root(ROOT, ROOT / "content/modernization/assets")
+
+    def test_output_symlink_escape_and_manifest_override_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            temporary_root = Path(temporary) / "workspace"
+            external = Path(temporary) / "external"
+            temporary_root.mkdir()
+            external.mkdir()
+            (temporary_root / "userfile").symlink_to(external, target_is_directory=True)
+            with self.assertRaisesRegex(P04AssetImportError, "symlink"):
+                _resolve_private_output_root(temporary_root, None)
+
+        self.assertEqual(
+            ROOT / DEFAULT_MANIFEST_RELATIVE,
+            _resolve_manifest_path(ROOT, None),
+        )
+        with self.assertRaisesRegex(P04AssetImportError, "固定path"):
+            _resolve_manifest_path(ROOT, ROOT / "userfile/untracked-manifest.json")
+
+    def test_dirty_checkout_guard_runs_without_real_upstream_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            checkout = Path(temporary) / "source"
+            checkout.mkdir()
+            subprocess.run(["git", "init", "-q", str(checkout)], check=True)
+            tracked = checkout / "tracked.txt"
+            tracked.write_text("clean\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(checkout), "add", "tracked.txt"], check=True)
+            subprocess.run(
+                [
+                    "git", "-C", str(checkout),
+                    "-c", "user.name=P04 Test", "-c", "user.email=p04@example.invalid",
+                    "commit", "-q", "-m", "fixture",
+                ],
+                check=True,
+            )
+            commit = subprocess.run(
+                ["git", "-C", str(checkout), "rev-parse", "HEAD"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
+            _assert_checkout_state(checkout, commit)
+            tracked.write_text("dirty\n", encoding="utf-8")
+            with self.assertRaisesRegex(P04AssetImportError, "source checkoutに変更"):
+                _assert_checkout_state(checkout, commit)
 
 
 if __name__ == "__main__":

@@ -86,6 +86,16 @@ jobs:
         with:
           ref: ${{ needs.authorize.outputs.head_sha }}
           persist-credentials: false
+      - name: Repositoryがprivateであることを検証
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.private')
+          test "$private" = true || {
+            echo 'ERROR: private Release資材はprivate repositoryでのみ利用できます' >&2
+            exit 1
+          }
       - name: 固定toolchainを導入
         run: bash infra/setup_github_actions.sh --install
       - name: Private Release資材を取得
@@ -136,15 +146,10 @@ jobs:
               python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2
               ;;
             full-unit)
-              make test
+              python3 scripts/run_github_private_suite.py full-unit
               ;;
             all)
-              python3 scripts/build_stage62_npc_placement_integrity_repair.py check --runs 2
-              python3 scripts/build_stage62_npc_placement_integrity_repair.py mgba --runs 2
-              make test
-              python3 tools/vega_codex_battle.py --version
-              python3 tools/vega_codex_battle.py \
-                catalog species search --query ピカチュウ --limit 3 --json
+              python3 scripts/run_github_private_suite.py all
               ;;
             *)
               printf '%s\n' "unknown suite: $SUITE" >&2
@@ -284,6 +289,16 @@ jobs:
         run: |
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
+      - name: Repositoryがprivateであることを検証
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          private=$(gh api "repos/${GITHUB_REPOSITORY}" --jq '.private')
+          test "$private" = true || {
+            echo 'ERROR: private Release資材はprivate repositoryでのみ利用できます' >&2
+            exit 1
+          }
       - name: 固定toolchainを導入
         working-directory: target
         run: bash infra/setup_github_actions.sh --install

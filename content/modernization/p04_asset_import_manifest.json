@@ -9,7 +9,7 @@
   },
   "coverage": {
     "gba_full_species_palette_compatibility": {
-      "ready": 47,
+      "ready": 49,
       "required": 49
     },
     "gba_stone_compatibility": {
@@ -54,7 +54,7 @@
   "inputs": {
     "asset_source_contract": {
       "relative_path": "content/modernization/p04_asset_sources.json",
-      "sha256": "cc1717b2dbabdbdb60382318c426d9d5433dddf66aabb7f044e126992df7be32"
+      "sha256": "133c6b8dd56dc0afdb80acbb943c2e5b3ed1b72247bcc07350c78933e93e0636"
     },
     "candidate_manifest": {
       "relative_path": "content/modernization/p04_candidate_manifest.json",
@@ -113,7 +113,7 @@
   ],
   "output": {
     "asset_set_hash_algorithm": "SHA256_EACH_FILE_THEN_SHA256_SORTED_RELATIVE_PATH_NUL_FILE_SHA256_LF",
-    "asset_set_sha256": "ffd5e1f9c04646299af566f450f02f11e4b894e1c121dfb944637a56e24bef86",
+    "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
     "gba_binary_file_count": 335,
     "git_tracking": "IGNORED",
     "logical_root": "userfile/generated/modernization_p04_assets",
@@ -123,44 +123,11 @@
       "png": "BYTE_EXACT_SOURCE_MIRROR_PLUS_GBA_4BPP_TILES"
     },
     "payload_file_count": 670,
-    "payload_total_size": 426490,
+    "payload_total_size": 426648,
     "source_mirror_file_count": 335,
     "write_policy": "CREATE_IF_ABSENT_OR_REUSE_ONLY_IF_EXACT;FAIL_ON_ANY_CONTAMINATION"
   },
-  "palette_coverage_issues": [
-    {
-      "contract_palette_entries": 12,
-      "fake_or_inferred_colors_added": false,
-      "issue": "CONTRACT_PALETTE_INDEX_GAP",
-      "palette_role": "NORMAL_PALETTE",
-      "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
-      "required_entries_from_front_back_indices": 16
-    },
-    {
-      "contract_palette_entries": 12,
-      "fake_or_inferred_colors_added": false,
-      "issue": "CONTRACT_PALETTE_INDEX_GAP",
-      "palette_role": "SHINY_PALETTE",
-      "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
-      "required_entries_from_front_back_indices": 16
-    },
-    {
-      "contract_palette_entries": 13,
-      "fake_or_inferred_colors_added": false,
-      "issue": "CONTRACT_PALETTE_INDEX_GAP",
-      "palette_role": "NORMAL_PALETTE",
-      "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
-      "required_entries_from_front_back_indices": 16
-    },
-    {
-      "contract_palette_entries": 13,
-      "fake_or_inferred_colors_added": false,
-      "issue": "CONTRACT_PALETTE_INDEX_GAP",
-      "palette_role": "SHINY_PALETTE",
-      "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
-      "required_entries_from_front_back_indices": 16
-    }
-  ],
+  "palette_coverage_issues": [],
   "research_cutoff_date": "2026-09-08",
   "rights": {
     "detected_root_license_files": [],
@@ -179,10 +146,10 @@
     "local_checkout": ".local/modernization_sources/pokeemerald-expansion",
     "repository_url": "https://github.com/rh-hideout/pokeemerald-expansion",
     "source_asset_set_hash_algorithm": "SHA256_EACH_FILE_THEN_SHA256_SORTED_RELATIVE_PATH_NUL_FILE_SHA256_LF",
-    "source_asset_set_sha256": "8c1f9d4b58fd175be9f4160b55e0934dbaef664ed3c1e722e725b3ef4c7dc5d5",
+    "source_asset_set_sha256": "d42d9d6570caf34c3dfeb39b1d524ed7ac53176aa7cf4ececb9157f139dd00f6",
     "source_key": "RH_HIDEOUT_POKEEMERALD_EXPANSION",
     "source_reference_count": 335,
-    "source_unique_file_count": 330
+    "source_unique_file_count": 326
   },
   "species_assets": [
     {
@@ -8597,28 +8564,11 @@
         "proposed_species_key": "SPECIES_KEY_TATSUGIRI_RED_MEGA"
       },
       "gba_consumer_measurement": {
-        "consumer_ready": false,
+        "consumer_ready": true,
         "front_back_required_palette_entries": 16,
         "icon_tile_conversion": "CONVERTED_ICON_PALETTE_ASSIGNMENT_DEFERRED_TO_CONSUMER",
-        "issues": [
-          {
-            "contract_palette_entries": 12,
-            "fake_or_inferred_colors_added": false,
-            "issue": "CONTRACT_PALETTE_INDEX_GAP",
-            "palette_role": "NORMAL_PALETTE",
-            "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
-            "required_entries_from_front_back_indices": 16
-          },
-          {
-            "contract_palette_entries": 12,
-            "fake_or_inferred_colors_added": false,
-            "issue": "CONTRACT_PALETTE_INDEX_GAP",
-            "palette_role": "SHINY_PALETTE",
-            "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
-            "required_entries_from_front_back_indices": 16
-          }
-        ],
-        "status": "BLOCKED_CONTRACT_PALETTE_INDEX_GAP"
+        "issues": [],
+        "status": "READY_FOR_GBA_TILE_AND_PALETTE_STAGING"
       },
       "output_directory": "species/P04_MEGA_TATSUGIRI_DROOPY",
       "palette_assets": [
@@ -8627,29 +8577,29 @@
             "format": "GBA_BGR555_LITTLE_ENDIAN",
             "normalization": "RGB8_FLOOR_DIVIDE_BY_8_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_DROOPY/normal.gbapal",
-            "sha256": "bd0b8e70e8e5eb1dba0e59489a005c88ae1155965fc5bb773caa2d83a264a049",
-            "size": 24,
+            "sha256": "f82367eab4588a74c7cbc327e98a31f16e83727bdc8a3a05d4dca53bc20f9601",
+            "size": 32,
             "status": "CONVERTED"
           },
           "normalized": {
             "format": "JASC_PAL",
             "normalization": "LF_LINE_ENDINGS_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_DROOPY/normal.pal",
-            "sha256": "160cd08d378e7c2ceba0c343edce304ccaf4961d0a667a2f0b516b1df1bc2a27",
-            "size": 151
+            "sha256": "7e4f8c8221cabf439880bfdb9329c4aaabe005b3539454f9bb943d07506eef2a",
+            "size": 189
           },
           "role": "NORMAL_PALETTE",
           "source": {
             "metadata": {
-              "actual_colors": 12,
-              "declared_colors": 12,
+              "actual_colors": 16,
+              "declared_colors": 16,
               "format": "JASC-PAL",
-              "gba_palette_bytes": 24,
+              "gba_palette_bytes": 32,
               "version": "0100"
             },
-            "relative_path": "graphics/pokemon/tatsugiri/droopy/normal.pal",
-            "sha256": "bd51a6dffb09c29d4823bcdddabcd9b4e2bf55b980b12036d055954a0cc80f06",
-            "size": 166
+            "relative_path": "graphics/pokemon/tatsugiri/mega/normal.pal",
+            "sha256": "1b16577853e69ac12363fe18e9e856ce4821f76a67d0e63b6a8d4ac85bf5965f",
+            "size": 208
           }
         },
         {
@@ -8657,29 +8607,29 @@
             "format": "GBA_BGR555_LITTLE_ENDIAN",
             "normalization": "RGB8_FLOOR_DIVIDE_BY_8_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_DROOPY/shiny.gbapal",
-            "sha256": "98d338f058c70587cc63ca168a4a572c78f5dca8c495bd6c1e4a843f35dfe7ef",
-            "size": 24,
+            "sha256": "e8af1efa03ab3585c5b9e86ab0bdaaf85b8f08905f16f9e91761a0ab120f4d4c",
+            "size": 32,
             "status": "CONVERTED"
           },
           "normalized": {
             "format": "JASC_PAL",
             "normalization": "LF_LINE_ENDINGS_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_DROOPY/shiny.pal",
-            "sha256": "26c8034040af8be40d30075aa9f46e0fd6c5e2db970b0f2babd9056fba3f67a6",
-            "size": 156
+            "sha256": "37152a9763898ec5231e4778ee0c93aae95d6f55d4c6d9728fd0280e196436b1",
+            "size": 191
           },
           "role": "SHINY_PALETTE",
           "source": {
             "metadata": {
-              "actual_colors": 12,
-              "declared_colors": 12,
+              "actual_colors": 16,
+              "declared_colors": 16,
               "format": "JASC-PAL",
-              "gba_palette_bytes": 24,
+              "gba_palette_bytes": 32,
               "version": "0100"
             },
-            "relative_path": "graphics/pokemon/tatsugiri/droopy/shiny.pal",
-            "sha256": "e5d7f28d2947462385575ea082b9426cf1ae9bf6d1604ce412f22e42e0473615",
-            "size": 171
+            "relative_path": "graphics/pokemon/tatsugiri/mega/shiny.pal",
+            "sha256": "ec2dedbb46d68c45d2b2fdab42232eb0ba7484f3a769cf81b70f450f7f1001e4",
+            "size": 210
           }
         }
       ],
@@ -8795,7 +8745,7 @@
       ],
       "record_key": "P04_MEGA_TATSUGIRI_DROOPY",
       "source_asset_directory": "graphics/pokemon/tatsugiri/droopy/mega",
-      "source_palette_directory": "graphics/pokemon/tatsugiri/droopy"
+      "source_palette_directory": "graphics/pokemon/tatsugiri/mega"
     },
     {
       "candidate_keys": {
@@ -8805,28 +8755,11 @@
         "proposed_species_key": "SPECIES_KEY_TATSUGIRI_YELLOW_MEGA"
       },
       "gba_consumer_measurement": {
-        "consumer_ready": false,
+        "consumer_ready": true,
         "front_back_required_palette_entries": 16,
         "icon_tile_conversion": "CONVERTED_ICON_PALETTE_ASSIGNMENT_DEFERRED_TO_CONSUMER",
-        "issues": [
-          {
-            "contract_palette_entries": 13,
-            "fake_or_inferred_colors_added": false,
-            "issue": "CONTRACT_PALETTE_INDEX_GAP",
-            "palette_role": "NORMAL_PALETTE",
-            "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
-            "required_entries_from_front_back_indices": 16
-          },
-          {
-            "contract_palette_entries": 13,
-            "fake_or_inferred_colors_added": false,
-            "issue": "CONTRACT_PALETTE_INDEX_GAP",
-            "palette_role": "SHINY_PALETTE",
-            "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
-            "required_entries_from_front_back_indices": 16
-          }
-        ],
-        "status": "BLOCKED_CONTRACT_PALETTE_INDEX_GAP"
+        "issues": [],
+        "status": "READY_FOR_GBA_TILE_AND_PALETTE_STAGING"
       },
       "output_directory": "species/P04_MEGA_TATSUGIRI_STRETCHY",
       "palette_assets": [
@@ -8835,29 +8768,29 @@
             "format": "GBA_BGR555_LITTLE_ENDIAN",
             "normalization": "RGB8_FLOOR_DIVIDE_BY_8_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_STRETCHY/normal.gbapal",
-            "sha256": "b68ac1f88f81079830c7066ef7775b099c443560bc4c4f35c8439e4bc5587d1a",
-            "size": 26,
+            "sha256": "f82367eab4588a74c7cbc327e98a31f16e83727bdc8a3a05d4dca53bc20f9601",
+            "size": 32,
             "status": "CONVERTED"
           },
           "normalized": {
             "format": "JASC_PAL",
             "normalization": "LF_LINE_ENDINGS_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_STRETCHY/normal.pal",
-            "sha256": "fbd7e3f0e1bfa1faa7437c2b08cba55ecde291e31924c6b95aa15fb42a58c37e",
-            "size": 162
+            "sha256": "7e4f8c8221cabf439880bfdb9329c4aaabe005b3539454f9bb943d07506eef2a",
+            "size": 189
           },
           "role": "NORMAL_PALETTE",
           "source": {
             "metadata": {
-              "actual_colors": 13,
-              "declared_colors": 13,
+              "actual_colors": 16,
+              "declared_colors": 16,
               "format": "JASC-PAL",
-              "gba_palette_bytes": 26,
+              "gba_palette_bytes": 32,
               "version": "0100"
             },
-            "relative_path": "graphics/pokemon/tatsugiri/stretchy/normal.pal",
-            "sha256": "b45f1a08149f5911533b55b8faa9105fa6bf7144b9db94b681a5a63c67eeae3f",
-            "size": 178
+            "relative_path": "graphics/pokemon/tatsugiri/mega/normal.pal",
+            "sha256": "1b16577853e69ac12363fe18e9e856ce4821f76a67d0e63b6a8d4ac85bf5965f",
+            "size": 208
           }
         },
         {
@@ -8865,29 +8798,29 @@
             "format": "GBA_BGR555_LITTLE_ENDIAN",
             "normalization": "RGB8_FLOOR_DIVIDE_BY_8_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_STRETCHY/shiny.gbapal",
-            "sha256": "30c83ada55d18995b36ed7ecbcb8d722c57c7a761575e0d6a17cbc6640c87c96",
-            "size": 26,
+            "sha256": "e8af1efa03ab3585c5b9e86ab0bdaaf85b8f08905f16f9e91761a0ab120f4d4c",
+            "size": 32,
             "status": "CONVERTED"
           },
           "normalized": {
             "format": "JASC_PAL",
             "normalization": "LF_LINE_ENDINGS_PRESERVE_DECLARED_COLORS",
             "relative_path": "species/P04_MEGA_TATSUGIRI_STRETCHY/shiny.pal",
-            "sha256": "402367c53c1687f70a64b09197ddb8e700a48d25863be10e5e60bf38d90f757c",
-            "size": 161
+            "sha256": "37152a9763898ec5231e4778ee0c93aae95d6f55d4c6d9728fd0280e196436b1",
+            "size": 191
           },
           "role": "SHINY_PALETTE",
           "source": {
             "metadata": {
-              "actual_colors": 13,
-              "declared_colors": 13,
+              "actual_colors": 16,
+              "declared_colors": 16,
               "format": "JASC-PAL",
-              "gba_palette_bytes": 26,
+              "gba_palette_bytes": 32,
               "version": "0100"
             },
-            "relative_path": "graphics/pokemon/tatsugiri/stretchy/shiny.pal",
-            "sha256": "bccc0a5f0f730d3bf800a78caaaa5d1ce72ff53fc344dc4fc2097ab7dfcca0f8",
-            "size": 177
+            "relative_path": "graphics/pokemon/tatsugiri/mega/shiny.pal",
+            "sha256": "ec2dedbb46d68c45d2b2fdab42232eb0ba7484f3a769cf81b70f450f7f1001e4",
+            "size": 210
           }
         }
       ],
@@ -9003,7 +8936,7 @@
       ],
       "record_key": "P04_MEGA_TATSUGIRI_STRETCHY",
       "source_asset_directory": "graphics/pokemon/tatsugiri/stretchy/mega",
-      "source_palette_directory": "graphics/pokemon/tatsugiri/stretchy"
+      "source_palette_directory": "graphics/pokemon/tatsugiri/mega"
     },
     {
       "candidate_keys": {

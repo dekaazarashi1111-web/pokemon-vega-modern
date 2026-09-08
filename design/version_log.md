@@ -1550,3 +1550,15 @@
   - 訂正済みtracked Wikiと旧private state memberの衝突を、state bundleからtracked生成物を除外して解消した。
   - state assetを再構築・remote照合し、fail closed復元と工程1suiteを最終コードHEADで完走した。
 - Verify: private environment unit 3件、state archive check／remote hash、source-validation `34174693932`、private-runtime `34174696902` PASS。先行失敗run `34174387157`は証跡として保持。
+
+## 2026-09-08T12:42:25+09:00
+
+- Version: `modernization-stage66-integration-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage66先行commit `90a1811964a19e3c058448af173007678b42a7e3`）
+- Task: `USER-MODERNIZATION-P02-P08` / Stage66 bulk習得とP04〜P08統合checkpoint
+- Summary:
+  - Stage66へ全1,300対象のlevel-up／既存machine slot 47,548経路を実装し、残70,980経路を理由付き保留にした。
+  - Mega 49／Stone 45のprivate-use素材変換、52 Species/Form・45 Item・6 Ability・1 Moveの容量予約、P05/P07契約を最新化した。
+  - P08をStage66までhash接続し、active Stage62、P01のみDONE、P02〜P08未完了、release不可を維持した。
+  - GitHub repositoryをPrivateへ変更し、private asset download前の可視性gateとbundle path／rights fail-closedを追加した。
+- Verify: Stage66 focused 12件＋mGBA独立2 process、P04 source/import 24件＋capacity 10件、P05 11件、P02 8件、private environment 10件、P08 16件＋workflow回帰、各builder check、BPS往復、task graph、private guard、YAML、diff check PASS。

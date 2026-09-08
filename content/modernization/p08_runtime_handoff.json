@@ -59,22 +59,34 @@
           "size": 33554432
         },
         "stage": 65
+      },
+      {
+        "parent_stage": 65,
+        "role": "P03_BULK_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "808D5140",
+          "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+          "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+          "size": 33554432
+        },
+        "stage": 66
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 65,
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "candidate_stage": 66,
+      "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "parent_stage": 64,
+      "parent_stage": 65,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P03_STAGE65_VERIFIED_CHECKPOINT"
+      "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 65,
+    "selected_checkpoint_stage": 66,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -86,7 +98,49 @@
       "representative_species": 1,
       "routes_materialized": 4,
       "routes_remaining": 118524
+    },
+    "stage66_integrated": true,
+    "stage66_scope": {
+      "consumers_exercised": [
+        "level_up",
+        "machine"
+      ],
+      "corrected_targets": 1300,
+      "full_p03_done": false,
+      "level_up_routes_materialized": 18515,
+      "machine_existing_slot_routes_materialized": 29033,
+      "machine_supply_required_routes_deferred": 26347,
+      "move_1063_routes_deferred": 159,
+      "routes_materialized": 47548,
+      "routes_remaining": 70980,
+      "source_routes_validated": 118528
     }
+  },
+  "integration_fingerprint": {
+    "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
+    "components": {
+      "candidate_artifacts": {
+        "count": 20,
+        "sha256": "fe6c810ea21c96f7c1bb59350236a08f7b62ad55fabc9a1ee901579673353506"
+      },
+      "implementation_inputs": {
+        "count": 71,
+        "sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61"
+      },
+      "phase_projection": {
+        "count": 8,
+        "sha256": "980119583df831001d526ce833b5e759007b9e560b0fd50454aad92e1234e4ae"
+      },
+      "referenced_source_bindings": {
+        "count": 27,
+        "sha256": "4c1f5ecd5f5102f1d36fcfe8413b6ab6da8519d362f8f0f9a4c542425ec60403"
+      },
+      "tracked_inputs": {
+        "count": 31,
+        "sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44"
+      }
+    },
+    "sha256": "c5ee0e1f58183de9877f4a638b954fbf3ee7f6519ca9248c86c70fea6a1118c1"
   },
   "phase_runtime": [
     {
@@ -159,9 +213,9 @@
     },
     {
       "blockers": [
-        "ROUTES_REMAINING_118524",
-        "SUPPLY_REQUIRED_ROWS_26720",
-        "MOVE_1063_NOT_IMPLEMENTED",
+        "ROUTES_REMAINING_70980",
+        "MACHINE_SUPPLY_REQUIRED_ROWS_26347",
+        "MOVE_1063_ROUTES_159_NOT_IMPLEMENTED",
         "FULL_SCHEDULER_AND_SAVE_RELOAD_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -181,11 +235,22 @@
             "content/modernization/p03_stage65_mgba_runtime_gate.json"
           ],
           "gate": "STAGE65_REPRESENTATIVE_RUNTIME",
+          "status": "PRESERVED_ANCESTOR_CHECKPOINT"
+        },
+        {
+          "evidence": [
+            "content/modernization/p03_stage66_checkpoint.json",
+            "content/modernization/p03_stage66_mgba_runtime_gate.json",
+            "content/modernization/p03_stage66_bulk_route_audit.json",
+            "content/modernization/p03_stage66_change_audit.json"
+          ],
+          "gate": "STAGE66_BULK_RUNTIME",
           "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE"
         },
         {
           "evidence": [
-            "content/modernization/p03_runtime_handoff.json"
+            "content/modernization/p03_runtime_handoff.json",
+            "content/modernization/p03_stage66_bulk_route_audit.json"
           ],
           "gate": "FULL_ROUTE_SUPPLY_AND_MOVE_1063",
           "status": "BLOCKED"
@@ -193,15 +258,17 @@
       ],
       "rom_reflection": {
         "reflected": true,
-        "scope": "CATERPIE_4_ROUTE_LEVEL_AND_MACHINE_SLICE_ONLY",
-        "stage": 65
+        "scope": "BULK_LEVEL_UP_AND_EXISTING_SLOT_MACHINE_CHECKPOINT",
+        "stage": 66
       }
     },
     {
       "blockers": [
-        "SPECIES_ITEM_ABILITY_FREE_SLOTS_ZERO",
+        "FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT",
+        "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS",
+        "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN",
+        "SAVE_MIGRATION_NOT_DESIGNED",
         "NEW_SPECIES_ASSETS_MISSING_3",
-        "PALETTE_GAPS_2",
         "RIGHTS_REVIEW",
         "ROM_AND_ID_NOT_INTEGRATED"
       ],
@@ -225,9 +292,16 @@
         },
         {
           "evidence": [
-            "content/modernization/p04_candidate_manifest.json"
+            "content/modernization/p04_capacity_allocation_manifest.json"
           ],
-          "gate": "ID_CAPACITY_AND_RUNTIME",
+          "gate": "ID_CAPACITY_RESERVATION",
+          "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_capacity_allocation_manifest.json"
+          ],
+          "gate": "ID_MATERIALIZATION_AND_RUNTIME",
           "status": "BLOCKED"
         }
       ],

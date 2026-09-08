@@ -126,5 +126,41 @@ class ModernizationP04SourcesTest(unittest.TestCase):
         self.assertEqual(before, after)
 
 
+class ModernizationP04SourcesPureSafetyTest(unittest.TestCase):
+    """外部checkoutが無いclean環境でもskipしない契約negative test。"""
+
+    def test_missing_checkout_fails_closed_without_real_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            missing = Path(temporary) / "not-fetched"
+            with self.assertRaisesRegex(P04SourceError, "固定asset sourceがありません"):
+                audit_p04_sources(ROOT, source_root=missing, require_checkout=True)
+
+    def test_missing_temporary_replacement_fails_without_real_checkout(self) -> None:
+        candidate = json.loads(
+            (ROOT / "content/modernization/p04_candidate_manifest.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        official = json.loads(
+            (ROOT / "content/modernization/p04_official_sources.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        candidate = copy.deepcopy(candidate)
+        target = next(
+            row for row in candidate["records"]
+            if row["ability_status"] == "TEMPORARY_REPLACEABLE"
+        )
+        target["ability_replacement_key"] = None
+        sources = _validate_official_sources(official)
+        species, _ = _load_csv_keys(ROOT / "manifests/species_ids.csv", "species_key")
+        items, _ = _load_csv_keys(ROOT / "manifests/item_ids.csv", "item_key")
+        abilities, _ = _load_csv_keys(ROOT / "manifests/ability_ids.csv", "ability_key")
+        with self.assertRaisesRegex(P04SourceError, "replacement key必須"):
+            _validate_candidate_contract(
+                candidate, sources, species, items, abilities,
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

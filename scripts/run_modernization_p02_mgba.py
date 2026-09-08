@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage64 exact ROMのRayquaza Wish-Megaを独立2 mGBA processで検証する。"""
+"""Stage63からメモリ生成したStage64のWish-Megaを2 mGBA processで検証する。"""
 
 from __future__ import annotations
 
@@ -80,6 +80,130 @@ def _source_identity(relative: str) -> dict[str, Any]:
     return {"path": relative, "size": len(raw), "sha256": _sha(raw)}
 
 
+def _config_relative(config_path: Path) -> str:
+    absolute = config_path if config_path.is_absolute() else ROOT / config_path
+    try:
+        return absolute.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        _fail("mGBA configはworkspace内でなければなりません")
+
+
+def _hex_int(value: Any, label: str) -> int:
+    if not isinstance(value, str) or not value.startswith("0x"):
+        _fail(f"{label}は0x付き16進数ではありません: {value!r}")
+    try:
+        result = int(value, 16)
+    except ValueError:
+        _fail(f"{label}が不正です: {value!r}")
+    if result < 0:
+        _fail(f"{label}が負数です")
+    return result
+
+
+def _build_stage64_in_memory(
+    config: Mapping[str, Any],
+    *,
+    stage63_bytes: bytes | None = None,
+    supplied_stage64: bytes | None = None,
+) -> tuple[bytes, bytes, dict[str, Any]]:
+    """Stage64 builder configのexact 2-byte contractをディスク出力なしで再現する。"""
+
+    inputs = config["inputs"]
+    stage63 = _fixed_or_supplied(
+        inputs["stage63_rom"], "Stage63 ROM", stage63_bytes,
+    )
+    builder_config_path = Path(str(inputs["stage64_config_path"]))
+    builder = _read_json(builder_config_path)
+    if (
+        builder.get("schema_version") != 1
+        or builder.get("task") != "USER-MODERNIZATION-P02-RAYQUAZA"
+        or int(builder.get("stage", -1)) != 64
+    ):
+        _fail("Stage64 builder config schema/task/stage不一致")
+    builder_inputs = builder.get("inputs", {})
+    parent_contract = builder_inputs.get("parent_rom", {})
+    if any(
+        parent_contract.get(key) != inputs["stage63_rom"].get(key)
+        for key in ("path", "size", "sha256")
+    ):
+        _fail("Stage64 builderのparent ROMとmGBA gate入力が一致しません")
+    if builder.get("outputs", {}).get("rom") != inputs["stage64_rom"].get("path"):
+        _fail("Stage64 builderのROM出力pathとmGBA gate入力が一致しません")
+
+    builder_patch = builder.get("patch", {})
+    gate_patch = config["patch_contract"]
+    entry_offset = _hex_int(gate_patch["entry_rom_offset"], "entry_rom_offset")
+    table_offset = _hex_int(builder_patch.get("table_rom_offset"), "table_rom_offset")
+    calculated_entry_offset = (
+        table_offset
+        + int(builder_patch.get("species_id", -1)) * 128
+        + int(builder_patch.get("slot", -1)) * 8
+    )
+    parameter_offset = _hex_int(
+        builder_patch.get("parameter_rom_offset"), "parameter_rom_offset",
+    )
+    if calculated_entry_offset != entry_offset or parameter_offset != entry_offset + 2:
+        _fail("Stage64 builder patch offsetとmGBA gate entryが一致しません")
+
+    before = tuple(int(value) for value in gate_patch["stage63_entry"])
+    after = tuple(int(value) for value in gate_patch["stage64_entry"])
+    builder_before = (
+        int(builder_patch.get("method_id", -1)),
+        int(builder_patch.get("before_move_id", -1)),
+        int(builder_patch.get("target_species_id", -1)),
+        int(builder_patch.get("mega_variant", -1)),
+    )
+    builder_after = (
+        int(builder_patch.get("method_id", -1)),
+        int(builder_patch.get("after_move_id", -1)),
+        int(builder_patch.get("target_species_id", -1)),
+        int(builder_patch.get("mega_variant", -1)),
+    )
+    if before != builder_before or after != builder_after:
+        _fail("Stage64 builder patch tupleとmGBA gate entryが一致しません")
+    if len(before) != 4 or len(after) != 4:
+        _fail("Stage64 patch entryが4つのu16ではありません")
+    before_raw = struct.pack("<HHHH", *before)
+    after_raw = struct.pack("<HHHH", *after)
+    if (
+        bytes.fromhex(str(builder_patch.get("entry_before_hex", ""))) != before_raw
+        or bytes.fromhex(str(builder_patch.get("entry_after_hex", ""))) != after_raw
+    ):
+        _fail("Stage64 builderのentry hexと意味tupleが一致しません")
+    if stage63[entry_offset:entry_offset + 8] != before_raw:
+        _fail("Stage63 Rayquaza preimage不一致")
+    if before_raw[:2] != after_raw[:2] or before_raw[4:] != after_raw[4:]:
+        _fail("Stage64 builderがparameter以外を変更します")
+
+    output_buffer = bytearray(stage63)
+    output_buffer[parameter_offset:parameter_offset + 2] = after_raw[2:4]
+    stage64 = bytes(output_buffer)
+    changed_offsets = [
+        index
+        for index, (before_byte, after_byte) in enumerate(
+            zip(stage63, stage64, strict=True),
+        )
+        if before_byte != after_byte
+    ]
+    if changed_offsets != list(gate_patch["changed_rom_offsets"]):
+        _fail(f"Stage63→64の変更範囲が2-byte contract外です: {changed_offsets[:16]}")
+    output_contract = inputs["stage64_rom"]
+    if len(stage64) != int(output_contract["size"]):
+        _fail("in-memory Stage64 size不一致")
+    if _sha(stage64) != str(output_contract["sha256"]):
+        _fail("in-memory Stage64 SHA-256不一致")
+    if supplied_stage64 is not None and supplied_stage64 != stage64:
+        _fail("supplied Stage64 bytesがin-memory generator結果と一致しません")
+    return stage63, stage64, {
+        "method": "IN_MEMORY_FROM_STAGE63_EXACT_TWO_BYTE_PATCH",
+        "builder_config": _source_identity(_config_relative(builder_config_path)),
+        "entry_rom_offset": entry_offset,
+        "parameter_rom_offset": parameter_offset,
+        "changed_rom_offsets": changed_offsets,
+        "disk_stage64_required": False,
+    }
+
+
 def _parse_symbol(raw: bytes, symbol: str, label: str) -> int:
     try:
         text = raw.decode("ascii")
@@ -97,12 +221,15 @@ def _static_inputs(
     *,
     stage63_bytes: bytes | None = None,
     stage64_bytes: bytes | None = None,
-) -> dict[str, Any]:
+) -> tuple[dict[str, Any], bytes]:
     if config.get("schema_version") != 1 or config.get("task") != TASK:
         _fail("mGBA config schema/task不一致")
     inputs = config["inputs"]
-    stage63 = _fixed_or_supplied(inputs["stage63_rom"], "Stage63 ROM", stage63_bytes)
-    stage64 = _fixed_or_supplied(inputs["stage64_rom"], "Stage64 ROM", stage64_bytes)
+    stage63, stage64, generation = _build_stage64_in_memory(
+        config,
+        stage63_bytes=stage63_bytes,
+        supplied_stage64=stage64_bytes,
+    )
     static_contract = _fixed(inputs["p02_static_contract"], "P02 static contract")
     try:
         contract = json.loads(static_contract)
@@ -117,14 +244,6 @@ def _static_inputs(
         or int(policy.get("modernization_resolved_parameter_id", -1)) != 630
     ):
         _fail("P02 static contractがroot namespace fixを保証していません")
-
-    stage64_config = _read_json(Path(inputs["stage64_config_path"]))
-    if (
-        stage64_config.get("inputs", {}).get("parent_rom", {}).get("sha256")
-        != inputs["stage63_rom"]["sha256"]
-        or stage64_config.get("outputs", {}).get("rom") != inputs["stage64_rom"]["path"]
-    ):
-        _fail("Stage64 builder configとmGBA gate inputが一致しません")
 
     patch = config["patch_contract"]
     offset = int(str(patch["entry_rom_offset"]), 16)
@@ -169,8 +288,8 @@ def _static_inputs(
     lib_raw = lib_path.read_bytes()
     if _sha(lib_raw) != lib["sha256"]:
         _fail("libmGBA SHA-256不一致")
-    return {
-        "config": _source_identity(config_path.as_posix()),
+    result = {
+        "config": _source_identity(_config_relative(config_path)),
         "stage63": {
             **inputs["stage63_rom"],
             "rayquaza_entry": list(before),
@@ -178,7 +297,9 @@ def _static_inputs(
         "stage64": {
             **inputs["stage64_rom"],
             "rayquaza_entry": list(after),
+            "resolution": "GENERATED_IN_MEMORY_FROM_STAGE63",
         },
+        "stage64_generation": generation,
         "p02_static_contract": inputs["p02_static_contract"],
         "battle_core_fingerprint": offsets_contract["fingerprint"],
         "offsets": offset_rows,
@@ -190,6 +311,7 @@ def _static_inputs(
         },
         "changed_rom_offsets": differences,
     }
+    return result, stage64
 
 
 def _validate_runner_result(result: Mapping[str, Any], config: Mapping[str, Any]) -> None:
@@ -282,7 +404,7 @@ def _run_processes(
 
 def run_gate(config_path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
     config = _read_json(config_path)
-    static = _static_inputs(config_path, config)
+    static, stage64 = _static_inputs(config_path, config)
     runtime = config["runtime"]
     process_count = int(runtime["process_runs"])
     if process_count != 2:
@@ -298,7 +420,10 @@ def run_gate(config_path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
     local = ROOT / ".local"
     local.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="p02-mgba-", dir=local) as raw:
-        executable = Path(raw) / "p02-evolution-smoke"
+        temporary = Path(raw)
+        executable = temporary / "p02-evolution-smoke"
+        rom_path = temporary / "stage64.gba"
+        rom_path.write_bytes(stage64)
         command = [
             compiler,
             *map(str, runtime["compile_flags"]),
@@ -321,8 +446,8 @@ def run_gate(config_path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
             _fail("mGBA runner compileが予期しない出力を生成しました")
         results = _run_processes(
             executable,
-            ROOT / config["inputs"]["stage64_rom"]["path"],
-            config["inputs"]["stage64_rom"]["sha256"],
+            rom_path,
+            _sha(stage64),
             process_count,
             int(runtime["timeout_seconds"]),
         )
@@ -401,7 +526,7 @@ def validate_published_gate(
     """fingerprint済み2-process evidenceを現在入力、またはsupplied ROMへ照合する。"""
 
     config = _read_json(config_path)
-    static = _static_inputs(
+    static, _stage64 = _static_inputs(
         config_path,
         config,
         stage63_bytes=stage63_bytes,
@@ -439,6 +564,7 @@ def main(argv: list[str] | None = None) -> int:
     except (
         KeyError,
         OSError,
+        struct.error,
         TypeError,
         ValueError,
         subprocess.SubprocessError,

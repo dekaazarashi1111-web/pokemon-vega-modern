@@ -1,15 +1,16 @@
 {
   "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "P03_STAGE65_VERIFIED_CHECKPOINT",
+  "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT",
   "completed_through": "USER-MODERNIZATION-P01",
-  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
   "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
     "branch": "codex/modernization-followup-20260908",
     "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
-    "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984"
+    "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984",
+    "stage66_checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3"
   },
   "active_parent": {
     "stage": 62,
@@ -20,20 +21,7 @@
     "promotion_status": "UNCHANGED_NOT_PROMOTED"
   },
   "parent": {
-    "stage": 64,
-    "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
-    "size": 33554432,
-    "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
-    "crc32": "BCD9417F",
-    "metadata": {
-      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
-      "size": 3741,
-      "sha256": "0f382303e44e6de83e5b0cdf5ad2860a603f9b9bee194052a023007c5d60452d"
-    }
-  },
-  "candidate": {
     "stage": 65,
-    "label": "Modernization P03 キャタピー習得代表縦切りcheckpoint",
     "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
     "size": 33554432,
     "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
@@ -41,25 +29,38 @@
     "metadata": {
       "path": "build/stages/65_modernization_p03_caterpie_slice.json",
       "size": 8362,
-      "sha256": "5133e5632a973c7b7d33a226e1ae0259e22afd7758fb33f9a0c97923711d8661"
+      "sha256": "ad5210529a62cc42571fcc255f98f53d183b8c8419bf0effbb9e1ecaa262aa2c"
+    }
+  },
+  "candidate": {
+    "stage": 66,
+    "label": "Modernization P03 bulk習得checkpoint",
+    "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+    "size": 33554432,
+    "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+    "crc32": "808D5140",
+    "metadata": {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.json",
+      "size": 7304,
+      "sha256": "c0d7f9e1c77005f5f3921f2d4316458291a1c2a79c71d5ad8f3fd2c74d789e45"
     },
     "allocation": {
-      "path": "build/stages/65_modernization_p03_allocation.json",
-      "size": 38800,
-      "sha256": "7393007cfb6ed0f5d6f9264b60f8b73c1fdd5454ce767b1cdfb7cf268c867e18"
+      "path": "build/stages/66_modernization_p03_allocation.json",
+      "size": 39372,
+      "sha256": "d454fdde5fbece67e5411895b929980a43d64bcfa99f8b947093f5db37b706cc"
     }
   },
   "patches": {
     "from_parent": {
-      "path": "build/patches/stage64-to-stage65-modernization-p03-caterpie-slice.bps",
-      "size": 63,
-      "sha256": "0959b62a6ef48bc2be05ed50c63ac742310a51d3295871f097098674140d76b6",
+      "path": "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "size": 86322,
+      "sha256": "6d3bd8f75b8603f00d0f729ae0fe8bbcedce515ecaaaeecc423d13e0f0e14ed0",
       "round_trip": true
     },
     "from_clean": {
-      "path": "build/patches/firered-jpn-rev0-to-stage65-modernization-p03-caterpie-slice.bps",
-      "size": 16726260,
-      "sha256": "5efba3ca37e3bbf3dbd3a128b2444eb8bc8f278e4ea14e0a8d0df09526f40211",
+      "path": "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
+      "size": 16785814,
+      "sha256": "9a84725f6c52e200a2275507d1fe6655736cfe4e2fe277ab4ddcb05778baed19",
       "round_trip": true
     }
   },
@@ -84,13 +85,21 @@
       "state": "CHECKPOINT_NOT_P03_DONE",
       "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
       "changed_bytes_from_parent": 17
+    },
+    {
+      "stage": 66,
+      "task": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "changed_bytes_from_parent": 81693
     }
   ],
   "adopted_delta": {
     "changed_bytes_by_stage": {
       "p01_stage63": 10,
       "p02_stage64": 2,
-      "p03_stage65": 17
+      "p03_stage65": 17,
+      "p03_stage66": 81693
     },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
@@ -123,11 +132,21 @@
       "machine_project_move_id": 489,
       "routes_materialized": 4,
       "routes_not_materialized": 118524
+    },
+    "p03_bulk_checkpoint": {
+      "corrected_targets": 1300,
+      "source_routes_validated": 118528,
+      "level_up_routes_materialized": 18515,
+      "machine_existing_slot_routes_materialized": 29033,
+      "routes_materialized": 47548,
+      "routes_not_materialized": 70980,
+      "move_1063_routes_deferred": 159,
+      "outside_declared_ranges": 0
     }
   },
   "checkpoints": {
     "p02": "CHECKPOINT_NOT_DONE",
-    "p03": "CHECKPOINT_NOT_P03_DONE",
+    "p03": "STAGE66_BULK_CHECKPOINT_NOT_P03_DONE",
     "p04_assets": "STAGING_ONLY_NOT_ROM_READY",
     "p05": "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
     "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
@@ -136,10 +155,10 @@
   },
   "deferred": {
     "p02_full_runtime_acceptance": "CANCEL_ITEM_ABILITY_SAVE_RELOAD_NOT_RUN",
-    "p03_full_materialization": "118524_ROUTES_REMAIN",
-    "p03_machine_tutor_supply": "26720_ROUTES_REQUIRE_SUPPLY",
+    "p03_full_materialization": "70980_ROUTES_REMAIN",
+    "p03_machine_tutor_supply": "26347_MACHINE_ROUTES_REQUIRE_SUPPLY",
     "p04_new_species_and_megas": "ASSETS_STAGED_IDS_AND_ROM_NOT_INTEGRATED",
-    "p04_palette_gaps": "2_OF_49_MEGA_RECORDS_NOT_CONSUMER_READY",
+    "p04_palette_gaps": "RESOLVED_49_OF_49_GBA_PALETTES_READY_STAGING_ONLY",
     "p04_winds_waves_assets": "0_OF_3_AVAILABLE",
     "move_1063_ally_switch": "SPEC_ONLY_REQUIRES_ENGINE_IMPLEMENTATION",
     "p05_new_abilities": "6_RUNTIME_EFFECTS_REQUIRE_IMPLEMENTATION",

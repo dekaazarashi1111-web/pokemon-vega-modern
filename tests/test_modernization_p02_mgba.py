@@ -6,6 +6,7 @@ import json
 import subprocess
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,6 +73,63 @@ class ModernizationP02MgbaTests(unittest.TestCase):
             {row["get_mega_species"] for row in inputs["offsets"]},
             {"0x09114CF0"},
         )
+        self.assertEqual(
+            inputs["stage64"]["resolution"],
+            "GENERATED_IN_MEMORY_FROM_STAGE63",
+        )
+        generation = inputs["stage64_generation"]
+        self.assertEqual(
+            generation["method"],
+            "IN_MEMORY_FROM_STAGE63_EXACT_TWO_BYTE_PATCH",
+        )
+        self.assertFalse(generation["disk_stage64_required"])
+        self.assertEqual(
+            generation["changed_rom_offsets"],
+            [0x01F8E1BA, 0x01F8E1BB],
+        )
+
+    def test_clean_bootstrap_generates_stage64_without_reading_disk_output(self) -> None:
+        stage64_path = (
+            ROOT / self.config["inputs"]["stage64_rom"]["path"]
+        ).resolve()
+        original_read_bytes = Path.read_bytes
+
+        def reject_stage64_disk_read(path: Path) -> bytes:
+            if path.resolve() == stage64_path:
+                raise AssertionError(f"Stage64 disk output was read: {path}")
+            return original_read_bytes(path)
+
+        with mock.patch.object(
+            Path, "read_bytes", reject_stage64_disk_read,
+        ):
+            inputs, generated = gate._static_inputs(gate.DEFAULT_CONFIG, self.config)
+        self.assertEqual(
+            hashlib.sha256(generated).hexdigest(),
+            self.config["inputs"]["stage64_rom"]["sha256"],
+        )
+        self.assertEqual(
+            inputs["stage64"]["resolution"],
+            "GENERATED_IN_MEMORY_FROM_STAGE63",
+        )
+
+    def test_supplied_stage64_must_equal_in_memory_generation(self) -> None:
+        parent = (
+            ROOT / self.config["inputs"]["stage63_rom"]["path"]
+        ).read_bytes()
+        _parent, generated, _audit = gate._build_stage64_in_memory(
+            self.config, stage63_bytes=parent,
+        )
+        tampered = bytearray(generated)
+        tampered[0] ^= 1
+        with self.assertRaisesRegex(
+            gate.ModernizationP02MgbaError,
+            "supplied Stage64 bytes",
+        ):
+            gate._build_stage64_in_memory(
+                self.config,
+                stage63_bytes=parent,
+                supplied_stage64=bytes(tampered),
+            )
 
     def test_runner_is_read_only_bounded_and_uses_isolated_stack(self) -> None:
         source = (ROOT / self.config["runtime"]["runner_source"]).read_text(

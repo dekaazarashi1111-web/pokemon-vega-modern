@@ -47,7 +47,7 @@ EXPECTED_INPUTS = {
     "content/modernization/p04_candidate_manifest.json":
         "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
     "content/modernization/p05_battle_content_contract.json":
-        "fccc56f3d812473b8b90b3bfe82b181c263030477219a5b49f55ba305b4a35ca",
+        "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3",
     "content/modernization/p06_species_adjustment_contract.json":
         "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
     "content/modernization/p06_review_projection.json":

@@ -1,11 +1,18 @@
 # current_state.md
 
-最終更新: 2026-09-07
+最終更新: 2026-09-08
 
 ## 現在のプレイ基準
 
 - ユーザーが現在遊ぶ基準をStage62へ切り替えた。人向け正本は`design/active_play_baseline.md`、機械可読identity正本は`config/active_play_baseline.json`。対象は`build/stages/62_npc_placement_integrity_repair.gba`、33,554,432 bytes、SHA-256 `d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f`、CRC32 `73E4FB73`。Codex対戦、任意報酬、Windowsカタログ送付、Box 14移動、バグ再現・修正は、次の明示採用切替までこのROMを使う。ディスク上の最大Stageを自動採用しない。
 - Stage62は2026-09-04にiPadへStage61と別名で配置済みで、最新Stage61通常プレイsaveをStage62 basenameへbyte同一複製した。Stage62起動時に作られていた既存saveは日時付きで退避。引継ぎsaveは131,072 bytes、SHA-256 `f4e978f4bb5af630ca923c5f55687333a9d69f45391a5ca9a2b57546d42bb044`でread-back一致し、Stage61原本とその他の保護対象save全57件は不変。Stage61はStage62の入力・差分監査・Wiki snapshot用の履歴として保持するが、現行実機操作対象ではない。
+
+## Modernization P01〜P08の開発checkpoint
+
+- P01はDONE。P02〜P08は未完了で、release readyではない。累積開発候補はStage66 `build/stages/66_modernization_p03_bulk_learnsets.gba`、SHA-256 `0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32 `808D5140`。現行プレイ基準Stage62へは昇格していない。
+- Stage66はP03の118,528習得経路を全件照合し、level-up 18,515と現行catalogで供給可能なmachine 29,033の計47,548経路を実consumerへ接続した。残70,980はconsumer別理由付きで保留し、Move 1063依存159経路も未実装のまま保持する。
+- P04はSpecies/Form 52、Item 45、Ability 6、Move 1のappend IDと39固定表の容量を予約した。Mega 49／Stone 45のprivate-use素材は再現可能にstaging済みだがROM未接続。Winds/Waves 3種は完全素材未確認のためplaceholderを作っていない。
+- 詳細と再開順は`design/modernization_handoff.md`、機械可読candidate chainは`config/modernization_candidate.json`、統合完了境界は`content/modernization/p08_integration_matrix.json`を正とする。
 
 ## 進行中タスクの再開点
 
