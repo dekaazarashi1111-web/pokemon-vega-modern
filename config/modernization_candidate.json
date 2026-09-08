@@ -1,53 +1,102 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "P01_VERIFIED_CANDIDATE",
+  "status": "P03_STAGE65_VERIFIED_CHECKPOINT",
   "completed_through": "USER-MODERNIZATION-P01",
+  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+  "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
-    "branch": "codex/user-modernization-p01-20260908",
-    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2"
+    "branch": "codex/modernization-followup-20260908",
+    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
+    "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984"
   },
-  "parent": {
+  "active_parent": {
     "stage": 62,
     "path": "build/stages/62_npc_placement_integrity_repair.gba",
     "size": 33554432,
     "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
-    "crc32": "73E4FB73"
+    "crc32": "73E4FB73",
+    "promotion_status": "UNCHANGED_NOT_PROMOTED"
+  },
+  "parent": {
+    "stage": 64,
+    "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+    "size": 33554432,
+    "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+    "crc32": "BCD9417F",
+    "metadata": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
+      "size": 3741,
+      "sha256": "0f382303e44e6de83e5b0cdf5ad2860a603f9b9bee194052a023007c5d60452d"
+    }
   },
   "candidate": {
-    "stage": 63,
-    "label": "Modernization P01 ID意味修復候補",
-    "path": "build/stages/63_modernization_p01_identity_repair.gba",
+    "stage": 65,
+    "label": "Modernization P03 キャタピー習得代表縦切りcheckpoint",
+    "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
     "size": 33554432,
-    "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
-    "crc32": "FB09EF2D",
+    "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+    "crc32": "7FB7F282",
     "metadata": {
-      "path": "build/stages/63_modernization_p01_identity_repair.json",
-      "size": 5585,
-      "sha256": "9e5b1d6de4074271b7da8631a0b1908dc631d368cb57e0269b70b9a41bc580cf"
+      "path": "build/stages/65_modernization_p03_caterpie_slice.json",
+      "size": 8362,
+      "sha256": "5133e5632a973c7b7d33a226e1ae0259e22afd7758fb33f9a0c97923711d8661"
+    },
+    "allocation": {
+      "path": "build/stages/65_modernization_p03_allocation.json",
+      "size": 38800,
+      "sha256": "7393007cfb6ed0f5d6f9264b60f8b73c1fdd5454ce767b1cdfb7cf268c867e18"
     }
   },
   "patches": {
     "from_parent": {
-      "path": "build/patches/stage62-to-stage63-modernization-p01-identity-repair.bps",
-      "size": 47,
-      "sha256": "7b400a62944bb976d94afdee2983c48bcf4f4482010f881f18bf7924eab0f352"
+      "path": "build/patches/stage64-to-stage65-modernization-p03-caterpie-slice.bps",
+      "size": 63,
+      "sha256": "0959b62a6ef48bc2be05ed50c63ac742310a51d3295871f097098674140d76b6",
+      "round_trip": true
     },
     "from_clean": {
-      "path": "build/patches/firered-jpn-rev0-to-stage63-modernization-p01-identity-repair.bps",
-      "size": 16726235,
-      "sha256": "f6fa12ebdd68882a0ff08d1c344151d4b792eaa1dfde1a22f3b9241ccb4a8680"
+      "path": "build/patches/firered-jpn-rev0-to-stage65-modernization-p03-caterpie-slice.bps",
+      "size": 16726260,
+      "sha256": "5efba3ca37e3bbf3dbd3a128b2444eb8bc8f278e4ea14e0a8d0df09526f40211",
+      "round_trip": true
     }
   },
+  "stage_chain": [
+    {
+      "stage": 63,
+      "task": "USER-MODERNIZATION-P01",
+      "state": "COMPLETED",
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+      "changed_bytes_from_parent": 10
+    },
+    {
+      "stage": 64,
+      "task": "USER-MODERNIZATION-P02-RAYQUAZA",
+      "state": "CHECKPOINT_NOT_DONE",
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+      "changed_bytes_from_parent": 2
+    },
+    {
+      "stage": 65,
+      "task": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+      "changed_bytes_from_parent": 17
+    }
+  ],
   "adopted_delta": {
-    "changed_bytes": 10,
+    "changed_bytes_by_stage": {
+      "p01_stage63": 10,
+      "p02_stage64": 2,
+      "p03_stage65": 17
+    },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
     "collection_ledger_mapping_changed": false,
     "save_layout_changed": false,
-    "allocation_changed": false,
-    "corrections": [
+    "p01_identity_corrections": [
       {
         "species_key": "SPECIES_KEY_EGG",
         "source_id": 649,
@@ -61,13 +110,41 @@
         "policy": "REQUIRED_BASE",
         "ledger_bit": 386
       }
-    ]
+    ],
+    "p02_rayquaza_parameter_repair": {
+      "wrong_item_namespace_value": 773,
+      "correct_move_id": 630
+    },
+    "p03_representative_slice": {
+      "species_key": "SPECIES_KEY_CATERPIE",
+      "species_id": 649,
+      "level_up_moves": [33, 81, 535],
+      "machine_runtime_slot": 116,
+      "machine_project_move_id": 489,
+      "routes_materialized": 4,
+      "routes_not_materialized": 118524
+    }
+  },
+  "checkpoints": {
+    "p02": "CHECKPOINT_NOT_DONE",
+    "p03": "CHECKPOINT_NOT_P03_DONE",
+    "p04_assets": "STAGING_ONLY_NOT_ROM_READY",
+    "p05": "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
+    "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
+    "p07": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
+    "p08": "CHECKPOINT_NOT_RELEASE_CANDIDATE"
   },
   "deferred": {
-    "p02_evolutions": "PREPARATION_IN_PROGRESS",
-    "p03_learnsets": "PREPARATION_IN_PROGRESS",
-    "p04_new_species_and_megas": "RESEARCH_IN_PROGRESS",
+    "p02_full_runtime_acceptance": "CANCEL_ITEM_ABILITY_SAVE_RELOAD_NOT_RUN",
+    "p03_full_materialization": "118524_ROUTES_REMAIN",
+    "p03_machine_tutor_supply": "26720_ROUTES_REQUIRE_SUPPLY",
+    "p04_new_species_and_megas": "ASSETS_STAGED_IDS_AND_ROM_NOT_INTEGRATED",
+    "p04_palette_gaps": "2_OF_49_MEGA_RECORDS_NOT_CONSUMER_READY",
+    "p04_winds_waves_assets": "0_OF_3_AVAILABLE",
     "move_1063_ally_switch": "SPEC_ONLY_REQUIRES_ENGINE_IMPLEMENTATION",
+    "p05_new_abilities": "6_RUNTIME_EFFECTS_REQUIRE_IMPLEMENTATION",
+    "p06_species_adjustments": "NO_SUBMITTED_ADOPTED_DELTA",
+    "p07_cross_distribution": "NO_SUBMITTED_ADOPTED_DELTA",
     "restoration_review_candidates": "REVIEW_ONLY_NOT_APPLIED"
   }
 }
