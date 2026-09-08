@@ -62,9 +62,9 @@ PINNED_SHA256 = {
     P04_ASSETS.as_posix():
         "107f6830b0faf4c3372a872c2f91f6945145ad7503f17f64c4dd1d17c5168235",
     P05_CONTRACT.as_posix():
-        "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3",
+        "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
     P05_HANDOFF.as_posix():
-        "36326ff9ab43ff26767513be0e7e175cb1a11f7cfb95363108e06a32a70e3cc0",
+        "b0ca8e9ad33260d90b2a27518952b5e0f90b2a217cb50a128cc939cfa69e5ae7",
 }
 
 EXPECTED_STAGE65_SHA256 = (
@@ -98,7 +98,7 @@ ANCILLARY_TABLE_SPECS = {
         "domain": "move",
         "address": 0x0914CA68,
         "old_count": 1063,
-        "new_count": 1064,
+        "new_count": 1063,
         "stride": 1,
         "sha256": "69824572e19fca15799b58a8aa32e41566db94317f50dc3cc76146ee25048434",
     },
@@ -227,7 +227,7 @@ MANIFEST_SPACES = {
         "key_field": "move_key",
         "current_count": 1063,
         "current_max_id": 1062,
-        "append_count": 1,
+        "append_count": 0,
     },
     "ability": {
         "path": "manifests/ability_ids.csv",
@@ -1033,7 +1033,7 @@ def audit_move_effect_dispatch(
     }:
         _fail(f"Stage65 move effect末尾利用数が想定外です: {observed_tail_counts}")
     return {
-        "status": "SEMANTIC_RESERVATION_NOT_ASSIGNED",
+        "status": "NO_NEW_MOVE_EFFECT_REQUESTED",
         "storage": "u8",
         "entry_count": len(entries),
         "table_bytes": len(entries) * 4,
@@ -1055,9 +1055,9 @@ def audit_move_effect_dispatch(
         "excluded_reason": "既存定義済み特殊処理のため再利用候補外",
         "ally_switch_effect_id": None,
         "in_place_table_growth_possible": False,
-        "semantic_reuse_requires_review": True,
-        "classification": CLASS_ENGINE,
-        "required_action": "251/252/255から専用script・AI・target semantics込みで明示採用",
+        "semantic_reuse_requires_review": False,
+        "classification": CLASS_SIMPLE,
+        "required_action": "NONE_PRESERVE_CURRENT_DISPATCH",
         "source": {
             "path": f"{CFRU_SOURCE.as_posix()}/{relative}",
             "commit": CFRU_COMMIT,
@@ -1652,37 +1652,27 @@ def _build_reservations(
         )
 
     move_requirements = p05.get("new_move_requirements")
-    if not isinstance(move_requirements, list) or len(move_requirements) != 1:
-        _fail("P05新Move要件が1件ではありません")
-    move_requirement = move_requirements[0]
-    if move_requirement.get("move_key") != "MOVE_KEY_ALLYSWITCH" \
-            or move_requirement.get("requested_project_id") != 1063 \
-            or move_requirement.get("canonical_id") is not None \
-            or move_requirement.get("runtime_status") \
-            != "BLOCKED_SPECIFICATION_AND_CAPACITY_INCOMPLETE":
-        _fail("P05 Ally Switch未実装契約が不一致です")
-    moves = allocate_append_ids(
+    non_adopted_moves = p05.get("non_adopted_move_candidates")
+    if move_requirements != [] or not isinstance(non_adopted_moves, list) \
+            or len(non_adopted_moves) != 1:
+        _fail("P05新Move 0件・非採用候補1件の境界が不一致です")
+    move_candidate = non_adopted_moves[0]
+    if move_candidate.get("move_key") != "MOVE_KEY_ALLYSWITCH" \
+            or move_candidate.get("requested_project_id") != 1063 \
+            or move_candidate.get("canonical_id") is not None \
+            or move_candidate.get("runtime_status") \
+            != "NOT_APPLICABLE_DO_NOT_IMPLEMENT_OR_ALLOCATE" \
+            or move_candidate.get("source_p03_routes", {}).get("route_count") != 159 \
+            or move_candidate.get("source_p03_routes", {}).get("adopted_route_count") != 0 \
+            or move_candidate.get("exclusion", {}).get("replacement_move_key") is not None:
+        _fail("P05 Ally Switch非採用・無割当契約が不一致です")
+    _manifest_inventory(
         manifests["move"],
-        [
-            {
-                "move_key": "MOVE_KEY_ALLYSWITCH",
-                "source_record_key": "P05_MOVE_ALLYSWITCH",
-                "official_move_id": move_requirement.get("official", {}).get("move_id"),
-                "missing_specification_fields": move_requirement.get(
-                    "missing_specification_fields"
-                ),
-                "serialization_gate": move_requirement.get("p03_routes", {}).get(
-                    "serialization_gate"
-                ),
-                "route_count": move_requirement.get("p03_routes", {}).get("route_count"),
-                "materialization_ready": False,
-            }
-        ],
         key_field="move_key",
-        expected_current_count=MANIFEST_SPACES["move"]["current_count"],
+        expected_count=MANIFEST_SPACES["move"]["current_count"],
+        label="move_key",
     )
-    if moves[0]["id"] != 1063:
-        _fail("Ally Switch予約IDが1063ではありません")
+    moves: list[dict[str, Any]] = []
 
     result: dict[str, Any] = {}
     for domain, rows in (
@@ -1697,12 +1687,12 @@ def _build_reservations(
             "current_count": current,
             "current_max_id": current - 1,
             "append_count": len(rows),
-            "reserved_start_id": rows[0]["id"],
-            "reserved_end_id": rows[-1]["id"],
+            "reserved_start_id": rows[0]["id"] if rows else None,
+            "reserved_end_id": rows[-1]["id"] if rows else None,
             "new_count": current + len(rows),
-            "new_max_id": rows[-1]["id"],
+            "new_max_id": rows[-1]["id"] if rows else current - 1,
             "storage_limit": U16_MAX,
-            "within_u16": rows[-1]["id"] <= U16_MAX,
+            "within_u16": (rows[-1]["id"] if rows else current - 1) <= U16_MAX,
             "allocation_order": "STABLE_KEY_LEXICOGRAPHIC",
             "classification": CLASS_SIMPLE,
             "shared_manifest_mutated": False,
@@ -2441,10 +2431,6 @@ def _build_tables(
         )
 
     tables = [
-        runtime_table("move_names", "move", 1064),
-        runtime_table("move_data", "move", 1064),
-        runtime_table("move_descriptions", "move", 1064),
-        runtime_table("move_animations", "move", 1064),
         runtime_table("ability_names", "ability", 318),
         runtime_table("ability_descriptions", "ability", 318),
         runtime_table("item_data", "item", 1044),
@@ -2563,6 +2549,8 @@ def _build_tables(
         "utf-8"
     )
     for table_key, spec in sorted(ANCILLARY_TABLE_SPECS.items()):
+        if spec["domain"] == "move" and MANIFEST_SPACES["move"]["append_count"] == 0:
+            continue
         symbol = str(spec["symbol"])
         address = _integer(spec["address"], f"{symbol} address")
         match = re.search(
@@ -2678,7 +2666,7 @@ def _build_tables(
             "free_trailing_bytes": 0,
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
-            "reason": "新Species learnsetとMove1063 route payloadが未materialize",
+            "reason": "新Species learnset payloadが未materialize",
         },
         {
             "component_key": "egg_moves",
@@ -2688,14 +2676,7 @@ def _build_tables(
             "free_trailing_bytes": 0,
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
-            "reason": "Move1063 egg/shared-egg routeを含む可変長payloadが未materialize",
-        },
-        {
-            "component_key": "move_description_blob",
-            "current_size_bytes": runtime.get("gMoveDescriptionBlob", {}).get("size"),
-            "new_size_bytes": None,
-            "classification": CLASS_ENGINE,
-            "reason": "Ally Switch日本語説明未提出",
+            "reason": "新Species egg payloadと残る条件付きconsumerが未materialize",
         },
         {
             "component_key": "ability_description_blob",
@@ -2703,16 +2684,6 @@ def _build_tables(
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
             "reason": "新Ability 6件の日本語名/説明未提出",
-        },
-        {
-            "component_key": "ally_switch_effect_ai_animation",
-            "current_size_bytes": None,
-            "new_size_bytes": None,
-            "classification": CLASS_ENGINE,
-            "reason": (
-                "u8 dispatchは256枠でappend不可。blank 251/252/255のsemantic再利用、"
-                "target/flags/script/animation/AI specificationが未確定"
-            ),
         },
         {
             "component_key": "new_ability_effect_ai",
@@ -2741,8 +2712,8 @@ def _build_tables(
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
             "reason": (
-                "TM120+HM8/Tutor64は満杯。Move1063 routeを置換・増設・非採用の"
-                "どれにするか未決定"
+                "TM120+HM8/Tutor64は満杯。採用済み既存Moveの供給不足26,648行を"
+                "catalog増設または別供給経路へ解決する必要がある"
             ),
         },
     ]
@@ -2908,7 +2879,7 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
         {
             "field": "BoxPokemon.substruct1.moves[4]",
             "storage": "u16",
-            "required_max": 1063,
+            "required_max": 1062,
             "limit": U16_MAX,
             "classification": CLASS_SIMPLE,
         },
@@ -2978,9 +2949,10 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
             "blank_semantic_candidate_ids": [251, 252, 255],
             "excluded_candidate_id": 254,
             "reason": (
-                "append容量はないがblank semantic枠候補あり。専用dispatch script/AI/target"
-                "処理を確定するまでID未割当。既存effectへの近似は禁止"
+                "新規Moveは今回非採用のため追加effect不要。現行256-entry dispatchと"
+                "blank semantic枠を変更しない"
             ),
+            "new_move_effect_required": False,
         },
         {
             "field": "BattleMove.type/target/flags/power/pp/accuracy/secondaryChance",
@@ -2988,7 +2960,8 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
             "required_max": None,
             "limit": 255,
             "classification": CLASS_ENGINE,
-            "reason": "P05でtarget/effect/flags/secondary/animation等が未提出",
+            "reason": "新規Moveは今回非採用。現行field ABIを変更しない",
+            "new_move_record_required": False,
         },
         {
             "field": "TM/HM compatibility per Species",
@@ -2996,7 +2969,7 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
             "required_max": 127,
             "limit": 127,
             "classification": CLASS_ENGINE,
-            "reason": "現行128 slot満杯、Move1063 machine route方針未決定",
+            "reason": "現行128 slot満杯。採用済み既存Moveの供給不足を別途解決する必要あり",
         },
         {
             "field": "Tutor compatibility per Species",
@@ -3118,13 +3091,13 @@ def _save_abi_audit(
         "input": identity,
         "persistent_mon_numeric_fields": {
             "species_u16_max": 1672,
-            "move_u16_max": 1063,
+            "move_u16_max": 1062,
             "held_item_u16_max": 1043,
             "ability_storage": "selection bits; canonical ID is table-derived u16",
             "numeric_width_classification": CLASS_SIMPLE,
             "required_runtime_tests": [
                 "new_base_species_1672_save_load_roundtrip",
-                "move_1063_save_load_roundtrip",
+                "existing_move_1062_save_load_regression",
                 "held_item_1043_save_load_roundtrip",
                 "ability_317_species_derivation_and_battle_roundtrip",
                 "battle_only_mega_reverts_before_persistent_save_and_facility_resume",
@@ -3236,17 +3209,20 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
             _fail(f"reservation件数不一致です: {domain}")
         keys = [str(row.get(expected["key_field"], "")) for row in rows]
         ids = [_integer(row.get("id"), f"{domain} reservation id") for row in rows]
-        _require_unique(keys, f"{domain} reservation key")
+        if keys:
+            _require_unique(keys, f"{domain} reservation key")
         wanted = list(
             range(expected["current_count"], expected["current_count"] + len(rows))
         )
-        if ids != wanted or group.get("reserved_start_id") != wanted[0] \
-                or group.get("reserved_end_id") != wanted[-1] \
+        wanted_start = wanted[0] if wanted else None
+        wanted_end = wanted[-1] if wanted else None
+        if ids != wanted or group.get("reserved_start_id") != wanted_start \
+                or group.get("reserved_end_id") != wanted_end \
                 or group.get("new_count") != expected["current_count"] + len(rows):
             _fail(f"reservation範囲/連続性不一致です: {domain}")
         if any(row.get("materialization_ready") is not False for row in rows):
             _fail(f"未完成reservationがmaterialization readyです: {domain}")
-        if max(ids) > U16_MAX:
+        if ids and max(ids) > U16_MAX:
             _fail(f"reservationがu16を超えます: {domain}")
 
     tables = document.get("table_capacity")
@@ -3277,8 +3253,13 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
                 ):
             _fail("Mold Breaker補助表のsemantic/extent gateが不正です")
     _require_unique(table_keys, "fixed table key")
-    if len(table_keys) != 39 \
-            or not set(ANCILLARY_TABLE_SPECS).issubset(table_keys) \
+    expected_ancillary_tables = {
+        key for key, spec in ANCILLARY_TABLE_SPECS.items()
+        if spec["domain"] != "move"
+    }
+    if len(table_keys) != 34 \
+            or not expected_ancillary_tables.issubset(table_keys) \
+            or "move_dynamax_powers" in table_keys \
             or tables.get("known_fixed_old_bytes") != sum(
                 row["old_size_bytes"] for row in tables["fixed_tables"]
             ) \
@@ -3293,7 +3274,7 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
         tables["known_fixed_old_bytes"],
         tables["known_fixed_new_bytes"],
         tables["known_fixed_delta_bytes"],
-    ) != (655852, 676757, 20905):
+    ) != (616521, 637389, 20868):
         _fail("fixed table既知geometryが想定値から変わりました")
     variable_rows = tables.get("variable_or_policy_blocked_components")
     if not isinstance(variable_rows, list):
@@ -3567,7 +3548,7 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
 
     move_dispatch = consumer.get("pinned_move_effect_dispatch")
     if not isinstance(move_dispatch, dict) \
-            or move_dispatch.get("status") != "SEMANTIC_RESERVATION_NOT_ASSIGNED" \
+            or move_dispatch.get("status") != "NO_NEW_MOVE_EFFECT_REQUESTED" \
             or move_dispatch.get("entry_count") != 256 \
             or move_dispatch.get("table_bytes") != 1024 \
             or move_dispatch.get("blank_candidate_ids") != [251, 252, 255] \
@@ -3579,7 +3560,9 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
             } \
             or move_dispatch.get("excluded_blank_id") != 254 \
             or move_dispatch.get("ally_switch_effect_id") is not None \
-            or move_dispatch.get("classification") != CLASS_ENGINE:
+            or move_dispatch.get("semantic_reuse_requires_review") is not False \
+            or move_dispatch.get("required_action") != "NONE_PRESERVE_CURRENT_DISPATCH" \
+            or move_dispatch.get("classification") != CLASS_SIMPLE:
         _fail("move effect dispatch予約契約が不正です")
 
     event_abi = consumer.get("codex_public_event_abi")
@@ -3832,14 +3815,17 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
     hardcoded = audit_hardcoded_consumers(root)
     ancillary_source = audit_ancillary_source_consumers(root)
     cfru_count_consumers = audit_cfru_count_macro_consumers(root)
-    move_data_table = next(
-        row for row in fixed_tables if row["table_key"] == "move_data"
+    stage06_current, _ = _json(
+        root, "build/stages/06_battle_core.json", "Stage06 metadata"
     )
+    move_data_table = stage06_current.get("runtime_tables", {}).get("move_data")
+    if not isinstance(move_data_table, Mapping):
+        _fail("Stage06 current move_data tableがありません")
     move_effect_dispatch = audit_move_effect_dispatch(
         root,
         stage65_rom,
         move_data_address=_integer(
-            move_data_table["current_address"], "move data address"
+            move_data_table["address"], "move data address"
         ),
     )
     codex_public_event_abi = audit_codex_public_event_abi(root)
@@ -3938,8 +3924,8 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
                     "canonical species/form ID append 1621..1672",
                     "canonical item ID append 999..1043",
                     "canonical ability ID append 312..317",
-                    "canonical move ID append 1063",
-                    "u16 persistent Pokemon species/item/move fields",
+                    "canonical Move namespace remains 0..1062 (no append)",
+                    "u16 persistent Pokemon species/item/current move fields",
                 ],
                 "meaning": "ID namespace/primary u16 fieldだけの採番可否。runtime-ready宣言ではない",
             },
@@ -4014,26 +4000,23 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
             "required_before_shared_materialization": [
                 "各manifest固有の日本語名・説明・semantic fieldを提出",
                 "全table relocationとpointer/count consumer patchを設計",
-                "Ally Switch effect/target/flags/animation/AIを実装",
                 "6 Ability effect/AI/UIを実装",
-                "TM/Tutor route方針を決定",
+                "採用済み既存MoveのTM/Tutor供給不足方針を決定",
                 "save owner version/migrationを決定",
                 "Winds/Waves素材gapを解消または対象を明示延期",
             ],
         },
         "runtime_blockers": [
-            "共有Species/Move/Ability/Item manifest未変更",
+            "共有Species/Ability/Item manifest未変更（Moveは今回appendなし）",
             "固定table未relocate・consumer未repoint",
             "Codex runtime/reward内Item index表の全copy未再生成・未再link",
             "Collection Supplyの45 Item row/名称・条件付き49 Mega form row/名称未再生成",
             "Collection Supplyのitem obtained accessorがsidecar未対応",
             "Mega Stone 45件のraw graphics 14,400Bは配置/pointer/rights未統合",
             "Mega Stone 45 Itemの日本語text/effect/callback未提出",
-            "Ally Switch runtime fields/effect/AI/animation未実装",
-            "Ally Switch effectはblank 251/252/255のsemantic採用を未決定（254は対象外）",
             "新Ability 6件の日本語text/effect/AI/UI未実装",
             "新Ability 6件のMold Breaker無視table値を未審査（zero-fill自動採用禁止）",
-            "TM/HM128とTutor64が満杯でMove1063 route方針未決定",
+            "TM/HM128とTutor64が満杯で採用済み既存Moveの供給不足26,648行が未解決",
             "新Species level-up/egg/evolution/base stats/dex content未提出",
             "Mega change conditionとbattle-only save normalization未実装",
             "item obtained bitmap 125→131 byteのsave migration未設計",

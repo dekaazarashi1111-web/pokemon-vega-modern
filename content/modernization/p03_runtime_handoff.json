@@ -178,8 +178,19 @@
   },
   "schema_version": 1,
   "side_change_1063": {
-    "adopted_route_count": 159,
-    "adopted_target_count": 103,
+    "adopted_route_count": 0,
+    "adopted_target_count": 0,
+    "decision": {
+      "reason_ja": "現行runtimeに技自体がなく実装負荷が高いため、今回候補から外す。既存技への近似置換は行わない。",
+      "replacement_move_key": null,
+      "route_action": "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS",
+      "runtime_action": "DO_NOT_IMPLEMENT_OR_ALLOCATE",
+      "source": {
+        "path": "config/modernization_adoption_decisions.json",
+        "sha256": "1fd74abe9b2fc1af2f8fdd77ae5d911dfd6abddee314313542f8958b0dab8e7e",
+        "size": 601
+      }
+    },
     "definition": {
       "accuracy": null,
       "damage_class_id": 1,
@@ -188,31 +199,10 @@
       "priority": 2,
       "type_id": 14
     },
+    "excluded_route_count": 159,
     "official_move_id": 502,
     "project_move_id": 1063,
     "project_move_key": "MOVE_KEY_ALLYSWITCH",
-    "required_runtime_work": {
-      "ai": [
-        "使用可能な味方位置と失敗条件を判定",
-        "無効局面で選ばず、位置交換の戦術価値をdouble battle AIへ接続"
-      ],
-      "effect": [
-        "ダブル時の味方との位置交換effect、対象/失敗条件、battle scriptを実装",
-        "シングル・味方不在・交換不能時を安全に失敗させ、優先度+2を適用"
-      ],
-      "identity_and_tables": [
-        "Move manifest/capacityをID 1063を含む1064件へ拡張",
-        "gBattleMoves、name、description、animation、全fixed-count guardを同じidentityへ更新"
-      ],
-      "ui": [
-        "日本語名・説明・エスパー/変化・PP15・優先度情報を表示tableへ追加",
-        "習得・思い出し・共有・機械/教え技画面で未知ID表示を起こさない"
-      ],
-      "verification": [
-        "effect/AI/UI、single失敗、double成功、save往復、各習得経路を実ROMで検証",
-        "実装完了まで1063を既存runtime slotまたは実装済みMoveとしてserializeしない"
-      ]
-    },
     "routes_by_consumer": {
       "egg": 9,
       "level_up": 15,
@@ -222,28 +212,32 @@
       "shared_egg": 18,
       "tutor": 4
     },
-    "status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED"
+    "source_route_count": 159,
+    "source_target_count": 103,
+    "status": "NOT_ADOPTED_BY_USER_DECISION"
   },
   "status": "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS",
   "task": "USER-MODERNIZATION-P03",
   "unresolved_supply": {
-    "direct_machine_tutor_pairs": 56493,
+    "direct_machine_tutor_pairs": 56421,
+    "excluded_candidate_pairs": 72,
     "existing_slot_projection_rows": 29773,
     "projected_rows_by_family": {
       "machine": 29033,
       "tutor": 740
     },
     "projection_set_sha256": "f4be2d83dae734c9339b790583d1e8c427daac49c964c87205b2f970b6deb3f1",
-    "resolution": "既存slotはruntime zero-based indexへ投影。未配置は削除せず、catalog/compatibility拡張または別供給経路が実装されるまで依存として保持。",
+    "resolution": "既存slotはruntime zero-based indexへ投影。未配置は削除せず、catalog/compatibility拡張または別供給経路が実装されるまで依存として保持。Side Change 1063は後発のユーザー判断により全consumerから除外し、供給不足へ数えず既存技にも置換しない。",
+    "source_candidate_direct_machine_tutor_pairs": 56493,
     "supply_required_distinct_moves_by_family": {
-      "machine": 185,
-      "tutor": 32
+      "machine": 184,
+      "tutor": 31
     },
-    "supply_required_rows": 26720,
+    "supply_required_rows": 26648,
     "supply_required_rows_by_family": {
-      "machine": 26347,
-      "tutor": 373
+      "machine": 26279,
+      "tutor": 369
     },
-    "supply_required_set_sha256": "724964ecc27b0e93be687cc116e8254a2d087536493ace5e2881aa5da15e3864"
+    "supply_required_set_sha256": "5ef6be8c533e60c07ec1240c3ee8cc1e56c90c505689f3d41436719f338f7968"
   }
 }

@@ -1,0 +1,820 @@
+{
+  "ability_allocation": {
+    "baseline_count": 312,
+    "basis": "PROJECT_STABLE_KEY_LEXICOGRAPHIC_APPEND",
+    "new_count": 318,
+    "reserved_range": [
+      312,
+      317
+    ],
+    "rows": [
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "canonical_id": 312,
+        "source_numeric_id_not_canonical": 312,
+        "source_symbol": "ABILITY_DRAGONIZE",
+        "subject_record_keys": [
+          "P04_MEGA_FERALIGATR"
+        ]
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "canonical_id": 313,
+        "source_numeric_id_not_canonical": 313,
+        "source_symbol": "ABILITY_EELEVATE",
+        "subject_record_keys": [
+          "P04_MEGA_EELEKTROSS"
+        ]
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "canonical_id": 314,
+        "source_numeric_id_not_canonical": 316,
+        "source_symbol": "ABILITY_FIRE_MANE",
+        "subject_record_keys": [
+          "P04_MEGA_PYROAR"
+        ]
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "canonical_id": 315,
+        "source_numeric_id_not_canonical": 315,
+        "source_symbol": "ABILITY_MEGA_SOL",
+        "subject_record_keys": [
+          "P04_MEGA_MEGANIUM"
+        ]
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "canonical_id": 316,
+        "source_numeric_id_not_canonical": 311,
+        "source_symbol": "ABILITY_PIERCING_DRILL",
+        "subject_record_keys": [
+          "P04_MEGA_EXCADRILL"
+        ]
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "canonical_id": 317,
+        "source_numeric_id_not_canonical": 318,
+        "source_symbol": "ABILITY_SPICY_SPRAY",
+        "subject_record_keys": [
+          "P04_MEGA_SCOVILLAIN"
+        ]
+      }
+    ],
+    "source_numeric_ids_are_noncanonical": true,
+    "storage_type": "u16"
+  },
+  "completion_boundary": {
+    "completed": [
+      "six_stable_key_u16_ids_bound_to_312_through_317",
+      "portable_c_runtime_semantics",
+      "trigger_no_trigger_suppression_multi_target_ai_save_host_execution",
+      "pinned_upstream_semantic_evidence",
+      "integration_surface_contract"
+    ],
+    "release_ready": false,
+    "remaining": [
+      "append_and_relocate_all_ability_fixed_tables",
+      "resolve_expected_bytes_and_install_stage_rom_hooks",
+      "bind_six_mega_form_species_rows",
+      "complete_japanese_name_and_description_review",
+      "run_exact_rom_mgba_battle_ai_ui_and_save_acceptance"
+    ]
+  },
+  "fixture": {
+    "case_counts_by_ability": {
+      "ABILITY_KEY_DRAGONIZE": 8,
+      "ABILITY_KEY_EELEVATE": 9,
+      "ABILITY_KEY_FIREMANE": 7,
+      "ABILITY_KEY_MEGASOL": 8,
+      "ABILITY_KEY_PIERCINGDRILL": 7,
+      "ABILITY_KEY_SPICYSPRAY": 7
+    },
+    "case_counts_by_category": {
+      "ai": 8,
+      "multi_target": 7,
+      "no_trigger": 8,
+      "save": 6,
+      "suppressed": 7,
+      "trigger": 10
+    },
+    "cases": [
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 312,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 313,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 314,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 315,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 316,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "slot_roundtrip_u16",
+        "category": "save",
+        "observed": 317,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "contact_pierces_single_protect_at_quarter_damage",
+        "category": "trigger",
+        "observed": 25,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "noncontact_move_remains_blocked",
+        "category": "no_trigger",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "suppressed_ability_cannot_pierce",
+        "category": "suppressed",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "spread_targets_resolve_protect_independently",
+        "category": "multi_target",
+        "observed": 25100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "ai_keeps_only_viable_protect_bypass",
+        "category": "ai",
+        "observed": 25,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "case_key": "ohko_contact_passes_single_protect",
+        "category": "trigger",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "normal_becomes_dragon_and_gains_twenty_percent",
+        "category": "trigger",
+        "observed": 16120,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "dynamic_type_move_is_not_overridden",
+        "category": "no_trigger",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "suppression_preserves_normal_type_and_power",
+        "category": "suppressed",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "spread_conversion_applies_once_per_damage_context",
+        "category": "multi_target",
+        "observed": 120120,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "ai_uses_post_ability_type_and_power",
+        "category": "ai",
+        "observed": 120,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "project_fairy_id_23_passes_through",
+        "category": "no_trigger",
+        "observed": 23,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "case_key": "project_stellar_id_24_passes_through",
+        "category": "no_trigger",
+        "observed": 24,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "damaging_ground_move_is_immune",
+        "category": "trigger",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "gravity_forces_grounding",
+        "category": "no_trigger",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "mold_breaker_bypasses_without_ability_shield",
+        "category": "suppressed",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "spread_ground_immunity_does_not_inflate_other_target_damage",
+        "category": "multi_target",
+        "observed": 1100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "switch_ai_accounts_for_mold_breaker_and_ability_shield",
+        "category": "ai",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "switch_ai_rejects_bypassed_immunity",
+        "category": "ai",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "two_knockouts_raise_highest_stat_twice_with_tie_order",
+        "category": "multi_target",
+        "observed": 202,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "case_key": "suppression_blocks_knockout_boost",
+        "category": "suppressed",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "physical_fire_move_gains_fifty_percent",
+        "category": "trigger",
+        "observed": 150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "special_fire_move_gains_fifty_percent",
+        "category": "trigger",
+        "observed": 150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "non_fire_move_is_unchanged",
+        "category": "no_trigger",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "suppression_removes_fire_boost",
+        "category": "suppressed",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "spread_fire_move_boosts_each_target_without_cross_scaling",
+        "category": "multi_target",
+        "observed": 150150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "case_key": "ai_values_boosted_fire_damage",
+        "category": "ai",
+        "observed": 150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "personal_sun_boosts_fire",
+        "category": "trigger",
+        "observed": 150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "personal_sun_halves_water",
+        "category": "trigger",
+        "observed": 50,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "weather_ball_and_healing_use_personal_sun",
+        "category": "trigger",
+        "observed": 200,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "personal_sun_does_not_change_unrelated_damage",
+        "category": "no_trigger",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "suppression_restores_field_weather_and_fire_damage",
+        "category": "suppressed",
+        "observed": 100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "spread_owner_gets_personal_sun_but_partner_does_not",
+        "category": "multi_target",
+        "observed": 150100,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "case_key": "ai_uses_personal_weather_damage",
+        "category": "ai",
+        "observed": 150,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "damaging_noncontact_attack_burns_present_attacker",
+        "category": "trigger",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "substitute_only_damage_does_not_trigger",
+        "category": "no_trigger",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "suppression_blocks_reactive_burn",
+        "category": "suppressed",
+        "observed": 0,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "two_holders_queue_only_one_idempotent_burn",
+        "category": "multi_target",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "ai_accepts_safe_friendly_fire_for_guts",
+        "category": "ai",
+        "observed": 1,
+        "status": "PASS"
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "case_key": "ai_rejects_friendly_fire_without_burn_benefit",
+        "category": "ai",
+        "observed": 0,
+        "status": "PASS"
+      }
+    ],
+    "compile_profile": {
+      "flags": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic"
+      ],
+      "language": "C11",
+      "warnings_as_errors": true
+    },
+    "independent_process_runs": 2,
+    "stdout_sha256": "0579ecde0f8ddbc069516e8710256db88f6c7c0e8f836ddf7002dce46678e027",
+    "summary": {
+      "case_count": 46,
+      "failure_count": 0
+    }
+  },
+  "host_runtime_verified": true,
+  "implementation": {
+    "files": [
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities.h",
+        "sha256": "4fceaed3e9000111ab3ab66b82559ca2198a167eec904f51bb0a5eeffe1c552b",
+        "size": 7781
+      },
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities.c",
+        "sha256": "7448cf6cc3b0bcca94f13b94cc3fb754d667882d38e45c90e6e2f6dc1b3df27e",
+        "size": 11551
+      },
+      {
+        "path": "overlays/modernization_p05_abilities/modernization_p05_abilities_fixture.c",
+        "sha256": "f8df4c824ae313bb83f730565e878868fc6a8f918e0341d08345cd22890110d4",
+        "size": 18450
+      }
+    ],
+    "hook_address_status": "UNRESOLVED_STAGE_ROM_DISASSEMBLY_REQUIRED",
+    "integration_hooks": [
+      {
+        "ability_keys": [
+          "ABILITY_KEY_DRAGONIZE"
+        ],
+        "adapter_api": "p05_resolve_move",
+        "engine_surfaces": [
+          "GetMoveTypeSpecialPostAbility",
+          "damage_calc attacker modifier"
+        ],
+        "hook_key": "ATTACKER_MOVE_TYPE_AND_ATE_POWER"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_FIREMANE"
+        ],
+        "adapter_api": "p05_resolve_move",
+        "engine_surfaces": [
+          "damage_calc attacker modifier"
+        ],
+        "hook_key": "ATTACKER_FIRE_POWER"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_MEGASOL"
+        ],
+        "adapter_api": "p05_weather_for_user/p05_resolve_move",
+        "engine_surfaces": [
+          "attacker weather",
+          "Weather Ball",
+          "weather healing",
+          "Solar Beam charge",
+          "damage_calc"
+        ],
+        "hook_key": "PERSONAL_VIRTUAL_SUN"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_PIERCINGDRILL"
+        ],
+        "adapter_api": "p05_resolve_move",
+        "engine_surfaces": [
+          "attack canceler protection",
+          "protection damage modifier",
+          "contact shield reaction"
+        ],
+        "hook_key": "CONTACT_PROTECTION_BYPASS"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_EELEVATE"
+        ],
+        "adapter_api": "p05_resolve_ground_immunity",
+        "engine_surfaces": [
+          "grounded check",
+          "type effectiveness",
+          "ability popup",
+          "Mold Breaker/Ability Shield"
+        ],
+        "hook_key": "LEVITATE_COMPONENT"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_EELEVATE"
+        ],
+        "adapter_api": "p05_apply_eelevate_boost",
+        "engine_surfaces": [
+          "move-end attacker faint accounting",
+          "highest raw battle stat",
+          "stat-stage script"
+        ],
+        "hook_key": "BEAST_BOOST_COMPONENT"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_SPICYSPRAY"
+        ],
+        "adapter_api": "p05_resolve_spicy_spray",
+        "engine_surfaces": [
+          "move-end target ability event",
+          "substitute damage attribution",
+          "burn eligibility",
+          "attacker-present guard"
+        ],
+        "hook_key": "DAMAGE_REACTIVE_BURN"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_DRAGONIZE",
+          "ABILITY_KEY_EELEVATE",
+          "ABILITY_KEY_FIREMANE",
+          "ABILITY_KEY_MEGASOL",
+          "ABILITY_KEY_PIERCINGDRILL",
+          "ABILITY_KEY_SPICYSPRAY"
+        ],
+        "adapter_api": "p05_ai_estimated_damage/p05_ai_should_switch_into_ground/p05_ai_should_trigger_friendly_spicy_spray",
+        "engine_surfaces": [
+          "AI damage estimate",
+          "AI switch ranking",
+          "AI doubles friendly-fire ranking"
+        ],
+        "hook_key": "AI_KNOWLEDGE"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_DRAGONIZE",
+          "ABILITY_KEY_EELEVATE",
+          "ABILITY_KEY_FIREMANE",
+          "ABILITY_KEY_MEGASOL",
+          "ABILITY_KEY_PIERCINGDRILL",
+          "ABILITY_KEY_SPICYSPRAY"
+        ],
+        "adapter_api": "p05_ability_definition",
+        "engine_surfaces": [
+          "gAbilityNames",
+          "gAbilityDescriptions",
+          "gAbilityRatings",
+          "gMoldBreakerIgnoredAbilities"
+        ],
+        "hook_key": "ABILITY_FIXED_TABLES"
+      },
+      {
+        "ability_keys": [
+          "ABILITY_KEY_DRAGONIZE",
+          "ABILITY_KEY_EELEVATE",
+          "ABILITY_KEY_FIREMANE",
+          "ABILITY_KEY_MEGASOL",
+          "ABILITY_KEY_PIERCINGDRILL",
+          "ABILITY_KEY_SPICYSPRAY"
+        ],
+        "adapter_api": "p05_resolve_saved_ability",
+        "engine_surfaces": [
+          "species/form ability table",
+          "GetMonAbility slot derivation",
+          "mega-form selection"
+        ],
+        "hook_key": "SPECIES_FORM_AND_SAVE_SLOT"
+      }
+    ]
+  },
+  "inputs": {
+    "capacity_checkpoint": {
+      "ability_range": [
+        312,
+        317
+      ],
+      "path": "content/modernization/p04_capacity_allocation_manifest.json",
+      "reservation_status": "CHECKPOINT_NOT_RUNTIME_READY",
+      "sha256": "4ed3a4fe5f6cb1d0245c5a07ddb9db719094c1e1ee7e36cc756bf364fb69a4dd",
+      "size": 433496
+    },
+    "config": {
+      "path": "config/modernization_p05_ability_runtime.json",
+      "sha256": "52c14a10faeefe6bee002fc0c1ea40b077ce8ea7ecbab9ffd88fa5226bb85eb4",
+      "size": 10863
+    },
+    "technical_reference": {
+      "clean_checkout": true,
+      "commit": "cafe0221cefb2a991cc0ece429174ade877d037d",
+      "default_root": ".local/modernization_sources/pokeemerald-expansion",
+      "files": [
+        {
+          "anchor_counts": {
+            "ABILITY_DRAGONIZE = 312": 1,
+            "ABILITY_EELEVATE = 313": 1,
+            "ABILITY_FIRE_MANE = 316": 1,
+            "ABILITY_MEGA_SOL = 315": 1,
+            "ABILITY_PIERCING_DRILL = 311": 1,
+            "ABILITY_SPICY_SPRAY = 318": 1
+          },
+          "path": "include/constants/abilities.h",
+          "sha256": "b231654a86ffccdb122dfb8779384259e7ad6364d8d8fc56904d3701d70f0c11",
+          "size": 10121
+        },
+        {
+          "anchor_counts": {
+            "ABILITY_PIERCING_DRILL": 2,
+            "ability == ABILITY_MEGA_SOL": 1,
+            "case ABILITY_DRAGONIZE:": 1,
+            "case ABILITY_EELEVATE:": 1,
+            "case ABILITY_FIRE_MANE:": 1,
+            "case ABILITY_SPICY_SPRAY:": 1
+          },
+          "path": "src/battle_util.c",
+          "sha256": "a1a0390c955aa7ca5417a6d2b67311b6abaecee20f1408a86983f1eb1adb3d74",
+          "size": 423253
+        },
+        {
+          "anchor_counts": {
+            "ability == ABILITY_MEGA_SOL": 1,
+            "case ABILITY_DRAGONIZE:": 1
+          },
+          "path": "src/battle_main.c",
+          "sha256": "07d2e98fe3c3318d8904c931b660f9226645ee1c64bee2c08afd559950ad7fdb",
+          "size": 229692
+        },
+        {
+          "anchor_counts": {
+            "ability == ABILITY_MEGA_SOL": 2
+          },
+          "path": "src/battle_script_commands.c",
+          "sha256": "14eff3ab95870b3cfb856f74e4a31b71bcb74479128a79c59fcbf0ab79c07109",
+          "size": 424420
+        },
+        {
+          "anchor_counts": {
+            "ABILITY_PIERCING_DRILL": 1,
+            "ShouldTriggerSpicySprayForBurn": 1,
+            "case ABILITY_EELEVATE:": 1
+          },
+          "path": "src/battle_ai_util.c",
+          "sha256": "776b63775ecdd06375af32b4a54d498025e64e9839e36f078c28f8a9f7d4e5f1",
+          "size": 241538
+        },
+        {
+          "anchor_counts": {
+            "ABILITY_EELEVATE": 1
+          },
+          "path": "src/battle_ai_switch.c",
+          "sha256": "1befca39e7c46c31a1acff8fae2b219e011d70be7709cc70a2097760c6a89d62",
+          "size": 128667
+        },
+        {
+          "anchor_counts": {
+            "ShouldTriggerSpicySprayForBurn": 2,
+            "case ABILITY_EELEVATE:": 1
+          },
+          "path": "src/battle_ai_main.c",
+          "sha256": "023401863f01a489546dc8e9eadd6505e4eb7f442b2f3110a9bf8cc2e9554543",
+          "size": 288944
+        },
+        {
+          "anchor_counts": {
+            "GEN_CHAMPIONS": 4,
+            "deals 25% of the damage dealt to protected targets": 1
+          },
+          "path": "test/battle/ability/unseen_fist.c",
+          "sha256": "b22bc31354186f6b2c3c09b779275db8ee11f50c2034fbe5e3fa53698173a198",
+          "size": 9355
+        },
+        {
+          "anchor_counts": {
+            "boosts power of affected moves by 20%": 1,
+            "turns a Normal-type move into a dragon-type move": 1
+          },
+          "path": "test/battle/ability/dragonize.c",
+          "sha256": "87283ad21d9b5f4580564e9206f750860bbbd79d9da8702857f2bc6157f886ee",
+          "size": 10128
+        },
+        {
+          "anchor_counts": {
+            "Eelevate activates when targeted by ground type moves": 1,
+            "boosts the most proficient stat": 1
+          },
+          "path": "test/battle/ability/eelevate.c",
+          "sha256": "8984f7254646b7d14642512431f3bcec84b781b90076950d8ea603386ad78684",
+          "size": 14615
+        },
+        {
+          "anchor_counts": {
+            "Fire Mane increases Fire-type move damage": 1
+          },
+          "path": "test/battle/ability/fire_mane.c",
+          "sha256": "4f71e9f185cf4f946b57a07f0a6f4a6ea8b44d97dfcc3c6d25d1271b466061ca",
+          "size": 1614
+        },
+        {
+          "anchor_counts": {
+            "Mega Sol halves the power of the user's Water-type moves": 1,
+            "Mega Sol multiplies the power of Fire-type moves by 1.5x": 1
+          },
+          "path": "test/battle/ability/mega_sol.c",
+          "sha256": "66a3fd0e628c31430551296f823a784567c7b21e166753a4ab1feeacce24db0d",
+          "size": 14583
+        },
+        {
+          "anchor_counts": {
+            "Spicy Spray burns the attacker": 5,
+            "does not burn the attacker if the defender is behind a Substitute": 1
+          },
+          "path": "test/battle/ability/spicy_spray.c",
+          "sha256": "a7e9cc7993f63dadf01127a6588e3fbe809b217e3dd555ceb5a5ad3e0e0b15c1",
+          "size": 5103
+        }
+      ],
+      "repository": "https://github.com/rh-hideout/pokeemerald-expansion.git"
+    }
+  },
+  "rom_linked": false,
+  "rom_mutated": false,
+  "runtime_profile": {
+    "abilities": {
+      "ABILITY_KEY_DRAGONIZE": {
+        "dynamic_type_exclusions": [
+          "Weather Ball",
+          "Natural Gift",
+          "item-driven type",
+          "Hidden Power",
+          "active Tera Blast",
+          "Z-Move",
+          "Max Move"
+        ],
+        "normal_to_dragon": true,
+        "power_multiplier": "6/5"
+      },
+      "ABILITY_KEY_EELEVATE": {
+        "components": [
+          "Levitate",
+          "Beast Boost"
+        ],
+        "grounding_overrides": [
+          "Iron Ball",
+          "Gravity",
+          "Rooted",
+          "Smack Down"
+        ],
+        "highest_stat_tie_order": [
+          "Attack",
+          "Defense",
+          "Sp. Attack",
+          "Sp. Defense",
+          "Speed"
+        ]
+      },
+      "ABILITY_KEY_FIREMANE": {
+        "fire_power_multiplier": "3/2",
+        "physical_and_special": true
+      },
+      "ABILITY_KEY_MEGASOL": {
+        "field_weather_is_not_mutated": true,
+        "fire_power_multiplier": "3/2",
+        "personal_weather": "Sun",
+        "water_power_multiplier": "1/2"
+      },
+      "ABILITY_KEY_PIERCINGDRILL": {
+        "contact_shield_reaction_applies": true,
+        "generation_profile": "GEN_CHAMPIONS",
+        "protected_damage_multiplier": "1/4",
+        "scope": "contact move versus single-target protection; Max Guard and side guards remain blocking"
+      },
+      "ABILITY_KEY_SPICYSPRAY": {
+        "contact_required": false,
+        "defender_may_faint": true,
+        "future_attacker_must_be_present": true,
+        "substitute_only_damage_triggers": false
+      }
+    },
+    "japanese_text_status": "REVIEW_REQUIRED_TECHNICAL_ENGLISH_ONLY",
+    "rom_link_status": "UNLINKED_RELOCATION_AND_EXPECTED_BYTE_AUDIT_REQUIRED"
+  },
+  "save_mutated": false,
+  "schema_version": 1,
+  "shared_manifests_mutated": false,
+  "status": "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING",
+  "task": "USER-MODERNIZATION-P05-ABILITY-RUNTIME"
+}

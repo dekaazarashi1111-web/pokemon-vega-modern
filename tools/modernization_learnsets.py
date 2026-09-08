@@ -25,6 +25,7 @@ SCHEMA_VERSION = 1
 TASK = "USER-MODERNIZATION-P03"
 ARCHIVE_ROOT = "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905"
 IDENTITY_CONTRACT = Path("content/modernization/identity_contract.json")
+ADOPTION_DECISIONS = Path("config/modernization_adoption_decisions.json")
 
 EXPECTED_MEMBER_IDENTITIES: Mapping[str, tuple[int, str]] = {
     "README_JA.md": (7097, "2a33bc7a2499c75134e8f7b543fff49b4dc3664dfb0838db3fe3c488afdbaeb3"),
@@ -137,6 +138,42 @@ def _strict_csv(raw: bytes, label: str) -> list[dict[str, str]]:
     if any(None in row for row in rows):
         _fail(f"{label}にheader外の列があります")
     return rows
+
+
+def _load_ally_switch_decision(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    """ZIP内候補より後に確定した、今回版の採否をfail-closedで読む。"""
+
+    path = root / ADOPTION_DECISIONS
+    if path.is_symlink() or not path.is_file():
+        _fail(f"採用判断正本が通常ファイルではありません: {ADOPTION_DECISIONS}")
+    raw = path.read_bytes()
+    try:
+        document = json.loads(raw)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        _fail(f"採用判断正本を読めません: {error}")
+    decision = document.get("decisions", {}).get("MOVE_KEY_ALLYSWITCH")
+    expected = {
+        "decision": "NOT_ADOPTED",
+        "requested_project_id": 1063,
+        "official_move_id": 502,
+        "source_route_count": 159,
+        "route_action": "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS",
+        "replacement_move_key": None,
+        "runtime_action": "DO_NOT_IMPLEMENT_OR_ALLOCATE",
+    }
+    if document.get("schema_version") != 1 or document.get("task") \
+            != "USER-MODERNIZATION-P03-P05" or not isinstance(decision, dict):
+        _fail("採用判断正本のschema/task/Side Change行が不正です")
+    if any(decision.get(key) != value for key, value in expected.items()):
+        _fail("Side Change非採用判断が固定契約と一致しません")
+    reason = decision.get("reason_ja")
+    if not isinstance(reason, str) or not reason.strip():
+        _fail("Side Change非採用理由がありません")
+    return dict(decision), {
+        "path": ADOPTION_DECISIONS.as_posix(),
+        "size": len(raw),
+        "sha256": _sha(raw),
+    }
 
 
 def _member_suffix(relative: str) -> str:
@@ -749,6 +786,7 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
     root = root.resolve()
     identity, targets, manifests = _load_identity(root)
     identity_raw = (root / IDENTITY_CONTRACT).read_bytes()
+    ally_switch_decision, adoption_decision_identity = _load_ally_switch_decision(root)
     input_true = {key for key, row in targets.items() if row["input"]["apply"]}
     normalized_true = {key for key, row in targets.items() if row["normalized"]["apply"]}
 
@@ -871,13 +909,19 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
         )
         compiled_counts: Counter[str] = Counter()
         compiled_digests = {name: _FramedDigest() for name in CONSUMERS}
+        selected_counts: Counter[str] = Counter()
+        selected_digests = {name: _FramedDigest() for name in CONSUMERS}
         corrected_route_keys: set[str] = set()
+        selected_route_keys: set[str] = set()
         corrected_records_digest = _FramedDigest()
         corrected_routes_digest = _FramedDigest()
+        selected_routes_digest = _FramedDigest()
         compiled_index_rows: list[dict[str, Any]] = []
         corrected_supply_pairs: set[tuple[int, str, int]] = set()
+        selected_supply_pairs: set[tuple[int, str, int]] = set()
         source_supply_pairs: set[tuple[int, str, int]] = set()
         side_targets: set[str] = set()
+        side_route_keys: set[str] = set()
         side_counts: Counter[str] = Counter()
         caterpie_fixture: list[dict[str, Any]] = []
         carry_fixture: dict[str, Any] | None = None
@@ -897,7 +941,10 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
             corrected_records_digest.add(record)
             per_counts: Counter[str] = Counter()
             per_digests = {name: _FramedDigest() for name in CONSUMERS}
+            per_selected_counts: Counter[str] = Counter()
+            per_selected_digests = {name: _FramedDigest() for name in CONSUMERS}
             per_route_ids: set[str] = set()
+            per_selected_route_ids: set[str] = set()
             for route in record["routes"]:
                 compiled = _compile_route_row(target, route, crosswalk, catalog)
                 consumer = compiled["consumer"]
@@ -911,6 +958,8 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                     family = "tutor" if route["method"] == "tutor" else "machine"
                     pair = (target["canonical_id"], family, route["project_move_id"])
                     corrected_supply_pairs.add(pair)
+                    if route["project_move_id"] != 1063:
+                        selected_supply_pairs.add(pair)
                     if origin == "PRESERVE_SOURCE_ADOPTED":
                         source_supply_pairs.add(pair)
                 per_counts[consumer] += 1
@@ -920,7 +969,18 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                 corrected_routes_digest.add(compiled)
                 if route["project_move_id"] == 1063:
                     side_targets.add(key)
+                    side_route_keys.add(route_key)
                     side_counts[consumer] += 1
+                    compiled["selection_status"] = "NOT_ADOPTED_BY_USER_DECISION"
+                else:
+                    compiled["selection_status"] = "ADOPTED_FOR_RUNTIME"
+                    per_selected_counts[consumer] += 1
+                    selected_counts[consumer] += 1
+                    per_selected_digests[consumer].add(compiled)
+                    selected_digests[consumer].add(compiled)
+                    selected_routes_digest.add(compiled)
+                    per_selected_route_ids.add(route_id)
+                    selected_route_keys.add(route_key)
                 if key == "SPECIES_KEY_CATERPIE":
                     caterpie_fixture.append({
                         "route_id": route_id,
@@ -960,6 +1020,14 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                 "consumer_content_sha256": {
                     name: per_digests[name].hexdigest()
                     for name in CONSUMERS if per_digests[name].count
+                },
+                "selected_route_count": len(per_selected_route_ids),
+                "excluded_route_count": len(per_route_ids - per_selected_route_ids),
+                "selected_route_id_set_sha256": _set_sha(per_selected_route_ids),
+                "selected_consumer_counts": dict(sorted(per_selected_counts.items())),
+                "selected_consumer_content_sha256": {
+                    name: per_selected_digests[name].hexdigest()
+                    for name in CONSUMERS if per_selected_digests[name].count
                 },
             })
 
@@ -1007,18 +1075,43 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                 "訂正後経路の9分割が固定仕様と一致しません: "
                 f"routes={len(corrected_route_keys)} counts={dict(compiled_counts)}"
             )
+        expected_selected_counts = {
+            name: EXPECTED_COMPILED_COUNTS[name] - side_counts[name]
+            for name in CONSUMERS
+        }
+        if sum(side_counts.values()) != ally_switch_decision["source_route_count"] \
+                or len(selected_route_keys) != 118_369 \
+                or dict(selected_counts) != expected_selected_counts \
+                or corrected_route_keys - selected_route_keys != side_route_keys:
+            _fail(
+                "Side Change非採用後のruntime選択集合が不一致です: "
+                f"selected={len(selected_route_keys)} excluded={sum(side_counts.values())} "
+                f"counts={dict(selected_counts)}"
+            )
         if source_supply_pairs != source_projection | source_missing \
                 or source_projection & source_missing:
             _fail("原本のdirect TM/TR/tutor集合がprojection+missingと一致しません")
-        corrected_projection = {
+        corrected_projection_all_candidates = {
             pair for pair in corrected_supply_pairs if (pair[1], pair[2]) in catalog
         }
-        corrected_missing = corrected_supply_pairs - corrected_projection
-        if len(corrected_projection) != 29_773 or len(corrected_missing) != 26_720 \
-                or corrected_projection - source_projection \
+        corrected_missing_all_candidates = (
+            corrected_supply_pairs - corrected_projection_all_candidates
+        )
+        if len(corrected_projection_all_candidates) != 29_773 \
+                or len(corrected_missing_all_candidates) != 26_720 \
+                or corrected_projection_all_candidates - source_projection \
                 != {(649, "machine", 489)} \
-                or corrected_missing != source_missing:
+                or corrected_missing_all_candidates != source_missing:
             _fail("キャタピー訂正後のruntime供給集合が期待値と一致しません")
+        corrected_projection = {
+            pair for pair in selected_supply_pairs if (pair[1], pair[2]) in catalog
+        }
+        corrected_missing = selected_supply_pairs - corrected_projection
+        excluded_supply_pairs = corrected_supply_pairs - selected_supply_pairs
+        if len(excluded_supply_pairs) \
+                != side_counts["machine"] + side_counts["tutor"] \
+                or any(pair[2] != 1063 for pair in excluded_supply_pairs):
+            _fail("Side Change非採用のmachine供給除外集合が不一致です")
         if sorted((row["consumer"], row["method"], row["project_move_id"])
                   for row in caterpie_fixture) != [
             ("level_up", "level_up", 33),
@@ -1053,6 +1146,9 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
         "policy": {
             "source_archive": "IMMUTABLE_STREAM_ONLY",
             "adoption": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+            "post_input_user_override": (
+                "MOVE_KEY_ALLYSWITCH_EXCLUDED_WITHOUT_REPLACEMENT"
+            ),
             "identity_join": "SPECIES_KEY_THEN_ASSERT_CANONICAL_ID",
             "route_partition": "EXACTLY_ONE_OF_NINE_CONSUMERS",
             "carry_to_direct_conversion": "FORBIDDEN",
@@ -1074,6 +1170,7 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                 "size": len(identity_raw),
                 "sha256": _sha(identity_raw),
             },
+            "adoption_decisions": adoption_decision_identity,
             "fixed_policy_version": policy["policy_version"],
             "upstream_validation": {
                 "status": acceptance["status"],
@@ -1117,8 +1214,34 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
             "target_route_key_set_sha256": _set_sha(corrected_route_keys),
             "consumers": route_contract,
         },
+        "runtime_selection": {
+            "records": len(compiled_index_rows),
+            "selected_routes": len(selected_route_keys),
+            "excluded_routes": len(corrected_route_keys - selected_route_keys),
+            "selected_route_content_sha256": selected_routes_digest.hexdigest(),
+            "selected_target_route_key_set_sha256": _set_sha(selected_route_keys),
+            "consumers": {
+                name: {
+                    "count": selected_counts[name],
+                    "content_sha256": selected_digests[name].hexdigest(),
+                }
+                for name in CONSUMERS
+            },
+            "exclusions": [{
+                "move_key": "MOVE_KEY_ALLYSWITCH",
+                "project_move_id": 1063,
+                "source_route_count": sum(side_counts.values()),
+                "source_target_count": len(side_targets),
+                "routes_by_consumer": dict(sorted(side_counts.items())),
+                "decision": ally_switch_decision["decision"],
+                "replacement_move_key": ally_switch_decision["replacement_move_key"],
+                "route_action": ally_switch_decision["route_action"],
+            }],
+        },
         "runtime_supply": {
-            "direct_machine_tutor_pairs": len(corrected_supply_pairs),
+            "source_candidate_direct_machine_tutor_pairs": len(corrected_supply_pairs),
+            "direct_machine_tutor_pairs": len(selected_supply_pairs),
+            "excluded_candidate_pairs": len(excluded_supply_pairs),
             "existing_slot_projection_rows": len(corrected_projection),
             "supply_required_rows": len(corrected_missing),
             "projected_rows_by_family": dict(sorted(projected_by_family.items())),
@@ -1136,6 +1259,8 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
             "resolution": (
                 "既存slotはruntime zero-based indexへ投影。未配置は削除せず、"
                 "catalog/compatibility拡張または別供給経路が実装されるまで依存として保持。"
+                "Side Change 1063は後発のユーザー判断により全consumerから除外し、"
+                "供給不足へ数えず既存技にも置換しない。"
             ),
         },
     }
@@ -1149,6 +1274,8 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
         "ordering": "canonical Species ID ascending; source route order preserved",
         "record_count": len(compiled_index_rows),
         "route_count": len(corrected_route_keys),
+        "selected_route_count": len(selected_route_keys),
+        "excluded_route_count": len(corrected_route_keys - selected_route_keys),
         "records": compiled_index_rows,
     }
     runtime_connection = _runtime_connection_contract(root)
@@ -1176,7 +1303,7 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
         },
         "unresolved_supply": contract["runtime_supply"],
         "side_change_1063": {
-            "status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED",
+            "status": "NOT_ADOPTED_BY_USER_DECISION",
             "project_move_id": 1063,
             "project_move_key": "MOVE_KEY_ALLYSWITCH",
             "official_move_id": 502,
@@ -1188,30 +1315,18 @@ def build_p03_artifacts(root: Path, learnsets_zip: Path) -> P03Artifacts:
                 "accuracy": new_move["accuracy"],
                 "priority": new_move["priority"],
             },
-            "adopted_target_count": len(side_targets),
-            "adopted_route_count": sum(side_counts.values()),
+            "source_target_count": len(side_targets),
+            "source_route_count": sum(side_counts.values()),
+            "adopted_target_count": 0,
+            "adopted_route_count": 0,
+            "excluded_route_count": sum(side_counts.values()),
             "routes_by_consumer": dict(sorted(side_counts.items())),
-            "required_runtime_work": {
-                "identity_and_tables": [
-                    "Move manifest/capacityをID 1063を含む1064件へ拡張",
-                    "gBattleMoves、name、description、animation、全fixed-count guardを同じidentityへ更新",
-                ],
-                "effect": [
-                    "ダブル時の味方との位置交換effect、対象/失敗条件、battle scriptを実装",
-                    "シングル・味方不在・交換不能時を安全に失敗させ、優先度+2を適用",
-                ],
-                "ai": [
-                    "使用可能な味方位置と失敗条件を判定",
-                    "無効局面で選ばず、位置交換の戦術価値をdouble battle AIへ接続",
-                ],
-                "ui": [
-                    "日本語名・説明・エスパー/変化・PP15・優先度情報を表示tableへ追加",
-                    "習得・思い出し・共有・機械/教え技画面で未知ID表示を起こさない",
-                ],
-                "verification": [
-                    "effect/AI/UI、single失敗、double成功、save往復、各習得経路を実ROMで検証",
-                    "実装完了まで1063を既存runtime slotまたは実装済みMoveとしてserializeしない",
-                ],
+            "decision": {
+                "source": adoption_decision_identity,
+                "route_action": ally_switch_decision["route_action"],
+                "runtime_action": ally_switch_decision["runtime_action"],
+                "replacement_move_key": None,
+                "reason_ja": ally_switch_decision["reason_ja"],
             },
         },
         "fixtures": {

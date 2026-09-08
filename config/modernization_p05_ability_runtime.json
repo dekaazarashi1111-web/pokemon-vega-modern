@@ -1,0 +1,267 @@
+{
+  "ability_allocation": {
+    "allocation_basis": "PROJECT_STABLE_KEY_LEXICOGRAPHIC_APPEND",
+    "baseline_count": 312,
+    "new_count": 318,
+    "rows": [
+      {
+        "ability_key": "ABILITY_KEY_DRAGONIZE",
+        "canonical_id": 312,
+        "source_numeric_id_not_canonical": 312,
+        "source_symbol": "ABILITY_DRAGONIZE",
+        "subject_record_keys": ["P04_MEGA_FERALIGATR"]
+      },
+      {
+        "ability_key": "ABILITY_KEY_EELEVATE",
+        "canonical_id": 313,
+        "source_numeric_id_not_canonical": 313,
+        "source_symbol": "ABILITY_EELEVATE",
+        "subject_record_keys": ["P04_MEGA_EELEKTROSS"]
+      },
+      {
+        "ability_key": "ABILITY_KEY_FIREMANE",
+        "canonical_id": 314,
+        "source_numeric_id_not_canonical": 316,
+        "source_symbol": "ABILITY_FIRE_MANE",
+        "subject_record_keys": ["P04_MEGA_PYROAR"]
+      },
+      {
+        "ability_key": "ABILITY_KEY_MEGASOL",
+        "canonical_id": 315,
+        "source_numeric_id_not_canonical": 315,
+        "source_symbol": "ABILITY_MEGA_SOL",
+        "subject_record_keys": ["P04_MEGA_MEGANIUM"]
+      },
+      {
+        "ability_key": "ABILITY_KEY_PIERCINGDRILL",
+        "canonical_id": 316,
+        "source_numeric_id_not_canonical": 311,
+        "source_symbol": "ABILITY_PIERCING_DRILL",
+        "subject_record_keys": ["P04_MEGA_EXCADRILL"]
+      },
+      {
+        "ability_key": "ABILITY_KEY_SPICYSPRAY",
+        "canonical_id": 317,
+        "source_numeric_id_not_canonical": 318,
+        "source_symbol": "ABILITY_SPICY_SPRAY",
+        "subject_record_keys": ["P04_MEGA_SCOVILLAIN"]
+      }
+    ],
+    "storage_type": "u16"
+  },
+  "capacity_checkpoint": "content/modernization/p04_capacity_allocation_manifest.json",
+  "fixture": {
+    "compile_flags": ["-std=c11", "-Wall", "-Wextra", "-Werror", "-pedantic"],
+    "independent_process_runs": 2,
+    "required_categories_per_ability": [
+      "trigger",
+      "no_trigger",
+      "suppressed",
+      "multi_target",
+      "ai",
+      "save"
+    ],
+    "source": "overlays/modernization_p05_abilities/modernization_p05_abilities_fixture.c"
+  },
+  "implementation": {
+    "header": "overlays/modernization_p05_abilities/modernization_p05_abilities.h",
+    "runtime": "overlays/modernization_p05_abilities/modernization_p05_abilities.c"
+  },
+  "integration_hooks": [
+    {
+      "ability_keys": ["ABILITY_KEY_DRAGONIZE"],
+      "adapter_api": "p05_resolve_move",
+      "engine_surfaces": ["GetMoveTypeSpecialPostAbility", "damage_calc attacker modifier"],
+      "hook_key": "ATTACKER_MOVE_TYPE_AND_ATE_POWER"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_FIREMANE"],
+      "adapter_api": "p05_resolve_move",
+      "engine_surfaces": ["damage_calc attacker modifier"],
+      "hook_key": "ATTACKER_FIRE_POWER"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_MEGASOL"],
+      "adapter_api": "p05_weather_for_user/p05_resolve_move",
+      "engine_surfaces": ["attacker weather", "Weather Ball", "weather healing", "Solar Beam charge", "damage_calc"],
+      "hook_key": "PERSONAL_VIRTUAL_SUN"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_PIERCINGDRILL"],
+      "adapter_api": "p05_resolve_move",
+      "engine_surfaces": ["attack canceler protection", "protection damage modifier", "contact shield reaction"],
+      "hook_key": "CONTACT_PROTECTION_BYPASS"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_EELEVATE"],
+      "adapter_api": "p05_resolve_ground_immunity",
+      "engine_surfaces": ["grounded check", "type effectiveness", "ability popup", "Mold Breaker/Ability Shield"],
+      "hook_key": "LEVITATE_COMPONENT"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_EELEVATE"],
+      "adapter_api": "p05_apply_eelevate_boost",
+      "engine_surfaces": ["move-end attacker faint accounting", "highest raw battle stat", "stat-stage script"],
+      "hook_key": "BEAST_BOOST_COMPONENT"
+    },
+    {
+      "ability_keys": ["ABILITY_KEY_SPICYSPRAY"],
+      "adapter_api": "p05_resolve_spicy_spray",
+      "engine_surfaces": ["move-end target ability event", "substitute damage attribution", "burn eligibility", "attacker-present guard"],
+      "hook_key": "DAMAGE_REACTIVE_BURN"
+    },
+    {
+      "ability_keys": [
+        "ABILITY_KEY_DRAGONIZE",
+        "ABILITY_KEY_EELEVATE",
+        "ABILITY_KEY_FIREMANE",
+        "ABILITY_KEY_MEGASOL",
+        "ABILITY_KEY_PIERCINGDRILL",
+        "ABILITY_KEY_SPICYSPRAY"
+      ],
+      "adapter_api": "p05_ai_estimated_damage/p05_ai_should_switch_into_ground/p05_ai_should_trigger_friendly_spicy_spray",
+      "engine_surfaces": ["AI damage estimate", "AI switch ranking", "AI doubles friendly-fire ranking"],
+      "hook_key": "AI_KNOWLEDGE"
+    },
+    {
+      "ability_keys": [
+        "ABILITY_KEY_DRAGONIZE",
+        "ABILITY_KEY_EELEVATE",
+        "ABILITY_KEY_FIREMANE",
+        "ABILITY_KEY_MEGASOL",
+        "ABILITY_KEY_PIERCINGDRILL",
+        "ABILITY_KEY_SPICYSPRAY"
+      ],
+      "adapter_api": "p05_ability_definition",
+      "engine_surfaces": ["gAbilityNames", "gAbilityDescriptions", "gAbilityRatings", "gMoldBreakerIgnoredAbilities"],
+      "hook_key": "ABILITY_FIXED_TABLES"
+    },
+    {
+      "ability_keys": [
+        "ABILITY_KEY_DRAGONIZE",
+        "ABILITY_KEY_EELEVATE",
+        "ABILITY_KEY_FIREMANE",
+        "ABILITY_KEY_MEGASOL",
+        "ABILITY_KEY_PIERCINGDRILL",
+        "ABILITY_KEY_SPICYSPRAY"
+      ],
+      "adapter_api": "p05_resolve_saved_ability",
+      "engine_surfaces": ["species/form ability table", "GetMonAbility slot derivation", "mega-form selection"],
+      "hook_key": "SPECIES_FORM_AND_SAVE_SLOT"
+    }
+  ],
+  "runtime_profile": {
+    "abilities": {
+      "ABILITY_KEY_DRAGONIZE": {
+        "dynamic_type_exclusions": ["Weather Ball", "Natural Gift", "item-driven type", "Hidden Power", "active Tera Blast", "Z-Move", "Max Move"],
+        "normal_to_dragon": true,
+        "power_multiplier": "6/5"
+      },
+      "ABILITY_KEY_EELEVATE": {
+        "components": ["Levitate", "Beast Boost"],
+        "grounding_overrides": ["Iron Ball", "Gravity", "Rooted", "Smack Down"],
+        "highest_stat_tie_order": ["Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"]
+      },
+      "ABILITY_KEY_FIREMANE": {
+        "fire_power_multiplier": "3/2",
+        "physical_and_special": true
+      },
+      "ABILITY_KEY_MEGASOL": {
+        "field_weather_is_not_mutated": true,
+        "fire_power_multiplier": "3/2",
+        "personal_weather": "Sun",
+        "water_power_multiplier": "1/2"
+      },
+      "ABILITY_KEY_PIERCINGDRILL": {
+        "contact_shield_reaction_applies": true,
+        "generation_profile": "GEN_CHAMPIONS",
+        "protected_damage_multiplier": "1/4",
+        "scope": "contact move versus single-target protection; Max Guard and side guards remain blocking"
+      },
+      "ABILITY_KEY_SPICYSPRAY": {
+        "contact_required": false,
+        "defender_may_faint": true,
+        "future_attacker_must_be_present": true,
+        "substitute_only_damage_triggers": false
+      }
+    },
+    "japanese_text_status": "REVIEW_REQUIRED_TECHNICAL_ENGLISH_ONLY",
+    "rom_link_status": "UNLINKED_RELOCATION_AND_EXPECTED_BYTE_AUDIT_REQUIRED"
+  },
+  "schema_version": 1,
+  "source_reference": {
+    "commit": "cafe0221cefb2a991cc0ece429174ade877d037d",
+    "default_root": ".local/modernization_sources/pokeemerald-expansion",
+    "files": [
+      {
+        "anchors": ["ABILITY_PIERCING_DRILL = 311", "ABILITY_DRAGONIZE = 312", "ABILITY_EELEVATE = 313", "ABILITY_MEGA_SOL = 315", "ABILITY_FIRE_MANE = 316", "ABILITY_SPICY_SPRAY = 318"],
+        "path": "include/constants/abilities.h",
+        "sha256": "b231654a86ffccdb122dfb8779384259e7ad6364d8d8fc56904d3701d70f0c11"
+      },
+      {
+        "anchors": ["case ABILITY_SPICY_SPRAY:", "case ABILITY_EELEVATE:", "case ABILITY_DRAGONIZE:", "case ABILITY_FIRE_MANE:", "ability == ABILITY_MEGA_SOL", "ABILITY_PIERCING_DRILL"],
+        "path": "src/battle_util.c",
+        "sha256": "a1a0390c955aa7ca5417a6d2b67311b6abaecee20f1408a86983f1eb1adb3d74"
+      },
+      {
+        "anchors": ["case ABILITY_DRAGONIZE:", "ability == ABILITY_MEGA_SOL"],
+        "path": "src/battle_main.c",
+        "sha256": "07d2e98fe3c3318d8904c931b660f9226645ee1c64bee2c08afd559950ad7fdb"
+      },
+      {
+        "anchors": ["ability == ABILITY_MEGA_SOL"],
+        "path": "src/battle_script_commands.c",
+        "sha256": "14eff3ab95870b3cfb856f74e4a31b71bcb74479128a79c59fcbf0ab79c07109"
+      },
+      {
+        "anchors": ["ShouldTriggerSpicySprayForBurn", "ABILITY_PIERCING_DRILL", "case ABILITY_EELEVATE:"],
+        "path": "src/battle_ai_util.c",
+        "sha256": "776b63775ecdd06375af32b4a54d498025e64e9839e36f078c28f8a9f7d4e5f1"
+      },
+      {
+        "anchors": ["ABILITY_EELEVATE"],
+        "path": "src/battle_ai_switch.c",
+        "sha256": "1befca39e7c46c31a1acff8fae2b219e011d70be7709cc70a2097760c6a89d62"
+      },
+      {
+        "anchors": ["ShouldTriggerSpicySprayForBurn", "case ABILITY_EELEVATE:"],
+        "path": "src/battle_ai_main.c",
+        "sha256": "023401863f01a489546dc8e9eadd6505e4eb7f442b2f3110a9bf8cc2e9554543"
+      },
+      {
+        "anchors": ["deals 25% of the damage dealt to protected targets", "GEN_CHAMPIONS"],
+        "path": "test/battle/ability/unseen_fist.c",
+        "sha256": "b22bc31354186f6b2c3c09b779275db8ee11f50c2034fbe5e3fa53698173a198"
+      },
+      {
+        "anchors": ["turns a Normal-type move into a dragon-type move", "boosts power of affected moves by 20%"],
+        "path": "test/battle/ability/dragonize.c",
+        "sha256": "87283ad21d9b5f4580564e9206f750860bbbd79d9da8702857f2bc6157f886ee"
+      },
+      {
+        "anchors": ["Eelevate activates when targeted by ground type moves", "boosts the most proficient stat"],
+        "path": "test/battle/ability/eelevate.c",
+        "sha256": "8984f7254646b7d14642512431f3bcec84b781b90076950d8ea603386ad78684"
+      },
+      {
+        "anchors": ["Fire Mane increases Fire-type move damage"],
+        "path": "test/battle/ability/fire_mane.c",
+        "sha256": "4f71e9f185cf4f946b57a07f0a6f4a6ea8b44d97dfcc3c6d25d1271b466061ca"
+      },
+      {
+        "anchors": ["Mega Sol multiplies the power of Fire-type moves by 1.5x", "Mega Sol halves the power of the user's Water-type moves"],
+        "path": "test/battle/ability/mega_sol.c",
+        "sha256": "66a3fd0e628c31430551296f823a784567c7b21e166753a4ab1feeacce24db0d"
+      },
+      {
+        "anchors": ["Spicy Spray burns the attacker", "does not burn the attacker if the defender is behind a Substitute"],
+        "path": "test/battle/ability/spicy_spray.c",
+        "sha256": "a7e9cc7993f63dadf01127a6588e3fbe809b217e3dd555ceb5a5ad3e0e0b15c1"
+      }
+    ],
+    "repository": "https://github.com/rh-hideout/pokeemerald-expansion.git",
+    "require_clean_checkout": true
+  },
+  "status": "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING",
+  "task": "USER-MODERNIZATION-P05-ABILITY-RUNTIME"
+}

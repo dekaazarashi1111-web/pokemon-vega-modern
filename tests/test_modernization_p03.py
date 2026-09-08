@@ -49,6 +49,8 @@ class ModernizationP03Test(unittest.TestCase):
 
     def test_all_records_and_full_content_are_fingerprinted(self) -> None:
         self.assertEqual((1300, 118528), (self.index["record_count"], self.index["route_count"]))
+        self.assertEqual(118369, self.index["selected_route_count"])
+        self.assertEqual(159, self.index["excluded_route_count"])
         rows = self.index["records"]
         self.assertEqual(1300, len(rows))
         self.assertEqual(sorted(row["canonical_id"] for row in rows), [row["canonical_id"] for row in rows])
@@ -73,6 +75,13 @@ class ModernizationP03Test(unittest.TestCase):
         self.assertEqual(
             "277e80b384e34c238ce151f85ac2ee18e8904b0be65af3c34dd93b54361d1c42",
             self.contract["corrected_adoption"]["compiled_route_content_sha256"],
+        )
+        selected = self.contract["runtime_selection"]
+        self.assertEqual(118369, selected["selected_routes"])
+        self.assertEqual(159, selected["excluded_routes"])
+        self.assertEqual(
+            118369,
+            sum(row["count"] for row in selected["consumers"].values()),
         )
 
     def test_carry_and_form_routes_cannot_become_direct(self) -> None:
@@ -100,16 +109,20 @@ class ModernizationP03Test(unittest.TestCase):
         self.assertEqual("TM82", machine["source_machine_item"])
         self.assertEqual(116, machine["runtime_slot_zero_based"])
         supply = self.contract["runtime_supply"]
-        self.assertEqual(56493, supply["direct_machine_tutor_pairs"])
+        self.assertEqual(56493, supply["source_candidate_direct_machine_tutor_pairs"])
+        self.assertEqual(56421, supply["direct_machine_tutor_pairs"])
+        self.assertEqual(72, supply["excluded_candidate_pairs"])
         self.assertEqual(29773, supply["existing_slot_projection_rows"])
-        self.assertEqual(26720, supply["supply_required_rows"])
-        self.assertEqual({"machine": 185, "tutor": 32}, supply["supply_required_distinct_moves_by_family"])
+        self.assertEqual(26648, supply["supply_required_rows"])
+        self.assertEqual({"machine": 184, "tutor": 31}, supply["supply_required_distinct_moves_by_family"])
 
-    def test_side_change_1063_is_a_concrete_blocking_dependency(self) -> None:
+    def test_side_change_1063_is_explicitly_not_adopted_without_replacement(self) -> None:
         side = self.handoff["side_change_1063"]
-        self.assertEqual("BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED", side["status"])
+        self.assertEqual("NOT_ADOPTED_BY_USER_DECISION", side["status"])
         self.assertEqual((1063, 502), (side["project_move_id"], side["official_move_id"]))
-        self.assertEqual((103, 159), (side["adopted_target_count"], side["adopted_route_count"]))
+        self.assertEqual((0, 0), (side["adopted_target_count"], side["adopted_route_count"]))
+        self.assertEqual((103, 159), (side["source_target_count"], side["source_route_count"]))
+        self.assertEqual(159, side["excluded_route_count"])
         self.assertEqual(
             {
                 "egg": 9, "level_up": 15, "machine": 68,
@@ -118,10 +131,9 @@ class ModernizationP03Test(unittest.TestCase):
             },
             side["routes_by_consumer"],
         )
-        self.assertEqual(
-            {"identity_and_tables", "effect", "ai", "ui", "verification"},
-            set(side["required_runtime_work"]),
-        )
+        self.assertEqual("EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS", side["decision"]["route_action"])
+        self.assertEqual("DO_NOT_IMPLEMENT_OR_ALLOCATE", side["decision"]["runtime_action"])
+        self.assertIsNone(side["decision"]["replacement_move_key"])
 
     def test_runtime_connections_preserve_existing_saves_and_explicit_parties(self) -> None:
         connection = self.handoff["connection_points"]

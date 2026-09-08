@@ -396,7 +396,8 @@
       }
     }
   ],
-  "new_move_requirements": [
+  "new_move_requirements": [],
+  "non_adopted_move_candidates": [
     {
       "before": null,
       "canonical_id": null,
@@ -405,24 +406,32 @@
         "guard": "DO_NOT_MAP_TO_EFFECT_HIT_OR_ANOTHER_APPROXIMATION",
         "reuse_existing_effect": false
       },
+      "exclusion": {
+        "decision": {
+          "reason_ja": "現行runtimeに技自体がなく実装負荷が高いため、今回候補から外す。既存技への近似置換は行わない。",
+          "replacement_move_key": null,
+          "route_action": "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS",
+          "runtime_action": "DO_NOT_IMPLEMENT_OR_ALLOCATE",
+          "source": {
+            "path": "config/modernization_adoption_decisions.json",
+            "sha256": "1fd74abe9b2fc1af2f8fdd77ae5d911dfd6abddee314313542f8958b0dab8e7e",
+            "size": 601
+          }
+        },
+        "learnset_materialization": false,
+        "manifest_allocation": false,
+        "replacement_move_key": null,
+        "runtime_implementation": false
+      },
       "id_status": "PROPOSED_NEXT_ID_NOT_IN_CANONICAL_MANIFEST",
       "identity": {
+        "adopted_manifest_count": 1063,
         "current_last_id": 1062,
         "current_manifest_count": 1063,
         "mapping_basis": "EXPLICIT_NEW_SPEC_ID_NOT_ROM_ID",
         "name_en": "Ally Switch",
         "name_ja": "サイドチェンジ",
-        "required_manifest_count": 1064
-      },
-      "implementation_surfaces": {
-        "ai_single_and_double": "REQUIRED",
-        "animation": "REQUIRED_NOT_SUBMITTED",
-        "description_ja": "REQUIRED_NOT_SUBMITTED",
-        "effect_and_battle_script": "REQUIRED_NO_COMPATIBLE_MAPPING_SELECTED",
-        "identity_and_fixed_counts": "REQUIRED",
-        "move_data": "BLOCKED_MISSING_RUNTIME_FIELDS",
-        "save_roundtrip": "ABI_COMPATIBLE_IN_PRINCIPLE_RUNTIME_TEST_REQUIRED",
-        "ui_all_move_consumers": "REQUIRED"
+        "source_proposed_manifest_count": 1064
       },
       "missing_specification_fields": [
         "runtime_split",
@@ -439,7 +448,11 @@
         "move_id": 502,
         "source_url": "https://github.com/PokeAPI/pokeapi/blob/d4f9a4af58ade123fbc0558f68b1c69daa97d9e4/data/v2/csv/move_names.csv"
       },
-      "p03_routes": {
+      "requested_project_id": 1063,
+      "runtime_status": "NOT_APPLICABLE_DO_NOT_IMPLEMENT_OR_ALLOCATE",
+      "selection_status": "NOT_ADOPTED_BY_USER_DECISION",
+      "source_p03_routes": {
+        "adopted_route_count": 0,
         "by_consumer": {
           "egg": 9,
           "level_up": 15,
@@ -449,35 +462,11 @@
           "shared_egg": 18,
           "tutor": 4
         },
+        "excluded_route_count": 159,
         "route_count": 159,
-        "serialization_gate": "DO_NOT_SERIALIZE_UNTIL_RUNTIME_IMPLEMENTED",
+        "serialization_gate": "NEVER_SERIALIZE_IN_CURRENT_ADOPTION",
         "target_count": 103
       },
-      "requested_project_id": 1063,
-      "required_runtime_work": {
-        "ai": [
-          "使用可能な味方位置と失敗条件を判定",
-          "無効局面で選ばず、位置交換の戦術価値をdouble battle AIへ接続"
-        ],
-        "effect": [
-          "ダブル時の味方との位置交換effect、対象/失敗条件、battle scriptを実装",
-          "シングル・味方不在・交換不能時を安全に失敗させ、優先度+2を適用"
-        ],
-        "identity_and_tables": [
-          "Move manifest/capacityをID 1063を含む1064件へ拡張",
-          "gBattleMoves、name、description、animation、全fixed-count guardを同じidentityへ更新"
-        ],
-        "ui": [
-          "日本語名・説明・エスパー/変化・PP15・優先度情報を表示tableへ追加",
-          "習得・思い出し・共有・機械/教え技画面で未知ID表示を起こさない"
-        ],
-        "verification": [
-          "effect/AI/UI、single失敗、double成功、save往復、各習得経路を実ROMで検証",
-          "実装完了まで1063を既存runtime slotまたは実装済みMoveとしてserializeしない"
-        ]
-      },
-      "runtime_status": "BLOCKED_SPECIFICATION_AND_CAPACITY_INCOMPLETE",
-      "selection_status": "ADOPTED_BY_P03_DISTRIBUTION_CONTRACT",
       "submitted_after": {
         "accuracy": null,
         "animation": null,
@@ -498,18 +487,14 @@
   ],
   "release_gates": [
     {
-      "gate": "SIDE_CHANGE_1063_FULL_RUNTIME",
+      "gate": "SIDE_CHANGE_1063_EXCLUSION",
       "requires": [
-        "manifest_id_1063_and_all_counts",
-        "complete_move_record",
-        "effect_script",
-        "description_ja",
-        "ai",
-        "ui",
-        "animation",
-        "save_and_route_rom_tests"
+        "no_manifest_id_1063",
+        "all_159_routes_non_adopted",
+        "no_replacement_move",
+        "no_runtime_or_capacity_allocation"
       ],
-      "status": "BLOCKED"
+      "status": "PASS"
     },
     {
       "gate": "P04_NEW_ABILITIES",
@@ -567,11 +552,10 @@
       }
     ],
     "moves": {
-      "legacy_save_migration": "NOT_REQUIRED_FOR_NEW_MOVE_LEGACY_SAVES_CANNOT_CONTAIN_1063",
-      "numeric_capacity": "U16_SUFFICIENT_FOR_1063",
+      "legacy_save_migration": "NOT_APPLICABLE_NO_NEW_MOVE_ADOPTED",
+      "numeric_capacity": "U16_CURRENT_CANONICAL_IDS_0_TO_1062",
       "pp_change_migration": "NOT_REQUIRED_NO_ADOPTED_PP_CHANGE",
       "required_verification": [
-        "save_load_roundtrip_move_1063",
         "pp_and_pp_up_calculation",
         "healing_and_move_relearner_display",
         "battle_entry_exit_and_facility_resume_where_supported"

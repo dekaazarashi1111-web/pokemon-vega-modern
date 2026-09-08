@@ -43,9 +43,10 @@ class ModernizationP05ContractTests(unittest.TestCase):
                 "existing_official_ability_assignment_count": 32,
                 "held_candidate_count": 2,
                 "new_ability_requirement_count": 6,
-                "new_move_requirement_count": 1,
+                "new_move_requirement_count": 0,
+                "non_adopted_move_candidate_count": 1,
                 "preserved_reference_difference_count": 4,
-                "runtime_blocker_count": 2,
+                "runtime_blocker_count": 1,
                 "temporary_ability_assignment_count": 14,
                 "temporary_ability_record_count_including_hold": 16,
             },
@@ -57,16 +58,23 @@ class ModernizationP05ContractTests(unittest.TestCase):
             self.contract["baseline"]["v3"]["selected_as_new_p05_delta"], 0
         )
 
-    def test_side_change_is_adopted_but_not_falsely_implemented(self) -> None:
-        move = self.contract["move_content"]["new_move_requirements"][0]
+    def test_side_change_is_not_adopted_and_has_no_replacement(self) -> None:
+        self.assertEqual([], self.contract["move_content"]["new_move_requirements"])
+        move = self.contract["move_content"]["non_adopted_move_candidates"][0]
         self.assertEqual(move["move_key"], "MOVE_KEY_ALLYSWITCH")
         self.assertEqual(move["requested_project_id"], 1063)
         self.assertIsNone(move["canonical_id"])
+        self.assertEqual(move["selection_status"], "NOT_ADOPTED_BY_USER_DECISION")
         self.assertEqual(move["identity"]["current_last_id"], 1062)
-        self.assertEqual(move["identity"]["required_manifest_count"], 1064)
-        self.assertEqual(move["p03_routes"]["target_count"], 103)
-        self.assertEqual(move["p03_routes"]["route_count"], 159)
-        self.assertEqual(sum(move["p03_routes"]["by_consumer"].values()), 159)
+        self.assertEqual(move["identity"]["source_proposed_manifest_count"], 1064)
+        self.assertEqual(move["identity"]["adopted_manifest_count"], 1063)
+        self.assertEqual(move["source_p03_routes"]["target_count"], 103)
+        self.assertEqual(move["source_p03_routes"]["route_count"], 159)
+        self.assertEqual(move["source_p03_routes"]["adopted_route_count"], 0)
+        self.assertEqual(sum(move["source_p03_routes"]["by_consumer"].values()), 159)
+        self.assertFalse(move["exclusion"]["manifest_allocation"])
+        self.assertFalse(move["exclusion"]["runtime_implementation"])
+        self.assertIsNone(move["exclusion"]["replacement_move_key"])
         self.assertIsNone(move["effect_policy"]["effect_mapping"])
         self.assertFalse(move["effect_policy"]["reuse_existing_effect"])
         self.assertEqual(
@@ -232,7 +240,10 @@ class ModernizationP05ContractTests(unittest.TestCase):
 
     def test_save_contract_separates_identity_from_stored_slots(self) -> None:
         save = self.contract["save_compatibility"]
-        self.assertEqual(save["moves"]["numeric_capacity"], "U16_SUFFICIENT_FOR_1063")
+        self.assertEqual(
+            save["moves"]["numeric_capacity"],
+            "U16_CURRENT_CANONICAL_IDS_0_TO_1062",
+        )
         self.assertEqual(save["moves"]["pp_change_migration"], "NOT_REQUIRED_NO_ADOPTED_PP_CHANGE")
         self.assertEqual(
             save["abilities"]["storage_model"],
@@ -256,10 +267,16 @@ class ModernizationP05ContractTests(unittest.TestCase):
         mutations.append(performance)
 
         move_effect = copy.deepcopy(self.contract)
-        move_effect["move_content"]["new_move_requirements"][0]["effect_policy"][
+        move_effect["move_content"]["non_adopted_move_candidates"][0]["effect_policy"][
             "effect_mapping"
         ] = "EFFECT_HIT"
         mutations.append(move_effect)
+
+        move_replacement = copy.deepcopy(self.contract)
+        move_replacement["move_content"]["non_adopted_move_candidates"][0][
+            "exclusion"
+        ]["replacement_move_key"] = "MOVE_KEY_TELEPORT"
+        mutations.append(move_replacement)
 
         ability_id = copy.deepcopy(self.contract)
         ability_id["ability_content"]["new_ability_requirements"][0]["canonical_id"] = 312

@@ -216,10 +216,19 @@ def _validate_p03_side_change(
     }:
         _fail("P03/受領ZIPのSide Change battle定義が不一致です")
     routes = side.get("routes_by_consumer")
-    if not isinstance(routes, dict) or sum(_integer(v, "P03 route count") for v in routes.values()) != side.get("adopted_route_count"):
+    if not isinstance(routes, dict) or sum(
+        _integer(v, "P03 route count") for v in routes.values()
+    ) != side.get("source_route_count"):
         _fail("P03 Side Change経路集計が不一致です")
-    if side.get("status") != "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED":
-        _fail("P03 Side Changeを実装済みと誤認する状態です")
+    decision = side.get("decision")
+    if side.get("status") != "NOT_ADOPTED_BY_USER_DECISION" \
+            or side.get("adopted_route_count") != 0 \
+            or side.get("excluded_route_count") != side.get("source_route_count") \
+            or not isinstance(decision, Mapping) \
+            or decision.get("route_action") != "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS" \
+            or decision.get("runtime_action") != "DO_NOT_IMPLEMENT_OR_ALLOCATE" \
+            or decision.get("replacement_move_key") is not None:
+        _fail("P03 Side Change非採用・無置換判断が不一致です")
     return side
 
 
@@ -330,7 +339,7 @@ def _parse_move_audit(
     return sorted(output, key=lambda row: row["canonical_id"])
 
 
-def _build_new_move_requirement(
+def _build_non_adopted_move_candidate(
     definition: Mapping[str, Any],
     side: Mapping[str, Any],
     manifests: Mapping[str, Any],
@@ -361,8 +370,8 @@ def _build_new_move_requirement(
         _fail("Side Change type IDがType manifestにありません")
 
     return {
-        "selection_status": "ADOPTED_BY_P03_DISTRIBUTION_CONTRACT",
-        "runtime_status": "BLOCKED_SPECIFICATION_AND_CAPACITY_INCOMPLETE",
+        "selection_status": "NOT_ADOPTED_BY_USER_DECISION",
+        "runtime_status": "NOT_APPLICABLE_DO_NOT_IMPLEMENT_OR_ALLOCATE",
         "move_key": key,
         "canonical_id": None,
         "requested_project_id": requested_id,
@@ -377,7 +386,8 @@ def _build_new_move_requirement(
             "name_en": definition["move_name_en"],
             "mapping_basis": definition["mapping_basis"],
             "current_manifest_count": current_count,
-            "required_manifest_count": current_count + 1,
+            "source_proposed_manifest_count": current_count + 1,
+            "adopted_manifest_count": current_count,
             "current_last_id": current_count - 1,
         },
         "before": None,
@@ -406,23 +416,21 @@ def _build_new_move_requirement(
             "reuse_existing_effect": False,
             "guard": "DO_NOT_MAP_TO_EFFECT_HIT_OR_ANOTHER_APPROXIMATION",
         },
-        "p03_routes": {
-            "target_count": side["adopted_target_count"],
-            "route_count": side["adopted_route_count"],
+        "source_p03_routes": {
+            "target_count": side["source_target_count"],
+            "route_count": side["source_route_count"],
             "by_consumer": side["routes_by_consumer"],
-            "serialization_gate": "DO_NOT_SERIALIZE_UNTIL_RUNTIME_IMPLEMENTED",
+            "adopted_route_count": 0,
+            "excluded_route_count": side["excluded_route_count"],
+            "serialization_gate": "NEVER_SERIALIZE_IN_CURRENT_ADOPTION",
         },
-        "implementation_surfaces": {
-            "identity_and_fixed_counts": "REQUIRED",
-            "move_data": "BLOCKED_MISSING_RUNTIME_FIELDS",
-            "effect_and_battle_script": "REQUIRED_NO_COMPATIBLE_MAPPING_SELECTED",
-            "description_ja": "REQUIRED_NOT_SUBMITTED",
-            "ai_single_and_double": "REQUIRED",
-            "ui_all_move_consumers": "REQUIRED",
-            "animation": "REQUIRED_NOT_SUBMITTED",
-            "save_roundtrip": "ABI_COMPATIBLE_IN_PRINCIPLE_RUNTIME_TEST_REQUIRED",
+        "exclusion": {
+            "decision": side["decision"],
+            "manifest_allocation": False,
+            "runtime_implementation": False,
+            "learnset_materialization": False,
+            "replacement_move_key": None,
         },
-        "required_runtime_work": side["required_runtime_work"],
     }
 
 
@@ -788,11 +796,10 @@ def _save_abi_contract(root: Path) -> dict[str, Any]:
             },
         ],
         "moves": {
-            "numeric_capacity": "U16_SUFFICIENT_FOR_1063",
-            "legacy_save_migration": "NOT_REQUIRED_FOR_NEW_MOVE_LEGACY_SAVES_CANNOT_CONTAIN_1063",
+            "numeric_capacity": "U16_CURRENT_CANONICAL_IDS_0_TO_1062",
+            "legacy_save_migration": "NOT_APPLICABLE_NO_NEW_MOVE_ADOPTED",
             "pp_change_migration": "NOT_REQUIRED_NO_ADOPTED_PP_CHANGE",
             "required_verification": [
-                "save_load_roundtrip_move_1063",
                 "pp_and_pp_up_calculation",
                 "healing_and_move_relearner_display",
                 "battle_entry_exit_and_facility_resume_where_supported",
@@ -915,7 +922,7 @@ def build_p05_contract(root: Path) -> dict[str, Any]:
     preserved = _parse_move_audit(
         move_audit_raw, manifests["moves"], move_model
     )
-    new_move = _build_new_move_requirement(
+    non_adopted_move = _build_non_adopted_move_candidate(
         new_move_doc["moves"][0], side, manifests, move_model
     )
     p04_abilities = _build_p04_ability_contract(
@@ -1004,7 +1011,8 @@ def build_p05_contract(root: Path) -> dict[str, Any]:
         "move_content": {
             "adopted_performance_adjustments": [],
             "preserved_reference_differences": preserved,
-            "new_move_requirements": [new_move],
+            "new_move_requirements": [],
+            "non_adopted_move_candidates": [non_adopted_move],
             "p04_new_move_requests": [],
             "p04_move_inference_guard": {
                 "submitted_move_fields": submitted_move_fields,
@@ -1023,11 +1031,11 @@ def build_p05_contract(root: Path) -> dict[str, Any]:
         },
         "release_gates": [
             {
-                "gate": "SIDE_CHANGE_1063_FULL_RUNTIME",
-                "status": "BLOCKED",
+                "gate": "SIDE_CHANGE_1063_EXCLUSION",
+                "status": "PASS",
                 "requires": [
-                    "manifest_id_1063_and_all_counts", "complete_move_record", "effect_script",
-                    "description_ja", "ai", "ui", "animation", "save_and_route_rom_tests",
+                    "no_manifest_id_1063", "all_159_routes_non_adopted",
+                    "no_replacement_move", "no_runtime_or_capacity_allocation",
                 ],
             },
             {
@@ -1050,14 +1058,15 @@ def build_p05_contract(root: Path) -> dict[str, Any]:
         "summary": {
             "adopted_performance_adjustment_count": 0,
             "preserved_reference_difference_count": len(preserved),
-            "new_move_requirement_count": 1,
+            "new_move_requirement_count": 0,
+            "non_adopted_move_candidate_count": 1,
             "new_ability_requirement_count": len(p04_abilities["new_ability_requirements"]),
             "temporary_ability_assignment_count": p04_abilities["summary"]["temporary_existing_assignments"],
             "temporary_ability_record_count_including_hold": p04_abilities["summary"]["temporary_declared_records_including_hold"],
             "existing_official_ability_assignment_count": p04_abilities["summary"]["official_existing_assignments"],
             "held_candidate_count": p04_abilities["summary"]["classification_hold_count"],
             "confirmed_data_only_patch_count": 0,
-            "runtime_blocker_count": 2,
+            "runtime_blocker_count": 1,
         },
     }
     validate_p05_contract(contract)
@@ -1077,16 +1086,23 @@ def validate_p05_contract(contract: Mapping[str, Any]) -> None:
     if moves.get("adopted_performance_adjustments") != []:
         _fail("未提出の技性能変更がP05へ混入しています")
     new_moves = moves.get("new_move_requirements")
-    if not isinstance(new_moves, list) or len(new_moves) != 1:
-        _fail("P05新規Moveは提出済みSide Change 1件だけです")
-    side = new_moves[0]
+    if new_moves != []:
+        _fail("非採用Side ChangeがP05新規Move要件へ残っています")
+    candidates = moves.get("non_adopted_move_candidates")
+    if not isinstance(candidates, list) or len(candidates) != 1:
+        _fail("P05非採用Move候補はSide Change 1件でなければなりません")
+    side = candidates[0]
     if (
         side.get("move_key") != "MOVE_KEY_ALLYSWITCH"
         or side.get("requested_project_id") != 1063
         or side.get("canonical_id") is not None
         or side.get("effect_policy", {}).get("effect_mapping") is not None
+        or side.get("selection_status") != "NOT_ADOPTED_BY_USER_DECISION"
+        or side.get("source_p03_routes", {}).get("route_count") != 159
+        or side.get("source_p03_routes", {}).get("adopted_route_count") != 0
+        or side.get("exclusion", {}).get("replacement_move_key") is not None
     ):
-        _fail("Side Changeの未割当/未実装guardが破られています")
+        _fail("Side Changeの非採用/無置換guardが破られています")
     if moves.get("p04_new_move_requests") != []:
         _fail("P04から未提出Moveを推測しています")
     requirements = abilities.get("new_ability_requirements")
@@ -1117,7 +1133,9 @@ def validate_p05_contract(contract: Mapping[str, Any]) -> None:
     patch = contract.get("data_only_patch_plan")
     if not isinstance(patch, Mapping) or patch.get("confirmed_patches") != []:
         _fail("確定していないdata-only patchが混入しています")
-    if summary.get("new_move_requirement_count") != 1 or summary.get("new_ability_requirement_count") != 6:
+    if summary.get("new_move_requirement_count") != 0 \
+            or summary.get("non_adopted_move_candidate_count") != 1 \
+            or summary.get("new_ability_requirement_count") != 6:
         _fail("P05 summary countが固定内容と不一致です")
 
 

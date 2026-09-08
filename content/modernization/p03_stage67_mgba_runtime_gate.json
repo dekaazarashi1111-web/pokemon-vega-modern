@@ -1,0 +1,215 @@
+{
+  "artifacts_written": [
+    "content/modernization/p03_stage67_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "all_materialized_evolution_routes_executed": true,
+    "all_materialized_normal_egg_routes_executed": true,
+    "all_materialized_tutor_routes_executed": true,
+    "breeding_e2e": false,
+    "egg_primary_secondary_roots_and_limit_executed": true,
+    "exact_generated_stage67_rom": true,
+    "full_p03_acceptance": false,
+    "p02_overlay_parent_preserved": true,
+    "pichu_volt_tackle_not_coerced_to_normal_egg": true,
+    "save_reload_e2e": false,
+    "scheduler_e2e": false
+  },
+  "classification": "REAL_CONSUMER_DIRECT_CALL_ALL_MATERIALIZED_NOT_E2E",
+  "execution": {
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "compiler": "/usr/bin/cc",
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "identical_results": true,
+    "independent_processes": true,
+    "link_flags": [
+      "-lmgba"
+    ],
+    "process_runs": 2,
+    "runner_result_sha256": "adc031b5bcbd7a89f78e2185bfe16d8c581a23ff86171d9b202a0b001e4b1680"
+  },
+  "inputs": {
+    "battle_core_fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+    "config": {
+      "path": "config/modernization_p03_stage67.json",
+      "sha256": "44ee3ff8c670a384495bdf93b057d7ea840671dd78513204b48dbe5b9d4ab16f",
+      "size": 9974
+    },
+    "generated_cases_header": {
+      "path": "TEMPORARY/p03_stage67_cases.h",
+      "sha256": "016facffbcfb9df53678794e8e0c93ccaf8042b9bf8b28363500b76b9f2bba2f",
+      "size": 17804
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "offsets": [
+      {
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694,
+        "symbols": {
+          "CanMonLearnTutorMove": "0x09110228",
+          "GetAllEggMoves": "0x090EB970",
+          "MonTryLearningNewMoveAfterEvolution": "0x09114120"
+        }
+      },
+      {
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694,
+        "symbols": {
+          "CanMonLearnTutorMove": "0x09110228",
+          "GetAllEggMoves": "0x090EB970",
+          "MonTryLearningNewMoveAfterEvolution": "0x09114120"
+        }
+      }
+    ],
+    "p02_overlay_parent": {
+      "changed_bytes_from_stage66": 60,
+      "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+      "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+      "size": 33554432
+    },
+    "route_partition": {
+      "cumulative_materialized_routes": 51151,
+      "non_adopted_move_1063_routes": 159,
+      "selected_routes": 118369,
+      "selected_routes_deferred": 67218,
+      "source_routes": 118528
+    },
+    "sources": [
+      {
+        "path": "config/modernization_p03_stage67.json",
+        "sha256": "44ee3ff8c670a384495bdf93b057d7ea840671dd78513204b48dbe5b9d4ab16f",
+        "size": 9974
+      },
+      {
+        "path": "tools/modernization_p03_stage67.py",
+        "sha256": "18ff2e3aff6d03e1e964fdd8a75174007486ae218638cb9a871107523c2c5edd",
+        "size": 61948
+      },
+      {
+        "path": "tools/modernization_learnsets.py",
+        "sha256": "fc2503f98a38a07899dd28adcb98faba755f571497184183d27ca457a4bb3698",
+        "size": 65067
+      },
+      {
+        "path": "tools/modernization_identity.py",
+        "sha256": "92f8dbb900c9b9988a4e00b2f3d0c94692c7b45ff1b47e9531959d14d7a7b0a9",
+        "size": 41461
+      },
+      {
+        "path": "scripts/run_modernization_p02_acceptance.py",
+        "sha256": "68ed38a5d5d2bb5be81459c4a3eecc0569bde55b0c4e759931b652c74965f7d2",
+        "size": 25143
+      },
+      {
+        "path": "scripts/run_modernization_p03_stage67_mgba.py",
+        "sha256": "f8ca3bd67174d4c44d486451e1e1d1e109cb8ad8c66dfed954c22b8b79c4a9cb",
+        "size": 20053
+      },
+      {
+        "path": "tools/mgba_modernization_p03_stage67_smoke.c",
+        "sha256": "ef67c3cc077e22ff0f0ee1c8f49b3e473183d18cc521bf9df463f6eca4a7f5cb",
+        "size": 16177
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "stage66": {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "size": 33554432
+    },
+    "stage67": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "size": 33554432
+    }
+  },
+  "runtime_result": {
+    "artifacts_written": [],
+    "breeding_e2e": false,
+    "classification": "REAL_CONSUMER_DIRECT_CALL_ALL_MATERIALIZED",
+    "counts": {
+      "egg_routes": 2522,
+      "egg_species": 450,
+      "evolution_routes": 341,
+      "evolution_species": 330,
+      "tutor_negative_calls": 290,
+      "tutor_positive_routes": 740,
+      "tutor_species": 290
+    },
+    "full_p03_acceptance": false,
+    "instructions": {
+      "egg": 40876386,
+      "evolution": 625860,
+      "tutor": 394025
+    },
+    "p02_overlay_rows_preserved": 6,
+    "payload_pc_seen": true,
+    "read_only": true,
+    "representatives": {
+      "egg": [
+        10,
+        814,
+        1593,
+        24,
+        1048
+      ],
+      "evolution": [
+        13,
+        994,
+        1612,
+        534
+      ],
+      "tutor": [
+        10,
+        815,
+        1414
+      ]
+    },
+    "rom_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+    "roots": {
+      "egg_primary": "0x09FED0C4",
+      "egg_scan_limit": 7557,
+      "egg_secondary": "0x09FED0C4",
+      "level": "0x093A4CAC",
+      "tutor": "0x093B1B28",
+      "tutor_catalog": "0x0944BC80"
+    },
+    "save_reload_e2e": false,
+    "scheduler_e2e": false,
+    "schema_version": 1,
+    "semantic_digest_fnv1a64": "f3bbc1d489d9b115",
+    "status": "PASS",
+    "symbols": {
+      "egg": "0x090EB970",
+      "evolution": "0x09114120",
+      "tutor": "0x09110228"
+    },
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P03-STAGE67-MGBA-GATE",
+  "task_completion": "CHECKPOINT_NOT_P03_DONE"
+}

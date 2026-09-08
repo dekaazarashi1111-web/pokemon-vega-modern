@@ -38,7 +38,7 @@ class ModernizationP04CapacityTest(unittest.TestCase):
             "species_form": (1621, 1672, 52),
             "item": (999, 1043, 45),
             "ability": (312, 317, 6),
-            "move": (1063, 1063, 1),
+            "move": (None, None, 0),
         }
         self.assertEqual(CHECKPOINT_STATUS, self.document["status"])
         self.assertFalse(self.document["runtime_ready"])
@@ -46,7 +46,8 @@ class ModernizationP04CapacityTest(unittest.TestCase):
             group = self.document["id_reservations"][domain]
             self.assertEqual(count, group["append_count"])
             self.assertEqual((start, end), (group["reserved_start_id"], group["reserved_end_id"]))
-            self.assertEqual(list(range(start, end + 1)), [row["id"] for row in group["rows"]])
+            expected_ids = list(range(start, end + 1)) if start is not None else []
+            self.assertEqual(expected_ids, [row["id"] for row in group["rows"]])
             key_field = group["key_field"]
             self.assertEqual(
                 sorted(row[key_field] for row in group["rows"]),
@@ -75,8 +76,8 @@ class ModernizationP04CapacityTest(unittest.TestCase):
 
     def test_fixed_geometry_evolution_slots_and_allocator_are_measured(self) -> None:
         tables = self.document["table_capacity"]
-        self.assertEqual(39, tables["known_fixed_table_count"])
-        self.assertEqual((655852, 676757, 20905), (
+        self.assertEqual(34, tables["known_fixed_table_count"])
+        self.assertEqual((616521, 637389, 20868), (
             tables["known_fixed_old_bytes"],
             tables["known_fixed_new_bytes"],
             tables["known_fixed_delta_bytes"],
@@ -177,6 +178,9 @@ class ModernizationP04CapacityTest(unittest.TestCase):
         self.assertEqual(254, dispatch["excluded_blank_id"])
         self.assertIsNone(dispatch["ally_switch_effect_id"])
         self.assertFalse(dispatch["in_place_table_growth_possible"])
+        self.assertEqual("NO_NEW_MOVE_EFFECT_REQUESTED", dispatch["status"])
+        self.assertFalse(dispatch["semantic_reuse_requires_review"])
+        self.assertEqual("NONE_PRESERVE_CURRENT_DISPATCH", dispatch["required_action"])
         self.assertEqual({"251": 0, "252": 0, "255": 0}, dispatch["blank_candidate_active_move_use_count"])
         event = consumer["codex_public_event_abi"]
         self.assertEqual((88, 89, 11, 12, 44, 48), (

@@ -65,10 +65,12 @@ def main(argv: list[str] | None = None) -> int:
     print(
         f"MODERNIZATION_P03_{action}=PASS "
         f"records={contract['corrected_adoption']['records']} "
-        f"routes={contract['corrected_adoption']['routes']} "
+        f"routes_source={contract['corrected_adoption']['routes']} "
+        f"routes_selected={contract['runtime_selection']['selected_routes']} "
+        f"routes_excluded={contract['runtime_selection']['excluded_routes']} "
         f"projected={supply['existing_slot_projection_rows']} "
         f"supply_required={supply['supply_required_rows']} "
-        "move1063=RUNTIME_DEPENDENCY"
+        "move1063=NOT_ADOPTED"
     )
     return 0
 

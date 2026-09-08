@@ -1,0 +1,743 @@
+{
+  "artifacts_written": [
+    "content/modernization/p02_acceptance_checkpoint.json"
+  ],
+  "claims": {
+    "async_evolution_scene_scheduler_e2e": false,
+    "bag_inventory_consumer_e2e": false,
+    "cancel_e2e": false,
+    "correct_condition_item_only_consumed": true,
+    "evolution_move_learning_e2e": false,
+    "exact_p02_overlay_parent": true,
+    "fresh_core_save_reload_e2e": false,
+    "full_evolution_acceptance": false,
+    "level_held_item_slot_priority_root_fixed": true,
+    "post_scene_ability_form_e2e": false,
+    "rayquaza_stage64_gate_inherited": true,
+    "real_get_evolution_target_species_executed": true,
+    "real_item_evolution_removal_executed": true,
+    "target_application_rom_consumers_executed": true
+  },
+  "classification": "ACTUAL_CONSUMER_PARTIAL_ACCEPTANCE_WITH_ROOT_FIX",
+  "completed_acceptance": [
+    "level成立/不成立/境界",
+    "friendship成立/不成立/境界",
+    "item parameter成立/誤値/欠落",
+    "known move成立/不成立",
+    "trade成立とtrade item消費/不足",
+    "昼夜formのnight成立/level境界",
+    "6種のlevel+held-item分岐優先度と成功時だけの道具消費",
+    "target選択の非破壊性",
+    "実SetMonData/CalculateMonStats後の4技・個体ID・ability slot保持",
+    "Stage64 Rayquaza Wish-Mega実ROM縦切りの継承"
+  ],
+  "execution": {
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "compiler": "/usr/bin/cc",
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "identical_results": true,
+    "independent_processes": true,
+    "link_flags": [
+      "-lmgba"
+    ],
+    "process_runs": 2,
+    "runner_result_sha256": "2ab93031261e72c58625ff6ebf5d68354be0003ce5b1ea653194bcbf96f82c5f"
+  },
+  "inputs": {
+    "candidate_rom": {
+      "base_stage": 66,
+      "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+      "intended_child_stage": 67,
+      "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+      "size": 33554432
+    },
+    "config": {
+      "path": "config/modernization_p02_acceptance_gate.json",
+      "sha256": "234799dc97012196d47c286981a4a233cce7c5f6817dd3b183a5250ccd6190bb",
+      "size": 3385
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "parent_rom": {
+      "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "size": 33554432
+    },
+    "rayquaza_claims_inherited": true,
+    "rayquaza_runtime_gate": {
+      "path": "content/modernization/p02_stage64_mgba_runtime_gate.json",
+      "sha256": "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea",
+      "size": 5206
+    },
+    "repair": {
+      "candidate": {
+        "base_stage": 66,
+        "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+        "intended_child_stage": 67,
+        "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+        "size": 33554432
+      },
+      "changed_byte_count": 60,
+      "changed_rom_offsets": [
+        33069240,
+        33069244,
+        33069245,
+        33069246,
+        33069247,
+        33069248,
+        33069252,
+        33069253,
+        33069254,
+        33069255,
+        33102520,
+        33102524,
+        33102525,
+        33102526,
+        33102527,
+        33102528,
+        33102532,
+        33102533,
+        33102534,
+        33102535,
+        33115576,
+        33115580,
+        33115581,
+        33115582,
+        33115583,
+        33115584,
+        33115588,
+        33115589,
+        33115590,
+        33115591,
+        33132472,
+        33132476,
+        33132477,
+        33132478,
+        33132479,
+        33132480,
+        33132484,
+        33132485,
+        33132486,
+        33132487,
+        33133496,
+        33133500,
+        33133501,
+        33133502,
+        33133503,
+        33133504,
+        33133508,
+        33133509,
+        33133510,
+        33133511,
+        33148856,
+        33148860,
+        33148861,
+        33148862,
+        33148863,
+        33148864,
+        33148868,
+        33148869,
+        33148870,
+        33148871
+      ],
+      "classification": "TABLE_SLOT_PRIORITY_ROOT_FIX",
+      "outside_declared_spans": 0,
+      "parent": {
+        "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+        "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+        "size": 33554432
+      },
+      "retained_output_rom": false,
+      "rows": [
+        {
+          "after": [
+            [
+              4,
+              36,
+              500,
+              0
+            ],
+            [
+              35,
+              36,
+              1419,
+              710
+            ]
+          ],
+          "before": [
+            [
+              35,
+              36,
+              1419,
+              710
+            ],
+            [
+              4,
+              36,
+              500,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_QUILAVA",
+          "span": [
+            33069240,
+            33069256
+          ],
+          "species_id": 499
+        },
+        {
+          "after": [
+            [
+              4,
+              36,
+              760,
+              0
+            ],
+            [
+              35,
+              36,
+              1422,
+              719
+            ]
+          ],
+          "before": [
+            [
+              35,
+              36,
+              1422,
+              719
+            ],
+            [
+              4,
+              36,
+              760,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_DEWOTT",
+          "span": [
+            33102520,
+            33102536
+          ],
+          "species_id": 759
+        },
+        {
+          "after": [
+            [
+              4,
+              54,
+              862,
+              0
+            ],
+            [
+              35,
+              54,
+              1427,
+              716
+            ]
+          ],
+          "before": [
+            [
+              35,
+              54,
+              1427,
+              716
+            ],
+            [
+              4,
+              54,
+              862,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_RUFFLET",
+          "span": [
+            33115576,
+            33115592
+          ],
+          "species_id": 861
+        },
+        {
+          "after": [
+            [
+              4,
+              40,
+              994,
+              0
+            ],
+            [
+              35,
+              40,
+              1428,
+              711
+            ]
+          ],
+          "before": [
+            [
+              35,
+              40,
+              1428,
+              711
+            ],
+            [
+              4,
+              40,
+              994,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_GOOMY",
+          "span": [
+            33132472,
+            33132488
+          ],
+          "species_id": 993
+        },
+        {
+          "after": [
+            [
+              4,
+              37,
+              1002,
+              0
+            ],
+            [
+              35,
+              37,
+              1430,
+              708
+            ]
+          ],
+          "before": [
+            [
+              35,
+              37,
+              1430,
+              708
+            ],
+            [
+              4,
+              37,
+              1002,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_BERGMITE",
+          "span": [
+            33133496,
+            33133512
+          ],
+          "species_id": 1001
+        },
+        {
+          "after": [
+            [
+              4,
+              34,
+              1122,
+              0
+            ],
+            [
+              35,
+              34,
+              1431,
+              704
+            ]
+          ],
+          "before": [
+            [
+              35,
+              34,
+              1431,
+              704
+            ],
+            [
+              4,
+              34,
+              1122,
+              0
+            ]
+          ],
+          "source": "SPECIES_KEY_DARTRIX",
+          "span": [
+            33148856,
+            33148872
+          ],
+          "species_id": 1121
+        }
+      ]
+    },
+    "sources": [
+      {
+        "path": "scripts/run_modernization_p02_acceptance.py",
+        "sha256": "68ed38a5d5d2bb5be81459c4a3eecc0569bde55b0c4e759931b652c74965f7d2",
+        "size": 25143
+      },
+      {
+        "path": "tools/mgba_modernization_p02_acceptance_smoke.c",
+        "sha256": "48191b295e7e4f00e42dc61cfff260a839b9b609b21dd29f6d2b4d21e7d95766",
+        "size": 20978
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "static_evolution_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b",
+      "size": 1440826
+    },
+    "symbols": [
+      {
+        "address": "0x090FB774",
+        "entry_bytes": "f0b557464e464546",
+        "name": "GetEvolutionTargetSpecies"
+      },
+      {
+        "address": "0x090FB630",
+        "entry_bytes": "10b50c4b040082b0",
+        "name": "ItemEvolutionRemoval"
+      },
+      {
+        "address": "0x090DA23C",
+        "entry_bytes": "f8b500220b21144f",
+        "name": "GetMonAbility"
+      },
+      {
+        "address": "0x090D939C",
+        "entry_bytes": "f0b5de4657464e46",
+        "name": "CalculateMonStats"
+      }
+    ]
+  },
+  "release_ready": false,
+  "remaining_acceptance": [
+    "通常UI schedulerからの進化完走とBキャンセル",
+    "bag item使用UIの在庫減算とbag在庫不足",
+    "進化時新規技、4技満杯、技習得キャンセル",
+    "通常/隠れ特性と全formの進化scene後処理",
+    "通常save、終了、fresh core Continue後の進化済み個体同一性",
+    "通信代替UIと昼条件の代表回帰"
+  ],
+  "runtime_result": {
+    "artifacts_written": [],
+    "boot_trace_segments": 233,
+    "cases": {
+      "friendship_below": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": 219,
+        "held_item": 0,
+        "instructions": 226,
+        "level": 10,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 12
+      },
+      "friendship_boundary": {
+        "argument": 0,
+        "expected": 13,
+        "friendship": 220,
+        "held_item": 0,
+        "instructions": 228,
+        "level": 10,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 13,
+        "source": 12
+      },
+      "item_missing": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 254,
+        "level": 20,
+        "mode": 2,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 19
+      },
+      "item_positive": {
+        "argument": 93,
+        "expected": 20,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 260,
+        "level": 20,
+        "mode": 2,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 20,
+        "source": 19
+      },
+      "item_wrong": {
+        "argument": 94,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 254,
+        "level": 20,
+        "mode": 2,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 19
+      },
+      "level_above": {
+        "argument": 0,
+        "expected": 2,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 227,
+        "level": 17,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 2,
+        "source": 1
+      },
+      "level_below": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 225,
+        "level": 15,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 1
+      },
+      "level_boundary": {
+        "argument": 0,
+        "expected": 2,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 227,
+        "level": 16,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 2,
+        "source": 1
+      },
+      "level_item_below": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 710,
+        "instructions": 229,
+        "level": 35,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 499
+      },
+      "level_item_boundary": {
+        "argument": 0,
+        "expected": 1419,
+        "friendship": null,
+        "held_item": 710,
+        "instructions": 309,
+        "level": 36,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 1419,
+        "source": 499
+      },
+      "level_item_missing": {
+        "argument": 0,
+        "expected": 500,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 236,
+        "level": 36,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 500,
+        "source": 499
+      },
+      "move_missing": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 252,
+        "level": 20,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 475
+      },
+      "move_positive": {
+        "argument": 0,
+        "expected": 735,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 233,
+        "level": 20,
+        "mode": 0,
+        "move": 246,
+        "payload_pc_seen": true,
+        "result": 735,
+        "source": 475
+      },
+      "night_form_below": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 228,
+        "level": 27,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 473
+      },
+      "night_form_boundary": {
+        "argument": 0,
+        "expected": 1220,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 232,
+        "level": 28,
+        "mode": 0,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 1220,
+        "source": 473
+      },
+      "trade_item_missing": {
+        "argument": 0,
+        "expected": 0,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 189,
+        "level": 20,
+        "mode": 1,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 0,
+        "source": 470
+      },
+      "trade_item_positive": {
+        "argument": 0,
+        "expected": 536,
+        "friendship": null,
+        "held_item": 477,
+        "instructions": 2089,
+        "level": 20,
+        "mode": 1,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 536,
+        "source": 470
+      },
+      "trade_positive": {
+        "argument": 0,
+        "expected": 453,
+        "friendship": null,
+        "held_item": 0,
+        "instructions": 183,
+        "level": 20,
+        "mode": 1,
+        "move": 0,
+        "payload_pc_seen": true,
+        "result": 453,
+        "source": 452
+      }
+    },
+    "classification": "DIRECT_REAL_CONSUMER_CHECKPOINT",
+    "fixed_rtc_unix": 946684800,
+    "get_evolution_target_species": "0x090FB774",
+    "level_item_priority_repair": {
+      "below_level_retains_item": true,
+      "correct_item_consumed_after_selection": true,
+      "correct_item_selects_conditional_form": true,
+      "instruction_total": 19235,
+      "missing_item_selects_regular_form": true,
+      "repaired_species_count": 6,
+      "wrong_item_selects_regular_form_and_is_retained": true
+    },
+    "read_only_rom": true,
+    "rom_sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+    "schema_version": 1,
+    "selection_preservation": {
+      "ability_after": 103,
+      "ability_before": 103,
+      "ability_selector_after": 1,
+      "ability_selector_before": 1,
+      "move_after": 246,
+      "move_before": 246,
+      "personality_after": 66829597,
+      "personality_before": 66829597,
+      "species_after": 475,
+      "species_before": 475
+    },
+    "status": "PASS",
+    "target_application": {
+      "ability_after": 145,
+      "ability_before": 145,
+      "ability_selector_after": 1,
+      "ability_selector_before": 1,
+      "applied_species": 735,
+      "calculate_stats_instructions": 7796,
+      "classification": "ROM_CONSUMERS_WITHOUT_ASYNC_SCENE",
+      "hidden_ability_bit_preserved": true,
+      "moves_after": [
+        246,
+        33,
+        45,
+        52
+      ],
+      "moves_before": [
+        246,
+        33,
+        45,
+        52
+      ],
+      "personality_after": 66829597,
+      "personality_before": 66829597,
+      "selected_target": 735,
+      "source": 475
+    },
+    "trade_item_consumption": {
+      "instructions": 2089,
+      "item_after": 0,
+      "item_before": 477,
+      "target": 536
+    },
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "status": "CHECKPOINT_NOT_DONE",
+  "task": "USER-MODERNIZATION-P02-ACCEPTANCE"
+}

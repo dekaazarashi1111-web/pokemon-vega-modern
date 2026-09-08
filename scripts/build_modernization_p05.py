@@ -28,6 +28,9 @@ OUTPUTS = {
         "status": contract["status"],
         "baseline": contract["baseline"],
         "new_move_requirements": contract["move_content"]["new_move_requirements"],
+        "non_adopted_move_candidates": contract["move_content"][
+            "non_adopted_move_candidates"
+        ],
         "new_ability_requirements": contract["ability_content"]["new_ability_requirements"],
         "temporary_ability_assignments": [
             row

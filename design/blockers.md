@@ -57,3 +57,19 @@
   - Stage55は既に22 fresh-core fixture×独立2 process、全map owner監査、BPS往復、
     declared span外0、allocator overlap 0、warnings 0をPASSしているためDONEへ確定した。
   - iPadへのROM／save配置は希望時だけ行う任意運用とし、未実施や接続不能をblockerにしない。
+
+## 2026-09-08T12:53:05+09:00
+
+- Task: `USER-MODERNIZATION-P04` / Winds/Waves新規3種の完全GBA素材
+- Block reason:
+  - Browt、Pombon、Gecquaについて、front／back／icon／normal・shiny paletteを揃えた出典固定可能なGBA素材setを確認できない。
+  - 40x40 RGBAなど部分画像だけを、完成済み64x64 4bpp素材やpaletteとして偽装できない。別種画像や自動placeholderも採用しない。
+- What you tried:
+  - 固定DPE-JP、Shiny-Miner DPE、rh-hideout／TeamAquasHideout系、`xirosrh/wah-20-anniversary`、`Schn4pper/pokenigme`を対象名・asset directory・species symbolで照合した。
+  - Mega 49件／Stone 45件は固定sourceから取得でき、Tatsugiri 2形態の共通paletteも解決したが、上記3種の完全setは0/3だった。
+- Error excerpt:
+  - 実行errorなし。P04 asset manifestの`winds_waves_new_species`は`covered=0, required=3`、`fake_or_placeholder_generated=false`。
+- Question for human:
+  - 後で完全素材を含むrepository／ZIPを指定するか、既存デザインを参照した新規sprite制作を別途承認する必要がある。
+- Next step:
+  - 3種のID予約を維持したまま、素材に依存しないMega 49件、Stone 45件、ID／runtime／save拡張を先行する。完全素材受領後に同じstable keyへ差し替える。

@@ -14,11 +14,14 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: stage61-wiki stage61-wiki-check
 .PHONY: modernization-identity modernization-identity-check modernization-p01 modernization-p01-check modernization-p01-capacity-audit modernization-p01-mgba modernization-p01-focused-test
 .PHONY: modernization-p02-contract-check modernization-p02-stage64 modernization-p02-stage64-check modernization-p02-mgba modernization-p02-mgba-check modernization-p02-focused-test
+.PHONY: modernization-p02-acceptance modernization-p02-acceptance-check
 .PHONY: modernization-p03-check modernization-p05-check modernization-p06-check modernization-p07-check modernization-contracts-focused-test
 .PHONY: modernization-p03-stage65 modernization-p03-stage65-check modernization-p03-stage65-mgba modernization-p03-stage65-mgba-check modernization-p03-stage65-focused-test
 .PHONY: modernization-p03-stage66 modernization-p03-stage66-check modernization-p03-stage66-mgba modernization-p03-stage66-mgba-check modernization-p03-stage66-focused-test
+.PHONY: modernization-p03-stage67 modernization-p03-stage67-check modernization-p03-stage67-mgba modernization-p03-stage67-mgba-check modernization-p03-stage67-focused-test
 .PHONY: modernization-p08-check modernization-p08-focused-test
 .PHONY: modernization-p04-source-fetch modernization-p04-assets modernization-p04-assets-check modernization-p04-assets-focused-test modernization-p04-capacity-check modernization-p04-capacity-focused-test
+.PHONY: modernization-p05-ability-runtime modernization-p05-ability-runtime-check modernization-p05-ability-runtime-focused-test
 .PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
@@ -509,6 +512,12 @@ modernization-p02-mgba-check:
 modernization-p02-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p02_species_surface_policy tests.test_modernization_p02 tests.test_modernization_p02_mgba tests.test_modernization_p02_stage64 -v
 
+modernization-p02-acceptance:
+	$(PYTHON) scripts/run_modernization_p02_acceptance.py run
+
+modernization-p02-acceptance-check:
+	$(PYTHON) scripts/run_modernization_p02_acceptance.py check
+
 modernization-p03-check:
 	$(PYTHON) scripts/build_modernization_p03.py --check
 
@@ -542,6 +551,21 @@ modernization-p03-stage66-mgba-check:
 modernization-p03-stage66-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p03_stage66 -v
 
+modernization-p03-stage67:
+	$(PYTHON) scripts/build_modernization_p03_stage67.py build
+
+modernization-p03-stage67-check:
+	$(PYTHON) scripts/build_modernization_p03_stage67.py check
+
+modernization-p03-stage67-mgba:
+	$(PYTHON) scripts/run_modernization_p03_stage67_mgba.py run
+
+modernization-p03-stage67-mgba-check:
+	$(PYTHON) scripts/run_modernization_p03_stage67_mgba.py check
+
+modernization-p03-stage67-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p03_stage67 -v
+
 modernization-p08-check:
 	$(PYTHON) scripts/build_modernization_p08.py --check
 
@@ -568,6 +592,15 @@ modernization-p04-capacity-focused-test:
 
 modernization-p05-check:
 	$(PYTHON) scripts/build_modernization_p05.py --check
+
+modernization-p05-ability-runtime:
+	$(PYTHON) scripts/build_modernization_p05_ability_runtime.py --write --compact
+
+modernization-p05-ability-runtime-check:
+	$(PYTHON) scripts/build_modernization_p05_ability_runtime.py --check --compact
+
+modernization-p05-ability-runtime-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p05_ability_runtime -v
 
 modernization-p06-check:
 	$(PYTHON) scripts/build_modernization_p06.py --compact

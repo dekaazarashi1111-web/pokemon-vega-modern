@@ -112,7 +112,7 @@ class ModernizationP07Tests(unittest.TestCase):
         )
         original = model["layers"]["P03_ORIGINAL_RESTORATION"]
         self.assertEqual(original["operation"], "REPLACE_TARGET_LEARNSET_WITH_FIXED_REFERENCE")
-        self.assertEqual(original["routes"], 118_528)
+        self.assertEqual(original["routes"], 118_369)
         self.assertFalse(original["custom_distribution"])
         for layer in (
             "P07_NORMAL_SPECIES_TO_VEGA_MOVE",
@@ -121,7 +121,7 @@ class ModernizationP07Tests(unittest.TestCase):
         ):
             self.assertEqual(model["layers"][layer]["records"], [])
 
-    def test_p03_targets_only_normal_species_and_side_change_stays_blocked(self) -> None:
+    def test_p03_targets_only_normal_species_and_side_change_stays_excluded(self) -> None:
         audit = self.contract["source_evidence"]["upstream_contract_audit"]
         self.assertEqual(
             audit["p03_species_classifications"],
@@ -134,10 +134,13 @@ class ModernizationP07Tests(unittest.TestCase):
         self.assertEqual(audit["p03_vega_original_target_count"], 0)
         self.assertEqual(audit["p04_learnset_distribution_fields"], 0)
         side = audit["side_change_1063"]
-        self.assertEqual(side["p03_route_count"], 159)
+        self.assertEqual(side["p03_source_route_count"], 159)
+        self.assertEqual(side["p03_adopted_route_count"], 0)
+        self.assertEqual(side["p03_excluded_route_count"], 159)
         self.assertIsNone(side["canonical_id"])
+        self.assertIsNone(side["replacement_move_key"])
         self.assertEqual(
-            side["status"], "P03_ORIGINAL_RESTORATION_RUNTIME_BLOCKED_NOT_P07_CUSTOM"
+            side["status"], "P03_NOT_ADOPTED_USER_DECISION_NOT_P07_CUSTOM"
         )
 
     def test_direction_domains_resolve_by_keys(self) -> None:

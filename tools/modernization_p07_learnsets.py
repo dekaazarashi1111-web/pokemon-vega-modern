@@ -39,15 +39,15 @@ RESTORATION_README = "README_読んでください.txt"
 
 EXPECTED_INPUTS = {
     "content/modernization/p03_learnset_contract.json":
-        "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+        "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033",
     "content/modernization/p03_compiled_index.json":
-        "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+        "a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751",
     "content/modernization/p03_runtime_handoff.json":
-        "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
+        "2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479",
     "content/modernization/p04_candidate_manifest.json":
         "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
     "content/modernization/p05_battle_content_contract.json":
-        "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3",
+        "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
     "content/modernization/p06_species_adjustment_contract.json":
         "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
     "content/modernization/p06_review_projection.json":
@@ -420,6 +420,8 @@ def _validate_upstream_contracts(
     if (
         p03_index.get("record_count") != 1300
         or p03_index.get("route_count") != 118_528
+        or p03_index.get("selected_route_count") != 118_369
+        or p03_index.get("excluded_route_count") != 159
         or not isinstance(records, list)
         or len(records) != 1300
     ):
@@ -441,9 +443,19 @@ def _validate_upstream_contracts(
             _fail(f"P03原作復元対象へVega/Internal Speciesが混入しています: {key}")
         classifications[species["classification"]] += 1
 
+    runtime_selection = p03.get("runtime_selection")
+    if not isinstance(runtime_selection, Mapping) \
+            or runtime_selection.get("selected_routes") != 118_369 \
+            or runtime_selection.get("excluded_routes") != 159:
+        _fail("P03 runtime選択集合がSide Change除外後の固定値ではありません")
     side = p03_runtime.get("side_change_1063")
-    if not isinstance(side, Mapping) or side.get("status") != "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED":
-        _fail("P03 Side Change未実装依存が失われています")
+    if not isinstance(side, Mapping) \
+            or side.get("status") != "NOT_ADOPTED_BY_USER_DECISION" \
+            or side.get("source_route_count") != 159 \
+            or side.get("adopted_route_count") != 0 \
+            or side.get("excluded_route_count") != 159 \
+            or side.get("decision", {}).get("replacement_move_key") is not None:
+        _fail("P03 Side Change非採用・無置換判断が失われています")
     if p04.get("task") != "USER-MODERNIZATION-P04" or not isinstance(p04.get("records"), list):
         _fail("P04対象manifestが不正です")
     p04_records = p04["records"]
@@ -463,10 +475,14 @@ def _validate_upstream_contracts(
             or move_content.get("p04_new_move_requests") != []:
         _fail("P05の確定差分集合が工程7想定から変化しました")
     new_moves = move_content.get("new_move_requirements")
-    if not isinstance(new_moves, list) or len(new_moves) != 1 \
-            or new_moves[0].get("move_key") != "MOVE_KEY_ALLYSWITCH" \
-            or new_moves[0].get("canonical_id") is not None:
-        _fail("P05 Side Change未割当依存が工程7想定と不一致です")
+    non_adopted = move_content.get("non_adopted_move_candidates")
+    if new_moves != [] or not isinstance(non_adopted, list) \
+            or len(non_adopted) != 1 \
+            or non_adopted[0].get("move_key") != "MOVE_KEY_ALLYSWITCH" \
+            or non_adopted[0].get("selection_status") \
+            != "NOT_ADOPTED_BY_USER_DECISION" \
+            or non_adopted[0].get("canonical_id") is not None:
+        _fail("P05 Side Change非採用境界が工程7想定と不一致です")
     p04_unallocated = {
         str(row["proposed_species_key"])
         for row in p04_records
@@ -476,7 +492,8 @@ def _validate_upstream_contracts(
         "p03_species_classifications": dict(sorted(classifications.items())),
         "p03_vega_original_target_count": 0,
         "p03_original_restoration_records": 1300,
-        "p03_original_restoration_routes": 118_528,
+        "p03_original_restoration_source_routes": 118_528,
+        "p03_original_restoration_routes": 118_369,
         "p04_candidate_records": sum(
             row.get("implementation_scope") == "ADOPT_CANDIDATE"
             for row in p04_records if isinstance(row, Mapping)
@@ -489,8 +506,11 @@ def _validate_upstream_contracts(
             "move_key": "MOVE_KEY_ALLYSWITCH",
             "requested_project_id": 1063,
             "canonical_id": None,
-            "p03_route_count": side["adopted_route_count"],
-            "status": "P03_ORIGINAL_RESTORATION_RUNTIME_BLOCKED_NOT_P07_CUSTOM",
+            "p03_source_route_count": side["source_route_count"],
+            "p03_adopted_route_count": 0,
+            "p03_excluded_route_count": side["excluded_route_count"],
+            "replacement_move_key": None,
+            "status": "P03_NOT_ADOPTED_USER_DECISION_NOT_P07_CUSTOM",
         },
     }
 
@@ -748,13 +768,11 @@ def build_p07_contract(root: Path) -> dict[str, Any]:
             "move_memory": "QUERY_SAME_LAYERED_SOURCE_WITH_ROUTE_CONDITIONS",
             "existing_party_box_save": "NO_FOUR_MOVE_REWRITE",
             "trainer_facility": "EXPLICIT_PARTIES_REMAIN_SEPARATE",
+            "side_change_1063": (
+                "NOT_ADOPTED_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT"
+            ),
         },
         "dependencies": [
-            {
-                "dependency": "MOVE_KEY_ALLYSWITCH_RUNTIME",
-                "status": "BLOCKED_CANONICAL_ID_EFFECT_AI_UI_ANIMATION_SAVE_TESTS",
-                "impact": "P03の159経路は保持するがruntime-ready Moveとしてserializeしない",
-            },
             {
                 "dependency": "P04_SPECIES_AND_FORM_ID_ALLOCATION",
                 "status": "BLOCKED_52_CANDIDATES_UNALLOCATED",
@@ -767,7 +785,7 @@ def build_p07_contract(root: Path) -> dict[str, Any]:
             },
             {
                 "dependency": "P03_MACHINE_TUTOR_SUPPLY",
-                "status": "BLOCKED_26720_ORIGINAL_ROUTE_ROWS_REQUIRE_SUPPLY",
+                "status": "BLOCKED_26648_ADOPTED_ROUTE_ROWS_REQUIRE_SUPPLY",
                 "impact": "compatibility bitだけで実装済みとしない",
             },
         ],
@@ -790,9 +808,11 @@ def build_p07_contract(root: Path) -> dict[str, Any]:
             "normal_species_to_vega_move_adopted": 0,
             "vega_species_to_normal_move_adopted": 0,
             "explicit_deletions_adopted": 0,
-            "p03_original_restoration_routes_preserved": 118_528,
+            "p03_original_restoration_source_routes": 118_528,
+            "p03_original_restoration_routes_preserved": 118_369,
+            "p03_side_change_routes_excluded": 159,
             "p04_move_distribution_rows": 0,
-            "p05_runtime_unready_move_dependencies": 1,
+            "p05_runtime_unready_move_dependencies": 0,
             "p06_ready": False,
             "runtime_implemented": False,
         },
@@ -826,9 +846,11 @@ def validate_p07_contract(contract: Mapping[str, Any]) -> None:
     if summary.get("normal_species_to_vega_move_adopted") != 0 \
             or summary.get("vega_species_to_normal_move_adopted") != 0 \
             or summary.get("explicit_deletions_adopted") != 0 \
-            or summary.get("p03_original_restoration_routes_preserved") != 118_528 \
+            or summary.get("p03_original_restoration_source_routes") != 118_528 \
+            or summary.get("p03_original_restoration_routes_preserved") != 118_369 \
+            or summary.get("p03_side_change_routes_excluded") != 159 \
             or summary.get("p04_move_distribution_rows") != 0 \
-            or summary.get("p05_runtime_unready_move_dependencies") != 1 \
+            or summary.get("p05_runtime_unready_move_dependencies") != 0 \
             or summary.get("p06_ready") is not False \
             or summary.get("runtime_implemented") is not False:
         _fail("P07 summaryが採用差分0件と不一致です")
@@ -852,14 +874,12 @@ def validate_p07_contract(contract: Mapping[str, Any]) -> None:
         if isinstance(row, Mapping)
     }
     if dependency_statuses != {
-        "MOVE_KEY_ALLYSWITCH_RUNTIME":
-            "BLOCKED_CANONICAL_ID_EFFECT_AI_UI_ANIMATION_SAVE_TESTS",
         "P04_SPECIES_AND_FORM_ID_ALLOCATION":
             "BLOCKED_52_CANDIDATES_UNALLOCATED",
         "P06_SPECIES_BALANCE_REVIEW":
             "CHECKPOINT_NOT_P06_DONE_BLOCKING_RUNTIME_ADOPTION",
         "P03_MACHINE_TUTOR_SUPPLY":
-            "BLOCKED_26720_ORIGINAL_ROUTE_ROWS_REQUIRE_SUPPLY",
+            "BLOCKED_26648_ADOPTED_ROUTE_ROWS_REQUIRE_SUPPLY",
     }:
         _fail("P07 blocking dependency集合が不一致です")
 

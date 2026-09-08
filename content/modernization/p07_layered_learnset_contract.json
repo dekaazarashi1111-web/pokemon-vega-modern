@@ -8,11 +8,6 @@
   },
   "dependencies": [
     {
-      "dependency": "MOVE_KEY_ALLYSWITCH_RUNTIME",
-      "impact": "P03の159経路は保持するがruntime-ready Moveとしてserializeしない",
-      "status": "BLOCKED_CANONICAL_ID_EFFECT_AI_UI_ANIMATION_SAVE_TESTS"
-    },
-    {
       "dependency": "P04_SPECIES_AND_FORM_ID_ALLOCATION",
       "impact": "未割当P04候補を工程7target keyとして採用しない",
       "status": "BLOCKED_52_CANDIDATES_UNALLOCATED"
@@ -25,7 +20,7 @@
     {
       "dependency": "P03_MACHINE_TUTOR_SUPPLY",
       "impact": "compatibility bitだけで実装済みとしない",
-      "status": "BLOCKED_26720_ORIGINAL_ROUTE_ROWS_REQUIRE_SUPPLY"
+      "status": "BLOCKED_26648_ADOPTED_ROUTE_ROWS_REQUIRE_SUPPLY"
     }
   ],
   "inputs": {
@@ -116,18 +111,18 @@
     "upstream_contracts": {
       "content/modernization/p03_compiled_index.json": {
         "path": "content/modernization/p03_compiled_index.json",
-        "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
-        "size": 1380994
+        "sha256": "a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751",
+        "size": 2327596
       },
       "content/modernization/p03_learnset_contract.json": {
         "path": "content/modernization/p03_learnset_contract.json",
-        "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
-        "size": 9095
+        "sha256": "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033",
+        "size": 11826
       },
       "content/modernization/p03_runtime_handoff.json": {
         "path": "content/modernization/p03_runtime_handoff.json",
-        "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
-        "size": 8980
+        "sha256": "2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479",
+        "size": 8692
       },
       "content/modernization/p04_candidate_manifest.json": {
         "path": "content/modernization/p04_candidate_manifest.json",
@@ -136,8 +131,8 @@
       },
       "content/modernization/p05_battle_content_contract.json": {
         "path": "content/modernization/p05_battle_content_contract.json",
-        "sha256": "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3",
-        "size": 78163
+        "sha256": "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
+        "size": 77300
       },
       "content/modernization/p06_review_projection.json": {
         "path": "content/modernization/p06_review_projection.json",
@@ -170,7 +165,7 @@
         "custom_distribution": false,
         "operation": "REPLACE_TARGET_LEARNSET_WITH_FIXED_REFERENCE",
         "records": 1300,
-        "routes": 118528
+        "routes": 118369
       },
       "P07_EXPLICIT_DELETION": {
         "operation": "DELETE_EXACT_REFERENCED_ROUTE_ONLY",
@@ -211,6 +206,7 @@
     "move_memory": "QUERY_SAME_LAYERED_SOURCE_WITH_ROUTE_CONDITIONS",
     "pre_evolution_carry": "SEPARATE_CONSUMER_NEVER_TARGET_DIRECT_LEVEL",
     "shared_egg": "SEPARATE_FROM_DIRECT_EGG",
+    "side_change_1063": "NOT_ADOPTED_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT",
     "trainer_facility": "EXPLICIT_PARTIES_REMAIN_SEPARATE",
     "wild_generation": "NEW_GENERATION_ONLY_FROM_LAYERED_SOURCE"
   },
@@ -382,7 +378,8 @@
     ],
     "upstream_contract_audit": {
       "p03_original_restoration_records": 1300,
-      "p03_original_restoration_routes": 118528,
+      "p03_original_restoration_routes": 118369,
+      "p03_original_restoration_source_routes": 118528,
       "p03_species_classifications": {
         "DPE_FORM_APPEND": 275,
         "DPE_SPECIES_APPEND": 820,
@@ -450,9 +447,12 @@
       "side_change_1063": {
         "canonical_id": null,
         "move_key": "MOVE_KEY_ALLYSWITCH",
-        "p03_route_count": 159,
+        "p03_adopted_route_count": 0,
+        "p03_excluded_route_count": 159,
+        "p03_source_route_count": 159,
+        "replacement_move_key": null,
         "requested_project_id": 1063,
-        "status": "P03_ORIGINAL_RESTORATION_RUNTIME_BLOCKED_NOT_P07_CUSTOM"
+        "status": "P03_NOT_ADOPTED_USER_DECISION_NOT_P07_CUSTOM"
       }
     }
   },
@@ -460,9 +460,11 @@
   "summary": {
     "explicit_deletions_adopted": 0,
     "normal_species_to_vega_move_adopted": 0,
-    "p03_original_restoration_routes_preserved": 118528,
+    "p03_original_restoration_routes_preserved": 118369,
+    "p03_original_restoration_source_routes": 118528,
+    "p03_side_change_routes_excluded": 159,
     "p04_move_distribution_rows": 0,
-    "p05_runtime_unready_move_dependencies": 1,
+    "p05_runtime_unready_move_dependencies": 0,
     "p06_ready": false,
     "runtime_implemented": false,
     "vega_species_to_normal_move_adopted": 0
