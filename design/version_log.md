@@ -1574,3 +1574,14 @@
   - えいえんのはなのフラエッテは既存ID 1029の実データを再利用し、入手経路だけを後続候補へ分離した。
   - P04／P05／P07／P08と引継ぎを再生成し、active Stage62、selected Stage67、release falseを維持した。
 - Verify: P02 acceptance独立2 process、Stage67 build／evidence check、P04 36件、P05 11件＋Ability 46 case×2、P07 11件、P08 16件／generator check、BPS往復、差分監査、`git diff --check` PASS。重い既存mGBA実行は再利用した。
+
+## 2026-09-08T16:34:51+09:00
+
+- Version: `modernization-stage69-acquisition-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P04-ACQUISITION-CHECKPOINT` / 追加Mega Stone販売とえいえんのはなフラエッテ配布
+- Summary:
+  - Stage68でMega Stone 45件をItem ID 999〜1043へ結合し、Mega Ring解禁・全品16 BP・1save1回の専用店と保存補償を追加した。
+  - Stage69で既存Species ID 1029のえいえんのはなフラエッテLv.50を、手持ち→PCの順で配布する取得経路を追加した。
+  - P08をselected Stage69へ更新したが、49 Mega本体runtimeとP02〜P08の未完了・active Stage62を維持した。
+- Verify: Stage68 exact mGBA PASS、Stage69 party/PC exact partial PASS／全満・rollback／fresh reload host PASS・exact pending、Stage68/69 focused 24件、P08 focused 16件、P08 builder check、task graph、private guard、`git diff --check` PASS。

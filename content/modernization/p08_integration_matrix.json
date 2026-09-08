@@ -145,6 +145,48 @@
       "path": "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps",
       "sha256": "1e98d68b26bfb48516c9c3672f8c53d3bc7ec68d5cf3ae839f70d93d6bd6b8b3",
       "size": 16802522
+    },
+    {
+      "crc32": "DAFDD099",
+      "path": "build/stages/68_modernization_mega_shop.gba",
+      "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/68_modernization_mega_shop.json",
+      "sha256": "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e",
+      "size": 59479
+    },
+    {
+      "path": "build/stages/68_modernization_mega_shop_allocation.json",
+      "sha256": "f5e1745c9ebd9a12e7b84c02fb7d2ae6972b94e90f7c355f8e11f6dc22585d4b",
+      "size": 41017
+    },
+    {
+      "path": "build/stages/68_modernization_mega_shop.bps",
+      "sha256": "d360cfb630ae60f740f10d7cfcb25bfbefe7e0ff95a7ec1042d3c7998ea3952c",
+      "size": 59135
+    },
+    {
+      "crc32": "4849DD0F",
+      "path": "build/stages/69_modernization_floette_gift.gba",
+      "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/69_modernization_floette_gift.json",
+      "sha256": "1a375d8af0638cefe14a610505bd06ca22927a472e26573e9d783da62b14de66",
+      "size": 14772
+    },
+    {
+      "path": "build/stages/69_modernization_floette_gift_allocation.json",
+      "sha256": "a5be7b923d4cd09466b89ddd4482a2f56fac1b3660de91737e5590eb127ae265",
+      "size": 41584
+    },
+    {
+      "path": "build/stages/69_modernization_floette_gift.bps",
+      "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
+      "size": 1849
     }
   ],
   "candidate_chain": {
@@ -215,23 +257,46 @@
           "size": 33554432
         },
         "stage": 67
+      },
+      {
+        "parent_stage": 67,
+        "role": "P04_MEGA_STONE_BP_SHOP_EXACT_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "DAFDD099",
+          "path": "build/stages/68_modernization_mega_shop.gba",
+          "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+          "size": 33554432
+        },
+        "stage": 68
+      },
+      {
+        "parent_stage": 68,
+        "role": "P04_FLOETTE_ETERNAL_EXACT_PARTIAL_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "4849DD0F",
+          "path": "build/stages/69_modernization_floette_gift.gba",
+          "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+          "size": 33554432
+        },
+        "stage": 69
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 67,
-      "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+      "candidate_stage": 69,
+      "checkpoint_commit": null,
+      "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "parent_stage": 66,
+      "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+      "parent_stage": 68,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
+      "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 67,
+    "selected_checkpoint_stage": 69,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -280,6 +345,39 @@
       "stage67_changed_bytes_from_overlay": 46455,
       "stage67_new_materialized_routes": 3603,
       "tutor_existing_slot_routes_materialized": 740
+    },
+    "stage68_integrated": true,
+    "stage68_scope": {
+      "claim_flags": [
+        5280,
+        5324
+      ],
+      "currency": "BP",
+      "exact_rom_runtime_gate": "PASS",
+      "full_p04_done": false,
+      "mega_form_battle_runtime_materialized": false,
+      "mega_ring_gate_item_id": 580,
+      "mega_stone_item_count": 45,
+      "mega_stone_item_ids": [
+        999,
+        1043
+      ],
+      "price_each": 16,
+      "shop_entry_count": 45
+    },
+    "stage69_integrated": true,
+    "stage69_scope": {
+      "canonical_collection_bit": 850,
+      "claim_flag": 5325,
+      "exact_full_and_fresh_reload": false,
+      "exact_party_delivery": true,
+      "exact_pc_delivery": true,
+      "existing_species_id": 1029,
+      "full_p04_done": false,
+      "host_full_rollback_reload": true,
+      "level": 50,
+      "mega_ring_gate_item_id": 580,
+      "runtime_gate": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED"
     }
   },
   "integration_summary": {
@@ -289,10 +387,10 @@
     "completed_phases": [
       "P01"
     ],
-    "highest_pinned_candidate_stage": 67,
+    "highest_pinned_candidate_stage": 69,
     "phase_count": 8,
     "release_ready": false,
-    "runtime_reflected_phase_count": 3
+    "runtime_reflected_phase_count": 4
   },
   "phases": [
     {
@@ -564,31 +662,41 @@
             "stage66_future_tail_remaining_bytes": 94948
           }
         },
+        "floette_eternal_exact_full_and_fresh_reload": false,
+        "floette_eternal_exact_party_pc_delivery": true,
+        "floette_eternal_existing_species_id": 1029,
+        "floette_eternal_gift_level": 50,
         "held_records": 2,
+        "mega_form_battle_runtime_records": 0,
         "mega_records": 49,
         "new_species_reference_records": 3,
         "non_adopted_user_scope_records": 3,
         "runtime_adopted_records": 0,
+        "runtime_materialized_acquisition_routes": 46,
         "selected_candidate_records": 49,
-        "stone_records": 45
+        "stone_item_ids_materialized": 45,
+        "stone_records": 45,
+        "stone_shop_currency": "BP",
+        "stone_shop_entries_materialized": 45,
+        "stone_shop_exact_runtime_gate": "PASS",
+        "stone_shop_price_each": 16
       },
       "blockers": [
-        "FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT",
-        "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS",
-        "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN",
-        "SAVE_MIGRATION_NOT_DESIGNED",
-        "RIGHTS_REVIEW",
-        "ROM_AND_ID_NOT_INTEGRATED"
+        "MEGA_FORM_SPECIES_TABLES_AND_BATTLE_TRANSFORMATION_LIFECYCLE_NOT_INTEGRATED",
+        "SIX_ABILITIES_NOT_ROM_LINKED",
+        "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
         "CANDIDATE_MANIFEST_ONLY",
-        "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS",
-        "CAPACITY_RESERVATION_CHECKPOINT_NOT_RUNTIME_READY"
+        "PRIVATE_USE_ASSETS_READY",
+        "STAGE68_MEGA_STONE_SHOP_EXACT_RUNTIME_PASS",
+        "STAGE69_FLOETTE_ETERNAL_EXACT_PARTY_PC_PARTIAL_PASS",
+        "MEGA_FORM_BATTLE_RUNTIME_INCOMPLETE"
       ],
       "not_adopted": [
-        "SHARED_ID_MATERIALIZATION",
-        "ROM_TABLE_RELOCATION",
+        "MEGA_FORM_SPECIES_TABLE_AND_BATTLE_TRANSFORMATION_LIFECYCLE",
+        "SIX_NEW_ABILITIES_ROM_LINK",
         "WINDS_WAVES_NEW_SPECIES_3_USER_SCOPE",
         "PUBLIC_REDISTRIBUTION"
       ],
@@ -618,15 +726,33 @@
         },
         {
           "evidence": [
+            "content/modernization/mega_shop_checkpoint.json",
+            "content/modernization/mega_shop_mgba_runtime_gate.json"
+          ],
+          "gate": "MEGA_STONE_BP_SHOP",
+          "status": "PASS_EXACT_ROM_45_ITEMS_16_BP"
+        },
+        {
+          "evidence": [
+            "content/modernization/floette_gift_checkpoint.json",
+            "content/modernization/floette_gift_mgba_runtime_gate.json"
+          ],
+          "gate": "FLOETTE_ETERNAL_ACQUISITION",
+          "status": "PASS_EXACT_PARTY_PC_FULL_RELOAD_PENDING"
+        },
+        {
+          "evidence": [
             "content/modernization/p04_capacity_allocation_manifest.json"
           ],
-          "gate": "ID_MATERIALIZATION_AND_RUNTIME",
+          "gate": "MEGA_FORM_BATTLE_RUNTIME",
           "status": "BLOCKED"
         }
       ],
       "rom_reflection": {
-        "reflected": false,
-        "stage": null
+        "ancestor_stage": 68,
+        "reflected": true,
+        "scope": "45_MEGA_STONE_BP_SHOP_PLUS_FLOETTE_ETERNAL_ACQUISITION_ONLY",
+        "stage": 69
       }
     },
     {
@@ -1048,16 +1174,23 @@
       "sha256": "cf5b6ec25cf3c4502272d385f6a32455d738e0450acd2c8ae373797ed32f0394",
       "size": 2609,
       "status": "PASS"
+    },
+    {
+      "binding": "P04_STAGE68_MGBA_CHECKPOINT",
+      "path": "content/modernization/mega_shop_checkpoint.json",
+      "sha256": "8ef28eb0395aa7a4d91623914b1e5136b94f3fb387206e20d456e973ceed0b29",
+      "size": 37093,
+      "status": "PASS"
     }
   ],
   "release_blockers": [
     "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
     "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
-    "P04_49_MEGA_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_RIGHTS_REVIEW_NOT_COMPLETE",
+    "P04_STAGE68_STONES_AND_STAGE69_FLOETTE_ACQUISITION_INTEGRATED_BUT_49_MEGA_FORM_BATTLE_RUNTIME_AND_FLOETTE_FULL_RELOAD_GATE_NOT_COMPLETE",
     "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE67_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE69_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "runtime_execution": {
@@ -1069,8 +1202,8 @@
   "schema_version": 1,
   "snapshot": {
     "auto_discovery": false,
-    "implementation_input_count": 85,
-    "implementation_input_fingerprint_sha256": "7f41b3930b333ca86ea37f80ec2bf76fc68e1408202fc749a6838c61e2008fa6",
+    "implementation_input_count": 103,
+    "implementation_input_fingerprint_sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037",
     "implementation_inputs": [
       {
         "path": "config/modernization_p01_runtime.json",
@@ -1409,6 +1542,114 @@
         "size": 9773
       },
       {
+        "path": "scripts/build_modernization_mega_shop.py",
+        "phase": "P04",
+        "sha256": "146145aea6b9f42e49471215d66dfca3841a2ae96e2753e5e2250f7291f4e9e3",
+        "size": 360
+      },
+      {
+        "path": "scripts/run_modernization_mega_shop_mgba.py",
+        "phase": "P04",
+        "sha256": "13d01749b6e5ed9bbd4bb093cd85d33e7d2abd78af1d0e1df7661a58a686616c",
+        "size": 15339
+      },
+      {
+        "path": "tools/modernization_mega_shop.py",
+        "phase": "P04",
+        "sha256": "b2e0cf9d107551a04d7f589b982afc6c587729a504deaa395f9b9f7643caeb35",
+        "size": 63275
+      },
+      {
+        "path": "tools/mgba_modernization_mega_shop_smoke.c",
+        "phase": "P04",
+        "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb",
+        "size": 24745
+      },
+      {
+        "path": "tests/test_modernization_mega_shop.py",
+        "phase": "P04",
+        "sha256": "b685bb1ce5b3bdf5f4dddb011aba1516f52e17748c3a287e0f4be60409dc1730",
+        "size": 12642
+      },
+      {
+        "path": "tests/test_modernization_mega_shop_mgba.py",
+        "phase": "P04",
+        "sha256": "45217bfdf6bed1ac8aef22c338e40fe8a2353625495cf97869b1c0d856f147e2",
+        "size": 5407
+      },
+      {
+        "path": "overlays/modernization_mega_shop/README.md",
+        "phase": "P04",
+        "sha256": "ffcb4d7346a02473a677b22ccf3f0e684697e87ad87fc78105aeb5ea4fd14b08",
+        "size": 1001
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop.c",
+        "phase": "P04",
+        "sha256": "116bafdf4b3e736d5baf42870a30ce7069d2aafbbf33548a97bf1640c88b4b2d",
+        "size": 20929
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop.h",
+        "phase": "P04",
+        "sha256": "960aeaf9f4a7ddc0efb3c4acc6e8c800b637c34db2282c889b939397a964d4a5",
+        "size": 1309
+      },
+      {
+        "path": "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c",
+        "phase": "P04",
+        "sha256": "3cb5df15d9dd4498fbd96084caf02c07d9a306900c896bde38043f22a4fdafe1",
+        "size": 11280
+      },
+      {
+        "path": "scripts/build_modernization_floette_gift.py",
+        "phase": "P04",
+        "sha256": "645e54a5180cc3e377f02a73180d04ebbf970fa192bcd5cb3fc8f2efbba75644",
+        "size": 365
+      },
+      {
+        "path": "tools/modernization_floette_gift.py",
+        "phase": "P04",
+        "sha256": "18dd8b9e26e72351b3bf4a4e8cb38d02469f74fdde5d527304d38c8663e4ad79",
+        "size": 67319
+      },
+      {
+        "path": "tests/test_modernization_floette_gift.py",
+        "phase": "P04",
+        "sha256": "d0e4b5f919f9607967ba1206ef830416627f86423e800c7520e448b265f86d9f",
+        "size": 8670
+      },
+      {
+        "path": "overlays/modernization_floette_gift/README.md",
+        "phase": "P04",
+        "sha256": "92fd6ac3e8282719d868efa8b3a814d603d5c8bdd19647afa89781807b1d0f62",
+        "size": 1116
+      },
+      {
+        "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "phase": "P04",
+        "sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb",
+        "size": 23196
+      },
+      {
+        "path": "overlays/modernization_floette_gift/modernization_floette_gift.c",
+        "phase": "P04",
+        "sha256": "849fd5160618ee2a13eccb7188ab9f82efa737d73ede1cb766e79820a700aebf",
+        "size": 16759
+      },
+      {
+        "path": "overlays/modernization_floette_gift/modernization_floette_gift.h",
+        "phase": "P04",
+        "sha256": "0f7365d10e4542f3086ba6f51cd4ac313c4db8f20f3c705bc7be6be4fdc3bfe3",
+        "size": 1171
+      },
+      {
+        "path": "overlays/modernization_floette_gift/modernization_floette_gift_host_test.c",
+        "phase": "P04",
+        "sha256": "01b318e4ccf0bbb08982a464fbbb46fd56e7e67715153aae92730d2908848adc",
+        "size": 13849
+      },
+      {
         "path": "scripts/build_modernization_p05.py",
         "phase": "P05",
         "sha256": "6ef1f0ebf6dad114196ccca047100d7dbe40e4a834310d678af796a82873f1c2",
@@ -1513,14 +1754,14 @@
       {
         "path": "tools/modernization_p08_integration.py",
         "phase": "P08",
-        "sha256": "8d1ad50b572cd6b92e1d03db22b17af8bbe18b859f36c8357ec8a9d2e74225b0",
-        "size": 132984
+        "sha256": "b6d7aaaa754ca97507475861254e4687bdf5e03000e83bc0216464ec8e8de3a2",
+        "size": 155776
       },
       {
         "path": "tests/test_modernization_p08.py",
         "phase": "P08",
-        "sha256": "7f593cc8b5567e869a17217a0f1f5abfb24c2b1262a5bfd42e192b4ac86441fc",
-        "size": 24359
+        "sha256": "a3ebc2f90445ab988d9bcb2584bac6a4ef8938ff2ae3928b38fec192158ab46d",
+        "size": 28337
       },
       {
         "path": "tests/test_run_github_private_suite.py",
@@ -1587,27 +1828,27 @@
       "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
       "components": {
         "candidate_artifacts": {
-          "count": 25,
-          "sha256": "b9365124d739831bd305d164c270dfc7994ae3def7aacb083f1f8ba3fef02e64"
+          "count": 33,
+          "sha256": "e5697e9142249be8ceb2aafe963411379cee26c0d79847d735fd77e389ad95a6"
         },
         "implementation_inputs": {
-          "count": 85,
-          "sha256": "7f41b3930b333ca86ea37f80ec2bf76fc68e1408202fc749a6838c61e2008fa6"
+          "count": 103,
+          "sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037"
         },
         "phase_projection": {
           "count": 8,
-          "sha256": "de67b0f1de94295b9f37c5e220505a182af4a3fdd67bd0a43ce5ca61c5000c0c"
+          "sha256": "d745c2874e774240d22730c553f699350f2f8e69ab008e17d8304b7fee1890e9"
         },
         "referenced_source_bindings": {
-          "count": 29,
-          "sha256": "9127e10abf40736729518f6fb8bd190f5560f28b5c826298d3f2d1a80cac700f"
+          "count": 30,
+          "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
         },
         "tracked_inputs": {
-          "count": 41,
-          "sha256": "c4156f9b70c94e929796ecdf430d373e3e8dec6efbfd3fcba9c46f12f4979ba9"
+          "count": 51,
+          "sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed"
         }
       },
-      "sha256": "a6bbac93984ead64d5ee9e426a6751b76b50964addbe07ab1a08a49e28536f71"
+      "sha256": "f0e8e84d8ae2da7ca275f895e7d60ae6a360bad3a028a25296cda3ff7b52bbc1"
     },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {
@@ -1688,6 +1929,44 @@
         "included": true,
         "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"
       },
+      "P04_STAGE68_MEGA_STONE_BP_SHOP": {
+        "expected_paths": [
+          "config/modernization_mega_shop.json",
+          "config/modernization_mega_shop_item_bounds.json",
+          "config/modernization_mega_shop_pointer_sites.json",
+          "content/modernization/mega_shop_catalog.json",
+          "content/modernization/mega_shop_checkpoint.json",
+          "content/modernization/mega_shop_mgba_runtime_gate.json",
+          "overlays/modernization_mega_shop/modernization_mega_shop.c",
+          "overlays/modernization_mega_shop/modernization_mega_shop.h",
+          "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c",
+          "scripts/build_modernization_mega_shop.py",
+          "scripts/run_modernization_mega_shop_mgba.py",
+          "tools/mgba_modernization_mega_shop_smoke.c",
+          "tools/modernization_mega_shop.py",
+          "tests/test_modernization_mega_shop.py",
+          "tests/test_modernization_mega_shop_mgba.py"
+        ],
+        "included": true,
+        "status": "EXACT_ROM_RUNTIME_PASS_NOT_P04_DONE"
+      },
+      "P04_STAGE69_FLOETTE_ETERNAL_GIFT": {
+        "expected_paths": [
+          "config/modernization_floette_gift.json",
+          "content/modernization/floette_gift_contract.json",
+          "content/modernization/floette_gift_checkpoint.json",
+          "content/modernization/floette_gift_mgba_runtime_gate.json",
+          "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+          "overlays/modernization_floette_gift/modernization_floette_gift.c",
+          "overlays/modernization_floette_gift/modernization_floette_gift.h",
+          "overlays/modernization_floette_gift/modernization_floette_gift_host_test.c",
+          "scripts/build_modernization_floette_gift.py",
+          "tools/modernization_floette_gift.py",
+          "tests/test_modernization_floette_gift.py"
+        ],
+        "included": true,
+        "status": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_PENDING_NOT_P04_DONE"
+      },
       "P05_ABILITY_HOST_RUNTIME": {
         "expected_paths": [
           "config/modernization_p05_ability_runtime.json",
@@ -1705,8 +1984,8 @@
     },
     "rule": "後発成果は存在だけで採用せず、固定path listと生成済みsnapshot hashを明示更新して再監査する",
     "selection_base_head": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-    "tracked_input_count": 41,
-    "tracked_input_fingerprint_sha256": "c4156f9b70c94e929796ecdf430d373e3e8dec6efbfd3fcba9c46f12f4979ba9",
+    "tracked_input_count": 51,
+    "tracked_input_fingerprint_sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed",
     "tracked_inputs": [
       {
         "path": "config/active_play_baseline.json",
@@ -1729,8 +2008,8 @@
       {
         "path": "config/modernization_candidate.json",
         "phase": "CANDIDATE_CHAIN",
-        "sha256": "5654897da9490706e72c8ff92b305181253d9c64e73a2cfbbd435452072f7bf0",
-        "size": 9098
+        "sha256": "d5f28e448fe71dfb60db618ceb1064e6e469d3ec75bccae8d3d67b895dbae293",
+        "size": 11000
       },
       {
         "path": "content/modernization/identity_contract.json",
@@ -1901,6 +2180,66 @@
         "size": 437769
       },
       {
+        "path": "config/modernization_mega_shop.json",
+        "phase": "P04",
+        "sha256": "ac60c5941e2d510d9473353290a51b019c35198bf7f6466fae17b8f32cfb5fc3",
+        "size": 4298
+      },
+      {
+        "path": "config/modernization_mega_shop_item_bounds.json",
+        "phase": "P04",
+        "sha256": "f0ce972f39ec12fe5a2259ea588e954fed0a40f84916bb6662eabe5092573ec6",
+        "size": 6508
+      },
+      {
+        "path": "config/modernization_mega_shop_pointer_sites.json",
+        "phase": "P04",
+        "sha256": "a5bd12b2ae08bbb7bcc1bbb6e14441ba8f9edcc4d43fad4b1cfebaefc2b59019",
+        "size": 30219
+      },
+      {
+        "path": "content/modernization/mega_shop_catalog.json",
+        "phase": "P04",
+        "sha256": "ddb8f0828ea998bbf04fd22dda80d722ee26c08c5f01705e93f48988ae8f2ed9",
+        "size": 35588
+      },
+      {
+        "path": "content/modernization/mega_shop_checkpoint.json",
+        "phase": "P04",
+        "sha256": "8ef28eb0395aa7a4d91623914b1e5136b94f3fb387206e20d456e973ceed0b29",
+        "size": 37093
+      },
+      {
+        "path": "content/modernization/mega_shop_mgba_runtime_gate.json",
+        "phase": "P04",
+        "sha256": "5b7b499ccb5af5777033aad1b1d234b2ec49c785d5fe02f818f9312715f8f03c",
+        "size": 4318
+      },
+      {
+        "path": "config/modernization_floette_gift.json",
+        "phase": "P04",
+        "sha256": "140da74d3e43a857b728417eeb8c701f44cfed0f6575719a6ff13ccab9c093c8",
+        "size": 6670
+      },
+      {
+        "path": "content/modernization/floette_gift_contract.json",
+        "phase": "P04",
+        "sha256": "6c28376c1356fa0df08dabc58408449d69bf676514efbc23f1ed84b555a7ace5",
+        "size": 22396
+      },
+      {
+        "path": "content/modernization/floette_gift_checkpoint.json",
+        "phase": "P04",
+        "sha256": "25f729c990975d0ef5164192ca69af5fc9965fdb30118b2dafa2fa2e71ab2a71",
+        "size": 27893
+      },
+      {
+        "path": "content/modernization/floette_gift_mgba_runtime_gate.json",
+        "phase": "P04",
+        "sha256": "1547522c0ddd386ec997514ee0363868e0918e8cb2e24ccc861be8abfab79cc0",
+        "size": 4119
+      },
+      {
         "path": "content/modernization/p05_battle_content_contract.json",
         "phase": "P05",
         "sha256": "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404",
@@ -2049,6 +2388,20 @@
       "requirement_key": "P04_CAPACITY_RESERVATION",
       "status": "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY",
       "test_evidence": "tests/test_modernization_p04_capacity.py"
+    },
+    {
+      "implementation_evidence": "Stage68 45 Mega Stone items + 16BP shop",
+      "phase": "P04",
+      "requirement_key": "P04_MEGA_STONE_BP_SHOP",
+      "status": "EXACT_ROM_RUNTIME_PASS",
+      "test_evidence": "tests/test_modernization_mega_shop_mgba.py"
+    },
+    {
+      "implementation_evidence": "Stage69 existing Species1029 Lv50 gift",
+      "phase": "P04",
+      "requirement_key": "P04_FLOETTE_ETERNAL_ACQUISITION",
+      "status": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_PENDING",
+      "test_evidence": "tests/test_modernization_floette_gift.py"
     },
     {
       "implementation_evidence": "Side Change/Winds・Waves 3種非採用 + battle content contract",

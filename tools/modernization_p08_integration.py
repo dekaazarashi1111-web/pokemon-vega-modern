@@ -34,7 +34,7 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
         5266, "b872a9793f6c29944d6c86d603aab8fbdf78df9c2f0ccf4595b6d308d23825f4", "P01"
     ),
     "config/modernization_candidate.json": (
-        9098, "5654897da9490706e72c8ff92b305181253d9c64e73a2cfbbd435452072f7bf0", "CANDIDATE_CHAIN"
+        11000, "d5f28e448fe71dfb60db618ceb1064e6e469d3ec75bccae8d3d67b895dbae293", "CANDIDATE_CHAIN"
     ),
     "content/modernization/identity_contract.json": (
         1461322, "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443", "P01"
@@ -119,6 +119,36 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     ),
     "content/modernization/p04_capacity_allocation_manifest.json": (
         437769, "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe", "P04"
+    ),
+    "config/modernization_mega_shop.json": (
+        4298, "ac60c5941e2d510d9473353290a51b019c35198bf7f6466fae17b8f32cfb5fc3", "P04"
+    ),
+    "config/modernization_mega_shop_item_bounds.json": (
+        6508, "f0ce972f39ec12fe5a2259ea588e954fed0a40f84916bb6662eabe5092573ec6", "P04"
+    ),
+    "config/modernization_mega_shop_pointer_sites.json": (
+        30219, "a5bd12b2ae08bbb7bcc1bbb6e14441ba8f9edcc4d43fad4b1cfebaefc2b59019", "P04"
+    ),
+    "content/modernization/mega_shop_catalog.json": (
+        35588, "ddb8f0828ea998bbf04fd22dda80d722ee26c08c5f01705e93f48988ae8f2ed9", "P04"
+    ),
+    "content/modernization/mega_shop_checkpoint.json": (
+        37093, "8ef28eb0395aa7a4d91623914b1e5136b94f3fb387206e20d456e973ceed0b29", "P04"
+    ),
+    "content/modernization/mega_shop_mgba_runtime_gate.json": (
+        4318, "5b7b499ccb5af5777033aad1b1d234b2ec49c785d5fe02f818f9312715f8f03c", "P04"
+    ),
+    "config/modernization_floette_gift.json": (
+        6670, "140da74d3e43a857b728417eeb8c701f44cfed0f6575719a6ff13ccab9c093c8", "P04"
+    ),
+    "content/modernization/floette_gift_contract.json": (
+        22396, "6c28376c1356fa0df08dabc58408449d69bf676514efbc23f1ed84b555a7ace5", "P04"
+    ),
+    "content/modernization/floette_gift_checkpoint.json": (
+        27893, "25f729c990975d0ef5164192ca69af5fc9965fdb30118b2dafa2fa2e71ab2a71", "P04"
+    ),
+    "content/modernization/floette_gift_mgba_runtime_gate.json": (
+        4119, "1547522c0ddd386ec997514ee0363868e0918e8cb2e24ccc861be8abfab79cc0", "P04"
     ),
     "content/modernization/p05_battle_content_contract.json": (
         76297, "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404", "P05"
@@ -225,6 +255,30 @@ CANDIDATE_ARTIFACTS: Mapping[str, tuple[int, str, str | None]] = {
     "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps": (
         16802522, "1e98d68b26bfb48516c9c3672f8c53d3bc7ec68d5cf3ae839f70d93d6bd6b8b3", None
     ),
+    "build/stages/68_modernization_mega_shop.gba": (
+        33554432, "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639", "DAFDD099"
+    ),
+    "build/stages/68_modernization_mega_shop.json": (
+        59479, "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e", None
+    ),
+    "build/stages/68_modernization_mega_shop_allocation.json": (
+        41017, "f5e1745c9ebd9a12e7b84c02fb7d2ae6972b94e90f7c355f8e11f6dc22585d4b", None
+    ),
+    "build/stages/68_modernization_mega_shop.bps": (
+        59135, "d360cfb630ae60f740f10d7cfcb25bfbefe7e0ff95a7ec1042d3c7998ea3952c", None
+    ),
+    "build/stages/69_modernization_floette_gift.gba": (
+        33554432, "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95", "4849DD0F"
+    ),
+    "build/stages/69_modernization_floette_gift.json": (
+        14772, "1a375d8af0638cefe14a610505bd06ca22927a472e26573e9d783da62b14de66", None
+    ),
+    "build/stages/69_modernization_floette_gift_allocation.json": (
+        41584, "a5be7b923d4cd09466b89ddd4482a2f56fac1b3660de91737e5590eb127ae265", None
+    ),
+    "build/stages/69_modernization_floette_gift.bps": (
+        1849, "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0", None
+    ),
 }
 
 PARALLEL_OUTPUTS = {
@@ -305,6 +359,44 @@ PARALLEL_OUTPUTS = {
             "tools/modernization_p04_capacity.py",
         ],
     },
+    "P04_STAGE68_MEGA_STONE_BP_SHOP": {
+        "status": "EXACT_ROM_RUNTIME_PASS_NOT_P04_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_mega_shop.json",
+            "config/modernization_mega_shop_item_bounds.json",
+            "config/modernization_mega_shop_pointer_sites.json",
+            "content/modernization/mega_shop_catalog.json",
+            "content/modernization/mega_shop_checkpoint.json",
+            "content/modernization/mega_shop_mgba_runtime_gate.json",
+            "overlays/modernization_mega_shop/modernization_mega_shop.c",
+            "overlays/modernization_mega_shop/modernization_mega_shop.h",
+            "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c",
+            "scripts/build_modernization_mega_shop.py",
+            "scripts/run_modernization_mega_shop_mgba.py",
+            "tools/mgba_modernization_mega_shop_smoke.c",
+            "tools/modernization_mega_shop.py",
+            "tests/test_modernization_mega_shop.py",
+            "tests/test_modernization_mega_shop_mgba.py",
+        ],
+    },
+    "P04_STAGE69_FLOETTE_ETERNAL_GIFT": {
+        "status": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_PENDING_NOT_P04_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_floette_gift.json",
+            "content/modernization/floette_gift_contract.json",
+            "content/modernization/floette_gift_checkpoint.json",
+            "content/modernization/floette_gift_mgba_runtime_gate.json",
+            "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+            "overlays/modernization_floette_gift/modernization_floette_gift.c",
+            "overlays/modernization_floette_gift/modernization_floette_gift.h",
+            "overlays/modernization_floette_gift/modernization_floette_gift_host_test.c",
+            "scripts/build_modernization_floette_gift.py",
+            "tools/modernization_floette_gift.py",
+            "tests/test_modernization_floette_gift.py",
+        ],
+    },
     "P05_ABILITY_HOST_RUNTIME": {
         "status": "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING",
         "included": True,
@@ -381,6 +473,24 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "tests/test_modernization_p04_asset_importer.py": "P04",
     "tests/test_modernization_p04_capacity.py": "P04",
     "tests/test_modernization_p04_sources.py": "P04",
+    "scripts/build_modernization_mega_shop.py": "P04",
+    "scripts/run_modernization_mega_shop_mgba.py": "P04",
+    "tools/modernization_mega_shop.py": "P04",
+    "tools/mgba_modernization_mega_shop_smoke.c": "P04",
+    "tests/test_modernization_mega_shop.py": "P04",
+    "tests/test_modernization_mega_shop_mgba.py": "P04",
+    "overlays/modernization_mega_shop/README.md": "P04",
+    "overlays/modernization_mega_shop/modernization_mega_shop.c": "P04",
+    "overlays/modernization_mega_shop/modernization_mega_shop.h": "P04",
+    "overlays/modernization_mega_shop/modernization_mega_shop_host_harness.c": "P04",
+    "scripts/build_modernization_floette_gift.py": "P04",
+    "tools/modernization_floette_gift.py": "P04",
+    "tests/test_modernization_floette_gift.py": "P04",
+    "overlays/modernization_floette_gift/README.md": "P04",
+    "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c": "P04",
+    "overlays/modernization_floette_gift/modernization_floette_gift.c": "P04",
+    "overlays/modernization_floette_gift/modernization_floette_gift.h": "P04",
+    "overlays/modernization_floette_gift/modernization_floette_gift_host_test.c": "P04",
     "scripts/build_modernization_p05.py": "P05",
     "tools/modernization_p05_contract.py": "P05",
     "tests/test_modernization_p05.py": "P05",
@@ -443,6 +553,10 @@ DECLARED_EVIDENCE_IDENTITY_GROUPS: Mapping[str, tuple[str, tuple[str, ...]]] = {
         "content/modernization/p02_stage64_mgba_runtime_gate.json",
         ("inputs", "stage64_generation", "builder_config"),
     ),
+    "P04_STAGE68_MGBA_CHECKPOINT": (
+        "content/modernization/mega_shop_mgba_runtime_gate.json",
+        ("inputs", "checkpoint"),
+    ),
 }
 EXPECTED_EVIDENCE_SOURCE_COUNTS: Mapping[str, int] = {
     "P02_STAGE64_MGBA": 4,
@@ -452,6 +566,7 @@ EXPECTED_EVIDENCE_SOURCE_COUNTS: Mapping[str, int] = {
     "P05_ABILITY_IMPLEMENTATION": 3,
     "P02_MGBA_CONFIG": 1,
     "P02_STAGE64_BUILDER_CONFIG": 1,
+    "P04_STAGE68_MGBA_CHECKPOINT": 1,
 }
 
 
@@ -613,12 +728,18 @@ def _validate_candidate_chain(
     s65 = by_path["build/stages/65_modernization_p03_caterpie_slice.gba"]
     s66 = by_path["build/stages/66_modernization_p03_bulk_learnsets.gba"]
     s67 = by_path["build/stages/67_modernization_p02_p03_consumers.gba"]
+    s68 = by_path["build/stages/68_modernization_mega_shop.gba"]
+    s69 = by_path["build/stages/69_modernization_floette_gift.gba"]
     m63 = metadata["build/stages/63_modernization_p01_identity_repair.json"]
     m64 = metadata["build/stages/64_modernization_p02_rayquaza_parameter_repair.json"]
     m65 = metadata["build/stages/65_modernization_p03_caterpie_slice.json"]
     m66 = metadata["build/stages/66_modernization_p03_bulk_learnsets.json"]
     m67 = metadata["build/stages/67_modernization_p02_p03_consumers.json"]
     a67 = metadata["build/stages/67_modernization_p03_allocation.json"]
+    m68 = metadata["build/stages/68_modernization_mega_shop.json"]
+    a68 = metadata["build/stages/68_modernization_mega_shop_allocation.json"]
+    m69 = metadata["build/stages/69_modernization_floette_gift.json"]
+    a69 = metadata["build/stages/69_modernization_floette_gift_allocation.json"]
     _require(m63.get("task") == "USER-MODERNIZATION-P01" and m63.get("status") == "PASS", "Stage63 metadata identity不正")
     _require(m63.get("stage") == 63 and m63.get("scope", {}).get("active_play_baseline_changed") is False, "Stage63 scope不正")
     _require(m63.get("input", {}).get("parent", {}).get("sha256") == s62["sha256"], "Stage63親がStage62ではありません")
@@ -800,16 +921,90 @@ def _validate_candidate_chain(
         and 33554432 - future_tail_end == 62510,
         "Stage67 allocation future_tail残量/overlap境界不正",
     )
+    _require(
+        m68.get("task") == "USER-MODERNIZATION-MEGA-STONE-BP-SHOP"
+        and m68.get("stage") == 68
+        and m68.get("status") == "PASS_HOST_STATIC_EXACT_ROM_PENDING",
+        "Stage68 Mega Stone shop metadata identity不正",
+    )
+    _require(
+        m68.get("input", {}).get("sha256") == s67["sha256"]
+        and m68.get("output", {}).get("sha256") == s68["sha256"]
+        and m68.get("allocation", {}).get("path")
+        == "build/stages/68_modernization_mega_shop_allocation.json"
+        and a68.get("summaries", {}).get("overlap_count") == 0,
+        "Stage68 parent/output/allocation identity不正",
+    )
+    _require(
+        m68.get("release_patch_round_trip", {}).get("sha256")
+        == by_path["build/stages/68_modernization_mega_shop.bps"]["sha256"]
+        and m68.get("release_patch_round_trip", {}).get("source_sha256")
+        == s67["sha256"]
+        and m68.get("release_patch_round_trip", {}).get("target_sha256")
+        == s68["sha256"]
+        and m68.get("release_patch_round_trip", {}).get("exact") is True,
+        "Stage68 BPS identity/round-trip evidence不正",
+    )
+    catalog68 = m68.get("catalog", {})
+    _require(
+        catalog68.get("entry_count") == 45
+        and catalog68.get("item_ids") == list(range(999, 1044))
+        and catalog68.get("prices_bp") == [16]
+        and catalog68.get("key_stone_item_id") == 580
+        and m68.get("invariants", {}).get("cfru_item_bounds_999_through_1043")
+        is True,
+        "Stage68 45 Mega Stone/16BP/Item boundary境界不正",
+    )
+    _require(
+        m69.get("task") == "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT"
+        and m69.get("stage") == 69
+        and m69.get("status")
+        == "PASS_HOST_AND_EXACT_PARTIAL_RUNTIME_FULL_RELOAD_PENDING",
+        "Stage69 Floette Eternal metadata identity不正",
+    )
+    _require(
+        m69.get("parent", {}).get("sha256") == s68["sha256"]
+        and m69.get("output", {}).get("sha256") == s69["sha256"]
+        and m69.get("allocation", {}).get("path")
+        == "build/stages/69_modernization_floette_gift_allocation.json"
+        and a69.get("summaries", {}).get("overlap_count") == 0,
+        "Stage69 parent/output/allocation identity不正",
+    )
+    _require(
+        m69.get("release_patch_round_trip", {}).get("sha256")
+        == by_path["build/stages/69_modernization_floette_gift.bps"]["sha256"]
+        and m69.get("release_patch_round_trip", {}).get("source_sha256")
+        == s68["sha256"]
+        and m69.get("release_patch_round_trip", {}).get("target_sha256")
+        == s69["sha256"]
+        and m69.get("release_patch_round_trip", {}).get("exact") is True,
+        "Stage69 BPS identity/round-trip evidence不正",
+    )
+    gift69 = m69.get("gift", {})
+    _require(
+        gift69.get("species_id") == 1029
+        and gift69.get("level") == 50
+        and gift69.get("unlock_item_id") == 580
+        and gift69.get("claim_flag") == 0x14CD
+        and m69.get("validation", {}).get("exact_rom_runtime_smoke")
+        == "PARTIAL_PASS_FULL_AND_RELOAD_PENDING",
+        "Stage69 Floette Eternal gift/runtime boundary不正",
+    )
     # 累積candidate registryでは「最後に完了した工程」と「最後のcheckpoint」を
     # 別フィールドとして扱う。checkpointed_through=P03をP03 DONEへ昇格させない。
     _require(
         registry.get("schema_version") == 2
-        and registry.get("status") == "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
+        and registry.get("status")
+        == "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and registry.get("completed_through") == "USER-MODERNIZATION-P01"
         and registry.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        == "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT"
         and registry.get("source", {}).get("stage67_checkpoint_commit")
         == "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe"
+        and registry.get("source", {}).get("stage68_checkpoint_commit") is None
+        and registry.get("source", {}).get("stage69_checkpoint_commit") is None
+        and registry.get("source", {}).get("uncommitted_checkpoint_identity")
+        == "EXACT_WORKTREE_ARTIFACTS_PINNED_BY_SIZE_SHA256"
         and registry.get("release_ready") is False
         and registry.get("active_play_baseline_changed") is False,
         "candidate v2 registryの完了/checkpoint/release境界不正",
@@ -817,44 +1012,62 @@ def _validate_candidate_chain(
     _require(
         registry.get("active_parent", {}).get("stage") == 62
         and registry.get("active_parent", {}).get("sha256") == s62["sha256"]
-        and registry.get("parent", {}).get("stage") == 66
-        and registry.get("parent", {}).get("sha256") == s66["sha256"]
-        and registry.get("candidate", {}).get("stage") == 67
-        and registry.get("candidate", {}).get("sha256") == s67["sha256"]
+        and registry.get("parent", {}).get("stage") == 68
+        and registry.get("parent", {}).get("sha256") == s68["sha256"]
+        and registry.get("candidate", {}).get("stage") == 69
+        and registry.get("candidate", {}).get("sha256") == s69["sha256"]
         and registry.get("p02_overlay_parent", {}).get("sha256")
         == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
         and registry.get("p02_overlay_parent", {}).get("changed_bytes_from_stage66")
         == 60,
-        "candidate v2 Stage67 parent/overlay/candidate identity不正",
+        "candidate v2 Stage68 parent/Stage69 candidate identity不正",
     )
     _require(
-        registry.get("adopted_delta", {}).get("p04_adoption_scope") == {
-            "mega_species_and_forms": 49,
-            "new_normal_species": 0,
-            "mega_stones": 45,
-            "new_abilities": 6,
-            "winds_waves_user_non_adopted_species": 3,
-            "held_pikachu_appearance_candidates": 2,
-            "private_asset_files_ready": 670,
-            "rom_materialized": False,
-        },
-        "candidate v2 P04 49 Mega採用/Winds・Waves非採用scope不正",
+        registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "mega_species_and_forms"
+        ) == 49
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "new_normal_species"
+        ) == 0
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "mega_stone_item_ids_materialized"
+        ) == 45
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "mega_stone_bp_shop_entries"
+        ) == 45
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "mega_stone_bp_price_each"
+        ) == 16
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "floette_eternal_existing_species_id"
+        ) == 1029
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "floette_eternal_exact_party_pc_delivery"
+        ) is True
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "floette_eternal_exact_full_and_fresh_reload"
+        ) is False
+        and registry.get("adopted_delta", {}).get("p04_adoption_scope", {}).get(
+            "mega_form_battle_runtime_materialized"
+        ) is False,
+        "candidate v2 P04 shop/Floette取得済み・Mega battle runtime未完了境界不正",
     )
     return {
         "active_stage": 62,
-        "selected_checkpoint_stage": 67,
+        "selected_checkpoint_stage": 69,
         "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
         "registry": {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT",
+            "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
-            "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+            "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
+            "checkpoint_commit": None,
+            "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 66,
-            "candidate_stage": 67,
+            "parent_stage": 68,
+            "candidate_stage": 69,
         },
         "inheritance": [
             {"stage": 62, "role": "ACTIVE_PLAY_BASELINE", "rom": dict(s62)},
@@ -863,6 +1076,8 @@ def _validate_candidate_chain(
             {"stage": 65, "role": "P03_INTEGRATED_CHECKPOINT_NOT_DONE", "parent_stage": 64, "rom": dict(s65)},
             {"stage": 66, "role": "P03_BULK_CHECKPOINT_NOT_DONE", "parent_stage": 65, "rom": dict(s66)},
             {"stage": 67, "role": "P02_P03_CONSUMER_CHECKPOINT_NOT_DONE", "parent_stage": 66, "parent_overlay_sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb", "rom": dict(s67)},
+            {"stage": 68, "role": "P04_MEGA_STONE_BP_SHOP_EXACT_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 67, "rom": dict(s68)},
+            {"stage": 69, "role": "P04_FLOETTE_ETERNAL_EXACT_PARTIAL_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 68, "rom": dict(s69)},
         ],
         "parent_chain_verified": True,
         "stage65_integrated": True,
@@ -902,6 +1117,33 @@ def _validate_candidate_chain(
             "future_tail_remaining_bytes": 62510,
             "consumers_exercised": ["evolution", "tutor", "egg"],
             "full_p03_done": False,
+        },
+        "stage68_integrated": True,
+        "stage68_scope": {
+            "mega_stone_item_ids": [999, 1043],
+            "mega_stone_item_count": 45,
+            "shop_entry_count": 45,
+            "currency": "BP",
+            "price_each": 16,
+            "mega_ring_gate_item_id": 580,
+            "claim_flags": [0x14A0, 0x14CC],
+            "exact_rom_runtime_gate": "PASS",
+            "mega_form_battle_runtime_materialized": False,
+            "full_p04_done": False,
+        },
+        "stage69_integrated": True,
+        "stage69_scope": {
+            "existing_species_id": 1029,
+            "level": 50,
+            "mega_ring_gate_item_id": 580,
+            "claim_flag": 0x14CD,
+            "canonical_collection_bit": 850,
+            "exact_party_delivery": True,
+            "exact_pc_delivery": True,
+            "exact_full_and_fresh_reload": False,
+            "host_full_rollback_reload": True,
+            "runtime_gate": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED",
+            "full_p04_done": False,
         },
         "release_candidate": False,
     }
@@ -1084,6 +1326,21 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p04_capacity = documents[
         "content/modernization/p04_capacity_allocation_manifest.json"
     ]
+    mega_shop_config = documents["config/modernization_mega_shop.json"]
+    mega_shop_bounds = documents["config/modernization_mega_shop_item_bounds.json"]
+    mega_shop_catalog = documents["content/modernization/mega_shop_catalog.json"]
+    mega_shop_checkpoint = documents["content/modernization/mega_shop_checkpoint.json"]
+    mega_shop_mgba = documents[
+        "content/modernization/mega_shop_mgba_runtime_gate.json"
+    ]
+    floette_config = documents["config/modernization_floette_gift.json"]
+    floette_contract = documents["content/modernization/floette_gift_contract.json"]
+    floette_checkpoint = documents[
+        "content/modernization/floette_gift_checkpoint.json"
+    ]
+    floette_mgba = documents[
+        "content/modernization/floette_gift_mgba_runtime_gate.json"
+    ]
     p05 = documents["content/modernization/p05_battle_content_contract.json"]
     p05_plan = documents["content/modernization/p05_data_only_patch_plan.json"]
     p05_runtime = documents["content/modernization/p05_runtime_handoff.json"]
@@ -1109,13 +1366,14 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     )
     _require(
         p01_candidate.get("schema_version") == 2
-        and p01_candidate.get("status") == "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
+        and p01_candidate.get("status")
+        == "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and p01_candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and p01_candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        == "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT"
         and p01_candidate.get("release_ready") is False
         and p01_candidate.get("active_play_baseline_changed") is False,
-        "candidate v2のP01完了/P03 checkpoint/release境界不正",
+        "candidate v2のP01完了/Stage69 checkpoint/release境界不正",
     )
     _require(
         p01_candidate.get("active_parent", {}).get("stage") == 62
@@ -1126,33 +1384,33 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         "candidate v2 active_parentがStage62 exact identityではありません",
     )
     _require(
-        p01_candidate.get("parent", {}).get("stage") == 66
+        p01_candidate.get("parent", {}).get("stage") == 68
         and p01_candidate.get("parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.gba"][1]
         and p01_candidate.get("parent", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.json"][1],
-        "candidate v2 parentがStage66 exact identityではありません",
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.json"][1],
+        "candidate v2 parentがStage68 exact identityではありません",
     )
     _require(
-        p01_candidate.get("candidate", {}).get("stage") == 67
+        p01_candidate.get("candidate", {}).get("stage") == 69
         and p01_candidate.get("candidate", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift.gba"][1]
         and p01_candidate.get("candidate", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.json"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift.json"][1]
         and p01_candidate.get("candidate", {}).get("allocation", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p03_allocation.json"][1],
-        "candidate v2 candidateがStage67 exact identityではありません",
+        == CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift_allocation.json"][1],
+        "candidate v2 candidateがStage69 exact identityではありません",
     )
     _require(
         p01_candidate.get("patches", {}).get("from_parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift.bps"][1]
         and p01_candidate.get("patches", {}).get("from_parent", {}).get("round_trip") is True
         and p01_candidate.get("patches", {}).get("from_parent", {}).get("source_sha256")
-        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
-        and p01_candidate.get("patches", {}).get("from_clean", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps"][1]
-        and p01_candidate.get("patches", {}).get("from_clean", {}).get("round_trip") is True,
-        "candidate v2 Stage67 BPS identity/round-trip不正",
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.gba"][1]
+        and p01_candidate.get("patches", {}).get("stage67_to_stage68", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.bps"][1]
+        and p01_candidate.get("patches", {}).get("stage67_to_stage68", {}).get("round_trip") is True,
+        "candidate v2 Stage68/69 BPS identity/round-trip不正",
     )
     expected_stage_chain = [
         (63, "USER-MODERNIZATION-P01", "COMPLETED", 10,
@@ -1165,9 +1423,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
          CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]),
         (67, "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT", "CHECKPOINT_NOT_P03_DONE", 46515,
          CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.gba"][1]),
+        (68, "USER-MODERNIZATION-MEGA-STONE-BP-SHOP", "P04_ACQUISITION_CHECKPOINT_NOT_P04_DONE", 65821,
+         CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.gba"][1]),
+        (69, "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT", "P04_ACQUISITION_CHECKPOINT_NOT_P04_DONE", 1960,
+         CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift.gba"][1]),
     ]
     stage_chain = p01_candidate.get("stage_chain")
-    _require(isinstance(stage_chain, list) and len(stage_chain) == 5, "candidate v2 stage_chain件数不正")
+    _require(isinstance(stage_chain, list) and len(stage_chain) == 7, "candidate v2 stage_chain件数不正")
     for row, (stage, task, state, changed, digest) in zip(stage_chain, expected_stage_chain):
         _require(
             row.get("stage") == stage and row.get("task") == task
@@ -1564,6 +1826,76 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         == "NOT_APPLICABLE_NON_ADOPTED",
         "P04 Winds/Waves 3種の無予約・素材不要境界不正",
     )
+    _require(
+        mega_shop_config.get("stage") == 68
+        and mega_shop_config.get("catalog", {}).get("entry_count") == 45
+        and mega_shop_config.get("catalog", {}).get("first_item_id") == 999
+        and mega_shop_config.get("catalog", {}).get("last_item_id") == 1043
+        and mega_shop_config.get("catalog", {}).get("price_bp") == 16
+        and mega_shop_config.get("catalog", {}).get("key_stone_item_id") == 580,
+        "Stage68 Mega Stone shop config境界不正",
+    )
+    _require(
+        mega_shop_bounds.get("old_max_inclusive") == 998
+        and mega_shop_bounds.get("new_max_inclusive") == 1043
+        and mega_shop_bounds.get("first_rejected") == 1044
+        and mega_shop_bounds.get("site_count") == 12,
+        "Stage68 CFRU item consumer bound境界不正",
+    )
+    _require(
+        mega_shop_catalog.get("status") == "ROM_MATERIALIZED"
+        and mega_shop_catalog.get("entry_count") == 45
+        and len(mega_shop_catalog.get("entries", [])) == 45
+        and all(row.get("price_bp") == 16 for row in mega_shop_catalog.get("entries", [])),
+        "Stage68 Mega Stone catalog materialization不正",
+    )
+    _require(
+        mega_shop_checkpoint.get("stage") == 68
+        and mega_shop_checkpoint.get("status") == "PASS_HOST_STATIC_EXACT_ROM_PENDING"
+        and mega_shop_checkpoint.get("rom", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.gba"][1]
+        and mega_shop_mgba.get("status") == "PASS"
+        and mega_shop_mgba.get("claims", {}).get("exact_stage68_rom") is True
+        and mega_shop_mgba.get("claims", {}).get(
+            "item_consumer_boundaries_and_mega_semantics"
+        ) is True
+        and mega_shop_mgba.get("claims", {}).get(
+            "normal_save_fresh_core_once_rejection"
+        ) is True,
+        "Stage68 exact mGBA runtime gate境界不正",
+    )
+    _require(
+        floette_config.get("stage") == 69
+        and floette_config.get("gift", {}).get("species_id") == 1029
+        and floette_config.get("gift", {}).get("level") == 50
+        and floette_config.get("gift", {}).get("unlock_item_id") == 580
+        and floette_config.get("gift", {}).get("claim_flag") == "0x14CD",
+        "Stage69 Floette Eternal config境界不正",
+    )
+    _require(
+        floette_contract.get("status") == "PASS_STATIC_CONTRACT"
+        and floette_contract.get("identity", {}).get("species_id") == 1029
+        and floette_contract.get("identity", {}).get("level") == 50
+        and floette_checkpoint.get("status")
+        == "PASS_HOST_AND_EXACT_PARTIAL_RUNTIME_FULL_RELOAD_PENDING"
+        and floette_checkpoint.get("parent", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/68_modernization_mega_shop.gba"][1],
+        "Stage69 Floette contract/checkpoint境界不正",
+    )
+    exact_floette = floette_mgba.get("exact_rom_confirmed", {})
+    _require(
+        floette_mgba.get("status") == "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED"
+        and floette_mgba.get("release_gate")
+        == "PENDING_EXACT_PARTY_PC_FULL_AND_FRESH_RELOAD"
+        and floette_mgba.get("rom_sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/69_modernization_floette_gift.gba"][1]
+        and exact_floette.get("party_delivery_species1029_level50") is True
+        and exact_floette.get("full_party_pc_delivery_species1029_level50") is True
+        and floette_mgba.get("not_yet_executed_exact_rom", {}).get(
+            "fresh_core_standard_save_reload"
+        ) == "PENDING",
+        "Stage69 Floette exact partial/runtime pending境界不正",
+    )
     p05_p03 = p05.get("inputs", {}).get("p03_runtime", {})
     _require(
         p05_p03.get("content_sha256")
@@ -1709,6 +2041,16 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p04_capacity = documents[
         "content/modernization/p04_capacity_allocation_manifest.json"
     ]
+    mega_shop_checkpoint = documents["content/modernization/mega_shop_checkpoint.json"]
+    mega_shop_mgba = documents[
+        "content/modernization/mega_shop_mgba_runtime_gate.json"
+    ]
+    floette_checkpoint = documents[
+        "content/modernization/floette_gift_checkpoint.json"
+    ]
+    floette_mgba = documents[
+        "content/modernization/floette_gift_mgba_runtime_gate.json"
+    ]
     p05 = documents["content/modernization/p05_battle_content_contract.json"]
     p05_ability = documents["content/modernization/p05_ability_runtime_checkpoint.json"]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
@@ -1721,10 +2063,10 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(
         candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        == "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT"
         and candidate.get("release_ready") is False
         and candidate.get("active_play_baseline_changed") is False,
-        "P01 completion evidenceとP03 checkpoint境界不正",
+        "P01 completion evidenceとStage69 checkpoint境界不正",
     )
 
     _require(p02.get("status") == "PASS" and p02.get("release_gate") == "BLOCKED_BY_REQUIRED_FIXES_AND_DEFERRED_RUNTIME_ACCEPTANCE", "P02 static/blocked境界不正")
@@ -1867,6 +2209,27 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         and 33554432 - (stage66_start + stage66_size) == 94948,
         "P04 capacityとStage66 allocationの非衝突/残量cross-check不正",
     )
+    _require(
+        mega_shop_checkpoint.get("stage") == 68
+        and mega_shop_checkpoint.get("catalog", {}).get("entry_count") == 45
+        and mega_shop_checkpoint.get("catalog", {}).get("prices_bp") == [16]
+        and mega_shop_mgba.get("status") == "PASS"
+        and mega_shop_mgba.get("runtime_result", {}).get("status") == "PASS",
+        "P04 Stage68 Mega Stone shop runtime境界不正",
+    )
+    exact_floette = floette_mgba.get("exact_rom_confirmed", {})
+    _require(
+        floette_checkpoint.get("stage") == 69
+        and floette_checkpoint.get("gift", {}).get("species_id") == 1029
+        and floette_checkpoint.get("gift", {}).get("level") == 50
+        and floette_mgba.get("status") == "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED"
+        and exact_floette.get("party_delivery_species1029_level50") is True
+        and exact_floette.get("full_party_pc_delivery_species1029_level50") is True
+        and floette_mgba.get("not_yet_executed_exact_rom", {}).get(
+            "fresh_core_standard_save_reload"
+        ) == "PENDING",
+        "P04 Stage69 Floette exact partial/runtime pending境界不正",
+    )
 
     summary05 = p05.get("summary", {})
     _require(p05.get("status") == "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "P05 runtime未完了境界不正")
@@ -1945,17 +2308,41 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
             "blockers": ["SELECTED_ROUTES_REMAINING_67218", "MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648", "FORM_CARRY_REMINDER_SHARED_SPECIAL_EGG_CONSUMERS_PENDING", "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD_NOT_RUN"],
         },
         {
-            "phase": "P04", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CANDIDATE_MANIFEST_ONLY", "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS", "CAPACITY_RESERVATION_CHECKPOINT_NOT_RUNTIME_READY"],
-            "adoption": {"runtime_adopted_records": 0, "selected_candidate_records": 49, "held_records": 2, "mega_records": 49, "stone_records": 45, "new_species_reference_records": 3, "adopted_new_species_records": 0, "non_adopted_user_scope_records": 3, "asset_staging": {"mega_covered": 49, "mega_required": 49, "stones_covered": 45, "stones_required": 45, "palette_ready": 49, "palette_required": 49, "winds_waves_covered": 0, "winds_waves_required": 0, "missing_assets": 0, "payload_file_count": 670, "payload_total_bytes": 426648, "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c"}, "capacity_reservation": {"capacity_basis_stage": 65, "species_form": [1621, 1669], "item": [999, 1043], "ability": [312, 317], "move": None, "move_append_count": 0, "fixed_table_count": 34, "fixed_table_delta_bytes": 19857, "aligned_bundle_bytes": 636392, "integration_modules_remaining_bytes": 1124296, "stage66_cross_check": {"allocation_region": "future_tail", "allocation_start": 33399368, "allocation_size": 60116, "allocation_end_exclusive": 33459484, "stage65_future_tail_remaining_bytes": 155064, "stage66_future_tail_remaining_bytes": 94948, "p04_candidate_region": "integration_modules", "p04_candidate_start": 21307984, "p04_candidate_end_exclusive": 23068672, "overlap": False}, "runtime_ready": False}},
-            "not_adopted": ["SHARED_ID_MATERIALIZATION", "ROM_TABLE_RELOCATION", "WINDS_WAVES_NEW_SPECIES_3_USER_SCOPE", "PUBLIC_REDISTRIBUTION"],
-            "rom_reflection": {"reflected": False, "stage": None},
+            "phase": "P04", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CANDIDATE_MANIFEST_ONLY", "PRIVATE_USE_ASSETS_READY", "STAGE68_MEGA_STONE_SHOP_EXACT_RUNTIME_PASS", "STAGE69_FLOETTE_ETERNAL_EXACT_PARTY_PC_PARTIAL_PASS", "MEGA_FORM_BATTLE_RUNTIME_INCOMPLETE"],
+            "adoption": {
+                "runtime_adopted_records": 0,
+                "runtime_materialized_acquisition_routes": 46,
+                "selected_candidate_records": 49,
+                "held_records": 2,
+                "mega_records": 49,
+                "mega_form_battle_runtime_records": 0,
+                "stone_records": 45,
+                "stone_item_ids_materialized": 45,
+                "stone_shop_entries_materialized": 45,
+                "stone_shop_currency": "BP",
+                "stone_shop_price_each": 16,
+                "stone_shop_exact_runtime_gate": "PASS",
+                "floette_eternal_existing_species_id": 1029,
+                "floette_eternal_gift_level": 50,
+                "floette_eternal_exact_party_pc_delivery": True,
+                "floette_eternal_exact_full_and_fresh_reload": False,
+                "new_species_reference_records": 3,
+                "adopted_new_species_records": 0,
+                "non_adopted_user_scope_records": 3,
+                "asset_staging": {"mega_covered": 49, "mega_required": 49, "stones_covered": 45, "stones_required": 45, "palette_ready": 49, "palette_required": 49, "winds_waves_covered": 0, "winds_waves_required": 0, "missing_assets": 0, "payload_file_count": 670, "payload_total_bytes": 426648, "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c"},
+                "capacity_reservation": {"capacity_basis_stage": 65, "species_form": [1621, 1669], "item": [999, 1043], "ability": [312, 317], "move": None, "move_append_count": 0, "fixed_table_count": 34, "fixed_table_delta_bytes": 19857, "aligned_bundle_bytes": 636392, "integration_modules_remaining_bytes": 1124296, "stage66_cross_check": {"allocation_region": "future_tail", "allocation_start": 33399368, "allocation_size": 60116, "allocation_end_exclusive": 33459484, "stage65_future_tail_remaining_bytes": 155064, "stage66_future_tail_remaining_bytes": 94948, "p04_candidate_region": "integration_modules", "p04_candidate_start": 21307984, "p04_candidate_end_exclusive": 23068672, "overlap": False}, "runtime_ready": False},
+            },
+            "not_adopted": ["MEGA_FORM_SPECIES_TABLE_AND_BATTLE_TRANSFORMATION_LIFECYCLE", "SIX_NEW_ABILITIES_ROM_LINK", "WINDS_WAVES_NEW_SPECIES_3_USER_SCOPE", "PUBLIC_REDISTRIBUTION"],
+            "rom_reflection": {"reflected": True, "stage": 69, "ancestor_stage": 68, "scope": "45_MEGA_STONE_BP_SHOP_PLUS_FLOETTE_ETERNAL_ACQUISITION_ONLY"},
             "required_gates": [
                 _gate("OFFICIAL_SOURCE_AND_CANDIDATE_SET", "PASS", ["content/modernization/p04_candidate_manifest.json", "content/modernization/p04_official_sources.json"]),
                 _gate("ASSET_IMPORTER", "INTEGRATED_STAGING_ONLY_NOT_ROM_READY", ["content/modernization/p04_asset_import_manifest.json"]),
                 _gate("ID_CAPACITY_RESERVATION", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY", ["content/modernization/p04_capacity_allocation_manifest.json"]),
-                _gate("ID_MATERIALIZATION_AND_RUNTIME", "BLOCKED", ["content/modernization/p04_capacity_allocation_manifest.json"]),
+                _gate("MEGA_STONE_BP_SHOP", "PASS_EXACT_ROM_45_ITEMS_16_BP", ["content/modernization/mega_shop_checkpoint.json", "content/modernization/mega_shop_mgba_runtime_gate.json"]),
+                _gate("FLOETTE_ETERNAL_ACQUISITION", "PASS_EXACT_PARTY_PC_FULL_RELOAD_PENDING", ["content/modernization/floette_gift_checkpoint.json", "content/modernization/floette_gift_mgba_runtime_gate.json"]),
+                _gate("MEGA_FORM_BATTLE_RUNTIME", "BLOCKED", ["content/modernization/p04_capacity_allocation_manifest.json"]),
             ],
-            "blockers": ["FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT", "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS", "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN", "SAVE_MIGRATION_NOT_DESIGNED", "RIGHTS_REVIEW", "ROM_AND_ID_NOT_INTEGRATED"],
+            "blockers": ["MEGA_FORM_SPECIES_TABLES_AND_BATTLE_TRANSFORMATION_LIFECYCLE_NOT_INTEGRATED", "SIX_ABILITIES_NOT_ROM_LINKED", "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"],
         },
         {
             "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"],
@@ -2025,6 +2412,8 @@ def _traceability() -> list[dict[str, Any]]:
         ("P04_CANDIDATE_SCOPE", "P04", "49 Mega採用候補 + Winds/Waves 3種非採用 + 2 hold", "tests/test_modernization_p04_sources.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P04_ASSET_IMPORT", "P04", "private-use asset import manifest", "tests/test_modernization_p04_asset_importer.py", "INTEGRATED_STAGING_ONLY_NOT_ROM_READY"),
         ("P04_CAPACITY_RESERVATION", "P04", "49/45/6/0 append reservation + 34-table capacity audit", "tests/test_modernization_p04_capacity.py", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"),
+        ("P04_MEGA_STONE_BP_SHOP", "P04", "Stage68 45 Mega Stone items + 16BP shop", "tests/test_modernization_mega_shop_mgba.py", "EXACT_ROM_RUNTIME_PASS"),
+        ("P04_FLOETTE_ETERNAL_ACQUISITION", "P04", "Stage69 existing Species1029 Lv50 gift", "tests/test_modernization_floette_gift.py", "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_PENDING"),
         ("P05_MOVE_ABILITY", "P05", "Side Change/Winds・Waves 3種非採用 + battle content contract", "tests/test_modernization_p05.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P05_ABILITY_HOST_RUNTIME", "P05", "6 Ability portable runtime", "tests/test_modernization_p05_ability_runtime.py", "HOST_VERIFIED_46_CASES_X2_ROM_LINK_PENDING"),
         ("P06_SPECIES_ADJUSTMENT", "P06", "empty adopted delta + review projection", "tests/test_modernization_p06.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
@@ -2104,18 +2493,18 @@ def build_integration_matrix(root: Path) -> dict[str, Any]:
             "completed_phases": ["P01"],
             "checkpoint_or_blocked_phase_count": 7,
             "active_stage": 62,
-            "highest_pinned_candidate_stage": 67,
-            "runtime_reflected_phase_count": 3,
+            "highest_pinned_candidate_stage": 69,
+            "runtime_reflected_phase_count": 4,
             "release_ready": False,
         },
         "release_blockers": [
             "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
             "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
-            "P04_49_MEGA_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_RIGHTS_REVIEW_NOT_COMPLETE",
+            "P04_STAGE68_STONES_AND_STAGE69_FLOETTE_ACQUISITION_INTEGRATED_BUT_49_MEGA_FORM_BATTLE_RUNTIME_AND_FLOETTE_FULL_RELOAD_GATE_NOT_COMPLETE",
             "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
             "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
             "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-            "CANDIDATE_STAGE67_IS_NOT_ACTIVE_STAGE62",
+            "CANDIDATE_STAGE69_IS_NOT_ACTIVE_STAGE62",
         ],
         "runtime_execution": {
             "heavy_rom_execution_performed_by_p08": False,
@@ -2202,19 +2591,20 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
             f"P08候補artifact identity不一致: {path}",
         )
     chain = matrix.get("candidate_chain")
-    _require(isinstance(chain, Mapping) and chain.get("active_stage") == 62 and chain.get("selected_checkpoint_stage") == 67 and chain.get("stage65_integrated") is True and chain.get("stage66_integrated") is True and chain.get("stage67_integrated") is True and chain.get("release_candidate") is False, "P08候補chain境界不正")
+    _require(isinstance(chain, Mapping) and chain.get("active_stage") == 62 and chain.get("selected_checkpoint_stage") == 69 and chain.get("stage65_integrated") is True and chain.get("stage66_integrated") is True and chain.get("stage67_integrated") is True and chain.get("stage68_integrated") is True and chain.get("stage69_integrated") is True and chain.get("release_candidate") is False, "P08候補chain境界不正")
     _require(
         chain.get("registry") == {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT",
+            "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
-            "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+            "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
+            "checkpoint_commit": None,
+            "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 66,
-            "candidate_stage": 67,
+            "parent_stage": 68,
+            "candidate_stage": 69,
         },
         "P08 candidate v2 registryの完了/checkpoint/親chain境界不正",
     )
@@ -2261,6 +2651,37 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
             "full_p03_done": False,
         },
         "P03 Stage67 scopeを全P03完了と誤認しています",
+    )
+    _require(
+        chain.get("stage68_scope") == {
+            "mega_stone_item_ids": [999, 1043],
+            "mega_stone_item_count": 45,
+            "shop_entry_count": 45,
+            "currency": "BP",
+            "price_each": 16,
+            "mega_ring_gate_item_id": 580,
+            "claim_flags": [0x14A0, 0x14CC],
+            "exact_rom_runtime_gate": "PASS",
+            "mega_form_battle_runtime_materialized": False,
+            "full_p04_done": False,
+        },
+        "P04 Stage68 shop実装済み/Mega battle runtime未完了境界不正",
+    )
+    _require(
+        chain.get("stage69_scope") == {
+            "existing_species_id": 1029,
+            "level": 50,
+            "mega_ring_gate_item_id": 580,
+            "claim_flag": 0x14CD,
+            "canonical_collection_bit": 850,
+            "exact_party_delivery": True,
+            "exact_pc_delivery": True,
+            "exact_full_and_fresh_reload": False,
+            "host_full_rollback_reload": True,
+            "runtime_gate": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED",
+            "full_p04_done": False,
+        },
+        "P04 Stage69 Floette exact partial/runtime pending境界不正",
     )
     _require(snapshot.get("parallel_outputs") == PARALLEL_OUTPUTS, "P08並行成果の非統合境界不正")
     source_bindings = matrix.get("referenced_source_bindings")
@@ -2372,8 +2793,9 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
             "payload_total_bytes": 426648,
             "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
         }
-        and by_phase["P04"].get("rom_reflection", {}).get("reflected") is False,
-        "P04 importer staging-only coverage境界不正",
+        and by_phase["P04"].get("rom_reflection")
+        == {"reflected": True, "stage": 69, "ancestor_stage": 68, "scope": "45_MEGA_STONE_BP_SHOP_PLUS_FLOETTE_ETERNAL_ACQUISITION_ONLY"},
+        "P04 asset/shop/Floette partial ROM reflection境界不正",
     )
     _require(
         p04_capacity == {
@@ -2403,12 +2825,27 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         },
         "P04 capacity予約をruntime実装済みと誤認しています",
     )
+    _require(
+        p04_adoption.get("runtime_adopted_records") == 0
+        and p04_adoption.get("runtime_materialized_acquisition_routes") == 46
+        and p04_adoption.get("stone_item_ids_materialized") == 45
+        and p04_adoption.get("stone_shop_entries_materialized") == 45
+        and p04_adoption.get("stone_shop_currency") == "BP"
+        and p04_adoption.get("stone_shop_price_each") == 16
+        and p04_adoption.get("stone_shop_exact_runtime_gate") == "PASS"
+        and p04_adoption.get("floette_eternal_existing_species_id") == 1029
+        and p04_adoption.get("floette_eternal_gift_level") == 50
+        and p04_adoption.get("floette_eternal_exact_party_pc_delivery") is True
+        and p04_adoption.get("floette_eternal_exact_full_and_fresh_reload") is False
+        and p04_adoption.get("mega_form_battle_runtime_records") == 0,
+        "P04 Stage68/69採用済み取得経路とMega battle runtime未完了境界不正",
+    )
     _require(all(row.get("required_gates") for row in phases), "必須gate一覧が欠落しています")
     trace = matrix.get("traceability")
     _require(isinstance(trace, list) and len(trace) >= 14, "要件→実装→test対応が不足しています")
     _require(all(row.get("requirement_key") and row.get("implementation_evidence") and row.get("test_evidence") and row.get("status") for row in trace), "traceability rowが不完全です")
     summary = matrix.get("integration_summary")
-    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 67 and summary.get("runtime_reflected_phase_count") == 3 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage67 checkpointと不一致です")
+    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 69 and summary.get("runtime_reflected_phase_count") == 4 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage69 checkpointと不一致です")
     _require(len(matrix.get("release_blockers", [])) == 7, "P08 release blocker集合不一致")
     execution = matrix.get("runtime_execution")
     _require(isinstance(execution, Mapping) and execution.get("heavy_rom_execution_performed_by_p08") is False and execution.get("new_rom_written") is False and execution.get("active_baseline_written") is False, "P08 checkpointがROM/baselineを変更しています")
@@ -2444,14 +2881,14 @@ def build_release_handoff(matrix: Mapping[str, Any]) -> dict[str, Any]:
         "status": STATUS,
         "release_ready": False,
         "active_stage": 62,
-        "candidate_stage": 67,
+        "candidate_stage": 69,
         "completed_phases": ["P01"],
         "not_completed_phases": ["P02", "P03", "P04", "P05", "P06", "P07", "P08"],
         "release_blockers": matrix["release_blockers"],
         "promotion": {
             "authorized": False,
             "active_play_baseline_changed": False,
-            "reason": "P02～P07のruntime acceptance未完了。Stage67は選択118,369経路中51,151経路を反映したconsumer checkpointだが67,218経路が残り、release candidateではない",
+            "reason": "P02～P07のruntime acceptance未完了。Stage69はStage68のMega Stone 45個/16BP販売とSpecies1029 Lv50取得を統合したが、49 Mega formのbattle runtimeとFloetteのexact full/reload gateが残るためrelease candidateではない",
         },
         "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
         "integration_fingerprint": matrix["snapshot"]["integration_fingerprint"],

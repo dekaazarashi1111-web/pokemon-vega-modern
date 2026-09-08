@@ -4080,3 +4080,23 @@
 - Commit: `-`（本エントリを含むcheckpoint commit。Stage67 ROM先行commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`）
 - Network:
   - 公式`https://windswaves.pokemon.com/en-us/`、`https://www.pokemon.com/us/pokemon-news/see-the-new-trailer-for-pokemon-winds-and-pokemon-waves-coming-to-nintendo-switch-2`、`https://www.pokemon.co.jp/ex/winds_waves/ja/`を確認し、Browt／Pombon／Gecquaの名称、タイプ、特性の来歴だけを保持した。ユーザー指定により実装・ID予約・素材取得は行っていない。
+
+## 2026-09-08T16:34:51+09:00
+
+- Task: `USER-MODERNIZATION-P04-ACQUISITION-CHECKPOINT` / 追加Mega Stone販売とえいえんのはなフラエッテ配布
+- Status: DONE（取得系checkpointのみ。P04本体とP02〜P08は未完了）
+- Summary:
+  - Stage68でMega Stone 45件をItem ID 999〜1043へ結合し、map `96/5` local 14の専用Factory BP店から全品16 BPで購入可能にした。Mega Ring 580解禁、claim flag `0x14A0..0x14CC`、各石1save1回、通常save／sector 31補償transactionを接続した。
+  - Item固定5表を999→1,044行へ拡張し、base sanitizerとCFRU 12 consumerを1043 inclusiveへ更新した。Codex/Mirageの固定上限は分離し、グローバル取得bitmapは拡張していない。
+  - Stage69で既存Species ID 1029のえいえんのはなフラエッテLv.50を、Mega Ring所持時にmap `96/5` local 15のNPCから1save1回配布する。手持ち→PC、flag `0x14CD`、National 670の既存collection bit 850を使い、旧図鑑bitmapの範囲外書込みを避けた。
+  - P08はactive Stage62、selected Stage69、release false、P01のみDONEに更新した。取得経路46件とMega本体runtime 0件を分離し、49 Megaを完了扱いしていない。
+- Files changed:
+  - Stage68: `config/modernization_mega_shop*.json`、`overlays/modernization_mega_shop/**`、`tools/modernization_mega_shop.py`、build/mGBA scripts、focused tests、catalog/checkpoint/runtime gate。
+  - Stage69: `config/modernization_floette_gift.json`、`overlays/modernization_floette_gift/**`、`tools/modernization_floette_gift.py`、build script、focused tests、contract/checkpoint/runtime gate。
+  - P08と引継ぎ: `config/modernization_candidate.json`、`tools/modernization_p08_integration.py`、P08の3生成JSON・focused test、`design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`。
+- Verify:
+  - Stage68 ROM 33,554,432 bytes、SHA-256 `1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639`、CRC32 `DAFDD099`。host 244 assertions、focused 8件、mGBA evidence focused 6件をPASS。exact ROMでItem 999/1023/1024/1043受理・1044拒否、代表3購入、BP100→52、保存／fresh reload／再購入拒否、BP不足／bag満杯無変更をPASS。先行失敗5 processはfresh-core治具のSaveBlock/bag pointer未初期化で、実装不具合でないことを証跡化した。
+  - Stage69 ROM 33,554,432 bytes、SHA-256 `6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32 `4849DD0F`。host 13 scenario、focused 10件をPASS。exact ROMはNPC graph／Ring gate／party/PC受取／Species1029／Lv.50／flag/bitをPASS。3回の先行実行はいずれも旧PC ABIを使うharness-only停止で、全満／rollback／fresh reloadはhost PASS・exact pendingと保持した。
+  - 親統合でStage68/69 focused計24件とP08 focused 16件、`python3 scripts/build_modernization_p08.py --check`、task graph、private guard、`git diff --check`をPASS。重い全repository検査と同一mGBAの再実行はしていない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。既に固定済みのprivate-use素材とlocalのStage67候補だけを使用し、push／Release追加／iPad配置は行っていない。

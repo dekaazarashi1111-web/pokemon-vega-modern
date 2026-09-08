@@ -1,6 +1,6 @@
 {
   "active_stage": 62,
-  "candidate_stage": 67,
+  "candidate_stage": 69,
   "completed_phases": [
     "P01"
   ],
@@ -8,27 +8,27 @@
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 25,
-        "sha256": "b9365124d739831bd305d164c270dfc7994ae3def7aacb083f1f8ba3fef02e64"
+        "count": 33,
+        "sha256": "e5697e9142249be8ceb2aafe963411379cee26c0d79847d735fd77e389ad95a6"
       },
       "implementation_inputs": {
-        "count": 85,
-        "sha256": "7f41b3930b333ca86ea37f80ec2bf76fc68e1408202fc749a6838c61e2008fa6"
+        "count": 103,
+        "sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "de67b0f1de94295b9f37c5e220505a182af4a3fdd67bd0a43ce5ca61c5000c0c"
+        "sha256": "d745c2874e774240d22730c553f699350f2f8e69ab008e17d8304b7fee1890e9"
       },
       "referenced_source_bindings": {
-        "count": 29,
-        "sha256": "9127e10abf40736729518f6fb8bd190f5560f28b5c826298d3f2d1a80cac700f"
+        "count": 30,
+        "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 41,
-        "sha256": "c4156f9b70c94e929796ecdf430d373e3e8dec6efbfd3fcba9c46f12f4979ba9"
+        "count": 51,
+        "sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed"
       }
     },
-    "sha256": "a6bbac93984ead64d5ee9e426a6751b76b50964addbe07ab1a08a49e28536f71"
+    "sha256": "f0e8e84d8ae2da7ca275f895e7d60ae6a360bad3a028a25296cda3ff7b52bbc1"
   },
   "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
   "not_completed_phases": [
@@ -43,16 +43,16 @@
   "promotion": {
     "active_play_baseline_changed": false,
     "authorized": false,
-    "reason": "P02～P07のruntime acceptance未完了。Stage67は選択118,369経路中51,151経路を反映したconsumer checkpointだが67,218経路が残り、release candidateではない"
+    "reason": "P02～P07のruntime acceptance未完了。Stage69はStage68のMega Stone 45個/16BP販売とSpecies1029 Lv50取得を統合したが、49 Mega formのbattle runtimeとFloetteのexact full/reload gateが残るためrelease candidateではない"
   },
   "release_blockers": [
     "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
     "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
-    "P04_49_MEGA_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_RIGHTS_REVIEW_NOT_COMPLETE",
+    "P04_STAGE68_STONES_AND_STAGE69_FLOETTE_ACQUISITION_INTEGRATED_BUT_49_MEGA_FORM_BATTLE_RUNTIME_AND_FLOETTE_FULL_RELOAD_GATE_NOT_COMPLETE",
     "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE67_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE69_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "schema_version": 1,

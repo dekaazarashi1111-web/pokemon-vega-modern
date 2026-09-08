@@ -339,3 +339,18 @@
 - 容量: Species/Form予約を1621〜1669の49件へ縮小し、34固定表の見積りを616,521→636,378 bytes
   （+19,857、alignment込み636,392）へ再計算する。Winds/Waves素材の不足を現行release blockerに数えない。
 - 影響: P04候補／素材／容量、P05 battle content、P07習得、P08統合、modernization引継ぎ。
+
+## 2026-09-08 — D-032: 追加Mega Stone 45件を専用Factory BP店で供給する
+
+- 決定: Mega Stone 45件をItem ID 999〜1043にstable key順で配置し、map `96/5`の別店員から全品16 BPで購入できるようにする。既存Factory店員と通貨は共有するが、カタログとUIは分離する。
+- 解禁・重複: Mega Ring ID 580を解禁条件とし、個別expanded event flag `0x14A0..0x14CC`で1saveにつき各1回までとする。固定999-item取得bitmapやMirage 10-bit virtual itemには混ぜない。
+- Item境界: Item固定5表を1,044行へ拡張し、base sanitizerとCFRU `item.c`由来の12 consumerだけをsemantic owner／exact context付きallowlistで1043 inclusiveへ更新する。1044は拒否し、Codex／Mirageの既存固定カタログは998のまま。
+- 保存: Item追加→BP支払→claim flag→通常save→sector 31の順で確定し、失敗時はItem／BP／flagを補償して再保存する。実ROMで代表3件とfresh-core再読込を確認する。
+- 影響: Stage68、P04 Item／入手経路、P08統合。Mega Speciesの戦闘変化は後続Stageとする。
+
+## 2026-09-08 — D-033: えいえんのはなフラエッテは既存ID 1029の入手経路だけ追加する
+
+- 決定: メガシンカ前のえいえんのはなフラエッテは、Stage67に種族値・画像・名称・習得表まで存在するSpecies ID 1029／`FORM_KEY_FLOETTE_ETERNAL`を再利用する。別の通常Species IDは追加しない。
+- 配布: Stage69でmap `96/5` local 15のNPCを追加し、Mega Ring 580所持時にLv.50個体を手持ち→PCの順で1save1回配布する。フォーム固有取得はflag `0x14CD`、National 670のseen/caughtは既存collection ledger bit 850を正とする。旧FireRed 52-byte図鑑bitmapの範囲外へ書かない。
+- 保存: 個体配置→flag／collection反映→通常save→sector 31の順で確定し、失敗時は配置先・取得状態・台帳を補償する。party/PC配布はexact ROM、全満／rollback／fresh reloadはhostまでを現checkpointの保証範囲とする。
+- 影響: Stage69、P04取得経路、P08統合。Mega Floette Eternalの戦闘中変化は後続Stageとする。
