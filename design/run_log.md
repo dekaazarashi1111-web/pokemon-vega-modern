@@ -4149,3 +4149,23 @@
   - task graph、private guard、`git diff --check`はcommit直前に実行する。重いmGBAはStage72累積候補へ集約し未実行。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal source／ROM／private-use素材のみを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T18:25:48+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-PREFLIGHT` / P03残consumer 40,570経路の再現可能な分離
+- Status: DONE（読取専用preflight。ROM materializationは0、P03本体は未完了）
+- Summary:
+  - 固定ZIPの全118,528 routeを1回streamし、条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70の計40,570をStage73候補として再集計した。
+  - shared eggのdirect重複2,272／shared-only 2,751、carryのmachine／TR／tutor供給依存23,578、form transitionの既存owner／不足ownerを分離した。既存の4技保持挙動を新規技供給済みとは数えない。
+  - Side Changeは全159件、5群内72件を非採用として除外し、Browt／Pombon／Gecqua採用0、通常egg／level0への偽装転記0を検証した。Stage72 identity未確定中はROM工程をfail closedとした。
+- Files changed:
+  - `config/modernization_p03_stage73_consumers.json`
+  - `tools/modernization_p03_stage73_consumers.py`
+  - `tests/test_modernization_p03_stage73_consumers.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p03_stage73_consumers`: 4/4 PASS、全route streamは1回、5.820秒。
+  - 初回は段階比較が未計算キーまで比較、次はStage67実装済み通常egg 2,522をStage73件数へ含めたためFAIL。比較キーとStage73 scope集計を修正後、source／selected group hashと件数がPASSした。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。ROM build／mGBAは実施していない。
+- Commit: `-`（本エントリを含むpreflight checkpoint commit）
+- Network: なし。固定済みlocal ZIPとtracked P03契約だけを読み、外部取得／push／Release変更は行っていない。

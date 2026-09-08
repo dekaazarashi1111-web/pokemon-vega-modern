@@ -1607,3 +1607,14 @@
   - mode別Mega Ring、使用回数、交代／ひんし／終了の既存CFRU-JP意味をsource・compiled span・host oracleへ固定した。
   - allocation #73の全slice hashを累積ROMへ同期し、非対象73 allocationとlayoutを不変にした。
 - Verify: focused unittest 12/12（C oracle 34 assertions）、Stage71 builder `--check`、BPS roundtrip、49 mapping／全誤石、allocation全74 slice、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`。mGBAはStage72後の累積1回へ保留。
+
+## 2026-09-08T18:25:48+09:00
+
+- Version: `modernization-p03-stage73-consumer-preflight`
+- Commit: `-`（本エントリを含むpreflight checkpoint commit）
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-PREFLIGHT` / P03残consumer 40,570経路の再現可能な分離
+- Summary:
+  - 全118,528 routeからStage73候補5群40,570件をsource／selected hash付きで再集計した。
+  - shared egg重複、carryの未供給依存、form transition ownerを分け、既存挙動を新規materializationへ数えない契約を追加した。
+  - Side Change非採用と禁止consumer転記0を固定し、Stage72親identity待ちではROM工程を拒否する。
+- Verify: focused unittest 4/4、全route 1 stream、task graph、private guard、`git diff --check` PASS。ROM／mGBAは未実施。

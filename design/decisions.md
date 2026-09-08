@@ -378,3 +378,17 @@
   全850,544-byte slice SHA-256を更新する。新allocationは作らず、非対象73行のledger／ROM sliceと
   region summaryをbyte一致で保持する。
 - 影響: Stage71 Mega runtime、Stage72最終mGBA、P08統合。D-034の無条件に読める記述は本決定で補正する。
+
+## 2026-09-08 — D-036: P03持越し意味と実供給完了を別claimとして扱う
+
+- 境界: Stage73候補の条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、
+  reminder 295、form change 70を、保留67,218から計40,570経路として分離する。通常egg、level-up、
+  evolution level0へ意味を潰して転記しない。
+- 持越し: 進化／form変更で既存4技枠を保持する挙動は35,141 routeの必要条件だが、新しい技の
+  供給実装ではない。うちTM／TR／tutor由来23,578 routeは元技の供給が実装されるまで入手完了と
+  数えず、既存owner意味と新規materializationを別々に記録する。
+- タマゴ: 共有タマゴはdirect eggとの重複2,272とshared-only 2,751を分け、作品／受け手条件を
+  保持する。Volt Tackle 1件は既存special breeding owner、alias／incense衝突40件はexact target
+  adapter候補とし、無条件eggへ統合しない。
+- 親固定: Stage73 ROM工程はStage72のcommit、ROM path／size／SHA-256が揃うまでfail closedとする。
+- 影響: P03 Stage73 consumer実装、後続machine／tutor供給、P08統合。

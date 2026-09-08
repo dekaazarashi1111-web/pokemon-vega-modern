@@ -24,6 +24,7 @@
 - サイドチェンジ159経路は未実装残件ではなく`NON_ADOPTED`。Move 1063を割り当てず、既存技への近似置換もしない。将来採用時は別decisionで全経路を再選択する。
 - P02 overlayから46,455 bytes変更、4,343 spans、宣言外変更0。Stage66からはP02の60 bytesを含む46,515 bytes差分。追加payload後の`future_tail`末尾残量は62,510 bytes。
 - mGBAはStage67で追加した全evolution 341、tutor positive 740＋negative 290、normal egg 2,522を独立2 processで実consumer実行した。scheduler、breeding、4枠満杯、save/reloadは未検証なのでP03完了ではない。
+- Stage73 preflightは保留67,218のうち、条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70の計40,570を全sourceから再集計した。shared eggはdirect重複2,272／shared-only 2,751、carryはmachine／TR／tutor供給依存23,578を分離する。既存の4枠保持やform ownerを新規materializationへ数えず、通常egg／level0への偽装転記を0に固定した。Stage72親identity確定まではROM工程をfail closedとする。
 
 ## P04の素材・取得経路・容量
 
