@@ -44,6 +44,7 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         self.assertEqual(
             [
                 ["python3", "scripts/build_modernization_p03.py", "--check"],
+                ["python3", "scripts/build_modernization_p04_sources.py", "--fetch", "--compact"],
                 ["python3", "scripts/build_modernization_p05.py", "--check"],
                 ["python3", "scripts/build_modernization_p06.py", "--compact"],
                 ["python3", "scripts/build_modernization_p07.py", "--check"],
@@ -52,6 +53,19 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
             plan,
         )
         self.assertNotIn(["make", "test"], plan)
+
+    def test_full_unit_bootstraps_ignored_modernization_artifacts(self) -> None:
+        plan = command_plan("full-unit", python="python3")
+        required_order = [
+            ["python3", "scripts/build_modernization_p04_sources.py", "--fetch", "--compact"],
+            ["python3", "scripts/build_modernization_p04_assets.py", "--write", "--compact"],
+            ["git", "diff", "--exit-code", "--", "content/modernization/p04_asset_import_manifest.json"],
+            ["python3", "scripts/build_modernization_p01.py", "build"],
+            ["python3", "scripts/build_modernization_p02_stage64.py", "build"],
+            ["python3", "scripts/build_modernization_p03_stage65.py", "build"],
+            ["make", "test"],
+        ]
+        self.assertEqual(required_order, plan)
 
     def test_modernization_p04_assets_are_rebuilt_from_pinned_source(self) -> None:
         plan = command_plan("modernization-p04-assets", python="python3")

@@ -71,6 +71,7 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
     ]
     modernization_contracts = [
         [python, "scripts/build_modernization_p03.py", "--check"],
+        [python, "scripts/build_modernization_p04_sources.py", "--fetch", "--compact"],
         [python, "scripts/build_modernization_p05.py", "--check"],
         [python, "scripts/build_modernization_p06.py", "--compact"],
         [python, "scripts/build_modernization_p07.py", "--check"],
@@ -97,7 +98,18 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
         [python, "scripts/build_modernization_p08.py", "--check"],
         ["make", "modernization-p08-focused-test"],
     ]
-    full_unit = [["make", "test"]]
+    # 新しいunit群はignoredのexact ROM/artifactと外部固定checkoutも監査する。
+    # clean private runnerでは先に全入力からそれらを再生成し、tracked manifestの
+    # driftがないことを確認してからrepository全unitを走らせる。
+    full_unit = [
+        [python, "scripts/build_modernization_p04_sources.py", "--fetch", "--compact"],
+        [python, "scripts/build_modernization_p04_assets.py", "--write", "--compact"],
+        ["git", "diff", "--exit-code", "--", "content/modernization/p04_asset_import_manifest.json"],
+        [python, "scripts/build_modernization_p01.py", "build"],
+        [python, "scripts/build_modernization_p02_stage64.py", "build"],
+        [python, "scripts/build_modernization_p03_stage65.py", "build"],
+        ["make", "test"],
+    ]
     plans = {
         "battle-cli-offline": battle,
         "stage62-check": stage62_check,
