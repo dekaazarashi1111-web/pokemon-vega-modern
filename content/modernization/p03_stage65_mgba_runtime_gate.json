@@ -1,0 +1,213 @@
+{
+  "artifacts_written": [
+    "content/modernization/p03_stage65_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "can_mon_learn_tmhm_executed": true,
+    "caterpie_level_rows_33_81_535": true,
+    "exact_generated_stage65_rom": true,
+    "full_p03_acceptance": false,
+    "get_level_up_moves_by_species_executed": true,
+    "replacement_not_union": true,
+    "scheduler_e2e": false,
+    "tm82_move489_runtime_slot116": true
+  },
+  "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED_NOT_SCHEDULER_E2E",
+  "execution": {
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "compiler": "/usr/bin/cc",
+    "compiler_version": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+    "identical_results": true,
+    "independent_processes": true,
+    "link_flags": [
+      "-lmgba"
+    ],
+    "process_runs": 2,
+    "runner_result_sha256": "748d2cded103518e162eae22cc503c2c338b19966909fabca61d5f7ec04f2685"
+  },
+  "inputs": {
+    "battle_core_fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+    "change_audit": {
+      "changed_byte_count": 17,
+      "changed_offsets_sha256": "676d326f3b081a7bc74a54bc80fe059f82af1a333f1c884632d02b6b64a0786e",
+      "changed_span_count": 5,
+      "level_payload_rom_offset": 33399356,
+      "level_pointer_entry_rom_offset": 20600528,
+      "tm_compatibility_row_rom_offset": 21292432
+    },
+    "config": {
+      "path": "config/modernization_p03_stage65.json",
+      "sha256": "afc5598feb4123c1cd6560bf0259a0ba1cc9b92b385c893e5bd5c588e0eb43c8",
+      "size": 6733
+    },
+    "contract_gate": {
+      "adoption_policy": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+      "caterpie_reference_content_sha256": "af76db5dc3ba8ea36dd72de8271f9318261471ea1d2ad746c28acc3f35694e79",
+      "caterpie_routes_selected": 4,
+      "corrected_records": 1300,
+      "corrected_routes": 118528,
+      "move_1063_status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED",
+      "status": "PASS"
+    },
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d",
+      "size": 1968536
+    },
+    "offsets": [
+      {
+        "can_mon_learn_tmhm": "0x09110184",
+        "get_level_up_moves_by_species": "0x091142A0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      },
+      {
+        "can_mon_learn_tmhm": "0x09110184",
+        "get_level_up_moves_by_species": "0x091142A0",
+        "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+        "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523",
+        "size": 971694
+      }
+    ],
+    "p03_contracts": {
+      "p03_compiled_index": {
+        "path": "content/modernization/p03_compiled_index.json",
+        "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180",
+        "size": 1380994
+      },
+      "p03_contract": {
+        "path": "content/modernization/p03_learnset_contract.json",
+        "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58",
+        "size": 9095
+      },
+      "p03_runtime_handoff": {
+        "path": "content/modernization/p03_runtime_handoff.json",
+        "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e",
+        "size": 8980
+      }
+    },
+    "sources": [
+      {
+        "path": "config/modernization_p03_stage65.json",
+        "sha256": "afc5598feb4123c1cd6560bf0259a0ba1cc9b92b385c893e5bd5c588e0eb43c8",
+        "size": 6733
+      },
+      {
+        "path": "tools/modernization_p03_stage65.py",
+        "sha256": "431486a0c2bec952b0f1c780819bf0632d4d862f3946b34bcbfd38327593edcc",
+        "size": 30494
+      },
+      {
+        "path": "scripts/run_modernization_p03_stage65_mgba.py",
+        "sha256": "97c64cb23686ba6eb3dddd1c4e96a110d11bdecd971a5f3d355dd6e0f12652a9",
+        "size": 17414
+      },
+      {
+        "path": "tools/mgba_modernization_p03_stage65_smoke.c",
+        "sha256": "08971a3ef5b5a8aab48d545fb58de44ac1d9505019d1e057e4fa72f966cc6bdf",
+        "size": 8617
+      },
+      {
+        "path": "tools/mgba_battle_core_smoke.c",
+        "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
+        "size": 94532
+      },
+      {
+        "path": "tools/mgba_ai_fixture_runner.c",
+        "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+        "size": 36272
+      }
+    ],
+    "stage64": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+      "size": 33554432
+    },
+    "stage65": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+      "size": 33554432
+    }
+  },
+  "runtime_result": {
+    "artifacts_written": [],
+    "classification": "REAL_CONSUMER_DIRECT_CALL_BOUNDED",
+    "full_p03_acceptance": false,
+    "level_up": {
+      "count": 3,
+      "instructions": 55,
+      "moves": [
+        33,
+        81,
+        535
+      ],
+      "rows": [
+        [
+          33,
+          1
+        ],
+        [
+          81,
+          1
+        ],
+        [
+          535,
+          9
+        ]
+      ],
+      "symbol": "0x091142A0",
+      "thumb": "0x091142A1"
+    },
+    "machine": {
+      "cases": {
+        "old_slot44": {
+          "instructions": 394,
+          "result": 0
+        },
+        "old_slot63": {
+          "instructions": 394,
+          "result": 0
+        },
+        "slot116": {
+          "instructions": 405,
+          "result": 1
+        }
+      },
+      "catalog_move_id": 489,
+      "runtime_slot_zero_based": 116,
+      "set_slots": [
+        116
+      ],
+      "source_item": "TM82",
+      "symbol": "0x09110184",
+      "thumb": "0x09110185"
+    },
+    "payload_pc_seen": true,
+    "read_only": true,
+    "rom_sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+    "roots": {
+      "level_literal": "0x093A4CAC",
+      "level_up": "0x093A4CAC",
+      "species_pointer": "0x09FDA23C",
+      "tm_catalog": "0x0944BB80",
+      "tm_compatibility": "0x0944BD00"
+    },
+    "scheduler_e2e": false,
+    "schema_version": 1,
+    "species_id": 649,
+    "status": "PASS",
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P03-STAGE65-MGBA-GATE",
+  "task_completion": "CHECKPOINT_NOT_P03_DONE"
+}

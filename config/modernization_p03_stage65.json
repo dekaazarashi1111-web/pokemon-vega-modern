@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+  "stage": 65,
+  "inputs": {
+    "parent_rom": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+      "size": 33554432,
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3"
+    },
+    "parent_metadata": {
+      "path": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
+      "size": 3741,
+      "sha256": "0f382303e44e6de83e5b0cdf5ad2860a603f9b9bee194052a023007c5d60452d"
+    },
+    "parent_checkpoint": {
+      "path": "content/modernization/p02_stage64_checkpoint.json",
+      "size": 5462,
+      "sha256": "1722f9d2260a467c093ca28cdd4db1dfe35ff82f6b4fb687276cf2ed054e1204"
+    },
+    "parent_allocation": {
+      "path": "build/stages/61_critical_release_allocation.json",
+      "size": 38246,
+      "sha256": "c816b0479dd0d8dbffc3ef76d381c6fc83740ca34a66a4a9fdd4a582a3f85ab2"
+    },
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "size": 9095,
+      "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58"
+    },
+    "p03_compiled_index": {
+      "path": "content/modernization/p03_compiled_index.json",
+      "size": 1380994,
+      "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180"
+    },
+    "p03_runtime_handoff": {
+      "path": "content/modernization/p03_runtime_handoff.json",
+      "size": 8980,
+      "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "size": 207095,
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "size": 128694,
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "battle_core_offsets": {
+      "fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+      "run_1_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+      "run_2_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+      "size": 971694,
+      "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523"
+    }
+  },
+  "target": {
+    "species_key": "SPECIES_KEY_CATERPIE",
+    "species_id": 649,
+    "reference_id": "swordshield:0010.00",
+    "adoption_policy": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+    "level_up_routes": [
+      {
+        "route_id": "e84468471e2a5389cab08c6e",
+        "consumer": "level_up",
+        "method": "level_up",
+        "move_key": "MOVE_KEY_TACKLE",
+        "project_move_id": 33,
+        "learning_level": 1
+      },
+      {
+        "route_id": "bcf11b7de237f5503621f3b4",
+        "consumer": "level_up",
+        "method": "level_up",
+        "move_key": "MOVE_KEY_STRINGSHOT",
+        "project_move_id": 81,
+        "learning_level": 1
+      },
+      {
+        "route_id": "9d24844ef808e40888791e37",
+        "consumer": "level_up",
+        "method": "level_up",
+        "move_key": "MOVE_KEY_BUGBITE",
+        "project_move_id": 535,
+        "learning_level": 9
+      }
+    ],
+    "machine_route": {
+      "route_id": "f47d1fe9a44cbb635c1de248",
+      "consumer": "machine",
+      "method": "tm",
+      "move_key": "MOVE_KEY_ELECTROWEB",
+      "project_move_id": 489,
+      "source_machine_item": "TM82",
+      "runtime_slot_zero_based": 116
+    }
+  },
+  "runtime_tables": {
+    "level_up": {
+      "root_pointer_site_rom_offset": "0x0004346C",
+      "runtime_literal_site_rom_offset": "0x01FDA1F8",
+      "expected_parent_root_runtime_address": "0x093A4CAC",
+      "pointer_stride": 4,
+      "row_abi": "U16_PROJECT_MOVE_ID_LE + U8_LEVEL; 0000FF terminator",
+      "expected_parent_species_pointer": "0x0939B81E",
+      "expected_parent_rows_hex": "21000151000117020932021a0000ff",
+      "replacement_rows_hex": "2100015100011702090000ff"
+    },
+    "machine": {
+      "compatibility_root_site_rom_offset": "0x000432B4",
+      "expected_parent_compatibility_root_runtime_address": "0x0944BD00",
+      "compatibility_stride": 16,
+      "catalog_root_site_rom_offset": "0x001263D8",
+      "expected_catalog_root_runtime_address": "0x0944BB80",
+      "catalog_slot_count": 128,
+      "expected_parent_compatibility_row_hex": "00000000001000800000000000000000",
+      "replacement_compatibility_row_hex": "00000000000000000000000000001000"
+    }
+  },
+  "allocation": {
+    "name": "modernization_p03_stage65_caterpie_level_up",
+    "owner": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+    "purpose": "P03 representative Caterpie replacement level-up rows",
+    "region": "future_tail",
+    "placement": "FIRST_FIT",
+    "alignment": 4,
+    "start": "0x01FDA23C",
+    "size": 12
+  },
+  "runtime_gate": {
+    "runner_source": "tools/mgba_modernization_p03_stage65_smoke.c",
+    "gate_script": "scripts/run_modernization_p03_stage65_mgba.py",
+    "transitive_sources": [
+      "tools/mgba_battle_core_smoke.c",
+      "tools/mgba_ai_fixture_runner.c"
+    ],
+    "compiler": "cc",
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": ["-lmgba"],
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+    },
+    "process_runs": 2,
+    "timeout_seconds": 30,
+    "get_level_up_moves_by_species_symbol": "0x091142A0",
+    "can_mon_learn_tmhm_symbol": "0x09110184"
+  },
+  "outputs": {
+    "rom": "build/stages/65_modernization_p03_caterpie_slice.gba",
+    "metadata": "build/stages/65_modernization_p03_caterpie_slice.json",
+    "allocation": "build/stages/65_modernization_p03_allocation.json",
+    "incremental_bps": "build/patches/stage64-to-stage65-modernization-p03-caterpie-slice.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage65-modernization-p03-caterpie-slice.bps",
+    "checkpoint": "content/modernization/p03_stage65_checkpoint.json",
+    "mgba_evidence": "content/modernization/p03_stage65_mgba_runtime_gate.json"
+  },
+  "acceptance": {
+    "static_contract_gate": "REQUIRED",
+    "real_consumer_mgba_gate": "REQUIRED",
+    "independent_processes": 2,
+    "incremental_bps_round_trip": "REQUIRED",
+    "clean_bps_round_trip": "REQUIRED",
+    "task_completion": "CHECKPOINT_NOT_P03_DONE"
+  }
+}
