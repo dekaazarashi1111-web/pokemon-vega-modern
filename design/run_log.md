@@ -3999,3 +3999,24 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式CLI／APIでprivate Release assetをuploadし、remote再取得・hash照合した。credential、token、ROM／save、受領ZIP本文はtracked成果へ保存していない。
+
+## 2026-09-08T00:55:05Z
+
+- Task: `USER-MODERNIZATION-P01-PRIVATE-RESTORE-FIX` / 工程1のGitHub private runner復元衝突修復
+- Status: DONE
+- Summary:
+  - 最初のprivate runtime runは、state bundle内の旧`reports/generated/stage61_wiki.json`と工程1で訂正したtracked Wikiが衝突し、suite開始前にfail closedした。
+  - tracked生成物をprivate stateから復元する必要はないため、同ファイルをstate bundleから除外した。state assetを21,213 files、218,929,898 bytes、SHA-256 `b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af`として決定的再構築・置換し、remote readbackを照合した。
+  - 再実行ではPrivate Release全資材のhash復元後、工程1の選択suiteが完走した。guardや衝突検出を緩和せず、`--force`復元も使用していない。
+- Files changed:
+  - `config/github_private_environment.json`
+  - `design/run_log.md`
+  - `design/version_log.md`
+- Verify:
+  - private environment unit 3件、state archive check、remote asset size／SHA-256 readback: PASS。
+  - GitHub source-validation run `34174693932`（HEAD `0a4d9cb9e536aa723c5aa4abd4a47b61b121ae19`）: PASS。
+  - GitHub private-runtime run `34174696902`（suite `modernization-p01`、同HEAD）: restore／選択suiteともPASS。
+  - 先行run `34174387157`は復元衝突でFAIL。原因と修正を上記のとおり保持した。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - GitHub公式CLI／APIでstate Release assetの置換・remote再取得とActions再実行・結果読戻しを行った。credential、token、private member本文は記録していない。
