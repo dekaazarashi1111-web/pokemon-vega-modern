@@ -46,8 +46,8 @@
     },
     {
       "name": "pokemon-vega-private-env-v1-state.zip",
-      "size": 219004812,
-      "sha256": "b4a180abbecf4743db86269043b0461b92cd435e2d589d03b971488bd03eb63d",
+      "size": 218929898,
+      "sha256": "b878134dc4a00b7de1e028f178c329db638b0304096b96c84c6776ddfb0983af",
       "sources": [
         {
           "source": "vendor",
@@ -62,7 +62,9 @@
         {
           "source": "reports/generated",
           "destination": "reports/generated",
-          "exclude": []
+          "exclude": [
+            "stage61_wiki.json"
+          ]
         },
         {
           "source": "dist",
