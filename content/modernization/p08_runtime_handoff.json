@@ -148,6 +148,17 @@
           "size": 33554432
         },
         "stage": 73
+      },
+      {
+        "parent_stage": 73,
+        "role": "P03_DIRECT_SUPPLY_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "C9929F79",
+          "path": "build/stages/74_modernization_p03_supply_runtime.gba",
+          "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+          "size": 33554432
+        },
+        "stage": 74
       }
     ],
     "latest_incremental_bps": [
@@ -174,24 +185,30 @@
         "source": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
         "status": "PASS_EXACT_APPLY",
         "target": "build/stages/73_modernization_p03_consumer_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+        "source": "build/stages/73_modernization_p03_consumer_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/74_modernization_p03_supply_runtime.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 73,
-      "checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
+      "candidate_stage": 74,
+      "checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
-      "parent_stage": 72,
+      "last_committed_checkpoint": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
+      "parent_stage": 73,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 73,
+    "selected_checkpoint_stage": 74,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -324,33 +341,59 @@
       "prohibited_coercions_materialized": 0,
       "remaining_direct_supply_routes": 26648,
       "side_change_materialized": 0
+    },
+    "stage74_integrated": true,
+    "stage74_scope": {
+      "browt_pombon_gecqua_materialized": 0,
+      "build_learnable_capacity": 429,
+      "build_learnable_maximum_entries": 238,
+      "build_learnable_overflow_species": 0,
+      "cumulative_accounted_routes": 118369,
+      "cumulative_runtime_materialized_routes": 83162,
+      "direct_machine_routes": 26279,
+      "direct_supply_materialized_routes": 26648,
+      "direct_tutor_routes": 369,
+      "economy": "PROVISIONAL_REPLACEABLE",
+      "full_p03_done": false,
+      "hook_count": 2,
+      "preservation_missing_paths": 4014,
+      "preservation_route_accounting_added": 0,
+      "preservation_species": 501,
+      "preservation_target_move_pairs": 2223,
+      "preservation_target_move_set_sha256": "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+      "preservation_ui_supply_routes_added": 0,
+      "prohibited_coercions_materialized": 0,
+      "remaining_direct_supply_routes": 0,
+      "side_change_materialized": 0,
+      "unlock_flag": "0x082C",
+      "withheld_own_tempo_rockruff_routes": 38
     }
   },
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 49,
-        "sha256": "872a8c25e1ab4948ac2188bca17c759edf19bd26fdea6b887dbcd1403b384cbe"
+        "count": 57,
+        "sha256": "22861c4a0cae1bd431ed8482875f63a18477beb0b033657136586879ae9cacec"
       },
       "implementation_inputs": {
-        "count": 133,
-        "sha256": "c21231f64d72efa842d513afae608b2f052797e1c80786769376be44d943d27a"
+        "count": 140,
+        "sha256": "60eabe4260897afd9e519287bd950668a3f3c1f4be820bf3692371731e5cf02a"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "efd6b8ac3c6817c88edda9e0aea5fefb8a4c1b18b8e26ea6fd0611c973221af7"
+        "sha256": "34fc1327ee443fcc5e44dc41c2e683b6dbc75ad07e3961e90506a9913a1e1c7a"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 66,
-        "sha256": "e9a5d1fc9dfcb915c2f47ce80e69215a20e339e838973a2554ba549e0054175c"
+        "count": 68,
+        "sha256": "cdd8813c93e65dee83e89e33b5f2f85432212f3572346fc00a90b1c61da585f0"
       }
     },
-    "sha256": "5423ea7e085beeb02eaa4e4d44ff8ce0bdd2b7da2370dbca36d16d0bcfaba640"
+    "sha256": "5ecc0f32346e568526d24ff33e72267834a73160d379183dbee63eeac729d707"
   },
   "phase_runtime": [
     {
@@ -439,9 +482,8 @@
     },
     {
       "blockers": [
-        "DIRECT_MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
-        "UPSTREAM_SUPPLY_DEPENDENCY_SUBSET_23595",
-        "ROTOM_FULL_USER_MOVESET_EFFECTLESS_UI_GUIDANCE_REMAINS",
+        "OWN_TEMPO_ROCKRUFF_0744_01_CARRY_OWNER_38_ROUTE_SEMANTICS_REVIEW",
+        "ARCHIVE_ECONOMY_PROVISIONAL_REPLACEABLE",
         "FINAL_CUMULATIVE_MGBA_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -489,7 +531,22 @@
             "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
           ],
           "gate": "STAGE73_FIVE_GROUP_CONSUMER_RUNTIME",
-          "status": "STATIC_CONNECTED_MGBA_AND_SUPPLY_PENDING"
+          "status": "STATIC_CONNECTED"
+        },
+        {
+          "evidence": [
+            "config/modernization_p03_stage74_supply.json",
+            "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
+          ],
+          "gate": "STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY",
+          "status": "PASS_STATIC_26648_ZERO_SILENT_DROP"
+        },
+        {
+          "evidence": [
+            "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
+          ],
+          "gate": "STAGE74_BUILD_LEARNABLE_PRESERVATION",
+          "status": "PASS_2223_PAIRS_CAPACITY_238_OF_429"
         },
         {
           "evidence": [
@@ -501,17 +558,17 @@
         },
         {
           "evidence": [
-            "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
+            "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
           ],
           "gate": "FULL_SELECTED_ROUTE_SUPPLY",
-          "status": "BLOCKED_26648_DIRECT_ROUTES"
+          "status": "PASS_DIRECT_SUPPLY_ZERO_REMAINING_NOT_FULL_P03"
         }
       ],
       "rom_reflection": {
         "ancestor_stage": 67,
         "reflected": true,
-        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_CONSUMER_BOUNDARY",
-        "stage": 73
+        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_BOUNDARY_PLUS_STAGE74_DIRECT_MACHINE_TUTOR_SUPPLY",
+        "stage": 74
       }
     },
     {

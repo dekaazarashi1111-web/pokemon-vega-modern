@@ -1674,3 +1674,15 @@
   - 退化時の合法技消去防止専用2,223 target-moveをUIと経路勘定から分離し、全1,621種の最大238/429を固定した。
   - Side Changeと追加対象外3種を0に保ち、Rockruff意味整理と最終累積mGBAを未完了として残した。
 - Verify: focused unittest 12/12、Stage74 build／check各9 artifacts、BPS roundtrip、2 hook ABI、全route／capacity／allocator／allowlist、独立High／Medium review PASS。ROM SHA-256 `481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`。mGBAは未実行。
+
+## 2026-09-09T00:25:19+09:00
+
+- Version: `modernization-p08-stage74-integration-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P08-STAGE74-INTEGRATION` / P08累積候補のStage74再固定
+- Summary:
+  - P08をStage74へ再固定し、Stage74のtracked入力、実装、ROM／metadata／allocation／BPS／auditを統合した。
+  - materialized 83,162と既存owner込みaccounted 118,369を分離し、直接供給残0、preservation加算0を固定した。
+  - BPS 5本のexact apply、allocation #33/#77、release blocker、candidate registryの改ざんguardを追加した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
+- Verify: focused unittest 17/17、P08 builder `--check`、5 BPS exact apply、task graph、private guard、`git diff --check`、独立read-only review 2件のHigh／Mediumなし。重いmGBAは未実行。

@@ -1,6 +1,6 @@
 {
   "active_stage": 62,
-  "candidate_stage": 73,
+  "candidate_stage": 74,
   "completed_phases": [
     "P01"
   ],
@@ -8,27 +8,27 @@
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 49,
-        "sha256": "872a8c25e1ab4948ac2188bca17c759edf19bd26fdea6b887dbcd1403b384cbe"
+        "count": 57,
+        "sha256": "22861c4a0cae1bd431ed8482875f63a18477beb0b033657136586879ae9cacec"
       },
       "implementation_inputs": {
-        "count": 133,
-        "sha256": "c21231f64d72efa842d513afae608b2f052797e1c80786769376be44d943d27a"
+        "count": 140,
+        "sha256": "60eabe4260897afd9e519287bd950668a3f3c1f4be820bf3692371731e5cf02a"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "efd6b8ac3c6817c88edda9e0aea5fefb8a4c1b18b8e26ea6fd0611c973221af7"
+        "sha256": "34fc1327ee443fcc5e44dc41c2e683b6dbc75ad07e3961e90506a9913a1e1c7a"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 66,
-        "sha256": "e9a5d1fc9dfcb915c2f47ce80e69215a20e339e838973a2554ba549e0054175c"
+        "count": 68,
+        "sha256": "cdd8813c93e65dee83e89e33b5f2f85432212f3572346fc00a90b1c61da585f0"
       }
     },
-    "sha256": "5423ea7e085beeb02eaa4e4d44ff8ce0bdd2b7da2370dbca36d16d0bcfaba640"
+    "sha256": "5ecc0f32346e568526d24ff33e72267834a73160d379183dbee63eeac729d707"
   },
   "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
   "not_completed_phases": [
@@ -43,16 +43,16 @@
   "promotion": {
     "active_play_baseline_changed": false,
     "authorized": false,
-    "reason": "P02～P07のruntime acceptance未完了。Stage73は45種Mega Stoneの16BP販売、Species1029のLv50取得、49 Mega form、Ability 312～317、5群consumer境界を統合したが、P02 exact UI、26,648 supply routes、最終累積mGBA、Floette full/fresh reload、4件のAI/UI edgeが残るためrelease candidateではない"
+    "reason": "P02～P07のruntime acceptance未完了。Stage74は45種Mega Stoneの16BP販売、Species1029のLv50取得、49 Mega form、Ability 312～317、5群consumer境界、26,648 direct machine/tutor供給を統合したが、P02 exact UI、Own Tempo Rockruff 38経路のsemantic review、暫定archive economy、最終累積mGBA、Floette full/fresh reload、4件のAI/UI edgeが残るためrelease candidateではない"
   },
   "release_blockers": [
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
-    "P03_STAGE73_CONSUMER_BOUNDARY_CONNECTED_BUT_26648_DIRECT_MACHINE_TUTOR_SUPPLY_ROUTES_ROTOM_FULL_SLOT_UI_GUIDANCE_AND_FINAL_MGBA_REMAIN",
+    "P03_STAGE74_DIRECT_SUPPLY_CONNECTED_BUT_OWN_TEMPO_ROCKRUFF_38_ROUTE_SEMANTICS_PROVISIONAL_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
     "P05_STAGE72_SIX_ABILITIES_29_HOOKS_CONNECTED_BUT_FINAL_MGBA_AND_FOUR_AI_UI_EDGES_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE73_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE74_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "schema_version": 1,

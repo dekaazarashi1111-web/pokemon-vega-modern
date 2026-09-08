@@ -4285,3 +4285,25 @@
   - 独立read-only最終レビューはHigh／Mediumなし。重いmGBAは最新累積候補の最終1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal ZIP／Stage73 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T00:25:19+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE74-INTEGRATION` / P08累積候補のStage74再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage73からStage74へ更新し、Stage74の固定入力、実装、ROM／metadata／allocation／BPS／payload／auditを統合した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73→74の5 incremental BPSをexact applyし、Stage74の2 hook、変更70,480 bytes、allocation sequence #33の同一layout内容更新と#77追加をfail closedで固定した。
+  - P03の新規runtime materialization累積83,162、既存owner込みaccounted 118,369、直接供給残0を固定。削除防止4,014 path／2,223 target-moveはUIと経路勘定へ加算0を維持した。
+  - Own Tempo Rockruff 38経路、暫定archive経済、P02通常UI、Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAを残し、P02〜P08を過大にDONE扱いしていない。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=68、COMPLETED=1、ACTIVE=62、CANDIDATE=74、RELEASE=false）。
+  - 生成3成果はmatrix 120,902 bytes / SHA-256 `55a197cd2b8f00061309d8c3f03f9e089a1e248d3430223e7b1d401cd51b8c65`、runtime handoff 26,758 bytes / `d8c164ff6bd7ec01d2a5b9c966299b9a721e83c57502dd8e97c8a85f2bf823cc`、release handoff 2,518 bytes / `b620e224e16cf1c4484c748513f470ae7e10da6882d105982f72dc685d5dc47a`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。独立read-only review 2件はHigh／Mediumなし。重いmGBAは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果のみを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

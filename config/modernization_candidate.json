@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+  "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE",
   "completed_through": "USER-MODERNIZATION-P01",
-  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
+  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
   "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
@@ -18,6 +18,7 @@
     "stage71_checkpoint_commit": "ee8062094f84fff42f529793cb95f09d2078ae33",
     "stage72_checkpoint_commit": "bbab6b2e943186cf437a6dca90712c01f0319ded",
     "stage73_checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+    "stage74_checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
     "stage73_preflight_commit": "c2bb0afb26085a6815d5bd10a2d5b29db80f966d",
     "p02_stage71_acceptance_commit": "ebc6fa00fe39a6c4a8d2d9fea13baf4eacf8faec",
     "uncommitted_checkpoint_identity": null
@@ -31,35 +32,7 @@
     "promotion_status": "UNCHANGED_NOT_PROMOTED"
   },
   "parent": {
-    "stage": 72,
-    "path": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
-    "size": 33554432,
-    "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
-    "crc32": "F981D1CB",
-    "metadata": {
-      "path": "build/stages/72_modernization_p05_ability_rom_runtime.json",
-      "size": 15789,
-      "sha256": "d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f"
-    },
-    "allocation": {
-      "path": "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json",
-      "size": 42769,
-      "sha256": "8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2"
-    }
-  },
-  "p02_overlay_parent": {
-    "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
-    "base_stage": 66,
-    "intended_child_stage": 67,
-    "path": null,
-    "size": 33554432,
-    "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
-    "changed_bytes_from_stage66": 60,
-    "retained_output_rom": false
-  },
-  "candidate": {
     "stage": 73,
-    "label": "Modernization Stage73 P03 five-group consumer runtime checkpoint",
     "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
     "size": 33554432,
     "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
@@ -75,14 +48,51 @@
       "sha256": "f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a"
     }
   },
+  "p02_overlay_parent": {
+    "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+    "base_stage": 66,
+    "intended_child_stage": 67,
+    "path": null,
+    "size": 33554432,
+    "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+    "changed_bytes_from_stage66": 60,
+    "retained_output_rom": false
+  },
+  "candidate": {
+    "stage": 74,
+    "label": "Modernization Stage74 P03 direct machine/tutor supply checkpoint",
+    "path": "build/stages/74_modernization_p03_supply_runtime.gba",
+    "size": 33554432,
+    "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+    "crc32": "C9929F79",
+    "metadata": {
+      "path": "build/stages/74_modernization_p03_supply_runtime.json",
+      "size": 7600,
+      "sha256": "2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7"
+    },
+    "allocation": {
+      "path": "build/stages/74_modernization_p03_supply_runtime_allocation.json",
+      "size": 44607,
+      "sha256": "d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23"
+    }
+  },
   "patches": {
-    "from_parent": {
+    "stage72_to_stage73": {
       "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
       "size": 36300,
       "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61",
       "source_classification": "STAGE72_EXACT_ROM",
       "source_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
       "target_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "round_trip": true
+    },
+    "from_parent": {
+      "path": "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+      "size": 70627,
+      "sha256": "8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd",
+      "source_classification": "STAGE73_EXACT_ROM",
+      "source_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "target_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
       "round_trip": true
     },
     "stage67_to_stage68": {
@@ -210,6 +220,14 @@
       "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
       "changed_bytes_from_parent": 36585,
       "exact_runtime_gate": "STATIC_ONLY_MGBA_AND_SUPPLY_PENDING"
+    },
+    {
+      "stage": 74,
+      "task": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+      "state": "P03_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE",
+      "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+      "changed_bytes_from_parent": 70480,
+      "exact_runtime_gate": "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"
     }
   ],
   "adopted_delta": {
@@ -226,7 +244,8 @@
       "p04_stage70_from_stage69": 818994,
       "p04_stage71_from_stage70": 383,
       "p05_stage72_from_stage71": 7257,
-      "p03_stage73_from_stage72": 36585
+      "p03_stage73_from_stage72": 36585,
+      "p03_stage74_from_stage73": 70480
     },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
@@ -309,6 +328,31 @@
       "prohibited_coercions_materialized": 0,
       "outside_declared_ranges": 0
     },
+    "p03_stage74_supply_checkpoint": {
+      "direct_supply_materialized_routes": 26648,
+      "direct_machine_routes": 26279,
+      "direct_tutor_routes": 369,
+      "cumulative_runtime_materialized_routes": 83162,
+      "cumulative_accounted_routes": 118369,
+      "remaining_direct_supply_routes": 0,
+      "preservation_missing_paths": 4014,
+      "preservation_target_move_pairs": 2223,
+      "preservation_species": 501,
+      "preservation_target_move_set_sha256": "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+      "preservation_ui_supply_routes_added": 0,
+      "preservation_route_accounting_added": 0,
+      "build_learnable_maximum_entries": 238,
+      "build_learnable_capacity": 429,
+      "build_learnable_overflow_species": 0,
+      "unlock_flag": "0x082C",
+      "economy": "PROVISIONAL_REPLACEABLE",
+      "withheld_own_tempo_rockruff_routes": 38,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "prohibited_coercions_materialized": 0,
+      "full_p03_done": false,
+      "outside_declared_ranges": 0
+    },
     "p04_adoption_scope": {
       "mega_species_and_forms": 49,
       "new_normal_species": 0,
@@ -357,7 +401,7 @@
   },
   "checkpoints": {
     "p02": "CHECKPOINT_NOT_DONE",
-    "p03": "STAGE73_FIVE_GROUP_CONSUMER_CHECKPOINT_NOT_P03_DONE",
+    "p03": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_ROCKRUFF_MGBA_PENDING_NOT_P03_DONE",
     "p04_assets": "ASSETS_READY_SPECIES_AND_MEGA_RUNTIME_CONNECTED_EXACT_MGBA_REMAINS",
     "p04_stage68_shop": "EXACT_RUNTIME_PASS_NOT_P04_DONE",
     "p04_stage69_floette": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_HOST_ONLY_NOT_P04_DONE",
@@ -366,6 +410,7 @@
     "p05": "ABILITY_ROM_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_REMAIN",
     "p05_stage72_ability": "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING_NOT_P05_DONE",
     "p03_stage73_consumer": "FIVE_GROUP_CONSUMER_BOUNDARY_CONNECTED_SUPPLY_MGBA_PENDING_NOT_P03_DONE",
+    "p03_stage74_supply": "DIRECT_MACHINE_TUTOR_SUPPLY_CONNECTED_ROCKRUFF_MGBA_PENDING_NOT_P03_DONE",
     "p02_stage71_acceptance": "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
     "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
     "p07": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
@@ -373,8 +418,8 @@
   },
   "deferred": {
     "p02_full_runtime_acceptance": "UI_CANCEL_BAG_EVOLUTION_MOVE_SCENE_FORM_ABILITY_SAVE_RELOAD_NOT_RUN",
-    "p03_full_materialization": "26648_DIRECT_MACHINE_TUTOR_SUPPLY_ROUTES_REMAIN_AND_23595_CARRY_ROUTES_DEPEND_ON_UPSTREAM_SUPPLY",
-    "p03_machine_tutor_supply": "26648_MACHINE_TUTOR_ROUTES_REQUIRE_SUPPLY",
+    "p03_full_materialization": "DIRECT_SUPPLY_COMPLETE_OWN_TEMPO_ROCKRUFF_0744_01_38_ROUTE_SEMANTICS_AND_FINAL_MGBA_REMAIN",
+    "p03_machine_tutor_supply": "RESOLVED_STAGE74_26648_DIRECT_ROUTES_CONNECTED",
     "p04_mega_form_battle_runtime": "49_MEGA_FORMS_STATIC_AND_BATTLE_ROWS_CONNECTED_EXACT_MGBA_PENDING",
     "p04_palette_gaps": "RESOLVED_49_OF_49_GBA_PALETTES_READY_STAGING_ONLY",
     "p04_winds_waves_assets": "NOT_REQUIRED_3_USER_NON_ADOPTED_NO_ID_ASSET_OR_RUNTIME",

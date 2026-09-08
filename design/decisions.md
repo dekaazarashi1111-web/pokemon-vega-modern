@@ -459,3 +459,16 @@
   0744.01の38持越し経路と最終累積mGBAが残るため、P03／release completionは主張しない。
 - 影響: Stage74、P03、Move Memory、Benjamin Butterfree、P08、最終累積mGBA。active baseline、iPad、
   save、Releaseは変更しない。
+
+## 2026-09-09 — D-041: P08の選択候補をStage74へ再固定する
+
+- 選択: P08の累積候補をStage74 `481083bc…e22d65e`へ更新する。現行プレイ基準は
+  Stage62、完了工程はP01のみ、P02〜P08は未完了、release-readyはfalseのままとする。
+- 継承監査: Stage69→70→71→72→73→74の5 incremental BPSを実byteへexact applyし、Stage74の
+  ROM／metadata／allocation／BPS、2 hook、allocation #33内容更新と#77追加を固定する。
+- P03勘定: 新規runtime materializationは累積83,162、既存owner込みaccountedは118,369、
+  直接供給残は0。退化時の削除防止4,014 path／2,223 target-moveはUI供給と経路勘定へ加算しない。
+- 未完了: Own Tempo Rockruff 0744.01の38経路意味、暫定archive経済、P02通常UI、
+  Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAをrelease blockerとして維持する。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。

@@ -70,7 +70,7 @@ class ModernizationP08Tests(unittest.TestCase):
             self.matrix["integration_summary"]["completed_phases"], ["P01"]
         )
         self.assertEqual(
-            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 73
+            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 74
         )
         self.assertFalse(self.matrix["integration_summary"]["release_ready"])
         self.assertFalse(self.matrix["release_ready"])
@@ -123,11 +123,37 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P03"]["adoption"]["stage73_new_runtime_materialized_routes"], 5_363)
         self.assertEqual(phases["P03"]["adoption"]["stage73_existing_owner_accounted_routes"], 35_207)
         self.assertEqual(phases["P03"]["adoption"]["stage73_consumer_boundary_accounted_routes"], 40_570)
-        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_materialized"], 56_514)
-        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_accounted"], 91_721)
-        self.assertEqual(phases["P03"]["adoption"]["selected_routes_remaining"], 26_648)
-        self.assertEqual(phases["P03"]["adoption"]["machine_tutor_upstream_supply_dependency"], 23_595)
+        self.assertEqual(
+            phases["P03"]["adoption"][
+                "stage73_historical_upstream_dependency_overlap_routes"
+            ],
+            23_595,
+        )
         self.assertEqual(phases["P03"]["adoption"]["stage73_hook_count"], 3)
+        self.assertEqual(
+            phases["P03"]["adoption"]["stage74_direct_supply_materialized_routes"],
+            26_648,
+        )
+        self.assertEqual(phases["P03"]["adoption"]["stage74_direct_machine_routes"], 26_279)
+        self.assertEqual(phases["P03"]["adoption"]["stage74_direct_tutor_routes"], 369)
+        self.assertEqual(phases["P03"]["adoption"]["stage74_hook_count"], 2)
+        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_materialized"], 83_162)
+        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_accounted"], 118_369)
+        self.assertEqual(phases["P03"]["adoption"]["selected_routes_remaining"], 0)
+        self.assertEqual(phases["P03"]["adoption"]["preservation_missing_paths"], 4_014)
+        self.assertEqual(phases["P03"]["adoption"]["preservation_target_move_pairs"], 2_223)
+        self.assertEqual(phases["P03"]["adoption"]["preservation_ui_supply_routes_added"], 0)
+        self.assertEqual(phases["P03"]["adoption"]["preservation_route_accounting_added"], 0)
+        self.assertEqual(phases["P03"]["adoption"]["build_learnable_maximum_entries"], 238)
+        self.assertEqual(phases["P03"]["adoption"]["build_learnable_capacity"], 429)
+        self.assertEqual(phases["P03"]["adoption"]["build_learnable_overflow_species"], 0)
+        self.assertEqual(phases["P03"]["adoption"]["archive_unlock_flag"], "0x082C")
+        self.assertEqual(
+            phases["P03"]["adoption"]["archive_economy"], "PROVISIONAL_REPLACEABLE"
+        )
+        self.assertEqual(
+            phases["P03"]["adoption"]["withheld_own_tempo_rockruff_routes"], 38
+        )
         self.assertEqual(phases["P03"]["adoption"]["browt_pombon_gecqua_materialized"], 0)
         self.assertEqual(phases["P03"]["adoption"]["prohibited_coercions_materialized"], 0)
         self.assertEqual(phases["P03"]["adoption"]["stage67_future_tail_remaining_bytes"], 62_510)
@@ -184,7 +210,7 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P06"]["adoption"]["species_adjustment_records"], 0)
         self.assertEqual(phases["P07"]["adoption"]["normal_to_vega_move"], 0)
         self.assertTrue(phases["P03"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 73)
+        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 74)
         self.assertTrue(phases["P04"]["rom_reflection"]["reflected"])
         self.assertEqual(phases["P04"]["rom_reflection"]["stage"], 71)
         self.assertTrue(phases["P05"]["rom_reflection"]["reflected"])
@@ -231,12 +257,12 @@ class ModernizationP08Tests(unittest.TestCase):
             },
         )
 
-    def test_stage73_chain_is_exact_but_not_release_candidate(self) -> None:
+    def test_stage74_chain_is_exact_but_not_release_candidate(self) -> None:
         chain = self.matrix["candidate_chain"]
         self.assertEqual(chain["active_stage"], 62)
-        self.assertEqual(chain["selected_checkpoint_stage"], 73)
+        self.assertEqual(chain["selected_checkpoint_stage"], 74)
         self.assertTrue(chain["parent_chain_verified"])
-        for stage in range(65, 74):
+        for stage in range(65, 75):
             self.assertTrue(chain[f"stage{stage}_integrated"])
         self.assertFalse(chain["release_candidate"])
         self.assertEqual(
@@ -283,6 +309,11 @@ class ModernizationP08Tests(unittest.TestCase):
                 73,
                 72,
                 "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+            ),
+            (
+                74,
+                73,
+                "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
             ),
         ]
         for row, (stage, parent_stage, digest) in zip(
@@ -349,6 +380,43 @@ class ModernizationP08Tests(unittest.TestCase):
             - stage73["cumulative_consumer_boundary_accounted_routes"],
             stage73["remaining_direct_supply_routes"],
         )
+        stage74 = chain["stage74_scope"]
+        self.assertEqual(stage74["direct_supply_materialized_routes"], 26_648)
+        self.assertEqual(stage74["direct_machine_routes"], 26_279)
+        self.assertEqual(stage74["direct_tutor_routes"], 369)
+        self.assertEqual(stage74["cumulative_runtime_materialized_routes"], 83_162)
+        self.assertEqual(stage74["cumulative_accounted_routes"], 118_369)
+        self.assertEqual(stage74["remaining_direct_supply_routes"], 0)
+        self.assertEqual(stage74["preservation_missing_paths"], 4_014)
+        self.assertEqual(stage74["preservation_target_move_pairs"], 2_223)
+        self.assertEqual(stage74["preservation_species"], 501)
+        self.assertEqual(
+            stage74["preservation_target_move_set_sha256"],
+            "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+        )
+        self.assertEqual(stage74["preservation_ui_supply_routes_added"], 0)
+        self.assertEqual(stage74["preservation_route_accounting_added"], 0)
+        self.assertEqual(stage74["build_learnable_maximum_entries"], 238)
+        self.assertEqual(stage74["build_learnable_capacity"], 429)
+        self.assertEqual(stage74["build_learnable_overflow_species"], 0)
+        self.assertEqual(stage74["unlock_flag"], "0x082C")
+        self.assertEqual(stage74["economy"], "PROVISIONAL_REPLACEABLE")
+        self.assertEqual(stage74["withheld_own_tempo_rockruff_routes"], 38)
+        self.assertEqual(stage74["hook_count"], 2)
+        self.assertEqual(stage74["side_change_materialized"], 0)
+        self.assertEqual(stage74["browt_pombon_gecqua_materialized"], 0)
+        self.assertEqual(stage74["prohibited_coercions_materialized"], 0)
+        self.assertFalse(stage74["full_p03_done"])
+        self.assertEqual(
+            stage73["cumulative_new_runtime_materialized_routes"]
+            + stage74["direct_supply_materialized_routes"],
+            stage74["cumulative_runtime_materialized_routes"],
+        )
+        self.assertEqual(
+            stage74["cumulative_runtime_materialized_routes"]
+            + stage73["existing_owner_accounted_routes"],
+            stage74["cumulative_accounted_routes"],
+        )
         expected_latest_bps = [
             (
                 "build/stages/69_modernization_floette_gift.gba",
@@ -370,6 +438,11 @@ class ModernizationP08Tests(unittest.TestCase):
                 "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
                 "build/stages/73_modernization_p03_consumer_runtime.gba",
             ),
+            (
+                "build/stages/73_modernization_p03_consumer_runtime.gba",
+                "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+                "build/stages/74_modernization_p03_supply_runtime.gba",
+            ),
         ]
         self.assertEqual(
             [
@@ -380,29 +453,29 @@ class ModernizationP08Tests(unittest.TestCase):
         )
         self.assertEqual(
             [row["status"] for row in chain["latest_incremental_bps"]],
-            ["PASS_EXACT_APPLY"] * 4,
+            ["PASS_EXACT_APPLY"] * 5,
         )
         self.assertEqual(
             chain["registry"],
             {
                 "path": "config/modernization_candidate.json",
                 "schema_version": 2,
-                "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+                "status": "STAGE74_DIRECT_SUPPLY_CHECKPOINT_NOT_RELEASE_CANDIDATE",
                 "completed_through": "USER-MODERNIZATION-P01",
-                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
-                "checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
-                "last_committed_checkpoint": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME-CHECKPOINT",
+                "checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
+                "last_committed_checkpoint": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
                 "release_ready": False,
                 "active_parent_stage": 62,
-                "parent_stage": 72,
-                "candidate_stage": 73,
+                "parent_stage": 73,
+                "candidate_stage": 74,
             },
         )
 
     def test_checkpointed_through_does_not_extend_completed_through(self) -> None:
         registry = self.matrix["candidate_chain"]["registry"]
         self.assertEqual(registry["completed_through"], "USER-MODERNIZATION-P01")
-        self.assertIn("STAGE73", registry["checkpointed_through"])
+        self.assertIn("STAGE74", registry["checkpointed_through"])
 
         false_done = copy.deepcopy(self.matrix)
         false_done["candidate_chain"]["registry"]["completed_through"] = (
@@ -423,6 +496,10 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             PARALLEL_OUTPUTS["P02_STAGE71_EXACT_UI_ACCEPTANCE"]["status"],
             "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
+        )
+        self.assertEqual(
+            PARALLEL_OUTPUTS["P03_STAGE74_DIRECT_SUPPLY_RUNTIME"]["status"],
+            "INTEGRATED_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE",
         )
         self.assertIn("content/modernization/p03_stage65_checkpoint.json", pinned)
         self.assertIn("content/modernization/p03_stage65_mgba_runtime_gate.json", pinned)
@@ -452,6 +529,8 @@ class ModernizationP08Tests(unittest.TestCase):
             "config/modernization_p03_stage73_runtime.json",
             "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
             "content/modernization/p03_stage73_consumer_runtime_route_audit.json",
+            "config/modernization_p03_stage74_supply.json",
+            "content/modernization/p03_stage74_supply_runtime_checkpoint.json",
             "config/modernization_p04_species_runtime.json",
             "content/modernization/p04_species_runtime_contract.json",
             "content/modernization/p04_species_runtime_checkpoint.json",
@@ -500,6 +579,14 @@ class ModernizationP08Tests(unittest.TestCase):
                 "build/stages/73_modernization_p03_consumer_runtime.json",
                 "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
                 "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+                "build/stages/74_modernization_p03_supply_runtime.gba",
+                "build/stages/74_modernization_p03_supply_runtime.json",
+                "build/stages/74_modernization_p03_supply_runtime_allocation.json",
+                "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+                "generated/runtime/modernization_p03_stage74_supply_runtime.bin",
+                "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json",
+                "generated/runtime/modernization_p03_stage74_supply_runtime_audit.json",
+                "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
             }
             <= artifacts
         )
@@ -574,6 +661,13 @@ class ModernizationP08Tests(unittest.TestCase):
             "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h",
             "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.ld",
             "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime_hooks.S",
+            "scripts/build_modernization_p03_stage74_supply.sh",
+            "tools/modernization_p03_stage74_supply.py",
+            "tests/test_modernization_p03_stage74_supply.py",
+            "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.c",
+            "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.h",
+            "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime.ld",
+            "overlays/modernization_p03_stage74_supply_runtime/modernization_p03_stage74_supply_runtime_scripts.S",
             "scripts/run_modernization_p02_stage71_acceptance.py",
             "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
             "tests/test_modernization_p02_stage71_acceptance.py",
@@ -661,9 +755,41 @@ class ModernizationP08Tests(unittest.TestCase):
             validate_integration_matrix(false_release)
 
         false_p03_done = copy.deepcopy(self.matrix)
-        false_p03_done["candidate_chain"]["stage73_scope"]["full_p03_done"] = True
+        false_p03_done["candidate_chain"]["stage74_scope"]["full_p03_done"] = True
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_p03_done)
+
+        stage74_mutations = (
+            ("direct_supply_materialized_routes", 26_647),
+            ("cumulative_runtime_materialized_routes", 106_757),
+            ("cumulative_accounted_routes", 141_964),
+            ("remaining_direct_supply_routes", 1),
+            ("preservation_missing_paths", 4_013),
+            ("preservation_target_move_pairs", 2_222),
+            ("preservation_ui_supply_routes_added", 1),
+            ("preservation_route_accounting_added", 4_014),
+            ("build_learnable_maximum_entries", 430),
+            ("build_learnable_capacity", 428),
+            ("build_learnable_overflow_species", 1),
+            ("economy", "FINAL_FREE"),
+            ("withheld_own_tempo_rockruff_routes", 0),
+            ("side_change_materialized", 1),
+            ("browt_pombon_gecqua_materialized", 1),
+            ("prohibited_coercions_materialized", 1),
+        )
+        for key, value in stage74_mutations:
+            mutated = copy.deepcopy(self.matrix)
+            mutated["candidate_chain"]["stage74_scope"][key] = value
+            with self.subTest(stage74_scope=key):
+                with self.assertRaises(ModernizationP08Error):
+                    validate_integration_matrix(mutated)
+
+        false_preservation_hash = copy.deepcopy(self.matrix)
+        false_preservation_hash["candidate_chain"]["stage74_scope"][
+            "preservation_target_move_set_sha256"
+        ] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_preservation_hash)
 
         false_side_change = copy.deepcopy(self.matrix)
         false_side_change["phases"][2]["adoption"][
@@ -821,6 +947,74 @@ class ModernizationP08Tests(unittest.TestCase):
                 false_stage73_boundary["config/modernization_candidate.json"],
             )
 
+        false_stage74_boundary = copy.deepcopy(documents)
+        false_stage74_boundary["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p03_stage74_supply_checkpoint"]["preservation_target_move_pairs"] = 2_222
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage74_boundary["config/modernization_candidate.json"],
+            )
+
+        false_stage74_economy = copy.deepcopy(documents)
+        false_stage74_economy["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p03_stage74_supply_checkpoint"]["economy"] = "FINAL_FREE"
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage74_economy["config/modernization_candidate.json"],
+            )
+
+        false_sequence33 = copy.deepcopy(metadata)
+        allocation74 = false_sequence33[
+            "build/stages/74_modernization_p03_supply_runtime_allocation.json"
+        ]
+        next(
+            row for row in allocation74["allocations"] if row["sequence"] == 33
+        )["content_sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                false_sequence33,
+                documents["config/modernization_candidate.json"],
+            )
+
+        false_sequence77 = copy.deepcopy(metadata)
+        allocation74 = false_sequence77[
+            "build/stages/74_modernization_p03_supply_runtime_allocation.json"
+        ]
+        next(
+            row for row in allocation74["allocations"] if row["sequence"] == 77
+        )["size"] = 70_571
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                false_sequence77,
+                documents["config/modernization_candidate.json"],
+            )
+
+        false_checkpoint_preservation = copy.deepcopy(documents)
+        false_checkpoint_preservation[
+            "content/modernization/p03_stage74_supply_runtime_checkpoint.json"
+        ]["build_learnable_preservation"]["route_accounting_added"] = 4_014
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_checkpoint_preservation)
+
+        false_family_hash = copy.deepcopy(documents)
+        false_family_hash["config/modernization_p03_stage74_supply.json"][
+            "supply_contract"
+        ]["machine"]["set_sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_family_hash)
+
     def test_every_requirement_has_implementation_and_test_mapping(self) -> None:
         trace = self.matrix["traceability"]
         self.assertGreaterEqual(len(trace), 21)
@@ -829,6 +1023,10 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             by_requirement["P04_CAPACITY_RESERVATION"]["implementation_evidence"],
             "49/45/6/0 append reservation + 34-table capacity audit",
+        )
+        self.assertEqual(
+            by_requirement["P03_STAGE74_DIRECT_SUPPLY"]["test_evidence"],
+            "tests/test_modernization_p03_stage74_supply.py",
         )
         for row in trace:
             self.assertTrue(row["implementation_evidence"])
@@ -853,7 +1051,7 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(release["release_ready"])
         self.assertFalse(release["promotion"]["authorized"])
         self.assertEqual(release["completed_phases"], ["P01"])
-        self.assertEqual(release["candidate_stage"], 73)
+        self.assertEqual(release["candidate_stage"], 74)
         self.assertEqual(
             release["integration_fingerprint"],
             self.matrix["snapshot"]["integration_fingerprint"],
