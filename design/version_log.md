@@ -1596,3 +1596,14 @@
   - evolution表を1,670行へ拡張し39 consumerを再接続。新49行はStage71所有とするゼロ初期化境界を固定した。
   - Ability固定4表を318行へ拡張し、派生ポインターとcount consumerを修正。Browt／Pombon／Gecquaは非採用を維持した。
 - Verify: focused unittest 11/11、Stage70 builder `--check`、BPS roundtrip、全28 root shifted-literal audit、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`。mGBAは後続累積候補へ集約し未実行。
+
+## 2026-09-08T17:54:02+09:00
+
+- Version: `modernization-stage71-mega-runtime-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71` / Mega 49順逆表と既存戦闘policy契約
+- Summary:
+  - 49件のbase＋専用石forwardとMega→base reverseを追加し、既存Mega 80行と許可範囲外byteを保持した。
+  - mode別Mega Ring、使用回数、交代／ひんし／終了の既存CFRU-JP意味をsource・compiled span・host oracleへ固定した。
+  - allocation #73の全slice hashを累積ROMへ同期し、非対象73 allocationとlayoutを不変にした。
+- Verify: focused unittest 12/12（C oracle 34 assertions）、Stage71 builder `--check`、BPS roundtrip、49 mapping／全誤石、allocation全74 slice、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`。mGBAはStage72後の累積1回へ保留。

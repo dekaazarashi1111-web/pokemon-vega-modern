@@ -4125,3 +4125,27 @@
   - 重いmGBAはStage71/72累積候補で代表経路を1回にまとめるため未実行。Stage70はrelease readyと過大表示しない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みexternal sourceとGit管理外private-use素材のみを再利用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:54:02+09:00
+
+- Task: `USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71` / Mega 49順逆表と既存戦闘policy契約
+- Status: DONE（Stage71単独checkpoint。Stage72 Ability効果と最終累積mGBAは未完了）
+- Summary:
+  - Stage70のevolution表へ49件のbase＋専用Mega Stone順方向行と49件のMega→base逆方向行を追加した。既存Mega 80行を保持し、Raichu X/Y、Meowstic M/F、Tatsugiri 3形態、Magearna、Floette Eternalを含む全49 mappingと全誤石を検証した。
+  - 既存battle gateの順序をproject mechanic policy、mode別keystone、exact stone、project／upstream usage markとして固定した。通常戦のMega Ring 580、Frontier／Link例外、通常owner／partner／上流Mega Brawlの差をsource・compiled span・host oracleで区別した。
+  - 交代時はMega維持、ひんし時はbase復帰＋usage done維持、蘇生後の再Mega拒否、戦闘終了時の逆方向復元を既存CFRU-JP契約として固定した。Mega Brawlとproject side-usedのexact合成は最終mGBAへ保留した。
+  - Stage70 allocation #73の全850,544-byte slice hashを`ef91ae7d...`から`6a7793e6...`へ更新。全74 sliceを照合し、非対象73 ledger／ROM slice不変、overlap 0、新規allocation 0とした。
+- Files changed:
+  - `config/modernization_p04_mega_runtime.json`
+  - `overlays/modernization_p04_mega_runtime/**`
+  - `tools/modernization_p04_mega_runtime.py`、`scripts/build_modernization_p04_mega_runtime.py`
+  - `tests/test_modernization_p04_mega_runtime.py`
+  - `content/modernization/p04_mega_runtime_mapping.json`、`content/modernization/p04_mega_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_mega_runtime`: 12/12 PASS（C oracle 34 assertionsを含む）。
+  - `python3 scripts/build_modernization_p04_mega_runtime.py --check`: 8 artifacts byte一致PASS。BPS roundtrip、49 forward＋49 reverse、既存Mega 80、誤石拒否、変更allowlist外0を再照合した。
+  - ROMは33,554,432 bytes、SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32 `426A7A7F`。metadata SHA-256 `7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c`、allocation SHA-256 `814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf`。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。重いmGBAはStage72累積候補へ集約し未実行。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal source／ROM／private-use素材のみを使用し、push／Release追加／iPad配置は行っていない。

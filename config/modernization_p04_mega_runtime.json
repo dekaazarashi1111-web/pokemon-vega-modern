@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71",
+  "stage": 71,
+  "status": "STAGE70_IDENTITY_PINNED",
+  "inputs": {
+    "stage70_rom": {
+      "path": "build/stages/70_modernization_p04_species_runtime.gba",
+      "size": 33554432,
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef"
+    },
+    "stage70_metadata": {
+      "path": "build/stages/70_modernization_p04_species_runtime.json",
+      "sha256": "b2b58dda953398206002ccdc450853aacdf5975ff9cfb923db8fa99f13f840dc"
+    },
+    "stage70_allocation": {
+      "path": "build/stages/70_modernization_p04_species_runtime_allocation.json",
+      "sha256": "3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8"
+    },
+    "capacity_baseline_rom": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+      "size": 33554432,
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111"
+    },
+    "candidate_manifest": {
+      "path": "content/modernization/p04_candidate_manifest.json",
+      "size": 60095,
+      "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac"
+    },
+    "capacity_manifest": {
+      "path": "content/modernization/p04_capacity_allocation_manifest.json",
+      "size": 437769,
+      "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "size": 207095,
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "item_manifest": {
+      "path": "manifests/item_ids.csv",
+      "size": 447424,
+      "sha256": "f3c12e66256d29b675f1bd4f8e68bd0a90e20eb49b5715b8ecbfbc65aa8b2b90"
+    },
+    "ability_manifest": {
+      "path": "manifests/ability_ids.csv",
+      "size": 70348,
+      "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"
+    },
+    "battle_core_offsets_run1": {
+      "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+      "size": 971694,
+      "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523"
+    },
+    "battle_core_offsets_run2": {
+      "path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+      "size": 971694,
+      "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523"
+    }
+  },
+  "fixed_cfru_jp": {
+    "commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "evolution_abi": {
+      "method": 254,
+      "standard_variant": 0,
+      "slots_per_species": 16,
+      "entry_stride": 8,
+      "row_stride": 128,
+      "old_count": 1621,
+      "new_count": 1670,
+      "capacity_baseline_address": "0x09F79F38",
+      "capacity_baseline_sha256": "3fc4c8cd5d21c5b7f1fa2972223288ec1040f115321298a19e168694ee45e002"
+    },
+    "symbols": {
+      "CanMegaEvolve": "0x09114BE4",
+      "GetMegaSpecies": "0x09114CF0",
+      "DoMegaEvolution": "0x09114DDC",
+      "TryRevertMega": "0x09114F74",
+      "MegaRevert": "0x09114FB8",
+      "MegaEvolutionEnabled": "0x09114FD0",
+      "BankMegaEvolved": "0x09114FF0",
+      "MegaRetrieveData": "0x091154A0",
+      "DoFormChange": "0x09100554",
+      "EndOfBattleThings": "0x090F7B04",
+      "EndOfBattleThings.part.0": "0x090F6E84",
+      "BattleBeginFirstTurn": "0x090CF908",
+      "TryFormRevert": "0x0910099C",
+      "atk1B_cleareffectsonfaint": "0x09106CB4",
+      "VegaBattlePolicyCanMega": "0x09126B60",
+      "VegaBattlePolicyMarkMega": "0x09126B8C"
+    },
+    "compiled_rom_assertions": {
+      "keystone_580_thumb_halfwords": [
+        {"address": "0x09114AF4", "expected": "0x2191", "meaning": "movs r1,#145"},
+        {"address": "0x09114AFA", "expected": "0x0089", "meaning": "lsls r1,r1,#2 => 580"},
+        {"address": "0x09114B02", "expected": "0x2091", "meaning": "movs r0,#145"},
+        {"address": "0x09114B04", "expected": "0x0080", "meaning": "lsls r0,r0,#2 => 580"},
+        {"address": "0x09114B42", "expected": "0x2091", "meaning": "movs r0,#145"},
+        {"address": "0x09114B48", "expected": "0x0080", "meaning": "lsls r0,r0,#2 => 580"},
+        {"address": "0x09114B52", "expected": "0x2091", "meaning": "movs r0,#145"},
+        {"address": "0x09114B54", "expected": "0x0080", "meaning": "lsls r0,r0,#2 => 580"}
+      ],
+      "keystone_function_span": {
+        "start": "0x09114AD4",
+        "end_exclusive": "0x09114BE4",
+        "sha256": "123c105c923b015fff07fd3ddbb0bdd4d0729da702a5e2e4141e36a3efd07367"
+      },
+      "function_spans": [
+        {"symbol": "BattleBeginFirstTurn", "start": "0x090CF908", "end_exclusive": "0x090D05EC", "sha256": "95c01d303f2f3797323ba44088a8f9c0e3d97503ec8e837cab23fff951f1ca65"},
+        {"symbol": "TryFormRevert", "start": "0x0910099C", "end_exclusive": "0x09100C40", "sha256": "d78b50f907d7cef2acc85c182ba422287a5342dcd8d422ba271a7c28d37b43a3"},
+        {"symbol": "atk1B_cleareffectsonfaint", "start": "0x09106CB4", "end_exclusive": "0x091074D4", "sha256": "638565e4f37338c2f6a67de0111797a9567bae23826a69c5a17905e616281330"},
+        {"symbol": "CanMegaEvolve", "start": "0x09114BE4", "end_exclusive": "0x09114CF0", "sha256": "193e12989ebe44a577625b47024de4b4d3d15e0a53991ca5060dfdb8a597f031"},
+        {"symbol": "GetMegaSpecies", "start": "0x09114CF0", "end_exclusive": "0x09114D78", "sha256": "a03442da37774671b992ed5c16ced90f7a8b35e72aeea17b9823ad265032740e"},
+        {"symbol": "DoMegaEvolution", "start": "0x09114DDC", "end_exclusive": "0x09114EFC", "sha256": "e7e2f49eeeebf93e9d7e769030bd15b8616d57265935cd8edea13299b871b15b"},
+        {"symbol": "TryRevertMega", "start": "0x09114F74", "end_exclusive": "0x09114FB8", "sha256": "f3ede65853ab4dc056afb4f76d73e30ac689034c50404ff4c93d7db94ff28991"},
+        {"symbol": "MegaRevert", "start": "0x09114FB8", "end_exclusive": "0x09114FD0", "sha256": "39ae9aff879e2b248d42b9981b7fbb78608dea8640507aca1738723206e3c40c"},
+        {"symbol": "MegaEvolutionEnabled", "start": "0x09114FD0", "end_exclusive": "0x09114FF0", "sha256": "a7e2a4a40a526b590b2610887ab6f51c44ed0d269ae8f58537b519422b988602"},
+        {"symbol": "BankMegaEvolved", "start": "0x09114FF0", "end_exclusive": "0x09115098", "sha256": "fa6996e52a4d15d279a775a7fb58a3d95972f015fd1ddf11b610b086da8321b9"},
+        {"symbol": "VegaBattlePolicyCanMega", "start": "0x09126B60", "end_exclusive": "0x09126B8C", "sha256": "350a8b0fb1d0cf4bf422b8003753d502586125b83e682a34bc2dffbd5dd82272"},
+        {"symbol": "VegaBattlePolicyMarkMega", "start": "0x09126B8C", "end_exclusive": "0x09126BB4", "sha256": "952ce6f4e17788fab56a87b54c7602e30f8a470140a0995d607616f251ca7b35"}
+      ]
+    },
+    "sources": [
+      {
+        "path": "vendor/upstream/CFRU-JP/src/mega.c",
+        "sha256": "2b1113d8645f44cd7139ab1bd936d5467eb84342d07cbbb2967edbc650436efd",
+        "required_anchors": [
+          "if (!CheckUBInstead && !MegaEvolutionEnabled(bank))",
+          "if (evolutions[i].method == EVO_NONE)",
+          "if (evolutions[i].param == mon->item)",
+          "DoFormChange(bank, evolutions->targetSpecies, TRUE, TRUE, TRUE);",
+          "else if (evolutions[i].method == EVO_MEGA && evolutions[i].param == 0)",
+          "bool8 BankMegaEvolved(u8 bank, bool8 checkUB)"
+        ]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/end_battle.c",
+        "sha256": "8eae507fd9ee5f214ea232e2144052ee2dfabd3199ca4d6152665fe3d50c5f5e",
+        "required_anchors": ["MegaRevert(gPlayerParty);"]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/move_menu.c",
+        "sha256": "4d75ed407c017d2788b7b71c954082751be55d5f0fb6a62becc26d30b8394a52",
+        "required_anchors": [
+          "evolutions = CanMegaEvolve(gActiveBattler, FALSE);",
+          "if (!BankMegaEvolved(gActiveBattler, FALSE)",
+          "&& MegaEvolutionEnabled(gActiveBattler)"
+        ]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/Battle_AI/ai_master.c",
+        "sha256": "e790e1cc1271ffdec28a2c5d9c843fe7032fa3b0b962dea2bcb1852808557fd9",
+        "required_anchors": [
+          "&& !BankMegaEvolved(bankAtk, FALSE)",
+          "gNewBS->ai.megaPotential[bankAtk] = CanMegaEvolve(bankAtk, FALSE);"
+        ]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/form_change.c",
+        "sha256": "e990dab7a70c6c250d4479461e8a30b5159cf883504d18e8385d405cdb91bc8b",
+        "required_anchors": [
+          "else if (mon->backupSpecies != SPECIES_NONE && mon->backupSpecies < NUM_SPECIES)",
+          "mon->species = mon->backupSpecies;",
+          "mon->backupSpecies = SPECIES_NONE;",
+          "CalculateMonStats(mon);"
+        ]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/general_bs_commands.c",
+        "sha256": "ee23f75ab32b0f453128a9e5f9c7e77aba4a0de646e762a5fe821b61c1b20643",
+        "required_anchors": [
+          "case Faint_FormsRevert:",
+          "if (TryFormRevert(mon) || TryRevertTerastalForm(mon))",
+          "EmitSetMonData(0, REQUEST_SPECIES_BATTLE, 0, 2, &mon->species);"
+        ]
+      },
+      {
+        "path": "vendor/upstream/CFRU-JP/src/battle_start_turn_start.c",
+        "sha256": "00ee1fbed9e28d1cfe41dc85322cba5c502a4ecb14217c672e1570dff5516445",
+        "required_anchors": [
+          "if (!(gBattleTypeFlags & BATTLE_TYPE_MEGA_BRAWL)) //As many mons can Mega Evolve as you want",
+          "gNewBS->megaData.done[bank] = TRUE;",
+          "gNewBS->megaData.done[PARTNER(bank)] = TRUE;",
+          "BATTLE_TYPE_INGAME_PARTNER | BATTLE_TYPE_MULTI | BATTLE_TYPE_MEGA_BRAWL"
+        ]
+      }
+    ],
+    "compiled_integration_sources": [
+      {
+        "path": "scripts/build_battle_core.py",
+        "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+        "required_anchors": [
+          "if (!VegaBattlePolicyCanMega(bank, TRUE))",
+          "if (script != NULL && VegaBattlePolicyMarkMega(bank))"
+        ]
+      },
+      {
+        "path": "overlays/cfru/rom_bridge.c",
+        "sha256": "e7ca33758235005d66b3a73f864ed97d18f876f56935d1d86e42c99c78cd28c0",
+        "required_anchors": [
+          "bool8 VegaBattlePolicyCanMega(u8 battler, bool8 upstream_allowed)",
+          "bool8 VegaBattlePolicyMarkMega(u8 battler)"
+        ]
+      },
+      {
+        "path": "overlays/cfru/integration.c",
+        "sha256": "b1ee5d94bd6601f7b4cc01eea45c9ccbe4f80fb04ca4074044201c7d550f4498",
+        "required_anchors": [
+          "cfru_u8 cfru_integration_mechanic_can_use(",
+          "cfru_u8 cfru_integration_mechanic_try_use("
+        ]
+      },
+      {
+        "path": "overlays/cfru/runtime.c",
+        "sha256": "d24115e20bf2e21da600997a9c25d6b6beab4135070a63ae10ff8a22ec3bb6bd",
+        "required_anchors": [
+          "return (cfru_u8)(!state->used[side]",
+          "state->used[side] = CFRU_TRUE;"
+        ]
+      }
+    ],
+    "battle_snapshot_sources": [
+      {
+        "owner": "CODEX_BATTLE_RUNTIME",
+        "path": "overlays/codex_battle_runtime/codex_battle_runtime.c",
+        "sha256": "2a8370c2ef4e48878b85f0b888bc46221db1b3e1ce442d4ba121cff6d7e32951",
+        "required_anchors": [
+          "static void restore_player_party(u16 reason)",
+          "if (runtime_active())\n        restore_player_party(CBR_CLEANUP_RESET);"
+        ]
+      },
+      {
+        "owner": "MIRAGE_PRODUCTION",
+        "path": "overlays/mirage_production/mirage_production.c",
+        "sha256": "bb8a59b76603e1acf4c1655d03c333f3ea067c47fdec9e6e03dbff4935381243",
+        "required_anchors": [
+          "static void restore_party(void)",
+          "recovery = MirageProduction_Recover();"
+        ]
+      },
+      {
+        "owner": "FACTORY_HIGH_MODES_V2",
+        "path": "overlays/factory_high_modes_v2/factory_high_modes_v2.c",
+        "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b",
+        "required_anchors": [
+          "copy_bytes(G_PLAYER_PARTY, G_LEDGER->factory.party_snapshot,",
+          "(void)FactoryHighModesV2_Recover();"
+        ]
+      }
+    ]
+  },
+  "runtime_policy": {
+    "required_keystone_item_key": "ITEM_KEY_MEGA_RING",
+    "required_keystone_item_id": 580,
+    "forward_rows": 49,
+    "reverse_rows": 49,
+    "wrong_stone_result": 0,
+    "gate_order": [
+      "PROJECT_VEGA_BATTLE_POLICY_CAN_MEGA",
+      "UPSTREAM_MODE_KEYSTONE_GATE",
+      "EVOLUTION_ROW_EXACT_STONE",
+      "PROJECT_AND_UPSTREAM_USAGE_MARKS"
+    ],
+    "project_policy": {
+      "field_pending_standard_mode": "MEGA_DENIED",
+      "configured_mega_mode": "MEGA_ELIGIBLE_SUBJECT_TO_REMAINING_GATES",
+      "usage_scope": "SIDE_BASED_PROJECT_MARK_PRECEDES_UPSTREAM_MODE_EXCEPTIONS"
+    },
+    "keystone_by_mode_after_project_policy": {
+      "normal_owned": true,
+      "normal_unowned": false,
+      "frontier": true,
+      "link": true
+    },
+    "upstream_usage_by_mode": {
+      "normal_double_same_owner": "BANK_OR_PARTNER_DONE_REJECTS_SECOND",
+      "ingame_partner_or_two_opponents": "EACH_OWNER_BANK_DONE_ONLY",
+      "mega_brawl": "UPSTREAM_DOES_NOT_SET_DONE_OR_PARTNER_DONE"
+    },
+    "compiled_project_usage": {
+      "normal": "SIDE_USED_MARK_REJECTS_SECOND",
+      "mega_brawl": "PROJECT_SIDE_USED_GATE_PRECEDES_UPSTREAM_EXCEPTION_EXACT_RUNTIME_PENDING_MGBA"
+    },
+    "switch": "KEEP_MEGA_WITHIN_SAME_BATTLE",
+    "faint": "REVERT_BASE_VIA_TRY_FORM_REVERT_KEEP_MEGA_DATA_DONE",
+    "battle_end": "INHERIT_END_OF_BATTLE_THINGS_MEGA_REVERT",
+    "interrupt_and_save": "INHERIT_EXISTING_BATTLE_SNAPSHOT_OWNERS",
+    "new_ability_table_count_required": 318,
+    "new_ability_effect_hooks": "PENDING_STAGE72",
+    "release_candidate": false
+  },
+  "allocation_policy": {
+    "new_allocation_count": 0,
+    "target_sequence": 73,
+    "target_name": "modernization_p04_species_runtime_stage70_payload",
+    "target_owner": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+    "target_mutation": "CONTENT_SHA256_ONLY_FOR_STAGE71_FULL_SLICE",
+    "non_target_allocations": "PRESERVE_LEDGER_ROWS_AND_ROM_SLICES_EXACT",
+    "required_overlap_count": 0
+  },
+  "outputs": {
+    "rom": "build/stages/71_modernization_p04_mega_runtime.gba",
+    "metadata": "build/stages/71_modernization_p04_mega_runtime.json",
+    "allocation": "build/stages/71_modernization_p04_mega_runtime_allocation.json",
+    "incremental_bps": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+    "mapping": "content/modernization/p04_mega_runtime_mapping.json",
+    "checkpoint": "content/modernization/p04_mega_runtime_checkpoint.json",
+    "generated_rows": "generated/runtime/modernization_p04_mega_runtime_rows.bin",
+    "generated_rows_index": "generated/runtime/modernization_p04_mega_runtime_rows.json"
+  }
+}

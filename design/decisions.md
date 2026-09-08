@@ -362,3 +362,19 @@
 - Stage72所有: Ability ID 312〜317の実効果、発動／不発／抑制／複数対象／AI・UI意味。Stage70の「こうかは じゅんびちゅう。」とrating 0はOOBを防ぐための仮行で、stable keyとIDを保って差し替える。
 - 安全境界: `TeamBuilder.abilityOnTeam[312]`は新Abilityをfacility生成poolへ入れない間は非到達とし、将来入れる場合は構造体ABIを再ビルドする。Browt／Pombon／GecquaはStage70でも追加しない。
 - 影響: Stage70〜72、P04種族・Mega runtime、P05 Ability runtime、P08統合。
+
+## 2026-09-08 — D-035: Stage71は既存のmode別Mega gateとひんし時復元を継承する
+
+- 訂正: D-034の「Mega Ring 580、1戦闘1回」は全mode共通条件ではない。Stage71は新しい
+  battle hookを追加せず、既存のproject mechanic policyを最初に通した後、通常戦ではMega Ring
+  580を要求し、Frontier／Linkでは固定CFRU-JPのRing例外を継承する。
+- 使用回数: 通常戦はproject側のside-used markとCFRU側のowner doneを維持し、同一side／ownerの
+  2回目を拒否する。上流Mega Brawlは`megaData.done`を立てないが、先行するproject side-used gateとの
+  厳密な合成挙動はStage72後の最終mGBAで確定し、それまではrelease claimに含めない。
+- 形態寿命: 交代ではMega形態を維持する。ひんし時は既存`Faint_FormsRevert -> TryFormRevert`で
+  baseへ戻る一方、`megaData.done`は残るため蘇生後の再Megaを拒否する。戦闘終了は既存
+  `MegaRevert`とStage71の逆方向行を使い、中断／saveは既存snapshot ownerを変更しない。
+- allocation: Stage71はStage70が確保したallocation #73内のevolution行だけを変更するため、同ownerの
+  全850,544-byte slice SHA-256を更新する。新allocationは作らず、非対象73行のledger／ROM sliceと
+  region summaryをbyte一致で保持する。
+- 影響: Stage71 Mega runtime、Stage72最終mGBA、P08統合。D-034の無条件に読める記述は本決定で補正する。

@@ -9,11 +9,11 @@
 
 ## Modernization P01〜P08の開発checkpoint
 
-- P01はDONE。P02〜P08は未完了で、release readyではない。P08の選択済み累積候補はStage69のままだが、P04の最新単独checkpointはStage70 `build/stages/70_modernization_p04_species_runtime.gba`、SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`、CRC32 `301238C1`。現行プレイ基準Stage62へは昇格していない。
+- P01はDONE。P02〜P08は未完了で、release readyではない。P08の選択済み累積候補はStage69のままだが、P04の最新単独checkpointはStage71 `build/stages/71_modernization_p04_mega_runtime.gba`、SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32 `426A7A7F`。現行プレイ基準Stage62へは昇格していない。
 - P02は6種のlevel＋所持道具分岐順を60 bytes修復し、実`GetEvolutionTargetSpecies`／`ItemEvolutionRemoval`で成立・不足・誤道具・通常分岐を独立2 process検証した。P03はStage66の47,548経路へ進化時341、既存教え技740、通常タマゴ2,522の計3,603経路を追加し、累積51,151経路を実consumerへ接続した。選択済み残経路は67,218で、P02／P03とも全受入は未完了。
 - サイドチェンジ候補Move 1063はユーザー判断で現行版へ採用しない。受領原本の159経路は証跡として保持するが、runtime選択集合は118,369経路とし、Move ID／効果／AI／UI／習得／代替技を追加しない。
 - P04はMega用Species/Form 49（ID 1621〜1669）、Item 45（ID 999〜1043）、Ability 6（ID 312〜317）を予約し、通常SpeciesとMoveの追加は0件。Stage68で45個のMega StoneのItem表・画像と専用BP店をROMへ接続した。全品16 BP、Mega Ring ID 580で解禁、claim flag `0x14A0..0x14CC`による1save1回で、map `96/5` local 14 `(24,19)`の別店員から購入できる。Stage68 ROMはSHA-256 `1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639`、CRC32 `DAFDD099`。実ROMでItem 999／1023／1024／1043のconsumer受理、1044拒否、代表3購入、保存・再読込・二重購入拒否をPASSした。
-- Stage70でMega用Species/Form 49件をID 1621〜1669として、28固定表とfront／back／palette／shiny／iconをROMへ接続した。既存Species 0〜1620の行はbyte一致を保持し、evolution表は1,670行・39 consumerへ再接続。Ability表は312→318行としてID 312〜317の差し替え可能な仮文言まで実装した。base+石の順逆Mega対応と戦闘中変化はStage71、新Ability効果はStage72の所有で、P04は未完了。Browt／Pombon／GecquaはID・素材・runtimeを予約しない`NON_ADOPTED_USER_SCOPE`のまま。
+- Stage70でMega用Species/Form 49件をID 1621〜1669として、28固定表とfront／back／palette／shiny／iconをROMへ接続した。既存Species 0〜1620の行はbyte一致を保持し、evolution表は1,670行・39 consumerへ再接続。Ability表は312→318行としてID 312〜317の差し替え可能な仮文言まで実装した。Stage71では49件のbase＋専用石の順方向行とMega→baseの逆方向行を追加し、既存Mega 80行を保持した。通常戦では既存project mechanic modeとMega Ring 580の両gate、Frontier／Linkでは既存のRing例外を継承する。交代時はMega維持、ひんし時はbaseへ戻る一方で使用済み状態を維持し、蘇生後の再Megaを拒否する。新Ability効果はStage72所有のためP04は未完了。Browt／Pombon／GecquaはID・素材・runtimeを予約しない`NON_ADOPTED_USER_SCOPE`のまま。
 - フラエッテ（えいえんのはな）のメガ前形態は既存Species ID 1029／`FORM_KEY_FLOETTE_ETERNAL`として実装済み。Stage69でMega Ring所持時にLv.50個体を1save1回受け取るNPCをmap `96/5` local 15 `(25,19)`へ追加し、手持ち→PCの順で配布する。実ROMで手持ち受取と手持ち6体時のPC受取、Species 1029／Lv.50／flag `0x14CD`／National 670の既存collection bit 850をPASS。手持ち／PC全満、save失敗rollback、fresh-core再読込の最終実ROM gateはhost PASS・exact pendingと明示し、release条件に過大表示しない。
 - 詳細と再開順は`design/modernization_handoff.md`、機械可読candidate chainは`config/modernization_candidate.json`、統合完了境界は`content/modernization/p08_integration_matrix.json`を正とする。
 

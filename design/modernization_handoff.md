@@ -11,8 +11,8 @@
 - P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSしたが、通常UI cancel、bag、scene後特性/form、save/reloadを含む全受入は未完了。
 - P03はStage66 bulkを継承し、Stage67 consumer checkpointまで進んだ。Stage67 ROM SHA-256は`13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32は`D94758FF`。core checkpoint commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
-- P04のSpecies固定表checkpointはStage70まで進んだ。Mega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumerを接続。Ability固定4表も318行へ広げた。Stage70 ROM SHA-256は`5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`、CRC32は`301238C1`。P08のselected candidateへは未統合である。
-- P04〜P08は依然として未完了。Stage70は49 Mega本体の表と素材までのcheckpointで、base+石の順逆対応・戦闘変化・新Ability効果はrelease readyではない。P01以外をDONEと扱わない。
+- P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。P08のselected candidateへは未統合である。
+- P04〜P08は依然として未完了。Stage71は49 Megaの順逆表と既存engine契約までのcheckpointで、新Ability効果と最終累積mGBAはrelease readyではない。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
 
@@ -34,6 +34,8 @@
 - フラエッテ（えいえんのはな）のメガシンカ前形態は追加IDではなく、既存Species ID 1029／`FORM_KEY_FLOETTE_ETERNAL`を使う。Stage69でmap `96/5` local 15のNPCからMega Ring所持時にLv.50を1save1回配布する経路を追加した。手持ちとPC受取、form flag `0x14CD`、National 670の既存collection bit 850はexact ROMでPASS。全満・rollback・fresh reloadはhost PASSのみで、exact release gateはpending。
 - Stage68はmap `96/5` local 14に既存Factory BPと分離した専用店員を追加。45石全て16 BP、Mega Ring 580で解禁、`0x14A0..0x14CC`の個別flagで1save1回購入とする。Item表を999→1044行へ拡張し、CFRUの12 consumerで1043受理／1044拒否を保証した。exact mGBAは代表3石、保存・fresh reload・二重購入拒否、BP不足／bag満杯無変更をPASS。
 - Stage70は1形態の縦切り後に49形態を展開し、front／back／palette／shiny／iconを含む28固定表を再配置した。既存Species 0〜1620とFloette Eternal 1029は全対象表でbyte一致。evolution表は`0x094FE8E0`、1,670×128 bytes、39ポインターconsumerとし、新49行はStage71所有のzero予約。Ability descriptionの`root >> 2`派生参照3コピーと312上限3コピーも318行へ再接続した。
+- Stage71は同じevolution表へ49件のbase＋専用Mega Stoneの順方向行と49件のMega→base逆方向行を追加した。既存Mega 80行はbyte保持し、98行の許可784 bytes中383 bytesだけを変更、許可外変更0。Stage70 allocation #73の全850,544-byte slice hashだけを更新し、非対象73 allocationのledgerとROM sliceは不変、overlap 0。
+- Mega可否は既存実装の`project mechanic policy → mode別keystone → exact stone → usage mark`順を維持する。通常戦はMega mode設定後もMega Ring 580が必要、Frontier／Linkは既存Ring例外を使う。通常の同一ownerは1戦闘1回、交代ではMegaを維持、ひんしでは`TryFormRevert`によりbaseへ戻るがusage doneを維持するため蘇生後の再Megaは不可。Mega Brawlとproject側side-used gateの厳密な相互作用は、Stage72後の最終mGBA 1回へ保留する。
 - 外部source rootにlicense fileがないため、生成素材は`userfile/generated/modernization_p04_assets`のGit管理外・個人private利用限定。GitHub private environment bundleからも明示除外する。
 - Move固定表を増やさない34固定表の拡張見積りは616,521→636,378 bytes（+19,857、aligned bundle 636,392）。`integration_modules`残1,124,296 bytesだが、Item 1024以降の10-bit consumer、公開event 88→89 bit、legacy Ability u8、save item bitmap 125→131 bytes、全表relink/migrationは未実装。
 - 容量manifestのP04本体試算はStage65基準。Stage67の追加はP04の`integration_modules`候補と非重複で、`future_tail`末尾残量は62,510 bytes。
@@ -65,6 +67,8 @@ python3 scripts/build_modernization_p04_assets.py --check --compact
 python3 scripts/build_modernization_p04_capacity.py --check --compact
 python3 scripts/build_modernization_p04_species_runtime.py --check
 python3 -m unittest tests.test_modernization_p04_species_runtime
+python3 scripts/build_modernization_p04_mega_runtime.py --check
+python3 -m unittest tests.test_modernization_p04_mega_runtime
 python3 scripts/build_modernization_p05.py --check
 python3 scripts/build_modernization_p05_ability_runtime.py --check --compact
 python3 scripts/build_modernization_p07.py --check
@@ -80,8 +84,8 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 1. P02の未検証UIキャンセル・bag・scene後特性/form・save/reloadを実consumerで閉じる。
 2. P03の67,218選択済み保留経路をconsumer別に小分けし、供給方針と実ROM testを付けてStage67へ積み上げる。Side Change 159件は対象外のまま保持する。
-3. Stage70の49 Mega Species/Form固定表を入力に、Stage71でbase+石の49順逆Mega対応を実装する。戦闘中変化、交代、ひんし、終了、中断、save正規化を既存Megaとともに検証する。
-4. Ability 6件の固定表・効果／AI／UIをROMへlinkする。公式特性未判明の形態はreplacement key付き仮特性を使い、中央bindingで後から差し替える。新Move 1063は実装しない。
+3. Stage71の49順逆Mega対応を入力に、Ability 6件の効果／AI／UIをStage72 ROMへlinkする。公式特性未判明の形態はreplacement key付き仮特性を使い、中央bindingで後から差し替える。新Move 1063は実装しない。
+4. Stage72後の最終累積mGBAで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了と新Ability代表を1セットだけ検証する。
 5. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。
