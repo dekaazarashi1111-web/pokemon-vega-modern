@@ -4332,3 +4332,27 @@
   - 独立read-only最終監査はHigh／Mediumなし。重いmGBAは最終累積候補の1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal Stage74 ROM／tracked sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T03:37:01+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE76-EDGES` / P05安全edgeのStage76 ROM接続
+- Status: DONE（Stage76 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Mega SolのSolar charge時popup、Piercing DrillのAI予測Protect damage 1/4（最低1）、Spicy Sprayの意図的な味方発火評価を、pointer 1件＋hook 3件へ接続した。
+  - Detect→Protect正規化、Max Guard／Dynamax、実Protect二重quarter回避、direct／spread排他、planned protection／semi-invulnerable、Present／Future Sight／Doom Desire／Pollen Puff除外をfail closedで固定した。
+  - Eelevate専用switch AIはGround／Thousand Arrows／接地／Gravity／Mold Breaker／Ability Shieldを単純なAbility置換では保てないため、候補2 siteをStage75とbyte同一に保持して明示保留した。
+  - ROMは33,554,432 bytes、SHA-256 `f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac`、CRC32 `0A78B46A`。payloadは2,066 bytes、SHA-256 `c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e`。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62は不変。
+- Files changed:
+  - `config/modernization_p05_stage76_edges.json`
+  - `content/modernization/p05_stage76_edges_contract.json`、`content/modernization/p05_stage76_edges_checkpoint.json`
+  - `overlays/modernization_p05_stage76_edges/**`
+  - `tools/modernization_p05_stage76_edges.py`、`scripts/build_modernization_p05_stage76_edges.sh`
+  - `tests/test_modernization_p05_stage76_edges.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage76_edges`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage76_edges.py --check`: PASS。Stage75のcommit／5 identity、fixed function 8件、pointer 1件＋hook 3件、Eelevate不変2 site、allocation既存79行全field、payload実slice、5 allowlist区間外0を再照合した。
+  - incremental BPSは2,191 bytes、SHA-256 `f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810`、roundtrip PASS。独立runtime監査とartifact／byte監査はHigh／Medium／Lowなし。
+  - 重いmGBAはユーザー指定どおり最新累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage75 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

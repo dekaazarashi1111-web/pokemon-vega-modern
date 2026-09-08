@@ -1697,3 +1697,14 @@
   - 野生生成を追加RNGなしの決定的1/8、繁殖を1263／1670限定で接続し、既存Species／save layoutを保持した。
   - 38持越し経路のowner欠落を0にし、Browt／Pombon／GecquaとSide Changeの追加0、P03／release未完了を維持した。
 - Verify: focused unittest 12/12、Stage75 builder `--check`、10成果identity、BPS roundtrip、5 hook／ABI、24表／310 pointer／19 count consumer、allocation lineage、独立read-only監査High／Mediumなし PASS。ROM SHA-256 `a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`。mGBAは最終累積候補へ集約し未実行。
+
+## 2026-09-09T03:37:01+09:00
+
+- Version: `modernization-stage76-p05-edge-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P05-STAGE76-EDGES` / P05安全edgeのStage76 ROM接続
+- Summary:
+  - Mega SolのSolar charge popup、Piercing DrillのAI予測Protect 1/4、Spicy Sprayの味方発火AI評価を接続した。
+  - Detect／Max Guard／Dynamax、実Protect、Present／Future Sight／Doom Desire／Pollen Puffを含む誤評価境界をfail closedで固定した。
+  - Eelevate専用switch AIは意味を壊す近似を採らず保留し、Side Changeと追加対象外3種は0を維持した。
+- Verify: focused unittest 17/17、Stage76 builder `--check`、BPS roundtrip、pointer 1＋hook 3、fixed function 8、allocation lineage、allowlist外0、独立runtime／artifact監査High／Medium／Lowなし PASS。ROM SHA-256 `f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac`。mGBAは最終累積候補へ集約し未実行。

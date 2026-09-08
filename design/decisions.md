@@ -491,3 +491,20 @@
 - 完了境界: 24 Species表、310 pointer、19 count consumer、5 hookをStage75へ接続するが、
   最終累積mGBAまでは`full_p03_done=false`、release candidate falseとする。P08 selected candidate、
   active Stage62、iPad、save、Releaseはこのcheckpointでは変更しない。
+
+## 2026-09-09 — D-043: P05は安全に定義できる3 edgeだけをStage76へ接続する
+
+- 決定: Mega SolのSolar charge時popup、Piercing DrillのAI上の予測Protect 1/4 damage、
+  Spicy Sprayの意図的な味方発火評価をStage76へ実装する。新Move、Side Change、通常Species、
+  Browt／Pombon／Gecquaは追加しない。
+- Protect境界: Detect 197はProtect 182へ正規化して既存判定へ渡す。Max Guard 891と未選択時の
+  Dynamax予測は貫通対象にせず、実際にProtect中のdamageを二重に1/4化しない。
+- 味方発火境界: direct／spread評価は排他にし、実際に味方へ当たる即時damageだけを対象とする。
+  planned Protect／Detect／Max Guard、semi-invulnerable、Present、Future Sight／Doom Desire、
+  Pollen Puff、Substitute、KO、自己犠牲、回復系持ち物は保守的に除外する。
+- 保留: Eelevate 313をEarth Eater 298へ単純置換する方式は、Ground damage、Thousand Arrows、
+  接地、Gravity、Mold Breaker、Ability Shieldの意味を保てない。候補2 siteをStage75とbyte同一に
+  保ち、完全な文脈を扱える別checkpointまで`PENDING`とする。
+- 完了境界: pointer 1件＋hook 3件＋payload 2,066 bytesをStage76へ接続する。focused test、
+  builder check、独立runtime／artifact監査はPASSしたが、mGBAとP05全体は未完了、release-readyは
+  false、active baselineはStage62のままとする。
