@@ -104,24 +104,94 @@
           "size": 33554432
         },
         "stage": 69
+      },
+      {
+        "parent_stage": 69,
+        "role": "P04_SPECIES_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "301238C1",
+          "path": "build/stages/70_modernization_p04_species_runtime.gba",
+          "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+          "size": 33554432
+        },
+        "stage": 70
+      },
+      {
+        "parent_stage": 70,
+        "role": "P04_MEGA_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "426A7A7F",
+          "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+          "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+          "size": 33554432
+        },
+        "stage": 71
+      },
+      {
+        "parent_stage": 71,
+        "role": "P05_ABILITY_ROM_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "F981D1CB",
+          "path": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+          "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+          "size": 33554432
+        },
+        "stage": 72
+      },
+      {
+        "parent_stage": 72,
+        "role": "P03_FIVE_GROUP_CONSUMER_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "B4907165",
+          "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
+          "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+          "size": 33554432
+        },
+        "stage": 73
+      }
+    ],
+    "latest_incremental_bps": [
+      {
+        "patch": "build/stages/70_modernization_p04_species_runtime.bps",
+        "source": "build/stages/69_modernization_floette_gift.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/70_modernization_p04_species_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+        "source": "build/stages/70_modernization_p04_species_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/71_modernization_p04_mega_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+        "source": "build/stages/71_modernization_p04_mega_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/72_modernization_p05_ability_rom_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+        "source": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/73_modernization_p03_consumer_runtime.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 69,
-      "checkpoint_commit": null,
-      "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
+      "candidate_stage": 73,
+      "checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-      "parent_stage": 68,
+      "last_committed_checkpoint": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+      "parent_stage": 72,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 69,
+    "selected_checkpoint_stage": 73,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -203,33 +273,84 @@
       "level": 50,
       "mega_ring_gate_item_id": 580,
       "runtime_gate": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED"
+    },
+    "stage70_integrated": true,
+    "stage70_scope": {
+      "exact_mgba": false,
+      "existing_species_prefix_byte_exact": true,
+      "floette_eternal_species_id_1029_preserved": true,
+      "full_p04_done": false,
+      "mega_species_and_forms": 49,
+      "new_normal_species": 0,
+      "side_change_referenced": false
+    },
+    "stage71_integrated": true,
+    "stage71_scope": {
+      "exact_mgba": false,
+      "existing_mega_entries_preserved": 80,
+      "forward_entries_added": 49,
+      "full_p04_done": false,
+      "mega_form_battle_runtime_records": 49,
+      "reverse_entries_added": 49
+    },
+    "stage72_integrated": true,
+    "stage72_scope": {
+      "ability_count": 6,
+      "ability_ids": [
+        312,
+        313,
+        314,
+        315,
+        316,
+        317
+      ],
+      "battle_hook_count": 29,
+      "documented_ai_ui_edges_pending": 4,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "rom_linked": true
+    },
+    "stage73_integrated": true,
+    "stage73_scope": {
+      "browt_pombon_gecqua_materialized": 0,
+      "consumer_boundary_accounted_routes": 40570,
+      "cumulative_consumer_boundary_accounted_routes": 91721,
+      "cumulative_new_runtime_materialized_routes": 56514,
+      "existing_owner_accounted_routes": 35207,
+      "full_p03_done": false,
+      "hook_count": 3,
+      "machine_tutor_upstream_supply_dependency_routes": 23595,
+      "new_runtime_materialized_routes": 5363,
+      "prohibited_coercions_materialized": 0,
+      "remaining_direct_supply_routes": 26648,
+      "side_change_materialized": 0
     }
   },
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 33,
-        "sha256": "e5697e9142249be8ceb2aafe963411379cee26c0d79847d735fd77e389ad95a6"
+        "count": 49,
+        "sha256": "872a8c25e1ab4948ac2188bca17c759edf19bd26fdea6b887dbcd1403b384cbe"
       },
       "implementation_inputs": {
-        "count": 103,
-        "sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037"
+        "count": 133,
+        "sha256": "c21231f64d72efa842d513afae608b2f052797e1c80786769376be44d943d27a"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "d745c2874e774240d22730c553f699350f2f8e69ab008e17d8304b7fee1890e9"
+        "sha256": "efd6b8ac3c6817c88edda9e0aea5fefb8a4c1b18b8e26ea6fd0611c973221af7"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 51,
-        "sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed"
+        "count": 66,
+        "sha256": "e9a5d1fc9dfcb915c2f47ce80e69215a20e339e838973a2554ba549e0054175c"
       }
     },
-    "sha256": "f0e8e84d8ae2da7ca275f895e7d60ae6a360bad3a028a25296cda3ff7b52bbc1"
+    "sha256": "5423ea7e085beeb02eaa4e4d44ff8ce0bdd2b7da2370dbca36d16d0bcfaba640"
   },
   "phase_runtime": [
     {
@@ -266,7 +387,8 @@
     },
     {
       "blockers": [
-        "EVOLUTION_SCENE_CANCEL_BAG_MOVE_ABILITY_SAVE_RELOAD_NOT_RUN",
+        "EXACT_UI_ACCEPTANCE_PENDING",
+        "PRODUCTION_RUNTIME_UNJUDGED",
         "FULL_EVOLUTION_ACCEPTANCE_FALSE"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -295,6 +417,13 @@
         },
         {
           "evidence": [
+            "content/modernization/p02_stage71_acceptance_checkpoint.json"
+          ],
+          "gate": "STAGE71_EXACT_UI_ACCEPTANCE",
+          "status": "STOPPED_PRODUCTION_UNJUDGED"
+        },
+        {
+          "evidence": [
             "content/modernization/p02_stage64_checkpoint.json"
           ],
           "gate": "FULL_EVOLUTION_ACCEPTANCE",
@@ -310,10 +439,10 @@
     },
     {
       "blockers": [
-        "SELECTED_ROUTES_REMAINING_67218",
-        "MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
-        "FORM_CARRY_REMINDER_SHARED_SPECIAL_EGG_CONSUMERS_PENDING",
-        "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD_NOT_RUN"
+        "DIRECT_MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
+        "UPSTREAM_SUPPLY_DEPENDENCY_SUBSET_23595",
+        "ROTOM_FULL_USER_MOVESET_EFFECTLESS_UI_GUIDANCE_REMAINS",
+        "FINAL_CUMULATIVE_MGBA_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "phase": "P03",
@@ -356,6 +485,14 @@
         },
         {
           "evidence": [
+            "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+            "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
+          ],
+          "gate": "STAGE73_FIVE_GROUP_CONSUMER_RUNTIME",
+          "status": "STATIC_CONNECTED_MGBA_AND_SUPPLY_PENDING"
+        },
+        {
+          "evidence": [
             "config/modernization_adoption_decisions.json",
             "content/modernization/p03_runtime_handoff.json"
           ],
@@ -364,23 +501,22 @@
         },
         {
           "evidence": [
-            "content/modernization/p03_runtime_handoff.json",
-            "content/modernization/p03_stage66_bulk_route_audit.json"
+            "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
           ],
           "gate": "FULL_SELECTED_ROUTE_SUPPLY",
-          "status": "BLOCKED"
+          "status": "BLOCKED_26648_DIRECT_ROUTES"
         }
       ],
       "rom_reflection": {
+        "ancestor_stage": 67,
         "reflected": true,
-        "scope": "P02_OVERLAY_PLUS_EVOLUTION_TUTOR_NORMAL_EGG_CONSUMER_CHECKPOINT",
-        "stage": 67
+        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_CONSUMER_BOUNDARY",
+        "stage": 73
       }
     },
     {
       "blockers": [
-        "MEGA_FORM_SPECIES_TABLES_AND_BATTLE_TRANSFORMATION_LIFECYCLE_NOT_INTEGRATED",
-        "SIX_ABILITIES_NOT_ROM_LINKED",
+        "FINAL_CUMULATIVE_MEGA_RUNTIME_MGBA_NOT_RUN",
         "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -426,22 +562,31 @@
         },
         {
           "evidence": [
-            "content/modernization/p04_capacity_allocation_manifest.json"
+            "content/modernization/p04_species_runtime_checkpoint.json"
+          ],
+          "gate": "MEGA_FORM_SPECIES_RUNTIME",
+          "status": "PASS_STATIC_49_ROWS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_mega_runtime_checkpoint.json",
+            "content/modernization/p04_mega_runtime_mapping.json"
           ],
           "gate": "MEGA_FORM_BATTLE_RUNTIME",
-          "status": "BLOCKED"
+          "status": "PASS_STATIC_FORWARD_REVERSE_49_EXACT_MGBA_PENDING"
         }
       ],
       "rom_reflection": {
         "ancestor_stage": 68,
         "reflected": true,
-        "scope": "45_MEGA_STONE_BP_SHOP_PLUS_FLOETTE_ETERNAL_ACQUISITION_ONLY",
-        "stage": 69
+        "scope": "45_MEGA_STONE_BP_SHOP_FLOETTE_ETERNAL_ACQUISITION_49_MEGA_SPECIES_AND_BATTLE_ROWS",
+        "stage": 71
       }
     },
     {
       "blockers": [
-        "SIX_ABILITIES_ROM_LINK_FIXED_TABLE_TEXT_UI_MGBA_PENDING"
+        "ABILITY_EXACT_MGBA_NOT_RUN",
+        "FOUR_DOCUMENTED_AI_UI_EDGES_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "phase": "P05",
@@ -475,19 +620,21 @@
             "content/modernization/p05_ability_runtime_checkpoint.json"
           ],
           "gate": "P04_NEW_ABILITIES_HOST_RUNTIME",
-          "status": "PASS_46_CASES_X2_ROM_LINK_PENDING"
+          "status": "PASS_46_CASES_X2"
         },
         {
           "evidence": [
-            "content/modernization/p05_ability_runtime_checkpoint.json"
+            "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+            "content/modernization/p05_ability_rom_runtime_surface_matrix.json"
           ],
           "gate": "P04_NEW_ABILITIES_ROM_LINK",
-          "status": "BLOCKED"
+          "status": "PASS_STATIC_6_IDS_29_HOOKS"
         }
       ],
       "rom_reflection": {
-        "reflected": false,
-        "stage": null
+        "reflected": true,
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS",
+        "stage": 72
       }
     },
     {

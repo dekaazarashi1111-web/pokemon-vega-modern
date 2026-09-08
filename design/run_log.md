@@ -4239,3 +4239,25 @@
   - 独立read-only reviewはHigh／Mediumなし。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal ZIP／Stage72 ROMだけを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T22:02:45+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE73-INTEGRATION` / P08累積候補のStage73再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08のselected candidateをStage69からStage73へ更新し、Stage70 Species、Stage71 Mega、Stage72 Ability、Stage73 P03 consumerを固定入力・実装・artifact identityへ接続した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73の4 incremental BPSを実byteへexact applyし、Stage70特殊metadata schema、Stage70〜73 allocator lineage、Stage72親4 identity、Stage73 Pichu／Light Ball既存owner命令を再照合した。
+  - P03は新規runtime materialized累積56,514、既存owner 35,207、consumer境界accounted累積91,721、残る直接供給26,648を分離した。23,595のmachine／tutor依存は既存owner集合の部分集合として二重加算しない。
+  - inheritance ROM／role、BPS source／patch／target、release blocker全文、candidate patch path／size／source／target、Stage73 3 hook／table分離／除外値をfail closedにし、対応する改ざんtestを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS。固定入力、4 BPS exact apply、allocator lineage、生成3 handoffのbyte一致を再照合。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only reviewでHighなし。指摘されたallocator content hashとP08 mutation guardを補強した。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

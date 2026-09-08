@@ -424,3 +424,19 @@
   level／eggへの意味変換は0を維持する。machine 26,279＋tutor 369は未供給のため、Stage73を
   P03完了やrelease candidateとして扱わない。
 - 影響: Stage73、P03、Move Memory、Collection form service、P08、最終累積mGBA。
+
+## 2026-09-08 — D-039: P08の選択候補をStage73へ再固定しmaterializedとaccountedを分離する
+
+- 選択: P08の累積候補をStage73へ更新する。現行プレイ基準はStage62、完了工程はP01だけ、
+  P02〜P08は未完了、release-readyはfalseのままとする。
+- P03勘定: 新規runtime materializationは累積56,514経路、既存ownerを含むconsumer境界accountは
+  累積91,721経路とし、既存owner 35,207を新規供給へ重複計上しない。残る直接供給26,648のうち
+  23,595は既存owner経路のmachine／tutor上流依存でもあり、別枠加算しない。
+- 継承監査: Stage70〜73の4 incremental BPSをexact applyし、ROM／metadata／allocation、allocator
+  sequence 74〜76、既存ownerのcontent hashを固定する。Stage70→71の同owner payload更新だけは
+  旧新hashを個別固定する。
+- 未完了: P02 Stage71は`STOPPED_EXACT_UI_PENDING`／production `UNJUDGED`。P04は49 Mega runtime、
+  P05はAbility 6件＋29 hookまでROM接続済みだが、残る供給、明示AI／UI境界、最終累積mGBAを
+  blockerとして維持する。本checkpointでは重いmGBAを実行しない。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。

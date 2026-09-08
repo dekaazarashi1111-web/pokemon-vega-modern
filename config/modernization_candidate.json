@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+  "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE",
   "completed_through": "USER-MODERNIZATION-P01",
-  "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
+  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
   "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
@@ -12,9 +12,15 @@
     "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984",
     "stage66_checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
     "stage67_checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-    "stage68_checkpoint_commit": null,
-    "stage69_checkpoint_commit": null,
-    "uncommitted_checkpoint_identity": "EXACT_WORKTREE_ARTIFACTS_PINNED_BY_SIZE_SHA256"
+    "stage68_checkpoint_commit": "2a7197f6134509749da780aec61bf0db29147a0e",
+    "stage69_checkpoint_commit": "2a7197f6134509749da780aec61bf0db29147a0e",
+    "stage70_checkpoint_commit": "cc490045033b126c2b28f3b56c20432d8105287c",
+    "stage71_checkpoint_commit": "ee8062094f84fff42f529793cb95f09d2078ae33",
+    "stage72_checkpoint_commit": "bbab6b2e943186cf437a6dca90712c01f0319ded",
+    "stage73_checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+    "stage73_preflight_commit": "c2bb0afb26085a6815d5bd10a2d5b29db80f966d",
+    "p02_stage71_acceptance_commit": "ebc6fa00fe39a6c4a8d2d9fea13baf4eacf8faec",
+    "uncommitted_checkpoint_identity": null
   },
   "active_parent": {
     "stage": 62,
@@ -25,20 +31,20 @@
     "promotion_status": "UNCHANGED_NOT_PROMOTED"
   },
   "parent": {
-    "stage": 68,
-    "path": "build/stages/68_modernization_mega_shop.gba",
+    "stage": 72,
+    "path": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
     "size": 33554432,
-    "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
-    "crc32": "DAFDD099",
+    "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+    "crc32": "F981D1CB",
     "metadata": {
-      "path": "build/stages/68_modernization_mega_shop.json",
-      "size": 59479,
-      "sha256": "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e"
+      "path": "build/stages/72_modernization_p05_ability_rom_runtime.json",
+      "size": 15789,
+      "sha256": "d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f"
     },
     "allocation": {
-      "path": "build/stages/68_modernization_mega_shop_allocation.json",
-      "size": 41017,
-      "sha256": "f5e1745c9ebd9a12e7b84c02fb7d2ae6972b94e90f7c355f8e11f6dc22585d4b"
+      "path": "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json",
+      "size": 42769,
+      "sha256": "8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2"
     }
   },
   "p02_overlay_parent": {
@@ -52,30 +58,31 @@
     "retained_output_rom": false
   },
   "candidate": {
-    "stage": 69,
-    "label": "Modernization Mega Stone BP shop＋Floette Eternal acquisition checkpoint",
-    "path": "build/stages/69_modernization_floette_gift.gba",
+    "stage": 73,
+    "label": "Modernization Stage73 P03 five-group consumer runtime checkpoint",
+    "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
     "size": 33554432,
-    "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
-    "crc32": "4849DD0F",
+    "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+    "crc32": "B4907165",
     "metadata": {
-      "path": "build/stages/69_modernization_floette_gift.json",
-      "size": 14772,
-      "sha256": "1a375d8af0638cefe14a610505bd06ca22927a472e26573e9d783da62b14de66"
+      "path": "build/stages/73_modernization_p03_consumer_runtime.json",
+      "size": 5270,
+      "sha256": "c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887"
     },
     "allocation": {
-      "path": "build/stages/69_modernization_floette_gift_allocation.json",
-      "size": 41584,
-      "sha256": "a5be7b923d4cd09466b89ddd4482a2f56fac1b3660de91737e5590eb127ae265"
+      "path": "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
+      "size": 43959,
+      "sha256": "f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a"
     }
   },
   "patches": {
     "from_parent": {
-      "path": "build/stages/69_modernization_floette_gift.bps",
-      "size": 1849,
-      "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
-      "source_classification": "STAGE68_EXACT_ROM",
-      "source_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+      "size": 36300,
+      "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61",
+      "source_classification": "STAGE72_EXACT_ROM",
+      "source_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "target_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
       "round_trip": true
     },
     "stage67_to_stage68": {
@@ -84,6 +91,38 @@
       "sha256": "d360cfb630ae60f740f10d7cfcb25bfbefe7e0ff95a7ec1042d3c7998ea3952c",
       "source_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
       "target_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "round_trip": true
+    },
+    "stage68_to_stage69": {
+      "path": "build/stages/69_modernization_floette_gift.bps",
+      "size": 1849,
+      "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
+      "source_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "target_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "round_trip": true
+    },
+    "stage69_to_stage70": {
+      "path": "build/stages/70_modernization_p04_species_runtime.bps",
+      "size": 538759,
+      "sha256": "76c562226dcebcf970414faca190e9295df8120d6d8190986e30c7f4e4f20047",
+      "source_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "target_sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "round_trip": true
+    },
+    "stage70_to_stage71": {
+      "path": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+      "size": 979,
+      "sha256": "6c3a8877a25f17cd97977152bf90c401dea13f4f1cb20302eb9c0adbc889f487",
+      "source_sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "target_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "round_trip": true
+    },
+    "stage71_to_stage72": {
+      "path": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+      "size": 7635,
+      "sha256": "9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a",
+      "source_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "target_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
       "round_trip": true
     }
   },
@@ -139,6 +178,38 @@
       "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
       "changed_bytes_from_parent": 1960,
       "exact_runtime_gate": "PARTIAL_PASS_FULL_AND_FRESH_RELOAD_PENDING"
+    },
+    {
+      "stage": 70,
+      "task": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+      "state": "P04_SPECIES_RUNTIME_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "changed_bytes_from_parent": 818994,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_PENDING"
+    },
+    {
+      "stage": 71,
+      "task": "USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71",
+      "state": "P04_MEGA_RUNTIME_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "changed_bytes_from_parent": 383,
+      "exact_runtime_gate": "HOST_ORACLE_STATIC_MGBA_PENDING"
+    },
+    {
+      "stage": 72,
+      "task": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+      "state": "P05_ABILITY_ROM_RUNTIME_CHECKPOINT_NOT_P05_DONE",
+      "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "changed_bytes_from_parent": 7257,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_AND_AI_UI_EDGES_PENDING"
+    },
+    {
+      "stage": 73,
+      "task": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+      "state": "P03_CONSUMER_RUNTIME_CHECKPOINT_NOT_P03_DONE",
+      "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "changed_bytes_from_parent": 36585,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_AND_SUPPLY_PENDING"
     }
   ],
   "adopted_delta": {
@@ -151,7 +222,11 @@
       "p03_stage67_from_overlay": 46455,
       "stage67_from_stage66": 46515,
       "p04_stage68_from_stage67": 65821,
-      "p04_stage69_from_stage68": 1960
+      "p04_stage69_from_stage68": 1960,
+      "p04_stage70_from_stage69": 818994,
+      "p04_stage71_from_stage70": 383,
+      "p05_stage72_from_stage71": 7257,
+      "p03_stage73_from_stage72": 36585
     },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
@@ -216,6 +291,24 @@
       "selected_routes_remaining": 67218,
       "outside_declared_ranges": 0
     },
+    "p03_stage73_consumer_checkpoint": {
+      "consumer_boundary_accounted_routes": 40570,
+      "new_runtime_materialized_routes": 5363,
+      "existing_owner_accounted_routes": 35207,
+      "cumulative_new_runtime_materialized_routes": 56514,
+      "cumulative_consumer_boundary_accounted_routes": 91721,
+      "machine_tutor_upstream_supply_dependency_routes": 23595,
+      "hook_count": 3,
+      "remaining_direct_machine_routes": 26279,
+      "remaining_direct_tutor_routes": 369,
+      "remaining_direct_supply_routes": 26648,
+      "shared_egg_kept_out_of_normal_egg_table": true,
+      "reminder_kept_out_of_level_zero_rows": true,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "prohibited_coercions_materialized": 0,
+      "outside_declared_ranges": 0
+    },
     "p04_adoption_scope": {
       "mega_species_and_forms": 49,
       "new_normal_species": 0,
@@ -234,34 +327,59 @@
       "floette_eternal_gift_level": 50,
       "floette_eternal_exact_party_pc_delivery": true,
       "floette_eternal_exact_full_and_fresh_reload": false,
-      "mega_form_battle_runtime_materialized": false,
+      "mega_form_species_runtime_materialized": true,
+      "mega_form_battle_runtime_materialized": true,
+      "mega_form_battle_runtime_records": 49,
+      "mega_form_runtime_exact_mgba": false,
       "rom_materialized_scope": [
         "MEGA_STONE_ITEM_TABLES",
         "MEGA_STONE_BP_SHOP",
-        "FLOETTE_ETERNAL_ACQUISITION"
+        "FLOETTE_ETERNAL_ACQUISITION",
+        "MEGA_FORM_SPECIES_TABLES_AND_ASSETS",
+        "MEGA_EVOLUTION_FORWARD_REVERSE_ROWS",
+        "ABILITY_312_317_FIXED_TABLE_BINDINGS"
       ]
+    },
+    "p05_stage72_ability_runtime": {
+      "ability_ids": [312, 313, 314, 315, 316, 317],
+      "ability_count": 6,
+      "battle_hook_count": 29,
+      "rom_linked": true,
+      "exact_mgba": false,
+      "documented_ai_ui_edges_pending": 4
+    },
+    "p02_stage71_acceptance": {
+      "status": "STOPPED_EXACT_UI_PENDING",
+      "production_runtime": "UNJUDGED",
+      "exact_ui_acceptance": false,
+      "additional_mgba_deferred": true
     }
   },
   "checkpoints": {
     "p02": "CHECKPOINT_NOT_DONE",
-    "p03": "STAGE67_CONSUMER_CHECKPOINT_NOT_P03_DONE",
-    "p04_assets": "ASSETS_READY_STONES_AND_ACQUISITION_ROM_CHECKPOINT_MEGA_BATTLE_RUNTIME_REMAINS",
+    "p03": "STAGE73_FIVE_GROUP_CONSUMER_CHECKPOINT_NOT_P03_DONE",
+    "p04_assets": "ASSETS_READY_SPECIES_AND_MEGA_RUNTIME_CONNECTED_EXACT_MGBA_REMAINS",
     "p04_stage68_shop": "EXACT_RUNTIME_PASS_NOT_P04_DONE",
     "p04_stage69_floette": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_HOST_ONLY_NOT_P04_DONE",
-    "p05": "ABILITY_HOST_RUNTIME_VERIFIED_ROM_LINK_REMAINS",
+    "p04_stage70_species": "STATIC_RUNTIME_CONNECTED_MGBA_PENDING_NOT_P04_DONE",
+    "p04_stage71_mega": "FORWARD_REVERSE_RUNTIME_CONNECTED_MGBA_PENDING_NOT_P04_DONE",
+    "p05": "ABILITY_ROM_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_REMAIN",
+    "p05_stage72_ability": "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING_NOT_P05_DONE",
+    "p03_stage73_consumer": "FIVE_GROUP_CONSUMER_BOUNDARY_CONNECTED_SUPPLY_MGBA_PENDING_NOT_P03_DONE",
+    "p02_stage71_acceptance": "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
     "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
     "p07": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
     "p08": "CHECKPOINT_NOT_RELEASE_CANDIDATE"
   },
   "deferred": {
     "p02_full_runtime_acceptance": "UI_CANCEL_BAG_EVOLUTION_MOVE_SCENE_FORM_ABILITY_SAVE_RELOAD_NOT_RUN",
-    "p03_full_materialization": "67218_SELECTED_ROUTES_REMAIN",
+    "p03_full_materialization": "26648_DIRECT_MACHINE_TUTOR_SUPPLY_ROUTES_REMAIN_AND_23595_CARRY_ROUTES_DEPEND_ON_UPSTREAM_SUPPLY",
     "p03_machine_tutor_supply": "26648_MACHINE_TUTOR_ROUTES_REQUIRE_SUPPLY",
-    "p04_mega_form_battle_runtime": "49_MEGA_FORMS_BATTLE_TRANSFORMATION_LIFECYCLE_NOT_INTEGRATED",
+    "p04_mega_form_battle_runtime": "49_MEGA_FORMS_STATIC_AND_BATTLE_ROWS_CONNECTED_EXACT_MGBA_PENDING",
     "p04_palette_gaps": "RESOLVED_49_OF_49_GBA_PALETTES_READY_STAGING_ONLY",
     "p04_winds_waves_assets": "NOT_REQUIRED_3_USER_NON_ADOPTED_NO_ID_ASSET_OR_RUNTIME",
     "floette_eternal_base_acquisition": "SPECIES_ID_1029_LEVEL50_GIFT_STAGE69_PARTY_PC_EXACT_FULL_ROLLBACK_RELOAD_HOST_ONLY",
-    "p05_new_abilities": "6_HOST_RUNTIME_VERIFIED_ROM_LINK_REQUIRED",
+    "p05_new_abilities": "6_ROM_LINKED_STATIC_RUNTIME_EXACT_MGBA_AND_FOUR_AI_UI_EDGES_PENDING",
     "p06_species_adjustments": "NO_SUBMITTED_ADOPTED_DELTA",
     "p07_cross_distribution": "NO_SUBMITTED_ADOPTED_DELTA",
     "restoration_review_candidates": "REVIEW_ONLY_NOT_APPLIED"

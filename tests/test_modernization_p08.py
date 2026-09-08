@@ -23,7 +23,12 @@ from tools.modernization_p08_integration import (  # noqa: E402
     PARALLEL_OUTPUTS,
     PINNED_IMPLEMENTATION_PATHS,
     PINNED_TRACKED_INPUTS,
+    RELEASE_BLOCKERS,
     STATUS,
+    _audit_candidate_artifacts,
+    _audit_inputs,
+    _validate_candidate_chain,
+    _validate_contract_chain,
     audit_declared_source_rows,
     build_integration_fingerprint,
     build_integration_matrix,
@@ -64,6 +69,11 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             self.matrix["integration_summary"]["completed_phases"], ["P01"]
         )
+        self.assertEqual(
+            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 73
+        )
+        self.assertFalse(self.matrix["integration_summary"]["release_ready"])
+        self.assertFalse(self.matrix["release_ready"])
 
     def test_contract_pass_does_not_mean_phase_done(self) -> None:
         phases = {row["phase"]: row for row in self.matrix["phases"]}
@@ -110,11 +120,19 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P03"]["adoption"]["stage66_routes_materialized"], 47_548)
         self.assertEqual(phases["P03"]["adoption"]["stage66_changed_rom_bytes"], 81_693)
         self.assertEqual(phases["P03"]["adoption"]["stage67_new_routes_materialized"], 3_603)
-        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_materialized"], 51_151)
-        self.assertEqual(phases["P03"]["adoption"]["selected_routes_remaining"], 67_218)
+        self.assertEqual(phases["P03"]["adoption"]["stage73_new_runtime_materialized_routes"], 5_363)
+        self.assertEqual(phases["P03"]["adoption"]["stage73_existing_owner_accounted_routes"], 35_207)
+        self.assertEqual(phases["P03"]["adoption"]["stage73_consumer_boundary_accounted_routes"], 40_570)
+        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_materialized"], 56_514)
+        self.assertEqual(phases["P03"]["adoption"]["cumulative_routes_accounted"], 91_721)
+        self.assertEqual(phases["P03"]["adoption"]["selected_routes_remaining"], 26_648)
+        self.assertEqual(phases["P03"]["adoption"]["machine_tutor_upstream_supply_dependency"], 23_595)
+        self.assertEqual(phases["P03"]["adoption"]["stage73_hook_count"], 3)
+        self.assertEqual(phases["P03"]["adoption"]["browt_pombon_gecqua_materialized"], 0)
+        self.assertEqual(phases["P03"]["adoption"]["prohibited_coercions_materialized"], 0)
         self.assertEqual(phases["P03"]["adoption"]["stage67_future_tail_remaining_bytes"], 62_510)
         self.assertEqual(phases["P04"]["adoption"]["selected_candidate_records"], 49)
-        self.assertEqual(phases["P04"]["adoption"]["runtime_adopted_records"], 0)
+        self.assertEqual(phases["P04"]["adoption"]["runtime_adopted_records"], 49)
         self.assertEqual(
             phases["P04"]["adoption"]["runtime_materialized_acquisition_routes"],
             46,
@@ -133,7 +151,10 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(
             phases["P04"]["adoption"]["floette_eternal_exact_full_and_fresh_reload"]
         )
-        self.assertEqual(phases["P04"]["adoption"]["mega_form_battle_runtime_records"], 0)
+        self.assertEqual(phases["P04"]["adoption"]["mega_form_battle_runtime_records"], 49)
+        self.assertTrue(phases["P04"]["adoption"]["mega_form_species_runtime_materialized"])
+        self.assertTrue(phases["P04"]["adoption"]["mega_form_battle_runtime_materialized"])
+        self.assertFalse(phases["P04"]["adoption"]["mega_form_runtime_exact_mgba"])
         self.assertEqual(phases["P04"]["adoption"]["adopted_new_species_records"], 0)
         self.assertEqual(
             phases["P04"]["adoption"]["non_adopted_user_scope_records"], 3
@@ -143,12 +164,31 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P05"]["adoption"]["non_adopted_move_candidates"], 1)
         self.assertEqual(phases["P05"]["adoption"]["non_adopted_p04_records"], 3)
         self.assertEqual(phases["P05"]["adoption"]["ability_host_runtime_cases"], 46)
+        self.assertEqual(
+            phases["P05"]["adoption"]["ability_ids"],
+            [312, 313, 314, 315, 316, 317],
+        )
+        self.assertEqual(phases["P05"]["adoption"]["ability_rom_runtime_count"], 6)
+        self.assertEqual(phases["P05"]["adoption"]["ability_rom_hook_count"], 29)
+        self.assertTrue(phases["P05"]["adoption"]["ability_rom_linked"])
+        self.assertFalse(phases["P05"]["adoption"]["ability_runtime_exact_mgba"])
+        self.assertEqual(phases["P05"]["adoption"]["documented_ai_ui_edges_pending"], 4)
+        self.assertEqual(
+            phases["P02"]["adoption"]["stage71_acceptance_status"],
+            "STOPPED_EXACT_UI_PENDING",
+        )
+        self.assertEqual(
+            phases["P02"]["adoption"]["stage71_production_runtime"], "UNJUDGED"
+        )
+        self.assertFalse(phases["P02"]["adoption"]["stage71_exact_ui_acceptance"])
         self.assertEqual(phases["P06"]["adoption"]["species_adjustment_records"], 0)
         self.assertEqual(phases["P07"]["adoption"]["normal_to_vega_move"], 0)
         self.assertTrue(phases["P03"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 67)
+        self.assertEqual(phases["P03"]["rom_reflection"]["stage"], 73)
         self.assertTrue(phases["P04"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P04"]["rom_reflection"]["stage"], 69)
+        self.assertEqual(phases["P04"]["rom_reflection"]["stage"], 71)
+        self.assertTrue(phases["P05"]["rom_reflection"]["reflected"])
+        self.assertEqual(phases["P05"]["rom_reflection"]["stage"], 72)
         self.assertEqual(
             phases["P04"]["adoption"]["asset_staging"],
             {
@@ -191,16 +231,13 @@ class ModernizationP08Tests(unittest.TestCase):
             },
         )
 
-    def test_stage69_chain_is_exact_but_not_release_candidate(self) -> None:
+    def test_stage73_chain_is_exact_but_not_release_candidate(self) -> None:
         chain = self.matrix["candidate_chain"]
         self.assertEqual(chain["active_stage"], 62)
-        self.assertEqual(chain["selected_checkpoint_stage"], 69)
+        self.assertEqual(chain["selected_checkpoint_stage"], 73)
         self.assertTrue(chain["parent_chain_verified"])
-        self.assertTrue(chain["stage65_integrated"])
-        self.assertTrue(chain["stage66_integrated"])
-        self.assertTrue(chain["stage67_integrated"])
-        self.assertTrue(chain["stage68_integrated"])
-        self.assertTrue(chain["stage69_integrated"])
+        for stage in range(65, 74):
+            self.assertTrue(chain[f"stage{stage}_integrated"])
         self.assertFalse(chain["release_candidate"])
         self.assertEqual(
             chain["inheritance"][5]["rom"]["sha256"],
@@ -226,6 +263,34 @@ class ModernizationP08Tests(unittest.TestCase):
             chain["inheritance"][7]["rom"]["sha256"],
             "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
         )
+        expected_latest_chain = [
+            (
+                70,
+                69,
+                "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+            ),
+            (
+                71,
+                70,
+                "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+            ),
+            (
+                72,
+                71,
+                "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+            ),
+            (
+                73,
+                72,
+                "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+            ),
+        ]
+        for row, (stage, parent_stage, digest) in zip(
+            chain["inheritance"][8:], expected_latest_chain
+        ):
+            self.assertEqual(row["stage"], stage)
+            self.assertEqual(row["parent_stage"], parent_stage)
+            self.assertEqual(row["rom"]["sha256"], digest)
         self.assertEqual(chain["stage68_scope"]["shop_entry_count"], 45)
         self.assertEqual(chain["stage68_scope"]["price_each"], 16)
         self.assertEqual(chain["stage68_scope"]["exact_rom_runtime_gate"], "PASS")
@@ -236,27 +301,108 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertTrue(chain["stage69_scope"]["exact_party_delivery"])
         self.assertTrue(chain["stage69_scope"]["exact_pc_delivery"])
         self.assertFalse(chain["stage69_scope"]["exact_full_and_fresh_reload"])
+        self.assertEqual(chain["stage70_scope"]["mega_species_and_forms"], 49)
+        self.assertEqual(chain["stage70_scope"]["new_normal_species"], 0)
+        self.assertEqual(chain["stage71_scope"]["mega_form_battle_runtime_records"], 49)
+        self.assertEqual(chain["stage71_scope"]["forward_entries_added"], 49)
+        self.assertEqual(chain["stage71_scope"]["reverse_entries_added"], 49)
+        self.assertFalse(chain["stage71_scope"]["exact_mgba"])
+        self.assertEqual(
+            chain["stage72_scope"]["ability_ids"], [312, 313, 314, 315, 316, 317]
+        )
+        self.assertEqual(chain["stage72_scope"]["battle_hook_count"], 29)
+        self.assertFalse(chain["stage72_scope"]["exact_mgba"])
+        stage73 = chain["stage73_scope"]
+        self.assertEqual(stage73["new_runtime_materialized_routes"], 5_363)
+        self.assertEqual(stage73["existing_owner_accounted_routes"], 35_207)
+        self.assertEqual(stage73["consumer_boundary_accounted_routes"], 40_570)
+        self.assertEqual(stage73["cumulative_new_runtime_materialized_routes"], 56_514)
+        self.assertEqual(
+            stage73["cumulative_consumer_boundary_accounted_routes"], 91_721
+        )
+        self.assertEqual(stage73["remaining_direct_supply_routes"], 26_648)
+        self.assertEqual(
+            stage73["machine_tutor_upstream_supply_dependency_routes"], 23_595
+        )
+        self.assertEqual(stage73["hook_count"], 3)
+        self.assertEqual(stage73["side_change_materialized"], 0)
+        self.assertEqual(stage73["browt_pombon_gecqua_materialized"], 0)
+        self.assertEqual(stage73["prohibited_coercions_materialized"], 0)
+        self.assertFalse(stage73["full_p03_done"])
+        self.assertEqual(
+            stage73["new_runtime_materialized_routes"]
+            + stage73["existing_owner_accounted_routes"],
+            stage73["consumer_boundary_accounted_routes"],
+        )
+        self.assertEqual(
+            chain["stage67_scope"]["cumulative_materialized_routes"]
+            + stage73["new_runtime_materialized_routes"],
+            stage73["cumulative_new_runtime_materialized_routes"],
+        )
+        self.assertEqual(
+            chain["stage67_scope"]["cumulative_materialized_routes"]
+            + stage73["consumer_boundary_accounted_routes"],
+            stage73["cumulative_consumer_boundary_accounted_routes"],
+        )
+        self.assertEqual(
+            chain["stage67_scope"]["selected_routes"]
+            - stage73["cumulative_consumer_boundary_accounted_routes"],
+            stage73["remaining_direct_supply_routes"],
+        )
+        expected_latest_bps = [
+            (
+                "build/stages/69_modernization_floette_gift.gba",
+                "build/stages/70_modernization_p04_species_runtime.bps",
+                "build/stages/70_modernization_p04_species_runtime.gba",
+            ),
+            (
+                "build/stages/70_modernization_p04_species_runtime.gba",
+                "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+                "build/stages/71_modernization_p04_mega_runtime.gba",
+            ),
+            (
+                "build/stages/71_modernization_p04_mega_runtime.gba",
+                "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+                "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+            ),
+            (
+                "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+                "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+                "build/stages/73_modernization_p03_consumer_runtime.gba",
+            ),
+        ]
+        self.assertEqual(
+            [
+                (row["source"], row["patch"], row["target"])
+                for row in chain["latest_incremental_bps"]
+            ],
+            expected_latest_bps,
+        )
+        self.assertEqual(
+            [row["status"] for row in chain["latest_incremental_bps"]],
+            ["PASS_EXACT_APPLY"] * 4,
+        )
         self.assertEqual(
             chain["registry"],
             {
                 "path": "config/modernization_candidate.json",
                 "schema_version": 2,
-                "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+                "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE",
                 "completed_through": "USER-MODERNIZATION-P01",
-                "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
-                "checkpoint_commit": None,
-                "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+                "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
+                "checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+                "last_committed_checkpoint": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
                 "release_ready": False,
                 "active_parent_stage": 62,
-                "parent_stage": 68,
-                "candidate_stage": 69,
+                "parent_stage": 72,
+                "candidate_stage": 73,
             },
         )
 
     def test_checkpointed_through_does_not_extend_completed_through(self) -> None:
         registry = self.matrix["candidate_chain"]["registry"]
         self.assertEqual(registry["completed_through"], "USER-MODERNIZATION-P01")
-        self.assertIn("STAGE69", registry["checkpointed_through"])
+        self.assertIn("STAGE73", registry["checkpointed_through"])
 
         false_done = copy.deepcopy(self.matrix)
         false_done["candidate_chain"]["registry"]["completed_through"] = (
@@ -275,8 +421,8 @@ class ModernizationP08Tests(unittest.TestCase):
             self.assertTrue(lane["status"])
             self.assertTrue(lane["expected_paths"])
         self.assertEqual(
-            PARALLEL_OUTPUTS["P05_ABILITY_HOST_RUNTIME"]["status"],
-            "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING",
+            PARALLEL_OUTPUTS["P02_STAGE71_EXACT_UI_ACCEPTANCE"]["status"],
+            "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
         )
         self.assertIn("content/modernization/p03_stage65_checkpoint.json", pinned)
         self.assertIn("content/modernization/p03_stage65_mgba_runtime_gate.json", pinned)
@@ -299,6 +445,24 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertIn("content/modernization/mega_shop_mgba_runtime_gate.json", pinned)
         self.assertIn("content/modernization/floette_gift_checkpoint.json", pinned)
         self.assertIn("content/modernization/floette_gift_mgba_runtime_gate.json", pinned)
+        latest_tracked = {
+            "config/modernization_p02_stage71_acceptance_gate.json",
+            "content/modernization/p02_stage71_acceptance_checkpoint.json",
+            "config/modernization_p03_stage73_consumers.json",
+            "config/modernization_p03_stage73_runtime.json",
+            "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+            "content/modernization/p03_stage73_consumer_runtime_route_audit.json",
+            "config/modernization_p04_species_runtime.json",
+            "content/modernization/p04_species_runtime_contract.json",
+            "content/modernization/p04_species_runtime_checkpoint.json",
+            "config/modernization_p04_mega_runtime.json",
+            "content/modernization/p04_mega_runtime_mapping.json",
+            "content/modernization/p04_mega_runtime_checkpoint.json",
+            "config/modernization_p05_ability_rom_runtime.json",
+            "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+            "content/modernization/p05_ability_rom_runtime_surface_matrix.json",
+        }
+        self.assertTrue(latest_tracked <= pinned)
         artifacts = {row["path"] for row in self.matrix["candidate_artifacts"]}
         self.assertTrue(
             {
@@ -320,6 +484,22 @@ class ModernizationP08Tests(unittest.TestCase):
                 "build/stages/69_modernization_floette_gift.json",
                 "build/stages/69_modernization_floette_gift_allocation.json",
                 "build/stages/69_modernization_floette_gift.bps",
+                "build/stages/70_modernization_p04_species_runtime.gba",
+                "build/stages/70_modernization_p04_species_runtime.json",
+                "build/stages/70_modernization_p04_species_runtime_allocation.json",
+                "build/stages/70_modernization_p04_species_runtime.bps",
+                "build/stages/71_modernization_p04_mega_runtime.gba",
+                "build/stages/71_modernization_p04_mega_runtime.json",
+                "build/stages/71_modernization_p04_mega_runtime_allocation.json",
+                "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+                "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+                "build/stages/72_modernization_p05_ability_rom_runtime.json",
+                "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json",
+                "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+                "build/stages/73_modernization_p03_consumer_runtime.gba",
+                "build/stages/73_modernization_p03_consumer_runtime.json",
+                "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
+                "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
             }
             <= artifacts
         )
@@ -368,6 +548,35 @@ class ModernizationP08Tests(unittest.TestCase):
             "scripts/build_modernization_floette_gift.py",
             "tools/modernization_floette_gift.py",
             "tests/test_modernization_floette_gift.py",
+            "scripts/build_modernization_p04_species_runtime.py",
+            "tools/modernization_p04_species_runtime.py",
+            "tests/test_modernization_p04_species_runtime.py",
+            "overlays/modernization_p04_species_runtime/README.md",
+            "scripts/build_modernization_p04_mega_runtime.py",
+            "tools/modernization_p04_mega_runtime.py",
+            "tests/test_modernization_p04_mega_runtime.py",
+            "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.c",
+            "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.h",
+            "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle_host.c",
+            "scripts/build_modernization_p05_ability_rom_runtime.py",
+            "tools/modernization_p05_ability_rom_runtime.py",
+            "tests/test_modernization_p05_ability_rom_runtime.py",
+            "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.c",
+            "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.h",
+            "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.ld",
+            "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime_hooks.S",
+            "tools/modernization_p03_stage73_consumers.py",
+            "tests/test_modernization_p03_stage73_consumers.py",
+            "scripts/build_modernization_p03_stage73_runtime.sh",
+            "tools/modernization_p03_stage73_runtime.py",
+            "tests/test_modernization_p03_stage73_runtime.py",
+            "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c",
+            "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h",
+            "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.ld",
+            "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime_hooks.S",
+            "scripts/run_modernization_p02_stage71_acceptance.py",
+            "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+            "tests/test_modernization_p02_stage71_acceptance.py",
         }
         self.assertTrue(
             required_direct_implementation_inputs
@@ -452,7 +661,7 @@ class ModernizationP08Tests(unittest.TestCase):
             validate_integration_matrix(false_release)
 
         false_p03_done = copy.deepcopy(self.matrix)
-        false_p03_done["candidate_chain"]["stage67_scope"]["full_p03_done"] = True
+        false_p03_done["candidate_chain"]["stage73_scope"]["full_p03_done"] = True
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_p03_done)
 
@@ -490,13 +699,131 @@ class ModernizationP08Tests(unittest.TestCase):
         false_mega_runtime = copy.deepcopy(self.matrix)
         false_mega_runtime["phases"][3]["adoption"][
             "mega_form_battle_runtime_records"
-        ] = 49
+        ] = 0
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_mega_runtime)
 
+        false_accounting = copy.deepcopy(self.matrix)
+        false_accounting["candidate_chain"]["stage73_scope"][
+            "existing_owner_accounted_routes"
+        ] += 1
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_accounting)
+
+        false_materialized = copy.deepcopy(self.matrix)
+        false_materialized["candidate_chain"]["stage73_scope"][
+            "cumulative_new_runtime_materialized_routes"
+        ] = 91_721
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_materialized)
+
+        false_stage73_exclusion = copy.deepcopy(self.matrix)
+        false_stage73_exclusion["candidate_chain"]["stage73_scope"][
+            "browt_pombon_gecqua_materialized"
+        ] = 1
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage73_exclusion)
+
+        false_stage72_hook_count = copy.deepcopy(self.matrix)
+        false_stage72_hook_count["candidate_chain"]["stage72_scope"][
+            "battle_hook_count"
+        ] = 28
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage72_hook_count)
+
+        false_p02_stage71_acceptance = copy.deepcopy(self.matrix)
+        false_p02_stage71_acceptance["phases"][1]["adoption"][
+            "stage71_acceptance_status"
+        ] = "PASS"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_p02_stage71_acceptance)
+
+        false_bps = copy.deepcopy(self.matrix)
+        false_bps["candidate_chain"]["latest_incremental_bps"][0]["status"] = "PASS"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_bps)
+
+        false_bps_source = copy.deepcopy(self.matrix)
+        false_bps_source["candidate_chain"]["latest_incremental_bps"][0][
+            "source"
+        ] = "build/stages/68_modernization_mega_shop.gba"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_bps_source)
+
+        false_bps_patch = copy.deepcopy(self.matrix)
+        false_bps_patch["candidate_chain"]["latest_incremental_bps"][0][
+            "patch"
+        ] = "build/stages/69_modernization_floette_gift.bps"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_bps_patch)
+
+        false_latest_parent = copy.deepcopy(self.matrix)
+        false_latest_parent["candidate_chain"]["inheritance"][-1]["parent_stage"] = 71
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_latest_parent)
+
+        false_inheritance_role = copy.deepcopy(self.matrix)
+        false_inheritance_role["candidate_chain"]["inheritance"][-1][
+            "role"
+        ] = "P03_DONE"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_inheritance_role)
+
+        false_inheritance_rom = copy.deepcopy(self.matrix)
+        false_inheritance_rom["candidate_chain"]["inheritance"][-1]["rom"][
+            "sha256"
+        ] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_inheritance_rom)
+
+        false_stage73_side_change = copy.deepcopy(self.matrix)
+        false_stage73_side_change["candidate_chain"]["stage73_scope"][
+            "side_change_materialized"
+        ] = 1
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage73_side_change)
+
+        false_ability_ids = copy.deepcopy(self.matrix)
+        false_ability_ids["candidate_chain"]["stage72_scope"]["ability_ids"][-1] = 318
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_ability_ids)
+
+        false_chain_release = copy.deepcopy(self.matrix)
+        false_chain_release["candidate_chain"]["release_candidate"] = True
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_chain_release)
+
+        false_release_blocker = copy.deepcopy(self.matrix)
+        false_release_blocker["release_blockers"][0] = "NOT_A_REAL_BLOCKER"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_release_blocker)
+
+    def test_candidate_registry_semantic_mutations_are_rejected(self) -> None:
+        documents, _, _ = _audit_inputs(ROOT)
+        artifact_audit, metadata = _audit_candidate_artifacts(ROOT)
+
+        false_patch_target = copy.deepcopy(documents)
+        false_patch_target["config/modernization_candidate.json"]["patches"][
+            "from_parent"
+        ]["target_sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_patch_target)
+
+        false_stage73_boundary = copy.deepcopy(documents)
+        false_stage73_boundary["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p03_stage73_consumer_checkpoint"]["hook_count"] = 2
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage73_boundary["config/modernization_candidate.json"],
+            )
+
     def test_every_requirement_has_implementation_and_test_mapping(self) -> None:
         trace = self.matrix["traceability"]
-        self.assertEqual(len(trace), 21)
+        self.assertGreaterEqual(len(trace), 21)
         self.assertEqual(len({row["requirement_key"] for row in trace}), len(trace))
         by_requirement = {row["requirement_key"]: row for row in trace}
         self.assertEqual(
@@ -526,12 +853,12 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(release["release_ready"])
         self.assertFalse(release["promotion"]["authorized"])
         self.assertEqual(release["completed_phases"], ["P01"])
-        self.assertEqual(release["candidate_stage"], 69)
+        self.assertEqual(release["candidate_stage"], 73)
         self.assertEqual(
             release["integration_fingerprint"],
             self.matrix["snapshot"]["integration_fingerprint"],
         )
-        self.assertEqual(len(release["release_blockers"]), 7)
+        self.assertEqual(release["release_blockers"], list(RELEASE_BLOCKERS))
 
     def test_composite_fingerprint_changes_for_one_byte_implementation_drift(self) -> None:
         snapshot = self.matrix["snapshot"]

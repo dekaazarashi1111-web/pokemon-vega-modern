@@ -9,10 +9,10 @@
 - 現行プレイ基準はStage62のまま。開発中の最大StageをiPad、通常save、Codex対戦へ自動採用しない。
 - P01はDONE。Stage63はEgg 412／Caterpie 649の意味逆転をstable keyで修復し、ROM SHA-256は`6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`。
 - P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSした。Stage71累積ROMの全受入は2回とも通常UIの製品判定前にハーネス側で停止したため、production runtimeを`UNJUDGED`、全受入をpendingに保った。次回は既知正常saveをprocess別に私有コピーし、通常Continueでinput-ready fieldへ到達後だけfixtureを置くハーネスを使う。追加mGBAはStage72後の累積runへ集約する。
-- P03はStage66/67 bulkを継承し、Stage73 consumer runtime checkpointまで進んだ。Stage73はStage72 commit `bbab6b2e943186cf437a6dca90712c01f0319ded`と4 artifact identityへfail closedで固定し、条件付きegg／shared egg／reminder／ロトムform moveを3 hookで接続した。ROM SHA-256は`25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32は`B4907165`。P08のselected candidateへは未統合である。
+- P03はStage66/67 bulkを継承し、Stage73 consumer runtime checkpointまで進んだ。Stage73はStage72 commit `bbab6b2e943186cf437a6dca90712c01f0319ded`と4 artifact identityへfail closedで固定し、条件付きegg／shared egg／reminder／ロトムform moveを3 hookで接続した。ROM SHA-256は`25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32は`B4907165`。P08のselected candidateへ統合済みである。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
-- P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。P08のselected candidateへは未統合である。
-- P05のAbility ROM checkpointはStage72まで進んだ。Ability 312〜317を6 Megaへ結合し、説明／rating／Mold表と29 battle hookを接続した。ROM SHA-256は`f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32は`F981D1CB`、変更7,257 bytes／許可7,436 bytes／許可外0。focused 15件とbuilder byte比較はPASS、mGBAは未実行である。
+- P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。Stage73までの継承chainとしてP08へ統合済みである。
+- P05のAbility ROM checkpointはStage72まで進んだ。Ability 312〜317を6 Megaへ結合し、説明／rating／Mold表と29 battle hookを接続した。ROM SHA-256は`f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32は`F981D1CB`、変更7,257 bytes／許可7,436 bytes／許可外0。focused 15件とbuilder byte比較はPASS、mGBAは未実行。Stage73の親としてP08へ統合済みである。
 - P04〜P08は依然として未完了。Stage73は5群consumer境界までのcheckpointで、machine／tutor直接供給26,648経路、Solar charge時popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect 1/4予測、Spicy Spray味方発火AI評価、最終累積mGBAはrelease readyではない。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
@@ -45,7 +45,7 @@
 ## P05〜P08の境界
 
 - P05の新Move要件は0件。Side Change／Ally Switch候補159経路は非採用decisionへ固定し、効果・AI・UI・アニメーション・save・習得を要求しない。技性能の提出済み採用差分は0。
-- 新Ability 6件はstable key順ID 312〜317とu16 ABIを固定し、発動／不発／抑制／複数対象／AI／save、Fairy 23／Stellar 24を含む46 caseを独立2 processのhost C runtimeでPASSした。Stage72では固定表、6 Mega form binding、日本語説明と28 battle hookをROMへ接続した。DragonizeのIon Deluge／Electrify順、Mega SolのUtility Umbrella回復・必要時だけのpopup・partner Flower Gift分離、EelevateのAbility Shield／visual記録済みItem／Future Sight partner bank、Piercing Drillの個人／side／Max guard、Spicy Sprayの元攻撃者解決まで静的に固定した。exact-ROM mGBAと明示したAI／Solar charge popup境界は未完了。
+- 新Ability 6件はstable key順ID 312〜317とu16 ABIを固定し、発動／不発／抑制／複数対象／AI／save、Fairy 23／Stellar 24を含む46 caseを独立2 processのhost C runtimeでPASSした。Stage72では固定表、6 Mega form binding、日本語説明と29 battle hookをROMへ接続した。DragonizeのIon Deluge／Electrify順、Mega SolのUtility Umbrella回復・必要時だけのpopup・partner Flower Gift分離、EelevateのAbility Shield／visual記録済みItem／Future Sight partner bank、Piercing Drillの個人／side／Max guard、Spicy Sprayの元攻撃者解決まで静的に固定した。exact-ROM mGBAと明示したAI／Solar charge popup境界は未完了。
 - 公式特性が不明な対象は、stable replacement key、`TEMPORARY_REPLACEABLE`、非公式表示guardを持つ仮特性14件として保持した。分類保留2件を含め、後から中央bindingだけを差し替えられる。
 - P06の提出済み種族調整差分は0、P07の追加習得差分も0。review-only資料を自動採用していない。
 - P08は上記checkpointのhash、生成実装、ignored ROM/BPS、evidence sourceを統合監査する。active baseline Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持する。
@@ -90,9 +90,8 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. Stage73のidentityをP08 integrationへ再pinし、active Stage62、P01のみDONE、release falseを維持したまま累積監査を更新する。
-2. 残るmachine 26,279／tutor 369の供給を別checkpointで実装し、P03の全route取得可能性を再評価する。
-3. その後の最新累積ROMで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表に加え、P02通常UI、Stage73 egg／Move Memory／ロトム保存を同じmGBAセットで検証する。
-4. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
+1. 残るmachine 26,279／tutor 369の供給を別checkpointで実装し、P03の全route取得可能性を再評価する。
+2. その後の最新累積ROMで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表に加え、P02通常UI、Stage73 egg／Move Memory／ロトム保存を同じmGBAセットで検証する。
+3. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。

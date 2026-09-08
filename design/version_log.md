@@ -1651,3 +1651,15 @@
   - 既存4技保持、form owner、Light Ball特殊繁殖の35,207経路を新規供給と分け、5群40,570経路をaccountした。
   - Side Changeと追加対象外3種を0に保ち、machine／tutor 26,648経路、専用AI、最終累積mGBAを未完了として残した。
 - Verify: focused unittest 9/9、Stage73 builder `check`、BPS roundtrip、3 hook ABI、capacity drop 0、allocator／allowlist、独立High／Medium review PASS。ROM SHA-256 `25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`。mGBAは未実行。
+
+## 2026-09-08T22:02:45+09:00
+
+- Version: `modernization-p08-stage73-integration-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P08-STAGE73-INTEGRATION` / P08累積候補のStage73再固定
+- Summary:
+  - P08をStage73へ再固定し、Stage70〜73のtracked入力、実装、ROM／metadata／allocation／BPSを統合した。
+  - materialized 56,514とexisting-owner込みaccounted 91,721を分離し、残るdirect supply 26,648を未完了に保持した。
+  - inheritance／BPS／release blocker／candidate patch／allocator lineageの改ざんguardを強化した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
+- Verify: focused unittest 17/17、P08 builder `--check`、4 BPS exact apply、task graph、private guard、`git diff --check` PASS。重いmGBAは未実行。

@@ -187,6 +187,90 @@
       "path": "build/stages/69_modernization_floette_gift.bps",
       "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
       "size": 1849
+    },
+    {
+      "crc32": "301238C1",
+      "path": "build/stages/70_modernization_p04_species_runtime.gba",
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/70_modernization_p04_species_runtime.json",
+      "sha256": "b2b58dda953398206002ccdc450853aacdf5975ff9cfb923db8fa99f13f840dc",
+      "size": 469965
+    },
+    {
+      "path": "build/stages/70_modernization_p04_species_runtime_allocation.json",
+      "sha256": "3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8",
+      "size": 42175
+    },
+    {
+      "path": "build/stages/70_modernization_p04_species_runtime.bps",
+      "sha256": "76c562226dcebcf970414faca190e9295df8120d6d8190986e30c7f4e4f20047",
+      "size": 538759
+    },
+    {
+      "crc32": "426A7A7F",
+      "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+      "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/71_modernization_p04_mega_runtime.json",
+      "sha256": "7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c",
+      "size": 30073
+    },
+    {
+      "path": "build/stages/71_modernization_p04_mega_runtime_allocation.json",
+      "sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf",
+      "size": 42175
+    },
+    {
+      "path": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+      "sha256": "6c3a8877a25f17cd97977152bf90c401dea13f4f1cb20302eb9c0adbc889f487",
+      "size": 979
+    },
+    {
+      "crc32": "F981D1CB",
+      "path": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+      "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/72_modernization_p05_ability_rom_runtime.json",
+      "sha256": "d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f",
+      "size": 15789
+    },
+    {
+      "path": "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json",
+      "sha256": "8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2",
+      "size": 42769
+    },
+    {
+      "path": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+      "sha256": "9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a",
+      "size": 7635
+    },
+    {
+      "crc32": "B4907165",
+      "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
+      "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/73_modernization_p03_consumer_runtime.json",
+      "sha256": "c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887",
+      "size": 5270
+    },
+    {
+      "path": "build/stages/73_modernization_p03_consumer_runtime_allocation.json",
+      "sha256": "f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a",
+      "size": 43959
+    },
+    {
+      "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+      "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61",
+      "size": 36300
     }
   ],
   "candidate_chain": {
@@ -279,24 +363,94 @@
           "size": 33554432
         },
         "stage": 69
+      },
+      {
+        "parent_stage": 69,
+        "role": "P04_SPECIES_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "301238C1",
+          "path": "build/stages/70_modernization_p04_species_runtime.gba",
+          "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+          "size": 33554432
+        },
+        "stage": 70
+      },
+      {
+        "parent_stage": 70,
+        "role": "P04_MEGA_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "426A7A7F",
+          "path": "build/stages/71_modernization_p04_mega_runtime.gba",
+          "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+          "size": 33554432
+        },
+        "stage": 71
+      },
+      {
+        "parent_stage": 71,
+        "role": "P05_ABILITY_ROM_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "F981D1CB",
+          "path": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+          "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+          "size": 33554432
+        },
+        "stage": 72
+      },
+      {
+        "parent_stage": 72,
+        "role": "P03_FIVE_GROUP_CONSUMER_RUNTIME_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "B4907165",
+          "path": "build/stages/73_modernization_p03_consumer_runtime.gba",
+          "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+          "size": 33554432
+        },
+        "stage": 73
+      }
+    ],
+    "latest_incremental_bps": [
+      {
+        "patch": "build/stages/70_modernization_p04_species_runtime.bps",
+        "source": "build/stages/69_modernization_floette_gift.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/70_modernization_p04_species_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+        "source": "build/stages/70_modernization_p04_species_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/71_modernization_p04_mega_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+        "source": "build/stages/71_modernization_p04_mega_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/72_modernization_p05_ability_rom_runtime.gba"
+      },
+      {
+        "patch": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+        "source": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/73_modernization_p03_consumer_runtime.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 69,
-      "checkpoint_commit": null,
-      "checkpointed_through": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT-STAGE69-CHECKPOINT",
+      "candidate_stage": 73,
+      "checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-      "parent_stage": 68,
+      "last_committed_checkpoint": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+      "parent_stage": 72,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P04_STAGE69_ACQUISITION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE73_CONSUMER_RUNTIME_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 69,
+    "selected_checkpoint_stage": 73,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -378,6 +532,57 @@
       "level": 50,
       "mega_ring_gate_item_id": 580,
       "runtime_gate": "PARTIAL_PASS_HARNESS_FIXTURE_BLOCKED"
+    },
+    "stage70_integrated": true,
+    "stage70_scope": {
+      "exact_mgba": false,
+      "existing_species_prefix_byte_exact": true,
+      "floette_eternal_species_id_1029_preserved": true,
+      "full_p04_done": false,
+      "mega_species_and_forms": 49,
+      "new_normal_species": 0,
+      "side_change_referenced": false
+    },
+    "stage71_integrated": true,
+    "stage71_scope": {
+      "exact_mgba": false,
+      "existing_mega_entries_preserved": 80,
+      "forward_entries_added": 49,
+      "full_p04_done": false,
+      "mega_form_battle_runtime_records": 49,
+      "reverse_entries_added": 49
+    },
+    "stage72_integrated": true,
+    "stage72_scope": {
+      "ability_count": 6,
+      "ability_ids": [
+        312,
+        313,
+        314,
+        315,
+        316,
+        317
+      ],
+      "battle_hook_count": 29,
+      "documented_ai_ui_edges_pending": 4,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "rom_linked": true
+    },
+    "stage73_integrated": true,
+    "stage73_scope": {
+      "browt_pombon_gecqua_materialized": 0,
+      "consumer_boundary_accounted_routes": 40570,
+      "cumulative_consumer_boundary_accounted_routes": 91721,
+      "cumulative_new_runtime_materialized_routes": 56514,
+      "existing_owner_accounted_routes": 35207,
+      "full_p03_done": false,
+      "hook_count": 3,
+      "machine_tutor_upstream_supply_dependency_routes": 23595,
+      "new_runtime_materialized_routes": 5363,
+      "prohibited_coercions_materialized": 0,
+      "remaining_direct_supply_routes": 26648,
+      "side_change_materialized": 0
     }
   },
   "integration_summary": {
@@ -387,10 +592,10 @@
     "completed_phases": [
       "P01"
     ],
-    "highest_pinned_candidate_stage": 69,
+    "highest_pinned_candidate_stage": 73,
     "phase_count": 8,
     "release_ready": false,
-    "runtime_reflected_phase_count": 4
+    "runtime_reflected_phase_count": 5
   },
   "phases": [
     {
@@ -447,10 +652,14 @@
         "slot_priority_repaired_species": 6,
         "stage64_changed_evolution_rows": 1,
         "stage64_changed_rom_bytes": 2,
+        "stage71_acceptance_status": "STOPPED_EXACT_UI_PENDING",
+        "stage71_exact_ui_acceptance": false,
+        "stage71_production_runtime": "UNJUDGED",
         "static_contract_records": 1
       },
       "blockers": [
-        "EVOLUTION_SCENE_CANCEL_BAG_MOVE_ABILITY_SAVE_RELOAD_NOT_RUN",
+        "EXACT_UI_ACCEPTANCE_PENDING",
+        "PRODUCTION_RUNTIME_UNJUDGED",
         "FULL_EVOLUTION_ACCEPTANCE_FALSE"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -458,11 +667,13 @@
         "PASS",
         "CHECKPOINT",
         "PASS",
-        "ACTUAL_CONSUMER_PARTIAL_ACCEPTANCE_WITH_ROOT_FIX"
+        "ACTUAL_CONSUMER_PARTIAL_ACCEPTANCE_WITH_ROOT_FIX",
+        "STOPPED_EXACT_UI_PENDING"
       ],
       "not_adopted": [
         "REVIEW_ONLY_BRANCHES",
-        "FULL_EVOLUTION_RUNTIME_ACCEPTANCE"
+        "FULL_EVOLUTION_RUNTIME_ACCEPTANCE",
+        "STAGE71_EXACT_UI_ACCEPTANCE"
       ],
       "phase": "P02",
       "required_gates": [
@@ -489,6 +700,13 @@
         },
         {
           "evidence": [
+            "content/modernization/p02_stage71_acceptance_checkpoint.json"
+          ],
+          "gate": "STAGE71_EXACT_UI_ACCEPTANCE",
+          "status": "STOPPED_PRODUCTION_UNJUDGED"
+        },
+        {
+          "evidence": [
             "content/modernization/p02_stage64_checkpoint.json"
           ],
           "gate": "FULL_EVOLUTION_ACCEPTANCE",
@@ -504,10 +722,14 @@
     },
     {
       "adoption": {
-        "cumulative_routes_materialized": 51151,
+        "browt_pombon_gecqua_materialized": 0,
+        "cumulative_routes_accounted": 91721,
+        "cumulative_routes_materialized": 56514,
+        "machine_tutor_upstream_supply_dependency": 23595,
+        "prohibited_coercions_materialized": 0,
         "reference_records": 1300,
         "runtime_selected_routes": 118369,
-        "selected_routes_remaining": 67218,
+        "selected_routes_remaining": 26648,
         "side_change_1063_adopted_routes": 0,
         "side_change_1063_excluded_routes": 159,
         "side_change_1063_replacement_move_key": null,
@@ -522,17 +744,22 @@
         "stage66_routes_materialized": 47548,
         "stage67_changed_rom_bytes_from_overlay": 46455,
         "stage67_changed_rom_bytes_from_stage66": 46515,
+        "stage67_cumulative_routes_materialized": 51151,
         "stage67_evolution_routes_materialized": 341,
         "stage67_future_tail_remaining_bytes": 62510,
         "stage67_new_routes_materialized": 3603,
         "stage67_normal_egg_routes_materialized": 2522,
-        "stage67_tutor_existing_slot_routes_materialized": 740
+        "stage67_tutor_existing_slot_routes_materialized": 740,
+        "stage73_consumer_boundary_accounted_routes": 40570,
+        "stage73_existing_owner_accounted_routes": 35207,
+        "stage73_hook_count": 3,
+        "stage73_new_runtime_materialized_routes": 5363
       },
       "blockers": [
-        "SELECTED_ROUTES_REMAINING_67218",
-        "MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
-        "FORM_CARRY_REMINDER_SHARED_SPECIAL_EGG_CONSUMERS_PENDING",
-        "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD_NOT_RUN"
+        "DIRECT_MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
+        "UPSTREAM_SUPPLY_DEPENDENCY_SUBSET_23595",
+        "ROTOM_FULL_USER_MOVESET_EFFECTLESS_UI_GUIDANCE_REMAINS",
+        "FINAL_CUMULATIVE_MGBA_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
@@ -541,14 +768,14 @@
         "STAGE65_ANCESTOR_CHECKPOINT",
         "STAGE66_HISTORICAL_BULK_CHECKPOINT",
         "STAGE67_CONSUMER_CHECKPOINT",
-        "PASS_NOT_FULL_P03_ACCEPTANCE"
+        "STAGE73_FIVE_GROUP_CONSUMER_CHECKPOINT",
+        "STATIC_ONLY_MGBA_AND_SUPPLY_PENDING"
       ],
       "not_adopted": [
         "SIDE_CHANGE_1063_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT",
-        "SELECTED_ROUTES_REMAINING_67218",
-        "MACHINE_TUTOR_SUPPLY_REQUIRED_26648",
-        "FORM_CARRY_REMINDER_SHARED_AND_SPECIAL_EGG_CONSUMERS",
-        "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD"
+        "BROWTPOMBONGECQUA_USER_EXCLUDED",
+        "DIRECT_MACHINE_TUTOR_SUPPLY_ROUTES_REMAINING_26648",
+        "FULL_CUMULATIVE_MGBA"
       ],
       "phase": "P03",
       "required_gates": [
@@ -590,6 +817,14 @@
         },
         {
           "evidence": [
+            "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+            "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
+          ],
+          "gate": "STAGE73_FIVE_GROUP_CONSUMER_RUNTIME",
+          "status": "STATIC_CONNECTED_MGBA_AND_SUPPLY_PENDING"
+        },
+        {
+          "evidence": [
             "config/modernization_adoption_decisions.json",
             "content/modernization/p03_runtime_handoff.json"
           ],
@@ -598,17 +833,17 @@
         },
         {
           "evidence": [
-            "content/modernization/p03_runtime_handoff.json",
-            "content/modernization/p03_stage66_bulk_route_audit.json"
+            "content/modernization/p03_stage73_consumer_runtime_route_audit.json"
           ],
           "gate": "FULL_SELECTED_ROUTE_SUPPLY",
-          "status": "BLOCKED"
+          "status": "BLOCKED_26648_DIRECT_ROUTES"
         }
       ],
       "rom_reflection": {
+        "ancestor_stage": 67,
         "reflected": true,
-        "scope": "P02_OVERLAY_PLUS_EVOLUTION_TUTOR_NORMAL_EGG_CONSUMER_CHECKPOINT",
-        "stage": 67
+        "scope": "STAGE67_DIRECT_CONSUMERS_PLUS_STAGE73_FIVE_GROUP_CONSUMER_BOUNDARY",
+        "stage": 73
       }
     },
     {
@@ -667,11 +902,14 @@
         "floette_eternal_existing_species_id": 1029,
         "floette_eternal_gift_level": 50,
         "held_records": 2,
-        "mega_form_battle_runtime_records": 0,
+        "mega_form_battle_runtime_materialized": true,
+        "mega_form_battle_runtime_records": 49,
+        "mega_form_runtime_exact_mgba": false,
+        "mega_form_species_runtime_materialized": true,
         "mega_records": 49,
         "new_species_reference_records": 3,
         "non_adopted_user_scope_records": 3,
-        "runtime_adopted_records": 0,
+        "runtime_adopted_records": 49,
         "runtime_materialized_acquisition_routes": 46,
         "selected_candidate_records": 49,
         "stone_item_ids_materialized": 45,
@@ -682,8 +920,7 @@
         "stone_shop_price_each": 16
       },
       "blockers": [
-        "MEGA_FORM_SPECIES_TABLES_AND_BATTLE_TRANSFORMATION_LIFECYCLE_NOT_INTEGRATED",
-        "SIX_ABILITIES_NOT_ROM_LINKED",
+        "FINAL_CUMULATIVE_MEGA_RUNTIME_MGBA_NOT_RUN",
         "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -692,13 +929,13 @@
         "PRIVATE_USE_ASSETS_READY",
         "STAGE68_MEGA_STONE_SHOP_EXACT_RUNTIME_PASS",
         "STAGE69_FLOETTE_ETERNAL_EXACT_PARTY_PC_PARTIAL_PASS",
-        "MEGA_FORM_BATTLE_RUNTIME_INCOMPLETE"
+        "STAGE70_SPECIES_RUNTIME_CONNECTED",
+        "STAGE71_MEGA_BATTLE_RUNTIME_CONNECTED_MGBA_PENDING"
       ],
       "not_adopted": [
-        "MEGA_FORM_SPECIES_TABLE_AND_BATTLE_TRANSFORMATION_LIFECYCLE",
-        "SIX_NEW_ABILITIES_ROM_LINK",
         "WINDS_WAVES_NEW_SPECIES_3_USER_SCOPE",
-        "PUBLIC_REDISTRIBUTION"
+        "PUBLIC_REDISTRIBUTION",
+        "EXACT_MGBA_FINAL_RUNTIME_CLAIM"
       ],
       "phase": "P04",
       "required_gates": [
@@ -742,24 +979,45 @@
         },
         {
           "evidence": [
-            "content/modernization/p04_capacity_allocation_manifest.json"
+            "content/modernization/p04_species_runtime_checkpoint.json"
+          ],
+          "gate": "MEGA_FORM_SPECIES_RUNTIME",
+          "status": "PASS_STATIC_49_ROWS"
+        },
+        {
+          "evidence": [
+            "content/modernization/p04_mega_runtime_checkpoint.json",
+            "content/modernization/p04_mega_runtime_mapping.json"
           ],
           "gate": "MEGA_FORM_BATTLE_RUNTIME",
-          "status": "BLOCKED"
+          "status": "PASS_STATIC_FORWARD_REVERSE_49_EXACT_MGBA_PENDING"
         }
       ],
       "rom_reflection": {
         "ancestor_stage": 68,
         "reflected": true,
-        "scope": "45_MEGA_STONE_BP_SHOP_PLUS_FLOETTE_ETERNAL_ACQUISITION_ONLY",
-        "stage": 69
+        "scope": "45_MEGA_STONE_BP_SHOP_FLOETTE_ETERNAL_ACQUISITION_49_MEGA_SPECIES_AND_BATTLE_ROWS",
+        "stage": 71
       }
     },
     {
       "adoption": {
         "ability_host_runtime_cases": 46,
         "ability_host_runtime_processes": 2,
+        "ability_ids": [
+          312,
+          313,
+          314,
+          315,
+          316,
+          317
+        ],
+        "ability_rom_hook_count": 29,
+        "ability_rom_linked": true,
+        "ability_rom_runtime_count": 6,
+        "ability_runtime_exact_mgba": false,
         "data_only_patches": 0,
+        "documented_ai_ui_edges_pending": 4,
         "existing_official_assignments": 29,
         "new_abilities": 6,
         "new_move_requirements": 0,
@@ -770,17 +1028,19 @@
         "temporary_ability_assignments": 14
       },
       "blockers": [
-        "SIX_ABILITIES_ROM_LINK_FIXED_TABLE_TEXT_UI_MGBA_PENDING"
+        "ABILITY_EXACT_MGBA_NOT_RUN",
+        "FOUR_DOCUMENTED_AI_UI_EDGES_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "contract_statuses": [
         "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
-        "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"
+        "HOST_RUNTIME_VERIFIED",
+        "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING"
       ],
       "not_adopted": [
         "SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION",
         "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION",
-        "ABILITY_ROM_LINK_AND_FIXED_TABLES"
+        "EXACT_MGBA_AND_FOUR_AI_UI_EDGES"
       ],
       "phase": "P05",
       "required_gates": [
@@ -813,19 +1073,21 @@
             "content/modernization/p05_ability_runtime_checkpoint.json"
           ],
           "gate": "P04_NEW_ABILITIES_HOST_RUNTIME",
-          "status": "PASS_46_CASES_X2_ROM_LINK_PENDING"
+          "status": "PASS_46_CASES_X2"
         },
         {
           "evidence": [
-            "content/modernization/p05_ability_runtime_checkpoint.json"
+            "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+            "content/modernization/p05_ability_rom_runtime_surface_matrix.json"
           ],
           "gate": "P04_NEW_ABILITIES_ROM_LINK",
-          "status": "BLOCKED"
+          "status": "PASS_STATIC_6_IDS_29_HOOKS"
         }
       ],
       "rom_reflection": {
-        "reflected": false,
-        "stage": null
+        "reflected": true,
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS",
+        "stage": 72
       }
     },
     {
@@ -1184,13 +1446,13 @@
     }
   ],
   "release_blockers": [
-    "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
-    "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
-    "P04_STAGE68_STONES_AND_STAGE69_FLOETTE_ACQUISITION_INTEGRATED_BUT_49_MEGA_FORM_BATTLE_RUNTIME_AND_FLOETTE_FULL_RELOAD_GATE_NOT_COMPLETE",
-    "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
+    "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
+    "P03_STAGE73_CONSUMER_BOUNDARY_CONNECTED_BUT_26648_DIRECT_MACHINE_TUTOR_SUPPLY_ROUTES_ROTOM_FULL_SLOT_UI_GUIDANCE_AND_FINAL_MGBA_REMAIN",
+    "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
+    "P05_STAGE72_SIX_ABILITIES_29_HOOKS_CONNECTED_BUT_FINAL_MGBA_AND_FOUR_AI_UI_EDGES_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE69_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE73_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "runtime_execution": {
@@ -1202,8 +1464,8 @@
   "schema_version": 1,
   "snapshot": {
     "auto_discovery": false,
-    "implementation_input_count": 103,
-    "implementation_input_fingerprint_sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037",
+    "implementation_input_count": 133,
+    "implementation_input_fingerprint_sha256": "c21231f64d72efa842d513afae608b2f052797e1c80786769376be44d943d27a",
     "implementation_inputs": [
       {
         "path": "config/modernization_p01_runtime.json",
@@ -1470,6 +1732,60 @@
         "size": 10625
       },
       {
+        "path": "tools/modernization_p03_stage73_consumers.py",
+        "phase": "P03",
+        "sha256": "ae4541b6bc1f8d64c4dfdd8cdb19a9fff3faacb095850636d3f47b2cd19ae9ac",
+        "size": 13268
+      },
+      {
+        "path": "tests/test_modernization_p03_stage73_consumers.py",
+        "phase": "P03",
+        "sha256": "d62f593618642313c5ef7fd652f5f8b369176e541aea935ddc1b53af2f30cb31",
+        "size": 3403
+      },
+      {
+        "path": "scripts/build_modernization_p03_stage73_runtime.sh",
+        "phase": "P03",
+        "sha256": "5e6df83741d9f31445445ce17489705ff9ea319997e691b4aa45ca8d5a827fcc",
+        "size": 368
+      },
+      {
+        "path": "tools/modernization_p03_stage73_runtime.py",
+        "phase": "P03",
+        "sha256": "3505e912c00faf1b60cf79d3c3932d9ca0dc8779ff7d6ebc5088452dafa49785",
+        "size": 65661
+      },
+      {
+        "path": "tests/test_modernization_p03_stage73_runtime.py",
+        "phase": "P03",
+        "sha256": "6c444c33a7b0de75741a866257991e23d2b75dfba1bc7b974b3cdbe911b72128",
+        "size": 9223
+      },
+      {
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c",
+        "phase": "P03",
+        "sha256": "4dff171c4998dcb8fee113674cc99d7b80f2666e0ded6de21aa56108d3a3e0d5",
+        "size": 15217
+      },
+      {
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h",
+        "phase": "P03",
+        "sha256": "fb58f643f716669d4e52313c3de923e9e186bd8ac55c786881020a46b94bfb42",
+        "size": 684
+      },
+      {
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.ld",
+        "phase": "P03",
+        "sha256": "4196eeefc08b08f37bfb92534557e83d0074a3a9274ae5d36014e1a3615fb7bb",
+        "size": 347
+      },
+      {
+        "path": "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime_hooks.S",
+        "phase": "P03",
+        "sha256": "4152e9d1694e007e0a460631b42453c66ed09307c2e0692c13f02819728b6a54",
+        "size": 863
+      },
+      {
         "path": "scripts/build_modernization_p04_assets.py",
         "phase": "P04",
         "sha256": "55b62d51ed7e0b061381b6cb1cbf36d5b704433cb6445fed00dd00d479355552",
@@ -1650,6 +1966,72 @@
         "size": 13849
       },
       {
+        "path": "scripts/build_modernization_p04_species_runtime.py",
+        "phase": "P04",
+        "sha256": "013950f3c91060671027df296ba6aeb331f9d37334325131772aa0a1c5a215ff",
+        "size": 941
+      },
+      {
+        "path": "tools/modernization_p04_species_runtime.py",
+        "phase": "P04",
+        "sha256": "60ebd86d6afdf6981fdb905e130ee2d12359d3f8e128d2cb35f606ae8d83c1d1",
+        "size": 60004
+      },
+      {
+        "path": "tests/test_modernization_p04_species_runtime.py",
+        "phase": "P04",
+        "sha256": "8e5d101ff20465ee1568158a57f071ec354bab87fa2b62e46f458335d0d213de",
+        "size": 8829
+      },
+      {
+        "path": "overlays/modernization_p04_species_runtime/README.md",
+        "phase": "P04",
+        "sha256": "37adb183f1176d626d574cea076b0f922b5f643c57a3e53d509bcf3154f2bd67",
+        "size": 743
+      },
+      {
+        "path": "scripts/build_modernization_p04_mega_runtime.py",
+        "phase": "P04",
+        "sha256": "aac9ddbcc7888ffe443f8c8a7aa58561480fea36b45f8f3c91509024283031bd",
+        "size": 4698
+      },
+      {
+        "path": "tools/modernization_p04_mega_runtime.py",
+        "phase": "P04",
+        "sha256": "c2790f58ef67631114bdf974866d143a5c7fe8c76e0ff40bc11862d1b2326897",
+        "size": 66068
+      },
+      {
+        "path": "tests/test_modernization_p04_mega_runtime.py",
+        "phase": "P04",
+        "sha256": "3ad0e7a9318dcb0fbc5079fd79f2591ea594e83a06e830b38b03447cce33bf86",
+        "size": 22132
+      },
+      {
+        "path": "overlays/modernization_p04_mega_runtime/README.md",
+        "phase": "P04",
+        "sha256": "a9874b599cff249ba279a16fffeb43b257f0a3f88709f809c830bce395e8c1b5",
+        "size": 1153
+      },
+      {
+        "path": "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.c",
+        "phase": "P04",
+        "sha256": "30d563b40acf0cfece1af002a22d62e223e5d28f006fe1b08ca240f23a9d8f71",
+        "size": 3437
+      },
+      {
+        "path": "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.h",
+        "phase": "P04",
+        "sha256": "423292924fb1b2b905b7ed3137e3b59d2dddfa8f085c53ef3e2c2fd25e0b131f",
+        "size": 1932
+      },
+      {
+        "path": "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle_host.c",
+        "phase": "P04",
+        "sha256": "eec7fc8964fa770722e021bc21d5a1a515d046f45f3e8879785ef2751e113a20",
+        "size": 4087
+      },
+      {
         "path": "scripts/build_modernization_p05.py",
         "phase": "P05",
         "sha256": "6ef1f0ebf6dad114196ccca047100d7dbe40e4a834310d678af796a82873f1c2",
@@ -1704,6 +2086,66 @@
         "size": 18450
       },
       {
+        "path": "scripts/build_modernization_p05_ability_rom_runtime.py",
+        "phase": "P05",
+        "sha256": "05853bf9958ae482d9087eef659193fe527b1d26477d07b40f3d58d19d71a839",
+        "size": 3521
+      },
+      {
+        "path": "tools/modernization_p05_ability_rom_runtime.py",
+        "phase": "P05",
+        "sha256": "f49852c0bd9f07f013d0566396fe553449919f4ca1240aa45b8208e156cac5cd",
+        "size": 22585
+      },
+      {
+        "path": "tests/test_modernization_p05_ability_rom_runtime.py",
+        "phase": "P05",
+        "sha256": "2514977a03e2237a5e81b93a6869fba36d3527aa4caf5b2e4e7870abbcc1ca98",
+        "size": 19075
+      },
+      {
+        "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.c",
+        "phase": "P05",
+        "sha256": "a00e37540d968ecda3c26ab4e7606a7c5efe249621067449921be120ed03a60b",
+        "size": 52635
+      },
+      {
+        "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.h",
+        "phase": "P05",
+        "sha256": "b23775cd0cc7a6bff162c0a54cbb00f7a3df8d2d2ebcb8ffcc92e10fc9b850f8",
+        "size": 6602
+      },
+      {
+        "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.ld",
+        "phase": "P05",
+        "sha256": "5fbb8db3f503803907dd7658f7454133ed130d25d462f24e635315ed95e13489",
+        "size": 347
+      },
+      {
+        "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime_hooks.S",
+        "phase": "P05",
+        "sha256": "5250cf5f64bb16ac743ad7bf31ce8b572fd29f6265d07acacf7f30ca3cd9650a",
+        "size": 9372
+      },
+      {
+        "path": "scripts/run_modernization_p02_stage71_acceptance.py",
+        "phase": "P02",
+        "sha256": "33dc497617785713b2d979060b8156f4be0be64abaf8afde5166aa95881484ac",
+        "size": 46050
+      },
+      {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "phase": "P02",
+        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
+        "size": 36731
+      },
+      {
+        "path": "tests/test_modernization_p02_stage71_acceptance.py",
+        "phase": "P02",
+        "sha256": "f527db736c9e9e14e7fa5b8e5640d393d0fd71e1b6f2bc21a92dd9a8c9d05574",
+        "size": 10154
+      },
+      {
         "path": "scripts/build_modernization_p06.py",
         "phase": "P06",
         "sha256": "bd08be510115d2715217ab51b83ae253d6cabe06b3641b507514c84dc58108b5",
@@ -1754,14 +2196,14 @@
       {
         "path": "tools/modernization_p08_integration.py",
         "phase": "P08",
-        "sha256": "b6d7aaaa754ca97507475861254e4687bdf5e03000e83bc0216464ec8e8de3a2",
-        "size": 155776
+        "sha256": "68bf48636b65a0436696cec4d307057ee0eb5838251f55c28ae540a7fb49a38a",
+        "size": 214829
       },
       {
         "path": "tests/test_modernization_p08.py",
         "phase": "P08",
-        "sha256": "a3ebc2f90445ab988d9bcb2584bac6a4ef8938ff2ae3928b38fec192158ab46d",
-        "size": 28337
+        "sha256": "762904bf13481660e7ae856c99474d9224e605599addf6584e02e3dab74f93f8",
+        "size": 45738
       },
       {
         "path": "tests/test_run_github_private_suite.py",
@@ -1828,27 +2270,27 @@
       "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
       "components": {
         "candidate_artifacts": {
-          "count": 33,
-          "sha256": "e5697e9142249be8ceb2aafe963411379cee26c0d79847d735fd77e389ad95a6"
+          "count": 49,
+          "sha256": "872a8c25e1ab4948ac2188bca17c759edf19bd26fdea6b887dbcd1403b384cbe"
         },
         "implementation_inputs": {
-          "count": 103,
-          "sha256": "f49ed30c6059ecd356d30d4da19800f1032f94c2514a6ae8a9041e6d61772037"
+          "count": 133,
+          "sha256": "c21231f64d72efa842d513afae608b2f052797e1c80786769376be44d943d27a"
         },
         "phase_projection": {
           "count": 8,
-          "sha256": "d745c2874e774240d22730c553f699350f2f8e69ab008e17d8304b7fee1890e9"
+          "sha256": "efd6b8ac3c6817c88edda9e0aea5fefb8a4c1b18b8e26ea6fd0611c973221af7"
         },
         "referenced_source_bindings": {
           "count": 30,
           "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
         },
         "tracked_inputs": {
-          "count": 51,
-          "sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed"
+          "count": 66,
+          "sha256": "e9a5d1fc9dfcb915c2f47ce80e69215a20e339e838973a2554ba549e0054175c"
         }
       },
-      "sha256": "f0e8e84d8ae2da7ca275f895e7d60ae6a360bad3a028a25296cda3ff7b52bbc1"
+      "sha256": "5423ea7e085beeb02eaa4e4d44ff8ce0bdd2b7da2370dbca36d16d0bcfaba640"
     },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {
@@ -1862,6 +2304,17 @@
         ],
         "included": true,
         "status": "INTEGRATED_PARTIAL_ACCEPTANCE_NOT_P02_DONE"
+      },
+      "P02_STAGE71_EXACT_UI_ACCEPTANCE": {
+        "expected_paths": [
+          "config/modernization_p02_stage71_acceptance_gate.json",
+          "content/modernization/p02_stage71_acceptance_checkpoint.json",
+          "scripts/run_modernization_p02_stage71_acceptance.py",
+          "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+          "tests/test_modernization_p02_stage71_acceptance.py"
+        ],
+        "included": true,
+        "status": "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED"
       },
       "P03_STAGE65": {
         "expected_paths": [
@@ -1908,6 +2361,31 @@
         ],
         "included": true,
         "status": "INTEGRATED_CONSUMER_CHECKPOINT_NOT_P03_DONE"
+      },
+      "P03_STAGE73_CONSUMER_RUNTIME": {
+        "expected_paths": [
+          "config/modernization_p03_stage73_runtime.json",
+          "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+          "content/modernization/p03_stage73_consumer_runtime_route_audit.json",
+          "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c",
+          "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.h",
+          "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.ld",
+          "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime_hooks.S",
+          "scripts/build_modernization_p03_stage73_runtime.sh",
+          "tests/test_modernization_p03_stage73_runtime.py",
+          "tools/modernization_p03_stage73_runtime.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_FIVE_GROUP_CONSUMER_CHECKPOINT_NOT_P03_DONE"
+      },
+      "P03_STAGE73_PREFLIGHT": {
+        "expected_paths": [
+          "config/modernization_p03_stage73_consumers.json",
+          "tools/modernization_p03_stage73_consumers.py",
+          "tests/test_modernization_p03_stage73_consumers.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_PREFLIGHT_NOT_P03_DONE"
       },
       "P04_ASSET_IMPORTER": {
         "expected_paths": [
@@ -1967,6 +2445,35 @@
         "included": true,
         "status": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_PENDING_NOT_P04_DONE"
       },
+      "P04_STAGE70_SPECIES_RUNTIME": {
+        "expected_paths": [
+          "config/modernization_p04_species_runtime.json",
+          "content/modernization/p04_species_runtime_contract.json",
+          "content/modernization/p04_species_runtime_checkpoint.json",
+          "overlays/modernization_p04_species_runtime/README.md",
+          "scripts/build_modernization_p04_species_runtime.py",
+          "tests/test_modernization_p04_species_runtime.py",
+          "tools/modernization_p04_species_runtime.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_STATIC_RUNTIME_MGBA_PENDING_NOT_P04_DONE"
+      },
+      "P04_STAGE71_MEGA_RUNTIME": {
+        "expected_paths": [
+          "config/modernization_p04_mega_runtime.json",
+          "content/modernization/p04_mega_runtime_checkpoint.json",
+          "content/modernization/p04_mega_runtime_mapping.json",
+          "overlays/modernization_p04_mega_runtime/README.md",
+          "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.c",
+          "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle.h",
+          "overlays/modernization_p04_mega_runtime/modernization_p04_mega_runtime_oracle_host.c",
+          "scripts/build_modernization_p04_mega_runtime.py",
+          "tests/test_modernization_p04_mega_runtime.py",
+          "tools/modernization_p04_mega_runtime.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_FORWARD_REVERSE_RUNTIME_MGBA_PENDING_NOT_P04_DONE"
+      },
       "P05_ABILITY_HOST_RUNTIME": {
         "expected_paths": [
           "config/modernization_p05_ability_runtime.json",
@@ -1980,12 +2487,28 @@
         ],
         "included": true,
         "status": "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"
+      },
+      "P05_STAGE72_ABILITY_ROM_RUNTIME": {
+        "expected_paths": [
+          "config/modernization_p05_ability_rom_runtime.json",
+          "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+          "content/modernization/p05_ability_rom_runtime_surface_matrix.json",
+          "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.c",
+          "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.h",
+          "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.ld",
+          "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime_hooks.S",
+          "scripts/build_modernization_p05_ability_rom_runtime.py",
+          "tests/test_modernization_p05_ability_rom_runtime.py",
+          "tools/modernization_p05_ability_rom_runtime.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_STATIC_RUNTIME_MGBA_AI_UI_EDGES_PENDING_NOT_P05_DONE"
       }
     },
     "rule": "後発成果は存在だけで採用せず、固定path listと生成済みsnapshot hashを明示更新して再監査する",
-    "selection_base_head": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
-    "tracked_input_count": 51,
-    "tracked_input_fingerprint_sha256": "88218e2714cd694e8518773781caf1e08f4d6f429497df8566f71146013025ed",
+    "selection_base_head": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+    "tracked_input_count": 66,
+    "tracked_input_fingerprint_sha256": "e9a5d1fc9dfcb915c2f47ce80e69215a20e339e838973a2554ba549e0054175c",
     "tracked_inputs": [
       {
         "path": "config/active_play_baseline.json",
@@ -2008,8 +2531,8 @@
       {
         "path": "config/modernization_candidate.json",
         "phase": "CANDIDATE_CHAIN",
-        "sha256": "d5f28e448fe71dfb60db618ceb1064e6e469d3ec75bccae8d3d67b895dbae293",
-        "size": 11000
+        "sha256": "b04830197b46f6314890368833cf0e2ab4335d753c197d3b9e465167d8153132",
+        "size": 17013
       },
       {
         "path": "content/modernization/identity_contract.json",
@@ -2292,6 +2815,96 @@
         "phase": "P07",
         "sha256": "5e53baeac5a8c12e89bce9cda7a86da992b3519c34ca86c3cf53a830e5de6dac",
         "size": 3301
+      },
+      {
+        "path": "config/modernization_p02_stage71_acceptance_gate.json",
+        "phase": "P02",
+        "sha256": "90b18fecb127aa3cbea31558f5ffc3d194a9e5f67c7e3b4a94dad4f562f32007",
+        "size": 6632
+      },
+      {
+        "path": "content/modernization/p02_stage71_acceptance_checkpoint.json",
+        "phase": "P02",
+        "sha256": "78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531",
+        "size": 13359
+      },
+      {
+        "path": "config/modernization_p03_stage73_consumers.json",
+        "phase": "P03",
+        "sha256": "61d53ed8059c2fbad935885d995c4a406b9e4b19b8e3035d688742188f4f0b27",
+        "size": 5064
+      },
+      {
+        "path": "config/modernization_p03_stage73_runtime.json",
+        "phase": "P03",
+        "sha256": "7e3110936c10421086d883b411c10283be5ca98f926bd41f61d149d91a50b4f7",
+        "size": 6839
+      },
+      {
+        "path": "content/modernization/p03_stage73_consumer_runtime_checkpoint.json",
+        "phase": "P03",
+        "sha256": "ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d",
+        "size": 2857
+      },
+      {
+        "path": "content/modernization/p03_stage73_consumer_runtime_route_audit.json",
+        "phase": "P03",
+        "sha256": "d3af91e38635c12e0f985ab8f1f2467d81cb1acd8e2716c5dd285eda98044275",
+        "size": 12992
+      },
+      {
+        "path": "config/modernization_p04_species_runtime.json",
+        "phase": "P04",
+        "sha256": "260537ad559a5891bf238058159623e506d6901bb46839aa40e831ef6ede7e11",
+        "size": 11675
+      },
+      {
+        "path": "content/modernization/p04_species_runtime_contract.json",
+        "phase": "P04",
+        "sha256": "80ded428ec1df683b758555c8e4357123baee2ce8b5201dea960fa89618818a4",
+        "size": 413133
+      },
+      {
+        "path": "content/modernization/p04_species_runtime_checkpoint.json",
+        "phase": "P04",
+        "sha256": "a0a1f12bada8fe57545be67e24e4ef7016821ab8ae80624b6de3f4b6822f0dbf",
+        "size": 59914
+      },
+      {
+        "path": "config/modernization_p04_mega_runtime.json",
+        "phase": "P04",
+        "sha256": "3c3116a95d2b39b20b43f032aad0582ca11012390ede4ecffc85a400cad7c765",
+        "size": 14614
+      },
+      {
+        "path": "content/modernization/p04_mega_runtime_mapping.json",
+        "phase": "P04",
+        "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f",
+        "size": 59026
+      },
+      {
+        "path": "content/modernization/p04_mega_runtime_checkpoint.json",
+        "phase": "P04",
+        "sha256": "0277f745b2f09af0e111cdcdd580bfb3104a74b95afc63ad45770fce539ae73c",
+        "size": 30529
+      },
+      {
+        "path": "config/modernization_p05_ability_rom_runtime.json",
+        "phase": "P05",
+        "sha256": "862fa1e89606a00ee71350c107c53014722392c4cd8c06af93dbcbe405b42cd6",
+        "size": 8975
+      },
+      {
+        "path": "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+        "phase": "P05",
+        "sha256": "1683e4fa6d2ed8d445e8ffd7d78aa97004a52e537453d1abf1394afbeb9f71bb",
+        "size": 1464
+      },
+      {
+        "path": "content/modernization/p05_ability_rom_runtime_surface_matrix.json",
+        "phase": "P05",
+        "sha256": "0cff6c86ac2d18d3858d0921931df3de8457cd0951d3defcf250362fd8a5d94b",
+        "size": 3737
       }
     ]
   },
@@ -2334,6 +2947,13 @@
       "test_evidence": "scripts/run_modernization_p02_acceptance.py"
     },
     {
+      "implementation_evidence": "Stage71 exact ROM acceptance checkpoint",
+      "phase": "P02",
+      "requirement_key": "P02_STAGE71_EXACT_UI",
+      "status": "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
+      "test_evidence": "tests/test_modernization_p02_stage71_acceptance.py"
+    },
+    {
       "implementation_evidence": "deferred runtime acceptance",
       "phase": "P02",
       "requirement_key": "P02_FULL_RUNTIME",
@@ -2367,6 +2987,13 @@
       "requirement_key": "P03_STAGE67_CONSUMERS",
       "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE",
       "test_evidence": "tests/test_modernization_p03_stage67.py"
+    },
+    {
+      "implementation_evidence": "Stage73 5-group consumer boundary 40,570 routes accounted",
+      "phase": "P03",
+      "requirement_key": "P03_STAGE73_FIVE_GROUP_CONSUMERS",
+      "status": "INTEGRATED_STATIC_MGBA_AND_SUPPLY_PENDING",
+      "test_evidence": "tests/test_modernization_p03_stage73_runtime.py"
     },
     {
       "implementation_evidence": "49 Mega採用候補 + Winds/Waves 3種非採用 + 2 hold",
@@ -2404,6 +3031,20 @@
       "test_evidence": "tests/test_modernization_floette_gift.py"
     },
     {
+      "implementation_evidence": "49 Mega species/form table and asset rows",
+      "phase": "P04",
+      "requirement_key": "P04_STAGE70_SPECIES_RUNTIME",
+      "status": "STATIC_RUNTIME_CONNECTED",
+      "test_evidence": "tests/test_modernization_p04_species_runtime.py"
+    },
+    {
+      "implementation_evidence": "49 forward/reverse Mega battle rows",
+      "phase": "P04",
+      "requirement_key": "P04_STAGE71_MEGA_RUNTIME",
+      "status": "STATIC_RUNTIME_CONNECTED_EXACT_MGBA_PENDING",
+      "test_evidence": "tests/test_modernization_p04_mega_runtime.py"
+    },
+    {
       "implementation_evidence": "Side Change/Winds・Waves 3種非採用 + battle content contract",
       "phase": "P05",
       "requirement_key": "P05_MOVE_ABILITY",
@@ -2414,8 +3055,15 @@
       "implementation_evidence": "6 Ability portable runtime",
       "phase": "P05",
       "requirement_key": "P05_ABILITY_HOST_RUNTIME",
-      "status": "HOST_VERIFIED_46_CASES_X2_ROM_LINK_PENDING",
+      "status": "HOST_VERIFIED_46_CASES_X2_HISTORICAL_PRE_ROM_CHECKPOINT",
       "test_evidence": "tests/test_modernization_p05_ability_runtime.py"
+    },
+    {
+      "implementation_evidence": "Ability 312..317 and 29 ROM hooks",
+      "phase": "P05",
+      "requirement_key": "P05_STAGE72_ABILITY_ROM_RUNTIME",
+      "status": "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING",
+      "test_evidence": "tests/test_modernization_p05_ability_rom_runtime.py"
     },
     {
       "implementation_evidence": "empty adopted delta + review projection",
