@@ -13,6 +13,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: stage59-wild-identity stage59-wild-identity-check stage59-mgba-all stage59-final-gate stage60-wild-species-root-repair stage60-wild-species-root-repair-check stage60-mgba-normal-input stage60-final-gate
 .PHONY: stage61-wiki stage61-wiki-check
 .PHONY: modernization-identity modernization-identity-check modernization-p01 modernization-p01-check modernization-p01-capacity-audit modernization-p01-mgba modernization-p01-focused-test
+.PHONY: modernization-p02-contract-check modernization-p02-stage64 modernization-p02-stage64-check modernization-p02-mgba modernization-p02-mgba-check modernization-p02-focused-test
 .PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
@@ -484,6 +485,24 @@ modernization-p01-mgba:
 
 modernization-p01-focused-test:
 	$(PYTHON) -m unittest tests.test_modernization_p01 tests.test_modernization_identity tests.test_modernization_consumer_identity tests.test_modernization_p01_rom -v
+
+modernization-p02-contract-check:
+	$(PYTHON) scripts/build_modernization_p02.py --check
+
+modernization-p02-stage64:
+	$(PYTHON) scripts/build_modernization_p02_stage64.py build
+
+modernization-p02-stage64-check:
+	$(PYTHON) scripts/build_modernization_p02_stage64.py check
+
+modernization-p02-mgba:
+	$(PYTHON) scripts/run_modernization_p02_mgba.py run
+
+modernization-p02-mgba-check:
+	$(PYTHON) scripts/run_modernization_p02_mgba.py check
+
+modernization-p02-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p02_species_surface_policy tests.test_modernization_p02 tests.test_modernization_p02_mgba tests.test_modernization_p02_stage64 -v
 
 fast-rom:
 	$(PYTHON) scripts/build_fast_rom.py --from auto

@@ -16,6 +16,7 @@ SUITES = {
     "stage62-check",
     "stage62-mgba",
     "modernization-p01",
+    "modernization-p02",
     "full-unit",
     "all",
 }
@@ -54,12 +55,21 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
         [python, "scripts/build_modernization_p01.py", "check"],
         [python, "scripts/run_modernization_p01_mgba.py"],
     ]
+    modernization_p02 = [
+        [python, "scripts/build_modernization_p02.py", "--check"],
+        [python, "scripts/build_modernization_p02_stage64.py", "build"],
+        [python, "scripts/run_modernization_p02_mgba.py", "run"],
+        [python, "scripts/run_modernization_p02_mgba.py", "check"],
+        [python, "scripts/build_modernization_p02_stage64.py", "check"],
+        ["make", "modernization-p02-focused-test"],
+    ]
     full_unit = [["make", "test"]]
     plans = {
         "battle-cli-offline": battle,
         "stage62-check": stage62_check,
         "stage62-mgba": stage62_mgba,
         "modernization-p01": modernization_p01,
+        "modernization-p02": modernization_p02,
         "full-unit": full_unit,
         # full-unitにbattle unitが含まれるため、allではCLI実読取だけを追加する。
         "all": (

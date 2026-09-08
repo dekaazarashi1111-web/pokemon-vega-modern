@@ -10,6 +10,7 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         for suite in (
             "battle-cli-offline", "stage62-check", "stage62-mgba",
             "modernization-p01",
+            "modernization-p02",
             "full-unit", "all",
         ):
             with self.subTest(suite=suite):
@@ -21,6 +22,16 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         build = ["python3", "scripts/build_modernization_p01.py", "build"]
         check = ["python3", "scripts/build_modernization_p01.py", "check"]
         self.assertLess(plan.index(build), plan.index(check))
+        self.assertNotIn(["make", "test"], plan)
+
+    def test_modernization_p02_rebuilds_before_exact_rom_gate(self) -> None:
+        plan = command_plan("modernization-p02", python="python3")
+        build = ["python3", "scripts/build_modernization_p02_stage64.py", "build"]
+        run = ["python3", "scripts/run_modernization_p02_mgba.py", "run"]
+        check = ["python3", "scripts/build_modernization_p02_stage64.py", "check"]
+        self.assertLess(plan.index(build), plan.index(run))
+        self.assertLess(plan.index(run), plan.index(check))
+        self.assertIn(["make", "modernization-p02-focused-test"], plan)
         self.assertNotIn(["make", "test"], plan)
 
     def test_all_does_not_repeat_focused_battle_unit(self) -> None:
