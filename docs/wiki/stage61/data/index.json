@@ -239,6 +239,7 @@
   },
   "schema_version": 1,
   "source_hashes": {
+    "config/save_layout.csv": "1f84b47301f5e2b45b612c5a8e1009ec7c1932407d8050081ca290ce3423cb98",
     "config/stage61_runtime_hotfix.json": "ddcf5f96ba78586fc575bb448e75c0ededee648eebf9bf86864c8c13b7338d18",
     "config/trainer_rebalance_v4.json": "37e03e483e2c18071e63926e3aef17393e5dd7a00043fb8e8c790b4a376d368e",
     "content/collection_supply_v1/canonical_model.json": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
@@ -266,8 +267,69 @@
     "reports/generated/stage58_qol_economy_audit.json": "a6e87edb51ba8a82e6d78078c6a309e5597d45cfdc9103da54e1668e3eafee3d",
     "reports/generated/stage61_critical_release_map_display_catalog.json": "a1f9802e954f704757fef84dcd0dfdf997f25142b14848b467d622ce611c6869",
     "vendor/vega_acquisition/content/acquisition_events.csv": "0fed4821b4c25130c161b2503be13e5ea223da801e726aee528b42b48de9bbb0",
+    "vendor/vega_acquisition/content/collectible_species_registry.csv": "29494a2b5b50cf73394b769a7ac58a05ed5d5892c1612671c738d97dcd8772eb",
     "vendor/vega_acquisition/content/evolution_requirements_553.csv": "0c412d688b9be3e46f73c725f06e978303e9d7032838965bfb6de9b68465b274",
-    "vendor/vega_acquisition/content/species_acquisition_routes.csv": "1cab4da97fb3cc55f83a7bfd5bac11689e3d271522ef0a9cb6ed6ac01a9d6756"
+    "vendor/vega_acquisition/content/species_acquisition_routes.csv": "1cab4da97fb3cc55f83a7bfd5bac11689e3d271522ef0a9cb6ed6ac01a9d6756",
+    "vendor/vega_acquisition/generated/acquisition_collection_defs.c": "a23b351ff8fc486a508aa8272177042e281042079a3d802def74c9b289e7e68b",
+    "vendor/vega_acquisition/generated/acquisition_event_defs.c": "77b731a6fb20c6b8555300408a854c9307f25172ab9e70c073ee0867904bbea3",
+    "vendor/vega_acquisition/generated/acquisition_save_layout.h": "468279615021aac315e7d0c2ab4281398232698c3d8b7d2af191e02167a6caba",
+    "vendor/vega_acquisition/manifests/collection_ledger_bits.csv": "95d92ef6aa8cf47372e34229e223c9fd9782e7156deb70c09d928256630719e8"
+  },
+  "species_identity": {
+    "authoritative_id_source": "manifests/species_ids.csv",
+    "bound_c_tables": {
+      "acquisition_collection_defs.c": {
+        "sha256": "07eee577cdce57b9f77b8baa104ff225f60427092652367932d6d8fb7370f69a",
+        "size": 56674
+      },
+      "acquisition_event_defs.c": {
+        "sha256": "77b731a6fb20c6b8555300408a854c9307f25172ab9e70c073ee0867904bbea3",
+        "size": 36548
+      }
+    },
+    "correction_count": 2,
+    "corrections": [
+      {
+        "collection_key": "COLLECTION_CATALOG_0649",
+        "display_name": "タマゴ",
+        "ledger_bit_index": null,
+        "resolved_species_id": 412,
+        "source_canonical_id": 649,
+        "species_key": "SPECIES_KEY_EGG",
+        "target_status": "INTERNAL_EXCLUDED"
+      },
+      {
+        "collection_key": "COLLECTION_NATIONAL_0010",
+        "display_name": "キャタピー",
+        "ledger_bit_index": 386,
+        "resolved_species_id": 649,
+        "source_canonical_id": 412,
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "target_status": "REQUIRED_BASE"
+      }
+    ],
+    "identity_key": "collection_key+species_key",
+    "ledger_binding": "collection_key",
+    "save_abi": {
+      "collection_ledger_bit_count": 1216,
+      "collection_ledger_bytes": 152,
+      "placement": {
+        "address_space": "SAVE_PARASITE_IMAGE_OFFSET",
+        "end_exclusive": 8268,
+        "migration": "INNER_VERSION_CRC",
+        "owner": "USER_20260816_ACQUISITION",
+        "size": 240,
+        "start": 8028,
+        "status": "LIVE",
+        "symbol": "acquisition_save_block",
+        "version": 1
+      },
+      "save_block_bytes": 240
+    },
+    "schema_version": 1,
+    "source_registry": "vendor/vega_acquisition/content/collectible_species_registry.csv",
+    "species_count": 1621,
+    "status": "CORRECTED"
   },
   "stage": 61
 }

@@ -3967,3 +3967,35 @@
   - GitHub Actions `source-validation` run `34134327411`: PASS。
 - Commit: `-`（本エントリを含む公開記録commit）
 - Network: GitHub remoteへのpush、GitHub API／Actions結果の読戻しに使用。credential／tokenは記録していない。
+
+## 2026-09-08T00:43:04Z
+
+- Task: `USER-MODERNIZATION-P01` / ID・対象区分・共通処理の固定と取得runtime修復
+- Status: DONE（工程2以降は別commitで継続。現行プレイ基準Stage62は未変更）
+- Summary:
+  - 2件の受領ZIPを`userfile/imports/modernization_p01/`へ読取専用原本として保管し、外側SHA-256を固定した。Species／Move／Ability／Item／Formのstable key契約を生成し、数値IDだけで異なるentityを結合する処理をfail closedにした。
+  - Stage61の旧取得資料で入れ替わっていた`SPECIES_EGG` 412と`SPECIES_CATERPIE` 649をstable keyで修復した。取得event、collection consumer、Wikiを同一契約へ接続し、Eggを内部専用、Caterpieを通常取得対象として固定した。
+  - Stage62を親にcollection tableの2 row／10 bytesだけを変更したStage63候補を決定的生成した。ROM SHA-256 `6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`、CRC32 `FB09EF2D`、incremental BPS SHA-256 `7b400a26448e62118295bcdbe88a3f26bc8de8518d360b6598ac07549ab0f352`。
+  - ROM容量を実測し、allocator free 1,915,916 bytes、untracked non-FF 0、進化slot 25,080を確認した。Species／Move／Ability／ItemのID空きは0であり、後続工程はID再利用禁止・明示的拡張／代替策が必要と記録した。
+  - Private Releaseへmodernization入力bundle（81,236,580 bytes、SHA-256 `bef64d08c470beb9b58321635d8f43d6d4e4fa657a2e5a26e4d081f097f5615e`）を追加し、clean runner向け`modernization-p01` suiteを追加した。ROM、save、受領ZIP本文はGitへ追加していない。
+- Files changed:
+  - `config/modernization_inputs.json`、`config/modernization_p01_runtime.json`、`config/modernization_candidate.json`
+  - `content/modernization/identity_contract.json`、`design/modernization_handoff.md`
+  - `tools/modernization_identity.py`、`tools/modernization_capacity.py`、`tools/mgba_acquisition_smoke.c`
+  - `scripts/build_modernization_identity.py`、`scripts/build_modernization_p01.py`、`scripts/audit_modernization_p01_rom.py`、`scripts/run_modernization_p01_mgba.py`
+  - `scripts/build_acquisition_events.py`、`scripts/build_stage61_wiki.py`、`scripts/run_github_private_suite.py`
+  - `docs/wiki/stage61/**`、`reports/generated/stage61_wiki.json`
+  - `.github/workflows/ci.yml`、`.github/workflows/private-runtime.yml`、`Makefile`、`config/github_private_environment.json`
+  - `tests/test_modernization_*.py`、`tests/test_run_github_private_suite.py`
+  - `design/run_log.md`、`design/version_log.md`
+- Verify:
+  - identity contract check、Stage63 build／checkをPASS。各builderの2回生成byte一致、変更span 2件／10 bytes、incremental／clean BPS roundtrip、metadata／audit hashを照合した。
+  - `make modernization-p01-focused-test`: 27 tests PASS。Stage61 Wiki／GitHub suite／private environment: 15 tests PASS。Wiki check: 1,646 files／1,621 species PASS。
+  - `make modernization-p01-capacity`: allocator free 1,915,916 bytes、untracked non-FF 0、各table root／identity domain PASS。
+  - 初回の旧Stage26 full acquisition mGBA fixtureは、Stage36以降で置換済みのphysical host chain差によりFAILした。原因をscope分離し、default strict gateは弱めず維持した。
+  - Stage63専用identity mGBA gateは独立2 processでCaterpie 649のledger bit 386 roundtripとEgg 412除外、save layout、table／hook、警告0／error 0をPASS。既存Stage26 default strict fixtureも独立2 processでphysical host chainを含めPASSした。
+  - Private Release assetをremote再取得し外側SHA-256／size一致、既存4 assetを含む全5 bundleのmember hash／clean restoreをPASS。
+  - task graph、private guard、workflow YAML parse、`git diff --check`: PASS。
+- Commit: `-`（本エントリを含む完了commit）
+- Network:
+  - GitHub公式CLI／APIでprivate Release assetをuploadし、remote再取得・hash照合した。credential、token、ROM／save、受領ZIP本文はtracked成果へ保存していない。

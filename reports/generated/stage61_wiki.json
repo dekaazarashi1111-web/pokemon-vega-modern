@@ -76,7 +76,7 @@
     },
     {
       "path": "POKEMON_INDEX.md",
-      "sha256": "47c0fb2ce4f37fdcafb5dc07e5df2aa0916086edfadd34eeff63464f1a45cecd",
+      "sha256": "53b9189091526b0988495db78420a9098467e25ad7d0d2a12ade35d28275ede8",
       "size": 195332
     },
     {
@@ -121,8 +121,8 @@
     },
     {
       "path": "data/index.json",
-      "sha256": "221d4e8ade96ce2ba4f6533b487e57740e40a3245d97fc4fb6fc64c0a45318a3",
-      "size": 6922
+      "sha256": "39990408db4c856ecd1145dec90483878f93df3c917fac0def53ff2cfc7db7a2",
+      "size": 9529
     },
     {
       "path": "data/items.jsonl",
@@ -146,7 +146,7 @@
     },
     {
       "path": "data/species.jsonl",
-      "sha256": "42c225d543f7a0738c57e997235bd6230d8ebf629d4e1e520d3217ddd694ec48",
+      "sha256": "dc94bf64554117a901df0002147eafbe0975283b7ed2772645ce5fe33bd9f9f5",
       "size": 4567683
     },
     {
@@ -2221,8 +2221,8 @@
     },
     {
       "path": "pokemon/0412.md",
-      "sha256": "95d539b3d2c14366ce038768d0842e6e09b9d96ad1381c2d5dad3aec6cc1f71f",
-      "size": 2599
+      "sha256": "4f9d28c9e9e173bb2722790ef836b013bcd9031abcb1fb728638d5f65f44ec2d",
+      "size": 2464
     },
     {
       "path": "pokemon/0413.md",
@@ -3406,8 +3406,8 @@
     },
     {
       "path": "pokemon/0649.md",
-      "sha256": "ee63c873e186b0271fec2b4d859f2de858809e6a52284d864bac3ad9b51f68cd",
-      "size": 3019
+      "sha256": "359f7b833307ad3e99cc454df97c669a61253a9cefb8d4901f88bfbf67411319",
+      "size": 3154
     },
     {
       "path": "pokemon/0650.md",
@@ -8266,6 +8266,62 @@
     }
   ],
   "schema_version": 1,
+  "species_identity": {
+    "authoritative_id_source": "manifests/species_ids.csv",
+    "bound_c_tables": {
+      "acquisition_collection_defs.c": {
+        "sha256": "07eee577cdce57b9f77b8baa104ff225f60427092652367932d6d8fb7370f69a",
+        "size": 56674
+      },
+      "acquisition_event_defs.c": {
+        "sha256": "77b731a6fb20c6b8555300408a854c9307f25172ab9e70c073ee0867904bbea3",
+        "size": 36548
+      }
+    },
+    "correction_count": 2,
+    "corrections": [
+      {
+        "collection_key": "COLLECTION_CATALOG_0649",
+        "display_name": "タマゴ",
+        "ledger_bit_index": null,
+        "resolved_species_id": 412,
+        "source_canonical_id": 649,
+        "species_key": "SPECIES_KEY_EGG",
+        "target_status": "INTERNAL_EXCLUDED"
+      },
+      {
+        "collection_key": "COLLECTION_NATIONAL_0010",
+        "display_name": "キャタピー",
+        "ledger_bit_index": 386,
+        "resolved_species_id": 649,
+        "source_canonical_id": 412,
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "target_status": "REQUIRED_BASE"
+      }
+    ],
+    "identity_key": "collection_key+species_key",
+    "ledger_binding": "collection_key",
+    "save_abi": {
+      "collection_ledger_bit_count": 1216,
+      "collection_ledger_bytes": 152,
+      "placement": {
+        "address_space": "SAVE_PARASITE_IMAGE_OFFSET",
+        "end_exclusive": 8268,
+        "migration": "INNER_VERSION_CRC",
+        "owner": "USER_20260816_ACQUISITION",
+        "size": 240,
+        "start": 8028,
+        "status": "LIVE",
+        "symbol": "acquisition_save_block",
+        "version": 1
+      },
+      "save_block_bytes": 240
+    },
+    "schema_version": 1,
+    "source_registry": "vendor/vega_acquisition/content/collectible_species_registry.csv",
+    "species_count": 1621,
+    "status": "CORRECTED"
+  },
   "stage": 61,
   "status": "PASS",
   "task": "USER-20260903-STAGE61-WIKI",

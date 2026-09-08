@@ -43,6 +43,7 @@ struct AcqSymbols {
     uint32_t recover;
     uint32_t hatch_register;
     uint32_t is_registered;
+    uint32_t set_registered;
     uint32_t save_init;
     uint32_t save_finalize;
     uint32_t save_validate;
@@ -72,6 +73,9 @@ struct AcqSymbols {
     uint32_t wild_b;
 };
 
+static bool acq_skip_host_chain = false;
+static bool acq_identity_only = false;
+
 static void acq_die(const char *message)
 {
     fprintf(stderr, "mgba-acquisition-smoke: %s\n", message);
@@ -90,6 +94,17 @@ static uint32_t acq_number(const char *raw)
 static void acq_set(struct AcqSymbols *symbols, const char *key, const char *value)
 {
     uint32_t number = acq_number(value);
+    if (!strcmp(key, "skip_host_chain")) {
+        if (number != 1U) acq_die("skip_host_chain must be one");
+        acq_skip_host_chain = true;
+        return;
+    }
+    if (!strcmp(key, "identity_only")) {
+        if (number != 1U) acq_die("identity_only must be one");
+        acq_identity_only = true;
+        acq_skip_host_chain = true;
+        return;
+    }
 #define ACQ_FIELD(label, member) \
     if (!strcmp(key, label)) { symbols->member = number; return; }
     ACQ_FIELD("probe", probe)
@@ -99,6 +114,7 @@ static void acq_set(struct AcqSymbols *symbols, const char *key, const char *val
     ACQ_FIELD("recover", recover)
     ACQ_FIELD("hatch_register", hatch_register)
     ACQ_FIELD("is_registered", is_registered)
+    ACQ_FIELD("set_registered", set_registered)
     ACQ_FIELD("save_init", save_init)
     ACQ_FIELD("save_finalize", save_finalize)
     ACQ_FIELD("save_validate", save_validate)
@@ -290,14 +306,16 @@ static void acq_check_physical(struct mCore *core,
             != (symbols->save_validate | 1U)) {
         acq_die("save validator trampoline differs");
     }
-    if (read32(core, symbols->map_header + 4U) != symbols->event_header
-        || read32(core, symbols->object_record + 0x10U) != symbols->host_script
-        || read8(core, symbols->host_script) != 0x6AU
-        || read8(core, symbols->host_script + 1U) != 0x5AU
-        || read8(core, symbols->host_script + 2U) != 0x23U
-        || acq_read_u32_bytes(core, symbols->host_script + 3U)
-            != (symbols->host_wrapper | 1U)) {
-        acq_die("representative physical host chain differs");
+    if (!acq_skip_host_chain) {
+        if (read32(core, symbols->map_header + 4U) != symbols->event_header
+            || read32(core, symbols->object_record + 0x10U) != symbols->host_script
+            || read8(core, symbols->host_script) != 0x6AU
+            || read8(core, symbols->host_script + 1U) != 0x5AU
+            || read8(core, symbols->host_script + 2U) != 0x23U
+            || acq_read_u32_bytes(core, symbols->host_script + 3U)
+                != (symbols->host_wrapper | 1U)) {
+            acq_die("representative physical host chain differs");
+        }
     }
     if (read8(core, symbols->egg_script_site) != 0x05U
         || acq_read_u32_bytes(core, symbols->egg_script_site + 1U)
@@ -378,6 +396,40 @@ int main(int argc, char **argv)
     acq_expect(acq_call(core, symbols.probe, 0, 0, 0, 0), 0xAC51U, "core probe");
     acq_expect(acq_call(core, symbols.adapter_probe, 0, 0, 0, 0), 0xA926U,
                "adapter probe");
+
+    if (acq_identity_only) {
+        acq_clear(core, ACQ_SAVE, ACQ_SAVE_SIZE);
+        (void)acq_call(core, symbols.save_init, ACQ_SAVE, 0, 0, 0);
+        (void)acq_call(core, symbols.inner_init,
+                       ACQ_SAVE + ACQ_INNER_OFFSET, 0, 0, 0);
+        (void)acq_call(core, symbols.save_finalize, ACQ_SAVE, 0, 0, 0);
+        acq_expect(acq_call(core, symbols.is_registered, 649U, 0, 0, 0),
+                   0U, "Caterpie initial registration");
+        acq_expect(acq_call(core, symbols.set_registered, 649U, 1U, 0, 0),
+                   1U, "Caterpie registration write");
+        acq_expect(acq_call(core, symbols.is_registered, 649U, 0, 0, 0),
+                   1U, "Caterpie registration read");
+        acq_expect(acq_call(core, symbols.set_registered, 412U, 1U, 0, 0),
+                   1U, "internal Egg exclusion write");
+        acq_expect(acq_call(core, symbols.is_registered, 412U, 0, 0, 0),
+                   0U, "internal Egg exclusion read");
+        acq_expect(acq_call(core, symbols.is_registered, 649U, 0, 0, 0),
+                   1U, "Caterpie ledger isolation");
+        printf("{\"schema_version\":1,\"status\":\"PASS\","
+               "\"fixture\":\"acquisition_identity_v1\","
+               "\"rom_sha256\":\"%s\",\"warnings_errors\":0,"
+               "\"physical_host_chain\":false,"
+               "\"physical_host_chain_skipped\":true,"
+               "\"caterpie_id\":649,\"caterpie_ledger_bit\":386,"
+               "\"caterpie_registration_round_trip\":true,"
+               "\"internal_egg_id\":412,"
+               "\"internal_egg_registration_excluded\":true,"
+               "\"save_layout_preserved\":true,"
+               "\"artifacts_written\":[]}\n", rom_sha256);
+        mCoreConfigDeinit(&core->config);
+        core->deinit(core);
+        return 0;
+    }
 
     acq_clear(core, ACQ_SCRATCH, ACQ_SAVE_SIZE);
     (void)acq_call(core, symbols.save_init, ACQ_SCRATCH, 0, 0, 0);
@@ -558,7 +610,8 @@ int main(int argc, char **argv)
     printf("{\"schema_version\":1,\"status\":\"PASS\","
            "\"fixture\":\"acquisition_runtime_v1\","
            "\"rom_sha256\":\"%s\",\"read_only_host\":true,"
-           "\"warnings_errors\":0,\"physical_host_chain\":true,"
+           "\"warnings_errors\":0,\"physical_host_chain\":%s,"
+           "\"physical_host_chain_skipped\":%s,"
            "\"egg_hatch_hook\":true,"
            "\"save\":{\"legacy_zero_inner\":true,"
            "\"nested_crc_rejection\":true,\"migration_persisted\":true,"
@@ -575,7 +628,9 @@ int main(int argc, char **argv)
            "\"all_storage_full_rejected\":true},"
            "\"rom_tables\":{\"evolution_routes\":true,"
            "\"wild_corrections\":true},\"artifacts_written\":[]}\n",
-           rom_sha256);
+           rom_sha256,
+           acq_skip_host_chain ? "false" : "true",
+           acq_skip_host_chain ? "true" : "false");
 
     free(ready.bytes);
     free(unlocked.bytes);

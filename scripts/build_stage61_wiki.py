@@ -11,6 +11,7 @@ import json
 import os
 import re
 import struct
+import sys
 import tempfile
 from collections import defaultdict
 from pathlib import Path
@@ -41,9 +42,15 @@ SOURCE_PATHS = (
     "manifests/item_ids.csv",
     "generated/engine/ids/id_spaces.json",
     "generated/engine/moves/move_port.json",
+    "vendor/vega_acquisition/content/collectible_species_registry.csv",
     "vendor/vega_acquisition/content/species_acquisition_routes.csv",
     "vendor/vega_acquisition/content/evolution_requirements_553.csv",
     "vendor/vega_acquisition/content/acquisition_events.csv",
+    "vendor/vega_acquisition/manifests/collection_ledger_bits.csv",
+    "vendor/vega_acquisition/generated/acquisition_collection_defs.c",
+    "vendor/vega_acquisition/generated/acquisition_event_defs.c",
+    "vendor/vega_acquisition/generated/acquisition_save_layout.h",
+    "config/save_layout.csv",
     "content/stage61_wiki_progression.json",
     "content/kanto_progression.csv",
     "content/qol_progression.csv",
@@ -177,6 +184,33 @@ def _read_json(path: str) -> Any:
 def _read_csv(path: str) -> list[dict[str, str]]:
     with (ROOT / path).open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def _load_current_acquisition_identity() -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """旧取得表をkeyで監査し、現行manifest IDへ束縛したrouteを返す。
+
+    Stage61の固定成果物を入力として扱う場合でも、旧``canonical_id``だけを
+    Species manifestへjoinしてはならない。取得runtimeと同じ契約を読み込み、
+    ``collection_key+species_key``で意味を確定してから現行IDへ解決する。
+    """
+
+    module_name = "_vega_acquisition_identity_contract"
+    module = sys.modules.get(module_name)
+    if module is None:
+        path = ROOT / "scripts/build_acquisition_events.py"
+        spec = importlib.util.spec_from_file_location(module_name, path)
+        if spec is None or spec.loader is None:
+            raise ValueError("取得Species identity resolverを読み込めません")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        try:
+            spec.loader.exec_module(module)
+        except Exception:
+            sys.modules.pop(module_name, None)
+            raise
+    contract = module._load_species_identity_contract(ROOT)
+    audit = module._species_identity_audit(ROOT, contract)
+    return contract.route_by_species_key, audit
 
 
 def _json_bytes(value: Any) -> bytes:
@@ -602,7 +636,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     ids = _read_json("generated/engine/ids/id_spaces.json")
     move_port = _read_json("generated/engine/moves/move_port.json")
     supply = _read_json("content/collection_supply_v1/canonical_model.json")
-    route_rows = _read_csv("vendor/vega_acquisition/content/species_acquisition_routes.csv")
+    route_by_species_key, species_identity = _load_current_acquisition_identity()
     acquisition_events = _read_csv("vendor/vega_acquisition/content/acquisition_events.csv")
     progression = _read_json("content/stage61_wiki_progression.json")
     kanto_progression = _read_csv("content/kanto_progression.csv")
@@ -640,9 +674,8 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
     ability_by_id = {row["id"]: row for row in ids["abilities"]}
     item_by_id = {row["id"]: row for row in ids["items"]}
     item_manifest_by_id = {int(row["id"]): row for row in item_manifest}
-    route_by_id = {int(row["canonical_id"]): row for row in route_rows}
-    if set(route_by_id) != set(range(SPECIES_COUNT)):
-        raise ValueError("全Speciesの取得経路が揃っていません")
+    if set(route_by_species_key) != set(species_by_key):
+        raise ValueError("全Speciesの取得経路identityが揃っていません")
 
     move_records = []
     live_move_blob = raw[MOVE_TABLE_OFFSET:MOVE_TABLE_OFFSET + MOVE_COUNT * 12]
@@ -826,7 +859,11 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
         for ref, label, limit in ((type1, "type", 25), (type2, "type", 25), (ability1, "ability", ABILITY_COUNT), (ability2, "ability", ABILITY_COUNT), (hidden, "ability", ABILITY_COUNT), (held1, "item", ITEM_COUNT), (held2, "item", ITEM_COUNT)):
             if ref >= limit:
                 raise ValueError(f"Species {species_id} {label}参照範囲外: {ref}")
-        route = route_by_id[species_id]
+        route = route_by_species_key[manifest["species_key"]]
+        if route["resolved_species_id"] != species_id:
+            raise ValueError(
+                f"{manifest['species_key']}: 取得経路の現行Species ID束縛が不一致"
+            )
         group = int(route["group_id"]) if route["group_id"] else None
         map_id = int(route["map_id"]) if route["map_id"] else None
         location = map_names.get((group, map_id), route["logical_location_key"] or route["physical_map_key"] or "—") if group is not None else (route["logical_location_key"] or "—")
@@ -962,7 +999,7 @@ def _build() -> tuple[dict[str, bytes], dict[str, Any]]:
             continue
         species_key = event["target_species_keys"].split("|")[0]
         species = species_record_by_key[species_key]
-        route = route_by_id[species["id"]]
+        route = route_by_species_key[species_key]
         levels = [int(value) for value in re.findall(r"\d+", event["capture_level"])]
         level = levels[0] if levels else None
         group = int(event["group_id"]) if event["group_id"] else None
@@ -1432,6 +1469,7 @@ make stage61-wiki-check
             "kanto_maps": len(kanto_map_rows),
         },
         "runtime_move_slots": {"machine": machine_move_ids, "tutor": tutor_move_ids},
+        "species_identity": species_identity,
         "source_hashes": source_hashes,
         "evidence_levels": {
             "EXACT_ROM": "Stage61固定スナップショットから直接抽出またはbyte照合",
@@ -1449,6 +1487,7 @@ def _report(files: dict[str, bytes], index: dict[str, Any]) -> bytes:
     return _json_bytes({
         "schema_version": 1, "task": "USER-20260903-STAGE61-WIKI", "stage": 61, "status": "PASS",
         "active_rom": index["active_rom"], "counts": index["counts"],
+        "species_identity": index["species_identity"],
         "wiki_root": "docs/wiki/stage61", "file_count": len(files),
         "files": [{"path": path, "size": len(data), "sha256": _sha(data)} for path, data in sorted(files.items())],
     })
