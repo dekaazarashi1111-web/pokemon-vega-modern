@@ -77,6 +77,11 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         self.assertLess(plan.index(run), plan.index(p03))
         self.assertLess(plan.index(p03), plan.index(check))
         self.assertIn(["make", "modernization-p03-stage65-focused-test"], plan)
+        self.assertLess(
+            plan.index(check),
+            plan.index(["python3", "scripts/build_modernization_p08.py", "--check"]),
+        )
+        self.assertIn(["make", "modernization-p08-focused-test"], plan)
         self.assertNotIn(["make", "test"], plan)
 
     def test_all_does_not_repeat_focused_battle_unit(self) -> None:

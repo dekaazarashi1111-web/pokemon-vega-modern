@@ -94,6 +94,8 @@ def command_plan(suite: str, python: str = sys.executable) -> list[list[str]]:
         [python, "scripts/run_modernization_p03_stage65_mgba.py", "check"],
         [python, "scripts/build_modernization_p03_stage65.py", "check"],
         ["make", "modernization-p03-stage65-focused-test"],
+        [python, "scripts/build_modernization_p08.py", "--check"],
+        ["make", "modernization-p08-focused-test"],
     ]
     full_unit = [["make", "test"]]
     plans = {
