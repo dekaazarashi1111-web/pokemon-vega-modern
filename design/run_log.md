@@ -4327,7 +4327,7 @@
 - Verify:
   - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_rockruff_own_tempo_stage75 -v`: 12/12 PASS。
   - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_rockruff_own_tempo_stage75.py --check`: PASS。10成果identity、BPS source／target／roundtrip、24表／310 pointer／19 count consumer、5 hook／2 Egg trampoline、既存ABI 22 symbol、allocation既存9 slice＋sequence 78、P03経路勘定を再照合した。
-  - payload SHA-256 `18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206`、metadata `be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4`、allocation `90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09`、incremental BPS `23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7`、checkpoint `5eec88c1bab07aa67b5d27b163badfb9c540e134d58c0b367b22bf64ba7c47bf`。
+  - payload SHA-256 `18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206`、metadata `be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4`、allocation `90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09`、incremental BPS `23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7`、checkpoint `c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705`。
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
   - 独立read-only最終監査はHigh／Mediumなし。重いmGBAは最終累積候補の1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
