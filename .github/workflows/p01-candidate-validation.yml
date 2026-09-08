@@ -1,0 +1,46 @@
+name: p01-candidate-validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  candidate:
+    if: >-
+      github.event.pull_request.number == 14 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/user-modernization-p01-20260908' &&
+      github.actor == github.repository_owner
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - name: P01対象・実consumer回帰と既存保護
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest tests.test_modernization_ids tests.test_modernization_targets tests.test_p01_collection_consumer tests.test_p01_restore tests.test_p01_rom_audit
+      - name: 固定toolchainを導入
+        run: bash infra/setup_github_actions.sh --install
+      - name: 既存資材を固定hash復元（新規uploadなし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          mkdir -p .local/github-private-environment/assets
+          gh release download "$tag" --pattern 'pokemon-vega-private-env-v1-*.zip' --dir .local/github-private-environment/assets
+          python3 scripts/restore_p01_environment.py --archive-dir .local/github-private-environment/assets
+          git diff --exit-code
+      - name: clean ROM起点の別候補・両方向差分を生成して再照合
+        run: |
+          python3 scripts/build_p01_rom.py build
+          python3 scripts/build_p01_rom.py check
+          git diff --exit-code
+      - name: 旧ROMの誤登録再現と別候補の実ARM収集処理を各2 process検証
+        run: python3 scripts/run_p01_identity_mgba.py
+      - name: 最終source不変確認
+        run: git diff --exit-code

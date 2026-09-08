@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P01",
+  "candidate_key": "P01_COLLECTION_IDENTITY_REPAIR",
+  "parent_stage": 62,
+  "parent_sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
+  "parent_clean_patch": "build/patches/firered-jpn-rev0-to-stage62-npc-placement-integrity-repair.bps",
+  "clean_rom": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+  "clean_size": 16777216,
+  "clean_sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486",
+  "table_offset": 19760432,
+  "table_size": 12968,
+  "old_table_sha256": "f0595cd90e7bbb2bfc8badf19c3eb6504ddaeab7cb321c77fa92cc5467b7a984",
+  "new_table_sha256": "49264abb5c085d84bad782e9152c9c3b91f901452c6f04d903e07b8ddeb9f959",
+  "changed_species_ids": [412, 649],
+  "row_size": 8,
+  "collection_bit_reindex": false,
+  "save_abi_change": false,
+  "new_allocation": false,
+  "output_rom": "build/modernization/P01_identity_collection_repair.gba",
+  "play_baseline_switch": false
+}
