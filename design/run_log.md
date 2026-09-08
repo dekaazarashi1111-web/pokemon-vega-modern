@@ -4307,3 +4307,28 @@
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。独立read-only review 2件はHigh／Mediumなし。重いmGBAは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal成果のみを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T01:43:31+09:00
+
+- Task: `USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75` / Own Tempo Rockruff内部条件フォーム接続
+- Status: DONE（Stage75 P03 checkpoint。P03本体と最終累積mGBAは未完了）
+- Summary:
+  - 通常イワンコ1142と既存saveを変更せず、Own Tempo Rockruffを図鑑非加算の内部条件フォームSpecies 1670としてappendした。3 ability slotはマイペース20で固定し、通常1142の黄昏1263進化行を1670だけへ移した。
+  - 野生1142の成功生成後だけpersonality由来の決定的1/8で1670へ変換し、追加RNGを消費しない。繁殖は1263／1670だけを1670へ解決し、1142を含む他Speciesは親処理へexact delegateする。
+  - 24 Species表／310 pointer／19 count consumer、5 hook、allocation sequence 78を接続した。0744.01の38持越し経路を既存slot 21＋Stage74 archive 17へ解決し、missing owner 0、materialized 83,162、accounted 118,369、delta 0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`、CRC32 `1511F429`。Browt／Pombon／GecquaとSide Changeは0、`full_p03_done=false`、release ready=false、active Stage62を維持した。
+- Files changed:
+  - `config/modernization_rockruff_own_tempo_stage75.json`
+  - `content/modernization/rockruff_own_tempo_stage75_checkpoint.json`、`content/modernization/rockruff_own_tempo_stage75_contract.json`
+  - `overlays/modernization_rockruff_own_tempo_stage75/**`
+  - `tools/modernization_rockruff_own_tempo_stage75.py`、`scripts/build_modernization_rockruff_own_tempo_stage75.sh`
+  - `tests/test_modernization_rockruff_own_tempo_stage75.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_rockruff_own_tempo_stage75 -v`: 12/12 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_rockruff_own_tempo_stage75.py --check`: PASS。10成果identity、BPS source／target／roundtrip、24表／310 pointer／19 count consumer、5 hook／2 Egg trampoline、既存ABI 22 symbol、allocation既存9 slice＋sequence 78、P03経路勘定を再照合した。
+  - payload SHA-256 `18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206`、metadata `be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4`、allocation `90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09`、incremental BPS `23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7`、checkpoint `5eec88c1bab07aa67b5d27b163badfb9c540e134d58c0b367b22bf64ba7c47bf`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only最終監査はHigh／Mediumなし。重いmGBAは最終累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage74 ROM／tracked sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

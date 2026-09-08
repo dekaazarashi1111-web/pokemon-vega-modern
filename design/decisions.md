@@ -472,3 +472,22 @@
   Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAをrelease blockerとして維持する。
 - 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
   modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-09 — D-042: Own Tempo Rockruffは図鑑非加算の内部条件フォームとして追加する
+
+- 決定: 通常イワンコ1142を別種へ置換せず、Own Tempo Rockruff 0744.01をSpecies 1670、
+  `INTERNAL_CONDITIONAL_FORM`、National Dex 744、collection class 4／weight 0としてappendする。
+  これはユーザー指定の「通常ポケモン追加0」を変えない内部実装IDであり、Browt／Pombon／Gecquaの
+  ID・素材・runtimeは引き続き0とする。
+- 特性・進化: 1670の3 ability slotは全てマイペース20。通常1142に誤って開いていたLv.25・
+  17〜19時のルガルガン黄昏1263進化行を削除し、同じ8 bytesを1670だけへ移す。既存1142／1263は
+  save migrationせず保持する。
+- 取得・繁殖: 既存の野生1142生成が成功した後だけ、personalityを混合した決定的1/8を1670へ
+  変換する。追加RNGは使わず、非1142・生成失敗・既存個体を変更しない。繁殖は1263／1670だけを
+  1670へ解決し、他Speciesは進化表逆走をせず既存`GetEggSpecies`へexact delegateする。
+- P03: 0744.00のlevel 14／machine 38／egg 4／shared egg 4、計60 routeを別identity ownerへ
+  exact cloneする。既に1263側でaccount済みのcarry 38件は既存slot 21＋Stage74 archive 17へ解決し、
+  missing owner 0、materialized 83,162、accounted 118,369、delta 0を維持する。
+- 完了境界: 24 Species表、310 pointer、19 count consumer、5 hookをStage75へ接続するが、
+  最終累積mGBAまでは`full_p03_done=false`、release candidate falseとする。P08 selected candidate、
+  active Stage62、iPad、save、Releaseはこのcheckpointでは変更しない。

@@ -1686,3 +1686,14 @@
   - BPS 5本のexact apply、allocation #33/#77、release blocker、candidate registryの改ざんguardを追加した。
   - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
 - Verify: focused unittest 17/17、P08 builder `--check`、5 BPS exact apply、task graph、private guard、`git diff --check`、独立read-only review 2件のHigh／Mediumなし。重いmGBAは未実行。
+
+## 2026-09-09T01:43:31+09:00
+
+- Version: `modernization-stage75-rockruff-own-tempo-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75` / Own Tempo Rockruff内部条件フォーム接続
+- Summary:
+  - Species 1670を図鑑非加算のOwn Tempo Rockruff内部フォームとしてappendし、通常1142の黄昏進化誤経路を分離した。
+  - 野生生成を追加RNGなしの決定的1/8、繁殖を1263／1670限定で接続し、既存Species／save layoutを保持した。
+  - 38持越し経路のowner欠落を0にし、Browt／Pombon／GecquaとSide Changeの追加0、P03／release未完了を維持した。
+- Verify: focused unittest 12/12、Stage75 builder `--check`、10成果identity、BPS roundtrip、5 hook／ABI、24表／310 pointer／19 count consumer、allocation lineage、独立read-only監査High／Mediumなし PASS。ROM SHA-256 `a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`。mGBAは最終累積候補へ集約し未実行。
