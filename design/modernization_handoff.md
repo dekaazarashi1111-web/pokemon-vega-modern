@@ -9,11 +9,11 @@
 - 現行プレイ基準はStage62のまま。開発中の最大StageをiPad、通常save、Codex対戦へ自動採用しない。
 - P01はDONE。Stage63はEgg 412／Caterpie 649の意味逆転をstable keyで修復し、ROM SHA-256は`6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`。
 - P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSした。Stage71累積ROMの全受入は2回とも通常UIの製品判定前にハーネス側で停止したため、production runtimeを`UNJUDGED`、全受入をpendingに保った。次回は既知正常saveをprocess別に私有コピーし、通常Continueでinput-ready fieldへ到達後だけfixtureを置くハーネスを使う。追加mGBAはStage72後の累積runへ集約する。
-- P03はStage66 bulkを継承し、Stage67 consumer checkpointまで進んだ。Stage67 ROM SHA-256は`13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32は`D94758FF`。core checkpoint commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`。
+- P03はStage66/67 bulkを継承し、Stage73 consumer runtime checkpointまで進んだ。Stage73はStage72 commit `bbab6b2e943186cf437a6dca90712c01f0319ded`と4 artifact identityへfail closedで固定し、条件付きegg／shared egg／reminder／ロトムform moveを3 hookで接続した。ROM SHA-256は`25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32は`B4907165`。P08のselected candidateへは未統合である。
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
 - P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。P08のselected candidateへは未統合である。
 - P05のAbility ROM checkpointはStage72まで進んだ。Ability 312〜317を6 Megaへ結合し、説明／rating／Mold表と29 battle hookを接続した。ROM SHA-256は`f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32は`F981D1CB`、変更7,257 bytes／許可7,436 bytes／許可外0。focused 15件とbuilder byte比較はPASS、mGBAは未実行である。
-- P04〜P08は依然として未完了。Stage72は6 Abilityの主要runtimeまでのcheckpointで、Solar charge時popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect 1/4予測、Spicy Spray味方発火AI評価、最終累積mGBAはrelease readyではない。P01以外をDONEと扱わない。
+- P04〜P08は依然として未完了。Stage73は5群consumer境界までのcheckpointで、machine／tutor直接供給26,648経路、Solar charge時popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect 1/4予測、Spicy Spray味方発火AI評価、最終累積mGBAはrelease readyではない。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
 
@@ -25,7 +25,7 @@
 - サイドチェンジ159経路は未実装残件ではなく`NON_ADOPTED`。Move 1063を割り当てず、既存技への近似置換もしない。将来採用時は別decisionで全経路を再選択する。
 - P02 overlayから46,455 bytes変更、4,343 spans、宣言外変更0。Stage66からはP02の60 bytesを含む46,515 bytes差分。追加payload後の`future_tail`末尾残量は62,510 bytes。
 - mGBAはStage67で追加した全evolution 341、tutor positive 740＋negative 290、normal egg 2,522を独立2 processで実consumer実行した。scheduler、breeding、4枠満杯、save/reloadは未検証なのでP03完了ではない。
-- Stage73 preflightは保留67,218のうち、条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70の計40,570を全sourceから再集計した。shared eggはdirect重複2,272／shared-only 2,751、carryはmachine／TR／tutor供給依存23,578を分離する。既存の4枠保持やform ownerを新規materializationへ数えず、通常egg／level0への偽装転記を0に固定した。Stage72親identity確定まではROM工程をfail closedとする。
+- Stage73は上記5群40,570経路のconsumer境界をROMへ接続した。新規materializationはalias／incense衝突7種のexact egg 40、shared egg 5,023、reminder 295、ロトム5 form moveの計5,363。既存owner照合はPichu＋Light BallのVolt Tackle 1、pre-evolution 4技保持35,141、generic form保持61、固定form transition 4の計35,207。通常／共有技候補は40枠内で最大28／19、drop 0で、Browt／Pombon／Gecqua、Side Change、意味を潰すconsumer転記はいずれも0。残るmachine 26,279／tutor 369は供給未実装のためP03完了とは数えない。
 
 ## P04の素材・取得経路・容量
 
@@ -77,6 +77,8 @@ python3 scripts/build_modernization_p05.py --check
 python3 scripts/build_modernization_p05_ability_runtime.py --check --compact
 python3 scripts/build_modernization_p05_ability_rom_runtime.py --check
 python3 -m unittest tests.test_modernization_p05_ability_rom_runtime
+python3 -m unittest tests.test_modernization_p03_stage73_runtime
+bash scripts/build_modernization_p03_stage73_runtime.sh check
 python3 scripts/build_modernization_p07.py --check
 python3 scripts/run_modernization_p02_acceptance.py check
 python3 scripts/build_modernization_p03_stage67.py check
@@ -88,9 +90,9 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. Stage72を親として、P03の条件付きegg／shared egg／reminder／Rotom form moveをStage73へ接続する。pre-evolution／form carryは既存4技slot保持と供給完了を分離し、Side Change 159件は対象外のまま保持する。
+1. Stage73のidentityをP08 integrationへ再pinし、active Stage62、P01のみDONE、release falseを維持したまま累積監査を更新する。
 2. 残るmachine 26,279／tutor 369の供給を別checkpointで実装し、P03の全route取得可能性を再評価する。
-3. Stage73以降の最終累積mGBAで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表に加え、P02の通常UI cancel／bag／scene後identity／fresh-core reloadを同じ1セットで検証する。
+3. その後の最新累積ROMで、49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表に加え、P02通常UI、Stage73 egg／Move Memory／ロトム保存を同じmGBAセットで検証する。
 4. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。

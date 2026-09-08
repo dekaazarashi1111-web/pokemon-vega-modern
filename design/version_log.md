@@ -1640,3 +1640,14 @@
   - type／power／天候／命中／回復／Ground無効／Protect貫通／被damage火傷と、Future Sight使用者解決・Ability Shield visual境界を固定した。
   - state29→30の狭いyieldとMoxie完了後state31復元を追加し、独立最終レビューHigh／Mediumなし。専用AI、Solar charge popup、最終mGBAはrelease blockerとして残した。
 - Verify: focused unittest 15/15、Stage72 builder `--check`、BPS roundtrip、29 hook ABI、allocator／allowlist、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`。mGBAは最終累積候補へ集約し未実行。
+
+## 2026-09-08T20:54:46+09:00
+
+- Version: `modernization-stage73-consumer-runtime-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME` / P03 5群consumerのStage73 ROM接続
+- Summary:
+  - 条件付きegg／shared egg／reminder／ロトムform moveを3 hookで接続し、5,363経路を新規materializationした。
+  - 既存4技保持、form owner、Light Ball特殊繁殖の35,207経路を新規供給と分け、5群40,570経路をaccountした。
+  - Side Changeと追加対象外3種を0に保ち、machine／tutor 26,648経路、専用AI、最終累積mGBAを未完了として残した。
+- Verify: focused unittest 9/9、Stage73 builder `check`、BPS roundtrip、3 hook ABI、capacity drop 0、allocator／allowlist、独立High／Medium review PASS。ROM SHA-256 `25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`。mGBAは未実行。

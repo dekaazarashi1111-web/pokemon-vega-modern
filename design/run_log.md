@@ -4215,3 +4215,27 @@
   - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。重いmGBAはStage73以降の最終累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal CFRU-JP／Stage71 ROMのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:54:46+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME` / P03 5群consumerのStage73 ROM接続
+- Status: DONE（Stage73 consumer checkpoint。P03本体、machine／tutor供給、最終累積mGBAは未完了）
+- Summary:
+  - Stage72確定commit `bbab6b2e943186cf437a6dca90712c01f0319ded`とROM／metadata／allocation／checkpointの4 identityをfail closedで固定し、Stage73を生成した。3 hookは`GetAllEggMoves`、`VegaMoveMemory_GetMoveRelearnerMoves`、`CollectionSupply_ApplySelectedForm`だけとした。
+  - 5群40,570経路について、exact egg 40、shared egg 5,023、reminder 295、ロトムform move 5の計5,363を新規materializationし、既存Light Ball owner 1、pre-evolution 4技保持35,141、generic／固定form owner 65の計35,207を既存ownerとして別計上した。通常／共有候補は40枠内で最大28／19、drop 0。
+  - ロトムは空き枠または旧appliance signatureだけを使い、既存4技が満杯なら`EFFECTLESS`として無断上書きをしない。species＋move保存失敗時はRAM snapshotを戻して再保存する。Side Change、Browt／Pombon／Gecqua、禁止coercionは0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32 `B4907165`、Stage72から変更36,585 bytes。残るmachine 26,279＋tutor 369の26,648経路とexact-ROM mGBAを未完了に保持した。
+- Files changed:
+  - `config/modernization_p03_stage73_runtime.json`
+  - `overlays/modernization_p03_stage73_consumer_runtime/**`
+  - `tools/modernization_p03_stage73_runtime.py`、`scripts/build_modernization_p03_stage73_runtime.sh`
+  - `tests/test_modernization_p03_stage73_runtime.py`
+  - `content/modernization/p03_stage73_consumer_runtime_checkpoint.json`、`content/modernization/p03_stage73_consumer_runtime_route_audit.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p03_stage73_runtime -v`: 9/9 PASS。
+  - `bash scripts/build_modernization_p03_stage73_runtime.sh check`: 9 artifacts byte一致PASS。BPS roundtrip、3 hook preimage／Thumb veneer／trampoline、Pichu＋Light Ball既存owner命令、allocator、allowlist外0を再照合した。
+  - metadata SHA-256 `c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887`、allocation SHA-256 `f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a`、incremental BPS SHA-256 `8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61`、checkpoint SHA-256 `ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d`。
+  - 独立read-only reviewはHigh／Mediumなし。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage72 ROMだけを使用し、push／Release／iPad／現行プレイ基準は変更していない。

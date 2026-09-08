@@ -409,3 +409,18 @@
   1/4予測、Spicy Sprayの味方発火AI評価、exact-ROM mGBAをrelease blockerとして残す。Stage72は
   checkpointであり、P04／P05完了や現行プレイ基準への昇格を意味しない。
 - 影響: Stage72 Ability runtime、Stage73親identity、P04／P05／P08、最終累積mGBA。
+
+## 2026-09-08 — D-038: Stage73は5群consumer接続と供給完了を分離する
+
+- 決定: 条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、
+  form change 70の計40,570経路を、Stage73のconsumer境界としてStage72上へ接続する。
+- 新規実装: alias／incense衝突7種のexact egg 40、shared egg 5,023、reminder 295、
+  ロトム5 form moveの計5,363を新規runtime materializationとする。Pichu＋Light Ballの
+  Volt Tackle 1件は既存`BuildEggMoveset` ownerをbyte列まで照合し、二重hookしない。
+- 既存owner: pre-evolutionの4技保持35,141、generic form保持61、固定form transition 4を
+  新規技供給と数えず、既存owner 35,207件として別計上する。ロトムは既存技4枠を無断で消さず、
+  空きも旧signatureもない場合は`EFFECTLESS`として技メモリーでの空き作成を要求する。
+- 完了境界: 通常／共有技候補は40枠内でdrop 0。Browt／Pombon／Gecqua、Side Change、禁止された
+  level／eggへの意味変換は0を維持する。machine 26,279＋tutor 369は未供給のため、Stage73を
+  P03完了やrelease candidateとして扱わない。
+- 影響: Stage73、P03、Move Memory、Collection form service、P08、最終累積mGBA。
