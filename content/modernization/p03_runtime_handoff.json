@@ -1,0 +1,249 @@
+{
+  "connection_points": {
+    "current_abi": {
+      "egg": {
+        "root_site": {
+          "expected": "0x09FC22EC",
+          "site": "0x08045214"
+        },
+        "row": "U16; 20000+species marker / project Move ID / FFFF terminator"
+      },
+      "implemented_move_ids": "0..1062",
+      "level_up": {
+        "root_sites": {
+          "expected": "0x09FC0998",
+          "site": "0x0804346C"
+        },
+        "row": "U16_PROJECT_MOVE_ID + U8_LEVEL",
+        "runtime_literal_site": {
+          "expected": "0x09FC0998",
+          "site": "0x09FDA1F8"
+        },
+        "terminator": "0000FF"
+      },
+      "machine_compatibility": {
+        "catalog_root_site": "0x081263D8",
+        "hm_runtime_indices": "120..127",
+        "root_site": "0x080432B4",
+        "stride": 16,
+        "tm_slots": 120
+      },
+      "move_count": 1063,
+      "species_count": 1621,
+      "tutor_compatibility": {
+        "catalog_root_site": "0x081213D4",
+        "root_site": {
+          "expected": "0x09FCC1E0",
+          "site": "0x08121420"
+        },
+        "slots": 64,
+        "stride": 16
+      }
+    },
+    "current_consumers": {
+      "egg": [
+        "GetAllEggMoves",
+        "daycare",
+        "hatch",
+        "VegaMoveMemory_GetMoveRelearnerMoves"
+      ],
+      "level_up": [
+        "GiveBoxMonInitialMoveset",
+        "MonTryLearningNewMove",
+        "GetMoveRelearnerMoves",
+        "GetLevelUpMovesBySpecies",
+        "GetNumberOfRelearnableMoves",
+        "VegaMoveMemory_GetMoveRelearnerMoves",
+        "trainer_default_moves",
+        "facility_default_moves"
+      ],
+      "tm_tutor": [
+        "CanMonLearnTMHM",
+        "CanMonLearnTutorMove",
+        "CanMonLearnTMTutor"
+      ],
+      "wild_initial": [
+        "VegaQolProduction_TryGenerateWildMonAdapter",
+        "VegaQolProduction_GenerateFishingEncounterAdapter",
+        "VegaQolProduction_TryHiddenEncounterAdapter"
+      ]
+    },
+    "integration_rule": "parent ROMのpointer siteを再解決し、metadata/allocationを継承して新表へrepointする。Stage38のexpected addressを後続Stageへ固定流用しない。",
+    "source_files": [
+      {
+        "path": "scripts/build_species_surface.py",
+        "sha256": "2c51e24a32df8da8038dbd3ecb209af7c637324119ae05bc9b8b4ef8cc4e9b03",
+        "size": 86508
+      },
+      {
+        "path": "scripts/build_move_distribution_v4.py",
+        "sha256": "b2487d1a50c200467a2e892ebfcdbd58b4c5695f4f95ce56b55a37c86599a1c4",
+        "size": 59171
+      },
+      {
+        "path": "scripts/build_move_memory.py",
+        "sha256": "374dcfc9e40d36f9fd3019c0191d52e278e495760fad666f445fb57d99d30817",
+        "size": 54175
+      },
+      {
+        "path": "scripts/build_stage61_runtime_hotfix.py",
+        "sha256": "6601d8cf33bfc172763f51150376b472efe70d1f5430efd0dc55c94070733550",
+        "size": 29701
+      },
+      {
+        "path": "config/move_distribution_v4.json",
+        "sha256": "170b313c414163d7fc1edab363866c164e547c1a8627005ca136c93e10561787",
+        "size": 4181
+      },
+      {
+        "path": "config/stage61_runtime_hotfix.json",
+        "sha256": "ddcf5f96ba78586fc575bb448e75c0ededee648eebf9bf86864c8c13b7338d18",
+        "size": 7204
+      },
+      {
+        "path": "content/move_distribution_v4/consumer_contract.json",
+        "sha256": "953645dbba17b3ec9e00234027d5ec154635f5581b057541eb907d5ce1b83e44",
+        "size": 1267
+      }
+    ]
+  },
+  "consumer_compilation": {
+    "egg": "direct/egg|special_breeding。特殊条件を通常eggへ無条件化しない",
+    "evolution": "direct/evolutionを進化時consumerへ別serialize",
+    "form_change": "form_change routeとdirect form_move/battle_transform。恒久技化しない",
+    "level_up": "direct/level_upだけをlevel-up表へserialize",
+    "machine": "direct/tm|trだけ。machine_itemは原作番号、runtime_slotはprojectionから解決",
+    "pre_evolution_carry": "全pre_evolution route。対象の直接表/compatibility bitへ書かない",
+    "reminder": "direct/reminderを思い出しconsumerへ別serialize",
+    "shared_egg": "shared_egg routeだけ。共有手順・受け手・作品条件を保持",
+    "tutor": "direct/tutorだけ。runtime slot projectionと供給不足を分離"
+  },
+  "fixtures": {
+    "caterpie": [
+      {
+        "consumer": "level_up",
+        "method": "level_up",
+        "project_move_id": 33,
+        "route_id": "e84468471e2a5389cab08c6e",
+        "runtime_slot_zero_based": null,
+        "source_machine_item": ""
+      },
+      {
+        "consumer": "level_up",
+        "method": "level_up",
+        "project_move_id": 81,
+        "route_id": "bcf11b7de237f5503621f3b4",
+        "runtime_slot_zero_based": null,
+        "source_machine_item": ""
+      },
+      {
+        "consumer": "level_up",
+        "method": "level_up",
+        "project_move_id": 535,
+        "route_id": "9d24844ef808e40888791e37",
+        "runtime_slot_zero_based": null,
+        "source_machine_item": ""
+      },
+      {
+        "consumer": "machine",
+        "method": "tm",
+        "project_move_id": 489,
+        "route_id": "f47d1fe9a44cbb635c1de248",
+        "runtime_slot_zero_based": 116,
+        "source_machine_item": "TM82"
+      }
+    ],
+    "form_change": {
+      "form_change_condition_ja": "同作品内で姿を変更して持ち越す。フォーム専用技の無条件な他姿流用は除外。",
+      "method": "level_up",
+      "route_id": "12fc3112f8793ce25e7dc401",
+      "route_kind": "form_change",
+      "target_species_key": "SPECIES_KEY_DEOXYS"
+    },
+    "pre_evolution_carry": {
+      "donor_learning_level": 1,
+      "method": "level_up",
+      "route_id": "8b2f24a62fb48dca7af94408",
+      "route_kind": "pre_evolution",
+      "runtime_supply_status": "CARRY_ONLY_NO_TARGET_DIRECT_BIT",
+      "target_learning_level": null,
+      "target_species_key": "SPECIES_KEY_SWELLOW"
+    }
+  },
+  "preservation": {
+    "move_memory": "level/evolution/reminder/egg/shared/carry/formの条件付きqueryを統合",
+    "new_normal_mon_generation": "同一正本のlevel-up consumerを使用して初期4枠を決定",
+    "trainer_facility": "明示手持ちは別正本として保持し、自動置換しない",
+    "wild_generation": "新規生成時だけ照合。既存party/box/saveロード時は変更しない"
+  },
+  "schema_version": 1,
+  "side_change_1063": {
+    "adopted_route_count": 159,
+    "adopted_target_count": 103,
+    "definition": {
+      "accuracy": null,
+      "damage_class_id": 1,
+      "power": null,
+      "pp": 15,
+      "priority": 2,
+      "type_id": 14
+    },
+    "official_move_id": 502,
+    "project_move_id": 1063,
+    "project_move_key": "MOVE_KEY_ALLYSWITCH",
+    "required_runtime_work": {
+      "ai": [
+        "使用可能な味方位置と失敗条件を判定",
+        "無効局面で選ばず、位置交換の戦術価値をdouble battle AIへ接続"
+      ],
+      "effect": [
+        "ダブル時の味方との位置交換effect、対象/失敗条件、battle scriptを実装",
+        "シングル・味方不在・交換不能時を安全に失敗させ、優先度+2を適用"
+      ],
+      "identity_and_tables": [
+        "Move manifest/capacityをID 1063を含む1064件へ拡張",
+        "gBattleMoves、name、description、animation、全fixed-count guardを同じidentityへ更新"
+      ],
+      "ui": [
+        "日本語名・説明・エスパー/変化・PP15・優先度情報を表示tableへ追加",
+        "習得・思い出し・共有・機械/教え技画面で未知ID表示を起こさない"
+      ],
+      "verification": [
+        "effect/AI/UI、single失敗、double成功、save往復、各習得経路を実ROMで検証",
+        "実装完了まで1063を既存runtime slotまたは実装済みMoveとしてserializeしない"
+      ]
+    },
+    "routes_by_consumer": {
+      "egg": 9,
+      "level_up": 15,
+      "machine": 68,
+      "pre_evolution_carry": 42,
+      "reminder": 3,
+      "shared_egg": 18,
+      "tutor": 4
+    },
+    "status": "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED"
+  },
+  "status": "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS",
+  "task": "USER-MODERNIZATION-P03",
+  "unresolved_supply": {
+    "direct_machine_tutor_pairs": 56493,
+    "existing_slot_projection_rows": 29773,
+    "projected_rows_by_family": {
+      "machine": 29033,
+      "tutor": 740
+    },
+    "projection_set_sha256": "f4be2d83dae734c9339b790583d1e8c427daac49c964c87205b2f970b6deb3f1",
+    "resolution": "既存slotはruntime zero-based indexへ投影。未配置は削除せず、catalog/compatibility拡張または別供給経路が実装されるまで依存として保持。",
+    "supply_required_distinct_moves_by_family": {
+      "machine": 185,
+      "tutor": 32
+    },
+    "supply_required_rows": 26720,
+    "supply_required_rows_by_family": {
+      "machine": 26347,
+      "tutor": 373
+    },
+    "supply_required_set_sha256": "724964ecc27b0e93be687cc116e8254a2d087536493ace5e2881aa5da15e3864"
+  }
+}
