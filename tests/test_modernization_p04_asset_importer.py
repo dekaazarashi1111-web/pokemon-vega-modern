@@ -125,15 +125,22 @@ class ModernizationP04AssetImporterTest(unittest.TestCase):
             },
         )
 
-    def test_winds_waves_assets_remain_explicitly_missing(self) -> None:
+    def test_winds_waves_assets_are_not_required_for_non_adopted_scope(self) -> None:
         missing = self.build.manifest["missing_assets"]
-        self.assertEqual(3, len(missing))
+        self.assertEqual([], missing)
+        excluded = self.build.manifest["excluded_non_adopted_records"]
+        self.assertEqual(3, len(excluded))
         self.assertEqual(
             {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"},
-            {item["record_key"] for item in missing},
+            {item["record_key"] for item in excluded},
         )
-        self.assertTrue(all(item["status"] == "MISSING_FROM_PINNED_SOURCE" for item in missing))
-        self.assertTrue(all(item["fake_or_placeholder_generated"] is False for item in missing))
+        self.assertTrue(all(item["status"] == "NON_ADOPTED_USER_SCOPE" for item in excluded))
+        self.assertTrue(all(item["id_assignment"] == "NOT_APPLICABLE_NON_ADOPTED" for item in excluded))
+        self.assertTrue(all(item["asset_requirement"] == "NOT_REQUIRED" for item in excluded))
+        self.assertEqual(
+            {"covered": 0, "required": 0},
+            self.build.manifest["coverage"]["winds_waves_new_species"],
+        )
 
     def test_build_is_byte_deterministic(self) -> None:
         rebuilt = build_p04_asset_import(ROOT, source_root=self.source_root)

@@ -34,6 +34,8 @@ CHECKPOINT_STATUS = "CHECKPOINT_NOT_RUNTIME_READY"
 DEFAULT_OUTPUT = Path("content/modernization/p04_capacity_allocation_manifest.json")
 ROM_BASE = 0x08000000
 U16_MAX = 0xFFFF
+P04_ADOPTED_MEGA_COUNT = 49
+P04_NON_ADOPTED_WINDS_WAVES_COUNT = 3
 
 P04_CANDIDATES = Path("content/modernization/p04_candidate_manifest.json")
 P04_ASSETS = Path("content/modernization/p04_asset_import_manifest.json")
@@ -58,13 +60,13 @@ CFRU_COMMIT = "e24a16fe39e27ae162faf5b78596d1f3df18489d"
 # fileを読み直して採番が動くことを許さない。
 PINNED_SHA256 = {
     P04_CANDIDATES.as_posix():
-        "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
+        "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
     P04_ASSETS.as_posix():
-        "107f6830b0faf4c3372a872c2f91f6945145ad7503f17f64c4dd1d17c5168235",
+        "d175514c66ee66d055d8457d6f15ff19b8a0d60f4bceb621e2f8c5e9a5aa8cc0",
     P05_CONTRACT.as_posix():
-        "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
+        "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404",
     P05_HANDOFF.as_posix():
-        "b0ca8e9ad33260d90b2a27518952b5e0f90b2a217cb50a128cc939cfa69e5ae7",
+        "9498b71bc131ed78f6c0efcd930de74838b4e25ce910f1d828389bcaeb03405d",
 }
 
 EXPECTED_STAGE65_SHA256 = (
@@ -220,7 +222,7 @@ MANIFEST_SPACES = {
         "key_field": "species_key",
         "current_count": 1621,
         "current_max_id": 1620,
-        "append_count": 52,
+        "append_count": P04_ADOPTED_MEGA_COUNT,
     },
     "move": {
         "path": "manifests/move_ids.csv",
@@ -244,6 +246,13 @@ MANIFEST_SPACES = {
         "append_count": 45,
     },
 }
+
+SPECIES_NEW_COUNT = (
+    MANIFEST_SPACES["species_form"]["current_count"]
+    + MANIFEST_SPACES["species_form"]["append_count"]
+)
+SPECIES_NEW_MAX_ID = SPECIES_NEW_COUNT - 1
+SPECIES_EGG_HEADER_MAX = 20000 + SPECIES_NEW_MAX_ID
 
 EXPECTED_NEW_ABILITY_KEYS = frozenset(
     {
@@ -1557,13 +1566,27 @@ def _build_reservations(
         _fail("P04 candidate record数が54ではありません")
     adopted = [row for row in records if row.get("implementation_scope") == "ADOPT_CANDIDATE"]
     holds = [row for row in records if row.get("implementation_scope") == "HOLD_CLASSIFICATION"]
-    if len(adopted) != 52 or len(holds) != 2:
-        _fail("P04 candidateの採用52/hold 2件が不一致です")
+    non_adopted = [
+        row for row in records
+        if row.get("implementation_scope") == "NON_ADOPTED_USER_SCOPE"
+    ]
+    if len(adopted) != P04_ADOPTED_MEGA_COUNT or len(holds) != 2 \
+            or len(non_adopted) != P04_NON_ADOPTED_WINDS_WAVES_COUNT:
+        _fail("P04 candidateの採用49/hold 2/現行非採用3件が不一致です")
     if Counter(row.get("classification") for row in adopted) != {
-        "BATTLE_ONLY_MEGA": 49,
-        "NEW_SPECIES": 3,
+        "BATTLE_ONLY_MEGA": P04_ADOPTED_MEGA_COUNT,
     }:
-        _fail("P04採用候補のMega 49/新Species 3分類が不一致です")
+        _fail("P04採用候補はMega 49件だけである必要があります")
+    expected_non_adopted = {
+        "P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA",
+    }
+    if {str(row.get("record_key")) for row in non_adopted} != expected_non_adopted \
+            or any(
+                row.get("classification") != "NEW_SPECIES"
+                or row.get("id_assignment") != "NOT_APPLICABLE_NON_ADOPTED"
+                for row in non_adopted
+            ):
+        _fail("Winds/Waves 3件の現行非採用・無割当契約が不一致です")
 
     species_requested = []
     for row in sorted(adopted, key=lambda item: str(item.get("proposed_species_key"))):
@@ -1768,35 +1791,52 @@ def _asset_separation(
     palettes = coverage.get("gba_full_species_palette_compatibility", {})
     if mega != {"covered": 49, "required": 49} \
             or stones != {"covered": 45, "required": 45} \
-            or winds != {"covered": 0, "required": 3} \
+            or winds != {"covered": 0, "required": 0} \
             or palettes != {"ready": 49, "required": 49}:
         _fail("P04 asset coverage契約が想定件数と不一致です")
     missing = assets.get("missing_assets")
     issues = assets.get("palette_coverage_issues")
-    if not isinstance(missing, list) or not isinstance(issues, list):
+    non_adopted = assets.get("excluded_non_adopted_records")
+    if not isinstance(missing, list) or not isinstance(issues, list) \
+            or not isinstance(non_adopted, list):
         _fail("P04 asset gap一覧がありません")
     missing_records = sorted(str(row.get("record_key")) for row in missing)
     palette_records = sorted({str(row.get("record_key")) for row in issues})
-    expected_missing = sorted(
+    expected_non_adopted = sorted(
         {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"}
     )
+    non_adopted_records = sorted(str(row.get("record_key")) for row in non_adopted)
     expected_palette: list[str] = []
-    if missing_records != expected_missing or palette_records != expected_palette:
-        _fail("Winds/WavesまたはMega palette素材gap対象が不一致です")
+    if missing_records or palette_records != expected_palette \
+            or non_adopted_records != expected_non_adopted \
+            or any(
+                row.get("status") != "NON_ADOPTED_USER_SCOPE"
+                or row.get("id_assignment") != "NOT_APPLICABLE_NON_ADOPTED"
+                or row.get("asset_requirement") != "NOT_REQUIRED"
+                for row in non_adopted
+            ):
+        _fail("Winds/Waves非採用scopeまたはMega palette素材gap対象が不一致です")
     reserved_records = {
         str(row.get("source_record_key"))
         for row in reservations["species_form"]["rows"]
     }
-    if not set(missing_records + palette_records).issubset(reserved_records):
+    if not set(palette_records).issubset(reserved_records):
         _fail("asset gapが予約Species集合に解決できません")
+    if set(non_adopted_records) & reserved_records:
+        _fail("現行非採用Winds/WavesへSpecies IDが予約されています")
     return {
         "id_reservation_is_independent_from_asset_readiness": True,
+        "non_adopted_scope_does_not_reserve_id_or_asset": True,
         "asset_gap_does_not_become_fake_payload": True,
         "winds_waves": {
-            "reserved_ids": 3,
+            "reserved_ids": 0,
             "source_assets_ready": 0,
+            "asset_requirement_count": 0,
             "consumer_ready": False,
             "missing_record_keys": missing_records,
+            "non_adopted_record_keys": non_adopted_records,
+            "scope": "NON_ADOPTED_USER_SCOPE",
+            "consumer_requirement": "NOT_APPLICABLE_NON_ADOPTED",
             "fake_or_placeholder_generated": False,
         },
         "mega_species": {
@@ -2445,34 +2485,34 @@ def _build_tables(
             domain="species_form",
             address=_integer(base.get("address"), "base stats address"),
             old_count=1621,
-            new_count=1673,
+            new_count=SPECIES_NEW_COUNT,
             stride=32,
             notes=("BaseStatsのAbility/held item fieldはu16、type/stat fieldはu8",),
         )
     )
 
     surface_shapes = {
-        "front": (8, 1621, 1673),
-        "back": (8, 1621, 1673),
-        "palette": (8, 1621, 1673),
-        "shiny_palette": (8, 1621, 1673),
-        "icon": (4, 1621, 1673),
-        "icon_palette": (1, 1621, 1673),
-        "front_coords": (4, 1621, 1673),
-        "back_coords": (4, 1621, 1673),
-        "elevation": (1, 1621, 1673),
-        "footprint": (4, 1621, 1673),
-        "cry": (12, 1621, 1673),
-        "cry2": (12, 1621, 1673),
-        "dex_entries": (28, 1621, 1673),
-        "national_dex": (2, 1621, 1673),
-        "national_dex_runtime": (2, 1620, 1672),
-        "evolutions": (128, 1621, 1673),
-        "level_up_pointers": (4, 1621, 1673),
-        "tmhm": (16, 1621, 1673),
-        "tutor": (16, 1621, 1673),
-        "species_names": (11, 1621, 1673),
-        "species_names_legacy": (8, 1621, 1673),
+        "front": (8, 1621, SPECIES_NEW_COUNT),
+        "back": (8, 1621, SPECIES_NEW_COUNT),
+        "palette": (8, 1621, SPECIES_NEW_COUNT),
+        "shiny_palette": (8, 1621, SPECIES_NEW_COUNT),
+        "icon": (4, 1621, SPECIES_NEW_COUNT),
+        "icon_palette": (1, 1621, SPECIES_NEW_COUNT),
+        "front_coords": (4, 1621, SPECIES_NEW_COUNT),
+        "back_coords": (4, 1621, SPECIES_NEW_COUNT),
+        "elevation": (1, 1621, SPECIES_NEW_COUNT),
+        "footprint": (4, 1621, SPECIES_NEW_COUNT),
+        "cry": (12, 1621, SPECIES_NEW_COUNT),
+        "cry2": (12, 1621, SPECIES_NEW_COUNT),
+        "dex_entries": (28, 1621, SPECIES_NEW_COUNT),
+        "national_dex": (2, 1621, SPECIES_NEW_COUNT),
+        "national_dex_runtime": (2, 1620, SPECIES_NEW_MAX_ID),
+        "evolutions": (128, 1621, SPECIES_NEW_COUNT),
+        "level_up_pointers": (4, 1621, SPECIES_NEW_COUNT),
+        "tmhm": (16, 1621, SPECIES_NEW_COUNT),
+        "tutor": (16, 1621, SPECIES_NEW_COUNT),
+        "species_names": (11, 1621, SPECIES_NEW_COUNT),
+        "species_names_legacy": (8, 1621, SPECIES_NEW_COUNT),
     }
     for name, (stride, old_count, new_count) in surface_shapes.items():
         source = surface_entries.get(name)
@@ -2492,7 +2532,7 @@ def _build_tables(
         if name == "icon_palette":
             notes.append("u8はpalette selectorでありSpecies ID格納欄ではない")
         if name == "national_dex_runtime":
-            notes.append("SPECIES_NONEを除く1620→1672 row")
+            notes.append(f"SPECIES_NONEを除く1620→{SPECIES_NEW_MAX_ID} row")
         active_address = _integer(source.get("address"), f"{name} address")
         active_source = "STAGE09_SPECIES_SURFACE"
         if name == "level_up_pointers":
@@ -2537,7 +2577,7 @@ def _build_tables(
             domain="species_form",
             address=_integer(wild.get("address"), "wild address"),
             old_count=1621,
-            new_count=1673,
+            new_count=SPECIES_NEW_COUNT,
             stride=8,
         )
     )
@@ -2638,9 +2678,9 @@ def _build_tables(
                 acquisition.get("rom_offset"), "acquisition table offset"
             ),
             old_count=1621,
-            new_count=1673,
+            new_count=SPECIES_NEW_COUNT,
             stride=8,
-            notes=("新52件のcollection ledger bit採用可否は未決定",),
+            notes=("追加Mega 49件のcollection ledger bit採用可否は未決定",),
         )
     )
 
@@ -2666,7 +2706,7 @@ def _build_tables(
             "free_trailing_bytes": 0,
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
-            "reason": "新Species learnset payloadが未materialize",
+            "reason": "追加Mega formのlearnset pointer/継承payloadが未materialize",
         },
         {
             "component_key": "egg_moves",
@@ -2676,7 +2716,7 @@ def _build_tables(
             "free_trailing_bytes": 0,
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
-            "reason": "新Species egg payloadと残る条件付きconsumerが未materialize",
+            "reason": "追加Mega formのegg継承方針と残る条件付きconsumerが未materialize",
         },
         {
             "component_key": "ability_description_blob",
@@ -2704,7 +2744,7 @@ def _build_tables(
             "current_size_bytes": None,
             "new_size_bytes": None,
             "classification": CLASS_ENGINE,
-            "reason": "Winds/Waves 3件欠落、全species graphicsの圧縮/link未実施",
+            "reason": "採用Mega 49件のspecies graphics圧縮/link未実施（Winds/Waves 3件は現行非採用）",
         },
         {
             "component_key": "machine_and_tutor_catalog_policy",
@@ -2865,7 +2905,7 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
         {
             "field": "BoxPokemon.substruct0.species",
             "storage": "u16",
-            "required_max": 1672,
+            "required_max": SPECIES_NEW_MAX_ID,
             "limit": U16_MAX,
             "classification": CLASS_SIMPLE,
         },
@@ -2919,7 +2959,7 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
         {
             "field": "VegaEncounterRequest/PendingEncounter.species/form",
             "storage": "u16",
-            "required_max": 1672,
+            "required_max": SPECIES_NEW_MAX_ID,
             "limit": U16_MAX,
             "classification": CLASS_SIMPLE,
         },
@@ -2982,14 +3022,14 @@ def _numeric_width_audit() -> list[dict[str, Any]]:
         {
             "field": "Egg move Species header",
             "storage": "u16 value=20000+species_id",
-            "required_max": 21672,
+            "required_max": SPECIES_EGG_HEADER_MAX,
             "limit": U16_MAX,
             "classification": CLASS_SIMPLE,
         },
         {
             "field": "form resolution canonical/base/level/egg/tm/wild/action",
             "storage": "u16",
-            "required_max": 1672,
+            "required_max": SPECIES_NEW_MAX_ID,
             "limit": U16_MAX,
             "classification": CLASS_SIMPLE,
         },
@@ -3090,13 +3130,13 @@ def _save_abi_audit(
     return {
         "input": identity,
         "persistent_mon_numeric_fields": {
-            "species_u16_max": 1672,
+            "species_u16_max": SPECIES_NEW_MAX_ID,
             "move_u16_max": 1062,
             "held_item_u16_max": 1043,
             "ability_storage": "selection bits; canonical ID is table-derived u16",
             "numeric_width_classification": CLASS_SIMPLE,
             "required_runtime_tests": [
-                "new_base_species_1672_save_load_roundtrip",
+                f"new_mega_species_{SPECIES_NEW_MAX_ID}_save_load_roundtrip",
                 "existing_move_1062_save_load_regression",
                 "held_item_1043_save_load_roundtrip",
                 "ability_317_species_derivation_and_battle_roundtrip",
@@ -3147,10 +3187,10 @@ def _save_abi_audit(
         },
         "acquisition_collection": {
             "current_canonical_species_rows": 1621,
-            "new_canonical_species_rows": 1673,
+            "new_canonical_species_rows": SPECIES_NEW_COUNT,
             "current_ledger_bits": 1216,
             "new_ledger_bits": None,
-            "additional_bits_range": [0, 52],
+            "additional_bits_range": [0, P04_ADOPTED_MEGA_COUNT],
             "current_collection_bytes": 152,
             "maximum_collection_bytes_if_all_reserved_ids_tracked": 159,
             "maximum_delta_bytes": 7,
@@ -3159,7 +3199,7 @@ def _save_abi_audit(
             "same_outer_offset_envelope_can_fit_maximum": True,
             "classification": CLASS_SAVE,
             "required": (
-                "52件ごとのcollection/completion policy決定、Acquisition block version migration、"
+                "追加Mega 49件ごとのcollection/completion policy決定、Acquisition block version migration、"
                 "最大7 byte分を15-byte予約から再配分する設計"
             ),
         },
@@ -3167,7 +3207,7 @@ def _save_abi_audit(
             "bitmap_count": 4,
             "bytes_per_bitmap": 52,
             "representable_species_ids": [0, 411],
-            "new_reserved_ids_outside_legacy_scope": 52,
+            "new_reserved_ids_outside_legacy_scope": P04_ADOPTED_MEGA_COUNT,
             "classification": CLASS_SAVE,
             "required": (
                 "legacy bitmapを拡張せず、stable species/form keyに対応するmodern collection ownerへ"
@@ -3274,7 +3314,7 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
         tables["known_fixed_old_bytes"],
         tables["known_fixed_new_bytes"],
         tables["known_fixed_delta_bytes"],
-    ) != (616521, 637389, 20868):
+    ) != (616521, 636378, 19857):
         _fail("fixed table既知geometryが想定値から変わりました")
     variable_rows = tables.get("variable_or_policy_blocked_components")
     if not isinstance(variable_rows, list):
@@ -3467,7 +3507,14 @@ def validate_checkpoint_document(document: Mapping[str, Any]) -> None:
     asset = document.get("asset_readiness_separate_gate")
     if not isinstance(asset, dict) \
             or asset.get("id_reservation_is_independent_from_asset_readiness") is not True \
+            or asset.get("non_adopted_scope_does_not_reserve_id_or_asset") is not True \
+            or asset.get("winds_waves", {}).get("reserved_ids") != 0 \
             or asset.get("winds_waves", {}).get("source_assets_ready") != 0 \
+            or asset.get("winds_waves", {}).get("asset_requirement_count") != 0 \
+            or asset.get("winds_waves", {}).get("missing_record_keys") != [] \
+            or set(asset.get("winds_waves", {}).get("non_adopted_record_keys", [])) != {
+                "P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA",
+            } \
             or asset.get("mega_species", {}).get("gba_palette_ready") != 49:
         _fail("asset readiness分離gateが不正です")
 
@@ -3864,7 +3911,7 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
         {"name": "existing_manifests_contiguous_and_collision_free", "passed": True},
         {"name": "append_reservations_are_contiguous_u16", "passed": True},
         {"name": "temporary_ability_replacement_keys_preserved", "passed": True},
-        {"name": "asset_gaps_are_separate_and_not_filled", "passed": True},
+        {"name": "non_adopted_assets_are_not_required_or_filled", "passed": True},
         {"name": "main_and_ancillary_fixed_table_geometry_measured", "passed": True},
         {"name": "generated_item_index_consumers_measured", "passed": True},
         {"name": "collection_supply_derived_consumers_measured", "passed": True},
@@ -3921,7 +3968,7 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
         "implementation_classification": {
             CLASS_SIMPLE: {
                 "fields": [
-                    "canonical species/form ID append 1621..1672",
+                    f"canonical species/form ID append 1621..{SPECIES_NEW_MAX_ID}",
                     "canonical item ID append 999..1043",
                     "canonical ability ID append 312..317",
                     "canonical Move namespace remains 0..1062 (no append)",
@@ -3945,7 +3992,7 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
                 "fields": [
                     "itemObtainedFlags 125→131 byte",
                     "Acquisition collection policy最大+7 byte",
-                    "legacy Dex外の52 stable species/form key mapping",
+                    "legacy Dex外の49 stable Mega species/form key mapping",
                 ],
                 "meaning": "owner version、migration、rollbackを含む保存設計が必須",
             },
@@ -4003,7 +4050,6 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
                 "6 Ability effect/AI/UIを実装",
                 "採用済み既存MoveのTM/Tutor供給不足方針を決定",
                 "save owner version/migrationを決定",
-                "Winds/Waves素材gapを解消または対象を明示延期",
             ],
         },
         "runtime_blockers": [
@@ -4017,14 +4063,13 @@ def build_p04_capacity_checkpoint(root: Path) -> dict[str, Any]:
             "新Ability 6件の日本語text/effect/AI/UI未実装",
             "新Ability 6件のMold Breaker無視table値を未審査（zero-fill自動採用禁止）",
             "TM/HM128とTutor64が満杯で採用済み既存Moveの供給不足26,648行が未解決",
-            "新Species level-up/egg/evolution/base stats/dex content未提出",
+            "追加Mega 49件のlearnset pointer/evolution/base stats/dex content未提出",
             "Mega change conditionとbattle-only save normalization未実装",
             "item obtained bitmap 125→131 byteのsave migration未設計",
             "Item 1024..1043はCodex battle公開event 10-bit ABIを超え、event 11→12B化が必要",
             "Mirage virtual item ProbeはItem 1024..1043を0x3FFで切り捨てる",
             "legacy Ability u8宣言2箇所の非到達/u16 replacementをlinked testで未証明",
             "collection ledger追加bit数とAcquisition owner migration未設計",
-            "Winds/Waves 3件素材欠落",
             "外部素材root license不在のためprivate-use staging限定",
             "可変長code/text/learnset/graphicsを含む総ROM容量未確定",
         ],

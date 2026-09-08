@@ -1,6 +1,6 @@
 {
   "active_stage": 62,
-  "candidate_stage": 66,
+  "candidate_stage": 67,
   "completed_phases": [
     "P01"
   ],
@@ -8,27 +8,27 @@
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 20,
-        "sha256": "fe6c810ea21c96f7c1bb59350236a08f7b62ad55fabc9a1ee901579673353506"
+        "count": 25,
+        "sha256": "b9365124d739831bd305d164c270dfc7994ae3def7aacb083f1f8ba3fef02e64"
       },
       "implementation_inputs": {
-        "count": 71,
-        "sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61"
+        "count": 85,
+        "sha256": "7f41b3930b333ca86ea37f80ec2bf76fc68e1408202fc749a6838c61e2008fa6"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "980119583df831001d526ce833b5e759007b9e560b0fd50454aad92e1234e4ae"
+        "sha256": "de67b0f1de94295b9f37c5e220505a182af4a3fdd67bd0a43ce5ca61c5000c0c"
       },
       "referenced_source_bindings": {
-        "count": 27,
-        "sha256": "4c1f5ecd5f5102f1d36fcfe8413b6ab6da8519d362f8f0f9a4c542425ec60403"
+        "count": 29,
+        "sha256": "9127e10abf40736729518f6fb8bd190f5560f28b5c826298d3f2d1a80cac700f"
       },
       "tracked_inputs": {
-        "count": 31,
-        "sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44"
+        "count": 41,
+        "sha256": "c4156f9b70c94e929796ecdf430d373e3e8dec6efbfd3fcba9c46f12f4979ba9"
       }
     },
-    "sha256": "c5ee0e1f58183de9877f4a638b954fbf3ee7f6519ca9248c86c70fea6a1118c1"
+    "sha256": "a6bbac93984ead64d5ee9e426a6751b76b50964addbe07ab1a08a49e28536f71"
   },
   "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
   "not_completed_phases": [
@@ -43,16 +43,16 @@
   "promotion": {
     "active_play_baseline_changed": false,
     "authorized": false,
-    "reason": "P02～P07のruntime acceptance未完了。Stage66は47,548経路を反映したbulk checkpointだが70,980経路が残り、release candidateではない"
+    "reason": "P02～P07のruntime acceptance未完了。Stage67は選択118,369経路中51,151経路を反映したconsumer checkpointだが67,218経路が残り、release candidateではない"
   },
   "release_blockers": [
     "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
-    "P03_STAGE66_BULK_CHECKPOINT_INTEGRATED_BUT_70980_ROUTES_REMAIN",
-    "P04_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_GAPS_NOT_COMPLETE",
-    "P05_MOVE_AND_ABILITY_RUNTIME_NOT_COMPLETE",
+    "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
+    "P04_49_MEGA_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_RIGHTS_REVIEW_NOT_COMPLETE",
+    "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE66_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE67_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "schema_version": 1,

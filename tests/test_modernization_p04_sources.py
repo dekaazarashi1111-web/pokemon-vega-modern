@@ -40,16 +40,18 @@ class ModernizationP04SourcesTest(unittest.TestCase):
         self.assertEqual(
             {
                 "all_records": 54,
-                "adoption_candidate_records": 52,
+                "adoption_candidate_records": 49,
                 "classification_hold_records": 2,
+                "non_adopted_user_scope_records": 3,
                 "mega_runtime_records": 49,
                 "mega_identity_groups": 48,
                 "unique_mega_stones": 45,
                 "new_species_records": 3,
+                "adopted_new_species_records": 0,
             },
             self.result["candidate_counts"],
         )
-        self.assertEqual(52, self.result["manifest_diff"]["new_species_or_form_key_count"])
+        self.assertEqual(49, self.result["manifest_diff"]["new_species_or_form_key_count"])
         self.assertEqual(45, self.result["manifest_diff"]["new_item_key_count"])
         self.assertEqual(6, self.result["manifest_diff"]["new_ability_dependency_key_count"])
 
@@ -62,7 +64,40 @@ class ModernizationP04SourcesTest(unittest.TestCase):
         self.assertEqual(48, checkout["coverage"]["unique_mega_asset_directories"]["covered"])
         self.assertEqual(45, checkout["coverage"]["mega_stones"]["covered"])
         self.assertEqual(0, checkout["coverage"]["winds_waves_new_species"]["covered"])
+        self.assertEqual(0, checkout["coverage"]["winds_waves_new_species"]["required"])
         self.assertEqual(64, len(checkout["asset_set_sha256"]))
+
+    def test_winds_waves_species_keep_provenance_without_active_reservations(self) -> None:
+        excluded = self.result["non_adopted_user_scope"]
+        self.assertEqual(
+            {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"},
+            set(excluded["records"]),
+        )
+        self.assertEqual(0, excluded["id_reservation_count"])
+        self.assertEqual(0, excluded["asset_requirement_count"])
+        self.assertEqual(
+            {
+                "SPECIES_KEY_BROWT", "SPECIES_KEY_POMBON", "SPECIES_KEY_GECQUA",
+            },
+            set(excluded["preserved_candidate_species_keys"]),
+        )
+        self.assertNotIn(
+            "BLOCKER_WINDS_WAVES_ASSETS",
+            {item["blocker_key"] for item in self.result["blockers"]},
+        )
+
+    def test_non_adopted_winds_waves_record_cannot_be_silently_reactivated(self) -> None:
+        candidate = json.loads((ROOT / "content/modernization/p04_candidate_manifest.json").read_text(encoding="utf-8"))
+        official = json.loads((ROOT / "content/modernization/p04_official_sources.json").read_text(encoding="utf-8"))
+        candidate = copy.deepcopy(candidate)
+        target = next(row for row in candidate["records"] if row["record_key"] == "P04_SPECIES_BROWT")
+        target["implementation_scope"] = "ADOPT_CANDIDATE"
+        sources = _validate_official_sources(official)
+        species, _ = _load_csv_keys(ROOT / "manifests/species_ids.csv", "species_key")
+        items, _ = _load_csv_keys(ROOT / "manifests/item_ids.csv", "item_key")
+        abilities, _ = _load_csv_keys(ROOT / "manifests/ability_ids.csv", "ability_key")
+        with self.assertRaisesRegex(P04SourceError, "容量拡張前のID割当は禁止"):
+            _validate_candidate_contract(candidate, sources, species, items, abilities)
 
     def test_temporary_abilities_have_unique_replacement_keys(self) -> None:
         data = json.loads((ROOT / "content/modernization/p04_candidate_manifest.json").read_text(encoding="utf-8"))

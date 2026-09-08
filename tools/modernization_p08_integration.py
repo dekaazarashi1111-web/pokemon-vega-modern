@@ -20,7 +20,7 @@ from typing import Any, Mapping, NoReturn, Sequence
 SCHEMA_VERSION = 1
 TASK = "USER-MODERNIZATION-P08"
 STATUS = "CHECKPOINT_NOT_RELEASE_CANDIDATE"
-SNAPSHOT_BASE_HEAD = "52b21d0b4ee1b6b889cd3da56ff5cd3b783fc67c"
+SNAPSHOT_BASE_HEAD = "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe"
 
 # 完成済みとして引き渡されたtracked pathだけを固定する。globによる自動追加禁止。
 PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
@@ -34,7 +34,7 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
         5266, "b872a9793f6c29944d6c86d603aab8fbdf78df9c2f0ccf4595b6d308d23825f4", "P01"
     ),
     "config/modernization_candidate.json": (
-        6145, "b168fcd7b40b26098f1fcc48c093157de0f91d8e1d53773aca50ac930ffa69e1", "CANDIDATE_CHAIN"
+        9098, "5654897da9490706e72c8ff92b305181253d9c64e73a2cfbbd435452072f7bf0", "CANDIDATE_CHAIN"
     ),
     "content/modernization/identity_contract.json": (
         1461322, "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443", "P01"
@@ -48,14 +48,23 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     "content/modernization/p02_stage64_mgba_runtime_gate.json": (
         5206, "640c6579365e682c59849392a8d2d15e4061ecbccaaff1094ab997aa91b762ea", "P02"
     ),
+    "config/modernization_adoption_decisions.json": (
+        601, "1fd74abe9b2fc1af2f8fdd77ae5d911dfd6abddee314313542f8958b0dab8e7e", "P03_P05"
+    ),
+    "config/modernization_p02_acceptance_gate.json": (
+        3385, "234799dc97012196d47c286981a4a233cce7c5f6817dd3b183a5250ccd6190bb", "P02"
+    ),
+    "content/modernization/p02_acceptance_checkpoint.json": (
+        18455, "cf2acf56cbe932786c1a610a02b2798098ed0b06dd2c8cd53c2063951ca1d179", "P02"
+    ),
     "content/modernization/p03_compiled_index.json": (
-        1380994, "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180", "P03"
+        2327596, "a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751", "P03"
     ),
     "content/modernization/p03_learnset_contract.json": (
-        9095, "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58", "P03"
+        11826, "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033", "P03"
     ),
     "content/modernization/p03_runtime_handoff.json": (
-        8980, "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e", "P03"
+        8692, "2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479", "P03"
     ),
     "config/modernization_p03_stage65.json": (
         6733, "1846992a47218e8f6e65606e69d692bc611d974ede8177e137786aa0d405ec00", "P03"
@@ -81,29 +90,50 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     "content/modernization/p03_stage66_mgba_runtime_gate.json": (
         10456, "9201a22bfb341c997867c76050e9383c135823cfecb6488bb7d112ad6b1da13a", "P03"
     ),
+    "config/modernization_p03_stage67.json": (
+        9974, "d477e805302192ca645adc673cc683ab41f224bbdd18b5c566212c07d7b55b83", "P03"
+    ),
+    "content/modernization/p03_stage67_consumer_route_audit.json": (
+        92230, "9db0a2766711d6bb45d7822189833c6add033638ac78f51d5ea7e2ca450df0f0", "P03"
+    ),
+    "content/modernization/p03_stage67_change_audit.json": (
+        762536, "13733c2f5af62305da0dd69894023099bd1da467a51dd27c3fb07335a8a97bcf", "P03"
+    ),
+    "content/modernization/p03_stage67_checkpoint.json": (
+        11581, "90c6d83eba73ec9aee3450c111d1f4da607bc0b8b58945245cb13888cba96629", "P03"
+    ),
+    "content/modernization/p03_stage67_mgba_runtime_gate.json": (
+        6852, "51bcd6fa2a606cdbd41bceabd0b1077c455dbd0c5f136888a19504ed80d9df20", "P03"
+    ),
     "content/modernization/p04_asset_sources.json": (
         6748, "133c6b8dd56dc0afdb80acbb943c2e5b3ed1b72247bcc07350c78933e93e0636", "P04"
     ),
     "content/modernization/p04_candidate_manifest.json": (
-        59501, "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644", "P04"
+        60095, "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac", "P04"
     ),
     "content/modernization/p04_official_sources.json": (
         9862, "eadd2eea75b5a3d4c7aacf9315b3025e0e7ece945354970ac9c372eb59548fcd", "P04"
     ),
     "content/modernization/p04_asset_import_manifest.json": (
-        498441, "107f6830b0faf4c3372a872c2f91f6945145ad7503f17f64c4dd1d17c5168235", "P04"
+        498512, "d175514c66ee66d055d8457d6f15ff19b8a0d60f4bceb621e2f8c5e9a5aa8cc0", "P04"
     ),
     "content/modernization/p04_capacity_allocation_manifest.json": (
-        451027, "6b8e13bc22bff1e76371aca7bc814d754da56dadad10153ec0e007522e710752", "P04"
+        437769, "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe", "P04"
     ),
     "content/modernization/p05_battle_content_contract.json": (
-        78163, "2fcf0c75a4424325e4e6418ba7726e7978d143dd5d4bfc4e7652cb25e1295ef3", "P05"
+        76297, "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404", "P05"
     ),
     "content/modernization/p05_data_only_patch_plan.json": (
         8391, "14716e137dd326e70982e89f690a0e11b4662cfe948899d6a6fc8a802c65c41e", "P05"
     ),
     "content/modernization/p05_runtime_handoff.json": (
-        30648, "36326ff9ab43ff26767513be0e7e175cb1a11f7cfb95363108e06a32a70e3cc0", "P05"
+        30762, "9498b71bc131ed78f6c0efcd930de74838b4e25ce910f1d828389bcaeb03405d", "P05"
+    ),
+    "config/modernization_p05_ability_runtime.json": (
+        10863, "52c14a10faeefe6bee002fc0c1ea40b077ce8ea7ecbab9ffd88fa5226bb85eb4", "P05"
+    ),
+    "content/modernization/p05_ability_runtime_checkpoint.json": (
+        24971, "41c505c1ed321e2d0b8271eb6f96ac802cbcc5c99290ba417ba2be8d2fa45c38", "P05"
     ),
     "content/modernization/p06_review_projection.json": (
         206313, "04efc32cb54e2f0adf8cbb5d4de480c322188e709856d876198f57d27427f01f", "P06"
@@ -112,10 +142,10 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
         6648, "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405", "P06"
     ),
     "content/modernization/p07_layered_learnset_contract.json": (
-        16172, "bc5e5a87b1cd01b4ae4f003b6df789fdebff8868b0fc4bfcbc1219292fedac20", "P07"
+        16337, "ca17b3e33989d0ae105e5ac6ecc1c62ed27daae7ddc8d0a16632be64852842c5", "P07"
     ),
     "content/modernization/p07_runtime_handoff.json": (
-        3354, "b2752a312db03eaa392ebd61d42a24538410a8b688d2aa0d2d76eb985e054314", "P07"
+        3301, "5e53baeac5a8c12e89bce9cda7a86da992b3519c34ca86c3cf53a830e5de6dac", "P07"
     ),
 }
 
@@ -180,9 +210,35 @@ CANDIDATE_ARTIFACTS: Mapping[str, tuple[int, str, str | None]] = {
     "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps": (
         16785814, "9a84725f6c52e200a2275507d1fe6655736cfe4e2fe277ab4ddcb05778baed19", None
     ),
+    "build/stages/67_modernization_p02_p03_consumers.gba": (
+        33554432, "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111", "D94758FF"
+    ),
+    "build/stages/67_modernization_p02_p03_consumers.json": (
+        11007, "0172ee5b4abd6afe275a6767a92f483e48b828037d7a35350b9baee3e92592ef", None
+    ),
+    "build/stages/67_modernization_p03_allocation.json": (
+        40521, "3fe8f763c4c35dcdf15c2bcd256af569ef064ac051110ce3ed73ec62b9dcdac8", None
+    ),
+    "build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps": (
+        53100, "44df541453beb72fc2c803ec56a27ec395a333e0aec9d61a589630290bb3f7cb", None
+    ),
+    "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps": (
+        16802522, "1e98d68b26bfb48516c9c3672f8c53d3bc7ec68d5cf3ae839f70d93d6bd6b8b3", None
+    ),
 }
 
 PARALLEL_OUTPUTS = {
+    "P02_ACTUAL_CONSUMER_ACCEPTANCE": {
+        "status": "INTEGRATED_PARTIAL_ACCEPTANCE_NOT_P02_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_p02_acceptance_gate.json",
+            "content/modernization/p02_acceptance_checkpoint.json",
+            "scripts/run_modernization_p02_acceptance.py",
+            "tools/mgba_modernization_p02_acceptance_smoke.c",
+            "tests/test_modernization_p02_acceptance.py",
+        ],
+    },
     "P03_STAGE65": {
         "status": "INTEGRATED_CHECKPOINT_NOT_P03_DONE",
         "included": True,
@@ -213,6 +269,22 @@ PARALLEL_OUTPUTS = {
             "tools/modernization_p03_stage66.py",
         ],
     },
+    "P03_STAGE67": {
+        "status": "INTEGRATED_CONSUMER_CHECKPOINT_NOT_P03_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_p03_stage67.json",
+            "content/modernization/p03_stage67_consumer_route_audit.json",
+            "content/modernization/p03_stage67_change_audit.json",
+            "content/modernization/p03_stage67_checkpoint.json",
+            "content/modernization/p03_stage67_mgba_runtime_gate.json",
+            "scripts/build_modernization_p03_stage67.py",
+            "scripts/run_modernization_p03_stage67_mgba.py",
+            "tests/test_modernization_p03_stage67.py",
+            "tools/modernization_p03_stage67.py",
+            "tools/mgba_modernization_p03_stage67_smoke.c",
+        ],
+    },
     "P04_ASSET_IMPORTER": {
         "status": "INTEGRATED_STAGING_ONLY_NOT_ROM_READY",
         "included": True,
@@ -231,6 +303,20 @@ PARALLEL_OUTPUTS = {
             "scripts/build_modernization_p04_capacity.py",
             "tests/test_modernization_p04_capacity.py",
             "tools/modernization_p04_capacity.py",
+        ],
+    },
+    "P05_ABILITY_HOST_RUNTIME": {
+        "status": "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_p05_ability_runtime.json",
+            "content/modernization/p05_ability_runtime_checkpoint.json",
+            "overlays/modernization_p05_abilities/modernization_p05_abilities.h",
+            "overlays/modernization_p05_abilities/modernization_p05_abilities.c",
+            "overlays/modernization_p05_abilities/modernization_p05_abilities_fixture.c",
+            "scripts/build_modernization_p05_ability_runtime.py",
+            "tools/modernization_p05_ability_runtime.py",
+            "tests/test_modernization_p05_ability_runtime.py",
         ],
     },
 }
@@ -261,6 +347,9 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "tests/test_modernization_p02_mgba.py": "P02",
     "tests/test_modernization_p02_species_surface_policy.py": "P02",
     "tests/test_modernization_p02_stage64.py": "P02",
+    "scripts/run_modernization_p02_acceptance.py": "P02",
+    "tools/mgba_modernization_p02_acceptance_smoke.c": "P02",
+    "tests/test_modernization_p02_acceptance.py": "P02",
     "scripts/build_modernization_p03.py": "P03",
     "config/modernization_p03_stage65.json": "P03",
     "scripts/build_modernization_p03_stage65.py": "P03",
@@ -275,6 +364,11 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "tools/modernization_p03_stage66.py": "P03",
     "tools/mgba_modernization_p03_stage66_smoke.c": "P03",
     "tests/test_modernization_p03_stage66.py": "P03",
+    "scripts/build_modernization_p03_stage67.py": "P03",
+    "scripts/run_modernization_p03_stage67_mgba.py": "P03",
+    "tools/modernization_p03_stage67.py": "P03",
+    "tools/mgba_modernization_p03_stage67_smoke.c": "P03",
+    "tests/test_modernization_p03_stage67.py": "P03",
     "scripts/build_modernization_p04_assets.py": "P04",
     "scripts/build_modernization_p04_capacity.py": "P04",
     "scripts/build_modernization_p04_sources.py": "P04",
@@ -290,6 +384,12 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "scripts/build_modernization_p05.py": "P05",
     "tools/modernization_p05_contract.py": "P05",
     "tests/test_modernization_p05.py": "P05",
+    "scripts/build_modernization_p05_ability_runtime.py": "P05",
+    "tools/modernization_p05_ability_runtime.py": "P05",
+    "tests/test_modernization_p05_ability_runtime.py": "P05",
+    "overlays/modernization_p05_abilities/modernization_p05_abilities.h": "P05",
+    "overlays/modernization_p05_abilities/modernization_p05_abilities.c": "P05",
+    "overlays/modernization_p05_abilities/modernization_p05_abilities_fixture.c": "P05",
     "scripts/build_modernization_p06.py": "P06",
     "tools/modernization_p06_species.py": "P06",
     "tests/test_modernization_p06.py": "P06",
@@ -317,17 +417,21 @@ DECLARED_EVIDENCE_SOURCE_GROUPS: Mapping[str, tuple[str, tuple[str, ...]]] = {
         "content/modernization/p02_stage64_mgba_runtime_gate.json",
         ("inputs", "sources"),
     ),
+    "P02_ACTUAL_CONSUMER_ACCEPTANCE": (
+        "content/modernization/p02_acceptance_checkpoint.json",
+        ("inputs", "sources"),
+    ),
     "P03_RUNTIME_HANDOFF": (
         "content/modernization/p03_runtime_handoff.json",
         ("connection_points", "source_files"),
     ),
-    "P03_STAGE65_MGBA": (
-        "content/modernization/p03_stage65_mgba_runtime_gate.json",
+    "P03_STAGE67_MGBA": (
+        "content/modernization/p03_stage67_mgba_runtime_gate.json",
         ("inputs", "sources"),
     ),
-    "P03_STAGE66_MGBA": (
-        "content/modernization/p03_stage66_mgba_runtime_gate.json",
-        ("inputs", "sources"),
+    "P05_ABILITY_IMPLEMENTATION": (
+        "content/modernization/p05_ability_runtime_checkpoint.json",
+        ("implementation", "files"),
     ),
 }
 DECLARED_EVIDENCE_IDENTITY_GROUPS: Mapping[str, tuple[str, tuple[str, ...]]] = {
@@ -342,9 +446,10 @@ DECLARED_EVIDENCE_IDENTITY_GROUPS: Mapping[str, tuple[str, tuple[str, ...]]] = {
 }
 EXPECTED_EVIDENCE_SOURCE_COUNTS: Mapping[str, int] = {
     "P02_STAGE64_MGBA": 4,
+    "P02_ACTUAL_CONSUMER_ACCEPTANCE": 4,
     "P03_RUNTIME_HANDOFF": 7,
-    "P03_STAGE65_MGBA": 6,
-    "P03_STAGE66_MGBA": 8,
+    "P03_STAGE67_MGBA": 9,
+    "P05_ABILITY_IMPLEMENTATION": 3,
     "P02_MGBA_CONFIG": 1,
     "P02_STAGE64_BUILDER_CONFIG": 1,
 }
@@ -507,10 +612,13 @@ def _validate_candidate_chain(
     s64 = by_path["build/stages/64_modernization_p02_rayquaza_parameter_repair.gba"]
     s65 = by_path["build/stages/65_modernization_p03_caterpie_slice.gba"]
     s66 = by_path["build/stages/66_modernization_p03_bulk_learnsets.gba"]
+    s67 = by_path["build/stages/67_modernization_p02_p03_consumers.gba"]
     m63 = metadata["build/stages/63_modernization_p01_identity_repair.json"]
     m64 = metadata["build/stages/64_modernization_p02_rayquaza_parameter_repair.json"]
     m65 = metadata["build/stages/65_modernization_p03_caterpie_slice.json"]
     m66 = metadata["build/stages/66_modernization_p03_bulk_learnsets.json"]
+    m67 = metadata["build/stages/67_modernization_p02_p03_consumers.json"]
+    a67 = metadata["build/stages/67_modernization_p03_allocation.json"]
     _require(m63.get("task") == "USER-MODERNIZATION-P01" and m63.get("status") == "PASS", "Stage63 metadata identity不正")
     _require(m63.get("stage") == 63 and m63.get("scope", {}).get("active_play_baseline_changed") is False, "Stage63 scope不正")
     _require(m63.get("input", {}).get("parent", {}).get("sha256") == s62["sha256"], "Stage63親がStage62ではありません")
@@ -628,35 +736,125 @@ def _validate_candidate_chain(
         m66.get("acceptance", {}).get("task_completion") == "CHECKPOINT_NOT_P03_DONE",
         "Stage66をP03 DONEと誤認しています",
     )
+    _require(
+        m67.get("task")
+        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        and m67.get("stage") == 67
+        and m67.get("status") == "CHECKPOINT"
+        and m67.get("done") is False
+        and m67.get("checkpoint_marker") == "CHECKPOINT_NOT_P03_DONE",
+        "Stage67 metadata identity/DONE境界不正",
+    )
+    scope67 = m67.get("scope", {})
+    _require(
+        scope67.get("source_routes") == 118528
+        and scope67.get("selected_routes") == 118369
+        and scope67.get("non_adopted_move_1063_routes") == 159
+        and scope67.get("stage67_new_materialized_routes") == 3603
+        and scope67.get("cumulative_materialized_routes") == 51151
+        and scope67.get("selected_routes_deferred") == 67218
+        and scope67.get("move_1063_implemented_or_replaced") is False
+        and scope67.get("all_p03_routes_implemented") is False,
+        "Stage67 route partition/completion境界不正",
+    )
+    _require(
+        m67.get("input", {}).get("stage66_rom", {}).get("sha256") == s66["sha256"]
+        and m67.get("input", {}).get("p02_overlay_parent", {}).get("sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
+        and m67.get("input", {}).get("p02_overlay_parent", {}).get(
+            "changed_bytes_from_stage66"
+        ) == 60,
+        "Stage67 parent/P02 overlay hash接続不一致",
+    )
+    _require(m67.get("output", {}).get("sha256") == s67["sha256"], "Stage67出力hash不一致")
+    _require(
+        m67.get("allocation", {}).get("sha256")
+        == by_path["build/stages/67_modernization_p03_allocation.json"]["sha256"],
+        "Stage67 allocation hash接続不一致",
+    )
+    _require(
+        m67.get("bps", {}).get("incremental", {}).get("sha256")
+        == by_path[
+            "build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps"
+        ]["sha256"]
+        and m67.get("bps", {}).get("incremental", {}).get("source_sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
+        and m67.get("bps", {}).get("incremental", {}).get("round_trip") is True
+        and m67.get("bps", {}).get("clean", {}).get("sha256")
+        == by_path[
+            "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps"
+        ]["sha256"]
+        and m67.get("bps", {}).get("clean", {}).get("round_trip") is True,
+        "Stage67 BPS identity/round-trip evidence不一致",
+    )
+    future_tail_allocations = [
+        row for row in a67.get("allocations", []) if row.get("region") == "future_tail"
+    ]
+    future_tail_end = max(
+        (row.get("end_exclusive", 0) for row in future_tail_allocations), default=0
+    )
+    _require(
+        a67.get("schema_version") == 1
+        and a67.get("summaries", {}).get("overlap_count") == 0
+        and future_tail_end == 33491922
+        and 33554432 - future_tail_end == 62510,
+        "Stage67 allocation future_tail残量/overlap境界不正",
+    )
     # 累積candidate registryでは「最後に完了した工程」と「最後のcheckpoint」を
     # 別フィールドとして扱う。checkpointed_through=P03をP03 DONEへ昇格させない。
     _require(
         registry.get("schema_version") == 2
-        and registry.get("status") == "P03_STAGE66_BULK_VERIFIED_CHECKPOINT"
+        and registry.get("status") == "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
         and registry.get("completed_through") == "USER-MODERNIZATION-P01"
         and registry.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT"
-        and registry.get("source", {}).get("stage66_checkpoint_commit")
-        == "90a1811964a19e3c058448af173007678b42a7e3"
+        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        and registry.get("source", {}).get("stage67_checkpoint_commit")
+        == "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe"
         and registry.get("release_ready") is False
         and registry.get("active_play_baseline_changed") is False,
         "candidate v2 registryの完了/checkpoint/release境界不正",
     )
+    _require(
+        registry.get("active_parent", {}).get("stage") == 62
+        and registry.get("active_parent", {}).get("sha256") == s62["sha256"]
+        and registry.get("parent", {}).get("stage") == 66
+        and registry.get("parent", {}).get("sha256") == s66["sha256"]
+        and registry.get("candidate", {}).get("stage") == 67
+        and registry.get("candidate", {}).get("sha256") == s67["sha256"]
+        and registry.get("p02_overlay_parent", {}).get("sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
+        and registry.get("p02_overlay_parent", {}).get("changed_bytes_from_stage66")
+        == 60,
+        "candidate v2 Stage67 parent/overlay/candidate identity不正",
+    )
+    _require(
+        registry.get("adopted_delta", {}).get("p04_adoption_scope") == {
+            "mega_species_and_forms": 49,
+            "new_normal_species": 0,
+            "mega_stones": 45,
+            "new_abilities": 6,
+            "winds_waves_user_non_adopted_species": 3,
+            "held_pikachu_appearance_candidates": 2,
+            "private_asset_files_ready": 670,
+            "rom_materialized": False,
+        },
+        "candidate v2 P04 49 Mega採用/Winds・Waves非採用scope不正",
+    )
     return {
         "active_stage": 62,
-        "selected_checkpoint_stage": 66,
+        "selected_checkpoint_stage": 67,
         "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
         "registry": {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT",
+            "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
-            "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+            "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 65,
-            "candidate_stage": 66,
+            "parent_stage": 66,
+            "candidate_stage": 67,
         },
         "inheritance": [
             {"stage": 62, "role": "ACTIVE_PLAY_BASELINE", "rom": dict(s62)},
@@ -664,6 +862,7 @@ def _validate_candidate_chain(
             {"stage": 64, "role": "P02_CHECKPOINT_NOT_DONE", "parent_stage": 63, "rom": dict(s64)},
             {"stage": 65, "role": "P03_INTEGRATED_CHECKPOINT_NOT_DONE", "parent_stage": 64, "rom": dict(s65)},
             {"stage": 66, "role": "P03_BULK_CHECKPOINT_NOT_DONE", "parent_stage": 65, "rom": dict(s66)},
+            {"stage": 67, "role": "P02_P03_CONSUMER_CHECKPOINT_NOT_DONE", "parent_stage": 66, "parent_overlay_sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb", "rom": dict(s67)},
         ],
         "parent_chain_verified": True,
         "stage65_integrated": True,
@@ -685,6 +884,23 @@ def _validate_candidate_chain(
             "machine_supply_required_routes_deferred": 26347,
             "move_1063_routes_deferred": 159,
             "consumers_exercised": ["level_up", "machine"],
+            "full_p03_done": False,
+        },
+        "stage67_integrated": True,
+        "stage67_scope": {
+            "source_routes": 118528,
+            "selected_routes": 118369,
+            "non_adopted_move_1063_routes": 159,
+            "stage67_new_materialized_routes": 3603,
+            "cumulative_materialized_routes": 51151,
+            "selected_routes_remaining": 67218,
+            "evolution_routes_materialized": 341,
+            "tutor_existing_slot_routes_materialized": 740,
+            "normal_egg_routes_materialized": 2522,
+            "p02_overlay_changed_bytes": 60,
+            "stage67_changed_bytes_from_overlay": 46455,
+            "future_tail_remaining_bytes": 62510,
+            "consumers_exercised": ["evolution", "tutor", "egg"],
             "full_p03_done": False,
         },
         "release_candidate": False,
@@ -831,8 +1047,10 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     active_hash = PINNED_TRACKED_INPUTS["config/active_play_baseline.json"][1]
     p01_inputs = documents["config/modernization_inputs.json"]
     p01_candidate = documents["config/modernization_candidate.json"]
+    decisions = documents["config/modernization_adoption_decisions.json"]
     p02_checkpoint = documents["content/modernization/p02_stage64_checkpoint.json"]
     p02_mgba = documents["content/modernization/p02_stage64_mgba_runtime_gate.json"]
+    p02_acceptance = documents["content/modernization/p02_acceptance_checkpoint.json"]
     p03 = documents["content/modernization/p03_learnset_contract.json"]
     p03_stage65_config = documents["config/modernization_p03_stage65.json"]
     p03_stage65 = documents["content/modernization/p03_stage65_checkpoint.json"]
@@ -848,6 +1066,17 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p03_stage66_mgba = documents[
         "content/modernization/p03_stage66_mgba_runtime_gate.json"
     ]
+    p03_stage67_config = documents["config/modernization_p03_stage67.json"]
+    p03_stage67_routes = documents[
+        "content/modernization/p03_stage67_consumer_route_audit.json"
+    ]
+    p03_stage67_changes = documents[
+        "content/modernization/p03_stage67_change_audit.json"
+    ]
+    p03_stage67 = documents["content/modernization/p03_stage67_checkpoint.json"]
+    p03_stage67_mgba = documents[
+        "content/modernization/p03_stage67_mgba_runtime_gate.json"
+    ]
     p04_manifest = documents["content/modernization/p04_candidate_manifest.json"]
     p04_official = documents["content/modernization/p04_official_sources.json"]
     p04_assets = documents["content/modernization/p04_asset_sources.json"]
@@ -858,6 +1087,7 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p05 = documents["content/modernization/p05_battle_content_contract.json"]
     p05_plan = documents["content/modernization/p05_data_only_patch_plan.json"]
     p05_runtime = documents["content/modernization/p05_runtime_handoff.json"]
+    p05_ability = documents["content/modernization/p05_ability_runtime_checkpoint.json"]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
     p07_runtime = documents["content/modernization/p07_runtime_handoff.json"]
@@ -866,12 +1096,23 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         p01_inputs.get("active_parent", {}).get("identity_source_sha256") == active_hash,
         "P01 inputs→active baseline hash接続が不一致です",
     )
+    side_decision = decisions.get("decisions", {}).get("MOVE_KEY_ALLYSWITCH", {})
+    _require(
+        side_decision.get("decision") == "NOT_ADOPTED"
+        and side_decision.get("requested_project_id") == 1063
+        and side_decision.get("source_route_count") == 159
+        and side_decision.get("route_action")
+        == "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS"
+        and side_decision.get("runtime_action") == "DO_NOT_IMPLEMENT_OR_ALLOCATE"
+        and side_decision.get("replacement_move_key") is None,
+        "Side Change非採用判断が明示境界と一致しません",
+    )
     _require(
         p01_candidate.get("schema_version") == 2
-        and p01_candidate.get("status") == "P03_STAGE66_BULK_VERIFIED_CHECKPOINT"
+        and p01_candidate.get("status") == "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
         and p01_candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and p01_candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT"
+        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
         and p01_candidate.get("release_ready") is False
         and p01_candidate.get("active_play_baseline_changed") is False,
         "candidate v2のP01完了/P03 checkpoint/release境界不正",
@@ -885,31 +1126,33 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         "candidate v2 active_parentがStage62 exact identityではありません",
     )
     _require(
-        p01_candidate.get("parent", {}).get("stage") == 65
+        p01_candidate.get("parent", {}).get("stage") == 66
         and p01_candidate.get("parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]
         and p01_candidate.get("parent", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.json"][1],
-        "candidate v2 parentがStage65 exact identityではありません",
+        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.json"][1],
+        "candidate v2 parentがStage66 exact identityではありません",
     )
     _require(
-        p01_candidate.get("candidate", {}).get("stage") == 66
+        p01_candidate.get("candidate", {}).get("stage") == 67
         and p01_candidate.get("candidate", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.gba"][1]
         and p01_candidate.get("candidate", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.json"][1]
+        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.json"][1]
         and p01_candidate.get("candidate", {}).get("allocation", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_allocation.json"][1],
-        "candidate v2 candidateがStage66 exact identityではありません",
+        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p03_allocation.json"][1],
+        "candidate v2 candidateがStage67 exact identityではありません",
     )
     _require(
         p01_candidate.get("patches", {}).get("from_parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps"][1]
+        == CANDIDATE_ARTIFACTS["build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps"][1]
         and p01_candidate.get("patches", {}).get("from_parent", {}).get("round_trip") is True
+        and p01_candidate.get("patches", {}).get("from_parent", {}).get("source_sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
         and p01_candidate.get("patches", {}).get("from_clean", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps"][1]
+        == CANDIDATE_ARTIFACTS["build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps"][1]
         and p01_candidate.get("patches", {}).get("from_clean", {}).get("round_trip") is True,
-        "candidate v2 Stage66 BPS identity/round-trip不正",
+        "candidate v2 Stage67 BPS identity/round-trip不正",
     )
     expected_stage_chain = [
         (63, "USER-MODERNIZATION-P01", "COMPLETED", 10,
@@ -920,9 +1163,11 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
          CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.gba"][1]),
         (66, "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT", "CHECKPOINT_NOT_P03_DONE", 81693,
          CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]),
+        (67, "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT", "CHECKPOINT_NOT_P03_DONE", 46515,
+         CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.gba"][1]),
     ]
     stage_chain = p01_candidate.get("stage_chain")
-    _require(isinstance(stage_chain, list) and len(stage_chain) == 4, "candidate v2 stage_chain件数不正")
+    _require(isinstance(stage_chain, list) and len(stage_chain) == 5, "candidate v2 stage_chain件数不正")
     for row, (stage, task, state, changed, digest) in zip(stage_chain, expected_stage_chain):
         _require(
             row.get("stage") == stage and row.get("task") == task
@@ -946,6 +1191,47 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
             "disk_stage64_required"
         ) is False,
         "P02 mGBA clean-bootstrap/contract hash接続が不一致です",
+    )
+    p02_claims = p02_acceptance.get("claims", {})
+    p02_runtime = p02_acceptance.get("runtime_result", {})
+    hidden_ability_readback = p02_runtime.get("hidden_ability_readback", {})
+    _require(
+        p02_acceptance.get("status") == "CHECKPOINT_NOT_DONE"
+        and p02_acceptance.get("classification")
+        == "ACTUAL_CONSUMER_PARTIAL_ACCEPTANCE_WITH_ROOT_FIX"
+        and p02_acceptance.get("execution", {}).get("process_runs") == 2
+        and p02_claims.get("real_get_evolution_target_species_executed") is True
+        and p02_claims.get("real_item_evolution_removal_executed") is True
+        and p02_claims.get("level_held_item_slot_priority_root_fixed") is True
+        and p02_claims.get("hidden_ability_bit_readback_verified") is True
+        and p02_claims.get("exact_p02_overlay_parent") is True
+        and p02_claims.get("full_evolution_acceptance") is False
+        and p02_runtime.get("status") == "PASS"
+        and p02_runtime.get("level_item_priority_repair", {}).get(
+            "repaired_species_count"
+        ) == 6
+        and hidden_ability_readback == {
+            "after_calculate_stats": True,
+            "after_selection": True,
+            "after_species_write": True,
+            "all_observed_preserved": True,
+            "before_selection": True,
+            "bit_mask": 16,
+            "conditional_item_consumed_cases": 6,
+            "negative_branch_cases": 6,
+            "regular_branch_cases": 12,
+        },
+        "P02 actual consumer 24-case checkpoint境界不正",
+    )
+    _require(
+        p02_acceptance.get("inputs", {}).get("config", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_p02_acceptance_gate.json"][1]
+        and p02_acceptance.get("inputs", {}).get("static_evolution_contract", {}).get(
+            "sha256"
+        ) == PINNED_TRACKED_INPUTS["content/modernization/p02_evolution_contract.json"][1]
+        and p02_acceptance.get("inputs", {}).get("candidate_rom", {}).get("sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+        "P02 actual consumer checkpointのconfig/contract/candidate hash接続不一致",
     )
     _require(
         p03.get("inputs", {}).get("identity_contract", {}).get("sha256")
@@ -995,13 +1281,8 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     _require(
         p03_stage65_mgba.get("inputs", {}).get("config", {}).get("sha256")
         == PINNED_TRACKED_INPUTS["config/modernization_p03_stage65.json"][1]
-        and p03_stage65_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_contract", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_learnset_contract.json"][1]
-        and p03_stage65_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_compiled_index", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_compiled_index.json"][1]
-        and p03_stage65_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_runtime_handoff", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_runtime_handoff.json"][1],
-        "P03 Stage65 mGBA gateのconfig/contract hash接続不一致",
+        ,
+        "P03 Stage65 mGBA gateのhistorical config hash接続不一致",
     )
     _require(
         p03_stage66_config.get("task")
@@ -1016,14 +1297,8 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         stage66_inputs.get("parent_rom", {}).get("sha256")
         == CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.gba"][1]
         and stage66_inputs.get("parent_metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.json"][1]
-        and stage66_inputs.get("p03_contract", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_learnset_contract.json"][1]
-        and stage66_inputs.get("p03_compiled_index", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_compiled_index.json"][1]
-        and stage66_inputs.get("p03_runtime_handoff", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_runtime_handoff.json"][1],
-        "P03 Stage66 configのparent/contract hash接続不一致",
+        == CANDIDATE_ARTIFACTS["build/stages/65_modernization_p03_caterpie_slice.json"][1],
+        "P03 Stage66 historical configのparent hash接続不一致",
     )
     _require(
         p03_stage66_routes.get("status") == "CHECKPOINT"
@@ -1084,13 +1359,121 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     _require(
         p03_stage66_mgba.get("inputs", {}).get("config", {}).get("sha256")
         == PINNED_TRACKED_INPUTS["config/modernization_p03_stage66.json"][1]
-        and p03_stage66_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_contract", {}).get("sha256")
+        ,
+        "P03 Stage66 mGBA gateのhistorical config hash接続不一致",
+    )
+    _require(
+        p03_stage67_config.get("task")
+        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
+        and p03_stage67_config.get("stage") == 67
+        and p03_stage67_config.get("scope", {}).get("source_routes") == 118528
+        and p03_stage67_config.get("scope", {}).get("selected_routes") == 118369
+        and p03_stage67_config.get("scope", {}).get(
+            "non_adopted_move_1063_routes"
+        ) == 159
+        and p03_stage67_config.get("scope", {}).get(
+            "cumulative_materialized_routes"
+        ) == 51151
+        and p03_stage67_config.get("scope", {}).get("selected_routes_deferred")
+        == 67218,
+        "P03 Stage67 configのroute partition境界不正",
+    )
+    stage67_inputs = p03_stage67_config.get("inputs", {})
+    _require(
+        stage67_inputs.get("stage66_rom", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/66_modernization_p03_bulk_learnsets.gba"][1]
+        and stage67_inputs.get("p02_acceptance_config", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_p02_acceptance_gate.json"][1]
+        and stage67_inputs.get("p02_acceptance_checkpoint", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["content/modernization/p02_acceptance_checkpoint.json"][1]
+        and stage67_inputs.get("p02_overlay_parent", {}).get("sha256")
+        == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
+        and stage67_inputs.get("p03_contract", {}).get("sha256")
         == PINNED_TRACKED_INPUTS["content/modernization/p03_learnset_contract.json"][1]
-        and p03_stage66_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_compiled_index", {}).get("sha256")
+        and stage67_inputs.get("p03_compiled_index", {}).get("sha256")
         == PINNED_TRACKED_INPUTS["content/modernization/p03_compiled_index.json"][1]
-        and p03_stage66_mgba.get("inputs", {}).get("p03_contracts", {}).get("p03_runtime_handoff", {}).get("sha256")
-        == PINNED_TRACKED_INPUTS["content/modernization/p03_runtime_handoff.json"][1],
-        "P03 Stage66 mGBA gateのconfig/contract hash接続不一致",
+        and stage67_inputs.get("p03_runtime_handoff", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["content/modernization/p03_runtime_handoff.json"][1]
+        and stage67_inputs.get("adoption_decisions", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_adoption_decisions.json"][1],
+        "P03 Stage67のStage66/P02/current P03/decision hash接続不一致",
+    )
+    _require(
+        p03_stage67_routes.get("status") == "CHECKPOINT"
+        and p03_stage67_routes.get("done") is False
+        and p03_stage67_routes.get("source_validation", {}).get("source_route_count")
+        == 118528
+        and p03_stage67_routes.get("source_validation", {}).get("selected_route_count")
+        == 118369
+        and p03_stage67_routes.get("source_validation", {}).get(
+            "non_adopted_route_count"
+        ) == 159
+        and p03_stage67_routes.get("materialization", {}).get(
+            "stage67_new_routes_materialized"
+        ) == 3603
+        and p03_stage67_routes.get("materialization", {}).get(
+            "cumulative_routes_materialized"
+        ) == 51151
+        and p03_stage67_routes.get("materialization", {}).get(
+            "selected_routes_deferred"
+        ) == 67218
+        and p03_stage67_routes.get("claims", {}).get(
+            "move_1063_serialized_or_replaced"
+        ) is False,
+        "P03 Stage67 route audit件数/Side Change境界不正",
+    )
+    _require(
+        p03_stage67_changes.get("status") == "PASS"
+        and p03_stage67_changes.get("changed_byte_count") == 46455
+        and p03_stage67_changes.get("outside_declared_range_count") == 0,
+        "P03 Stage67 change audit境界不正",
+    )
+    _require(
+        p03_stage67.get("status") == "CHECKPOINT"
+        and p03_stage67.get("done") is False
+        and p03_stage67.get("checkpoint_marker") == "CHECKPOINT_NOT_P03_DONE"
+        and p03_stage67.get("output", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p02_p03_consumers.gba"][1]
+        and p03_stage67.get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/67_modernization_p03_allocation.json"][1]
+        and p03_stage67.get("bps", {}).get("incremental", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps"
+        ][1]
+        and p03_stage67.get("bps", {}).get("clean", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps"
+        ][1]
+        and p03_stage67.get("input", {}).get("runtime_gate", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS[
+            "content/modernization/p03_stage67_mgba_runtime_gate.json"
+        ][1],
+        "P03 Stage67 checkpoint output/allocation/BPS/mGBA hash接続不一致",
+    )
+    _require(
+        p03_stage67_mgba.get("status") == "PASS"
+        and p03_stage67_mgba.get("task_completion") == "CHECKPOINT_NOT_P03_DONE"
+        and p03_stage67_mgba.get("execution", {}).get("process_runs") == 2
+        and p03_stage67_mgba.get("claims", {}).get("full_p03_acceptance") is False
+        and p03_stage67_mgba.get("claims", {}).get(
+            "all_materialized_evolution_routes_executed"
+        ) is True
+        and p03_stage67_mgba.get("claims", {}).get(
+            "all_materialized_tutor_routes_executed"
+        ) is True
+        and p03_stage67_mgba.get("claims", {}).get(
+            "all_materialized_normal_egg_routes_executed"
+        ) is True
+        and p03_stage67_mgba.get("runtime_result", {}).get("counts", {}).get(
+            "evolution_routes"
+        ) == 341
+        and p03_stage67_mgba.get("runtime_result", {}).get("counts", {}).get(
+            "tutor_positive_routes"
+        ) == 740
+        and p03_stage67_mgba.get("runtime_result", {}).get("counts", {}).get(
+            "egg_routes"
+        ) == 2522,
+        "P03 Stage67 actual consumer mGBA gate境界不正",
     )
     _require(
         p04_manifest.get("task") == "USER-MODERNIZATION-P04"
@@ -1100,6 +1483,7 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     )
     coverage04 = p04_import.get("coverage", {})
     consumer04 = p04_import.get("consumer_scope", {})
+    output04 = p04_import.get("output", {})
     _require(
         p04_import.get("task") == "USER-MODERNIZATION-P04-ASSET-IMPORT"
         and p04_import.get("status") == "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS",
@@ -1116,8 +1500,16 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         coverage04.get("mega_candidate_records") == {"covered": 49, "required": 49}
         and coverage04.get("mega_stones") == {"covered": 45, "required": 45}
         and coverage04.get("gba_full_species_palette_compatibility") == {"ready": 49, "required": 49}
-        and coverage04.get("winds_waves_new_species") == {"covered": 0, "required": 3},
+        and coverage04.get("winds_waves_new_species") == {"covered": 0, "required": 0},
         "P04 importer coverage境界不正",
+    )
+    _require(
+        p04_import.get("missing_assets") == []
+        and output04.get("payload_file_count") == 670
+        and output04.get("payload_total_size") == 426648
+        and output04.get("asset_set_sha256")
+        == "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
+        "P04 49 Mega private asset payload identity不正",
     )
     _require(
         consumer04.get("integration_status") == "STAGING_ONLY_NOT_ROM_READY"
@@ -1146,10 +1538,10 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         "P04容量予約のP04/P05 upstream hash接続不一致",
     )
     expected_reservations = {
-        "species_form": (1621, 1672, 52),
+        "species_form": (1621, 1669, 49),
         "item": (999, 1043, 45),
         "ability": (312, 317, 6),
-        "move": (1063, 1063, 1),
+        "move": (None, None, 0),
     }
     reservations = p04_capacity.get("id_reservations", {})
     for domain, (start, end, count) in expected_reservations.items():
@@ -1160,6 +1552,18 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
             and row.get("append_count") == count,
             f"P04容量予約range不一致: {domain}",
         )
+    winds_capacity = p04_capacity.get("asset_readiness_separate_gate", {}).get(
+        "winds_waves", {}
+    )
+    _require(
+        winds_capacity.get("scope") == "NON_ADOPTED_USER_SCOPE"
+        and winds_capacity.get("reserved_ids") == 0
+        and winds_capacity.get("asset_requirement_count") == 0
+        and winds_capacity.get("missing_record_keys") == []
+        and winds_capacity.get("consumer_requirement")
+        == "NOT_APPLICABLE_NON_ADOPTED",
+        "P04 Winds/Waves 3種の無予約・素材不要境界不正",
+    )
     p05_p03 = p05.get("inputs", {}).get("p03_runtime", {})
     _require(
         p05_p03.get("content_sha256")
@@ -1173,9 +1577,65 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     )
     _require(
         p05_runtime.get("status") == p05.get("status")
-        and len(p05_runtime.get("new_move_requirements", [])) == 1
-        and len(p05_runtime.get("new_ability_requirements", [])) == 6,
+        and len(p05_runtime.get("new_move_requirements", [])) == 0
+        and len(p05_runtime.get("non_adopted_move_candidates", [])) == 1
+        and len(p05_runtime.get("new_ability_requirements", [])) == 6
+        and len(p05_runtime.get("non_adopted_p04_records", [])) == 3,
         "P05 runtime handoffがbattle contractと不一致です",
+    )
+    _require(
+        {
+            row.get("record_key")
+            for row in p05_runtime.get("non_adopted_p04_records", [])
+            if isinstance(row, Mapping)
+        }
+        == {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"}
+        and all(
+            isinstance(row, Mapping)
+            and row.get("selection_status") == "NOT_ADOPTED_BY_USER_DECISION"
+            and row.get("manifest_allocation") is False
+            and row.get("runtime_implementation") is False
+            for row in p05_runtime.get("non_adopted_p04_records", [])
+        ),
+        "P05 Winds/Waves 3種非採用・無割当境界不正",
+    )
+    non_adopted_move = p05_runtime.get("non_adopted_move_candidates", [None])[0]
+    _require(
+        isinstance(non_adopted_move, Mapping)
+        and non_adopted_move.get("move_key") == "MOVE_KEY_ALLYSWITCH"
+        and non_adopted_move.get("requested_project_id") == 1063
+        and non_adopted_move.get("canonical_id") is None
+        and non_adopted_move.get("selection_status")
+        == "NOT_ADOPTED_BY_USER_DECISION"
+        and non_adopted_move.get("exclusion", {}).get("replacement_move_key") is None
+        and non_adopted_move.get("exclusion", {}).get("manifest_allocation") is False
+        and non_adopted_move.get("exclusion", {}).get("runtime_implementation") is False,
+        "P05 Side Change非採用・無置換・無割当境界不正",
+    )
+    _require(
+        p05_ability.get("status") == "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"
+        and p05_ability.get("host_runtime_verified") is True
+        and p05_ability.get("rom_linked") is False
+        and p05_ability.get("rom_mutated") is False
+        and p05_ability.get("save_mutated") is False
+        and p05_ability.get("shared_manifests_mutated") is False
+        and p05_ability.get("ability_allocation", {}).get("reserved_range")
+        == [312, 317]
+        and len(p05_ability.get("ability_allocation", {}).get("rows", [])) == 6
+        and p05_ability.get("fixture", {}).get("independent_process_runs") == 2
+        and p05_ability.get("fixture", {}).get("summary", {}).get("case_count") == 46
+        and p05_ability.get("fixture", {}).get("summary", {}).get("failure_count") == 0
+        and p05_ability.get("completion_boundary", {}).get("release_ready") is False,
+        "P05 6 Ability host runtime checkpoint境界不正",
+    )
+    _require(
+        p05_ability.get("inputs", {}).get("config", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_p05_ability_runtime.json"][1]
+        and p05_ability.get("inputs", {}).get("capacity_checkpoint", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS[
+            "content/modernization/p04_capacity_allocation_manifest.json"
+        ][1],
+        "P05 Ability config/capacity hash接続不一致",
     )
     _require(
         p06.get("review_partition", {}).get("projection_sha256")
@@ -1216,6 +1676,7 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p02 = documents["content/modernization/p02_evolution_contract.json"]
     p02_cp = documents["content/modernization/p02_stage64_checkpoint.json"]
     p02_mgba = documents["content/modernization/p02_stage64_mgba_runtime_gate.json"]
+    p02_acceptance = documents["content/modernization/p02_acceptance_checkpoint.json"]
     p03 = documents["content/modernization/p03_learnset_contract.json"]
     p03_index = documents["content/modernization/p03_compiled_index.json"]
     p03_runtime = documents["content/modernization/p03_runtime_handoff.json"]
@@ -1232,12 +1693,24 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p03_stage66_mgba = documents[
         "content/modernization/p03_stage66_mgba_runtime_gate.json"
     ]
+    p03_stage67_config = documents["config/modernization_p03_stage67.json"]
+    p03_stage67_routes = documents[
+        "content/modernization/p03_stage67_consumer_route_audit.json"
+    ]
+    p03_stage67_changes = documents[
+        "content/modernization/p03_stage67_change_audit.json"
+    ]
+    p03_stage67 = documents["content/modernization/p03_stage67_checkpoint.json"]
+    p03_stage67_mgba = documents[
+        "content/modernization/p03_stage67_mgba_runtime_gate.json"
+    ]
     p04 = documents["content/modernization/p04_candidate_manifest.json"]
     p04_import = documents["content/modernization/p04_asset_import_manifest.json"]
     p04_capacity = documents[
         "content/modernization/p04_capacity_allocation_manifest.json"
     ]
     p05 = documents["content/modernization/p05_battle_content_contract.json"]
+    p05_ability = documents["content/modernization/p05_ability_runtime_checkpoint.json"]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p06_projection = documents["content/modernization/p06_review_projection.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
@@ -1248,7 +1721,7 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(
         candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT"
+        == "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT"
         and candidate.get("release_ready") is False
         and candidate.get("active_play_baseline_changed") is False,
         "P01 completion evidenceとP03 checkpoint境界不正",
@@ -1258,13 +1731,51 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(p02_cp.get("status") == "CHECKPOINT" and p02_cp.get("done") is False, "P02 checkpointをDONEと誤認しています")
     _require(p02_cp.get("acceptance", {}).get("task_completion") == "CHECKPOINT_NOT_DONE", "P02 completion gate不正")
     _require(p02_mgba.get("status") == "PASS" and p02_mgba.get("claims", {}).get("full_evolution_acceptance") is False, "P02 bounded mGBA境界不正")
+    _require(
+        p02_acceptance.get("status") == "CHECKPOINT_NOT_DONE"
+        and p02_acceptance.get("claims", {}).get(
+            "level_held_item_slot_priority_root_fixed"
+        ) is True
+        and p02_acceptance.get("claims", {}).get(
+            "hidden_ability_bit_readback_verified"
+        ) is True
+        and p02_acceptance.get("claims", {}).get("full_evolution_acceptance")
+        is False
+        and p02_acceptance.get("runtime_result", {}).get("status") == "PASS"
+        and p02_acceptance.get("runtime_result", {}).get(
+            "hidden_ability_readback", {}
+        ).get("all_observed_preserved") is True,
+        "P02 actual consumer partial acceptance境界不正",
+    )
 
     adoption03 = p03.get("corrected_adoption", {})
-    _require(p03.get("status") == "PASS" and adoption03.get("records") == 1300 and adoption03.get("routes") == 118528, "P03 contract件数不正")
-    _require(p03_index.get("status") == "PASS" and p03_index.get("record_count") == 1300 and p03_index.get("route_count") == 118528, "P03 index件数不正")
+    selection03 = p03.get("runtime_selection", {})
+    _require(
+        p03.get("status") == "PASS"
+        and adoption03.get("records") == 1300
+        and adoption03.get("routes") == 118528
+        and selection03.get("selected_routes") == 118369
+        and selection03.get("excluded_routes") == 159,
+        "P03 source/runtime selection件数不正",
+    )
+    _require(
+        p03_index.get("status") == "PASS"
+        and p03_index.get("record_count") == 1300
+        and p03_index.get("route_count") == 118528
+        and p03_index.get("selected_route_count") == 118369
+        and p03_index.get("excluded_route_count") == 159,
+        "P03 index source/runtime selection件数不正",
+    )
     side = p03_runtime.get("side_change_1063", {})
     _require(p03_runtime.get("status") == "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS", "P03 runtime未完了境界不正")
-    _require(side.get("status") == "BLOCKING_RUNTIME_DEPENDENCY_NOT_IMPLEMENTED" and side.get("adopted_route_count") == 159, "P03 Side Change1063境界不正")
+    _require(
+        side.get("status") == "NOT_ADOPTED_BY_USER_DECISION"
+        and side.get("source_route_count") == 159
+        and side.get("adopted_route_count") == 0
+        and side.get("excluded_route_count") == 159
+        and side.get("decision", {}).get("replacement_move_key") is None,
+        "P03 Side Change1063非採用境界不正",
+    )
     _require(
         p03_stage65.get("status") == "CHECKPOINT"
         and p03_stage65.get("scope", {}).get("routes_materialized_by_this_checkpoint") == 4
@@ -1283,10 +1794,41 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         and p03_stage66_mgba.get("status") == "PASS",
         "P03 Stage66 bulk checkpoint件数不正",
     )
+    _require(
+        p03_stage67_config.get("stage") == 67
+        and p03_stage67.get("status") == "CHECKPOINT"
+        and p03_stage67.get("done") is False
+        and p03_stage67.get("scope", {}).get("source_routes") == 118528
+        and p03_stage67.get("scope", {}).get("selected_routes") == 118369
+        and p03_stage67.get("scope", {}).get("non_adopted_move_1063_routes")
+        == 159
+        and p03_stage67.get("scope", {}).get("stage67_new_materialized_routes")
+        == 3603
+        and p03_stage67.get("scope", {}).get("cumulative_materialized_routes")
+        == 51151
+        and p03_stage67.get("scope", {}).get("selected_routes_deferred") == 67218
+        and p03_stage67_changes.get("changed_byte_count") == 46455
+        and p03_stage67_changes.get("outside_declared_range_count") == 0
+        and p03_stage67_mgba.get("status") == "PASS"
+        and p03_stage67_mgba.get("execution", {}).get("process_runs") == 2,
+        "P03 Stage67 consumer checkpoint件数/runtime境界不正",
+    )
 
     counts04 = p04.get("expected_counts", {})
-    _require(counts04.get("all_records") == 54 and counts04.get("adoption_candidate_records") == 52 and counts04.get("classification_hold_records") == 2, "P04候補件数不正")
-    _require(counts04.get("mega_runtime_records") == 49 and counts04.get("unique_mega_stones") == 45 and counts04.get("new_species_records") == 3, "P04対象内訳不正")
+    _require(
+        counts04.get("all_records") == 54
+        and counts04.get("adoption_candidate_records") == 49
+        and counts04.get("classification_hold_records") == 2
+        and counts04.get("non_adopted_user_scope_records") == 3,
+        "P04候補/hold/非採用件数不正",
+    )
+    _require(
+        counts04.get("mega_runtime_records") == 49
+        and counts04.get("unique_mega_stones") == 45
+        and counts04.get("new_species_records") == 3
+        and counts04.get("adopted_new_species_records") == 0,
+        "P04 Mega採用/Winds・Waves非採用内訳不正",
+    )
     _require(
         p04_import.get("status") == "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS"
         and p04_import.get("consumer_scope", {}).get("rom_modified") is False
@@ -1297,8 +1839,8 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(
         p04_capacity.get("status") == "CHECKPOINT_NOT_RUNTIME_READY"
         and p04_capacity.get("runtime_ready") is False
-        and capacity_tables.get("known_fixed_table_count") == 39
-        and capacity_tables.get("known_fixed_delta_bytes") == 20905,
+        and capacity_tables.get("known_fixed_table_count") == 34
+        and capacity_tables.get("known_fixed_delta_bytes") == 19857,
         "P04 capacity checkpoint境界不正",
     )
     capacity_dry_run = p04_capacity.get("allocator_audit", {}).get(
@@ -1311,7 +1853,10 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         capacity_dry_run.get("source_stage") == 65
         and capacity_dry_run.get("region") == "integration_modules"
         and capacity_dry_run.get("candidate_span_start") == 21307984
-        and capacity_dry_run.get("candidate_span_end_exclusive") == 23068672,
+        and capacity_dry_run.get("candidate_span_end_exclusive") == 23068672
+        and capacity_dry_run.get("bundle_bytes_including_alignment") == 636392
+        and capacity_dry_run.get("bundle_end_exclusive") == 21944376
+        and 23068672 - capacity_dry_run.get("bundle_end_exclusive") == 1124296,
         "P04 capacityのStage65 basis/integration_modules span不正",
     )
     _require(
@@ -1325,7 +1870,22 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
 
     summary05 = p05.get("summary", {})
     _require(p05.get("status") == "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "P05 runtime未完了境界不正")
-    _require(summary05.get("adopted_performance_adjustment_count") == 0 and summary05.get("new_move_requirement_count") == 1 and summary05.get("new_ability_requirement_count") == 6, "P05件数不正")
+    _require(
+        summary05.get("adopted_performance_adjustment_count") == 0
+        and summary05.get("new_move_requirement_count") == 0
+        and summary05.get("non_adopted_move_candidate_count") == 1
+        and summary05.get("new_ability_requirement_count") == 6
+        and summary05.get("existing_official_ability_assignment_count") == 29
+        and summary05.get("non_adopted_p04_record_count") == 3,
+        "P05採用/非採用件数不正",
+    )
+    _require(
+        p05_ability.get("status") == "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"
+        and p05_ability.get("fixture", {}).get("summary", {}).get("case_count") == 46
+        and p05_ability.get("fixture", {}).get("independent_process_runs") == 2
+        and p05_ability.get("rom_linked") is False,
+        "P05 Ability host runtime checkpoint境界不正",
+    )
 
     adoption06 = p06.get("adoption", {})
     _require(p06.get("status") == "CHECKPOINT_ADOPTED_DELTA_EMPTY", "P06 checkpoint境界不正")
@@ -1352,34 +1912,42 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
             "blockers": [],
         },
         {
-            "phase": "P02", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["PASS", "CHECKPOINT", "PASS"],
-            "adoption": {"static_contract_records": 1, "stage64_changed_evolution_rows": 1, "stage64_changed_rom_bytes": 2},
+            "phase": "P02", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["PASS", "CHECKPOINT", "PASS", "ACTUAL_CONSUMER_PARTIAL_ACCEPTANCE_WITH_ROOT_FIX"],
+            "adoption": {"static_contract_records": 1, "stage64_changed_evolution_rows": 1, "stage64_changed_rom_bytes": 2, "slot_priority_repaired_species": 6, "actual_consumer_case_count": 24, "actual_consumer_process_runs": 2, "hidden_ability_readback_verified": True, "hidden_ability_bit_mask": 16, "hidden_ability_observed_case_count": 24},
             "not_adopted": ["REVIEW_ONLY_BRANCHES", "FULL_EVOLUTION_RUNTIME_ACCEPTANCE"],
-            "rom_reflection": {"reflected": True, "stage": 64, "scope": "RAYQUAZA_PARAMETER_FIX_ONLY"},
+            "rom_reflection": {
+                "reflected": True,
+                "stage": 67,
+                "ancestor_stage": 64,
+                "scope": "RAYQUAZA_FIX_PLUS_6_SPECIES_PRIORITY_REPAIR_IN_STAGE67_OVERLAY",
+            },
             "required_gates": [
                 _gate("STATIC_CONTRACT", "PASS", ["content/modernization/p02_evolution_contract.json"]),
                 _gate("BOUNDED_DIRECT_CALL_MGBA", "PASS_NOT_FULL_E2E", ["content/modernization/p02_stage64_mgba_runtime_gate.json"]),
+                _gate("ACTUAL_EVOLUTION_CONSUMERS", "PASS_PARTIAL_24_CASES_WITH_HIDDEN_ABILITY_READBACK_NOT_FULL_E2E", ["content/modernization/p02_acceptance_checkpoint.json"]),
                 _gate("FULL_EVOLUTION_ACCEPTANCE", "BLOCKED", ["content/modernization/p02_stage64_checkpoint.json"]),
             ],
-            "blockers": ["ABILITY_MOVE_CANCEL_ITEM_SAVE_RELOAD_GATE_NOT_RUN", "FULL_EVOLUTION_ACCEPTANCE_FALSE"],
+            "blockers": ["EVOLUTION_SCENE_CANCEL_BAG_MOVE_ABILITY_SAVE_RELOAD_NOT_RUN", "FULL_EVOLUTION_ACCEPTANCE_FALSE"],
         },
         {
-            "phase": "P03", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["PASS", "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS", "STAGE65_ANCESTOR_CHECKPOINT", "STAGE66_BULK_CHECKPOINT", "PASS_NOT_FULL_P03_ACCEPTANCE"],
-            "adoption": {"reference_records": 1300, "reference_routes": 118528, "side_change_1063_routes": 159, "stage65_preserved_ancestor_routes": 4, "stage65_changed_rom_bytes": 17, "stage66_corrected_targets": 1300, "stage66_routes_materialized": 47548, "stage66_level_up_routes_materialized": 18515, "stage66_machine_existing_slot_routes_materialized": 29033, "stage66_routes_remaining": 70980, "stage66_changed_rom_bytes": 81693},
-            "not_adopted": ["ROUTES_REMAINING_70980", "MACHINE_SUPPLY_REQUIRED_26347", "NON_LEVEL_MACHINE_CONSUMERS", "MOVE_1063_RUNTIME_159", "FULL_SCHEDULER_AND_SAVE_RELOAD"],
-            "rom_reflection": {"reflected": True, "stage": 66, "scope": "BULK_LEVEL_UP_AND_EXISTING_SLOT_MACHINE_CHECKPOINT"},
+            "phase": "P03", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["PASS", "DATA_CONTRACT_READY_RUNTIME_WORK_REMAINS", "STAGE65_ANCESTOR_CHECKPOINT", "STAGE66_HISTORICAL_BULK_CHECKPOINT", "STAGE67_CONSUMER_CHECKPOINT", "PASS_NOT_FULL_P03_ACCEPTANCE"],
+            "adoption": {"reference_records": 1300, "source_routes": 118528, "runtime_selected_routes": 118369, "side_change_1063_source_routes": 159, "side_change_1063_excluded_routes": 159, "side_change_1063_adopted_routes": 0, "side_change_1063_replacement_move_key": None, "stage65_preserved_ancestor_routes": 4, "stage65_changed_rom_bytes": 17, "stage66_corrected_targets": 1300, "stage66_routes_materialized": 47548, "stage66_level_up_routes_materialized": 18515, "stage66_machine_existing_slot_routes_materialized": 29033, "stage66_changed_rom_bytes": 81693, "stage67_new_routes_materialized": 3603, "stage67_evolution_routes_materialized": 341, "stage67_tutor_existing_slot_routes_materialized": 740, "stage67_normal_egg_routes_materialized": 2522, "cumulative_routes_materialized": 51151, "selected_routes_remaining": 67218, "stage67_changed_rom_bytes_from_overlay": 46455, "stage67_changed_rom_bytes_from_stage66": 46515, "stage67_future_tail_remaining_bytes": 62510},
+            "not_adopted": ["SIDE_CHANGE_1063_ALL_159_SOURCE_ROUTES_EXCLUDED_NO_REPLACEMENT", "SELECTED_ROUTES_REMAINING_67218", "MACHINE_TUTOR_SUPPLY_REQUIRED_26648", "FORM_CARRY_REMINDER_SHARED_AND_SPECIAL_EGG_CONSUMERS", "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD"],
+            "rom_reflection": {"reflected": True, "stage": 67, "scope": "P02_OVERLAY_PLUS_EVOLUTION_TUTOR_NORMAL_EGG_CONSUMER_CHECKPOINT"},
             "required_gates": [
                 _gate("STREAMING_CONTRACT_AND_INDEX", "PASS", ["content/modernization/p03_learnset_contract.json", "content/modernization/p03_compiled_index.json"]),
                 _gate("STAGE65_REPRESENTATIVE_RUNTIME", "PRESERVED_ANCESTOR_CHECKPOINT", ["content/modernization/p03_stage65_checkpoint.json", "content/modernization/p03_stage65_mgba_runtime_gate.json"]),
                 _gate("STAGE66_BULK_RUNTIME", "INTEGRATED_CHECKPOINT_NOT_P03_DONE", ["content/modernization/p03_stage66_checkpoint.json", "content/modernization/p03_stage66_mgba_runtime_gate.json", "content/modernization/p03_stage66_bulk_route_audit.json", "content/modernization/p03_stage66_change_audit.json"]),
-                _gate("FULL_ROUTE_SUPPLY_AND_MOVE_1063", "BLOCKED", ["content/modernization/p03_runtime_handoff.json", "content/modernization/p03_stage66_bulk_route_audit.json"]),
+                _gate("STAGE67_CONSUMER_RUNTIME", "PASS_ALL_MATERIALIZED_DIRECT_CALLS_NOT_E2E", ["content/modernization/p03_stage67_checkpoint.json", "content/modernization/p03_stage67_mgba_runtime_gate.json", "content/modernization/p03_stage67_consumer_route_audit.json", "content/modernization/p03_stage67_change_audit.json"]),
+                _gate("SIDE_CHANGE_NON_ADOPTION", "PASS_EXCLUDED_159_NO_REPLACEMENT", ["config/modernization_adoption_decisions.json", "content/modernization/p03_runtime_handoff.json"]),
+                _gate("FULL_SELECTED_ROUTE_SUPPLY", "BLOCKED", ["content/modernization/p03_runtime_handoff.json", "content/modernization/p03_stage66_bulk_route_audit.json"]),
             ],
-            "blockers": ["ROUTES_REMAINING_70980", "MACHINE_SUPPLY_REQUIRED_ROWS_26347", "MOVE_1063_ROUTES_159_NOT_IMPLEMENTED", "FULL_SCHEDULER_AND_SAVE_RELOAD_NOT_RUN"],
+            "blockers": ["SELECTED_ROUTES_REMAINING_67218", "MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648", "FORM_CARRY_REMINDER_SHARED_SPECIAL_EGG_CONSUMERS_PENDING", "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD_NOT_RUN"],
         },
         {
             "phase": "P04", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CANDIDATE_MANIFEST_ONLY", "PRIVATE_USE_STAGING_WITH_DECLARED_GAPS", "CAPACITY_RESERVATION_CHECKPOINT_NOT_RUNTIME_READY"],
-            "adoption": {"runtime_adopted_records": 0, "selected_candidate_records": 52, "held_records": 2, "mega_records": 49, "stone_records": 45, "new_species_records": 3, "asset_staging": {"mega_covered": 49, "mega_required": 49, "stones_covered": 45, "stones_required": 45, "palette_ready": 49, "palette_required": 49, "winds_waves_covered": 0, "winds_waves_required": 3, "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c"}, "capacity_reservation": {"capacity_basis_stage": 65, "species_form": [1621, 1672], "item": [999, 1043], "ability": [312, 317], "move": [1063, 1063], "fixed_table_count": 39, "fixed_table_delta_bytes": 20905, "aligned_bundle_bytes": 676772, "integration_modules_remaining_bytes": 1083916, "stage66_cross_check": {"allocation_region": "future_tail", "allocation_start": 33399368, "allocation_size": 60116, "allocation_end_exclusive": 33459484, "stage65_future_tail_remaining_bytes": 155064, "stage66_future_tail_remaining_bytes": 94948, "p04_candidate_region": "integration_modules", "p04_candidate_start": 21307984, "p04_candidate_end_exclusive": 23068672, "overlap": False}, "runtime_ready": False}},
-            "not_adopted": ["SHARED_ID_MATERIALIZATION", "ROM_TABLE_RELOCATION", "WINDS_WAVES_ASSETS_3", "PUBLIC_REDISTRIBUTION"],
+            "adoption": {"runtime_adopted_records": 0, "selected_candidate_records": 49, "held_records": 2, "mega_records": 49, "stone_records": 45, "new_species_reference_records": 3, "adopted_new_species_records": 0, "non_adopted_user_scope_records": 3, "asset_staging": {"mega_covered": 49, "mega_required": 49, "stones_covered": 45, "stones_required": 45, "palette_ready": 49, "palette_required": 49, "winds_waves_covered": 0, "winds_waves_required": 0, "missing_assets": 0, "payload_file_count": 670, "payload_total_bytes": 426648, "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c"}, "capacity_reservation": {"capacity_basis_stage": 65, "species_form": [1621, 1669], "item": [999, 1043], "ability": [312, 317], "move": None, "move_append_count": 0, "fixed_table_count": 34, "fixed_table_delta_bytes": 19857, "aligned_bundle_bytes": 636392, "integration_modules_remaining_bytes": 1124296, "stage66_cross_check": {"allocation_region": "future_tail", "allocation_start": 33399368, "allocation_size": 60116, "allocation_end_exclusive": 33459484, "stage65_future_tail_remaining_bytes": 155064, "stage66_future_tail_remaining_bytes": 94948, "p04_candidate_region": "integration_modules", "p04_candidate_start": 21307984, "p04_candidate_end_exclusive": 23068672, "overlap": False}, "runtime_ready": False}},
+            "not_adopted": ["SHARED_ID_MATERIALIZATION", "ROM_TABLE_RELOCATION", "WINDS_WAVES_NEW_SPECIES_3_USER_SCOPE", "PUBLIC_REDISTRIBUTION"],
             "rom_reflection": {"reflected": False, "stage": None},
             "required_gates": [
                 _gate("OFFICIAL_SOURCE_AND_CANDIDATE_SET", "PASS", ["content/modernization/p04_candidate_manifest.json", "content/modernization/p04_official_sources.json"]),
@@ -1387,19 +1955,21 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
                 _gate("ID_CAPACITY_RESERVATION", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY", ["content/modernization/p04_capacity_allocation_manifest.json"]),
                 _gate("ID_MATERIALIZATION_AND_RUNTIME", "BLOCKED", ["content/modernization/p04_capacity_allocation_manifest.json"]),
             ],
-            "blockers": ["FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT", "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS", "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN", "SAVE_MIGRATION_NOT_DESIGNED", "NEW_SPECIES_ASSETS_MISSING_3", "RIGHTS_REVIEW", "ROM_AND_ID_NOT_INTEGRATED"],
+            "blockers": ["FIXED_TABLES_REQUIRE_RELOCATION_AND_REPOINT", "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS", "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN", "SAVE_MIGRATION_NOT_DESIGNED", "RIGHTS_REVIEW", "ROM_AND_ID_NOT_INTEGRATED"],
         },
         {
-            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS"],
-            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "temporary_ability_assignments": 14, "existing_official_assignments": 32},
-            "not_adopted": ["NEW_MOVE_RUNTIME_1", "NEW_ABILITY_RUNTIME_6"],
+            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED_ROM_LINK_PENDING"],
+            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "new_move_requirements": 0, "non_adopted_move_candidates": 1, "side_change_1063_adopted": False, "temporary_ability_assignments": 14, "existing_official_assignments": 29, "new_abilities": 6, "non_adopted_p04_records": 3, "ability_host_runtime_cases": 46, "ability_host_runtime_processes": 2},
+            "not_adopted": ["SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION", "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION", "ABILITY_ROM_LINK_AND_FIXED_TABLES"],
             "rom_reflection": {"reflected": False, "stage": None},
             "required_gates": [
                 _gate("BATTLE_CONTENT_CONTRACT", "PASS", ["content/modernization/p05_battle_content_contract.json"]),
-                _gate("SIDE_CHANGE_1063_FULL_RUNTIME", "BLOCKED", ["content/modernization/p05_runtime_handoff.json"]),
-                _gate("P04_NEW_ABILITIES", "BLOCKED", ["content/modernization/p05_runtime_handoff.json"]),
+                _gate("SIDE_CHANGE_1063_EXCLUSION", "PASS_NON_ADOPTED_NO_REPLACEMENT", ["config/modernization_adoption_decisions.json", "content/modernization/p05_runtime_handoff.json"]),
+                _gate("WINDS_WAVES_NEW_SPECIES_EXCLUSION", "PASS_NON_ADOPTED_NO_ID_ASSET_RUNTIME", ["content/modernization/p04_candidate_manifest.json", "content/modernization/p04_capacity_allocation_manifest.json", "content/modernization/p05_runtime_handoff.json"]),
+                _gate("P04_NEW_ABILITIES_HOST_RUNTIME", "PASS_46_CASES_X2_ROM_LINK_PENDING", ["content/modernization/p05_ability_runtime_checkpoint.json"]),
+                _gate("P04_NEW_ABILITIES_ROM_LINK", "BLOCKED", ["content/modernization/p05_ability_runtime_checkpoint.json"]),
             ],
-            "blockers": ["MOVE_1063_ID_EFFECT_AI_UI_ANIMATION_SAVE", "SIX_ABILITIES_UNALLOCATED"],
+            "blockers": ["SIX_ABILITIES_ROM_LINK_FIXED_TABLE_TEXT_UI_MGBA_PENDING"],
         },
         {
             "phase": "P06", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CHECKPOINT_ADOPTED_DELTA_EMPTY"],
@@ -1446,14 +2016,17 @@ def _traceability() -> list[dict[str, Any]]:
         ("P01_COLLECTION_RUNTIME", "P01", "Stage63 collection runtime correction", "tests/test_modernization_p01_rom.py", "IMPLEMENTED_AND_VERIFIED"),
         ("P02_EVOLUTION_CONTRACT", "P02", "p02_evolution_contract", "tests/test_modernization_p02.py", "STATIC_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P02_RAYQUAZA_SLICE", "P02", "Stage64 exact 2-byte repair", "tests/test_modernization_p02_stage64.py", "CHECKPOINT_VERIFIED"),
+        ("P02_ACTUAL_CONSUMERS", "P02", "6種level+held-item root repair + hidden ability実測readback + actual consumers", "scripts/run_modernization_p02_acceptance.py", "PARTIAL_ACCEPTANCE_24_CASES_X2_HIDDEN_ABILITY_READBACK"),
         ("P02_FULL_RUNTIME", "P02", "deferred runtime acceptance", "tests/test_modernization_p02_mgba.py", "BLOCKED"),
         ("P03_ORIGINAL_LEARNSETS", "P03", "streamed 1300/118528 contract", "tests/test_modernization_p03.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P03_STAGE65_SLICE", "P03", "Stage65 Caterpie 4-route ancestor checkpoint", "tests/test_modernization_p03_stage65.py", "PRESERVED_ANCESTOR_CHECKPOINT"),
         ("P03_STAGE66_BULK", "P03", "Stage66 47,548-route bulk ROM checkpoint", "tests/test_modernization_p03_stage66.py", "INTEGRATED_CHECKPOINT_NOT_P03_DONE"),
-        ("P04_CANDIDATE_SCOPE", "P04", "54-record candidate manifest", "tests/test_modernization_p04_sources.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
+        ("P03_STAGE67_CONSUMERS", "P03", "Stage67 evolution/tutor/normal-egg 3,603-route consumer checkpoint", "tests/test_modernization_p03_stage67.py", "INTEGRATED_CHECKPOINT_NOT_P03_DONE"),
+        ("P04_CANDIDATE_SCOPE", "P04", "49 Mega採用候補 + Winds/Waves 3種非採用 + 2 hold", "tests/test_modernization_p04_sources.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
         ("P04_ASSET_IMPORT", "P04", "private-use asset import manifest", "tests/test_modernization_p04_asset_importer.py", "INTEGRATED_STAGING_ONLY_NOT_ROM_READY"),
-        ("P04_CAPACITY_RESERVATION", "P04", "52/45/6/1 append reservation + 39-table capacity audit", "tests/test_modernization_p04_capacity.py", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"),
-        ("P05_MOVE_ABILITY", "P05", "battle content contract", "tests/test_modernization_p05.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
+        ("P04_CAPACITY_RESERVATION", "P04", "49/45/6/0 append reservation + 34-table capacity audit", "tests/test_modernization_p04_capacity.py", "INTEGRATED_CHECKPOINT_NOT_RUNTIME_READY"),
+        ("P05_MOVE_ABILITY", "P05", "Side Change/Winds・Waves 3種非採用 + battle content contract", "tests/test_modernization_p05.py", "CONTRACT_VERIFIED_RUNTIME_INCOMPLETE"),
+        ("P05_ABILITY_HOST_RUNTIME", "P05", "6 Ability portable runtime", "tests/test_modernization_p05_ability_runtime.py", "HOST_VERIFIED_46_CASES_X2_ROM_LINK_PENDING"),
         ("P06_SPECIES_ADJUSTMENT", "P06", "empty adopted delta + review projection", "tests/test_modernization_p06.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P07_CROSS_DISTRIBUTION", "P07", "empty explicit layered delta", "tests/test_modernization_p07.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P08_INPUT_AND_COMPLETION_GUARD", "P08", "pinned integration validator", "tests/test_modernization_p08.py", "IMPLEMENTED_CHECKPOINT_ONLY"),
@@ -1531,18 +2104,18 @@ def build_integration_matrix(root: Path) -> dict[str, Any]:
             "completed_phases": ["P01"],
             "checkpoint_or_blocked_phase_count": 7,
             "active_stage": 62,
-            "highest_pinned_candidate_stage": 66,
+            "highest_pinned_candidate_stage": 67,
             "runtime_reflected_phase_count": 3,
             "release_ready": False,
         },
         "release_blockers": [
             "P02_FULL_EVOLUTION_ACCEPTANCE_NOT_COMPLETE",
-            "P03_STAGE66_BULK_CHECKPOINT_INTEGRATED_BUT_70980_ROUTES_REMAIN",
-            "P04_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_GAPS_NOT_COMPLETE",
-            "P05_MOVE_AND_ABILITY_RUNTIME_NOT_COMPLETE",
+            "P03_STAGE67_CONSUMER_CHECKPOINT_INTEGRATED_BUT_67218_SELECTED_ROUTES_REMAIN",
+            "P04_49_MEGA_ASSET_AND_CAPACITY_CHECKPOINTS_INTEGRATED_BUT_ID_MATERIALIZATION_ROM_AND_RIGHTS_REVIEW_NOT_COMPLETE",
+            "P05_SIDE_CHANGE_EXCLUDED_BUT_SIX_ABILITIES_NOT_ROM_LINKED",
             "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
             "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-            "CANDIDATE_STAGE66_IS_NOT_ACTIVE_STAGE62",
+            "CANDIDATE_STAGE67_IS_NOT_ACTIVE_STAGE62",
         ],
         "runtime_execution": {
             "heavy_rom_execution_performed_by_p08": False,
@@ -1629,19 +2202,19 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
             f"P08候補artifact identity不一致: {path}",
         )
     chain = matrix.get("candidate_chain")
-    _require(isinstance(chain, Mapping) and chain.get("active_stage") == 62 and chain.get("selected_checkpoint_stage") == 66 and chain.get("stage65_integrated") is True and chain.get("stage66_integrated") is True and chain.get("release_candidate") is False, "P08候補chain境界不正")
+    _require(isinstance(chain, Mapping) and chain.get("active_stage") == 62 and chain.get("selected_checkpoint_stage") == 67 and chain.get("stage65_integrated") is True and chain.get("stage66_integrated") is True and chain.get("stage67_integrated") is True and chain.get("release_candidate") is False, "P08候補chain境界不正")
     _require(
         chain.get("registry") == {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT",
+            "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
-            "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+            "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+            "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 65,
-            "candidate_stage": 66,
+            "parent_stage": 66,
+            "candidate_stage": 67,
         },
         "P08 candidate v2 registryの完了/checkpoint/親chain境界不正",
     )
@@ -1669,6 +2242,25 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
             "full_p03_done": False,
         },
         "P03 Stage66 scopeを全P03完了と誤認しています",
+    )
+    _require(
+        chain.get("stage67_scope") == {
+            "source_routes": 118528,
+            "selected_routes": 118369,
+            "non_adopted_move_1063_routes": 159,
+            "stage67_new_materialized_routes": 3603,
+            "cumulative_materialized_routes": 51151,
+            "selected_routes_remaining": 67218,
+            "evolution_routes_materialized": 341,
+            "tutor_existing_slot_routes_materialized": 740,
+            "normal_egg_routes_materialized": 2522,
+            "p02_overlay_changed_bytes": 60,
+            "stage67_changed_bytes_from_overlay": 46455,
+            "future_tail_remaining_bytes": 62510,
+            "consumers_exercised": ["evolution", "tutor", "egg"],
+            "full_p03_done": False,
+        },
+        "P03 Stage67 scopeを全P03完了と誤認しています",
     )
     _require(snapshot.get("parallel_outputs") == PARALLEL_OUTPUTS, "P08並行成果の非統合境界不正")
     source_bindings = matrix.get("referenced_source_bindings")
@@ -1712,23 +2304,72 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require("PASS" in by_phase["P02"]["contract_statuses"] and by_phase["P02"]["completion_state"] != "COMPLETED", "P02 PASSを工程DONEと誤認しています")
     _require("PASS" in by_phase["P03"]["contract_statuses"] and by_phase["P03"]["completion_state"] != "COMPLETED", "P03 PASSを工程DONEと誤認しています")
     _require(
-        by_phase["P03"].get("rom_reflection", {}).get("stage") == 66
+        by_phase["P02"].get("adoption", {}).get(
+            "hidden_ability_readback_verified"
+        ) is True
+        and by_phase["P02"].get("adoption", {}).get(
+            "hidden_ability_bit_mask"
+        ) == 16
+        and by_phase["P02"].get("adoption", {}).get(
+            "hidden_ability_observed_case_count"
+        ) == 24,
+        "P02 hidden ability実測readback境界不正",
+    )
+    _require(
+        by_phase["P02"].get("rom_reflection")
+        == {
+            "reflected": True,
+            "stage": 67,
+            "ancestor_stage": 64,
+            "scope": "RAYQUAZA_FIX_PLUS_6_SPECIES_PRIORITY_REPAIR_IN_STAGE67_OVERLAY",
+        },
+        "P02 Stage64祖先＋Stage67 overlay反映境界不正",
+    )
+    _require(
+        by_phase["P03"].get("rom_reflection", {}).get("stage") == 67
         and by_phase["P03"].get("adoption", {}).get("stage65_preserved_ancestor_routes") == 4
         and by_phase["P03"].get("adoption", {}).get("stage66_routes_materialized") == 47548
-        and by_phase["P03"].get("adoption", {}).get("stage66_routes_remaining") == 70980
-        and by_phase["P03"].get("adoption", {}).get("stage66_changed_rom_bytes") == 81693,
-        "P03 Stage66 bulk checkpointの統合境界不正",
+        and by_phase["P03"].get("adoption", {}).get("runtime_selected_routes") == 118369
+        and by_phase["P03"].get("adoption", {}).get("side_change_1063_excluded_routes") == 159
+        and by_phase["P03"].get("adoption", {}).get("side_change_1063_adopted_routes") == 0
+        and by_phase["P03"].get("adoption", {}).get("side_change_1063_replacement_move_key") is None
+        and by_phase["P03"].get("adoption", {}).get("cumulative_routes_materialized") == 51151
+        and by_phase["P03"].get("adoption", {}).get("selected_routes_remaining") == 67218
+        and by_phase["P03"].get("adoption", {}).get("stage67_new_routes_materialized") == 3603,
+        "P03 Stage67 consumer checkpointの統合境界不正",
+    )
+    _require(
+        by_phase["P05"].get("adoption", {}).get("new_move_requirements") == 0
+        and by_phase["P05"].get("adoption", {}).get("non_adopted_move_candidates") == 1
+        and by_phase["P05"].get("adoption", {}).get("side_change_1063_adopted") is False
+        and by_phase["P05"].get("adoption", {}).get("new_abilities") == 6
+        and by_phase["P05"].get("adoption", {}).get("non_adopted_p04_records") == 3
+        and by_phase["P05"].get("adoption", {}).get("ability_host_runtime_cases") == 46
+        and by_phase["P05"].get("adoption", {}).get("ability_host_runtime_processes") == 2,
+        "P05 Side Change非採用/6 Ability host runtime境界不正",
     )
     p04_staging = by_phase["P04"].get("adoption", {}).get("asset_staging", {})
+    p04_adoption = by_phase["P04"].get("adoption", {})
     p04_capacity = by_phase["P04"].get("adoption", {}).get(
         "capacity_reservation", {}
+    )
+    _require(
+        p04_adoption.get("selected_candidate_records") == 49
+        and p04_adoption.get("mega_records") == 49
+        and p04_adoption.get("new_species_reference_records") == 3
+        and p04_adoption.get("adopted_new_species_records") == 0
+        and p04_adoption.get("non_adopted_user_scope_records") == 3,
+        "P04 49 Mega採用/Winds・Waves 3種非採用境界不正",
     )
     _require(
         p04_staging == {
             "mega_covered": 49, "mega_required": 49,
             "stones_covered": 45, "stones_required": 45,
             "palette_ready": 49, "palette_required": 49,
-            "winds_waves_covered": 0, "winds_waves_required": 3,
+            "winds_waves_covered": 0, "winds_waves_required": 0,
+            "missing_assets": 0,
+            "payload_file_count": 670,
+            "payload_total_bytes": 426648,
             "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",
         }
         and by_phase["P04"].get("rom_reflection", {}).get("reflected") is False,
@@ -1737,14 +2378,15 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(
         p04_capacity == {
             "capacity_basis_stage": 65,
-            "species_form": [1621, 1672],
+            "species_form": [1621, 1669],
             "item": [999, 1043],
             "ability": [312, 317],
-            "move": [1063, 1063],
-            "fixed_table_count": 39,
-            "fixed_table_delta_bytes": 20905,
-            "aligned_bundle_bytes": 676772,
-            "integration_modules_remaining_bytes": 1083916,
+            "move": None,
+            "move_append_count": 0,
+            "fixed_table_count": 34,
+            "fixed_table_delta_bytes": 19857,
+            "aligned_bundle_bytes": 636392,
+            "integration_modules_remaining_bytes": 1124296,
             "stage66_cross_check": {
                 "allocation_region": "future_tail",
                 "allocation_start": 33399368,
@@ -1766,7 +2408,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(isinstance(trace, list) and len(trace) >= 14, "要件→実装→test対応が不足しています")
     _require(all(row.get("requirement_key") and row.get("implementation_evidence") and row.get("test_evidence") and row.get("status") for row in trace), "traceability rowが不完全です")
     summary = matrix.get("integration_summary")
-    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 66 and summary.get("runtime_reflected_phase_count") == 3 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage66 checkpointと不一致です")
+    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 67 and summary.get("runtime_reflected_phase_count") == 3 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage67 checkpointと不一致です")
     _require(len(matrix.get("release_blockers", [])) == 7, "P08 release blocker集合不一致")
     execution = matrix.get("runtime_execution")
     _require(isinstance(execution, Mapping) and execution.get("heavy_rom_execution_performed_by_p08") is False and execution.get("new_rom_written") is False and execution.get("active_baseline_written") is False, "P08 checkpointがROM/baselineを変更しています")
@@ -1802,14 +2444,14 @@ def build_release_handoff(matrix: Mapping[str, Any]) -> dict[str, Any]:
         "status": STATUS,
         "release_ready": False,
         "active_stage": 62,
-        "candidate_stage": 66,
+        "candidate_stage": 67,
         "completed_phases": ["P01"],
         "not_completed_phases": ["P02", "P03", "P04", "P05", "P06", "P07", "P08"],
         "release_blockers": matrix["release_blockers"],
         "promotion": {
             "authorized": False,
             "active_play_baseline_changed": False,
-            "reason": "P02～P07のruntime acceptance未完了。Stage66は47,548経路を反映したbulk checkpointだが70,980経路が残り、release candidateではない",
+            "reason": "P02～P07のruntime acceptance未完了。Stage67は選択118,369経路中51,151経路を反映したconsumer checkpointだが67,218経路が残り、release candidateではない",
         },
         "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
         "integration_fingerprint": matrix["snapshot"]["integration_fingerprint"],

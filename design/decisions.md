@@ -328,3 +328,14 @@
 - 再採用: 将来実装する場合はこの判断を上書きせず、新しい意思決定で採用状態、効果仕様、
   runtime実装、全159経路の再選択を同時に更新する。
 - 影響: P03習得契約／Stage67、P04容量、P05新技・特性契約、P07追加習得、P08統合監査。
+
+## 2026-09-08 — D-031: Winds/Waves御三家3種を現行追加対象から外す
+
+- 決定: Browt／Pombon／Gecquaは現行modernizationへ追加しない。通常Species追加数を0件、Mega用
+  Species/Form追加数を49件とし、3種へ数値ID、固定表行、素材、習得、取得経路、runtime処理を割り当てない。
+- 来歴: 公式発表に基づく名称、タイプ、特性、出典URLは候補監査の来歴として保持するが、3件すべてを
+  `NON_ADOPTED_USER_SCOPE`／`NOT_APPLICABLE_NON_ADOPTED`として機械可読に区別する。将来追加する場合は
+  新しい採用判断と容量監査を必要とする。
+- 容量: Species/Form予約を1621〜1669の49件へ縮小し、34固定表の見積りを616,521→636,378 bytes
+  （+19,857、alignment込み636,392）へ再計算する。Winds/Waves素材の不足を現行release blockerに数えない。
+- 影響: P04候補／素材／容量、P05 battle content、P07習得、P08統合、modernization引継ぎ。

@@ -70,23 +70,35 @@
           "size": 33554432
         },
         "stage": 66
+      },
+      {
+        "parent_overlay_sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+        "parent_stage": 66,
+        "role": "P02_P03_CONSUMER_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "D94758FF",
+          "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+          "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+          "size": 33554432
+        },
+        "stage": 67
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 66,
-      "checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
-      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+      "candidate_stage": 67,
+      "checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+      "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "parent_stage": 65,
+      "parent_stage": 66,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT"
+      "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 66,
+    "selected_checkpoint_stage": 67,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -114,33 +126,54 @@
       "routes_materialized": 47548,
       "routes_remaining": 70980,
       "source_routes_validated": 118528
+    },
+    "stage67_integrated": true,
+    "stage67_scope": {
+      "consumers_exercised": [
+        "evolution",
+        "tutor",
+        "egg"
+      ],
+      "cumulative_materialized_routes": 51151,
+      "evolution_routes_materialized": 341,
+      "full_p03_done": false,
+      "future_tail_remaining_bytes": 62510,
+      "non_adopted_move_1063_routes": 159,
+      "normal_egg_routes_materialized": 2522,
+      "p02_overlay_changed_bytes": 60,
+      "selected_routes": 118369,
+      "selected_routes_remaining": 67218,
+      "source_routes": 118528,
+      "stage67_changed_bytes_from_overlay": 46455,
+      "stage67_new_materialized_routes": 3603,
+      "tutor_existing_slot_routes_materialized": 740
     }
   },
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 20,
-        "sha256": "fe6c810ea21c96f7c1bb59350236a08f7b62ad55fabc9a1ee901579673353506"
+        "count": 25,
+        "sha256": "b9365124d739831bd305d164c270dfc7994ae3def7aacb083f1f8ba3fef02e64"
       },
       "implementation_inputs": {
-        "count": 71,
-        "sha256": "7e7c086a78952b80bb3cd7310534e6b6718123eec447d13cc69673f18bde4e61"
+        "count": 85,
+        "sha256": "7f41b3930b333ca86ea37f80ec2bf76fc68e1408202fc749a6838c61e2008fa6"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "980119583df831001d526ce833b5e759007b9e560b0fd50454aad92e1234e4ae"
+        "sha256": "de67b0f1de94295b9f37c5e220505a182af4a3fdd67bd0a43ce5ca61c5000c0c"
       },
       "referenced_source_bindings": {
-        "count": 27,
-        "sha256": "4c1f5ecd5f5102f1d36fcfe8413b6ab6da8519d362f8f0f9a4c542425ec60403"
+        "count": 29,
+        "sha256": "9127e10abf40736729518f6fb8bd190f5560f28b5c826298d3f2d1a80cac700f"
       },
       "tracked_inputs": {
-        "count": 31,
-        "sha256": "7fa04de788e14b15ddcf5f53519f82038a0f62b2241d9d347d10a8e86d36be44"
+        "count": 41,
+        "sha256": "c4156f9b70c94e929796ecdf430d373e3e8dec6efbfd3fcba9c46f12f4979ba9"
       }
     },
-    "sha256": "c5ee0e1f58183de9877f4a638b954fbf3ee7f6519ca9248c86c70fea6a1118c1"
+    "sha256": "a6bbac93984ead64d5ee9e426a6751b76b50964addbe07ab1a08a49e28536f71"
   },
   "phase_runtime": [
     {
@@ -177,7 +210,7 @@
     },
     {
       "blockers": [
-        "ABILITY_MOVE_CANCEL_ITEM_SAVE_RELOAD_GATE_NOT_RUN",
+        "EVOLUTION_SCENE_CANCEL_BAG_MOVE_ABILITY_SAVE_RELOAD_NOT_RUN",
         "FULL_EVOLUTION_ACCEPTANCE_FALSE"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -199,6 +232,13 @@
         },
         {
           "evidence": [
+            "content/modernization/p02_acceptance_checkpoint.json"
+          ],
+          "gate": "ACTUAL_EVOLUTION_CONSUMERS",
+          "status": "PASS_PARTIAL_24_CASES_WITH_HIDDEN_ABILITY_READBACK_NOT_FULL_E2E"
+        },
+        {
+          "evidence": [
             "content/modernization/p02_stage64_checkpoint.json"
           ],
           "gate": "FULL_EVOLUTION_ACCEPTANCE",
@@ -206,17 +246,18 @@
         }
       ],
       "rom_reflection": {
+        "ancestor_stage": 64,
         "reflected": true,
-        "scope": "RAYQUAZA_PARAMETER_FIX_ONLY",
-        "stage": 64
+        "scope": "RAYQUAZA_FIX_PLUS_6_SPECIES_PRIORITY_REPAIR_IN_STAGE67_OVERLAY",
+        "stage": 67
       }
     },
     {
       "blockers": [
-        "ROUTES_REMAINING_70980",
-        "MACHINE_SUPPLY_REQUIRED_ROWS_26347",
-        "MOVE_1063_ROUTES_159_NOT_IMPLEMENTED",
-        "FULL_SCHEDULER_AND_SAVE_RELOAD_NOT_RUN"
+        "SELECTED_ROUTES_REMAINING_67218",
+        "MACHINE_TUTOR_SUPPLY_REQUIRED_ROWS_26648",
+        "FORM_CARRY_REMINDER_SHARED_SPECIAL_EGG_CONSUMERS_PENDING",
+        "FULL_SCHEDULER_BREEDING_AND_SAVE_RELOAD_NOT_RUN"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "phase": "P03",
@@ -249,17 +290,35 @@
         },
         {
           "evidence": [
+            "content/modernization/p03_stage67_checkpoint.json",
+            "content/modernization/p03_stage67_mgba_runtime_gate.json",
+            "content/modernization/p03_stage67_consumer_route_audit.json",
+            "content/modernization/p03_stage67_change_audit.json"
+          ],
+          "gate": "STAGE67_CONSUMER_RUNTIME",
+          "status": "PASS_ALL_MATERIALIZED_DIRECT_CALLS_NOT_E2E"
+        },
+        {
+          "evidence": [
+            "config/modernization_adoption_decisions.json",
+            "content/modernization/p03_runtime_handoff.json"
+          ],
+          "gate": "SIDE_CHANGE_NON_ADOPTION",
+          "status": "PASS_EXCLUDED_159_NO_REPLACEMENT"
+        },
+        {
+          "evidence": [
             "content/modernization/p03_runtime_handoff.json",
             "content/modernization/p03_stage66_bulk_route_audit.json"
           ],
-          "gate": "FULL_ROUTE_SUPPLY_AND_MOVE_1063",
+          "gate": "FULL_SELECTED_ROUTE_SUPPLY",
           "status": "BLOCKED"
         }
       ],
       "rom_reflection": {
         "reflected": true,
-        "scope": "BULK_LEVEL_UP_AND_EXISTING_SLOT_MACHINE_CHECKPOINT",
-        "stage": 66
+        "scope": "P02_OVERLAY_PLUS_EVOLUTION_TUTOR_NORMAL_EGG_CONSUMER_CHECKPOINT",
+        "stage": 67
       }
     },
     {
@@ -268,7 +327,6 @@
         "ITEM_IDS_1024_TO_1043_EXCEED_10_BIT_CONSUMERS",
         "ABILITY_U8_LEGACY_REACHABILITY_UNPROVEN",
         "SAVE_MIGRATION_NOT_DESIGNED",
-        "NEW_SPECIES_ASSETS_MISSING_3",
         "RIGHTS_REVIEW",
         "ROM_AND_ID_NOT_INTEGRATED"
       ],
@@ -312,8 +370,7 @@
     },
     {
       "blockers": [
-        "MOVE_1063_ID_EFFECT_AI_UI_ANIMATION_SAVE",
-        "SIX_ABILITIES_UNALLOCATED"
+        "SIX_ABILITIES_ROM_LINK_FIXED_TABLE_TEXT_UI_MGBA_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
       "phase": "P05",
@@ -327,16 +384,33 @@
         },
         {
           "evidence": [
+            "config/modernization_adoption_decisions.json",
             "content/modernization/p05_runtime_handoff.json"
           ],
-          "gate": "SIDE_CHANGE_1063_FULL_RUNTIME",
-          "status": "BLOCKED"
+          "gate": "SIDE_CHANGE_1063_EXCLUSION",
+          "status": "PASS_NON_ADOPTED_NO_REPLACEMENT"
         },
         {
           "evidence": [
+            "content/modernization/p04_candidate_manifest.json",
+            "content/modernization/p04_capacity_allocation_manifest.json",
             "content/modernization/p05_runtime_handoff.json"
           ],
-          "gate": "P04_NEW_ABILITIES",
+          "gate": "WINDS_WAVES_NEW_SPECIES_EXCLUSION",
+          "status": "PASS_NON_ADOPTED_NO_ID_ASSET_RUNTIME"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_ability_runtime_checkpoint.json"
+          ],
+          "gate": "P04_NEW_ABILITIES_HOST_RUNTIME",
+          "status": "PASS_46_CASES_X2_ROM_LINK_PENDING"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_ability_runtime_checkpoint.json"
+          ],
+          "gate": "P04_NEW_ABILITIES_ROM_LINK",
           "status": "BLOCKED"
         }
       ],

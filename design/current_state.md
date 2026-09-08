@@ -9,9 +9,11 @@
 
 ## Modernization P01〜P08の開発checkpoint
 
-- P01はDONE。P02〜P08は未完了で、release readyではない。累積開発候補はStage66 `build/stages/66_modernization_p03_bulk_learnsets.gba`、SHA-256 `0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32 `808D5140`。現行プレイ基準Stage62へは昇格していない。
-- Stage66はP03の118,528習得経路を全件照合し、level-up 18,515と現行catalogで供給可能なmachine 29,033の計47,548経路を実consumerへ接続した。残70,980はconsumer別理由付きで保留し、Move 1063依存159経路も未実装のまま保持する。
-- P04はSpecies/Form 52、Item 45、Ability 6、Move 1のappend IDと39固定表の容量を予約した。Mega 49／Stone 45のprivate-use素材は再現可能にstaging済みだがROM未接続。Winds/Waves 3種は完全素材未確認のためplaceholderを作っていない。
+- P01はDONE。P02〜P08は未完了で、release readyではない。累積開発候補はStage67 `build/stages/67_modernization_p02_p03_consumers.gba`、SHA-256 `13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32 `D94758FF`。現行プレイ基準Stage62へは昇格していない。
+- P02は6種のlevel＋所持道具分岐順を60 bytes修復し、実`GetEvolutionTargetSpecies`／`ItemEvolutionRemoval`で成立・不足・誤道具・通常分岐を独立2 process検証した。P03はStage66の47,548経路へ進化時341、既存教え技740、通常タマゴ2,522の計3,603経路を追加し、累積51,151経路を実consumerへ接続した。選択済み残経路は67,218で、P02／P03とも全受入は未完了。
+- サイドチェンジ候補Move 1063はユーザー判断で現行版へ採用しない。受領原本の159経路は証跡として保持するが、runtime選択集合は118,369経路とし、Move ID／効果／AI／UI／習得／代替技を追加しない。
+- P04はMega用Species/Form 49（ID 1621〜1669）、Item 45（ID 999〜1043）、Ability 6（ID 312〜317）を予約し、通常SpeciesとMoveの追加は0件。34固定表の拡張見積りは+19,857 bytes。Mega 49／Stone 45のprivate-use素材は再現可能にstaging済みだがROM未接続。Browt／Pombon／Gecquaはユーザー指定によりIDも素材も予約しない`NON_ADOPTED_USER_SCOPE`とし、来歴だけを保持する。P05の新Ability 6件はhost runtime 46 case×独立2 processをPASSしたが、ROM hook／固定表relinkは未完了。
+- フラエッテ（えいえんのはな）のメガシンカ前形態はStage67に既存Species ID 1029／Form key `FORM_KEY_FLOETTE_ETERNAL`として実装済みで、種族値、特性、画像、palette、icon、習得表の行とpointerも存在する。ただし従来のcollection方針では入手不能扱いのため、通常個体の入手機会は後続候補Stage69で追加する。
 - 詳細と再開順は`design/modernization_handoff.md`、機械可読candidate chainは`config/modernization_candidate.json`、統合完了境界は`content/modernization/p08_integration_matrix.json`を正とする。
 
 ## 進行中タスクの再開点

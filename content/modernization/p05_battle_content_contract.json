@@ -784,54 +784,6 @@
         "replacement_trigger_key": "REPLACEMENT_KEY_ABILITY_MEGA_ZYGARDE",
         "resolution": "EXISTING_TEMPORARY_REPLACEABLE",
         "temporary_replaceable": true
-      },
-      {
-        "ability_key": "ABILITY_KEY_OVERGROW",
-        "ability_provenance_key": "OFFICIAL_WINDS_WAVES_ANNOUNCEMENT",
-        "canonical_id": 65,
-        "identity_form_key": "FORM_KEY_BASE",
-        "identity_species_key": "SPECIES_KEY_BROWT",
-        "official_confirmation_date": "2026-02-27",
-        "official_confirmed": true,
-        "official_url": "https://windswaves.pokemon.com/en-us/?pubDate=20260307",
-        "presentation_guard": "OFFICIAL_CONFIRMED_BY_P04",
-        "proposed_species_key": "SPECIES_KEY_BROWT",
-        "record_key": "P04_SPECIES_BROWT",
-        "replacement_trigger_key": null,
-        "resolution": "EXISTING_CANONICAL",
-        "temporary_replaceable": false
-      },
-      {
-        "ability_key": "ABILITY_KEY_TORRENT",
-        "ability_provenance_key": "OFFICIAL_WINDS_WAVES_ANNOUNCEMENT",
-        "canonical_id": 67,
-        "identity_form_key": "FORM_KEY_BASE",
-        "identity_species_key": "SPECIES_KEY_GECQUA",
-        "official_confirmation_date": "2026-02-27",
-        "official_confirmed": true,
-        "official_url": "https://windswaves.pokemon.com/en-us/?pubDate=20260307",
-        "presentation_guard": "OFFICIAL_CONFIRMED_BY_P04",
-        "proposed_species_key": "SPECIES_KEY_GECQUA",
-        "record_key": "P04_SPECIES_GECQUA",
-        "replacement_trigger_key": null,
-        "resolution": "EXISTING_CANONICAL",
-        "temporary_replaceable": false
-      },
-      {
-        "ability_key": "ABILITY_KEY_BLAZE",
-        "ability_provenance_key": "OFFICIAL_WINDS_WAVES_ANNOUNCEMENT",
-        "canonical_id": 66,
-        "identity_form_key": "FORM_KEY_BASE",
-        "identity_species_key": "SPECIES_KEY_POMBON",
-        "official_confirmation_date": "2026-02-27",
-        "official_confirmed": true,
-        "official_url": "https://windswaves.pokemon.com/en-us/?pubDate=20260307",
-        "presentation_guard": "OFFICIAL_CONFIRMED_BY_P04",
-        "proposed_species_key": "SPECIES_KEY_POMBON",
-        "record_key": "P04_SPECIES_POMBON",
-        "replacement_trigger_key": null,
-        "resolution": "EXISTING_CANONICAL",
-        "temporary_replaceable": false
       }
     ],
     "held_records": [
@@ -1207,11 +1159,41 @@
         }
       }
     ],
+    "non_adopted_records": [
+      {
+        "ability_key": "ABILITY_KEY_OVERGROW",
+        "classification": "NEW_SPECIES",
+        "identity_species_key": "SPECIES_KEY_BROWT",
+        "manifest_allocation": false,
+        "record_key": "P04_SPECIES_BROWT",
+        "runtime_implementation": false,
+        "selection_status": "NOT_ADOPTED_BY_USER_DECISION"
+      },
+      {
+        "ability_key": "ABILITY_KEY_TORRENT",
+        "classification": "NEW_SPECIES",
+        "identity_species_key": "SPECIES_KEY_GECQUA",
+        "manifest_allocation": false,
+        "record_key": "P04_SPECIES_GECQUA",
+        "runtime_implementation": false,
+        "selection_status": "NOT_ADOPTED_BY_USER_DECISION"
+      },
+      {
+        "ability_key": "ABILITY_KEY_BLAZE",
+        "classification": "NEW_SPECIES",
+        "identity_species_key": "SPECIES_KEY_POMBON",
+        "manifest_allocation": false,
+        "record_key": "P04_SPECIES_POMBON",
+        "runtime_implementation": false,
+        "selection_status": "NOT_ADOPTED_BY_USER_DECISION"
+      }
+    ],
     "summary": {
-      "adopt_candidate_assignments": 52,
+      "adopt_candidate_assignments": 49,
       "classification_hold_count": 2,
       "new_ability_count": 6,
-      "official_existing_assignments": 32,
+      "non_adopted_user_scope_count": 3,
+      "official_existing_assignments": 29,
       "temporary_declared_records_including_hold": 16,
       "temporary_existing_assignments": 14
     },
@@ -1425,8 +1407,8 @@
       },
       "candidate_manifest": {
         "path": "content/modernization/p04_candidate_manifest.json",
-        "sha256": "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
-        "size": 59501
+        "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
+        "size": 60095
       },
       "official_sources": {
         "path": "content/modernization/p04_official_sources.json",
@@ -1916,11 +1898,12 @@
   "summary": {
     "adopted_performance_adjustment_count": 0,
     "confirmed_data_only_patch_count": 0,
-    "existing_official_ability_assignment_count": 32,
+    "existing_official_ability_assignment_count": 29,
     "held_candidate_count": 2,
     "new_ability_requirement_count": 6,
     "new_move_requirement_count": 0,
     "non_adopted_move_candidate_count": 1,
+    "non_adopted_p04_record_count": 3,
     "preserved_reference_difference_count": 4,
     "runtime_blocker_count": 1,
     "temporary_ability_assignment_count": 14,

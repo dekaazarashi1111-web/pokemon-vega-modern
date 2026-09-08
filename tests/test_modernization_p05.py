@@ -40,11 +40,12 @@ class ModernizationP05ContractTests(unittest.TestCase):
             {
                 "adopted_performance_adjustment_count": 0,
                 "confirmed_data_only_patch_count": 0,
-                "existing_official_ability_assignment_count": 32,
+                "existing_official_ability_assignment_count": 29,
                 "held_candidate_count": 2,
                 "new_ability_requirement_count": 6,
                 "new_move_requirement_count": 0,
                 "non_adopted_move_candidate_count": 1,
+                "non_adopted_p04_record_count": 3,
                 "preserved_reference_difference_count": 4,
                 "runtime_blocker_count": 1,
                 "temporary_ability_assignment_count": 14,
@@ -111,7 +112,7 @@ class ModernizationP05ContractTests(unittest.TestCase):
         assignments = abilities["assignments"]
         temporary = [row for row in assignments if row["temporary_replaceable"]]
         held = abilities["held_records"]
-        self.assertEqual(len(assignments), 52)
+        self.assertEqual(len(assignments), 49)
         self.assertEqual(len(temporary), 14)
         self.assertEqual(len(held), 2)
         self.assertEqual(len(temporary) + len(held), 16)
@@ -124,6 +125,13 @@ class ModernizationP05ContractTests(unittest.TestCase):
         for row in temporary:
             self.assertFalse(row["official_confirmed"])
             self.assertEqual(row["presentation_guard"], "MUST_LABEL_TEMPORARY_NOT_OFFICIAL")
+        non_adopted = abilities["non_adopted_records"]
+        self.assertEqual(
+            {row["record_key"] for row in non_adopted},
+            {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"},
+        )
+        self.assertTrue(all(not row["manifest_allocation"] for row in non_adopted))
+        self.assertTrue(all(not row["runtime_implementation"] for row in non_adopted))
 
     def test_six_new_abilities_remain_unassigned_and_have_pinned_references(self) -> None:
         rows = self.contract["ability_content"]["new_ability_requirements"]

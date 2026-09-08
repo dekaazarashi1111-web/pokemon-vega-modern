@@ -11,6 +11,7 @@
     "exact_p02_overlay_parent": true,
     "fresh_core_save_reload_e2e": false,
     "full_evolution_acceptance": false,
+    "hidden_ability_bit_readback_verified": true,
     "level_held_item_slot_priority_root_fixed": true,
     "post_scene_ability_form_e2e": false,
     "rayquaza_stage64_gate_inherited": true,
@@ -29,6 +30,7 @@
     "6種のlevel+held-item分岐優先度と成功時だけの道具消費",
     "target選択の非破壊性",
     "実SetMonData/CalculateMonStats後の4技・個体ID・ability slot保持",
+    "hidden ability bitの実read-back（道具消費、negative/regular分岐、species変更、CalculateMonStats）",
     "Stage64 Rayquaza Wish-Mega実ROM縦切りの継承"
   ],
   "execution": {
@@ -48,7 +50,7 @@
       "-lmgba"
     ],
     "process_runs": 2,
-    "runner_result_sha256": "2ab93031261e72c58625ff6ebf5d68354be0003ce5b1ea653194bcbf96f82c5f"
+    "runner_result_sha256": "6c895e0c3710fffac980ac18ccca80ae1a89d1cc46388bcee508c6d3875aaa1a"
   },
   "inputs": {
     "candidate_rom": {
@@ -380,13 +382,13 @@
     "sources": [
       {
         "path": "scripts/run_modernization_p02_acceptance.py",
-        "sha256": "68ed38a5d5d2bb5be81459c4a3eecc0569bde55b0c4e759931b652c74965f7d2",
-        "size": 25143
+        "sha256": "ca66825092749c1b771c566b674ec4432382b3cd751fcd1bf291c176353a7c0e",
+        "size": 25951
       },
       {
         "path": "tools/mgba_modernization_p02_acceptance_smoke.c",
-        "sha256": "48191b295e7e4f00e42dc61cfff260a839b9b609b21dd29f6d2b4d21e7d95766",
-        "size": 20978
+        "sha256": "64f3d09eb584e70e2e34c763c5cc9067a414a0785d9047560b88671f8398f33a",
+        "size": 24186
       },
       {
         "path": "tools/mgba_battle_core_smoke.c",
@@ -678,11 +680,22 @@
     "classification": "DIRECT_REAL_CONSUMER_CHECKPOINT",
     "fixed_rtc_unix": 946684800,
     "get_evolution_target_species": "0x090FB774",
+    "hidden_ability_readback": {
+      "after_calculate_stats": true,
+      "after_selection": true,
+      "after_species_write": true,
+      "all_observed_preserved": true,
+      "before_selection": true,
+      "bit_mask": 16,
+      "conditional_item_consumed_cases": 6,
+      "negative_branch_cases": 6,
+      "regular_branch_cases": 12
+    },
     "level_item_priority_repair": {
       "below_level_retains_item": true,
       "correct_item_consumed_after_selection": true,
       "correct_item_selects_conditional_form": true,
-      "instruction_total": 19235,
+      "instruction_total": 17144,
       "missing_item_selects_regular_form": true,
       "repaired_species_count": 6,
       "wrong_item_selects_regular_form_and_is_retained": true

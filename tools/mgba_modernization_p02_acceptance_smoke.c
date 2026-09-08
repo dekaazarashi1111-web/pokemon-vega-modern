@@ -113,6 +113,22 @@ static uint32_t p02a_get_data(struct mCore *core, uint32_t field)
         core, BATTLE_CORE_GET_MON_DATA, ADDR_PLAYER_PARTY, field, 0U, 0U);
 }
 
+static bool p02a_hidden_ability_bit(struct mCore *core)
+{
+    return (read8(core, ADDR_PLAYER_PARTY + P02A_HIDDEN_ABILITY_BYTE)
+            & P02A_HIDDEN_ABILITY_MASK) != 0U;
+}
+
+static void p02a_set_hidden_ability_bit(struct mCore *core)
+{
+    write8(
+        core, ADDR_PLAYER_PARTY + P02A_HIDDEN_ABILITY_BYTE,
+        read8(core, ADDR_PLAYER_PARTY + P02A_HIDDEN_ABILITY_BYTE)
+            | P02A_HIDDEN_ABILITY_MASK);
+    if (!p02a_hidden_ability_bit(core))
+        p02a_die("hidden ability fixture bit was not set");
+}
+
 static void p02a_prepare_mon(
     struct mCore *core, const struct Snapshot *field, struct P02ACase *test)
 {
@@ -267,6 +283,9 @@ int main(int argc, char **argv)
         p02a_die("trade item was not consumed by the real evolution consumer");
 
     uint32_t repaired_instruction_total = 0U;
+    uint32_t hidden_after_item_consumption = 0U;
+    uint32_t hidden_after_negative_branch = 0U;
+    uint32_t hidden_after_regular_branch = 0U;
     for (unsigned index = 0U;
          index < ARRAY_LEN(P02A_LEVEL_ITEM_REPAIRS); ++index) {
         const struct P02ALevelItemRepair *repair =
@@ -277,21 +296,27 @@ int main(int argc, char **argv)
             repair->conditional_target, 0U, 0U, false,
         };
         p02a_prepare_mon(core, &field, &probe);
+        p02a_set_hidden_ability_bit(core);
         struct CallObservation selected = call_bounded(
             core, P02A_GET_EVOLUTION_TARGET, ADDR_PLAYER_PARTY,
             P02A_MODE_NORMAL, 0U, 0U);
+        bool hidden_after_item_selection = p02a_hidden_ability_bit(core);
         struct CallObservation removed = call_bounded(
             core, P02A_ITEM_EVOLUTION_REMOVAL, ADDR_PLAYER_PARTY,
             0U, 0U, 0U);
+        bool hidden_after_item_removal = p02a_hidden_ability_bit(core);
         if (selected.result != repair->conditional_target
             || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != 0U
-            || !selected.payload_pc_seen || !removed.payload_pc_seen)
+            || !selected.payload_pc_seen || !removed.payload_pc_seen
+            || !hidden_after_item_selection || !hidden_after_item_removal)
             p02a_die("correct item did not select conditional form and consume");
+        ++hidden_after_item_consumption;
         repaired_instruction_total += selected.instructions
             + removed.instructions;
 
         probe.level = (uint8_t)(repair->level - 1U);
         p02a_prepare_mon(core, &field, &probe);
+        p02a_set_hidden_ability_bit(core);
         selected = call_bounded(
             core, P02A_GET_EVOLUTION_TARGET, ADDR_PLAYER_PARTY,
             P02A_MODE_NORMAL, 0U, 0U);
@@ -299,8 +324,10 @@ int main(int argc, char **argv)
             core, P02A_ITEM_EVOLUTION_REMOVAL, ADDR_PLAYER_PARTY,
             0U, 0U, 0U);
         if (selected.result != 0U
-            || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != repair->item)
+            || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != repair->item
+            || !p02a_hidden_ability_bit(core))
             p02a_die("below-level item case selected or consumed unexpectedly");
+        ++hidden_after_negative_branch;
         repaired_instruction_total += selected.instructions
             + removed.instructions;
 
@@ -308,6 +335,7 @@ int main(int argc, char **argv)
         probe.held_item = 1U;
         probe.expected = repair->regular_target;
         p02a_prepare_mon(core, &field, &probe);
+        p02a_set_hidden_ability_bit(core);
         selected = call_bounded(
             core, P02A_GET_EVOLUTION_TARGET, ADDR_PLAYER_PARTY,
             P02A_MODE_NORMAL, 0U, 0U);
@@ -315,13 +343,16 @@ int main(int argc, char **argv)
             core, P02A_ITEM_EVOLUTION_REMOVAL, ADDR_PLAYER_PARTY,
             0U, 0U, 0U);
         if (selected.result != repair->regular_target
-            || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != 1U)
+            || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != 1U
+            || !p02a_hidden_ability_bit(core))
             p02a_die("wrong item did not retain regular target and item");
+        ++hidden_after_regular_branch;
         repaired_instruction_total += selected.instructions
             + removed.instructions;
 
         probe.held_item = 0U;
         p02a_prepare_mon(core, &field, &probe);
+        p02a_set_hidden_ability_bit(core);
         selected = call_bounded(
             core, P02A_GET_EVOLUTION_TARGET, ADDR_PLAYER_PARTY,
             P02A_MODE_NORMAL, 0U, 0U);
@@ -331,6 +362,9 @@ int main(int argc, char **argv)
         if (selected.result != repair->regular_target
             || p02a_get_data(core, P02A_MON_DATA_HELD_ITEM) != 0U)
             p02a_die("missing item did not select regular target");
+        if (!p02a_hidden_ability_bit(core))
+            p02a_die("missing-item regular branch cleared hidden ability bit");
+        ++hidden_after_regular_branch;
         repaired_instruction_total += selected.instructions
             + removed.instructions;
     }
@@ -372,10 +406,8 @@ int main(int argc, char **argv)
             core, ADDR_PLAYER_PARTY, P02A_MON_DATA_MOVE1 + slot,
             retained_moves[slot]);
     set_mon_data_u32(core, ADDR_PLAYER_PARTY, P02A_MON_DATA_ALT_ABILITY, 1U);
-    write8(
-        core, ADDR_PLAYER_PARTY + P02A_HIDDEN_ABILITY_BYTE,
-        read8(core, ADDR_PLAYER_PARTY + P02A_HIDDEN_ABILITY_BYTE)
-            | P02A_HIDDEN_ABILITY_MASK);
+    p02a_set_hidden_ability_bit(core);
+    bool apply_hidden_before_selection = p02a_hidden_ability_bit(core);
     uint32_t apply_personality_before = p02a_get_data(
         core, P02A_MON_DATA_PERSONALITY);
     uint32_t apply_selector_before = p02a_get_data(
@@ -385,14 +417,17 @@ int main(int argc, char **argv)
     struct CallObservation apply_select = call_bounded(
         core, P02A_GET_EVOLUTION_TARGET, ADDR_PLAYER_PARTY,
         P02A_MODE_NORMAL, 0U, 0U);
+    bool apply_hidden_after_selection = p02a_hidden_ability_bit(core);
     if (apply_select.result != P02A_MOVE_TARGET)
         p02a_die("target application precondition did not select Tangrowth");
     set_mon_data_u32(
         core, ADDR_PLAYER_PARTY, P02A_MON_DATA_SPECIES,
         apply_select.result);
+    bool apply_hidden_after_species_write = p02a_hidden_ability_bit(core);
     struct CallObservation calculate = call_bounded(
         core, P02A_CALCULATE_MON_STATS, ADDR_PLAYER_PARTY,
         0U, 0U, 0U);
+    bool apply_hidden_after_calculate_stats = p02a_hidden_ability_bit(core);
     uint32_t apply_personality_after = p02a_get_data(
         core, P02A_MON_DATA_PERSONALITY);
     uint32_t apply_selector_after = p02a_get_data(
@@ -405,6 +440,9 @@ int main(int argc, char **argv)
         || apply_personality_before != apply_personality_after
         || apply_selector_before != apply_selector_after
         || apply_ability_before == 0U || apply_ability_after == 0U
+        || !apply_hidden_before_selection || !apply_hidden_after_selection
+        || !apply_hidden_after_species_write
+        || !apply_hidden_after_calculate_stats
         || !calculate.payload_pc_seen)
         p02a_die("target application identity/ability contract failed");
     for (unsigned slot = 0U; slot < BATTLE_CORE_MOVE_SLOTS; ++slot) {
@@ -412,6 +450,16 @@ int main(int argc, char **argv)
             != retained_moves[slot])
             p02a_die("target application did not retain all four moves");
     }
+
+    bool all_hidden_readbacks =
+        hidden_after_item_consumption == ARRAY_LEN(P02A_LEVEL_ITEM_REPAIRS)
+        && hidden_after_negative_branch == ARRAY_LEN(P02A_LEVEL_ITEM_REPAIRS)
+        && hidden_after_regular_branch == 2U * ARRAY_LEN(P02A_LEVEL_ITEM_REPAIRS)
+        && apply_hidden_before_selection && apply_hidden_after_selection
+        && apply_hidden_after_species_write
+        && apply_hidden_after_calculate_stats;
+    if (!all_hidden_readbacks)
+        p02a_die("hidden ability read-back coverage was incomplete");
 
     if (log_problem_count != 0U)
         p02a_die("mGBA warned/errored during acceptance cases");
@@ -441,6 +489,16 @@ int main(int argc, char **argv)
         "\"wrong_item_selects_regular_form_and_is_retained\":true,"
         "\"missing_item_selects_regular_form\":true,"
         "\"instruction_total\":%" PRIu32 "},"
+        "\"hidden_ability_readback\":{"
+        "\"bit_mask\":%u,"
+        "\"conditional_item_consumed_cases\":%" PRIu32 ","
+        "\"negative_branch_cases\":%" PRIu32 ","
+        "\"regular_branch_cases\":%" PRIu32 ","
+        "\"before_selection\":%s,"
+        "\"after_selection\":%s,"
+        "\"after_species_write\":%s,"
+        "\"after_calculate_stats\":%s,"
+        "\"all_observed_preserved\":%s},"
         "\"selection_preservation\":{\"personality_before\":%" PRIu32
         ",\"personality_after\":%" PRIu32
         ",\"ability_selector_before\":%" PRIu32
@@ -459,7 +517,7 @@ int main(int argc, char **argv)
         ",\"ability_selector_after\":%" PRIu32
         ",\"ability_before\":%" PRIu32
         ",\"ability_after\":%" PRIu32
-        ",\"hidden_ability_bit_preserved\":true,"
+        ",\"hidden_ability_bit_preserved\":%s,"
         "\"moves_before\":[%u,%u,%u,%u],"
         "\"moves_after\":[%" PRIu32 ",%" PRIu32 ",%" PRIu32
         ",%" PRIu32 "],\"calculate_stats_instructions\":%" PRIu32 "},"
@@ -467,6 +525,15 @@ int main(int argc, char **argv)
         held_before, held_after, trade_consume.result,
         trade_consume.instructions,
         ARRAY_LEN(P02A_LEVEL_ITEM_REPAIRS), repaired_instruction_total,
+        (unsigned)P02A_HIDDEN_ABILITY_MASK,
+        hidden_after_item_consumption,
+        hidden_after_negative_branch,
+        hidden_after_regular_branch,
+        apply_hidden_before_selection ? "true" : "false",
+        apply_hidden_after_selection ? "true" : "false",
+        apply_hidden_after_species_write ? "true" : "false",
+        apply_hidden_after_calculate_stats ? "true" : "false",
+        all_hidden_readbacks ? "true" : "false",
         personality_before, personality_after,
         selector_before, selector_after, ability_before, ability_after,
         P02A_MOVE_ANCIENT_POWER, move_after,
@@ -475,6 +542,7 @@ int main(int argc, char **argv)
         apply_personality_before, apply_personality_after,
         apply_selector_before, apply_selector_after,
         apply_ability_before, apply_ability_after,
+        apply_hidden_after_calculate_stats ? "true" : "false",
         retained_moves[0], retained_moves[1], retained_moves[2],
         retained_moves[3],
         p02a_get_data(core, P02A_MON_DATA_MOVE1),

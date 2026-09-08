@@ -45,9 +45,9 @@ EXPECTED_INPUTS = {
     "content/modernization/p03_runtime_handoff.json":
         "2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479",
     "content/modernization/p04_candidate_manifest.json":
-        "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
+        "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
     "content/modernization/p05_battle_content_contract.json":
-        "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
+        "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404",
     "content/modernization/p06_species_adjustment_contract.json":
         "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
     "content/modernization/p06_review_projection.json":
@@ -488,6 +488,16 @@ def _validate_upstream_contracts(
         for row in p04_records
         if isinstance(row, Mapping) and row.get("implementation_scope") == "ADOPT_CANDIDATE"
     }
+    p04_non_adopted_user = {
+        str(row.get("record_key"))
+        for row in p04_records
+        if isinstance(row, Mapping)
+        and row.get("implementation_scope") == "NON_ADOPTED_USER_SCOPE"
+    }
+    if p04_non_adopted_user != {
+        "P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"
+    }:
+        _fail("P04 Winds/Wavesユーザー非採用集合が不一致です")
     return {
         "p03_species_classifications": dict(sorted(classifications.items())),
         "p03_vega_original_target_count": 0,
@@ -498,6 +508,7 @@ def _validate_upstream_contracts(
             row.get("implementation_scope") == "ADOPT_CANDIDATE"
             for row in p04_records if isinstance(row, Mapping)
         ),
+        "p04_non_adopted_user_records": sorted(p04_non_adopted_user),
         "p04_learnset_distribution_fields": learnset_fields,
         "p04_unallocated_species_keys": sorted(p04_unallocated),
         "p05_adopted_performance_adjustments": 0,
@@ -775,7 +786,7 @@ def build_p07_contract(root: Path) -> dict[str, Any]:
         "dependencies": [
             {
                 "dependency": "P04_SPECIES_AND_FORM_ID_ALLOCATION",
-                "status": "BLOCKED_52_CANDIDATES_UNALLOCATED",
+                "status": "BLOCKED_49_CANDIDATES_UNALLOCATED",
                 "impact": "未割当P04候補を工程7target keyとして採用しない",
             },
             {
@@ -875,7 +886,7 @@ def validate_p07_contract(contract: Mapping[str, Any]) -> None:
     }
     if dependency_statuses != {
         "P04_SPECIES_AND_FORM_ID_ALLOCATION":
-            "BLOCKED_52_CANDIDATES_UNALLOCATED",
+            "BLOCKED_49_CANDIDATES_UNALLOCATED",
         "P06_SPECIES_BALANCE_REVIEW":
             "CHECKPOINT_NOT_P06_DONE_BLOCKING_RUNTIME_ADOPTION",
         "P03_MACHINE_TUTOR_SUPPLY":

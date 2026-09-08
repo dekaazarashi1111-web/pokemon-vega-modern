@@ -37,6 +37,9 @@ OUTPUTS = {
             for row in contract["ability_content"]["assignments"]
             if row["temporary_replaceable"]
         ],
+        "non_adopted_p04_records": contract["ability_content"][
+            "non_adopted_records"
+        ],
         "save_compatibility": contract["save_compatibility"],
         "release_gates": contract["release_gates"],
     },

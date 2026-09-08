@@ -133,6 +133,11 @@ class ModernizationP07Tests(unittest.TestCase):
         )
         self.assertEqual(audit["p03_vega_original_target_count"], 0)
         self.assertEqual(audit["p04_learnset_distribution_fields"], 0)
+        self.assertEqual(audit["p04_candidate_records"], 49)
+        self.assertEqual(
+            audit["p04_non_adopted_user_records"],
+            ["P04_SPECIES_BROWT", "P04_SPECIES_GECQUA", "P04_SPECIES_POMBON"],
+        )
         side = audit["side_change_1063"]
         self.assertEqual(side["p03_source_route_count"], 159)
         self.assertEqual(side["p03_adopted_route_count"], 0)

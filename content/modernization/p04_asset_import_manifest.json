@@ -34,7 +34,7 @@
     },
     "winds_waves_new_species": {
       "covered": 0,
-      "required": 3
+      "required": 0
     }
   },
   "excluded_classification_hold_records": [
@@ -51,6 +51,41 @@
       "status": "EXCLUDED_CLASSIFICATION_HOLD"
     }
   ],
+  "excluded_non_adopted_records": [
+    {
+      "asset_requirement": "NOT_REQUIRED",
+      "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+      "id_assignment": "NOT_APPLICABLE_NON_ADOPTED",
+      "identity_form_key": "FORM_KEY_BASE",
+      "identity_species_key": "SPECIES_KEY_BROWT",
+      "name_en": "Browt",
+      "proposed_species_key": "SPECIES_KEY_BROWT",
+      "record_key": "P04_SPECIES_BROWT",
+      "status": "NON_ADOPTED_USER_SCOPE"
+    },
+    {
+      "asset_requirement": "NOT_REQUIRED",
+      "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+      "id_assignment": "NOT_APPLICABLE_NON_ADOPTED",
+      "identity_form_key": "FORM_KEY_BASE",
+      "identity_species_key": "SPECIES_KEY_GECQUA",
+      "name_en": "Gecqua",
+      "proposed_species_key": "SPECIES_KEY_GECQUA",
+      "record_key": "P04_SPECIES_GECQUA",
+      "status": "NON_ADOPTED_USER_SCOPE"
+    },
+    {
+      "asset_requirement": "NOT_REQUIRED",
+      "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+      "id_assignment": "NOT_APPLICABLE_NON_ADOPTED",
+      "identity_form_key": "FORM_KEY_BASE",
+      "identity_species_key": "SPECIES_KEY_POMBON",
+      "name_en": "Pombon",
+      "proposed_species_key": "SPECIES_KEY_POMBON",
+      "record_key": "P04_SPECIES_POMBON",
+      "status": "NON_ADOPTED_USER_SCOPE"
+    }
+  ],
   "inputs": {
     "asset_source_contract": {
       "relative_path": "content/modernization/p04_asset_sources.json",
@@ -58,59 +93,10 @@
     },
     "candidate_manifest": {
       "relative_path": "content/modernization/p04_candidate_manifest.json",
-      "sha256": "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644"
+      "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac"
     }
   },
-  "missing_assets": [
-    {
-      "fake_or_placeholder_generated": false,
-      "identity_form_key": "FORM_KEY_BASE",
-      "identity_species_key": "SPECIES_KEY_BROWT",
-      "name_en": "Browt",
-      "proposed_species_key": "SPECIES_KEY_BROWT",
-      "record_key": "P04_SPECIES_BROWT",
-      "required_roles": [
-        "FRONT",
-        "BACK",
-        "ICON",
-        "NORMAL_PALETTE",
-        "SHINY_PALETTE"
-      ],
-      "status": "MISSING_FROM_PINNED_SOURCE"
-    },
-    {
-      "fake_or_placeholder_generated": false,
-      "identity_form_key": "FORM_KEY_BASE",
-      "identity_species_key": "SPECIES_KEY_GECQUA",
-      "name_en": "Gecqua",
-      "proposed_species_key": "SPECIES_KEY_GECQUA",
-      "record_key": "P04_SPECIES_GECQUA",
-      "required_roles": [
-        "FRONT",
-        "BACK",
-        "ICON",
-        "NORMAL_PALETTE",
-        "SHINY_PALETTE"
-      ],
-      "status": "MISSING_FROM_PINNED_SOURCE"
-    },
-    {
-      "fake_or_placeholder_generated": false,
-      "identity_form_key": "FORM_KEY_BASE",
-      "identity_species_key": "SPECIES_KEY_POMBON",
-      "name_en": "Pombon",
-      "proposed_species_key": "SPECIES_KEY_POMBON",
-      "record_key": "P04_SPECIES_POMBON",
-      "required_roles": [
-        "FRONT",
-        "BACK",
-        "ICON",
-        "NORMAL_PALETTE",
-        "SHINY_PALETTE"
-      ],
-      "status": "MISSING_FROM_PINNED_SOURCE"
-    }
-  ],
+  "missing_assets": [],
   "output": {
     "asset_set_hash_algorithm": "SHA256_EACH_FILE_THEN_SHA256_SORTED_RELATIVE_PATH_NUL_FILE_SHA256_LF",
     "asset_set_sha256": "462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c",

@@ -58,6 +58,17 @@ P04_ALLOWED_NEW_ABILITY_KEYS = frozenset(
     }
 )
 
+# 2026-09-08のユーザー判断で、Winds/Waves御三家は現行実装対象から外した。
+# 候補資料としての出典は保持するが、Ability assignmentやID/runtime要件へは
+# 絶対に流入させない。
+P04_NON_ADOPTED_USER_RECORD_KEYS = frozenset(
+    {
+        "P04_SPECIES_BROWT",
+        "P04_SPECIES_POMBON",
+        "P04_SPECIES_GECQUA",
+    }
+)
+
 UPSTREAM_ABILITY_SYMBOLS = {
     "ABILITY_KEY_PIERCINGDRILL": "ABILITY_PIERCING_DRILL",
     "ABILITY_KEY_DRAGONIZE": "ABILITY_DRAGONIZE",
@@ -82,7 +93,7 @@ TECHNICAL_TEXT_PATH = "src/data/abilities.h"
 
 EXPECTED_P04_FILES = {
     "content/modernization/p04_candidate_manifest.json":
-        "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
+        "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
     "content/modernization/p04_official_sources.json":
         "eadd2eea75b5a3d4c7aacf9315b3025e0e7ece945354970ac9c372eb59548fcd",
     "content/modernization/p04_asset_sources.json":
@@ -572,6 +583,7 @@ def _build_p04_ability_contract(
     seen_replacement: set[str] = set()
     assignments: list[dict[str, Any]] = []
     held: list[dict[str, Any]] = []
+    non_adopted: list[dict[str, Any]] = []
     new_subjects: dict[str, list[str]] = defaultdict(list)
 
     for position, source in enumerate(records):
@@ -586,6 +598,24 @@ def _build_p04_ability_contract(
         status = source["ability_status"]
         ability_key = str(source["ability_key"])
         replacement = source["ability_replacement_key"]
+
+        if scope == "NON_ADOPTED_USER_SCOPE":
+            if record_key not in P04_NON_ADOPTED_USER_RECORD_KEYS:
+                _fail(f"未承認のP04非採用行です: {record_key}")
+            if source.get("id_assignment") != "NOT_APPLICABLE_NON_ADOPTED":
+                _fail(f"P04非採用行へID割当要求があります: {record_key}")
+            non_adopted.append(
+                {
+                    "record_key": record_key,
+                    "identity_species_key": source["identity_species_key"],
+                    "classification": source["classification"],
+                    "ability_key": ability_key,
+                    "selection_status": "NOT_ADOPTED_BY_USER_DECISION",
+                    "manifest_allocation": False,
+                    "runtime_implementation": False,
+                }
+            )
+            continue
 
         if scope == "HOLD_CLASSIFICATION":
             manifest = abilities_manifest.by_key.get(ability_key)
@@ -668,6 +698,8 @@ def _build_p04_ability_contract(
             "P04の未割当公式Ability集合が固定候補と不一致です: "
             f"{sorted(selected_new)}"
         )
+    if {row["record_key"] for row in non_adopted} != P04_NON_ADOPTED_USER_RECORD_KEYS:
+        _fail("P04のユーザー非採用Winds/Waves 3件が固定集合と不一致です")
     requirements: list[dict[str, Any]] = []
     for key in sorted(selected_new):
         ref = technical_refs.get(key)
@@ -698,6 +730,9 @@ def _build_p04_ability_contract(
         "assignments": sorted(assignments, key=lambda row: row["record_key"]),
         "new_ability_requirements": requirements,
         "held_records": sorted(held, key=lambda row: row["record_key"]),
+        "non_adopted_records": sorted(
+            non_adopted, key=lambda row: row["record_key"]
+        ),
         "temporary_policy": {
             "replacement_is_keyed": True,
             "identity_key_must_not_change_on_replacement": True,
@@ -717,6 +752,7 @@ def _build_p04_ability_contract(
             ),
             "new_ability_count": len(requirements),
             "classification_hold_count": len(held),
+            "non_adopted_user_scope_count": len(non_adopted),
         },
     }
 
@@ -1065,6 +1101,9 @@ def build_p05_contract(root: Path) -> dict[str, Any]:
             "temporary_ability_record_count_including_hold": p04_abilities["summary"]["temporary_declared_records_including_hold"],
             "existing_official_ability_assignment_count": p04_abilities["summary"]["official_existing_assignments"],
             "held_candidate_count": p04_abilities["summary"]["classification_hold_count"],
+            "non_adopted_p04_record_count": p04_abilities["summary"][
+                "non_adopted_user_scope_count"
+            ],
             "confirmed_data_only_patch_count": 0,
             "runtime_blocker_count": 1,
         },
@@ -1130,6 +1169,20 @@ def validate_p05_contract(contract: Mapping[str, Any]) -> None:
             trigger = row.get("replacement_trigger_key")
             if not isinstance(trigger, str) or not trigger.startswith("REPLACEMENT_KEY_ABILITY_"):
                 _fail("仮Abilityのreplacement triggerがありません")
+    non_adopted = abilities.get("non_adopted_records")
+    if not isinstance(non_adopted, list) \
+            or len(non_adopted) != len(P04_NON_ADOPTED_USER_RECORD_KEYS) or {
+        row.get("record_key") for row in non_adopted if isinstance(row, Mapping)
+    } != P04_NON_ADOPTED_USER_RECORD_KEYS:
+        _fail("P04非採用Winds/Waves集合が契約から欠落しています")
+    if any(
+        not isinstance(row, Mapping)
+        or row.get("selection_status") != "NOT_ADOPTED_BY_USER_DECISION"
+        or row.get("manifest_allocation") is not False
+        or row.get("runtime_implementation") is not False
+        for row in non_adopted
+    ):
+        _fail("P04非採用Winds/Wavesがruntime/manifestへ昇格しています")
     patch = contract.get("data_only_patch_plan")
     if not isinstance(patch, Mapping) or patch.get("confirmed_patches") != []:
         _fail("確定していないdata-only patchが混入しています")
@@ -1137,11 +1190,14 @@ def validate_p05_contract(contract: Mapping[str, Any]) -> None:
             or summary.get("non_adopted_move_candidate_count") != 1 \
             or summary.get("new_ability_requirement_count") != 6:
         _fail("P05 summary countが固定内容と不一致です")
+    if summary.get("non_adopted_p04_record_count") != 3:
+        _fail("P05 summaryのP04非採用件数が不一致です")
 
 
 __all__ = [
     "ModernizationP05Error",
     "P04_ALLOWED_NEW_ABILITY_KEYS",
+    "P04_NON_ADOPTED_USER_RECORD_KEYS",
     "build_p05_contract",
     "stable_json",
     "validate_p05_contract",

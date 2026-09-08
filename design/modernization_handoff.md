@@ -8,34 +8,36 @@
 
 - 現行プレイ基準はStage62のまま。開発中の最大StageをiPad、通常save、Codex対戦へ自動採用しない。
 - P01はDONE。Stage63はEgg 412／Caterpie 649の意味逆転をstable keyで修復し、ROM SHA-256は`6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd`。
-- P02はStage64 checkpoint。Rayquazaの進化parameterをItem 773誤参照からMove 630へ2 bytesだけ修正した。ROM SHA-256は`ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3`。全条件種別、キャンセル、道具消費、save/reloadを含むP02受入は未完了。
-- P03はStage65代表縦切りを継承し、Stage66 bulk checkpointまで進んだ。Stage66 ROM SHA-256は`0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32は`808D5140`。checkpoint commitは`90a1811964a19e3c058448af173007678b42a7e3`。
+- P02はStage64のRayquaza 2-byte修正に加え、Stage66上のin-memory overlayで6種のlevel＋所持道具分岐順を60 bytes修復した。実consumerの成立／不成立／道具消費を独立2 processでPASSしたが、通常UI cancel、bag、scene後特性/form、save/reloadを含む全受入は未完了。
+- P03はStage66 bulkを継承し、Stage67 consumer checkpointまで進んだ。Stage67 ROM SHA-256は`13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32は`D94758FF`。core checkpoint commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`。
 - P04〜P08は設計・入力・容量・統合checkpointであり、ROM反映完了ではない。P01以外をDONEまたはrelease readyと扱わない。
 
-## P03 Stage66の採用境界
+## P03 Stage67の採用境界
 
-提出された118,528経路と全1,300対象をstream検証し、実consumerへ安全に結べる47,548経路を実装した。
+提出された118,528経路と全1,300対象をstream検証した。サイドチェンジ159経路を明示非採用としたruntime選択集合は118,369経路で、実consumerへ安全に結べる51,151経路を累積実装した。
 
-- level-up: 18,530経路を照合し18,515を実装。Move 1063を使う15経路は保留。
-- machine: 55,380経路を照合し、現行128-slot catalogに存在する29,033を実装。供給slotがない26,347は保留。
-- その他の保留: evolution 341、reminder 298、tutor 1,113、egg 2,572、shared egg 5,041、pre-evolution carry 35,183、form change 70。
-- 全consumerを合算したMove 1063依存は159経路。既存技への近似置換はしていない。
-- Stage65から81,693 bytes変更、3,520 spans、宣言外変更0。追加level-up payloadは`future_tail`の`0x01FDA248`から60,116 bytes。
-- mGBAは実level-up／machine consumerを独立2 process、先頭・中央・末尾・Caterpie代表でPASSした。scheduler E2E、4枠満杯、save/reload、未実装consumerは未検証なのでP03完了ではない。
+- Stage66継承: level-up 18,515＋既存machine slot 29,033の47,548経路。
+- Stage67追加: evolution 341、既存tutor slot 740、通常egg 2,522の計3,603経路。egg consumerに残っていた第2旧rootと旧走査上限も同時修復した。
+- 選択済み保留67,218: machine 26,279、tutor 369、egg条件／alias衝突41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70。
+- サイドチェンジ159経路は未実装残件ではなく`NON_ADOPTED`。Move 1063を割り当てず、既存技への近似置換もしない。将来採用時は別decisionで全経路を再選択する。
+- P02 overlayから46,455 bytes変更、4,343 spans、宣言外変更0。Stage66からはP02の60 bytesを含む46,515 bytes差分。追加payload後の`future_tail`末尾残量は62,510 bytes。
+- mGBAはStage67で追加した全evolution 341、tutor positive 740＋negative 290、normal egg 2,522を独立2 processで実consumer実行した。scheduler、breeding、4枠満杯、save/reloadは未検証なのでP03完了ではない。
 
 ## P04の素材と容量
 
-- 追加予約はSpecies/Form 52件（1621〜1672）、Item 45件（999〜1043）、Ability 6件（312〜317）、Move 1件（1063）。予約はmanifest appendの順序を固定するが、現行runtime表へはまだ反映していない。
+- 追加予約はMega用Species/Form 49件（1621〜1669）、Item 45件（999〜1043）、Ability 6件（312〜317）。通常SpeciesとMoveの追加は0件で、現行Move最大ID 1062を維持する。予約はmanifest appendの順序を固定するが、現行runtime表へはまだ反映していない。
 - Mega 49件とMega Stone 45件は固定commitの外部sourceからprivate-use stagingへ再現可能に変換した。49/49 species palette、45/45 stone asset、670 payload files、426,648 bytes、asset-set SHA-256 `462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c`。
 - Tatsugiri Droopy／Stretchyは同じupstream共通Mega paletteが正本であり、欠落扱いを解消した。
-- Winds/WavesのBrowt／Pombon／Gecquaは完全なGBA素材を確認できず、3/3ともIDだけ予約してasset未生成。別種画像や生成placeholderで隠していない。
+- Winds/WavesのBrowt／Pombon／Gecquaはユーザー指定により現行採用対象から外した。3/3とも`NON_ADOPTED_USER_SCOPE`としてID予約、容量予約、素材生成、runtime接続を0件にし、公式由来の候補来歴だけを将来再採用用に保持する。
+- フラエッテ（えいえんのはな）のメガシンカ前形態は追加IDではなく、既存Species ID 1029／`FORM_KEY_FLOETTE_ETERNAL`を使う。Stage67にはBaseStats、front/back、palette、icon、learnset、TM/tutor、名称の実データが存在する一方、従来のcollection policyでは`UNOBTAINABLE_EVENT_FORM_EXCLUDED`だったため、通常個体の取得eventは後続候補Stage69で接続する。
 - 外部source rootにlicense fileがないため、生成素材は`userfile/generated/modernization_p04_assets`のGit管理外・個人private利用限定。GitHub private environment bundleからも明示除外する。
-- 39固定表の拡張見積りは655,852→676,757 bytes（+20,905）。`integration_modules`候補へ収まるが、Item 1024以降の10-bit consumer、公開event 88→89 bit、legacy Ability u8、save item bitmap 125→131 bytes、全表relink/migrationは未実装。
-- 容量manifestはStage65基準。Stage66はP04の`integration_modules`候補と非重複だが、`future_tail`残量は155,064から94,948 bytesへ減る。
+- Move固定表を増やさない34固定表の拡張見積りは616,521→636,378 bytes（+19,857、aligned bundle 636,392）。`integration_modules`残1,124,296 bytesだが、Item 1024以降の10-bit consumer、公開event 88→89 bit、legacy Ability u8、save item bitmap 125→131 bytes、全表relink/migrationは未実装。
+- 容量manifestのP04本体試算はStage65基準。Stage67の追加はP04の`integration_modules`候補と非重複で、`future_tail`末尾残量は62,510 bytes。
 
 ## P05〜P08の境界
 
-- P05は採用済み新MoveをSide Change／Ally Switch 1063の1件、新Abilityを6件として固定した。技性能の提出済み採用差分は0。未実装効果を既存effectへ近似していない。
+- P05の新Move要件は0件。Side Change／Ally Switch候補159経路は非採用decisionへ固定し、効果・AI・UI・アニメーション・save・習得を要求しない。技性能の提出済み採用差分は0。
+- 新Ability 6件はstable key順ID 312〜317とu16 ABIを固定し、発動／不発／抑制／複数対象／AI／save、Fairy 23／Stellar 24を含む46 caseを独立2 processのhost C runtimeでPASSした。Stage ROM hook、固定表relink、6 Mega form binding、日本語文言、exact-ROM mGBAは未完了。
 - 公式特性が不明な対象は、stable replacement key、`TEMPORARY_REPLACEABLE`、非公式表示guardを持つ仮特性14件として保持した。分類保留2件を含め、後から中央bindingだけを差し替えられる。
 - P06の提出済み種族調整差分は0、P07の追加習得差分も0。review-only資料を自動採用していない。
 - P08は上記checkpointのhash、生成実装、ignored ROM/BPS、evidence sourceを統合監査する。active baseline Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持する。
@@ -55,20 +57,22 @@
 python3 scripts/build_modernization_p04_assets.py --check --compact
 python3 scripts/build_modernization_p04_capacity.py --check --compact
 python3 scripts/build_modernization_p05.py --check
+python3 scripts/build_modernization_p05_ability_runtime.py --check --compact
 python3 scripts/build_modernization_p07.py --check
-python3 scripts/build_modernization_p03_stage66.py check
-python3 scripts/run_modernization_p03_stage66_mgba.py check
+python3 scripts/run_modernization_p02_acceptance.py check
+python3 scripts/build_modernization_p03_stage67.py check
+python3 scripts/run_modernization_p03_stage67_mgba.py check
 python3 scripts/build_modernization_p08.py --check
 ```
 
-Stage66をclean private環境から作り直す必要がある時だけ`modernization-p03-stage66` suiteを使う。全repository unitと実mGBA chainを毎回重ねない。
+Stage67をclean private環境から作り直す必要がある時だけStage67 build／mGBA runを使う。全repository unitと同じ実mGBA chainを毎回重ねない。
 
 ## 再開順
 
-1. P02の未検証進化条件・キャンセル・道具・特性/form・save/reloadを実consumerで閉じる。
-2. Move 1063、Ability 6件、Item/Ability/public-event/saveの幅拡張と全固定表relinkを実装する。
-3. P03の70,980保留経路をconsumer別に小分けし、供給方針と実ROM testを付けてStage66へ積み上げる。
-4. P04の52 Species/Form、45 Stone、入手・Mega lifecycle・UI・図鑑・saveを累積候補へ接続する。Winds/Waves 3種の素材不足は解消まで明示保留する。
+1. P02の未検証UIキャンセル・bag・scene後特性/form・save/reloadを実consumerで閉じる。
+2. P03の67,218選択済み保留経路をconsumer別に小分けし、供給方針と実ROM testを付けてStage67へ積み上げる。Side Change 159件は対象外のまま保持する。
+3. Ability 6件、Item/Ability/public-event/saveの幅拡張と全固定表relinkを実装する。新Move 1063は実装しない。
+4. P04の49 Mega Species/Form、45 Stone、入手・Mega lifecycle・UI・図鑑・saveを累積候補へ接続する。Browt／Pombon／Gecquaは非採用のまま保持し、通常Speciesとして追加しない。
 5. 提出済み採用差分が入った場合だけP06/P07を実装し、最後にP08 release gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。

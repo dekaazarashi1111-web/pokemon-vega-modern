@@ -155,6 +155,21 @@ def _validate_candidate_contract(
     ability_keys: set[str],
 ) -> dict[str, Any]:
     cutoff = date.fromisoformat(data.get("research_cutoff_date", ""))
+    non_adopted_policy = data.get("non_adopted_policy", {})
+    _require(
+        non_adopted_policy
+        == {
+            "implementation_scope": "NON_ADOPTED_USER_SCOPE",
+            "id_assignment": "NOT_APPLICABLE_NON_ADOPTED",
+            "asset_requirement": "NOT_REQUIRED",
+            "preserve_provenance": True,
+            "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+            "notes_ja": non_adopted_policy.get("notes_ja"),
+        }
+        and isinstance(non_adopted_policy.get("notes_ja"), str)
+        and bool(non_adopted_policy["notes_ja"]),
+        "NON_ADOPTED_USER_SCOPE policyが不完全です",
+    )
     profiles = data.get("provenance_profiles", {})
     _require(isinstance(profiles, dict) and profiles, "provenance_profilesがありません")
     required_profile_properties = {"identity", "types", "stats", "learnset", "change_condition"}
@@ -177,7 +192,8 @@ def _validate_candidate_contract(
     }
     record_keys: set[str] = set()
     identity_pairs: set[tuple[str, str]] = set()
-    proposed_keys: set[str] = set()
+    declared_proposed_keys: set[str] = set()
+    adopted_proposed_keys: set[str] = set()
     replacement_keys: set[str] = set()
     resolved_records: list[dict[str, Any]] = []
 
@@ -203,16 +219,34 @@ def _validate_candidate_contract(
 
         classification = record["classification"]
         _require(classification in {"BATTLE_ONLY_MEGA", "NEW_SPECIES", "APPEARANCE_CLASSIFICATION_PENDING"}, f"{context}: classification不正")
+        implementation_scope = record["implementation_scope"]
+        _require(
+            implementation_scope in {"ADOPT_CANDIDATE", "NON_ADOPTED_USER_SCOPE", "HOLD_CLASSIFICATION"},
+            f"{context}: implementation_scope不正",
+        )
         if classification == "APPEARANCE_CLASSIFICATION_PENDING":
-            _require(record["implementation_scope"] == "HOLD_CLASSIFICATION", f"{context}: 分類未確定外観はHOLD必須")
+            _require(implementation_scope == "HOLD_CLASSIFICATION", f"{context}: 分類未確定外観はHOLD必須")
             _require(record["proposed_species_key"] is None, f"{context}: 分類未確定外観へspecies keyを割当てています")
+            _require(record["id_assignment"] == "NOT_APPLICABLE_HELD", f"{context}: 分類保留のID状態が不正です")
         else:
             proposed = record["proposed_species_key"]
             _require(isinstance(proposed, str) and proposed.startswith("SPECIES_KEY_"), f"{context}: proposed_species_key不正")
-            _require(proposed not in proposed_keys, f"{context}: proposed species key重複")
+            _require(proposed not in declared_proposed_keys, f"{context}: proposed species key重複")
             _require(proposed not in species_keys, f"{context}: proposed species keyが現行IDを上書きします: {proposed}")
-            proposed_keys.add(proposed)
-            _require(record["id_assignment"] == "BLOCKED_PENDING_CAPACITY_EXPANSION", f"{context}: 容量拡張前のID割当は禁止です")
+            declared_proposed_keys.add(proposed)
+            if implementation_scope == "ADOPT_CANDIDATE":
+                adopted_proposed_keys.add(proposed)
+                _require(record["id_assignment"] == "BLOCKED_PENDING_CAPACITY_EXPANSION", f"{context}: 容量拡張前のID割当は禁止です")
+            elif implementation_scope == "NON_ADOPTED_USER_SCOPE":
+                _require(classification == "NEW_SPECIES", f"{context}: 現行非採用scopeはWinds/Waves新種だけに限定します")
+                _require(record["id_assignment"] == "NOT_APPLICABLE_NON_ADOPTED", f"{context}: 非採用候補へIDを予約しています")
+            else:
+                raise P04SourceError(f"{context}: 確定分類をHOLD scopeへ置けません")
+
+        if classification == "BATTLE_ONLY_MEGA":
+            _require(implementation_scope == "ADOPT_CANDIDATE", f"{context}: Mega候補は現行採用scope必須です")
+        elif classification == "NEW_SPECIES":
+            _require(implementation_scope == "NON_ADOPTED_USER_SCOPE", f"{context}: Winds/Waves新種は現行非採用scope必須です")
 
         source_species_key = record["source_species_key"]
         if source_species_key is not None:
@@ -247,22 +281,27 @@ def _validate_candidate_contract(
         resolved_records.append(resolved)
 
     expected = data.get("expected_counts", {})
-    mega = [x for x in records if x["classification"] == "BATTLE_ONLY_MEGA"]
+    adopted = [x for x in records if x["implementation_scope"] == "ADOPT_CANDIDATE"]
+    mega = [x for x in adopted if x["classification"] == "BATTLE_ONLY_MEGA"]
     new_species = [x for x in records if x["classification"] == "NEW_SPECIES"]
     holds = [x for x in records if x["classification"] == "APPEARANCE_CLASSIFICATION_PENDING"]
+    non_adopted = [x for x in records if x["implementation_scope"] == "NON_ADOPTED_USER_SCOPE"]
+    adopted_new_species = [x for x in adopted if x["classification"] == "NEW_SPECIES"]
     actual_counts = {
         "all_records": len(records),
-        "adoption_candidate_records": len(mega) + len(new_species),
+        "adoption_candidate_records": len(adopted),
         "classification_hold_records": len(holds),
+        "non_adopted_user_scope_records": len(non_adopted),
         "mega_runtime_records": len(mega),
         "mega_identity_groups": len({x["identity_group_key"] for x in mega}),
         "unique_mega_stones": len({x["mega_stone_key"] for x in mega}),
         "new_species_records": len(new_species),
+        "adopted_new_species_records": len(adopted_new_species),
     }
     for key, value in actual_counts.items():
         _require(expected.get(key) == value, f"expected_counts.{key}={expected.get(key)!r}, 実測={value}")
 
-    official_missing_abilities = sorted({x["ability_key"] for x in records if x["ability_status"] == "OFFICIAL_CONFIRMED"} - ability_keys)
+    official_missing_abilities = sorted({x["ability_key"] for x in adopted if x["ability_status"] == "OFFICIAL_CONFIRMED"} - ability_keys)
     current_manifest_abilities = sorted({x["ability_key"] for x in records if x["ability_key"] in ability_keys})
     _require(
         official_missing_abilities
@@ -275,12 +314,14 @@ def _validate_candidate_contract(
     return {
         "records": resolved_records,
         "counts": actual_counts,
-        "proposed_species_keys": sorted(proposed_keys),
+        "proposed_species_keys": sorted(adopted_proposed_keys),
+        "non_adopted_proposed_species_keys": sorted(declared_proposed_keys - adopted_proposed_keys),
         "proposed_item_keys": sorted({x["mega_stone_key"] for x in mega}),
         "official_missing_ability_keys": official_missing_abilities,
         "current_manifest_ability_keys_used": current_manifest_abilities,
         "temporary_ability_records": sorted(x["record_key"] for x in records if x["ability_status"] == "TEMPORARY_REPLACEABLE"),
         "classification_hold_records": sorted(x["record_key"] for x in holds),
+        "non_adopted_user_scope_records": sorted(x["record_key"] for x in non_adopted),
     }
 
 
@@ -369,7 +410,11 @@ def _validate_checkout(
         actual_hash = _sha256(checkout / relative)
         _require(actual_hash == expected_hash, f"evidence hash不一致: {relative}")
 
-    mega_records = [x for x in candidate_result["records"] if x["classification"] == "BATTLE_ONLY_MEGA"]
+    mega_records = [
+        x for x in candidate_result["records"]
+        if x["classification"] == "BATTLE_ONLY_MEGA"
+        and x["implementation_scope"] == "ADOPT_CANDIDATE"
+    ]
     species_constants = (checkout / "include/constants/species.h").read_text(encoding="utf-8")
     item_constants = (checkout / "include/constants/items.h").read_text(encoding="utf-8")
     audited_files: list[Path] = []
@@ -416,11 +461,12 @@ def _validate_checkout(
         "mega_runtime_records": {"covered": len(mega_records), "required": len(mega_records)},
         "unique_mega_asset_directories": {"covered": len(asset_dirs), "required": len(asset_dirs)},
         "mega_stones": {"covered": len(stones), "required": len(stones)},
-        "winds_waves_new_species": {"covered": 0, "required": 3},
+        "winds_waves_new_species": {"covered": 0, "required": 0},
     }
     _require(len(mega_records) == expected_counts["selected_source_mega_asset_records"], "Mega asset record期待数不一致")
     _require(len(asset_dirs) == expected_counts["selected_source_unique_mega_asset_directories"], "Mega asset directory期待数不一致")
     _require(len(stones) == expected_counts["selected_source_stone_asset_records"], "stone asset期待数不一致")
+    _require(expected_counts["selected_source_new_species_asset_records"] == 0, "非採用新種へsource asset要件があります")
     return {
         "checkout": str(checkout),
         "origin": actual_origin,
@@ -500,10 +546,6 @@ def audit_p04_sources(
             "detail_ja": "選定sourceにLICENSEファイルがなく、画像・palette・stoneのtracked取込は権利とcreditsの手動確認まで禁止。",
         },
         {
-            "blocker_key": "BLOCKER_WINDS_WAVES_ASSETS",
-            "detail_ja": "Browt/Pombon/GecquaのGBA用front/back/icon/paletteは選定sourceにない。別sourceまたは許諾済み制作物が必要。",
-        },
-        {
             "blocker_key": "BLOCKER_TEMPORARY_ABILITIES",
             "detail_ja": f"締切時点で公式ターン制仕様を固定できない{temp_count}行はTEMPORARY_REPLACEABLE。各replacement keyで後日差替が必要。",
         },
@@ -550,6 +592,13 @@ def audit_p04_sources(
         },
         "temporary_ability_records": candidate_result["temporary_ability_records"],
         "classification_hold_records": candidate_result["classification_hold_records"],
+        "non_adopted_user_scope": {
+            "records": candidate_result["non_adopted_user_scope_records"],
+            "preserved_candidate_species_keys": candidate_result["non_adopted_proposed_species_keys"],
+            "id_reservation_count": 0,
+            "asset_requirement_count": 0,
+            "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+        },
         "source_checkout": checkout_result,
         "blockers": blockers,
         "records": candidate_result["records"],

@@ -1,16 +1,17 @@
 {
   "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "P03_STAGE66_BULK_VERIFIED_CHECKPOINT",
+  "status": "P03_STAGE67_CONSUMERS_VERIFIED_CHECKPOINT",
   "completed_through": "USER-MODERNIZATION-P01",
-  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+  "checkpointed_through": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
   "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
     "branch": "codex/modernization-followup-20260908",
     "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
     "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984",
-    "stage66_checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3"
+    "stage66_checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+    "stage67_checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe"
   },
   "active_parent": {
     "stage": 62,
@@ -21,20 +22,7 @@
     "promotion_status": "UNCHANGED_NOT_PROMOTED"
   },
   "parent": {
-    "stage": 65,
-    "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
-    "size": 33554432,
-    "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
-    "crc32": "7FB7F282",
-    "metadata": {
-      "path": "build/stages/65_modernization_p03_caterpie_slice.json",
-      "size": 8362,
-      "sha256": "ad5210529a62cc42571fcc255f98f53d183b8c8419bf0effbb9e1ecaa262aa2c"
-    }
-  },
-  "candidate": {
     "stage": 66,
-    "label": "Modernization P03 bulk習得checkpoint",
     "path": "build/stages/66_modernization_p03_bulk_learnsets.gba",
     "size": 33554432,
     "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
@@ -50,17 +38,47 @@
       "sha256": "d454fdde5fbece67e5411895b929980a43d64bcfa99f8b947093f5db37b706cc"
     }
   },
+  "p02_overlay_parent": {
+    "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+    "base_stage": 66,
+    "intended_child_stage": 67,
+    "path": null,
+    "size": 33554432,
+    "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+    "changed_bytes_from_stage66": 60,
+    "retained_output_rom": false
+  },
+  "candidate": {
+    "stage": 67,
+    "label": "Modernization P02進化修正＋P03 consumer checkpoint",
+    "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+    "size": 33554432,
+    "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+    "crc32": "D94758FF",
+    "metadata": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.json",
+      "size": 11007,
+      "sha256": "0172ee5b4abd6afe275a6767a92f483e48b828037d7a35350b9baee3e92592ef"
+    },
+    "allocation": {
+      "path": "build/stages/67_modernization_p03_allocation.json",
+      "size": 40521,
+      "sha256": "3fe8f763c4c35dcdf15c2bcd256af569ef064ac051110ce3ed73ec62b9dcdac8"
+    }
+  },
   "patches": {
     "from_parent": {
-      "path": "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
-      "size": 86322,
-      "sha256": "6d3bd8f75b8603f00d0f729ae0fe8bbcedce515ecaaaeecc423d13e0f0e14ed0",
+      "path": "build/patches/stage66-p02-overlay-to-stage67-modernization-p03-consumers.bps",
+      "size": 53100,
+      "sha256": "44df541453beb72fc2c803ec56a27ec395a333e0aec9d61a589630290bb3f7cb",
+      "source_classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+      "source_sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
       "round_trip": true
     },
     "from_clean": {
-      "path": "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
-      "size": 16785814,
-      "sha256": "9a84725f6c52e200a2275507d1fe6655736cfe4e2fe277ab4ddcb05778baed19",
+      "path": "build/patches/firered-jpn-rev0-to-stage67-modernization-p02-p03-consumers.bps",
+      "size": 16802522,
+      "sha256": "1e98d68b26bfb48516c9c3672f8c53d3bc7ec68d5cf3ae839f70d93d6bd6b8b3",
       "round_trip": true
     }
   },
@@ -92,6 +110,14 @@
       "state": "CHECKPOINT_NOT_P03_DONE",
       "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
       "changed_bytes_from_parent": 81693
+    },
+    {
+      "stage": 67,
+      "task": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "changed_bytes_from_parent": 46515,
+      "changed_bytes_from_p02_overlay": 46455
     }
   ],
   "adopted_delta": {
@@ -99,7 +125,10 @@
       "p01_stage63": 10,
       "p02_stage64": 2,
       "p03_stage65": 17,
-      "p03_stage66": 81693
+      "p03_stage66": 81693,
+      "p02_overlay_after_stage66": 60,
+      "p03_stage67_from_overlay": 46455,
+      "stage67_from_stage66": 46515
     },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
@@ -140,30 +169,79 @@
       "machine_existing_slot_routes_materialized": 29033,
       "routes_materialized": 47548,
       "routes_not_materialized": 70980,
-      "move_1063_routes_deferred": 159,
+      "move_1063_source_candidate_routes": 159,
+      "move_1063_routes_selected": 0,
+      "move_1063_routes_non_adopted": 159,
       "outside_declared_ranges": 0
+    },
+    "p02_actual_consumer_checkpoint": {
+      "overlay_changed_bytes": 60,
+      "repaired_level_held_item_species": 6,
+      "independent_processes": 2,
+      "full_p02_done": false
+    },
+    "p03_stage67_consumer_checkpoint": {
+      "source_routes": 118528,
+      "selected_routes": 118369,
+      "non_adopted_routes": 159,
+      "inherited_stage66_materialized_routes": 47548,
+      "new_evolution_routes_materialized": 341,
+      "new_tutor_routes_materialized": 740,
+      "new_normal_egg_routes_materialized": 2522,
+      "new_routes_materialized": 3603,
+      "cumulative_routes_materialized": 51151,
+      "selected_routes_remaining": 67218,
+      "outside_declared_ranges": 0
+    },
+    "p04_adoption_scope": {
+      "mega_species_and_forms": 49,
+      "new_normal_species": 0,
+      "mega_stones": 45,
+      "new_abilities": 6,
+      "winds_waves_user_non_adopted_species": 3,
+      "held_pikachu_appearance_candidates": 2,
+      "private_asset_files_ready": 670,
+      "rom_materialized": false
     }
   },
   "checkpoints": {
     "p02": "CHECKPOINT_NOT_DONE",
-    "p03": "STAGE66_BULK_CHECKPOINT_NOT_P03_DONE",
+    "p03": "STAGE67_CONSUMER_CHECKPOINT_NOT_P03_DONE",
     "p04_assets": "STAGING_ONLY_NOT_ROM_READY",
-    "p05": "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
+    "p05": "ABILITY_HOST_RUNTIME_VERIFIED_ROM_LINK_REMAINS",
     "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
     "p07": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
     "p08": "CHECKPOINT_NOT_RELEASE_CANDIDATE"
   },
   "deferred": {
-    "p02_full_runtime_acceptance": "CANCEL_ITEM_ABILITY_SAVE_RELOAD_NOT_RUN",
-    "p03_full_materialization": "70980_ROUTES_REMAIN",
-    "p03_machine_tutor_supply": "26347_MACHINE_ROUTES_REQUIRE_SUPPLY",
-    "p04_new_species_and_megas": "ASSETS_STAGED_IDS_AND_ROM_NOT_INTEGRATED",
+    "p02_full_runtime_acceptance": "UI_CANCEL_BAG_EVOLUTION_MOVE_SCENE_FORM_ABILITY_SAVE_RELOAD_NOT_RUN",
+    "p03_full_materialization": "67218_SELECTED_ROUTES_REMAIN",
+    "p03_machine_tutor_supply": "26648_MACHINE_TUTOR_ROUTES_REQUIRE_SUPPLY",
+    "p04_new_species_and_megas": "49_MEGA_ASSETS_STAGED_IDS_AND_ROM_NOT_INTEGRATED",
     "p04_palette_gaps": "RESOLVED_49_OF_49_GBA_PALETTES_READY_STAGING_ONLY",
-    "p04_winds_waves_assets": "0_OF_3_AVAILABLE",
-    "move_1063_ally_switch": "SPEC_ONLY_REQUIRES_ENGINE_IMPLEMENTATION",
-    "p05_new_abilities": "6_RUNTIME_EFFECTS_REQUIRE_IMPLEMENTATION",
+    "p04_winds_waves_assets": "NOT_REQUIRED_3_USER_NON_ADOPTED_NO_ID_ASSET_OR_RUNTIME",
+    "floette_eternal_base_acquisition": "SPECIES_ID_1029_RUNTIME_DATA_PRESENT_ACQUISITION_PATH_PENDING",
+    "p05_new_abilities": "6_HOST_RUNTIME_VERIFIED_ROM_LINK_REQUIRED",
     "p06_species_adjustments": "NO_SUBMITTED_ADOPTED_DELTA",
     "p07_cross_distribution": "NO_SUBMITTED_ADOPTED_DELTA",
     "restoration_review_candidates": "REVIEW_ONLY_NOT_APPLIED"
+  },
+  "not_adopted": {
+    "move_1063_ally_switch": {
+      "source_routes": 159,
+      "selected_routes": 0,
+      "replacement_move": null,
+      "policy": "DO_NOT_IMPLEMENT_OR_ALLOCATE"
+    },
+    "winds_waves_new_species": {
+      "record_keys": [
+        "P04_SPECIES_BROWT",
+        "P04_SPECIES_POMBON",
+        "P04_SPECIES_GECQUA"
+      ],
+      "reserved_ids": 0,
+      "required_assets": 0,
+      "policy": "NON_ADOPTED_USER_SCOPE_KEEP_PROVENANCE_FOR_FUTURE_REVIEW"
+    }
   }
 }

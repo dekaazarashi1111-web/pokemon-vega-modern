@@ -10,7 +10,7 @@
     {
       "dependency": "P04_SPECIES_AND_FORM_ID_ALLOCATION",
       "impact": "未割当P04候補を工程7target keyとして採用しない",
-      "status": "BLOCKED_52_CANDIDATES_UNALLOCATED"
+      "status": "BLOCKED_49_CANDIDATES_UNALLOCATED"
     },
     {
       "dependency": "P06_SPECIES_BALANCE_REVIEW",
@@ -126,13 +126,13 @@
       },
       "content/modernization/p04_candidate_manifest.json": {
         "path": "content/modernization/p04_candidate_manifest.json",
-        "sha256": "64e9ffbc80a4344eef82726c191da25b008c6f7d87312c2bf8186c00a36c5644",
-        "size": 59501
+        "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac",
+        "size": 60095
       },
       "content/modernization/p05_battle_content_contract.json": {
         "path": "content/modernization/p05_battle_content_contract.json",
-        "sha256": "4107be2afbf74d25306da2b832430e007d46028e5fa3004f6eef3de15112cbf0",
-        "size": 77300
+        "sha256": "3c91f05d716358b039ae020eaf980dec676c71c59e88d831d7dbc54db2aff404",
+        "size": 76297
       },
       "content/modernization/p06_review_projection.json": {
         "path": "content/modernization/p06_review_projection.json",
@@ -386,13 +386,17 @@
         "VEGA_DPE_CANONICAL": 205
       },
       "p03_vega_original_target_count": 0,
-      "p04_candidate_records": 52,
+      "p04_candidate_records": 49,
       "p04_learnset_distribution_fields": 0,
+      "p04_non_adopted_user_records": [
+        "P04_SPECIES_BROWT",
+        "P04_SPECIES_GECQUA",
+        "P04_SPECIES_POMBON"
+      ],
       "p04_unallocated_species_keys": [
         "SPECIES_KEY_ABSOL_MEGA_Z",
         "SPECIES_KEY_BARBARACLE_MEGA",
         "SPECIES_KEY_BAXCALIBUR_MEGA",
-        "SPECIES_KEY_BROWT",
         "SPECIES_KEY_CHANDELURE_MEGA",
         "SPECIES_KEY_CHESNAUGHT_MEGA",
         "SPECIES_KEY_CHIMECHO_MEGA",
@@ -411,7 +415,6 @@
         "SPECIES_KEY_FLOETTE_ETERNAL_MEGA",
         "SPECIES_KEY_FROSLASS_MEGA",
         "SPECIES_KEY_GARCHOMP_MEGA_Z",
-        "SPECIES_KEY_GECQUA",
         "SPECIES_KEY_GLIMMORA_MEGA",
         "SPECIES_KEY_GOLISOPOD_MEGA",
         "SPECIES_KEY_GOLURK_MEGA",
@@ -425,7 +428,6 @@
         "SPECIES_KEY_MEGANIUM_MEGA",
         "SPECIES_KEY_MEOWSTIC_FEMALE_MEGA",
         "SPECIES_KEY_MEOWSTIC_MALE_MEGA",
-        "SPECIES_KEY_POMBON",
         "SPECIES_KEY_PYROAR_MEGA",
         "SPECIES_KEY_RAICHU_MEGA_X",
         "SPECIES_KEY_RAICHU_MEGA_Y",

@@ -464,11 +464,27 @@ def build_p04_asset_import(root: Path, *, source_root: Path | None = None) -> P0
     records = candidate_contract.get("records")
     _require(isinstance(records, list), "候補recordsが配列ではありません")
     mega_records = sorted(
-        (record for record in records if record.get("classification") == "BATTLE_ONLY_MEGA"),
+        (
+            record for record in records
+            if record.get("classification") == "BATTLE_ONLY_MEGA"
+            and record.get("implementation_scope") == "ADOPT_CANDIDATE"
+        ),
         key=lambda record: record.get("record_key", ""),
     )
     new_species_records = sorted(
-        (record for record in records if record.get("classification") == "NEW_SPECIES"),
+        (
+            record for record in records
+            if record.get("classification") == "NEW_SPECIES"
+            and record.get("implementation_scope") == "ADOPT_CANDIDATE"
+        ),
+        key=lambda record: record.get("record_key", ""),
+    )
+    non_adopted_records = sorted(
+        (
+            record for record in records
+            if record.get("classification") == "NEW_SPECIES"
+            and record.get("implementation_scope") == "NON_ADOPTED_USER_SCOPE"
+        ),
         key=lambda record: record.get("record_key", ""),
     )
     hold_records = sorted(
@@ -476,7 +492,8 @@ def build_p04_asset_import(root: Path, *, source_root: Path | None = None) -> P0
         key=lambda record: record.get("record_key", ""),
     )
     _require(len(mega_records) == 49, f"Mega candidate件数不一致: {len(mega_records)}")
-    _require(len(new_species_records) == 3, f"Winds/Waves新種件数不一致: {len(new_species_records)}")
+    _require(len(new_species_records) == 0, f"現行採用Winds/Waves新種件数不一致: {len(new_species_records)}")
+    _require(len(non_adopted_records) == 3, f"現行非採用Winds/Waves新種件数不一致: {len(non_adopted_records)}")
     _require(len(hold_records) == 2, f"分類保留件数不一致: {len(hold_records)}")
 
     payload: dict[str, bytes] = {}
@@ -712,7 +729,7 @@ def build_p04_asset_import(root: Path, *, source_root: Path | None = None) -> P0
             "mega_candidate_records": {"covered": len(species_assets), "required": 49},
             "unique_mega_source_directories": {"covered": len({item["source_asset_directory"] for item in species_assets}), "required": 48},
             "mega_stones": {"covered": len(stone_assets), "required": 45},
-            "winds_waves_new_species": {"covered": 0, "required": 3},
+            "winds_waves_new_species": {"covered": 0, "required": 0},
             "gba_tile_conversion_records": {"converted": 49, "required": 49},
             "gba_full_species_palette_compatibility": {"ready": ready_species, "required": 49},
             "gba_stone_compatibility": {"ready": 45, "required": 45},
@@ -729,6 +746,20 @@ def build_p04_asset_import(root: Path, *, source_root: Path | None = None) -> P0
         "stone_assets": stone_assets,
         "missing_assets": missing_assets,
         "palette_coverage_issues": palette_coverage_issues,
+        "excluded_non_adopted_records": [
+            {
+                "record_key": _record_key(record.get("record_key"), context="non-adopted record"),
+                "proposed_species_key": _record_key(record.get("proposed_species_key"), context="non-adopted record"),
+                "identity_species_key": _record_key(record.get("identity_species_key"), context="non-adopted record"),
+                "identity_form_key": _record_key(record.get("identity_form_key"), context="non-adopted record"),
+                "name_en": record.get("name_en"),
+                "status": "NON_ADOPTED_USER_SCOPE",
+                "id_assignment": "NOT_APPLICABLE_NON_ADOPTED",
+                "asset_requirement": "NOT_REQUIRED",
+                "future_readoption": "EXPLICIT_USER_DECISION_AND_FULL_CAPACITY_ASSET_REVALIDATION_REQUIRED",
+            }
+            for record in non_adopted_records
+        ],
         "excluded_classification_hold_records": [
             {
                 "record_key": _record_key(record.get("record_key"), context="hold record"),

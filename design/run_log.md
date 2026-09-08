@@ -4054,3 +4054,29 @@
 - Network:
   - P04素材は`https://github.com/rh-hideout/pokeemerald-expansion`の固定commit `cafe0221cefb2a991cc0ece429174ade877d037d`を主採用した。`https://github.com/xirosrh/wah-20-anniversary`の`076b1f930594352a4a105d60be0511e24be22772`、DPE-JP／Shiny-Miner DPE、TeamAquasHideout系、`Schn4pper/pokenigme`も不足素材の有無を比較したが、権利／形式／欠落のため追加採用しなかった。
   - GitHub公式CLI／APIでrepository visibilityとRelease状態を照合した。Public時に5 assets（合計約1.99 GB）が非draft公開だったため、ユーザー明示指示後にrepositoryをPrivateへ変更し、`private=true`を読み戻した。Release assetは削除・置換・downloadせず、新P04素材もuploadしていない。credential／ROM／save／private member本文は記録していない。
+
+## 2026-09-08T15:03:19+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08-STAGE67-SCOPE-CORRECTION` / Stage67 consumer追加と現行追加対象の訂正
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02のlevel＋所持道具分岐6種について、成立6、不足6、誤道具6、通常分岐12、選択前後、Species更新、`CalculateMonStats`、hidden ability bitの保持を実consumerで独立2 process確認した。
+  - Stage67へ進化時341、既存教え技740、通常タマゴ2,522の3,603経路を追加し、Stage66継承分と合わせて51,151経路を実consumerへ接続した。サイドチェンジ159経路は非採用、選択済み保留は67,218経路。ROMは33,554,432 bytes、SHA-256 `13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32 `D94758FF`で変更していない。
+  - Browt／Pombon／Gecquaを`NON_ADOPTED_USER_SCOPE`へ移し、通常Species追加、ID予約、容量、素材、runtime接続を0件にした。P04はMega用Species/Form 49（1621〜1669）、Item 45（999〜1043）、Ability 6（312〜317）、Move 0へ訂正した。
+  - P04固定表34件は616,521→636,378 bytes（+19,857、alignment込み636,392）、`integration_modules`残1,124,296 bytes。Mega 49／Stone 45のprivate-use素材670 files／426,648 bytesは維持した。
+  - フラエッテ（えいえんのはな）のメガ前形態は既存Species ID 1029としてStage67にBaseStats、画像、palette、icon、習得表、名称が存在することをexact監査した。従来collection policyでは入手不能のため、取得eventは後続候補へ分離した。
+  - P05／P07／P08へ同じ採用境界を連鎖し、active Stage62、selected Stage67、release false、P01のみ完了を維持した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage67.json`
+  - `content/modernization/p02_acceptance_checkpoint.json`、`content/modernization/p03_stage67_*.json`
+  - `content/modernization/p04_candidate_manifest.json`、`content/modernization/p04_asset_import_manifest.json`、`content/modernization/p04_capacity_allocation_manifest.json`
+  - `content/modernization/p05_*.json`、`content/modernization/p07_*.json`、`content/modernization/p08_*.json`
+  - P02／P04／P05／P07／P08の生成tool、runner、focused test
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - P02 acceptanceは独立2 processでPASS、focused 4件PASS。Stage67 build／published mGBA evidence check、差分監査、incremental／clean BPS往復はPASSし、既に同一ROMで取得済みの重いmGBA実行は繰り返していない。
+  - P04 source／asset／capacity focused 36件、各generator check、private asset差分検査PASS。candidate manifest SHA-256 `95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac`、capacity manifest SHA-256 `8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe`。
+  - P05 focused 11件とAbility 46 case×独立2 process、P07 focused 11件、P08 focused 16件と`build_modernization_p08.py --check`、`git diff --check`: PASS。P08はtracked inputs 41、completed 1、active Stage62、candidate Stage67、release false。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage67 ROM先行commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`）
+- Network:
+  - 公式`https://windswaves.pokemon.com/en-us/`、`https://www.pokemon.com/us/pokemon-news/see-the-new-trailer-for-pokemon-winds-and-pokemon-waves-coming-to-nintendo-switch-2`、`https://www.pokemon.co.jp/ex/winds_waves/ja/`を確認し、Browt／Pombon／Gecquaの名称、タイプ、特性の来歴だけを保持した。ユーザー指定により実装・ID予約・素材取得は行っていない。

@@ -371,6 +371,20 @@ def _validate_runner_result(
         or int(repair.get("instruction_total", 0)) <= 0
     ):
         _fail("level-held-item priority repair runtime不一致")
+    hidden_readback = result.get("hidden_ability_readback", {})
+    expected_hidden_readback = {
+        "bit_mask": 0x10,
+        "conditional_item_consumed_cases": 6,
+        "negative_branch_cases": 6,
+        "regular_branch_cases": 12,
+        "before_selection": True,
+        "after_selection": True,
+        "after_species_write": True,
+        "after_calculate_stats": True,
+        "all_observed_preserved": True,
+    }
+    if hidden_readback != expected_hidden_readback:
+        _fail("hidden ability bit実read-back contract不一致")
     application = result.get("target_application", {})
     if (
         application.get("classification") != "ROM_CONSUMERS_WITHOUT_ASYNC_SCENE"
@@ -502,6 +516,7 @@ def run_gate(config_path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
             "6種のlevel+held-item分岐優先度と成功時だけの道具消費",
             "target選択の非破壊性",
             "実SetMonData/CalculateMonStats後の4技・個体ID・ability slot保持",
+            "hidden ability bitの実read-back（道具消費、negative/regular分岐、species変更、CalculateMonStats）",
             "Stage64 Rayquaza Wish-Mega実ROM縦切りの継承",
         ],
         "remaining_acceptance": [
@@ -520,6 +535,7 @@ def run_gate(config_path: Path = DEFAULT_CONFIG) -> dict[str, Any]:
             "correct_condition_item_only_consumed": True,
             "rayquaza_stage64_gate_inherited": True,
             "target_application_rom_consumers_executed": True,
+            "hidden_ability_bit_readback_verified": True,
             "async_evolution_scene_scheduler_e2e": False,
             "cancel_e2e": False,
             "bag_inventory_consumer_e2e": False,
@@ -551,6 +567,7 @@ def _validate_published(
         or claims.get("level_held_item_slot_priority_root_fixed") is not True
         or claims.get("correct_condition_item_only_consumed") is not True
         or claims.get("rayquaza_stage64_gate_inherited") is not True
+        or claims.get("hidden_ability_bit_readback_verified") is not True
         or claims.get("full_evolution_acceptance") is not False
         or evidence.get("release_ready") is not False
         or evidence.get("artifacts_written") != [config["output"]]

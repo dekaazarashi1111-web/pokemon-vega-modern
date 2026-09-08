@@ -35,7 +35,7 @@ class ModernizationP04CapacityTest(unittest.TestCase):
 
     def test_reserved_ranges_are_exact_contiguous_and_stable(self) -> None:
         expected = {
-            "species_form": (1621, 1672, 52),
+            "species_form": (1621, 1669, 49),
             "item": (999, 1043, 45),
             "ability": (312, 317, 6),
             "move": (None, None, 0),
@@ -54,8 +54,15 @@ class ModernizationP04CapacityTest(unittest.TestCase):
                 [row[key_field] for row in group["rows"]],
             )
             self.assertTrue(all(row["materialization_ready"] is False for row in group["rows"]))
+        species_rows = self.document["id_reservations"]["species_form"]["rows"]
+        self.assertEqual({"BATTLE_ONLY_MEGA"}, {row["classification"] for row in species_rows})
+        self.assertTrue(
+            {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"}.isdisjoint(
+                {row["source_record_key"] for row in species_rows}
+            )
+        )
 
-    def test_temporary_ability_and_asset_gaps_stay_separate(self) -> None:
+    def test_temporary_ability_and_non_adopted_assets_stay_separate(self) -> None:
         temporary = self.document["temporary_ability_replacement_contract"]
         self.assertEqual(16, len(temporary["rows"]))
         self.assertEqual(14, temporary["adopted_binding_count"])
@@ -64,10 +71,17 @@ class ModernizationP04CapacityTest(unittest.TestCase):
         self.assertEqual(len(replacements), len(set(replacements)))
         assets = self.document["asset_readiness_separate_gate"]
         self.assertTrue(assets["id_reservation_is_independent_from_asset_readiness"])
-        self.assertEqual((0, 3), (
+        self.assertEqual((0, 0, 0), (
             assets["winds_waves"]["source_assets_ready"],
             assets["winds_waves"]["reserved_ids"],
+            assets["winds_waves"]["asset_requirement_count"],
         ))
+        self.assertEqual([], assets["winds_waves"]["missing_record_keys"])
+        self.assertEqual(
+            {"P04_SPECIES_BROWT", "P04_SPECIES_POMBON", "P04_SPECIES_GECQUA"},
+            set(assets["winds_waves"]["non_adopted_record_keys"]),
+        )
+        self.assertTrue(assets["non_adopted_scope_does_not_reserve_id_or_asset"])
         self.assertEqual((49, 49), (
             assets["mega_species"]["gba_palette_ready"],
             assets["mega_species"]["reserved_ids"],
@@ -77,7 +91,7 @@ class ModernizationP04CapacityTest(unittest.TestCase):
     def test_fixed_geometry_evolution_slots_and_allocator_are_measured(self) -> None:
         tables = self.document["table_capacity"]
         self.assertEqual(34, tables["known_fixed_table_count"])
-        self.assertEqual((616521, 637389, 20868), (
+        self.assertEqual((616521, 636378, 19857), (
             tables["known_fixed_old_bytes"],
             tables["known_fixed_new_bytes"],
             tables["known_fixed_delta_bytes"],

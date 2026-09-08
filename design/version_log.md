@@ -1562,3 +1562,15 @@
   - P08をStage66までhash接続し、active Stage62、P01のみDONE、P02〜P08未完了、release不可を維持した。
   - GitHub repositoryをPrivateへ変更し、private asset download前の可視性gateとbundle path／rights fail-closedを追加した。
 - Verify: Stage66 focused 12件＋mGBA独立2 process、P04 source/import 24件＋capacity 10件、P05 11件、P02 8件、private environment 10件、P08 16件＋workflow回帰、各builder check、BPS往復、task graph、private guard、YAML、diff check PASS。
+
+## 2026-09-08T15:03:19+09:00
+
+- Version: `modernization-stage67-scope-correction-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage67 ROM先行commit `b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`）
+- Task: `USER-MODERNIZATION-P02-P08-STAGE67-SCOPE-CORRECTION` / Stage67 consumer追加と現行追加対象の訂正
+- Summary:
+  - Stage67へ進化時／教え技／通常タマゴ3,603経路を接続し、P02 hidden ability保持を実consumerで確認した。
+  - Browt／Pombon／Gecquaを非採用へ変更し、追加範囲を49 Mega、45 Stone、6 Ability、通常Species 0、Move 0へ統一した。
+  - えいえんのはなのフラエッテは既存ID 1029の実データを再利用し、入手経路だけを後続候補へ分離した。
+  - P04／P05／P07／P08と引継ぎを再生成し、active Stage62、selected Stage67、release falseを維持した。
+- Verify: P02 acceptance独立2 process、Stage67 build／evidence check、P04 36件、P05 11件＋Ability 46 case×2、P07 11件、P08 16件／generator check、BPS往復、差分監査、`git diff --check` PASS。重い既存mGBA実行は再利用した。
