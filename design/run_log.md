@@ -4020,3 +4020,18 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式CLI／APIでstate Release assetの置換・remote再取得とActions再実行・結果読戻しを行った。credential、token、private member本文は記録していない。
+
+
+<!-- P01-INDEPENDENT-EVIDENCE-20260908 -->
+## 2026-09-08T01:06:15.146649+00:00
+- Task: USER-MODERNIZATION-P01 / 既存候補の独立検証記録を統合
+- Status: DONE（補足記録のみ。既存task状態は変更しない）
+- Version: P01 independent verification
+- Summary: PR #14側で実装・生成・実ROM検証した候補は、先にmergeされたPR #15のStage63とsize/SHA-256/CRC32が一致した。二重実装を上書きmergeせず、独立検証と容量上位bitの注意点だけを記録する。
+- ROM: `{"crc32": "FB09EF2D", "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd", "size": 33554432}`。変更10byte/2行、宣言外0、valid save240byte/bit番号/配置/現行プレイ基準は不変。
+- Verify: 固定HEADの成功run7件・既存PR #15 merge・正本candidate identityをGitHub API/checkoutから照合PASS。過去の実ARM検証を新規ROM実行と装わない。
+- Evidence: `[{"conclusion": "success", "head": "efc2662dc6d1cc59732da13411b5569ea8525577", "name": "p01-candidate-validation", "run": 34174073406}, {"conclusion": "success", "head": "a89cd50f4a065a399553619456a4a17dc66de3a3", "name": "p01-runtime-validation", "run": 34172673504}, {"conclusion": "success", "head": "a3c8423f443eac29de1afec7840d94260da1c34c", "name": "p01-target-validation", "run": 34173113076}, {"conclusion": "success", "head": "0b9fd7a70d50670a6baa289e2c2e78aa225c6182", "name": "p01-target-validation", "run": 34173283267}, {"conclusion": "success", "head": "ad1f9b0d114da9ad31bb8a2922baf3ffa1cef8a3", "name": "p01-reference-validation", "run": 34174354489}, {"conclusion": "success", "head": "51edbebc2aa6260e0c09a0a53c2eed63b0e85fac", "name": "source-validation", "run": 34174954995}, {"conclusion": "success", "head": "69ab9fa03f300387b46833ff01ac0a13a3a23f66", "name": "source-validation", "run": 34174952611}]`
+- Files changed: design/modernization_p01_independent_verification.md、補足証跡workflow、design/run_log.md、design/version_log.md、design/modernization_handoff.md。
+- 残件・次工程: P02/P03/P04はこの作業で開始しない。通常プレイ全経路E2Eや他task strict監査の完了を意味しない。正本候補と生成元はconfig/modernization_candidate.jsonを維持。
+- Commit: 本記録を含むcommit（push後remote refを完全照合）。独立実装sourceは51edbebc2aa6260e0c09a0a53c2eed63b0e85fac。既存mergeは69ab9fa03f300387b46833ff01ac0a13a3a23f66。
+- Network: GitHub API/Actions証跡読取。新規ROM/save/元ZIP/credentialの取得・uploadはこの補足workflowでは行わない。
