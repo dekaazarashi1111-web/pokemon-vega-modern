@@ -20,19 +20,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: 現行IDの実consumerと対象集合を検証
+      - name: 現行ID・対象集合・実C consumerを検証
         run: |
           python3 scripts/validate_task_graph.py
           python3 scripts/guard_private_files.py
-          python3 -m unittest -v tests.test_modernization_ids tests.test_modernization_targets
+          python3 -m unittest -v tests.test_modernization_ids tests.test_modernization_targets tests.test_p01_collection_consumer
           python3 scripts/build_modernization_catalog.py build
           python3 scripts/build_modernization_catalog.py check
           python3 scripts/build_modernization_targets.py build
           python3 scripts/build_modernization_targets.py check
+          python3 scripts/build_p01_collection_table.py build
+          python3 scripts/build_p01_collection_table.py check
           git diff --exit-code
       - name: 検証範囲を記録
         env:
           TESTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           printf '検証HEAD: %s\n' "$TESTED_HEAD" >> "$GITHUB_STEP_SUMMARY"
-          printf '現行対象consumer・対象集合: PASS\nROM検証: 未実施\n' >> "$GITHUB_STEP_SUMMARY"
+          printf '現行対象consumer・対象集合・実C save処理: PASS\nROM反映: 未実施\n' >> "$GITHUB_STEP_SUMMARY"
