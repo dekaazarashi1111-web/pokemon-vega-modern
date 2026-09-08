@@ -564,3 +564,23 @@
   32-case Python＋host C、builder check、BPS roundtrip、allowlist外0、独立監査2件はPASSした。
   mGBAは`NOT_RUN`のままStage79累積runへ集約し、P05／release完了、P08昇格、active baseline変更は
   主張しない。
+
+## 2026-09-09 — D-048: 重い最終mGBAはStage78 exact入力の7領域を再開可能に一度だけ実行する
+
+- 決定: Stage79は製品ROMを変更しないvalidation-only工程とし、Stage78 commit
+  `a98e6fea59db1f020bc902a1b1676699f8c06c41`、ROM／metadata／allocation／checkpoint、
+  P05 config／symbols／contractを既知identityへ固定する。P02、Mega Stone店、Floette、P03、
+  49 Mega runtime、battle policy、P05をこの順で別process実行する。
+- 再開性: domainごとのresultと連続PASS prefixだけを`.local`へ保存し、再開時はsource／runner／
+  compilation／result schemaを再検証する。通過済みdomainを理由なく再実行せず、失敗／未実行だけを
+  続行する。fresh実行数とcache再利用数は分離して記録する。
+- 安全性: source ROMを直接runnerへ渡さず、別inode・link数1・read-onlyのprivate copyを使う。
+  compile出力とprivate saveは新規一時fileから原子的に置換し、symlink／hardlink経由の外部変更を
+  拒否する。重い`run`はCLIとprogrammaticの二重明示承認を必須にする。
+- P05境界: Stage77の29 hook／33 surface／21 stack-ABI観測とStage76の3 edgeを保持し、Stage78の
+  32-case pure matrix、active 13／party 13のhook route、非0 battler、foe1優先と3種fallback、
+  Ground／接地／Circus／Gastro Acid／Neutralizing Gas／Mold Breaker 105／Ability Shield、
+  helper tuple／continuation／register／SPをbounded integrationとして確認する。
+- 完了境界: `READY_NOT_RUN`では重いmGBA 0、P03／P05／release未完了、scheduler e2e false、
+  active Stage62、P08 selected Stage77を維持する。7領域PASS後も未検証の全物理menu／Link等を
+  自動的に完了扱いしない。

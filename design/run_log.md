@@ -4446,3 +4446,26 @@
   - 独立read-only監査2件はHigh／Mediumなし。重いmGBAはユーザー指定どおりStage79の最終累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal Stage77 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T07:32:37+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA` / Stage78 exact累積mGBA基盤
+- Status: DONE（`READY_NOT_RUN` checkpoint。重い7領域runは次の実行commitへ分離）
+- Summary:
+  - Stage78 commit、ROM／metadata／allocation／checkpoint、allocation 82行／sequence 81、P05 source契約をfail closedで固定し、7領域を順次・再開可能に実行するvalidation-only orchestratorを作成した。
+  - P05はStage77 29 hook／33 surface、Stage76 3 edgeに、Eelevate 32-case pure matrixとactive 13／party 13の実hook／ABI経路を追加した。
+  - private ROM／save／compile／tracked gateのsymlink・hardlink境界、明示heavy承認、PASS prefix再検証、fresh/cache別計数を固定した。Browt／Pombon／GecquaとSide Changeは0、active Stage62、P08 Stage77、release-ready=falseを維持した。
+- Files changed:
+  - `config/modernization_stage79_cumulative_mgba.json`
+  - `content/modernization/stage79_cumulative_mgba_runtime_gate.json`
+  - `scripts/run_modernization_stage79_cumulative_mgba.py`
+  - `tests/test_modernization_stage79_cumulative_mgba.py`、`tests/test_modernization_stage79_p05_runtime_smoke.py`
+  - `tools/mgba_modernization_stage79_mega_runtime_smoke.c`、`tools/mgba_modernization_stage79_p03_smoke.c`、`tools/mgba_modernization_stage79_p05_runtime_smoke.c`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_stage79_cumulative_mgba tests.test_modernization_stage79_p05_runtime_smoke`: 23/23 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_modernization_stage79_cumulative_mgba.py dry-run`: 7/7 READY、mGBA 0。
+  - 同`compile-check`: strict C compile 7/7 PASS、mGBA 0。同`check`: `CHECK_PASS`／`READY_NOT_RUN`。
+  - 独立read-only監査はruntime/ABIとorchestrator安全性の双方でHigh／Medium 0。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、heavy mGBA／push／Release／iPad／既存save／現行プレイ基準は変更していない。

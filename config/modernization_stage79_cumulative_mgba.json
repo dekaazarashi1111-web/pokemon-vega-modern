@@ -1,0 +1,628 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA",
+  "stage": 79,
+  "classification": "VALIDATION_ONLY_NO_PRODUCT_ROM_PATCH",
+  "orchestrator": {
+    "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+    "size": 122884,
+    "sha256": "e475d3e09de9eeb2e9dceadec38ed2d2d237a6ffd7bb1ea1b1cac7e40200593a"
+  },
+  "input_identity": {
+    "stage": 78,
+    "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+    "commit": "a98e6fea59db1f020bc902a1b1676699f8c06c41",
+    "allocation_count": 82,
+    "allocation_last_sequence": 81,
+    "rom": {
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+      "size": 33554432,
+      "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+      "crc32": "BFF0203C"
+    },
+    "metadata": {
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.json",
+      "size": 27723,
+      "sha256": "1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8"
+    },
+    "allocation": {
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
+      "size": 47029,
+      "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b"
+    },
+    "checkpoint": {
+      "path": "content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json",
+      "size": 27494,
+      "sha256": "19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f"
+    }
+  },
+  "execution": {
+    "domain_order": [
+      "p02",
+      "mega_shop",
+      "floette",
+      "p03",
+      "p04_mega_runtime",
+      "battle_policy",
+      "p05"
+    ],
+    "state_root": ".local/modernization_stage79_cumulative_mgba",
+    "runtime_gate": "content/modernization/stage79_cumulative_mgba_runtime_gate.json"
+  },
+  "domains": [
+    {
+      "id": "p02",
+      "kind": "p02",
+      "state": "READY",
+      "timeout_seconds": 900,
+      "runner": {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "size": 36731,
+        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_qol_production_smoke.c",
+          "size": 149046,
+          "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+        },
+        {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "size": 94532,
+          "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23"
+        },
+        {
+          "path": "tools/mgba_ai_fixture_runner.c",
+          "size": 36272,
+          "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+        }
+      ],
+      "seed_save": {
+        "path": ".local/60_wild_species_root_repair.srm",
+        "size": 131072,
+        "sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb"
+      },
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "mega_shop",
+      "kind": "mega_shop",
+      "state": "READY",
+      "timeout_seconds": 900,
+      "runner": {
+        "path": "tools/mgba_modernization_mega_shop_smoke.c",
+        "size": 24745,
+        "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_regression_smoke.c",
+          "size": 42609,
+          "sha256": "f2e63f6bbf3c2c860664fa6bb178304b834352917b75d3605fb0aa20dd11c5b0"
+        }
+      ],
+      "contract_source": {
+        "path": "generated/runtime/modernization_mega_shop_symbols.json",
+        "size": 6082,
+        "sha256": "e01e24abec8f5f84aad744dd4e229d887364291bcc8fa6a303a193b0efd69610"
+      },
+      "argument_count": 11,
+      "arguments_sha256": "f0358965274a5e6090e004ce12ff48c0f731f9136edf2e3f8bf9b45f8788de74",
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "floette",
+      "kind": "floette",
+      "state": "READY",
+      "timeout_seconds": 900,
+      "runner": {
+        "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "size": 23196,
+        "sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_regression_smoke.c",
+          "size": 42609,
+          "sha256": "f2e63f6bbf3c2c860664fa6bb178304b834352917b75d3605fb0aa20dd11c5b0"
+        }
+      ],
+      "contract_sources": {
+        "symbols": {
+          "path": "generated/runtime/modernization_floette_gift_symbols.json",
+          "size": 5354,
+          "sha256": "52bf96e216621e2f4da909e6f5cde1fc538388f09f5edbed3533d9fdeb8c3db4"
+        },
+        "contract": {
+          "path": "content/modernization/floette_gift_contract.json",
+          "size": 22396,
+          "sha256": "6c28376c1356fa0df08dabc58408449d69bf676514efbc23f1ed84b555a7ace5"
+        }
+      },
+      "argument_count": 12,
+      "arguments_sha256": "d9120e690854d3f2764585999ca3ecb8dd6b1ab223e6d5643db8419812aa689c",
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "p03",
+      "kind": "p03",
+      "state": "READY",
+      "timeout_seconds": 300,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+        "size": 24345,
+        "sha256": "027fbf54247358d83537ce0c790443ab7d3bb190b0ae91a0c26b83a0c27f2386"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "size": 94532,
+          "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23"
+        },
+        {
+          "path": "tools/mgba_ai_fixture_runner.c",
+          "size": 36272,
+          "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+        }
+      ],
+      "argument_count": 94,
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "p04_mega_runtime",
+      "kind": "mega_runtime_triples",
+      "state": "READY",
+      "timeout_seconds": 300,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+        "size": 9492,
+        "sha256": "e29ee2155867b1d5b53311e5eb7fdfedafea07d2c0a7d1eca68ab4cdcf730be4"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "size": 94532,
+          "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23"
+        },
+        {
+          "path": "tools/mgba_ai_fixture_runner.c",
+          "size": 36272,
+          "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+        }
+      ],
+      "contract_source": {
+        "path": "content/modernization/p04_mega_runtime_mapping.json",
+        "size": 59026,
+        "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f"
+      },
+      "mapping_count": 49,
+      "records_sha256": "52be46f252f4da9361ebf32af3adb6bfa246c3ed9783f88092b52a70f3df89b0",
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "battle_policy",
+      "kind": "battle_policy",
+      "state": "READY",
+      "timeout_seconds": 900,
+      "runner": {
+        "path": "tools/mgba_battle_policy_smoke.c",
+        "size": 89646,
+        "sha256": "f19036a03f8bb08b34d07cc4b470585089044d6ac0020b21b2489414d7ea16b0"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "size": 94532,
+          "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23"
+        },
+        {
+          "path": "tools/mgba_ai_fixture_runner.c",
+          "size": 36272,
+          "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+        }
+      ],
+      "contract_source": {
+        "path": "build/stages/06_battle_core.json",
+        "size": 255032,
+        "sha256": "3c107c77cd50e39c075277a499e4a86a874c77ebbabd4e4507e125d5cc094260"
+      },
+      "symbol_count": 44,
+      "symbols_sha256": "db041c783187956cfb1dc8f538c0fd3594b5101331728cfd4f5cbc479af05f61",
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    },
+    {
+      "id": "p05",
+      "kind": "p05_runtime",
+      "state": "READY",
+      "timeout_seconds": 300,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+        "size": 63239,
+        "sha256": "7bb1092e3e09130a82e4f49f2668b683667ea5836c9e63decedd0b5a3fe7cbd7"
+      },
+      "dependencies": [
+        {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "size": 94532,
+          "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23"
+        },
+        {
+          "path": "tools/mgba_ai_fixture_runner.c",
+          "size": 36272,
+          "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+        }
+      ],
+      "contract_sources": {
+        "stage76_config": {
+          "path": "config/modernization_p05_stage76_edges.json",
+          "size": 11451,
+          "sha256": "98da12855ec46c456e0a01912d33659ce2a4d7d49fb250e131355ff6e48eb26f"
+        },
+        "stage76_symbols": {
+          "path": "generated/runtime/modernization_p05_stage76_edges_symbols.json",
+          "size": 1518,
+          "sha256": "15291753650a4d7d3af61016e2fd6960233c0b4142db5e23e7ce44c044f8faf8"
+        },
+        "stage77_config": {
+          "path": "config/modernization_p05_stage77_suppression.json",
+          "size": 25769,
+          "sha256": "c2f2612191ab35b8c9ca12ef8a3ac683d47d5ff3b4f42aa29f882d3693aebd12"
+        },
+        "stage77_symbols": {
+          "path": "generated/runtime/modernization_p05_stage77_suppression_symbols.json",
+          "size": 2010,
+          "sha256": "9b939a791e054e7c114065fba42be9b945fcc4e1f05e643e00dd7b34312370fa"
+        },
+        "stage78_config": {
+          "path": "config/modernization_p05_stage78_eelevate_switch_ai.json",
+          "size": 10010,
+          "sha256": "649535b79d6ac2c0ec61a8e5c4ae5df9028bf515d92d05d2f37048bfa7bebe7a"
+        },
+        "stage78_symbols": {
+          "path": "generated/runtime/modernization_p05_stage78_eelevate_switch_ai_symbols.json",
+          "size": 5165,
+          "sha256": "36d009a404c61182c6178bfe64b95fea03bf2dde901352a14bc018ed21ba45f6"
+        },
+        "stage78_contract": {
+          "path": "content/modernization/p05_stage78_eelevate_switch_ai_contract.json",
+          "size": 24370,
+          "sha256": "c10362f53806421e79a5ea3b63d49eb90587b6dbc63446e94b267cbbe4700b5c"
+        }
+      },
+      "g_statuses3_address": "0x02023D5C",
+      "eelevate_matrix_case_count": 32,
+      "eelevate_matrix_sha256": "3b0ce8e8a5fa75857971b59091f2a95d73ec5597d90be4756eb9e3717e8383ed",
+      "argument_count": 167,
+      "arguments_sha256": "bfd934fbec3be058ee0ee6ed5f662534bb90c4949a049c761f9105fbf26d73fe",
+      "compile": {
+        "compiler": "cc",
+        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
+        "link_flags": ["-lmgba"]
+      }
+    }
+  ],
+  "p03_required_argument_keys": [
+    "archive-failure-sentinel",
+    "archive-pages",
+    "archive-required-move",
+    "archive-species",
+    "archive-tutor-required",
+    "archive-tutor-species",
+    "dusk-lycanroc-species",
+    "egg-count",
+    "egg-forbidden-move",
+    "egg-limit",
+    "egg-limit-site",
+    "egg-required-move",
+    "egg-root",
+    "egg-root-site-a",
+    "egg-root-site-b",
+    "egg-species",
+    "evolution-first-move",
+    "evolution-function",
+    "evolution-species",
+    "level-first-level",
+    "level-first-move",
+    "level-root",
+    "level-root-mirror-site",
+    "level-root-site",
+    "level-species",
+    "max-pages",
+    "mode-address",
+    "mode-egg",
+    "mode-machine-page0",
+    "mode-machine-probe",
+    "mode-normal",
+    "normal-removed-slot",
+    "normal-rockruff-species",
+    "one-page-species",
+    "own-tempo-archive-required",
+    "own-tempo-egg-move0",
+    "own-tempo-egg-move1",
+    "own-tempo-egg-move2",
+    "own-tempo-egg-move3",
+    "own-tempo-evo-extra",
+    "own-tempo-evo-level",
+    "own-tempo-evo-method",
+    "own-tempo-species",
+    "page-failure-sentinel",
+    "page-size",
+    "party-slot-address",
+    "result-address",
+    "rotom-base",
+    "rotom-heat",
+    "rotom-heat-move",
+    "rotom-wash",
+    "rotom-wash-move",
+    "scratch-address",
+    "stage73-exact-egg-count",
+    "stage73-exact-egg-move0",
+    "stage73-exact-egg-move1",
+    "stage73-exact-egg-species",
+    "stage73-get-all-egg",
+    "stage73-probe",
+    "stage73-reminder-required",
+    "stage73-reminder-species",
+    "stage73-rotom-signature",
+    "stage73-shared-required",
+    "stage73-shared-species",
+    "stage73-species-count",
+    "stage74-probe",
+    "stage75-build-learnable",
+    "stage75-commit-page",
+    "stage75-evolution-table",
+    "stage75-get-egg-moves",
+    "stage75-get-egg-species",
+    "stage75-get-relearner",
+    "stage75-open-archive",
+    "stage75-open-page",
+    "stage75-page-has-moves",
+    "stage75-prepare-pages",
+    "stage75-probe",
+    "stage75-reset-mode",
+    "stage75-set-machine",
+    "stage75-set-tutor",
+    "stage75-species-count",
+    "task-active-offset",
+    "task-count",
+    "task-stride",
+    "tasks-address",
+    "tutor-catalog",
+    "tutor-catalog-site",
+    "tutor-function",
+    "tutor-negative-slot",
+    "tutor-positive-move",
+    "tutor-positive-slot",
+    "tutor-root",
+    "tutor-root-site",
+    "tutor-species"
+  ],
+  "p03_contract": {
+    "arguments": {
+      "archive-failure-sentinel": 5,
+      "archive-pages": 4,
+      "archive-required-move": 34,
+      "archive-species": 151,
+      "archive-tutor-required": 7,
+      "archive-tutor-species": 762,
+      "dusk-lycanroc-species": 1263,
+      "egg-count": 7,
+      "egg-forbidden-move": 344,
+      "egg-limit": 7507,
+      "egg-limit-site": "0x08045288",
+      "egg-required-move": 175,
+      "egg-root": "0x09FF0BD4",
+      "egg-root-site-a": "0x08045214",
+      "egg-root-site-b": "0x0804528C",
+      "egg-species": 24,
+      "evolution-first-move": 68,
+      "evolution-function": "0x09114121",
+      "evolution-species": 534,
+      "level-first-level": 1,
+      "level-first-move": 45,
+      "level-root": "0x0958B95C",
+      "level-root-mirror-site": "0x09FDA1F8",
+      "level-root-site": "0x0804346C",
+      "level-species": 10,
+      "max-pages": 4,
+      "mode-address": "0x0203EC00",
+      "mode-egg": 1,
+      "mode-machine-page0": 3,
+      "mode-machine-probe": 2,
+      "mode-normal": 0,
+      "normal-removed-slot": 2,
+      "normal-rockruff-species": 1142,
+      "one-page-species": 10,
+      "own-tempo-archive-required": 34,
+      "own-tempo-egg-move0": 37,
+      "own-tempo-egg-move1": 283,
+      "own-tempo-egg-move2": 745,
+      "own-tempo-egg-move3": 541,
+      "own-tempo-evo-extra": "0x1114",
+      "own-tempo-evo-level": 25,
+      "own-tempo-evo-method": 28,
+      "own-tempo-species": 1670,
+      "page-failure-sentinel": "0xFFFE",
+      "page-size": 40,
+      "party-slot-address": "0x02036FF4",
+      "result-address": "0x02037004",
+      "rotom-base": 742,
+      "rotom-heat": 894,
+      "rotom-heat-move": 315,
+      "rotom-wash": 895,
+      "rotom-wash-move": 56,
+      "scratch-address": "0x0203C000",
+      "stage73-exact-egg-count": 2,
+      "stage73-exact-egg-move0": 174,
+      "stage73-exact-egg-move1": 283,
+      "stage73-exact-egg-species": 203,
+      "stage73-get-all-egg": "0x095348E5",
+      "stage73-probe": "0x095347D1",
+      "stage73-reminder-required": 111,
+      "stage73-reminder-species": 1620,
+      "stage73-rotom-signature": "0x09534A51",
+      "stage73-shared-required": 44,
+      "stage73-shared-species": 13,
+      "stage73-species-count": 1621,
+      "stage74-probe": "0x09539C81",
+      "stage75-build-learnable": "0x0954B41D",
+      "stage75-commit-page": "0x0954B631",
+      "stage75-evolution-table": "0x095A0CC8",
+      "stage75-get-egg-moves": "0x0954B1AD",
+      "stage75-get-egg-species": "0x0954B189",
+      "stage75-get-relearner": "0x0954B281",
+      "stage75-open-archive": "0x0954B601",
+      "stage75-open-page": "0x0954B619",
+      "stage75-page-has-moves": "0x0954B599",
+      "stage75-prepare-pages": "0x0954B501",
+      "stage75-probe": "0x0954B031",
+      "stage75-reset-mode": "0x0954B4F5",
+      "stage75-set-machine": "0x0954B4DD",
+      "stage75-set-tutor": "0x0954B4E9",
+      "stage75-species-count": 1671,
+      "task-active-offset": 4,
+      "task-count": 16,
+      "task-stride": 40,
+      "tasks-address": "0x030050D0",
+      "tutor-catalog": "0x0944BC80",
+      "tutor-catalog-site": "0x081213D4",
+      "tutor-function": "0x09110229",
+      "tutor-negative-slot": 0,
+      "tutor-positive-move": 554,
+      "tutor-positive-slot": 6,
+      "tutor-root": "0x09593BE8",
+      "tutor-root-site": "0x08121420",
+      "tutor-species": 10
+    },
+    "symbol_sources": {
+      "stage73": {
+        "path": "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json",
+        "size": 1692,
+        "sha256": "5a9113d2450a6c1aed5559176faa88a3cea4aac9a8c886e8e72a7546384bec72"
+      },
+      "stage74": {
+        "path": "generated/runtime/modernization_p03_stage74_supply_runtime_symbols.json",
+        "size": 4333,
+        "sha256": "49a9e87097acc46270e80f4f3bccb69f670b7c9353d3ac4b7a86d270b1542da3"
+      },
+      "stage75": {
+        "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_symbols.json",
+        "size": 7027,
+        "sha256": "48b2251110325dcc5a03b32a0bf820d73f02fca74a51ab5ff1073a6dcc8ac769"
+      },
+      "stage73_route_audit": {
+        "path": "generated/runtime/modernization_p03_stage73_consumer_runtime_audit.json",
+        "size": 17114,
+        "sha256": "763e7b053d7234befc4791ddeb59f64c6800ba23993e4cc0a48bb93a660c8c55"
+      },
+      "stage74_route_audit": {
+        "path": "generated/runtime/modernization_p03_stage74_supply_route_audit.json",
+        "size": 680038,
+        "sha256": "64b7f72f99bc01d777045536ff5ba82ab049e4e008035fe3760d377355334f10"
+      },
+      "stage75_route_audit": {
+        "path": "generated/runtime/modernization_rockruff_own_tempo_stage75_route_audit.json",
+        "size": 2604,
+        "sha256": "ac3deebaa4eb190ab1e581666bb5d56aa98540e2fa15e72a2ffd22ffb1c255a5"
+      }
+    },
+    "symbol_bindings": [
+      {"source": "stage73", "symbol": "Stage73_RuntimeProbe", "argument": "stage73-probe", "field": "thumb_address"},
+      {"source": "stage73", "symbol": "Stage73_GetAllEggMoves", "argument": "stage73-get-all-egg", "field": "thumb_address"},
+      {"source": "stage73", "symbol": "Stage73_RotomSignatureMove", "argument": "stage73-rotom-signature", "field": "thumb_address"},
+      {"source": "stage74", "symbol": "Stage74_RuntimeProbe", "argument": "stage74-probe", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_RuntimeProbe", "argument": "stage75-probe", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_GetEggSpecies", "argument": "stage75-get-egg-species", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_GetEggMoves", "argument": "stage75-get-egg-moves", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_GetMoveRelearnerMoves", "argument": "stage75-get-relearner", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_BuildLearnableMoveset", "argument": "stage75-build-learnable", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_SetMachineMode", "argument": "stage75-set-machine", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_SetTutorMode", "argument": "stage75-set-tutor", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_ResetMode", "argument": "stage75-reset-mode", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_PrepareMachinePages", "argument": "stage75-prepare-pages", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_SelectedMachinePageHasMoves", "argument": "stage75-page-has-moves", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_CommitMachinePage", "argument": "stage75-commit-page", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_OpenArchiveModeMenu", "argument": "stage75-open-archive", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_OpenMachinePageMenu", "argument": "stage75-open-page", "field": "thumb_address"},
+      {"source": "stage75", "symbol": "Stage75_Table_evolution", "argument": "stage75-evolution-table", "field": "address"}
+    ],
+    "root_bindings": [
+      {"site_argument": "level-root-site", "value_argument": "level-root", "width": 4},
+      {"site_argument": "level-root-mirror-site", "value_argument": "level-root", "width": 4},
+      {"site_argument": "tutor-root-site", "value_argument": "tutor-root", "width": 4},
+      {"site_argument": "tutor-catalog-site", "value_argument": "tutor-catalog", "width": 4},
+      {"site_argument": "egg-root-site-a", "value_argument": "egg-root", "width": 4},
+      {"site_argument": "egg-root-site-b", "value_argument": "egg-root", "width": 4},
+      {"site_argument": "egg-limit-site", "value_argument": "egg-limit", "width": 4}
+    ],
+    "terminal_source": {
+      "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
+      "size": 6746,
+      "sha256": "3710892921c1424af3d3d02fcd22a2bab8c7ad9dc65507983257d9ad2dcfe122"
+    },
+    "terminal_required_tokens": [
+      "STAGE75_EXPORT Stage75_FinishScript",
+      "STAGE75_CALLNATIVE Stage75_ResetMode",
+      "STAGE75_BRANCH 1, Stage75_FinishScript",
+      "STAGE75_GOTO Stage75_FinishScript",
+      "STAGE75_EXPORT Stage75_MachineChoosePageScript",
+      "STAGE75_EXPORT Stage75_MachinePageNoMovesScript"
+    ]
+  },
+  "latest_rom_preimages": [
+    {"name": "P02_BeginEvolutionScene", "address": "0x080CEF00", "hex": "70b50c1c151c1e1c"},
+    {"name": "P02_GetEvolutionTargetSpecies", "address": "0x090FB774", "hex": "f0b557464e464546"},
+    {"name": "P02_ItemEvolutionRemoval", "address": "0x090FB630", "hex": "10b50c4b040082b0"},
+    {"name": "P02_GetMonAbility", "address": "0x090DA23C", "hex": "f8b500220b21144f"},
+    {"name": "P02_CalculateMonStats", "address": "0x090D939C", "hex": "f0b5de4657464e46"},
+    {"name": "P02_ItemUseCB_EvolutionStone", "address": "0x09122C8C", "hex": "f0b5d6464f464646"},
+    {"name": "P02_TrySavingData", "address": "0x080DB34C", "hex": "004b184761763709"},
+    {"name": "P02_Save_LoadGameData", "address": "0x080DB4E4", "hex": "004b1847815d4009"},
+    {"name": "MegaShop_Probe", "address": "0x09452350", "hex": "034b044a1380044a"},
+    {"name": "MegaShop_EnsureSave", "address": "0x09452370", "hex": "10b500f0c1fa431e"},
+    {"name": "MegaShop_GetBalance", "address": "0x09452390", "hex": "10b500f0b1fa0023"},
+    {"name": "MegaShop_IsUnlocked", "address": "0x094523BC", "hex": "10b5040000f09afa"},
+    {"name": "MegaShop_IsClaimed", "address": "0x094523F0", "hex": "002310b52c2802d8"},
+    {"name": "MegaShop_PurchaseByIndex", "address": "0x09452410", "hex": "10b5040000f0d8fa"},
+    {"name": "MegaShop_Open", "address": "0x0945244C", "hex": "70b500f099f80028"},
+    {"name": "FloetteGift_Probe", "address": "0x09462AB0", "hex": "024b034a03481a80"},
+    {"name": "FloetteGift_Claim", "address": "0x09462B14", "hex": "f0b5784887b0784f"},
+    {"name": "FloetteGift_IsFormObtained", "address": "0x09462AC8", "hex": "054b10b5054800f0"},
+    {"name": "FloetteGift_IsNationalDexSeen", "address": "0x09462AF0", "hex": "034b1878034b4007"},
+    {"name": "FloetteGift_IsNationalDexCaught", "address": "0x09462B08", "hex": "10b5fff7f1ff10bc"},
+    {"name": "P03_GetEvolutionTargetSpecies", "address": "0x09114120", "hex": "8446f8b562465423"},
+    {"name": "P03_CanLearnTutorMove", "address": "0x09110228", "hex": "f8b500220c00544f"},
+    {"name": "Stage73_RuntimeProbe", "address": "0x095347D0", "hex": "03000020032b02d8"},
+    {"name": "Stage74_RuntimeProbe", "address": "0x09539C80", "hex": "03000020042b02d8"},
+    {"name": "Stage75_RuntimeProbe", "address": "0x0954B030", "hex": "03000020052b02d8"},
+    {"name": "Stage75_GetEggSpecies", "address": "0x0954B188", "hex": "064a10b5064b9042"},
+    {"name": "Stage75_BuildLearnableMoveset", "address": "0x0954B41C", "hex": "73b500220c001f4b"},
+    {"name": "P04_GetMegaSpecies", "address": "0x09114CF0", "hex": "c3011e481b18f0b5"},
+    {"name": "P04_TryRevertMega", "address": "0x09114F74", "hex": "70b5048c0d4be401"},
+    {"name": "P04_IsMegaSpecies", "address": "0x09115098", "hex": "0c4bc001c0180200"}
+  ]
+}

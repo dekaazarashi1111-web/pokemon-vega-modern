@@ -1,0 +1,166 @@
+{
+  "artifacts_written": [
+    "content/modernization/stage79_cumulative_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "full_p03_done": false,
+    "full_p05_done": false,
+    "link_runtime_e2e": false,
+    "physical_all_menu_paths_e2e": false,
+    "product_rom_patched": false,
+    "release_ready": false
+  },
+  "classification": "LATEST_CUMULATIVE_EXACT_ROM_SEQUENTIAL_RESUMABLE",
+  "config": {
+    "path": "config/modernization_stage79_cumulative_mgba.json",
+    "sha256": "68b57735e88305e418c84476ec089f03d6cf1b406c8120136f009755a47f0899",
+    "size": 25172
+  },
+  "domain_order": [
+    "p02",
+    "mega_shop",
+    "floette",
+    "p03",
+    "p04_mega_runtime",
+    "battle_policy",
+    "p05"
+  ],
+  "domains": [
+    {
+      "id": "p02",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
+        "size": 36731
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "mega_shop",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_modernization_mega_shop_smoke.c",
+        "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb",
+        "size": 24745
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "floette",
+      "pending_reason": null,
+      "runner": {
+        "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb",
+        "size": 23196
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "p03",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+        "sha256": "027fbf54247358d83537ce0c790443ab7d3bb190b0ae91a0c26b83a0c27f2386",
+        "size": 24345
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "p04_mega_runtime",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+        "sha256": "e29ee2155867b1d5b53311e5eb7fdfedafea07d2c0a7d1eca68ab4cdcf730be4",
+        "size": 9492
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "battle_policy",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_battle_policy_smoke.c",
+        "sha256": "f19036a03f8bb08b34d07cc4b470585089044d6ac0020b21b2489414d7ea16b0",
+        "size": 89646
+      },
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "p05",
+      "pending_reason": null,
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+        "sha256": "7bb1092e3e09130a82e4f49f2668b683667ea5836c9e63decedd0b5a3fe7cbd7",
+        "size": 63239
+      },
+      "status": "NOT_RUN"
+    }
+  ],
+  "execution": {
+    "cached_domain_results_reused": 0,
+    "checkpoint_written": false,
+    "evidenced_domain_runs": 0,
+    "explicit_heavy_run_required": true,
+    "fresh_mGBA_process_runs": 0,
+    "individual_results_written_this_invocation": 0,
+    "resume_supported": true
+  },
+  "input": {
+    "allocation": {
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
+      "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b",
+      "size": 47029
+    },
+    "allocation_count": 82,
+    "allocation_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
+    "allocation_first82_sha256": "cbccabcf6c00d8b34e31174ac076644f3b6da0d03cc74a413c772774de64c046",
+    "allocation_last_sequence": 81,
+    "allocation_sequence81": {
+      "alignment": 16,
+      "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+      "end_exclusive": 22896624,
+      "gba_end_exclusive": 157114352,
+      "gba_start": 157113664,
+      "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+      "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+      "placement": "FIRST_FIT",
+      "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+      "region": "integration_modules",
+      "sequence": 81,
+      "size": 688,
+      "start": 22895936
+    },
+    "checkpoint": {
+      "path": "content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json",
+      "sha256": "19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f",
+      "size": 27494
+    },
+    "commit": "a98e6fea59db1f020bc902a1b1676699f8c06c41",
+    "metadata": {
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.json",
+      "sha256": "1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8",
+      "size": 27723
+    },
+    "payload_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+    "rom": {
+      "crc32": "BFF0203C",
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+      "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+      "size": 33554432
+    },
+    "stage": 78,
+    "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI"
+  },
+  "not_yet_executed": true,
+  "orchestrator": {
+    "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+    "sha256": "e475d3e09de9eeb2e9dceadec38ed2d2d237a6ffd7bb1ea1b1cac7e40200593a",
+    "size": 122884
+  },
+  "plan_fingerprint": "5214e6e1c23ab03d0982ab8735dae270e13a2b921011b232078c454d6e508594",
+  "schema_version": 1,
+  "stage": 79,
+  "status": "READY_NOT_RUN",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

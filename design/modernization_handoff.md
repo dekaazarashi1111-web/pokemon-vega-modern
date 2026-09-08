@@ -13,6 +13,7 @@
 - P04の取得系checkpointはStage69まで進んだ。Stage68は45 Mega Stoneを全16 BPの専用店へ接続し、exact-ROM gateをPASS。Stage69は既存ID 1029のえいえんのはなフラエッテをLv.50で配布する。Stage69 ROM SHA-256は`6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32は`4849DD0F`。
 - P04のSpecies固定表checkpointはStage70、Mega対応checkpointはStage71まで進んだ。Stage70でMega用49形態をSpecies ID 1621〜1669へ追加し、28固定表・49組の画像素材・Species上限consumer、318行のAbility固定4表を接続した。Stage71で49 forward＋49 reverseをevolution表へ追加し、既存Mega 80行を保持した。Stage71 ROM SHA-256は`dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32は`426A7A7F`。Stage77までの継承chainとしてP08へ統合済みである。
 - P05のAbility ROM checkpointはStage78まで進んだ。Stage72のAbility 312〜317／29 battle hook、Stage76の安全な3 edge、Stage77のBattle Circus全特性無効dispatcherを継承し、Stage78でEelevate専用switch AIをactive／party 2 siteへ接続した。Stage78 ROM SHA-256は`98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`、CRC32は`BFF0203C`。P08 selected candidateは次の統合checkpointまでStage77のまま。最終累積mGBAは未実行である。
+- Stage79の最終累積mGBA基盤は`READY_NOT_RUN`。Stage78 commit／ROM／metadata／allocation／checkpointと、7 runner、45 source identity、P05の167 CLI引数をfail closedで固定した。private ROMは別inode・read-only、saveとcompile出力はhardlink／symlinkを辿らず原子的に作り、PASS済みdomainだけをsemantic再検証して再利用する。focused 23/23、dry-run 7/7 READY、compile-check 7/7、side-effect-free checkをPASSし、重いmGBA processはまだ0である。
 - P04〜P08は依然として未完了。Stage75でOwn Tempo Rockruff 0744.01、Stage76でP05の安全な3 edge、Stage77でBattle Circus特性無効境界、Stage78でEelevate専用switch AIは解決済みだが、P02通常UI／Floette full・fresh reloadを含む最終累積mGBAが残る。P01以外をDONEと扱わない。
 
 ## P03 Stage67の採用境界
@@ -101,8 +102,8 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. Stage79累積mGBAハーネスをStage78のROM／metadata／allocation／payload／symbols／audit／contract identityへfail closedで固定する。
-2. 49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表とEelevate active／party hook、P02通常UI、Stage73〜75 egg／Move Memory／ロトム／Rockruff保存、Floette full・fresh reloadを同じmGBAセットで一度だけ検証する。
-3. runtime結果をP08 selected candidateへ統合し、提出済み採用差分が入った場合だけP06/P07を実装してrelease gateを再評価する。
+1. checkpoint commit済みのStage79 `READY_NOT_RUN`基盤を変更せず、`python3 scripts/run_modernization_stage79_cumulative_mgba.py run --yes-heavy`で7領域を一度だけ順次実行する。失敗時は保存済みPASS prefixを再検証して再利用し、失敗／未実行領域だけを再開する。
+2. 49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表とEelevate active／party hook、P02通常UI、Stage73〜75 egg／Move Memory／ロトム／Rockruff保存、Floette full・fresh reloadの結果をtracked Stage79 gateへ埋め込む。
+3. Stage79 runtime結果をP08 selected candidateへ統合し、提出済み採用差分が入った場合だけP06/P07を実装してrelease gateを再評価する。
 
 どの再開点でも、過去Stage、原本ZIP、既存saveを上書きせず、候補Stageを現行プレイ基準へ自動昇格しない。
