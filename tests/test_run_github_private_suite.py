@@ -13,6 +13,7 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
             "modernization-p02",
             "modernization-contracts",
             "modernization-p04-assets",
+            "modernization-p03-stage65",
             "full-unit", "all",
         ):
             with self.subTest(suite=suite):
@@ -62,6 +63,20 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
         self.assertLess(plan.index(write), plan.index(diff))
         self.assertLess(plan.index(diff), plan.index(check))
         self.assertIn(["make", "modernization-p04-assets-focused-test"], plan)
+        self.assertNotIn(["make", "test"], plan)
+
+    def test_modernization_p03_stage65_rebuilds_the_full_parent_chain(self) -> None:
+        plan = command_plan("modernization-p03-stage65", python="python3")
+        p01 = ["python3", "scripts/build_modernization_p01.py", "build"]
+        p02 = ["python3", "scripts/build_modernization_p02_stage64.py", "build"]
+        p03 = ["python3", "scripts/build_modernization_p03_stage65.py", "build"]
+        run = ["python3", "scripts/run_modernization_p03_stage65_mgba.py", "run"]
+        check = ["python3", "scripts/build_modernization_p03_stage65.py", "check"]
+        self.assertLess(plan.index(p01), plan.index(p02))
+        self.assertLess(plan.index(p02), plan.index(p03))
+        self.assertLess(plan.index(p03), plan.index(run))
+        self.assertLess(plan.index(run), plan.index(check))
+        self.assertIn(["make", "modernization-p03-stage65-focused-test"], plan)
         self.assertNotIn(["make", "test"], plan)
 
     def test_all_does_not_repeat_focused_battle_unit(self) -> None:
