@@ -1719,3 +1719,14 @@
   - Stage67→76 exact chain、allocator lineage、candidate registry、release blockerの改ざんguardを拡張した。
   - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持した。
 - Verify: focused unittest 17/17、P08 builder `--check`、INPUTS=74、Stage74→75→76 BPS exact apply、`git diff --check` PASS。重いmGBAは未実行。
+
+## 2026-09-09T04:33:14+09:00
+
+- Version: `modernization-stage77-p05-circus-suppression-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION` / Battle Circus特性無効境界
+- Summary:
+  - Battle Circusの特性無効時だけStage72の29 hook／33 surfaceをoriginalへ迂回し、通常時の新Ability処理を維持した。
+  - r3／stack ABI、通常のGastro Acid／Neutralizing Gas／Mold Breaker、Stage76の3 edge、Eelevate保留siteを保持した。
+  - Side Changeと追加対象外3種は0、P05／release未完了、active Stage62を維持した。
+- Verify: focused unittest 12/12、Stage77 builder `--check`、BPS roundtrip、29 hook／ABI、allocation lineage、allowlist外0、独立read-only監査High／Medium／Lowなし PASS。ROM SHA-256 `245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`。mGBAは最終累積候補へ集約し未実行。

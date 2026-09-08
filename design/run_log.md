@@ -4377,3 +4377,27 @@
   - `git diff --check`: PASS。重いmGBAはStage77後の最終累積1セットへ集約し、本checkpointでは実行していない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:33:14+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION` / Battle Circus特性無効境界
+- Status: DONE（Stage77 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Battle Circus bit 26かつ特性無効bit 31の時だけStage72の全29 hook／33 surfaceをoriginal trampolineへ委譲し、通常時はStage72 wrapperを維持するdispatcherを接続した。
+  - 12-byte hook 7本は元r3をr12へ退避・復元し、8-byte hook 22本はStage72互換のr3 scratchを使う。通常のGastro Acid／Neutralizing Gas／Mold Breaker意味は変更しない。
+  - 親allocation 80行、Stage76のpointer 1＋hook 3、Eelevate保留2 siteを不変に保った。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`、CRC32 `F1CE0EAC`。payloadは1,220 bytes、SHA-256 `933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672`。
+- Files changed:
+  - `config/modernization_p05_stage77_suppression.json`
+  - `content/modernization/p05_stage77_suppression_contract.json`、`content/modernization/p05_stage77_suppression_checkpoint.json`
+  - `overlays/modernization_p05_stage77_suppression/**`
+  - `tools/modernization_p05_stage77_suppression.py`、`scripts/build_modernization_p05_stage77_suppression.sh`
+  - `tests/test_modernization_p05_stage77_suppression.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_stage77_suppression -v`: 12/12 PASS。
+  - `python3 tools/modernization_p05_stage77_suppression.py --check`: PASS。29 hook／33 surface、7本r3保存ABI、Stage76保全、parent allocation 80行、sequence 80、allowlist外0を照合した。
+  - incremental BPSは1,489 bytes、SHA-256 `50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7`、roundtrip PASS。metadata SHA-256 `773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff`、allocation `20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d`。
+  - 独立read-only監査はHigh／Medium／Lowなし。重いmGBAは最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage76 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。

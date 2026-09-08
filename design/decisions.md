@@ -522,3 +522,17 @@
   full／fresh reload、最終累積mGBAはrelease blockerとして残す。
 - 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
   modernization引継ぎ。iPad、save、Release、現行プレイ基準は変更しない。
+
+## 2026-09-09 — D-045: Battle Circus特性無効はStage72 wrapperの手前で全29 hookを迂回する
+
+- 決定: Battle Circusのbattle type bit 26とcircus特性無効bit 31が同時に立つ時だけ、Stage72で
+  接続した29 hook／33 Ability surfaceを各original trampolineへ委譲する。通常時はStage72 wrapperへ
+  委譲し、新Ability 6件とStage76の3 edgeを維持する。
+- 既存抑制: Gastro Acid／Neutralizing Gas／Mold BreakerはCFRUがactive abilityをraw 0へ移す既存
+  意味を変更しない。Circusだけはraw abilityを保持するため、後段dispatcherで明示的に抑制する。
+- ABI: 12-byte veneer 7本は元r3をr12へ退避し、抑制経路でr3を復元する。残る8-byte veneer 22本は
+  Stage72と同じr3 scratch契約を使う。r0〜r2、SP、LR、5番目のstack引数を保持してtail delegateする。
+- 完了境界: Stage77 payload 1,220 bytes、hook 29件、allocation sequence 80を接続する。親80行、
+  Stage76のpointer 1＋hook 3、Eelevate保留2 site、通常抑制意味を保持する。focused test、builder check、
+  独立監査はPASSしたが、mGBAとEelevate専用switch AIが残るためP05／release完了は主張しない。
+- 影響: Stage77、P05、Battle Circus、最終累積mGBA。active baseline、iPad、save、Releaseは変更しない。
