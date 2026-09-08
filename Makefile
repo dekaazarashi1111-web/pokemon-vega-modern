@@ -15,6 +15,7 @@ UPSTREAM_SANDBOX ?= /mnt/c/codex_tools/PokemonVegaT01
 .PHONY: modernization-identity modernization-identity-check modernization-p01 modernization-p01-check modernization-p01-capacity-audit modernization-p01-mgba modernization-p01-focused-test
 .PHONY: modernization-p02-contract-check modernization-p02-stage64 modernization-p02-stage64-check modernization-p02-mgba modernization-p02-mgba-check modernization-p02-focused-test
 .PHONY: modernization-p03-check modernization-p05-check modernization-p06-check modernization-p07-check modernization-contracts-focused-test
+.PHONY: modernization-p04-source-fetch modernization-p04-assets modernization-p04-assets-check modernization-p04-assets-focused-test
 .PHONY: github-private-assets github-private-assets-check github-private-assets-restore github-battle-wrapper-test
 
 quickstart:
@@ -507,6 +508,18 @@ modernization-p02-focused-test:
 
 modernization-p03-check:
 	$(PYTHON) scripts/build_modernization_p03.py --check
+
+modernization-p04-source-fetch:
+	$(PYTHON) scripts/build_modernization_p04_sources.py --fetch --compact
+
+modernization-p04-assets:
+	$(PYTHON) scripts/build_modernization_p04_assets.py --write --compact
+
+modernization-p04-assets-check:
+	$(PYTHON) scripts/build_modernization_p04_assets.py --check --compact
+
+modernization-p04-assets-focused-test:
+	$(PYTHON) -m unittest tests.test_modernization_p04_sources tests.test_modernization_p04_asset_importer -v
 
 modernization-p05-check:
 	$(PYTHON) scripts/build_modernization_p05.py --check

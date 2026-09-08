@@ -12,6 +12,7 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
             "modernization-p01",
             "modernization-p02",
             "modernization-contracts",
+            "modernization-p04-assets",
             "full-unit", "all",
         ):
             with self.subTest(suite=suite):
@@ -49,6 +50,18 @@ class GitHubPrivateSuiteTests(unittest.TestCase):
             ],
             plan,
         )
+        self.assertNotIn(["make", "test"], plan)
+
+    def test_modernization_p04_assets_are_rebuilt_from_pinned_source(self) -> None:
+        plan = command_plan("modernization-p04-assets", python="python3")
+        fetch = ["python3", "scripts/build_modernization_p04_sources.py", "--fetch", "--compact"]
+        write = ["python3", "scripts/build_modernization_p04_assets.py", "--write", "--compact"]
+        diff = ["git", "diff", "--exit-code", "--", "content/modernization/p04_asset_import_manifest.json"]
+        check = ["python3", "scripts/build_modernization_p04_assets.py", "--check", "--compact"]
+        self.assertLess(plan.index(fetch), plan.index(write))
+        self.assertLess(plan.index(write), plan.index(diff))
+        self.assertLess(plan.index(diff), plan.index(check))
+        self.assertIn(["make", "modernization-p04-assets-focused-test"], plan)
         self.assertNotIn(["make", "test"], plan)
 
     def test_all_does_not_repeat_focused_battle_unit(self) -> None:
