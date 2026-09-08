@@ -1,0 +1,38 @@
+name: p01-target-validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  current-target-consumer:
+    if: >-
+      github.event.pull_request.number == 14 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/user-modernization-p01-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 現行IDの実consumerと対象集合を検証
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/guard_private_files.py
+          python3 -m unittest -v tests.test_modernization_ids tests.test_modernization_targets
+          python3 scripts/build_modernization_catalog.py build
+          python3 scripts/build_modernization_catalog.py check
+          python3 scripts/build_modernization_targets.py build
+          python3 scripts/build_modernization_targets.py check
+          git diff --exit-code
+      - name: 検証範囲を記録
+        env:
+          TESTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          printf '検証HEAD: %s\n' "$TESTED_HEAD" >> "$GITHUB_STEP_SUMMARY"
+          printf '現行対象consumer・対象集合: PASS\nROM検証: 未実施\n' >> "$GITHUB_STEP_SUMMARY"
