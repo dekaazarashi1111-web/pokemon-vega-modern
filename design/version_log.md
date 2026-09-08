@@ -1585,3 +1585,14 @@
   - Stage69で既存Species ID 1029のえいえんのはなフラエッテLv.50を、手持ち→PCの順で配布する取得経路を追加した。
   - P08をselected Stage69へ更新したが、49 Mega本体runtimeとP02〜P08の未完了・active Stage62を維持した。
 - Verify: Stage68 exact mGBA PASS、Stage69 party/PC exact partial PASS／全満・rollback／fresh reload host PASS・exact pending、Stage68/69 focused 24件、P08 focused 16件、P08 builder check、task graph、private guard、`git diff --check` PASS。
+
+## 2026-09-08T17:15:05+09:00
+
+- Version: `modernization-stage70-species-runtime-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70` / Mega 49形態とAbility固定表のROM実装
+- Summary:
+  - Species ID 1621〜1669の49 Mega形態と画像素材を28固定表へ実装し、既存Species 0〜1620をbyte一致で保持した。
+  - evolution表を1,670行へ拡張し39 consumerを再接続。新49行はStage71所有とするゼロ初期化境界を固定した。
+  - Ability固定4表を318行へ拡張し、派生ポインターとcount consumerを修正。Browt／Pombon／Gecquaは非採用を維持した。
+- Verify: focused unittest 11/11、Stage70 builder `--check`、BPS roundtrip、全28 root shifted-literal audit、task graph、private guard、`git diff --check` PASS。ROM SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`。mGBAは後続累積候補へ集約し未実行。

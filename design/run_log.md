@@ -4100,3 +4100,28 @@
   - 親統合でStage68/69 focused計24件とP08 focused 16件、`python3 scripts/build_modernization_p08.py --check`、task graph、private guard、`git diff --check`をPASS。重い全repository検査と同一mGBAの再実行はしていない。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。既に固定済みのprivate-use素材とlocalのStage67候補だけを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:15:05+09:00
+
+- Task: `USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70` / Mega 49形態とAbility固定表のROM実装
+- Status: DONE（Stage70単独checkpoint。Stage71/72とP04全受入は未完了）
+- Summary:
+  - Mega用49形態をSpecies ID 1621〜1669へ安定順に実装し、front／back／palette／shiny／iconを含む28固定表を`0x09463170..0x09532BE0`へ再配置した。既存Species 0〜1620の行とFloette Eternal ID 1029はbyte一致を保持した。
+  - evolution表を`0x094FE8E0`の1,670×128 bytesへ拡張し39 consumerを再接続。新49行はStage71専有のzero rowとした。Species count/maxの実行literalは19箇所を明示allowlist化し、1620/1621から1669/1670へ更新した。
+  - Ability固定4表を312→318行へ広げ、ID 312〜317の差し替え可能な名称と仮説明を追加。Codex rewardのdescription `root >> 2` 3コピーとAbility count 3コピーを明示修正し、全28 rootのshifted-literal参照に未許可実行候補がないことを監査した。
+  - Browt／Pombon／Gecquaは予約集合から除外を維持。base+石のMega順逆行と戦闘変化はStage71、Ability効果はStage72の未完了境界とした。
+- Files changed:
+  - `config/modernization_p04_species_runtime.json`
+  - `overlays/modernization_p04_species_runtime/README.md`
+  - `tools/modernization_p04_species_runtime.py`、`scripts/build_modernization_p04_species_runtime.py`
+  - `tests/test_modernization_p04_species_runtime.py`
+  - `content/modernization/p04_species_runtime_contract.json`、`content/modernization/p04_species_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_species_runtime`: 11/11 PASS。
+  - `python3 scripts/build_modernization_p04_species_runtime.py --check`: PASS。49形態、Ability 318行、evolution 39 consumer、BPS roundtrip、宣言span外0を再照合した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - ROMは33,554,432 bytes、SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`、CRC32 `301238C1`。metadata SHA-256 `b2b58dda953398206002ccdc450853aacdf5975ff9cfb923db8fa99f13f840dc`、allocation SHA-256 `3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8`。
+  - 重いmGBAはStage71/72累積候補で代表経路を1回にまとめるため未実行。Stage70はrelease readyと過大表示しない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みexternal sourceとGit管理外private-use素材のみを再利用し、push／Release追加／iPad配置は行っていない。

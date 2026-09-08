@@ -354,3 +354,11 @@
 - 配布: Stage69でmap `96/5` local 15のNPCを追加し、Mega Ring 580所持時にLv.50個体を手持ち→PCの順で1save1回配布する。フォーム固有取得はflag `0x14CD`、National 670のseen/caughtは既存collection ledger bit 850を正とする。旧FireRed 52-byte図鑑bitmapの範囲外へ書かない。
 - 保存: 個体配置→flag／collection反映→通常save→sector 31の順で確定し、失敗時は配置先・取得状態・台帳を補償する。party/PC配布はexact ROM、全満／rollback／fresh reloadはhostまでを現checkpointの保証範囲とする。
 - 影響: Stage69、P04取得経路、P08統合。Mega Floette Eternalの戦闘中変化は後続Stageとする。
+
+## 2026-09-08 — D-034: Mega 49形態の固定表と戦闘意味をStage70/71/72に分離する
+
+- Stage70所有: Species ID 1621〜1669の49形態、画像素材、Species固定24表、Ability固定4表、Species上限、Ability行上限と派生ポインターの再接続までを担当する。既存Species 0〜1620の行はbyte一致で保持する。
+- Stage71所有: 既存Mega engine ABIを変えず、49形態のbase species＋Mega Stone順方向行と戦闘終了用逆方向行をevolution表へ追加する。Mega Ring 580、1戦闘1回、誤石拒否、解除は固定CFRU-JPの既存処理を正とする。
+- Stage72所有: Ability ID 312〜317の実効果、発動／不発／抑制／複数対象／AI・UI意味。Stage70の「こうかは じゅんびちゅう。」とrating 0はOOBを防ぐための仮行で、stable keyとIDを保って差し替える。
+- 安全境界: `TeamBuilder.abilityOnTeam[312]`は新Abilityをfacility生成poolへ入れない間は非到達とし、将来入れる場合は構造体ABIを再ビルドする。Browt／Pombon／GecquaはStage70でも追加しない。
+- 影響: Stage70〜72、P04種族・Mega runtime、P05 Ability runtime、P08統合。
