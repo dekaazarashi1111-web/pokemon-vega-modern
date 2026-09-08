@@ -181,6 +181,17 @@
           "size": 33554432
         },
         "stage": 76
+      },
+      {
+        "parent_stage": 76,
+        "role": "P05_BATTLE_CIRCUS_GLOBAL_SUPPRESSION_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "F1CE0EAC",
+          "path": "build/stages/77_modernization_p05_circus_suppression.gba",
+          "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+          "size": 33554432
+        },
+        "stage": 77
       }
     ],
     "latest_incremental_bps": [
@@ -225,24 +236,30 @@
         "source": "build/stages/75_modernization_rockruff_own_tempo.gba",
         "status": "PASS_EXACT_APPLY",
         "target": "build/stages/76_modernization_p05_edges.gba"
+      },
+      {
+        "patch": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+        "source": "build/stages/76_modernization_p05_edges.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/77_modernization_p05_circus_suppression.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 76,
-      "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
+      "candidate_stage": 77,
+      "checkpoint_commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-      "parent_stage": 75,
+      "last_committed_checkpoint": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+      "parent_stage": 76,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 76,
+    "selected_checkpoint_stage": 77,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -446,33 +463,59 @@
       "release_ready": false,
       "rom_diff_allowlist_interval_count": 5,
       "side_change_materialized": 0
+    },
+    "stage77_integrated": true,
+    "stage77_scope": {
+      "ability_suppression_mask": "0x80000000",
+      "ability_surface_occurrence_count": 33,
+      "allocation_count": 81,
+      "allocation_parent_count": 80,
+      "allocation_sequence": 80,
+      "battle_circus_global_fixed": true,
+      "battle_type_mask": "0x04000000",
+      "browt_pombon_gecqua_materialized": 0,
+      "changed_bytes_inside_allowlist": 1307,
+      "changed_bytes_outside_allowlist": 0,
+      "eelevate_unsafe_switch_hooks_installed": 0,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+      "ordinary_suppression_changed": false,
+      "parent_first80_rows_all_fields_preserved": true,
+      "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+      "release_ready": false,
+      "rom_diff_allowlist_interval_count": 30,
+      "side_change_materialized": 0,
+      "stage76_pointer_and_three_hooks_preserved": true,
+      "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+      "unique_hook_count": 29
     }
   },
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 72,
-        "sha256": "efb7437c3ed04843b2e85376c78ba693b698ad5978c71a08c3914ce0d6589722"
+        "count": 79,
+        "sha256": "058a9b38f096ab6b6d1f73f4a071de4e26cdb0ae8f844c8ce9c145c7db2bc553"
       },
       "implementation_inputs": {
-        "count": 154,
-        "sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e"
+        "count": 159,
+        "sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "090b30693a3fbbce291309effef761b9dfb84dc0f9a3746078e462af6984a08d"
+        "sha256": "64acefd8dbb7d109874004a1fbc4bb4d345bff2255d94e7996fce488893133bb"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 74,
-        "sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902"
+        "count": 77,
+        "sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba"
       }
     },
-    "sha256": "84ebd946288510346f13f3b261b5f61228b139a98ac24360a25589dd87c4feff"
+    "sha256": "96efba3650cd0903a4bf4967f2755f5749b7cddbd5115715fe28ab328d371158"
   },
   "phase_runtime": [
     {
@@ -728,7 +771,7 @@
     },
     {
       "blockers": [
-        "ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN",
+        "ABILITY_AND_STAGE77_FINAL_CUMULATIVE_MGBA_NOT_RUN",
         "EELEVATE_DEDICATED_SWITCH_AI_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -780,13 +823,21 @@
           ],
           "gate": "STAGE76_SAFE_AI_UI_EDGES",
           "status": "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_stage77_suppression_contract.json",
+            "content/modernization/p05_stage77_suppression_checkpoint.json"
+          ],
+          "gate": "STAGE77_BATTLE_CIRCUS_SUPPRESSION",
+          "status": "PASS_HOST_STATIC_29_HOOKS_33_SURFACES_NORMAL_PATH_PRESERVED"
         }
       ],
       "rom_reflection": {
         "ancestor_stage": 72,
         "reflected": true,
-        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
-        "stage": 76
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES_PLUS_BATTLE_CIRCUS_GLOBAL_SUPPRESSION",
+        "stage": 77
       }
     },
     {

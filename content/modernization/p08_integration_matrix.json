@@ -389,6 +389,42 @@
       "path": "generated/runtime/modernization_p05_stage76_edges_audit.json",
       "sha256": "c15e42cd1fc405bf3bb007c0959fcb989f6f896e8b2bb54744cbea85b469facc",
       "size": 10537
+    },
+    {
+      "crc32": "F1CE0EAC",
+      "path": "build/stages/77_modernization_p05_circus_suppression.gba",
+      "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+      "size": 33554432
+    },
+    {
+      "path": "build/stages/77_modernization_p05_circus_suppression.json",
+      "sha256": "773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff",
+      "size": 5933
+    },
+    {
+      "path": "build/stages/77_modernization_p05_circus_suppression_allocation.json",
+      "sha256": "20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d",
+      "size": 46425
+    },
+    {
+      "path": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+      "sha256": "50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7",
+      "size": 1489
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage77_suppression.bin",
+      "sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+      "size": 1220
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage77_suppression_symbols.json",
+      "sha256": "9b939a791e054e7c114065fba42be9b945fcc4e1f05e643e00dd7b34312370fa",
+      "size": 2010
+    },
+    {
+      "path": "generated/runtime/modernization_p05_stage77_suppression_audit.json",
+      "sha256": "49707fa81ce04df11fcf51d5e3b49a103daaf22b0fffe324bcbc343ff4d3cb4d",
+      "size": 29184
     }
   ],
   "candidate_chain": {
@@ -558,6 +594,17 @@
           "size": 33554432
         },
         "stage": 76
+      },
+      {
+        "parent_stage": 76,
+        "role": "P05_BATTLE_CIRCUS_GLOBAL_SUPPRESSION_CHECKPOINT_NOT_DONE",
+        "rom": {
+          "crc32": "F1CE0EAC",
+          "path": "build/stages/77_modernization_p05_circus_suppression.gba",
+          "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+          "size": 33554432
+        },
+        "stage": 77
       }
     ],
     "latest_incremental_bps": [
@@ -602,24 +649,30 @@
         "source": "build/stages/75_modernization_rockruff_own_tempo.gba",
         "status": "PASS_EXACT_APPLY",
         "target": "build/stages/76_modernization_p05_edges.gba"
+      },
+      {
+        "patch": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+        "source": "build/stages/76_modernization_p05_edges.gba",
+        "status": "PASS_EXACT_APPLY",
+        "target": "build/stages/77_modernization_p05_circus_suppression.gba"
       }
     ],
     "parent_chain_verified": true,
     "registry": {
       "active_parent_stage": 62,
-      "candidate_stage": 76,
-      "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
+      "candidate_stage": 77,
+      "checkpoint_commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+      "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
       "completed_through": "USER-MODERNIZATION-P01",
-      "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-      "parent_stage": 75,
+      "last_committed_checkpoint": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+      "parent_stage": 76,
       "path": "config/modernization_candidate.json",
       "release_ready": false,
       "schema_version": 2,
-      "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+      "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
     },
     "release_candidate": false,
-    "selected_checkpoint_stage": 76,
+    "selected_checkpoint_stage": 77,
     "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
     "stage65_integrated": true,
     "stage65_scope": {
@@ -823,6 +876,32 @@
       "release_ready": false,
       "rom_diff_allowlist_interval_count": 5,
       "side_change_materialized": 0
+    },
+    "stage77_integrated": true,
+    "stage77_scope": {
+      "ability_suppression_mask": "0x80000000",
+      "ability_surface_occurrence_count": 33,
+      "allocation_count": 81,
+      "allocation_parent_count": 80,
+      "allocation_sequence": 80,
+      "battle_circus_global_fixed": true,
+      "battle_type_mask": "0x04000000",
+      "browt_pombon_gecqua_materialized": 0,
+      "changed_bytes_inside_allowlist": 1307,
+      "changed_bytes_outside_allowlist": 0,
+      "eelevate_unsafe_switch_hooks_installed": 0,
+      "exact_mgba": false,
+      "full_p05_done": false,
+      "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+      "ordinary_suppression_changed": false,
+      "parent_first80_rows_all_fields_preserved": true,
+      "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+      "release_ready": false,
+      "rom_diff_allowlist_interval_count": 30,
+      "side_change_materialized": 0,
+      "stage76_pointer_and_three_hooks_preserved": true,
+      "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+      "unique_hook_count": 29
     }
   },
   "integration_summary": {
@@ -832,7 +911,7 @@
     "completed_phases": [
       "P01"
     ],
-    "highest_pinned_candidate_stage": 76,
+    "highest_pinned_candidate_stage": 77,
     "phase_count": 8,
     "release_ready": false,
     "runtime_reflected_phase_count": 5
@@ -1317,10 +1396,19 @@
         "stage76_allocation_sequence": 79,
         "stage76_allowlist_outside": 0,
         "stage76_changed_bytes": 2081,
+        "stage77_ability_surface_occurrence_count": 33,
+        "stage77_allocation_count": 81,
+        "stage77_allocation_sequence": 80,
+        "stage77_allowlist_outside": 0,
+        "stage77_battle_circus_suppression": true,
+        "stage77_changed_bytes": 1307,
+        "stage77_ordinary_suppression_changed": false,
+        "stage77_stage76_hooks_preserved": true,
+        "stage77_unique_hook_count": 29,
         "temporary_ability_assignments": 14
       },
       "blockers": [
-        "ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN",
+        "ABILITY_AND_STAGE77_FINAL_CUMULATIVE_MGBA_NOT_RUN",
         "EELEVATE_DEDICATED_SWITCH_AI_PENDING"
       ],
       "completion_state": "CHECKPOINT_NOT_DONE",
@@ -1328,13 +1416,14 @@
         "CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS",
         "HOST_RUNTIME_VERIFIED",
         "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED",
-        "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_MGBA_PENDING"
+        "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED",
+        "STAGE77_BATTLE_CIRCUS_29_HOOK_33_SURFACE_SUPPRESSION_CONNECTED_EELEVATE_MGBA_PENDING"
       ],
       "not_adopted": [
         "SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION",
         "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION",
         "EELEVATE_UNSAFE_SWITCH_AI",
-        "EXACT_MGBA"
+        "FINAL_CUMULATIVE_MGBA"
       ],
       "phase": "P05",
       "required_gates": [
@@ -1384,13 +1473,21 @@
           ],
           "gate": "STAGE76_SAFE_AI_UI_EDGES",
           "status": "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING"
+        },
+        {
+          "evidence": [
+            "content/modernization/p05_stage77_suppression_contract.json",
+            "content/modernization/p05_stage77_suppression_checkpoint.json"
+          ],
+          "gate": "STAGE77_BATTLE_CIRCUS_SUPPRESSION",
+          "status": "PASS_HOST_STATIC_29_HOOKS_33_SURFACES_NORMAL_PATH_PRESERVED"
         }
       ],
       "rom_reflection": {
         "ancestor_stage": 72,
         "reflected": true,
-        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
-        "stage": 76
+        "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES_PLUS_BATTLE_CIRCUS_GLOBAL_SUPPRESSION",
+        "stage": 77
       }
     },
     {
@@ -1752,10 +1849,10 @@
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
     "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
-    "P05_STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_REMAIN",
+    "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE76_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE77_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "runtime_execution": {
@@ -1767,8 +1864,8 @@
   "schema_version": 1,
   "snapshot": {
     "auto_discovery": false,
-    "implementation_input_count": 154,
-    "implementation_input_fingerprint_sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e",
+    "implementation_input_count": 159,
+    "implementation_input_fingerprint_sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792",
     "implementation_inputs": [
       {
         "path": "config/modernization_p01_runtime.json",
@@ -2557,6 +2654,36 @@
         "size": 2649
       },
       {
+        "path": "scripts/build_modernization_p05_stage77_suppression.sh",
+        "phase": "P05",
+        "sha256": "f1222750491d4de9c796f0ff7cfcf868dc2ffb09c93d878d4edd8c7711f07e11",
+        "size": 276
+      },
+      {
+        "path": "tools/modernization_p05_stage77_suppression.py",
+        "phase": "P05",
+        "sha256": "570d28a62f5d5f7d7f6add8bae51d56969771fe53a184d158b0ffdc272528918",
+        "size": 56088
+      },
+      {
+        "path": "tests/test_modernization_p05_stage77_suppression.py",
+        "phase": "P05",
+        "sha256": "a5cbfebb0e97c5ca7cb515690ea451f38e87229618838f30f241c01e43751db5",
+        "size": 15197
+      },
+      {
+        "path": "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.S",
+        "phase": "P05",
+        "sha256": "725a876b24385aab13994a89d5701de8e9e77a63358d03ab8ae1e7de8f5152e0",
+        "size": 4840
+      },
+      {
+        "path": "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.ld",
+        "phase": "P05",
+        "sha256": "edfa3812388f498f7244e2b143f3d00937b475e638af183d16b3f8936532c149",
+        "size": 347
+      },
+      {
         "path": "scripts/run_modernization_p02_stage71_acceptance.py",
         "phase": "P02",
         "sha256": "33dc497617785713b2d979060b8156f4be0be64abaf8afde5166aa95881484ac",
@@ -2625,14 +2752,14 @@
       {
         "path": "tools/modernization_p08_integration.py",
         "phase": "P08",
-        "sha256": "4567ba27141f6b560a3e059de95265103018ef5edaecd5c5c0a930f53082a218",
-        "size": 292887
+        "sha256": "bfa87aaf0771f0ee7b0215adee35a2f1c843a82ad1a9e0986b3ce5941affffc2",
+        "size": 318295
       },
       {
         "path": "tests/test_modernization_p08.py",
         "phase": "P08",
-        "sha256": "3012ecadb17413aad51668bad0a243a683655aaa305c858d85c33014ba404999",
-        "size": 71146
+        "sha256": "32a8563ea4d751b6b024ee67b05319ab5f4e46c7b573cd89e1705e95d63c1706",
+        "size": 81087
       },
       {
         "path": "tests/test_run_github_private_suite.py",
@@ -2699,27 +2826,27 @@
       "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
       "components": {
         "candidate_artifacts": {
-          "count": 72,
-          "sha256": "efb7437c3ed04843b2e85376c78ba693b698ad5978c71a08c3914ce0d6589722"
+          "count": 79,
+          "sha256": "058a9b38f096ab6b6d1f73f4a071de4e26cdb0ae8f844c8ce9c145c7db2bc553"
         },
         "implementation_inputs": {
-          "count": 154,
-          "sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e"
+          "count": 159,
+          "sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792"
         },
         "phase_projection": {
           "count": 8,
-          "sha256": "090b30693a3fbbce291309effef761b9dfb84dc0f9a3746078e462af6984a08d"
+          "sha256": "64acefd8dbb7d109874004a1fbc4bb4d345bff2255d94e7996fce488893133bb"
         },
         "referenced_source_bindings": {
           "count": 30,
           "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
         },
         "tracked_inputs": {
-          "count": 74,
-          "sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902"
+          "count": 77,
+          "sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba"
         }
       },
-      "sha256": "84ebd946288510346f13f3b261b5f61228b139a98ac24360a25589dd87c4feff"
+      "sha256": "96efba3650cd0903a4bf4967f2755f5749b7cddbd5115715fe28ab328d371158"
     },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {
@@ -2979,12 +3106,26 @@
         ],
         "included": true,
         "status": "INTEGRATED_THREE_EDGES_EELEVATE_MGBA_PENDING_NOT_P05_DONE"
+      },
+      "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION": {
+        "expected_paths": [
+          "config/modernization_p05_stage77_suppression.json",
+          "content/modernization/p05_stage77_suppression_contract.json",
+          "content/modernization/p05_stage77_suppression_checkpoint.json",
+          "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.S",
+          "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.ld",
+          "scripts/build_modernization_p05_stage77_suppression.sh",
+          "tests/test_modernization_p05_stage77_suppression.py",
+          "tools/modernization_p05_stage77_suppression.py"
+        ],
+        "included": true,
+        "status": "INTEGRATED_29_HOOK_33_SURFACE_SUPPRESSION_EELEVATE_MGBA_PENDING_NOT_P05_DONE"
       }
     },
     "rule": "後発成果は存在だけで採用せず、固定path listと生成済みsnapshot hashを明示更新して再監査する",
-    "selection_base_head": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-    "tracked_input_count": 74,
-    "tracked_input_fingerprint_sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902",
+    "selection_base_head": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+    "tracked_input_count": 77,
+    "tracked_input_fingerprint_sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba",
     "tracked_inputs": [
       {
         "path": "config/active_play_baseline.json",
@@ -3007,8 +3148,8 @@
       {
         "path": "config/modernization_candidate.json",
         "phase": "CANDIDATE_CHAIN",
-        "sha256": "1f0b6fd470291d20ec05c7771e9399c4bf840ac1d2c1e2ffc3bd970ddc3aacfa",
-        "size": 22897
+        "sha256": "a7ec3f1ed18a0e058e37a6a50195437c2b411a3f4a9622afb94fe4028436505a",
+        "size": 25208
       },
       {
         "path": "content/modernization/identity_contract.json",
@@ -3429,6 +3570,24 @@
         "phase": "P05",
         "sha256": "f2951cd2a1cb770d5d325e8f1f596f6251f855e19b2e92d7c05b4f5ce205aa23",
         "size": 7018
+      },
+      {
+        "path": "config/modernization_p05_stage77_suppression.json",
+        "phase": "P05",
+        "sha256": "c2f2612191ab35b8c9ca12ef8a3ac683d47d5ff3b4f42aa29f882d3693aebd12",
+        "size": 25769
+      },
+      {
+        "path": "content/modernization/p05_stage77_suppression_contract.json",
+        "phase": "P05",
+        "sha256": "68ae45c8253fa907d594f3a4b5668bd750e91166b3747d153a2420a9e37bb3de",
+        "size": 5053
+      },
+      {
+        "path": "content/modernization/p05_stage77_suppression_checkpoint.json",
+        "phase": "P05",
+        "sha256": "aa169bcefca033474bca131f3f5322ab6ec37000c2ed945c970f12f3505e55fa",
+        "size": 12579
       }
     ]
   },
@@ -3609,6 +3768,13 @@
       "requirement_key": "P05_STAGE76_SAFE_AI_UI_EDGES",
       "status": "THREE_EDGES_CONNECTED_EELEVATE_AND_MGBA_PENDING",
       "test_evidence": "tests/test_modernization_p05_stage76_edges.py"
+    },
+    {
+      "implementation_evidence": "29 Stage72 hooks / 33 ability surfaces with Battle Circus global suppression",
+      "phase": "P05",
+      "requirement_key": "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION",
+      "status": "SUPPRESSION_CONNECTED_NORMAL_PATH_PRESERVED_EELEVATE_AND_MGBA_PENDING",
+      "test_evidence": "tests/test_modernization_p05_stage77_suppression.py"
     },
     {
       "implementation_evidence": "empty adopted delta + review projection",

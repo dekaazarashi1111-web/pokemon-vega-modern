@@ -1730,3 +1730,14 @@
   - r3／stack ABI、通常のGastro Acid／Neutralizing Gas／Mold Breaker、Stage76の3 edge、Eelevate保留siteを保持した。
   - Side Changeと追加対象外3種は0、P05／release未完了、active Stage62を維持した。
 - Verify: focused unittest 12/12、Stage77 builder `--check`、BPS roundtrip、29 hook／ABI、allocation lineage、allowlist外0、独立read-only監査High／Medium／Lowなし PASS。ROM SHA-256 `245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`。mGBAは最終累積候補へ集約し未実行。
+
+## 2026-09-09T05:05:09+09:00
+
+- Version: `modernization-p08-stage77-integration-checkpoint`
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Task: `USER-MODERNIZATION-P08-STAGE77-INTEGRATION` / P08累積候補のStage77再固定
+- Summary:
+  - P08をStage77へ再固定し、Battle Circus全特性無効の29 hook／33 surfaceを候補chainへ統合した。
+  - Stage76→77 BPS、allocation 81行／sequence 80、通常経路・Stage76 patch保持を改ざんguardへ追加した。
+  - Browt／Pombon／GecquaとSide Changeは0、active Stage62、P01のみDONE、release-ready=falseを維持した。
+- Verify: focused unittest 17/17、P08 builder `--check`（INPUTS=77、CANDIDATE=77）、Stage67→77 exact chain、`git diff --check` PASS。重いmGBAは未実行。

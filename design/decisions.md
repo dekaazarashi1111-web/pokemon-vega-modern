@@ -536,3 +536,15 @@
   Stage76のpointer 1＋hook 3、Eelevate保留2 site、通常抑制意味を保持する。focused test、builder check、
   独立監査はPASSしたが、mGBAとEelevate専用switch AIが残るためP05／release完了は主張しない。
 - 影響: Stage77、P05、Battle Circus、最終累積mGBA。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-09 — D-046: P08の選択候補をStage77へ再固定する
+
+- 選択: P08の累積候補をStage77 `245133a4…84973f`へ更新し、Stage76の3 edgeとStage77の
+  Battle Circus全特性無効dispatcherを同じ候補chainへ統合する。
+- 継承監査: Stage76→77 incremental BPSを追加し、Stage77 ROM／metadata／allocation、29 hook、
+  33 Ability surface、allocation sequence 80、親80行の完全保持をfail closedで固定する。
+- 完了境界: 通常経路とGastro Acid／Neutralizing Gas／Mold Breakerを変えず、Browt／Pombon／
+  GecquaとSide Changeの採用0を維持する。Eelevate専用switch AIと最終累積mGBAはblockerのまま、
+  P01だけをDONE、P02〜P08未完了、release-ready=false、active baseline Stage62とする。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff。
+  iPad、save、Release、現行プレイ基準は変更しない。

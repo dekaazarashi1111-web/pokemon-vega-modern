@@ -1,6 +1,6 @@
 {
   "active_stage": 62,
-  "candidate_stage": 76,
+  "candidate_stage": 77,
   "completed_phases": [
     "P01"
   ],
@@ -8,27 +8,27 @@
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
       "candidate_artifacts": {
-        "count": 72,
-        "sha256": "efb7437c3ed04843b2e85376c78ba693b698ad5978c71a08c3914ce0d6589722"
+        "count": 79,
+        "sha256": "058a9b38f096ab6b6d1f73f4a071de4e26cdb0ae8f844c8ce9c145c7db2bc553"
       },
       "implementation_inputs": {
-        "count": 154,
-        "sha256": "7e26b496227d7dbeed1fca0cf2e3d7a76bef6a53539630aa2d9b5ec3949d0e4e"
+        "count": 159,
+        "sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792"
       },
       "phase_projection": {
         "count": 8,
-        "sha256": "090b30693a3fbbce291309effef761b9dfb84dc0f9a3746078e462af6984a08d"
+        "sha256": "64acefd8dbb7d109874004a1fbc4bb4d345bff2255d94e7996fce488893133bb"
       },
       "referenced_source_bindings": {
         "count": 30,
         "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
       },
       "tracked_inputs": {
-        "count": 74,
-        "sha256": "7fdf3d4521e43d31fee73c3e7564a4827ae0c53829c8f9bf4698ee3b6bf20902"
+        "count": 77,
+        "sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba"
       }
     },
-    "sha256": "84ebd946288510346f13f3b261b5f61228b139a98ac24360a25589dd87c4feff"
+    "sha256": "96efba3650cd0903a4bf4967f2755f5749b7cddbd5115715fe28ab328d371158"
   },
   "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
   "not_completed_phases": [
@@ -43,16 +43,16 @@
   "promotion": {
     "active_play_baseline_changed": false,
     "authorized": false,
-    "reason": "P02～P07のruntime acceptance未完了。Stage76はStage75のOwn Tempo Rockruff内部フォームと38 carry経路解決、Mega Sol popup・Piercing Drill AI・Spicy Spray AIの3安全edgeまで統合したが、P02 exact UI、暫定archive economy、最終累積mGBA、Floette full/fresh reload、Eelevate専用switch AIが残るためrelease candidateではない"
+    "reason": "P02～P07のruntime acceptance未完了。Stage77はStage75のOwn Tempo Rockruff内部フォームと38 carry経路、Stage76のMega Sol popup・Piercing Drill AI・Spicy Spray AI、Stage77のBattle Circus全29 hook・33 ability surface抑制を統合し通常経路を保持したが、P02 exact UI、暫定archive economy、最終累積mGBA、Floette full/fresh reload、Eelevate専用switch AIが残るためrelease candidateではない"
   },
   "release_blockers": [
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
     "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
-    "P05_STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_REMAIN",
+    "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE76_IS_NOT_ACTIVE_STAGE62"
+    "CANDIDATE_STAGE77_IS_NOT_ACTIVE_STAGE62"
   ],
   "release_ready": false,
   "schema_version": 1,

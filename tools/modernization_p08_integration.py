@@ -22,8 +22,9 @@ from tools.release.bps import apply_bps
 SCHEMA_VERSION = 1
 TASK = "USER-MODERNIZATION-P08"
 STATUS = "CHECKPOINT_NOT_RELEASE_CANDIDATE"
-SNAPSHOT_BASE_HEAD = "cbf98eddf712ee677eef011e6fc106a67e536c08"
+SNAPSHOT_BASE_HEAD = "137c6945c6bf5c633944ddd5287dffca9c5692c0"
 STAGE75_IMPLEMENTATION_COMMIT = "595909446b6ad67749c9894b23fdc536f82c638e"
+STAGE76_IMPLEMENTATION_COMMIT = "cbf98eddf712ee677eef011e6fc106a67e536c08"
 
 LATEST_INCREMENTAL_BPS_PATHS: tuple[tuple[str, str, str], ...] = (
     (
@@ -60,6 +61,11 @@ LATEST_INCREMENTAL_BPS_PATHS: tuple[tuple[str, str, str], ...] = (
         "build/stages/75_modernization_rockruff_own_tempo.gba",
         "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
         "build/stages/76_modernization_p05_edges.gba",
+    ),
+    (
+        "build/stages/76_modernization_p05_edges.gba",
+        "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+        "build/stages/77_modernization_p05_circus_suppression.gba",
     ),
 )
 
@@ -113,10 +119,16 @@ CANDIDATE_PATCH_CHAIN_PATHS: tuple[tuple[str, str, str, str], ...] = (
         "build/stages/75_modernization_rockruff_own_tempo.gba",
     ),
     (
-        "from_parent",
+        "stage75_to_stage76",
         "build/stages/75_modernization_rockruff_own_tempo.gba",
         "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
         "build/stages/76_modernization_p05_edges.gba",
+    ),
+    (
+        "from_parent",
+        "build/stages/76_modernization_p05_edges.gba",
+        "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+        "build/stages/77_modernization_p05_circus_suppression.gba",
     ),
 )
 
@@ -124,10 +136,10 @@ RELEASE_BLOCKERS: tuple[str, ...] = (
     "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
     "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
     "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
-    "P05_STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_REMAIN",
+    "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_REMAIN",
     "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
     "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
-    "CANDIDATE_STAGE76_IS_NOT_ACTIVE_STAGE62",
+    "CANDIDATE_STAGE77_IS_NOT_ACTIVE_STAGE62",
 )
 
 # 完成済みとして引き渡されたtracked pathだけを固定する。globによる自動追加禁止。
@@ -142,7 +154,7 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
         5266, "b872a9793f6c29944d6c86d603aab8fbdf78df9c2f0ccf4595b6d308d23825f4", "P01"
     ),
     "config/modernization_candidate.json": (
-        22897, "1f0b6fd470291d20ec05c7771e9399c4bf840ac1d2c1e2ffc3bd970ddc3aacfa", "CANDIDATE_CHAIN"
+        25208, "a7ec3f1ed18a0e058e37a6a50195437c2b411a3f4a9622afb94fe4028436505a", "CANDIDATE_CHAIN"
     ),
     "content/modernization/identity_contract.json": (
         1461322, "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443", "P01"
@@ -353,6 +365,15 @@ PINNED_TRACKED_INPUTS: Mapping[str, tuple[int, str, str]] = {
     ),
     "content/modernization/p05_stage76_edges_checkpoint.json": (
         7018, "f2951cd2a1cb770d5d325e8f1f596f6251f855e19b2e92d7c05b4f5ce205aa23", "P05"
+    ),
+    "config/modernization_p05_stage77_suppression.json": (
+        25769, "c2f2612191ab35b8c9ca12ef8a3ac683d47d5ff3b4f42aa29f882d3693aebd12", "P05"
+    ),
+    "content/modernization/p05_stage77_suppression_contract.json": (
+        5053, "68ae45c8253fa907d594f3a4b5668bd750e91166b3747d153a2420a9e37bb3de", "P05"
+    ),
+    "content/modernization/p05_stage77_suppression_checkpoint.json": (
+        12579, "aa169bcefca033474bca131f3f5322ab6ec37000c2ed945c970f12f3505e55fa", "P05"
     ),
 }
 
@@ -572,6 +593,27 @@ CANDIDATE_ARTIFACTS: Mapping[str, tuple[int, str, str | None]] = {
     ),
     "generated/runtime/modernization_p05_stage76_edges_audit.json": (
         10537, "c15e42cd1fc405bf3bb007c0959fcb989f6f896e8b2bb54744cbea85b469facc", None
+    ),
+    "build/stages/77_modernization_p05_circus_suppression.gba": (
+        33554432, "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f", "F1CE0EAC"
+    ),
+    "build/stages/77_modernization_p05_circus_suppression.json": (
+        5933, "773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff", None
+    ),
+    "build/stages/77_modernization_p05_circus_suppression_allocation.json": (
+        46425, "20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d", None
+    ),
+    "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps": (
+        1489, "50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7", None
+    ),
+    "generated/runtime/modernization_p05_stage77_suppression.bin": (
+        1220, "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672", None
+    ),
+    "generated/runtime/modernization_p05_stage77_suppression_symbols.json": (
+        2010, "9b939a791e054e7c114065fba42be9b945fcc4e1f05e643e00dd7b34312370fa", None
+    ),
+    "generated/runtime/modernization_p05_stage77_suppression_audit.json": (
+        29184, "49707fa81ce04df11fcf51d5e3b49a103daaf22b0fffe324bcbc343ff4d3cb4d", None
     ),
 }
 
@@ -833,6 +875,20 @@ PARALLEL_OUTPUTS = {
             "tools/modernization_p05_stage76_edges.py",
         ],
     },
+    "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION": {
+        "status": "INTEGRATED_29_HOOK_33_SURFACE_SUPPRESSION_EELEVATE_MGBA_PENDING_NOT_P05_DONE",
+        "included": True,
+        "expected_paths": [
+            "config/modernization_p05_stage77_suppression.json",
+            "content/modernization/p05_stage77_suppression_contract.json",
+            "content/modernization/p05_stage77_suppression_checkpoint.json",
+            "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.S",
+            "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.ld",
+            "scripts/build_modernization_p05_stage77_suppression.sh",
+            "tests/test_modernization_p05_stage77_suppression.py",
+            "tools/modernization_p05_stage77_suppression.py",
+        ],
+    },
 }
 
 # 生成済みJSONだけでなく、それを作る実装とfocused testもsnapshotへ含める。
@@ -970,6 +1026,11 @@ PINNED_IMPLEMENTATION_PATHS: Mapping[str, str] = {
     "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h": "P05",
     "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld": "P05",
     "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S": "P05",
+    "scripts/build_modernization_p05_stage77_suppression.sh": "P05",
+    "tools/modernization_p05_stage77_suppression.py": "P05",
+    "tests/test_modernization_p05_stage77_suppression.py": "P05",
+    "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.S": "P05",
+    "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.ld": "P05",
     "scripts/run_modernization_p02_stage71_acceptance.py": "P02",
     "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": "P02",
     "tests/test_modernization_p02_stage71_acceptance.py": "P02",
@@ -1212,6 +1273,7 @@ def _candidate_inheritance(
         {"stage": 74, "role": "P03_DIRECT_SUPPLY_RUNTIME_CHECKPOINT_NOT_DONE", "parent_stage": 73, "rom": rom("build/stages/74_modernization_p03_supply_runtime.gba")},
         {"stage": 75, "role": "P03_OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CHECKPOINT_NOT_DONE", "parent_stage": 74, "rom": rom("build/stages/75_modernization_rockruff_own_tempo.gba")},
         {"stage": 76, "role": "P05_THREE_SAFE_AI_UI_EDGES_CHECKPOINT_NOT_DONE", "parent_stage": 75, "rom": rom("build/stages/76_modernization_p05_edges.gba")},
+        {"stage": 77, "role": "P05_BATTLE_CIRCUS_GLOBAL_SUPPRESSION_CHECKPOINT_NOT_DONE", "parent_stage": 76, "rom": rom("build/stages/77_modernization_p05_circus_suppression.gba")},
     ]
 
 
@@ -1233,8 +1295,10 @@ def _candidate_patch_declarations() -> dict[str, dict[str, Any]]:
             row["source_classification"] = "STAGE73_EXACT_ROM"
         elif key == "stage74_to_stage75":
             row["source_classification"] = "STAGE74_EXACT_ROM"
-        elif key == "from_parent":
+        elif key == "stage75_to_stage76":
             row["source_classification"] = "STAGE75_EXACT_ROM"
+        elif key == "from_parent":
+            row["source_classification"] = "STAGE76_EXACT_ROM"
         declarations[key] = row
     return declarations
 
@@ -1274,6 +1338,7 @@ def _validate_candidate_chain(
     s74 = by_path["build/stages/74_modernization_p03_supply_runtime.gba"]
     s75 = by_path["build/stages/75_modernization_rockruff_own_tempo.gba"]
     s76 = by_path["build/stages/76_modernization_p05_edges.gba"]
+    s77 = by_path["build/stages/77_modernization_p05_circus_suppression.gba"]
     m63 = metadata["build/stages/63_modernization_p01_identity_repair.json"]
     m64 = metadata["build/stages/64_modernization_p02_rayquaza_parameter_repair.json"]
     m65 = metadata["build/stages/65_modernization_p03_caterpie_slice.json"]
@@ -1298,6 +1363,10 @@ def _validate_candidate_chain(
     a75 = metadata["build/stages/75_modernization_rockruff_own_tempo_allocation.json"]
     m76 = metadata["build/stages/76_modernization_p05_edges.json"]
     a76 = metadata["build/stages/76_modernization_p05_edges_allocation.json"]
+    m77 = metadata["build/stages/77_modernization_p05_circus_suppression.json"]
+    a77 = metadata[
+        "build/stages/77_modernization_p05_circus_suppression_allocation.json"
+    ]
     _require(m63.get("task") == "USER-MODERNIZATION-P01" and m63.get("status") == "PASS", "Stage63 metadata identity不正")
     _require(m63.get("stage") == 63 and m63.get("scope", {}).get("active_play_baseline_changed") is False, "Stage63 scope不正")
     _require(m63.get("input", {}).get("parent", {}).get("sha256") == s62["sha256"], "Stage63親がStage62ではありません")
@@ -1783,6 +1852,57 @@ def _validate_candidate_chain(
         and m76.get("bps", {}).get("round_trip") is True,
         "Stage76 checks/BPS/Eelevate/除外/mGBA境界不正",
     )
+    suppression77 = m77.get("suppression", {})
+    checks77 = m77.get("checks", {})
+    _require(
+        m77.get("task") == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION"
+        and m77.get("stage") == 77
+        and m77.get("status")
+        == "BATTLE_CIRCUS_GLOBAL_SUPPRESSION_MATERIALIZED_MGBA_AND_EELEVATE_SWITCH_PENDING"
+        and m77.get("done") is False
+        and m77.get("full_p05_done") is False
+        and m77.get("release_ready") is False
+        and m77.get("parent", {}).get("commit") == STAGE76_IMPLEMENTATION_COMMIT
+        and m77.get("parent", {}).get("stage") == 76
+        and m77.get("parent", {}).get("path") == s76["path"]
+        and m77.get("parent", {}).get("sha256") == s76["sha256"]
+        and m77.get("output", {}).get("path") == s77["path"]
+        and m77.get("output", {}).get("sha256") == s77["sha256"]
+        and str(m77.get("output", {}).get("crc32", "")).upper() == s77["crc32"]
+        and suppression77 == {
+            "ability_surface_occurrence_count": 33,
+            "battle_circus_global_fixed": True,
+            "hook_count": 29,
+            "ordinary_suppression_changed": False,
+        }
+        and m77.get("allocation_sequence") == 80
+        and m77.get("bps", {}).get("path")
+        == "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps"
+        and m77.get("bps", {}).get("sha256")
+        == by_path[
+            "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps"
+        ]["sha256"]
+        and m77.get("bps", {}).get("source_sha256") == s76["sha256"]
+        and m77.get("bps", {}).get("target_sha256") == s77["sha256"]
+        and m77.get("bps", {}).get("round_trip") is True,
+        "Stage77 Circus suppression metadata/親/output/BPS/未完了境界不正",
+    )
+    _require(
+        checks77.get("parent_stage76_commit_and_six_identities") == "PASS"
+        and checks77.get("stage72_unique_hooks_repointed") == 29
+        and checks77.get("stage72_ability_surface_occurrences_guarded") == 33
+        and checks77.get("battle_circus_global_suppression_delegates_original") == "PASS"
+        and checks77.get("normal_path_delegates_stage72_wrapper") == "PASS"
+        and checks77.get("ordinary_gastro_neutralizing_gas_mold_breaker_semantics_unchanged") == "PASS"
+        and checks77.get("stage76_pointer_and_three_hooks_preserved") == "PASS"
+        and checks77.get("rom_diff_outside_payload_plus_29_hooks") == 0
+        and checks77.get("eelevate_unsafe_switch_hooks_installed") == 0
+        and checks77.get("side_change_added") == 0
+        and checks77.get("browt_pombon_gecqua_added") == 0
+        and checks77.get("active_play_baseline_unchanged") == "PASS"
+        and checks77.get("mgba_runtime") == "NOT_RUN",
+        "Stage77 29 hook/33 surface/Circus/通常経路保持/除外/mGBA境界不正",
+    )
     accounting73 = m73.get("consumer_accounting", {})
     accounting74 = m74.get("accounting", {})
     direct74 = m74.get("direct_supply", {})
@@ -1794,12 +1914,14 @@ def _validate_candidate_chain(
     allocation_rows74 = {row.get("sequence"): row for row in a74.get("allocations", [])}
     allocation_rows75 = {row.get("sequence"): row for row in a75.get("allocations", [])}
     allocation_rows76 = {row.get("sequence"): row for row in a76.get("allocations", [])}
+    allocation_rows77 = {row.get("sequence"): row for row in a77.get("allocations", [])}
     stage73_rom = _regular_bytes(root, str(s73["path"]))
     stage74_rom = _regular_bytes(root, str(s74["path"]))
     stage74_sequence33_slice_sha256 = _sha256(stage74_rom[19726128:19729096])
     stage74_sequence77_slice_sha256 = _sha256(stage74_rom[22256768:22327340])
     stage75_rom = _regular_bytes(root, str(s75["path"]))
     stage76_rom = _regular_bytes(root, str(s76["path"]))
+    stage77_rom = _regular_bytes(root, str(s77["path"]))
 
     def allocation_layout_projection(row: Mapping[str, Any]) -> dict[str, Any]:
         return {
@@ -2024,7 +2146,8 @@ def _validate_candidate_chain(
     _require(
         set(allocation_rows75) == set(range(79))
         and set(allocation_rows76) == set(range(80))
-        and a74.get("regions") == a75.get("regions") == a76.get("regions")
+        and set(allocation_rows77) == set(range(81))
+        and a74.get("regions") == a75.get("regions") == a76.get("regions") == a77.get("regions")
         and all(
             allocation_layout_projection(allocation_rows74[sequence])
             == allocation_layout_projection(allocation_rows75[sequence])
@@ -2115,20 +2238,59 @@ def _validate_candidate_chain(
         and sum(left != right for left, right in zip(stage75_rom, stage76_rom)) == 2081,
         "Stage76 allocation first79完全保持/new sequence79/ROM差分境界不正",
     )
+    _require(
+        all(allocation_rows76[sequence] == allocation_rows77[sequence] for sequence in range(80))
+        and _sha256(stable_json(a76.get("allocations", [])))
+        == "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594"
+        and _sha256(stable_json(a77.get("allocations", [])[:80]))
+        == "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594"
+        and allocation_rows77[80] == {
+            "alignment": 16,
+            "content_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+            "end_exclusive": 22895924,
+            "gba_end_exclusive": 157113652,
+            "gba_start": 157112432,
+            "name": "modernization_p05_stage77_circus_suppression_payload",
+            "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+            "placement": "FIRST_FIT",
+            "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks",
+            "region": "integration_modules",
+            "sequence": 80,
+            "size": 1220,
+            "start": 22894704,
+        }
+        and _sha256(stage77_rom[22894704:22895924])
+        == allocation_rows77[80]["content_sha256"]
+        and a77.get("summaries", {}).get("allocation_count") == 81
+        and a77.get("summaries", {}).get("overlap_count") == 0
+        and a77.get("summaries", {}).get("remaining_allocatable_bytes") == 220437
+        and m77.get("allocation_lineage") == {
+            "first80_all_fields_equal": True,
+            "new_count": 81,
+            "new_first80_sha256": "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594",
+            "new_sequence": 80,
+            "parent_count": 80,
+            "parent_first80_sha256": "f7cb757186024897cea03e71b02d8e25afc27829d407dc319f3e5a678fa87594",
+            "parent_last_sequence": 79,
+            "payload_slice_sha256": "933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672",
+        }
+        and sum(left != right for left, right in zip(stage76_rom, stage77_rom)) == 1307,
+        "Stage77 allocation first80完全保持/new sequence80/ROM差分境界不正",
+    )
     latest_bps_audit = [
         _verify_incremental_bps(root, source, patch, target)
         for source, patch, target in LATEST_INCREMENTAL_BPS_PATHS
     ]
     # 累積candidate registryでは「最後に完了した工程」と「最後のcheckpoint」を
-    # 別フィールドとして扱う。Stage76まで接続してもP02～P07をDONEへ昇格させない。
+    # 別フィールドとして扱う。Stage77まで接続してもP02～P07をDONEへ昇格させない。
     source = registry.get("source", {})
     _require(
         registry.get("schema_version") == 2
         and registry.get("status")
-        == "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+        == "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and registry.get("completed_through") == "USER-MODERNIZATION-P01"
         and registry.get("checkpointed_through")
-        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT"
         and source.get("stage68_checkpoint_commit")
         == "2a7197f6134509749da780aec61bf0db29147a0e"
         and source.get("stage69_checkpoint_commit")
@@ -2144,7 +2306,8 @@ def _validate_candidate_chain(
         and source.get("stage74_checkpoint_commit")
         == "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7"
         and source.get("stage75_checkpoint_commit") == STAGE75_IMPLEMENTATION_COMMIT
-        and source.get("stage76_checkpoint_commit") == SNAPSHOT_BASE_HEAD
+        and source.get("stage76_checkpoint_commit") == STAGE76_IMPLEMENTATION_COMMIT
+        and source.get("stage77_checkpoint_commit") == SNAPSHOT_BASE_HEAD
         and source.get("stage73_preflight_commit")
         == "c2bb0afb26085a6815d5bd10a2d5b29db80f966d"
         and source.get("p02_stage71_acceptance_commit")
@@ -2152,28 +2315,28 @@ def _validate_candidate_chain(
         and source.get("uncommitted_checkpoint_identity") is None
         and registry.get("release_ready") is False
         and registry.get("active_play_baseline_changed") is False,
-        "candidate v2 Stage76 registryの完了/checkpoint/release境界不正",
+        "candidate v2 Stage77 registryの完了/checkpoint/release境界不正",
     )
     _require(
         registry.get("active_parent", {}).get("stage") == 62
         and registry.get("active_parent", {}).get("sha256") == s62["sha256"]
-        and registry.get("parent", {}).get("stage") == 75
-        and registry.get("parent", {}).get("sha256") == s75["sha256"]
+        and registry.get("parent", {}).get("stage") == 76
+        and registry.get("parent", {}).get("sha256") == s76["sha256"]
         and registry.get("parent", {}).get("metadata", {}).get("sha256")
-        == by_path["build/stages/75_modernization_rockruff_own_tempo.json"]["sha256"]
-        and registry.get("parent", {}).get("allocation", {}).get("sha256")
-        == by_path["build/stages/75_modernization_rockruff_own_tempo_allocation.json"]["sha256"]
-        and registry.get("candidate", {}).get("stage") == 76
-        and registry.get("candidate", {}).get("sha256") == s76["sha256"]
-        and registry.get("candidate", {}).get("metadata", {}).get("sha256")
         == by_path["build/stages/76_modernization_p05_edges.json"]["sha256"]
-        and registry.get("candidate", {}).get("allocation", {}).get("sha256")
+        and registry.get("parent", {}).get("allocation", {}).get("sha256")
         == by_path["build/stages/76_modernization_p05_edges_allocation.json"]["sha256"]
+        and registry.get("candidate", {}).get("stage") == 77
+        and registry.get("candidate", {}).get("sha256") == s77["sha256"]
+        and registry.get("candidate", {}).get("metadata", {}).get("sha256")
+        == by_path["build/stages/77_modernization_p05_circus_suppression.json"]["sha256"]
+        and registry.get("candidate", {}).get("allocation", {}).get("sha256")
+        == by_path["build/stages/77_modernization_p05_circus_suppression_allocation.json"]["sha256"]
         and registry.get("p02_overlay_parent", {}).get("sha256")
         == "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb"
         and registry.get("p02_overlay_parent", {}).get("changed_bytes_from_stage66")
         == 60,
-        "candidate v2 Stage75 parent/Stage76 candidate identity不正",
+        "candidate v2 Stage76 parent/Stage77 candidate identity不正",
     )
     adopted = registry.get("adopted_delta", {})
     p03_73 = adopted.get("p03_stage73_consumer_checkpoint", {})
@@ -2182,6 +2345,7 @@ def _validate_candidate_chain(
     p04_scope = adopted.get("p04_adoption_scope", {})
     p05_72 = adopted.get("p05_stage72_ability_runtime", {})
     p05_76 = adopted.get("p05_stage76_edges_checkpoint", {})
+    p05_77 = adopted.get("p05_stage77_suppression_checkpoint", {})
     p02_71 = adopted.get("p02_stage71_acceptance", {})
     _require(
         p03_73.get("new_runtime_materialized_routes") == 5363
@@ -2268,6 +2432,7 @@ def _validate_candidate_chain(
         adopted.get("changed_bytes_by_stage", {}).get("p03_stage74_from_stage73") == 70480
         and adopted.get("changed_bytes_by_stage", {}).get("p03_stage75_from_stage74") == 540757
         and adopted.get("changed_bytes_by_stage", {}).get("p05_stage76_from_stage75") == 2081
+        and adopted.get("changed_bytes_by_stage", {}).get("p05_stage77_from_stage76") == 1307
         and checkpoints.get("p03")
         == "STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_PROVISIONAL_ECONOMY_FINAL_MGBA_PENDING_NOT_P03_DONE"
         and checkpoints.get("p03_stage73_consumer")
@@ -2280,7 +2445,7 @@ def _validate_candidate_chain(
         == "DIRECT_SUPPLY_AND_OWN_TEMPO_ROCKRUFF_0744_01_CONNECTED_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN"
         and deferred.get("p03_machine_tutor_supply")
         == "RESOLVED_STAGE74_26648_DIRECT_ROUTES_CONNECTED",
-        "candidate v2 Stage75/76 checkpoint/deferred解決・残件境界不正",
+        "candidate v2 Stage75～77 checkpoint/deferred解決・残件境界不正",
     )
     _require(
         p04_scope.get("mega_species_and_forms") == 49
@@ -2323,36 +2488,62 @@ def _validate_candidate_chain(
             "full_p05_done": False,
             "release_ready": False,
         }
+        and p05_77 == {
+            "unique_hook_count": 29,
+            "ability_surface_occurrence_count": 33,
+            "battle_circus_global_fixed": True,
+            "battle_type_mask": "0x04000000",
+            "ability_suppression_mask": "0x80000000",
+            "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+            "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+            "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+            "ordinary_suppression_changed": False,
+            "allocation_parent_count": 80,
+            "allocation_count": 81,
+            "allocation_sequence": 80,
+            "parent_first80_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 30,
+            "changed_bytes_inside_allowlist": 1307,
+            "changed_bytes_outside_allowlist": 0,
+            "stage76_pointer_and_three_hooks_preserved": True,
+            "eelevate_unsafe_switch_hooks_installed": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+        }
         and checkpoints.get("p05")
-        == "STAGE76_THREE_EDGES_CONNECTED_EELEVATE_AND_FINAL_MGBA_REMAIN"
+        == "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_EELEVATE_AND_FINAL_CUMULATIVE_MGBA_REMAIN"
         and checkpoints.get("p05_stage76_edges")
         == "THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_AND_FINAL_MGBA_PENDING_NOT_P05_DONE"
+        and checkpoints.get("p05_stage77_suppression")
+        == "BATTLE_CIRCUS_29_HOOK_33_SURFACE_SUPPRESSION_CONNECTED_EELEVATE_AND_FINAL_CUMULATIVE_MGBA_PENDING_NOT_P05_DONE"
         and deferred.get("p05_new_abilities")
-        == "6_ROM_LINKED_AND_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_SWITCH_AI_AND_FINAL_MGBA_PENDING"
+        == "6_ROM_LINKED_THREE_SAFE_AI_UI_EDGES_AND_BATTLE_CIRCUS_GLOBAL_SUPPRESSION_CONNECTED_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_PENDING"
         and p02_71 == {
             "status": "STOPPED_EXACT_UI_PENDING",
             "production_runtime": "UNJUDGED",
             "exact_ui_acceptance": False,
             "additional_mgba_deferred": True,
         },
-        "candidate v2 P02 Stage71/P05 Stage72/76境界不正",
+        "candidate v2 P02 Stage71/P05 Stage72/76/77境界不正",
     )
     return {
         "active_stage": 62,
-        "selected_checkpoint_stage": 76,
+        "selected_checkpoint_stage": 77,
         "selection": "HIGHEST_EXPLICITLY_PINNED_CANDIDATE_NOT_ACTIVE_BASELINE",
         "registry": {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+            "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
+            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
             "checkpoint_commit": SNAPSHOT_BASE_HEAD,
             "last_committed_checkpoint": SNAPSHOT_BASE_HEAD,
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 75,
-            "candidate_stage": 76,
+            "parent_stage": 76,
+            "candidate_stage": 77,
         },
         "inheritance": _candidate_inheritance(by_path),
         "parent_chain_verified": True,
@@ -2525,6 +2716,32 @@ def _validate_candidate_chain(
             "changed_bytes_inside_allowlist": 2081,
             "changed_bytes_outside_allowlist": 0,
             "eelevate_unsafe_hooks_installed": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+            "exact_mgba": False,
+        },
+        "stage77_integrated": True,
+        "stage77_scope": {
+            "unique_hook_count": 29,
+            "ability_surface_occurrence_count": 33,
+            "battle_circus_global_fixed": True,
+            "battle_type_mask": "0x04000000",
+            "ability_suppression_mask": "0x80000000",
+            "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+            "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+            "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+            "ordinary_suppression_changed": False,
+            "allocation_parent_count": 80,
+            "allocation_count": 81,
+            "allocation_sequence": 80,
+            "parent_first80_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 30,
+            "changed_bytes_inside_allowlist": 1307,
+            "changed_bytes_outside_allowlist": 0,
+            "stage76_pointer_and_three_hooks_preserved": True,
+            "eelevate_unsafe_switch_hooks_installed": 0,
             "side_change_materialized": 0,
             "browt_pombon_gecqua_materialized": 0,
             "full_p05_done": False,
@@ -2780,6 +2997,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     p05_stage76 = documents[
         "content/modernization/p05_stage76_edges_checkpoint.json"
     ]
+    p05_stage77_config = documents["config/modernization_p05_stage77_suppression.json"]
+    p05_stage77_contract = documents[
+        "content/modernization/p05_stage77_suppression_contract.json"
+    ]
+    p05_stage77 = documents[
+        "content/modernization/p05_stage77_suppression_checkpoint.json"
+    ]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
     p07_runtime = documents["content/modernization/p07_runtime_handoff.json"]
@@ -2802,13 +3026,13 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
     _require(
         p01_candidate.get("schema_version") == 2
         and p01_candidate.get("status")
-        == "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE"
+        == "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE"
         and p01_candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and p01_candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT"
         and p01_candidate.get("release_ready") is False
         and p01_candidate.get("active_play_baseline_changed") is False,
-        "candidate v2のP01完了/Stage76 checkpoint/release境界不正",
+        "candidate v2のP01完了/Stage77 checkpoint/release境界不正",
     )
     _require(
         p01_candidate.get("active_parent", {}).get("stage") == 62
@@ -2819,32 +3043,36 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         "candidate v2 active_parentがStage62 exact identityではありません",
     )
     _require(
-        p01_candidate.get("parent", {}).get("stage") == 75
+        p01_candidate.get("parent", {}).get("stage") == 76
         and p01_candidate.get("parent", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]
-        and p01_candidate.get("parent", {}).get("metadata", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.json"][1]
-        and p01_candidate.get("parent", {}).get("allocation", {}).get("sha256")
-        == CANDIDATE_ARTIFACTS[
-            "build/stages/75_modernization_rockruff_own_tempo_allocation.json"
-        ][1],
-        "candidate v2 parentがStage75 exact identityではありません",
-    )
-    _require(
-        p01_candidate.get("candidate", {}).get("stage") == 76
-        and p01_candidate.get("candidate", {}).get("sha256")
         == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
-        and p01_candidate.get("candidate", {}).get("metadata", {}).get("sha256")
+        and p01_candidate.get("parent", {}).get("metadata", {}).get("sha256")
         == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.json"][1]
-        and p01_candidate.get("candidate", {}).get("allocation", {}).get("sha256")
+        and p01_candidate.get("parent", {}).get("allocation", {}).get("sha256")
         == CANDIDATE_ARTIFACTS[
             "build/stages/76_modernization_p05_edges_allocation.json"
         ][1],
-        "candidate v2 candidateがStage76 exact identityではありません",
+        "candidate v2 parentがStage76 exact identityではありません",
+    )
+    _require(
+        p01_candidate.get("candidate", {}).get("stage") == 77
+        and p01_candidate.get("candidate", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/stages/77_modernization_p05_circus_suppression.gba"
+        ][1]
+        and p01_candidate.get("candidate", {}).get("metadata", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/stages/77_modernization_p05_circus_suppression.json"
+        ][1]
+        and p01_candidate.get("candidate", {}).get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/stages/77_modernization_p05_circus_suppression_allocation.json"
+        ][1],
+        "candidate v2 candidateがStage77 exact identityではありません",
     )
     _require(
         p01_candidate.get("patches") == _candidate_patch_declarations(),
-        "candidate v2 Stage67～76 BPS path/size/source/target/hash/round-trip不正",
+        "candidate v2 Stage67～77 BPS path/size/source/target/hash/round-trip不正",
     )
     expected_stage_chain = [
         (63, "USER-MODERNIZATION-P01", "COMPLETED", 10,
@@ -2875,9 +3103,11 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
          CANDIDATE_ARTIFACTS["build/stages/75_modernization_rockruff_own_tempo.gba"][1]),
         (76, "USER-MODERNIZATION-P05-STAGE76-EDGES", "P05_THREE_EDGES_CHECKPOINT_NOT_P05_DONE", 2081,
          CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]),
+        (77, "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION", "P05_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_P05_DONE", 1307,
+         CANDIDATE_ARTIFACTS["build/stages/77_modernization_p05_circus_suppression.gba"][1]),
     ]
     stage_chain = p01_candidate.get("stage_chain")
-    _require(isinstance(stage_chain, list) and len(stage_chain) == 14, "candidate v2 stage_chain件数不正")
+    _require(isinstance(stage_chain, list) and len(stage_chain) == 15, "candidate v2 stage_chain件数不正")
     for row, (stage, task, state, changed, digest) in zip(stage_chain, expected_stage_chain):
         _require(
             row.get("stage") == stage and row.get("task") == task
@@ -2886,12 +3116,14 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
             f"candidate v2 stage_chain不正: Stage{stage}",
         )
     _require(
-        stage_chain[-3].get("exact_runtime_gate")
+        stage_chain[-4].get("exact_runtime_gate")
         == "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"
-        and stage_chain[-2].get("exact_runtime_gate") == "STATIC_ONLY_FINAL_MGBA_PENDING"
+        and stage_chain[-3].get("exact_runtime_gate") == "STATIC_ONLY_FINAL_MGBA_PENDING"
+        and stage_chain[-2].get("exact_runtime_gate")
+        == "HOST_STATIC_EELEVATE_AND_MGBA_PENDING"
         and stage_chain[-1].get("exact_runtime_gate")
-        == "HOST_STATIC_EELEVATE_AND_MGBA_PENDING",
-        "candidate v2 Stage74～76 exact runtime gate境界不正",
+        == "HOST_STATIC_EELEVATE_AND_CUMULATIVE_MGBA_PENDING",
+        "candidate v2 Stage74～77 exact runtime gate境界不正",
     )
     _require(
         p02_checkpoint.get("input", {}).get("p02_static_contract", {}).get("sha256")
@@ -3865,6 +4097,152 @@ def _validate_contract_chain(documents: Mapping[str, Mapping[str, Any]]) -> None
         and p05_stage76.get("artifact_manifest", {}).get("all_paths_sizes_sha256_present") is True,
         "P05 Stage76 checkpoint 3/1 edge・allowlist・9成果境界不正",
     )
+    expected_suppression77 = {
+        "ordinary_suppression": {
+            "gastro_acid": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_SUPPRESSED_ABILITIES_AND_RAW_SET_NONE",
+            "neutralizing_gas": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_NEUTRALIZING_GAS_BLOCKED_AND_RAW_SET_NONE",
+            "mold_breaker": "ALREADY_SAFE_ONLY_EELEVATE_FLAGGED_AND_IGNORED_ACTIVE_ABILITY_MOVED_TO_DISABLED_MOLD_BREAKER_AND_RAW_SET_NONE",
+            "stage77_behavior": "NO_CHANGE",
+        },
+        "battle_circus_global": {
+            "status": "IMPLEMENT",
+            "battle_type_flags_address": "0x02022AAC",
+            "battle_type_mask": "0x04000000",
+            "circus_flags_address": "0x0203DFBC",
+            "ability_suppression_mask": "0x80000000",
+            "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+            "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+            "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+            "unique_hook_count": 29,
+            "ability_surface_occurrence_count": 33,
+            "ability_hook_counts": {
+                "Dragonize": 5,
+                "Eelevate": 12,
+                "Fire Mane": 1,
+                "Mega Sol": 11,
+                "Piercing Drill": 3,
+                "Spicy Spray": 1,
+            },
+        },
+        "exclusions": {
+            "eelevate_dedicated_switch_ai": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+            "mgba_runtime": "DEFERRED_TO_SINGLE_CUMULATIVE_P05_SMOKE",
+            "browt_pombon_gecqua_added": 0,
+            "side_change_added": 0,
+            "active_play_baseline_changed": False,
+            "release_ready": False,
+            "full_p05_done": False,
+            "done": False,
+        },
+    }
+    parent77 = p05_stage77_config.get("parent_identity", {})
+    _require(
+        p05_stage77_config.get("task")
+        == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION"
+        and p05_stage77_config.get("stage") == 77
+        and p05_stage77_config.get("status") == "STAGE76_IDENTITY_PINNED"
+        and parent77.get("stage76_commit") == STAGE76_IMPLEMENTATION_COMMIT
+        and parent77.get("policy")
+        == "FAIL_CLOSED_EXACT_STAGE76_COMMIT_AND_SIX_IDENTITIES"
+        and parent77.get("rom", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
+        and parent77.get("metadata", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.json"][1]
+        and parent77.get("allocation", {}).get("sha256")
+        == CANDIDATE_ARTIFACTS[
+            "build/stages/76_modernization_p05_edges_allocation.json"
+        ][1]
+        and parent77.get("checkpoint", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS[
+            "content/modernization/p05_stage76_edges_checkpoint.json"
+        ][1]
+        and parent77.get("tracked_config", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS["config/modernization_p05_stage76_edges.json"][1]
+        and parent77.get("contract", {}).get("sha256")
+        == PINNED_TRACKED_INPUTS[
+            "content/modernization/p05_stage76_edges_contract.json"
+        ][1]
+        and p05_stage77_config.get("suppression_contract")
+        == expected_suppression77,
+        "P05 Stage77 config Stage76 commit/6 identity/Circus suppression境界不正",
+    )
+    for label, document, status in (
+        (
+            "contract",
+            p05_stage77_contract,
+            "BATTLE_CIRCUS_SUPPRESSION_CONNECTED_NOT_P05_DONE",
+        ),
+        (
+            "checkpoint",
+            p05_stage77,
+            "BATTLE_CIRCUS_GLOBAL_SUPPRESSION_MATERIALIZED_MGBA_AND_EELEVATE_SWITCH_PENDING",
+        ),
+    ):
+        checks = document.get("checks", {})
+        lineage = document.get("allocation_lineage", {})
+        _require(
+            document.get("task")
+            == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION"
+            and document.get("stage") == 77
+            and document.get("status") == status
+            and document.get("done") is False
+            and document.get("full_p05_done") is False
+            and document.get("release_ready") is False
+            and document.get("suppression_contract") == expected_suppression77
+            and document.get("parent", {}).get("commit")
+            == STAGE76_IMPLEMENTATION_COMMIT
+            and document.get("parent", {}).get("sha256")
+            == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
+            and document.get("output", {}).get("sha256")
+            == CANDIDATE_ARTIFACTS[
+                "build/stages/77_modernization_p05_circus_suppression.gba"
+            ][1]
+            and str(document.get("output", {}).get("crc32", "")).upper()
+            == "F1CE0EAC"
+            and document.get("bps", {}).get("sha256")
+            == CANDIDATE_ARTIFACTS[
+                "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps"
+            ][1]
+            and document.get("bps", {}).get("source_sha256")
+            == CANDIDATE_ARTIFACTS["build/stages/76_modernization_p05_edges.gba"][1]
+            and document.get("bps", {}).get("target_sha256")
+            == CANDIDATE_ARTIFACTS[
+                "build/stages/77_modernization_p05_circus_suppression.gba"
+            ][1]
+            and document.get("bps", {}).get("round_trip") is True
+            and lineage.get("first80_all_fields_equal") is True
+            and lineage.get("parent_count") == 80
+            and lineage.get("new_count") == 81
+            and lineage.get("new_sequence") == 80
+            and checks.get("stage72_unique_hooks_repointed") == 29
+            and checks.get("stage72_ability_surface_occurrences_guarded") == 33
+            and checks.get("normal_path_delegates_stage72_wrapper") == "PASS"
+            and checks.get("battle_circus_global_suppression_delegates_original")
+            == "PASS"
+            and checks.get("ordinary_gastro_neutralizing_gas_mold_breaker_semantics_unchanged")
+            == "PASS"
+            and checks.get("stage76_pointer_and_three_hooks_preserved") == "PASS"
+            and checks.get("rom_diff_outside_payload_plus_29_hooks") == 0
+            and checks.get("eelevate_unsafe_switch_hooks_installed") == 0
+            and checks.get("side_change_added") == 0
+            and checks.get("browt_pombon_gecqua_added") == 0
+            and checks.get("mgba_runtime") == "NOT_RUN",
+            f"P05 Stage77 {label} identity/allocation/BPS/Circus/通常経路/除外/未完了境界不正",
+        )
+    _require(
+        p05_stage77.get("allocation_sequence") == 80
+        and p05_stage77.get("rom_diff", {}).get("allowlist_interval_count") == 30
+        and p05_stage77.get("rom_diff", {}).get("changed_bytes_inside_allowlist")
+        == 1307
+        and p05_stage77.get("rom_diff", {}).get("changed_bytes_outside_allowlist")
+        == 0
+        and p05_stage77.get("artifact_manifest", {}).get("artifact_count") == 9
+        and p05_stage77.get("artifact_manifest", {}).get(
+            "all_paths_sizes_sha256_present"
+        )
+        is True,
+        "P05 Stage77 checkpoint allocation/allowlist/9成果境界不正",
+    )
     _require(
         p04_stage70_config.get("status") == "STAGE70_ROM_MATERIALIZED"
         and p04_stage70_config.get("inputs", {}).get("rom", {}).get("sha256")
@@ -4126,6 +4504,9 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     p05_stage76 = documents[
         "content/modernization/p05_stage76_edges_checkpoint.json"
     ]
+    p05_stage77 = documents[
+        "content/modernization/p05_stage77_suppression_checkpoint.json"
+    ]
     p06 = documents["content/modernization/p06_species_adjustment_contract.json"]
     p06_projection = documents["content/modernization/p06_review_projection.json"]
     p07 = documents["content/modernization/p07_layered_learnset_contract.json"]
@@ -4136,10 +4517,10 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
     _require(
         candidate.get("completed_through") == "USER-MODERNIZATION-P01"
         and candidate.get("checkpointed_through")
-        == "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT"
+        == "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT"
         and candidate.get("release_ready") is False
         and candidate.get("active_play_baseline_changed") is False,
-        "P01 completion evidenceとStage76 checkpoint境界不正",
+        "P01 completion evidenceとStage77 checkpoint境界不正",
     )
 
     _require(p02.get("status") == "PASS" and p02.get("release_gate") == "BLOCKED_BY_REQUIRED_FIXES_AND_DEFERRED_RUNTIME_ACCEPTANCE", "P02 static/blocked境界不正")
@@ -4441,6 +4822,39 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
         and p05_stage76.get("checks", {}).get("browt_pombon_gecqua_added") == 0,
         "P05 Stage76 3実装/Eelevate・mGBA pending/未完了境界不正",
     )
+    circus77 = p05_stage77.get("suppression_contract", {}).get(
+        "battle_circus_global", {}
+    )
+    _require(
+        p05_stage77.get("status")
+        == "BATTLE_CIRCUS_GLOBAL_SUPPRESSION_MATERIALIZED_MGBA_AND_EELEVATE_SWITCH_PENDING"
+        and p05_stage77.get("stage") == 77
+        and p05_stage77.get("done") is False
+        and p05_stage77.get("full_p05_done") is False
+        and p05_stage77.get("release_ready") is False
+        and circus77.get("status") == "IMPLEMENT"
+        and circus77.get("unique_hook_count") == 29
+        and circus77.get("ability_surface_occurrence_count") == 33
+        and circus77.get("predicate")
+        == "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0"
+        and circus77.get("normal_path") == "TAIL_DELEGATE_STAGE72_WRAPPER"
+        and circus77.get("suppressed_path")
+        == "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE"
+        and p05_stage77.get("checks", {}).get(
+            "ordinary_gastro_neutralizing_gas_mold_breaker_semantics_unchanged"
+        )
+        == "PASS"
+        and p05_stage77.get("checks", {}).get(
+            "stage76_pointer_and_three_hooks_preserved"
+        )
+        == "PASS"
+        and p05_stage77.get("checks", {}).get("eelevate_unsafe_switch_hooks_installed")
+        == 0
+        and p05_stage77.get("checks", {}).get("side_change_added") == 0
+        and p05_stage77.get("checks", {}).get("browt_pombon_gecqua_added") == 0
+        and p05_stage77.get("checks", {}).get("mgba_runtime") == "NOT_RUN",
+        "P05 Stage77 Circus 29 hook/33 surface/通常経路保持/Eelevate・mGBA pending境界不正",
+    )
 
     adoption06 = p06.get("adoption", {})
     _require(p06.get("status") == "CHECKPOINT_ADOPTED_DELTA_EMPTY", "P06 checkpoint境界不正")
@@ -4628,10 +5042,10 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
             "blockers": ["FINAL_CUMULATIVE_MEGA_RUNTIME_MGBA_NOT_RUN", "FLOETTE_EXACT_FULL_PARTY_PC_AND_FRESH_RELOAD_GATE_PENDING"],
         },
         {
-            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED", "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED", "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_MGBA_PENDING"],
-            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "new_move_requirements": 0, "non_adopted_move_candidates": 1, "side_change_1063_adopted": False, "temporary_ability_assignments": 14, "existing_official_assignments": 29, "new_abilities": 6, "non_adopted_p04_records": 3, "ability_host_runtime_cases": 46, "ability_host_runtime_processes": 2, "ability_ids": [312, 313, 314, 315, 316, 317], "ability_rom_runtime_count": 6, "ability_rom_hook_count": 29, "ability_rom_linked": True, "ability_runtime_exact_mgba": False, "documented_ai_ui_edges_implemented": 3, "documented_ai_ui_edges_pending": 1, "stage76_allocation_sequence": 79, "stage76_allocation_count": 80, "stage76_changed_bytes": 2081, "stage76_allowlist_outside": 0},
-            "not_adopted": ["SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION", "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION", "EELEVATE_UNSAFE_SWITCH_AI", "EXACT_MGBA"],
-            "rom_reflection": {"reflected": True, "stage": 76, "ancestor_stage": 72, "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES"},
+            "phase": "P05", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CONTRACT_READY_RUNTIME_IMPLEMENTATION_REMAINS", "HOST_RUNTIME_VERIFIED", "STAGE72_ABILITY_ROM_RUNTIME_CONNECTED", "STAGE76_THREE_SAFE_AI_UI_EDGES_CONNECTED", "STAGE77_BATTLE_CIRCUS_29_HOOK_33_SURFACE_SUPPRESSION_CONNECTED_EELEVATE_MGBA_PENDING"],
+            "adoption": {"performance_adjustments": 0, "data_only_patches": 0, "new_move_requirements": 0, "non_adopted_move_candidates": 1, "side_change_1063_adopted": False, "temporary_ability_assignments": 14, "existing_official_assignments": 29, "new_abilities": 6, "non_adopted_p04_records": 3, "ability_host_runtime_cases": 46, "ability_host_runtime_processes": 2, "ability_ids": [312, 313, 314, 315, 316, 317], "ability_rom_runtime_count": 6, "ability_rom_hook_count": 29, "ability_rom_linked": True, "ability_runtime_exact_mgba": False, "documented_ai_ui_edges_implemented": 3, "documented_ai_ui_edges_pending": 1, "stage76_allocation_sequence": 79, "stage76_allocation_count": 80, "stage76_changed_bytes": 2081, "stage76_allowlist_outside": 0, "stage77_battle_circus_suppression": True, "stage77_unique_hook_count": 29, "stage77_ability_surface_occurrence_count": 33, "stage77_ordinary_suppression_changed": False, "stage77_allocation_sequence": 80, "stage77_allocation_count": 81, "stage77_changed_bytes": 1307, "stage77_allowlist_outside": 0, "stage77_stage76_hooks_preserved": True},
+            "not_adopted": ["SIDE_CHANGE_1063_RUNTIME_AND_ALLOCATION", "WINDS_WAVES_NEW_SPECIES_3_RUNTIME_AND_ALLOCATION", "EELEVATE_UNSAFE_SWITCH_AI", "FINAL_CUMULATIVE_MGBA"],
+            "rom_reflection": {"reflected": True, "stage": 77, "ancestor_stage": 72, "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES_PLUS_BATTLE_CIRCUS_GLOBAL_SUPPRESSION"},
             "required_gates": [
                 _gate("BATTLE_CONTENT_CONTRACT", "PASS", ["content/modernization/p05_battle_content_contract.json"]),
                 _gate("SIDE_CHANGE_1063_EXCLUSION", "PASS_NON_ADOPTED_NO_REPLACEMENT", ["config/modernization_adoption_decisions.json", "content/modernization/p05_runtime_handoff.json"]),
@@ -4639,8 +5053,9 @@ def _phase_records(documents: Mapping[str, Mapping[str, Any]]) -> list[dict[str,
                 _gate("P04_NEW_ABILITIES_HOST_RUNTIME", "PASS_46_CASES_X2", ["content/modernization/p05_ability_runtime_checkpoint.json"]),
                 _gate("P04_NEW_ABILITIES_ROM_LINK", "PASS_STATIC_6_IDS_29_HOOKS", ["content/modernization/p05_ability_rom_runtime_checkpoint.json", "content/modernization/p05_ability_rom_runtime_surface_matrix.json"]),
                 _gate("STAGE76_SAFE_AI_UI_EDGES", "PASS_HOST_STATIC_THREE_IMPLEMENTED_EELEVATE_PENDING", ["content/modernization/p05_stage76_edges_contract.json", "content/modernization/p05_stage76_edges_checkpoint.json"]),
+                _gate("STAGE77_BATTLE_CIRCUS_SUPPRESSION", "PASS_HOST_STATIC_29_HOOKS_33_SURFACES_NORMAL_PATH_PRESERVED", ["content/modernization/p05_stage77_suppression_contract.json", "content/modernization/p05_stage77_suppression_checkpoint.json"]),
             ],
-            "blockers": ["ABILITY_AND_STAGE76_EXACT_MGBA_NOT_RUN", "EELEVATE_DEDICATED_SWITCH_AI_PENDING"],
+            "blockers": ["ABILITY_AND_STAGE77_FINAL_CUMULATIVE_MGBA_NOT_RUN", "EELEVATE_DEDICATED_SWITCH_AI_PENDING"],
         },
         {
             "phase": "P06", "completion_state": "CHECKPOINT_NOT_DONE", "contract_statuses": ["CHECKPOINT_ADOPTED_DELTA_EMPTY"],
@@ -4708,6 +5123,7 @@ def _traceability() -> list[dict[str, Any]]:
         ("P05_ABILITY_HOST_RUNTIME", "P05", "6 Ability portable runtime", "tests/test_modernization_p05_ability_runtime.py", "HOST_VERIFIED_46_CASES_X2_HISTORICAL_PRE_ROM_CHECKPOINT"),
         ("P05_STAGE72_ABILITY_ROM_RUNTIME", "P05", "Ability 312..317 and 29 ROM hooks", "tests/test_modernization_p05_ability_rom_runtime.py", "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING"),
         ("P05_STAGE76_SAFE_AI_UI_EDGES", "P05", "Mega Sol popup + Piercing Drill AI + Spicy Spray AI", "tests/test_modernization_p05_stage76_edges.py", "THREE_EDGES_CONNECTED_EELEVATE_AND_MGBA_PENDING"),
+        ("P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION", "P05", "29 Stage72 hooks / 33 ability surfaces with Battle Circus global suppression", "tests/test_modernization_p05_stage77_suppression.py", "SUPPRESSION_CONNECTED_NORMAL_PATH_PRESERVED_EELEVATE_AND_MGBA_PENDING"),
         ("P06_SPECIES_ADJUSTMENT", "P06", "empty adopted delta + review projection", "tests/test_modernization_p06.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P07_CROSS_DISTRIBUTION", "P07", "empty explicit layered delta", "tests/test_modernization_p07.py", "CHECKPOINT_NO_ADOPTED_DELTA"),
         ("P08_INPUT_AND_COMPLETION_GUARD", "P08", "pinned integration validator", "tests/test_modernization_p08.py", "IMPLEMENTED_CHECKPOINT_ONLY"),
@@ -4786,7 +5202,7 @@ def build_integration_matrix(root: Path) -> dict[str, Any]:
             "completed_phases": ["P01"],
             "checkpoint_or_blocked_phase_count": 7,
             "active_stage": 62,
-            "highest_pinned_candidate_stage": 76,
+            "highest_pinned_candidate_stage": 77,
             "runtime_reflected_phase_count": 5,
             "release_ready": False,
         },
@@ -4879,24 +5295,24 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(
         isinstance(chain, Mapping)
         and chain.get("active_stage") == 62
-        and chain.get("selected_checkpoint_stage") == 76
-        and all(chain.get(f"stage{stage}_integrated") is True for stage in range(65, 77))
+        and chain.get("selected_checkpoint_stage") == 77
+        and all(chain.get(f"stage{stage}_integrated") is True for stage in range(65, 78))
         and chain.get("release_candidate") is False,
-        "P08候補Stage76 chain境界不正",
+        "P08候補Stage77 chain境界不正",
     )
     _require(
         chain.get("registry") == {
             "path": "config/modernization_candidate.json",
             "schema_version": 2,
-            "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+            "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
             "completed_through": "USER-MODERNIZATION-P01",
-            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
+            "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
             "checkpoint_commit": SNAPSHOT_BASE_HEAD,
             "last_committed_checkpoint": SNAPSHOT_BASE_HEAD,
             "release_ready": False,
             "active_parent_stage": 62,
-            "parent_stage": 75,
-            "candidate_stage": 76,
+            "parent_stage": 76,
+            "candidate_stage": 77,
         },
         "P08 candidate v2 registryの完了/checkpoint/親chain境界不正",
     )
@@ -5123,10 +5539,38 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         },
         "P05 Stage76 3実装/1 pending/allocation/allowlist scope境界不正",
     )
+    _require(
+        chain.get("stage77_scope") == {
+            "unique_hook_count": 29,
+            "ability_surface_occurrence_count": 33,
+            "battle_circus_global_fixed": True,
+            "battle_type_mask": "0x04000000",
+            "ability_suppression_mask": "0x80000000",
+            "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+            "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+            "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+            "ordinary_suppression_changed": False,
+            "allocation_parent_count": 80,
+            "allocation_count": 81,
+            "allocation_sequence": 80,
+            "parent_first80_rows_all_fields_preserved": True,
+            "rom_diff_allowlist_interval_count": 30,
+            "changed_bytes_inside_allowlist": 1307,
+            "changed_bytes_outside_allowlist": 0,
+            "stage76_pointer_and_three_hooks_preserved": True,
+            "eelevate_unsafe_switch_hooks_installed": 0,
+            "side_change_materialized": 0,
+            "browt_pombon_gecqua_materialized": 0,
+            "full_p05_done": False,
+            "release_ready": False,
+            "exact_mgba": False,
+        },
+        "P05 Stage77 29 hook/33 surface/Circus/通常経路/allocation/除外scope境界不正",
+    )
     inheritance = chain.get("inheritance")
     _require(
         inheritance == _candidate_inheritance(artifact_by_path),
-        "P08 Stage62～76 inheritance role/ROM/parent chain不正",
+        "P08 Stage62～77 inheritance role/ROM/parent chain不正",
     )
     latest_bps = chain.get("latest_incremental_bps")
     expected_latest_bps = [
@@ -5140,7 +5584,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     ]
     _require(
         latest_bps == expected_latest_bps,
-        "P08 Stage69～76 incremental BPS exact apply監査不正",
+        "P08 Stage69～77 incremental BPS exact apply監査不正",
     )
     _require(snapshot.get("parallel_outputs") == PARALLEL_OUTPUTS, "P08並行成果の非統合境界不正")
     source_bindings = matrix.get("referenced_source_bindings")
@@ -5292,13 +5736,39 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
         and by_phase["P05"].get("adoption", {}).get("stage76_allocation_count") == 80
         and by_phase["P05"].get("adoption", {}).get("stage76_changed_bytes") == 2081
         and by_phase["P05"].get("adoption", {}).get("stage76_allowlist_outside") == 0
+        and by_phase["P05"].get("adoption", {}).get(
+            "stage77_battle_circus_suppression"
+        )
+        is True
+        and by_phase["P05"].get("adoption", {}).get("stage77_unique_hook_count")
+        == 29
+        and by_phase["P05"].get("adoption", {}).get(
+            "stage77_ability_surface_occurrence_count"
+        )
+        == 33
+        and by_phase["P05"].get("adoption", {}).get(
+            "stage77_ordinary_suppression_changed"
+        )
+        is False
+        and by_phase["P05"].get("adoption", {}).get("stage77_allocation_sequence")
+        == 80
+        and by_phase["P05"].get("adoption", {}).get("stage77_allocation_count")
+        == 81
+        and by_phase["P05"].get("adoption", {}).get("stage77_changed_bytes")
+        == 1307
+        and by_phase["P05"].get("adoption", {}).get("stage77_allowlist_outside")
+        == 0
+        and by_phase["P05"].get("adoption", {}).get(
+            "stage77_stage76_hooks_preserved"
+        )
+        is True
         and by_phase["P05"].get("rom_reflection") == {
             "reflected": True,
-            "stage": 76,
+            "stage": 77,
             "ancestor_stage": 72,
-            "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES",
+            "scope": "ABILITY_312_317_FIXED_TABLES_AND_29_BATTLE_HOOKS_PLUS_THREE_SAFE_AI_UI_EDGES_PLUS_BATTLE_CIRCUS_GLOBAL_SUPPRESSION",
         },
-        "P05 Side Change非採用/Stage72 ability/Stage76 edge runtime境界不正",
+        "P05 Side Change非採用/Stage72 ability/Stage76 edge/Stage77 Circus runtime境界不正",
     )
     p04_staging = by_phase["P04"].get("adoption", {}).get("asset_staging", {})
     p04_adoption = by_phase["P04"].get("adoption", {})
@@ -5379,7 +5849,7 @@ def validate_integration_matrix(matrix: Mapping[str, Any]) -> None:
     _require(isinstance(trace, list) and len(trace) >= 14, "要件→実装→test対応が不足しています")
     _require(all(row.get("requirement_key") and row.get("implementation_evidence") and row.get("test_evidence") and row.get("status") for row in trace), "traceability rowが不完全です")
     summary = matrix.get("integration_summary")
-    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 76 and summary.get("runtime_reflected_phase_count") == 5 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage76 checkpointと不一致です")
+    _require(isinstance(summary, Mapping) and summary.get("completed_phase_count") == 1 and summary.get("completed_phases") == ["P01"] and summary.get("highest_pinned_candidate_stage") == 77 and summary.get("runtime_reflected_phase_count") == 5 and summary.get("release_ready") is False, "P08統合summaryがP01のみ完了/Stage77 checkpointと不一致です")
     _require(
         matrix.get("release_blockers") == list(RELEASE_BLOCKERS),
         "P08 release blocker集合/内容/順序不一致",
@@ -5418,14 +5888,14 @@ def build_release_handoff(matrix: Mapping[str, Any]) -> dict[str, Any]:
         "status": STATUS,
         "release_ready": False,
         "active_stage": 62,
-        "candidate_stage": 76,
+        "candidate_stage": 77,
         "completed_phases": ["P01"],
         "not_completed_phases": ["P02", "P03", "P04", "P05", "P06", "P07", "P08"],
         "release_blockers": matrix["release_blockers"],
         "promotion": {
             "authorized": False,
             "active_play_baseline_changed": False,
-            "reason": "P02～P07のruntime acceptance未完了。Stage76はStage75のOwn Tempo Rockruff内部フォームと38 carry経路解決、Mega Sol popup・Piercing Drill AI・Spicy Spray AIの3安全edgeまで統合したが、P02 exact UI、暫定archive economy、最終累積mGBA、Floette full/fresh reload、Eelevate専用switch AIが残るためrelease candidateではない",
+            "reason": "P02～P07のruntime acceptance未完了。Stage77はStage75のOwn Tempo Rockruff内部フォームと38 carry経路、Stage76のMega Sol popup・Piercing Drill AI・Spicy Spray AI、Stage77のBattle Circus全29 hook・33 ability surface抑制を統合し通常経路を保持したが、P02 exact UI、暫定archive economy、最終累積mGBA、Floette full/fresh reload、Eelevate専用switch AIが残るためrelease candidateではない",
         },
         "next_integration_rule": "各工程の完成済みtracked成果だけをPINNED_TRACKED_INPUTSへ明示追加し、全hash/gate/親chainを再監査する",
         "integration_fingerprint": matrix["snapshot"]["integration_fingerprint"],

@@ -70,7 +70,7 @@ class ModernizationP08Tests(unittest.TestCase):
             self.matrix["integration_summary"]["completed_phases"], ["P01"]
         )
         self.assertEqual(
-            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 76
+            self.matrix["integration_summary"]["highest_pinned_candidate_stage"], 77
         )
         self.assertFalse(self.matrix["integration_summary"]["release_ready"])
         self.assertFalse(self.matrix["release_ready"])
@@ -225,6 +225,24 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(phases["P05"]["adoption"]["stage76_allocation_count"], 80)
         self.assertEqual(phases["P05"]["adoption"]["stage76_changed_bytes"], 2_081)
         self.assertEqual(phases["P05"]["adoption"]["stage76_allowlist_outside"], 0)
+        self.assertTrue(
+            phases["P05"]["adoption"]["stage77_battle_circus_suppression"]
+        )
+        self.assertEqual(phases["P05"]["adoption"]["stage77_unique_hook_count"], 29)
+        self.assertEqual(
+            phases["P05"]["adoption"]["stage77_ability_surface_occurrence_count"],
+            33,
+        )
+        self.assertFalse(
+            phases["P05"]["adoption"]["stage77_ordinary_suppression_changed"]
+        )
+        self.assertEqual(phases["P05"]["adoption"]["stage77_allocation_sequence"], 80)
+        self.assertEqual(phases["P05"]["adoption"]["stage77_allocation_count"], 81)
+        self.assertEqual(phases["P05"]["adoption"]["stage77_changed_bytes"], 1_307)
+        self.assertEqual(phases["P05"]["adoption"]["stage77_allowlist_outside"], 0)
+        self.assertTrue(
+            phases["P05"]["adoption"]["stage77_stage76_hooks_preserved"]
+        )
         self.assertEqual(
             phases["P02"]["adoption"]["stage71_acceptance_status"],
             "STOPPED_EXACT_UI_PENDING",
@@ -240,7 +258,7 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertTrue(phases["P04"]["rom_reflection"]["reflected"])
         self.assertEqual(phases["P04"]["rom_reflection"]["stage"], 71)
         self.assertTrue(phases["P05"]["rom_reflection"]["reflected"])
-        self.assertEqual(phases["P05"]["rom_reflection"]["stage"], 76)
+        self.assertEqual(phases["P05"]["rom_reflection"]["stage"], 77)
         self.assertEqual(
             phases["P04"]["adoption"]["asset_staging"],
             {
@@ -283,12 +301,12 @@ class ModernizationP08Tests(unittest.TestCase):
             },
         )
 
-    def test_stage76_chain_is_exact_but_not_release_candidate(self) -> None:
+    def test_stage77_chain_is_exact_but_not_release_candidate(self) -> None:
         chain = self.matrix["candidate_chain"]
         self.assertEqual(chain["active_stage"], 62)
-        self.assertEqual(chain["selected_checkpoint_stage"], 76)
+        self.assertEqual(chain["selected_checkpoint_stage"], 77)
         self.assertTrue(chain["parent_chain_verified"])
-        for stage in range(65, 77):
+        for stage in range(65, 78):
             self.assertTrue(chain[f"stage{stage}_integrated"])
         self.assertFalse(chain["release_candidate"])
         self.assertEqual(
@@ -350,6 +368,11 @@ class ModernizationP08Tests(unittest.TestCase):
                 76,
                 75,
                 "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+            ),
+            (
+                77,
+                76,
+                "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
             ),
         ]
         for row, (stage, parent_stage, digest) in zip(
@@ -499,6 +522,36 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(stage76["full_p05_done"])
         self.assertFalse(stage76["release_ready"])
         self.assertFalse(stage76["exact_mgba"])
+        stage77 = chain["stage77_scope"]
+        self.assertEqual(stage77["unique_hook_count"], 29)
+        self.assertEqual(stage77["ability_surface_occurrence_count"], 33)
+        self.assertTrue(stage77["battle_circus_global_fixed"])
+        self.assertEqual(stage77["battle_type_mask"], "0x04000000")
+        self.assertEqual(stage77["ability_suppression_mask"], "0x80000000")
+        self.assertEqual(
+            stage77["predicate"],
+            "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+        )
+        self.assertEqual(stage77["normal_path"], "TAIL_DELEGATE_STAGE72_WRAPPER")
+        self.assertEqual(
+            stage77["suppressed_path"],
+            "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+        )
+        self.assertFalse(stage77["ordinary_suppression_changed"])
+        self.assertEqual(stage77["allocation_parent_count"], 80)
+        self.assertEqual(stage77["allocation_count"], 81)
+        self.assertEqual(stage77["allocation_sequence"], 80)
+        self.assertTrue(stage77["parent_first80_rows_all_fields_preserved"])
+        self.assertEqual(stage77["rom_diff_allowlist_interval_count"], 30)
+        self.assertEqual(stage77["changed_bytes_inside_allowlist"], 1_307)
+        self.assertEqual(stage77["changed_bytes_outside_allowlist"], 0)
+        self.assertTrue(stage77["stage76_pointer_and_three_hooks_preserved"])
+        self.assertEqual(stage77["eelevate_unsafe_switch_hooks_installed"], 0)
+        self.assertEqual(stage77["side_change_materialized"], 0)
+        self.assertEqual(stage77["browt_pombon_gecqua_materialized"], 0)
+        self.assertFalse(stage77["full_p05_done"])
+        self.assertFalse(stage77["release_ready"])
+        self.assertFalse(stage77["exact_mgba"])
         expected_latest_bps = [
             (
                 "build/stages/69_modernization_floette_gift.gba",
@@ -535,6 +588,11 @@ class ModernizationP08Tests(unittest.TestCase):
                 "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
                 "build/stages/76_modernization_p05_edges.gba",
             ),
+            (
+                "build/stages/76_modernization_p05_edges.gba",
+                "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+                "build/stages/77_modernization_p05_circus_suppression.gba",
+            ),
         ]
         self.assertEqual(
             [
@@ -545,29 +603,29 @@ class ModernizationP08Tests(unittest.TestCase):
         )
         self.assertEqual(
             [row["status"] for row in chain["latest_incremental_bps"]],
-            ["PASS_EXACT_APPLY"] * 7,
+            ["PASS_EXACT_APPLY"] * 8,
         )
         self.assertEqual(
             chain["registry"],
             {
                 "path": "config/modernization_candidate.json",
                 "schema_version": 2,
-                "status": "STAGE76_THREE_P05_EDGES_CHECKPOINT_NOT_RELEASE_CANDIDATE",
+                "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
                 "completed_through": "USER-MODERNIZATION-P01",
-                "checkpointed_through": "USER-MODERNIZATION-P05-STAGE76-EDGES-CHECKPOINT",
-                "checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
-                "last_committed_checkpoint": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+                "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
+                "checkpoint_commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+                "last_committed_checkpoint": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
                 "release_ready": False,
                 "active_parent_stage": 62,
-                "parent_stage": 75,
-                "candidate_stage": 76,
+                "parent_stage": 76,
+                "candidate_stage": 77,
             },
         )
 
     def test_checkpointed_through_does_not_extend_completed_through(self) -> None:
         registry = self.matrix["candidate_chain"]["registry"]
         self.assertEqual(registry["completed_through"], "USER-MODERNIZATION-P01")
-        self.assertIn("STAGE76", registry["checkpointed_through"])
+        self.assertIn("STAGE77", registry["checkpointed_through"])
 
         false_done = copy.deepcopy(self.matrix)
         false_done["candidate_chain"]["registry"]["completed_through"] = (
@@ -600,6 +658,10 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertEqual(
             PARALLEL_OUTPUTS["P05_STAGE76_SAFE_AI_UI_EDGES"]["status"],
             "INTEGRATED_THREE_EDGES_EELEVATE_MGBA_PENDING_NOT_P05_DONE",
+        )
+        self.assertEqual(
+            PARALLEL_OUTPUTS["P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION"]["status"],
+            "INTEGRATED_29_HOOK_33_SURFACE_SUPPRESSION_EELEVATE_MGBA_PENDING_NOT_P05_DONE",
         )
         self.assertIn("content/modernization/p03_stage65_checkpoint.json", pinned)
         self.assertIn("content/modernization/p03_stage65_mgba_runtime_gate.json", pinned)
@@ -646,6 +708,9 @@ class ModernizationP08Tests(unittest.TestCase):
             "config/modernization_p05_stage76_edges.json",
             "content/modernization/p05_stage76_edges_contract.json",
             "content/modernization/p05_stage76_edges_checkpoint.json",
+            "config/modernization_p05_stage77_suppression.json",
+            "content/modernization/p05_stage77_suppression_contract.json",
+            "content/modernization/p05_stage77_suppression_checkpoint.json",
         }
         self.assertTrue(latest_tracked <= pinned)
         artifacts = {row["path"] for row in self.matrix["candidate_artifacts"]}
@@ -708,6 +773,13 @@ class ModernizationP08Tests(unittest.TestCase):
                 "generated/runtime/modernization_p05_stage76_edges.bin",
                 "generated/runtime/modernization_p05_stage76_edges_symbols.json",
                 "generated/runtime/modernization_p05_stage76_edges_audit.json",
+                "build/stages/77_modernization_p05_circus_suppression.gba",
+                "build/stages/77_modernization_p05_circus_suppression.json",
+                "build/stages/77_modernization_p05_circus_suppression_allocation.json",
+                "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+                "generated/runtime/modernization_p05_stage77_suppression.bin",
+                "generated/runtime/modernization_p05_stage77_suppression_symbols.json",
+                "generated/runtime/modernization_p05_stage77_suppression_audit.json",
             }
             <= artifacts
         )
@@ -806,6 +878,11 @@ class ModernizationP08Tests(unittest.TestCase):
             "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.h",
             "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges.ld",
             "overlays/modernization_p05_stage76_edges/modernization_p05_stage76_edges_hooks.S",
+            "scripts/build_modernization_p05_stage77_suppression.sh",
+            "tools/modernization_p05_stage77_suppression.py",
+            "tests/test_modernization_p05_stage77_suppression.py",
+            "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.S",
+            "overlays/modernization_p05_stage77_suppression/modernization_p05_stage77_suppression.ld",
         }
         self.assertTrue(
             required_direct_implementation_inputs
@@ -937,6 +1014,49 @@ class ModernizationP08Tests(unittest.TestCase):
                 with self.assertRaises(ModernizationP08Error):
                     validate_integration_matrix(mutated)
 
+        stage77_mutations = (
+            ("unique_hook_count", 28),
+            ("ability_surface_occurrence_count", 32),
+            ("battle_circus_global_fixed", False),
+            ("battle_type_mask", "0x02000000"),
+            ("ability_suppression_mask", "0x40000000"),
+            ("ordinary_suppression_changed", True),
+            ("allocation_parent_count", 79),
+            ("allocation_count", 80),
+            ("allocation_sequence", 79),
+            ("parent_first80_rows_all_fields_preserved", False),
+            ("rom_diff_allowlist_interval_count", 29),
+            ("changed_bytes_inside_allowlist", 1_306),
+            ("changed_bytes_outside_allowlist", 1),
+            ("stage76_pointer_and_three_hooks_preserved", False),
+            ("eelevate_unsafe_switch_hooks_installed", 1),
+            ("side_change_materialized", 1),
+            ("browt_pombon_gecqua_materialized", 1),
+            ("full_p05_done", True),
+            ("release_ready", True),
+            ("exact_mgba", True),
+        )
+        for key, value in stage77_mutations:
+            mutated = copy.deepcopy(self.matrix)
+            mutated["candidate_chain"]["stage77_scope"][key] = value
+            with self.subTest(stage77_scope=key):
+                with self.assertRaises(ModernizationP08Error):
+                    validate_integration_matrix(mutated)
+
+        false_stage77_predicate = copy.deepcopy(self.matrix)
+        false_stage77_predicate["candidate_chain"]["stage77_scope"][
+            "predicate"
+        ] = "(circus_flags & 0x80000000) != 0"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage77_predicate)
+
+        false_stage77_normal_path = copy.deepcopy(self.matrix)
+        false_stage77_normal_path["candidate_chain"]["stage77_scope"][
+            "normal_path"
+        ] = "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage77_normal_path)
+
         false_eelevate = copy.deepcopy(self.matrix)
         false_eelevate["candidate_chain"]["stage76_scope"]["edges"][
             "eelevate_dedicated_switch"
@@ -953,19 +1073,36 @@ class ModernizationP08Tests(unittest.TestCase):
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_stage76_rom)
 
+        false_stage77_rom = copy.deepcopy(self.matrix)
+        next(
+            row
+            for row in false_stage77_rom["candidate_artifacts"]
+            if row["path"]
+            == "build/stages/77_modernization_p05_circus_suppression.gba"
+        )["sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage77_rom)
+
         false_stage75_bps = copy.deepcopy(self.matrix)
-        false_stage75_bps["candidate_chain"]["latest_incremental_bps"][-2][
+        false_stage75_bps["candidate_chain"]["latest_incremental_bps"][-3][
             "target"
         ] = "build/stages/74_modernization_p03_supply_runtime.gba"
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_stage75_bps)
 
         false_stage76_bps = copy.deepcopy(self.matrix)
-        false_stage76_bps["candidate_chain"]["latest_incremental_bps"][-1][
+        false_stage76_bps["candidate_chain"]["latest_incremental_bps"][-2][
             "source"
         ] = "build/stages/74_modernization_p03_supply_runtime.gba"
         with self.assertRaises(ModernizationP08Error):
             validate_integration_matrix(false_stage76_bps)
+
+        false_stage77_bps = copy.deepcopy(self.matrix)
+        false_stage77_bps["candidate_chain"]["latest_incremental_bps"][-1][
+            "source"
+        ] = "build/stages/75_modernization_rockruff_own_tempo.gba"
+        with self.assertRaises(ModernizationP08Error):
+            validate_integration_matrix(false_stage77_bps)
 
         stage74_mutations = (
             ("direct_supply_materialized_routes", 26_647),
@@ -1242,6 +1379,34 @@ class ModernizationP08Tests(unittest.TestCase):
                 false_stage76_allowlist["config/modernization_candidate.json"],
             )
 
+        false_stage77_surface_count = copy.deepcopy(documents)
+        false_stage77_surface_count["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p05_stage77_suppression_checkpoint"][
+            "ability_surface_occurrence_count"
+        ] = 32
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage77_surface_count["config/modernization_candidate.json"],
+            )
+
+        false_stage77_ordinary_path = copy.deepcopy(documents)
+        false_stage77_ordinary_path["config/modernization_candidate.json"][
+            "adopted_delta"
+        ]["p05_stage77_suppression_checkpoint"][
+            "ordinary_suppression_changed"
+        ] = True
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                metadata,
+                false_stage77_ordinary_path["config/modernization_candidate.json"],
+            )
+
         false_sequence77 = copy.deepcopy(metadata)
         allocation74 = false_sequence77[
             "build/stages/74_modernization_p03_supply_runtime_allocation.json"
@@ -1287,6 +1452,21 @@ class ModernizationP08Tests(unittest.TestCase):
                 documents["config/modernization_candidate.json"],
             )
 
+        false_sequence80 = copy.deepcopy(metadata)
+        allocation77 = false_sequence80[
+            "build/stages/77_modernization_p05_circus_suppression_allocation.json"
+        ]
+        next(
+            row for row in allocation77["allocations"] if row["sequence"] == 80
+        )["content_sha256"] = "0" * 64
+        with self.assertRaises(ModernizationP08Error):
+            _validate_candidate_chain(
+                ROOT,
+                artifact_audit,
+                false_sequence80,
+                documents["config/modernization_candidate.json"],
+            )
+
         false_stage75_contract = copy.deepcopy(documents)
         false_stage75_contract[
             "content/modernization/rockruff_own_tempo_stage75_checkpoint.json"
@@ -1300,6 +1480,22 @@ class ModernizationP08Tests(unittest.TestCase):
         ]["edges"]["eelevate_dedicated_switch"] = "IMPLEMENT"
         with self.assertRaises(ModernizationP08Error):
             _validate_contract_chain(false_stage76_contract)
+
+        false_stage77_contract = copy.deepcopy(documents)
+        false_stage77_contract[
+            "content/modernization/p05_stage77_suppression_checkpoint.json"
+        ]["suppression_contract"]["battle_circus_global"]["unique_hook_count"] = 28
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_stage77_contract)
+
+        false_stage77_normal_path = copy.deepcopy(documents)
+        false_stage77_normal_path[
+            "content/modernization/p05_stage77_suppression_checkpoint.json"
+        ]["suppression_contract"]["battle_circus_global"][
+            "normal_path"
+        ] = "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE"
+        with self.assertRaises(ModernizationP08Error):
+            _validate_contract_chain(false_stage77_normal_path)
 
         false_checkpoint_preservation = copy.deepcopy(documents)
         false_checkpoint_preservation[
@@ -1336,6 +1532,12 @@ class ModernizationP08Tests(unittest.TestCase):
             by_requirement["P05_STAGE76_SAFE_AI_UI_EDGES"]["test_evidence"],
             "tests/test_modernization_p05_stage76_edges.py",
         )
+        self.assertEqual(
+            by_requirement["P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION"][
+                "test_evidence"
+            ],
+            "tests/test_modernization_p05_stage77_suppression.py",
+        )
         for row in trace:
             self.assertTrue(row["implementation_evidence"])
             self.assertTrue(row["test_evidence"])
@@ -1359,7 +1561,7 @@ class ModernizationP08Tests(unittest.TestCase):
         self.assertFalse(release["release_ready"])
         self.assertFalse(release["promotion"]["authorized"])
         self.assertEqual(release["completed_phases"], ["P01"])
-        self.assertEqual(release["candidate_stage"], 76)
+        self.assertEqual(release["candidate_stage"], 77)
         self.assertEqual(
             release["integration_fingerprint"],
             self.matrix["snapshot"]["integration_fingerprint"],
