@@ -27,7 +27,7 @@ jobs:
             tests.test_run_github_battle_command \
             tests.test_run_github_private_suite
       - name: P03/P05 representative E2E result contracts
-        run: python3 -m unittest tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e -v
+        run: python3 -m unittest tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e tests.test_modernization_p05_controller_witness -v
       - name: 現在のP08受入境界と原本証跡を検証
         shell: bash
         run: |
@@ -36,7 +36,8 @@ jobs:
           git rev-parse HEAD > .local/p08-current-acceptance/tested-checkout.txt
           python3 -m unittest \
             tests.test_modernization_p08_current_acceptance \
-            tests.test_modernization_p08_stage79_evidence -v \
+            tests.test_modernization_p08_stage79_evidence \
+            tests.test_modernization_p08_representative_evidence -v \
             2>&1 | tee .local/p08-current-acceptance/tests.log
           python3 scripts/check_modernization_p08_current_acceptance.py --check \
             > .local/p08-current-acceptance/report.json
