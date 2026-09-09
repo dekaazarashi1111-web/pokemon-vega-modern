@@ -74,11 +74,11 @@ jobs:
           out = pathlib.Path('.local/p08-stage81-integration')
           log = (out/'tests.log').read_text()
           counts = re.findall(r'Ran (\d+) tests in ', log)
-          assert counts == ['347'] and log.rstrip().endswith('OK'), 'complete regression success required'
+          assert counts == ['348'] and log.rstrip().endswith('OK'), 'complete regression success required'
           record = {'schema_version':1,'status':'PASS','integration_run_id':int(os.environ['GITHUB_RUN_ID']),
                     'validated_checkout':os.environ['GITHUB_SHA'],'candidate_stage':81,'candidate_sha256':e.adapter.SHA,
                     'seven_domain_original_run':e.RUN,'p03_eight_case_original_run':e.P03_RUN,
-                    'regression_tests':347,'original_successful_native_processes':15,
+                    'regression_tests':348,'original_successful_native_processes':15,
                     'original_expected_failure_controls':2,'fresh_native_processes_this_integration':0,
                     'release_ready':False,'active_baseline_changed':False,
                     'normal_ci_after_committed_head':'PENDING_SEPARATE_CONNECTED_WRITER_UPDATE'}
@@ -86,7 +86,7 @@ jobs:
           pathlib.Path(destination).write_bytes(e.base.stable(record))
           (out/'verification.json').write_bytes(e.base.stable(record))
           now = datetime.datetime.now(datetime.timezone.utc).isoformat()
-          note = f'\n## {now} USER-STAGE81 native PP evidence acceptance\n\nGitHub integration run {record["integration_run_id"]}: 347 regressions PASS; original Stage81 matrix run {e.RUN} has 7 fresh domains, and P03 original run {e.P03_RUN} has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.\n'
+          note = f'\n## {now} USER-STAGE81 native PP evidence acceptance\n\nGitHub integration run {record["integration_run_id"]}: 348 regressions PASS; original Stage81 matrix run {e.RUN} has 7 fresh domains, and P03 original run {e.P03_RUN} has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.\n'
           for path in ('design/run_log.md','design/version_log.md'):
               with open(path,'a') as stream: stream.write(note)
           receipt = json.loads((out/'code-receipt.json').read_bytes())

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Materialize only the eight hash-reviewed P08 source files, never workflows/ROMs."""
+"""Materialize eight hash-reviewed P08 sources and the credential-redirect regression."""
 import base64
 import hashlib
 import json
@@ -10,7 +10,6 @@ root = Path('.')
 sha = lambda raw: hashlib.sha256(raw).hexdigest()
 parts = [root / f'tools/stage81_p08_bootstrap/part{i}.b64' for i in (1, 2, 3)]
 packed = ''.join(p.read_text().strip() for p in parts)
-# Restore one missing envelope character; the complete original hashes stay fixed.
 if sha(packed.encode()) == '9e0583e3b9de9cb5d095259eae11474abb265f1cfd13464d7ba16ca0f7ae68b1':
     value = parts[0].read_text().strip()
     assert value[1327:1351] == 'oaPD0U4ObfwO37vxuty38cQD'
@@ -31,6 +30,53 @@ allowed = {
     'docs/P08_STAGE81_NATIVE_PP.md',
 }
 assert set(rows) == allowed, 'exact eight-source manifest required'
+# Two explicit follow-up changes: keep GitHub credentials off signed blob redirects,
+# and prove the redirect behavior with a regression. Original ZIP pins are untouched.
+old = """        headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'})
+    with urllib.request.urlopen(request, timeout=60) as response:"""
+new = """        headers={'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'})
+    # Authenticate GitHub only; signed artifact redirects must not inherit this credential.
+    request.add_unredirected_header('Authorization', 'Bearer ' + os.environ['GH_TOKEN'])
+    with urllib.request.urlopen(request, timeout=60) as response:"""
+anchor = "\nif __name__ == '__main__': unittest.main()\n"
+addition = '''
+class DownloadRedirectTests(unittest.TestCase):
+    def test_artifact_redirect_never_forwards_github_authorization(self):
+        name = next(iter(e.ARCHIVES))
+        payload = b'exact-archive-bytes'
+
+        def open_request(request, timeout):
+            self.assertEqual(timeout, 60)
+            self.assertEqual(request.get_header('Authorization'), 'Bearer unit-test-token')
+            redirected = importer.urllib.request.HTTPRedirectHandler().redirect_request(
+                request, None, 302, 'Found', {},
+                'https://example.blob.core.windows.net/artifacts/source.zip?sig=unit-test')
+            self.assertIsNone(redirected.get_header('Authorization'))
+            response = mock.MagicMock()
+            response.__enter__.return_value.read.return_value = payload
+            return response
+
+        with mock.patch.dict(importer.os.environ, {'GH_TOKEN': 'unit-test-token'}), \\
+                mock.patch.object(importer.urllib.request, 'urlopen', side_effect=open_request), \\
+                mock.patch.object(importer.evidence, 'unpack') as unpack:
+            self.assertEqual(importer.download(name), payload)
+            unpack.assert_called_once_with(payload, name)
+
+'''
+fixes = {
+    'scripts/integrate_modernization_p08_stage81_evidence.py':
+        (old, new, '52714a2082b3abd1bff551754c79d0188dad7cc6d579e1c8f10821fbcc96374c'),
+    'tests/test_modernization_p08_stage81_evidence.py':
+        (anchor, '\n' + addition + anchor, 'b135a0a544bbcb2a6dd0d26d3041d33c37551e74621de8baf4deb2b6b7cc0e75'),
+}
+for relative, (before, after, expected) in fixes.items():
+    row = rows[relative]
+    assert sha(row['content'].encode()) == row['after_sha256']
+    assert row['content'].count(before) == 1
+    content = row['content'].replace(before, after)
+    assert sha(content.encode()) == expected, 'reviewed redirect correction mismatch'
+    row.update(content=content, after_sha256=expected)
 for relative, row in rows.items():
     path = root
     for part in Path(relative).parts:
