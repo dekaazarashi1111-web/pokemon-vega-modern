@@ -1,0 +1,41 @@
+name: p03-learning-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-learning-e2e.yml
+      - tools/mgba_modernization_p03_learning_e2e.c
+      - scripts/run_modernization_p03_learning_e2e.py
+      - tests/test_modernization_p03_learning_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  learning-save-reload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 固定mGBA toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: 結果契約の回帰検証
+        run: python3 -m unittest tests.test_modernization_p03_learning_e2e -v
+      - name: 新規2 processで通常習得・保存・Continueを実行
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-learning-e2e
+          git rev-parse HEAD > .local/p03-learning-e2e/tested-head.txt
+          python3 scripts/run_modernization_p03_learning_e2e.py \
+            > .local/p03-learning-e2e/job.stdout.json \
+            2> .local/p03-learning-e2e/job.stderr.log
+      - name: 成否を問わず原本ログを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p03-learning-e2e
+          path: .local/p03-learning-e2e/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
