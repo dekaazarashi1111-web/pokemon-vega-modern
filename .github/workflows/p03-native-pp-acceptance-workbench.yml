@@ -1,0 +1,30 @@
+name: p03-native-pp-acceptance-workbench
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-native-pp-acceptance-workbench.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export-tracked-sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export only Git-tracked sources and exact identity
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-native-pp-acceptance-workbench
+          git rev-parse HEAD > .local/p03-native-pp-acceptance-workbench/tested-head.txt
+          git archive --format=tar.gz HEAD > .local/p03-native-pp-acceptance-workbench/tracked-sources.tar.gz
+          sha256sum .local/p03-native-pp-acceptance-workbench/tracked-sources.tar.gz > .local/p03-native-pp-acceptance-workbench/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p03-native-pp-acceptance-workbench
+          path: .local/p03-native-pp-acceptance-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
