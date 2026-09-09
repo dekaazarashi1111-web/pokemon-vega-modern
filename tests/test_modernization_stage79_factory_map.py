@@ -46,7 +46,7 @@ class FactoryMapContractTest(unittest.TestCase):
             return copy.deepcopy(self.shop)
         if descriptor == "map":
             return copy.deepcopy(self.current)
-        raise ValueError(f"missing fixed source: {label}")
+        raise STAGE79.Stage79CumulativeMgbaError(f"missing fixed source: {label}")
 
     def test_cumulative_map_relocation_preserves_shop_abi_and_price_inputs(self):
         before = copy.deepcopy(self.shop)
@@ -58,7 +58,8 @@ class FactoryMapContractTest(unittest.TestCase):
 
     def rejected(self, **changes):
         self.current["map"].update(changes)
-        with self.assertRaisesRegex(ValueError, "Factory map provenance/count"):
+        with self.assertRaisesRegex(STAGE79.Stage79CumulativeMgbaError,
+                                    "Factory map provenance/count"):
             STAGE79._mega_shop_arguments(self.domain)
 
     def test_reject_more_objects_instead_of_accepting_a_range(self):
@@ -93,7 +94,7 @@ class FactoryMapContractTest(unittest.TestCase):
 
     def test_missing_map_provenance_is_not_optional(self):
         del self.domain["map_contract_source"]
-        with self.assertRaises(ValueError):
+        with self.assertRaises(STAGE79.Stage79CumulativeMgbaError):
             STAGE79._mega_shop_arguments(self.domain)
 
     def test_historical_runner_default_and_stage79_exact_count(self):
