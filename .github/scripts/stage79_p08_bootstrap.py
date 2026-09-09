@@ -1,8 +1,8 @@
 """Restore missing historical P08 inputs; never replace tracked source or ROMs.
 
-Private release archives are verified by the existing outer/member verifier.
-Current tracked files take precedence over old environment snapshots. The
-historical builders must then reproduce every P08-pinned artifact byte exactly.
+Archives use the existing outer/member verifier. In a public repository every
+archive must be downloadable without authentication; no private asset can be
+introduced through the workflow token. Input bytes are never uploaded as logs.
 """
 from pathlib import Path
 import json
@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 import sys
+import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -25,15 +26,25 @@ def run(*args: str) -> None:
 
 def main() -> None:
     private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
-    if private != 'true':
-        raise RuntimeError('Private environment material must stay in the private repository')
+    if private not in ('true', 'false'):
+        raise RuntimeError('Unknown repository visibility')
     config = json.loads((ROOT / 'config/github_private_environment.json').read_text())
     assets = ROOT / '.local/github-private-environment/assets'
     assets.mkdir(parents=True, exist_ok=True)
     tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0'))
     for expected in config['archives']:
         path = assets / expected['name']
-        if not path.exists():
+        url = 'https://github.com/dekaazarashi1111-web/pokemon-vega-modern/releases/download/' + config['release']['tag'] + '/' + expected['name']
+        if private == 'false':
+            # No Authorization header, GH_TOKEN or cookies: public availability
+            # is checked even when the already hash-checked asset is cached.
+            with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=60) as response:
+                if response.status != 200:
+                    raise RuntimeError('Archive is not anonymously available')
+            if not path.exists():
+                with urllib.request.urlopen(url, timeout=120) as source, path.open('xb') as destination:
+                    shutil.copyfileobj(source, destination, length=1024 * 1024)
+        elif not path.exists():
             run('gh', 'release', 'download', config['release']['tag'], '--pattern', expected['name'], '--dir', str(assets))
         manifest = environment._read_and_verify_archive(path, expected)
         restored = preserved = 0
