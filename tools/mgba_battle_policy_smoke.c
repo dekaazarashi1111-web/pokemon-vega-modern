@@ -50,6 +50,7 @@ enum {
     POLICY_PERSIST_EFFECT_COUNT = 7,
     POLICY_RAID_STATE_INPUT_LIMIT = 20000,
     POLICY_RAID_INTRO_PRESS_INTERVAL = 27,
+    POLICY_RAID_SELECTION_RETRY_INTERVAL = 30,
     POLICY_RAID_BOSS_SPECIES = 150,
     POLICY_SIX_STAR_RAID = 6,
     POLICY_NEWBS_BATTLE_ACTIVE_OFFSET = 0x588,
@@ -1506,6 +1507,7 @@ static void policy_run_raid_controller_round(
     bool intro_active = true;
     uint32_t next_intro_press = evidence->frames;
     uint32_t next_message_press = evidence->frames;
+    uint32_t next_selection_press = evidence->frames;
 
     for (uint32_t frame = 0;
          frame < POLICY_RAID_STATE_INPUT_LIMIT
@@ -1556,7 +1558,10 @@ static void policy_run_raid_controller_round(
             gate = 5;
         }
 
-        if (gate != 0 && (gate == 4 || gate == 5 || gate != latched_gate)) {
+        /* A callback may appear before it can consume physical A.
+         * A latched attempt must not suppress every later input. */
+        if (gate != 0 && (gate == 4 || gate == 5 || gate != latched_gate
+                          || evidence->frames >= next_selection_press)) {
             uint32_t pulse_start = evidence->frames;
             write8(core, BATTLE_CORE_ACTION_SELECTION_CURSOR, 0);
             write8(core, BATTLE_CORE_MOVE_SELECTION_CURSOR, 0);
@@ -1569,6 +1574,8 @@ static void policy_run_raid_controller_round(
                 next_message_press = pulse_start + POLICY_RAID_INTRO_PRESS_INTERVAL;
             } else {
                 latched_gate = gate;
+                next_selection_press = pulse_start
+                    + POLICY_RAID_SELECTION_RETRY_INTERVAL;
             }
         } else {
             if (gate == 0) latched_gate = 0;
