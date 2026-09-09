@@ -12,6 +12,12 @@
 #include <string.h>
 #include <time.h>
 
+/* Stage68 keeps its exact 14-object graph. The cumulative caller
+ * opts into the exact Stage69 15-object graph, never a range. */
+#ifndef MEGA_EXPECTED_FACTORY_OBJECT_COUNT
+#define MEGA_EXPECTED_FACTORY_OBJECT_COUNT 14U
+#endif
+
 #define MEGA_MAX_CALL_STEPS UINT64_C(30000000)
 #define MEGA_SAVE_FILE_SIZE UINT32_C(0x20000)
 #define MEGA_ABI_MARKER UINT32_C(0xA168)
@@ -324,12 +330,12 @@ static void mega_verify_map(struct mCore *core, uint32_t npc_script,
     bool clone_seen = false;
     if (!rom_pointer(map_root) || !rom_pointer(group96) || !rom_pointer(header)
         || events != expected_events || scripts != expected_map_scripts
-        || !rom_pointer(objects) || read8(core, events) != 14U
+        || !rom_pointer(objects) || read8(core, events) != MEGA_EXPECTED_FACTORY_OBJECT_COUNT
         || read8(core, events + 1U) != 10U
         || read8(core, events + 2U) != 0U
         || read8(core, events + 3U) != 7U)
         mega_die("Factory map root/events/scripts graph is invalid");
-    for (uint32_t index = 0U; index < 14U; ++index) {
+    for (uint32_t index = 0U; index < MEGA_EXPECTED_FACTORY_OBJECT_COUNT; ++index) {
         uint32_t object = objects + index * 0x18U;
         if (read8(core, object) == 3U)
             clone_seen = true;

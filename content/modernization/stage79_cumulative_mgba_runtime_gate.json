@@ -13,8 +13,8 @@
   "classification": "LATEST_CUMULATIVE_EXACT_ROM_SEQUENTIAL_RESUMABLE",
   "config": {
     "path": "config/modernization_stage79_cumulative_mgba.json",
-    "sha256": "8ace2c5cc997b5e13c77d8fb15c8f29ef0448082eb901653f282a6293baec755",
-    "size": 27466
+    "sha256": "67b017e95dde95e510d4dee510111d30aca99dbc709a47132c0c11a826fbf8c3",
+    "size": 27893
   },
   "domain_order": [
     "p02",
@@ -40,9 +40,9 @@
       "id": "mega_shop",
       "pending_reason": null,
       "runner": {
-        "path": "tools/mgba_modernization_mega_shop_smoke.c",
-        "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb",
-        "size": 24745
+        "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+        "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+        "size": 167
       },
       "status": "NOT_RUN"
     },
@@ -155,10 +155,10 @@
   "not_yet_executed": true,
   "orchestrator": {
     "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
-    "sha256": "e475d3e09de9eeb2e9dceadec38ed2d2d237a6ffd7bb1ea1b1cac7e40200593a",
-    "size": 122884
+    "sha256": "a0c526a65edea3976612d8bfe57d9860150c7947f109b9662e9a6f1d5411b90a",
+    "size": 124491
   },
-  "plan_fingerprint": "7938751b4a1040053dcbda9fa8c809ad5f3fe2bb686a2e240d00984e3618be6e",
+  "plan_fingerprint": "23af508221c5efbe62655aa5f0f58aee18d8eaea19c20339d3e400887678afc7",
   "schema_version": 1,
   "stage": 79,
   "status": "READY_NOT_RUN",

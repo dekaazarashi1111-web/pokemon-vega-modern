@@ -886,6 +886,29 @@ def _int_list(value: Any, label: str) -> list[int]:
 
 def _mega_shop_arguments(domain: Mapping[str, Any]) -> tuple[list[int], dict[str, Any]]:
     source = _fixed_json(domain.get("contract_source"), "Mega shop symbols")
+    # Stage68 owns the shop ABI; Stage69 owns the cumulative map graph.
+    # Do not edit historical symbols or accept arbitrary extra objects.
+    map_source = _fixed_json(domain.get("map_contract_source"),
+                             "Stage79 Factory map symbols")
+    old_map = source["map"]
+    current_map = map_source["map"]
+    if (current_map.get("group_id") != 96
+            or current_map.get("map_id") != 5
+            or old_map.get("group_id") != 96
+            or old_map.get("map_id") != 5
+            or current_map.get("header_address") != old_map.get("header_address")
+            or current_map.get("old_events_pointer") != old_map.get("events_after_address")
+            or current_map.get("old_objects_pointer") != old_map.get("objects_after_address")
+            or current_map.get("old_scripts_pointer") != old_map.get("old_scripts_pointer")
+            or current_map.get("object_count_before") != 14
+            or old_map.get("object_count_after") != 14
+            or current_map.get("object_count_after") != 15
+            or current_map.get("old_event_counts") != [14, 10, 0, 7]
+            or current_map.get("existing_14_objects_preserved") is not True
+            or current_map.get("stage68_shop_local14_preserved") is not True
+            or current_map.get("map_scripts_preserved") is not True
+            or current_map.get("gift_object", {}).get("local_id") != 15):
+        _fail("Stage79 Factory map provenance/count contract mismatch")
     values = [
         _member(source, ("entrypoints", "MegaShop_Probe"), "Mega shop symbols"),
         _member(source, ("entrypoints", "MegaShop_EnsureSave"), "Mega shop symbols"),
@@ -895,8 +918,8 @@ def _mega_shop_arguments(domain: Mapping[str, Any]) -> tuple[list[int], dict[str
         _member(source, ("entrypoints", "MegaShop_PurchaseByIndex"), "Mega shop symbols"),
         _member(source, ("entrypoints", "MegaShop_Open"), "Mega shop symbols"),
         _member(source, ("scripts", "npc_address"), "Mega shop symbols"),
-        _member(source, ("map", "events_after_address"), "Mega shop symbols"),
-        _member(source, ("map", "old_scripts_pointer"), "Mega shop symbols"),
+        _member(map_source, ("map", "events_after_address"), "Stage79 Factory map symbols"),
+        _member(map_source, ("map", "old_scripts_pointer"), "Stage79 Factory map symbols"),
         _member(source, ("item_tables", "item_data", "new_address"),
                 "Mega shop symbols"),
     ]
@@ -1278,6 +1301,8 @@ def _validate_domain_contracts(
         _fail("Mega shop derived CLI argument contract不一致")
     audit["mega_shop"] = {
         "contract_source": dict(mega["contract_source"]),
+        "map_contract_source": dict(mega["map_contract_source"]),
+        "factory_object_count": 15,
         "argument_count": len(mega_expected),
         "arguments_sha256": _sha(_stable(mega_expected)),
         "all_45_purchases_claimed": False,
