@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from tools import modernization_p08_stage79_evidence as evidence  # noqa: E402
+from tools import modernization_p08_representative_evidence as representative  # noqa: E402
 
 OUTPUT = 'content/modernization/p08_current_acceptance.json'
 DOCUMENTS = tuple(f'content/modernization/p08_{name}.json' for name in
@@ -21,7 +22,7 @@ P07 = 'content/modernization/p07_layered_learnset_contract.json'
 P07_HANDOFF = 'content/modernization/p07_runtime_handoff.json'
 ECONOMY = 'config/modernization_p03_stage74_supply.json'
 ADDITIVE_KEYS = {'historical_checkpoint_scope', 'current_cumulative_runtime',
-                 'cumulative_evidence_binding'}
+                 'cumulative_evidence_binding'} | representative.KEYS
 
 
 def boolean(record: dict[str, Any], key: str) -> bool:
@@ -39,7 +40,8 @@ def count(record: dict[str, Any], key: str) -> int:
 def build_report(root: Path = ROOT) -> dict[str, Any]:
     """読み取り専用。通常CIの成功や関数単体PASSを製品受入へ昇格しない。"""
     current = evidence.build_extension(root)
-    sources: dict[str, dict[str, Any]] = {}
+    representative_e2e = representative.build_extension(root)
+    sources: dict[str, dict[str, Any]] = dict(representative_e2e['source_bindings'])
 
     def load(path: str) -> dict[str, Any]:
         raw = evidence.regular(root, path)
@@ -51,6 +53,7 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
     historical: dict[str, Any] = {}
     for path in DOCUMENTS:
         document = load(path)
+        representative.validate_document(document, representative_e2e)
         evidence.require(document.get('release_ready') is False,
                          f'unapproved release promotion: {path}')
         evidence.require(document.get('current_cumulative_runtime') == current,
@@ -96,11 +99,11 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
 
     limits = {}
     definitions = {
-        'p03': {'scheduler_e2e': '実際の育成操作・画面遷移を通した検証が未完了',
+        'p03': {'scheduler_e2e': '通常習得・進化キャンセルの代表2ケースはPASS。満杯時の技入替・拒否、他の習得画面や育成経路の通し検証は未完了',
                 'breeding_e2e': '預かり屋・タマゴ生成を通した検証が未完了',
-                'save_reload_e2e': '習得後の保存・新規core再読込を通した検証が未完了',
+                'save_reload_e2e': '通常習得後の保存・新規core Continueは代表2ケースでPASS。他の習得経路での保存・再読込は未完了',
                 'full_p03_acceptance': 'P03全体の受入が未完了'},
-        'p05': {'scheduler_e2e': '実際の戦闘ターン進行を通した検証が未完了',
+        'p05': {'scheduler_e2e': '6特性24条件とDragonize操作観測4条件はPASS。その他の技・特性経路、自然な特性取得・Battle Circus入場を含む全体検証は未完了',
                 'full_p05_acceptance': 'P05全体の受入が未完了'},
     }
     for domain, fields in definitions.items():
@@ -182,6 +185,8 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
         'satisfied_runtime_domains': [row['id'] for row in rows],
         'eelevate_switch_ai_done': True,
         'declared_runtime_limits': limits,
+        'declared_runtime_limits_scope': 'UNCHANGED_ORIGINAL_STAGE79_FLAGS_NOT_REPRESENTATIVE_PROGRESS',
+        'representative_e2e': representative_e2e,
         'unclaimed_coverage': {key: current['claims'][key] for key in
                               ('link_runtime_e2e', 'physical_all_menu_paths_e2e')},
         'p06_adoption': {'review_record_count': review['source_record_count'], 'adopted_delta_count': n06},

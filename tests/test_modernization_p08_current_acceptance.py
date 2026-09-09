@@ -31,6 +31,10 @@ class CurrentAcceptanceTests(unittest.TestCase):
         self.current = deepcopy(self.extension)
         # Unitの改変注入用。実checkout検証はsetUpClassで省略せず一度実行する。
         self.validator = patch.object(evidence, 'build_extension', return_value=self.current)
+        self.representative_validator = patch.object(audit.representative, 'build_extension',
+            return_value=deepcopy(self.actual['representative_e2e']))
+        self.representative_validator.start()
+        self.addCleanup(self.representative_validator.stop)
         self.validator.start()
         self.addCleanup(self.validator.stop)
 

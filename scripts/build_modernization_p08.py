@@ -27,6 +27,8 @@ from tools.modernization_p08_stage79_evidence import (  # noqa: E402
 )
 
 
+from tools.modernization_p08_representative_evidence import attach_outputs as attach_representative  # noqa: E402
+
 OUTPUTS = {
     "content/modernization/p08_integration_matrix.json": lambda matrix: matrix,
     "content/modernization/p08_runtime_handoff.json": build_runtime_handoff,
@@ -39,7 +41,7 @@ def render_outputs(matrix: dict[str, Any]) -> dict[str, bytes]:
         relative: stable_json(builder(matrix))
         for relative, builder in OUTPUTS.items()
     }
-    return attach_outputs(historical, ROOT)
+    return attach_representative(attach_outputs(historical, ROOT), ROOT)
 
 
 def main(argv: list[str] | None = None) -> int:

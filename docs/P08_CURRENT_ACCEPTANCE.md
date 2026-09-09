@@ -60,3 +60,12 @@ P06の194件のレビュー資料を採用指示とみなさず、P07の双方�
 `p08-current-acceptance-record` workflowは検証成功後だけ、標準run/versionログへの追記と
 検証記録を一時ブランチへコミットする。PRブランチを自動更新せず、記録コミットを読み直して
 fast-forwardで反映する。記録後HEADでも通常CIと正式Stage79を確認する。
+
+## 2026-09-09：後続の代表的な実操作試験
+
+`representative_e2e` にP03 learning（2ケース）、P05 scheduler（24条件）、
+P05 controller witness（4条件）の原本照合を追加した。
+`declared_runtime_limits` は変更していないStage79原本のフラグであり、後続の
+代表成功を取り消すものではない。現在の残件理由は、代表試験で確認済みの範囲と
+未検証の経路を区別する。詳細と検証手順は `docs/P08_REPRESENTATIVE_E2E.md` を参照。
+原本に含まれる新規プロセス30件と、今回の証跡再検証における新規実行0件を混同しない。
