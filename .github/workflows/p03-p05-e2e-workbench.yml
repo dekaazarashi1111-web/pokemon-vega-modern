@@ -29,7 +29,7 @@ jobs:
             python3 --version
             dpkg-query -W -f='${Package} ${Version}\n' libmgba-dev libmgba0.10
           } > "$out/toolchain/versions.txt"
-          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile .github/scripts .github/workflows docs design build/stages/06_battle_core.json build/stages/80_modernization_runtime_boundary_repair.gba build/stages/80_modernization_runtime_boundary_repair.json .local/60_wild_species_root_repair.srm | tar --null -T - -czf "$out/inputs.tar.gz"
+          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile .github/scripts .github/workflows docs design build/stages/06_battle_core.json build/stages/78_modernization_p05_eelevate_switch_ai.gba build/stages/78_modernization_p05_eelevate_switch_ai.json build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json build/stages/80_modernization_runtime_boundary_repair.gba build/stages/80_modernization_runtime_boundary_repair.json .local/60_wild_species_root_repair.srm | tar --null -T - -czf "$out/inputs.tar.gz"
           cp -a /usr/include/mgba /usr/include/mgba-util "$out/toolchain/include/"
           ldd /usr/lib/x86_64-linux-gnu/libmgba.so > "$out/toolchain/ldd.txt"
           cp -L /usr/lib/x86_64-linux-gnu/libmgba.so "$out/toolchain/lib/libmgba.so"
