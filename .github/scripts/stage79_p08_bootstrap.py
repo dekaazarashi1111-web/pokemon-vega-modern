@@ -72,9 +72,24 @@ def restore(root: Path, assets: Path, config: dict, private: str) -> None:
     run('git', 'diff', '--exit-code', root=root)
 
 
+def fetch_historical_objects(root: Path) -> None:
+    # Stage76/77 prove ancestry and inspect the original implementation commits.
+    # Fetching only isolated commit objects is not sufficient for those checks.
+    shallow = subprocess.check_output(
+        ['git', 'rev-parse', '--is-shallow-repository'], cwd=root, text=True).strip()
+    if shallow == 'true':
+        run('git', 'fetch', '--unshallow', '--no-tags', 'origin', history.COMMIT, root=root)
+    elif shallow != 'false':
+        raise RuntimeError('unknown Git shallow state')
+    run('git', 'fetch', '--no-tags', 'origin', history.COMMIT, stage_inputs.INPUT_COMMIT, root=root)
+    for commit in (history.COMMIT, stage_inputs.INPUT_COMMIT):
+        run('git', 'cat-file', '-e', f'{commit}^{{commit}}', root=root)
+
+
 def main() -> None:
     run(sys.executable, '-m', 'unittest', 'tests.test_modernization_p08_history',
-        'tests.test_modernization_p08_stage_inputs', '-v')
+        'tests.test_modernization_p08_stage_inputs',
+        'tests.test_modernization_p08_git_history', '-v')
     private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
     if private not in ('true', 'false'):
         raise RuntimeError('Unknown repository visibility')
@@ -104,8 +119,7 @@ def main() -> None:
     ]
     if history.COMMIT != p08.SNAPSHOT_BASE_HEAD:
         raise RuntimeError('historical source and P08 checkpoint differ')
-    run('git', 'fetch', '--depth=1', 'origin', history.COMMIT)
-    run('git', 'fetch', '--depth=1', 'origin', stage_inputs.INPUT_COMMIT)
+    fetch_historical_objects(ROOT)
     with tempfile.TemporaryDirectory(prefix='p08-historical-') as temporary:
         historical = Path(temporary) / 'source'
         run('git', 'worktree', 'add', '--detach', str(historical), history.COMMIT)
