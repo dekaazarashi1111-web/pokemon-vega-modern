@@ -1,4 +1,4 @@
-"""Use Stage65/66's original, hash-pinned JSON inputs only in a temporary worktree."""
+"""Use Stage65/66's original, hash-pinned inputs only in a temporary worktree."""
 from contextlib import contextmanager
 from pathlib import Path
 import hashlib
@@ -18,6 +18,13 @@ SUCCESSORS = {
     'content/modernization/p03_compiled_index.json': (2327596, 'a4258048c50df88ecbaf2525e04edaa6f2440da2a79d2f336ccb67e3a2362751'),
     'content/modernization/p03_runtime_handoff.json': (8692, '2458a0b3299f318f4a08dc460df6db876ea4f5f2347e6f8c48541d9b8a9f0479'),
 }
+STAGE66_INPUTS = {
+    'tools/modernization_learnsets.py': (59117, '3d0eae7a5d1cf81780d1028d78bf6d1b80be7e2b1ba304d23f5558d113bb5ecb'),
+}
+STAGE66_SUCCESSORS = {
+    'tools/modernization_learnsets.py': (65067, 'fc2503f98a38a07899dd28adcb98faba755f571497184183d27ca457a4bb3698'),
+}
+STAGE66_GATE = 'content/modernization/p03_stage66_mgba_runtime_gate.json'
 CONFIGS = ('config/modernization_p03_stage65.json', 'config/modernization_p03_stage66.json')
 
 
@@ -27,7 +34,9 @@ def verify(raw: bytes, expected: tuple[int, str], label: str) -> None:
 
 
 @contextmanager
-def original_stage_inputs(root: Path, active_root: Path):
+def original_stage_inputs(root: Path, active_root: Path, *, stage: int = 65):
+    if stage not in (65, 66):
+        raise RuntimeError('unapproved historical projection stage')
     root, active_root = root.resolve(), active_root.resolve()
     if root == active_root or active_root in root.parents:
         raise RuntimeError('historical input projection must not modify the active checkout')
@@ -43,20 +52,29 @@ def original_stage_inputs(root: Path, active_root: Path):
                     if isinstance(row, dict) and row.get('path') in INPUTS}
         if selected != INPUTS:
             raise RuntimeError(f'Stage65/66 input contract drift: {config}')
+    pins, successors = dict(INPUTS), dict(SUCCESSORS)
+    if stage == 66:
+        rows = json.loads(_read(root, STAGE66_GATE))['inputs']['sources']
+        sources = {row['path']: (row['size'], row['sha256']) for row in rows
+                   if row.get('path') in STAGE66_INPUTS}
+        if sources != STAGE66_INPUTS:
+            raise RuntimeError('Stage66 published source contract drift')
+        pins.update(STAGE66_INPUTS)
+        successors.update(STAGE66_SUCCESSORS)
     originals, projected = {}, {}
-    for relative, expected in INPUTS.items():
+    for relative, expected in pins.items():
         originals[relative] = _read(root, relative)
-        verify(originals[relative], SUCCESSORS[relative], relative)
+        verify(originals[relative], successors[relative], relative)
         raw = subprocess.check_output(['git', 'show', f'{INPUT_COMMIT}:{relative}'], cwd=root)
         verify(raw, expected, relative)
         projected[relative] = raw
-    # Preflight all three versions before writing any byte. Always restore inputs,
+    # Preflight every version before writing any byte. Always restore inputs,
     # including after a failed builder or interrupted projected-file write.
     try:
         for relative, raw in projected.items():
             (root / relative).write_bytes(raw)
         yield
-        for relative, expected in INPUTS.items():
+        for relative, expected in pins.items():
             verify(_read(root, relative), expected, relative)
     finally:
         for relative, raw in originals.items():
@@ -64,4 +82,4 @@ def original_stage_inputs(root: Path, active_root: Path):
             if path.is_symlink() or not path.is_file():
                 raise RuntimeError(f'unsafe historical input restoration: {relative}')
             path.write_bytes(raw)
-            verify(_read(root, relative), SUCCESSORS[relative], relative)
+            verify(_read(root, relative), successors[relative], relative)
