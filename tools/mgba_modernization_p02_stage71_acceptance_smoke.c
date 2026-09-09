@@ -448,11 +448,21 @@ static uint16_t p02s_scene_key(uint32_t callback, uint32_t species,
 
     if (cancel && callback == P02S_CB2_EVOLUTION_UPDATE
         && species == source) {
-        trace->physical_b = true;
-        return QOL_KEY_B;
+        /* Cancellation is edge-triggered after the animation's input gate.
+         * Release between presses, so an early B does not consume the edge. */
+        if (frame % 120U < 2U) {
+            trace->physical_b = true;
+            return QOL_KEY_B;
+        }
+        return 0U;
     }
     if (!scene_started)
         return frame % 120U < 2U ? QOL_KEY_A : 0U;
+    /* Returning from Bag leaves the Start menu open on the field callback.
+     * Close all three menus before optional-move dialog input can reopen Bag. */
+    if (callback == P02S_CB2_PARTY || callback == P02S_CB2_BAG
+        || callback == P02S_CB2_FIELD)
+        return frame % 120U < 2U ? QOL_KEY_B : 0U;
     if (!cancel && species == target) {
         /* Reject optional evolution moves without changing the four slots. */
         uint32_t phase = frame % 240U;
@@ -461,8 +471,6 @@ static uint16_t p02s_scene_key(uint32_t callback, uint32_t species,
         if (phase >= 120U && phase < 122U)
             return QOL_KEY_A;
     }
-    if (callback == P02S_CB2_PARTY || callback == P02S_CB2_BAG)
-        return frame % 120U < 2U ? QOL_KEY_B : 0U;
     return frame % 180U < 2U ? QOL_KEY_A : 0U;
 }
 

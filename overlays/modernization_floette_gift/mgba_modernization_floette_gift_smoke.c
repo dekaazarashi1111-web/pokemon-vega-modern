@@ -27,7 +27,9 @@
 #define FG_MON_SIZE UINT32_C(100)
 #define FG_BOX_MON_SIZE UINT32_C(80)
 #define FG_PARTY_CAPACITY UINT32_C(6)
-#define FG_BOX_COUNT UINT32_C(14)
+/* The linked DPE bounds check accepts box IDs 0..24, not vanilla 0..13. */
+#define FG_BOX_COUNT UINT32_C(25)
+#define FG_SET_BOX_MON UINT32_C(0x09123D51)
 #define FG_BOX_CAPACITY UINT32_C(30)
 #define FG_SPECIES UINT16_C(1029)
 #define FG_LEVEL UINT16_C(50)
@@ -260,6 +262,16 @@ static bool fg_has_ring(struct mCore *core)
     return fg_call_thumb(core, FG_CHECK_BAG, FG_MEGA_RING, 1U, 0U, 0U) != 0U;
 }
 
+static void fg_verify_storage_abi(struct mCore *core)
+{
+    static const uint8_t expected[] = {0x70, 0xB5, 0x04, 0x00, 0x0E, 0x00, 0x15, 0x00, 0x90, 0xB0, 0x18, 0x28, 0x01, 0xD8, 0x1D, 0x29, 0x01, 0xD9, 0x10, 0xB0, 0x70, 0xBD, 0x10, 0x00, 0x00, 0x21, 0xDD, 0xF7, 0xDF, 0xF9, 0x28, 0x00, 0x01, 0xA9, 0xFF, 0xF7, 0x5D, 0xFF, 0x05, 0x4B, 0xA4, 0x00, 0xE0, 0x58, 0x3A, 0x23, 0x73, 0x43, 0x3A, 0x22, 0xC0, 0x18, 0x01, 0xA9, 0x76, 0xF7, 0x44, 0xF8, 0xEA, 0xE7, 0x28, 0x92, 0x16, 0x09};
+    _Static_assert(FG_BOX_COUNT == 25U && FG_BOX_CAPACITY == 30U,
+                   "linked compact PC dimensions changed");
+    for (uint32_t index = 0U; index < sizeof(expected); ++index)
+        if (read8(core, (FG_SET_BOX_MON & ~1U) + index) != expected[index])
+            fg_die("DPE SetBoxMonAt ABI mismatch");
+}
+
 static void fg_clear_boxes(struct mCore *core)
 {
     for (uint32_t box = 0U; box < FG_BOX_COUNT; ++box)
@@ -304,21 +316,27 @@ static void fg_install_party(struct mCore *core, uint32_t count)
 static void fg_fill_boxes(struct mCore *core)
 {
     fg_create_fixture_mon(core);
+    uint32_t experience = fg_call_thumb(
+        core, FG_GET_MON_DATA, FG_SCRATCH, 25U, 0U, 0U);
     for (uint32_t box = 0U; box < FG_BOX_COUNT; ++box) {
         for (uint32_t slot = 0U; slot < FG_BOX_CAPACITY; ++slot) {
-            uint32_t destination = fg_call_thumb(
-                core, fg_get_boxed_mon_ptr, box, slot, 0U, 0U);
-            if (destination < UINT32_C(0x02000000)
-                || destination + FG_BOX_MON_SIZE > UINT32_C(0x02040000))
-                fg_die("DPE GetBoxedMonPtr fixture pointer is invalid");
-            for (uint32_t byte = 0U; byte < FG_BOX_MON_SIZE; ++byte)
-                fg_write8(core, destination + byte,
-                          read8(core, FG_SCRATCH + byte));
+            /* GetBoxedMonPtr returns the disposable 80-byte expansion, not
+             * the 58-byte persistent slot. Use the production compressor. */
+            (void)fg_call_thumb(core, FG_SET_BOX_MON, box, slot, FG_SCRATCH, 0U);
             if (fg_call_thumb(core, fg_get_box_mon_data,
                               box, slot, 11U, 0U) != 25U)
-                fg_die("DPE GetBoxedMonPtr fixture write failed");
+                fg_die("DPE SetBoxMonAt fixture write failed");
         }
     }
+    /* Check all 750 slots after the last write, catching storage aliasing and
+     * incomplete fixtures before exercising the real full-capacity rejection. */
+    for (uint32_t box = 0U; box < FG_BOX_COUNT; ++box)
+        for (uint32_t slot = 0U; slot < FG_BOX_CAPACITY; ++slot)
+            if (fg_call_thumb(core, fg_get_box_mon_data,
+                              box, slot, 11U, 0U) != 25U
+                || fg_call_thumb(core, fg_get_box_mon_data,
+                                 box, slot, 25U, 0U) != experience)
+                fg_die("DPE full-capacity fixture readback failed");
 }
 
 static void fg_verify_map(struct mCore *core, uint32_t npc_script,
@@ -446,6 +464,7 @@ int main(int argc, char **argv)
 
     fg_phase("clean-production-fixture");
     fg_install_party(core, 0U);
+    fg_verify_storage_abi(core);
     fg_clear_boxes(core);
     if (fg_has_ring(core))
         fg_die("new-game fixture already has Mega Ring");
