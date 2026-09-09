@@ -1,0 +1,142 @@
+name: p08-stage81-evidence-integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p08-stage81-evidence-integration.yml
+      - tools/stage81_p08_bootstrap/**
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: p08-stage81-evidence-integration-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify-and-integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize exact reviewed source patch without changing candidate or runner
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-stage81-integration/bootstrap
+          cp tools/stage81_p08_bootstrap/*.b64 .local/p08-stage81-integration/bootstrap/
+          python3 - <<'PY'
+          import base64, hashlib, json, pathlib, zlib
+          root = pathlib.Path('.')
+          sha = lambda raw: hashlib.sha256(raw).hexdigest()
+          packed = ''.join((root / f'tools/stage81_p08_bootstrap/part{i}.b64').read_text().strip() for i in (1,2,3))
+          raw = zlib.decompress(base64.b64decode(packed, validate=True))
+          assert sha(raw) == '9796a57846733f8134945aba3300edef56fbc01a462791da84cb2ac2f3659dd9'
+          rows = json.loads(raw)
+          allowed = {'tools/modernization_p08_stage81_evidence.py', 'scripts/integrate_modernization_p08_stage81_evidence.py', 'tests/test_modernization_p08_stage81_evidence.py', 'scripts/build_modernization_p08.py', 'scripts/check_modernization_p08_current_acceptance.py', 'tests/test_modernization_p08_current_acceptance.py', 'docs/P08_CURRENT_ACCEPTANCE.md', 'docs/P08_STAGE81_NATIVE_PP.md', '.github/workflows/ci.yml'}
+          assert set(rows) == allowed
+          for relative, row in rows.items():
+              path = root
+              for part in pathlib.Path(relative).parts:
+                  path /= part
+                  assert not path.is_symlink(), relative
+              current = sha(path.read_bytes()) if path.exists() else None
+              assert current in (row['before_sha256'], row['after_sha256']), 'concurrent source change: ' + relative
+              assert sha(row['content'].encode()) == row['after_sha256']
+          for relative, row in rows.items():
+              path = root / relative
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_bytes(row['content'].encode())
+          receipt = {p: {k:v for k,v in row.items() if k != 'content'} for p,row in rows.items()}
+          pathlib.Path('.local/p08-stage81-integration/code-receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
+          PY
+      - name: Fetch original GitHub evidence and append strictly verified Stage81 layer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py prepare > .local/p08-stage81-integration/prepare.json
+          python3 scripts/integrate_modernization_p08_stage81_evidence.py > .local/p08-stage81-integration/integration.json
+      - name: Regression tests and read-only acceptance checks
+        run: |
+          set -euo pipefail
+          python3 -m unittest \
+            tests.test_modernization_p03_fullslots_e2e \
+            tests.test_modernization_stage81_github_domain \
+            tests.test_modernization_p08_stage81_evidence \
+            tests.test_modernization_p08_current_acceptance \
+            tests.test_modernization_p08_stage79_evidence \
+            tests.test_modernization_p08_representative_evidence -v \
+            2>&1 | tee .local/p08-stage81-integration/tests.log
+          python3 scripts/validate_task_graph.py > .local/p08-stage81-integration/task-graph.log
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/p08-stage81-integration/report.json
+          set +e
+          python3 scripts/check_modernization_p08_current_acceptance.py --check --require-release-ready > .local/p08-stage81-integration/release-check.json
+          status=$?
+          set -e
+          test "$status" -eq 1
+          git diff --exit-code -- config/active_play_baseline.json build/stages content/modernization/stage79_cumulative_mgba_runtime_gate.json content/modernization/stage79_evidence content/modernization/p08_representative_evidence
+          python3 - <<'PY'
+          import json, subprocess
+          from tools import modernization_p08_stage81_evidence as e
+          from scripts import check_modernization_p08_current_acceptance as a
+          for path in a.DOCUMENTS:
+              old = json.loads(subprocess.check_output(['git', 'show', 'HEAD:'+path]))
+              new = json.loads((a.ROOT/path).read_bytes())
+              e.exact(e.strip(new), e.strip(old), 'all previous P08 fields and bindings preserved')
+          PY
+      - name: Record successful validation and fast-forward PR branch
+        env:
+          BRANCH: codex/modernization-followup-20260908
+        run: |
+          set -euo pipefail
+          # Workflow changes are applied separately through the connected GitHub writer.
+          git restore -- .github/workflows/ci.yml
+          python3 - <<'PY'
+          import datetime, json, os, pathlib, re, subprocess
+          from tools import modernization_p08_stage81_evidence as e
+          from scripts import check_modernization_p08_current_acceptance as a
+          out = pathlib.Path('.local/p08-stage81-integration')
+          log = (out/'tests.log').read_text()
+          counts = re.findall(r'Ran (\d+) tests in ', log)
+          assert counts == ['347'] and log.rstrip().endswith('OK'), 'complete regression success required'
+          record = {'schema_version':1,'status':'PASS','integration_run_id':int(os.environ['GITHUB_RUN_ID']),
+                    'validated_checkout':os.environ['GITHUB_SHA'],'candidate_stage':81,'candidate_sha256':e.adapter.SHA,
+                    'seven_domain_original_run':e.RUN,'p03_eight_case_original_run':e.P03_RUN,
+                    'regression_tests':347,'original_successful_native_processes':15,
+                    'original_expected_failure_controls':2,'fresh_native_processes_this_integration':0,
+                    'release_ready':False,'active_baseline_changed':False,
+                    'normal_ci_after_committed_head':'PENDING_SEPARATE_CONNECTED_WRITER_UPDATE'}
+          destination = 'content/modernization/p08_stage81_integration_verification.json'
+          pathlib.Path(destination).write_bytes(e.base.stable(record))
+          (out/'verification.json').write_bytes(e.base.stable(record))
+          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          note = f'\n## {now} USER-STAGE81 native PP evidence acceptance\n\nGitHub integration run {record["integration_run_id"]}: 347 regressions PASS; original Stage81 matrix run {e.RUN} has 7 fresh domains, and P03 original run {e.P03_RUN} has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.\n'
+          for path in ('design/run_log.md','design/version_log.md'):
+              with open(path,'a') as stream: stream.write(note)
+          receipt = json.loads((out/'code-receipt.json').read_bytes())
+          sources = [p for p in receipt if p != '.github/workflows/ci.yml']
+          selected = [*sources,e.CONFIG,*a.DOCUMENTS,a.OUTPUT,destination,'design/run_log.md','design/version_log.md']
+          subprocess.run(['git','add','--',*selected],check=True)
+          subprocess.run(['git','add','-f','--',e.DIRECTORY],check=True)
+          changed = subprocess.check_output(['git','diff','--cached','--name-only']).decode().splitlines()
+          assert changed and all(p in selected or p.startswith(e.DIRECTORY+'/') for p in changed)
+          assert not any(pathlib.Path(p).suffix.lower() in ('.gba','.srm','.sav','.ips','.ups','.bps') for p in changed)
+          PY
+          git fetch origin "$BRANCH"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'WIP USER-STAGE81: integrate verified PP candidate originals into layered P08 acceptance'
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/p08-stage81-integration/committed-head.txt
+          git show --stat --oneline HEAD > .local/p08-stage81-integration/commit-stat.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-stage81-integration
+          path: .local/p08-stage81-integration/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
