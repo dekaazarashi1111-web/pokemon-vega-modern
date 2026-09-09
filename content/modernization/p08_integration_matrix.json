@@ -904,6 +904,137 @@
       "unique_hook_count": 29
     }
   },
+  "cumulative_evidence_binding": {
+    "historical_document_sha256": "cd19cf527d56dbfe4ff25cb73098cf84226ec72f5335d29be43e6a4a7746ae69",
+    "sha256": "0b7b260c8188ff08f55441828bb01b8d725ed06151724513e78782929a418f47"
+  },
+  "current_cumulative_runtime": {
+    "active_baseline_changed": false,
+    "active_baseline_stage": 62,
+    "candidate_rom": {
+      "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+      "size": 33554432
+    },
+    "candidate_stage": 80,
+    "claims": {
+      "full_p03_done": false,
+      "full_p05_done": false,
+      "link_runtime_e2e": false,
+      "physical_all_menu_paths_e2e": false,
+      "product_rom_patched": false,
+      "release_ready": false
+    },
+    "domain_count": 7,
+    "domains": [
+      {
+        "id": "p02",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p02/result.json",
+        "result_sha256": "50c1a1b87272ad0ff85d3c5b9bf4f127f97ce384ccc9dbd83de1bd4da16a4bf0",
+        "runner": {
+          "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+          "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+          "size": 39669
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "mega_shop",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/mega_shop/result.json",
+        "result_sha256": "6d7ecac41f69c01b5cb2f0f8a27b4397f84503844585bd97bd20d51727f8f42a",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+          "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+          "size": 167
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "floette",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/floette/result.json",
+        "result_sha256": "11a7eda0fa22da88312541458afb5c9fdb36a9877822664455d24ca1b031f347",
+        "runner": {
+          "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+          "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+          "size": 28131
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p03",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+        "result_sha256": "555a9c05a5d92b76bda18ef4ac8d59da271b8c82c2ab56d94e09cb0cc0158080",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+          "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e",
+          "size": 24367
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p04_mega_runtime",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p04_mega_runtime/result.json",
+        "result_sha256": "20843017c4f6818247f9a0ed4f7419f4006a6f1d204c7862f6b1461dcb91998c",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+          "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7",
+          "size": 9514
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "battle_policy",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/battle_policy/result.json",
+        "result_sha256": "aacba597c47e561593c97db2938cff0e5ad869d23ef4e26fffb7371d3897288e",
+        "runner": {
+          "path": "tools/mgba_battle_policy_smoke.c",
+          "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3",
+          "size": 90064
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p05",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p05/result.json",
+        "result_sha256": "b4fb257f3bfaf782553db893c20b3e61d116dcae1844096045162cef427eff97",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+          "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091",
+          "size": 63261
+        },
+        "status": "PASS"
+      }
+    ],
+    "evidence_directory": "content/modernization/stage79_evidence/34314414289",
+    "heavy_execution_performed_by_p08": false,
+    "immutable_parent_rom": {
+      "crc32": "BFF0203C",
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+      "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+      "size": 33554432
+    },
+    "phase_completion_promoted": false,
+    "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+    "registration": {
+      "path": "config/modernization_p08_stage79_evidence.json",
+      "sha256": "12033aacab55ad909a31bc083bedc0f752787a640b1ad9b35ada85b6f3f8fb9f"
+    },
+    "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34314414289",
+    "runtime_gate": {
+      "path": "content/modernization/stage79_cumulative_mgba_runtime_gate.json",
+      "sha256": "9086028de03f1c00778cf6a6e1529127852c850acbaf618390c58d2b6e934451"
+    },
+    "schema_version": 1,
+    "scope": "Seven exact cumulative runtime contracts; original Stage77 phase/release checkpoint remains historical. P03 archive economy and P05 bounded helper/hook coverage remain limited; no all-menu or link-runtime claim.",
+    "source": {
+      "head_sha": "74075507599b902d2c65ce61276e615c3049a8e1",
+      "run_attempt": 1,
+      "run_id": 34314414289
+    },
+    "stage": 79,
+    "status": "PASS_WITH_DECLARED_LIMITS"
+  },
+  "historical_checkpoint_scope": "Stage77 phase-completion checkpoint; see current_cumulative_runtime for the separately adopted Stage80 runtime candidate.",
   "integration_summary": {
     "active_stage": 62,
     "checkpoint_or_blocked_phase_count": 7,
@@ -1653,6 +1784,18 @@
       "path": "tools/mgba_battle_core_smoke.c",
       "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
       "size": 94532,
+      "source_resolution": {
+        "archive_path": "content/modernization/p08_historical_sources/137c6945c6bf5c633944ddd5287dffca9c5692c0/tools/mgba_battle_core_smoke.c",
+        "commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+        "current_source": {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+          "size": 94688
+        },
+        "git_blob": "4ebb223fd120395131ec7ddfcbbaee4721c72a66",
+        "historical_result_relabelled_as_current": false,
+        "mode": "EXACT_HISTORICAL_GIT_BLOB_WITH_PINNED_CURRENT_SUCCESSOR"
+      },
       "status": "PASS"
     },
     {
@@ -1681,6 +1824,18 @@
       "path": "tools/mgba_battle_core_smoke.c",
       "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
       "size": 94532,
+      "source_resolution": {
+        "archive_path": "content/modernization/p08_historical_sources/137c6945c6bf5c633944ddd5287dffca9c5692c0/tools/mgba_battle_core_smoke.c",
+        "commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+        "current_source": {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+          "size": 94688
+        },
+        "git_blob": "4ebb223fd120395131ec7ddfcbbaee4721c72a66",
+        "historical_result_relabelled_as_current": false,
+        "mode": "EXACT_HISTORICAL_GIT_BLOB_WITH_PINNED_CURRENT_SUCCESSOR"
+      },
       "status": "PASS"
     },
     {
@@ -1793,6 +1948,18 @@
       "path": "tools/mgba_battle_core_smoke.c",
       "sha256": "6a4c72232388e4fdf5f4c48a0f5f825193b6977ad8a117d70477b7d595982e23",
       "size": 94532,
+      "source_resolution": {
+        "archive_path": "content/modernization/p08_historical_sources/137c6945c6bf5c633944ddd5287dffca9c5692c0/tools/mgba_battle_core_smoke.c",
+        "commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+        "current_source": {
+          "path": "tools/mgba_battle_core_smoke.c",
+          "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+          "size": 94688
+        },
+        "git_blob": "4ebb223fd120395131ec7ddfcbbaee4721c72a66",
+        "historical_result_relabelled_as_current": false,
+        "mode": "EXACT_HISTORICAL_GIT_BLOB_WITH_PINNED_CURRENT_SUCCESSOR"
+      },
       "status": "PASS"
     },
     {
@@ -1865,7 +2032,7 @@
   "snapshot": {
     "auto_discovery": false,
     "implementation_input_count": 159,
-    "implementation_input_fingerprint_sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792",
+    "implementation_input_fingerprint_sha256": "1c439187adbcd164eae757fc8f1f691798ea7a4d23dfa47a9afa5bce7aae3a90",
     "implementation_inputs": [
       {
         "path": "config/modernization_p01_runtime.json",
@@ -2362,8 +2529,8 @@
       {
         "path": "tools/mgba_modernization_mega_shop_smoke.c",
         "phase": "P04",
-        "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb",
-        "size": 24745
+        "sha256": "36811c3a53d4e6326904a617ecd72af126ece54e61d6d8c2294d6b76dbb50994",
+        "size": 25037
       },
       {
         "path": "tests/test_modernization_mega_shop.py",
@@ -2428,8 +2595,8 @@
       {
         "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
         "phase": "P04",
-        "sha256": "35306047c3f052b13761edfbab1ae6bf7f7220b15d0d31fa4ec69faaed8fd8eb",
-        "size": 23196
+        "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+        "size": 28131
       },
       {
         "path": "overlays/modernization_floette_gift/modernization_floette_gift.c",
@@ -2458,8 +2625,8 @@
       {
         "path": "tools/modernization_p04_species_runtime.py",
         "phase": "P04",
-        "sha256": "60ebd86d6afdf6981fdb905e130ee2d12359d3f8e128d2cb35f606ae8d83c1d1",
-        "size": 60004
+        "sha256": "4fe0336d22384456f68fd6f00cc7a81732b60690daa10797004393bc016fa734",
+        "size": 60607
       },
       {
         "path": "tests/test_modernization_p04_species_runtime.py",
@@ -2692,8 +2859,8 @@
       {
         "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
         "phase": "P02",
-        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
-        "size": 36731
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
       },
       {
         "path": "tests/test_modernization_p02_stage71_acceptance.py",
@@ -2740,8 +2907,8 @@
       {
         "path": "scripts/build_modernization_p08.py",
         "phase": "P08",
-        "sha256": "bf57c2840726e3a239bd76ff9b567d8a912cd5861b48b467d807601a80aa591f",
-        "size": 2921
+        "sha256": "16f391536d0225fd1782d6eed24d303c83f3a153fa4ae1a3a04bbcd3849a33ac",
+        "size": 3458
       },
       {
         "path": "scripts/run_github_private_suite.py",
@@ -2752,8 +2919,8 @@
       {
         "path": "tools/modernization_p08_integration.py",
         "phase": "P08",
-        "sha256": "bfa87aaf0771f0ee7b0215adee35a2f1c843a82ad1a9e0986b3ce5941affffc2",
-        "size": 318295
+        "sha256": "58dd7c275908a5ab4a28af6d7a65dfd00fabe5664684d5a719196bb66dbe5cdb",
+        "size": 318617
       },
       {
         "path": "tests/test_modernization_p08.py",
@@ -2806,8 +2973,8 @@
       {
         "path": ".github/workflows/chatgpt-comment-control.yml",
         "phase": "CI",
-        "sha256": "a40c3e4a59078a983a71326e8d88a5dadfb97cb9c5ff877053661b6a51de57e6",
-        "size": 24948
+        "sha256": "a8732e6b82f1b36a35a112789f249cdd36a7d0b6c355070368a58c916237e43f",
+        "size": 24887
       },
       {
         "path": "infra/setup_github_actions.sh",
@@ -2831,7 +2998,7 @@
         },
         "implementation_inputs": {
           "count": 159,
-          "sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792"
+          "sha256": "1c439187adbcd164eae757fc8f1f691798ea7a4d23dfa47a9afa5bce7aae3a90"
         },
         "phase_projection": {
           "count": 8,
@@ -2839,14 +3006,14 @@
         },
         "referenced_source_bindings": {
           "count": 30,
-          "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
+          "sha256": "480baccd51d1eb06a64713e6142a33c82ca4722732ff6e1e40b86aa56ceb3ebe"
         },
         "tracked_inputs": {
           "count": 77,
           "sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba"
         }
       },
-      "sha256": "96efba3650cd0903a4bf4967f2755f5749b7cddbd5115715fe28ab328d371158"
+      "sha256": "fc4c7cb22cffdb9e139ec4de7472e89ad7474956dce00596a1b17753c01b7047"
     },
     "mode": "EXPLICIT_TRACKED_PATH_LIST_WITH_EXACT_WORKTREE_CONTENT_HASHES",
     "parallel_outputs": {

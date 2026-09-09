@@ -491,6 +491,137 @@
       "unique_hook_count": 29
     }
   },
+  "cumulative_evidence_binding": {
+    "historical_document_sha256": "8ee401bdf70d6d96c533b39de33bc6c2d22d7799cc38f7480a49942f1e8a2db8",
+    "sha256": "1460b20a677d2ca80aca26406c45f5e1c0bc73b7daa4c8a78d436b1c02b11737"
+  },
+  "current_cumulative_runtime": {
+    "active_baseline_changed": false,
+    "active_baseline_stage": 62,
+    "candidate_rom": {
+      "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+      "size": 33554432
+    },
+    "candidate_stage": 80,
+    "claims": {
+      "full_p03_done": false,
+      "full_p05_done": false,
+      "link_runtime_e2e": false,
+      "physical_all_menu_paths_e2e": false,
+      "product_rom_patched": false,
+      "release_ready": false
+    },
+    "domain_count": 7,
+    "domains": [
+      {
+        "id": "p02",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p02/result.json",
+        "result_sha256": "50c1a1b87272ad0ff85d3c5b9bf4f127f97ce384ccc9dbd83de1bd4da16a4bf0",
+        "runner": {
+          "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+          "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+          "size": 39669
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "mega_shop",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/mega_shop/result.json",
+        "result_sha256": "6d7ecac41f69c01b5cb2f0f8a27b4397f84503844585bd97bd20d51727f8f42a",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+          "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+          "size": 167
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "floette",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/floette/result.json",
+        "result_sha256": "11a7eda0fa22da88312541458afb5c9fdb36a9877822664455d24ca1b031f347",
+        "runner": {
+          "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+          "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+          "size": 28131
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p03",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+        "result_sha256": "555a9c05a5d92b76bda18ef4ac8d59da271b8c82c2ab56d94e09cb0cc0158080",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+          "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e",
+          "size": 24367
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p04_mega_runtime",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p04_mega_runtime/result.json",
+        "result_sha256": "20843017c4f6818247f9a0ed4f7419f4006a6f1d204c7862f6b1461dcb91998c",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+          "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7",
+          "size": 9514
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "battle_policy",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/battle_policy/result.json",
+        "result_sha256": "aacba597c47e561593c97db2938cff0e5ad869d23ef4e26fffb7371d3897288e",
+        "runner": {
+          "path": "tools/mgba_battle_policy_smoke.c",
+          "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3",
+          "size": 90064
+        },
+        "status": "PASS"
+      },
+      {
+        "id": "p05",
+        "result_path": "content/modernization/stage79_evidence/34314414289/domains/p05/result.json",
+        "result_sha256": "b4fb257f3bfaf782553db893c20b3e61d116dcae1844096045162cef427eff97",
+        "runner": {
+          "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+          "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091",
+          "size": 63261
+        },
+        "status": "PASS"
+      }
+    ],
+    "evidence_directory": "content/modernization/stage79_evidence/34314414289",
+    "heavy_execution_performed_by_p08": false,
+    "immutable_parent_rom": {
+      "crc32": "BFF0203C",
+      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+      "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+      "size": 33554432
+    },
+    "phase_completion_promoted": false,
+    "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+    "registration": {
+      "path": "config/modernization_p08_stage79_evidence.json",
+      "sha256": "12033aacab55ad909a31bc083bedc0f752787a640b1ad9b35ada85b6f3f8fb9f"
+    },
+    "run_url": "https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34314414289",
+    "runtime_gate": {
+      "path": "content/modernization/stage79_cumulative_mgba_runtime_gate.json",
+      "sha256": "9086028de03f1c00778cf6a6e1529127852c850acbaf618390c58d2b6e934451"
+    },
+    "schema_version": 1,
+    "scope": "Seven exact cumulative runtime contracts; original Stage77 phase/release checkpoint remains historical. P03 archive economy and P05 bounded helper/hook coverage remain limited; no all-menu or link-runtime claim.",
+    "source": {
+      "head_sha": "74075507599b902d2c65ce61276e615c3049a8e1",
+      "run_attempt": 1,
+      "run_id": 34314414289
+    },
+    "stage": 79,
+    "status": "PASS_WITH_DECLARED_LIMITS"
+  },
+  "historical_checkpoint_scope": "Stage77 phase-completion checkpoint; see current_cumulative_runtime for the separately adopted Stage80 runtime candidate.",
   "integration_fingerprint": {
     "algorithm": "SHA256_STABLE_JSON_COMPONENTS_V1",
     "components": {
@@ -500,7 +631,7 @@
       },
       "implementation_inputs": {
         "count": 159,
-        "sha256": "32c302001106602ba427ff635b69232e33db89234927b76a64d997ec7e3bc792"
+        "sha256": "1c439187adbcd164eae757fc8f1f691798ea7a4d23dfa47a9afa5bce7aae3a90"
       },
       "phase_projection": {
         "count": 8,
@@ -508,14 +639,14 @@
       },
       "referenced_source_bindings": {
         "count": 30,
-        "sha256": "267ab70158a15dcea895d0faa5b063f2a3b0000373931b6ccfd442ca8e04ed6a"
+        "sha256": "480baccd51d1eb06a64713e6142a33c82ca4722732ff6e1e40b86aa56ceb3ebe"
       },
       "tracked_inputs": {
         "count": 77,
         "sha256": "33023dd26ec731503797b9063994406acd8a5a2676b24df4a6a56e1b3610f6ba"
       }
     },
-    "sha256": "96efba3650cd0903a4bf4967f2755f5749b7cddbd5115715fe28ab328d371158"
+    "sha256": "fc4c7cb22cffdb9e139ec4de7472e89ad7474956dce00596a1b17753c01b7047"
   },
   "phase_runtime": [
     {
