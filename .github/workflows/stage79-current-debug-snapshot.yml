@@ -1,0 +1,60 @@
+name: stage79-current-debug-snapshot
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-current-debug-snapshot.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Snapshot tracked inputs without changing source, ROM or acceptance evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          output=.local/stage79-current-debug
+          mkdir -p "$output/native/include" "$output/native/lib"
+          git rev-parse HEAD > "$output/head.txt"
+          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile .github build/stages/06_battle_core.json build/stages/78_modernization_p05_eelevate_switch_ai.gba build/stages/78_modernization_p05_eelevate_switch_ai.json build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json build/stages/80_modernization_runtime_boundary_repair.gba build/stages/80_modernization_runtime_boundary_repair.json .local/60_wild_species_root_repair.srm | tar --null -T - -czf "$output/inputs.tar.gz"
+          sha256sum build/stages/{78_modernization_p05_eelevate_switch_ai,80_modernization_runtime_boundary_repair}.gba > "$output/rom-sha256.txt"
+          cp -a /usr/include/mgba /usr/include/mgba-util "$output/native/include/"
+          python3 - <<'PY'
+          import pathlib, re, shutil, subprocess
+          root = pathlib.Path('.local/stage79-current-debug/native')
+          candidates = list(pathlib.Path('/usr/lib/x86_64-linux-gnu').glob('libmgba.so.*'))
+          assert candidates
+          library = candidates[0].resolve()
+          output = subprocess.check_output(['ldd', str(library)], text=True)
+          (root / 'ldd.txt').write_text(output)
+          skip = {'libc.so.6', 'libm.so.6', 'libdl.so.2', 'libpthread.so.0', 'librt.so.1'}
+          for path in [library, *[pathlib.Path(p) for p in re.findall(r'=> (/\S+)', output)]]:
+              if path.name not in skip:
+                  shutil.copyfile(path, root / 'lib' / path.name)
+          for path in candidates:
+              shutil.copyfile(path, root / 'lib' / path.name)
+          shutil.copyfile(library, root / 'lib/libmgba.so')
+          PY
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=100" --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion,path,created_at}]' > "$output/runs.json"
+          cat "$output/runs.json"
+          dpkg-query -W libmgba-dev libmgba0.10 > "$output/native/packages.txt"
+          tar -C "$output" -czf "$output/native.tar.gz" native
+          rm -rf "$output/native"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-current-debug-snapshot
+          path: .local/stage79-current-debug/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
