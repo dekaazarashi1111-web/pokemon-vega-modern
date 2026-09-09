@@ -207,8 +207,8 @@ def run_domain(
                 "size": input_rom["size"], "sha256": input_rom["sha256"]
             }:
         _fail(f"{domain_id} 実行でROM identityが変化しました")
-    private_rom.chmod(0o600)
-    private_rom.unlink()
+    # TemporaryDirectory owns cleanup, including the read-only ROM copy.
+    # Never touch private_rom after leaving its context: it no longer exists.
     if completed.returncode != 0:
         _fail(f"{domain_id} mGBA失敗({completed.returncode})")
     try:
