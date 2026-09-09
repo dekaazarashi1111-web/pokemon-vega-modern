@@ -49,6 +49,8 @@ jobs:
       fingerprint: ${{ steps.plan.outputs.fingerprint }}
     steps:
       - uses: actions/checkout@v4
+      - name: Install pinned mGBA compilation dependencies for regression tests
+        run: bash infra/setup_github_actions.sh --install
       - name: Verify strict contracts, cleanup, cumulative map and controller input regressions
         run: |
           python3 -m unittest \
