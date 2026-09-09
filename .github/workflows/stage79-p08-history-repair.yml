@@ -41,6 +41,9 @@ jobs:
           PY
           git fetch --depth=1 origin 137c6945c6bf5c633944ddd5287dffca9c5692c0
           python3 .github/scripts/stage79_p08_history_repair.py
+          # Workflow changes use the connected Contents API, not GITHUB_TOKEN.
+          # Restore only the generated workflow edit in this clean Actions checkout.
+          git restore -- .github/workflows/stage79-p08-evidence-integration.yml
       - name: Require all sixty provenance and execution-helper regressions
         run: |
           set -euo pipefail
@@ -56,7 +59,6 @@ jobs:
           from tools import modernization_p08_historical_sources as history
           targets = {
               '.github/scripts/stage79_p08_bootstrap.py',
-              '.github/workflows/stage79-p08-evidence-integration.yml',
               'tools/modernization_p08_integration.py', history.ARCHIVE,
           }
           changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
