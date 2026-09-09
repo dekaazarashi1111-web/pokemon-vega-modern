@@ -115,7 +115,8 @@ def main() -> None:
                 raise RuntimeError('historical checkout identity mismatch')
             restore(historical, assets, config, private)
             for command in commands:
-                projection = (stage_inputs.original_stage_inputs(historical, ROOT)
+                projection = (stage_inputs.original_stage_inputs(historical, ROOT,
+                                  stage=66 if command[1] == 'scripts/build_modernization_p03_stage66.py' else 65)
                               if command[1] in ('scripts/build_modernization_p03_stage65.py',
                                                 'scripts/build_modernization_p03_stage66.py')
                               else nullcontext())
