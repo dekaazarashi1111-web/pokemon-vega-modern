@@ -1,0 +1,98 @@
+name: stage79-p08-evidence-integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-p08-evidence-integration.yml
+      - .github/scripts/stage79_p08_integrate.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-p08-evidence-integration-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_SHA: ${{ github.sha }}
+      HEAD_REF: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Validate real Actions provenance, every ZIP digest and exact seven-domain results
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-p08-integration
+          python3 .github/scripts/stage79_p08_integrate.py 2>&1 | tee .local/stage79-p08-integration/import.log
+      - name: Require P08 historical audits, new evidence regressions and all Stage79 regressions
+        run: |
+          set -euo pipefail
+          python3 -m unittest \
+            tests.test_modernization_p08 \
+            tests.test_modernization_p08_stage79_evidence \
+            tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba \
+            tests.test_modernization_stage79_factory_map \
+            tests.test_modernization_stage79_controller_input \
+            tests.test_modernization_stage79_runtime_boundaries \
+            tests.test_modernization_stage79_field_paths \
+            tests.test_modernization_stage79_candy_level_abi -v \
+            2>&1 | tee .local/stage79-p08-integration/tests.log
+          python3 scripts/build_modernization_p08.py --check 2>&1 | tee .local/stage79-p08-integration/check.log
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: Commit only validated evidence and generated handoffs without overwriting a newer HEAD
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import json, pathlib, subprocess
+          output = pathlib.Path('.local/stage79-p08-integration')
+          targets = set(json.loads((output / 'targets.json').read_text()))
+          assert len(targets) == 40, targets
+          changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          assert (changed | untracked) <= targets, (changed, untracked, targets)
+          subprocess.run(['git','add','-f','--',*sorted(targets)], check=True)
+          staged = set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
+          assert staged == targets, (staged, targets)
+          PY
+          git diff --cached --stat | tee .local/stage79-p08-integration/committed-stat.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(p08): integrate verified seven-domain Stage79 runtime evidence without release promotion'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD | tee .local/stage79-p08-integration/committed-head.txt
+          gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+      - name: Preserve the import diagnostics and exact evidence bundle
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-p08-integration
+          python3 - <<'PY'
+          import pathlib, tarfile
+          root = pathlib.Path('.')
+          paths = [root / 'content/modernization/stage79_evidence/34314414289',
+                   root / 'config/modernization_p08_stage79_evidence.json',
+                   root / 'content/modernization/stage79_cumulative_mgba_runtime_gate.json',
+                   root / 'content/modernization/p08_integration_matrix.json',
+                   root / 'content/modernization/p08_runtime_handoff.json',
+                   root / 'content/modernization/p08_release_handoff.json']
+          with tarfile.open('.local/stage79-p08-integration/evidence.tar.gz', 'w:gz') as archive:
+              for path in paths:
+                  if path.exists():
+                      archive.add(path, arcname=path.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-p08-evidence-integration
+          path: .local/stage79-p08-integration
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
