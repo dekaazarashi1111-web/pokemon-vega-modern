@@ -51,6 +51,9 @@ jobs:
         run: |
           set -euo pipefail
           test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          # Workflow file updates are committed separately through the user connection.
+          # The Actions token commits only the tested product and validation sources.
+          git restore --worktree -- .github/workflows/modernization-stage79-mgba.yml
           python3 - <<'PY'
           import hashlib, json, pathlib, subprocess
           cfg = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
@@ -62,7 +65,6 @@ jobs:
           assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
           assert gate['execution']['evidenced_domain_runs'] == 0
           targets = {
-            '.github/workflows/modernization-stage79-mgba.yml',
             '.github/repairs/stage79-runtime-boundary.patch.gz.b64',
             'overlays/qol_production/qol_production.c',
             'tools/modernization_p04_species_runtime.py',
