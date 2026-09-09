@@ -102,4 +102,57 @@ class StageInputTests(unittest.TestCase):
             with module.original_stage_inputs(self.root, self.active): self.fail('must not yield')
 
 
+    def stage66_fixture(self):
+        name = 'tools/modernization_learnsets.py'
+        self.old[name] = b'authentic original learnset compiler'
+        self.new[name] = b'later successor learnset compiler'
+        old_pin = (len(self.old[name]), hashlib.sha256(self.old[name]).hexdigest())
+        new_pin = (len(self.new[name]), hashlib.sha256(self.new[name]).hexdigest())
+        path = self.root / name; path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(self.new[name])
+        gate = self.root / module.STAGE66_GATE
+        gate.parent.mkdir(parents=True, exist_ok=True)
+        gate.write_text(json.dumps({'inputs': {'sources': [{'path': name, 'size': old_pin[0], 'sha256': old_pin[1]}]}}))
+        self.stack.enter_context(patch.object(module, 'STAGE66_INPUTS', {name: old_pin}))
+        self.stack.enter_context(patch.object(module, 'STAGE66_SUCCESSORS', {name: new_pin}))
+        return name
+
+    def test_stage66_uses_exact_old_compiler_only_during_projection(self):
+        name = self.stage66_fixture()
+        with module.original_stage_inputs(self.root, self.active, stage=66):
+            self.assertEqual((self.root / name).read_bytes(), self.old[name])
+        self.check_restored()
+
+    def test_stage66_compiler_and_json_restore_after_builder_failure(self):
+        self.stage66_fixture()
+        with self.assertRaisesRegex(RuntimeError, 'failed builder'):
+            with module.original_stage_inputs(self.root, self.active, stage=66):
+                raise RuntimeError('failed builder')
+        self.check_restored()
+
+    def test_stage66_bad_compiler_blob_prevents_all_writes(self):
+        name = self.stage66_fixture(); self.old[name] = b'bad compiler'
+        with self.assertRaises(RuntimeError):
+            with module.original_stage_inputs(self.root, self.active, stage=66): self.fail('must not yield')
+        self.check_restored()
+
+    def test_stage66_published_source_pin_may_not_change(self):
+        self.stage66_fixture()
+        (self.root / module.STAGE66_GATE).write_text('{"inputs": {"sources": []}}')
+        with self.assertRaises(RuntimeError):
+            with module.original_stage_inputs(self.root, self.active, stage=66): self.fail('must not yield')
+        self.check_restored()
+
+    def test_stage65_does_not_project_the_stage66_compiler(self):
+        name = self.stage66_fixture()
+        with module.original_stage_inputs(self.root, self.active, stage=65):
+            self.assertEqual((self.root / name).read_bytes(), self.new[name])
+        self.check_restored()
+
+    def test_unapproved_projection_stage_is_rejected(self):
+        with self.assertRaises(RuntimeError):
+            with module.original_stage_inputs(self.root, self.active, stage=67): self.fail('must not yield')
+        self.check_restored()
+
+
 if __name__ == '__main__': unittest.main()
