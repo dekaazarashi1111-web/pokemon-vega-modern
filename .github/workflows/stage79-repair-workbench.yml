@@ -14,14 +14,25 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Package tracked implementation and fixed Stage79 inputs
+      - name: Package tracked implementation and current acceptance inputs
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p .local/stage79-workbench
           git rev-parse HEAD > .local/stage79-workbench/head.txt
-          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile .github/scripts .github/workflows build/stages/06_battle_core.json build/stages/78_modernization_p05_eelevate_switch_ai.gba build/stages/78_modernization_p05_eelevate_switch_ai.json build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json .local/60_wild_species_root_repair.srm | tar --null -T - -czf .local/stage79-workbench/inputs.tar.gz
-          sha256sum build/stages/78_modernization_p05_eelevate_switch_ai.gba > .local/stage79-workbench/rom-sha256.txt
+          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile AGENTS.md tasks design docs .github/scripts .github/workflows build/stages/06_battle_core.json 'build/stages/78*' 'build/stages/80*' .local/60_wild_species_root_repair.srm | tar --null -T - -czf .local/stage79-workbench/inputs.tar.gz
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          config = json.loads(Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          rom = config['input_identity']['rom']
+          data = Path(rom['path']).read_bytes()
+          actual = hashlib.sha256(data).hexdigest()
+          if actual != rom['sha256'] or len(data) != rom['size']:
+              raise SystemExit('Current candidate identity mismatch')
+          Path('.local/stage79-workbench/rom-sha256.txt').write_text(f"{actual}  {rom['path']}\n")
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: stage79-repair-workbench
