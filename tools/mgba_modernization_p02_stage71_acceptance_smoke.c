@@ -474,6 +474,21 @@ static uint16_t p02s_scene_key(uint32_t callback, uint32_t species,
     return frame % 180U < 2U ? QOL_KEY_A : 0U;
 }
 
+/* These are two distinct native yes/no tasks, not arbitrary A/B spam.
+ * Refuse replacing a retained move; confirm stopping the optional learn flow. */
+static uint16_t p02s_move_dialog_key(uint32_t callback, bool active,
+                                      uint32_t task_function, uint32_t frame,
+                                      uint16_t fallback)
+{
+    if (callback != P02S_CB2_PARTY || !active)
+        return fallback;
+    if (task_function == UINT32_C(0x08126705))
+        return frame % 120U < 2U ? QOL_KEY_B : 0U;
+    if (task_function == UINT32_C(0x08126AB9))
+        return frame % 120U < 2U ? QOL_KEY_A : 0U;
+    return fallback;
+}
+
 static struct P02SScene p02s_run_item_scene(
     struct mCore *core, uint16_t item, uint16_t source, uint16_t target,
     bool cancel, const char *stage)
@@ -500,6 +515,11 @@ static struct P02SScene p02s_run_item_scene(
         uint16_t key = p02s_scene_key(
             callback, species, cancel, scene_started,
             source, target, frame, &trace);
+        for (unsigned index = 0U; index < 16U; ++index) {
+            uint32_t task = QOL_TASKS + index * QOL_TASK_SIZE;
+            key = p02s_move_dialog_key(callback, read8(core, task + 4U) != 0U,
+                                        read32(core, task), frame, key);
+        }
         core->setKeys(core, key);
         core->runFrame(core);
         trace.frames = frame + 1U;
@@ -600,6 +620,16 @@ static struct P02SMatrix p02s_direct_matrix(
     p02s_prepare_mon(core, 473U, 28U, 0U, false, 0U);
     p02s_expect_target(core, P02S_MODE_NORMAL, 0U, 1220U,
                        "night-form evolution representative failed");
+
+    /* Exercise the entry used by the stock Bag item-effect callback too. */
+    restore_snapshot(core, field);
+    p02s_prepare_mon(core, P02S_SPECIES_TOGETIC, 20U, 0U, false, 0U);
+    struct CallObservation native_stone = call_bounded(
+        core, UINT32_C(0x080425B5), QOL_PLAYER_PARTY,
+        P02S_MODE_ITEM_USE, P02S_ITEM_SUN_STONE, 0U);
+    if (native_stone.result != P02S_SPECIES_TOGEKISS
+        || !native_stone.payload_pc_seen)
+        p02s_die("native Bag evolution target missed the P02 payload");
 
     struct P02SMatrix matrix = {0};
     matrix.payload_seen = true;
@@ -822,6 +852,18 @@ int main(int argc, char **argv)
     p02s_prepare_mon(
         core, P02S_SPECIES_QUILAVA, 35U,
         P02S_ITEM_SPOOKY_PLATE, true, 1U);
+    p02s_prepare_item(core, P02S_ITEM_RARE_CANDY);
+    struct P02SScene form_cancel = p02s_run_item_scene(
+        core, P02S_ITEM_RARE_CANDY, P02S_SPECIES_QUILAVA,
+        P02S_SPECIES_TYPHLOSION_H, true, "conditional_form_cancel_entry");
+    if (!p02s_scene_seen(&form_cancel) || !form_cancel.physical_b
+        || p02s_data(core, P02S_MON_DATA_SPECIES2) != P02S_SPECIES_QUILAVA
+        || p02s_data(core, QOL_MON_DATA_HELD_ITEM) != P02S_ITEM_SPOOKY_PLATE
+        || !p02s_moves_equal(core) || !p02s_hidden(core))
+        p02s_die("cancelled form evolution consumed the condition item");
+    restore_snapshot(core, &field);
+    p02s_prepare_mon(core, P02S_SPECIES_QUILAVA, 35U,
+                     P02S_ITEM_SPOOKY_PLATE, true, 1U);
     p02s_prepare_item(core, P02S_ITEM_RARE_CANDY);
     struct P02SScene form = p02s_run_item_scene(
         core, P02S_ITEM_RARE_CANDY, P02S_SPECIES_QUILAVA,

@@ -13,8 +13,8 @@
   "classification": "LATEST_CUMULATIVE_EXACT_ROM_SEQUENTIAL_RESUMABLE",
   "config": {
     "path": "config/modernization_stage79_cumulative_mgba.json",
-    "sha256": "f2e82f313ccf122af75f6a9c30f3099cddc0543c02fbe97dc7dce867ad704d5f",
-    "size": 28626
+    "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+    "size": 28627
   },
   "domain_order": [
     "p02",
@@ -31,8 +31,8 @@
       "pending_reason": null,
       "runner": {
         "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
-        "sha256": "1dcc93af8b9a3c51a1940e92b13db311a30281b53562870c8b2770fb4f5e3c0d",
-        "size": 37485
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
       },
       "status": "NOT_RUN"
     },
@@ -51,8 +51,8 @@
       "pending_reason": null,
       "runner": {
         "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
-        "sha256": "71672b568d3329dc5e4241fd00360eab64cc633a3a365e38579bf4e692a6113f",
-        "size": 24583
+        "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+        "size": 28131
       },
       "status": "NOT_RUN"
     },
@@ -108,7 +108,7 @@
   },
   "input": {
     "allocation_layout_unchanged": true,
-    "changed_bytes_from_parent": 8,
+    "changed_bytes_from_parent": 51,
     "parent": {
       "allocation": {
         "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
@@ -180,22 +180,46 @@
         "new_hex": "55f30308",
         "old_hex": "b1f40308",
         "role": "party_candy_accessor"
+      },
+      {
+        "address": 134489524,
+        "changed_bytes": 8,
+        "file_offset": 271796,
+        "new_hex": "004b184775b70f09",
+        "old_hex": "f0b557464e464546",
+        "role": "native_evolution_target_forwarder"
+      },
+      {
+        "address": 134489532,
+        "changed_bytes": 32,
+        "file_offset": 271804,
+        "new_hex": "10b50400044b00f005f82000034b00f001f810bd1847c04631b60f09e9db0308",
+        "old_hex": "e0b485b0804609060d0e1204120c91460020824640460b210022fcf7bdfe0004",
+        "role": "successful_evolution_item_removal_and_stats"
+      },
+      {
+        "address": 135069324,
+        "changed_bytes": 3,
+        "file_offset": 851596,
+        "new_hex": "72f796fb",
+        "old_hex": "6df7acfe",
+        "role": "native_success_completion_call"
       }
     ],
     "repair_recipe": {
       "path": "tools/modernization_runtime_boundary_repair.py",
-      "sha256": "2d4ab5f1c108e43d86b481b0ef0ea8c3701ec3d50299171097b369de1a60e0bc",
-      "size": 9758
+      "sha256": "4b48e523453c51d989919a83fd03016a09b9164687b852dd1651a0ff0cbf7947",
+      "size": 12172
     },
     "repair_report": {
       "path": "build/stages/80_modernization_runtime_boundary_repair.json",
-      "sha256": "2911fe22eca435e366c1c2185795ffbc19421e91eb76d50337c7933b8621316a",
-      "size": 1587
+      "sha256": "0b7d6d34a4079b439e571eb963115715096e19434f5163867f4580091417a0be",
+      "size": 2587
     },
     "rom": {
-      "crc32": "E41C2632",
+      "crc32": "BB9DBED6",
       "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
-      "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
+      "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
       "size": 33554432
     },
     "stage": 80,
@@ -204,10 +228,10 @@
   "not_yet_executed": true,
   "orchestrator": {
     "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
-    "sha256": "41b18b2a6df5d5dc4e749c3c76df6c4fc936baf033db58f56f35f258e21e8b68",
+    "sha256": "fc5eff879d6bfc9d0d9232162c47de26b44957bf8a897e19997afec6dbe793fb",
     "size": 127092
   },
-  "plan_fingerprint": "ab846a80a7e7cf084338cb857bb808d2e30aee72022471b5bedf4f7ee5560c05",
+  "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
   "schema_version": 1,
   "stage": 79,
   "status": "READY_NOT_RUN",

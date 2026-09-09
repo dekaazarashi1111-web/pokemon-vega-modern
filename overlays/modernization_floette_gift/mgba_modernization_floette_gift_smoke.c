@@ -9,6 +9,7 @@
 #undef main
 
 #include <string.h>
+#include <time.h>
 
 #define FG_MAX_CALL_STEPS UINT64_C(60000000)
 #define FG_SAVE_FILE_SIZE UINT32_C(0x20000)
@@ -27,8 +28,9 @@
 #define FG_MON_SIZE UINT32_C(100)
 #define FG_BOX_MON_SIZE UINT32_C(80)
 #define FG_PARTY_CAPACITY UINT32_C(6)
-/* The linked DPE bounds check accepts box IDs 0..24, not vanilla 0..13. */
-#define FG_BOX_COUNT UINT32_C(25)
+/* The field gift owns 14 boxes. The DPE accessor accepts 0..24, but its
+ * extra PC-UI pools overlap the field ledger and are not live field storage. */
+#define FG_BOX_COUNT UINT32_C(14)
 #define FG_SET_BOX_MON UINT32_C(0x09123D51)
 #define FG_BOX_CAPACITY UINT32_C(30)
 #define FG_SPECIES UINT16_C(1029)
@@ -103,6 +105,24 @@ static void fg_initialize_save(const char *path)
         }
         remaining -= (uint32_t)amount;
     }
+    /* mGBA 0.10.2 appends a 16-byte RTC trailer to flash saves.  Reserving
+     * it up front prevents RTCWrite from remapping data underneath currentBank. */
+    time_t now = time(NULL);
+    struct tm *utc = gmtime(&now);
+    if (now < 0 || utc == NULL)
+        fg_die("RTC initialization failed");
+    unsigned values[7] = {(unsigned)((utc->tm_year + 1900) % 100),
+        (unsigned)(utc->tm_mon + 1), (unsigned)utc->tm_mday,
+        (unsigned)utc->tm_wday, (unsigned)utc->tm_hour,
+        (unsigned)utc->tm_min, (unsigned)utc->tm_sec};
+    uint8_t rtc[16] = {0};
+    for (unsigned index = 0; index < 7U; ++index)
+        rtc[index] = (uint8_t)(((values[index] / 10U) << 4U) | (values[index] % 10U));
+    rtc[7] = 0x40U;
+    for (unsigned index = 0; index < 8U; ++index)
+        rtc[8U + index] = (uint8_t)((uint64_t)now >> (8U * index));
+    if (fwrite(rtc, 1U, sizeof(rtc), stream) != sizeof(rtc))
+        fg_die("RTC trailer initialization failed");
     if (fclose(stream) != 0)
         fg_die("temporary save close failed");
 }
@@ -265,7 +285,7 @@ static bool fg_has_ring(struct mCore *core)
 static void fg_verify_storage_abi(struct mCore *core)
 {
     static const uint8_t expected[] = {0x70, 0xB5, 0x04, 0x00, 0x0E, 0x00, 0x15, 0x00, 0x90, 0xB0, 0x18, 0x28, 0x01, 0xD8, 0x1D, 0x29, 0x01, 0xD9, 0x10, 0xB0, 0x70, 0xBD, 0x10, 0x00, 0x00, 0x21, 0xDD, 0xF7, 0xDF, 0xF9, 0x28, 0x00, 0x01, 0xA9, 0xFF, 0xF7, 0x5D, 0xFF, 0x05, 0x4B, 0xA4, 0x00, 0xE0, 0x58, 0x3A, 0x23, 0x73, 0x43, 0x3A, 0x22, 0xC0, 0x18, 0x01, 0xA9, 0x76, 0xF7, 0x44, 0xF8, 0xEA, 0xE7, 0x28, 0x92, 0x16, 0x09};
-    _Static_assert(FG_BOX_COUNT == 25U && FG_BOX_CAPACITY == 30U,
+    _Static_assert(FG_BOX_COUNT == 14U && FG_BOX_CAPACITY == 30U,
                    "linked compact PC dimensions changed");
     for (uint32_t index = 0U; index < sizeof(expected); ++index)
         if (read8(core, (FG_SET_BOX_MON & ~1U) + index) != expected[index])
@@ -328,7 +348,7 @@ static void fg_fill_boxes(struct mCore *core)
                 fg_die("DPE SetBoxMonAt fixture write failed");
         }
     }
-    /* Check all 750 slots after the last write, catching storage aliasing and
+    /* Check all 420 field-owned slots after the last write, catching storage aliasing and
      * incomplete fixtures before exercising the real full-capacity rejection. */
     for (uint32_t box = 0U; box < FG_BOX_COUNT; ++box)
         for (uint32_t slot = 0U; slot < FG_BOX_CAPACITY; ++slot)
@@ -405,6 +425,47 @@ static struct mCore *fg_open_core(const char *rom_path,
     return core;
 }
 
+/* Verify the actual gift loop, not the broader DPE accessor's maximum ID.
+ * The linked claim loops to position 30 and box 14, returning FULL (4). */
+static void fg_verify_field_capacity(struct mCore *core, uint32_t claim)
+{
+    uint32_t code = claim & ~1U;
+    if (claim != UINT32_C(0x09462B15)
+        || read16(core, code + 0x6EU) != UINT16_C(0x2E1E)
+        || read16(core, code + 0x78U) != UINT16_C(0x2C0E)
+        || read16(core, code + 0x7CU) != UINT16_C(0x2004)
+        || FG_BOX_COUNT != 14U || FG_BOX_CAPACITY != 30U)
+        fg_die("gift field-capacity consumer ABI changed");
+    for (uint32_t box = 0U; box < FG_BOX_COUNT; ++box) {
+        uint32_t start = read32(core, UINT32_C(0x09169228) + box * 4U);
+        uint32_t end = start + FG_BOX_CAPACITY * 58U;
+        if (start < UINT32_C(0x02000000) || end > UINT32_C(0x02040000)
+            || end <= start
+            || (start < FG_LEDGER + FG_LEDGER_SIZE && FG_LEDGER < end))
+            fg_die("field PC pool overlaps the acquisition ledger");
+    }
+}
+
+static bool fg_ewram_pointer(uint32_t address)
+{
+    return address >= UINT32_C(0x02000000)
+        && address < UINT32_C(0x02040000) && (address & 3U) == 0U;
+}
+
+static void fg_prepare_fresh_save_pointers(struct mCore *core)
+{
+    const uint32_t slots[] = {UINT32_C(0x03005048), UINT32_C(0x0300504C),
+                              UINT32_C(0x03005050)};
+    bool ready = true;
+    for (unsigned i = 0U; i < 3U; ++i)
+        ready = ready && fg_ewram_pointer(read32(core, slots[i]));
+    if (!ready)
+        (void)fg_call_thumb(core, UINT32_C(0x0804B811), 0U, 0U, 0U, 0U);
+    for (unsigned i = 0U; i < 3U; ++i)
+        if (!fg_ewram_pointer(read32(core, slots[i])))
+            fg_die("fresh-core native save-pointer initialization failed");
+}
+
 static void fg_close_core(struct mCore *core, color_t *video)
 {
     free(video);
@@ -465,7 +526,11 @@ int main(int argc, char **argv)
     fg_phase("clean-production-fixture");
     fg_install_party(core, 0U);
     fg_verify_storage_abi(core);
+    fg_verify_field_capacity(core, claim);
+    uint64_t fixture_ledger = fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE);
     fg_clear_boxes(core);
+    if (fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE) != fixture_ledger)
+        fg_die("clearing PC fixture mutated the acquisition ledger");
     if (fg_has_ring(core))
         fg_die("new-game fixture already has Mega Ring");
     uint64_t locked_ledger = fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE);
@@ -517,7 +582,10 @@ int main(int argc, char **argv)
     fg_phase("party-and-pc-full");
     fg_restore_snapshot(core, &base);
     fg_install_party(core, FG_PARTY_CAPACITY);
+    uint64_t before_fill = fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE);
     fg_fill_boxes(core);
+    if (fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE) != before_fill)
+        fg_die("filling PC fixture mutated the acquisition ledger");
     uint64_t full_ledger = fg_hash_region(core, FG_LEDGER, FG_LEDGER_SIZE);
     uint64_t full_flash = fg_hash_region(core, FG_FLASH_LEDGER, FG_LEDGER_SIZE);
     if (fg_invoke(core, claim) != FG_RESULT_FULL
@@ -540,7 +608,11 @@ int main(int argc, char **argv)
     fg_close_core(core, video);
     core = fg_open_core(argv[1], argv[2], NULL);
     run_frames(core, 120U, 0U);
-    if (fg_call_thumb(core, FG_SAVE_LOAD, 0U, 0U, 0U, 0U) != 1U
+    fg_prepare_fresh_save_pointers(core);
+    uint32_t load_status = fg_call_thumb(core, FG_SAVE_LOAD, 0U, 0U, 0U, 0U);
+    /* Rebind pockets to the freshly loaded save blocks through the native API. */
+    (void)fg_call_thumb(core, UINT32_C(0x0809984D), 0U, 0U, 0U, 0U);
+    if (load_status != 1U
         || fg_call_thumb(core, get_pending, 0U, 0U, 0U, 0U) == 0U
         || !fg_has_ring(core) || !fg_flag(core)
         || !fg_collection_bit(core, FG_LEDGER)

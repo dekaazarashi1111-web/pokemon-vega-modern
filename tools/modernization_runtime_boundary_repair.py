@@ -1,7 +1,9 @@
 """Semantic Stage70 relocation and an exact, separately identified Stage80 repair.
 
-No runtime probe patches its ROM. Stage78 is an immutable parent; the three
-reviewed literal words below produce a new candidate before validation starts.
+No runtime probe patches its ROM. Stage78 is an immutable parent. Reviewed
+literal fixes and native evolution bridges produce a separately pinned candidate.
+The completion shim reuses 32 bytes of the displaced vanilla target function;
+its sole new caller is the successful species-update path, never cancellation.
 """
 from __future__ import annotations
 
@@ -55,6 +57,28 @@ PATCHES = (
     (POLICY_END_SITE, NEW_COLLECTION_ROOT, COLLECTION_ROOT, "restore_policy_end"),
     (CANDY_ACCESSOR_SITE, BOX_ACCESSOR, PARTY_ACCESSOR, "party_candy_accessor"),
 )
+
+
+# Stock item effects still called the obsolete five-slot evolution implementation.
+# Route its ABI-compatible entry to the modern 16-slot CFRU target. Its displaced
+# body cannot execute after that tail branch, so a 32-byte completion shim fits
+# there without a new allocation. The success-only call originally recalculated
+# stats; the shim also invokes CFRU's flag-guarded ItemEvolutionRemoval and then
+# performs the original calculation. Cancellation cannot reach this call site.
+EVOLUTION_CODE_GUARDS = {
+    0x10FB774: "f0b557464e464546de46e0b503680700",
+    0x10FB630: "10b50c4b040082b0",
+    0x10FB664: "c5de06081209000071fa03089dde0608",
+    0x4213A: "40460221009a00f038fa",  # native item-effect target call
+    0xCFE80: "0c3248460b216ff7f3fd4846",  # successful species commit, r9 = mon
+    0xCFE90: "6189a289484672f7e1fe",  # original post-stats continuation
+}
+CODE_PATCHES = (
+    (0x425B4, "f0b557464e464546", "004b184775b70f09", "native_evolution_target_forwarder"),
+    (0x425BC, "e0b485b0804609060d0e1204120c91460020824640460b210022fcf7bdfe0004", "10b50400044b00f005f82000034b00f001f810bd1847c04631b60f09e9db0308", "successful_evolution_item_removal_and_stats"),
+    (0xCFE8C, "6df7acfe", "72f796fb", "native_success_completion_call"),
+ )
+
 
 
 class BoundaryRepairError(RuntimeError):
@@ -160,6 +184,7 @@ def repair_rom(parent: bytes) -> bytes:
             "parent ROM SHA-256 mismatch")
     guard_code(parent, COLLECTION_CODE_GUARDS)
     guard_code(parent, CANDY_CODE_GUARDS)
+    guard_code(parent, EVOLUTION_CODE_GUARDS)
     require(all(u32(parent, site) == NEW_COLLECTION_ROOT for site in ROOT_SITES),
             "collection start consumer mismatch")
     require(u32(parent, POLICY_START_SITE) == 0x092D6C10,
@@ -170,6 +195,11 @@ def repair_rom(parent: bytes) -> bytes:
     for site, old, new, role in PATCHES:
         require(u32(parent, site) == old, f"{role} literal preimage mismatch")
         struct.pack_into("<I", output, site, new)
+    for site, old_hex, new_hex, role in CODE_PATCHES:
+        old, new = bytes.fromhex(old_hex), bytes.fromhex(new_hex)
+        require(len(old) == len(new), f"{role} changes code span size")
+        require(parent[site:site + len(old)] == old, f"{role} code preimage mismatch")
+        output[site:site + len(new)] = new
     return bytes(output)
 
 
@@ -186,6 +216,10 @@ def make_report(parent: bytes, candidate: bytes) -> dict[str, Any]:
                 "new_hex": struct.pack("<I", new).hex(), "role": role,
                 "changed_bytes": sum(a != b for a, b in zip(struct.pack("<I", old), struct.pack("<I", new)))}
                for site, old, new, role in PATCHES]
+    patches.extend({"file_offset": site, "address": ROM_BASE + site,
+                    "old_hex": old_hex, "new_hex": new_hex, "role": role,
+                    "changed_bytes": sum(a != b for a, b in zip(bytes.fromhex(old_hex), bytes.fromhex(new_hex)))}
+                   for site, old_hex, new_hex, role in CODE_PATCHES)
     return {"schema_version": 1, "stage": 80, "task": TASK,
             "status": "MATERIALIZED_RUNTIME_ACCEPTANCE_PENDING",
             "parent": rom_identity(PARENT_PATH, parent),
@@ -194,6 +228,9 @@ def make_report(parent: bytes, candidate: bytes) -> dict[str, Any]:
             "allocation_layout_unchanged": True,
             "parent_allocation_content_hashes_reused_as_candidate": False,
             "new_allocations": 0,
+            "repurposed_vanilla_code_span": {"start": 0x080425BC, "end_exclusive": 0x080425DC,
+                                            "owner": "displaced_native_evolution_target"},
+            "completion_assembly_source": "overlays/modernization_runtime_boundary_repair/evolution_completion.S",
             "preserved_equal_valued_unrelated_table_sites": list(UNRELATED_END_VALUE_SITES),
             "collection_count": 1670, "collection_stride": 8,
             "active_play_baseline_stage": 62,

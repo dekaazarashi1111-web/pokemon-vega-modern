@@ -666,8 +666,8 @@ def _validate_input(config: Mapping[str, Any]) -> tuple[Path, bytes, dict[str, A
 EXPECTED_STAGE80_ROM = {
     "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
     "size": 33554432,
-    "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
-    "crc32": "E41C2632",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "crc32": "BB9DBED6",
 }
 
 

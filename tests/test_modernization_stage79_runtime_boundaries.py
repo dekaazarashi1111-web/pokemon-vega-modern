@@ -155,14 +155,16 @@ class RepairedProductTests(unittest.TestCase):
     def test_candidate_has_fixed_distinct_identity(self):
         self.assertEqual(hashlib.sha256(self.parent).hexdigest(), repair.PARENT_SHA256)
         self.assertEqual(hashlib.sha256(self.candidate).hexdigest(),
-                         '6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442')
+                         '6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3')
         self.assertNotEqual(self.parent, self.candidate)
         self.assertEqual(len(self.candidate), repair.ROM_SIZE)
 
-    def test_exactly_eight_bytes_change_only_within_three_literal_words(self):
+    def test_exactly_51_bytes_change_only_within_reviewed_literal_and_code_spans(self):
         allowed = {site + i for site, _, _, _ in repair.PATCHES for i in range(4)}
+        allowed.update(site + i for site, old_hex, _, _ in repair.CODE_PATCHES
+                       for i in range(len(bytes.fromhex(old_hex))))
         changed = {i for i, (a, b) in enumerate(zip(self.parent, self.candidate)) if a != b}
-        self.assertEqual(len(changed), 8)
+        self.assertEqual(len(changed), 51)
         self.assertLessEqual(changed, allowed)
 
     def test_parent_mutations_and_repairing_candidate_again_are_rejected(self):
@@ -197,7 +199,7 @@ class RepairedProductTests(unittest.TestCase):
 
     def test_report_never_promotes_product_or_reuses_stale_allocation_hashes(self):
         report = repair.make_report(self.parent, self.candidate)
-        self.assertEqual(report['changed_bytes'], 8)
+        self.assertEqual(report['changed_bytes'], 51)
         self.assertEqual(report['active_play_baseline_stage'], 62)
         self.assertEqual(report['new_allocations'], 0)
         for key in ('runtime_acceptance', 'done', 'release_ready',
@@ -232,7 +234,7 @@ class CandidatePlanTests(unittest.TestCase):
         self.assertEqual(rom, repair.repair_rom(self.parent))
         self.assertEqual(audit['stage'], 80)
         self.assertEqual(audit['parent'], self.audit)
-        self.assertEqual(audit['changed_bytes_from_parent'], 8)
+        self.assertEqual(audit['changed_bytes_from_parent'], 51)
 
     def test_missing_or_repointed_candidate_is_not_fallback_to_old_rom(self):
         for key in ('stage', 'task', 'rom', 'recipe', 'report'):
@@ -275,7 +277,7 @@ class SceneInputRegressionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.text = (ROOT / 'tools/mgba_modernization_p02_stage71_acceptance_smoke.c').read_text()
         function = 'static uint16_t p02s_scene_key(' + cls.text.split(
-            'static uint16_t p02s_scene_key(', 1)[1].split('static struct P02SScene p02s_run_item_scene(', 1)[0]
+            'static uint16_t p02s_scene_key(', 1)[1].split('static uint16_t p02s_move_dialog_key(', 1)[0]
         constants = 'enum {\n' + '\n'.join(re.findall(r'^    P02S_CB2_.*$', cls.text, re.M)) + '\n};'
         source = '#include <stdint.h>\n#include <stdbool.h>\n' + constants + '''
 #define QOL_KEY_A 1U
@@ -363,7 +365,7 @@ static uint32_t fg_call_thumb(struct mCore *core, uint32_t fn, uint32_t a, uint3
         if (c != FG_SCRATCH) fg_die("bad source");
         ++calls;
         if (mode != 1U || calls != 1U) slots[a][b] = 25U;
-        if (mode == 2U && calls == 750U) slots[0][0] = 0U;
+        if (mode == 2U && calls == 420U) slots[0][0] = 0U;
         return 0;
     }
     if (fn == fg_get_boxed_mon_ptr) return 0x02000000U;
@@ -379,11 +381,11 @@ int exercise(unsigned failure_mode, unsigned clear_after) {
     memset(slots, 0, sizeof(slots)); calls = zeros = reads = exps = 0; mode = failure_mode;
     if (setjmp(trap)) return -1;
     struct mCore core = {0}; fg_fill_boxes(&core);
-    if (calls != 750U || reads != 1500U || exps != 750U) return -2;
-    for (unsigned b = 0; b < 25; ++b) for (unsigned p = 0; p < 30; ++p) if (slots[b][p] != 25U) return -3;
+    if (calls != 420U || reads != 840U || exps != 420U) return -2;
+    for (unsigned b = 0; b < 25; ++b) for (unsigned p = 0; p < 30; ++p) if (slots[b][p] != (b < 14U ? 25U : 0U)) return -3;
     if (clear_after) {
         fg_clear_boxes(&core);
-        if (zeros != 750U) return -4;
+        if (zeros != 420U) return -4;
         for (unsigned b = 0; b < 25; ++b) for (unsigned p = 0; p < 30; ++p) if (slots[b][p]) return -5;
     }
     return 0;
@@ -400,10 +402,10 @@ int exercise(unsigned failure_mode, unsigned clear_after) {
         cls.exercise.argtypes = [ctypes.c_uint, ctypes.c_uint]
         cls.exercise.restype = ctypes.c_int
 
-    def test_all_750_slots_are_written_with_native_compressor_and_rechecked(self):
+    def test_all_420_field_slots_are_written_and_pc_only_pools_untouched(self):
         self.assertEqual(self.exercise(0, 0), 0)
 
-    def test_all_25_boxes_are_cleared_not_only_vanilla_14(self):
+    def test_all_14_field_boxes_are_cleared_without_touching_pc_only_pools(self):
         self.assertEqual(self.exercise(0, 1), 0)
 
     def test_failed_native_write_cannot_be_counted_as_full(self):
@@ -421,7 +423,8 @@ int exercise(unsigned failure_mode, unsigned clear_after) {
         rom = (ROOT / 'build/stages/80_modernization_runtime_boundary_repair.gba').read_bytes()
         self.assertEqual(expected, rom[0x1123D50:0x1123D90])
         self.assertEqual(len(expected), 64)
-        self.assertIn('fg_verify_storage_abi(core);\n    fg_clear_boxes(core);', self.text)
+        self.assertLess(self.text.index('    fg_verify_storage_abi(core);'), self.text.index('    fg_clear_boxes(core);'))
+        self.assertIn('fg_verify_field_capacity(core, claim);', self.text)
 
 
 if __name__ == '__main__':

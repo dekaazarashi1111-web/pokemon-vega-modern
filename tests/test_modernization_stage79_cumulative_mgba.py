@@ -318,7 +318,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
         self.assertEqual(plan["status"], "PREFLIGHT_PASS_NOT_EXECUTED")
         self.assertEqual(plan["input"]["stage"], 80)
         self.assertEqual(plan["input"]["rom"], self.module.EXPECTED_STAGE80_ROM)
-        self.assertEqual(plan["input"]["changed_bytes_from_parent"], 8)
+        self.assertEqual(plan["input"]["changed_bytes_from_parent"], 51)
         parent = plan["input"]["parent"]
         self.assertEqual(parent["stage"], 78)
         self.assertEqual(parent["commit"], "a98e6fea59db1f020bc902a1b1676699f8c06c41")

@@ -1,15 +1,16 @@
 {
   "active_play_baseline_stage": 62,
   "allocation_layout_unchanged": true,
-  "changed_bytes": 8,
+  "changed_bytes": 51,
   "collection_count": 1670,
   "collection_stride": 8,
+  "completion_assembly_source": "overlays/modernization_runtime_boundary_repair/evolution_completion.S",
   "done": false,
   "new_allocations": 0,
   "output": {
-    "crc32": "E41C2632",
+    "crc32": "BB9DBED6",
     "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
-    "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
     "size": 33554432
   },
   "parent": {
@@ -43,6 +44,30 @@
       "new_hex": "55f30308",
       "old_hex": "b1f40308",
       "role": "party_candy_accessor"
+    },
+    {
+      "address": 134489524,
+      "changed_bytes": 8,
+      "file_offset": 271796,
+      "new_hex": "004b184775b70f09",
+      "old_hex": "f0b557464e464546",
+      "role": "native_evolution_target_forwarder"
+    },
+    {
+      "address": 134489532,
+      "changed_bytes": 32,
+      "file_offset": 271804,
+      "new_hex": "10b50400044b00f005f82000034b00f001f810bd1847c04631b60f09e9db0308",
+      "old_hex": "e0b485b0804609060d0e1204120c91460020824640460b210022fcf7bdfe0004",
+      "role": "successful_evolution_item_removal_and_stats"
+    },
+    {
+      "address": 135069324,
+      "changed_bytes": 3,
+      "file_offset": 851596,
+      "new_hex": "72f796fb",
+      "old_hex": "6df7acfe",
+      "role": "native_success_completion_call"
     }
   ],
   "preserved_equal_valued_unrelated_table_sites": [
@@ -50,6 +75,11 @@
     19736540
   ],
   "release_ready": false,
+  "repurposed_vanilla_code_span": {
+    "end_exclusive": 134489564,
+    "owner": "displaced_native_evolution_target",
+    "start": 134489532
+  },
   "runtime_acceptance": false,
   "schema_version": 1,
   "stage": 80,
