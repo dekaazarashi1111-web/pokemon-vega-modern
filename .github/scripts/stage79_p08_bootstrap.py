@@ -21,6 +21,7 @@ from scripts import github_private_environment as environment
 from tools import modernization_p08_integration as p08
 from tools import modernization_p08_historical_sources as history
 from tools import modernization_p08_stage_inputs as stage_inputs
+from tools.modernization_p08_stage77_source import original_stage77_source
 
 
 def run(*args: str, root: Path = ROOT) -> None:
@@ -89,7 +90,8 @@ def fetch_historical_objects(root: Path) -> None:
 def main() -> None:
     run(sys.executable, '-m', 'unittest', 'tests.test_modernization_p08_history',
         'tests.test_modernization_p08_stage_inputs',
-        'tests.test_modernization_p08_git_history', '-v')
+        'tests.test_modernization_p08_git_history',
+        'tests.test_modernization_p08_stage77_source', '-v')
     private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
     if private not in ('true', 'false'):
         raise RuntimeError('Unknown repository visibility')
@@ -134,6 +136,8 @@ def main() -> None:
                               if command[1] in ('scripts/build_modernization_p03_stage65.py',
                                                 'scripts/build_modernization_p03_stage66.py')
                               else nullcontext())
+                if command[1] == 'scripts/build_modernization_p05_stage77_suppression.sh':
+                    projection = original_stage77_source(historical, ROOT)
                 with projection:
                     run(*command, root=historical)
             p08._audit_candidate_artifacts(historical)
