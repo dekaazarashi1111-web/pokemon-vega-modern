@@ -1788,3 +1788,15 @@
 - Remaining: Floette migration has relocated-start/stale-end and neighboring-table-end alias defects in the frozen product. P02 changes level 15 to 100 before any evolution callback; its exact root cause is not yet established.
 - Evidence: `docs/stage79-pr16-followup-20260909.md`; diagnostic runs 34302526120, 34303136112 and 34303410270 are not acceptance evidence.
 - Scope: ROM/save hashes, Stage62 active baseline, expected behavior and strict exit/JSON checks preserved; no skips, fake PASS records, P08 promotion or PR merge.
+
+
+## 2026-09-09T11:21:32.459186+00:00
+<!-- USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE:0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d -->
+- Task: USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE / 現在受入残件の証跡分離
+- Status: DONE（残件の分離・検証器。製品全体はBLOCKED）
+- Summary: Stage77原本を保持し、Stage80の7領域証跡と現在未検証項目を分離。採用仕様の創作・リリース昇格なし。
+- Files changed: scripts/check_modernization_p08_current_acceptance.py, tests/test_modernization_p08_current_acceptance.py, content/modernization/p08_current_acceptance.json, docs/P08_CURRENT_ACCEPTANCE.md, .github/workflows/ci.yml
+- Verify: 現在受入＋既存原本証跡 51 tests PASS; snapshot --check PASS; release_ready=false
+- Commit: 検証対象 0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d（この追記を含むcommitはActions artifactのrecord-head.txtへ記録）
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34345099347
+- Network: GitHub Actions/APIで読取・検証記録のみ。外部仕様から製品内容を追加していない。
