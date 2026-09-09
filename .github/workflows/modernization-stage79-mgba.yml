@@ -57,7 +57,8 @@ jobs:
             tests.test_modernization_stage79_github_domain \
             tests.test_modernization_stage79_cumulative_mgba \
             tests.test_modernization_stage79_factory_map \
-            tests.test_modernization_stage79_controller_input -v
+            tests.test_modernization_stage79_controller_input \
+            tests.test_modernization_stage79_runtime_boundaries -v
       - id: plan
         name: Stage79入力とmatrix計画を検証
         env:
