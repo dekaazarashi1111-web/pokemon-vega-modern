@@ -21,7 +21,7 @@ Stage82_RelearnerList:
     ldr r1, .Lparty
     adds r0, r0, r1
     str r0, [sp, #0]
-    movs r1, r4
+    lsls r1, r4, #0
     adds r1, #0xe8
     ldr r3, .Lprovider
     bl .Lcall_r3
@@ -31,7 +31,7 @@ Stage82_RelearnerList:
     bls .Lcount_ok
     movs r0, #0
 .Lcount_ok:
-    movs r6, r0
+    lsls r6, r0, #0
     str r6, [sp, #4]
     adds r0, #1
     strb r0, [r4, #0x1a]
@@ -49,7 +49,7 @@ Stage82_RelearnerList:
     ldr r2, .Lnames
     adds r1, r1, r2
     /* Fixed-width copy avoids the original nine-byte StringCopy buffers. */
-    movs r0, r7
+    lsls r0, r7, #0
     movs r2, #16
 .Lcopy:
     ldrb r3, [r1]
@@ -108,7 +108,8 @@ Stage82_RelearnerList:
     pop {r4-r7,pc}
 .Lcall_r3:
     bx r3
-.align 2
+.hword 0x46c0 /* Explicit Thumb NOP: identical GNU/LLVM alignment bytes. */
+.balign 4, 0
 .Lstruct: .word 0x0203aa2c
 .Lparty_offset: .word 0x1e3
 .Lparty: .word 0x020241e4
