@@ -48,6 +48,8 @@ jobs:
       fingerprint: ${{ steps.plan.outputs.fingerprint }}
     steps:
       - uses: actions/checkout@v4
+      - name: Verify wrapper cleanup and strict result validation regressions
+        run: python3 -m unittest tests.test_modernization_stage79_github_domain -v
       - id: plan
         name: Stage79入力とmatrix計画を検証
         env:
