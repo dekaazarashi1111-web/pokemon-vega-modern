@@ -23,6 +23,8 @@ jobs:
       HEAD_REF: codex/modernization-followup-20260908
       EXPECTED_HEAD: ${{ github.sha }}
       GH_TOKEN: ${{ github.token }}
+      # Actions executes shell: python from a temporary script outside checkout.
+      PYTHONPATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
       - name: Install pinned compilation dependencies
