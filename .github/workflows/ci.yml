@@ -48,6 +48,17 @@ jobs:
           python3 scripts/check_modernization_p08_current_acceptance.py --check \
             > .local/p08-current-acceptance/report.json
           git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - name: Stage81 real CLI evidence and release boundary
+        shell: bash
+        env:
+          STAGE81_CLI_EVIDENCE_DIRECTORY: .local/p08-current-acceptance/stage81-cli
+          STAGE81_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$STAGE81_CLI_EVIDENCE_DIRECTORY"
+          python3 -m unittest tests.test_modernization_stage81_acceptance_cli -v \
+            2>&1 | tee "$STAGE81_CLI_EVIDENCE_DIRECTORY/tests.log"
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
