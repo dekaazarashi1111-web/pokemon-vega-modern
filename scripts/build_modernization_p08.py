@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 from typing import Any
@@ -20,6 +21,10 @@ from tools.modernization_p08_integration import (  # noqa: E402
     build_runtime_handoff,
     stable_json,
 )
+from tools.modernization_p08_stage79_evidence import (  # noqa: E402
+    EvidenceError,
+    attach_outputs,
+)
 
 
 OUTPUTS = {
@@ -30,10 +35,11 @@ OUTPUTS = {
 
 
 def render_outputs(matrix: dict[str, Any]) -> dict[str, bytes]:
-    return {
+    historical = {
         relative: stable_json(builder(matrix))
         for relative, builder in OUTPUTS.items()
     }
+    return attach_outputs(historical, ROOT)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -58,13 +64,16 @@ def main(argv: list[str] | None = None) -> int:
                 for mismatch in mismatches:
                     print(mismatch, file=sys.stderr)
                 return 1
+            current = json.loads(outputs['content/modernization/p08_integration_matrix.json']).get('current_cumulative_runtime')
             print(
                 "P08_CHECK=PASS STATUS=CHECKPOINT_NOT_RELEASE_CANDIDATE "
                 f"INPUTS={matrix['snapshot']['tracked_input_count']} "
                 f"COMPLETED={matrix['integration_summary']['completed_phase_count']} "
                 "ACTIVE_STAGE=62 "
-                "CANDIDATE_STAGE="
+                "HISTORICAL_CANDIDATE_STAGE="
                 f"{matrix['integration_summary']['highest_pinned_candidate_stage']} "
+                f"CUMULATIVE_RUNTIME_STAGE={current['candidate_stage'] if current else 'NOT_ADOPTED'} "
+                f"CUMULATIVE_DOMAINS={current['domain_count'] if current else 0} "
                 "RELEASE_READY=false"
             )
             return 0
@@ -77,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
             path.write_bytes(raw)
             print(f"WROTE={relative} SIZE={len(raw)}")
         return 0
-    except ModernizationP08Error as error:
+    except (ModernizationP08Error, EvidenceError, OSError, ValueError) as error:
         print(f"P08_ERROR={error}", file=sys.stderr)
         return 2
 
