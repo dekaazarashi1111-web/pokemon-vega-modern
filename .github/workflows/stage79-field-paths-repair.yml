@@ -63,7 +63,10 @@ jobs:
           gate = json.loads(pathlib.Path(cfg['execution']['runtime_gate']).read_text())
           assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
           assert gate['execution']['evidenced_domain_runs'] == 0
-          subprocess.run(['git','add','--',*sorted(targets)], check=True)
+          # build/stages is ignored globally; only this exact checked allowlist is staged.
+          subprocess.run(['git','add','-f','--',*sorted(targets)], check=True)
+          staged = set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
+          assert staged == targets, (staged, targets)
           PY
           git diff --cached --stat | tee .local/stage79-field-paths-repair/committed-stat.txt
           git config user.name 'github-actions[bot]'
