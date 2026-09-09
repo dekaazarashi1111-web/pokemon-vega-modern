@@ -26,6 +26,8 @@ jobs:
             tests.test_github_result_summary \
             tests.test_run_github_battle_command \
             tests.test_run_github_private_suite
+      - name: P03/P05 representative E2E result contracts
+        run: python3 -m unittest tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e -v
       - name: 現在のP08受入境界と原本証跡を検証
         shell: bash
         run: |
