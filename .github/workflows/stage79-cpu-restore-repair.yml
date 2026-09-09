@@ -1,0 +1,129 @@
+name: stage79-cpu-restore-repair
+run-name: Stage79 CPU restore red-green repair
+
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-cpu-restore-repair.yml
+      - .github/scripts/stage79_cpu_restore_repair.py
+      - tests/mgba_cpu_restore_regression.c
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: stage79-cpu-restore-repair-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: Snapshot exact sources and read-only map diagnostics
+        run: python3 .github/scripts/stage79_cpu_restore_repair.py snapshot
+      - name: Require the original helpers to fail the synthetic CPU regression
+        run: |
+          set -euo pipefail
+          for helper in battle regression; do
+            flags=()
+            if test "$helper" = regression; then flags+=(-DTEST_REGRESSION_HELPER); fi
+            cc -std=c11 -O2 -Wall -Wextra -Werror -Itools "${flags[@]}" \
+              tests/mgba_cpu_restore_regression.c -lmgba \
+              -o ".local/stage79-cpu-repair/$helper-before"
+            status=0
+            ".local/stage79-cpu-repair/$helper-before" \
+              > ".local/stage79-cpu-repair/$helper-before.log" 2>&1 || status=$?
+            cat ".local/stage79-cpu-repair/$helper-before.log"
+            test "$status" = 1
+            grep -q CPU_RESTORE_MISMATCH ".local/stage79-cpu-repair/$helper-before.log"
+          done
+      - name: Apply only the two exact PC restoration changes
+        run: python3 .github/scripts/stage79_cpu_restore_repair.py apply
+      - name: Require ARM and Thumb regression cases to pass for both helpers
+        run: |
+          set -euo pipefail
+          for helper in battle regression; do
+            flags=()
+            if test "$helper" = regression; then flags+=(-DTEST_REGRESSION_HELPER); fi
+            cc -std=c11 -O2 -Wall -Wextra -Werror -Itools "${flags[@]}" \
+              tests/mgba_cpu_restore_regression.c -lmgba \
+              -o ".local/stage79-cpu-repair/$helper-after"
+            ".local/stage79-cpu-repair/$helper-after" \
+              > ".local/stage79-cpu-repair/$helper-after.log" 2>&1
+            cat ".local/stage79-cpu-repair/$helper-after.log"
+            grep -q 'CPU_RESTORE_REGRESSION_PASS cases=4' ".local/stage79-cpu-repair/$helper-after.log"
+          done
+      - name: Run focused Python regression and plan checks
+        run: |
+          python3 -m unittest tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba -v \
+            > .local/stage79-cpu-repair/unit.log 2>&1
+          python3 scripts/run_modernization_stage79_github_domain.py plan \
+            > .local/stage79-cpu-repair/plan.json
+          git diff --check
+      - name: Revalidate the three previously passing domains without cache
+        run: |
+          set -uo pipefail
+          status=0
+          for domain in p03 p04_mega_runtime p05; do
+            output=".local/stage79-cpu-repair/$domain"
+            mkdir -p "$output"
+            python3 scripts/run_modernization_stage79_github_domain.py \
+              run-domain --domain "$domain" --output-directory "$output" \
+              > "$output/job-summary.json" 2> "$output/helper.stderr.log" || status=1
+            cat "$output/helper.stderr.log"
+            cat "$output/job-summary.json"
+          done
+          exit "$status"
+      - name: Atomically commit the validated repair on the unchanged PR branch
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          root = pathlib.Path('.')
+          config = json.loads((root / 'config/modernization_stage79_cumulative_mgba.json').read_text())
+          identity = config['input_identity']['rom']
+          raw = (root / identity['path']).read_bytes()
+          assert len(raw) == identity['size'] and hashlib.sha256(raw).hexdigest() == identity['sha256']
+          targets = {
+              'tools/mgba_battle_core_smoke.c',
+              'tools/mgba_regression_smoke.c',
+              'config/modernization_stage79_cumulative_mgba.json',
+          }
+          actual = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          assert actual == targets, (actual, targets)
+          subprocess.run(['git', 'add', '--', *sorted(targets)], check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(mgba): restore the interrupted instruction without advancing PC'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD > .local/stage79-cpu-repair/committed-head.txt
+      - name: Preserve diagnostics without product ROM or saves
+        if: always()
+        run: |
+          mkdir -p .local/stage79-cpu-repair
+          git diff > .local/stage79-cpu-repair/uncommitted.patch
+          git show --stat -1 > .local/stage79-cpu-repair/head.txt
+          rm -f .local/stage79-cpu-repair/battle-before .local/stage79-cpu-repair/battle-after \
+                .local/stage79-cpu-repair/regression-before .local/stage79-cpu-repair/regression-after
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-cpu-restore-diagnostics
+          path: .local/stage79-cpu-repair
+          include-hidden-files: true
+          retention-days: 14
+          if-no-files-found: error
