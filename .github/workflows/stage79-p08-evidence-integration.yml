@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/stage79-p08-evidence-integration.yml
       - .github/scripts/stage79_p08_integrate.py
+      - .github/scripts/stage79_p08_bootstrap.py
   workflow_dispatch:
 permissions:
   contents: write
@@ -16,7 +17,7 @@ jobs:
   integrate:
     if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       GH_TOKEN: ${{ github.token }}
       EXPECTED_SHA: ${{ github.sha }}
@@ -24,10 +25,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash infra/setup_github_actions.sh --install
-      - name: Validate real Actions provenance, every ZIP digest and exact seven-domain results
+      - uses: actions/cache/restore@v4
+        with:
+          path: .local/github-private-environment/assets
+          key: p08-private-env-${{ hashFiles('config/github_private_environment.json') }}
+      - name: Reproduce every historical P08 input without changing tracked files
         run: |
           set -euo pipefail
           mkdir -p .local/stage79-p08-integration
+          python3 .github/scripts/stage79_p08_bootstrap.py 2>&1 | tee .local/stage79-p08-integration/bootstrap.log
+      - name: Validate real Actions provenance, every ZIP digest and exact seven-domain results
+        run: |
+          set -euo pipefail
           python3 .github/scripts/stage79_p08_integrate.py 2>&1 | tee .local/stage79-p08-integration/import.log
       - name: Require P08 historical audits, new evidence regressions and all Stage79 regressions
         run: |
@@ -96,3 +105,8 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: .local/github-private-environment/assets
+          key: p08-private-env-${{ hashFiles('config/github_private_environment.json') }}
