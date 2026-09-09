@@ -5,12 +5,10 @@ on:
     paths:
       - .github/workflows/stage79-candy-level-abi-regression.yml
       - tests/test_modernization_stage79_candy_level_abi.py
+      - overlays/qol_production/qol_production.c
   workflow_dispatch:
 permissions:
-  contents: write
-  actions: write
-  issues: write
-  pull-requests: write
+  contents: read
 concurrency:
   group: stage79-candy-level-abi-${{ github.ref }}
   cancel-in-progress: false
@@ -20,102 +18,40 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      HEAD_REF: codex/modernization-followup-20260908
-      EXPECTED_HEAD: ${{ github.sha }}
-      GH_TOKEN: ${{ github.token }}
-      # Actions executes shell: python from a temporary script outside checkout.
       PYTHONPATH: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install pinned compilation dependencies
-        run: bash infra/setup_github_actions.sh --install
-      - name: Correct only the Rare Candy party-level accessor when needed
-        shell: python
-        run: |
-          from pathlib import Path
-          import hashlib
-          import re
-          import subprocess
-          from tests.test_modernization_stage79_candy_level_abi import BAD_LEVEL_READ, candy_body
-
-          source = Path('overlays/qol_production/qol_production.c')
-          text = source.read_text(encoding='utf-8')
-          rom = Path('build/stages/78_modernization_p05_eelevate_switch_ai.gba')
-          expected = '98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b'
-          assert hashlib.sha256(rom.read_bytes()).hexdigest() == expected
-          output = Path('.local/stage79-candy-abi')
-          output.mkdir(parents=True, exist_ok=True)
-          body = candy_body(text)
-          matches = list(BAD_LEVEL_READ.finditer(body))
-          if matches:
-              assert len(matches) == 1, 'ambiguous Rare Candy level reads'
-              before = subprocess.run(
-                  ['python3', '-m', 'unittest', 'tests.test_modernization_stage79_candy_level_abi', '-v'],
-                  capture_output=True, text=True,
-              )
-              (output / 'before.log').write_text(before.stdout + before.stderr)
-              assert before.returncode != 0, 'original level accessor must fail regression'
-              anchor = re.compile(r'^#define FN_GET_BOX_MON_DATA[^\n]*\n', re.MULTILINE)
-              assert len(anchor.findall(text)) == 1, 'native accessor declaration is ambiguous'
-              assert 'FN_STAGE79_PARTY_MON_DATA' not in text, 'accessor already declared inconsistently'
-              replacement = body[:matches[0].start()] + 'FN_STAGE79_PARTY_MON_DATA(mon, MON_DATA_LEVEL)' + body[matches[0].end():]
-              assert text.count(body) == 1
-              text = text.replace(body, replacement, 1)
-              text = anchor.sub(
-                  lambda match: match.group(0) +
-                  '/* MON_DATA_LEVEL is a party field, not a boxed field. */\n' +
-                  '#define FN_STAGE79_PARTY_MON_DATA PTR(GetBoxMonDataFn, 0x0803F355u)\n',
-                  text, count=1,
-              )
-              source.write_text(text, encoding='utf-8')
-              print('SOURCE_ONLY: Rare Candy now uses the native party GetMonData accessor for level')
-          else:
-              print('No legacy boxed level read remains; keeping the existing implementation')
-          assert hashlib.sha256(rom.read_bytes()).hexdigest() == expected
-          print('Frozen Stage78 ROM unchanged; this job does not claim runtime acceptance or regenerate a candidate')
-      - name: Run source regressions and compile the actual production translation unit
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Test the real source and generate its canonical header
         run: |
           set -euo pipefail
-          python3 -m unittest tests.test_modernization_stage79_candy_level_abi -v 2>&1 | tee .local/stage79-candy-abi/after.log
-          arm-none-eabi-gcc -std=c11 -mcpu=arm7tdmi -mthumb -Os -ffreestanding -fno-builtin -c overlays/qol_production/qol_production.c -o .local/stage79-candy-abi/qol_production.o
-          git diff --check
-      - name: Publish only a validated source change without overwriting a newer HEAD
-        run: |
-          set -euo pipefail
-          remote=$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)
-          test "$remote" = "$EXPECTED_HEAD"
+          mkdir -p .local/stage79-candy-abi
+          python3 -m unittest tests.test_modernization_stage79_candy_level_abi -v 2>&1 | tee .local/stage79-candy-abi/tests.log
           python3 - <<'PY'
-          import subprocess
-          changed = subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines()
-          assert set(changed) <= {'overlays/qol_production/qol_production.c'}, changed
+          import hashlib
+          from pathlib import Path
+          from scripts.build_qol_production import _generated_header, _load_model
+          parent = Path('build/stages/78_modernization_p05_eelevate_switch_ai.gba')
+          assert hashlib.sha256(parent.read_bytes()).hexdigest() == '98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b'
+          header = _generated_header(_load_model())
+          assert header
+          Path('.local/stage79-candy-abi/qol_production_generated.h').write_bytes(header)
+          print('Generated the production header; no source or candidate was modified.')
           PY
-          git diff > .local/stage79-candy-abi/source.patch
-          if ! git diff --quiet -- overlays/qol_production/qol_production.c; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add overlays/qol_production/qol_production.c
-            git commit -m 'fix(qol): read Rare Candy levels through the native party accessor'
-            git push origin "HEAD:refs/heads/$HEAD_REF"
-          fi
-          git rev-parse HEAD | tee .local/stage79-candy-abi/validated-head.txt
-      - name: Dispatch strict Stage79 validation on the resulting branch
+      - name: Compile the actual production translation unit
         run: |
           set -euo pipefail
-          gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
-          {
-            echo '## Stage79 Rare Candy level accessor regression'
-            echo
-            echo "Validated source HEAD: \`$(cat .local/stage79-candy-abi/validated-head.txt)\`"
-            echo "Source regression run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-            echo
-            echo 'The 5 source regression tests and ARM compilation passed. The frozen Stage78 ROM was not modified. Any source-only correction still requires candidate regeneration and full runtime acceptance; this job does not claim 7/7 PASS or P08 integration. The strict Stage79 workflow was dispatched for the resulting branch. Draft PR and Stage62 gameplay baseline remain unchanged.'
-          } > .local/stage79-candy-abi/summary.md
-          gh pr comment 16 --body-file .local/stage79-candy-abi/summary.md
+          arm-none-eabi-gcc -std=c11 -mcpu=arm7tdmi -mthumb -mthumb-interwork -Os -Wall -Wextra -Werror -ffreestanding -fno-builtin -I.local/stage79-candy-abi -I. -c overlays/qol_production/qol_production.c -o .local/stage79-candy-abi/qol_production.o
+          git diff --exit-code
+          git rev-parse HEAD > .local/stage79-candy-abi/validated-head.txt
+          echo 'Source regressions and ARM compilation only. This is not runtime acceptance, 7/7 PASS, P08 integration, or a release promotion.' | tee .local/stage79-candy-abi/scope.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: stage79-candy-level-abi-regression
           path: .local/stage79-candy-abi
           include-hidden-files: true
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 14
