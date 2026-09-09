@@ -5,6 +5,7 @@ archive must be downloadable without authentication; no private asset can be
 introduced through the workflow token. Input bytes are never uploaded as logs.
 """
 from pathlib import Path
+from contextlib import nullcontext
 import json
 import os
 import shutil
@@ -19,6 +20,7 @@ sys.path.insert(0, str(ROOT))
 from scripts import github_private_environment as environment
 from tools import modernization_p08_integration as p08
 from tools import modernization_p08_historical_sources as history
+from tools import modernization_p08_stage_inputs as stage_inputs
 
 
 def run(*args: str, root: Path = ROOT) -> None:
@@ -71,6 +73,8 @@ def restore(root: Path, assets: Path, config: dict, private: str) -> None:
 
 
 def main() -> None:
+    run(sys.executable, '-m', 'unittest', 'tests.test_modernization_p08_history',
+        'tests.test_modernization_p08_stage_inputs', '-v')
     private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
     if private not in ('true', 'false'):
         raise RuntimeError('Unknown repository visibility')
@@ -101,6 +105,7 @@ def main() -> None:
     if history.COMMIT != p08.SNAPSHOT_BASE_HEAD:
         raise RuntimeError('historical source and P08 checkpoint differ')
     run('git', 'fetch', '--depth=1', 'origin', history.COMMIT)
+    run('git', 'fetch', '--depth=1', 'origin', stage_inputs.INPUT_COMMIT)
     with tempfile.TemporaryDirectory(prefix='p08-historical-') as temporary:
         historical = Path(temporary) / 'source'
         run('git', 'worktree', 'add', '--detach', str(historical), history.COMMIT)
@@ -110,7 +115,12 @@ def main() -> None:
                 raise RuntimeError('historical checkout identity mismatch')
             restore(historical, assets, config, private)
             for command in commands:
-                run(*command, root=historical)
+                projection = (stage_inputs.original_stage_inputs(historical, ROOT)
+                              if command[1] in ('scripts/build_modernization_p03_stage65.py',
+                                                'scripts/build_modernization_p03_stage66.py')
+                              else nullcontext())
+                with projection:
+                    run(*command, root=historical)
             p08._audit_candidate_artifacts(historical)
             run('git', 'diff', '--exit-code', root=historical)
             tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0'))
