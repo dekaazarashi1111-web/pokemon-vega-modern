@@ -4567,3 +4567,7 @@ GitHub integration run 34374045795: 348 regressions PASS; original Stage81 matri
 - Evidence: content/modernization/p08_stage81_closeout_evidence/34380153325/; artifact SHA-256 b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c
 - Commit: 検証対象 eb53628dc95bca236338c498d5d2e9a16fca7e5b; this recording commit is in Actions artifact record-head.txt and receives a separate source-validation dispatch.
 - Limits: Stage62 unchanged; release_ready=false; Draft/unmerged; P03/P05 full acceptance and P06/P07 adoption are not promoted.
+
+## 2026-09-10 — USER-P03-ARCHIVE-UI / Stage82
+
+Run 34397482740, tested code 9221ffa18711505dba1fc8b80383bcb8a722a02b: exact Stage82 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d; 25 new native archive UI/save/fresh-core cases and seven fresh cumulative domains passed. Two separate pre-repair failure controls were retained (the gate-only control also reproduces the specifically classified illegal opcode before the metadata assertion). Three observation barriers and seven host-write denial probes are enforced. P08 originals are in content/modernization/p08_stage82_evidence/34397482740; record checker passes. Stage62, historical Stage79/81 evidence, Draft state and release_ready=false are unchanged. Breeding, other P03/P05 paths, P06/P07 and release remain incomplete.
