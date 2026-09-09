@@ -28,6 +28,11 @@ jobs:
             tests.test_run_github_private_suite
       - name: P03/P05 representative E2E result contracts
         run: python3 -m unittest tests.test_modernization_p03_learning_e2e tests.test_modernization_p05_scheduler_e2e tests.test_modernization_p05_controller_witness -v
+      - name: Stage81 candidate and P03 full-slot regression contracts
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage81_github_domain.py prepare
+          python3 -m unittest tests.test_modernization_p03_fullslots_e2e tests.test_modernization_stage81_github_domain -v
       - name: 現在のP08受入境界と原本証跡を検証
         shell: bash
         run: |
@@ -37,7 +42,8 @@ jobs:
           python3 -m unittest \
             tests.test_modernization_p08_current_acceptance \
             tests.test_modernization_p08_stage79_evidence \
-            tests.test_modernization_p08_representative_evidence -v \
+            tests.test_modernization_p08_representative_evidence \
+            tests.test_modernization_p08_stage81_evidence -v \
             2>&1 | tee .local/p08-current-acceptance/tests.log
           python3 scripts/check_modernization_p08_current_acceptance.py --check \
             > .local/p08-current-acceptance/report.json
