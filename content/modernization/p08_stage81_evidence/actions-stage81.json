@@ -1,0 +1,533 @@
+{
+  "artifacts": [
+    {
+      "digest": "sha256:2a199070663f5489102dd054ab1239eb734b240173757b6cc44fd4f340aa9d20",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110947477,
+      "name": "stage81-cumulative-result",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:5a41693598210fe0c60e8bc71c1793cd14acbc6a53248d3a73396b83404ecd42",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110935925,
+      "name": "stage81-domain-battle_policy",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:deac927442bbd093db1391990ee16ac994297381d02057a2ef2c26633c44d430",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110927596,
+      "name": "stage81-domain-floette",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:1510ffcc1305341b83605cb797ee6b9f2064fe97018090da1abceec22f8755c0",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110927365,
+      "name": "stage81-domain-p03",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:bd3fc522bf496331d3767d03622fdde305b547e1dd38d4a7f11d202dceeaaced",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110927172,
+      "name": "stage81-domain-mega_shop",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:d21bb82ea595d48e5188d2e2f99102690e095100ea7f6d0e2215be30d3929484",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110925301,
+      "name": "stage81-domain-p05",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:321df6994cc9fb653c0f3d30fdefcbcf381aa31ecf717922aa3b237c71580a1f",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110912336,
+      "name": "stage81-domain-p02",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:8da621e126fb2a2b2accab3ded1b7259ed9321fb8af1ca044714b1fbda9af405",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110912184,
+      "name": "stage81-domain-p04_mega_runtime",
+      "run_id": 34368455589
+    },
+    {
+      "digest": "sha256:3853b9cf35235b40a8e68c0adc4c5686d672d0d28ae7d810738e655ad535273d",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 10110872768,
+      "name": "stage81-plan",
+      "run_id": 34368455589
+    }
+  ],
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523190746,
+      "name": "plan",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Regression tests for exact candidate and unchanged contracts",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Validate full parent chain and Stage81 matrix plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523410952,
+      "name": "domain (p05)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523410958,
+      "name": "domain (floette)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523411014,
+      "name": "domain (p02)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523411025,
+      "name": "domain (p03)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523411040,
+      "name": "domain (mega_shop)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523411071,
+      "name": "domain (battle_policy)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523411569,
+      "name": "domain (p04_mega_runtime)",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fixed toolchain",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify identical Stage81 plan",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Fresh mGBA execution with unchanged Stage79 contract",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+      "id": 102523914329,
+      "name": "merge",
+      "run_id": 34368455589,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/download-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Merge and check all seven results, preserving historical gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "run": {
+    "conclusion": "success",
+    "head_branch": "codex/modernization-followup-20260908",
+    "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+    "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+    "run_attempt": 1,
+    "run_id": 34368455589,
+    "status": "completed",
+    "workflow_path": ".github/workflows/modernization-stage81-mgba.yml"
+  },
+  "sources": {
+    ".github/workflows/modernization-stage81-mgba.yml": {
+      "sha256": "410dc275aaffd50b6006e38bdf0e63d7e99d6c71630d69e4900e3ff645a6bb53",
+      "size": 5277
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    }
+  }
+}

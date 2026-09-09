@@ -1,0 +1,858 @@
+{
+  "artifacts_written": [
+    "content/modernization/stage79_cumulative_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "full_p03_done": false,
+    "full_p05_done": false,
+    "link_runtime_e2e": false,
+    "physical_all_menu_paths_e2e": false,
+    "product_rom_patched": false,
+    "release_ready": false
+  },
+  "classification": "LATEST_CUMULATIVE_EXACT_ROM_SEQUENTIAL_RESUMABLE",
+  "config": {
+    "path": ".local/stage81-native-pp/config.json",
+    "sha256": "fdc2c4314f70c1a21c7ccfea2060ef437b2aed1e150708a58b7644a065e60d0c",
+    "size": 30248
+  },
+  "domain_order": [
+    "p02",
+    "mega_shop",
+    "floette",
+    "p03",
+    "p04_mega_runtime",
+    "battle_policy",
+    "p05"
+  ],
+  "domains": [
+    {
+      "command_argument_count": 5,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "67fc0d32695547dd95fb67f9e86abcee30a6ec3289b8cbc56346d6e7298091dc",
+        "executable_size": 56712,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "p02",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p02.json",
+      "runner": {
+        "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
+        "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+        "size": 39669
+      },
+      "runner_result": {
+        "bag_item_missing": {
+          "item_absent": true,
+          "normal_start_bag_input_attempted": true,
+          "party_not_opened_for_item": true,
+          "species_unchanged": true
+        },
+        "bag_item_use": {
+          "bag_item_consumed": true,
+          "four_moves_retained": true,
+          "normal_start_bag_party_input": true,
+          "scene_callbacks_seen": true,
+          "target_applied": true
+        },
+        "boot_route": "NORMAL_TITLE_CONTINUE_PINNED_SAVE",
+        "classification": "STAGE71_EXACT_ROM_NORMAL_INPUT_AND_FRESH_CORE",
+        "conditional_form_success": {
+          "ability_matches_hidden": true,
+          "condition_item_consumed": true,
+          "exact_form_applied": true,
+          "four_moves_retained": true,
+          "hidden_ability_preserved": true,
+          "normal_bag_party_input": true,
+          "scene_callbacks_seen": true
+        },
+        "direct_conditions": {
+          "friendship": true,
+          "known_move": true,
+          "level": true,
+          "level_held_item_six": {
+            "below_level_rejected": 6,
+            "conditional_item_consumed": 6,
+            "conditional_selected": 6,
+            "hidden_ability_preserved": 24,
+            "payload_pc_seen": true,
+            "species_count": 6,
+            "wrong_or_missing_item_regular": 12
+          },
+          "night_form": true,
+          "trade": true
+        },
+        "fixture_replacement_after_field": true,
+        "initial_normal_continue_field": true,
+        "known_good_seed_sha256": "f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb",
+        "normal_evolution_cancel": {
+          "ability_slot_retained": true,
+          "four_moves_retained": true,
+          "normal_bag_party_input": true,
+          "physical_b_cancel": true,
+          "scene_callbacks_seen": true,
+          "source_retained": true
+        },
+        "normal_evolution_success": {
+          "ability_matches_slot": true,
+          "ability_slot_retained": true,
+          "four_moves_retained": true,
+          "normal_bag_party_input": true,
+          "scene_callbacks_seen": true,
+          "target_applied": true
+        },
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "save_reload": {
+          "ability_matches_hidden": true,
+          "condition_item_still_consumed": true,
+          "exact_form_reloaded": true,
+          "four_moves_reloaded": true,
+          "fresh_core_created": true,
+          "hidden_ability_reloaded": true,
+          "normal_continue_load_succeeded": true,
+          "original_core_destroyed": true,
+          "stock_load_succeeded": true,
+          "stock_save_twice": true
+        },
+        "schema_version": 1,
+        "status": "PASS",
+        "temporary_save_only": true,
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "999095957b9c587e4a0148cb01d9eed581bec3c58bd6860166449e365fb753dc",
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command_argument_count": 14,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "28968f4ddc1712da43f2b2338666d1ed317d95b875edc564c315ee655c142e57",
+        "executable_size": 47192,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "mega_shop",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/mega_shop.json",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+        "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+        "size": 167
+      },
+      "runner_result": {
+        "accepted_item_boundary_ids": [
+          999,
+          1023,
+          1024,
+          1043
+        ],
+        "bag_full_capacity": 1024,
+        "checks": {
+          "bag_full_no_mutation": true,
+          "claim_flags_14a0_14b6_14cc": true,
+          "fresh_core_normal_save_reload": true,
+          "fresh_core_once_rejected": true,
+          "index_0_item_999_price_16": true,
+          "index_22_item_1021_price_16": true,
+          "index_44_item_1043_price_16": true,
+          "insufficient_bp_no_mutation": true,
+          "item_consumer_boundaries_999_1023_1024_1043_1044": true,
+          "mega_ring_580_gate": true,
+          "name_hold_effect_and_is_mega_stone_consumers": true,
+          "physical_npc_script_graph_to_entrypoint": true,
+          "probe_and_save_init": true
+        },
+        "core_instances": 2,
+        "final_bp": 52,
+        "first_rejected_item_id": 1044,
+        "framebuffer_transitions": 6729,
+        "hold_effect": 73,
+        "initial_bp": 100,
+        "price_bp": 16,
+        "process_runs": 1,
+        "representative_claim_flags": [
+          5280,
+          5302,
+          5324
+        ],
+        "representative_indices": [
+          0,
+          22,
+          44
+        ],
+        "representative_item_ids": [
+          999,
+          1021,
+          1043
+        ],
+        "retained_artifacts": [],
+        "schema_version": 1,
+        "stage": 68,
+        "state_fixture": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+        "status": "PASS",
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "c9c145cea0d35ecdfef756769ae51a07903021886b91ceb900af220dbc076856",
+      "status": "PASS",
+      "stderr_sha256": "5f5f9d24884d68f882267eb63e3d3114d4040ad9da9c57b14c33ce7b34d8b1dd"
+    },
+    {
+      "command_argument_count": 15,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "ffc6725657faa219e5d1867a0eecfe127c3258911038dc27fa53f2bf187b5f91",
+        "executable_size": 51512,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "floette",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/floette.json",
+      "runner": {
+        "path": "overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c",
+        "sha256": "256e84f60a672374359e501cbbe689b081c0f2770e22a5b1edef334fcb60afd2",
+        "size": 28131
+      },
+      "runner_result": {
+        "checks": {
+          "claim_flag_14cd": true,
+          "fresh_core_once_rejected": true,
+          "full_party_pc_delivery_species1029_level50": true,
+          "mega_ring_580_gate": true,
+          "national670_collection_bit850": true,
+          "party_and_pc_full_unclaimed": true,
+          "party_delivery_species1029_level50": true,
+          "pc_level50_create_mon_experience_identity": true,
+          "physical_npc_script_graph_to_entrypoint": true,
+          "standard_save_fresh_core_reload": true
+        },
+        "core_instances": 2,
+        "framebuffer_transitions": 6729,
+        "pc_destination": {
+          "box": 0,
+          "position": 0
+        },
+        "process_runs": 1,
+        "retained_artifacts": [],
+        "schema_version": 1,
+        "stage": 69,
+        "state_fixture": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+        "status": "PASS",
+        "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "6fb78c41c2e7cac0a7e8c4bc74bea7680da99c717a00820124bb76b0faf0ce6f",
+      "status": "PASS",
+      "stderr_sha256": "06987483ad91738bb1edd2481d7b564c8b7e9610f33a998a99f67e43506eb184"
+    },
+    {
+      "command_argument_count": 97,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "bc54a54c04e3bc5eab2084a45c6e69d8fb02ad688d288355e08bd3f9a86a3665",
+        "executable_size": 51880,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "p03",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p03.json",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+        "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e",
+        "size": 24367
+      },
+      "runner_result": {
+        "artifacts_written": [],
+        "breeding_e2e": false,
+        "checks": {
+          "all_known_terminal_mode_reset_source_pinned": true,
+          "stage67_level_evolution_tutor_egg": true,
+          "stage73_exact_alias_shared_egg_reminder_rotom": true,
+          "stage74_machine_tutor_paging_cancel_failure_capacity": true,
+          "stage75_species1670_egg_evolution_route_owner": true
+        },
+        "classification": "LATEST_CUMULATIVE_P03_REPRESENTATIVE_DIRECT_CALL",
+        "full_p03_acceptance": false,
+        "process_runs": 1,
+        "read_only": true,
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "save_reload_e2e": false,
+        "scheduler_e2e": false,
+        "schema_version": 1,
+        "status": "PASS",
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "ea544a9626a7ef9aaef0b2c9b05284d54d8270aa8c032108131f76adb8adb39e",
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command_argument_count": 151,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "ed153fba06e7c82037a1f205041001c05e1d9d9d1307d286362dc77a055b0467",
+        "executable_size": 39224,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "p04_mega_runtime",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p04_mega_runtime.json",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+        "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7",
+        "size": 9514
+      },
+      "runner_result": {
+        "artifacts_written": [],
+        "base_species_rejected_as_mega": 49,
+        "classification": "DIRECT_CALL_BOUNDED",
+        "correct_stone_matches": 49,
+        "direct_calls": 245,
+        "instructions": 415522,
+        "mapping_count": 49,
+        "mega_species_recognized": 49,
+        "payload_pc_seen": true,
+        "read_only": true,
+        "reversions_to_base": 49,
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "schema_version": 1,
+        "status": "PASS",
+        "stone_less_rejections": 49,
+        "symbols": {
+          "GetMegaSpecies": "0x09114CF0",
+          "IsMegaSpecies": "0x09115098",
+          "TryRevertMega": "0x09114F74"
+        },
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "42088b5d48b067c9fd702f0fad3e8c7a3982693fdd567b96967a8370931320a6",
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command_argument_count": 47,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "820be49e8288e7403597134aee85c8d6da22bb6e39291997fd4c27ad94f5cf6d",
+        "executable_size": 81904,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "battle_policy",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/battle_policy.json",
+      "runner": {
+        "path": "tools/mgba_battle_policy_smoke.c",
+        "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3",
+        "size": 90064
+      },
+      "runner_result": {
+        "actual_battle_setups": 41,
+        "artifacts_written": [],
+        "boot_trace_segments": 233,
+        "direct_call_instructions": 1271494,
+        "direct_calls": 612,
+        "exp_candy": {
+          "at_cap_not_consumed": true,
+          "cap_clamped": true,
+          "selected_target_only": true,
+          "zero_no_effect_not_consumed": true
+        },
+        "facility": {
+          "capture_denied": true,
+          "enemy_fainted": true,
+          "experience_after": 117360,
+          "experience_before": 117360,
+          "formats": 3,
+          "frontier_flag": true,
+          "held_item_after": 41,
+          "held_item_before": 41,
+          "matrix_cases": 24,
+          "outcome": 1,
+          "persistent_effects_denied": 7,
+          "rental_generation": {
+            "bounded_call": true,
+            "party_count": 6,
+            "species": [
+              81,
+              38,
+              17,
+              7,
+              52,
+              133
+            ]
+          },
+          "rules": 8,
+          "runtime_cleaned": true,
+          "scheduler_faint_end": true
+        },
+        "fixed_rtc_unix": 946684800,
+        "fixture": "t06_battle_policy_integration_v1",
+        "mechanics": {
+          "cleanup": true,
+          "cross_mode_exclusive": true,
+          "modes": [
+            "MEGA",
+            "Z_MOVE",
+            "DYNAMAX",
+            "TERASTAL"
+          ],
+          "one_use": true,
+          "side_wide_exclusive": true
+        },
+        "mirage": {
+          "battle_mon_virtualized": true,
+          "consume_swap_mutation": true,
+          "exit_paths": 7,
+          "leaked_to_bag": false,
+          "opponent_battle_mon_virtualized": true,
+          "opponent_original_restored_each_exit": true,
+          "owner": "opponent_party_slot_0",
+          "party_original_restored_each_exit": true,
+          "pending_configure_actual_battle": true,
+          "player_party_unchanged_each_exit": true,
+          "virtual_item": 900,
+          "virtual_or_mutated_item_leaked_to_bag": false
+        },
+        "non_e2e_routes": [],
+        "payload_calls": 612,
+        "raid": {
+          "adjacent_pc_slot_unchanged": true,
+          "bag_opened": true,
+          "ball_consumed": true,
+          "boss_fainted": true,
+          "boss_side": 1,
+          "capture_action": 1,
+          "capture_allowed_path": true,
+          "capture_denied_path": true,
+          "catch_phase_seen": true,
+          "cleanup": true,
+          "contract_unit_direct_calls": true,
+          "controller_turns": 2,
+          "existing_three_controller_ui_initialized": true,
+          "full_party_pc_routed": true,
+          "high_difficulty_policy": true,
+          "initial_shields": 5,
+          "normal_trainer_no_leak": true,
+          "normal_wild_no_leak": true,
+          "outcome": 7,
+          "partner_mask": 6,
+          "partner_spread_moves_preserved": true,
+          "party_count_after_capture": 6,
+          "party_species_unchanged": true,
+          "pc_box_id": 0,
+          "pc_box_position": 0,
+          "pc_captured_species": 150,
+          "pc_storage_pointer_dynamic": true,
+          "pending_configure_actual_battle": true,
+          "player_pp_after": 31,
+          "player_pp_before": 35,
+          "policy_state_cleaned": true,
+          "raid_state_completion_scheduler_e2e": true,
+          "runtime_cleaned": true,
+          "shield_boundary_max": 5,
+          "shield_breaks": 5,
+          "stock_pc_box_stride_80": true,
+          "turn_limit_checked": true,
+          "turn_limit_scheduler_end": true
+        },
+        "read_only": true,
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "schema_version": 1,
+        "stat_inputs": {
+          "ability_slot": 2,
+          "exp_share_off_participant_only": true,
+          "exp_share_on_unparticipated": true,
+          "hyper_trained_iv": 31,
+          "mint_nature": 6
+        },
+        "status": "PASS",
+        "trainer_build": {
+          "ev_total": 510,
+          "fully_specified": true,
+          "unspecified_identity": true
+        },
+        "unreached_routes": [],
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "7f2ed9ee98c7109bc0f3a20af92acdc6f31ff4fa7599c4c18c71038c73e63955",
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command_argument_count": 170,
+      "compilation": {
+        "compiler": "/usr/bin/cc",
+        "executable_sha256": "f1a94540f290b119d758a9c3db47a48769259bca734c4ece482ff4eb4cd37842",
+        "executable_size": 68608,
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
+      },
+      "id": "p05",
+      "pending_reason": null,
+      "resume_cache_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p05.json",
+      "runner": {
+        "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+        "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091",
+        "size": 63261
+      },
+      "runner_result": {
+        "ability_surface_occurrence_count": 33,
+        "artifacts_written": [],
+        "circus_original_delegations": 29,
+        "classification": "STAGE78_P05_RUNTIME_DIRECT_CALL",
+        "direct_call_instructions": 9057,
+        "direct_calls": 71,
+        "dispatcher_count": 29,
+        "dispatcher_instructions": 1738,
+        "dispatcher_observations": 203,
+        "eelevate_active_helper_pass": true,
+        "eelevate_active_hook_observations": 13,
+        "eelevate_active_hook_route_pass": true,
+        "eelevate_matrix_case_count": 32,
+        "eelevate_matrix_observations": 32,
+        "eelevate_matrix_sha256": "3b0ce8e8a5fa75857971b59091f2a95d73ec5597d90be4756eb9e3717e8383ed",
+        "eelevate_party_helper_pass": true,
+        "eelevate_party_hook_observations": 13,
+        "eelevate_party_hook_route_pass": true,
+        "eelevate_pure_helper_pass": true,
+        "eelevate_register_continuation_abi_pass": true,
+        "eelevate_stub_calls_observed": 246,
+        "eelevate_switch_ai_done": true,
+        "fifth_stack_argument_observations": 21,
+        "fifth_stack_arguments_preserved": true,
+        "full_p05_acceptance": false,
+        "normal_delegations": 29,
+        "predicate_truth_table_pass": true,
+        "read_only": true,
+        "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+        "scheduler_e2e": false,
+        "schema_version": 1,
+        "stage76_helpers_preserved": true,
+        "stage76_megasol_production_dispatch_pass": true,
+        "stage76_suppression_link_count": 3,
+        "status": "PASS",
+        "suppression_paths_pass": true,
+        "warnings_errors": 0
+      },
+      "runner_result_sha256": "64a80976f260887719539c19f7d62bcea863de1bd771094f25549336e147439c",
+      "status": "PASS",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "execution": {
+    "cached_domain_results_reused": 7,
+    "checkpoint_written": true,
+    "evidenced_domain_runs": 7,
+    "explicit_heavy_run_required": true,
+    "fresh_mGBA_process_runs": 0,
+    "individual_results_written_this_invocation": 0,
+    "resume_cache_checkpoint_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/checkpoint.json",
+    "resume_supported": true,
+    "runner_results_embedded": true
+  },
+  "input": {
+    "acceptance_adapter_sources": {
+      "config/modernization_stage79_cumulative_mgba.json": {
+        "path": "config/modernization_stage79_cumulative_mgba.json",
+        "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+        "size": 28627
+      },
+      "scripts/run_modernization_stage79_cumulative_mgba.py": {
+        "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+        "sha256": "fc5eff879d6bfc9d0d9232162c47de26b44957bf8a897e19997afec6dbe793fb",
+        "size": 127092
+      },
+      "scripts/run_modernization_stage79_github_domain.py": {
+        "path": "scripts/run_modernization_stage79_github_domain.py",
+        "sha256": "40be67f28c55b9f338e8d671702e11e290362b0cf774dc6630330932c30a5f47",
+        "size": 15535
+      },
+      "scripts/run_modernization_stage81_github_domain.py": {
+        "path": "scripts/run_modernization_stage81_github_domain.py",
+        "sha256": "75262629fdcd97f9766b067c95a33eee63e8f431e65eb6ad05857fd0bec6afaa",
+        "size": 7135
+      },
+      "tools/modernization_p03_native_pp_repair.py": {
+        "path": "tools/modernization_p03_native_pp_repair.py",
+        "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17",
+        "size": 5164
+      }
+    },
+    "allocation_layout_unchanged": true,
+    "changed_bytes_from_parent": 20,
+    "parent": {
+      "allocation_layout_unchanged": true,
+      "changed_bytes_from_parent": 51,
+      "parent": {
+        "allocation": {
+          "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
+          "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b",
+          "size": 47029
+        },
+        "allocation_count": 82,
+        "allocation_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
+        "allocation_first82_sha256": "cbccabcf6c00d8b34e31174ac076644f3b6da0d03cc74a413c772774de64c046",
+        "allocation_last_sequence": 81,
+        "allocation_sequence81": {
+          "alignment": 16,
+          "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+          "end_exclusive": 22896624,
+          "gba_end_exclusive": 157114352,
+          "gba_start": 157113664,
+          "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+          "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+          "placement": "FIRST_FIT",
+          "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+          "region": "integration_modules",
+          "sequence": 81,
+          "size": 688,
+          "start": 22895936
+        },
+        "checkpoint": {
+          "path": "content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json",
+          "sha256": "19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f",
+          "size": 27494
+        },
+        "commit": "a98e6fea59db1f020bc902a1b1676699f8c06c41",
+        "metadata": {
+          "path": "build/stages/78_modernization_p05_eelevate_switch_ai.json",
+          "sha256": "1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8",
+          "size": 27723
+        },
+        "payload_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+        "rom": {
+          "crc32": "BFF0203C",
+          "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+          "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+          "size": 33554432
+        },
+        "stage": 78,
+        "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI"
+      },
+      "parent_allocation_content_hashes_reused_as_candidate": false,
+      "patches": [
+        {
+          "address": 153948864,
+          "changed_bytes": 3,
+          "file_offset": 19731136,
+          "new_hex": "c00c5a09",
+          "old_hex": "d8b72d09",
+          "role": "collection_end"
+        },
+        {
+          "address": 153948876,
+          "changed_bytes": 3,
+          "file_offset": 19731148,
+          "new_hex": "30852d09",
+          "old_hex": "90d85909",
+          "role": "restore_policy_end"
+        },
+        {
+          "address": 154643292,
+          "changed_bytes": 2,
+          "file_offset": 20425564,
+          "new_hex": "55f30308",
+          "old_hex": "b1f40308",
+          "role": "party_candy_accessor"
+        },
+        {
+          "address": 134489524,
+          "changed_bytes": 8,
+          "file_offset": 271796,
+          "new_hex": "004b184775b70f09",
+          "old_hex": "f0b557464e464546",
+          "role": "native_evolution_target_forwarder"
+        },
+        {
+          "address": 134489532,
+          "changed_bytes": 32,
+          "file_offset": 271804,
+          "new_hex": "10b50400044b00f005f82000034b00f001f810bd1847c04631b60f09e9db0308",
+          "old_hex": "e0b485b0804609060d0e1204120c91460020824640460b210022fcf7bdfe0004",
+          "role": "successful_evolution_item_removal_and_stats"
+        },
+        {
+          "address": 135069324,
+          "changed_bytes": 3,
+          "file_offset": 851596,
+          "new_hex": "72f796fb",
+          "old_hex": "6df7acfe",
+          "role": "native_success_completion_call"
+        }
+      ],
+      "repair_recipe": {
+        "path": "tools/modernization_runtime_boundary_repair.py",
+        "sha256": "4b48e523453c51d989919a83fd03016a09b9164687b852dd1651a0ff0cbf7947",
+        "size": 12172
+      },
+      "repair_report": {
+        "path": "build/stages/80_modernization_runtime_boundary_repair.json",
+        "sha256": "0b7d6d34a4079b439e571eb963115715096e19434f5163867f4580091417a0be",
+        "size": 2587
+      },
+      "rom": {
+        "crc32": "BB9DBED6",
+        "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+        "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+        "size": 33554432
+      },
+      "stage": 80,
+      "task": "USER-MODERNIZATION-STAGE80-RUNTIME-BOUNDARY-REPAIR"
+    },
+    "parent_allocation_content_hashes_reused_as_candidate": false,
+    "patches": [
+      {
+        "after": "0x090421F8",
+        "before": "0x08E0CBB4",
+        "consumer": "trainer_custom_moves",
+        "instruction_hex": "311c1131208842001218920006481218281c2ef05efe02340136",
+        "instruction_offset": "0x00010D9E",
+        "rom_offset": "0x00010DC4"
+      },
+      {
+        "after": "0x090421F8",
+        "before": "0x08E0CBB4",
+        "consumer": "trainer_custom_moves_with_item",
+        "instruction_hex": "2ef0b0fd311c1131208842001218920012481218281c2ef0a5fd02340136",
+        "instruction_offset": "0x00010F0C",
+        "rom_offset": "0x00010F68"
+      },
+      {
+        "after": "0x090421F8",
+        "before": "0x08E0CBB4",
+        "consumer": "give_move_to_box_mon_empty_slot",
+        "instruction_hex": "1131308842001218920003481218381c01f0b2fd",
+        "instruction_offset": "0x0003E04C",
+        "rom_offset": "0x0003E064"
+      },
+      {
+        "after": "0x090421F8",
+        "before": "0x08E0CBB4",
+        "consumer": "set_mon_move_slot_replacement",
+        "instruction_hex": "6846008842001218920004481218281c211c01f0",
+        "instruction_offset": "0x0003E0EE",
+        "rom_offset": "0x0003E10C"
+      },
+      {
+        "after": "0x090421F8",
+        "before": "0x08E0CBB4",
+        "consumer": "native_party_move_pp_initialization",
+        "instruction_hex": "00684c300019008842001218920011481218381cfff76cfa023602340135",
+        "instruction_offset": "0x00040580",
+        "rom_offset": "0x000405D4"
+      }
+    ],
+    "repair_recipe": {
+      "path": "tools/modernization_p03_native_pp_repair.py",
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17",
+      "size": 5164
+    },
+    "repair_report": {
+      "path": ".local/stage81-native-pp/candidate.json",
+      "sha256": "48338a41f36287f618ab8d4506e23093aedd054cbd36df1868937e23085197cc",
+      "size": 2055
+    },
+    "rom": {
+      "path": ".local/stage81-native-pp/candidate.gba",
+      "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+      "size": 33554432
+    },
+    "stage": 81,
+    "task": "USER-MODERNIZATION-STAGE81-NATIVE-PP-ACCEPTANCE"
+  },
+  "not_yet_executed": false,
+  "orchestrator": {
+    "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
+    "sha256": "fc5eff879d6bfc9d0d9232162c47de26b44957bf8a897e19997afec6dbe793fb",
+    "size": 127092
+  },
+  "plan_fingerprint": "d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f",
+  "resume_cache": {
+    "checkpoint_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/checkpoint.json",
+    "private_rom_path": ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/input/stage78-private.gba",
+    "required_for_check": false,
+    "result_paths": [
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p02.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/mega_shop.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/floette.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p03.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p04_mega_runtime.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/battle_policy.json",
+      ".local/stage81-native-pp/state/d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f/results/p05.json"
+    ]
+  },
+  "runner_results_embedded": true,
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS_WITH_DECLARED_LIMITS",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

@@ -29,6 +29,8 @@ from tools.modernization_p08_stage79_evidence import (  # noqa: E402
 
 from tools.modernization_p08_representative_evidence import attach_outputs as attach_representative  # noqa: E402
 
+from tools.modernization_p08_stage81_evidence import attach_outputs as attach_native  # noqa: E402
+
 OUTPUTS = {
     "content/modernization/p08_integration_matrix.json": lambda matrix: matrix,
     "content/modernization/p08_runtime_handoff.json": build_runtime_handoff,
@@ -41,7 +43,7 @@ def render_outputs(matrix: dict[str, Any]) -> dict[str, bytes]:
         relative: stable_json(builder(matrix))
         for relative, builder in OUTPUTS.items()
     }
-    return attach_representative(attach_outputs(historical, ROOT), ROOT)
+    return attach_native(attach_representative(attach_outputs(historical, ROOT), ROOT), ROOT)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -66,7 +68,8 @@ def main(argv: list[str] | None = None) -> int:
                 for mismatch in mismatches:
                     print(mismatch, file=sys.stderr)
                 return 1
-            current = json.loads(outputs['content/modernization/p08_integration_matrix.json']).get('current_cumulative_runtime')
+            document = json.loads(outputs['content/modernization/p08_integration_matrix.json'])
+            current = document.get('current_native_pp_acceptance') or document.get('current_cumulative_runtime')
             print(
                 "P08_CHECK=PASS STATUS=CHECKPOINT_NOT_RELEASE_CANDIDATE "
                 f"INPUTS={matrix['snapshot']['tracked_input_count']} "

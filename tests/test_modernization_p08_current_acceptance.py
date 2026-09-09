@@ -33,6 +33,10 @@ class CurrentAcceptanceTests(unittest.TestCase):
         self.validator = patch.object(evidence, 'build_extension', return_value=self.current)
         self.representative_validator = patch.object(audit.representative, 'build_extension',
             return_value=deepcopy(self.actual['representative_e2e']))
+        self.native_validator = patch.object(audit.native, 'build_extension',
+            return_value=deepcopy(self.actual.get('native_pp_acceptance')))
+        self.native_validator.start()
+        self.addCleanup(self.native_validator.stop)
         self.representative_validator.start()
         self.addCleanup(self.representative_validator.stop)
         self.validator.start()
@@ -57,7 +61,7 @@ class CurrentAcceptanceTests(unittest.TestCase):
         self.assertEqual(self.actual['acceptance_status'], 'BLOCKED')
         self.assertIs(self.actual['release_ready'], False)
         self.assertIs(self.actual['heavy_execution_performed'], False)
-        self.assertEqual(self.actual['candidate_stage'], 80)
+        self.assertEqual(self.actual['candidate_stage'], 81 if (audit.ROOT / audit.native.CONFIG).exists() else 80)
         self.assertEqual(self.actual['active_baseline_stage'], 62)
 
     def test_p03_and_p05_false_flags_stay_blocking(self):

@@ -14,6 +14,7 @@ P08の既存3文書はStage77の工程完了checkpointを保持する。
 ## 検証と更新
 
 ```sh
+python3 scripts/run_modernization_stage81_github_domain.py prepare
 python3 -m unittest tests.test_modernization_p08_current_acceptance tests.test_modernization_p08_stage79_evidence -v
 python3 scripts/check_modernization_p08_current_acceptance.py --check
 ```
@@ -69,3 +70,22 @@ P05 controller witness（4条件）の原本照合を追加した。
 代表成功を取り消すものではない。現在の残件理由は、代表試験で確認済みの範囲と
 未検証の経路を区別する。詳細と検証手順は `docs/P08_REPRESENTATIVE_E2E.md` を参照。
 原本に含まれる新規プロセス30件と、今回の証跡再検証における新規実行0件を混同しない。
+
+## Stage81：native PP修正候補の受入
+
+現在候補は `current_native_pp_acceptance` のStage81を優先する。
+旧 `current_cumulative_runtime`（Stage80）と `current_representative_e2e`（同候補の30件）は
+元のハッシュ結合のまま保存し、Stage81の新規実行件数へ足さない。
+P08の現行スナップショットは両層を検証したうえでStage81の結果を採用する。
+
+新しい原本はrun `34368455589` のplan・7領域・merge、および
+run `34364100108` のP03満杯技枠等8ケースと修正前の失敗対照2ケース。
+新候補の成功原本は合計15件、失敗対照は別枠2件。原本の取り込み・再検証自体は
+mGBA新規実行0件である。詳細は `docs/P08_STAGE81_NATIVE_PP.md`。
+
+`prepare` だけが `.local/stage81-native-pp/` に決定的な検証入力を作る。
+その後の `--check` とP08の証跡検証は読み取り専用で、既存ROM・Stage62基準・
+Stage80 gateを書き換えない。通常CIもこの順序で実行する。
+P03の満杯4枠入替・拒否・キャンセル・空き枠・対照と通常保存/Continueの代表8ケースは
+解消済みと区別するが、繁殖・他の習得経路・archive economyは未完了のまま。
+P05全体、P06/P07の採用仕様、最終受入・リリースも自動で完了にしない。

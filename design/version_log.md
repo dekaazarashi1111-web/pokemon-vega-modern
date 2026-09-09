@@ -1833,3 +1833,7 @@
 ## P08 representative E2E evidence integration / run 34359174903
 
 P03 learning 2 / P05 scheduler 24 / P05 controller 4 の原本ZIP・Actions・ソース・結果契約を照合し、P08へ追補。新規回帰67件を含む269件PASS。原本の新規プロセス30件、今回の新規mGBA実行0件。Stage77/Stage79履歴、Stage62基準、P06/P07採用内容は変更なし。release_ready=false。
+
+## 2026-09-09T16:02:00.727791+00:00 USER-STAGE81 native PP evidence acceptance
+
+GitHub integration run 34374045795: 348 regressions PASS; original Stage81 matrix run 34368455589 has 7 fresh domains, and P03 original run 34364100108 has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.

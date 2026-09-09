@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from tools import modernization_p08_stage79_evidence as evidence  # noqa: E402
 from tools import modernization_p08_representative_evidence as representative  # noqa: E402
+from tools import modernization_p08_stage81_evidence as native  # noqa: E402
 
 OUTPUT = 'content/modernization/p08_current_acceptance.json'
 DOCUMENTS = tuple(f'content/modernization/p08_{name}.json' for name in
@@ -22,7 +23,7 @@ P07 = 'content/modernization/p07_layered_learnset_contract.json'
 P07_HANDOFF = 'content/modernization/p07_runtime_handoff.json'
 ECONOMY = 'config/modernization_p03_stage74_supply.json'
 ADDITIVE_KEYS = {'historical_checkpoint_scope', 'current_cumulative_runtime',
-                 'cumulative_evidence_binding'} | representative.KEYS
+                 'cumulative_evidence_binding'} | representative.KEYS | native.KEYS
 
 
 def boolean(record: dict[str, Any], key: str) -> bool:
@@ -41,7 +42,11 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
     """読み取り専用。通常CIの成功や関数単体PASSを製品受入へ昇格しない。"""
     current = evidence.build_extension(root)
     representative_e2e = representative.build_extension(root)
+    native_acceptance = native.build_extension(root)
     sources: dict[str, dict[str, Any]] = dict(representative_e2e['source_bindings'])
+
+    if native_acceptance is not None:
+        sources.update(native_acceptance['source_bindings'])
 
     def load(path: str) -> dict[str, Any]:
         raw = evidence.regular(root, path)
@@ -53,7 +58,8 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
     historical: dict[str, Any] = {}
     for path in DOCUMENTS:
         document = load(path)
-        representative.validate_document(document, representative_e2e)
+        native.validate_document(document, native_acceptance)
+        representative.validate_document(native.strip(document), representative_e2e)
         evidence.require(document.get('release_ready') is False,
                          f'unapproved release promotion: {path}')
         evidence.require(document.get('current_cumulative_runtime') == current,
@@ -72,24 +78,25 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
         if path == DOCUMENTS[0]:
             historical = original
 
-    evidence.require(isinstance(current.get('claims'), dict)
-                     and set(current['claims']) == set(evidence.CLAIMS)
-                     and all(value is False for value in current['claims'].values())
-                     and current.get('phase_completion_promoted') is False,
-                     'unsupported phase or release promotion')
-    rows = current.get('domains', [])
-    evidence.require([row.get('id') for row in rows] == list(evidence.DOMAINS),
-                     'current domain set mismatch')
-    results: dict[str, dict[str, Any]] = {}
-    for row in rows:
-        record = load(row['result_path'])
-        evidence.require(sources[row['result_path']]['sha256'] == row['result_sha256'],
-                         f'result digest mismatch: {row["id"]}')
-        evidence.require(record.get('id') == row['id'] and record.get('status') == 'PASS'
-                         and record.get('input_rom') == current['candidate_rom']
-                         and record.get('plan_fingerprint') == current['plan_fingerprint'],
-                         f'result identity mismatch: {row["id"]}')
-        results[row['id']] = record['runner_result']
+    for current in ([current, native_acceptance] if native_acceptance is not None else [current]):
+        evidence.require(isinstance(current.get('claims'), dict)
+                         and set(current['claims']) == set(evidence.CLAIMS)
+                         and all(value is False for value in current['claims'].values())
+                         and current.get('phase_completion_promoted') is False,
+                         'unsupported phase or release promotion')
+        rows = current.get('domains', [])
+        evidence.require([row.get('id') for row in rows] == list(evidence.DOMAINS),
+                         'current domain set mismatch')
+        results: dict[str, dict[str, Any]] = {}
+        for row in rows:
+            record = load(row['result_path'])
+            evidence.require(sources[row['result_path']]['sha256'] == row['result_sha256'],
+                             f'result digest mismatch: {row["id"]}')
+            evidence.require(record.get('id') == row['id'] and record.get('status') == 'PASS'
+                             and record.get('input_rom') == current['candidate_rom']
+                             and record.get('plan_fingerprint') == current['plan_fingerprint'],
+                             f'result identity mismatch: {row["id"]}')
+            results[row['id']] = record['runner_result']
 
     blockers: list[dict[str, Any]] = []
 
@@ -106,6 +113,10 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
         'p05': {'scheduler_e2e': '6特性24条件とDragonize操作観測4条件はPASS。その他の技・特性経路、自然な特性取得・Battle Circus入場を含む全体検証は未完了',
                 'full_p05_acceptance': 'P05全体の受入が未完了'},
     }
+    if native_acceptance is not None:
+        definitions['p03']['scheduler_e2e'] = 'Stage81で満杯4枠の入替・拒否・キャンセル・空き枠・対照の8ケースはPASS。他の習得画面や育成経路の通し検証は未完了'
+        definitions['p03']['save_reload_e2e'] = 'Stage81の代表8ケースで通常保存・新規core Continue・技とPPの復元はPASS。他の習得経路の保存・再読込は未完了'
+        definitions['p05']['scheduler_e2e'] = 'Stage80の6特性24条件とDragonize操作観測4条件は履歴として保持。Stage81では既存P05 runnerがPASS。新候補のその他の戦闘経路・自然な特性取得・Mega・Circus入場の通し受入は未完了'
     for domain, fields in definitions.items():
         limits[domain] = {key: boolean(results[domain], key) for key in fields}
         path = next(row['result_path'] for row in rows if row['id'] == domain)
@@ -187,6 +198,8 @@ def build_report(root: Path = ROOT) -> dict[str, Any]:
         'declared_runtime_limits': limits,
         'declared_runtime_limits_scope': 'UNCHANGED_ORIGINAL_STAGE79_FLAGS_NOT_REPRESENTATIVE_PROGRESS',
         'representative_e2e': representative_e2e,
+        **({'native_pp_acceptance': native_acceptance,
+            'representative_e2e_scope': 'STAGE80_HISTORY_NOT_RECOUNTED_AS_STAGE81'} if native_acceptance is not None else {}),
         'unclaimed_coverage': {key: current['claims'][key] for key in
                               ('link_runtime_e2e', 'physical_all_menu_paths_e2e')},
         'p06_adoption': {'review_record_count': review['source_record_count'], 'adopted_delta_count': n06},
