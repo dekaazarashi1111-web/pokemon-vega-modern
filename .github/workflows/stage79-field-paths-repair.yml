@@ -1,0 +1,87 @@
+name: stage79-field-paths-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-field-paths-repair.yml
+      - .github/scripts/stage79_field_paths_repair.py
+      - .github/repairs/stage79-field-paths.patch.zlib.b64
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-field-paths-repair-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact patch preimages and rebuild the separate candidate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-field-paths-repair
+          python3 .github/scripts/stage79_field_paths_repair.py 2>&1 | tee .local/stage79-field-paths-repair/apply.log
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Require all source, compiled-C, ARM and strict-contract regressions
+        run: |
+          set -euo pipefail
+          python3 -m unittest \
+            tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba \
+            tests.test_modernization_stage79_factory_map \
+            tests.test_modernization_stage79_controller_input \
+            tests.test_modernization_stage79_runtime_boundaries \
+            tests.test_modernization_stage79_field_paths \
+            tests.test_modernization_stage79_candy_level_abi -v \
+            2>&1 | tee .local/stage79-field-paths-repair/tests.log
+          python3 scripts/run_modernization_stage79_github_domain.py plan --selection all > .local/stage79-field-paths-repair/plan.json
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: Atomically commit only validated source and READY_NOT_RUN candidate records
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          output = pathlib.Path('.local/stage79-field-paths-repair')
+          targets = set(json.loads((output / 'targets.json').read_text()))
+          changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          assert changed | untracked == targets, (changed, untracked, targets)
+          cfg = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          for record in [cfg['input_identity']['rom'], cfg['runtime_candidate']['rom']]:
+              assert hashlib.sha256(pathlib.Path(record['path']).read_bytes()).hexdigest() == record['sha256']
+          gate = json.loads(pathlib.Path(cfg['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
+          subprocess.run(['git','add','--',*sorted(targets)], check=True)
+          PY
+          git diff --cached --stat | tee .local/stage79-field-paths-repair/committed-stat.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(stage79): repair native evolution completion and field-safe Floette fixtures with 21 regressions'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD | tee .local/stage79-field-paths-repair/committed-head.txt
+      - name: Dispatch all seven domains on the committed candidate and harness
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=15" --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion,path}]' | tee .local/stage79-field-paths-repair/dispatched-runs.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-field-paths-repair
+          path: .local/stage79-field-paths-repair
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
