@@ -240,7 +240,6 @@ int main(int argc, char **argv)
 
     free(mappings);
     mCoreConfigDeinit(&core->config);
-    core->deinit(core);
-    free(core);
+    core->deinit(core);  /* mGBA owns and frees core here. */
     return 0;
 }

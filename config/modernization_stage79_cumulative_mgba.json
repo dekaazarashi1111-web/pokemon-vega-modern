@@ -84,8 +84,17 @@
       },
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -114,8 +123,17 @@
       "arguments_sha256": "f0358965274a5e6090e004ce12ff48c0f731f9136edf2e3f8bf9b45f8788de74",
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -151,8 +169,17 @@
       "arguments_sha256": "d9120e690854d3f2764585999ca3ecb8dd6b1ab223e6d5643db8419812aa689c",
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -162,8 +189,8 @@
       "timeout_seconds": 300,
       "runner": {
         "path": "tools/mgba_modernization_stage79_p03_smoke.c",
-        "size": 24345,
-        "sha256": "027fbf54247358d83537ce0c790443ab7d3bb190b0ae91a0c26b83a0c27f2386"
+        "size": 24367,
+        "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e"
       },
       "dependencies": [
         {
@@ -180,8 +207,17 @@
       "argument_count": 94,
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -191,8 +227,8 @@
       "timeout_seconds": 300,
       "runner": {
         "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
-        "size": 9492,
-        "sha256": "e29ee2155867b1d5b53311e5eb7fdfedafea07d2c0a7d1eca68ab4cdcf730be4"
+        "size": 9514,
+        "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7"
       },
       "dependencies": [
         {
@@ -215,8 +251,17 @@
       "records_sha256": "52be46f252f4da9361ebf32af3adb6bfa246c3ed9783f88092b52a70f3df89b0",
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -250,8 +295,17 @@
       "symbols_sha256": "db041c783187956cfb1dc8f538c0fd3594b5101331728cfd4f5cbc479af05f61",
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     },
     {
@@ -261,8 +315,8 @@
       "timeout_seconds": 300,
       "runner": {
         "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
-        "size": 63239,
-        "sha256": "7bb1092e3e09130a82e4f49f2668b683667ea5836c9e63decedd0b5a3fe7cbd7"
+        "size": 63261,
+        "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091"
       },
       "dependencies": [
         {
@@ -320,8 +374,17 @@
       "arguments_sha256": "bfd934fbec3be058ee0ee6ed5f662534bb90c4949a049c761f9105fbf26d73fe",
       "compile": {
         "compiler": "cc",
-        "flags": ["-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools"],
-        "link_flags": ["-lmgba"]
+        "flags": [
+          "-std=c11",
+          "-O2",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-Itools"
+        ],
+        "link_flags": [
+          "-lmgba"
+        ]
       }
     }
   ],
@@ -551,33 +614,151 @@
       }
     },
     "symbol_bindings": [
-      {"source": "stage73", "symbol": "Stage73_RuntimeProbe", "argument": "stage73-probe", "field": "thumb_address"},
-      {"source": "stage73", "symbol": "Stage73_GetAllEggMoves", "argument": "stage73-get-all-egg", "field": "thumb_address"},
-      {"source": "stage73", "symbol": "Stage73_RotomSignatureMove", "argument": "stage73-rotom-signature", "field": "thumb_address"},
-      {"source": "stage74", "symbol": "Stage74_RuntimeProbe", "argument": "stage74-probe", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_RuntimeProbe", "argument": "stage75-probe", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_GetEggSpecies", "argument": "stage75-get-egg-species", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_GetEggMoves", "argument": "stage75-get-egg-moves", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_GetMoveRelearnerMoves", "argument": "stage75-get-relearner", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_BuildLearnableMoveset", "argument": "stage75-build-learnable", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_SetMachineMode", "argument": "stage75-set-machine", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_SetTutorMode", "argument": "stage75-set-tutor", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_ResetMode", "argument": "stage75-reset-mode", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_PrepareMachinePages", "argument": "stage75-prepare-pages", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_SelectedMachinePageHasMoves", "argument": "stage75-page-has-moves", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_CommitMachinePage", "argument": "stage75-commit-page", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_OpenArchiveModeMenu", "argument": "stage75-open-archive", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_OpenMachinePageMenu", "argument": "stage75-open-page", "field": "thumb_address"},
-      {"source": "stage75", "symbol": "Stage75_Table_evolution", "argument": "stage75-evolution-table", "field": "address"}
+      {
+        "source": "stage73",
+        "symbol": "Stage73_RuntimeProbe",
+        "argument": "stage73-probe",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage73",
+        "symbol": "Stage73_GetAllEggMoves",
+        "argument": "stage73-get-all-egg",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage73",
+        "symbol": "Stage73_RotomSignatureMove",
+        "argument": "stage73-rotom-signature",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage74",
+        "symbol": "Stage74_RuntimeProbe",
+        "argument": "stage74-probe",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_RuntimeProbe",
+        "argument": "stage75-probe",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_GetEggSpecies",
+        "argument": "stage75-get-egg-species",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_GetEggMoves",
+        "argument": "stage75-get-egg-moves",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_GetMoveRelearnerMoves",
+        "argument": "stage75-get-relearner",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_BuildLearnableMoveset",
+        "argument": "stage75-build-learnable",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_SetMachineMode",
+        "argument": "stage75-set-machine",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_SetTutorMode",
+        "argument": "stage75-set-tutor",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_ResetMode",
+        "argument": "stage75-reset-mode",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_PrepareMachinePages",
+        "argument": "stage75-prepare-pages",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_SelectedMachinePageHasMoves",
+        "argument": "stage75-page-has-moves",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_CommitMachinePage",
+        "argument": "stage75-commit-page",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_OpenArchiveModeMenu",
+        "argument": "stage75-open-archive",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_OpenMachinePageMenu",
+        "argument": "stage75-open-page",
+        "field": "thumb_address"
+      },
+      {
+        "source": "stage75",
+        "symbol": "Stage75_Table_evolution",
+        "argument": "stage75-evolution-table",
+        "field": "address"
+      }
     ],
     "root_bindings": [
-      {"site_argument": "level-root-site", "value_argument": "level-root", "width": 4},
-      {"site_argument": "level-root-mirror-site", "value_argument": "level-root", "width": 4},
-      {"site_argument": "tutor-root-site", "value_argument": "tutor-root", "width": 4},
-      {"site_argument": "tutor-catalog-site", "value_argument": "tutor-catalog", "width": 4},
-      {"site_argument": "egg-root-site-a", "value_argument": "egg-root", "width": 4},
-      {"site_argument": "egg-root-site-b", "value_argument": "egg-root", "width": 4},
-      {"site_argument": "egg-limit-site", "value_argument": "egg-limit", "width": 4}
+      {
+        "site_argument": "level-root-site",
+        "value_argument": "level-root",
+        "width": 4
+      },
+      {
+        "site_argument": "level-root-mirror-site",
+        "value_argument": "level-root",
+        "width": 4
+      },
+      {
+        "site_argument": "tutor-root-site",
+        "value_argument": "tutor-root",
+        "width": 4
+      },
+      {
+        "site_argument": "tutor-catalog-site",
+        "value_argument": "tutor-catalog",
+        "width": 4
+      },
+      {
+        "site_argument": "egg-root-site-a",
+        "value_argument": "egg-root",
+        "width": 4
+      },
+      {
+        "site_argument": "egg-root-site-b",
+        "value_argument": "egg-root",
+        "width": 4
+      },
+      {
+        "site_argument": "egg-limit-site",
+        "value_argument": "egg-limit",
+        "width": 4
+      }
     ],
     "terminal_source": {
       "path": "overlays/modernization_rockruff_own_tempo_stage75/modernization_rockruff_own_tempo_stage75_scripts.S",
@@ -594,35 +775,155 @@
     ]
   },
   "latest_rom_preimages": [
-    {"name": "P02_BeginEvolutionScene", "address": "0x080CEF00", "hex": "70b50c1c151c1e1c"},
-    {"name": "P02_GetEvolutionTargetSpecies", "address": "0x090FB774", "hex": "f0b557464e464546"},
-    {"name": "P02_ItemEvolutionRemoval", "address": "0x090FB630", "hex": "10b50c4b040082b0"},
-    {"name": "P02_GetMonAbility", "address": "0x090DA23C", "hex": "f8b500220b21144f"},
-    {"name": "P02_CalculateMonStats", "address": "0x090D939C", "hex": "f0b5de4657464e46"},
-    {"name": "P02_ItemUseCB_EvolutionStone", "address": "0x09122C8C", "hex": "f0b5d6464f464646"},
-    {"name": "P02_TrySavingData", "address": "0x080DB34C", "hex": "004b184761763709"},
-    {"name": "P02_Save_LoadGameData", "address": "0x080DB4E4", "hex": "004b1847815d4009"},
-    {"name": "MegaShop_Probe", "address": "0x09452350", "hex": "034b044a1380044a"},
-    {"name": "MegaShop_EnsureSave", "address": "0x09452370", "hex": "10b500f0c1fa431e"},
-    {"name": "MegaShop_GetBalance", "address": "0x09452390", "hex": "10b500f0b1fa0023"},
-    {"name": "MegaShop_IsUnlocked", "address": "0x094523BC", "hex": "10b5040000f09afa"},
-    {"name": "MegaShop_IsClaimed", "address": "0x094523F0", "hex": "002310b52c2802d8"},
-    {"name": "MegaShop_PurchaseByIndex", "address": "0x09452410", "hex": "10b5040000f0d8fa"},
-    {"name": "MegaShop_Open", "address": "0x0945244C", "hex": "70b500f099f80028"},
-    {"name": "FloetteGift_Probe", "address": "0x09462AB0", "hex": "024b034a03481a80"},
-    {"name": "FloetteGift_Claim", "address": "0x09462B14", "hex": "f0b5784887b0784f"},
-    {"name": "FloetteGift_IsFormObtained", "address": "0x09462AC8", "hex": "054b10b5054800f0"},
-    {"name": "FloetteGift_IsNationalDexSeen", "address": "0x09462AF0", "hex": "034b1878034b4007"},
-    {"name": "FloetteGift_IsNationalDexCaught", "address": "0x09462B08", "hex": "10b5fff7f1ff10bc"},
-    {"name": "P03_GetEvolutionTargetSpecies", "address": "0x09114120", "hex": "8446f8b562465423"},
-    {"name": "P03_CanLearnTutorMove", "address": "0x09110228", "hex": "f8b500220c00544f"},
-    {"name": "Stage73_RuntimeProbe", "address": "0x095347D0", "hex": "03000020032b02d8"},
-    {"name": "Stage74_RuntimeProbe", "address": "0x09539C80", "hex": "03000020042b02d8"},
-    {"name": "Stage75_RuntimeProbe", "address": "0x0954B030", "hex": "03000020052b02d8"},
-    {"name": "Stage75_GetEggSpecies", "address": "0x0954B188", "hex": "064a10b5064b9042"},
-    {"name": "Stage75_BuildLearnableMoveset", "address": "0x0954B41C", "hex": "73b500220c001f4b"},
-    {"name": "P04_GetMegaSpecies", "address": "0x09114CF0", "hex": "c3011e481b18f0b5"},
-    {"name": "P04_TryRevertMega", "address": "0x09114F74", "hex": "70b5048c0d4be401"},
-    {"name": "P04_IsMegaSpecies", "address": "0x09115098", "hex": "0c4bc001c0180200"}
+    {
+      "name": "P02_BeginEvolutionScene",
+      "address": "0x080CEF00",
+      "hex": "70b50c1c151c1e1c"
+    },
+    {
+      "name": "P02_GetEvolutionTargetSpecies",
+      "address": "0x090FB774",
+      "hex": "f0b557464e464546"
+    },
+    {
+      "name": "P02_ItemEvolutionRemoval",
+      "address": "0x090FB630",
+      "hex": "10b50c4b040082b0"
+    },
+    {
+      "name": "P02_GetMonAbility",
+      "address": "0x090DA23C",
+      "hex": "f8b500220b21144f"
+    },
+    {
+      "name": "P02_CalculateMonStats",
+      "address": "0x090D939C",
+      "hex": "f0b5de4657464e46"
+    },
+    {
+      "name": "P02_ItemUseCB_EvolutionStone",
+      "address": "0x09122C8C",
+      "hex": "f0b5d6464f464646"
+    },
+    {
+      "name": "P02_TrySavingData",
+      "address": "0x080DB34C",
+      "hex": "004b184761763709"
+    },
+    {
+      "name": "P02_Save_LoadGameData",
+      "address": "0x080DB4E4",
+      "hex": "004b1847815d4009"
+    },
+    {
+      "name": "MegaShop_Probe",
+      "address": "0x09452350",
+      "hex": "034b044a1380044a"
+    },
+    {
+      "name": "MegaShop_EnsureSave",
+      "address": "0x09452370",
+      "hex": "10b500f0c1fa431e"
+    },
+    {
+      "name": "MegaShop_GetBalance",
+      "address": "0x09452390",
+      "hex": "10b500f0b1fa0023"
+    },
+    {
+      "name": "MegaShop_IsUnlocked",
+      "address": "0x094523BC",
+      "hex": "10b5040000f09afa"
+    },
+    {
+      "name": "MegaShop_IsClaimed",
+      "address": "0x094523F0",
+      "hex": "002310b52c2802d8"
+    },
+    {
+      "name": "MegaShop_PurchaseByIndex",
+      "address": "0x09452410",
+      "hex": "10b5040000f0d8fa"
+    },
+    {
+      "name": "MegaShop_Open",
+      "address": "0x0945244C",
+      "hex": "70b500f099f80028"
+    },
+    {
+      "name": "FloetteGift_Probe",
+      "address": "0x09462AB0",
+      "hex": "024b034a03481a80"
+    },
+    {
+      "name": "FloetteGift_Claim",
+      "address": "0x09462B14",
+      "hex": "f0b5784887b0784f"
+    },
+    {
+      "name": "FloetteGift_IsFormObtained",
+      "address": "0x09462AC8",
+      "hex": "054b10b5054800f0"
+    },
+    {
+      "name": "FloetteGift_IsNationalDexSeen",
+      "address": "0x09462AF0",
+      "hex": "034b1878034b4007"
+    },
+    {
+      "name": "FloetteGift_IsNationalDexCaught",
+      "address": "0x09462B08",
+      "hex": "10b5fff7f1ff10bc"
+    },
+    {
+      "name": "P03_GetEvolutionTargetSpecies",
+      "address": "0x09114120",
+      "hex": "8446f8b562465423"
+    },
+    {
+      "name": "P03_CanLearnTutorMove",
+      "address": "0x09110228",
+      "hex": "f8b500220c00544f"
+    },
+    {
+      "name": "Stage73_RuntimeProbe",
+      "address": "0x095347D0",
+      "hex": "03000020032b02d8"
+    },
+    {
+      "name": "Stage74_RuntimeProbe",
+      "address": "0x09539C80",
+      "hex": "03000020042b02d8"
+    },
+    {
+      "name": "Stage75_RuntimeProbe",
+      "address": "0x0954B030",
+      "hex": "03000020052b02d8"
+    },
+    {
+      "name": "Stage75_GetEggSpecies",
+      "address": "0x0954B188",
+      "hex": "064a10b5064b9042"
+    },
+    {
+      "name": "Stage75_BuildLearnableMoveset",
+      "address": "0x0954B41C",
+      "hex": "73b500220c001f4b"
+    },
+    {
+      "name": "P04_GetMegaSpecies",
+      "address": "0x09114CF0",
+      "hex": "c3011e481b18f0b5"
+    },
+    {
+      "name": "P04_TryRevertMega",
+      "address": "0x09114F74",
+      "hex": "70b5048c0d4be401"
+    },
+    {
+      "name": "P04_IsMegaSpecies",
+      "address": "0x09115098",
+      "hex": "0c4bc001c0180200"
+    }
   ]
 }

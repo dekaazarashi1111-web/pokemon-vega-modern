@@ -531,8 +531,7 @@ int main(int argc, char **argv)
         rom_sha256);
     fflush(stdout);
     mCoreConfigDeinit(&core->config);
-    core->deinit(core);
-    free(core);
+    core->deinit(core);  /* mGBA owns and frees core here. */
     p03x_free_args(&args);
     return 0;
 }

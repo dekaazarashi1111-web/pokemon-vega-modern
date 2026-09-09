@@ -1448,8 +1448,7 @@ int main(int argc, char **argv)
     fflush(stdout);
 
     mCoreConfigDeinit(&core->config);
-    core->deinit(core);
-    free(core);
+    core->deinit(core);  /* mGBA owns and frees core here. */
     p05x_free_args(&args);
     return 0;
 }
