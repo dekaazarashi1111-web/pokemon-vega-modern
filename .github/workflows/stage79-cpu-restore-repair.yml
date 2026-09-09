@@ -61,8 +61,10 @@ jobs:
             cat ".local/stage79-cpu-repair/$helper-after.log"
             grep -q 'CPU_RESTORE_REGRESSION_PASS cases=4' ".local/stage79-cpu-repair/$helper-after.log"
           done
-      - name: Run focused Python regression and plan checks
+      - name: Refresh the unexecuted READY gate and run focused Python checks
         run: |
+          python3 scripts/run_modernization_stage79_cumulative_mgba.py prepare \
+            > .local/stage79-cpu-repair/prepare.json
           python3 -m unittest tests.test_modernization_stage79_github_domain \
             tests.test_modernization_stage79_cumulative_mgba -v \
             > .local/stage79-cpu-repair/unit.log 2>&1
@@ -97,10 +99,14 @@ jobs:
           identity = config['input_identity']['rom']
           raw = (root / identity['path']).read_bytes()
           assert len(raw) == identity['size'] and hashlib.sha256(raw).hexdigest() == identity['sha256']
+          gate = json.loads((root / config['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
           targets = {
               'tools/mgba_battle_core_smoke.c',
               'tools/mgba_regression_smoke.c',
               'config/modernization_stage79_cumulative_mgba.json',
+              config['execution']['runtime_gate'],
           }
           actual = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
           assert actual == targets, (actual, targets)
