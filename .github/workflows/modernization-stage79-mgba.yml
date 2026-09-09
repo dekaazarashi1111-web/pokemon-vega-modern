@@ -16,6 +16,7 @@ on:
       - content/modernization/**
       - generated/runtime/**
       - build/stages/**
+      - tests/test_modernization_stage79_*.py
       - .local/60_wild_species_root_repair.srm
   workflow_dispatch:
     inputs:
@@ -48,8 +49,13 @@ jobs:
       fingerprint: ${{ steps.plan.outputs.fingerprint }}
     steps:
       - uses: actions/checkout@v4
-      - name: Verify wrapper cleanup and strict result validation regressions
-        run: python3 -m unittest tests.test_modernization_stage79_github_domain -v
+      - name: Verify strict contracts, cleanup, cumulative map and controller input regressions
+        run: |
+          python3 -m unittest \
+            tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba \
+            tests.test_modernization_stage79_factory_map \
+            tests.test_modernization_stage79_controller_input -v
       - id: plan
         name: Stage79入力とmatrix計画を検証
         env:
