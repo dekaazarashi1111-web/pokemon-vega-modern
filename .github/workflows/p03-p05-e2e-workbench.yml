@@ -1,0 +1,39 @@
+name: p03-p05-e2e-workbench
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-p05-e2e-workbench.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Package tracked source, immutable candidate, private test seed and emulator development files
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/p03-p05-e2e-workbench
+          mkdir -p "$out/toolchain/include" "$out/toolchain/lib"
+          git rev-parse HEAD > "$out/head.txt"
+          git ls-files -z -- tools scripts tests overlays config content generated infra Makefile .github/scripts .github/workflows docs design build/stages/06_battle_core.json build/stages/80_modernization_runtime_boundary_repair.gba build/stages/80_modernization_runtime_boundary_repair.json .local/60_wild_species_root_repair.srm | tar --null -T - -czf "$out/inputs.tar.gz"
+          cp -a /usr/include/mgba /usr/include/mgba-util "$out/toolchain/include/"
+          ldd /usr/lib/x86_64-linux-gnu/libmgba.so > "$out/toolchain/ldd.txt"
+          cp -L /usr/lib/x86_64-linux-gnu/libmgba.so "$out/toolchain/lib/libmgba.so"
+          ldd /usr/lib/x86_64-linux-gnu/libmgba.so | awk '/=> \/|^\s*\// {for(i=1;i<=NF;i++) if($i ~ /^\//) print $i}' | while read -r path; do cp -L "$path" "$out/toolchain/lib/$(basename "$path")"; done
+          cp -L /lib64/ld-linux-x86-64.so.2 "$out/toolchain/lib/ld-linux-x86-64.so.2"
+          sha256sum build/stages/80_modernization_runtime_boundary_repair.gba .local/60_wild_species_root_repair.srm > "$out/input-sha256.txt"
+          find "$out/toolchain" -type f -print0 | sort -z | xargs -0 sha256sum > "$out/toolchain-sha256.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p03-p05-e2e-workbench
+          path: .local/p03-p05-e2e-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
