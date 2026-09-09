@@ -1,0 +1,86 @@
+name: stage79-p08-history-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-p08-history-repair.yml
+      - .github/scripts/stage79_p08_history_repair.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-p08-history-repair-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_SHA: ${{ github.sha }}
+      HEAD_REF: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify prepared source bytes and fetch the exact historical Git object
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-p08-history
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          expected = {
+              '.github/scripts/stage79_p08_history_repair.py': 'cd51f1b1135cb48386f54e13090ca721e19e11fbec9abe4381d9a085c467c5c2',
+              'tools/modernization_p08_historical_sources.py': '450f9a9887f77d4fd0a166f932a263b2214043c718bc888e04b461f384961117',
+              'tests/test_modernization_p08_history.py': 'daa831eec58d7d14171e23f24eb5d44b5f3a1215ac89b432ac526c2d66267c35',
+          }
+          for relative, digest in expected.items():
+              actual = hashlib.sha256(Path(relative).read_bytes()).hexdigest()
+              assert actual == digest, (relative, actual, digest)
+          PY
+          git fetch --depth=1 origin 137c6945c6bf5c633944ddd5287dffca9c5692c0
+          python3 .github/scripts/stage79_p08_history_repair.py
+      - name: Require all sixty provenance and execution-helper regressions
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.test_modernization_p08_history tests.test_modernization_p08_stage79_evidence tests.test_modernization_stage79_github_domain -v 2>&1 | tee .local/stage79-p08-history/tests.log
+          python3 -m py_compile .github/scripts/stage79_p08_bootstrap.py tools/modernization_p08_integration.py tools/modernization_p08_historical_sources.py
+          git diff --check
+      - name: Commit exactly the reviewed repair, preserving newer branch updates
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import subprocess
+          from tools import modernization_p08_historical_sources as history
+          targets = {
+              '.github/scripts/stage79_p08_bootstrap.py',
+              '.github/workflows/stage79-p08-evidence-integration.yml',
+              'tools/modernization_p08_integration.py', history.ARCHIVE,
+          }
+          changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          assert changed | untracked == targets, (changed, untracked, targets)
+          subprocess.run(['git','add','-f','--',*sorted(targets)], check=True)
+          staged = set(subprocess.check_output(['git','diff','--cached','--name-only'], text=True).splitlines())
+          assert staged == targets, staged
+          PY
+          git diff --cached --check
+          git diff --cached --stat | tee .local/stage79-p08-history/committed-stat.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(p08): isolate historical reconstruction and verify archived runner against both source identities'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD | tee .local/stage79-p08-history/committed-head.txt
+          gh workflow run stage79-p08-evidence-integration.yml --ref "$HEAD_REF"
+          gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=15" --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion}]' | tee .local/stage79-p08-history/runs.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-p08-history-repair
+          path: .local/stage79-p08-history
+          include-hidden-files: true
+          retention-days: 30
+          if-no-files-found: error
