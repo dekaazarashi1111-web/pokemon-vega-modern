@@ -10,6 +10,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import urllib.request
 import zipfile
 
@@ -17,21 +18,16 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from scripts import github_private_environment as environment
 from tools import modernization_p08_integration as p08
+from tools import modernization_p08_historical_sources as history
 
 
-def run(*args: str) -> None:
+def run(*args: str, root: Path = ROOT) -> None:
     print('RUN', *args, flush=True)
-    subprocess.run(args, cwd=ROOT, check=True)
+    subprocess.run(args, cwd=root, check=True)
 
 
-def main() -> None:
-    private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
-    if private not in ('true', 'false'):
-        raise RuntimeError('Unknown repository visibility')
-    config = json.loads((ROOT / 'config/github_private_environment.json').read_text())
-    assets = ROOT / '.local/github-private-environment/assets'
-    assets.mkdir(parents=True, exist_ok=True)
-    tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0'))
+def restore(root: Path, assets: Path, config: dict, private: str) -> None:
+    tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0'))
     for expected in config['archives']:
         path = assets / expected['name']
         url = 'https://github.com/dekaazarashi1111-web/pokemon-vega-modern/releases/download/' + config['release']['tag'] + '/' + expected['name']
@@ -54,7 +50,7 @@ def main() -> None:
                 if relative in tracked:
                     preserved += 1
                     continue
-                target = environment._destination(ROOT, relative)
+                target = environment._destination(root, relative)
                 if target.exists() or target.is_symlink():
                     if (target.is_file() and not target.is_symlink()
                             and target.stat().st_size == row['size']
@@ -70,8 +66,17 @@ def main() -> None:
                 restored += 1
         print(json.dumps({'archive': path.name, 'all_members_verified': True,
                           'restored_untracked': restored, 'preserved_tracked': preserved}), flush=True)
-    environment.restore_links(ROOT, config, force=False)
-    run('git', 'diff', '--exit-code')
+    environment.restore_links(root, config, force=False)
+    run('git', 'diff', '--exit-code', root=root)
+
+
+def main() -> None:
+    private = subprocess.check_output(['gh', 'api', 'repos/dekaazarashi1111-web/pokemon-vega-modern', '--jq', '.private'], text=True).strip()
+    if private not in ('true', 'false'):
+        raise RuntimeError('Unknown repository visibility')
+    config = json.loads((ROOT / 'config/github_private_environment.json').read_text())
+    assets = ROOT / '.local/github-private-environment/assets'
+    assets.mkdir(parents=True, exist_ok=True)
     # The release snapshot stops at Stage62; reproduce the original historical
     # chain, without touching the immutable Stage78 or repaired Stage80 candidate.
     commands = [
@@ -93,12 +98,54 @@ def main() -> None:
         ('bash', 'scripts/build_modernization_p05_stage76_edges.sh'),
         ('bash', 'scripts/build_modernization_p05_stage77_suppression.sh'),
     ]
-    for command in commands:
-        run(*command)
+    if history.COMMIT != p08.SNAPSHOT_BASE_HEAD:
+        raise RuntimeError('historical source and P08 checkpoint differ')
+    run('git', 'fetch', '--depth=1', 'origin', history.COMMIT)
+    with tempfile.TemporaryDirectory(prefix='p08-historical-') as temporary:
+        historical = Path(temporary) / 'source'
+        run('git', 'worktree', 'add', '--detach', str(historical), history.COMMIT)
+        try:
+            actual = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=historical, text=True).strip()
+            if actual != history.COMMIT:
+                raise RuntimeError('historical checkout identity mismatch')
+            restore(historical, assets, config, private)
+            for command in commands:
+                run(*command, root=historical)
+            p08._audit_candidate_artifacts(historical)
+            run('git', 'diff', '--exit-code', root=historical)
+            tracked = set(subprocess.check_output(['git', 'ls-files', '-z'], cwd=ROOT).decode().split('\0'))
+            copy_artifacts(historical, ROOT, tracked, p08.CANDIDATE_ARTIFACTS)
+        finally:
+            run('git', 'worktree', 'remove', '--force', str(historical))
     artifacts, _ = p08._audit_candidate_artifacts(ROOT)
     run('git', 'diff', '--exit-code')
     print(json.dumps({'status': 'HISTORICAL_P08_ARTIFACTS_BYTE_EXACT',
+                      'source_commit': history.COMMIT,
                       'artifacts': len(artifacts['artifacts']), 'active_baseline_stage': 62}, sort_keys=True))
+
+
+def copy_artifacts(source: Path, destination: Path, tracked: set[str], contracts: dict) -> None:
+    """Preflight the entire exact allowlist; never overwrite tracked or local data."""
+    pending = []
+    for relative, (size, digest, crc) in contracts.items():
+        raw = p08._regular_bytes(source, relative)
+        p08.verify_exact_bytes(relative, raw, size, digest)
+        if crc is not None and f'{p08.binascii.crc32(raw) & 0xFFFFFFFF:08X}' != crc:
+            raise RuntimeError(f'historical CRC32 drift: {relative}')
+        target = environment._destination(destination, relative)
+        if target.exists() or target.is_symlink():
+            if target.is_symlink() or not target.is_file():
+                raise RuntimeError(f'unsafe historical destination: {relative}')
+            p08.verify_exact_bytes(relative, target.read_bytes(), size, digest)
+        elif relative in tracked:
+            raise RuntimeError(f'missing tracked historical destination: {relative}')
+        else:
+            pending.append((target, source / relative, size, digest))
+    for target, origin, size, digest in pending:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with origin.open('rb') as incoming, target.open('xb') as outgoing:
+            shutil.copyfileobj(incoming, outgoing, length=1024 * 1024)
+        p08.verify_exact_bytes(str(target), target.read_bytes(), size, digest)
 
 
 if __name__ == '__main__':

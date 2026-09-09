@@ -2789,9 +2789,15 @@ def audit_declared_source_rows(
         relative = row.get("path")
         if not isinstance(relative, str) or relative not in tracked:
             _fail(f"{binding} sourceがtrackedではありません: {relative!r}")
-        identity = verify_exact_bytes(
-            relative, _regular_bytes(root, relative), row.get("size"), row.get("sha256")
-        )
+        from tools.modernization_p08_historical_sources import resolve
+        try:
+            historical = resolve(root, row, tracked, binding)
+        except ValueError as error:
+            _fail(str(error))
+        raw = historical[0] if historical else _regular_bytes(root, relative)
+        identity = verify_exact_bytes(relative, raw, row.get("size"), row.get("sha256"))
+        if historical:
+            identity["source_resolution"] = historical[1]
         identity["binding"] = binding
         identity["status"] = "PASS"
         result.append(identity)
