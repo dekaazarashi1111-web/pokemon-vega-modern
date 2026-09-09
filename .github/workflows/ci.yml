@@ -67,3 +67,8 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 14
+      - name: Stage82 archive UI recipe, contracts and P08 originals
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_archive_ui_e2e.py -v
+          if test -f content/modernization/p08_stage82_archive_acceptance.json; then python3 scripts/record_modernization_stage82_archive.py; fi
