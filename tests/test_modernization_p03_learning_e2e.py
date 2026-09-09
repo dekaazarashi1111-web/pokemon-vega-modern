@@ -1,8 +1,7 @@
 """P03補助E2Eの結果改変・終了コード・過大主張を拒否する。"""
-import copy
 import json
 import unittest
-from scripts.run_modernization_p03_learning_e2e import ROM_SHA, SCOPE, validate_result
+from scripts.run_modernization_p03_learning_e2e import ROM_SHA, SCOPE, validate_result, embed_p02
 
 
 class LearningResultTests(unittest.TestCase):
@@ -19,6 +18,12 @@ class LearningResultTests(unittest.TestCase):
 
     def validate(self, record, mode="learn", code=0):
         return validate_result(json.dumps(record).encode(), mode, code)
+
+    def test_embedding_changes_only_the_unique_entrypoint(self):
+        text = "/*keep*/\nint main(int argc, char **argv) { return 0; }\n"
+        self.assertEqual(embed_p02(text), text.replace("int main(", "int p03_existing_p02_main("))
+        for bad in ("", text + text):
+            with self.assertRaises(ValueError): embed_p02(bad)
 
     def test_positive_and_negative(self):
         for mode in ("learn", "below-level"):

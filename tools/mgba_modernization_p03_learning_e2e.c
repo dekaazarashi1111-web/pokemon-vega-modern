@@ -1,9 +1,7 @@
 /* P03代表経路: 通常入力の技習得、進化取消、保存、新規core Continue。
  * fixtureだけをhostで作り、対象の習得/保存callbackは直接呼び出さない。
  * P03全経路・タマゴ生成・配布仕様の受入には拡大しない。 */
-#define main p03_existing_p02_main
-#include "mgba_modernization_p02_stage71_acceptance_smoke.c"
-#undef main
+#include "p03_p02_embedded.c"
 
 enum {
     P03_SAVE_ACTION = 4U,

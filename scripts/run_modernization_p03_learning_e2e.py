@@ -54,6 +54,13 @@ def validate_result(raw: bytes, mode: str, returncode: int) -> dict:
     return result
 
 
+def embed_p02(source: str) -> str:
+    entry = "int main(int argc, char **argv)"
+    if source.count(entry) != 1:
+        raise ValueError("P02 entrypointが一意ではありません")
+    return source.replace(entry, "int p03_existing_p02_main(int argc, char **argv)", 1)
+
+
 def run(output: Path) -> dict:
     output = output.absolute()
     if output.is_symlink():
@@ -87,7 +94,8 @@ def run(output: Path) -> dict:
     with tempfile.TemporaryDirectory(prefix="p03-learning-", dir=ROOT / ".local") as temporary:
         work = Path(temporary)
         executable = work / "runner"
-        command = ["cc", "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools", SOURCE, "-lmgba", "-o", str(executable)]
+        (work / "p03_p02_embedded.c").write_text(embed_p02((ROOT / domain["runner"]["path"]).read_text()))
+        command = ["cc", "-std=c11", "-O2", "-Wall", "-Wextra", "-Werror", "-Itools", f"-I{work}", SOURCE, "-lmgba", "-o", str(executable)]
         compilation = subprocess.run(command, cwd=ROOT, capture_output=True, timeout=120)
         (output / "compile.stdout").write_bytes(compilation.stdout)
         (output / "compile.stderr").write_bytes(compilation.stderr)
