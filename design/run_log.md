@@ -4469,3 +4469,25 @@
   - 独立read-only監査はruntime/ABIとorchestrator安全性の双方でHigh／Medium 0。
 - Commit: `-`（本エントリを含むcheckpoint commit）
 - Network: なし。固定済みlocal成果だけを使用し、heavy mGBA／push／Release／iPad／既存save／現行プレイ基準は変更していない。
+
+## 2026-09-09T09:12:28+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-GITHUB-ACTIONS-HANDOFF` / Stage79必須入力と重いmGBAのGitHub移管
+- Status: DONE（Actions実行可能checkpoint。重い7 domainの結果はGitHub runで別途確定）
+- Summary:
+  - private repositoryとDraft PR #16を確認し、Stage79必須のignored 16ファイル（34,748,225 bytes）をGit直接追跡した。Stage78 ROM／metadata／allocation、P02 seed save、Stage06 metadata、runtime symbol／auditをclean checkoutだけで復元できる。
+  - Stage79の7 domainをGitHub-hosted Ubuntu 24.04でmatrix並列実行し、PASS cache再利用、失敗domain単独再実行、ログ／JSON Artifact、最終runtime gate合成を行うworkflow／helperを追加した。
+  - ユーザーの明示指定により、push CIとChatGPT patch bridgeのprivate-file guardを外した。LFS／Release／暗号化は使用していない。
+  - local heavyはP02の進化キャンセル画面でillegal opcode／field-return timeoutとなり、後続6 domainは未実行。GitHub側は`fail-fast: false`のためP02に影響されず独立実行する。
+- Files changed:
+  - `.github/workflows/modernization-stage79-mgba.yml`、`.github/workflows/ci.yml`、`.github/workflows/chatgpt-comment-control.yml`
+  - `scripts/run_modernization_stage79_github_domain.py`
+  - `build/stages/78_modernization_p05_eelevate_switch_ai.gba`、Stage78 metadata／allocation、`build/stages/06_battle_core.json`
+  - `.local/60_wild_species_root_repair.srm`、`generated/runtime/**`のStage79必須11ファイル
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `run_modernization_stage79_github_domain.py plan --selection all`: `GITHUB_MATRIX_READY`、7/7 domain、fingerprint `5214e6e1c23ab03d0982ab8735dae270e13a2b921011b232078c454d6e508594`。
+  - Python syntax／workflow YAML parse／`git diff --check`: PASS。Stage79 configがpinする36ファイルとGit index blobのsize／SHA-256は36/36一致。
+  - 重いmGBAは本commitで再実行せず、branch pushでActions matrixへ委譲する。
+- Commit: `-`（本エントリを含むActions handoff commit）
+- Network: GitHub CLIでrepositoryのprivate状態、remote branch、Draft PR #16を確認。GitHub Actionsの`workflow_dispatch`と`upload-artifact` hidden-file仕様は公式資料を確認した（https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow, https://github.com/actions/upload-artifact/blob/main/README.md）。

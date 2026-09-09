@@ -102,7 +102,7 @@ Stage67をclean private環境から作り直す必要がある時だけStage67 b
 
 ## 再開順
 
-1. checkpoint commit済みのStage79 `READY_NOT_RUN`基盤を変更せず、`python3 scripts/run_modernization_stage79_cumulative_mgba.py run --yes-heavy`で7領域を一度だけ順次実行する。失敗時は保存済みPASS prefixを再検証して再利用し、失敗／未実行領域だけを再開する。
+1. Draft PR #16の`.github/workflows/modernization-stage79-mgba.yml`を正とし、GitHub ActionsでStage79の7領域をmatrix実行する。初回はbranch pushが`all`を起動する。同一plan fingerprintのPASS結果はdomain別cacheとArtifactから再利用し、再実行は失敗domainだけを選ぶ。
 2. 49 Mega代表、通常／Frontier／Link／Mega Brawl、交代／ひんし／終了、新Ability代表とEelevate active／party hook、P02通常UI、Stage73〜75 egg／Move Memory／ロトム／Rockruff保存、Floette full・fresh reloadの結果をtracked Stage79 gateへ埋め込む。
 3. Stage79 runtime結果をP08 selected candidateへ統合し、提出済み採用差分が入った場合だけP06/P07を実装してrelease gateを再評価する。
 

@@ -584,3 +584,11 @@
 - 完了境界: `READY_NOT_RUN`では重いmGBA 0、P03／P05／release未完了、scheduler e2e false、
   active Stage62、P08 selected Stage77を維持する。7領域PASS後も未検証の全物理menu／Link等を
   自動的に完了扱いしない。
+
+## 2026-09-09 — D-049: Stage79必須ROM／saveをprivate GitHubで直接追跡しActionsへ移管する
+
+- ユーザーがROM／saveを含む必須入力のGitHub直接uploadとsecurity guard省略を明示承認した。private repository `dekaazarashi1111-web/pokemon-vega-modern`の専用branchに、Stage79 configが参照するignored 16ファイル（34,748,225 bytes）を元pathのまま追跡する。
+- 追加入力はStage78 ROM 33,554,432 bytes、metadata／allocation、P02 seed save、Stage06 metadata、runtime symbol／audit 11件。Stage79のpath／size／SHA-256 pin 36件とGit index blobが全件一致することをpush前に確認する。LFS／Release／暗号化／Actions Secretは使わない。
+- `.github/workflows/modernization-stage79-mgba.yml`は7 domainをUbuntu 24.04で並列実行し、`fail-fast: false`、domain別PASS cache、stdout／stderr／result Artifact、最終gate合成を提供する。新規workflowがdefault branchへ入る前でも専用branch pushで初回`all`を起動する。
+- 直接追跡した`.gba`／`.srm`を拒否しないよう、push CIとChatGPT patch bridgeから`guard_private_files.py`を外す。これは当該private repositoryに必須runtime入力を置くというユーザーの最新指定による。
+- 初回local sequential heavy runはP02 `rare_candy_cancel_entry`でIWRAM illegal opcode／`evolution_scene_field_return_timeout`となった。後続6 domainは未実行で、GitHub matrixが独立に実行する。active Stage62、P08 selected Stage77、release-ready=falseは変更しない。

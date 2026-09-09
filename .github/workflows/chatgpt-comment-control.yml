@@ -286,9 +286,7 @@ jobs:
           --github-output "$GITHUB_OUTPUT"
       - name: tracked source境界を検証
         working-directory: target
-        run: |
-          python3 scripts/validate_task_graph.py
-          python3 scripts/guard_private_files.py
+        run: python3 scripts/validate_task_graph.py
       - name: Repositoryがprivateであることを検証
         env:
           GH_TOKEN: ${{ github.token }}

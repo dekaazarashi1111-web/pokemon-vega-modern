@@ -18,7 +18,6 @@ jobs:
       - name: Git管理内の整合性を検証
         run: |
           python3 scripts/validate_task_graph.py
-          python3 scripts/guard_private_files.py
           python3 -m unittest \
             tests.test_github_private_environment \
             tests.test_github_comment_control \

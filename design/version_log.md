@@ -1763,3 +1763,14 @@
   - P05へEelevate 32-case pure matrixとactive 13／party 13の実hook／ABI検証を統合した。
   - private ROM／save／compileのlink安全性を固定し、`READY_NOT_RUN`、active Stage62、release-ready=falseを維持した。
 - Verify: focused unittest 23/23、dry-run 7/7 READY、strict compile 7/7、`check` `READY_NOT_RUN`、独立read-only監査High／Mediumなし PASS。重いmGBAは0。
+
+## 2026-09-09T09:12:28+09:00
+
+- Version: `modernization-stage79-github-actions-handoff`
+- Commit: `-`（本エントリを含むActions handoff commit）
+- Task: `USER-MODERNIZATION-STAGE79-GITHUB-ACTIONS-HANDOFF` / Stage79必須入力と重いmGBAのGitHub移管
+- Summary:
+  - Stage79必須のROM／save／生成JSON 16ファイル、34,748,225 bytesをprivate GitHubで直接追跡した。
+  - 7 domainの並列実行、PASS cache、失敗domain再実行、Artifact、runtime gate合成のActions workflowを追加した。
+  - 最新ユーザ指定に従いprivate-file guardをpush CI／ChatGPT patch bridgeから外した。active Stage62とrelease-ready=falseは維持した。
+- Verify: GitHub matrix plan 7/7、Git index identity 36/36、Python／YAML syntax、`git diff --check` PASS。重いmGBAはActions runへ委譲。

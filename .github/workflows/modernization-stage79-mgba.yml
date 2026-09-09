@@ -1,0 +1,183 @@
+name: modernization-stage79-mgba
+run-name: Stage79 mGBA (${{ inputs.domain || 'all' }})
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/modernization-stage79-mgba.yml
+      - scripts/run_modernization_stage79_github_domain.py
+      - scripts/run_modernization_stage79_cumulative_mgba.py
+      - scripts/**
+      - tools/**
+      - overlays/**
+      - config/**
+      - content/modernization/**
+      - generated/runtime/**
+      - build/stages/**
+      - .local/60_wild_species_root_repair.srm
+  workflow_dispatch:
+    inputs:
+      domain:
+        description: 初回はall、再実行時は失敗したdomainだけを選択
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - p02
+          - mega_shop
+          - floette
+          - p03
+          - p04_mega_runtime
+          - battle_policy
+          - p05
+
+permissions:
+  contents: read
+
+concurrency:
+  group: modernization-stage79-mgba-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      fingerprint: ${{ steps.plan.outputs.fingerprint }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        name: Stage79入力とmatrix計画を検証
+        env:
+          SELECTED_DOMAIN: ${{ inputs.domain || 'all' }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-plan
+          python3 scripts/run_modernization_stage79_github_domain.py \
+            plan --selection "$SELECTED_DOMAIN" \
+            > .local/stage79-plan/plan.json
+          fingerprint=$(python3 -c \
+            'import json; print(json.load(open(".local/stage79-plan/plan.json"))["plan_fingerprint"])')
+          echo "fingerprint=$fingerprint" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage79-plan
+          path: .local/stage79-plan
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14
+
+  domain:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        domain:
+          - p02
+          - mega_shop
+          - floette
+          - p03
+          - p04_mega_runtime
+          - battle_policy
+          - p05
+    steps:
+      - uses: actions/checkout@v4
+      - name: 過去にPASSした同一入力のdomain結果を復元
+        id: cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .local/github-stage79-cache/${{ matrix.domain }}
+          key: >-
+            stage79-${{ runner.os }}-${{ needs.plan.outputs.fingerprint }}-${{ matrix.domain }}-${{ github.run_id }}
+          restore-keys: |
+            stage79-${{ runner.os }}-${{ needs.plan.outputs.fingerprint }}-${{ matrix.domain }}-
+      - id: decide
+        name: domainの実行要否を判定
+        env:
+          DOMAIN: ${{ matrix.domain }}
+          SELECTED_DOMAIN: ${{ inputs.domain || 'all' }}
+        run: |
+          set -euo pipefail
+          output=".local/github-stage79-cache/$DOMAIN"
+          mkdir -p "$output"
+          record="$output/result.json"
+          if test -f "$record" && \
+             python3 scripts/run_modernization_stage79_github_domain.py \
+               validate-domain --domain "$DOMAIN" --record "$record"; then
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if test "$SELECTED_DOMAIN" != all && test "$SELECTED_DOMAIN" != "$DOMAIN"; then
+            echo "ERROR: $DOMAIN の有効なPASS cacheがありません。初回はallを実行してください" >&2
+            exit 1
+          fi
+          echo 'run=true' >> "$GITHUB_OUTPUT"
+      - name: 固定mGBA toolchainを導入
+        if: steps.decide.outputs.run == 'true'
+        run: bash infra/setup_github_actions.sh --install
+      - id: execute
+        name: domainをmGBAで実行
+        if: steps.decide.outputs.run == 'true'
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        run: |
+          set -euo pipefail
+          output=".local/github-stage79-cache/$DOMAIN"
+          python3 scripts/run_modernization_stage79_github_domain.py \
+            run-domain --domain "$DOMAIN" --output-directory "$output" \
+            > "$output/job-summary.json" \
+            2> >(tee "$output/helper.stderr.log" >&2)
+          echo 'fresh=true' >> "$GITHUB_OUTPUT"
+      - name: 新しくPASSしたdomain結果をcacheへ保存
+        if: steps.execute.outputs.fresh == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .local/github-stage79-cache/${{ matrix.domain }}
+          key: >-
+            stage79-${{ runner.os }}-${{ needs.plan.outputs.fingerprint }}-${{ matrix.domain }}-${{ github.run_id }}
+      - name: domain結果とrunnerログを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage79-domain-${{ matrix.domain }}
+          path: .local/github-stage79-cache/${{ matrix.domain }}
+          if-no-files-found: warn
+          include-hidden-files: true
+          retention-days: 14
+
+  merge:
+    if: always()
+    needs:
+      - plan
+      - domain
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: 全domain artifactを取得
+        uses: actions/download-artifact@v4
+        with:
+          pattern: stage79-domain-*
+          path: .local/stage79-downloaded
+      - id: merge
+        name: 7 domain結果をStage79 runtime gateへ合成
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-merged
+          python3 scripts/run_modernization_stage79_github_domain.py \
+            merge \
+            --input-directory .local/stage79-downloaded \
+            --output-directory .local/stage79-merged \
+            > .local/stage79-merged/merge-summary.json
+      - name: 累積結果JSONを保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage79-cumulative-result
+          path: .local/stage79-merged
+          if-no-files-found: warn
+          include-hidden-files: true
+          retention-days: 30
