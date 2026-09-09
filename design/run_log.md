@@ -4491,3 +4491,17 @@
   - 重いmGBAは本commitで再実行せず、branch pushでActions matrixへ委譲する。
 - Commit: `-`（本エントリを含むActions handoff commit）
 - Network: GitHub CLIでrepositoryのprivate状態、remote branch、Draft PR #16を確認。GitHub Actionsの`workflow_dispatch`と`upload-artifact` hidden-file仕様は公式資料を確認した（https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow, https://github.com/actions/upload-artifact/blob/main/README.md）。
+
+
+<!-- USER-STAGE79-PR16-RUNTIME-FOLLOWUP-20260909 -->
+## 2026-09-09T02:37:37Z
+
+- Task: `USER-STAGE79-PR16-RUNTIME-FOLLOWUP` / PR #16 runtime investigation and fixes
+- Status: PARTIAL — 5/7 domains PASS; P02 and Floette FAIL; P08 not promoted.
+- Commit: `-` (this append-only log commit); source fixes `fe26265ee7eaf88fa425773f66a75765ba11f414` and `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`.
+- Summary: Corrected the Stage68-shop/Stage69-map cross-link with exact 15-object validation while retaining historical 14-object checks; fixed the harness latch that prevented retrying ignored physical controller inputs.
+- Verify: 20 new regressions (13 map + 7 compiled C input-predicate tests), 42 total PASS in repair run 34302668497; pre-fix failures reproduced. Both shop variants and battle runner compiled with warnings as errors.
+- Runtime: [34302717908](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908), immutable source HEAD `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`: fresh PASS mega_shop/p03/p04_mega_runtime/battle_policy/p05; FAIL p02/floette; strict merge FAIL.
+- Remaining: Floette migration has relocated-start/stale-end and neighboring-table-end alias defects in the frozen product. P02 changes level 15 to 100 before any evolution callback; its exact root cause is not yet established.
+- Evidence: `docs/stage79-pr16-followup-20260909.md`; diagnostic runs 34302526120, 34303136112 and 34303410270 are not acceptance evidence.
+- Scope: ROM/save hashes, Stage62 active baseline, expected behavior and strict exit/JSON checks preserved; no skips, fake PASS records, P08 promotion or PR merge.
