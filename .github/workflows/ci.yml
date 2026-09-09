@@ -3,6 +3,7 @@ name: source-validation
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,3 +26,24 @@ jobs:
             tests.test_github_result_summary \
             tests.test_run_github_battle_command \
             tests.test_run_github_private_suite
+      - name: 現在のP08受入境界と原本証跡を検証
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p08-current-acceptance
+          git rev-parse HEAD > .local/p08-current-acceptance/tested-checkout.txt
+          python3 -m unittest \
+            tests.test_modernization_p08_current_acceptance \
+            tests.test_modernization_p08_stage79_evidence -v \
+            2>&1 | tee .local/p08-current-acceptance/tests.log
+          python3 scripts/check_modernization_p08_current_acceptance.py --check \
+            > .local/p08-current-acceptance/report.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p08-current-acceptance
+          path: .local/p08-current-acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

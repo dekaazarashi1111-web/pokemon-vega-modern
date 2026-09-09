@@ -26,12 +26,15 @@ jobs:
           import json
           from pathlib import Path
           config = json.loads(Path('config/modernization_stage79_cumulative_mgba.json').read_text())
-          rom = config['input_identity']['rom']
-          data = Path(rom['path']).read_bytes()
-          actual = hashlib.sha256(data).hexdigest()
-          if actual != rom['sha256'] or len(data) != rom['size']:
-              raise SystemExit('Current candidate identity mismatch')
-          Path('.local/stage79-workbench/rom-sha256.txt').write_text(f"{actual}  {rom['path']}\n")
+          identities = [config['input_identity']['rom'], config['runtime_candidate']['rom']]
+          lines = []
+          for rom in identities:
+              data = Path(rom['path']).read_bytes()
+              actual = hashlib.sha256(data).hexdigest()
+              if actual != rom['sha256'] or len(data) != rom['size']:
+                  raise SystemExit('Parent/current candidate identity mismatch: ' + rom['path'])
+              lines.append(f"{actual}  {rom['path']}\n")
+          Path('.local/stage79-workbench/rom-sha256.txt').write_text(''.join(lines))
           PY
       - uses: actions/upload-artifact@v4
         with:

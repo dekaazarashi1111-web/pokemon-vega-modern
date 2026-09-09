@@ -1,0 +1,207 @@
+{
+  "acceptance_status": "BLOCKED",
+  "active_baseline_changed": false,
+  "active_baseline_stage": 62,
+  "candidate_rom": {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "size": 33554432
+  },
+  "candidate_stage": 80,
+  "current_blockers": [
+    {
+      "id": "P03_SCHEDULER_E2E_PENDING",
+      "phase": "P03",
+      "reason_ja": "実際の育成操作・画面遷移を通した検証が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+      "source_pointer": "/runner_result/scheduler_e2e"
+    },
+    {
+      "id": "P03_BREEDING_E2E_PENDING",
+      "phase": "P03",
+      "reason_ja": "預かり屋・タマゴ生成を通した検証が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+      "source_pointer": "/runner_result/breeding_e2e"
+    },
+    {
+      "id": "P03_SAVE_RELOAD_E2E_PENDING",
+      "phase": "P03",
+      "reason_ja": "習得後の保存・新規core再読込を通した検証が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+      "source_pointer": "/runner_result/save_reload_e2e"
+    },
+    {
+      "id": "P03_FULL_ACCEPTANCE_PENDING",
+      "phase": "P03",
+      "reason_ja": "P03全体の受入が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p03/result.json",
+      "source_pointer": "/runner_result/full_p03_acceptance"
+    },
+    {
+      "id": "P05_SCHEDULER_E2E_PENDING",
+      "phase": "P05",
+      "reason_ja": "実際の戦闘ターン進行を通した検証が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p05/result.json",
+      "source_pointer": "/runner_result/scheduler_e2e"
+    },
+    {
+      "id": "P05_FULL_ACCEPTANCE_PENDING",
+      "phase": "P05",
+      "reason_ja": "P05全体の受入が未完了",
+      "source_path": "content/modernization/stage79_evidence/34314414289/domains/p05/result.json",
+      "source_pointer": "/runner_result/full_p05_acceptance"
+    },
+    {
+      "id": "P03_ARCHIVE_ECONOMY_PROVISIONAL",
+      "phase": "P03",
+      "reason_ja": "archive economyの正式仕様が未確定",
+      "source_path": "config/modernization_p03_stage74_supply.json",
+      "source_pointer": "/runtime/economy"
+    },
+    {
+      "id": "P06_SPECIES_ADJUSTMENT_NOT_ADOPTED",
+      "phase": "P06",
+      "reason_ja": "レビュー資料は採用指示ではない。正式な種族・フォーム・field単位の採用仕様が必要",
+      "source_path": "content/modernization/p06_species_adjustment_contract.json",
+      "source_pointer": "/adoption"
+    },
+    {
+      "id": "P07_CROSS_DISTRIBUTION_NOT_ADOPTED",
+      "phase": "P07",
+      "reason_ja": "双方向の技配布の採用仕様・P06整合・実装・画面と保存を含む検証が未完了",
+      "source_path": "content/modernization/p07_layered_learnset_contract.json",
+      "source_pointer": "/runtime_handoff"
+    },
+    {
+      "id": "P08_FINAL_ACCEPTANCE_AND_RELEASE_DECISION_PENDING",
+      "phase": "P08",
+      "reason_ja": "各工程の最終受入とリリース判定が未完了。Stage62基準を自動昇格しない",
+      "source_path": "content/modernization/p08_release_handoff.json",
+      "source_pointer": "/release_ready"
+    }
+  ],
+  "declared_runtime_limits": {
+    "p03": {
+      "breeding_e2e": false,
+      "full_p03_acceptance": false,
+      "save_reload_e2e": false,
+      "scheduler_e2e": false
+    },
+    "p05": {
+      "full_p05_acceptance": false,
+      "scheduler_e2e": false
+    }
+  },
+  "eelevate_switch_ai_done": true,
+  "heavy_execution_performed": false,
+  "historical_stage77": {
+    "modified": false,
+    "release_blockers": [
+      "P02_STAGE71_EXACT_UI_ACCEPTANCE_PENDING_AND_PRODUCTION_RUNTIME_UNJUDGED",
+      "P03_STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_BUT_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
+      "P04_STAGE71_49_MEGA_RUNTIME_CONNECTED_BUT_FINAL_MGBA_AND_FLOETTE_FULL_FRESH_RELOAD_REMAIN",
+      "P05_STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_BUT_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_REMAIN",
+      "P06_NO_ADOPTED_SPECIES_ADJUSTMENT",
+      "P07_NO_ADOPTED_CROSS_DISTRIBUTION_AND_RUNTIME_NOT_COMPLETE",
+      "CANDIDATE_STAGE77_IS_NOT_ACTIVE_STAGE62"
+    ],
+    "scope": "HISTORICAL_ONLY_NOT_CURRENT_BLOCKER_LIST",
+    "source_path": "content/modernization/p08_integration_matrix.json"
+  },
+  "p06_adoption": {
+    "adopted_delta_count": 0,
+    "review_record_count": 194
+  },
+  "p07_adoption": {
+    "explicit_deletions_adopted": 0,
+    "normal_species_to_vega_move_adopted": 0,
+    "runtime_implemented": false,
+    "vega_species_to_normal_move_adopted": 0
+  },
+  "phase_completion_promoted": false,
+  "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+  "release_ready": false,
+  "runtime_evidence_source": {
+    "head_sha": "74075507599b902d2c65ce61276e615c3049a8e1",
+    "run_attempt": 1,
+    "run_id": 34314414289
+  },
+  "satisfied_runtime_domains": [
+    "p02",
+    "mega_shop",
+    "floette",
+    "p03",
+    "p04_mega_runtime",
+    "battle_policy",
+    "p05"
+  ],
+  "schema_version": 1,
+  "source_bindings": {
+    "config/modernization_p03_stage74_supply.json": {
+      "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc",
+      "size": 10937
+    },
+    "content/modernization/p06_review_projection.json": {
+      "sha256": "04efc32cb54e2f0adf8cbb5d4de480c322188e709856d876198f57d27427f01f",
+      "size": 206313
+    },
+    "content/modernization/p06_species_adjustment_contract.json": {
+      "sha256": "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
+      "size": 6648
+    },
+    "content/modernization/p07_layered_learnset_contract.json": {
+      "sha256": "ca17b3e33989d0ae105e5ac6ecc1c62ed27daae7ddc8d0a16632be64852842c5",
+      "size": 16337
+    },
+    "content/modernization/p07_runtime_handoff.json": {
+      "sha256": "5e53baeac5a8c12e89bce9cda7a86da992b3519c34ca86c3cf53a830e5de6dac",
+      "size": 3301
+    },
+    "content/modernization/p08_integration_matrix.json": {
+      "sha256": "7eb6c26a7800f3e0def42e21fd2b6f0ea4cd519ccb8baaec7a0f0779439a8ae3",
+      "size": 150368
+    },
+    "content/modernization/p08_release_handoff.json": {
+      "sha256": "8a010441a89b682d7a72a8908ded3eaae834248008a0ceb846f9338d03254950",
+      "size": 8338
+    },
+    "content/modernization/p08_runtime_handoff.json": {
+      "sha256": "325d53baf2423aa12daf7091eec947d3ed50bf6a5de14fd595cd83a3cb366a9b",
+      "size": 38379
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/battle_policy/result.json": {
+      "sha256": "aacba597c47e561593c97db2938cff0e5ad869d23ef4e26fffb7371d3897288e",
+      "size": 4763
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/floette/result.json": {
+      "sha256": "11a7eda0fa22da88312541458afb5c9fdb36a9877822664455d24ca1b031f347",
+      "size": 1978
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/mega_shop/result.json": {
+      "sha256": "6d7ecac41f69c01b5cb2f0f8a27b4397f84503844585bd97bd20d51727f8f42a",
+      "size": 2413
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/p02/result.json": {
+      "sha256": "50c1a1b87272ad0ff85d3c5b9bf4f127f97ce384ccc9dbd83de1bd4da16a4bf0",
+      "size": 3636
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/p03/result.json": {
+      "sha256": "555a9c05a5d92b76bda18ef4ac8d59da271b8c82c2ab56d94e09cb0cc0158080",
+      "size": 1827
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/p04_mega_runtime/result.json": {
+      "sha256": "20843017c4f6818247f9a0ed4f7419f4006a6f1d204c7862f6b1461dcb91998c",
+      "size": 1772
+    },
+    "content/modernization/stage79_evidence/34314414289/domains/p05/result.json": {
+      "sha256": "b4fb257f3bfaf782553db893c20b3e61d116dcae1844096045162cef427eff97",
+      "size": 2600
+    }
+  },
+  "task": "USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE",
+  "unclaimed_coverage": {
+    "link_runtime_e2e": false,
+    "physical_all_menu_paths_e2e": false
+  },
+  "validation_status": "PASS"
+}
