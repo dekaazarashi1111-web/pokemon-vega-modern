@@ -40,3 +40,9 @@ python3 scripts/check_modernization_p08_current_acceptance.py --check
 `release_ready=false`、Stage62基準、Draft/未マージは維持する。P03全体、繁殖、その他の
 習得経路、archive economy、P05全体や自然な特性取得・Mega・Circus入場、P06/P07の
 仕様採用と実装、最終受入を完成扱いにしない。
+
+## 統合後CIの確定と実CLI回帰
+
+統合後の通常CI成功は `p08_stage81_integration_verification.json` の `normal_ci_verification` に固定HEADとrun別で記録する。原本ZIPと実コマンドの stdout/stderr/終了コードは `p08_stage81_closeout_evidence/34380153325/` に保持する。
+
+`tests.test_modernization_stage81_acceptance_cli` の10件はmockなしで `--check` の終了0、`--check --require-release-ready` の終了1、引数不正の終了2を区別し、同一スナップショットと290入力のbyte/mtime不変を検証する。通常CIで毎HEAD実行する。受入検証器のPASSを製品のrelease-readyに置き換えず、新規mGBA件数は0と記録する。

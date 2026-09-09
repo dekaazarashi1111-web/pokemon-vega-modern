@@ -1837,3 +1837,16 @@ P03 learning 2 / P05 scheduler 24 / P05 controller 4 の原本ZIP・Actions・�
 ## 2026-09-09T16:02:00.727791+00:00 USER-STAGE81 native PP evidence acceptance
 
 GitHub integration run 34374045795: 348 regressions PASS; original Stage81 matrix run 34368455589 has 7 fresh domains, and P03 original run 34364100108 has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.
+
+
+## 2026-09-09T17:07:03.775651+00:00
+<!-- USER-MODERNIZATION-STAGE81-CLOSEOUT:eb53628dc95bca236338c498d5d2e9a16fca7e5b -->
+- Task: USER-MODERNIZATION-STAGE81-CLOSEOUT
+- Status: DONE（Stage81正式経路・P08追補のCI最終確認。製品全体はBLOCKED）
+- Summary: 既存のStage81統合954a597を保持し、統合記録に残っていたCI未確認を実際の成功runで解消。追加10件はmockなしの受入CLI・release境界回帰。
+- Verify: 358 regression tests PASS; current snapshot --check PASS; check exit=0 / blocked-release exit=1 / usage error exit=2; bound inputs 290 files unchanged.
+- Normal CI: 34380147414 (push), 34380153325 (pull_request); tested source 4a270b8adf9d4946d15b1986540a317f1b9d9f1c
+- Originals: Stage81 34368455589 (fresh 7/7), P03 34364100108 (8 successful cases + 2 expected PP-defect controls), P08 integration 34374045795. This closeout executes fresh mGBA=0.
+- Evidence: content/modernization/p08_stage81_closeout_evidence/34380153325/; artifact SHA-256 b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c
+- Commit: 検証対象 eb53628dc95bca236338c498d5d2e9a16fca7e5b; this recording commit is in Actions artifact record-head.txt and receives a separate source-validation dispatch.
+- Limits: Stage62 unchanged; release_ready=false; Draft/unmerged; P03/P05 full acceptance and P06/P07 adoption are not promoted.
