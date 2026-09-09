@@ -157,6 +157,13 @@ def validate_domain(
     }
 
 
+def _captured_bytes(output: bytes | str | None) -> bytes:
+    """Keep binary subprocess diagnostics losslessly, including partial UTF-8."""
+    if output is None:
+        return b""
+    return output if isinstance(output, bytes) else output.encode("utf-8")
+
+
 def run_domain(
     config_path: Path, domain_id: str, output_path: Path
 ) -> dict[str, Any]:
@@ -164,6 +171,13 @@ def run_domain(
     stage79_plan, config, input_rom = _context(module, config_path)
     domain = _domain(module, config, domain_id)
     output = _output_directory(output_path)
+    # A new attempt owns these files. A compile/spawn/runtime/validation failure
+    # must never leave an earlier PASS record available for merge or caching.
+    for name in ("result.json", "runner.stdout.json", "runner.stderr.log"):
+        try:
+            (output / name).unlink(missing_ok=True)
+        except OSError as error:
+            _fail(f"{domain_id} 前回の実行結果を無効化できません: {error}")
     source_rom = ROOT / input_rom["path"]
     local = _output_directory(ROOT / ".local")
     with tempfile.TemporaryDirectory(
@@ -178,25 +192,31 @@ def run_domain(
         command = module._command(
             domain, executable, private_rom, input_rom["sha256"], work, config
         )
+        run_error: OSError | subprocess.TimeoutExpired | None = None
+        completed = None
         try:
             completed = subprocess.run(
                 command,
                 cwd=ROOT,
                 capture_output=True,
-                text=True,
+                text=False,
                 check=False,
                 timeout=module._integer(
                     domain["timeout_seconds"], f"{domain_id} timeout"
                 ),
             )
         except (OSError, subprocess.TimeoutExpired) as error:
-            _fail(f"{domain_id} mGBA実行失敗: {error}")
-        module._atomic_write(
-            output / "runner.stdout.json", completed.stdout.encode("utf-8")
-        )
-        module._atomic_write(
-            output / "runner.stderr.log", completed.stderr.encode("utf-8")
-        )
+            run_error = error
+        if isinstance(run_error, subprocess.TimeoutExpired):
+            stdout = _captured_bytes(run_error.output)
+            stderr = _captured_bytes(run_error.stderr)
+        elif completed is not None:
+            stdout = _captured_bytes(completed.stdout)
+            stderr = _captured_bytes(completed.stderr)
+        else:
+            stdout, stderr = b"", b""
+        module._atomic_write(output / "runner.stdout.json", stdout)
+        module._atomic_write(output / "runner.stderr.log", stderr)
         source_after = module._identity(input_rom["path"], "cumulative ROM")
         private_after = {
             "size": private_rom.stat().st_size,
@@ -209,11 +229,15 @@ def run_domain(
         _fail(f"{domain_id} 実行でROM identityが変化しました")
     # TemporaryDirectory owns cleanup, including the read-only ROM copy.
     # Never touch private_rom after leaving its context: it no longer exists.
+    if run_error is not None:
+        _fail(f"{domain_id} mGBA実行失敗: {run_error}")
+    if completed is None:
+        _fail(f"{domain_id} mGBA実行結果がありません")
     if completed.returncode != 0:
         _fail(f"{domain_id} mGBA失敗({completed.returncode})")
     try:
-        runner_result = json.loads(completed.stdout)
-    except json.JSONDecodeError as error:
+        runner_result = json.loads(stdout)
+    except (UnicodeError, json.JSONDecodeError) as error:
         _fail(f"{domain_id} stdout JSON不一致: {error}")
     if not isinstance(runner_result, dict):
         _fail(f"{domain_id} stdout rootがobjectではありません")
@@ -229,7 +253,7 @@ def run_domain(
         "runner": dict(domain["runner"]),
         "compilation": compilation,
         "command_argument_count": len(command),
-        "stderr_sha256": module._sha(completed.stderr.encode("utf-8")),
+        "stderr_sha256": module._sha(stderr),
         "runner_result": runner_result,
     }
     module._validate_result_record(
