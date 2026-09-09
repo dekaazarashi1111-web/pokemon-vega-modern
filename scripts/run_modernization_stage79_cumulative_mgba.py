@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 import re
@@ -659,6 +660,55 @@ def _validate_input(config: Mapping[str, Any]) -> tuple[Path, bytes, dict[str, A
         "allocation_first82_sha256": EXPECTED_STAGE78_FIRST82_SHA256,
         "allocation_sequence81": EXPECTED_STAGE78_ALLOCATION,
         "payload_sha256": EXPECTED_STAGE78_PAYLOAD_SHA256,
+    }
+
+
+EXPECTED_STAGE80_ROM = {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "size": 33554432,
+    "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
+    "crc32": "E41C2632",
+}
+
+
+def _validate_runtime_candidate(
+    config: Mapping[str, Any], parent: bytes, parent_audit: Mapping[str, Any],
+) -> tuple[bytes, dict[str, Any]]:
+    """Verify a separately materialized derivative; never patch a runtime ROM."""
+    candidate = config.get("runtime_candidate")
+    if not isinstance(candidate, Mapping) or candidate.get("stage") != 80 \
+            or candidate.get("task") != "USER-MODERNIZATION-STAGE80-RUNTIME-BOUNDARY-REPAIR" \
+            or candidate.get("rom") != EXPECTED_STAGE80_ROM:
+        _fail("Stage80 exact repaired candidate identity mismatch")
+    for key, path in (
+        ("recipe", "tools/modernization_runtime_boundary_repair.py"),
+        ("report", "build/stages/80_modernization_runtime_boundary_repair.json"),
+    ):
+        if not isinstance(candidate.get(key), Mapping) or candidate[key].get("path") != path:
+            _fail(f"Stage80 {key} path mismatch")
+    recipe_path, _ = _fixed(candidate["recipe"], "Stage80 repair recipe")
+    _report_path, report_raw = _fixed(candidate["report"], "Stage80 repair report")
+    _candidate_path, rom = _fixed(candidate["rom"], "Stage80 candidate ROM")
+    spec = importlib.util.spec_from_file_location("stage80_boundary_recipe", recipe_path)
+    if spec is None or spec.loader is None:
+        _fail("Stage80 recipe cannot be loaded")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    try:
+        expected = module.repair_rom(parent)
+        report = json.loads(report_raw)
+        if rom != expected or report != module.make_report(parent, rom) \
+                or report["output"] != EXPECTED_STAGE80_ROM:
+            _fail("Stage80 candidate/report differs from exact parent repair")
+    except (ValueError, RuntimeError) as error:
+        _fail(f"Stage80 repair validation failed: {error}")
+    return rom, {
+        "stage": 80, "task": candidate["task"], "rom": dict(candidate["rom"]),
+        "repair_recipe": dict(candidate["recipe"]), "repair_report": dict(candidate["report"]),
+        "parent": dict(parent_audit), "patches": report["patches"],
+        "changed_bytes_from_parent": report["changed_bytes"],
+        "allocation_layout_unchanged": True,
+        "parent_allocation_content_hashes_reused_as_candidate": False,
     }
 
 
@@ -1394,6 +1444,7 @@ def build_plan(
         _fail("configが実行中Stage79 orchestrator自身をpinしていません")
     orchestrator = dict(config["orchestrator"])
     _rom_path, rom, input_audit = _validate_input(config)
+    rom, input_audit = _validate_runtime_candidate(config, rom, input_audit)
     preimages = _validate_preimages(config, rom)
     p03 = _validate_p03(config, rom)
     domains = [_validate_domain_sources(row) for row in config["domains"]]

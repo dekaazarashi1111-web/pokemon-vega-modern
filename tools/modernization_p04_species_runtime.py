@@ -15,6 +15,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
+from tools.modernization_runtime_boundary_repair import (
+    classify_collection_consumers, reference_target, validate_relocated_references,
+)
 from tools.regression.rom_runtime import _Blob, _charmap, _encode_text
 from tools.release.bps import apply_bps, create_bps
 from tools.rom_allocator import GBA_ROM_BASE, build_allocation_report_from_csv
@@ -647,6 +650,13 @@ def _pointer_plan(
             })
         calculated = _sha(_json_bytes(sites))
         _require(calculated == expected["site_set_sha256"], f"{key}: site set SHA-256不一致")
+        if key == "acquisition_collection_defs":
+            rows = classify_collection_consumers(stage, rows, table)
+            for row in rows:
+                site = int(row["site_offset"])
+                owner = _semantic_owner(site, previous)
+                _require(owner["owner_class"] in allowed, f"{key}: endpoint owner class非許可")
+                row.update({**owner, **_context(stage, site, 4, context_bytes)})
         result[key] = rows
     return result
 
@@ -748,8 +758,10 @@ def _apply_and_audit(
         for row in rows:
             site = int(row["site_offset"])
             _require(output[site:site + 4] == struct.pack("<I", int(row["old_pointer"])), f"{key}: pointer patch旧値不一致")
-            output[site:site + 4] = struct.pack("<I", new_address)
-            allowed_spans.append((site, site + 4))
+            target = reference_target(row, new_address, int(table_meta[key]["new_size"]))
+            output[site:site + 4] = struct.pack("<I", target)
+            if target != int(row["old_pointer"]):
+                allowed_spans.append((site, site + 4))
     for row in derived_pointer_plan:
         key = str(row["table_key"])
         site = int(row["site_offset"])
@@ -887,9 +899,10 @@ def build_artifacts(root: Path) -> dict[str, bytes]:
         appended = new_raw[int(table["old_size"]):]
         _require(prefix == _slice(stage, int(table["old_address"]), int(table["old_size"]), key), f"{key}: 既存行byte保持失敗")
         sites = [int(row["site_offset"]) for row in pointer_plan[key]]
-        for site in sites:
-            _require(output[site:site + 4] == struct.pack("<I", GBA_ROM_BASE + new_offset), f"{key}: repoint検証失敗")
-        _require(not _all_offsets(output, struct.pack("<I", int(table["old_address"]))), f"{key}: old root literalが残っています")
+        validate_relocated_references(
+            output, pointer_plan[key], GBA_ROM_BASE + new_offset,
+            int(table["new_size"]), int(table["old_address"]),
+        )
         derived_rows = [dict(row) for row in derived_pointer_plan if row["table_key"] == key]
         for row in derived_rows:
             site = int(row["site_offset"])

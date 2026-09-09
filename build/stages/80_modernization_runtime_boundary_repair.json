@@ -1,0 +1,58 @@
+{
+  "active_play_baseline_stage": 62,
+  "allocation_layout_unchanged": true,
+  "changed_bytes": 8,
+  "collection_count": 1670,
+  "collection_stride": 8,
+  "done": false,
+  "new_allocations": 0,
+  "output": {
+    "crc32": "E41C2632",
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
+    "size": 33554432
+  },
+  "parent": {
+    "crc32": "BFF0203C",
+    "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+    "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+    "size": 33554432
+  },
+  "parent_allocation_content_hashes_reused_as_candidate": false,
+  "patches": [
+    {
+      "address": 153948864,
+      "changed_bytes": 3,
+      "file_offset": 19731136,
+      "new_hex": "c00c5a09",
+      "old_hex": "d8b72d09",
+      "role": "collection_end"
+    },
+    {
+      "address": 153948876,
+      "changed_bytes": 3,
+      "file_offset": 19731148,
+      "new_hex": "30852d09",
+      "old_hex": "90d85909",
+      "role": "restore_policy_end"
+    },
+    {
+      "address": 154643292,
+      "changed_bytes": 2,
+      "file_offset": 20425564,
+      "new_hex": "55f30308",
+      "old_hex": "b1f40308",
+      "role": "party_candy_accessor"
+    }
+  ],
+  "preserved_equal_valued_unrelated_table_sites": [
+    19729952,
+    19736540
+  ],
+  "release_ready": false,
+  "runtime_acceptance": false,
+  "schema_version": 1,
+  "stage": 80,
+  "status": "MATERIALIZED_RUNTIME_ACCEPTANCE_PENDING",
+  "task": "USER-MODERNIZATION-STAGE80-RUNTIME-BOUNDARY-REPAIR"
+}

@@ -40,7 +40,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
         ).read_bytes()
 
     def _valid_bounded_result(self, domain_id: str) -> dict:
-        rom_sha = self.config["input_identity"]["rom"]["sha256"]
+        rom_sha = self.config["runtime_candidate"]["rom"]["sha256"]
         common = {"schema_version": 1, "status": "PASS", "warnings_errors": 0}
         if domain_id == "p02":
             return {
@@ -313,20 +313,20 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             }
         raise AssertionError(f"unknown domain: {domain_id}")
 
-    def test_dry_plan_pins_latest_stage78_and_exact_domain_order(self) -> None:
+    def test_dry_plan_pins_repaired_candidate_and_immutable_stage78_parent(self) -> None:
         plan = self.module.build_plan(CONFIG.relative_to(ROOT))
         self.assertEqual(plan["status"], "PREFLIGHT_PASS_NOT_EXECUTED")
-        self.assertEqual(plan["input"]["stage"], 78)
-        self.assertEqual(
-            plan["input"]["commit"],
-            "a98e6fea59db1f020bc902a1b1676699f8c06c41",
-        )
-        self.assertEqual(
-            plan["input"]["rom"]["sha256"],
-            "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
-        )
-        self.assertEqual(plan["input"]["allocation_count"], 82)
-        self.assertEqual(plan["input"]["allocation_last_sequence"], 81)
+        self.assertEqual(plan["input"]["stage"], 80)
+        self.assertEqual(plan["input"]["rom"], self.module.EXPECTED_STAGE80_ROM)
+        self.assertEqual(plan["input"]["changed_bytes_from_parent"], 8)
+        parent = plan["input"]["parent"]
+        self.assertEqual(parent["stage"], 78)
+        self.assertEqual(parent["commit"], "a98e6fea59db1f020bc902a1b1676699f8c06c41")
+        self.assertEqual(parent["rom"]["sha256"],
+            "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b")
+        self.assertEqual(parent["allocation_count"], 82)
+        self.assertEqual(parent["allocation_last_sequence"], 81)
+        self.assertFalse(plan["input"]["parent_allocation_content_hashes_reused_as_candidate"])
         self.assertEqual(
             plan["domain_order"], list(self.module.EXPECTED_DOMAIN_ORDER)
         )
@@ -370,7 +370,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
         by_id = {row["id"]: row for row in self.config["domains"]}
         executable = Path("/tmp/stage79-runner")
         rom = ROOT / self.config["input_identity"]["rom"]["path"]
-        sha = self.config["input_identity"]["rom"]["sha256"]
+        sha = self.config["runtime_candidate"]["rom"]["sha256"]
         work = ROOT / ".local/stage79-command-unit"
 
         mega = self.module._command(
@@ -529,7 +529,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             with self.assertRaises(self.module.Stage79CumulativeMgbaError):
                 self.module._command(
                     p02, root / "runner", source,
-                    self.config["input_identity"]["rom"]["sha256"],
+                    self.config["runtime_candidate"]["rom"]["sha256"],
                     work, self.config,
                 )
             self.assertEqual(outside_save.read_bytes(), b"unchanged")
@@ -542,7 +542,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             )
             self.module._command(
                 mega, root / "runner", source,
-                self.config["input_identity"]["rom"]["sha256"],
+                self.config["runtime_candidate"]["rom"]["sha256"],
                 work, self.config,
             )
             self.assertEqual(outside_save.read_bytes(), b"unchanged")
@@ -749,7 +749,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             "schema_version": 1,
             "status": "PASS",
             "classification": "DIRECT_CALL_BOUNDED",
-            "rom_sha256": self.config["input_identity"]["rom"]["sha256"],
+            "rom_sha256": self.config["runtime_candidate"]["rom"]["sha256"],
             "read_only": True,
             "mapping_count": 49,
             "correct_stone_matches": 49,
@@ -769,20 +769,20 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             "artifacts_written": [],
         }
         self.module._validate_result(
-            domain, result, self.config["input_identity"]["rom"]["sha256"]
+            domain, result, self.config["runtime_candidate"]["rom"]["sha256"]
         )
         bad = dict(result, direct_calls=244)
         with self.assertRaises(self.module.Stage79CumulativeMgbaError):
             self.module._validate_result(
                 domain, bad,
-                self.config["input_identity"]["rom"]["sha256"],
+                self.config["runtime_candidate"]["rom"]["sha256"],
             )
         bad = dict(result)
         del bad["warnings_errors"]
         with self.assertRaises(self.module.Stage79CumulativeMgbaError):
             self.module._validate_result(
                 domain, bad,
-                self.config["input_identity"]["rom"]["sha256"],
+                self.config["runtime_candidate"]["rom"]["sha256"],
             )
 
     def test_p05_result_requires_exact_bounded_suppression_evidence(self) -> None:
@@ -793,7 +793,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             "schema_version": 1,
             "status": "PASS",
             "classification": "STAGE78_P05_RUNTIME_DIRECT_CALL",
-            "rom_sha256": self.config["input_identity"]["rom"]["sha256"],
+            "rom_sha256": self.config["runtime_candidate"]["rom"]["sha256"],
             "read_only": True,
             "warnings_errors": 0,
             "dispatcher_count": 29,
@@ -829,7 +829,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
             "artifacts_written": [],
         }
         self.module._validate_result(
-            domain, result, self.config["input_identity"]["rom"]["sha256"]
+            domain, result, self.config["runtime_candidate"]["rom"]["sha256"]
         )
         for key, value in (
             ("dispatcher_observations", 202),
@@ -841,13 +841,13 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
                 with self.assertRaises(self.module.Stage79CumulativeMgbaError):
                     self.module._validate_result(
                         domain, bad,
-                        self.config["input_identity"]["rom"]["sha256"],
+                        self.config["runtime_candidate"]["rom"]["sha256"],
                     )
         bad = dict(result, release_ready=True)
         with self.assertRaises(self.module.Stage79CumulativeMgbaError):
             self.module._validate_result(
                 domain, bad,
-                self.config["input_identity"]["rom"]["sha256"],
+                self.config["runtime_candidate"]["rom"]["sha256"],
             )
 
         policy = next(
@@ -856,13 +856,13 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
         policy_result = self._valid_bounded_result("battle_policy")
         self.module._validate_result(
             policy, policy_result,
-            self.config["input_identity"]["rom"]["sha256"],
+            self.config["runtime_candidate"]["rom"]["sha256"],
         )
         policy_result["stat_inputs"]["hyper_trained_iv"] = 30
         with self.assertRaises(self.module.Stage79CumulativeMgbaError):
             self.module._validate_result(
                 policy, policy_result,
-                self.config["input_identity"]["rom"]["sha256"],
+                self.config["runtime_candidate"]["rom"]["sha256"],
             )
 
         for candidate in self.config["domains"]:
@@ -872,7 +872,7 @@ class Stage79CumulativeMgbaTest(unittest.TestCase):
                 with self.assertRaises(self.module.Stage79CumulativeMgbaError):
                     self.module._validate_result(
                         candidate, missing,
-                        self.config["input_identity"]["rom"]["sha256"],
+                        self.config["runtime_candidate"]["rom"]["sha256"],
                     )
 
     def test_completed_gate_embeds_evidence_and_mutation_fails_closed(self) -> None:

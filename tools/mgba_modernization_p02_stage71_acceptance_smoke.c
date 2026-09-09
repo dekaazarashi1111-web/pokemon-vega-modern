@@ -747,6 +747,9 @@ int main(int argc, char **argv)
         core, P02S_ITEM_RARE_CANDY, P02S_SPECIES_VEGA_001_LEEPUN,
         P02S_SPECIES_VEGA_002_LEETIN, true, "rare_candy_cancel_entry");
     bool cancel_ok = p02s_scene_seen(&cancel) && cancel.physical_b
+        && p02s_data(core, QOL_MON_DATA_LEVEL) == 16U
+        && p02s_data(core, QOL_MON_DATA_EXP) == 2535U
+        && p02s_bag_exact(core, P02S_ITEM_RARE_CANDY, 0U)
         && p02s_data(core, P02S_MON_DATA_SPECIES2)
             == P02S_SPECIES_VEGA_001_LEEPUN
         && p02s_moves_equal(core)
@@ -769,6 +772,9 @@ int main(int argc, char **argv)
         core, P02S_GET_ABILITY1,
         P02S_SPECIES_VEGA_002_LEETIN, 0U, 0U, 0U);
     bool success_ok = p02s_scene_seen(&success)
+        && p02s_data(core, QOL_MON_DATA_LEVEL) == 16U
+        && p02s_data(core, QOL_MON_DATA_EXP) == 2535U
+        && p02s_bag_exact(core, P02S_ITEM_RARE_CANDY, 0U)
         && p02s_data(core, P02S_MON_DATA_SPECIES2)
             == P02S_SPECIES_VEGA_002_LEETIN
         && p02s_moves_equal(core)

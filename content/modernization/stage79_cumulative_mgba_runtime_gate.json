@@ -13,8 +13,8 @@
   "classification": "LATEST_CUMULATIVE_EXACT_ROM_SEQUENTIAL_RESUMABLE",
   "config": {
     "path": "config/modernization_stage79_cumulative_mgba.json",
-    "sha256": "359c5caee4a81325cf76d20654468e287bf97fc63d5402d396ace2d62761cdb4",
-    "size": 27893
+    "sha256": "bb71c5ff7dc2019728a9604afebc7e0e10727f94d0b027b17de42ef97fcf42a1",
+    "size": 28626
   },
   "domain_order": [
     "p02",
@@ -31,8 +31,8 @@
       "pending_reason": null,
       "runner": {
         "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
-        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
-        "size": 36731
+        "sha256": "c4d4183d8e422900f9323d45e1fb0e8531b1d0f28f2d4355739973b81512547a",
+        "size": 37063
       },
       "status": "NOT_RUN"
     },
@@ -107,58 +107,107 @@
     "resume_supported": true
   },
   "input": {
-    "allocation": {
-      "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
-      "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b",
-      "size": 47029
+    "allocation_layout_unchanged": true,
+    "changed_bytes_from_parent": 8,
+    "parent": {
+      "allocation": {
+        "path": "build/stages/78_modernization_p05_eelevate_switch_ai_allocation.json",
+        "sha256": "b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b",
+        "size": 47029
+      },
+      "allocation_count": 82,
+      "allocation_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
+      "allocation_first82_sha256": "cbccabcf6c00d8b34e31174ac076644f3b6da0d03cc74a413c772774de64c046",
+      "allocation_last_sequence": 81,
+      "allocation_sequence81": {
+        "alignment": 16,
+        "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+        "end_exclusive": 22896624,
+        "gba_end_exclusive": 157114352,
+        "gba_start": 157113664,
+        "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
+        "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
+        "placement": "FIRST_FIT",
+        "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
+        "region": "integration_modules",
+        "sequence": 81,
+        "size": 688,
+        "start": 22895936
+      },
+      "checkpoint": {
+        "path": "content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json",
+        "sha256": "19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f",
+        "size": 27494
+      },
+      "commit": "a98e6fea59db1f020bc902a1b1676699f8c06c41",
+      "metadata": {
+        "path": "build/stages/78_modernization_p05_eelevate_switch_ai.json",
+        "sha256": "1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8",
+        "size": 27723
+      },
+      "payload_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+      "rom": {
+        "crc32": "BFF0203C",
+        "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+        "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+        "size": 33554432
+      },
+      "stage": 78,
+      "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI"
     },
-    "allocation_count": 82,
-    "allocation_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
-    "allocation_first82_sha256": "cbccabcf6c00d8b34e31174ac076644f3b6da0d03cc74a413c772774de64c046",
-    "allocation_last_sequence": 81,
-    "allocation_sequence81": {
-      "alignment": 16,
-      "content_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
-      "end_exclusive": 22896624,
-      "gba_end_exclusive": 157114352,
-      "gba_start": 157113664,
-      "name": "modernization_p05_stage78_eelevate_switch_ai_payload",
-      "owner": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI",
-      "placement": "FIRST_FIT",
-      "purpose": "Eelevate-aware FindMonThatAbsorbsOpponentsMove adapters and stable runtime probe",
-      "region": "integration_modules",
-      "sequence": 81,
-      "size": 688,
-      "start": 22895936
+    "parent_allocation_content_hashes_reused_as_candidate": false,
+    "patches": [
+      {
+        "address": 153948864,
+        "changed_bytes": 3,
+        "file_offset": 19731136,
+        "new_hex": "c00c5a09",
+        "old_hex": "d8b72d09",
+        "role": "collection_end"
+      },
+      {
+        "address": 153948876,
+        "changed_bytes": 3,
+        "file_offset": 19731148,
+        "new_hex": "30852d09",
+        "old_hex": "90d85909",
+        "role": "restore_policy_end"
+      },
+      {
+        "address": 154643292,
+        "changed_bytes": 2,
+        "file_offset": 20425564,
+        "new_hex": "55f30308",
+        "old_hex": "b1f40308",
+        "role": "party_candy_accessor"
+      }
+    ],
+    "repair_recipe": {
+      "path": "tools/modernization_runtime_boundary_repair.py",
+      "sha256": "2d4ab5f1c108e43d86b481b0ef0ea8c3701ec3d50299171097b369de1a60e0bc",
+      "size": 9758
     },
-    "checkpoint": {
-      "path": "content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json",
-      "sha256": "19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f",
-      "size": 27494
+    "repair_report": {
+      "path": "build/stages/80_modernization_runtime_boundary_repair.json",
+      "sha256": "2911fe22eca435e366c1c2185795ffbc19421e91eb76d50337c7933b8621316a",
+      "size": 1587
     },
-    "commit": "a98e6fea59db1f020bc902a1b1676699f8c06c41",
-    "metadata": {
-      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.json",
-      "sha256": "1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8",
-      "size": 27723
-    },
-    "payload_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
     "rom": {
-      "crc32": "BFF0203C",
-      "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
-      "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+      "crc32": "E41C2632",
+      "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+      "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
       "size": 33554432
     },
-    "stage": 78,
-    "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI"
+    "stage": 80,
+    "task": "USER-MODERNIZATION-STAGE80-RUNTIME-BOUNDARY-REPAIR"
   },
   "not_yet_executed": true,
   "orchestrator": {
     "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
-    "sha256": "a0c526a65edea3976612d8bfe57d9860150c7947f109b9662e9a6f1d5411b90a",
-    "size": 124491
+    "sha256": "41b18b2a6df5d5dc4e749c3c76df6c4fc936baf033db58f56f35f258e21e8b68",
+    "size": 127092
   },
-  "plan_fingerprint": "1dfca122eaeb4e0034fc0ac98f85d93fff86e642e0f55e2156b97de7ea40e867",
+  "plan_fingerprint": "206ddd6d450d9cb35859f8f9ea40a51ab60f1309cfe1dff4b621e7fb3f1d292a",
   "schema_version": 1,
   "stage": 79,
   "status": "READY_NOT_RUN",

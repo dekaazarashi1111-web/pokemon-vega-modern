@@ -37,8 +37,8 @@
       "kind": "p02",
       "runner": {
         "path": "tools/mgba_modernization_p02_stage71_acceptance_smoke.c",
-        "sha256": "c7dc8399346b8b1fab85a4c9ef71e7f10674a93096ab22fd86511ec209bde95d",
-        "size": 36731
+        "sha256": "c4d4183d8e422900f9323d45e1fb0e8531b1d0f28f2d4355739973b81512547a",
+        "size": 37063
       },
       "seed_save": {
         "path": ".local/60_wild_species_root_repair.srm",
@@ -544,8 +544,8 @@
   ],
   "orchestrator": {
     "path": "scripts/run_modernization_stage79_cumulative_mgba.py",
-    "sha256": "a0c526a65edea3976612d8bfe57d9860150c7947f109b9662e9a6f1d5411b90a",
-    "size": 124491
+    "sha256": "41b18b2a6df5d5dc4e749c3c76df6c4fc936baf033db58f56f35f258e21e8b68",
+    "size": 127092
   },
   "p03_contract": {
     "arguments": {
@@ -933,6 +933,26 @@
     "tutor-root-site",
     "tutor-species"
   ],
+  "runtime_candidate": {
+    "recipe": {
+      "path": "tools/modernization_runtime_boundary_repair.py",
+      "sha256": "2d4ab5f1c108e43d86b481b0ef0ea8c3701ec3d50299171097b369de1a60e0bc",
+      "size": 9758
+    },
+    "report": {
+      "path": "build/stages/80_modernization_runtime_boundary_repair.json",
+      "sha256": "2911fe22eca435e366c1c2185795ffbc19421e91eb76d50337c7933b8621316a",
+      "size": 1587
+    },
+    "rom": {
+      "crc32": "E41C2632",
+      "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+      "sha256": "6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442",
+      "size": 33554432
+    },
+    "stage": 80,
+    "task": "USER-MODERNIZATION-STAGE80-RUNTIME-BOUNDARY-REPAIR"
+  },
   "schema_version": 1,
   "stage": 79,
   "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
