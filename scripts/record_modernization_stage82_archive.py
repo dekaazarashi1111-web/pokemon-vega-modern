@@ -9,6 +9,8 @@ from pathlib import Path
 import shutil
 import sys
 import urllib.request
+import zipfile
+import io
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'tools')]
@@ -33,10 +35,29 @@ def read(path): return old.strict_json(path.read_bytes())
 
 def get(url,binary=False):
     require(url.startswith('https://api.github.com/repos/'+REPO+'/actions/'),'non-repository Actions URL')
-    request=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],
+    request=urllib.request.Request(url,headers={
             'Accept':'application/vnd.github+json','User-Agent':'Stage82-evidence-recorder'})
+    # The GitHub bearer token authenticates ONLY this request, never the signed
+    # Azure redirect. Ordinary Request headers are copied by urllib on 302.
+    request.add_unredirected_header('Authorization','Bearer '+os.environ['GH_TOKEN'])
     with urllib.request.urlopen(request,timeout=120) as response:data=response.read()
     return data if binary else old.strict_json(data)
+
+
+def verify_zip_members(data,directory):
+    """Every extracted byte must originate in the digest-checked GitHub ZIP."""
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        names=z.namelist()
+        require(len(names)==len(set(names)),'duplicate ZIP member')
+        members=set()
+        for name in names:
+            p=Path(name)
+            require(not p.is_absolute() and '..' not in p.parts,'unsafe ZIP member')
+            if name.endswith('/'):continue
+            require(not (directory/p).is_symlink(),'symlink in extracted artifact')
+            require((directory/p).read_bytes()==z.read(name),'original ZIP/extraction mismatch: '+name)
+            members.add(p.as_posix())
+        require(members=={p.relative_to(directory).as_posix() for p in directory.rglob('*') if p.is_file()},'extra or missing extracted file')
 
 
 def validate_archive(directory):
@@ -84,13 +105,25 @@ def check():
             type(merge['matrix_mGBA_process_runs']) is int and merge['matrix_mGBA_process_runs']==7 and
             type(merge['merge_mGBA_process_runs']) is int and merge['merge_mGBA_process_runs']==0,'matrix merge receipt differs')
     require(read(root/'merged/check.json')['status']=='CHECK_PASS','merged engine check missing')
+    import run_modernization_stage82_github_domain as stage
+    stage.prepare()
+    for domain in ORDER:
+        stage_command=[sys.executable,str(ROOT/'scripts/run_modernization_stage82_github_domain.py'),'validate-domain','--domain',domain,'--record',str(root/('stage82-domain-'+domain)/'result.json')]
+        import subprocess
+        subprocess.run(stage_command,check=True,capture_output=True)
+    for name in ARTIFACTS:
+        verify_zip_members((root/'original-zips'/(name+'.zip')).read_bytes(),root/name)
     require(record['fresh_successful_mgba_processes']==32 and record['negative_controls']==2,'total execution count differs')
     return {'status':'CHECK_PASS','candidate_sha256':archive.repair.CANDIDATE_SHA,'release_ready':False}
 
 
 def record():
-    run=int(os.environ['GITHUB_RUN_ID']);tested=os.environ['STAGE82_TESTED_HEAD']
+    integration_run=int(os.environ['GITHUB_RUN_ID'])
+    run=int(os.environ.get('STAGE82_SOURCE_RUN',str(integration_run)))
+    tested=os.environ['STAGE82_TESTED_HEAD']
     base='https://api.github.com/repos/'+REPO+'/actions/runs/'+str(run)
+    run_info=get(base)
+    require(run_info['id']==run and run_info['head_branch']=='codex/modernization-followup-20260908','source run identity differs')
     jobs=get(base+'/jobs?per_page=100')['jobs']
     required=['prepare','archive-ui']+['stage82 domain / '+d for d in ORDER]
     for name in required:
@@ -112,12 +145,18 @@ def record():
         require(len(rows)==1 and rows[0]['expired'] is False,'artifact not unique/live: '+name)
         item=rows[0];data=get(item['archive_download_url'],True)
         require(item.get('digest')=='sha256:'+sha(data),'GitHub original ZIP digest differs')
+        # Bind the extracted records to the original ZIP, not just to an
+        # independent checksum of a possibly different local extraction.
+        verify_zip_members(data,target/name)
         (target/'original-zips'/(name+'.zip')).write_bytes(data)
+    (target/'actions-run.json').write_text(json.dumps(run_info,indent=2)+'\n')
     (target/'actions-jobs.json').write_text(json.dumps(jobs,indent=2)+'\n')
     (target/'actions-artifacts.json').write_text(json.dumps(artifacts,indent=2)+'\n')
     files={p.relative_to(target).as_posix():old.identity(p) for p in sorted(target.rglob('*')) if p.is_file()}
     result={'schema_version':1,'status':'VERIFIED_WITH_DECLARED_LIMITS','candidate_sha256':archive.repair.CANDIDATE_SHA,
-            'tested_code_commit':tested,'actions_run_id':run,'actions_run_status_at_record':'in_progress',
+            'tested_code_commit':tested,'actions_run_id':run,'actions_run_status_at_record':run_info['status'],
+            'actions_run_conclusion_at_record':run_info['conclusion'],'integration_run_id':integration_run,
+            'integration_code_commit':os.environ['GITHUB_SHA'],
             'evidence_root':target.relative_to(ROOT).as_posix(),'files':files,
             'fresh_successful_mgba_processes':32,'archive_ui_cases':25,'cumulative_domains':7,
             'negative_controls':2,'cached_passes':0,'merge_new_processes':0,
