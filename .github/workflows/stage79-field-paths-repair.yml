@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/stage79-field-paths-repair.yml
       - .github/scripts/stage79_field_paths_repair.py
+      - .github/scripts/stage79_field_paths_footprint.py
       - .github/repairs/stage79-field-paths.patch.zlib.b64
   workflow_dispatch:
 permissions:
@@ -25,6 +26,7 @@ jobs:
           set -euo pipefail
           mkdir -p .local/stage79-field-paths-repair
           python3 .github/scripts/stage79_field_paths_repair.py 2>&1 | tee .local/stage79-field-paths-repair/apply.log
+          python3 .github/scripts/stage79_field_paths_footprint.py 2>&1 | tee .local/stage79-field-paths-repair/footprint.log
       - run: bash infra/setup_github_actions.sh --install
       - name: Require all source, compiled-C, ARM and strict-contract regressions
         run: |
