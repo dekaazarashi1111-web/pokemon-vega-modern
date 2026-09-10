@@ -1,10 +1,11 @@
 name: p03-p05-remaining-e2e
-run-name: P03/P05 remaining routes - source context only (not acceptance)
+run-name: Stage83 remaining native routes - forgetting and cold save
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/p03-p05-remaining-e2e.yml
+      - tools/mgba_modernization_remaining_routes.c
       - scripts/run_modernization_remaining_routes.py
       - tests/test_modernization_remaining_routes.py
   workflow_dispatch:
@@ -14,59 +15,65 @@ concurrency:
   group: p03-p05-remaining-e2e-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  source-context:
+  remaining-routes:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Collect tracked text context without ROM, save, private inputs or history
-        shell: bash
+      - name: Fixed toolchain
         run: |
           set -euo pipefail
-          mkdir -p .local/remaining-routes-context
+          mkdir -p .local/remaining-routes
+          git rev-parse HEAD > .local/remaining-routes/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/remaining-routes/toolchain.log 2>&1
+      - name: Fail-closed result and input regressions
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 -m unittest discover -s tests -p test_modernization_remaining_routes.py -v > .local/remaining-routes/tests.log 2>&1
+      - name: Reconstruct exact Stage83 without changing accepted baseline
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_stage83_github_domain.py prepare > .local/remaining-routes/prepare.log 2>&1
+      - name: New native forgetting routes, physical write guards and two-core saves
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 scripts/run_modernization_remaining_routes.py --jobs 2 > .local/remaining-routes/job.stdout.log 2> .local/remaining-routes/job.stderr.log
+          git diff --exit-code
+      - name: Retain bounded source diagnostics only (not runtime acceptance)
+        if: always()
+        run: |
           python3 - <<'PY'
-          import hashlib, json, pathlib, subprocess, zipfile
-          root = pathlib.Path.cwd()
-          out = root / '.local/remaining-routes-context'
-          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
-          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          allowed_roots = {'tools','scripts','tests','infra','config','content','src','include','asm','.github'}
-          allowed_suffixes = {'.py','.c','.h','.s','.S','.asm','.inc','.ld','.json','.yaml','.yml','.toml','.sh','.txt','.md','.csv','.tsv'}
-          docs = {'AGENTS.md','README.md','Makefile','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/active_play_baseline.md','design/decisions.md'}
-          selected = []
-          inventory = []
-          with zipfile.ZipFile(out / 'source-context.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  if not name:
-                      continue
-                  p = pathlib.PurePosixPath(name)
-                  inventory.append(name)
-                  relevant_doc = p.parts[0] in {'docs','design','tasks'} and any(k in name.lower() for k in ('modernization','p03','p05','p06','p07','p08','agent_context'))
-                  eligible = name in docs or relevant_doc or (p.parts[0] in allowed_roots and p.suffix in allowed_suffixes)
-                  if not eligible or any(part in {'userfile','private','imports','reference','node_modules'} for part in p.parts):
-                      continue
-                  f = root / p
-                  if f.is_symlink() or not f.is_file() or f.stat().st_size > 4000000:
-                      continue
-                  raw = f.read_bytes()
-                  try:
-                      raw.decode('utf-8')
-                  except UnicodeDecodeError:
-                      continue
-                  if b'\0' in raw:
-                      continue
-                  z.writestr(name, raw)
-                  selected.append({'path':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
-          (out / 'inventory.txt').write_text('\n'.join(inventory)+'\n')
-          (out / 'manifest.json').write_text(json.dumps({'tested_head':head,'runtime_acceptance':False,'scope':'tracked source context only; no ROM/save/private input or git history','files':selected},ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps({'head':head,'source_files':len(selected),'runtime_acceptance':False}))
+          import hashlib,json,pathlib,re,zipfile
+          root=pathlib.Path.cwd();out=root/'.local/remaining-routes';out.mkdir(parents=True,exist_ok=True)
+          selected=['build/stages/25_move_memory.json','generated/runtime/move_memory_symbols.json','overlays/move_memory/move_memory.c','overlays/move_memory/move_memory.h','tools/mgba_modernization_remaining_routes.c','scripts/run_modernization_remaining_routes.py','tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml']
+          with zipfile.ZipFile(out/'reviewed-source-context.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in selected:
+                  p=root/name
+                  if not p.is_symlink() and p.is_file():
+                      raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                      z.writestr(name,raw)
+          matches=[]
+          for base in ('vendor/upstream/CFRU-JP','src','overlays','content','config','scripts'):
+              for p in sorted((root/base).rglob('*')):
+                  if p.is_symlink() or not p.is_file() or p.suffix not in ('.c','.h','.s','.inc','.json','.py','.txt') or p.stat().st_size>2000000:continue
+                  try:raw=p.read_bytes();text=raw.decode('utf-8')
+                  except UnicodeDecodeError:continue
+                  lines=text.splitlines()
+                  for i,line in enumerate(lines):
+                      if re.search(r'circus|サーカス',line,re.I):
+                          matches.append({'path':p.relative_to(root).as_posix(),'sha256':hashlib.sha256(raw).hexdigest(),'line':i+1,'context':lines[max(0,i-3):i+5]})
+                          if len(matches)>=500:break
+                  if len(matches)>=500:break
+              if len(matches)>=500:break
+          (out/'circus-source-audit.json').write_text(json.dumps({'runtime_acceptance':False,'truncated':len(matches)>=500,'matches':matches},ensure_ascii=False,indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: p03-p05-remaining-source-context
-          path: .local/remaining-routes-context/
+          name: p03-p05-remaining-routes
+          path: .local/remaining-routes/
           include-hidden-files: true
           if-no-files-found: error
-          retention-days: 3
+          retention-days: 30
