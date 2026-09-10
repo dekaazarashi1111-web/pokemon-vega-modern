@@ -19,6 +19,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from tools.modernization_p07_learnsets import _canonical_species_domain, _canonical_move_domain
+from scripts.pr16_source_acceptance import reconcile_legacy_count
 
 ROM_SHA = '55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b'
 V4_SHA = '4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
@@ -27,6 +28,8 @@ MOVES_SHA = 'dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20'
 BASE = 0x08000000
 SITES = {'level': 0x4346c, 'egg': 0x45214, 'machine': 0x432b4,
          'tutor': 0x121420, 'machine_moves': 0x1263d8, 'tutor_moves': 0x1213d4}
+# Preserve the historical prefix-based tally; the 27 named aliases are audited
+# separately against canonical classification and their exact V4 CSV positions.
 EXPECTED = {'vega_to_official_historical_adoption': {'level_up':450,'egg':254,'machine':179,'tutor':190},
             'official_to_vega_legacy_preservation': {'level_up':297,'egg':175}}
 
@@ -150,11 +153,18 @@ def run(output):
     rom=checked(ROOT/'.local/final-integration-candidate/candidate.gba',ROM_SHA)
     selected,members=recover(v4,species,moves)
     (output/'p07-recovered-source.json').write_bytes(stable({'inputs':{'v4':identity(v4),'species':identity(species),'moves':identity(moves)},'source_members':members,'groups':selected}))
+    legacy_key='official_to_vega_legacy_preservation'
+    legacy_audit=reconcile_legacy_count(selected[legacy_key])
+    need(legacy_audit['historical_prefix_projection']['route_counts']==EXPECTED[legacy_key],
+         'historical prefix projection changed')
+    expected_canonical={**EXPECTED,legacy_key:legacy_audit['canonical_legacy_preservation']['route_counts']}
     groups,roots=reconcile(rom,selected)
     report=dict(schema_version=1,status='PHYSICAL_TABLE_RECONCILIATION_NOT_NATIVE_ACCEPTANCE',candidate=identity(rom),
                 inputs={'v4':identity(v4),'species':identity(species),'moves':identity(moves)},source_members=members,
                 groups=groups,roots=roots,rom_changed=False,new_rows_applied=0,full_p07_acceptance=False,release_ready=False,
-                retained_source_row_counts_match={k:groups[k]['summary']['route_counts']==v for k,v in EXPECTED.items()},
+                legacy_count_reconciliation=legacy_audit,
+                reconciliation_checker=identity((ROOT/'scripts/pr16_source_acceptance.py').read_bytes()),
+                retained_source_row_counts_match={k:groups[k]['summary']['route_counts']==v for k,v in expected_canonical.items()},
                 limitations=['Table presence is not native acquisition/UI/save acceptance.',
                              'Missing official-species rows must be reconciled with the P03 replacement layer before applying.',
                              'TM/tutor compatibility is not a supply/price/unlock witness.'])
