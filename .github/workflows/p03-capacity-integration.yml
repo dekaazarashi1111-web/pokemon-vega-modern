@@ -1,0 +1,99 @@
+name: p03-capacity-integration
+run-name: Accept fixed P03 capacity originals and wire final CI
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-capacity-integration.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify original fixed run and append scoped P08 acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-capacity-integration
+          if test -f content/modernization/p08_p03_breeding_capacity_acceptance.json; then
+            python3 scripts/record_modernization_p03_capacity.py | tee .local/p03-capacity-integration/check.json
+          else
+            python3 scripts/record_modernization_p03_capacity.py --record | tee .local/p03-capacity-integration/record.json
+          fi
+          python3 -m unittest discover -s tests -p test_modernization_p03_breeding_capacity_e2e.py -v 2>&1 | tee .local/p03-capacity-integration/capacity-tests.txt
+          python3 -m unittest discover -s tests -p test_modernization_p08_capacity_evidence.py -v 2>&1 | tee .local/p03-capacity-integration/evidence-tests.txt
+          python3 scripts/record_modernization_p03_capacity.py | tee .local/p03-capacity-integration/check.json
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code -- config/active_play_baseline.json config/modernization_stage79_cumulative_mgba.json
+      - name: Require capacity evidence in every normal CI after originals exist
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('.github/workflows/ci.yml')
+          source=path.read_text()
+          marker='      - name: P03 capacity fixed originals and cold-save acceptance\n'
+          addition=(marker+'        shell: bash\n        run: |\n'
+                    '          set -euo pipefail\n'
+                    '          python3 -m unittest discover -s tests -p test_modernization_p08_capacity_evidence.py -v\n'
+                    '          python3 scripts/record_modernization_p03_capacity.py\n')
+          if marker not in source:
+              path.write_text(source+addition)
+          elif not source.endswith(addition):
+              raise SystemExit('existing capacity CI differs; refusing overwrite')
+          PY
+      - name: Commit all verified originals with no force or concurrent overwrite
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess
+          for name in ('design/run_log.md','design/version_log.md','docs/P08_CURRENT_ACCEPTANCE.md','.github/workflows/ci.yml'):
+              old=subprocess.check_output(['git','show','HEAD:'+name])
+              if not pathlib.Path(name).read_bytes().startswith(old):
+                  raise SystemExit('non-append change: '+name)
+          PY
+          git add content/modernization/p08_p03_breeding_capacity_acceptance.json content/modernization/p08_breeding_capacity_evidence/34439826111 design/run_log.md design/version_log.md docs/P08_CURRENT_ACCEPTANCE.md .github/workflows/ci.yml
+          git add -f content/modernization/p08_breeding_capacity_evidence/34439826111/original.zip
+          python3 - <<'PY' | tee .local/p03-capacity-integration/staged-evidence.json
+          import json,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import record_modernization_p03_capacity as r
+          record=r.suite.common.strict_json(subprocess.check_output(['git','show',':'+r.RECORD]))
+          verified={}
+          for name,expected in record['files'].items():
+              path=r.EVIDENCE+'/'+r.relative(name)
+              actual=r.identity(subprocess.check_output(['git','show',':'+path]))
+              r.require(r.same(actual,expected),'staged original differs: '+path)
+              verified[path]=actual
+          print(json.dumps({'status':'ALL_STAGED_ORIGINAL_BYTES_VERIFIED','files':verified},indent=2))
+          PY
+          git diff --cached --name-only > .local/p03-capacity-integration/changed-files.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'USER-P03-CAPACITY: accept fixed FIFO and full-PC originals with final CI'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          git rev-parse HEAD > .local/p03-capacity-integration/final-head.txt
+          gh workflow run ci.yml --ref "$branch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-capacity-integration
+          path: .local/p03-capacity-integration/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
