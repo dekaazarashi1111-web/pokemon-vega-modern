@@ -30,7 +30,7 @@ class NativeBinding(unittest.TestCase):
         self.assertEqual(c['pp_bonuses_before'],c['pp_bonuses_after']);self.assertEqual(c['canonical_pp'],0)
     def test_empty_changes_only_first_empty_slot(self):
         c=m.make_case(m.SPECS[0],[1,457],20)
-        self.assertEqual(c['after'],[33,81,457,0]);self.assertEqual(c['pp_after'],[7,8,20,0]);self.assertEqual(c['pp_bonuses_after'],197)
+        self.assertEqual(c['after'],[33,81,457,0]);self.assertEqual(c['pp_after'],[7,8,20,0]);self.assertEqual(c['pp_bonuses_before'],5);self.assertEqual(c['pp_bonuses_after'],5)
     def test_missing_target_or_capacity_cannot_be_skipped(self):
         for pool in ([1,2],list(range(400,470))):
             with self.assertRaises(ValueError):m.make_case(m.SPECS[0],pool,20)
