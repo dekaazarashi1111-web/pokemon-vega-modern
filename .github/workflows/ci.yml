@@ -77,3 +77,21 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding*.py' -v
           if test -f content/modernization/p08_p03_breeding_acceptance.json; then python3 scripts/record_modernization_p03_breeding.py; fi
+      - name: P05 native Mega lifecycle and immutable P08 originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-native-mega-ci
+          git rev-parse HEAD > .local/p05-native-mega-ci/tested-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p05_mega_lifecycle_e2e.py -v > .local/p05-native-mega-ci/runtime-tests.stdout 2> .local/p05-native-mega-ci/runtime-tests.stderr
+          python3 -m unittest discover -s tests -p test_modernization_p08_native_mega.py -v > .local/p05-native-mega-ci/evidence-tests.stdout 2> .local/p05-native-mega-ci/evidence-tests.stderr
+          python3 scripts/check_modernization_p08_native_mega.py > .local/p05-native-mega-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p05-native-mega-ci
+          path: .local/p05-native-mega-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
