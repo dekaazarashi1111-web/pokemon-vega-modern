@@ -7,6 +7,9 @@ on:
       - .github/workflows/pr16-integration-continuation.yml
       - scripts/pr16_integration_continuation.py
       - tests/test_pr16_integration_continuation.py
+      - tools/mgba_modernization_p06_phase_e2e.c
+      - scripts/run_modernization_p06_phase_e2e.py
+      - tests/test_modernization_p06_phase_e2e.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -130,6 +133,11 @@ jobs:
           EXPECTED_HEAD: ${{ github.sha }}
         run: |
           set -euo pipefail
+          if git ls-files --error-unmatch content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_p06_evidence/34444010444/original.zip >/dev/null 2>&1; then
+            git diff --exit-code -- content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_remaining_work.json content/modernization/p08_p06_evidence/34444010444/original.zip
+            git rev-parse HEAD > .local/pr16-continuation/acceptance/reflected-head.txt
+            exit 0
+          fi
           test "$(gh api repos/dekaazarashi1111-web/pokemon-vega-modern/git/ref/heads/codex/modernization-followup-20260908 --jq .object.sha)" = "$EXPECTED_HEAD"
           python3 - <<'PY'
           import datetime,pathlib
@@ -163,6 +171,36 @@ jobs:
         with:
           name: pr16-accepted-originals-connection
           path: .local/pr16-continuation/acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  p06-native-phase:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Fixed Stage84 and Stage82 control
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-continuation/p06-phase
+          bash infra/setup_github_actions.sh --install > .local/pr16-continuation/p06-phase/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-continuation/p06-phase/candidate.json
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/pr16-continuation/p06-phase/parent.json
+          git rev-parse HEAD > .local/pr16-continuation/p06-phase/tested-head.txt
+      - name: Validator mutation tests and native Summary/battle execution
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p06_phase_e2e.py -v > .local/pr16-continuation/p06-phase/unit.log 2>&1
+          python3 scripts/run_modernization_p06_phase_e2e.py > .local/pr16-continuation/p06-phase/run.stdout 2> .local/pr16-continuation/p06-phase/run.stderr
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p06-native-phase
+          path: .local/pr16-continuation/p06-phase/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30

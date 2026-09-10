@@ -48,6 +48,14 @@ class PhysicalTables(unittest.TestCase):
     def test_slot_bounds_are_errors(self):
         for slot in (0,129):
             with self.subTest(slot=slot),self.assertRaises(ValueError):m.RomTables(self.rom(),1).check(self.row('machine',slot_no=slot))
+    def test_irrelevant_internal_species_are_not_new_acceptance_targets(self):
+        b=self.rom();struct.pack_into('<I',b,0x200004,0x03000000)
+        self.assertTrue(m.RomTables(b,2,selected_species={0}).check(self.row('level_up',level=13))['present'])
+        with self.assertRaises(ValueError):m.RomTables(b,2,selected_species={1})
+    def test_target_invalid_move_and_level_are_still_errors(self):
+        for move,level in ((0,0),(1064,10),(44,101)):
+            b=self.rom();struct.pack_into('<HB',b,0x200020,move,level)
+            with self.subTest(move=move,level=level),self.assertRaisesRegex(ValueError,'species=0'):m.RomTables(b,1,selected_species={0})
     def test_no_write_side_effects(self):
         b=self.rom();before=bytes(b);m.RomTables(b,1).check(self.row('egg'));self.assertEqual(before,bytes(b))
 

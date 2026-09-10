@@ -47,19 +47,21 @@ def checked(path, sha):
 
 class RomTables:
     """Bounded readers for existing native table ABIs; no writes or stubs."""
-    def __init__(self, raw, species_count=1621):
+    def __init__(self, raw, species_count=1621, selected_species=None):
         self.raw=raw; self.count=species_count
         self.roots={name:self.u32(site) for name,site in SITES.items()}
         need(self.u32(0x1fda1f8)==self.roots['level'],'level producer/consumer roots differ')
         need(self.u32(0x4528c)==self.roots['egg'],'egg consumer roots differ')
         self.level={}; self.egg={i:[] for i in range(species_count)}
-        for sid in range(species_count):
+        targets=range(species_count) if selected_species is None else sorted(set(selected_species))
+        need(all(type(sid) is int and 0<=sid<species_count for sid in targets),'target species outside table')
+        for sid in targets:
             cursor=self.ptr(self.roots['level']+sid*4)
             values=[]
             for _ in range(256):
                 off=self.offset(cursor,3); move,level=struct.unpack_from('<HB',raw,off); cursor+=3
                 if (move,level)==(0,255): break
-                need(0<move<=1063 and 0<=level<=100,'invalid level row')
+                need(0<move<=1063 and 0<=level<=100,f'invalid level row species={sid} address={cursor-3:#x} move={move} level={level}')
                 need((move,level) not in values,'duplicate level row')
                 values.append((move,level))
             else: raise ValueError('unterminated level table')
@@ -128,7 +130,8 @@ def recover(v4,species,moves):
 
 
 def reconcile(rom,selected):
-    tables=RomTables(rom);groups={}
+    targets={r['species_id'] for items in selected.values() for r in items if r['route']=='level_up'}
+    tables=RomTables(rom,selected_species=targets);groups={}
     for group,items in selected.items():
         seen=set();out=[]
         for item in items:
@@ -145,7 +148,9 @@ def run(output):
     v4=checked(ROOT/'userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip',V4_SHA)
     species=checked(ROOT/'manifests/species_ids.csv',SPECIES_SHA);moves=checked(ROOT/'manifests/move_ids.csv',MOVES_SHA)
     rom=checked(ROOT/'.local/final-integration-candidate/candidate.gba',ROM_SHA)
-    selected,members=recover(v4,species,moves);groups,roots=reconcile(rom,selected)
+    selected,members=recover(v4,species,moves)
+    (output/'p07-recovered-source.json').write_bytes(stable({'inputs':{'v4':identity(v4),'species':identity(species),'moves':identity(moves)},'source_members':members,'groups':selected}))
+    groups,roots=reconcile(rom,selected)
     report=dict(schema_version=1,status='PHYSICAL_TABLE_RECONCILIATION_NOT_NATIVE_ACCEPTANCE',candidate=identity(rom),
                 inputs={'v4':identity(v4),'species':identity(species),'moves':identity(moves)},source_members=members,
                 groups=groups,roots=roots,rom_changed=False,new_rows_applied=0,full_p07_acceptance=False,release_ready=False,
