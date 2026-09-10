@@ -1,0 +1,70 @@
+name: pr16-integration-continuation
+run-name: PR16 exact-head integration continuation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-integration-continuation.yml
+      - scripts/pr16_integration_continuation.py
+      - tests/test_pr16_integration_continuation.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-integration-continuation
+  cancel-in-progress: false
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export tracked source only; preserve ROM and save identities
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-continuation/source
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern --jq '{visibility,private,default_branch}' > .local/pr16-continuation/source/repository.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.'); out=root/'.local/pr16-continuation/source'
+          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          roots={'scripts','tools','tests','overlays','content','config','design','tasks','docs','infra','.github','state'}
+          extensions={'.py','.c','.h','.s','.inc','.json','.csv','.tsv','.md','.txt','.sh','.yml','.yaml','.toml','.mk','.ld'}
+          bindings={}; protected={}
+          with zipfile.ZipFile(out/'tracked-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:
+                  if not name: continue
+                  p=root/name
+                  if not p.is_file() or p.is_symlink(): continue
+                  suffix=p.suffix.lower()
+                  if suffix in {'.gba','.srm','.sav'}:
+                      protected[name]={'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size}
+                      continue
+                  if p.parts[0] not in roots or suffix not in extensions: continue
+                  if any(x.lower() in {'credentials','secrets','.ssh','private'} for x in p.parts): continue
+                  raw=p.read_bytes()
+                  try: raw.decode('utf8')
+                  except UnicodeDecodeError: continue
+                  if b'\0' in raw: continue
+                  z.writestr(name,raw)
+                  bindings[name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
+          (out/'source-bindings.json').write_text(json.dumps({'head':head,'files':bindings},sort_keys=True,indent=2)+'\n')
+          (out/'protected-originals.json').write_text(json.dumps(protected,sort_keys=True,indent=2)+'\n')
+          (out/'tracked-paths.json').write_text(json.dumps(paths,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'head':head,'source_files':len(bindings),'protected_originals':len(protected),'rom_save_exported':False}))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-continuation-source
+          path: .local/pr16-continuation/source/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
