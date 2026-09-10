@@ -4589,3 +4589,12 @@ The isolated starting fixture supplies species, gear, policy and opponent; this 
 ## 2026-09-10 — P03 five-egg FIFO and party/PC capacity acceptance
 
 Original Actions 34439826111, tested source 40dec97d5360422e66d02a3ae0261a00df566f86: fixed toolchain; three new mGBA processes, nine cores, zero cache reuse; all three capacity routes passed. Normal deposit and walking fill the five-egg FIFO; 512 additional steps do not overwrite it. Real dialogue fills the party then uses the first/last PC vacancy, or preserves pending eggs when all 420 PC slots are full. Two normal saves/fresh-core Continues and the repeated full-PC refusal preserve exact party, PC, queue and parent bytes. Seven actual host-write denial probes pass; no ROM calls after the fixture barrier. Original ZIP and Actions metadata: content/modernization/p08_breeding_capacity_evidence/34439826111. This integration performs no additional mGBA run. Parent/PC layout is an isolated fixture. Other P03/P05 routes, P06/P07 adoption and final release remain incomplete. Stage82 product bytes, Stage62 baseline, existing evidence and release_ready=false are unchanged.
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開
+
+前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開する。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。
+
+最初の公開run 34445594077は、既存の追跡ROM/saveと過去のActions絶対pathを検出する全index guardで停止した。guard本体と既存ファイルは変更しない。親HEADと変更後indexの全体検査結果が完全一致すること、今回の7差分blobだけを入れた別indexで同じguardがPASSすることを別々に検証し、全体guardの既存失敗をPASSと報告しない。
+
+Publication run: 34445943232; input HEAD: 3d9b42fc766a6b42ba36f96afff7bcebe908e1a2.
