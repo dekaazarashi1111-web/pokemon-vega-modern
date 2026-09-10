@@ -52,6 +52,36 @@
     }
   ],
   "active_baseline_changed": false,
+  "archive_economy": {
+    "decision_source": "content/modernization/p08_owner_approved_policy.json",
+    "early_game_archive_available": false,
+    "entry": "BAG_MOVE_MEMORY_ITEM_ONLY",
+    "existing_other_memory_modes_unchanged": true,
+    "price": 0,
+    "required_flag": "0x082C",
+    "required_flag_name": "HALL_OF_FAME",
+    "runtime_change_required": false,
+    "scope": "ADDITIONAL_MACHINE_TUTOR_ARCHIVE_ONLY",
+    "status": "ADOPTED"
+  },
+  "closed_conditions": [
+    {
+      "closure_type": "EXPLICIT_OWNER_POLICY_DECISION",
+      "decision_id": "OWNER-20260910-131832-ARCHIVE-PUBLIC",
+      "id": "ARCHIVE_ECONOMY",
+      "phase": "P03",
+      "reason_ja": "殿堂入り後・Bagのわざメモリー・無料を所有者が正式採用。通常思い出し等の条件は変更しない。",
+      "success_evidence": "content/modernization/p08_owner_approved_policy.json"
+    },
+    {
+      "closure_type": "EXPLICIT_OWNER_POLICY_DECISION",
+      "decision_id": "OWNER-20260910-131832-ARCHIVE-PUBLIC",
+      "id": "REPOSITORY_GUARD",
+      "phase": "P08",
+      "reason_ja": "publicと既存追跡は所有者の意図した状態。非公開化・原本移動を完成条件にしない。過去guardの実測失敗は保持し、秘密情報等の検査は無効化しない。",
+      "success_evidence": "content/modernization/p08_owner_approved_policy.json"
+    }
+  ],
   "final_candidate": null,
   "full_p03_acceptance": false,
   "full_p05_acceptance": false,
@@ -65,6 +95,15 @@
   },
   "latest_scoped_candidate_stage": 84,
   "new_emulator_runs_during_reconciliation": 0,
+  "nonblocking_findings": [
+    {
+      "guard_disabled": false,
+      "id": "HISTORICAL_FULL_INDEX_GUARD",
+      "reason_ja": "過去のguard結果は原本・protection記録どおり。意図した公開状態だけを理由に停止しない。新規の未承認混入は対象外。",
+      "result_relabelled": false,
+      "source_condition": "REPOSITORY_GUARD"
+    }
+  ],
   "p06_adoption": {
     "adopted_species_count": 2,
     "field_change_count": 3,
@@ -82,11 +121,6 @@
       "id": "EVOLUTION_FORM_OTHER_EGG",
       "phase": "P03",
       "reason_ja": "技忘れ12件は受入済み。進化・フォームに伴う技習得、その他の繁殖・タマゴ技供給経路の受入照合と保存検証が残る"
-    },
-    {
-      "id": "ARCHIVE_ECONOMY",
-      "phase": "P03",
-      "reason_ja": "追加技供給の殿堂入り後・わざメモリーから無料という暫定仕様の正式確定"
     },
     {
       "id": "NATURAL_CAPTURE_GEAR",
@@ -114,16 +148,26 @@
       "reason_ja": "Stage82/83/84の異なる候補上の成功を一つの最終候補での全工程受入と混同しない。最終候補の統一が必要"
     },
     {
-      "id": "REPOSITORY_GUARD",
-      "phase": "P08",
-      "reason_ja": "既存の追跡ROM/save・過去ログの絶対パスに対するリポジトリ全体guardの是正。差分guard成功と区別する"
-    },
-    {
       "id": "RELEASE_DECISION",
       "phase": "P08",
       "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する"
     }
   ],
+  "repository_policy": {
+    "active_baseline_switch_authorized": false,
+    "credentials_and_unintended_new_inputs_still_protected": true,
+    "decision_source": "content/modernization/p08_owner_approved_policy.json",
+    "existing_public_state_blocks_completion": false,
+    "existing_tracked_originals_preserved": true,
+    "guard_disabled": false,
+    "guard_failure_relabelled_pass": false,
+    "history_rewrite_authorized": false,
+    "merge_authorized": false,
+    "original_deletion_authorized": false,
+    "owner_selected": true,
+    "private_conversion_required": false,
+    "visibility": "public"
+  },
   "schema_version": 1,
   "source_bindings": {
     "config/modernization_p03_stage74_supply.json": {
@@ -153,6 +197,10 @@
     "content/modernization/p08_native_mega_evidence/34438575892/original.zip": {
       "sha256": "b1166c0d8cbd40487b300a3814851ad4e64fdb3fc190082df525f6241be37fe8",
       "size": 162216
+    },
+    "content/modernization/p08_owner_approved_policy.json": {
+      "sha256": "174843afa5f89724274eb86fafd24ce4117df0af53d8af64d30b50745809d4b0",
+      "size": 1363
     },
     "content/modernization/p08_p03_breeding_acceptance.json": {
       "sha256": "65b7a61dee18f26aec29da52c2e275f7b9729a7c788c84aa2675081059a94c16",

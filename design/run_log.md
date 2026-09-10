@@ -4624,3 +4624,10 @@ P05の現行facility_modes.csvはFactory/Mirageの20モードで、Circus入場�
 本統合は新規mGBA実行0件。PRはDraftのまま、マージ・配布・プレイ基準変更なし。全体guardの既存ROM/save・過去path違反は未解消であり、差分guardと区別する。通常CIの設定は別の権限付き変更として追加する。
 
 Integration run: 34461845380; source: 5783414f58fcfd1c222e26cd3cc1280eea8d0b2e.
+
+
+## USER-20260910-OWNER-POLICY
+
+殿堂入り後・Bagのわざメモリーから無料を正式採用。publicは所有者の意図した現行設定であり、privateとする過去の説明を訂正。非公開化・既存原本移動は完了条件にしない。料金・公開状態の判断を現在の残件生成に接続し、履歴受入は不変。
+検証: owner-policy 11件、既存remaining-routes 24件、forgetting-evidence 16件、原本照合・task graph・差分検査。ROM変更0、新規mGBA実行0。製品完成、全工程受入、PRマージ、実プレイ基準変更は行わない。
+Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469582`。

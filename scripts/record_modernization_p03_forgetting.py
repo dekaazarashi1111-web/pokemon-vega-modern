@@ -178,10 +178,23 @@ def remaining_work(root,forgetting):
       ('P08','RELEASE_DECISION','配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する')]
     return dict(schema_version=1,status='CURRENT_REMAINING_WORK_NOT_RELEASE_ACCEPTANCE',task='USER-MODERNIZATION-P03-P05',historical_snapshot='content/modernization/p08_current_acceptance.json',historical_snapshot_is_current_backlog=False,accepted_scoped_reports=accepted,p06_adoption=dict(adopted_species_count=2,field_change_count=3,source_path='content/modernization/p06_decided_adjustments.json',full_phase_accepted=False),p07_adoption=dict(normal_species_to_vega_move=0,vega_species_to_normal_move=0,prior_instructions_absent_claimed=False),latest_scoped_candidate=forgetting['candidate_rom'],latest_scoped_candidate_stage=84,final_candidate=None,remaining_conditions=[dict(phase=p,id=i,reason_ja=why) for p,i,why in reasons],source_bindings=receipts,new_emulator_runs_during_reconciliation=0,full_p03_acceptance=False,full_p05_acceptance=False,full_p06_acceptance=False,full_p07_acceptance=False,release_ready=False,active_baseline_changed=False)
 
+def current_remaining_work(root, forgetting):
+    # Compose current adoption only after validating immutable historical evidence.
+    overview = remaining_work(root, forgetting)
+    receipt = root/'content/modernization/p08_final_candidate_acceptance.json'
+    need(not receipt.is_symlink(), 'symlink final receipt')
+    if receipt.exists():
+        import record_modernization_final_acceptance as integration
+        overview = integration.project_overview(overview, root)
+    sys.path.insert(0, str(root/'tools'))
+    from modernization_owner_policy import project
+    return project(overview, root)
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--write',action='store_true');args=p.parse_args()
     try:
-        result=build();overview=remaining_work(ROOT,result);target=ROOT/MANIFEST;summary=ROOT/OVERVIEW
+        result=build();overview=current_remaining_work(ROOT,result);target=ROOT/MANIFEST;summary=ROOT/OVERVIEW
         if args.write:
             need(all(not p.exists() and not p.is_symlink() for p in (target,summary)),'refuse existing acceptance overwrite')
             target.write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+'\n')

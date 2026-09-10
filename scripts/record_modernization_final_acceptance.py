@@ -180,7 +180,8 @@ def project_overview(legacy,root=ROOT):
         elif row['id']=='SOURCE_RECONCILIATION_ADOPTION':
             row['reason_ja']='双方向分離・原作基準保持・経路別採用は確定。照合資料の推奨上限・代替案から具体的な採用行を一意に確定できず、配布行の判断が必要。'
     current['source_bindings'][RECEIPT]=identity(read(root,RECEIPT))
-    return current
+    from modernization_owner_policy import project
+    return project(current, root)
 
 
 def main():

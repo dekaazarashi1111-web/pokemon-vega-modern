@@ -2,7 +2,7 @@
 
 ## 判定
 
-**製品完成ではない。** 一つのStage84候補の生成・7領域回帰・採用済みP06の新候補上の観測・工程受入への接続・正逆パッチ生成を完了した。未受入のnative経路、P07採用行、archive economy、clean ROMからの最終再生成、公開済み原本の保護問題が残る。full_p03/p05/p06/p07、release_readyはfalseを保持する。
+**製品完成ではない。** 一つのStage84候補の生成・7領域回帰・採用済みP06の新候補上の観測・工程受入への接続・正逆パッチ生成を完了した。未受入のnative経路、P07採用行、clean ROMからの最終再生成が残る。archive economyとpublic設定の所有者判断は確定済み。full_p03/p05/p06/p07、release_readyはfalseを保持する。
 
 現在の入口は `content/modernization/p08_remaining_work.json`。元の要求、対象機能、合格条件、成功証拠／再開点はこの一覧と `p08_final_candidate_acceptance.json` へ接続する。Stage77/81の古い未完了一覧を現在の残件へ再輸入しない。
 
@@ -48,13 +48,13 @@ P06旧原本run `34444010444` / artifact `10138991421` / 原本SHA `2a9c4fcc3663
 選択肢B: 監査提案をより広い配布計画へ具体化したうえで、その行を採用する。
 **推奨A**。P03原作基準と既存Vega非対象習得を維持し、採用された独自差分だけを追加する。監査提案から無断で全種配布・技削除・追加弱体化はしない。
 
-### archive economy
+### archive economy（正式採用済み）
 
-該当箇所: `config/modernization_p03_stage74_supply.json` の `runtime.unlock` / `runtime.economy`。現実装は殿堂入りflag `0x082C`、わざメモリー347から、料金0、`PROVISIONAL_REPLACEABLE`。P03実行指示は供給を必要とする一方、大きな解禁・価格変更には確認を要求している。暫定実装を自動的に正式採用とは扱わない。
-
-選択肢A: 現在の「殿堂入り後・わざメモリー・無料」を正式採用する。
-選択肢B: 解禁条件、通貨、価格、供給NPC/場所を指定して置換する。
-**推奨A**。既に検証した経路を保ち、追加の経済設計を発生させない。承認前に価格や解禁を変更しない。承認後もStage74の原本は不変とし、現在の採用判断を別レイヤーへ記録する。
+2026-09-10 13:18:32 UTCの所有者指示により、現行の「殿堂入り後・Bagのわざメモリー・無料」を正式採用した。
+`config/modernization_p03_stage74_supply.json` の `runtime.unlock` / `runtime.economy` は固定履歴として変更せず、
+`content/modernization/p08_owner_approved_policy.json` を現在の受入判断として接続する。
+価格・解禁・供給場所のROM変更は不要。通常思い出し・技忘れ等の既存条件は変えない。
+残件一覧の再生成もこの判断を読むため、「料金未承認」へ戻らない。
 
 P06の監査194行はすべて採用された変更ではない。採用済み3項目以外は明示採用まで保留であり、全194行の調整や全組合せ試験を完成条件に追加しない。
 
@@ -94,8 +94,22 @@ python3 apply_modernization_stage84_patch.py --patch stage80-to-stage84.bps --so
 
 ## 保護と再開点
 
-repositoryは実査時public。GitはStage78 ROM、Stage80 ROM、テストseed saveの3ファイルを既に追跡しており、全index guardはFAIL。新規追加対象だけのguard成功と区別する。公開範囲変更・原本削除・履歴改変は実行していない。対応方法は所有者の明示承認が必要。Stage62、実プレイsave、active_play_baseline、PR mergeは変更していない。
+repositoryは実査時public。GitはStage78 ROM、Stage80 ROM、テストseed saveの3ファイルを既に追跡しており、全index guardはFAIL。新規追加対象だけのguard成功と区別する。公開範囲変更・原本削除・履歴改変は実行していない。publicは所有者が意図して設定した。非公開化・原本移動の承認待ちを残件にしない。Stage62、実プレイsave、active_play_baseline、PR mergeは変更していない。
 
-再開は `p08_remaining_work.json` の各 `resume` から行う。優先は、既存成功を保持したP03進化/フォーム習得のnative保存経路、P05通常取得から戦闘と実施設受付、P06採用特性の戦闘効果・適用UIの受入。P07/料金の未決判断に依存しない。Circusの前回source auditは限定した資料群であり、実施設が存在しないことの証明ではない。
+再開は `p08_remaining_work.json` の各 `resume` から行う。優先は、既存成功を保持したP03進化/フォーム習得のnative保存経路、P05通常取得から戦闘と実施設受付、P06採用特性の戦闘効果・適用UIの受入。P07の未決判断に依存しない。料金は無料として正式採用済み。Circusの前回source auditは限定した資料群であり、実施設が存在しないことの証明ではない。
 
 新しいROM変更が必要になった場合は候補SHAを改めて固定し、影響する検査を実行する。この文書のStage84成功を別ROMの成功へ改称しない。PR #16を継続し、別PRや別セッションで同じ実装を重複させない。
+
+## 2026-09-10 現行の所有者承認
+
+正本は `content/modernization/p08_owner_approved_policy.json`。追加技アーカイブは
+**殿堂入り後・Bagのわざメモリーから無料**を正式採用。通常思い出し・技忘れ等に
+新しい殿堂入り制限を追加しない。固定Stage74設定の暫定ラベルは履歴として不変。
+
+**publicは所有者自身が選んだ正しい現行設定**。本文に残るprivate repository／private
+Releaseの表現は過去の構成名・説明であり、非公開性の根拠でも現行の必須条件でもない。
+非公開化や既存追跡原本の移動・削除を完成条件にしない。過去の全index guard失敗を
+PASSへ改称せず、秘密情報・新規の意図しない資材混入を防ぐ検査も無効化しない。
+Stage62・実プレイsave・原本・履歴・PR未マージは保持する。
+
+この承認はP03/P05/P06/P07の未受入経路や製品全体の完成を意味しない。
