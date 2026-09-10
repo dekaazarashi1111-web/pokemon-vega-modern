@@ -1,0 +1,59 @@
+name: pr16-final-route-acceptance
+run-name: PR16 exact-head final route integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-final-route-acceptance.yml
+      - scripts/pr16_final_routes.py
+      - tests/test_pr16_final_routes.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pr16-final-route-acceptance
+  cancel-in-progress: false
+jobs:
+  exact-source-inputs:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Test current native validators and preserve exact text sources
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-final-routes
+          python3 -m unittest discover -s tests -p test_modernization_p06_phase_e2e.py -v > .local/pr16-final-routes/p06-unit.log 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_integration_continuation.py -v > .local/pr16-final-routes/p07-unit.log 2>&1
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-final-routes'
+          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          allowed={'.py','.c','.h','.s','.S','.ld','.json','.jsonl','.csv','.tsv','.md','.txt','.yml','.yaml','.toml','.sh','.lock','.inc'}
+          manifest={}
+          with zipfile.ZipFile(out/'tracked-text-sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,paths)):
+                  p=root/name
+                  if p.is_symlink() or not p.is_file() or p.suffix not in allowed:continue
+                  if p.parts[0] in ('userfile','inputs','.git','.local','build','dist','generated'):continue
+                  raw=p.read_bytes()
+                  try:raw.decode('utf-8')
+                  except UnicodeDecodeError:continue
+                  z.writestr(name,raw)
+                  manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          result={'tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'sources':manifest,'purpose':'exact source input for final native fixes, NOT product acceptance','rom_or_save_included':False,'release_ready':False}
+          (out/'source-bindings.json').write_text(json.dumps(result,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-final-route-source-inputs
+          path: .local/pr16-final-routes/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
