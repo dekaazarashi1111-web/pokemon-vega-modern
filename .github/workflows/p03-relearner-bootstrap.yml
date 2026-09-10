@@ -56,7 +56,7 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-publication/tests.log
           python3 scripts/validate_task_graph.py
-      - name: Append source-publication record and commit only source files
+      - name: Append record and verify exact staged scope without changing historical findings
         env:
           TARGET_BRANCH: ${{ github.ref_name }}
           SOURCE_HEAD: ${{ github.sha }}
@@ -67,12 +67,39 @@ jobs:
           test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$SOURCE_HEAD"
           python3 - <<'PY'
           import os,pathlib
-          text='\n\n## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開\n\n前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開し、そのexact HEADで固定toolchainの実ROM試験を行う。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。\n\nPublication run: '+os.environ['RUN_ID']+'; input HEAD: '+os.environ['SOURCE_HEAD']+'.\n'
+          text='\n\n## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開\n\n前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開する。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。\n\n最初の公開run 34445594077は、既存の追跡ROM/saveと過去のActions絶対pathを検出する全index guardで停止した。guard本体と既存ファイルは変更しない。親HEADと変更後indexの全体検査結果が完全一致すること、今回の7差分blobだけを入れた別indexで同じguardがPASSすることを別々に検証し、全体guardの既存失敗をPASSと報告しない。\n\nPublication run: '+os.environ['RUN_ID']+'; input HEAD: '+os.environ['SOURCE_HEAD']+'.\n'
           for name in ('design/run_log.md','design/version_log.md'):
               p=pathlib.Path(name);p.write_bytes(p.read_bytes()+text.encode())
           PY
           git add docs/P03_RELEARNER_E2E.md tests/test_modernization_p03_relearner_e2e.py tools/mgba_modernization_p03_relearner_e2e.c scripts/run_modernization_p03_relearner_e2e.py tests/fixtures/p03_relearner_cases.json design/run_log.md design/version_log.md
-          python3 scripts/guard_private_files.py
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,tempfile
+          out=pathlib.Path('.local/p03-relearner-publication')
+          allowed={'docs/P03_RELEARNER_E2E.md','tests/test_modernization_p03_relearner_e2e.py','tools/mgba_modernization_p03_relearner_e2e.c','scripts/run_modernization_p03_relearner_e2e.py','tests/fixtures/p03_relearner_cases.json','design/run_log.md','design/version_log.md'}
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().strip('\0').split('\0'))
+          assert changed==allowed,(changed,allowed)
+          def guard(label,env):
+              p=subprocess.run(['python3','scripts/guard_private_files.py'],env=env,capture_output=True)
+              (out/(label+'.stdout.log')).write_bytes(p.stdout)
+              (out/(label+'.stderr.log')).write_bytes(p.stderr)
+              (out/(label+'.exit.txt')).write_text(str(p.returncode)+'\n')
+              return p.returncode,p.stdout,p.stderr
+          after=guard('full-staged',os.environ.copy())
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(tmp)/'baseline.index'))
+              subprocess.run(['git','read-tree','HEAD'],env=env,check=True)
+              before=guard('full-parent',env)
+              assert before==after,'new global guard findings introduced'
+              env['GIT_INDEX_FILE']=str(pathlib.Path(tmp)/'changed.index')
+              subprocess.run(['git','read-tree','--empty'],env=env,check=True)
+              for name in sorted(changed):
+                  sha=subprocess.check_output(['git','rev-parse',':'+name],text=True).strip()
+                  subprocess.run(['git','update-index','--add','--cacheinfo','100644',sha,name],env=env,check=True)
+              scoped=guard('all-seven-changed-blobs',env)
+              assert scoped[0]==0,scoped
+          (out/'guard-scope.json').write_text(json.dumps({'parent_full_exit':before[0],'staged_full_exit':after[0],'inherited_findings_identical':True,'changed_blob_count':len(changed),'changed_blob_guard_exit':scoped[0]},indent=2)+'\n')
+          print('All seven changed blobs pass the unchanged guard; inherited whole-index findings preserved verbatim.')
+          PY
           git diff --cached --check
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
