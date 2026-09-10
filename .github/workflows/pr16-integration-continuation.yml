@@ -1,5 +1,5 @@
 name: pr16-integration-continuation
-run-name: PR16 exact-head integration continuation
+run-name: PR16 adopted-source reconciliation and acceptance connection
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -15,56 +15,154 @@ concurrency:
   group: pr16-integration-continuation
   cancel-in-progress: false
 jobs:
-  source:
+  reconcile-p07:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Export tracked source only; preserve ROM and save identities
+      - name: Fixed toolchain and unchanged Stage84
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-continuation/reconciliation
+          bash infra/setup_github_actions.sh --install > .local/pr16-continuation/reconciliation/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-continuation/reconciliation/candidate.json
+          git rev-parse HEAD > .local/pr16-continuation/reconciliation/tested-head.txt
+      - name: Recover only the hash-pinned adopted V4 source
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p .local/pr16-continuation/source
-          gh api repos/dekaazarashi1111-web/pokemon-vega-modern --jq '{visibility,private,default_branch}' > .local/pr16-continuation/source/repository.json
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --dir .local/pr16-inputs
           python3 - <<'PY'
-          import hashlib,json,pathlib,subprocess,zipfile
-          root=pathlib.Path('.'); out=root/'.local/pr16-continuation/source'
-          head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-          paths=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          roots={'scripts','tools','tests','overlays','content','config','design','tasks','docs','infra','.github','state'}
-          extensions={'.py','.c','.h','.s','.inc','.json','.csv','.tsv','.md','.txt','.sh','.yml','.yaml','.toml','.mk','.ld'}
-          bindings={}; protected={}
-          with zipfile.ZipFile(out/'tracked-source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  if not name: continue
-                  p=root/name
-                  if not p.is_file() or p.is_symlink(): continue
-                  suffix=p.suffix.lower()
-                  if suffix in {'.gba','.srm','.sav'}:
-                      protected[name]={'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size}
-                      continue
-                  if p.parts[0] not in roots or suffix not in extensions: continue
-                  if any(x.lower() in {'credentials','secrets','.ssh','private'} for x in p.parts): continue
-                  raw=p.read_bytes()
-                  try: raw.decode('utf8')
-                  except UnicodeDecodeError: continue
-                  if b'\0' in raw: continue
-                  z.writestr(name,raw)
-                  bindings[name]={'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw)}
-          (out/'source-bindings.json').write_text(json.dumps({'head':head,'files':bindings},sort_keys=True,indent=2)+'\n')
-          (out/'protected-originals.json').write_text(json.dumps(protected,sort_keys=True,indent=2)+'\n')
-          (out/'tracked-paths.json').write_text(json.dumps(paths,ensure_ascii=False,indent=2)+'\n')
-          print(json.dumps({'head':head,'source_files':len(bindings),'protected_originals':len(protected),'rom_save_exported':False}))
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_text())
+          model=next(a for a in cfg['archives'] if a['name']=='pokemon-vega-private-env-v1-inputs.zip')
+          raw=(root/'.local/pr16-inputs'/model['name']).read_bytes()
+          assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+          name='userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip'
+          with zipfile.ZipFile(root/'.local/pr16-inputs'/model['name']) as z: data=z.read(name)
+          assert hashlib.sha256(data).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+          target=root/name
+          assert not any(p.is_symlink() for p in (target,*target.parents))
+          if target.exists(): assert target.read_bytes()==data
+          else:
+              target.parent.mkdir(parents=True,exist_ok=True)
+              target.write_bytes(data);target.chmod(0o444)
           PY
+      - name: Reject false positives and reconcile actual ROM tables
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_pr16_integration_continuation.py -v > .local/pr16-continuation/reconciliation/unit.log 2>&1
+          python3 scripts/pr16_integration_continuation.py > .local/pr16-continuation/reconciliation/run.stdout 2> .local/pr16-continuation/reconciliation/run.stderr
           git diff --exit-code
+      - name: Preserve bounded inputs for independent inspection, never ROM/save
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-continuation/reconciliation';out.mkdir(parents=True,exist_ok=True)
+          paths=['scripts/pr16_integration_continuation.py','tests/test_pr16_integration_continuation.py','manifests/species_ids.csv','manifests/move_ids.csv','tools/modernization_p07_learnsets.py','.github/workflows/pr16-integration-continuation.yml']
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:z.write(root/name,name)
+          bindings={n:{'size':(root/n).stat().st_size,'sha256':hashlib.sha256((root/n).read_bytes()).hexdigest()} for n in paths}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-continuation-source
-          path: .local/pr16-continuation/source/
+          name: pr16-p07-reconciliation
+          path: .local/pr16-continuation/reconciliation/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  connect-accepted-originals:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Recover and verify the nine exact integration originals
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-continuation/acceptance
+          python3 - <<'PY'
+          import pathlib,sys,subprocess,zipfile
+          sys.path.insert(0,'scripts')
+          import record_modernization_final_acceptance as record
+          root=pathlib.Path('.');target=root/record.DIRECTORY;target.mkdir(parents=True,exist_ok=True)
+          for label,endpoint in [('actions-run.json',''),('actions-jobs.json','/jobs?per_page=100'),('actions-artifacts.json','/artifacts?per_page=100')]:
+              raw=subprocess.check_output(['gh','api',f'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/{record.RUN}'+endpoint])
+              p=target/label
+              if p.exists():record.need(p.read_bytes()==raw,'metadata collision: '+label)
+              else:p.write_bytes(raw)
+          for label,(aid,size,sha) in record.ARTIFACTS.items():
+              raw=subprocess.check_output(['gh','api',f'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/{aid}/zip'])
+              record.need(record.identity(raw)==dict(size=size,sha256=sha),'artifact identity differs: '+label)
+              p=target/(label+'.zip')
+              if p.exists():record.need(p.read_bytes()==raw,'original collision: '+label)
+              else:p.write_bytes(raw)
+          with zipfile.ZipFile(target/'candidate.zip') as z:raw=z.read('evidence/original.zip')
+          p=root/'content/modernization/p08_p06_evidence/34444010444/original.zip';p.parent.mkdir(parents=True,exist_ok=True)
+          if p.exists():record.need(p.read_bytes()==raw,'old P06 original collision')
+          else:p.write_bytes(raw)
+          PY
+          if test -f content/modernization/p08_final_candidate_acceptance.json; then
+            python3 scripts/record_modernization_final_acceptance.py > .local/pr16-continuation/acceptance/verification.json
+          else
+            python3 scripts/record_modernization_final_acceptance.py --write > .local/pr16-continuation/acceptance/verification.json
+          fi
+          python3 -m unittest discover -s tests -p test_modernization_final_integration.py -v > .local/pr16-continuation/acceptance/unit.log 2>&1
+      - name: Commit only verified receipt and clean P06 original; do not track patch-bearing ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$(gh api repos/dekaazarashi1111-web/pokemon-vega-modern/git/ref/heads/codex/modernization-followup-20260908 --jq .object.sha)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import datetime,pathlib
+          root=pathlib.Path('.')
+          entry='\n## '+datetime.datetime.now(datetime.timezone.utc).isoformat()+'\n\n- Task: PR16 final integration / P06 accepted-original connection\n- Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.\n- Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (root/name).open('a') as f:f.write(entry)
+          PY
+          git add -- content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_remaining_work.json design/run_log.md design/version_log.md
+          git add -f -- content/modernization/p08_p06_evidence/34444010444/original.zip
+          index=$(mktemp -u "$RUNNER_TEMP/pr16-evidence-index.XXXXXX")
+          GIT_INDEX_FILE="$index" git read-tree --empty
+          git diff --cached --name-only -z | xargs -0 git ls-files --stage -- | GIT_INDEX_FILE="$index" git update-index --index-info
+          GIT_INDEX_FILE="$index" python3 scripts/guard_private_files.py > .local/pr16-continuation/acceptance/new-index-guard.txt
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'test(p06): connect verified Stage84 acceptance and retain missing original ZIP'
+          git push origin HEAD:codex/modernization-followup-20260908
+          git rev-parse HEAD > .local/pr16-continuation/acceptance/reflected-head.txt
+      - name: Preserve verified originals and receipt as Actions evidence
+        if: always()
+        run: |
+          mkdir -p .local/pr16-continuation/acceptance/records
+          for p in content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_remaining_work.json; do
+            if test -f "$p"; then cp "$p" .local/pr16-continuation/acceptance/records/; fi
+          done
+          if test -d content/modernization/p08_final_evidence/34477344071; then cp -r content/modernization/p08_final_evidence/34477344071 .local/pr16-continuation/acceptance/records/; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-accepted-originals-connection
+          path: .local/pr16-continuation/acceptance/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
