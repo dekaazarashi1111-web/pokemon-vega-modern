@@ -95,3 +95,23 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
+      - name: P03 capacity fixed originals and cold-save acceptance
+        shell: bash
+        env:
+          P03_CAPACITY_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-capacity-ci
+          printf '%s\n' "$P03_CAPACITY_SOURCE_HEAD" > .local/p03-capacity-ci/source-head.txt
+          git rev-parse HEAD > .local/p03-capacity-ci/checkout-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p08_capacity_evidence.py -v 2>&1 | tee .local/p03-capacity-ci/tests.txt
+          python3 scripts/record_modernization_p03_capacity.py | tee .local/p03-capacity-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-capacity-final-ci
+          path: .local/p03-capacity-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
