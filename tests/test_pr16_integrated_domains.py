@@ -8,8 +8,15 @@ import pr16_integrated_domains as m
 class IntegratedDomainBinding(unittest.TestCase):
     def test_seven_contracts_and_preimages_are_not_weakened(self):
         old=m.prior.derived_config();new=m.derived_config()
-        for key in ('domains','p03_contract','runtime_candidate','latest_rom_preimages','orchestrator'):
+        for key in ('domains','runtime_candidate','latest_rom_preimages','orchestrator'):
             self.assertEqual(old[key],new[key],key)
+        self.assertEqual(new['final_integration']['parent_p03_contract'],old['p03_contract'])
+        self.assertEqual(new['p03_contract'],m.candidate_p03_contract(old['p03_contract']))
+        restored=json.loads(json.dumps(new['p03_contract']))
+        for key,(before,after) in m.P03_RELOCATIONS.items():
+            self.assertEqual(restored['arguments'][key],after)
+            restored['arguments'][key]=before
+        self.assertEqual(restored,old['p03_contract'])
         self.assertEqual(len(new['domains']),7)
         self.assertNotEqual(new['execution']['state_root'],old['execution']['state_root'])
     def test_new_candidate_is_separate_from_preserved_parent(self):

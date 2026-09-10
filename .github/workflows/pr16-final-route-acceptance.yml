@@ -9,6 +9,10 @@ on:
       - scripts/pr16_integrated_native.py
       - scripts/pr16_integrated_p06.py
       - scripts/pr16_integrated_domains.py
+      - scripts/pr16_native_learning.py
+      - tools/mgba_pr16_level_learning.c
+      - tests/test_pr16_native_learning.py
+      - tests/test_pr16_integrated_roots.py
       - tests/test_pr16_integrated_p06.py
       - tests/test_pr16_integrated_domains.py
       - tests/test_pr16_integrated_native.py
@@ -77,6 +81,8 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s tests -p test_pr16_integrated_p06.py -v
           python3 -m unittest discover -s tests -p test_pr16_integrated_domains.py -v
+          python3 -m unittest discover -s tests -p test_pr16_integrated_roots.py -v
+          python3 -m unittest discover -s tests -p test_pr16_native_learning.py -v
       - name: Two independent integration builds and engineering patch round trips
         run: |
           set -euo pipefail
@@ -98,6 +104,12 @@ jobs:
           set -euo pipefail
           python3 scripts/pr16_integrated_native.py > .local/pr16-final-routes/native.stdout 2> .local/pr16-final-routes/native.stderr
           git diff --exit-code
+      - name: Native Rare Candy level and actual evolution learning, cancellation and cold saves
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_native_learning.py > .local/pr16-final-routes/learning.stdout 2> .local/pr16-final-routes/learning.stderr
+          git diff --exit-code
       - name: P06 native adopted effects, visible Summary, slots and cold saves on integrated ROM
         if: ${{ !cancelled() }}
         run: |
@@ -116,7 +128,7 @@ jobs:
           python3 - <<'PY'
           import hashlib,json,pathlib,zipfile
           root=pathlib.Path('.');out=root/'.local/pr16-final-routes';out.mkdir(parents=True,exist_ok=True)
-          paths=['scripts/pr16_integrated_p06.py','tests/test_pr16_integrated_p06.py','scripts/pr16_integrated_domains.py','tests/test_pr16_integrated_domains.py','scripts/run_modernization_p06_phase_e2e.py','tools/mgba_modernization_p06_phase_e2e.c','scripts/pr16_integrated_native.py','tests/test_pr16_integrated_native.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_source_acceptance.py','scripts/pr16_integration_continuation.py','tests/test_pr16_p07_preserved_layer.py','tests/test_pr16_source_acceptance.py','overlays/modernization_p07_preserved_layer/runtime.c','content/modernization/p07_preserved_layer_spec.json','.github/workflows/pr16-final-route-acceptance.yml']
+          paths=['scripts/pr16_native_learning.py','tools/mgba_pr16_level_learning.c','tests/test_pr16_native_learning.py','tests/test_pr16_integrated_roots.py','scripts/pr16_integrated_p06.py','tests/test_pr16_integrated_p06.py','scripts/pr16_integrated_domains.py','tests/test_pr16_integrated_domains.py','scripts/run_modernization_p06_phase_e2e.py','tools/mgba_modernization_p06_phase_e2e.c','scripts/pr16_integrated_native.py','tests/test_pr16_integrated_native.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_source_acceptance.py','scripts/pr16_integration_continuation.py','tests/test_pr16_p07_preserved_layer.py','tests/test_pr16_source_acceptance.py','overlays/modernization_p07_preserved_layer/runtime.c','content/modernization/p07_preserved_layer_spec.json','.github/workflows/pr16-final-route-acceptance.yml']
           with zipfile.ZipFile(out/'source-inputs.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in paths:z.write(root/name,name)
           report={p:{'size':(root/p).stat().st_size,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for p in paths}
