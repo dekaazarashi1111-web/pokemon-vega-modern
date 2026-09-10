@@ -46,3 +46,14 @@ stdout・stderr・終了コード・タイムアウト／起動失敗を各ケ�
 ## 受入上の範囲
 
 これは通常思い出し・代表タマゴ技のUIと保存経路の検証です。技忘れ、その他の習得・フォーム・進化経路、全種族の供給、archive economyの正式採用、P05の自然な取得・Battle Circus入場、P06/P07、最終リリースを完了扱いにしません。Stage62の実プレイ基準と実プレイセーブ、過去の成功原本、PRのDraft状態、`release_ready=false` は変更しません。
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 固定環境46経路の原本受入
+
+Actions run 34446029812、source HEAD 3c894515d6d73a21fde48228853eef38501933ef、GCC 13.3.0 / mGBA 0.10.2で通常思い出し17件とタマゴ技29件の全46件をPASS。新規46プロセス・92 core、キャッシュ0。全ケースで通常保存、新規coreの通常Continue、個体100byte・技・PP・PP Up・解禁フラグ・ハーブを検証。ホスト書込7 APIの実拒否も確認した。
+
+原本175ファイルのZIP（93814 bytes、SHA-256 ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed）、Actions run/jobs/artifactの取得原本、26入力ソースhashを照合し、56 runtime契約テストと24原本改変テストの計80件をPASS。受入先は content/modernization/p08_p03_relearner_acceptance.json、証跡先は content/modernization/p08_relearner_evidence/34446029812/。検査のみのコマンドが証跡内容・mtimeを変更しないことも確認した。本統合は新規mGBA実行0件。
+
+試験開始前の個体・道具・フラグは隔離fixtureであり自然入手の受入ではない。Stage82 ROMは変更0byte、Stage62基準と実プレイsaveは不変。全P03/P05・最終releaseを昇格しない。並行P06/P07の採用状況はこの試験から判定せず別管理とする。既存全index guardのROM/save・過去path違反は残し、今回の差分indexで同じguardをPASS、全体の違反出力が親と変わらないことを確認してcommit/pushする。
+
+Integration run: 34446703839; integration source: 43a9a22fac95538d17a36cc7ced5ace62c80a81a.

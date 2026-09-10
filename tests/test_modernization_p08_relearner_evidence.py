@@ -18,7 +18,7 @@ class OriginalEvidence(unittest.TestCase):
     def setUpClass(cls):
         d = ROOT / subject.DIRECTORY
         cls.data = (d / 'original.zip').read_bytes()
-        cls.run = subject.strict_json((d / 'actions-run.json').read_bytes())
+        cls.actions_run = subject.strict_json((d / 'actions-run.json').read_bytes())
         cls.jobs = subject.strict_json((d / 'actions-jobs.json').read_bytes())
         cls.artifact = subject.strict_json((d / 'actions-artifact.json').read_bytes())
         cls.files = subject.archive_members(cls.data)
@@ -26,7 +26,7 @@ class OriginalEvidence(unittest.TestCase):
 
     def check(self, data=None, run=None, jobs=None, artifact=None):
         return subject.verify(self.data if data is None else data,
-                              self.run if run is None else run,
+                              self.actions_run if run is None else run,
                               self.jobs if jobs is None else jobs,
                               self.artifact if artifact is None else artifact)
 
@@ -62,10 +62,10 @@ class OriginalEvidence(unittest.TestCase):
                      ('conclusion', 'failure'), ('status', 'in_progress'), ('event', 'workflow_dispatch'),
                      ('run_attempt', 2), ('path', '.github/workflows/ci.yml')]:
             with self.subTest(field=k), self.assertRaises(ValueError):
-                self.check(run=self.run | {k: v})
+                self.check(run=self.actions_run | {k: v})
 
     def test_foreign_repository(self):
-        r = deepcopy(self.run); r['repository']['full_name'] = 'other/project'
+        r = deepcopy(self.actions_run); r['repository']['full_name'] = 'other/project'
         with self.assertRaises(ValueError): self.check(run=r)
 
     def test_archive_digest_size_and_run(self):
