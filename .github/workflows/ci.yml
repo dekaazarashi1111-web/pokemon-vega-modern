@@ -72,3 +72,8 @@ jobs:
           set -euo pipefail
           python3 -m unittest discover -s tests -p test_modernization_p03_archive_ui_e2e.py -v
           if test -f content/modernization/p08_stage82_archive_acceptance.json; then python3 scripts/record_modernization_stage82_archive.py; fi
+      - name: P03 physical breeding contracts and original Actions evidence
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding*.py' -v
+          if test -f content/modernization/p08_p03_breeding_acceptance.json; then python3 scripts/record_modernization_p03_breeding.py; fi
