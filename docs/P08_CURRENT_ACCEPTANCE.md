@@ -99,3 +99,7 @@ python3 scripts/record_modernization_p03_breeding.py
 ```
 
 上記は読取専用の原本再検証。原本8プロセス／24 coreと統合時の新規実行0件を区別する。
+
+## 2026-09-10 — P03 five-egg FIFO and party/PC capacity acceptance
+
+Original Actions 34439826111, tested source 40dec97d5360422e66d02a3ae0261a00df566f86: fixed toolchain; three new mGBA processes, nine cores, zero cache reuse; all three capacity routes passed. Normal deposit and walking fill the five-egg FIFO; 512 additional steps do not overwrite it. Real dialogue fills the party then uses the first/last PC vacancy, or preserves pending eggs when all 420 PC slots are full. Two normal saves/fresh-core Continues and the repeated full-PC refusal preserve exact party, PC, queue and parent bytes. Seven actual host-write denial probes pass; no ROM calls after the fixture barrier. Original ZIP and Actions metadata: content/modernization/p08_breeding_capacity_evidence/34439826111. This integration performs no additional mGBA run. Parent/PC layout is an isolated fixture. Other P03/P05 routes, P06/P07 adoption and final release remain incomplete. Stage82 product bytes, Stage62 baseline, existing evidence and release_ready=false are unchanged.
