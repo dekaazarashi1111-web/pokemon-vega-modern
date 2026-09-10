@@ -1,0 +1,49 @@
+name: pr16-source-workspace
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-source-workspace.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Archive tracked source dependencies; exclude ROM, saves and user originals
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-source-workspace
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          roots={'scripts','tools','tests','overlays','config','content','generated','manifests','infra','build'}
+          extensions={'.py','.c','.h','.S','.s','.ld','.json','.csv','.sh','.yml','.yaml','.toml'}
+          files=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          out=root/'.local/pr16-source-workspace';bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(files):
+                  p=pathlib.Path(name)
+                  if not name or p.parts[0] not in roots or p.suffix not in extensions:continue
+                  if p.is_symlink():raise ValueError('tracked symlink: '+name)
+                  data=p.read_bytes();data.decode('utf-8')
+                  bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+                  z.writestr(name,data)
+          manifest={'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'files':bindings,'rom_or_save_included':False,'product_acceptance':False}
+          (out/'manifest.json').write_text(json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          print('SOURCE_WORKSPACE',manifest['head'],len(bindings))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-source-workspace
+          path: .local/pr16-source-workspace/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
