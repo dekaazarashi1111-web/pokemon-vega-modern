@@ -59,13 +59,17 @@ def stats(species: int, level: int, candidate: bool, personality: int, ivs: list
     return output
 
 
-def validate(raw: bytes, case: tuple[int,int,int], returncode: int) -> dict:
+FINAL_SHA = '55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b'
+
+
+def validate(raw: bytes, case: tuple[int,int,int], returncode: int, candidate_sha: str=recipe.CANDIDATE_SHA) -> dict:
+    need(candidate_sha in (recipe.CANDIDATE_SHA, FINAL_SHA), 'unrecognized candidate identity')
     need(type(returncode) is int and returncode == 0,'process exit is not integer zero')
     s,slot,mode=case
     need(case in CASES,'unknown case')
     value=recipe.strict_json(raw)
     expected={'schema_version':1,'status':'OBSERVED','scope':SCOPE,'parent_sha256':recipe.PARENT_SHA,
-              'candidate_sha256':recipe.CANDIDATE_SHA,'species':s,'slot':slot,'mode':mode,
+              'candidate_sha256':candidate_sha,'species':s,'slot':slot,'mode':mode,
               'ability_before':(ABILITIES_AFTER if mode else ABILITIES_BEFORE)[s][slot],
               'ability_loaded':ABILITIES_AFTER[s][slot],'ability_final':ABILITIES_AFTER[s][slot],
               'initial_level':48,'final_level':49,'save_counter_delta':2,'normal_save_menu':True,
@@ -120,7 +124,8 @@ def output_dir(path: Path) -> Path:
     return path
 
 
-def run(parent: Path, output: Path, jobs: int=4) -> dict:
+def run(parent: Path, output: Path, jobs: int=4, candidate_stage: int=83) -> dict:
+    need(type(candidate_stage) is int and candidate_stage in (83,84), 'unsupported candidate stage')
     parent=parent.resolve()
     need(not parent.is_relative_to(output.resolve()),'parent must not be inside owned output')
     out=output_dir(output)
@@ -130,6 +135,12 @@ def run(parent: Path, output: Path, jobs: int=4) -> dict:
     need(parent_id=={'size':33554432,'sha256':recipe.PARENT_SHA},'fixed Stage82 parent differs')
     need(seed_id=={'size':131072,'sha256':SEED_SHA},'seed differs')
     child,report=recipe.build(parent.read_bytes())
+    if candidate_stage == 84:
+        import modernization_empty_move_pp_repair as empty_pp
+        child,repair_report=empty_pp.build(child)
+        need(recipe.identity(child)=={'size':33554432,'sha256':FINAL_SHA}, 'fixed final candidate differs')
+        report={'candidate':repair_report['candidate'],'p06_adoption':report,'stage84_repair':repair_report}
+    candidate_sha=report['candidate']['sha256']
     (out/'candidate.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
     cfgpath='config/modernization_stage79_cumulative_mgba.json'
     domain=next(d for d in recipe.strict_json((ROOT/cfgpath).read_bytes())['domains'] if d['id']=='p02')
@@ -137,6 +148,8 @@ def run(parent: Path, output: Path, jobs: int=4) -> dict:
            'scripts/run_modernization_p03_fullslots_e2e.py','scripts/run_modernization_stage82_github_domain.py',
            'tests/test_modernization_p06_decided_e2e.py','tests/fixtures/p06_decided_native_template.json',
            'config/active_play_baseline.json','infra/toolchain_manifest.json','infra/setup_github_actions.sh'}
+    if candidate_stage == 84:
+        names.add('tools/modernization_empty_move_pp_repair.py')
     names.update(p for p,_ in EMBED)
     for row in (domain['runner'],*domain['dependencies']):
         need(recipe.identity((ROOT/row['path']).read_bytes())=={k:row[k] for k in ('size','sha256')},'historical harness differs: '+row['path'])
@@ -164,9 +177,9 @@ def run(parent: Path, output: Path, jobs: int=4) -> dict:
                 need(capture_api.require_exited(p)==1 and not stdout and stderr==b'P03 archive: host write after observation barrier\n','host write guard failed')
             def one(case):
                 s,a,m=case;label=f'{s}-{a}-{m}';private=work/(label+'.srm');shutil.copyfile(seed,private)
-                stdout,stderr,p=capture_api.capture([str(binary),str(parent),str(childpath),str(private),recipe.PARENT_SHA,recipe.CANDIDATE_SHA,SEED_SHA,str(s),str(a),str(m)],out/label,240)
+                stdout,stderr,p=capture_api.capture([str(binary),str(parent),str(childpath),str(private),recipe.PARENT_SHA,candidate_sha,SEED_SHA,str(s),str(a),str(m)],out/label,240)
                 need(b'mGBA[' not in stderr,'emulator warning/error')
-                return validate(stdout,case,capture_api.require_exited(p))
+                return validate(stdout,case,capture_api.require_exited(p),candidate_sha)
             with ThreadPoolExecutor(max_workers=jobs) as pool:
                 results=list(pool.map(one,CASES))
             need(recipe.identity(childpath.read_bytes())==report['candidate'],'candidate changed during tests')
@@ -179,7 +192,7 @@ def run(parent: Path, output: Path, jobs: int=4) -> dict:
     formal=bool(os.environ.get('GITHUB_ACTIONS')=='true' and b'13.3.0' in compiler and b'0.10.2' in mgba)
     need(os.environ.get('GITHUB_ACTIONS')!='true' or formal,'fixed GitHub compiler/emulator identity differs')
     result={'schema_version':1,'status':'PASS','scope':SCOPE,'validation_class':'FIXED_GITHUB' if formal else 'LOCAL_DIAGNOSTIC',
-            'candidate_stage':83,'parent':parent_id,'candidate':report['candidate'],'source_bindings':bindings,
+            'candidate_stage':candidate_stage,'parent':parent_id,'candidate':report['candidate'],'source_bindings':bindings,
             'fresh_process_runs':8,'core_instances':24,'cache_reuse':0,'source_decided_species_count':2,
             'existing_save_cases':4,'new_mon_cases':4,'guards':list(GUARDS),'cases':results,
             'full_p06_acceptance':False,'release_ready':False,'active_baseline_changed':False}
@@ -192,9 +205,10 @@ def main(argv=None) -> int:
     parser.add_argument('--parent',type=Path,default=ROOT/PARENT)
     parser.add_argument('--output-directory',type=Path,default=ROOT/'.local/p06-decided')
     parser.add_argument('--jobs',type=int,default=4)
+    parser.add_argument('--candidate-stage',type=int,choices=(83,84),default=83)
     args=parser.parse_args(argv)
     try:
-        print(json.dumps(run(args.parent,args.output_directory,args.jobs),ensure_ascii=False,sort_keys=True,indent=2))
+        print(json.dumps(run(args.parent,args.output_directory,args.jobs,args.candidate_stage),ensure_ascii=False,sort_keys=True,indent=2))
         return 0
     except (OSError,ValueError,KeyError,RuntimeError) as e:
         print('P06 ERROR: '+str(e),file=sys.stderr);return 1
