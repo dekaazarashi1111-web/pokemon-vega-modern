@@ -1,0 +1,138 @@
+name: p03-relearner-integration
+run-name: Record the 46 successful fixed-toolchain originals in P08
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-relearner-integration.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: p03-relearner-integration
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.actor == 'dekaazarashi1111-web'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: Retrieve exact successful original and unmodified Actions metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-relearner-integration
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,urllib.request
+          base='https://api.github.com/repos/dekaazarashi1111-web/pokemon-vega-modern'
+          directory=pathlib.Path('content/modernization/p08_relearner_evidence/34446029812')
+          assert not directory.exists(),'refusing to overwrite recorded originals'
+          directory.mkdir(parents=True)
+          def get(suffix):
+              req=urllib.request.Request(base+suffix,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
+              with urllib.request.urlopen(req,timeout=60) as response: return json.load(response)
+          run=get('/actions/runs/34446029812')
+          assert run['head_sha']=='3c894515d6d73a21fde48228853eef38501933ef' and run['conclusion']=='success' and run['status']=='completed'
+          jobs=get('/actions/runs/34446029812/jobs?per_page=100')
+          artifacts=get('/actions/runs/34446029812/artifacts?per_page=100')
+          matches=[a for a in artifacts['artifacts'] if a['id']==10139796837 and a['name']=='p03-relearner-e2e']
+          assert len(matches)==1
+          artifact=matches[0]
+          assert artifact['digest']=='sha256:ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed'
+          for name,value in [('actions-run',run),('actions-jobs',jobs),('actions-artifact',artifact)]:
+              (directory/(name+'.json')).write_text(json.dumps(value,indent=2)+'\n')
+          subprocess.run(['curl','--fail','--silent','--show-error','--location','--proto','=https','--proto-redir','=https','--header','Authorization: Bearer '+os.environ['GH_TOKEN'],base+'/actions/artifacts/10139796837/zip','--output',str(directory/'original.zip')],check=True)
+          raw=(directory/'original.zip').read_bytes()
+          assert len(raw)==93814 and hashlib.sha256(raw).hexdigest()=='ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed'
+          print('Original ZIP and Actions metadata retrieved without extracting ROM/save payloads.')
+          PY
+      - name: Correct unittest metadata name without shadowing TestCase.run
+        run: |
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('tests/test_modernization_p08_relearner_evidence.py')
+          before=p.read_bytes()
+          assert hashlib.sha256(before).hexdigest()=='1b065342cf9dc07fdb23e255eb9a6e5469541f5b37d0f95d85e783f6c2fad9a2'
+          after=before.replace(b'cls.run',b'cls.actions_run').replace(b'self.run',b'self.actions_run')
+          assert hashlib.sha256(after).hexdigest()=='48f31bbf11df5b3fd04ad409040431b29c9153f3c6629bed4239040827865b53'
+          p.write_bytes(after)
+          PY
+      - name: Revalidate every original and reject evidence mutations
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-integration/runtime-contracts.log
+          python3 -m unittest discover -s tests -p test_modernization_p08_relearner_evidence.py -v 2>&1 | tee .local/p03-relearner-integration/original-mutations.log
+          python3 scripts/record_modernization_p03_relearner.py --write | tee .local/p03-relearner-integration/write.json
+          python3 scripts/record_modernization_p03_relearner.py | tee .local/p03-relearner-integration/check.json
+          python3 scripts/validate_task_graph.py
+      - name: Append Japanese completion scope without promoting product release
+        env:
+          INTEGRATION_RUN: ${{ github.run_id }}
+          INTEGRATION_HEAD: ${{ github.sha }}
+        run: |
+          python3 - <<'PY'
+          import os,pathlib
+          text='\n\n## 2026-09-10 — USER-P03-RELEARNER / 固定環境46経路の原本受入\n\nActions run 34446029812、source HEAD 3c894515d6d73a21fde48228853eef38501933ef、GCC 13.3.0 / mGBA 0.10.2で通常思い出し17件とタマゴ技29件の全46件をPASS。新規46プロセス・92 core、キャッシュ0。全ケースで通常保存、新規coreの通常Continue、個体100byte・技・PP・PP Up・解禁フラグ・ハーブを検証。ホスト書込7 APIの実拒否も確認した。\n\n原本175ファイルのZIP（93814 bytes、SHA-256 ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed）、Actions run/jobs/artifactの取得原本、26入力ソースhashを照合し、56 runtime契約テストと24原本改変テストの計80件をPASS。受入先は content/modernization/p08_p03_relearner_acceptance.json、証跡先は content/modernization/p08_relearner_evidence/34446029812/。検査のみのコマンドが証跡内容・mtimeを変更しないことも確認した。本統合は新規mGBA実行0件。\n\n試験開始前の個体・道具・フラグは隔離fixtureであり自然入手の受入ではない。Stage82 ROMは変更0byte、Stage62基準と実プレイsaveは不変。全P03/P05・最終releaseを昇格しない。並行P06/P07の採用状況はこの試験から判定せず別管理とする。既存全index guardのROM/save・過去path違反は残し、今回の差分indexで同じguardをPASS、全体の違反出力が親と変わらないことを確認してcommit/pushする。\n\nIntegration run: '+os.environ['INTEGRATION_RUN']+'; integration source: '+os.environ['INTEGRATION_HEAD']+'.\n'
+          for name in ('design/run_log.md','design/version_log.md','docs/P03_RELEARNER_E2E.md','docs/P08_CURRENT_ACCEPTANCE.md'):
+              p=pathlib.Path(name);p.write_bytes(p.read_bytes()+text.encode())
+          PY
+      - name: Inspect exact staged blobs, preserve inherited findings, and publish
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+          SOURCE_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          test "$TARGET_BRANCH" = codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$SOURCE_HEAD"
+          git add tests/test_modernization_p08_relearner_evidence.py content/modernization/p08_p03_relearner_acceptance.json design/run_log.md design/version_log.md docs/P03_RELEARNER_E2E.md docs/P08_CURRENT_ACCEPTANCE.md
+          git add content/modernization/p08_relearner_evidence/34446029812/actions-*.json
+          git add -f content/modernization/p08_relearner_evidence/34446029812/original.zip
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,tempfile
+          out=pathlib.Path('.local/p03-relearner-integration')
+          prefix='content/modernization/p08_relearner_evidence/34446029812/'
+          allowed={'tests/test_modernization_p08_relearner_evidence.py','content/modernization/p08_p03_relearner_acceptance.json','design/run_log.md','design/version_log.md','docs/P03_RELEARNER_E2E.md','docs/P08_CURRENT_ACCEPTANCE.md',*(prefix+n for n in ('original.zip','actions-run.json','actions-jobs.json','actions-artifact.json'))}
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().strip('\0').split('\0'))
+          assert changed==allowed,(changed,allowed)
+          for name in changed:
+              assert subprocess.check_output(['git','show',':'+name])==pathlib.Path(name).read_bytes(),name
+          assert hashlib.sha256(subprocess.check_output(['git','show',':'+prefix+'original.zip'])).hexdigest()=='ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed'
+          def guard(label,env):
+              p=subprocess.run(['python3','scripts/guard_private_files.py'],env=env,capture_output=True)
+              (out/(label+'.stdout.log')).write_bytes(p.stdout);(out/(label+'.stderr.log')).write_bytes(p.stderr)
+              return p.returncode,p.stdout,p.stderr
+          after=guard('full-staged',os.environ.copy())
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(tmp)/'baseline.index'))
+              subprocess.run(['git','read-tree','HEAD'],env=env,check=True)
+              before=guard('full-parent',env);assert before==after,'new whole-index guard findings'
+              env['GIT_INDEX_FILE']=str(pathlib.Path(tmp)/'changed.index')
+              subprocess.run(['git','read-tree','--empty'],env=env,check=True)
+              for name in sorted(changed):
+                  sha=subprocess.check_output(['git','rev-parse',':'+name],text=True).strip()
+                  subprocess.run(['git','update-index','--add','--cacheinfo','100644',sha,name],env=env,check=True)
+              scoped=guard('changed-blobs',env);assert scoped[0]==0,scoped
+          (out/'guard-scope.json').write_text(json.dumps({'whole_parent_exit':before[0],'whole_staged_exit':after[0],'inherited_findings_unchanged':True,'changed_blobs':len(changed),'changed_guard_exit':scoped[0]},indent=2)+'\n')
+          PY
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-P03-RELEARNER: accept 46 fixed native routes and retain immutable originals'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          git rev-parse HEAD > .local/p03-relearner-integration/published-head.txt
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-relearner-integration
+          path: |
+            .local/p03-relearner-integration/
+            content/modernization/p08_relearner_evidence/34446029812/
+            content/modernization/p08_p03_relearner_acceptance.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
