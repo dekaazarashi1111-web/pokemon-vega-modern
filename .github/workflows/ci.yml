@@ -115,3 +115,24 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
+      - name: P03 relearner 46 fixed originals and 80 regression checks
+        shell: bash
+        env:
+          P03_RELEARNER_SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-relearner-final-ci
+          printf '%s\n' "$P03_RELEARNER_SOURCE_HEAD" > .local/p03-relearner-final-ci/source-head.txt
+          git rev-parse HEAD > .local/p03-relearner-final-ci/checkout-head.txt
+          python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-final-ci/runtime-contracts.log
+          python3 -m unittest discover -s tests -p test_modernization_p08_relearner_evidence.py -v 2>&1 | tee .local/p03-relearner-final-ci/original-mutations.log
+          python3 scripts/record_modernization_p03_relearner.py | tee .local/p03-relearner-final-ci/check.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-relearner-final-ci
+          path: .local/p03-relearner-final-ci/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
