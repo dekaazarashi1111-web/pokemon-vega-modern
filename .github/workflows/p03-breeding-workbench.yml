@@ -1,0 +1,43 @@
+name: p03-breeding-workbench
+run-name: Export exact Stage82 inputs for remaining P03 breeding implementation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-breeding-workbench.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Export tracked sources and exact candidate without modifying baseline
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/p03-breeding-workbench
+          git archive --format=tar.gz HEAD > /tmp/p03-breeding-workbench/repository.tar.gz
+          git rev-parse HEAD > /tmp/p03-breeding-workbench/source-head.txt
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > /tmp/p03-breeding-workbench/prepare.json
+          cp .local/stage82-archive-ui/candidate.gba /tmp/p03-breeding-workbench/stage82.gba
+          cp .local/stage82-archive-ui/candidate.json /tmp/p03-breeding-workbench/candidate.json
+          git diff --exit-code
+      - name: Export matching mGBA library and headers for local diagnosis
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y libmgba-dev
+          cd /tmp/p03-breeding-workbench
+          apt-get download libmgba-dev libmgba0.10t64 libzip4t64 libinih1 liblua5.4-0 libelf1t64
+          dpkg-query -W libmgba-dev libmgba0.10t64 > native-packages.txt
+          sha256sum * > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-breeding-workbench
+          path: /tmp/p03-breeding-workbench/
+          if-no-files-found: error
+          retention-days: 14
