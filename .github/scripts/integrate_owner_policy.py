@@ -89,7 +89,7 @@ def integrate():
                 text=text.replace('P07採用行、archive economy、clean ROMからの最終再生成、公開済み原本の保護問題が残る。','P07採用行、clean ROMからの最終再生成が残る。archive economyとpublic設定の所有者判断は確定済み。')
                 text=text.replace('対応方法は所有者の明示承認が必要。','publicは所有者が意図して設定した。非公開化・原本移動の承認待ちを残件にしない。')
                 text=text.replace('P07/料金の未決判断に依存しない。','P07の未決判断に依存しない。料金は無料として正式採用済み。')
-            path.write_text(text,encoding='utf-8')
+            path.write_text(text.rstrip()+'\n',encoding='utf-8')
     import record_modernization_p03_forgetting as record
     overview=record.current_remaining_work(ROOT,record.build())
     (ROOT/record.OVERVIEW).write_text(json.dumps(overview,ensure_ascii=False,sort_keys=True,indent=2)+'\n',encoding='utf-8')
