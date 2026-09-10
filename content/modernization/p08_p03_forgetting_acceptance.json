@@ -1,0 +1,162 @@
+{
+  "accepted_case_names": [
+    "delete-slot-0",
+    "delete-slot-1",
+    "delete-slot-2",
+    "delete-slot-3",
+    "pp-warning-refuse",
+    "confirm-refuse",
+    "summary-cancel",
+    "last-move-denied",
+    "blade-denied",
+    "bash-denied",
+    "hm-surf-delete",
+    "keldeo-form-revert"
+  ],
+  "accepted_core_instances": 24,
+  "accepted_native_processes": 12,
+  "active_baseline_changed": false,
+  "active_baseline_stage": 62,
+  "artifact_id": 10145008020,
+  "candidate_rom": {
+    "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+    "size": 33554432
+  },
+  "candidate_stage": 84,
+  "compiler": "13.3.0",
+  "evidence_directory": "content/modernization/p08_forgetting_evidence/34459625383",
+  "fixture_scope": "Party/position/items configured before Bag input; no natural acquisition claim",
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "host_write_denial_probes": 7,
+  "metadata_bindings": {
+    "actions-artifact.json": {
+      "sha256": "cf41b5923f9ca27e951661ece20f5976601797f7ade6c093e2010ec58062f11b",
+      "size": 847
+    },
+    "actions-jobs.json": {
+      "sha256": "e76f4d6d9e49f2e93048276c3b4d2fe2b8360782f9f92c6c107e43a5c9205d64",
+      "size": 3975
+    },
+    "actions-run.json": {
+      "sha256": "1e849bf5102f92fd4a402212ed10bd40391a23b1739db532f8c839961c373919",
+      "size": 16761
+    }
+  },
+  "mgba_version": "0.10.2",
+  "new_emulator_runs_during_integration": 0,
+  "original_archive": {
+    "sha256": "aa7a122729052c711e27a85658ad96277837b55aa961b8f33799ae2ebf975e04",
+    "size": 86028
+  },
+  "original_cache_reuse": 0,
+  "original_member_count": 78,
+  "parent_defect_controls": 1,
+  "parent_rom": {
+    "sha256": "09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096",
+    "size": 33554432
+  },
+  "release_ready": false,
+  "remaining_scope": [
+    "other evolution/form learning and additional egg supply paths",
+    "archive economy formal adoption",
+    "natural acquisition and physical Battle Circus admission",
+    "P06/P07 full acceptance and final-candidate convergence"
+  ],
+  "repair": {
+    "after": 0,
+    "before": 35,
+    "field": "pp",
+    "move_id": 0,
+    "offset": 17048056
+  },
+  "save_continue_cycles": 12,
+  "schema_version": 1,
+  "scope": "P03_FORGET_NATIVE_INPUT_COLD_SAVE_STAGE84",
+  "source_bindings": {
+    ".github/workflows/p03-p05-remaining-e2e.yml": {
+      "sha256": "b7549d19bd1042d9bc47315b2489b67c982fd8cfa94632f68d35b2c7337c2185",
+      "size": 4288
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6",
+      "size": 28627
+    },
+    "design/active_play_baseline.md": {
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    },
+    "manifests/move_ids.csv": {
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20",
+      "size": 128694
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea",
+      "size": 13940
+    },
+    "scripts/run_modernization_remaining_routes.py": {
+      "sha256": "26824fcb9524680661229180664ded766bb7b3678d33e9b3cedc3184de6d40c4",
+      "size": 12572
+    },
+    "tests/test_modernization_remaining_routes.py": {
+      "sha256": "e0ea428efc542c335e6b0823d1b1ec085cb536ed6d398383fe8cb5d42a48e4c2",
+      "size": 9594
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f",
+      "size": 36272
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24",
+      "size": 94688
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b",
+      "size": 39669
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467",
+      "size": 20154
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa",
+      "size": 12868
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d",
+      "size": 7987
+    },
+    "tools/mgba_modernization_remaining_routes.c": {
+      "sha256": "dcf1d7d73e656a5215922198b484e835ff9e6ddda98ac7bdb28887dff89957af",
+      "size": 7900
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85",
+      "size": 149046
+    },
+    "tools/modernization_empty_move_pp_repair.py": {
+      "sha256": "8b7ddb76f66e4b6bf5cfa5f9dafe01ddac200856276236bcd98fa12872d80cff",
+      "size": 1880
+    },
+    "tools/modernization_remaining_route_labels.py": {
+      "sha256": "9fe4de00dbcda3cffac26d2cabb16e77bb80b5246ae651663bd5355447873546",
+      "size": 2025
+    }
+  },
+  "source_head_sha": "8846cd86de22af35b41eb358b9ed30e4c825750c",
+  "source_run_id": 34459625383,
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P03-P05"
+}

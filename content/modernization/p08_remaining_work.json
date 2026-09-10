@@ -1,0 +1,188 @@
+{
+  "accepted_scoped_reports": [
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 8,
+      "label": "daycare birth and hatch",
+      "source_path": "content/modernization/p08_p03_breeding_acceptance.json",
+      "source_run_id": 34434453733
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 3,
+      "label": "egg queue and party/PC capacity",
+      "source_path": "content/modernization/p08_p03_breeding_capacity_acceptance.json",
+      "source_run_id": 34439826111
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 42,
+      "label": "six Mega lifecycles plus 36 nonactivation controls",
+      "source_path": "content/modernization/p08_native_mega_acceptance.json",
+      "source_run_id": 34438575892
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 46,
+      "label": "normal 17 and egg 29 relearner paths",
+      "source_path": "content/modernization/p08_p03_relearner_acceptance.json",
+      "source_run_id": 34446029812
+    },
+    {
+      "candidate_rom": {
+        "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+        "size": 33554432
+      },
+      "cases": 12,
+      "label": "native forgetting and cold Save/Continue",
+      "source_path": "content/modernization/p08_p03_forgetting_acceptance.json",
+      "source_run_id": 34459625383
+    }
+  ],
+  "active_baseline_changed": false,
+  "final_candidate": null,
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "full_p06_acceptance": false,
+  "full_p07_acceptance": false,
+  "historical_snapshot": "content/modernization/p08_current_acceptance.json",
+  "historical_snapshot_is_current_backlog": false,
+  "latest_scoped_candidate": {
+    "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+    "size": 33554432
+  },
+  "latest_scoped_candidate_stage": 84,
+  "new_emulator_runs_during_reconciliation": 0,
+  "p06_adoption": {
+    "adopted_species_count": 2,
+    "field_change_count": 3,
+    "full_phase_accepted": false,
+    "source_path": "content/modernization/p06_decided_adjustments.json"
+  },
+  "p07_adoption": {
+    "normal_species_to_vega_move": 0,
+    "prior_instructions_absent_claimed": false,
+    "vega_species_to_normal_move": 0
+  },
+  "release_ready": false,
+  "remaining_conditions": [
+    {
+      "id": "EVOLUTION_FORM_OTHER_EGG",
+      "phase": "P03",
+      "reason_ja": "技忘れ12件は受入済み。進化・フォームに伴う技習得、その他の繁殖・タマゴ技供給経路の受入照合と保存検証が残る"
+    },
+    {
+      "id": "ARCHIVE_ECONOMY",
+      "phase": "P03",
+      "reason_ja": "追加技供給の殿堂入り後・わざメモリーから無料という暫定仕様の正式確定"
+    },
+    {
+      "id": "NATURAL_CAPTURE_GEAR",
+      "phase": "P05",
+      "reason_ja": "通常の捕獲・道具取得から戦闘までの通し受入"
+    },
+    {
+      "id": "PHYSICAL_CIRCUS_ADMISSION",
+      "phase": "P05",
+      "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない"
+    },
+    {
+      "id": "PHASE_ACCEPTANCE",
+      "phase": "P06",
+      "reason_ja": "採用済み2件を工程全体の受入とP08へ接続し、その他のレビュー資料は採用・保留を整理する"
+    },
+    {
+      "id": "SOURCE_RECONCILIATION_ADOPTION",
+      "phase": "P07",
+      "reason_ja": "両方向の採用表は空。指示が無かったと断定せず既存資料を照合し、採用表・P06整合・実装・習得画面・保存を確定する"
+    },
+    {
+      "id": "SINGLE_CANDIDATE",
+      "phase": "P08",
+      "reason_ja": "Stage82/83/84の異なる候補上の成功を一つの最終候補での全工程受入と混同しない。最終候補の統一が必要"
+    },
+    {
+      "id": "REPOSITORY_GUARD",
+      "phase": "P08",
+      "reason_ja": "既存の追跡ROM/save・過去ログの絶対パスに対するリポジトリ全体guardの是正。差分guard成功と区別する"
+    },
+    {
+      "id": "RELEASE_DECISION",
+      "phase": "P08",
+      "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する"
+    }
+  ],
+  "schema_version": 1,
+  "source_bindings": {
+    "config/modernization_p03_stage74_supply.json": {
+      "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc",
+      "size": 10937
+    },
+    "content/modernization/p06_decided_adjustments.json": {
+      "sha256": "1934a98f5d60f33a5c65ae294defc03e092a3c9826462e327f41c7ce8d4a24e3",
+      "size": 3462
+    },
+    "content/modernization/p07_layered_learnset_contract.json": {
+      "sha256": "ca17b3e33989d0ae105e5ac6ecc1c62ed27daae7ddc8d0a16632be64852842c5",
+      "size": 16337
+    },
+    "content/modernization/p08_breeding_capacity_evidence/34439826111/original.zip": {
+      "sha256": "b0995f68a5ef75936ebc379c8d0f74f3e6f31a5d793a1fc3bab352f1b48cb04a",
+      "size": 33550
+    },
+    "content/modernization/p08_breeding_evidence/34434453733/original.zip": {
+      "sha256": "79d6fd81c5f63d0dfb165a7db9e6f1875030c3422c46fab93f82c0db553a1ff7",
+      "size": 31334
+    },
+    "content/modernization/p08_native_mega_acceptance.json": {
+      "sha256": "981fbaf2d86f10c21e9943a10abf89963c2020d011e94ea53bd80569822528b5",
+      "size": 3796
+    },
+    "content/modernization/p08_native_mega_evidence/34438575892/original.zip": {
+      "sha256": "b1166c0d8cbd40487b300a3814851ad4e64fdb3fc190082df525f6241be37fe8",
+      "size": 162216
+    },
+    "content/modernization/p08_p03_breeding_acceptance.json": {
+      "sha256": "65b7a61dee18f26aec29da52c2e275f7b9729a7c788c84aa2675081059a94c16",
+      "size": 2451
+    },
+    "content/modernization/p08_p03_breeding_capacity_acceptance.json": {
+      "sha256": "9eb1b96e877f2032493fc99d63ba8f7786332a1a45bed9464f598fba4422b986",
+      "size": 1751
+    },
+    "content/modernization/p08_p03_forgetting_acceptance.json": {
+      "sha256": "41997fe856cc52548fb7b8b3db81c76e9d841607759574bb9a9420e26bafc881",
+      "size": 5672
+    },
+    "content/modernization/p08_p03_relearner_acceptance.json": {
+      "sha256": "1518d7471fcfcb15d7a03155eccb7e0049b209c1b46cfb74973d3be9dfde287e",
+      "size": 7298
+    },
+    "content/modernization/p08_relearner_evidence/34446029812/original.zip": {
+      "sha256": "ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed",
+      "size": 93814
+    },
+    "design/imported/p06_decided_20260904/Pokemon_Vega_Stage61_Balance_Audit_20260904.md": {
+      "sha256": "597b8a1ce34f185721b003ca1ffe089befb202cadb15bb8d1714830c7389453b",
+      "size": 11697
+    },
+    "design/imported/p06_decided_20260904/vega_stage61_learnset_audit.md": {
+      "sha256": "6b151b9c59c876cbd91fcf320552f4a9bdb993901e5d6f44e35b6be4409fcbe3",
+      "size": 10998
+    }
+  },
+  "status": "CURRENT_REMAINING_WORK_NOT_RELEASE_ACCEPTANCE",
+  "task": "USER-MODERNIZATION-P03-P05"
+}
