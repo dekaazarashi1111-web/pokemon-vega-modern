@@ -53,38 +53,22 @@ jobs:
           python3 scripts/record_modernization_p03_forgetting.py --write | tee .local/p03-forgetting-integration/write.json
           python3 scripts/record_modernization_p03_forgetting.py | tee .local/p03-forgetting-integration/check.json
           python3 scripts/validate_task_graph.py
-      - name: Record scope, current backlog and read-only CI checks
+      - name: Document scoped acceptance without changing workflows
         env:
           INTEGRATION_RUN: ${{ github.run_id }}
           SOURCE_HEAD: ${{ github.sha }}
         run: |
           python3 - <<'PY'
           import os,pathlib
-          text='\n\n## 2026-09-10 — USER-MODERNIZATION-P03-P05 / 技忘れ12経路とStage84空き技PP修正\n\nStage83の通常Bag→わざメモリー→技忘れ操作で、末尾MOVE_NONEのPPが35になる不具合を実再現した。Stage84はID 0のcanonical PP 35→0の1byteのみ修正。実技の全行、P06の採用2種3項目、保存ABI、Stage62基準は不変。旧Stage83で同じ不具合が検出される対照1件も維持した。\n\nActions 34459625383、実行HEAD 8846cd86de22af35b41eb358b9ed30e4c825750c、GCC 13.3.0 / mGBA 0.10.2で12件PASS。4枠削除、PP Up警告拒否、最終確認拒否、画面取消、最後の1技拒否、2フォーム制約、秘伝技削除、Keldeoの姿復帰を、通常保存・新規core Continueまで検証。12新規プロセス・24core・キャッシュ0、ホスト書込7 API拒否、保存後100byte個体一致を確認。準備個体・位置・道具はfixtureなので自然入手は受入対象外。\n\n原本78ファイルのZIP、Actions run/jobs/artifact原本、20入力source hashを検証し、P08個別受入 content/modernization/p08_p03_forgetting_acceptance.json に接続した。新しい残件総括は content/modernization/p08_remaining_work.json。旧 p08_current_acceptance.json はStage81起点の履歴として保持し、現時点の残件数には使用しない。受入済みの繁殖8件・容量3件・Mega6+36件・思い出し46件を再び未着手と数えず、P06採用2件を反映する。異なる候補の成功を最終候補全体の受入へ昇格しない。\n\nP05の現行facility_modes.csvはFactory/Mirageの20モードで、Circus入場モードは同採用表に無い。表外の入口まで不存在と断定しない。実際の受付・入場から特性抑制までの検証は未完了。P03の他の進化・フォーム習得、その他タマゴ供給、economy正式確定、P06工程受入、P07既存資料照合・採用・実装、単一最終候補と配布判定も残る。\n\n本統合は新規mGBA実行0件。PRはDraftのまま、マージ・配布・プレイ基準変更なし。全体guardの既存ROM/save・過去path違反は未解消であり、差分guardと分離して記録する。\n\nIntegration run: '+os.environ['INTEGRATION_RUN']+'; source: '+os.environ['SOURCE_HEAD']+'.\n'
+          text='\n\n## 2026-09-10 — USER-MODERNIZATION-P03-P05 / 技忘れ12経路とStage84空き技PP修正\n\nStage83の通常Bag→わざメモリー→技忘れで、末尾MOVE_NONEのPPが35になる不具合を実再現。Stage84はID 0のcanonical PP 35→0の1byteだけを修正した。実技の全行、P06採用2種3項目、保存ABI、Stage62基準は不変。旧Stage83で同じPP残留を検出する対照1件も通した。\n\n実行HEAD 8846cd86de22af35b41eb358b9ed30e4c825750c、Actions 34459625383、GCC 13.3.0 / mGBA 0.10.2で12経路PASS。4枠削除、PP Up警告拒否、最終確認拒否、画面取消、最後の1技拒否、2フォーム制約、秘伝技削除、Keldeoの姿復帰を、通常保存・新規core Continueまで検証。12新規プロセス・24core・キャッシュ0、ホスト書込7 API拒否、保存後100byte個体一致。準備個体・位置・道具はfixtureなので自然入手の受入ではない。\n\n原本78ファイルのZIP、Actions run/jobs/artifact原本、20入力source hashを照合し、content/modernization/p08_p03_forgetting_acceptance.jsonへ接続。新総括はcontent/modernization/p08_remaining_work.json。旧p08_current_acceptance.jsonはStage81起点の履歴として保持し、現在の残件数には使わない。繁殖8件・容量3件・Mega6+36件・思い出し46件を未着手へ戻さず、P06採用2件を反映する。異なる候補の成功を単一最終候補全体の受入とはしない。\n\nP05の現行facility_modes.csvはFactory/Mirageの20モードで、Circus入場モードは同採用表に無い。表外の入口まで不存在とは断定しない。実際の受付・入場から特性抑制までの検証は未完了。P03のその他の進化・フォーム習得・タマゴ供給・economy正式確定、P06工程受入、P07既存資料照合・採用・実装、単一最終候補と配布判定も残る。\n\n本統合は新規mGBA実行0件。PRはDraftのまま、マージ・配布・プレイ基準変更なし。全体guardの既存ROM/save・過去path違反は未解消であり、差分guardと区別する。通常CIの設定は別の権限付き変更として追加する。\n\nIntegration run: '+os.environ['INTEGRATION_RUN']+'; source: '+os.environ['SOURCE_HEAD']+'.\n'
           for name in ('design/run_log.md','design/version_log.md'):
               p=pathlib.Path(name);p.write_bytes(p.read_bytes()+text.encode())
           doc=pathlib.Path('docs/P03_FORGETTING_E2E.md');assert not doc.exists();doc.write_text('# P03 技忘れの実操作・保存受入\n'+text)
           p=pathlib.Path('docs/P08_CURRENT_ACCEPTANCE.md')
-          notice='> 2026-09-10更新: **現在の残件は `content/modernization/p08_remaining_work.json` を参照。** `p08_current_acceptance.json` はStage81起点の履歴であり、繁殖未完了・P06採用0件などを現在の残件として数えない。技忘れ12件の新しい個別受入は `p08_p03_forgetting_acceptance.json`。工程全体・リリースは未承認。\n\n'
+          notice='> 2026-09-10更新: **現在の残件は `content/modernization/p08_remaining_work.json` を参照。** `p08_current_acceptance.json` はStage81起点の履歴であり、繁殖未完了・P06採用0件などを現在の残件として数えない。技忘れ12件の個別受入は `p08_p03_forgetting_acceptance.json`。工程全体・リリースは未承認。\n\n'
           p.write_bytes(notice.encode()+p.read_bytes()+text.encode())
-          p=pathlib.Path('.github/workflows/ci.yml')
-          step='''
-                - name: P03 forgetting originals and reconciled remaining work
-                  shell: bash
-                  run: |
-                    set -euo pipefail
-                    python3 -m unittest discover -s tests -p test_modernization_remaining_routes.py -v
-                    python3 -m unittest discover -s tests -p test_modernization_p08_forgetting_evidence.py -v
-                    python3 scripts/record_modernization_p03_forgetting.py
-                    git diff --exit-code -- config/active_play_baseline.json content/modernization/p08_*.json
-          '''
-          import textwrap
-          step=textwrap.dedent(step)
-          step='\n'+'\n'.join('      '+line if line else '' for line in step.strip('\n').splitlines())+'\n'
-          assert 'P03 forgetting originals and reconciled remaining work' not in p.read_text()
-          p.write_bytes(p.read_bytes()+step.encode())
           PY
-      - name: Preserve inherited guard findings and publish only reviewed changes
+      - name: Preserve inherited guard findings and publish only reviewed records
         env:
           TARGET_BRANCH: ${{ github.ref_name }}
           SOURCE_HEAD: ${{ github.sha }}
@@ -92,14 +76,14 @@ jobs:
           set -euo pipefail
           test "$TARGET_BRANCH" = codex/modernization-followup-20260908
           test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$SOURCE_HEAD"
-          git add .github/workflows/ci.yml design/run_log.md design/version_log.md docs/P03_FORGETTING_E2E.md docs/P08_CURRENT_ACCEPTANCE.md content/modernization/p08_p03_forgetting_acceptance.json content/modernization/p08_remaining_work.json
+          git add design/run_log.md design/version_log.md docs/P03_FORGETTING_E2E.md docs/P08_CURRENT_ACCEPTANCE.md content/modernization/p08_p03_forgetting_acceptance.json content/modernization/p08_remaining_work.json
           git add content/modernization/p08_forgetting_evidence/34459625383/actions-*.json
           git add -f content/modernization/p08_forgetting_evidence/34459625383/original.zip
           python3 - <<'PY'
           import hashlib,json,os,pathlib,subprocess,tempfile
           out=pathlib.Path('.local/p03-forgetting-integration')
           prefix='content/modernization/p08_forgetting_evidence/34459625383/'
-          allowed={'.github/workflows/ci.yml','design/run_log.md','design/version_log.md','docs/P03_FORGETTING_E2E.md','docs/P08_CURRENT_ACCEPTANCE.md','content/modernization/p08_p03_forgetting_acceptance.json','content/modernization/p08_remaining_work.json',*(prefix+n for n in ('original.zip','actions-run.json','actions-jobs.json','actions-artifact.json'))}
+          allowed={'design/run_log.md','design/version_log.md','docs/P03_FORGETTING_E2E.md','docs/P08_CURRENT_ACCEPTANCE.md','content/modernization/p08_p03_forgetting_acceptance.json','content/modernization/p08_remaining_work.json',*(prefix+n for n in ('original.zip','actions-run.json','actions-jobs.json','actions-artifact.json'))}
           changed=set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().strip('\0').split('\0'));assert changed==allowed,(changed,allowed)
           for name in changed:assert subprocess.check_output(['git','show',':'+name])==pathlib.Path(name).read_bytes(),name
           assert hashlib.sha256(subprocess.check_output(['git','show',':'+prefix+'original.zip'])).hexdigest()=='aa7a122729052c711e27a85658ad96277837b55aa961b8f33799ae2ebf975e04'
