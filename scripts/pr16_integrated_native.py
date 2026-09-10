@@ -59,11 +59,12 @@ def make_case(spec,pool,pp):
     before=[7,8,0,0] if action==1 else [7,8,9,10]
     candidates=list(dict.fromkeys(m for m in pool if m not in known))
     need(target in candidates and len(candidates)<=40,'target/candidate capacity differs: '+name)
-    after=known.copy();after_pp=before.copy();bonuses=229
+    before_bonus=5 if action==1 else 229
+    after=known.copy();after_pp=before.copy();bonuses=before_bonus
     if action<2:after[slot]=target;after_pp[slot]=pp;bonuses &= ~(3<<(slot*2))
     return dict(name=name,species=sid,level=level,family=family,action=action,slot=slot,
                 index=candidates.index(target),dh=int(family==2),hof=int(family==2),herb=0,
-                known=known,pp_before=before,pp_bonuses_before=229,candidates=candidates,
+                known=known,pp_before=before,pp_bonuses_before=before_bonus,candidates=candidates,
                 expected=target,canonical_pp=pp if action<2 else 0,after=after,
                 pp_after=after_pp,pp_bonuses_after=bonuses,denial_text=0)
 
@@ -89,6 +90,8 @@ def vectors(raw,api):
     cases += [c for c in api.vectors() if c['name'] in ('egg-203-first','egg-203-last')]
     need(len(cases)==10 and len({c['name'] for c in cases})==10,'focused vector set differs')
     for c in cases:
+        need(all(move or ((c['pp_bonuses_before']>>(i*2))&3)==0 for i,move in enumerate(c['known'])),
+             'empty move slot cannot receive fixture PP Ups')
         need(c['candidates'] and not set(c['known'])&set(c['candidates']),'known/duplicate move')
         need(len(c['candidates'])==len(set(c['candidates'])) and len(c['candidates'])<=40,'candidate overflow')
         need(c['index']<len(c['candidates']) and c['candidates'][c['index']]==c['expected'],'selection differs')
