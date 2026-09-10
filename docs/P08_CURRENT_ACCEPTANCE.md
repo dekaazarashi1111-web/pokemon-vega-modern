@@ -89,3 +89,13 @@ Stage80 gateを書き換えない。通常CIもこの順序で実行する。
 P03の満杯4枠入替・拒否・キャンセル・空き枠・対照と通常保存/Continueの代表8ケースは
 解消済みと区別するが、繁殖・他の習得経路・archive economyは未完了のまま。
 P05全体、P06/P07の採用仕様、最終受入・リリースも自動で完了にしない。
+
+## Stage82：通常操作による繁殖・孵化の後続証跡
+
+旧スナップショットのbreeding_e2e=falseは旧runnerの範囲であり、後続の成功を未実施へ戻さない。Stage82の25習得画面と7領域はp08_stage82_archive_acceptance.json、今回の8条件はcontent/modernization/p08_p03_breeding_acceptance.jsonを参照する。通常の預入・歩行生成・受取・孵化、および孵化前後の保存／別core Continueを検証する。親の初期作成はfixtureであり、全種・全組合せ・満杯時等の受入は未完了。詳細はdocs/P03_BREEDING_E2E.md。
+
+```sh
+python3 scripts/record_modernization_p03_breeding.py
+```
+
+上記は読取専用の原本再検証。原本8プロセス／24 coreと統合時の新規実行0件を区別する。
