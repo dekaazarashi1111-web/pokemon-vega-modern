@@ -1914,3 +1914,9 @@ Integration run: 34461845380; source: 5783414f58fcfd1c222e26cd3cc1280eea8d0b2e.
 殿堂入り後・Bagのわざメモリーから無料を正式採用。publicは所有者の意図した現行設定であり、privateとする過去の説明を訂正。非公開化・既存原本移動は完了条件にしない。料金・公開状態の判断を現在の残件生成に接続し、履歴受入は不変。
 検証: owner-policy 11件、既存remaining-routes 24件、forgetting-evidence 16件、原本照合・task graph・差分検査。ROM変更0、新規mGBA実行0。製品完成、全工程受入、PRマージ、実プレイ基準変更は行わない。
 Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469582`。
+
+## 2026-09-10T15:04:17.233316+00:00
+
+- Task: PR16 final integration / P06 accepted-original connection
+- Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.
+- Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.

@@ -66,6 +66,22 @@
   },
   "closed_conditions": [
     {
+      "evidence": "content/modernization/p08_final_candidate_acceptance.json",
+      "id": "SINGLE_CANDIDATE_IDENTITY",
+      "original_id": "SINGLE_CANDIDATE",
+      "original_request": "P08: one candidate, independently regenerate and test changed inputs",
+      "pass_condition": "full SHA matches in two independent builds and all seven fresh domain records plus eight new P06 records",
+      "target": "Stage84 candidate identity and inherited seven domains"
+    },
+    {
+      "evidence": "content/modernization/p08_final_candidate_acceptance.json",
+      "id": "P06_ADOPTION_EVIDENCE_CONNECTION",
+      "original_id": "PHASE_ACCEPTANCE",
+      "original_request": "P06 adopted two species / three fields, original and new candidate acceptance",
+      "pass_condition": "original eight cases independently revalidated; new eight cases on Stage84",
+      "target": "three-byte adopted delta, slot/stat/save compatibility"
+    },
+    {
       "closure_type": "EXPLICIT_OWNER_POLICY_DECISION",
       "decision_id": "OWNER-20260910-131832-ARCHIVE-PUBLIC",
       "id": "ARCHIVE_ECONOMY",
@@ -82,7 +98,20 @@
       "success_evidence": "content/modernization/p08_owner_approved_policy.json"
     }
   ],
-  "final_candidate": null,
+  "final_candidate": {
+    "crc32": "5D95817C",
+    "release_approved": false,
+    "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+    "size": 33554432,
+    "stage": 84
+  },
+  "final_integration": {
+    "new_native_processes": 15,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "source_path": "content/modernization/p08_final_candidate_acceptance.json",
+    "source_run_id": 34477344071,
+    "tested_head": "4d7365c7144cdda3ee15fca7c5cb365c87e7621d"
+  },
   "full_p03_acceptance": false,
   "full_p05_acceptance": false,
   "full_p06_acceptance": false,
@@ -105,52 +134,97 @@
     }
   ],
   "p06_adoption": {
+    "accepted_requirements": [
+      "adopted_three_fields_only",
+      "existing_and_new_slot_identity",
+      "native_stat_recalculation",
+      "normal_save_and_cold_continue"
+    ],
     "adopted_species_count": 2,
     "field_change_count": 3,
+    "final_candidate_evidence": "content/modernization/p08_final_candidate_acceptance.json",
     "full_phase_accepted": false,
+    "original_evidence": "content/modernization/p08_p06_evidence/34444010444/acceptance.json",
+    "other_review_rows": "HOLD_UNLESS_EXPLICITLY_ADOPTED; not a mandatory 194-row rebalance",
     "source_path": "content/modernization/p06_decided_adjustments.json"
   },
   "p07_adoption": {
     "normal_species_to_vega_move": 0,
     "prior_instructions_absent_claimed": false,
+    "source_reconciliation": "docs/FINAL_INTEGRATION_HANDOFF_JA.md#仕様判断",
     "vega_species_to_normal_move": 0
   },
   "release_ready": false,
   "remaining_conditions": [
     {
       "id": "EVOLUTION_FORM_OTHER_EGG",
+      "original_request": "P03 instruction 3-5 and acceptance",
+      "pass_condition": "native learning result, cancellation where relevant, normal save/cold Continue; existing birth/hatch/capacity passes retained",
       "phase": "P03",
-      "reason_ja": "技忘れ12件は受入済み。進化・フォームに伴う技習得、その他の繁殖・タマゴ技供給経路の受入照合と保存検証が残る"
+      "reason_ja": "技忘れ12件は受入済み。進化・フォームに伴う技習得、その他の繁殖・タマゴ技供給経路の受入照合と保存検証が残る",
+      "resume": "scripts/run_modernization_remaining_routes.py; original P03 route table; no blanket cross-product",
+      "success_evidence": null,
+      "target_function": "evolution/form move acquisition and relevant egg supply"
     },
     {
       "id": "NATURAL_CAPTURE_GEAR",
+      "original_request": "P05 original acceptance and current P08 boundary",
+      "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "通常の捕獲・道具取得から戦闘までの通し受入"
+      "reason_ja": "通常の捕獲・道具取得から戦闘までの通し受入",
+      "resume": "scripts/run_modernization_p05_controller_witness.py and run_modernization_p05_scheduler_e2e.py are accepted downstream evidence, not capture evidence",
+      "success_evidence": null,
+      "target_function": "natural capture/item acquisition to battle"
     },
     {
       "id": "PHYSICAL_CIRCUS_ADMISSION",
+      "original_request": "P05 suppression requirement and current P08 boundary",
+      "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
-      "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない"
+      "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
+      "resume": "Stage84 circus-source-audit covers only bounded reviewed sources; actual entrance not identified by that audit",
+      "success_evidence": null,
+      "target_function": "actual reception/admission to suppression"
     },
     {
       "id": "PHASE_ACCEPTANCE",
+      "original_request": "P06 instruction 3-5",
+      "pass_condition": "connect the accepted four requirement groups; verify adopted passive effects and applicable UI, without adopting all review rows",
       "phase": "P06",
-      "reason_ja": "採用済み2件を工程全体の受入とP08へ接続し、その他のレビュー資料は採用・保留を整理する"
+      "reason_ja": "採用3項目・旧成功原本・Stage84のslot/能力値/通常保存は工程受入へ接続済み。採用特性の戦闘効果と適用範囲のUI受入が未完了。監査194行の全採用は要求しない。",
+      "resume": "scripts/run_modernization_p06_decided_e2e.py --candidate-stage 84; receipt p06_unaccepted_scope",
+      "success_evidence": null,
+      "target_function": "remaining applicable phase integration of adopted changes"
     },
     {
       "id": "SOURCE_RECONCILIATION_ADOPTION",
+      "original_request": "07_extra_learnsets.txt instruction 1-5",
+      "pass_condition": "approved species/form, move, route, timing, limits and supply rows; exact compile/UI/save match",
       "phase": "P07",
-      "reason_ja": "両方向の採用表は空。指示が無かったと断定せず既存資料を照合し、採用表・P06整合・実装・習得画面・保存を確定する"
+      "reason_ja": "双方向分離・原作基準保持・経路別採用は確定。照合資料の推奨上限・代替案から具体的な採用行を一意に確定できず、配布行の判断が必要。",
+      "resume": "docs/FINAL_INTEGRATION_HANDOFF_JA.md#仕様判断; tools/modernization_p07_learnsets.py",
+      "success_evidence": null,
+      "target_function": "normal-to-Vega and Vega-to-normal deltas"
     },
     {
-      "id": "SINGLE_CANDIDATE",
+      "id": "FINAL_NATIVE_ACCEPTANCE",
+      "original_request": "P08 final-candidate acceptance",
+      "pass_condition": "close named remaining native routes and bind any required impact regression to Stage84; old Stage82 results stay historical",
       "phase": "P08",
-      "reason_ja": "Stage82/83/84の異なる候補上の成功を一つの最終候補での全工程受入と混同しない。最終候補の統一が必要"
+      "reason_ja": "Stage84への候補統一・7領域回帰・P06新規8件は完了。残る必要なnative経路と変更影響の受入は未完了。",
+      "resume": "identity/build/seven-domain/P06 regression closed; native and specification gaps listed separately",
+      "success_evidence": null,
+      "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
     },
     {
       "id": "RELEASE_DECISION",
+      "original_request": "P08 handoff and current request end conditions",
+      "pass_condition": "clean-ROM two-build reproducibility, required acceptance and safe package; merge/baseline switch are NOT implied",
       "phase": "P08",
-      "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する"
+      "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する",
+      "resume": "four tested engineering BPS patches exist; clean-ROM patch and full acceptance are not complete",
+      "success_evidence": null,
+      "target_function": "clean-input regeneration and releasable package"
     }
   ],
   "repository_policy": {
@@ -189,6 +263,10 @@
     "content/modernization/p08_breeding_evidence/34434453733/original.zip": {
       "sha256": "79d6fd81c5f63d0dfb165a7db9e6f1875030c3422c46fab93f82c0db553a1ff7",
       "size": 31334
+    },
+    "content/modernization/p08_final_candidate_acceptance.json": {
+      "sha256": "452317491f78bfe9da8a35a4084b6f800fde0bbc99f6da9e68e6b888b9ab6876",
+      "size": 8870
     },
     "content/modernization/p08_native_mega_acceptance.json": {
       "sha256": "981fbaf2d86f10c21e9943a10abf89963c2020d011e94ea53bd80569822528b5",
@@ -232,5 +310,5 @@
     }
   },
   "status": "CURRENT_REMAINING_WORK_NOT_RELEASE_ACCEPTANCE",
-  "task": "USER-MODERNIZATION-P03-P05"
+  "task": "USER-MODERNIZATION-FINAL-INTEGRATION"
 }
