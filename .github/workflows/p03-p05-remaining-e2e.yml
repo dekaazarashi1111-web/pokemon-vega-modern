@@ -1,0 +1,72 @@
+name: p03-p05-remaining-e2e
+run-name: P03/P05 remaining routes - source context only (not acceptance)
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-p05-remaining-e2e.yml
+      - scripts/run_modernization_remaining_routes.py
+      - tests/test_modernization_remaining_routes.py
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: p03-p05-remaining-e2e-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source-context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Collect tracked text context without ROM, save, private inputs or history
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/remaining-routes-context
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess, zipfile
+          root = pathlib.Path.cwd()
+          out = root / '.local/remaining-routes-context'
+          head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          paths = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          allowed_roots = {'tools','scripts','tests','infra','config','content','src','include','asm','.github'}
+          allowed_suffixes = {'.py','.c','.h','.s','.S','.asm','.inc','.ld','.json','.yaml','.yml','.toml','.sh','.txt','.md','.csv','.tsv'}
+          docs = {'AGENTS.md','README.md','Makefile','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','design/active_play_baseline.md','design/decisions.md'}
+          selected = []
+          inventory = []
+          with zipfile.ZipFile(out / 'source-context.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+              for name in paths:
+                  if not name:
+                      continue
+                  p = pathlib.PurePosixPath(name)
+                  inventory.append(name)
+                  relevant_doc = p.parts[0] in {'docs','design','tasks'} and any(k in name.lower() for k in ('modernization','p03','p05','p06','p07','p08','agent_context'))
+                  eligible = name in docs or relevant_doc or (p.parts[0] in allowed_roots and p.suffix in allowed_suffixes)
+                  if not eligible or any(part in {'userfile','private','imports','reference','node_modules'} for part in p.parts):
+                      continue
+                  f = root / p
+                  if f.is_symlink() or not f.is_file() or f.stat().st_size > 4000000:
+                      continue
+                  raw = f.read_bytes()
+                  try:
+                      raw.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if b'\0' in raw:
+                      continue
+                  z.writestr(name, raw)
+                  selected.append({'path':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
+          (out / 'inventory.txt').write_text('\n'.join(inventory)+'\n')
+          (out / 'manifest.json').write_text(json.dumps({'tested_head':head,'runtime_acceptance':False,'scope':'tracked source context only; no ROM/save/private input or git history','files':selected},ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'head':head,'source_files':len(selected),'runtime_acceptance':False}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p03-p05-remaining-source-context
+          path: .local/remaining-routes-context/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 3
