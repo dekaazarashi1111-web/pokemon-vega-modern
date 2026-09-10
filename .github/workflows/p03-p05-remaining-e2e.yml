@@ -1,11 +1,13 @@
 name: p03-p05-remaining-e2e
-run-name: Stage83 remaining native routes - forgetting and cold save
+run-name: Stage84 remaining native routes - forgetting and cold save
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/p03-p05-remaining-e2e.yml
       - tools/mgba_modernization_remaining_routes.c
+      - tools/modernization_remaining_route_labels.py
+      - tools/modernization_empty_move_pp_repair.py
       - scripts/run_modernization_remaining_routes.py
       - tests/test_modernization_remaining_routes.py
   workflow_dispatch:
@@ -47,7 +49,7 @@ jobs:
           python3 - <<'PY'
           import hashlib,json,pathlib,re,zipfile
           root=pathlib.Path.cwd();out=root/'.local/remaining-routes';out.mkdir(parents=True,exist_ok=True)
-          selected=['build/stages/25_move_memory.json','generated/runtime/move_memory_symbols.json','overlays/move_memory/move_memory.c','overlays/move_memory/move_memory.h','tools/mgba_modernization_remaining_routes.c','scripts/run_modernization_remaining_routes.py','tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml']
+          selected=['tools/modernization_empty_move_pp_repair.py','tools/modernization_remaining_route_labels.py','overlays/move_memory/move_memory.c','overlays/move_memory/move_memory.h','tools/mgba_modernization_remaining_routes.c','scripts/run_modernization_remaining_routes.py','tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml']
           with zipfile.ZipFile(out/'reviewed-source-context.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in selected:
                   p=root/name

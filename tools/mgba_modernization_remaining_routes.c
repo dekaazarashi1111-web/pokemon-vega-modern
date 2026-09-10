@@ -1,4 +1,4 @@
-/* Stage83 native Move Memory forgetting. All seven host write APIs are trapped
+/* Stage84 native Move Memory forgetting. All seven host write APIs are trapped
  * during Bag/menu/party/summary/dialog input, Save, and fresh-core Continue.
  * Fixture setup is not natural acquisition. No release or whole-phase claim. */
 #include "remaining_archive.c"
@@ -80,7 +80,7 @@ int main(int argc,char**argv) {
     c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,video,240);saved=*c;a_guard(c);a_require(a_continue(c),"cold Continue failed");a_restore(c,&saved);
     r_slots(c,v,true);r_party(c,loaded);a_require(read32(c,P03_SAVE_COUNTER)==count+1 && !memcmp(after,loaded,100),"cold mon/counter differs");qol_close(c);qol_log_core=NULL;
     sha256_file(argv[1],sh);a_require(!strcmp(sh,rh) && !log_problem_count,"ROM changed or mGBA warning");
-    printf("{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"P03_FORGET_NATIVE_INPUT_COLD_SAVE_STAGE83\",\"case\":\"%s\",\"rom_sha256\":\"%s\",\"species_before\":%u,\"species_after\":%u,\"moves_before\":",v->name,rh,v->species,v->after_species);a_array(v->moves);
+    printf("{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"P03_FORGET_NATIVE_INPUT_COLD_SAVE_STAGE84\",\"case\":\"%s\",\"rom_sha256\":\"%s\",\"species_before\":%u,\"species_after\":%u,\"moves_before\":",v->name,rh,v->species,v->after_species);a_array(v->moves);
     printf(",\"moves_after\":");a_array(v->after);printf(",\"pp_before\":");a_array(v->pp);printf(",\"pp_after\":");a_array(v->after_pp);
     printf(",\"bonuses_before\":%u,\"bonuses_after\":%u,\"slot\":%u,\"action\":%u,\"host_write_barriers\":3,\"core_instances\":2,\"save_counter_delta\":1,\"party_mon_bytes_preserved\":100,\"normal_save_menu\":true,\"fresh_core_continue\":true,\"mgba_version\":\"0.10.2\",\"warnings_errors\":0,\"full_p03_acceptance\":false,\"full_p05_acceptance\":false,\"release_ready\":false,\"witness\":{",v->bonus,v->after_bonus,v->slot,v->action);
 #define RT(x) printf("\""#x"\":%u,",t.x)

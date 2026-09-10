@@ -137,11 +137,66 @@ class RemainingRoutesTests(unittest.TestCase):
             with mock.patch.object(r,'ROOT',root),self.assertRaises(ValueError):r.run(out)
             self.assertFalse((out/'result.json').exists())
 
+    def test_missing_truncated_or_wrong_script_fails_closed(self):
+        for rom in (b'',b'\0'*64,b'\0'*0x12D0A80):
+            with self.assertRaises(ValueError):r.route_labels.resolve(rom)
+
     def test_original_rom_seed_not_rewritten_by_runner(self):
         text=(ROOT/r.SELF).read_text()
         self.assertIn('shutil.copyfile(seed,save)',text)
         self.assertIn("identity(rom)==rid and identity(seed)==sid,'ROM/seed modified'",text)
         self.assertNotIn('rom.write_',text)
         self.assertNotIn('seed.write_',text)
+
+class SentinelRepairTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import struct
+        raw=bytearray(r.repair.SIZE)
+        struct.pack_into('<I',raw,0x1cc,r.repair.TABLE)
+        for p in r.repair.LITERALS:struct.pack_into('<I',raw,p,r.repair.TABLE+4)
+        raw[r.repair.OFFSET]=35
+        cls.fixture=bytes(raw)
+
+    def test_one_sentinel_byte_only(self):
+        after=r.repair.patch(self.fixture)
+        o=r.repair.OFFSET
+        self.assertEqual(after[:o],self.fixture[:o])
+        self.assertEqual(after[o+1:],self.fixture[o+1:])
+        self.assertEqual(after[o],0)
+        self.assertEqual(len(after),len(self.fixture))
+
+    def test_unknown_real_parent_is_rejected(self):
+        with self.assertRaises(ValueError):r.repair.build(self.fixture)
+
+    def test_mutated_root_literal_and_pp_are_rejected(self):
+        for offset in (0x1cc,*r.repair.LITERALS,r.repair.OFFSET):
+            raw=bytearray(self.fixture);raw[offset]^=1
+            with self.subTest(offset=offset),self.assertRaises(ValueError):r.repair.patch(bytes(raw))
+
+    def test_bad_rom_size_or_mutable_input_rejected(self):
+        for raw in (b'',self.fixture[:-1],bytearray(self.fixture)):
+            with self.assertRaises(ValueError):r.repair.patch(raw)
+
+    def test_candidate_recipe_is_not_runtime_acceptance(self):
+        with mock.patch.object(r.repair,'PARENT_SHA',r.repair.identity(self.fixture)['sha256']):
+            after,report=r.repair.build(self.fixture)
+        self.assertEqual(report['candidate'],r.repair.identity(after))
+        self.assertEqual(report['changed_byte_count'],1)
+        self.assertEqual(report['status'],'BUILT_NOT_ACCEPTED')
+        for flag in ('full_p03_acceptance','full_p05_acceptance','release_ready','active_baseline_changed'):
+            self.assertIs(report[flag],False)
+
+    def test_selected_case_keeps_original_native_index(self):
+        rows=r.cases()
+        self.assertEqual(r.select_cases(rows,'keldeo-form-revert'),[(11,rows[11])])
+        self.assertEqual(r.select_cases(rows,None),list(enumerate(rows)))
+        with self.assertRaises(ValueError):r.select_cases(rows,'unknown')
+
+    def test_child_identity_is_independently_required(self):
+        c=r.cases()[0];d=record(c);child='a'*64
+        with self.assertRaises(ValueError):r.validate(json.dumps(d).encode(),c,PROCESS,rom_sha=child)
+        d['rom_sha256']=child
+        r.validate(json.dumps(d).encode(),c,PROCESS,rom_sha=child)
 
 if __name__=='__main__':unittest.main()
