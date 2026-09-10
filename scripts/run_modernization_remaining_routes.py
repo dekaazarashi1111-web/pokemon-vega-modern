@@ -14,6 +14,7 @@ import tempfile
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 import run_modernization_p03_fullslots_e2e as base
+import modernization_remaining_route_labels as route_labels
 
 ROM_SHA='09e9d8cf085d175299b58e93347e3beb2467c3c09016130f7d35ce033fa50096'
 SEED_SHA='f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb'
@@ -113,13 +114,14 @@ def run(out,jobs=2,selected=None):
     need(identity(rom)==rid and identity(seed)==sid,'ROM/seed identity mismatch')
     cfg=base.strict_json((ROOT/'config/modernization_stage79_cumulative_mgba.json').read_bytes())
     d=next(d for d in cfg['domains'] if d['id']=='p02')
-    paths={SOURCE,SELF,'tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml','scripts/run_modernization_p03_fullslots_e2e.py','config/modernization_stage79_cumulative_mgba.json','config/active_play_baseline.json','design/active_play_baseline.md','infra/toolchain_manifest.json','infra/setup_github_actions.sh','build/stages/25_move_memory.json'}
+    paths={SOURCE,SELF,'tests/test_modernization_remaining_routes.py','.github/workflows/p03-p05-remaining-e2e.yml','scripts/run_modernization_p03_fullslots_e2e.py','config/modernization_stage79_cumulative_mgba.json','config/active_play_baseline.json','design/active_play_baseline.md','infra/toolchain_manifest.json','infra/setup_github_actions.sh','tools/modernization_remaining_route_labels.py'}
     paths.update(x for x,_ in EMBED)
     for p in (d['runner'],*d['dependencies']):
         need(identity(ROOT/p['path'])=={k:p[k] for k in ('size','sha256')},'inherited harness changed: '+p['path']);paths.add(p['path'])
     binding={p:identity(ROOT/p) for p in sorted(paths)}
     stamps={p:(ROOT/p).stat().st_mtime_ns for p in sorted(paths)}
-    labels=base.strict_json((ROOT/'build/stages/25_move_memory.json').read_bytes())['runtime']['payload']['labels']
+    labels=route_labels.resolve(rom.read_bytes())
+    (out/'route-labels.json').write_text(json.dumps(labels,sort_keys=True,indent=2)+'\n')
     _,_,p=base.capture(['bash','infra/setup_github_actions.sh','--check'],out/'fixed-toolchain',120);need(base.require_exited(p)==0,'fixed toolchain check failed')
     results=[]
     try:
