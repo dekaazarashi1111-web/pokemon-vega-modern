@@ -13,7 +13,7 @@ class IntegratedDomainBinding(unittest.TestCase):
         self.assertEqual(new['final_integration']['parent_p03_contract'],old['p03_contract'])
         self.assertEqual(new['p03_contract'],m.candidate_p03_contract(old['p03_contract']))
         restored=json.loads(json.dumps(new['p03_contract']))
-        for key,(before,after) in m.P03_RELOCATIONS.items():
+        for key,(before,after) in (m.P03_RELOCATIONS|m.P03_CONSUMER_DELTAS).items():
             self.assertEqual(restored['arguments'][key],after)
             restored['arguments'][key]=before
         self.assertEqual(restored,old['p03_contract'])

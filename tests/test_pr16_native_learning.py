@@ -22,8 +22,10 @@ class NativeLearningContract(unittest.TestCase):
         for case in m.CASES:
             value=self.observation(case)
             self.assertEqual(m.validate(json.dumps(value).encode(),case,PROCESS),value)
+        self.assertEqual(m.expected(m.CASES[0])['moves_after'],[17,81,457,0])
+        self.assertEqual(m.expected(m.CASES[3])['moves_after'],[33,81,366,0])
         canceled=m.expected(m.CASES[2])
-        self.assertEqual(canceled['moves_after'],[33,81,45,52])
+        self.assertEqual(canceled['moves_after'],[17,81,45,52])
         self.assertEqual(canceled['pp_after'],[7,8,9,10])
         self.assertEqual(canceled['pp_bonuses_after'],229)
     def test_saved_pp_candidate_and_cold_continue_cannot_be_forged(self):

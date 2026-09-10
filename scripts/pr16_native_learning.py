@@ -26,7 +26,7 @@ WITNESS=('bag_party','level','dialog','summary','selection','stop','evo_begin','
 
 def expected(case):
     name,sid,level,target,move,pp,slot,action=case
-    moves=[33,81,0,0] if action==1 else [33,81,45,52]
+    moves=[17 if sid==10 else 33,81,0,0] if action==1 else [17 if sid==10 else 33,81,45,52]
     pps=[7,8,0,0] if action==1 else [7,8,9,10]
     bonus=5 if action==1 else 229
     if action<2:moves[slot]=move;pps[slot]=pp;bonus &= ~(3<<(slot*2))
@@ -62,11 +62,12 @@ def check_sources(raw):
     rows=re.findall(r'\{"([a-z0-9-]+)",(\d+),(\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\}',(ROOT/SOURCE).read_text())
     need(tuple((row[0],*map(int,row[1:])) for row in rows)==CASES,'compiled cases differ from independent expectations')
     tables=native.layer.source.RomTables(raw,native.layer.COUNT,selected_species={10,12,13})
-    need((457,13) in tables.level[10] and (366,0) in tables.level[13],'required accepted level/evolution rows absent')
+    need((17,13) in tables.level[10] and (457,13) in tables.level[10] and (366,0) in tables.level[13],'required accepted level/evolution rows absent')
     need(not any(lev==11 for _,lev in tables.level[12]),'Riolu fixture has another level-11 acquisition')
     table=struct.unpack_from('<I',raw,0x1cc)[0]-native.layer.BASE
     for case in CASES:need(raw[table+case[4]*12+4]==case[5],'canonical PP input differs')
-    return {'taillow_preserved_row':[10,457,13],'lucario_evolution_row':[13,366,0],
+    return {'taillow_preknown_same_level_move':17,'fixture_reason':'Wing Attack precedes the preserved move at lv13; already known before the observation barrier',
+            'taillow_preserved_row':[10,457,13],'lucario_evolution_row':[13,366,0],
             'p02_evolution_contract':'content/modernization/p02_evolution_contract.json',
             'evolution_source':[12,1,13],'fixture_friendship':255,'candidate':native.identity(raw)}
 

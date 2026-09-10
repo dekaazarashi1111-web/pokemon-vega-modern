@@ -73,6 +73,9 @@ int main(int argc,char**argv){
     clear_parties(c);create_mon(c,QOL_PLAYER_PARTY,v->species,v->level);write8(c,QOL_PLAYER_PARTY_COUNT,1);
     if(v->target!=v->species)p02s_set_data(c,P02S_MON_DATA_FRIENDSHIP,255);
     unsigned known[4]={33,81,45,52},pp[4]={7,8,9,10},after[4],after_pp[4];
+    /* Skip the earlier original lv13 Wing Attack as already known, rather than
+     * accidentally driving two distinct move dialogs as one target case. */
+    if(v->species==10)known[0]=17;
     unsigned bonus=v->action==1?5:229,after_bonus=bonus;
     if(v->action==1){known[2]=known[3]=pp[2]=pp[3]=0;}
     for(unsigned i=0;i<4;i++){p02s_set_data(c,QOL_MON_DATA_MOVE1+i,known[i]);p02s_set_data(c,MON_DATA_PP1+i,pp[i]);after[i]=known[i];after_pp[i]=pp[i];}

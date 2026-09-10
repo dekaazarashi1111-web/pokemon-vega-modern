@@ -2,7 +2,8 @@
 """Seven unchanged domain validators, actual execution on the integrated ROM.
 
 The candidate boundary composes the exact P07 layer and explicitly projects its
-three moved table arguments. Original recipes, ABI preimages, all root checks,
+three moved table arguments and one source-proven egg-count delta.
+Original recipes, ABI preimages, all root checks,
 result validators and the historic gate remain unchanged.
 Report aggregation is NOT a PR merge or release decision.
 """
@@ -31,11 +32,13 @@ P03_RELOCATIONS={
     'egg-root': ('0x09FF0BD4', '0x095D9EFC'),
     'egg-limit': (7507, 7696),
 }
+# One preserved V4 row, not an inferred new adoption or an observed result oracle.
+P03_CONSUMER_DELTAS={'egg-count': (7, 8)}
 
 
 def candidate_p03_contract(parent):
     contract=deepcopy(parent)
-    for key,(before,after) in P03_RELOCATIONS.items():
+    for key,(before,after) in (P03_RELOCATIONS|P03_CONSUMER_DELTAS).items():
         need(type(contract['arguments'].get(key)) is type(before) and
              contract['arguments'][key]==before,'P03 parent relocation preimage differs: '+key)
         contract['arguments'][key]=after
@@ -52,6 +55,17 @@ def validate_root_projection(report):
          'P03 projected egg scan limit differs')
 
 
+def validate_egg_projection(parent_rows,candidate_rows,selected):
+    rows=[r for r in selected[layer.LAYER] if r['species_id']==24 and r['route']=='egg']
+    need(rows==[{'form_key':'','move_id':440,'move_key':'MOVE_KEY_VEGA_440',
+        'route':'egg','source_class':'CURRENT_PRESERVED','source_csv_line':273,
+        'source_member':'egg_moves_final.csv','source_parameters':{'order':'20'},
+        'species_id':24,'species_key':'SPECIES_KEY_PICHU'}], 'Pichu preserved source row differs')
+    need(len(parent_rows)==7 and len(set(parent_rows))==7 and 175 in parent_rows and
+         344 not in parent_rows and 440 not in parent_rows,'Pichu parent egg expectation differs')
+    need(list(candidate_rows)==[*parent_rows,440], 'Pichu candidate egg delta differs')
+
+
 def derived_config():
     cfg=prior.derived_config()
     cfg['execution']['state_root']=WORK+'/state'
@@ -64,7 +78,8 @@ def derived_config():
     cfg['final_integration']={'stage':84,'integration_revision':'EXACT_P07_PRESERVED_LAYER',
         'rom':{'path':ROM,'size':33554432,'sha256':native.ROM_SHA},
         'parent_stage84':inherited,'parent_p03_contract':parent_p03,
-        'p03_relocations':{k:{'before':v[0],'after':v[1]} for k,v in P03_RELOCATIONS.items()},'sources':{p:prior.identity(p) for p in sorted(set(paths))},
+        'p03_relocations':{k:{'before':v[0],'after':v[1]} for k,v in P03_RELOCATIONS.items()},
+        'p03_consumer_deltas':{k:{'before':v[0],'after':v[1]} for k,v in P03_CONSUMER_DELTAS.items()},'sources':{p:prior.identity(p) for p in sorted(set(paths))},
         'release_ready':False}
     need(tuple(cfg['execution']['domain_order'])==DOMAINS,'historical domain order changed')
     return cfg
@@ -93,6 +108,9 @@ def load_engine():
         layout=json.loads(s.checked(ROOT/layer.ALLOCATION,layer.ALLOCATION_SHA))
         candidate,report=layer.build(stage84,selected,layout)
         validate_root_projection(report)
+        parent_tables=s.RomTables(stage84,layer.COUNT,selected_species={24})
+        final_tables=s.RomTables(candidate,layer.COUNT,selected_species={24})
+        validate_egg_projection(parent_tables.egg[24],final_tables.egg[24],selected)
         need(prior.identity(ROM)==cfg['final_integration']['rom'] and prior.safe(ROM).read_bytes()==candidate,
              'domain candidate differs from independent composition')
         recorded=json.loads(prior.safe(REPORT).read_bytes())
