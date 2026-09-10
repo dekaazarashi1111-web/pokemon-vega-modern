@@ -95,7 +95,7 @@ int main(int argc,char**argv){
     char rom_sha[65],seed_sha[65];sha256_file(argv[1],rom_sha);sha256_file(argv[2],seed_sha);
     a_require(!strcmp(rom_sha,argv[3]) && !strcmp(seed_sha,argv[4]),"fixed input identity differs");
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
-    struct mCore*c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,f_video,240);a_require(a_continue(c),"initial Continue failed");a_flash_prepare(c);
+    struct mCore*c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,f_video,240);c->reset(c);a_require(a_continue(c),"initial Continue failed");a_flash_prepare(c);
     a_require(p02s_install_field_fixture(c),"field fixture failed");p02s_enable_national_dex(c);clear_parties(c);seed_fixture(c);
     unsigned species=id==2 || id>=8?373:220,slot=id==1 || id==4 || id==5 || id==6?1:0;
     create_mon(c,QOL_PLAYER_PARTY,species,48);write8(c,QOL_PLAYER_PARTY_COUNT,1);p02s_set_data(c,P02S_MON_DATA_ALT_ABILITY,slot);p02s_set_hidden(c,false);

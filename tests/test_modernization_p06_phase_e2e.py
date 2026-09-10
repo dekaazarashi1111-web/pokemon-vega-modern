@@ -62,6 +62,12 @@ class PhaseValidation(unittest.TestCase):
         for key,value in [('personality',1),('enemy_hp',50),('party_attack',a['party_attack'])]:
             c=copy.deepcopy(b);c[key]=value
             with self.subTest(key=key),self.assertRaises(ValueError):m.validate_attack_pair(a,c)
+    def test_native_picture_is_not_blank_or_truncated(self):
+        header=b'P6\n240 160\n255\n'
+        pixels=bytes(range(256))*450
+        self.assertGreater(m.validate_picture(header+pixels)['distinct_colors'],16)
+        for raw in (header+bytes(240*160*3),header+pixels[:-1],b'P6\n1 1\n255\n'+pixels):
+            with self.subTest(size=len(raw)),self.assertRaises(ValueError):m.validate_picture(raw)
     def test_duplicate_json_key_rejected(self):
         raw=json.dumps(self.fixture(0))[:-1]+',"frames":2000}'
         with self.assertRaises(ValueError):m.validate(raw.encode(),0,0)

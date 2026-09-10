@@ -10,6 +10,9 @@ on:
       - tools/mgba_modernization_p06_phase_e2e.c
       - scripts/run_modernization_p06_phase_e2e.py
       - tests/test_modernization_p06_phase_e2e.py
+      - scripts/restore_modernization_final_originals.py
+      - tests/test_restore_modernization_final_originals.py
+      - scripts/pr16_source_context.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -87,76 +90,21 @@ jobs:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    permissions:
-      contents: write
-      actions: read
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          persist-credentials: false
       - name: Recover and verify the nine exact integration originals
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-continuation/acceptance
-          python3 - <<'PY'
-          import pathlib,sys,subprocess,zipfile
-          sys.path.insert(0,'scripts')
-          import record_modernization_final_acceptance as record
-          root=pathlib.Path('.');target=root/record.DIRECTORY;target.mkdir(parents=True,exist_ok=True)
-          for label,endpoint in [('actions-run.json',''),('actions-jobs.json','/jobs?per_page=100'),('actions-artifacts.json','/artifacts?per_page=100')]:
-              raw=subprocess.check_output(['gh','api',f'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/{record.RUN}'+endpoint])
-              p=target/label
-              if p.exists():record.need(p.read_bytes()==raw,'metadata collision: '+label)
-              else:p.write_bytes(raw)
-          for label,(aid,size,sha) in record.ARTIFACTS.items():
-              raw=subprocess.check_output(['gh','api',f'repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/{aid}/zip'])
-              record.need(record.identity(raw)==dict(size=size,sha256=sha),'artifact identity differs: '+label)
-              p=target/(label+'.zip')
-              if p.exists():record.need(p.read_bytes()==raw,'original collision: '+label)
-              else:p.write_bytes(raw)
-          with zipfile.ZipFile(target/'candidate.zip') as z:raw=z.read('evidence/original.zip')
-          p=root/'content/modernization/p08_p06_evidence/34444010444/original.zip';p.parent.mkdir(parents=True,exist_ok=True)
-          if p.exists():record.need(p.read_bytes()==raw,'old P06 original collision')
-          else:p.write_bytes(raw)
-          PY
-          if test -f content/modernization/p08_final_candidate_acceptance.json; then
-            python3 scripts/record_modernization_final_acceptance.py > .local/pr16-continuation/acceptance/verification.json
-          else
-            python3 scripts/record_modernization_final_acceptance.py --write > .local/pr16-continuation/acceptance/verification.json
-          fi
+          python3 -m unittest discover -s tests -p test_restore_modernization_final_originals.py -v > .local/pr16-continuation/acceptance/recovery-unit.log 2>&1
+          python3 scripts/restore_modernization_final_originals.py > .local/pr16-continuation/acceptance/recovery.json
+          python3 scripts/record_modernization_final_acceptance.py > .local/pr16-continuation/acceptance/verification.json
           python3 -m unittest discover -s tests -p test_modernization_final_integration.py -v > .local/pr16-continuation/acceptance/unit.log 2>&1
-      - name: Commit only verified receipt and clean P06 original; do not track patch-bearing ZIP
-        env:
-          GH_TOKEN: ${{ github.token }}
-          EXPECTED_HEAD: ${{ github.sha }}
-        run: |
-          set -euo pipefail
-          if git ls-files --error-unmatch content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_p06_evidence/34444010444/original.zip >/dev/null 2>&1; then
-            git diff --exit-code -- content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_remaining_work.json content/modernization/p08_p06_evidence/34444010444/original.zip
-            git rev-parse HEAD > .local/pr16-continuation/acceptance/reflected-head.txt
-            exit 0
-          fi
-          test "$(gh api repos/dekaazarashi1111-web/pokemon-vega-modern/git/ref/heads/codex/modernization-followup-20260908 --jq .object.sha)" = "$EXPECTED_HEAD"
-          python3 - <<'PY'
-          import datetime,pathlib
-          root=pathlib.Path('.')
-          entry='\n## '+datetime.datetime.now(datetime.timezone.utc).isoformat()+'\n\n- Task: PR16 final integration / P06 accepted-original connection\n- Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.\n- Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.\n'
-          for name in ('design/run_log.md','design/version_log.md'):
-              with (root/name).open('a') as f:f.write(entry)
-          PY
-          git add -- content/modernization/p08_final_candidate_acceptance.json content/modernization/p08_remaining_work.json design/run_log.md design/version_log.md
-          git add -f -- content/modernization/p08_p06_evidence/34444010444/original.zip
-          index=$(mktemp -u "$RUNNER_TEMP/pr16-evidence-index.XXXXXX")
-          GIT_INDEX_FILE="$index" git read-tree --empty
-          git diff --cached --name-only -z | xargs -0 git ls-files --stage -- | GIT_INDEX_FILE="$index" git update-index --index-info
-          GIT_INDEX_FILE="$index" python3 scripts/guard_private_files.py > .local/pr16-continuation/acceptance/new-index-guard.txt
-          git diff --cached --check
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'test(p06): connect verified Stage84 acceptance and retain missing original ZIP'
-          git push origin HEAD:codex/modernization-followup-20260908
+          git diff --exit-code
           git rev-parse HEAD > .local/pr16-continuation/acceptance/reflected-head.txt
       - name: Preserve verified originals and receipt as Actions evidence
         if: always()
@@ -201,6 +149,31 @@ jobs:
         with:
           name: pr16-p06-native-phase
           path: .local/pr16-continuation/p06-phase/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+  prior-source-context:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Recover pinned instructions and route source, never ROM or save
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-continuation/context
+          python3 scripts/pr16_source_context.py > .local/pr16-continuation/context/run.stdout 2> .local/pr16-continuation/context/run.stderr
+          git rev-parse HEAD > .local/pr16-continuation/context/tested-head.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-prior-source-context
+          path: .local/pr16-continuation/context/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30

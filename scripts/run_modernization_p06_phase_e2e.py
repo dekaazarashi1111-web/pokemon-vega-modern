@@ -27,6 +27,15 @@ FLAGS=('ended','summary_equal','mon_equal')
 def identity(raw):return {'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
 def stable(x):return (json.dumps(x,sort_keys=True,ensure_ascii=False,indent=2)+'\n').encode()
 
+def validate_picture(raw):
+    header=b'P6\n240 160\n255\n'
+    need(raw.startswith(header) and len(raw)==len(header)+240*160*3,'invalid native screenshot dimensions/length')
+    pixels=raw[len(header):]
+    colors=len({pixels[i:i+3] for i in range(0,len(pixels),3)})
+    need(colors>=16,'native screenshot is blank or renderer was not attached')
+    return {'width':240,'height':160,'distinct_colors':colors,**identity(raw)}
+
+
 def validate(raw,index,exit_code):
     need(type(index) is int and 0<=index<len(CASES),'unknown native case')
     need(type(exit_code) is int and exit_code==0,'native process failed')
@@ -97,8 +106,11 @@ def run(out,jobs=4):
                 label=CASES[index];private=work/(label+'.srm');shutil.copyfile(seed,private);rom=parent if index==8 else child
                 stdout,stderr,p=api.capture([str(binary),str(rom),str(private),inputs[str(rom.relative_to(ROOT))]['sha256'],base.SEED_SHA,str(index),str(out/label)],out/label,300)
                 try:
-                    need(b'mGBA[' not in stderr,'emulator warning/error');return validate(stdout,index,api.require_exited(p)),None
-                except (ValueError,RuntimeError,KeyError,TypeError) as e:return None,{'case':label,'reason':str(e)}
+                    need(b'mGBA[' not in stderr,'emulator warning/error')
+                    value=validate(stdout,index,api.require_exited(p))
+                    if index<3:validate_picture((out/(label+'-skills.ppm')).read_bytes())
+                    return value,None
+                except (OSError,ValueError,RuntimeError,KeyError,TypeError) as e:return None,{'case':label,'reason':str(e)}
             with ThreadPoolExecutor(max_workers=jobs) as pool:
                 for result,error in pool.map(one,range(len(CASES))):
                     if result:results.append(result)
