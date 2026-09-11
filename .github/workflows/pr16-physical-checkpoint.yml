@@ -102,7 +102,11 @@ jobs:
           assert changed<=set(paths),'unrelated tracked mutation'
           for name in ('design/run_log.md','design/version_log.md'):
               assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
-          subprocess.run(['git','add','--',*paths],check=True)
+          # Only these three SHA/CRC-verified, ROM/save-free originals bypass ZIP ignore.
+          originals=[m.DIRECTORY+'/'+str(r[0])+'/original.zip' for r in m.RECORDS.values()]
+          assert len(originals)==3 and set(originals)<=set(paths)
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True)
+          subprocess.run(['git','add','-f','--',*originals],check=True)
           staged=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
           assert staged==set(paths),'unexpected staging membership'
           PY
