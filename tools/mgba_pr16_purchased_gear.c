@@ -42,7 +42,10 @@ static void k_equip(struct mCore*c,unsigned item){
   b_press(c,QOL_KEY_A,60U);
  }
  a_require(kt.equipped,"gear selected individual did not receive purchased item");g_shot("equipped");
+ /* The native Give completion text waits for confirmation, not cancellation. */
+ b_press(c,QOL_KEY_A,180U);k_state(c,"give-confirmed");
  for(unsigned i=0;i<20U && !b_field(c);++i)b_press(c,QOL_KEY_B,120U);
+ k_state(c,"equip-menus-closed");g_shot("equip-menus-closed");
  a_require(b_field(c),"gear equip menus did not return to field");
 }
 static void k_path(struct mCore*c,unsigned group,unsigned map,const unsigned path[][2],unsigned count,bool may_encounter){
