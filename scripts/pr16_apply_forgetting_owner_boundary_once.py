@@ -88,10 +88,39 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
     def test_current_snapshot_preserves_later_checkpoint_fields(self):
         current = record.current_remaining_work(ROOT, self.acceptance)
         self.assertTrue(record.same(current, self.tracked))
-        self.assertIn('p03_form_route_inventory', current)
-        self.assertIn('p05_native_supply_reconciliation', current)
-        self.assertIn('p05_native_supply_evidence_map', current)
-        self.assertEqual(current['p07_remaining_route_count'], 0)
+        conditions = {row['id']: row for row in current['remaining_conditions']}
+
+        p03 = conditions['EVOLUTION_FORM_OTHER_EGG']
+        self.assertEqual(
+            p03['status'], 'PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES')
+        self.assertEqual(p03['remaining_physical_gap_ids'], [
+            'P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL',
+            'P03_FIXED_FORM_TRANSITION_PHYSICAL',
+        ])
+        self.assertEqual(
+            p03['coverage_manifest'],
+            'content/modernization/pr16_p03_p07_route_coverage.json')
+
+        p05 = conditions['NATURAL_CAPTURE_GEAR']
+        self.assertEqual(
+            p05['status'], 'PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES')
+        self.assertEqual(p05['remaining_supply_gap_ids'], [
+            'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
+            'P05_NATIVE_BP_EARNING_PHYSICAL',
+            'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
+        ])
+        self.assertEqual(
+            p05['supply_coverage_manifest'],
+            'content/modernization/pr16_p05_native_supply_reconciliation.json')
+        self.assertEqual(
+            p05['supply_evidence_map'],
+            'content/modernization/pr16_p05_native_supply_evidence_map.json')
+
+        p07 = conditions['P07_REMAINING_ROUTE_ACCEPTANCE']
+        self.assertTrue(p07['complete'])
+        self.assertEqual(p07['remaining_physical_gap_ids'], [])
+        self.assertEqual(
+            p07['status'], 'PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER')
 
     def test_unknown_future_fields_survive_unchanged(self):
         future = copy.deepcopy(self.tracked)
