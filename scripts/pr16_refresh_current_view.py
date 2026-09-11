@@ -65,6 +65,9 @@ def current_view(previous,root=ROOT):
     from pr16_p05_route_checkpoint import RECEIPT as p05_receipt, project as p05_project
     if (root / p05_receipt).is_file():
         out=p05_project(out,root)
+    from pr16_shop_display_checkpoint import RECEIPT as display_receipt, project as display_project
+    if (root / display_receipt).is_file():
+        out=display_project(out,root)
     return out
 
 
