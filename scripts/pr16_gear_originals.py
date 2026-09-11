@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Retain the actual static probe and rejected gear runs without relabelling them."""
+"""Retain actual static, rejected and prior successful gear runs separately."""
 import argparse
 import io
 from pathlib import Path
@@ -17,6 +17,7 @@ RECORDS={
  'compile_rejected':(34583082652,10192446522,132810,'f8c37244fd03bcdf41990b66bf441c7a8a6627216faef55020cf6072b8bc12e6','72f3cdb97382285ce9133540bc09b22d4b847982','pr16-purchased-gear','failure'),
  'field_rejected':(34585139774,10193291472,366866,'3d77102fae7f40f62fce00f3a1900931d6e510178514f17a94e350741843f390','3c199d8e2d0c44a75ef0687b79a5ec6ffbd63b4e','pr16-purchased-gear','failure'),
  'policy_rejected':(34585692527,10193527572,458433,'c7191e560b7f0a50602164c6c9ee2c5e739179eb57bcfc77de0a393409ed1d14','7ee8b23ba72f6d389ed07cd0c5cc4c55a80b7cac','pr16-purchased-gear','failure'),
+ 'prior_success':(34587080329,10194085202,571143,'a571a83ab85d8fa8710f445d9f61aa65c8c796523f821bfdc84d73ff9d0cc7a2','6dec0d4e58ffa0c7751be1e05bdd864f87d023bd','pr16-purchased-gear','success'),
 }
 
 def probe_archive(raw,depth=0,budget=None):
@@ -46,7 +47,7 @@ def metadata(meta,rec):
     for job in jobs:
         prior.fields(job,dict(run_id=run,head_sha=head,status='completed',conclusion=conclusion))
         need(job['steps'] and all(s['status']=='completed' for s in job['steps']),'incomplete gear origin steps')
-        if conclusion=='success':need(all(s['conclusion']=='success' for s in job['steps']),'non-success probe step')
+        if conclusion=='success':need(all(s['conclusion']=='success' for s in job['steps']),'non-success origin step')
         else:need(any(s['conclusion']=='failure' for s in job['steps']),'missing rejected-run failure')
 
 def fetch(root=ROOT):
@@ -76,7 +77,21 @@ def verify(label,files):
     if label=='compile_rejected':
         need(b'BATTLE_SIZE' in files[p+'compile.stderr'] and load(files[p+'compile.process.json'])['returncode']!=0,'expected compile rejection absent')
         return dict(status='COMPILE_REJECTION_RETAINED',new_native_passes=0)
-    report=load(files[p+'result.json']);prior.fields(report,dict(status='FAIL',schema_version=1,candidate=display.CANDIDATE,purchased_gear_to_battle_accepted=False,full_p05_acceptance=False,release_ready=False))
+    report=load(files[p+'result.json'])
+    if label=='prior_success':
+        import pr16_purchased_gear as native
+        prior.fields(report,dict(status='PASS',schema_version=2,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],old_runs_relabelled=0,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,full_p05_acceptance=False,release_ready=False))
+        snapshot=display.archive(files[prefix+'sources.zip'])
+        need(len(snapshot)==35 and prior.same(load(files[prefix+'source-bindings.json']),{k:identity(v) for k,v in snapshot.items()}) and prior.same(report['sources'],load(files[prefix+'source-bindings.json'])),'prior successful source bindings differ')
+        need(prior.same(report['oracle'],load(files[p+'oracle.json'])),'prior successful oracle differs')
+        rows=[]
+        for name in native.CASES:
+            loc=p+name;process=load(files[loc+'.process.json'])
+            value=native.validate(files[loc+'.stdout'],files[loc+'.stderr'],name,native.common.require_exited(process),report['oracle'])
+            rows.append(dict(name=name,result=value,process=process))
+        need(prior.same(rows,report['results']),'prior successful raw/report mismatch')
+        return dict(status='PRIOR_SUCCESS_RETAINED_NOT_NEW_CURRENT_EXECUTION',historical_successful_processes=4,historical_successful_cores=9,new_native_passes=0,not_added_to_successor_counts=True)
+    prior.fields(report,dict(status='FAIL',schema_version=1,candidate=display.CANDIDATE,purchased_gear_to_battle_accepted=False,full_p05_acceptance=False,release_ready=False))
     if label=='field_rejected':
         need(len(report['failures'])==3 and not report['results'],'field failure scope changed')
         for name in ('eelektross-active','eelektross-no-toggle','eelektross-cancel-toggle'):
@@ -99,7 +114,7 @@ def build(root=ROOT):
         metadata(load(prior.read(root,directory/'actions.json')),rec);raw=prior.read(root,directory/'original.zip');need(identity(raw)==dict(size=size,sha256=sha),'retained gear bytes differ')
         files=(probe_archive if label=='probe' else display.archive)(raw)
         originals[label]=dict(run_id=run,artifact_id=aid,tested_head=head,path=str(directory/'original.zip'),size=size,sha256=sha,verification=verify(label,files))
-    return dict(schema_version=1,status='STATIC_AND_REJECTED_ORIGINALS_RETAINED',candidate=display.CANDIDATE,originals=originals,new_emulator_runs=0,gear_to_battle_accepted=False,full_p05_acceptance=False,release_ready=False)
+    return dict(schema_version=2,status='HISTORICAL_GEAR_ORIGINALS_RETAINED',candidate=display.CANDIDATE,originals=originals,new_emulator_runs=0,gear_to_battle_accepted=False,full_p05_acceptance=False,release_ready=False)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--fetch',action='store_true');p.add_argument('--write',action='store_true');args=p.parse_args()
