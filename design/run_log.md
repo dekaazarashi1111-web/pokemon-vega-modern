@@ -4710,3 +4710,7 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 ## 2026-09-11 USER-MODERNIZATION gear controller refinement / run 34585668795
 
 Fixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled and reached actual purchase/Give but rejected live Quest Log recording (quest=1, action state=2). Repair only the gear-specific idle predicate; reject playback and all unknown pairs. Compile and execute the actual C predicate against all 65,536 byte pairs; 50 targeted tests pass. No host-state clearing, ROM modification, baseline/save/visibility/history change or release claim. Native rerun is a separate pending gate.
+
+## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run 34587056078
+
+Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.

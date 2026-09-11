@@ -2,14 +2,14 @@
   "actual_c_state_pairs_checked": 65536,
   "full_p05_acceptance": false,
   "gear_to_battle_accepted": false,
-  "local_and_ci_targeted_tests": 50,
+  "local_and_ci_targeted_tests": 51,
   "new_native_passes": 0,
-  "previous_failure_reason": "Quest-log live recording (1,2) rejected as playback after actual Give",
-  "previous_native_failure_run": 34585139774,
-  "refinement_run": 34585668795,
+  "previous_failure_reason": "NEXT-battle Mega policy is volatile, not saved. Intermediate cold load resets it. Do not inject it again.",
+  "previous_native_failure_run": 34585692527,
+  "refinement_run": 34587056078,
   "release_ready": false,
-  "request_head": "c738362dc0cc646f6472629ee1be95a21ad4bb8f",
-  "resume": "Read pr16-purchased-gear native run dispatched after this commit; inspect all originals before acceptance. Do not redo purchase controller or route probe.",
-  "schema_version": 1,
-  "status": "CONTROLLER_REPAIRED_NATIVE_ACCEPTANCE_PENDING"
+  "request_head": "103aaaea462c5d7ccc33d5f4ed9de1b4fa42d58a",
+  "resume": "Read dispatched native run: active/no-toggle/cancel same-session cases each 2 cores; cold-policy-reset control 3 cores. Review originals before acceptance; old failed run remains historical.",
+  "schema_version": 2,
+  "status": "POLICY_BOUNDARY_CORRECTED_NATIVE_ACCEPTANCE_PENDING"
 }

@@ -5,11 +5,12 @@
 #include "pr16_gear_capture_helpers.c"
 #include "pr16_gear_route.h"
 #define K_SCOPE "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE"
-struct KCase {const char *name;unsigned species,item,mega,ability,base_ability,toggles;};
+struct KCase {const char *name;unsigned species,item,mega,ability,base_ability,toggles,mid_reload;};
 static const struct KCase k_cases[]={
- {"eelektross-active",411,1012,1634,313,26,1},
- {"eelektross-no-toggle",411,1012,1634,313,26,0},
- {"eelektross-cancel-toggle",411,1012,1634,313,26,2}
+ {"eelektross-active",411,1012,1634,313,26,1,0},
+ {"eelektross-no-toggle",411,1012,1634,313,26,0,0},
+ {"eelektross-cancel-toggle",411,1012,1634,313,26,2,0},
+ {"eelektross-cold-policy-reset",411,1012,1634,313,26,1,1}
 };
 struct KTrace {unsigned interaction,purchased,bag,equipped,saved,reloaded,boundary,encounter,move_menu,toggle,mega,spent,field,saved_again,reloaded_again;};
 static struct KTrace kt;
@@ -122,8 +123,14 @@ int main(int argc,char**argv){
  a_require(!memcmp(now,before,sizeof(now)),"gear Give changed unrelated inventory");
  for(unsigned i=0;i<100U;++i)if(i!=k_growth+2U && i!=k_growth+3U && i!=28U && i!=29U)a_require(mon[i]==snapshot[i],"gear Give changed unrelated mon bytes");
  a_require(b_save(c),"gear equipped native Save failed");kt.saved=b_frames;
+ /* A configured NEXT-battle policy lives in volatile RAM, not the save.
+  * Same-session cases keep it without any post-barrier write. A separate
+  * cold-load control must deny Mega rather than silently reconfigure it. */
+ if(v->mid_reload){
  a_restore(c,&original);c=b_restart(c,argv[1],argv[2]);c->reset(c);original=*c;a_guard(c);a_require(b_continue(c),"gear equipped cold Continue failed");kt.reloaded=b_frames;
  b_copy(c,QOL_PLAYER_PARTY,loaded,100U);g_inventory(c,now);a_require(!memcmp(snapshot,loaded,100U) && !memcmp(now,before,sizeof(now)) && read32(c,P03_SAVE_COUNTER)==counter+2U && read16(c,QOL_LEDGER+0x392U)==48U,"gear equipped cold save changed data");g_shot("equipped-reloaded");
+ }
+
  k_path(c,96U,5U,k_town_path,sizeof(k_town_path)/sizeof(k_town_path[0]),false);n_step(c,QOL_KEY_UP);b_position(c,96U,17U,11U,39U);kt.boundary=b_frames;g_shot("physical-map-boundary");
  k_path(c,96U,17U,k_grass_path,sizeof(k_grass_path)/sizeof(k_grass_path[0]),true);
  for(unsigned i=0;i<1024U && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER);++i){unsigned s=b_save1(c),x=read16(c,s),y=read16(c,s+2U);a_require(y==30U && (x==14U || x==15U),"gear grass pair differs");n_step(c,x==14U?QOL_KEY_RIGHT:QOL_KEY_LEFT);}
@@ -146,7 +153,7 @@ int main(int argc,char**argv){
   b_frame(c,f%60U==0U?QOL_KEY_B:0U);
  }
  a_require(kt.spent && pp-after_pp<=2U,"gear battler did not spend native move PP");
- a_require(v->toggles==1U?(kt.mega>kt.toggle && kt.spent>kt.mega && observed_species==v->mega && observed_ability==v->ability):!kt.mega,"gear native Mega activation/control differs");g_shot("native-turn");
+ a_require((v->toggles==1U && !v->mid_reload)?(kt.mega>kt.toggle && kt.spent>kt.mega && observed_species==v->mega && observed_ability==v->ability):!kt.mega,"gear native Mega activation/control differs");g_shot("native-turn");
  if(read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)){a_require(n_action(c),"gear native turn did not reach action controller");n_cursor(c,3U);b_press(c,QOL_KEY_A,60U);n_return(c,false);}
  kt.field=b_frames;unsigned outcome=n_outcome;
  a_require(b_field(c) && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER) && (outcome==1U || outcome==4U) && read32(c,QOL_PLAYER_PARTY)==k_pid && read16(c,QOL_PLAYER_PARTY+k_growth)==v->species && read16(c,QOL_PLAYER_PARTY+k_growth+2U)==v->item && read8(c,QOL_PLAYER_PARTY+k_attack+8U)==after_pp,"gear native return/reversion/held item/PP differs");g_shot("reverted-field");
@@ -154,9 +161,9 @@ int main(int argc,char**argv){
  a_restore(c,&original);c=b_restart(c,argv[1],argv[2]);c->reset(c);original=*c;a_guard(c);a_require(b_continue(c),"gear third core Continue failed");kt.reloaded_again=b_frames;
  b_copy(c,QOL_PLAYER_PARTY,loaded,100U);g_inventory(c,now);a_require(!memcmp(snapshot,loaded,100U) && !memcmp(now,before,sizeof(now)) && read8(c,QOL_PLAYER_PARTY_COUNT)==1U && read32(c,P03_SAVE_COUNTER)==counter+3U && read16(c,QOL_LEDGER+0x392U)==48U,"gear third core changed party/inventory/BP/save counter");g_shot("battle-reloaded");
  a_restore(c,&original);qol_close(c);qol_log_core=NULL;sha256_file(argv[1],after);a_require(!strcmp(hash,after) && !log_problem_count,"gear ROM changed or emulator warned");
- printf("{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"%s\",\"case\":\"%s\",\"rom_sha256\":\"%s\",",K_SCOPE,v->name,hash);
+ printf("{\"schema_version\":2,\"status\":\"PASS\",\"scope\":\"%s\",\"case\":\"%s\",\"rom_sha256\":\"%s\",",K_SCOPE,v->name,hash);
  printf("\"species\":%u,\"item\":%u,\"mega_species\":%u,\"ability\":%u,\"toggles\":%u,\"personality\":%u,\"enemy_species\":%u,\"enemy_level\":%u,\"move\":%u,\"pp_before\":%u,\"pp_after\":%u,\"outcome\":%u,\"walking_steps\":%u,",v->species,v->item,observed_species,observed_ability,v->toggles,k_pid,enemy,level,move,pp,after_pp,outcome,n_steps);
- printf("\"bp_before\":64,\"bp_after\":48,\"automatic_saves\":1,\"manual_saves\":2,\"fresh_cores\":3,\"host_write_barriers\":7,\"party_inventory_bp_persisted\":true,\"physical_give\":true,\"physical_map_transition\":true,\"held_stone_not_consumed\":true,\"initial_map_party_ring_bp_policy_are_fixtures\":true,\"ring_bp_natural_acquisition_accepted\":false,\"full_p05_acceptance\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":%u,\"witness\":{",b_frames);
+ printf("\"bp_before\":64,\"bp_after\":48,\"automatic_saves\":1,\"manual_saves\":2,\"fresh_cores\":%u,\"cold_reload_before_encounter\":%s,\"host_write_barriers\":7,\"party_inventory_bp_persisted\":true,\"physical_give\":true,\"physical_map_transition\":true,\"held_stone_not_consumed\":true,\"initial_map_party_ring_bp_policy_are_fixtures\":true,\"ring_bp_natural_acquisition_accepted\":false,\"full_p05_acceptance\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":%u,\"witness\":{",2U+v->mid_reload,v->mid_reload?"true":"false",b_frames);
 #define KW(n) printf("\""#n"\":%u,",kt.n)
  KW(interaction);KW(purchased);KW(bag);KW(equipped);KW(saved);KW(reloaded);KW(boundary);KW(encounter);KW(move_menu);KW(toggle);KW(mega);KW(spent);KW(field);KW(saved_again);
 #undef KW

@@ -17,17 +17,17 @@ SELF='scripts/pr16_purchased_gear.py';SOURCE='tools/mgba_pr16_purchased_gear.c'
 TEST='tests/test_pr16_purchased_gear.py';WORKFLOW='.github/workflows/pr16-purchased-gear.yml'
 OUT=ROOT/'.local/pr16-purchased-gear';SHA=parent.SHA
 SCOPE='PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE'
-CASES={'eelektross-active':1,'eelektross-no-toggle':0,'eelektross-cancel-toggle':2}
+CASES={'eelektross-active':1,'eelektross-no-toggle':0,'eelektross-cancel-toggle':2,'eelektross-cold-policy-reset':1}
 TRACE=('interaction','purchased','bag','equipped','saved','reloaded','boundary','encounter','move_menu','spent','field','saved_again','reloaded_again')
 DYNAMIC={'personality','enemy_species','enemy_level','move','pp_before','pp_after','outcome','walking_steps','total_frames','witness'}
 EVENT=re.compile(rb'^GEAR_ENCOUNTER species=(\d+) level=(\d+) flags=([0-9a-f]{8}) frame=(\d+)$',re.M)
 
 
 def expected(name):
-    need(name in CASES,'unknown purchased gear case');active=CASES[name]==1
-    return dict(schema_version=1,status='PASS',scope=SCOPE,case=name,rom_sha256=SHA,
+    need(name in CASES,'unknown purchased gear case');active=name=='eelektross-active';cold=name=='eelektross-cold-policy-reset'
+    return dict(schema_version=2,status='PASS',scope=SCOPE,case=name,rom_sha256=SHA,
         species=411,item=1012,mega_species=1634 if active else 411,ability=313 if active else 26,toggles=CASES[name],
-        bp_before=64,bp_after=48,automatic_saves=1,manual_saves=2,fresh_cores=3,host_write_barriers=7,
+        bp_before=64,bp_after=48,automatic_saves=1,manual_saves=2,fresh_cores=3 if cold else 2,cold_reload_before_encounter=cold,host_write_barriers=7,
         party_inventory_bp_persisted=True,physical_give=True,physical_map_transition=True,held_stone_not_consumed=True,
         initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,
         full_p05_acceptance=False,release_ready=False,warnings_errors=0)
@@ -94,10 +94,12 @@ def validate(raw,stderr,name,code,audit):
     need(1<=value['move']<=2048 and 1<=value['pp_before']<=64 and 0<=value['pp_after']<value['pp_before'] and value['pp_before']-value['pp_after']<=2 and value['outcome'] in (1,4),'gear native turn values invalid')
     trace=value['witness'];need(type(trace) is dict and set(trace)==set(TRACE)|{'toggle','mega'},'gear witness schema differs')
     need(all(type(v) is int and 0<=v<=value['total_frames'] for v in trace.values()),'gear witness values invalid')
-    need(trace['interaction']>0 and all(trace[a]<trace[b] for a,b in zip(TRACE,TRACE[1:])) and trace['reloaded_again']==value['total_frames'],'gear physical purchase/equip/walk/save order differs')
+    sequence=TRACE if value['cold_reload_before_encounter'] else tuple(k for k in TRACE if k!='reloaded')
+    if not value['cold_reload_before_encounter']:need(trace['reloaded']==0,'same-session case fabricated an intermediate cold Continue')
+    need(trace['interaction']>0 and all(trace[a]<trace[b] for a,b in zip(sequence,sequence[1:])) and trace['reloaded_again']==value['total_frames'],'gear physical purchase/equip/walk/save order differs')
     if CASES[name]:need(trace['move_menu']<trace['toggle']<trace['spent'],'gear toggle is not physical move menu input')
     else:need(trace['toggle']==0,'no-toggle control contains a toggle')
-    if CASES[name]==1:need(trace['toggle']<trace['mega']<trace['spent'],'gear native Mega sequence absent')
+    if name=='eelektross-active':need(trace['toggle']<trace['mega']<trace['spent'],'gear native Mega sequence absent')
     else:need(trace['mega']==0,'gear negative control activated Mega')
     need(type(stderr) is bytes and b'mGBA[' not in stderr,'gear emulator warning or nonbyte stderr')
     events=EVENT.findall(stderr);need(len(events)==1,'gear natural encounter original missing/duplicated')
@@ -117,7 +119,7 @@ def run():
            'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','scripts/pr16_receiver_audit.py',
            'scripts/pr16_repaired_acceptance.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_integration_continuation.py',
            'scripts/pr16_evolution_learning_repair.py','scripts/run_modernization_p03_fullslots_e2e.py',
-           'config/active_play_baseline.json','design/active_play_baseline.md',*(p for p,_ in m.EMBEDDED)}
+           'config/active_play_baseline.json','design/active_play_baseline.md','overlays/cfru/integration.c','overlays/cfru/integration.h','tools/modernization_p04_mega_runtime.py','config/modernization_p04_mega_runtime.json',*(p for p,_ in m.EMBEDDED)}
     cfg=json.loads((ROOT/'config/modernization_stage79_cumulative_mgba.json').read_bytes());p02=next(d for d in cfg['domains'] if d['id']=='p02')
     for binding in (p02['runner'],*p02['dependencies']):
         need(common.identity(ROOT/binding['path'])=={k:binding[k] for k in ('size','sha256')},'gear dependency differs');paths.add(binding['path'])
@@ -152,7 +154,7 @@ def run():
     finally:
         need(protected=={p:common.identity(Path(p)) for p in protected},'gear original input changed')
         need(bindings=={p:common.identity(ROOT/p) for p in bindings},'gear source/baseline changed')
-    report=dict(schema_version=1,status='FAIL' if failures else 'PASS',scope=SCOPE,candidate=r.identity(raw),oracle=audit,
+    report=dict(schema_version=2,status='FAIL' if failures else 'PASS',scope=SCOPE,candidate=r.identity(raw),oracle=audit,
         sources=bindings,generated={p:r.identity(s.encode()) for p,s in generated.items()},guard_checks=guards,results=results,failures=failures,
         actual_new_processes=len(CASES),successful_fresh_cores=sum(v['result']['fresh_cores'] for v in results),
         purchased_gear_to_battle_accepted=not failures,initial_map_party_ring_bp_policy_are_fixtures=True,
