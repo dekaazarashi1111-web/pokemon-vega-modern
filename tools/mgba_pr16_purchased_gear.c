@@ -89,7 +89,13 @@ int main(int argc,char**argv){
  write16(c,BATTLE_CORE_BAG_STATE+6U,0U);for(unsigned i=0;i<6U;++i)write16(c,BATTLE_CORE_BAG_STATE+8U+2U*i,0U);
  uint32_t before[G_ITEMS],now[G_ITEMS],bought[G_ITEMS];g_inventory(c,before);memcpy(bought,before,sizeof(bought));bought[v->item]++;
  uint8_t mon[100],snapshot[100],loaded[100];b_copy(c,QOL_PLAYER_PARTY,mon,100U);unsigned counter=read32(c,P03_SAVE_COUNTER),index=v->item-999U;
- g_shot("fixture");struct mCore original=*c;a_guard(c);kt.interaction=b_frames+1U;g_open(c,true);g_menu_check(c,45U);
+ g_shot("fixture");struct mCore original=*c;a_guard(c);
+ /* Synchronize physical direction after native fixture calls. The inherited
+  * shop helper uses one frame, which is not a full input pulse at this phase. */
+ b_frames_run(c,0U,60U);b_press(c,QOL_KEY_UP,60U);b_position(c,96U,5U,24U,20U);
+ unsigned avatar=read8(c,P02S_PLAYER_AVATAR+5U);
+ a_require(avatar<16U && (read8(c,P02S_OBJECT_EVENTS+avatar*0x24U+0x18U)&15U)==2U,"gear physical facing did not settle north");
+ kt.interaction=b_frames+1U;g_open(c,true);g_menu_check(c,45U);
  for(unsigned page=0;page<index/5U;++page){g_down(c,5U);b_press(c,QOL_KEY_A,60U);g_menu_check(c,45U);a_require(read8(c,G_STATE+95U)==page+1U,"gear shop page differs");}
  g_down(c,index%5U);b_press(c,QOL_KEY_A,180U);g_finish(c);kt.purchased=b_frames;g_inventory(c,now);
  a_require(read16(c,G_STATE+90U)==0U && !memcmp(now,bought,sizeof(now)) && read16(c,QOL_LEDGER+0x392U)==48U && read32(c,P03_SAVE_COUNTER)==counter+1U,"gear physical purchase/BP/autosave differs");g_shot("purchased");
