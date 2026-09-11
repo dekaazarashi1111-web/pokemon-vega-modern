@@ -12,10 +12,10 @@ import pr16_captured_battle_checkpoint as captured
 prior=history.prior;display=history.display;need=prior.need;load=prior.load;stable=prior.stable;identity=prior.identity
 DIRECTORY=history.DIRECTORY
 RECEIPT='content/modernization/pr16_purchased_gear_acceptance.json'
-RECORD=(34587080329,10194085202,571143,'a571a83ab85d8fa8710f445d9f61aa65c8c796523f821bfdc84d73ff9d0cc7a2','6dec0d4e58ffa0c7751be1e05bdd864f87d023bd','pr16-purchased-gear','pr16-purchased-gear','pr16-purchased-gear-evidence/')
+RECORD=(34589284710,10194976718,580351,'6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9','4b5971179795bcdbbca1abf142387ef1bb6f1ce9','pr16-purchased-gear','pr16-purchased-gear','pr16-purchased-gear-evidence/')
 RECIPE_SHA='e9db6aca3b6610a134074087e68339d9a78f273cd92f836f50b69badd7262b75'
-# All 58 raw images reviewed in four case contact sheets. The first Mega
-# species-detection frame precedes sprite refresh; native-turn shows its form.
+# All 58 raw images equal the previously reviewed 58 pixels, byte for byte.
+# The first Mega detection frame precedes sprite refresh; native-turn shows it.
 REVIEWED_IMAGES_SHA='d594115c87f2ec3c7a05692a769cb36f3ef586d5e8f7ac065cef7f6328947934'
 
 def fetch(root=ROOT):
@@ -31,6 +31,15 @@ def fetch(root=ROOT):
         if p.exists():need(p.read_bytes()==data,'refuse gear success overwrite')
         else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
 
+def screen_manifest(files,p,name,value):
+    required=native.evidence.required_screens(value)
+    images={}
+    for suffix in required:
+        filename=name+'-'+suffix+'.ppm';raw=files[p+filename]
+        need(len(raw)==native.evidence.PPM_SIZE and raw.startswith(native.evidence.PPM_HEADER),'bound screenshot dimensions differ')
+        images[filename]=dict(**identity(raw),width=240,height=160)
+    return dict(schema_version=1,status='SCREEN_BYTES_BOUND_NOT_VISUALLY_ACCEPTED',case=name,native_result_schema=value['schema_version'],required_screens=len(required),files=images,visual_review_completed=False,presentation_accepted=False,full_p05_acceptance=False,release_ready=False)
+
 def verify(files,root=ROOT):
     p='pr16-purchased-gear/';ev=RECORD[7]
     need(files[ev+'tested-head.txt']==(RECORD[4]+'\n').encode(),'gear success execution HEAD differs')
@@ -38,9 +47,9 @@ def verify(files,root=ROOT):
     prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,full_p05_acceptance=False,release_ready=False,old_runs_relabelled=0))
     need(prior.same(report['oracle'],audit) and audit['candidate']==display.CANDIDATE,'gear natural oracle mismatch')
     need(identity(files[p+'candidate.json'])['sha256']==RECIPE_SHA,'gear candidate recipe differs')
-    need(files[ev+'unit.log'].endswith(b'OK\n') and b'Ran 51 tests' in files[ev+'unit.log'],'gear rejection-test execution absent')
-    snapshot=display.sources(files,ev,report,root,(native.SELF,native.SOURCE,native.TEST,native.WORKFLOW))
-    need(len(snapshot)==35 and prior.same(load(files[ev+'source-bindings.json']),{k:identity(v) for k,v in snapshot.items()}),'gear source inventory differs')
+    need(files[ev+'unit.log'].endswith(b'OK\n') and b'Ran 65 tests' in files[ev+'unit.log'],'gear rejection-test execution absent')
+    snapshot=display.sources(files,ev,report,root,(native.SELF,native.SOURCE,native.TEST,native.WORKFLOW,native.evidence.SELF,native.evidence.TEST))
+    need(len(snapshot)==37 and prior.same(load(files[ev+'source-bindings.json']),{k:identity(v) for k,v in snapshot.items()}),'gear source inventory differs')
     m=native.shop.base.load();generated={}
     for i,(src,target) in enumerate(m.EMBEDDED):generated[target]=m.embed(prior.read(root,src).decode(),'gear_embedded_'+str(i)).encode()
     for src,target,label in ((native.shop.base.PARENT_C,'pr16_shop_breeding_helpers.c','gear_breeding'),(native.shop.SOURCE,'pr16_capture_shop_helpers.c','gear_shop'),(native.parent.SOURCE,'pr16_gear_capture_helpers.c','gear_capture')):
@@ -54,10 +63,11 @@ def verify(files,root=ROOT):
     for name in native.CASES:
         loc=p+name;process=load(files[loc+'.process.json']);value=native.validate(files[loc+'.stdout'],files[loc+'.stderr'],name,native.common.require_exited(process),audit)
         row=dict(name=name,result=value,process=process);need(prior.same(report['results'][len(rows)],row),'gear raw/report mismatch');rows.append(row)
+        need(prior.same(load(files[loc+'.screens.json']),screen_manifest(files,p,name,value)),'gear screenshot manifest differs')
     images={k.removeprefix(p):identity(v) for k,v in files.items() if k.endswith('.ppm')}
     need(len(images)==58 and identity(stable(images))['sha256']==REVIEWED_IMAGES_SHA,'reviewed gear pixels differ')
     return dict(status='SCOPED_PURCHASE_GIVE_WALK_MEGA_REVERT_COLD_SAVE_ACCEPTED',candidate=display.CANDIDATE,cases=rows,new_native_processes=4,new_native_cores=9,
-                source_files=35,reviewed_images=images,visual_review='58 ORIGINALS REVIEWED: SHOP/BAG/GIVE/WALK/BATTLE/RETURN/RELOAD; NO APPARENT UI CORRUPTION',
+                source_files=37,reviewed_images=images,screen_manifests_checked=4,visual_review='58 ORIGINALS REVIEWED: SHOP/BAG/GIVE/WALK/BATTLE/RETURN/RELOAD; NO APPARENT UI CORRUPTION',
                 initial_fixtures=['starting map and position','level100 Eelektross','ring','64 BP','initial empty item pocket','volatile next-battle Mega policy'],
                 policy_scope='THREE SAME-SESSION CASES WITH INITIAL POLICY; ONE COLD-LOAD STANDARD-POLICY CONTROL; NO POST-BARRIER RECONFIGURATION',
                 purchased_gear_to_battle_accepted=True,ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_species_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)
@@ -66,7 +76,7 @@ def build(root=ROOT):
     captured.build(root);history.build(root)
     run,aid,size,sha,head,_,_,_=RECORD;directory=Path(DIRECTORY)/str(run)
     prior.metadata(load(prior.read(root,directory/'actions.json')),RECORD);raw=prior.read(root,directory/'original.zip');need(identity(raw)==dict(size=size,sha256=sha),'retained gear success differs')
-    return dict(schema_version=1,status='SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE',candidate=display.CANDIDATE,acceptance=verify(display.archive(raw),root),
+    return dict(schema_version=2,status='SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE',candidate=display.CANDIDATE,acceptance=verify(display.archive(raw),root),
                 original=dict(run_id=run,artifact_id=aid,tested_head=head,path=str(directory/'original.zip'),size=size,sha256=sha),
                 historical_originals_receipt=history.RECEIPT,captured_battle_receipt=captured.RECEIPT,new_emulator_runs=0,full_p05_acceptance=False,release_ready=False)
 
