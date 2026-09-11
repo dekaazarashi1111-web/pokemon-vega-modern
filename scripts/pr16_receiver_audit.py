@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Read exact candidate tables and map-rooted scripts, never claim native success.
+"""Exact candidate table and map-root audit. Never native acceptance.
 
-The ScriptWalker stops at unknown instructions. No byte-pattern match can become
-an entrance proof, and absence in this bounded graph cannot prove no entrance.
+Unknown instructions stop the rooted graph. No byte-pattern resynchronization,
+ROM edits, runtime function calls or flags can establish physical admission.
 """
 from pathlib import Path, PurePosixPath
 import hashlib
@@ -16,10 +16,10 @@ import pr16_repaired_acceptance as repaired
 from tools.t02.rom_inventory import RomImage, ScriptWalker
 from tools.stage57_debug_suite import _collect_contactable_roots
 LEVEL_SCOPE = {10, 11, 12, 13, 203, 324, 364, 608, 719, 724, 727, 503, 411, 957, 497, 787, 1526}
+STAGE73_COUNT = 1621
 
 
 def restore_map_inputs():
-    """Restore only fixed catalogue JSON, never ROM, save or arbitrary paths."""
     name = 'pokemon-vega-private-env-v1-state.zip'
     cfg = json.loads((ROOT / 'config/github_private_environment.json').read_text())
     expected = next(a for a in cfg['archives'] if a['name'] == name)
@@ -30,7 +30,8 @@ def restore_map_inputs():
     with zipfile.ZipFile(archive) as z:
         selected = [n for n in z.namelist() if n == 'reports/generated/id_inventory.json' or
                     n.startswith('generated/maps/kanto/') and n.endswith('.json')]
-        repaired.need(len(selected) == len(set(selected)) and len(selected) == 254, 'fixed map catalogue member set differs')
+        # 253 map records, their index.json, and id_inventory.json.
+        repaired.need(len(selected) == len(set(selected)) == 255, 'fixed map catalogue member set differs')
         for name in selected:
             path = PurePosixPath(name)
             repaired.need(not path.is_absolute() and '..' not in path.parts, 'unsafe catalogue path')
@@ -48,16 +49,15 @@ def restore_map_inputs():
 
 def pools(raw):
     layer = repaired.layer
-    # Reserved/unpopulated species are not silently decoded as live level rows.
-    # Egg/shared/reminder indices are read for all species; level rows are scoped.
     tables = layer.source.RomTables(raw, layer.COUNT, selected_species=LEVEL_SCOPE)
     symbols = json.loads((ROOT / 'generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json').read_text())['symbols']
     index = int(symbols['Stage73_ExactEggIndex']['address'], 16) - layer.BASE
     moves = int(symbols['Stage73_ExactEggMoves']['address'], 16) - layer.BASE
+    repaired.need(layer.SHARED_MOVES - layer.SHARED_INDEX == (STAGE73_COUNT+1)*2, 'Stage73 index capacity drift')
     stats = struct.unpack_from('<I', raw, 0x1bc)[0] - layer.BASE
     pp = struct.unpack_from('<I', raw, 0x1cc)[0] - layer.BASE
     rows = {}
-    for sid in range(layer.COUNT):
+    for sid in range(STAGE73_COUNT):
         shared = layer.indexed(raw, layer.SHARED_INDEX, layer.SHARED_MOVES, sid)
         exact = layer.indexed(raw, index, moves, sid) if sid in layer.EXACT_SPECIES else None
         if exact is not None and sid == 364:
@@ -70,9 +70,9 @@ def pools(raw):
                      'exact_egg': exact, 'shared': shared, 'reminder': reminder,
                      'shared_not_exact': [m for m in shared if m not in exact] if exact is not None else None,
                      'stats': list(raw[at:at+32])}
-    return {'species': rows, 'level_scope': sorted(LEVEL_SCOPE),
+    return {'species': rows, 'stage73_species_count': STAGE73_COUNT, 'level_scope': sorted(LEVEL_SCOPE),
             'canonical_pp': {m: raw[pp+12*m+4] for m in range(1, 1201)},
-            'note': 'Non-exact species raw_egg is NOT assumed to equal the original ancestral GetAllEggMoves pool.'}
+            'note': 'Non-exact raw_egg is NOT assumed equal to the ancestral GetAllEggMoves pool. Unused level rows and post-Stage73 species are not audited.'}
 
 
 class ReceiverWalker(ScriptWalker):
@@ -102,15 +102,13 @@ def receivers(raw):
             'visited_scripts': graph['visited_script_count'],
             'references': selected, 'diagnostics': graph['diagnostics'],
             'nodes': [n for n in graph['nodes'] if n['address'] in addresses],
-            'limitations': ['native calls are not recursively disassembled',
-                           'unknown command paths stop, never resynchronize',
-                           '0x403A and special 0x72 are candidates, not sufficient entrance proof',
-                           'map/progress fixtures or flag writes do not count as physical admission']}
+            'limitations': ['native calls not recursively decoded', 'unknown commands stop without resynchronization',
+                           '0x403A and special 0x72 alone are not entrance proof',
+                           'map/progress fixtures never count as physical admission']}
 
 
 def wild(raw):
     rom = RomImage('PR16', raw)
-    # Stage60 layout uses tagged pointers at all three pointer levels.
     root = rom.u32(0x0808257C) & ~1
     rows = []
     for i in range(2048):
@@ -123,7 +121,11 @@ def wild(raw):
             info = rom.u32(at + 4 + 4*j) & ~1
             if not info:
                 continue
+            if not rom.contains(info, 8):
+                raise ValueError(f'wild root={root:#x}, header={i}, map={group}/{number}, method={method}, info={info:#x}: not a ROM info pointer')
             slots = rom.u32(info+4) & ~1
+            if not rom.contains(slots, count*4):
+                raise ValueError(f'wild root={root:#x}, header={i}, map={group}/{number}, method={method}, info={info:#x}, slots={slots:#x}: not a ROM slot pointer')
             row['tables'][method] = {'rate': rom.u8(info), 'slots': [
                 {'min': rom.u8(slots+4*k), 'max': rom.u8(slots+4*k+1), 'species': rom.u16(slots+4*k+2)}
                 for k in range(count)]}
@@ -144,6 +146,9 @@ def run():
         except (ValueError, RuntimeError, OSError, KeyError, struct.error) as error:
             report[label] = {'status': 'INCOMPLETE', 'error': str(error)}
     (out / 'result.json').write_bytes(repaired.stable(report))
+    with zipfile.ZipFile(out / 'audit-sources.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+        for p in ('scripts/pr16_receiver_audit.py', 'tests/test_pr16_receiver_audit.py'):
+            z.writestr(p, (ROOT/p).read_bytes())
     repaired.layer.source.checked(ROOT / repaired.ROM, repaired.ROM_SHA)
     print(json.dumps(report, sort_keys=True))
     return report
