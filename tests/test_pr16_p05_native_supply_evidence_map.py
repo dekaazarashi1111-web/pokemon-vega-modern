@@ -11,6 +11,15 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import pr16_p05_native_supply_evidence_map as target
 
 
+def test_map_uses_the_validated_nested_purchased_acceptance() -> None:
+    receipt, acceptance = target.load_purchased_receipt()
+    assert acceptance is receipt["acceptance"]
+    assert acceptance["purchased_gear_to_battle_accepted"] is True
+    assert acceptance["ring_bp_natural_acquisition_accepted"] is False
+    assert acceptance["ordinary_policy_selection_accepted"] is False
+    assert acceptance["candidate"] == receipt["candidate"]
+
+
 def test_map_binds_exact_three_gaps_without_accepting_them() -> None:
     report = target.build_map()
     assert report["status"] == "PASS_SOURCE_EVIDENCE_BINDING_NOT_NATIVE_ACCEPTANCE"

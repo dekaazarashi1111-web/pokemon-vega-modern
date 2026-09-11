@@ -27,6 +27,13 @@ REMAINING = "content/modernization/p08_remaining_work.json"
 PURCHASED = "content/modernization/pr16_purchased_gear_acceptance.json"
 SCOPE = "PR16_P05_NATIVE_RING_BP_POLICY_FINITE_INVENTORY"
 
+PURCHASED_ACCEPTANCE_KEYS = (
+    "candidate",
+    "purchased_gear_to_battle_accepted",
+    "ring_bp_natural_acquisition_accepted",
+    "ordinary_policy_selection_accepted",
+)
+
 GAP_IDS = (
     "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
     "P05_NATIVE_BP_EARNING_PHYSICAL",
@@ -91,6 +98,35 @@ TEXT_SUFFIXES = {
 def need(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def load_purchased_receipt(path: Path | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Load the purchased-gear receipt and validate its version-2 acceptance object."""
+    source = path if path is not None else ROOT / PURCHASED
+    data = json.loads(source.read_text())
+    need(isinstance(data, dict), "purchased gear receipt root must be an object")
+    acceptance = data.get("acceptance")
+    need(isinstance(acceptance, dict), "purchased gear receipt missing object: acceptance")
+    missing = [key for key in PURCHASED_ACCEPTANCE_KEYS if key not in acceptance]
+    need(
+        not missing,
+        "purchased gear receipt acceptance missing keys: " + ", ".join(missing),
+    )
+    candidate = acceptance["candidate"]
+    need(isinstance(candidate, dict), "purchased gear receipt acceptance.candidate must be an object")
+    sha256 = candidate.get("sha256")
+    size = candidate.get("size")
+    need(
+        isinstance(sha256, str) and re.fullmatch(r"[0-9a-f]{64}", sha256) is not None,
+        "purchased gear receipt acceptance.candidate.sha256 must be 64 lowercase hex characters",
+    )
+    need(type(size) is int and size > 0, "purchased gear receipt acceptance.candidate.size must be positive")
+    if "candidate" in data:
+        need(
+            data["candidate"] == candidate,
+            "purchased gear receipt candidate aliases differ between root and acceptance",
+        )
+    return data, acceptance
 
 
 def stable_json(value: Any) -> bytes:
@@ -204,7 +240,7 @@ def _condition(remaining: dict[str, Any], condition_id: str) -> dict[str, Any]:
 
 def build_inventory() -> dict[str, Any]:
     remaining = json.loads((ROOT / REMAINING).read_text())
-    purchased = json.loads((ROOT / PURCHASED).read_text())
+    _, purchased_acceptance = load_purchased_receipt()
     natural = _condition(remaining, "NATURAL_CAPTURE_GEAR")
 
     need(natural.get("natural_capture_required") is False, "natural capture success was reopened")
@@ -212,9 +248,18 @@ def build_inventory() -> dict[str, Any]:
     need(natural.get("gear_to_battle_required") is False, "purchased gear success was reopened")
     need(natural.get("ring_bp_natural_supply_required") is True, "ring/BP gap boundary changed")
     need(natural.get("ordinary_policy_selection_required") is True, "policy gap boundary changed")
-    need(purchased["purchased_gear_to_battle_accepted"] is True, "purchased gear receipt differs")
-    need(purchased["ring_bp_natural_acquisition_accepted"] is False, "ring/BP already accepted elsewhere")
-    need(purchased["ordinary_policy_selection_accepted"] is False, "policy already accepted elsewhere")
+    need(
+        purchased_acceptance["purchased_gear_to_battle_accepted"] is True,
+        "purchased gear receipt differs",
+    )
+    need(
+        purchased_acceptance["ring_bp_natural_acquisition_accepted"] is False,
+        "ring/BP already accepted elsewhere",
+    )
+    need(
+        purchased_acceptance["ordinary_policy_selection_accepted"] is False,
+        "policy already accepted elsewhere",
+    )
 
     matches, scanned, identities = scan_sources()
     categories: dict[str, Any] = {}
@@ -237,7 +282,7 @@ def build_inventory() -> dict[str, Any]:
         "status": "PASS_FINITE_STATIC_INVENTORY_NOT_NATIVE_ACCEPTANCE",
         "scope": SCOPE,
         "source_commit": git_text("rev-parse", "HEAD"),
-        "candidate": purchased["candidate"],
+        "candidate": purchased_acceptance["candidate"],
         "coverage_inventory_complete": True,
         "physical_acceptance_complete": False,
         "emulator_runs_by_this_checkpoint": 0,

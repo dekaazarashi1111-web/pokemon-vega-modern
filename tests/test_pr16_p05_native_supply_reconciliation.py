@@ -4,11 +4,38 @@ import copy
 import json
 from pathlib import Path
 import sys
+import tempfile
+import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import pr16_p05_native_supply_reconciliation as target
+
+
+class PurchasedReceiptSchemaTests(unittest.TestCase):
+    def test_nested_acceptance_is_validated(self) -> None:
+        receipt, acceptance = target.load_purchased_receipt()
+        self.assertIs(acceptance, receipt["acceptance"])
+        self.assertTrue(acceptance["purchased_gear_to_battle_accepted"])
+        self.assertFalse(acceptance["ring_bp_natural_acquisition_accepted"])
+        self.assertFalse(acceptance["ordinary_policy_selection_accepted"])
+        self.assertEqual(acceptance["candidate"], receipt["candidate"])
+
+        malformed = copy.deepcopy(receipt)
+        malformed["candidate"]["sha256"] = "0" * 64
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "receipt.json"
+            path.write_text(json.dumps(malformed), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "candidate aliases differ"):
+                target.load_purchased_receipt(path)
+
+    def test_missing_acceptance_has_descriptive_error(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "receipt.json"
+            path.write_text(json.dumps({"schema_version": 2}), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "missing object: acceptance"):
+                target.load_purchased_receipt(path)
 
 
 def test_inventory_is_finite_and_keeps_existing_successes() -> None:

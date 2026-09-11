@@ -17,6 +17,8 @@ import re
 import subprocess
 from typing import Any
 
+from pr16_p05_native_supply_reconciliation import load_purchased_receipt
+
 ROOT = Path(__file__).resolve().parents[1]
 SELF = "scripts/pr16_p05_native_supply_evidence_map.py"
 TEST = "tests/test_pr16_p05_native_supply_evidence_map.py"
@@ -247,10 +249,19 @@ def build_map() -> dict[str, Any]:
             "physical_acceptance_complete": False,
         }
 
-    purchased = json.loads((ROOT / PURCHASED).read_text())
-    need(purchased["purchased_gear_to_battle_accepted"] is True, "purchased route success changed")
-    need(purchased["ring_bp_natural_acquisition_accepted"] is False, "ring/BP already accepted")
-    need(purchased["ordinary_policy_selection_accepted"] is False, "policy already accepted")
+    _, purchased_acceptance = load_purchased_receipt()
+    need(
+        purchased_acceptance["purchased_gear_to_battle_accepted"] is True,
+        "purchased route success changed",
+    )
+    need(
+        purchased_acceptance["ring_bp_natural_acquisition_accepted"] is False,
+        "ring/BP already accepted",
+    )
+    need(
+        purchased_acceptance["ordinary_policy_selection_accepted"] is False,
+        "policy already accepted",
+    )
 
     return {
         "schema_version": 1,
