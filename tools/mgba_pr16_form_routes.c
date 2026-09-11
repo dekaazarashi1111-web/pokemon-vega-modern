@@ -38,7 +38,10 @@ static void m_waitmenu(struct mCore *c,unsigned mode,const char *prefix,unsigned
     m_shot(prefix,round,"menu-timeout");m_state(c,"menu-timeout");a_die("physical form service menu absent");
 }
 static struct MTrace m_service(struct mCore *c,const struct MCase *v,const char *prefix,unsigned round){
-    struct MTrace t={0};m_state(c,"approach-start");b_position(c,1,36,6,5);b_step(c,QOL_KEY_UP);b_position(c,1,36,6,4);m_state(c,"approach-end");
+    struct MTrace t={0};m_state(c,"approach-start");b_position(c,1,36,6,4);
+    unsigned object=read8(c,P02S_PLAYER_AVATAR+5U);a_require(object<16U,"form avatar unavailable");
+    if((read8(c,P02S_OBJECT_EVENTS+object*0x24U+0x18U)&15U)!=2U)b_frame(c,QOL_KEY_UP);
+    b_frames_run(c,0U,30U);m_state(c,"approach-end");b_position(c,1,36,6,4);
     t.interaction=b_frames+1U;b_press(c,QOL_KEY_A,90);m_waitmenu(c,0,prefix,round);
     t.root=b_frames;m_shot(prefix,round,"root");m_state(c,"root");
     a_require(read8(c,M_CURSOR)==0U,"form root cursor differs");
@@ -81,12 +84,12 @@ int main(int argc,char **argv){
     char hash[65],seed[65],after[65];sha256_file(argv[1],hash);sha256_file(argv[2],seed);
     a_require(!strcmp(hash,M_SHA) && !strcmp(hash,argv[3]) && !strcmp(seed,B_SEED_SHA) && !strcmp(seed,argv[4]),"form input identity differs");
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
-    struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);
+    struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);c->reset(c);
     a_require(a_continue(c),"form initial Continue failed");a_flash_prepare(c);
-    (void)call_preserving(c,0x09220861U,1U,36U,6U,5U);run_key_frames(c,0U,1800U);
+    (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
     m_state(c,"fixture-warp");m_shot(argv[6],0U,"fixture-warp");
     for(unsigned k=0;k<12U && !b_field(c);++k)b_press(c,QOL_KEY_B,180U);
-    m_state(c,"fixture-settled");b_position(c,1,36,6,5);
+    m_state(c,"fixture-settled");b_position(c,1,36,6,4);
     clear_parties(c);b_create(c,QOL_PLAYER_PARTY,0x123456F0U,0x11223344U);
     create_mon(c,M_TARGET,v->action==1U?894U:742U,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
     unsigned before[4]={84,109,86,0},before_pp[4]={7,8,9,0},bonus=37U;
@@ -114,12 +117,12 @@ int main(int argc,char **argv){
         m_check(c,final_species,final_moves,final_pp,final_bonus,decoy,pid,ot);
         uint8_t party[200];b_copy(c,QOL_PLAYER_PARTY,party,200U);
         a_guard(c);a_require(b_save(c),"form normal Start Save failed");traces[r].saved=b_frames;
-        a_restore(c,&saved);c=b_restart(c,argv[1],argv[2]);saved=*c;a_guard(c);
+        a_restore(c,&saved);c=b_restart(c,argv[1],argv[2]);c->reset(c);saved=*c;a_guard(c);
         a_require(b_continue(c),"form cold Continue failed");traces[r].reloaded=b_frames;
         b_position(c,1,36,6,4);uint8_t restored[200];b_copy(c,QOL_PLAYER_PARTY,restored,200U);
         a_require(!memcmp(party,restored,200U) && read32(c,P03_SAVE_COUNTER)==counter+autos+1U,"form persisted individual differs");
         a_restore(c,&saved);m_check(c,final_species,final_moves,final_pp,final_bonus,decoy,pid,ot);
-        m_shot(argv[6],r,"continued");a_guard(c);if(r+1U<rounds)b_step(c,QOL_KEY_DOWN);a_restore(c,&saved);
+        m_shot(argv[6],r,"continued");
     }
     a_require(read32(c,P03_SAVE_COUNTER)==initial_counter+expected_auto+rounds && !log_problem_count,"form save totals or emulator diagnostic differs");
     qol_close(c);qol_log_core=NULL;sha256_file(argv[1],after);a_require(!strcmp(hash,after),"form changed ROM");

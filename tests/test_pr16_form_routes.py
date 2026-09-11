@@ -56,7 +56,7 @@ class FormRouteTests(unittest.TestCase):
             with self.assertRaises(ValueError):m.validate(json.dumps(good|{'result':0}).encode(),name,0)
     def test_new_controller_keeps_real_interaction_and_save_barriers(self):
         text=(ROOT/m.SOURCE).read_text()
-        self.assertIn('b_step(c,QOL_KEY_UP);b_position(c,1,36,6,4)',text)
+        self.assertIn('b_position(c,1,36,6,4)',text);self.assertIn('b_frame(c,QOL_KEY_UP)',text)
         self.assertIn('m_waitmenu(c,0,prefix,round)',text);self.assertIn('m_waitmenu(c,2,prefix,round)',text)
         self.assertIn('read8(c,M_PARTY_SLOT)==1U',text);self.assertIn('a_guard(c);a_require(b_save(c)',text)
         self.assertIn('b_continue(c)',text);self.assertIn('!memcmp(party,restored,200U)',text)
