@@ -1,0 +1,155 @@
+--- a/tools/mgba_pr16_purchased_gear.c
++++ b/tools/mgba_pr16_purchased_gear.c
+@@ -5,11 +5,12 @@
+ #include "pr16_gear_capture_helpers.c"
+ #include "pr16_gear_route.h"
+ #define K_SCOPE "PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE"
+-struct KCase {const char *name;unsigned species,item,mega,ability,base_ability,toggles;};
++struct KCase {const char *name;unsigned species,item,mega,ability,base_ability,toggles,mid_reload;};
+ static const struct KCase k_cases[]={
+- {"eelektross-active",411,1012,1634,313,26,1},
+- {"eelektross-no-toggle",411,1012,1634,313,26,0},
+- {"eelektross-cancel-toggle",411,1012,1634,313,26,2}
++ {"eelektross-active",411,1012,1634,313,26,1,0},
++ {"eelektross-no-toggle",411,1012,1634,313,26,0,0},
++ {"eelektross-cancel-toggle",411,1012,1634,313,26,2,0},
++ {"eelektross-cold-policy-reset",411,1012,1634,313,26,1,1}
+ };
+ struct KTrace {unsigned interaction,purchased,bag,equipped,saved,reloaded,boundary,encounter,move_menu,toggle,mega,spent,field,saved_again,reloaded_again;};
+ static struct KTrace kt;
+@@ -122,8 +123,14 @@
+  a_require(!memcmp(now,before,sizeof(now)),"gear Give changed unrelated inventory");
+  for(unsigned i=0;i<100U;++i)if(i!=k_growth+2U && i!=k_growth+3U && i!=28U && i!=29U)a_require(mon[i]==snapshot[i],"gear Give changed unrelated mon bytes");
+  a_require(b_save(c),"gear equipped native Save failed");kt.saved=b_frames;
++ /* A configured NEXT-battle policy lives in volatile RAM, not the save.
++  * Same-session cases keep it without any post-barrier write. A separate
++  * cold-load control must deny Mega rather than silently reconfigure it. */
++ if(v->mid_reload){
+  a_restore(c,&original);c=b_restart(c,argv[1],argv[2]);c->reset(c);original=*c;a_guard(c);a_require(b_continue(c),"gear equipped cold Continue failed");kt.reloaded=b_frames;
+  b_copy(c,QOL_PLAYER_PARTY,loaded,100U);g_inventory(c,now);a_require(!memcmp(snapshot,loaded,100U) && !memcmp(now,before,sizeof(now)) && read32(c,P03_SAVE_COUNTER)==counter+2U && read16(c,QOL_LEDGER+0x392U)==48U,"gear equipped cold save changed data");g_shot("equipped-reloaded");
++ }
++
+  k_path(c,96U,5U,k_town_path,sizeof(k_town_path)/sizeof(k_town_path[0]),false);n_step(c,QOL_KEY_UP);b_position(c,96U,17U,11U,39U);kt.boundary=b_frames;g_shot("physical-map-boundary");
+  k_path(c,96U,17U,k_grass_path,sizeof(k_grass_path)/sizeof(k_grass_path[0]),true);
+  for(unsigned i=0;i<1024U && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER);++i){unsigned s=b_save1(c),x=read16(c,s),y=read16(c,s+2U);a_require(y==30U && (x==14U || x==15U),"gear grass pair differs");n_step(c,x==14U?QOL_KEY_RIGHT:QOL_KEY_LEFT);}
+@@ -146,7 +153,7 @@
+   b_frame(c,f%60U==0U?QOL_KEY_B:0U);
+  }
+  a_require(kt.spent && pp-after_pp<=2U,"gear battler did not spend native move PP");
+- a_require(v->toggles==1U?(kt.mega>kt.toggle && kt.spent>kt.mega && observed_species==v->mega && observed_ability==v->ability):!kt.mega,"gear native Mega activation/control differs");g_shot("native-turn");
++ a_require((v->toggles==1U && !v->mid_reload)?(kt.mega>kt.toggle && kt.spent>kt.mega && observed_species==v->mega && observed_ability==v->ability):!kt.mega,"gear native Mega activation/control differs");g_shot("native-turn");
+  if(read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER)){a_require(n_action(c),"gear native turn did not reach action controller");n_cursor(c,3U);b_press(c,QOL_KEY_A,60U);n_return(c,false);}
+  kt.field=b_frames;unsigned outcome=n_outcome;
+  a_require(b_field(c) && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER) && (outcome==1U || outcome==4U) && read32(c,QOL_PLAYER_PARTY)==k_pid && read16(c,QOL_PLAYER_PARTY+k_growth)==v->species && read16(c,QOL_PLAYER_PARTY+k_growth+2U)==v->item && read8(c,QOL_PLAYER_PARTY+k_attack+8U)==after_pp,"gear native return/reversion/held item/PP differs");g_shot("reverted-field");
+@@ -154,9 +161,9 @@
+  a_restore(c,&original);c=b_restart(c,argv[1],argv[2]);c->reset(c);original=*c;a_guard(c);a_require(b_continue(c),"gear third core Continue failed");kt.reloaded_again=b_frames;
+  b_copy(c,QOL_PLAYER_PARTY,loaded,100U);g_inventory(c,now);a_require(!memcmp(snapshot,loaded,100U) && !memcmp(now,before,sizeof(now)) && read8(c,QOL_PLAYER_PARTY_COUNT)==1U && read32(c,P03_SAVE_COUNTER)==counter+3U && read16(c,QOL_LEDGER+0x392U)==48U,"gear third core changed party/inventory/BP/save counter");g_shot("battle-reloaded");
+  a_restore(c,&original);qol_close(c);qol_log_core=NULL;sha256_file(argv[1],after);a_require(!strcmp(hash,after) && !log_problem_count,"gear ROM changed or emulator warned");
+- printf("{\"schema_version\":1,\"status\":\"PASS\",\"scope\":\"%s\",\"case\":\"%s\",\"rom_sha256\":\"%s\",",K_SCOPE,v->name,hash);
++ printf("{\"schema_version\":2,\"status\":\"PASS\",\"scope\":\"%s\",\"case\":\"%s\",\"rom_sha256\":\"%s\",",K_SCOPE,v->name,hash);
+  printf("\"species\":%u,\"item\":%u,\"mega_species\":%u,\"ability\":%u,\"toggles\":%u,\"personality\":%u,\"enemy_species\":%u,\"enemy_level\":%u,\"move\":%u,\"pp_before\":%u,\"pp_after\":%u,\"outcome\":%u,\"walking_steps\":%u,",v->species,v->item,observed_species,observed_ability,v->toggles,k_pid,enemy,level,move,pp,after_pp,outcome,n_steps);
+- printf("\"bp_before\":64,\"bp_after\":48,\"automatic_saves\":1,\"manual_saves\":2,\"fresh_cores\":3,\"host_write_barriers\":7,\"party_inventory_bp_persisted\":true,\"physical_give\":true,\"physical_map_transition\":true,\"held_stone_not_consumed\":true,\"initial_map_party_ring_bp_policy_are_fixtures\":true,\"ring_bp_natural_acquisition_accepted\":false,\"full_p05_acceptance\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":%u,\"witness\":{",b_frames);
++ printf("\"bp_before\":64,\"bp_after\":48,\"automatic_saves\":1,\"manual_saves\":2,\"fresh_cores\":%u,\"cold_reload_before_encounter\":%s,\"host_write_barriers\":7,\"party_inventory_bp_persisted\":true,\"physical_give\":true,\"physical_map_transition\":true,\"held_stone_not_consumed\":true,\"initial_map_party_ring_bp_policy_are_fixtures\":true,\"ring_bp_natural_acquisition_accepted\":false,\"full_p05_acceptance\":false,\"release_ready\":false,\"warnings_errors\":0,\"total_frames\":%u,\"witness\":{",2U+v->mid_reload,v->mid_reload?"true":"false",b_frames);
+ #define KW(n) printf("\""#n"\":%u,",kt.n)
+  KW(interaction);KW(purchased);KW(bag);KW(equipped);KW(saved);KW(reloaded);KW(boundary);KW(encounter);KW(move_menu);KW(toggle);KW(mega);KW(spent);KW(field);KW(saved_again);
+ #undef KW
+--- a/scripts/pr16_purchased_gear.py
++++ b/scripts/pr16_purchased_gear.py
+@@ -17,17 +17,17 @@
+ TEST='tests/test_pr16_purchased_gear.py';WORKFLOW='.github/workflows/pr16-purchased-gear.yml'
+ OUT=ROOT/'.local/pr16-purchased-gear';SHA=parent.SHA
+ SCOPE='PR16_PURCHASE_GIVE_WALK_MEGA_COLD_SAVE'
+-CASES={'eelektross-active':1,'eelektross-no-toggle':0,'eelektross-cancel-toggle':2}
++CASES={'eelektross-active':1,'eelektross-no-toggle':0,'eelektross-cancel-toggle':2,'eelektross-cold-policy-reset':1}
+ TRACE=('interaction','purchased','bag','equipped','saved','reloaded','boundary','encounter','move_menu','spent','field','saved_again','reloaded_again')
+ DYNAMIC={'personality','enemy_species','enemy_level','move','pp_before','pp_after','outcome','walking_steps','total_frames','witness'}
+ EVENT=re.compile(rb'^GEAR_ENCOUNTER species=(\d+) level=(\d+) flags=([0-9a-f]{8}) frame=(\d+)$',re.M)
+ 
+ 
+ def expected(name):
+-    need(name in CASES,'unknown purchased gear case');active=CASES[name]==1
+-    return dict(schema_version=1,status='PASS',scope=SCOPE,case=name,rom_sha256=SHA,
++    need(name in CASES,'unknown purchased gear case');active=name=='eelektross-active';cold=name=='eelektross-cold-policy-reset'
++    return dict(schema_version=2,status='PASS',scope=SCOPE,case=name,rom_sha256=SHA,
+         species=411,item=1012,mega_species=1634 if active else 411,ability=313 if active else 26,toggles=CASES[name],
+-        bp_before=64,bp_after=48,automatic_saves=1,manual_saves=2,fresh_cores=3,host_write_barriers=7,
++        bp_before=64,bp_after=48,automatic_saves=1,manual_saves=2,fresh_cores=3 if cold else 2,cold_reload_before_encounter=cold,host_write_barriers=7,
+         party_inventory_bp_persisted=True,physical_give=True,physical_map_transition=True,held_stone_not_consumed=True,
+         initial_map_party_ring_bp_policy_are_fixtures=True,ring_bp_natural_acquisition_accepted=False,
+         full_p05_acceptance=False,release_ready=False,warnings_errors=0)
+@@ -94,10 +94,12 @@
+     need(1<=value['move']<=2048 and 1<=value['pp_before']<=64 and 0<=value['pp_after']<value['pp_before'] and value['pp_before']-value['pp_after']<=2 and value['outcome'] in (1,4),'gear native turn values invalid')
+     trace=value['witness'];need(type(trace) is dict and set(trace)==set(TRACE)|{'toggle','mega'},'gear witness schema differs')
+     need(all(type(v) is int and 0<=v<=value['total_frames'] for v in trace.values()),'gear witness values invalid')
+-    need(trace['interaction']>0 and all(trace[a]<trace[b] for a,b in zip(TRACE,TRACE[1:])) and trace['reloaded_again']==value['total_frames'],'gear physical purchase/equip/walk/save order differs')
++    sequence=TRACE if value['cold_reload_before_encounter'] else tuple(k for k in TRACE if k!='reloaded')
++    if not value['cold_reload_before_encounter']:need(trace['reloaded']==0,'same-session case fabricated an intermediate cold Continue')
++    need(trace['interaction']>0 and all(trace[a]<trace[b] for a,b in zip(sequence,sequence[1:])) and trace['reloaded_again']==value['total_frames'],'gear physical purchase/equip/walk/save order differs')
+     if CASES[name]:need(trace['move_menu']<trace['toggle']<trace['spent'],'gear toggle is not physical move menu input')
+     else:need(trace['toggle']==0,'no-toggle control contains a toggle')
+-    if CASES[name]==1:need(trace['toggle']<trace['mega']<trace['spent'],'gear native Mega sequence absent')
++    if name=='eelektross-active':need(trace['toggle']<trace['mega']<trace['spent'],'gear native Mega sequence absent')
+     else:need(trace['mega']==0,'gear negative control activated Mega')
+     need(type(stderr) is bytes and b'mGBA[' not in stderr,'gear emulator warning or nonbyte stderr')
+     events=EVENT.findall(stderr);need(len(events)==1,'gear natural encounter original missing/duplicated')
+@@ -117,7 +119,7 @@
+            'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','scripts/pr16_receiver_audit.py',
+            'scripts/pr16_repaired_acceptance.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_integration_continuation.py',
+            'scripts/pr16_evolution_learning_repair.py','scripts/run_modernization_p03_fullslots_e2e.py',
+-           'config/active_play_baseline.json','design/active_play_baseline.md',*(p for p,_ in m.EMBEDDED)}
++           'config/active_play_baseline.json','design/active_play_baseline.md','overlays/cfru/integration.c','overlays/cfru/integration.h','tools/modernization_p04_mega_runtime.py','config/modernization_p04_mega_runtime.json',*(p for p,_ in m.EMBEDDED)}
+     cfg=json.loads((ROOT/'config/modernization_stage79_cumulative_mgba.json').read_bytes());p02=next(d for d in cfg['domains'] if d['id']=='p02')
+     for binding in (p02['runner'],*p02['dependencies']):
+         need(common.identity(ROOT/binding['path'])=={k:binding[k] for k in ('size','sha256')},'gear dependency differs');paths.add(binding['path'])
+@@ -152,7 +154,7 @@
+     finally:
+         need(protected=={p:common.identity(Path(p)) for p in protected},'gear original input changed')
+         need(bindings=={p:common.identity(ROOT/p) for p in bindings},'gear source/baseline changed')
+-    report=dict(schema_version=1,status='FAIL' if failures else 'PASS',scope=SCOPE,candidate=r.identity(raw),oracle=audit,
++    report=dict(schema_version=2,status='FAIL' if failures else 'PASS',scope=SCOPE,candidate=r.identity(raw),oracle=audit,
+         sources=bindings,generated={p:r.identity(s.encode()) for p,s in generated.items()},guard_checks=guards,results=results,failures=failures,
+         actual_new_processes=len(CASES),successful_fresh_cores=sum(v['result']['fresh_cores'] for v in results),
+         purchased_gear_to_battle_accepted=not failures,initial_map_party_ring_bp_policy_are_fixtures=True,
+--- a/tests/test_pr16_purchased_gear.py
++++ b/tests/test_pr16_purchased_gear.py
+@@ -8,7 +8,7 @@
+         self.name='eelektross-active'
+         self.audit={'paths':{'town':[[0,0]]*25},'table':{'slots':[{'species':627,'min':75,'max':80}]}}
+         witness={key:(i+1)*10 for i,key in enumerate(p.TRACE)}
+-        witness.update(toggle=92,mega=95)
++        witness.update(toggle=92,mega=95,reloaded=0)
+         self.row=p.expected(self.name)|dict(personality=123,enemy_species=627,enemy_level=76,move=9,pp_before=15,pp_after=14,outcome=4,walking_steps=45,total_frames=130,witness=witness)
+         self.stderr=b'GEAR_ENCOUNTER species=627 level=76 flags=00000000 frame=80\n'
+     def validate(self,row=None,stderr=None,code=0,name=None):
+@@ -16,7 +16,7 @@
+         self.assertEqual(self.validate(),self.row)
+         for name,toggles in p.CASES.items():
+-            row=copy.deepcopy(self.row);row.update(p.expected(name));row['witness']['toggle']=92 if toggles else 0;row['witness']['mega']=95 if toggles==1 else 0
++            row=copy.deepcopy(self.row);row.update(p.expected(name));row['witness']['toggle']=92 if toggles else 0;row['witness']['mega']=95 if name=='eelektross-active' else 0;row['witness']['reloaded']=60 if name=='eelektross-cold-policy-reset' else 0
+             self.assertEqual(self.validate(row,name=name),row)
+     def test_reject_scope_inflation(self):
+         for key in ('full_p05_acceptance','release_ready','ring_bp_natural_acquisition_accepted'):
+@@ -33,12 +33,21 @@
+         for key in ('walking_steps','fresh_cores','personality','toggles'):
+             with self.subTest(key=key),self.assertRaises(ValueError):self.validate(self.row|{key:True})
+     def test_reject_wrong_candidate_or_old_scope(self):
+-        for delta in ({'rom_sha256':p.parent.r.ROM_SHA},{'scope':p.parent.SCOPE},{'fresh_cores':2}):
++        for delta in ({'rom_sha256':p.parent.r.ROM_SHA},{'scope':p.parent.SCOPE},{'fresh_cores':3}):
+             with self.subTest(delta=delta),self.assertRaises(ValueError):self.validate(self.row|delta)
+     def test_reject_broken_sequence(self):
+-        for key in p.TRACE:
++        for key in (k for k in p.TRACE if k!='reloaded'):
+             row=copy.deepcopy(self.row);row['witness'][key]=0
+             with self.subTest(key=key),self.assertRaises(ValueError):self.validate(row)
++    def test_reject_false_intermediate_continue_and_policy_persistence(self):
++        row=copy.deepcopy(self.row);row['witness']['reloaded']=60
++        with self.assertRaises(ValueError):self.validate(row)
++        name='eelektross-cold-policy-reset';row=copy.deepcopy(self.row);row.update(p.expected(name));row['witness'].update(reloaded=60,mega=0)
++        self.assertEqual(self.validate(row,name=name),row)
++        for delta in ({'mega_species':1634},{'ability':313},{'fresh_cores':2},{'cold_reload_before_encounter':False}):
++            with self.subTest(delta=delta),self.assertRaises(ValueError):self.validate(row|delta,name=name)
++        row['witness']['mega']=95
++        with self.assertRaises(ValueError):self.validate(row,name=name)
+     def test_reject_injected_or_missing_physical_give(self):
+         for key in ('physical_give','physical_map_transition','held_stone_not_consumed','party_inventory_bp_persisted'):
+             with self.subTest(key=key),self.assertRaises(ValueError):self.validate(self.row|{key:False})
