@@ -1,5 +1,5 @@
 name: pr16-purchased-gear-checkpoint
-run-name: Retain purchased stone physical battle originals and current acceptance
+run-name: Retain source-matching purchased gear originals and current acceptance
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -64,7 +64,7 @@ jobs:
 
           ## 実行と原本
 
-          成功run `34587080329`、実行HEAD `6dec0d4e58ffa0c7751be1e05bdd864f87d023bd`。新しい実ROM実行は4プロセス9コア（2+2+2+3）。原本の取得・保存・再検査は別のエミュレータ実行に加算しません。
+          成功run `34589284710`、実行HEAD `4b5971179795bcdbbca1abf142387ef1bb6f1ce9`。原本保護を強化した現行ソースで、4プロセス9コア（2+2+2+3）が実行されています。先行成功run `34587080329` の4件9コアは別原本として保持し、後継の件数に加算しません。8種類の別経路を受入したという意味ではありません。原本の取得・保存・再検査も別のエミュレータ実行に加算しません。
 
           候補SHA-256 `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`、33554432 bytes、CRC32 `BFB089F9`。ROM追加変更はありません。
 
@@ -76,13 +76,13 @@ jobs:
 
           開始位置・Lv100シビルドン・リング・64BP・空の道具ポケット・開始時の戦闘許可設定はfixtureです。リング/BPや戦闘モードそのものを通常操作で取得・選択したとはしません。観測開始後は7種類のhost書込みを禁止し、禁止APIが拒否されることも検査しています。
 
-          原本58画面を確認しました。最初のMega検出フレームはsprite更新前であり、native-turn画面で変更後の姿を確認しています。ショップ、Bag、装備、戦闘、復帰・再開画面に明らかな表示崩れは見られません。画像だけでデータ保持を判定していません。
+          原本58画面は先行成功の視認済み58画面とbyte単位で一致しました。最初のMega検出フレームはsprite更新前であり、native-turn画面で変更後の姿を確認しています。ショップ、Bag、装備、戦闘、復帰・再開画面に明らかな表示崩れは見られません。4つの画像台帳を必要画像・寸法・ハッシュと照合しています。画像台帳を生成しただけでは見た目を合格にせず、画像だけでデータ保持を判定していません。
 
           ## Git追跡する保存先
 
-          `content/modernization/pr16_gear_evidence/<run>/original.zip` と `actions.json`。成功原本は571143 bytes、SHA-256 `a571a83ab85d8fa8710f445d9f61aa65c8c796523f821bfdc84d73ff9d0cc7a2`。35入力ソース、実コンパイルcontroller、raw stdout/stderr/process、58画像を照合します。ROM/saveは新規ZIPに含みません。
+          `content/modernization/pr16_gear_evidence/<run>/original.zip` と `actions.json`。現行成功原本は580351 bytes、SHA-256 `6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9`。37入力ソース、実コンパイルcontroller、raw stdout/stderr/process、58画像と4画像台帳を照合します。ROM/saveは新規ZIPに含みません。現行runner/workflowを含む全ソースの一致検査を緩めていません。
 
-          静的調査run34579454070、コンパイル失敗run34583082652、field判定失敗run34585139774、policy境界失敗run34585692527も別原本で保持します。失敗run中の2件6コアの対照成功を後継4件9コアに加算せず、失敗原本を成功へ改称しません。
+          静的調査run34579454070、コンパイル失敗run34583082652、field判定失敗run34585139774、policy境界失敗run34585692527、先行成功run34587080329もそれぞれ別原本で保持します。失敗run中の2件6コアや先行成功の4件9コアを後継4件9コアに加算せず、失敗原本を成功へ改称しません。現行runを含めて6つの原本ZIPです。
 
           ```sh
           python3 scripts/pr16_gear_originals.py
@@ -108,10 +108,10 @@ jobs:
           if p.exists():assert p.read_text()==doc
           else:p.write_text(doc)
           status=root/'content/modernization/pr16_gear_refinement_status.json';v=m.load(status.read_bytes())
-          v.update(status='SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE',gear_to_battle_accepted=True,new_native_passes=4,source_native_success_run=34587080329,source_native_success_cores=9,new_emulator_runs_by_retention=0,receipt=m.RECEIPT,resume='Keep the accepted purchase/Give/walk/Mega/revert/save route. Read the scoped receipt and current remaining conditions; native ring/BP/mode supply and physical Circus remain.')
+          v.update(status='SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE',gear_to_battle_accepted=True,new_native_passes=4,source_native_success_run=m.RECORD[0],source_native_success_cores=9,prior_success_retained_separately=34587080329,new_emulator_runs_by_retention=0,receipt=m.RECEIPT,resume='Keep the accepted purchase/Give/walk/Mega/revert/save route. Read the scoped receipt and current remaining conditions; native ring/BP/mode supply and physical Circus remain.')
           status.write_bytes(m.stable(v))
           marker='PR16-PURCHASED-GEAR-CHECKPOINT-20260911'
-          entry='\n## 2026-09-11 / '+marker+'\n\n- USER-MODERNIZATION: retain native run34587080329 / 6dec0d4e, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.\n- Five exact original ZIPs and Actions metadata retained. Historical static and failed runs are not relabelled or added to successful counts. Actual generated controller,35 sources,58 images and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.\n- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.\n'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- USER-MODERNIZATION: retain native run34589284710 / 4b597117, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.\n- Six exact original ZIPs and Actions metadata retained. Prior success34587080329 remains separate. Historical static, failed and prior successful runs are not relabelled or added to successor counts. Actual generated controller,37 sources,58 images,4 screen manifests and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.\n- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.\n'
           for name in ('design/run_log.md','design/version_log.md'):
               p=root/name;before=p.read_text()
               if marker in before:assert entry in before
@@ -123,7 +123,11 @@ jobs:
         run: |
           set -euo pipefail
           branch=codex/modernization-followup-20260908
-          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          actual=$(git ls-remote origin "refs/heads/$branch" | cut -f1)
+          if test "$actual" != "$EXPECTED_HEAD"; then
+            printf 'HEAD changed: expected=%s actual=%s; no commit or push\n' "$EXPECTED_HEAD" "$actual"
+            exit 1
+          fi
           python3 - <<'PY'
           import pathlib,subprocess,sys
           sys.path.insert(0,'scripts');import pr16_purchased_gear_checkpoint as m
@@ -140,7 +144,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
-            git commit -m 'USER-MODERNIZATION: retain purchased gear native proof and narrow current remaining supply'
+            git commit -m 'USER-MODERNIZATION: retain source-matching purchased gear proof and narrow remaining supply'
             git push origin "HEAD:refs/heads/$branch"
           fi
           out=.local/pr16-purchased-gear-checkpoint
