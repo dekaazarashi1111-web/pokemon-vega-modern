@@ -40,6 +40,10 @@ def current_view(previous,root=ROOT):
         'old_native_acceptance_preserved_not_relabelled':True,
         'release_ready':False}
     p06=out['p06_adoption']
+    # project() has already rebuilt and verified the retained acceptance receipt.
+    # This is a current-view mirror, not a rewrite of historical Stage84 proof.
+    need(type(out.get('full_p06_acceptance')) is bool,'P06 current acceptance must be boolean')
+    p06['full_phase_accepted']=out['full_p06_acceptance']
     if p06.get('final_candidate_evidence')!=completion.RECEIPT:
         p06['historical_stage84_candidate_evidence']=p06.get('final_candidate_evidence')
     p06['final_candidate_evidence']=completion.RECEIPT
