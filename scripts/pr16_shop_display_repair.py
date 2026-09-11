@@ -23,7 +23,13 @@ GEOMETRY=dict(bg_character_base=0x8000,content_base_tile=1,width=21,height=16,le
 
 
 def validate_geometry(g):
-    need(probe.shop.common.same_typed(g,GEOMETRY),'fixed field graphics contract differs')
+    need(type(g) is dict and set(g)==set(GEOMETRY),'fixed field graphics keys differ')
+    for key,want in GEOMETRY.items():
+        actual=g[key]
+        if type(want) is list:
+            need(type(actual) is list and len(actual)==len(want) and all(type(a) is int and a==b for a,b in zip(actual,want)), 'fixed field graphics range differs: '+key)
+        else:
+            need(type(actual) is int and actual==want,'fixed field graphics integer differs: '+key)
     begin=g['bg_character_base']+32*g['content_base_tile'];end=begin+32*g['width']*g['height']
     need(0x8000<begin<end<=g['bg_character_base']+32*g['message_tiles'][0],'shop overlaps message tiles')
     need(end<=g['world_tilemaps'][0] and end<=g['bg_character_base']+32*g['frame_tiles'][0],'shop overlaps world/frame tiles')
