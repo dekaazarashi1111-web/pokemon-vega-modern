@@ -38,7 +38,7 @@ static void m_waitmenu(struct mCore *c,unsigned mode,const char *prefix,unsigned
     m_shot(prefix,round,"menu-timeout");m_state(c,"menu-timeout");a_die("physical form service menu absent");
 }
 static struct MTrace m_service(struct mCore *c,const struct MCase *v,const char *prefix,unsigned round){
-    struct MTrace t={0};b_position(c,1,36,6,5);b_step(c,QOL_KEY_UP);b_position(c,1,36,6,4);
+    struct MTrace t={0};m_state(c,"approach-start");b_position(c,1,36,6,5);b_step(c,QOL_KEY_UP);b_position(c,1,36,6,4);m_state(c,"approach-end");
     t.interaction=b_frames+1U;b_press(c,QOL_KEY_A,90);m_waitmenu(c,0,prefix,round);
     t.root=b_frames;m_shot(prefix,round,"root");m_state(c,"root");
     a_require(read8(c,M_CURSOR)==0U,"form root cursor differs");
@@ -83,7 +83,10 @@ int main(int argc,char **argv){
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
     struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);
     a_require(a_continue(c),"form initial Continue failed");a_flash_prepare(c);
-    (void)call_preserving(c,0x09220861U,1U,36U,6U,5U);run_key_frames(c,0U,900U);b_position(c,1,36,6,5);
+    (void)call_preserving(c,0x09220861U,1U,36U,6U,5U);run_key_frames(c,0U,1800U);
+    m_state(c,"fixture-warp");m_shot(argv[6],0U,"fixture-warp");
+    for(unsigned k=0;k<12U && !b_field(c);++k)b_press(c,QOL_KEY_B,180U);
+    m_state(c,"fixture-settled");b_position(c,1,36,6,5);
     clear_parties(c);b_create(c,QOL_PLAYER_PARTY,0x123456F0U,0x11223344U);
     create_mon(c,M_TARGET,v->action==1U?894U:742U,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
     unsigned before[4]={84,109,86,0},before_pp[4]={7,8,9,0},bonus=37U;
@@ -91,7 +94,7 @@ int main(int argc,char **argv){
     if(v->action==2U){before[3]=33U;before_pp[3]=6U;bonus=229U;}
     for(unsigned k=0;k<4U;++k){set_mon_data_u32(c,M_TARGET,13U+k,before[k]);set_mon_data_u32(c,M_TARGET,17U+k,before_pp[k]);}
     set_mon_data_u32(c,M_TARGET,21U,bonus);
-    /* Owner-approved research progress is a prerequisite fixture, not a tested unlock route. */
+    /* Research progress is a prerequisite fixture, not a tested unlock route. */
     write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
     unsigned pid=b_data(c,M_TARGET,0U),ot=b_data(c,M_TARGET,1U),canonical=b_pp(c,m_sig[v->choice]);
