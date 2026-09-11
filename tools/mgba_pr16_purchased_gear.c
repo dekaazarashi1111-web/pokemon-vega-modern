@@ -123,7 +123,7 @@ int main(int argc,char**argv){
  k_path(c,96U,17U,k_grass_path,sizeof(k_grass_path)/sizeof(k_grass_path[0]),true);
  for(unsigned i=0;i<1024U && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER);++i){unsigned s=b_save1(c),x=read16(c,s),y=read16(c,s+2U);a_require(y==30U && (x==14U || x==15U),"gear grass pair differs");n_step(c,x==14U?QOL_KEY_RIGHT:QOL_KEY_LEFT);}
  a_require(n_action(c),"gear normal walk did not reach native encounter");kt.encounter=b_frames;
- unsigned enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE),level=read8(c,ADDR_BATTLE_MONS+BATTLE_SIZE+BATTLE_CORE_MON_LEVEL),flags=read32(c,ADDR_BATTLE_TYPE_FLAGS);
+ unsigned enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE),level=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_LEVEL),flags=read32(c,ADDR_BATTLE_TYPE_FLAGS);
  fprintf(stderr,"GEAR_ENCOUNTER species=%u level=%u flags=%08x frame=%u\n",enemy,level,flags,kt.encounter);
  a_require(!(flags&8U) && !read16(c,ADDR_BATTLER_PARTY_INDEXES) && read16(c,ADDR_BATTLE_MONS)==v->species && read16(c,ADDR_BATTLE_MONS+0x2eU)==v->item && read16(c,ADDR_BATTLE_MONS+0x38U)==v->base_ability && read32(c,QOL_PLAYER_PARTY)==k_pid,"gear natural battler identity/item/base ability differs");g_shot("natural-equipped-battle");
  unsigned move=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET),pp=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET),after_pp=pp,observed_species=v->species,observed_ability=v->base_ability;
