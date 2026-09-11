@@ -1,0 +1,189 @@
+name: PR16 apply forgetting owner boundary once
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-apply-forgetting-owner-boundary-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout current PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Make the forgetting recorder preserve later owner projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/record_modernization_p03_forgetting.py')
+          text = path.read_text()
+          old = '''def current_remaining_work(root, forgetting):
+              # Compose current adoption only after validating immutable historical evidence.
+              overview = remaining_work(root, forgetting)
+              receipt = root/'content/modernization/p08_final_candidate_acceptance.json'
+              need(not receipt.is_symlink(), 'symlink final receipt')
+              if receipt.exists():
+                  import record_modernization_final_acceptance as integration
+                  overview = integration.project_overview(overview, root)
+              sys.path.insert(0, str(root/'tools'))
+              from modernization_owner_policy import project
+              return project(overview, root)
+          '''
+          old = '\n'.join(line[14:] if line.startswith('              ') else line for line in old.splitlines()) + '\n'
+          new = '''def validate_current_remaining_work(overview, forgetting):
+              """Validate only the fields owned by the forgetting acceptance recorder."""
+              need(type(overview) is dict, 'remaining-work root must be an object')
+              need(overview.get('schema_version') == 1, 'remaining-work schema changed')
+              need(overview.get('historical_snapshot_is_current_backlog') is False,
+                   'historical snapshot was relabelled as current backlog')
+              reports = overview.get('accepted_scoped_reports')
+              need(type(reports) is list, 'accepted scoped reports must be a list')
+              matches = [row for row in reports
+                         if type(row) is dict and row.get('source_path') == MANIFEST]
+              need(len(matches) == 1, 'forgetting accepted report link differs')
+              fields(matches[0], dict(
+                  label='native forgetting and cold Save/Continue',
+                  source_path=MANIFEST,
+                  source_run_id=RUN,
+                  cases=12,
+                  candidate_rom=forgetting['candidate_rom']))
+              bindings = overview.get('source_bindings')
+              need(type(bindings) is dict, 'remaining-work source bindings must be an object')
+              manifest_raw = (json.dumps(forgetting, ensure_ascii=False,
+                                         sort_keys=True, indent=2) + '\\n').encode()
+              need(same(bindings.get(MANIFEST), identity(manifest_raw)),
+                   'forgetting manifest binding differs')
+
+          def current_remaining_work(root, forgetting):
+              # The canonical overview is shared by later P03/P05/P07/P08 recorders.
+              # Preserve it verbatim and validate only this recorder's owned links.
+              summary = root/OVERVIEW
+              need(not summary.is_symlink(), 'symlink overview')
+              if summary.exists():
+                  need(summary.is_file(), 'remaining-work overview is not a file')
+                  overview = load(summary.read_bytes())
+                  validate_current_remaining_work(overview, forgetting)
+                  return overview
+
+              # Bootstrap fallback for a repository that has never recorded an overview.
+              overview = remaining_work(root, forgetting)
+              receipt = root/'content/modernization/p08_final_candidate_acceptance.json'
+              need(not receipt.is_symlink(), 'symlink final receipt')
+              if receipt.exists():
+                  import record_modernization_final_acceptance as integration
+                  overview = integration.project_overview(overview, root)
+              sys.path.insert(0, str(root/'tools'))
+              from modernization_owner_policy import project
+              overview = project(overview, root)
+              validate_current_remaining_work(overview, forgetting)
+              return overview
+          '''
+          new = '\n'.join(line[14:] if line.startswith('              ') else line for line in new.splitlines()) + '\n'
+          if text.count(old) != 1:
+              raise SystemExit('current_remaining_work edit point differs')
+          path.write_text(text.replace(old, new))
+          PY
+
+      - name: Add owner-boundary regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('tests/test_modernization_p08_forgetting_evidence.py')
+          text = path.read_text()
+          old_import = 'import sys\nimport unittest\n'
+          new_import = 'import sys\nimport tempfile\nimport unittest\n'
+          if text.count(old_import) != 1:
+              raise SystemExit('test import edit point differs')
+          text = text.replace(old_import, new_import)
+
+          marker = "\nif __name__=='__main__':unittest.main()\n"
+          addition = r'''
+
+class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.acceptance = record.build()
+        cls.tracked = record.load((ROOT/record.OVERVIEW).read_bytes())
+
+    def test_current_snapshot_preserves_later_checkpoint_fields(self):
+        current = record.current_remaining_work(ROOT, self.acceptance)
+        self.assertTrue(record.same(current, self.tracked))
+        self.assertIn('p03_form_route_inventory', current)
+        self.assertIn('p05_native_supply_reconciliation', current)
+        self.assertIn('p05_native_supply_evidence_map', current)
+        self.assertEqual(current['p07_remaining_route_count'], 0)
+
+    def test_unknown_future_fields_survive_unchanged(self):
+        future = copy.deepcopy(self.tracked)
+        future['future_owner_projection'] = {'sentinel': True}
+        future['remaining_conditions'][0]['future_owner_field'] = 'kept'
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root/record.OVERVIEW
+            target.parent.mkdir(parents=True)
+            target.write_bytes((json.dumps(future, ensure_ascii=False,
+                                           sort_keys=True, indent=2) + '\n').encode())
+            actual = record.current_remaining_work(root, self.acceptance)
+        self.assertTrue(record.same(actual, future))
+
+    def test_missing_owned_report_is_rejected(self):
+        broken = copy.deepcopy(self.tracked)
+        broken['accepted_scoped_reports'] = [
+            row for row in broken['accepted_scoped_reports']
+            if row.get('source_path') != record.MANIFEST
+        ]
+        with self.assertRaisesRegex(ValueError, 'forgetting accepted report link differs'):
+            record.validate_current_remaining_work(broken, self.acceptance)
+
+    def test_changed_owned_binding_is_rejected(self):
+        broken = copy.deepcopy(self.tracked)
+        broken['source_bindings'][record.MANIFEST]['sha256'] = '0' * 64
+        with self.assertRaisesRegex(ValueError, 'forgetting manifest binding differs'):
+            record.validate_current_remaining_work(broken, self.acceptance)
+'''
+          if text.count(marker) != 1:
+              raise SystemExit('test insertion marker differs')
+          path.write_text(text.replace(marker, addition + marker))
+          PY
+
+      - name: Validate original evidence and owner boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile \
+            scripts/record_modernization_p03_forgetting.py \
+            tests/test_modernization_p08_forgetting_evidence.py
+          python3 -m unittest discover -s tests -p 'test_modernization_remaining_routes.py'
+          python3 -m unittest discover -s tests -p 'test_modernization_p08_forgetting_evidence.py'
+          python3 scripts/record_modernization_p03_forgetting.py
+          python3 scripts/validate_modernization_task_graph.py
+          git diff --check
+
+      - name: Commit validated source-only repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            scripts/record_modernization_p03_forgetting.py \
+            tests/test_modernization_p08_forgetting_evidence.py
+          git commit -m 'USER-MODERNIZATION: preserve remaining-work owner projections'
+          git pull --rebase origin codex/modernization-followup-20260908
+          git push origin HEAD:codex/modernization-followup-20260908
