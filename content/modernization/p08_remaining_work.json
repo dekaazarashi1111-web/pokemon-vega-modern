@@ -125,6 +125,7 @@
     "new_native_processes_in_this_session": 7,
     "old_native_acceptance_preserved_not_relabelled": true,
     "release_ready": false,
+    "shared_egg_verified_native": "content/modernization/pr16_shared_egg_acceptance.json",
     "source_path": "content/modernization/pr16_completion_acceptance.json",
     "source_runs": {
       "breeding": {
@@ -222,8 +223,9 @@
       "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
       "pass_condition": "Map residual adopted consumers to exact existing or new native originals; keep Rotom/evolution/Pichu successes",
       "phase": "P03",
-      "reason_ja": "ロトム実サービスの付与・解除・満杯拒否・取消・保存は10件受入済み。その他の採用済み供給経路について既存原本と未確認範囲を照合する",
-      "resume": "scripts/pr16_physical_route_checkpoint.py verifies 10 accepted Rotom paths; reconcile other adopted consumer classes, do not repeat successful forms",
+      "reason_ja": "ロトム実受付10件に加え、バクーダ・ドンファンの共有技追加16件（全4枠・取消・保存再開）を受入済み。残る採用済み経路と既存原本の対応を確定する",
+      "resume": "scripts/pr16_shared_egg_checkpoint.py verifies the 16 shared-only receiver routes; retain Rotom/evolution/Pichu/Happiny successes and reconcile only residual consumers",
+      "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
     },
@@ -295,6 +297,22 @@
     "visibility": "public"
   },
   "schema_version": 1,
+  "shared_egg_checkpoint": {
+    "accepted_receivers": [
+      605,
+      549
+    ],
+    "candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "full_shared_routes_accepted": false,
+    "new_native_cores": 32,
+    "new_native_processes": 16,
+    "release_ready": false,
+    "shared_only_selected_receiver_routes_accepted": true,
+    "source_path": "content/modernization/pr16_shared_egg_acceptance.json"
+  },
   "source_bindings": {
     "config/modernization_p03_stage74_supply.json": {
       "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc",

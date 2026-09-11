@@ -4667,3 +4667,13 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Raw originals + Actions metadata permanently tracked in pr16_physical_route_evidence; current-view hook preserves accepted subroutes across regeneration.
 - Revalidation and target tests: retention run 34560685011. No historical evidence, ROM, actual-play save, Stage62, public/free-memory policy, history or PR merge changed.
 - Remaining: residual P03/P07 consumer inventory, P05 physical acquisition/admission, same-candidate final gates, clean full reconstruction and distribution. Product release remains false.
+
+## 2026-09-11 / PR16-SHARED-ONLY-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / physical shared-only receiver routes.
+- New native run 34564143971, HEAD 00fb5ccf6009e1f87e5a83b60fda1fde35f157ac: Camerupt 605 and Donphan 549, 16 processes / 32 cores, unchanged candidate 635fd890. Empty slot, all four replacements, three cancels, normal save and fresh Continue.
+- Fixture boundary: initial species/moves, memory item, HOF/DH and location are prepared; no natural acquisition, breeding or full shared-table native claim.
+- Exact original ZIP + Actions metadata tracked; raw validation and both remaining-work regeneration paths checked by retention run 34564919680. Oracle unit 12 and checkpoint/previous target suites are logged there. No new emulator run in retention.
+- Preserved Rotom, Happiny, Pichu, evolution, P06 and historical evidence. No ROM, active Stage62, real save, visibility, owner policy, history or PR merge changes.
+- Receiver audit has complete shared pool reading but unresolved catalogue root/wild header diagnostics; no physical Circus or natural-capture acceptance.
+- Remaining P03/P07 reconciliation, P05 natural acquisition/admission, P08 final integration and full clean reconstruction/distribution; product release remains false.
