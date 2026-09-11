@@ -1,5 +1,5 @@
 name: pr16-gear-refinement
-run-name: Check live policy versus cold policy reset and continue native route
+run-name: Exact policy controller update and native gear continuation
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -20,35 +20,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - name: Verify exact preimages and tested postimages for policy boundary correction
+      - name: Apply only exact preimage and postimage checked controller sources
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-gear-refinement
           git rev-parse HEAD > .local/pr16-gear-refinement/request-head.txt
-          python3 - <<'PY'
-          import hashlib,pathlib
-          bindings={'tools/mgba_pr16_purchased_gear.c':'2031e1fa6875584942c45b200eb92d56886b4a40eac7feb3cee9b797e019cc71','scripts/pr16_purchased_gear.py':'abd0ab22d526e388599c54ae6a8f2c45b011b8b4ab0f2c863aef8bce03b3c1b6','tests/test_pr16_purchased_gear.py':'7d35ef5d36cde9a7e99e3e0821595a53feeb4ff10ecf6d12a66dc0c7b4bed3e6'}
-          for name,sha in bindings.items():
-              p=pathlib.Path(name);assert not p.is_symlink() and hashlib.sha256(p.read_bytes()).hexdigest()==sha,name
-          PY
-          git apply --recount --check .github/repairs/pr16-gear-policy-boundary.patch
-          git apply --recount .github/repairs/pr16-gear-policy-boundary.patch
-          python3 - <<'PY'
-          import hashlib,pathlib
-          bindings={'tools/mgba_pr16_purchased_gear.c':'ba8a7994d25bf7d5d95fdf9fb35bace671f4b1625f5cee96df235a92bbdac9aa','scripts/pr16_purchased_gear.py':'f69d2b957e1213d08ec5a81551d4f7a50c434edc794ea686a910f0af5190f09b','tests/test_pr16_purchased_gear.py':'c3a391e8f83300719e6ab24b3c0f16dd449ddb9c1af625c8f484b6112cd2fb04'}
-          for name,sha in bindings.items():assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==sha,name
-          PY
+          python3 scripts/pr16_apply_gear_policy_boundary.py > .local/pr16-gear-refinement/apply.log 2>&1
           python3 -m unittest tests.test_pr16_purchased_gear tests.test_pr16_natural_capture tests.test_pr16_shop_display_repair tests.test_pr16_shop_routes -v > .local/pr16-gear-refinement/unit.log 2>&1
           git diff --check
-      - name: Record tested boundary correction without claiming native success
+      - name: Record policy boundary and immutable history
         run: |
           python3 - <<'PY'
           import json,os,pathlib
           root=pathlib.Path('.');run=int(os.environ['GITHUB_RUN_ID'])
           assert b'Ran 51 tests' in (root/'.local/pr16-gear-refinement/unit.log').read_bytes()
-          status={'schema_version':2,'status':'POLICY_BOUNDARY_CORRECTED_NATIVE_ACCEPTANCE_PENDING','refinement_run':run,'request_head':os.environ['GITHUB_SHA'],'previous_native_failure_run':34585692527,'previous_failure_reason':'Volatile next-battle Mega policy is not saved; intermediate cold load resets to standard. Active case must not inject policy again.','local_and_ci_targeted_tests':51,'actual_c_state_pairs_checked':65536,'new_native_passes':0,'gear_to_battle_accepted':False,'full_p05_acceptance':False,'release_ready':False,'resume':'Read dispatched pr16-purchased-gear run: three same-session cases (two cores each) and one cold-policy-reset control (three cores). Inspect originals. Retain old run separately; do not count its two successes again.'}
-          (root/'content/modernization/pr16_gear_refinement_status.json').write_text(json.dumps(status,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
-          text=f'\n## 2026-09-11 USER-MODERNIZATION gear policy boundary / run {run}\n\nRun 34585692527 reached purchase/Give/Save/cold Continue and natural grass. Two controls reached final Save/third core; active failed because volatile next-battle policy did not survive a cold load. Existing standard-mode denial is intentional (modernization_p04_mega_runtime contract); do not change ROM policy or inject it after observation. Schema 2 separates three same-session cases (2 cores each) from cold-policy-reset denial (3 cores). Original failed run and its successful subset remain historical, not relabelled. 51 targeted tests pass including false core-count/policy-persistence rejection. Patch header-count transport failure run34586543126 did not change code or run the emulator; checked recount requires all three exact locally tested postimages. Native acceptance pending. No ROM/save/baseline/visibility/history changes.\n'
+          p=root/'content/modernization/pr16_gear_refinement_status.json'
+          status=json.loads(p.read_bytes())
+          status.update(schema_version=2,status='POLICY_BOUNDARY_CORRECTED_NATIVE_ACCEPTANCE_PENDING',refinement_run=run,request_head=os.environ['GITHUB_SHA'],previous_native_failure_run=34585692527,previous_failure_reason='NEXT-battle Mega policy is volatile, not saved. Intermediate cold load resets it. Do not inject it again.',local_and_ci_targeted_tests=51,resume='Read dispatched native run: active/no-toggle/cancel same-session cases each 2 cores; cold-policy-reset control 3 cores. Review originals before acceptance; old failed run remains historical.')
+          assert not status['gear_to_battle_accepted'] and not status['release_ready']
+          p.write_text(json.dumps(status,sort_keys=True,indent=2)+'\n')
+          text=f'\n## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run {run}\n\nRun34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.\n'
           for name in ('design/run_log.md','design/version_log.md'):
               with (root/name).open('a') as f:f.write(text)
           PY
@@ -62,19 +53,18 @@ jobs:
           test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
           python3 - <<'PY'
           import subprocess
-          expected={'tools/mgba_pr16_purchased_gear.c','scripts/pr16_purchased_gear.py','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md','content/modernization/pr16_gear_refinement_status.json'}
-          actual=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert actual==expected,actual
+          paths={'tools/mgba_pr16_purchased_gear.c','scripts/pr16_purchased_gear.py','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md','content/modernization/pr16_gear_refinement_status.json'}
+          actual=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert actual==paths,actual
+          subprocess.run(['git','add','--',*sorted(paths)],check=True)
           PY
-          git add tools/mgba_pr16_purchased_gear.c scripts/pr16_purchased_gear.py tests/test_pr16_purchased_gear.py design/run_log.md design/version_log.md content/modernization/pr16_gear_refinement_status.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-MODERNIZATION: separate live Mega cases from cold policy reset without injection'
+          git commit -m 'USER-MODERNIZATION: distinguish live Mega from cold policy reset without injection'
           git push origin "HEAD:$branch"
           git rev-parse HEAD > .local/pr16-gear-refinement/applied-head.txt
           gh workflow run pr16-purchased-gear.yml --ref "$branch"
           sleep 5
           gh run list --workflow pr16-purchased-gear.yml --branch "$branch" --limit 3 --json databaseId,headSha,status,conclusion > .local/pr16-gear-refinement/native-runs.json
-          cat .local/pr16-gear-refinement/native-runs.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
