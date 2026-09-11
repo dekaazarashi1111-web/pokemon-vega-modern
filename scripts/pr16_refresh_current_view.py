@@ -56,6 +56,9 @@ def current_view(previous,root=ROOT):
             row['pass_condition']='Close the named outstanding native routes on candidate 635fd890 or its exact successor; preserve historical Stage82/84 runs and rerun only affected regression after changes'
         elif row['id']=='P07_REMAINING_ROUTE_ACCEPTANCE':
             row['pass_condition']='Reconcile residual physical-route coverage against 1073 historical additions and 499 preserved rows; no new table approval or blanket combinations; save/cancel at affected consumers'
+    from pr16_physical_route_checkpoint import RECEIPT as physical_receipt, project as physical_project
+    if (root / physical_receipt).is_file():
+        out=physical_project(out,root)
     return out
 
 
