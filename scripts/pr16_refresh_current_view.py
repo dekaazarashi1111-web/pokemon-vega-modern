@@ -68,6 +68,9 @@ def current_view(previous,root=ROOT):
     from pr16_shop_display_checkpoint import RECEIPT as display_receipt, project as display_project
     if (root / display_receipt).is_file():
         out=display_project(out,root)
+    from pr16_natural_capture_checkpoint import RECEIPT as capture_receipt, project as capture_project
+    if (root / capture_receipt).is_file():
+        out=capture_project(out,root)
     return out
 
 

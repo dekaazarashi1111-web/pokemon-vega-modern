@@ -160,6 +160,25 @@
     "size": 33554432
   },
   "latest_scoped_candidate_stage": "84+P07+EVOLUTION_REPAIR",
+  "natural_capture_checkpoint": {
+    "battle_connection_accepted": false,
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "fixture_boundary": [
+      "map and position",
+      "species4 level100 lead",
+      "one Master Ball",
+      "remembered ball pocket"
+    ],
+    "full_p05_acceptance": false,
+    "gear_acquisition_accepted": false,
+    "natural_capture_accepted": true,
+    "new_native_cores": 4,
+    "new_native_processes": 2,
+    "source_path": "content/modernization/pr16_natural_capture_acceptance.json"
+  },
   "new_emulator_runs_during_reconciliation": 0,
   "next_integration_candidate": {
     "builder": "scripts/pr16_shop_display_repair.py",
@@ -255,12 +274,15 @@
     {
       "display_repair_required": false,
       "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "gear_to_battle_required": true,
       "id": "NATURAL_CAPTURE_GEAR",
+      "natural_capture_evidence": "content/modernization/pr16_natural_capture_acceptance.json",
+      "natural_capture_required": false,
       "original_request": "P05 original acceptance and current P08 boundary",
       "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "6種の石の実受付購入・取消・拒否・保存とショップ表示は後継候補で11件22コア成功。自然捕獲および通常取得から戦闘への接続は未完了。旧候補の表示不合格原本は保持",
+      "reason_ja": "同一ショップ修正版で洞窟2経路の自然歩行→シビルドン捕獲→通常保存→別コア再開は2件4コア成功。開始位置・先頭個体・ボールはfixture。石の実購入・表示・保存の既存成功も保持。通常取得から戦闘への接続、リング/BP/ボールの通常入手は未受入",
       "resume": "scripts/run_modernization_p05_controller_witness.py and run_modernization_p05_scheduler_e2e.py are accepted downstream evidence, not capture evidence",
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle"
