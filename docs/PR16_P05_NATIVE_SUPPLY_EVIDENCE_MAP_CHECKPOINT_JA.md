@@ -75,5 +75,5 @@
 - Circus実受付は別残件であり、この3経路の証拠へ混ぜない。
 - 後継最終候補への証拠移送はP08で行う。
 
-source commit: `6d3d153e4fcbe34c2e785fa264f1a6cb415dab06`
+source commit: `8cd82da0eb24dabeae1f1a871661e77251aa2f9d`
 candidate SHA-256: `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`
