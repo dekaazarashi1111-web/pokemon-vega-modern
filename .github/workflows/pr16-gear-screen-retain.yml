@@ -1,5 +1,6 @@
 name: pr16-gear-screen-retain
 run-name: Retain verified gear run 34589284710 without rerunning emulator
+# Retry after unrelated checkpoint-test/workflow commits; keep strict no-force HEAD check.
 on:
   push:
     branches: [codex/modernization-followup-20260908]
