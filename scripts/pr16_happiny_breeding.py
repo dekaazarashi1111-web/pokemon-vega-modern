@@ -120,7 +120,8 @@ def oracle(raw,parent,selected):
     need(old.egg[365]==new.egg[365]==[281],'no-incense Chansey egg pool changed')
     level={sid:[m for m,lev in new.level[sid] if lev<=1] for sid in (364,365)}
     need(level=={364:[1,539],365:[1,111,186,204,343,539,549]},'child starting learnsets differ')
-    need(all(old.level[sid]==new.level[sid] for sid in (364,365)),'ordinary levels changed')
+    # Birth consumes the exact candidate level-one rows above. Other levels
+    # include intentional P07 restoration and are not an unchanged-data oracle.
     table=struct.unpack_from('<I',raw,0x1bc)[0]-layer.BASE
     need(table==struct.unpack_from('<I',parent,0x1bc)[0]-layer.BASE==0x1576c74,'BaseStats root differs')
     parents={}
@@ -142,7 +143,8 @@ def oracle(raw,parent,selected):
     for move in {m for case in CASES for m in case[-1] if m}:
         pp[move]=raw[pp_root+12*move+4]
         need(1<=pp[move]<=64 and pp[move]==parent[pp_root+12*move+4],'canonical PP differs')
-    return {'source_rows':rows,'candidate_child_level_one':level,'parent_species':parents,
+    return {'source_rows':rows,'candidate_child_level_one':level,
+            'stage84_child_level_one':{sid:[m for m,lev in old.level[sid] if lev<=1] for sid in (364,365)},'parent_species':parents,
             'incense_item':INCENSE,'old_egg':old.egg[364],'new_egg':new.egg[364],
             'no_incense_child_species':365,'no_incense_egg':new.egg[365],
             'canonical_pp':pp,'scope':'source-proven retained delta, no new adoption'},pp
