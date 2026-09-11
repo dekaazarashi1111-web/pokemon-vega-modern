@@ -62,6 +62,9 @@ def current_view(previous,root=ROOT):
     from pr16_shared_egg_checkpoint import RECEIPT as shared_receipt, project as shared_project
     if (root / shared_receipt).is_file():
         out=shared_project(out,root)
+    from pr16_p05_route_checkpoint import RECEIPT as p05_receipt, project as p05_project
+    if (root / p05_receipt).is_file():
+        out=p05_project(out,root)
     return out
 
 
