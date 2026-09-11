@@ -1,7 +1,7 @@
 diff --git a/scripts/pr16_p05_native_supply_reconciliation.py b/scripts/pr16_p05_native_supply_reconciliation.py
 --- a/scripts/pr16_p05_native_supply_reconciliation.py
 +++ b/scripts/pr16_p05_native_supply_reconciliation.py
-@@ -26,6 +26,13 @@ PURCHASED = "content/modernization/pr16_purchased_gear_acceptance.json"
+@@ -26,5 +26,12 @@ PURCHASED = "content/modernization/pr16_purchased_gear_acceptance.json"
  SCOPE = "PR16_P05_NATIVE_RING_BP_POLICY_FINITE_INVENTORY"
  
 +PURCHASED_ACCEPTANCE_KEYS = (
@@ -14,7 +14,7 @@ diff --git a/scripts/pr16_p05_native_supply_reconciliation.py b/scripts/pr16_p05
  GAP_IDS = (
      "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
      "P05_NATIVE_BP_EARNING_PHYSICAL",
-@@ -95,6 +102,34 @@ def need(condition: bool, message: str) -> None:
+@@ -95,6 +102,35 @@ def need(condition: bool, message: str) -> None:
          raise ValueError(message)
  
  
@@ -50,7 +50,7 @@ diff --git a/scripts/pr16_p05_native_supply_reconciliation.py b/scripts/pr16_p05
  def stable_json(value: Any) -> bytes:
      return (json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
  
-@@ -194,7 +229,7 @@ def _condition(remaining: dict[str, Any], condition_id: str) -> dict[str, Any]:
+@@ -194,7 +230,7 @@ def _condition(remaining: dict[str, Any], condition_id: str) -> dict[str, Any]:
  
  def build_inventory() -> dict[str, Any]:
      remaining = json.loads((ROOT / REMAINING).read_text())
@@ -59,7 +59,7 @@ diff --git a/scripts/pr16_p05_native_supply_reconciliation.py b/scripts/pr16_p05
      natural = _condition(remaining, "NATURAL_CAPTURE_GEAR")
  
      need(natural.get("natural_capture_required") is False, "natural capture success was reopened")
-@@ -203,9 +238,15 @@ def build_inventory() -> dict[str, Any]:
+@@ -203,9 +239,18 @@ def build_inventory() -> dict[str, Any]:
      need(natural.get("gear_to_battle_required") is False, "purchased gear success was reopened")
      need(natural.get("ring_bp_natural_supply_required") is True, "ring/BP gap boundary changed")
      need(natural.get("ordinary_policy_selection_required") is True, "policy gap boundary changed")
@@ -81,7 +81,7 @@ diff --git a/scripts/pr16_p05_native_supply_reconciliation.py b/scripts/pr16_p05
  
      matches, scanned, identities = scan_sources()
      categories: dict[str, Any] = {}
-@@ -231,7 +272,7 @@ def build_inventory() -> dict[str, Any]:
+@@ -231,7 +276,7 @@ def build_inventory() -> dict[str, Any]:
          "status": "PASS_FINITE_STATIC_INVENTORY_NOT_NATIVE_ACCEPTANCE",
          "scope": SCOPE,
          "source_commit": git_text("rev-parse", "HEAD"),
@@ -140,7 +140,7 @@ diff --git a/tests/test_pr16_p05_native_supply_reconciliation.py b/tests/test_pr
  
  ROOT = Path(__file__).resolve().parents[1]
  sys.path.insert(0, str(ROOT / "scripts"))
-@@ -12,6 +14,32 @@ import pr16_p05_native_supply_reconciliation as target
+@@ -12,5 +14,30 @@ import pr16_p05_native_supply_reconciliation as target
  
  
 +class PurchasedReceiptSchemaTests(unittest.TestCase):
