@@ -1,0 +1,78 @@
+name: pr16-gear-screen-retain
+run-name: Retain verified gear run 34589284710 without rerunning emulator
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-gear-screen-retain.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-gear-screen-retain
+  cancel-in-progress: false
+jobs:
+  retain:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Fetch pinned original and validate without emulator or ROM writes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/gear-screen-record
+          python3 scripts/pr16_gear_screen_checkpoint.py --fetch --write > .local/gear-screen-record/receipt.json
+          python3 -m unittest tests.test_pr16_gear_screen_checkpoint -v > .local/gear-screen-record/tests.log 2>&1
+          python3 scripts/pr16_gear_screen_checkpoint.py > .local/gear-screen-record/rechecked.json
+      - name: Append operation logs and publish exact verified files on same branch
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+          RETENTION_RUN: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib
+          marker='USER-MODERNIZATION-GEAR-SCREENS-34589284710'
+          text='\n## '+marker+'\n\nTask: USER-MODERNIZATION\nIntegrated the previously unreflected non-destructive output and screenshot helper into the existing purchased-gear runner. Native run 34589284710 at 4b5971179795bcdbbca1abf142387ef1bb6f1ce9 passed 65 targeted tests and 4 processes/9 cores. Verified 37 source bindings, generated controller, native raw outputs, 53 mandatory screen sidecars and all 58 visually reviewed originals. Retention run '+os.environ['RETENTION_RUN']+' revalidated the pinned original and 11 rejection tests without starting an emulator. Original SHA256 6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9. No ROM/save included in this new ZIP. Full P05 and release remain false; ring/BP/initial party/policy are fixtures. Old runs are not added to these counts. See docs/PR16_GEAR_SCREEN_CHECKPOINT_JA.md.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=pathlib.Path(name)
+              if marker not in p.read_text():
+                  with p.open('a') as f:f.write(text)
+          p=pathlib.Path('content/modernization/pr16_gear_evidence/34589284710/retention-tests.log')
+          data=pathlib.Path('.local/gear-screen-record/tests.log').read_bytes()
+          if not p.exists():p.write_bytes(data)
+          else:assert p.read_bytes().endswith(b'OK\n')
+          PY
+          branch=codex/modernization-followup-20260908
+          git fetch origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$EXPECTED_HEAD"
+          git add -f content/modernization/pr16_gear_evidence/34589284710/original.zip content/modernization/pr16_gear_evidence/34589284710/actions.json content/modernization/pr16_gear_evidence/34589284710/retention-tests.log content/modernization/pr16_gear_screen_acceptance.json
+          git add design/run_log.md design/version_log.md
+          python3 - <<'PY'
+          import subprocess
+          allowed={'content/modernization/pr16_gear_evidence/34589284710/original.zip','content/modernization/pr16_gear_evidence/34589284710/actions.json','content/modernization/pr16_gear_evidence/34589284710/retention-tests.log','content/modernization/pr16_gear_screen_acceptance.json','design/run_log.md','design/version_log.md'}
+          actual=set(subprocess.check_output(['git','diff','--cached','--name-only']).decode().splitlines())
+          assert actual<=allowed,actual-allowed
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if ! git diff --cached --quiet; then
+            git commit -m 'USER-MODERNIZATION: retain verified gear screen originals and scoped receipt [skip ci]'
+            git push origin "HEAD:$branch"
+          fi
+          python3 scripts/pr16_gear_screen_checkpoint.py > .local/gear-screen-record/post-commit.json
+          git rev-parse HEAD > .local/gear-screen-record/persisted-head.txt
+          git show HEAD:content/modernization/pr16_gear_evidence/34589284710/original.zip | sha256sum > .local/gear-screen-record/git-original.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-gear-screen-retention
+          path: .local/gear-screen-record/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
