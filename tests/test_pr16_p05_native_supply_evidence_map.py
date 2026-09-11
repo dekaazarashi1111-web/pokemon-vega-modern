@@ -80,7 +80,7 @@ def test_runner_contracts_preserve_forbidden_boundaries() -> None:
     assert any("preinstall" in item for item in ring["forbidden_shortcuts"])
     assert any("fixture balance" in item for item in bp["forbidden_shortcuts"])
     assert any("globally enable" in item for item in policy["forbidden_shortcuts"])
-    assert any("cold Continue" in item for item in policy["required_operations"])
+    assert any("cold Continue" in item.replace("-", " ") for item in policy["required_operations"])
 
 
 def test_projection_records_bindings_but_keeps_required_flags_true() -> None:
