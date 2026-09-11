@@ -106,6 +106,10 @@ int main(int argc,char **argv){
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
     struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);c->reset(c);
     a_require(a_continue(c),"generic form initial Continue failed");a_flash_prepare(c);
+    /* Generic service unlocks must exist before the authored map/host loads. */
+    write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
+    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
+    (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
     (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
     m_state(c,"fixture-warp");m_shot(argv[6],0U,"fixture-warp");
     for(unsigned k=0;k<12U && !b_field(c);++k)b_press(c,QOL_KEY_B,180U);
@@ -114,9 +118,7 @@ int main(int argc,char **argv){
     create_mon(c,M_TARGET,M_BASE_SPECIES,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
     for(unsigned k=0;k<4U;++k){set_mon_data_u32(c,M_TARGET,13U+k,m_moves[k]);set_mon_data_u32(c,M_TARGET,17U+k,m_pp[k]);}
     set_mon_data_u32(c,M_TARGET,21U,229U);
-    /* Unlocks are prerequisite fixtures; the service interaction itself is native. */
-    write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
-    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
+    /* Finalize the individual fixture before the read-only observation barrier. */
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
     unsigned pid=b_data(c,M_TARGET,0U),ot=b_data(c,M_TARGET,1U);
     uint8_t decoy[100];b_copy(c,QOL_PLAYER_PARTY,decoy,100U);
