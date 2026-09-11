@@ -328,7 +328,16 @@
       "resume": "Keep successful Eelektross purchased-stone route; do not redo it as missing. Resolve native ring/BP and configured-mode supply/accepted scope. Do not inject policy after cold Continue or globally enable Mega. Physical Circus remains separate.",
       "ring_bp_natural_supply_required": true,
       "success_evidence": null,
-      "target_function": "natural capture/item acquisition to battle"
+      "target_function": "natural capture/item acquisition to battle",
+      "status": "PENDING_THREE_FINITE_NATIVE_SUPPLY_ACCEPTANCES",
+      "supply_coverage_inventory_complete": true,
+      "supply_physical_acceptance_complete": false,
+      "remaining_supply_gap_ids": [
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+        "P05_NATIVE_BP_EARNING_PHYSICAL",
+        "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
+      ],
+      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",

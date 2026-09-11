@@ -42,7 +42,8 @@ GAP_IDS = (
 
 CATEGORY_PATTERNS = {
     "ring_supply": re.compile(
-        r"(?ix)(?:mega[_ -]?ring|key[_ -]?stone|"
+        r"(?ix)(?:initial_map_party_ring_bp_policy_are_fixtures|"
+        r"mega[_ -]?ring|key[_ -]?stone|"
         r"ring[_ -]?(?:item|flag|grant|supply|acquisition|owned|required)|"
         r"メガリング|リング.{0,16}(?:入手|取得|所持|付与|フラグ))"
     ),
