@@ -1983,3 +1983,9 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - USER-MODERNIZATION: native walking/capture/cold-save run34575955233 at 68f94596; 2 processes4 cores on unchanged e630f7f1 shop successor. Cave113:313 steps/15 encounters/Lv80; cave118:202 steps/9 encounters/Lv99. Exact first native land tables and captured personality checked; physical Bag/ball, inventory, party200 bytes, normal save and independent Continue. Seven host-write barriers tested.
 - Initial map/lead/Master Ball are explicit fixtures. Gear acquisition/battle connection/full P05/release remain false. No target/RNG injection. Geometry run34575014339 is static0 emulator runs, not additional native acceptance.
 - Retention run 34576811814: exact originals, Actions, source, raw exits and12 reviewed images retained;106 targeted tests and both current generators. P06 true mirrors, old shop/P03/P07 originals, Stage62, real saves, owner policy/public and unmerged PR preserved.
+
+## 2026-09-11 / PR16-CAPTURED-BATTLE-20260911
+
+- USER-MODERNIZATION: new run34577360374 / 1c8b61e9, 2 processes6 cores on unchanged e630f7f1. Natural capture/ordinary save/cold Continue, next real walking encounter, physical party switch, captured identity/native ability/all moves and PP, native turn PP15-to14, Run, second ordinary save and third-core byte-identical Continue. No target/RNG/gear injection after the7 write barriers.
+- Capture-only run34575955233 remains a distinct2-process4-core historical original, not relabelled or added to the6 new cores. Initial map/lead/ball are fixtures. Actual gear acquisition/equipment-to-battle and Circus admission remain; full P03/P05/P07/release false.
+- Retention run 34578321065: immutable ZIP/Actions/generated controller32 source files/raw process/24 images verified;125 targeted tests and both current generators. Stage62/real saves/prior originals/P06 mirrors/public and free Move Memory decisions/unmerged PR preserved.

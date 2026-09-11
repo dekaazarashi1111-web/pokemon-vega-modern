@@ -64,6 +64,18 @@
     "scope": "ADDITIONAL_MACHINE_TUTOR_ARCHIVE_ONLY",
     "status": "ADOPTED"
   },
+  "captured_battle_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "captured_to_native_battle_accepted": true,
+    "full_p05_acceptance": false,
+    "gear_to_battle_accepted": false,
+    "new_native_cores": 6,
+    "new_native_processes": 2,
+    "source_path": "content/modernization/pr16_captured_battle_acceptance.json"
+  },
   "closed_conditions": [
     {
       "evidence": "content/modernization/p08_final_candidate_acceptance.json",
@@ -166,6 +178,7 @@
       "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
       "size": 33554432
     },
+    "captured_battle_successor_receipt": "content/modernization/pr16_captured_battle_acceptance.json",
     "fixture_boundary": [
       "map and position",
       "species4 level100 lead",
@@ -174,6 +187,7 @@
     ],
     "full_p05_acceptance": false,
     "gear_acquisition_accepted": false,
+    "historical_capture_only": true,
     "natural_capture_accepted": true,
     "new_native_cores": 4,
     "new_native_processes": 2,
@@ -272,6 +286,8 @@
       "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
     },
     {
+      "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",
+      "captured_to_battle_required": false,
       "display_repair_required": false,
       "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
       "gear_to_battle_required": true,
@@ -282,8 +298,8 @@
       "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "同一ショップ修正版で洞窟2経路の自然歩行→シビルドン捕獲→通常保存→別コア再開は2件4コア成功。開始位置・先頭個体・ボールはfixture。石の実購入・表示・保存の既存成功も保持。通常取得から戦闘への接続、リング/BP/ボールの通常入手は未受入",
-      "resume": "scripts/run_modernization_p05_controller_witness.py and run_modernization_p05_scheduler_e2e.py are accepted downstream evidence, not capture evidence",
+      "reason_ja": "シビルドンの自然歩行→捕獲→通常保存/再開→次の自然遭遇→実メニュー交代→通常技のPP消費→離脱→再保存/第3コア再開は2件6コア成功。先行捕獲だけの2件4コアは別原本。石の実購入/表示/保存の既存成功も保持。通常取得した道具の装備から戦闘までの接続は未受入",
+      "resume": "Use retained capture and shop originals. Next connect actual gear acquisition/equipment to battle; do not rerun capture as missing or inject target/gear after observation starts.",
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle"
     },
