@@ -1,0 +1,55 @@
+name: PR16 apply P05 schema fix once
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-apply-p05-schema-fix-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Apply and validate the staged P05 fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          patch=.chatgpt/patches/fix-p05-purchased-receipt-schema.patch
+          test -f "$patch"
+          git apply --check "$patch"
+          git apply "$patch"
+          python3 -m py_compile \
+            scripts/pr16_p05_native_supply_reconciliation.py \
+            scripts/pr16_p05_native_supply_evidence_map.py \
+            tests/test_pr16_p05_native_supply_reconciliation.py \
+            tests/test_pr16_p05_native_supply_evidence_map.py
+          python3 -m unittest \
+            tests.test_pr16_p05_native_supply_reconciliation.PurchasedReceiptSchemaTests
+          git diff --check
+
+      - name: Commit the validated source change and remove one-shot inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm \
+            .chatgpt/patches/fix-p05-purchased-receipt-schema.patch \
+            .github/workflows/pr16-apply-p05-schema-fix-once.yml
+          git add \
+            scripts/pr16_p05_native_supply_reconciliation.py \
+            scripts/pr16_p05_native_supply_evidence_map.py \
+            tests/test_pr16_p05_native_supply_reconciliation.py \
+            tests/test_pr16_p05_native_supply_evidence_map.py
+          git commit -m "USER-MODERNIZATION: fix P05 purchased receipt schema"
+          git push origin HEAD:codex/modernization-followup-20260908
