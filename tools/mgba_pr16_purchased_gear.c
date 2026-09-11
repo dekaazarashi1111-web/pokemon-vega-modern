@@ -16,7 +16,18 @@ static struct KTrace kt;
 static unsigned k_growth,k_attack,k_pid;
 static void k_state(struct mCore*c,const char*label){
  n_state(c,label);fprintf(stderr,"GEAR item=%u held=%u bagpocket=%u growth=%u attack=%u\n",read16(c,QOL_SPECIAL_VAR_ITEM),read16(c,QOL_PLAYER_PARTY+k_growth+2U),read16(c,BATTLE_CORE_BAG_STATE+6U),k_growth,k_attack);
+ fprintf(stderr,"GEAR_FIELD lock=%u quest=%u playback=%u avatar=%u running=%u transition=%u start=%08x\n",read8(c,P02S_FIELD_LOCK),read8(c,P02S_QUEST_LOG_STATE),read8(c,P02S_QUEST_LOG_PLAYBACK_STATE),read8(c,P02S_PLAYER_AVATAR+5U),read8(c,P02S_PLAYER_AVATAR+2U),read8(c,P02S_PLAYER_AVATAR+3U),read32(c,QOL_START_MENU_CALLBACK));
  for(unsigned i=0;i<16U;++i){unsigned t=QOL_TASKS+i*QOL_TASK_SIZE;if(read8(c,t+4U))fprintf(stderr,"TASK %u fn=%08x data=%u,%u,%u,%u,%u,%u\n",i,read32(c,t),read16(c,t+8U),read16(c,t+10U),read16(c,t+12U),read16(c,t+14U),read16(c,t+16U),read16(c,t+18U));}
+}
+static bool k_equipment_field(struct mCore*c){
+ unsigned id=read8(c,P02S_PLAYER_AVATAR+5U);
+ /* Ordinary item owners can record a Quest Log scene. Only the following
+  * real Start-menu Save may cut/serialize it; never clear the state by host. */
+ return read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_FIELD
+  && !read8(c,P02S_FIELD_LOCK) && read8(c,P02S_QUEST_LOG_STATE)<=1U
+  && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE) && id<16U
+  && (read8(c,P02S_OBJECT_EVENTS+id*0x24U)&1U)
+  && !read8(c,P02S_PLAYER_AVATAR+2U) && !read8(c,P02S_PLAYER_AVATAR+3U);
 }
 static void k_start(struct mCore*c,unsigned action){
  a_require(b_field(c),"gear start menu outside field");b_press(c,QOL_KEY_START,120U);
@@ -44,9 +55,9 @@ static void k_equip(struct mCore*c,unsigned item){
  a_require(kt.equipped,"gear selected individual did not receive purchased item");g_shot("equipped");
  /* The native Give completion text waits for confirmation, not cancellation. */
  b_press(c,QOL_KEY_A,180U);k_state(c,"give-confirmed");
- for(unsigned i=0;i<20U && !b_field(c);++i)b_press(c,QOL_KEY_B,120U);
+ for(unsigned i=0;i<20U && !k_equipment_field(c);++i)b_press(c,QOL_KEY_B,120U);
  k_state(c,"equip-menus-closed");g_shot("equip-menus-closed");
- a_require(b_field(c),"gear equip menus did not return to field");
+ a_require(k_equipment_field(c),"gear equip menus did not return to field");
 }
 static void k_path(struct mCore*c,unsigned group,unsigned map,const unsigned path[][2],unsigned count,bool may_encounter){
  for(unsigned i=0;i<count;++i){
@@ -112,7 +123,7 @@ int main(int argc,char**argv){
  k_path(c,96U,17U,k_grass_path,sizeof(k_grass_path)/sizeof(k_grass_path[0]),true);
  for(unsigned i=0;i<1024U && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER);++i){unsigned s=b_save1(c),x=read16(c,s),y=read16(c,s+2U);a_require(y==30U && (x==14U || x==15U),"gear grass pair differs");n_step(c,x==14U?QOL_KEY_RIGHT:QOL_KEY_LEFT);}
  a_require(n_action(c),"gear normal walk did not reach native encounter");kt.encounter=b_frames;
- unsigned enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE),level=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_LEVEL),flags=read32(c,ADDR_BATTLE_TYPE_FLAGS);
+ unsigned enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE),level=read8(c,ADDR_BATTLE_MONS+BATTLE_SIZE+BATTLE_CORE_MON_LEVEL),flags=read32(c,ADDR_BATTLE_TYPE_FLAGS);
  fprintf(stderr,"GEAR_ENCOUNTER species=%u level=%u flags=%08x frame=%u\n",enemy,level,flags,kt.encounter);
  a_require(!(flags&8U) && !read16(c,ADDR_BATTLER_PARTY_INDEXES) && read16(c,ADDR_BATTLE_MONS)==v->species && read16(c,ADDR_BATTLE_MONS+0x2eU)==v->item && read16(c,ADDR_BATTLE_MONS+0x38U)==v->base_ability && read32(c,QOL_PLAYER_PARTY)==k_pid,"gear natural battler identity/item/base ability differs");g_shot("natural-equipped-battle");
  unsigned move=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET),pp=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET),after_pp=pp,observed_species=v->species,observed_ability=v->base_ability;
