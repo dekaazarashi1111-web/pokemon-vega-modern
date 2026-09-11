@@ -1,0 +1,436 @@
+{
+  "schema": "pr16_p03_p07_route_coverage.v1",
+  "generated_from_head": "bc8fe79b455fe0d03fba284b316c17eb34fc5241",
+  "status": "FINITE_INVENTORY_COMPLETE_TWO_P03_PHYSICAL_GAPS",
+  "scope_note": "This ledger closes the finite coverage inventory only. It preserves historical native successes, does not relabel them as successor-candidate runs, and leaves final-candidate transfer to P08.",
+  "candidate_scope": {
+    "p07_parent_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "latest_successor_candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+    "successor_transfer_is_route_gap": false
+  },
+  "p03": {
+    "condition_id": "EVOLUTION_FORM_OTHER_EGG",
+    "coverage_inventory_complete": true,
+    "physical_acceptance_complete": false,
+    "complete": false,
+    "consumer_contracts": [
+      "evolution_preserves_four_existing_slots",
+      "generic_form_change_preserves_moves_and_slot_safety",
+      "fixed_form_transition_supplies_transition-owned moves",
+      "rotom_uses_bespoke_form-move-and-base-restore handling",
+      "special_egg_inheritance_stays separate from ordinary daycare rows",
+      "shared egg moves stay in Move Memory rather than ordinary daycare rows"
+    ],
+    "route_groups": [
+      {
+        "id": "LEVEL_AND_EVOLUTION_LEARNING",
+        "implementation_functions": [
+          "Stage73_LevelMoveReadHook",
+          "Stage73_NormalizeEvolutionMove",
+          "Stage73_BeginLearnAction"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "evidence": [
+          {
+            "path": "content/modernization/pr16_completion_acceptance.json",
+            "run_id": 34512326368,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "cases": [
+              "taillow-level-empty",
+              "taillow-level-full",
+              "taillow-level-cancel",
+              "lucario-evolution-empty"
+            ]
+          },
+          {
+            "path": "content/modernization/pr16_completion_acceptance.json",
+            "run_id": 34552826501,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "cases": [
+              "lucario-evolution-full",
+              "lucario-evolution-cancel"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ORDINARY_DIRECT_EGG_DAYCARE",
+        "implementation_functions": [
+          "Stage73_EggMoveReadHook"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "evidence": [
+          {
+            "path": "content/modernization/p08_p03_breeding_acceptance.json",
+            "run_id": 34434453733,
+            "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+            "case_count": 8,
+            "ordinary_paths": [
+              "father-only",
+              "mother-only",
+              "both-parents",
+              "deduplication",
+              "no-eligible"
+            ],
+            "lifecycle": [
+              "ordinary-deposit",
+              "ordinary-claim",
+              "egg-save-continue",
+              "native-hatch",
+              "hatched-save-continue"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "SPECIAL_EGG_INHERITANCE",
+        "implementation_functions": [
+          "Stage73_EggMoveReadHook"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "evidence": [
+          {
+            "path": "content/modernization/p08_p03_breeding_acceptance.json",
+            "run_id": 34434453733,
+            "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+            "cases": [
+              "light-ball-plus-inherited",
+              "incense-with-item",
+              "incense-without-item"
+            ]
+          },
+          {
+            "path": "content/modernization/pr16_physical_route_acceptance.json",
+            "run_id": 34558529636,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "cases": [
+              "mother-incense-first",
+              "father-incense-middle",
+              "three-retained-full",
+              "incense-no-eligible",
+              "no-incense-chansey"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NORMAL_AND_EGG_MOVE_MEMORY",
+        "implementation_functions": [
+          "Stage73_GetAllEggMoves",
+          "Stage73_NormalizeTaughtMove",
+          "Stage73_BeginLearnAction"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "evidence": [
+          {
+            "path": "content/modernization/p08_p03_relearner_acceptance.json",
+            "run_id": 34446029812,
+            "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+            "normal_case_count": 17,
+            "egg_case_count": 29
+          }
+        ]
+      },
+      {
+        "id": "FORGETTING_AND_SAVE_VALIDATION",
+        "implementation_functions": [
+          "Stage73_NormalizeForgotMove",
+          "Stage73_ValidateSavedMove"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "evidence": [
+          {
+            "path": "content/modernization/p08_p03_forgetting_acceptance.json",
+            "run_id": 34459625383,
+            "candidate_sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+            "case_count": 12
+          }
+        ]
+      },
+      {
+        "id": "MACHINE_AND_TUTOR_ARCHIVE",
+        "implementation_functions": [
+          "Stage73_TmCompatibilityHook",
+          "Stage73_TutorCompatibilityHook",
+          "Stage73_NormalizeTaughtMove",
+          "Stage73_BeginLearnAction"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "static_route_counts": {
+          "machine": 26279,
+          "tutor": 369,
+          "total": 26648
+        },
+        "evidence": [
+          {
+            "path": "content/modernization/p08_stage82_archive_acceptance.json",
+            "run_id": 34397482740,
+            "candidate_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+            "successful_processes": 25,
+            "negative_controls": 2,
+            "coverage_note": "Machine and tutor remain distinct; empty/full/refuse/locked/cancel/page-boundary/save-continue paths are accepted."
+          }
+        ]
+      },
+      {
+        "id": "SHARED_EGG_MOVE_MEMORY",
+        "implementation_functions": [
+          "Stage73_ScanSharedEggMove",
+          "Stage73_GetAllEggMoves",
+          "Stage73_NormalizeTaughtMove"
+        ],
+        "coverage": "ACCEPTED_STATIC_ALL_PLUS_NATIVE_REPRESENTATIVES",
+        "static_route_counts": {
+          "receivers": 943,
+          "rows": 5023,
+          "shared_only_rows": 2751
+        },
+        "evidence": [
+          {
+            "path": "content/modernization/pr16_shared_egg_acceptance.json",
+            "run_id": 34564143971,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "representative_species": [
+              "SPECIES_KEY_CAMERUPT",
+              "SPECIES_KEY_DONPHAN"
+            ],
+            "native_processes": 16,
+            "fresh_cores": 32
+          }
+        ]
+      },
+      {
+        "id": "ROTOM_BESPOKE_FORM_TRANSITION",
+        "implementation_functions": [
+          "Stage73_NormalizeFormChange",
+          "Stage73_NormalizeMoveSlot",
+          "Stage73_ValidateSavedMove"
+        ],
+        "coverage": "ACCEPTED_NATIVE",
+        "form_inventory": {
+          "routes": 5,
+          "species": 5,
+          "owner": "stage73_route_runtime"
+        },
+        "evidence": [
+          {
+            "path": "content/modernization/pr16_physical_route_acceptance.json",
+            "run_id": 34559437267,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "native_processes": 10,
+            "fresh_cores": 25,
+            "cases": [
+              "heat-roundtrip",
+              "wash-roundtrip",
+              "frost-roundtrip",
+              "fan-roundtrip",
+              "mow-roundtrip",
+              "compact-removal",
+              "full-denied",
+              "root-cancel",
+              "forms-cancel",
+              "party-cancel"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "GENERIC_FORM_CHANGE_CARRY",
+        "implementation_functions": [
+          "Stage73_NormalizeFormChange",
+          "Stage73_NormalizeMoveSlot",
+          "Stage73_ValidateSavedMove"
+        ],
+        "coverage": "PHYSICAL_GAP",
+        "gap_id": "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+        "form_inventory": {
+          "routes": 61,
+          "species": 10,
+          "owner": "generic_form_change_service",
+          "methods": {
+            "level_up": 42,
+            "machine": 17,
+            "form_move": 2
+          },
+          "species_keys": [
+            "SPECIES_KEY_DEOXYS",
+            "SPECIES_KEY_DEOXYS_ATTACK",
+            "SPECIES_KEY_DEOXYS_DEFENSE",
+            "SPECIES_KEY_DEOXYS_SPEED",
+            "SPECIES_KEY_SHAYMIN",
+            "SPECIES_KEY_SHAYMIN_SKY",
+            "SPECIES_KEY_HOOPA",
+            "SPECIES_KEY_HOOPA_UNBOUND",
+            "SPECIES_KEY_NECROZMA_ULTRA",
+            "SPECIES_KEY_CALYREX_SHADOW"
+          ]
+        },
+        "required_operation": "Use an actual non-Rotom form-change entrance, select the same individual, verify four-slot carry/normalization, cancellation, normal save, and fresh Continue. Do not mutate directly to the post-form species."
+      },
+      {
+        "id": "FIXED_FORM_TRANSITION",
+        "implementation_functions": [
+          "Stage73_NormalizeFormChange",
+          "Stage73_NormalizeMoveSlot",
+          "Stage73_ValidateSavedMove"
+        ],
+        "coverage": "PHYSICAL_GAP",
+        "gap_id": "P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "form_inventory": {
+          "routes": 4,
+          "species": 4,
+          "owner": "fixed_transition_service",
+          "species_keys": [
+            "SPECIES_KEY_NECROZMA_DUSK_MANE",
+            "SPECIES_KEY_NECROZMA_DAWN_WINGS",
+            "SPECIES_KEY_ZACIAN_CROWNED",
+            "SPECIES_KEY_ZAMAZENTA_CROWNED"
+          ]
+        },
+        "required_operation": "Use an actual fixed transition or battle-transform entrance, verify the transition-owned move behavior, full-slot/decline boundary where applicable, restoration, normal save, and fresh Continue. Do not substitute the Rotom receptionist."
+      }
+    ],
+    "form_inventory": {
+      "routes": 70,
+      "species": 19,
+      "generic_carry_routes": 61,
+      "fixed_transition_routes": 4,
+      "rotom_routes": 5
+    },
+    "remaining_physical_gap_ids": [
+      "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+      "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+    ]
+  },
+  "p07": {
+    "condition_id": "P07_REMAINING_ROUTE_ACCEPTANCE",
+    "coverage_inventory_complete": true,
+    "physical_acceptance_complete_on_parent_candidate": true,
+    "complete_on_parent_candidate": true,
+    "successor_transfer_complete": false,
+    "successor_transfer_owned_by": "P08:FINAL_NATIVE_ACCEPTANCE",
+    "static_reconciliation": {
+      "adopted": {
+        "level_up": 450,
+        "egg": 254,
+        "machine": 179,
+        "tutor": 190,
+        "total": 1073
+      },
+      "preserved": {
+        "level_up": 310,
+        "egg": 189,
+        "total": 499
+      },
+      "missing_or_conflicting_rows": 0
+    },
+    "change_surface": {
+      "changed_by_p07": [
+        {
+          "id": "PRESERVED_LEVEL_ROWS",
+          "rows": 310,
+          "implementation": "P07 level table merged after P03 rows with stable same-level ordering",
+          "coverage": "ACCEPTED_NATIVE_ON_PARENT",
+          "evidence": {
+            "path": "content/modernization/pr16_completion_acceptance.json",
+            "run_id": 34512326368,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "representative": "taillow move 457: empty/full/cancel and save/continue"
+          }
+        },
+        {
+          "id": "PRESERVED_EGG_ROWS",
+          "rows": 189,
+          "implementation": "P07 egg table merged after P03 rows with stable V4 order",
+          "coverage": "ACCEPTED_NATIVE_ON_PARENT",
+          "evidence": [
+            {
+              "path": "content/modernization/pr16_completion_acceptance.json",
+              "run_id": 34512326368,
+              "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+              "representative": "taillow move 466 through Move Memory"
+            },
+            {
+              "path": "content/modernization/pr16_completion_acceptance.json",
+              "run_id": 34553503441,
+              "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+              "representative": "Pichu preserved move 440 through ordinary deposit/claim/hatch/save-continue"
+            }
+          ]
+        },
+        {
+          "id": "HAPPINY_COLLISION_ADAPTER",
+          "rows": 3,
+          "moves": [
+            461,
+            464,
+            357
+          ],
+          "coverage": "ACCEPTED_NATIVE_ON_PARENT",
+          "evidence": {
+            "path": "content/modernization/pr16_physical_route_acceptance.json",
+            "run_id": 34558529636,
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "representative": "incense first/middle/full/control paths with hatch and save-continue"
+          }
+        }
+      ],
+      "unchanged_parent_content": [
+        {
+          "id": "ADOPTED_LEVEL_ROWS",
+          "rows": 450,
+          "consumer_contract": "Stage73_LevelMoveReadHook",
+          "consumer_acceptance": "LEVEL_AND_EVOLUTION_LEARNING",
+          "static_exact": true
+        },
+        {
+          "id": "ADOPTED_EGG_ROWS",
+          "rows": 254,
+          "consumer_contract": "Stage73_EggMoveReadHook",
+          "consumer_acceptance": "ORDINARY_DIRECT_EGG_DAYCARE",
+          "static_exact": true
+        },
+        {
+          "id": "ADOPTED_MACHINE_ROWS",
+          "rows": 179,
+          "consumer_contract": "Stage73_TmCompatibilityHook",
+          "consumer_acceptance": "MACHINE_AND_TUTOR_ARCHIVE",
+          "static_exact": true
+        },
+        {
+          "id": "ADOPTED_TUTOR_ROWS",
+          "rows": 190,
+          "consumer_contract": "Stage73_TutorCompatibilityHook",
+          "consumer_acceptance": "MACHINE_AND_TUTOR_ARCHIVE",
+          "static_exact": true
+        }
+      ]
+    },
+    "remaining_physical_gap_ids": [],
+    "closure_reason": "Every P07-changed consumer/adapter path is accepted on 635fd890; the 1,073 adopted rows are unchanged parent content, statically exact, and mapped to already accepted consumer contracts. Repeating all rows is neither required nor claimed. Transfer to e630f7f1 is exclusively a P08 integration task."
+  },
+  "remaining_projection": {
+    "EVOLUTION_FORM_OTHER_EGG": {
+      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
+      "coverage_inventory_complete": true,
+      "physical_acceptance_complete": false,
+      "complete": false,
+      "remaining_physical_gap_ids": [
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+        "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+      ],
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
+    },
+    "P07_REMAINING_ROUTE_ACCEPTANCE": {
+      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "coverage_inventory_complete": true,
+      "physical_acceptance_complete": true,
+      "complete": true,
+      "remaining_physical_gap_ids": [],
+      "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
+    }
+  }
+}
