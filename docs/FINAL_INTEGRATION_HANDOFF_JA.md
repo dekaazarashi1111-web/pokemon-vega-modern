@@ -1,3 +1,9 @@
+> **2026-09-11 現在の入口（PR16-COMPLETION-7-NATIVE-CASES）**
+> 現候補は `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`。
+> [現在の受入と実装再開点](PR16_COMPLETION_CHECKPOINT_JA.md)、`pr16_completion_acceptance.json`、再生成される `p08_remaining_work.json` を先に読む。
+> P06採用範囲は完了、進化満杯/取消2件とPichu実繁殖5件を新規受入済み。P07は1,073行追加・472+27行保持の照合/実装済みであり、配布表の承認待ちではない。
+> 以下のStage84説明・旧未受入範囲は当時の記録。現候補の未達はP03/P07の残る実経路、P05通常取得/実Circus入場、clean全工程再生成/配布。製品完成ではない。
+
 # PR #16 最終統合・受入・引き渡し
 
 ## 判定

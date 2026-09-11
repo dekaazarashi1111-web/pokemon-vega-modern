@@ -181,7 +181,12 @@ def project_overview(legacy,root=ROOT):
             row['reason_ja']='双方向分離・原作基準保持・経路別採用は確定。照合資料の推奨上限・代替案から具体的な採用行を一意に確定できず、配布行の判断が必要。'
     current['source_bindings'][RECEIPT]=identity(read(root,RECEIPT))
     from modernization_owner_policy import project
-    return project(current, root)
+    current = project(current, root)
+    from pr16_completion_checkpoint import RECEIPT as completion_receipt
+    if (root / completion_receipt).is_file():
+        from pr16_refresh_current_view import current_view
+        return current_view(current, root)
+    return current
 
 
 def main():

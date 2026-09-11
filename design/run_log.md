@@ -4637,3 +4637,17 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Task: PR16 final integration / P06 accepted-original connection
 - Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.
 - Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.
+
+## 2026-09-11 / PR16-COMPLETION-7-NATIVE-CASES
+
+- Task: USER-MODERNIZATION-P03-P06-P07-P08 / 同じPR #16で実操作受入と現在ビューを接続。
+- Candidate: 635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e、33,554,432 bytes、CRC32 5B8BFB51。ROM変更は今回なし。
+- New native: run 34552826501 進化満杯/取消2件4コア、run 34553503441 Pichu egg440実預入・生成・受取・孵化・保存5件15コア。今回計7プロセス19コア。
+- Preserved: run 34512326368 のP06採用3項目、技メモリー、レベル/進化、7領域を原本再検証。旧実行を今回の件数へ足さない。Stage82対照1件は現候補へ改称しない。
+- P06: 採用2種3項目のslot/stat/save、特性戦闘/対照、Summary表示を工程受入へ接続。未採用194行の調整はしない。
+- P07: 1,073歴史的採用追加と472+27既存保持を区別。新規一律配布・料金・解禁変更なし。
+- Evidence: content/modernization/pr16_completion_evidence の3原本ZIPを実取得・Git追跡。source/run/CRC/SHA/raw-validatorを再確認。原本保持commit b1215b03f03477ca24fe7fcb3efe0474467e5b64。
+- Current view: scripts/pr16_refresh_current_view.py、scripts/pr16_completion_checkpoint.py、docs/PR16_COMPLETION_CHECKPOINT_JA.md。旧Stage84受入JSONを変更せず再生成フックを追加。
+- Remaining: P03フォーム/該当供給、P07残る差分実経路、P05通常取得/実Circus、clean全工程再生成/配布。release_ready=false。
+- Protection: public/無料わざメモリーは承認済みで維持。Stage62、実プレイsave、原本、履歴、公開範囲、PR未マージを維持。
+- Verify: 専用mGBA 2run PASS、原本照合 PASS、両現在ビュー生成と関連否定unitを本workflowで検証。新規native実行と記録再検査を混同しない。
