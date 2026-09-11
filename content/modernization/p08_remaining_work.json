@@ -298,7 +298,16 @@
       "resume": "scripts/pr16_shared_egg_checkpoint.py verifies the 16 shared-only receiver routes; retain Rotom/evolution/Pichu/Happiny successes and reconcile only residual consumers",
       "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
+      "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes",
+      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
+      "coverage_inventory_complete": true,
+      "physical_acceptance_complete": false,
+      "complete": false,
+      "remaining_physical_gap_ids": [
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+        "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+      ],
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
     },
     {
       "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",
@@ -341,7 +350,15 @@
       "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
       "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding"
+      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding",
+      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "coverage_inventory_complete": true,
+      "physical_acceptance_complete": true,
+      "complete": true,
+      "remaining_physical_gap_ids": [],
+      "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
     },
     {
       "id": "FINAL_NATIVE_ACCEPTANCE",
