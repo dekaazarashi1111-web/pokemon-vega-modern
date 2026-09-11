@@ -69,4 +69,30 @@ class PurchasedGearValidationTests(unittest.TestCase):
         model['walkable_pairs'].append(dict(start=[0,0],end=[1,0],elevation=4,behavior=0))
         with self.assertRaises(ValueError):p.path(model,[0,0],[1,0])
 
+class GearFieldStateTests(unittest.TestCase):
+    def test_compiled_live_state_rejects_playback_and_unknown_pairs(self):
+        # Compile the actual C predicate, not a Python reimplementation.
+        import re
+        import subprocess
+        import tempfile
+        from pathlib import Path
+        source=(p.ROOT/p.SOURCE).read_text()
+        match=re.search(r"static bool k_quest_live\(unsigned quest,unsigned playback\)\{[^}]+\}",source)
+        self.assertIsNotNone(match)
+        program="#include <stdbool.h>\n"+match.group()+"\n"+r"""
+int main(void) {
+ for(unsigned q=0;q<256U;++q) for(unsigned r=0;r<256U;++r) {
+  bool expected=(q==0U && r==0U) || (q==1U && r==2U);
+  if(k_quest_live(q,r)!=expected)return 1;
+ }
+ return 0;
+}
+"""
+        with tempfile.TemporaryDirectory() as td:
+            src=Path(td)/'state.c';binary=Path(td)/'state';src.write_text(program)
+            subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror',str(src),'-o',str(binary)],check=True,capture_output=True,timeout=30)
+            subprocess.run([str(binary)],check=True,capture_output=True,timeout=10)
+        self.assertNotRegex(source,r'\bBATTLE_SIZE\b')
+        self.assertIn('k_quest_live(read8(c,P02S_QUEST_LOG_STATE),read8(c,P02S_QUEST_LOG_PLAYBACK_STATE))',source)
+
 if __name__=='__main__':unittest.main()

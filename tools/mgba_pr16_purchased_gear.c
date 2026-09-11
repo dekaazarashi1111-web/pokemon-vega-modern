@@ -19,13 +19,18 @@ static void k_state(struct mCore*c,const char*label){
  fprintf(stderr,"GEAR_FIELD lock=%u quest=%u playback=%u avatar=%u running=%u transition=%u start=%08x\n",read8(c,P02S_FIELD_LOCK),read8(c,P02S_QUEST_LOG_STATE),read8(c,P02S_QUEST_LOG_PLAYBACK_STATE),read8(c,P02S_PLAYER_AVATAR+5U),read8(c,P02S_PLAYER_AVATAR+2U),read8(c,P02S_PLAYER_AVATAR+3U),read32(c,QOL_START_MENU_CALLBACK));
  for(unsigned i=0;i<16U;++i){unsigned t=QOL_TASKS+i*QOL_TASK_SIZE;if(read8(c,t+4U))fprintf(stderr,"TASK %u fn=%08x data=%u,%u,%u,%u,%u,%u\n",i,read32(c,t),read16(c,t+8U),read16(c,t+10U),read16(c,t+12U),read16(c,t+14U),read16(c,t+16U),read16(c,t+18U));}
 }
+/* Quest-log phase and action-recorder state are distinct enums. The pair
+ * (RECORDING=1, RECORDING=2) is live play, not previously-on playback. */
+static bool k_quest_live(unsigned quest,unsigned playback){
+ return (quest==0U && playback==0U) || (quest==1U && playback==2U);
+}
 static bool k_equipment_field(struct mCore*c){
  unsigned id=read8(c,P02S_PLAYER_AVATAR+5U);
  /* Ordinary item owners can record a Quest Log scene. Only the following
   * real Start-menu Save may cut/serialize it; never clear the state by host. */
  return read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_FIELD
-  && !read8(c,P02S_FIELD_LOCK) && read8(c,P02S_QUEST_LOG_STATE)<=1U
-  && !read8(c,P02S_QUEST_LOG_PLAYBACK_STATE) && id<16U
+  && !read8(c,P02S_FIELD_LOCK)
+  && k_quest_live(read8(c,P02S_QUEST_LOG_STATE),read8(c,P02S_QUEST_LOG_PLAYBACK_STATE)) && id<16U
   && (read8(c,P02S_OBJECT_EVENTS+id*0x24U)&1U)
   && !read8(c,P02S_PLAYER_AVATAR+2U) && !read8(c,P02S_PLAYER_AVATAR+3U);
 }
