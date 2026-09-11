@@ -329,7 +329,7 @@
       "ring_bp_natural_supply_required": true,
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle",
-      "status": "PENDING_THREE_FINITE_NATIVE_SUPPLY_ACCEPTANCES",
+      "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
       "supply_coverage_inventory_complete": true,
       "supply_physical_acceptance_complete": false,
       "remaining_supply_gap_ids": [
@@ -337,7 +337,29 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json"
+      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
+      "supply_source_evidence_binding_complete": true,
+      "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
+      "selected_supply_entrypoints": {
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
+          "path": "scripts/pr16_gear_originals.py",
+          "line": 83,
+          "scope": "verify",
+          "fixture_only": false
+        },
+        "P05_NATIVE_BP_EARNING_PHYSICAL": {
+          "path": "scripts/build_bp_shop_runtime.py",
+          "line": 225,
+          "scope": "_catalog_outputs",
+          "fixture_only": false
+        },
+        "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "line": 27,
+          "scope": "main",
+          "fixture_only": false
+        }
+      }
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",

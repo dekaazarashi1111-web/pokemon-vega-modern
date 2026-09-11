@@ -1,0 +1,2169 @@
+{
+  "schema_version": 1,
+  "status": "PASS_SOURCE_EVIDENCE_BINDING_NOT_NATIVE_ACCEPTANCE",
+  "scope": "PR16_P05_NATIVE_SUPPLY_SOURCE_EVIDENCE_BINDING",
+  "source_commit": "6d3d153e4fcbe34c2e785fa264f1a6cb415dab06",
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "inventory": {
+    "path": "content/modernization/pr16_p05_native_supply_reconciliation.json",
+    "size": 161818,
+    "sha256": "ad544f08cba89c59a4b5e387425b77d9be471836df07a3e49318f2d81e58cd12"
+  },
+  "evidence": [
+    {
+      "path": "content/modernization/pr16_purchased_gear_acceptance.json",
+      "size": 19691,
+      "sha256": "176af395619c87e7bda9e9b862eaffdefd582808bb178427c8059f85e4e52fc3",
+      "selected_facts": [
+        {
+          "key": "acceptance.all_six_species_gear_routes_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.candidate.sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "acceptance.candidate.size",
+          "value": 33554432
+        },
+        {
+          "key": "acceptance.cases[0].process.returncode",
+          "value": 0
+        },
+        {
+          "key": "acceptance.cases[0].process.schema_version",
+          "value": 1
+        },
+        {
+          "key": "acceptance.cases[0].process.spawn_error",
+          "value": null
+        },
+        {
+          "key": "acceptance.cases[0].process.timed_out",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[0].result.bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.cases[0].result.bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.cases[0].result.fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.cases[0].result.initial_map_party_ring_bp_policy_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[0].result.party_inventory_bp_persisted",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[0].result.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[0].result.ring_bp_natural_acquisition_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[0].result.rom_sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "acceptance.cases[0].result.status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.cases[1].process.returncode",
+          "value": 0
+        },
+        {
+          "key": "acceptance.cases[1].process.schema_version",
+          "value": 1
+        },
+        {
+          "key": "acceptance.cases[1].process.spawn_error",
+          "value": null
+        },
+        {
+          "key": "acceptance.cases[1].process.timed_out",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[1].result.bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.cases[1].result.bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.cases[1].result.fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.cases[1].result.initial_map_party_ring_bp_policy_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[1].result.party_inventory_bp_persisted",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[1].result.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[1].result.ring_bp_natural_acquisition_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[1].result.rom_sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "acceptance.cases[1].result.status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.cases[2].process.returncode",
+          "value": 0
+        },
+        {
+          "key": "acceptance.cases[2].process.schema_version",
+          "value": 1
+        },
+        {
+          "key": "acceptance.cases[2].process.spawn_error",
+          "value": null
+        },
+        {
+          "key": "acceptance.cases[2].process.timed_out",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[2].result.bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.cases[2].result.bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.cases[2].result.fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.cases[2].result.initial_map_party_ring_bp_policy_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[2].result.party_inventory_bp_persisted",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[2].result.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[2].result.ring_bp_natural_acquisition_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[2].result.rom_sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "acceptance.cases[2].result.status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.cases[3].process.returncode",
+          "value": 0
+        },
+        {
+          "key": "acceptance.cases[3].process.schema_version",
+          "value": 1
+        },
+        {
+          "key": "acceptance.cases[3].process.spawn_error",
+          "value": null
+        },
+        {
+          "key": "acceptance.cases[3].process.timed_out",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[3].result.bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.cases[3].result.bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.cases[3].result.fresh_cores",
+          "value": 3
+        },
+        {
+          "key": "acceptance.cases[3].result.initial_map_party_ring_bp_policy_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[3].result.party_inventory_bp_persisted",
+          "value": true
+        },
+        {
+          "key": "acceptance.cases[3].result.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[3].result.ring_bp_natural_acquisition_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.cases[3].result.rom_sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "acceptance.cases[3].result.status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.initial_fixtures[0]",
+          "value": "starting map and position"
+        },
+        {
+          "key": "acceptance.initial_fixtures[1]",
+          "value": "level100 Eelektross"
+        },
+        {
+          "key": "acceptance.initial_fixtures[2]",
+          "value": "ring"
+        },
+        {
+          "key": "acceptance.initial_fixtures[3]",
+          "value": "64 BP"
+        },
+        {
+          "key": "acceptance.initial_fixtures[4]",
+          "value": "initial empty item pocket"
+        },
+        {
+          "key": "acceptance.initial_fixtures[5]",
+          "value": "volatile next-battle Mega policy"
+        },
+        {
+          "key": "acceptance.new_native_cores",
+          "value": 9
+        },
+        {
+          "key": "acceptance.new_native_processes",
+          "value": 4
+        },
+        {
+          "key": "acceptance.ordinary_policy_selection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.policy_scope",
+          "value": "THREE SAME-SESSION CASES WITH INITIAL POLICY; ONE COLD-LOAD STANDARD-POLICY CONTROL; NO POST-BARRIER RECONFIGURATION"
+        },
+        {
+          "key": "acceptance.purchased_gear_to_battle_accepted",
+          "value": true
+        },
+        {
+          "key": "acceptance.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-bag-stone.ppm.sha256",
+          "value": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-battle-reloaded.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-equip-menus-closed.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-equipped.ppm.sha256",
+          "value": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-fixture.ppm.sha256",
+          "value": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-fixture.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-give-menu.ppm.sha256",
+          "value": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-give-party.ppm.sha256",
+          "value": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-mega-active.ppm.sha256",
+          "value": "4ac6b318edad53e6661fae58656862816153902f6e52b68e6eaee892e8d2da41"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-mega-selection.ppm.sha256",
+          "value": "43f68d505f859a3cf2760f0c28a4b4e2c5eca357199cdfaacaeae2fd00151edf"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-native-turn.ppm.sha256",
+          "value": "bb9bac4917e87d56c9004cf93d020fb38941ec201ebb7397a61e881d532883a6"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-natural-equipped-battle.ppm.sha256",
+          "value": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-opened.ppm.sha256",
+          "value": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-physical-map-boundary.ppm.sha256",
+          "value": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-purchased.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-active-reverted-field.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-bag-stone.ppm.sha256",
+          "value": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-battle-reloaded.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-equip-menus-closed.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-equipped.ppm.sha256",
+          "value": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-fixture.ppm.sha256",
+          "value": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-fixture.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-give-menu.ppm.sha256",
+          "value": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-give-party.ppm.sha256",
+          "value": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-mega-selection.ppm.sha256",
+          "value": "ddef92c577c1171b9f0bcb11e72c0456fda80de5ca8ad36f6e41fe7a80316f49"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-native-turn.ppm.sha256",
+          "value": "1e5ebf69ea2c09061f9788bdcce731e930eb0e94f83c83762de1183c79acd7a4"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-natural-equipped-battle.ppm.sha256",
+          "value": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-opened.ppm.sha256",
+          "value": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-physical-map-boundary.ppm.sha256",
+          "value": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-purchased.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cancel-toggle-reverted-field.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-bag-stone.ppm.sha256",
+          "value": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-bag-stone.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-battle-reloaded.ppm.sha256",
+          "value": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-battle-reloaded.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equip-menus-closed.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equip-menus-closed.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equipped-reloaded.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equipped-reloaded.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equipped.ppm.sha256",
+          "value": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-equipped.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-fixture.ppm.sha256",
+          "value": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-fixture.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-give-menu.ppm.sha256",
+          "value": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-give-menu.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-give-party.ppm.sha256",
+          "value": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-give-party.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-mega-selection.ppm.sha256",
+          "value": "1cc1e986d7f356f6376ec3b5f0272b14554ef19462f1b72fc9d3061243072954"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-mega-selection.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-native-turn.ppm.sha256",
+          "value": "bc81f3e1b86520815afc787f9d3fbef76bca2723deaee24d0fb9cfcc5eff32e6"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-native-turn.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-natural-equipped-battle.ppm.sha256",
+          "value": "cab4d6719f3fe8b8bbbbe0f97254e26a0307cac3702ac8c2f49f1e321e4fac8a"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-natural-equipped-battle.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-opened.ppm.sha256",
+          "value": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-opened.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-physical-map-boundary.ppm.sha256",
+          "value": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-physical-map-boundary.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-purchased.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-purchased.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-reverted-field.ppm.sha256",
+          "value": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-cold-policy-reset-reverted-field.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-bag-stone.ppm.sha256",
+          "value": "485d108acf7ef9d7c8e26ed819a6475327087f36c13569a0e76bdd8cf7d82387"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-battle-reloaded.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-equip-menus-closed.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-equipped.ppm.sha256",
+          "value": "27d878a864beaa728a776a57d1cce58dadf367c2cdab4d93f5e78582489121a8"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-fixture.ppm.sha256",
+          "value": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-fixture.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-give-menu.ppm.sha256",
+          "value": "a0839ba700ded618645b2f3f3ed3f153d56676a589640691bd6f67391b9ade0a"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-give-party.ppm.sha256",
+          "value": "e691bbe8a9fcfb02abe6baa09d7904a42ec1796e2782c9aa789038dca3da22bd"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-mega-selection.ppm.sha256",
+          "value": "b01e91665d21c428f2bb0966e5e721e859aac98a8189d9a124d4e5dc5d37aef3"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-native-turn.ppm.sha256",
+          "value": "b6515f3ba8514bc83ebc76711f61aa51891839ab7f28ba0b5a40532fe4386f18"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-natural-equipped-battle.ppm.sha256",
+          "value": "f9b82662d7d217bcb449ad4c42e8b1d10ea1abe444a6de5b23604e0403c627da"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-opened.ppm.sha256",
+          "value": "6b7c766fa56d5670859f3175248c97dd5e84c77f698ae9780978d9dc172bbe05"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-physical-map-boundary.ppm.sha256",
+          "value": "89db2bc3b88b214b1d307a1e3b7ed2c49090f397a41200c220d887c8d3f93052"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-purchased.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.reviewed_images.eelektross-no-toggle-reverted-field.ppm.sha256",
+          "value": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1"
+        },
+        {
+          "key": "acceptance.ring_bp_natural_acquisition_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.status",
+          "value": "SCOPED_PURCHASE_GIVE_WALK_MEGA_REVERT_COLD_SAVE_ACCEPTED"
+        },
+        {
+          "key": "candidate.sha256",
+          "value": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
+        },
+        {
+          "key": "candidate.size",
+          "value": 33554432
+        },
+        {
+          "key": "original.run_id",
+          "value": 34589284710
+        },
+        {
+          "key": "original.sha256",
+          "value": "6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9"
+        },
+        {
+          "key": "release_ready",
+          "value": false
+        },
+        {
+          "key": "status",
+          "value": "SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE"
+        }
+      ]
+    },
+    {
+      "path": "content/modernization/pr16_p05_route_acceptance.json",
+      "size": 18337,
+      "sha256": "83e76fe0d3da698b7d7dd6e252ed22ec49a174651c659ac2a850213e6b7ff6dd",
+      "selected_facts": [
+        {
+          "key": "acceptance.roots.capture_candidates[0].first_coordinate_owner",
+          "value": true
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].group",
+          "value": 1
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].header",
+          "value": 73
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].map",
+          "value": 113
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].max",
+          "value": 80
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].method",
+          "value": "land"
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].min",
+          "value": 71
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].slot",
+          "value": 6
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[0].species",
+          "value": 411
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].first_coordinate_owner",
+          "value": true
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].group",
+          "value": 1
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].header",
+          "value": 90
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].map",
+          "value": 118
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].max",
+          "value": 100
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].method",
+          "value": "land"
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].min",
+          "value": 90
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].slot",
+          "value": 4
+        },
+        {
+          "key": "acceptance.roots.capture_candidates[1].species",
+          "value": 411
+        },
+        {
+          "key": "acceptance.roots.physical_admission_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.roots.status",
+          "value": "STATIC_PARTIAL_DIAGNOSTICS_NOT_NATIVE_ACCEPTANCE"
+        },
+        {
+          "key": "acceptance.shop.battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[0].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[0].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[0].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[0].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[0].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[0].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[0].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[0].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[0].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[1].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[1].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[1].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[1].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[1].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[1].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[1].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[1].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[1].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[2].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[2].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[2].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[2].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[2].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[2].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[2].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[2].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[2].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[3].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[3].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[3].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[3].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[3].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[3].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[3].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[3].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[3].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[4].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[4].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[4].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[4].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[4].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[4].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[4].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[4].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[4].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[5].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[5].bp_after",
+          "value": 48
+        },
+        {
+          "key": "acceptance.shop.cases[5].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[5].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[5].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[5].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[5].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[5].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[5].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[6].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[6].bp_after",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[6].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[6].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[6].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[6].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[6].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[6].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[6].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[7].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[7].bp_after",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[7].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[7].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[7].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[7].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[7].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[7].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[7].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[8].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[8].bp_after",
+          "value": 15
+        },
+        {
+          "key": "acceptance.shop.cases[8].bp_before",
+          "value": 15
+        },
+        {
+          "key": "acceptance.shop.cases[8].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[8].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[8].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[8].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[8].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[8].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.cases[9].battle_connection_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[9].bp_after",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[9].bp_before",
+          "value": 64
+        },
+        {
+          "key": "acceptance.shop.cases[9].fresh_cores",
+          "value": 2
+        },
+        {
+          "key": "acceptance.shop.cases[9].map_ring_bp_claims_are_fixtures",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.cases[9].natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[9].release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.cases[9].rom_sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "acceptance.shop.cases[9].status",
+          "value": "PASS"
+        },
+        {
+          "key": "acceptance.shop.fixture_boundary",
+          "value": "MAP_RING_BP_AND_CLEARED_CLAIMS_BEFORE_OBSERVATION_ONLY"
+        },
+        {
+          "key": "acceptance.shop.fresh_cores",
+          "value": 20
+        },
+        {
+          "key": "acceptance.shop.natural_capture_accepted",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.new_native_processes",
+          "value": 10
+        },
+        {
+          "key": "acceptance.shop.purchase_cancel_inventory_bp_save_pass",
+          "value": true
+        },
+        {
+          "key": "acceptance.shop.release_ready",
+          "value": false
+        },
+        {
+          "key": "acceptance.shop.status",
+          "value": "DATA_PATH_PASS_VISUAL_REJECTED"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.cancel-first-returned.ppm.sha256",
+          "value": "e8fee2272d7de6ad5361f9a5c0ed8c0479131e41f3980958af0f1d9af75c92b8"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.cancel-page-returned.ppm.sha256",
+          "value": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.eelektross-fixture.ppm.sha256",
+          "value": "9a903ac5b48663f794924652e5faeead43147499171551205dee1b71bfb2b78b"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.eelektross-fixture.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.eelektross-returned.ppm.sha256",
+          "value": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.eelektross-selected-page.ppm.sha256",
+          "value": "51db87ad7fa72d57393158091276319e7feffb0e029a6a301e36ca696367310a"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.insufficient-bp-returned.ppm.sha256",
+          "value": "84ec6bd542ac8aaae30ec795e077fbfc5033fae1a426cdbe5f3b3c97b6c77dac"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.insufficient-bp-returned.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.missing-ring-returned.ppm.sha256",
+          "value": "e1b1038cbfcdceafbc9a281b2294cb9d7133b87d06eb204d1e8c2d45b3d74383"
+        },
+        {
+          "key": "acceptance.shop.visual_review.images.missing-ring-returned.ppm.size",
+          "value": 115215
+        },
+        {
+          "key": "acceptance.shop.visual_review.status",
+          "value": "REJECTED"
+        },
+        {
+          "key": "candidate.sha256",
+          "value": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
+        },
+        {
+          "key": "candidate.size",
+          "value": 33554432
+        },
+        {
+          "key": "originals.roots.run_id",
+          "value": 34567225043
+        },
+        {
+          "key": "originals.roots.sha256",
+          "value": "059ab4dee4ce06dce0456984f64cc11da1bbe60053ec17ae88c133d54e715b2e"
+        },
+        {
+          "key": "originals.shop.run_id",
+          "value": 34568373963
+        },
+        {
+          "key": "originals.shop.sha256",
+          "value": "b99594606925f7d5e0b1ea41e54650e8ac8224ac153420a60d3053f0c912e684"
+        },
+        {
+          "key": "release_ready",
+          "value": false
+        },
+        {
+          "key": "status",
+          "value": "PARTIAL_P05_DATA_PASS_DISPLAY_REPAIR_REQUIRED"
+        }
+      ]
+    }
+  ],
+  "bindings": {
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
+      "category": "ring_supply",
+      "evidence_disposition": "PARTIAL_FIXTURE_OR_ADJACENT_SUCCESS_NOT_ORDINARY_SUPPLY_ACCEPTANCE",
+      "preferred_entry_candidate": {
+        "path": "scripts/pr16_gear_originals.py",
+        "line": 83,
+        "role": "implementation",
+        "score": 14,
+        "excerpt": "prior.fields(report,dict(status='PASS',schema_version=2,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],old_runs_relabelled=0,purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_ar",
+        "scope": "verify",
+        "context_start_line": 78,
+        "context_end_line": 88,
+        "context_sha256": "18c96f0e5f4a9ed0cf0c43979f7520237bed71ca9fe53b8c3c6982a9c4a06642",
+        "identifiers": [
+          "BATTLE_SIZE",
+          "CANDIDATE",
+          "CASES",
+          "COMPILE_REJECTION_RETAINED",
+          "False",
+          "PASS",
+          "True",
+          "absent",
+          "actual_new_processes",
+          "and",
+          "archive",
+          "bindings",
+          "candidate",
+          "compile",
+          "dict",
+          "differ",
+          "differs",
+          "display",
+          "expected",
+          "failures",
+          "fields",
+          "files",
+          "for",
+          "full_p05_acceptance",
+          "identity",
+          "import",
+          "initial_map_party_ring_bp_policy_are_fixtures",
+          "items",
+          "json",
+          "label",
+          "len",
+          "load",
+          "name",
+          "native",
+          "need",
+          "new_native_passes",
+          "old_runs_relabelled",
+          "oracle",
+          "pr16_purchased_gear",
+          "prefix",
+          "prior",
+          "prior_success",
+          "process",
+          "purchased_gear_to_battle_accepted",
+          "rejection",
+          "release_ready",
+          "report",
+          "result",
+          "return",
+          "returncode",
+          "ring_bp_natural_acquisition_accepted",
+          "rows",
+          "same",
+          "schema_version",
+          "snapshot",
+          "source",
+          "sources",
+          "status",
+          "stderr",
+          "successful",
+          "successful_fresh_cores",
+          "zip"
+        ],
+        "numeric_literals": [
+          "35"
+        ],
+        "fixture_only": false,
+        "binding_score": 26
+      },
+      "alternate_entry_candidates": [
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 46,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "prior.fields(report,dict(schema_version=2,status='PASS',scope=native.SCOPE,candidate=display.CANDIDATE,actual_new_processes=4,successful_fresh_cores=9,failures=[],guard_checks=prior.GUARDS,purchased_gear_to_battle_accepted=True,initial_map_",
+          "scope": "verify",
+          "context_start_line": 41,
+          "context_end_line": 51,
+          "context_sha256": "09c4b2e29a22c46aa944d7d7e515e1089c4780961e030f831a8b927a5b8734a8",
+          "identifiers": [
+            "CANDIDATE",
+            "False",
+            "GUARDS",
+            "HEAD",
+            "PASS",
+            "RECIPE_SHA",
+            "RECORD",
+            "ROOT",
+            "Ran",
+            "SCOPE",
+            "SELF",
+            "SOURCE",
+            "TEST",
+            "True",
+            "WORKFLOW",
+            "actual_new_processes",
+            "and",
+            "audit",
+            "bindings",
+            "candidate",
+            "def",
+            "dict",
+            "did",
+            "differs",
+            "display",
+            "encode",
+            "endswith",
+            "failures",
+            "fields",
+            "files",
+            "for",
+            "full_p05_acceptance",
+            "gear",
+            "guard_checks",
+            "head",
+            "identity",
+            "initial_map_party_ring_bp_policy_are_fixtures",
+            "items",
+            "json",
+            "len",
+            "load",
+            "log",
+            "native",
+            "natural",
+            "need",
+            "not",
+            "old_runs_relabelled",
+            "oracle",
+            "pass",
+            "pr16",
+            "prior",
+            "purchased",
+            "purchased_gear_to_battle_accepted",
+            "recipe",
+            "release_ready",
+            "report",
+            "result",
+            "ring_bp_natural_acquisition_accepted",
+            "root",
+            "same",
+            "schema_version",
+            "scope",
+            "screens",
+            "sha256",
+            "snapshot",
+            "source",
+            "sources",
+            "status",
+            "successful_fresh_cores",
+            "targeted",
+            "tested",
+            "tests",
+            "txt",
+            "unit",
+            "verify"
+          ],
+          "numeric_literals": [
+            "37",
+            "65"
+          ],
+          "fixture_only": false,
+          "binding_score": 21
+        },
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 76,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "purchased_gear_to_battle_accepted=True,initial_map_party_ring_bp_policy_are_fixtures=True,",
+          "scope": "verify",
+          "context_start_line": 71,
+          "context_end_line": 81,
+          "context_sha256": "86d0dc8925bab3bbc54a4f7755957e991ec66e9117a5e6845aff26bb91315758",
+          "identifiers": [
+            "False",
+            "IMAGES_SHA",
+            "RECORD",
+            "ROOT",
+            "Static",
+            "True",
+            "active",
+            "actual_fresh_cores",
+            "actual_native_processes",
+            "aid",
+            "all_six_gear_routes_accepted",
+            "and",
+            "animation",
+            "apparent",
+            "bag",
+            "battle",
+            "before",
+            "bound",
+            "build",
+            "completed",
+            "corruption",
+            "def",
+            "dict",
+            "differ",
+            "endswith",
+            "files",
+            "for",
+            "frames",
+            "full",
+            "full_p05_acceptance",
+            "give",
+            "head",
+            "identity",
+            "images",
+            "images_sha256",
+            "initial_map_party_ring_bp_policy_are_fixtures",
+            "items",
+            "len",
+            "limitation",
+            "mandatory_bound_screens",
+            "mega",
+            "native_results",
+            "need",
+            "not",
+            "only",
+            "ordinary_policy_selection_accepted",
+            "original",
+            "pixels",
+            "ppm",
+            "purchased_gear_to_battle_accepted",
+            "refresh",
+            "release_ready",
+            "reload",
+            "removeprefix",
+            "return",
+            "review",
+            "reviewed",
+            "reviewed_images",
+            "ring_bp_natural_acquisition_accepted",
+            "root",
+            "rows",
+            "run",
+            "sampled",
+            "scope",
+            "screen_bindings",
+            "sha",
+            "sha256",
+            "shop",
+            "size",
+            "source_files",
+            "sprite",
+            "stable",
+            "targeted_tests",
+            "visual_review",
+            "visually",
+            "walk"
+          ],
+          "numeric_literals": [
+            "37",
+            "53",
+            "58",
+            "65"
+          ],
+          "fixture_only": false,
+          "binding_score": 21
+        },
+        {
+          "path": "scripts/pr16_natural_capture_checkpoint.py",
+          "line": 112,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "row.update(reason_ja='同一ショップ修正版で洞窟2経路の自然歩行→シビルドン捕獲→通常保存→別コア再開は2件4コア成功。開始位置・先頭個体・ボールはfixture。石の実購入・表示・保存の既存成功も保持。通常取得から戦闘への接続、リング/BP/ボールの通常入手は未受入',",
+          "scope": "project",
+          "context_start_line": 107,
+          "context_end_line": 117,
+          "context_sha256": "a871a25d9a5c8c9c51df631282cb2e4a4446be1ec8797f05cc93ae78de3aeace",
+          "identifiers": [
+            "CANDIDATE",
+            "False",
+            "NATURAL_CAPTURE_GEAR",
+            "RECEIPT",
+            "True",
+            "battle_connection_accepted",
+            "build",
+            "candidate",
+            "capture",
+            "deepcopy",
+            "def",
+            "dict",
+            "differs",
+            "display",
+            "fixture_boundary",
+            "for",
+            "full_p05_acceptance",
+            "gear_acquisition_accepted",
+            "gear_to_battle_required",
+            "initial_fixtures",
+            "load",
+            "main",
+            "natural_capture_accepted",
+            "natural_capture_checkpoint",
+            "natural_capture_evidence",
+            "natural_capture_required",
+            "need",
+            "new_native_cores",
+            "new_native_processes",
+            "out",
+            "previous",
+            "prior",
+            "read",
+            "reason_ja",
+            "receipt",
+            "remaining_conditions",
+            "return",
+            "root",
+            "row",
+            "same",
+            "saved",
+            "source_path",
+            "update",
+            "value"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 21
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 321,
+          "role": "implementation",
+          "score": 9,
+          "excerpt": "\"P05_NATIVE_RING_ACQUISITION_PHYSICAL\": \"リング通常取得\",",
+          "scope": "render_doc",
+          "context_start_line": 316,
+          "context_end_line": 326,
+          "context_sha256": "e1913366d752b9300871535a28fd3b5685709c91823cd4cf05cd302415cef132",
+          "identifiers": [
+            "P05_NATIVE_BP_EARNING_PHYSICAL",
+            "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+            "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+            "binding",
+            "bindings",
+            "for",
+            "gap",
+            "items",
+            "label",
+            "labels",
+            "report"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 21
+        }
+      ],
+      "nonfixture_candidate_count": 8,
+      "existing_receipt_links": [
+        {
+          "path": "content/modernization/pr16_purchased_gear_acceptance.json",
+          "references": [
+            "candidate",
+            "full_p05_acceptance",
+            "initial_map_party_ring_bp_policy_are_fixtures",
+            "purchased_gear_to_battle_accepted",
+            "release_ready",
+            "returncode",
+            "ring_bp_natural_acquisition_accepted",
+            "schema_version"
+          ]
+        },
+        {
+          "path": "content/modernization/pr16_p05_route_acceptance.json",
+          "references": [
+            "candidate",
+            "full_p05_acceptance",
+            "release_ready",
+            "schema_version"
+          ]
+        }
+      ],
+      "runner_contract": {
+        "start_boundary": "ordinary pre-ring save with no ring injected by the test",
+        "required_operations": [
+          "reach the authored ring supplier through normal map/event interaction",
+          "accept the ring through the real give-item/flag transaction",
+          "save normally, discard the emulator core, and Continue on a fresh core",
+          "verify the same obtained ring state without writing inventory or flags"
+        ],
+        "forbidden_shortcuts": [
+          "preinstall the ring before observation",
+          "write the ownership flag or bag slot directly",
+          "reuse purchased-stone success as proof of ring acquisition"
+        ]
+      },
+      "physical_acceptance_complete": false
+    },
+    "P05_NATIVE_BP_EARNING_PHYSICAL": {
+      "category": "bp_earning",
+      "evidence_disposition": "PARTIAL_FIXTURE_OR_ADJACENT_SUCCESS_NOT_ORDINARY_SUPPLY_ACCEPTANCE",
+      "preferred_entry_candidate": {
+        "path": "scripts/build_bp_shop_runtime.py",
+        "line": 225,
+        "role": "implementation",
+        "score": 17,
+        "excerpt": "_fail(f\"BP shop reward contract differs: {reward.get('reward_key')}\")",
+        "scope": "_catalog_outputs",
+        "context_start_line": 220,
+        "context_end_line": 230,
+        "context_sha256": "40d02f0ee21d95417db95947ffeeeef8c9d688dd36d00ef3be5fcfcc5f1900e7",
+        "identifiers": [
+          "CURRENCY_KEY_BP",
+          "LIMITED_REPEATABLE",
+          "NONE",
+          "REPEATABLE",
+          "UNLOCK_ENUM",
+          "_fail",
+          "claim_key",
+          "contract",
+          "currency_key",
+          "differs",
+          "get",
+          "int",
+          "item",
+          "item_id",
+          "mapped",
+          "not",
+          "physically",
+          "price",
+          "quantity",
+          "repeatability",
+          "reward",
+          "reward_key",
+          "shop",
+          "unlock",
+          "unlock_key"
+        ],
+        "numeric_literals": [],
+        "fixture_only": false,
+        "binding_score": 29
+      },
+      "alternate_entry_candidates": [
+        {
+          "path": "scripts/build_codex_battle_rewards.py",
+          "line": 1292,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "subprocess.SubprocessError, CodexBattleRewardsBuildError) as error:",
+          "scope": "main",
+          "context_start_line": 1287,
+          "context_end_line": 1297,
+          "context_sha256": "cc801deea942d03acbc60fb9d59a146c22d3c674b0b112fb3a81320828c270d3",
+          "identifiers": [
+            "Battle",
+            "CONFIG",
+            "Codex",
+            "CodexBattleRewardsBuildError",
+            "JSONDecodeError",
+            "KeyError",
+            "OSError",
+            "PASS",
+            "Rewards",
+            "Stage45",
+            "SubprocessError",
+            "TypeError",
+            "ValueError",
+            "_check_outputs",
+            "_fail",
+            "_read_json",
+            "args",
+            "artifacts",
+            "crc32",
+            "error",
+            "evidence",
+            "except",
+            "failed",
+            "file",
+            "finalized",
+            "get",
+            "iPad",
+            "json",
+            "loads",
+            "metadata",
+            "mode",
+            "not",
+            "outputs",
+            "print",
+            "real",
+            "restart",
+            "return",
+            "reward",
+            "save",
+            "sha256",
+            "status",
+            "stderr",
+            "subprocess",
+            "sys"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 29
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 202,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "points = \", \".join(f\"{row['battle_points']}u\" for row in rewards)",
+          "scope": "_catalog_outputs",
+          "context_start_line": 197,
+          "context_end_line": 207,
+          "context_sha256": "626d3080c5e4af1149dba0ccecf72d49a37d040cd2a1b4e1e5be6431a9eb25ff",
+          "identifiers": [
+            "VEGA_FACTORY_REPEAT_REWARD_CATALOG_GENERATED_H",
+            "battle_points",
+            "define",
+            "for",
+            "header",
+            "ifndef",
+            "include",
+            "item_id",
+            "item_ids",
+            "join",
+            "points",
+            "quantities",
+            "quantity",
+            "repeatability",
+            "rewards",
+            "row",
+            "stdint"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 29
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 217,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "static const uint16_t gFactoryRepeatRewardBattlePoints[FACTORY_REPEAT_REWARD_COUNT] = {{",
+          "scope": "_catalog_outputs",
+          "context_start_line": 212,
+          "context_end_line": 222,
+          "context_sha256": "b8dde12dc673a25198ffc49751ddc97bf70f2fa666493f51983db47a020fbc8c",
+          "identifiers": [
+            "FACTORY_REPEAT_REWARD_COUNT",
+            "VEGA_FACTORY_REPEAT_REWARD_CATALOG_GENERATED_H",
+            "ascii",
+            "const",
+            "encode",
+            "endif",
+            "gFactoryRepeatRewardBattlePoints",
+            "gFactoryRepeatRewardItemQuantities",
+            "item_ids",
+            "points",
+            "quantities",
+            "static",
+            "uint16_t"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 29
+        },
+        {
+          "path": "scripts/build_factory_repeat_reward_runtime.py",
+          "line": 387,
+          "role": "implementation",
+          "score": 17,
+          "excerpt": "\"purpose\": \"Factory Trial repeat item/BP reward wrapper\",",
+          "scope": "_allocation",
+          "context_start_line": 382,
+          "context_end_line": 392,
+          "context_sha256": "3f424150a227273f35f832c868f8cf501c1318fe9198715fd84d6a4203b7d5cc",
+          "identifiers": [
+            "ALLOCATION_NAME",
+            "Factory",
+            "TASK",
+            "Trial",
+            "_fail",
+            "alignment",
+            "allocator",
+            "build_allocation_report_from_csv",
+            "config",
+            "content_sha256",
+            "csv",
+            "detected",
+            "digest",
+            "get",
+            "integration_modules",
+            "item",
+            "name",
+            "overlap",
+            "overlap_count",
+            "owner",
+            "purpose",
+            "region",
+            "repeat",
+            "report",
+            "requests",
+            "reward",
+            "rom_regions",
+            "root",
+            "size",
+            "stage29",
+            "summaries",
+            "wrapper"
+          ],
+          "numeric_literals": [
+            "16"
+          ],
+          "fixture_only": false,
+          "binding_score": 29
+        }
+      ],
+      "nonfixture_candidate_count": 12,
+      "existing_receipt_links": [
+        {
+          "path": "content/modernization/pr16_purchased_gear_acceptance.json",
+          "references": []
+        },
+        {
+          "path": "content/modernization/pr16_p05_route_acceptance.json",
+          "references": [
+            "quantity"
+          ]
+        }
+      ],
+      "runner_contract": {
+        "start_boundary": "ordinary facility state with an observed BP balance and no post-observation BP injection",
+        "required_operations": [
+          "enter the authored BP-awarding activity through its real reception/menu",
+          "finish the required battle or result path",
+          "observe the real reward transaction increase BP",
+          "save normally and verify the balance after cold Continue"
+        ],
+        "forbidden_shortcuts": [
+          "seed the earned BP after observation",
+          "prove only that a BP shop can spend a fixture balance",
+          "call the reward helper without the ordinary facility/result path"
+        ]
+      },
+      "physical_acceptance_complete": false
+    },
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
+      "category": "policy_selection",
+      "evidence_disposition": "PARTIAL_FIXTURE_OR_ADJACENT_SUCCESS_NOT_ORDINARY_SUPPLY_ACCEPTANCE",
+      "preferred_entry_candidate": {
+        "path": "scripts/pr16_apply_gear_policy_boundary.py",
+        "line": 27,
+        "role": "implementation",
+        "score": 14,
+        "excerpt": "s=s[:a]+''' /* A configured NEXT-battle policy lives in volatile RAM, not the save.",
+        "scope": "main",
+        "context_start_line": 22,
+        "context_end_line": 32,
+        "context_sha256": "b017006684cf9d76d00762fb12c83def4d8c7e6bef780d1b2a7e611df7e438cc",
+        "identifiers": [
+          "Continue",
+          "Mega",
+          "NEXT",
+          "RAM",
+          "Same",
+          "a_guard",
+          "a_require",
+          "a_restore",
+          "active",
+          "any",
+          "argv",
+          "b_continue",
+          "b_frames",
+          "b_restart",
+          "barrier",
+          "base_ability",
+          "battle",
+          "cancel",
+          "cases",
+          "cold",
+          "configured",
+          "control",
+          "deny",
+          "eelektross",
+          "end",
+          "equipped",
+          "failed",
+          "g_shot",
+          "gear",
+          "index",
+          "keep",
+          "len",
+          "lives",
+          "load",
+          "mid_reload",
+          "must",
+          "not",
+          "original",
+          "policy",
+          "post",
+          "rather",
+          "reconfigure",
+          "reloaded",
+          "replace",
+          "reset",
+          "save",
+          "separate",
+          "session",
+          "silently",
+          "start",
+          "than",
+          "the",
+          "toggle",
+          "toggles",
+          "volatile",
+          "without",
+          "write"
+        ],
+        "numeric_literals": [
+          "26",
+          "313",
+          "411",
+          "1012",
+          "1634"
+        ],
+        "fixture_only": false,
+        "binding_score": 26
+      },
+      "alternate_entry_candidates": [
+        {
+          "path": "scripts/pr16_gear_screen_checkpoint.py",
+          "line": 77,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "ring_bp_natural_acquisition_accepted=False,ordinary_policy_selection_accepted=False,all_six_gear_routes_accepted=False,full_p05_acceptance=False,release_ready=False)",
+          "scope": "verify",
+          "context_start_line": 72,
+          "context_end_line": 82,
+          "context_sha256": "e7e79bc26a8b850216f925fb08019d813c847259690d9363658cd2c65a1ac308",
+          "identifiers": [
+            "DIRECTORY",
+            "False",
+            "IMAGES_SHA",
+            "RECORD",
+            "ROOT",
+            "Static",
+            "True",
+            "actions",
+            "active",
+            "actual_fresh_cores",
+            "actual_native_processes",
+            "aid",
+            "all_six_gear_routes_accepted",
+            "and",
+            "animation",
+            "apparent",
+            "bag",
+            "battle",
+            "before",
+            "bound",
+            "build",
+            "completed",
+            "corruption",
+            "def",
+            "dict",
+            "differ",
+            "frames",
+            "full",
+            "full_p05_acceptance",
+            "give",
+            "head",
+            "identity",
+            "images",
+            "images_sha256",
+            "initial_map_party_ring_bp_policy_are_fixtures",
+            "json",
+            "len",
+            "limitation",
+            "load",
+            "mandatory_bound_screens",
+            "mega",
+            "metadata",
+            "native_results",
+            "need",
+            "not",
+            "only",
+            "ordinary_policy_selection_accepted",
+            "original",
+            "pixels",
+            "prior",
+            "purchased_gear_to_battle_accepted",
+            "read",
+            "refresh",
+            "release_ready",
+            "reload",
+            "return",
+            "review",
+            "reviewed",
+            "reviewed_images",
+            "ring_bp_natural_acquisition_accepted",
+            "root",
+            "rows",
+            "run",
+            "sampled",
+            "scope",
+            "screen_bindings",
+            "sha",
+            "sha256",
+            "shop",
+            "size",
+            "source_files",
+            "sprite",
+            "stable",
+            "targeted_tests",
+            "visual_review",
+            "visually",
+            "walk"
+          ],
+          "numeric_literals": [
+            "37",
+            "53",
+            "58",
+            "65"
+          ],
+          "fixture_only": false,
+          "binding_score": 23
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 262,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "purchased_acceptance[\"ordinary_policy_selection_accepted\"] is False,",
+          "scope": "build_map",
+          "context_start_line": 257,
+          "context_end_line": 267,
+          "context_sha256": "8ddad0fbf966b2ba6842723e537364d69b9ff448dcd98917893fa1adaee8404f",
+          "identifiers": [
+            "False",
+            "accepted",
+            "already",
+            "need",
+            "ordinary_policy_selection_accepted",
+            "policy",
+            "purchased_acceptance",
+            "return",
+            "ring",
+            "ring_bp_natural_acquisition_accepted",
+            "schema_version"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 23
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 290,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "need(row[\"ordinary_policy_selection_required\"] is True, \"policy was prematurely closed\")",
+          "scope": "project_remaining_work",
+          "context_start_line": 285,
+          "context_end_line": 295,
+          "context_sha256": "e2b41fbdb7d5530661f26b31489d8d6eaba2df19b4aa1764b79941b9695a32eb",
+          "identifiers": [
+            "Any",
+            "False",
+            "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
+            "True",
+            "_remaining_condition",
+            "closed",
+            "data",
+            "def",
+            "dict",
+            "gear",
+            "gear_to_battle_required",
+            "need",
+            "ordinary_policy_selection_required",
+            "policy",
+            "prematurely",
+            "project_remaining_work",
+            "reopened",
+            "report",
+            "ring",
+            "ring_bp_natural_supply_required",
+            "row",
+            "status",
+            "str",
+            "success",
+            "supply_physical_acceptance_complete",
+            "supply_source_evidence_binding_complete",
+            "update",
+            "was"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 23
+        },
+        {
+          "path": "scripts/pr16_p05_native_supply_evidence_map.py",
+          "line": 323,
+          "role": "implementation",
+          "score": 11,
+          "excerpt": "\"P05_ORDINARY_POLICY_SELECTION_PHYSICAL\": \"戦闘許可モード通常選択\",",
+          "scope": "render_doc",
+          "context_start_line": 318,
+          "context_end_line": 328,
+          "context_sha256": "95124185ff78ad342ac7377a5cf6facd7ec0c5a339848dad12ba45282573cb3a",
+          "identifiers": [
+            "P05_NATIVE_BP_EARNING_PHYSICAL",
+            "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+            "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+            "binding",
+            "bindings",
+            "for",
+            "gap",
+            "items",
+            "label",
+            "labels",
+            "lines",
+            "preferred_entry_candidate",
+            "report",
+            "root"
+          ],
+          "numeric_literals": [],
+          "fixture_only": false,
+          "binding_score": 23
+        }
+      ],
+      "nonfixture_candidate_count": 9,
+      "existing_receipt_links": [
+        {
+          "path": "content/modernization/pr16_purchased_gear_acceptance.json",
+          "references": [
+            "eelektross",
+            "equipped",
+            "original",
+            "reloaded",
+            "volatile"
+          ]
+        },
+        {
+          "path": "content/modernization/pr16_p05_route_acceptance.json",
+          "references": [
+            "eelektross",
+            "main",
+            "original",
+            "reloaded"
+          ]
+        }
+      ],
+      "runner_contract": {
+        "start_boundary": "ordinary save with no next-battle policy injected after observation",
+        "required_operations": [
+          "reach the authored mode/policy selector through its real reception or menu",
+          "choose an accepted battle mode through controller input",
+          "enter the corresponding battle without a test-side policy write",
+          "demonstrate the documented cold-Continue boundary and reselect normally when required"
+        ],
+        "forbidden_shortcuts": [
+          "globally enable Mega in all battles",
+          "restore the transient policy from the test after cold Continue",
+          "claim controller/scheduler fixture coverage as ordinary policy selection"
+        ]
+      },
+      "physical_acceptance_complete": false
+    }
+  },
+  "coverage_inventory_complete": true,
+  "source_evidence_binding_complete": true,
+  "physical_acceptance_complete": false,
+  "emulator_runs_by_this_checkpoint": 0,
+  "purchased_gear_success_preserved": true,
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
+  ],
+  "circus_admission_is_separate": true,
+  "release_ready": false
+}
