@@ -2,7 +2,7 @@
 """Build the finite P03 form-consumer inventory from the pinned learnset archive.
 
 The output distinguishes the 61 existing generic carry routes, the four
-existing fixed-transition routes, and the five Rotom transitions. It does not
+existing fixed-transition routes, and the five Rotom transitions.  It does not
 claim native acceptance and never mutates a ROM or save.
 """
 from __future__ import annotations
@@ -11,7 +11,12 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
 from typing import Any, Iterable, Mapping
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from tools.modernization_learnsets import iter_compiled_p03_routes
 from tools.modernization_p03_stage73_consumers import (
