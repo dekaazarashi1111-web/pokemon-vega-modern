@@ -1,0 +1,79 @@
+name: PR16 apply P05 ring anchor fix once
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-apply-p05-ring-anchor-fix-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Recognize the existing ring fixture boundary as a trusted anchor
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/pr16_p05_native_supply_reconciliation.py')
+          text = path.read_text()
+          old = '''    "ring_supply": re.compile(\n        r"(?ix)(?:mega[_ -]?ring|key[_ -]?stone|"\n'''
+          new = '''    "ring_supply": re.compile(\n        r"(?ix)(?:initial_map_party_ring_bp_policy_are_fixtures|"\n        r"mega[_ -]?ring|key[_ -]?stone|"\n'''
+          if text.count(old) != 1:
+              raise SystemExit('ring supply pattern edit point differs')
+          path.write_text(text.replace(old, new))
+          PY
+
+      - name: Generate and validate the finite P05 checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_p05_native_supply_reconciliation.py --write --print
+          python3 -m pytest -q tests/test_pr16_p05_native_supply_reconciliation.py
+          python3 -m json.tool content/modernization/pr16_p05_native_supply_reconciliation.json >/dev/null
+          python3 -m json.tool content/modernization/p08_remaining_work.json >/dev/null
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('content/modernization/pr16_p05_native_supply_reconciliation.json').read_text())
+          ring = report['categories']['ring_supply']
+          assert ring['anchor_match_count_retained'] >= 1
+          assert any(
+              row['path'] == 'scripts/pr16_purchased_gear.py'
+              and 'initial_map_party_ring_bp_policy_are_fixtures' in row['excerpt']
+              for row in ring['anchor_matches']
+          )
+          assert report['physical_acceptance_complete'] is False
+          assert report['remaining_physical_gap_ids'] == [
+              'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
+              'P05_NATIVE_BP_EARNING_PHYSICAL',
+              'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
+          ]
+          PY
+          git diff --check
+
+      - name: Commit validated code and generated records
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/pr16-apply-p05-ring-anchor-fix-once.yml
+          git add \
+            scripts/pr16_p05_native_supply_reconciliation.py \
+            content/modernization/pr16_p05_native_supply_reconciliation.json \
+            content/modernization/p08_remaining_work.json \
+            docs/PR16_P05_NATIVE_SUPPLY_RECONCILIATION_CHECKPOINT_JA.md
+          git commit -m "USER-MODERNIZATION: record finite P05 supply anchors"
+          git push origin HEAD:codex/modernization-followup-20260908
