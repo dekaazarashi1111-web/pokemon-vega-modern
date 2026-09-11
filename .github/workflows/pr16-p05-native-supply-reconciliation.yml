@@ -24,9 +24,10 @@ on:
 permissions:
   contents: write
   issues: write
+  pull-requests: write
 
 concurrency:
-  group: pr16-p05-native-supply-reconciliation
+  group: pr16-p05-native-supply-recorders
   cancel-in-progress: false
 
 jobs:
@@ -138,6 +139,7 @@ jobs:
           git push origin HEAD:codex/modernization-followup-20260908
 
       - name: Publish or update PR checkpoint comment
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
