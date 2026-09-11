@@ -129,6 +129,21 @@ jobs:
               path.write_text(text.replace(old, new))
           PY
 
+      - name: Preserve the documented cold Continue policy boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('scripts/pr16_p05_native_supply_evidence_map.py')
+          text = path.read_text()
+          old = 'demonstrate the documented cold-Continue boundary and reselect normally when required'
+          new = 'demonstrate the documented cold Continue boundary and reselect normally when required'
+          if text.count(old) != 1:
+              raise SystemExit('policy cold Continue contract edit point differs')
+          path.write_text(text.replace(old, new))
+          PY
+
       - name: Validate both focused suites
         shell: bash
         run: |
@@ -148,7 +163,8 @@ jobs:
           git rm .github/workflows/pr16-remove-p05-pytest-dependency-once.yml
           git add \
             scripts/run_module_tests.py \
+            scripts/pr16_p05_native_supply_evidence_map.py \
             .github/workflows/pr16-p05-native-supply-reconciliation.yml \
             .github/workflows/pr16-p05-native-supply-evidence-map.yml
-          git commit -m "USER-MODERNIZATION: remove P05 pytest CI dependency"
+          git commit -m "USER-MODERNIZATION: validate P05 workflows without pytest"
           git push origin HEAD:codex/modernization-followup-20260908
