@@ -178,8 +178,45 @@ def remaining_work(root,forgetting):
       ('P08','RELEASE_DECISION','配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する')]
     return dict(schema_version=1,status='CURRENT_REMAINING_WORK_NOT_RELEASE_ACCEPTANCE',task='USER-MODERNIZATION-P03-P05',historical_snapshot='content/modernization/p08_current_acceptance.json',historical_snapshot_is_current_backlog=False,accepted_scoped_reports=accepted,p06_adoption=dict(adopted_species_count=2,field_change_count=3,source_path='content/modernization/p06_decided_adjustments.json',full_phase_accepted=False),p07_adoption=dict(normal_species_to_vega_move=0,vega_species_to_normal_move=0,prior_instructions_absent_claimed=False),latest_scoped_candidate=forgetting['candidate_rom'],latest_scoped_candidate_stage=84,final_candidate=None,remaining_conditions=[dict(phase=p,id=i,reason_ja=why) for p,i,why in reasons],source_bindings=receipts,new_emulator_runs_during_reconciliation=0,full_p03_acceptance=False,full_p05_acceptance=False,full_p06_acceptance=False,full_p07_acceptance=False,release_ready=False,active_baseline_changed=False)
 
+def validate_current_remaining_work(overview, forgetting):
+    """Validate only the fields owned by the forgetting acceptance recorder."""
+    need(type(overview) is dict, 'remaining-work root must be an object')
+    need(overview.get('schema_version') == 1, 'remaining-work schema changed')
+    need(overview.get('historical_snapshot_is_current_backlog') is False,
+         'historical snapshot was relabelled as current backlog')
+    reports = overview.get('accepted_scoped_reports')
+    need(type(reports) is list, 'accepted scoped reports must be a list')
+    matches = [row for row in reports
+               if type(row) is dict and row.get('source_path') == MANIFEST]
+    need(len(matches) == 1, 'forgetting accepted report link differs')
+    fields(matches[0], dict(
+        label='native forgetting and cold Save/Continue',
+        source_path=MANIFEST,
+        source_run_id=RUN,
+        cases=12,
+        candidate_rom=forgetting['candidate_rom']))
+    bindings = overview.get('source_bindings')
+    need(type(bindings) is dict,
+         'remaining-work source bindings must be an object')
+    manifest_raw = (json.dumps(forgetting, ensure_ascii=False,
+                               sort_keys=True, indent=2) + '\n').encode()
+    need(same(bindings.get(MANIFEST), identity(manifest_raw)),
+         'forgetting manifest binding differs')
+
+
 def current_remaining_work(root, forgetting):
-    # Compose current adoption only after validating immutable historical evidence.
+    # Later P03/P05/P07/P08 recorders share this canonical overview.  Preserve
+    # it verbatim and validate only the links owned by this recorder.
+    summary = root/OVERVIEW
+    need(not any(path.is_symlink() for path in (summary, *summary.parents)),
+         'unsafe remaining-work overview')
+    if summary.exists():
+        need(summary.is_file(), 'remaining-work overview is not a file')
+        overview = load(summary.read_bytes())
+        validate_current_remaining_work(overview, forgetting)
+        return overview
+
+    # Bootstrap only when no canonical overview has ever been recorded.
     overview = remaining_work(root, forgetting)
     receipt = root/'content/modernization/p08_final_candidate_acceptance.json'
     need(not receipt.is_symlink(), 'symlink final receipt')
@@ -188,7 +225,9 @@ def current_remaining_work(root, forgetting):
         overview = integration.project_overview(overview, root)
     sys.path.insert(0, str(root/'tools'))
     from modernization_owner_policy import project
-    return project(overview, root)
+    overview = project(overview, root)
+    validate_current_remaining_work(overview, forgetting)
+    return overview
 
 
 def main():
