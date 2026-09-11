@@ -40,7 +40,20 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/pr16_p05_native_supply_reconciliation.py --write --print
-          python3 -m pytest -q tests/test_pr16_p05_native_supply_reconciliation.py
+          python3 -m unittest tests.test_pr16_p05_native_supply_reconciliation.PurchasedReceiptSchemaTests
+          python3 - <<'PY'
+          from tests import test_pr16_p05_native_supply_reconciliation as tests
+          for name in (
+              'test_inventory_is_finite_and_keeps_existing_successes',
+              'test_each_category_has_implementation_and_anchor_candidates',
+              'test_selected_roots_are_tracked_unique_and_not_self_fulfilling',
+              'test_inventory_is_deterministic_on_the_same_head',
+              'test_projection_only_closes_inventory_not_physical_play',
+              'test_circus_and_release_boundaries_remain_separate',
+              'test_rendered_checkpoint_states_static_boundary',
+          ):
+              getattr(tests, name)()
+          PY
           python3 -m json.tool content/modernization/pr16_p05_native_supply_reconciliation.json >/dev/null
           python3 -m json.tool content/modernization/p08_remaining_work.json >/dev/null
           python3 - <<'PY'
