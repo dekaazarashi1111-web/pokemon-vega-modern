@@ -101,7 +101,15 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertIn("read8(c,M_PARTY_SLOT)==1U", text)
         self.assertIn("a_guard(c);a_require(b_save(c)", text)
         self.assertIn("b_continue(c)", text)
-        guarded = text.split("/* After this barrier, only GBA input and read-only observations. */", 1)[1]
+        before_guard, guarded = text.split(
+            "/* After this barrier, only GBA input and read-only observations. */", 1
+        )
+        unlock = before_guard.index("write8(c,QOL_LEDGER+18U,1U)")
+        host_load = before_guard.index(
+            "call_preserving(c,0x09220861U,1U,36U,6U,4U)"
+        )
+        self.assertLess(unlock, host_load)
+        self.assertEqual(before_guard.count("call_preserving(c,QOL_SAVE_FINALIZE"), 2)
         for forbidden in ("write8(", "write16(", "write32(", "set_mon_data_u32(", "call_preserving("):
             self.assertNotIn(forbidden, guarded)
 
