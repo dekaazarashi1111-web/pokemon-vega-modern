@@ -1,5 +1,5 @@
 name: pr16-gear-refinement
-run-name: Apply guarded gear recording fix and continue native route
+run-name: Check live policy versus cold policy reset and continue native route
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -20,34 +20,33 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
-      - name: Verify exact preimages and apply the two-file repair
+      - name: Verify exact preimages and apply three-file policy boundary correction
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-gear-refinement
           python3 - <<'PY'
           import hashlib,pathlib
-          bindings={'tools/mgba_pr16_purchased_gear.c':'446292ce23b9c9fc02ccd66edc0fb0f70a08da35d120b5ce545f937c620782c7','tests/test_pr16_purchased_gear.py':'7013de128450b52c0c3f26a20cba97dc80eaff6dceeabeb617b4f8a84637325b'}
+          bindings={'tools/mgba_pr16_purchased_gear.c':'2031e1fa6875584942c45b200eb92d56886b4a40eac7feb3cee9b797e019cc71','scripts/pr16_purchased_gear.py':'abd0ab22d526e388599c54ae6a8f2c45b011b8b4ab0f2c863aef8bce03b3c1b6','tests/test_pr16_purchased_gear.py':'7d35ef5d36cde9a7e99e3e0821595a53feeb4ff10ecf6d12a66dc0c7b4bed3e6'}
           for name,sha in bindings.items():
               p=pathlib.Path(name);assert not p.is_symlink() and hashlib.sha256(p.read_bytes()).hexdigest()==sha,name
           PY
-          git apply --check .github/repairs/pr16-gear-recording.patch
-          git apply .github/repairs/pr16-gear-recording.patch
+          git apply --check .github/repairs/pr16-gear-policy-boundary.patch
+          git apply .github/repairs/pr16-gear-policy-boundary.patch
           python3 -m unittest tests.test_pr16_purchased_gear tests.test_pr16_natural_capture tests.test_pr16_shop_display_repair tests.test_pr16_shop_routes -v > .local/pr16-gear-refinement/unit.log 2>&1
           git diff --check
-      - name: Append checkpoint history without claiming native success
+      - name: Record tested boundary correction without claiming native success
         run: |
           python3 - <<'PY'
           import json,os,pathlib
           root=pathlib.Path('.');run=int(os.environ['GITHUB_RUN_ID'])
-          assert b'Ran 50 tests' in (root/'.local/pr16-gear-refinement/unit.log').read_bytes()
-          status={'schema_version':1,'status':'CONTROLLER_REPAIRED_NATIVE_ACCEPTANCE_PENDING','refinement_run':run,'request_head':os.environ['GITHUB_SHA'],'previous_native_failure_run':34585139774,'previous_failure_reason':'Quest-log live recording (1,2) rejected as playback after actual Give','local_and_ci_targeted_tests':50,'actual_c_state_pairs_checked':65536,'new_native_passes':0,'gear_to_battle_accepted':False,'full_p05_acceptance':False,'release_ready':False,'resume':'Read pr16-purchased-gear native run dispatched after this commit; inspect all originals before acceptance. Do not redo purchase controller or route probe.'}
+          assert b'Ran 51 tests' in (root/'.local/pr16-gear-refinement/unit.log').read_bytes()
+          status={'schema_version':2,'status':'POLICY_BOUNDARY_CORRECTED_NATIVE_ACCEPTANCE_PENDING','refinement_run':run,'request_head':os.environ['GITHUB_SHA'],'previous_native_failure_run':34585692527,'previous_failure_reason':'Volatile next-battle Mega policy is not saved; intermediate cold load resets to standard. Active case must not inject policy again.','local_and_ci_targeted_tests':51,'actual_c_state_pairs_checked':65536,'new_native_passes':0,'gear_to_battle_accepted':False,'full_p05_acceptance':False,'release_ready':False,'resume':'Read dispatched pr16-purchased-gear run: three same-session cases (two cores each) and one cold-policy-reset control (three cores). Inspect originals. Retain old run separately; do not count its two successes again.'}
           (root/'content/modernization/pr16_gear_refinement_status.json').write_text(json.dumps(status,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
-          text=f'\n## 2026-09-11 USER-MODERNIZATION gear controller refinement / run {run}\n\nFixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled and reached actual purchase/Give but rejected live Quest Log recording (quest=1, action state=2). Repair only the gear-specific idle predicate; reject playback and all unknown pairs. Compile and execute the actual C predicate against all 65,536 byte pairs; 50 targeted tests pass. No host-state clearing, ROM modification, baseline/save/visibility/history change or release claim. Native rerun is a separate pending gate.\n'
+          text=f'\n## 2026-09-11 USER-MODERNIZATION gear policy boundary / run {run}\n\nRun 34585692527 reached purchase/Give/Save/cold Continue and natural grass. Two controls reached final Save/third core; active failed because volatile next-battle policy did not survive a cold load. Existing standard-mode denial is intentional (modernization_p04_mega_runtime contract); do not change ROM policy or inject it after observation. Schema 2 separates three same-session cases (2 cores each) from cold-policy-reset denial (3 cores). Original failed run and its successful subset remain historical, not relabelled. 51 targeted tests pass including false core-count/policy-persistence rejection. Native acceptance pending. No ROM/save/baseline/visibility/history changes.\n'
           for name in ('design/run_log.md','design/version_log.md'):
-              p=root/name
-              with p.open('a') as f:f.write(text)
+              with (root/name).open('a') as f:f.write(text)
           PY
-      - name: Commit only the checked paths and dispatch native workflow once
+      - name: Commit exact reviewed paths and dispatch native workflow once
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -57,13 +56,13 @@ jobs:
           test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
           python3 - <<'PY'
           import subprocess
-          expected={'tools/mgba_pr16_purchased_gear.c','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md'}
+          expected={'tools/mgba_pr16_purchased_gear.c','scripts/pr16_purchased_gear.py','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md','content/modernization/pr16_gear_refinement_status.json'}
           actual=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert actual==expected,actual
           PY
-          git add tools/mgba_pr16_purchased_gear.c tests/test_pr16_purchased_gear.py design/run_log.md design/version_log.md content/modernization/pr16_gear_refinement_status.json
+          git add tools/mgba_pr16_purchased_gear.c scripts/pr16_purchased_gear.py tests/test_pr16_purchased_gear.py design/run_log.md design/version_log.md content/modernization/pr16_gear_refinement_status.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'USER-MODERNIZATION: accept live recorder pair only and reject playback in gear controller'
+          git commit -m 'USER-MODERNIZATION: separate live Mega cases from cold policy reset without injection'
           git push origin "HEAD:$branch"
           git rev-parse HEAD > .local/pr16-gear-refinement/applied-head.txt
           gh workflow run pr16-purchased-gear.yml --ref "$branch"
