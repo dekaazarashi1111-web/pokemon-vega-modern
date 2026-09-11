@@ -4714,3 +4714,9 @@ Fixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled 
 ## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run 34587056078
 
 Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.
+
+## 2026-09-11 / PR16-PURCHASED-GEAR-CHECKPOINT-20260911
+
+- USER-MODERNIZATION: retain native run34589284710 / 4b597117, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.
+- Six exact original ZIPs and Actions metadata retained. Prior success34587080329 remains separate. Historical static, failed and prior successful runs are not relabelled or added to successor counts. Actual generated controller,37 sources,58 images,4 screen manifests and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.
+- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.

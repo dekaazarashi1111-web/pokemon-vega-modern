@@ -72,8 +72,10 @@
     "captured_to_native_battle_accepted": true,
     "full_p05_acceptance": false,
     "gear_to_battle_accepted": false,
+    "historical_capture_scope": true,
     "new_native_cores": 6,
     "new_native_processes": 2,
+    "purchased_gear_successor_receipt": "content/modernization/pr16_purchased_gear_acceptance.json",
     "source_path": "content/modernization/pr16_captured_battle_acceptance.json"
   },
   "closed_conditions": [
@@ -271,6 +273,19 @@
     "release_ready": false,
     "source_path": "content/modernization/pr16_physical_route_acceptance.json"
   },
+  "purchased_gear_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "full_p05_acceptance": false,
+    "new_native_cores": 9,
+    "new_native_processes": 4,
+    "ordinary_policy_selection_accepted": false,
+    "purchased_gear_to_battle_accepted": true,
+    "ring_bp_natural_acquisition_accepted": false,
+    "source_path": "content/modernization/pr16_purchased_gear_acceptance.json"
+  },
   "release_ready": false,
   "remaining_conditions": [
     {
@@ -290,16 +305,19 @@
       "captured_to_battle_required": false,
       "display_repair_required": false,
       "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
-      "gear_to_battle_required": true,
+      "gear_to_battle_required": false,
       "id": "NATURAL_CAPTURE_GEAR",
       "natural_capture_evidence": "content/modernization/pr16_natural_capture_acceptance.json",
       "natural_capture_required": false,
+      "ordinary_policy_selection_required": true,
       "original_request": "P05 original acceptance and current P08 boundary",
       "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "シビルドンの自然歩行→捕獲→通常保存/再開→次の自然遭遇→実メニュー交代→通常技のPP消費→離脱→再保存/第3コア再開は2件6コア成功。先行捕獲だけの2件4コアは別原本。石の実購入/表示/保存の既存成功も保持。通常取得した道具の装備から戦闘までの接続は未受入",
-      "resume": "Use retained capture and shop originals. Next connect actual gear acquisition/equipment to battle; do not rerun capture as missing or inject target/gear after observation starts.",
+      "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
+      "reason_ja": "自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入",
+      "resume": "Keep successful Eelektross purchased-stone route; do not redo it as missing. Resolve native ring/BP and configured-mode supply/accepted scope. Do not inject policy after cold Continue or globally enable Mega. Physical Circus remains separate.",
+      "ring_bp_natural_supply_required": true,
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle"
     },

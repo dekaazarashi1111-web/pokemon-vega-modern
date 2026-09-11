@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10192446522,
+  "artifact_name": "pr16-purchased-gear",
+  "conclusion": "failure",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "72f3cdb97382285ce9133540bc09b22d4b847982",
+  "jobs": [
+    {
+      "conclusion": "failure",
+      "head_sha": "72f3cdb97382285ce9133540bc09b22d4b847982",
+      "id": 103210938249,
+      "name": "purchased-gear-native",
+      "run_id": 34583082652,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T09:13:20Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T09:13:19Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:13:25Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T09:13:20Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:13:55Z",
+          "conclusion": "success",
+          "name": "Restore exact parent and compiler without touching baseline",
+          "number": 3,
+          "started_at": "2026-09-11T09:13:25Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:13:58Z",
+          "conclusion": "success",
+          "name": "Fixed adopted V4 and original character map",
+          "number": 4,
+          "started_at": "2026-09-11T09:13:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:10Z",
+          "conclusion": "success",
+          "name": "Build parent and reject malformed or inflated gear acceptance",
+          "number": 5,
+          "started_at": "2026-09-11T09:13:58Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:17Z",
+          "conclusion": "failure",
+          "name": "Real purchase Give Save Continue walk Mega revert Save third core",
+          "number": 6,
+          "started_at": "2026-09-11T09:14:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:17Z",
+          "conclusion": "success",
+          "name": "Preserve exact sources and controller without ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T09:14:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:18Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T09:14:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:19Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T09:14:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T09:14:19Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T09:14:19Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-purchased-gear.yml",
+  "run_attempt": 1,
+  "run_id": 34583082652,
+  "sha256": "f8c37244fd03bcdf41990b66bf441c7a8a6627216faef55020cf6072b8bc12e6",
+  "size": 132810,
+  "status": "completed"
+}

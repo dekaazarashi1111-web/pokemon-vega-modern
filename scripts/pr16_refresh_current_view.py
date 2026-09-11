@@ -74,6 +74,9 @@ def current_view(previous,root=ROOT):
     from pr16_captured_battle_checkpoint import RECEIPT as captured_battle_receipt, project as captured_battle_project
     if (root / captured_battle_receipt).is_file():
         out=captured_battle_project(out,root)
+    from pr16_purchased_gear_checkpoint import RECEIPT as gear_receipt, project as gear_project
+    if (root / gear_receipt).is_file():
+        out=gear_project(out,root)
     return out
 
 
