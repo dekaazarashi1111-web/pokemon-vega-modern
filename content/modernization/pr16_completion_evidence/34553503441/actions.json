@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10181812146,
+  "artifact_name": "pr16-breeding-delta-acceptance",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "64bf90f83cb928b989fea45ff52696f0d3f775e9",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "64bf90f83cb928b989fea45ff52696f0d3f775e9",
+      "id": 103121119357,
+      "name": "breeding-delta",
+      "run_id": 34553503441,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T02:09:19Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T02:09:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:09:23Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T02:09:19Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:09:54Z",
+          "conclusion": "success",
+          "name": "Preserve exact HEAD and fixed Stage84 parent",
+          "number": 3,
+          "started_at": "2026-09-11T02:09:23Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:09:56Z",
+          "conclusion": "success",
+          "name": "Restore only the exact adopted V4 source",
+          "number": 4,
+          "started_at": "2026-09-11T02:09:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:10:06Z",
+          "conclusion": "success",
+          "name": "Frozen composed candidate and extension mutation tests",
+          "number": 5,
+          "started_at": "2026-09-11T02:09:56Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:16:17Z",
+          "conclusion": "success",
+          "name": "Actual daycare deposition, egg generation, claim, native hatch and cold saves",
+          "number": 6,
+          "started_at": "2026-09-11T02:10:06Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:16:17Z",
+          "conclusion": "success",
+          "name": "Preserve exact sources and native originals, no ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T02:16:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:16:18Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T02:16:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:16:18Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T02:16:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T02:16:18Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T02:16:18Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-breeding-delta.yml",
+  "run_attempt": 1,
+  "run_id": 34553503441,
+  "sha256": "cd46b3273cb1519044100847ea38f65d1a81bea632909d984107781cab657011",
+  "size": 104337,
+  "status": "completed"
+}
