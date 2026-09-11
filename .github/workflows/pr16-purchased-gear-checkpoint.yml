@@ -1,0 +1,158 @@
+name: pr16-purchased-gear-checkpoint
+run-name: Retain purchased stone physical battle originals and current acceptance
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-purchased-gear-checkpoint.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-purchased-gear-checkpoint
+  cancel-in-progress: false
+jobs:
+  retain-purchased-gear:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Recover exact originals and validate actual controller and pixels
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-purchased-gear-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_gear_originals.py --fetch --write > "$out/historical-originals.json"
+          python3 scripts/pr16_purchased_gear_checkpoint.py --fetch --write > "$out/purchased-gear.json"
+      - name: Extend only current projection and exercise both existing generators
+        run: |
+          set -euo pipefail
+          out=.local/pr16-purchased-gear-checkpoint
+          python3 - <<'PY'
+          import hashlib,pathlib
+          p=pathlib.Path('scripts/pr16_refresh_current_view.py');raw=p.read_bytes();text=raw.decode()
+          before='    return out\n\n\ndef install_hook(root=ROOT):'
+          after='    from pr16_purchased_gear_checkpoint import RECEIPT as gear_receipt, project as gear_project\n    if (root / gear_receipt).is_file():\n        out=gear_project(out,root)\n'+before
+          expected='7d2b90a9b0745b5e8fdd79c00ff391895567574f9baca982839df2d46be6d8ae'
+          if after in text:
+              assert text.count(after)==1 and hashlib.sha256(text.replace(after,before,1).encode()).hexdigest()==expected
+          else:
+              assert hashlib.sha256(raw).hexdigest()==expected and text.count(before)==1
+              p.write_text(text.replace(before,after,1))
+          PY
+          python3 -m unittest tests.test_pr16_purchased_gear_checkpoint tests.test_pr16_current_view -v > "$out/unit.log" 2>&1
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+      - name: Write explicit scoped handoff and append-only history
+        run: |
+          python3 - <<'PY'
+          import pathlib,sys
+          sys.path.insert(0,'scripts');import pr16_purchased_gear_checkpoint as m
+          root=pathlib.Path('.');receipt=m.build();assert receipt['acceptance']['new_native_cores']==9
+          doc='''# PR16 購入した石→装備→実戦→保存の受入
+
+          製品全体は未完成です。この記録はシビルドナイトの取得・使用経路の限定受入で、P05全体・全6種・Circus・製品配布の合格ではありません。
+
+          ## 実行と原本
+
+          成功run `34587080329`、実行HEAD `6dec0d4e58ffa0c7751be1e05bdd864f87d023bd`。新しい実ROM実行は4プロセス9コア（2+2+2+3）。原本の取得・保存・再検査は別のエミュレータ実行に加算しません。
+
+          候補SHA-256 `e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267`、33554432 bytes、CRC32 `BFB089F9`。ROM追加変更はありません。
+
+          受付との会話・商品選択でシビルドナイトを購入し、BP64→48と取得数を照合。Bagの「もたせる」で同じ個体へ装備し、通常保存。町96/5から北側96/17へ実歩行・マップ接続し、草むらの自然遭遇で実際の技画面を操作しました。
+
+          メガ切替あり・切替なし・切替後取消は各2コア。切替ありだけがspecies411→1634、ability26→313へ変化します。全ケースで技558のPP10→9、通常の戦闘離脱後の元フォーム復帰、石の非消費、通常再保存・別コアContinueで個体100 bytes・全在庫・BP・保存番号を確認しました。
+
+          第4ケースは装備後の保存でコアを一度破棄し、さらに戦闘後にも別コアで再開する3コア対照です。NEXT-battleの許可設定は揮発性なので、中間Continue後にメガが発動しないことを確認しています。試験側で設定を再注入して成功にしていません。
+
+          開始位置・Lv100シビルドン・リング・64BP・空の道具ポケット・開始時の戦闘許可設定はfixtureです。リング/BPや戦闘モードそのものを通常操作で取得・選択したとはしません。観測開始後は7種類のhost書込みを禁止し、禁止APIが拒否されることも検査しています。
+
+          原本58画面を確認しました。最初のMega検出フレームはsprite更新前であり、native-turn画面で変更後の姿を確認しています。ショップ、Bag、装備、戦闘、復帰・再開画面に明らかな表示崩れは見られません。画像だけでデータ保持を判定していません。
+
+          ## Git追跡する保存先
+
+          `content/modernization/pr16_gear_evidence/<run>/original.zip` と `actions.json`。成功原本は571143 bytes、SHA-256 `a571a83ab85d8fa8710f445d9f61aa65c8c796523f821bfdc84d73ff9d0cc7a2`。35入力ソース、実コンパイルcontroller、raw stdout/stderr/process、58画像を照合します。ROM/saveは新規ZIPに含みません。
+
+          静的調査run34579454070、コンパイル失敗run34583082652、field判定失敗run34585139774、policy境界失敗run34585692527も別原本で保持します。失敗run中の2件6コアの対照成功を後継4件9コアに加算せず、失敗原本を成功へ改称しません。
+
+          ```sh
+          python3 scripts/pr16_gear_originals.py
+          python3 scripts/pr16_purchased_gear_checkpoint.py
+          python3 scripts/pr16_refresh_current_view.py
+          python3 scripts/record_modernization_final_acceptance.py
+          python3 scripts/record_modernization_p03_forgetting.py
+          ```
+
+          ## 次のAIの入口と残件
+
+          最初に `content/modernization/p08_remaining_work.json`、`content/modernization/pr16_purchased_gear_acceptance.json`、この文書を読みます。両方の既存生成経路から同じ限定受入が復元されます。古い捕獲記録のgear=falseは当時の範囲であり、後継の購入石受入を取り消す根拠ではありません。
+
+          `NATURAL_CAPTURE_GEAR` は自然捕獲個体の通常戦闘と今回の購入石経路を未実施へ戻さず、リング/BP・戦闘許可モードの通常供給と採用経路の対応を特定します。許可policyを通常プレイへ無条件に有効化する変更はしません。
+
+          `PHYSICAL_CIRCUS_ADMISSION` は実受付→入場→特性抑制。P03/P07は採用済み消費経路と既存原本の対応を絞り、未確認部分だけ試験します。P08は残る受入と影響回帰の同一候補化、clean ROM全工程の独立2回生成、配布パッチ・ハッシュ・セーブ保護付き導入/戻し方です。
+
+          P06採用2種3項目、P07の1073追加/499保持、進化・ロトム・繁殖・共有技、ショップ修正、捕獲個体の実戦成功は保持します。public維持と殿堂入り後/無料わざメモリーは承認済みです。Stage62・実プレイsave・旧原本・公開範囲・既存履歴を変更せず、PR #16を未マージで維持します。
+          '''
+          import textwrap
+          doc=textwrap.dedent(doc)
+          p=root/'docs/PR16_PURCHASED_GEAR_CHECKPOINT_JA.md'
+          if p.exists():assert p.read_text()==doc
+          else:p.write_text(doc)
+          status=root/'content/modernization/pr16_gear_refinement_status.json';v=m.load(status.read_bytes())
+          v.update(status='SCOPED_PURCHASED_GEAR_ACCEPTED_PRODUCT_INCOMPLETE',gear_to_battle_accepted=True,new_native_passes=4,source_native_success_run=34587080329,source_native_success_cores=9,new_emulator_runs_by_retention=0,receipt=m.RECEIPT,resume='Keep the accepted purchase/Give/walk/Mega/revert/save route. Read the scoped receipt and current remaining conditions; native ring/BP/mode supply and physical Circus remain.')
+          status.write_bytes(m.stable(v))
+          marker='PR16-PURCHASED-GEAR-CHECKPOINT-20260911'
+          entry='\n## 2026-09-11 / '+marker+'\n\n- USER-MODERNIZATION: retain native run34587080329 / 6dec0d4e, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.\n- Five exact original ZIPs and Actions metadata retained. Historical static and failed runs are not relabelled or added to successful counts. Actual generated controller,35 sources,58 images and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.\n- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=root/name;before=p.read_text()
+              if marker in before:assert entry in before
+              else:p.write_text(before+entry)
+          PY
+      - name: Commit only reviewed originals and current view on unchanged HEAD
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_purchased_gear_checkpoint as m
+          m.build()
+          runs=[rec[0] for rec in m.history.RECORDS.values()]+[m.RECORD[0]]
+          originals=[f'{m.DIRECTORY}/{run}/original.zip' for run in runs]
+          paths=[m.RECEIPT,m.history.RECEIPT,m.prior.OVERVIEW,'scripts/pr16_refresh_current_view.py','docs/PR16_PURCHASED_GEAR_CHECKPOINT_JA.md','content/modernization/pr16_gear_refinement_status.json','design/run_log.md','design/version_log.md',*originals,*[p.replace('original.zip','actions.json') for p in originals]]
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')));assert changed<=set(paths)
+          for name in ('design/run_log.md','design/version_log.md'):assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True)
+          subprocess.run(['git','add','-f','--',*originals],check=True)
+          staged=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')));assert staged<=set(paths)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'USER-MODERNIZATION: retain purchased gear native proof and narrow current remaining supply'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          out=.local/pr16-purchased-gear-checkpoint
+          git rev-parse HEAD > "$out/published-head.txt"
+          python3 scripts/pr16_purchased_gear_checkpoint.py > "$out/post-commit-originals.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/post-commit-current.json"
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-purchased-gear-checkpoint
+          path: .local/pr16-purchased-gear-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
