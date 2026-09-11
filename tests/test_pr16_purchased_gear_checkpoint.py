@@ -14,12 +14,13 @@ class GearCheckpointTests(unittest.TestCase):
         files=dict(self.files);value=m.load(files[path]);change(value);files[path]=m.stable(value);return files
     def test_exact_four_process_nine_core_originals_and_58_images(self):
         value=m.verify(self.files)
-        self.assertEqual((value['new_native_processes'],value['new_native_cores'],value['source_files'],len(value['reviewed_images'])),(4,9,35,58))
+        self.assertEqual((value['new_native_processes'],value['new_native_cores'],value['source_files'],len(value['reviewed_images'])),(4,9,37,58))
+        self.assertEqual(value['screen_manifests_checked'],4)
         self.assertTrue(value['purchased_gear_to_battle_accepted'])
         self.assertFalse(value['full_p05_acceptance']);self.assertFalse(value['ordinary_policy_selection_accepted'])
         self.assertEqual([r['result']['fresh_cores'] for r in value['cases']],[2,2,2,3])
     def test_reject_old_schema_or_added_historical_successes(self):
-        for delta in ({'schema_version':1},{'actual_new_processes':6},{'successful_fresh_cores':15},{'old_runs_relabelled':1}):
+        for delta in ({'schema_version':1},{'actual_new_processes':8},{'successful_fresh_cores':18},{'old_runs_relabelled':1}):
             files=self.mutated('pr16-purchased-gear/result.json',lambda v:v.update(delta))
             with self.subTest(delta=delta),self.assertRaises(ValueError):m.verify(files)
     def test_reject_scope_inflation_or_concealed_fixtures(self):
@@ -27,7 +28,7 @@ class GearCheckpointTests(unittest.TestCase):
             files=self.mutated('pr16-purchased-gear/result.json',lambda v:v.update(delta))
             with self.subTest(delta=delta),self.assertRaises(ValueError):m.verify(files)
     def test_reject_wrong_head(self):
-        files=dict(self.files);files[m.RECORD[7]+'tested-head.txt']=b'7ee8b23ba72f6d389ed07cd0c5cc4c55a80b7cac\n'
+        files=dict(self.files);files[m.RECORD[7]+'tested-head.txt']=b'6dec0d4e58ffa0c7751be1e05bdd864f87d023bd\n'
         with self.assertRaises(ValueError):m.verify(files)
     def test_reject_replaced_compiled_controller(self):
         files=dict(self.files);key='pr16-purchased-gear/generated-controller.zip'
@@ -39,8 +40,23 @@ class GearCheckpointTests(unittest.TestCase):
     def test_reject_source_binding_substitution(self):
         files=self.mutated(m.RECORD[7]+'source-bindings.json',lambda v:v.pop(m.native.SOURCE))
         with self.assertRaises(ValueError):m.verify(files)
+    def test_reject_current_driver_change_without_source_matching(self):
+        original=m.prior.read
+        def changed(root,path):
+            raw=original(root,path)
+            return raw+b'\n' if str(path)==m.native.SELF else raw
+        with patch.object(m.prior,'read',side_effect=changed),self.assertRaises(ValueError):m.verify(self.files)
     def test_reject_changed_raw_pixel(self):
         files=dict(self.files);key=next(k for k in files if k.endswith('native-turn.ppm'));files[key]=files[key][:-1]+bytes([files[key][-1]^1])
+        with self.assertRaises(ValueError):m.verify(files)
+    def test_reject_forged_screen_manifest(self):
+        key='pr16-purchased-gear/eelektross-active.screens.json'
+        for delta in ({'presentation_accepted':True},{'required_screens':0},{'native_result_schema':1}):
+            files=self.mutated(key,lambda v:v.update(delta))
+            with self.subTest(delta=delta),self.assertRaises(ValueError):m.verify(files)
+    def test_reject_omitted_cold_reload_screen(self):
+        key='pr16-purchased-gear/eelektross-cold-policy-reset.screens.json'
+        files=self.mutated(key,lambda v:v['files'].pop('eelektross-cold-policy-reset-equipped-reloaded.ppm'))
         with self.assertRaises(ValueError):m.verify(files)
     def test_reject_ignored_failed_process(self):
         files=self.mutated('pr16-purchased-gear/eelektross-active.process.json',lambda v:v.update(returncode=1))
@@ -68,6 +84,14 @@ class GearCheckpointTests(unittest.TestCase):
         self.assertEqual(value['captured_battle_checkpoint']['purchased_gear_successor_receipt'],m.RECEIPT)
 
 class HistoricalOriginalTests(unittest.TestCase):
+    def test_prior_success_is_not_added_to_refreshed_counts(self):
+        run=m.history.RECORDS['prior_success'][0]
+        files=m.display.archive((m.ROOT/m.DIRECTORY/str(run)/'original.zip').read_bytes())
+        value=m.history.verify('prior_success',files)
+        self.assertEqual((value['historical_successful_processes'],value['historical_successful_cores'],value['new_native_passes']),(4,9,0))
+        self.assertTrue(value['not_added_to_successor_counts'])
+        key='pr16-purchased-gear/result.json';report=m.load(files[key]);report['successful_fresh_cores']=18;files[key]=m.stable(report)
+        with self.assertRaises(ValueError):m.history.verify('prior_success',files)
     def test_probe_archive_rejects_unsafe_binary_and_paths(self):
         for name,data in [('evil.gba',b'ROM'),('../bad.txt',b'x'),('bad.txt',b'x\0y')]:
             out=io.BytesIO()
