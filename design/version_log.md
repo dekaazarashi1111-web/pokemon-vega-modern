@@ -1941,3 +1941,12 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Fixed nested p06_adoption.full_phase_accepted to derive from the verified full_p06_acceptance boolean; no historical receipt, ROM, save, adopted scope or release gate changed.
 - Both existing generation entry points, retained originals and targeted unit tests passed in run 34556825622. No new emulator execution is claimed.
 - Preserve public and free move-memory owner policy, Stage62, actual-play saves, existing native successes and unmerged PR #16.
+
+## 2026-09-11 / PR16-PHYSICAL-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / actual native routes and retained originals.
+- New native: Rotom 10 processes / 25 cores (34559437267), Happiny incense 5 / 15 (34558529636), exact unchanged 635fd890 candidate.
+- P06 current mirror fixed and verified in 34556825622; no new P06 native claim.
+- Raw originals + Actions metadata permanently tracked in pr16_physical_route_evidence; current-view hook preserves accepted subroutes across regeneration.
+- Revalidation and target tests: retention run 34560685011. No historical evidence, ROM, actual-play save, Stage62, public/free-memory policy, history or PR merge changed.
+- Remaining: residual P03/P07 consumer inventory, P05 physical acquisition/admission, same-candidate final gates, clean full reconstruction and distribution. Product release remains false.

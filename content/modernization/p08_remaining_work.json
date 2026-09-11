@@ -119,6 +119,7 @@
     "size": 33554432
   },
   "final_integration": {
+    "additional_verified_native": "content/modernization/pr16_physical_route_acceptance.json",
     "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
     "new_native_cores_in_this_session": 19,
     "new_native_processes_in_this_session": 7,
@@ -200,17 +201,31 @@
     "source_reconciliation": "content/modernization/pr16_completion_acceptance.json",
     "vega_species_to_normal_move": 1073
   },
+  "physical_route_checkpoint": {
+    "candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "happiny_retained_incense_routes_accepted": true,
+    "new_native_cores": 40,
+    "new_native_processes": 15,
+    "old_runs_preserved_not_relabelled": true,
+    "physical_rotom_service_accepted": true,
+    "release_ready": false,
+    "source_path": "content/modernization/pr16_physical_route_acceptance.json"
+  },
   "release_ready": false,
   "remaining_conditions": [
     {
       "id": "EVOLUTION_FORM_OTHER_EGG",
       "original_request": "P03 instruction 3-5 and acceptance",
-      "pass_condition": "native learning result, cancellation where relevant, normal save/cold Continue; existing birth/hatch/capacity passes retained",
+      "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
+      "pass_condition": "Map residual adopted consumers to exact existing or new native originals; keep Rotom/evolution/Pichu successes",
       "phase": "P03",
-      "reason_ja": "進化の空き・満杯・取消とPichu復元タマゴ技の実繁殖5件は受入済み。残るフォームサービス操作と他の採用供給経路を特定して確認する。",
-      "resume": "overlays/modernization_p03_stage73_consumer_runtime; CollectionSupply_FieldHost -> form party selection -> Stage73_CollectionApplySelectedForm -> ordinary save/cold Continue; preserve current evolution and breeding passes",
+      "reason_ja": "ロトム実サービスの付与・解除・満杯拒否・取消・保存は10件受入済み。その他の採用済み供給経路について既存原本と未確認範囲を照合する",
+      "resume": "scripts/pr16_physical_route_checkpoint.py verifies 10 accepted Rotom paths; reconcile other adopted consumer classes, do not repeat successful forms",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "evolution/form move acquisition and relevant egg supply"
+      "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
     },
     {
       "id": "NATURAL_CAPTURE_GEAR",
@@ -235,12 +250,13 @@
     {
       "id": "P07_REMAINING_ROUTE_ACCEPTANCE",
       "original_request": "07_extra_learnsets.txt instruction 1-5",
+      "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
       "pass_condition": "Reconcile residual physical-route coverage against 1073 historical additions and 499 preserved rows; no new table approval or blanket combinations; save/cancel at affected consumers",
       "phase": "P07",
-      "reason_ja": "V4照合・1073採用追加・472+27既存保持の実装は済み。新規配布表の判断待ちではない。経路別の未受入差分を特定し、必要な実操作のみ補う。",
-      "resume": "scripts/pr16_p07_preserved_layer.py; content/modernization/p07_preserved_layer_spec.json; compare exact Happiny baby/incense and form consumers with accepted memory/breeding evidence; do not re-adopt or double-apply rows",
+      "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
+      "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "normal-to-Vega and Vega-to-normal deltas"
+      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding"
     },
     {
       "id": "FINAL_NATIVE_ACCEPTANCE",
