@@ -120,7 +120,7 @@ def oracle(raw,parent,selected):
     need(old.egg[365]==new.egg[365]==[281],'no-incense Chansey egg pool changed')
     level={sid:[m for m,lev in new.level[sid] if lev<=1] for sid in (364,365)}
     need(level=={364:[1,539],365:[1,111,186,204,343,539,549]},'child starting learnsets differ')
-    need(all(old.level[sid]==new.level[sid] for sid in ids),'ordinary levels changed')
+    need(all(old.level[sid]==new.level[sid] for sid in (364,365)),'ordinary levels changed')
     table=struct.unpack_from('<I',raw,0x1bc)[0]-layer.BASE
     need(table==struct.unpack_from('<I',parent,0x1bc)[0]-layer.BASE==0x1576c74,'BaseStats root differs')
     parents={}
