@@ -1968,3 +1968,12 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Root diagnostic run34567225043: 5334 decoded roots, 6 invalid roots, 1 unknown command, wild header139 unresolved; two rooted species411 candidates are not capture/admission acceptance.
 - Exact originals, Actions origin, raw validators, screenshot identities, scoped receipt and both current-view generators validated by retention run 34569452500. Target tests are in its unit.log. No emulator rerun in retention.
 - No candidate ROM, Stage62, real save, owner/public policy, historical original or PR merge changed. Keep prior Rotom/Happiny/shared/P06 successes. Product unfinished; display repair and natural acquisition/battle/admission remain.
+
+## 2026-09-11 / PR16-SHOP-DISPLAY-REPAIRED-20260911
+
+- USER-MODERNIZATION: fixed list-content tiles overlapping world tilemaps and frame tiles. Only top=1 and content base=1 are changed in a separately compiled renderer layer; original sources and parent remain untouched.
+- Exact successor e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267, 33554432 bytes, CRC BFB089F9. Independent repair builds2 and both BPS round trips, NOT full clean product generation.
+- Native run34571394609 / d33ce3a7: repaired11 processes22 cores, 9 pages, six purchases/five controls, normal save/cold Continue, 6144-byte world maps compared96 times with zero differences and no overlapping list layout. Separate original3 processes6 cores reproduce corruption. Reviewed native pixels are pinned.
+- Rejected top-only experiment run34569993409 remains rejected, original first shop data pass/visual fail run34568373963 is unchanged. Never add controls/probes to repaired success count.
+- Retention run 34572398777: exact ZIPs/Actions/source/raw/graphics validated, historical receipts and both current generators preserved, 84 target tests. Shop successor is scoped; full P03/P05/P07/release stay false.
+- Natural capture-to-battle, Circus actual admission, remaining supply coverage and full final integration/distribution remain. Stage62, real save, prior successes, P06 mirrors, visibility/owner policy and unmerged PR remain protected.

@@ -161,6 +161,16 @@
   },
   "latest_scoped_candidate_stage": "84+P07+EVOLUTION_REPAIR",
   "new_emulator_runs_during_reconciliation": 0,
+  "next_integration_candidate": {
+    "builder": "scripts/pr16_shop_display_repair.py",
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "full_candidate_regression_complete": false,
+    "scope": "SHOP_RENDERER_REPAIR_ACCEPTED_OTHER_DOMAINS_RETAINED_ON_PARENT",
+    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
+  },
   "nonblocking_findings": [
     {
       "guard_disabled": false,
@@ -171,10 +181,15 @@
     }
   ],
   "p05_route_checkpoint": {
+    "historical_candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
     "native_cores": 20,
     "native_processes": 10,
     "release_ready": false,
     "shop_data_path_pass": true,
+    "shop_display_successor_receipt": "content/modernization/pr16_shop_display_acceptance.json",
     "shop_visual_acceptance": false,
     "source_path": "content/modernization/pr16_p05_route_acceptance.json"
   },
@@ -238,13 +253,14 @@
       "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
     },
     {
-      "display_repair_required": true,
+      "display_repair_required": false,
+      "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
       "id": "NATURAL_CAPTURE_GEAR",
       "original_request": "P05 original acceptance and current P08 boundary",
-      "partial_data_evidence": "content/modernization/pr16_p05_route_acceptance.json",
+      "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "6種の石の実受付購入・取消・拒否・保存10件20コアはデータ判定成功。ただしメニューと終了後の背景に表示崩れがあり、修正・再試験が必要。自然捕獲および取得から戦闘への接続は未完了",
+      "reason_ja": "6種の石の実受付購入・取消・拒否・保存とショップ表示は後継候補で11件22コア成功。自然捕獲および通常取得から戦闘への接続は未完了。旧候補の表示不合格原本は保持",
       "resume": "scripts/run_modernization_p05_controller_witness.py and run_modernization_p05_scheduler_e2e.py are accepted downstream evidence, not capture evidence",
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle"
@@ -274,10 +290,11 @@
     {
       "id": "FINAL_NATIVE_ACCEPTANCE",
       "original_request": "P08 final-candidate acceptance",
-      "pass_condition": "Close the named outstanding native routes on candidate 635fd890 or its exact successor; preserve historical Stage82/84 runs and rerun only affected regression after changes",
+      "pass_condition": "Connect remaining physical routes and relevant regression to the exact shop-display successor; parent successes remain historical, not rerun claims",
       "phase": "P08",
       "reason_ja": "修復候補635fd890上の7領域・P06・進化・技メモリー・Pichu繁殖は受入済み。残るP03/P07/P05実経路を同一候補へ接続する。",
       "resume": "scripts/pr16_repaired_acceptance.py; scripts/pr16_evolution_fullslots.py; scripts/pr16_breeding_delta.py; only repeat affected evidence when candidate changes",
+      "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
     },
@@ -323,6 +340,23 @@
     "release_ready": false,
     "shared_only_selected_receiver_routes_accepted": true,
     "source_path": "content/modernization/pr16_shared_egg_acceptance.json"
+  },
+  "shop_display_repair_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "final_integration_accepted": false,
+    "original_corruption_controls": 3,
+    "parent": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "release_ready": false,
+    "repaired_native_cores": 22,
+    "repaired_native_processes": 11,
+    "shop_visual_acceptance": true,
+    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
   },
   "source_bindings": {
     "config/modernization_p03_stage74_supply.json": {
