@@ -1,0 +1,97 @@
+{
+  "artifact_id": 10186464456,
+  "artifact_name": "pr16-p05-root-continuation",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "ca9a0489bbd2bd68d84b9f208f42bb9b83025308",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "ca9a0489bbd2bd68d84b9f208f42bb9b83025308",
+      "id": 103161721118,
+      "name": "audit",
+      "run_id": 34567225043,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T05:46:05Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T05:46:05Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:46:10Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T05:46:05Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:46:11Z",
+          "conclusion": "success",
+          "name": "Preserve exact tracked source context without ROM or save",
+          "number": 3,
+          "started_at": "2026-09-11T05:46:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:46:40Z",
+          "conclusion": "success",
+          "name": "Prepare hash-fixed Stage84 parent",
+          "number": 4,
+          "started_at": "2026-09-11T05:46:11Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:46:41Z",
+          "conclusion": "success",
+          "name": "Restore fixed adopted V4 and map catalogue archive",
+          "number": 5,
+          "started_at": "2026-09-11T05:46:40Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:47:09Z",
+          "conclusion": "success",
+          "name": "Validate diagnostic behavior and inspect exact candidate roots",
+          "number": 6,
+          "started_at": "2026-09-11T05:46:41Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:47:10Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 7,
+          "started_at": "2026-09-11T05:47:09Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:47:10Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 14,
+          "started_at": "2026-09-11T05:47:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T05:47:10Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "started_at": "2026-09-11T05:47:10Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-p05-root-continuation.yml",
+  "run_attempt": 1,
+  "run_id": 34567225043,
+  "sha256": "059ab4dee4ce06dce0456984f64cc11da1bbe60053ec17ae88c133d54e715b2e",
+  "size": 7506357,
+  "status": "completed"
+}

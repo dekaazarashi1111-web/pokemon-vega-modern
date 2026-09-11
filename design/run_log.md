@@ -4677,3 +4677,11 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Preserved Rotom, Happiny, Pichu, evolution, P06 and historical evidence. No ROM, active Stage62, real save, visibility, owner policy, history or PR merge changes.
 - Receiver audit has complete shared pool reading but unresolved catalogue root/wild header diagnostics; no physical Circus or natural-capture acceptance.
 - Remaining P03/P07 reconciliation, P05 natural acquisition/admission, P08 final integration and full clean reconstruction/distribution; product release remains false.
+
+## 2026-09-11 / PR16-P05-DATA-PASS-VISUAL-REJECTED-20260911
+
+- Task: USER-MODERNIZATION-P05. Physical shop run34568373963 / cd0f07c9: new10 processes20 cores, six stone purchases and four controls; data, BP, inventory, party, normal save and cold Continue PASS. The fixture boundary is explicit.
+- Visual inspection REJECTED: menu and post-close background corruption, including cancel/BP denial; missing-ring control remains intact. Keep raw PASS but never promote it to UI/P05 acceptance.
+- Root diagnostic run34567225043: 5334 decoded roots, 6 invalid roots, 1 unknown command, wild header139 unresolved; two rooted species411 candidates are not capture/admission acceptance.
+- Exact originals, Actions origin, raw validators, screenshot identities, scoped receipt and both current-view generators validated by retention run 34569452500. Target tests are in its unit.log. No emulator rerun in retention.
+- No candidate ROM, Stage62, real save, owner/public policy, historical original or PR merge changed. Keep prior Rotom/Happiny/shared/P06 successes. Product unfinished; display repair and natural acquisition/battle/admission remain.

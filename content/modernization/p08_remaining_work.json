@@ -170,6 +170,14 @@
       "source_condition": "REPOSITORY_GUARD"
     }
   ],
+  "p05_route_checkpoint": {
+    "native_cores": 20,
+    "native_processes": 10,
+    "release_ready": false,
+    "shop_data_path_pass": true,
+    "shop_visual_acceptance": false,
+    "source_path": "content/modernization/pr16_p05_route_acceptance.json"
+  },
   "p06_adoption": {
     "accepted_requirements": [
       "adopted_three_fields_only",
@@ -230,22 +238,25 @@
       "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes"
     },
     {
+      "display_repair_required": true,
       "id": "NATURAL_CAPTURE_GEAR",
       "original_request": "P05 original acceptance and current P08 boundary",
+      "partial_data_evidence": "content/modernization/pr16_p05_route_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
-      "reason_ja": "通常の捕獲・道具取得から戦闘までの通し受入",
+      "reason_ja": "6種の石の実受付購入・取消・拒否・保存10件20コアはデータ判定成功。ただしメニューと終了後の背景に表示崩れがあり、修正・再試験が必要。自然捕獲および取得から戦闘への接続は未完了",
       "resume": "scripts/run_modernization_p05_controller_witness.py and run_modernization_p05_scheduler_e2e.py are accepted downstream evidence, not capture evidence",
       "success_evidence": null,
       "target_function": "natural capture/item acquisition to battle"
     },
     {
+      "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
       "id": "PHYSICAL_CIRCUS_ADMISSION",
       "original_request": "P05 suppression requirement and current P08 boundary",
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "Stage84 circus-source-audit covers only bounded reviewed sources; actual entrance not identified by that audit",
+      "resume": "P05 root diagnostic run 34567225043 retained: 6 invalid roots and one unknown command remain; shared var 0x403A alone is not physical Circus entry",
       "success_evidence": null,
       "target_function": "actual reception/admission to suppression"
     },
