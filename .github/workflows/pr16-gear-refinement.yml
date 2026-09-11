@@ -1,0 +1,80 @@
+name: pr16-gear-refinement
+run-name: Apply guarded gear recording fix and continue native route
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-gear-refinement.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: pr16-gear-refinement
+  cancel-in-progress: false
+jobs:
+  refine:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Verify exact preimages and apply the two-file repair
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-gear-refinement
+          python3 - <<'PY'
+          import hashlib,pathlib
+          bindings={'tools/mgba_pr16_purchased_gear.c':'446292ce23b9c9fc02ccd66edc0fb0f70a08da35d120b5ce545f937c620782c7','tests/test_pr16_purchased_gear.py':'7013de128450b52c0c3f26a20cba97dc80eaff6dceeabeb617b4f8a84637325b'}
+          for name,sha in bindings.items():
+              p=pathlib.Path(name);assert not p.is_symlink() and hashlib.sha256(p.read_bytes()).hexdigest()==sha,name
+          PY
+          git apply --check .github/repairs/pr16-gear-recording.patch
+          git apply .github/repairs/pr16-gear-recording.patch
+          python3 -m unittest tests.test_pr16_purchased_gear tests.test_pr16_natural_capture tests.test_pr16_shop_display_repair tests.test_pr16_shop_routes -v > .local/pr16-gear-refinement/unit.log 2>&1
+          git diff --check
+      - name: Append checkpoint history without claiming native success
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          root=pathlib.Path('.');run=int(os.environ['GITHUB_RUN_ID'])
+          assert b'Ran 50 tests' in (root/'.local/pr16-gear-refinement/unit.log').read_bytes()
+          status={'schema_version':1,'status':'CONTROLLER_REPAIRED_NATIVE_ACCEPTANCE_PENDING','refinement_run':run,'request_head':os.environ['GITHUB_SHA'],'previous_native_failure_run':34585139774,'previous_failure_reason':'Quest-log live recording (1,2) rejected as playback after actual Give','local_and_ci_targeted_tests':50,'actual_c_state_pairs_checked':65536,'new_native_passes':0,'gear_to_battle_accepted':False,'full_p05_acceptance':False,'release_ready':False,'resume':'Read pr16-purchased-gear native run dispatched after this commit; inspect all originals before acceptance. Do not redo purchase controller or route probe.'}
+          (root/'content/modernization/pr16_gear_refinement_status.json').write_text(json.dumps(status,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          text=f'\n## 2026-09-11 USER-MODERNIZATION gear controller refinement / run {run}\n\nFixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled and reached actual purchase/Give but rejected live Quest Log recording (quest=1, action state=2). Repair only the gear-specific idle predicate; reject playback and all unknown pairs. Compile and execute the actual C predicate against all 65,536 byte pairs; 50 targeted tests pass. No host-state clearing, ROM modification, baseline/save/visibility/history change or release claim. Native rerun is a separate pending gate.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=root/name
+              with p.open('a') as f:f.write(text)
+          PY
+      - name: Commit only the checked paths and dispatch native workflow once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          git fetch origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import subprocess
+          expected={'tools/mgba_pr16_purchased_gear.c','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md'}
+          actual=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert actual==expected,actual
+          PY
+          git add tools/mgba_pr16_purchased_gear.c tests/test_pr16_purchased_gear.py design/run_log.md design/version_log.md content/modernization/pr16_gear_refinement_status.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: accept live recorder pair only and reject playback in gear controller'
+          git push origin "HEAD:$branch"
+          git rev-parse HEAD > .local/pr16-gear-refinement/applied-head.txt
+          gh workflow run pr16-purchased-gear.yml --ref "$branch"
+          sleep 5
+          gh run list --workflow pr16-purchased-gear.yml --branch "$branch" --limit 3 --json databaseId,headSha,status,conclusion > .local/pr16-gear-refinement/native-runs.json
+          cat .local/pr16-gear-refinement/native-runs.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-gear-refinement
+          path: .local/pr16-gear-refinement/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
