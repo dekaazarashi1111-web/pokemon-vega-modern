@@ -4651,3 +4651,10 @@ Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469
 - Remaining: P03フォーム/該当供給、P07残る差分実経路、P05通常取得/実Circus、clean全工程再生成/配布。release_ready=false。
 - Protection: public/無料わざメモリーは承認済みで維持。Stage62、実プレイsave、原本、履歴、公開範囲、PR未マージを維持。
 - Verify: 専用mGBA 2run PASS、原本照合 PASS、両現在ビュー生成と関連否定unitを本workflowで検証。新規native実行と記録再検査を混同しない。
+
+## 2026-09-11 / PR16-P06-CURRENT-MIRROR-20260911
+
+- Task: USER-MODERNIZATION-P06 / verified current-view consistency.
+- Fixed nested p06_adoption.full_phase_accepted to derive from the verified full_p06_acceptance boolean; no historical receipt, ROM, save, adopted scope or release gate changed.
+- Both existing generation entry points, retained originals and targeted unit tests passed in run 34556825622. No new emulator execution is claimed.
+- Preserve public and free move-memory owner policy, Stage62, actual-play saves, existing native successes and unmerged PR #16.
