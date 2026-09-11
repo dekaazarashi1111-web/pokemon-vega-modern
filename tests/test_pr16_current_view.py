@@ -32,8 +32,8 @@ class CurrentViewTests(unittest.TestCase):
             self.assertEqual(p.read_bytes(),before)
 
     def sample(self):
-        return dict(final_integration={'source_path':'content/modernization/p08_final_candidate_acceptance.json','source_run_id':34477344071},
-                    p06_adoption={'final_candidate_evidence':'content/modernization/p08_final_candidate_acceptance.json'},
+        return dict(full_p06_acceptance=True,final_integration={'source_path':'content/modernization/p08_final_candidate_acceptance.json','source_run_id':34477344071},
+                    p06_adoption={'full_phase_accepted':False,'final_candidate_evidence':'content/modernization/p08_final_candidate_acceptance.json'},
                     p07_adoption={'normal_species_to_vega_move':0,'vega_species_to_normal_move':0},
                     repository_policy={'visibility':'public','owner_approved':True},
                     remaining_conditions=[{'id':'FINAL_NATIVE_ACCEPTANCE'},{'id':'P07_REMAINING_ROUTE_ACCEPTANCE'}],release_ready=False)
@@ -52,5 +52,26 @@ class CurrentViewTests(unittest.TestCase):
         self.assertEqual(after['repository_policy'],before['repository_policy'])
         self.assertFalse(after['p07_adoption']['decision_required']);self.assertFalse(after['release_ready'])
         self.assertEqual(after['p06_adoption']['final_candidate_evidence'],m.completion.RECEIPT)
+        self.assertIs(after['p06_adoption']['full_phase_accepted'],True)
+        self.assertIs(before['p06_adoption']['full_phase_accepted'],False)
+
+    def test_nested_acceptance_mirrors_verified_boolean_not_unconditional_pass(self):
+        for accepted in (False,True):
+            before=self.sample();before['full_p06_acceptance']=accepted
+            before['p06_adoption']['full_phase_accepted']=not accepted
+            with patch.object(m.completion,'project',side_effect=lambda v,root:deepcopy(v)):
+                after=m.current_view(before)
+            self.assertIs(after['p06_adoption']['full_phase_accepted'],accepted)
+            self.assertIs(before['p06_adoption']['full_phase_accepted'],not accepted)
+            self.assertFalse(after['release_ready'])
+
+    def test_missing_or_nonboolean_verified_acceptance_is_rejected(self):
+        for invalid in (None,0,1,'true',[],{}):
+            before=self.sample();before['full_p06_acceptance']=invalid
+            with patch.object(m.completion,'project',side_effect=lambda v,root:deepcopy(v)):
+                with self.assertRaises(ValueError):m.current_view(before)
+        before=self.sample();del before['full_p06_acceptance']
+        with patch.object(m.completion,'project',side_effect=lambda v,root:deepcopy(v)):
+            with self.assertRaises(ValueError):m.current_view(before)
 
 if __name__=='__main__':unittest.main()
