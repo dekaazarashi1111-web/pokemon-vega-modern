@@ -1,0 +1,135 @@
+name: PR16 remove P05 pytest dependency once
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-remove-p05-pytest-dependency-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Add dependency-free module test runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > scripts/run_module_tests.py <<'PY'
+          #!/usr/bin/env python3
+          """Run unittest cases and argument-free module-level test_* functions."""
+          from __future__ import annotations
+
+          import importlib
+          import inspect
+          import sys
+          import traceback
+          import unittest
+
+
+          def run_module(module_name: str) -> bool:
+              module = importlib.import_module(module_name)
+              ok = True
+
+              suite = unittest.defaultTestLoader.loadTestsFromModule(module)
+              if suite.countTestCases():
+                  result = unittest.TextTestRunner(verbosity=2).run(suite)
+                  ok = result.wasSuccessful() and ok
+
+              functions = [
+                  (name, value)
+                  for name, value in sorted(vars(module).items())
+                  if name.startswith("test_") and inspect.isfunction(value)
+              ]
+              for name, function in functions:
+                  required = [
+                      parameter
+                      for parameter in inspect.signature(function).parameters.values()
+                      if parameter.default is inspect.Parameter.empty
+                      and parameter.kind
+                      in (inspect.Parameter.POSITIONAL_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD, inspect.Parameter.KEYWORD_ONLY)
+                  ]
+                  if required:
+                      names = ", ".join(parameter.name for parameter in required)
+                      print(f"ERROR {module_name}.{name}: unsupported required arguments: {names}", file=sys.stderr)
+                      ok = False
+                      continue
+                  try:
+                      function()
+                  except Exception:
+                      print(f"FAIL {module_name}.{name}", file=sys.stderr)
+                      traceback.print_exc()
+                      ok = False
+                  else:
+                      print(f"PASS {module_name}.{name}")
+              return ok
+
+
+          def main(argv: list[str]) -> int:
+              if len(argv) < 2:
+                  print("usage: run_module_tests.py MODULE [MODULE ...]", file=sys.stderr)
+                  return 2
+              return 0 if all(run_module(name) for name in argv[1:]) else 1
+
+
+          if __name__ == "__main__":
+              raise SystemExit(main(sys.argv))
+          PY
+          chmod +x scripts/run_module_tests.py
+
+      - name: Point both P05 workflows at the shared runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path('.github/workflows/pr16-p05-native-supply-reconciliation.yml'): (
+                  'run: python3 -m pytest -q tests/test_pr16_p05_native_supply_reconciliation.py',
+                  'run: python3 scripts/run_module_tests.py tests.test_pr16_p05_native_supply_reconciliation',
+              ),
+              Path('.github/workflows/pr16-p05-native-supply-evidence-map.yml'): (
+                  'run: python3 -m pytest -q tests/test_pr16_p05_native_supply_evidence_map.py',
+                  'run: python3 scripts/run_module_tests.py tests.test_pr16_p05_native_supply_evidence_map',
+              ),
+          }
+          for path, (old, new) in replacements.items():
+              text = path.read_text()
+              if text.count(old) != 1:
+                  raise SystemExit(f'{path}: pytest command edit point differs')
+              path.write_text(text.replace(old, new))
+          PY
+
+      - name: Validate both focused suites
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/run_module_tests.py
+          python3 scripts/run_module_tests.py \
+            tests.test_pr16_p05_native_supply_reconciliation \
+            tests.test_pr16_p05_native_supply_evidence_map
+          git diff --check
+
+      - name: Commit validated workflow repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/pr16-remove-p05-pytest-dependency-once.yml
+          git add \
+            scripts/run_module_tests.py \
+            .github/workflows/pr16-p05-native-supply-reconciliation.yml \
+            .github/workflows/pr16-p05-native-supply-evidence-map.yml
+          git commit -m "USER-MODERNIZATION: remove P05 pytest CI dependency"
+          git push origin HEAD:codex/modernization-followup-20260908
