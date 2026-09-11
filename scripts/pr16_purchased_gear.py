@@ -12,6 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'));sys.path.insert(0,str(ROOT))
 import pr16_natural_capture as parent
 import pr16_gear_route_probe as probe
+import pr16_purchased_gear_evidence as evidence
 need=parent.need;r=parent.r;common=parent.common;shop=parent.shop
 SELF='scripts/pr16_purchased_gear.py';SOURCE='tools/mgba_pr16_purchased_gear.c'
 TEST='tests/test_pr16_purchased_gear.py';WORKFLOW='.github/workflows/pr16-purchased-gear.yml'
@@ -110,11 +111,11 @@ def validate(raw,stderr,name,code,audit):
 
 
 def run():
-    m=shop.base.load();out=m.prepare_output(OUT);(out/'result.json').unlink(missing_ok=True)
+    m=shop.base.load();out=evidence.prepare_output(ROOT,OUT)
     recipe=parent.repair.run();candidate=parent.repair.OUTPUT/'candidate.gba';raw=r.layer.source.checked(candidate,SHA)
     seed=ROOT/m.SEED;r.layer.source.checked(seed,m.SEED_SHA);audit=oracle(raw);header=route_header(audit)
     (out/'oracle.json').write_bytes(r.stable(audit));(out/'candidate.json').write_bytes(r.stable(recipe));(out/'pr16_gear_route.h').write_text(header)
-    paths={SELF,SOURCE,TEST,WORKFLOW,parent.SELF,parent.SOURCE,'scripts/pr16_gear_route_probe.py',parent.repair.SELF,parent.repair.probe.SELF,
+    paths={SELF,SOURCE,TEST,WORKFLOW,evidence.SELF,evidence.TEST,parent.SELF,parent.SOURCE,'scripts/pr16_gear_route_probe.py',parent.repair.SELF,parent.repair.probe.SELF,
            shop.SELF,shop.SOURCE,shop.base.PARENT_C,shop.base.SELF,shop.base.PARENT,
            'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','scripts/pr16_receiver_audit.py',
            'scripts/pr16_repaired_acceptance.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_integration_continuation.py',
@@ -145,8 +146,12 @@ def run():
             def one(name):
                 private=work/(name+'.srm');shutil.copyfile(seed,private)
                 stdout,stderr,process=common.capture([str(binary),str(candidate),str(private),SHA,m.SEED_SHA,name,str(out/name)],out/name,900)
-                try:return dict(name=name,result=validate(stdout,stderr,name,common.require_exited(process),audit),process=process),None
-                except (ValueError,RuntimeError,KeyError,TypeError) as exc:return None,dict(name=name,error=str(exc),process=process)
+                try:
+                    value=validate(stdout,stderr,name,common.require_exited(process),audit)
+                    screens=evidence.bind_screens(out,name,value)
+                    (out/(name+'.screens.json')).write_bytes(r.stable(screens))
+                    return dict(name=name,result=value,process=process),None
+                except (ValueError,RuntimeError,OSError,KeyError,TypeError) as exc:return None,dict(name=name,error=str(exc),process=process)
             with ThreadPoolExecutor(max_workers=2) as pool:
                 for result,error in pool.map(one,CASES):
                     if result:results.append(result)
