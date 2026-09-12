@@ -16,6 +16,10 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+      - name: Recover three digest-pinned originals previously skipped by gitignore
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/pr16_fixed_form_originals.py --recover-prior
       - name: Verify and retain exact accepted Crowned raw processes
         env:
           GH_TOKEN: ${{ github.token }}
@@ -23,34 +27,20 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib,io,json,os,pathlib,stat,subprocess,sys,zipfile
+          import hashlib,io,json,os,pathlib,subprocess,sys,zipfile
           sys.path.insert(0,'scripts');import pr16_fixed_form_acceptance as fixed
-          def ident(b):return {'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+          import pr16_fixed_form_originals as originals
+          ident=originals.identity
           def api(path):return subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/'+path])
-          def scan(z,depth=0):
-              assert depth<=1 and len(z.namelist())==len(set(z.namelist())) and len(z.namelist())<1000
-              assert sum(i.file_size for i in z.infolist())<32000000
-              for info in z.infolist():
-                  p=pathlib.PurePosixPath(info.filename);data=z.read(info)
-                  assert not p.is_absolute() and '..' not in p.parts and '\\' not in str(p) and not stat.S_ISLNK(info.external_attr>>16)
-                  assert p.suffix.lower() not in {'.gba','.sav','.srm','.bps','.ips','.ups','.bin'}
-                  if p.suffix=='.zip':
-                      assert depth==0 and p.name in {'sources.zip','entry-sources.zip','generated-controller.zip'}
-                      with zipfile.ZipFile(io.BytesIO(data)) as inner:scan(inner,1)
-                  elif p.suffix=='.ppm':assert depth==0 and data.startswith(b'P6\n240 160\n255\n') and len(data)==115215
-                  else:data.decode('utf-8');assert b'\0' not in data
-          run_id=34695512247;job_id=103558198010;artifact_id=10298208423;head='952b9fb2e2ee8b5951214eda7a7847c4ca1092d5'
-          digest='0d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8'
+          run_id,job_id,artifact_id,head,size,digest,conclusion=originals.PINS[-1]
           run=json.loads(api(f'actions/runs/{run_id}'));jobs=json.loads(api(f'actions/runs/{run_id}/jobs'));meta=json.loads(api(f'actions/artifacts/{artifact_id}'));raw=api(f'actions/artifacts/{artifact_id}/zip')
-          assert ident(raw)==dict(size=854855,sha256=digest)
+          originals.validate_archive(raw,originals.PINS[-1])
           assert run['id']==run_id and run['head_sha']==head and run['conclusion']=='success' and run['run_attempt']==1
           assert len(jobs['jobs'])==1 and jobs['jobs'][0]['id']==job_id and jobs['jobs'][0]['conclusion']=='success'
           assert meta['id']==artifact_id and meta['digest']=='sha256:'+digest and meta['workflow_run']['head_sha']==head
           prefix='pr16-fixed-form-acceptance/'
           with zipfile.ZipFile(io.BytesIO(raw)) as z:
-              scan(z);report=json.loads(z.read(prefix+'result.json'));receipt=json.loads(z.read(prefix+'receipt.json'))
-              assert receipt['tested_head']==head and receipt['p03_fixed_form_gap_closed'] is False
-              for name,bound in receipt['members'].items():assert ident(z.read(prefix+name))==bound
+              report=json.loads(z.read(prefix+'result.json'));receipt=json.loads(z.read(prefix+'receipt.json'))
               assert report['status']=='PASS_SCOPED_PENDING_FIVE_CASES' and report['actual_new_processes']==2 and report['successful_fresh_cores']==4
               assert report['failures']==[] and report['requested_cases']==list(fixed.CASES)[-2:] and report['native_acceptance_claimed'] is False
               assert report['guard_checks']==list(fixed.GUARDS)
@@ -59,8 +49,6 @@ jobs:
                   assert z.read(prefix+'guard-'+guard+'.stderr')==b'P03 archive: host write after observation barrier\n'
                   assert json.loads(z.read(prefix+'guard-'+guard+'.process.json'))==dict(schema_version=1,returncode=1,timed_out=False,spawn_error=None)
               with zipfile.ZipFile(io.BytesIO(z.read(prefix+'sources.zip'))) as sources:
-                  assert set(sources.namelist())==set(report['sources'])
-                  for name,bound in report['sources'].items():assert ident(sources.read(name))==bound
                   assert sources.read(fixed.SELF)==pathlib.Path(fixed.SELF).read_bytes()
                   assert sources.read(fixed.SOURCE)==pathlib.Path(fixed.SOURCE).read_bytes()
               for row in report['results']:
@@ -69,7 +57,7 @@ jobs:
                   assert fixed.validate(z.read(prefix+name+'.stdout'),z.read(prefix+name+'.stderr'),name,process['returncode'],report['auxiliary_moves'])==row['result']
                   for suffix in ('project-move-resolved','crowned-restored','rusted-item-removed','crowned-continued'):
                       assert prefix+name+'-'+suffix+'.ppm' in z.namelist()
-          dest=pathlib.Path('content/modernization/pr16_fixed_form_acceptance_evidence')/str(run_id)
+          dest=pathlib.Path(originals.BASE)/str(run_id)
           assert not dest.exists();dest.mkdir(parents=True)
           (dest/'original.zip').write_bytes(raw)
           actions=dict(schema_version=1,run=run,jobs=jobs,artifact=meta,download=ident(raw))
@@ -79,7 +67,7 @@ jobs:
           assert previous['run_id']==34694218218 and [r['name'] for r in previous['accepted_cases']]==['necrozma-decline-unchanged']
           decline=previous['accepted_cases'][0]
           oldraw=pathlib.Path(previous['original_path']).read_bytes()
-          assert hashlib.sha256(oldraw).hexdigest()==previous['artifact_sha256']
+          originals.validate_archive(oldraw,originals.PINS[0])
           with zipfile.ZipFile(io.BytesIO(oldraw)) as oldzip:
               oldreport=json.loads(oldzip.read(prefix+'result.json'))
               assert fixed.validate(oldzip.read(prefix+decline['name']+'.stdout'),oldzip.read(prefix+decline['name']+'.stderr'),decline['name'],0,oldreport['auxiliary_moves'])==decline['result']
@@ -89,7 +77,7 @@ jobs:
           final_receipt=dict(schema_version=2,status='PARTIAL_NATIVE_THREE_OF_FIVE_CASES',candidate=report['candidate'],accepted_case_evidence=[dict(case=row['name'],run_id=row['evidence_run_id']) for row in cases],new_original=dict(path=(dest/'original.zip').as_posix(),**ident(raw)),actions_path=(dest/'actions.json').as_posix(),inner_receipt=receipt,previous_evidence_retained='content/modernization/pr16_fixed_form_acceptance_evidence/34694218218',p03_fixed_form_gap_closed=False,release_ready=False)
           pathlib.Path('content/modernization/pr16_fixed_form_acceptance_receipt.json').write_text(json.dumps(final_receipt,sort_keys=True,indent=2)+'\n')
           PY
-      - name: Validate, append Japanese resume point and commit bounded receipt
+      - name: Validate, append honest retention correction and commit exact scanned ZIPs
         shell: bash
         run: |
           set -euo pipefail
@@ -98,16 +86,23 @@ jobs:
           python3 - <<'PY'
           import datetime,pathlib
           stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
-          text=f'\n## {stamp}\n- Task: USER-MODERNIZATION / Crowned正式2ケース完了\n- Status: PASS（限定2ケース。fixed gap全体は3/5で未完）\n- Summary: run34695512247/job103558198010でZacian/Zamazenta両方、正しい装備→自然歩行戦闘→Crowned/project move→PP5→4→勝利→base/Iron Head405復帰→native Bagで装備置換→次戦はbase/Iron Head→逃走→通常Save counter2→3→core破棄→fresh Continue・100bytes一致をPASS。\n- Verify: strict C compile、7 write guard、focused14 tests、2process/4fresh cores。原本ZIP854855bytes SHA2560d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8。\n- Files changed: original ZIP/Actions/receipt/checkpoint、canonical fixed acceptance JSON、run/version logs。\n- Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。\n- Network: GitHub Actions API。原本移送は新規emulator runではない。\n- Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。\n'
+          text=f'\n## {stamp}\n- Task: USER-MODERNIZATION / Crowned正式2ケース完了・原本Git収録修正\n- Status: PASS（限定2ケース。fixed gap全体は3/5で未完）\n- Summary: run34695512247/job103558198010でZacian/Zamazenta両方、正しい装備→自然歩行戦闘→Crowned/project move→PP5→4→勝利→base/Iron Head405復帰→native Bagで装備置換→次戦base/Iron Head→逃走→通常Save2→3→core破棄→fresh Continue・100bytes一致をPASS。\n- Retention correction: 以前のdirectory git-addはignore対象ZIPを収録せず、JSONだけが収録されていた。run34695874241はこの欠落を検知しFAIL。3原本を同一digestで再取得し、今回4原本のexact pathだけforce-add、Git indexとHEADからbyte一致まで確認する。以前の原本保持との記述はこの追記で訂正。\n- Verify: strict C compile、7 write guard、focused14 tests、2process/4fresh cores。原本ZIP854855bytes SHA2560d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8。\n- Files changed: scanned original ZIP4件、Crowned Actions/receipt/checkpoint、canonical fixed acceptance JSON、run/version logs。\n- Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。\n- Network: GitHub Actions API。原本移送は新規emulator runではない。\n- Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。\n'
           for name in ('design/run_log.md','design/version_log.md'):
               with pathlib.Path(name).open('a') as f:f.write(text)
           PY
           git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md content/modernization/p08_remaining_work.json
           git add content/modernization/pr16_fixed_form_acceptance_evidence/34695512247 content/modernization/pr16_fixed_form_acceptance.json content/modernization/pr16_fixed_form_acceptance_receipt.json design/run_log.md design/version_log.md
+          for run in 34694218218 34694785866 34695030927 34695512247; do
+            git add -f "content/modernization/pr16_fixed_form_acceptance_evidence/$run/original.zip"
+          done
+          python3 scripts/pr16_fixed_form_originals.py --index
           git rm .github/workflows/pr16-crowned-receipt.yml
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git fetch origin "$GITHUB_REF_NAME"
           test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
-          git commit -m 'USER-MODERNIZATION: accept and retain both Crowned native battle/item/save/Continue cases (fixed-form 3/5)'
+          git commit -m 'USER-MODERNIZATION: accept Crowned 2 lifecycles and actually track four verified raw originals (fixed-form 3/5)'
+          python3 scripts/pr16_fixed_form_originals.py
           git push origin "HEAD:$GITHUB_REF_NAME"
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$(git rev-parse HEAD)"
