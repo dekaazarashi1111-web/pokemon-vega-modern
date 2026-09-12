@@ -1,0 +1,59 @@
+name: pr16-generic-form-probe-return-apply
+run-name: Apply native FORM probe-return repair with bounded checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-probe-return-apply.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-generic-form-probe-return-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Verify preimages, apply UTF-8 patch and run focused checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          patch=.github/repairs/pr16-generic-form-probe-return.patch
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(sha256sum "$patch" | cut -d' ' -f1)" = 77cca5c1b89a4f0dd5250c444fbb49d4dba14e4acbef0d5f88d502eb3ee20005
+          test "$(sha256sum tools/mgba_pr16_generic_form_carry.c | cut -d' ' -f1)" = 0f120c47d8f2675604baeabebb95e557c6783d032be1f1fce4bb838bc20d05bc
+          test "$(sha256sum tests/test_pr16_generic_form_carry.py | cut -d' ' -f1)" = 90eeb13cf646202eb867eba28da5a41e9dc2983a4f023c5a72e4c7c8e90633b7
+          git apply --check "$patch"
+          git apply "$patch"
+          test "$(sha256sum tools/mgba_pr16_generic_form_carry.c | cut -d' ' -f1)" = cf50596c67e35d0f110b16def8470b1e8d898cb9ba623c55410c895c0a2e54a4
+          test "$(sha256sum tests/test_pr16_generic_form_carry.py | cut -d' ' -f1)" = 3595ede4518f27723c3cbdeabd68c9bcf2d987261343ce8afb6c2d2f13883a89
+          python3 -m py_compile scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
+          python3 -m unittest discover -s tests -p 'test_pr16_generic_form_carry.py' -v
+          git diff --check
+          test "$(git diff --name-only | sort)" = $'tests/test_pr16_generic_form_carry.py\ntools/mgba_pr16_generic_form_carry.c'
+
+      - name: Commit tested source and regression test
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add tools/mgba_pr16_generic_form_carry.c tests/test_pr16_generic_form_carry.py
+          git diff --cached --check
+          test "$(git diff --cached --name-only | sort)" = $'tests/test_pr16_generic_form_carry.py\ntools/mgba_pr16_generic_form_carry.c'
+          git commit -m 'USER-MODERNIZATION: reopen FORM host after probe cancel'
+          git push origin HEAD:codex/modernization-followup-20260908
