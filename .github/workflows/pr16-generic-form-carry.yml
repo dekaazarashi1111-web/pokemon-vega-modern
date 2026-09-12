@@ -4,8 +4,9 @@ run-name: Real non-Rotom Shaymin form carry, cancel, save and cold Continue
 # 1fef860d80bf4c012913447fd44250b7ea651408258157d47326cc87a13d8550.
 # Row-visibility failure: run 34662546662 / artifact 10288111178 / ZIP SHA-256
 # 74e08d06c3ae14a164b53317c2e1f9b8887991f4d663fd14aac4d5785951d239.
-# Runtime maps FINAL_LEAGUE_CLEARED to ledger 20 and League II to ledger 21;
-# acceptance sets only final-league before the one pre-map finalize.
+# Runtime FINAL_LEAGUE requires League II backing plus Hall of Fame flag/mirror;
+# ledger byte 20 is not read. Acceptance sets the exact backing fields before
+# the one pre-map finalize and verifies them again after map load.
 # Bounded native menu scan source: commit 7a380d43a086ea4110c4f82736968f50f0f6e28c.
 # Dedicated compile/unit verification: run 34669671377, 13 tests PASS.
 # This workflow-only checkpoint triggers physical acceptance without changing product sources.
