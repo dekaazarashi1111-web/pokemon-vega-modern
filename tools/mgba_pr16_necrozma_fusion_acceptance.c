@@ -150,6 +150,9 @@ static void u_wait_scene(struct mCore *core, const struct FCase *selected,
                 if (cursor == 1U) {
                     key = QOL_KEY_A;
                     ut.replacement_selection = b_frames + 1U;
+                    fprintf(stderr, "FUSION_CHOICE cursor=%u frame=%u\n",
+                            cursor, ut.replacement_selection);
+                    f_shot(core, "fusion-chosen-slot");
                 } else {
                     key = QOL_KEY_DOWN;
                     a_require(++downs <= 5U,
@@ -173,6 +176,11 @@ static void u_wait_scene(struct mCore *core, const struct FCase *selected,
                 key = QOL_KEY_B;
         } else if (callback == P02S_CB2_PARTY && frame % 120U == 0U) {
             key = QOL_KEY_A;
+        } else if (!f_live_field(core) && frame % 120U == 0U) {
+            /* Native post-Summary replacement text has its own callback,
+             * observed as 0811CF35 in run 34697100492. B advances that text
+             * without confirming a new party/item selection. */
+            key = QOL_KEY_B;
         }
         b_frame(core, key);
         if (u_complete(core, selected, defuse) && f_live_field(core)) {

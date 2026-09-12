@@ -2067,3 +2067,13 @@ Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411`
 - Files changed: Python/test、2runの原本/Actions/checkpoint、probe_retention、logs。
 - Commit: この追記を含むcommit。active baseline/ROM/旧成功は変更なし。
 - Next: 同じ2Necrozmaケースを正しいpreflight後に初回native実行。Crowned/取消/generic FORM/P07を再実行しない。
+
+## 2026-09-12T13:51:06.072184+00:00
+- Task: USER-MODERNIZATION / native Necrozma post-Summary controller
+- Status: FAIL_RETAINED_CONTROLLER_CORRECTED_NATIVE_PENDING
+- Summary: run34697100492/job103562346678でstrictC、7writeguards、native2processを実行。Nアイテム使用→Necrozma/相方選択→固有フォーム→4枠技選択を実測。選択後の1、2、ポカン表示（cb0811CF35/task0811D259）をcontrollerが送らず停止。Bでnative文字送りを追加し、実選択cursor/画像を記録する。
+- Verify: 18 unit tests PASS、旧4原本HEAD一致、新失敗ZIP978963bytes SHA2568d2e0461baec89b8082ce8af7715efd38e7c4c07525931f4d26381e06100d2a6をGit index byte一致確認。source ZIP全員を実行HEADのGit objectへ照合。
+- Files changed: fusionC、原本/Actions/checkpoint/latest_execution、logs。
+- Commit: この追記を含むcommit。原本実行HEADc38d5dae3ac1c73d65b891e5b2f525267caa7b2d。
+- Counts: これまでnative13attempts=5+4+2+2。別のpreflight失敗は0、static/retentionは0。受入は3/5のまま。
+- Next: 修正後のNecrozma2ケースだけ再実行。通常Save/freshContinueはまだ未受入。Crowned/取消/generic/P07やROM/active baselineを変更しない。
