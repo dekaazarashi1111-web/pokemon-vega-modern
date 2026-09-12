@@ -1,0 +1,48 @@
+name: pr16-fixed-form-controller-materialize
+run-name: Materialize fixed FORM acceptance controller
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - scripts/_materialize_pr16_fixed_form_acceptance_controller.py
+      - .github/workflows/pr16-fixed-form-controller-materialize.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-fixed-form-controller-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Recreate and verify controller
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/_materialize_pr16_fixed_form_acceptance_controller.py
+          test "$(stat -c %s tools/mgba_pr16_fixed_form_acceptance.c)" = 44248
+          echo '7ced1703d920c7a5801a70e516e5da9cbf72f3686c6cb2b0e912becc94cb0357  tools/mgba_pr16_fixed_form_acceptance.c' | sha256sum -c -
+      - name: Commit controller and remove one-shot inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add tools/mgba_pr16_fixed_form_acceptance.c
+          git rm scripts/_materialize_pr16_fixed_form_acceptance_controller.py
+          git rm .github/workflows/pr16-fixed-form-controller-materialize.yml
+          test "$(git diff --cached --name-only | sort | tr '\n' ' ')" = '.github/workflows/pr16-fixed-form-controller-materialize.yml scripts/_materialize_pr16_fixed_form_acceptance_controller.py tools/mgba_pr16_fixed_form_acceptance.c '
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'USER-MODERNIZATION: add fixed FORM acceptance controller'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
