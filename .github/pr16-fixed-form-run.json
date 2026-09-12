@@ -2,8 +2,8 @@
   "schema_version": 1,
   "candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
   "cases": [
-    "zacian-crowned-battle-roundtrip",
-    "zamazenta-crowned-battle-roundtrip"
+    "necrozma-dusk-mane-four-slot-roundtrip",
+    "necrozma-dawn-wings-four-slot-roundtrip"
   ],
-  "reason": "checkpoint 480787d92564108ead27d9d5d9f8ee25c7a2cc96でlive Quest Log記録をnative入力のまま扱うcontrollerへ修正。Crowned2ケースだけで戦闘復帰→装備解除→通常戦闘対照→通常Save→fresh Continueを実行。Necrozmaは原本ownerと一致しないPhoton自動復帰想定を修正するまで反復しない。2ケース成功だけでは5ケースgapを閉じない。"
+  "reason": "checkpoint e9e75acdaf8129dd2cb1756eb0cd91b3309d0801のnative N-Solarizer/N-Lunarizer controllerを初回実行。相方選択、4枠の実技選択、専用技、通常Save/fresh Continue、解除時削除/圧縮、相方返却、2度目Save/fresh Continueを検証。species-only FORMサービスの反復でもPhoton自動復元の仮定でもない。Crowned2成功と既存FORM取消は再実行しない。fixed-form gapは未閉鎖のまま。"
 }
