@@ -268,17 +268,17 @@ int main(int argc,char **argv){
         a_require(!strcmp(hash,after),"generic entry probe changed ROM");return 0;
     }
     /* Acceptance fixture begins; diagnostics do not alter this path. */
-    /* Entry run 34662054112 proved the authored-host ordering. Runtime helper
-     * mapping then showed FINAL_LEAGUE_CLEARED is ledger 20, while ledger 21
-     * is the distinct League II condition. Set only the Shaymin row owner. */
+    /* Entry run 34662054112 proved the authored-host ordering. Collection
+     * Supply unlock_satisfied() requires league_ii_cleared plus either the
+     * vega_hall_of_fame save field or Hall of Fame flag for FINAL_LEAGUE.
+     * Ledger byte 20 is not read by that predicate. Set its exact backings. */
     (void)call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME,0U,0U,0U);
     write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,1U);
-    write8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20,1U);
+    write8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II,1U);
     write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
     a_require(m_flag_value(c)==1U && read8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME)==1U
-        && read8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20)==1U
-        && read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II)==0U
+        && read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II)==1U
         && read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
         "generic FORM pre-map prerequisite fixture differs");
     (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
@@ -290,6 +290,7 @@ int main(int argc,char **argv){
     for(unsigned k=0;k<4U;++k){set_mon_data_u32(c,M_TARGET,13U+k,m_moves[k]);set_mon_data_u32(c,M_TARGET,17U+k,m_pp[k]);}
     set_mon_data_u32(c,M_TARGET,21U,229U);
     a_require(m_flag_value(c)==1U && read8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME)==1U
+        && read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II)==1U
         && read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
         "generic FORM prerequisite fixture was lost during host load");
     unsigned pid=b_data(c,M_TARGET,0U),ot=b_data(c,M_TARGET,1U);

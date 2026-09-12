@@ -281,21 +281,23 @@ class GenericFormCarryTests(unittest.TestCase):
         hof_mirror = before_guard.index(
             "write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,1U)"
         )
-        final_league = before_guard.index(
-            "write8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20,1U)"
+        league_ii = before_guard.index(
+            "write8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II,1U)"
         )
         host_progress = before_guard.index("write8(c,QOL_LEDGER+0x73FU,1U)")
         host_load = before_guard.index(
             "call_preserving(c,0x09220861U,1U,36U,6U,4U)"
         )
         self.assertLess(hof_flag, hof_mirror)
-        self.assertLess(hof_mirror, final_league)
-        self.assertLess(final_league, host_progress)
+        self.assertLess(hof_mirror, league_ii)
+        self.assertLess(league_ii, host_progress)
         self.assertLess(host_progress, host_load)
         self.assertEqual(before_guard.count("call_preserving(c,QOL_SAVE_FINALIZE"), 1)
-        self.assertIn("read8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20)==1U", before_guard)
-        self.assertIn("read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II)==0U", before_guard)
-        self.assertNotIn("write8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II,1U)", before_guard)
+        self.assertEqual(
+            before_guard.count("read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II)==1U"),
+            2,
+        )
+        self.assertNotIn("write8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20,1U)", before_guard)
         for forbidden in ("write8(", "write16(", "write32(",
                           "set_mon_data_u32(", "call_preserving("):
             self.assertNotIn(forbidden, guarded)
