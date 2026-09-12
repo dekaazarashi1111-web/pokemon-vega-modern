@@ -12,6 +12,7 @@ on:
       - scripts/pr16_p03_form_gap_inventory.py
       - tests/test_pr16_fixed_form_contract.py
       - tests/test_pr16_p03_form_gap_inventory.py
+      - content/modernization/pr16_fixed_form_contract.json
 
 permissions:
   contents: read
@@ -73,7 +74,7 @@ jobs:
             --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
             > "$out/private-restore.json"
 
-      - name: Build exact four-route fixed FORM contract
+      - name: Build and drift-check exact four-route fixed FORM contract
         shell: bash
         run: |
           set -euo pipefail
@@ -106,6 +107,7 @@ jobs:
               'native_acceptance_claimed':False,
           },sort_keys=True,indent=2)+'\n')
           PY
+          cmp "$out/contract.json" content/modernization/pr16_fixed_form_contract.json
           git diff --exit-code
 
       - name: Preserve source bindings, never private archive, ROM, or save
@@ -128,6 +130,7 @@ jobs:
               'tools/modernization_p03_stage73_consumers.py',
               'config/modernization_p03_stage73_consumers.json',
               'content/collection_supply_v1/canonical_model.json',
+              'content/modernization/pr16_fixed_form_contract.json',
           ]
           bindings={}
           for name in names:
