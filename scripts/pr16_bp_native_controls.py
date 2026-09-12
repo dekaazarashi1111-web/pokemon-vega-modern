@@ -76,13 +76,19 @@ def oracle(raw):
     rows=[obj for obj in state['objects'] if obj[0]==2]
     need(len(rows)==1,'Factory receptionist missing/duplicate')
     obj=rows[0];need(struct.unpack_from('<HH',obj,4)==(20,19),'Factory receptionist coordinate differs')
-    script=struct.unpack_from('<I',obj,16)[0];at=script-0x08000000
-    need(0<=at<len(raw)-8 and raw[at:at+3]==b'\x6a\x5a\x23' and raw[at+7]==0x27,'Factory lock/face/call/wait binding differs')
-    native=struct.unpack_from('<I',raw,at+3)[0]
-    need(native&1 and 0x08000000<=native<0x0a000000,'Factory native reception pointer differs')
+    script=struct.unpack_from('<I',obj,16)[0]
+    # The later Codex reception owns local2. Native No delegates to Factory.
+    # Do not skip this actual player-facing choice or patch a saved script PC.
+    expected=bytes.fromhex('6a5a0f00d0d93c090905210d8001000601a4da3c09059cda3c09')
+    at=script-0x08000000
+    need(script==0x093CDA80 and raw[at:at+len(expected)]==expected,'Codex-to-Factory reception binding differs')
+    need(raw[0x013CDA9C:0x013CDAA1]==bytes.fromhex('0590933c09'),'native No does not delegate to Factory')
+    need(raw[0x013C9390:0x013C9398]==bytes.fromhex('6a5a2389443c0927'),'delegated Factory reception binding differs')
     return dict(candidate=identity(raw),map=dict(group=96,map=5,local_id=2,x=20,y=19),
-        object_record=obj.hex(),script=script,native_reception=native,script_prefix=raw[at:at+8].hex(),
-        native_trial_selection_expected=True,positive_bp_earning_claimed=False)
+        object_record=obj.hex(),script=script,codex_no_delegate=0x093CDA9C,
+        factory_reception=0x093C9390,native_reception=0x093C4489,script_prefix=expected.hex(),
+        trial_delegate=dict(address=0x092CF790,bytes=raw[0x012CF790:0x012CF79F].hex(),
+            native_rental_acceptance_claimed=False),positive_bp_earning_claimed=False)
 
 
 def run(names,output=OUT):
