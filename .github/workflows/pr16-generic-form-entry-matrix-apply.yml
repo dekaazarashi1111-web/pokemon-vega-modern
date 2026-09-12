@@ -1,4 +1,4 @@
-name: Apply PR16 final-league Shaymin row unlock
+name: Apply PR16 native FORM menu scan
 
 on:
   push:
@@ -22,14 +22,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply exact runtime-mapping patch
+      - name: Apply bounded input-only native menu scan
         shell: bash
         env:
           PATCH_B64: >-
-            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
+            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ùvxJkz31Z7TKBMgc6yxgkiX+FVgad76o3jvxvegtIJYK9/DyPFtZVG4qT58Lr08/V45N/bN4dApfPrPXjp8r2AaehLKmn2LW4Dqx8j3/bS55a0UXl1N1kEP2e0gQ0TSoTdH4LL3NgrE/LWG24mOstD17uKA08OQ4bZJ/10rapv6GlbRVcQe8EVGWHs9nV2HTu3TqDbWCZSjeTVX9TWrp/qp9r3kIUtotP/1Qpswe/jAubvpFRIzrfw2tUyvJC4LZN1EhyXt5WVCBjl/ME6LyhIXTgN8tIJj+HQP+i0Vpoz0JA3yBAZ0QLMOW0oDcGGcfzfyjlX9sjHk4boifpvhpiZ+N8Spy617gIWqZJko/EMe1zyVlPZ3nc3GE8q+m+hXQW71jXYYp+pKU+dySZqKAr+iZqcuaMu/ArvFnzXMnWCKz5Db5cWwqR3w1nh/G4gfkqGoUmnanmSgg/b90Dlm0
         run: |
           set -euo pipefail
-          python3 - <<'PY'
+          python3 - <<'PYCODE'
           import base64
           import hashlib
           import os
@@ -38,30 +38,32 @@ jobs:
           import zlib
 
           expected_before = {
-              "tools/mgba_pr16_generic_form_carry.c": "32542b9c53d93eeefb7487486882bfb0734e1d12eac0e3880b44439a1d192418",
-              "tests/test_pr16_generic_form_carry.py": "d6f148f4c64d043857e44641013cb045808b21a37aad81778b39491398669679",
+              "tools/mgba_pr16_generic_form_carry.c": "1f889e25a9ebc543721fc1e985bdc8b68fb82e23878d067a545f1b4d2b57a763",
+              "scripts/pr16_generic_form_carry.py": "ef569788d11d9ffc4f39b82a7ed17cc0cba10ec1e47cbb64967f95139ed7e430",
+              "tests/test_pr16_generic_form_carry.py": "ef5a16d43c61b444fd7845198641f6fe65ba6cd59c7c229edf7dddaacb356164",
           }
           expected_after = {
-              "tools/mgba_pr16_generic_form_carry.c": "1f889e25a9ebc543721fc1e985bdc8b68fb82e23878d067a545f1b4d2b57a763",
-              "tests/test_pr16_generic_form_carry.py": "ef5a16d43c61b444fd7845198641f6fe65ba6cd59c7c229edf7dddaacb356164",
+              "tools/mgba_pr16_generic_form_carry.c": "274990b12120b7fd653d227a65b87173a61d41e2f9aa1fb4869d5c09509a9aff",
+              "scripts/pr16_generic_form_carry.py": "93887b123489db47472bd8d5d3f0a1867858824aa149f5931ea910088b08bd03",
+              "tests/test_pr16_generic_form_carry.py": "e40e932f13da6c48411bfbee548649c6efaf4381a558c9a63e539fd88f1ebe31",
           }
           for path, digest in expected_before.items():
               actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
               if actual != digest:
                   raise SystemExit(f"preimage differs: {path}: {actual}")
           patch = zlib.decompress(base64.b64decode(os.environ["PATCH_B64"]))
-          if hashlib.sha256(patch).hexdigest() != "776b7b4d8ba5928b11402fea0dee91539a2efcffa24661a98894cd92d03d2b64":
+          if hashlib.sha256(patch).hexdigest() != "25ba5d62212cfdc52a19912f7f68ff842e98975ed814ba8b5d5e61b77f3e0acf":
               raise SystemExit("embedded patch digest differs")
           subprocess.run(["git", "apply", "--check", "-"], input=patch, check=True)
           subprocess.run(["git", "apply", "-"], input=patch, check=True)
           for path, digest in expected_after.items():
               actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
               if actual != digest:
-                  raise SystemExit(f"postimage differs: {path}: {actual}")
+                  raise SystemExit(f"postimage differs* {path}: {actual}")
           changed = set(subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines())
           if changed != set(expected_after):
               raise SystemExit(f"unexpected changed paths: {sorted(changed)}")
-          PY
+          PYCODE
       - name: Run focused tests
         shell: bash
         run: |
@@ -69,13 +71,13 @@ jobs:
           python3 -m py_compile scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
           python3 -m unittest discover -s tests -p 'test_pr16_generic_form_carry.py' -v
           git diff --check
-      - name: Commit one source checkpoint
+      - name: Commit native menu scan checkpoint
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add tools/mgba_pr16_generic_form_carry.c tests/test_pr16_generic_form_carry.py
+          git add tools/mgba_pr16_generic_form_carry.c scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
           git diff --cached --check
-          git commit -m "USER-MODERNIZATION: unlock final-league Shaymin row"
+          git commit -m "USER-MODERNIZATION: scan native FORM menu for Shaymin"
           git push origin "HEAD:${GITHUB_REF_NAME}"
