@@ -237,6 +237,9 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertIn("#define M_ROWS_PER_PAGE 5U", text)
         self.assertIn("pending==M_FORM_INDEX", text)
         self.assertIn("static void m_open_form_row", text)
+        self.assertIn("static bool m_native_form_terminal", text)
+        self.assertIn("if(++terminal_frames==12U)return false;", text)
+        self.assertIn("generic form index absent before native terminal item", text)
         self.assertIn("read8(c,M_PARTY_SLOT)==1U", text)
         scan = text.split("static void m_find_form", 1)[1].split(
             "static struct MTrace m_service", 1

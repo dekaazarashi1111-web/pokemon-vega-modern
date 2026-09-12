@@ -82,13 +82,24 @@ static void m_waitmenu(struct mCore *c,unsigned mode,unsigned page,const char *p
     for(unsigned f=0;f<1800U;++f){if(m_menu(c,mode,page)){b_frames_run(c,0,30);return;}b_frame(c,0);}
     m_shot(prefix,round,label);m_state(c,label);a_die("generic physical form service menu absent");
 }
-static void m_waitparty(struct mCore *c,const char *prefix,unsigned round){
+static bool m_native_form_terminal(struct mCore *c,unsigned page){
+    return b_field(c) && read16(c,M_STATE+8U)==2U
+        && read8(c,M_STATE+18U)==3U && read8(c,M_STATE+20U)==3U
+        && read8(c,M_STATE+19U)==2U && read8(c,M_STATE+21U)==page
+        && read8(c,M_STATE+22U)==0xFFU;
+}
+static bool m_waitparty(struct mCore *c,const char *prefix,unsigned round,unsigned page){
+    unsigned terminal_frames=0U;
     for(unsigned f=0;f<1800U;++f){
-        if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY){b_frames_run(c,0,180);return;}
+        if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY){b_frames_run(c,0,180);return true;}
+        if(f>=30U && m_native_form_terminal(c,page)){
+            if(++terminal_frames==12U)return false;
+        }else terminal_frames=0U;
         b_frame(c,0);
     }
     m_shot(prefix,round,"probe-party-timeout");m_state(c,"probe-party-timeout");
     a_die("generic authored host did not open native party selection");
+    return false;
 }
 static void m_open_form_row(struct mCore *c,unsigned page,unsigned cursor,
     const char *prefix,unsigned round){
@@ -130,7 +141,12 @@ static void m_find_form(struct mCore *c,const char *prefix,unsigned round,struct
         a_require(m_menu(c,2U,page) && read8(c,M_CURSOR)==cursor,
             "generic form scan row precondition differs");
         unsigned selected=b_frames+1U;
-        b_press(c,QOL_KEY_A,30U);m_waitparty(c,prefix,round);++probes;
+        b_press(c,QOL_KEY_A,30U);
+        if(!m_waitparty(c,prefix,round,page)){
+            fprintf(stderr,"GENFORM terminal page=%u cursor=%u probes=%u\n",page,cursor,probes);
+            a_die("generic form index absent before native terminal item");
+        }
+        ++probes;
         unsigned pending=read16(c,M_STATE+10U),result=read16(c,M_STATE+8U);
         fprintf(stderr,"GENFORM probe=%u page=%u cursor=%u pending=%u result=%u\n",
             probes,page,cursor,pending,result);
