@@ -1,0 +1,157 @@
+name: pr16-fixed-form-acceptance
+run-name: Fixed FORM five-case physical acceptance (not release promotion)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-fixed-form-acceptance.yml
+      - scripts/pr16_fixed_form_acceptance.py
+      - tools/mgba_pr16_fixed_form_acceptance.c
+      - tests/test_pr16_fixed_form_acceptance.py
+permissions:
+  contents: read
+concurrency:
+  group: pr16-fixed-form-acceptance
+  cancel-in-progress: false
+jobs:
+  fixed-form-native:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reserve original evidence and snapshot exact tracked sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir .local/pr16-fixed-form-acceptance-evidence -p
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-fixed-form-acceptance-evidence'
+          names=[
+            'AGENTS.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md',
+            'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
+            'scripts/pr16_fixed_form_acceptance.py','tools/mgba_pr16_fixed_form_acceptance.c',
+            'tests/test_pr16_fixed_form_acceptance.py','.github/workflows/pr16-fixed-form-acceptance.yml',
+            'scripts/pr16_fixed_form_contract.py','content/modernization/pr16_fixed_form_contract.json',
+            'content/modernization/p08_remaining_work.json',
+            'manifests/move_ids.csv','manifests/item_ids.csv',
+          ]
+          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
+          bindings={}
+          with zipfile.ZipFile(out/'entry-sources.zip','w',zipfile.ZIP_DEFLATED) as archive:
+              for name in names:
+                  if name not in tracked and name=='manifests/item_ids.csv':
+                      continue
+                  assert name in tracked
+                  p=root/name; data=p.read_bytes(); data.decode('utf-8')
+                  assert not p.is_symlink() and b'\0' not in data
+                  archive.writestr(name,data)
+                  bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'entry-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY
+      - name: Reject malformed five-case receipts before private setup
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p 'test_pr16_fixed_form_acceptance.py' -v \
+            > .local/pr16-fixed-form-acceptance-evidence/unit.log 2>&1
+      - name: Restore pinned compiler and unchanged Stage84 build input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-acceptance-evidence
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore hash-pinned V4, learnsets and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-acceptance-evidence
+          assets=.local/pr16-fixed-form-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          raw=(root/'.local/pr16-fixed-form-inputs'/name).read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(root/'.local/pr16-fixed-form-inputs'/name) as z:
+              data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():
+              assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          record={'archive':name,'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-fixed-form-acceptance-evidence/charmap-binding.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Rebuild exact parent without rerunning accepted P03 or P07 cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-acceptance-evidence
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Run five independent fixed-form lifecycle processes
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-acceptance-evidence
+          python3 scripts/pr16_fixed_form_acceptance.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: Verify artifact is evidence-only, never a ROM or save bundle
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,zipfile
+          roots=[pathlib.Path('.local/pr16-fixed-form-acceptance-evidence'),pathlib.Path('.local/pr16-fixed-form-acceptance')]
+          forbidden={'.gba','.srm','.sav','.ips','.ups','.bps','.bin'}
+          for root in roots:
+              if not root.exists(): continue
+              for p in root.rglob('*'):
+                  assert not p.is_symlink()
+                  if not p.is_file(): continue
+                  assert p.suffix.lower() not in forbidden
+                  if p.suffix=='.zip':
+                      assert p.name in {'entry-sources.zip','sources.zip','generated-controller.zip'}
+                      with zipfile.ZipFile(p) as z:
+                          for n in z.namelist():
+                              q=pathlib.PurePosixPath(n)
+                              assert not q.is_absolute() and '..' not in q.parts
+                              assert q.suffix.lower() not in forbidden
+                              assert not n.startswith(('userfile/','inputs/private/','.local/'))
+                              data=z.read(n);data.decode('utf-8');assert b'\0' not in data
+          PY
+      - name: Upload raw results even on compile, guard or native failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-fixed-form-acceptance
+          path: |
+            .local/pr16-fixed-form-acceptance-evidence/
+            .local/pr16-fixed-form-acceptance/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
