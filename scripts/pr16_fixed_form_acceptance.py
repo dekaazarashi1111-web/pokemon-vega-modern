@@ -200,13 +200,14 @@ def selected_cases(names: list[str] | None) -> list[str]:
 
 
 def verify_fusion_ids(root: Path) -> None:
-    for name, expected_ids in (
-        ('item_ids.csv', {'ITEM_N_SOLARIZER': 697, 'ITEM_N_LUNARIZER': 698}),
-        ('species_ids.csv', {'SPECIES_SOLGALEO': 1189, 'SPECIES_LUNALA': 1190}),
+    for name, symbol_column, expected_ids in (
+        ('item_ids.csv', 'cfru_symbol', {'ITEM_N_SOLARIZER': 697, 'ITEM_N_LUNARIZER': 698}),
+        ('species_ids.csv', 'dpe_symbol', {'SPECIES_SOLGALEO': 1189, 'SPECIES_LUNALA': 1190}),
     ):
         rows = list(csv.DictReader(io.StringIO((root / 'manifests' / name).read_text())))
+        need(rows and all('id' in r and symbol_column in r for r in rows), 'fusion manifest schema differs: ' + name)
         for symbol, value in expected_ids.items():
-            found = [r for r in rows if r['cfru_symbol'] == symbol]
+            found = [r for r in rows if r[symbol_column] == symbol]
             need(len(found) == 1 and found[0]['id'] == str(value), 'fusion manifest identity differs: ' + symbol)
 
 

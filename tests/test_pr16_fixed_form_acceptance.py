@@ -208,7 +208,7 @@ class FixedFormAcceptanceTests(unittest.TestCase):
             item = root / 'manifests/item_ids.csv'
             species = root / 'manifests/species_ids.csv'
             item.write_text('id,cfru_symbol\n697,ITEM_N_SOLARIZER\n698,ITEM_N_LUNARIZER\n')
-            species.write_text('id,cfru_symbol\n1189,SPECIES_SOLGALEO\n1190,SPECIES_LUNALA\n')
+            species.write_text('id,dpe_symbol\n1189,SPECIES_SOLGALEO\n1190,SPECIES_LUNALA\n')
             m.verify_fusion_ids(root)
             item.write_text(item.read_text() + '697,ITEM_N_SOLARIZER\n')
             with self.assertRaises(ValueError):
@@ -216,6 +216,9 @@ class FixedFormAcceptanceTests(unittest.TestCase):
             item.write_text('id,cfru_symbol\n0,ITEM_N_SOLARIZER\n698,ITEM_N_LUNARIZER\n')
             with self.assertRaises(ValueError):
                 m.verify_fusion_ids(root)
+
+    def test_fusion_ids_match_actual_repository_manifests(self):
+        m.verify_fusion_ids(ROOT)
 
     def test_historical_probe_is_not_accepted(self):
         name = next(iter(m.CASES))

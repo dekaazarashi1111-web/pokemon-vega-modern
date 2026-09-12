@@ -4785,3 +4785,13 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - Network: checkoutのみ。新規emulator0。Crowned成功と取消成功を再実行しない。
 - Prior attempt: run34696667882はsource/checks成功後、botのworkflow更新pushだけが拒否されcommit未反映。今回はsource-onlyに限定し、workflow権限を持つGitHub connectorとbotを混同しない。
 - Next: .github/pr16-fixed-form-run.jsonをNecrozma2ケースへ更新し1回実行、raw originalを判定。3/5という現行受入は変更せずP03 gap/release-ready=false。
+
+## 2026-09-12T13:38:59.809644+00:00
+- Task: USER-MODERNIZATION / fixed fusion manifest preflight correction and probe preservation
+- Status: SOURCE_PREFLIGHT_FIXED_NATIVE_PENDING
+- Summary: run34696793115はspecies manifestがdpe_symbolなのにcfru_symbolを参照してsetupで停止。新規native processは0。実manifestsを直接検査する18番目のunit testを追加し、CFRU item/DPE species別列へ修正。nativeCは未実行であり合格扱いしない。
+- Evidence: 初期diagnostic run34681725548（expiry2026-10-12T07:50:56Z）と今回preflight失敗原本をSHA/Actions/ソース付き保持。既存追跡ZIPをdigestで照合して重複保存しない。force-add後Git index byte一致確認。
+- Verify: 18 focused tests PASS、既存4原本HEAD一致。P03現行3/5、native gap/release false。
+- Files changed: Python/test、2runの原本/Actions/checkpoint、probe_retention、logs。
+- Commit: この追記を含むcommit。active baseline/ROM/旧成功は変更なし。
+- Next: 同じ2Necrozmaケースを正しいpreflight後に初回native実行。Crowned/取消/generic FORM/P07を再実行しない。
