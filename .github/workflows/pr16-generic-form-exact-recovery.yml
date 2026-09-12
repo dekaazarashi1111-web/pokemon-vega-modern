@@ -1,0 +1,273 @@
+name: Recover exact PR16 native FORM patch
+run-name: Recover and verify exact rejected FORM patch
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-exact-recovery.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-generic-form-exact-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Recover exact patch bytes and authoritative postimages
+        shell: bash
+        env:
+          BROKEN_WORKFLOW_BLOB: 520f756df53f4f9c369e15db80aacb2afebcedcb
+          PREIMAGE_COMMIT: 1413e0a7381094d86d2ca1d4e4ef3ebfa5c893d0
+          EXPECTED_PATCH_SHA256: 25ba5d62212cfdc52a19912f7f68ff842e98975ed814ba8b5d5e61fb7f3e0cf
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pr16-form-preimage
+          git worktree add --detach /tmp/pr16-form-preimage "$PREIMAGE_COMMIT"
+
+          python3 - <<'PY'
+          import base64
+          import bz2
+          import gzip
+          import hashlib
+          import itertools
+          import lzma
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import zlib
+
+          blob = os.environ["BROKEN_WORKFLOW_BLOB"]
+          expected_patch_sha = os.environ["EXPECTED_PATCH_SHA256"]
+          raw = subprocess.check_output(["git", "cat-file", "blob", blob])
+          actual_blob = hashlib.sha1(f"blob {len(raw)}\0".encode() + raw).hexdigest()
+          if actual_blob != blob:
+              raise SystemExit(f"broken workflow blob differs: {actual_blob} != {blob}")
+
+          recorded = re.findall(rb"PATCH_SHA256\s*:\s*['\"]?([0-9a-f]{64})", raw)
+          if recorded and expected_patch_sha.encode() not in recorded:
+              raise SystemExit(f"embedded patch digest differs: {recorded!r}")
+
+          marker = b"PATCH_B64: >-"
+          marker_at = raw.find(marker)
+          if marker_at < 0:
+              raise SystemExit("PATCH_B64 folded-block marker is absent")
+          line_start = raw.rfind(b"\n", 0, marker_at) + 1
+          marker_line_end = raw.find(b"\n", marker_at)
+          if marker_line_end < 0:
+              raise SystemExit("PATCH_B64 marker has no following line")
+          marker_line = raw[line_start:marker_line_end]
+          marker_indent = len(marker_line) - len(marker_line.lstrip(b" "))
+
+          payload_lines = []
+          for line in raw[marker_line_end + 1:].splitlines():
+              if not line.strip():
+                  if payload_lines:
+                      break
+                  continue
+              indent = len(line) - len(line.lstrip(b" "))
+              if indent <= marker_indent:
+                  break
+              payload_lines.append(line.strip())
+          payload = b"".join(payload_lines)
+          if not payload:
+              raise SystemExit("embedded PATCH_B64 payload is empty")
+
+          alphabet = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
+          allowed = set(alphabet)
+          invalid = [index for index, value in enumerate(payload) if value not in allowed]
+          if not 1 <= len(invalid) <= 3:
+              raise SystemExit(
+                  f"expected one to three invalid base64 bytes, found {len(invalid)}: {invalid[:20]}"
+              )
+
+          def decoded_variants(encoded):
+              packed = base64.b64decode(encoded, validate=True)
+              yield "base64", packed
+              for name, decoder in (
+                  ("zlib", zlib.decompress),
+                  ("gzip", gzip.decompress),
+                  ("bz2", bz2.decompress),
+                  ("lzma", lzma.decompress),
+              ):
+                  try:
+                      yield name, decoder(packed)
+                  except Exception:
+                      pass
+
+          recovered = None
+          recovery = None
+          for replacements in itertools.product(alphabet, repeat=len(invalid)):
+              candidate = bytearray(payload)
+              for index, replacement in zip(invalid, replacements):
+                  candidate[index] = replacement
+              try:
+                  variants = decoded_variants(bytes(candidate))
+                  for codec, patch in variants:
+                      if hashlib.sha256(patch).hexdigest() == expected_patch_sha:
+                          recovered = patch
+                          recovery = (replacements, codec)
+                          break
+              except Exception:
+                  pass
+              if recovered is not None:
+                  break
+          if recovered is None:
+              raise SystemExit("no invalid-byte replacement reproduces the expected patch digest")
+
+          paths = set()
+          for line in recovered.splitlines():
+              if line.startswith(b"+++ b/"):
+                  paths.add(line[6:].decode("utf-8"))
+          expected_paths = {
+              "tools/mgba_pr16_generic_form_carry.c",
+              "scripts/pr16_generic_form_carry.py",
+              "tests/test_pr16_generic_form_carry.py",
+          }
+          if paths != expected_paths:
+              raise SystemExit(f"recovered patch paths differ: {sorted(paths)}")
+
+          patch_path = Path("/tmp/pr16-exact-native-form.patch")
+          patch_path.write_bytes(recovered)
+          replacements, codec = recovery
+          Path("/tmp/pr16-recovery.env").write_text(
+              "RECOVERED_INVALID_OFFSETS=" + ",".join(map(str, invalid)) + "\n"
+              + "RECOVERED_BYTES=" + ",".join(f"0x{x:02x}" for x in replacements) + "\n"
+              + f"RECOVERED_CODEC={codec}\n"
+              + f"RECOVERED_PATCH_SHA256={expected_patch_sha}\n",
+              encoding="utf-8",
+          )
+          print(Path("/tmp/pr16-recovery.env").read_text(), end="")
+          PY
+
+          cat > /tmp/preimages.gitblob <<'EOF'
+          c22866860b67b353b0d09bbcb8da84b47b9b363f  tools/mgba_pr16_generic_form_carry.c
+          74ef73488f48b705c69d528672f2aaa13323d910  scripts/pr16_generic_form_carry.py
+          84f7fbaac6ede4bc9500313d615e33ad83ce20c1  tests/test_pr16_generic_form_carry.py
+          EOF
+          while read -r expected path; do
+            actual="$(git -C /tmp/pr16-form-preimage hash-object "$path")"
+            test "$actual" = "$expected"
+          done < /tmp/preimages.gitblob
+
+          git -C /tmp/pr16-form-preimage apply --check --whitespace=error-all /tmp/pr16-exact-native-form.patch
+          git -C /tmp/pr16-form-preimage apply --whitespace=error-all /tmp/pr16-exact-native-form.patch
+          test "$(git -C /tmp/pr16-form-preimage diff --name-only | sort)" = "$(printf '%s\n' scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py tools/mgba_pr16_generic_form_carry.c | sort)"
+
+          sha256sum \
+            /tmp/pr16-form-preimage/tools/mgba_pr16_generic_form_carry.c \
+            /tmp/pr16-form-preimage/scripts/pr16_generic_form_carry.py \
+            /tmp/pr16-form-preimage/tests/test_pr16_generic_form_carry.py \
+            | tee /tmp/pr16-exact-postimages.sha256
+
+          install -m 0644 /tmp/pr16-form-preimage/tools/mgba_pr16_generic_form_carry.c tools/mgba_pr16_generic_form_carry.c
+          install -m 0644 /tmp/pr16-form-preimage/scripts/pr16_generic_form_carry.py scripts/pr16_generic_form_carry.py
+          install -m 0644 /tmp/pr16-form-preimage/tests/test_pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
+
+          python3 - <<'PY'
+          import subprocess
+          expected = {
+              "tools/mgba_pr16_generic_form_carry.c",
+              "scripts/pr16_generic_form_carry.py",
+              "tests/test_pr16_generic_form_carry.py",
+          }
+          changed = set(subprocess.check_output(
+              ["git", "diff", "--name-only", "--"], text=True
+          ).splitlines())
+          if changed != expected:
+              raise SystemExit(f"exact recovered postimages did not replace all three files: {sorted(changed)}")
+          PY
+          git diff --stat -- \
+            tools/mgba_pr16_generic_form_carry.c \
+            scripts/pr16_generic_form_carry.py \
+            tests/test_pr16_generic_form_carry.py
+
+      - name: Validate exact recovered implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile \
+            scripts/pr16_generic_form_carry.py \
+            tests/test_pr16_generic_form_carry.py
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_pr16_generic_form_carry.py' \
+            -v
+          git diff --check
+
+      - name: Record exact recovery checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          source /tmp/pr16-recovery.env
+          POST_C="$(sha256sum tools/mgba_pr16_generic_form_carry.c | cut -d' ' -f1)"
+          POST_PY="$(sha256sum scripts/pr16_generic_form_carry.py | cut -d' ' -f1)"
+          POST_TEST="$(sha256sum tests/test_pr16_generic_form_carry.py | cut -d' ' -f1)"
+          cat >> design/run_log.md <<EOF
+
+          ## 2026-09-12 — exact recovery of rejected native FORM patch
+
+          - Recovered rejected workflow blob 520f756df53f4f9c369e15db80aacb2afebcedcb by replacing invalid base64 byte offset(s) ${RECOVERED_INVALID_OFFSETS} with ${RECOVERED_BYTES}; codec ${RECOVERED_CODEC}.
+          - Required recovered patch SHA-256 ${RECOVERED_PATCH_SHA256} and exactly the controller, parser, and focused-test paths.
+          - Applied the recovered patch to authoritative preimage commit 1413e0a7381094d86d2ca1d4e4ef3ebfa5c893d0, then copied the exact postimages over the provisional reconstruction.
+          - Exact postimages: C ${POST_C}; Python ${POST_PY}; tests ${POST_TEST}.
+          - Python compilation, all focused tests, and git diff --check passed in Actions run ${GITHUB_RUN_ID}.
+          - Physical ROM acceptance remains pending and is not promoted by this source-recovery run.
+          EOF
+          cat >> design/version_log.md <<EOF
+
+          ## 2026-09-12 — exact native FORM patch postimages
+
+          - Replaced the provisional behavior-equivalent reconstruction with exact files recovered from the rejected compressed patch payload.
+          - Bound recovery to patch SHA-256 ${RECOVERED_PATCH_SHA256}, authoritative preimage Git blobs, three allowed paths, and the focused unit contract.
+          EOF
+          git diff --check
+
+      - name: Commit exact postimages and remove recovery workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/pr16-generic-form-exact-recovery.yml
+          git add -- \
+            tools/mgba_pr16_generic_form_carry.c \
+            scripts/pr16_generic_form_carry.py \
+            tests/test_pr16_generic_form_carry.py \
+            design/run_log.md \
+            design/version_log.md
+          python3 - <<'PY'
+          import subprocess
+          expected = {
+              ".github/workflows/pr16-generic-form-exact-recovery.yml",
+              "design/run_log.md",
+              "design/version_log.md",
+              "scripts/pr16_generic_form_carry.py",
+              "tests/test_pr16_generic_form_carry.py",
+              "tools/mgba_pr16_generic_form_carry.c",
+          }
+          staged = set(subprocess.check_output(
+              ["git", "diff", "--cached", "--name-only"], text=True
+          ).splitlines())
+          if staged != expected:
+              raise SystemExit(f"unexpected staged paths: {sorted(staged)}")
+          if subprocess.check_output(["git", "diff", "--name-only"], text=True).splitlines():
+              raise SystemExit("unexpected unstaged tracked paths")
+          PY
+          git diff --cached --check
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'USER-MODERNIZATION: restore exact native FORM scan'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
