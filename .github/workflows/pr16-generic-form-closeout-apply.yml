@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo '3aa3274fad8dd9a6b6ba8c2148ea38a1218ba6c7795f4a5da7388ae7df48b9c5  patches/pr16-generic-form-closeout.patch' | sha256sum -c -
+          test "$(git hash-object patches/pr16-generic-form-closeout.patch)" = 19e847fd295df9019bb569e22b59914995a074cb
           python3 - <<'PY'
           from hashlib import sha256
           from pathlib import Path
