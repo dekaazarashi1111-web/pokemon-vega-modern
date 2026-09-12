@@ -6,6 +6,9 @@ run-name: Real non-Rotom Shaymin form carry, cancel, save and cold Continue
 # 74e08d06c3ae14a164b53317c2e1f9b8887991f4d663fd14aac4d5785951d239.
 # Runtime maps FINAL_LEAGUE_CLEARED to ledger 20 and League II to ledger 21;
 # acceptance sets only final-league before the one pre-map finalize.
+# Bounded native menu scan source: commit 7a380d43a086ea4110c4f82736968f50f0f6e28c.
+# Dedicated compile/unit verification: run 34669671377, 13 tests PASS.
+# This workflow-only checkpoint triggers physical acceptance without changing product sources.
 
 on:
   workflow_dispatch:
