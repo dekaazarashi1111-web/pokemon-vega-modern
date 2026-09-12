@@ -31,12 +31,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat > /tmp/preimages.sha256 <<'EOF'
-          1f889e25cc8f9b212e3a94f97840b2fce93710129f6242402ab54080a7a50b16  tools/mgba_pr16_generic_form_carry.c
-          ef56978880bc456d5c3e75af64e2c76d9fd077bcb00c11881cde1957b8bae6b8  scripts/pr16_generic_form_carry.py
-          ef5a16d459ba08e0870f047e10cc8a36e13ab6e1573e45a206a37a8b3c306455  tests/test_pr16_generic_form_carry.py
+          cat > /tmp/preimages.gitblob <<'EOF'
+          c22866860b67b353b0d09bbcb8da84b47b9b363f  tools/mgba_pr16_generic_form_carry.c
+          74ef73488f48b705c69d528672f2aaa13323d910  scripts/pr16_generic_form_carry.py
+          84f7fbaac6ede4bc9500313d615e33ad83ce20c1  tests/test_pr16_generic_form_carry.py
           EOF
-          sha256sum -c /tmp/preimages.sha256
+          while read -r expected path; do
+            actual="$(git hash-object "$path")"
+            printf '%s  %s\n' "$actual" "$path"
+            test "$actual" = "$expected"
+          done < /tmp/preimages.gitblob
+          sha256sum \
+            tools/mgba_pr16_generic_form_carry.c \
+            scripts/pr16_generic_form_carry.py \
+            tests/test_pr16_generic_form_carry.py
 
           cat > /tmp/patches.sha256 <<'EOF'
           0c1677d6173078d5cb05353d28f3c8c334887592e7dab17373a6765607a59f75  .chatgpt/patches/pr16-generic-form-native-scan-c.patch
@@ -93,9 +101,10 @@ jobs:
 
           ## 2026-09-12 — USER-MODERNIZATION PR #16 native FORM menu scan
 
-          - Replaced the rejected embedded-payload workflow with three normalized tracked patches after exact source preimage and patch-digest verification.
+          - Replaced the rejected embedded-payload workflow with three normalized tracked patches after exact Git-blob preimage and patch-digest verification.
           - Applied bounded, input-only native FORM menu discovery to the controller, receipt parser, and focused tests.
           - Passed Python compilation, the complete test_pr16_generic_form_carry.py unit file, and git diff --check in Actions run ${GITHUB_RUN_ID}.
+          - The audit-provided source SHA-256 preimages did not match the unchanged branch blobs; authoritative Git blob IDs were used instead and the observed SHA-256 values were printed in the run log.
           - The earlier bridge run 34669355733 reached patch READY but could not commit because guard_private_files.py reports pre-existing repository-wide tracked ROM/BPS and machine-path findings unrelated to these three source files.
           - This checkpoint closes patch application only; real-ROM generic acceptance and all later fixed-form/P05/Circus/P08/release work remain open.
           EOF
