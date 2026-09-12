@@ -236,9 +236,16 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertIn("#define M_MAX_PAGES 20U", text)
         self.assertIn("#define M_ROWS_PER_PAGE 5U", text)
         self.assertIn("pending==M_FORM_INDEX", text)
-        self.assertIn("b_press(c,QOL_KEY_B,180)", text)
-        self.assertIn("m_waitmenu(c,2U,page", text)
+        self.assertIn("static void m_open_form_row", text)
         self.assertIn("read8(c,M_PARTY_SLOT)==1U", text)
+        scan = text.split("static void m_find_form", 1)[1].split(
+            "static struct MTrace m_service", 1
+        )[0]
+        self.assertIn("b_press(c,QOL_KEY_B,180U);b_wait(c);", scan)
+        self.assertIn("m_open_form_row(c,page,cursor,prefix,round)", scan)
+        self.assertIn("b_position(c,1U,36U,6U,4U)", scan)
+        self.assertNotIn("probe-return-timeout", scan)
+        self.assertNotIn("m_waitmenu(c,2U,page", scan)
         self.assertNotIn("#define M_PAGE ", text)
         self.assertNotIn("#define M_PAGE_CURSOR ", text)
         self.assertIn("a_guard(c);a_require(b_save(c)", text)
