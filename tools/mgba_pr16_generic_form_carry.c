@@ -174,10 +174,10 @@ static struct MTrace m_service(struct mCore *c,const struct MCase *v,const char 
     b_press(c,QOL_KEY_A,60);m_waitmenu(c,2U,0U,prefix,round,"forms-timeout");t.service=b_frames;
     m_shot(prefix,round,"forms-page-0");m_state(c,"forms-page-0");m_find_form(c,prefix,round,&t);
     a_require(read16(c,M_STATE+10U)==M_FORM_INDEX && read16(c,M_STATE+8U)==20U,"pending generic form differs");
-    if(v->action==1U){b_press(c,QOL_KEY_B,180);b_wait(c);t.returned=b_frames;t.species_after=b_data(c,M_TARGET,11U);return t;}
+    if(v->action==1U){b_press(c,QOL_KEY_B,180);b_wait(c);t.returned=b_frames;return t;}
     for(unsigned k=0;k<8U && read8(c,M_PARTY_SLOT)!=1U;++k)b_press(c,QOL_KEY_DOWN,30);
     a_require(read8(c,M_PARTY_SLOT)==1U,"generic native picker did not select second individual");
-    t.selection=b_frames+1U;b_press(c,QOL_KEY_A,180);b_wait(c);t.returned=b_frames;t.species_after=b_data(c,M_TARGET,11U);
+    t.selection=b_frames+1U;b_press(c,QOL_KEY_A,180);b_wait(c);t.returned=b_frames;
     m_shot(prefix,round,"returned");m_state(c,"returned");return t;
 }
 static void m_check(struct mCore *c,unsigned species,const uint8_t *decoy,unsigned pid,unsigned ot){
@@ -303,7 +303,9 @@ int main(int argc,char **argv){
         result=read16(c,M_STATE+8U);unsigned autos=v->action==0U?1U:0U;
         a_require(result==(v->action==0U?0U:20U),"generic physical form result differs");
         a_require(read32(c,P03_SAVE_COUNTER)==counter+autos,"generic form automatic persistence differs");expected_auto+=autos;
-        a_restore(c,&saved);final_species=v->action==0U?(r==0U?M_TARGET_SPECIES:M_BASE_SPECIES):M_BASE_SPECIES;
+        /* End the native-input guard before the read-only GetMonData call. */
+        a_restore(c,&saved);traces[r].species_after=b_data(c,M_TARGET,11U);
+        final_species=v->action==0U?(r==0U?M_TARGET_SPECIES:M_BASE_SPECIES):M_BASE_SPECIES;
         a_require(traces[r].species_after==final_species,"generic observed species differs");m_check(c,final_species,decoy,pid,ot);
         uint8_t party[200];b_copy(c,QOL_PLAYER_PARTY,party,200U);
         a_guard(c);a_require(b_save(c),"generic form normal Start Save failed");traces[r].saved=b_frames;

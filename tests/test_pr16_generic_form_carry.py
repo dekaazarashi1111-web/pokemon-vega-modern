@@ -255,6 +255,14 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertNotIn("m_waitmenu(c,2U,page", scan)
         self.assertNotIn("#define M_PAGE ", text)
         self.assertNotIn("#define M_PAGE_CURSOR ", text)
+        service = text.split("static struct MTrace m_service", 1)[1].split(
+            "static void m_check", 1
+        )[0]
+        self.assertNotIn("b_data(", service)
+        self.assertIn(
+            "a_restore(c,&saved);traces[r].species_after=b_data(c,M_TARGET,11U);",
+            text,
+        )
         self.assertIn("a_guard(c);a_require(b_save(c)", text)
         self.assertIn("b_continue(c)", text)
         self.assertIn("call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME", text)
