@@ -1,0 +1,152 @@
+"""Source-only adversarial validator tests. These are NOT emulator receipts."""
+import copy
+import importlib.util
+import json
+from pathlib import Path
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location('fixed_acceptance', ROOT / 'scripts/pr16_fixed_form_acceptance.py')
+m = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(m)
+# Synthetic oracle inputs for validator tests; runtime resolves actual IDs
+# from the canonical manifest and preserves that manifest in sources.zip.
+AUX = {'photon_geyser': 733, 'iron_head': 442}
+
+
+def sample(name):
+    row = m.expected(name, AUX)
+    row.update(automatic_saves=0, save_counter_before=2,
+               save_counter_after=2 + row['manual_saves'], total_frames=100,
+               witness={key: 0 for key in m.WITNESS})
+    if row['kind'] == 'necrozma-roundtrip':
+        order = ('interaction', 'first_save', 'first_continue', 'menu', 'party',
+                 'selection', 'transition', 'second_save', 'second_continue')
+    elif row['kind'] == 'necrozma-decline':
+        order = ('interaction', 'decline_dusk', 'menu', 'party', 'decline_dawn')
+    else:
+        order = ('project_move_seen', 'project_move_spent', 'first_battle_exit',
+                 'item_replaced', 'second_battle', 'second_battle_exit',
+                 'first_save', 'first_continue')
+    for i, key in enumerate(order, 1):
+        row['witness'][key] = i * 10
+    row['witness'][order[-1]] = 100
+    if row['kind'] == 'necrozma-roundtrip':
+        row['witness']['reversion'] = row['witness']['transition']
+    elif row['kind'] == 'crowned-battle-roundtrip':
+        row['witness']['first_battle'] = row['witness']['project_move_seen']
+    return row
+
+
+class FixedFormAcceptanceTests(unittest.TestCase):
+    def validate(self, row, code=0, stderr=b''):
+        return m.validate(json.dumps(row).encode(), stderr, row['case'], code, AUX)
+
+    def test_exact_five_case_set(self):
+        self.assertEqual(len(m.CASES), 5)
+        for name in m.CASES:
+            with self.subTest(name=name):
+                self.assertEqual(self.validate(sample(name)), sample(name))
+
+    def test_each_required_field_is_fail_closed(self):
+        for name in m.CASES:
+            for key in sample(name):
+                row = sample(name)
+                del row[key]
+                with self.subTest(case=name, key=key), self.assertRaises((ValueError, KeyError)):
+                    m.validate(json.dumps(row).encode(), b'', name, 0, AUX)
+
+    def test_no_extra_fields(self):
+        row = sample(next(iter(m.CASES)))
+        row['unreviewed_success'] = True
+        with self.assertRaises(ValueError):
+            self.validate(row)
+
+    def test_strict_boolean_types(self):
+        for name in m.CASES:
+            for key, value in sample(name).items():
+                if type(value) is bool:
+                    row = sample(name)
+                    row[key] = int(value)
+                    with self.subTest(case=name, key=key), self.assertRaises(ValueError):
+                        self.validate(row)
+
+    def test_all_claim_flags_are_fixed(self):
+        for name in m.CASES:
+            for key in (*m.FLAGS, 'aggregate_gap_closed', 'full_p03_acceptance', 'release_ready'):
+                row = sample(name)
+                row[key] = not row[key]
+                with self.subTest(case=name, key=key), self.assertRaises(ValueError):
+                    self.validate(row)
+
+    def test_exit_and_stderr(self):
+        row = sample(next(iter(m.CASES)))
+        for code in (True, False, 0.0, '0', None, -1, 1):
+            with self.subTest(code=code), self.assertRaises(ValueError):
+                self.validate(row, code=code)
+        for stderr in ('', b'mGBA[warning]'):
+            with self.assertRaises(ValueError):
+                self.validate(row, stderr=stderr)
+
+    def test_duplicate_and_nonfinite_json(self):
+        name = next(iter(m.CASES))
+        raw = json.dumps(sample(name)).encode()
+        for bad in (raw[:-1] + b', "status":"PASS"}', raw.replace(b'"total_frames": 100', b'"total_frames": NaN'), raw + b'{}'):
+            with self.assertRaises(ValueError):
+                m.validate(bad, b'', name, 0, AUX)
+        with self.assertRaises(ValueError):
+            m.strict_json(b'{"witness":{"party":1,"party":2}}')
+
+    def test_counters_and_identity(self):
+        for name in m.CASES:
+            for key, value in (('fresh_cores', 99), ('rom_sha256', '0' * 64),
+                               ('save_counter_after', 900), ('total_frames', 0),
+                               ('total_frames', 600001), ('total_frames', True),
+                               ('automatic_saves', 3), ('auxiliary_move', 0)):
+                row = sample(name)
+                row[key] = value
+                with self.subTest(case=name, key=key), self.assertRaises(ValueError):
+                    self.validate(row)
+
+    def test_lifecycle_witnesses(self):
+        for name in m.CASES:
+            original = sample(name)
+            for key, value in original['witness'].items():
+                row = copy.deepcopy(original)
+                row['witness'][key] = 0 if value else 1
+                with self.subTest(case=name, witness=key), self.assertRaises(ValueError):
+                    self.validate(row)
+            row = sample(name)
+            row['witness']['extra'] = 1
+            with self.assertRaises(ValueError):
+                self.validate(row)
+
+    def test_wrong_auxiliary_oracle(self):
+        name = next(iter(m.CASES))
+        with self.assertRaises(ValueError):
+            m.validate(json.dumps(sample(name)).encode(), b'', name, 0, dict(AUX, photon_geyser=734))
+
+    def test_no_partial_or_duplicate_closeout(self):
+        results = [{'name': name} for name in m.CASES]
+        guards = list(m.GUARDS)
+        self.assertTrue(m.complete(results, [], guards, 5))
+        for rows, failures, checks, attempts in (
+            (results[:-1], [], guards, 5),
+            (results[:-1] + results[:1], [], guards, 5),
+            (results, [{'error': 'native failed'}], guards, 5),
+            (results, [], guards[:-1], 5),
+            (results, [], guards, True),
+            (results, [], guards, 4),
+        ):
+            self.assertFalse(m.complete(rows, failures, checks, attempts))
+
+    def test_historical_probe_is_not_accepted(self):
+        name = next(iter(m.CASES))
+        row = sample(name)
+        row.update(status='PASS_DIAGNOSTIC_ONLY', scope='PR16_P03_FIXED_FORM_TRANSITION_NATIVE_PROBE')
+        with self.assertRaises(ValueError):
+            self.validate(row)
+
+
+if __name__ == '__main__':
+    unittest.main()
