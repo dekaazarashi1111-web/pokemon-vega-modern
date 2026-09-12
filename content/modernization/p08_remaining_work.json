@@ -240,6 +240,13 @@
     "shop_visual_acceptance": false,
     "source_path": "content/modernization/pr16_p05_route_acceptance.json"
   },
+  "p05_supply_owner_checkpoint": {
+    "findings": "content/modernization/pr16_p05_supply_owner_findings.json",
+    "new_emulator_runs": 0,
+    "physical_gaps_closed": 0,
+    "receipt": "content/modernization/pr16_p05_supply_owner_receipt.json",
+    "run_id": 34701044310
+  },
   "p06_adoption": {
     "accepted_requirements": [
       "adopted_three_fields_only",
@@ -385,8 +392,9 @@
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "P05 root diagnostic run 34567225043 retained: 6 invalid roots and one unknown command remain; shared var 0x403A alone is not physical Circus entry",
+      "resume": "run34701044310: the former F0 is a back-sprite pointer byte reached through malformed map12/7 events, not an unknown command. raw403A is remapped to battle-local facility state by build_battle_core.py. Trace real number3 admission owner; map12/7 is not established as Circus. Native admission still0.",
       "success_evidence": null,
+      "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"
     },
     {

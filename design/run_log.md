@@ -4825,3 +4825,8 @@ Integrated the previously unreflected non-destructive output and screenshot help
 ## USER-MODERNIZATION: inherited private-guard boundary / 2026-09-12
 
 最初のcloseout run34699976579は14 tests、原本/Git source/index照合までPASSしたが、全体private guardで停止しpush0。既存HEADのROM/save3件、BPS入り旧証拠ZIP2件、machine-path入り旧文書の既存違反であり、原本は勝手に削除・書換えしない。baselineと最終indexのguard出力/終了コードが完全一致すること、今回変更pathには新規違反0であることを別検査する。全体guardが緑になったとは主張せず、RELEASE_DECISIONの既存阻害要因として保持。guard_boundary.jsonを参照。新規emulator実行0。
+
+
+## USER-MODERNIZATION: P05 supply owner / false Circus F0 / 2026-09-12
+
+run34701044310/job103572747344成功。7 source-only tests、exact e630f7f候補、66 source memberを照合。Ringはwork-var macroも検索したがreachable一致はmap98/69のremoveitem580のみ。未発見は不存在証明ではない。BP入口はmap96/5 local2(20,19)、3勝/基本9BPに後発reward wrapperが接続。map12/7 counts3,3,116,108/coord pointer08000000からcoord18がheader0800012Cを読み、back sprite table0954ECC4へ誤到達。旧unknown F0はrecord3画像pointer086C97F0の下位byte。新opcode実装不要。map12/7をCircusと同定しない。raw403Aはbuild_battle_coreでVegaFacilityStateGetへ変換済み。実受付はbattle-local number3から追う。原本ZIP/Actions/source/Git HEADをdigest照合・保存。共有decoder/ROM変更0、emulator実行0、physical gap閉鎖0。fixed-form5ケース/generic FORM/P07の完了を保持。詳細 content/modernization/pr16_p05_supply_owner_findings.json / content/modernization/pr16_p05_supply_owner_receipt.json。
