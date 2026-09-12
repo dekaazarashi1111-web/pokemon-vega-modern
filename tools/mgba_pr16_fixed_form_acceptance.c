@@ -343,6 +343,21 @@ static void f_select_target(struct mCore *core, const struct FCase *selected,
     b_press(core, QOL_KEY_A, 180U);
     f_wait_transition_field(core, replacement_slot);
     f_trace.transition = b_frames;
+    f_state(core, "transition-observed");
+    fprintf(stderr, "FIXED_MOVE species=%u item=%u moves=%u,%u,%u,%u "
+            "pp=%u,%u,%u,%u bonuses=%u\n",
+            read16(core, f_bound_mon + f_growth_offset),
+            read16(core, f_bound_mon + f_growth_offset + 2U),
+            read16(core, f_bound_mon + f_attack_offset),
+            read16(core, f_bound_mon + f_attack_offset + 2U),
+            read16(core, f_bound_mon + f_attack_offset + 4U),
+            read16(core, f_bound_mon + f_attack_offset + 6U),
+            read8(core, f_bound_mon + f_attack_offset + 8U),
+            read8(core, f_bound_mon + f_attack_offset + 9U),
+            read8(core, f_bound_mon + f_attack_offset + 10U),
+            read8(core, f_bound_mon + f_attack_offset + 11U),
+            read8(core, f_bound_mon + f_growth_offset + 8U));
+    f_shot(core, "transition-observed");
 }
 
 static unsigned f_canonical_pp(struct mCore *core, unsigned move)
@@ -845,11 +860,22 @@ static void f_use_project_move(struct mCore *core,
     f_normalize_move_cursor(core);
     b_press(core, QOL_KEY_A, 2U);
     unsigned pp_after = pp_before;
+    f_shot(core, "project-move-menu");
     for (unsigned frame = 0U; frame < 18000U; ++frame) {
-        pp_after = read8(core, ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
-        if (pp_after < pp_before && !f_trace.project_move_spent)
-            f_trace.project_move_spent = b_frames;
-        if (f_trace.project_move_spent && n_action(core))
+        /* Only sample the battle struct while the native battle owns it.
+         * A winning attack can return directly to the field; demanding another
+         * action menu after a KO rejects a valid battle, not a form transition. */
+        if (read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER)) {
+            unsigned observed = read8(core,
+                ADDR_BATTLE_MONS + BATTLE_MON_PP_OFFSET);
+            if (observed < pp_after)
+                pp_after = observed;
+            if (pp_after < pp_before && !f_trace.project_move_spent)
+                f_trace.project_move_spent = b_frames;
+        }
+        if (f_trace.project_move_spent && (n_action(core)
+            || (!read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER)
+                && b_field(core))))
             break;
         b_frame(core, frame % 60U == 0U ? QOL_KEY_B : 0U);
     }
@@ -857,15 +883,30 @@ static void f_use_project_move(struct mCore *core,
               && pp_before - pp_after <= 2U,
               "fixed acceptance project move did not spend native PP");
     *party_pp_after = pp_after;
+    n_state(core, "project-move-resolved");
+    fprintf(stderr, "FIXED_BATTLE base=%u target=%u move=%u pp=%u->%u\n",
+            selected->base_species, selected->target_species,
+            selected->project_move, pp_before, pp_after);
+    f_shot(core, "project-move-resolved");
 }
 
 static void f_exit_battle(struct mCore *core)
 {
-    a_require(n_action(core),
-              "fixed acceptance battle did not return to action controller");
-    n_cursor(core, 3U);
-    b_press(core, QOL_KEY_A, 60U);
-    n_return(core, false);
+    if (!read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER) && b_field(core)) {
+        a_require(read8(core, BATTLE_CORE_BATTLE_OUTCOME)
+                      == BATTLE_CORE_OUTCOME_WON,
+                  "fixed acceptance unexpected automatic battle exit");
+    } else {
+        if (!n_action(core)) {
+            n_state(core, "battle-exit-unresolved");
+            f_shot(core, "battle-exit-unresolved");
+        }
+        a_require(n_action(core),
+                  "fixed acceptance battle neither won nor reached action");
+        n_cursor(core, 3U);
+        b_press(core, QOL_KEY_A, 60U);
+        n_return(core, false);
+    }
     a_require(b_field(core) && !read32(core, ADDR_NEW_BATTLE_STRUCT_POINTER),
               "fixed acceptance battle did not return to field");
 }
@@ -899,6 +940,10 @@ static void f_give_replacement_item(struct mCore *core,
     for (unsigned attempt = 0U; attempt < 32U && !b_field(core);
          ++attempt)
         b_press(core, QOL_KEY_B, 120U);
+    if (!b_field(core)) {
+        f_state(core, "item-menu-exit-unresolved");
+        f_shot(core, "item-menu-exit-unresolved");
+    }
     a_require(b_field(core),
               "fixed acceptance item menus did not return to idle field");
     uint32_t inventory[G_ITEMS];

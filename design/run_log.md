@@ -4743,3 +4743,13 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - Fourteen entry probes remain diagnostic-only and are not counted as acceptance. The representative closes the shared 61-route generic owner contract; it does not claim 61 individually executed rows.
 - Exact artifact `10292791318`, 372130 bytes, SHA-256 `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`, Actions metadata, raw outputs, 44 rendered witnesses and tested source snapshot are retained by `pr16_generic_form_checkpoint.py` with zero verifier emulator runs.
 - `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` is closed on the parent candidate. `P03_FIXED_FORM_TRANSITION_PHYSICAL`, full P03, P08 successor transfer, clean-ROM regeneration and release remain open. No ROM/save/baseline/visibility/history/merge state changed.
+
+## 2026-09-12T12:48:43.962326+00:00
+- Task: USER-MODERNIZATION / fixed-form正式5ケース初回実行と原本保持
+- Status: STOPPED（正式gapは未完。次のcontroller修正へ継続）
+- Summary: run 34694218218 / job 103554787890でC strict compileと7 write barrierをPASS、5 processを実行。Necrozma取消は両行・party bytes不変・save counter 2→2をPASS。Necrozma 2形態は専用技解決、Crowned 2種は技実行後のaction controller境界でFAIL。
+- Files changed: fixed_form_acceptanceのC／Python／tests、acceptance JSON／receipt、原本ZIP／Actions記録。
+- Verify: source-only 14 tests PASS。controller修正後の実ROMはまだ未実行。
+- Commit: この追記を含むcheckpoint commit。受入実行HEAD a9ec7ab9d93d8013139698242802826278aaf667。
+- Network: GitHub Actions artifact APIのみ。原本SHA-256 45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7。
+- 再開: 複製runを避け、--caseで失敗経路だけ実行。generic FORM／P07／active baselineは不変。release-ready=false。

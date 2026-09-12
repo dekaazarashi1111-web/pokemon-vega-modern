@@ -1,0 +1,150 @@
+{
+  "accepted_cases": [
+    {
+      "name": "necrozma-decline-unchanged",
+      "process": {
+        "returncode": 0,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "result": {
+        "aggregate_gap_closed": false,
+        "automatic_saves": 0,
+        "auxiliary_move": 733,
+        "base_species": 1198,
+        "battle_exit_restoration": false,
+        "battle_form_and_move": false,
+        "canonical_ordinal": 70,
+        "case": "necrozma-decline-unchanged",
+        "case_accepted": true,
+        "family": "necrozma_fixed_transition",
+        "form_index": 245,
+        "four_slot_boundary": false,
+        "fresh_continue": false,
+        "fresh_cores": 1,
+        "full_p03_acceptance": false,
+        "held_item": 0,
+        "held_item_removal_boundary": false,
+        "held_items_and_bag_are_fixtures": false,
+        "identity_preserved": true,
+        "input_only_after_guard": true,
+        "kind": "necrozma-decline",
+        "manual_saves": 0,
+        "native_decline_or_ineligible_control": true,
+        "native_held_item_or_battle_entry": false,
+        "native_reversion": false,
+        "native_transition_entry": true,
+        "no_invalid_saved_form_move_pair": false,
+        "normal_save": false,
+        "party_bytes_unchanged": true,
+        "project_move": 0,
+        "release_ready": false,
+        "replacement_item": 0,
+        "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+        "route_id": "667255b406678096a7fa9344+a79bbbec71c9a6be03a7d1e4",
+        "save_counter_after": 2,
+        "save_counter_before": 2,
+        "save_counter_unchanged": true,
+        "schema_version": 1,
+        "scope": "PR16_P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "starting_progress_map_party_are_fixtures": true,
+        "status": "PASS",
+        "target_species": 0,
+        "total_frames": 8361,
+        "transition_owned_move_resolution": false,
+        "warnings_errors": 0,
+        "witness": {
+          "decline_dawn": 8361,
+          "decline_dusk": 4164,
+          "first_battle": 0,
+          "first_battle_exit": 0,
+          "first_continue": 0,
+          "first_save": 0,
+          "interaction": 32,
+          "item_replaced": 0,
+          "menu": 8000,
+          "party": 8167,
+          "project_move_seen": 0,
+          "project_move_spent": 0,
+          "reversion": 0,
+          "second_battle": 0,
+          "second_battle_exit": 0,
+          "second_continue": 0,
+          "second_save": 0,
+          "selection": 0,
+          "transition": 0
+        }
+      }
+    }
+  ],
+  "actual_new_processes": 5,
+  "artifact_id": 10297554037,
+  "artifact_sha256": "45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7",
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "failures": [
+    {
+      "name": "necrozma-dusk-mane-four-slot-roundtrip",
+      "process": {
+        "returncode": 1,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "stderr": "P03 archive: fixed acceptance transition-owned move differs\n"
+    },
+    {
+      "name": "necrozma-dawn-wings-four-slot-roundtrip",
+      "process": {
+        "returncode": 1,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "stderr": "P03 archive: fixed acceptance transition-owned move differs\n"
+    },
+    {
+      "name": "zacian-crowned-battle-roundtrip",
+      "process": {
+        "returncode": 1,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "stderr": "P03 archive: fixed acceptance battle did not return to action controller\n"
+    },
+    {
+      "name": "zamazenta-crowned-battle-roundtrip",
+      "process": {
+        "returncode": 1,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "stderr": "P03 archive: fixed acceptance battle did not return to action controller\n"
+    }
+  ],
+  "full_p03_acceptance": false,
+  "guard_checks": [
+    "bus8",
+    "bus16",
+    "bus32",
+    "raw8",
+    "raw16",
+    "raw32",
+    "register"
+  ],
+  "job_id": 103554787890,
+  "native_acceptance_claimed": false,
+  "next_action": "修正済みcontrollerで失敗経路だけを追跡する。Necrozmaは専用技解決、Crownedは技実行後の戦闘終了境界。generic FORM、P07、成功済み取消を無条件に再実行しない。",
+  "original_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/original.zip",
+  "p03_fixed_form_gap_closed": false,
+  "release_ready": false,
+  "run_id": 34694218218,
+  "schema_version": 1,
+  "status": "FAIL_NATIVE_LIFECYCLE_CHECKPOINT",
+  "tested_head": "a9ec7ab9d93d8013139698242802826278aaf667"
+}

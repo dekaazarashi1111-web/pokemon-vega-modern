@@ -127,9 +127,9 @@ class FixedFormAcceptanceTests(unittest.TestCase):
             m.validate(json.dumps(sample(name)).encode(), b'', name, 0, dict(AUX, photon_geyser=734))
 
     def test_no_partial_or_duplicate_closeout(self):
-        results = [{'name': name} for name in m.CASES]
+        results = [dict(name=name, result=sample(name), process=dict(schema_version=1, returncode=0, spawn_error=None, timed_out=False)) for name in m.CASES]
         guards = list(m.GUARDS)
-        self.assertTrue(m.complete(results, [], guards, 5))
+        self.assertTrue(m.complete(results, [], guards, 5, AUX))
         for rows, failures, checks, attempts in (
             (results[:-1], [], guards, 5),
             (results[:-1] + results[:1], [], guards, 5),
@@ -138,7 +138,27 @@ class FixedFormAcceptanceTests(unittest.TestCase):
             (results, [], guards, True),
             (results, [], guards, 4),
         ):
-            self.assertFalse(m.complete(rows, failures, checks, attempts))
+            self.assertFalse(m.complete(rows, failures, checks, attempts, AUX))
+
+    def test_aggregate_revalidates_process_and_payload(self):
+        results = [dict(name=name, result=sample(name), process=dict(schema_version=1, returncode=0, spawn_error=None, timed_out=False)) for name in m.CASES]
+        for envelope in ('result', 'process'):
+            broken = copy.deepcopy(results)
+            broken[0][envelope] = {}
+            self.assertFalse(m.complete(broken, [], list(m.GUARDS), 5, AUX))
+        self.assertFalse(m.complete([{'name': n} for n in m.CASES], [], list(m.GUARDS), 5, AUX))
+        for key, value in (('returncode', True), ('timed_out', 0), ('spawn_error', 'failure')):
+            broken = copy.deepcopy(results)
+            broken[0]['process'][key] = value
+            self.assertFalse(m.complete(broken, [], list(m.GUARDS), 5, AUX))
+
+    def test_selected_cases_do_not_duplicate_old_successes(self):
+        names = list(m.CASES)
+        self.assertEqual(m.selected_cases(None), names)
+        self.assertEqual(m.selected_cases(names[-2:]), names[-2:])
+        for invalid in ([], names + names[:1], ['missing'], names[::-1]):
+            with self.assertRaises(ValueError):
+                m.selected_cases(invalid)
 
     def test_historical_probe_is_not_accepted(self):
         name = next(iter(m.CASES))

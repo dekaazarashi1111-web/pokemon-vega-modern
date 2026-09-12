@@ -148,12 +148,33 @@ def validate(raw: bytes, stderr: bytes, name: str, code: int, auxiliary: dict) -
     return row
 
 
-def complete(results: list, failures: list, guards: list, attempts: int) -> bool:
-    """A duplicate/partial or synthetic process set cannot close the contract."""
+def complete(results: list, failures: list, guards: list, attempts: int,
+             auxiliary: dict) -> bool:
+    """Revalidate every process/result, not just five plausible case names."""
     if failures or type(attempts) is not int or attempts != 5 or guards != list(GUARDS):
         return False
-    names = [row.get('name') for row in results]
-    return len(names) == 5 and len(set(names)) == 5 and set(names) == set(CASES)
+    try:
+        need(type(results) is list and len(results) == 5, 'incomplete set')
+        need({row['name'] for row in results} == set(CASES), 'case set differs')
+        for row in results:
+            need(type(row) is dict and set(row) == {'name', 'result', 'process'}, 'invalid case envelope')
+            process = row['process']
+            want = dict(schema_version=1, returncode=0, spawn_error=None, timed_out=False)
+            need(type(process) is dict and set(process) == set(want), 'invalid process schema')
+            need(all(type(process[k]) is type(v) and process[k] == v for k, v in want.items()), 'failed or synthetic process')
+            validate(stable(row['result']), b'', row['name'], process['returncode'], auxiliary)
+    except (ValueError, KeyError, TypeError):
+        return False
+    return True
+
+
+def selected_cases(names: list[str] | None) -> list[str]:
+    selected = list(CASES) if names is None else names
+    need(type(selected) is list and selected, 'empty case selection')
+    need(all(type(n) is str and n in CASES for n in selected), 'unknown case selection')
+    need(len(set(selected)) == len(selected), 'duplicate case selection')
+    need(selected == [name for name in CASES if name in selected], 'case order differs')
+    return selected
 
 
 def oracle(root: Path) -> tuple[dict, dict]:
@@ -181,14 +202,16 @@ def oracle(root: Path) -> tuple[dict, dict]:
     return built, auxiliary
 
 
-def run(output: Path = OUT) -> dict:
+def run(output: Path = OUT, names: list[str] | None = None) -> dict:
+    selected = selected_cases(names)
     sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT)]
     import pr16_purchased_gear as gear
     parent, shop, r, common = gear.parent, gear.shop, gear.r, gear.common
     m = shop.base.load()
     out = gear.evidence.prepare_output(ROOT, output)
     report = dict(schema_version=1, status='FAIL', scope=SCOPE, candidate={'size': 33554432, 'sha256': SHA}, results=[], failures=[], guard_checks=[], actual_new_processes=0, successful_fresh_cores=0, native_acceptance_claimed=False, p03_fixed_form_gap_closed=False, full_p03_acceptance=False, release_ready=False, old_runs_relabelled=0)
-    bindings, protected = {}, {}
+    report["requested_cases"] = selected
+    bindings, protected, auxiliary = {}, {}, {}
     try:
         contract, auxiliary = oracle(ROOT)
         recipe = parent.repair.run()
@@ -253,7 +276,7 @@ def run(output: Path = OUT) -> dict:
                 stdout, stderr, process = common.capture([str(binary), '--guard-check', guard], out / ('guard-' + guard), 10)
                 m.validate_guard(stdout, stderr, process)
                 report['guard_checks'].append(guard)
-            for name in CASES:
+            for name in selected:
                 private = work / (name + '.srm')
                 shutil.copyfile(seed, private)
                 report['actual_new_processes'] += 1
@@ -272,23 +295,25 @@ def run(output: Path = OUT) -> dict:
             need(bindings == {p: identity((ROOT / p).read_bytes()) for p in bindings}, 'protected sources/baseline changed')
         except (ValueError, OSError) as exc:
             report['failures'].append(dict(stage='immutability', error=str(exc)))
-        passed = complete(report['results'], report['failures'], report['guard_checks'], report['actual_new_processes'])
-        report['status'] = 'PASS_NATIVE_PENDING_DURABLE_RECEIPT' if passed else 'FAIL'
+        passed = complete(report['results'], report['failures'], report['guard_checks'], report['actual_new_processes'], auxiliary)
+        scoped = not report['failures'] and len(report['results']) == len(selected) and report['guard_checks'] == list(GUARDS)
+        report['status'] = 'PASS_NATIVE_PENDING_DURABLE_RECEIPT' if passed else 'PASS_SCOPED_PENDING_FIVE_CASES' if scoped else 'FAIL'
         report['native_acceptance_claimed'] = passed
         (out / 'result.json').write_bytes(stable(report))
         members = {p.name: identity(p.read_bytes()) for p in sorted(out.iterdir()) if p.is_file()}
         receipt = dict(schema_version=1, tested_head=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(), candidate=report['candidate'], members=members, native_acceptance_claimed=passed, p03_fixed_form_gap_closed=False, release_ready=False)
         (out / 'receipt.json').write_bytes(stable(receipt))
-    need(passed, 'fixed-form acceptance failed; inspect retained raw originals')
+    need(scoped, 'fixed-form acceptance failed; inspect retained raw originals')
     return report
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=OUT)
+    parser.add_argument('--case', action='append', choices=list(CASES))
     args = parser.parse_args()
     try:
-        print(json.dumps(run(args.output), ensure_ascii=False))
+        print(json.dumps(run(args.output, args.case), ensure_ascii=False))
     except (ValueError, RuntimeError, OSError, KeyError, TypeError) as exc:
         print(str(exc), file=sys.stderr)
         raise SystemExit(1)
