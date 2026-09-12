@@ -141,9 +141,8 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
 
         p03 = conditions['EVOLUTION_FORM_OTHER_EGG']
         self.assertEqual(
-            p03['status'], 'PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES')
+            p03['status'], 'PENDING_FIXED_FORM_ROUTE_ACCEPTANCE')
         self.assertEqual(p03['remaining_physical_gap_ids'], [
-            'P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL',
             'P03_FIXED_FORM_TRANSITION_PHYSICAL',
         ])
         self.assertEqual(
