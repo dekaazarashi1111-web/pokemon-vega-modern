@@ -1,0 +1,175 @@
+name: pr16-fixed-form-native-probe
+run-name: Diagnostic native FORM rows for Necrozma, Zacian and Zamazenta
+# Diagnostic-only bridge from the frozen four-route contract to a future
+# five-case physical acceptance.  This workflow never promotes the probe to
+# P03 acceptance and never uploads a ROM, save, or private input archive.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-fixed-form-probe.yml
+      - scripts/pr16_fixed_form_probe.py
+      - tools/mgba_pr16_fixed_form_probe.c
+      - tests/test_pr16_fixed_form_probe.py
+      - scripts/pr16_fixed_form_contract.py
+      - content/modernization/pr16_fixed_form_contract.json
+      - scripts/pr16_generic_form_carry.py
+      - tools/mgba_pr16_generic_form_carry.c
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr16-fixed-form-native-probe
+  cancel-in-progress: false
+
+jobs:
+  fixed-form-native-probe:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact triggering commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Exact HEAD, pinned toolchain and unchanged Stage84 parent
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-evidence
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare \
+            > "$out/stage84.json" \
+            2> "$out/stage84.stderr"
+
+      - name: Download and hash-check both pinned private source archives
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-evidence
+          assets=.local/github-private-environment/assets
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" \
+            --pattern 'pokemon-vega-private-env-v1-inputs.zip' \
+            --pattern 'pokemon-vega-private-env-v1-modernization-inputs.zip' \
+            --dir "$assets"
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+
+      - name: Rebuild frozen parent, recheck contract and run focused tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-evidence
+          python3 scripts/pr16_p07_preserved_layer.py \
+            > "$out/p07.stdout" \
+            2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py \
+            > "$out/repair.stdout" \
+            2> "$out/repair.stderr"
+          python3 scripts/pr16_fixed_form_contract.py \
+            --output "$out/regenerated-contract.json" \
+            > "$out/contract.stdout" \
+            2> "$out/contract.stderr"
+          cmp content/modernization/pr16_fixed_form_contract.json \
+              "$out/regenerated-contract.json"
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_pr16_fixed_form_probe.py' \
+            -v > "$out/unit.log" 2>&1
+          cp .local/pr16-evolution-repair/candidate.json "$out/candidate.json"
+
+      - name: Probe four canonical rows through the authored FORM host
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-fixed-form-evidence
+          python3 scripts/pr16_fixed_form_probe.py \
+            > "$out/native.stdout" \
+            2> "$out/native.stderr"
+          git diff --exit-code
+
+      - name: Preserve exact sources and raw evidence, never ROM, save or private archive
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import subprocess
+          import zipfile
+
+          root = pathlib.Path('.')
+          out = root / '.local/pr16-fixed-form-evidence'
+          out.mkdir(parents=True, exist_ok=True)
+          names = [
+              'scripts/pr16_fixed_form_probe.py',
+              'tools/mgba_pr16_fixed_form_probe.c',
+              'tests/test_pr16_fixed_form_probe.py',
+              '.github/workflows/pr16-fixed-form-probe.yml',
+              'scripts/pr16_fixed_form_contract.py',
+              'tests/test_pr16_fixed_form_contract.py',
+              'content/modernization/pr16_fixed_form_contract.json',
+              'content/modernization/pr16_fixed_form_contract_receipt.json',
+              'scripts/pr16_generic_form_carry.py',
+              'tools/mgba_pr16_generic_form_carry.c',
+              'scripts/pr16_p03_form_gap_inventory.py',
+              'content/collection_supply_v1/canonical_model.json',
+              'scripts/pr16_breeding_delta.py',
+              'scripts/pr16_repaired_acceptance.py',
+              'scripts/pr16_p07_preserved_layer.py',
+              'scripts/pr16_evolution_learning_repair.py',
+              'scripts/run_modernization_p03_breeding_e2e.py',
+              'tools/mgba_modernization_p03_breeding_e2e.c',
+              'tools/modernization_learnsets.py',
+              'tools/modernization_p03_stage73_consumers.py',
+              'config/modernization_p03_stage73_consumers.json',
+          ]
+          bindings = {}
+          with zipfile.ZipFile(out / 'sources.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+              for name in names:
+                  path = root / name
+                  raw = path.read_bytes()
+                  raw.decode('utf-8')
+                  assert not path.is_symlink() and b'\0' not in raw
+                  archive.writestr(name, raw)
+                  bindings[name] = {
+                      'size': len(raw),
+                      'sha256': hashlib.sha256(raw).hexdigest(),
+                  }
+          (out / 'source-bindings.json').write_text(
+              json.dumps(bindings, sort_keys=True, indent=2) + '\n'
+          )
+          (out / 'tested-head.txt').write_text(
+              subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True)
+          )
+          PY
+
+      - name: Upload diagnostic process records, screenshots and receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-fixed-form-native-probe
+          path: |
+            .local/pr16-fixed-form-evidence/
+            .local/pr16-fixed-form-probe/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
