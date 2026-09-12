@@ -1,0 +1,49 @@
+name: PR16 generic FORM unlock apply
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-unlock-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor == 'dekaazarashi1111-web'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+      - name: Verify, apply, test, and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          patch='.chatgpt/patches/pr16_generic_form_unlock_runtime.py'
+          workflow='.github/workflows/pr16-generic-form-unlock-apply.yml'
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git hash-object tools/mgba_pr16_generic_form_carry.c)" = '9b65b350262d26539880c7d0fa65d124cc347abc'
+          test "$(git hash-object tests/test_pr16_generic_form_carry.py)" = '1e7fa22fbb07e1f6ec6358c6f23d5f0c37b0ea78'
+          test "$(git hash-object .github/workflows/pr16-generic-form-carry.yml)" = '48f6bf08ffceeb3fd2fe6e9e1ce919ff5b1bdd3d'
+          test "$(git hash-object "$patch")" = '602b1f64383dd81d36ff64b89b9128ed6ed1a25a'
+          python3 -m py_compile "$patch"
+          python3 "$patch"
+          python3 -m py_compile scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
+          python3 -m unittest tests.test_pr16_generic_form_carry
+          git diff --check
+          test "$(git diff --name-only | sort)" = $'.github/workflows/pr16-generic-form-carry.yml\ntests/test_pr16_generic_form_carry.py\ntools/mgba_pr16_generic_form_carry.c'
+          git add .github/workflows/pr16-generic-form-carry.yml \
+            tools/mgba_pr16_generic_form_carry.c \
+            tests/test_pr16_generic_form_carry.py
+          git rm "$patch" "$workflow"
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: align FORM fixture with runtime unlock'
+          git push origin "HEAD:$branch"
