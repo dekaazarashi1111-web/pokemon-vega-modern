@@ -1,5 +1,5 @@
 name: pr16-bp-trial-native
-run-name: New Trial successor rental cancel and fresh Continue (not earned BP)
+run-name: Trial chooser wait observation — seven read-only snapshots, unchanged input contract
 on:
   workflow_dispatch:
   push:
@@ -22,7 +22,7 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Reserve distinct successor sources and validate 24 fail-closed checks
+      - name: Bind successor and trace sources; validate 30 source checks
         shell: bash
         run: |
           set -euo pipefail
@@ -32,6 +32,7 @@ jobs:
           root=pathlib.Path('.');out=root/'.local/pr16-bp-trial-workflow'
           names=['AGENTS.md','scripts/pr16_bp_trial_route.py','scripts/pr16_bp_trial_successor.py',
               'scripts/pr16_bp_trial_native.py','tests/test_pr16_bp_trial_successor.py',
+              'scripts/pr16_bp_chooser_trace.py','tests/test_pr16_bp_chooser_trace.py',
               'scripts/pr16_bp_native_controls.py','tools/mgba_pr16_bp_native_controls.c',
               '.github/workflows/pr16-bp-trial-native.yml','config/active_play_baseline.json',
               'content/modernization/p08_remaining_work.json','content/modernization/pr16_native_supply_handoff.json']
@@ -43,7 +44,7 @@ jobs:
           (out/'entry-bindings.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
           (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
           PY
-          python3 -m unittest tests.test_pr16_bp_trial_successor -v > .local/pr16-bp-trial-workflow/unit.stdout 2> .local/pr16-bp-trial-workflow/unit.stderr
+          python3 -m unittest tests.test_pr16_bp_trial_successor tests.test_pr16_bp_chooser_trace -v > .local/pr16-bp-trial-workflow/unit.stdout 2> .local/pr16-bp-trial-workflow/unit.stderr
           python3 scripts/validate_task_graph.py > .local/pr16-bp-trial-workflow/task-graph.txt
           python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-trial-workflow/fixed-form-retained.json
       - name: Restore pinned compiler and unchanged Stage84 build input
@@ -85,7 +86,7 @@ jobs:
           out=.local/pr16-bp-trial-workflow
           python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
           python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
-      - name: Build one declared successor and run one new rental lifecycle
+      - name: Observe previously unmeasured chooser context without changing game input
         shell: bash
         run: |
           set -euo pipefail
