@@ -10,9 +10,11 @@
 struct UTrace {
     unsigned item_entry, bag, party, primary_selection, partner_selection;
     unsigned replace_prompt, summary, replacement_selection, transformed;
-    unsigned defuse_entry;
+    unsigned defuse_entry, restored_party_menu, restored_party_field;
 };
 static struct UTrace ut;
+static uint8_t u_original_partner[100];
+static unsigned u_count_before_party, u_count_after_party;
 
 static unsigned u_item(const struct FCase *selected)
 {
@@ -35,6 +37,12 @@ static void u_state(struct mCore *core, const char *label)
             f_pp(core, 0U), f_pp(core, 1U), f_pp(core, 2U), f_pp(core, 3U),
             f_pp_bonuses(core), read8(core, P02S_QUEST_LOG_STATE),
             read8(core, P02S_QUEST_LOG_PLAYBACK_STATE));
+    uint8_t actual_partner[100];
+    b_copy(core, QOL_PLAYER_PARTY + 200U, actual_partner, sizeof(actual_partner));
+    fprintf(stderr, "FUSION_PARTNER pid=%08x ot=%08x exact_original=%u\n",
+            read32(core, QOL_PLAYER_PARTY + 200U),
+            read32(core, QOL_PLAYER_PARTY + 204U),
+            (unsigned)!memcmp(actual_partner, u_original_partner, sizeof(actual_partner)));
     for (unsigned index = 0U; index < 16U; ++index) {
         unsigned task = QOL_TASKS + index * QOL_TASK_SIZE;
         if (read8(core, task + 4U))
@@ -108,12 +116,23 @@ static void u_item_party(struct mCore *core, const struct FCase *selected,
     }
 }
 
+static bool u_partner_is_restored(struct mCore *core)
+{
+    uint8_t actual[100];
+    b_copy(core, QOL_PLAYER_PARTY + 200U, actual, sizeof(actual));
+    return !memcmp(actual, u_original_partner, sizeof(actual));
+}
+
 static bool u_complete(struct mCore *core, const struct FCase *selected,
                         bool defuse)
 {
     return f_species(core) == (defuse ? selected->base_species
                                     : selected->target_species)
-        && read8(core, QOL_PLAYER_PARTY_COUNT) == (defuse ? 3U : 2U)
+        /* Native defusion restores the actual third 100-byte mon first.
+         * The count cache is refreshed by the next real party-menu consumer;
+         * do not mistake a stale menu count for a missing partner. */
+        && (defuse ? u_partner_is_restored(core)
+                   : read8(core, QOL_PLAYER_PARTY_COUNT) == 2U)
         && (defuse ? !f_has_move(core, selected->project_move)
                    : (f_move(core, 1U) == selected->project_move
                       && ut.replacement_selection));
@@ -228,6 +247,50 @@ static void u_check_moves(struct mCore *core, const struct FCase *selected,
               "fusion owner restored the player-forgotten move");
 }
 
+static void u_view_restored_party(struct mCore *core)
+{
+    a_require(f_live_field(core) && u_partner_is_restored(core),
+              "defusion partner absent before native party view");
+    uint8_t before[300], after[300];
+    b_copy(core, QOL_PLAYER_PARTY, before, sizeof(before));
+    u_count_before_party = read8(core, QOL_PLAYER_PARTY_COUNT);
+    b_press(core, QOL_KEY_START, 120U);
+    a_require(read32(core, QOL_START_MENU_CALLBACK) == QOL_START_MENU_INPUT,
+              "defusion native Start menu absent");
+    unsigned count = read8(core, QOL_START_MENU_COUNT);
+    unsigned cursor = read8(core, QOL_START_MENU_CURSOR), target = count;
+    a_require(count && count <= 9U && cursor < count,
+              "defusion invalid Start menu");
+    for (unsigned index = 0U; index < count; ++index) {
+        if (read8(core, QOL_START_MENU_ORDER + index) == 1U)
+            target = index;
+    }
+    a_require(target < count, "defusion Pokemon menu absent");
+    for (unsigned index = 0U, total = (target + count - cursor) % count;
+         index < total; ++index)
+        b_press(core, QOL_KEY_DOWN, 30U);
+    a_require(read8(core, QOL_START_MENU_CURSOR) == target,
+              "defusion native Pokemon cursor differs");
+    b_press(core, QOL_KEY_A, 180U);
+    a_require(read32(core, BATTLE_CORE_MAIN_CALLBACK2) == P02S_CB2_PARTY,
+              "defusion normal Pokemon menu absent");
+    ut.restored_party_menu = b_frames;
+    u_count_after_party = read8(core, QOL_PLAYER_PARTY_COUNT);
+    a_require(u_count_before_party == 2U && u_count_after_party == 3U,
+              "defusion native party-count consumer boundary differs");
+    u_state(core, "defused-party-view");
+    f_shot(core, "defused-party-view");
+    for (unsigned attempt = 0U; attempt < 16U && !f_live_field(core); ++attempt)
+        b_press(core, QOL_KEY_B, 120U);
+    a_require(f_live_field(core)
+              && read8(core, QOL_PLAYER_PARTY_COUNT) == 3U,
+              "defusion party view did not restore complete field party");
+    ut.restored_party_field = b_frames;
+    b_copy(core, QOL_PLAYER_PARTY, after, sizeof(after));
+    a_require(!memcmp(before, after, sizeof(before)),
+              "defusion party view modified restored party bytes");
+}
+
 static void u_emit(const struct FCase *selected, const char *hash,
                     unsigned before, unsigned after)
 {
@@ -252,10 +315,15 @@ static void u_emit(const struct FCase *selected, const char *hash,
     printf("\"entry_kind\":\"NATIVE_FUSION_ITEM\",\"form_service_selection_claimed\":false,");
     printf("\"fusion_item_id\":%u,\"fusion_partner_species\":%u,\"chosen_replacement_slot\":1,", u_item(selected), u_partner(selected));
     printf("\"fusion_partner_restored_exact\":true,\"forgotten_move_not_restored\":true,\"defusion_signature_removed_and_compacted\":true,");
+    printf("\"native_restored_party_view\":true,\"defusion_party_count_before_native_party_menu\":%u,",
+           u_count_before_party);
+    printf("\"defusion_party_count_after_native_party_menu\":%u,", u_count_after_party);
     printf("\"fusion_witness\":{\"item_entry\":%u,\"bag\":%u,\"party\":%u,\"primary_selection\":%u,",
            ut.item_entry, ut.bag, ut.party, ut.primary_selection);
-    printf("\"partner_selection\":%u,\"replace_prompt\":%u,\"summary\":%u,\"replacement_selection\":%u,\"transformed\":%u,\"defuse_entry\":%u},",
+    printf("\"partner_selection\":%u,\"replace_prompt\":%u,\"summary\":%u,\"replacement_selection\":%u,\"transformed\":%u,\"defuse_entry\":%u,",
            ut.partner_selection, ut.replace_prompt, ut.summary, ut.replacement_selection, ut.transformed, ut.defuse_entry);
+    printf("\"restored_party_menu\":%u,\"restored_party_field\":%u},",
+           ut.restored_party_menu, ut.restored_party_field);
     printf("\"witness\":{\"interaction\":%u,\"menu\":%u,\"party\":%u,\"selection\":%u,\"transition\":%u,",
            f_trace.interaction, f_trace.menu, f_trace.party, f_trace.selection, f_trace.transition);
     printf("\"first_save\":%u,\"first_continue\":%u,\"reversion\":%u,\"second_save\":%u,\"second_continue\":%u,",
@@ -287,6 +355,7 @@ static void u_run(struct mCore *core, struct mCore *original,
     uint8_t decoy[100], partner[100];
     b_copy(core, QOL_PLAYER_PARTY, decoy, sizeof(decoy));
     b_copy(core, QOL_PLAYER_PARTY + 200U, partner, sizeof(partner));
+    memcpy(u_original_partner, partner, sizeof(partner));
     unsigned pid = read32(core, F_TARGET_MON), ot = read32(core, F_TARGET_MON + 4U);
     unsigned before = read32(core, P03_SAVE_COUNTER);
     *original = *core;
@@ -316,6 +385,7 @@ static void u_run(struct mCore *core, struct mCore *original,
     u_check_moves(core, selected, true);
     b_copy(core, QOL_PLAYER_PARTY + 200U, loaded, 100U);
     a_require(!memcmp(partner, loaded, 100U), "defusion did not restore exact fused partner");
+    u_view_restored_party(core);
     g_inventory(core, inventory);
     a_require(inventory[u_item(selected)] == 1U, "fusion consumed its reusable item");
     a_require(read32(core, P03_SAVE_COUNTER) == before + 1U,
@@ -327,6 +397,8 @@ static void u_run(struct mCore *core, struct mCore *original,
     f_trace.second_continue = b_frames;
     b_copy(core, QOL_PLAYER_PARTY, loaded, sizeof(loaded));
     a_require(!memcmp(snapshot, loaded, sizeof(loaded)), "defusion saved party differs after fresh Continue");
+    a_require(read8(core, QOL_PLAYER_PARTY_COUNT) == 3U,
+              "defusion fresh Continue omitted restored partner");
     f_check_identity(core, decoy, pid, ot);
     u_check_moves(core, selected, true);
     g_inventory(core, inventory);

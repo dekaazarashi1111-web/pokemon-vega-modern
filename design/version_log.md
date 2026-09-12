@@ -2077,3 +2077,13 @@ Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411`
 - Commit: この追記を含むcommit。原本実行HEADc38d5dae3ac1c73d65b891e5b2f525267caa7b2d。
 - Counts: これまでnative13attempts=5+4+2+2。別のpreflight失敗は0、static/retentionは0。受入は3/5のまま。
 - Next: 修正後のNecrozma2ケースだけ再実行。通常Save/freshContinueはまだ未受入。Crowned/取消/generic/P07やROM/active baselineを変更しない。
+
+## 2026-09-12T14:00:43.041743+00:00
+- Task: USER-MODERNIZATION / Necrozma signature and first Save/Continue boundary
+- Status: PARTIAL_NATIVE_PROGRESS_NOT_ACCEPTANCE
+- Summary: run34697599454/job103563652761で両形態の実slot1選択、固有技690/669、PP5、bonus229→225、通常Save2→3、core破棄/freshContinue・200partybytes一致を実測。解除でbase1198、技98/235/33/0・PP11/3/7/0・bonus57まで復帰。field count cache2のため終端判定はFAIL。
+- Next controller: native復帰直後に相方100bytesを正本fixtureと比較し、さらに実Start→Pokemonで3体表示/再計数と300bytes不変を検査してから2回目Save/Continueへ進む。hostでcountを書き換えず、相方不在なら引続きFAIL。cached count仮説を製品修正と混同しない。
+- Verify: 18 acceptance unit tests +8 raw-original/checkpoint tests PASS。新ZIP1025638bytes SHA256811eb51b5c1668e553fc47415ce4a6d9fcfc228e705e993870785ddb173757eb、全sourceを実行Git commitへ照合、Git index byte一致。
+- Files changed: fusionC/Python/tests、raw evidence/latest execution、logs。
+- Commit: この追記を含むcommit。実行HEADf2f44b973dce839c56d8abf8240d12cf9f9da5bd。
+- Counts: native15attempts=5+4+2+2+2。単なる原本検証/静的検証/移送は0。正式3/5・P03gap/release false、ROM/active baseline不変。

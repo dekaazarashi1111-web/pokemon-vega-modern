@@ -37,6 +37,8 @@ def sample(name):
         row['witness']['interaction'] = 1
         row['fusion_witness'] = {key: i for i, key in enumerate(m.FUSION_WITNESS, 1)}
         row['fusion_witness']['defuse_entry'] = 35
+        row['fusion_witness']['restored_party_menu'] = 74
+        row['fusion_witness']['restored_party_field'] = 76
     elif row['kind'] == 'crowned-battle-roundtrip':
         row['witness']['first_battle'] = row['witness']['project_move_seen']
     return row
@@ -176,7 +178,8 @@ class FixedFormAcceptanceTests(unittest.TestCase):
                 del row['fusion_witness'][key]
                 with self.assertRaises(ValueError):
                     self.validate(row)
-            for key, value in (('item_entry', 2), ('defuse_entry', 25), ('transformed', 25)):
+            for key, value in (('item_entry', 2), ('defuse_entry', 25), ('transformed', 25),
+                               ('restored_party_menu', 69), ('restored_party_field', 81)):
                 row = sample(name)
                 row['fusion_witness'][key] = value
                 with self.assertRaises(ValueError):
@@ -187,6 +190,9 @@ class FixedFormAcceptanceTests(unittest.TestCase):
             for key, value in (('entry_kind', 'FORM_SERVICE'),
                                ('form_service_selection_claimed', True),
                                ('fusion_partner_restored_exact', False),
+                               ('native_restored_party_view', False),
+                               ('defusion_party_count_before_native_party_menu', 3),
+                               ('defusion_party_count_after_native_party_menu', 2),
                                ('forgotten_move_not_restored', False),
                                ('defusion_signature_removed_and_compacted', False),
                                ('chosen_replacement_slot', 0),

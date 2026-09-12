@@ -56,7 +56,8 @@ WITNESS = (
 )
 FUSION_WITNESS = ('item_entry', 'bag', 'party', 'primary_selection',
                   'partner_selection', 'replace_prompt', 'summary',
-                  'replacement_selection', 'transformed', 'defuse_entry')
+                  'replacement_selection', 'transformed', 'defuse_entry',
+                  'restored_party_menu', 'restored_party_field')
 GUARDS = ('bus8', 'bus16', 'bus32', 'raw8', 'raw16', 'raw32', 'register')
 
 
@@ -122,7 +123,10 @@ def expected(name: str, auxiliary: dict) -> dict:
                       chosen_replacement_slot=1,
                       fusion_partner_restored_exact=True,
                       forgotten_move_not_restored=True,
-                      defusion_signature_removed_and_compacted=True)
+                      defusion_signature_removed_and_compacted=True,
+                      native_restored_party_view=True,
+                      defusion_party_count_before_native_party_menu=2,
+                      defusion_party_count_after_native_party_menu=3)
     return result
 
 
@@ -156,6 +160,7 @@ def validate(raw: bytes, stderr: bytes, name: str, code: int, auxiliary: dict) -
         need(all(fusion[a] < fusion[b] for a, b in zip(FUSION_WITNESS, FUSION_WITNESS[1:])), 'fusion native input order differs')
         need(fusion['item_entry'] == w['interaction'], 'fusion entry is not bound')
         need(fusion['transformed'] < w['first_save'] < w['first_continue'] < fusion['defuse_entry'] < w['menu'], 'fusion save/Continue/defusion order differs')
+        need(w['reversion'] < fusion['restored_party_menu'] < fusion['restored_party_field'] < w['second_save'], 'restored partner consumer/save order differs')
     elif row['kind'] == 'necrozma-decline':
         order = ('interaction', 'decline_dusk', 'menu', 'party', 'decline_dawn')
         active = set(order)
