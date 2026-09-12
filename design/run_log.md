@@ -4753,3 +4753,13 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - Commit: この追記を含むcheckpoint commit。受入実行HEAD a9ec7ab9d93d8013139698242802826278aaf667。
 - Network: GitHub Actions artifact APIのみ。原本SHA-256 45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7。
 - 再開: 複製runを避け、--caseで失敗経路だけ実行。generic FORM／P07／active baselineは不変。release-ready=false。
+
+## 2026-09-12T13:05:44.342966+00:00
+- Task: USER-MODERNIZATION / fixed-form owner and native live-field checkpoint
+- Status: STOPPED（fixed gap未閉鎖・継続）
+- Summary: run34694785866の4失敗原本とrun34695030927の静的owner原本をdigest付き保持。Crownedは専用技PP5→4・勝利・field復帰まで実測。ライブ記録(quest1,playback2)をhostで消さずnative Bag/歩行へ渡すcontroller修正。
+- Important: NecrozmaのPhoton自動置換・復帰想定はpinned native ownerと不一致。実ownerは全4枠時の選択UI、解除時は専用技削除・圧縮。古い想定を満たすROM改変をしない。
+- Verify: focused14 tests PASS。修正Cの実ROMは次のCrowned2ケースで検証。
+- Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.
+- Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。
+- Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。

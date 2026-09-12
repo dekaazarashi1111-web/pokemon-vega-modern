@@ -2025,3 +2025,13 @@ Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411`
 - Task: USER-MODERNIZATION
 - Summary: 正式runnerを初めて5 process実行。成功1／失敗4を改変せず原本保持。Crownedの自然勝利終端とaction復帰を区別し、集約validatorでprocess／payloadを再検証する修正を追加。
 - Verify: 14 focused unit tests PASS。修正後nativeは未実行、P03 gap未閉鎖。
+
+## 2026-09-12T13:05:44.342966+00:00
+- Task: USER-MODERNIZATION / fixed-form owner and native live-field checkpoint
+- Status: STOPPED（fixed gap未閉鎖・継続）
+- Summary: run34694785866の4失敗原本とrun34695030927の静的owner原本をdigest付き保持。Crownedは専用技PP5→4・勝利・field復帰まで実測。ライブ記録(quest1,playback2)をhostで消さずnative Bag/歩行へ渡すcontroller修正。
+- Important: NecrozmaのPhoton自動置換・復帰想定はpinned native ownerと不一致。実ownerは全4枠時の選択UI、解除時は専用技削除・圧縮。古い想定を満たすROM改変をしない。
+- Verify: focused14 tests PASS。修正Cの実ROMは次のCrowned2ケースで検証。
+- Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.
+- Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。
+- Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。
