@@ -1,0 +1,125 @@
+name: pr16-fixed-form-live-apply
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-fixed-form-live-apply.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  checkpoint:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Pin original runs, ZIPs, source members and receipt bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,io,json,os,pathlib,stat,subprocess,zipfile
+          rows=[
+            (34694785866,103556287612,10297959447,'54625b020731f68d72643b65e60cbb91c2f0524e',840801,'4af3705661914957c55fba282e66d3abcc73625cd5e2c82bde388e19bddc0a01','failure','native'),
+            (34695030927,103556933334,10298660168,'2bb937f7c2c1bedf29531f70b88d59163f349c65',530770,'4036ebbda5962133c616ce450f1e0a70d0a65aad54dac58e7654a9c37ca51f61','success','static'),
+          ]
+          def ident(b):return {'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+          def api(path):return subprocess.check_output(['gh','api',f'repos/{os.environ["GITHUB_REPOSITORY"]}/'+path])
+          def scan(z,depth=0):
+              assert depth<=1 and len(z.namelist())==len(set(z.namelist()))
+              assert len(z.namelist())<1000 and sum(i.file_size for i in z.infolist())<32000000
+              for info in z.infolist():
+                  p=pathlib.PurePosixPath(info.filename)
+                  assert not p.is_absolute() and '..' not in p.parts and '\\' not in str(p)
+                  assert not stat.S_ISLNK(info.external_attr>>16)
+                  assert p.suffix.lower() not in {'.gba','.sav','.srm','.ips','.ups','.bps','.bin'}
+                  data=z.read(info)
+                  if p.suffix=='.zip':
+                      assert depth==0 and p.name in {'sources.zip','entry-sources.zip','generated-controller.zip','owner-sources.zip'}
+                      with zipfile.ZipFile(io.BytesIO(data)) as inner:scan(inner,depth+1)
+                  elif p.suffix=='.ppm':assert depth==0 and data.startswith(b'P6\n240 160\n255\n') and len(data)==115215
+                  else:data.decode('utf-8-sig');assert b'\0' not in data
+          manifest=[]
+          for run_id,job_id,artifact_id,head,size,sha,conclusion,kind in rows:
+              run=json.loads(api(f'actions/runs/{run_id}'));jobs=json.loads(api(f'actions/runs/{run_id}/jobs'));meta=json.loads(api(f'actions/artifacts/{artifact_id}'));raw=api(f'actions/artifacts/{artifact_id}/zip')
+              assert ident(raw)=={'size':size,'sha256':sha}
+              assert run['head_sha']==head and run['id']==run_id and run['conclusion']==conclusion and run['run_attempt']==1
+              assert len(jobs['jobs'])==1 and jobs['jobs'][0]['id']==job_id and jobs['jobs'][0]['conclusion']==conclusion
+              assert meta['id']==artifact_id and meta['digest']=='sha256:'+sha and meta['workflow_run']['head_sha']==head
+              with zipfile.ZipFile(io.BytesIO(raw)) as z:
+                  scan(z)
+                  if kind=='native':
+                      prefix='pr16-fixed-form-acceptance/'
+                      result=json.loads(z.read(prefix+'result.json'));receipt=json.loads(z.read(prefix+'receipt.json'))
+                      assert receipt['tested_head']==head and receipt['p03_fixed_form_gap_closed'] is False
+                      for name,bound in receipt['members'].items():assert ident(z.read(prefix+name))==bound
+                      assert result['status']=='FAIL' and result['actual_new_processes']==4 and result['results']==[] and len(result['failures'])==4
+                      assert result['requested_cases']==['necrozma-dusk-mane-four-slot-roundtrip','necrozma-dawn-wings-four-slot-roundtrip','zacian-crowned-battle-roundtrip','zamazenta-crowned-battle-roundtrip']
+                      assert result['guard_checks']==['bus8','bus16','bus32','raw8','raw16','raw32','register']
+                      with zipfile.ZipFile(io.BytesIO(z.read(prefix+'sources.zip'))) as sources:
+                          assert set(sources.namelist())==set(result['sources'])
+                          for name,bound in result['sources'].items():assert ident(sources.read(name))==bound
+                      for row in result['failures']:row['raw_stderr']=z.read(prefix+row['name']+'.stderr').decode()
+                  else:
+                      result=json.loads(z.read('pr16-fixed-form-owner-static/owner-index.json'));receipt=None
+                      assert result['tested_head']==head and result['new_emulator_runs']==0 and result['rom_changes']==0
+                      ownerzip=z.read('pr16-fixed-form-owner-static/owner-sources.zip');assert ident(ownerzip)==result['source_zip']
+                      with zipfile.ZipFile(io.BytesIO(ownerzip)) as sources:
+                          assert set(sources.namelist())=={row['path'] for row in result['sources']}
+                          for row in result['sources']:assert ident(sources.read(row['path']))=={k:row[k] for k in ('size','sha256')}
+                          text=sources.read('vendor/upstream/CFRU-JP/src/party_menu.c').decode('utf-8-sig')
+                          block=text[text.index('static void Task_TryLearnPostFormeChangeMove(u8 taskId)\n{'):text.index('void FieldUseFunc_AbilityCapsule')]
+                          assert 'case SPECIES_NECROZMA:' in block and 'PartyMenu_DisplayMonNeedsToReplaceMove(taskId)' in block and 'ShiftMoveSlot(mon, i, i + 1)' in block
+                          assert 'MOVE_PHOTONGEYSER' not in block
+              dest=pathlib.Path('content/modernization/pr16_fixed_form_acceptance_evidence')/str(run_id)
+              assert not dest.exists();dest.mkdir(parents=True)
+              (dest/'original.zip').write_bytes(raw)
+              (dest/'actions.json').write_text(json.dumps(dict(run=run,jobs=jobs,artifact=meta,download=ident(raw)),sort_keys=True,indent=2)+'\n')
+              (dest/'checkpoint.json').write_text(json.dumps(dict(schema_version=1,kind=kind,result=result,inner_receipt=receipt,p03_fixed_form_gap_closed=False,release_ready=False),ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+              manifest.append(dict(run_id=run_id,job_id=job_id,artifact_id=artifact_id,tested_head=head,kind=kind,original_path=(dest/'original.zip').as_posix(),**ident(raw)))
+          out=pathlib.Path('content/modernization/pr16_fixed_form_owner_findings.json')
+          assert not out.exists()
+          out.write_text(json.dumps(dict(schema_version=1,status='STATIC_OWNER_AND_FAILED_NATIVE_CHECKPOINT',evidence=manifest,findings={
+            'necrozma_form_service':'native indices245/246 transition to1260/1261 and auto-save2→3, but moves98,733,235,33/PP11,5,3,7/bonus229 remain unchanged',
+            'stage73_adapter':'only indices37..41 use Rotom move transaction; indices245/246 delegate to original species-only CollectionSupply owner',
+            'true_necrozma_owner':'party_menu.c Task_TryLearnPostFormeChangeMove after N-Solarizer/N-Lunarizer fusion prompts replacement when all four slots are occupied; defusion removes signature and compacts slots',
+            'rejected_test_assumption':'Photon Geyser is NOT a privileged automatic replacement and is NOT restored on defusion by the pinned native owner. Correct runner semantics before any ROM repair; do not implement the wrong assumption just to pass.',
+            'crowned':'both species reached effective Crowned/project move, spent PP5→4, won and returned to field. Strict idle controller rejected live Quest Log recording; use guarded live-field input only, not host state clearing.'},next_cases=['zacian-crowned-battle-roundtrip','zamazenta-crowned-battle-roundtrip'],actual_new_native_processes_this_checkpoint=0,p03_fixed_form_gap_closed=False,release_ready=False),ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Apply only the exact reviewed controller patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '4f21b7b73b04c0e3da96b53b8147f1f4b98d6f36376ba014598fc9d3280c79d3  .chatgpt/patches/pr16-crowned-live-field.patch' | sha256sum -c -
+          echo '15e89dd65b24279a363e0fdc5f35ddc122a3f5bcba80e9ba946dfe7722c5cc03  tools/mgba_pr16_fixed_form_acceptance.c' | sha256sum -c -
+          git apply --check .chatgpt/patches/pr16-crowned-live-field.patch
+          git apply .chatgpt/patches/pr16-crowned-live-field.patch
+          python3 -m unittest discover -s tests -p test_pr16_fixed_form_acceptance.py -v
+          python3 scripts/validate_task_graph.py
+          python3 - <<'PY'
+          import datetime,pathlib
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          text=f'\n## {stamp}\n- Task: USER-MODERNIZATION / fixed-form owner and native live-field checkpoint\n- Status: STOPPED（fixed gap未閉鎖・継続）\n- Summary: run34694785866の4失敗原本とrun34695030927の静的owner原本をdigest付き保持。Crownedは専用技PP5→4・勝利・field復帰まで実測。ライブ記録(quest1,playback2)をhostで消さずnative Bag/歩行へ渡すcontroller修正。\n- Important: NecrozmaのPhoton自動置換・復帰想定はpinned native ownerと不一致。実ownerは全4枠時の選択UI、解除時は専用技削除・圧縮。古い想定を満たすROM改変をしない。\n- Verify: focused14 tests PASS。修正Cの実ROMは次のCrowned2ケースで検証。\n- Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.\n- Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。\n- Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              with pathlib.Path(name).open('a') as f:f.write(text)
+          PY
+      - name: Commit checkpoint without clobbering concurrent work
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md content/modernization/p08_remaining_work.json
+          git add tools/mgba_pr16_fixed_form_acceptance.c content/modernization/pr16_fixed_form_owner_findings.json
+          git add content/modernization/pr16_fixed_form_acceptance_evidence/34694785866 content/modernization/pr16_fixed_form_acceptance_evidence/34695030927
+          git add design/run_log.md design/version_log.md
+          git rm .chatgpt/patches/pr16-crowned-live-field.patch .github/workflows/pr16-fixed-form-live-apply.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git commit -m 'USER-MODERNIZATION: retain fixed-form native and true-owner evidence; preserve live field recording'
+          git push origin "HEAD:$GITHUB_REF_NAME"
