@@ -1,0 +1,46 @@
+name: PR16 generic FORM terminal apply
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-terminal-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor == 'dekaazarashi1111-web'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+      - name: Verify, apply, test, and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='codex/modernization-followup-20260908'
+          patch='.chatgpt/patches/pr16-generic-form-terminal.patch'
+          workflow='.github/workflows/pr16-generic-form-terminal-apply.yml'
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git hash-object tools/mgba_pr16_generic_form_carry.c)" = 'fe216fa9d72de5a892c07350c606d024d5fe3e01'
+          test "$(git hash-object tests/test_pr16_generic_form_carry.py)" = '552744d3c0dd8f731f116cae1517069a774c5417'
+          test "$(git hash-object "$patch")" = '13abd755490fa701e59510092d6821e8cc0a35a2'
+          git apply --check "$patch"
+          git apply "$patch"
+          python3 -m py_compile scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
+          python3 -m unittest tests.test_pr16_generic_form_carry.GenericFormCarryTests.test_controller_uses_paged_real_host_and_no_post_guard_writes
+          git diff --check
+          test "$(git diff --name-only | sort)" = $'tests/test_pr16_generic_form_carry.py\ntools/mgba_pr16_generic_form_carry.c'
+          git add tools/mgba_pr16_generic_form_carry.c tests/test_pr16_generic_form_carry.py
+          git rm "$patch" "$workflow"
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: stop FORM scan at native terminal'
+          git push origin "HEAD:$branch"
