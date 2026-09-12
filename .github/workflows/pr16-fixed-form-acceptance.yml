@@ -1,11 +1,12 @@
 name: pr16-fixed-form-acceptance
-run-name: Fixed FORM five-case physical acceptance (not release promotion)
+run-name: Fixed FORM requested native lifecycles (five-case gate remains separate)
 on:
   workflow_dispatch:
   push:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/pr16-fixed-form-acceptance.yml
+      - .github/pr16-fixed-form-run.json
       - scripts/pr16_fixed_form_acceptance.py
       - tools/mgba_pr16_fixed_form_acceptance.c
       - tests/test_pr16_fixed_form_acceptance.py
@@ -39,6 +40,7 @@ jobs:
             'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
             'scripts/pr16_fixed_form_acceptance.py','tools/mgba_pr16_fixed_form_acceptance.c',
             'tests/test_pr16_fixed_form_acceptance.py','.github/workflows/pr16-fixed-form-acceptance.yml',
+            '.github/pr16-fixed-form-run.json',
             'scripts/pr16_fixed_form_contract.py','content/modernization/pr16_fixed_form_contract.json',
             'content/modernization/p08_remaining_work.json',
             'manifests/move_ids.csv','manifests/item_ids.csv',
@@ -112,12 +114,24 @@ jobs:
           out=.local/pr16-fixed-form-acceptance-evidence
           python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
           python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
-      - name: Run five independent fixed-form lifecycle processes
+      - name: Run only explicitly requested independent fixed-form processes
         shell: bash
         run: |
           set -euo pipefail
           out=.local/pr16-fixed-form-acceptance-evidence
-          python3 scripts/pr16_fixed_form_acceptance.py > "$out/native.stdout" 2> "$out/native.stderr"
+          python3 - <<'PY' > "$out/native.stdout" 2> "$out/native.stderr"
+          import json,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_fixed_form_acceptance as fixed
+          request=json.load(open('.github/pr16-fixed-form-run.json'))
+          fixed.need(type(request) is dict and set(request)=={'schema_version','candidate_sha256','cases','reason'},'invalid run request')
+          fixed.need(type(request['schema_version']) is int and request['schema_version']==1,'invalid request version')
+          fixed.need(request['candidate_sha256']==fixed.SHA,'requested candidate differs')
+          names=fixed.selected_cases(request['cases'])
+          command=[sys.executable,'scripts/pr16_fixed_form_acceptance.py']
+          for name in names:command.extend(['--case',name])
+          subprocess.run(command,check=True)
+          PY
           git diff --exit-code
       - name: Verify artifact is evidence-only, never a ROM or save bundle
         if: always()
