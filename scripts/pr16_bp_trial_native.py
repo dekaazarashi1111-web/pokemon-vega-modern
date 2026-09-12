@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""New native rental-cancel lifecycle on the explicitly repaired Trial successor.
+"""Native rental-cancel lifecycle on the explicitly repaired Trial successor.
 
 Reuse the original controller as a hash-pinned source template, not its results.
-Only the ROM pin and evidence scope are transformed; all game input logic,
-observation barriers, cancellation and fresh-core assertions remain unchanged.
+ROM/scope transformations and bounded read-only traces are recorded explicitly.
+All game input logic, write barriers and lifecycle assertions remain unchanged.
 """
 from __future__ import annotations
 import json
@@ -18,6 +18,7 @@ sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
 import pr16_bp_trial_successor as layer
 import pr16_bp_native_controls as control
 import pr16_fixed_form_acceptance as fixed
+import pr16_bp_chooser_trace as chooser
 need,identity,stable=layer.need,layer.identity,layer.stable
 SELF='scripts/pr16_bp_trial_native.py'
 WORKFLOW='.github/workflows/pr16-bp-trial-native.yml'
@@ -80,8 +81,9 @@ def run():
         geometry=gear.oracle(original)
         report['unchanged_parent_map_oracle']=control.oracle(original)
         report['declared_successor_change']=recipe['change']
+        report['chooser_observation']=chooser.prepare(raw,out,identity,need,stable)
         (out/'candidate.json').write_bytes(stable(recipe))
-        paths={SELF,WORKFLOW,TEST,layer.SELF,layer.route.SELF,control.SELF,control.SOURCE,
+        paths={SELF,WORKFLOW,TEST,chooser.SELF,layer.SELF,layer.route.SELF,control.SELF,control.SOURCE,
             shop.base.PARENT_C,shop.SOURCE,parent.SOURCE,gear.SOURCE,
             'overlays/factory_high_modes_v2/factory_high_modes_v2.h','overlays/factory_high_modes_v2/factory_high_modes_v2.c',
             'overlays/save_migration/save_migration.h','overlays/save_migration/save_migration.c',
@@ -116,8 +118,10 @@ def run():
                     text=transform(text,before,after);transforms.append(dict(source=src,before=before,after=after))
                 generated[target]=m.embed(text,label)
             before=f'#define BP_SCOPE "{control.SCOPE}"';after=f'#define BP_SCOPE "{SCOPE}"'
-            generated['controller.c']=transform((ROOT/control.SOURCE).read_text(),before,after)
+            controller=transform((ROOT/control.SOURCE).read_text(),before,after)
             transforms.append(dict(source=control.SOURCE,before=before,after=after))
+            controller,observations=chooser.instrument(controller,transform)
+            generated['controller.c']=controller;transforms.extend(observations)
             generated['pr16_gear_route.h']=gear.route_header(geometry)
             for name,text in generated.items():(work/name).write_text(text)
             report['source_transformations']=transforms
