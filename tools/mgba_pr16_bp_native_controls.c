@@ -42,7 +42,12 @@ static void bp_open(struct mCore *c) {
     b_frames_run(c,0,60U);b_press(c,QOL_KEY_UP,60U);b_position(c,96U,5U,20U,20U);
     unsigned avatar=read8(c,P02S_PLAYER_AVATAR+5U);
     bp_require(c,avatar<16U && (read8(c,P02S_OBJECT_EVENTS+avatar*0x24U+0x18U)&15U)==2U,"Factory physical facing differs");
-    bt.interaction=b_frames+1U;b_press(c,QOL_KEY_A,60U);bp_wait_menu(c,0U);bt.tier=b_frames;
+    bt.interaction=b_frames+1U;b_press(c,QOL_KEY_A,120U);g_shot("codex-gateway");
+    /* Actual native No at the Codex yes/no gateway delegates to Factory.
+     * Stop B pulses immediately when the tier menu becomes live. */
+    for(unsigned f=0;f<2400U && !bp_menu(c,0U);++f)
+        b_frame(c,f%90U==0U?QOL_KEY_B:0U);
+    bp_wait_menu(c,0U);bt.tier=b_frames;
     bp_require(c,!read8(c,G_CURSOR) && !read8(c,BP_H(menu_codes)),"native first tier is not Trial");g_shot("reception-tier");
 }
 static void bp_trial(struct mCore *c) {
