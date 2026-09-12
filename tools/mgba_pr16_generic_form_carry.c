@@ -106,9 +106,8 @@ int main(int argc,char **argv){
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
     struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);c->reset(c);
     a_require(a_continue(c),"generic form initial Continue failed");a_flash_prepare(c);
-    /* Generic service unlocks must exist before the authored map/host loads. */
+    /* Persist the Shaymin row's post-league prerequisites before loading the host. */
     write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
-    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
     (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
     m_state(c,"fixture-warp");m_shot(argv[6],0U,"fixture-warp");
@@ -118,8 +117,13 @@ int main(int argc,char **argv){
     create_mon(c,M_TARGET,M_BASE_SPECIES,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
     for(unsigned k=0;k<4U;++k){set_mon_data_u32(c,M_TARGET,13U+k,m_moves[k]);set_mon_data_u32(c,M_TARGET,17U+k,m_pp[k]);}
     set_mon_data_u32(c,M_TARGET,21U,229U);
-    /* Finalize the individual fixture before the read-only observation barrier. */
+    a_require(read8(c,QOL_LEDGER+18U)==1U && read8(c,QOL_LEDGER+20U)==1U && read8(c,QOL_LEDGER+21U)==1U,
+        "generic form prerequisite fixture was lost during host load");
+    /* Match the accepted Rotom control: host research gates are finalized after map load. */
+    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
+    a_require(read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
+        "generic FORM host progress fixture was not finalized");
     unsigned pid=b_data(c,M_TARGET,0U),ot=b_data(c,M_TARGET,1U);
     uint8_t decoy[100];b_copy(c,QOL_PLAYER_PARTY,decoy,100U);
     unsigned rounds=v->action==0U?2U:1U,initial_counter=read32(c,P03_SAVE_COUNTER),expected_auto=0U;
