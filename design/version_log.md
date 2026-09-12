@@ -2046,3 +2046,14 @@ Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411`
 - Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。
 - Network: GitHub Actions API。原本移送は新規emulator runではない。
 - Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。
+
+## 2026-09-12T13:33:37.608213+00:00
+- Task: USER-MODERNIZATION / Necrozma native fusion controller
+- Status: IMPLEMENTED_NATIVE_NOT_RUN
+- Summary: 既存Crowned/取消controllerをそのまま埋め込み、Necrozma2ケースだけをN-Solarizer697/N-Lunarizer698→手持ち相方1189/1190→4枠技選択→保存/Continue→解除/専用技削除/圧縮→保存/Continueの別controllerへ接続。Photon733を選んで忘れた後に自動復元されるという旧誤想定は拒否。FORM行選択の実行とは明示的に区別。
+- Verify: 17 focused source-only tests PASS、既存4原本のGit HEAD bytes/digest一致。新Cの実compile/nativeは次の明示的Necrozma2ケースrunで検証。
+- Files changed: fusion C、Python validator、tests。既存native workflowは変更せず、.github/pr16-fixed-form-run.jsonの明示更新で起動。
+- Commit: この追記を含むcommit。固定ROM e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267 は変更なし。
+- Network: checkoutのみ。新規emulator0。Crowned成功と取消成功を再実行しない。
+- Prior attempt: run34696667882はsource/checks成功後、botのworkflow更新pushだけが拒否されcommit未反映。今回はsource-onlyに限定し、workflow権限を持つGitHub connectorとbotを混同しない。
+- Next: .github/pr16-fixed-form-run.jsonをNecrozma2ケースへ更新し1回実行、raw originalを判定。3/5という現行受入は変更せずP03 gap/release-ready=false。

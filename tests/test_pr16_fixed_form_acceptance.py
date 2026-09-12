@@ -4,6 +4,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('fixed_acceptance', ROOT / 'scripts/pr16_fixed_form_acceptance.py')
@@ -33,6 +34,9 @@ def sample(name):
     row['witness'][order[-1]] = 100
     if row['kind'] == 'necrozma-roundtrip':
         row['witness']['reversion'] = row['witness']['transition']
+        row['witness']['interaction'] = 1
+        row['fusion_witness'] = {key: i for i, key in enumerate(m.FUSION_WITNESS, 1)}
+        row['fusion_witness']['defuse_entry'] = 35
     elif row['kind'] == 'crowned-battle-roundtrip':
         row['witness']['first_battle'] = row['witness']['project_move_seen']
     return row
@@ -159,6 +163,59 @@ class FixedFormAcceptanceTests(unittest.TestCase):
         for invalid in ([], names + names[:1], ['missing'], names[::-1]):
             with self.assertRaises(ValueError):
                 m.selected_cases(invalid)
+
+    def test_fusion_witnesses_are_required_ordered_and_bound(self):
+        for name in list(m.CASES)[:2]:
+            for key in m.FUSION_WITNESS:
+                for value in (0, True, -1, 1000):
+                    row = sample(name)
+                    row['fusion_witness'][key] = value
+                    with self.subTest(name=name, key=key, value=value), self.assertRaises(ValueError):
+                        self.validate(row)
+                row = sample(name)
+                del row['fusion_witness'][key]
+                with self.assertRaises(ValueError):
+                    self.validate(row)
+            for key, value in (('item_entry', 2), ('defuse_entry', 25), ('transformed', 25)):
+                row = sample(name)
+                row['fusion_witness'][key] = value
+                with self.assertRaises(ValueError):
+                    self.validate(row)
+
+    def test_fusion_semantics_are_not_legacy_service_or_photon_restoration(self):
+        for name in list(m.CASES)[:2]:
+            for key, value in (('entry_kind', 'FORM_SERVICE'),
+                               ('form_service_selection_claimed', True),
+                               ('fusion_partner_restored_exact', False),
+                               ('forgotten_move_not_restored', False),
+                               ('defusion_signature_removed_and_compacted', False),
+                               ('chosen_replacement_slot', 0),
+                               ('fusion_item_id', 0), ('fusion_partner_species', 0)):
+                row = sample(name)
+                row[key] = value
+                with self.subTest(name=name, key=key), self.assertRaises(ValueError):
+                    self.validate(row)
+            row = sample(name)
+            row['automatic_saves'] = 1
+            row['save_counter_after'] += 1
+            with self.assertRaises(ValueError):
+                self.validate(row)
+
+    def test_fusion_manifest_bindings(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'manifests').mkdir()
+            item = root / 'manifests/item_ids.csv'
+            species = root / 'manifests/species_ids.csv'
+            item.write_text('id,cfru_symbol\n697,ITEM_N_SOLARIZER\n698,ITEM_N_LUNARIZER\n')
+            species.write_text('id,cfru_symbol\n1189,SPECIES_SOLGALEO\n1190,SPECIES_LUNALA\n')
+            m.verify_fusion_ids(root)
+            item.write_text(item.read_text() + '697,ITEM_N_SOLARIZER\n')
+            with self.assertRaises(ValueError):
+                m.verify_fusion_ids(root)
+            item.write_text('id,cfru_symbol\n0,ITEM_N_SOLARIZER\n698,ITEM_N_LUNARIZER\n')
+            with self.assertRaises(ValueError):
+                m.verify_fusion_ids(root)
 
     def test_historical_probe_is_not_accepted(self):
         name = next(iter(m.CASES))

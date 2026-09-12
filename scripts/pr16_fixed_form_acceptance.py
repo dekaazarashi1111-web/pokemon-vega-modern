@@ -22,6 +22,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 SELF = 'scripts/pr16_fixed_form_acceptance.py'
 SOURCE = 'tools/mgba_pr16_fixed_form_acceptance.c'
+CONTROLLER = 'tools/mgba_pr16_necrozma_fusion_acceptance.c'
 TEST = 'tests/test_pr16_fixed_form_acceptance.py'
 WORKFLOW = '.github/workflows/pr16-fixed-form-acceptance.yml'
 CONTRACT = 'content/modernization/pr16_fixed_form_contract.json'
@@ -53,6 +54,9 @@ WITNESS = (
     'project_move_spent', 'first_battle_exit', 'item_replaced',
     'second_battle', 'second_battle_exit',
 )
+FUSION_WITNESS = ('item_entry', 'bag', 'party', 'primary_selection',
+                  'partner_selection', 'replace_prompt', 'summary',
+                  'replacement_selection', 'transformed', 'defuse_entry')
 GUARDS = ('bus8', 'bus16', 'bus32', 'raw8', 'raw16', 'raw32', 'register')
 
 
@@ -96,7 +100,7 @@ def expected(name: str, auxiliary: dict) -> dict:
         true_flags.update(('native_transition_entry', 'native_decline_or_ineligible_control', 'party_bytes_unchanged', 'save_counter_unchanged'))
     else:
         true_flags.update(('native_transition_entry', 'transition_owned_move_resolution', 'four_slot_boundary', 'native_reversion', 'normal_save', 'fresh_continue'))
-    return dict(
+    result = dict(
         schema_version=1, status='PASS', scope=SCOPE, case=name, kind=kind,
         family=family, route_id=route, rom_sha256=SHA, form_index=index,
         canonical_ordinal=ordinal, base_species=base, target_species=target,
@@ -106,10 +110,20 @@ def expected(name: str, auxiliary: dict) -> dict:
         fresh_cores=2 if crown else 1 if decline else 3,
         **{key: key in true_flags for key in FLAGS},
         starting_progress_map_party_are_fixtures=True,
-        held_items_and_bag_are_fixtures=crown, input_only_after_guard=True,
+        held_items_and_bag_are_fixtures=not decline, input_only_after_guard=True,
         warnings_errors=0, case_accepted=True, aggregate_gap_closed=False,
         full_p03_acceptance=False, release_ready=False,
     )
+    if kind == 'necrozma-roundtrip':
+        result.update(entry_kind='NATIVE_FUSION_ITEM',
+                      form_service_selection_claimed=False,
+                      fusion_item_id=697 if target == 1260 else 698,
+                      fusion_partner_species=1189 if target == 1260 else 1190,
+                      chosen_replacement_slot=1,
+                      fusion_partner_restored_exact=True,
+                      forgotten_move_not_restored=True,
+                      defusion_signature_removed_and_compacted=True)
+    return result
 
 
 def validate(raw: bytes, stderr: bytes, name: str, code: int, auxiliary: dict) -> dict:
@@ -117,13 +131,15 @@ def validate(raw: bytes, stderr: bytes, name: str, code: int, auxiliary: dict) -
     row = strict_json(raw)
     want = expected(name, auxiliary)
     dynamic = {'automatic_saves', 'save_counter_before', 'save_counter_after', 'total_frames', 'witness'}
+    if want['kind'] == 'necrozma-roundtrip':
+        dynamic.add('fusion_witness')
     need(type(row) is dict and set(row) == set(want) | dynamic, 'fixed-form result schema differs')
     for key, value in want.items():
         need(type(row[key]) is type(value) and row[key] == value, 'fixed-form result differs: ' + key)
-    for key in dynamic - {'witness'}:
+    for key in dynamic - {'witness', 'fusion_witness'}:
         need(type(row[key]) is int and 0 <= row[key] <= 0xffffffff, 'invalid integer: ' + key)
     need(1 <= row['total_frames'] <= 600000, 'frame budget differs')
-    need(row['automatic_saves'] <= (2 if row['kind'] == 'necrozma-roundtrip' else 0), 'unexpected automatic saves')
+    need(row['automatic_saves'] == 0, 'unexpected automatic saves')
     need(row['save_counter_after'] == row['save_counter_before'] + row['manual_saves'] + row['automatic_saves'], 'save counter accounting differs')
     w = row['witness']
     need(type(w) is dict and set(w) == set(WITNESS), 'witness schema differs')
@@ -134,6 +150,12 @@ def validate(raw: bytes, stderr: bytes, name: str, code: int, auxiliary: dict) -
         order = ('interaction', 'first_save', 'first_continue', 'menu', 'party', 'selection', 'transition', 'second_save', 'second_continue')
         active = set(order) | {'reversion'}
         need(w['reversion'] == w['transition'], 'reversion witness differs')
+        fusion = row['fusion_witness']
+        need(type(fusion) is dict and set(fusion) == set(FUSION_WITNESS), 'fusion witness schema differs')
+        need(all(type(v) is int and 0 < v <= row['total_frames'] for v in fusion.values()), 'invalid fusion counter')
+        need(all(fusion[a] < fusion[b] for a, b in zip(FUSION_WITNESS, FUSION_WITNESS[1:])), 'fusion native input order differs')
+        need(fusion['item_entry'] == w['interaction'], 'fusion entry is not bound')
+        need(fusion['transformed'] < w['first_save'] < w['first_continue'] < fusion['defuse_entry'] < w['menu'], 'fusion save/Continue/defusion order differs')
     elif row['kind'] == 'necrozma-decline':
         order = ('interaction', 'decline_dusk', 'menu', 'party', 'decline_dawn')
         active = set(order)
@@ -177,7 +199,19 @@ def selected_cases(names: list[str] | None) -> list[str]:
     return selected
 
 
+def verify_fusion_ids(root: Path) -> None:
+    for name, expected_ids in (
+        ('item_ids.csv', {'ITEM_N_SOLARIZER': 697, 'ITEM_N_LUNARIZER': 698}),
+        ('species_ids.csv', {'SPECIES_SOLGALEO': 1189, 'SPECIES_LUNALA': 1190}),
+    ):
+        rows = list(csv.DictReader(io.StringIO((root / 'manifests' / name).read_text())))
+        for symbol, value in expected_ids.items():
+            found = [r for r in rows if r['cfru_symbol'] == symbol]
+            need(len(found) == 1 and found[0]['id'] == str(value), 'fusion manifest identity differs: ' + symbol)
+
+
 def oracle(root: Path) -> tuple[dict, dict]:
+    verify_fusion_ids(root)
     sys.path.insert(0, str(root / 'scripts'))
     import pr16_fixed_form_contract as contract
     cfg = json.loads((root / 'config/modernization_p03_stage73_consumers.json').read_bytes())
@@ -222,7 +256,7 @@ def run(output: Path = OUT, names: list[str] | None = None) -> dict:
         route = gear.oracle(raw)
         report.update(contract=contract, auxiliary_moves=auxiliary, route_oracle=route)
         (out / 'candidate.json').write_bytes(stable(recipe))
-        source_paths = {SELF, SOURCE, TEST, WORKFLOW, CONTRACT, MODEL, 'manifests/move_ids.csv', shop.base.PARENT_C, shop.SOURCE, parent.SOURCE, gear.SOURCE, 'config/modernization_p03_stage73_consumers.json', 'config/modernization_stage79_cumulative_mgba.json', 'config/active_play_baseline.json', 'design/active_play_baseline.md', *(path for path, _ in m.EMBEDDED)}
+        source_paths = {SELF, SOURCE, CONTROLLER, TEST, WORKFLOW, CONTRACT, MODEL, 'manifests/move_ids.csv', 'manifests/item_ids.csv', 'manifests/species_ids.csv', 'content/modernization/pr16_fixed_form_owner_findings.json', shop.base.PARENT_C, shop.SOURCE, parent.SOURCE, gear.SOURCE, 'config/modernization_p03_stage73_consumers.json', 'config/modernization_stage79_cumulative_mgba.json', 'config/active_play_baseline.json', 'design/active_play_baseline.md', *(path for path, _ in m.EMBEDDED)}
         # Include all imported repository modules, not just the top-level runner.
         for module in tuple(sys.modules.values()):
             filename = getattr(module, '__file__', None)
@@ -256,6 +290,7 @@ def run(output: Path = OUT, names: list[str] | None = None) -> dict:
                 (gear.SOURCE, 'pr16_fixed_form_acceptance_helpers.c', 'fixed_gear'),
             ):
                 generated[target] = m.embed((ROOT / src).read_text(), label)
+            generated['pr16_fixed_form_lifecycle_helpers.c'] = m.embed((ROOT / SOURCE).read_text(), 'fixed_form_parent_main')
             generated['pr16_gear_route.h'] = gear.route_header(route)
             generated['pr16_fixed_form_acceptance_contract.h'] = (
                 '#define F_CANDIDATE_SHA256 "' + SHA + '"\n'
@@ -268,9 +303,9 @@ def run(output: Path = OUT, names: list[str] | None = None) -> dict:
             with zipfile.ZipFile(out / 'generated-controller.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
                 for name, text in generated.items():
                     archive.writestr(name, text)
-                archive.writestr('controller.c', (ROOT / SOURCE).read_bytes())
+                archive.writestr('controller.c', (ROOT / CONTROLLER).read_bytes())
             binary = work / 'runner'
-            _, _, process = common.capture(['cc', '-std=c11', '-O2', '-Wall', '-Wextra', '-Werror', '-Itools', '-I' + str(work), str(ROOT / SOURCE), '-lmgba', '-o', str(binary)], out / 'compile', 120)
+            _, _, process = common.capture(['cc', '-std=c11', '-O2', '-Wall', '-Wextra', '-Werror', '-Itools', '-I' + str(work), str(ROOT / CONTROLLER), '-lmgba', '-o', str(binary)], out / 'compile', 120)
             need(common.require_exited(process) == 0, 'fixed-form C compile failed')
             for guard in GUARDS:
                 stdout, stderr, process = common.capture([str(binary), '--guard-check', guard], out / ('guard-' + guard), 10)
