@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [codex/modernization-followup-20260908]
-    paths: [.github/workflows/pr16-bp-trial-route.yml]
+    paths:
+      - .github/workflows/pr16-bp-trial-route.yml
+      - scripts/pr16_bp_trial_route.py
 permissions:
   contents: read
   actions: read
