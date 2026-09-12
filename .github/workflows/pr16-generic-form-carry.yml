@@ -1,8 +1,11 @@
 name: pr16-generic-form-carry
 run-name: Real non-Rotom Shaymin form carry, cancel, save and cold Continue
-# Entry-order diagnosis: run 34662054112 / artifact 10287985514.
-# Artifact ZIP SHA-256 1fef860d80bf4c012913447fd44250b7ea651408258157d47326cc87a13d8550.
-# Acceptance fixture now uses the proven pre-map HOF flag + HOF mirror + host gates, with one finalize.
+# Entry-order diagnosis: run 34662054112 / artifact 10287985514 / ZIP SHA-256
+# 1fef860d80bf4c012913447fd44250b7ea651408258157d47326cc87a13d8550.
+# Row-visibility failure: run 34662546662 / artifact 10288111178 / ZIP SHA-256
+# 74e08d06c3ae14a164b53317c2e1f9b8887991f4d663fd14aac4d5785951d239.
+# Runtime maps FINAL_LEAGUE_CLEARED to ledger 20 and League II to ledger 21;
+# acceptance sets only final-league before the one pre-map finalize.
 
 on:
   workflow_dispatch:
