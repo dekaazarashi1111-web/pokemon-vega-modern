@@ -31,6 +31,12 @@ def stable(value):
     return (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + '\n').encode()
 
 
+class GraphError(ValueError):
+    def __init__(self, detail):
+        super().__init__('script graph rejected at documented command boundary')
+        self.detail = detail
+
+
 def graph(raw, roots):
     """明示rootと命令境界のedgeだけを辿る。native内への推測はしない。"""
     from tools.t02.rom_inventory import COMMAND_LENGTHS
@@ -48,7 +54,10 @@ def graph(raw, roots):
             need(0 <= at < len(raw), 'script address outside ROM')
             op = raw[at]
             size = COMMAND_LENGTHS.get(op, 0)
-            need(size > 0 and at + size <= len(raw), 'unknown/truncated instruction; no resynchronization')
+            if not (size > 0 and at + size <= len(raw)):
+                raise GraphError(dict(root=start,address=pc,opcode=op,declared_length=size,
+                    next_bytes=raw[at:at+24].hex(),partial_node=rows,nodes=list(nodes.values()),
+                    error='unknown/truncated instruction; no resynchronization'))
             row = dict(address=pc, opcode=op, bytes=raw[at:at+size].hex())
             if op in (0x04, 0x05, 0x06, 0x07):
                 site = at + (1 if op in (0x04, 0x05) else 2)
@@ -83,7 +92,18 @@ def inspect(raw):
     probe, npc, events, scripts = struct.unpack_from('<4I', raw, at+40)
     need(all(BASE+at <= value < BASE+at+size for value in (probe, npc, events, scripts)), 'header pointers leave payload')
     named = dict(payload_npc=npc, pre_high_npc=0x0938D4A4, high_reception=0x093C9390, mistaken_trial=0x092CF790)
-    paths = {name: graph(raw, [address]) for name, address in named.items()}
+    paths, failures = {}, {}
+    for name,address in named.items():
+        try:
+            paths[name] = graph(raw,[address])
+        except GraphError as exc:
+            failures[name] = exc.detail
+    basic = dict(schema_version=1,status='FAIL_ROOTED_STATIC_NOT_NATIVE_ACCEPTANCE',candidate=identity(raw),
+        payload=dict(address=BASE+at,size=size,code_size=code_size,header=raw[at:at+56].hex(),npc=npc,probe=probe,events=events,map_scripts=scripts),
+        roots=named,graphs=paths,graph_failures=failures,new_emulator_processes=0,rom_changes=0,
+        native_rental_accepted=False,p05_native_bp_gap_closed=False,release_ready=False)
+    if failures:
+        return basic
     edges = [row for node in paths['high_reception'] for row in node['instructions'] if row.get('target') == named['mistaken_trial']]
     need(len(edges) == 1 and edges[0]['opcode'] == 0x06, 'Trial delegate is not one rooted conditional edge')
     rental_paths = [name for name in ('payload_npc', 'pre_high_npc') if any(row.get('special') == 0x2f for node in paths[name] for row in node['instructions'])]
@@ -95,25 +115,18 @@ def inspect(raw):
     need(int(cfg['physical_binding']['trial_script'],16) == named['mistaken_trial'], 'historical configured Trial differs')
     need(int.from_bytes(bytes.fromhex(reception['expected_hex']), 'little') == named['pre_high_npc'], 'historical predecessor differs')
     need(int(completion['address'],16) == named['mistaken_trial']+1, 'completion pointer contract differs')
-    return dict(schema_version=1, status='PASS_ROOTED_STATIC_NOT_NATIVE_ACCEPTANCE', candidate=identity(raw),
-        payload=dict(address=BASE+at,size=size,code_size=code_size,header=raw[at:at+56].hex(),npc=npc,probe=probe,events=events,map_scripts=scripts),
-        roots=named, graphs=paths, trial_operand=edges[0],
-        replacement_candidate=named['pre_high_npc'], replacement_candidate_is_previous_physical_hook=True,
-        new_emulator_processes=0, rom_changes=0, native_rental_accepted=False,
-        p05_native_bp_gap_closed=False, release_ready=False,
+    basic.update(status='PASS_ROOTED_STATIC_NOT_NATIVE_ACCEPTANCE',trial_operand=edges[0],
+        replacement_candidate=named['pre_high_npc'],replacement_candidate_is_previous_physical_hook=True,
         limitations=['静的到達性だけ。native受付、レンタル、勝敗、報酬、Save/Continueは別の実行証拠が必要。',
                     'native function内部と高モードの全状態は今回のscript graph受入に含めない。'])
+    return basic
 
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     need(not OUT.is_symlink(), 'unsafe output')
-    import pr16_shop_display_repair as repair
-    recipe = repair.run()
-    raw = (repair.OUTPUT/'candidate.gba').read_bytes()
-    report = inspect(raw)
-    report['tested_head'] = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-    names = [SELF, WORKFLOW, 'tests/test_pr16_bp_trial_route.py',
+    head = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+    names = [SELF, WORKFLOW,
         'AGENTS.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md',
         'scripts/build_factory_high_modes_v2.py','scripts/build_facility_runtime.py',
         'scripts/pr16_bp_native_controls.py','tests/test_pr16_bp_native_controls.py','tools/mgba_pr16_bp_native_controls.c',
@@ -131,11 +144,19 @@ def main():
             path=ROOT/name; data=path.read_bytes(); data.decode('utf-8')
             need(not path.is_symlink() and b'\0' not in data and len(data)<8_000_000, 'unsafe source snapshot')
             z.writestr(name,data);bound[name]=identity(data)
-    report['sources']=bound
-    (OUT/'route.json').write_bytes(stable(report))
-    (OUT/'candidate-recipe.json').write_bytes(stable(recipe))
-    (OUT/'receipt.json').write_bytes(stable({p.name:identity(p.read_bytes()) for p in sorted(OUT.iterdir()) if p.is_file() and p.name!='receipt.json'}))
-    print(json.dumps(dict(status=report['status'],tested_head=report['tested_head'],trial_operand=report['trial_operand'],replacement_candidate=report['replacement_candidate'],new_emulator_processes=0)))
+    report = dict(schema_version=1,status='FAIL',tested_head=head,sources=bound,
+        new_emulator_processes=0,rom_changes=0,native_rental_accepted=False,p05_native_bp_gap_closed=False,release_ready=False)
+    try:
+        import pr16_shop_display_repair as repair
+        recipe = repair.run()
+        (OUT/'candidate-recipe.json').write_bytes(stable(recipe))
+        raw = (repair.OUTPUT/'candidate.gba').read_bytes()
+        report.update(inspect(raw))
+        need(report['status']=='PASS_ROOTED_STATIC_NOT_NATIVE_ACCEPTANCE','bounded script graph rejected; see route.json')
+        print(json.dumps(dict(status=report['status'],tested_head=head,trial_operand=report['trial_operand'],replacement_candidate=report['replacement_candidate'],new_emulator_processes=0)))
+    finally:
+        (OUT/'route.json').write_bytes(stable(report))
+        (OUT/'receipt.json').write_bytes(stable({p.name:identity(p.read_bytes()) for p in sorted(OUT.iterdir()) if p.is_file() and p.name!='receipt.json'}))
 
 if __name__ == '__main__':
     main()
