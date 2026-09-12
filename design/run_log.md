@@ -4840,3 +4840,8 @@ run34702872369はCodex wrapperの前処理契約で停止、emulator0。原本fa
 ## USER-MODERNIZATION: native supply handoff and ownership CI correction / 2026-09-12
 
 fixed-form正式5ケースの閉鎖に対し、forgetting側の旧ownershipテストだけがP03未完状態を要求していた。run34704254858はruntime契約24PASS、証拠20件中1FAILで、技忘却nativeの再発ではない。commit2d82b2aはその4行だけを5ケース正本/候補SHA/gap閉鎖/P08移送未完を要求する20行へ置換。修正run34704480513とpush run34704478309は成功。原本確認は24+20=44 source tests PASS、忘却12ケース/12保存Continueを再検証、新規emulator0。前後CI原本を別ZIPとして保持。P03/generic FORM/P07を再オープンせず、既存native成功を再実行しない。この作業束で新規nativeはBP受付取消1process/1coreだけ。positive BP獲得/通常保存Continueは未受入。残るphysical gap4件とP08ゲート2件、Trial誤delegate092CF790、Circus旧F0=sprite pointerを正本へ同期。ROM変更0、release_ready/active_baseline_changed=false、既存global private guard違反は残す。content/modernization/pr16_native_supply_handoff.json と docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md を参照。
+
+
+## USER-MODERNIZATION: BP Trial successor checkpoint / 2026-09-13
+
+親e630のTrial goto operand 0x093C93C1を90f72c09からa4d43809へ変更。旧物理受付wrapper0x0938D4A4を維持し、完了script0x092CF790への誤接続を解消。successor df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c / 33554432 bytes / CRC5283EC5F。4byte宣言範囲中3byteのみ変更。静的run34707830538成功、先行失敗34707390052/34707616730も原本保持。新規native run34708218707は24tests/7write guardsを通り、実受付→6レンタル/snapshotまで到達したがChooser前で失敗。12615frames、BP0/save2、Save/保存後Continue未実行。成功へ昇格しない。今回原本内native新規1、証拠移送での新規実行0。静的receiptの閉じる前のstdout/stderr不一致2件を隠さず、最終artifact-membersと外側ZIP digestで最終bytesを検証。正式physical gap4/P08 gate2、P03/P07受入とactive baselineは維持。content/modernization/pr16_bp_trial_receipt.json と docs/PR16_BP_TRIAL_RESUME_20260913_JA.md を再開正本とする。

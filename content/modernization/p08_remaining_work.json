@@ -64,6 +64,15 @@
     "scope": "ADDITIONAL_MACHINE_TUTOR_ARCHIVE_ONLY",
     "status": "ADOPTED"
   },
+  "bp_trial_successor_checkpoint": {
+    "native_bp_earning_accepted": false,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "p05_native_bp_gap_closed": false,
+    "receipt": "content/modernization/pr16_bp_trial_receipt.json",
+    "source_path": "content/modernization/pr16_bp_trial_checkpoint.json",
+    "source_run": 34708218707,
+    "status": "TRIAL_DELEGATE_REPAIRED_RENTAL_UI_NOT_ACCEPTED"
+  },
   "captured_battle_checkpoint": {
     "candidate": {
       "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
@@ -209,14 +218,15 @@
   },
   "new_emulator_runs_during_reconciliation": 0,
   "next_integration_candidate": {
-    "builder": "scripts/pr16_shop_display_repair.py",
+    "builder": "scripts/pr16_bp_trial_successor.py",
     "candidate": {
-      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "crc32": "5283EC5F",
+      "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
       "size": 33554432
     },
     "full_candidate_regression_complete": false,
-    "scope": "SHOP_RENDERER_REPAIR_ACCEPTED_OTHER_DOMAINS_RETAINED_ON_PARENT",
-    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
+    "scope": "TRIAL_DELEGATE_REPAIR_BUILT_NATIVE_RENTAL_UI_PENDING",
+    "source_path": "content/modernization/pr16_bp_trial_checkpoint.json"
   },
   "nonblocking_findings": [
     {
@@ -299,6 +309,16 @@
     "physical_rotom_service_accepted": true,
     "release_ready": false,
     "source_path": "content/modernization/pr16_physical_route_acceptance.json"
+  },
+  "pre_trial_integration_candidate": {
+    "builder": "scripts/pr16_shop_display_repair.py",
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "full_candidate_regression_complete": false,
+    "scope": "SHOP_RENDERER_REPAIR_ACCEPTED_OTHER_DOMAINS_RETAINED_ON_PARENT",
+    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
   },
   "purchased_gear_checkpoint": {
     "candidate": {
