@@ -244,6 +244,10 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertIn("b_press(c,QOL_KEY_B,180U);b_wait(c);", scan)
         self.assertIn("m_open_form_row(c,page,cursor,prefix,round)", scan)
         self.assertIn("b_position(c,1U,36U,6U,4U)", scan)
+        self.assertIn(
+            'a_require(b_field(c),"generic form probe cancel did not return to idle field")',
+            scan,
+        )
         self.assertNotIn("probe-return-timeout", scan)
         self.assertNotIn("m_waitmenu(c,2U,page", scan)
         self.assertNotIn("#define M_PAGE ", text)
