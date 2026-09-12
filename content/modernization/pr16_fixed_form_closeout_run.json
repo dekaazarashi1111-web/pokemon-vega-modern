@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "PASS_FIVE_CASE_CLOSEOUT_VERIFIED_AFTER_PUSH",
+  "run_id": 34700181342,
+  "job_id": 103570444512,
+  "execution_head": "cfba16d86956877f93698bc1df55489cbc3dd345",
+  "pushed_head": "46214042f009654df37b6915a3cd1c61d090dc09",
+  "artifact_id": 10300485911,
+  "artifact_size": 124710,
+  "artifact_sha256": "ea131a423b1777230b62676170044147de21e9151624b3bebabbc3d24f51ce6f",
+  "artifact_expires_at": "2026-12-11T14:44:55Z",
+  "actions_conclusion": "success",
+  "archive_digest_reverified_after_download": true,
+  "source_snapshot_digests_reverified_after_download": true,
+  "index_check_status": "PASS_FIVE_CASE_CLOSEOUT",
+  "head_check_status": "PASS_FIVE_CASE_CLOSEOUT",
+  "push_readback_verified": true,
+  "focused_tests_passed": 14,
+  "accepted_case_count": 5,
+  "successful_original_processes": 5,
+  "successful_original_fresh_cores": 11,
+  "new_emulator_runs": 0,
+  "rom_changes": 0,
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432,
+    "crc32": "BFB089F9"
+  },
+  "acceptance": "content/modernization/pr16_fixed_form_acceptance.json",
+  "receipt": "content/modernization/pr16_fixed_form_acceptance_receipt.json",
+  "private_guard": {
+    "baseline_and_final_global_findings_identical": true,
+    "new_findings_in_changed_paths": 0,
+    "global_guard_passed": false,
+    "record": "content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/guard_boundary.json",
+    "prior_failed_closeout_run": 34699976579,
+    "prior_failed_closeout_did_not_push": true,
+    "historical_originals_not_rewritten": true
+  },
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+    "PHYSICAL_CIRCUS_ADMISSION"
+  ],
+  "remaining_p08_gates": ["FINAL_NATIVE_ACCEPTANCE", "RELEASE_DECISION"],
+  "p03_fixed_form_gap_closed": true,
+  "full_p03_acceptance": false,
+  "release_ready": false,
+  "active_baseline_changed": false,
+  "next_action": "Resume P05 ordinary supply from real event/runtime owners, not fixture-only audit helpers. Preserve generic FORM and parent-candidate P07 completion. Never rerun these five successful fixed-form cases without a relevant P08 change-impact reason."
+}
