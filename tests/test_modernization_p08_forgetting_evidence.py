@@ -139,12 +139,28 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
         self.assertTrue(record.same(current, self.tracked))
         conditions = {row['id']: row for row in current['remaining_conditions']}
 
+        # Forgetting owns neither the later fixed-form completion nor its
+        # pending final-candidate transfer. Preserve the evidence-backed state
+        # rather than requiring the historical fixed-form-pending snapshot.
         p03 = conditions['EVOLUTION_FORM_OTHER_EGG']
         self.assertEqual(
-            p03['status'], 'PENDING_FIXED_FORM_ROUTE_ACCEPTANCE')
-        self.assertEqual(p03['remaining_physical_gap_ids'], [
-            'P03_FIXED_FORM_TRANSITION_PHYSICAL',
-        ])
+            p03['status'], 'PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER')
+        self.assertEqual(p03['remaining_physical_gap_ids'], [])
+        self.assertIs(p03['complete'], True)
+        self.assertIs(p03['physical_acceptance_complete'], True)
+        self.assertIn('P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL',
+                      p03['accepted_physical_gap_ids'])
+        self.assertIn('P03_FIXED_FORM_TRANSITION_PHYSICAL',
+                      p03['accepted_physical_gap_ids'])
+        fixed_path = 'content/modernization/pr16_fixed_form_acceptance.json'
+        self.assertEqual(p03['fixed_form_success_evidence'], fixed_path)
+        fixed = record.load((ROOT/fixed_path).read_bytes())
+        self.assertEqual(fixed['accepted_case_count'], 5)
+        self.assertEqual(fixed['remaining_case_ids'], [])
+        self.assertIs(fixed['p03_fixed_form_gap_closed'], True)
+        self.assertEqual(p03['accepted_candidate_sha256'],
+                         fixed['candidate']['sha256'])
+        self.assertIs(current['full_p03_acceptance'], False)
         self.assertEqual(
             p03['coverage_manifest'],
             'content/modernization/pr16_p03_p07_route_coverage.json')
