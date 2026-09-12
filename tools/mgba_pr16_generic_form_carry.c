@@ -16,6 +16,35 @@
 #define M_TARGET_SPECIES 900U
 #define M_GENERIC_ROWS_SHA "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e"
 
+#define M_ENTRY_SCOPE "PR16_P03_GENERIC_FORM_ENTRY_DIAGNOSTIC"
+#define M_LEDGER_UNKNOWN_20 20U
+
+enum {
+    M_FIX_HOF_FLAG = 1U << 0,
+    M_FIX_HOF_MIRROR = 1U << 1,
+    M_FIX_LEDGER_20 = 1U << 2,
+    M_FIX_LEAGUE_II = 1U << 3,
+    M_FIX_HOST_PROGRESS = 1U << 4,
+    M_FIX_FINALIZE = 1U << 5,
+};
+struct MProbe {const char *name; bool normalize; unsigned pre_mask,post_mask;};
+static const struct MProbe m_probes[]={
+    {"entry-host-only-untouched",false,0U,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-host-only-normalized",true,0U,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-flag-post-once",true,0U,M_FIX_HOF_FLAG|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-mirror-post-once",true,0U,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-legacy-post-once",true,0U,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_LEAGUE_II|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-flag-pre-split",true,M_FIX_HOF_FLAG|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-mirror-pre-split",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-ledger20-pre-split",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-league2-pre-split",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_LEAGUE_II|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-legacy-ledgers-pre-split",true,M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_LEAGUE_II|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-legacy-pre-split",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_LEAGUE_II|M_FIX_FINALIZE,M_FIX_HOST_PROGRESS|M_FIX_FINALIZE},
+    {"entry-hof-mirror-host-pre-once",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE,0U},
+    {"entry-legacy-host-pre-once",true,M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_LEAGUE_II|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE,0U},
+    {"entry-hof-legacy-host-pre-once",true,M_FIX_HOF_FLAG|M_FIX_HOF_MIRROR|M_FIX_LEDGER_20|M_FIX_LEAGUE_II|M_FIX_HOST_PROGRESS|M_FIX_FINALIZE,0U},
+};
+
 struct MCase {const char *name; unsigned action;};
 static const struct MCase m_cases[]={
     {"shaymin-four-slot-roundtrip",0U},
@@ -96,16 +125,79 @@ static void m_trace(const struct MTrace *t){
     printf("{\"interaction\":%u,\"root\":%u,\"service\":%u,\"page\":%u,\"party\":%u,\"selection\":%u,\"returned\":%u,\"species_after\":%u,\"saved\":%u,\"reloaded\":%u}",
         t->interaction,t->root,t->service,t->page,t->party,t->selection,t->returned,t->species_after,t->saved,t->reloaded);
 }
+static unsigned m_flag_value(struct mCore *c){
+    return call_preserving(c,QOL_FLAG_GET,QOL_FLAG_HALL_OF_FAME,0U,0U,0U)?1U:0U;
+}
+static void m_read_progress(struct mCore *c,unsigned values[6]){
+    values[0]=m_flag_value(c);values[1]=read8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME);values[2]=read8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20);
+    values[3]=read8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II);values[4]=read8(c,QOL_LEDGER+0x73FU);values[5]=read8(c,QOL_LEDGER+0x745U);
+}
+static void m_normalize_progress(struct mCore *c){
+    (void)call_preserving(c,QOL_FLAG_CLEAR,QOL_FLAG_HALL_OF_FAME,0U,0U,0U);
+    write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,0U);write8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20,0U);write8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II,0U);
+    write8(c,QOL_LEDGER+0x73FU,0U);write8(c,QOL_LEDGER+0x745U,0U);
+}
+static unsigned m_apply_fixture(struct mCore *c,unsigned mask){
+    if(mask&M_FIX_HOF_FLAG)(void)call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME,0U,0U,0U);
+    if(mask&M_FIX_HOF_MIRROR)write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,1U);
+    if(mask&M_FIX_LEDGER_20)write8(c,QOL_LEDGER+M_LEDGER_UNKNOWN_20,1U);
+    if(mask&M_FIX_LEAGUE_II)write8(c,QOL_LEDGER+QOL_LEDGER_LEAGUE_II,1U);
+    if(mask&M_FIX_HOST_PROGRESS){write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);}
+    if(mask&M_FIX_FINALIZE){(void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);return 1U;}
+    return 0U;
+}
+static void m_entry_probe(struct mCore *c,const struct MProbe *probe,const char *hash,const char *prefix){
+    unsigned counter_before=read32(c,P03_SAVE_COUNTER),baseline[6],observed[6];
+    if(probe->normalize)m_normalize_progress(c);
+    m_read_progress(c,baseline);
+    if(probe->normalize)a_require(!baseline[0]&&!baseline[1]&&!baseline[2]&&!baseline[3]&&!baseline[4]&&!baseline[5],
+        "generic entry normalization failed");
+    unsigned finalizes=m_apply_fixture(c,probe->pre_mask);
+    (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
+    m_state(c,"entry-fixture-warp");m_shot(prefix,0U,"entry-fixture-warp");
+    for(unsigned k=0;k<12U && !b_field(c);++k)b_press(c,QOL_KEY_B,180U);
+    m_state(c,"entry-fixture-settled");b_position(c,1,36,6,4);
+    clear_parties(c);b_create(c,QOL_PLAYER_PARTY,0x123456F0U,0x11223344U);
+    create_mon(c,M_TARGET,M_BASE_SPECIES,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
+    finalizes+=m_apply_fixture(c,probe->post_mask);m_read_progress(c,observed);
+    unsigned counter_after=read32(c,P03_SAVE_COUNTER);
+    struct mCore saved=*c;unsigned interaction=b_frames+1U,root_frame=0U;
+    /* Probe observation barrier: only GBA input and read-only observations. */
+    a_guard(c);b_position(c,1,36,6,4);
+    unsigned object=read8(c,P02S_PLAYER_AVATAR+5U);a_require(object<16U,"generic entry avatar unavailable");
+    if((read8(c,P02S_OBJECT_EVENTS+object*0x24U+0x18U)&15U)!=2U)b_frame(c,QOL_KEY_UP);
+    b_frames_run(c,0U,30U);b_position(c,1,36,6,4);interaction=b_frames+1U;b_press(c,QOL_KEY_A,90U);
+    for(unsigned f=0;f<1800U;++f){if(m_menu(c,0U,0U)){root_frame=b_frames;b_frames_run(c,0U,30U);break;}b_frame(c,0U);}
+    bool opened=root_frame!=0U;m_shot(prefix,0U,opened?"entry-root-open":"entry-root-absent");m_state(c,opened?"entry-root-open":"entry-root-absent");
+    unsigned result=read16(c,M_STATE+8U),host=read8(c,M_STATE+18U),service=read8(c,M_STATE+20U);
+    unsigned mode=read8(c,M_STATE+19U),page=read8(c,M_STATE+21U),window=read8(c,M_STATE+22U);
+    unsigned field_lock=read8(c,P02S_FIELD_LOCK)?1U:0U,callback=read32(c,BATTLE_CORE_MAIN_CALLBACK2);
+    a_restore(c,&saved);
+    /* Probe observation complete. */
+    a_require(!log_problem_count,"generic entry emulator diagnostic differs");
+    printf("{\"schema_version\":1,\"status\":\"OBSERVED\",\"scope\":\"%s\",\"case\":\"%s\",\"rom_sha256\":\"%s\",",M_ENTRY_SCOPE,probe->name,hash);
+    printf("\"normalize\":%s,\"pre_mask\":%u,\"post_mask\":%u,\"finalize_count\":%u,",probe->normalize?"true":"false",probe->pre_mask,probe->post_mask,finalizes);
+    printf("\"save_counter_before\":%u,\"save_counter_after\":%u,\"baseline_readback\":[%u,%u,%u,%u,%u,%u],",counter_before,counter_after,baseline[0],baseline[1],baseline[2],baseline[3],baseline[4],baseline[5]);
+    printf("\"progress_readback\":[%u,%u,%u,%u],\"host_readback\":[%u,%u],",observed[0],observed[1],observed[2],observed[3],observed[4],observed[5]);
+    printf("\"interaction_frame\":%u,\"root_menu_opened\":%s,\"root_frame\":%u,\"result\":%u,\"host\":%u,\"service\":%u,\"mode\":%u,\"page\":%u,\"window\":%u,\"field_lock\":%u,\"main_callback2\":%u,",interaction,opened?"true":"false",root_frame,result,host,service,mode,page,window,field_lock,callback);
+    printf("\"total_frames\":%u,\"fresh_core\":true,\"input_only_after_guard\":true,\"acceptance_claimed\":false,\"release_ready\":false}\n",b_frames);
+}
 int main(int argc,char **argv){
     if(argc==3 && !strcmp(argv[1],"--guard-check"))a_guard_check(argv[2]);
     if(argc!=7)return 2;
     const struct MCase *v=NULL;for(unsigned k=0;k<sizeof(m_cases)/sizeof(m_cases[0]);++k)if(!strcmp(argv[5],m_cases[k].name))v=&m_cases[k];
-    if(!v)return 2;
+    const struct MProbe *probe=NULL;for(unsigned k=0;k<sizeof(m_probes)/sizeof(m_probes[0]);++k)if(!strcmp(argv[5],m_probes[k].name))probe=&m_probes[k];
+    if(!v && !probe)return 2;
     char hash[65],seed[65],after[65];sha256_file(argv[1],hash);sha256_file(argv[2],seed);
     a_require(!strcmp(hash,M_SHA) && !strcmp(hash,argv[3]) && !strcmp(seed,B_SEED_SHA) && !strcmp(seed,argv[4]),"generic form input identity differs");
     struct mLogger logger={.log=qol_log,.filter=NULL};mLogSetDefaultLogger(&logger);p03f_rtc_reserve(argv[2]);
     struct mCore *c=qol_open(argv[1],argv[2]);qol_log_core=c;c->setVideoBuffer(c,b_video,240U);c->reset(c);
     a_require(a_continue(c),"generic form initial Continue failed");a_flash_prepare(c);
+    if(probe){
+        m_entry_probe(c,probe,hash,argv[6]);qol_close(c);qol_log_core=NULL;sha256_file(argv[1],after);
+        a_require(!strcmp(hash,after),"generic entry probe changed ROM");return 0;
+    }
+    /* Acceptance fixture begins; diagnostics do not alter this path. */
     /* Persist the Shaymin row's post-league prerequisites before loading the host. */
     write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);

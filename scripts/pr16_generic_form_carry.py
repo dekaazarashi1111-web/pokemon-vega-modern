@@ -35,6 +35,54 @@ MODEL_SHA = "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0"
 LEDGER = "content/modernization/pr16_p03_p07_route_coverage.json"
 OUT = ROOT / ".local/pr16-generic-form-carry"
 SCOPE = "PR16_P03_GENERIC_FORM_CARRY_PHYSICAL"
+ENTRY_SCOPE = "PR16_P03_GENERIC_FORM_ENTRY_DIAGNOSTIC"
+FIX_HOF_FLAG = 1 << 0
+FIX_HOF_MIRROR = 1 << 1
+FIX_LEDGER_20 = 1 << 2
+FIX_LEAGUE_II = 1 << 3
+FIX_HOST_PROGRESS = 1 << 4
+FIX_FINALIZE = 1 << 5
+PROBES = (
+    {"name": "entry-host-only-untouched", "normalize": False, "pre_mask": 0,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-host-only-normalized", "normalize": True, "pre_mask": 0,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-flag-post-once", "normalize": True, "pre_mask": 0,
+     "post_mask": FIX_HOF_FLAG | FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-mirror-post-once", "normalize": True, "pre_mask": 0,
+     "post_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-legacy-post-once", "normalize": True, "pre_mask": 0,
+     "post_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_LEAGUE_II
+     | FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-flag-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_FINALIZE,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-mirror-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_FINALIZE,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-ledger20-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_FINALIZE,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-league2-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_LEAGUE_II | FIX_FINALIZE,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-legacy-ledgers-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_LEAGUE_II | FIX_FINALIZE,
+     "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-legacy-pre-split", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_LEAGUE_II
+     | FIX_FINALIZE, "post_mask": FIX_HOST_PROGRESS | FIX_FINALIZE},
+    {"name": "entry-hof-mirror-host-pre-once", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_HOST_PROGRESS | FIX_FINALIZE,
+     "post_mask": 0},
+    {"name": "entry-legacy-host-pre-once", "normalize": True,
+     "pre_mask": FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_LEAGUE_II
+     | FIX_HOST_PROGRESS | FIX_FINALIZE, "post_mask": 0},
+    {"name": "entry-hof-legacy-host-pre-once", "normalize": True,
+     "pre_mask": FIX_HOF_FLAG | FIX_HOF_MIRROR | FIX_LEDGER_20 | FIX_LEAGUE_II
+     | FIX_HOST_PROGRESS | FIX_FINALIZE, "post_mask": 0},
+)
+PROBE_BY_NAME = {probe["name"]: probe for probe in PROBES}
 CASES = ("shaymin-four-slot-roundtrip", "shaymin-party-cancel")
 MOVES = [98, 235, 552, 33]
 PP = [11, 3, 4, 7]
@@ -61,6 +109,94 @@ TRACE = (
     "saved",
     "reloaded",
 )
+
+
+def expected_probe(name):
+    need(name in PROBE_BY_NAME, "unknown generic entry probe")
+    probe = PROBE_BY_NAME[name]
+    return {
+        "schema_version": 1,
+        "status": "OBSERVED",
+        "scope": ENTRY_SCOPE,
+        "case": name,
+        "rom_sha256": repaired.ROM_SHA,
+        "normalize": probe["normalize"],
+        "pre_mask": probe["pre_mask"],
+        "post_mask": probe["post_mask"],
+        "finalize_count": int(bool(probe["pre_mask"] & FIX_FINALIZE))
+        + int(bool(probe["post_mask"] & FIX_FINALIZE)),
+        "fresh_core": True,
+        "input_only_after_guard": True,
+        "acceptance_claimed": False,
+        "release_ready": False,
+    }
+
+
+def validate_probe(raw, name, code):
+    need(type(code) is int and code == 0, "generic entry probe did not exit integer zero")
+    row = common.strict_json(raw)
+    want = expected_probe(name)
+    dynamic = {
+        "save_counter_before",
+        "save_counter_after",
+        "baseline_readback",
+        "progress_readback",
+        "host_readback",
+        "interaction_frame",
+        "root_menu_opened",
+        "root_frame",
+        "result",
+        "host",
+        "service",
+        "mode",
+        "page",
+        "window",
+        "field_lock",
+        "main_callback2",
+        "total_frames",
+    }
+    need(type(row) is dict and set(row) == set(want) | dynamic,
+         "generic entry probe schema differs")
+    for key, value in want.items():
+        need(common.same_typed(row[key], value), "generic entry probe differs: " + key)
+    for key in ("save_counter_before", "save_counter_after", "interaction_frame",
+                "root_frame", "result", "host", "service", "mode", "page",
+                "window", "field_lock", "main_callback2", "total_frames"):
+        need(type(row[key]) is int and row[key] >= 0,
+             "invalid generic entry integer: " + key)
+    need(row["save_counter_after"] >= row["save_counter_before"],
+         "generic entry save counter moved backwards")
+    need(1 <= row["interaction_frame"] <= row["total_frames"] <= 600000,
+         "generic entry frame range differs")
+    need(row["result"] <= 0xFFFF and all(row[key] <= 0xFF for key in
+         ("host", "service", "mode", "page", "window", "field_lock")),
+         "generic entry state range differs")
+    need(row["field_lock"] in (0, 1) and row["main_callback2"] <= 0xFFFFFFFF,
+         "generic entry callback/lock range differs")
+    need(type(row["root_menu_opened"]) is bool, "generic entry root flag is not bool")
+    need((row["root_frame"] > 0) == row["root_menu_opened"],
+         "generic entry root frame/flag differs")
+    if row["root_menu_opened"]:
+        need(row["interaction_frame"] <= row["root_frame"] <= row["total_frames"],
+             "generic entry root frame range differs")
+        need((row["result"], row["host"], row["service"], row["mode"], row["page"],
+              row["field_lock"]) == (9, 3, 3, 0, 0, 1) and row["window"] < 32,
+             "generic entry opened state is not the authored root menu")
+    need(type(row["baseline_readback"]) is list and len(row["baseline_readback"]) == 6,
+         "generic entry baseline readback differs")
+    need(type(row["progress_readback"]) is list and len(row["progress_readback"]) == 4,
+         "generic entry progress readback differs")
+    need(type(row["host_readback"]) is list and len(row["host_readback"]) == 2,
+         "generic entry host readback differs")
+    for values in (row["baseline_readback"], row["progress_readback"], row["host_readback"]):
+        need(all(type(value) is int and 0 <= value <= 0xFF for value in values),
+             "generic entry readback value differs")
+    need(row["baseline_readback"][0] in (0, 1) and row["progress_readback"][0] in (0, 1),
+         "generic entry HOF flag readback differs")
+    if want["normalize"]:
+        need(row["baseline_readback"] == [0, 0, 0, 0, 0, 0],
+             "generic entry normalized baseline is not empty")
+    return row
 
 
 def expected(name):
@@ -275,6 +411,8 @@ def run():
     protected = {str(path): common.identity(path) for path in (seed, candidate)}
     results = []
     failures = []
+    diagnostic_results = []
+    diagnostic_failures = []
     guards = []
     try:
         with tempfile.TemporaryDirectory(prefix="pr16-generic-form-", dir=ROOT / ".local") as temporary:
@@ -294,6 +432,48 @@ def run():
                 stdout, stderr, process = common.capture([str(binary), "--guard-check", guard], out / ("guard-" + guard), 10)
                 module.validate_guard(stdout, stderr, process)
                 guards.append(guard)
+
+            def probe_one(probe):
+                name = probe["name"]
+                private = work / (name + ".srm")
+                shutil.copyfile(seed, private)
+                stdout, stderr, process = common.capture(
+                    [str(binary), str(candidate), str(private), repaired.ROM_SHA, module.SEED_SHA,
+                     name, str(out / name)],
+                    out / name,
+                    300,
+                )
+                try:
+                    row = validate_probe(stdout, name, common.require_exited(process))
+                    need(b"mGBA[" not in stderr, "generic entry probe emulator warning")
+                    return {"name": name, "result": row, "process": process}, None
+                except (ValueError, RuntimeError, KeyError, TypeError) as exc:
+                    return None, {"name": name, "error": str(exc), "process": process}
+
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                for row, error in pool.map(probe_one, PROBES):
+                    if row:
+                        diagnostic_results.append(row)
+                    if error:
+                        diagnostic_failures.append(error)
+            diagnostic_report = {
+                "schema_version": 1,
+                "status": "FAIL" if diagnostic_failures else "PASS_DIAGNOSTIC_ONLY",
+                "scope": ENTRY_SCOPE,
+                "candidate": repaired.identity(raw),
+                "configuration": list(PROBES),
+                "observations": diagnostic_results,
+                "failures": diagnostic_failures,
+                "actual_new_processes": len(PROBES),
+                "successful_fresh_cores": len(diagnostic_results),
+                "root_open_cases": [
+                    row["name"] for row in diagnostic_results
+                    if row["result"]["root_menu_opened"]
+                ],
+                "acceptance_claimed": False,
+                "release_ready": False,
+            }
+            (out / "entry-diagnostic.json").write_bytes(repaired.stable(diagnostic_report))
 
             def one(name):
                 private = work / (name + ".srm")
@@ -323,7 +503,7 @@ def run():
              "generic form protected source/baseline changed")
     report = {
         "schema_version": 1,
-        "status": "FAIL" if failures else "PASS",
+        "status": "FAIL" if failures or diagnostic_failures else "PASS",
         "scope": SCOPE,
         "candidate": repaired.identity(raw),
         "oracle": audit,
@@ -331,6 +511,14 @@ def run():
         "results": results,
         "failures": failures,
         "guard_checks": guards,
+        "entry_diagnostic_status": "FAIL" if diagnostic_failures else "PASS_DIAGNOSTIC_ONLY",
+        "entry_diagnostic_processes": len(PROBES),
+        "entry_diagnostic_successful_fresh_cores": len(diagnostic_results),
+        "entry_diagnostic_root_open_cases": [
+            row["name"] for row in diagnostic_results
+            if row["result"]["root_menu_opened"]
+        ],
+        "diagnostic_failures": diagnostic_failures,
         "actual_new_processes": len(CASES),
         "successful_fresh_cores": sum(row["result"]["fresh_cores"] for row in results),
         "generic_form_carry_physical_accepted": not failures,
@@ -340,6 +528,7 @@ def run():
         "old_runs_relabelled": 0,
     }
     (out / "result.json").write_bytes(repaired.stable(report))
+    need(not diagnostic_failures, "generic entry diagnostic failed; inspect original stderr/screenshots")
     need(not failures, "generic form carry failed; inspect original stderr/screenshots")
     return report
 

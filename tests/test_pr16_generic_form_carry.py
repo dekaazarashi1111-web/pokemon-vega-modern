@@ -10,6 +10,35 @@ import pr16_generic_form_carry as m
 
 
 class GenericFormCarryTests(unittest.TestCase):
+    def sample_probe(self, name, opened=False):
+        out = m.expected_probe(name)
+        mask = out["pre_mask"] | out["post_mask"]
+        out.update({
+            "save_counter_before": 0,
+            "save_counter_after": out["finalize_count"],
+            "baseline_readback": [0, 0, 0, 0, 0, 0],
+            "progress_readback": [
+                int(bool(mask & m.FIX_HOF_FLAG)),
+                int(bool(mask & m.FIX_HOF_MIRROR)),
+                int(bool(mask & m.FIX_LEDGER_20)),
+                int(bool(mask & m.FIX_LEAGUE_II)),
+            ],
+            "host_readback": [1, 1],
+            "interaction_frame": 2000,
+            "root_menu_opened": opened,
+            "root_frame": 2100 if opened else 0,
+            "result": 9 if opened else 0,
+            "host": 3 if opened else 0,
+            "service": 3 if opened else 0,
+            "mode": 0,
+            "page": 0,
+            "window": 1 if opened else 255,
+            "field_lock": 1 if opened else 0,
+            "main_callback2": 0x08055E75,
+            "total_frames": 4000,
+        })
+        return out
+
     def sample(self, name):
         out = m.expected(name)
         out["total_frames"] = 24000
@@ -31,6 +60,70 @@ class GenericFormCarryTests(unittest.TestCase):
             }
             out["traces"].append(trace)
         return out
+
+    def test_entry_probe_matrix_is_finite_unique_and_non_accepting(self):
+        self.assertEqual(len(m.PROBES), 14)
+        self.assertEqual(len(m.PROBE_BY_NAME), len(m.PROBES))
+        self.assertEqual(
+            len({(probe["normalize"], probe["pre_mask"], probe["post_mask"])
+                 for probe in m.PROBES}),
+            len(m.PROBES),
+        )
+        known = (m.FIX_HOF_FLAG | m.FIX_HOF_MIRROR | m.FIX_LEDGER_20
+                 | m.FIX_LEAGUE_II | m.FIX_HOST_PROGRESS | m.FIX_FINALIZE)
+        for probe in m.PROBES:
+            with self.subTest(probe=probe["name"]):
+                self.assertEqual((probe["pre_mask"] | probe["post_mask"]) & ~known, 0)
+                self.assertTrue((probe["pre_mask"] | probe["post_mask"]) & m.FIX_HOST_PROGRESS)
+                self.assertIn(m.expected_probe(probe["name"])["finalize_count"], (1, 2))
+                self.assertFalse(m.expected_probe(probe["name"])["acceptance_claimed"])
+
+    def test_entry_probe_matrix_separates_flag_mirrors_and_finalize_order(self):
+        by_name = m.PROBE_BY_NAME
+        self.assertEqual(
+            by_name["entry-hof-flag-post-once"]["post_mask"],
+            m.FIX_HOF_FLAG | m.FIX_HOST_PROGRESS | m.FIX_FINALIZE,
+        )
+        self.assertEqual(
+            by_name["entry-hof-mirror-post-once"]["post_mask"],
+            m.FIX_HOF_FLAG | m.FIX_HOF_MIRROR | m.FIX_HOST_PROGRESS | m.FIX_FINALIZE,
+        )
+        self.assertFalse(by_name["entry-legacy-ledgers-pre-split"]["pre_mask"] & m.FIX_HOF_FLAG)
+        self.assertTrue(by_name["entry-hof-legacy-pre-split"]["pre_mask"] & m.FIX_HOF_FLAG)
+        self.assertEqual(by_name["entry-hof-legacy-pre-split"]["post_mask"],
+                         m.FIX_HOST_PROGRESS | m.FIX_FINALIZE)
+        self.assertEqual(by_name["entry-hof-legacy-host-pre-once"]["post_mask"], 0)
+
+    def test_entry_probe_accepts_observation_not_product_acceptance(self):
+        for opened in (False, True):
+            for name in ("entry-host-only-normalized", "entry-hof-flag-post-once"):
+                with self.subTest(opened=opened, name=name):
+                    value = self.sample_probe(name, opened)
+                    self.assertEqual(m.validate_probe(json.dumps(value).encode(), name, 0), value)
+                    self.assertFalse(value["acceptance_claimed"])
+                    self.assertEqual(value["status"], "OBSERVED")
+
+    def test_entry_probe_schema_and_root_state_are_fail_closed(self):
+        name = "entry-hof-flag-post-once"
+        good = self.sample_probe(name, True)
+        for key, value in [
+            ("acceptance_claimed", True),
+            ("release_ready", True),
+            ("scope", m.SCOPE),
+            ("normalize", False),
+            ("pre_mask", 1),
+            ("root_frame", 0),
+            ("host", 0),
+            ("window", 255),
+            ("baseline_readback", [0, 0, 0, 0, 1, 0]),
+        ]:
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                m.validate_probe(json.dumps(good | {key: value}).encode(), name, 0)
+        for code in (1, None, False, 0.0):
+            with self.assertRaises(ValueError):
+                m.validate_probe(json.dumps(good).encode(), name, code)
+        with self.assertRaises(ValueError):
+            m.validate_probe(json.dumps(good | {"extra": 1}).encode(), name, 0)
 
     def test_two_cases_and_five_fresh_cores(self):
         self.assertEqual(sum(m.expected(name)["fresh_cores"] for name in m.CASES), 5)
@@ -101,7 +194,22 @@ class GenericFormCarryTests(unittest.TestCase):
         self.assertIn("read8(c,M_PARTY_SLOT)==1U", text)
         self.assertIn("a_guard(c);a_require(b_save(c)", text)
         self.assertIn("b_continue(c)", text)
-        before_guard, guarded = text.split(
+        self.assertIn("call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME", text)
+        self.assertIn("call_preserving(c,QOL_FLAG_CLEAR,QOL_FLAG_HALL_OF_FAME", text)
+        for probe in m.PROBES:
+            self.assertIn('{' + json.dumps(probe["name"]) + ',', text)
+
+        probe_guarded = text.split(
+            "/* Probe observation barrier: only GBA input and read-only observations. */", 1
+        )[1].split("/* Probe observation complete. */", 1)[0]
+        for forbidden in ("write8(", "write16(", "write32(",
+                          "set_mon_data_u32(", "call_preserving("):
+            self.assertNotIn(forbidden, probe_guarded)
+
+        acceptance = text.split(
+            "/* Acceptance fixture begins; diagnostics do not alter this path. */", 1
+        )[1]
+        before_guard, guarded = acceptance.split(
             "/* After this barrier, only GBA input and read-only observations. */", 1
         )
         unlock = before_guard.index("write8(c,QOL_LEDGER+18U,1U)")
@@ -110,7 +218,8 @@ class GenericFormCarryTests(unittest.TestCase):
         )
         self.assertLess(unlock, host_load)
         self.assertEqual(before_guard.count("call_preserving(c,QOL_SAVE_FINALIZE"), 2)
-        for forbidden in ("write8(", "write16(", "write32(", "set_mon_data_u32(", "call_preserving("):
+        for forbidden in ("write8(", "write16(", "write32(",
+                          "set_mon_data_u32(", "call_preserving("):
             self.assertNotIn(forbidden, guarded)
 
     def test_noninteger_exit_duplicate_json_and_extra_keys_rejected(self):
