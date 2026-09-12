@@ -104,12 +104,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          paths=(
+          text_paths=(
             scripts/pr16_generic_form_checkpoint.py
             tests/test_pr16_generic_form_checkpoint.py
             content/modernization/pr16_generic_form_acceptance.json
             content/modernization/pr16_generic_form_evidence/34675976411/actions.json
-            content/modernization/pr16_generic_form_evidence/34675976411/original.zip
             scripts/pr16_p03_p07_route_coverage.py
             tests/test_pr16_p03_p07_route_coverage.py
             content/modernization/pr16_p03_p07_route_coverage.json
@@ -119,11 +118,17 @@ jobs:
             design/run_log.md
             design/version_log.md
           )
-          mapfile -t changed < <({ git diff --name-only; git ls-files --others --exclude-standard; } | sort)
-          mapfile -t wanted < <(printf '%s\n' "${paths[@]}" | sort)
+          original=content/modernization/pr16_generic_form_evidence/34675976411/original.zip
+          mapfile -t changed < <({
+            git diff --name-only
+            git ls-files --others --exclude-standard
+            git ls-files --others --ignored --exclude-standard -- "$original"
+          } | sort -u)
+          mapfile -t wanted < <({ printf '%s\n' "${text_paths[@]}"; printf '%s\n' "$original"; } | sort)
           diff -u <(printf '%s\n' "${wanted[@]}") <(printf '%s\n' "${changed[@]}")
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -- "${paths[@]}"
+          git add -- "${text_paths[@]}"
+          git add -f -- "$original"
           git commit -m 'USER-MODERNIZATION: close generic FORM physical gap'
           git push origin HEAD:codex/modernization-followup-20260908
