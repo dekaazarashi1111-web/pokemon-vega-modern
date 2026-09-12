@@ -1,0 +1,99 @@
+name: PR16 FORM unlock 15 static diagnostic
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-form-unlock15-static-diagnostic.yml
+
+permissions:
+  contents: read
+
+jobs:
+  trace:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+      - name: Trace unlock identifiers and history
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          out="$RUNNER_TEMP/pr16-form-unlock15-static-diagnostic.txt"
+          {
+            echo '=== HEAD ==='
+            git rev-parse HEAD
+            echo
+            echo '=== exact identifiers in tracked text ==='
+            git grep -n -I -E 'FINAL_LEAGUE_CLEARED|LEAGUE_CLEARED|QOL_LEDGER_LEAGUE_II|M_LEDGER_UNKNOWN_20|service_form_indices' -- . || true
+            echo
+            echo '=== unlock/ledger references near relevant numeric values ==='
+            git grep -n -I -E '(unlock|ledger|league|achievement).{0,80}(15|20|21)|(15|20|21).{0,80}(unlock|ledger|league|achievement)' -- '*.c' '*.h' '*.py' '*.json' '*.md' '*.yml' '*.yaml' || true
+            echo
+            echo '=== FORM runtime/build candidates ==='
+            git ls-files | grep -Ei '(form|collection.?supply|unlock|ledger|achievement|modernization)' || true
+            echo
+            echo '=== history introducing exact identifiers ==='
+            for needle in FINAL_LEAGUE_CLEARED QOL_LEDGER_LEAGUE_II M_LEDGER_UNKNOWN_20 service_form_indices; do
+              echo "--- $needle ---"
+              git log --all --oneline --decorate -S"$needle" -- . | head -80 || true
+            done
+            echo
+            echo '=== commits touching generic FORM runner and canonical model ==='
+            git log --all --oneline --decorate -- tools/mgba_pr16_generic_form_carry.c scripts/pr16_generic_form_carry.py content/collection_supply_v1/canonical_model.json | head -120 || true
+            echo
+            echo '=== likely generated/runtime source contexts ==='
+            python3 - <<'PY'
+          import pathlib
+          import re
+          import subprocess
+
+          tracked = subprocess.check_output(["git", "ls-files", "-z"]).decode().split("\0")
+          needles = [
+              re.compile(r"FINAL_LEAGUE_CLEARED"),
+              re.compile(r"QOL_LEDGER_LEAGUE_II"),
+              re.compile(r"M_LEDGER_UNKNOWN_20"),
+              re.compile(r"service_form_indices"),
+              re.compile(r"unlock.{0,40}(?:15|0x0[fF])", re.I),
+              re.compile(r"(?:15|0x0[fF]).{0,40}unlock", re.I),
+              re.compile(r"ledger.{0,40}(?:20|21|0x14|0x15)", re.I),
+              re.compile(r"(?:20|21|0x14|0x15).{0,40}ledger", re.I),
+              re.compile(r"(?:749|900).{0,80}(?:form|species)", re.I),
+              re.compile(r"(?:form|species).{0,80}(?:749|900)", re.I),
+          ]
+          suffixes = {".c", ".h", ".py", ".json", ".md", ".txt", ".yml", ".yaml", ".toml"}
+          for raw in tracked:
+              if not raw:
+                  continue
+              path = pathlib.Path(raw)
+              if path.suffix.lower() not in suffixes:
+                  continue
+              try:
+                  lines = path.read_text(encoding="utf-8").splitlines()
+              except (UnicodeDecodeError, OSError):
+                  continue
+              hits = [i for i, line in enumerate(lines) if any(n.search(line) for n in needles)]
+              if not hits:
+                  continue
+              print(f"--- {path} ---")
+              emitted = set()
+              for hit in hits:
+                  for i in range(max(0, hit - 4), min(len(lines), hit + 5)):
+                      if i in emitted:
+                          continue
+                      emitted.add(i)
+                      print(f"{i + 1}: {lines[i]}")
+          PY
+          } | tee "$out"
+      - name: Upload diagnostic transcript
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-form-unlock15-static-diagnostic
+          path: ${{ runner.temp }}/pr16-form-unlock15-static-diagnostic.txt
+          if-no-files-found: error
+          retention-days: 30
