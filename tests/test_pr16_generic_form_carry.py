@@ -223,12 +223,22 @@ class GenericFormCarryTests(unittest.TestCase):
         before_guard, guarded = acceptance.split(
             "/* After this barrier, only GBA input and read-only observations. */", 1
         )
-        unlock = before_guard.index("write8(c,QOL_LEDGER+18U,1U)")
+        hof_flag = before_guard.index(
+            "call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME"
+        )
+        hof_mirror = before_guard.index(
+            "write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,1U)"
+        )
+        host_progress = before_guard.index("write8(c,QOL_LEDGER+0x73FU,1U)")
         host_load = before_guard.index(
             "call_preserving(c,0x09220861U,1U,36U,6U,4U)"
         )
-        self.assertLess(unlock, host_load)
-        self.assertEqual(before_guard.count("call_preserving(c,QOL_SAVE_FINALIZE"), 2)
+        self.assertLess(hof_flag, hof_mirror)
+        self.assertLess(hof_mirror, host_progress)
+        self.assertLess(host_progress, host_load)
+        self.assertEqual(before_guard.count("call_preserving(c,QOL_SAVE_FINALIZE"), 1)
+        self.assertNotIn("write8(c,QOL_LEDGER+20U,1U)", before_guard)
+        self.assertNotIn("write8(c,QOL_LEDGER+21U,1U)", before_guard)
         for forbidden in ("write8(", "write16(", "write32(",
                           "set_mon_data_u32(", "call_preserving("):
             self.assertNotIn(forbidden, guarded)

@@ -198,9 +198,15 @@ int main(int argc,char **argv){
         a_require(!strcmp(hash,after),"generic entry probe changed ROM");return 0;
     }
     /* Acceptance fixture begins; diagnostics do not alter this path. */
-    /* Persist the Shaymin row's post-league prerequisites before loading the host. */
-    write8(c,QOL_LEDGER+18U,1U);write8(c,QOL_LEDGER+20U,1U);write8(c,QOL_LEDGER+21U,1U);
+    /* The entry matrix proved this exact authored-host prerequisite ordering:
+     * canonical HOF flag + mirror + both host gates, one finalize, then map load. */
+    (void)call_preserving(c,QOL_FLAG_SET,QOL_FLAG_HALL_OF_FAME,0U,0U,0U);
+    write8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME,1U);
+    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
     (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
+    a_require(m_flag_value(c)==1U && read8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME)==1U
+        && read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
+        "generic FORM pre-map prerequisite fixture differs");
     (void)call_preserving(c,0x09220861U,1U,36U,6U,4U);run_key_frames(c,0U,1800U);
     m_state(c,"fixture-warp");m_shot(argv[6],0U,"fixture-warp");
     for(unsigned k=0;k<12U && !b_field(c);++k)b_press(c,QOL_KEY_B,180U);
@@ -209,13 +215,9 @@ int main(int argc,char **argv){
     create_mon(c,M_TARGET,M_BASE_SPECIES,30U);write8(c,QOL_PLAYER_PARTY_COUNT,2U);
     for(unsigned k=0;k<4U;++k){set_mon_data_u32(c,M_TARGET,13U+k,m_moves[k]);set_mon_data_u32(c,M_TARGET,17U+k,m_pp[k]);}
     set_mon_data_u32(c,M_TARGET,21U,229U);
-    a_require(read8(c,QOL_LEDGER+18U)==1U && read8(c,QOL_LEDGER+20U)==1U && read8(c,QOL_LEDGER+21U)==1U,
-        "generic form prerequisite fixture was lost during host load");
-    /* Match the accepted Rotom control: host research gates are finalized after map load. */
-    write8(c,QOL_LEDGER+0x73FU,1U);write8(c,QOL_LEDGER+0x745U,1U);
-    (void)call_preserving(c,QOL_SAVE_FINALIZE,QOL_LEDGER,0U,0U,0U);
-    a_require(read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
-        "generic FORM host progress fixture was not finalized");
+    a_require(m_flag_value(c)==1U && read8(c,QOL_LEDGER+QOL_LEDGER_HALL_OF_FAME)==1U
+        && read8(c,QOL_LEDGER+0x73FU)==1U && read8(c,QOL_LEDGER+0x745U)==1U,
+        "generic FORM prerequisite fixture was lost during host load");
     unsigned pid=b_data(c,M_TARGET,0U),ot=b_data(c,M_TARGET,1U);
     uint8_t decoy[100];b_copy(c,QOL_PLAYER_PARTY,decoy,100U);
     unsigned rounds=v->action==0U?2U:1U,initial_counter=read32(c,P03_SAVE_COUNTER),expected_auto=0U;
