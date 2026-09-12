@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+  "cases": [
+    "necrozma-dusk-mane-four-slot-roundtrip",
+    "necrozma-dawn-wings-four-slot-roundtrip",
+    "zacian-crowned-battle-roundtrip",
+    "zamazenta-crowned-battle-roundtrip"
+  ],
+  "reason": "run 34694218218で失敗した4経路を、checkpoint 41846c1450eb1e1a1fabc0fe6315383d1ecf1372のcontroller修正と追加観測で追跡する。成功済み取消は反復しない。4ケース成功だけでは5ケースの正式gapを閉じない。"
+}
