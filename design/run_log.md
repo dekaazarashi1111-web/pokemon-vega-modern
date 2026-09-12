@@ -4725,3 +4725,12 @@ Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two den
 
 Task: USER-MODERNIZATION
 Integrated the previously unreflected non-destructive output and screenshot helper into the existing purchased-gear runner. Native run 34589284710 at 4b5971179795bcdbbca1abf142387ef1bb6f1ce9 passed 65 targeted tests and 4 processes/9 cores. Verified 37 source bindings, generated controller, native raw outputs, 53 mandatory screen sidecars and all 58 visually reviewed originals. Retention run 34590361198 revalidated the pinned original and 11 rejection tests without starting an emulator. Original SHA256 6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9. No ROM/save included in this new ZIP. Full P05 and release remain false; ring/BP/initial party/policy are fixtures. Old runs are not added to these counts. See docs/PR16_GEAR_SCREEN_CHECKPOINT_JA.md.
+
+## 2026-09-12 — USER-MODERNIZATION PR #16 native FORM menu scan
+
+- Replaced the rejected embedded-payload workflow with three normalized tracked patches after exact Git-blob preimage and patch-digest verification.
+- Applied bounded, input-only native FORM menu discovery to the controller, receipt parser, and focused tests.
+- Passed Python compilation, the complete test_pr16_generic_form_carry.py unit file, and git diff --check in Actions run 34669671377.
+- The audit-provided source SHA-256 preimages did not match the unchanged branch blobs; authoritative Git blob IDs were used instead and the observed SHA-256 values were printed in the run log.
+- The earlier bridge run 34669355733 reached patch READY but could not commit because guard_private_files.py reports pre-existing repository-wide tracked ROM/BPS and machine-path findings unrelated to these three source files.
+- This checkpoint closes patch application only; real-ROM generic acceptance and all later fixed-form/P05/Circus/P08/release work remain open.

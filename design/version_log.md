@@ -2008,3 +2008,9 @@ Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two den
 
 Task: USER-MODERNIZATION
 Integrated the previously unreflected non-destructive output and screenshot helper into the existing purchased-gear runner. Native run 34589284710 at 4b5971179795bcdbbca1abf142387ef1bb6f1ce9 passed 65 targeted tests and 4 processes/9 cores. Verified 37 source bindings, generated controller, native raw outputs, 53 mandatory screen sidecars and all 58 visually reviewed originals. Retention run 34590361198 revalidated the pinned original and 11 rejection tests without starting an emulator. Original SHA256 6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9. No ROM/save included in this new ZIP. Full P05 and release remain false; ring/BP/initial party/policy are fixtures. Old runs are not added to these counts. See docs/PR16_GEAR_SCREEN_CHECKPOINT_JA.md.
+
+## 2026-09-12 — PR #16 bounded native FORM discovery
+
+- Removed the fixed page=1/cursor=1 assumption for Shaymin form index 43.
+- Added at-most-20-page, five-row native A/B probing and receipt witnesses menu_page, menu_cursor, probe_count, pages_scanned, and menu_discovery.
+- Preserved no-direct-form-write and no-post-guard-host-write boundaries; temporary apply files are removed in the verified source commit.

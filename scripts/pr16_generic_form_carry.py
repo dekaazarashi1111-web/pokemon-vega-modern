@@ -89,15 +89,16 @@ PP = [11, 3, 4, 7]
 PP_BONUSES = 229
 FORM_INDEX = 43
 ELIGIBLE_ORDINAL = 6
-MENU_PAGE = 1
-MENU_CURSOR = 1
+MAX_MENU_PAGES = 20
+MENU_ROWS_PER_PAGE = 5
+MENU_DISCOVERY = "input-only-native-menu-probe"
 GENERIC_ROWS_SHA = "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e"
 REPRESENTATIVE_ROUTE_IDS = [
     "bca6fe62e4b8925d73c8238a",
     "830d0124e9ca952d41d4a7f0",
     "57e91d3ffeb04c9795a8b6a1",
 ]
-TRACE = (
+EVENT_TRACE = (
     "interaction",
     "root",
     "service",
@@ -109,6 +110,13 @@ TRACE = (
     "saved",
     "reloaded",
 )
+DISCOVERY_TRACE = (
+    "menu_page",
+    "menu_cursor",
+    "probe_count",
+    "pages_scanned",
+)
+TRACE = EVENT_TRACE + DISCOVERY_TRACE
 
 
 def expected_probe(name):
@@ -210,8 +218,7 @@ def expected(name):
         "rom_sha256": repaired.ROM_SHA,
         "form_index": FORM_INDEX,
         "eligible_ordinal": ELIGIBLE_ORDINAL,
-        "menu_page": MENU_PAGE,
-        "menu_cursor": MENU_CURSOR,
+        "menu_discovery": MENU_DISCOVERY,
         "base_species": 749,
         "target_species": 900,
         "final_species": 749,
@@ -246,12 +253,30 @@ def validate(raw, name, code):
     need(type(code) is int and code == 0, "generic form process did not exit integer zero")
     row = common.strict_json(raw)
     want = expected(name)
-    need(type(row) is dict and set(row) == set(want) | {"traces", "total_frames"},
+    dynamic = {
+        "traces", "total_frames", "menu_page", "menu_cursor",
+        "probe_count", "pages_scanned",
+    }
+    need(type(row) is dict and set(row) == set(want) | dynamic,
          "generic form result schema differs")
     for key, value in want.items():
         need(common.same_typed(row[key], value), "generic form result differs: " + key)
     need(type(row["total_frames"]) is int and 1 <= row["total_frames"] <= 600000,
          "invalid generic form frame count")
+    for key in ("menu_page", "menu_cursor", "probe_count", "pages_scanned"):
+        need(type(row[key]) is int, "generic form discovery value is not integer: " + key)
+    need(0 <= row["menu_page"] < MAX_MENU_PAGES,
+         "generic form discovered page is out of range")
+    need(0 <= row["menu_cursor"] < MENU_ROWS_PER_PAGE,
+         "generic form discovered cursor is out of range")
+    need(1 <= row["pages_scanned"] <= MAX_MENU_PAGES
+         and row["pages_scanned"] == row["menu_page"] + 1,
+         "generic form pages-scanned witness differs")
+    need(1 <= row["probe_count"] <= MAX_MENU_PAGES * MENU_ROWS_PER_PAGE
+         and row["probe_count"]
+         == row["menu_page"] * MENU_ROWS_PER_PAGE + row["menu_cursor"] + 1,
+         "generic form probe-count witness differs")
+    location = tuple(row[key] for key in DISCOVERY_TRACE)
     traces = row["traces"]
     need(type(traces) is list and len(traces) == want["rounds"], "generic form round count differs")
     roundtrip = name == CASES[0]
@@ -259,13 +284,13 @@ def validate(raw, name, code):
     last = 0
     for index, trace in enumerate(traces):
         need(type(trace) is dict and set(trace) == set(TRACE), "generic form witness schema differs")
-        for key in TRACE:
+        for key in EVENT_TRACE:
             need(type(trace[key]) is int and 0 <= trace[key] <= row["total_frames"] + 2000,
                  "invalid generic form witness: " + key)
         active = ["interaction", "root", "service", "page", "party", "returned", "saved", "reloaded"]
         if roundtrip:
             active.insert(5, "selection")
-        for key in TRACE:
+        for key in EVENT_TRACE:
             if key == "species_after":
                 continue
             need((trace[key] > 0) == (key in active), "generic form cancellation/operation witness differs")
@@ -274,6 +299,10 @@ def validate(raw, name, code):
         need(all(trace[a] < trace[b] for a, b in zip(ordered, ordered[1:])),
              "generic form physical sequence incomplete")
         need(trace["species_after"] == expected_species[index], "generic form species sequence differs")
+        need(all(type(trace[key]) is int for key in DISCOVERY_TRACE),
+             "generic form trace discovery value is not integer")
+        need(tuple(trace[key] for key in DISCOVERY_TRACE) == location,
+             "generic form trace discovery differs from receipt")
         last = trace["reloaded"]
     return row
 
@@ -354,8 +383,9 @@ def oracle(raw):
         "form_row": form,
         "form_index": FORM_INDEX,
         "eligible_ordinal": ELIGIBLE_ORDINAL,
-        "menu_page": MENU_PAGE,
-        "menu_cursor": MENU_CURSOR,
+        "menu_discovery": MENU_DISCOVERY,
+        "menu_scan_max_pages": MAX_MENU_PAGES,
+        "menu_rows_per_page": MENU_ROWS_PER_PAGE,
         "generic_owner_route_count": generic["route_count"],
         "generic_owner_species_count": generic["species_count"],
         "generic_owner_rows_sha256": generic["rows_sha256"],
@@ -496,6 +526,15 @@ def run():
                         results.append(row)
                     if error:
                         failures.append(error)
+            if len(results) == len(CASES):
+                discovered = {
+                    tuple(row["result"][key] for key in DISCOVERY_TRACE)
+                    for row in results
+                }
+                need(
+                    len(discovered) == 1,
+                    "generic form native menu discovery changed between fresh-core cases",
+                )
     finally:
         need(protected == {path: common.identity(Path(path)) for path in protected},
              "generic form original seed or candidate changed")
