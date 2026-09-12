@@ -156,6 +156,18 @@
       }
     }
   },
+  "fixed_form_checkpoint": {
+    "acceptance": "content/modernization/pr16_fixed_form_acceptance.json",
+    "accepted_cases": 5,
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "final_candidate_transfer_complete": false,
+    "new_emulator_runs": 0,
+    "physical_gap_closed": true,
+    "receipt": "content/modernization/pr16_fixed_form_acceptance_receipt.json"
+  },
   "full_p03_acceptance": false,
   "full_p05_acceptance": false,
   "full_p06_acceptance": true,
@@ -289,28 +301,30 @@
   "release_ready": false,
   "remaining_conditions": [
     {
+      "accepted_candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "accepted_physical_gap_ids": [
+        "P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
+      ],
+      "complete": true,
+      "coverage_inventory_complete": true,
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
+      "fixed_form_success_evidence": "content/modernization/pr16_fixed_form_acceptance.json",
+      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
       "id": "EVOLUTION_FORM_OTHER_EGG",
       "original_request": "P03 instruction 3-5 and acceptance",
       "partial_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
       "pass_condition": "Use native fixed transition or battle-transform entrances, verify transition-owned move/full-slot/decline/restoration and valid save/Continue boundaries; preserve generic FORM and Rotom successes",
       "phase": "P03",
-      "reason_ja": "generic FORMは実受付・native有限探索・同一個体の4技持越し・取消・通常保存・fresh Continueを2ケースで受入済み。P03で残る実操作はfixed-form transition 4経路の処理所有者だけである",
-      "resume": "content/modernization/pr16_generic_form_acceptance.json retains run 34675976411; implement and execute only P03_FIXED_FORM_TRANSITION_PHYSICAL without repeating generic FORM or Rotom",
+      "physical_acceptance_complete": true,
+      "reason_ja": "generic FORM/Rotom成功を保持。fixed-formは同一e630f7f候補の独立5成功プロセスを原本照合して受入。残るのはP08最終候補への変更影響移送であり、P03固有physical gapは0。",
+      "remaining_physical_gap_ids": [],
+      "resume": "Keep all five original cases and their distinct native entry owners. Re-run only if P08 change-impact review requires it; do not invent Photon Geyser auto-restoration.",
       "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
+      "status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned",
-      "status": "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
-      "coverage_inventory_complete": true,
-      "physical_acceptance_complete": false,
-      "complete": false,
-      "remaining_physical_gap_ids": [
-        "P03_FIXED_FORM_TRANSITION_PHYSICAL"
-      ],
-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
-      "accepted_physical_gap_ids": [
-        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
-      ],
-      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json"
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned"
     },
     {
       "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",
@@ -328,41 +342,41 @@
       "phase": "P05",
       "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
       "reason_ja": "自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入",
-      "resume": "Keep successful Eelektross purchased-stone route; do not redo it as missing. Resolve native ring/BP and configured-mode supply/accepted scope. Do not inject policy after cold Continue or globally enable Mega. Physical Circus remains separate.",
-      "ring_bp_natural_supply_required": true,
-      "success_evidence": null,
-      "target_function": "natural capture/item acquisition to battle",
-      "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
-      "supply_coverage_inventory_complete": true,
-      "supply_physical_acceptance_complete": false,
       "remaining_supply_gap_ids": [
         "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
-      "supply_source_evidence_binding_complete": true,
-      "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
+      "resume": "Keep successful Eelektross purchased-stone route; do not redo it as missing. Resolve native ring/BP and configured-mode supply/accepted scope. Do not inject policy after cold Continue or globally enable Mega. Physical Circus remains separate.",
+      "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
-        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
-          "path": "scripts/pr16_gear_originals.py",
-          "line": 83,
-          "scope": "verify",
-          "fixture_only": false
-        },
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
-          "path": "scripts/build_bp_shop_runtime.py",
+          "fixture_only": false,
           "line": 225,
-          "scope": "_catalog_outputs",
-          "fixture_only": false
+          "path": "scripts/build_bp_shop_runtime.py",
+          "scope": "_catalog_outputs"
+        },
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
+          "fixture_only": false,
+          "line": 83,
+          "path": "scripts/pr16_gear_originals.py",
+          "scope": "verify"
         },
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
-          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "fixture_only": false,
           "line": 27,
-          "scope": "main",
-          "fixture_only": false
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "scope": "main"
         }
-      }
+      },
+      "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
+      "success_evidence": null,
+      "supply_coverage_inventory_complete": true,
+      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
+      "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
+      "supply_physical_acceptance_complete": false,
+      "supply_source_evidence_binding_complete": true,
+      "target_function": "natural capture/item acquisition to battle"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
@@ -376,23 +390,23 @@
       "target_function": "actual reception/admission to suppression"
     },
     {
+      "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "complete": true,
+      "coverage_inventory_complete": true,
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
       "id": "P07_REMAINING_ROUTE_ACCEPTANCE",
       "original_request": "07_extra_learnsets.txt instruction 1-5",
       "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
       "pass_condition": "Reconcile residual physical-route coverage against 1073 historical additions and 499 preserved rows; no new table approval or blanket combinations; save/cancel at affected consumers",
       "phase": "P07",
-      "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
-      "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
-      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding",
-      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
-      "coverage_inventory_complete": true,
       "physical_acceptance_complete": true,
-      "complete": true,
+      "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
       "remaining_physical_gap_ids": [],
-      "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
+      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
+      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding"
     },
     {
       "id": "FINAL_NATIVE_ACCEPTANCE",
