@@ -1,4 +1,4 @@
-name: Apply PR16 generic FORM proven entry ordering
+name: Apply PR16 final-league Shaymin row unlock
 
 on:
   push:
@@ -22,11 +22,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Apply exact evidence-derived source patch
+      - name: Apply exact runtime-mapping patch
         shell: bash
         env:
           PATCH_B64: >-
-            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
+            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
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -38,19 +38,19 @@ jobs:
           import zlib
 
           expected_before = {
-              "tools/mgba_pr16_generic_form_carry.c": "8080b1a1e6168ae5c9e1eb680714cf16e62628b72e197b9bb062a9c790a09042",
-              "tests/test_pr16_generic_form_carry.py": "1eec5a318269536126bec51f52372dfec768ce5879ae73619baf2edd98c62c25",
-          }
-          expected_after = {
               "tools/mgba_pr16_generic_form_carry.c": "32542b9c53d93eeefb7487486882bfb0734e1d12eac0e3880b44439a1d192418",
               "tests/test_pr16_generic_form_carry.py": "d6f148f4c64d043857e44641013cb045808b21a37aad81778b39491398669679",
+          }
+          expected_after = {
+              "tools/mgba_pr16_generic_form_carry.c": "1f889e25a9ebc543721fc1e985bdc8b68fb82e23878d067a545f1b4d2b57a763",
+              "tests/test_pr16_generic_form_carry.py": "ef5a16d43c61b444fd7845198641f6fe65ba6cd59c7c229edf7dddaacb356164",
           }
           for path, digest in expected_before.items():
               actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
               if actual != digest:
                   raise SystemExit(f"preimage differs: {path}: {actual}")
           patch = zlib.decompress(base64.b64decode(os.environ["PATCH_B64"]))
-          if hashlib.sha256(patch).hexdigest() != "9c9b5fc0b1844e57d39b0c4ca1d57e33a501d31491f0bbbef4d62a3424a63b4c":
+          if hashlib.sha256(patch).hexdigest() != "776b7b4d8ba5928b11402fea0dee91539a2efcffa24661a98894cd92d03d2b64":
               raise SystemExit("embedded patch digest differs")
           subprocess.run(["git", "apply", "--check", "-"], input=patch, check=True)
           subprocess.run(["git", "apply", "-"], input=patch, check=True)
@@ -62,14 +62,14 @@ jobs:
           if changed != set(expected_after):
               raise SystemExit(f"unexpected changed paths: {sorted(changed)}")
           PY
-      - name: Run focused checks
+      - name: Run focused tests
         shell: bash
         run: |
           set -euo pipefail
           python3 -m py_compile scripts/pr16_generic_form_carry.py tests/test_pr16_generic_form_carry.py
           python3 -m unittest discover -s tests -p 'test_pr16_generic_form_carry.py' -v
           git diff --check
-      - name: Commit one evidence-derived checkpoint
+      - name: Commit one source checkpoint
         shell: bash
         run: |
           set -euo pipefail
@@ -77,5 +77,5 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add tools/mgba_pr16_generic_form_carry.c tests/test_pr16_generic_form_carry.py
           git diff --cached --check
-          git commit -m "USER-MODERNIZATION: use proven pre-map FORM entry state"
+          git commit -m "USER-MODERNIZATION: unlock final-league Shaymin row"
           git push origin "HEAD:${GITHUB_REF_NAME}"
