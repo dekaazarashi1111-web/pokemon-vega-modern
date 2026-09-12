@@ -9,6 +9,7 @@ on:
       - .github/pr16-fixed-form-run.json
       - scripts/pr16_fixed_form_acceptance.py
       - tools/mgba_pr16_fixed_form_acceptance.c
+      - tools/mgba_pr16_necrozma_fusion_acceptance.c
       - tests/test_pr16_fixed_form_acceptance.py
 permissions:
   contents: read
@@ -39,11 +40,12 @@ jobs:
             'AGENTS.md','README.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md',
             'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
             'scripts/pr16_fixed_form_acceptance.py','tools/mgba_pr16_fixed_form_acceptance.c',
+            'tools/mgba_pr16_necrozma_fusion_acceptance.c',
             'tests/test_pr16_fixed_form_acceptance.py','.github/workflows/pr16-fixed-form-acceptance.yml',
             '.github/pr16-fixed-form-run.json',
             'scripts/pr16_fixed_form_contract.py','content/modernization/pr16_fixed_form_contract.json',
             'content/modernization/p08_remaining_work.json',
-            'manifests/move_ids.csv','manifests/item_ids.csv',
+            'manifests/move_ids.csv','manifests/item_ids.csv','manifests/species_ids.csv',
           ]
           tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
           bindings={}
