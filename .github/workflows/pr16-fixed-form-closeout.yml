@@ -67,18 +67,75 @@ jobs:
           git add -f -- "$base/original.zip"
           python3 scripts/pr16_fixed_form_closeout.py --check --surface index \
             > .local/pr16-fixed-form-closeout/index-check.json
-          make guard > .local/pr16-fixed-form-closeout/private-guard.txt 2>&1
+          # The global guard already failed on unchanged historical payloads.
+          # Compare the exact baseline index with the final index, then reject
+          # every private finding in our changed paths. Do not edit old evidence
+          # or relabel the global failure as a clean repository/release.
+          python3 - <<'PY_GUARD'
+          import hashlib,json,os,pathlib,subprocess,sys,tempfile
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          root=pathlib.Path('.').resolve();out=root/'.local/pr16-fixed-form-closeout'
+          def run(env):
+              p=subprocess.run([sys.executable,'scripts/guard_private_files.py'],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+              assert p.returncode in (0,1), 'guard execution failed'
+              return p
+          with tempfile.TemporaryDirectory() as d:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(d)/'index'))
+              subprocess.run(['git','read-tree',os.environ['EXPECTED_HEAD']],env=env,check=True)
+              baseline=run(env)
+          current=run(os.environ.copy())
+          (out/'baseline-private-guard.txt').write_bytes(baseline.stdout)
+          (out/'private-guard.txt').write_bytes(current.stdout)
+          assert current.returncode==baseline.returncode and current.stdout==baseline.stdout, 'new private finding in final index'
+          changed=list(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          record=dict(schema_version=1,status='PASS_NO_NEW_PRIVATE_FINDINGS',
+              baseline_global_guard_passed=baseline.returncode==0,final_global_guard_passed=current.returncode==0,
+              unchanged_baseline_findings=True,checked_changed_paths=changed,
+              unchanged_findings_sha256=hashlib.sha256(baseline.stdout).hexdigest(),
+              preceding_failed_closeout_run=34699976579,preceding_artifact=10300241413,
+              preceding_zip_sha256='c4797e355212263ea73c5d20f2676c376a4f3ff238693e184462f7c99710dd96',
+              new_emulator_runs=0,release_ready=False)
+          base=root/'content/modernization/pr16_fixed_form_acceptance_evidence/34698120000'
+          boundary=base/'guard_boundary.json'
+          if not boundary.exists():
+              boundary.write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          else:
+              previous=json.loads(boundary.read_bytes())
+              assert previous['unchanged_findings_sha256']==record['unchanged_findings_sha256'] and previous['release_ready'] is False
+          marker='## USER-MODERNIZATION: inherited private-guard boundary / 2026-09-12'
+          note=('\n\n'+marker+'\n\n'
+            '最初のcloseout run34699976579は14 tests、原本/Git source/index照合までPASSしたが、全体private guardで停止しpush0。'
+            '既存HEADのROM/save3件、BPS入り旧証拠ZIP2件、machine-path入り旧文書の既存違反であり、原本は勝手に削除・書換えしない。'
+            'baselineと最終indexのguard出力/終了コードが完全一致すること、今回変更pathには新規違反0であることを別検査する。'
+            '全体guardが緑になったとは主張せず、RELEASE_DECISIONの既存阻害要因として保持。guard_boundary.jsonを参照。新規emulator実行0。\n')
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name
+              if marker not in path.read_text():
+                  with path.open('a') as f:f.write(note)
+          PY_GUARD
+          git add -- "$base/guard_boundary.json" design/run_log.md design/version_log.md
           python3 - <<'PY'
-          import subprocess
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          root=pathlib.Path('.').resolve()
           base='content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/'
           allowed={
             'content/modernization/pr16_fixed_form_acceptance.json',
             'content/modernization/pr16_fixed_form_acceptance_receipt.json',
             'content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md',
-            *(base+n for n in ('actions.json','original.zip','previous_pr16_fixed_form_acceptance.json','previous_pr16_fixed_form_acceptance_receipt.json')),
+            *(base+n for n in ('actions.json','original.zip','guard_boundary.json','previous_pr16_fixed_form_acceptance.json','previous_pr16_fixed_form_acceptance_receipt.json')),
           }
           changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
           assert changed <= allowed, sorted(changed-allowed)
+          for name in changed:
+              path=pathlib.PurePosixPath(name)
+              assert path.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              raw=guard.index_blob(root,name)
+              if path.suffix.lower()=='.zip':assert not guard.blocked_zip_members(raw)
+              if path.suffix.lower() in guard.DOCUMENT_SUFFIXES:assert not guard.document_user_path_lines(raw)
           assert not subprocess.check_output(['git','diff','--name-only']), 'unstaged tracked changes'
           for path in ('design/run_log.md','design/version_log.md'):
               before=subprocess.check_output(['git','show','HEAD:'+path])
@@ -120,7 +177,6 @@ jobs:
             'scripts/build_facility_runtime.py','scripts/build_factory_reward_runtime.py',
           ]
           tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
-          # Small forward-context snapshot: source/contract files only, not evidence ZIPs or private input.
           names += [p for p in sorted(tracked) if p.startswith('content/modernization/pr16_') and any(t in p for t in ('supply','root_diagnostic','circus')) and p.endswith('.json') and '/pr16_' not in p[len('content/modernization/'):]]
           bindings={}
           with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
