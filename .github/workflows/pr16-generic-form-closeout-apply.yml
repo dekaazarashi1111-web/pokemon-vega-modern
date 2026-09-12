@@ -62,7 +62,7 @@ jobs:
           )
           assert all(not Path(name).exists() for name in absent)
           PY
-          git apply --check patches/pr16-generic-form-closeout.patch
+          git apply --recount --check patches/pr16-generic-form-closeout.patch
 
       - name: Apply text closeout and preserve exact Actions original
         shell: bash
@@ -70,7 +70,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git apply patches/pr16-generic-form-closeout.patch
+          git apply --recount patches/pr16-generic-form-closeout.patch
           evidence=content/modernization/pr16_generic_form_evidence/34675976411
           mkdir -p "$evidence"
           gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10292791318/zip > "$evidence/original.zip"
