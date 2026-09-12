@@ -8,6 +8,7 @@ import struct
 import subprocess
 import sys
 import zipfile
+import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'scripts')]
@@ -39,7 +40,7 @@ class GraphError(ValueError):
 
 def graph(raw, roots):
     """明示rootと命令境界のedgeだけを辿る。native内への推測はしない。"""
-    from tools.t02.rom_inventory import COMMAND_LENGTHS
+    from tools.t02.rom_inventory import COMMAND_LENGTHS, _trainerbattle_size
     pending = sorted(set(roots))
     nodes = {}
     while pending:
@@ -53,7 +54,7 @@ def graph(raw, roots):
             at = pc - BASE
             need(0 <= at < len(raw), 'script address outside ROM')
             op = raw[at]
-            size = COMMAND_LENGTHS.get(op, 0)
+            size = (_trainerbattle_size(raw[at+1]) if op == 0x5C and at+1 < len(raw) else COMMAND_LENGTHS.get(op, 0))
             if not (size > 0 and at + size <= len(raw)):
                 raise GraphError(dict(root=start,address=pc,opcode=op,declared_length=size,
                     next_bytes=raw[at:at+24].hex(),partial_node=rows,nodes=list(nodes.values()),
@@ -71,6 +72,14 @@ def graph(raw, roots):
                 row['native'] = native
             elif op == 0x25:
                 row['special'] = struct.unpack_from('<H', raw, at+1)[0]
+            elif op == 0x5C:
+                row['trainerbattle_type'] = raw[at+1]
+                continuation = {1:14,2:14,6:18,8:18}.get(raw[at+1])
+                if continuation is not None:
+                    target = struct.unpack_from('<I', raw, at+continuation)[0]
+                    need(BASE <= target < BASE + len(raw), 'trainer continuation outside ROM')
+                    row.update(target=target,operand_address=pc+continuation)
+                    pending.append(target)
             rows.append(row)
             if op in (0x02, 0x03, 0x05, 0x0C, 0x0D, 0x24, 0x5E, 0x5F, 0xB9):
                 break
@@ -105,7 +114,9 @@ def inspect(raw):
     if failures:
         return basic
     edges = [row for node in paths['high_reception'] for row in node['instructions'] if row.get('target') == named['mistaken_trial']]
-    need(len(edges) == 1 and edges[0]['opcode'] == 0x06, 'Trial delegate is not one rooted conditional edge')
+    need(len(edges) == 1 and edges[0]['opcode'] == 0x05 and edges[0]['address'] == 0x093C93C0, 'Trial delegate is not the documented rooted goto')
+    entry = next(node for node in paths['high_reception'] if node['address']==named['high_reception'])
+    need(entry['instructions'][4]['bytes']=='210d800a00' and entry['instructions'][5]['bytes']=='0601c0933c09', 'Trial status-10 conditional does not enter delegate')
     rental_paths = [name for name in ('payload_npc', 'pre_high_npc') if any(row.get('special') == 0x2f for node in paths[name] for row in node['instructions'])]
     need(len(rental_paths) == 2, 'rental selection not reachable from both documented predecessors')
     need(not any(row.get('special') == 0x2f for node in paths['mistaken_trial'] for row in node['instructions']), 'mistaken completion unexpectedly contains rental UI')
@@ -115,6 +126,13 @@ def inspect(raw):
     need(int(cfg['physical_binding']['trial_script'],16) == named['mistaken_trial'], 'historical configured Trial differs')
     need(int.from_bytes(bytes.fromhex(reception['expected_hex']), 'little') == named['pre_high_npc'], 'historical predecessor differs')
     need(int(completion['address'],16) == named['mistaken_trial']+1, 'completion pointer contract differs')
+    operand = edges[0]['operand_address'] - BASE
+    changed = bytearray(raw)
+    changed[operand:operand+4] = struct.pack('<I',named['pre_high_npc'])
+    basic['proposed_successor'] = dict(**identity(changed),crc32=f'{zlib.crc32(changed)&0xffffffff:08X}',
+        declared_span=dict(offset=operand,size=4,before=raw[operand:operand+4].hex(),after=changed[operand:operand+4].hex()),
+        actual_changed_bytes=sum(a!=b for a,b in zip(raw[operand:operand+4],changed[operand:operand+4])),
+        hypothetical_only=True,rom_file_written=False)
     basic.update(status='PASS_ROOTED_STATIC_NOT_NATIVE_ACCEPTANCE',trial_operand=edges[0],
         replacement_candidate=named['pre_high_npc'],replacement_candidate_is_previous_physical_hook=True,
         limitations=['静的到達性だけ。native受付、レンタル、勝敗、報酬、Save/Continueは別の実行証拠が必要。',
