@@ -2107,3 +2107,8 @@ run34701044310/job103572747344成功。7 source-only tests、exact e630f7f候補
 ## USER-MODERNIZATION: first native BP reception control / 2026-09-12
 
 run34702872369はCodex wrapperの前処理契約で停止、emulator0。原本failureのまま保存。修正後run34703571879/job103579472279はnative Codexいいえ→Factory受付tier→B取消に成功。新規1process/1core/492frames。party600bytes・Bag・BP0・Savecounter2→2不変、7host-write禁止と10source tests、4画面を照合。残るrental caseを無駄に実行しない: Trial delegate092CF790は同じconfigのcompletion hook092CF791-1で、受付ではない。positive BP獲得・勝敗・繰返し・通常Save/Continue・獲得BP実消費は未受入。physical gap4件を保持。原本2ZIP/Actions/67native source/生成C/receipt/stdout/stderrをdigestと実行HEADへbinding、Git index/HEAD読戻しで恒久保存。今回checkpointによる新規emulator実行0。P03固定5ケース/generic FORM/P07は再実行しない。content/modernization/pr16_bp_native_controls_acceptance.json を参照。
+
+
+## USER-MODERNIZATION: native supply handoff and ownership CI correction / 2026-09-12
+
+fixed-form正式5ケースの閉鎖に対し、forgetting側の旧ownershipテストだけがP03未完状態を要求していた。run34704254858はruntime契約24PASS、証拠20件中1FAILで、技忘却nativeの再発ではない。commit2d82b2aはその4行だけを5ケース正本/候補SHA/gap閉鎖/P08移送未完を要求する20行へ置換。修正run34704480513とpush run34704478309は成功。原本確認は24+20=44 source tests PASS、忘却12ケース/12保存Continueを再検証、新規emulator0。前後CI原本を別ZIPとして保持。P03/generic FORM/P07を再オープンせず、既存native成功を再実行しない。この作業束で新規nativeはBP受付取消1process/1coreだけ。positive BP獲得/通常保存Continueは未受入。残るphysical gap4件とP08ゲート2件、Trial誤delegate092CF790、Circus旧F0=sprite pointerを正本へ同期。ROM変更0、release_ready/active_baseline_changed=false、既存global private guard違反は残す。content/modernization/pr16_native_supply_handoff.json と docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md を参照。
