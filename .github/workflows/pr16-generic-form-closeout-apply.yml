@@ -7,7 +7,7 @@ on:
       - codex/modernization-followup-20260908
     paths:
       - .github/workflows/pr16-generic-form-closeout-apply.yml
-      - patches/pr16-generic-form-closeout.patch
+      - patches/pr16-generic-form-closeout.patch.gz.b64.*
   workflow_dispatch:
 
 permissions:
@@ -30,11 +30,14 @@ jobs:
           ref: codex/modernization-followup-20260908
           fetch-depth: 0
 
-      - name: Verify patch and preimages
+      - name: Reconstruct verified patch and check preimages
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git hash-object patches/pr16-generic-form-closeout.patch)" = 19e847fd295df9019bb569e22b59914995a074cb
+          cat patches/pr16-generic-form-closeout.patch.gz.b64.{00,01,02,03,04,05} > /tmp/closeout.b64
+          echo '43c1ed935bf305c25ec1222d65d972e98779c0553672c95e09c88c886cd2f36f  /tmp/closeout.b64' | sha256sum -c -
+          base64 -d /tmp/closeout.b64 | gzip -d > /tmp/closeout.patch
+          echo '64594fbcb4dad72d9c696c1a1f33769332afd529db215369371becdc07319f34  /tmp/closeout.patch' | sha256sum -c -
           python3 - <<'PY'
           from hashlib import sha256
           from pathlib import Path
@@ -62,15 +65,15 @@ jobs:
           )
           assert all(not Path(name).exists() for name in absent)
           PY
-          git apply --recount --check patches/pr16-generic-form-closeout.patch
+          git apply --check /tmp/closeout.patch
 
-      - name: Apply text closeout and preserve exact Actions original
+      - name: Apply closeout and preserve exact Actions original
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git apply --recount patches/pr16-generic-form-closeout.patch
+          git apply /tmp/closeout.patch
           evidence=content/modernization/pr16_generic_form_evidence/34675976411
           mkdir -p "$evidence"
           gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10292791318/zip > "$evidence/original.zip"
@@ -116,7 +119,7 @@ jobs:
             design/run_log.md
             design/version_log.md
           )
-          mapfile -t changed < <(git diff --name-only | sort)
+          mapfile -t changed < <({ git diff --name-only; git ls-files --others --exclude-standard; } | sort)
           mapfile -t wanted < <(printf '%s\n' "${paths[@]}" | sort)
           diff -u <(printf '%s\n' "${wanted[@]}") <(printf '%s\n' "${changed[@]}")
           git config user.name github-actions[bot]
