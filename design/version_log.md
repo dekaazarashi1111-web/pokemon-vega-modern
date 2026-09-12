@@ -2014,3 +2014,7 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - Removed the fixed page=1/cursor=1 assumption for Shaymin form index 43.
 - Added at-most-20-page, five-row native A/B probing and receipt witnesses menu_page, menu_cursor, probe_count, pages_scanned, and menu_discovery.
 - Preserved no-direct-form-write and no-post-guard-host-write boundaries; temporary apply files are removed in the verified source commit.
+
+## 2026-09-12 / USER-MODERNIZATION generic FORM checkpoint
+
+Added the fail-closed `pr16_generic_form_checkpoint.py`, exact run `34675976411` original/Actions binding, scoped receipt, Japanese checkpoint document and route-ledger projection. The generic FORM owner is now `ACCEPTED_NATIVE_REPRESENTATIVE`; the only remaining P03 physical gap is fixed-form transition. Full P03, final-candidate transfer and release stay false. No emulator is run by the checkpoint and no historical run is relabelled.

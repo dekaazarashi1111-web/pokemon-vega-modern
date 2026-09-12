@@ -4734,3 +4734,12 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - The audit-provided source SHA-256 preimages did not match the unchanged branch blobs; authoritative Git blob IDs were used instead and the observed SHA-256 values were printed in the run log.
 - The earlier bridge run 34669355733 reached patch READY but could not commit because guard_private_files.py reports pre-existing repository-wide tracked ROM/BPS and machine-path findings unrelated to these three source files.
 - This checkpoint closes patch application only; real-ROM generic acceptance and all later fixed-form/P05/Circus/P08/release work remain open.
+
+## 2026-09-12 / PR16-GENERIC-FORM-NATIVE-ACCEPTANCE
+
+- Native acceptance run `34675976411`, job `103505793891`, tested HEAD `92db3605070c65206696b03f8ab6bd596ae7d729` passed on unchanged parent candidate `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`.
+- Two acceptance processes / five fresh cores completed: Shaymin Land→Sky→Land four-slot roundtrip and party-picker cancellation. Both found form index 43 by native input-only bounded discovery at page 1 / cursor 1 after seven probes across two pages, then completed normal Save and fresh Continue.
+- Four moves `[98,235,552,33]`, PP `[11,3,4,7]`, PP bonus byte, individual identity and nonselected party data were preserved. Seven post-observation host-write guards failed closed as required.
+- Fourteen entry probes remain diagnostic-only and are not counted as acceptance. The representative closes the shared 61-route generic owner contract; it does not claim 61 individually executed rows.
+- Exact artifact `10292791318`, 372130 bytes, SHA-256 `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`, Actions metadata, raw outputs, 44 rendered witnesses and tested source snapshot are retained by `pr16_generic_form_checkpoint.py` with zero verifier emulator runs.
+- `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` is closed on the parent candidate. `P03_FIXED_FORM_TRANSITION_PHYSICAL`, full P03, P08 successor transfer, clean-ROM regeneration and release remain open. No ROM/save/baseline/visibility/history/merge state changed.

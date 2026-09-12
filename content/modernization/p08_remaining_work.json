@@ -291,23 +291,26 @@
     {
       "id": "EVOLUTION_FORM_OTHER_EGG",
       "original_request": "P03 instruction 3-5 and acceptance",
-      "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
-      "pass_condition": "Map residual adopted consumers to exact existing or new native originals; keep Rotom/evolution/Pichu successes",
+      "partial_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
+      "pass_condition": "Use native fixed transition or battle-transform entrances, verify transition-owned move/full-slot/decline/restoration and valid save/Continue boundaries; preserve generic FORM and Rotom successes",
       "phase": "P03",
-      "reason_ja": "ロトム実受付10件に加え、バクーダ・ドンファンの共有技追加16件（全4枠・取消・保存再開）を受入済み。残る採用済み経路と既存原本の対応を確定する",
-      "resume": "scripts/pr16_shared_egg_checkpoint.py verifies the 16 shared-only receiver routes; retain Rotom/evolution/Pichu/Happiny successes and reconcile only residual consumers",
+      "reason_ja": "generic FORMは実受付・native有限探索・同一個体の4技持越し・取消・通常保存・fresh Continueを2ケースで受入済み。P03で残る実操作はfixed-form transition 4経路の処理所有者だけである",
+      "resume": "content/modernization/pr16_generic_form_acceptance.json retains run 34675976411; implement and execute only P03_FIXED_FORM_TRANSITION_PHYSICAL without repeating generic FORM or Rotom",
       "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
-      "target_function": "remaining adopted form/egg supply consumers, excluding accepted Rotom host routes",
-      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
+      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned",
+      "status": "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
       "coverage_inventory_complete": true,
       "physical_acceptance_complete": false,
       "complete": false,
       "remaining_physical_gap_ids": [
-        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
         "P03_FIXED_FORM_TRANSITION_PHYSICAL"
       ],
-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
+      "accepted_physical_gap_ids": [
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
+      ],
+      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json"
     },
     {
       "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",

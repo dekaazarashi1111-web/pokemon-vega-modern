@@ -24,11 +24,16 @@ class RouteCoverageTest(unittest.TestCase):
         receipt = route_coverage.validate_manifest(self.manifest)
         self.assertEqual(receipt["status"], "PASS")
         self.assertEqual(
+            receipt["p03_accepted_physical_gap_ids"],
+            ["P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"],
+        )
+        self.assertEqual(
             receipt["p03_remaining_physical_gap_ids"],
-            [
-                "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
-                "P03_FIXED_FORM_TRANSITION_PHYSICAL",
-            ],
+            ["P03_FIXED_FORM_TRANSITION_PHYSICAL"],
+        )
+        self.assertEqual(
+            receipt["generic_form_success_evidence"],
+            "content/modernization/pr16_generic_form_acceptance.json",
         )
         self.assertEqual(receipt["p07_remaining_physical_gap_ids"], [])
 
@@ -50,6 +55,36 @@ class RouteCoverageTest(unittest.TestCase):
         self.assertEqual(ordinary["coverage"], "ACCEPTED_NATIVE")
         self.assertEqual(ordinary["evidence"][0]["run_id"], 34434453733)
         self.assertEqual(ordinary["evidence"][0]["case_count"], 8)
+
+
+    def test_generic_form_is_closed_only_as_native_representative(self) -> None:
+        generic = next(
+            route
+            for route in self.manifest["p03"]["route_groups"]
+            if route["id"] == "GENERIC_FORM_CHANGE_CARRY"
+        )
+        self.assertEqual(generic["coverage"], "ACCEPTED_NATIVE_REPRESENTATIVE")
+        self.assertNotIn("gap_id", generic)
+        evidence = generic["evidence"][0]
+        self.assertEqual(evidence["run_id"], 34675976411)
+        self.assertEqual(evidence["artifact_id"], 10292791318)
+        self.assertEqual(evidence["native_processes"], 2)
+        self.assertEqual(evidence["fresh_cores"], 5)
+        self.assertTrue(evidence["representative_native_acceptance"])
+        self.assertFalse(evidence["all_rows_individually_executed"])
+        self.assertFalse(evidence["successor_transfer_complete"])
+
+    def test_fixed_form_is_the_only_remaining_p03_gap(self) -> None:
+        self.assertEqual(
+            self.manifest["p03"]["remaining_physical_gap_ids"],
+            ["P03_FIXED_FORM_TRANSITION_PHYSICAL"],
+        )
+        gaps = [
+            route["gap_id"]
+            for route in self.manifest["p03"]["route_groups"]
+            if route["coverage"] == "PHYSICAL_GAP"
+        ]
+        self.assertEqual(gaps, ["P03_FIXED_FORM_TRANSITION_PHYSICAL"])
 
     def test_p07_changed_surface_has_no_gap(self) -> None:
         p07 = self.manifest["p07"]

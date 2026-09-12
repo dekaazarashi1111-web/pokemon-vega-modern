@@ -242,8 +242,7 @@
           "Stage73_NormalizeMoveSlot",
           "Stage73_ValidateSavedMove"
         ],
-        "coverage": "PHYSICAL_GAP",
-        "gap_id": "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
+        "coverage": "ACCEPTED_NATIVE_REPRESENTATIVE",
         "form_inventory": {
           "routes": 61,
           "species": 10,
@@ -266,7 +265,39 @@
             "SPECIES_KEY_CALYREX_SHADOW"
           ]
         },
-        "required_operation": "Use an actual non-Rotom form-change entrance, select the same individual, verify four-slot carry/normalization, cancellation, normal save, and fresh Continue. Do not mutate directly to the post-form species."
+        "accepted_scope": "One native Shaymin owner representative validates the shared generic carry contract; this is not a claim that all 61 rows were individually executed.",
+        "evidence": [
+          {
+            "path": "content/modernization/pr16_generic_form_acceptance.json",
+            "run_id": 34675976411,
+            "tested_head": "92db3605070c65206696b03f8ab6bd596ae7d729",
+            "artifact_id": 10292791318,
+            "artifact_sha256": "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b",
+            "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+            "native_processes": 2,
+            "fresh_cores": 5,
+            "cases": [
+              "shaymin-four-slot-roundtrip",
+              "shaymin-party-cancel"
+            ],
+            "menu_discovery": "input-only-native-menu-probe",
+            "menu_page": 1,
+            "menu_cursor": 1,
+            "probe_count": 7,
+            "pages_scanned": 2,
+            "representative_route_ids": [
+              "bca6fe62e4b8925d73c8238a",
+              "830d0124e9ca952d41d4a7f0",
+              "57e91d3ffeb04c9795a8b6a1"
+            ],
+            "owner_route_count": 61,
+            "owner_species_count": 10,
+            "owner_rows_sha256": "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e",
+            "representative_native_acceptance": true,
+            "all_rows_individually_executed": false,
+            "successor_transfer_complete": false
+          }
+        ]
       },
       {
         "id": "FIXED_FORM_TRANSITION",
@@ -299,8 +330,10 @@
       "rotom_routes": 5
     },
     "remaining_physical_gap_ids": [
-      "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
       "P03_FIXED_FORM_TRANSITION_PHYSICAL"
+    ],
+    "accepted_physical_gap_ids": [
+      "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
     ]
   },
   "p07": {
@@ -412,15 +445,18 @@
   },
   "remaining_projection": {
     "EVOLUTION_FORM_OTHER_EGG": {
-      "status": "PENDING_TWO_FINITE_FORM_ROUTE_ACCEPTANCES",
+      "status": "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
       "coverage_inventory_complete": true,
       "physical_acceptance_complete": false,
       "complete": false,
       "remaining_physical_gap_ids": [
-        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
         "P03_FIXED_FORM_TRANSITION_PHYSICAL"
       ],
-      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json"
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
+      "accepted_physical_gap_ids": [
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
+      ],
+      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json"
     },
     "P07_REMAINING_ROUTE_ACCEPTANCE": {
       "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",

@@ -20,9 +20,18 @@ from pathlib import Path
 from typing import Any, Iterable
 
 SCHEMA = "pr16_p03_p07_route_coverage.v1"
-P03_GAPS = [
-    "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL",
-    "P03_FIXED_FORM_TRANSITION_PHYSICAL",
+P03_ACCEPTED = ["P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"]
+P03_GAPS = ["P03_FIXED_FORM_TRANSITION_PHYSICAL"]
+GENERIC_RECEIPT = "content/modernization/pr16_generic_form_acceptance.json"
+GENERIC_RUN = 34675976411
+GENERIC_ARTIFACT = 10292791318
+GENERIC_ARTIFACT_SHA256 = "f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b"
+GENERIC_HEAD = "92db3605070c65206696b03f8ab6bd596ae7d729"
+GENERIC_ROWS_SHA256 = "66cd203079d2a6d8ef1eb0fca6b5156c7bccbc1c720786df4953311491b5592e"
+GENERIC_ROUTE_IDS = [
+    "bca6fe62e4b8925d73c8238a",
+    "830d0124e9ca952d41d4a7f0",
+    "57e91d3ffeb04c9795a8b6a1",
 ]
 P07_PARENT = "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e"
 P08_SUCCESSOR = "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267"
@@ -77,9 +86,12 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
     p03 = manifest["p03"]
     _require(p03["condition_id"] == "EVOLUTION_FORM_OTHER_EGG", "wrong P03 condition id")
     _require(p03["coverage_inventory_complete"] is True, "P03 inventory must be finite")
-    _require(p03["physical_acceptance_complete"] is False, "P03 must stay open until two physical gaps pass")
+    _require(p03["physical_acceptance_complete"] is False, "P03 must stay open until fixed-form acceptance passes")
     _require(p03["complete"] is False, "P03 must not be marked complete")
-    _require(p03["remaining_physical_gap_ids"] == P03_GAPS, "P03 gap list must be exactly the two non-Rotom form owners")
+    _require(p03["accepted_physical_gap_ids"] == P03_ACCEPTED,
+             "generic FORM must be the only closed former P03 gap")
+    _require(p03["remaining_physical_gap_ids"] == P03_GAPS,
+             "fixed transition must be the only remaining P03 gap")
 
     form = p03["form_inventory"]
     _require(form["generic_carry_routes"] + form["fixed_transition_routes"] + form["rotom_routes"] == form["routes"] == 70,
@@ -103,7 +115,7 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
 
     physical_gap_routes = [route for route in routes.values() if route["coverage"] == "PHYSICAL_GAP"]
     _require([route["gap_id"] for route in physical_gap_routes] == P03_GAPS,
-             "only the generic and fixed non-Rotom form owners may remain as P03 physical gaps")
+             "only the fixed non-Rotom transition owner may remain as a P03 physical gap")
     for route in routes.values():
         if route["coverage"] != "PHYSICAL_GAP":
             _require("gap_id" not in route, f"accepted route unexpectedly has a gap id: {route['id']}")
@@ -123,12 +135,44 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
     _require(machine["static_route_counts"]["machine"] + machine["static_route_counts"]["tutor"] == 26648,
              "machine/tutor route total changed")
 
-    generic = routes["GENERIC_FORM_CHANGE_CARRY"]["form_inventory"]
+    generic_route = routes["GENERIC_FORM_CHANGE_CARRY"]
+    generic = generic_route["form_inventory"]
     fixed = routes["FIXED_FORM_TRANSITION"]["form_inventory"]
     rotom = routes["ROTOM_BESPOKE_FORM_TRANSITION"]["form_inventory"]
     _require(generic["routes"] == 61 and generic["species"] == 10, "generic form inventory changed")
     _require(sum(generic["methods"].values()) == 61, "generic form method counts must sum to 61")
     _require(len(set(generic["species_keys"])) == 10, "generic form species list must contain 10 unique species")
+    _require(generic_route["coverage"] == "ACCEPTED_NATIVE_REPRESENTATIVE",
+             "generic form owner must retain scoped native representative acceptance")
+    _require("gap_id" not in generic_route, "accepted generic form owner must not retain a gap id")
+    generic_evidence = generic_route["evidence"]
+    _require(type(generic_evidence) is list and len(generic_evidence) == 1,
+             "generic form owner must bind exactly one acceptance original")
+    evidence = generic_evidence[0]
+    expected_generic_evidence = {
+        "path": GENERIC_RECEIPT,
+        "run_id": GENERIC_RUN,
+        "tested_head": GENERIC_HEAD,
+        "artifact_id": GENERIC_ARTIFACT,
+        "artifact_sha256": GENERIC_ARTIFACT_SHA256,
+        "candidate_sha256": P07_PARENT,
+        "native_processes": 2,
+        "fresh_cores": 5,
+        "cases": ["shaymin-four-slot-roundtrip", "shaymin-party-cancel"],
+        "menu_discovery": "input-only-native-menu-probe",
+        "menu_page": 1,
+        "menu_cursor": 1,
+        "probe_count": 7,
+        "pages_scanned": 2,
+        "representative_route_ids": GENERIC_ROUTE_IDS,
+        "owner_route_count": 61,
+        "owner_species_count": 10,
+        "owner_rows_sha256": GENERIC_ROWS_SHA256,
+        "representative_native_acceptance": True,
+        "all_rows_individually_executed": False,
+        "successor_transfer_complete": False,
+    }
+    _require(evidence == expected_generic_evidence, "generic form acceptance binding changed")
     _require(fixed["routes"] == 4 and len(set(fixed["species_keys"])) == 4, "fixed transition inventory changed")
     _require(rotom["routes"] == 5 and rotom["species"] == 5, "Rotom route inventory changed")
 
@@ -164,8 +208,15 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
     _require(all(item["static_exact"] is True for item in unchanged), "every unchanged adopted family must remain statically exact")
 
     projection = manifest["remaining_projection"]
-    _require(projection["EVOLUTION_FORM_OTHER_EGG"]["remaining_physical_gap_ids"] == P03_GAPS,
+    p03_projection = projection["EVOLUTION_FORM_OTHER_EGG"]
+    _require(p03_projection["status"] == "PENDING_FIXED_FORM_ROUTE_ACCEPTANCE",
+             "P03 projection status must identify the one remaining owner")
+    _require(p03_projection["accepted_physical_gap_ids"] == P03_ACCEPTED,
+             "P03 accepted projection diverged from ledger")
+    _require(p03_projection["remaining_physical_gap_ids"] == P03_GAPS,
              "P03 remaining projection diverged from ledger")
+    _require(p03_projection["generic_form_success_evidence"] == GENERIC_RECEIPT,
+             "P03 projection lost generic form acceptance receipt")
     _require(projection["P07_REMAINING_ROUTE_ACCEPTANCE"]["remaining_physical_gap_ids"] == [],
              "P07 remaining projection must have no route gaps")
     _require(projection["P07_REMAINING_ROUTE_ACCEPTANCE"]["accepted_candidate_sha256"] == P07_PARENT,
@@ -174,7 +225,9 @@ def validate_manifest(manifest: dict[str, Any]) -> dict[str, Any]:
     return {
         "status": "PASS",
         "schema": SCHEMA,
+        "p03_accepted_physical_gap_ids": list(P03_ACCEPTED),
         "p03_remaining_physical_gap_ids": list(P03_GAPS),
+        "generic_form_success_evidence": GENERIC_RECEIPT,
         "p07_remaining_physical_gap_ids": [],
         "p07_parent_candidate_sha256": P07_PARENT,
         "p08_successor_candidate_sha256": P08_SUCCESSOR,
