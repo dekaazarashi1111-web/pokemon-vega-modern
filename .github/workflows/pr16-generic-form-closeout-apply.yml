@@ -1,0 +1,126 @@
+name: pr16-generic-form-closeout-apply
+run-name: Preserve generic FORM original and close its scoped condition
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-closeout-apply.yml
+      - patches/pr16-generic-form-closeout.patch
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: pr16-generic-form-closeout-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Verify patch and preimages
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '3aa3274fad8dd9a6b6ba8c2148ea38a1218ba6c7795f4a5da7388ae7df48b9c5  patches/pr16-generic-form-closeout.patch' | sha256sum -c -
+          python3 - <<'PY'
+          from hashlib import sha256
+          from pathlib import Path
+
+          expected = {
+              'scripts/pr16_p03_p07_route_coverage.py': '8842ce262eed838a1ce9afb45ae1236fff7cdc0ffb0f5b45a6388e115a19ce1c',
+              'tests/test_pr16_p03_p07_route_coverage.py': 'fb36a14fe94bc1014ddffa8f47b0b68b799fd0bc9feff628102139344a7f1e72',
+              'content/modernization/pr16_p03_p07_route_coverage.json': 'b5dd3fccb3f41c09b5718d6e198be0f78536b6faed36c7a0bac2a3ee7e8dfb7e',
+              'content/modernization/p08_remaining_work.json': '2b073965ac0848f1c450d3c3eee8fac4d4aa76c63796a986eaa64b1604798eef',
+              'docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md': '42441e5ddfab8f073eb3948cfe91c38aa51736a2d518245d868d9939837c8212',
+              'design/run_log.md': 'b1ce645f0b98877a763d2dc64a46d494ed2bb74deeccf9d40a1986982b193e57',
+              'design/version_log.md': 'c6778e1609c73baf2673be203ecfc533c50a1510bc95a0170f5b24e721cf3a15',
+          }
+          for name, digest in expected.items():
+              raw = Path(name).read_bytes()
+              assert sha256(raw).hexdigest() == digest, (name, sha256(raw).hexdigest())
+              raw.decode('utf-8')
+          absent = (
+              'scripts/pr16_generic_form_checkpoint.py',
+              'tests/test_pr16_generic_form_checkpoint.py',
+              'content/modernization/pr16_generic_form_acceptance.json',
+              'content/modernization/pr16_generic_form_evidence/34675976411/actions.json',
+              'content/modernization/pr16_generic_form_evidence/34675976411/original.zip',
+              'docs/PR16_GENERIC_FORM_CHECKPOINT_JA.md',
+          )
+          assert all(not Path(name).exists() for name in absent)
+          PY
+          git apply --check patches/pr16-generic-form-closeout.patch
+
+      - name: Apply text closeout and preserve exact Actions original
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git apply patches/pr16-generic-form-closeout.patch
+          evidence=content/modernization/pr16_generic_form_evidence/34675976411
+          mkdir -p "$evidence"
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10292791318/zip > "$evidence/original.zip"
+          test "$(stat -c %s "$evidence/original.zip")" = 372130
+          echo 'f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b  content/modernization/pr16_generic_form_evidence/34675976411/original.zip' | sha256sum -c -
+
+      - name: Revalidate original, ledger and focused source contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile \
+            scripts/pr16_generic_form_checkpoint.py \
+            scripts/pr16_p03_p07_route_coverage.py \
+            tests/test_pr16_generic_form_checkpoint.py \
+            tests/test_pr16_p03_p07_route_coverage.py
+          python3 scripts/pr16_generic_form_checkpoint.py
+          python3 scripts/pr16_p03_p07_route_coverage.py \
+            --check-remaining content/modernization/p08_remaining_work.json
+          python3 -m unittest \
+            tests.test_pr16_generic_form_checkpoint \
+            tests.test_pr16_p03_p07_route_coverage \
+            tests.test_pr16_p03_form_gap_inventory \
+            tests.test_pr16_generic_form_carry \
+            -v
+          git diff --check
+
+      - name: Commit scoped closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          paths=(
+            scripts/pr16_generic_form_checkpoint.py
+            tests/test_pr16_generic_form_checkpoint.py
+            content/modernization/pr16_generic_form_acceptance.json
+            content/modernization/pr16_generic_form_evidence/34675976411/actions.json
+            content/modernization/pr16_generic_form_evidence/34675976411/original.zip
+            scripts/pr16_p03_p07_route_coverage.py
+            tests/test_pr16_p03_p07_route_coverage.py
+            content/modernization/pr16_p03_p07_route_coverage.json
+            content/modernization/p08_remaining_work.json
+            docs/PR16_GENERIC_FORM_CHECKPOINT_JA.md
+            docs/PR16_P03_P07_ROUTE_COVERAGE_CHECKPOINT_JA.md
+            design/run_log.md
+            design/version_log.md
+          )
+          mapfile -t changed < <(git diff --name-only | sort)
+          mapfile -t wanted < <(printf '%s\n' "${paths[@]}" | sort)
+          diff -u <(printf '%s\n' "${wanted[@]}") <(printf '%s\n' "${changed[@]}")
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -- "${paths[@]}"
+          git commit -m 'USER-MODERNIZATION: close generic FORM physical gap'
+          git push origin HEAD:codex/modernization-followup-20260908
