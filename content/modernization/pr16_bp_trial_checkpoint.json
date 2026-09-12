@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "TRIAL_DELEGATE_REPAIRED_RENTAL_UI_NOT_ACCEPTED",
+  "parent_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+  "successor": {
+    "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
+    "size": 33554432,
+    "crc32": "5283EC5F",
+    "declared_operand_address": "0x093C93C1",
+    "declared_size": 4,
+    "before": "90f72c09",
+    "after": "a4d43809",
+    "actual_changed_bytes": 3,
+    "predecessor_wrapper": "0x0938D4A4",
+    "legacy_rental_root": "0x092CF5F0",
+    "legacy_completion_root": "0x092CF790",
+    "built": true,
+    "clean_rom_dual_build_verified": false,
+    "full_candidate_regression_complete": false
+  },
+  "original_runs": [
+    {
+      "run": 34707390052,
+      "job": 103589804409,
+      "head": "fcc57ce61ac78c293956b3a4f87437874a1c7363",
+      "conclusion": "failure",
+      "new_emulator_processes": 0,
+      "artifact": 10301882471,
+      "size": 22846,
+      "sha256": "f1380784016598cd84424f397cb364ef65b7005d64fd08ad61366a3b8b2e4f57"
+    },
+    {
+      "run": 34707616730,
+      "job": 103590416796,
+      "head": "224d8b83145393ad8e25006eee758f69f7df31e3",
+      "conclusion": "failure",
+      "new_emulator_processes": 0,
+      "artifact": 10302092390,
+      "size": 227260,
+      "sha256": "0d0afaaa6224ac9db83d77a0f1b0cf65c7f18b21d0af39fa9c312722ce1ce306",
+      "known_in_flight_receipt_mismatches": ["route.stderr"]
+    },
+    {
+      "run": 34707830538,
+      "job": 103591001790,
+      "head": "b21938a2db9cc9691158793570d263793caf88a4",
+      "conclusion": "success",
+      "new_emulator_processes": 0,
+      "artifact": 10301932970,
+      "size": 228493,
+      "sha256": "211704d1cb61baa66bde68b041690842bbfb83efc89a0539d09d3091c33c7123",
+      "known_in_flight_receipt_mismatches": ["route.stdout"]
+    },
+    {
+      "run": 34708218707,
+      "job": 103592052623,
+      "head": "16c148cbdc67520b38755c10c13febb81fc53259",
+      "conclusion": "failure",
+      "new_emulator_processes": 1,
+      "artifact": 10302273064,
+      "size": 622627,
+      "sha256": "826ecd85c68e6e0c272a612662dd7007b4cd50939e9571e712035281830d2f11",
+      "source_tests_passed": 24,
+      "host_write_guard_checks_passed": 7,
+      "last_observed_frame": 12615,
+      "last_observed_party_count": 6,
+      "snapshot_valid": 1,
+      "transaction_marker": 1,
+      "bp": 0,
+      "save_counter": 2,
+      "manual_saves": 0,
+      "post_save_fresh_continue_accepted": false,
+      "rental_party_ui_accepted": false
+    }
+  ],
+  "retention": {
+    "actions_original_zips_available": true,
+    "git_original_zip_readback_verified": false,
+    "diagnostic_final_streams_bound_by_artifact_members_and_outer_zip": true,
+    "do_not_rewrite_in_flight_receipt_or_original_zip": true
+  },
+  "next": "レンタル6個体とsnapshot生成後にChooserへ進まずfieldの説明メッセージで停止。正しいScriptContext位置・native wait・special0x2Fを実ROMで確認する。旧traceのB_CONTEXT+8はScriptContext開始位置を指し、script PC値ではないためその値から命令位置を推測しない。",
+  "remaining_physical_gap_count": 4,
+  "remaining_p08_gate_count": 2,
+  "p03_fixed_form_reopened": false,
+  "p07_reopened": false,
+  "native_bp_earning_accepted": false,
+  "p05_native_bp_gap_closed": false,
+  "active_baseline_changed": false,
+  "release_ready": false
+}
