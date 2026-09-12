@@ -227,6 +227,14 @@
       "source_condition": "REPOSITORY_GUARD"
     }
   ],
+  "p05_native_bp_control_checkpoint": {
+    "acceptance": "content/modernization/pr16_bp_native_controls_acceptance.json",
+    "accepted_negative_controls": 1,
+    "new_emulator_runs_during_checkpoint": 0,
+    "original_native_processes": 1,
+    "physical_bp_earning_accepted": false,
+    "receipt": "content/modernization/pr16_bp_native_controls_receipt.json"
+  },
   "p05_route_checkpoint": {
     "historical_candidate": {
       "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
@@ -340,6 +348,7 @@
       "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
       "gear_to_battle_required": false,
       "id": "NATURAL_CAPTURE_GEAR",
+      "native_bp_negative_controls": "content/modernization/pr16_bp_native_controls_acceptance.json",
       "natural_capture_evidence": "content/modernization/pr16_natural_capture_acceptance.json",
       "natural_capture_required": false,
       "ordinary_policy_selection_required": true,
@@ -354,7 +363,7 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Keep successful Eelektross purchased-stone route; do not redo it as missing. Resolve native ring/BP and configured-mode supply/accepted scope. Do not inject policy after cold Continue or globally enable Mega. Physical Circus remains separate.",
+      "resume": "Native reception cancellation run34703571879 accepted: Codex No -> Factory tier -> B, party600/inventory/BP0 and Save2 unchanged. Trial delegate0x092CF790 points at completion, not entry; resolve with original Facility header/Stage41 root before rental/win controls. Ring/BP/policy remain3 gaps; Circus separate. Preserve old shop/capture/battle success.",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
