@@ -94,6 +94,17 @@ class GenericFormCarryTests(unittest.TestCase):
                          m.FIX_HOST_PROGRESS | m.FIX_FINALIZE)
         self.assertEqual(by_name["entry-hof-legacy-host-pre-once"]["post_mask"], 0)
 
+    def test_entry_diagnostic_accounting_cannot_promote_acceptance(self):
+        text = (ROOT / "scripts/pr16_generic_form_carry.py").read_text()
+        final_report = text.rsplit("    report = {", 1)[1]
+        self.assertIn('"entry_diagnostic_processes": len(PROBES)', final_report)
+        self.assertIn('"actual_new_processes": len(CASES)', final_report)
+        self.assertIn('"successful_fresh_cores": sum(', final_report)
+        self.assertIn('"generic_form_carry_physical_accepted": not failures', final_report)
+        self.assertNotIn('"actual_new_processes": len(PROBES)', final_report)
+        self.assertNotIn('"generic_form_carry_physical_accepted": not diagnostic_failures',
+                         final_report)
+
     def test_entry_probe_accepts_observation_not_product_acceptance(self):
         for opened in (False, True):
             for name in ("entry-host-only-normalized", "entry-hof-flag-post-once"):
