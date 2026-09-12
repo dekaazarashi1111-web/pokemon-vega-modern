@@ -1,7 +1,7 @@
 diff --git a/tools/mgba_pr16_generic_form_carry.c b/tools/mgba_pr16_generic_form_carry.c
 --- a/tools/mgba_pr16_generic_form_carry.c
 +++ b/tools/mgba_pr16_generic_form_carry.c
-@@ -101,14 +101,24 @@ static void m_waitmenu(struct mCore *c,unsigned mode,unsigned page,const char *pr
+@@ -101,12 +101,23 @@ static void m_waitmenu(struct mCore *c,unsigned mode,unsigned page,const char *pr
      m_shot(prefix,round,label);m_state(c,label);a_die("generic physical form service menu absent");
  }
 -static void m_waitparty(struct mCore *c,const char *prefix,unsigned round){
@@ -27,7 +27,7 @@ diff --git a/tools/mgba_pr16_generic_form_carry.c b/tools/mgba_pr16_generic_form
  }
  static void m_open_form_row(struct mCore *c,unsigned page,unsigned cursor,
      const char *prefix,unsigned round){
-@@ -145,7 +155,12 @@ static void m_find_form(struct mCore *c,const char *prefix,unsigned round,struct
+@@ -145,7 +156,12 @@ static void m_find_form(struct mCore *c,const char *prefix,unsigned round,struct
          a_require(m_menu(c,2U,page) && read8(c,M_CURSOR)==cursor,
              "generic form scan row precondition differs");
          unsigned selected=b_frames+1U;
