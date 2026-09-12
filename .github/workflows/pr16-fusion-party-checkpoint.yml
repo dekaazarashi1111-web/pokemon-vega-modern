@@ -1,0 +1,72 @@
+name: pr16-fusion-party-checkpoint
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-fusion-party-checkpoint.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  checkpoint:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Retain exact second fusion execution without calling it accepted
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_fixed_form_checkpoint as keep
+          pin=dict(run_id=34697599454,job_id=103563652761,artifact_id=10299148243,head='f2f44b973dce839c56d8abf8240d12cf9f9da5bd',size=1025638,sha256='811eb51b5c1668e553fc47415ce4a6d9fcfc228e705e993870785ddb173757eb',cases=list(keep.fixed.CASES)[:2],conclusion='failure')
+          record=keep.retain(pin,'両Necrozmaでnative slot1選択→専用技690/669・PP5・bonus225→通常Save2→3→fresh Continue・party200bytes一致→解除・base1198・専用技削除/圧縮/bonus57まで実測。fieldのparty count cache2が残りcontroller停止。相方100bytesと実手持ちUIによる再計数を次に検証する。まだ正式受入ではない。')
+          subprocess.run(['git','add','-f',record['original']['path']],check=True)
+          keep.git_check(record,'INDEX')
+          pathlib.Path('content/modernization/pr16_fixed_form_latest_execution.json').write_bytes(keep.fixed.stable(record))
+          PY
+      - name: Apply bounded controller/observation patch and test raw evidence validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo '7563c2f6abb36783b172eb4d052268d3e0e61f4bfbae90d70a1cbfae23263eef  .chatgpt/patches/pr16-fusion-party-consumer.patch' | sha256sum -c -
+          echo '5f67c3aec512793c532e24de062050a2cf7aa8b20e2a6ef47a870ed3a9e16b24  tools/mgba_pr16_necrozma_fusion_acceptance.c' | sha256sum -c -
+          echo '81ee7abae5bfe46d219628e0fa526e7f992325d48f3075003701de1c917a5dcb  scripts/pr16_fixed_form_acceptance.py' | sha256sum -c -
+          echo '2167c8847c2d7ac94cd6240984304423babc4c85058ab748d7a6405115e7cb52  tests/test_pr16_fixed_form_acceptance.py' | sha256sum -c -
+          git apply --check .chatgpt/patches/pr16-fusion-party-consumer.patch
+          git apply .chatgpt/patches/pr16-fusion-party-consumer.patch
+          python3 -m unittest discover -s tests -p 'test_pr16_fixed_form_acceptance.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_fixed_form_checkpoint.py' -v
+          python3 scripts/pr16_fixed_form_originals.py
+          python3 scripts/validate_task_graph.py
+      - name: Append findings, commit and verify actual tracked original bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime,pathlib
+          stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+          text=f'\n## {stamp}\n- Task: USER-MODERNIZATION / Necrozma signature and first Save/Continue boundary\n- Status: PARTIAL_NATIVE_PROGRESS_NOT_ACCEPTANCE\n- Summary: run34697599454/job103563652761で両形態の実slot1選択、固有技690/669、PP5、bonus229→225、通常Save2→3、core破棄/freshContinue・200partybytes一致を実測。解除でbase1198、技98/235/33/0・PP11/3/7/0・bonus57まで復帰。field count cache2のため終端判定はFAIL。\n- Next controller: native復帰直後に相方100bytesを正本fixtureと比較し、さらに実Start→Pokemonで3体表示/再計数と300bytes不変を検査してから2回目Save/Continueへ進む。hostでcountを書き換えず、相方不在なら引続きFAIL。cached count仮説を製品修正と混同しない。\n- Verify: 18 acceptance unit tests +8 raw-original/checkpoint tests PASS。新ZIP1025638bytes SHA256811eb51b5c1668e553fc47415ce4a6d9fcfc228e705e993870785ddb173757eb、全sourceを実行Git commitへ照合、Git index byte一致。\n- Files changed: fusionC/Python/tests、raw evidence/latest execution、logs。\n- Commit: この追記を含むcommit。実行HEADf2f44b973dce839c56d8abf8240d12cf9f9da5bd。\n- Counts: native15attempts=5+4+2+2+2。単なる原本検証/静的検証/移送は0。正式3/5・P03gap/release false、ROM/active baseline不変。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              with pathlib.Path(name).open('a') as f:f.write(text)
+          PY
+          git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md content/modernization/p08_remaining_work.json content/modernization/pr16_fixed_form_acceptance.json tools/mgba_pr16_fixed_form_acceptance.c
+          git add tools/mgba_pr16_necrozma_fusion_acceptance.c scripts/pr16_fixed_form_acceptance.py tests/test_pr16_fixed_form_acceptance.py content/modernization/pr16_fixed_form_acceptance_evidence/34697599454 content/modernization/pr16_fixed_form_latest_execution.json design/run_log.md design/version_log.md
+          git rm .chatgpt/patches/pr16-fusion-party-consumer.patch .github/workflows/pr16-fusion-party-checkpoint.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git commit -m 'USER-MODERNIZATION: retain native Necrozma owned-move/Save/Continue evidence; require exact partner and real party UI before final save'
+          python3 - <<'PY'
+          import json,sys
+          sys.path.insert(0,'scripts');import pr16_fixed_form_checkpoint as keep
+          keep.git_check(json.load(open('content/modernization/pr16_fixed_form_latest_execution.json')),'HEAD')
+          PY
+          git push origin "HEAD:$GITHUB_REF_NAME"
