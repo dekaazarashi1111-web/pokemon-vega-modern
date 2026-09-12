@@ -1,0 +1,130 @@
+name: pr16-bp-trial-evidence
+run-name: Retain four Trial originals and failed native boundary (no replay)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-trial-evidence.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-trial-evidence
+  cancel-in-progress: false
+jobs:
+  trial-evidence:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_HEAD: ${{ github.sha }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Guard exact checkpoint and unchanged accepted originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-trial-evidence
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git diff --exit-code 00406cee3776c5cd5b41cbd483b920e5455bff17 HEAD -- \
+            config/active_play_baseline.json content/modernization/pr16_fixed_form_acceptance.json \
+            scripts/pr16_bp_native_controls.py tools/mgba_pr16_bp_native_controls.c \
+            content/modernization/pr16_generic_form_acceptance.json
+          python3 -m py_compile scripts/pr16_bp_trial_evidence.py
+          python3 -m unittest tests.test_pr16_bp_trial_successor -v > .local/pr16-bp-trial-evidence/tests.stdout 2> .local/pr16-bp-trial-evidence/tests.stderr
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-trial-evidence/fixed-retained.json
+      - name: Download exact originals and verify source metadata and final stream binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_trial_evidence.py --apply > .local/pr16-bp-trial-evidence/retention.stdout 2> .local/pr16-bp-trial-evidence/retention.stderr
+          python3 scripts/validate_task_graph.py > .local/pr16-bp-trial-evidence/task-graph.txt
+          git add -- scripts/pr16_bp_trial_evidence.py \
+            content/modernization/pr16_bp_trial_checkpoint.json content/modernization/pr16_bp_trial_receipt.json \
+            content/modernization/p08_remaining_work.json docs/PR16_BP_TRIAL_RESUME_20260913_JA.md \
+            design/run_log.md design/version_log.md
+          for run in 34707390052 34707616730 34707830538 34708218707; do
+            git add -- "content/modernization/pr16_bp_trial_evidence/$run/actions.json"
+            git add -f -- "content/modernization/pr16_bp_trial_evidence/$run/original.zip"
+          done
+          python3 scripts/pr16_bp_trial_evidence.py --check --surface index > .local/pr16-bp-trial-evidence/index-check.json
+      - name: Compare inherited private guard and require scoped changes only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,sys,tempfile
+          sys.path.insert(0,'scripts');import guard_private_files as guard
+          root=pathlib.Path('.').resolve();out=root/'.local/pr16-bp-trial-evidence'
+          def checked_guard(env):
+              p=subprocess.run([sys.executable,'scripts/guard_private_files.py'],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+              assert p.returncode in (0,1);return p
+          with tempfile.TemporaryDirectory() as d:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(d)/'index'))
+              subprocess.run(['git','read-tree',os.environ['EXPECTED_HEAD']],env=env,check=True)
+              before=checked_guard(env)
+          after=checked_guard(os.environ.copy())
+          (out/'baseline-private-guard.txt').write_bytes(before.stdout);(out/'private-guard.txt').write_bytes(after.stdout)
+          assert after.returncode==before.returncode and after.stdout==before.stdout,'new private finding'
+          allowed={'content/modernization/pr16_bp_trial_checkpoint.json','content/modernization/pr16_bp_trial_receipt.json',
+              'content/modernization/p08_remaining_work.json','docs/PR16_BP_TRIAL_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'}
+          for run in (34707390052,34707616730,34707830538,34708218707):
+              for name in ('original.zip','actions.json'):allowed.add(f'content/modernization/pr16_bp_trial_evidence/{run}/{name}')
+          changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert changed<=allowed,sorted(changed-allowed)
+          for name in changed:
+              p=pathlib.PurePosixPath(name);assert p.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==v or name.startswith(v+'/') for v in guard.BLOCKED_PARTS)
+              raw=guard.index_blob(root,name)
+              if p.suffix.lower()=='.zip':assert not guard.blocked_zip_members(raw)
+              if p.suffix.lower() in guard.DOCUMENT_SUFFIXES:assert not guard.document_user_path_lines(raw)
+          assert not subprocess.check_output(['git','diff','--name-only']),'unstaged tracked change'
+          for path in ('design/run_log.md','design/version_log.md'):
+              assert subprocess.check_output(['git','show',':'+path]).startswith(subprocess.check_output(['git','show','HEAD:'+path]))
+          record=dict(status='PASS_NO_NEW_PRIVATE_FINDINGS',baseline_global_guard_passed=before.returncode==0,
+              final_global_guard_passed=after.returncode==0,unchanged_findings_sha256=hashlib.sha256(before.stdout).hexdigest(),
+              changed_paths=sorted(changed),new_emulator_processes=0,release_ready=False)
+          (out/'guard-boundary.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Commit once verify HEAD originals and non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION: retain four Trial originals, built successor and rental-chooser stop; keep four physical gaps open'
+          fi
+          python3 scripts/pr16_bp_trial_evidence.py --check --surface head > .local/pr16-bp-trial-evidence/head-check.json
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-bp-trial-evidence/pushed-head.txt
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Preserve checkpoint workflow outcome as text only
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          out=pathlib.Path('.local/pr16-bp-trial-evidence');records={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.stdout','.stderr','.txt'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<16000000
+              records[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'artifact-members.json').write_text(json.dumps(records,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-trial-evidence
+          path: .local/pr16-bp-trial-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
