@@ -103,13 +103,17 @@ def replace_groups(
 
 
 def decoded_variants(encoded: bytes):
-    if len(encoded) % 4:
+    remainder = len(encoded) % 4
+    if remainder == 1:
         return
+    padding = (-len(encoded)) % 4
+    padded = encoded + b"=" * padding
     try:
-        packed = base64.b64decode(encoded, validate=True)
+        packed = base64.b64decode(padded, validate=True)
     except Exception:
         return
-    yield "base64", packed
+    suffix = f"-pad{padding}" if padding else ""
+    yield "base64" + suffix, packed
     for name, decoder in (
         ("zlib", zlib.decompress),
         ("gzip", gzip.decompress),
@@ -118,7 +122,7 @@ def decoded_variants(encoded: bytes):
         ("lzma", lzma.decompress),
     ):
         try:
-            yield name, decoder(packed)
+            yield name + suffix, decoder(packed)
         except Exception:
             pass
 
