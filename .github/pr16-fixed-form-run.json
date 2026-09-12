@@ -5,5 +5,5 @@
     "necrozma-dusk-mane-four-slot-roundtrip",
     "necrozma-dawn-wings-four-slot-roundtrip"
   ],
-  "reason": "run34697100492の4枠native選択後メッセージ待ちを受け、checkpoint run34697564418でB文字送りを追加し選択cursor/画像を記録。ROM・合格判定条件は変更せず、同じ未完2経路だけを継続。原本はGit index/HEADと実行source commitをbyte照合済み。Crowned成功2ケースと既存FORM取消は反復しない。"
+  "reason": "checkpoint bcbfdb153cb7e6ca92e6a506698e3763b81f34b7。前run34697599454で固有技/PP/Bonus、初回通常Save/freshContinue、解除後base/専用技削除圧縮まで確認。復帰相方100bytesと実Start→Pokemonで3体の表示/再計数・300bytes不変を確認し、2回目Save/freshContinueまで完走を要求する。field countをhostで補正せず、不在相方ならFAIL。未完2ケースのみ、ROMと既存Crowned/取消成功は変更しない。"
 }
