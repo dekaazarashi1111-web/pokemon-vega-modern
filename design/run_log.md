@@ -4763,3 +4763,14 @@ Integrated the previously unreflected non-destructive output and screenshot help
 - Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.
 - Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。
 - Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。
+
+## 2026-09-12T13:24:49.020414+00:00
+- Task: USER-MODERNIZATION / Crowned正式2ケース完了・原本Git収録修正
+- Status: PASS（限定2ケース。fixed gap全体は3/5で未完）
+- Summary: run34695512247/job103558198010でZacian/Zamazenta両方、正しい装備→自然歩行戦闘→Crowned/project move→PP5→4→勝利→base/Iron Head405復帰→native Bagで装備置換→次戦base/Iron Head→逃走→通常Save2→3→core破棄→fresh Continue・100bytes一致をPASS。
+- Retention correction: 以前のdirectory git-addはignore対象ZIPを収録せず、JSONだけが収録されていた。run34695874241はこの欠落を検知しFAIL。3原本を同一digestで再取得し、今回4原本のexact pathだけforce-add、Git indexとHEADからbyte一致まで確認する。以前の原本保持との記述はこの追記で訂正。
+- Verify: strict C compile、7 write guard、focused14 tests、2process/4fresh cores。原本ZIP854855bytes SHA2560d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8。
+- Files changed: scanned original ZIP4件、Crowned Actions/receipt/checkpoint、canonical fixed acceptance JSON、run/version logs。
+- Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。
+- Network: GitHub Actions API。原本移送は新規emulator runではない。
+- Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。

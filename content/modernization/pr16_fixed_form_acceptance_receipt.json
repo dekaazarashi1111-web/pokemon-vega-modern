@@ -1,6 +1,23 @@
 {
-  "actions_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/actions.json",
-  "artifact_id": 10297554037,
+  "accepted_case_evidence": [
+    {
+      "case": "necrozma-decline-unchanged",
+      "run_id": 34694218218
+    },
+    {
+      "case": "zacian-crowned-battle-roundtrip",
+      "run_id": 34695512247
+    },
+    {
+      "case": "zamazenta-crowned-battle-roundtrip",
+      "run_id": 34695512247
+    }
+  ],
+  "actions_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34695512247/actions.json",
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
   "inner_receipt": {
     "candidate": {
       "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
@@ -24,8 +41,8 @@
         "size": 0
       },
       "generated-controller.zip": {
-        "sha256": "1d9995b5312c3169b90c836fbcf9c19c973a997a7e779c13469786f8739314ab",
-        "size": 51571
+        "sha256": "252622a6e73cd8d9eb81f3de46530734352f58ad8e669506b278e7fd4d0150cd",
+        "size": 52788
       },
       "guard-bus16.process.json": {
         "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
@@ -111,102 +128,93 @@
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "size": 0
       },
-      "necrozma-dawn-wings-four-slot-roundtrip-selected-row.ppm": {
-        "sha256": "a37c842063443ee7169922cbc5d8a91321d4900485ad19274455c58eadf924ca",
+      "result.json": {
+        "sha256": "b11b4e368cdd100b578badd3381cd0f7b614e636701765ad5f20d1fe24ecb1f6",
+        "size": 26500
+      },
+      "sources.zip": {
+        "sha256": "c695dcd6821e3b64b01da5b941c455218c7936ebe9442180e1297700d9b06835",
+        "size": 509422
+      },
+      "zacian-crowned-battle-roundtrip-crowned-continued.ppm": {
+        "sha256": "af82855843192632f919d0ea10740353834dd7ef5144b9646eb2ecbc95dc90b1",
         "size": 115215
       },
-      "necrozma-dawn-wings-four-slot-roundtrip.process.json": {
-        "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
-        "size": 90
-      },
-      "necrozma-dawn-wings-four-slot-roundtrip.stderr": {
-        "sha256": "59102a8c2d355df88f4a01fc346cdb8ae74954709eceb41237f791b941f29ee0",
-        "size": 60
-      },
-      "necrozma-dawn-wings-four-slot-roundtrip.stdout": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
-      },
-      "necrozma-decline-unchanged-declined-unchanged.ppm": {
-        "sha256": "f48fb776a1e3eaadbc88b784646bfbeda882893162040b9aef65e93a9e906f6f",
+      "zacian-crowned-battle-roundtrip-crowned-restored.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
         "size": 115215
       },
-      "necrozma-decline-unchanged.process.json": {
+      "zacian-crowned-battle-roundtrip-project-move-menu.ppm": {
+        "sha256": "ef2d5f16324e5ff37049a153badb0d8f8897d873568c6628ee8e3904d3037971",
+        "size": 115215
+      },
+      "zacian-crowned-battle-roundtrip-project-move-resolved.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "zacian-crowned-battle-roundtrip-rusted-item-removed.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "zacian-crowned-battle-roundtrip.process.json": {
         "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
         "size": 90
       },
-      "necrozma-decline-unchanged.stderr": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
-      },
-      "necrozma-decline-unchanged.stdout": {
-        "sha256": "2bbd221f0ac67d89f7d5a9daa23aa6bd30a1460ac5b77d3697845ff1fede84b3",
-        "size": 1662
-      },
-      "necrozma-dusk-mane-four-slot-roundtrip-selected-row.ppm": {
-        "sha256": "bccec3dea43e8d3bc9a3bce75b598b789c1d89e740a7f627ccf1ea7109fdd7be",
-        "size": 115215
-      },
-      "necrozma-dusk-mane-four-slot-roundtrip.process.json": {
-        "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
-        "size": 90
-      },
-      "necrozma-dusk-mane-four-slot-roundtrip.stderr": {
-        "sha256": "59102a8c2d355df88f4a01fc346cdb8ae74954709eceb41237f791b941f29ee0",
-        "size": 60
-      },
-      "necrozma-dusk-mane-four-slot-roundtrip.stdout": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
-      },
-      "result.json": {
-        "sha256": "437913cc2a8330a2e1bcf396b12a1bc324193a6d854eb88e5d19dc7451d7de45",
-        "size": 24785
-      },
-      "sources.zip": {
-        "sha256": "08e63002cc023503805c171fa7281d0f17a097ac83f1289a792e0902046e2c16",
-        "size": 507244
-      },
-      "zacian-crowned-battle-roundtrip.process.json": {
-        "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
-        "size": 90
-      },
       "zacian-crowned-battle-roundtrip.stderr": {
-        "sha256": "a4170051b95eed4f59e6b0fed15424c29db3368423c02f389e14b278d3323442",
-        "size": 73
+        "sha256": "504be080cbbc05761f67a02114e37213fb396db613bccfbadcac3e555c0c2a65",
+        "size": 1231
       },
       "zacian-crowned-battle-roundtrip.stdout": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
+        "sha256": "3a4a7a44d87ebfb6c2053447cdadfd4a539e103f99ab4fbc6daa6eb3a64152fb",
+        "size": 1672
+      },
+      "zamazenta-crowned-battle-roundtrip-crowned-continued.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "zamazenta-crowned-battle-roundtrip-crowned-restored.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "zamazenta-crowned-battle-roundtrip-project-move-menu.ppm": {
+        "sha256": "2c6105b6283627ecdfd99901486b0df8e4475be6a55d8c3ed228b27190290bdd",
+        "size": 115215
+      },
+      "zamazenta-crowned-battle-roundtrip-project-move-resolved.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
+      },
+      "zamazenta-crowned-battle-roundtrip-rusted-item-removed.ppm": {
+        "sha256": "3d27d5697797b7163efafeeedbad8f6197e1fa7dbbd0e1f4f0185d885dce8e54",
+        "size": 115215
       },
       "zamazenta-crowned-battle-roundtrip.process.json": {
-        "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+        "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
         "size": 90
       },
       "zamazenta-crowned-battle-roundtrip.stderr": {
-        "sha256": "a4170051b95eed4f59e6b0fed15424c29db3368423c02f389e14b278d3323442",
-        "size": 73
+        "sha256": "fa10616a385e9064378aac686cebd7e883cf41f3864e67e4431a398d21ea7d3e",
+        "size": 1231
       },
       "zamazenta-crowned-battle-roundtrip.stdout": {
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-        "size": 0
+        "sha256": "82147a29ca5fffdab09029b424f6daa1045a30eadee4b197ec87713eff103af9",
+        "size": 1675
       }
     },
     "native_acceptance_claimed": false,
     "p03_fixed_form_gap_closed": false,
     "release_ready": false,
     "schema_version": 1,
-    "tested_head": "a9ec7ab9d93d8013139698242802826278aaf667"
+    "tested_head": "952b9fb2e2ee8b5951214eda7a7847c4ca1092d5"
   },
-  "job_id": 103554787890,
-  "original": {
-    "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/original.zip",
-    "sha256": "45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7",
-    "size": 802643
+  "new_original": {
+    "path": "content/modernization/pr16_fixed_form_acceptance_evidence/34695512247/original.zip",
+    "sha256": "0d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8",
+    "size": 854855
   },
   "p03_fixed_form_gap_closed": false,
+  "previous_evidence_retained": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218",
   "release_ready": false,
-  "run_id": 34694218218,
-  "schema_version": 1,
-  "tested_head": "a9ec7ab9d93d8013139698242802826278aaf667"
+  "schema_version": 2,
+  "status": "PARTIAL_NATIVE_THREE_OF_FIVE_CASES"
 }

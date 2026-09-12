@@ -1,6 +1,8 @@
 {
+  "accepted_case_count": 3,
   "accepted_cases": [
     {
+      "evidence_run_id": 34694218218,
       "name": "necrozma-decline-unchanged",
       "process": {
         "returncode": 0,
@@ -76,75 +78,187 @@
           "transition": 0
         }
       }
+    },
+    {
+      "evidence_run_id": 34695512247,
+      "name": "zacian-crowned-battle-roundtrip",
+      "process": {
+        "returncode": 0,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "result": {
+        "aggregate_gap_closed": false,
+        "automatic_saves": 0,
+        "auxiliary_move": 405,
+        "base_species": 1361,
+        "battle_exit_restoration": true,
+        "battle_form_and_move": true,
+        "canonical_ordinal": 87,
+        "case": "zacian-crowned-battle-roundtrip",
+        "case_accepted": true,
+        "family": "crowned_battle_transition",
+        "form_index": 280,
+        "four_slot_boundary": false,
+        "fresh_continue": true,
+        "fresh_cores": 2,
+        "full_p03_acceptance": false,
+        "held_item": 699,
+        "held_item_removal_boundary": true,
+        "held_items_and_bag_are_fixtures": true,
+        "identity_preserved": true,
+        "input_only_after_guard": true,
+        "kind": "crowned-battle-roundtrip",
+        "manual_saves": 1,
+        "native_decline_or_ineligible_control": false,
+        "native_held_item_or_battle_entry": true,
+        "native_reversion": false,
+        "native_transition_entry": false,
+        "no_invalid_saved_form_move_pair": true,
+        "normal_save": true,
+        "party_bytes_unchanged": false,
+        "project_move": 768,
+        "release_ready": false,
+        "replacement_item": 1012,
+        "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+        "route_id": "371ffcca84ed4eb8fbb6d56b",
+        "save_counter_after": 3,
+        "save_counter_before": 2,
+        "save_counter_unchanged": false,
+        "schema_version": 1,
+        "scope": "PR16_P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "starting_progress_map_party_are_fixtures": true,
+        "status": "PASS",
+        "target_species": 1386,
+        "total_frames": 10137,
+        "transition_owned_move_resolution": false,
+        "warnings_errors": 0,
+        "witness": {
+          "decline_dawn": 0,
+          "decline_dusk": 0,
+          "first_battle": 2857,
+          "first_battle_exit": 3465,
+          "first_continue": 10137,
+          "first_save": 7715,
+          "interaction": 0,
+          "item_replaced": 5021,
+          "menu": 0,
+          "party": 0,
+          "project_move_seen": 2857,
+          "project_move_spent": 2935,
+          "reversion": 0,
+          "second_battle": 6055,
+          "second_battle_exit": 6317,
+          "second_continue": 0,
+          "second_save": 0,
+          "selection": 0,
+          "transition": 0
+        }
+      }
+    },
+    {
+      "evidence_run_id": 34695512247,
+      "name": "zamazenta-crowned-battle-roundtrip",
+      "process": {
+        "returncode": 0,
+        "schema_version": 1,
+        "spawn_error": null,
+        "timed_out": false
+      },
+      "result": {
+        "aggregate_gap_closed": false,
+        "automatic_saves": 0,
+        "auxiliary_move": 405,
+        "base_species": 1362,
+        "battle_exit_restoration": true,
+        "battle_form_and_move": true,
+        "canonical_ordinal": 88,
+        "case": "zamazenta-crowned-battle-roundtrip",
+        "case_accepted": true,
+        "family": "crowned_battle_transition",
+        "form_index": 281,
+        "four_slot_boundary": false,
+        "fresh_continue": true,
+        "fresh_cores": 2,
+        "full_p03_acceptance": false,
+        "held_item": 700,
+        "held_item_removal_boundary": true,
+        "held_items_and_bag_are_fixtures": true,
+        "identity_preserved": true,
+        "input_only_after_guard": true,
+        "kind": "crowned-battle-roundtrip",
+        "manual_saves": 1,
+        "native_decline_or_ineligible_control": false,
+        "native_held_item_or_battle_entry": true,
+        "native_reversion": false,
+        "native_transition_entry": false,
+        "no_invalid_saved_form_move_pair": true,
+        "normal_save": true,
+        "party_bytes_unchanged": false,
+        "project_move": 769,
+        "release_ready": false,
+        "replacement_item": 1012,
+        "rom_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+        "route_id": "2a8a2a856af40ec96087c9a7",
+        "save_counter_after": 3,
+        "save_counter_before": 2,
+        "save_counter_unchanged": false,
+        "schema_version": 1,
+        "scope": "PR16_P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "starting_progress_map_party_are_fixtures": true,
+        "status": "PASS",
+        "target_species": 1387,
+        "total_frames": 10357,
+        "transition_owned_move_resolution": false,
+        "warnings_errors": 0,
+        "witness": {
+          "decline_dawn": 0,
+          "decline_dusk": 0,
+          "first_battle": 2858,
+          "first_battle_exit": 3648,
+          "first_continue": 10357,
+          "first_save": 7935,
+          "interaction": 0,
+          "item_replaced": 5204,
+          "menu": 0,
+          "party": 0,
+          "project_move_seen": 2858,
+          "project_move_spent": 2936,
+          "reversion": 0,
+          "second_battle": 6275,
+          "second_battle_exit": 6537,
+          "second_continue": 0,
+          "second_save": 0,
+          "selection": 0,
+          "transition": 0
+        }
+      }
     }
   ],
-  "actual_new_processes": 5,
-  "artifact_id": 10297554037,
-  "artifact_sha256": "45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7",
+  "actual_new_processes_this_run": 2,
   "candidate": {
     "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
     "size": 33554432
   },
-  "failures": [
-    {
-      "name": "necrozma-dusk-mane-four-slot-roundtrip",
-      "process": {
-        "returncode": 1,
-        "schema_version": 1,
-        "spawn_error": null,
-        "timed_out": false
-      },
-      "stderr": "P03 archive: fixed acceptance transition-owned move differs\n"
-    },
-    {
-      "name": "necrozma-dawn-wings-four-slot-roundtrip",
-      "process": {
-        "returncode": 1,
-        "schema_version": 1,
-        "spawn_error": null,
-        "timed_out": false
-      },
-      "stderr": "P03 archive: fixed acceptance transition-owned move differs\n"
-    },
-    {
-      "name": "zacian-crowned-battle-roundtrip",
-      "process": {
-        "returncode": 1,
-        "schema_version": 1,
-        "spawn_error": null,
-        "timed_out": false
-      },
-      "stderr": "P03 archive: fixed acceptance battle did not return to action controller\n"
-    },
-    {
-      "name": "zamazenta-crowned-battle-roundtrip",
-      "process": {
-        "returncode": 1,
-        "schema_version": 1,
-        "spawn_error": null,
-        "timed_out": false
-      },
-      "stderr": "P03 archive: fixed acceptance battle did not return to action controller\n"
-    }
-  ],
+  "current_successful_run_id": 34695512247,
+  "current_successful_tested_head": "952b9fb2e2ee8b5951214eda7a7847c4ca1092d5",
   "full_p03_acceptance": false,
-  "guard_checks": [
-    "bus8",
-    "bus16",
-    "bus32",
-    "raw8",
-    "raw16",
-    "raw32",
-    "register"
-  ],
-  "job_id": 103554787890,
   "native_acceptance_claimed": false,
-  "next_action": "修正済みcontrollerで失敗経路だけを追跡する。Necrozmaは専用技解決、Crownedは技実行後の戦闘終了境界。generic FORM、P07、成功済み取消を無条件に再実行しない。",
-  "original_path": "content/modernization/pr16_fixed_form_acceptance_evidence/34694218218/original.zip",
+  "next_action": "Necrozmaはnative fusion ownerの4枠選択・解除時専用技削除/圧縮・保存/Continueを実装する。Photon自動置換/復帰という誤想定を製品へ実装しない。Crownedと取消は無条件に反復しない。",
+  "owner_findings": "content/modernization/pr16_fixed_form_owner_findings.json",
   "p03_fixed_form_gap_closed": false,
+  "recorded_native_runs": [
+    34694218218,
+    34694785866,
+    34695512247
+  ],
   "release_ready": false,
-  "run_id": 34694218218,
+  "remaining_case_ids": [
+    "necrozma-dusk-mane-four-slot-roundtrip",
+    "necrozma-dawn-wings-four-slot-roundtrip"
+  ],
   "schema_version": 1,
-  "status": "FAIL_NATIVE_LIFECYCLE_CHECKPOINT",
-  "tested_head": "a9ec7ab9d93d8013139698242802826278aaf667"
+  "status": "PARTIAL_NATIVE_THREE_OF_FIVE_CASES",
+  "total_attempted_processes_in_recorded_runs": 11
 }
