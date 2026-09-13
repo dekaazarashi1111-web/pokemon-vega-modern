@@ -119,6 +119,10 @@ def prepare():
     s['loss_return_completed']={'native_run':e.RUN,'native_head':e.HEAD,'source_only_revalidation_run':int(os.environ['GITHUB_RUN_ID']),'source_only_head':head,'evidence':REPORT,'new_native_processes':1,'revalidation_native_processes':0}
     s['observed_head_checks']['loss_return_native_head']=rows
     s['observed_head_checks']['reason_ja']='native HEADdfeのActionsを再照合。専用run34759726061はPython終了状態検査のfalse negativeでfailure、raw nativeはexit0/PASS。新規source-only検証は別runであり、原失敗の取消・全Checks成功・BP受入とは主張しない。記録commitのChecksはpush後に別照合。'
+    s['next_action']['stop_rule_ja']='同一fcdaの敗北帰還、同一bffdの旧敗北失敗、完了済みsource監査・ROM byte採取は再実行しない。交換ABIの変更が既存帰還/party復元へ影響する場合だけ影響区間を明記して再検証する。勝敗・HP・PP・RNGのhost注入、復元assertionやtimeoutの緩和は禁止。原Actions failureは保存し、source-only判定と混同しない。'
+    s['bp']['after_battle_launch']='1戦敗北→施設受付前idle→元party600bytes/count1復元はfcdaで検証完了。次は交換operand092CF729/092CF775のsingle-selection ABI。Trial reward0はID、基本9BP。manifest/Stage28追加BP3とStage29 repeat1/2の条件は既存読取証拠を再利用するが、候補上の勝利・全completion chain・最終付与量は未受入。初期chooser、取消/Save/Continueと今回の敗北帰還を変更影響なしに再実施しない。'
+    s['do_not_repeat'][1]='履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。'
+    s['do_not_repeat'][2]='run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。'
     s['pending_runs']=[];s['logs_synchronized']=s['p08_resume_synchronized']=True
     for name in SESSION+[REPORT,AUDIT]:
         s['source_bindings'][name]=identity((ROOT/name).read_bytes())
