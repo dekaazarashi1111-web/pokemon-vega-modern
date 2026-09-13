@@ -202,7 +202,7 @@ def audit(root: Path) -> tuple[dict[str, object], str]:
         "needles": {key: len(rows) for key, rows in found.items()},
         "matched_files": files,
         "matches": found,
-        "sumary": classify(found),
+        "summary": classify(found),
         "release_ready": False,
         "native_bp_earning_accepted": False,
     }
