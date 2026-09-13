@@ -2163,3 +2163,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。入力HEAD=c9c27b727e8c194535f2530fccc806c5103849a6。
 
 - Checkpoint preflight failures retained: runs34739159633/34739395296, native0; focused14/resume18 passed. Stage P08 plus fixed handoff MD/JSON together for --index, then verify committed HEAD before native dispatch.
+
+
+## 2026-09-13T05:15:54Z — USER-20260913-BP-SECOND-CHOOSER-CLOSEOUT
+- Task: USER-20260913-BP-SECOND-CHOOSER
+- Status: DONE_SCOPED_BATTLE_LAUNCH_DIAGNOSTIC; BP_EARNING_PENDING
+- Summary: native確定1914f→5D消費1967f→struct2051f→action3260f、敵3体・BP0・savecounter2・7barrier・warning0を実観測。攻撃/勝利/帰還/報酬/獲得BP消費は未観測。
+- Evidence: run34739491272/job103676647813/HEAD613fd76915f262c080b56700a48f77827bf3e378/artifact10312207537、ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07。51receipt/71source/18entry/11generatedとstdout/process/Gitの一致を照合。19画面を保持、battle-action画面を確認。失敗run34738859743原本はfailureのまま保持。
+- Verification: source-only最終照合、native result変異4負例、focused14件、resume18件（観測true/falseいずれでも不一致を拒否するようnegative testを一般化）、固定MD生成、task graph、既存取消/固定formのGit保持、private guard差分を検査してcommitする。標準guardの既存違反は不変、新規0。全体guard PASSへ読み替えない。
+- Execution: このセッションの新規native2process（失敗1/成功1core）。取消/Save/Continue再実行0。closeoutのemulator0/ROM再生成0。
+- Files changed: 元診断抄録、成功原本/Actions/検証記録/旧抄録、同じ固定resume MD/JSON、P08再開文、resume negative test、両ログ。
+- Next: Trial reward0と9BP対象modeを区別し、残る交換0x2F bindingを確認後、実戦進行/帰還/報酬の未観測区間へ延長。実戦開始だけの重複試験なし。physical4+P08 gates2は未完のまま。
+- Commit: この記録を含むcommit。照合入力HEAD=a083afe22cf578e312676db29eb25b7af58bfd05、source-only closeout run=34739858109。PRopen/draft、merge/release/baseline変更なし。
+
+- Retention correction: 613fd769 stored failure metadata only; original.zip was ignored. Closeout run34739728185 failed before any native execution. This commit explicitly stages only both digest-verified, payload-checked ZIPs and verifies index plus committed HEAD bytes. Earlier retention statements are superseded by this actual retention check; original failure conclusion is unchanged.

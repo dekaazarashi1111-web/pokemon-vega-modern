@@ -392,7 +392,7 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34738859743で2回目確定→5D消費(frame1967)→struct生成(2051)→実battle action(3260)まで観測。ただし未束縛raw敵数0を要求したassertionでrunはfailure。実敵slot3体から計数するobserver修正を実装し、修正後のnative成功判定は未取得。BP0・正式受入は変更しない。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。 Next: 最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -460,7 +460,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34738859743で2回目確定→5D消費(frame1967)→struct生成(2051)→実battle action(3260)まで観測。ただし未束縛raw敵数0を要求したassertionでrunはfailure。実敵slot3体から計数するobserver修正を実装し、修正後のnative成功判定は未取得。BP0・正式受入は変更しない。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。 Next: 最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"

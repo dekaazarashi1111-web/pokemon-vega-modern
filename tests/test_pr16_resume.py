@@ -78,7 +78,7 @@ class ResumeTests(unittest.TestCase):
         self.s['latest_native_tested_head']='0'*40;self.sync();self.assert_invalid()
 
     def test_no_false_battle(self):
-        self.s['bp']['battle_started']=True;self.sync();self.assert_invalid()
+        self.s['bp']['battle_started']=not self.s['bp']['battle_started'];self.sync();self.assert_invalid()
 
     def test_no_false_bp(self):
         self.s['bp']['earning_and_spending_accepted']=True;self.sync();self.assert_invalid()

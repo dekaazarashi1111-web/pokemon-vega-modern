@@ -2,20 +2,20 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run34738859743で2回目確定→5D消費(frame1967)→struct生成(2051)→実battle action(3260)まで観測。ただし未束縛raw敵数0を要求したassertionでrunはfailure。実敵slot3体から計数するobserver修正を実装し、修正後のnative成功判定は未取得。BP0・正式受入は変更しない。",
+    "current_stop": "run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
-    "next_step": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+    "next_step": "最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
     "party_snapshot_and_marker_observed": true,
     "six_rentals_generated": true,
     "trial_delegate_repaired": true,
     "three_selection_observed": true,
     "second_chooser_observed": true,
-    "battle_started": false,
+    "battle_started": true,
     "bp_earned": 0,
     "selected_frame": 1440,
     "second_chooser_frame": 1789,
-    "after_battle_launch": "交換scriptに残るspecial 0x2Fの2か所は実ROM bindingを確認して必要な箇所だけ修正。その後3勝9BP、負例、初回/繰返し、通常Save/fresh Continue、獲得BPの既存shop消費。",
+    "after_battle_launch": "実戦開始の停止点は解決済み。まずTrial(mode0/reward0)と9BP対象ルートを区別し、残る交換special 0x2Fの2か所を実ROMで確認する。必要な箇所だけ修正し、正しい報酬ルートで3勝9BP、負例、初回/繰返し、通常Save/fresh Continue、獲得BPの既存shop消費を別途受け入れる。",
     "earning_accepted": false,
     "spending_accepted": false
   },
@@ -30,66 +30,93 @@
   "current_checkpoint": "content/modernization/pr16_bp_chooser_checkpoint.json",
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
-  "latest_native_run": 34734806603,
-  "latest_native_tested_head": "c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63",
+  "latest_native_run": 34739491272,
+  "latest_native_tested_head": "613fd76915f262c080b56700a48f77827bf3e378",
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "c9c27b727e8c194535f2530fccc806c5103849a6",
+  "observed_head": "a083afe22cf578e312676db29eb25b7af58bfd05",
   "observed_head_checks": {
-    "status": "ALL_SUCCESS",
-    "checked_head": "fa9341e8ecd205367168d39706b7d84f8de64091",
-    "runs": [
+    "status": "NATIVE_DIAGNOSTIC_SUCCESS_GENERAL_CHECKS_SEPARATE",
+    "checked_head": "a083afe22cf578e312676db29eb25b7af58bfd05",
+    "native_tested_head": "613fd76915f262c080b56700a48f77827bf3e378",
+    "native_head_runs": [
       {
-        "conclusion": "success",
+        "conclusion": "action_required",
         "event": "pull_request",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738142854,
+        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+        "id": 34739493101,
+        "name": "source-validation",
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "event": "pull_request",
+        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+        "id": 34739493102,
         "name": "p03-forgetting-ci",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "event": "pull_request",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738142822,
-        "name": "source-validation",
+        "event": "workflow_dispatch",
+        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
+        "id": 34739491272,
+        "name": "Native three-selection dataflow diagnostic on bffd; no BP acceptance",
         "status": "completed"
+      }
+    ],
+    "closeout_entry_runs": [
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739860204,
+        "name": "source-validation",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "event": "pull_request",
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739860202,
+        "name": "p03-forgetting-ci",
+        "status": "in_progress"
       },
       {
         "conclusion": "success",
         "event": "push",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738140381,
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739858145,
         "name": "Stage79 runtime boundary audit",
         "status": "completed"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738140365,
-        "name": "PR16 fixed handoff source-only verification",
-        "status": "completed"
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739858109,
+        "name": "PR16 verified ZIP retention and same fixed handoff; zero native replay",
+        "status": "in_progress"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738140337,
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739858211,
         "name": "p03-forgetting-ci",
-        "status": "completed"
+        "status": "in_progress"
       },
       {
-        "conclusion": "success",
+        "conclusion": null,
         "event": "push",
-        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
-        "id": 34738140313,
+        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
+        "id": 34739858176,
         "name": "source-validation",
-        "status": "completed"
+        "status": "in_progress"
       }
     ],
-    "reason_ja": "開始HEAD fa9341e8のActionsをAPIで照合。新しい実装HEADのnative結果は別途確認し、開始HEADのChecksを流用しない。"
+    "reason_ja": "native34739491272/job103676647813は成功し原本を照合。source-validation等は別のhead別API一覧に記録し、bot起点のaction_requiredや未完を成功へ読み替えない。この引継ぎcommitの全Checks完了やrelease-readyは主張しない。"
   },
   "p08_resume_synchronized": true,
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -110,33 +137,33 @@
   ],
   "retained_fixed_form_accepted_case_count": 5,
   "schema_version": 2,
-  "status": "DIAGNOSTIC_THREE_SELECTED_SECOND_CHOOSER_NOT_BP",
+  "status": "DIAGNOSTIC_SECOND_CONFIRM_BATTLE_ACTION_NOT_BP",
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
   "observed_head_semantics": "これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。",
-  "latest_native_job": 103664191480,
+  "latest_native_job": 103676647813,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
   "latest_native_evidence": "content/modernization/pr16_bp_selection_diagnostic.json",
   "last_accepted_native_run": 34733866168,
   "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
   "next_action": {
-    "id": "BP_SECOND_CHOOSER_NATIVE_CONFIRM",
-    "goal_ja": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+    "id": "BP_NATIVE_BATTLE_PROGRESS_AND_REWARD_ROUTE",
+    "goal_ja": "最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
     "read_paths": [
-      "scripts/pr16_bp_selection_native.py",
       "tools/mgba_pr16_bp_selection_native.c",
+      "scripts/pr16_bp_selection_native.py",
+      "overlays/facility_runtime/facility_runtime.c",
+      "config/factory_high_modes_v2.json",
       ".github/workflows/pr16-bp-selection-native.yml"
     ],
     "success_observations": [
-      "native confirm of second chooser",
-      "ScriptContext resumed",
-      "opcode 0x5D reached",
-      "real battle callback",
-      "battle struct allocated",
-      "enemy party generated"
+      "verified actual Trial versus rewarded-mode route",
+      "native battle action and return without host outcome writes",
+      "remaining exchange special bindings read from exact candidate",
+      "correct reward conditions before separate BP acquisition acceptance"
     ],
-    "stop_rule_ja": "観測できない場合は最初の不一致frame・callback・script pointer・候補SHA・run/jobを記録。markerやworkflowの緑だけで実戦開始/BP受入へ昇格しない。",
+    "stop_rule_ja": "実行動選択callback到達は原本で再利用し、同じ停止点だけの再実行をしない。Trialのreward0を9BP獲得と誤認しない。新しい戦闘/帰還/交換/報酬区間の最初の不一致をframe/callback/run/job付きで残す。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
   },
   "read_policy": {
@@ -163,6 +190,7 @@
   "do_not_repeat": [
     "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
     "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
+    "run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。",
     "P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。",
     "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
     "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
@@ -209,22 +237,29 @@
     "config/active_play_baseline.json": {
       "size": 394,
       "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "overlays/facility_runtime/facility_runtime.c": {
+      "size": 18139,
+      "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
   "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
   "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
-  "latest_native_summary_ja": "3体選択frame1440→2回目chooser frame1789、party count3。実戦未開始・BP獲得0・通常Save0。battle-active markerやActions successを実戦/BP受入とみなさない。原本ZIPのdigest・47 receipt members・71 source membersを照合し、新規emulatorは0。",
+  "latest_native_summary_ja": "成功原本ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07、51 receipt/71 source/18 entry/11 generatedを照合。fresh core1・3260frames・7barrier・警告0。cb2=080109C1/main=08013861/newbs=02017634、敵species[7,1,133]。旧run34738859743は敵数observer誤認のfailureとして原本保持。今回の台帳再照合emulator0。",
   "candidate_scope_ja": "開発候補。最終製品SHAではない。",
   "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
   "prepared_native_probe": {
     "case": "second-confirm-battle-probe",
-    "execution_status": "COUNT_CONTRACT_FIXED_NEW_RUN_NOT_DISPATCHED_YET",
+    "execution_status": "COMPLETED_DIAGNOSTIC_SUCCESS",
     "source_only_tests": 14,
     "rom_changes": 0,
-    "historical_cancel_replayed": false
+    "historical_cancel_replayed": false,
+    "run_id": 34739491272,
+    "job_id": 103676647813,
+    "tested_head": "613fd76915f262c080b56700a48f77827bf3e378"
   },
-  "source_change_review_ja": "2回目確定の入力列・ROM・fixture・7barrierは不変。失敗raw数byteをnative敵数と誤認したobserverだけを修正。受入済みnatural-captureでも使うparty+0x20 species ABIで6slotを数え、3体と先頭battle species一致を要求。旧failureは原本保存して失敗のまま、修正後を新runで検証する。",
+  "source_change_review_ja": "実装時は同じ候補/fixture/入力列/7barrierで観測だけ拡張。失敗raw敵数byteは生値として残し、既存party+0x20 species ABIから3体を検証。成功runの71source全closureが記録時HEADと一致。closeoutは原本/抄録/同じ引継ぎ/両ログとresume negative testだけで、ROM/native controller/runnerを変更しない。",
   "preflight_failure": {
     "run_id": 34738673670,
     "job_id": 103674512984,
@@ -268,5 +303,20 @@
       "native_processes": 0,
       "original_conclusion": "failure"
     }
-  ]
+  ],
+  "session_execution_summary": {
+    "native_game_processes": 2,
+    "failed_native_processes": 1,
+    "successful_native_fresh_cores": 1,
+    "accepted_cancel_replays": 0,
+    "rom_source_changes": 0,
+    "closeout_emulator_processes": 0,
+    "native_bp_earning_accepted": false
+  },
+  "closeout_retention_repair": {
+    "failed_source_only_run": 34739728185,
+    "native_processes": 0,
+    "reason": "613fd769 retained failed Actions metadata but ignored original.zip; now explicitly stage the two hash-verified safe ZIPs and require index plus committed HEAD byte equality",
+    "guard_helper": "independent exact stdout/stderr/process checks for all seven guards"
+  }
 }
