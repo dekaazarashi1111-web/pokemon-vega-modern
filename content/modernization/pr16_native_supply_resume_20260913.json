@@ -3,14 +3,15 @@
   "active_baseline_changed": false,
   "bp": {
     "action_return_frame": 4313,
-    "after_battle_launch": "交換直後600bytesは検証済み。次戦開始後の交換個体同一性を先に検証し、未観測の3勝/報酬・通常Save/fresh Continue・獲得BP消費へ進む。",
+    "after_battle_launch": "交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。 BP稼得/消費、3勝、Save/fresh Continueの新規受入はしていない。",
     "battle_started": true,
     "bp_earned": 0,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run34770280751/job103758504094 SUCCESS。初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。",
+    "current_stop": "交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。",
     "earning_accepted": false,
     "earning_and_spending_accepted": false,
     "exchange_abi_repaired": true,
+    "exchange_identity_audit_completed": true,
     "loss_frame": 11261,
     "loss_party_restoration_verified": true,
     "loss_restore_bytes": 600,
@@ -25,8 +26,9 @@
     "native_loss_observed": true,
     "native_party_chooser_accepted": true,
     "next_battle_exchanged_individual_identity_verified": false,
+    "next_battle_party_retained": false,
     "next_battle_started_observed": true,
-    "next_step": "7f32の交換直後partyと次戦battlerの個体同一性を、PrepareBattle前後・chooser・戦闘開始のread-only証拠で先に照合する。native party保持を確定してから未観測の2/3戦目・3勝completion・BP報酬へ延長する。",
+    "next_step": "次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。",
     "party_snapshot_and_marker_observed": true,
     "pp_after": 15,
     "pp_before": 16,
@@ -253,7 +255,8 @@
     "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
     "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
     "ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。",
-    "run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。"
+    "run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。",
+    "個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -307,12 +310,12 @@
     "scope": "FIRST_TURN_NOT_BP",
     "tested_head": "88e043592f07c80d1e4f582320bb955243986711"
   },
-  "latest_native_evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
-  "latest_native_job": 103758504094,
-  "latest_native_run": 34770280751,
+  "latest_native_evidence": "content/modernization/pr16_bp_exchange_identity_verified.json",
+  "latest_native_job": 103769160925,
+  "latest_native_run": 34774194505,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-  "latest_native_summary_ja": "初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。",
-  "latest_native_tested_head": "0464cecea12377e7a85bbad8fa1957eec00d5fe8",
+  "latest_native_summary_ja": "交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。",
+  "latest_native_tested_head": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
   "logs_synchronized": true,
   "loss_return_completed": {
     "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
@@ -325,32 +328,30 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "7f32の交換直後partyと次戦battlerの個体同一性を、PrepareBattle前後・chooser・戦闘開始のread-only証拠で先に照合する。native party保持を確定してから未観測の2/3戦目・3勝completion・BP報酬へ延長する。",
+    "goal_ja": "次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。",
-    "id": "BP_NEXT_BATTLE_IDENTITY_AND_REWARD",
+    "id": "BP_EXCHANGE_PARTY_RETENTION_REPAIR",
     "read_paths": [
-      "content/modernization/pr16_bp_win_exchange_verified.json",
-      "content/modernization/pr16_bp_win_exchange_evidence/native-result.json",
-      "scripts/pr16_bp_win_exchange.py",
-      "tools/mgba_pr16_bp_win_exchange.c",
-      "tests/test_pr16_bp_exchange_navigation.py",
+      "content/modernization/pr16_bp_exchange_identity_verified.json",
+      "content/modernization/pr16_bp_exchange_identity_evidence/identity.json",
+      "content/modernization/pr16_bp_exchange_identity_evidence/native.stderr.txt",
+      "scripts/pr16_bp_exchange_identity.py",
+      "tools/mgba_pr16_bp_exchange_identity.c",
       "overlays/facility_runtime/facility_runtime.c",
-      "scripts/pr16_bp_exchange_successor.py",
-      "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json"
+      "scripts/pr16_bp_exchange_successor.py"
     ],
-    "stop_rule_ja": "初勝利/単体交換/次戦開始の単独再実行はしない。次の新規個体連鎖・3勝ケースへ既存runnerを延長し、今回の成功prefixを再利用する。取消Save/Continue・敗北帰還・P03等は影響なしにつき再実行しない。原失敗、全byte比較、timeout、7barrierを保持する。",
+    "stop_rule_ja": "今回の読取専用診断・初勝利・交換の単独再実行はしない。新規修復/報酬ケースへ同一prefixを延長する時だけ使用する。取消Save/Continue等の受入済みケース、P03/P06/P07等は影響なしにつき再実行しない。",
     "success_observations": [
-      "read-only party identity across PrepareBattle/chooser/next battle",
-      "native second and third victories and exact BP reward",
-      "ordinary Save/fresh Continue and earned BP spending"
+      "交換個体を保持した次戦party/battler",
+      "native 2/3戦目と正確な3勝BP報酬"
     ]
   },
   "observed_date_jst": "2026-09-13",
-  "observed_head": "0464cecea12377e7a85bbad8fa1957eec00d5fe8",
+  "observed_head": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
   "observed_head_checks": {
-    "reason_ja": "native run34770280751はSUCCESS。開始HEAD/実行HEADの全Actionsメタデータはcontent/modernization/pr16_bp_win_exchange_evidence/actions.json。失敗2原本はfailureのまま保存。記録workflowの終端はAPIで照合し、Checksとrelease受入を混同しない。"
+    "reason_ja": "個体追跡run34774194505/job103769160925 SUCCESS。事前照合停止run34774090333はfailure（native0）のまま保持。全Actionsはcontent/modernization/pr16_bp_exchange_identity_evidence/actions.json。全体CIやrelease受入を意味しない。"
   },
-  "observed_head_semantics": "native成功原本の固定source HEAD。現在branch HEADはAPIで再取得し、record commitと混同しない。",
+  "observed_head_semantics": "今回のnative追跡を実行した固定source HEAD。記録commit/現在HEADはAPIで別途照合する。",
   "p08_resume_synchronized": true,
   "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -397,9 +398,9 @@
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
   "recording_workflow": {
-    "note_ja": "native未完runは0。記録workflowの終端/commitはAPIとartifact result.jsonで照合する。",
-    "run_id": 34771131427,
-    "source_head": "a99f258f08d614366933272f8d11d348bc1c579c",
+    "note_ja": "記録workflowの終端/commitはAPIとartifact result.jsonで照合。native未完run0。",
+    "run_id": 34774589879,
+    "source_head": "0dd9dae8d0449371949f76dfb4d6e118b56fb3b8",
     "status_at_snapshot": "in_progress"
   },
   "release_ready": false,
@@ -474,6 +475,14 @@
       "sha256": "96ca8ff19f32bef4467e57d0bb6c33261f8160b5c8fec013f4be8e08e4010a46",
       "size": 9415
     },
+    ".github/workflows/pr16-bp-exchange-identity-record.yml": {
+      "sha256": "c193dce8068acc598d6687ff378a40a7832da5a0d83c5744576fdb51ef34476b",
+      "size": 2506
+    },
+    ".github/workflows/pr16-bp-exchange-identity.yml": {
+      "sha256": "413f95b78c4ab0f7a0da8a494c8e1e852fcfce9ccd7d5b99cc08ee626d0418ed",
+      "size": 9979
+    },
     ".github/workflows/pr16-bp-exchange-record.yml": {
       "sha256": "3b692ae2bc27662c9cbd00a0da22d6555851386a14f82561859ac587dab70a4a",
       "size": 7121
@@ -537,6 +546,14 @@
     "content/modernization/pr16_bp_exchange_abi_verified.json": {
       "sha256": "ad56ef0c547627a5ff5c2d573d8c24a1ff43e9a9b16246e8eeb5697220e01043",
       "size": 7443
+    },
+    "content/modernization/pr16_bp_exchange_identity_evidence/identity.json": {
+      "sha256": "bf510fbd07efa10dc5c65bd41ca0891e9786e0148ddc64b1648738afe87d5a25",
+      "size": 4616
+    },
+    "content/modernization/pr16_bp_exchange_identity_verified.json": {
+      "sha256": "6f37594187c45e62482063a0b8d61d3e63d7016edc9427764cf93485cf602364",
+      "size": 23093
     },
     "content/modernization/pr16_bp_loss_return_owner.json": {
       "sha256": "bbd9944b113f8de2588d92e2a09f9e069b461fed395745ea1851b1b7c04f5219",
@@ -614,6 +631,14 @@
       "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07",
       "size": 6745
     },
+    "scripts/pr16_bp_exchange_identity.py": {
+      "sha256": "d7d0d8932f2c5cc6fecfc1108a1499eccdb36013cfc55c08398a60c303d28a98",
+      "size": 9600
+    },
+    "scripts/pr16_bp_exchange_identity_record.py": {
+      "sha256": "41ed4a562b25df54cb598a17e506327ab253b5e473cfb457f5a392c79ba5ccdc",
+      "size": 19333
+    },
     "scripts/pr16_bp_exchange_record.py": {
       "sha256": "bf6e6523eee45231e9751511bc17ac863e00e60383fe2f16fd2574d0f68dff30",
       "size": 21271
@@ -686,6 +711,14 @@
       "sha256": "b9591172bc185820493388ec618eae629da31df9980b31bd3eab202e8554ffab",
       "size": 2507
     },
+    "tests/test_pr16_bp_exchange_identity.py": {
+      "sha256": "4f847dcec2d5f521f84f796f84eb278e716d1585d4168d4818f8318170f3db22",
+      "size": 5498
+    },
+    "tests/test_pr16_bp_exchange_identity_record.py": {
+      "sha256": "728aa04ae7376f8a0d2f495acaa5340b6dac0f7b5566659dd6d68c2896536dec",
+      "size": 2259
+    },
     "tests/test_pr16_bp_exchange_navigation.py": {
       "sha256": "70d20a5a7618c48208f7c0a25f121f612b7bc6986977f907d123fbaae396d896",
       "size": 7088
@@ -730,6 +763,10 @@
       "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17",
       "size": 8320
     },
+    "tools/mgba_pr16_bp_exchange_identity.c": {
+      "sha256": "fda5d31f0ec7c98886d6f76e234af5edc9c2f2edbb7521c678b2014882472290",
+      "size": 2534
+    },
     "tools/mgba_pr16_bp_selection_native.c": {
       "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690",
       "size": 10488
@@ -756,7 +793,7 @@
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "status": "DIAGNOSTIC_NATIVE_WIN_EXCHANGE_NEXT_BATTLE_NOT_BP",
+  "status": "DIAGNOSTIC_EXCHANGE_IDENTITY_BOUNDARIES_NOT_BP",
   "win_exchange_completed": {
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,

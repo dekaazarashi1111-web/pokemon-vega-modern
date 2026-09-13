@@ -2271,3 +2271,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。記録入力HEAD=a99f258f08d614366933272f8d11d348bc1c579c。非force push後のhashはworkflow result.jsonとremoteから照合。
 - Network: GitHub connectorでbranch/PR/Actions/artifact照合、Actionsでpinned candidate再生成。記録はActions API原本取得のみ。private入力/ROM/saveの追跡・公開なし。上流CFRU-JP e24a16fe include/pokemon.hも読取参照。
 - Boundary: 正式physical4/P08ゲート2、BP稼得/消費未受入、PR draft/open維持、merge/release/baseline変更0。
+
+
+## 2026-09-13T18:26:00.360629+00:00 — USER-20260914-BP-EXCHANGE-IDENTITY
+- Timestamp: 2026-09-13T18:26:00.360629+00:00
+- Version: PR16 exchange individual boundary audit
+- Task: USER-20260914-BP-EXCHANGE-IDENTITY / 次戦までの交換個体連鎖を読取専用で実装・検証・記録
+- Status: DONE
+- Summary: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+- Native: run34774194505/job103769160925; source HEAD=e9793dfda49ec3044b662aefd7bb0093182dce3a; candidate7f32/CRC0D5D9178。原本の全prefix/result frameはrun34770280751と同一。
+- Verify: 新規identity11tests、原本全member/source/生成C/7barrier/native結果の厳密照合。記録tests・resume tests・resume check・task graph・diff check・最終index guard差分を完了ゲートとする。
+- History: 事前照合run34774090333は過去loss-return原本をsuccessと誤指定して停止、native0。元failureを維持した比較へ修正。native主processは本task1、受入済みcase再実行0、ROM変更0。
+- Files changed: 新規identity runner/C/tests/workflow、記録script/tests/workflow、verified/evidence、固定引継ぎMD/JSON、P08診断resume、両ログ。
+- Commit: この記録を含むcommit。入力HEAD=0dd9dae8d0449371949f76dfb4d6e118b56fb3b8。非force push後のhashはworkflow result.jsonとremote refから読戻す。
+- Network: GitHub connector/APIでHEAD/PR/Actions/artifact照合。Actions内でpinned private inputsを再構築。追跡/記録成果は許可済み工程textのみ。
+- Boundary: 正式physical4/P08 gate2・BP未受入を維持。PR draft/open、baseline維持、merge/releaseなし。全体private guardの既存違反はbaseline/index差分として記録し全体PASSとはしない。
+- Next: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。
