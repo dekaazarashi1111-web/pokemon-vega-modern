@@ -1,0 +1,119 @@
+name: pr16-bp-chooser-checkpoint
+run-name: Preserve exact originals and scoped cancellation acceptance; no emulator replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-chooser-checkpoint.yml
+      - scripts/pr16_bp_chooser_checkpoint.py
+      - tests/test_pr16_bp_chooser_checkpoint.py
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-chooser-checkpoint
+  cancel-in-progress: false
+jobs:
+  checkpoint:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Require exact current branch and preserve owner boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git diff --exit-code f344c9b9a88a7bab9f7c74e346f4505774de48f8 -- config/active_play_baseline.json design/active_play_baseline.md scripts/guard_private_files.py content/modernization/pr16_fixed_form_acceptance.json content/modernization/pr16_fixed_form_acceptance_receipt.json
+          mkdir -p .local/pr16-bp-chooser-checkpoint
+          git rev-parse HEAD > .local/pr16-bp-chooser-checkpoint/source-head.txt
+      - name: Verify focused source tests and completed fixed-form evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-chooser-checkpoint
+          python3 -m unittest tests.test_pr16_bp_chooser_checkpoint -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-form-retained.json"
+      - name: Retain raw evidence and synchronize only the declared checkpoint documents
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-chooser-checkpoint
+          if test -f content/modernization/pr16_bp_chooser_checkpoint.json; then
+            python3 scripts/pr16_bp_chooser_checkpoint.py > "$out/already-retained.json"
+          else
+            python3 scripts/pr16_bp_chooser_checkpoint.py --retain > "$out/retention.json" 2> "$out/retention.stderr"
+          fi
+          git add -- content/modernization/pr16_bp_chooser_checkpoint.json content/modernization/pr16_bp_chooser_receipt.json content/modernization/p08_remaining_work.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          for run in 34733046485 34733429516 34733866168; do
+            git add -- "content/modernization/pr16_bp_chooser_evidence/$run/actions.json"
+            git add -f -- "content/modernization/pr16_bp_chooser_evidence/$run/original.zip"
+          done
+          python3 scripts/pr16_bp_chooser_checkpoint.py --index > "$out/index-originals.json"
+      - name: Scan exact changed index blobs without relabelling historical full-index failures
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,re,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          import pr16_bp_chooser_checkpoint as c
+          root=pathlib.Path('.').resolve();start=c.START
+          allowed={c.REPORT,c.RECEIPT,c.P08,c.HANDOFF,c.DOC,'design/run_log.md','design/version_log.md'}
+          for pin in c.PINS[1:]:
+              allowed.update(f'{c.BASE}/{pin[0]}/{name}' for name in ('original.zip','actions.json'))
+          staged=set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().strip('\0').split('\0'))-{''}
+          assert staged<=allowed,staged-allowed
+          previous=set(subprocess.check_output(['git','diff','--name-only',start,'HEAD','-z']).decode().strip('\0').split('\0'))-{''}
+          verified=[]
+          for name in sorted(staged|previous):
+              p=pathlib.PurePosixPath(name)
+              assert p.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              data=guard.index_blob(root,name)
+              if p.suffix.lower()=='.zip':
+                  assert not guard.blocked_zip_members(data);c.scan(data)
+              else:
+                  data.decode('utf-8');assert b'\0' not in data
+                  assert not re.search(rb'(?:gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|(?m:^-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----$))',data)
+                  if p.suffix.lower() in guard.DOCUMENT_SUFFIXES:
+                      diff=subprocess.check_output(['git','diff',start,'--no-ext-diff','--unified=0','--',name])
+                      added=b'\n'.join(line[1:] for line in diff.splitlines() if line.startswith(b'+') and not line.startswith(b'+++'))
+                      assert not guard.document_user_path_lines(added),'new machine-local path: '+name
+              if name in ('design/run_log.md','design/version_log.md'):
+                  assert data.startswith(subprocess.check_output(['git','show','HEAD:'+name])),'history log rewritten'
+              verified.append(name)
+          (root/'.local/pr16-bp-chooser-checkpoint/delta-guard.json').write_text(json.dumps({'status':'PASS_CHANGED_INDEX_ONLY','verified':verified,'historical_full_index_status_relabelled':False,'new_emulator_processes':0},sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --cached --check
+      - name: Commit once and push only fast-forward to the existing PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'USER-PR16: retain chooser cancellation originals and advance P08 resume without closing BP gap'
+            git push origin "HEAD:$GITHUB_REF"
+          fi
+          python3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-chooser-checkpoint/tracked-originals.json
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$(git rev-parse HEAD)"
+          git rev-parse HEAD > .local/pr16-bp-chooser-checkpoint/final-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-chooser-checkpoint
+          path: .local/pr16-bp-chooser-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
