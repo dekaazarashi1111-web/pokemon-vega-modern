@@ -1,379 +1,379 @@
 {
+  "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
   "active_baseline_changed": false,
   "bp": {
-    "cancellation_save_continue_accepted": true,
-    "current_stop": "交換用単体選択ABIを固定し、092CF729/092CF775の2 operandを2F→29へ最小修正。run34762342982/job103737252115はSUCCESS、9 source tests・実runtime14条件、同一fcdaから2回の限定生成一致。新候補SHA 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd / CRC 0D5D9178 / 33554432bytes。実変更2bytes、範囲外変更0、新規emulator0。\n\nGetNumMonsOnTeamInFrontierは人数を1..6へ制限し1体を許可。選択結果はram_locs.hの0203C6C8へslot+1で保存し、CommitExchangeは1..3だけを受理する。special RESULTはslotではない。原Actions34762042215の抽出失敗はfailureのまま保持。敗北帰還/元party復元は従来fcdaの受入範囲を保持し再実行0。native勝利・交換・BP稼得/消費は未受入。",
-    "earning_and_spending_accepted": false,
-    "native_party_chooser_accepted": true,
-    "next_step": "交換修復候補7f32ba99を既存fcdaから再現し、native入力だけで初勝利→AfterBattle→交換1体選択/確定→次戦へ進む。未観測の交換経路を検証して3勝completion chain・BP稼得へ延長する。source/host修正完了をnative受入へ読み替えない。",
-    "party_snapshot_and_marker_observed": true,
-    "six_rentals_generated": true,
-    "trial_delegate_repaired": true,
-    "three_selection_observed": true,
-    "second_chooser_observed": true,
+    "action_return_frame": 4313,
+    "after_battle_launch": "交換直後600bytesは検証済み。次戦開始後の交換個体同一性を先に検証し、未観測の3勝/報酬・通常Save/fresh Continue・獲得BP消費へ進む。",
     "battle_started": true,
     "bp_earned": 0,
-    "selected_frame": 1440,
-    "second_chooser_frame": 1789,
-    "after_battle_launch": "敗北帰還はfcdaで検証済み。交換2operandは7f32でsource/host/生成検証済み。次は7f32のnative初勝利・単体交換・次戦へ進む。基本9BP/追加BP/繰返し条件は既存reward-source-auditを再利用し、最終付与量は実3勝後に観測する。",
+    "cancellation_save_continue_accepted": true,
+    "current_stop": "run34770280751/job103758504094 SUCCESS。初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。",
     "earning_accepted": false,
-    "spending_accepted": false,
-    "native_first_turn_observed": true,
-    "move_id": 247,
-    "pp_before": 24,
-    "pp_after": 23,
-    "action_return_frame": 3925,
-    "native_loss_observed": true,
+    "earning_and_spending_accepted": false,
+    "exchange_abi_repaired": true,
     "loss_frame": 11261,
-    "loss_return_to_facility_observed": true,
     "loss_party_restoration_verified": true,
-    "loss_return_frame": 11516,
     "loss_restore_bytes": 600,
     "loss_return_callback_owner_resolved": true,
-    "exchange_abi_repaired": true,
-    "native_exchange_accepted": false
+    "loss_return_frame": 11516,
+    "loss_return_to_facility_observed": true,
+    "move_id": 182,
+    "native_exchange_accepted": false,
+    "native_exchange_observed": true,
+    "native_first_turn_observed": true,
+    "native_first_victory_observed": true,
+    "native_loss_observed": true,
+    "native_party_chooser_accepted": true,
+    "next_battle_exchanged_individual_identity_verified": false,
+    "next_battle_started_observed": true,
+    "next_step": "7f32の交換直後partyと次戦battlerの個体同一性を、PrepareBattle前後・chooser・戦闘開始のread-only証拠で先に照合する。native party保持を確定してから未観測の2/3戦目・3勝completion・BP報酬へ延長する。",
+    "party_snapshot_and_marker_observed": true,
+    "pp_after": 15,
+    "pp_before": 16,
+    "second_chooser_frame": 2283,
+    "second_chooser_observed": true,
+    "selected_frame": 1936,
+    "six_rentals_generated": true,
+    "spending_accepted": false,
+    "three_selection_observed": true,
+    "trial_delegate_repaired": true
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
-    "crc32": "A15FAF9D",
+    "crc32": "0D5D9178",
     "final_product_sha_fixed": false,
     "full_candidate_regression_complete": false,
-    "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+    "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
     "size": 33554432
   },
+  "candidate_scope_ja": "交換修復済み7f32の今回native診断候補。正式BP受入・最終製品SHAではない。",
+  "checkpoint_index_order_failures": [
+    {
+      "job_id": 103675775748,
+      "native_processes": 0,
+      "original_conclusion": "failure",
+      "run_id": 34739159633
+    },
+    {
+      "job_id": 103676397638,
+      "native_processes": 0,
+      "original_conclusion": "failure",
+      "run_id": 34739395296
+    }
+  ],
+  "closeout_retention_repair": {
+    "failed_source_only_run": 34739728185,
+    "guard_helper": "independent exact stdout/stderr/process checks for all seven guards",
+    "native_processes": 0,
+    "reason": "613fd769 retained failed Actions metadata but ignored original.zip; now explicitly stage the two hash-verified safe ZIPs and require index plus committed HEAD byte equality"
+  },
   "current_checkpoint": "content/modernization/pr16_bp_chooser_checkpoint.json",
+  "current_failed_native_attempt": {
+    "artifact_id": 10314659211,
+    "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+    "first_unmatched_condition": "native loss routed to WhiteOut instead of FacilityRuntime_AfterBattle",
+    "job_id": 103703085018,
+    "native_result": {
+      "additional_pp_events": 8,
+      "additional_turns": 8,
+      "battle_outcome": 2,
+      "battle_started": true,
+      "bp_earned": 0,
+      "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+      "evidence_basis": "DERIVED_FROM_FAILED_PROCESS_STDERR_NOT_SUCCESS_STDOUT",
+      "final_callback2": 134569589,
+      "final_frame": 93925,
+      "final_map": [
+        4,
+        0
+      ],
+      "final_marker": 2,
+      "final_party_count": 3,
+      "final_reward_pending": 0,
+      "final_save_counter": 2,
+      "final_script_pointer": 0,
+      "final_snapshot_valid": 1,
+      "final_streak": 0,
+      "final_xy": [
+        8,
+        5
+      ],
+      "forced_switches": 2,
+      "loss_frame": 11261,
+      "native_afterbattle_observed": false,
+      "native_bp_earning_accepted": false,
+      "native_process_returncode": 1,
+      "original_actions_conclusion": "failure",
+      "original_party_restoration_verified": false,
+      "p05_native_bp_gap_closed": false,
+      "raw_native_status": "FAIL",
+      "release_ready": false,
+      "schema_version": 1,
+      "script_discarded_frame": 11525,
+      "second_chooser_frame": 1789,
+      "selected_frame": 1440,
+      "status": "DIAGNOSTIC_LOSS_WHITEOUT_RETURN_BLOCKED",
+      "whiteout_callback2": 134569829,
+      "whiteout_frame": 11405
+    },
+    "native_screens": {
+      "pr16-bp-battle-return/first-battle-return-battle-action.ppm": {
+        "sha256": "9463af81e46284499f7a6ca0b006a674eedd3e50cad4ea1e3b02377e99cd21f4",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-battle-allocated.ppm": {
+        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-battle-outcome.ppm": {
+        "sha256": "9fd942bb4613e6cabf9e9cc755f32ef3f8d0d10188b73a9ef57e62da53f9196f",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-chooser-start.ppm": {
+        "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-codex-gateway.ppm": {
+        "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-entry-menu-1.ppm": {
+        "sha256": "5e6162e6c15b8fba6b9914395e2293f7e78ef02410599b896f756bff57987da7",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-entry-menu-2.ppm": {
+        "sha256": "fa87f0574340635ea3a8b50930a298f1c20f598c57a95bff1d58ac386eee05e8",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-entry-menu-3.ppm": {
+        "sha256": "103c06246a98311b82a9c3d48bb1d88460cfc863211689d3f21e3680f211313c",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-facility-afterbattle.ppm": {
+        "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-failure.ppm": {
+        "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-first-move-menu.ppm": {
+        "sha256": "94df9e3776dde7721fb59b087cec310ddcf08b9011373b56968a737788dd1c36",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-first-move-pp-spent.ppm": {
+        "sha256": "1073d1ecbf8bbed718e69da4ab7f7545b2750605f705496154431c29ca9b72b7",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-first-turn-return.ppm": {
+        "sha256": "8824fc41c2e37b3602f302299f0bf70fc12a6fa15644c32ee9d79915d6b89795",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-fixture.ppm": {
+        "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-forced-switch-return.ppm": {
+        "sha256": "dbd89a3bc6aabbf58d061838c5cea24547a71fa5c75656525b8259ead32d7655",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-forced-switch-start.ppm": {
+        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-post-selection.ppm": {
+        "sha256": "34fedbe2e1b30032546247d67ccdab48a8819edd45be724587c6fb75b4350c24",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-reception-confirm.ppm": {
+        "sha256": "ec22b407813222aa67e7e24de35827e9bbbf401b3badf5e1928e178b0fbb463b",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-reception-mode.ppm": {
+        "sha256": "50e29bb7fd0e8e0cc455ab0a354f44240900efd05533612b8e7ef7438d23a683",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-reception-tier.ppm": {
+        "sha256": "0c59abbe2669e24b104eeb4a9deb2b1e6a4601ef7fbbe8894903fc2de394a5bf",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-rental-party.ppm": {
+        "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-script-resumed.ppm": {
+        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-second-confirm.ppm": {
+        "sha256": "33dbd94f1286aa93d4e84c644a2fc0a76bdef19f6731408f6c209967a77f7ac1",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-selected-1.ppm": {
+        "sha256": "19abab88fbaedaf34daf07e425e813f660a8a71f9198910ea6cc27a4161d8c13",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-selected-2.ppm": {
+        "sha256": "f8d2ef534cd06c7ead3a0b2e44fbfde4646bbad20337992cd529363846432d35",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-selected-3.ppm": {
+        "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596",
+        "size": 115215
+      },
+      "pr16-bp-battle-return/first-battle-return-three-selected.ppm": {
+        "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596",
+        "size": 115215
+      }
+    },
+    "new_emulator_processes": 1,
+    "original_conclusion": "failure",
+    "run_id": 34749370272,
+    "successful_fresh_cores": 0,
+    "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
+    "verified_chain_sources": 24,
+    "verified_members": 82,
+    "verified_sources": 79,
+    "zip": {
+      "sha256": "9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c",
+      "size": 883756
+    }
+  },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+  "do_not_repeat": [
+    "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
+    "run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。",
+    "履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。",
+    "run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。",
+    "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
+    "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
+    "run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。",
+    "run34741232621の技選択・PP消費・次action callback3925fは、source影響なしに単独再実行しない。失敗run34741024241はfailureのまま保持する。",
+    "P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。",
+    "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
+    "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
+    "ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。",
+    "run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。"
+  ],
+  "exchange_successor": {
+    "abi_repaired": true,
+    "candidate": {
+      "crc32": "0D5D9178",
+      "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+      "size": 33554432
+    },
+    "job_id": 103737252115,
+    "native_exchange_accepted": false,
+    "parent": {
+      "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+      "size": 33554432
+    },
+    "receipt": "content/modernization/pr16_bp_exchange_abi_verified.json",
+    "run_id": 34762342982,
+    "scope": "SOURCE_AND_HOST_CONTRACT_ONLY",
+    "tested_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d"
+  },
+  "failed_native_attempt": {
+    "artifact_id": 10312440481,
+    "battle_action_frame": 3260,
+    "battle_struct_frame": 2051,
+    "enemy_count_raw": 0,
+    "enemy_species_slots": [
+      7,
+      1,
+      133,
+      0,
+      0,
+      0
+    ],
+    "job_id": 103675000673,
+    "native_bp_earning_accepted": false,
+    "new_processes": 1,
+    "original_conclusion": "failure",
+    "original_zip": "content/modernization/pr16_bp_launch_evidence/34738859743/original.zip",
+    "run_id": 34738859743,
+    "script_advance_frame": 1967,
+    "successful_fresh_cores": 0,
+    "tested_head": "9bf3abe5e0fbef23f8c5727c658ba31a4d556473"
+  },
+  "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
-  "latest_native_run": 34759726061,
-  "latest_native_tested_head": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
+  "last_accepted_native_run": 34733866168,
+  "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+  "last_successful_native_diagnostic": {
+    "job_id": 103681167660,
+    "path": "content/modernization/pr16_bp_progress_diagnostic.json",
+    "run_id": 34741232621,
+    "scope": "FIRST_TURN_NOT_BP",
+    "tested_head": "88e043592f07c80d1e4f582320bb955243986711"
+  },
+  "latest_native_evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
+  "latest_native_job": 103758504094,
+  "latest_native_run": 34770280751,
+  "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+  "latest_native_summary_ja": "初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。",
+  "latest_native_tested_head": "0464cecea12377e7a85bbad8fa1957eec00d5fe8",
   "logs_synchronized": true,
+  "loss_return_completed": {
+    "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
+    "native_head": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
+    "native_run": 34759726061,
+    "new_native_processes": 1,
+    "revalidation_native_processes": 0,
+    "source_only_head": "e1b99a4c1ba419dba0dd90cb0d11a7e5f5385ec9",
+    "source_only_revalidation_run": 34760913320
+  },
   "merge_performed": false,
-  "observed_date_jst": "2026-09-13",
-  "observed_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-  "observed_head_checks": {
-    "status": "EXCHANGE_SOURCE_SUCCESS_NATIVE_WIN_PENDING",
-    "checked_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-    "native_tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-    "native_head_runs": [
-      {
-        "id": 34749370914,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "pull_request",
-        "status": "completed",
-        "conclusion": "success",
-        "created_at": "2026-09-13T09:21:50Z",
-        "updated_at": "2026-09-13T09:23:42Z"
-      },
-      {
-        "id": 34749370967,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "pull_request",
-        "status": "completed",
-        "conclusion": "success",
-        "created_at": "2026-09-13T09:21:50Z",
-        "updated_at": "2026-09-13T09:24:35Z"
-      },
-      {
-        "id": 34749370264,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "success",
-        "created_at": "2026-09-13T09:21:47Z",
-        "updated_at": "2026-09-13T09:24:20Z"
-      },
-      {
-        "id": 34749370308,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "startup_failure",
-        "created_at": "2026-09-13T09:21:47Z",
-        "updated_at": "2026-09-13T09:25:50Z"
-      },
-      {
-        "id": 34749370281,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "startup_failure",
-        "created_at": "2026-09-13T09:21:47Z",
-        "updated_at": "2026-09-13T09:25:50Z"
-      },
-      {
-        "id": 34749370272,
-        "name": "Native first battle outcome and AfterBattle return on bffd; diagnostic only",
-        "path": ".github/workflows/pr16-bp-battle-return.yml",
-        "head_sha": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "failure",
-        "created_at": "2026-09-13T09:21:47Z",
-        "updated_at": "2026-09-13T09:26:33Z"
-      }
+  "next_action": {
+    "goal_ja": "7f32の交換直後partyと次戦battlerの個体同一性を、PrepareBattle前後・chooser・戦闘開始のread-only証拠で先に照合する。native party保持を確定してから未観測の2/3戦目・3勝completion・BP報酬へ延長する。",
+    "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。",
+    "id": "BP_NEXT_BATTLE_IDENTITY_AND_REWARD",
+    "read_paths": [
+      "content/modernization/pr16_bp_win_exchange_verified.json",
+      "content/modernization/pr16_bp_win_exchange_evidence/native-result.json",
+      "scripts/pr16_bp_win_exchange.py",
+      "tools/mgba_pr16_bp_win_exchange.c",
+      "tests/test_pr16_bp_exchange_navigation.py",
+      "overlays/facility_runtime/facility_runtime.c",
+      "scripts/pr16_bp_exchange_successor.py",
+      "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json"
     ],
-    "closeout_entry_runs": [
-      {
-        "id": 34751387335,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "pull_request",
-        "status": "in_progress",
-        "conclusion": null,
-        "created_at": "2026-09-13T10:15:43Z",
-        "updated_at": "2026-09-13T10:15:47Z"
-      },
-      {
-        "id": 34751387350,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "pull_request",
-        "status": "in_progress",
-        "conclusion": null,
-        "created_at": "2026-09-13T10:15:43Z",
-        "updated_at": "2026-09-13T10:15:46Z"
-      },
-      {
-        "id": 34751385139,
-        "name": "Stage79 runtime boundary audit",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "push",
-        "status": "completed",
-        "conclusion": "success",
-        "created_at": "2026-09-13T10:15:41Z",
-        "updated_at": "2026-09-13T10:15:52Z"
-      },
-      {
-        "id": 34751385128,
-        "name": "source-validation",
-        "path": ".github/workflows/ci.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "push",
-        "status": "in_progress",
-        "conclusion": null,
-        "created_at": "2026-09-13T10:15:41Z",
-        "updated_at": "2026-09-13T10:15:44Z"
-      },
-      {
-        "id": 34751385141,
-        "name": "p03-forgetting-ci",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "push",
-        "status": "in_progress",
-        "conclusion": null,
-        "created_at": "2026-09-13T10:15:41Z",
-        "updated_at": "2026-09-13T10:15:44Z"
-      },
-      {
-        "id": 34751385135,
-        "name": "Preserve failed native loss return and fixed handoff; zero emulator replay",
-        "path": ".github/workflows/pr16-bp-battle-return-closeout.yml",
-        "head_sha": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
-        "event": "push",
-        "status": "in_progress",
-        "conclusion": null,
-        "created_at": "2026-09-13T10:15:41Z",
-        "updated_at": "2026-09-13T10:15:44Z"
-      }
-    ],
-    "reason_ja": "交換ABI専用run34762342982 SUCCESS。開始a0f HEADの7runsもSUCCESS。最初の34762042215は抽出検査failureで保存。最新native34759726061の原Actions failureとsource-only敗北帰還判定は無変更。今回の記録runは書込時に実行中としてpending_runsへ分離する。全native/BP/release完了とは主張しない。",
-    "loss_return_native_head": [
-      {
-        "id": 34759728126,
-        "name": "p03-forgetting-ci",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "pull_request",
-        "path": ".github/workflows/p03-forgetting-ci.yml"
-      },
-      {
-        "id": 34759728187,
-        "name": "source-validation",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "pull_request",
-        "path": ".github/workflows/ci.yml"
-      },
-      {
-        "id": 34759726023,
-        "name": "PR16 fixed handoff source-only verification",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push",
-        "path": ".github/workflows/pr16-resume-maintenance.yml"
-      },
-      {
-        "id": 34759726026,
-        "name": "Stage79 runtime boundary audit",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml"
-      },
-      {
-        "id": 34759726006,
-        "name": "p03-forgetting-ci",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push",
-        "path": ".github/workflows/p03-forgetting-ci.yml"
-      },
-      {
-        "id": 34759725999,
-        "name": "source-validation",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push",
-        "path": ".github/workflows/ci.yml"
-      },
-      {
-        "id": 34759726007,
-        "name": "Stage79 mGBA (all)",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push",
-        "path": ".github/workflows/modernization-stage79-mgba.yml"
-      },
-      {
-        "id": 34759726061,
-        "name": "Scoped Factory native loss return; no accepted cancel replay",
-        "head_sha": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-        "status": "completed",
-        "conclusion": "failure",
-        "event": "push",
-        "path": ".github/workflows/pr16-bp-loss-return-native.yml"
-      }
-    ],
-    "exchange_source_runs": [
-      {
-        "id": 34762344603,
-        "name": "p03-forgetting-ci",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "pull_request"
-      },
-      {
-        "id": 34762344601,
-        "name": "source-validation",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "pull_request"
-      },
-      {
-        "id": 34762342969,
-        "name": "p03-forgetting-ci",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push"
-      },
-      {
-        "id": 34762342973,
-        "name": "Stage79 runtime boundary audit",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push"
-      },
-      {
-        "id": 34762342971,
-        "name": "source-validation",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/ci.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push"
-      },
-      {
-        "id": 34762342982,
-        "name": "Factory交換2operandの限定修正・source検証（native再実行なし）",
-        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-        "path": ".github/workflows/pr16-bp-exchange-abi.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "event": "push"
-      }
+    "stop_rule_ja": "初勝利/単体交換/次戦開始の単独再実行はしない。次の新規個体連鎖・3勝ケースへ既存runnerを延長し、今回の成功prefixを再利用する。取消Save/Continue・敗北帰還・P03等は影響なしにつき再実行しない。原失敗、全byte比較、timeout、7barrierを保持する。",
+    "success_observations": [
+      "read-only party identity across PrepareBattle/chooser/next battle",
+      "native second and third victories and exact BP reward",
+      "ordinary Save/fresh Continue and earned BP spending"
     ]
   },
+  "observed_date_jst": "2026-09-13",
+  "observed_head": "0464cecea12377e7a85bbad8fa1957eec00d5fe8",
+  "observed_head_checks": {
+    "reason_ja": "native run34770280751はSUCCESS。開始HEAD/実行HEADの全Actionsメタデータはcontent/modernization/pr16_bp_win_exchange_evidence/actions.json。失敗2原本はfailureのまま保存。記録workflowの終端はAPIで照合し、Checksとrelease受入を混同しない。"
+  },
+  "observed_head_semantics": "native成功原本の固定source HEAD。現在branch HEADはAPIで再取得し、record commitと混同しない。",
   "p08_resume_synchronized": true,
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
   "pr_number": 16,
   "pr_state": "open",
-  "release_ready": false,
-  "remaining_p08_gate_ids": [
-    "FINAL_NATIVE_ACCEPTANCE",
-    "RELEASE_DECISION"
-  ],
-  "remaining_physical_gap_ids": [
-    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "P05_NATIVE_BP_EARNING_PHYSICAL",
-    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
-    "PHYSICAL_CIRCUS_ADMISSION"
-  ],
-  "retained_fixed_form_accepted_case_count": 5,
-  "schema_version": 2,
-  "status": "PASS_SCOPED_NATIVE_LOSS_RETURN_NOT_BP",
-  "stable_entrypoint": "CHATGPT_RESUME.md",
-  "stable_paths_do_not_rotate_with_date": true,
-  "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "observed_head_semantics": "このHEADは交換ABIのsource/host/候補生成検証ソース。最新native実行はlatest_native_tested_headのdfeのまま。記録commit自己SHAの追記はしない。",
-  "latest_native_job": 103730310536,
-  "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-  "latest_native_evidence": "content/modernization/pr16_bp_loss_return_verified.json",
-  "last_accepted_native_run": 34733866168,
-  "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
-  "next_action": {
-    "id": "BP_NATIVE_WIN_EXCHANGE_REWARD",
-    "goal_ja": "交換修復候補7f32ba99を既存fcdaから再現し、native入力だけで初勝利→AfterBattle→交換1体選択/確定→次戦へ進む。未観測の交換経路を検証して3勝completion chain・BP稼得へ延長する。source/host修正完了をnative受入へ読み替えない。",
-    "read_paths": [
-      "content/modernization/pr16_bp_exchange_abi_verified.json",
-      "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json",
-      "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json",
-      "scripts/pr16_bp_exchange_successor.py",
-      "scripts/pr16_bp_loss_return_successor.py",
-      "scripts/pr16_bp_loss_return_native.py",
-      "scripts/pr16_bp_battle_return.py",
-      "tools/mgba_pr16_bp_battle_return.c",
-      "overlays/facility_runtime/facility_runtime.c",
-      "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json"
-    ],
-    "success_observations": [
-      "native victory reaches AfterBattle and exchange prompt",
-      "single chooser writes selected slot1..3 via native UI",
-      "exact selected 100-byte slot replaced and other party bytes preserved",
-      "next battle and three-win reward chain observed without host outcome/HP/PP/RNG injection"
-    ],
-    "stop_rule_ja": "交換ABI修正とsource監査は完了。同一2operand調査/候補byte採取をやり直さない。敗北帰還・取消/Save/Continueは影響がないため再実行しない。勝利後の交換と報酬区間だけを新規検証する。失敗原本はfailureで保持し、timeout/復元assertion/7入力barrierを緩めない。",
-    "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
+  "preflight_failure": {
+    "job_id": 103674512984,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "reason": "P08 JSON key ordering differed; semantic equality required before canonical serialization repair",
+    "run_id": 34738673670
+  },
+  "prepared_native_probe": {
+    "case": "first-battle-return",
+    "execution_status": "FAILED_NATIVE_LOSS_RETURN_BLOCKED",
+    "historical_cancel_replayed": false,
+    "job_id": 103703085018,
+    "rom_changes": 0,
+    "run_id": 34749370272,
+    "source_only_tests": 13,
+    "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102"
   },
   "read_policy": {
     "always": [
@@ -396,602 +396,370 @@
     ],
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
-  "do_not_repeat": [
-    "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
-    "run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。",
-    "履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。",
-    "run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。",
-    "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
-    "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
-    "run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。",
-    "run34741232621の技選択・PP消費・次action callback3925fは、source影響なしに単独再実行しない。失敗run34741024241はfailureのまま保持する。",
-    "P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。",
-    "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
-    "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
-    "ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。"
-  ],
-  "session_protocol": {
-    "start_ja": "PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。観測headとの差分を対象pathだけ確認。本文にある旧SHAへresetせず、同一repo/branch・未mergeを確認。",
-    "freshness_ja": "checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。",
-    "reuse_ja": "候補/上流source/runner/fixture/契約が同じ結果を再利用。文書だけのcommitではROMを再生成しない。live HEADが違うだけで全回帰しない。",
-    "write_ja": "正本receipt/台帳を必要時だけ更新→このJSONの観測/受入/次の1手を更新→python3 scripts/pr16_resume.py render→checkとfocused tests→両ログへ追記→同一commitで保存する。",
-    "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
-    "end_ja": "実行したこと、観測できたこと、正式受入、未完、次の1手、run/job、検証結果を分離して記録。実行中runがあればID/対象HEAD/次の確認を記録し、完了を推測しない。"
+  "recording_workflow": {
+    "note_ja": "native未完runは0。記録workflowの終端/commitはAPIとartifact result.jsonで照合する。",
+    "run_id": 34771131427,
+    "source_head": "a99f258f08d614366933272f8d11d348bc1c579c",
+    "status_at_snapshot": "in_progress"
   },
-  "pending_runs": [
-    {
-      "run_id": 34763399271,
-      "tested_head": "a5e1cbcdcba8e8503f91542a5d38c554cb6436f2",
-      "status": "in_progress",
-      "scope": "SOURCE_ONLY_RECORDING_AT_WRITE_TIME",
-      "next_check_ja": "この記録作成runのcommit/push/読戻し結果をActionsから確認する。ROMやnativeは再実行しない。"
-    }
+  "release_ready": false,
+  "remaining_p08_gate_ids": [
+    "FINAL_NATIVE_ACCEPTANCE",
+    "RELEASE_DECISION"
   ],
-  "source_bindings": {
-    "scripts/pr16_bp_selection_native.py": {
-      "size": 10458,
-      "sha256": "2995799b4e1ac755566f98bee77f01db3ce2439fe931394cf99fc3b5a8d9250c"
-    },
-    "tools/mgba_pr16_bp_selection_native.c": {
-      "size": 10488,
-      "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
-    },
-    ".github/workflows/pr16-bp-selection-native.yml": {
-      "size": 9067,
-      "sha256": "db7917eeba30257405ee43381d327fb6bb6885b962eac3bc01d067de441ff3e9"
-    },
-    "scripts/pr16_bp_chooser_successor.py": {
-      "size": 6745,
-      "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07"
-    },
-    "scripts/pr16_bp_chooser_native.py": {
-      "size": 14590,
-      "sha256": "8d6a4ad35a34bc52a0ccb664eb1c950b54b98dd783e7bd755285f6d9590e218d"
-    },
-    "scripts/pr16_bp_trial_successor.py": {
-      "size": 5475,
-      "sha256": "6ec1b5ff0003a03533c20e325d53101bdf95b8650a1def270b5d4b25d888d158"
-    },
-    "config/factory_high_modes_v2.json": {
-      "size": 5741,
-      "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f"
-    },
-    "config/active_play_baseline.json": {
-      "size": 394,
-      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
-    },
-    "overlays/facility_runtime/facility_runtime.c": {
-      "size": 18139,
-      "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0"
-    },
-    "scripts/pr16_bp_battle_progress.py": {
-      "size": 5955,
-      "sha256": "59f7716a2eee46df96190f0e6511ca180aea11aac28f7c6efe529b19f7c1b24c"
-    },
-    "tools/mgba_pr16_bp_battle_progress.c": {
-      "size": 3939,
-      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
-    },
-    ".github/workflows/pr16-bp-battle-progress.yml": {
-      "size": 9495,
-      "sha256": "1cd04a910d21cf0451d912c7b8fa8f6e8e845bb447afa1a66b51099a97bc6a49"
-    },
-    "tests/test_pr16_bp_battle_progress.py": {
-      "size": 2823,
-      "sha256": "64e3e8899bc0f98b00d4f6c446cb6c627251869154d7b9227cbd1b7dffbc0dd9"
-    },
-    "scripts/pr16_bp_progress_checkpoint.py": {
-      "size": 10286,
-      "sha256": "ebea14c71fe0f45312347b9088497aec7a9d22e18407b4e39628d1545836fa9d"
-    },
-    "scripts/pr16_bp_progress_closeout.py": {
-      "size": 16378,
-      "sha256": "4acab9d74bb57a1b7c633d169bc8863906107bc3bcf19ba2eba787d1e861ad64"
-    },
-    "tests/test_pr16_bp_progress_checkpoint.py": {
-      "size": 2327,
-      "sha256": "f87f1fed82348212a1c2d55fe57ae258645014cdf59ae03812b06a06599eeeb5"
-    },
-    "content/modernization/pr16_bp_progress_attempts.json": {
-      "size": 3750,
-      "sha256": "aba994af9a061420b47743c519bf581aa45fea7674c5e68199885b3b9dc4c172"
-    },
-    "scripts/pr16_bp_battle_return.py": {
-      "size": 6457,
-      "sha256": "f279ef18c9cde54ed46ffd35bcbcaf51ce6f14edf09f23e22113a811818c25ba"
-    },
-    "tools/mgba_pr16_bp_battle_return.c": {
-      "size": 8320,
-      "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17"
-    },
-    ".github/workflows/pr16-bp-battle-return.yml": {
-      "size": 12825,
-      "sha256": "aab49e98b95bc1555d67109d28c2b22092dac7c1da1d945e5af3b848a262f26f"
-    },
-    "tests/test_pr16_bp_battle_return.py": {
-      "size": 3878,
-      "sha256": "2f4b52c9f011f960ca944643b190c5774e699dd630ed9722c2c7002a8d2bea35"
-    },
-    "scripts/pr16_bp_battle_return_checkpoint.py": {
-      "size": 13827,
-      "sha256": "aa4bb50c8434e4f291d0c872bb121e39323cb6d041ee875fa6285fd033fc9a41"
-    },
-    "scripts/pr16_bp_battle_return_closeout.py": {
-      "size": 18904,
-      "sha256": "0ce44d8df5273deb6f5c281fd54d4771b000122dd6a35d1494b41ad477c752f3"
-    },
-    "tests/test_pr16_bp_battle_return_checkpoint.py": {
-      "size": 4414,
-      "sha256": "91182b2d55360151e01fbde6b08743e5f8a95c52918c9bf227d4bc8c164a5e75"
-    },
-    "content/modernization/pr16_bp_battle_return_attempts.json": {
-      "size": 1929,
-      "sha256": "ada7b838b9df228bdaba3897e30058e40f236ee4aff49268d5378363ec983f6a"
-    },
-    "manifests/facility_rewards.csv": {
-      "size": 4907,
-      "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5"
-    },
-    "overlays/factory_reward_runtime/factory_reward_runtime.c": {
-      "size": 7235,
-      "sha256": "5b93ef199e97827876b876537945dfc5c8f143bc92150a5b4f8f4b653d87c1d7"
-    },
-    "overlays/factory_repeat_reward_runtime/factory_repeat_reward_runtime.c": {
-      "size": 6295,
-      "sha256": "9fa19907cf298cf3cfe75d6e26cfbaa70f021b89a9d8f8763484327615a8868f"
-    },
-    "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json": {
-      "size": 1496,
-      "sha256": "f85edcef10ca6432bf03455ac2e734605203e7ead5deae0ff51883df6d778545"
-    },
-    "scripts/pr16_bp_loss_return_owner.py": {
-      "size": 8855,
-      "sha256": "6d3461687aef2a77380681c4b1516620ecf9aa5e7fb9d146b5615e87956b5574"
-    },
-    "tests/test_pr16_bp_loss_return_owner.py": {
-      "size": 4255,
-      "sha256": "95c5ddb2f38d0ee21a4430fede332cc168ccffb3d78e2fb4bdb8409cdbb2ec40"
-    },
-    "scripts/pr16_restore_cfru_snapshot.py": {
-      "size": 8213,
-      "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202"
-    },
-    "tests/test_pr16_restore_cfru_snapshot.py": {
-      "size": 6311,
-      "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771"
-    },
-    ".github/workflows/pr16-bp-loss-return-owner.yml": {
-      "size": 6801,
-      "sha256": "5cbd21e4d033a615ebc5c0255768615d222cea1ae8f4b9bae0a269362e4811c9"
-    },
-    "content/modernization/pr16_bp_loss_return_owner.json": {
-      "size": 10605,
-      "sha256": "bbd9944b113f8de2588d92e2a09f9e069b461fed395745ea1851b1b7c04f5219"
-    },
-    "scripts/pr16_bp_candidate_return_audit.py": {
-      "size": 7285,
-      "sha256": "74d926841348b68382cb7c9042428b911d0619bad87fd25512f333ffc92e33eb"
-    },
-    "tests/test_pr16_bp_candidate_return_audit.py": {
-      "size": 2507,
-      "sha256": "b9591172bc185820493388ec618eae629da31df9980b31bd3eab202e8554ffab"
-    },
-    ".github/workflows/pr16-bp-candidate-return-audit.yml": {
-      "size": 7975,
-      "sha256": "b724b67da82ada28966f01d727f68a80964c012db43030aa0015509b018886a6"
-    },
-    "scripts/pr16_bp_loss_return_native.py": {
-      "size": 4580,
-      "sha256": "511a89d51ccb87b4734f32dd02b2a8cff22aa0030e4cac5f3706060ccae9c23b"
-    },
-    "scripts/pr16_bp_loss_return_successor.py": {
-      "size": 9156,
-      "sha256": "dc40605928ff25c70f0a66bd9fb947de238b0444c78108488d65722aa4d97af8"
-    },
-    "overlays/facility_loss_return/facility_loss_return.c": {
-      "size": 2025,
-      "sha256": "d9c9e110fed59490eb4dc55cfed0d61fd7f57bcfa4b5b3b3eeb2ee38533fcde1"
-    },
-    "tests/test_pr16_bp_loss_return_successor.py": {
-      "size": 4950,
-      "sha256": "f0285c00d9e7a0b68df9ce4d6bd1d83cb0fbc102b0be3aea14c75ebc163e0b98"
-    },
-    ".github/workflows/pr16-bp-loss-return-native.yml": {
-      "size": 9161,
-      "sha256": "6d514e2335e177a724e8ef624bfcb26d23fedee82d5521b83a36751f7841dd56"
-    },
-    "scripts/pr16_bp_loss_return_evidence.py": {
-      "size": 9410,
-      "sha256": "6863f571c0353f4adb3d1854b6c2b08c318be7b9b70e13e99ffabfb15510485e"
-    },
-    "tests/test_pr16_bp_loss_return_evidence.py": {
-      "size": 5155,
-      "sha256": "119c26b648b9cde6761ea363c72389299b6f06ca9f45c4b0e0518dd81aa87e4c"
-    },
-    "scripts/pr16_bp_loss_return_record.py": {
-      "size": 19470,
-      "sha256": "2f82cb2a252bbe22244854af58d6fc830f30d3fd81cc6f73be1aba3a58d6ecd4"
-    },
-    ".github/workflows/pr16-bp-loss-return-record.yml": {
-      "size": 3787,
-      "sha256": "f32516e426118a28d6483398549408dcdf4935d88eb54a843b8d08fbe1881a05"
-    },
-    "content/modernization/pr16_bp_loss_return_verified.json": {
-      "size": 92166,
-      "sha256": "999df6b372d1bfc3cf09013973ebd1f4b322ef82c92b9390601fe54221ea3290"
-    },
-    "content/modernization/pr16_bp_candidate_return_audit.json": {
-      "size": 69559,
-      "sha256": "a167deb452bd0991af14ee495dc346bf9c1a07ce5ed44895fd66b5051e5178ac"
-    },
-    "scripts/pr16_bp_exchange_record.py": {
-      "size": 21271,
-      "sha256": "bf6e6523eee45231e9751511bc17ac863e00e60383fe2f16fd2574d0f68dff30"
-    },
-    "tests/test_pr16_bp_exchange_record.py": {
-      "size": 4167,
-      "sha256": "fd206e9dc81af12e35c16609f744f9aa6ad40bf787b8d890a61143aeab8fd835"
-    },
-    ".github/workflows/pr16-bp-exchange-record.yml": {
-      "size": 7121,
-      "sha256": "3b692ae2bc27662c9cbd00a0da22d6555851386a14f82561859ac587dab70a4a"
-    },
-    "scripts/pr16_bp_exchange_successor.py": {
-      "size": 7279,
-      "sha256": "f67c5a4ed1a8625d1ad01d15828b512ea4979233f42ae88001d24874a4a7d95c"
-    },
-    "tests/test_pr16_bp_exchange_successor.py": {
-      "size": 6364,
-      "sha256": "b0a52b477b986c5ac17d74e812341644a5c84421034b3a9b0810e60a76fe618f"
-    },
-    ".github/workflows/pr16-bp-exchange-abi.yml": {
-      "size": 9415,
-      "sha256": "96ca8ff19f32bef4467e57d0bb6c33261f8160b5c8fec013f4be8e08e4010a46"
-    },
-    "scripts/build_battle_core.py": {
-      "size": 239192,
-      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0"
-    },
-    "scripts/build_facility_runtime.py": {
-      "size": 34113,
-      "sha256": "c5fcdc5e20f760637a233a90c5165a6c9726bbfdba56f763287b163333d11204"
-    },
-    "content/modernization/pr16_bp_exchange_abi_verified.json": {
-      "size": 7443,
-      "sha256": "ad56ef0c547627a5ff5c2d573d8c24a1ff43e9a9b16246e8eeb5697220e01043"
-    },
-    "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json": {
-      "size": 55905,
-      "sha256": "06f9b4f1e292544325c83b89dfe3245c2a184fa840968dba896005c939a2d918"
-    },
-    "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json": {
-      "size": 5086,
-      "sha256": "b5df94ba9b9e2fbb2ec3544c7a2050613d128f140043d0748d488da4e57d9fa5"
-    },
-    "content/modernization/pr16_bp_exchange_abi_evidence/actions-before.json": {
-      "size": 11040,
-      "sha256": "f7cc69ef1df16609c2d273e9dc1711f5b1d0284cd24db20e21bed83ca287d21f"
-    },
-    "content/modernization/pr16_bp_exchange_abi_evidence/unit-results.txt": {
-      "size": 1062,
-      "sha256": "af946d3056804187352f5c2bdf0409b903cbcc9496301f2cbd1407155986befd"
-    }
-  },
-  "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
-  "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
-  "latest_native_summary_ja": "WhiteOut設定元をbffdのCB2_EndTrainerBattle内0807FC50→0807FC5C→SetMainCallback2で固定し、1か所のcallback pointerと180bytesの施設限定shimを実装。候補fcda1507/CRC A15FAF9D。run34759726061/job103730310536のnative processはexit0、11261fで敗北、11405fで09FF4681、11444fでAfterBattle call後、11464fで元party復元、11516fで受付前idle。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save counter2、入力barrier7・警告0。\n\n原Actions/Pythonは終了済みscript pointer0を拒否してfailure/FAIL。原本は変更せず、exact field callback08055E75・AfterBattle進行・復元・idleの全遷移を必須にしたsource-only再検証を完了。新規emulator再実行0。敗北帰還修復は完了、勝利・交換・BP稼得/消費は未受入。",
-  "candidate_scope_ja": "ここは最後のnative敗北帰還検証候補fcda。今回の交換修復候補7f32ba99/CRC0D5D9178はexchange_successorに別記し、native受入/最終製品への昇格はしない。",
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+    "PHYSICAL_CIRCUS_ADMISSION"
+  ],
   "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
-  "prepared_native_probe": {
-    "case": "first-battle-return",
-    "execution_status": "FAILED_NATIVE_LOSS_RETURN_BLOCKED",
-    "source_only_tests": 13,
-    "rom_changes": 0,
-    "historical_cancel_replayed": false,
-    "run_id": 34749370272,
-    "job_id": 103703085018,
-    "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102"
-  },
-  "source_change_review_ja": "新C/Pythonだけで既存first-turn controllerを完全hash固定して派生。ROM/fixture/7write barrierと既存受入sourceは不変。native敗北後の未復元をassertion通り失敗として保持。コードが新callbackへ到達する事実と修復未完を分離し、原本JSON/statusを変更しない。",
-  "preflight_failure": {
-    "run_id": 34738673670,
-    "job_id": 103674512984,
-    "native_processes": 0,
-    "reason": "P08 JSON key ordering differed; semantic equality required before canonical serialization repair",
-    "original_conclusion": "failure"
-  },
-  "failed_native_attempt": {
-    "run_id": 34738859743,
-    "job_id": 103675000673,
-    "tested_head": "9bf3abe5e0fbef23f8c5727c658ba31a4d556473",
-    "original_conclusion": "failure",
-    "artifact_id": 10312440481,
-    "original_zip": "content/modernization/pr16_bp_launch_evidence/34738859743/original.zip",
-    "new_processes": 1,
-    "successful_fresh_cores": 0,
-    "enemy_count_raw": 0,
-    "enemy_species_slots": [
-      7,
-      1,
-      133,
-      0,
-      0,
-      0
-    ],
-    "script_advance_frame": 1967,
-    "battle_struct_frame": 2051,
-    "battle_action_frame": 3260,
-    "native_bp_earning_accepted": false
-  },
-  "checkpoint_index_order_failures": [
-    {
-      "run_id": 34739159633,
-      "job_id": 103675775748,
-      "native_processes": 0,
-      "original_conclusion": "failure"
-    },
-    {
-      "run_id": 34739395296,
-      "job_id": 103676397638,
-      "native_processes": 0,
-      "original_conclusion": "failure"
-    }
-  ],
-  "session_execution_summary": {
-    "native_game_processes": 1,
-    "failed_native_processes": 1,
-    "successful_native_fresh_cores": 0,
-    "accepted_cancel_replays": 0,
-    "rom_source_changes": 0,
-    "closeout_emulator_processes": 0,
-    "native_bp_earning_accepted": false,
-    "scope_ja": "追加BP専用診断のみ。pushで自動起動する既存CI/Stage79はActions一覧へ別記。"
-  },
-  "closeout_retention_repair": {
-    "failed_source_only_run": 34739728185,
-    "native_processes": 0,
-    "reason": "613fd769 retained failed Actions metadata but ignored original.zip; now explicitly stage the two hash-verified safe ZIPs and require index plus committed HEAD byte equality",
-    "guard_helper": "independent exact stdout/stderr/process checks for all seven guards"
-  },
+  "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
-    "run_id": 34740626514,
-    "job_id": 103679606433,
     "artifact_id": 10311359991,
-    "tested_head": "934cf9242c42270e95d9d2a9e6439699b5e27ca4",
-    "zip": {
-      "size": 311307,
-      "sha256": "cce97b8d9f1df9f0b28f181374f25811d0734c94233b5992e178daf9c3ae56b5"
-    },
-    "original_conclusion": "success",
-    "classification": "static-reward",
-    "verified_members": 23,
-    "new_emulator_processes": 0,
-    "verified_sources": 43,
     "base_reward_bp": 9,
-    "trial_reward_id": 0,
+    "classification": "static-reward",
+    "completion_chain_fully_resolved": false,
     "exchange_operands": [
       153941801,
       153941877
     ],
-    "completion_chain_fully_resolved": false
-  },
-  "current_failed_native_attempt": {
-    "run_id": 34749370272,
-    "job_id": 103703085018,
-    "artifact_id": 10314659211,
-    "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
+    "job_id": 103679606433,
+    "new_emulator_processes": 0,
+    "original_conclusion": "success",
+    "run_id": 34740626514,
+    "tested_head": "934cf9242c42270e95d9d2a9e6439699b5e27ca4",
+    "trial_reward_id": 0,
+    "verified_members": 23,
+    "verified_sources": 43,
     "zip": {
-      "size": 883756,
-      "sha256": "9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c"
-    },
-    "original_conclusion": "failure",
-    "verified_members": 82,
-    "verified_sources": 79,
-    "verified_chain_sources": 24,
-    "new_emulator_processes": 1,
-    "successful_fresh_cores": 0,
-    "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-    "native_result": {
-      "schema_version": 1,
-      "status": "DIAGNOSTIC_LOSS_WHITEOUT_RETURN_BLOCKED",
-      "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
-      "evidence_basis": "DERIVED_FROM_FAILED_PROCESS_STDERR_NOT_SUCCESS_STDOUT",
-      "raw_native_status": "FAIL",
-      "original_actions_conclusion": "failure",
-      "native_process_returncode": 1,
-      "battle_started": true,
-      "selected_frame": 1440,
-      "second_chooser_frame": 1789,
-      "bp_earned": 0,
-      "battle_outcome": 2,
-      "loss_frame": 11261,
-      "whiteout_frame": 11405,
-      "script_discarded_frame": 11525,
-      "final_frame": 93925,
-      "whiteout_callback2": 134569829,
-      "final_callback2": 134569589,
-      "final_script_pointer": 0,
-      "final_party_count": 3,
-      "final_snapshot_valid": 1,
-      "final_marker": 2,
-      "final_reward_pending": 0,
-      "final_streak": 0,
-      "final_save_counter": 2,
-      "final_map": [
-        4,
-        0
-      ],
-      "final_xy": [
-        8,
-        5
-      ],
-      "additional_turns": 8,
-      "additional_pp_events": 8,
-      "forced_switches": 2,
-      "native_afterbattle_observed": false,
-      "original_party_restoration_verified": false,
-      "native_bp_earning_accepted": false,
-      "p05_native_bp_gap_closed": false,
-      "release_ready": false
-    },
-    "first_unmatched_condition": "native loss routed to WhiteOut instead of FacilityRuntime_AfterBattle",
-    "native_screens": {
-      "pr16-bp-battle-return/first-battle-return-battle-action.ppm": {
-        "size": 115215,
-        "sha256": "9463af81e46284499f7a6ca0b006a674eedd3e50cad4ea1e3b02377e99cd21f4"
-      },
-      "pr16-bp-battle-return/first-battle-return-battle-allocated.ppm": {
-        "size": 115215,
-        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd"
-      },
-      "pr16-bp-battle-return/first-battle-return-battle-outcome.ppm": {
-        "size": 115215,
-        "sha256": "9fd942bb4613e6cabf9e9cc755f32ef3f8d0d10188b73a9ef57e62da53f9196f"
-      },
-      "pr16-bp-battle-return/first-battle-return-chooser-start.ppm": {
-        "size": 115215,
-        "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3"
-      },
-      "pr16-bp-battle-return/first-battle-return-codex-gateway.ppm": {
-        "size": 115215,
-        "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d"
-      },
-      "pr16-bp-battle-return/first-battle-return-entry-menu-1.ppm": {
-        "size": 115215,
-        "sha256": "5e6162e6c15b8fba6b9914395e2293f7e78ef02410599b896f756bff57987da7"
-      },
-      "pr16-bp-battle-return/first-battle-return-entry-menu-2.ppm": {
-        "size": 115215,
-        "sha256": "fa87f0574340635ea3a8b50930a298f1c20f598c57a95bff1d58ac386eee05e8"
-      },
-      "pr16-bp-battle-return/first-battle-return-entry-menu-3.ppm": {
-        "size": 115215,
-        "sha256": "103c06246a98311b82a9c3d48bb1d88460cfc863211689d3f21e3680f211313c"
-      },
-      "pr16-bp-battle-return/first-battle-return-facility-afterbattle.ppm": {
-        "size": 115215,
-        "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6"
-      },
-      "pr16-bp-battle-return/first-battle-return-failure.ppm": {
-        "size": 115215,
-        "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6"
-      },
-      "pr16-bp-battle-return/first-battle-return-first-move-menu.ppm": {
-        "size": 115215,
-        "sha256": "94df9e3776dde7721fb59b087cec310ddcf08b9011373b56968a737788dd1c36"
-      },
-      "pr16-bp-battle-return/first-battle-return-first-move-pp-spent.ppm": {
-        "size": 115215,
-        "sha256": "1073d1ecbf8bbed718e69da4ab7f7545b2750605f705496154431c29ca9b72b7"
-      },
-      "pr16-bp-battle-return/first-battle-return-first-turn-return.ppm": {
-        "size": 115215,
-        "sha256": "8824fc41c2e37b3602f302299f0bf70fc12a6fa15644c32ee9d79915d6b89795"
-      },
-      "pr16-bp-battle-return/first-battle-return-fixture.ppm": {
-        "size": 115215,
-        "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7"
-      },
-      "pr16-bp-battle-return/first-battle-return-forced-switch-return.ppm": {
-        "size": 115215,
-        "sha256": "dbd89a3bc6aabbf58d061838c5cea24547a71fa5c75656525b8259ead32d7655"
-      },
-      "pr16-bp-battle-return/first-battle-return-forced-switch-start.ppm": {
-        "size": 115215,
-        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd"
-      },
-      "pr16-bp-battle-return/first-battle-return-post-selection.ppm": {
-        "size": 115215,
-        "sha256": "34fedbe2e1b30032546247d67ccdab48a8819edd45be724587c6fb75b4350c24"
-      },
-      "pr16-bp-battle-return/first-battle-return-reception-confirm.ppm": {
-        "size": 115215,
-        "sha256": "ec22b407813222aa67e7e24de35827e9bbbf401b3badf5e1928e178b0fbb463b"
-      },
-      "pr16-bp-battle-return/first-battle-return-reception-mode.ppm": {
-        "size": 115215,
-        "sha256": "50e29bb7fd0e8e0cc455ab0a354f44240900efd05533612b8e7ef7438d23a683"
-      },
-      "pr16-bp-battle-return/first-battle-return-reception-tier.ppm": {
-        "size": 115215,
-        "sha256": "0c59abbe2669e24b104eeb4a9deb2b1e6a4601ef7fbbe8894903fc2de394a5bf"
-      },
-      "pr16-bp-battle-return/first-battle-return-rental-party.ppm": {
-        "size": 115215,
-        "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3"
-      },
-      "pr16-bp-battle-return/first-battle-return-script-resumed.ppm": {
-        "size": 115215,
-        "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef"
-      },
-      "pr16-bp-battle-return/first-battle-return-second-confirm.ppm": {
-        "size": 115215,
-        "sha256": "33dbd94f1286aa93d4e84c644a2fc0a76bdef19f6731408f6c209967a77f7ac1"
-      },
-      "pr16-bp-battle-return/first-battle-return-selected-1.ppm": {
-        "size": 115215,
-        "sha256": "19abab88fbaedaf34daf07e425e813f660a8a71f9198910ea6cc27a4161d8c13"
-      },
-      "pr16-bp-battle-return/first-battle-return-selected-2.ppm": {
-        "size": 115215,
-        "sha256": "f8d2ef534cd06c7ead3a0b2e44fbfde4646bbad20337992cd529363846432d35"
-      },
-      "pr16-bp-battle-return/first-battle-return-selected-3.ppm": {
-        "size": 115215,
-        "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596"
-      },
-      "pr16-bp-battle-return/first-battle-return-three-selected.ppm": {
-        "size": 115215,
-        "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596"
-      }
+      "sha256": "cce97b8d9f1df9f0b28f181374f25811d0734c94233b5992e178daf9c3ae56b5",
+      "size": 311307
     }
   },
-  "last_successful_native_diagnostic": {
-    "run_id": 34741232621,
-    "job_id": 103681167660,
-    "tested_head": "88e043592f07c80d1e4f582320bb955243986711",
-    "path": "content/modernization/pr16_bp_progress_diagnostic.json",
-    "scope": "FIRST_TURN_NOT_BP"
-  },
   "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json",
+  "schema_version": 2,
+  "session_execution_summary": {
+    "accepted_cancel_replays": 0,
+    "closeout_emulator_processes": 0,
+    "failed_native_processes": 1,
+    "native_bp_earning_accepted": false,
+    "native_game_processes": 1,
+    "rom_source_changes": 0,
+    "scope_ja": "追加BP専用診断のみ。pushで自動起動する既存CI/Stage79はActions一覧へ別記。",
+    "successful_native_fresh_cores": 0
+  },
+  "session_protocol": {
+    "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
+    "end_ja": "実行したこと、観測できたこと、正式受入、未完、次の1手、run/job、検証結果を分離して記録。実行中runがあればID/対象HEAD/次の確認を記録し、完了を推測しない。",
+    "freshness_ja": "checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。",
+    "reuse_ja": "候補/上流source/runner/fixture/契約が同じ結果を再利用。文書だけのcommitではROMを再生成しない。live HEADが違うだけで全回帰しない。",
+    "start_ja": "PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。観測headとの差分を対象pathだけ確認。本文にある旧SHAへresetせず、同一repo/branch・未mergeを確認。",
+    "write_ja": "正本receipt/台帳を必要時だけ更新→このJSONの観測/受入/次の1手を更新→python3 scripts/pr16_resume.py render→checkとfocused tests→両ログへ追記→同一commitで保存する。"
+  },
+  "source_bindings": {
+    ".github/workflows/pr16-bp-battle-progress.yml": {
+      "sha256": "1cd04a910d21cf0451d912c7b8fa8f6e8e845bb447afa1a66b51099a97bc6a49",
+      "size": 9495
+    },
+    ".github/workflows/pr16-bp-battle-return.yml": {
+      "sha256": "aab49e98b95bc1555d67109d28c2b22092dac7c1da1d945e5af3b848a262f26f",
+      "size": 12825
+    },
+    ".github/workflows/pr16-bp-candidate-return-audit.yml": {
+      "sha256": "b724b67da82ada28966f01d727f68a80964c012db43030aa0015509b018886a6",
+      "size": 7975
+    },
+    ".github/workflows/pr16-bp-exchange-abi.yml": {
+      "sha256": "96ca8ff19f32bef4467e57d0bb6c33261f8160b5c8fec013f4be8e08e4010a46",
+      "size": 9415
+    },
+    ".github/workflows/pr16-bp-exchange-record.yml": {
+      "sha256": "3b692ae2bc27662c9cbd00a0da22d6555851386a14f82561859ac587dab70a4a",
+      "size": 7121
+    },
+    ".github/workflows/pr16-bp-loss-return-native.yml": {
+      "sha256": "6d514e2335e177a724e8ef624bfcb26d23fedee82d5521b83a36751f7841dd56",
+      "size": 9161
+    },
+    ".github/workflows/pr16-bp-loss-return-owner.yml": {
+      "sha256": "5cbd21e4d033a615ebc5c0255768615d222cea1ae8f4b9bae0a269362e4811c9",
+      "size": 6801
+    },
+    ".github/workflows/pr16-bp-loss-return-record.yml": {
+      "sha256": "f32516e426118a28d6483398549408dcdf4935d88eb54a843b8d08fbe1881a05",
+      "size": 3787
+    },
+    ".github/workflows/pr16-bp-selection-native.yml": {
+      "sha256": "db7917eeba30257405ee43381d327fb6bb6885b962eac3bc01d067de441ff3e9",
+      "size": 9067
+    },
+    ".github/workflows/pr16-bp-win-exchange-record.yml": {
+      "sha256": "7743568dd9d4c941766508fc0bfd635f5563d2126ca3843ec504dcf25a843d76",
+      "size": 2890
+    },
+    "config/active_play_baseline.json": {
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "config/factory_high_modes_v2.json": {
+      "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f",
+      "size": 5741
+    },
+    "content/modernization/pr16_bp_battle_return_attempts.json": {
+      "sha256": "ada7b838b9df228bdaba3897e30058e40f236ee4aff49268d5378363ec983f6a",
+      "size": 1929
+    },
+    "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json": {
+      "sha256": "f85edcef10ca6432bf03455ac2e734605203e7ead5deae0ff51883df6d778545",
+      "size": 1496
+    },
+    "content/modernization/pr16_bp_candidate_return_audit.json": {
+      "sha256": "a167deb452bd0991af14ee495dc346bf9c1a07ce5ed44895fd66b5051e5178ac",
+      "size": 69559
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/actions-before.json": {
+      "sha256": "f7cc69ef1df16609c2d273e9dc1711f5b1d0284cd24db20e21bed83ca287d21f",
+      "size": 11040
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json": {
+      "sha256": "06f9b4f1e292544325c83b89dfe3245c2a184fa840968dba896005c939a2d918",
+      "size": 55905
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/unit-results.txt": {
+      "sha256": "af946d3056804187352f5c2bdf0409b903cbcc9496301f2cbd1407155986befd",
+      "size": 1062
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json": {
+      "sha256": "b5df94ba9b9e2fbb2ec3544c7a2050613d128f140043d0748d488da4e57d9fa5",
+      "size": 5086
+    },
+    "content/modernization/pr16_bp_exchange_abi_verified.json": {
+      "sha256": "ad56ef0c547627a5ff5c2d573d8c24a1ff43e9a9b16246e8eeb5697220e01043",
+      "size": 7443
+    },
+    "content/modernization/pr16_bp_loss_return_owner.json": {
+      "sha256": "bbd9944b113f8de2588d92e2a09f9e069b461fed395745ea1851b1b7c04f5219",
+      "size": 10605
+    },
+    "content/modernization/pr16_bp_loss_return_verified.json": {
+      "sha256": "999df6b372d1bfc3cf09013973ebd1f4b322ef82c92b9390601fe54221ea3290",
+      "size": 92166
+    },
+    "content/modernization/pr16_bp_progress_attempts.json": {
+      "sha256": "aba994af9a061420b47743c519bf581aa45fea7674c5e68199885b3b9dc4c172",
+      "size": 3750
+    },
+    "content/modernization/pr16_bp_win_exchange_evidence/native-result.json": {
+      "sha256": "5dcafece9c493b303cba348f6eb5b38921749db1fc23e8b0c71c6a731da05331",
+      "size": 2210
+    },
+    "content/modernization/pr16_bp_win_exchange_verified.json": {
+      "sha256": "9dd657ecff565bfddf39f275067900f288e7a362096a4993a7a595206270bb9b",
+      "size": 23940
+    },
+    "manifests/facility_rewards.csv": {
+      "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
+      "size": 4907
+    },
+    "overlays/facility_loss_return/facility_loss_return.c": {
+      "sha256": "d9c9e110fed59490eb4dc55cfed0d61fd7f57bcfa4b5b3b3eeb2ee38533fcde1",
+      "size": 2025
+    },
+    "overlays/facility_runtime/facility_runtime.c": {
+      "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0",
+      "size": 18139
+    },
+    "overlays/factory_repeat_reward_runtime/factory_repeat_reward_runtime.c": {
+      "sha256": "9fa19907cf298cf3cfe75d6e26cfbaa70f021b89a9d8f8763484327615a8868f",
+      "size": 6295
+    },
+    "overlays/factory_reward_runtime/factory_reward_runtime.c": {
+      "sha256": "5b93ef199e97827876b876537945dfc5c8f143bc92150a5b4f8f4b653d87c1d7",
+      "size": 7235
+    },
+    "scripts/build_battle_core.py": {
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
+      "size": 239192
+    },
+    "scripts/build_facility_runtime.py": {
+      "sha256": "c5fcdc5e20f760637a233a90c5165a6c9726bbfdba56f763287b163333d11204",
+      "size": 34113
+    },
+    "scripts/pr16_bp_battle_progress.py": {
+      "sha256": "59f7716a2eee46df96190f0e6511ca180aea11aac28f7c6efe529b19f7c1b24c",
+      "size": 5955
+    },
+    "scripts/pr16_bp_battle_return.py": {
+      "sha256": "f279ef18c9cde54ed46ffd35bcbcaf51ce6f14edf09f23e22113a811818c25ba",
+      "size": 6457
+    },
+    "scripts/pr16_bp_battle_return_checkpoint.py": {
+      "sha256": "aa4bb50c8434e4f291d0c872bb121e39323cb6d041ee875fa6285fd033fc9a41",
+      "size": 13827
+    },
+    "scripts/pr16_bp_battle_return_closeout.py": {
+      "sha256": "0ce44d8df5273deb6f5c281fd54d4771b000122dd6a35d1494b41ad477c752f3",
+      "size": 18904
+    },
+    "scripts/pr16_bp_candidate_return_audit.py": {
+      "sha256": "74d926841348b68382cb7c9042428b911d0619bad87fd25512f333ffc92e33eb",
+      "size": 7285
+    },
+    "scripts/pr16_bp_chooser_native.py": {
+      "sha256": "8d6a4ad35a34bc52a0ccb664eb1c950b54b98dd783e7bd755285f6d9590e218d",
+      "size": 14590
+    },
+    "scripts/pr16_bp_chooser_successor.py": {
+      "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07",
+      "size": 6745
+    },
+    "scripts/pr16_bp_exchange_record.py": {
+      "sha256": "bf6e6523eee45231e9751511bc17ac863e00e60383fe2f16fd2574d0f68dff30",
+      "size": 21271
+    },
+    "scripts/pr16_bp_exchange_successor.py": {
+      "sha256": "f67c5a4ed1a8625d1ad01d15828b512ea4979233f42ae88001d24874a4a7d95c",
+      "size": 7279
+    },
+    "scripts/pr16_bp_loss_return_evidence.py": {
+      "sha256": "6863f571c0353f4adb3d1854b6c2b08c318be7b9b70e13e99ffabfb15510485e",
+      "size": 9410
+    },
+    "scripts/pr16_bp_loss_return_native.py": {
+      "sha256": "511a89d51ccb87b4734f32dd02b2a8cff22aa0030e4cac5f3706060ccae9c23b",
+      "size": 4580
+    },
+    "scripts/pr16_bp_loss_return_owner.py": {
+      "sha256": "6d3461687aef2a77380681c4b1516620ecf9aa5e7fb9d146b5615e87956b5574",
+      "size": 8855
+    },
+    "scripts/pr16_bp_loss_return_record.py": {
+      "sha256": "2f82cb2a252bbe22244854af58d6fc830f30d3fd81cc6f73be1aba3a58d6ecd4",
+      "size": 19470
+    },
+    "scripts/pr16_bp_loss_return_successor.py": {
+      "sha256": "dc40605928ff25c70f0a66bd9fb947de238b0444c78108488d65722aa4d97af8",
+      "size": 9156
+    },
+    "scripts/pr16_bp_progress_checkpoint.py": {
+      "sha256": "ebea14c71fe0f45312347b9088497aec7a9d22e18407b4e39628d1545836fa9d",
+      "size": 10286
+    },
+    "scripts/pr16_bp_progress_closeout.py": {
+      "sha256": "4acab9d74bb57a1b7c633d169bc8863906107bc3bcf19ba2eba787d1e861ad64",
+      "size": 16378
+    },
+    "scripts/pr16_bp_selection_native.py": {
+      "sha256": "2995799b4e1ac755566f98bee77f01db3ce2439fe931394cf99fc3b5a8d9250c",
+      "size": 10458
+    },
+    "scripts/pr16_bp_trial_successor.py": {
+      "sha256": "6ec1b5ff0003a03533c20e325d53101bdf95b8650a1def270b5d4b25d888d158",
+      "size": 5475
+    },
+    "scripts/pr16_bp_win_exchange.py": {
+      "sha256": "3b906fc8b5e2d7da996297c08166725a148a780ec4ca6153f6b79b10118063cc",
+      "size": 13259
+    },
+    "scripts/pr16_bp_win_exchange_record.py": {
+      "sha256": "282238a89b834e8c37c3e920e7a5e9c3fa025db88de9fa703dd533af76cb4386",
+      "size": 25371
+    },
+    "scripts/pr16_restore_cfru_snapshot.py": {
+      "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202",
+      "size": 8213
+    },
+    "tests/test_pr16_bp_battle_progress.py": {
+      "sha256": "64e3e8899bc0f98b00d4f6c446cb6c627251869154d7b9227cbd1b7dffbc0dd9",
+      "size": 2823
+    },
+    "tests/test_pr16_bp_battle_return.py": {
+      "sha256": "2f4b52c9f011f960ca944643b190c5774e699dd630ed9722c2c7002a8d2bea35",
+      "size": 3878
+    },
+    "tests/test_pr16_bp_battle_return_checkpoint.py": {
+      "sha256": "91182b2d55360151e01fbde6b08743e5f8a95c52918c9bf227d4bc8c164a5e75",
+      "size": 4414
+    },
+    "tests/test_pr16_bp_candidate_return_audit.py": {
+      "sha256": "b9591172bc185820493388ec618eae629da31df9980b31bd3eab202e8554ffab",
+      "size": 2507
+    },
+    "tests/test_pr16_bp_exchange_navigation.py": {
+      "sha256": "70d20a5a7618c48208f7c0a25f121f612b7bc6986977f907d123fbaae396d896",
+      "size": 7088
+    },
+    "tests/test_pr16_bp_exchange_record.py": {
+      "sha256": "fd206e9dc81af12e35c16609f744f9aa6ad40bf787b8d890a61143aeab8fd835",
+      "size": 4167
+    },
+    "tests/test_pr16_bp_exchange_successor.py": {
+      "sha256": "b0a52b477b986c5ac17d74e812341644a5c84421034b3a9b0810e60a76fe618f",
+      "size": 6364
+    },
+    "tests/test_pr16_bp_loss_return_evidence.py": {
+      "sha256": "119c26b648b9cde6761ea363c72389299b6f06ca9f45c4b0e0518dd81aa87e4c",
+      "size": 5155
+    },
+    "tests/test_pr16_bp_loss_return_owner.py": {
+      "sha256": "95c5ddb2f38d0ee21a4430fede332cc168ccffb3d78e2fb4bdb8409cdbb2ec40",
+      "size": 4255
+    },
+    "tests/test_pr16_bp_loss_return_successor.py": {
+      "sha256": "f0285c00d9e7a0b68df9ce4d6bd1d83cb0fbc102b0be3aea14c75ebc163e0b98",
+      "size": 4950
+    },
+    "tests/test_pr16_bp_progress_checkpoint.py": {
+      "sha256": "f87f1fed82348212a1c2d55fe57ae258645014cdf59ae03812b06a06599eeeb5",
+      "size": 2327
+    },
+    "tests/test_pr16_bp_win_exchange_record.py": {
+      "sha256": "b6f21bc1e601dcf8eb0c97f155f25580c9581ddbf35a876cbbe0f60ab68d1342",
+      "size": 2935
+    },
+    "tests/test_pr16_restore_cfru_snapshot.py": {
+      "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771",
+      "size": 6311
+    },
+    "tools/mgba_pr16_bp_battle_progress.c": {
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b",
+      "size": 3939
+    },
+    "tools/mgba_pr16_bp_battle_return.c": {
+      "sha256": "286e2cccc1b5dcf5fffc2063664a45194f9902452d7d805229582cc7e9050a17",
+      "size": 8320
+    },
+    "tools/mgba_pr16_bp_selection_native.c": {
+      "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690",
+      "size": 10488
+    },
+    "tools/mgba_pr16_bp_win_exchange.c": {
+      "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
+      "size": 15394
+    }
+  },
+  "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
+  "source_change_review_ja": "新C/Pythonだけで既存first-turn controllerを完全hash固定して派生。ROM/fixture/7write barrierと既存受入sourceは不変。native敗北後の未復元をassertion通り失敗として保持。コードが新callbackへ到達する事実と修復未完を分離し、原本JSON/statusを変更しない。",
   "source_owner_audit": {
-    "report": "content/modernization/pr16_bp_loss_return_owner.json",
-    "run_id": 34757633314,
-    "job_id": 103724666041,
-    "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3",
-    "source_gate_complete": true,
-    "owner_resolved": false,
+    "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
+    "job_id": 103724666041,
     "native_return_fix_complete": false,
     "new_emulator_processes": 0,
-    "accepted_native_cases_replayed": 0
+    "owner_resolved": false,
+    "report": "content/modernization/pr16_bp_loss_return_owner.json",
+    "run_id": 34757633314,
+    "source_gate_complete": true,
+    "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3"
   },
-  "loss_return_completed": {
-    "native_run": 34759726061,
-    "native_head": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
-    "source_only_revalidation_run": 34760913320,
-    "source_only_head": "e1b99a4c1ba419dba0dd90cb0d11a7e5f5385ec9",
-    "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
-    "new_native_processes": 1,
-    "revalidation_native_processes": 0
-  },
-  "exchange_successor": {
-    "candidate": {
-      "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
-      "size": 33554432,
-      "crc32": "0D5D9178"
-    },
-    "parent": {
-      "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
-      "size": 33554432
-    },
-    "receipt": "content/modernization/pr16_bp_exchange_abi_verified.json",
-    "run_id": 34762342982,
-    "job_id": 103737252115,
-    "tested_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
-    "abi_repaired": true,
-    "native_exchange_accepted": false,
-    "scope": "SOURCE_AND_HOST_CONTRACT_ONLY"
+  "stable_entrypoint": "CHATGPT_RESUME.md",
+  "stable_paths_do_not_rotate_with_date": true,
+  "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
+  "status": "DIAGNOSTIC_NATIVE_WIN_EXCHANGE_NEXT_BATTLE_NOT_BP",
+  "win_exchange_completed": {
+    "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
+    "run_id": 34770280751,
+    "scope": "NATIVE_DIAGNOSTIC_NOT_FORMAL_ACCEPTANCE"
   }
 }

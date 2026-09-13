@@ -2255,3 +2255,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub branch/PR16/Actions APIと固定Releaseを参照。外部一般Web検索なし。固定入力のSHAを検査し、Release/ROM/save/credentialは新規tracked成果へ追加しない。
 - Guard: 標準guardの開始HEAD/最終index結果を比較し新規違反0をcommit前に要求。既存違反を保持し、全体guard PASSとは主張しない。
 - Next: 7f32候補のnative初勝利→単体交換→次戦→3勝completion chain。merge/draft解除/baseline変更/releaseなし。
+
+
+## 2026-09-13T17:17:34Z — USER-20260913-BP-WIN-EXCHANGE
+- Version: PR16 native exchange diagnostic
+- Task: USER-20260913-BP-WIN-EXCHANGE / 初勝利・単体交換・次戦の未完runnerを実装/検証/記録
+- Status: DONE
+- Summary: 自動Confirm移動の誤前提を通常UP入力へ修正。scratch消去途中ではなくscript復帰境界で600byteを厳密比較。
+- Native: run34770280751/job103758504094、HEAD=0464cecea12377e7a85bbad8fa1957eec00d5fe8、候補7f32/CRC0D5D9178。勝利16234f→AfterBattle16457f→交換選択17001f→Confirm17250f→確定17345f→次戦struct17755f→action19169f。500不変+100交換、snapshot600、BP0、save2、警告0。
+- Scope: 初勝利→単体order3→通常UP4入力でConfirm→交換確定→次戦struct/actionを観測。600bytes厳密比較は選択枠の回復済み100bytes＋不変500bytes。元snapshot600、BP0、save counter2を保持。次戦画面はplayerポリゴン/敵ゴースで、交換直後partyと次戦battlerの個体同一性は本runnerのassert対象外。次手でPrepareBattle前後・chooser・新戦闘のparty/個体をread-only採取して照合し、確定後3勝報酬へ延長する。画面だけから原因やROM不具合を断定しない。
+- History: run34767145222（開始前）とrun34769665360（今回の途中回復誤検出）はfailure原本のまま保存。WIP入力type tableの1セル転記差分も開始HEADへ復元し、最終native sourceと生成Cを完全照合。
+- Replay: 今回native主process2（失敗1/成功1）、各7拒否guard。受入済みcase再実行0。ROM変更0。記録工程emulator0。
+- Files changed: tools/mgba_pr16_bp_win_exchange.c、navigation/record tests、record script/workflow、verified/evidence、固定resume MD/JSON、P08診断候補、両ログ。
+- Verify: 原本14 source tests PASS。記録工程でnavigation4/record8/resume18 tests、原本receipt/source/生成C/7拒否証拠、task graph、diff checkを検証。標準private guardの既存違反はbaseline/index比較で別記し全体PASSと主張しない。
+- Commit: この記録を含むcommit。記録入力HEAD=a99f258f08d614366933272f8d11d348bc1c579c。非force push後のhashはworkflow result.jsonとremoteから照合。
+- Network: GitHub connectorでbranch/PR/Actions/artifact照合、Actionsでpinned candidate再生成。記録はActions API原本取得のみ。private入力/ROM/saveの追跡・公開なし。上流CFRU-JP e24a16fe include/pokemon.hも読取参照。
+- Boundary: 正式physical4/P08ゲート2、BP稼得/消費未受入、PR draft/open維持、merge/release/baseline変更0。
