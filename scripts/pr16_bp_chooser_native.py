@@ -3,7 +3,8 @@
 
 Reuse the original controller as a hash-pinned source template, not its results.
 ROM/scope transformations and bounded read-only traces are recorded explicitly.
-All game input logic, write barriers and lifecycle assertions remain unchanged.
+A native Yes is added to the observed abandon-battle confirmation after B.
+Fixture, timeouts, write barriers and lifecycle assertions remain unchanged.
 """
 from __future__ import annotations
 import json
@@ -63,6 +64,28 @@ def transform(text:str,before:str,after:str)->str:
     return text.replace(before,after,1)
 
 
+# Raw run34733429516 reached the chooser, then stopped at the visible native
+# "たいせんを やめますか?" Yes/No dialog. B declines abandoning, it does not quit.
+# This is an input-contract correction, NOT another ROM patch or relaxed result.
+def confirm_native_cancel(text:str):
+    before='b_press(c,QOL_KEY_B,120U);bp_return(c);'
+    after='''b_press(c,QOL_KEY_B,120U);
+    if(rental){
+        bp_require(c,read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY
+            && read8(c,QOL_PLAYER_PARTY_COUNT)==6U
+            && (read8(c,0x0203B01CU)&15U)==4U,"cancel confirmation is not rental party UI");
+        bp_require(c,read8(c,G_CURSOR)==0U && read8(c,0x0203B048U)==0U
+            && read8(c,0x0203B049U)==0U && read8(c,0x0203B04AU)==0U,
+            "cancel confirmation default Yes or empty selection differs");
+        bp_state(c,"cancel-confirm");bp_context_snapshot(c);g_shot("cancel-confirm");
+        b_press(c,QOL_KEY_A,120U);
+    }
+    bp_return(c);'''
+    changed=transform(text,before,after)
+    return changed,dict(source=control.SOURCE,before=before,after=after,
+        scope='NATIVE_CANCEL_CONFIRMATION_YES_ONLY_NO_ASSERTION_REMOVAL')
+
+
 def run():
     import pr16_purchased_gear as gear
     parent,shop,r,common=gear.parent,gear.shop,gear.r,gear.common
@@ -86,6 +109,11 @@ def run():
         geometry=gear.oracle(original)
         report['unchanged_parent_map_oracle']=control.oracle(original)
         report['declared_successor_change']=recipe['change']
+        report['cancel_confirmation_basis']=dict(run_id=34733429516,job_id=103660395541,artifact_id=10310058670,
+            zip_sha256='093226863346c0c3aec4235d329cab2e089b111e24777f8ca4a463c5a78711cd',
+            failure_screen_sha256='d3e2ab4fd0a029c4f20d07c51caa475c5c2b5202c202b2d446e25174493d891e',
+            original_conclusion='failure',original_not_relabelled=True,native_confirmation_A_presses=1,
+            additional_read_only_snapshot_budget=1,fixture_changed=False,timeout_changed=False,success_conditions_weakened=False)
         report['chooser_observation']=chooser.prepare(raw,out,identity,need,stable)
         (out/'candidate.json').write_bytes(stable(recipe))
         paths={SELF,WORKFLOW,TEST,chooser.SELF,layer.SELF,layer.parent_layer.SELF,layer.parent_layer.route.SELF,control.SELF,control.SOURCE,
@@ -135,6 +163,7 @@ def run():
                 '    bp_read_span(c,"field_callbacks_raw",0x03005060U,8U);')):
                 controller=transform(controller,before,after)
                 transforms.append(dict(source=control.SOURCE,before=before,after=after,scope='READ_ONLY_ABI_NO_INPUT_CHANGE'))
+            controller,confirmation=confirm_native_cancel(controller);transforms.append(confirmation)
             generated['controller.c']=controller
             generated['pr16_gear_route.h']=gear.route_header(geometry)
             for name,text in generated.items():(work/name).write_text(text)
@@ -152,7 +181,7 @@ def run():
             stdout,stderr,process=common.capture([str(binary),str(candidate),str(scratch),candidate_sha,m.SEED_SHA,CASE,str(out/CASE)],out/CASE,900)
             row=validate(stdout,stderr,common.require_exited(process),candidate_sha)
             screens={}
-            for suffix in ('fixture','reception-tier','reception-mode','reception-confirm','rental-party','returned','fresh-continue'):
+            for suffix in ('fixture','reception-tier','reception-mode','reception-confirm','rental-party','cancel-confirm','returned','fresh-continue'):
                 p=out/(CASE+'-'+suffix+'.ppm');screens[p.name]=identity(gear.evidence.read_ppm(p))
             report['results'].append(dict(name=CASE,result=row,process=process,screens=screens,visual_review_completed=False))
             report['successful_fresh_cores']=row['fresh_cores']

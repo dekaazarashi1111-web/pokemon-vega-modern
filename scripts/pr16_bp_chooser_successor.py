@@ -20,6 +20,7 @@ need,identity,stable=parent_layer.need,parent_layer.identity,parent_layer.stable
 SELF='scripts/pr16_bp_chooser_successor.py'
 OUT=ROOT/'.local/pr16-bp-chooser-successor'
 PARENT_SHA=parent_layer.SHA
+SHA='bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92'
 OFFSET=0x012CF629
 BEFORE=bytes.fromhex('2f00')
 AFTER=bytes.fromhex('2900')
@@ -79,6 +80,7 @@ def allocations(parent:bytes,candidate:bytes,original:dict)->dict:
 def build(parent:bytes,allocation:dict):
     observed=binding(parent)
     raw=replace_operand(parent,OFFSET,BEFORE,AFTER)
+    need(identity(raw)==dict(size=33554432,sha256=SHA),'fixed chooser successor identity differs')
     need(raw[OFFSET-1:OFFSET+3]==bytes.fromhex('25290027'),'output chooser boundary differs')
     report=dict(schema_version=1,status='CHOOSER_SPECIAL_REPAIRED_NOT_NATIVE_ACCEPTED',
         parent=identity(parent),candidate=identity(raw),crc32=f'{zlib.crc32(raw)&0xffffffff:08X}',

@@ -91,4 +91,23 @@ class ReceiptTests(unittest.TestCase):
         text=(ROOT/native.SELF).read_text();self.assertIn('],out/CASE,900)',text)
         self.assertNotIn('continue-on-error',text)
 
+
+class CancelInputTests(unittest.TestCase):
+    def test_one_explicit_native_yes_without_host_mutation(self):
+        text=(ROOT/native.control.SOURCE).read_text();out,binding=native.confirm_native_cancel(text)
+        self.assertEqual(out.replace(binding['after'],binding['before'],1),text)
+        self.assertEqual(binding['after'].count('b_press(c,QOL_KEY_A,120U)'),1)
+        for forbidden in ('write8(', 'write16(', 'write32(', 'call_preserving(', 'setRegister', 'busWrite', 'rawWrite'):
+            self.assertNotIn(forbidden,binding['after'])
+        self.assertIn('bp_context_snapshot(c)',binding['after'])
+        self.assertIn('g_shot("cancel-confirm")',binding['after'])
+    def test_wrong_template_rejected(self):
+        with self.assertRaises(ValueError):native.confirm_native_cancel('')
+    def test_no_duplicate_confirmation(self):
+        text=(ROOT/native.control.SOURCE).read_text();out,_=native.confirm_native_cancel(text)
+        with self.assertRaises(ValueError):native.confirm_native_cancel(out)
+    def test_full_output_sha_is_fixed(self):
+        self.assertEqual(layer.SHA,'bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92')
+        self.assertNotEqual(layer.SHA,layer.PARENT_SHA)
+
 if __name__=='__main__':unittest.main()
