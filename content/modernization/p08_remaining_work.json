@@ -392,7 +392,7 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。 Next: 最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34741232621で実行動3260f→技メニュー3412f→技選択3413f→PP24から23へ減少3430f→次action callback3925fを観測。技247、敵HP167→139・自HP171→119、BP0、元party600bytes/Save counter2不変。初回turn診断は成功。勝利・施設帰還・BP獲得/消費は未観測。 Next: 実行動callback復帰3925fから1戦のnative勝敗・FacilityRuntime_AfterBattle帰還へ延長する。後発completion wrapperの加算条件と交換2か所のsingle-selection ABIを確認し、未観測区間に必要な範囲だけ修正する。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -460,7 +460,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。 Next: 最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34741232621で実行動3260f→技メニュー3412f→技選択3413f→PP24から23へ減少3430f→次action callback3925fを観測。技247、敵HP167→139・自HP171→119、BP0、元party600bytes/Save counter2不変。初回turn診断は成功。勝利・施設帰還・BP獲得/消費は未観測。 Next: 実行動callback復帰3925fから1戦のnative勝敗・FacilityRuntime_AfterBattle帰還へ延長する。後発completion wrapperの加算条件と交換2か所のsingle-selection ABIを確認し、未観測区間に必要な範囲だけ修正する。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"

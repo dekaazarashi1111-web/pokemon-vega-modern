@@ -2,10 +2,10 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。",
+    "current_stop": "run34741232621で実行動3260f→技メニュー3412f→技選択3413f→PP24から23へ減少3430f→次action callback3925fを観測。技247、敵HP167→139・自HP171→119、BP0、元party600bytes/Save counter2不変。初回turn診断は成功。勝利・施設帰還・BP獲得/消費は未観測。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
-    "next_step": "最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
+    "next_step": "実行動callback復帰3925fから1戦のnative勝敗・FacilityRuntime_AfterBattle帰還へ延長する。後発completion wrapperの加算条件と交換2か所のsingle-selection ABIを確認し、未観測区間に必要な範囲だけ修正する。",
     "party_snapshot_and_marker_observed": true,
     "six_rentals_generated": true,
     "trial_delegate_repaired": true,
@@ -15,9 +15,14 @@
     "bp_earned": 0,
     "selected_frame": 1440,
     "second_chooser_frame": 1789,
-    "after_battle_launch": "実戦開始の停止点は解決済み。まずTrial(mode0/reward0)と9BP対象ルートを区別し、残る交換special 0x2Fの2か所を実ROMで確認する。必要な箇所だけ修正し、正しい報酬ルートで3勝9BP、負例、初回/繰返し、通常Save/fresh Continue、獲得BPの既存shop消費を別途受け入れる。",
+    "after_battle_launch": "Trial reward0は報酬IDで0BPではない。正本と候補headerは3戦・基本9BP。実完了先093C42C9→092DE351→092DDCE9を追跡したがStage29以降を含む全wrapper加算/最終付与量は未確定。交換operand092CF729/092CF775はspecial2F→080CBF8D(7047)とwaitstateのまま。初期chooser092CF629の修正は再実施しない。3勝、初回/繰返し/負例、通常Save/fresh Continue、獲得BP消費は別途正式受入。",
     "earning_accepted": false,
-    "spending_accepted": false
+    "spending_accepted": false,
+    "native_first_turn_observed": true,
+    "move_id": 247,
+    "pp_before": 24,
+    "pp_after": 23,
+    "action_return_frame": 3925
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
@@ -30,93 +35,186 @@
   "current_checkpoint": "content/modernization/pr16_bp_chooser_checkpoint.json",
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
-  "latest_native_run": 34739491272,
-  "latest_native_tested_head": "613fd76915f262c080b56700a48f77827bf3e378",
+  "latest_native_run": 34741232621,
+  "latest_native_tested_head": "88e043592f07c80d1e4f582320bb955243986711",
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "a083afe22cf578e312676db29eb25b7af58bfd05",
+  "observed_head": "2d396337a11fc9735fd6828a20537429c13b42c6",
   "observed_head_checks": {
-    "status": "NATIVE_DIAGNOSTIC_SUCCESS_GENERAL_CHECKS_SEPARATE",
-    "checked_head": "a083afe22cf578e312676db29eb25b7af58bfd05",
-    "native_tested_head": "613fd76915f262c080b56700a48f77827bf3e378",
+    "status": "NATIVE_FIRST_TURN_SUCCESS_GENERAL_CHECKS_SEPARATE",
+    "checked_head": "2d396337a11fc9735fd6828a20537429c13b42c6",
+    "native_tested_head": "88e043592f07c80d1e4f582320bb955243986711",
     "native_head_runs": [
       {
-        "conclusion": "action_required",
-        "event": "pull_request",
-        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
-        "id": 34739493101,
-        "name": "source-validation",
-        "status": "completed"
-      },
-      {
-        "conclusion": "action_required",
-        "event": "pull_request",
-        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
-        "id": 34739493102,
+        "id": 34741234445,
         "name": "p03-forgetting-ci",
-        "status": "completed"
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:12Z",
+        "updated_at": "2026-09-13T05:49:33Z"
       },
       {
+        "id": 34741234475,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "pull_request",
+        "status": "completed",
         "conclusion": "success",
-        "event": "workflow_dispatch",
-        "head_sha": "613fd76915f262c080b56700a48f77827bf3e378",
-        "id": 34739491272,
-        "name": "Native three-selection dataflow diagnostic on bffd; no BP acceptance",
-        "status": "completed"
+        "created_at": "2026-09-13T05:49:12Z",
+        "updated_at": "2026-09-13T05:50:24Z"
+      },
+      {
+        "id": 34741232654,
+        "name": "Stage79 runtime boundary audit",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:10Z",
+        "updated_at": "2026-09-13T05:49:25Z"
+      },
+      {
+        "id": 34741232620,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:10Z",
+        "updated_at": "2026-09-13T05:49:32Z"
+      },
+      {
+        "id": 34741232596,
+        "name": "source-validation",
+        "path": ".github/workflows/ci.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:10Z",
+        "updated_at": "2026-09-13T05:50:22Z"
+      },
+      {
+        "id": 34741232621,
+        "name": "Native first move PP consumption and next action on bffd; no BP acceptance",
+        "path": ".github/workflows/pr16-bp-battle-progress.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:10Z",
+        "updated_at": "2026-09-13T05:50:41Z"
+      },
+      {
+        "id": 34741232640,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "head_sha": "88e043592f07c80d1e4f582320bb955243986711",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T05:49:10Z",
+        "updated_at": "2026-09-13T05:51:20Z"
       }
     ],
     "closeout_entry_runs": [
       {
-        "conclusion": null,
-        "event": "pull_request",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739860204,
+        "id": 34742004482,
         "name": "source-validation",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
+        "path": ".github/workflows/ci.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
         "event": "pull_request",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739860202,
-        "name": "p03-forgetting-ci",
-        "status": "in_progress"
+        "status": "in_progress",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:15Z",
+        "updated_at": "2026-09-13T06:08:23Z"
       },
       {
-        "conclusion": "success",
+        "id": 34742004475,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "pull_request",
+        "status": "in_progress",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:15Z",
+        "updated_at": "2026-09-13T06:08:26Z"
+      },
+      {
+        "id": 34742003740,
+        "name": "p03-forgetting-ci",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
         "event": "push",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739858145,
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:11Z"
+      },
+      {
+        "id": 34742003741,
         "name": "Stage79 runtime boundary audit",
-        "status": "completed"
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "push",
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:11Z"
       },
       {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739858109,
-        "name": "PR16 verified ZIP retention and same fixed handoff; zero native replay",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739858211,
-        "name": "p03-forgetting-ci",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "event": "push",
-        "head_sha": "a083afe22cf578e312676db29eb25b7af58bfd05",
-        "id": 34739858176,
+        "id": 34742003751,
         "name": "source-validation",
-        "status": "in_progress"
+        "path": ".github/workflows/ci.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "push",
+        "status": "queued",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:11Z"
+      },
+      {
+        "id": 34742003739,
+        "name": "Stage79 mGBA (all)",
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:24Z"
+      },
+      {
+        "id": 34742003754,
+        "name": "Retain native first-turn originals and update fixed handoff; zero emulator replay",
+        "path": ".github/workflows/pr16-bp-progress-closeout.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "push",
+        "status": "in_progress",
+        "conclusion": null,
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:24Z"
+      },
+      {
+        "id": 34742003737,
+        "name": "PR16 fixed handoff source-only verification",
+        "path": ".github/workflows/pr16-resume-maintenance.yml",
+        "head_sha": "2d396337a11fc9735fd6828a20537429c13b42c6",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-09-13T06:08:11Z",
+        "updated_at": "2026-09-13T06:08:30Z"
       }
     ],
-    "reason_ja": "native34739491272/job103676647813は成功し原本を照合。source-validation等は別のhead別API一覧に記録し、bot起点のaction_requiredや未完を成功へ読み替えない。この引継ぎcommitの全Checks完了やrelease-readyは主張しない。"
+    "reason_ja": "native34741232621/job103681167660は成功し原本とGit sourceを照合。一般CI/Stage79の状態はhead別Actions一覧に分離。実行中/action_required/failureを成功へ読み替えず、この記録commitの全Checks完了は主張しない。"
   },
   "p08_resume_synchronized": true,
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -137,33 +235,34 @@
   ],
   "retained_fixed_form_accepted_case_count": 5,
   "schema_version": 2,
-  "status": "DIAGNOSTIC_SECOND_CONFIRM_BATTLE_ACTION_NOT_BP",
+  "status": "DIAGNOSTIC_NATIVE_FIRST_TURN_NOT_BP",
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
   "observed_head_semantics": "これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。",
-  "latest_native_job": 103676647813,
+  "latest_native_job": 103681167660,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-  "latest_native_evidence": "content/modernization/pr16_bp_selection_diagnostic.json",
+  "latest_native_evidence": "content/modernization/pr16_bp_progress_diagnostic.json",
   "last_accepted_native_run": 34733866168,
   "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
   "next_action": {
-    "id": "BP_NATIVE_BATTLE_PROGRESS_AND_REWARD_ROUTE",
-    "goal_ja": "最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。",
+    "id": "BP_FIRST_BATTLE_RETURN_AND_EXCHANGE",
+    "goal_ja": "実行動callback復帰3925fから1戦のnative勝敗・FacilityRuntime_AfterBattle帰還へ延長する。後発completion wrapperの加算条件と交換2か所のsingle-selection ABIを確認し、未観測区間に必要な範囲だけ修正する。",
     "read_paths": [
-      "tools/mgba_pr16_bp_selection_native.c",
-      "scripts/pr16_bp_selection_native.py",
+      "content/modernization/pr16_bp_progress_diagnostic.json",
+      "tools/mgba_pr16_bp_battle_progress.c",
+      "scripts/pr16_bp_battle_progress.py",
       "overlays/facility_runtime/facility_runtime.c",
       "config/factory_high_modes_v2.json",
-      ".github/workflows/pr16-bp-selection-native.yml"
+      ".github/workflows/pr16-bp-battle-progress.yml"
     ],
     "success_observations": [
-      "verified actual Trial versus rewarded-mode route",
-      "native battle action and return without host outcome writes",
-      "remaining exchange special bindings read from exact candidate",
-      "correct reward conditions before separate BP acquisition acceptance"
+      "native first battle win/loss and facility return without host outcome writes",
+      "full completion-wrapper reward conditions separately verified",
+      "narrow exchange single-selection ABI verified before repair",
+      "BP acquisition and consumption remain separate acceptance"
     ],
-    "stop_rule_ja": "実行動選択callback到達は原本で再利用し、同じ停止点だけの再実行をしない。Trialのreward0を9BP獲得と誤認しない。新しい戦闘/帰還/交換/報酬区間の最初の不一致をframe/callback/run/job付きで残す。",
+    "stop_rule_ja": "3260f到達だけ、または初回turn3925fだけの同一診断を繰り返さず次の未観測区間へ進む。command12は描画より早いため実command14遷移まで観測。reward ID0を0BP扱いしない。最初の不一致をframe/callback/run/job付きで保持する。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
   },
   "read_policy": {
@@ -191,6 +290,7 @@
     "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
     "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
     "run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。",
+    "run34741232621の技選択・PP消費・次action callback3925fは、source影響なしに単独再実行しない。失敗run34741024241はfailureのまま保持する。",
     "P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。",
     "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
     "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
@@ -241,25 +341,57 @@
     "overlays/facility_runtime/facility_runtime.c": {
       "size": 18139,
       "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0"
+    },
+    "scripts/pr16_bp_battle_progress.py": {
+      "size": 5955,
+      "sha256": "59f7716a2eee46df96190f0e6511ca180aea11aac28f7c6efe529b19f7c1b24c"
+    },
+    "tools/mgba_pr16_bp_battle_progress.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    ".github/workflows/pr16-bp-battle-progress.yml": {
+      "size": 9495,
+      "sha256": "1cd04a910d21cf0451d912c7b8fa8f6e8e845bb447afa1a66b51099a97bc6a49"
+    },
+    "tests/test_pr16_bp_battle_progress.py": {
+      "size": 2823,
+      "sha256": "64e3e8899bc0f98b00d4f6c446cb6c627251869154d7b9227cbd1b7dffbc0dd9"
+    },
+    "scripts/pr16_bp_progress_checkpoint.py": {
+      "size": 10286,
+      "sha256": "ebea14c71fe0f45312347b9088497aec7a9d22e18407b4e39628d1545836fa9d"
+    },
+    "scripts/pr16_bp_progress_closeout.py": {
+      "size": 16378,
+      "sha256": "4acab9d74bb57a1b7c633d169bc8863906107bc3bcf19ba2eba787d1e861ad64"
+    },
+    "tests/test_pr16_bp_progress_checkpoint.py": {
+      "size": 2327,
+      "sha256": "f87f1fed82348212a1c2d55fe57ae258645014cdf59ae03812b06a06599eeeb5"
+    },
+    "content/modernization/pr16_bp_progress_attempts.json": {
+      "size": 3750,
+      "sha256": "aba994af9a061420b47743c519bf581aa45fea7674c5e68199885b3b9dc4c172"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
   "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
   "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
-  "latest_native_summary_ja": "成功原本ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07、51 receipt/71 source/18 entry/11 generatedを照合。fresh core1・3260frames・7barrier・警告0。cb2=080109C1/main=08013861/newbs=02017634、敵species[7,1,133]。旧run34738859743は敵数observer誤認のfailureとして原本保持。今回の台帳再照合emulator0。",
+  "latest_native_summary_ja": "原本ZIP786377bytes/SHA3deea9de7c0bf3eb154ab71de460a33e70a20e9d65c106a4d5bebbdf46c98e3e、76member/74source/10completion-chain source・生成controller・7guard・stdout/processを照合。fresh core1、3925frames、warning0。実行済み2試行(失敗1/成功1)。受入済み取消/Save/Continueの単独再実行0、原本再照合emulator0。",
   "candidate_scope_ja": "開発候補。最終製品SHAではない。",
   "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
   "prepared_native_probe": {
-    "case": "second-confirm-battle-probe",
+    "case": "first-native-turn",
     "execution_status": "COMPLETED_DIAGNOSTIC_SUCCESS",
-    "source_only_tests": 14,
+    "source_only_tests": 6,
     "rom_changes": 0,
     "historical_cancel_replayed": false,
-    "run_id": 34739491272,
-    "job_id": 103676647813,
-    "tested_head": "613fd76915f262c080b56700a48f77827bf3e378"
+    "run_id": 34741232621,
+    "job_id": 103681167660,
+    "tested_head": "88e043592f07c80d1e4f582320bb955243986711"
   },
-  "source_change_review_ja": "実装時は同じ候補/fixture/入力列/7barrierで観測だけ拡張。失敗raw敵数byteは生値として残し、既存party+0x20 species ABIから3体を検証。成功runの71source全closureが記録時HEADと一致。closeoutは原本/抄録/同じ引継ぎ/両ログとresume negative testだけで、ROM/native controller/runnerを変更しない。",
+  "source_change_review_ja": "既存launch C/Pythonを完全hash固定して追加controllerを派生。失敗原本の3322f action画面から最初のAが早過ぎたことを確認し、新Cだけに実command14遷移待ちを追加。ROM/fixture/7barrierは不変。closeoutは全ZIP/sourceをGit tested HEADと照合し、引継ぎ/ログ/evidence以外の既存sourceを書き換えない。",
   "preflight_failure": {
     "run_id": 34738673670,
     "job_id": 103674512984,
@@ -311,12 +443,54 @@
     "accepted_cancel_replays": 0,
     "rom_source_changes": 0,
     "closeout_emulator_processes": 0,
-    "native_bp_earning_accepted": false
+    "native_bp_earning_accepted": false,
+    "scope_ja": "今回追加したBP専用診断の計数。pushで自動起動する既存CI/Stage79は別のhead別Actions一覧に記録し、追加BP受入へ読み替えない。"
   },
   "closeout_retention_repair": {
     "failed_source_only_run": 34739728185,
     "native_processes": 0,
     "reason": "613fd769 retained failed Actions metadata but ignored original.zip; now explicitly stage the two hash-verified safe ZIPs and require index plus committed HEAD byte equality",
     "guard_helper": "independent exact stdout/stderr/process checks for all seven guards"
+  },
+  "reward_route_audit": {
+    "run_id": 34740626514,
+    "job_id": 103679606433,
+    "artifact_id": 10311359991,
+    "tested_head": "934cf9242c42270e95d9d2a9e6439699b5e27ca4",
+    "zip": {
+      "size": 311307,
+      "sha256": "cce97b8d9f1df9f0b28f181374f25811d0734c94233b5992e178daf9c3ae56b5"
+    },
+    "original_conclusion": "success",
+    "classification": "static-reward",
+    "verified_members": 23,
+    "new_emulator_processes": 0,
+    "verified_sources": 43,
+    "base_reward_bp": 9,
+    "trial_reward_id": 0,
+    "exchange_operands": [
+      153941801,
+      153941877
+    ],
+    "completion_chain_fully_resolved": false
+  },
+  "current_failed_native_attempt": {
+    "run_id": 34741024241,
+    "job_id": 103680639752,
+    "artifact_id": 10313035241,
+    "tested_head": "bf963d0e2082d960c58180fd53a89e1c7187066f",
+    "zip": {
+      "size": 774931,
+      "sha256": "b7fe496d2fe1aecab3f0c428e44ef3f1465a28a8f9dbb8b4d21998677df4bd78"
+    },
+    "original_conclusion": "failure",
+    "classification": "first-turn-menu-not-ready",
+    "verified_members": 74,
+    "new_emulator_processes": 1,
+    "verified_sources": 74,
+    "verified_chain_sources": 10,
+    "successful_fresh_cores": 0,
+    "first_unmatched_condition": "native move menu absent",
+    "frame": 3322
   }
 }

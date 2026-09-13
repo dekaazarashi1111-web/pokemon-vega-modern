@@ -1,48 +1,80 @@
 {
-  "schema_version": 1,
-  "classification": "DIAGNOSTIC_ATTEMPTS_NOT_ACCEPTANCE",
-  "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+  "active_baseline_changed": false,
   "attempts": [
     {
-      "run_id": 34741024241,
-      "job_id": 103680639752,
-      "tested_head": "bf963d0e2082d960c58180fd53a89e1c7187066f",
       "actions_conclusion": "failure",
-      "native_status": "FAIL",
       "actual_new_processes": 1,
-      "successful_fresh_cores": 0,
       "artifact_id": 10313035241,
-      "artifact_size": 774931,
       "artifact_sha256": "b7fe496d2fe1aecab3f0c428e44ef3f1465a28a8f9dbb8b4d21998677df4bd78",
+      "artifact_size": 774931,
       "first_unmatched_condition": "native move menu absent",
-      "frame": 3322,
-      "native_observation_ja": "3260fは実action callbackだが画像はメニュー描画前。Aの2-frame入力後3322fでもcommand0x12/ctrl0x0802DC15で、画像はたたかう画面。技メニュー/PP消費/勝利は観測なし。JSON stdoutは空でwrapperはparse failureも記録した。原本failureを成功へ読み替えない。",
       "followup_change_ja": "新しい追加controllerだけでcommand0x14への実遷移を毎frame観測し、action中だけ90frameごとにAを送る。最大600frame。技メニューへ入ったらAを止めて60frame描画待ち。既存7guards、PP減少/次action、BP0/元party600bytes/Save不変の条件は維持。",
-      "source_impact": ["tools/mgba_pr16_bp_battle_progress.c"]
+      "frame": 3322,
+      "job_id": 103680639752,
+      "native_observation_ja": "3260fは実action callbackだが画像はメニュー描画前。Aの2-frame入力後3322fでもcommand0x12/ctrl0x0802DC15で、画像はたたかう画面。技メニュー/PP消費/勝利は観測なし。JSON stdoutは空でwrapperはparse failureも記録した。原本failureを成功へ読み替えない。",
+      "native_status": "FAIL",
+      "run_id": 34741024241,
+      "source_impact": [
+        "tools/mgba_pr16_bp_battle_progress.c"
+      ],
+      "successful_fresh_cores": 0,
+      "tested_head": "bf963d0e2082d960c58180fd53a89e1c7187066f"
+    },
+    {
+      "artifact_id": 10312950124,
+      "classification": "native-first-turn",
+      "job_id": 103681167660,
+      "new_emulator_processes": 1,
+      "original_conclusion": "success",
+      "run_id": 34741232621,
+      "successful_fresh_cores": 1,
+      "tested_head": "88e043592f07c80d1e4f582320bb955243986711",
+      "zip": {
+        "sha256": "3deea9de7c0bf3eb154ab71de460a33e70a20e9d65c106a4d5bebbdf46c98e3e",
+        "size": 786377
+      }
     }
   ],
+  "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+  "classification": "DIAGNOSTIC_ATTEMPTS_NOT_ACCEPTANCE",
+  "latest_successful_diagnostic": "content/modernization/pr16_bp_progress_diagnostic.json",
+  "merge_performed": false,
+  "native_bp_earning_accepted": false,
+  "originals_verified": "content/modernization/pr16_bp_progress_evidence/verification.json",
+  "release_ready": false,
   "retained_static_audit": {
-    "run_id": 34740626514,
-    "job_id": 103679606433,
-    "tested_head": "934cf9242c42270e95d9d2a9e6439699b5e27ca4",
+    "actual_completion_adapter": "0x093C42C9",
     "artifact_id": 10311359991,
-    "artifact_size": 311307,
     "artifact_sha256": "cce97b8d9f1df9f0b28f181374f25811d0734c94233b5992e178daf9c3ae56b5",
-    "conclusion": "success",
-    "native_processes": 0,
-    "trial_reward_id": 0,
+    "artifact_size": 311307,
     "canonical_base_bp_amount": 9,
+    "conclusion": "success",
+    "job_id": 103679606433,
+    "native_processes": 0,
+    "remaining_trial_exchange_operands": [
+      "0x092CF729",
+      "0x092CF775"
+    ],
+    "remaining_trial_exchange_special": "0x2F",
     "rom_header_battles": 3,
     "rom_header_bp_amount": 9,
-    "remaining_trial_exchange_operands": ["0x092CF729", "0x092CF775"],
-    "remaining_trial_exchange_special": "0x2F",
-    "special47_target": "0x080CBF8D",
+    "run_id": 34740626514,
+    "scope_ja": "reward ID0は0BPではない。header/canonical基本報酬9と交換2か所のnull specialを確定。後発completion wrapper全連鎖の最終付与量とnative3勝は別途照合し、静的基本量をphysical earning受入へ読み替えない。",
     "special47_entry_hex": "7047",
-    "actual_completion_adapter": "0x093C42C9",
-    "scope_ja": "reward ID0は0BPではない。header/canonical基本報酬9と交換2か所のnull specialを確定。後発completion wrapper全連鎖の最終付与量とnative3勝は別途照合し、静的基本量をphysical earning受入へ読み替えない。"
+    "special47_target": "0x080CBF8D",
+    "tested_head": "934cf9242c42270e95d9d2a9e6439699b5e27ca4",
+    "trial_reward_id": 0
   },
-  "native_bp_earning_accepted": false,
-  "release_ready": false,
-  "merge_performed": false,
-  "active_baseline_changed": false
+  "schema_version": 1,
+  "source_only_closeout_failure": {
+    "artifact_id": 10312906382,
+    "artifact_sha256": "554a495f58709fab024e7d4a8801cdf26f752220298d345a1db6a9bb2b5857ee",
+    "artifact_size": 1819,
+    "job_id": 103682814759,
+    "new_emulator_processes": 0,
+    "original_conclusion": "failure",
+    "reason": "GitHub Actions list exceeded native JSON 64KiB cap; API metadata parser separated, native cap unchanged",
+    "run_id": 34741873434,
+    "tested_head": "9f213ad97961af282017f3f71a6da8c61a83dffb"
+  }
 }

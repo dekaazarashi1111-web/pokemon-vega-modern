@@ -4905,3 +4905,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。照合入力HEAD=a083afe22cf578e312676db29eb25b7af58bfd05、source-only closeout run=34739858109。PRopen/draft、merge/release/baseline変更なし。
 
 - Retention correction: 613fd769 stored failure metadata only; original.zip was ignored. Closeout run34739728185 failed before any native execution. This commit explicitly stages only both digest-verified, payload-checked ZIPs and verifies index plus committed HEAD bytes. Earlier retention statements are superseded by this actual retention check; original failure conclusion is unchanged.
+
+
+## 2026-09-13T06:08:36Z — USER-20260913-BP-REWARD-FIRST-TURN
+- Task: USER-20260913-BP-REWARD-FIRST-TURN / 報酬・交換bindingと初回native turn
+- Status: DONE_SCOPED_FIRST_TURN_DIAGNOSTIC; BP_EARNING_PENDING
+- Summary: Trial reward ID0と付与基本量9を区別。候補header3戦/9BPと交換operand092CF729/092CF775のspecial2F→080CBF8D(7047)を照合。全completion wrapper加算条件は未確定。
+- Native: 成功run34741232621/job103681167660/HEAD88e043592f07c80d1e4f582320bb955243986711。技247/PP24→23、敵HP167→139、自HP171→119、次action callback3925f。BP0、元party600bytesとSave counter2不変、7barrier、warning0。勝利/施設帰還/稼得BP/消費は未観測。
+- Failure retained: run34741024241/job103680639752は技選択前3322fでnative move menu absent。旧Aが描画前だったため新Cのみ実command14遷移待ちに修正。failure原本を成功へ再分類しない。
+- Evidence: 静的34740626514、失敗34741024241、成功34741232621の原本ZIPを再ZIPせず保持。size/SHA256、全member、Git tested-head source、生成C、raw stdout/stderr/process、7guardを照合。verification.jsonとactions-*.jsonが正本。
+- Verify: native focused6・resume18・retention7、resume check、task graph、git diff --check。元の正式取消checkpointとfixed-form5件は読取確認のみ。index原本とHEAD原本を照合。標準private guard既存違反は保持し、新規差分0を別検査。全体guard PASSとは主張しない。
+- Closeout failure retained: run34741873434/job103682814759はActions一覧がnative JSON 64KiB制限を超え停止。原本/Git照合後、commit前。emulator0。API metadataの読取だけ4MiBへ分離し、native strict JSONは変更しない。詳細とartifact digestは同じattempts JSONへ保存。
+- Execution: BP専用診断2process(失敗1/成功1core)、取消/Save/Continueの単独再実行0、closeout emulator0、ROM source変更0。自動CI/Stage79は別記録。
+- Files changed: 初回turn C/Python/tests/workflow、原本/検証/診断抄録/保持checker、同じ固定resume MD/JSON、P08再開文、両ログ。
+- Next: 1戦のnative勝敗・AfterBattle帰還、completion wrapper全加算と交換single-selection ABI。physical4/P08 gates2は未完のまま。
+- Commit: この記録を含むcommit。照合入力HEAD=2d396337a11fc9735fd6828a20537429c13b42c6、closeout run=34742003754。自己SHAを追って無限更新しない。
+- Network: GitHub connector/Actions API原本。PRopen/draft維持、merge/release/active baseline変更なし。
