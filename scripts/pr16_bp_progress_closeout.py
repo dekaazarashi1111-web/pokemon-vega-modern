@@ -28,8 +28,18 @@ def put(name,data,create_only=False):
     else:path.write_bytes(data)
 
 
+def github_json(raw):
+    # GitHub API metadata is not a native-result contract (which stays 64KiB).
+    need(type(raw) is bytes and len(raw)<=4*1024*1024,'GitHub metadata size differs')
+    value=json.loads(raw);need(type(value) is dict,'GitHub metadata must be an object')
+    return value
+
+
 def snapshot(api,head):
-    rows=c.parse(api('actions/runs?head_sha='+head+'&per_page=100'))['workflow_runs']
+    data=github_json(api('actions/runs?head_sha='+head+'&per_page=100'))
+    rows=data['workflow_runs']
+    need(type(rows) is list and data['total_count']<=100 and len(rows)==data['total_count'],'incomplete Actions snapshot')
+    need(all(r['head_sha']==head for r in rows),'Actions snapshot head differs')
     return [{k:r[k] for k in ('id','name','path','head_sha','event','status','conclusion','created_at','updated_at')} for r in rows]
 
 
@@ -42,6 +52,7 @@ def documents(report,head,actions,pr):
     attempts=resume.load(ROOT,ATTEMPTS)
     if not any(a['run_id']==latest['run_id'] for a in attempts['attempts']):
         attempts['attempts'].append({k:latest[k] for k in ('run_id','job_id','artifact_id','tested_head','zip','original_conclusion','classification','new_emulator_processes','successful_fresh_cores')})
+    attempts['source_only_closeout_failure']=dict(run_id=34741873434,job_id=103682814759,tested_head='9f213ad97961af282017f3f71a6da8c61a83dffb',original_conclusion='failure',artifact_id=10312906382,artifact_size=1819,artifact_sha256='554a495f58709fab024e7d4a8801cdf26f752220298d345a1db6a9bb2b5857ee',new_emulator_processes=0,reason='GitHub Actions list exceeded native JSON 64KiB cap; API metadata parser separated, native cap unchanged')
     attempts['latest_successful_diagnostic']=c.REPORT
     attempts['originals_verified']=c.BASE+'/verification.json'
     put(ATTEMPTS,stable(attempts))
@@ -80,7 +91,7 @@ def retain():
     report=c.check(ROOT);put(c.BASE+'/verification.json',stable(report))
     actions=dict(observed_at=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),native_head_runs=snapshot(api,c.PINS[-1][3]),closeout_entry_runs=snapshot(api,head))
     put(c.BASE+'/actions-snapshot.json',stable(actions))
-    pr=c.parse(api('pulls/16'))
+    pr=github_json(api('pulls/16'))
     need(pr['state']=='open' and pr['draft'] is True and pr['merged'] is False and pr['head']['sha']==head and pr['head']['ref']=='codex/modernization-followup-20260908','PR/branch changed')
     documents(report,head,actions,pr)
     print(stable(dict(status='RETAINED_AND_RESUME_SYNCED',new_emulator_processes=0,latest_native_run=c.PINS[-1][0],paths=list(PATHS))).decode(),end='')
@@ -96,6 +107,7 @@ def logs():
         '- Failure retained: run34741024241/job103680639752は技選択前3322fでnative move menu absent。旧Aが描画前だったため新Cのみ実command14遷移待ちに修正。failure原本を成功へ再分類しない。\n'
         '- Evidence: 静的34740626514、失敗34741024241、成功34741232621の原本ZIPを再ZIPせず保持。size/SHA256、全member、Git tested-head source、生成C、raw stdout/stderr/process、7guardを照合。verification.jsonとactions-*.jsonが正本。\n'
         '- Verify: native focused6・resume18・retention7、resume check、task graph、git diff --check。元の正式取消checkpointとfixed-form5件は読取確認のみ。index原本とHEAD原本を照合。標準private guard既存違反は保持し、新規差分0を別検査。全体guard PASSとは主張しない。\n'
+        '- Closeout failure retained: run34741873434/job103682814759はActions一覧がnative JSON 64KiB制限を超え停止。原本/Git照合後、commit前。emulator0。API metadataの読取だけ4MiBへ分離し、native strict JSONは変更しない。詳細とartifact digestは同じattempts JSONへ保存。\n'
         '- Execution: BP専用診断2process(失敗1/成功1core)、取消/Save/Continueの単独再実行0、closeout emulator0、ROM source変更0。自動CI/Stage79は別記録。\n'
         '- Files changed: 初回turn C/Python/tests/workflow、原本/検証/診断抄録/保持checker、同じ固定resume MD/JSON、P08再開文、両ログ。\n'
         '- Next: 1戦のnative勝敗・AfterBattle帰還、completion wrapper全加算と交換single-selection ABI。physical4/P08 gates2は未完のまま。\n'
