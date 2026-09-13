@@ -2193,3 +2193,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Next: 1戦のnative勝敗・AfterBattle帰還、completion wrapper全加算と交換single-selection ABI。physical4/P08 gates2は未完のまま。
 - Commit: この記録を含むcommit。照合入力HEAD=2d396337a11fc9735fd6828a20537429c13b42c6、closeout run=34742003754。自己SHAを追って無限更新しない。
 - Network: GitHub connector/Actions API原本。PRopen/draft維持、merge/release/active baseline変更なし。
+
+
+## 2026-09-13T10:15:55Z — USER-20260913-BP-FIRST-BATTLE
+- Task: USER-20260913-BP-FIRST-BATTLE / 初回turnから1戦勝敗・施設帰還へ延長
+- Status: STOPPED / native敗北後WhiteOut・元party復元不達。原本保存と固定引継ぎ同期は完了。
+- Summary: 新C/Pythonを追加し、既存first-turn sourceをhash固定して派生。初期HEAD10e657fと正本・最新Actionsを照合し、受入済み取消の単独再実行0。ROM/source/baselineの変更0。
+- Native FAIL: run34749370272/job103703085018/HEAD96ad7823a147e1db6ea8f411c77650b27a4f3102。追加8turn/PP消費8回・瀕死交代2回後、11261fでoutcome2。11405fのCB2_WhiteOut(08055F65)から11525fでfacility scriptが0へ。93925f map4/0(8,5)、party3/snapshot1/marker2残存。BP0/save counter2。復元assertion/timeoutを緩めずfailure原本を保持。
+- Evidence: ZIP883756bytes/SHA9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c。82member/79source/24chain-source・Git tested HEAD・生成C・7guard・stdout空/process exit1/stderrを照合。観測抄録は失敗stderr由来と明記し、原本statusを成功へ書換えない。
+- Reward audit: Stage28初回追加BP3・Stage29事前claim mask0x0Eでrepeat BP1/2のsource条件を確認。基本9BPとの最終合計、全completion chain、稼得/消費のnative受入は未完。
+- Verify: native controller compile -Werror PASS; source13 PASS; closeout focused 40 tests PASS; resume check/task graph/git diff --check PASS。index/HEAD原本byte同一検査。標準private guard既存結果は保持し、新規差分違反0を別検査。native帰還検査はFAILのまま。
+- Counts: 新規BP実戦process1、成功fresh core0、closeout emulator0。push自動CIはhead別Actions一覧へ分離。
+- Next: 5D launch/敗北callback/施設script復帰所有者を候補ROMで固定し最小修復。その変更後に敗北と元party600bytes復元を検証。現在の同一失敗を再実行しない。勝利・交換・3勝報酬・Save/Continue・稼得BP消費は後続。
+- Files changed: scripts/pr16_bp_battle_return.py, tools/mgba_pr16_bp_battle_return.c, .github/workflows/pr16-bp-battle-return.yml, scripts/pr16_bp_battle_return_checkpoint.py, scripts/pr16_bp_battle_return_closeout.py, tests/test_pr16_bp_battle_return.py, tests/test_pr16_bp_battle_return_checkpoint.py, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_battle_return_diagnostic.json, content/modernization/pr16_bp_battle_return_attempts.json, design/run_log.md, design/version_log.md, content/modernization/pr16_bp_battle_return_evidence/verification.json, content/modernization/pr16_bp_battle_return_evidence/actions-snapshot.json, content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json, content/modernization/pr16_bp_battle_return_evidence/original-34749370272.zip, content/modernization/pr16_bp_battle_return_evidence/actions-34749370272.json
+- Commit: source 96bd8d3b5d4552f567b32eddbcab80bcc78ab80a; この追記を含むcommitはGit履歴が正本（自己SHA循環は作らない）。
+- Network利用: GitHub repo/ref/PR/Actions/artifactを接続APIとActions ghで取得。既存private-environment releaseから固定inputを一時復元。新release/merge/draft解除/baseline切替なし。
