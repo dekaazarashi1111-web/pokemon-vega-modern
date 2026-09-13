@@ -8,14 +8,16 @@
 
 run34749370272/job103703085018はfailure。初回turn3925f後、追加8turn/PP消費8回と瀕死交代2回、11261fでnative敗北outcome2を観測。11405fにCB2_WhiteOutへ移り、11525fでfacility script pointerが0へ。93925fまで元party復元なし、map4/0(8,5)、party3/snapshot1/marker2、BP0/save counter2。FacilityRuntime_AfterBattle帰還・勝利・BP稼得は未観測。
 
-**次: 敗北後11405fのCB2_WhiteOut(08055F65)分岐と、11525fに092CF669から失われるscript復帰の所有者を固定候補ROMで追う。FacilityRuntime_AfterBattleへnativeに戻す最小修復を設計し、その変更後だけ敗北・元party復元を再検証する。**
+CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。
 
-同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。
+**次: 固定候補bffdのCB2_WhiteOut(08055F65)を設定する実callbackと、facility script 092CF669の復帰先をROM bytes・逆アセンブルで固定する。source-only監査の再実行ではなく候補bytesへ進み、安全な最小修復後だけ敗北帰還・元party600bytes/count復元を検証する。**
+
+同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。 run34757633314の固定source監査は完了し再実行しない。header宣言を分岐ownerと扱わず、run34757179781の旧owner=trueを修復根拠へ使わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `96bd8d3b5d4552f567b32eddbcab80bcc78ab80a`。
-これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。
+証拠のsource HEAD: `9e435e551598c2b99046c7aaff1bff6da1721da3`。
+このHEADはsource-only監査の対象。最新native診断HEAD・正式受入HEADとは異なり、現在branch HEADの代用品ではない。
 
 ## 最短の再開手順
 
@@ -25,6 +27,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_bp_loss_return_owner.json`
+- `scripts/build_battle_core.py`
 - `content/modernization/pr16_bp_battle_return_diagnostic.json`
 - `tools/mgba_pr16_bp_battle_return.c`
 - `scripts/pr16_bp_battle_return.py`
@@ -70,6 +74,7 @@ BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進め
 
 ## 再実行・過大主張の禁止
 
+- CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。 同一固定sourceの再scanや受入済み取消/Save/Continueの再実行は不要。
 - run34749370272の敗北→WhiteOut→party未復元はfailure原本で保持。同一sourceで再実行せず、native return修復後の影響区間だけ検証する。
 - 取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。
 - special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。
@@ -108,6 +113,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-BP run34749370272/job103703085018はnative帰還/復元不達でfailure。source13件と7guard、原本再検証は別判定。初期HEADの5 Actionsと前回closeout成功を照合済み。一般CIのpending/failureをこの診断成功へ読み替えず、最終記録commitの全Checks完了も主張しない。
+BP run34749370272/job103703085018はnative帰還/復元不達でfailure。source13件と7guard、原本再検証は別判定。初期HEADの5 Actionsと前回closeout成功を照合済み。一般CIのpending/failureをこの診断成功へ読み替えず、最終記録commitの全Checks完了も主張しない。 Source-only run34757633314/job103724666041は成功・19tests PASSだがowner未固定を確認した結果でありnative帰還の成功ではない。最終記録commitの全Checks完了は主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

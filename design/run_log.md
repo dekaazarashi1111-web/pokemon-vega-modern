@@ -4936,3 +4936,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Files changed: scripts/pr16_bp_battle_return.py, tools/mgba_pr16_bp_battle_return.c, .github/workflows/pr16-bp-battle-return.yml, scripts/pr16_bp_battle_return_checkpoint.py, scripts/pr16_bp_battle_return_closeout.py, tests/test_pr16_bp_battle_return.py, tests/test_pr16_bp_battle_return_checkpoint.py, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_battle_return_diagnostic.json, content/modernization/pr16_bp_battle_return_attempts.json, design/run_log.md, design/version_log.md, content/modernization/pr16_bp_battle_return_evidence/verification.json, content/modernization/pr16_bp_battle_return_evidence/actions-snapshot.json, content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json, content/modernization/pr16_bp_battle_return_evidence/original-34749370272.zip, content/modernization/pr16_bp_battle_return_evidence/actions-34749370272.json
 - Commit: source 96bd8d3b5d4552f567b32eddbcab80bcc78ab80a; この追記を含むcommitはGit履歴が正本（自己SHA循環は作らない）。
 - Network利用: GitHub repo/ref/PR/Actions/artifactを接続APIとActions ghで取得。既存private-environment releaseから固定inputを一時復元。新release/merge/draft解除/baseline切替なし。
+
+
+## 2026-09-13T12:47:35Z — USER-20260913-BP-LOSS-RETURN-OWNER
+- Task: USER-20260913-BP-LOSS-RETURN-OWNER / source復元阻害とowner誤判定の修正
+- Status: STOPPED / source復元・分類修正・原文保存はDONE。候補ROM上owner固定とnative敗北帰還修復は未完。
+- Summary: 初期HEAD5a9d2f8の再開入口・AGENTS・固定MD/JSON・Actionsを照合。archive内dirty worktree/configを使わず、hash固定Git objects/shallow境界から独立復元。full fsck/cleanを維持。宣言・コメント・文字列・別関数参照のowner誤判定を修正。
+- Evidence: run34757633314/job103724666041/HEAD9e435e551598c2b99046c7aaff1bff6da1721da3はsuccess、19tests PASS。ZIP100623bytes/SHA457a2d32eccd649e44de711cf1ccba95053d8643afa7c8e9aa5f0fc499deb90d、10text payloadを保存（excerptのみ末尾空白を保持する可逆JSON包み、他9件は原byte）。旧run34757179781のowner=trueも原文保持し不採用と明記。
+- Finding: 固定CFRUのWhiteOutはinclude/overworld.h:97の宣言1件だけ。candidate owner未確定をtrueに代作しない。過去native failure34749370272と復元未観測、BP未受入を維持。
+- Verify: source19tests PASS; closeout focused 42tests PASS; resume check/task graph/git diff --check、index原文同一性とprivate guard差分境界を実行。guard原本はcontent/modernization/pr16_bp_loss_return_owner_evidence/guard-boundary.json。全体guard既存違反と新規差分違反を分離。
+- Counts: 専用workflowの新規emulator0、受入取消/Save/Continue再実行0、候補ROM変更0、既存native受入変更0。push自動CIはActions一覧へ分離。
+- Next: bffd固定候補のWhiteOut設定元とfacility script復帰をROM bytesで固定し最小修復。その変更後のみnative敗北帰還/600bytes party復元を検証。完了source監査と同一native失敗を再実行しない。
+- Files changed: scripts/pr16_bp_loss_return_owner.py, tests/test_pr16_bp_loss_return_owner.py, scripts/pr16_restore_cfru_snapshot.py, tests/test_pr16_restore_cfru_snapshot.py, .github/workflows/pr16-bp-loss-return-owner.yml, scripts/pr16_bp_owner_closeout.py, tests/test_pr16_bp_owner_closeout.py, .github/workflows/pr16-bp-owner-closeout.yml, content/modernization/pr16_bp_loss_return_owner.json, content/modernization/pr16_bp_loss_return_owner_evidence, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Commit: source fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa; この追記を含むcommitはGit履歴が正本。version/product SHA変更なし。
+- Network利用: GitHub接続APIとActions ghでref/PR/Actions/artifactおよび固定state archiveを取得。非force fast-forwardのみ。merge/draft解除/release/baseline切替なし。

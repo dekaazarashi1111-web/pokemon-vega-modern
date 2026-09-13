@@ -2,10 +2,10 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run34749370272/job103703085018はfailure。初回turn3925f後、追加8turn/PP消費8回と瀕死交代2回、11261fでnative敗北outcome2を観測。11405fにCB2_WhiteOutへ移り、11525fでfacility script pointerが0へ。93925fまで元party復元なし、map4/0(8,5)、party3/snapshot1/marker2、BP0/save counter2。FacilityRuntime_AfterBattle帰還・勝利・BP稼得は未観測。",
+    "current_stop": "run34749370272/job103703085018はfailure。初回turn3925f後、追加8turn/PP消費8回と瀕死交代2回、11261fでnative敗北outcome2を観測。11405fにCB2_WhiteOutへ移り、11525fでfacility script pointerが0へ。93925fまで元party復元なし、map4/0(8,5)、party3/snapshot1/marker2、BP0/save counter2。FacilityRuntime_AfterBattle帰還・勝利・BP稼得は未観測。\n\nCFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
-    "next_step": "敗北後11405fのCB2_WhiteOut(08055F65)分岐と、11525fに092CF669から失われるscript復帰の所有者を固定候補ROMで追う。FacilityRuntime_AfterBattleへnativeに戻す最小修復を設計し、その変更後だけ敗北・元party復元を再検証する。",
+    "next_step": "固定候補bffdのCB2_WhiteOut(08055F65)を設定する実callbackと、facility script 092CF669の復帰先をROM bytes・逆アセンブルで固定する。source-only監査の再実行ではなく候補bytesへ進み、安全な最小修復後だけ敗北帰還・元party600bytes/count復元を検証する。",
     "party_snapshot_and_marker_observed": true,
     "six_rentals_generated": true,
     "trial_delegate_repaired": true,
@@ -44,7 +44,7 @@
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
+  "observed_head": "9e435e551598c2b99046c7aaff1bff6da1721da3",
   "observed_head_checks": {
     "status": "NATIVE_FAILURE_GENERAL_CHECKS_SEPARATE",
     "checked_head": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
@@ -185,7 +185,7 @@
         "updated_at": "2026-09-13T10:15:44Z"
       }
     ],
-    "reason_ja": "BP run34749370272/job103703085018はnative帰還/復元不達でfailure。source13件と7guard、原本再検証は別判定。初期HEADの5 Actionsと前回closeout成功を照合済み。一般CIのpending/failureをこの診断成功へ読み替えず、最終記録commitの全Checks完了も主張しない。"
+    "reason_ja": "BP run34749370272/job103703085018はnative帰還/復元不達でfailure。source13件と7guard、原本再検証は別判定。初期HEADの5 Actionsと前回closeout成功を照合済み。一般CIのpending/failureをこの診断成功へ読み替えず、最終記録commitの全Checks完了も主張しない。 Source-only run34757633314/job103724666041は成功・19tests PASSだがowner未固定を確認した結果でありnative帰還の成功ではない。最終記録commitの全Checks完了は主張しない。"
   },
   "p08_resume_synchronized": true,
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -210,7 +210,7 @@
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "observed_head_semantics": "これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。",
+  "observed_head_semantics": "このHEADはsource-only監査の対象。最新native診断HEAD・正式受入HEADとは異なり、現在branch HEADの代用品ではない。",
   "latest_native_job": 103703085018,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
   "latest_native_evidence": "content/modernization/pr16_bp_battle_return_diagnostic.json",
@@ -218,8 +218,10 @@
   "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
   "next_action": {
     "id": "BP_LOSS_RETURN_CALLBACK_OWNER",
-    "goal_ja": "敗北後11405fのCB2_WhiteOut(08055F65)分岐と、11525fに092CF669から失われるscript復帰の所有者を固定候補ROMで追う。FacilityRuntime_AfterBattleへnativeに戻す最小修復を設計し、その変更後だけ敗北・元party復元を再検証する。",
+    "goal_ja": "固定候補bffdのCB2_WhiteOut(08055F65)を設定する実callbackと、facility script 092CF669の復帰先をROM bytes・逆アセンブルで固定する。source-only監査の再実行ではなく候補bytesへ進み、安全な最小修復後だけ敗北帰還・元party600bytes/count復元を検証する。",
     "read_paths": [
+      "content/modernization/pr16_bp_loss_return_owner.json",
+      "scripts/build_battle_core.py",
       "content/modernization/pr16_bp_battle_return_diagnostic.json",
       "tools/mgba_pr16_bp_battle_return.c",
       "scripts/pr16_bp_battle_return.py",
@@ -234,7 +236,7 @@
       "BP and full save counter unchanged in loss control",
       "separate winner/exchange/reward acquisition acceptance remains pending"
     ],
-    "stop_rule_ja": "同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。",
+    "stop_rule_ja": "同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。 run34757633314の固定source監査は完了し再実行しない。header宣言を分岐ownerと扱わず、run34757179781の旧owner=trueを修復根拠へ使わない。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
   },
   "read_policy": {
@@ -259,6 +261,7 @@
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
   "do_not_repeat": [
+    "CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。 同一固定sourceの再scanや受入済み取消/Save/Continueの再実行は不要。",
     "run34749370272の敗北→WhiteOut→party未復元はfailure原本で保持。同一sourceで再実行せず、native return修復後の影響区間だけ検証する。",
     "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
     "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
@@ -394,6 +397,30 @@
     "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json": {
       "size": 1496,
       "sha256": "f85edcef10ca6432bf03455ac2e734605203e7ead5deae0ff51883df6d778545"
+    },
+    "scripts/pr16_bp_loss_return_owner.py": {
+      "size": 8855,
+      "sha256": "6d3461687aef2a77380681c4b1516620ecf9aa5e7fb9d146b5615e87956b5574"
+    },
+    "tests/test_pr16_bp_loss_return_owner.py": {
+      "size": 4255,
+      "sha256": "95c5ddb2f38d0ee21a4430fede332cc168ccffb3d78e2fb4bdb8409cdbb2ec40"
+    },
+    "scripts/pr16_restore_cfru_snapshot.py": {
+      "size": 8213,
+      "sha256": "5b8bc2069f12fd6513ed2b8424de48043a71515e419d208087885d7066c2a202"
+    },
+    "tests/test_pr16_restore_cfru_snapshot.py": {
+      "size": 6311,
+      "sha256": "b0b743783966fe8af3b6a058ef367bf86560fa3a8728dbdc7e0cd44d38a14771"
+    },
+    ".github/workflows/pr16-bp-loss-return-owner.yml": {
+      "size": 6801,
+      "sha256": "5cbd21e4d033a615ebc5c0255768615d222cea1ae8f4b9bae0a269362e4811c9"
+    },
+    "content/modernization/pr16_bp_loss_return_owner.json": {
+      "size": 10605,
+      "sha256": "bbd9944b113f8de2588d92e2a09f9e069b461fed395745ea1851b1b7c04f5219"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -673,5 +700,17 @@
     "path": "content/modernization/pr16_bp_progress_diagnostic.json",
     "scope": "FIRST_TURN_NOT_BP"
   },
-  "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json"
+  "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json",
+  "source_owner_audit": {
+    "report": "content/modernization/pr16_bp_loss_return_owner.json",
+    "run_id": 34757633314,
+    "job_id": 103724666041,
+    "tested_head": "9e435e551598c2b99046c7aaff1bff6da1721da3",
+    "source_gate_complete": true,
+    "owner_resolved": false,
+    "candidate_rom_owner_verified": false,
+    "native_return_fix_complete": false,
+    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0
+  }
 }
