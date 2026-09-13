@@ -58,18 +58,62 @@ jobs:
               'candidate_rom_changed':False,
           },sort_keys=True,indent=2)+'\n')
           PY
-      - name: Restore fixed CFRU source without rebuilding ROM
+      - name: Restore exact fixed CFRU source from bound state archive only
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
+          out=.local/pr16-bp-loss-return-owner
           assets=.local/pr16-bp-loss-return-owner-inputs
           mkdir -p "$assets"
           tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
-          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --dir "$assets"
-          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip >/dev/null
-          test -d vendor/upstream/CFRU-JP
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          root=pathlib.Path('.').resolve()
+          out=root/'.local/pr16-bp-loss-return-owner'
+          archive=root/'.local/pr16-bp-loss-return-owner-inputs/pokemon-vega-private-env-v1-state.zip'
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          bound=next(row for row in cfg['archives'] if row['name']==archive.name)
+          raw=archive.read_bytes()
+          assert len(raw)==bound['size']
+          assert hashlib.sha256(raw).hexdigest()==bound['sha256']
+          prefix=pathlib.PurePosixPath('vendor/upstream/CFRU-JP')
+          rows=[];total=0
+          with zipfile.ZipFile(archive) as z:
+              assert len(z.namelist())==len(set(z.namelist()))
+              for info in z.infolist():
+                  name=pathlib.PurePosixPath(info.filename)
+                  if name!=prefix and prefix not in name.parents:
+                      continue
+                  assert not name.is_absolute() and '..' not in name.parts and '\\' not in info.filename
+                  mode=info.external_attr>>16
+                  assert not stat.S_ISLNK(mode)
+                  rows.append((info,name,mode))
+                  if not info.is_dir():total+=info.file_size
+              assert 1<=len(rows)<=20000 and 0<total<=160000000
+              for info,name,mode in rows:
+                  target=(root/pathlib.Path(*name.parts)).resolve()
+                  assert target==root/pathlib.Path(*name.parts)
+                  assert target==root or root in target.parents
+                  if info.is_dir():
+                      target.mkdir(parents=True,exist_ok=True)
+                      continue
+                  target.parent.mkdir(parents=True,exist_ok=True)
+                  data=z.read(info)
+                  assert len(data)==info.file_size
+                  target.write_bytes(data)
+                  target.chmod((mode & 0o777) or 0o644)
+          source=root/pathlib.Path(*prefix.parts)
+          assert (source/'.git').is_dir()
+          (out/'source-restore.json').write_text(json.dumps({
+              'archive':archive.name,'archive_size':len(raw),'archive_sha256':bound['sha256'],
+              'prefix':prefix.as_posix(),'members':len(rows),'uncompressed_size':total,
+              'rom_extracted':False,'new_emulator_processes':0,
+          },sort_keys=True,indent=2)+'\n')
+          PY
+          test -z "$(git -C vendor/upstream/CFRU-JP status --porcelain)"
           test -z "$(git status --short --untracked-files=no)"
       - name: Audit exact source owner without ROM or emulator execution
         shell: bash
