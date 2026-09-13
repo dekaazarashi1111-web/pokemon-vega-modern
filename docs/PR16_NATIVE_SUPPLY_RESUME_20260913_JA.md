@@ -6,16 +6,18 @@
 
 ## いまの停止点と次の1手
 
-交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。
 
-**次: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。**
+既存native診断: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+
+**次: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。**
 
 今回の読取専用診断・初勝利・交換の単独再実行はしない。新規修復/報酬ケースへ同一prefixを延長する時だけ使用する。取消Save/Continue等の受入済みケース、P03/P06/P07等は影響なしにつき再実行しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e9793dfda49ec3044b662aefd7bb0093182dce3a`。
-今回のnative追跡を実行した固定source HEAD。記録commit/現在HEADはAPIで別途照合する。
+証拠のsource HEAD: `48a36caf3361b1d167c302174eb2c4c4121c7508`。
+WIPとsource-only owner監査の固定HEAD。latest_native_*と正式受入は以前の原本を維持。
 
 ## 最短の再開手順
 
@@ -25,6 +27,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_bp_party_retention_wip.json`
+- `overlays/facility_party_retention/facility_party_retention.c`
+- `tests/test_pr16_bp_party_retention.py`
+- `scripts/pr16_bp_party_retention_owner.py`
+- `.github/workflows/pr16-bp-party-retention.yml`
 - `content/modernization/pr16_bp_exchange_identity_verified.json`
 - `content/modernization/pr16_bp_exchange_identity_evidence/identity.json`
 - `content/modernization/pr16_bp_exchange_identity_evidence/native.stderr.txt`
@@ -84,6 +91,7 @@ BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進め
 - ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。
 - run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。
 - 個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。
+- WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。
 
 ## 次セッションへ残す更新手順
 
@@ -113,6 +121,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-個体追跡run34774194505/job103769160925 SUCCESS。事前照合停止run34774090333はfailure（native0）のまま保持。全Actionsはcontent/modernization/pr16_bp_exchange_identity_evidence/actions.json。全体CIやrelease受入を意味しない。
+WIP48a36caの8 Actionsは照合時SUCCESS。entry c0dcのPR 2件はaction_required履歴のまま保持。今回owner監査はnative0、runtime保持修復は未完。詳細: content/modernization/pr16_bp_party_retention_wip.json
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

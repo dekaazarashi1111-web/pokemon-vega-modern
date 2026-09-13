@@ -1,0 +1,329 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "blocker": {
+    "attempts": 2,
+    "excerpt": "リクエストの安全性を確認できなかったため、このツールの呼び出しは OpenAI によってブロックされました。",
+    "github_permission_missing": false,
+    "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+    "response": "追加解析/接続を停止。別経路で再試行せず、成功済み証拠とWIPのみを記録。"
+  },
+  "candidate_changed": false,
+  "classification": "WIP_NOT_RUNTIME_FIX_NOT_NATIVE_ACCEPTANCE",
+  "native_bp_earning_accepted": false,
+  "native_retention_verified": false,
+  "new_native_processes": 0,
+  "owner_artifact_id": 10325794218,
+  "owner_artifact_zip": {
+    "sha256": "e25867d0a3167922e51d87b3e2767a7f61c614ffc8a92d174a825db38ce582f2",
+    "size": 216630
+  },
+  "owner_evidence": {
+    "actions_before": {
+      "active_runs": [
+        {
+          "conclusion": null,
+          "event": "pull_request",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785152676,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "pull_request",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785152631,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149994,
+          "name": "交換個体保持修復のowner照合・限定検証",
+          "path": ".github/workflows/pr16-bp-party-retention.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785150057,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149998,
+          "name": "Stage79 mGBA (all)",
+          "path": ".github/workflows/modernization-stage79-mgba.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785150075,
+          "name": "Stage79 runtime boundary audit",
+          "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149966,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149996,
+          "name": "PR16 fixed handoff source-only verification",
+          "path": ".github/workflows/pr16-resume-maintenance.yml",
+          "status": "in_progress"
+        }
+      ],
+      "entry_head_runs": [
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "c0dc2ccee1e0253a0c8d8604c6a7312f04a133a3",
+          "id": 34774623910,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "completed"
+        },
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "c0dc2ccee1e0253a0c8d8604c6a7312f04a133a3",
+          "id": 34774623984,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "completed"
+        }
+      ],
+      "latest_identity": {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+        "id": 34774194505,
+        "name": "7f32交換個体の次戦までの読取専用追跡（同一prefix・既受入再実行なし）",
+        "path": ".github/workflows/pr16-bp-exchange-identity.yml",
+        "status": "completed"
+      },
+      "pr_open_draft": true,
+      "tested_head": "48a36caf3361b1d167c302174eb2c4c4121c7508"
+    },
+    "candidate": {
+      "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+      "size": 33554432
+    },
+    "host_tests": {
+      "count": 4,
+      "result": "PASS",
+      "transcript": "test_all_invalid_ledger_markers_and_counts_fall_through (test_pr16_bp_party_retention.RetentionScopeTests.test_all_invalid_ledger_markers_and_counts_fall_through) ... ok\ntest_first_battle_ordinary_scripts_and_mismatched_reward_untouched (test_pr16_bp_party_retention.RetentionScopeTests.test_first_battle_ordinary_scripts_and_mismatched_reward_untouched) ... ok\ntest_only_second_and_third_bound_continuations (test_pr16_bp_party_retention.RetentionScopeTests.test_only_second_and_third_bound_continuations) ... ok\ntest_runtime_has_no_party_or_ledger_write (test_pr16_bp_party_retention.RetentionScopeTests.test_runtime_has_no_party_or_ledger_write) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.118s\n\nOK\n"
+    },
+    "member_hashes": {
+      "actions-before.json": {
+        "sha256": "1a7c00d08d052f1b2fd13d153118573f871ef5121d6d05b1e3f15c9fcc737bff",
+        "size": 3466
+      },
+      "charmap-binding.json": {
+        "sha256": "d5955438ed689a5bc8969155c83f140e0e8c6772735a51e663a98a1312e13f2f",
+        "size": 228
+      },
+      "owner.json": {
+        "sha256": "bb46bf0f64cbef4b9730d48e030f81be11180f6d0ff5da9a5c83bfd61eba5982",
+        "size": 45479
+      },
+      "owner.stdout": {
+        "sha256": "9f0ccb2c4b52c037dd0813599c41052876b70f5237323db4b329e781738e8d19",
+        "size": 466
+      },
+      "p07.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "p07.stdout": {
+        "sha256": "61b1327cce12789ee9f06f5944f5dacbbf097ca1d72b1abea0725c2835cf3293",
+        "size": 591
+      },
+      "private-restore.json": {
+        "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0",
+        "size": 228
+      },
+      "repair.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "repair.stdout": {
+        "sha256": "f191856fe4da91b0e7b716a1daf703173597a6af95f8fde1ec8a14afe71ef72c",
+        "size": 42856
+      },
+      "resume-before.json": {
+        "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+        "size": 83
+      },
+      "stage84.json": {
+        "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251",
+        "size": 412
+      },
+      "stage84.stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "toolchain.log": {
+        "sha256": "8ac252c596e3726126f03bc72ca3df5ac5c6005e1af8ad9aea686a60cd52d4c7",
+        "size": 40717
+      },
+      "tracked-snapshot.json": {
+        "sha256": "8153d5841233791d579b61b3ec4eb2360fa95ca1ab7fd9ba78cff6891209d39d",
+        "size": 512478
+      },
+      "unit.stderr": {
+        "sha256": "61402506b3dbb88c5f2a137068587d3cecfba58cb61aacbec3456a1c7af0ae31",
+        "size": 754
+      },
+      "unit.stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "upstream-source.json": {
+        "sha256": "251c85cdff87af7cdee87641db6d8c0ed42d61f5f9df308b3cde41a90328bd14",
+        "size": 228219
+      }
+    },
+    "owner_status": "OWNER_ABI_AUDIT_NOT_NATIVE_ACCEPTANCE"
+  },
+  "owner_run": {
+    "conclusion": "success",
+    "event": "push",
+    "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+    "id": 34785149994,
+    "name": "交換個体保持修復のowner照合・限定検証",
+    "path": ".github/workflows/pr16-bp-party-retention.yml",
+    "status": "completed"
+  },
+  "release_ready": false,
+  "runtime_connected": false,
+  "schema_version": 1,
+  "sources": {
+    ".github/workflows/pr16-bp-party-retention-record.yml": {
+      "sha256": "74fa7cdd2a00218dfe9977a14972e6371d2b78e897a87d073d4d4d6fc56d624b",
+      "size": 2172
+    },
+    ".github/workflows/pr16-bp-party-retention.yml": {
+      "sha256": "152965d4a799b92110d18e84d7a20fbf8a511c515ae5af28ece3d3d3ba8796b3",
+      "size": 7159
+    },
+    "overlays/facility_party_retention/facility_party_retention.c": {
+      "sha256": "71ceef74208bda989debb45986b973c63b9f4e8c0114037f233bb3c95a452c13",
+      "size": 2015
+    },
+    "scripts/pr16_bp_party_retention_owner.py": {
+      "sha256": "b42212d377d71081db992a39ffd4c20849d5a8f29506762135cec3d985d3a50e",
+      "size": 4753
+    },
+    "scripts/pr16_bp_party_retention_record.py": {
+      "sha256": "bf1b34967d839146c3069ae4e10edb7d610ea88f1ee85544ea4e9739f8129c68",
+      "size": 15084
+    },
+    "tests/test_pr16_bp_party_retention.py": {
+      "sha256": "37173b7c934539655f439e69fe2b7c61c5a676259a247e2ebfb4bc1e86d47270",
+      "size": 2322
+    },
+    "tests/test_pr16_bp_party_retention_record.py": {
+      "sha256": "1562d3ac46078e46824dbd136f5b8c1b5569930e5db12c363993cfcad5b31fcb",
+      "size": 2263
+    }
+  },
+  "summary_ja": "WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。",
+  "task": "USER-20260914-BP-PARTY-RETENTION",
+  "task_status": "BLOCKED",
+  "tested_head": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+  "tested_head_checks": [
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785152631,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "pull_request",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785152676,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785150057,
+      "name": "p03-forgetting-ci",
+      "path": ".github/workflows/p03-forgetting-ci.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785149998,
+      "name": "Stage79 mGBA (all)",
+      "path": ".github/workflows/modernization-stage79-mgba.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785149994,
+      "name": "交換個体保持修復のowner照合・限定検証",
+      "path": ".github/workflows/pr16-bp-party-retention.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785149996,
+      "name": "PR16 fixed handoff source-only verification",
+      "path": ".github/workflows/pr16-resume-maintenance.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785150075,
+      "name": "Stage79 runtime boundary audit",
+      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "event": "push",
+      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+      "id": 34785149966,
+      "name": "source-validation",
+      "path": ".github/workflows/ci.yml",
+      "status": "completed"
+    }
+  ]
+}

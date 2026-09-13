@@ -2287,3 +2287,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/APIでHEAD/PR/Actions/artifact照合。Actions内でpinned private inputsを再構築。追跡/記録成果は許可済み工程textのみ。
 - Boundary: 正式physical4/P08 gate2・BP未受入を維持。PR draft/open、baseline維持、merge/releaseなし。全体private guardの既存違反はbaseline/index差分として記録し全体PASSとはしない。
 - Next: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-13T22:07:05.622379+00:00 — USER-20260914-BP-PARTY-RETENTION
+- Timestamp: 2026-09-13T22:07:05.622379+00:00
+- Version: PR16 party retention WIP
+- Task: USER-20260914-BP-PARTY-RETENTION / 次戦で交換個体が失われる問題の修復
+- Status: BLOCKED
+- Summary: WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。
+- Verify: host4tests PASS、owner Actions run34785149994 SUCCESS、artifact10325794218の全member hashを照合。記録回帰・resume tests/check・task graph・diff/index guard差分をpublish gateとする。native保持検証は未実行。
+- Files changed: predicate/C、host tests、owner script/workflow（WIP48a36ca）。今回は記録script/tests/workflow、WIP evidence JSON、固定引継ぎMD/JSON、P08 resume、両ログとblockers。
+- Commit: 実装WIP=48a36caf3361b1d167c302174eb2c4c4121c7508。記録はこの追記を含むcommit。入力HEAD=edd559148f79e65730d5ab0ccfba13ed6400e364。非force push後のhashはworkflow result.jsonとremote refで照合。
+- Network: GitHub connector/API・既存Actions artifactのみ。記録工程はROM/私有入力を開かず、native実行なし。
+- Blocker/Error excerpt: OpenAIツール安全性確認が追加コード反映2回をブロック。GitHubアクセス不足ではない。
+- Boundary: candidate7f32/CRC0D5D9178、正式physical4/P08 gate2、BP未受入、PR open/draft、baselineを維持。merge/releaseなし。受入済みcaseの再実行0（選択工程）。自動起動既存CIは別記。
+- Question for human: 権限確認の再依頼は不要。停止した要求は反復しない。
+- Next step: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。

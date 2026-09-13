@@ -392,7 +392,7 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。 Next: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。 Next: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -460,7 +460,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。 Next: 次戦初期化callback2=0x0800FEC5/script=0x092CF6A5のownerをsource/ABIと照合し、17755f保持→17770f消去→17786f新規3個体となる再生成を最小修復successorで防ぐ。保持確認前に2/3戦目・BP報酬へ進まない。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。 Next: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
