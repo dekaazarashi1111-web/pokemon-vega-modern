@@ -1,5 +1,5 @@
 name: pr16-bp-launch-extension
-run-name: PR16 final original retention and fixed handoff; no emulator
+run-name: PR16 verified ZIP retention and same fixed handoff; zero native replay
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -17,12 +17,13 @@ jobs:
     timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
+      PYTHONDONTWRITEBYTECODE: '1'
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: Execute byte-bound source-only closeout with independent guard transcript checks
+      - name: Execute reviewed closeout with explicit validated archive staging
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -43,11 +44,24 @@ jobs:
           def replace(index,old,new):
               assert blocks[index].count(old)==1,(index,old)
               blocks[index]=blocks[index].replace(old,new)
-          replace(0,'test "$(git rev-parse HEAD^)" = 613fd76915f262c080b56700a48f77827bf3e378','test "$(git rev-parse HEAD^)" = '+pin)
+          replace(0,'test "$(git rev-parse HEAD^)" = 613fd76915f262c080b56700a48f77827bf3e378','test "$(git rev-parse HEAD^)" = 76ac10ccf3cd6594fe3ef52c1729f0af07ceb429')
           replace(1,"    native.previous.control.validate_guard(files[prefix+'guard-'+guard+'.stdout'],files[prefix+'guard-'+guard+'.stderr'],json.loads(files[prefix+'guard-'+guard+'.process.json']))",
                     "    assert files[prefix+'guard-'+guard+'.stdout']==b''\n    assert files[prefix+'guard-'+guard+'.stderr']==b'P03 archive: host write after observation barrier\\n'\n    assert json.loads(files[prefix+'guard-'+guard+'.process.json'])==dict(schema_version=1,returncode=1,timed_out=False,spawn_error=None)")
+          replace(1,"python3 - <<'PY'", "gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10312440481/zip > .local/pr16-bp-launch-closeout/failed-original.zip\npython3 - <<'PY'")
+          replace(1,"failed='content/modernization/pr16_bp_launch_evidence/34738859743/original.zip';fraw=(root/failed).read_bytes()",
+                    "failed='content/modernization/pr16_bp_launch_evidence/34738859743/original.zip';fraw=(out/'failed-original.zip').read_bytes()")
+          replace(1,"assert fraw==subprocess.check_output(['git','show','HEAD:'+failed])",
+                    "assert not (root/failed).exists();(root/failed).write_bytes(fraw)")
           replace(2,"s['logs_synchronized']=True;p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)",
-                    "s['closeout_helper_correction']={'source_head':'ff5fc64568555eebe3ab7154e53265e01f3de9ee','new_emulator_processes':0,'reason':'runtime-loaded validate_guard helper is not exported by control module; independently match all seven recorded stdout/stderr/process contracts'}\ns['logs_synchronized']=True;p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)")
+                    "s['closeout_retention_repair']={'failed_source_only_run':34739728185,'native_processes':0,'reason':'613fd769 retained failed Actions metadata but ignored original.zip; now explicitly stage the two hash-verified safe ZIPs and require index plus committed HEAD byte equality','guard_helper':'independent exact stdout/stderr/process checks for all seven guards'}\ns['logs_synchronized']=True;p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)")
+          replace(2,"for name in ('design/run_log.md','design/version_log.md'):",
+                    "note += '\\n- Retention correction: 613fd769 stored failure metadata only; original.zip was ignored. Closeout run34739728185 failed before any native execution. This commit explicitly stages only both digest-verified, payload-checked ZIPs and verifies index plus committed HEAD bytes. Earlier retention statements are superseded by this actual retention check; original failure conclusion is unchanged.\\n'\nfor name in ('design/run_log.md','design/version_log.md'):")
+          replace(3,'python3 scripts/pr16_bp_chooser_checkpoint.py --index',
+                    'git add -f -- content/modernization/pr16_bp_launch_evidence/34738859743/original.zip content/modernization/pr16_bp_launch_evidence/34739491272/original.zip\npython3 scripts/pr16_bp_chooser_checkpoint.py --index')
+          replace(3,"changed=set(subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines());assert changed<=regular|evidence",
+                    "evidence.add('content/modernization/pr16_bp_launch_evidence/34738859743/original.zip')\nchanged=set(subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines());assert changed<=regular|evidence")
+          replace(3,"for path in ('content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'):",
+                    "for path in ('content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md','content/modernization/pr16_bp_launch_evidence/34738859743/original.zip'):")
           out=pathlib.Path('.local/pr16-bp-launch-closeout');out.mkdir(parents=True,exist_ok=True)
           for i,block in enumerate(blocks):
               script=out/f'closeout-step-{i+1}.sh';script.write_text(block)
