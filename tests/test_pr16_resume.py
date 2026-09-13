@@ -19,7 +19,8 @@ class ResumeTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name)
         self.s = json.loads((ROOT/m.STATE).read_text(encoding='utf-8'))
-        for name in [m.STATE, self.s['latest_native_evidence'], *self.s['source_bindings']]:
+        names = [m.STATE, self.s['latest_native_evidence'], *self.s['source_bindings'], *self.s['next_action']['read_paths']]
+        for name in dict.fromkeys(names):
             dst = self.root/name
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/name, dst)
