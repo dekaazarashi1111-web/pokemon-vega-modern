@@ -21,13 +21,36 @@ CASE='native-win-exchange-next-battle'
 SCOPE='PR16_P05_NATIVE_WIN_EXCHANGE_NEXT_BATTLE'
 EXTRA={'exchange_menu_frame','exchange_selected_frame','exchange_confirm_frame','exchange_commit_frame',
        'next_battle_struct_frame','next_battle_action_frame','exchange_slot','exchange_selected_order',
-       'exchange_preserved_bytes','exchange_replaced_bytes','native_exchange_observed','native_exchange_accepted','opening_native_switches'}
+       'exchange_preserved_bytes','exchange_replaced_bytes','native_exchange_observed','native_exchange_accepted','opening_native_switches','forced_identity_checks'}
 
+
+IDENTITY_C=r'''
+/* CFRU-JP e24a16fe include/pokemon.h BattlePokemon 0x48/0x54.
+ * 通常交代後はUIのparty位置と内部indexが異なる。個体そのものを照合する。 */
+struct WXIdentity {uint32_t personality,ot;unsigned species,moves[4];};
+static unsigned wx_identity_checks;
+static bool wx_identity_equal(struct WXIdentity a,struct WXIdentity b) {
+    if(a.personality!=b.personality || a.ot!=b.ot || a.species!=b.species)return false;
+    for(unsigned i=0;i<4U;++i)if(a.moves[i]!=b.moves[i])return false;
+    return true;
+}
+static struct WXIdentity wx_party_identity(struct mCore *c,unsigned slot) {
+    uint32_t mon=QOL_PLAYER_PARTY+100U*slot;
+    struct WXIdentity v={.personality=read32(c,mon),.ot=read32(c,mon+4U),.species=read16(c,mon+0x20U)};
+    for(unsigned i=0;i<4U;++i)v.moves[i]=read16(c,mon+0x2CU+2U*i);
+    return v;
+}
+static struct WXIdentity wx_battle_identity(struct mCore *c) {
+    struct WXIdentity v={.personality=read32(c,ADDR_BATTLE_MONS+0x48U),.ot=read32(c,ADDR_BATTLE_MONS+0x54U),.species=read16(c,ADDR_BATTLE_MONS)};
+    for(unsigned i=0;i<4U;++i)v.moves[i]=read16(c,ADDR_BATTLE_MONS+0x0CU+2U*i);
+    return v;
+}
+'''
 
 def assemble_controller():
     text=previous.assemble_controller()
     prefix,extension=(ROOT/SOURCE).read_text().split('/* WX_EXTENSION_BOUNDARY */')
-    text=replace_once(text,'struct BPProgress {',prefix+'\nstruct BPProgress {')
+    text=replace_once(text,'struct BPProgress {',prefix+IDENTITY_C+'\nstruct BPProgress {')
     text=replace_once(text,'int main(int argc,char **argv) {',extension+'\nint main(int argc,char **argv) {')
     text=replace_once(text,'"'+previous.CASE+'"','"'+CASE+'"')
     text=replace_once(text,'"'+previous.SCOPE+'"','"'+SCOPE+'"')
@@ -61,6 +84,22 @@ def assemble_controller():
     before='''    for(unsigned i=0;i<3U;++i)
         if(i!=active && read16(c,QOL_PLAYER_PARTY+i*POKEMON_SIZE+POKEMON_CURRENT_HP_OFFSET)>0U){target=i;break;}'''
     text=replace_once(text,before,'    target=wx_reserve(c,active);')
+    # 瀕死UIでは内部indexをUI位置として除外しない。現在HPで生存を絞る。
+    text=replace_once(text,'if(i==active || !read16(c,mon+0x56U))continue;',
+                          'if(!read16(c,mon+0x56U))continue;')
+    text=replace_once(text,'unsigned best=6U;uint64_t top=0U;',
+                          'bp_require(c,active<3U,"invalid active battle index");unsigned best=6U;uint64_t top=0U;')
+    anchor_identity='    bp_require(c,read8(c,SP_PARTY_SLOT)==target,"forced cursor did not reach living rental");'
+    text=replace_once(text,anchor_identity,anchor_identity+'''
+    struct WXIdentity selected=wx_party_identity(c,target);
+    fprintf(stderr,"BP_WIN_SWITCH_ID label=selected frame=%u ui_slot=%u pid=%08x ot=%08x species=%u\\n",b_frames,target,selected.personality,selected.ot,selected.species);''')
+    before='''        if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)!=P02S_CB2_PARTY
+            && read16(c,ADDR_BATTLER_PARTY_INDEXES)==target){'''
+    after='''        if(n_action(c) && read16(c,ADDR_BATTLER_PARTY_INDEXES)<3U
+            && wx_identity_equal(selected,wx_battle_identity(c))){
+            ++wx_identity_checks;
+            fprintf(stderr,"BP_WIN_SWITCH_ID label=matched frame=%u ui_slot=%u battle_index=%u pid=%08x\\n",b_frames,target,read16(c,ADDR_BATTLER_PARTY_INDEXES),selected.personality);'''
+    text=replace_once(text,before,after)
     anchor_move='bp_require(c,w.turns<48U,"first battle move count bound reached");br_move(c,&w);continue;'
     text=replace_once(text,anchor_move,'if(!wx_voluntary_count){wx_opening_switch(c);continue;}'+anchor_move)
     anchor='    struct BPReturn finish=br_battle_return(c,party,counter);'
@@ -73,8 +112,9 @@ def assemble_controller():
     args=['menu','selected','confirm','commit','allocated','action','slot','order','preserved','replaced','opening']
     fmt=''.join('\\"'+k+'\\":%u,' for k in fields)
     fmt+='\\"native_exchange_observed\\":true,\\"native_exchange_accepted\\":false,'
+    fmt+='\\"forced_identity_checks\\":%u,'
     anchor='    printf("\\"bp_earned\\":0,'
-    return replace_once(text,anchor,'    printf("'+fmt+'",'+','.join('exchange.'+k for k in args)+');\n'+anchor)
+    return replace_once(text,anchor,'    printf("'+fmt+'",'+','.join('exchange.'+k for k in args)+',wx_identity_checks);\n'+anchor)
 
 
 def validate(raw,stderr,code):
@@ -100,9 +140,10 @@ def validate(raw,stderr,code):
          <=row['next_battle_struct_frame']<=row['next_battle_action_frame']==row['total_frames']
          <=row['facility_return_frame']+25000,'exchange frame chain/bounds differ')
     need(0<=row['exchange_slot']<3 and row['exchange_selected_order']==row['exchange_slot']+1,'one-based single selection differs')
+    need(row['forced_identity_checks']==row['forced_switches'] and row['forced_identity_checks']>0,'forced individual proof absent')
     need(row['opening_native_switches']==1,'bounded native opening switch absent')
     need(row['exchange_preserved_bytes']==500 and row['exchange_replaced_bytes']==100,'exact party byte witness differs')
-    for marker in (b'BP_WIN_SWITCH_OPENING label=returned ',b'BP_WIN_RESERVE ',b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'BP_CTRL label=exchange-single-menu ',
+    for marker in (b'BP_WIN_SWITCH_ID label=matched ',b'BP_WIN_SWITCH_OPENING label=returned ',b'BP_WIN_RESERVE ',b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'BP_CTRL label=exchange-single-menu ',
                    b'BP_CTRL label=exchange-single-selected ',b'BP_CTRL label=exchange-committed ',
                    b'BP_CTRL label=exchange-next-action ',b'BP_READ name=exchange_cached_original ',
                    b'BP_READ name=exchange_party_committed '):
