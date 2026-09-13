@@ -4867,3 +4867,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。検証入力HEAD=29c1087a70ce14a1af8cb735aa7c288cfe462f94。自己SHAを文書へ追記して無限更新しない。
 - Network: GitHub connectorのbranch/PR/run/artifactを照会。run34734806603、artifact10310995889。private Release取得なし。
 - Boundary: 未merge/draft維持、release/active baseline変更なし。正式残件physical4/P08ゲート2。
+
+
+## 2026-09-13T04:50:44Z — USER-20260913-BP-SECOND-CHOOSER-PREP
+- Task: USER-20260913-BP-SECOND-CHOOSER / 2回目chooser確定から実戦状態までの観測拡張
+- Status: STOPPED
+- Summary: 原本run34734806603の2回目chooser画面・scriptPtr 0x092CF668/5D・選択順010203を照合。確定後の+1前進、実battle action、struct、敵party生成を要求する診断を追加。実戦/BP受入は未更新。
+- Files changed: selection C/Python/tests、同じresume MD/JSON、resume P08 serializer、P08再開文、両ログ。
+- Verify: launch12件、resume focused、resume check、fixed-form strict check、task graph、diff check PASS。基点と最終indexの標準guard出力完全一致を要求し、新規違反0。全体guard PASSとは主張しない。
+- Preflight: run34738673670/job103674512984はP08 key順序の不一致で停止、新規emulator0。意味論の完全一致を確認してcanonical sorted JSONを復元し、今後のrouting出力も同形式を維持。失敗原本はfailureのまま。
+- Native: このcheckpointは新規emulator0・ROM0。新しい診断を別dispatchし、取消/保存/Continueの受入済み試験は再実行しない。
+- Commit: この記録を含むcommit。入力HEAD=d3eb3dc88b7940a720cf2a678d6555cc84df5577、run=34738838452。
+- Network: GitHub API/Actions原本。merge/release/baseline切替なし。

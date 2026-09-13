@@ -141,6 +141,7 @@
     "session_new_native_processes": 7,
     "source_path": "content/modernization/pr16_completion_acceptance.json"
   },
+  "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "final_candidate": {
     "crc32": "5B8BFB51",
     "name": "Stage84 + exact P07 preservation + native evolution dispatch repair",
@@ -391,7 +392,7 @@
         "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 3体native選択・party count 3・selected-order記録・2回目chooser到達まで診断済み。実戦未開始、BP0。取消/Save/Continueの正式受入は既存1件のまま。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -459,7 +460,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 3体native選択・party count 3・selected-order記録・2回目chooser到達まで診断済み。実戦未開始、BP0。取消/Save/Continueの正式受入は既存1件のまま。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。 Next: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
@@ -595,6 +596,5 @@
     }
   },
   "status": "SCOPED_COMPLETION_PROGRESS_NOT_RELEASE",
-  "task": "USER-MODERNIZATION-FINAL-INTEGRATION",
-  "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md"
+  "task": "USER-MODERNIZATION-FINAL-INTEGRATION"
 }

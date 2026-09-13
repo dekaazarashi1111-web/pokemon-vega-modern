@@ -175,7 +175,7 @@ def install_routing(root: Path) -> None:
         if row['id'] in ('NATURAL_CAPTURE_GEAR', 'FINAL_NATIVE_ACCEPTANCE'):
             row['resume'] = 'Current resume: '+DOC+'. '+s['bp']['current_stop']+' Next: '+s['bp']['next_step']
     backlog['current_resume_doc'] = DOC
-    dump(safe_path(root, BACKLOG), backlog)
+    safe_path(root, BACKLOG).write_text(json.dumps(backlog, ensure_ascii=False, sort_keys=True, indent=2) + '\n', encoding='utf-8')
     s['p08_resume_synchronized'] = True
     dump(safe_path(root, STATE), s)
     safe_path(root, DOC).write_text(render(s), encoding='utf-8')

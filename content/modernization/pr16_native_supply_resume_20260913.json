@@ -2,7 +2,7 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "3体native選択・party count 3・selected-order記録・2回目chooser到達まで診断済み。実戦未開始、BP0。取消/Save/Continueの正式受入は既存1件のまま。",
+    "current_stop": "3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
     "next_step": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
@@ -35,10 +35,61 @@
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63",
+  "observed_head": "d3eb3dc88b7940a720cf2a678d6555cc84df5577",
   "observed_head_checks": {
-    "status": "NOT_AGGREGATED",
-    "reason_ja": "旧f344の5成功/1失敗を現HEADへ流用しない。最新診断runのsuccessだけを確認。branch HEADのChecksは開始時に別取得する。"
+    "status": "ALL_SUCCESS",
+    "checked_head": "fa9341e8ecd205367168d39706b7d84f8de64091",
+    "runs": [
+      {
+        "conclusion": "success",
+        "event": "pull_request",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738142854,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "pull_request",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738142822,
+        "name": "source-validation",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738140381,
+        "name": "Stage79 runtime boundary audit",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738140365,
+        "name": "PR16 fixed handoff source-only verification",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738140337,
+        "name": "p03-forgetting-ci",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "fa9341e8ecd205367168d39706b7d84f8de64091",
+        "id": 34738140313,
+        "name": "source-validation",
+        "status": "completed"
+      }
+    ],
+    "reason_ja": "開始HEAD fa9341e8のActionsをAPIで照合。新しい実装HEADのnative結果は別途確認し、開始HEADのChecksを流用しない。"
   },
   "p08_resume_synchronized": true,
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -128,12 +179,12 @@
   "pending_runs": [],
   "source_bindings": {
     "scripts/pr16_bp_selection_native.py": {
-      "size": 9437,
-      "sha256": "6ca8a74632e80b23d58bdf1d556c441b4df17bbe1854423b43bb4c0041bb25ea"
+      "size": 10392,
+      "sha256": "083b455d06ec60e6c0c1a90f727a27f064304b24f3c42d073dc0990cbe4c1299"
     },
     "tools/mgba_pr16_bp_selection_native.c": {
-      "size": 5285,
-      "sha256": "7f96bef7cf65b82cf7b130c86e1ba029df6e66f4b6fbd4526e87d293122157d4"
+      "size": 9852,
+      "sha256": "670e9340b310cbdce33b8d0fdf35f1a672ebe3690ba3eeda9cb65a8d5c13d7be"
     },
     ".github/workflows/pr16-bp-selection-native.yml": {
       "size": 9067,
@@ -165,5 +216,20 @@
   "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
   "latest_native_summary_ja": "3体選択frame1440→2回目chooser frame1789、party count3。実戦未開始・BP獲得0・通常Save0。battle-active markerやActions successを実戦/BP受入とみなさない。原本ZIPのdigest・47 receipt members・71 source membersを照合し、新規emulatorは0。",
   "candidate_scope_ja": "開発候補。最終製品SHAではない。",
-  "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。"
+  "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
+  "prepared_native_probe": {
+    "case": "second-confirm-battle-probe",
+    "execution_status": "NOT_DISPATCHED_YET",
+    "source_only_tests": 12,
+    "rom_changes": 0,
+    "historical_cancel_replayed": false
+  },
+  "source_change_review_ja": "独立selection controller/validator/testsを延長。ROM、共有取消controller、fixture、7barrier、期限は不変。旧runは旧診断だけを支持。resumeのP08出力は既存canonical sorted JSONを維持し、受入意味論を変えない。",
+  "preflight_failure": {
+    "run_id": 34738673670,
+    "job_id": 103674512984,
+    "native_processes": 0,
+    "reason": "P08 JSON key ordering differed; semantic equality required before canonical serialization repair",
+    "original_conclusion": "failure"
+  }
 }

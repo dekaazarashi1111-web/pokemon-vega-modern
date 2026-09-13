@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-3体native選択・party count 3・selected-order記録・2回目chooser到達まで診断済み。実戦未開始、BP0。取消/Save/Continueの正式受入は既存1件のまま。
+3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。
 
 **次: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63`。
+証拠のsource HEAD: `d3eb3dc88b7940a720cf2a678d6555cc84df5577`。
 これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。
 
 ## 最短の再開手順
@@ -101,6 +101,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧f344の5成功/1失敗を現HEADへ流用しない。最新診断runのsuccessだけを確認。branch HEADのChecksは開始時に別取得する。
+開始HEAD fa9341e8のActionsをAPIで照合。新しい実装HEADのnative結果は別途確認し、開始HEADのChecksを流用しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
