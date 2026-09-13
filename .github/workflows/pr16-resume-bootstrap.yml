@@ -56,6 +56,7 @@ jobs:
       - name: Install routing and verify actual repository
         run: |
           set -euo pipefail
+          sed -i 's/[[:blank:]]*$//' scripts/pr16_resume.py
           python3 scripts/pr16_resume.py install-routing
           python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee .local/pr16-resume/focused-tests.txt
           python3 scripts/pr16_resume.py check
