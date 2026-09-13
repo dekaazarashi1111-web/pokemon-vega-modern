@@ -103,6 +103,25 @@ class SnapshotTests(unittest.TestCase):
         self.assertEqual(result['ignored_object_metadata'], ['info/commit-graph'])
         self.assertFalse((self.destination / '.git/objects/info/commit-graph').exists())
 
+    def test_shallow_archive_passes_full_object_validation(self):
+        M.git(self.source, 'add', '.')
+        M.git(self.source, '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-m', 'second')
+        target = self.root / 'shallow'
+        M.git(self.root, 'clone', '--depth=1', '--template=', self.source.as_uri(), str(target))
+        self.source = target
+        commit = M.git(target, 'rev-parse', 'HEAD').decode().strip()
+        for key in ('configured_commit', 'actual_commit', 'resolved_commit'): self.lock[key] = commit
+        self.pack()
+        result = self.restore()
+        self.assertEqual(result['shallow_boundaries'], 1)
+        self.assertTrue(result['fsck_verified'])
+        self.assertEqual(M.git(self.destination, 'status', '--porcelain'), b'')
+
+    def test_invalid_shallow_metadata_rejected(self):
+        self.pack((M.PREFIX + '.git/shallow', b'not-a-commit\n'))
+        with self.assertRaises(M.SnapshotError): self.restore()
+        self.assertFalse(self.destination.exists())
+
     def test_git_alternates_rejected(self):
         self.pack((M.PREFIX + '.git/objects/info/alternates', b'/outside'))
         with self.assertRaises(M.SnapshotError): self.restore()

@@ -34,7 +34,8 @@ def git(root: Path, *args: str) -> bytes:
     p = subprocess.run(['git', '-C', str(root), '-c', 'core.hooksPath=/dev/null',
                         '-c', 'core.autocrlf=false', *args], env=env,
                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
-    require(p.returncode == 0, 'isolated Git operation failed: ' + args[0])
+    detail = p.stderr.decode('utf-8', errors='replace').replace(str(root.resolve()), '<source>')[-2000:]
+    require(p.returncode == 0, 'isolated Git operation failed: ' + args[0] + ': ' + detail)
     return p.stdout
 
 
@@ -52,8 +53,12 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
     require(not any(p.is_symlink() for p in destination.parents), 'destination ancestor symlink')
     objects = []
     ignored_metadata = []
+    shallow = b''
     with zipfile.ZipFile(archive) as z:
         require(len(z.namelist()) == len(set(z.namelist())), 'duplicate archive member')
+        if PREFIX + '.git/shallow' in z.namelist():
+            shallow = z.read(PREFIX + '.git/shallow')
+            require(0 < len(shallow) <= 65536 and re.fullmatch(rb'(?:[0-9a-f]{40}\n)+', shallow) is not None, 'invalid shallow boundary')
         for info in z.infolist():
             if not info.filename.startswith(PREFIX):
                 continue
@@ -79,6 +84,10 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
             require(len(data) == info.file_size, 'object size mismatch')
             target.write_bytes(data)
     require(git(destination, 'cat-file', '-t', commit).strip() == b'commit', 'locked commit unavailable')
+    if shallow:
+        for oid in shallow.decode('ascii').splitlines():
+            require(git(destination, 'cat-file', '-t', oid).strip() == b'commit', 'missing shallow boundary')
+        (destination / '.git/shallow').write_bytes(shallow)
     git(destination, 'fsck', '--full', '--no-reflogs', '--no-dangling', commit)
     rows = git(destination, 'ls-tree', '-rz', '--full-tree', commit).split(b'\0')
     total = 0
@@ -107,6 +116,7 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
             'locked_commit': commit, 'locked_tree': git(destination, 'rev-parse', 'HEAD^{tree}').decode().strip(),
             'restoration': 'LOCKED_GIT_OBJECTS_NOT_ARCHIVED_WORKTREE', 'object_members': len(objects),
             'ignored_object_metadata': sorted(ignored_metadata),
+            'shallow_boundaries': len(shallow.splitlines()), 'fsck_verified': True,
             'source_files': len(manifest), 'source_bytes': total,
             'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
             'archived_worktree_used': False, 'archived_git_config_used': False,
@@ -124,7 +134,14 @@ def main() -> None:
     lock = json.loads((args.root / 'state/source-lock.json').read_bytes())
     bound = next(x for x in cfg['archives'] if x['name'] == args.archive.name)
     source = next(x for x in lock['sources'] if x['name'] == 'cfru')
-    receipt = restore(args.archive, args.root / PREFIX, bound, source)
+    try:
+        receipt = restore(args.archive, args.root / PREFIX, bound, source)
+    except SnapshotError as exc:
+        receipt = {'status': 'FAIL', 'reason': str(exc), 'candidate_rom_changed': False,
+                   'new_emulator_processes': 0, 'accepted_native_cases_replayed': 0}
+        args.receipt.parent.mkdir(parents=True, exist_ok=True)
+        args.receipt.write_text(json.dumps(receipt, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+        raise SystemExit(str(exc)) from exc
     args.receipt.parent.mkdir(parents=True, exist_ok=True)
     args.receipt.write_text(json.dumps(receipt, sort_keys=True, indent=2) + '\n', encoding='utf-8')
 
