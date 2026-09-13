@@ -1,0 +1,181 @@
+name: Reconcile finite P05 native ring BP policy supply routes
+run-name: Reconcile finite P05 native ring BP policy supply routes
+
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p05_native_supply_reconciliation.py
+      - tests/test_pr16_p05_native_supply_reconciliation.py
+      - .github/workflows/pr16-p05-native-supply-reconciliation.yml
+      - scripts/pr16_purchased_gear.py
+      - scripts/pr16_apply_gear_policy_boundary.py
+      - scripts/pr16_gear_route_probe.py
+      - scripts/pr16_gear_originals.py
+      - scripts/build_modernization_p05.py
+      - scripts/build_bp_shop_runtime.py
+      - scripts/build_factory_reward_runtime.py
+      - scripts/build_factory_repeat_reward_runtime.py
+      - scripts/build_codex_battle_rewards.py
+      - scripts/run_modernization_p05_scheduler_e2e.py
+      - scripts/run_modernization_p05_controller_witness.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: pr16-p05-native-supply-recorders
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Generate finite inventory and remaining-work projection
+        run: python3 scripts/pr16_p05_native_supply_reconciliation.py --write --print
+
+      - name: Run focused tests
+        run: python3 scripts/run_module_tests.py tests/test_pr16_p05_native_supply_reconciliation.py
+
+      - name: Validate generated JSON and allowed diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool content/modernization/pr16_p05_native_supply_reconciliation.json >/dev/null
+          python3 -m json.tool content/modernization/p08_remaining_work.json >/dev/null
+          git diff --check
+          mapfile -t changed < <(git diff --name-only)
+          allowed=(
+            content/modernization/pr16_p05_native_supply_reconciliation.json
+            content/modernization/p08_remaining_work.json
+            docs/PR16_P05_NATIVE_SUPPLY_RECONCILIATION_CHECKPOINT_JA.md
+          )
+          for path in "${changed[@]}"; do
+            ok=false
+            for candidate in "${allowed[@]}"; do
+              [[ "$path" == "$candidate" ]] && ok=true
+            done
+            $ok || { echo "unexpected generated change: $path" >&2; exit 1; }
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('content/modernization/pr16_p05_native_supply_reconciliation.json').read_text())
+          assert data['status']=='PASS_FINITE_STATIC_INVENTORY_NOT_NATIVE_ACCEPTANCE'
+          assert data['coverage_inventory_complete'] is True
+          assert data['physical_acceptance_complete'] is False
+          assert data['emulator_runs_by_this_checkpoint']==0
+          assert data['remaining_physical_gap_ids']==[
+              'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
+              'P05_NATIVE_BP_EARNING_PHYSICAL',
+              'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
+          ]
+          remaining=json.loads(Path('content/modernization/p08_remaining_work.json').read_text())
+          row=next(x for x in remaining['remaining_conditions'] if x['id']=='NATURAL_CAPTURE_GEAR')
+          assert row['gear_to_battle_required'] is False
+          assert row['ring_bp_natural_supply_required'] is True
+          assert row['ordinary_policy_selection_required'] is True
+          assert row['supply_physical_acceptance_complete'] is False
+          PY
+
+      - name: Write receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,subprocess
+          from pathlib import Path
+          paths=[
+            'content/modernization/pr16_p05_native_supply_reconciliation.json',
+            'content/modernization/p08_remaining_work.json',
+            'docs/PR16_P05_NATIVE_SUPPLY_RECONCILIATION_CHECKPOINT_JA.md',
+            'scripts/pr16_p05_native_supply_reconciliation.py',
+            'tests/test_pr16_p05_native_supply_reconciliation.py',
+            '.github/workflows/pr16-p05-native-supply-reconciliation.yml',
+          ]
+          rows={}
+          for name in paths:
+            raw=Path(name).read_bytes()
+            rows[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          receipt={
+            'schema_version':1,
+            'status':'PASS_FINITE_STATIC_INVENTORY_NOT_NATIVE_ACCEPTANCE',
+            'tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'emulator_runs':0,
+            'remaining_physical_gap_ids':[
+              'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
+              'P05_NATIVE_BP_EARNING_PHYSICAL',
+              'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
+            ],
+            'files':rows,
+          }
+          Path('/tmp/pr16-p05-native-supply-reconciliation-receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Commit generated checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'checkpoint already current'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            content/modernization/pr16_p05_native_supply_reconciliation.json \
+            content/modernization/p08_remaining_work.json \
+            docs/PR16_P05_NATIVE_SUPPLY_RECONCILIATION_CHECKPOINT_JA.md
+          git commit -m 'USER-MODERNIZATION: project finite P05 native supply routes'
+          git push origin HEAD:codex/modernization-followup-20260908
+
+      - name: Publish or update PR checkpoint comment
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker='<!-- pr16-p05-native-supply-reconciliation -->'
+          head=$(git rev-parse HEAD)
+          body=$(cat <<EOF
+          $marker
+          ## P05 通常リング・BP・戦闘モード供給の有限化checkpoint
+
+          - HEAD: \`$head\`
+          - 静的台帳: \`content/modernization/pr16_p05_native_supply_reconciliation.json\`
+          - validator/tests: PASS
+          - emulator runs: **0**（通常プレイ受入はまだ未完了）
+          - 既存の購入石→装備→自然戦闘→保存成功は保持し、再試験対象へ戻していません。
+
+          次の実操作sub-gapは次の3件に固定しました。
+
+          1. \`P05_NATIVE_RING_ACQUISITION_PHYSICAL\`
+          2. \`P05_NATIVE_BP_EARNING_PHYSICAL\`
+          3. \`P05_ORDINARY_POLICY_SELECTION_PHYSICAL\`
+
+          \`PHYSICAL_CIRCUS_ADMISSION\` は別残件です。Circusフラグ直接設定、冷Continue後のpolicy再注入、全戦闘の一律メガ許可は行いません。
+          EOF
+          )
+          id=$(gh api repos/${{ github.repository }}/issues/16/comments --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          if [[ -n "$id" ]]; then
+            gh api --method PATCH repos/${{ github.repository }}/issues/comments/$id -f body="$body" >/dev/null
+          else
+            gh api --method POST repos/${{ github.repository }}/issues/16/comments -f body="$body" >/dev/null
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-p05-native-supply-reconciliation-receipt
+          path: /tmp/pr16-p05-native-supply-reconciliation-receipt.json
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,75 @@
+name: pr16-gear-refinement
+run-name: Exact policy controller update and native gear continuation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-gear-refinement.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: pr16-gear-refinement
+  cancel-in-progress: false
+jobs:
+  refine:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Apply only exact preimage and postimage checked controller sources
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-gear-refinement
+          git rev-parse HEAD > .local/pr16-gear-refinement/request-head.txt
+          python3 scripts/pr16_apply_gear_policy_boundary.py > .local/pr16-gear-refinement/apply.log 2>&1
+          python3 -m unittest tests.test_pr16_purchased_gear tests.test_pr16_natural_capture tests.test_pr16_shop_display_repair tests.test_pr16_shop_routes -v > .local/pr16-gear-refinement/unit.log 2>&1
+          git diff --check
+      - name: Record policy boundary and immutable history
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib
+          root=pathlib.Path('.');run=int(os.environ['GITHUB_RUN_ID'])
+          assert b'Ran 51 tests' in (root/'.local/pr16-gear-refinement/unit.log').read_bytes()
+          p=root/'content/modernization/pr16_gear_refinement_status.json'
+          status=json.loads(p.read_bytes())
+          status.update(schema_version=2,status='POLICY_BOUNDARY_CORRECTED_NATIVE_ACCEPTANCE_PENDING',refinement_run=run,request_head=os.environ['GITHUB_SHA'],previous_native_failure_run=34585692527,previous_failure_reason='NEXT-battle Mega policy is volatile, not saved. Intermediate cold load resets it. Do not inject it again.',local_and_ci_targeted_tests=51,resume='Read dispatched native run: active/no-toggle/cancel same-session cases each 2 cores; cold-policy-reset control 3 cores. Review originals before acceptance; old failed run remains historical.')
+          assert not status['gear_to_battle_accepted'] and not status['release_ready']
+          p.write_text(json.dumps(status,sort_keys=True,indent=2)+'\n')
+          text=f'\n## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run {run}\n\nRun34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              with (root/name).open('a') as f:f.write(text)
+          PY
+      - name: Commit exact reviewed paths and dispatch native workflow once
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          git fetch origin "$branch"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import subprocess
+          paths={'tools/mgba_pr16_purchased_gear.c','scripts/pr16_purchased_gear.py','tests/test_pr16_purchased_gear.py','design/run_log.md','design/version_log.md','content/modernization/pr16_gear_refinement_status.json'}
+          actual=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines());assert actual==paths,actual
+          subprocess.run(['git','add','--',*sorted(paths)],check=True)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: distinguish live Mega from cold policy reset without injection'
+          git push origin "HEAD:$branch"
+          git rev-parse HEAD > .local/pr16-gear-refinement/applied-head.txt
+          gh workflow run pr16-purchased-gear.yml --ref "$branch"
+          sleep 5
+          gh run list --workflow pr16-purchased-gear.yml --branch "$branch" --limit 3 --json databaseId,headSha,status,conclusion > .local/pr16-gear-refinement/native-runs.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-gear-refinement
+          path: .local/pr16-gear-refinement/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

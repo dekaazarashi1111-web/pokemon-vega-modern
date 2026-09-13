@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-PREFLIGHT",
+  "stage": 73,
+  "status": "PREFLIGHT_ONLY_PARENT_PENDING",
+  "parent_identity": {
+    "stage71_commit": "ee8062094f84fff42f529793cb95f09d2078ae33",
+    "stage72_commit": "PENDING",
+    "stage72_rom_path": "PENDING",
+    "stage72_rom_size": "PENDING",
+    "stage72_rom_sha256": "PENDING",
+    "policy": "FAIL_CLOSED_UNTIL_ALL_STAGE72_FIELDS_ARE_PINNED"
+  },
+  "inputs": {
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "size": 11826,
+      "sha256": "4e421a5c6110ad5b4e2de399d354b058b566815aaf5aa30b8cc445cba38a6033"
+    },
+    "learnsets_zip": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "size": 82683251,
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb"
+    }
+  },
+  "consumer_groups": {
+    "egg": {
+      "source_count": 2572,
+      "source_group_sha256": "dddb574bc634af15ac3570d419804904d64e20868bab55cb675d3cc5c66e1ddf",
+      "selected_count": 2563,
+      "selected_group_sha256": "70c3079ae15bbada169217375b93163dd770ebeabb9b8ab30711e48fabf3792a",
+      "stage73_scope_count": 41,
+      "special_breeding_existing_owner": 1,
+      "exact_override_pending_runtime_hook": 40,
+      "legacy_alias_conflict": 9,
+      "incense_union_conflict": 31
+    },
+    "shared_egg": {
+      "source_count": 5041,
+      "source_group_sha256": "fcd3735e7c5b7e8f7049c3dc3d7df1ee6481cb705dd6d0073348dd380d9cc797",
+      "selected_count": 5023,
+      "selected_group_sha256": "8ba5fa208acba9f0df6fe8edd2218ae3356ea0fb0ad8fef70af1fa5fa85ce10a",
+      "target_count": 943,
+      "unique_species_move_pairs": 5023,
+      "direct_egg_overlap": 2272,
+      "shared_only": 2751,
+      "source_games": {"scarletviolet": 3864, "swordshield": 1159},
+      "receiver_basis": {"SHOWDOWN_BATTLE_ONLY_ORIGIN": 5, "TARGET_OUT_OF_BATTLE_FORM": 5018},
+      "resolution": {
+        "CONFIGURED_SHARED_FORM_EGG_POOL": 51,
+        "EXACT_FORM_ANCESTRAL_EGG_POOL": 2691,
+        "OWN_RAW_EGG_POOL": 2263,
+        "REVIEWED_GAME_SPECIFIC_POOL": 18
+      }
+    },
+    "pre_evolution_carry": {
+      "source_count": 35183,
+      "source_group_sha256": "363e8a71d7767a1db7207c8d2bfb724f0210f7fcdb61010f23fcc1ce576475ee",
+      "selected_count": 35141,
+      "selected_group_sha256": "6559b45442223423b713d3e0033a093588583ad55ff891fb6ac235dc035beeb3",
+      "target_count": 555,
+      "unique_species_move_pairs": 26041,
+      "duplicate_route_paths": 9100,
+      "methods": {"egg": 2846, "evolution": 66, "level_up": 8632, "reminder": 15, "special_breeding": 4, "tm": 21277, "tr": 1953, "tutor": 348},
+      "existing_generic_move_slot_persistence_semantics": 35141,
+      "machine_tutor_upstream_supply_dependency": 23578,
+      "other_source_owner_dependency": 11563,
+      "new_runtime_materialized_count": 0
+    },
+    "reminder": {
+      "source_count": 298,
+      "source_group_sha256": "5774ecd3d175fe7c1e7a807c0dc3663aefd93c34d1645d2b4f25b36b87d86119",
+      "selected_count": 295,
+      "selected_group_sha256": "61f4243cdb12df5ba9a0548073342bf9cdc39659345d98985b970f5a0c767290",
+      "target_count": 74,
+      "unique_species_move_pairs": 295,
+      "direct_level_up_overlap": 0,
+      "pending_dedicated_runtime_table": 295
+    },
+    "form_change": {
+      "source_count": 70,
+      "source_group_sha256": "d2dbeaa7db296e70f88142ddf3ed300fd961666a8a9c4cae3cee96899de9858e",
+      "selected_count": 70,
+      "selected_group_sha256": "02c611eb2d537bf6a9b51c48ab502197a59c6e64dbab324009225975e06a7419",
+      "target_count": 19,
+      "unique_species_move_pairs": 49,
+      "duplicate_route_paths": 21,
+      "route_kinds": {"direct": 9, "form_change": 61},
+      "methods": {"battle_transform": 2, "form_move": 9, "level_up": 42, "tm": 17},
+      "existing_generic_carry_owner": 61,
+      "existing_fixed_transition_owner": 4,
+      "rotom_transition_owner_missing": 5,
+      "machine_upstream_supply_dependency": 17,
+      "new_runtime_materialized_count": 0
+    }
+  },
+  "selection_boundary": {
+    "five_group_source_count": 43164,
+    "five_group_selected_count": 40570,
+    "side_change_project_move_id": 1063,
+    "side_change_global_excluded_count": 159,
+    "side_change_five_group_excluded_count": 72,
+    "browt_pombon_gecqua_adopted_count": 0
+  },
+  "claim_policy": {
+    "preflight_new_runtime_materialized": 0,
+    "existing_owner_semantics_are_not_new_materialization": true,
+    "upstream_supply_dependencies_are_not_materialized": true,
+    "stage73_completion_claim_allowed": false
+  },
+  "prohibited_coercions": {
+    "shared_egg_to_normal_egg": 0,
+    "pre_evolution_carry_to_target_level_or_egg": 0,
+    "form_change_to_target_level_or_egg": 0,
+    "reminder_to_level_zero": 0,
+    "special_breeding_to_unconditional_egg": 0
+  },
+  "out_of_scope": {
+    "machine_routes": 26279,
+    "tutor_routes": 369,
+    "side_change_routes": 159,
+    "rom_overlay_hook_build": "DEFERRED_UNTIL_STAGE72_IDENTITY_IS_PINNED"
+  }
+}

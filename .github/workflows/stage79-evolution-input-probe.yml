@@ -1,0 +1,59 @@
+name: stage79-evolution-input-probe
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/stage79-evolution-input-probe.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [held, pulsed]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Observe production evolution callbacks without changing ROM or assertions
+        env:
+          INPUT_MODE: ${{ matrix.mode }}
+        shell: python
+        run: |
+          import hashlib, importlib.util, os, pathlib, sys
+          spec = importlib.util.spec_from_file_location('probe', '.github/scripts/stage79_runtime_probe.py')
+          probe = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(probe)
+          original = probe.instrument
+          def instrument(domain, text):
+              text = original(domain, text)
+              text = probe.once(text,
+                  'if (frame <= 300U && frame % 60U == 0U) p02s_probe_image(frame);',
+                  'if ((frame <= 300U && frame % 60U == 0U) || frame == 600U || frame == 1200U || frame == 2400U) p02s_probe_image(frame);')
+              if os.environ['INPUT_MODE'] == 'pulsed':
+                  text = probe.once(text,
+                      '        trace->physical_b = true;\n        return QOL_KEY_B;',
+                      '        if (frame % 120U < 2U) {\n            trace->physical_b = true;\n            return QOL_KEY_B;\n        }\n        return 0U;')
+              return text
+          probe.instrument = instrument
+          path = pathlib.Path('build/stages/80_modernization_runtime_boundary_repair.gba')
+          before = hashlib.sha256(path.read_bytes()).hexdigest()
+          assert before == '6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442'
+          sys.argv = ['probe', 'p02']
+          try:
+              code = probe.main()
+          finally:
+              assert hashlib.sha256(path.read_bytes()).hexdigest() == before
+          raise SystemExit(code)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-evolution-input-${{ matrix.mode }}
+          path: .local/stage79-runtime-probe/p02
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

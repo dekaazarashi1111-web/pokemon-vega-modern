@@ -1,4 +1,4 @@
-# ChatGPT Web向けprivate GitHub開発環境
+# ChatGPT Web向けGitHub開発環境
 
 ## 目的
 
@@ -237,3 +237,17 @@ make github-battle-wrapper-test
 ```
 
 Release assetを更新する時は新しいversioned tag／asset名を使い、既存assetを上書きしない。
+
+## 2026-09-10 現行の所有者承認
+
+正本は `content/modernization/p08_owner_approved_policy.json`。追加技アーカイブは
+**殿堂入り後・Bagのわざメモリーから無料**を正式採用。通常思い出し・技忘れ等に
+新しい殿堂入り制限を追加しない。固定Stage74設定の暫定ラベルは履歴として不変。
+
+**publicは所有者自身が選んだ正しい現行設定**。本文に残るprivate repository／private
+Releaseの表現は過去の構成名・説明であり、非公開性の根拠でも現行の必須条件でもない。
+非公開化や既存追跡原本の移動・削除を完成条件にしない。過去の全index guard失敗を
+PASSへ改称せず、秘密情報・新規の意図しない資材混入を防ぐ検査も無効化しない。
+Stage62・実プレイsave・原本・履歴・PR未マージは保持する。
+
+この承認はP03/P05/P06/P07の未受入経路や製品全体の完成を意味しない。

@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+  "stage": 66,
+  "inputs": {
+    "parent_rom": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.gba",
+      "size": 33554432,
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680"
+    },
+    "parent_metadata": {
+      "path": "build/stages/65_modernization_p03_caterpie_slice.json",
+      "size": 8362,
+      "sha256": "ad5210529a62cc42571fcc255f98f53d183b8c8419bf0effbb9e1ecaa262aa2c"
+    },
+    "parent_checkpoint": {
+      "path": "content/modernization/p03_stage65_checkpoint.json",
+      "size": 9522,
+      "sha256": "3956ebc238c0acc9e715e87a8587051221a824d31a81bd24ba4dea4e04c7823d"
+    },
+    "parent_allocation": {
+      "path": "build/stages/65_modernization_p03_allocation.json",
+      "size": 38800,
+      "sha256": "7393007cfb6ed0f5d6f9264b60f8b73c1fdd5454ce767b1cdfb7cf268c867e18"
+    },
+    "p03_contract": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "size": 9095,
+      "sha256": "4c2a97f4c5e3b2a0056313bc0ab25240b95b9c38cb1ae4c47a67ec78796e6b58"
+    },
+    "p03_compiled_index": {
+      "path": "content/modernization/p03_compiled_index.json",
+      "size": 1380994,
+      "sha256": "fe2285fa8865a557d4607e7c72be5eb68874920951dcebdbef45db6016cb6180"
+    },
+    "p03_runtime_handoff": {
+      "path": "content/modernization/p03_runtime_handoff.json",
+      "size": 8980,
+      "sha256": "32ea838df56988082253fccbcec8e9cd570ace8fadc5658b15cfb8bf7128594e"
+    },
+    "identity_contract": {
+      "path": "content/modernization/identity_contract.json",
+      "size": 1461322,
+      "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "size": 207095,
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "size": 128694,
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    },
+    "learnsets_zip": {
+      "path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "size": 82683251,
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    },
+    "battle_core_offsets": {
+      "fingerprint": "9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717",
+      "run_1_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-1/offsets.ini",
+      "run_2_path": "build/battle-core/9215826454ee6023888d2f53d33b662d21a340af868c92637aae2c5c191c5717/run-2/offsets.ini",
+      "size": 971694,
+      "sha256": "f9851fb5eea759573d1e4e0b923e69c34c85ddb171fb03321f5b7ce380870523"
+    }
+  },
+  "bulk_scope": {
+    "corrected_target_count": 1300,
+    "contract_route_count": 118528,
+    "level_up_input_routes": 18530,
+    "level_up_runtime_ready_routes": 18515,
+    "level_up_move_1063_deferred_routes": 15,
+    "machine_input_routes": 55380,
+    "machine_existing_slot_routes": 29033,
+    "machine_supply_required_routes": 26347,
+    "materialized_routes": 47548,
+    "remaining_routes": 70980,
+    "adoption_policy": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION"
+  },
+  "runtime_tables": {
+    "level_up": {
+      "root_pointer_site_rom_offset": "0x0004346C",
+      "runtime_literal_site_rom_offset": "0x01FDA1F8",
+      "expected_parent_root_runtime_address": "0x093A4CAC",
+      "pointer_stride": 4,
+      "row_abi": "U16_PROJECT_MOVE_ID_LE + U8_LEVEL; 0000FF terminator",
+      "payload_row_start_alignment": 2
+    },
+    "machine": {
+      "compatibility_root_site_rom_offset": "0x000432B4",
+      "expected_parent_compatibility_root_runtime_address": "0x0944BD00",
+      "compatibility_stride": 16,
+      "catalog_root_site_rom_offset": "0x001263D8",
+      "expected_catalog_root_runtime_address": "0x0944BB80",
+      "catalog_slot_count": 128
+    }
+  },
+  "allocation": {
+    "name": "modernization_p03_stage66_bulk_level_up",
+    "owner": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+    "purpose": "P03 corrected targetsのruntime-ready level-up replacement rows",
+    "region": "future_tail",
+    "placement": "FIRST_FIT",
+    "alignment": 4,
+    "row_start_alignment": 2,
+    "start": "0x01FDA248",
+    "size": 60116,
+    "content_sha256": "0bde103cdbc375ec7842a72b79ba9cd85a9ea54e2d489848f5e098696281a09b"
+  },
+  "runtime_gate": {
+    "runner_source": "tools/mgba_modernization_p03_stage66_smoke.c",
+    "gate_script": "scripts/run_modernization_p03_stage66_mgba.py",
+    "transitive_sources": [
+      "tools/mgba_battle_core_smoke.c",
+      "tools/mgba_ai_fixture_runner.c"
+    ],
+    "compiler": "cc",
+    "compile_flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": ["-lmgba"],
+    "libmgba": {
+      "path": "/lib/x86_64-linux-gnu/libmgba.so.0.10.2",
+      "sha256": "0c87a12341640e6a2d325e59e76eb4b002947771ad4d8814b216e3b99817d68d"
+    },
+    "process_runs": 2,
+    "timeout_seconds": 30,
+    "get_level_up_moves_by_species_symbol": "0x091142A0",
+    "can_mon_learn_tmhm_symbol": "0x09110184",
+    "representatives": [
+      {
+        "role": "FIRST_CORRECTED_TARGET",
+        "species_key": "SPECIES_KEY_TAILLOW",
+        "species_id": 10,
+        "level_count": 13,
+        "positive_machine_slot": 121,
+        "positive_machine_move": 19,
+        "negative_machine_slot": 0
+      },
+      {
+        "role": "MIDDLE_CORRECTED_TARGET",
+        "species_key": "SPECIES_KEY_PAWNIARD",
+        "species_id": 858,
+        "level_count": 15,
+        "positive_machine_slot": 0,
+        "positive_machine_move": 14,
+        "negative_machine_slot": 2
+      },
+      {
+        "role": "LAST_CORRECTED_TARGET",
+        "species_key": "SPECIES_KEY_PECHARUNT",
+        "species_id": 1620,
+        "level_count": 13,
+        "positive_machine_slot": 51,
+        "positive_machine_move": 156,
+        "negative_machine_slot": 0
+      },
+      {
+        "role": "CATERPIE_CORRECTION_SENTINEL",
+        "species_key": "SPECIES_KEY_CATERPIE",
+        "species_id": 649,
+        "level_count": 3,
+        "positive_machine_slot": 116,
+        "positive_machine_move": 489,
+        "negative_machine_slot": 0
+      }
+    ]
+  },
+  "outputs": {
+    "rom": "build/stages/66_modernization_p03_bulk_learnsets.gba",
+    "metadata": "build/stages/66_modernization_p03_bulk_learnsets.json",
+    "allocation": "build/stages/66_modernization_p03_allocation.json",
+    "incremental_bps": "build/patches/stage65-to-stage66-modernization-p03-bulk-learnsets.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage66-modernization-p03-bulk-learnsets.bps",
+    "route_audit": "content/modernization/p03_stage66_bulk_route_audit.json",
+    "change_audit": "content/modernization/p03_stage66_change_audit.json",
+    "checkpoint": "content/modernization/p03_stage66_checkpoint.json",
+    "mgba_evidence": "content/modernization/p03_stage66_mgba_runtime_gate.json"
+  },
+  "acceptance": {
+    "static_contract_gate": "REQUIRED",
+    "real_consumer_mgba_gate": "REQUIRED",
+    "independent_processes": 2,
+    "incremental_bps_round_trip": "REQUIRED",
+    "clean_bps_round_trip": "REQUIRED",
+    "task_completion": "CHECKPOINT_NOT_P03_DONE"
+  }
+}

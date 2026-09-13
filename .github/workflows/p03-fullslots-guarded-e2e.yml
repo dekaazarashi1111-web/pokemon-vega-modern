@@ -1,0 +1,50 @@
+name: p03-fullslots-guarded-e2e
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-fullslots-guarded-e2e.yml
+      - tools/mgba_modernization_p03_fullslots_guarded_e2e.c
+      - tools/modernization_p03_native_pp_repair.py
+      - scripts/run_modernization_p03_fullslots_guarded_e2e.py
+      - tests/test_modernization_p03_fullslots_guarded_e2e.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fullslots-pp-save-reload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 固定mGBA toolchain
+        run: bash infra/setup_github_actions.sh --install
+      - name: 満杯UI・PP修正・結果契約の回帰検証
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-fullslots-guarded-e2e
+          python3 -m unittest tests.test_modernization_p03_fullslots_guarded_e2e tests.test_modernization_p03_fullslots_e2e tests.test_modernization_p03_learning_e2e -v 2>&1 | tee .local/p03-fullslots-guarded-e2e/tests.log
+      - name: 新規11 processと7 guardで候補9ケースと親ROMの2不具合を確認
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-fullslots-guarded-e2e
+          git rev-parse HEAD > .local/p03-fullslots-guarded-e2e/tested-head.txt
+          python3 scripts/run_modernization_p03_fullslots_guarded_e2e.py \
+            > .local/p03-fullslots-guarded-e2e/job.stdout.json \
+            2> .local/p03-fullslots-guarded-e2e/job.stderr.log
+      - name: 既存の統合受入とStage62を維持
+        run: |
+          python3 scripts/validate_task_graph.py
+          python3 scripts/check_modernization_p08_current_acceptance.py --check
+          git diff --exit-code
+      - name: 成否を問わず実行原本を保存
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p03-fullslots-guarded-e2e
+          path: .local/p03-fullslots-guarded-e2e/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14

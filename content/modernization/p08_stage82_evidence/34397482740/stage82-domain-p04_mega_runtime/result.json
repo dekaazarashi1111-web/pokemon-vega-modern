@@ -1,0 +1,59 @@
+{
+  "command_argument_count": 151,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "ed153fba06e7c82037a1f205041001c05e1d9d9d1307d286362dc77a055b0467",
+    "executable_size": 39224,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "p04_mega_runtime",
+  "input_rom": {
+    "path": ".local/stage82-archive-ui/candidate.gba",
+    "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "size": 33554432
+  },
+  "plan_fingerprint": "38bd14f8f258d23b8b19b4dfb6e5d9e174934a5c03443d70020035fda1009773",
+  "runner": {
+    "path": "tools/mgba_modernization_stage79_mega_runtime_smoke.c",
+    "sha256": "370cfae3aa66875e4245e4ae9c29efe912d7cc1a090add2635e3043d8c30e0d7",
+    "size": 9514
+  },
+  "runner_result": {
+    "artifacts_written": [],
+    "base_species_rejected_as_mega": 49,
+    "classification": "DIRECT_CALL_BOUNDED",
+    "correct_stone_matches": 49,
+    "direct_calls": 245,
+    "instructions": 415522,
+    "mapping_count": 49,
+    "mega_species_recognized": 49,
+    "payload_pc_seen": true,
+    "read_only": true,
+    "reversions_to_base": 49,
+    "rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "schema_version": 1,
+    "status": "PASS",
+    "stone_less_rejections": 49,
+    "symbols": {
+      "GetMegaSpecies": "0x09114CF0",
+      "IsMegaSpecies": "0x09115098",
+      "TryRevertMega": "0x09114F74"
+    },
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

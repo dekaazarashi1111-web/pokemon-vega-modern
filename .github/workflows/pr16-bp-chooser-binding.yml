@@ -1,0 +1,173 @@
+name: pr16-bp-chooser-binding
+run-name: Read-only special dispatch binding on df8 successor; no emulator replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-chooser-binding.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-chooser-binding
+  cancel-in-progress: false
+jobs:
+  binding:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preserve and verify the existing failed diagnostic without replay
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-binding
+          gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/10302803074/zip" > .local/pr16-bp-binding/original-34708956804.zip
+          python3 - <<'PY'
+          import hashlib,io,json,pathlib,stat,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-bp-binding');raw=(out/'original-34708956804.zip').read_bytes()
+          assert len(raw)==677365 and hashlib.sha256(raw).hexdigest()=='44396b567b3057602870cdb6924902092e9671cb7d459a2de47d001958810bef'
+          z=zipfile.ZipFile(io.BytesIO(raw));assert len(z.namelist())==len(set(z.namelist()))==59
+          forbidden={'.gba','.sav','.srm','.ips','.ups','.bps','.bin','.exe'}
+          for i in z.infolist():
+              p=pathlib.PurePosixPath(i.filename)
+              assert not p.is_absolute() and '..' not in p.parts and '\\' not in i.filename and not stat.S_ISLNK(i.external_attr>>16)
+              assert p.suffix.lower() not in forbidden
+          receipt=json.loads(z.read('pr16-bp-trial-native/receipt.json'))
+          assert receipt['tested_head']=='f344c9b9a88a7bab9f7c74e346f4505774de48f8' and receipt['status']=='FAIL'
+          for name,bound in receipt['members'].items():
+              data=z.read('pr16-bp-trial-native/'+name)
+              assert {'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}==bound,name
+          result=json.loads(z.read('pr16-bp-trial-native/result.json'))
+          assert result['actual_new_processes']==1 and result['successful_fresh_cores']==0
+          assert not result['p05_native_bp_gap_closed'] and not result['release_ready']
+          report={'status':'VERIFIED_DIAGNOSTIC_NOT_ACCEPTANCE','run':34708956804,'job':103594064434,'artifact':10302803074,'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'all_native_receipt_members_verified':True,'new_emulator_processes':0,'original_processes':1,'original_conclusion':'failure','tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()}
+          (out/'original-verification.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          names={'README.md','AGENTS.md','design/current_state.md','design/agent_context_map.md','design/tasks_next.md','config/github_private_environment.json','content/modernization/p08_remaining_work.json','content/modernization/p08_owner_approved_policy.json','scripts/build_facility_runtime.py','scripts/build_battle_core.py','scripts/build_factory_high_modes_v2.py','overlays/facility_runtime/facility_runtime.c','overlays/facility_runtime/facility_runtime.h','scripts/pr16_fixed_form_closeout.py','.github/workflows/pr16-bp-chooser-binding.yml'}
+          for pattern in ('scripts/pr16_bp*.py','tests/test_pr16_bp*.py','tests/test*facility*.py','scripts/*private*guard*.py','scripts/*private*files*.py'):
+              names.update(str(p) for p in pathlib.Path('.').glob(pattern))
+          assert len(names)<100
+          bindings={}
+          with zipfile.ZipFile(out/'review-sources.zip','w',zipfile.ZIP_DEFLATED) as target:
+              for name in sorted(names):
+                  p=pathlib.Path(name);assert p.is_file() and not p.is_symlink()
+                  data=p.read_bytes();data.decode('utf-8');assert b'\0' not in data and len(data)<2000000
+                  target.writestr(name,data);bindings[name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (out/'review-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          PY
+          python3 scripts/validate_task_graph.py > .local/pr16-bp-binding/task-graph.txt
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-binding/fixed-form-retained.json
+      - name: Restore pinned toolchain and Stage84 recipe input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-binding
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore checked inputs without publishing them
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-binding
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          cfg=json.loads(pathlib.Path('config/github_private_environment.json').read_bytes());name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name);raw=(pathlib.Path('.local/pr16-bp-trial-native-inputs')/name).read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(pathlib.Path('.local/pr16-bp-trial-native-inputs')/name) as z:data=z.read(member)
+          p=pathlib.Path(member);assert not any(q.is_symlink() for q in (p,*p.parents))
+          if p.exists():assert p.read_bytes()==data
+          else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(0o444)
+          PY
+      - name: Rebuild exact candidate then inspect actual command and special tables
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-binding
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/evolution.stdout" 2> "$out/evolution.stderr"
+          python3 scripts/pr16_bp_trial_successor.py > "$out/successor.stdout" 2> "$out/successor.stderr"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,struct,subprocess,tempfile,zlib
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-binding';raw=(root/'.local/pr16-bp-trial-successor/candidate.gba').read_bytes();BASE=0x08000000
+          assert len(raw)==33554432 and hashlib.sha256(raw).hexdigest()=='df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c'
+          def u32(a):
+              assert BASE<=a<=BASE+len(raw)-4
+              return struct.unpack_from('<I',raw,a-BASE)[0]
+          def span(a,n):
+              assert BASE<=a<=BASE+len(raw)-n and 0<n<=1024
+              return raw[a-BASE:a-BASE+n]
+          ranges={}
+          def capture(a,n=128):
+              a&=~1;data=span(a,n);ranges[f'{a:08X}']={'address':a,'size':n,'hex':data.hex(),'sha256':hashlib.sha256(data).hexdigest()}
+          table=0x08162CC4;handlers={};candidates={}
+          for opcode in (0x09,0x23,0x25,0x26,0x27,0x5D,0x6D):
+              ptr=u32(table+4*opcode);assert ptr&1 and BASE<=ptr<BASE+len(raw)
+              a=ptr&~1;capture(a);literals=[]
+              for off in range(0,96,2):
+                  ins=struct.unpack_from('<H',raw,a-BASE+off)[0]
+                  if ins&0xF800==0x4800:
+                      loc=((a+off+4)&~3)+4*(ins&255);value=u32(loc)
+                      literals.append({'instruction_address':a+off,'literal_address':loc,'value':value})
+                      if opcode in (0x25,0x26) and BASE<=value<=BASE+len(raw)-4*0x34 and not value&3:
+                          entries=[u32(value+4*i) for i in range(0x34)]
+                          row={'literal_from_opcode':opcode,'entries_0_through_33':entries,'special29':entries[0x29],'special2F':entries[0x2F],'candidate_only_until_disassembly_review':True}
+                          candidates[f'{value:08X}']=row
+                          for index in (0x29,0x2F):
+                              target=entries[index]
+                              if target&1 and BASE<=target<BASE+len(raw)-256:capture(target,256)
+              handlers[f'{opcode:02X}']={'pointer':ptr,'literals':literals}
+          for a,n in ((0x08127DE0,128),(0x092CF620,64),(0x0806B158,128),(0x080693E8,64)):
+              capture(a,n)
+          report={'schema_version':1,'status':'STATIC_BINDING_REVIEW_REQUIRED_NOT_NATIVE_ACCEPTANCE','tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'candidate':{'sha256':hashlib.sha256(raw).hexdigest(),'size':len(raw),'crc32':f'{zlib.crc32(raw)&0xffffffff:08X}'},'script_command_table_from_native_context':table,'handlers':handlers,'special_table_candidates':candidates,'rom_ranges':ranges,'new_emulator_processes':0,'rom_changes':0,'native_bp_earning_accepted':False,'release_ready':False}
+          (out/'binding.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          with tempfile.TemporaryDirectory(dir='.local') as temp:
+              texts=[]
+              for key,row in sorted(ranges.items()):
+                  p=pathlib.Path(temp)/'code.bin';p.write_bytes(bytes.fromhex(row['hex']))
+                  result=subprocess.run(['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb','--adjust-vma='+str(row['address']),str(p)],capture_output=True,text=True,check=True)
+                  text=result.stdout.replace(str(p),'bounded-code-excerpt');texts.append(text)
+              (out/'disassembly.txt').write_text('\n'.join(texts))
+          print(json.dumps({'handlers':handlers,'special_table_candidates':candidates,'new_emulator_processes':0},sort_keys=True))
+          PY
+          git diff --exit-code
+      - name: Bind diagnostic outputs; reject unexpected files
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.local/pr16-bp-binding');bound={}
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink()
+              assert p.suffix in {'.json','.txt','.log','.stdout','.stderr','.zip'}
+              if p.suffix=='.zip':assert p.name in {'original-34708956804.zip','review-sources.zip'}
+              data=p.read_bytes()
+              if p.suffix!='.zip':data.decode('utf-8');assert b'\0' not in data
+              bound[p.name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-chooser-binding
+          path: .local/pr16-bp-binding/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

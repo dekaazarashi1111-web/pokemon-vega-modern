@@ -1,0 +1,165 @@
+{
+  "command_argument_count": 47,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "820be49e8288e7403597134aee85c8d6da22bb6e39291997fd4c27ad94f5cf6d",
+    "executable_size": 81904,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "battle_policy",
+  "input_rom": {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "size": 33554432
+  },
+  "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+  "runner": {
+    "path": "tools/mgba_battle_policy_smoke.c",
+    "sha256": "3369f45a958622045a9e963b1de61f5b5e186e288d04fb10fd3e90b633185ca3",
+    "size": 90064
+  },
+  "runner_result": {
+    "actual_battle_setups": 41,
+    "artifacts_written": [],
+    "boot_trace_segments": 233,
+    "direct_call_instructions": 1271494,
+    "direct_calls": 612,
+    "exp_candy": {
+      "at_cap_not_consumed": true,
+      "cap_clamped": true,
+      "selected_target_only": true,
+      "zero_no_effect_not_consumed": true
+    },
+    "facility": {
+      "capture_denied": true,
+      "enemy_fainted": true,
+      "experience_after": 117360,
+      "experience_before": 117360,
+      "formats": 3,
+      "frontier_flag": true,
+      "held_item_after": 41,
+      "held_item_before": 41,
+      "matrix_cases": 24,
+      "outcome": 1,
+      "persistent_effects_denied": 7,
+      "rental_generation": {
+        "bounded_call": true,
+        "party_count": 6,
+        "species": [
+          81,
+          38,
+          17,
+          7,
+          52,
+          133
+        ]
+      },
+      "rules": 8,
+      "runtime_cleaned": true,
+      "scheduler_faint_end": true
+    },
+    "fixed_rtc_unix": 946684800,
+    "fixture": "t06_battle_policy_integration_v1",
+    "mechanics": {
+      "cleanup": true,
+      "cross_mode_exclusive": true,
+      "modes": [
+        "MEGA",
+        "Z_MOVE",
+        "DYNAMAX",
+        "TERASTAL"
+      ],
+      "one_use": true,
+      "side_wide_exclusive": true
+    },
+    "mirage": {
+      "battle_mon_virtualized": true,
+      "consume_swap_mutation": true,
+      "exit_paths": 7,
+      "leaked_to_bag": false,
+      "opponent_battle_mon_virtualized": true,
+      "opponent_original_restored_each_exit": true,
+      "owner": "opponent_party_slot_0",
+      "party_original_restored_each_exit": true,
+      "pending_configure_actual_battle": true,
+      "player_party_unchanged_each_exit": true,
+      "virtual_item": 900,
+      "virtual_or_mutated_item_leaked_to_bag": false
+    },
+    "non_e2e_routes": [],
+    "payload_calls": 612,
+    "raid": {
+      "adjacent_pc_slot_unchanged": true,
+      "bag_opened": true,
+      "ball_consumed": true,
+      "boss_fainted": true,
+      "boss_side": 1,
+      "capture_action": 1,
+      "capture_allowed_path": true,
+      "capture_denied_path": true,
+      "catch_phase_seen": true,
+      "cleanup": true,
+      "contract_unit_direct_calls": true,
+      "controller_turns": 2,
+      "existing_three_controller_ui_initialized": true,
+      "full_party_pc_routed": true,
+      "high_difficulty_policy": true,
+      "initial_shields": 5,
+      "normal_trainer_no_leak": true,
+      "normal_wild_no_leak": true,
+      "outcome": 7,
+      "partner_mask": 6,
+      "partner_spread_moves_preserved": true,
+      "party_count_after_capture": 6,
+      "party_species_unchanged": true,
+      "pc_box_id": 0,
+      "pc_box_position": 0,
+      "pc_captured_species": 150,
+      "pc_storage_pointer_dynamic": true,
+      "pending_configure_actual_battle": true,
+      "player_pp_after": 31,
+      "player_pp_before": 35,
+      "policy_state_cleaned": true,
+      "raid_state_completion_scheduler_e2e": true,
+      "runtime_cleaned": true,
+      "shield_boundary_max": 5,
+      "shield_breaks": 5,
+      "stock_pc_box_stride_80": true,
+      "turn_limit_checked": true,
+      "turn_limit_scheduler_end": true
+    },
+    "read_only": true,
+    "rom_sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "schema_version": 1,
+    "stat_inputs": {
+      "ability_slot": 2,
+      "exp_share_off_participant_only": true,
+      "exp_share_on_unparticipated": true,
+      "hyper_trained_iv": 31,
+      "mint_nature": 6
+    },
+    "status": "PASS",
+    "trainer_build": {
+      "ev_total": 510,
+      "fully_specified": true,
+      "unspecified_identity": true
+    },
+    "unreached_routes": [],
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

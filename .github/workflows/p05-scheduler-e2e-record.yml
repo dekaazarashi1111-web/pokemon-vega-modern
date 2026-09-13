@@ -1,0 +1,143 @@
+name: p05-scheduler-e2e-record
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p05-scheduler-e2e-record.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Verify original run, archive, sources, 24 cases and seven guards
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p05-scheduler-record
+          python3 -m unittest tests.test_modernization_p05_scheduler_e2e -v 2>&1 | tee .local/p05-scheduler-record/tests.log
+          gh api repos/dekaazarashi1111-web/pokemon-vega-modern/actions/artifacts/10103780162/zip > .local/p05-scheduler-record/source.zip
+          python3 - <<'PY'
+          import datetime, hashlib, json, os, shutil, urllib.request, zipfile
+          from pathlib import Path
+          from scripts.run_modernization_p05_scheduler_e2e import identity, validate_result, validate_matrix, PAIRS, GUARDS, ROM_SHA, SEED_SHA, SCOPE
+          run_id = 34351006779
+          artifact_id = 10103780162
+          expected_head = '14a61c80b69d2adb2f9f9adf513fd143d86b8728'
+          expected_digest = '5f0f90fd30eeda524c4449c4a995d04fa520f0f0bf954dce8e9aa6b9eae0fe54'
+          repo = 'dekaazarashi1111-web/pokemon-vega-modern'
+          out = Path('.local/p05-scheduler-record')
+          def api(path):
+              request = urllib.request.Request('https://api.github.com/repos/' + repo + path,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(request, timeout=30) as response: return json.load(response)
+          run = api('/actions/runs/' + str(run_id))
+          assert run['status'] == 'completed' and run['conclusion'] == 'success'
+          assert run['head_sha'] == expected_head and run['run_attempt'] == 1
+          assert run['head_repository']['full_name'] == repo
+          assert run['head_branch'] == 'codex/modernization-followup-20260908'
+          assert run['path'] == '.github/workflows/p05-scheduler-e2e.yml'
+          jobs = api('/actions/runs/' + str(run_id) + '/jobs')['jobs']
+          assert len(jobs) == 1 and jobs[0]['conclusion'] == 'success'
+          steps = [s for s in jobs[0]['steps'] if s['name'] == 'Fresh 24-process scheduler matrix and seven write guards']
+          assert len(steps) == 1 and steps[0]['conclusion'] == 'success'
+          artifact = api('/actions/artifacts/' + str(artifact_id))
+          assert artifact['digest'] == 'sha256:' + expected_digest
+          assert artifact['name'] == 'p05-scheduler-e2e' and not artifact['expired']
+          assert artifact['workflow_run']['id'] == run_id and artifact['workflow_run']['head_sha'] == expected_head
+          assert identity(out / 'source.zip')['sha256'] == expected_digest
+          names = ['result.json', 'tested-head.txt', 'compile.stdout', 'compile.stderr']
+          names += [f'{c}--{m}.{s}' for c, m in PAIRS for s in ('stdout', 'stderr')]
+          names += [f'guard-{g}.{s}' for g in GUARDS for s in ('stdout', 'stderr')]
+          source = out / 'source'
+          source.mkdir()
+          with zipfile.ZipFile(out / 'source.zip') as archive:
+              assert len(archive.namelist()) == len(set(archive.namelist()))
+              assert set(archive.namelist()) == set(names) | {'job.stdout.json', 'job.stderr.log'}
+              for name in names:
+                  info = archive.getinfo(name)
+                  assert not info.is_dir() and info.file_size < 1000000
+                  (source / name).write_bytes(archive.read(name))
+          assert (source / 'tested-head.txt').read_text().strip() == expected_head
+          assert identity(source / 'result.json') == {'size': 36149, 'sha256': '69ca747203911a0eba2f8493054c2c2cb37647beb0ab404fbdfce3d3462d0ad1'}
+          report = json.loads((source / 'result.json').read_text())
+          assert report['status'] == 'PASS' and report['scope'] == SCOPE
+          assert report['fresh_process_runs'] == 24 and report['cached_results_reused'] == 0
+          assert report['representative_scheduler_e2e'] is True
+          assert report['write_guard_negative_checks'] == list(GUARDS)
+          for field in ('full_p05_acceptance', 'natural_ability_acquisition_e2e', 'natural_battle_circus_entry_e2e', 'release_ready', 'active_baseline_changed'):
+              assert report[field] is False
+          assert report['rom'] == {'size': 33554432, 'sha256': ROM_SHA}
+          assert report['seed'] == {'size': 131072, 'sha256': SEED_SHA}
+          for name, bound in report['source_bindings'].items(): assert identity(Path(name)) == bound, name
+          assert [(c['case'], c['mode']) for c in report['cases']] == list(PAIRS)
+          parsed_cases = []
+          for case in report['cases']:
+              label = case['case'] + '--' + case['mode']
+              parsed = validate_result((source / (label + '.stdout')).read_bytes(), case['case'], case['mode'], case['returncode'])
+              assert parsed == case['runner_result']
+              parsed_cases.append(parsed)
+              for stream in ('stdout', 'stderr'): assert identity(source / (label + '.' + stream)) == case[stream]
+          validate_matrix(parsed_cases)
+          for guard in GUARDS:
+              assert (source / ('guard-' + guard + '.stdout')).read_bytes() == b''
+              assert (source / ('guard-' + guard + '.stderr')).read_bytes() == b'P05 scheduler: host write after fixture barrier\n'
+          assert (source / 'compile.stdout').read_bytes() == b'' and (source / 'compile.stderr').read_bytes() == b''
+          destination = Path('content/modernization/p05_scheduler_e2e_evidence') / str(run_id)
+          assert not destination.exists()
+          destination.mkdir(parents=True)
+          for name in names: shutil.copyfile(source / name, destination / name)
+          metadata = {'run_id': run_id, 'run_attempt': 1, 'head_sha': expected_head,
+              'status': run['status'], 'conclusion': run['conclusion'], 'path': run['path'],
+              'job_id': jobs[0]['id'], 'job_conclusion': jobs[0]['conclusion'], 'execution_step': steps[0],
+              'artifact_id': artifact_id, 'artifact_digest': artifact['digest'], 'actual_zip_sha256': expected_digest}
+          (destination / 'actions.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
+          record = {'schema_version': 1, 'status': 'PASS', 'scope': SCOPE, 'runtime_run_id': run_id,
+              'runtime_head': expected_head, 'source_artifact_id': artifact_id, 'source_artifact_digest': artifact['digest'],
+              'record_source_head': os.environ['GITHUB_SHA'], 'record_run_id': int(os.environ['GITHUB_RUN_ID']),
+              'fresh_process_runs': 24, 'cached_results_reused': 0, 'host_write_guard_checks': 7,
+              'representative_scheduler_e2e': True, 'full_p05_acceptance': False, 'release_ready': False,
+              'evidence': {p.name: identity(p) for p in sorted(destination.iterdir())}}
+          Path('content/modernization/p05_scheduler_e2e_record.json').write_text(json.dumps(record, ensure_ascii=False, indent=2) + '\n')
+          stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+          marker = '<!-- USER-MODERNIZATION-P05-SCHEDULER-E2E:' + str(run_id) + ' -->'
+          entry = ('\n\n## ' + stamp + '\n' + marker + '\n'
+              '- Task: USER-MODERNIZATION-P05-SCHEDULER-E2E / 6特性の実ターン進行・対照・抑制試験\n'
+              '- Status: DONE（24条件の代表経路のみ。P05全体は未完了）\n'
+              '- Summary: Dragonize, Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Sprayを、特性なし・有効・Battle Circus抑制で比較。Eelevateは最後の相手/残る相手の撃破境界を追加。\n'
+              '- Fixture boundary: native戦闘生成後・最初の行動前だけ条件を書込。観測中は7 API書込ガードを設け、キー入力/runFrame/受動読取のみ。自然入手・自然施設入場は非主張。\n'
+              '- Verify: 回帰23 tests PASS; strict C compile PASS; GitHub新規mGBA 24 process PASS, cache 0; 書込ガード負例7 PASS; 原本ZIP/source/JSON/logとROM/seed/Stage62 identity照合。\n'
+              '- Fix in test driver: Solar Beamの溜め中はChooseAction待ちで次ターンへ進まないよう、ターン末から次のaction mainへ戻った直後に停止。期待値・製品ROMの変更なし。\n'
+              '- Files: tools/mgba_modernization_p05_scheduler_e2e.c, scripts/run_modernization_p05_scheduler_e2e.py, tests/test_modernization_p05_scheduler_e2e.py, docs/P05_SCHEDULER_E2E.md, content/modernization/p05_scheduler_e2e_record.json, .github/workflows/p05-scheduler-e2e.yml\n'
+              '- Commit: runtime対象 ' + expected_head + '。記録commitはrecord-head.txtに保存。\n'
+              '- Evidence: https://github.com/' + repo + '/actions/runs/' + str(run_id) + '\n'
+              '- Remaining: P03繁殖/他UI、P05網羅受入、P06/P07正式採用、最終受入。過去Stage79/P08原本は不変。release_ready=false、Stage62基準不変。\n'
+              '- Network: GitHub Actions/APIから固定原本を取得し、実際のZIPハッシュと実行メタデータも照合。\n')
+          for name in ('design/run_log.md', 'design/version_log.md'):
+              p = Path(name)
+              assert marker not in p.read_text()
+              with p.open('a') as stream: stream.write(entry)
+          PY
+          python3 scripts/validate_task_graph.py
+          python3 scripts/check_modernization_p08_current_acceptance.py --check > .local/p05-scheduler-record/p08-check.json
+          git diff --exit-code -- config/active_play_baseline.json design/active_play_baseline.md content/modernization/p08_current_acceptance.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add design/run_log.md design/version_log.md content/modernization/p05_scheduler_e2e_evidence content/modernization/p05_scheduler_e2e_record.json
+          git commit -m 'test(p05): retain verified fresh real-turn evidence and acceptance boundaries'
+          git rev-parse HEAD > .local/p05-scheduler-record/record-head.txt
+          git push origin "HEAD:refs/heads/codex/p05-scheduler-record-${GITHUB_RUN_ID}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p05-scheduler-record
+          path: .local/p05-scheduler-record/
+          include-hidden-files: true
+          retention-days: 14

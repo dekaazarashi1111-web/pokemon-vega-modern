@@ -1,0 +1,109 @@
+name: p03-breeding-integration
+run-name: Integrate verified original P03 physical breeding evidence
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/p03-breeding-integration.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Revalidate contracts and integrate only the successful original run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-breeding-integration
+          python3 -m unittest discover -s tests -p 'test_modernization_p03_breeding*.py' -v 2>&1 | tee .local/p03-breeding-integration/tests.log
+          # Recover only a missing original whose exact identity is already recorded.
+          python3 - <<'PYRECOVER'
+          import pathlib,sys
+          sys.path.insert(0,'scripts')
+          import record_modernization_p03_breeding as r
+          record_path=pathlib.Path(r.RECORD)
+          if record_path.is_file():
+              target=pathlib.Path(r.EVIDENCE)/'original.zip'
+              if target.is_symlink(): raise SystemExit('original ZIP symlink forbidden')
+              if not target.exists():
+                  record=r.read(record_path)
+                  item=r.read(target.parent/'actions-artifact.json')
+                  data=r.get('artifacts/'+str(item['id'])+'/zip',True)
+                  r.require(r.same(r.digest(data),record['files']['original.zip']),
+                            'download differs from already recorded original')
+                  target.write_bytes(data)
+                  r.check()
+                  entry=('\n## 2026-09-10 — P03 breeding original ZIP publication repair\n\n'
+                         'The first post-integration CI run 34435350299 correctly rejected a missing '
+                         'original.zip: the ignored archive existed in the integration worktree but '
+                         'was absent from its commit. Restore only the already recorded 31,334-byte '
+                         'original with its existing SHA-256, explicitly stage it, and verify every '
+                         'staged evidence blob against the existing manifest before publishing. '
+                         'No runtime source, result expectation, product ROM or release flag changes.\n')
+                  for name in ('design/run_log.md','design/version_log.md'):
+                      with pathlib.Path(name).open('a') as stream: stream.write(entry)
+          PYRECOVER
+          if test -f content/modernization/p08_p03_breeding_acceptance.json; then
+            python3 scripts/record_modernization_p03_breeding.py | tee .local/p03-breeding-integration/check.json
+          else
+            python3 scripts/record_modernization_p03_breeding.py --record | tee .local/p03-breeding-integration/record.json
+            python3 scripts/record_modernization_p03_breeding.py | tee .local/p03-breeding-integration/check.json
+          fi
+          python3 scripts/validate_task_graph.py
+          git diff --exit-code -- config/active_play_baseline.json config/modernization_stage79_cumulative_mgba.json
+      - name: Commit originals and append-only logs without overwriting a moved branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess
+          for name in ('design/run_log.md','design/version_log.md','docs/P08_CURRENT_ACCEPTANCE.md'):
+              old=subprocess.check_output(['git','show','HEAD:'+name])
+              if not pathlib.Path(name).read_bytes().startswith(old):
+                  raise SystemExit('non-append log change: '+name)
+          PY
+          git add content/modernization/p08_p03_breeding_acceptance.json content/modernization/p08_breeding_evidence/34434453733 design/run_log.md design/version_log.md docs/P08_CURRENT_ACCEPTANCE.md
+          # Directory staging respects *.zip ignores; explicitly include the verified original.
+          git add -f content/modernization/p08_breeding_evidence/34434453733/original.zip
+          python3 - <<'PYSTAGE' | tee .local/p03-breeding-integration/staged-evidence.json
+          import json,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import record_modernization_p03_breeding as r
+          record=r.common.strict_json(subprocess.check_output(['git','show',':'+r.RECORD]))
+          verified={}
+          for name,expected in record['files'].items():
+              r.relative(name)
+              path=r.EVIDENCE+'/'+name
+              actual=r.digest(subprocess.check_output(['git','show',':'+path]))
+              r.require(r.same(actual,expected),'staged evidence bytes differ: '+path)
+              verified[path]=actual
+          print(json.dumps({'status':'ALL_STAGED_ORIGINAL_BYTES_VERIFIED','files':verified},indent=2))
+          PYSTAGE
+          git diff --cached --name-only > .local/p03-breeding-integration/changed-files.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git diff --cached --quiet; then
+            git commit -m 'USER-P03-BREEDING: integrate eight physical inheritance hatch and cold-save originals'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          git rev-parse HEAD > .local/p03-breeding-integration/final-head.txt
+          gh workflow run ci.yml --ref "$branch"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-breeding-integration
+          path: .local/p03-breeding-integration/
+          if-no-files-found: error
+          retention-days: 30

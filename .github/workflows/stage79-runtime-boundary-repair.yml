@@ -1,0 +1,104 @@
+name: stage79-runtime-boundary-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-runtime-boundary-repair.yml
+      - .github/scripts/stage79_boundary_repair.py
+      - .github/repairs/stage79-boundary-recipe.py
+      - .github/repairs/stage79-boundary-tests.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-runtime-boundary-repair-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned compiler and mGBA
+        run: bash infra/setup_github_actions.sh --install
+      - name: Apply preimage-guarded source fixes and materialize a distinct candidate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-boundary-repair
+          python3 .github/scripts/stage79_boundary_repair.py | tee .local/stage79-boundary-repair/materialization.json
+      - name: Require all existing and new regressions, without skipped domains
+        run: |
+          set -euo pipefail
+          python3 -m unittest \
+            tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba \
+            tests.test_modernization_stage79_factory_map \
+            tests.test_modernization_stage79_controller_input \
+            tests.test_modernization_stage79_runtime_boundaries -v \
+            > .local/stage79-boundary-repair/tests.log 2>&1
+          cat .local/stage79-boundary-repair/tests.log
+          python3 scripts/run_modernization_stage79_github_domain.py plan --selection all \
+            > .local/stage79-boundary-repair/plan.json
+          python3 scripts/validate_task_graph.py
+          python3 -m unittest tests.test_github_private_environment tests.test_github_comment_control tests.test_github_large_file_bridge tests.test_github_result_summary tests.test_run_github_battle_command tests.test_run_github_private_suite
+          git diff --check
+      - name: Commit only the reviewed sources, immutable candidate and READY gate
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          # Workflow file updates are committed separately through the user connection.
+          # The Actions token commits only the tested product and validation sources.
+          git restore --worktree -- .github/workflows/modernization-stage79-mgba.yml
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          cfg = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          parent = cfg['input_identity']['rom']
+          assert hashlib.sha256(pathlib.Path(parent['path']).read_bytes()).hexdigest() == parent['sha256']
+          candidate = cfg['runtime_candidate']['rom']
+          assert candidate['sha256'] == '6570b82fc062cf163fa66a6d821fea6563021e5a9ca6f26efd583bae71623442'
+          gate = json.loads(pathlib.Path(cfg['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
+          targets = {
+            '.github/repairs/stage79-runtime-boundary.patch.gz.b64',
+            'overlays/qol_production/qol_production.c',
+            'tools/modernization_p04_species_runtime.py',
+            'tools/modernization_runtime_boundary_repair.py',
+            'tools/mgba_modernization_p02_stage71_acceptance_smoke.c',
+            'tests/test_modernization_stage79_runtime_boundaries.py',
+            'tests/test_modernization_stage79_cumulative_mgba.py',
+            'scripts/run_modernization_stage79_cumulative_mgba.py',
+            'config/modernization_stage79_cumulative_mgba.json',
+            candidate['path'], cfg['runtime_candidate']['report']['path'],
+            cfg['execution']['runtime_gate'],
+          }
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], text=True).splitlines())
+          assert changed <= targets and untracked <= targets, (changed, untracked)
+          subprocess.run(['git', 'add', '-f', '-A', '--', *sorted(targets)], check=True)
+          PY
+          git diff --cached --stat | tee .local/stage79-boundary-repair/diff-stat.txt
+          git diff --cached -- . ':!*.gba' > .local/stage79-boundary-repair/validated-source.patch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(stage79): correct party EXP access and typed collection bounds in a pinned Stage80 candidate'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD | tee .local/stage79-boundary-repair/committed-head.txt
+      - name: Run all seven domains on the actual committed HEAD
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-runtime-boundary-repair
+          path: .local/stage79-boundary-repair
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

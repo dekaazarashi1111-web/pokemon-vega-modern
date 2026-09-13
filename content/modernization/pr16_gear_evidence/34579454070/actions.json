@@ -1,0 +1,97 @@
+{
+  "artifact_id": 10191015811,
+  "artifact_name": "pr16-gear-route-probe",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "665bd5e82c0cf2492c98cc8d9748ee6f160d10e2",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "665bd5e82c0cf2492c98cc8d9748ee6f160d10e2",
+      "id": 103199377639,
+      "name": "inspect",
+      "run_id": 34579454070,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T08:29:45Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T08:29:45Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:29:50Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T08:29:45Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:29:52Z",
+          "conclusion": "success",
+          "name": "Preserve tracked development text for scoped offline inspection",
+          "number": 3,
+          "started_at": "2026-09-11T08:29:50Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:30:33Z",
+          "conclusion": "success",
+          "name": "Restore pinned compiler and Stage84 without baseline writes",
+          "number": 4,
+          "started_at": "2026-09-11T08:29:52Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:30:42Z",
+          "conclusion": "success",
+          "name": "Restore adopted V4 and character map with exact archive hashes",
+          "number": 5,
+          "started_at": "2026-09-11T08:30:33Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:30:59Z",
+          "conclusion": "success",
+          "name": "Build unchanged candidate and inspect bounded physical map graph",
+          "number": 6,
+          "started_at": "2026-09-11T08:30:42Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:31:01Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 7,
+          "started_at": "2026-09-11T08:30:59Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:31:01Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 14,
+          "started_at": "2026-09-11T08:31:01Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T08:31:01Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "started_at": "2026-09-11T08:31:01Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-gear-route-probe.yml",
+  "run_attempt": 1,
+  "run_id": 34579454070,
+  "sha256": "12a465f0eb375b6febb8e8eb0c998aaf8425f476c2500080b6a5444b4617688c",
+  "size": 16626310,
+  "status": "completed"
+}

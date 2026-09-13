@@ -1,0 +1,107 @@
+{
+  "acceptance": {
+    "path": "content/modernization/pr16_bp_native_controls_acceptance.json",
+    "sha256": "c5ef9b7c6d2dfa0875911e62698645886a462a9e234d861d29b1f6ca4ff74859",
+    "size": 3637
+  },
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "native_bp_earning_accepted": false,
+  "new_emulator_runs_during_checkpoint": 0,
+  "originals": [
+    {
+      "accepted_controls": 0,
+      "actions": {
+        "path": "content/modernization/pr16_bp_native_controls_evidence/34702872369/actions.json",
+        "sha256": "bbce0c75219558a5dc9fa5a9b9d7db075cf1f1e93d5536e87c68c4bc29dc8ecd",
+        "size": 22787
+      },
+      "actions_conclusion": "failure",
+      "actual_new_processes": 0,
+      "artifact_id": 10301360547,
+      "job_id": 103577609933,
+      "original": {
+        "path": "content/modernization/pr16_bp_native_controls_evidence/34702872369/original.zip",
+        "sha256": "160c8fbfcdb549466b4d4d6f7d27e24f16b2057416dd18b4b683e03d9a7828a9",
+        "size": 63191
+      },
+      "receipt": {
+        "sha256": "bab23155437e5993ec46afdd9433c63c7b997cb3bd27c3352401dd6da83f8d09",
+        "size": 483
+      },
+      "result": {
+        "sha256": "d1275e3b6e01008206e70f20f11b656f36806adcabc5c8c7f6ee361a74383b97",
+        "size": 682
+      },
+      "run_id": 34702872369,
+      "tested_head": "77473538d0b7b9eebbfc6d92ec9f2be6a6d6e500"
+    },
+    {
+      "accepted_controls": 1,
+      "actions": {
+        "path": "content/modernization/pr16_bp_native_controls_evidence/34703571879/actions.json",
+        "sha256": "54205aba1bc7f8adc88871e2fdb7fd2e8a03929ce29633b5f3bb05475bb5ba54",
+        "size": 22781
+      },
+      "actions_conclusion": "success",
+      "actual_new_processes": 1,
+      "artifact_id": 10300567380,
+      "job_id": 103579472279,
+      "original": {
+        "path": "content/modernization/pr16_bp_native_controls_evidence/34703571879/original.zip",
+        "sha256": "e32b0e2b976d80c0ff46e45d78f265dd2f3d11e3f4a88bbb82da809a522c7a1b",
+        "size": 600246
+      },
+      "receipt": {
+        "sha256": "320a5948aaf3a7af2a2b98552d1333713ddcb19df0ea148a60aefc956d234ef2",
+        "size": 5353
+      },
+      "result": {
+        "sha256": "1fcb6bbd222b33c7be6387593df564dd7f2b5a1669b17992522ac0f995987ea0",
+        "size": 15492
+      },
+      "run_id": 34703571879,
+      "tested_head": "7ebf7b34396ce70e0484be2e74514647b5e7ac56"
+    }
+  ],
+  "p05_native_bp_gap_closed": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_bindings": {
+    ".github/workflows/pr16-bp-controls-checkpoint.yml": {
+      "sha256": "2ad72b228eac23eeb64d5d814f4025b4ef6828428538ea0501038df44967d2b0",
+      "size": 8272
+    },
+    "scripts/pr16_bp_controls_checkpoint.py": {
+      "sha256": "282534d94ce9f2dfec45a36de91f7f846e5929affd9bcfb8d934240d87419300",
+      "size": 13623
+    },
+    "scripts/pr16_bp_native_controls.py": {
+      "sha256": "4282aa8a78e50d33837578846e531a32a517ae4a872db2271cff329993f67d93",
+      "size": 12756
+    },
+    "scripts/pr16_fixed_form_closeout.py": {
+      "sha256": "22e59395c52f41b5865085b98e154bba485fa7b221ef89279ff2a822ccb92e61",
+      "size": 18183
+    },
+    "scripts/pr16_fixed_form_originals.py": {
+      "sha256": "d5ac3faa94017c74212473688c29c32aebe504c20831d25527a427ee2f5035a8",
+      "size": 7827
+    },
+    "tests/test_pr16_bp_controls_checkpoint.py": {
+      "sha256": "bb8a15065373edc8a1f4fe975811105dd85b653fe48acc311d07d3be117bce56",
+      "size": 3812
+    },
+    "tests/test_pr16_bp_native_controls.py": {
+      "sha256": "f7273326d581347158d6090b0a320a87204227ae1439b654209f828a384e2dd5",
+      "size": 3410
+    },
+    "tools/mgba_pr16_bp_native_controls.c": {
+      "sha256": "44e28abe05a7dcad0d430b8c48b5046cbf89c246f7235158a2e5451b29bb0f56",
+      "size": 10327
+    }
+  },
+  "status": "PASS_ONE_NATIVE_RECEPTION_CANCEL_CONTROL_BP_EARNING_PENDING"
+}

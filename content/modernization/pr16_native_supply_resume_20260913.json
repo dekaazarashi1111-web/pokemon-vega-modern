@@ -1,0 +1,90 @@
+{
+  "active_baseline_changed": false,
+  "bp": {
+    "cancellation_save_continue_accepted": true,
+    "current_stop": "Chooser and native cancellation/normal Save/fresh Continue accepted. Positive three-selection/battle/earning path not yet accepted.",
+    "earning_and_spending_accepted": false,
+    "native_party_chooser_accepted": true,
+    "next_step": "Native select three rentals, bind selected-order bridge and real battle launch before 3 wins/9BP, negatives, repeat, Save/Continue and earned-BP shop spend. Do not repeat cancelled-entry proof without an affected-source reason.",
+    "observed_wait_snapshot": {
+      "frame": 1215,
+      "interpretation": "Historical pre-repair snapshot: nativePtr is stale after empty special; verified actual 0x2F binding is bx lr followed by script stop. Not the current resume point.",
+      "mode_raw": 1,
+      "native_pointer": "0x0806B159",
+      "native_pointer_linker_symbol": "WaitForAorBPressOld",
+      "script_pointer": "0x092CF62C"
+    },
+    "party_snapshot_and_marker_observed": true,
+    "script_context_abi": {
+      "comparison_result_offset": 2,
+      "enabled_offset": 116,
+      "env1_base": "0x03000EB0",
+      "mode_offset": 1,
+      "native_pointer_offset": 4,
+      "old_B_CONTEXT_plus_8_display_is_not_script_pointer": true,
+      "script_pointer_offset": 8,
+      "source": "vendor/upstream/CFRU-JP/include/script.h in verified original chooser-upstream-sources.zip",
+      "stack_depth_offset": 0
+    },
+    "six_rentals_generated": true,
+    "trial_delegate_repaired": true
+  },
+  "branch": "codex/modernization-followup-20260908",
+  "candidate": {
+    "crc32": "635A3CE5",
+    "final_product_sha_fixed": false,
+    "full_candidate_regression_complete": false,
+    "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+    "size": 33554432
+  },
+  "current_checkpoint": "content/modernization/pr16_bp_chooser_checkpoint.json",
+  "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+  "diagnostic_original": {
+    "actual_native_processes_in_original": 1,
+    "adoption": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+    "artifact_id": 10302803074,
+    "artifact_name": "pr16-bp-trial-native",
+    "check_name": "trial-native",
+    "conclusion": "failure",
+    "downloaded_zip_digest_verified": true,
+    "git_archive_preserved": true,
+    "git_container": "content/modernization/pr16_bp_chooser_evidence/34733046485/original.zip!original-34708956804.zip",
+    "job_id": 103594064434,
+    "new_emulator_processes_during_this_reconciliation": 0,
+    "run_id": 34708956804,
+    "sha256": "44396b567b3057602870cdb6924902092e9671cb7d459a2de47d001958810bef",
+    "size": 677365
+  },
+  "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
+  "latest_native_run": 34733866168,
+  "latest_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+  "logs_synchronized": true,
+  "merge_performed": false,
+  "observed_date_jst": "2026-09-13",
+  "observed_head": "f344c9b9a88a7bab9f7c74e346f4505774de48f8",
+  "observed_head_checks": {
+    "failure": 1,
+    "success": 5,
+    "total": 6
+  },
+  "p08_resume_synchronized": true,
+  "pr_body_update": "NOT_APPLIED_TOOL_SAFETY_CHECK_REJECTED",
+  "pr_draft": true,
+  "pr_merged": false,
+  "pr_number": 16,
+  "pr_state": "open",
+  "release_ready": false,
+  "remaining_p08_gate_ids": [
+    "FINAL_NATIVE_ACCEPTANCE",
+    "RELEASE_DECISION"
+  ],
+  "remaining_physical_gap_ids": [
+    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "P05_NATIVE_BP_EARNING_PHYSICAL",
+    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
+    "PHYSICAL_CIRCUS_ADMISSION"
+  ],
+  "retained_fixed_form_accepted_case_count": 5,
+  "schema_version": 1,
+  "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_BP_EARNING_PENDING"
+}

@@ -1,0 +1,78 @@
+name: pr16-generic-form-closeout-inspect
+run-name: Inspect generic FORM formal closeout paths
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-generic-form-closeout-inspect.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Collect closeout sources and references
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-generic-form-closeout-inspect
+          mkdir -p "$out/files"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          git ls-files > "$out/all-files.txt"
+          grep -R -n -E 'P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL|pr16_physical_route_acceptance|pr16_p03_p07_route_coverage|p08_remaining_work|generic_form_carry' \
+            scripts tests .github/workflows docs design content/modernization \
+            --exclude='*.zip' --exclude='*.ppm' --exclude='*.gba' --exclude='*.sav' \
+            > "$out/references.txt" || true
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+
+          root = Path('.')
+          out = root / '.local/pr16-generic-form-closeout-inspect/files'
+          explicit = [
+              'AGENTS.md',
+              'docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
+              'design/run_log.md',
+              'design/version_log.md',
+              'content/modernization/p08_remaining_work.json',
+              'content/modernization/pr16_physical_route_acceptance.json',
+              'content/modernization/pr16_p03_p07_route_coverage.json',
+              'content/modernization/p08_p03_forgetting_acceptance.json',
+          ]
+          needles = (
+              'acceptance', 'remaining', 'route', 'current_view', 'completion',
+              'generic_form', 'p03_form', 'originals', 'checkpoint', 'evidence_map',
+          )
+          selected = set(explicit)
+          for base in ('scripts', 'tests', 'docs'):
+              for path in (root / base).glob('*'):
+                  if path.is_file() and any(n in path.name.lower() for n in needles):
+                      selected.add(path.as_posix())
+          for name in sorted(selected):
+              src = root / name
+              if not src.is_file() or src.stat().st_size > 2000000:
+                  continue
+              dst = out / name
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(src, dst)
+          (out.parent / 'selected-files.txt').write_text('\n'.join(sorted(p.relative_to(out).as_posix() for p in out.rglob('*') if p.is_file())) + '\n')
+          PY
+      - name: Upload inspection packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-generic-form-closeout-inspect
+          path: .local/pr16-generic-form-closeout-inspect/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,865 @@
+{
+  "active_play_baseline": {
+    "json": {
+      "path": "config/active_play_baseline.json",
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
+      "size": 394
+    },
+    "markdown": {
+      "path": "design/active_play_baseline.md",
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8",
+      "size": 5551
+    },
+    "stage": 62,
+    "unchanged": true
+  },
+  "allocation_lineage": {
+    "first81_all_fields_equal": true,
+    "new_count": 82,
+    "new_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
+    "new_sequence": 81,
+    "parent_count": 81,
+    "parent_first81_sha256": "583a335d22131d9afe78859a6e14d7acede052ba187375f7a566be0b09befaf5",
+    "parent_last_sequence": 80,
+    "payload_slice_sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905"
+  },
+  "allocation_sequence": 81,
+  "bps": {
+    "path": "build/patches/stage77-to-stage78-modernization-p05-eelevate-switch-ai.bps",
+    "round_trip": true,
+    "sha256": "2a5dfc6574f42b06f6339061a7af087b4f0ef5fa872cedf92599ddbb70a9ca9e",
+    "size": 799,
+    "source_sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+    "target_sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b"
+  },
+  "checks": {
+    "active_original_call_tuple_preserved": "PASS",
+    "active_play_baseline_unchanged": "PASS",
+    "allocator_overlap": "PASS",
+    "bps_roundtrip": "PASS",
+    "browt_pombon_gecqua_added": 0,
+    "circus_and_active_suppression": "PASS",
+    "dynamic_ground_status_thousand_arrows_grounding": "PASS",
+    "mgba_runtime": "NOT_RUN",
+    "mold_breaker_and_ability_shield": "PASS",
+    "parent_first81_rows_all_fields_preserved": "PASS",
+    "parent_stage77_commit_and_seven_identities": "PASS",
+    "party_threat_prediction_rederived": "PASS",
+    "pure_matrix": "PASS",
+    "pure_matrix_cases": 32,
+    "residual_neutralizing_gas_excludes_outgoing": "PASS",
+    "rom_diff_outside_payload_plus_two_hooks": 0,
+    "side_change_added": 0,
+    "stage76_pointer_and_three_hooks_preserved": "PASS",
+    "stage77_29_hooks_preserved": "PASS",
+    "two_switch_ai_hooks_installed": 2
+  },
+  "done": false,
+  "eelevate_contract": {
+    "ability_shield": "EFFECT_147_FROM_GET_BANK_OR_MON_ITEM_EFFECT_OVERRIDES_GAS_AND_MOLD_BREAKER_ONLY",
+    "active_original_call": "GET_PREDICTED_AI_ABILITY_ACTIVE_FOE1_UNCHANGED",
+    "completion": {
+      "active_play_baseline_changed": false,
+      "browt_pombon_gecqua_added": 0,
+      "done": false,
+      "eelevate_dedicated_switch_ai": true,
+      "full_p05_done": false,
+      "mgba_runtime": "NOT_RUN",
+      "release_ready": false,
+      "side_change_added": 0
+    },
+    "eligible": "ABILITY_313_AND_DAMAGING_DYNAMIC_GROUND_AND_NOT_MOVE_643_AND_AIRBORNE",
+    "mapped_result": 298,
+    "neutralizing_gas": "RAW_ABILITY_257_ALIVE_PRESENT_BANKS_EXCLUDING_OUTGOING_ACTIVE",
+    "reject": [
+      "NO_PREDICTION",
+      "PREDICTION_SWITCH_OR_OUT_OF_RANGE",
+      "NON_GROUND",
+      "STATUS",
+      "THOUSAND_ARROWS",
+      "GROUNDING",
+      "BATTLE_CIRCUS_GLOBAL_SUPPRESSION",
+      "ACTIVE_ABILITY_SUPPRESSION",
+      "RESIDUAL_NEUTRALIZING_GAS_WITHOUT_EFFECTIVE_SHIELD",
+      "TARGET_ABILITY_IGNORED_WITHOUT_EFFECTIVE_SHIELD"
+    ],
+    "threat_selection": "PREDICT_FOE1_IF_NONZERO_ELSE_FOE2_USING_LOAD_BATTLERS_AND_FOES"
+  },
+  "eelevate_dedicated_switch_ai_complete": true,
+  "full_p05_done": false,
+  "implementation_sha256": "0802e6edaefa1717692d01d386cd364c3f81d86a4054379776c6fdad709faa6e",
+  "matrix": {
+    "all_pass": true,
+    "case_count": 32,
+    "cases": [
+      {
+        "expected_ability": 298,
+        "name": "eligible_physical_ground",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 298,
+        "name": "eligible_special_ground",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 1,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 26,
+        "name": "other_ability",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 26,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 26
+      },
+      {
+        "expected_ability": 313,
+        "name": "no_prediction",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 0,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "prediction_switch",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 65535,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "prediction_out_of_range",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 1063,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "non_ground",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 10,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "status_ground",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 2,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "thousand_arrows",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 643,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "gravity",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 1,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "iron_ball",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 1,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "rooted",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 1,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "smack_down",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 1,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "mold_breaker",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "mold_breaker_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 313,
+        "name": "teravolt",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "teravolt_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 313,
+        "name": "turboblaze",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "turboblaze_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 313,
+        "name": "mold_breaker_move",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "mold_breaker_move_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 313,
+        "name": "magic_room_disables_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "embargo_disables_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "circus",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 1,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "circus_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 1,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "gastro_acid",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 1,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "gastro_acid_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 1,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 313,
+        "name": "neutralizing_gas",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 1,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "neutralizing_gas_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 1,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 298,
+        "name": "outgoing_active_sole_gas_excluded",
+        "pass": true,
+        "query": {
+          "abilityShield": 0,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 298
+      },
+      {
+        "expected_ability": 313,
+        "name": "grounded_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 1,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 0,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 0
+        },
+        "result_ability": 313
+      },
+      {
+        "expected_ability": 298,
+        "name": "combined_ignore_gas_shield",
+        "pass": true,
+        "query": {
+          "abilityShield": 1,
+          "abilitySuppressed": 0,
+          "circusSuppressed": 0,
+          "grounded": 0,
+          "move": 89,
+          "moveSplit": 0,
+          "moveType": 4,
+          "neutralizingGasPresent": 1,
+          "originalAbility": 313,
+          "targetAbilityIgnored": 1
+        },
+        "result_ability": 298
+      }
+    ]
+  },
+  "output": {
+    "crc32": "BFF0203C",
+    "path": "build/stages/78_modernization_p05_eelevate_switch_ai.gba",
+    "sha256": "98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b",
+    "size": 33554432
+  },
+  "parent": {
+    "commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+    "crc32": "F1CE0EAC",
+    "path": "build/stages/77_modernization_p05_circus_suppression.gba",
+    "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+    "size": 33554432,
+    "stage": 77
+  },
+  "payload": {
+    "allocation_sequence": 81,
+    "load_address": "0x095D5D40",
+    "path": "generated/runtime/modernization_p05_stage78_eelevate_switch_ai.bin",
+    "sha256": "a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905",
+    "size": 688,
+    "start": 22895936
+  },
+  "pending": [
+    "single cumulative P05 mGBA smoke on Stage78",
+    "P05 aggregate completion/release decision"
+  ],
+  "release_ready": false,
+  "runtime_abi": {
+    "constants": {
+      "ABILITY_EARTH_EATER": 298,
+      "ABILITY_EELEVATE": 313,
+      "ABILITY_NEUTRALIZING_GAS": 257,
+      "ABILITY_NONE": 0,
+      "BATTLE_MON_ABILITY_OFFSET": 56,
+      "BATTLE_MON_HP_OFFSET": 40,
+      "BATTLE_MON_STRIDE": 88,
+      "BATTLE_MOVE_SPLIT_OFFSET": 10,
+      "BATTLE_MOVE_STRIDE": 12,
+      "BATTLE_TYPE_CIRCUS": "0x04000000",
+      "CIRCUS_ABILITY_SUPPRESSION": "0x80000000",
+      "ITEM_EFFECT_ABILITY_SHIELD": 147,
+      "MOVE_MAX": 1062,
+      "MOVE_NONE": 0,
+      "MOVE_PREDICTION_SWITCH": 65535,
+      "MOVE_THOUSAND_ARROWS": 643,
+      "SPLIT_STATUS": 2,
+      "TYPE_GROUND": 4
+    },
+    "exports": [
+      {
+        "abi": "u16(const Stage78EelevateQuery*)",
+        "address": "0x095D5D98",
+        "direct_call": true,
+        "name": "Stage78_MapEelevateAbsorber"
+      },
+      {
+        "abi": "u16(u16,u8,u8)",
+        "address": "0x095D5FA4",
+        "direct_call": true,
+        "name": "Stage78_ActiveAbsorberAbility"
+      },
+      {
+        "abi": "u16(u16,void*)",
+        "address": "0x095D5FB4",
+        "direct_call": true,
+        "name": "Stage78_PartyAbsorberAbility"
+      },
+      {
+        "abi": "HOOK_R5_ACTIVE_R6_FOE1_TO_R0_MAPPED_R3_R11_298",
+        "address": "0x095D5D40",
+        "direct_call": false,
+        "name": "Stage78_EntryFindMonAbsorberActive"
+      },
+      {
+        "abi": "HOOK_R12_SPECIES_R6_MON_R4_BATTLE_MON_TO_R8_SPECIES_R0_R7_MAPPED_R3_HP",
+        "address": "0x095D5D6C",
+        "direct_call": false,
+        "name": "Stage78_EntryFindMonAbsorberParty"
+      },
+      {
+        "abi": "u8(void)",
+        "address": "0x095D5FE8",
+        "direct_call": true,
+        "name": "Stage78_RuntimeProbe"
+      }
+    ],
+    "functions": {
+      "CheckGrounding": "0x090D4718",
+      "CheckMonGrounding": "0x090D43D4",
+      "GetAIAbility": "0x090B09C4",
+      "GetBankItemEffect": "0x090D3FEC",
+      "GetMonAbility": "0x090DA23C",
+      "GetMonItemEffect": "0x090D4048",
+      "GetMoveTypeSpecial": "0x090E6234",
+      "GetPredictedAIAbility": "0x090B0970",
+      "IsAbilitySuppressed": "0x090D7BB0",
+      "IsTargetAbilityIgnored": "0x090BBB78",
+      "IsValidMovePrediction": "0x090B0AFC",
+      "LoadBattlersAndFoes": "0x0909D734",
+      "Stage72_IsDamagingGroundMove": "0x09532CD5"
+    },
+    "globals": {
+      "gAbsentBattlerFlags": "0x02023CD0",
+      "gBattleCircusFlags": "0x0203DFBC",
+      "gBattleMons": "0x02023B44",
+      "gBattleMoves": "0x090421F4",
+      "gBattleTypeFlags": "0x02022AAC",
+      "gBattlersCount": "0x02023B2C"
+    },
+    "hooks": [
+      {
+        "abi": "R5_ACTIVE_R6_FOE1_RETURN_R0_MAPPED_R3_R11_298",
+        "continuation_even": "0x090A03F4",
+        "continuation_thumb": "0x090A03F5",
+        "entry": "Stage78_EntryFindMonAbsorberActive",
+        "entry_address": "0x095D5D40",
+        "name": "FindMonAbsorberActiveAbilityBlock",
+        "site": "0x090A03E4",
+        "width": 16
+      },
+      {
+        "abi": "R3_SPECIES_SAVED_BY_VENEER_R12_R6_MON_R4_BATTLE_MON_RETURN_R8_SPECIES_R0_R7_MAPPED_R3_HP",
+        "continuation_even": "0x090A0432",
+        "continuation_thumb": "0x090A0433",
+        "entry": "Stage78_EntryFindMonAbsorberParty",
+        "entry_address": "0x095D5D6C",
+        "name": "FindMonAbsorberPartyAbilityBlock",
+        "site": "0x090A0426",
+        "width": 12
+      }
+    ],
+    "query": {
+      "fields": [
+        {
+          "name": "originalAbility",
+          "offset": 0,
+          "type": "u16"
+        },
+        {
+          "name": "move",
+          "offset": 2,
+          "type": "u16"
+        },
+        {
+          "name": "moveType",
+          "offset": 4,
+          "type": "u8"
+        },
+        {
+          "name": "moveSplit",
+          "offset": 5,
+          "type": "u8"
+        },
+        {
+          "name": "grounded",
+          "offset": 6,
+          "type": "u8"
+        },
+        {
+          "name": "targetAbilityIgnored",
+          "offset": 7,
+          "type": "u8"
+        },
+        {
+          "name": "abilityShield",
+          "offset": 8,
+          "type": "u8"
+        },
+        {
+          "name": "circusSuppressed",
+          "offset": 9,
+          "type": "u8"
+        },
+        {
+          "name": "abilitySuppressed",
+          "offset": 10,
+          "type": "u8"
+        },
+        {
+          "name": "neutralizingGasPresent",
+          "offset": 11,
+          "type": "u8"
+        }
+      ],
+      "name": "Stage78EelevateQuery",
+      "size": 12
+    }
+  },
+  "schema_version": 1,
+  "stage": 78,
+  "status": "EELEVATE_DEDICATED_SWITCH_AI_MATERIALIZED_CUMULATIVE_MGBA_PENDING",
+  "task": "USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI"
+}

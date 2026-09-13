@@ -1,0 +1,50 @@
+{
+  "artifact_digest": "sha256:5f0f90fd30eeda524c4449c4a995d04fa520f0f0bf954dce8e9aa6b9eae0fe54",
+  "artifact_head_sha": "14a61c80b69d2adb2f9f9adf513fd143d86b8728",
+  "artifact_id": 10103780162,
+  "artifact_name": "p05-scheduler-e2e",
+  "artifact_run_id": 34351006779,
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "14a61c80b69d2adb2f9f9adf513fd143d86b8728",
+  "job_conclusion": "success",
+  "job_id": 102463985972,
+  "job_name": "six-abilities-first-turn",
+  "job_status": "completed",
+  "repository": "dekaazarashi1111-web/pokemon-vega-modern",
+  "required_steps": [
+    {
+      "conclusion": "success",
+      "name": "Fixed emulator toolchain",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Result and execution regression tests",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Fresh 24-process scheduler matrix and seven write guards",
+      "status": "completed"
+    }
+  ],
+  "run_attempt": 1,
+  "run_id": 34351006779,
+  "status": "completed",
+  "verified_execution_sources": {
+    ".github/workflows/p05-scheduler-e2e.yml": {
+      "sha256": "e63e8bd8f93c0191890a14a8186eda7cc986e775a0ba96b027c82a8f16f9de9f",
+      "size": 1452
+    },
+    "infra/setup_github_actions.sh": {
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2",
+      "size": 2571
+    },
+    "infra/toolchain_manifest.json": {
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff",
+      "size": 33230
+    }
+  },
+  "workflow_path": ".github/workflows/p05-scheduler-e2e.yml"
+}

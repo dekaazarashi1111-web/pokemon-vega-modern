@@ -302,3 +302,293 @@
   ROM実装の完了状態を変更しない。
 - 影響: Stage55をDONEへ確定し、Stage56および今後のtask／release仕様からiPad承認依存を除く。
   過去の実機証跡は履歴として保持し、再解釈や削除をしない。
+
+## 2026-09-08 — D-029: 私有開発資材を持つGitHub repositoryをPrivate固定する
+
+- 発見: `private-environment-v1` Releaseの名称だけをprivateと解釈していたが、GitHub APIで
+  repository自体がPublic、Releaseが非draft公開状態であることを確認した。assetにはROM／save／
+  受領原本を含むため、repository可視性を実際の公開境界として扱う必要がある。
+- 決定: ユーザーの明示指示により`dekaazarashi1111-web/pokemon-vega-modern`全体をPrivateへ変更し、
+  APIの`private=true`／`visibility=private`を読み戻した。既存Release 5 assetは削除せず保持する。
+- 再発防止: private Releaseを取得するGitHub-hosted workflowは、downloadより前にGitHub APIの
+  `.private == true`を必須確認し、Publicなら資材を取得せずfail closedする。名称、tag、過去状態だけを
+  非公開性の根拠にしない。
+- 運用: 通常の開発・重い検証はローカルを優先し、必要なcheckpointだけを後からGitHubへ反映する。
+  P04のroot license不在素材はPrivate化後も再配布可能とは扱わず、Releaseへ追加しない。
+
+## 2026-09-08 — D-030: サイドチェンジ候補を現行版では採用しない
+
+- 決定: 原作技`Side Change`（プロジェクト候補Move ID 1063）は現行版へ実装しない。
+  Move ID、効果、AI、UI、アニメーション、save互換処理を追加せず、代替技への置換もしない。
+- 習得境界: 受領原本に含まれる159経路は来歴・監査用source evidenceとして保持する一方、
+  runtime選択集合から159件すべてを明示的に除外する。全sourceは118,528経路、現行選択は
+  118,369経路とし、machine 68件／tutor 4件を供給不足数へ含めない。
+- 容量境界: Move namespaceは既存`0..1062`のまま、P04のMove append予約は0件とする。
+  新MoveがないためMove固定表の行拡張・新effect slot・Move 1063を含むsave roundtripを要求しない。
+- 再採用: 将来実装する場合はこの判断を上書きせず、新しい意思決定で採用状態、効果仕様、
+  runtime実装、全159経路の再選択を同時に更新する。
+- 影響: P03習得契約／Stage67、P04容量、P05新技・特性契約、P07追加習得、P08統合監査。
+
+## 2026-09-08 — D-031: Winds/Waves御三家3種を現行追加対象から外す
+
+- 決定: Browt／Pombon／Gecquaは現行modernizationへ追加しない。通常Species追加数を0件、Mega用
+  Species/Form追加数を49件とし、3種へ数値ID、固定表行、素材、習得、取得経路、runtime処理を割り当てない。
+- 来歴: 公式発表に基づく名称、タイプ、特性、出典URLは候補監査の来歴として保持するが、3件すべてを
+  `NON_ADOPTED_USER_SCOPE`／`NOT_APPLICABLE_NON_ADOPTED`として機械可読に区別する。将来追加する場合は
+  新しい採用判断と容量監査を必要とする。
+- 容量: Species/Form予約を1621〜1669の49件へ縮小し、34固定表の見積りを616,521→636,378 bytes
+  （+19,857、alignment込み636,392）へ再計算する。Winds/Waves素材の不足を現行release blockerに数えない。
+- 影響: P04候補／素材／容量、P05 battle content、P07習得、P08統合、modernization引継ぎ。
+
+## 2026-09-08 — D-032: 追加Mega Stone 45件を専用Factory BP店で供給する
+
+- 決定: Mega Stone 45件をItem ID 999〜1043にstable key順で配置し、map `96/5`の別店員から全品16 BPで購入できるようにする。既存Factory店員と通貨は共有するが、カタログとUIは分離する。
+- 解禁・重複: Mega Ring ID 580を解禁条件とし、個別expanded event flag `0x14A0..0x14CC`で1saveにつき各1回までとする。固定999-item取得bitmapやMirage 10-bit virtual itemには混ぜない。
+- Item境界: Item固定5表を1,044行へ拡張し、base sanitizerとCFRU `item.c`由来の12 consumerだけをsemantic owner／exact context付きallowlistで1043 inclusiveへ更新する。1044は拒否し、Codex／Mirageの既存固定カタログは998のまま。
+- 保存: Item追加→BP支払→claim flag→通常save→sector 31の順で確定し、失敗時はItem／BP／flagを補償して再保存する。実ROMで代表3件とfresh-core再読込を確認する。
+- 影響: Stage68、P04 Item／入手経路、P08統合。Mega Speciesの戦闘変化は後続Stageとする。
+
+## 2026-09-08 — D-033: えいえんのはなフラエッテは既存ID 1029の入手経路だけ追加する
+
+- 決定: メガシンカ前のえいえんのはなフラエッテは、Stage67に種族値・画像・名称・習得表まで存在するSpecies ID 1029／`FORM_KEY_FLOETTE_ETERNAL`を再利用する。別の通常Species IDは追加しない。
+- 配布: Stage69でmap `96/5` local 15のNPCを追加し、Mega Ring 580所持時にLv.50個体を手持ち→PCの順で1save1回配布する。フォーム固有取得はflag `0x14CD`、National 670のseen/caughtは既存collection ledger bit 850を正とする。旧FireRed 52-byte図鑑bitmapの範囲外へ書かない。
+- 保存: 個体配置→flag／collection反映→通常save→sector 31の順で確定し、失敗時は配置先・取得状態・台帳を補償する。party/PC配布はexact ROM、全満／rollback／fresh reloadはhostまでを現checkpointの保証範囲とする。
+- 影響: Stage69、P04取得経路、P08統合。Mega Floette Eternalの戦闘中変化は後続Stageとする。
+
+## 2026-09-08 — D-034: Mega 49形態の固定表と戦闘意味をStage70/71/72に分離する
+
+- Stage70所有: Species ID 1621〜1669の49形態、画像素材、Species固定24表、Ability固定4表、Species上限、Ability行上限と派生ポインターの再接続までを担当する。既存Species 0〜1620の行はbyte一致で保持する。
+- Stage71所有: 既存Mega engine ABIを変えず、49形態のbase species＋Mega Stone順方向行と戦闘終了用逆方向行をevolution表へ追加する。Mega Ring 580、1戦闘1回、誤石拒否、解除は固定CFRU-JPの既存処理を正とする。
+- Stage72所有: Ability ID 312〜317の実効果、発動／不発／抑制／複数対象／AI・UI意味。Stage70の「こうかは じゅんびちゅう。」とrating 0はOOBを防ぐための仮行で、stable keyとIDを保って差し替える。
+- 安全境界: `TeamBuilder.abilityOnTeam[312]`は新Abilityをfacility生成poolへ入れない間は非到達とし、将来入れる場合は構造体ABIを再ビルドする。Browt／Pombon／GecquaはStage70でも追加しない。
+- 影響: Stage70〜72、P04種族・Mega runtime、P05 Ability runtime、P08統合。
+
+## 2026-09-08 — D-035: Stage71は既存のmode別Mega gateとひんし時復元を継承する
+
+- 訂正: D-034の「Mega Ring 580、1戦闘1回」は全mode共通条件ではない。Stage71は新しい
+  battle hookを追加せず、既存のproject mechanic policyを最初に通した後、通常戦ではMega Ring
+  580を要求し、Frontier／Linkでは固定CFRU-JPのRing例外を継承する。
+- 使用回数: 通常戦はproject側のside-used markとCFRU側のowner doneを維持し、同一side／ownerの
+  2回目を拒否する。上流Mega Brawlは`megaData.done`を立てないが、先行するproject side-used gateとの
+  厳密な合成挙動はStage72後の最終mGBAで確定し、それまではrelease claimに含めない。
+- 形態寿命: 交代ではMega形態を維持する。ひんし時は既存`Faint_FormsRevert -> TryFormRevert`で
+  baseへ戻る一方、`megaData.done`は残るため蘇生後の再Megaを拒否する。戦闘終了は既存
+  `MegaRevert`とStage71の逆方向行を使い、中断／saveは既存snapshot ownerを変更しない。
+- allocation: Stage71はStage70が確保したallocation #73内のevolution行だけを変更するため、同ownerの
+  全850,544-byte slice SHA-256を更新する。新allocationは作らず、非対象73行のledger／ROM sliceと
+  region summaryをbyte一致で保持する。
+- 影響: Stage71 Mega runtime、Stage72最終mGBA、P08統合。D-034の無条件に読める記述は本決定で補正する。
+
+## 2026-09-08 — D-036: P03持越し意味と実供給完了を別claimとして扱う
+
+- 境界: Stage73候補の条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、
+  reminder 295、form change 70を、保留67,218から計40,570経路として分離する。通常egg、level-up、
+  evolution level0へ意味を潰して転記しない。
+- 持越し: 進化／form変更で既存4技枠を保持する挙動は35,141 routeの必要条件だが、新しい技の
+  供給実装ではない。うちTM／TR／tutor由来23,578 routeは元技の供給が実装されるまで入手完了と
+  数えず、既存owner意味と新規materializationを別々に記録する。
+- タマゴ: 共有タマゴはdirect eggとの重複2,272とshared-only 2,751を分け、作品／受け手条件を
+  保持する。Volt Tackle 1件は既存special breeding owner、alias／incense衝突40件はexact target
+  adapter候補とし、無条件eggへ統合しない。
+- 親固定: Stage73 ROM工程はStage72のcommit、ROM path／size／SHA-256が揃うまでfail closedとする。
+- 影響: P03 Stage73 consumer実装、後続machine／tutor供給、P08統合。
+
+## 2026-09-08 — D-037: Ability 312〜317は薄いCFRU adapterとしてStage72へ接続する
+
+- 決定: Dragonize／Eelevate／Fire Mane／Mega Sol／Piercing Drill／Spicy SprayをAbility ID
+  312〜317のu16 ABIで固定し、6 Mega形態の全3 ability slot、説明、rating、Mold Breaker表と
+  29箇所の既存CFRU-JP consumerへ薄いadapterで接続する。既存Ability 0〜311と名前表0〜317は保持する。
+- 優先順位: DragonizeはIon Delugeを上書きするがElectrifyを上書きせず、Max／Z／active Teraでは
+  不正なtype／power変更を行わない。Mega Solはfield天候を永続変更せず、使用者のUtility Umbrellaより
+  personal sunを優先し、damage計算中に味方Flower Giftを誤発火させない。
+- 防御境界: Eelevateはdamaging GroundだけをLevitate相当にし、Ability ShieldとFuture Sight元使用者を
+  保持する。KO処理はstate29で効果なしの時だけstate30へyieldし、Moxie script完了後に元bankへ戻す。
+  Piercing Drillは単体contactの個人Protectだけを1/4 damageで貫通し、side guard／Max Guardと
+  contact shield反応を保持する。Spicy Sprayは実damageと存在する元攻撃者だけを対象にする。
+- 未完了: Solar Beam系charge省略時のability popup、Eelevate専用switch AI、Piercing DrillのAI仮想Protect
+  1/4予測、Spicy Sprayの味方発火AI評価、exact-ROM mGBAをrelease blockerとして残す。Stage72は
+  checkpointであり、P04／P05完了や現行プレイ基準への昇格を意味しない。
+- 影響: Stage72 Ability runtime、Stage73親identity、P04／P05／P08、最終累積mGBA。
+
+## 2026-09-08 — D-038: Stage73は5群consumer接続と供給完了を分離する
+
+- 決定: 条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、
+  form change 70の計40,570経路を、Stage73のconsumer境界としてStage72上へ接続する。
+- 新規実装: alias／incense衝突7種のexact egg 40、shared egg 5,023、reminder 295、
+  ロトム5 form moveの計5,363を新規runtime materializationとする。Pichu＋Light Ballの
+  Volt Tackle 1件は既存`BuildEggMoveset` ownerをbyte列まで照合し、二重hookしない。
+- 既存owner: pre-evolutionの4技保持35,141、generic form保持61、固定form transition 4を
+  新規技供給と数えず、既存owner 35,207件として別計上する。ロトムは既存技4枠を無断で消さず、
+  空きも旧signatureもない場合は`EFFECTLESS`として技メモリーでの空き作成を要求する。
+- 完了境界: 通常／共有技候補は40枠内でdrop 0。Browt／Pombon／Gecqua、Side Change、禁止された
+  level／eggへの意味変換は0を維持する。machine 26,279＋tutor 369は未供給のため、Stage73を
+  P03完了やrelease candidateとして扱わない。
+- 影響: Stage73、P03、Move Memory、Collection form service、P08、最終累積mGBA。
+
+## 2026-09-08 — D-039: P08の選択候補をStage73へ再固定しmaterializedとaccountedを分離する
+
+- 選択: P08の累積候補をStage73へ更新する。現行プレイ基準はStage62、完了工程はP01だけ、
+  P02〜P08は未完了、release-readyはfalseのままとする。
+- P03勘定: 新規runtime materializationは累積56,514経路、既存ownerを含むconsumer境界accountは
+  累積91,721経路とし、既存owner 35,207を新規供給へ重複計上しない。残る直接供給26,648のうち
+  23,595は既存owner経路のmachine／tutor上流依存でもあり、別枠加算しない。
+- 継承監査: Stage70〜73の4 incremental BPSをexact applyし、ROM／metadata／allocation、allocator
+  sequence 74〜76、既存ownerのcontent hashを固定する。Stage70→71の同owner payload更新だけは
+  旧新hashを個別固定する。
+- 未完了: P02 Stage71は`STOPPED_EXACT_UI_PENDING`／production `UNJUDGED`。P04は49 Mega runtime、
+  P05はAbility 6件＋29 hookまでROM接続済みだが、残る供給、明示AI／UI境界、最終累積mGBAを
+  blockerとして維持する。本checkpointでは重いmGBAを実行しない。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-08 — D-040: 残るmachine／tutorはfamily分離archiveで供給し退化時保持を別表にする
+
+- 決定: Stage73に残ったmachine 26,279＋tutor 369の26,648経路は、既存128 TM/HM slot／64 tutor
+  slotへ押し込まず、殿堂入り後のBagわざメモリーにfamily分離したindexed archiveとして接続する。
+  machineは40件×最大4ページ、tutorは1ページとし、暫定価格は無料で後続の中央経済設定から
+  差し替え可能にする。
+- 保全: `BuildLearnableMoveset`を使うBenjamin Butterfree退化処理は、Stage73のshared egg／reminderや
+  持越し合法技を知らない。全118,369選択経路から、現行level／egg family／TM／tutorとStage74直接
+  archiveで既に合法と判定できる集合を引き、残る4,014 path／2,223 target-moveを削除防止専用表へ
+  入れる。この表はUIへ公開せず、供給数とaccountingへ加算しない。
+- 容量: 全1,621種の実buffer最大は238、unique最大234、構造上限319で、呼出し側429 u16に対する
+  overflowは0。Move Memoryの既存allocation #33はlayoutを動かさず実ROM slice hashだけを更新し、
+  Stage74 payloadをsequence 77へ追加する。
+- 完了境界: 新規runtime materializationは累積83,162、既存owner込みaccountedは118,369、直接供給残0。
+  Side Change、Browt／Pombon／Gecqua、family統合、level／egg coercionは0を維持する。Own Tempo Rockruff
+  0744.01の38持越し経路と最終累積mGBAが残るため、P03／release completionは主張しない。
+- 影響: Stage74、P03、Move Memory、Benjamin Butterfree、P08、最終累積mGBA。active baseline、iPad、
+  save、Releaseは変更しない。
+
+## 2026-09-09 — D-041: P08の選択候補をStage74へ再固定する
+
+- 選択: P08の累積候補をStage74 `481083bc…e22d65e`へ更新する。現行プレイ基準は
+  Stage62、完了工程はP01のみ、P02〜P08は未完了、release-readyはfalseのままとする。
+- 継承監査: Stage69→70→71→72→73→74の5 incremental BPSを実byteへexact applyし、Stage74の
+  ROM／metadata／allocation／BPS、2 hook、allocation #33内容更新と#77追加を固定する。
+- P03勘定: 新規runtime materializationは累積83,162、既存owner込みaccountedは118,369、
+  直接供給残は0。退化時の削除防止4,014 path／2,223 target-moveはUI供給と経路勘定へ加算しない。
+- 未完了: Own Tempo Rockruff 0744.01の38経路意味、暫定archive経済、P02通常UI、
+  Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAをrelease blockerとして維持する。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-09 — D-042: Own Tempo Rockruffは図鑑非加算の内部条件フォームとして追加する
+
+- 決定: 通常イワンコ1142を別種へ置換せず、Own Tempo Rockruff 0744.01をSpecies 1670、
+  `INTERNAL_CONDITIONAL_FORM`、National Dex 744、collection class 4／weight 0としてappendする。
+  これはユーザー指定の「通常ポケモン追加0」を変えない内部実装IDであり、Browt／Pombon／Gecquaの
+  ID・素材・runtimeは引き続き0とする。
+- 特性・進化: 1670の3 ability slotは全てマイペース20。通常1142に誤って開いていたLv.25・
+  17〜19時のルガルガン黄昏1263進化行を削除し、同じ8 bytesを1670だけへ移す。既存1142／1263は
+  save migrationせず保持する。
+- 取得・繁殖: 既存の野生1142生成が成功した後だけ、personalityを混合した決定的1/8を1670へ
+  変換する。追加RNGは使わず、非1142・生成失敗・既存個体を変更しない。繁殖は1263／1670だけを
+  1670へ解決し、他Speciesは進化表逆走をせず既存`GetEggSpecies`へexact delegateする。
+- P03: 0744.00のlevel 14／machine 38／egg 4／shared egg 4、計60 routeを別identity ownerへ
+  exact cloneする。既に1263側でaccount済みのcarry 38件は既存slot 21＋Stage74 archive 17へ解決し、
+  missing owner 0、materialized 83,162、accounted 118,369、delta 0を維持する。
+- 完了境界: 24 Species表、310 pointer、19 count consumer、5 hookをStage75へ接続するが、
+  最終累積mGBAまでは`full_p03_done=false`、release candidate falseとする。P08 selected candidate、
+  active Stage62、iPad、save、Releaseはこのcheckpointでは変更しない。
+
+## 2026-09-09 — D-043: P05は安全に定義できる3 edgeだけをStage76へ接続する
+
+- 決定: Mega SolのSolar charge時popup、Piercing DrillのAI上の予測Protect 1/4 damage、
+  Spicy Sprayの意図的な味方発火評価をStage76へ実装する。新Move、Side Change、通常Species、
+  Browt／Pombon／Gecquaは追加しない。
+- Protect境界: Detect 197はProtect 182へ正規化して既存判定へ渡す。Max Guard 891と未選択時の
+  Dynamax予測は貫通対象にせず、実際にProtect中のdamageを二重に1/4化しない。
+- 味方発火境界: direct／spread評価は排他にし、実際に味方へ当たる即時damageだけを対象とする。
+  planned Protect／Detect／Max Guard、semi-invulnerable、Present、Future Sight／Doom Desire、
+  Pollen Puff、Substitute、KO、自己犠牲、回復系持ち物は保守的に除外する。
+- 保留: Eelevate 313をEarth Eater 298へ単純置換する方式は、Ground damage、Thousand Arrows、
+  接地、Gravity、Mold Breaker、Ability Shieldの意味を保てない。候補2 siteをStage75とbyte同一に
+  保ち、完全な文脈を扱える別checkpointまで`PENDING`とする。
+- 完了境界: pointer 1件＋hook 3件＋payload 2,066 bytesをStage76へ接続する。focused test、
+  builder check、独立runtime／artifact監査はPASSしたが、mGBAとP05全体は未完了、release-readyは
+  false、active baselineはStage62のままとする。
+
+## 2026-09-09 — D-044: P08の選択候補をStage76へ再固定する
+
+- 選択: P08の累積候補をStage76 `f753f137…0100100ac`へ更新する。Stage75のOwn Tempo Rockruffと
+  Stage76のP05安全edge 3件を統合し、現行プレイ基準Stage62、完了工程P01のみ、P02〜P08未完了、
+  release-ready=falseを維持する。
+- 継承監査: Stage74→75→76のincremental BPSを含むStage67→76 chainを実byteへexact applyし、
+  ROM／metadata／allocation、Stage75の24表・310 pointer・19 count consumer・5 hook、Stage76の
+  pointer 1件＋hook 3件をfail closedで固定する。
+- 境界: P03のmaterialized 83,162、accounted 118,369、直接供給残0、Browt／Pombon／Gecquaと
+  Side Changeの採用0を維持する。Eelevate専用switch AI、暫定archive経済、P02通常UI、Floette
+  full／fresh reload、最終累積mGBAはrelease blockerとして残す。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff、
+  modernization引継ぎ。iPad、save、Release、現行プレイ基準は変更しない。
+
+## 2026-09-09 — D-045: Battle Circus特性無効はStage72 wrapperの手前で全29 hookを迂回する
+
+- 決定: Battle Circusのbattle type bit 26とcircus特性無効bit 31が同時に立つ時だけ、Stage72で
+  接続した29 hook／33 Ability surfaceを各original trampolineへ委譲する。通常時はStage72 wrapperへ
+  委譲し、新Ability 6件とStage76の3 edgeを維持する。
+- 既存抑制: Gastro Acid／Neutralizing Gas／Mold BreakerはCFRUがactive abilityをraw 0へ移す既存
+  意味を変更しない。Circusだけはraw abilityを保持するため、後段dispatcherで明示的に抑制する。
+- ABI: 12-byte veneer 7本は元r3をr12へ退避し、抑制経路でr3を復元する。残る8-byte veneer 22本は
+  Stage72と同じr3 scratch契約を使う。r0〜r2、SP、LR、5番目のstack引数を保持してtail delegateする。
+- 完了境界: Stage77 payload 1,220 bytes、hook 29件、allocation sequence 80を接続する。親80行、
+  Stage76のpointer 1＋hook 3、Eelevate保留2 site、通常抑制意味を保持する。focused test、builder check、
+  独立監査はPASSしたが、mGBAとEelevate専用switch AIが残るためP05／release完了は主張しない。
+- 影響: Stage77、P05、Battle Circus、最終累積mGBA。active baseline、iPad、save、Releaseは変更しない。
+
+## 2026-09-09 — D-046: P08の選択候補をStage77へ再固定する
+
+- 選択: P08の累積候補をStage77 `245133a4…84973f`へ更新し、Stage76の3 edgeとStage77の
+  Battle Circus全特性無効dispatcherを同じ候補chainへ統合する。
+- 継承監査: Stage76→77 incremental BPSを追加し、Stage77 ROM／metadata／allocation、29 hook、
+  33 Ability surface、allocation sequence 80、親80行の完全保持をfail closedで固定する。
+- 完了境界: 通常経路とGastro Acid／Neutralizing Gas／Mold Breakerを変えず、Browt／Pombon／
+  GecquaとSide Changeの採用0を維持する。Eelevate専用switch AIと最終累積mGBAはblockerのまま、
+  P01だけをDONE、P02〜P08未完了、release-ready=false、active baseline Stage62とする。
+- 影響: `config/modernization_candidate.json`、P08 integration／runtime／release handoff。
+  iPad、save、Release、現行プレイ基準は変更しない。
+
+## 2026-09-09 — D-047: Eelevateは交代AIの比較境界だけでEarth Eaterへ写像する
+
+- 決定: Ability 313 Eelevateを全域でEarth Eater 298へ置換せず、`FindMonThatAbsorbsOpponentsMove`の
+  active ability比較とparty候補比較の2 siteだけへ専用adapterを接続する。foe1の有効予測を優先し、
+  予測なし／switch／Move上限外の時だけfoe2へfallbackする。
+- 成立条件: 動的Move typeがGround、damage move、Thousand Arrows以外、候補が非接地、Abilityが
+  非抑制である時だけ313を比較用298へ写像する。Gravity／Iron Ball／Ingrain／Smack Down、Gastro Acid、
+  Battle Circus特性無効は拒否する。
+- 無効化境界: 選択した攻撃側の予測AbilityとMoveを`IsTargetAbilityIgnored`へ渡し、Mold Breaker／
+  Teravolt／Turboblaze／対象Moveを判定する。交代後も残る生存Neutralizing Gasをoutgoing active以外から
+  探し、いずれも有効なAbility Shieldだけが上書きできる。
+- 完了境界: Stage78 payload 688 bytes、hook 2件、allocation sequence 81を接続する。focused 12件、
+  32-case Python＋host C、builder check、BPS roundtrip、allowlist外0、独立監査2件はPASSした。
+  mGBAは`NOT_RUN`のままStage79累積runへ集約し、P05／release完了、P08昇格、active baseline変更は
+  主張しない。
+
+## 2026-09-09 — D-048: 重い最終mGBAはStage78 exact入力の7領域を再開可能に一度だけ実行する
+
+- 決定: Stage79は製品ROMを変更しないvalidation-only工程とし、Stage78 commit
+  `a98e6fea59db1f020bc902a1b1676699f8c06c41`、ROM／metadata／allocation／checkpoint、
+  P05 config／symbols／contractを既知identityへ固定する。P02、Mega Stone店、Floette、P03、
+  49 Mega runtime、battle policy、P05をこの順で別process実行する。
+- 再開性: domainごとのresultと連続PASS prefixだけを`.local`へ保存し、再開時はsource／runner／
+  compilation／result schemaを再検証する。通過済みdomainを理由なく再実行せず、失敗／未実行だけを
+  続行する。fresh実行数とcache再利用数は分離して記録する。
+- 安全性: source ROMを直接runnerへ渡さず、別inode・link数1・read-onlyのprivate copyを使う。
+  compile出力とprivate saveは新規一時fileから原子的に置換し、symlink／hardlink経由の外部変更を
+  拒否する。重い`run`はCLIとprogrammaticの二重明示承認を必須にする。
+- P05境界: Stage77の29 hook／33 surface／21 stack-ABI観測とStage76の3 edgeを保持し、Stage78の
+  32-case pure matrix、active 13／party 13のhook route、非0 battler、foe1優先と3種fallback、
+  Ground／接地／Circus／Gastro Acid／Neutralizing Gas／Mold Breaker 105／Ability Shield、
+  helper tuple／continuation／register／SPをbounded integrationとして確認する。
+- 完了境界: `READY_NOT_RUN`では重いmGBA 0、P03／P05／release未完了、scheduler e2e false、
+  active Stage62、P08 selected Stage77を維持する。7領域PASS後も未検証の全物理menu／Link等を
+  自動的に完了扱いしない。
+
+## 2026-09-09 — D-049: Stage79必須ROM／saveをprivate GitHubで直接追跡しActionsへ移管する
+
+- ユーザーがROM／saveを含む必須入力のGitHub直接uploadとsecurity guard省略を明示承認した。private repository `dekaazarashi1111-web/pokemon-vega-modern`の専用branchに、Stage79 configが参照するignored 16ファイル（34,748,225 bytes）を元pathのまま追跡する。
+- 追加入力はStage78 ROM 33,554,432 bytes、metadata／allocation、P02 seed save、Stage06 metadata、runtime symbol／audit 11件。Stage79のpath／size／SHA-256 pin 36件とGit index blobが全件一致することをpush前に確認する。LFS／Release／暗号化／Actions Secretは使わない。
+- `.github/workflows/modernization-stage79-mgba.yml`は7 domainをUbuntu 24.04で並列実行し、`fail-fast: false`、domain別PASS cache、stdout／stderr／result Artifact、最終gate合成を提供する。新規workflowがdefault branchへ入る前でも専用branch pushで初回`all`を起動する。
+- 直接追跡した`.gba`／`.srm`を拒否しないよう、push CIとChatGPT patch bridgeから`guard_private_files.py`を外す。これは当該private repositoryに必須runtime入力を置くというユーザーの最新指定による。
+- 初回local sequential heavy runはP02 `rare_candy_cancel_entry`でIWRAM illegal opcode／`evolution_scene_field_return_timeout`となった。後続6 domainは未実行で、GitHub matrixが独立に実行する。active Stage62、P08 selected Stage77、release-ready=falseは変更しない。

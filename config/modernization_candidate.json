@@ -1,53 +1,314 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "program": "USER-MODERNIZATION-P01-P08",
-  "status": "P01_VERIFIED_CANDIDATE",
+  "status": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_RELEASE_CANDIDATE",
   "completed_through": "USER-MODERNIZATION-P01",
+  "checkpointed_through": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION-CHECKPOINT",
+  "release_ready": false,
   "active_play_baseline_changed": false,
   "source": {
-    "branch": "codex/user-modernization-p01-20260908",
-    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2"
+    "branch": "codex/modernization-followup-20260908",
+    "start_commit": "f2d3ed3546f07b4d4aa34ff61de9b9135b19bac2",
+    "stage65_checkpoint_commit": "4456e0ffb6e20e82d507d2fd9b0e1897cfdfa984",
+    "stage66_checkpoint_commit": "90a1811964a19e3c058448af173007678b42a7e3",
+    "stage67_checkpoint_commit": "b4bdb67fcb9c49414661b2c591e0b1d9464aeafe",
+    "stage68_checkpoint_commit": "2a7197f6134509749da780aec61bf0db29147a0e",
+    "stage69_checkpoint_commit": "2a7197f6134509749da780aec61bf0db29147a0e",
+    "stage70_checkpoint_commit": "cc490045033b126c2b28f3b56c20432d8105287c",
+    "stage71_checkpoint_commit": "ee8062094f84fff42f529793cb95f09d2078ae33",
+    "stage72_checkpoint_commit": "bbab6b2e943186cf437a6dca90712c01f0319ded",
+    "stage73_checkpoint_commit": "1dd2a9ab8da73f7eb17dbd5b8fa8fcd96109443e",
+    "stage74_checkpoint_commit": "ddeb853a12af8b0bf3a76ceb16060de4fc686ec7",
+    "stage75_checkpoint_commit": "595909446b6ad67749c9894b23fdc536f82c638e",
+    "stage76_checkpoint_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+    "stage77_checkpoint_commit": "137c6945c6bf5c633944ddd5287dffca9c5692c0",
+    "stage73_preflight_commit": "c2bb0afb26085a6815d5bd10a2d5b29db80f966d",
+    "p02_stage71_acceptance_commit": "ebc6fa00fe39a6c4a8d2d9fea13baf4eacf8faec",
+    "uncommitted_checkpoint_identity": null
   },
-  "parent": {
+  "active_parent": {
     "stage": 62,
     "path": "build/stages/62_npc_placement_integrity_repair.gba",
     "size": 33554432,
     "sha256": "d97a0d4a6cd6f8f77a1503a5ac6d473b0e94c4892e3d5a94098497ce35cb6e6f",
-    "crc32": "73E4FB73"
+    "crc32": "73E4FB73",
+    "promotion_status": "UNCHANGED_NOT_PROMOTED"
+  },
+  "parent": {
+    "stage": 76,
+    "path": "build/stages/76_modernization_p05_edges.gba",
+    "size": 33554432,
+    "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+    "crc32": "0A78B46A",
+    "metadata": {
+      "path": "build/stages/76_modernization_p05_edges.json",
+      "size": 6059,
+      "sha256": "46eb197ba064f4380d6bfd31b16b7ad04bc63599707b72254adde2231aa4d792"
+    },
+    "allocation": {
+      "path": "build/stages/76_modernization_p05_edges_allocation.json",
+      "size": 45818,
+      "sha256": "64f992d8288b3d861a8e2cc160af880991e76de1eb1ae7dd4081ee4e8c59ae3e"
+    }
+  },
+  "p02_overlay_parent": {
+    "classification": "IN_MEMORY_P02_OVERLAY_PARENT_FOR_STAGE67",
+    "base_stage": 66,
+    "intended_child_stage": 67,
+    "path": null,
+    "size": 33554432,
+    "sha256": "ddbb9c22ce3a42b32e84ffff040d098b4fb2f49a17b5a84792eaa3f92aa512bb",
+    "changed_bytes_from_stage66": 60,
+    "retained_output_rom": false
   },
   "candidate": {
-    "stage": 63,
-    "label": "Modernization P01 ID意味修復候補",
-    "path": "build/stages/63_modernization_p01_identity_repair.gba",
+    "stage": 77,
+    "label": "Modernization Stage77 P05 Battle Circus global ability suppression checkpoint",
+    "path": "build/stages/77_modernization_p05_circus_suppression.gba",
     "size": 33554432,
-    "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
-    "crc32": "FB09EF2D",
+    "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+    "crc32": "F1CE0EAC",
     "metadata": {
-      "path": "build/stages/63_modernization_p01_identity_repair.json",
-      "size": 5585,
-      "sha256": "9e5b1d6de4074271b7da8631a0b1908dc631d368cb57e0269b70b9a41bc580cf"
+      "path": "build/stages/77_modernization_p05_circus_suppression.json",
+      "size": 5933,
+      "sha256": "773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff"
+    },
+    "allocation": {
+      "path": "build/stages/77_modernization_p05_circus_suppression_allocation.json",
+      "size": 46425,
+      "sha256": "20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d"
     }
   },
   "patches": {
-    "from_parent": {
-      "path": "build/patches/stage62-to-stage63-modernization-p01-identity-repair.bps",
-      "size": 47,
-      "sha256": "7b400a62944bb976d94afdee2983c48bcf4f4482010f881f18bf7924eab0f352"
+    "stage72_to_stage73": {
+      "path": "build/patches/stage72-to-stage73-modernization-p03-consumer-runtime.bps",
+      "size": 36300,
+      "sha256": "8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61",
+      "source_classification": "STAGE72_EXACT_ROM",
+      "source_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "target_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "round_trip": true
     },
-    "from_clean": {
-      "path": "build/patches/firered-jpn-rev0-to-stage63-modernization-p01-identity-repair.bps",
-      "size": 16726235,
-      "sha256": "f6fa12ebdd68882a0ff08d1c344151d4b792eaa1dfde1a22f3b9241ccb4a8680"
+    "stage73_to_stage74": {
+      "path": "build/patches/stage73-to-stage74-modernization-p03-supply-runtime.bps",
+      "size": 70627,
+      "sha256": "8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd",
+      "source_classification": "STAGE73_EXACT_ROM",
+      "source_sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "target_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+      "round_trip": true
+    },
+    "stage74_to_stage75": {
+      "path": "build/patches/stage74-to-stage75-modernization-rockruff-own-tempo.bps",
+      "size": 336487,
+      "sha256": "23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7",
+      "source_classification": "STAGE74_EXACT_ROM",
+      "source_sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+      "target_sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+      "round_trip": true
+    },
+    "stage75_to_stage76": {
+      "path": "build/patches/stage75-to-stage76-modernization-p05-edges.bps",
+      "size": 2191,
+      "sha256": "f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810",
+      "source_classification": "STAGE75_EXACT_ROM",
+      "source_sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+      "target_sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+      "round_trip": true
+    },
+    "from_parent": {
+      "path": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+      "size": 1489,
+      "sha256": "50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7",
+      "source_classification": "STAGE76_EXACT_ROM",
+      "source_sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+      "target_sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+      "round_trip": true
+    },
+    "stage67_to_stage68": {
+      "path": "build/stages/68_modernization_mega_shop.bps",
+      "size": 59135,
+      "sha256": "d360cfb630ae60f740f10d7cfcb25bfbefe7e0ff95a7ec1042d3c7998ea3952c",
+      "source_sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "target_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "round_trip": true
+    },
+    "stage68_to_stage69": {
+      "path": "build/stages/69_modernization_floette_gift.bps",
+      "size": 1849,
+      "sha256": "4a630083fe5152010516a4d511696bc0ccededd536f3386b4c12d039a5d42bd0",
+      "source_sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "target_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "round_trip": true
+    },
+    "stage69_to_stage70": {
+      "path": "build/stages/70_modernization_p04_species_runtime.bps",
+      "size": 538759,
+      "sha256": "76c562226dcebcf970414faca190e9295df8120d6d8190986e30c7f4e4f20047",
+      "source_sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "target_sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "round_trip": true
+    },
+    "stage70_to_stage71": {
+      "path": "build/patches/stage70-to-stage71-modernization-p04-mega-runtime.bps",
+      "size": 979,
+      "sha256": "6c3a8877a25f17cd97977152bf90c401dea13f4f1cb20302eb9c0adbc889f487",
+      "source_sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "target_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "round_trip": true
+    },
+    "stage71_to_stage72": {
+      "path": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+      "size": 7635,
+      "sha256": "9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a",
+      "source_sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "target_sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "round_trip": true
     }
   },
+  "stage_chain": [
+    {
+      "stage": 63,
+      "task": "USER-MODERNIZATION-P01",
+      "state": "COMPLETED",
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd",
+      "changed_bytes_from_parent": 10
+    },
+    {
+      "stage": 64,
+      "task": "USER-MODERNIZATION-P02-RAYQUAZA",
+      "state": "CHECKPOINT_NOT_DONE",
+      "sha256": "ddb9bf76d7f35c375d44941cd276f07e64501ed5cee34b8d448e76f0454095c3",
+      "changed_bytes_from_parent": 2
+    },
+    {
+      "stage": 65,
+      "task": "USER-MODERNIZATION-P03-STAGE65-CATERPIE-SLICE",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "116781c8be7cbd327ba7783ebdad9d9dda77554c33839eebed15ae6b065bb680",
+      "changed_bytes_from_parent": 17
+    },
+    {
+      "stage": 66,
+      "task": "USER-MODERNIZATION-P03-STAGE66-BULK-LEARNSET-CHECKPOINT",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e",
+      "changed_bytes_from_parent": 81693
+    },
+    {
+      "stage": 67,
+      "task": "USER-MODERNIZATION-P03-STAGE67-CONSUMER-CHECKPOINT",
+      "state": "CHECKPOINT_NOT_P03_DONE",
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111",
+      "changed_bytes_from_parent": 46515,
+      "changed_bytes_from_p02_overlay": 46455
+    },
+    {
+      "stage": 68,
+      "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+      "state": "P04_ACQUISITION_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "changed_bytes_from_parent": 65821,
+      "exact_runtime_gate": "PASS"
+    },
+    {
+      "stage": 69,
+      "task": "USER-MODERNIZATION-FLOETTE-ETERNAL-GIFT",
+      "state": "P04_ACQUISITION_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95",
+      "changed_bytes_from_parent": 1960,
+      "exact_runtime_gate": "PARTIAL_PASS_FULL_AND_FRESH_RELOAD_PENDING"
+    },
+    {
+      "stage": 70,
+      "task": "USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70",
+      "state": "P04_SPECIES_RUNTIME_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef",
+      "changed_bytes_from_parent": 818994,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_PENDING"
+    },
+    {
+      "stage": 71,
+      "task": "USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71",
+      "state": "P04_MEGA_RUNTIME_CHECKPOINT_NOT_P04_DONE",
+      "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb",
+      "changed_bytes_from_parent": 383,
+      "exact_runtime_gate": "HOST_ORACLE_STATIC_MGBA_PENDING"
+    },
+    {
+      "stage": 72,
+      "task": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+      "state": "P05_ABILITY_ROM_RUNTIME_CHECKPOINT_NOT_P05_DONE",
+      "sha256": "f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059",
+      "changed_bytes_from_parent": 7257,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_AND_AI_UI_EDGES_PENDING"
+    },
+    {
+      "stage": 73,
+      "task": "USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME",
+      "state": "P03_CONSUMER_RUNTIME_CHECKPOINT_NOT_P03_DONE",
+      "sha256": "25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a",
+      "changed_bytes_from_parent": 36585,
+      "exact_runtime_gate": "STATIC_ONLY_MGBA_AND_SUPPLY_PENDING"
+    },
+    {
+      "stage": 74,
+      "task": "USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME",
+      "state": "P03_DIRECT_SUPPLY_CHECKPOINT_NOT_P03_DONE",
+      "sha256": "481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e",
+      "changed_bytes_from_parent": 70480,
+      "exact_runtime_gate": "STATIC_ONLY_ROCKRUFF_SEMANTICS_AND_MGBA_PENDING"
+    },
+    {
+      "stage": 75,
+      "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75",
+      "state": "P03_OWN_TEMPO_ROCKRUFF_CHECKPOINT_NOT_P03_DONE",
+      "sha256": "a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3",
+      "changed_bytes_from_parent": 540757,
+      "exact_runtime_gate": "STATIC_ONLY_FINAL_MGBA_PENDING"
+    },
+    {
+      "stage": 76,
+      "task": "USER-MODERNIZATION-P05-STAGE76-EDGES",
+      "state": "P05_THREE_EDGES_CHECKPOINT_NOT_P05_DONE",
+      "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac",
+      "changed_bytes_from_parent": 2081,
+      "exact_runtime_gate": "HOST_STATIC_EELEVATE_AND_MGBA_PENDING"
+    },
+    {
+      "stage": 77,
+      "task": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+      "state": "P05_BATTLE_CIRCUS_SUPPRESSION_CHECKPOINT_NOT_P05_DONE",
+      "sha256": "245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f",
+      "changed_bytes_from_parent": 1307,
+      "exact_runtime_gate": "HOST_STATIC_EELEVATE_AND_CUMULATIVE_MGBA_PENDING"
+    }
+  ],
   "adopted_delta": {
-    "changed_bytes": 10,
+    "changed_bytes_by_stage": {
+      "p01_stage63": 10,
+      "p02_stage64": 2,
+      "p03_stage65": 17,
+      "p03_stage66": 81693,
+      "p02_overlay_after_stage66": 60,
+      "p03_stage67_from_overlay": 46455,
+      "stage67_from_stage66": 46515,
+      "p04_stage68_from_stage67": 65821,
+      "p04_stage69_from_stage68": 1960,
+      "p04_stage70_from_stage69": 818994,
+      "p04_stage71_from_stage70": 383,
+      "p05_stage72_from_stage71": 7257,
+      "p03_stage73_from_stage72": 36585,
+      "p03_stage74_from_stage73": 70480,
+      "p03_stage75_from_stage74": 540757,
+      "p05_stage76_from_stage75": 2081,
+      "p05_stage77_from_stage76": 1307
+    },
     "outside_declared_spans": 0,
     "species_ids_changed": false,
     "collection_ledger_mapping_changed": false,
     "save_layout_changed": false,
-    "allocation_changed": false,
-    "corrections": [
+    "p01_identity_corrections": [
       {
         "species_key": "SPECIES_KEY_EGG",
         "source_id": 649,
@@ -61,13 +322,254 @@
         "policy": "REQUIRED_BASE",
         "ledger_bit": 386
       }
-    ]
+    ],
+    "p02_rayquaza_parameter_repair": {
+      "wrong_item_namespace_value": 773,
+      "correct_move_id": 630
+    },
+    "p03_representative_slice": {
+      "species_key": "SPECIES_KEY_CATERPIE",
+      "species_id": 649,
+      "level_up_moves": [33, 81, 535],
+      "machine_runtime_slot": 116,
+      "machine_project_move_id": 489,
+      "routes_materialized": 4,
+      "routes_not_materialized": 118524
+    },
+    "p03_bulk_checkpoint": {
+      "corrected_targets": 1300,
+      "source_routes_validated": 118528,
+      "level_up_routes_materialized": 18515,
+      "machine_existing_slot_routes_materialized": 29033,
+      "routes_materialized": 47548,
+      "routes_not_materialized": 70980,
+      "move_1063_source_candidate_routes": 159,
+      "move_1063_routes_selected": 0,
+      "move_1063_routes_non_adopted": 159,
+      "outside_declared_ranges": 0
+    },
+    "p02_actual_consumer_checkpoint": {
+      "overlay_changed_bytes": 60,
+      "repaired_level_held_item_species": 6,
+      "independent_processes": 2,
+      "full_p02_done": false
+    },
+    "p03_stage67_consumer_checkpoint": {
+      "source_routes": 118528,
+      "selected_routes": 118369,
+      "non_adopted_routes": 159,
+      "inherited_stage66_materialized_routes": 47548,
+      "new_evolution_routes_materialized": 341,
+      "new_tutor_routes_materialized": 740,
+      "new_normal_egg_routes_materialized": 2522,
+      "new_routes_materialized": 3603,
+      "cumulative_routes_materialized": 51151,
+      "selected_routes_remaining": 67218,
+      "outside_declared_ranges": 0
+    },
+    "p03_stage73_consumer_checkpoint": {
+      "consumer_boundary_accounted_routes": 40570,
+      "new_runtime_materialized_routes": 5363,
+      "existing_owner_accounted_routes": 35207,
+      "cumulative_new_runtime_materialized_routes": 56514,
+      "cumulative_consumer_boundary_accounted_routes": 91721,
+      "machine_tutor_upstream_supply_dependency_routes": 23595,
+      "hook_count": 3,
+      "remaining_direct_machine_routes": 26279,
+      "remaining_direct_tutor_routes": 369,
+      "remaining_direct_supply_routes": 26648,
+      "shared_egg_kept_out_of_normal_egg_table": true,
+      "reminder_kept_out_of_level_zero_rows": true,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "prohibited_coercions_materialized": 0,
+      "outside_declared_ranges": 0
+    },
+    "p03_stage74_supply_checkpoint": {
+      "direct_supply_materialized_routes": 26648,
+      "direct_machine_routes": 26279,
+      "direct_tutor_routes": 369,
+      "cumulative_runtime_materialized_routes": 83162,
+      "cumulative_accounted_routes": 118369,
+      "remaining_direct_supply_routes": 0,
+      "preservation_missing_paths": 4014,
+      "preservation_target_move_pairs": 2223,
+      "preservation_species": 501,
+      "preservation_target_move_set_sha256": "0ccf54ee7e2617fefe99f974c1c3451a449c4701fedb6f49be3d8b4dedd02bfb",
+      "preservation_ui_supply_routes_added": 0,
+      "preservation_route_accounting_added": 0,
+      "build_learnable_maximum_entries": 238,
+      "build_learnable_capacity": 429,
+      "build_learnable_overflow_species": 0,
+      "unlock_flag": "0x082C",
+      "economy": "PROVISIONAL_REPLACEABLE",
+      "withheld_own_tempo_rockruff_routes": 38,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "prohibited_coercions_materialized": 0,
+      "full_p03_done": false,
+      "outside_declared_ranges": 0
+    },
+    "p03_stage75_own_tempo_checkpoint": {
+      "internal_species_id": 1670,
+      "normal_species_id": 1142,
+      "dusk_species_id": 1263,
+      "national_dex": 744,
+      "ability_id": 20,
+      "species_count": 1671,
+      "pre_evolution_carry_paths": 38,
+      "missing_owner_paths": 0,
+      "source_owner_clone_routes": 60,
+      "route_accounting_delta": 0,
+      "cumulative_runtime_materialized_routes": 83162,
+      "cumulative_accounted_routes": 118369,
+      "save_layout_changed": false,
+      "archive_economy": "PROVISIONAL_REPLACEABLE",
+      "allocation_sequence": 78,
+      "allocation_count": 79,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "prohibited_coercions_materialized": 0,
+      "full_p03_done": false
+    },
+    "p04_adoption_scope": {
+      "mega_species_and_forms": 49,
+      "new_normal_species": 0,
+      "mega_stones": 45,
+      "new_abilities": 6,
+      "winds_waves_user_non_adopted_species": 3,
+      "held_pikachu_appearance_candidates": 2,
+      "private_asset_files_ready": 670,
+      "mega_stone_item_ids_materialized": 45,
+      "mega_stone_bp_shop_entries": 45,
+      "mega_stone_bp_price_each": 16,
+      "mega_ring_gate_item_id": 580,
+      "mega_stone_shop_once_flags": [5280, 5324],
+      "mega_stone_shop_exact_runtime_gate": "PASS",
+      "floette_eternal_existing_species_id": 1029,
+      "floette_eternal_gift_level": 50,
+      "floette_eternal_exact_party_pc_delivery": true,
+      "floette_eternal_exact_full_and_fresh_reload": false,
+      "mega_form_species_runtime_materialized": true,
+      "mega_form_battle_runtime_materialized": true,
+      "mega_form_battle_runtime_records": 49,
+      "mega_form_runtime_exact_mgba": false,
+      "rom_materialized_scope": [
+        "MEGA_STONE_ITEM_TABLES",
+        "MEGA_STONE_BP_SHOP",
+        "FLOETTE_ETERNAL_ACQUISITION",
+        "MEGA_FORM_SPECIES_TABLES_AND_ASSETS",
+        "MEGA_EVOLUTION_FORWARD_REVERSE_ROWS",
+        "ABILITY_312_317_FIXED_TABLE_BINDINGS"
+      ]
+    },
+    "p05_stage72_ability_runtime": {
+      "ability_ids": [312, 313, 314, 315, 316, 317],
+      "ability_count": 6,
+      "battle_hook_count": 29,
+      "rom_linked": true,
+      "exact_mgba": false,
+      "documented_ai_ui_edges_pending": 4
+    },
+    "p05_stage76_edges_checkpoint": {
+      "implemented_edge_count": 3,
+      "pending_edge_count": 1,
+      "mega_sol_solar_charge_popup": "IMPLEMENT",
+      "piercing_drill_ai_virtual_protect_quarter": "IMPLEMENT",
+      "spicy_spray_friendly_fire_ai_score": "IMPLEMENT",
+      "eelevate_dedicated_switch": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+      "allocation_parent_count": 79,
+      "allocation_count": 80,
+      "allocation_sequence": 79,
+      "parent_first79_rows_all_fields_preserved": true,
+      "rom_diff_allowlist_interval_count": 5,
+      "changed_bytes_inside_allowlist": 2081,
+      "changed_bytes_outside_allowlist": 0,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "full_p05_done": false,
+      "release_ready": false
+    },
+    "p05_stage77_suppression_checkpoint": {
+      "unique_hook_count": 29,
+      "ability_surface_occurrence_count": 33,
+      "battle_circus_global_fixed": true,
+      "battle_type_mask": "0x04000000",
+      "ability_suppression_mask": "0x80000000",
+      "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+      "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+      "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+      "ordinary_suppression_changed": false,
+      "allocation_parent_count": 80,
+      "allocation_count": 81,
+      "allocation_sequence": 80,
+      "parent_first80_rows_all_fields_preserved": true,
+      "rom_diff_allowlist_interval_count": 30,
+      "changed_bytes_inside_allowlist": 1307,
+      "changed_bytes_outside_allowlist": 0,
+      "stage76_pointer_and_three_hooks_preserved": true,
+      "eelevate_unsafe_switch_hooks_installed": 0,
+      "side_change_materialized": 0,
+      "browt_pombon_gecqua_materialized": 0,
+      "full_p05_done": false,
+      "release_ready": false
+    },
+    "p02_stage71_acceptance": {
+      "status": "STOPPED_EXACT_UI_PENDING",
+      "production_runtime": "UNJUDGED",
+      "exact_ui_acceptance": false,
+      "additional_mgba_deferred": true
+    }
+  },
+  "checkpoints": {
+    "p02": "CHECKPOINT_NOT_DONE",
+    "p03": "STAGE75_OWN_TEMPO_ROCKRUFF_CONNECTED_PROVISIONAL_ECONOMY_FINAL_MGBA_PENDING_NOT_P03_DONE",
+    "p04_assets": "ASSETS_READY_SPECIES_AND_MEGA_RUNTIME_CONNECTED_EXACT_MGBA_REMAINS",
+    "p04_stage68_shop": "EXACT_RUNTIME_PASS_NOT_P04_DONE",
+    "p04_stage69_floette": "EXACT_PARTY_PC_PARTIAL_PASS_FULL_RELOAD_HOST_ONLY_NOT_P04_DONE",
+    "p04_stage70_species": "STATIC_RUNTIME_CONNECTED_MGBA_PENDING_NOT_P04_DONE",
+    "p04_stage71_mega": "FORWARD_REVERSE_RUNTIME_CONNECTED_MGBA_PENDING_NOT_P04_DONE",
+    "p05": "STAGE77_BATTLE_CIRCUS_SUPPRESSION_CONNECTED_EELEVATE_AND_FINAL_CUMULATIVE_MGBA_REMAIN",
+    "p05_stage72_ability": "STATIC_RUNTIME_CONNECTED_MGBA_AI_UI_EDGES_PENDING_NOT_P05_DONE",
+    "p03_stage73_consumer": "FIVE_GROUP_CONSUMER_BOUNDARY_CONNECTED_SUPPLY_MGBA_PENDING_NOT_P03_DONE",
+    "p03_stage74_supply": "DIRECT_MACHINE_TUTOR_SUPPLY_CONNECTED_ROCKRUFF_MGBA_PENDING_NOT_P03_DONE",
+    "p03_stage75_own_tempo": "OWN_TEMPO_ROCKRUFF_INTERNAL_FORM_CONNECTED_PROVISIONAL_ECONOMY_FINAL_MGBA_PENDING_NOT_P03_DONE",
+    "p05_stage76_edges": "THREE_SAFE_AI_UI_EDGES_CONNECTED_EELEVATE_AND_FINAL_MGBA_PENDING_NOT_P05_DONE",
+    "p05_stage77_suppression": "BATTLE_CIRCUS_29_HOOK_33_SURFACE_SUPPRESSION_CONNECTED_EELEVATE_AND_FINAL_CUMULATIVE_MGBA_PENDING_NOT_P05_DONE",
+    "p02_stage71_acceptance": "STOPPED_EXACT_UI_PENDING_PRODUCTION_UNJUDGED",
+    "p06": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
+    "p07": "CHECKPOINT_NO_ADOPTED_CROSS_DISTRIBUTION_RUNTIME_BLOCKED",
+    "p08": "STAGE77_CHECKPOINT_NOT_RELEASE_CANDIDATE"
   },
   "deferred": {
-    "p02_evolutions": "PREPARATION_IN_PROGRESS",
-    "p03_learnsets": "PREPARATION_IN_PROGRESS",
-    "p04_new_species_and_megas": "RESEARCH_IN_PROGRESS",
-    "move_1063_ally_switch": "SPEC_ONLY_REQUIRES_ENGINE_IMPLEMENTATION",
+    "p02_full_runtime_acceptance": "UI_CANCEL_BAG_EVOLUTION_MOVE_SCENE_FORM_ABILITY_SAVE_RELOAD_NOT_RUN",
+    "p03_full_materialization": "DIRECT_SUPPLY_AND_OWN_TEMPO_ROCKRUFF_0744_01_CONNECTED_PROVISIONAL_ARCHIVE_ECONOMY_AND_FINAL_MGBA_REMAIN",
+    "p03_machine_tutor_supply": "RESOLVED_STAGE74_26648_DIRECT_ROUTES_CONNECTED",
+    "p04_mega_form_battle_runtime": "49_MEGA_FORMS_STATIC_AND_BATTLE_ROWS_CONNECTED_EXACT_MGBA_PENDING",
+    "p04_palette_gaps": "RESOLVED_49_OF_49_GBA_PALETTES_READY_STAGING_ONLY",
+    "p04_winds_waves_assets": "NOT_REQUIRED_3_USER_NON_ADOPTED_NO_ID_ASSET_OR_RUNTIME",
+    "floette_eternal_base_acquisition": "SPECIES_ID_1029_LEVEL50_GIFT_STAGE69_PARTY_PC_EXACT_FULL_ROLLBACK_RELOAD_HOST_ONLY",
+    "p05_new_abilities": "6_ROM_LINKED_THREE_SAFE_AI_UI_EDGES_AND_BATTLE_CIRCUS_GLOBAL_SUPPRESSION_CONNECTED_EELEVATE_SWITCH_AI_AND_FINAL_CUMULATIVE_MGBA_PENDING",
+    "p06_species_adjustments": "NO_SUBMITTED_ADOPTED_DELTA",
+    "p07_cross_distribution": "NO_SUBMITTED_ADOPTED_DELTA",
     "restoration_review_candidates": "REVIEW_ONLY_NOT_APPLIED"
+  },
+  "not_adopted": {
+    "move_1063_ally_switch": {
+      "source_routes": 159,
+      "selected_routes": 0,
+      "replacement_move": null,
+      "policy": "DO_NOT_IMPLEMENT_OR_ALLOCATE"
+    },
+    "winds_waves_new_species": {
+      "record_keys": [
+        "P04_SPECIES_BROWT",
+        "P04_SPECIES_POMBON",
+        "P04_SPECIES_GECQUA"
+      ],
+      "reserved_ids": 0,
+      "required_assets": 0,
+      "policy": "NON_ADOPTED_USER_SCOPE_KEEP_PROVENANCE_FOR_FUTURE_REVIEW"
+    }
   }
 }

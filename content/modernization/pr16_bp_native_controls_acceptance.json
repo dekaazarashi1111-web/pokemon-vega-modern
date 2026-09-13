@@ -1,0 +1,99 @@
+{
+  "accepted_case_ids": [
+    "reception-cancel-unchanged"
+  ],
+  "accepted_controls": [
+    {
+      "job_id": 103579472279,
+      "name": "reception-cancel-unchanged",
+      "result": {
+        "automatic_full_saves": 0,
+        "bp_after": 0,
+        "bp_before": 0,
+        "bp_earned": 0,
+        "candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+        "case": "reception-cancel-unchanged",
+        "fresh_cores": 1,
+        "host_write_barriers": 7,
+        "initial_map_progress_party_factory_ledger_are_fixtures": true,
+        "input_only_after_guard": true,
+        "manual_saves": 0,
+        "native_cancel": true,
+        "native_ledger_sector_writes_are_not_full_saves": true,
+        "native_reception": true,
+        "native_rental_selection_entry": false,
+        "p05_native_bp_gap_closed": false,
+        "party_and_inventory_preserved": true,
+        "party_bytes_verified": 600,
+        "physical_bp_earning_accepted": false,
+        "release_ready": false,
+        "save_counter_after": 2,
+        "save_counter_before": 2,
+        "save_counter_before_manual": 2,
+        "schema_version": 1,
+        "scope": "PR16_P05_NATIVE_BP_CANCELLATION_CONTROLS",
+        "status": "PASS_SCOPED_CONTROL",
+        "total_frames": 492,
+        "warnings_errors": 0,
+        "witness": {
+          "cancel": 310,
+          "confirm": 0,
+          "field": 492,
+          "interaction": 123,
+          "mode": 0,
+          "reloaded": 0,
+          "rentals": 0,
+          "saved": 0,
+          "tier": 309
+        }
+      },
+      "run_id": 34703571879,
+      "screens": {
+        "codex-gateway": {
+          "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d",
+          "size": 115215
+        },
+        "fixture": {
+          "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7",
+          "size": 115215
+        },
+        "reception-tier": {
+          "sha256": "0c59abbe2669e24b104eeb4a9deb2b1e6a4601ef7fbbe8894903fc2de394a5bf",
+          "size": 115215
+        },
+        "returned": {
+          "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+          "size": 115215
+        }
+      },
+      "visual_review": {
+        "completed": true,
+        "raw_original_unmodified": true,
+        "scope": "fixture, Codex native yes/no, Trial/Standard/cancel tier menu, returned empty field"
+      }
+    }
+  ],
+  "active_baseline_changed": false,
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432
+  },
+  "earned_bp": 0,
+  "fixture_scope": "Initial map/progress/party/empty Factory ledger are fixtures. Native Codex No -> Factory tier -> B cancel is input-only.",
+  "fresh_continue_after_normal_save_accepted": false,
+  "native_bp_earning_accepted": false,
+  "new_emulator_runs_during_checkpoint": 0,
+  "next_action": "Keep reception cancellation run34703571879. Do not rerun it without relevant change impact. Repair/resolve the Trial delegate currently pointing to completion0x092CF790, then native rentals/wins/loss/cancel/repeat/reward/normal Save/fresh Continue and earned-BP shop spend.",
+  "normal_saves_accepted": 0,
+  "p05_native_bp_gap_closed": false,
+  "preflight_failed_run_had_zero_processes": true,
+  "release_ready": false,
+  "remaining_control_case_ids": [
+    "rental-cancel-save-continue"
+  ],
+  "schema_version": 1,
+  "status": "PASS_ONE_NATIVE_RECEPTION_CANCEL_CONTROL_BP_EARNING_PENDING",
+  "successful_original_fresh_cores": 1,
+  "successful_original_processes": 1,
+  "total_original_attempted_emulator_processes": 1
+}

@@ -1,0 +1,97 @@
+name: p03-stage82-closeout
+run-name: Stage82 verified original runtime evidence closeout
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-stage82-closeout.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage82-closeout-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Exact successful runtime source identities
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = codex/modernization-followup-20260908
+          mkdir -p .local/stage82-closeout .local/stage82-domains .local/stage82-merged
+          git diff --exit-code 9221ffa18711505dba1fc8b80383bcb8a722a02b -- tools/modernization_p03_archive_ui_repair.py tools/mgba_modernization_p03_archive_ui_e2e.c overlays/modernization_p03_archive_ui_repair scripts/run_modernization_p03_archive_ui_e2e.py scripts/run_modernization_stage82_github_domain.py tests/fixtures/p03_archive_ui_cases.json tests/test_modernization_p03_archive_ui_e2e.py .github/workflows/p03-archive-ui-e2e.yml
+          git rev-parse HEAD > .local/stage82-closeout/integration-head.txt
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 34397482740
+          pattern: stage82-*
+          path: .local/stage82-input
+      - name: Regression contracts including redirect and ZIP corruption
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_archive_ui_e2e.py -v > .local/stage82-closeout/tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_p03_fullslots_e2e.py -v >> .local/stage82-closeout/tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_stage82_artifact_transport.py -v >> .local/stage82-closeout/tests.log 2>&1
+      - name: Same candidate, seven original domain results and unchanged baseline
+        run: |
+          set -euo pipefail
+          cp -r .local/stage82-input/stage82-domain-* .local/stage82-domains/
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/stage82-merged/prepare.json
+          python3 scripts/run_modernization_stage82_github_domain.py merge --input-directory .local/stage82-domains --output-directory .local/stage82-merged > .local/stage82-merged/merge-summary.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/stage79_cumulative_mgba_runtime_gate.json build/stages
+      - name: Record original ZIPs, all extracted bytes and successful job receipts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STAGE82_SOURCE_RUN: '34397482740'
+          STAGE82_TESTED_HEAD: 9221ffa18711505dba1fc8b80383bcb8a722a02b
+        run: |
+          set -euo pipefail
+          if test -f content/modernization/p08_stage82_archive_acceptance.json; then
+            python3 scripts/record_modernization_stage82_archive.py > .local/stage82-closeout/record-check.json
+          else
+            python3 scripts/record_modernization_stage82_archive.py --record > .local/stage82-closeout/record-check.json
+          fi
+      - name: Commit verified P08 originals and dispatch final normal CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$GITHUB_SHA"
+          git add -f -- content/modernization/p08_stage82_evidence/34397482740
+          git add -- content/modernization/p08_stage82_archive_acceptance.json design/run_log.md design/version_log.md
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'docs(p08): integrate 25 native archive cases and seven fresh Stage82 domains with original ZIPs'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          git rev-parse HEAD > .local/stage82-closeout/final-head.txt
+          python3 scripts/record_modernization_stage82_archive.py > .local/stage82-closeout/post-commit-check.json
+          cp content/modernization/p08_stage82_archive_acceptance.json .local/stage82-closeout/
+          gh workflow run ci.yml --ref "$GITHUB_REF_NAME"
+      - name: Package committed evidence, repair sources and validation output
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,zipfile
+          root=pathlib.Path('.')
+          candidates=list(root.glob('content/modernization/p08_stage82_evidence/34397482740/**/*'))
+          candidates += [root/p for p in ('content/modernization/p08_stage82_archive_acceptance.json','scripts/record_modernization_stage82_archive.py','tests/test_modernization_stage82_artifact_transport.py','docs/P03_ARCHIVE_UI_E2E.md','scripts/run_modernization_stage82_github_domain.py','scripts/run_modernization_p03_archive_ui_e2e.py','tools/mgba_modernization_p03_archive_ui_e2e.c','tools/modernization_p03_archive_ui_repair.py','overlays/modernization_p03_archive_ui_repair/relearner_list.S','tests/fixtures/p03_archive_ui_cases.json','tests/test_modernization_p03_archive_ui_e2e.py','.github/workflows/p03-archive-ui-e2e.yml','.github/workflows/p03-stage82-closeout.yml')]
+          with zipfile.ZipFile('.local/stage82-closeout/committed-evidence-and-source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in sorted(set(candidates)):
+                  if p.is_file():z.write(p,p.as_posix())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage82-closeout
+          path: .local/stage82-closeout/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

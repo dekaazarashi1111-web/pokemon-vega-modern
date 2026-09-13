@@ -1,0 +1,65 @@
+name: Stage79 runtime boundary audit
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read frozen Stage78 runtime boundaries
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib
+          import struct
+
+          rom_path = Path('build/stages/78_modernization_p05_eelevate_switch_ai.gba')
+          rom = rom_path.read_bytes()
+          print('rom_sha256', hashlib.sha256(rom).hexdigest())
+          assert len(rom) == 32 * 1024 * 1024
+
+          def off(address):
+              return address - 0x08000000
+          def u32(address):
+              return struct.unpack_from('<I', rom, off(address))[0]
+
+          print('floette_collection_end_literal', hex(u32(0x092D12C0)))
+          print('floette_collection_start_literal', hex(u32(0x092D12C4)))
+          print('floette_policy_end_literal', hex(u32(0x092D12CC)))
+          print('floette_policy_start_literal', hex(u32(0x092D12D0)))
+
+          base_stats = 0x09576C74
+          species = 1
+          growth = rom[off(base_stats) + species * 32 + 19]
+          print('p02_species', species)
+          print('p02_growth_byte', growth)
+
+          exp_root = 0x09150064
+          values = {}
+          for level in (0, 1, 14, 15, 16, 17, 99, 100):
+              address = exp_root + (growth * 256 + level) * 4
+              values[level] = u32(address)
+              print(f'p02_exp_level_{level}', values[level], hex(address))
+          monotonic = all(
+              u32(exp_root + (growth * 256 + level) * 4)
+              <= u32(exp_root + (growth * 256 + level + 1) * 4)
+              for level in range(1, 100)
+          )
+          print('p02_exp_monotonic_1_100', monotonic)
+          print('p02_exp_15_to_16_delta', values[16] - values[15])
+
+          expected_old_collection_start = 0x092D8530
+          expected_old_collection_end = expected_old_collection_start + 1621 * 8
+          expected_new_collection_start = u32(0x092D12C4)
+          expected_new_collection_end = expected_new_collection_start + 1670 * 8
+          print('expected_old_collection_end', hex(expected_old_collection_end))
+          print('expected_new_collection_end', hex(expected_new_collection_end))

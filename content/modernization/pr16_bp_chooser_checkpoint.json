@@ -1,0 +1,181 @@
+{
+  "accepted_case_count": 1,
+  "accepted_case_ids": [
+    "rental-cancel-save-continue"
+  ],
+  "active_baseline_changed": false,
+  "builder": "scripts/pr16_bp_chooser_successor.py",
+  "candidate": {
+    "crc32": "635A3CE5",
+    "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+    "size": 33554432
+  },
+  "evidence": [
+    {
+      "adoption": "STATIC_CAUSAL_PROOF_NOT_NATIVE_ACCEPTANCE",
+      "artifact_id": 10309958311,
+      "classification": "static-binding",
+      "embedded_original": {
+        "adoption": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+        "artifact_id": 10302803074,
+        "candidate": {
+          "sha256": "df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c",
+          "size": 33554432
+        },
+        "classification": "old-null-special",
+        "job_id": 103594064434,
+        "new_emulator_processes": 1,
+        "original_conclusion": "failure",
+        "run_id": 34708956804,
+        "successful_fresh_cores": 0,
+        "tested_head": "f344c9b9a88a7bab9f7c74e346f4505774de48f8",
+        "zip": {
+          "sha256": "44396b567b3057602870cdb6924902092e9671cb7d459a2de47d001958810bef",
+          "size": 677365
+        }
+      },
+      "job_id": 103659307961,
+      "new_emulator_processes": 0,
+      "original_conclusion": "success",
+      "path": "content/modernization/pr16_bp_chooser_evidence/34733046485/original.zip",
+      "run_id": 34733046485,
+      "tested_head": "099f7287807d5d74601e10b2ec4dc241c22fe123",
+      "zip": {
+        "sha256": "612b0740fcf4472ba885e39228e685ea716da3037cac3694829850d9536bb742",
+        "size": 955191
+      }
+    },
+    {
+      "adoption": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+      "artifact_id": 10310058670,
+      "candidate": {
+        "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+        "size": 33554432
+      },
+      "classification": "cancel-confirmation-required",
+      "job_id": 103660395541,
+      "new_emulator_processes": 1,
+      "original_conclusion": "failure",
+      "path": "content/modernization/pr16_bp_chooser_evidence/34733429516/original.zip",
+      "run_id": 34733429516,
+      "successful_fresh_cores": 0,
+      "tested_head": "d6701c63d533789308fc7ce76f5e69c8b9b85cf2",
+      "zip": {
+        "sha256": "093226863346c0c3aec4235d329cab2e089b111e24777f8ca4a463c5a78711cd",
+        "size": 688061
+      }
+    },
+    {
+      "adoption": "ACCEPTED_RENTAL_CANCEL_SAVE_CONTINUE_ONLY",
+      "artifact_id": 10310735119,
+      "candidate": {
+        "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+        "size": 33554432
+      },
+      "classification": "rental-cancel-save-continue",
+      "job_id": 103661602964,
+      "new_emulator_processes": 1,
+      "original_conclusion": "success",
+      "path": "content/modernization/pr16_bp_chooser_evidence/34733866168/original.zip",
+      "result": {
+        "automatic_full_saves": 0,
+        "bp_after": 0,
+        "bp_before": 0,
+        "bp_earned": 0,
+        "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+        "case": "rental-cancel-save-continue",
+        "fresh_cores": 2,
+        "host_write_barriers": 7,
+        "initial_map_progress_party_factory_ledger_are_fixtures": true,
+        "input_only_after_guard": true,
+        "manual_saves": 1,
+        "native_cancel": true,
+        "native_ledger_sector_writes_are_not_full_saves": true,
+        "native_reception": true,
+        "native_rental_selection_entry": true,
+        "p05_native_bp_gap_closed": false,
+        "party_and_inventory_preserved": true,
+        "party_bytes_verified": 600,
+        "physical_bp_earning_accepted": false,
+        "release_ready": false,
+        "save_counter_after": 3,
+        "save_counter_before": 2,
+        "save_counter_before_manual": 2,
+        "schema_version": 1,
+        "scope": "PR16_P05_CHOOSER_SUCCESSOR_NATIVE_CONTROL",
+        "status": "PASS_SCOPED_CONTROL",
+        "total_frames": 5133,
+        "warnings_errors": 0,
+        "witness": {
+          "cancel": 945,
+          "confirm": 553,
+          "field": 1249,
+          "interaction": 123,
+          "mode": 431,
+          "reloaded": 5133,
+          "rentals": 944,
+          "saved": 2711,
+          "tier": 309
+        }
+      },
+      "run_id": 34733866168,
+      "successful_fresh_cores": 2,
+      "tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+      "visual_review": {
+        "completed": true,
+        "method": "Assistant inspected all nine native screenshots on 2026-09-13; raw result visual flag unchanged",
+        "original_run": 34733866168,
+        "screens": {
+          "cancel-confirm": "d3e2ab4fd0a029c4f20d07c51caa475c5c2b5202c202b2d446e25174493d891e",
+          "fresh-continue": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+          "rental-party": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3",
+          "returned": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef"
+        }
+      },
+      "zip": {
+        "sha256": "3d4be68d90ba9537bc337b3ab4521cea84bd2dbc924b56ab14d9ce2c74e4cf1f",
+        "size": 704616
+      }
+    }
+  ],
+  "final_product_sha_fixed": false,
+  "fixed_form_accepted_case_count_retained": 5,
+  "full_candidate_regression_complete": false,
+  "historical_native_processes_embedded": 1,
+  "latest_native_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+  "latest_native_job": 103661602964,
+  "latest_native_run": 34733866168,
+  "merge_performed": false,
+  "native_bp_earning_accepted": false,
+  "native_bp_spending_accepted": false,
+  "native_party_chooser_accepted": true,
+  "native_rental_cancel_save_continue_accepted": true,
+  "new_native_processes_during_checkpoint": 0,
+  "new_native_processes_during_this_task": 2,
+  "new_static_binding_runs": 1,
+  "next": "Native select three rentals, bind selected-order bridge and real battle launch before 3 wins/9BP, negatives, repeat, Save/Continue and earned-BP shop spend. Do not repeat cancelled-entry proof without an affected-source reason.",
+  "old_runs_relabelled": 0,
+  "p05_native_bp_gap_closed": false,
+  "p08_gate_count": 2,
+  "physical_gap_count": 4,
+  "pr_body_update": "NOT_APPLIED_TOOL_SAFETY_CHECK_REJECTED",
+  "release_ready": false,
+  "root_cause": {
+    "after": "2900",
+    "before": "2f00",
+    "changed_bytes": 1,
+    "explanation": "special 0x2F is bx lr; following waitstate has no resumer. special 0x29 opens the actual rental party chooser.",
+    "global_table_changes": 0,
+    "old_special": 47,
+    "old_target": 135053197,
+    "old_target_code": "7047",
+    "replacement_special": 41,
+    "replacement_target": 134878733,
+    "script_operand": 153941545,
+    "special_table": 135671912
+  },
+  "runner_correction": "B opens abandon-battle Yes/No; one native A accepts default Yes. Same fixture, timeouts and restoration assertions.",
+  "schema_version": 1,
+  "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_BP_EARNING_PENDING",
+  "task": "USER-20260913-BP-CHOOSER"
+}

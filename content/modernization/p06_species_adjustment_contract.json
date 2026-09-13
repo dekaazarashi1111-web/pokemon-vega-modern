@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P06",
+  "status": "CHECKPOINT_ADOPTED_DELTA_EMPTY",
+  "scope": "SPECIES_BASE_STATS_TYPES_AND_ABILITY_SLOTS",
+  "policy": {
+    "stable_identity": "species_key + form_key",
+    "existing_numeric_ids_are_immutable": true,
+    "review_archive_is_not_approval": true,
+    "unsubmitted_adjustments_must_not_be_created": true,
+    "runtime_patch_requires_nonempty_adopted_delta": true,
+    "learnset_distribution_is_out_of_scope": true,
+    "rom_and_save_mutation": "FORBIDDEN_IN_THIS_CHECKPOINT"
+  },
+  "sources": {
+    "restoration_archive": {
+      "logical_path": "userfile/imports/modernization_p01/Vega_Stage61_ID固定_原作復元監査資料.zip",
+      "size": 67698,
+      "sha256": "448608de12a431bef8eaaaf2dc3024743bfd77ad7925e5fb6ae01b6086cfac08",
+      "review_member_suffix": "11_ID固定_内容更新候補_未適用.json",
+      "review_member_size": 112948,
+      "review_member_sha256": "262b7e437565abb860f1f4c49e041283cf6d238c2e52d642acd5eb32f706fd0a",
+      "declared_status": "REVIEW_ONLY_NOT_APPLIED"
+    },
+    "learnset_archive": {
+      "logical_path": "userfile/imports/modernization_p01/Pokemon_Vega_Stage61_技習得品質改善版_v1.3.0_20260905.zip",
+      "size": 82683251,
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "role": "P03習得正本。P06の種族値・タイプ・特性slot採用を意味しない"
+    },
+    "current_species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "current_type_manifest": {
+      "path": "manifests/type_ids.csv",
+      "sha256": "b6406423b9644d218389ae33d4f30a14100a3c1a70c39fa087475887f747c0cb"
+    },
+    "current_ability_manifest": {
+      "path": "manifests/ability_ids.csv",
+      "sha256": "8ae721ef01feeddb50cb0ef1ce2f59193a87a871133561ae2557ac8a5c9bfbcf"
+    },
+    "current_base_stats": {
+      "path": "generated/engine/species/base_stats.bin",
+      "size": 51872,
+      "sha256": "913bbbc26e1ead40416af5a3a28907ce82d44b4d1d90b1c400779b86eecbc00a",
+      "species_count": 1621,
+      "stride": 32
+    },
+    "cumulative_rom": {
+      "path": "build/stages/63_modernization_p01_identity_repair.gba",
+      "size": 33554432,
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd"
+    }
+  },
+  "adoption": {
+    "explicit_species_adjustment_spec_received": false,
+    "adopted_delta_records": [],
+    "adopted_delta_count": 0,
+    "runtime_patch_authorized": false,
+    "reason_ja": "受領監査JSONはREVIEW_ONLY_NOT_APPLIEDであり、config/modernization_inputs.jsonもP06まで未採用を維持すると明記する。P05にも採用済み性能差分はない。"
+  },
+  "review_partition": {
+    "projection_path": "content/modernization/p06_review_projection.json",
+    "projection_sha256": "04efc32cb54e2f0adf8cbb5d4de480c322188e709856d876198f57d27427f01f",
+    "source_record_count": 194,
+    "field_candidate_counts": {
+      "base_stats": 21,
+      "types": 7,
+      "abilities": 190
+    },
+    "confirmed_transcription_or_id_bug_review": {
+      "record_count": 1,
+      "species_key": "SPECIES_KEY_SCYTHER",
+      "form_key": "FORM_KEY_BASE",
+      "field": "base_stats",
+      "current_habcds": [70, 157, 80, 47, 80, 136],
+      "review_target_habcds": [70, 110, 80, 55, 80, 105],
+      "status": "VERIFIED_DISCREPANCY_REVIEW_ONLY_NOT_ADOPTED",
+      "reason_ja": "受領資料では現行値だけが公開Vega値と固定Showdown参照の双方に一致しない。明確な転記不整合候補として分離するが、archive自体が未採用のためruntime差分には入れない。"
+    },
+    "original_restoration_review_only": {
+      "policy": "Scyther base_stats以外の全field候補。原作基準化の提案であり一括採用しない",
+      "status": "REVIEW_ONLY_NOT_ADOPTED"
+    },
+    "vega_custom_candidates": [
+      {
+        "species_key": "SPECIES_KEY_VEGA_220",
+        "form_key": "FORM_KEY_BASE",
+        "display_name": "ジバクン",
+        "received_reference": "ジバクンの特性差替え",
+        "submitted_delta": null,
+        "status": "SPEC_NOT_SUBMITTED_NOT_ADOPTED"
+      },
+      {
+        "species_key": "SPECIES_KEY_VEGA_373",
+        "form_key": "FORM_KEY_BASE",
+        "display_name": "カモナイツ",
+        "received_reference": "カモナイツA45",
+        "submitted_delta": null,
+        "status": "SPEC_NOT_SUBMITTED_NOT_ADOPTED",
+        "note_ja": "A45の意味を攻撃値・特性ID等へ推測展開しない"
+      }
+    ]
+  },
+  "cumulative_dependencies": {
+    "p02": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "required": true,
+      "species_adjustment_import": "NONE_EVOLUTION_ONLY"
+    },
+    "p03": {
+      "path": "content/modernization/p03_learnset_contract.json",
+      "required": true,
+      "species_adjustment_import": "NONE_LEARNSET_ONLY"
+    },
+    "p04": {
+      "path": "content/modernization/p04_candidate_manifest.json",
+      "required": true,
+      "species_adjustment_import": "NONE_PRIMARY_STATS_EXTRACTION_REMAINS"
+    },
+    "p05": {
+      "path": "content/modernization/p05_battle_content_contract.json",
+      "required": false,
+      "expected_summary_field": "adopted_performance_adjustment_count",
+      "species_adjustment_import": "NONE_IF_SUMMARY_ZERO",
+      "note_ja": "P05並行作業中はhashを固定せず、存在時だけ内容とSHA-256を監査reportへ記録する"
+    }
+  },
+  "runtime_consumer_contract": {
+    "base_stats_pointer_site": 444,
+    "base_stats_address": 157286400,
+    "base_stats_rom_offset": 23068672,
+    "base_stats_stride": 32,
+    "base_stat_offsets": {
+      "hp": 0,
+      "attack": 1,
+      "defense": 2,
+      "speed": 3,
+      "sp_attack": 4,
+      "sp_defense": 5
+    },
+    "type_offsets": [6, 7],
+    "ability_u16_offsets": [22, 26, 28],
+    "repoint_metadata_path": "build/stages/07_species.json",
+    "expected_repoint_count": 105,
+    "ability_slot_migration": "NO_SAVE_REWRITE_PRESERVE_STORED_SLOT_SELECTION",
+    "migration_note_ja": "将来slot内容を採用変更した場合、既存個体の保存ABIや個体IDは変更せず、保存されたslot選択から通常処理で新しい特性を解決する。実ROM回帰までは採用完了にしない。"
+  },
+  "handoff": {
+    "next_action": "ユーザー採用表をstable species/form keyとfield単位で受領してからadopted_delta_recordsを生成する",
+    "p07_distribution_must_not_be_applied": true,
+    "completion_state": "CHECKPOINT_NOT_P06_DONE"
+  }
+}

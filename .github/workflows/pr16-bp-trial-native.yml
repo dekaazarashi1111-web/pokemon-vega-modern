@@ -1,0 +1,135 @@
+name: pr16-bp-trial-native
+run-name: Trial chooser wait observation — seven read-only snapshots, unchanged input contract
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-trial-native.yml]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-trial-native
+  cancel-in-progress: false
+jobs:
+  trial-native:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Bind successor and trace sources; validate 30 source checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-trial-workflow
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-trial-workflow'
+          names=['AGENTS.md','scripts/pr16_bp_trial_route.py','scripts/pr16_bp_trial_successor.py',
+              'scripts/pr16_bp_trial_native.py','tests/test_pr16_bp_trial_successor.py',
+              'scripts/pr16_bp_chooser_trace.py','tests/test_pr16_bp_chooser_trace.py',
+              'scripts/pr16_bp_native_controls.py','tools/mgba_pr16_bp_native_controls.c',
+              '.github/workflows/pr16-bp-trial-native.yml','config/active_play_baseline.json',
+              'content/modernization/p08_remaining_work.json','content/modernization/pr16_native_supply_handoff.json']
+          bound={}
+          with zipfile.ZipFile(out/'entry-sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  p=root/name;raw=p.read_bytes();raw.decode('utf-8');assert not p.is_symlink() and b'\0' not in raw
+                  z.writestr(name,raw);bound[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'entry-bindings.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY
+          python3 -m unittest tests.test_pr16_bp_trial_successor tests.test_pr16_bp_chooser_trace -v > .local/pr16-bp-trial-workflow/unit.stdout 2> .local/pr16-bp-trial-workflow/unit.stderr
+          python3 scripts/validate_task_graph.py > .local/pr16-bp-trial-workflow/task-graph.txt
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-trial-workflow/fixed-form-retained.json
+      - name: Restore pinned compiler and unchanged Stage84 build input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-workflow
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-workflow
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          (root/'.local/pr16-bp-trial-workflow/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact parent without replaying old native tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-workflow
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Observe previously unmeasured chooser context without changing game input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-trial-workflow
+          python3 scripts/pr16_bp_trial_native.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: Reject ROM save patch private inputs and unsafe source archives
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          roots=[pathlib.Path('.local/pr16-bp-trial-workflow'),pathlib.Path('.local/pr16-bp-trial-native')]
+          forbidden={'.gba','.gb','.gbc','.srm','.sav','.ips','.ups','.bps','.bin','.exe'};bound={}
+          for root in roots:
+              if not root.exists():continue
+              for path in root.rglob('*'):
+                  assert not path.is_symlink()
+                  if not path.is_file():continue
+                  assert path.suffix.lower() not in forbidden and 'private-env' not in path.name
+                  raw=path.read_bytes()
+                  if path.suffix.lower()=='.zip':
+                      with zipfile.ZipFile(path) as z:
+                          assert len(z.namelist())==len(set(z.namelist()))<=1000
+                          assert sum(i.file_size for i in z.infolist())<=32000000
+                          for i in z.infolist():
+                              name=pathlib.PurePosixPath(i.filename)
+                              assert not name.is_absolute() and '..' not in name.parts and '\\' not in i.filename
+                              assert name.suffix.lower() not in forbidden|{'.zip'} and not stat.S_ISLNK(i.external_attr>>16)
+                              data=z.read(i);data.decode('utf-8');assert b'\0' not in data
+                  elif path.suffix.lower()=='.ppm':assert raw.startswith(b'P6\n240 160\n255\n') and len(raw)==115215
+                  else:raw.decode('utf-8');assert b'\0' not in raw and len(raw)<16000000
+                  bound[path.relative_to('.local').as_posix()]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          pathlib.Path('.local/pr16-bp-trial-workflow/artifact-members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-trial-native
+          path: |
+            .local/pr16-bp-trial-workflow/
+            .local/pr16-bp-trial-native/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

@@ -1,0 +1,221 @@
+name: p03-archive-ui-e2e
+run-name: Stage82 native archive repair, 25 UI cases and seven fresh domains
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-archive-ui-e2e.yml
+      - .github/repairs/stage82-archive-ui.payload*.b64
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage82-archive-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  prepare:
+    name: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      code_sha: ${{ steps.commit.outputs.code_sha }}
+      fingerprint: ${{ steps.plan.outputs.fingerprint }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply reviewed exact-source product bundle
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = codex/modernization-followup-20260908
+          python3 - <<'PY'
+          import base64,hashlib,json,pathlib,zlib
+          parts=[pathlib.Path(f'.github/repairs/stage82-archive-ui.payload{i}.b64') for i in range(1,5)]
+          data=zlib.decompress(base64.b64decode(b''.join(p.read_bytes().strip() for p in parts),validate=True))
+          assert hashlib.sha256(data).hexdigest() == 'f5c2673e4cff403e23c124fcbcf09a1f1c4ade91e949c55c07a4d7dfded4deac'
+          bundle=json.loads(data)
+          for item in bundle['files']:
+              path=pathlib.Path(item['path']);assert not path.is_absolute() and '..' not in path.parts
+              assert not path.is_symlink()
+              content=item['content'].encode()
+              assert hashlib.sha256(content).hexdigest()==item['sha256']
+              if item['path'].endswith('/relearner_list.S'):
+                  content=content.replace(b'.balign 4, 0',b'.hword 0x46c0 /* Explicit Thumb NOP: identical GNU/LLVM alignment bytes. */\n.balign 4, 0')
+                  assert hashlib.sha256(content).hexdigest()=='f01f83b0d583b2c8b3fd7961fa9911f80428d9c264c07a9f6b0de6ff83345082'
+              if item['path']=='tools/modernization_p03_archive_ui_repair.py':
+                  content=content.replace(b'2a36f7fe0fdaeed4f735cac4fa739f0a72360338c5ab6de5d72c6730f6082b5d',b'f01f83b0d583b2c8b3fd7961fa9911f80428d9c264c07a9f6b0de6ff83345082')
+              if path.exists():
+                  assert hashlib.sha256(path.read_bytes()).hexdigest() in (item['sha256'],item['parent_sha256'],hashlib.sha256(content).hexdigest())
+              else: assert item['parent_sha256'] is None
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(content)
+          # CI is installed through the authorized connector, not changed by the job token.
+          raw=pathlib.Path('.github/workflows/ci.yml').read_bytes()
+          assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()=='767a33421cdd6b278045ee8ff782d1a6d5d2b189'
+          pathlib.Path('.local').mkdir(exist_ok=True)
+          pathlib.Path('.local/stage82-product-paths.txt').write_text('\n'.join([i['path'] for i in bundle['files']])+'\n')
+          PY
+      - name: Fixed toolchain and exact assembler output
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage82-plan
+          bash infra/setup_github_actions.sh --install > .local/stage82-plan/toolchain.log 2>&1
+          arm-none-eabi-as -mcpu=arm7tdmi -mthumb overlays/modernization_p03_archive_ui_repair/relearner_list.S -o .local/stage82-plan/native.o
+          arm-none-eabi-ld -Ttext=0x080e6088 -e Stage82_RelearnerList .local/stage82-plan/native.o -o .local/stage82-plan/native.elf
+          arm-none-eabi-objcopy -O binary .local/stage82-plan/native.elf .local/stage82-plan/native.bin
+          arm-none-eabi-objdump -d .local/stage82-plan/native.elf > .local/stage82-plan/native-disassembly.txt
+          python3 tools/modernization_p03_archive_ui_repair.py --verify-assembly > .local/stage82-plan/assembly.json
+      - name: Fail-closed recipe and runtime result regression tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_archive_ui_e2e.py -v > .local/stage82-plan/tests.log 2>&1
+          python3 -m unittest discover -s tests -p test_modernization_p03_fullslots_e2e.py -v >> .local/stage82-plan/tests.log 2>&1
+      - id: commit
+        name: Commit actual product repair and test sources to PR branch
+        run: |
+          set -euo pipefail
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$(git rev-parse HEAD)"
+          while IFS= read -r path; do git add -- "$path"; done < .local/stage82-product-paths.txt
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'fix(p03): repair native archive gates and list storage with guarded UI persistence tests'
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+          echo "code_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > .local/stage82-plan/tested-head.txt
+      - id: plan
+        name: Exact Stage82 plan with unchanged seven-domain contracts
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/stage82-plan/prepare.json
+          python3 scripts/run_modernization_stage82_github_domain.py plan > .local/stage82-plan/plan.json
+          cp .local/stage82-archive-ui/config.json .local/stage82-plan/config.json
+          cp .local/stage82-archive-ui/candidate.json .local/stage82-plan/candidate.json
+          echo "fingerprint=$(python3 -c 'import json;print(json.load(open(".local/stage82-plan/plan.json"))["plan_fingerprint"])')" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage82-plan
+          path: .local/stage82-plan/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  archive:
+    name: archive-ui
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.code_sha }}
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage82-archive-ui-e2e
+          bash infra/setup_github_actions.sh --install > .local/stage82-archive-ui-e2e/toolchain.log 2>&1
+      - name: Twenty-five fresh native UI/save/restart cases and two original failure controls
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_p03_archive_ui_e2e.py --output-directory .local/stage82-archive-ui-e2e --jobs 2 > .local/stage82-archive-ui-e2e/job.stdout.log 2> .local/stage82-archive-ui-e2e/job.stderr.log
+          git rev-parse HEAD > .local/stage82-archive-ui-e2e/tested-head.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage82-archive-ui
+          path: .local/stage82-archive-ui-e2e/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  domain:
+    name: stage82 domain / ${{ matrix.domain }}
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        domain: [p02, mega_shop, floette, p03, p04_mega_runtime, battle_policy, p05]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.code_sha }}
+          persist-credentials: false
+      - name: Fixed toolchain
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage82-domain
+          bash infra/setup_github_actions.sh --install > .local/stage82-domain/toolchain.log 2>&1
+      - name: Same candidate and fingerprint
+        env:
+          EXPECTED_FINGERPRINT: ${{ needs.prepare.outputs.fingerprint }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/stage82-domain/prepare.json
+          python3 scripts/run_modernization_stage82_github_domain.py plan > .local/stage82-domain/plan.json
+          python3 -c 'import json,os; assert json.load(open(".local/stage82-domain/plan.json"))["plan_fingerprint"] == os.environ["EXPECTED_FINGERPRINT"]'
+          git rev-parse HEAD > .local/stage82-domain/tested-head.txt
+      - name: Fresh execution and original result validation
+        env:
+          DOMAIN: ${{ matrix.domain }}
+        run: |
+          set -euo pipefail
+          python3 scripts/run_modernization_stage82_github_domain.py run-domain --domain "$DOMAIN" --output-directory .local/stage82-domain > .local/stage82-domain/job-summary.json 2> .local/stage82-domain/job.stderr.log
+          python3 scripts/run_modernization_stage82_github_domain.py validate-domain --domain "$DOMAIN" --record .local/stage82-domain/result.json > .local/stage82-domain/validation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage82-domain-${{ matrix.domain }}
+          path: .local/stage82-domain/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+  merge:
+    name: merge-and-record
+    needs: [prepare, archive, domain]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.code_sha }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: stage82-*
+          path: .local/stage82-input
+      - name: Validate all seven domains and preserve historical gate
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage82-domains .local/stage82-merged
+          cp -r .local/stage82-input/stage82-domain-* .local/stage82-domains/
+          python3 scripts/run_modernization_stage82_github_domain.py prepare > .local/stage82-merged/prepare.json
+          python3 scripts/run_modernization_stage82_github_domain.py merge --input-directory .local/stage82-domains --output-directory .local/stage82-merged > .local/stage82-merged/merge-summary.json
+          git diff --exit-code -- config/active_play_baseline.json content/modernization/stage79_cumulative_mgba_runtime_gate.json build/stages
+      - name: Verify GitHub originals and record P08 supplemental acceptance
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STAGE82_TESTED_HEAD: ${{ needs.prepare.outputs.code_sha }}
+        run: python3 scripts/record_modernization_stage82_archive.py --record > .local/stage82-merged/record-check.json
+      - name: Commit original evidence and append-only logs, then dispatch final CI
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ needs.prepare.outputs.code_sha }}
+        run: |
+          set -euo pipefail
+          git fetch origin "$GITHUB_REF_NAME"
+          test "$(git rev-parse FETCH_HEAD)" = "$EXPECTED_HEAD"
+          git add content/modernization/p08_stage82_evidence content/modernization/p08_stage82_archive_acceptance.json design/run_log.md design/version_log.md
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'docs(p08): record verified Stage82 archive and seven-domain original runtime evidence'
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          git rev-parse HEAD > .local/stage82-merged/final-head.txt
+          gh workflow run ci.yml --ref "$GITHUB_REF_NAME"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage82-integration
+          path: .local/stage82-merged/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

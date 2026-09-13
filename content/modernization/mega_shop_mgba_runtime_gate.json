@@ -1,0 +1,146 @@
+{
+  "artifacts_written": [
+    "content/modernization/mega_shop_mgba_runtime_gate.json"
+  ],
+  "claims": {
+    "all_45_runtime_purchases": false,
+    "exact_stage68_rom": true,
+    "insufficient_and_bag_full_no_mutation": true,
+    "item_consumer_boundaries_and_mega_semantics": true,
+    "mega_ring_580_gate": true,
+    "normal_save_fresh_core_once_rejection": true,
+    "physical_menu_input_e2e": false,
+    "physical_npc_script_graph_to_entrypoint": true,
+    "representative_bag_items_and_claim_flags": true,
+    "three_representative_16_bp_purchases": true,
+    "warnings_errors_zero": true
+  },
+  "classification": "EXACT_ROM_STATEFUL_NORMAL_FUNCTION_FRESH_CORE",
+  "diagnostic_history": {
+    "failed_evidence_files_written": 0,
+    "failed_process_runs_before_pass": 5,
+    "last_failure_observation": {
+      "balance_bp_from_sector31": 52,
+      "ensure_save": 1,
+      "load_game_data": 2,
+      "mega_ring_visible_before_bag_pointer_setup": false
+    },
+    "passing_process_runs": 1,
+    "resolution": [
+      "SetSaveBlocksPointers when fresh EWRAM owner pointers are invalid",
+      "Save_LoadGameData",
+      "SetBagPocketsPointers before bag queries"
+    ],
+    "rom_defect": false,
+    "root_cause": "FRESH_CORE_SAVE_BLOCK_POINTERS_NOT_INITIALIZED",
+    "save_file_read_only_audit": {
+      "sector_signatures_and_checksums_valid": true,
+      "size_with_mgba_rtc_footer": 131088,
+      "standard_slots_complete": true
+    }
+  },
+  "inputs": {
+    "checkpoint": {
+      "path": "content/modernization/mega_shop_checkpoint.json",
+      "sha256": "8ef28eb0395aa7a4d91623914b1e5136b94f3fb387206e20d456e973ceed0b29",
+      "size": 37093
+    },
+    "metadata": {
+      "path": "build/stages/68_modernization_mega_shop.json",
+      "sha256": "f2d046b20ba93ed745823cf73da467ad0c886ce1e94a984213e9aa4d536db75e",
+      "size": 59479
+    },
+    "rom": {
+      "path": "build/stages/68_modernization_mega_shop.gba",
+      "sha256": "1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639",
+      "size": 33554432
+    },
+    "symbols": {
+      "path": "generated/runtime/modernization_mega_shop_symbols.json",
+      "sha256": "e01e24abec8f5f84aad744dd4e229d887364291bcc8fa6a303a193b0efd69610",
+      "size": 6082
+    }
+  },
+  "runtime": {
+    "compiler": {
+      "command": "cc",
+      "flags": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-lmgba"
+      ],
+      "stderr": "",
+      "stdout": ""
+    },
+    "core_instances": 2,
+    "fresh_core": true,
+    "host_test_overlay": false,
+    "process_runs": 1,
+    "retained_artifacts": [],
+    "runner_source": {
+      "path": "tools/mgba_modernization_mega_shop_smoke.c",
+      "sha256": "6a90194b83875ea28a6c63286f91d5b36262742886009b8ec42dfeead05c4ccb",
+      "size": 24745
+    }
+  },
+  "runtime_result": {
+    "accepted_item_boundary_ids": [
+      999,
+      1023,
+      1024,
+      1043
+    ],
+    "bag_full_capacity": 1024,
+    "checks": {
+      "bag_full_no_mutation": true,
+      "claim_flags_14a0_14b6_14cc": true,
+      "fresh_core_normal_save_reload": true,
+      "fresh_core_once_rejected": true,
+      "index_0_item_999_price_16": true,
+      "index_22_item_1021_price_16": true,
+      "index_44_item_1043_price_16": true,
+      "insufficient_bp_no_mutation": true,
+      "item_consumer_boundaries_999_1023_1024_1043_1044": true,
+      "mega_ring_580_gate": true,
+      "name_hold_effect_and_is_mega_stone_consumers": true,
+      "physical_npc_script_graph_to_entrypoint": true,
+      "probe_and_save_init": true
+    },
+    "core_instances": 2,
+    "final_bp": 52,
+    "first_rejected_item_id": 1044,
+    "framebuffer_transitions": 6729,
+    "hold_effect": 73,
+    "initial_bp": 100,
+    "price_bp": 16,
+    "process_runs": 1,
+    "representative_claim_flags": [
+      5280,
+      5302,
+      5324
+    ],
+    "representative_indices": [
+      0,
+      22,
+      44
+    ],
+    "representative_item_ids": [
+      999,
+      1021,
+      1043
+    ],
+    "retained_artifacts": [],
+    "schema_version": 1,
+    "stage": 68,
+    "state_fixture": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+    "status": "PASS",
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 68,
+  "stage68_metadata_validation_state_at_run": "PENDING",
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP-MGBA-GATE"
+}

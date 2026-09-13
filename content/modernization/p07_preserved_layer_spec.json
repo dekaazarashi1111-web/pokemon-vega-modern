@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-FINAL-INTEGRATION",
+  "scope": "P07_EXACT_V4_HISTORICAL_PRESERVATION_LAYER",
+  "authority": {
+    "original_requirement": "07_extra_learnsets.txt sections 1-4 and acceptance: separate P03 baseline and bidirectional adopted P07 delta; preserve exact route/time/form and common consumers",
+    "current_owner_instruction": "PR16 final integration continuation: historical 472 preserved rows must not be cancelled or made approval-pending again; reconcile recovered adopted/preserved rows with Stage84 and implement missing consumers",
+    "p03_priority": "03_official_learnsets.txt section 3: P03 official tables remain the submitted replacement, never an unconditional union with all old custom learnsets",
+    "v4_sha256": "4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2",
+    "classification_correction": "472 MOVE_KEY_VEGA_ prefix rows plus 27 exact CURRENT_PRESERVED SOUL_BITE/DARK_SNIPE rows, both canonically VEGA_EXCLUSIVE_V3, equals 499; not 27 new adoptions"
+  },
+  "layers_in_priority_order": [
+    "unchanged submitted P03 baseline and all unrelated Stage84 runtime",
+    "exact V4 preserved normal-species to Vega-move rows, original route and level",
+    "explicit adopted deletions/exceptions: none in this preservation delta; any later conflict must fail closed"
+  ],
+  "counts": {
+    "normal_to_vega_legacy_prefix": {"level_up": 297, "egg": 175},
+    "canonical_named_alias_correction": {"level_up": 13, "egg": 14},
+    "normal_to_vega_preserved": {"level_up": 310, "egg": 189},
+    "vega_to_normal_already_present": {"level_up": 450, "egg": 254, "machine": 179, "tutor": 190},
+    "new_adoptions": 0
+  },
+  "same_level_order": "Preserve P03 relative order. At a tied level, P03 rows precede preserved P07 rows, which retain their V4 order. Conflicting identical rows or capacity overflow are errors, not dropped rows.",
+  "egg_order": "Preserve P03 exact egg ordering then append the exact source-ordered P07 egg delta. Shared-egg rows remain separate and follow egg rows in Move Memory.",
+  "special_consumer": "Happiny species 364 has three preserved rows (461,464,357) which must also pass its existing P03 exact-egg collision adapter. Other collision species and Own Tempo Rockruff remain delegated.",
+  "prohibited": ["rewrite source P03 baseline", "restore every old move", "invent new distribution", "flatten shared/carry/form routes into egg or level", "rewrite existing party/box/trainer/facility moves", "change gates or prices", "overflow or truncate the native list", "label table checks as native UI/save acceptance"],
+  "acceptance": ["exact source and keyed row reconciliation", "deterministic allocation and two independent builds", "same ROM binds forward/reverse patches", "native relevant learning and full-slot/cancel/save paths", "impact regression on the final integrated candidate"],
+  "native_acceptance": false,
+  "release_ready": false
+}

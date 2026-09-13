@@ -1,0 +1,148 @@
+name: pr16-bp-native-controls
+run-name: Native Factory reception and rental cancellation (not earned BP)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-native-controls.yml
+      - .github/pr16-bp-controls-run.json
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-native-controls
+  cancel-in-progress: false
+jobs:
+  native-bp-controls:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reserve exact requested control sources and preserve completed P03
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-controls-workflow
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-bp-controls-workflow')
+          names=['AGENTS.md','docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md',
+            'scripts/pr16_bp_native_controls.py','tools/mgba_pr16_bp_native_controls.c',
+            'tests/test_pr16_bp_native_controls.py','.github/workflows/pr16-bp-native-controls.yml',
+            '.github/pr16-bp-controls-run.json','content/modernization/pr16_p05_supply_owner_findings.json',
+            'content/modernization/p08_remaining_work.json','config/active_play_baseline.json']
+          bindings={}
+          with zipfile.ZipFile(out/'entry-sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  raw=pathlib.Path(name).read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'entry-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'tested-head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD'],text=True))
+          PY
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-controls-workflow/fixed-form-retained.json
+          python3 scripts/pr16_p05_supply_owner_evidence.py > .local/pr16-bp-controls-workflow/supply-owner-retained.json
+          python3 -m unittest tests.test_pr16_bp_native_controls -v > .local/pr16-bp-controls-workflow/unit.stdout 2> .local/pr16-bp-controls-workflow/unit.stderr
+      - name: Restore pinned compiler and unchanged Stage84 build input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-controls-workflow
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore hash-pinned source inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-controls-workflow
+          assets=.local/pr16-bp-controls-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-controls-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          record={'archive':name,'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-bp-controls-workflow/charmap-binding.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Rebuild exact candidate without replaying accepted native cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-controls-workflow
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Run only explicitly requested independent native BP controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' > .local/pr16-bp-controls-workflow/native.stdout 2> .local/pr16-bp-controls-workflow/native.stderr
+          import json,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_bp_native_controls as bp
+          request=json.load(open(bp.REQUEST))
+          bp.need(type(request) is dict and set(request)=={'schema_version','candidate_sha256','cases','reason'},'invalid BP request')
+          bp.need(type(request['schema_version']) is int and request['schema_version']==1,'invalid BP request version')
+          bp.need(request['candidate_sha256']==bp.SHA and type(request['reason']) is str and bool(request['reason']),'BP candidate/reason differs')
+          command=[sys.executable,bp.SELF]
+          for name in bp.selected(request['cases']):command.extend(['--case',name])
+          subprocess.run(command,check=True)
+          PY
+          git diff --exit-code
+      - name: Reject ROM, save, private input or unsafe nested artifact members
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,stat,zipfile
+          roots=[pathlib.Path('.local/pr16-bp-controls-workflow'),pathlib.Path('.local/pr16-bp-native-controls')]
+          forbidden={'.gba','.gb','.gbc','.srm','.sav','.ips','.ups','.bps','.bin','.exe'}
+          for root in roots:
+              if not root.exists():continue
+              for path in root.rglob('*'):
+                  assert not path.is_symlink()
+                  if not path.is_file():continue
+                  assert path.suffix.lower() not in forbidden and 'private-env' not in path.name
+                  if path.suffix.lower()=='.zip':
+                      with zipfile.ZipFile(path) as z:
+                          assert len(z.namelist())==len(set(z.namelist()))<=1000
+                          assert sum(i.file_size for i in z.infolist())<=32000000
+                          for i in z.infolist():
+                              name=pathlib.PurePosixPath(i.filename)
+                              assert not name.is_absolute() and '..' not in name.parts and '\\' not in i.filename
+                              assert name.suffix.lower() not in forbidden|{'.zip'} and not stat.S_ISLNK(i.external_attr>>16)
+                              data=z.read(i);data.decode('utf-8');assert b'\0' not in data
+                  elif path.suffix.lower()=='.ppm':
+                      data=path.read_bytes();assert data.startswith(b'P6\n240 160\n255\n') and len(data)==115215
+                  else:path.read_bytes().decode('utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-native-controls
+          path: |
+            .local/pr16-bp-controls-workflow/
+            .local/pr16-bp-native-controls/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

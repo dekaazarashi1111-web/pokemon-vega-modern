@@ -1,0 +1,140 @@
+name: pr16-physical-checkpoint
+run-name: Preserve fifteen native successes and current P06 consistency
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-physical-checkpoint.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  preserve-physical:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Fetch exact original ZIPs and revalidate raw outcomes, not new emulator runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-physical-checkpoint
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 scripts/restore_modernization_final_originals.py > "$out/restore.json"
+          python3 scripts/pr16_physical_route_checkpoint.py --fetch --write > "$out/originals.json"
+          python3 scripts/pr16_completion_checkpoint.py > "$out/historical-check.json"
+          python3 scripts/pr16_refresh_current_view.py --write > "$out/refresh.json"
+          python3 scripts/pr16_refresh_current_view.py > "$out/current-check.json"
+          python3 scripts/record_modernization_final_acceptance.py > "$out/final-generator.json"
+          python3 scripts/record_modernization_p03_forgetting.py > "$out/forgetting-generator.json"
+          for pattern in test_pr16_physical_route_checkpoint.py test_pr16_form_routes.py test_pr16_happiny_breeding.py test_pr16_current_view.py test_pr16_completion_checkpoint.py test_modernization_owner_policy.py; do
+            python3 -m unittest discover -s tests -p "$pattern" -v >> "$out/unit.log" 2>&1
+          done
+      - name: Record exact scope and remaining work, preserve historical narrative
+        run: |
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_physical_route_checkpoint as m
+          root=pathlib.Path('.');r=m.build();view=json.loads((root/m.prior.OVERVIEW).read_bytes())
+          assert view['full_p06_acceptance'] is True and view['p06_adoption']['full_phase_accepted'] is True
+          assert view['physical_route_checkpoint']['new_native_processes']==15 and view['physical_route_checkpoint']['new_native_cores']==40
+          assert all(view[k] is False for k in ('release_ready','full_p03_acceptance','full_p05_acceptance','full_p07_acceptance'))
+          doc='''# PR16 実経路受入 checkpoint — 2026-09-11
+          
+          製品完成ではない。最新の残件は `content/modernization/p08_remaining_work.json`、この追加受入は `content/modernization/pr16_physical_route_acceptance.json` を読む。
+          
+          ## 今回、新しく成功した実ROM試験
+          
+          - ロトム実サービス: run 34559437267、HEAD 228cce1ce94aa26990c1c977f018785bfe00d391。10プロセス・25コア。マップ1/36の実BG受付からroot/serviceメニュー、2匹目の個体選択、5フォームの付与・解除、PP/PP Ups、圧縮、満杯拒否、root/forms/party取消、通常保存、別コアContinue。15回の受付操作のうち実際のフォーム変更は11回。
+          - ピンプクのおこう繁殖: run 34558529636、HEAD 25925166a26f50edc5668cd5727b29498963f44e。5プロセス・15コア。母/父のおこう、保持3技461/464/357、満杯順序、対象なし、おこうなしラッキー対照。預け入れ、歩行生成、受取、卵保存/別コアContinue、10473歩による通常孵化、孵化後保存/第3コアContinue。
+          
+          合計15プロセス・40コア。前回のピチュー5件、進化2件、Stage82/84の旧成功はこの件数に含めない。開始マップ・進行条件・個体は試験fixtureであり、自然捕獲・通常解禁を確認したという意味ではない。観測区間の7種類のhost書込みAPI拒否を実検査。ROMに追加変更はない。
+          
+          候補SHA-256: `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`。33,554,432 bytes、CRC32 `5B8BFB51`。
+          
+          ## 記録と原本
+          
+          P06の内側の完了フラグは検証済みの外側フラグから生成するよう修正済み。run 34556825622で34件の対象テストと既存原本・両生成経路が成功。新たなP06実ROM試験と数えない。
+          
+          `content/modernization/pr16_physical_route_evidence/<run>/original.zip` と `actions.json` をGit追跡する。対象は34556825622、34559437267、34558529636。ZIPのSHA-256/CRC、実行HEAD、raw stdout/process、入力ソース、書込み拒否、フォーム画像を再検査する。原本にROM/saveは含まない。
+          
+          再検査: `python3 scripts/pr16_physical_route_checkpoint.py`。現在ビュー: `python3 scripts/pr16_refresh_current_view.py`。元の2生成コマンドからもこの追加受入が反映される。古い受入JSONとZIPは当時の記録として保持する。
+          
+          ## まだ終了していない範囲
+          
+          P03/P07は、その他の採用済み消費経路と既存原本の不足照合を残している。ロトム実受付やピンプクのおこう繁殖を未受入へ戻さない。1073追加/499保持の資料回収・一律新規配布判断を再開しない。
+          
+          P05は通常捕獲・道具取得から戦闘、実際のCircus受付・入場から特性抑制。直接フラグ設定や生成済み個体の戦闘成功では代替しない。
+          
+          P08は残る経路の同一候補への接続、必要な影響回帰、clean ROMから全工程の独立2回再生成、配布用パッチとセーブ保護付き導入/戻し方。工程用パッチを製品配布完了と扱わない。
+          
+          public維持、殿堂入り後・Bagのわざメモリーから無料は承認済み。Stage62・実プレイsave・公開範囲・履歴は変更しない。PR #16は未マージ。
+          '''
+          path=root/'docs/PR16_PHYSICAL_ROUTE_CHECKPOINT_JA.md'
+          assert not path.exists(),'refuse unreviewed document replacement'
+          path.write_text(doc)
+          marker='PR16-PHYSICAL-20260911'
+          path=root/'docs/PR16_COMPLETION_CHECKPOINT_JA.md';text=path.read_text();assert marker not in text
+          path.write_text('> '+marker+': 最新の追加受入と残件は [実経路checkpoint](PR16_PHYSICAL_ROUTE_CHECKPOINT_JA.md) を先に読む。下記は前回の成功記録として保持する。\n\n'+text)
+          entry='\n## 2026-09-11 / '+marker+'\n\n- Task: USER-MODERNIZATION-P03-P07 / actual native routes and retained originals.\n- New native: Rotom 10 processes / 25 cores (34559437267), Happiny incense 5 / 15 (34558529636), exact unchanged 635fd890 candidate.\n- P06 current mirror fixed and verified in 34556825622; no new P06 native claim.\n- Raw originals + Actions metadata permanently tracked in pr16_physical_route_evidence; current-view hook preserves accepted subroutes across regeneration.\n- Revalidation and target tests: retention run '+os.environ['GITHUB_RUN_ID']+'. No historical evidence, ROM, actual-play save, Stage62, public/free-memory policy, history or PR merge changed.\n- Remaining: residual P03/P07 consumer inventory, P05 physical acquisition/admission, same-candidate final gates, clean full reconstruction and distribution. Product release remains false.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=root/name;text=path.read_text();assert marker not in text;path.write_text(text+entry)
+          PY
+      - name: Commit only verified receipts, exact originals, resume document and append-only logs
+        env:
+          EXPECTED_HEAD: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$EXPECTED_HEAD"
+          python3 - <<'PY'
+          import pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_physical_route_checkpoint as m
+          m.build()
+          paths=[m.RECEIPT,m.prior.OVERVIEW,'docs/PR16_PHYSICAL_ROUTE_CHECKPOINT_JA.md','docs/PR16_COMPLETION_CHECKPOINT_JA.md','design/run_log.md','design/version_log.md']
+          paths += [m.DIRECTORY+'/'+str(r[0])+'/'+name for r in m.RECORDS.values() for name in ('original.zip','actions.json')]
+          changed=set(filter(None,subprocess.check_output(['git','diff','--name-only','-z']).decode().split('\0')))
+          assert changed<=set(paths),'unrelated tracked mutation'
+          for name in ('design/run_log.md','design/version_log.md'):
+              assert pathlib.Path(name).read_bytes().startswith(subprocess.check_output(['git','show','HEAD:'+name]))
+          # Only these three SHA/CRC-verified, ROM/save-free originals bypass ZIP ignore.
+          originals=[m.DIRECTORY+'/'+str(r[0])+'/original.zip' for r in m.RECORDS.values()]
+          assert len(originals)==3 and set(originals)<=set(paths)
+          subprocess.run(['git','add','--',*[p for p in paths if p not in originals]],check=True)
+          subprocess.run(['git','add','-f','--',*originals],check=True)
+          staged=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert staged==set(paths),'unexpected staging membership'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION-P03-P07: preserve fifteen native route successes and exact originals'
+          git push origin "HEAD:refs/heads/$branch"
+          git rev-parse HEAD > .local/pr16-physical-checkpoint/published-head.txt
+          python3 scripts/pr16_physical_route_checkpoint.py > .local/pr16-physical-checkpoint/post-commit-originals.json
+          python3 scripts/pr16_refresh_current_view.py > .local/pr16-physical-checkpoint/post-commit-current.json
+          git diff --exit-code
+      - name: Preserve resulting current receipts and exact implementation sources
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-physical-checkpoint';out.mkdir(parents=True,exist_ok=True)
+          names=['scripts/pr16_physical_route_checkpoint.py','tests/test_pr16_physical_route_checkpoint.py','scripts/pr16_refresh_current_view.py','content/modernization/pr16_physical_route_acceptance.json','content/modernization/p08_remaining_work.json','docs/PR16_PHYSICAL_ROUTE_CHECKPOINT_JA.md','docs/PR16_COMPLETION_CHECKPOINT_JA.md','.github/workflows/pr16-physical-checkpoint.yml']
+          with zipfile.ZipFile(out/'current-view.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  p=root/name
+                  if p.is_file():z.writestr(name,p.read_bytes())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-physical-checkpoint-retention
+          path: .local/pr16-physical-checkpoint/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

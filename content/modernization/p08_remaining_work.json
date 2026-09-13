@@ -1,0 +1,599 @@
+{
+  "accepted_scoped_reports": [
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 8,
+      "label": "daycare birth and hatch",
+      "source_path": "content/modernization/p08_p03_breeding_acceptance.json",
+      "source_run_id": 34434453733
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 3,
+      "label": "egg queue and party/PC capacity",
+      "source_path": "content/modernization/p08_p03_breeding_capacity_acceptance.json",
+      "source_run_id": 34439826111
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 42,
+      "label": "six Mega lifecycles plus 36 nonactivation controls",
+      "source_path": "content/modernization/p08_native_mega_acceptance.json",
+      "source_run_id": 34438575892
+    },
+    {
+      "candidate_rom": {
+        "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+        "size": 33554432
+      },
+      "cases": 46,
+      "label": "normal 17 and egg 29 relearner paths",
+      "source_path": "content/modernization/p08_p03_relearner_acceptance.json",
+      "source_run_id": 34446029812
+    },
+    {
+      "candidate_rom": {
+        "sha256": "55cf145e7dd1c8e2568fe9c733b597f8c4bc3d31b7d6fa233a7b4821d1b62c3b",
+        "size": 33554432
+      },
+      "cases": 12,
+      "label": "native forgetting and cold Save/Continue",
+      "source_path": "content/modernization/p08_p03_forgetting_acceptance.json",
+      "source_run_id": 34459625383
+    }
+  ],
+  "active_baseline_changed": false,
+  "archive_economy": {
+    "decision_source": "content/modernization/p08_owner_approved_policy.json",
+    "early_game_archive_available": false,
+    "entry": "BAG_MOVE_MEMORY_ITEM_ONLY",
+    "existing_other_memory_modes_unchanged": true,
+    "price": 0,
+    "required_flag": "0x082C",
+    "required_flag_name": "HALL_OF_FAME",
+    "runtime_change_required": false,
+    "scope": "ADDITIONAL_MACHINE_TUTOR_ARCHIVE_ONLY",
+    "status": "ADOPTED"
+  },
+  "bp_chooser_checkpoint": {
+    "accepted_case_count": 1,
+    "latest_native_run": 34733866168,
+    "path": "content/modernization/pr16_bp_chooser_checkpoint.json",
+    "receipt": "content/modernization/pr16_bp_chooser_receipt.json",
+    "scope": "RENTAL_CANCEL_SAVE_CONTINUE_NOT_BP_EARNING"
+  },
+  "bp_trial_successor_checkpoint": {
+    "native_bp_earning_accepted": false,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "p05_native_bp_gap_closed": false,
+    "receipt": "content/modernization/pr16_bp_trial_receipt.json",
+    "source_path": "content/modernization/pr16_bp_trial_checkpoint.json",
+    "source_run": 34708218707,
+    "status": "TRIAL_DELEGATE_REPAIRED_RENTAL_UI_NOT_ACCEPTED"
+  },
+  "captured_battle_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "captured_to_native_battle_accepted": true,
+    "full_p05_acceptance": false,
+    "gear_to_battle_accepted": false,
+    "historical_capture_scope": true,
+    "new_native_cores": 6,
+    "new_native_processes": 2,
+    "purchased_gear_successor_receipt": "content/modernization/pr16_purchased_gear_acceptance.json",
+    "source_path": "content/modernization/pr16_captured_battle_acceptance.json"
+  },
+  "closed_conditions": [
+    {
+      "evidence": "content/modernization/p08_final_candidate_acceptance.json",
+      "id": "SINGLE_CANDIDATE_IDENTITY",
+      "original_id": "SINGLE_CANDIDATE",
+      "original_request": "P08: one candidate, independently regenerate and test changed inputs",
+      "pass_condition": "full SHA matches in two independent builds and all seven fresh domain records plus eight new P06 records",
+      "target": "Stage84 candidate identity and inherited seven domains"
+    },
+    {
+      "evidence": "content/modernization/p08_final_candidate_acceptance.json",
+      "id": "P06_ADOPTION_EVIDENCE_CONNECTION",
+      "original_id": "PHASE_ACCEPTANCE",
+      "original_request": "P06 adopted two species / three fields, original and new candidate acceptance",
+      "pass_condition": "original eight cases independently revalidated; new eight cases on Stage84",
+      "target": "three-byte adopted delta, slot/stat/save compatibility"
+    },
+    {
+      "closure_type": "EXPLICIT_OWNER_POLICY_DECISION",
+      "decision_id": "OWNER-20260910-131832-ARCHIVE-PUBLIC",
+      "id": "ARCHIVE_ECONOMY",
+      "phase": "P03",
+      "reason_ja": "殿堂入り後・Bagのわざメモリー・無料を所有者が正式採用。通常思い出し等の条件は変更しない。",
+      "success_evidence": "content/modernization/p08_owner_approved_policy.json"
+    },
+    {
+      "closure_type": "EXPLICIT_OWNER_POLICY_DECISION",
+      "decision_id": "OWNER-20260910-131832-ARCHIVE-PUBLIC",
+      "id": "REPOSITORY_GUARD",
+      "phase": "P08",
+      "reason_ja": "publicと既存追跡は所有者の意図した状態。非公開化・原本移動を完成条件にしない。過去guardの実測失敗は保持し、秘密情報等の検査は無効化しない。",
+      "success_evidence": "content/modernization/p08_owner_approved_policy.json"
+    },
+    {
+      "evidence": "content/modernization/pr16_completion_acceptance.json",
+      "id": "P06_ADOPTED_PHASE_ACCEPTANCE",
+      "original_id": "PHASE_ACCEPTANCE",
+      "pass_condition": "Three adopted fields only: slot/stat/save, native abilities/controls and rendered applicable Summary",
+      "phase": "P06"
+    }
+  ],
+  "completion_checkpoint": {
+    "original_runs_preserved": true,
+    "session_new_cores": 19,
+    "session_new_native_processes": 7,
+    "source_path": "content/modernization/pr16_completion_acceptance.json"
+  },
+  "final_candidate": {
+    "crc32": "5B8BFB51",
+    "name": "Stage84 + exact P07 preservation + native evolution dispatch repair",
+    "release_approved": false,
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "final_integration": {
+    "additional_verified_native": "content/modernization/pr16_physical_route_acceptance.json",
+    "candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "new_native_cores_in_this_session": 19,
+    "new_native_processes_in_this_session": 7,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "release_ready": false,
+    "shared_egg_verified_native": "content/modernization/pr16_shared_egg_acceptance.json",
+    "source_path": "content/modernization/pr16_completion_acceptance.json",
+    "source_runs": {
+      "breeding": {
+        "run_id": 34553503441,
+        "tested_head": "64bf90f83cb928b989fea45ff52696f0d3f775e9"
+      },
+      "evolution": {
+        "run_id": 34552826501,
+        "tested_head": "37ec0121e8170673542adb1e1213d51954bad576"
+      },
+      "repaired": {
+        "run_id": 34512326368,
+        "tested_head": "d49c3d721f3eac994a48d190e980dc34346f0942"
+      }
+    }
+  },
+  "fixed_form_checkpoint": {
+    "acceptance": "content/modernization/pr16_fixed_form_acceptance.json",
+    "accepted_cases": 5,
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "final_candidate_transfer_complete": false,
+    "new_emulator_runs": 0,
+    "physical_gap_closed": true,
+    "receipt": "content/modernization/pr16_fixed_form_acceptance_receipt.json"
+  },
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "full_p06_acceptance": true,
+  "full_p07_acceptance": false,
+  "historical_snapshot": "content/modernization/p08_current_acceptance.json",
+  "historical_snapshot_is_current_backlog": false,
+  "historical_stage84_integration": {
+    "new_native_processes": 15,
+    "old_native_acceptance_preserved_not_relabelled": true,
+    "source_path": "content/modernization/p08_final_candidate_acceptance.json",
+    "source_run_id": 34477344071,
+    "tested_head": "4d7365c7144cdda3ee15fca7c5cb365c87e7621d"
+  },
+  "latest_scoped_candidate": {
+    "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+    "size": 33554432
+  },
+  "latest_scoped_candidate_stage": "84+P07+EVOLUTION_REPAIR",
+  "natural_capture_checkpoint": {
+    "battle_connection_accepted": false,
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "captured_battle_successor_receipt": "content/modernization/pr16_captured_battle_acceptance.json",
+    "fixture_boundary": [
+      "map and position",
+      "species4 level100 lead",
+      "one Master Ball",
+      "remembered ball pocket"
+    ],
+    "full_p05_acceptance": false,
+    "gear_acquisition_accepted": false,
+    "historical_capture_only": true,
+    "natural_capture_accepted": true,
+    "new_native_cores": 4,
+    "new_native_processes": 2,
+    "source_path": "content/modernization/pr16_natural_capture_acceptance.json"
+  },
+  "new_emulator_runs_during_reconciliation": 0,
+  "next_integration_candidate": {
+    "builder": "scripts/pr16_bp_chooser_successor.py",
+    "candidate": {
+      "crc32": "635A3CE5",
+      "sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+      "size": 33554432
+    },
+    "full_candidate_regression_complete": false,
+    "scope": "CHOOSER_AND_RENTAL_CANCEL_ACCEPTED_BP_EARNING_PENDING",
+    "source_path": "content/modernization/pr16_bp_chooser_checkpoint.json"
+  },
+  "nonblocking_findings": [
+    {
+      "guard_disabled": false,
+      "id": "HISTORICAL_FULL_INDEX_GUARD",
+      "reason_ja": "過去のguard結果は原本・protection記録どおり。意図した公開状態だけを理由に停止しない。新規の未承認混入は対象外。",
+      "result_relabelled": false,
+      "source_condition": "REPOSITORY_GUARD"
+    }
+  ],
+  "p05_native_bp_control_checkpoint": {
+    "acceptance": "content/modernization/pr16_bp_native_controls_acceptance.json",
+    "accepted_negative_controls": 1,
+    "new_emulator_runs_during_checkpoint": 0,
+    "original_native_processes": 1,
+    "physical_bp_earning_accepted": false,
+    "receipt": "content/modernization/pr16_bp_native_controls_receipt.json"
+  },
+  "p05_route_checkpoint": {
+    "historical_candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "native_cores": 20,
+    "native_processes": 10,
+    "release_ready": false,
+    "shop_data_path_pass": true,
+    "shop_display_successor_receipt": "content/modernization/pr16_shop_display_acceptance.json",
+    "shop_visual_acceptance": false,
+    "source_path": "content/modernization/pr16_p05_route_acceptance.json"
+  },
+  "p05_supply_owner_checkpoint": {
+    "findings": "content/modernization/pr16_p05_supply_owner_findings.json",
+    "new_emulator_runs": 0,
+    "physical_gaps_closed": 0,
+    "receipt": "content/modernization/pr16_p05_supply_owner_receipt.json",
+    "run_id": 34701044310
+  },
+  "p06_adoption": {
+    "accepted_requirements": [
+      "adopted_three_fields_only",
+      "existing_and_new_slot_identity",
+      "native_stat_recalculation",
+      "normal_save_and_cold_continue",
+      "adopted_native_passive_effects_and_controls",
+      "rendered_summary_names_descriptions_and_attack"
+    ],
+    "adopted_species_count": 2,
+    "current_candidate_evidence": "content/modernization/pr16_completion_acceptance.json",
+    "field_change_count": 3,
+    "final_candidate_evidence": "content/modernization/pr16_completion_acceptance.json",
+    "full_phase_accepted": true,
+    "historical_stage84_candidate_evidence": "content/modernization/p08_final_candidate_acceptance.json",
+    "original_evidence": "content/modernization/p08_p06_evidence/34444010444/acceptance.json",
+    "other_review_rows": "HOLD_UNLESS_EXPLICITLY_ADOPTED; not a mandatory 194-row rebalance",
+    "source_path": "content/modernization/p06_decided_adjustments.json"
+  },
+  "p07_adoption": {
+    "count_semantics": "historical preservation / historical adopted additions, NOT new blanket adoption",
+    "decision_required": false,
+    "historical_additions": 1073,
+    "legacy_rows": 499,
+    "named_alias_legacy_rows": 27,
+    "new_beyond_v4_rows": 0,
+    "normal_species_to_vega_move": 499,
+    "prefix_legacy_rows": 472,
+    "prior_instructions_absent_claimed": false,
+    "source_reconciliation": "content/modernization/pr16_completion_acceptance.json",
+    "vega_species_to_normal_move": 1073
+  },
+  "physical_route_checkpoint": {
+    "candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "happiny_retained_incense_routes_accepted": true,
+    "new_native_cores": 40,
+    "new_native_processes": 15,
+    "old_runs_preserved_not_relabelled": true,
+    "physical_rotom_service_accepted": true,
+    "release_ready": false,
+    "source_path": "content/modernization/pr16_physical_route_acceptance.json"
+  },
+  "pre_trial_integration_candidate": {
+    "builder": "scripts/pr16_shop_display_repair.py",
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "full_candidate_regression_complete": false,
+    "scope": "SHOP_RENDERER_REPAIR_ACCEPTED_OTHER_DOMAINS_RETAINED_ON_PARENT",
+    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
+  },
+  "purchased_gear_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "full_p05_acceptance": false,
+    "new_native_cores": 9,
+    "new_native_processes": 4,
+    "ordinary_policy_selection_accepted": false,
+    "purchased_gear_to_battle_accepted": true,
+    "ring_bp_natural_acquisition_accepted": false,
+    "source_path": "content/modernization/pr16_purchased_gear_acceptance.json"
+  },
+  "release_ready": false,
+  "remaining_conditions": [
+    {
+      "accepted_candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "accepted_physical_gap_ids": [
+        "P03_FIXED_FORM_TRANSITION_PHYSICAL",
+        "P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL"
+      ],
+      "complete": true,
+      "coverage_inventory_complete": true,
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
+      "fixed_form_success_evidence": "content/modernization/pr16_fixed_form_acceptance.json",
+      "generic_form_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
+      "id": "EVOLUTION_FORM_OTHER_EGG",
+      "original_request": "P03 instruction 3-5 and acceptance",
+      "partial_success_evidence": "content/modernization/pr16_generic_form_acceptance.json",
+      "pass_condition": "Use native fixed transition or battle-transform entrances, verify transition-owned move/full-slot/decline/restoration and valid save/Continue boundaries; preserve generic FORM and Rotom successes",
+      "phase": "P03",
+      "physical_acceptance_complete": true,
+      "reason_ja": "generic FORM/Rotom成功を保持。fixed-formは同一e630f7f候補の独立5成功プロセスを原本照合して受入。残るのはP08最終候補への変更影響移送であり、P03固有physical gapは0。",
+      "remaining_physical_gap_ids": [],
+      "resume": "Keep all five original cases and their distinct native entry owners. Re-run only if P08 change-impact review requires it; do not invent Photon Geyser auto-restoration.",
+      "shared_egg_success_evidence": "content/modernization/pr16_shared_egg_acceptance.json",
+      "status": "PASS_SCOPED_CANDIDATE_PENDING_P08_TRANSFER",
+      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "target_function": "fixed_transition_service for Necrozma Dusk Mane/Dawn Wings and Zacian/Zamazenta Crowned"
+    },
+    {
+      "captured_battle_evidence": "content/modernization/pr16_captured_battle_acceptance.json",
+      "captured_to_battle_required": false,
+      "display_repair_required": false,
+      "display_repaired_candidate": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "gear_to_battle_required": false,
+      "id": "NATURAL_CAPTURE_GEAR",
+      "native_bp_negative_controls": "content/modernization/pr16_bp_native_controls_acceptance.json",
+      "native_rental_cancellation": "content/modernization/pr16_bp_chooser_checkpoint.json",
+      "natural_capture_evidence": "content/modernization/pr16_natural_capture_acceptance.json",
+      "natural_capture_required": false,
+      "ordinary_policy_selection_required": true,
+      "original_request": "P05 original acceptance and current P08 boundary",
+      "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
+      "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
+      "phase": "P05",
+      "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
+      "reason_ja": "自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入",
+      "remaining_supply_gap_ids": [
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+        "P05_NATIVE_BP_EARNING_PHYSICAL",
+        "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
+      ],
+      "resume": "Trial delegate repaired in df8; null special 0x2F -> real chooser 0x29 repaired in bffd. Run34733866168 accepts actual chooser, native B/Yes cancellation, party600/count restoration, snapshot/marker clearing, BP/Bag invariant, Save2->3 and fresh Continue. Next: select3, prove real battle launcher/selected-order bridge, 3wins9BP/negatives/repeat and earned-BP spend. Ring/policy/Circus remain; retain prior completed routes.",
+      "ring_bp_natural_supply_required": true,
+      "selected_supply_entrypoints": {
+        "P05_NATIVE_BP_EARNING_PHYSICAL": {
+          "fixture_only": false,
+          "line": 225,
+          "path": "scripts/build_bp_shop_runtime.py",
+          "scope": "_catalog_outputs"
+        },
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
+          "fixture_only": false,
+          "line": 83,
+          "path": "scripts/pr16_gear_originals.py",
+          "scope": "verify"
+        },
+        "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
+          "fixture_only": false,
+          "line": 27,
+          "path": "scripts/pr16_apply_gear_policy_boundary.py",
+          "scope": "main"
+        }
+      },
+      "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
+      "success_evidence": null,
+      "supply_coverage_inventory_complete": true,
+      "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
+      "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
+      "supply_physical_acceptance_complete": false,
+      "supply_source_evidence_binding_complete": true,
+      "target_function": "natural capture/item acquisition to battle"
+    },
+    {
+      "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
+      "id": "PHYSICAL_CIRCUS_ADMISSION",
+      "original_request": "P05 suppression requirement and current P08 boundary",
+      "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
+      "phase": "P05",
+      "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
+      "resume": "run34701044310: the former F0 is a back-sprite pointer byte reached through malformed map12/7 events, not an unknown command. raw403A is remapped to battle-local facility state by build_battle_core.py. Trace real number3 admission owner; map12/7 is not established as Circus. Native admission still0.",
+      "success_evidence": null,
+      "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
+      "target_function": "actual reception/admission to suppression"
+    },
+    {
+      "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "complete": true,
+      "coverage_inventory_complete": true,
+      "coverage_manifest": "content/modernization/pr16_p03_p07_route_coverage.json",
+      "id": "P07_REMAINING_ROUTE_ACCEPTANCE",
+      "original_request": "07_extra_learnsets.txt instruction 1-5",
+      "partial_success_evidence": "content/modernization/pr16_physical_route_acceptance.json",
+      "pass_condition": "Reconcile residual physical-route coverage against 1073 historical additions and 499 preserved rows; no new table approval or blanket combinations; save/cancel at affected consumers",
+      "phase": "P07",
+      "physical_acceptance_complete": true,
+      "reason_ja": "ピンプクのおこう条件・復元3技・満杯・対照・孵化・保存は5件受入済み。残る変更対象の消費経路と既存原本の対応を照合する",
+      "remaining_physical_gap_ids": [],
+      "resume": "scripts/pr16_physical_route_checkpoint.py verifies Happiny incense routes; inventory remaining changed consumers, do not repeat Pichu/Happiny or recollect V4",
+      "status": "PASS_PARENT_CANDIDATE_PENDING_P08_TRANSFER",
+      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE",
+      "target_function": "remaining P07 changed-consumer coverage beyond accepted memory/evolution/breeding"
+    },
+    {
+      "id": "FINAL_NATIVE_ACCEPTANCE",
+      "original_request": "P08 final-candidate acceptance",
+      "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
+      "phase": "P08",
+      "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
+      "resume": "Native select three rentals, bind selected-order bridge and real battle launch before 3 wins/9BP, negatives, repeat, Save/Continue and earned-BP shop spend. Do not repeat cancelled-entry proof without an affected-source reason.",
+      "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
+      "success_evidence": "content/modernization/pr16_completion_acceptance.json",
+      "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
+    },
+    {
+      "id": "RELEASE_DECISION",
+      "original_request": "P08 handoff and current request end conditions",
+      "pass_condition": "clean-ROM two-build reproducibility, required acceptance and safe package; merge/baseline switch are NOT implied",
+      "phase": "P08",
+      "reason_ja": "配布用成果物・リリース判定・PRマージ・プレイ基準の扱いを全受入後に決定する",
+      "resume": "four tested engineering BPS patches exist; clean-ROM patch and full acceptance are not complete",
+      "success_evidence": null,
+      "target_function": "clean-input regeneration and releasable package"
+    }
+  ],
+  "repository_policy": {
+    "active_baseline_switch_authorized": false,
+    "credentials_and_unintended_new_inputs_still_protected": true,
+    "decision_source": "content/modernization/p08_owner_approved_policy.json",
+    "existing_public_state_blocks_completion": false,
+    "existing_tracked_originals_preserved": true,
+    "guard_disabled": false,
+    "guard_failure_relabelled_pass": false,
+    "history_rewrite_authorized": false,
+    "merge_authorized": false,
+    "original_deletion_authorized": false,
+    "owner_selected": true,
+    "private_conversion_required": false,
+    "visibility": "public"
+  },
+  "schema_version": 1,
+  "shared_egg_checkpoint": {
+    "accepted_receivers": [
+      605,
+      549
+    ],
+    "candidate": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "full_shared_routes_accepted": false,
+    "new_native_cores": 32,
+    "new_native_processes": 16,
+    "release_ready": false,
+    "shared_only_selected_receiver_routes_accepted": true,
+    "source_path": "content/modernization/pr16_shared_egg_acceptance.json"
+  },
+  "shop_display_repair_checkpoint": {
+    "candidate": {
+      "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+      "size": 33554432
+    },
+    "final_integration_accepted": false,
+    "original_corruption_controls": 3,
+    "parent": {
+      "sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
+      "size": 33554432
+    },
+    "release_ready": false,
+    "repaired_native_cores": 22,
+    "repaired_native_processes": 11,
+    "shop_visual_acceptance": true,
+    "source_path": "content/modernization/pr16_shop_display_acceptance.json"
+  },
+  "source_bindings": {
+    "config/modernization_p03_stage74_supply.json": {
+      "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc",
+      "size": 10937
+    },
+    "content/modernization/p06_decided_adjustments.json": {
+      "sha256": "1934a98f5d60f33a5c65ae294defc03e092a3c9826462e327f41c7ce8d4a24e3",
+      "size": 3462
+    },
+    "content/modernization/p07_layered_learnset_contract.json": {
+      "sha256": "ca17b3e33989d0ae105e5ac6ecc1c62ed27daae7ddc8d0a16632be64852842c5",
+      "size": 16337
+    },
+    "content/modernization/p08_breeding_capacity_evidence/34439826111/original.zip": {
+      "sha256": "b0995f68a5ef75936ebc379c8d0f74f3e6f31a5d793a1fc3bab352f1b48cb04a",
+      "size": 33550
+    },
+    "content/modernization/p08_breeding_evidence/34434453733/original.zip": {
+      "sha256": "79d6fd81c5f63d0dfb165a7db9e6f1875030c3422c46fab93f82c0db553a1ff7",
+      "size": 31334
+    },
+    "content/modernization/p08_final_candidate_acceptance.json": {
+      "sha256": "452317491f78bfe9da8a35a4084b6f800fde0bbc99f6da9e68e6b888b9ab6876",
+      "size": 8870
+    },
+    "content/modernization/p08_native_mega_acceptance.json": {
+      "sha256": "981fbaf2d86f10c21e9943a10abf89963c2020d011e94ea53bd80569822528b5",
+      "size": 3796
+    },
+    "content/modernization/p08_native_mega_evidence/34438575892/original.zip": {
+      "sha256": "b1166c0d8cbd40487b300a3814851ad4e64fdb3fc190082df525f6241be37fe8",
+      "size": 162216
+    },
+    "content/modernization/p08_owner_approved_policy.json": {
+      "sha256": "174843afa5f89724274eb86fafd24ce4117df0af53d8af64d30b50745809d4b0",
+      "size": 1363
+    },
+    "content/modernization/p08_p03_breeding_acceptance.json": {
+      "sha256": "65b7a61dee18f26aec29da52c2e275f7b9729a7c788c84aa2675081059a94c16",
+      "size": 2451
+    },
+    "content/modernization/p08_p03_breeding_capacity_acceptance.json": {
+      "sha256": "9eb1b96e877f2032493fc99d63ba8f7786332a1a45bed9464f598fba4422b986",
+      "size": 1751
+    },
+    "content/modernization/p08_p03_forgetting_acceptance.json": {
+      "sha256": "41997fe856cc52548fb7b8b3db81c76e9d841607759574bb9a9420e26bafc881",
+      "size": 5672
+    },
+    "content/modernization/p08_p03_relearner_acceptance.json": {
+      "sha256": "1518d7471fcfcb15d7a03155eccb7e0049b209c1b46cfb74973d3be9dfde287e",
+      "size": 7298
+    },
+    "content/modernization/p08_relearner_evidence/34446029812/original.zip": {
+      "sha256": "ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed",
+      "size": 93814
+    },
+    "content/modernization/pr16_completion_acceptance.json": {
+      "sha256": "f0c438447c8dbcc68fd3ea12ecd3eeaee24c5890caf0ef7d3b14ff2aabd3fc51",
+      "size": 4480
+    },
+    "design/imported/p06_decided_20260904/Pokemon_Vega_Stage61_Balance_Audit_20260904.md": {
+      "sha256": "597b8a1ce34f185721b003ca1ffe089befb202cadb15bb8d1714830c7389453b",
+      "size": 11697
+    },
+    "design/imported/p06_decided_20260904/vega_stage61_learnset_audit.md": {
+      "sha256": "6b151b9c59c876cbd91fcf320552f4a9bdb993901e5d6f44e35b6be4409fcbe3",
+      "size": 10998
+    }
+  },
+  "status": "SCOPED_COMPLETION_PROGRESS_NOT_RELEASE",
+  "task": "USER-MODERNIZATION-FINAL-INTEGRATION"
+}

@@ -1,0 +1,137 @@
+name: pr16-p05-supply-owner-retain
+run-name: Retain P05 owner originals and correct false Circus F0 (no emulator)
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-p05-supply-owner-retain.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-p05-supply-owner-retention
+  cancel-in-progress: false
+jobs:
+  retain-supply-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      EXPECTED_HEAD: ${{ github.sha }}
+      BRANCH: codex/modernization-followup-20260908
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Guard exact current branch and retain accepted fixed-form state
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner-retain
+          mkdir -p "$out"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git merge-base --is-ancestor 37f76ba14b3315d49f6ebeccf5c823a053d6f2a3 HEAD
+          git rev-parse HEAD > "$out/entry-head.txt"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-form-before.json"
+      - name: Recover exact source-only original and derive static findings
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-p05-supply-owner-retain
+          python3 scripts/pr16_p05_supply_owner_evidence.py --retain > "$out/retain.stdout" 2> "$out/retain.stderr"
+          python3 -m unittest tests.test_pr16_p05_supply_owner_evidence -v > "$out/tests.stdout" 2> "$out/tests.stderr"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/fixed-form-after.json"
+          cmp "$out/fixed-form-before.json" "$out/fixed-form-after.json"
+          python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
+      - name: Stage only bounded evidence and append-only logs, never private inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=content/modernization/pr16_p05_supply_owner_evidence/34701044310
+          git add -- "$base/actions.json" content/modernization/pr16_p05_supply_owner_findings.json \
+            content/modernization/pr16_p05_supply_owner_receipt.json content/modernization/p08_remaining_work.json \
+            design/run_log.md design/version_log.md
+          git add -f -- "$base/original.zip"
+          python3 - <<'PY'
+          import json,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import guard_private_files as guard
+          from pr16_fixed_form_originals import scan
+          import io,zipfile
+          root=pathlib.Path('.').resolve()
+          base='content/modernization/pr16_p05_supply_owner_evidence/34701044310/'
+          allowed={base+'actions.json',base+'original.zip',
+            'content/modernization/pr16_p05_supply_owner_findings.json',
+            'content/modernization/pr16_p05_supply_owner_receipt.json',
+            'content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md'}
+          changed=set(filter(None,subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().split('\0')))
+          assert changed<=allowed,sorted(changed-allowed)
+          assert not subprocess.check_output(['git','diff','--name-only']), 'unstaged tracked changes'
+          for name in sorted(changed):
+              p=pathlib.PurePosixPath(name)
+              assert p.suffix.lower() not in guard.BLOCKED_SUFFIXES
+              assert not any(name==part or name.startswith(part+'/') for part in guard.BLOCKED_PARTS)
+              raw=guard.index_blob(root,name)
+              if p.suffix.lower()=='.zip':
+                  assert not guard.blocked_zip_members(raw)
+                  with zipfile.ZipFile(io.BytesIO(raw)) as z:scan(z)
+              elif p.suffix.lower() in guard.DOCUMENT_SUFFIXES:
+                  assert not guard.document_user_path_lines(raw)
+          for name in ('design/run_log.md','design/version_log.md'):
+              assert subprocess.check_output(['git','show',':'+name]).startswith(subprocess.check_output(['git','show','HEAD:'+name])), 'log rewritten'
+          record=dict(status='PASS_CHANGED_INDEX_PATHS_ONLY',changed_paths=sorted(changed),new_private_findings=0,
+             global_private_guard_claimed=False,global_historical_guard_boundary='content/modernization/pr16_fixed_form_acceptance_evidence/34698120000/guard_boundary.json',release_ready=False)
+          (root/'.local/pr16-p05-supply-owner-retain/changed-private-guard.json').write_text(json.dumps(record,sort_keys=True,indent=2)+'\n')
+          PY
+          python3 scripts/pr16_p05_supply_owner_evidence.py --surface index > .local/pr16-p05-supply-owner-retain/index-check.json
+      - name: Commit once, verify original in HEAD, then guarded non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'USER-MODERNIZATION: retain P05 owner original; classify false Circus F0 as sprite-table data; preserve four physical gaps'
+          fi
+          python3 scripts/pr16_p05_supply_owner_evidence.py --surface head > .local/pr16-p05-supply-owner-retain/head-check.json
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$EXPECTED_HEAD"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          git rev-parse HEAD > .local/pr16-p05-supply-owner-retain/pushed-head.txt
+          test "$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - name: Snapshot exact classifiers and bounded results even on failure
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-p05-supply-owner-retain';out.mkdir(parents=True,exist_ok=True)
+          files=['scripts/pr16_p05_supply_owner_evidence.py','tests/test_pr16_p05_supply_owner_evidence.py',
+             '.github/workflows/pr16-p05-supply-owner-retain.yml','scripts/build_battle_core.py',
+             'tools/mgba_species_runtime_smoke.c','content/modernization/pr16_p05_supply_owner_findings.json',
+             'content/modernization/pr16_p05_supply_owner_receipt.json','content/modernization/p08_remaining_work.json']
+          bindings={}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in files:
+                  p=root/name
+                  if not p.exists():continue
+                  raw=p.read_bytes();raw.decode('utf-8')
+                  assert not p.is_symlink() and b'\0' not in raw and len(raw)<4000000
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.txt','.json','.stdout','.stderr','.zip'}
+              if p.suffix=='.zip':assert p.name=='sources.zip'
+              else:p.read_bytes().decode('utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-p05-supply-owner-retain
+          path: .local/pr16-p05-supply-owner-retain/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

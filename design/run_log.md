@@ -4020,3 +4020,838 @@
 - Commit: `-`（本エントリを含む完了commit）
 - Network:
   - GitHub公式CLI／APIでstate Release assetの置換・remote再取得とActions再実行・結果読戻しを行った。credential、token、private member本文は記録していない。
+
+## 2026-09-08T12:42:25+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08` / Stage66 bulk習得・P04容量／素材・P08統合checkpoint
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02 mGBA runnerをStage63からStage64の2-byte修正をmemory生成できるclean bootstrapへ変更し、生成config、実行source、ROM identityを証跡へ固定した。Rayquaza修正以外の全進化受入は未完了のまま保持した。
+  - P03はStage65のCaterpie 4経路からStage66 bulkへ展開した。全1,300対象／118,528経路を照合し、level-up 18,515＋machine 29,033の計47,548経路を実装、残70,980を理由付き保留にした。Stage65→66は81,693 changed bytes、宣言外0。Stage66専用10ファイルをcommit `90a1811964a19e3c058448af173007678b42a7e3`へ先行固定した。
+  - P04外部素材importerを固定source commitから再生成し、Mega 49/49のfront/back/icon/paletteとStone 45/45をprivate-use stagingへ変換した。Tatsugiri Droopy／Stretchyはupstream共通Mega paletteへ修正し、palette readyを49/49にした。Winds/Waves 3種は完全素材未確認のためplaceholderを生成していない。
+  - P04容量checkpointでSpecies/Form 52、Item 45、Ability 6、Move 1をappend予約し、39固定表、allocator、numeric width、save ABI、実Windows public-state readerを監査した。既存88-bit eventはItem 1043に89 bit必要、legacy Ability u8とsave item bitmap 125→131 bytesをruntime blockerとして維持した。
+  - P05は新Move 1／新Ability 6、P06/P07は提出済み採用差分0を維持した。P03 runtime handoffが実際にGit tracked fileであることを検証し、同byte untracked fallbackを拒否した。
+  - P08へStage66 tracked 5件／ignored 5件、mGBA source 8件、直接BPS依存、CI toolchain依存を追加した。P04容量がStage65基準でStage66と非衝突、Stage66後future-tail残94,948 bytesであることを明示し、3 handoffへ同じcomposite fingerprintを収載した。active Stage62、P01のみ完了、release-ready=falseを維持した。
+  - private bundleのsource／restore双方で全path componentのsymlink脱出を拒否し、rights manifest欠落をfail closedにした。GitHub repositoryがPublicのままROM／save入りReleaseを公開していたことを検出し、ユーザー指示でrepository全体をPrivateへ変更した。全private-download workflowへAPI可視性gateを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage65.json`、`config/github_private_environment.json`
+  - `config/modernization_p03_stage66.json`、`content/modernization/p03_stage66_*.json`、`tools/modernization_p03_stage66.py`、Stage66 builder／mGBA runner／focused test
+  - `content/modernization/p02_stage64_*.json`、`scripts/run_modernization_p02_mgba.py`、P02 mGBA test
+  - `content/modernization/p04_asset_*.json`、`tools/modernization_p04_asset_importer.py`、asset source/import tests
+  - `content/modernization/p04_capacity_allocation_manifest.json`、`tools/modernization_p04_capacity.py`、capacity builder／test
+  - P05／P07 contract、builder、test
+  - P08 integration matrix／runtime handoff／release handoff、builder、integration tool／test
+  - `scripts/github_private_environment.py`、`scripts/run_github_private_suite.py`、private environment／suite tests
+  - `.github/workflows/private-runtime.yml`、`.github/workflows/chatgpt-comment-control.yml`、`Makefile`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - Stage66専用focused 12件、実consumer mGBA 4代表×独立2 process、deterministic build/check、incremental／clean BPS往復、change audit、private guard: PASS。ROM 33,554,432 bytes、SHA-256 `0d92f5377b4ad1a2fa5cbf905f81b5b6162e16cdd09a12c65c4a342e73c5c97e`、CRC32 `808D5140`。
+  - P04 source/importer 24件、asset check、capacity 10件／check: PASS。生成asset 670 files、426,648 bytes、asset-set SHA-256 `462fed5d292582f44a29007e2da488829973c57b1964f86fa12e6da41c6e749c`。capacity manifest 451,027 bytes、SHA-256 `6b8e13bc22bff1e76371aca7bc814d754da56dadad10153ec0e007522e710752`。
+  - P05 focused 11件／check、P07 check、private environment 10件、private suite／workflow 17件、P02 mGBA focused 8件: PASS。途中でcapacityを既定check modeのまま実行して差分FAIL、P05 testの定数import漏れで1 errorとなったが、`--write`の明示とtest import修正後に各全件PASSした。
+  - P08 focused 16件と追加workflow回帰を含む34件、deterministic `--check`: PASS。tracked inputs 31、completed phases 1、active Stage62、candidate Stage66、release false。
+  - task graph、private guard、workflow YAML parse、`git diff --check`: PASS。repository全体の重いtestと同じmGBA chainの再反復は省略した。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage66専用先行commitは`90a1811964a19e3c058448af173007678b42a7e3`）
+- Network:
+  - P04素材は`https://github.com/rh-hideout/pokeemerald-expansion`の固定commit `cafe0221cefb2a991cc0ece429174ade877d037d`を主採用した。`https://github.com/xirosrh/wah-20-anniversary`の`076b1f930594352a4a105d60be0511e24be22772`、DPE-JP／Shiny-Miner DPE、TeamAquasHideout系、`Schn4pper/pokenigme`も不足素材の有無を比較したが、権利／形式／欠落のため追加採用しなかった。
+  - GitHub公式CLI／APIでrepository visibilityとRelease状態を照合した。Public時に5 assets（合計約1.99 GB）が非draft公開だったため、ユーザー明示指示後にrepositoryをPrivateへ変更し、`private=true`を読み戻した。Release assetは削除・置換・downloadせず、新P04素材もuploadしていない。credential／ROM／save／private member本文は記録していない。
+
+## 2026-09-08T15:03:19+09:00
+
+- Task: `USER-MODERNIZATION-P02-P08-STAGE67-SCOPE-CORRECTION` / Stage67 consumer追加と現行追加対象の訂正
+- Status: STOPPED（検証済みcheckpoint。P01のみDONE、P02〜P08は未完了）
+- Summary:
+  - P02のlevel＋所持道具分岐6種について、成立6、不足6、誤道具6、通常分岐12、選択前後、Species更新、`CalculateMonStats`、hidden ability bitの保持を実consumerで独立2 process確認した。
+  - Stage67へ進化時341、既存教え技740、通常タマゴ2,522の3,603経路を追加し、Stage66継承分と合わせて51,151経路を実consumerへ接続した。サイドチェンジ159経路は非採用、選択済み保留は67,218経路。ROMは33,554,432 bytes、SHA-256 `13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111`、CRC32 `D94758FF`で変更していない。
+  - Browt／Pombon／Gecquaを`NON_ADOPTED_USER_SCOPE`へ移し、通常Species追加、ID予約、容量、素材、runtime接続を0件にした。P04はMega用Species/Form 49（1621〜1669）、Item 45（999〜1043）、Ability 6（312〜317）、Move 0へ訂正した。
+  - P04固定表34件は616,521→636,378 bytes（+19,857、alignment込み636,392）、`integration_modules`残1,124,296 bytes。Mega 49／Stone 45のprivate-use素材670 files／426,648 bytesは維持した。
+  - フラエッテ（えいえんのはな）のメガ前形態は既存Species ID 1029としてStage67にBaseStats、画像、palette、icon、習得表、名称が存在することをexact監査した。従来collection policyでは入手不能のため、取得eventは後続候補へ分離した。
+  - P05／P07／P08へ同じ採用境界を連鎖し、active Stage62、selected Stage67、release false、P01のみ完了を維持した。
+- Files changed:
+  - `config/modernization_candidate.json`、`config/modernization_p03_stage67.json`
+  - `content/modernization/p02_acceptance_checkpoint.json`、`content/modernization/p03_stage67_*.json`
+  - `content/modernization/p04_candidate_manifest.json`、`content/modernization/p04_asset_import_manifest.json`、`content/modernization/p04_capacity_allocation_manifest.json`
+  - `content/modernization/p05_*.json`、`content/modernization/p07_*.json`、`content/modernization/p08_*.json`
+  - P02／P04／P05／P07／P08の生成tool、runner、focused test
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - P02 acceptanceは独立2 processでPASS、focused 4件PASS。Stage67 build／published mGBA evidence check、差分監査、incremental／clean BPS往復はPASSし、既に同一ROMで取得済みの重いmGBA実行は繰り返していない。
+  - P04 source／asset／capacity focused 36件、各generator check、private asset差分検査PASS。candidate manifest SHA-256 `95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac`、capacity manifest SHA-256 `8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe`。
+  - P05 focused 11件とAbility 46 case×独立2 process、P07 focused 11件、P08 focused 16件と`build_modernization_p08.py --check`、`git diff --check`: PASS。P08はtracked inputs 41、completed 1、active Stage62、candidate Stage67、release false。
+- Commit: `-`（本エントリを含むcheckpoint commit。Stage67 ROM先行commitは`b4bdb67fcb9c49414661b2c591e0b1d9464aeafe`）
+- Network:
+  - 公式`https://windswaves.pokemon.com/en-us/`、`https://www.pokemon.com/us/pokemon-news/see-the-new-trailer-for-pokemon-winds-and-pokemon-waves-coming-to-nintendo-switch-2`、`https://www.pokemon.co.jp/ex/winds_waves/ja/`を確認し、Browt／Pombon／Gecquaの名称、タイプ、特性の来歴だけを保持した。ユーザー指定により実装・ID予約・素材取得は行っていない。
+
+## 2026-09-08T16:34:51+09:00
+
+- Task: `USER-MODERNIZATION-P04-ACQUISITION-CHECKPOINT` / 追加Mega Stone販売とえいえんのはなフラエッテ配布
+- Status: DONE（取得系checkpointのみ。P04本体とP02〜P08は未完了）
+- Summary:
+  - Stage68でMega Stone 45件をItem ID 999〜1043へ結合し、map `96/5` local 14の専用Factory BP店から全品16 BPで購入可能にした。Mega Ring 580解禁、claim flag `0x14A0..0x14CC`、各石1save1回、通常save／sector 31補償transactionを接続した。
+  - Item固定5表を999→1,044行へ拡張し、base sanitizerとCFRU 12 consumerを1043 inclusiveへ更新した。Codex/Mirageの固定上限は分離し、グローバル取得bitmapは拡張していない。
+  - Stage69で既存Species ID 1029のえいえんのはなフラエッテLv.50を、Mega Ring所持時にmap `96/5` local 15のNPCから1save1回配布する。手持ち→PC、flag `0x14CD`、National 670の既存collection bit 850を使い、旧図鑑bitmapの範囲外書込みを避けた。
+  - P08はactive Stage62、selected Stage69、release false、P01のみDONEに更新した。取得経路46件とMega本体runtime 0件を分離し、49 Megaを完了扱いしていない。
+- Files changed:
+  - Stage68: `config/modernization_mega_shop*.json`、`overlays/modernization_mega_shop/**`、`tools/modernization_mega_shop.py`、build/mGBA scripts、focused tests、catalog/checkpoint/runtime gate。
+  - Stage69: `config/modernization_floette_gift.json`、`overlays/modernization_floette_gift/**`、`tools/modernization_floette_gift.py`、build script、focused tests、contract/checkpoint/runtime gate。
+  - P08と引継ぎ: `config/modernization_candidate.json`、`tools/modernization_p08_integration.py`、P08の3生成JSON・focused test、`design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`。
+- Verify:
+  - Stage68 ROM 33,554,432 bytes、SHA-256 `1ff9103becdeff8a22b5ffd45d3487b87d23bc7656415d660652d8a413da9639`、CRC32 `DAFDD099`。host 244 assertions、focused 8件、mGBA evidence focused 6件をPASS。exact ROMでItem 999/1023/1024/1043受理・1044拒否、代表3購入、BP100→52、保存／fresh reload／再購入拒否、BP不足／bag満杯無変更をPASS。先行失敗5 processはfresh-core治具のSaveBlock/bag pointer未初期化で、実装不具合でないことを証跡化した。
+  - Stage69 ROM 33,554,432 bytes、SHA-256 `6532002dabd3197ee6b8ded8b153a495d3241acf062fc931210987093172cb95`、CRC32 `4849DD0F`。host 13 scenario、focused 10件をPASS。exact ROMはNPC graph／Ring gate／party/PC受取／Species1029／Lv.50／flag/bitをPASS。3回の先行実行はいずれも旧PC ABIを使うharness-only停止で、全満／rollback／fresh reloadはhost PASS・exact pendingと保持した。
+  - 親統合でStage68/69 focused計24件とP08 focused 16件、`python3 scripts/build_modernization_p08.py --check`、task graph、private guard、`git diff --check`をPASS。重い全repository検査と同一mGBAの再実行はしていない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。既に固定済みのprivate-use素材とlocalのStage67候補だけを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:15:05+09:00
+
+- Task: `USER-MODERNIZATION-P04-SPECIES-RUNTIME-STAGE70` / Mega 49形態とAbility固定表のROM実装
+- Status: DONE（Stage70単独checkpoint。Stage71/72とP04全受入は未完了）
+- Summary:
+  - Mega用49形態をSpecies ID 1621〜1669へ安定順に実装し、front／back／palette／shiny／iconを含む28固定表を`0x09463170..0x09532BE0`へ再配置した。既存Species 0〜1620の行とFloette Eternal ID 1029はbyte一致を保持した。
+  - evolution表を`0x094FE8E0`の1,670×128 bytesへ拡張し39 consumerを再接続。新49行はStage71専有のzero rowとした。Species count/maxの実行literalは19箇所を明示allowlist化し、1620/1621から1669/1670へ更新した。
+  - Ability固定4表を312→318行へ広げ、ID 312〜317の差し替え可能な名称と仮説明を追加。Codex rewardのdescription `root >> 2` 3コピーとAbility count 3コピーを明示修正し、全28 rootのshifted-literal参照に未許可実行候補がないことを監査した。
+  - Browt／Pombon／Gecquaは予約集合から除外を維持。base+石のMega順逆行と戦闘変化はStage71、Ability効果はStage72の未完了境界とした。
+- Files changed:
+  - `config/modernization_p04_species_runtime.json`
+  - `overlays/modernization_p04_species_runtime/README.md`
+  - `tools/modernization_p04_species_runtime.py`、`scripts/build_modernization_p04_species_runtime.py`
+  - `tests/test_modernization_p04_species_runtime.py`
+  - `content/modernization/p04_species_runtime_contract.json`、`content/modernization/p04_species_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_species_runtime`: 11/11 PASS。
+  - `python3 scripts/build_modernization_p04_species_runtime.py --check`: PASS。49形態、Ability 318行、evolution 39 consumer、BPS roundtrip、宣言span外0を再照合した。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - ROMは33,554,432 bytes、SHA-256 `5519bda92ddc9024e9dcd7583fc170797f533f78e5fb552bda328f246722f3ef`、CRC32 `301238C1`。metadata SHA-256 `b2b58dda953398206002ccdc450853aacdf5975ff9cfb923db8fa99f13f840dc`、allocation SHA-256 `3c685b4ea01d9ec6d18b4b3ec97fa83e1d6d4f79ed67cfba7617a9e019224fb8`。
+  - 重いmGBAはStage71/72累積候補で代表経路を1回にまとめるため未実行。Stage70はrelease readyと過大表示しない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みexternal sourceとGit管理外private-use素材のみを再利用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T17:54:02+09:00
+
+- Task: `USER-MODERNIZATION-P04-MEGA-RUNTIME-STAGE71` / Mega 49順逆表と既存戦闘policy契約
+- Status: DONE（Stage71単独checkpoint。Stage72 Ability効果と最終累積mGBAは未完了）
+- Summary:
+  - Stage70のevolution表へ49件のbase＋専用Mega Stone順方向行と49件のMega→base逆方向行を追加した。既存Mega 80行を保持し、Raichu X/Y、Meowstic M/F、Tatsugiri 3形態、Magearna、Floette Eternalを含む全49 mappingと全誤石を検証した。
+  - 既存battle gateの順序をproject mechanic policy、mode別keystone、exact stone、project／upstream usage markとして固定した。通常戦のMega Ring 580、Frontier／Link例外、通常owner／partner／上流Mega Brawlの差をsource・compiled span・host oracleで区別した。
+  - 交代時はMega維持、ひんし時はbase復帰＋usage done維持、蘇生後の再Mega拒否、戦闘終了時の逆方向復元を既存CFRU-JP契約として固定した。Mega Brawlとproject side-usedのexact合成は最終mGBAへ保留した。
+  - Stage70 allocation #73の全850,544-byte slice hashを`ef91ae7d...`から`6a7793e6...`へ更新。全74 sliceを照合し、非対象73 ledger／ROM slice不変、overlap 0、新規allocation 0とした。
+- Files changed:
+  - `config/modernization_p04_mega_runtime.json`
+  - `overlays/modernization_p04_mega_runtime/**`
+  - `tools/modernization_p04_mega_runtime.py`、`scripts/build_modernization_p04_mega_runtime.py`
+  - `tests/test_modernization_p04_mega_runtime.py`
+  - `content/modernization/p04_mega_runtime_mapping.json`、`content/modernization/p04_mega_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p04_mega_runtime`: 12/12 PASS（C oracle 34 assertionsを含む）。
+  - `python3 scripts/build_modernization_p04_mega_runtime.py --check`: 8 artifacts byte一致PASS。BPS roundtrip、49 forward＋49 reverse、既存Mega 80、誤石拒否、変更allowlist外0を再照合した。
+  - ROMは33,554,432 bytes、SHA-256 `dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb`、CRC32 `426A7A7F`。metadata SHA-256 `7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c`、allocation SHA-256 `814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf`。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。重いmGBAはStage72累積候補へ集約し未実行。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal source／ROM／private-use素材のみを使用し、push／Release追加／iPad配置は行っていない。
+
+## 2026-09-08T18:25:48+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-PREFLIGHT` / P03残consumer 40,570経路の再現可能な分離
+- Status: DONE（読取専用preflight。ROM materializationは0、P03本体は未完了）
+- Summary:
+  - 固定ZIPの全118,528 routeを1回streamし、条件付きegg 41、shared egg 5,023、pre-evolution carry 35,141、reminder 295、form change 70の計40,570をStage73候補として再集計した。
+  - shared eggのdirect重複2,272／shared-only 2,751、carryのmachine／TR／tutor供給依存23,578、form transitionの既存owner／不足ownerを分離した。既存の4技保持挙動を新規技供給済みとは数えない。
+  - Side Changeは全159件、5群内72件を非採用として除外し、Browt／Pombon／Gecqua採用0、通常egg／level0への偽装転記0を検証した。Stage72 identity未確定中はROM工程をfail closedとした。
+- Files changed:
+  - `config/modernization_p03_stage73_consumers.json`
+  - `tools/modernization_p03_stage73_consumers.py`
+  - `tests/test_modernization_p03_stage73_consumers.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p03_stage73_consumers`: 4/4 PASS、全route streamは1回、5.820秒。
+  - 初回は段階比較が未計算キーまで比較、次はStage67実装済み通常egg 2,522をStage73件数へ含めたためFAIL。比較キーとStage73 scope集計を修正後、source／selected group hashと件数がPASSした。
+  - task graph、private guard、`git diff --check`はcommit直前に実行する。ROM build／mGBAは実施していない。
+- Commit: `-`（本エントリを含むpreflight checkpoint commit）
+- Network: なし。固定済みlocal ZIPとtracked P03契約だけを読み、外部取得／push／Release変更は行っていない。
+
+## 2026-09-08T18:54:36+09:00
+
+- Task: `USER-MODERNIZATION-P02-STAGE71-ACCEPTANCE` / Stage71通常UI受入ハーネスのfail-closed checkpoint
+- Status: STOPPED（P02 exact UI受入のみpending。Stage72／Stage73の作業は継続）
+- Summary:
+  - Stage71 exact ROMに対する1回目は233区間のnew-game trace後にfixture専用`QOL_B_RETURN_WARP`を余分に呼び、`CB2_Intro`へsoft resetした。2回目は自然fieldと6種level＋所持道具／代表条件matrixまで到達後、通常Start→Bag→party導線へ入れず停止した。いずれも製品runtime判定前のハーネス失敗であり、ROM不具合を主張しない。
+  - P02 production runtimeを`UNJUDGED`、通常進化cancel／success、Sun Stone、4技・ability slot・hidden ability／form、stock save＋fresh-core reloadをpendingに保持した。追加mGBAは実行せず、Stage72後の累積1セットへ統合する。
+  - 次回用ハーネスは既知正常Stage60 QA save 131,072 bytes／SHA-256 `f6bfdb107196ca22b012c1d12ee4bcdc8f5add309bbd3538447cd6e39c449bcb`をprocess別にbyte-copy／SHA照合し、通常title→Continue→input-ready field到達後だけparty／item fixtureを置く。元saveは変更せず、fresh coreも通常Continueで再読込する。
+- Files changed:
+  - `config/modernization_p02_stage71_acceptance_gate.json`
+  - `scripts/run_modernization_p02_stage71_acceptance.py`
+  - `tools/mgba_modernization_p02_stage71_acceptance_smoke.c`
+  - `tests/test_modernization_p02_stage71_acceptance.py`
+  - `content/modernization/p02_stage71_acceptance_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - 親統合で`python3 -m unittest tests.test_modernization_p02_stage71_acceptance`: 7/7 PASS。
+  - `python3 scripts/run_modernization_p02_stage71_acceptance.py check`: PASS、status `STOPPED_EXACT_UI_PENDING`、Stage71 identity pinned、full acceptance false。
+  - C harnessは`-std=c11 -O2 -Wall -Wextra -Werror -Itools -lmgba`で警告／error 0。checkpoint SHA-256 `78734433ec215d376ab862d607d939be707abf200735c60f97d621bcd6aa4531`。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ROM／saveのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:40:59+09:00
+
+- Task: `USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72` / Ability 312〜317のCFRU戦闘runtime接続
+- Status: DONE（Stage72静的checkpoint。P04／P05本体、専用AI/UI境界、最終累積mGBAは未完了）
+- Summary:
+  - Ability ID 312〜317（Dragonize／Eelevate／Fire Mane／Mega Sol／Piercing Drill／Spicy Spray）を6 Megaの全3 u16 ability slot、最終日本語説明、rating、Mold Breaker表へ固定し、29箇所のCFRU-JP battle consumerへ薄いadapterで接続した。既存Ability 0〜311と名前0〜317はbyte一致を保持した。
+  - DragonizeのIon Deluge／Electrify／Tera／Max／Z順、Mega Solの個人晴れ・Utility Umbrella・実晴れ時popup抑制・Flower Gift分離、EelevateのAbility Shield・visual記録境界・通常/Future Sight KO、Piercing Drillの個人/side/Max guard、Spicy Sprayの実damage／元攻撃者解決を固定した。
+  - 独立レビューでMega Solの不要popup、visualで未記録Ability Shieldを読む境界、Future Sight partner bank復元時期の3件を修正した。さらに`atk49`がstate29から30へ同一呼出し内で進むHighを検出し、元`SetMoveEffect2`がFALSEかつopcode `0x49`・state29・完全なEelevate KO候補の時だけTRUEを返す狭いyield hookを追加した。Moxie script完了後のstate31で元攻撃者へ復元し、対象bankは保持する。最終再レビューはHigh／Mediumなし。
+  - 検討中の中間ROM `6723…`、`1c39…`、`e371…`は撤回し、Stage72正本候補をSHA-256 `f27411a2dcef2ec2c1f3c06de624b24838683f5e77017fafa9bf445edc00d059`、CRC32 `F981D1CB`へ固定した。現行プレイ基準Stage62とP08 selected Stage69は変更していない。
+- Files changed:
+  - `config/modernization_p05_ability_rom_runtime.json`
+  - `overlays/modernization_p05_ability_rom_runtime/**`
+  - `tools/modernization_p05_ability_rom_runtime.py`、`scripts/build_modernization_p05_ability_rom_runtime.py`
+  - `tests/test_modernization_p05_ability_rom_runtime.py`
+  - `content/modernization/p05_ability_rom_runtime_checkpoint.json`、`content/modernization/p05_ability_rom_runtime_surface_matrix.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_ability_rom_runtime -v`: 15/15 PASS。
+  - `python3 scripts/build_modernization_p05_ability_rom_runtime.py --check`: 9 artifacts byte一致PASS。BPS roundtrip、29 hook preimage／Thumb veneer／trampoline、Ability旧prefix、6 Mega binding、allocator sequence 74、変更7,257 bytes／許可7,436 bytes／許可外0を再照合した。
+  - ROM 33,554,432 bytes、metadata SHA-256 `d3998b9d8a2eea0b2fff7dbc79538673d0bd48931faa373e277a12dd36c28c8f`、allocation SHA-256 `8caad52acb7cf8a16dd6105526c844935119c01d56895508a710be0de9d5f9e2`、incremental BPS SHA-256 `9e9933d85e5b6cfc75a81efd49f214b3037af9ee50070dd7521ad5c2cab54a9a`、checkpoint SHA-256 `1683e4fa6d2ed8d445e8ffd7d78aa97004a52e537453d1abf1394afbeb9f71bb`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。重いmGBAはStage73以降の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal CFRU-JP／Stage71 ROMのみを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T20:54:46+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE73-CONSUMER-RUNTIME` / P03 5群consumerのStage73 ROM接続
+- Status: DONE（Stage73 consumer checkpoint。P03本体、machine／tutor供給、最終累積mGBAは未完了）
+- Summary:
+  - Stage72確定commit `bbab6b2e943186cf437a6dca90712c01f0319ded`とROM／metadata／allocation／checkpointの4 identityをfail closedで固定し、Stage73を生成した。3 hookは`GetAllEggMoves`、`VegaMoveMemory_GetMoveRelearnerMoves`、`CollectionSupply_ApplySelectedForm`だけとした。
+  - 5群40,570経路について、exact egg 40、shared egg 5,023、reminder 295、ロトムform move 5の計5,363を新規materializationし、既存Light Ball owner 1、pre-evolution 4技保持35,141、generic／固定form owner 65の計35,207を既存ownerとして別計上した。通常／共有候補は40枠内で最大28／19、drop 0。
+  - ロトムは空き枠または旧appliance signatureだけを使い、既存4技が満杯なら`EFFECTLESS`として無断上書きをしない。species＋move保存失敗時はRAM snapshotを戻して再保存する。Side Change、Browt／Pombon／Gecqua、禁止coercionは0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `25329a1d5dd71a4f3c0adff8b337af1c4b3496e0aae64439ed2adebe338ce26a`、CRC32 `B4907165`、Stage72から変更36,585 bytes。残るmachine 26,279＋tutor 369の26,648経路とexact-ROM mGBAを未完了に保持した。
+- Files changed:
+  - `config/modernization_p03_stage73_runtime.json`
+  - `overlays/modernization_p03_stage73_consumer_runtime/**`
+  - `tools/modernization_p03_stage73_runtime.py`、`scripts/build_modernization_p03_stage73_runtime.sh`
+  - `tests/test_modernization_p03_stage73_runtime.py`
+  - `content/modernization/p03_stage73_consumer_runtime_checkpoint.json`、`content/modernization/p03_stage73_consumer_runtime_route_audit.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p03_stage73_runtime -v`: 9/9 PASS。
+  - `bash scripts/build_modernization_p03_stage73_runtime.sh check`: 9 artifacts byte一致PASS。BPS roundtrip、3 hook preimage／Thumb veneer／trampoline、Pichu＋Light Ball既存owner命令、allocator、allowlist外0を再照合した。
+  - metadata SHA-256 `c18fd7a2e3537632b3e13e3d528907d52e4c9c3a9729da6a0ccd539bdbc7b887`、allocation SHA-256 `f8dab8da8dadd9163f0b8249b59672d91c4b52a26a472e8392fd508c8934173a`、incremental BPS SHA-256 `8b901363aedff24d13fa60530dcb1512e02317b6da675e96586ac2dd83af6a61`、checkpoint SHA-256 `ea930a0df1d48aba9da9e6ea1bb808b117d3c03d2cdb297752c557b28f0bf82d`。
+  - 独立read-only reviewはHigh／Mediumなし。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage72 ROMだけを使用し、push／Release／iPad／現行プレイ基準は変更していない。
+
+## 2026-09-08T22:02:45+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE73-INTEGRATION` / P08累積候補のStage73再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08のselected candidateをStage69からStage73へ更新し、Stage70 Species、Stage71 Mega、Stage72 Ability、Stage73 P03 consumerを固定入力・実装・artifact identityへ接続した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73の4 incremental BPSを実byteへexact applyし、Stage70特殊metadata schema、Stage70〜73 allocator lineage、Stage72親4 identity、Stage73 Pichu／Light Ball既存owner命令を再照合した。
+  - P03は新規runtime materialized累積56,514、既存owner 35,207、consumer境界accounted累積91,721、残る直接供給26,648を分離した。23,595のmachine／tutor依存は既存owner集合の部分集合として二重加算しない。
+  - inheritance ROM／role、BPS source／patch／target、release blocker全文、candidate patch path／size／source／target、Stage73 3 hook／table分離／除外値をfail closedにし、対応する改ざんtestを追加した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS。固定入力、4 BPS exact apply、allocator lineage、生成3 handoffのbyte一致を再照合。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only reviewでHighなし。指摘されたallocator content hashとP08 mutation guardを補強した。重いmGBAは後続の最新累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-08T23:48:28+09:00
+
+- Task: `USER-MODERNIZATION-P03-STAGE74-SUPPLY-RUNTIME` / P03 machine・tutor直接供給archive
+- Status: DONE（Stage74供給checkpoint。P03本体、Rockruff意味整理、最終累積mGBAは未完了）
+- Summary:
+  - Stage73に残ったmachine 26,279＋tutor 369の26,648経路を、殿堂入り後のBagわざメモリー内のfamily分離archiveへ接続した。machineは40件単位の最大4ページ、tutorは1ページで、既存の4技交換／cancelを再利用する。固定TM／教え技slot、level／eggへの転記は0。
+  - 2ページ時の取消が「3ページ」と見える初版表示ずれと、全既知時のmachine選択loopを独立監査で検出して修正した。同期menu失敗はwait前sentinel、空filtered pageは明示message後にページ再選択、全archive終了はmode 0へ戻す。
+  - Benjamin Butterfree退化時の合法技消去を防ぐため、全118,369選択経路から現行`BuildLearnableMoveset`＋直接archiveとの差分4,014 path／2,223 target-move／501種を削除防止専用表へ追加した。UI供給とroute accountingへの加算は0。全1,621種で最大238/429、overflow 0。
+  - ROMは33,554,432 bytes、SHA-256 `481083bc50bd353955990375e3cc5e0a76f9b0f681ae54caa6c31f66ef22d65e`、CRC32 `C9929F79`。新規runtime materialization累積83,162、accounted 118,369、直接供給残0。Side ChangeとBrowt／Pombon／Gecquaは0を維持した。
+- Files changed:
+  - `config/modernization_p03_stage74_supply.json`
+  - `overlays/modernization_p03_stage74_supply_runtime/**`
+  - `tools/modernization_p03_stage74_supply.py`、`scripts/build_modernization_p03_stage74_supply.sh`
+  - `tests/test_modernization_p03_stage74_supply.py`
+  - `content/modernization/p03_stage74_supply_runtime_checkpoint.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p03_stage74_supply`: 12/12 PASS。
+  - `bash scripts/build_modernization_p03_stage74_supply.sh build`／`check`: 各9 artifacts PASS。BPS roundtrip、2 hook／trampoline、family分離、全route hash、allocation sequence #33 hash更新＋#77追加、allowlist外0を照合した。
+  - metadata SHA-256 `2fef4dbe682f23140ca14fa1169aaec50105130189428508ee9570a40fa23ae7`、allocation SHA-256 `d7a2425d59aac259f2803d4b5fbd8a88f0be94c906e9262ebef69a2a31401f23`、incremental BPS SHA-256 `8480efe4b6d69233393649260943a5119d595cfd9b8bf28ddebf7ca82fd65abd`、checkpoint SHA-256 `5e73c008a866d579a7939f64eb02f78d2d55eb7efb31f18c4ce2b221ee977ba2`。
+  - 独立read-only最終レビューはHigh／Mediumなし。重いmGBAは最新累積候補の最終1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal ZIP／Stage73 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T00:25:19+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE74-INTEGRATION` / P08累積候補のStage74再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage73からStage74へ更新し、Stage74の固定入力、実装、ROM／metadata／allocation／BPS／payload／auditを統合した。active Stage62、P01のみDONE、release-ready=falseは維持した。
+  - Stage69→70→71→72→73→74の5 incremental BPSをexact applyし、Stage74の2 hook、変更70,480 bytes、allocation sequence #33の同一layout内容更新と#77追加をfail closedで固定した。
+  - P03の新規runtime materialization累積83,162、既存owner込みaccounted 118,369、直接供給残0を固定。削除防止4,014 path／2,223 target-moveはUIと経路勘定へ加算0を維持した。
+  - Own Tempo Rockruff 38経路、暫定archive経済、P02通常UI、Floette full/fresh reload、P05の4 AI/UI edge、最終累積mGBAを残し、P02〜P08を過大にDONE扱いしていない。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=68、COMPLETED=1、ACTIVE=62、CANDIDATE=74、RELEASE=false）。
+  - 生成3成果はmatrix 120,902 bytes / SHA-256 `55a197cd2b8f00061309d8c3f03f9e089a1e248d3430223e7b1d401cd51b8c65`、runtime handoff 26,758 bytes / `d8c164ff6bd7ec01d2a5b9c966299b9a721e83c57502dd8e97c8a85f2bf823cc`、release handoff 2,518 bytes / `b620e224e16cf1c4484c748513f470ae7e10da6882d105982f72dc685d5dc47a`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。独立read-only review 2件はHigh／Mediumなし。重いmGBAは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果のみを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T01:43:31+09:00
+
+- Task: `USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75` / Own Tempo Rockruff内部条件フォーム接続
+- Status: DONE（Stage75 P03 checkpoint。P03本体と最終累積mGBAは未完了）
+- Summary:
+  - 通常イワンコ1142と既存saveを変更せず、Own Tempo Rockruffを図鑑非加算の内部条件フォームSpecies 1670としてappendした。3 ability slotはマイペース20で固定し、通常1142の黄昏1263進化行を1670だけへ移した。
+  - 野生1142の成功生成後だけpersonality由来の決定的1/8で1670へ変換し、追加RNGを消費しない。繁殖は1263／1670だけを1670へ解決し、1142を含む他Speciesは親処理へexact delegateする。
+  - 24 Species表／310 pointer／19 count consumer、5 hook、allocation sequence 78を接続した。0744.01の38持越し経路を既存slot 21＋Stage74 archive 17へ解決し、missing owner 0、materialized 83,162、accounted 118,369、delta 0を維持した。
+  - ROMは33,554,432 bytes、SHA-256 `a179c024294f4f1bbf34eb603af255f6896265d9d8523344719b349f8a4495c3`、CRC32 `1511F429`。Browt／Pombon／GecquaとSide Changeは0、`full_p03_done=false`、release ready=false、active Stage62を維持した。
+- Files changed:
+  - `config/modernization_rockruff_own_tempo_stage75.json`
+  - `content/modernization/rockruff_own_tempo_stage75_checkpoint.json`、`content/modernization/rockruff_own_tempo_stage75_contract.json`
+  - `overlays/modernization_rockruff_own_tempo_stage75/**`
+  - `tools/modernization_rockruff_own_tempo_stage75.py`、`scripts/build_modernization_rockruff_own_tempo_stage75.sh`
+  - `tests/test_modernization_rockruff_own_tempo_stage75.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_rockruff_own_tempo_stage75 -v`: 12/12 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_rockruff_own_tempo_stage75.py --check`: PASS。10成果identity、BPS source／target／roundtrip、24表／310 pointer／19 count consumer、5 hook／2 Egg trampoline、既存ABI 22 symbol、allocation既存9 slice＋sequence 78、P03経路勘定を再照合した。
+  - payload SHA-256 `18a62cc6fad32eb5997e569d4c340a87ed56f068826ae841dbe36a9764616206`、metadata `be84b5a54c7ea8de23d4245402a427cc0dd444949363b8b6ca3e206b5ecd93f4`、allocation `90a68321eebbebde765077eca81643f176d91152f331be77360cb8c52e188f09`、incremental BPS `23c012b655b15a3ac5d97813b4d8c64661aadb93c9bf8539d8e8c22a10bdeba7`、checkpoint `c4f6d822950cd27fa65134d3806c2cbed3409b6de4b2358a8f12924524d65705`。
+  - `python3 scripts/validate_task_graph.py`、`python3 scripts/guard_private_files.py`、`git diff --check`: PASS。
+  - 独立read-only最終監査はHigh／Mediumなし。重いmGBAは最終累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage74 ROM／tracked sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T03:37:01+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE76-EDGES` / P05安全edgeのStage76 ROM接続
+- Status: DONE（Stage76 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Mega SolのSolar charge時popup、Piercing DrillのAI予測Protect damage 1/4（最低1）、Spicy Sprayの意図的な味方発火評価を、pointer 1件＋hook 3件へ接続した。
+  - Detect→Protect正規化、Max Guard／Dynamax、実Protect二重quarter回避、direct／spread排他、planned protection／semi-invulnerable、Present／Future Sight／Doom Desire／Pollen Puff除外をfail closedで固定した。
+  - Eelevate専用switch AIはGround／Thousand Arrows／接地／Gravity／Mold Breaker／Ability Shieldを単純なAbility置換では保てないため、候補2 siteをStage75とbyte同一に保持して明示保留した。
+  - ROMは33,554,432 bytes、SHA-256 `f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac`、CRC32 `0A78B46A`。payloadは2,066 bytes、SHA-256 `c9c34af10900cb6cedbaaeef9dacd2d95a2fc0df0be39cb3aa29f8226ffbc92e`。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62は不変。
+- Files changed:
+  - `config/modernization_p05_stage76_edges.json`
+  - `content/modernization/p05_stage76_edges_contract.json`、`content/modernization/p05_stage76_edges_checkpoint.json`
+  - `overlays/modernization_p05_stage76_edges/**`
+  - `tools/modernization_p05_stage76_edges.py`、`scripts/build_modernization_p05_stage76_edges.sh`
+  - `tests/test_modernization_p05_stage76_edges.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage76_edges`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage76_edges.py --check`: PASS。Stage75のcommit／5 identity、fixed function 8件、pointer 1件＋hook 3件、Eelevate不変2 site、allocation既存79行全field、payload実slice、5 allowlist区間外0を再照合した。
+  - incremental BPSは2,191 bytes、SHA-256 `f06a18fb9c26b1d09e621eb81c208c3c6a018607e58727ac5dd04091a45b1810`、roundtrip PASS。独立runtime監査とartifact／byte監査はHigh／Medium／Lowなし。
+  - 重いmGBAはユーザー指定どおり最新累積候補の1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage75 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:28:41+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE76-INTEGRATION` / P08累積候補のStage76再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage74からStage76へ更新し、Stage75 Own Tempo RockruffとStage76 P05安全edge 3件の固定入力、生成実装、ROM／metadata／allocation／BPSを統合した。
+  - Stage67→76 chainとStage74→75→76の追加BPSをexact applyし、allocator lineage、hook／pointer、Browt／Pombon／GecquaおよびSide Changeの採用0をfail closedで固定した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持し、Eelevate、暫定archive経済、P02通常UI、Floette full／fresh reload、最終累積mGBAをblockerとして残した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=74、COMPLETED=1、ACTIVE=62、CANDIDATE=76、RELEASE=false）。
+  - P08生成3成果はmatrix 135,456 bytes／SHA-256 `11a154336287cc8bb0c31a23f21f128b2c4dcbf2eaedcab013994ec6323dd38e`、runtime handoff 30,370 bytes／`8ebef8980c8ef795e6b3e4285a6786f8cccfa4caea1d51c8518bdc45173b7db5`、release handoff 2,446 bytes／`070a0a5db25924aaa261d8453752cd01abf3eb8756f3fba24c63acd409e7c408`。
+  - `git diff --check`: PASS。重いmGBAはStage77後の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T04:33:14+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION` / Battle Circus特性無効境界
+- Status: DONE（Stage77 checkpoint。Eelevate専用switch AI、最終累積mGBA、P05本体は未完了）
+- Summary:
+  - Battle Circus bit 26かつ特性無効bit 31の時だけStage72の全29 hook／33 surfaceをoriginal trampolineへ委譲し、通常時はStage72 wrapperを維持するdispatcherを接続した。
+  - 12-byte hook 7本は元r3をr12へ退避・復元し、8-byte hook 22本はStage72互換のr3 scratchを使う。通常のGastro Acid／Neutralizing Gas／Mold Breaker意味は変更しない。
+  - 親allocation 80行、Stage76のpointer 1＋hook 3、Eelevate保留2 siteを不変に保った。Side ChangeとBrowt／Pombon／Gecquaは0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `245133a4740dda9faa0663d321505ee793293d64b0b318d601fd91933b84973f`、CRC32 `F1CE0EAC`。payloadは1,220 bytes、SHA-256 `933c8d7fdf731eaae0aa87c74974803de356dda8e64c055ef09beee4d229c672`。
+- Files changed:
+  - `config/modernization_p05_stage77_suppression.json`
+  - `content/modernization/p05_stage77_suppression_contract.json`、`content/modernization/p05_stage77_suppression_checkpoint.json`
+  - `overlays/modernization_p05_stage77_suppression/**`
+  - `tools/modernization_p05_stage77_suppression.py`、`scripts/build_modernization_p05_stage77_suppression.sh`
+  - `tests/test_modernization_p05_stage77_suppression.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `python3 -m unittest tests.test_modernization_p05_stage77_suppression -v`: 12/12 PASS。
+  - `python3 tools/modernization_p05_stage77_suppression.py --check`: PASS。29 hook／33 surface、7本r3保存ABI、Stage76保全、parent allocation 80行、sequence 80、allowlist外0を照合した。
+  - incremental BPSは1,489 bytes、SHA-256 `50a779b3cca8b7ffbb386872ed989a6392e050c18a3716e7c252c24412047df7`、roundtrip PASS。metadata SHA-256 `773042fc80d4a048e4f4a894e01de8f073d6de42cf5f4029421c882b0c35b6ff`、allocation `20649eff6be00d367064c51782f50f8a2e7a26b059f637b2c496c2f6f999243d`。
+  - 独立read-only監査はHigh／Medium／Lowなし。重いmGBAは最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage76 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T05:05:09+09:00
+
+- Task: `USER-MODERNIZATION-P08-STAGE77-INTEGRATION` / P08累積候補のStage77再固定
+- Status: DONE（P08統合checkpoint。P02〜P08本体とrelease gateは未完了）
+- Summary:
+  - P08 selected candidateをStage76からStage77へ更新し、Battle Circus全特性無効の29 hook／33 Ability surface、通常経路保持、Stage76のpointer 1件＋hook 3件保持を統合した。
+  - Stage67→77 chainとStage74→75→76→77 incremental BPSをexact applyし、allocation 81行／sequence 80、allowlist外0、Browt／Pombon／GecquaとSide Changeの採用0をfail closedで固定した。
+  - active Stage62、P01のみDONE、P02〜P08未完了、release-ready=falseを維持し、Eelevate専用switch AIと最終累積mGBAをblockerとして残した。
+- Files changed:
+  - `config/modernization_candidate.json`
+  - `tools/modernization_p08_integration.py`、`tests/test_modernization_p08.py`
+  - `content/modernization/p08_integration_matrix.json`、`content/modernization/p08_runtime_handoff.json`、`content/modernization/p08_release_handoff.json`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p08 -v`: 17/17 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/build_modernization_p08.py --check`: PASS（INPUTS=77、COMPLETED=1、ACTIVE=62、CANDIDATE=77、RELEASE=false）。
+  - P08生成3成果はmatrix 142,635 bytes／SHA-256 `71c05f5bb19414dfb0dc10ba297f669302c954ee7af76d994e010bebaf4b4e87`、runtime handoff 32,575 bytes／`aef7394be068fd23a644a97a5ff400ab406c9fee57cb526c7ade37655cf18a5e`、release handoff 2,534 bytes／`dcc747ecb523710eeafabddebef0613b2bca4037888ebfdb503097c1d296c9b6`。
+  - `git diff --check`: PASS。重いmGBAはStage78最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T06:31:00+09:00
+
+- Task: `USER-MODERNIZATION-P05-STAGE78-EELEVATE-SWITCH-AI` / Eelevate専用交代AI
+- Status: DONE（Stage78製品checkpoint。最終累積mGBA、P05本体、P08統合は未完了）
+- Summary:
+  - Stage77を親に、`FindMonThatAbsorbsOpponentsMove`のactive／party 2 siteへEelevate専用adapterを接続した。有効な予測Ground damageだけでAbility 313を比較用Earth Eater 298へ写像する。
+  - 予測なし／switch／Move上限外、status、Thousand Arrows、Gravity／Iron Ball／Ingrain／Smack Down、Gastro Acid、Battle Circus、Mold Breaker系、残存Neutralizing Gas、Ability Shieldをfail closedで扱った。
+  - 親81 allocation、Stage77の29 hook、Stage76のpointer 1＋hook 3を保持した。Browt／Pombon／GecquaとSide Changeの採用0、active Stage62、release-ready=falseを維持した。
+  - ROMは33,554,432 bytes、SHA-256 `98fde60231175492032f0e28ca16549a73ca5b29e3f37438b77c6e3c80e9d06b`、CRC32 `BFF0203C`。payloadは688 bytes、`0x095D5D40`、allocation sequence 81、SHA-256 `a6b5fb28cca365af8e08862e673ce5040bbcf4deb0683566b79a552853d1f905`。
+- Files changed:
+  - `config/modernization_p05_stage78_eelevate_switch_ai.json`
+  - `content/modernization/p05_stage78_eelevate_switch_ai_checkpoint.json`、`content/modernization/p05_stage78_eelevate_switch_ai_contract.json`
+  - `overlays/modernization_p05_stage78_eelevate_switch_ai/**`
+  - `tools/modernization_p05_stage78_eelevate_switch_ai.py`、`scripts/build_modernization_p05_stage78_eelevate_switch_ai.sh`
+  - `tests/test_modernization_p05_stage78_eelevate_switch_ai.py`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_p05_stage78_eelevate_switch_ai -v`: 12/12 PASS。32-case Python＋compiled host C matrix、2 entry ABI、脅威fallback、親identity／allocation、BPS、artifact manifestを照合した。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 tools/modernization_p05_stage78_eelevate_switch_ai.py --check`: PASS。ROM差分はpayload＋2 hookだけ、allowlist外0、BPS roundtrip PASS。
+  - metadata SHA-256 `1ab572da80715bc07a275781fda27b0f04ababa19e8214bdc6df3bcf00e0c7d8`、allocation `b92ef83b96482c6fc5f751af87a4dc7eb4783a10258b1c193fa298cc485d8d3b`、incremental BPS `2a5dfc6574f42b06f6339061a7af087b4f0ef5fa872cedf92599ddbb70a9ca9e`、checkpoint `19f0f88c1ddecd2f4270e259c81f1535f81ca1716437854d05d90e080111c22f`。
+  - 独立read-only監査2件はHigh／Mediumなし。重いmGBAはユーザー指定どおりStage79の最終累積1セットへ集約し、本checkpointでは実行していない。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal Stage77 ROM／CFRU-JP sourceだけを使用し、push／Release／iPad／save／現行プレイ基準は変更していない。
+
+## 2026-09-09T07:32:37+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA` / Stage78 exact累積mGBA基盤
+- Status: DONE（`READY_NOT_RUN` checkpoint。重い7領域runは次の実行commitへ分離）
+- Summary:
+  - Stage78 commit、ROM／metadata／allocation／checkpoint、allocation 82行／sequence 81、P05 source契約をfail closedで固定し、7領域を順次・再開可能に実行するvalidation-only orchestratorを作成した。
+  - P05はStage77 29 hook／33 surface、Stage76 3 edgeに、Eelevate 32-case pure matrixとactive 13／party 13の実hook／ABI経路を追加した。
+  - private ROM／save／compile／tracked gateのsymlink・hardlink境界、明示heavy承認、PASS prefix再検証、fresh/cache別計数を固定した。Browt／Pombon／GecquaとSide Changeは0、active Stage62、P08 Stage77、release-ready=falseを維持した。
+- Files changed:
+  - `config/modernization_stage79_cumulative_mgba.json`
+  - `content/modernization/stage79_cumulative_mgba_runtime_gate.json`
+  - `scripts/run_modernization_stage79_cumulative_mgba.py`
+  - `tests/test_modernization_stage79_cumulative_mgba.py`、`tests/test_modernization_stage79_p05_runtime_smoke.py`
+  - `tools/mgba_modernization_stage79_mega_runtime_smoke.c`、`tools/mgba_modernization_stage79_p03_smoke.c`、`tools/mgba_modernization_stage79_p05_runtime_smoke.c`
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests.test_modernization_stage79_cumulative_mgba tests.test_modernization_stage79_p05_runtime_smoke`: 23/23 PASS。
+  - `PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_modernization_stage79_cumulative_mgba.py dry-run`: 7/7 READY、mGBA 0。
+  - 同`compile-check`: strict C compile 7/7 PASS、mGBA 0。同`check`: `CHECK_PASS`／`READY_NOT_RUN`。
+  - 独立read-only監査はruntime/ABIとorchestrator安全性の双方でHigh／Medium 0。
+- Commit: `-`（本エントリを含むcheckpoint commit）
+- Network: なし。固定済みlocal成果だけを使用し、heavy mGBA／push／Release／iPad／既存save／現行プレイ基準は変更していない。
+
+## 2026-09-09T09:12:28+09:00
+
+- Task: `USER-MODERNIZATION-STAGE79-GITHUB-ACTIONS-HANDOFF` / Stage79必須入力と重いmGBAのGitHub移管
+- Status: DONE（Actions実行可能checkpoint。重い7 domainの結果はGitHub runで別途確定）
+- Summary:
+  - private repositoryとDraft PR #16を確認し、Stage79必須のignored 16ファイル（34,748,225 bytes）をGit直接追跡した。Stage78 ROM／metadata／allocation、P02 seed save、Stage06 metadata、runtime symbol／auditをclean checkoutだけで復元できる。
+  - Stage79の7 domainをGitHub-hosted Ubuntu 24.04でmatrix並列実行し、PASS cache再利用、失敗domain単独再実行、ログ／JSON Artifact、最終runtime gate合成を行うworkflow／helperを追加した。
+  - ユーザーの明示指定により、push CIとChatGPT patch bridgeのprivate-file guardを外した。LFS／Release／暗号化は使用していない。
+  - local heavyはP02の進化キャンセル画面でillegal opcode／field-return timeoutとなり、後続6 domainは未実行。GitHub側は`fail-fast: false`のためP02に影響されず独立実行する。
+- Files changed:
+  - `.github/workflows/modernization-stage79-mgba.yml`、`.github/workflows/ci.yml`、`.github/workflows/chatgpt-comment-control.yml`
+  - `scripts/run_modernization_stage79_github_domain.py`
+  - `build/stages/78_modernization_p05_eelevate_switch_ai.gba`、Stage78 metadata／allocation、`build/stages/06_battle_core.json`
+  - `.local/60_wild_species_root_repair.srm`、`generated/runtime/**`のStage79必須11ファイル
+  - `design/current_state.md`、`design/modernization_handoff.md`、`design/decisions.md`、`design/run_log.md`、`design/version_log.md`
+- Verify:
+  - `run_modernization_stage79_github_domain.py plan --selection all`: `GITHUB_MATRIX_READY`、7/7 domain、fingerprint `5214e6e1c23ab03d0982ab8735dae270e13a2b921011b232078c454d6e508594`。
+  - Python syntax／workflow YAML parse／`git diff --check`: PASS。Stage79 configがpinする36ファイルとGit index blobのsize／SHA-256は36/36一致。
+  - 重いmGBAは本commitで再実行せず、branch pushでActions matrixへ委譲する。
+- Commit: `-`（本エントリを含むActions handoff commit）
+- Network: GitHub CLIでrepositoryのprivate状態、remote branch、Draft PR #16を確認。GitHub Actionsの`workflow_dispatch`と`upload-artifact` hidden-file仕様は公式資料を確認した（https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow, https://github.com/actions/upload-artifact/blob/main/README.md）。
+
+
+<!-- USER-STAGE79-PR16-RUNTIME-FOLLOWUP-20260909 -->
+## 2026-09-09T02:37:37Z
+
+- Task: `USER-STAGE79-PR16-RUNTIME-FOLLOWUP` / PR #16 runtime investigation and fixes
+- Status: PARTIAL — 5/7 domains PASS; P02 and Floette FAIL; P08 not promoted.
+- Commit: `-` (this append-only log commit); source fixes `fe26265ee7eaf88fa425773f66a75765ba11f414` and `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`.
+- Summary: Corrected the Stage68-shop/Stage69-map cross-link with exact 15-object validation while retaining historical 14-object checks; fixed the harness latch that prevented retrying ignored physical controller inputs.
+- Verify: 20 new regressions (13 map + 7 compiled C input-predicate tests), 42 total PASS in repair run 34302668497; pre-fix failures reproduced. Both shop variants and battle runner compiled with warnings as errors.
+- Runtime: [34302717908](https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34302717908), immutable source HEAD `3c2794a191ae3ef014df6ab8e97de8103fb8eaaf`: fresh PASS mega_shop/p03/p04_mega_runtime/battle_policy/p05; FAIL p02/floette; strict merge FAIL.
+- Remaining: Floette migration has relocated-start/stale-end and neighboring-table-end alias defects in the frozen product. P02 changes level 15 to 100 before any evolution callback; its exact root cause is not yet established.
+- Evidence: `docs/stage79-pr16-followup-20260909.md`; diagnostic runs 34302526120, 34303136112 and 34303410270 are not acceptance evidence.
+- Scope: ROM/save hashes, Stage62 active baseline, expected behavior and strict exit/JSON checks preserved; no skips, fake PASS records, P08 promotion or PR merge.
+
+
+## 2026-09-09T11:21:32.459186+00:00
+<!-- USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE:0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d -->
+- Task: USER-MODERNIZATION-P08-CURRENT-ACCEPTANCE / 現在受入残件の証跡分離
+- Status: DONE（残件の分離・検証器。製品全体はBLOCKED）
+- Summary: Stage77原本を保持し、Stage80の7領域証跡と現在未検証項目を分離。採用仕様の創作・リリース昇格なし。
+- Files changed: scripts/check_modernization_p08_current_acceptance.py, tests/test_modernization_p08_current_acceptance.py, content/modernization/p08_current_acceptance.json, docs/P08_CURRENT_ACCEPTANCE.md, .github/workflows/ci.yml
+- Verify: 現在受入＋既存原本証跡 51 tests PASS; snapshot --check PASS; release_ready=false
+- Commit: 検証対象 0ad6e7be5e1f93dd82f4f1d5363991bef8815e5d（この追記を含むcommitはActions artifactのrecord-head.txtへ記録）
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34345099347
+- Network: GitHub Actions/APIで読取・検証記録のみ。外部仕様から製品内容を追加していない。
+
+
+## 2026-09-09T11:48:47.305840+00:00
+<!-- USER-MODERNIZATION-P03-LEARNING-E2E:34347153852 -->
+- Task: USER-MODERNIZATION-P03-LEARNING-E2E / 通常習得・保存・新規coreの代表通し試験
+- Status: DONE（代表2ケースのみ。P03全体は未完了）
+- Summary: キャタピーLv8→9のむしくい習得とLv7→8の非習得を、通常Bag/Party入力・進化取消・Start保存・新規core Continueで確認。
+- Files changed: tools/mgba_modernization_p03_learning_e2e.c, scripts/run_modernization_p03_learning_e2e.py, tests/test_modernization_p03_learning_e2e.py, docs/P03_LEARNING_E2E.md, content/modernization/p03_learning_e2e_record.json, .github/workflows/p03-learning-e2e.yml
+- Verify: 結果契約8 tests PASS; strict C compile PASS; 新規mGBA 2 process PASS、cache 0; 原本source/ROM/seed/Stage62不変。
+- Commit: runtime対象 fdac91af6288953e740d4ceb5bc2cc25e3690cf7。記録commitはrecord-head.txtに保存。
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34347153852
+- Remaining: 他の習得UI、繁殖、P05 scheduler、P06/P07採用仕様、最終受入は未完了。過去Stage79/P08証跡を書き換えていない。
+- Network: GitHub Actions/APIで固定入力の実行と証跡照合。外部仕様の追加採用なし。
+
+
+## 2026-09-09T12:38:05.416871+00:00
+<!-- USER-MODERNIZATION-P05-SCHEDULER-E2E:34351006779 -->
+- Task: USER-MODERNIZATION-P05-SCHEDULER-E2E / 6特性の実ターン進行・対照・抑制試験
+- Status: DONE（24条件の代表経路のみ。P05全体は未完了）
+- Summary: Dragonize, Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Sprayを、特性なし・有効・Battle Circus抑制で比較。Eelevateは最後の相手/残る相手の撃破境界を追加。
+- Fixture boundary: native戦闘生成後・最初の行動前だけ条件を書込。観測中は7 API書込ガードを設け、キー入力/runFrame/受動読取のみ。自然入手・自然施設入場は非主張。
+- Verify: 回帰23 tests PASS; strict C compile PASS; GitHub新規mGBA 24 process PASS, cache 0; 書込ガード負例7 PASS; 原本ZIP/source/JSON/logとROM/seed/Stage62 identity照合。
+- Fix in test driver: Solar Beamの溜め中はChooseAction待ちで次ターンへ進まないよう、ターン末から次のaction mainへ戻った直後に停止。期待値・製品ROMの変更なし。
+- Files: tools/mgba_modernization_p05_scheduler_e2e.c, scripts/run_modernization_p05_scheduler_e2e.py, tests/test_modernization_p05_scheduler_e2e.py, docs/P05_SCHEDULER_E2E.md, content/modernization/p05_scheduler_e2e_record.json, .github/workflows/p05-scheduler-e2e.yml
+- Commit: runtime対象 14a61c80b69d2adb2f9f9adf513fd143d86b8728。記録commitはrecord-head.txtに保存。
+- Evidence: https://github.com/dekaazarashi1111-web/pokemon-vega-modern/actions/runs/34351006779
+- Remaining: P03繁殖/他UI、P05網羅受入、P06/P07正式採用、最終受入。過去Stage79/P08原本は不変。release_ready=false、Stage62基準不変。
+- Network: GitHub Actions/APIから固定原本を取得し、実際のZIPハッシュと実行メタデータも照合。
+
+
+## P08 representative E2E evidence integration / run 34359174903
+
+P03 learning 2 / P05 scheduler 24 / P05 controller 4 の原本ZIP・Actions・ソース・結果契約を照合し、P08へ追補。新規回帰67件を含む269件PASS。原本の新規プロセス30件、今回の新規mGBA実行0件。Stage77/Stage79履歴、Stage62基準、P06/P07採用内容は変更なし。release_ready=false。
+
+## 2026-09-09T16:02:00.727791+00:00 USER-STAGE81 native PP evidence acceptance
+
+GitHub integration run 34374045795: 348 regressions PASS; original Stage81 matrix run 34368455589 has 7 fresh domains, and P03 original run 34364100108 has 8 candidate successes plus 2 expected PP-failure controls. Integration runs no mGBA. Prior Stage77/80 layers and all original evidence retained. Stage62 unchanged; Draft/unmerged and release_ready=false. Broader P03/P05/P06/P07 and final release acceptance remain incomplete. Normal CI at committed HEAD is checked separately.
+
+
+## 2026-09-09T17:07:03.775651+00:00
+<!-- USER-MODERNIZATION-STAGE81-CLOSEOUT:eb53628dc95bca236338c498d5d2e9a16fca7e5b -->
+- Task: USER-MODERNIZATION-STAGE81-CLOSEOUT
+- Status: DONE（Stage81正式経路・P08追補のCI最終確認。製品全体はBLOCKED）
+- Summary: 既存のStage81統合954a597を保持し、統合記録に残っていたCI未確認を実際の成功runで解消。追加10件はmockなしの受入CLI・release境界回帰。
+- Verify: 358 regression tests PASS; current snapshot --check PASS; check exit=0 / blocked-release exit=1 / usage error exit=2; bound inputs 290 files unchanged.
+- Normal CI: 34380147414 (push), 34380153325 (pull_request); tested source 4a270b8adf9d4946d15b1986540a317f1b9d9f1c
+- Originals: Stage81 34368455589 (fresh 7/7), P03 34364100108 (8 successful cases + 2 expected PP-defect controls), P08 integration 34374045795. This closeout executes fresh mGBA=0.
+- Evidence: content/modernization/p08_stage81_closeout_evidence/34380153325/; artifact SHA-256 b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c
+- Commit: 検証対象 eb53628dc95bca236338c498d5d2e9a16fca7e5b; this recording commit is in Actions artifact record-head.txt and receives a separate source-validation dispatch.
+- Limits: Stage62 unchanged; release_ready=false; Draft/unmerged; P03/P05 full acceptance and P06/P07 adoption are not promoted.
+
+## 2026-09-10 — USER-P03-ARCHIVE-UI / Stage82
+
+Run 34397482740, tested code 9221ffa18711505dba1fc8b80383bcb8a722a02b: exact Stage82 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d; 25 new native archive UI/save/fresh-core cases and seven fresh cumulative domains passed. Two separate pre-repair failure controls were retained (the gate-only control also reproduces the specifically classified illegal opcode before the metadata assertion). Three observation barriers and seven host-write denial probes are enforced. P08 originals are in content/modernization/p08_stage82_evidence/34397482740; record checker passes. Stage62, historical Stage79/81 evidence, Draft state and release_ready=false are unchanged. Breeding, other P03/P05 paths, P06/P07 and release remain incomplete.
+
+## 2026-09-10 — USER-P03-BREEDING / Stage82 physical daycare and hatch
+
+Original Actions run 34434453733 at 8a2919f390902a3b991e13f3e252f47bd3d93261: eight new mGBA processes, 24 core instances and zero cache reuse passed. Real daycare deposit, walking generation, egg claim, parental inheritance and duplicate exclusion, Light Ball on either parent and its negative control, native unaccelerated hatch, and two normal Save/fresh-core Continue cycles per case are observed with seven host-write API barriers. Two manual saves plus one observed native hatch registration save are required, with exact byte snapshots. P08 original ZIP and Actions identities are at content/modernization/p08_breeding_evidence/34434453733. Integration revalidates original bytes and does not count as another emulator run. No product ROM changed; Stage82 remains e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d. Parents and starting map are an isolated fixture, not a natural capture claim. Other breeding combinations/full-party routes, broader P03/P05, P06/P07 adoption and final release remain open. Stage62 and release_ready=false are unchanged.
+
+## 2026-09-10 — P03 breeding original ZIP publication repair
+
+The first post-integration CI run 34435350299 correctly rejected a missing original.zip: the ignored archive existed in the integration worktree but was absent from its commit. Restore only the already recorded 31,334-byte original with its existing SHA-256, explicitly stage it, and verify every staged evidence blob against the existing manifest before publishing. No runtime source, result expectation, product ROM or release flag changes.
+
+## 2026-09-10 — USER-P05-NATIVE-MEGA / first-input to cold-save lifecycle
+
+Source Actions run 34438575892 at 96c634134730f0c4f5aed989e7a4ed6b23c2c6d6 completed SUCCESS in fixed GCC 13.3.0 / mGBA 0.10.2. Forty-two fresh processes (48 cores; zero PASS cache) verify six native Mega abilities and 36 nonactivation controls. Active cases use normal Fight/move/START input; native form and ability assignment precedes the first move, both PP decrement exactly once, the next turn is reached, physical Run returns to the field, the engine reverts to the base form, normal Save increments once, and a newly created core Continue restores all 100 party-mon bytes. Seven host-write APIs are denied throughout the observed lifecycle. The 52 runtime contract tests and 14 original-backed evidence mutation tests pass. Original ZIP, Actions identities and source hashes are verified by scripts/check_modernization_p08_native_mega.py and retained under content/modernization/p08_native_mega_evidence/34438575892; P08 progress is in p08_native_mega_acceptance.json. Integration itself performs zero new emulator runs.
+
+The isolated starting fixture supplies species, gear, policy and opponent; this does not establish natural capture/gear acquisition or physical Battle Circus admission. Base Eelektross already has Levitate, and native Mega stat changes mean the Fire Mane damage contrast is not an ability-only experiment. Other P03/P05 paths, P06/P07 adoption/implementation and final release acceptance remain open. No product ROM changed: Stage82 SHA-256 e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d. Stage62 active baseline, full_p05_acceptance=false and release_ready=false are unchanged.
+
+## 2026-09-10 — P03 five-egg FIFO and party/PC capacity acceptance
+
+Original Actions 34439826111, tested source 40dec97d5360422e66d02a3ae0261a00df566f86: fixed toolchain; three new mGBA processes, nine cores, zero cache reuse; all three capacity routes passed. Normal deposit and walking fill the five-egg FIFO; 512 additional steps do not overwrite it. Real dialogue fills the party then uses the first/last PC vacancy, or preserves pending eggs when all 420 PC slots are full. Two normal saves/fresh-core Continues and the repeated full-PC refusal preserve exact party, PC, queue and parent bytes. Seven actual host-write denial probes pass; no ROM calls after the fixture barrier. Original ZIP and Actions metadata: content/modernization/p08_breeding_capacity_evidence/34439826111. This integration performs no additional mGBA run. Parent/PC layout is an isolated fixture. Other P03/P05 routes, P06/P07 adoption and final release remain incomplete. Stage82 product bytes, Stage62 baseline, existing evidence and release_ready=false are unchanged.
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開
+
+前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開する。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。
+
+最初の公開run 34445594077は、既存の追跡ROM/saveと過去のActions絶対pathを検出する全index guardで停止した。guard本体と既存ファイルは変更しない。親HEADと変更後indexの全体検査結果が完全一致すること、今回の7差分blobだけを入れた別indexで同じguardがPASSすることを別々に検証し、全体guardの既存失敗をPASSと報告しない。
+
+Publication run: 34445943232; input HEAD: 3d9b42fc766a6b42ba36f96afff7bcebe908e1a2.
+
+
+## 2026-09-10 — USER-P03-RELEARNER / 固定環境46経路の原本受入
+
+Actions run 34446029812、source HEAD 3c894515d6d73a21fde48228853eef38501933ef、GCC 13.3.0 / mGBA 0.10.2で通常思い出し17件とタマゴ技29件の全46件をPASS。新規46プロセス・92 core、キャッシュ0。全ケースで通常保存、新規coreの通常Continue、個体100byte・技・PP・PP Up・解禁フラグ・ハーブを検証。ホスト書込7 APIの実拒否も確認した。
+
+原本175ファイルのZIP（93814 bytes、SHA-256 ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed）、Actions run/jobs/artifactの取得原本、26入力ソースhashを照合し、56 runtime契約テストと24原本改変テストの計80件をPASS。受入先は content/modernization/p08_p03_relearner_acceptance.json、証跡先は content/modernization/p08_relearner_evidence/34446029812/。検査のみのコマンドが証跡内容・mtimeを変更しないことも確認した。本統合は新規mGBA実行0件。
+
+試験開始前の個体・道具・フラグは隔離fixtureであり自然入手の受入ではない。Stage82 ROMは変更0byte、Stage62基準と実プレイsaveは不変。全P03/P05・最終releaseを昇格しない。並行P06/P07の採用状況はこの試験から判定せず別管理とする。既存全index guardのROM/save・過去path違反は残し、今回の差分indexで同じguardをPASS、全体の違反出力が親と変わらないことを確認してcommit/pushする。
+
+Integration run: 34446703839; integration source: 43a9a22fac95538d17a36cc7ced5ace62c80a81a.
+
+
+## 2026-09-10 — USER-MODERNIZATION-P03-P05 / 技忘れ12経路とStage84空き技PP修正
+
+Stage83の通常Bag→わざメモリー→技忘れで、末尾MOVE_NONEのPPが35になる不具合を実再現。Stage84はID 0のcanonical PP 35→0の1byteだけを修正した。実技の全行、P06採用2種3項目、保存ABI、Stage62基準は不変。旧Stage83で同じPP残留を検出する対照1件も通した。
+
+実行HEAD 8846cd86de22af35b41eb358b9ed30e4c825750c、Actions 34459625383、GCC 13.3.0 / mGBA 0.10.2で12経路PASS。4枠削除、PP Up警告拒否、最終確認拒否、画面取消、最後の1技拒否、2フォーム制約、秘伝技削除、Keldeoの姿復帰を、通常保存・新規core Continueまで検証。12新規プロセス・24core・キャッシュ0、ホスト書込7 API拒否、保存後100byte個体一致。準備個体・位置・道具はfixtureなので自然入手の受入ではない。
+
+原本78ファイルのZIP、Actions run/jobs/artifact原本、20入力source hashを照合し、content/modernization/p08_p03_forgetting_acceptance.jsonへ接続。新総括はcontent/modernization/p08_remaining_work.json。旧p08_current_acceptance.jsonはStage81起点の履歴として保持し、現在の残件数には使わない。繁殖8件・容量3件・Mega6+36件・思い出し46件を未着手へ戻さず、P06採用2件を反映する。異なる候補の成功を単一最終候補全体の受入とはしない。
+
+P05の現行facility_modes.csvはFactory/Mirageの20モードで、Circus入場モードは同採用表に無い。表外の入口まで不存在とは断定しない。実際の受付・入場から特性抑制までの検証は未完了。P03のその他の進化・フォーム習得・タマゴ供給・economy正式確定、P06工程受入、P07既存資料照合・採用・実装、単一最終候補と配布判定も残る。
+
+本統合は新規mGBA実行0件。PRはDraftのまま、マージ・配布・プレイ基準変更なし。全体guardの既存ROM/save・過去path違反は未解消であり、差分guardと区別する。通常CIの設定は別の権限付き変更として追加する。
+
+Integration run: 34461845380; source: 5783414f58fcfd1c222e26cd3cc1280eea8d0b2e.
+
+
+## USER-20260910-OWNER-POLICY
+
+殿堂入り後・Bagのわざメモリーから無料を正式採用。publicは所有者の意図した現行設定であり、privateとする過去の説明を訂正。非公開化・既存原本移動は完了条件にしない。料金・公開状態の判断を現在の残件生成に接続し、履歴受入は不変。
+検証: owner-policy 11件、既存remaining-routes 24件、forgetting-evidence 16件、原本照合・task graph・差分検査。ROM変更0、新規mGBA実行0。製品完成、全工程受入、PRマージ、実プレイ基準変更は行わない。
+Source HEAD: `ab85cfb51fbe461f696d6278b4783817639c948f`。Actions run: `34483469582`。
+
+## 2026-09-10T15:04:17.233316+00:00
+
+- Task: PR16 final integration / P06 accepted-original connection
+- Result: Nine pinned Stage84 integration originals revalidated; adopted 2 species / 3 fields, native stat/save success and candidate identity connected. Remaining battle/UI and P03/P05/P07 acceptance are NOT marked done.
+- Preservation: original Stage83 P06 ZIP retained with force-add because the generic ZIP ignore previously omitted it. Patch-bearing Stage84 candidate ZIP stays outside Git; no guard was relaxed.
+
+## 2026-09-11 / PR16-COMPLETION-7-NATIVE-CASES
+
+- Task: USER-MODERNIZATION-P03-P06-P07-P08 / 同じPR #16で実操作受入と現在ビューを接続。
+- Candidate: 635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e、33,554,432 bytes、CRC32 5B8BFB51。ROM変更は今回なし。
+- New native: run 34552826501 進化満杯/取消2件4コア、run 34553503441 Pichu egg440実預入・生成・受取・孵化・保存5件15コア。今回計7プロセス19コア。
+- Preserved: run 34512326368 のP06採用3項目、技メモリー、レベル/進化、7領域を原本再検証。旧実行を今回の件数へ足さない。Stage82対照1件は現候補へ改称しない。
+- P06: 採用2種3項目のslot/stat/save、特性戦闘/対照、Summary表示を工程受入へ接続。未採用194行の調整はしない。
+- P07: 1,073歴史的採用追加と472+27既存保持を区別。新規一律配布・料金・解禁変更なし。
+- Evidence: content/modernization/pr16_completion_evidence の3原本ZIPを実取得・Git追跡。source/run/CRC/SHA/raw-validatorを再確認。原本保持commit b1215b03f03477ca24fe7fcb3efe0474467e5b64。
+- Current view: scripts/pr16_refresh_current_view.py、scripts/pr16_completion_checkpoint.py、docs/PR16_COMPLETION_CHECKPOINT_JA.md。旧Stage84受入JSONを変更せず再生成フックを追加。
+- Remaining: P03フォーム/該当供給、P07残る差分実経路、P05通常取得/実Circus、clean全工程再生成/配布。release_ready=false。
+- Protection: public/無料わざメモリーは承認済みで維持。Stage62、実プレイsave、原本、履歴、公開範囲、PR未マージを維持。
+- Verify: 専用mGBA 2run PASS、原本照合 PASS、両現在ビュー生成と関連否定unitを本workflowで検証。新規native実行と記録再検査を混同しない。
+
+## 2026-09-11 / PR16-P06-CURRENT-MIRROR-20260911
+
+- Task: USER-MODERNIZATION-P06 / verified current-view consistency.
+- Fixed nested p06_adoption.full_phase_accepted to derive from the verified full_p06_acceptance boolean; no historical receipt, ROM, save, adopted scope or release gate changed.
+- Both existing generation entry points, retained originals and targeted unit tests passed in run 34556825622. No new emulator execution is claimed.
+- Preserve public and free move-memory owner policy, Stage62, actual-play saves, existing native successes and unmerged PR #16.
+
+## 2026-09-11 / PR16-PHYSICAL-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / actual native routes and retained originals.
+- New native: Rotom 10 processes / 25 cores (34559437267), Happiny incense 5 / 15 (34558529636), exact unchanged 635fd890 candidate.
+- P06 current mirror fixed and verified in 34556825622; no new P06 native claim.
+- Raw originals + Actions metadata permanently tracked in pr16_physical_route_evidence; current-view hook preserves accepted subroutes across regeneration.
+- Revalidation and target tests: retention run 34560685011. No historical evidence, ROM, actual-play save, Stage62, public/free-memory policy, history or PR merge changed.
+- Remaining: residual P03/P07 consumer inventory, P05 physical acquisition/admission, same-candidate final gates, clean full reconstruction and distribution. Product release remains false.
+
+## 2026-09-11 / PR16-SHARED-ONLY-20260911
+
+- Task: USER-MODERNIZATION-P03-P07 / physical shared-only receiver routes.
+- New native run 34564143971, HEAD 00fb5ccf6009e1f87e5a83b60fda1fde35f157ac: Camerupt 605 and Donphan 549, 16 processes / 32 cores, unchanged candidate 635fd890. Empty slot, all four replacements, three cancels, normal save and fresh Continue.
+- Fixture boundary: initial species/moves, memory item, HOF/DH and location are prepared; no natural acquisition, breeding or full shared-table native claim.
+- Exact original ZIP + Actions metadata tracked; raw validation and both remaining-work regeneration paths checked by retention run 34564919680. Oracle unit 12 and checkpoint/previous target suites are logged there. No new emulator run in retention.
+- Preserved Rotom, Happiny, Pichu, evolution, P06 and historical evidence. No ROM, active Stage62, real save, visibility, owner policy, history or PR merge changes.
+- Receiver audit has complete shared pool reading but unresolved catalogue root/wild header diagnostics; no physical Circus or natural-capture acceptance.
+- Remaining P03/P07 reconciliation, P05 natural acquisition/admission, P08 final integration and full clean reconstruction/distribution; product release remains false.
+
+## 2026-09-11 / PR16-P05-DATA-PASS-VISUAL-REJECTED-20260911
+
+- Task: USER-MODERNIZATION-P05. Physical shop run34568373963 / cd0f07c9: new10 processes20 cores, six stone purchases and four controls; data, BP, inventory, party, normal save and cold Continue PASS. The fixture boundary is explicit.
+- Visual inspection REJECTED: menu and post-close background corruption, including cancel/BP denial; missing-ring control remains intact. Keep raw PASS but never promote it to UI/P05 acceptance.
+- Root diagnostic run34567225043: 5334 decoded roots, 6 invalid roots, 1 unknown command, wild header139 unresolved; two rooted species411 candidates are not capture/admission acceptance.
+- Exact originals, Actions origin, raw validators, screenshot identities, scoped receipt and both current-view generators validated by retention run 34569452500. Target tests are in its unit.log. No emulator rerun in retention.
+- No candidate ROM, Stage62, real save, owner/public policy, historical original or PR merge changed. Keep prior Rotom/Happiny/shared/P06 successes. Product unfinished; display repair and natural acquisition/battle/admission remain.
+
+## 2026-09-11 / PR16-SHOP-DISPLAY-REPAIRED-20260911
+
+- USER-MODERNIZATION: fixed list-content tiles overlapping world tilemaps and frame tiles. Only top=1 and content base=1 are changed in a separately compiled renderer layer; original sources and parent remain untouched.
+- Exact successor e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267, 33554432 bytes, CRC BFB089F9. Independent repair builds2 and both BPS round trips, NOT full clean product generation.
+- Native run34571394609 / d33ce3a7: repaired11 processes22 cores, 9 pages, six purchases/five controls, normal save/cold Continue, 6144-byte world maps compared96 times with zero differences and no overlapping list layout. Separate original3 processes6 cores reproduce corruption. Reviewed native pixels are pinned.
+- Rejected top-only experiment run34569993409 remains rejected, original first shop data pass/visual fail run34568373963 is unchanged. Never add controls/probes to repaired success count.
+- Retention run 34572398777: exact ZIPs/Actions/source/raw/graphics validated, historical receipts and both current generators preserved, 84 target tests. Shop successor is scoped; full P03/P05/P07/release stay false.
+- Natural capture-to-battle, Circus actual admission, remaining supply coverage and full final integration/distribution remain. Stage62, real save, prior successes, P06 mirrors, visibility/owner policy and unmerged PR remain protected.
+
+## 2026-09-11 / PR16-NATURAL-CAPTURE-20260911
+
+- USER-MODERNIZATION: native walking/capture/cold-save run34575955233 at 68f94596; 2 processes4 cores on unchanged e630f7f1 shop successor. Cave113:313 steps/15 encounters/Lv80; cave118:202 steps/9 encounters/Lv99. Exact first native land tables and captured personality checked; physical Bag/ball, inventory, party200 bytes, normal save and independent Continue. Seven host-write barriers tested.
+- Initial map/lead/Master Ball are explicit fixtures. Gear acquisition/battle connection/full P05/release remain false. No target/RNG injection. Geometry run34575014339 is static0 emulator runs, not additional native acceptance.
+- Retention run 34576811814: exact originals, Actions, source, raw exits and12 reviewed images retained;106 targeted tests and both current generators. P06 true mirrors, old shop/P03/P07 originals, Stage62, real saves, owner policy/public and unmerged PR preserved.
+
+## 2026-09-11 / PR16-CAPTURED-BATTLE-20260911
+
+- USER-MODERNIZATION: new run34577360374 / 1c8b61e9, 2 processes6 cores on unchanged e630f7f1. Natural capture/ordinary save/cold Continue, next real walking encounter, physical party switch, captured identity/native ability/all moves and PP, native turn PP15-to14, Run, second ordinary save and third-core byte-identical Continue. No target/RNG/gear injection after the7 write barriers.
+- Capture-only run34575955233 remains a distinct2-process4-core historical original, not relabelled or added to the6 new cores. Initial map/lead/ball are fixtures. Actual gear acquisition/equipment-to-battle and Circus admission remain; full P03/P05/P07/release false.
+- Retention run 34578321065: immutable ZIP/Actions/generated controller32 source files/raw process/24 images verified;125 targeted tests and both current generators. Stage62/real saves/prior originals/P06 mirrors/public and free Move Memory decisions/unmerged PR preserved.
+
+## 2026-09-11 USER-MODERNIZATION gear controller refinement / run 34585668795
+
+Fixed undefined enemy-level stride in commit 3c199d8e. Run 34585139774 compiled and reached actual purchase/Give but rejected live Quest Log recording (quest=1, action state=2). Repair only the gear-specific idle predicate; reject playback and all unknown pairs. Compile and execute the actual C predicate against all 65,536 byte pairs; 50 targeted tests pass. No host-state clearing, ROM modification, baseline/save/visibility/history change or release claim. Native rerun is a separate pending gate.
+
+## 2026-09-11 / USER-MODERNIZATION gear policy boundary / run 34587056078
+
+Run34585692527 reached native purchase/Give/cold Continue/natural grass. Two denied-policy controls reached third-core Save; active failed because NEXT-battle policy is volatile. Schema2 now distinguishes 3 same-session cases (2 cores each) from cold-policy-reset denial (3 cores). No post-barrier policy injection or ROM change. Exact before/after source hashes and51 targeted tests pass. Patch-transport runs34586543126 and34586731607 changed no controller and ran no emulator; replaced their transport with tested exact-source edits. Native acceptance remains pending; retain old successes and original candidate. No Stage62, real save, visibility, history or release/merge changes.
+
+## 2026-09-11 / PR16-PURCHASED-GEAR-CHECKPOINT-20260911
+
+- USER-MODERNIZATION: retain native run34589284710 / 4b597117, four processes nine cores on unchanged e630f7f1. Physical shop purchase, Give, native walking encounter, live Mega/no-toggle/cancel and cold-policy-reset control, native turn, reversion, two manual saves and fresh-core Continue. Initial map/party/ring/BP/mode remain explicit fixtures; no post-barrier injection.
+- Six exact original ZIPs and Actions metadata retained. Prior success34587080329 remains separate. Historical static, failed and prior successful runs are not relabelled or added to successor counts. Actual generated controller,37 sources,58 images,4 screen manifests and raw process output verified. New checkpoint/current-view tests and both existing regeneration paths checked. Retention itself runs zero emulators.
+- P06/P07 prior adoption, captured-battle, shop and physical-route successes retained. Ring/BP/configured-mode supply, Circus, remaining P03/P07 routes and final reproduction/distribution remain. No ROM/save/baseline/visibility/history changes; PR unmerged.
+
+## USER-MODERNIZATION-GEAR-SCREENS-34589284710
+
+Task: USER-MODERNIZATION
+Integrated the previously unreflected non-destructive output and screenshot helper into the existing purchased-gear runner. Native run 34589284710 at 4b5971179795bcdbbca1abf142387ef1bb6f1ce9 passed 65 targeted tests and 4 processes/9 cores. Verified 37 source bindings, generated controller, native raw outputs, 53 mandatory screen sidecars and all 58 visually reviewed originals. Retention run 34590361198 revalidated the pinned original and 11 rejection tests without starting an emulator. Original SHA256 6eba3f6c0947af2e2cb446552cc37ccf832665a8ac849a80e2f45bca986e6de9. No ROM/save included in this new ZIP. Full P05 and release remain false; ring/BP/initial party/policy are fixtures. Old runs are not added to these counts. See docs/PR16_GEAR_SCREEN_CHECKPOINT_JA.md.
+
+## 2026-09-12 — USER-MODERNIZATION PR #16 native FORM menu scan
+
+- Replaced the rejected embedded-payload workflow with three normalized tracked patches after exact Git-blob preimage and patch-digest verification.
+- Applied bounded, input-only native FORM menu discovery to the controller, receipt parser, and focused tests.
+- Passed Python compilation, the complete test_pr16_generic_form_carry.py unit file, and git diff --check in Actions run 34669671377.
+- The audit-provided source SHA-256 preimages did not match the unchanged branch blobs; authoritative Git blob IDs were used instead and the observed SHA-256 values were printed in the run log.
+- The earlier bridge run 34669355733 reached patch READY but could not commit because guard_private_files.py reports pre-existing repository-wide tracked ROM/BPS and machine-path findings unrelated to these three source files.
+- This checkpoint closes patch application only; real-ROM generic acceptance and all later fixed-form/P05/Circus/P08/release work remain open.
+
+## 2026-09-12 / PR16-GENERIC-FORM-NATIVE-ACCEPTANCE
+
+- Native acceptance run `34675976411`, job `103505793891`, tested HEAD `92db3605070c65206696b03f8ab6bd596ae7d729` passed on unchanged parent candidate `635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e`.
+- Two acceptance processes / five fresh cores completed: Shaymin Land→Sky→Land four-slot roundtrip and party-picker cancellation. Both found form index 43 by native input-only bounded discovery at page 1 / cursor 1 after seven probes across two pages, then completed normal Save and fresh Continue.
+- Four moves `[98,235,552,33]`, PP `[11,3,4,7]`, PP bonus byte, individual identity and nonselected party data were preserved. Seven post-observation host-write guards failed closed as required.
+- Fourteen entry probes remain diagnostic-only and are not counted as acceptance. The representative closes the shared 61-route generic owner contract; it does not claim 61 individually executed rows.
+- Exact artifact `10292791318`, 372130 bytes, SHA-256 `f5d41c58ae1be0303dd7157d08bcee77ecd5018cbbc11e4cc4d30b1a9635914b`, Actions metadata, raw outputs, 44 rendered witnesses and tested source snapshot are retained by `pr16_generic_form_checkpoint.py` with zero verifier emulator runs.
+- `P03_GENERIC_FORM_CHANGE_CARRY_PHYSICAL` is closed on the parent candidate. `P03_FIXED_FORM_TRANSITION_PHYSICAL`, full P03, P08 successor transfer, clean-ROM regeneration and release remain open. No ROM/save/baseline/visibility/history/merge state changed.
+
+## 2026-09-12T12:48:43.962326+00:00
+- Task: USER-MODERNIZATION / fixed-form正式5ケース初回実行と原本保持
+- Status: STOPPED（正式gapは未完。次のcontroller修正へ継続）
+- Summary: run 34694218218 / job 103554787890でC strict compileと7 write barrierをPASS、5 processを実行。Necrozma取消は両行・party bytes不変・save counter 2→2をPASS。Necrozma 2形態は専用技解決、Crowned 2種は技実行後のaction controller境界でFAIL。
+- Files changed: fixed_form_acceptanceのC／Python／tests、acceptance JSON／receipt、原本ZIP／Actions記録。
+- Verify: source-only 14 tests PASS。controller修正後の実ROMはまだ未実行。
+- Commit: この追記を含むcheckpoint commit。受入実行HEAD a9ec7ab9d93d8013139698242802826278aaf667。
+- Network: GitHub Actions artifact APIのみ。原本SHA-256 45fbc581ec17cf7e0504d2c8d3150072e44a9099e4deed04da759d8b3a6328c7。
+- 再開: 複製runを避け、--caseで失敗経路だけ実行。generic FORM／P07／active baselineは不変。release-ready=false。
+
+## 2026-09-12T13:05:44.342966+00:00
+- Task: USER-MODERNIZATION / fixed-form owner and native live-field checkpoint
+- Status: STOPPED（fixed gap未閉鎖・継続）
+- Summary: run34694785866の4失敗原本とrun34695030927の静的owner原本をdigest付き保持。Crownedは専用技PP5→4・勝利・field復帰まで実測。ライブ記録(quest1,playback2)をhostで消さずnative Bag/歩行へ渡すcontroller修正。
+- Important: NecrozmaのPhoton自動置換・復帰想定はpinned native ownerと不一致。実ownerは全4枠時の選択UI、解除時は専用技削除・圧縮。古い想定を満たすROM改変をしない。
+- Verify: focused14 tests PASS。修正Cの実ROMは次のCrowned2ケースで検証。
+- Files changed: controller, owner findings, exact ZIP/Actions/checkpoint, logs.
+- Commit: この追記を含むcommit。原本HEAD54625b020731f68d72643b65e60cbb91c2f0524e／2bb937f7c2c1bedf29531f70b88d59163f349c65。
+- Network: GitHub Actions API。新規emulator0、このcheckpointで既存成功を再実行しない。active baseline/release不変。
+
+## 2026-09-12T13:24:49.020414+00:00
+- Task: USER-MODERNIZATION / Crowned正式2ケース完了・原本Git収録修正
+- Status: PASS（限定2ケース。fixed gap全体は3/5で未完）
+- Summary: run34695512247/job103558198010でZacian/Zamazenta両方、正しい装備→自然歩行戦闘→Crowned/project move→PP5→4→勝利→base/Iron Head405復帰→native Bagで装備置換→次戦base/Iron Head→逃走→通常Save2→3→core破棄→fresh Continue・100bytes一致をPASS。
+- Retention correction: 以前のdirectory git-addはignore対象ZIPを収録せず、JSONだけが収録されていた。run34695874241はこの欠落を検知しFAIL。3原本を同一digestで再取得し、今回4原本のexact pathだけforce-add、Git indexとHEADからbyte一致まで確認する。以前の原本保持との記述はこの追記で訂正。
+- Verify: strict C compile、7 write guard、focused14 tests、2process/4fresh cores。原本ZIP854855bytes SHA2560d31881c45e05e9aa4b3c122663ce3bfd7605ff4287299a602c48232dc893cc8。
+- Files changed: scanned original ZIP4件、Crowned Actions/receipt/checkpoint、canonical fixed acceptance JSON、run/version logs。
+- Commit: この追記を含むcommit。native実行HEAD952b9fb2e2ee8b5951214eda7a7847c4ca1092d5。
+- Network: GitHub Actions API。原本移送は新規emulator runではない。
+- Next: Necrozma2経路のnative fusion owner。Crowned成功・取消成功・generic FORM・P07は無条件再実行しない。active baseline/release-ready=falseを維持。
+
+## 2026-09-12T13:33:37.608213+00:00
+- Task: USER-MODERNIZATION / Necrozma native fusion controller
+- Status: IMPLEMENTED_NATIVE_NOT_RUN
+- Summary: 既存Crowned/取消controllerをそのまま埋め込み、Necrozma2ケースだけをN-Solarizer697/N-Lunarizer698→手持ち相方1189/1190→4枠技選択→保存/Continue→解除/専用技削除/圧縮→保存/Continueの別controllerへ接続。Photon733を選んで忘れた後に自動復元されるという旧誤想定は拒否。FORM行選択の実行とは明示的に区別。
+- Verify: 17 focused source-only tests PASS、既存4原本のGit HEAD bytes/digest一致。新Cの実compile/nativeは次の明示的Necrozma2ケースrunで検証。
+- Files changed: fusion C、Python validator、tests。既存native workflowは変更せず、.github/pr16-fixed-form-run.jsonの明示更新で起動。
+- Commit: この追記を含むcommit。固定ROM e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267 は変更なし。
+- Network: checkoutのみ。新規emulator0。Crowned成功と取消成功を再実行しない。
+- Prior attempt: run34696667882はsource/checks成功後、botのworkflow更新pushだけが拒否されcommit未反映。今回はsource-onlyに限定し、workflow権限を持つGitHub connectorとbotを混同しない。
+- Next: .github/pr16-fixed-form-run.jsonをNecrozma2ケースへ更新し1回実行、raw originalを判定。3/5という現行受入は変更せずP03 gap/release-ready=false。
+
+## 2026-09-12T13:38:59.809644+00:00
+- Task: USER-MODERNIZATION / fixed fusion manifest preflight correction and probe preservation
+- Status: SOURCE_PREFLIGHT_FIXED_NATIVE_PENDING
+- Summary: run34696793115はspecies manifestがdpe_symbolなのにcfru_symbolを参照してsetupで停止。新規native processは0。実manifestsを直接検査する18番目のunit testを追加し、CFRU item/DPE species別列へ修正。nativeCは未実行であり合格扱いしない。
+- Evidence: 初期diagnostic run34681725548（expiry2026-10-12T07:50:56Z）と今回preflight失敗原本をSHA/Actions/ソース付き保持。既存追跡ZIPをdigestで照合して重複保存しない。force-add後Git index byte一致確認。
+- Verify: 18 focused tests PASS、既存4原本HEAD一致。P03現行3/5、native gap/release false。
+- Files changed: Python/test、2runの原本/Actions/checkpoint、probe_retention、logs。
+- Commit: この追記を含むcommit。active baseline/ROM/旧成功は変更なし。
+- Next: 同じ2Necrozmaケースを正しいpreflight後に初回native実行。Crowned/取消/generic FORM/P07を再実行しない。
+
+## 2026-09-12T13:51:06.072184+00:00
+- Task: USER-MODERNIZATION / native Necrozma post-Summary controller
+- Status: FAIL_RETAINED_CONTROLLER_CORRECTED_NATIVE_PENDING
+- Summary: run34697100492/job103562346678でstrictC、7writeguards、native2processを実行。Nアイテム使用→Necrozma/相方選択→固有フォーム→4枠技選択を実測。選択後の1、2、ポカン表示（cb0811CF35/task0811D259）をcontrollerが送らず停止。Bでnative文字送りを追加し、実選択cursor/画像を記録する。
+- Verify: 18 unit tests PASS、旧4原本HEAD一致、新失敗ZIP978963bytes SHA2568d2e0461baec89b8082ce8af7715efd38e7c4c07525931f4d26381e06100d2a6をGit index byte一致確認。source ZIP全員を実行HEADのGit objectへ照合。
+- Files changed: fusionC、原本/Actions/checkpoint/latest_execution、logs。
+- Commit: この追記を含むcommit。原本実行HEADc38d5dae3ac1c73d65b891e5b2f525267caa7b2d。
+- Counts: これまでnative13attempts=5+4+2+2。別のpreflight失敗は0、static/retentionは0。受入は3/5のまま。
+- Next: 修正後のNecrozma2ケースだけ再実行。通常Save/freshContinueはまだ未受入。Crowned/取消/generic/P07やROM/active baselineを変更しない。
+
+## 2026-09-12T14:00:43.041743+00:00
+- Task: USER-MODERNIZATION / Necrozma signature and first Save/Continue boundary
+- Status: PARTIAL_NATIVE_PROGRESS_NOT_ACCEPTANCE
+- Summary: run34697599454/job103563652761で両形態の実slot1選択、固有技690/669、PP5、bonus229→225、通常Save2→3、core破棄/freshContinue・200partybytes一致を実測。解除でbase1198、技98/235/33/0・PP11/3/7/0・bonus57まで復帰。field count cache2のため終端判定はFAIL。
+- Next controller: native復帰直後に相方100bytesを正本fixtureと比較し、さらに実Start→Pokemonで3体表示/再計数と300bytes不変を検査してから2回目Save/Continueへ進む。hostでcountを書き換えず、相方不在なら引続きFAIL。cached count仮説を製品修正と混同しない。
+- Verify: 18 acceptance unit tests +8 raw-original/checkpoint tests PASS。新ZIP1025638bytes SHA256811eb51b5c1668e553fc47415ce4a6d9fcfc228e705e993870785ddb173757eb、全sourceを実行Git commitへ照合、Git index byte一致。
+- Files changed: fusionC/Python/tests、raw evidence/latest execution、logs。
+- Commit: この追記を含むcommit。実行HEADf2f44b973dce839c56d8abf8240d12cf9f9da5bd。
+- Counts: native15attempts=5+4+2+2+2。単なる原本検証/静的検証/移送は0。正式3/5・P03gap/release false、ROM/active baseline不変。
+
+
+## USER-MODERNIZATION: fixed-form five-case closeout / 2026-09-12
+
+既存HEAD a552361aのnative run34698120000がNecrozma2ケースで成功していたため再実行せず回収。Nアイテム→相方→実4枠選択→専用技→Save/新コアContinue→解除/技枠圧縮→相方100bytes一致→実Pokemonメニュー→2回目Save/新コアContinueを原本照合。FORM取消run34694218218とCrowned2ケースrun34695512247を合わせ5成功process/11cores。原本失敗4件は削除・成功への再分類をしない。新規emulator実行0。ZIP/receipt/source/Actions/process/write-barrierを照合し、Git index/HEADの原本byte一致を別検査。P03固定フォームphysical gapだけ閉鎖。P05供給3件/Circus/P08最終SHA移送/clean-ROM配布は未完。full_p03_acceptance/release_ready/active_baseline_changed=false。詳細: docs/PR16_FIXED_FORM_CLOSEOUT_20260912_JA.md
+
+
+## USER-MODERNIZATION: inherited private-guard boundary / 2026-09-12
+
+最初のcloseout run34699976579は14 tests、原本/Git source/index照合までPASSしたが、全体private guardで停止しpush0。既存HEADのROM/save3件、BPS入り旧証拠ZIP2件、machine-path入り旧文書の既存違反であり、原本は勝手に削除・書換えしない。baselineと最終indexのguard出力/終了コードが完全一致すること、今回変更pathには新規違反0であることを別検査する。全体guardが緑になったとは主張せず、RELEASE_DECISIONの既存阻害要因として保持。guard_boundary.jsonを参照。新規emulator実行0。
+
+
+## USER-MODERNIZATION: P05 supply owner / false Circus F0 / 2026-09-12
+
+run34701044310/job103572747344成功。7 source-only tests、exact e630f7f候補、66 source memberを照合。Ringはwork-var macroも検索したがreachable一致はmap98/69のremoveitem580のみ。未発見は不存在証明ではない。BP入口はmap96/5 local2(20,19)、3勝/基本9BPに後発reward wrapperが接続。map12/7 counts3,3,116,108/coord pointer08000000からcoord18がheader0800012Cを読み、back sprite table0954ECC4へ誤到達。旧unknown F0はrecord3画像pointer086C97F0の下位byte。新opcode実装不要。map12/7をCircusと同定しない。raw403Aはbuild_battle_coreでVegaFacilityStateGetへ変換済み。実受付はbattle-local number3から追う。原本ZIP/Actions/source/Git HEADをdigest照合・保存。共有decoder/ROM変更0、emulator実行0、physical gap閉鎖0。fixed-form5ケース/generic FORM/P07の完了を保持。詳細 content/modernization/pr16_p05_supply_owner_findings.json / content/modernization/pr16_p05_supply_owner_receipt.json。
+
+
+## USER-MODERNIZATION: first native BP reception control / 2026-09-12
+
+run34702872369はCodex wrapperの前処理契約で停止、emulator0。原本failureのまま保存。修正後run34703571879/job103579472279はnative Codexいいえ→Factory受付tier→B取消に成功。新規1process/1core/492frames。party600bytes・Bag・BP0・Savecounter2→2不変、7host-write禁止と10source tests、4画面を照合。残るrental caseを無駄に実行しない: Trial delegate092CF790は同じconfigのcompletion hook092CF791-1で、受付ではない。positive BP獲得・勝敗・繰返し・通常Save/Continue・獲得BP実消費は未受入。physical gap4件を保持。原本2ZIP/Actions/67native source/生成C/receipt/stdout/stderrをdigestと実行HEADへbinding、Git index/HEAD読戻しで恒久保存。今回checkpointによる新規emulator実行0。P03固定5ケース/generic FORM/P07は再実行しない。content/modernization/pr16_bp_native_controls_acceptance.json を参照。
+
+
+## USER-MODERNIZATION: native supply handoff and ownership CI correction / 2026-09-12
+
+fixed-form正式5ケースの閉鎖に対し、forgetting側の旧ownershipテストだけがP03未完状態を要求していた。run34704254858はruntime契約24PASS、証拠20件中1FAILで、技忘却nativeの再発ではない。commit2d82b2aはその4行だけを5ケース正本/候補SHA/gap閉鎖/P08移送未完を要求する20行へ置換。修正run34704480513とpush run34704478309は成功。原本確認は24+20=44 source tests PASS、忘却12ケース/12保存Continueを再検証、新規emulator0。前後CI原本を別ZIPとして保持。P03/generic FORM/P07を再オープンせず、既存native成功を再実行しない。この作業束で新規nativeはBP受付取消1process/1coreだけ。positive BP獲得/通常保存Continueは未受入。残るphysical gap4件とP08ゲート2件、Trial誤delegate092CF790、Circus旧F0=sprite pointerを正本へ同期。ROM変更0、release_ready/active_baseline_changed=false、既存global private guard違反は残す。content/modernization/pr16_native_supply_handoff.json と docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md を参照。
+
+
+## USER-MODERNIZATION: BP Trial successor checkpoint / 2026-09-13
+
+親e630のTrial goto operand 0x093C93C1を90f72c09からa4d43809へ変更。旧物理受付wrapper0x0938D4A4を維持し、完了script0x092CF790への誤接続を解消。successor df8a15c3b464854ca84a5c0533177cfa3187b5eef252d20248f7654edb72887c / 33554432 bytes / CRC5283EC5F。4byte宣言範囲中3byteのみ変更。静的run34707830538成功、先行失敗34707390052/34707616730も原本保持。新規native run34708218707は24tests/7write guardsを通り、実受付→6レンタル/snapshotまで到達したがChooser前で失敗。12615frames、BP0/save2、Save/保存後Continue未実行。成功へ昇格しない。今回原本内native新規1、証拠移送での新規実行0。静的receiptの閉じる前のstdout/stderr不一致2件を隠さず、最終artifact-membersと外側ZIP digestで最終bytesを検証。正式physical gap4/P08 gate2、P03/P07受入とactive baselineは維持。content/modernization/pr16_bp_trial_receipt.json と docs/PR16_BP_TRIAL_RESUME_20260913_JA.md を再開正本とする。
+
+
+## 2026-09-13 JST — USER-20260913-BP-CHOOSER-ACCEPTANCE
+
+Task: USER-20260913-BP-CHOOSER
+Result: DONE_SCOPED_RENTAL_CANCEL; BP_EARNING_PENDING / physical4 + P08 gates2
+
+実ROM special0x2F=null + waitstate停止を0x29 chooserへ1-byte修正。旧失敗2件/静的binding1件/新規取消SaveContinue1件を原本のまま保持（開始前失敗1件を含む）。新規native2process、成功1case/2fresh cores。元party600/count/BP/Bag復元、Save2→3、cold Continue成功。source60tests、7writebarriers、ZIP/全member/生成C/各sourceとGit HEADの一致、9画面目視、原本Git保持、task graph、変更範囲private guardを検査。台帳再調停はemulator0。
+
+Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f01149dfd6848623466fadf611a6599d1f22e1ca / run34733866168 / job103661602964。詳細: content/modernization/pr16_bp_chooser_checkpoint.json / docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md。PR本文更新拒否は未解決として明記。fixed-form5件と全旧成功/失敗を保持。merge/baseline/release変更なし。次: 実3体選択/戦闘/9BP/負例/繰返し/獲得BP消費、Ring/policy/Circus、P08。

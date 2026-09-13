@@ -1,0 +1,57 @@
+{
+  "command_argument_count": 97,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "bc54a54c04e3bc5eab2084a45c6e69d8fb02ad688d288355e08bd3f9a86a3665",
+    "executable_size": 51880,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "p03",
+  "input_rom": {
+    "path": ".local/stage81-native-pp/candidate.gba",
+    "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+    "size": 33554432
+  },
+  "plan_fingerprint": "d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f",
+  "runner": {
+    "path": "tools/mgba_modernization_stage79_p03_smoke.c",
+    "sha256": "8b3c5b9f4e5997518569f928aebd480d9496963333ba6a1eea920b464db1545e",
+    "size": 24367
+  },
+  "runner_result": {
+    "artifacts_written": [],
+    "breeding_e2e": false,
+    "checks": {
+      "all_known_terminal_mode_reset_source_pinned": true,
+      "stage67_level_evolution_tutor_egg": true,
+      "stage73_exact_alias_shared_egg_reminder_rotom": true,
+      "stage74_machine_tutor_paging_cancel_failure_capacity": true,
+      "stage75_species1670_egg_evolution_route_owner": true
+    },
+    "classification": "LATEST_CUMULATIVE_P03_REPRESENTATIVE_DIRECT_CALL",
+    "full_p03_acceptance": false,
+    "process_runs": 1,
+    "read_only": true,
+    "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+    "save_reload_e2e": false,
+    "scheduler_e2e": false,
+    "schema_version": 1,
+    "status": "PASS",
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

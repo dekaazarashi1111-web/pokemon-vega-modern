@@ -1,0 +1,171 @@
+name: Bind P05 native supply gaps to source and evidence
+run-name: Bind P05 native supply gaps to source and evidence
+
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_p05_native_supply_evidence_map.py
+      - tests/test_pr16_p05_native_supply_evidence_map.py
+      - .github/workflows/pr16-p05-native-supply-evidence-map.yml
+      - content/modernization/pr16_p05_native_supply_reconciliation.json
+      - content/modernization/pr16_purchased_gear_acceptance.json
+      - content/modernization/pr16_p05_route_acceptance.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: pr16-p05-native-supply-recorders
+  cancel-in-progress: false
+
+jobs:
+  bind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/modernization-followup-20260908
+          fetch-depth: 0
+
+      - name: Generate source and evidence bindings
+        run: python3 scripts/pr16_p05_native_supply_evidence_map.py --write --print
+
+      - name: Run focused tests
+        run: python3 scripts/run_module_tests.py tests/test_pr16_p05_native_supply_evidence_map.py
+
+      - name: Validate output and allowed diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m json.tool content/modernization/pr16_p05_native_supply_evidence_map.json >/dev/null
+          python3 -m json.tool content/modernization/p08_remaining_work.json >/dev/null
+          git diff --check
+          mapfile -t changed < <(git diff --name-only)
+          allowed=(
+            content/modernization/pr16_p05_native_supply_evidence_map.json
+            content/modernization/p08_remaining_work.json
+            docs/PR16_P05_NATIVE_SUPPLY_EVIDENCE_MAP_CHECKPOINT_JA.md
+          )
+          for path in "${changed[@]}"; do
+            ok=false
+            for candidate in "${allowed[@]}"; do
+              [[ "$path" == "$candidate" ]] && ok=true
+            done
+            $ok || { echo "unexpected generated change: $path" >&2; exit 1; }
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('content/modernization/pr16_p05_native_supply_evidence_map.json').read_text())
+          assert data['status']=='PASS_SOURCE_EVIDENCE_BINDING_NOT_NATIVE_ACCEPTANCE'
+          assert data['source_evidence_binding_complete'] is True
+          assert data['physical_acceptance_complete'] is False
+          assert data['emulator_runs_by_this_checkpoint']==0
+          assert len(data['bindings'])==3
+          for row in data['bindings'].values():
+              assert row['preferred_entry_candidate']['path']
+              assert row['preferred_entry_candidate']['line']>=1
+              assert row['physical_acceptance_complete'] is False
+          PY
+
+      - name: Write receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,subprocess
+          from pathlib import Path
+          paths=[
+            'content/modernization/pr16_p05_native_supply_evidence_map.json',
+            'content/modernization/p08_remaining_work.json',
+            'docs/PR16_P05_NATIVE_SUPPLY_EVIDENCE_MAP_CHECKPOINT_JA.md',
+            'scripts/pr16_p05_native_supply_evidence_map.py',
+            'tests/test_pr16_p05_native_supply_evidence_map.py',
+            '.github/workflows/pr16-p05-native-supply-evidence-map.yml',
+          ]
+          rows={}
+          for name in paths:
+              raw=Path(name).read_bytes()
+              rows[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          report=json.loads(Path('content/modernization/pr16_p05_native_supply_evidence_map.json').read_text())
+          receipt={
+              'schema_version':1,
+              'status':'PASS_SOURCE_EVIDENCE_BINDING_NOT_NATIVE_ACCEPTANCE',
+              'tested_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+              'emulator_runs':0,
+              'selected_entrypoints':{
+                  gap:{
+                      'path':binding['preferred_entry_candidate']['path'],
+                      'line':binding['preferred_entry_candidate']['line'],
+                      'scope':binding['preferred_entry_candidate']['scope'],
+                  }
+                  for gap,binding in report['bindings'].items()
+              },
+              'files':rows,
+          }
+          Path('/tmp/pr16-p05-native-supply-evidence-map-receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Commit generated checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'source/evidence map already current'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            content/modernization/pr16_p05_native_supply_evidence_map.json \
+            content/modernization/p08_remaining_work.json \
+            docs/PR16_P05_NATIVE_SUPPLY_EVIDENCE_MAP_CHECKPOINT_JA.md
+          git commit -m 'USER-MODERNIZATION: bind finite P05 supply entrypoints'
+          git push origin HEAD:codex/modernization-followup-20260908
+
+      - name: Publish or update PR checkpoint comment
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          marker='<!-- pr16-p05-native-supply-evidence-map -->'
+          head=$(git rev-parse HEAD)
+          python3 - <<'PY' >/tmp/pr16-p05-map-body.md
+          import json
+          from pathlib import Path
+          data=json.loads(Path('content/modernization/pr16_p05_native_supply_evidence_map.json').read_text())
+          print('<!-- pr16-p05-native-supply-evidence-map -->')
+          print('## P05 通常供給 source/evidence 対応checkpoint')
+          print()
+          print('- 静的source/evidence binding: **PASS**')
+          print('- emulator runs: **0**（通常プレイ受入はまだ未完了）')
+          print('- 購入石→装備→自然戦闘→保存成功は保持')
+          print()
+          for gap,binding in data['bindings'].items():
+              root=binding['preferred_entry_candidate']
+              print(f"- `{gap}` → `{root['path']}:{root['line']}` / scope `{root['scope']}` / fixture-only `{str(root['fixture_only']).lower()}`")
+          print()
+          print('次はこの3 entrypointから専用native runnerを作る。Circusは別残件のまま。')
+          PY
+          printf '\nHEAD: `%s`\n' "$head" >>/tmp/pr16-p05-map-body.md
+          body=$(cat /tmp/pr16-p05-map-body.md)
+          id=$(gh api repos/${{ github.repository }}/issues/16/comments --paginate --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)
+          if [[ -n "$id" ]]; then
+            gh api --method PATCH repos/${{ github.repository }}/issues/comments/$id -f body="$body" >/dev/null
+          else
+            gh api --method POST repos/${{ github.repository }}/issues/16/comments -f body="$body" >/dev/null
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-p05-native-supply-evidence-map-receipt
+          path: /tmp/pr16-p05-native-supply-evidence-map-receipt.json
+          if-no-files-found: error
+          retention-days: 30

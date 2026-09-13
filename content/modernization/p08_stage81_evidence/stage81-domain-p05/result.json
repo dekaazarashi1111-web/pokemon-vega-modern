@@ -1,0 +1,75 @@
+{
+  "command_argument_count": 170,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "f1a94540f290b119d758a9c3db47a48769259bca734c4ece482ff4eb4cd37842",
+    "executable_size": 68608,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "p05",
+  "input_rom": {
+    "path": ".local/stage81-native-pp/candidate.gba",
+    "sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+    "size": 33554432
+  },
+  "plan_fingerprint": "d14bd2f9d5629321e5f134c7c6a6b1f7b9aae7488d9f4d18fe12551d48f9391f",
+  "runner": {
+    "path": "tools/mgba_modernization_stage79_p05_runtime_smoke.c",
+    "sha256": "682c9c63384f555d6c72e25d0a7f9b7c2a3a789c6e2b856974d355e86f6f3091",
+    "size": 63261
+  },
+  "runner_result": {
+    "ability_surface_occurrence_count": 33,
+    "artifacts_written": [],
+    "circus_original_delegations": 29,
+    "classification": "STAGE78_P05_RUNTIME_DIRECT_CALL",
+    "direct_call_instructions": 9057,
+    "direct_calls": 71,
+    "dispatcher_count": 29,
+    "dispatcher_instructions": 1738,
+    "dispatcher_observations": 203,
+    "eelevate_active_helper_pass": true,
+    "eelevate_active_hook_observations": 13,
+    "eelevate_active_hook_route_pass": true,
+    "eelevate_matrix_case_count": 32,
+    "eelevate_matrix_observations": 32,
+    "eelevate_matrix_sha256": "3b0ce8e8a5fa75857971b59091f2a95d73ec5597d90be4756eb9e3717e8383ed",
+    "eelevate_party_helper_pass": true,
+    "eelevate_party_hook_observations": 13,
+    "eelevate_party_hook_route_pass": true,
+    "eelevate_pure_helper_pass": true,
+    "eelevate_register_continuation_abi_pass": true,
+    "eelevate_stub_calls_observed": 246,
+    "eelevate_switch_ai_done": true,
+    "fifth_stack_argument_observations": 21,
+    "fifth_stack_arguments_preserved": true,
+    "full_p05_acceptance": false,
+    "normal_delegations": 29,
+    "predicate_truth_table_pass": true,
+    "read_only": true,
+    "rom_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+    "scheduler_e2e": false,
+    "schema_version": 1,
+    "stage76_helpers_preserved": true,
+    "stage76_megasol_production_dispatch_pass": true,
+    "stage76_suppression_link_count": 3,
+    "status": "PASS",
+    "suppression_paths_pass": true,
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

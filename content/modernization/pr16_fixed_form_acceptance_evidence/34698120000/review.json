@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "PASS_TWO_NECROZMA_CASES_REVALIDATED_PENDING_DURABLE_AGGREGATION",
+  "task": "USER-MODERNIZATION",
+  "reviewed_head": "a552361a250ff1a01afb4f328c5bfef8a329775e",
+  "run_id": 34698120000,
+  "job_id": 103565021381,
+  "artifact_id": 10299506555,
+  "actions_conclusion": "success",
+  "artifact": {
+    "size": 1055169,
+    "sha256": "3a2b3faa1ef98e2ddfde2ca1ef32bbcdc90e92469e53b6016d9700a286344c64",
+    "expires_at": "2026-12-11T14:02:42Z"
+  },
+  "candidate": {
+    "sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+    "size": 33554432,
+    "crc32": "BFB089F9"
+  },
+  "revalidated_cases": [
+    "necrozma-dusk-mane-four-slot-roundtrip",
+    "necrozma-dawn-wings-four-slot-roundtrip"
+  ],
+  "case_processes_in_original_run": 2,
+  "fresh_cores_in_original_run": 6,
+  "manual_saves_per_case": 2,
+  "save_counter_per_case": [2, 4],
+  "new_emulator_runs_during_review": 0,
+  "source_only_tests_passed": 18,
+  "receipt_members_rehashed": true,
+  "source_snapshot_members_rehashed": true,
+  "stdout_stderr_process_revalidated": true,
+  "native_entry": "N-Solarizer697 or N-Lunarizer698 -> Necrozma -> partner -> full-slot native move selection",
+  "native_defusion": "owned signature removed and slots/PP/PP Bonus compacted; exact partner restored; real Pokemon menu refreshes count2->3; second Save/fresh Continue preserves all 300 party bytes",
+  "form_service_selection_claimed": false,
+  "normal_item_or_partner_supply_accepted": false,
+  "durable_original_zip_verified_in_git": false,
+  "p03_fixed_form_gap_closed": false,
+  "full_p03_acceptance": false,
+  "release_ready": false,
+  "next_action": "Retain the exact original ZIP with Git index/HEAD read-back, aggregate these two cases with existing FORM-decline and two Crowned originals, then synchronize canonical acceptance/receipt/P08/logs. Do not rerun any of the five successful cases merely for aggregation."
+}

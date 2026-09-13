@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10183811918,
+  "artifact_name": "pr16-form-routes-acceptance",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "228cce1ce94aa26990c1c977f018785bfe00d391",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "228cce1ce94aa26990c1c977f018785bfe00d391",
+      "id": 103138950236,
+      "name": "form-routes",
+      "run_id": 34559437267,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T03:42:18Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T03:42:17Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:42:22Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T03:42:18Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:42:49Z",
+          "conclusion": "success",
+          "name": "Exact HEAD and unchanged Stage84 input",
+          "number": 3,
+          "started_at": "2026-09-11T03:42:22Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:42:50Z",
+          "conclusion": "success",
+          "name": "Restore exact adopted V4 source, never replace originals",
+          "number": 4,
+          "started_at": "2026-09-11T03:42:49Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:43:01Z",
+          "conclusion": "success",
+          "name": "Unchanged fixed candidate and fail-closed unit tests",
+          "number": 5,
+          "started_at": "2026-09-11T03:42:50Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:44:13Z",
+          "conclusion": "success",
+          "name": "Actual map event, form menu, party picker, save and fresh Continue",
+          "number": 6,
+          "started_at": "2026-09-11T03:43:01Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:44:13Z",
+          "conclusion": "success",
+          "name": "Preserve sources and original images/results, never ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T03:44:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:44:14Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T03:44:13Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:44:14Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T03:44:14Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:44:14Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T03:44:14Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-form-routes.yml",
+  "run_attempt": 1,
+  "run_id": 34559437267,
+  "sha256": "7468c5f2004da2272616b0c9871fc0f5b4ca5a5d66c75d87e873666f4a141615",
+  "size": 378861,
+  "status": "completed"
+}

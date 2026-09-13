@@ -1,0 +1,129 @@
+{
+  "accounting": {
+    "materialized_routes_after": 83162,
+    "materialized_routes_before": 83162,
+    "owner_identity_support_routes": 60,
+    "reason": "38 carry routes were already accounted on target 1263; Stage75 resolves their owner identity without duplicating routes",
+    "route_accounting_delta": 0,
+    "selected_routes_after": 118369,
+    "selected_routes_before": 118369
+  },
+  "exclusions": {
+    "browt_pombon_gecqua_materialized": 0,
+    "full_p03_done": false,
+    "prohibited_coercions_materialized": 0,
+    "side_change_materialized": 0,
+    "side_change_project_move_id": 1063
+  },
+  "identity_mapping": {
+    "reference_id": "scarletviolet:0744.01",
+    "species_id": 1670
+  },
+  "owner_clone": {
+    "donor_species": 1142,
+    "egg_moves": [
+      37,
+      283,
+      745,
+      541
+    ],
+    "route_counts": {
+      "egg": 4,
+      "level_up": 14,
+      "machine": 38,
+      "shared_egg": 4,
+      "total": 60
+    },
+    "shared_egg_moves": [
+      37,
+      283,
+      745,
+      541
+    ],
+    "stage74_archive_moves": [
+      34,
+      36,
+      38,
+      46,
+      91,
+      184,
+      189,
+      204,
+      242,
+      263,
+      283,
+      304,
+      317,
+      384,
+      422,
+      424,
+      395
+    ],
+    "tutor_moves": []
+  },
+  "pre_evolution_carry": {
+    "direct_conversion": "FORBIDDEN",
+    "existing_slot_moves": [
+      14,
+      156,
+      157,
+      164,
+      182,
+      201,
+      203,
+      214,
+      269,
+      270,
+      334,
+      405,
+      407,
+      495,
+      520,
+      545,
+      550,
+      675,
+      688,
+      1037,
+      1040
+    ],
+    "missing_owner_path_count": 0,
+    "move_set_sha256": "d96bd6fbbec38b94cce0fb37928eeb0d3aaeeff4753b6ab27a0d7cbc20a972d4",
+    "path_count": 38,
+    "reference_owner": 1670,
+    "resolution_counts": {
+      "reference_existing_slot": 21,
+      "reference_stage74_archive": 17
+    },
+    "stage74_archive_moves": [
+      34,
+      36,
+      38,
+      46,
+      91,
+      184,
+      189,
+      204,
+      242,
+      263,
+      283,
+      304,
+      317,
+      384,
+      395,
+      422,
+      424
+    ],
+    "target_species": 1263
+  },
+  "schema_version": 1,
+  "source_route_clone": {
+    "policy": "EXACT_LEARNSET_CLONE_WITH_DISTINCT_INTERNAL_SPECIES_OWNER",
+    "route_count": 60,
+    "route_id_set_sha256": "791ce4be04329952b52bb4b9d16e8ba12ab0cfd079b236e66976ad8a375cd0d8",
+    "source_reference_id": "scarletviolet:0744.00",
+    "target_reference_id": "scarletviolet:0744.01"
+  },
+  "stage": 75,
+  "status": "PASS_OWN_TEMPO_OWNER_RESOLVED",
+  "task": "USER-MODERNIZATION-ROCKRUFF-OWN-TEMPO-STAGE75"
+}

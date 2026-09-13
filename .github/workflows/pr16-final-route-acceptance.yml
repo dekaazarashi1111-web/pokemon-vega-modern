@@ -1,0 +1,160 @@
+name: pr16-final-route-acceptance
+run-name: PR16 exact-head final route integration
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-final-route-acceptance.yml
+      - scripts/pr16_p07_preserved_layer.py
+      - scripts/pr16_integrated_native.py
+      - scripts/pr16_integrated_p06.py
+      - scripts/pr16_integrated_domains.py
+      - scripts/pr16_native_learning.py
+      - scripts/pr16_learning_diagnostics.py
+      - tools/mgba_pr16_level_learning.c
+      - tests/test_pr16_native_learning.py
+      - tests/test_pr16_integrated_roots.py
+      - tests/test_pr16_integrated_p06.py
+      - tests/test_pr16_integrated_domains.py
+      - tests/test_pr16_integrated_native.py
+      - scripts/pr16_source_acceptance.py
+      - tests/test_pr16_p07_preserved_layer.py
+      - tests/test_pr16_source_acceptance.py
+      - overlays/modernization_p07_preserved_layer/**
+      - content/modernization/p07_preserved_layer_spec.json
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-final-route-acceptance
+  cancel-in-progress: false
+jobs:
+  integrate-preserved-p07:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Preserve exact HEAD and fixed Stage84 parent
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-final-routes
+          git rev-parse HEAD > .local/pr16-final-routes/tested-head.txt
+          bash infra/setup_github_actions.sh --install > .local/pr16-final-routes/toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/pr16-final-routes/stage84.json
+      - name: Restore only the exact adopted V4 source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-inputs
+          gh release download private-environment-v1 --pattern pokemon-vega-private-env-v1-inputs.zip --dir .local/pr16-inputs
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_text())
+          model=next(a for a in cfg['archives'] if a['name']=='pokemon-vega-private-env-v1-inputs.zip')
+          archive=root/'.local/pr16-inputs'/model['name'];raw=archive.read_bytes()
+          assert len(raw)==model['size'] and hashlib.sha256(raw).hexdigest()==model['sha256']
+          name='userfile/imports/Pokemon-Vega_MOVE-DISTRIBUTION-V4_IMPLEMENTATION-READY.zip'
+          with zipfile.ZipFile(archive) as z:data=z.read(name)
+          assert hashlib.sha256(data).hexdigest()=='4022cd6e1358f58dffc5ebc38b756166f0a1072f948af6934298f65bd82678b2'
+          target=root/name
+          assert not any(p.is_symlink() for p in (target,*target.parents))
+          if target.exists():assert target.read_bytes()==data
+          else:
+              target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data);target.chmod(0o444)
+          PY
+      - name: Validate exact source rows and negative mutations
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_pr16_source_acceptance.py -v > .local/pr16-final-routes/source-unit.log 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_integration_continuation.py -v > .local/pr16-final-routes/table-unit.log 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_p07_preserved_layer.py -v > .local/pr16-final-routes/layer-unit.log 2>&1
+      - name: New candidate adapter mutation tests
+        run: python3 -m unittest discover -s tests -p test_pr16_integrated_native.py -v
+      - name: New candidate P06 and domain binding mutation tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_pr16_integrated_p06.py -v
+          python3 -m unittest discover -s tests -p test_pr16_integrated_domains.py -v
+          python3 -m unittest discover -s tests -p test_pr16_integrated_roots.py -v
+          python3 -m unittest discover -s tests -p test_pr16_native_learning.py -v
+      - name: Two independent integration builds and engineering patch round trips
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_p07_preserved_layer.py --output .local/pr16-integrated-p07 > .local/pr16-final-routes/build-a.stdout 2> .local/pr16-final-routes/build-a.stderr
+          python3 scripts/pr16_p07_preserved_layer.py --output .local/pr16-integrated-p07-second > .local/pr16-final-routes/build-b.stdout 2> .local/pr16-final-routes/build-b.stderr
+          cmp .local/pr16-integrated-p07/candidate.gba .local/pr16-integrated-p07-second/candidate.gba
+          cmp .local/pr16-integrated-p07/candidate.json .local/pr16-integrated-p07-second/candidate.json
+          cp .local/pr16-integrated-p07/*.json .local/pr16-final-routes/
+          cp .local/pr16-integrated-p07/*.bps .local/pr16-final-routes/
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          p=pathlib.Path('.local/pr16-integrated-p07/candidate.gba')
+          report={'status':'DETERMINISTIC_BUILD_AND_PATCH_ROUNDTRIP','independent_processes':2,'candidate':{'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()},'native_acceptance':False,'release_ready':False}
+          pathlib.Path('.local/pr16-final-routes/determinism.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          PY
+          git diff --exit-code
+      - name: Preserve bounded native call-site diagnostics for the reproduced learning failures
+        run: python3 scripts/pr16_learning_diagnostics.py > .local/pr16-final-routes/learning-diagnostics.stdout 2> .local/pr16-final-routes/learning-diagnostics.stderr
+      - name: Actual integrated memory input, full slots, cancellation and cold saves
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_integrated_native.py > .local/pr16-final-routes/native.stdout 2> .local/pr16-final-routes/native.stderr
+          git diff --exit-code
+      - name: Native Rare Candy level and actual evolution learning, cancellation and cold saves
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_native_learning.py > .local/pr16-final-routes/learning.stdout 2> .local/pr16-final-routes/learning.stderr
+          git diff --exit-code
+      - name: P06 native adopted effects, visible Summary, slots and cold saves on integrated ROM
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_integrated_p06.py > .local/pr16-final-routes/p06.stdout 2> .local/pr16-final-routes/p06.stderr
+          git diff --exit-code
+      - name: Preserve native route diagnostics independently of later domain results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-native-route-diagnostics
+          path: |
+            .local/pr16-final-routes/learning/
+            .local/pr16-final-routes/learning-diagnostics/
+            .local/pr16-final-routes/learning.stderr
+            .local/pr16-final-routes/tested-head.txt
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Actual seven-domain impact regression on the same integrated ROM
+        if: ${{ !cancelled() }}
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_integrated_domains.py > .local/pr16-final-routes/domains.stdout 2> .local/pr16-final-routes/domains.stderr
+          git diff --exit-code
+      - name: Preserve exact text sources, never ROM or save
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-final-routes';out.mkdir(parents=True,exist_ok=True)
+          paths=['scripts/pr16_learning_diagnostics.py','scripts/pr16_native_learning.py','tools/mgba_pr16_level_learning.c','tests/test_pr16_native_learning.py','tests/test_pr16_integrated_roots.py','scripts/pr16_integrated_p06.py','tests/test_pr16_integrated_p06.py','scripts/pr16_integrated_domains.py','tests/test_pr16_integrated_domains.py','scripts/run_modernization_p06_phase_e2e.py','tools/mgba_modernization_p06_phase_e2e.c','scripts/pr16_integrated_native.py','tests/test_pr16_integrated_native.py','scripts/pr16_p07_preserved_layer.py','scripts/pr16_source_acceptance.py','scripts/pr16_integration_continuation.py','tests/test_pr16_p07_preserved_layer.py','tests/test_pr16_source_acceptance.py','overlays/modernization_p07_preserved_layer/runtime.c','content/modernization/p07_preserved_layer_spec.json','.github/workflows/pr16-final-route-acceptance.yml']
+          with zipfile.ZipFile(out/'source-inputs.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in paths:z.write(root/name,name)
+          report={p:{'size':(root/p).stat().st_size,'sha256':hashlib.sha256((root/p).read_bytes()).hexdigest()} for p in paths}
+          (out/'source-bindings.json').write_text(json.dumps(report,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-integrated-p07-build
+          path: .local/pr16-final-routes/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
