@@ -92,17 +92,26 @@ jobs:
                           bindings[name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())
               assert set(snippets)==set(wanted),'ABI function missing'
               linker=z.read('vendor/upstream/CFRU-JP/BPRJ.ld').decode()
-              anchors=[line for line in linker.splitlines() if 'gSelectedOrderFromParty =' in line or 'InitChooseHalfPartyForBattle =' in line]
-              assert len(anchors)==2
+              anchors=[line for line in linker.splitlines() if 'InitChooseHalfPartyForBattle =' in line]
+              assert anchors==['InitChooseHalfPartyForBattle = 0x8127DE0 | 1;'], 'initializer linker ABI differs'
+              # order配列はこのldのexportではない。writerの返却形式と既存native証拠へ分離する。
+              order_declarations=[]
+              for name in z.namelist():
+                  if not name.startswith('vendor/upstream/CFRU-JP/include/') or not name.endswith('.h'):continue
+                  data=z.read(name)
+                  for number,line in enumerate(data.decode('utf-8').splitlines(),1):
+                      if 'gSelectedOrderFromParty' in line:
+                          order_declarations.append(dict(path=name,line=number,text=line))
+                          bindings[name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())
           out=root/'.local/pr16-bp-exchange-evidence'
-          (out/'upstream-abi.json').write_text(json.dumps(dict(archive_sha256=bound['sha256'],source_bindings=bindings,functions=snippets,linker_anchors=anchors,new_emulator_processes=0,native_exchange_accepted=False),ensure_ascii=False,indent=2)+'\n')
+          (out/'upstream-abi.json').write_text(json.dumps(dict(archive_sha256=bound['sha256'],source_bindings=bindings,functions=snippets,linker_anchors=anchors,selected_order_declarations=order_declarations,new_emulator_processes=0,native_exchange_accepted=False),ensure_ascii=False,indent=2)+'\n')
           PY
           python3 scripts/pr16_p07_preserved_layer.py > .local/exchange-p07.log 2>&1
           python3 scripts/pr16_evolution_learning_repair.py > .local/exchange-evolution.log 2>&1
       - name: 交換だけのsuccessorを二重生成して全不変区間を検証
         run: |
           set -euo pipefail
-          python3 scripts/pr16_bp_exchange_successor.py > .local/exchange-build.log 2>&1
+          python3 scripts/pr16_bp_exchange_successor.py > .local/exchange-build.log 2>&1 || { tail -n 18 .local/exchange-build.log; exit 1; }
           cp .local/pr16-bp-exchange-successor/candidate.json .local/pr16-bp-exchange-evidence/candidate.json
           python3 scripts/pr16_resume.py check
           git diff --exit-code
