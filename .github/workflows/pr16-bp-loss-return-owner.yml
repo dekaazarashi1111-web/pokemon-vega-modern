@@ -48,7 +48,7 @@ jobs:
           assert state['next_action']['id']=='BP_LOSS_RETURN_CALLBACK_OWNER'
           assert state['bp']['native_loss_observed'] is True
           assert state['bp']['loss_return_to_facility_observed'] is False
-          assert state['native_bp_earning_accepted'] is False
+          assert state['bp']['earning_and_spending_accepted'] is False
           assert state['release_ready'] is False
           (out/'reconciliation.json').write_text(json.dumps({
               'latest_native_run':state['latest_native_run'],
