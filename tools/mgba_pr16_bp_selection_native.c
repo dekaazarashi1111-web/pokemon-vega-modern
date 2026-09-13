@@ -35,10 +35,19 @@ static void sp_entry(struct mCore *c,unsigned index,unsigned slot) {
 struct SPLaunch {
     unsigned confirm,advance,allocated,action;
     uint32_t after,callback2,battle_main,newbs;
-    unsigned enemies,species;
+    unsigned enemies,species,raw_count;
 };
+/* The fixture's historical 0x02023F8A byte is not a native Factory count
+ * contract. Count actual slots with the same +0x20 species ABI already used
+ * by the accepted natural-capture controller; keep the raw byte as raw data. */
+static unsigned sp_enemy_count(struct mCore *c){
+    unsigned count=0;
+    for(unsigned i=0;i<6U;++i)
+        if(read16(c,ADDR_ENEMY_PARTY+i*100U+BATTLE_CORE_PARTY_SPECIES_OFFSET))++count;
+    return count;
+}
 static void sp_launch_trace(struct mCore *c,const char *label){
-    fprintf(stderr,"BP_LAUNCH label=%s frame=%u cb2=%08x script=%08x mode=%u native=%08x newbs=%08x main=%08x enemy_count=%u enemy_species=%u\n",
+    fprintf(stderr,"BP_LAUNCH label=%s frame=%u cb2=%08x script=%08x mode=%u native=%08x newbs=%08x main=%08x enemy_count_raw=%u enemy_species=%u\n",
         label,b_frames,read32(c,BATTLE_CORE_MAIN_CALLBACK2),read32(c,SP_SCRIPT_PTR),
         read8(c,0x03000EB1U),read32(c,0x03000EB4U),read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),
         read32(c,0x03004FC4U),read8(c,BATTLE_CORE_ENEMY_PARTY_COUNT),read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE));
@@ -69,7 +78,7 @@ static struct SPLaunch sp_confirm_and_launch(struct mCore *c,const uint8_t *enem
         if(bs && !w.allocated){w.allocated=b_frames;sp_observe(c,"battle-allocated");}
         if(n_action(c)){
             c->setKeys(c,0);w.action=b_frames;w.callback2=cb;w.newbs=bs;w.battle_main=read32(c,0x03004FC4U);
-            w.enemies=read8(c,BATTLE_CORE_ENEMY_PARTY_COUNT);w.species=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE);
+            w.raw_count=read8(c,BATTLE_CORE_ENEMY_PARTY_COUNT);w.enemies=sp_enemy_count(c);w.species=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE);
             break;
         }
     }
@@ -79,7 +88,8 @@ static struct SPLaunch sp_confirm_and_launch(struct mCore *c,const uint8_t *enem
     bp_require(c,w.advance>=w.confirm && w.allocated>=w.advance && w.action>=w.allocated,
         "native second confirmation did not reach script resume/battle/action in order");
     bp_require(c,w.newbs>=0x02000000U && w.newbs<0x02040000U && w.battle_main==0x08013861U
-        && w.enemies>0U && w.enemies<=6U && w.species>0U && memcmp(enemy_before,enemy_after,600U),
+        && w.enemies==3U && w.species>0U && w.species==read16(c,ADDR_ENEMY_PARTY+BATTLE_CORE_PARTY_SPECIES_OFFSET)
+        && read8(c,QOL_PLAYER_PARTY_COUNT)==3U && memcmp(enemy_before,enemy_after,600U),
         "battle action lacks allocated state or newly generated enemy party");
     return w;
 }
@@ -133,7 +143,7 @@ int main(int argc,char **argv) {
     printf("\"selected_frame\":%u,\"second_chooser_frame\":%u,\"total_frames\":%u,\"selected_count\":3,\"party_count\":3,\"original_snapshot_bytes_verified\":600,",selected_frame,second_frame,b_frames);
     printf("\"confirm_frame\":%u,\"script_advance_frame\":%u,\"battle_struct_frame\":%u,\"action_frame\":%u,",launch.confirm,launch.advance,launch.allocated,launch.action);
     printf("\"pending_script_pointer\":%u,\"script_pointer_after_advance\":%u,\"pending_opcode\":93,\"battle_callback2\":%u,\"battle_main_callback\":%u,\"new_battle_struct\":%u,",SP_PENDING_5D,launch.after,launch.callback2,launch.battle_main,launch.newbs);
-    printf("\"enemy_party_count\":%u,\"enemy_battle_species\":%u,\"enemy_party_changed\":true,\"script_context_resumed\":true,",launch.enemies,launch.species);
+    printf("\"enemy_party_count_raw\":%u,\"enemy_party_count\":%u,\"enemy_battle_species\":%u,\"enemy_party_changed\":true,\"script_context_resumed\":true,",launch.raw_count,launch.enemies,launch.species);
     printf("\"bp_earned\":0,\"battle_started\":true,\"save_counter\":%u,\"manual_saves\":0,\"fresh_cores\":1,\"host_write_barriers\":7,\"input_only_after_guard\":true,\"fixture_same_as_accepted_cancel\":true,\"native_bp_earning_accepted\":false,\"p05_native_bp_gap_closed\":false,\"release_ready\":false,\"warnings_errors\":0}\n",counter);
     return 0;
 }

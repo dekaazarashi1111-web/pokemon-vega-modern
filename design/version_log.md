@@ -2151,3 +2151,15 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Native: このcheckpointは新規emulator0・ROM0。新しい診断を別dispatchし、取消/保存/Continueの受入済み試験は再実行しない。
 - Commit: この記録を含むcommit。入力HEAD=d3eb3dc88b7940a720cf2a678d6555cc84df5577、run=34738838452。
 - Network: GitHub API/Actions原本。merge/release/baseline切替なし。
+
+
+## 2026-09-13T05:06:18Z — USER-20260913-BP-SECOND-CHOOSER-COUNT
+- Status: STOPPED / 修正後の新規native結果待ち
+- Summary: run34738859743/job103675000673は5D消費1967→battle struct2051→action3260まで実到達したが、fixture由来raw敵数02023F8A=0をnative countと誤認したassertionでfailure。原本ZIP752252bytes/SHAac228665a48efd17c4cff2b1ec03eb977d09ee6771f159c50c8123bd10c98b59を保持。成功へ再分類しない。
+- Change: party+0x20種族ABIの6slot計数へ修正し、3体・先頭species一致を追加。入力/ROM/fixture/7barrierは不変。元画像と600bytesのspecies[7,1,133,0,0,0]を照合。
+- Verify: focused14件、resume18件、resume/fixed-form/checkpoint/task-graph/diffと標準guard差分を検証。新しい実行はobserver契約変更に限定し、取消/Save/Continueは再実行しない。
+- Files changed: selection C/Python/tests、同じresume MD/JSON、P08再開文、両ログ、失敗診断ZIP/Actions metadata。
+- Boundary: BP獲得/消費/gap閉鎖0。merge/release/active baseline変更なし。
+- Commit: この記録を含むcommit。入力HEAD=c9c27b727e8c194535f2530fccc806c5103849a6。
+
+- Checkpoint preflight failures retained: runs34739159633/34739395296, native0; focused14/resume18 passed. Stage P08 plus fixed handoff MD/JSON together for --index, then verify committed HEAD before native dispatch.

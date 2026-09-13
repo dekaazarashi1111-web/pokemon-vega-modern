@@ -14,7 +14,7 @@ class ContractTests(unittest.TestCase):
           selected_frame=1000,second_chooser_frame=2000,confirm_frame=2100,script_advance_frame=2200,
           battle_struct_frame=2400,action_frame=3000,total_frames=3000,pending_script_pointer=0x092CF668,
           script_pointer_after_advance=0x092CF669,pending_opcode=0x5D,battle_callback2=0x08010001,
-          battle_main_callback=0x08013861,new_battle_struct=0x02020000,enemy_party_count=3,
+          battle_main_callback=0x08013861,new_battle_struct=0x02020000,enemy_party_count=3,enemy_party_count_raw=0,
           enemy_battle_species=411,enemy_party_changed=True,script_context_resumed=True)
     def validate(self,row):return p.validate(json.dumps(row).encode(),b'BP_CTRL label=fixture \nBP_READ name=cfru_selected_order \nBP_LAUNCH label=before-confirm \nBP_LAUNCH label=launch-stop \nBP_READ name=enemy_party_generated ',0)
     def test_declared_diagnostic(self):self.assertFalse(self.validate(self.sample())['native_bp_earning_accepted'])
@@ -52,6 +52,17 @@ class ContractTests(unittest.TestCase):
         for forbidden in ('write8(', 'write16(', 'write32(', 'call_preserving('):self.assertNotIn(forbidden,text)
         self.assertIn('ptr==SP_PENDING_5D+1U',text)
         self.assertIn('n_action(c)',text)
+    def test_factory_count_is_slot_derived(self):
+        row=self.sample();self.assertEqual(self.validate(row)['enemy_party_count_raw'],0)
+        row['enemy_party_count']=0;row['enemy_party_count_raw']=3
+        with self.assertRaises(ValueError):self.validate(row)
+    def test_species_count_uses_accepted_party_abi(self):
+        text=(p.ROOT/p.SOURCE).read_text()
+        body=text.split('static unsigned sp_enemy_count',1)[1].split('static void sp_launch_trace',1)[0]
+        self.assertIn('BATTLE_CORE_PARTY_SPECIES_OFFSET',body)
+        self.assertIn('read16(',body)
+        self.assertNotIn('BATTLE_CORE_ENEMY_PARTY_COUNT',body)
+        for forbidden in ('write8(', 'write16(', 'write32(', 'call_preserving('):self.assertNotIn(forbidden,body)
     def test_guard_before_observation(self):
         text=(p.ROOT/p.SOURCE).read_text();after=text.split('a_guard(c);bp_open(c);',1)[1]
         for forbidden in ('write8(', 'write16(', 'write32(', 'call_preserving('):self.assertNotIn(forbidden,after)

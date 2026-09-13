@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。
+run34738859743で2回目確定→5D消費(frame1967)→struct生成(2051)→実battle action(3260)まで観測。ただし未束縛raw敵数0を要求したassertionでrunはfailure。実敵slot3体から計数するobserver修正を実装し、修正後のnative成功判定は未取得。BP0・正式受入は変更しない。
 
 **次: 2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d3eb3dc88b7940a720cf2a678d6555cc84df5577`。
+証拠のsource HEAD: `c9c27b727e8c194535f2530fccc806c5103849a6`。
 これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。
 
 ## 最短の再開手順

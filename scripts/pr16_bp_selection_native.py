@@ -21,7 +21,7 @@ SHA=previous.layer.SHA
 
 
 def validate(raw,stderr,code):
-    need(type(code) is int and code==0,'native three-selection probe failed')
+    need(type(code) is int and code==0,'native second-confirmation probe failed')
     row=previous.fixed.strict_json(raw)
     want=dict(schema_version=1,status=STATUS,scope='PR16_P05_SECOND_CHOOSER_DIAGNOSTIC',case=CASE,candidate_sha256=SHA,
         selected_count=3,party_count=3,original_snapshot_bytes_verified=600,bp_earned=0,battle_started=True,save_counter=2,
@@ -30,7 +30,7 @@ def validate(raw,stderr,code):
         pending_script_pointer=0x092CF668,script_pointer_after_advance=0x092CF669,pending_opcode=0x5D,
         battle_main_callback=0x08013861,enemy_party_changed=True,script_context_resumed=True)
     dynamic={'selected_frame','second_chooser_frame','total_frames','confirm_frame','script_advance_frame',
-        'battle_struct_frame','action_frame','battle_callback2','new_battle_struct','enemy_party_count','enemy_battle_species'}
+        'battle_struct_frame','action_frame','battle_callback2','new_battle_struct','enemy_party_count','enemy_battle_species','enemy_party_count_raw'}
     need(type(row) is dict and set(row)==set(want)|dynamic,'selection schema differs')
     for key,value in want.items():need(type(row[key]) is type(value) and row[key]==value,'selection result differs: '+key)
     need(all(type(row[k]) is int for k in dynamic),'non-integer native witness')
@@ -38,7 +38,7 @@ def validate(raw,stderr,code):
         <=row['battle_struct_frame']<=row['action_frame']==row['total_frames']<=24000,'launch witness order differs')
     need(0x02000000<=row['new_battle_struct']<0x02040000,'battle allocation differs')
     need(0x08000001<=row['battle_callback2']<=0x09FFFFFF and row['battle_callback2']&1,'callback2 differs')
-    need(1<=row['enemy_party_count']<=6 and 1<=row['enemy_battle_species']<=65535,'enemy generation differs')
+    need(row['enemy_party_count']==3 and 0<=row['enemy_party_count_raw']<=255 and 1<=row['enemy_battle_species']<=65535,'enemy generation differs')
     need(b'BP_CTRL label=fixture ' in stderr and b'BP_READ name=cfru_selected_order ' in stderr
         and b'BP_LAUNCH label=before-confirm ' in stderr and b'BP_LAUNCH label=launch-stop ' in stderr
         and b'BP_READ name=enemy_party_generated ' in stderr and b'mGBA[' not in stderr,'native diagnostic trace absent/warning')

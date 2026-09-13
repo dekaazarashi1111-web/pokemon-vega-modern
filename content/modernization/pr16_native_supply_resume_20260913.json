@@ -2,7 +2,7 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。",
+    "current_stop": "run34738859743で2回目確定→5D消費(frame1967)→struct生成(2051)→実battle action(3260)まで観測。ただし未束縛raw敵数0を要求したassertionでrunはfailure。実敵slot3体から計数するobserver修正を実装し、修正後のnative成功判定は未取得。BP0・正式受入は変更しない。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
     "next_step": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
@@ -35,7 +35,7 @@
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "d3eb3dc88b7940a720cf2a678d6555cc84df5577",
+  "observed_head": "c9c27b727e8c194535f2530fccc806c5103849a6",
   "observed_head_checks": {
     "status": "ALL_SUCCESS",
     "checked_head": "fa9341e8ecd205367168d39706b7d84f8de64091",
@@ -179,12 +179,12 @@
   "pending_runs": [],
   "source_bindings": {
     "scripts/pr16_bp_selection_native.py": {
-      "size": 10392,
-      "sha256": "083b455d06ec60e6c0c1a90f727a27f064304b24f3c42d073dc0990cbe4c1299"
+      "size": 10458,
+      "sha256": "2995799b4e1ac755566f98bee77f01db3ce2439fe931394cf99fc3b5a8d9250c"
     },
     "tools/mgba_pr16_bp_selection_native.c": {
-      "size": 9852,
-      "sha256": "670e9340b310cbdce33b8d0fdf35f1a672ebe3690ba3eeda9cb65a8d5c13d7be"
+      "size": 10488,
+      "sha256": "7815a29617038dfcd3fd57d9a5a7e61eed0a88c9d4ba7c9b45ec2d1fbc3de690"
     },
     ".github/workflows/pr16-bp-selection-native.yml": {
       "size": 9067,
@@ -219,17 +219,54 @@
   "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
   "prepared_native_probe": {
     "case": "second-confirm-battle-probe",
-    "execution_status": "NOT_DISPATCHED_YET",
-    "source_only_tests": 12,
+    "execution_status": "COUNT_CONTRACT_FIXED_NEW_RUN_NOT_DISPATCHED_YET",
+    "source_only_tests": 14,
     "rom_changes": 0,
     "historical_cancel_replayed": false
   },
-  "source_change_review_ja": "独立selection controller/validator/testsを延長。ROM、共有取消controller、fixture、7barrier、期限は不変。旧runは旧診断だけを支持。resumeのP08出力は既存canonical sorted JSONを維持し、受入意味論を変えない。",
+  "source_change_review_ja": "2回目確定の入力列・ROM・fixture・7barrierは不変。失敗raw数byteをnative敵数と誤認したobserverだけを修正。受入済みnatural-captureでも使うparty+0x20 species ABIで6slotを数え、3体と先頭battle species一致を要求。旧failureは原本保存して失敗のまま、修正後を新runで検証する。",
   "preflight_failure": {
     "run_id": 34738673670,
     "job_id": 103674512984,
     "native_processes": 0,
     "reason": "P08 JSON key ordering differed; semantic equality required before canonical serialization repair",
     "original_conclusion": "failure"
-  }
+  },
+  "failed_native_attempt": {
+    "run_id": 34738859743,
+    "job_id": 103675000673,
+    "tested_head": "9bf3abe5e0fbef23f8c5727c658ba31a4d556473",
+    "original_conclusion": "failure",
+    "artifact_id": 10312440481,
+    "original_zip": "content/modernization/pr16_bp_launch_evidence/34738859743/original.zip",
+    "new_processes": 1,
+    "successful_fresh_cores": 0,
+    "enemy_count_raw": 0,
+    "enemy_species_slots": [
+      7,
+      1,
+      133,
+      0,
+      0,
+      0
+    ],
+    "script_advance_frame": 1967,
+    "battle_struct_frame": 2051,
+    "battle_action_frame": 3260,
+    "native_bp_earning_accepted": false
+  },
+  "checkpoint_index_order_failures": [
+    {
+      "run_id": 34739159633,
+      "job_id": 103675775748,
+      "native_processes": 0,
+      "original_conclusion": "failure"
+    },
+    {
+      "run_id": 34739395296,
+      "job_id": 103676397638,
+      "native_processes": 0,
+      "original_conclusion": "failure"
+    }
+  ]
 }
