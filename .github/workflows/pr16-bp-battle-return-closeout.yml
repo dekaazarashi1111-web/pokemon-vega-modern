@@ -41,7 +41,16 @@ jobs:
           python3 scripts/pr16_resume.py check > "$out/resume-check.txt"
           python3 scripts/validate_task_graph.py > "$out/task-graph.txt"
           python3 scripts/pr16_bp_battle_return_closeout.py logs > "$out/logs.stdout" 2> "$out/logs.stderr"
-          python3 scripts/pr16_bp_battle_return_closeout.py stage
+          python3 - <<'PY'
+          import subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_bp_battle_return_closeout as close
+          close.need(not close.git(close.ROOT,'diff','--cached','--name-only').strip(),'pre-existing staged work')
+          normal=[name for name in close.PATHS if not name.endswith('.zip')]
+          archives=[name for name in close.PATHS if name.endswith('.zip')]
+          subprocess.run(['git','add','--',*normal],cwd=close.ROOT,check=True)
+          subprocess.run(['git','add','-f','--',*archives],cwd=close.ROOT,check=True)
+          PY
           python3 scripts/pr16_bp_battle_return_checkpoint.py --index > "$out/index-verification.json"
           python3 scripts/pr16_bp_chooser_checkpoint.py --index > "$out/accepted-cancel-retained.json"
           python3 scripts/pr16_bp_battle_return_closeout.py guard > "$out/guard.stdout" 2> "$out/guard.stderr"
