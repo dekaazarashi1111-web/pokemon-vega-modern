@@ -42,6 +42,12 @@ def assemble_controller():
         if(move && pp){w.move=move;w.slot=i;w.before=pp;break;}
     }'''
     text=replace_once(text,before,'''    w.slot=wx_move_slot(c);
+    /* 原失敗は初手KO。判定を緩めず、通常UIから最初だけProtectを選ぶ。 */
+    for(unsigned i=0;i<4U;++i)
+        if(read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET+2U*i)==182U
+            && read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET+i))w.slot=i;
+    bp_read_span(c,"win_player_party_action",QOL_PLAYER_PARTY,600U);
+    fprintf(stderr,"BP_WIN_FIRST frame=%u slot=%u move=%u\\n",b_frames,w.slot,read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET+2U*w.slot));
     w.move=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET+2U*w.slot);
     w.before=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET+w.slot);''')
     before='''    for(unsigned i=0;i<4U;++i){
@@ -125,7 +131,7 @@ def run():
         launch.previous.layer=original_layer;launch.SHA=original_sha
     report.update(scope=SCOPE,accepted_native_cases_replayed=0,native_exchange_accepted=False,
                   native_bp_earning_accepted=False,p05_native_bp_gap_closed=False,release_ready=False,
-                  input_policy='NATIVE_RENTAL_RANK_AND_DAMAGING_MOVE_HEURISTIC_NO_GAME_WRITES')
+                  input_policy='NATIVE_RENTAL_RANK_FIRST_PROTECT_THEN_DAMAGING_MOVE_NO_GAME_WRITES')
     (OUT/'result.json').write_bytes(successor.stable(report))
     receipt=json.loads((OUT/'receipt.json').read_bytes())
     receipt['members']['result.json']=successor.identity((OUT/'result.json').read_bytes())
