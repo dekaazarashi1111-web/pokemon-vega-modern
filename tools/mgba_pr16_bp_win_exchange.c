@@ -16,7 +16,7 @@ static unsigned wx_effect(unsigned attack,unsigned defense) {
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
         {10,10,10,10,10,5,20,10,20,10,5,5,20,10,10,20,5,10,10},
         {10,10,10,10,20,20,10,10,10,10,20,5,5,10,10,10,5,10,10},
-        {10,10,5,5,20,20,5,10,5,10,5,20,5,10,10,10,5,10,10},
+        {10,10,5,5,20,20,5,10,5,10,5,20,5,5,10,10,5,10,10},
         {10,10,20,10,0,10,10,10,10,10,10,20,5,5,10,10,5,10,10},
         {10,20,10,20,10,10,10,10,5,10,10,10,10,10,5,10,10,0,10},
         {10,10,20,10,20,10,10,10,5,10,5,5,20,10,10,5,20,10,10},
@@ -152,6 +152,27 @@ static unsigned wx_reserve(struct mCore *c,unsigned active) {
     return best;
 }
 /* WX_EXTENSION_BOUNDARY */
+/* run34767145222では単体order=3の記録後もcursor=2。自動Confirm移動は
+ * CursorCb_Enterのmax依存であり、単体選択成立の必要条件ではない。
+ * 既存の次戦chooser同様、通常UP入力だけでConfirmへ移動する。
+ * 選択6byte・owner・callback・未開戦を毎入力の前後で再確認する。 */
+static void wx_single_confirm(struct mCore *c,unsigned slot) {
+    bp_require(c,slot<3U,"single selection slot out of bounds");
+    for(unsigned k=0U;k<=8U;++k){
+        bp_require(c,read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY
+            && read32(c,SP_SCRIPT_PTR)==0x092CF72CU
+            && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),"single chooser owner changed before Confirm");
+        for(unsigned i=0U;i<6U;++i)
+            bp_require(c,read8(c,SP_ORDER_CFRU+i)==(i?0U:slot+1U),"single selected order changed before Confirm");
+        unsigned cursor=read8(c,SP_PARTY_SLOT);
+        bp_require(c,cursor<8U,"single chooser cursor out of bounds");
+        if(cursor==6U)return;
+        bp_require(c,k<8U,"single Confirm navigation reached 8-input bound");
+        b_press(c,QOL_KEY_UP,60U);
+        fprintf(stderr,"BP_EXCHANGE_CONFIRM frame=%u input=%u cursor=%u order=%u\n",
+            b_frames,k+1U,read8(c,SP_PARTY_SLOT),read8(c,SP_ORDER_CFRU));
+    }
+}
 struct WXResult {unsigned menu,selected,confirm,commit,allocated,action,slot,order,preserved,replaced,opening;};
 static struct WXResult wx_exchange_next(struct mCore *c,const uint8_t *original,unsigned counter) {
     struct WXResult w={.opening=wx_voluntary_count};unsigned start=b_frames;uint8_t expected[600],actual[600],cached[100],snapshot[600];
@@ -173,7 +194,8 @@ static struct WXResult wx_exchange_next(struct mCore *c,const uint8_t *original,
     wx_healed_expected(c,cached);memcpy(expected+100U*w.slot,cached,100U);
     sp_observe(c,"exchange-single-menu");wx_cursor(c,w.slot);sp_entry(c,0U,w.slot);w.selected=b_frames;
     w.order=read8(c,SP_ORDER_CFRU);
-    bp_require(c,w.order==w.slot+1U && read8(c,SP_PARTY_SLOT)==6U,"single selection did not reach Confirm");
+    bp_require(c,w.order==w.slot+1U,"single selection order differs");
+    wx_single_confirm(c,w.slot);
     for(unsigned i=1;i<6U;++i)bp_require(c,!read8(c,SP_ORDER_CFRU+i),"single chooser selected extra slots");
     sp_observe(c,"exchange-single-selected");w.confirm=b_frames+1U;b_press(c,QOL_KEY_A,2U);
     for(unsigned f=0;f<12000U;++f){
