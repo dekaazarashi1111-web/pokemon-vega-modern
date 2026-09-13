@@ -1,5 +1,11 @@
 # PR16 BP Trial 再開点 — 2026-09-13
 
+<!-- pr16-stable-resume-route -->
+> **履歴資料。現在の再開入口ではありません。**
+> repository rootの `CHATGPT_RESUME.md` を読み、そこから指定された固定MD/JSONを使う。
+> 日付の新旧やこの下の過去checkpointから現在地を推測しない。`AGENTS.md` の安全・検証規約は引き続き適用する。
+<!-- /pr16-stable-resume-route -->
+
 正本: `content/modernization/pr16_bp_trial_checkpoint.json` / `content/modernization/pr16_bp_trial_receipt.json`。旧受入を新候補実行へ読み替えない。
 
 ## 今回の差分

@@ -1,5 +1,11 @@
 # PR16 通常供給の再開点 — 2026-09-12
 
+<!-- pr16-stable-resume-route -->
+> **履歴資料。現在の再開入口ではありません。**
+> repository rootの `CHATGPT_RESUME.md` を読み、そこから指定された固定MD/JSONを使う。
+> 日付の新旧やこの下の過去checkpointから現在地を推測しない。`AGENTS.md` の安全・検証規約は引き続き適用する。
+<!-- /pr16-stable-resume-route -->
+
 ## 現在の正本
 
 `content/modernization/p08_remaining_work.json` と、各分野の acceptance/receipt を正本とする。古いPR本文・過去の失敗runだけから再実行を開始しない。

@@ -2127,3 +2127,15 @@ Result: DONE_SCOPED_RENTAL_CANCEL; BP_EARNING_PENDING / physical4 + P08 gates2
 実ROM special0x2F=null + waitstate停止を0x29 chooserへ1-byte修正。旧失敗2件/静的binding1件/新規取消SaveContinue1件を原本のまま保持（開始前失敗1件を含む）。新規native2process、成功1case/2fresh cores。元party600/count/BP/Bag復元、Save2→3、cold Continue成功。source60tests、7writebarriers、ZIP/全member/生成C/各sourceとGit HEADの一致、9画面目視、原本Git保持、task graph、変更範囲private guardを検査。台帳再調停はemulator0。
 
 Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f01149dfd6848623466fadf611a6599d1f22e1ca / run34733866168 / job103661602964。詳細: content/modernization/pr16_bp_chooser_checkpoint.json / docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md。PR本文更新拒否は未解決として明記。fixed-form5件と全旧成功/失敗を保持。merge/baseline/release変更なし。次: 実3体選択/戦闘/9BP/負例/繰返し/獲得BP消費、Ring/policy/Circus、P08。
+
+
+## 2026-09-13T04:29:33Z — USER-20260913-RESUME-OPTIMIZATION
+- Task: USER-20260913-RESUME-OPTIMIZATION / 固定再開入口・正本同期・再読削減
+- Status: DONE
+- Summary: CHATGPT_RESUME.mdを不変入口にし、現行MDをJSONから生成。最新3体選択診断を正式受入と分離して反映。旧入口に履歴案内を追加し、P08再開文だけを同期。
+- Files changed: CHATGPT_RESUME.md、現行resume MD/JSON、診断抄録、scripts/pr16_resume.py、tests/test_pr16_resume.py、専用workflow、AGENTS/README/current_state/context_map、旧MDの案内、p08_remaining_work.json、両ログ。
+- Verify: focused unittest、pr16_resume.py check、validate_task_graph.py、git diff --check PASS。標準private guardの既存違反と新規差分はworkflowのguard-boundary.jsonで別記。全体guard PASSとは主張しない。
+- Native: 原本47member/71sourceを再照合、新規emulator0、ROM/save変更0、追加BP受入0。
+- Commit: この記録を含むcommit。検証入力HEAD=29c1087a70ce14a1af8cb735aa7c288cfe462f94。自己SHAを文書へ追記して無限更新しない。
+- Network: GitHub connectorのbranch/PR/run/artifactを照会。run34734806603、artifact10310995889。private Release取得なし。
+- Boundary: 未merge/draft維持、release/active baseline変更なし。正式残件physical4/P08ゲート2。

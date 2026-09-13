@@ -2,32 +2,22 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Chooser and native cancellation/normal Save/fresh Continue accepted. Positive three-selection/battle/earning path not yet accepted.",
+    "current_stop": "3体native選択・party count 3・selected-order記録・2回目chooser到達まで診断済み。実戦未開始、BP0。取消/Save/Continueの正式受入は既存1件のまま。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
-    "next_step": "Native select three rentals, bind selected-order bridge and real battle launch before 3 wins/9BP, negatives, repeat, Save/Continue and earned-BP shop spend. Do not repeat cancelled-entry proof without an affected-source reason.",
-    "observed_wait_snapshot": {
-      "frame": 1215,
-      "interpretation": "Historical pre-repair snapshot: nativePtr is stale after empty special; verified actual 0x2F binding is bx lr followed by script stop. Not the current resume point.",
-      "mode_raw": 1,
-      "native_pointer": "0x0806B159",
-      "native_pointer_linker_symbol": "WaitForAorBPressOld",
-      "script_pointer": "0x092CF62C"
-    },
+    "next_step": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
     "party_snapshot_and_marker_observed": true,
-    "script_context_abi": {
-      "comparison_result_offset": 2,
-      "enabled_offset": 116,
-      "env1_base": "0x03000EB0",
-      "mode_offset": 1,
-      "native_pointer_offset": 4,
-      "old_B_CONTEXT_plus_8_display_is_not_script_pointer": true,
-      "script_pointer_offset": 8,
-      "source": "vendor/upstream/CFRU-JP/include/script.h in verified original chooser-upstream-sources.zip",
-      "stack_depth_offset": 0
-    },
     "six_rentals_generated": true,
-    "trial_delegate_repaired": true
+    "trial_delegate_repaired": true,
+    "three_selection_observed": true,
+    "second_chooser_observed": true,
+    "battle_started": false,
+    "bp_earned": 0,
+    "selected_frame": 1440,
+    "second_chooser_frame": 1789,
+    "after_battle_launch": "交換scriptに残るspecial 0x2Fの2か所は実ROM bindingを確認して必要な箇所だけ修正。その後3勝9BP、負例、初回/繰返し、通常Save/fresh Continue、獲得BPの既存shop消費。",
+    "earning_accepted": false,
+    "spending_accepted": false
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
@@ -39,36 +29,19 @@
   },
   "current_checkpoint": "content/modernization/pr16_bp_chooser_checkpoint.json",
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
-  "diagnostic_original": {
-    "actual_native_processes_in_original": 1,
-    "adoption": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-    "artifact_id": 10302803074,
-    "artifact_name": "pr16-bp-trial-native",
-    "check_name": "trial-native",
-    "conclusion": "failure",
-    "downloaded_zip_digest_verified": true,
-    "git_archive_preserved": true,
-    "git_container": "content/modernization/pr16_bp_chooser_evidence/34733046485/original.zip!original-34708956804.zip",
-    "job_id": 103594064434,
-    "new_emulator_processes_during_this_reconciliation": 0,
-    "run_id": 34708956804,
-    "sha256": "44396b567b3057602870cdb6924902092e9671cb7d459a2de47d001958810bef",
-    "size": 677365
-  },
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
-  "latest_native_run": 34733866168,
-  "latest_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+  "latest_native_run": 34734806603,
+  "latest_native_tested_head": "c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63",
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "f344c9b9a88a7bab9f7c74e346f4505774de48f8",
+  "observed_head": "c8f5498f58512d2dcb76bf4a9a44e761cfdc2d63",
   "observed_head_checks": {
-    "failure": 1,
-    "success": 5,
-    "total": 6
+    "status": "NOT_AGGREGATED",
+    "reason_ja": "旧f344の5成功/1失敗を現HEADへ流用しない。最新診断runのsuccessだけを確認。branch HEADのChecksは開始時に別取得する。"
   },
   "p08_resume_synchronized": true,
-  "pr_body_update": "NOT_APPLIED_TOOL_SAFETY_CHECK_REJECTED",
+  "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
   "pr_number": 16,
@@ -85,6 +58,112 @@
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
   "retained_fixed_form_accepted_case_count": 5,
-  "schema_version": 1,
-  "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_BP_EARNING_PENDING"
+  "schema_version": 2,
+  "status": "DIAGNOSTIC_THREE_SELECTED_SECOND_CHOOSER_NOT_BP",
+  "stable_entrypoint": "CHATGPT_RESUME.md",
+  "stable_paths_do_not_rotate_with_date": true,
+  "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
+  "observed_head_semantics": "これは証拠/sourceを照合した時点のHEADであり、このファイルを含む最新commitのSHAではない。各セッションでbranchの最新HEADを取得し、この旧SHAへresetしない。",
+  "latest_native_job": 103664191480,
+  "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+  "latest_native_evidence": "content/modernization/pr16_bp_selection_diagnostic.json",
+  "last_accepted_native_run": 34733866168,
+  "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
+  "next_action": {
+    "id": "BP_SECOND_CHOOSER_NATIVE_CONFIRM",
+    "goal_ja": "2回目chooserの「けってい」をnative入力で通し、ScriptContext再開、opcode 0x5D、実battle callback、battle struct、敵party生成を確認する。",
+    "read_paths": [
+      "scripts/pr16_bp_selection_native.py",
+      "tools/mgba_pr16_bp_selection_native.c",
+      ".github/workflows/pr16-bp-selection-native.yml"
+    ],
+    "success_observations": [
+      "native confirm of second chooser",
+      "ScriptContext resumed",
+      "opcode 0x5D reached",
+      "real battle callback",
+      "battle struct allocated",
+      "enemy party generated"
+    ],
+    "stop_rule_ja": "観測できない場合は最初の不一致frame・callback・script pointer・候補SHA・run/jobを記録。markerやworkflowの緑だけで実戦開始/BP受入へ昇格しない。",
+    "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
+  },
+  "read_policy": {
+    "always": [
+      "AGENTS.md",
+      "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
+      "content/modernization/pr16_native_supply_resume_20260913.json"
+    ],
+    "before_acceptance_or_rom_change": [
+      "content/modernization/pr16_bp_chooser_checkpoint.json",
+      "content/modernization/p08_remaining_work.json"
+    ],
+    "environment_only_when_needed": [
+      "docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md"
+    ],
+    "history_only": [
+      "docs/PR16_BP_TRIAL_RESUME_20260913_JA.md",
+      "docs/PR16_NATIVE_SUPPLY_RESUME_20260912_JA.md",
+      "content/modernization/pr16_native_supply_handoff.json",
+      "PR body"
+    ],
+    "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
+  },
+  "do_not_repeat": [
+    "取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。",
+    "special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。",
+    "P03 fixed-form5件、generic FORM、P06、P07ほか完了済み領域は変更影響台帳で必要性が出るまで再オープンしない。",
+    "CircusのF0はbacksprite table誤読。decoder追加やraw403A直接書込みを入場証拠にしない。",
+    "Ring未発見を不存在と断定せず、fixtureやtrainer-authored policyを通常供給/UI受入へ読み替えない。",
+    "ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。"
+  ],
+  "session_protocol": {
+    "start_ja": "PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。観測headとの差分を対象pathだけ確認。本文にある旧SHAへresetせず、同一repo/branch・未mergeを確認。",
+    "freshness_ja": "checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。",
+    "reuse_ja": "候補/上流source/runner/fixture/契約が同じ結果を再利用。文書だけのcommitではROMを再生成しない。live HEADが違うだけで全回帰しない。",
+    "write_ja": "正本receipt/台帳を必要時だけ更新→このJSONの観測/受入/次の1手を更新→python3 scripts/pr16_resume.py render→checkとfocused tests→両ログへ追記→同一commitで保存する。",
+    "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
+    "end_ja": "実行したこと、観測できたこと、正式受入、未完、次の1手、run/job、検証結果を分離して記録。実行中runがあればID/対象HEAD/次の確認を記録し、完了を推測しない。"
+  },
+  "pending_runs": [],
+  "source_bindings": {
+    "scripts/pr16_bp_selection_native.py": {
+      "size": 9437,
+      "sha256": "6ca8a74632e80b23d58bdf1d556c441b4df17bbe1854423b43bb4c0041bb25ea"
+    },
+    "tools/mgba_pr16_bp_selection_native.c": {
+      "size": 5285,
+      "sha256": "7f96bef7cf65b82cf7b130c86e1ba029df6e66f4b6fbd4526e87d293122157d4"
+    },
+    ".github/workflows/pr16-bp-selection-native.yml": {
+      "size": 9067,
+      "sha256": "db7917eeba30257405ee43381d327fb6bb6885b962eac3bc01d067de441ff3e9"
+    },
+    "scripts/pr16_bp_chooser_successor.py": {
+      "size": 6745,
+      "sha256": "cc99efe99d0eeb805bd23d54441297501f83cd7f21225b0a7bbb496ca1213e07"
+    },
+    "scripts/pr16_bp_chooser_native.py": {
+      "size": 14590,
+      "sha256": "8d6a4ad35a34bc52a0ccb664eb1c950b54b98dd783e7bd755285f6d9590e218d"
+    },
+    "scripts/pr16_bp_trial_successor.py": {
+      "size": 5475,
+      "sha256": "6ec1b5ff0003a03533c20e325d53101bdf95b8650a1def270b5d4b25d888d158"
+    },
+    "config/factory_high_modes_v2.json": {
+      "size": 5741,
+      "sha256": "58cb98afb685d7f0d9c41071872ed3c59d7771f8437d793b5b4eebd1f977863f"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    }
+  },
+  "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
+  "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
+  "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
+  "latest_native_summary_ja": "3体選択frame1440→2回目chooser frame1789、party count3。実戦未開始・BP獲得0・通常Save0。battle-active markerやActions successを実戦/BP受入とみなさない。原本ZIPのdigest・47 receipt members・71 source membersを照合し、新規emulatorは0。",
+  "candidate_scope_ja": "開発候補。最終製品SHAではない。",
+  "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。"
 }

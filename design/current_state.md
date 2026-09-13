@@ -1,5 +1,11 @@
 # current_state.md
 
+<!-- pr16-stable-resume-route -->
+> **PR #16再開時の専用入口（一般タスク選択より優先）**
+> repository rootの `CHATGPT_RESUME.md` を読み、そこから指定された固定MD/JSONを使う。
+> 日付の新旧やこの下の過去checkpointから現在地を推測しない。`AGENTS.md` の安全・検証規約は引き続き適用する。
+<!-- /pr16-stable-resume-route -->
+
 最終更新: 2026-09-09
 
 ## 現在のプレイ基準
