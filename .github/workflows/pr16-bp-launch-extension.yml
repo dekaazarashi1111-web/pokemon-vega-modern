@@ -1,20 +1,20 @@
 name: pr16-bp-launch-extension
-run-name: PR16 corrected native observer and atomic three-document checkpoint
+run-name: PR16 battle-launch diagnostic closeout; source-only; no native replay
 on:
   push:
     branches: [codex/modernization-followup-20260908]
     paths: [.github/workflows/pr16-bp-launch-extension.yml]
 permissions:
   contents: write
-  actions: write
+  actions: read
 concurrency:
   group: pr16-bp-launch-extension
   cancel-in-progress: false
 jobs:
-  install:
+  closeout:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 15
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -22,50 +22,189 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: Execute pinned reviewed installer with complete document staging
+      - name: Reconcile actual latest run and exact immutable original
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = 613fd76915f262c080b56700a48f77827bf3e378
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          out=.local/pr16-bp-launch-closeout
+          mkdir -p "$out"
+          gh api repos/$GITHUB_REPOSITORY/pulls/16 --jq '{state,draft,merged,head:{ref:.head.ref,sha:.head.sha,repo:.head.repo.full_name}}' > "$out/pr.json"
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/workflows/pr16-bp-selection-native.yml/runs?branch=codex%2Fmodernization-followup-20260908&per_page=5' --jq '[.workflow_runs[]|{id,head_sha,status,conclusion,run_attempt}]' > "$out/latest-native.json"
+          gh api repos/$GITHUB_REPOSITORY/actions/runs/34739491272 --jq '{id,head_sha,status,conclusion,run_attempt,event,path}' > "$out/run.json"
+          gh api repos/$GITHUB_REPOSITORY/actions/runs/34739491272/jobs --jq '[.jobs[]|{id,name,head_sha,status,conclusion}]' > "$out/jobs.json"
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10312207537 --jq '{id,name,size_in_bytes,digest,expired,workflow_run}' > "$out/artifact.json"
+          gh api repos/$GITHUB_REPOSITORY/actions/artifacts/10312207537/zip > "$out/original.zip"
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/runs?head_sha=613fd76915f262c080b56700a48f77827bf3e378&per_page=100' --jq '[.workflow_runs[]|{id,name,head_sha,status,conclusion,event}]' > "$out/native-head-checks.json"
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/runs?head_sha='$GITHUB_SHA'&per_page=100' --jq '[.workflow_runs[]|{id,name,head_sha,status,conclusion,event}]' > "$out/closeout-entry-checks.json"
+          gh api repos/$GITHUB_REPOSITORY/git/blobs/c5e5d7a0d3b61f10ee4e14386803486504c7bb41 > "$out/verifier-blob.json"
+          python3 - <<'PY'
+          import base64,hashlib,json,os,pathlib
+          out=pathlib.Path('.local/pr16-bp-launch-closeout');load=lambda name:json.loads((out/name).read_text())
+          pr=load('pr.json');assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']==dict(ref='codex/modernization-followup-20260908',sha=os.environ['GITHUB_SHA'],repo=os.environ['GITHUB_REPOSITORY'])
+          run=load('run.json');latest=load('latest-native.json');jobs=load('jobs.json');art=load('artifact.json')
+          assert run['id']==34739491272 and run['head_sha']=='613fd76915f262c080b56700a48f77827bf3e378' and run['status']=='completed' and run['conclusion']=='success' and run['run_attempt']==1
+          assert latest[0]['id']==run['id'] and all(r['status']=='completed' for r in latest)
+          assert len(jobs)==1 and jobs[0]['id']==103676647813 and jobs[0]['status']=='completed' and jobs[0]['conclusion']=='success'
+          assert art['id']==10312207537 and art['name']=='pr16-bp-selection-native' and not art['expired'] and art['workflow_run']['head_sha']==run['head_sha']
+          raw=(out/'original.zip').read_bytes();assert len(raw)==art['size_in_bytes']==750753
+          assert hashlib.sha256(raw).hexdigest()=='303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07' and art['digest']=='sha256:'+hashlib.sha256(raw).hexdigest()
+          code=base64.b64decode(load('verifier-blob.json')['content'])
+          assert hashlib.sha1(b'blob '+str(len(code)).encode()+b'\0'+code).hexdigest()=='c5e5d7a0d3b61f10ee4e14386803486504c7bb41'
+          (out/'verify_launch.py').write_bytes(code)
+          print('LATEST_NATIVE_SUCCESS',run,'EXACT_ZIP',len(raw),art['digest'])
+          PY
+      - name: Verify all evidence members, source closure, native result and retained failure
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib,pathlib,subprocess
-          pin='c42396ba501a785fd4a858d314e2398139eeb943'
-          raw=subprocess.check_output(['git','show',pin+':.github/workflows/pr16-bp-launch-extension.yml'])
-          assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()=='4f65344916749de2b7f6516a62be38ed5445772d'
-          lines=raw.decode().splitlines();blocks=[]
-          for i,line in enumerate(lines):
-              if line!='        run: |':continue
-              body=[]
-              for following in lines[i+1:]:
-                  if following.startswith('          '):body.append(following[10:])
-                  elif not following:body.append('')
-                  else:break
-              blocks.append('\n'.join(body)+'\n')
-          assert len(blocks)==4
-          def replace(index,old,new):
-              assert blocks[index].count(old)==1,(index,old)
-              blocks[index]=blocks[index].replace(old,new)
-          replace(0,'test "$(git rev-parse HEAD^)" = 9bf3abe5e0fbef23f8c5727c658ba31a4d556473',
-                    'test "$(git rev-parse HEAD^)" = a5f2a15fadedd80959d4dc7e366eb469bea04122')
-          replace(2,'python3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-count-fix/retained-cancel.json',
-                    'git add -- content/modernization/p08_remaining_work.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md\npython3 scripts/pr16_bp_chooser_checkpoint.py --index > .local/pr16-bp-count-fix/retained-cancel.json')
-          replace(2,"p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)",
-                    "s['checkpoint_index_order_failures']=[{'run_id':34739159633,'job_id':103675775748,'native_processes':0,'original_conclusion':'failure'},{'run_id':34739395296,'job_id':103676397638,'native_processes':0,'original_conclusion':'failure'}]\np.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)")
-          replace(2,"for name in ('design/run_log.md','design/version_log.md'):",
-                    "note += '\\n- Checkpoint preflight failures retained: runs34739159633/34739395296, native0; focused14/resume18 passed. Stage P08 plus fixed handoff MD/JSON together for --index, then verify committed HEAD before native dispatch.\\n'\nfor name in ('design/run_log.md','design/version_log.md'):")
-          replace(3,'git diff --exit-code HEAD\n',
-                    'git diff --exit-code HEAD\npython3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-count-fix/committed-cancel.json\npython3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-count-fix/committed-fixed-form.json\n')
-          out=pathlib.Path('.local/pr16-bp-count-fix');out.mkdir(parents=True,exist_ok=True)
-          for i,block in enumerate(blocks):
-              script=out/f'reviewed-step-{i+1}.sh';script.write_text(block)
-              print(f'Executing reviewed checkpoint phase {i+1}/4',flush=True)
-              with (out/f'phase-{i+1}.log').open('w') as log:
-                  result=subprocess.run(['bash','-euo','pipefail',str(script)],stdout=log,stderr=subprocess.STDOUT)
-              print((out/f'phase-{i+1}.log').read_text(),flush=True)
-              result.check_returncode()
+          import json,pathlib,re,subprocess,sys
+          out=pathlib.Path('.local/pr16-bp-launch-closeout');sys.path[:0]=[str(out.resolve()),'scripts']
+          import verify_launch as v
+          import pr16_bp_selection_native as native
+          root=pathlib.Path.cwd();head='613fd76915f262c080b56700a48f77827bf3e378';raw=(out/'original.zip').read_bytes()
+          r=v.verify(raw,head);assert (r['receipt_members'],r['source_members'],r['entry_members'],r['generated_members'])==(51,71,18,11)
+          assert r['report']['status']==native.STATUS
+          prefix='pr16-bp-selection-native/';files=r['files'];case=native.CASE
+          row=native.validate(files[prefix+case+'.stdout'],files[prefix+case+'.stderr'],0)
+          for name,data in r['sources'].items():
+              assert (root/name).read_bytes()==data==subprocess.check_output(['git','show',head+':'+name]),'source closure changed: '+name
+          generated=v.archive(files[prefix+'generated-controller.zip'],inner=True)
+          assert generated['controller.c']==(root/native.SOURCE).read_bytes()
+          for guard in native.previous.fixed.GUARDS:
+              native.previous.control.validate_guard(files[prefix+'guard-'+guard+'.stdout'],files[prefix+'guard-'+guard+'.stderr'],json.loads(files[prefix+'guard-'+guard+'.process.json']))
+          text=files[prefix+case+'.stderr'].decode();enemy=bytes.fromhex(re.search(r'BP_READ name=enemy_party_generated .* hex=(.*)',text)[1])
+          species=[int.from_bytes(enemy[i*100+32:i*100+34],'little') for i in range(6)]
+          assert len(enemy)==600 and species==[7,1,133,0,0,0] and row['enemy_party_count']==3 and row['enemy_party_count_raw']==0
+          assert (row['confirm_frame'],row['script_advance_frame'],row['battle_struct_frame'],row['action_frame'])==(1914,1967,2051,3260)
+          assert row['battle_callback2']==0x080109C1 and row['battle_main_callback']==0x08013861 and row['new_battle_struct']==0x02017634
+          screenshots={pathlib.PurePosixPath(k).name:v.identity(data) for k,data in files.items() if k.endswith('.ppm')};assert len(screenshots)==19
+          failed='content/modernization/pr16_bp_launch_evidence/34738859743/original.zip';fraw=(root/failed).read_bytes()
+          assert v.identity(fraw)==dict(size=752252,sha256='ac228665a48efd17c4cff2b1ec03eb977d09ee6771f159c50c8123bd10c98b59')
+          f=v.verify(fraw,'9bf3abe5e0fbef23f8c5727c658ba31a4d556473');assert f['report']['status']=='FAIL' and f['report']['successful_fresh_cores']==0
+          assert fraw==subprocess.check_output(['git','show','HEAD:'+failed])
+          for mutate in ('battle_started','native_bp_earning_accepted','script_pointer_after_advance','enemy_party_count'):
+              wrong=dict(row);wrong[mutate]=not row[mutate] if isinstance(row[mutate],bool) else 0
+              try:native.validate(json.dumps(wrong).encode(),files[prefix+case+'.stderr'],0)
+              except ValueError:pass
+              else:raise AssertionError('mutated observation accepted: '+mutate)
+          report={k:r[k] for k in ('archive','receipt_members','source_members','entry_members','generated_members')}
+          report.update(native_result=row,enemy_species_slots=species,screenshots=screenshots,source_closure_matches_tested_and_current_head=True,failed_original_retained_as_failure=True,new_emulator_processes=0,acceptance_promoted=False)
+          (out/'verified.json').write_text(json.dumps(report,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          print('VERIFIED_NATIVE_DIAGNOSTIC',row['status'],'SOURCE_ONLY_RECHECK_EMULATORS',0)
           PY
+      - name: Advance same handoff, preserve old summary, and make mismatch test bidirectional
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime,hashlib,json,os,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_resume as p
+          out=pathlib.Path('.local/pr16-bp-launch-closeout');load=lambda name:json.loads((out/name).read_text())
+          v=load('verified.json');row=v['native_result'];run=load('run.json');head=run['head_sha']
+          dest=p.ROOT/'content/modernization/pr16_bp_launch_evidence/34739491272';assert not dest.exists();dest.mkdir(parents=True)
+          (dest/'original.zip').write_bytes((out/'original.zip').read_bytes())
+          p.dump(dest/'actions.json',dict(run=run,jobs=load('jobs.json'),artifact=load('artifact.json'),classification='DIAGNOSTIC_ONLY_NOT_ACCEPTANCE',native_head_checks=load('native-head-checks.json')))
+          old=p.load(p.ROOT,'content/modernization/pr16_bp_selection_diagnostic.json')
+          p.dump(dest/'prior-selection.json',old)
+          p.dump(dest/'verification.json',v)
+          (dest/'verify_launch.py').write_bytes((out/'verify_launch.py').read_bytes())
+          summary=dict(schema_version=1,classification='DIAGNOSTIC_ONLY_NOT_ACCEPTANCE',run_id=run['id'],job_id=103676647813,tested_head=head,
+              actions_status=run['status'],actions_conclusion=run['conclusion'],run_attempt=run['run_attempt'],artifact_id=10312207537,
+              original_zip='content/modernization/pr16_bp_launch_evidence/34739491272/original.zip',original_zip_identity=v['archive'],
+              verification={k:v[k] for k in ('receipt_members','source_members','entry_members','generated_members','source_closure_matches_tested_and_current_head','failed_original_retained_as_failure','new_emulator_processes','acceptance_promoted')},
+              native_result=row,previous_diagnostic='content/modernization/pr16_bp_launch_evidence/34739491272/prior-selection.json',
+              failed_attempt='content/modernization/pr16_bp_launch_evidence/34738859743/actions.json',
+              scope_ja='native2回目確定から最初の実battle action callbackまで。未実行: 攻撃1ターン/勝利/帰還/報酬/通常Save/fresh Continue/獲得BP消費。正式BP受入は増やさない。')
+          p.dump(p.ROOT/'content/modernization/pr16_bp_selection_diagnostic.json',summary)
+          # Reject disagreement with either observed state, not hardcoded false.
+          path=p.ROOT/'tests/test_pr16_resume.py';text=path.read_text();before="self.s['bp']['battle_started']=True;self.sync();self.assert_invalid()"
+          assert text.count(before)==1;text=text.replace(before,"self.s['bp']['battle_started']=not self.s['bp']['battle_started'];self.sync();self.assert_invalid()")
+          path.write_text(text)
+          s=p.load(p.ROOT,p.STATE);s['observed_head']=os.environ['GITHUB_SHA'];s['status']=row['status']
+          s.update(latest_native_run=run['id'],latest_native_job=103676647813,latest_native_tested_head=head,latest_native_scope='DIAGNOSTIC_ONLY_NOT_ACCEPTANCE',pending_runs=[])
+          for key in ('battle_started','bp_earned','selected_frame','second_chooser_frame'):s['bp'][key]=row[key]
+          s['bp']['current_stop']='run34739491272で2回目chooser確定1914f→ScriptContext/0x5D消費1967f→battle struct生成2051f→実行動選択callback3260fを確認。敵slot3体・BP0・savecounter2。実戦開始診断は成功したが、攻撃/勝利/帰還/報酬はまだ観測していない。'
+          goal='最初の実battle actionからnative戦闘進行・帰還へ延長する前に、Trialと9BP対象モードの報酬条件および交換scriptの残るspecial 0x2F実bindingを照合し、次の未観測区間だけ実装する。'
+          s['next_action'].update(id='BP_NATIVE_BATTLE_PROGRESS_AND_REWARD_ROUTE',goal_ja=goal,
+              read_paths=['tools/mgba_pr16_bp_selection_native.c','scripts/pr16_bp_selection_native.py','overlays/facility_runtime/facility_runtime.c','config/factory_high_modes_v2.json','.github/workflows/pr16-bp-selection-native.yml'],
+              success_observations=['verified actual Trial versus rewarded-mode route','native battle action and return without host outcome writes','remaining exchange special bindings read from exact candidate','correct reward conditions before separate BP acquisition acceptance'],
+              stop_rule_ja='実行動選択callback到達は原本で再利用し、同じ停止点だけの再実行をしない。Trialのreward0を9BP獲得と誤認しない。新しい戦闘/帰還/交換/報酬区間の最初の不一致をframe/callback/run/job付きで残す。')
+          s['bp']['next_step']=goal
+          s['bp']['after_battle_launch']='実戦開始の停止点は解決済み。まずTrial(mode0/reward0)と9BP対象ルートを区別し、残る交換special 0x2Fの2か所を実ROMで確認する。必要な箇所だけ修正し、正しい報酬ルートで3勝9BP、負例、初回/繰返し、通常Save/fresh Continue、獲得BPの既存shop消費を別途受け入れる。'
+          s['latest_native_summary_ja']='成功原本ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07、51 receipt/71 source/18 entry/11 generatedを照合。fresh core1・3260frames・7barrier・警告0。cb2=080109C1/main=08013861/newbs=02017634、敵species[7,1,133]。旧run34738859743は敵数observer誤認のfailureとして原本保持。今回の台帳再照合emulator0。'
+          s['do_not_repeat'].insert(2,'run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。')
+          s['prepared_native_probe'].update(execution_status='COMPLETED_DIAGNOSTIC_SUCCESS',run_id=34739491272,job_id=103676647813,tested_head=head)
+          s['session_execution_summary']={'native_game_processes':2,'failed_native_processes':1,'successful_native_fresh_cores':1,'accepted_cancel_replays':0,'rom_source_changes':0,'closeout_emulator_processes':0,'native_bp_earning_accepted':False}
+          s['source_change_review_ja']='実装時は同じ候補/fixture/入力列/7barrierで観測だけ拡張。失敗raw敵数byteは生値として残し、既存party+0x20 species ABIから3体を検証。成功runの71source全closureが記録時HEADと一致。closeoutは原本/抄録/同じ引継ぎ/両ログとresume negative testだけで、ROM/native controller/runnerを変更しない。'
+          for name in s['next_action']['read_paths']:s['source_bindings'].setdefault(name,{})
+          for name in s['source_bindings']:
+              raw=(p.ROOT/name).read_bytes();s['source_bindings'][name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          s['observed_head_checks']={'status':'NATIVE_DIAGNOSTIC_SUCCESS_GENERAL_CHECKS_SEPARATE','checked_head':os.environ['GITHUB_SHA'],
+              'native_tested_head':head,'native_head_runs':load('native-head-checks.json'),'closeout_entry_runs':load('closeout-entry-checks.json'),
+              'reason_ja':'native34739491272/job103676647813は成功し原本を照合。source-validation等は別のhead別API一覧に記録し、bot起点のaction_requiredや未完を成功へ読み替えない。この引継ぎcommitの全Checks完了やrelease-readyは主張しない。'}
+          s['logs_synchronized']=True;p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)
+          stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          note=f'\n\n## {stamp} — USER-20260913-BP-SECOND-CHOOSER-CLOSEOUT\n- Task: USER-20260913-BP-SECOND-CHOOSER\n- Status: DONE_SCOPED_BATTLE_LAUNCH_DIAGNOSTIC; BP_EARNING_PENDING\n- Summary: native確定1914f→5D消費1967f→struct2051f→action3260f、敵3体・BP0・savecounter2・7barrier・warning0を実観測。攻撃/勝利/帰還/報酬/獲得BP消費は未観測。\n- Evidence: run34739491272/job103676647813/HEAD613fd76915f262c080b56700a48f77827bf3e378/artifact10312207537、ZIP750753bytes/SHA303b3d51a8d3116e2def4f464578d1c29f44e4f8e37f7f54eb677e5f78a4ac07。51receipt/71source/18entry/11generatedとstdout/process/Gitの一致を照合。19画面を保持、battle-action画面を確認。失敗run34738859743原本はfailureのまま保持。\n- Verification: source-only最終照合、native result変異4負例、focused14件、resume18件（観測true/falseいずれでも不一致を拒否するようnegative testを一般化）、固定MD生成、task graph、既存取消/固定formのGit保持、private guard差分を検査してcommitする。標準guardの既存違反は不変、新規0。全体guard PASSへ読み替えない。\n- Execution: このセッションの新規native2process（失敗1/成功1core）。取消/Save/Continue再実行0。closeoutのemulator0/ROM再生成0。\n- Files changed: 元診断抄録、成功原本/Actions/検証記録/旧抄録、同じ固定resume MD/JSON、P08再開文、resume negative test、両ログ。\n- Next: Trial reward0と9BP対象modeを区別し、残る交換0x2F bindingを確認後、実戦進行/帰還/報酬の未観測区間へ延長。実戦開始だけの重複試験なし。physical4+P08 gates2は未完のまま。\n- Commit: この記録を含むcommit。照合入力HEAD={os.environ["GITHUB_SHA"]}、source-only closeout run={os.environ["GITHUB_RUN_ID"]}。PRopen/draft、merge/release/baseline変更なし。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=p.ROOT/name;assert path.read_bytes()==subprocess.check_output(['git','show','HEAD:'+name])
+              with path.open('a') as f:f.write(note)
+          PY
+          python3 scripts/pr16_resume.py render
+          python3 -m unittest discover -s tests -p test_pr16_bp_selection_native.py -v > .local/pr16-bp-launch-closeout/launch-tests.txt 2>&1
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v > .local/pr16-bp-launch-closeout/resume-tests.txt 2>&1
+          python3 scripts/pr16_resume.py check
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-launch-closeout/fixed-form.json
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: Verify staged retention, scoped guard and unchanged acceptance before push
+        run: |
+          set -euo pipefail
+          git add -- content/modernization/pr16_bp_selection_diagnostic.json content/modernization/pr16_bp_launch_evidence/34739491272 content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md content/modernization/p08_remaining_work.json tests/test_pr16_resume.py design/run_log.md design/version_log.md
+          python3 scripts/pr16_bp_chooser_checkpoint.py --index > .local/pr16-bp-launch-closeout/chooser-index.json
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,tempfile
+          out=pathlib.Path('.local/pr16-bp-launch-closeout');base='613fd76915f262c080b56700a48f77827bf3e378'
+          regular={'content/modernization/pr16_bp_selection_diagnostic.json','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/p08_remaining_work.json','tests/test_pr16_resume.py','design/run_log.md','design/version_log.md','.github/workflows/pr16-bp-launch-extension.yml'}
+          evidence={'content/modernization/pr16_bp_launch_evidence/34739491272/'+name for name in ('original.zip','actions.json','verification.json','prior-selection.json','verify_launch.py')}
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines());assert changed<=regular|evidence
+          for name in evidence:assert pathlib.Path(name).read_bytes()==subprocess.check_output(['git','show',':'+name])
+          name='content/modernization/p08_remaining_work.json';a=json.loads(subprocess.check_output(['git','show',base+':'+name]));b=json.loads(pathlib.Path(name).read_text())
+          for obj in (a,b):
+              for row in obj['remaining_conditions']:
+                  if row['id'] in ('NATURAL_CAPTURE_GEAR','FINAL_NATIVE_ACCEPTANCE'):row.pop('resume',None)
+          assert a==b,'P08 acceptance semantics changed'
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=tmp+'/base.index');subprocess.run(['git','read-tree',base],env=env,check=True)
+              before=subprocess.run(['python3','scripts/guard_private_files.py'],env=env,capture_output=True);after=subprocess.run(['python3','scripts/guard_private_files.py'],capture_output=True)
+          assert before.returncode in (0,1) and (before.returncode,before.stdout,before.stderr)==(after.returncode,after.stdout,after.stderr),'private guard changed'
+          (out/'guard.json').write_text(json.dumps(dict(base=base,full_guard_returncode=after.returncode,full_pass_claimed=after.returncode==0,existing_violations_unchanged=True,new_violations=0,changed_paths=sorted(changed)),indent=2)+'\n')
+          PY
+          git diff --cached --check
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260913-BP-SECOND-CHOOSER: retain native battle-launch success and advance same fixed handoff'
+          git push origin "HEAD:$GITHUB_REF"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "$GITHUB_REF" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-bp-launch-closeout/pushed-head.txt
+          python3 scripts/pr16_resume.py check
+          python3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-launch-closeout/chooser-committed.json
+          python3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-launch-closeout/fixed-form-committed.json
+          python3 - <<'PY'
+          import pathlib,subprocess
+          for path in pathlib.Path('content/modernization/pr16_bp_launch_evidence/34739491272').iterdir():
+              assert path.read_bytes()==subprocess.check_output(['git','show','HEAD:'+path.as_posix()])
+          for path in ('content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'):
+              assert pathlib.Path(path).read_bytes()==subprocess.check_output(['git','show','HEAD:'+path])
+          print('COMMITTED_HANDOFF_BOTH_LOGS_AND_ORIGINALS_MATCH; native replay=0')
+          PY
+          git diff --exit-code HEAD
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-bp-count-fix
-          path: .local/pr16-bp-count-fix/
-          retention-days: 30
+          name: pr16-bp-launch-closeout
+          path: .local/pr16-bp-launch-closeout/
+          retention-days: 90
           if-no-files-found: error
