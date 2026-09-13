@@ -1,5 +1,5 @@
 name: pr16-bp-launch-extension
-run-name: PR16 native count observer with staged and committed evidence checks
+run-name: PR16 corrected native observer and atomic three-document checkpoint
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -22,7 +22,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: Execute pinned reviewed installer with index-order correction only
+      - name: Execute pinned reviewed installer with complete document staging
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -44,20 +44,23 @@ jobs:
               assert blocks[index].count(old)==1,(index,old)
               blocks[index]=blocks[index].replace(old,new)
           replace(0,'test "$(git rev-parse HEAD^)" = 9bf3abe5e0fbef23f8c5727c658ba31a4d556473',
-                    'test "$(git rev-parse HEAD^)" = '+pin)
+                    'test "$(git rev-parse HEAD^)" = a5f2a15fadedd80959d4dc7e366eb469bea04122')
           replace(2,'python3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-count-fix/retained-cancel.json',
-                    'git add -- content/modernization/p08_remaining_work.json\npython3 scripts/pr16_bp_chooser_checkpoint.py --index > .local/pr16-bp-count-fix/retained-cancel.json')
+                    'git add -- content/modernization/p08_remaining_work.json content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md\npython3 scripts/pr16_bp_chooser_checkpoint.py --index > .local/pr16-bp-count-fix/retained-cancel.json')
           replace(2,"p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)",
-                    "s['checkpoint_index_order_failure']={'run_id':34739159633,'job_id':103675775748,'native_processes':0,'reason':'HEAD check before staging modified P08; use staged --index then committed HEAD check','original_conclusion':'failure'}\np.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)")
+                    "s['checkpoint_index_order_failures']=[{'run_id':34739159633,'job_id':103675775748,'native_processes':0,'original_conclusion':'failure'},{'run_id':34739395296,'job_id':103676397638,'native_processes':0,'original_conclusion':'failure'}]\np.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)")
           replace(2,"for name in ('design/run_log.md','design/version_log.md'):",
-                    "note += '\\n- Checkpoint failure retained: run34739159633/job103675775748, native0; focused14/resume18 passed. Only verification order changed: stage P08 and check --index, then verify committed HEAD before native dispatch.\\n'\nfor name in ('design/run_log.md','design/version_log.md'):")
+                    "note += '\\n- Checkpoint preflight failures retained: runs34739159633/34739395296, native0; focused14/resume18 passed. Stage P08 plus fixed handoff MD/JSON together for --index, then verify committed HEAD before native dispatch.\\n'\nfor name in ('design/run_log.md','design/version_log.md'):")
           replace(3,'git diff --exit-code HEAD\n',
                     'git diff --exit-code HEAD\npython3 scripts/pr16_bp_chooser_checkpoint.py > .local/pr16-bp-count-fix/committed-cancel.json\npython3 scripts/pr16_fixed_form_closeout.py --check > .local/pr16-bp-count-fix/committed-fixed-form.json\n')
           out=pathlib.Path('.local/pr16-bp-count-fix');out.mkdir(parents=True,exist_ok=True)
           for i,block in enumerate(blocks):
               script=out/f'reviewed-step-{i+1}.sh';script.write_text(block)
               print(f'Executing reviewed checkpoint phase {i+1}/4',flush=True)
-              subprocess.run(['bash','-euo','pipefail',str(script)],check=True)
+              with (out/f'phase-{i+1}.log').open('w') as log:
+                  result=subprocess.run(['bash','-euo','pipefail',str(script)],stdout=log,stderr=subprocess.STDOUT)
+              print((out/f'phase-{i+1}.log').read_text(),flush=True)
+              result.check_returncode()
           PY
       - uses: actions/upload-artifact@v4
         if: always()
