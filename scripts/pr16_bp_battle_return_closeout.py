@@ -25,7 +25,7 @@ PATHS=(resume.STATE,resume.DOC,resume.BACKLOG,c.REPORT,c.ATTEMPTS,*LOGS,
        *[c.BASE+'/original-'+str(p[0])+'.zip' for p in c.PINS],*[c.BASE+'/actions-'+str(p[0])+'.json' for p in c.PINS])
 BINDINGS=(c.native.SELF,c.native.SOURCE,c.native.WORKFLOW,'tests/test_pr16_bp_battle_return.py',
           c.SELF,SELF,'tests/test_pr16_bp_battle_return_checkpoint.py',c.ATTEMPTS,
-          'vendor/upstream/CFRU-JP/BPRJ.ld','manifests/facility_rewards.csv',
+          'overlays/facility_runtime/facility_runtime.c','manifests/facility_rewards.csv',
           'overlays/factory_reward_runtime/factory_reward_runtime.c',
           'overlays/factory_repeat_reward_runtime/factory_repeat_reward_runtime.c')
 
@@ -66,7 +66,7 @@ def documents(report,head,actions,pr):
     row=report['rows'][-1];r=row['native_result'];old=resume.load(ROOT,resume.STATE)
     need(old['latest_native_run'] in (34741232621,34749370272),'another native result must be reconciled')
     for path,bound in old['source_bindings'].items():need(c.identity((ROOT/path).read_bytes())==bound,'prior bound source changed: '+path)
-    need('CB2_WhiteOut = 0x8055F64 | 1;' in (ROOT/'vendor/upstream/CFRU-JP/BPRJ.ld').read_text(),'WhiteOut symbol binding changed')
+    need(r['whiteout_callback2']==0x08055F65 and r['final_script_pointer']==0 and not r['native_afterbattle_observed'],'WhiteOut evidence binding changed')
     old['last_successful_native_diagnostic']=dict(run_id=34741232621,job_id=103681167660,tested_head='88e043592f07c80d1e4f582320bb955243986711',path='content/modernization/pr16_bp_progress_diagnostic.json',scope='FIRST_TURN_NOT_BP')
     diag=dict(schema_version=1,classification='DIAGNOSTIC_ONLY_NOT_ACCEPTANCE',
         **{k:row[k] for k in ('run_id','job_id','tested_head','zip','native_result','original_conclusion','first_unmatched_condition')},
@@ -92,7 +92,7 @@ def documents(report,head,actions,pr):
         loss_return_to_facility_observed=False,loss_party_restoration_verified=False,
         after_battle_launch='1戦敗北は実測済みだが施設へ戻らずsnapshot/marker/レンタルpartyが残存する。交換修正や勝利だけを先に進めて負例を隠さない。Trial reward0はID、基本9BP。manifest/Stage28追加BP3とStage29 repeat1/2の条件を読取照合したが、候補上の全completion chainと最終付与量は未確定。交換operand092CF729/092CF775のsingle-selection ABI修正は敗北復帰の後。初期chooser修正、受入取消/Save/Continueは再実施しない。')
     old['next_action'].update(id='BP_LOSS_RETURN_CALLBACK_OWNER',goal_ja=goal,
-        read_paths=[c.REPORT,c.native.SOURCE,c.native.SELF,'overlays/facility_runtime/facility_runtime.c','vendor/upstream/CFRU-JP/BPRJ.ld',c.native.WORKFLOW,c.BASE+'/reward-source-audit.json'],
+        read_paths=[c.REPORT,c.native.SOURCE,c.native.SELF,'overlays/facility_runtime/facility_runtime.c','scripts/build_facility_runtime.py',c.native.WORKFLOW,c.BASE+'/reward-source-audit.json'],
         success_observations=['native loss returns to facility script and calls AfterBattle','original 600 party bytes and count restored; snapshot/marker cleared','BP and full save counter unchanged in loss control','separate winner/exchange/reward acquisition acceptance remains pending'],
         stop_rule_ja='同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。')
     old['current_failed_native_attempt']=row
