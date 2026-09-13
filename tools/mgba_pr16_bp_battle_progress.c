@@ -16,7 +16,16 @@ static struct BPProgress bp_progress(struct mCore *c) {
     bp_require(c,w.move && w.before,"no native move with PP available");
     w.player_before=read16(c,ADDR_BATTLE_MONS+BATTLE_CORE_MON_HP);
     w.enemy_before=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_HP);
-    n_cursor(c,0U);b_press(c,QOL_KEY_A,60U);
+    /* command 0x12 can precede the drawn action menu. Observe every frame
+     * and retry only that menu; never pulse A through command 0x14. */
+    n_cursor(c,0U);
+    for(unsigned f=0;f<600U;++f){
+        if(read8(c,0x02022B24U)==0x14U && (read32(c,0x02023B28U)&1U))break;
+        bp_require(c,!read8(c,BATTLE_CORE_BATTLE_OUTCOME) && read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),"battle ended before first move menu");
+        if(f%90U==0U)fprintf(stderr,"BP_PROGRESS_MENU frame=%u command=%u ctrl=%08x\n",b_frames,read8(c,0x02022B24U),read32(c,0x03005020U));
+        b_frame(c,f%90U==0U && n_action(c)?QOL_KEY_A:0U);
+    }
+    b_frames_run(c,0U,60U);
     bp_require(c,read8(c,0x02022B24U)==0x14U && (read32(c,0x02023B28U)&1U),"native move menu absent");
     w.menu=b_frames;sp_observe(c,"first-move-menu");
     for(unsigned i=0;i<6U && read8(c,BATTLE_CORE_MOVE_SELECTION_CURSOR)!=w.slot;++i){
