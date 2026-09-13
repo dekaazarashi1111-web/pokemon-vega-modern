@@ -51,6 +51,7 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
     require(not destination.exists() and not destination.is_symlink(), 'destination must be new')
     require(not any(p.is_symlink() for p in destination.parents), 'destination ancestor symlink')
     objects = []
+    ignored_metadata = []
     with zipfile.ZipFile(archive) as z:
         require(len(z.namelist()) == len(set(z.namelist())), 'duplicate archive member')
         for info in z.infolist():
@@ -62,7 +63,10 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
             object_prefix = PREFIX + '.git/objects/'
             if info.filename.startswith(object_prefix) and not info.is_dir():
                 rel = info.filename[len(object_prefix):]
-                require(OBJECT.fullmatch(rel) is not None, 'unsupported Git object member')
+                require(rel not in ('info/alternates', 'info/http-alternates'), 'external object store rejected')
+                if OBJECT.fullmatch(rel) is None:
+                    ignored_metadata.append(rel)
+                    continue
                 objects.append((info, rel))
         require(0 < len(objects) <= 20_000, 'invalid object count')
         require(sum(i.file_size for i, _ in objects) <= MAX_SOURCE_BYTES, 'object archive too large')
@@ -102,6 +106,7 @@ def restore(archive: Path, destination: Path, bound: dict, locked: dict) -> dict
     return {'archive': archive.name, 'archive_size': len(raw), 'archive_sha256': bound['sha256'],
             'locked_commit': commit, 'locked_tree': git(destination, 'rev-parse', 'HEAD^{tree}').decode().strip(),
             'restoration': 'LOCKED_GIT_OBJECTS_NOT_ARCHIVED_WORKTREE', 'object_members': len(objects),
+            'ignored_object_metadata': sorted(ignored_metadata),
             'source_files': len(manifest), 'source_bytes': total,
             'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
             'archived_worktree_used': False, 'archived_git_config_used': False,

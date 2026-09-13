@@ -97,6 +97,12 @@ class SnapshotTests(unittest.TestCase):
         with self.assertRaises(M.SnapshotError): self.restore()
         self.assertFalse((self.source / 'new').exists())
 
+    def test_auxiliary_object_metadata_is_not_restored(self):
+        self.pack((M.PREFIX + '.git/objects/info/commit-graph', b'not executable and never read'))
+        result = self.restore()
+        self.assertEqual(result['ignored_object_metadata'], ['info/commit-graph'])
+        self.assertFalse((self.destination / '.git/objects/info/commit-graph').exists())
+
     def test_git_alternates_rejected(self):
         self.pack((M.PREFIX + '.git/objects/info/alternates', b'/outside'))
         with self.assertRaises(M.SnapshotError): self.restore()
