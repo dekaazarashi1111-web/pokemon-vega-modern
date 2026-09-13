@@ -2,10 +2,10 @@
   "active_baseline_changed": false,
   "bp": {
     "cancellation_save_continue_accepted": true,
-    "current_stop": "WhiteOut設定元をbffdのCB2_EndTrainerBattle内0807FC50→0807FC5C→SetMainCallback2で固定し、1か所のcallback pointerと180bytesの施設限定shimを実装。候補fcda1507/CRC A15FAF9D。run34759726061/job103730310536のnative processはexit0、11261fで敗北、11405fで09FF4681、11444fでAfterBattle call後、11464fで元party復元、11516fで受付前idle。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save counter2、入力barrier7・警告0。\n\n原Actions/Pythonは終了済みscript pointer0を拒否してfailure/FAIL。原本は変更せず、exact field callback08055E75・AfterBattle進行・復元・idleの全遷移を必須にしたsource-only再検証を完了。新規emulator再実行0。敗北帰還修復は完了、勝利・交換・BP稼得/消費は未受入。",
+    "current_stop": "交換用単体選択ABIを固定し、092CF729/092CF775の2 operandを2F→29へ最小修正。run34762342982/job103737252115はSUCCESS、9 source tests・実runtime14条件、同一fcdaから2回の限定生成一致。新候補SHA 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd / CRC 0D5D9178 / 33554432bytes。実変更2bytes、範囲外変更0、新規emulator0。\n\nGetNumMonsOnTeamInFrontierは人数を1..6へ制限し1体を許可。選択結果はram_locs.hの0203C6C8へslot+1で保存し、CommitExchangeは1..3だけを受理する。special RESULTはslotではない。原Actions34762042215の抽出失敗はfailureのまま保持。敗北帰還/元party復元は従来fcdaの受入範囲を保持し再実行0。native勝利・交換・BP稼得/消費は未受入。",
     "earning_and_spending_accepted": false,
     "native_party_chooser_accepted": true,
-    "next_step": "修復候補fcdaの既存AfterBattle復帰後に残る交換用単体選択ABIを、facility script 092CF729/092CF775と選択結果の読取先から固定し、最小修正する。今回完了の敗北帰還を再実行せず、変更影響のある交換経路からnative勝利・3勝BP稼得へ進む。",
+    "next_step": "交換修復候補7f32ba99を既存fcdaから再現し、native入力だけで初勝利→AfterBattle→交換1体選択/確定→次戦へ進む。未観測の交換経路を検証して3勝completion chain・BP稼得へ延長する。source/host修正完了をnative受入へ読み替えない。",
     "party_snapshot_and_marker_observed": true,
     "six_rentals_generated": true,
     "trial_delegate_repaired": true,
@@ -15,7 +15,7 @@
     "bp_earned": 0,
     "selected_frame": 1440,
     "second_chooser_frame": 1789,
-    "after_battle_launch": "1戦敗北→施設受付前idle→元party600bytes/count1復元はfcdaで検証完了。次は交換operand092CF729/092CF775のsingle-selection ABI。Trial reward0はID、基本9BP。manifest/Stage28追加BP3とStage29 repeat1/2の条件は既存読取証拠を再利用するが、候補上の勝利・全completion chain・最終付与量は未受入。初期chooser、取消/Save/Continueと今回の敗北帰還を変更影響なしに再実施しない。",
+    "after_battle_launch": "敗北帰還はfcdaで検証済み。交換2operandは7f32でsource/host/生成検証済み。次は7f32のnative初勝利・単体交換・次戦へ進む。基本9BP/追加BP/繰返し条件は既存reward-source-auditを再利用し、最終付与量は実3勝後に観測する。",
     "earning_accepted": false,
     "spending_accepted": false,
     "native_first_turn_observed": true,
@@ -29,7 +29,9 @@
     "loss_party_restoration_verified": true,
     "loss_return_frame": 11516,
     "loss_restore_bytes": 600,
-    "loss_return_callback_owner_resolved": true
+    "loss_return_callback_owner_resolved": true,
+    "exchange_abi_repaired": true,
+    "native_exchange_accepted": false
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
@@ -47,10 +49,10 @@
   "logs_synchronized": true,
   "merge_performed": false,
   "observed_date_jst": "2026-09-13",
-  "observed_head": "dfe293f57b009e04274c5eb67dbb9c4e6cae74ec",
+  "observed_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
   "observed_head_checks": {
-    "status": "NATIVE_FAILURE_GENERAL_CHECKS_SEPARATE",
-    "checked_head": "96bd8d3b5d4552f567b32eddbcab80bcc78ab80a",
+    "status": "EXCHANGE_SOURCE_SUCCESS_NATIVE_WIN_PENDING",
+    "checked_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
     "native_tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
     "native_head_runs": [
       {
@@ -188,7 +190,7 @@
         "updated_at": "2026-09-13T10:15:44Z"
       }
     ],
-    "reason_ja": "native HEADdfeのActionsを再照合。専用run34759726061はPython終了状態検査のfalse negativeでfailure、raw nativeはexit0/PASS。新規source-only検証は別runであり、原失敗の取消・全Checks成功・BP受入とは主張しない。記録commitのChecksはpush後に別照合。",
+    "reason_ja": "交換ABI専用run34762342982 SUCCESS。開始a0f HEADの7runsもSUCCESS。最初の34762042215は抽出検査failureで保存。最新native34759726061の原Actions failureとsource-only敗北帰還判定は無変更。今回の記録runは書込時に実行中としてpending_runsへ分離する。全native/BP/release完了とは主張しない。",
     "loss_return_native_head": [
       {
         "id": 34759728126,
@@ -262,6 +264,62 @@
         "event": "push",
         "path": ".github/workflows/pr16-bp-loss-return-native.yml"
       }
+    ],
+    "exchange_source_runs": [
+      {
+        "id": 34762344603,
+        "name": "p03-forgetting-ci",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "pull_request"
+      },
+      {
+        "id": 34762344601,
+        "name": "source-validation",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "pull_request"
+      },
+      {
+        "id": 34762342969,
+        "name": "p03-forgetting-ci",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push"
+      },
+      {
+        "id": 34762342973,
+        "name": "Stage79 runtime boundary audit",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push"
+      },
+      {
+        "id": 34762342971,
+        "name": "source-validation",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/ci.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push"
+      },
+      {
+        "id": 34762342982,
+        "name": "Factory交換2operandの限定修正・source検証（native再実行なし）",
+        "head_sha": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+        "path": ".github/workflows/pr16-bp-exchange-abi.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push"
+      }
     ]
   },
   "p08_resume_synchronized": true,
@@ -287,34 +345,34 @@
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "observed_head_semantics": "上記はnative実行ソースHEAD。source-only再検証HEADとrunは最新証拠JSONに別記。記録commit自身のSHAを追記する無限更新はしない。",
+  "observed_head_semantics": "このHEADは交換ABIのsource/host/候補生成検証ソース。最新native実行はlatest_native_tested_headのdfeのまま。記録commit自己SHAの追記はしない。",
   "latest_native_job": 103730310536,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
   "latest_native_evidence": "content/modernization/pr16_bp_loss_return_verified.json",
   "last_accepted_native_run": 34733866168,
   "last_accepted_native_tested_head": "f01149dfd6848623466fadf611a6599d1f22e1ca",
   "next_action": {
-    "id": "BP_EXCHANGE_CHOOSER_ABI",
-    "goal_ja": "修復候補fcdaの既存AfterBattle復帰後に残る交換用単体選択ABIを、facility script 092CF729/092CF775と選択結果の読取先から固定し、最小修正する。今回完了の敗北帰還を再実行せず、変更影響のある交換経路からnative勝利・3勝BP稼得へ進む。",
+    "id": "BP_NATIVE_WIN_EXCHANGE_REWARD",
+    "goal_ja": "交換修復候補7f32ba99を既存fcdaから再現し、native入力だけで初勝利→AfterBattle→交換1体選択/確定→次戦へ進む。未観測の交換経路を検証して3勝completion chain・BP稼得へ延長する。source/host修正完了をnative受入へ読み替えない。",
     "read_paths": [
-      "content/modernization/pr16_bp_loss_return_verified.json",
-      "content/modernization/pr16_bp_candidate_return_audit.json",
-      "content/modernization/pr16_bp_loss_return_evidence/successor-compile-1-runtime-disassembly.txt.json",
+      "content/modernization/pr16_bp_exchange_abi_verified.json",
+      "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json",
+      "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json",
+      "scripts/pr16_bp_exchange_successor.py",
       "scripts/pr16_bp_loss_return_successor.py",
-      "overlays/facility_loss_return/facility_loss_return.c",
-      "scripts/pr16_bp_loss_return_evidence.py",
-      "scripts/build_facility_runtime.py",
+      "scripts/pr16_bp_loss_return_native.py",
+      "scripts/pr16_bp_battle_return.py",
+      "tools/mgba_pr16_bp_battle_return.c",
       "overlays/facility_runtime/facility_runtime.c",
-      "scripts/pr16_bp_trial_route.py",
       "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json"
     ],
     "success_observations": [
-      "native loss returns to facility script and calls AfterBattle",
-      "original 600 party bytes and count restored; snapshot/marker cleared",
-      "BP and full save counter unchanged in loss control",
-      "separate winner/exchange/reward acquisition acceptance remains pending"
+      "native victory reaches AfterBattle and exchange prompt",
+      "single chooser writes selected slot1..3 via native UI",
+      "exact selected 100-byte slot replaced and other party bytes preserved",
+      "next battle and three-win reward chain observed without host outcome/HP/PP/RNG injection"
     ],
-    "stop_rule_ja": "同一fcdaの敗北帰還、同一bffdの旧敗北失敗、完了済みsource監査・ROM byte採取は再実行しない。交換ABIの変更が既存帰還/party復元へ影響する場合だけ影響区間を明記して再検証する。勝敗・HP・PP・RNGのhost注入、復元assertionやtimeoutの緩和は禁止。原Actions failureは保存し、source-only判定と混同しない。",
+    "stop_rule_ja": "交換ABI修正とsource監査は完了。同一2operand調査/候補byte採取をやり直さない。敗北帰還・取消/Save/Continueは影響がないため再実行しない。勝利後の交換と報酬区間だけを新規検証する。失敗原本はfailureで保持し、timeout/復元assertion/7入力barrierを緩めない。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。"
   },
   "read_policy": {
@@ -339,6 +397,7 @@
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
   "do_not_repeat": [
+    "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
     "run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。",
     "履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。",
     "run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。",
@@ -359,7 +418,15 @@
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
     "end_ja": "実行したこと、観測できたこと、正式受入、未完、次の1手、run/job、検証結果を分離して記録。実行中runがあればID/対象HEAD/次の確認を記録し、完了を推測しない。"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 34763399271,
+      "tested_head": "a5e1cbcdcba8e8503f91542a5d38c554cb6436f2",
+      "status": "in_progress",
+      "scope": "SOURCE_ONLY_RECORDING_AT_WRITE_TIME",
+      "next_check_ja": "この記録作成runのcommit/push/読戻し結果をActionsから確認する。ROMやnativeは再実行しない。"
+    }
+  ],
   "source_bindings": {
     "scripts/pr16_bp_selection_native.py": {
       "size": 10458,
@@ -556,13 +623,65 @@
     "content/modernization/pr16_bp_candidate_return_audit.json": {
       "size": 69559,
       "sha256": "a167deb452bd0991af14ee495dc346bf9c1a07ce5ed44895fd66b5051e5178ac"
+    },
+    "scripts/pr16_bp_exchange_record.py": {
+      "size": 21271,
+      "sha256": "bf6e6523eee45231e9751511bc17ac863e00e60383fe2f16fd2574d0f68dff30"
+    },
+    "tests/test_pr16_bp_exchange_record.py": {
+      "size": 4167,
+      "sha256": "fd206e9dc81af12e35c16609f744f9aa6ad40bf787b8d890a61143aeab8fd835"
+    },
+    ".github/workflows/pr16-bp-exchange-record.yml": {
+      "size": 7121,
+      "sha256": "3b692ae2bc27662c9cbd00a0da22d6555851386a14f82561859ac587dab70a4a"
+    },
+    "scripts/pr16_bp_exchange_successor.py": {
+      "size": 7279,
+      "sha256": "f67c5a4ed1a8625d1ad01d15828b512ea4979233f42ae88001d24874a4a7d95c"
+    },
+    "tests/test_pr16_bp_exchange_successor.py": {
+      "size": 6364,
+      "sha256": "b0a52b477b986c5ac17d74e812341644a5c84421034b3a9b0810e60a76fe618f"
+    },
+    ".github/workflows/pr16-bp-exchange-abi.yml": {
+      "size": 9415,
+      "sha256": "96ca8ff19f32bef4467e57d0bb6c33261f8160b5c8fec013f4be8e08e4010a46"
+    },
+    "scripts/build_battle_core.py": {
+      "size": 239192,
+      "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0"
+    },
+    "scripts/build_facility_runtime.py": {
+      "size": 34113,
+      "sha256": "c5fcdc5e20f760637a233a90c5165a6c9726bbfdba56f763287b163333d11204"
+    },
+    "content/modernization/pr16_bp_exchange_abi_verified.json": {
+      "size": 7443,
+      "sha256": "ad56ef0c547627a5ff5c2d573d8c24a1ff43e9a9b16246e8eeb5697220e01043"
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/candidate.json": {
+      "size": 55905,
+      "sha256": "06f9b4f1e292544325c83b89dfe3245c2a184fa840968dba896005c939a2d918"
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/upstream-abi.json": {
+      "size": 5086,
+      "sha256": "b5df94ba9b9e2fbb2ec3544c7a2050613d128f140043d0748d488da4e57d9fa5"
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/actions-before.json": {
+      "size": 11040,
+      "sha256": "f7cc69ef1df16609c2d273e9dc1711f5b1d0284cd24db20e21bed83ca287d21f"
+    },
+    "content/modernization/pr16_bp_exchange_abi_evidence/unit-results.txt": {
+      "size": 1062,
+      "sha256": "af946d3056804187352f5c2bdf0409b903cbcc9496301f2cbd1407155986befd"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
   "handoff_maintenance_task": "USER-20260913-RESUME-OPTIMIZATION",
   "accepted_scope_summary_ja": "受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。",
   "latest_native_summary_ja": "WhiteOut設定元をbffdのCB2_EndTrainerBattle内0807FC50→0807FC5C→SetMainCallback2で固定し、1か所のcallback pointerと180bytesの施設限定shimを実装。候補fcda1507/CRC A15FAF9D。run34759726061/job103730310536のnative processはexit0、11261fで敗北、11405fで09FF4681、11444fでAfterBattle call後、11464fで元party復元、11516fで受付前idle。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save counter2、入力barrier7・警告0。\n\n原Actions/Pythonは終了済みscript pointer0を拒否してfailure/FAIL。原本は変更せず、exact field callback08055E75・AfterBattle進行・復元・idleの全遷移を必須にしたsource-only再検証を完了。新規emulator再実行0。敗北帰還修復は完了、勝利・交換・BP稼得/消費は未受入。",
-  "candidate_scope_ja": "敗北帰還修復を検証した開発候補。取消/Save/Continue正式受入は従来bffd上の証拠であり、全候補regressionや最終製品SHAへの昇格ではない。",
+  "candidate_scope_ja": "ここは最後のnative敗北帰還検証候補fcda。今回の交換修復候補7f32ba99/CRC0D5D9178はexchange_successorに別記し、native受入/最終製品への昇格はしない。",
   "remaining_sequence_ja": "BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
   "prepared_native_probe": {
     "case": "first-battle-return",
@@ -856,5 +975,23 @@
     "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
     "new_native_processes": 1,
     "revalidation_native_processes": 0
+  },
+  "exchange_successor": {
+    "candidate": {
+      "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+      "size": 33554432,
+      "crc32": "0D5D9178"
+    },
+    "parent": {
+      "sha256": "fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879",
+      "size": 33554432
+    },
+    "receipt": "content/modernization/pr16_bp_exchange_abi_verified.json",
+    "run_id": 34762342982,
+    "job_id": 103737252115,
+    "tested_head": "7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d",
+    "abi_repaired": true,
+    "native_exchange_accepted": false,
+    "scope": "SOURCE_AND_HOST_CONTRACT_ONLY"
   }
 }

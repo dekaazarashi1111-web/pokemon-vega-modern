@@ -4965,3 +4965,21 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Files changed: candidate byte監査script/test/workflow、loss return C/builder/native driver/test/workflow、source-only evidence verifier/test/record script/workflow、固定resume MD/JSON、P08再開候補、原文wrapped text証拠と判定JSON、両ログ。
 - Commit: この追記を含む記録commit。native source=dfe293f57b009e04274c5eb67dbb9c4e6cae74ec; source-only source=e1b99a4c1ba419dba0dd90cb0d11a7e5f5385ec9; source-only run=34760913320。
 - Network利用: 接続GitHub/Actionsと固定Release。記録workflowは検証済みtextの未参照blob作成のみ（commit/tree/ref/pushなし）。最終変更は内容確認後のconnectorによる非force fast-forward。merge/draft解除/release/baseline切替なし。
+
+
+## 2026-09-13T14:41:55Z — USER-20260913-BP-EXCHANGE-ABI
+- Version: PR16交換ABI限定修復
+- Timestamp: 2026-09-13T14:41:55Z
+- Task: USER-20260913-BP-EXCHANGE-ABI / 交換単体選択ABIの固定と2operand最小修正
+- Status: DONE
+- Summary: null special2Fを既存単体対応chooser29へ交換menu2か所だけ修正。slot+1配列と実CommitExchangeを固定。既存runtime/Save/global special/敗北帰還は変更しない。
+- Candidate: SHA-256 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd / size33554432 / CRC0D5D9178。fcdaから実変更2bytes、範囲外0、独立限定生成2回一致。clean-ROM独立二重生成とは区別する。
+- Files changed: 交換successor/test/workflow、検証receipt/限定text証拠、record helper/test/workflow、固定resume MD/JSON、design/run_log.md、design/version_log.md
+- Verify: run34762342982/job103737252115 SUCCESS、交換9tests/実runtime14条件PASS。記録時のreceipt検査・上流getter host検査・resume18tests・pr16_resume.py check・task graph・git diff --checkはcommit前に必須実行。
+- Record failure retained: 34762968465は*.log ignoreによるallowlist停止、commit/push0。8+18testsはPASS。原本bytesはunit-results.txt名で保存しignore規則は変更しない。
+- Scope: 新規emulator0、既存受入の再実行0。native勝利/交換/3勝BP/獲得BP消費は未受入、physical4件/P08ゲート2件は維持。
+- Failure retained: 34762042215は上流宣言の誤抽出でfailure。9testsはPASS、候補生成未実行。修正後34762342982と混同しない。
+- Commit: この記録を含むcommit。検証source HEAD=7454bd9f4950aa29cbbcee5031f9ee33b7e6ed8d、記録入力HEAD=a5e1cbcdcba8e8503f91542a5d38c554cb6436f2。自己SHA追記のための再commitはしない。
+- Network: GitHub branch/PR16/Actions APIと固定Releaseを参照。外部一般Web検索なし。固定入力のSHAを検査し、Release/ROM/save/credentialは新規tracked成果へ追加しない。
+- Guard: 標準guardの開始HEAD/最終index結果を比較し新規違反0をcommit前に要求。既存違反を保持し、全体guard PASSとは主張しない。
+- Next: 7f32候補のnative初勝利→単体交換→次戦→3勝completion chain。merge/draft解除/baseline変更/releaseなし。
