@@ -21,7 +21,7 @@ CASE='native-win-exchange-next-battle'
 SCOPE='PR16_P05_NATIVE_WIN_EXCHANGE_NEXT_BATTLE'
 EXTRA={'exchange_menu_frame','exchange_selected_frame','exchange_confirm_frame','exchange_commit_frame',
        'next_battle_struct_frame','next_battle_action_frame','exchange_slot','exchange_selected_order',
-       'exchange_preserved_bytes','exchange_replaced_bytes','native_exchange_observed','native_exchange_accepted'}
+       'exchange_preserved_bytes','exchange_replaced_bytes','native_exchange_observed','native_exchange_accepted','opening_native_switches'}
 
 
 def assemble_controller():
@@ -58,14 +58,19 @@ def assemble_controller():
     text=replace_once(text,before,'''    slot=wx_move_slot(c);
     move=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET+2U*slot);
     pp=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET+slot);''')
+    before='''    for(unsigned i=0;i<3U;++i)
+        if(i!=active && read16(c,QOL_PLAYER_PARTY+i*POKEMON_SIZE+POKEMON_CURRENT_HP_OFFSET)>0U){target=i;break;}'''
+    text=replace_once(text,before,'    target=wx_reserve(c,active);')
+    anchor_move='bp_require(c,w.turns<48U,"first battle move count bound reached");br_move(c,&w);continue;'
+    text=replace_once(text,anchor_move,'if(!wx_voluntary_count){wx_opening_switch(c);continue;}'+anchor_move)
     anchor='    struct BPReturn finish=br_battle_return(c,party,counter);'
     text=replace_once(text,anchor,anchor+'''
     bp_require(c,finish.outcome==1U,"win extension ended in native loss; retain failure");
     struct WXResult exchange=wx_exchange_next(c,party,counter);''')
     fields=['exchange_menu_frame','exchange_selected_frame','exchange_confirm_frame','exchange_commit_frame',
             'next_battle_struct_frame','next_battle_action_frame','exchange_slot','exchange_selected_order',
-            'exchange_preserved_bytes','exchange_replaced_bytes']
-    args=['menu','selected','confirm','commit','allocated','action','slot','order','preserved','replaced']
+            'exchange_preserved_bytes','exchange_replaced_bytes','opening_native_switches']
+    args=['menu','selected','confirm','commit','allocated','action','slot','order','preserved','replaced','opening']
     fmt=''.join('\\"'+k+'\\":%u,' for k in fields)
     fmt+='\\"native_exchange_observed\\":true,\\"native_exchange_accepted\\":false,'
     anchor='    printf("\\"bp_earned\\":0,'
@@ -95,8 +100,9 @@ def validate(raw,stderr,code):
          <=row['next_battle_struct_frame']<=row['next_battle_action_frame']==row['total_frames']
          <=row['facility_return_frame']+25000,'exchange frame chain/bounds differ')
     need(0<=row['exchange_slot']<3 and row['exchange_selected_order']==row['exchange_slot']+1,'one-based single selection differs')
+    need(row['opening_native_switches']==1,'bounded native opening switch absent')
     need(row['exchange_preserved_bytes']==500 and row['exchange_replaced_bytes']==100,'exact party byte witness differs')
-    for marker in (b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'BP_CTRL label=exchange-single-menu ',
+    for marker in (b'BP_WIN_SWITCH_OPENING label=returned ',b'BP_WIN_RESERVE ',b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'BP_CTRL label=exchange-single-menu ',
                    b'BP_CTRL label=exchange-single-selected ',b'BP_CTRL label=exchange-committed ',
                    b'BP_CTRL label=exchange-next-action ',b'BP_READ name=exchange_cached_original ',
                    b'BP_READ name=exchange_party_committed '):
@@ -131,7 +137,7 @@ def run():
         launch.previous.layer=original_layer;launch.SHA=original_sha
     report.update(scope=SCOPE,accepted_native_cases_replayed=0,native_exchange_accepted=False,
                   native_bp_earning_accepted=False,p05_native_bp_gap_closed=False,release_ready=False,
-                  input_policy='NATIVE_RENTAL_RANK_FIRST_PROTECT_THEN_DAMAGING_MOVE_NO_GAME_WRITES')
+                  input_policy='NATIVE_PROTECT_ONE_OPENING_SWITCH_TYPE_MOVES_AND_RESERVES_NO_GAME_WRITES')
     (OUT/'result.json').write_bytes(successor.stable(report))
     receipt=json.loads((OUT/'receipt.json').read_bytes())
     receipt['members']['result.json']=successor.identity((OUT/'result.json').read_bytes())

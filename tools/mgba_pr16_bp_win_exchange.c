@@ -94,10 +94,67 @@ static void wx_healed_expected(struct mCore *c,uint8_t mon[100]) {
     }
     memset(mon+0x50U,0,4U);mon[0x56U]=mon[0x58U];mon[0x57U]=mon[0x59U];
 }
+/* 初手Protectの後だけ、通常PKMNメニューでslot1へ交代する。
+ * 観測済みpartyのCrunch所持を境界にし、先頭を終盤まで残す。 */
+static unsigned wx_voluntary_count;
+static void wx_opening_switch(struct mCore *c) {
+    bp_require(c,!wx_voluntary_count && n_action(c) && !read16(c,ADDR_BATTLER_PARTY_INDEXES)
+        && read16(c,QOL_PLAYER_PARTY+100U+0x2CU)==242U,"opening switch fixture/phase differs");
+    fprintf(stderr,"BP_WIN_SWITCH_OPENING label=start frame=%u target=1\n",b_frames);
+    n_cursor(c,2U);
+    for(unsigned f=0;f<900U && read32(c,BATTLE_CORE_MAIN_CALLBACK2)!=P02S_CB2_PARTY;++f)
+        b_frame(c,f%90U==0U && n_action(c)?QOL_KEY_A:0U);
+    bp_require(c,read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY,"native voluntary PKMN menu absent");
+    b_frames_run(c,0U,60U);
+    for(unsigned i=0;i<8U && read8(c,SP_PARTY_SLOT)!=1U;++i)b_press(c,QOL_KEY_DOWN,60U);
+    bp_require(c,read8(c,SP_PARTY_SLOT)==1U,"native voluntary slot1 absent");
+    b_press(c,QOL_KEY_A,80U);
+    if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY)b_press(c,QOL_KEY_A,80U);
+    for(unsigned f=0;f<18000U;++f){
+        bp_require(c,!read8(c,BATTLE_CORE_BATTLE_OUTCOME),"opening switch unexpectedly ended battle");
+        if(n_action(c) && read16(c,ADDR_BATTLER_PARTY_INDEXES)==1U){
+            bp_require(c,read16(c,QOL_PLAYER_PARTY+0x56U)>0U,"opening switch did not preserve original lead");
+            wx_voluntary_count=1U;
+            fprintf(stderr,"BP_WIN_SWITCH_OPENING label=returned frame=%u target=1 original_hp=%u\n",b_frames,read16(c,QOL_PLAYER_PARTY+0x56U));
+            g_shot("opening-voluntary-switch");return;
+        }
+        b_frame(c,f%60U==0U?QOL_KEY_B:0U);
+    }
+    bp_require(c,false,"opening switch reached 18000-frame bound");
+}
+/* 瀕死時は生存partyの実技/実能力値で控えを比較する。partyへ書かない。 */
+static unsigned wx_reserve(struct mCore *c,unsigned active) {
+    unsigned best=6U;uint64_t top=0U;
+    uint32_t table=read32(c,BATTLE_CORE_MOVE_TABLE_REPOINT);
+    unsigned t1=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_TYPE1);
+    unsigned t2=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_TYPE2);
+    for(unsigned i=0;i<3U;++i){
+        uint32_t mon=QOL_PLAYER_PARTY+100U*i;
+        if(i==active || !read16(c,mon+0x56U))continue;
+        uint64_t strongest=0U;
+        for(unsigned j=0;j<4U;++j){
+            unsigned move=read16(c,mon+0x2CU+2U*j),pp=read8(c,mon+0x34U+j);
+            bp_require(c,move<=1062U,"reserve move ABI differs");
+            if(!move || !pp)continue;
+            uint32_t row=table+12U*move;
+            unsigned power=read8(c,row+1U),type=read8(c,row+2U),accuracy=read8(c,row+3U),split=read8(c,row+10U);
+            bp_require(c,split<=2U,"reserve split ABI differs");
+            if(split==2U || !power)continue;
+            unsigned attack=read16(c,mon+(split==0U?0x5AU:0x60U));
+            unsigned defense=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+(split==0U?4U:10U));
+            uint64_t value=(uint64_t)power*(accuracy?accuracy:100U)*attack
+                *wx_effect(type,t1)*(t1==t2?10U:wx_effect(type,t2))/(defense?defense:1U);
+            if(value>strongest)strongest=value;
+        }
+        fprintf(stderr,"BP_WIN_RESERVE frame=%u slot=%u score=%llu\n",b_frames,i,(unsigned long long)strongest);
+        if(best==6U || strongest>top){best=i;top=strongest;}
+    }
+    return best;
+}
 /* WX_EXTENSION_BOUNDARY */
-struct WXResult {unsigned menu,selected,confirm,commit,allocated,action,slot,order,preserved,replaced;};
+struct WXResult {unsigned menu,selected,confirm,commit,allocated,action,slot,order,preserved,replaced,opening;};
 static struct WXResult wx_exchange_next(struct mCore *c,const uint8_t *original,unsigned counter) {
-    struct WXResult w={0};unsigned start=b_frames;uint8_t expected[600],actual[600],cached[100],snapshot[600];
+    struct WXResult w={.opening=wx_voluntary_count};unsigned start=b_frames;uint8_t expected[600],actual[600],cached[100],snapshot[600];
     bp_require(c,read8(c,BATTLE_CORE_BATTLE_OUTCOME)==1U,"exchange requires native victory");
     br_trace(c,"win-exchange-start");
     for(unsigned f=0;f<12000U;++f){

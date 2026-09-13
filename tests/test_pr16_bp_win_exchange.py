@@ -11,7 +11,7 @@ import pr16_bp_win_exchange as p
 import pr16_bp_selection_native as launch
 from tests import test_pr16_bp_battle_return as historical
 
-TRACE=(b'BP_CTRL label=fixture \nBP_READ name=cfru_selected_order \nBP_LAUNCH label=before-confirm \n'
+TRACE=(b'BP_WIN_SWITCH_OPENING label=returned \nBP_WIN_RESERVE \nBP_CTRL label=fixture \nBP_READ name=cfru_selected_order \nBP_LAUNCH label=before-confirm \n'
        b'BP_LAUNCH label=launch-stop \nBP_READ name=enemy_party_generated \nBP_PROGRESS move=\n'
        b'BP_CTRL label=first-turn-return \nBP_RETURN label=extension-start \nBP_RETURN label=facility-stop \n'
        b'BP_WIN_TEAM \nBP_WIN_MOVE \nBP_CTRL label=exchange-single-menu \n'
@@ -26,7 +26,7 @@ class WinExchangeTests(unittest.TestCase):
             exchange_menu_frame=9500,exchange_selected_frame=10000,exchange_confirm_frame=10001,
             exchange_commit_frame=10400,next_battle_struct_frame=11000,next_battle_action_frame=14000,
             exchange_slot=2,exchange_selected_order=3,exchange_preserved_bytes=500,exchange_replaced_bytes=100,
-            native_exchange_observed=True,native_exchange_accepted=False)
+            native_exchange_observed=True,native_exchange_accepted=False,opening_native_switches=1)
         return row
     def check(self,row,stderr=TRACE,code=0):
         with patch.object(launch,'SHA',p.SHA):
@@ -36,7 +36,7 @@ class WinExchangeTests(unittest.TestCase):
         self.assertTrue(row['native_exchange_observed'])
         self.assertFalse(row['native_bp_earning_accepted'])
     def test_boolean_and_one_based_slots(self):
-        for key,value in [('exchange_slot',True),('exchange_slot',3),('exchange_selected_order',0),
+        for key,value in [('opening_native_switches',True),('opening_native_switches',2),('exchange_slot',True),('exchange_slot',3),('exchange_selected_order',0),
                           ('exchange_selected_order',2),('exchange_commit_frame',True)]:
             with self.subTest(key=key,value=value):
                 row=self.sample();row[key]=value
@@ -66,7 +66,7 @@ class WinExchangeTests(unittest.TestCase):
         raw=json.dumps(self.sample())[:-1]+',"exchange_slot":2}'
         with self.assertRaises(ValueError):p.validate(raw.encode(),TRACE,0)
     def test_every_exchange_trace_is_required(self):
-        for marker in (b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'exchange-single-menu ',b'exchange-single-selected ',
+        for marker in (b'BP_WIN_SWITCH_OPENING label=returned ',b'BP_WIN_RESERVE ',b'BP_WIN_TEAM ',b'BP_WIN_MOVE ',b'exchange-single-menu ',b'exchange-single-selected ',
                        b'exchange-committed ',b'exchange-next-action ',b'exchange_cached_original ',b'exchange_party_committed '):
             with self.subTest(marker=marker):
                 with self.assertRaises(ValueError):self.check(self.sample(),TRACE.replace(marker,b'absent'))
@@ -103,6 +103,14 @@ class WinExchangeTests(unittest.TestCase):
         self.assertIn('==182U',text)
         self.assertIn('w.returned>w.spent',text)
         self.assertIn('win extension ended in native loss; retain failure',text)
+    def test_one_voluntary_switch_keeps_global_and_forced_bounds(self):
+        text=p.assemble_controller()
+        self.assertEqual(text.count('if(!wx_voluntary_count){wx_opening_switch(c);continue;}'),1)
+        self.assertIn('target=wx_reserve(c,active)',text)
+        self.assertIn('w.switches<2U',text)
+        self.assertIn('w.turns<48U',text)
+        self.assertIn('b_frames-w.start<90000U',text)
+        self.assertIn('native voluntary PKMN menu absent',text)
     def test_derivation_refuses_ambiguous_anchor(self):
         for text in ('','xx'):
             with self.assertRaises(ValueError):p.replace_once(text,'x','y')
