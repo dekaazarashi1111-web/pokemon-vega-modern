@@ -1,0 +1,133 @@
+name: pr16-bp-launch-extension
+run-name: PR16 second-chooser extension checkpoint and exact native dispatch
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-launch-extension.yml]
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: pr16-bp-launch-extension
+  cancel-in-progress: false
+jobs:
+  install:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Reconcile live branch, canonical acceptance and latest Actions
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-launch-extension
+          mkdir -p "$out"
+          test "$(git rev-parse HEAD^)" = fa9341e8ecd205367168d39706b7d84f8de64091
+          test "$(git ls-remote origin refs/heads/codex/modernization-followup-20260908 | cut -f1)" = "$GITHUB_SHA"
+          gh api repos/$GITHUB_REPOSITORY/pulls/16 --jq '{state,draft,merged,head:{ref:.head.ref,sha:.head.sha,repo:.head.repo.full_name}}' > "$out/pr.json"
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/workflows/pr16-bp-selection-native.yml/runs?branch=codex%2Fmodernization-followup-20260908&per_page=5' --jq '[.workflow_runs[] | {id,name,head_sha,status,conclusion,run_attempt}]' > "$out/latest-native.json"
+          gh api 'repos/'$GITHUB_REPOSITORY'/actions/runs?head_sha=fa9341e8ecd205367168d39706b7d84f8de64091&per_page=100' --jq '[.workflow_runs[] | {id,name,head_sha,event,status,conclusion}]' > "$out/start-checks.json"
+          python3 scripts/pr16_resume.py check
+          python3 scripts/pr16_bp_chooser_checkpoint.py > "$out/retained-cancel.json"
+          python3 scripts/pr16_fixed_form_closeout.py --check > "$out/retained-fixed-form.json"
+          python3 - <<'PY'
+          import json,os,pathlib
+          out=pathlib.Path('.local/pr16-bp-launch-extension');pr=json.loads((out/'pr.json').read_text())
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']==dict(ref='codex/modernization-followup-20260908',sha=os.environ['GITHUB_SHA'],repo=os.environ['GITHUB_REPOSITORY'])
+          runs=json.loads((out/'latest-native.json').read_text())
+          assert runs and runs[0]['id']==34734806603 and runs[0]['conclusion']=='success'
+          assert all(r['status']=='completed' for r in runs)
+          print('LATEST_NATIVE',json.dumps(runs));print('START_CHECKS',(out/'start-checks.json').read_text())
+          PY
+      - name: Apply byte-bound reviewed patch and synchronize pending scope
+        run: |
+          set -euo pipefail
+          gh api repos/$GITHUB_REPOSITORY/git/blobs/9acfdb093882566f69313e85fa5f472d20d131c3 > .local/pr16-bp-launch-extension/patch-blob.json
+          python3 - <<'PY'
+          import base64,hashlib,json,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_resume as p
+          out=pathlib.Path('.local/pr16-bp-launch-extension')
+          raw=base64.b64decode(json.loads((out/'patch-blob.json').read_text())['content'])
+          assert len(raw)==16609 and hashlib.sha256(raw).hexdigest()=='a2447295f8946082ee06e6bcac764da61509210a8cc138b929ba328b30484b1b'
+          patch=out/'reviewed.patch';patch.write_bytes(raw)
+          subprocess.run(['git','apply','--check',str(patch)],check=True)
+          subprocess.run(['git','apply',str(patch)],check=True)
+          s=p.load(p.ROOT,p.STATE)
+          s['observed_head']=__import__('os').environ['GITHUB_SHA']
+          s['bp']['current_stop']='3体選択・2回目chooser到達の既存診断は保持。次の確定入力とscript前進/実battle action/敵party生成を観測する拡張を実装。新規native結果は未取得、BP受入は増やさない。'
+          s['prepared_native_probe']={'case':'second-confirm-battle-probe','execution_status':'NOT_DISPATCHED_YET','source_only_tests':12,'rom_changes':0,'historical_cancel_replayed':False}
+          s['source_change_review_ja']='変更は独立selection controllerと結果validator/testsだけ。ROM、共有取消controller、fixture、7barrier、期限は不変。既存三体選択prefixから未観測区間へ延長。旧runは旧診断だけを支持し、新規battle開始は新runで別判定。'
+          for name in s['source_bindings']:
+              data=pathlib.Path(name).read_bytes();s['source_bindings'][name]={'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          checks=json.loads((out/'start-checks.json').read_text())
+          s['observed_head_checks']={'status':'ALL_SUCCESS' if checks and all(r['conclusion']=='success' for r in checks) else 'MIXED_OR_PENDING','checked_head':'fa9341e8ecd205367168d39706b7d84f8de64091','runs':checks,'reason_ja':'開始HEAD fa9341e8のActionsをAPIで照合。新しい実装HEADのnative結果は別途確認し、開始HEADのChecksを流用しない。'}
+          p.dump(p.ROOT/p.STATE,s);p.install_routing(p.ROOT)
+          PY
+          python3 scripts/pr16_resume.py render
+          python3 -m unittest discover -s tests -p test_pr16_bp_selection_native.py -v 2>&1 | tee .local/pr16-bp-launch-extension/launch-tests.txt
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v 2>&1 | tee .local/pr16-bp-launch-extension/resume-tests.txt
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: Append both logs and verify unchanged private-guard boundary
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import datetime,json,os,pathlib,subprocess
+          stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          note=f'\n\n## {stamp} — USER-20260913-BP-SECOND-CHOOSER-PREP\n- Task: USER-20260913-BP-SECOND-CHOOSER / 2回目chooser確定から実戦状態までの観測拡張\n- Status: STOPPED\n- Summary: 既存原本run34734806603の2回目chooser画面・scriptPtr 0x092CF668/5D・選択順010203を照合。確定後の+1前進、実battle action、struct、敵party生成を要求する診断を追加。実戦/BP受入は未更新。\n- Files changed: selection C/Python/tests、同じresume MD/JSON、P08再開文、両ログ。\n- Verify: focused launch12件、resume focused、resume check、task graph、diff check PASS。標準guardの基点と最終indexの出力完全一致を要求し、新規違反0。全体guard PASSとは主張しない。\n- Native: このcheckpointは新規emulator0・ROM0。次のnative診断を別dispatchし、取消/保存/Continueの受入済み試験は再実行しない。\n- Commit: この記録を含むcommit。入力HEAD={os.environ["GITHUB_SHA"]}、run={os.environ["GITHUB_RUN_ID"]}。\n- Network: GitHub API/Actions原本。merge/release/baseline切替なし。\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              path=pathlib.Path(name);before=subprocess.check_output(['git','show','HEAD:'+name]);assert path.read_bytes()==before
+              with path.open('a') as f:f.write(note)
+          # Only explanatory P08 resume text can change, not acceptance or conditions.
+          name='content/modernization/p08_remaining_work.json';before=json.loads(subprocess.check_output(['git','show','HEAD:'+name]));after=json.loads(pathlib.Path(name).read_text())
+          for d in (before,after):
+              for row in d['remaining_conditions']:
+                  if row['id'] in ('NATURAL_CAPTURE_GEAR','FINAL_NATIVE_ACCEPTANCE'):row.pop('resume',None)
+          assert before==after
+          PY
+          git add -- tools/mgba_pr16_bp_selection_native.c scripts/pr16_bp_selection_native.py tests/test_pr16_bp_selection_native.py content/modernization/pr16_native_supply_resume_20260913.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md content/modernization/p08_remaining_work.json design/run_log.md design/version_log.md
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,tempfile
+          out=pathlib.Path('.local/pr16-bp-launch-extension');base='fa9341e8ecd205367168d39706b7d84f8de64091'
+          allowed={'tools/mgba_pr16_bp_selection_native.c','scripts/pr16_bp_selection_native.py','tests/test_pr16_bp_selection_native.py','content/modernization/pr16_native_supply_resume_20260913.json','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','content/modernization/p08_remaining_work.json','design/run_log.md','design/version_log.md','.github/workflows/pr16-bp-launch-extension.yml'}
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines());assert changed<=allowed
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=tmp+'/baseline.index');subprocess.run(['git','read-tree',base],env=env,check=True)
+              before=subprocess.run(['python3','scripts/guard_private_files.py'],env=env,capture_output=True)
+              after=subprocess.run(['python3','scripts/guard_private_files.py'],capture_output=True)
+          assert before.returncode in (0,1) and (before.returncode,before.stdout,before.stderr)==(after.returncode,after.stdout,after.stderr),'private guard changed'
+          report=dict(base=base,full_guard_returncode=after.returncode,full_guard_pass_claimed=after.returncode==0,exact_same_existing_violations=True,new_violations=0,changed_paths=sorted(changed))
+          (out/'guard-boundary.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
+          PY
+          python3 scripts/pr16_resume.py check
+          git diff --cached --check
+      - name: Commit checkpoint and dispatch one exact new native observation
+        run: |
+          set -euo pipefail
+          ref=refs/heads/codex/modernization-followup-20260908
+          test "$(git ls-remote origin "$ref" | cut -f1)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-20260913-BP-SECOND-CHOOSER: extend native confirmation with strict battle witnesses'
+          git push origin "HEAD:$ref"
+          sha=$(git rev-parse HEAD)
+          test "$(git ls-remote origin "$ref" | cut -f1)" = "$sha"
+          echo "$sha" | tee .local/pr16-bp-launch-extension/pushed-head.txt
+          python3 scripts/pr16_resume.py check
+          git diff --exit-code HEAD
+          gh api --method POST repos/$GITHUB_REPOSITORY/actions/workflows/pr16-bp-selection-native.yml/dispatches -f ref=codex/modernization-followup-20260908
+          printf 'Native dispatch accepted for checked branch HEAD %s\n' "$sha" | tee .local/pr16-bp-launch-extension/dispatch.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-launch-extension
+          path: .local/pr16-bp-launch-extension/
+          retention-days: 30
+          if-no-files-found: error
