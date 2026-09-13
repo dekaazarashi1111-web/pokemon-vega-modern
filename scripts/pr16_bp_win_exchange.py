@@ -102,10 +102,17 @@ def assemble_controller():
     text=replace_once(text,before,after)
     anchor_move='bp_require(c,w.turns<48U,"first battle move count bound reached");br_move(c,&w);continue;'
     text=replace_once(text,anchor_move,'if(!wx_voluntary_count){wx_opening_switch(c);continue;}'+anchor_move)
+    # 勝利後のledger/snapshot確認で直ちに境界を返す。30frame待ちのB入力で交換を辞退しない。
+    text=replace_once(text,'if(++stable==30U){w.facility_frame=b_frames;break;}',
+                          'if(w.outcome==1U || ++stable==30U){w.facility_frame=b_frames;break;}')
+    text=replace_once(text,'const uint8_t *original,unsigned counter) {\n    struct WXResult',
+                          'const uint8_t *original,unsigned counter,unsigned observed_win) {\n    struct WXResult')
+    text=replace_once(text,'read8(c,BATTLE_CORE_BATTLE_OUTCOME)==1U,"exchange requires native victory"',
+                          'observed_win==1U && read8(c,BP_F(reward_pending))==1U && read16(c,BP_F(current_streak))==1U,"exchange requires observed native victory and ledger"')
     anchor='    struct BPReturn finish=br_battle_return(c,party,counter);'
     text=replace_once(text,anchor,anchor+'''
     bp_require(c,finish.outcome==1U,"win extension ended in native loss; retain failure");
-    struct WXResult exchange=wx_exchange_next(c,party,counter);''')
+    struct WXResult exchange=wx_exchange_next(c,party,counter,finish.outcome);''')
     fields=['exchange_menu_frame','exchange_selected_frame','exchange_confirm_frame','exchange_commit_frame',
             'next_battle_struct_frame','next_battle_action_frame','exchange_slot','exchange_selected_order',
             'exchange_preserved_bytes','exchange_replaced_bytes','opening_native_switches']

@@ -75,7 +75,7 @@ class WinExchangeTests(unittest.TestCase):
     def test_historical_pins_guard_and_unchanged_bounds(self):
         text=p.assemble_controller()
         self.assertEqual(text.count('struct BPReturn finish=br_battle_return(c,party,counter);'),1)
-        self.assertEqual(text.count('struct WXResult exchange=wx_exchange_next(c,party,counter);'),1)
+        self.assertEqual(text.count('struct WXResult exchange=wx_exchange_next(c,party,counter,finish.outcome);'),1)
         self.assertIn('wx_team(c);',text)
         self.assertIn('b_frames-w.start<90000U',text)
         self.assertIn('f<18000U',text)
@@ -103,6 +103,8 @@ class WinExchangeTests(unittest.TestCase):
         self.assertIn('==182U',text)
         self.assertIn('w.returned>w.spent',text)
         self.assertIn('win extension ended in native loss; retain failure',text)
+        self.assertIn('if(w.outcome==1U || ++stable==30U)',text)
+        self.assertIn('exchange requires observed native victory and ledger',text)
     def test_one_voluntary_switch_keeps_global_and_forced_bounds(self):
         text=p.assemble_controller()
         self.assertEqual(text.count('if(!wx_voluntary_count){wx_opening_switch(c);continue;}'),1)
