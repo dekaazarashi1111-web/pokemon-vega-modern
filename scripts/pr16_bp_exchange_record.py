@@ -33,11 +33,12 @@ SELF = 'scripts/pr16_bp_exchange_record.py'
 TEST = 'tests/test_pr16_bp_exchange_record.py'
 WORKFLOW = '.github/workflows/pr16-bp-exchange-record.yml'
 LOGS = ('design/run_log.md','design/version_log.md')
-COPIED = ('candidate.json','upstream-abi.json','actions-before.json','unit.log')
+COPIED = {'candidate.json':'candidate.json','upstream-abi.json':'upstream-abi.json',
+    'actions-before.json':'actions-before.json','unit.log':'unit-results.txt'}
 SOURCES = (SELF,TEST,WORKFLOW,successor.SELF,'tests/test_pr16_bp_exchange_successor.py',
     '.github/workflows/pr16-bp-exchange-abi.yml','scripts/pr16_bp_loss_return_successor.py',
     successor.RUNTIME_SOURCE,'scripts/build_battle_core.py','scripts/build_facility_runtime.py')
-WRITES = (RECEIPT,resume.STATE,resume.DOC,*LOGS,*[EVIDENCE+'/'+x for x in COPIED])
+WRITES = (RECEIPT,resume.STATE,resume.DOC,*LOGS,*[EVIDENCE+'/'+x for x in COPIED.values()])
 
 
 def need(ok, message):
@@ -170,10 +171,12 @@ def record():
     need(latest['id']==s['latest_native_run']==34759726061 and latest['conclusion']=='failure','new native result; reconcile first')
     failed=api('actions/runs/34762042215')
     need(failed['head_sha']=='d62d9160bbbdc3ff7e2cab897611e8f4bf121334' and failed['status']=='completed' and failed['conclusion']=='failure','first failure must remain failure')
+    previous_record=api('actions/runs/34762968465')
+    need(previous_record['head_sha']=='6e6d04b003d88e0c2315a727035c7452cf2db099' and previous_record['conclusion']=='failure','record failure history')
     rows=api(f'actions/runs?head_sha={TESTED}&per_page=100')
     need(rows['total_count']==len(rows['workflow_runs']),'incomplete source HEAD run list')
     small=lambda r:{k:r[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
-    evidence_files={EVIDENCE+'/'+name:identity(data[name]) for name in COPIED}
+    evidence_files={EVIDENCE+'/'+dest:identity(data[name]) for name,dest in COPIED.items()}
     stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     receipt=dict(schema_version=1,status=c['status'],classification='SOURCE_AND_HOST_CONTRACT_ONLY',task=TASK,
         run_id=RUN,job_id=JOB,tested_head=TESTED,entry_head=ENTRY,
@@ -189,6 +192,9 @@ def record():
             artifact_id=10319865501,artifact_sha256='b56ceeaf5caf819cc246acbfaeb8ea2fc545a4e85bb3d4d21fccf232ab6c9c4d',
             source_tests_passed=9,candidate_build_executed=False,
             reason_ja='linker内にRAM配列宣言があるという誤前提で停止。initializerはBPRJ.ld、配列はram_locs.hへ分離して修正。'),
+        previous_record_attempt=dict(run_id=34762968465,job_id=103738897487,head_sha=previous_record['head_sha'],
+            conclusion='failure',new_evidence_tests_passed=8,resume_tests_passed=18,commit_created=False,
+            reason_ja='*.log ignoreにより追跡対象一覧が不足しcommit前に停止。原本unit.logのbytesをunit-results.txt名で保存する。ignore規則とallowlist/guardは緩和しない。'),
         source_head_runs=[small(x) for x in rows['workflow_runs']],
         decision_ja='交換2経路の旧null special→待機停止を0x29へ限定修正。T06 accessor経由の人数1、one-based配列、実runtime consumerを照合。static/host/候補生成まで完了。native勝利・交換・3勝報酬・獲得BP消費は未受入。',
         impact_ja='変更は勝利後の交換menu2か所のみ。初期chooser、通常敗北callback/shim、AfterBattle、元party復元、Save layout、global special表はbyte不変。取消/Save/Continueと敗北帰還を再実行しない。',
@@ -223,6 +229,7 @@ def record():
         f'- Candidate: SHA-256 {CANDIDATE} / size33554432 / CRC0D5D9178。fcdaから実変更2bytes、範囲外0、独立限定生成2回一致。clean-ROM独立二重生成とは区別する。\n'
         f'- Files changed: {files_text}\n'
         f'- Verify: run{RUN}/job{JOB} SUCCESS、交換9tests/実runtime14条件PASS。記録時のreceipt検査・上流getter host検査・resume18tests・pr16_resume.py check・task graph・git diff --checkはcommit前に必須実行。\n'
+        '- Record failure retained: 34762968465は*.log ignoreによるallowlist停止、commit/push0。8+18testsはPASS。原本bytesはunit-results.txt名で保存しignore規則は変更しない。\n'
         '- Scope: 新規emulator0、既存受入の再実行0。native勝利/交換/3勝BP/獲得BP消費は未受入、physical4件/P08ゲート2件は維持。\n'
         '- Failure retained: 34762042215は上流宣言の誤抽出でfailure。9testsはPASS、候補生成未実行。修正後34762342982と混同しない。\n'
         f'- Commit: この記録を含むcommit。検証source HEAD={TESTED}、記録入力HEAD={head}。自己SHA追記のための再commitはしない。\n'
@@ -230,14 +237,14 @@ def record():
         '- Guard: 標準guardの開始HEAD/最終index結果を比較し新規違反0をcommit前に要求。既存違反を保持し、全体guard PASSとは主張しない。\n'
         '- Next: 7f32候補のnative初勝利→単体交換→次戦→3勝completion chain。merge/draft解除/baseline変更/releaseなし。\n')
     need(current_head()==head,'HEAD advanced before text writes')
-    for name in COPIED:
-        p=resume.safe_path(ROOT,EVIDENCE+'/'+name);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data[name])
+    for name,dest in COPIED.items():
+        p=resume.safe_path(ROOT,EVIDENCE+'/'+dest);p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data[name])
     (ROOT/RECEIPT).write_bytes(stable(receipt))
     for p in (*SOURCES,RECEIPT,*evidence_files):s['source_bindings'][p]=identity((ROOT/p).read_bytes())
     resume.dump(ROOT/resume.STATE,s)
     run([sys.executable,'scripts/pr16_resume.py','render'])
     for name in LOGS:
-        p=ROOT/name;p.write_text(append_once(p.read_text(),section))
+        p=ROOT/name;p.write_bytes(append_once(p.read_bytes().decode('utf-8'),section).encode('utf-8'))
     verify_saved()
     print(f'RECORDED_SOURCE_EVIDENCE RUN={RUN} CANDIDATE={CANDIDATE} NATIVE_REPLAY=0')
 
