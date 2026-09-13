@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "task": "USER-20260913-BP-FIRST-BATTLE",
+  "branch": "codex/modernization-followup-20260908",
+  "starting_head": "10e657f1c57b25d4a2d42428d999908b0895e182",
+  "source_checkpoint": "0689c1d9208b88461974793e47bbfc7c31e36ec6",
+  "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+  "attempts": [
+    {
+      "run_id": 34749370272,
+      "job_id": 103703085018,
+      "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
+      "status_at_checkpoint": "in_progress",
+      "conclusion_at_checkpoint": null,
+      "observed_stage": "native battle-return step",
+      "source_tests_passed": 13,
+      "canonical_and_latest_previous_actions_reconciled": true,
+      "native_result_verified": false,
+      "actual_native_processes": null,
+      "scope": "FIRST_BATTLE_RETURN_DIAGNOSTIC_NOT_EARNING"
+    }
+  ],
+  "next_ja": "run34749370272/job103703085018の原本を先に照合。初回turn3925fだけや受入済み取消を単独再実行しない。新sourceの最初の不一致だけを必要時修正し、失敗原本を成功へ読み替えない。",
+  "previous_native_diagnostic": 34741232621,
+  "retained_accepted_cancel_run": 34733866168,
+  "historical_accepted_cases_replayed": 0,
+  "rom_source_changes": 0,
+  "native_bp_earning_accepted": false,
+  "native_bp_spending_accepted": false,
+  "release_ready": false,
+  "merge_performed": false,
+  "active_baseline_changed": false
+}
