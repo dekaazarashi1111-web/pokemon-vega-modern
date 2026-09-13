@@ -1,0 +1,114 @@
+name: pr16-bp-loss-return-owner
+run-name: Source-only audit of native loss WhiteOut and field-return owner
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-loss-return-owner.yml
+      - scripts/pr16_bp_loss_return_owner.py
+      - tests/test_pr16_bp_loss_return_owner.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-loss-return-owner
+  cancel-in-progress: false
+jobs:
+  audit-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reconcile fixed handoff and validate source-only auditor
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-owner
+          mkdir -p "$out"
+          git rev-parse HEAD > "$out/tested-head.txt"
+          python3 -m unittest tests.test_pr16_bp_loss_return_owner -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          root=pathlib.Path('.');out=root/'.local/pr16-bp-loss-return-owner'
+          repo='dekaazarashi1111-web/pokemon-vega-modern'
+          pr=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/pulls/17']))
+          state=json.loads((root/'content/modernization/pr16_native_supply_resume_20260913.json').read_bytes())
+          assert pr['state']=='open' and pr['draft'] is True and pr['merged'] is False
+          assert pr['head']['sha']==os.environ['GITHUB_SHA'] and pr['head']['ref']=='codex/modernization-followup-20260908'
+          assert state['latest_native_run']==34749370272
+          assert state['next_action']['id']=='BP_LOSS_RETURN_CALLBACK_OWNER'
+          assert state['bp']['native_loss_observed'] is True
+          assert state['bp']['loss_return_to_facility_observed'] is False
+          assert state['native_bp_earning_accepted'] is False and state['release_ready'] is False
+          (out/'reconciliation.json').write_text(json.dumps({
+              'tested_head':os.environ['GITHUB_SHA'],'pr_state':pr['state'],'pr_draft':pr['draft'],
+              'latest_native_run':state['latest_native_run'],'next_action':state['next_action']['id'],
+              'accepted_native_cases_replayed':0,'new_emulator_processes':0,'candidate_rom_changed':False,
+          },sort_keys=True,indent=2)+'\n')
+          PY
+      - name: Restore exact fixed CFRU source without rebuilding ROM
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-owner
+          assets=.local/pr16-bp-loss-return-owner-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip > "$out/private-restore.json"
+          test -d vendor/upstream/CFRU-JP
+          test -z "$(git status --short --untracked-files=no)"
+      - name: Fix WhiteOut and field-return owner from exact source lines
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-owner
+          python3 scripts/pr16_bp_loss_return_owner.py --root . --output-dir "$out" > "$out/audit.stdout" 2> "$out/audit.stderr"
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('.local/pr16-bp-loss-return-owner/owner-report.json')
+          r=json.loads(p.read_bytes())
+          assert r['classification']=='SOURCE_ONLY_OWNER_AUDIT_NOT_NATIVE_ACCEPTANCE'
+          assert r['summary']['owner_resolved'] is True
+          assert r['summary']['candidate_rom_changed'] is False
+          assert r['summary']['new_emulator_processes']==0
+          assert r['summary']['accepted_native_cases_replayed']==0
+          assert r['native_bp_earning_accepted'] is False and r['release_ready'] is False
+          PY
+      - name: Reject executable private archives and machine paths from audit artifact
+        id: artifact_guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-loss-return-owner');members={}
+          allowed={'.json','.txt','.stdout','.stderr'}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in allowed,p
+              raw=p.read_bytes();text=raw.decode('utf-8')
+              assert b'\0' not in raw and len(raw)<16000000
+              assert '/home/runner/' not in text and '\\Users\\' not in text
+              assert not re.search(r'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',text)
+              members[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,sort_keys=True,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.artifact_guard.outcome == 'success'
+        with:
+          name: pr16-bp-loss-return-owner
+          path: .local/pr16-bp-loss-return-owner/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
