@@ -4950,3 +4950,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Files changed: scripts/pr16_bp_loss_return_owner.py, tests/test_pr16_bp_loss_return_owner.py, scripts/pr16_restore_cfru_snapshot.py, tests/test_pr16_restore_cfru_snapshot.py, .github/workflows/pr16-bp-loss-return-owner.yml, scripts/pr16_bp_owner_closeout.py, tests/test_pr16_bp_owner_closeout.py, .github/workflows/pr16-bp-owner-closeout.yml, content/modernization/pr16_bp_loss_return_owner.json, content/modernization/pr16_bp_loss_return_owner_evidence, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
 - Commit: source fcb1d024fdf5aad2cdc48b9665fb605b3aea49fa; この追記を含むcommitはGit履歴が正本。version/product SHA変更なし。
 - Network利用: GitHub接続APIとActions ghでref/PR/Actions/artifactおよび固定state archiveを取得。非force fast-forwardのみ。merge/draft解除/release/baseline切替なし。
+
+
+## 2026-09-13T13:49:43Z — USER-20260913-BP-LOSS-RETURN
+- Task: USER-20260913-BP-LOSS-RETURN / native敗北帰還と元party復元
+- Status: DONE / この1ケースのみ。BP稼得・交換・正式P08は未完。
+- Summary: bffdのWhiteOut設定元0807FC50/0807FC5CとAfterBattle092CE7B9をROM bytesで固定。callback pointer4bytesと未使用領域180bytesの限定shimだけを追加。facility active/snapshot/count/loss/script/ledger CRCが合う場合だけ既存scriptへ復帰し、その他は従来WhiteOutを呼ぶ。旧allocation87件不変・追加1・重複0・独立compile/build各2一致。
+- Native: run34759726061/job103730310536/HEADdfe293f57b009e04274c5eb67dbb9c4e6cae74ec。native exit0、敗北11261f、shim11405f、AfterBattle進行11444f、元party復元11464f、idle11516f。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save2、host-write barrier7、warnings0。受付前スクリーンショットも確認。
+- False negative: 原Actions failure/Python FAILは終了済scriptのNULL禁止が原因。原ZIP802691bytes/SHAa740d3bfca7c84f8a933f85e30243c3883f40a760dfe73f9554a95ca2b35642dと原result/receipt/stdout/stderrを保存。停止callback08055E75と実分岐→AfterBattle→復元→idleの全鎖を要求する別検証で同じnative原本を再判定。失敗履歴を書換えない。
+- Verify: candidate audit run34758866475 success/9tests、修復focused16tests、source-only判定12tests、resume 18tests/check、task graph、staged diff check。artifact82member・83source・11generatedをhash/byte照合。private guardの既存結果と新規違反0はguard-boundary.jsonへ別記し、全体PASSとは読み替えない。
+- Candidate: SHA256 fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879 / 33554432bytes / CRC32 A15FAF9D。最終製品SHA・active baseline・save layoutを変更しない。
+- Counts: 今回native新規1、byte監査0、再判定0 emulator。受入取消/Save/Continue再実行0。自動push CIは別のActions一覧に保存。BP earning/spending受入0、formal physical4/P08gate2維持。
+- Next: 交換単体選択ABIを確認・最小修復し、未受入の勝利/交換/3勝BPへ。同一敗北・source監査を再実行しない。
+- Files changed: candidate byte監査script/test/workflow、loss return C/builder/native driver/test/workflow、source-only evidence verifier/test/record script/workflow、固定resume MD/JSON、P08再開候補、原文wrapped text証拠と判定JSON、両ログ。
+- Commit: この追記を含む記録commit。native source=dfe293f57b009e04274c5eb67dbb9c4e6cae74ec; source-only source=e1b99a4c1ba419dba0dd90cb0d11a7e5f5385ec9; source-only run=34760913320。
+- Network利用: 接続GitHub/Actionsと固定Release。記録workflowは検証済みtextの未参照blob作成のみ（commit/tree/ref/pushなし）。最終変更は内容確認後のconnectorによる非force fast-forward。merge/draft解除/release/baseline切替なし。

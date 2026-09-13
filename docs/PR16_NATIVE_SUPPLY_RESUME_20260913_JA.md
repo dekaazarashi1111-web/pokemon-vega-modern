@@ -6,18 +6,18 @@
 
 ## いまの停止点と次の1手
 
-run34749370272/job103703085018はfailure。初回turn3925f後、追加8turn/PP消費8回と瀕死交代2回、11261fでnative敗北outcome2を観測。11405fにCB2_WhiteOutへ移り、11525fでfacility script pointerが0へ。93925fまで元party復元なし、map4/0(8,5)、party3/snapshot1/marker2、BP0/save counter2。FacilityRuntime_AfterBattle帰還・勝利・BP稼得は未観測。
+WhiteOut設定元をbffdのCB2_EndTrainerBattle内0807FC50→0807FC5C→SetMainCallback2で固定し、1か所のcallback pointerと180bytesの施設限定shimを実装。候補fcda1507/CRC A15FAF9D。run34759726061/job103730310536のnative processはexit0、11261fで敗北、11405fで09FF4681、11444fでAfterBattle call後、11464fで元party復元、11516fで受付前idle。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save counter2、入力barrier7・警告0。
 
-CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。
+原Actions/Pythonは終了済みscript pointer0を拒否してfailure/FAIL。原本は変更せず、exact field callback08055E75・AfterBattle進行・復元・idleの全遷移を必須にしたsource-only再検証を完了。新規emulator再実行0。敗北帰還修復は完了、勝利・交換・BP稼得/消費は未受入。
 
-**次: 固定候補bffdのCB2_WhiteOut(08055F65)を設定する実callbackと、facility script 092CF669の復帰先をROM bytes・逆アセンブルで固定する。source-only監査の再実行ではなく候補bytesへ進み、安全な最小修復後だけ敗北帰還・元party600bytes/count復元を検証する。**
+**次: 修復候補fcdaの既存AfterBattle復帰後に残る交換用単体選択ABIを、facility script 092CF729/092CF775と選択結果の読取先から固定し、最小修正する。今回完了の敗北帰還を再実行せず、変更影響のある交換経路からnative勝利・3勝BP稼得へ進む。**
 
-同一bffd・同一controllerの93925f敗北失敗を再実行しない。WhiteOut所有者とfacility return callback/scriptのcandidate bytesを読取監査してから最小修復する。勝敗/HP/RNGをhost注入せず、復元assertionやtimeoutを緩めない。失敗stdoutが空でPython JSON parse errorになっているが、根本のnative failureはstderr末尾のAfterBattle不達。 run34757633314の固定source監査は完了し再実行しない。header宣言を分岐ownerと扱わず、run34757179781の旧owner=trueを修復根拠へ使わない。
+同一fcdaの敗北帰還、同一bffdの旧敗北失敗、完了済みsource監査・ROM byte採取は再実行しない。交換ABIの変更が既存帰還/party復元へ影響する場合だけ影響区間を明記して再検証する。勝敗・HP・PP・RNGのhost注入、復元assertionやtimeoutの緩和は禁止。原Actions failureは保存し、source-only判定と混同しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9e435e551598c2b99046c7aaff1bff6da1721da3`。
-このHEADはsource-only監査の対象。最新native診断HEAD・正式受入HEADとは異なり、現在branch HEADの代用品ではない。
+証拠のsource HEAD: `dfe293f57b009e04274c5eb67dbb9c4e6cae74ec`。
+上記はnative実行ソースHEAD。source-only再検証HEADとrunは最新証拠JSONに別記。記録commit自身のSHAを追記する無限更新はしない。
 
 ## 最短の再開手順
 
@@ -27,14 +27,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_bp_loss_return_owner.json`
-- `scripts/build_battle_core.py`
-- `content/modernization/pr16_bp_battle_return_diagnostic.json`
-- `tools/mgba_pr16_bp_battle_return.c`
-- `scripts/pr16_bp_battle_return.py`
-- `overlays/facility_runtime/facility_runtime.c`
+- `content/modernization/pr16_bp_loss_return_verified.json`
+- `content/modernization/pr16_bp_candidate_return_audit.json`
+- `content/modernization/pr16_bp_loss_return_evidence/successor-compile-1-runtime-disassembly.txt.json`
+- `scripts/pr16_bp_loss_return_successor.py`
+- `overlays/facility_loss_return/facility_loss_return.c`
+- `scripts/pr16_bp_loss_return_evidence.py`
 - `scripts/build_facility_runtime.py`
-- `.github/workflows/pr16-bp-battle-return.yml`
+- `overlays/facility_runtime/facility_runtime.c`
+- `scripts/pr16_bp_trial_route.py`
 - `content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -46,15 +47,17 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 正式BP checkpoint: run `34733866168` / HEAD `f01149dfd6848623466fadf611a6599d1f22e1ca`。
 受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。
 
-最新診断: run `34749370272` / job `103703085018` / HEAD `96ad7823a147e1db6ea8f411c77650b27a4f3102`。
-照合抄録: `content/modernization/pr16_bp_battle_return_diagnostic.json`。
-原本ZIP883756bytes/SHA9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c、82member/79source/24completion-chain source、生成C、7guard、raw stdout空/process exit1/stderr失敗を照合。新規実戦process1、成功fresh core0。観測抄録は失敗stderrから抽出したものと明記し、成功JSONへ代作しない。
+最新診断: run `34759726061` / job `103730310536` / HEAD `dfe293f57b009e04274c5eb67dbb9c4e6cae74ec`。
+照合抄録: `content/modernization/pr16_bp_loss_return_verified.json`。
+WhiteOut設定元をbffdのCB2_EndTrainerBattle内0807FC50→0807FC5C→SetMainCallback2で固定し、1か所のcallback pointerと180bytesの施設限定shimを実装。候補fcda1507/CRC A15FAF9D。run34759726061/job103730310536のnative processはexit0、11261fで敗北、11405fで09FF4681、11444fでAfterBattle call後、11464fで元party復元、11516fで受付前idle。元600bytes/count1、marker/snapshot/pending/streak0、BP0/save counter2、入力barrier7・警告0。
+
+原Actions/Pythonは終了済みscript pointer0を拒否してfailure/FAIL。原本は変更せず、exact field callback08055E75・AfterBattle進行・復元・idleの全遷移を必須にしたsource-only再検証を完了。新規emulator再実行0。敗北帰還修復は完了、勝利・交換・BP稼得/消費は未受入。
 
 開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。
 
 ## 候補identityと残件
 
-SHA-256 `bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92` / 33554432 bytes / CRC32 `635A3CE5`。開発候補。最終製品SHAではない。
+SHA-256 `fcda15075a586d59f4f9da5f7f55a294765f826ab1453a576e74192df822d879` / 33554432 bytes / CRC32 `A15FAF9D`。敗北帰還修復を検証した開発候補。取消/Save/Continue正式受入は従来bffd上の証拠であり、全候補regressionや最終製品SHAへの昇格ではない。
 
 正式physical残件（台帳から照合）:
 
@@ -68,14 +71,15 @@ P08ゲート:
 - `FINAL_NATIVE_ACCEPTANCE`
 - `RELEASE_DECISION`
 
-1戦敗北は実測済みだが施設へ戻らずsnapshot/marker/レンタルpartyが残存する。交換修正や勝利だけを先に進めて負例を隠さない。Trial reward0はID、基本9BP。manifest/Stage28追加BP3とStage29 repeat1/2の条件を読取照合したが、候補上の全completion chainと最終付与量は未確定。交換operand092CF729/092CF775のsingle-selection ABI修正は敗北復帰の後。初期chooser修正、受入取消/Save/Continueは再実施しない。
+1戦敗北→施設受付前idle→元party600bytes/count1復元はfcdaで検証完了。次は交換operand092CF729/092CF775のsingle-selection ABI。Trial reward0はID、基本9BP。manifest/Stage28追加BP3とStage29 repeat1/2の条件は既存読取証拠を再利用するが、候補上の勝利・全completion chain・最終付与量は未受入。初期chooser、取消/Save/Continueと今回の敗北帰還を変更影響なしに再実施しない。
 
 BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。
 
 ## 再実行・過大主張の禁止
 
-- CFRU固定commitの独立復元・fsck/clean検証と19件のsource testsはPASS。WhiteOut参照はinclude/overworld.h:97の宣言1件のみ。旧schema1のowner_resolved=trueは宣言同居による誤判定で不採用。schema2はowner_resolved=false、候補ROM上ownerの固定とnative敗北復帰修復は未完。 同一固定sourceの再scanや受入済み取消/Save/Continueの再実行は不要。
-- run34749370272の敗北→WhiteOut→party未復元はfailure原本で保持。同一sourceで再実行せず、native return修復後の影響区間だけ検証する。
+- run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。
+- 履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。
+- run34749370272の旧bffd敗北→WhiteOut→party未復元はfailure原本で保持。その修復影響区間はrun34759726061のfcda native原本とsource-only判定で検証済み。同一条件を再実行しない。
 - 取消・元party600bytes復元・通常Save/fresh Continueの受入を変更影響なしに再実行しない。
 - special 0x2F→0x29の最初のchooser原因調査と3体選択診断を、同一入力で単独再実行しない。次の停止点まで延長する。
 - run34739491272の2回目確定→5D→battle struct→敵3体→実action到達を変更影響なしに単独再実行しない。次の未観測区間へ延長する。
@@ -113,6 +117,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-BP run34749370272/job103703085018はnative帰還/復元不達でfailure。source13件と7guard、原本再検証は別判定。初期HEADの5 Actionsと前回closeout成功を照合済み。一般CIのpending/failureをこの診断成功へ読み替えず、最終記録commitの全Checks完了も主張しない。 Source-only run34757633314/job103724666041は成功・19tests PASSだがowner未固定を確認した結果でありnative帰還の成功ではない。最終記録commitの全Checks完了は主張しない。
+native HEADdfeのActionsを再照合。専用run34759726061はPython終了状態検査のfalse negativeでfailure、raw nativeはexit0/PASS。新規source-only検証は別runであり、原失敗の取消・全Checks成功・BP受入とは主張しない。記録commitのChecksはpush後に別照合。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
