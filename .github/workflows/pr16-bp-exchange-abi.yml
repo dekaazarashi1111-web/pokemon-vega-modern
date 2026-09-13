@@ -1,0 +1,134 @@
+name: pr16-bp-exchange-abi
+run-name: Factory交換2operandの限定修正・source検証（native再実行なし）
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-exchange-abi.yml
+      - scripts/pr16_bp_exchange_successor.py
+      - tests/test_pr16_bp_exchange_successor.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-exchange-abi
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 未完作業・最新HEAD・Actions照合と限定テスト
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-bp-exchange-evidence
+          python3 scripts/pr16_resume.py check
+          python3 -m unittest discover -s tests -p test_pr16_bp_exchange_successor.py -v > .local/pr16-bp-exchange-evidence/unit.log 2>&1
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(p):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+p]))
+          def small(r):return {k:r[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          s=json.load(open('content/modernization/pr16_native_supply_resume_20260913.json'))
+          assert s['next_action']['id']=='BP_EXCHANGE_CHOOSER_ABI'
+          native=api('actions/workflows/pr16-bp-loss-return-native.yml/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs'][0]
+          assert native['id']==s['latest_native_run']==34759726061 and native['status']=='completed' and native['conclusion']=='failure'
+          rows=api('actions/runs?head_sha=a0f03b1bf0d8cbb7d89c6bba137faa9982b5a8f0&per_page=100')
+          assert rows['total_count']==len(rows['workflow_runs'])
+          recent=api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')['workflow_runs']
+          out=pathlib.Path('.local/pr16-bp-exchange-evidence')
+          (out/'actions-before.json').write_text(json.dumps(dict(head=head,entry_head='a0f03b1bf0d8cbb7d89c6bba137faa9982b5a8f0',entry_runs=[small(r) for r in rows['workflow_runs']],recent_runs=[small(r) for r in recent],native=small(native)),ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: 固定toolchain・候補親の準備（emulatorなし）
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bash infra/setup_github_actions.sh --install > .local/exchange-toolchain.log 2>&1
+          python3 scripts/modernization_final_integration.py prepare > .local/exchange-stage84.log 2>&1
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > .local/exchange-restore.log 2>&1
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,zipfile
+          root=pathlib.Path('.');name='pokemon-vega-private-env-v1-state.zip'
+          cfg=json.load(open('config/github_private_environment.json'));bound=next(x for x in cfg['archives'] if x['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          snippets={};bindings={}
+          def function(text,name):
+              m=re.search(r'^(?:static )?(?:u8|bool8|void) '+re.escape(name)+r'\([^;]*?\)\s*\{',text,re.M)
+              if not m:return None
+              pos=text.index('{',m.start());end=pos+1;depth=1
+              while depth:depth+=(text[end]=='{')-(text[end]=='}');end+=1
+              return text[m.start():end]
+          with zipfile.ZipFile(archive) as z:
+              member='vendor/upstream/CFRU-JP/charmap.tbl';data=z.read(member);p=root/member
+              assert not any(x.is_symlink() for x in (p,*p.parents))
+              if p.exists():assert p.read_bytes()==data
+              else:p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(0o444)
+              wanted=['GetNumMonsOnTeamInFrontier','ChoosePokemon_LoadMaxPKMNStr','CursorCb_Enter','CanPokemonSelectedBeEnteredInBattleTower']
+              for name in z.namelist():
+                  if not name.startswith('vendor/upstream/CFRU-JP/src/') or not name.endswith('.c'):continue
+                  data=z.read(name);text=data.decode('utf-8')
+                  for symbol in wanted:
+                      body=function(text,symbol)
+                      if body:
+                          assert symbol not in snippets
+                          snippets[symbol]=dict(path=name,text=body)
+                          bindings[name]=dict(size=len(data),sha256=hashlib.sha256(data).hexdigest())
+              assert set(snippets)==set(wanted),'ABI function missing'
+              linker=z.read('vendor/upstream/CFRU-JP/BPRJ.ld').decode()
+              anchors=[line for line in linker.splitlines() if 'gSelectedOrderFromParty =' in line or 'InitChooseHalfPartyForBattle =' in line]
+              assert len(anchors)==2
+          out=root/'.local/pr16-bp-exchange-evidence'
+          (out/'upstream-abi.json').write_text(json.dumps(dict(archive_sha256=bound['sha256'],source_bindings=bindings,functions=snippets,linker_anchors=anchors,new_emulator_processes=0,native_exchange_accepted=False),ensure_ascii=False,indent=2)+'\n')
+          PY
+          python3 scripts/pr16_p07_preserved_layer.py > .local/exchange-p07.log 2>&1
+          python3 scripts/pr16_evolution_learning_repair.py > .local/exchange-evolution.log 2>&1
+      - name: 交換だけのsuccessorを二重生成して全不変区間を検証
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_exchange_successor.py > .local/exchange-build.log 2>&1
+          cp .local/pr16-bp-exchange-successor/candidate.json .local/pr16-bp-exchange-evidence/candidate.json
+          python3 scripts/pr16_resume.py check
+          git diff --exit-code
+      - name: 証拠をtext限定・秘密情報検査
+        id: guard
+        if: always()
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,subprocess
+          out=pathlib.Path('.local/pr16-bp-exchange-evidence');out.mkdir(parents=True,exist_ok=True)
+          snapshot={p:pathlib.Path(p).read_text() for p in ('AGENTS.md','scripts/pr16_resume.py','tests/test_pr16_resume.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/pr16_bp_loss_return_verified.json')}
+          (out/'tracked-snapshot.json').write_text(json.dumps(snapshot,ensure_ascii=False,indent=2)+'\n')
+          bound={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+          (out/'members.json').write_text(json.dumps(bound,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-exchange-abi
+          path: .local/pr16-bp-exchange-evidence/
+          include-hidden-files: true
+          retention-days: 90
+          if-no-files-found: error
