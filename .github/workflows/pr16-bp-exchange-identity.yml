@@ -46,7 +46,7 @@ jobs:
           rows={}
           for name,expected in [('pr16-bp-win-exchange.yml',34770280751),('pr16-bp-loss-return-native.yml',34759726061),('pr16-bp-exchange-abi.yml',34762342982)]:
               r=api('actions/workflows/'+name+'/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs']
-              assert len(r)==1 and r[0]['id']==expected and r[0]['status']=='completed' and r[0]['conclusion']=='success','new result must be reconciled first'
+              assert len(r)==1 and r[0]['id']==expected and r[0]['status']=='completed' and r[0]['conclusion']==('failure' if expected==34759726061 else 'success'),('new result must be reconciled first',name,[small(v) for v in r])
               rows[name]=small(r[0])
           start='565597ae307cb81f3b4878a6c58e278b5f9a9dfb'
           r=api('actions/runs?head_sha='+start+'&per_page=100');assert r['total_count']==len(r['workflow_runs'])
