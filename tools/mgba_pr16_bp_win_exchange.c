@@ -16,7 +16,7 @@ static unsigned wx_effect(unsigned attack,unsigned defense) {
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
         {10,10,10,10,10,5,20,10,20,10,5,5,20,10,10,20,5,10,10},
         {10,10,10,10,20,20,10,10,10,10,20,5,5,10,10,10,5,10,10},
-        {10,10,5,5,20,20,5,10,5,10,5,20,5,5,10,10,5,10,10},
+        {10,10,5,5,20,20,5,10,5,10,5,20,5,10,10,10,5,10,10},
         {10,10,20,10,0,10,10,10,10,10,10,20,5,5,10,10,5,10,10},
         {10,20,10,20,10,10,10,10,5,10,10,10,10,10,5,10,10,0,10},
         {10,10,20,10,20,10,10,10,5,10,5,5,20,10,10,5,20,10,10},
@@ -173,6 +173,20 @@ static void wx_single_confirm(struct mCore *c,unsigned slot) {
             b_frames,k+1U,read8(c,SP_PARTY_SLOT),read8(c,SP_ORDER_CFRU));
     }
 }
+/* scratch消去はCommitExchangeの途中。run34769665360では最初のPPだけが
+ * 回復したframe17303で止まった。次のscript命令境界へ進んでから600byteを
+ * 一度だけ厳密比較する。実行途中の092CF731や比較成功そのものを完了条件にしない。
+ * 092CF680 message / 092CF688 PrepareBattleは既存candidate scriptの固定境界。 */
+static bool wx_commit_returned(struct mCore *c) {
+    if(read32(c,VEGA_SAVE_TRANSACTION_SCRATCH_ADDRESS)
+        || read32(c,BATTLE_CORE_MAIN_CALLBACK2)!=0x08055E75U
+        || read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER))return false;
+    switch(read32(c,SP_SCRIPT_PTR)){
+        case 0x092CF680U: case 0x092CF686U:
+        case 0x092CF688U: case 0x092CF68DU:return true;
+        default:return false;
+    }
+}
 struct WXResult {unsigned menu,selected,confirm,commit,allocated,action,slot,order,preserved,replaced,opening;};
 static struct WXResult wx_exchange_next(struct mCore *c,const uint8_t *original,unsigned counter) {
     struct WXResult w={.opening=wx_voluntary_count};unsigned start=b_frames;uint8_t expected[600],actual[600],cached[100],snapshot[600];
@@ -200,7 +214,7 @@ static struct WXResult wx_exchange_next(struct mCore *c,const uint8_t *original,
     sp_observe(c,"exchange-single-selected");w.confirm=b_frames+1U;b_press(c,QOL_KEY_A,2U);
     for(unsigned f=0;f<12000U;++f){
         uint32_t bs=read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),cb=read32(c,BATTLE_CORE_MAIN_CALLBACK2);
-        if(!w.commit && !read32(c,VEGA_SAVE_TRANSACTION_SCRATCH_ADDRESS)){
+        if(!w.commit && wx_commit_returned(c)){
             w.commit=b_frames;b_copy(c,QOL_PLAYER_PARTY,actual,sizeof(actual));
             bp_read_span(c,"exchange_party_committed",QOL_PLAYER_PARTY,600U);
             bp_require(c,!memcmp(expected,actual,sizeof(actual)),"exchange exact600 compare (selected healed100 + unchanged500) failed");
