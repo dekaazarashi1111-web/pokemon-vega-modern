@@ -1,5 +1,31 @@
 /* 勝利後の単体交換→次戦だけを追加する。RAM/ROMへのhost書込みは行わない。
  * 技選択は威力・命中・攻防・STABによる決定的heuristic。勝敗の保証ではない。 */
+/* 通常18タイプ(+予約9)のhost入力heuristic。能力・天候・特性を完全予測する
+ * battle simulatorではない。native実データのタイプを読むだけ。未知タイプは等倍。 */
+static unsigned wx_effect(unsigned attack,unsigned defense) {
+    static const unsigned char table[19][19]={
+        {10,10,10,10,10,5,10,0,5,10,10,10,10,10,10,10,10,10,10},
+        {20,10,5,5,10,20,5,0,20,10,10,10,10,10,5,20,10,20,5},
+        {10,20,10,10,10,5,20,10,5,10,10,10,20,5,10,10,10,10,10},
+        {10,10,10,5,5,5,10,5,0,10,10,10,20,10,10,10,10,10,20},
+        {10,10,0,20,10,20,5,10,20,10,20,10,5,20,10,10,10,10,10},
+        {10,5,20,10,5,10,20,10,5,10,20,10,10,10,10,20,10,10,10},
+        {10,5,5,5,10,10,10,5,5,10,5,10,20,10,20,10,10,20,5},
+        {0,10,10,10,10,10,10,20,10,10,10,10,10,10,20,10,10,5,10},
+        {10,10,10,10,10,20,10,10,5,10,5,5,10,5,10,20,10,10,20},
+        {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
+        {10,10,10,10,10,5,20,10,20,10,5,5,20,10,10,20,5,10,10},
+        {10,10,10,10,20,20,10,10,10,10,20,5,5,10,10,10,5,10,10},
+        {10,10,5,5,20,20,5,10,5,10,5,20,5,10,10,10,5,10,10},
+        {10,10,20,10,0,10,10,10,10,10,10,20,5,5,10,10,5,10,10},
+        {10,20,10,20,10,10,10,10,5,10,10,10,10,10,5,10,10,0,10},
+        {10,10,20,10,20,10,10,10,5,10,5,5,20,10,10,5,20,10,10},
+        {10,10,10,10,10,10,10,10,5,10,10,10,10,10,10,10,20,10,0},
+        {10,5,10,10,10,10,10,20,10,10,10,10,10,10,20,10,10,5,5},
+        {10,20,10,5,10,10,10,10,5,10,5,10,10,10,10,10,20,20,10},
+    };
+    return attack<19U && defense<19U?table[attack][defense]:10U;
+}
 static unsigned wx_move_slot(struct mCore *c) {
     uint32_t table=read32(c,BATTLE_CORE_MOVE_TABLE_REPOINT);
     bp_require(c,table>=0x08000000U && table+1063U*12U<=0x0A000000U && !(table&3U),"win move table ABI differs");
@@ -17,6 +43,10 @@ static unsigned wx_move_slot(struct mCore *c) {
         unsigned defense=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+(split==0U?4U:10U));
         uint64_t score=(uint64_t)power*(accuracy?accuracy:100U)*(attack?attack:1U)*100U/(defense?defense:1U);
         if(type==read8(c,ADDR_BATTLE_MONS+BATTLE_CORE_MON_TYPE1) || type==read8(c,ADDR_BATTLE_MONS+BATTLE_CORE_MON_TYPE2))score=score*3U/2U;
+        unsigned t1=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_TYPE1);
+        unsigned t2=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_TYPE2);
+        unsigned effect=wx_effect(type,t1)*(t1==t2?10U:wx_effect(type,t2));
+        score=score*effect/100U;
         fprintf(stderr,"BP_WIN_MOVE frame=%u slot=%u move=%u pp=%u power=%u type=%u split=%u score=%llu\n",b_frames,i,move,pp,power,type,split,(unsigned long long)score);
         if(best==4U || score>top){best=i;top=score;}
     }

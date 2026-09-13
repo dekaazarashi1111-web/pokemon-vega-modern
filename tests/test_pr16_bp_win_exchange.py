@@ -1,5 +1,7 @@
 """native勝利/単体交換の証拠境界。旧受入の再実行は行わない。"""
 import json
+import subprocess
+import tempfile
 from pathlib import Path
 import sys
 import unittest
@@ -83,6 +85,24 @@ class WinExchangeTests(unittest.TestCase):
             self.assertNotIn(term,extension);self.assertNotIn(term,after)
         self.assertIn('memcmp(expected,actual,sizeof(actual))',extension)
         self.assertIn('0x092CF72CU',extension)
+    def test_type_policy_host_c_vectors(self):
+        text=(p.ROOT/p.SOURCE).read_text()
+        helper=text[text.index('static unsigned wx_effect('):text.index('static unsigned wx_move_slot(')]
+        vectors=[(10,11,5),(12,12,5),(12,3,5),(3,12,20),(3,3,5),
+                 (17,14,20),(14,17,0),(13,4,0),(16,18,0),(7,8,10),(99,1,10)]
+        checks=''.join('if(wx_effect(%dU,%dU)!=%dU)return 1;' % v for v in vectors)
+        with tempfile.TemporaryDirectory() as tmp:
+            src=Path(tmp)/'policy.c';exe=Path(tmp)/'policy'
+            src.write_text(helper+'\nint main(void){'+checks+'return 0;}\n')
+            subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror',str(src),'-o',str(exe)],check=True,capture_output=True)
+            subprocess.run([str(exe)],check=True,capture_output=True)
+    def test_actual_native_types_and_protect_keep_old_gate(self):
+        text=p.assemble_controller()
+        self.assertIn('BATTLE_MON_SIZE+BATTLE_CORE_MON_TYPE1',text)
+        self.assertIn('score=score*effect/100U',text)
+        self.assertIn('==182U',text)
+        self.assertIn('w.returned>w.spent',text)
+        self.assertIn('win extension ended in native loss; retain failure',text)
     def test_derivation_refuses_ambiguous_anchor(self):
         for text in ('','xx'):
             with self.assertRaises(ValueError):p.replace_once(text,'x','y')
