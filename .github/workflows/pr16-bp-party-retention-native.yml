@@ -36,7 +36,8 @@ jobs:
           set -euo pipefail
           out=.local/pr16-bp-party-retention-native-run
           mkdir -p "$out"
-          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_successor.py' -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v >> "$out/unit.stdout" 2>> "$out/unit.stderr"
           python3 scripts/pr16_resume.py check > "$out/resume-before.json"
           python3 - <<'PYCODE'
           import json,os,pathlib,subprocess
@@ -253,7 +254,8 @@ jobs:
           PYCODE
           python3 scripts/pr16_resume.py render
           python3 scripts/pr16_resume.py check
-          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_successor.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v
           python3 -m unittest discover -s tests -p 'test_pr16_resume.py' -v
           git diff --check
           test "$(git rev-parse origin/codex/modernization-followup-20260908)" = "$GITHUB_SHA"
