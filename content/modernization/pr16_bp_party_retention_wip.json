@@ -9,6 +9,126 @@
   },
   "candidate_changed": false,
   "classification": "WIP_NOT_RUNTIME_FIX_NOT_NATIVE_ACCEPTANCE",
+  "followup_attempts": [
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_before": {
+        "active_runs": [
+          {
+            "conclusion": null,
+            "event": "pull_request",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797745824,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741565,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741572,
+            "name": "未反映ABI案・ツール停止の引継ぎ記録だけ（ROM解析/nativeなし）",
+            "path": ".github/workflows/pr16-bp-retention-session-note.yml",
+            "status": "in_progress"
+          },
+          {
+            "conclusion": null,
+            "event": "push",
+            "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+            "id": 34797741542,
+            "name": "Stage79 mGBA (all)",
+            "path": ".github/workflows/modernization-stage79-mgba.yml",
+            "status": "in_progress"
+          }
+        ],
+        "entry_head_runs": [
+          {
+            "conclusion": "action_required",
+            "event": "pull_request",
+            "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+            "id": 34785846301,
+            "name": "source-validation",
+            "path": ".github/workflows/ci.yml",
+            "status": "completed"
+          },
+          {
+            "conclusion": "action_required",
+            "event": "pull_request",
+            "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+            "id": 34785846366,
+            "name": "p03-forgetting-ci",
+            "path": ".github/workflows/p03-forgetting-ci.yml",
+            "status": "completed"
+          }
+        ],
+        "latest": {
+          "pr16-bp-exchange-identity.yml": {
+            "conclusion": "success",
+            "event": "push",
+            "head_sha": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+            "id": 34774194505,
+            "name": "7f32交換個体の次戦までの読取専用追跡（同一prefix・既受入再実行なし）",
+            "path": ".github/workflows/pr16-bp-exchange-identity.yml",
+            "status": "completed"
+          },
+          "pr16-bp-party-retention.yml": {
+            "conclusion": "success",
+            "event": "push",
+            "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+            "id": 34785149994,
+            "name": "交換個体保持修復のowner照合・限定検証",
+            "path": ".github/workflows/pr16-bp-party-retention.yml",
+            "status": "completed"
+          }
+        },
+        "pr_open_draft": true,
+        "recording_run_id": 34797741572
+      },
+      "blocker": {
+        "attempts_this_session": 1,
+        "excerpt": "このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。送信内容を再度確認してください。",
+        "github_permission_missing": false,
+        "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+        "tool": "GitHub.create_tree"
+      },
+      "candidate_changed": false,
+      "entry_head": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+      "local_draft_sources": {
+        ".github/workflows/pr16-bp-retention-abi.yml": {
+          "sha256": "070f761f712a7478286cfa43dd7380b2ff53052941314f0e246125a97adaa7a3",
+          "size": 7285
+        },
+        "scripts/pr16_bp_party_retention_abi.py": {
+          "sha256": "5dfa9c74d483a793ba41884366b63c7c54916ce813016ea1fa4acecc8d9deacd",
+          "size": 9684
+        },
+        "tests/test_pr16_bp_party_retention_abi.py": {
+          "sha256": "0c785bde0bf07e1612688b528ea7cdb3c6f52e2563c374e1f423b81415ae13a4",
+          "size": 3250
+        }
+      },
+      "local_draft_test_count": 8,
+      "local_draft_test_result": "PASS_LOCAL_ONLY_NOT_TARGET_VERIFICATION",
+      "native_retention_verified": false,
+      "new_native_processes": 0,
+      "recording_source_head": "d4e1d94f3e34622136c126d3002307c009362fef",
+      "release_ready": false,
+      "remote_implementation_applied": false,
+      "runtime_connected": false,
+      "task": "USER-20260914-BP-RETENTION-RESUME-NOTE",
+      "task_status": "BLOCKED"
+    }
+  ],
   "native_bp_earning_accepted": false,
   "native_retention_verified": false,
   "new_native_processes": 0,

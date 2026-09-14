@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 0,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。\n\n既存native診断: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。",
+    "current_stop": "2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。\n\n既存native診断: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。",
     "earning_accepted": false,
     "earning_and_spending_accepted": false,
     "exchange_abi_repaired": true,
@@ -28,7 +28,7 @@
     "next_battle_exchanged_individual_identity_verified": false,
     "next_battle_party_retained": false,
     "next_battle_started_observed": true,
-    "next_step": "保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。",
+    "next_step": "保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。",
     "party_snapshot_and_marker_observed": true,
     "pp_after": 15,
     "pp_before": 16,
@@ -257,7 +257,8 @@
     "ROM/save/private入力/credentialを新規追加しない。既存公開方針と過去guard失敗は保持し、秘密情報の検査を無効化しない。",
     "run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。",
     "個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。",
-    "WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。"
+    "WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。",
+    "2026-09-14ローカルABI案8testsは未反映。target照合/native保持の成功として採用せず、ブロック要求を反復しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -329,7 +330,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。",
+    "goal_ja": "保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。",
     "host_write_policy_ja": "開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。",
     "id": "BP_EXCHANGE_PARTY_RETENTION_REPAIR",
     "read_paths": [
@@ -355,10 +356,128 @@
   "observed_date_jst": "2026-09-13",
   "observed_head": "48a36caf3361b1d167c302174eb2c4c4121c7508",
   "observed_head_checks": {
-    "reason_ja": "WIP48a36caの8 Actionsは照合時SUCCESS。entry c0dcのPR 2件はaction_required履歴のまま保持。今回owner監査はnative0、runtime保持修復は未完。詳細: content/modernization/pr16_bp_party_retention_wip.json"
+    "reason_ja": "entry aece429の最新Actionsは本セッション記録のactions_beforeに原値で保存。action_requiredをSUCCESSへ変更しない。source-only記録の検証とtarget/native検証は別。"
   },
   "observed_head_semantics": "WIPとsource-only owner監査の固定HEAD。latest_native_*と正式受入は以前の原本を維持。",
   "p08_resume_synchronized": true,
+  "party_retention_latest_attempt": {
+    "accepted_native_cases_replayed": 0,
+    "actions_before": {
+      "active_runs": [
+        {
+          "conclusion": null,
+          "event": "pull_request",
+          "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+          "id": 34797745824,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+          "id": 34797741565,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+          "id": 34797741572,
+          "name": "未反映ABI案・ツール停止の引継ぎ記録だけ（ROM解析/nativeなし）",
+          "path": ".github/workflows/pr16-bp-retention-session-note.yml",
+          "status": "in_progress"
+        },
+        {
+          "conclusion": null,
+          "event": "push",
+          "head_sha": "d4e1d94f3e34622136c126d3002307c009362fef",
+          "id": 34797741542,
+          "name": "Stage79 mGBA (all)",
+          "path": ".github/workflows/modernization-stage79-mgba.yml",
+          "status": "in_progress"
+        }
+      ],
+      "entry_head_runs": [
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+          "id": 34785846301,
+          "name": "source-validation",
+          "path": ".github/workflows/ci.yml",
+          "status": "completed"
+        },
+        {
+          "conclusion": "action_required",
+          "event": "pull_request",
+          "head_sha": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+          "id": 34785846366,
+          "name": "p03-forgetting-ci",
+          "path": ".github/workflows/p03-forgetting-ci.yml",
+          "status": "completed"
+        }
+      ],
+      "latest": {
+        "pr16-bp-exchange-identity.yml": {
+          "conclusion": "success",
+          "event": "push",
+          "head_sha": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+          "id": 34774194505,
+          "name": "7f32交換個体の次戦までの読取専用追跡（同一prefix・既受入再実行なし）",
+          "path": ".github/workflows/pr16-bp-exchange-identity.yml",
+          "status": "completed"
+        },
+        "pr16-bp-party-retention.yml": {
+          "conclusion": "success",
+          "event": "push",
+          "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+          "id": 34785149994,
+          "name": "交換個体保持修復のowner照合・限定検証",
+          "path": ".github/workflows/pr16-bp-party-retention.yml",
+          "status": "completed"
+        }
+      },
+      "pr_open_draft": true,
+      "recording_run_id": 34797741572
+    },
+    "blocker": {
+      "attempts_this_session": 1,
+      "excerpt": "このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。送信内容を再度確認してください。",
+      "github_permission_missing": false,
+      "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+      "tool": "GitHub.create_tree"
+    },
+    "candidate_changed": false,
+    "entry_head": "aece42964c1ff7b9c2bfd3d3c10bdd863d95febd",
+    "local_draft_sources": {
+      ".github/workflows/pr16-bp-retention-abi.yml": {
+        "sha256": "070f761f712a7478286cfa43dd7380b2ff53052941314f0e246125a97adaa7a3",
+        "size": 7285
+      },
+      "scripts/pr16_bp_party_retention_abi.py": {
+        "sha256": "5dfa9c74d483a793ba41884366b63c7c54916ce813016ea1fa4acecc8d9deacd",
+        "size": 9684
+      },
+      "tests/test_pr16_bp_party_retention_abi.py": {
+        "sha256": "0c785bde0bf07e1612688b528ea7cdb3c6f52e2563c374e1f423b81415ae13a4",
+        "size": 3250
+      }
+    },
+    "local_draft_test_count": 8,
+    "local_draft_test_result": "PASS_LOCAL_ONLY_NOT_TARGET_VERIFICATION",
+    "native_retention_verified": false,
+    "new_native_processes": 0,
+    "recording_source_head": "d4e1d94f3e34622136c126d3002307c009362fef",
+    "release_ready": false,
+    "remote_implementation_applied": false,
+    "runtime_connected": false,
+    "task": "USER-20260914-BP-RETENTION-RESUME-NOTE",
+    "task_status": "BLOCKED"
+  },
   "party_retention_session_summary": {
     "accepted_native_cases_replayed": 0,
     "candidate_changed": false,
@@ -528,6 +647,10 @@
       "sha256": "152965d4a799b92110d18e84d7a20fbf8a511c515ae5af28ece3d3d3ba8796b3",
       "size": 7159
     },
+    ".github/workflows/pr16-bp-retention-session-note.yml": {
+      "sha256": "823280c60bdd586e449d82256158d025ce1be3d772becb64da34ae39033d1bc3",
+      "size": 2071
+    },
     ".github/workflows/pr16-bp-selection-native.yml": {
       "sha256": "db7917eeba30257405ee43381d327fb6bb6885b962eac3bc01d067de441ff3e9",
       "size": 9067
@@ -593,8 +716,8 @@
       "size": 92166
     },
     "content/modernization/pr16_bp_party_retention_wip.json": {
-      "sha256": "05802a023738fdfee6a6336c2ee0b4da310c6f0683593be4d92e8a866cee87c2",
-      "size": 12531
+      "sha256": "112fc40bbd49d29c9d68ff2430e8d084ebbc151d78e287c8e621feb3046c871b",
+      "size": 17212
     },
     "content/modernization/pr16_bp_progress_attempts.json": {
       "sha256": "aba994af9a061420b47743c519bf581aa45fea7674c5e68199885b3b9dc4c172",
@@ -720,6 +843,10 @@
       "sha256": "4acab9d74bb57a1b7c633d169bc8863906107bc3bcf19ba2eba787d1e861ad64",
       "size": 16378
     },
+    "scripts/pr16_bp_retention_session_note.py": {
+      "sha256": "c6ab84ea6be970eace1f43e4a9601cd3bb7ac797dd97ff2d2e4d2a515b4170ed",
+      "size": 8754
+    },
     "scripts/pr16_bp_selection_native.py": {
       "sha256": "2995799b4e1ac755566f98bee77f01db3ce2439fe931394cf99fc3b5a8d9250c",
       "size": 10458
@@ -799,6 +926,10 @@
     "tests/test_pr16_bp_progress_checkpoint.py": {
       "sha256": "f87f1fed82348212a1c2d55fe57ae258645014cdf59ae03812b06a06599eeeb5",
       "size": 2327
+    },
+    "tests/test_pr16_bp_retention_session_note.py": {
+      "sha256": "4c656f97fd0e8949628bca2549a87695f2a613b6255a6fae7ac069c757fc6d61",
+      "size": 2787
     },
     "tests/test_pr16_bp_win_exchange_record.py": {
       "sha256": "b6f21bc1e601dcf8eb0c97f155f25580c9581ddbf35a876cbbe0f60ab68d1342",

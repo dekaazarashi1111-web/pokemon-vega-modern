@@ -6,11 +6,11 @@
 
 ## いまの停止点と次の1手
 
-WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。
+2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。
 
 既存native診断: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
 
-**次: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。**
+**次: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。**
 
 今回の読取専用診断・初勝利・交換の単独再実行はしない。新規修復/報酬ケースへ同一prefixを延長する時だけ使用する。取消Save/Continue等の受入済みケース、P03/P06/P07等は影響なしにつき再実行しない。
 
@@ -92,6 +92,7 @@ BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進め
 - run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。
 - 個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。
 - WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。
+- 2026-09-14ローカルABI案8testsは未反映。target照合/native保持の成功として採用せず、ブロック要求を反復しない。
 
 ## 次セッションへ残す更新手順
 
@@ -121,6 +122,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-WIP48a36caの8 Actionsは照合時SUCCESS。entry c0dcのPR 2件はaction_required履歴のまま保持。今回owner監査はnative0、runtime保持修復は未完。詳細: content/modernization/pr16_bp_party_retention_wip.json
+entry aece429の最新Actionsは本セッション記録のactions_beforeに原値で保存。action_requiredをSUCCESSへ変更しない。source-only記録の検証とtarget/native検証は別。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

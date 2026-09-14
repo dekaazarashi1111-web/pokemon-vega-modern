@@ -5031,3 +5031,21 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Boundary: candidate7f32/CRC0D5D9178、正式physical4/P08 gate2、BP未受入、PR open/draft、baselineを維持。merge/releaseなし。受入済みcaseの再実行0（選択工程）。自動起動既存CIは別記。
 - Question for human: 権限確認の再依頼は不要。停止した要求は反復しない。
 - Next step: 保存済みWIPとowner監査を再利用し、未接続のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を完了する。既存host4回帰/owner監査の単独再実行や同じtool-blocked要求の反復は行わず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-14T02:01:10.448721+00:00 — USER-20260914-BP-RETENTION-RESUME-NOTE
+- Timestamp: 2026-09-14T02:01:10.448721+00:00
+- Version: PR16 resume note
+- Task: USER-20260914-BP-RETENTION-RESUME-NOTE / 未反映ABI案と再開停止の記録
+- Status: BLOCKED
+- Summary: 2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。
+- Files changed: 記録script/tests/workflow、既存WIP JSON、固定引継ぎMD/JSON、P08再開文、両ログ、blockers。target/runtimeファイルは未変更。
+- Verify: ローカルABI案8tests PASS（未反映・Actions未実行）。記録回帰/resume check/tests、task graph、diff/index guard差分をpublish gateとする。
+- Native: 今回0process、受入case再実行0、candidate変更0、target ABI/保持は未検証。
+- Commit: この記録を含むcommit。entry=aece42964c1ff7b9c2bfd3d3c10bdd863d95febd、記録入力HEAD=d4e1d94f3e34622136c126d3002307c009362fef。非force push結果はworkflow result.jsonとremote refで確認。
+- Network: GitHub connectorのread・owner artifact取得・create_tree拒否。記録Actionsはmetadataのみ照会。private入力復元なし。
+- Block reason: OpenAIツール安全性チェック。GitHub権限エラーではない。追加コード要求1回を拒否、同じ要求の再試行なし。
+- Error excerpt: このツールの呼び出しは、OpenAI の安全性チェックによってブロックされました。
+- Question for human: 権限確認の再依頼は不要。正式受入・旧失敗原本を変更しない。
+- Boundary: BP未受入、physical4/P08ゲート2、PR open/draft、baseline維持。merge/releaseなし。
+- Next step: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。
