@@ -1,5 +1,5 @@
 name: pr16-abi-closeout-export
-run-name: PR16 ABI closeout tracked text export
+run-name: PR16 ABI closeout full tracked text export
 on:
   push:
     branches: [codex/modernization-followup-20260908]
@@ -20,7 +20,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: Package only tracked closeout text
+      - name: Package all tracked UTF-8 text
         shell: bash
         run: |
           set -euo pipefail
@@ -28,45 +28,39 @@ jobs:
           import hashlib
           import json
           from pathlib import Path
+          import subprocess
           import zipfile
 
           root = Path('.')
-          state_path = Path('content/modernization/pr16_native_supply_resume_20260913.json')
-          state = json.loads(state_path.read_text(encoding='utf-8'))
-          paths = {
-              state_path.as_posix(),
-              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-              'content/modernization/p08_remaining_work.json',
-              'content/modernization/pr16_bp_chooser_checkpoint.json',
-              'content/modernization/pr16_bp_party_retention_wip.json',
-              'design/run_log.md',
-              'design/version_log.md',
-              'scripts/pr16_resume.py',
-              'tests/test_pr16_resume.py',
-              'scripts/validate_task_graph.py',
-              'CHATGPT_RESUME.md',
-              'AGENTS.md',
-          }
-          paths.add(state['latest_native_evidence'])
-          paths.update(state['source_bindings'])
-          paths.update(state['next_action']['read_paths'])
+          names = subprocess.check_output(['git', 'ls-files', '-z']).decode('utf-8').split('\0')
           manifest = {}
-          with zipfile.ZipFile('pr16-abi-closeout-text.zip', 'w', compression=zipfile.ZIP_DEFLATED) as archive:
-              for name in sorted(paths):
+          skipped = {}
+          with zipfile.ZipFile('pr16-abi-closeout-full-text.zip', 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+              for name in sorted(filter(None, names)):
                   path = root / name
                   if not path.is_file() or path.is_symlink():
-                      raise SystemExit(f'missing/nonregular closeout path: {name}')
+                      skipped[name] = 'missing/nonregular/symlink'
+                      continue
                   raw = path.read_bytes()
-                  raw.decode('utf-8')
+                  if len(raw) > 5 * 1024 * 1024:
+                      skipped[name] = f'oversize:{len(raw)}'
+                      continue
+                  try:
+                      raw.decode('utf-8')
+                  except UnicodeDecodeError:
+                      skipped[name] = f'non_utf8:{len(raw)}'
+                      continue
                   archive.writestr(name, raw)
                   manifest[name] = {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
-              manifest_raw = (json.dumps(manifest, ensure_ascii=False, indent=2, sort_keys=True) + '\n').encode()
-              archive.writestr('closeout-export-manifest.json', manifest_raw)
-          print(json.dumps({'path_count': len(manifest)}, sort_keys=True))
+              archive.writestr(
+                  'closeout-full-export-manifest.json',
+                  (json.dumps({'files': manifest, 'skipped': skipped}, ensure_ascii=False, indent=2, sort_keys=True) + '\n').encode(),
+              )
+          print(json.dumps({'text_path_count': len(manifest), 'skipped_count': len(skipped)}, sort_keys=True))
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: pr16-abi-closeout-text
-          path: pr16-abi-closeout-text.zip
+          name: pr16-abi-closeout-full-text
+          path: pr16-abi-closeout-full-text.zip
           if-no-files-found: error
           retention-days: 1
