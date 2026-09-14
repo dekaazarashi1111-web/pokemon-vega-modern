@@ -1,0 +1,265 @@
+name: pr16-bp-party-retention-native
+run-name: 交換後party個体保持のscoped runtime接続・同一prefix native検証
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-party-retention-native.yml
+      - scripts/pr16_bp_party_retention_successor.py
+      - scripts/pr16_bp_party_retention_native.py
+      - tests/test_pr16_bp_party_retention_successor.py
+      - tests/test_pr16_bp_party_retention_native.py
+      - overlays/facility_party_retention/facility_party_retention.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-bp-party-retention-native
+  cancel-in-progress: false
+jobs:
+  retention:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Focused successor/native tests and remote reconciliation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          mkdir -p "$out"
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          def small(row):return {k:row[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          expected={
+            'pr16-bp-exchange-identity.yml':(34774194505,'success'),
+            'pr16-bp-retention-abi-cache.yml':(34802013676,'success'),
+            'pr16-bp-party-retention.yml':(34785149994,'success'),
+          }
+          rows={}
+          for name,(run_id,conclusion) in expected.items():
+              found=api('actions/workflows/'+name+'/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs']
+              assert len(found)==1 and found[0]['id']==run_id and found[0]['status']=='completed' and found[0]['conclusion']==conclusion,('new result must be reconciled first',name,[small(v) for v in found])
+              rows[name]=small(found[0])
+          current=api('actions/workflows/pr16-bp-party-retention-native.yml/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs']
+          assert len(current)==1 and current[0]['id']==int(os.environ['GITHUB_RUN_ID']),'newer retention request exists'
+          rows.update(tested_head=head,pr_open_draft=True,accepted_native_cases_replayed=0)
+          pathlib.Path('.local/pr16-bp-party-retention-native-run/actions-before.json').write_text(json.dumps(rows,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          (root/'.local/pr16-bp-party-retention-native-run/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact candidate parents without accepted-case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Scoped retention successor and one-process next-action witness
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          sudo apt-get update > "$out/apt-update.log" 2>&1
+          sudo apt-get install -y libmgba-dev > "$out/apt-mgba.log" 2>&1
+          python3 scripts/pr16_bp_party_retention_native.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: Guard scoped text evidence; never publish ROM/save/patches
+        id: guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re,shutil,zipfile
+          out=pathlib.Path('.local/pr16-bp-party-retention-native-run');out.mkdir(parents=True,exist_ok=True)
+          tracked=(
+            'scripts/pr16_bp_party_retention_successor.py','scripts/pr16_bp_party_retention_native.py',
+            'tests/test_pr16_bp_party_retention_successor.py','tests/test_pr16_bp_party_retention_native.py',
+            'overlays/facility_party_retention/facility_party_retention.c',
+            '.github/workflows/pr16-bp-party-retention-native.yml','AGENTS.md',
+            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+            'content/modernization/pr16_native_supply_resume_20260913.json',
+            'content/modernization/pr16_bp_party_retention_wip.json',
+            'content/modernization/p08_remaining_work.json',
+            'design/run_log.md','design/version_log.md',
+            'scripts/pr16_resume.py','tests/test_pr16_resume.py',
+          )
+          (out/'tracked-snapshot.json').write_text(json.dumps({p:pathlib.Path(p).read_text() for p in tracked},ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          successor=pathlib.Path('.local/pr16-bp-party-retention-successor')
+          for source,target in ((successor/'candidate.json',out/'successor-candidate.json'),):
+              if source.exists():shutil.copyfile(source,target)
+          for compile_dir in sorted(successor.glob('compile-*')):
+              for name in ('runtime-disassembly.txt','runtime-symbols.txt'):
+                  source=compile_dir/name
+                  if source.exists():shutil.copyfile(source,out/(compile_dir.name+'-'+name))
+          bound={}
+          for p in sorted(out.iterdir()):
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<5000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          native=pathlib.Path('.local/pr16-bp-party-retention-native')
+          if native.exists():
+              for p in sorted(native.iterdir()):
+                  assert p.is_file() and not p.is_symlink()
+                  assert p.suffix in {'.json','.txt','.stdout','.stderr','.ppm','.zip'}
+                  raw=p.read_bytes();assert len(raw)<8000000
+                  if p.suffix=='.zip':
+                      with zipfile.ZipFile(p) as z:
+                          for name in z.namelist():
+                              assert not name.startswith('/') and '..' not in pathlib.PurePosixPath(name).parts
+                              data=z.read(name);data.decode('utf-8');assert b'\0' not in data
+                  elif p.suffix=='.ppm':assert raw.startswith(b'P6') or raw.startswith(b'P3')
+                  else:raw.decode('utf-8');assert b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+                  bound['native/'+p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-party-retention-native
+          path: |
+            .local/pr16-bp-party-retention-native-run/
+            .local/pr16-bp-party-retention-native/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+      - name: Record scoped retention result and fast-forward branch
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-party-retention-native-run
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess,time
+          repo=os.environ['GITHUB_REPOSITORY'];run=int(os.environ['GITHUB_RUN_ID'])
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          artifact=None
+          for _ in range(15):
+              rows=api(f'actions/runs/{run}/artifacts')['artifacts']
+              found=[r for r in rows if r['name']=='pr16-bp-party-retention-native']
+              if found:artifact=found[0];break
+              time.sleep(2)
+          assert artifact and not artifact['expired']
+          jobs=api(f'actions/runs/{run}/jobs')['jobs']
+          job=next(j for j in jobs if j['name']=='retention')
+          pathlib.Path('.local/pr16-bp-party-retention-native-run/run-meta.json').write_text(json.dumps({'run_id':run,'job_id':job['id'],'artifact_id':artifact['id']},sort_keys=True)+'\n')
+          PYCODE
+          python3 - <<'PYCODE'
+          import datetime,hashlib,json,os,pathlib,subprocess
+          root=pathlib.Path('.')
+          state_path=root/'content/modernization/pr16_native_supply_resume_20260913.json'
+          wip_path=root/'content/modernization/pr16_bp_party_retention_wip.json'
+          p08_path=root/'content/modernization/p08_remaining_work.json'
+          evidence_path=root/'content/modernization/pr16_bp_party_retention_verified.json'
+          native=root/'.local/pr16-bp-party-retention-native'
+          run_meta=json.loads((root/'.local/pr16-bp-party-retention-native-run/run-meta.json').read_text())
+          process=json.loads((native/'result.json').read_text())
+          retained=json.loads((native/'retention.json').read_text())
+          candidate=json.loads((root/'.local/pr16-bp-party-retention-native-run/successor-candidate.json').read_text())
+          tested=os.environ['GITHUB_SHA']
+          result=dict(process['results'][0]['result'])
+          result.update(retained)
+          result.update(status='PASS_NATIVE_EXCHANGE_PARTY_RETENTION_NOT_BP',candidate_sha256=candidate['candidate']['sha256'],native_party_retention_accepted=True,native_bp_earning_accepted=False,p05_native_bp_gap_closed=False,release_ready=False)
+          evidence={'schema_version':1,'classification':'DIAGNOSTIC_ONLY_NOT_ACCEPTANCE','run_id':run_meta['run_id'],'job_id':run_meta['job_id'],'artifact_id':run_meta['artifact_id'],'tested_head':tested,'candidate':candidate['candidate'],'candidate_crc32':candidate['crc32'],'parent':candidate['parent'],'native_result':result,'accepted_native_cases_replayed':0,'new_emulator_processes':process['actual_new_processes'],'successful_fresh_cores':process['successful_fresh_cores'],'runtime_connected':True,'native_party_retention_accepted':True,'native_bp_earning_accepted':False,'p05_native_bp_gap_closed':False,'release_ready':False,'scope_ja':'交換確定時の600byte partyと3個体identityが次戦chooser/actionまで一致。2/3戦目とBP報酬は未受入。'}
+          evidence_path.write_text(json.dumps(evidence,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          wip=json.loads(wip_path.read_text())
+          attempt={'task':'USER-20260914-BP-RETENTION-RUNTIME','task_status':'PASS_NATIVE_PARTY_RETENTION_NOT_BP','tested_head':tested,'actions_run_id':run_meta['run_id'],'actions_job_id':run_meta['job_id'],'artifact_id':run_meta['artifact_id'],'candidate':candidate['candidate'],'candidate_crc32':candidate['crc32'],'runtime_connected':True,'native_retention_verified':True,'native_bp_earning_accepted':False,'accepted_native_cases_replayed':0,'new_emulator_processes':process['actual_new_processes'],'release_ready':False,'evidence':str(evidence_path)}
+          if not any(x.get('actions_run_id')==run_meta['run_id'] for x in wip.get('followup_attempts',[])):wip.setdefault('followup_attempts',[]).append(attempt)
+          wip.update(classification='NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING',candidate_changed=True,runtime_connected=True,native_retention_verified=True,native_bp_earning_accepted=False,new_emulator_processes=process['actual_new_processes'],new_native_processes=process['actual_new_processes'],release_ready=False,blocker=None)
+          wip_path.write_text(json.dumps(wip,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          p08=json.loads(p08_path.read_text())
+          p08['next_integration_candidate']={'builder':'scripts/pr16_bp_party_retention_successor.py','candidate':{**candidate['candidate'],'crc32':candidate['crc32']},'full_candidate_regression_complete':False,'scope':'NATIVE_EXCHANGE_PARTY_RETENTION_ACCEPTED_BP_PENDING','source_path':str(evidence_path)}
+          p08_path.write_text(json.dumps(p08,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          state=json.loads(state_path.read_text());bp=state['bp']
+          summary=f"run{run_meta['run_id']}/job{run_meta['job_id']}で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator {process['actual_new_processes']}、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。"
+          next_goal='同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。'
+          bp.update(current_stop='2026-09-14: '+summary,next_step=next_goal,after_battle_launch=summary,party_retention_runtime_connected=True,native_retention_verified=True,next_battle_exchanged_individual_identity_verified=True,next_battle_party_retained=True,earning_accepted=False,earning_and_spending_accepted=False,spending_accepted=False)
+          for key in ('battle_started','bp_earned','selected_frame','second_chooser_frame'):
+              if key in result:bp[key]=result[key]
+          state['candidate']={**candidate['candidate'],'crc32':candidate['crc32'],'final_product_sha_fixed':False,'full_candidate_regression_complete':False}
+          state['candidate_scope_ja']='保持wrapper接続済みcandidate。交換個体保持のみscoped native確認済みで、3勝BP・最終製品SHAではない。'
+          state.update(status=result['status'],latest_native_evidence=str(evidence_path),latest_native_run=run_meta['run_id'],latest_native_job=run_meta['job_id'],latest_native_tested_head=tested,latest_native_scope='DIAGNOSTIC_ONLY_NOT_ACCEPTANCE',latest_native_summary_ja=summary,observed_head=tested,observed_head_semantics='保持wrapperの限定runtime接続と1process native個体保持を固定した実装HEAD。後続record commitは証拠・引継ぎ・ログのみ。',pending_runs=[],logs_synchronized=True)
+          state['observed_head_checks']={'reason_ja':f"実装HEAD {tested} の専用run{run_meta['run_id']}/job{run_meta['job_id']}はSUCCESS。focused tests、二重native compile、限定3領域patch、1process次戦保持を確認。取消/Save/Continue・2/3戦目・BP報酬は再実行/受入していない。"}
+          state['party_retention_latest_attempt']={**attempt,'actions_conclusion':'success'}
+          state['party_retention_session_summary']={'accepted_native_cases_replayed':0,'candidate_changed':True,'host_tests_actions':10,'native_retention_verified':True,'new_emulator_processes':process['actual_new_processes'],'runtime_connected':True,'target_abi_verified':True,'target_callsite_verified':True,'task_status':'PASS_NATIVE_PARTY_RETENTION_NOT_BP'}
+          state['party_retention_wip']={'status':'NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING','evidence':str(evidence_path),'owner_run':34785149994,'abi_run':34802013676,'native_run':run_meta['run_id'],'tested_head':tested}
+          state['next_action']={'id':'BP_THREE_WIN_REWARD_NATIVE','goal_ja':next_goal,'host_write_policy_ja':'既存7 host-write barrier、timeout、candidate/source identityを緩めず、同じnative prefixを2/3戦目と報酬境界まで延長する。','read_paths':[str(evidence_path),'scripts/pr16_bp_party_retention_native.py','scripts/pr16_bp_exchange_identity.py','scripts/pr16_bp_win_exchange.py','overlays/facility_party_retention/facility_party_retention.c'],'stop_rule_ja':'今回の保持run、静的ABI run34802013676、owner run34785149994、受入済み取消/Save/Continueを変更影響なしに再実行しない。3勝報酬確認前にBP消費・releaseへ進まない。','success_observations':['native 2戦目完了','native 3戦目完了','正確な3勝BP報酬']}
+          marker=f"run{run_meta['run_id']}の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、次は2/3戦目と3勝BP報酬へ延長する。"
+          if marker not in state['do_not_repeat']:state['do_not_repeat'].append(marker)
+          state['session_execution_summary'].update(accepted_cancel_replays=0,native_game_processes=process['actual_new_processes'],rom_source_changes=3,native_bp_earning_accepted=False,scope_ja='保持wrapper限定接続と交換後次戦個体保持のみ。')
+          state['recording_workflow']={'run_id':run_meta['run_id'],'source_head':tested,'status_at_snapshot':'completed','note_ja':'同一runのnative結果を証拠化し、workflow内で引継ぎ/ログを非force fast-forward記録。'}
+          # Append-only logs; self commit SHA is intentionally not embedded.
+          stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+          task='USER-20260914-BP-RETENTION-RUNTIME'
+          block=f"\n\n## {stamp} — {task}\n- Task: {task} / player true path限定の保持wrapper接続とnative個体保持\n- Status: DONE\n- Summary: {summary}\n- Files changed: successor/native runner、専用workflow/tests、保持証拠、WIP/現行resume/P08、両ログ。\n- Verify: py_compile、YAML parse、focused 10 tests、pr16_resume.py check、dedicated Actions SUCCESS。\n- Native: 新規process={process['actual_new_processes']}、fresh core={process['successful_fresh_cores']}、受入済み取消/Save/Continue再実行=0。\n- Commit: この記録を含むworkflow commit。検証入力HEAD={tested}。\n- Network: GitHub Actions run={run_meta['run_id']} job={run_meta['job_id']} artifact={run_meta['artifact_id']}。\n- Boundary: 2/3戦目、BP稼得/消費、release、merge、active baseline変更なし。\n"
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=root/name;text=p.read_text()
+              if task not in text:p.write_text(text+block)
+          # Refresh every pre-existing binding plus this task's files after all bound writes.
+          extra=['.github/workflows/pr16-bp-party-retention-native.yml','scripts/pr16_bp_party_retention_successor.py','scripts/pr16_bp_party_retention_native.py','tests/test_pr16_bp_party_retention_successor.py','tests/test_pr16_bp_party_retention_native.py',str(evidence_path),'content/modernization/pr16_bp_party_retention_wip.json','content/modernization/p08_remaining_work.json']
+          bindings=state.setdefault('source_bindings',{})
+          for name in sorted(set(bindings)|set(extra)):
+              raw=(root/name).read_bytes();bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          state_path.write_text(json.dumps(state,ensure_ascii=False,indent=2)+'\n')
+          PYCODE
+          python3 scripts/pr16_resume.py render
+          python3 scripts/pr16_resume.py check
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_resume.py' -v
+          git diff --check
+          test "$(git rev-parse origin/codex/modernization-followup-20260908)" = "$GITHUB_SHA"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add content/modernization/pr16_bp_party_retention_verified.json content/modernization/pr16_bp_party_retention_wip.json content/modernization/pr16_native_supply_resume_20260913.json content/modernization/p08_remaining_work.json docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md design/run_log.md design/version_log.md
+          git commit -m 'feat: connect PR16 party retention runtime' -m 'Build: scoped successor with verified callsite, trampoline, and read-only wrapper.\nVerify: focused tests and native next-action retention witness passed; BP remains pending.'
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin "HEAD:codex/modernization-followup-20260908"
