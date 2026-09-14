@@ -1,0 +1,111 @@
+name: PR16 three-win 9 BP acceptance record
+
+on:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-bp-three-win-reward-record.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-bp-three-win-reward-record
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Verify immutable staging head
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          test "$(git rev-parse HEAD^)" = "d9d0dfefcc524b35993eab0f98ae7b6849133644"
+          git fetch origin codex/modernization-followup-20260908
+          test "$(git rev-parse origin/codex/modernization-followup-20260908)" = "${{ github.sha }}"
+
+      - name: Apply verified text-only acceptance patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .github/pr16-bp-three-win-reward-record/part-*.txt > /tmp/pr16-final.patch.gz.b64
+          echo '49de22d8045d5f0ef3e90256072449bfb954e232f2b07cabd6f2926adfeefe0c  /tmp/pr16-final.patch.gz.b64' | sha256sum -c -
+          base64 --decode /tmp/pr16-final.patch.gz.b64 > /tmp/pr16-final.patch.gz
+          echo '264a1ef043e0cf5912493a1b61b7ba010308c3026d3bc9e3029ef47f9906c907  /tmp/pr16-final.patch.gz' | sha256sum -c -
+          gzip --decompress --stdout /tmp/pr16-final.patch.gz > /tmp/pr16-final.patch
+          echo '67d0c6b3b33d30b739ae8df4e10f285a7406ff989b9408def671a2841ce16556  /tmp/pr16-final.patch' | sha256sum -c -
+          git apply --check --index --whitespace=error /tmp/pr16-final.patch
+          git apply --index --whitespace=error /tmp/pr16-final.patch
+          git rm -r .github/pr16-bp-three-win-reward-record .github/workflows/pr16-bp-three-win-reward-record.yml
+
+      - name: Validate final recorded tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/pr16_resume.py tests/test_pr16_resume.py
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v
+          python3 scripts/pr16_resume.py check
+          python3 - <<'PYCODE'
+          import json
+          from pathlib import Path
+
+          expected = [
+              'content/modernization/p08_remaining_work.json',
+              'content/modernization/pr16_bp_chooser_checkpoint.json',
+              'content/modernization/pr16_bp_three_win_reward_verified.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json',
+              'design/run_log.md',
+              'design/version_log.md',
+              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+              'scripts/pr16_resume.py',
+              'tests/test_pr16_resume.py',
+          ]
+          for name in (
+              'content/modernization/pr16_bp_three_win_reward_verified.json',
+              'content/modernization/pr16_bp_chooser_checkpoint.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json',
+              'content/modernization/p08_remaining_work.json',
+          ):
+              json.loads(Path(name).read_text(encoding='utf-8'))
+          for name in expected:
+              raw = Path(name).read_bytes()
+              raw.decode('utf-8')
+              assert b'\0' not in raw, name
+          PYCODE
+          git diff --cached --check
+          mapfile -t final_paths < <(git diff --cached --name-only d9d0dfefcc524b35993eab0f98ae7b6849133644 | sort)
+          expected_paths=(
+            content/modernization/p08_remaining_work.json
+            content/modernization/pr16_bp_chooser_checkpoint.json
+            content/modernization/pr16_bp_three_win_reward_verified.json
+            content/modernization/pr16_native_supply_resume_20260913.json
+            design/run_log.md
+            design/version_log.md
+            docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md
+            scripts/pr16_resume.py
+            tests/test_pr16_resume.py
+          )
+          test "${final_paths[*]}" = "${expected_paths[*]}"
+          git diff --cached --binary --full-index --no-ext-diff d9d0dfefcc524b35993eab0f98ae7b6849133644 > /tmp/final-tree.patch
+          echo '67d0c6b3b33d30b739ae8df4e10f285a7406ff989b9408def671a2841ce16556  /tmp/final-tree.patch' | sha256sum -c -
+
+      - name: Commit and non-force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-MODERNIZATION: accept PR16 native three-win 9 BP witness'             -m 'Record run 34854927678 as scoped native BP earning acceptance, close P05_NATIVE_BP_EARNING_PHYSICAL, and advance the fixed resume to earned-BP spending without replaying accepted cases.'             -m 'Verify: Actions native seven tests and process PASS; resume focused 24 tests, render/check, JSON/text boundary, and exact final patch PASS.'
+          git fetch origin codex/modernization-followup-20260908
+          test "$(git rev-parse origin/codex/modernization-followup-20260908)" = "${{ github.sha }}"
+          git push origin HEAD:refs/heads/codex/modernization-followup-20260908
