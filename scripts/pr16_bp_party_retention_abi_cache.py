@@ -131,7 +131,10 @@ def parse_linked_symbols(text: str) -> dict[str, Any]:
         need(len(rows) == 1, f"linked symbol missing/ambiguous: {name}")
         result[name] = rows[0]
     need(frontier, "linked static frontier variants missing")
-    unique = {(int(row["address"]), int(row["size"]), str(row["name"])) for row in frontier}
+    unique = {
+        (int(row["address"]), int(row["size"]), str(row["name"]))
+        for row in frontier
+    }
     need(len(unique) == len(frontier), "linked static frontier variant duplicate")
     result["BuildFrontierParty_variants"] = sorted(
         frontier, key=lambda row: (int(row["address"]), str(row["name"]))
@@ -188,6 +191,157 @@ def disassemble_function(rom: bytes, start: int, size: int) -> str:
     return result.stdout
 
 
+def _halfword(rom: bytes, address: int) -> int:
+    offset = address - base.ROM_BASE
+    need(address % 2 == 0, "Thumb instruction address is not aligned")
+    need(0 <= offset and offset + 2 <= len(rom), "Thumb instruction outside candidate ROM")
+    return struct.unpack_from("<H", rom, offset)[0]
+
+
+def _decode_thumb_b16(address: int, instruction: int) -> int:
+    if instruction & 0xF800 == 0xE000:
+        displacement = instruction & 0x07FF
+        if displacement & 0x0400:
+            displacement -= 0x0800
+        return address + 4 + (displacement << 1)
+    if instruction & 0xF000 == 0xD000:
+        condition = (instruction >> 8) & 0xF
+        need(condition < 0xE, "Thumb conditional branch condition differs")
+        displacement = instruction & 0x00FF
+        if displacement & 0x0080:
+            displacement -= 0x0100
+        return address + 4 + (displacement << 1)
+    fail("Thumb 16-bit branch opcode differs")
+
+
+def _player_true_block_contract(
+    rom: bytes,
+    build_address: int,
+    build_size: int,
+    target: dict[str, int | str],
+    frontier_variants: list[dict[str, int | str]],
+) -> dict[str, Any]:
+    """Resolve the source ``if (predicate())`` by its compiled basic blocks.
+
+    GCC is free to place unrelated frontier-build blocks between the two
+    predicate calls in linear address order.  The accepted candidate emits a
+    BNE to the player-build block and an unconditional branch for the false
+    path; both paths then rejoin.  Following those edges avoids treating code
+    layout as source control flow.
+    """
+
+    build_end = build_address + build_size
+    predicate_call = int(target["address"])
+    search_end = min(predicate_call + 16, build_end)
+    compares = [
+        address
+        for address in range(predicate_call + 4, search_end, 2)
+        if _halfword(rom, address) == 0x2800  # cmp r0, #0
+    ]
+    need(
+        len(compares) == 1,
+        "target predicate r0 comparison missing/ambiguous",
+    )
+    compare_address = compares[0]
+    branch_address = compare_address + 2
+    branch = _halfword(rom, branch_address)
+    need(
+        branch & 0xFF00 == 0xD100,
+        "target predicate true edge is not direct BNE",
+    )
+    false_branch_address = branch_address + 2
+    false_branch = _halfword(rom, false_branch_address)
+    need(
+        false_branch & 0xF800 == 0xE000,
+        "target predicate false edge is not direct unconditional branch",
+    )
+    true_block_start = _decode_thumb_b16(branch_address, branch)
+    false_continuation = _decode_thumb_b16(false_branch_address, false_branch)
+    need(
+        build_address <= true_block_start < build_end,
+        "target predicate true block outside build function",
+    )
+    need(
+        build_address <= false_continuation < build_end,
+        "target predicate false continuation outside build function",
+    )
+
+    variants_by_target: dict[int, list[dict[str, int | str]]] = {}
+    for variant in frontier_variants:
+        variants_by_target.setdefault(int(variant["address"]), []).append(variant)
+
+    direct_calls: list[dict[str, int | str]] = []
+    block_end_address: int | None = None
+    block_exit_target: int | None = None
+    address = true_block_start
+    for _ in range(64):
+        need(
+            build_address <= address < build_end,
+            "target predicate true block escaped build function",
+        )
+        first = _halfword(rom, address)
+        if address + 4 <= build_end:
+            second = _halfword(rom, address + 2)
+            if first & 0xF800 == 0xF000 and second & 0xF800 == 0xF800:
+                raw = struct.pack("<HH", first, second)
+                call_target = base.decode_thumb_bl(address, raw)
+                direct_calls.append(
+                    {
+                        "address": address,
+                        "bytes": raw.hex(),
+                        "target": call_target,
+                    }
+                )
+                address += 4
+                continue
+        if first & 0xF800 == 0xE000:
+            block_end_address = address
+            block_exit_target = _decode_thumb_b16(address, first)
+            break
+        need(
+            not (first & 0xF000 == 0xD000 and ((first >> 8) & 0xF) < 0xE),
+            "target predicate true block contains nested conditional branch",
+        )
+        need(first & 0xFF87 != 0x4700, "target predicate true block returns via BX")
+        need(first & 0xFF00 != 0xBD00, "target predicate true block returns via POP")
+        address += 2
+    need(block_end_address is not None, "target predicate true block has no direct exit")
+    need(
+        block_exit_target == false_continuation,
+        "target predicate true/false paths do not rejoin",
+    )
+    need(
+        len(direct_calls) == 1,
+        "target predicate true block direct call count differs",
+    )
+    player_call = direct_calls[0]
+    variants = variants_by_target.get(int(player_call["target"]), [])
+    need(
+        len(variants) == 1,
+        "target predicate true block call is not one frontier variant",
+    )
+    variant = variants[0]
+    player_call = {
+        **player_call,
+        "symbol": str(variant["name"]),
+        "symbol_size": int(variant["size"]),
+    }
+    return {
+        "compare_address": compare_address,
+        "compare": "cmp r0, #0",
+        "condition_branch_address": branch_address,
+        "condition": "BNE/nonzero bool8",
+        "true_block_start": true_block_start,
+        "false_branch_address": false_branch_address,
+        "false_continuation": false_continuation,
+        "true_block_exit_address": block_end_address,
+        "true_block_exit_target": block_exit_target,
+        "paths_rejoin": True,
+        "true_block_direct_call_count": len(direct_calls),
+        "player_build_callsite": player_call,
+    }
+
+
 def target_callsite_contract(
     rom: bytes, symbols: dict[str, Any]
 ) -> dict[str, Any]:
@@ -227,14 +381,17 @@ def target_callsite_contract(
     )
     target = predicate_calls[base.TARGET_PREDICATE_ORDINAL]
     next_predicate = predicate_calls[base.TARGET_PREDICATE_ORDINAL + 1]
-    guarded = [
-        row
-        for row in frontier_calls
-        if int(target["address"]) < int(row["address"]) < int(next_predicate["address"])
-    ]
+    guard = _player_true_block_contract(
+        rom,
+        build_address,
+        build_size,
+        target,
+        symbols["BuildFrontierParty_variants"],
+    )
+    player_call = guard["player_build_callsite"]
     need(
-        len(guarded) == 1,
-        "compiled player target interval does not contain exactly one frontier call",
+        any(int(row["address"]) == int(player_call["address"]) for row in frontier_calls),
+        "target player call missing from complete frontier call inventory",
     )
     return {
         "build_function": {
@@ -253,10 +410,12 @@ def target_callsite_contract(
         "frontier_calls": frontier_calls,
         "frontier_call_count": len(frontier_calls),
         "target_predicate_callsite": target,
-        "target_player_build_callsite": guarded[0],
+        "target_predicate_guard": guard,
+        "target_player_build_callsite": player_call,
         "next_predicate_callsite": next_predicate,
         "target_predicate_ordinal_zero_based": base.TARGET_PREDICATE_ORDINAL,
         "candidate_branch_targets_verified": True,
+        "candidate_control_flow_verified": True,
     }
 
 
@@ -370,7 +529,7 @@ def select_cache(rom: bytes) -> dict[str, Any]:
                 row["reason"] = str(error)[:1000]
             diagnostics.append(row)
     inventory = {
-        "schema_version": 3,
+        "schema_version": 4,
         "cache": {"name": CACHE_NAME, **file_identity(CACHE)},
         "candidate": base.identity(rom),
         "complete_fingerprint_count": len(diagnostics),
@@ -428,7 +587,7 @@ def run() -> dict[str, Any]:
     symbols = selected["target_symbol_runs"][0]
     target = selected["target"]
     report = {
-        "schema_version": 3,
+        "schema_version": 4,
         "status": base.STATUS,
         "task": "USER-20260914-BP-RETENTION-ABI",
         "candidate": base.identity(rom),
@@ -460,7 +619,7 @@ def run() -> dict[str, Any]:
         "new_emulator_processes": 0,
         "accepted_native_cases_replayed": 0,
         "release_ready": False,
-        "audit_implementation": "HASH_BOUND_STATIC_VARIANT_FINAL_CANDIDATE_SELECTION",
+        "audit_implementation": "HASH_BOUND_STATIC_CFG_FINAL_CANDIDATE_SELECTION",
         "next_step": (
             "Connect the existing retention wrapper only at the verified player "
             "predicate callsite, then run repaired native retention verification."
