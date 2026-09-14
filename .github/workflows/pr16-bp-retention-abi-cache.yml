@@ -1,0 +1,127 @@
+name: pr16-bp-retention-abi-cache
+run-name: 交換個体保持target callsite・ABIのbuild-cache照合
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-retention-abi-cache.yml
+      - scripts/pr16_bp_party_retention_abi_cache.py
+      - tests/test_pr16_bp_party_retention_abi_cache.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-retention-abi-cache
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: HEAD・既存成功証拠・12件host回帰を照合
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-abi-run
+          mkdir -p "$out"
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_abi*.py' -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          def small(r):return {k:r[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          owner=api('actions/runs/34785149994');assert owner['head_sha']=='48a36caf3361b1d167c302174eb2c4c4121c7508' and owner['conclusion']=='success'
+          identity=api('actions/runs/34774194505');assert identity['head_sha']=='e9793dfda49ec3044b662aefd7bb0093182dce3a' and identity['conclusion']=='success'
+          failed=api('actions/runs/34799265905');assert failed['head_sha']=='f2d0650ad3c63b58a6c2f476c0f73dcf59e19a89' and failed['conclusion']=='failure'
+          pathlib.Path('.local/pr16-bp-retention-abi-run/actions-before.json').write_text(json.dumps({
+              'tested_head':head,'pr_open_draft':True,'owner':small(owner),'identity':small(identity),
+              'superseded_missing_metadata_run':small(failed),'accepted_native_cases_replayed':0,'new_emulator_processes':0,
+          },sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: 固定toolchainとStage84入力を復元
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-abi-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: 固定inputs・state・build-cacheを復元
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-abi-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --pattern pokemon-vega-private-env-v1-build-cache.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          bound={x['name']:x for x in cfg['archives']}
+          rows={}
+          for name in ('pokemon-vega-private-env-v1-state.zip','pokemon-vega-private-env-v1-build-cache.zip'):
+              path=root/'.local/pr16-bp-trial-native-inputs'/name;h=hashlib.sha256()
+              with path.open('rb') as f:
+                  for chunk in iter(lambda:f.read(1024*1024),b''):h.update(chunk)
+              rows[name]={'size':path.stat().st_size,'sha256':h.hexdigest()};assert rows[name]=={'size':bound[name]['size'],'sha256':bound[name]['sha256']}
+          state=root/'.local/pr16-bp-trial-native-inputs/pokemon-vega-private-env-v1-state.zip';member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(state) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          rows['charmap']={'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+          (root/'.local/pr16-bp-retention-abi-run/archive-binding.json').write_text(json.dumps(rows,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: 同一candidate parentをnative再実行なしで再構築
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-abi-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: 固定source・2 linked.o・最終candidateのtarget callsite ABI照合
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-retention-abi-run
+          python3 scripts/pr16_bp_party_retention_abi_cache.py > "$out/abi.stdout" 2> "$out/abi.stderr"
+          git diff --exit-code
+      - name: text証拠だけを限定収録
+        id: guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re
+          out=pathlib.Path('.local/pr16-bp-retention-abi-run');out.mkdir(parents=True,exist_ok=True);bound={}
+          for p in out.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<5000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-retention-abi-cache
+          path: .local/pr16-bp-retention-abi-run/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
