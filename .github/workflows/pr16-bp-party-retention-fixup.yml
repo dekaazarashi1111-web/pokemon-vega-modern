@@ -1,0 +1,64 @@
+name: Narrow PR16 retention verification scope
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-bp-party-retention-fixup.yml]
+permissions:
+  contents: write
+concurrency:
+  group: pr16-bp-party-retention-fixup
+  cancel-in-progress: false
+jobs:
+  patch:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Patch only the two broad unittest globs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('.github/workflows/pr16-bp-party-retention-native.yml')
+          text=path.read_text()
+          first="          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v > \"$out/unit.stdout\" 2> \"$out/unit.stderr\""
+          first_new="\n".join((
+              "          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_successor.py' -v > \"$out/unit.stdout\" 2> \"$out/unit.stderr\"",
+              "          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v >> \"$out/unit.stdout\" 2>> \"$out/unit.stderr\"",
+          ))
+          second="          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v"
+          second_new="\n".join((
+              "          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_successor.py' -v",
+              "          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v",
+          ))
+          assert text.count(first)==1,text.count(first)
+          assert text.count(second)==1,text.count(second)
+          text=text.replace(first,first_new).replace(second,second_new)
+          assert 'test_pr16_bp_party_retention_*.py' not in text
+          path.write_text(text)
+          PY
+          rm .github/workflows/pr16-bp-party-retention-fixup.yml
+          grep -c "test_pr16_bp_party_retention_successor.py' -v" .github/workflows/pr16-bp-party-retention-native.yml | grep -qx 2
+          grep -c "test_pr16_bp_party_retention_native.py' -v" .github/workflows/pr16-bp-party-retention-native.yml | grep -qx 2
+          git diff --check
+      - name: Create recoverable fast-forward commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          git fetch origin "$branch"
+          test "$(git rev-parse origin/$branch)" = "$GITHUB_SHA"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add .github/workflows/pr16-bp-party-retention-fixup.yml .github/workflows/pr16-bp-party-retention-native.yml
+          git commit -m 'USER-PR16: native workflowの検証範囲を限定'
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin "HEAD:$branch"
