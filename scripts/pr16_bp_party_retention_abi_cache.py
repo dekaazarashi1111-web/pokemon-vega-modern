@@ -3,8 +3,9 @@
 
 The final candidate and the two cached linked objects are authoritative.  This
 script intentionally accepts compiler-local ``BuildFrontierParty`` variants
-(e.g. ``.constprop``), while keeping the externally used predicate ABI exact.
-It never starts an emulator and never claims runtime retention acceptance.
+(e.g. ``.isra``/``.constprop``), while keeping the externally used predicate
+ABI exact.  It never starts an emulator and never claims runtime retention
+acceptance.
 """
 from __future__ import annotations
 
@@ -12,6 +13,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import struct
+import subprocess
 import sys
 import tempfile
 from typing import Any, NoReturn
@@ -134,6 +137,55 @@ def parse_linked_symbols(text: str) -> dict[str, Any]:
         frontier, key=lambda row: (int(row["address"]), str(row["name"]))
     )
     return result
+
+
+def all_thumb_bl_calls(rom: bytes, start: int, size: int) -> list[dict[str, int | str]]:
+    offset = start - base.ROM_BASE
+    need(0 <= offset and offset + size <= len(rom), "function outside candidate ROM")
+    function = rom[offset : offset + size]
+    calls: list[dict[str, int | str]] = []
+    for relative in range(0, max(0, len(function) - 3), 2):
+        chunk = function[relative : relative + 4]
+        first, second = struct.unpack("<HH", chunk)
+        if first & 0xF800 != 0xF000 or second & 0xF800 != 0xF800:
+            continue
+        address = start + relative
+        calls.append(
+            {
+                "address": address,
+                "bytes": chunk.hex(),
+                "target": base.decode_thumb_bl(address, chunk),
+            }
+        )
+    return calls
+
+
+def disassemble_function(rom: bytes, start: int, size: int) -> str:
+    offset = start - base.ROM_BASE
+    need(0 <= offset and offset + size <= len(rom), "function outside candidate ROM")
+    with tempfile.TemporaryDirectory(prefix="pr16-retention-disasm-") as raw_dir:
+        raw_path = Path(raw_dir) / "function.bin"
+        raw_path.write_bytes(rom[offset : offset + size])
+        result = subprocess.run(
+            [
+                "arm-none-eabi-objdump",
+                "-D",
+                "-b",
+                "binary",
+                "-marm",
+                "-Mforce-thumb",
+                f"--adjust-vma=0x{start:08x}",
+                str(raw_path),
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=60,
+            check=False,
+        )
+    need(result.returncode == 0, "candidate function objdump failed")
+    need(not result.stderr.strip(), "candidate function objdump produced stderr")
+    return result.stdout
 
 
 def target_callsite_contract(
@@ -277,6 +329,15 @@ def select_cache(rom: bytes) -> dict[str, Any]:
                     outcomes.append(outcome)
                     symbol_runs.append(symbols)
                 need(symbol_runs[0] == symbol_runs[1], "linked symbol runs differ")
+                build = symbol_runs[0]["BuildTrainerPartySetup"]
+                build_address = int(build["address"])
+                build_size = int(build["size"])
+                row["candidate_all_bl_calls"] = all_thumb_bl_calls(
+                    rom, build_address, build_size
+                )
+                row["candidate_disassembly"] = disassemble_function(
+                    rom, build_address, build_size
+                )
                 target = target_callsite_contract(rom, symbol_runs[0])
                 identity_key = json.dumps(
                     {
@@ -309,7 +370,7 @@ def select_cache(rom: bytes) -> dict[str, Any]:
                 row["reason"] = str(error)[:1000]
             diagnostics.append(row)
     inventory = {
-        "schema_version": 2,
+        "schema_version": 3,
         "cache": {"name": CACHE_NAME, **file_identity(CACHE)},
         "candidate": base.identity(rom),
         "complete_fingerprint_count": len(diagnostics),
@@ -367,7 +428,7 @@ def run() -> dict[str, Any]:
     symbols = selected["target_symbol_runs"][0]
     target = selected["target"]
     report = {
-        "schema_version": 2,
+        "schema_version": 3,
         "status": base.STATUS,
         "task": "USER-20260914-BP-RETENTION-ABI",
         "candidate": base.identity(rom),
