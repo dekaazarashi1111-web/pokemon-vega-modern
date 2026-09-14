@@ -38,8 +38,9 @@ jobs:
               "          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v",
           ))
           assert text.count(first)==1,text.count(first)
+          text=text.replace(first,first_new)
           assert text.count(second)==1,text.count(second)
-          text=text.replace(first,first_new).replace(second,second_new)
+          text=text.replace(second,second_new)
           assert 'test_pr16_bp_party_retention_*.py' not in text
           path.write_text(text)
           PY
