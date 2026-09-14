@@ -91,15 +91,48 @@ def discover(names: list[str]) -> dict[str, dict[int, dict[str, str]]]:
     return complete
 
 
-def composite() -> tuple[bytes, dict[str, Any], dict[str, Any]]:
+def target_with_dynamic_address(
+    rom: bytes, symbols: dict[str, dict[str, int | str]]
+) -> dict[str, Any]:
+    """Verify one linked symbol set against the final candidate itself.
+
+    The old constant was only a historical hint.  The final candidate plus the
+    two linked objects are the authority, so temporarily bind the check to the
+    unique nm address and restore the module constant immediately afterwards.
+    """
+
+    old = base.EXPECTED_BUILD_SETUP_ADDRESS
+    base.EXPECTED_BUILD_SETUP_ADDRESS = int(
+        symbols["BuildTrainerPartySetup"]["address"]
+    )
+    try:
+        return base.target_callsite_contract(rom, symbols)
+    finally:
+        base.EXPECTED_BUILD_SETUP_ADDRESS = old
+
+
+def composite(rom: bytes) -> tuple[bytes, dict[str, Any], dict[str, Any]]:
     state_binding = binding(base.STATE_ARCHIVE, base.STATE_ARCHIVE_NAME)
     cache_binding = binding(CACHE, CACHE_NAME)
-    candidates: list[tuple[str, list[bytes], list[dict[str, Any]], list[dict[str, Any]]]] = []
-    rejected: list[dict[str, str]] = []
+    accepted: dict[
+        str,
+        list[
+            tuple[
+                str,
+                list[bytes],
+                list[dict[str, Any]],
+                list[dict[str, Any]],
+                dict[str, Any],
+            ]
+        ],
+    ] = {}
+    diagnostics: list[dict[str, Any]] = []
     with zipfile.ZipFile(CACHE) as archive, tempfile.TemporaryDirectory(
         prefix="pr16-retention-cache-"
     ) as raw_dir:
-        for fingerprint, runs in sorted(discover(archive.namelist()).items()):
+        complete = discover(archive.namelist())
+        for fingerprint, runs in sorted(complete.items()):
+            row: dict[str, Any] = {"fingerprint": fingerprint, "runs": []}
             try:
                 linked: list[bytes] = []
                 outcomes: list[dict[str, Any]] = []
@@ -107,32 +140,90 @@ def composite() -> tuple[bytes, dict[str, Any], dict[str, Any]]:
                 for run in (1, 2):
                     outcome_raw = archive.read(runs[run]["outcome.json"])
                     outcome = json.loads(outcome_raw)
-                    need(isinstance(outcome, dict) and outcome.get("run") == run, "cache run differs")
+                    need(
+                        isinstance(outcome, dict) and outcome.get("run") == run,
+                        f"cache run differs: run {run}",
+                    )
                     raw = archive.read(runs[run]["linked.o"])
                     published = outcome.get("linked_object")
                     need(
                         isinstance(published, dict)
                         and base.identity(raw)
-                        == {"size": published.get("size"), "sha256": published.get("sha256")},
+                        == {
+                            "size": published.get("size"),
+                            "sha256": published.get("sha256"),
+                        },
                         f"linked object identity differs: run {run}",
                     )
                     path = Path(raw_dir) / f"{fingerprint}-{run}.o"
                     path.write_bytes(raw)
-                    parsed = base.parse_nm_symbols(base._run_nm(path))
+                    nm_text = base._run_nm(path)
+                    symbol_lines = [
+                        line
+                        for line in nm_text.splitlines()
+                        if any(name in line for name in base.SYMBOL_NAMES)
+                    ]
+                    parsed = base.parse_nm_symbols(nm_text)
                     linked.append(raw)
                     outcomes.append(outcome)
                     symbols.append(parsed)
+                    row["runs"].append(
+                        {
+                            "run": run,
+                            "linked_object": base.identity(raw),
+                            "outcome_keys": sorted(outcome),
+                            "symbol_lines": symbol_lines,
+                        }
+                    )
                 need(symbols[0] == symbols[1], "linked symbol runs differ")
-                need(
-                    int(symbols[0]["BuildTrainerPartySetup"]["address"])
-                    == base.EXPECTED_BUILD_SETUP_ADDRESS,
-                    "BuildTrainerPartySetup address differs",
+                target = target_with_dynamic_address(rom, symbols[0])
+                identity_key = json.dumps(
+                    {
+                        "linked_objects": [base.identity(raw) for raw in linked],
+                        "symbols": symbols[0],
+                    },
+                    sort_keys=True,
+                    separators=(",", ":"),
                 )
-                candidates.append((fingerprint, linked, outcomes, symbols))
-            except (CacheAuditError, base.AbiAuditError, KeyError, json.JSONDecodeError) as error:
-                rejected.append({"fingerprint": fingerprint, "reason": str(error)[:500]})
-    need(len(candidates) == 1, "accepted linked cache missing/ambiguous")
-    fingerprint, linked, outcomes, symbols = candidates[0]
+                accepted.setdefault(identity_key, []).append(
+                    (fingerprint, linked, outcomes, symbols, target)
+                )
+                row["status"] = "ACCEPTED_FINAL_CANDIDATE_CALLSITE"
+                row["symbols"] = symbols[0]
+                row["target"] = target
+            except (
+                CacheAuditError,
+                base.AbiAuditError,
+                KeyError,
+                json.JSONDecodeError,
+            ) as error:
+                row["status"] = "REJECTED"
+                row["reason"] = str(error)[:1000]
+            diagnostics.append(row)
+
+    inventory = {
+        "schema_version": 1,
+        "cache": {"name": CACHE_NAME, **file_identity(CACHE)},
+        "candidate": base.identity(rom),
+        "complete_fingerprint_count": len(diagnostics),
+        "accepted_identity_count": len(accepted),
+        "fingerprints": diagnostics,
+    }
+    base.OUT.mkdir(parents=True, exist_ok=True)
+    (base.OUT / "cache-discovery.json").write_bytes(base.stable(inventory))
+    need(
+        len(accepted) == 1,
+        "accepted linked cache identity missing/ambiguous: "
+        f"accepted={len(accepted)} complete={len(diagnostics)}; "
+        "see cache-discovery.json",
+    )
+    aliases = next(iter(accepted.values()))
+    aliases.sort(key=lambda item: item[0])
+    fingerprint, linked, outcomes, symbols, target = aliases[0]
+    need(
+        all(item[1] == linked and item[3] == symbols for item in aliases),
+        "accepted cache aliases differ",
+    )
     metadata = {
         "fingerprint": fingerprint,
         "upstream_runs": [
@@ -154,39 +245,71 @@ def composite() -> tuple[bytes, dict[str, Any], dict[str, Any]]:
     report = {
         "cache": {"name": CACHE_NAME, **file_identity(CACHE)},
         "fingerprint": fingerprint,
+        "fingerprint_aliases": [item[0] for item in aliases],
         "linked_objects": [base.identity(raw) for raw in linked],
         "linked_objects_byte_identical": linked[0] == linked[1],
         "outcome_linked_objects": [row["linked_object"] for row in outcomes],
         "target_symbol_runs": symbols,
-        "rejected_candidates": rejected,
+        "candidate_target": target,
+        "inventory": base.identity((base.OUT / "cache-discovery.json").read_bytes()),
     }
-    return output.getvalue(), state_binding, {"binding": cache_binding, "selection": report}
+    return output.getvalue(), state_binding, {
+        "binding": cache_binding,
+        "selection": report,
+    }
 
 
 def run() -> dict[str, Any]:
-    merged, state_binding, cache_report = composite()
-    original = base._state_binding
+    recipe = base.parent.run()
+    rom = (base.parent.OUT / "candidate.gba").read_bytes()
+    need(
+        base.identity(rom)
+        == {"size": base.CANDIDATE_SIZE, "sha256": base.CANDIDATE_SHA256},
+        "candidate identity differs before cache selection",
+    )
+    need(recipe.get("candidate") == base.identity(rom), "candidate recipe differs")
+    merged, state_binding, cache_report = composite(rom)
+    selected = cache_report["selection"]["target_symbol_runs"][0]
+    old_binding = base._state_binding
+    old_address = base.EXPECTED_BUILD_SETUP_ADDRESS
     base._state_binding = lambda: (merged, state_binding)
+    base.EXPECTED_BUILD_SETUP_ADDRESS = int(
+        selected["BuildTrainerPartySetup"]["address"]
+    )
     try:
         report = base.run()
     finally:
-        base._state_binding = original
+        base._state_binding = old_binding
+        base.EXPECTED_BUILD_SETUP_ADDRESS = old_address
+    need(report.get("candidate") == base.identity(rom), "audited candidate differs")
     report["build_cache"] = cache_report
-    report["audit_implementation"] = "HASH_BOUND_BUILD_CACHE_SUCCESSOR"
+    report["audit_implementation"] = "HASH_BOUND_BUILD_CACHE_FINAL_CANDIDATE_SELECTION"
     report["accepted_native_cases_replayed"] = 0
     report["new_emulator_processes"] = 0
     report["runtime_connected"] = False
     report["native_retention_verified"] = False
     report["release_ready"] = False
     (base.OUT / "abi.json").write_bytes(base.stable(report))
-    print(json.dumps({
-        "status": report["status"],
-        "fingerprint": cache_report["selection"]["fingerprint"],
-        "target_callsite_verified": report["target_callsite_verified"],
-        "target_abi_verified": report["target_abi_verified"],
-        "runtime_connected": False,
-        "new_emulator_processes": 0,
-    }, ensure_ascii=False, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "status": report["status"],
+                "fingerprint": cache_report["selection"]["fingerprint"],
+                "fingerprint_aliases": cache_report["selection"][
+                    "fingerprint_aliases"
+                ],
+                "build_address": hex(
+                    int(selected["BuildTrainerPartySetup"]["address"])
+                ),
+                "target_callsite_verified": report["target_callsite_verified"],
+                "target_abi_verified": report["target_abi_verified"],
+                "runtime_connected": False,
+                "new_emulator_processes": 0,
+            },
+            ensure_ascii=False,
+            sort_keys=True,
+        )
+    )
     return report
 
 
