@@ -1,4 +1,8 @@
-"""Acceptance boundary tests for the repaired native party-retention witness."""
+"""Acceptance boundary tests for the repaired native party-retention witness.
+
+The dedicated workflow intentionally selects this focused native suite without
+replaying already accepted retention-record or unrelated ABI/cache suites.
+"""
 from pathlib import Path
 import copy
 import sys
