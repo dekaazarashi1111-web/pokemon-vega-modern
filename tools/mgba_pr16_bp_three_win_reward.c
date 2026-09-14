@@ -132,6 +132,10 @@ static struct RWResult rw_three_win(struct mCore *c,const uint8_t *original,unsi
         "reward extension did not start at battle 2 action/one-win ledger");
     b_copy(c,QOL_PLAYER_PARTY,second_party,sizeof(second_party));
     r.second_start=b_frames;rw_trace(c,"second-start");
+    /* wx_voluntary_count is host-controller state, not game memory.  The accepted
+     * first battle consumed its one normal PKMN-menu switch; battle 2 is a new
+     * native battle and therefore receives its own single-switch budget. */
+    wx_voluntary_count=0U;
     struct BPReturn second=br_battle_return(c,original,counter,2U);
     r.second_turns=second.turns;r.second_switches=second.switches;
     r.second_pp_events=second.pp_events;r.second_outcome=second.outcome;
