@@ -1,5 +1,6 @@
 """引継ぎだけのfocused検査。原本再実行・private inputs・networkは不要。"""
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -26,12 +27,21 @@ class ResumeTests(unittest.TestCase):
             shutil.copyfile(ROOT/name, dst)
         checkpoint = dict(latest_native_run=self.s['last_accepted_native_run'],
             latest_native_head=self.s['last_accepted_native_tested_head'],
+            latest_native_job=self.s['latest_native_job'],
+            candidate=copy.deepcopy(self.s['candidate']),
             native_rental_cancel_save_continue_accepted=True,
-            native_bp_earning_accepted=False, native_bp_spending_accepted=False)
+            native_bp_earning_accepted=self.s['bp']['earning_accepted'],
+            native_bp_spending_accepted=self.s['bp']['spending_accepted'],
+            p05_native_bp_gap_closed=self.s['bp']['earning_accepted'],
+            physical_gap_count=len(self.s['remaining_physical_gap_ids']))
         self.put(m.CHECKPOINT, checkpoint)
         physical = self.s['remaining_physical_gap_ids']
         backlog = dict(release_ready=False,
-            next_integration_candidate={'candidate':copy.deepcopy(self.s['candidate'])},
+            next_integration_candidate={'candidate':copy.deepcopy(self.s['candidate']),
+                'source_path':self.s['latest_native_evidence']},
+            p05_native_bp_control_checkpoint={
+                'physical_bp_earning_accepted':self.s['bp']['earning_accepted'],
+                'earning_success_evidence':self.s['latest_native_evidence']},
             remaining_conditions=[{'id':'NATURAL_CAPTURE_GEAR','remaining_supply_gap_ids':[x for x in physical if x!='PHYSICAL_CIRCUS_ADMISSION']},
                 {'id':'PHYSICAL_CIRCUS_ADMISSION','phase':'P05'},
                 *[{'id':x,'phase':'P08'} for x in self.s['remaining_p08_gate_ids']],
@@ -50,9 +60,23 @@ class ResumeTests(unittest.TestCase):
         (self.root/m.DOC).parent.mkdir(parents=True,exist_ok=True)
         (self.root/m.DOC).write_text(m.render(self.s),encoding='utf-8')
 
-    def assert_invalid(self):
-        with self.assertRaises((ValueError,KeyError)):
+    def assert_invalid(self, pattern=None):
+        context = self.assertRaisesRegex((ValueError,KeyError), pattern) if pattern else self.assertRaises((ValueError,KeyError))
+        with context:
             m.validate(self.root)
+
+    def evidence(self):
+        return m.load(self.root, self.s['latest_native_evidence'])
+
+    def write_evidence(self, value):
+        name = self.s['latest_native_evidence']
+        self.put(name, value)
+        raw = (self.root/name).read_bytes()
+        self.s['source_bindings'][name] = {
+            'sha256': hashlib.sha256(raw).hexdigest(),
+            'size': len(raw),
+        }
+        self.sync()
 
     def test_current_snapshot(self):
         self.assertEqual(m.validate(self.root)['latest_native_run'],self.s['latest_native_run'])
@@ -95,6 +119,36 @@ class ResumeTests(unittest.TestCase):
 
     def test_candidate_must_match_ledger(self):
         self.s['candidate']['crc32']='00000000';self.sync();self.assert_invalid()
+
+    def test_candidate_must_match_checkpoint(self):
+        checkpoint=m.load(self.root,m.CHECKPOINT)
+        checkpoint['candidate']['crc32']='00000000'
+        self.put(m.CHECKPOINT,checkpoint)
+        self.assert_invalid('candidate differs from checkpoint')
+
+    def test_scoped_acceptance_requires_three_wins(self):
+        evidence=self.evidence();evidence['native_result']['native_battle_wins_observed']=2
+        self.write_evidence(evidence)
+        self.assert_invalid('native_battle_wins_observed')
+
+    def test_scoped_acceptance_requires_exact_nine_bp(self):
+        evidence=self.evidence();evidence['native_result']['bp_delta']=8
+        self.write_evidence(evidence)
+        self.assert_invalid('bp_delta')
+
+    def test_scoped_acceptance_does_not_accept_spending(self):
+        evidence=self.evidence();evidence['native_result']['native_bp_spending_accepted']=True
+        self.write_evidence(evidence)
+        self.assert_invalid('native_bp_spending_accepted')
+
+    def test_scoped_acceptance_does_not_accept_release(self):
+        evidence=self.evidence();evidence['release_ready']=True
+        self.write_evidence(evidence)
+        self.assert_invalid('release_ready')
+
+    def test_scoped_acceptance_state_mirrors_reward(self):
+        self.s['bp']['bp_after_reward']=8;self.sync()
+        self.assert_invalid('bp_after_reward')
 
     def test_boolean_size_rejected(self):
         self.s['candidate']['size']=True;self.sync();self.assert_invalid()

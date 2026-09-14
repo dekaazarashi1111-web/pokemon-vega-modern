@@ -59,6 +59,7 @@ def pending_ids(backlog: dict) -> tuple[list[str], list[str]]:
 
 def render(s: dict) -> str:
     bp, c, action, protocol = s['bp'], s['candidate'], s['next_action'], s['session_protocol']
+    latest_label = '最新scoped受入' if s['latest_native_scope'] == 'SCOPED_ACCEPTANCE' else '最新診断'
     lines = [
         '# PR #16 固定再開メモ', '',
         '> 入口は常に `CHATGPT_RESUME.md`。この文書と対応JSONだけが最新の再開点。',
@@ -77,7 +78,7 @@ def render(s: dict) -> str:
         '## 正式受入と診断を混同しない', '',
         f"正式BP checkpoint: run `{s['last_accepted_native_run']}` / HEAD `{s['last_accepted_native_tested_head']}`。",
         s['accepted_scope_summary_ja'], '',
-        f"最新診断: run `{s['latest_native_run']}` / job `{s['latest_native_job']}` / HEAD `{s['latest_native_tested_head']}`。",
+        f"{latest_label}: run `{s['latest_native_run']}` / job `{s['latest_native_job']}` / HEAD `{s['latest_native_tested_head']}`。",
         f"照合抄録: `{s['latest_native_evidence']}`。", s['latest_native_summary_ja'], '',
         action['host_write_policy_ja'], '',
         '## 候補identityと残件', '',
@@ -115,6 +116,8 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
     checkpoint, backlog = load(root, CHECKPOINT), load(root, BACKLOG)
     require(s['last_accepted_native_run'] == checkpoint['latest_native_run'], 'last accepted run differs')
     require(s['last_accepted_native_tested_head'] == checkpoint['latest_native_head'], 'accepted HEAD differs')
+    require(s['latest_native_job'] == checkpoint['latest_native_job'], 'accepted job differs')
+    require(isinstance(checkpoint['candidate'], dict) and all(checkpoint['candidate'][k] == c[k] for k in ('sha256', 'size', 'crc32')), 'candidate differs from checkpoint')
     require(s['bp']['cancellation_save_continue_accepted'] is checkpoint['native_rental_cancel_save_continue_accepted'], 'cancel acceptance differs')
     require(s['bp']['earning_and_spending_accepted'] is (checkpoint['native_bp_earning_accepted'] and checkpoint['native_bp_spending_accepted']), 'BP acceptance differs')
     require(s['bp']['earning_accepted'] is checkpoint['native_bp_earning_accepted'], 'earning acceptance differs')
@@ -123,6 +126,9 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
     for key, expected in [('remaining_physical_gap_ids', physical), ('remaining_p08_gate_ids', gates)]:
         require(isinstance(s[key], list) and len(s[key]) == len(set(s[key])) and sorted(s[key]) == expected, key+' differs from P08')
     require(all(backlog['next_integration_candidate']['candidate'][k] == c[k] for k in ('sha256', 'size', 'crc32')), 'candidate differs from P08')
+    require(checkpoint['physical_gap_count'] == len(physical), 'checkpoint physical gap count differs')
+    p05_control = backlog['p05_native_bp_control_checkpoint']
+    require(p05_control['physical_bp_earning_accepted'] is checkpoint['native_bp_earning_accepted'], 'P08 BP earning acceptance differs')
     for key in ('release_ready', 'merge_performed', 'active_baseline_changed'):
         require(type(s[key]) is bool, key+' must be boolean')
     require(s['release_ready'] is backlog['release_ready'], 'release status differs')
@@ -138,11 +144,76 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
     require(s['latest_native_tested_head'] == d['tested_head'], 'diagnostic HEAD differs')
     r = d['native_result']
     require(r['candidate_sha256'] == c['sha256'] and s['status'] == r['status'], 'diagnostic identity/status differs')
+    if 'candidate' in d:
+        require(isinstance(d['candidate'], dict) and all(d['candidate'][k] == c[k] for k in ('sha256', 'size', 'crc32')), 'evidence candidate differs')
     for key in ('battle_started', 'bp_earned', 'selected_frame', 'second_chooser_frame'):
         if key in s['bp']:
             require(type(s['bp'][key]) is type(r[key]) and s['bp'][key] == r[key], 'diagnostic '+key+' differs')
     if d['classification'] == 'DIAGNOSTIC_ONLY_NOT_ACCEPTANCE':
         require(r['native_bp_earning_accepted'] is False and r['p05_native_bp_gap_closed'] is False and r['release_ready'] is False, 'diagnostic claims acceptance')
+    else:
+        require(checkpoint['native_bp_earning_accepted'] is True, 'scoped acceptance missing BP earning checkpoint')
+        require(checkpoint['native_bp_spending_accepted'] is False, 'scoped acceptance overstates BP spending checkpoint')
+        require(checkpoint['p05_native_bp_gap_closed'] is True, 'scoped acceptance missing P05 BP gap closure')
+        require(p05_control['earning_success_evidence'] == s['latest_native_evidence'], 'P08 BP earning evidence differs')
+        require(backlog['next_integration_candidate']['source_path'] == s['latest_native_evidence'], 'P08 candidate evidence differs')
+        for key, expected in (
+            ('native_three_win_reward_accepted', True),
+            ('native_bp_earning_accepted', True),
+            ('native_bp_spending_accepted', False),
+            ('native_exchange_accepted', False),
+            ('p05_native_bp_gap_closed', True),
+            ('release_ready', False),
+            ('merge_performed', False),
+            ('active_baseline_changed', False),
+        ):
+            require(d[key] is expected, 'scoped acceptance '+key+' differs')
+        for key, expected in (
+            ('battle_started', True),
+            ('first_battle_outcome', 1),
+            ('second_battle_outcome', 1),
+            ('third_battle_outcome', 1),
+            ('native_battle_wins_observed', 3),
+            ('bp_before_reward', 0),
+            ('bp_after_reward', 9),
+            ('bp_delta', 9),
+            ('bp_earned', 9),
+            ('special_result', 9),
+            ('reward_final_streak', 3),
+            ('reward_final_pending', 0),
+            ('reward_final_marker', 0),
+            ('reward_final_snapshot_valid', 0),
+            ('original_party_restored_bytes', 600),
+            ('host_write_barriers', 7),
+            ('input_only_after_guard', True),
+            ('warnings_errors', 0),
+            ('manual_saves', 0),
+            ('native_three_win_reward_accepted', True),
+            ('native_bp_earning_accepted', True),
+            ('native_bp_spending_accepted', False),
+            ('native_exchange_accepted', False),
+            ('p05_native_bp_gap_closed', True),
+            ('release_ready', False),
+        ):
+            require(type(r[key]) is type(expected) and r[key] == expected, 'scoped acceptance '+key+' differs')
+        process = d['process']
+        require(process['returncode'] == 0 and process['timed_out'] is False and process['spawn_error'] is None, 'scoped acceptance process failed')
+        require(process['actual_new_processes'] == 1 and process['successful_fresh_cores'] == 1, 'scoped acceptance process count differs')
+        prefix = d['accepted_prefix']
+        require(prefix['same_candidate'] is True and prefix['accepted_native_cases_replayed'] == 0, 'scoped acceptance prefix differs')
+        guard = d['verification']['artifact_guard']
+        require(guard['tracked_snapshot_utf8_only'] is True and guard['credential_pattern_hits'] == 0 and guard['rom_save_patch_bytes_published'] is False, 'scoped acceptance artifact guard differs')
+        for state_key, result_key in (
+            ('bp_before_reward', 'bp_before_reward'),
+            ('bp_after_reward', 'bp_after_reward'),
+            ('bp_delta', 'bp_delta'),
+            ('bp_earned', 'bp_earned'),
+            ('native_battle_wins_observed', 'native_battle_wins_observed'),
+            ('reward_complete_frame', 'reward_complete_frame'),
+            ('original_party_restored_bytes', 'original_party_restored_bytes'),
+        ):
+            require(type(s['bp'][state_key]) is type(r[result_key]) and s['bp'][state_key] == r[result_key], 'scoped acceptance state '+state_key+' differs')
+        require(s['bp']['native_three_win_reward_accepted'] is True, 'scoped acceptance state flag differs')
     require(re.fullmatch('[A-Z0-9_]+', s['next_action']['id']) and s['next_action']['goal_ja'], 'invalid next action')
     require(s['bp']['next_step'] == s['next_action']['goal_ja'], 'next-action mirrors differ')
     require(s['source_bindings'], 'missing source bindings')

@@ -5080,3 +5080,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む非force fast-forward commit。native検証入力HEAD=10e535a046441dd3b797918106259b5c57b69716、記録入力HEAD=f2b8e2b761c8105e3389d7f628e69dc7317ba3bc。自己SHAは文書へ追記しない。
 - Boundary: native party retentionのみscoped完了。2/3戦目、3勝BP稼得、BP消費、release、merge、draft解除、active baseline変更なし。
 - Next: 同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。
+
+
+## 2026-09-14T16:15:48Z — USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE
+- Timestamp: 2026-09-14T16:15:48Z
+- Version: PR16 native three-win exact 9 BP scoped acceptance
+- Task: USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE / 最新Actions原本を正本へ照合し、未完だったnative 2・3戦目と正確な3勝BP報酬を1件完了
+- Status: DONE_SCOPED_NATIVE_BP_EARNING / BP消費・Ring・policy・Circus・P08最終ゲートは未完
+- Summary: run34854927678/job104011896602の同一cedd candidateを1processで継続し、2・3戦目をnative勝利。3勝時にBP 0→9、streak3、reward pending0、snapshot無効化、元party600bytes復元を観測し、`P05_NATIVE_BP_EARNING_PHYSICAL`をscopedに閉じた。正式なBP消費やnative exchange単体受入には拡張しない。
+- Evidence: artifact10353145355 `pr16-bp-three-win-reward-native`、size1517614、sha256:7196514ad1edc43fc4e4028cbd39d1e4529f49b4e32406a55d2b4b8d2819854d。workflow conclusion success、process return0、fresh core1、7 host-write barriers、warning/error0。
+- Replay: 受入済み取消/元party復元/通常Save/fresh Continue再実行0。保持prefixはrun34825059791/artifact10339976783をimmutable IDで再利用し、accepted native cases replayed=0。今回の記録工程はemulator0、ROM/save/private入力のtracked追加0。
+- Files changed: `content/modernization/pr16_bp_three_win_reward_verified.json`追加、chooser checkpoint・固定resume JSON・P08台帳・生成resume MD・resume check/tests・`design/run_log.md`・`design/version_log.md`更新。
+- Verify: Actions focused 7tests PASS、native stdout `PASS_NATIVE_THREE_WIN_REWARD_9BP`。記録側はpy_compile、resume focused 24tests、`pr16_resume.py render/check`、JSON/UTF-8/credential境界、変更path/diff整合をcommit前gateとする。受入checkは3勝、0→9、600bytes、7 barriers、spending/release=falseをfail-closed固定。
+- Commit: この追記を含むcommit。検証入力HEAD=d9d0dfefcc524b35993eab0f98ae7b6849133644。自己SHAを文書へ追記して無限更新しない。push直前にremote HEADを再照合し、非force fast-forwardのみ。
+- Network: GitHub connectorでbranch/PR/Actions job/log/artifactを照合。artifact ZIPは監査用に取得したがrepositoryへ追加しない。一般Web検索・private Release再取得なし。
+- Boundary: PR #16はopen/draft、merge・draft解除・active baseline・release変更0。正式残件physical3（Ring、ordinary policy、Circus）/P08 gate2。BP spending=false、native exchange acceptance=false、release_ready=false。
+- Next: 同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。受入済み3勝9BP区間を変更影響なしに単独再実行しない。

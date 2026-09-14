@@ -233,8 +233,8 @@
       "size": 33554432
     },
     "full_candidate_regression_complete": false,
-    "scope": "NATIVE_EXCHANGE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
-    "source_path": "content/modernization/pr16_bp_party_retention_verified.json"
+    "scope": "NATIVE_THREE_WIN_9BP_ACCEPTED_BP_SPENDING_RING_POLICY_PENDING",
+    "source_path": "content/modernization/pr16_bp_three_win_reward_verified.json"
   },
   "nonblocking_findings": [
     {
@@ -250,8 +250,9 @@
     "accepted_negative_controls": 1,
     "new_emulator_runs_during_checkpoint": 0,
     "original_native_processes": 1,
-    "physical_bp_earning_accepted": false,
-    "receipt": "content/modernization/pr16_bp_native_controls_receipt.json"
+    "physical_bp_earning_accepted": true,
+    "receipt": "content/modernization/pr16_bp_native_controls_receipt.json",
+    "earning_success_evidence": "content/modernization/pr16_bp_three_win_reward_verified.json"
   },
   "p05_route_checkpoint": {
     "historical_candidate": {
@@ -386,13 +387,12 @@
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
       "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
-      "reason_ja": "自然捕獲個体の実戦2件6コアを保持。シビルドナイトの実受付購入→Bagで持たせる→通常歩行/自然遭遇→メガ切替/未切替/取消→技使用→復帰→通常保存/別コア再開は新規4件9コア成功。開始個体・リング・BP・許可policyはfixture。リング/BPと戦闘モード自体の通常供給、他の採用取得経路の対応整理は未受入",
+      "reason_ja": "自然捕獲個体と購入gearの既受入を保持。run34854927678で同一cedd candidateを1processのまま2・3戦目まで勝利し、BP 0→9、streak3、報酬pending解消、元party600bytes復元をscoped受入。BP消費、Ring通常取得、policy通常UIは未受入。",
       "remaining_supply_gap_ids": [
         "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-        "P05_NATIVE_BP_EARNING_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。 Next: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34854927678/job104011896602でnative 3勝と正確な9 BP稼得を受入。次は同じcandidateで稼得BPの通常ショップ消費を未観測suffixとして延長し、単独の3勝再実行にしない。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -414,7 +414,7 @@
           "scope": "main"
         }
       },
-      "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
+      "status": "PENDING_BP_SPENDING_AND_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
       "success_evidence": null,
       "supply_coverage_inventory_complete": true,
       "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
@@ -459,8 +459,8 @@
       "original_request": "P08 final-candidate acceptance",
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
-      "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。BP chooserと取消保存再開をbffd上で新規受入。残る4 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。 Next: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。",
+      "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。取消保存再開と同一cedd candidateのnative 3勝9BP稼得を新規受入。残る3 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. BP稼得はrun34854927678でscoped受入。BP消費、Ring、policy、CircusとP08最終判定が未完。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
