@@ -6,18 +6,18 @@
 
 ## いまの停止点と次の1手
 
-2026-09-14再開: target呼出位置/ABIの追加検証コードをローカル作成し、新規8testsはPASS。ただしGitHub create_treeによるコード・workflow追加1回がOpenAI安全性チェックでブロックされ、branchへ未反映。追加Actions/target照合/runtime接続/native保持検証は未実行。GitHub権限不足ではない。同一要求を別経路で反復せず、今回は停止記録だけを更新。
+2026-09-14: target呼出位置/ABI限定監査を完了。固定candidate 7f32と2つのbyte-identical build-cache linked.oを照合し、BuildTrainerPartySetup 0x090DD2A4内の最初のpredicate callsite 0x090DD51Cについて、cmp r0,#0→BNE true edge→player BuildFrontierParty 0x090DD538→0x090DD2E6再合流をCFGで確定した。run34802013676/job103846389011は12testsを含めSUCCESS。新規emulator process 0、受入済みnative case再実行0。runtime接続・native個体保持・2/3戦目・BP稼得/消費は未受入。
 
-既存native診断: 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+既存native診断run34774194505の「交換確定後から次戦までにparty個体が変化する」原本は維持し、静的ABI完了を保持修復成功とは読まない。
 
-**次: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。**
+**次: 照合済みplayer predicate callsite 0x090DD51C のtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持検証を実行する。保持確認前に2/3戦目・BP報酬へ進まない。**
 
-今回の読取専用診断・初勝利・交換の単独再実行はしない。新規修復/報酬ケースへ同一prefixを延長する時だけ使用する。取消Save/Continue等の受入済みケース、P03/P06/P07等は影響なしにつき再実行しない。
+run34802013676の静的target callsite/ABI監査は対象source・candidate・cache契約に変更がない限り再実行しない。owner run34785149994、identity run34774194505、受入済み取消/Save/Continue、P03/P06/P07も影響なしに再実行しない。runtime接続後は同じnative prefixを個体保持確認まで延長し、保持確認前にBP受入を主張しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `48a36caf3361b1d167c302174eb2c4c4121c7508`。
-WIPとsource-only owner監査の固定HEAD。latest_native_*と正式受入は以前の原本を維持。
+証拠のsource HEAD: `7bfbaeae42005ec6c133f316f07fb75dce438cad`。
+target callsite/ABI限定監査の実装・成功Actionsを固定したsource HEAD。後続の引継ぎ/JSON/log更新commitは記録のみで、runtime接続やnative受入を追加しない。
 
 ## 最短の再開手順
 
@@ -27,18 +27,15 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_bp_retention_abi_verified.json`
 - `content/modernization/pr16_bp_party_retention_wip.json`
+- `scripts/pr16_bp_party_retention_abi_cache.py`
+- `tests/test_pr16_bp_party_retention_abi_cache.py`
 - `overlays/facility_party_retention/facility_party_retention.c`
 - `tests/test_pr16_bp_party_retention.py`
 - `scripts/pr16_bp_party_retention_owner.py`
-- `.github/workflows/pr16-bp-party-retention.yml`
-- `content/modernization/pr16_bp_exchange_identity_verified.json`
-- `content/modernization/pr16_bp_exchange_identity_evidence/identity.json`
-- `content/modernization/pr16_bp_exchange_identity_evidence/native.stderr.txt`
-- `scripts/pr16_bp_exchange_identity.py`
-- `tools/mgba_pr16_bp_exchange_identity.c`
-- `overlays/facility_runtime/facility_runtime.c`
 - `scripts/pr16_bp_exchange_successor.py`
+- `overlays/facility_runtime/facility_runtime.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -53,7 +50,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 照合抄録: `content/modernization/pr16_bp_exchange_identity_verified.json`。
 交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
 
-開始時fixtureと観測境界後native入力のみを区別し、7 host-write barrier・timeout・判定条件を緩めない。
+開始時fixtureと観測境界後native入力だけを区別し、既存7 host-write barrier・timeout・candidate/source/cache identity・CFG照合条件を緩めない。
 
 ## 候補identityと残件
 
@@ -92,7 +89,7 @@ BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進め
 - run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。
 - 個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。
 - WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。
-- 2026-09-14ローカルABI案8testsは未反映。target照合/native保持の成功として採用せず、ブロック要求を反復しない。
+- run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -122,6 +119,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-entry aece429の最新Actionsは本セッション記録のactions_beforeに原値で保存。action_requiredをSUCCESSへ変更しない。source-only記録の検証とtarget/native検証は別。
+source HEAD 7bfbaeae42005ec6c133f316f07fb75dce438cadの専用run34802013676/job103846389011はSUCCESS。12tests、固定source、2 linked.o、最終candidateのCFG/ABI照合とartifact10331807964を確認。runtime/nativeは実行せず、過去Actions failureや受入原本をsuccessへ改作しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

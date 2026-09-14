@@ -5049,3 +5049,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Question for human: 権限確認の再依頼は不要。正式受入・旧失敗原本を変更しない。
 - Boundary: BP未受入、physical4/P08ゲート2、PR open/draft、baseline維持。merge/releaseなし。
 - Next step: 保存済みWIP48a36caとowner run34785149994を再利用し、未完のtarget呼出位置/ABI照合・最小successor接続・修復後native個体保持検証を進める。ローカル8testsをtarget照合や反映済み実装と混同しない。同一tool-blocked要求や既存host4/ownerの単独再実行をせず、保持確認前に2/3戦目・BP報酬へ進まない。
+
+## 2026-09-14T03:32:55Z — USER-20260914-BP-RETENTION-ABI
+- Timestamp: 2026-09-14T03:32:55Z
+- Version: PR16 party-retention target callsite/ABI static audit
+- Task: USER-20260914-BP-RETENTION-ABI / 未完だったtarget呼出位置・ABI照合を1件完了
+- Status: DONE_SCOPED_STATIC_AUDIT / runtime接続・native保持・BP受入は未完
+- Summary: GCCのbasic block配置を線形アドレス順と同一視する誤判定を修正。最初のpredicate後のcmp r0,#0、BNE true edge、false edge、true block内の唯一のdirect BuildFrontierParty call、両path再合流をCFGで照合する。
+- Target: BuildTrainerPartySetup=0x090DD2A4、predicate call=0x090DD51C、player BuildFrontierParty.isra.0 call=0x090DD538、true/false rejoin=0x090DD2E6。2 predicate calls、7 frontier calls。
+- Actions: run34802013676/job103846389011/HEAD=7bfbaeae42005ec6c133f316f07fb75dce438cad SUCCESS。artifact10331807964 digest sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af。
+- Verify: Actions 12tests PASS、abi.stderr空、2 cache fingerprint aliasのlinked.oは同一SHA/byte-identical。ローカルCFG focused4tests、py_compile、resume render/check/tests、task graph、diff checkを記録commit前ゲートとする。
+- Scope: 新規emulator0、受入済みnative case再実行0、candidate変更0。latest_native_*・正式checkpoint・physical4/P08 gate2は変更しない。
+- Boundary: target_callsite_verified=true、target_abi_verified=true。runtime_connected=false、native_retention_verified=false、native_bp_earning_accepted=false、release_ready=false。
+- Files changed: scripts/pr16_bp_party_retention_abi_cache.py、tests/test_pr16_bp_party_retention_abi_cache.py、ABI証拠JSON、WIP JSON、固定引継ぎMD/JSON、design/run_log.md、design/version_log.md。一時export workflowは最終記録commitで削除。
+- Commit: 実装commit=7bfbaeae42005ec6c133f316f07fb75dce438cad。記録commitはこの追記を含み、自己SHA追記を行わない。branchは毎回live HEADを確認して非force fast-forward。
+- Next: 照合済み0x090DD51Cのtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持を検証。保持確認前に2/3戦目・BP報酬へ進まない。

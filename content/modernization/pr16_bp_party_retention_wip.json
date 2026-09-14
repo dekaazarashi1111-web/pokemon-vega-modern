@@ -1,14 +1,8 @@
 {
   "accepted_native_cases_replayed": 0,
-  "blocker": {
-    "attempts": 2,
-    "excerpt": "リクエストの安全性を確認できなかったため、このツールの呼び出しは OpenAI によってブロックされました。",
-    "github_permission_missing": false,
-    "kind": "OPENAI_TOOL_SAFETY_BLOCK",
-    "response": "追加解析/接続を停止。別経路で再試行せず、成功済み証拠とWIPのみを記録。"
-  },
+  "blocker": null,
   "candidate_changed": false,
-  "classification": "WIP_NOT_RUNTIME_FIX_NOT_NATIVE_ACCEPTANCE",
+  "classification": "SCOPED_STATIC_CALLSITE_ABI_COMPLETE_RUNTIME_NOT_CONNECTED_NATIVE_NOT_ACCEPTED",
   "followup_attempts": [
     {
       "accepted_native_cases_replayed": 0,
@@ -127,10 +121,30 @@
       "runtime_connected": false,
       "task": "USER-20260914-BP-RETENTION-RESUME-NOTE",
       "task_status": "BLOCKED"
+    },
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_job_id": 103846389011,
+      "actions_run_id": 34802013676,
+      "artifact_id": 10331807964,
+      "candidate_changed": false,
+      "implementation_parent": "66b08fe8d50676e8a90cc798185d19720f3a53e7",
+      "native_bp_earning_accepted": false,
+      "native_retention_verified": false,
+      "new_emulator_processes": 0,
+      "release_ready": false,
+      "remote_implementation_applied": true,
+      "runtime_connected": false,
+      "target_abi_verified": true,
+      "target_callsite_verified": true,
+      "task": "USER-20260914-BP-RETENTION-ABI",
+      "task_status": "PASS_SCOPED_STATIC_AUDIT",
+      "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad"
     }
   ],
   "native_bp_earning_accepted": false,
   "native_retention_verified": false,
+  "new_emulator_processes": 0,
   "new_native_processes": 0,
   "owner_artifact_id": 10325794218,
   "owner_artifact_zip": {
@@ -337,7 +351,7 @@
   },
   "release_ready": false,
   "runtime_connected": false,
-  "schema_version": 1,
+  "schema_version": 2,
   "sources": {
     ".github/workflows/pr16-bp-party-retention-record.yml": {
       "sha256": "74fa7cdd2a00218dfe9977a14972e6371d2b78e897a87d073d4d4d6fc56d624b",
@@ -347,9 +361,17 @@
       "sha256": "152965d4a799b92110d18e84d7a20fbf8a511c515ae5af28ece3d3d3ba8796b3",
       "size": 7159
     },
+    "content/modernization/pr16_bp_retention_abi_verified.json": {
+      "sha256": "5ed7ac400b80eeef10be63a84684533fd65f3176c404dfc1c1a7c04f9a05658b",
+      "size": 7297
+    },
     "overlays/facility_party_retention/facility_party_retention.c": {
       "sha256": "71ceef74208bda989debb45986b973c63b9f4e8c0114037f233bb3c95a452c13",
       "size": 2015
+    },
+    "scripts/pr16_bp_party_retention_abi_cache.py": {
+      "sha256": "ed2137d85ebd0d904ee06dcf706dba1a61b1ffebbe4f69023ae0342f43fc1bcc",
+      "size": 24941
     },
     "scripts/pr16_bp_party_retention_owner.py": {
       "sha256": "b42212d377d71081db992a39ffd4c20849d5a8f29506762135cec3d985d3a50e",
@@ -363,86 +385,51 @@
       "sha256": "37173b7c934539655f439e69fe2b7c61c5a676259a247e2ebfb4bc1e86d47270",
       "size": 2322
     },
+    "tests/test_pr16_bp_party_retention_abi_cache.py": {
+      "sha256": "5a8683e4a28571ef0f7ae03b4f5176ef1f1fe6b710f83c69a7be92b5c4f57246",
+      "size": 5498
+    },
     "tests/test_pr16_bp_party_retention_record.py": {
       "sha256": "1562d3ac46078e46824dbd136f5b8c1b5569930e5db12c363993cfcad5b31fcb",
       "size": 2263
     }
   },
-  "summary_ja": "WIP: 次戦限定predicateとhost4回帰はPASS、固定candidateのowner監査run34785149994もSUCCESS。target呼出位置/ABIの確定・runtime接続・修復後native保持検証は未完。追加コード反映2回がOpenAIのツール安全性確認でブロックされたため、以後は解析/接続を停止して記録のみ実施。GitHub権限不足ではない。",
-  "task": "USER-20260914-BP-PARTY-RETENTION",
-  "task_status": "BLOCKED",
-  "tested_head": "48a36caf3361b1d167c302174eb2c4c4121c7508",
+  "summary_ja": "固定candidateとhash-bound build-cacheを使うtarget callsite/ABI限定監査を完了。GCCのbasic block配置を線形アドレス順と同一視せず、最初のpredicate後のBNE true edge、false edge、再合流点をCFGで追跡し、player BuildFrontierParty callsiteを確定した。run34802013676/job103846389011は12testsと最終candidate照合をSUCCESS。runtime接続・native個体保持・BP受入は未実行でfalse。",
+  "superseded_blocker": {
+    "attempts": 2,
+    "excerpt": "リクエストの安全性を確認できなかったため、このツールの呼び出しは OpenAI によってブロックされました。",
+    "github_permission_missing": false,
+    "kind": "OPENAI_TOOL_SAFETY_BLOCK",
+    "response": "追加解析/接続を停止。別経路で再試行せず、成功済み証拠とWIPのみを記録。"
+  },
+  "target_abi_evidence": {
+    "actions_test_count": 12,
+    "artifact_digest": "sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af",
+    "artifact_id": 10331807964,
+    "job_id": 103846389011,
+    "linked_cache_aliases": 2,
+    "linked_objects_byte_identical": true,
+    "path": "content/modernization/pr16_bp_retention_abi_verified.json",
+    "player_build_callsite": "0x090DD538",
+    "predicate_callsite": "0x090DD51C",
+    "run_id": 34802013676,
+    "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+    "true_false_rejoin": "0x090DD2E6"
+  },
+  "target_abi_verified": true,
+  "target_callsite_verified": true,
+  "task": "USER-20260914-BP-RETENTION-ABI",
+  "task_status": "PASS_SCOPED_STATIC_AUDIT",
+  "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
   "tested_head_checks": [
     {
       "conclusion": "success",
-      "event": "pull_request",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785152631,
-      "name": "p03-forgetting-ci",
-      "path": ".github/workflows/p03-forgetting-ci.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "pull_request",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785152676,
-      "name": "source-validation",
-      "path": ".github/workflows/ci.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
       "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785150057,
-      "name": "p03-forgetting-ci",
-      "path": ".github/workflows/p03-forgetting-ci.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785149998,
-      "name": "Stage79 mGBA (all)",
-      "path": ".github/workflows/modernization-stage79-mgba.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785149994,
-      "name": "交換個体保持修復のowner照合・限定検証",
-      "path": ".github/workflows/pr16-bp-party-retention.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785149996,
-      "name": "PR16 fixed handoff source-only verification",
-      "path": ".github/workflows/pr16-resume-maintenance.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785150075,
-      "name": "Stage79 runtime boundary audit",
-      "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-      "status": "completed"
-    },
-    {
-      "conclusion": "success",
-      "event": "push",
-      "head_sha": "48a36caf3361b1d167c302174eb2c4c4121c7508",
-      "id": 34785149966,
-      "name": "source-validation",
-      "path": ".github/workflows/ci.yml",
+      "head_sha": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+      "id": 34802013676,
+      "job_id": 103846389011,
+      "name": "交換個体保持target callsite・ABIのbuild-cache照合",
+      "path": ".github/workflows/pr16-bp-retention-abi-cache.yml",
       "status": "completed"
     }
   ]
