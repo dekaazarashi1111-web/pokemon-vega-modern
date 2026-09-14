@@ -160,6 +160,61 @@ static struct WXResult rw_exchange_next(struct mCore *c,const uint8_t *original,
     return w;
 }
 
+/* The fixed third battle reaches its final opponent only when the stronger
+ * reserve is kept for cleanup.  Use the ordinary forced-switch menu, but when
+ * two healthy reserves remain choose the non-maximum wx_reserve candidate
+ * first.  This is host-controller state/normal keypad input only. */
+static unsigned rw_cleanup_reserve(struct mCore *c,unsigned active) {
+    unsigned strongest=wx_reserve(c,active),target=strongest,living=0U;
+    bp_require(c,strongest<3U,"third cleanup reserve has no living candidate");
+    for(unsigned i=0U;i<3U;++i){
+        if(i==active || !read16(c,QOL_PLAYER_PARTY+100U*i+0x56U))continue;
+        ++living;
+        if(i!=strongest)target=i;
+    }
+    bp_require(c,living>0U && living<=2U && target<3U,
+        "third cleanup reserve count differs");
+    fprintf(stderr,
+        "BP_REWARD_RESERVE frame=%u active=%u living=%u strongest=%u selected=%u\n",
+        b_frames,active,living,strongest,target);
+    return target;
+}
+static void rw_switch(struct mCore *c,struct BPReturn *w) {
+    br_trace(c,"third-forced-switch-start");g_shot("forced-switch-start");
+    bp_require(c,read16(c,ADDR_BATTLE_MONS+BATTLE_CORE_MON_HP)==0U,
+        "unexpected voluntary party menu in third battle");
+    b_frames_run(c,0U,60U);
+    unsigned active=read16(c,ADDR_BATTLER_PARTY_INDEXES);
+    unsigned target=rw_cleanup_reserve(c,active);
+    for(unsigned i=0U;i<8U && read8(c,SP_PARTY_SLOT)!=target;++i){
+        bp_require(c,read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY,
+            "third forced menu disappeared during navigation");
+        b_press(c,QOL_KEY_DOWN,60U);
+    }
+    bp_require(c,read8(c,SP_PARTY_SLOT)==target,
+        "third forced cursor did not reach cleanup reserve");
+    struct WXIdentity selected=wx_party_identity(c,target);
+    fprintf(stderr,
+        "BP_REWARD_SWITCH_ID label=selected frame=%u ui_slot=%u pid=%08x ot=%08x species=%u\n",
+        b_frames,target,selected.personality,selected.ot,selected.species);
+    b_press(c,QOL_KEY_A,80U);
+    if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY)
+        b_press(c,QOL_KEY_A,80U);
+    for(unsigned f=0U;f<1800U;++f){
+        if(n_action(c) && read16(c,ADDR_BATTLER_PARTY_INDEXES)<3U
+            && wx_identity_equal(selected,wx_battle_identity(c))){
+            ++wx_identity_checks;++w->switches;
+            fprintf(stderr,
+                "BP_REWARD_SWITCH_ID label=matched frame=%u ui_slot=%u battle_index=%u pid=%08x\n",
+                b_frames,target,read16(c,ADDR_BATTLER_PARTY_INDEXES),selected.personality);
+            br_trace(c,"third-forced-switch-return");g_shot("forced-switch-return");return;
+        }
+        b_frame(c,0U);
+    }
+    br_trace(c,"third-forced-switch-timeout");
+    bp_require(c,false,"third native forced switch did not return");
+}
+
 /* Battle 3 cannot reuse br_battle_return because the same script continues from
  * reward_pending=3 into FacilityRuntime_Complete. Observe both boundaries in one
  * input-only loop so a transient three-win ledger is never inferred from BP alone. */
@@ -229,7 +284,7 @@ static void rw_final_battle(struct mCore *c,const uint8_t *original,
         }
         if(!w.outcome && bs && cb==P02S_CB2_PARTY){
             bp_require(c,w.switches<2U,"third battle repeated forced switch");
-            br_switch(c,&w);continue;
+            rw_switch(c,&w);continue;
         }
         unsigned elapsed=b_frames-w.start;
         b_frame(c,w.outcome && elapsed%90U==0U?QOL_KEY_A:
