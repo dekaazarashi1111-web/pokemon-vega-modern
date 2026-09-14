@@ -49,7 +49,8 @@ jobs:
           tar -xJf /tmp/pr16-retention.tar.xz
           rm .github/workflows/pr16-bp-party-retention-bootstrap.yml
           python3 -m py_compile scripts/pr16_bp_party_retention_successor.py scripts/pr16_bp_party_retention_native.py tests/test_pr16_bp_party_retention_successor.py tests/test_pr16_bp_party_retention_native.py
-          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_*.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_successor.py' -v
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_party_retention_native.py' -v
           git diff --check
       - name: Commit implementation and fast-forward branch
         env:
