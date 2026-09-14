@@ -6,18 +6,16 @@
 
 ## いまの停止点と次の1手
 
-2026-09-14: target呼出位置/ABI限定監査を完了。固定candidate 7f32と2つのbyte-identical build-cache linked.oを照合し、BuildTrainerPartySetup 0x090DD2A4内の最初のpredicate callsite 0x090DD51Cについて、cmp r0,#0→BNE true edge→player BuildFrontierParty 0x090DD538→0x090DD2E6再合流をCFGで確定した。run34802013676/job103846389011は12testsを含めSUCCESS。新規emulator process 0、受入済みnative case再実行0。runtime接続・native個体保持・2/3戦目・BP稼得/消費は未受入。
+2026-09-14: run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。
 
-既存native診断run34774194505の「交換確定後から次戦までにparty個体が変化する」原本は維持し、静的ABI完了を保持修復成功とは読まない。
+**次: 同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。**
 
-**次: 照合済みplayer predicate callsite 0x090DD51C のtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持検証を実行する。保持確認前に2/3戦目・BP報酬へ進まない。**
-
-run34802013676の静的target callsite/ABI監査は対象source・candidate・cache契約に変更がない限り再実行しない。owner run34785149994、identity run34774194505、受入済み取消/Save/Continue、P03/P06/P07も影響なしに再実行しない。runtime接続後は同じnative prefixを個体保持確認まで延長し、保持確認前にBP受入を主張しない。
+今回の保持run34825059791、静的ABI run34802013676、owner run34785149994、受入済み取消/Save/Continueを変更影響なしに再実行しない。3勝報酬確認前にBP消費・releaseへ進まない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7bfbaeae42005ec6c133f316f07fb75dce438cad`。
-target callsite/ABI限定監査の実装・成功Actionsを固定したsource HEAD。後続の引継ぎ/JSON/log更新commitは記録のみで、runtime接続やnative受入を追加しない。
+証拠のsource HEAD: `10e535a046441dd3b797918106259b5c57b69716`。
+保持wrapperの限定runtime接続と1process native個体保持を固定した実装HEAD。後続record commitはworkflow記録不具合修正・証拠・引継ぎ・ログのみ。
 
 ## 最短の再開手順
 
@@ -27,15 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_bp_retention_abi_verified.json`
-- `content/modernization/pr16_bp_party_retention_wip.json`
-- `scripts/pr16_bp_party_retention_abi_cache.py`
-- `tests/test_pr16_bp_party_retention_abi_cache.py`
+- `content/modernization/pr16_bp_party_retention_verified.json`
+- `scripts/pr16_bp_party_retention_native.py`
+- `scripts/pr16_bp_exchange_identity.py`
+- `scripts/pr16_bp_win_exchange.py`
 - `overlays/facility_party_retention/facility_party_retention.c`
-- `tests/test_pr16_bp_party_retention.py`
-- `scripts/pr16_bp_party_retention_owner.py`
-- `scripts/pr16_bp_exchange_successor.py`
-- `overlays/facility_runtime/facility_runtime.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -46,15 +40,15 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 正式BP checkpoint: run `34733866168` / HEAD `f01149dfd6848623466fadf611a6599d1f22e1ca`。
 受入済みはレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの1ケース。受付special operand 0x2F→0x29の修正で実chooserへ到達。global special表・save layoutを変更していない。
 
-最新診断: run `34774194505` / job `103769160925` / HEAD `e9793dfda49ec3044b662aefd7bb0093182dce3a`。
-照合抄録: `content/modernization/pr16_bp_exchange_identity_verified.json`。
-交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。
+最新診断: run `34825059791` / job `103915172830` / HEAD `10e535a046441dd3b797918106259b5c57b69716`。
+照合抄録: `content/modernization/pr16_bp_party_retention_verified.json`。
+run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。
 
-開始時fixtureと観測境界後native入力だけを区別し、既存7 host-write barrier・timeout・candidate/source/cache identity・CFG照合条件を緩めない。
+既存7 host-write barrier、timeout、candidate/source identityを緩めず、同じnative prefixを2/3戦目と報酬境界まで延長する。
 
 ## 候補identityと残件
 
-SHA-256 `7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd` / 33554432 bytes / CRC32 `0D5D9178`。交換修復済み7f32の今回native診断候補。正式BP受入・最終製品SHAではない。
+SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。保持wrapper接続済みcandidate。交換個体保持のみscoped native確認済みで、3勝BP・最終製品SHAではない。
 
 正式physical残件（台帳から照合）:
 
@@ -68,7 +62,7 @@ P08ゲート:
 - `FINAL_NATIVE_ACCEPTANCE`
 - `RELEASE_DECISION`
 
-交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。 BP稼得/消費、3勝、Save/fresh Continueの新規受入はしていない。
+run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。
 
 BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。
 
@@ -90,6 +84,7 @@ BP、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進め
 - 個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。
 - WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。
 - run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。
+- run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、次は2/3戦目と3勝BP報酬へ延長する。
 
 ## 次セッションへ残す更新手順
 
@@ -119,6 +114,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-source HEAD 7bfbaeae42005ec6c133f316f07fb75dce438cadの専用run34802013676/job103846389011はSUCCESS。12tests、固定source、2 linked.o、最終candidateのCFG/ABI照合とartifact10331807964を確認。runtime/nativeは実行せず、過去Actions failureや受入原本をsuccessへ改作しない。
+実装HEAD 10e535a046441dd3b797918106259b5c57b69716 の専用run34825059791/job103915172830はnative build、限定3領域patch、focused 10 tests、1process次戦保持、artifact uploadまで成功。Actions結論failureはrecord段のmutable P08 source-binding誤りで、native結果ではない。最終記録時にbindingを修正しresume18tests/checkを通過。取消/Save/Continue・2/3戦目・BP報酬は再実行/受入していない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

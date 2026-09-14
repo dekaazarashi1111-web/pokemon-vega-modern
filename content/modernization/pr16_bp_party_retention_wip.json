@@ -1,8 +1,15 @@
 {
   "accepted_native_cases_replayed": 0,
+  "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+  "artifact_id": 10339976783,
   "blocker": null,
-  "candidate_changed": false,
-  "classification": "SCOPED_STATIC_CALLSITE_ABI_COMPLETE_RUNTIME_NOT_CONNECTED_NATIVE_NOT_ACCEPTED",
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432
+  },
+  "candidate_changed": true,
+  "candidate_crc32": "3EB17B36",
+  "classification": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
   "followup_attempts": [
     {
       "accepted_native_cases_replayed": 0,
@@ -140,12 +147,37 @@
       "task": "USER-20260914-BP-RETENTION-ABI",
       "task_status": "PASS_SCOPED_STATIC_AUDIT",
       "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad"
+    },
+    {
+      "accepted_native_cases_replayed": 0,
+      "actions_conclusion": "failure",
+      "actions_job_id": 103915172830,
+      "actions_run_id": 34825059791,
+      "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+      "artifact_id": 10339976783,
+      "candidate": {
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "size": 33554432
+      },
+      "candidate_crc32": "3EB17B36",
+      "evidence": "content/modernization/pr16_bp_party_retention_verified.json",
+      "native_bp_earning_accepted": false,
+      "native_retention_verified": true,
+      "native_verification_steps_conclusion": "success",
+      "new_emulator_processes": 1,
+      "record_step_conclusion": "failure_before_commit",
+      "release_ready": false,
+      "runtime_connected": true,
+      "task": "USER-20260914-BP-RETENTION-RUNTIME",
+      "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+      "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
     }
   ],
+  "latest_evidence": "content/modernization/pr16_bp_party_retention_verified.json",
   "native_bp_earning_accepted": false,
-  "native_retention_verified": false,
-  "new_emulator_processes": 0,
-  "new_native_processes": 0,
+  "native_retention_verified": true,
+  "new_emulator_processes": 1,
+  "new_native_processes": 1,
   "owner_artifact_id": 10325794218,
   "owner_artifact_zip": {
     "sha256": "e25867d0a3167922e51d87b3e2767a7f61c614ffc8a92d174a825db38ce582f2",
@@ -350,51 +382,39 @@
     "status": "completed"
   },
   "release_ready": false,
-  "runtime_connected": false,
+  "runtime_connected": true,
   "schema_version": 2,
   "sources": {
-    ".github/workflows/pr16-bp-party-retention-record.yml": {
-      "sha256": "74fa7cdd2a00218dfe9977a14972e6371d2b78e897a87d073d4d4d6fc56d624b",
-      "size": 2172
+    ".github/workflows/pr16-bp-party-retention-native.yml": {
+      "sha256": "905a042ad83225009f99515057520f7781b45d57883b22e624b773f919f3cdd9",
+      "size": 23629
     },
-    ".github/workflows/pr16-bp-party-retention.yml": {
-      "sha256": "152965d4a799b92110d18e84d7a20fbf8a511c515ae5af28ece3d3d3ba8796b3",
-      "size": 7159
-    },
-    "content/modernization/pr16_bp_retention_abi_verified.json": {
-      "sha256": "5ed7ac400b80eeef10be63a84684533fd65f3176c404dfc1c1a7c04f9a05658b",
-      "size": 7297
+    "content/modernization/pr16_bp_party_retention_verified.json": {
+      "sha256": "960b73018090f10993090feb7ae038b0f36eb99a886dff7f2bdc42c467949f00",
+      "size": 9131
     },
     "overlays/facility_party_retention/facility_party_retention.c": {
       "sha256": "71ceef74208bda989debb45986b973c63b9f4e8c0114037f233bb3c95a452c13",
       "size": 2015
     },
-    "scripts/pr16_bp_party_retention_abi_cache.py": {
-      "sha256": "ed2137d85ebd0d904ee06dcf706dba1a61b1ffebbe4f69023ae0342f43fc1bcc",
-      "size": 24941
+    "scripts/pr16_bp_party_retention_native.py": {
+      "sha256": "00309c9c9f2578c38b68e920286b127a2fc30e9163cb601cc81620270a7668b6",
+      "size": 8628
     },
-    "scripts/pr16_bp_party_retention_owner.py": {
-      "sha256": "b42212d377d71081db992a39ffd4c20849d5a8f29506762135cec3d985d3a50e",
-      "size": 4753
+    "scripts/pr16_bp_party_retention_successor.py": {
+      "sha256": "bf9e7c426c27f002f54fb7887a92cf141762672891bf13767aabcdcec4dae931",
+      "size": 15003
     },
-    "scripts/pr16_bp_party_retention_record.py": {
-      "sha256": "bf1b34967d839146c3069ae4e10edb7d610ea88f1ee85544ea4e9739f8129c68",
-      "size": 15084
+    "tests/test_pr16_bp_party_retention_native.py": {
+      "sha256": "20d8623112f151b614ebb99211ef42b8e962b5ac34b6c22fa4431face311b013",
+      "size": 3526
     },
-    "tests/test_pr16_bp_party_retention.py": {
-      "sha256": "37173b7c934539655f439e69fe2b7c61c5a676259a247e2ebfb4bc1e86d47270",
-      "size": 2322
-    },
-    "tests/test_pr16_bp_party_retention_abi_cache.py": {
-      "sha256": "5a8683e4a28571ef0f7ae03b4f5176ef1f1fe6b710f83c69a7be92b5c4f57246",
-      "size": 5498
-    },
-    "tests/test_pr16_bp_party_retention_record.py": {
-      "sha256": "1562d3ac46078e46824dbd136f5b8c1b5569930e5db12c363993cfcad5b31fcb",
-      "size": 2263
+    "tests/test_pr16_bp_party_retention_successor.py": {
+      "sha256": "d2bcf2869bd7c5fa3f396b2755c7997837620c43c72c4442dc083f1e7f4d2d08",
+      "size": 2215
     }
   },
-  "summary_ja": "固定candidateとhash-bound build-cacheを使うtarget callsite/ABI限定監査を完了。GCCのbasic block配置を線形アドレス順と同一視せず、最初のpredicate後のBNE true edge、false edge、再合流点をCFGで追跡し、player BuildFrontierParty callsiteを確定した。run34802013676/job103846389011は12testsと最終candidate照合をSUCCESS。runtime接続・native個体保持・BP受入は未実行でfalse。",
+  "summary_ja": "run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。",
   "superseded_blocker": {
     "attempts": 2,
     "excerpt": "リクエストの安全性を確認できなかったため、このツールの呼び出しは OpenAI によってブロックされました。",
@@ -418,9 +438,9 @@
   },
   "target_abi_verified": true,
   "target_callsite_verified": true,
-  "task": "USER-20260914-BP-RETENTION-ABI",
-  "task_status": "PASS_SCOPED_STATIC_AUDIT",
-  "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+  "task": "USER-20260914-BP-RETENTION-RUNTIME",
+  "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+  "tested_head": "10e535a046441dd3b797918106259b5c57b69716",
   "tested_head_checks": [
     {
       "conclusion": "success",
@@ -431,6 +451,17 @@
       "name": "交換個体保持target callsite・ABIのbuild-cache照合",
       "path": ".github/workflows/pr16-bp-retention-abi-cache.yml",
       "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "event": "push",
+      "head_sha": "10e535a046441dd3b797918106259b5c57b69716",
+      "id": 34825059791,
+      "job_id": 103915172830,
+      "name": "pr16-bp-party-retention-native",
+      "native_verification_steps_conclusion": "success",
+      "path": ".github/workflows/pr16-bp-party-retention-native.yml",
+      "record_step_conclusion": "failure_before_commit"
     }
   ]
 }

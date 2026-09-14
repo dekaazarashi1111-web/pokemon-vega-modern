@@ -3,11 +3,11 @@
   "active_baseline_changed": false,
   "bp": {
     "action_return_frame": 4313,
-    "after_battle_launch": "交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。 BP稼得/消費、3勝、Save/fresh Continueの新規受入はしていない。",
+    "after_battle_launch": "run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。",
     "battle_started": true,
     "bp_earned": 0,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "2026-09-14: target呼出位置/ABI限定監査を完了。固定candidate 7f32と2つのbyte-identical build-cache linked.oを照合し、BuildTrainerPartySetup 0x090DD2A4内の最初のpredicate callsite 0x090DD51Cについて、cmp r0,#0→BNE true edge→player BuildFrontierParty 0x090DD538→0x090DD2E6再合流をCFGで確定した。run34802013676/job103846389011は12testsを含めSUCCESS。新規emulator process 0、受入済みnative case再実行0。runtime接続・native個体保持・2/3戦目・BP稼得/消費は未受入。\n\n既存native診断run34774194505の「交換確定後から次戦までにparty個体が変化する」原本は維持し、静的ABI完了を保持修復成功とは読まない。",
+    "current_stop": "2026-09-14: run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。",
     "earning_accepted": false,
     "earning_and_spending_accepted": false,
     "exchange_abi_repaired": true,
@@ -25,12 +25,12 @@
     "native_first_victory_observed": true,
     "native_loss_observed": true,
     "native_party_chooser_accepted": true,
-    "native_retention_verified": false,
-    "next_battle_exchanged_individual_identity_verified": false,
-    "next_battle_party_retained": false,
+    "native_retention_verified": true,
+    "next_battle_exchanged_individual_identity_verified": true,
+    "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "照合済みplayer predicate callsite 0x090DD51C のtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持検証を実行する。保持確認前に2/3戦目・BP報酬へ進まない。",
-    "party_retention_runtime_connected": false,
+    "next_step": "同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。",
+    "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
     "party_snapshot_and_marker_observed": true,
@@ -46,13 +46,13 @@
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
-    "crc32": "0D5D9178",
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432,
+    "crc32": "3EB17B36",
     "final_product_sha_fixed": false,
-    "full_candidate_regression_complete": false,
-    "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
-    "size": 33554432
+    "full_candidate_regression_complete": false
   },
-  "candidate_scope_ja": "交換修復済み7f32の今回native診断候補。正式BP受入・最終製品SHAではない。",
+  "candidate_scope_ja": "保持wrapper接続済みcandidate。交換個体保持のみscoped native確認済みで、3勝BP・最終製品SHAではない。",
   "checkpoint_index_order_failures": [
     {
       "job_id": 103675775748,
@@ -262,7 +262,8 @@
     "run34770280751の単体交換＋次戦開始は診断原本を再利用。次戦個体同一性とBP報酬まで受入済みと読まない。",
     "個体追跡run34774194505の原本を再利用。追跡完了と個体保持/BP受入を混同しない。",
     "WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。",
-    "run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。"
+    "run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。",
+    "run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、次は2/3戦目と3勝BP報酬へ延長する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -316,12 +317,12 @@
     "scope": "FIRST_TURN_NOT_BP",
     "tested_head": "88e043592f07c80d1e4f582320bb955243986711"
   },
-  "latest_native_evidence": "content/modernization/pr16_bp_exchange_identity_verified.json",
-  "latest_native_job": 103769160925,
-  "latest_native_run": 34774194505,
+  "latest_native_evidence": "content/modernization/pr16_bp_party_retention_verified.json",
+  "latest_native_job": 103915172830,
+  "latest_native_run": 34825059791,
   "latest_native_scope": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
-  "latest_native_summary_ja": "交換確定後から次戦までにparty個体が変化し、交換個体保持は不成立。 38個の同時600byte/個体snapshotを照合。交換確定17345f、次戦action19169f。 PID/OT/species/movesを比較し、次戦active battlerと実partyの一致も検証。frame境界観測でありCPU関数entry/returnの証明ではない。 次戦chooser17389fでは600byte一致。最初の変化は17770f、callback2=0x0800FEC5/script=0x092CF6A5で3個体がゼロ。actionで88byte差・新規3個体を確認。保持修復は未完。",
-  "latest_native_tested_head": "e9793dfda49ec3044b662aefd7bb0093182dce3a",
+  "latest_native_summary_ja": "run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。",
+  "latest_native_tested_head": "10e535a046441dd3b797918106259b5c57b69716",
   "logs_synchronized": true,
   "loss_return_completed": {
     "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
@@ -334,66 +335,66 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "照合済みplayer predicate callsite 0x090DD51C のtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持検証を実行する。保持確認前に2/3戦目・BP報酬へ進まない。",
-    "host_write_policy_ja": "開始時fixtureと観測境界後native入力だけを区別し、既存7 host-write barrier・timeout・candidate/source/cache identity・CFG照合条件を緩めない。",
-    "id": "BP_EXCHANGE_PARTY_RETENTION_RUNTIME_CONNECT",
+    "id": "BP_THREE_WIN_REWARD_NATIVE",
+    "goal_ja": "同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。",
+    "host_write_policy_ja": "既存7 host-write barrier、timeout、candidate/source identityを緩めず、同じnative prefixを2/3戦目と報酬境界まで延長する。",
     "read_paths": [
-      "content/modernization/pr16_bp_retention_abi_verified.json",
-      "content/modernization/pr16_bp_party_retention_wip.json",
-      "scripts/pr16_bp_party_retention_abi_cache.py",
-      "tests/test_pr16_bp_party_retention_abi_cache.py",
-      "overlays/facility_party_retention/facility_party_retention.c",
-      "tests/test_pr16_bp_party_retention.py",
-      "scripts/pr16_bp_party_retention_owner.py",
-      "scripts/pr16_bp_exchange_successor.py",
-      "overlays/facility_runtime/facility_runtime.c"
+      "content/modernization/pr16_bp_party_retention_verified.json",
+      "scripts/pr16_bp_party_retention_native.py",
+      "scripts/pr16_bp_exchange_identity.py",
+      "scripts/pr16_bp_win_exchange.py",
+      "overlays/facility_party_retention/facility_party_retention.c"
     ],
-    "stop_rule_ja": "run34802013676の静的target callsite/ABI監査は対象source・candidate・cache契約に変更がない限り再実行しない。owner run34785149994、identity run34774194505、受入済み取消/Save/Continue、P03/P06/P07も影響なしに再実行しない。runtime接続後は同じnative prefixを個体保持確認まで延長し、保持確認前にBP受入を主張しない。",
+    "stop_rule_ja": "今回の保持run34825059791、静的ABI run34802013676、owner run34785149994、受入済み取消/Save/Continueを変更影響なしに再実行しない。3勝報酬確認前にBP消費・releaseへ進まない。",
     "success_observations": [
-      "照合済みtrue pathだけに限定された保持wrapper接続",
-      "交換個体を保持した次戦party/battler",
-      "その後のnative 2/3戦目と正確な3勝BP報酬"
+      "native 2戦目完了",
+      "native 3戦目完了",
+      "正確な3勝BP報酬"
     ]
   },
   "observed_date_jst": "2026-09-14",
-  "observed_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+  "observed_head": "10e535a046441dd3b797918106259b5c57b69716",
   "observed_head_checks": {
-    "reason_ja": "source HEAD 7bfbaeae42005ec6c133f316f07fb75dce438cadの専用run34802013676/job103846389011はSUCCESS。12tests、固定source、2 linked.o、最終candidateのCFG/ABI照合とartifact10331807964を確認。runtime/nativeは実行せず、過去Actions failureや受入原本をsuccessへ改作しない。"
+    "reason_ja": "実装HEAD 10e535a046441dd3b797918106259b5c57b69716 の専用run34825059791/job103915172830はnative build、限定3領域patch、focused 10 tests、1process次戦保持、artifact uploadまで成功。Actions結論failureはrecord段のmutable P08 source-binding誤りで、native結果ではない。最終記録時にbindingを修正しresume18tests/checkを通過。取消/Save/Continue・2/3戦目・BP報酬は再実行/受入していない。"
   },
-  "observed_head_semantics": "target callsite/ABI限定監査の実装・成功Actionsを固定したsource HEAD。後続の引継ぎ/JSON/log更新commitは記録のみで、runtime接続やnative受入を追加しない。",
+  "observed_head_semantics": "保持wrapperの限定runtime接続と1process native個体保持を固定した実装HEAD。後続record commitはworkflow記録不具合修正・証拠・引継ぎ・ログのみ。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
-    "accepted_native_cases_replayed": 0,
-    "actions_conclusion": "success",
-    "actions_job_id": 103846389011,
-    "actions_run_id": 34802013676,
-    "artifact_id": 10331807964,
-    "candidate_changed": false,
-    "evidence": "content/modernization/pr16_bp_retention_abi_verified.json",
-    "implementation_commit": "7bfbaeae42005ec6c133f316f07fb75dce438cad",
+    "task": "USER-20260914-BP-RETENTION-RUNTIME",
+    "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+    "tested_head": "10e535a046441dd3b797918106259b5c57b69716",
+    "actions_run_id": 34825059791,
+    "actions_job_id": 103915172830,
+    "actions_conclusion": "failure",
+    "native_verification_steps_conclusion": "success",
+    "record_step_conclusion": "failure_before_commit",
+    "artifact_id": 10339976783,
+    "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+    "candidate": {
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "size": 33554432
+    },
+    "candidate_crc32": "3EB17B36",
+    "runtime_connected": true,
+    "native_retention_verified": true,
     "native_bp_earning_accepted": false,
-    "native_retention_verified": false,
-    "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
+    "new_emulator_processes": 1,
     "release_ready": false,
-    "runtime_connected": false,
-    "target_abi_verified": true,
-    "target_callsite_verified": true,
-    "task": "USER-20260914-BP-RETENTION-ABI",
-    "task_status": "PASS_SCOPED_STATIC_AUDIT",
-    "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad"
+    "evidence": "content/modernization/pr16_bp_party_retention_verified.json"
   },
   "party_retention_session_summary": {
     "accepted_native_cases_replayed": 0,
-    "candidate_changed": false,
-    "host_tests_actions": 12,
-    "host_tests_local_cfg": 4,
-    "native_retention_verified": false,
-    "new_emulator_processes": 0,
-    "owner_audit": "REUSED_PASS",
-    "runtime_connected": false,
+    "candidate_changed": true,
+    "host_tests_actions": 10,
+    "native_retention_verified": true,
+    "new_emulator_processes": 1,
+    "runtime_connected": true,
     "target_abi_verified": true,
     "target_callsite_verified": true,
-    "task_status": "PASS_SCOPED_STATIC_AUDIT"
+    "task_status": "PASS_NATIVE_PARTY_RETENTION_NOT_BP",
+    "actions_conclusion": "failure_record_step_only",
+    "native_verification_steps_conclusion": "success"
   },
   "party_retention_target_abi": {
     "artifact_digest": "sha256:d09f9593ca715af1a0f0700d3888101e2b9f8254b4a06210905426781d7c27af",
@@ -412,12 +413,14 @@
     "true_false_rejoin": "0x090DD2E6"
   },
   "party_retention_wip": {
-    "abi_run": 34802013676,
-    "evidence": "content/modernization/pr16_bp_party_retention_wip.json",
+    "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
+    "evidence": "content/modernization/pr16_bp_party_retention_verified.json",
     "owner_run": 34785149994,
-    "status": "TARGET_CALLSITE_ABI_VERIFIED_RUNTIME_NOT_CONNECTED",
-    "target_abi_evidence": "content/modernization/pr16_bp_retention_abi_verified.json",
-    "tested_head": "7bfbaeae42005ec6c133f316f07fb75dce438cad"
+    "abi_run": 34802013676,
+    "native_run": 34825059791,
+    "native_job": 103915172830,
+    "artifact_id": 10339976783,
+    "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
   "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -464,10 +467,13 @@
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
   "recording_workflow": {
-    "note_ja": "記録workflowの終端/commitはAPIとartifact result.jsonで照合。native未完run0。",
-    "run_id": 34774589879,
-    "source_head": "0dd9dae8d0449371949f76dfb4d6e118b56fb3b8",
-    "status_at_snapshot": "in_progress"
+    "run_id": 34825059791,
+    "job_id": 103915172830,
+    "artifact_id": 10339976783,
+    "source_head": "10e535a046441dd3b797918106259b5c57b69716",
+    "record_source_head": "f2b8e2b761c8105e3389d7f628e69dc7317ba3bc",
+    "status_at_snapshot": "native_steps_success_record_step_failure",
+    "note_ja": "同一runのnative artifactをhash照合。record段のP08 source-binding誤りだけを修正し、connectorによる非force fast-forwardで引継ぎ/ログを記録。native再実行なし。"
   },
   "release_ready": false,
   "remaining_p08_gate_ids": [
@@ -512,9 +518,9 @@
     "failed_native_processes": 1,
     "native_bp_earning_accepted": false,
     "native_game_processes": 1,
-    "rom_source_changes": 0,
-    "scope_ja": "追加BP専用診断のみ。pushで自動起動する既存CI/Stage79はActions一覧へ別記。",
-    "successful_native_fresh_cores": 0
+    "rom_source_changes": 3,
+    "scope_ja": "保持wrapper限定接続と交換後次戦個体保持のみ。2/3戦目・BP報酬は未受入。",
+    "successful_native_fresh_cores": 1
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -642,8 +648,8 @@
       "size": 92166
     },
     "content/modernization/pr16_bp_party_retention_wip.json": {
-      "sha256": "d73313404e66aa8c41fcdb464e670d36595913bba63504c2c33b797610a4aa39",
-      "size": 17348
+      "sha256": "a16cdec2fdb4a019f60d97d6e65ae14a0f40b09e1655a28ac5288279f3836f3f",
+      "size": 18515
     },
     "content/modernization/pr16_bp_progress_attempts.json": {
       "sha256": "aba994af9a061420b47743c519bf581aa45fea7674c5e68199885b3b9dc4c172",
@@ -896,6 +902,30 @@
     "tools/mgba_pr16_bp_win_exchange.c": {
       "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
       "size": 15394
+    },
+    ".github/workflows/pr16-bp-party-retention-native.yml": {
+      "sha256": "905a042ad83225009f99515057520f7781b45d57883b22e624b773f919f3cdd9",
+      "size": 23629
+    },
+    "content/modernization/pr16_bp_party_retention_verified.json": {
+      "sha256": "960b73018090f10993090feb7ae038b0f36eb99a886dff7f2bdc42c467949f00",
+      "size": 9131
+    },
+    "scripts/pr16_bp_party_retention_native.py": {
+      "sha256": "00309c9c9f2578c38b68e920286b127a2fc30e9163cb601cc81620270a7668b6",
+      "size": 8628
+    },
+    "scripts/pr16_bp_party_retention_successor.py": {
+      "sha256": "bf9e7c426c27f002f54fb7887a92cf141762672891bf13767aabcdcec4dae931",
+      "size": 15003
+    },
+    "tests/test_pr16_bp_party_retention_native.py": {
+      "sha256": "20d8623112f151b614ebb99211ef42b8e962b5ac34b6c22fa4431face311b013",
+      "size": 3526
+    },
+    "tests/test_pr16_bp_party_retention_successor.py": {
+      "sha256": "d2bcf2869bd7c5fa3f396b2755c7997837620c43c72c4442dc083f1e7f4d2d08",
+      "size": 2215
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -915,7 +945,7 @@
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "status": "DIAGNOSTIC_EXCHANGE_IDENTITY_BOUNDARIES_NOT_BP",
+  "status": "PASS_NATIVE_EXCHANGE_PARTY_RETENTION_NOT_BP",
   "win_exchange_completed": {
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,

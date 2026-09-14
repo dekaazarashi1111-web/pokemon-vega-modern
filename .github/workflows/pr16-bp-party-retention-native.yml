@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   retention:
-    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908' && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip retention-native]'))
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -246,7 +246,7 @@ jobs:
               p=root/name;text=p.read_text()
               if task not in text:p.write_text(text+block)
           # Refresh every pre-existing binding plus this task's files after all bound writes.
-          extra=['.github/workflows/pr16-bp-party-retention-native.yml','scripts/pr16_bp_party_retention_successor.py','scripts/pr16_bp_party_retention_native.py','tests/test_pr16_bp_party_retention_successor.py','tests/test_pr16_bp_party_retention_native.py',str(evidence_path),'content/modernization/pr16_bp_party_retention_wip.json','content/modernization/p08_remaining_work.json']
+          extra=['.github/workflows/pr16-bp-party-retention-native.yml','scripts/pr16_bp_party_retention_successor.py','scripts/pr16_bp_party_retention_native.py','tests/test_pr16_bp_party_retention_successor.py','tests/test_pr16_bp_party_retention_native.py',str(evidence_path),'content/modernization/pr16_bp_party_retention_wip.json']
           bindings=state.setdefault('source_bindings',{})
           for name in sorted(set(bindings)|set(extra)):
               raw=(root/name).read_bytes();bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}

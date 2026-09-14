@@ -5064,3 +5064,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Files changed: scripts/pr16_bp_party_retention_abi_cache.py、tests/test_pr16_bp_party_retention_abi_cache.py、ABI証拠JSON、WIP JSON、固定引継ぎMD/JSON、design/run_log.md、design/version_log.md。一時export workflowは最終記録commitで削除。
 - Commit: 実装commit=7bfbaeae42005ec6c133f316f07fb75dce438cad。記録commitはこの追記を含み、自己SHA追記を行わない。branchは毎回live HEADを確認して非force fast-forward。
 - Next: 照合済み0x090DD51Cのtrue pathだけへ既存保持wrapperを最小接続し、修復後native個体保持を検証。保持確認前に2/3戦目・BP報酬へ進まない。
+
+
+## 2026-09-14T09:02:10Z — USER-20260914-BP-RETENTION-RUNTIME
+- Timestamp: 2026-09-14T09:02:10Z
+- Version: PR16 scoped party-retention runtime repair
+- Task: USER-20260914-BP-RETENTION-RUNTIME / player true path限定の保持wrapper接続とnative個体保持
+- Status: DONE_SCOPED_NATIVE_RETENTION / 2・3戦目とBP報酬は未完
+- Summary: run34825059791/job103915172830で保持wrapperを0x090DD51Cのplayer predicateへ限定接続。交換確定時の600byte party、3個体identity、交換個体が次戦chooser/actionまで一致。新規emulator 1、受入済み取消/Save/Continue再実行0。2/3戦目・BP報酬は未受入。
+- Build: candidate SHA256 ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b / 33554432 bytes / CRC32 3EB17B36。parent 7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cdから199bytes変更。predicate callsite 0x090DD51C、near trampoline 0x092CFF28、runtime entry 0x09FF4735。第二predicate、global special table、save layout、宣言外bytesは変更0。
+- Native: run34825059791/job103915172830/artifact10339976783（sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f）。新規process=1、fresh core=1、受入済み取消/Save/Continue再実行=0。交換確定frame 17345、次chooser 17389、次action 18987で600bytes/3個体/交換個体一致、first_changed=null。
+- Actions boundary: native build・限定patch・1process保持検証・artifact uploadは成功。workflow全体はrecord段でmutable P08をsource bindingへ含めたためresume fixture 5件がstale sourceで停止し、commit/pushは0。native failureには読み替えない。今回P08をimmutable bindingから除外し、focused検証を再実行して記録した。
+- Verify: artifact ZIP SHA256/size、source snapshot全106ファイルhash、candidate patch3領域、focused successor5 + native5、resume18、pr16_resume.py check、YAML parse、git diff --checkを確認。受入済みstatic ABI/owner/取消・Save・Continueは再実行0。
+- Files changed: party-retention successor/native implementationとtests/workflow、保持証拠、WIP/固定resume/P08、design/run_log.md、design/version_log.md。一時source snapshot workflowは最終記録commitで削除。
+- Commit: この記録を含む非force fast-forward commit。native検証入力HEAD=10e535a046441dd3b797918106259b5c57b69716、記録入力HEAD=f2b8e2b761c8105e3389d7f628e69dc7317ba3bc。自己SHAは文書へ追記しない。
+- Boundary: native party retentionのみscoped完了。2/3戦目、3勝BP稼得、BP消費、release、merge、draft解除、active baseline変更なし。
+- Next: 同じ保持修復candidateでnative 2/3戦目を進め、正確な3勝BP報酬を検証する。BP確認前に消費受入へ進まない。
