@@ -2637,3 +2637,20 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。一次資料検索語 site:sourceware.org/cgen/gen-doc/arm-thumb-insn.html Thumb ldr pop bx semantics; https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html。Thumb-1の分岐、load/store幅、BLを照合。
 - Boundary: 全体guard既存違反は前後同一/新規0を要求。全体guard PASS・全CI green・merge/release/baseline変更は主張しない。
 - Next: 次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。
+
+
+## 2026-09-15T18:23:38.789389+00:00 — PR-P08-7-RING-COMMON-TAIL-BYTES
+- Timestamp: 2026-09-15T18:23:38.789389+00:00
+- Task: PR-P08-7-RING-COMMON-TAIL-BYTES / 未読共通末尾1根の限定採取
+- Status: DONE / 限定採取工程。Ring通常取得・ABI全体の受入ではない。
+- Version: PR16 common-tail bytes
+- Summary: 未読共通末尾0x0806DE3Dの1根だけを最大56byte範囲で6命令/12byte採取・保存。採取工程は完了。返却pointer生成/復元のABIは保存byteで検証する。zero54命令の限定ABI成功run35002458426を再利用。0x0806DE51/0x0806DE63と外部call3本、旧18target、保存slot/返却pointer非aliasの未証明を保持。BP受入は不変。
+- Files changed: scripts/pr16_ring_common_tail_bytes.py, tests/test_pr16_ring_common_tail_bytes.py, .github/workflows/pr16-ring-common-tail-bytes.yml, content/modernization/pr16_ring_common_tail_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系37 tests PASS、candidate全体SHA/size/CRC一致、既読命令重複0、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=b0fbc529b66f6043ccbcde0d08da8f3678247181; run=35007034033（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/受入済み再実行0。今回候補復元1、失敗attempt込み2。旧18targetと別の未読5入口保持。
+- Failed attempt: run35006120653/job104506187780は別未読入口到達でfailure、commitなし。artifact10411821592（SHA256 78fd39b3cc2323abd180e1175a12737c2570faa040ba640b71e8b903db305d9f）を原本で保持。共有decoder/採取上限/guardは緩和せず、別入口のdecode前に辺を境界化した。
+- Commit: 完了条件PASS後、同branchへ非force push。最終SHAはremote ref/recorded-result.jsonで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS解決失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_common_tail_bytes.jsonの共通末尾だけを限定ABI検証する。同じcandidateの復元/共通末尾再採取、zero54命令/helper全u16/非0側/callee prefix/FlagSet/FlagGet/15辺分類/BPを単独再実行しない。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。局所復元をcallee全体の帰還/保存slot不変/全owner除外/Ring通常取得受入へ昇格しない。
