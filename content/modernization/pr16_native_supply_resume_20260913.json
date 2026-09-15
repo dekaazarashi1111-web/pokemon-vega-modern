@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。",
+    "current_stop": "保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。",
+    "next_step": "次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -295,7 +295,8 @@
     "保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。",
     "0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。",
     "共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。",
-    "0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。"
+    "0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。",
+    "保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -368,13 +369,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。",
+    "goal_ja": "次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_epilogue_bytes.json",
-      "scripts/pr16_ring_epilogue_bytes.py",
-      "content/modernization/pr16_ring_common_tail_abi.json"
+      "content/modernization/pr16_ring_epilogue_abi.json",
+      "scripts/pr16_ring_epilogue_abi.py",
+      "content/modernization/pr16_ring_epilogue_bytes.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -383,9 +384,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "632e502f19f1caf6fcb7f48d1b58277fd02ef357",
+  "observed_head": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
   "observed_head_checks": {
-    "reason_ja": "先行run35008976649とBP run34946969126成功照合。今回run35011425946は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35011425946の原結論と保存証拠、BP run34946969126成功を照合。今回run35012341851は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -546,9 +547,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。"
+    "scope_ja": "保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1402,10 +1403,30 @@
     "content/modernization/pr16_ring_epilogue_bytes.json": {
       "size": 11229,
       "sha256": "f34fcaa88d03be1ba487ab331e62ef35a5958ce6866101d390a2262842249d61"
+    },
+    "scripts/pr16_ring_followup_v2.py": {
+      "size": 11453,
+      "sha256": "71e33dbe40cd8988e185256821e33e6a1e06e4eddeb8ee6a3eb9047a4d3c49f7"
+    },
+    "scripts/pr16_ring_epilogue_abi.py": {
+      "size": 9760,
+      "sha256": "adba38339e92de6af172322e0d7b99e2713db86291c2eced757a9ba4b3988403"
+    },
+    "tests/test_pr16_ring_epilogue_abi.py": {
+      "size": 2856,
+      "sha256": "fcfbccf802693932c71778c663f906a9a84d975d80bf186a0f5ffae72e24e94f"
+    },
+    ".github/workflows/pr16-ring-epilogue-abi.yml": {
+      "size": 1354,
+      "sha256": "b308744801acf28b6682ceaa1590ad9b6bee61b1b94da9562dcf5b8f59609795"
+    },
+    "content/modernization/pr16_ring_epilogue_abi.json": {
+      "size": 11160,
+      "sha256": "a336594a386f5b9f69c2832e35646daad5ff8ca33f2ce4d83a219ed36207f5cc"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。",
+  "source_change_review_ja": "保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1725,5 +1746,10 @@
     "path": "content/modernization/pr16_ring_epilogue_bytes.json",
     "source_head": "632e502f19f1caf6fcb7f48d1b58277fd02ef357",
     "run_id": 35011425946
+  },
+  "ring_epilogue_abi": {
+    "path": "content/modernization/pr16_ring_epilogue_abi.json",
+    "source_head": "c87afbb7619897cb840b1a3388f7f060e4b10acb",
+    "run_id": 35012341851
   }
 }

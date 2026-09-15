@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。
+保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。
 
-**次: 保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。**
+**次: 次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `632e502f19f1caf6fcb7f48d1b58277fd02ef357`。
+証拠のsource HEAD: `c87afbb7619897cb840b1a3388f7f060e4b10acb`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_epilogue_abi.json`
+- `scripts/pr16_ring_epilogue_abi.py`
 - `content/modernization/pr16_ring_epilogue_bytes.json`
-- `scripts/pr16_ring_epilogue_bytes.py`
-- `content/modernization/pr16_ring_common_tail_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -102,6 +102,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。
 - 共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。
 - 0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。
+- 保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。
 
 ## 次セッションへ残す更新手順
 
@@ -131,6 +132,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35008976649とBP run34946969126成功照合。今回run35011425946は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35011425946の原結論と保存証拠、BP run34946969126成功を照合。今回run35012341851は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -2687,3 +2687,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:13:49.324485+00:00 — PR-P08-7-RING-EPILOGUE-ABI
+- Timestamp: 2026-09-15T19:13:49.324485+00:00
+- Task: PR-P08-7-RING-EPILOGUE-ABI / 保存末尾3命令の条件付き帰還ABIとpush読戻しを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-epilogue-abi
+- Summary: 保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。
+- Files changed: scripts/pr16_ring_epilogue_abi.py, tests/test_pr16_ring_epilogue_abi.py, .github/workflows/pr16-ring-epilogue-abi.yml, content/modernization/pr16_ring_epilogue_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定16 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c87afbb7619897cb840b1a3388f7f060e4b10acb; run=35012341851（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。
