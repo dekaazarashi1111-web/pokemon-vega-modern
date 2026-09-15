@@ -5253,3 +5253,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsと既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料検索なし。
 - Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS、全Actions green、Ring受入を主張しない。merge/release/baseline変更なし。
 - Next: 保存済みpr16_ring_callee_bytes.jsonの0x09097105 graphからreturn/SP/r4と返却pointer・stack非alias条件を限定検証する。candidate/FlagSet/FlagGet再採取、15辺再分類、BP再実行はしない。旧18target台帳を削らず、全caller/全owner/Ring正規取得受入へ昇格しない。
+
+
+## 2026-09-15T13:56:19.475603+00:00 — PR-P08-7-RING-CALLEE-ABI
+- Timestamp: 2026-09-15T13:56:19.475603+00:00
+- Task: PR-P08-7-RING-CALLEE-ABI / 未読callee prefixのABI・非alias境界検証
+- Status: DONE / 指定1根の限定検証を実装・検証・記録。callee全帰還/Ring正規取得は未完。
+- Version: PR16 callee ABI boundary
+- Summary: 0x09097105の保存済み10命令/22byteを限定検証。PUSH {r4-r6,lr}で追加16byte、FlagSet継承8byteと合わせてSP=-24、callee entry LR保存offsetは元entry SPから-12。引数low16をr0/r4/r6へ渡しBL 0x091281D1。helper帰還時は非0→0x090970F7、0→literal BX 0x0806DDBDへ進む。観測prefixにPOP/returnなし。literalはcode targetで返却data pointerではない。callee帰還/SP/r4復元/非aliasは未証明。旧18target台帳を維持し、この3外部targetを追加境界に記録。BP受入不変。
+- Files changed: scripts/pr16_ring_callee_abi.py, tests/test_pr16_ring_callee_abi.py, .github/workflows/pr16-ring-callee-abi.yml, content/modernization/pr16_ring_callee_abi.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規ABI/異常系＋固定resume 47 tests PASS。render/check PASS、check副作用0、BP checkpointと保存byte/source binding不変。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_callee_abi.json; source=85e0b2a4558d5ec74f032f6b6cead6df249089a0; run=34978245004（保存時in_progress）。採取run34976478801/job104405361675は36tests PASS・checkpoint4c836bb、artifact10399054270のSHA-256をconnector取得byteと照合。
+- Preserved: 本セッションROM変更/native/受入済み単独再実行/15辺再分類0。同一candidate再構築1は新規byte採取のみ、ABI工程0。旧18targetを保持し追加未読3targetを別記。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote refとresult artifactで照合。
+- Network: GitHub connector/Actions、既存hash固定入力。外部検索語「site.github.com/ARM-software/abi-aa aapcs32 r4 r8 SP preserved」および「site.developer.arm.com ARM7TDMI Thumb PUSH POP BX instruction set」。公式AAPCS32 https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst の本文を確認。ARM7TDMI https://developer.arm.com/documentation/ddi0029/g/CIHEDIDG は検索抄録のみで本文取得は失敗。r4等/SP保存は呼出規約の要求であり、未読helperが遵守する実証とはしない。
+- Boundary: 既存全体guard違反は前後一致/新規差分0を要求し全体PASSとは呼ばない。通常CI action_requiredを成功へ改称しない。merge/release/baseline変更なし。
+- Next: 次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。

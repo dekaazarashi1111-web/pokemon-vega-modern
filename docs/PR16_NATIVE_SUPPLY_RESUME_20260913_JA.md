@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-WIP: 旧未読callee 0x09097105だけを同一candidateから10命令採取し保存。帰還/SP/r4/返却pointerの検証は次のsource-only工程。旧18target台帳、継承frame、BP正式受入は維持。
+0x09097105の保存済み10命令/22byteを限定検証。PUSH {r4-r6,lr}で追加16byte、FlagSet継承8byteと合わせてSP=-24、callee entry LR保存offsetは元entry SPから-12。引数low16をr0/r4/r6へ渡しBL 0x091281D1。helper帰還時は非0→0x090970F7、0→literal BX 0x0806DDBDへ進む。観測prefixにPOP/returnなし。literalはcode targetで返却data pointerではない。callee帰還/SP/r4復元/非aliasは未証明。旧18target台帳を維持し、この3外部targetを追加境界に記録。BP受入不変。
 
-**次: 保存済みpr16_ring_callee_bytes.jsonの0x09097105 graphからreturn/SP/r4と返却pointer・stack非alias条件を限定検証する。candidate/FlagSet/FlagGet再採取、15辺再分類、BP再実行はしない。旧18target台帳を削らず、全caller/全owner/Ring正規取得受入へ昇格しない。**
+**次: 次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `680ec66c4406ee027b389585ae06a98cf6b86176`。
-未読callee1根を採取したsource HEAD。最終commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `85e0b2a4558d5ec74f032f6b6cead6df249089a0`。
+保存済みcallee prefixのframe/外部境界を検証したsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_callee_abi.json`
+- `scripts/pr16_ring_callee_abi.py`
 - `content/modernization/pr16_ring_callee_bytes.json`
-- `scripts/pr16_ring_callee_bytes.py`
 - `content/modernization/pr16_ring_frame_join.json`
 - `content/modernization/pr16_ring_flagset_continuation.json`
-- `content/modernization/pr16_ring_indirect_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -94,6 +94,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x0806DE7Dの1根byte採取は完了。同一candidate/sourceで再採取せず、保存した継続graphを再利用する。継承8byte frame・旧18未読target・全owner未除外を保持し、Ring通常取得の受入へ読み替えない。
 - FlagSet継続の継承frame結合は条件付きで完了。opaque callee 0x09097105のreturn/SP/r4/保存slotと返却pointer非aliasは未証明。結合を全owner除外やRing受入へ昇格せず、同一入力で単独再実行しない。
 - 0x09097105の限定byte採取は保存済み。保存graphを再利用し、同一candidateから再採取しない。帰還/SP/r4/非alias検証は別工程。
+- 0x09097105の10命令/22byteと追加16byte live-frameの限定検証は完了。helper091281D1・非0継続090970F7・0継続0806DDBDは未読。callee return/SP/r4/返却pointer非aliasを受入せず、literal code pointerを返却bufferへ読み替えない。同一prefixを再採取しない。
 
 ## 次セッションへ残す更新手順
 
@@ -123,6 +124,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前回frame結合run34974346670とBP run34946969126はcompleted/successを照合。採取run34976478801は保存時in_progress。通常CI action_requiredは成功に読み替えずreceiptにsnapshotを保存。
+採取run34976478801・frame結合run34974346670・BP run34946969126はcompleted/successを照合。今回run34978245004は保存時in_progress。通常CI action_requiredは成功へ読み替えずreceiptへ最新snapshot保存。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
