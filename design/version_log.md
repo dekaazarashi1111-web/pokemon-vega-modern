@@ -2605,3 +2605,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。検索語「ARM Thumb POP PC semantics」、一次資料 https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html#insn-pop-pc。POP低register昇順load→PC・SP更新のencoding/意味だけ参照。
 - Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・全owner除外・merge・release・baseline変更を主張しない。
 - Next: 次は未読0x0806DDBDだけを優先し、helper zero側の返却値生成・SP/r4-r6/保存slot復元を限定確認する。今回の非0継続POP、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BP受入を再採取/単独再実行しない。旧18targetを削らず、非0側の条件付き帰還をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T17:18:54.368346+00:00 — PR-P08-7-RING-ZERO-BYTES
+- Timestamp: 2026-09-15T17:18:54.368346+00:00
+- Task: PR-P08-7-RING-ZERO-BYTES / zero継続一根採取
+- Status: STOPPED / 採取保存工程完了。同一作業のABI検証へ続行。
+- Version: PR16 zero bytes checkpoint
+- Summary: WIP: 未読0x0806DDBDだけを最大128byte範囲で54命令/114byte採取し保存。zero側の返却値・SP/r4-r6/保存slotは保存byteで検証する。非0側の既証明条件付き帰還・旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_zero_bytes.py, tests/test_pr16_ring_zero_bytes.py, .github/workflows/pr16-ring-zero-bytes.yml, content/modernization/pr16_ring_zero_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系18 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=9df0a6c7fd9fcf34ee307346afcea209e8323817; run=35000269301（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/受入済み再実行0。候補復元1。旧18target保持。
+- Commit: checkpointを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。
