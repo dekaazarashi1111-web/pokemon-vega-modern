@@ -100,6 +100,12 @@ class BpSpendingContractTests(unittest.TestCase):
         self.assertNotIn("call_preserving", route)
         self.assertNotIn("write", route)
 
+    def test_shop_facing_uses_direction_not_npc_local_id(self) -> None:
+        source = (ROOT / spending.SOURCE).read_text()
+        self.assertIn("#define BS_FACING_NORTH 2U", source)
+        self.assertIn(")&15U)==BS_FACING_NORTH", source)
+        self.assertNotIn(")&15U)==BS_LOCAL_ID", source)
+
 
 if __name__ == "__main__":
     unittest.main()

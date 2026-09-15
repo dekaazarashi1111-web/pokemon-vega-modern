@@ -6,6 +6,7 @@
 #define BS_ITEM_ID 0x0310U
 #define BS_PRICE_BP 1U
 #define BS_LOCAL_ID 3U
+#define BS_FACING_NORTH 2U
 #define BS_MAP_GROUP 96U
 #define BS_MAP_NUMBER 5U
 #define BS_REWARD_X 20U
@@ -162,9 +163,12 @@ static struct BSResult bs_spend(struct mCore **core,struct mCore *original,
     r.bp_before=read16(c,BP_F(battle_points));
     bs_trace(c,"reward-field");bs_walk_to_shop(c);bs_trace(c,"shop-facing");
     unsigned avatar=read8(c,P02S_PLAYER_AVATAR+5U);
+    /* Offset 0x18 is the player object's facing nibble, not the target NPC's
+     * local ID.  The following live BP-menu contract binds local ID 3; this
+     * guard only proves that ordinary input settled the player northward. */
     bp_require(c,avatar<16U
-        && (read8(c,P02S_OBJECT_EVENTS+avatar*0x24U+0x18U)&15U)==BS_LOCAL_ID,
-        "physical BP shop facing/local-id differs");
+        && (read8(c,P02S_OBJECT_EVENTS+avatar*0x24U+0x18U)&15U)==BS_FACING_NORTH,
+        "physical BP shop facing north differs");
     r.interaction=b_frames+1U;b_press(c,QOL_KEY_A,120U);
     bs_wait_menu(c);r.menu=b_frames;bs_trace(c,"menu");g_shot("bp-shop-menu");
     b_press(c,QOL_KEY_A,60U);
