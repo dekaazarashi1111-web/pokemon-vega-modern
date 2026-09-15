@@ -1,0 +1,69 @@
+name: pr16-ring-compiled-owner
+run-name: Ring compiled owner限定検証・受入済みnative再実行なし
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-compiled-owner.yml
+      - scripts/pr16_ring_compiled_owner.py
+      - tests/test_pr16_ring_compiled_owner.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-compiled-owner
+  cancel-in-progress: false
+jobs:
+  scoped-owner:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exact HEAD照合と必要tracked textのbyte一致snapshot（WIP）
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,zipfile
+          root=pathlib.Path('.');out=root/'.local/pr16-ring-compiled-owner';out.mkdir(parents=True,exist_ok=True)
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA']
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          pr=api('pulls/16')
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==head and pr['head']['ref']=='codex/modernization-followup-20260908'
+          assert pr['head']['repo']['full_name']==repo
+          assert api('git/ref/heads/codex/modernization-followup-20260908')['object']['sha']==head
+          names=['AGENTS.md','CHATGPT_RESUME.md','scripts/pr16_resume.py','tests/test_pr16_resume.py','scripts/pr16_ring_owner.py','tests/test_pr16_ring_owner.py','scripts/guard_private_files.py','content/modernization/pr16_bp_chooser_checkpoint.json','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json','content/modernization/pr16_ring_owner_resolution.json','content/event_design_implementation/event_plan.json','config/event_design_bindings.csv','overlays/event_design/event_design.c','scripts/build_event_design_stage.py','scripts/pr16_bp_party_retention_successor.py','scripts/pr16_bp_candidate_return_audit.py','scripts/pr16_p05_supply_owner.py','tools/stage61_interaction_oracle.py']
+          tracked=set(subprocess.check_output(['git','ls-files','-z']).decode().split('\0'))
+          names += [p for p in tracked if p.endswith('/AGENTS.md') and p.split('/')[0] in {'scripts','tests','overlays','content','config','design','.github','docs'}]
+          bound={};missing=[]
+          with zipfile.ZipFile(out/'tracked-text.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(set(names)):
+                  if name not in tracked:missing.append(name);continue
+                  p=root/name;assert p.is_file() and not p.is_symlink()
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
+                  assert raw==subprocess.check_output(['git','show',head+':'+name])
+                  z.writestr(name,raw);bound[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          runs=api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')['workflow_runs']
+          summary={'status':'WIP_EXACT_SOURCE_SNAPSHOT_NOT_COMPILED_OR_NATIVE_ACCEPTANCE','source_head':head,'run_id':int(os.environ['GITHUB_RUN_ID']),'files':bound,'missing_optional_paths':missing,'actions_observed':[{k:r[k] for k in ('id','name','head_sha','status','conclusion')} for r in runs],'new_emulator_processes':0,'rom_changes':0,'ring_acquisition_accepted':False,'release_ready':False}
+          (out/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in summary.items() if k not in {'files','actions_observed'}}))
+          PY
+          python3 scripts/pr16_resume.py check
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-ring-compiled-owner-source
+          path: .local/pr16-ring-compiled-owner/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
