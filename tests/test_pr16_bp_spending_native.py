@@ -6,6 +6,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import pr16_bp_spending_native as spending
+from test_pr16_bp_shop_observer_abi import BpShopObserverAbiTests
 
 class BpSpendingContractTests(unittest.TestCase):
     def row(self) -> dict[str, object]:
@@ -48,8 +49,8 @@ class BpSpendingContractTests(unittest.TestCase):
         source = (ROOT / spending.SOURCE).read_text()
         for marker in (
             "#define BS_ITEM_ID 0x00C3U", "#define BS_CATALOG_INDEX 3U",
-            "#define BS_PRICE_BP 4U", "BS_STATE + 0x5AU", "BS_STATE + 0x5CU",
-            "BS_STATE + 0x5EU", "BS_STATE + 0x60U", "b_to(c,BS_SHOP_X,BS_SHOP_Y)",
+            "#define BS_PRICE_BP 4U", "BS_STATE + 0x24U", "BS_STATE + 0x26U",
+            "BS_STATE + 0x28U", "BS_STATE + 0x2AU", "b_to(c,BS_SHOP_X,BS_SHOP_Y)",
             ")&15U)==BS_FACING_NORTH",
         ):
             self.assertIn(marker, source)

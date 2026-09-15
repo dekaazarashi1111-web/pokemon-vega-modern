@@ -13,12 +13,13 @@
 #define BS_REWARD_X 20U
 #define BS_SHOP_X 22U
 #define BS_SHOP_Y 20U
+/* BpShopVolatileState has eligible[18], not MegaShop eligible[45]. */
 #define BS_ELIGIBLE_BASE BS_STATE
-#define BS_LAST_RESULT (BS_STATE + 0x5AU)
-#define BS_LAST_INDEX (BS_STATE + 0x5CU)
-#define BS_ELIGIBLE_COUNT (BS_STATE + 0x5EU)
-#define BS_PAGE (BS_STATE + 0x5FU)
-#define BS_WINDOW_ID (BS_STATE + 0x60U)
+#define BS_LAST_RESULT (BS_STATE + 0x24U)
+#define BS_LAST_INDEX (BS_STATE + 0x26U)
+#define BS_ELIGIBLE_COUNT (BS_STATE + 0x28U)
+#define BS_PAGE (BS_STATE + 0x29U)
+#define BS_WINDOW_ID (BS_STATE + 0x2AU)
 #define BS_RESULT_SUCCESS 0U
 #define BS_RESULT_BUSY 9U
 #define BS_BASE_REWARD_BP 9U
