@@ -2703,3 +2703,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T19:16:54.910228+00:00 — PR-P08-7-RING-HIGH-BRANCH-BYTES
+- Timestamp: 2026-09-15T19:16:54.910228+00:00
+- Task: PR-P08-7-RING-HIGH-BRANCH-BYTES / 未読高域分岐1根を採取し保存済み末尾との境界を記録
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-high-branch-bytes
+- Summary: 未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。
+- Files changed: scripts/pr16_ring_high_branch_bytes.py, tests/test_pr16_ring_high_branch_bytes.py, .github/workflows/pr16-ring-high-branch-bytes.yml, content/modernization/pr16_ring_high_branch_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定8 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fad0e881c26ec79a937be0c657d02c268809cec6; run=35012559981（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。
