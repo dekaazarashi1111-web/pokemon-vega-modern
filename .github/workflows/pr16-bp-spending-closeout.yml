@@ -28,7 +28,7 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib,json,pathlib,subprocess,zipfile
+          import hashlib,json,pathlib,re,subprocess,zipfile
           root=pathlib.Path('.')
           out=root/'.local/pr16-bp-spending-closeout'
           out.mkdir(parents=True,exist_ok=True)
@@ -43,15 +43,26 @@ jobs:
               'content/modernization/p08_remaining_work.json',
               'scripts/pr16_resume.py','tests/test_pr16_resume.py',
               'scripts/pr16_bp_spending_native_impl.py',
+              'scripts/pr16_bp_progress_closeout.py',
+              'scripts/pr16_bp_battle_return_closeout.py',
+              'scripts/guard_private_files.py','scripts/validate_task_graph.py',
               'overlays/bp_shop_runtime/bp_shop_runtime.c',
               'overlays/bp_shop_runtime/bp_shop_runtime.h',
               'scripts/build_bp_shop_runtime.py','manifests/facility_rewards.csv',
               'overlays/factory_reward_runtime/factory_reward_runtime.c',
               'design/run_log.md','design/version_log.md',
           ]
-          extra=[p for p in tracked if p.endswith('/AGENTS.md') or
-                 (p.startswith('scripts/') and 'guard' in p and p.endswith('.py'))]
-          paths=sorted(set(paths+extra))
+          needles=(b'BpShopVolatileState',b'BP_SHOP_CATALOG_COUNT',b'0203ED40',b'bp_shop_runtime')
+          for name in tracked:
+              p=root/name
+              if not name.startswith(('scripts/','tools/','overlays/','tests/','config/','content/modernization/')):
+                  continue
+              if p.suffix not in ('.py','.c','.h','.json') or not p.is_file() or p.is_symlink():
+                  continue
+              raw=p.read_bytes()
+              if len(raw)<3000000 and any(needle in raw for needle in needles):
+                  paths.append(name)
+          paths=sorted(set(paths))
           manifest={}
           with zipfile.ZipFile(out/'tracked-text.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in paths:
@@ -60,10 +71,11 @@ jobs:
                   assert p.is_file() and not p.is_symlink()
                   raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
                   assert len(raw)<12000000
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
                   z.writestr(name,raw)
                   manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          context=[p for p in tracked if p.endswith('AGENTS.md') or 'closeout' in p or
-                   (p.startswith('scripts/') and ('guard' in p or 'task' in p))]
+          context=[p for p in tracked if p.endswith('AGENTS.md') or 'bp_shop' in p or 'closeout' in p or
+                   (p.startswith(('scripts/','config/','overlays/')) and ('economy' in p or 'modernization' in p))]
           (out/'manifest.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'sources':manifest,'context_paths':context},indent=2)+'\n')
           PY
           git diff --exit-code
