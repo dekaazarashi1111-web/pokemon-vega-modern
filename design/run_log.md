@@ -5317,3 +5317,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
 - Next: 保存済みpr16_ring_nonzero_bytes.jsonの0x090970F7継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。0x0806DDBDは未読。callee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T15:48:27.128076+00:00 — PR-P08-7-RING-NONZERO-ABI
+- Timestamp: 2026-09-15T15:48:27.128076+00:00
+- Task: PR-P08-7-RING-NONZERO-ABI / 非0継続の限定帰還・stack結合
+- Status: DONE / 指定非0継続の実装・検証・記録完了。Ring通常取得とcallee全体帰還は未完。
+- Version: PR16 nonzero conditional ABI
+- Summary: 保存済み0x090970F7は70bd=POP {r4-r6,pc}の1命令2byte。helper非0側だけで保存r4/r5/r6とsaved LRからPCを復元し、SPはFlagSet基準-24→-8、callee入口へ戻る。帰還先0x0806DE81、r0返却pointer不変、pointer参照/書込み0、外側8byte frameと保存slotは残る。LR register自体は復元せず0x09097113を保持。既証明prefix/helperと有効不変stackを前提とするsource結合で、native帰還は未観測。未読0x0806DDBD、callee全体/返却pointer非alias/全caller・ownerは未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_nonzero_abi.py, tests/test_pr16_ring_nonzero_abi.py, .github/workflows/pr16-ring-nonzero-abi.yml, content/modernization/pr16_ring_nonzero_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: POP/結合異常系27 tests PASS、render/check PASS、BP checkpoint不変、task graph・最終index差分guard・diff必須。
+- Evidence: source=558ed9e28ca9318c2a3d8d9829775850d15f3a2c; run=34990811278（記録時in_progress）。採取run34988999991・helper・BP原本はsuccess照合。
+- Preserved: ROM変更/native/既読graph/15辺再分類/受入済み単独再実行0。セッション候補復元1、当工程0。旧18target保持。
+- Commit: 完了記録を同branchへ非force push。自己SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions。検索語「ARM Thumb POP PC semantics」、一次資料 https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html#insn-pop-pc。POP低register昇順load→PC・SP更新のencoding/意味だけ参照。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・全owner除外・merge・release・baseline変更を主張しない。
+- Next: 次は未読0x0806DDBDだけを優先し、helper zero側の返却値生成・SP/r4-r6/保存slot復元を限定確認する。今回の非0継続POP、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BP受入を再採取/単独再実行しない。旧18targetを削らず、非0側の条件付き帰還をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
