@@ -2509,3 +2509,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsでexact HEADと最新runを照合。container直接Git取得はDNS失敗。private入力復元・外部技術資料検索なし。
 - Boundary: 帰還はopaque calleeと非aliasの仮定付き。全体private guardの既存違反は前後一致・新規違反0を要求し全体PASSと混同しない。通常CI action_requiredをsuccessへ変更しない。merge/release/baseline変更なし。
 - Next: 保存済みFlagSet継続と継承8byte frameの条件付き結合は完了。次は旧18未読targetのうち0x09097105だけを優先し、0x0806DDB5 veneerから渡るcalleeのreturn・SP/r4保存・返却pointerとstack非alias条件を限定確認する。0x0806DE7D/FlagGetの再採取、15間接辺の再分類、受入済みBPの再実行はしない。旧18targetの台帳を削らず、条件付き帰還をstack integrity/全caller/全owner除外やRing通常取得へ昇格しない。
+
+
+## 2026-09-15T13:41:26.807564+00:00 — PR-P08-7-RING-CALLEE-BYTES
+- Timestamp: 2026-09-15T13:41:26.807564+00:00
+- Task: PR-P08-7-RING-CALLEE-BYTES / 未読calleeの限定採取checkpoint
+- Status: STOPPED / 採取保存工程のみ完了。次に同じ保存byteでABIを検証する。
+- Version: PR16 callee bytes checkpoint
+- Summary: WIP: 旧未読callee 0x09097105だけを同一candidateから10命令採取し保存。帰還/SP/r4/返却pointerの検証は次のsource-only工程。旧18target台帳、継承frame、BP正式受入は維持。
+- Files changed: scripts/pr16_ring_callee_bytes.py, tests/test_pr16_ring_callee_bytes.py, .github/workflows/pr16-ring-callee-bytes.yml, content/modernization/pr16_ring_callee_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規採取異常系/固定resume 36 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diffを必須gateとする。
+- Evidence: source=680ec66c4406ee027b389585ae06a98cf6b86176; run=34976478801（保存時in_progress）。
+- Preserved: ROM変更/native/既存15辺再分類/受入済み単独再実行0。未読byte用の同一candidate再構築1。旧18target台帳は削除しない。
+- Commit: このcheckpointを同branchに非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actionsと既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料検索なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS、全Actions green、Ring受入を主張しない。merge/release/baseline変更なし。
+- Next: 保存済みpr16_ring_callee_bytes.jsonの0x09097105 graphからreturn/SP/r4と返却pointer・stack非alias条件を限定検証する。candidate/FlagSet/FlagGet再採取、15辺再分類、BP再実行はしない。旧18target台帳を削らず、全caller/全owner/Ring正規取得受入へ昇格しない。
