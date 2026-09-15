@@ -5174,3 +5174,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branchへの非force commit。自己SHAはremote ref/recorded-resultで確認。
 - Network: GitHub connector/Actions。ROM/save/private入力の追加なし。既存full guard違反は保持し、前後出力完全一致と追加違反0を要求。全Actions green/merge/release/baseline切替は主張しない。
 - Next: 成功済みcallstd4と6 native入口の証拠を再実行せず再利用し、FlagSet 0x0806DE75→0x093775C5、SaveFinalize 0x092D28D9→0x093BDD7Dのpatch先と、記録された未解決callee/標準script engine handlerだけを限定追跡する。callstd4のscript層はmessage/wait/returnだがengine副作用やRing giver不存在は未証明。通常取得ownerが未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
+
+
+## 2026-09-15T11:47:02.715378+00:00 — PR-P08-7-RING-PATCH-OWNER
+- Timestamp: 2026-09-15T11:47:02.715378+00:00
+- Task: PR-P08-7-RING-PATCH-OWNER
+- Status: DONE / patch先・標準handler有限追跡の実装・検証・記録。Ring通常取得は未受入。
+- Version: PR16 Ring patch/handler bounded frontier
+- Summary: 既存6入口/callstd4を再走査せず、両patch先と4標準handler、記録済みcalleeから24 graph/366命令を検証。56 memory-write siteを保持。未知命令を推測せず、18未読targetと15間接辺を未解決として出力する。
+- Verify: 新規18 tests PASS、run34964225479/job104364767602 success。記録/固定resume 36 tests PASS。task graph、read-only check、最終index差分guard、diffをcommit必須gateとする。
+- Evidence: content/modernization/pr16_ring_patch_owner.json; source HEAD=03ca035d5617b4d381845189e15838b5ba495a7d; artifact10394980742; SHA256=abfd6019728f39df7ce64f8dce8b2c0a49fadfdec2670f7005a3ef8dd117b879。
+- Preserved: candidate ceddbe91/CRC3EB17B36とBP checkpoint/原本は不変。候補再構築1、native0、受入済み単独再実行0、ROM変更0。P03自動CI failure/action_requiredを成功に読み替えない。
+- Files changed: 新規監査/記録helper・tests・workflows、receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとrecorded-resultで照合。
+- Network: GitHub connector/Actions。containerの直接Git取得はDNS失敗のため使用せず、権限不足とは扱わない。ROM/save/private入力の新規追跡なし。既存全体guardの違反は保持し前後完全一致・追加違反0を要求。merge/release/baseline切替なし。
+- Next: 成功run34964225479の24 graph/366命令、callstd4/旧6入口を再実行せず、保存済みgraphから15間接辺を戻り番地とR3 trampolineにABI/dataflowで分類する。特にQOL_FEATURE→0x09376F45、FlagSet→0x09377615、0x093789F3→0x0806DE7Dを確認し、18未読targetは必要なrootだけ追加採取する。全owner未除外のままRing story giftを新設しない。通常取得ownerの未実装を確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
