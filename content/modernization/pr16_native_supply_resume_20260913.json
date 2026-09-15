@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存済み15間接辺をABI/dataflowで分類。12辺はentry LRのpush/popとSP復元を確認したABI return、2辺は記録済みcallsite限定R3 trampoline、1辺は8byte live frameを保持した0x0806DE7Dへの分岐。QOL_FEATURE→0x09376F45→0x0806DEC5、FlagSet→0x09377615→既存SAVE_FINALIZE veneer→0x093BDD7Dを結合。旧18未読targetは不変、新規未読1targetを明示。全caller・全ownerの網羅性、stack memory corruption不存在、Ring通常取得は未証明。BP正式受入run34946969126は不変。",
+    "current_stop": "未読だった0x0806DE7Dのみ同一candidateから15命令/32命令byteを採取。継承8byte frameとentry LR保存offset -4を保持。旧18未読targetは不変、新規未読0targetを明示。call/returnと継承frameの結合・stack integrity・全caller/全owner網羅性・Ring通常取得は未証明。保存済み15間接辺分類とBP正式受入run34946969126は再実行せず不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。",
+    "next_step": "0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -282,7 +282,8 @@
     "Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。",
     "run34960361700の34 tests/callstd4/6入口はsource不変なら再実行しない。patch先の未観測実体と未解決辺だけを進める。BP受入原本は不変。",
     "run34964225479の18 tests・24 graph/366命令は同一source/candidateなら再実行しない。残る18target/15間接辺だけを進める。Ring通常取得受入や全owner不存在へ読み替えない。",
-    "15間接辺のABI分類12return/2callsite trampoline/1live-frame branchを同一入力で再実行しない。旧18未読targetと新1target、全caller/CFG/stack-integrityの仮定を保持し、Ring受入や全owner不存在へ昇格しない。"
+    "15間接辺のABI分類12return/2callsite trampoline/1live-frame branchを同一入力で再実行しない。旧18未読targetと新1target、全caller/CFG/stack-integrityの仮定を保持し、Ring受入や全owner不存在へ昇格しない。",
+    "0x0806DE7Dの1根byte採取は完了。同一candidate/sourceで再採取せず、保存した継続graphを再利用する。継承8byte frame・旧18未読target・全owner未除外を保持し、Ring通常取得の受入へ読み替えない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -355,15 +356,15 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。",
+    "goal_ja": "0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_flagset_continuation.json",
+      "scripts/pr16_ring_flagset_continuation.py",
       "content/modernization/pr16_ring_indirect_abi.json",
-      "scripts/pr16_ring_indirect_abi.py",
       "content/modernization/pr16_ring_patch_owner.json",
-      "content/modernization/pr16_ring_transitive_owner.json",
-      "overlays/save_migration/save_migration.c"
+      "content/modernization/pr16_ring_transitive_owner.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -372,11 +373,11 @@
     ]
   },
   "observed_date_jst": "2026-09-15",
-  "observed_head": "0449002040cefe9c7df01c2bf7804ea51fb16491",
+  "observed_head": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
   "observed_head_checks": {
-    "reason_ja": "ABI分類のsource-only検証run34968485915を記録。保存時のrunは実行中で、最終conclusion/commitはActionsで照合する。開始HEADのsource-validation run34965203985はaction_required。自動CIのfailure/action_requiredと正式native受入を混同せず、新しいActions snapshotを分類receiptへ保存。"
+    "reason_ja": "新規限定採取run34971661219は保存時in_progress。前回ABI run34968485915とBP run34946969126のcompleted/successを照合。開始HEADのPR checks action_requiredを成功へ読み替えず、最新Actions snapshotをreceiptへ保存。"
   },
-  "observed_head_semantics": "保存済みgraphのABI分類を実行したsource HEAD。完了commitとrun結論はremote ref/Actionsで確認する。",
+  "observed_head_semantics": "FlagSet継続1根のcandidate byteを採取したsource HEAD。完了commit/run結論はremote ref/Actionsで確認する。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -535,9 +536,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "既存graph上の新規ABI分類のみ。byte採取・decode・候補生成・native実行0。"
+    "scope_ja": "同一candidateの未読継続1根のみ採取。保存済み15間接辺分類/graph/受入済みnativeの単独再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1175,10 +1176,26 @@
     "content/modernization/pr16_ring_indirect_abi.json": {
       "size": 14759,
       "sha256": "a7308d8829bc02cef6fa4b2a8b3f12d57d7eb838f58350a274c6739958bd6f37"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    "tests/test_pr16_ring_flagset_continuation.py": {
+      "size": 8671,
+      "sha256": "aec54eeab43ebc90a058e9d1eb77fd52b2db5fbfd509c37119d6dd38cff37b6a"
+    },
+    ".github/workflows/pr16-ring-flagset-continuation.yml": {
+      "size": 7115,
+      "sha256": "98a2972dea4eda977ce0ee6c8d8dd24183bb42b9d7c34f966f66a0fdc6863966"
+    },
+    "content/modernization/pr16_ring_flagset_continuation.json": {
+      "size": 17058,
+      "sha256": "f42e0ce2a7716e99c01315ea6c8a5e47454437a20956c8836ab0335caba25c97"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存済み15間接辺をABI/dataflowで分類。12辺はentry LRのpush/popとSP復元を確認したABI return、2辺は記録済みcallsite限定R3 trampoline、1辺は8byte live frameを保持した0x0806DE7Dへの分岐。QOL_FEATURE→0x09376F45→0x0806DEC5、FlagSet→0x09377615→既存SAVE_FINALIZE veneer→0x093BDD7Dを結合。旧18未読targetは不変、新規未読1targetを明示。全caller・全ownerの網羅性、stack memory corruption不存在、Ring通常取得は未証明。BP正式受入run34946969126は不変。",
+  "source_change_review_ja": "未読だった0x0806DE7Dのみ同一candidateから15命令/32命令byteを採取。継承8byte frameとentry LR保存offset -4を保持。旧18未読targetは不変、新規未読0targetを明示。call/returnと継承frameの結合・stack integrity・全caller/全owner網羅性・Ring通常取得は未証明。保存済み15間接辺分類とBP正式受入run34946969126は再実行せず不変。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1399,6 +1416,15 @@
     "additional_unread_targets": [
       134667901
     ],
+    "ring_acquisition_accepted": false
+  },
+  "ring_flagset_continuation": {
+    "path": "content/modernization/pr16_ring_flagset_continuation.json",
+    "source_head": "27f29ff3ce6b26ca9b1ac439e29f655910d5eebd",
+    "run_id": 34971661219,
+    "target": 134667901,
+    "new_graph_decodes": 1,
+    "additional_unread_targets": [],
     "ring_acquisition_accepted": false
   }
 }

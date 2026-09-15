@@ -5205,3 +5205,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。container直接Git取得はDNS失敗、権限不足とは扱わない。検索語: site.github.com/ARM-software/abi-aa aapcs32 rst r0 r3 r12 lr subroutine call。一次資料: https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst ; call後r0-r3/r12/LRを未知化しSP/非揮発register保存をABI仮定とする。
 - Boundary: 開始HEADのsource-validation action_required/既存CI failureを成功へ読み替えない。既存全体private guard違反は前後一致を要求し、新規違反0を別検査。merge/release/baseline変更なし。
 - Next: 保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
+
+
+## 2026-09-15T12:55:38.925279+00:00 — PR-P08-7-RING-FLAGSET-CONTINUATION
+- Timestamp: 2026-09-15T12:55:38.925279+00:00
+- Task: PR-P08-7-RING-FLAGSET-CONTINUATION / FlagSet未読継続1根の採取
+- Status: DONE / 限定採取の実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 FlagSet continuation bytes
+- Summary: 未読だった0x0806DE7Dのみ同一candidateから15命令/32命令byteを採取。継承8byte frameとentry LR保存offset -4を保持。旧18未読targetは不変、新規未読0targetを明示。call/returnと継承frameの結合・stack integrity・全caller/全owner網羅性・Ring通常取得は未証明。保存済み15間接辺分類とBP正式受入run34946969126は再実行せず不変。
+- Verify: 新規異常系と固定resume 42 tests PASS、render/check PASS。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_flagset_continuation.json; source HEAD=27f29ff3ce6b26ca9b1ac439e29f655910d5eebd; run=34971661219（保存時in_progress、最終結論はActionsで確認）。
+- Preserved: candidate SHA-256 ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b / CRC32 3EB17B36。候補変更/ROM編集/native/受入済み単独再実行/既存15辺再分類0。未読byte取得のため同一candidate再構築1。BP checkpoint全byte不変。
+- Files changed: 新規collector/tests/workflow/receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actionsと既存hash固定入力復元のみ。container直接Git取得はDNS失敗。外部技術資料の新規検索なし。
+- Boundary: 開始HEADの通常PR checks action_requiredを成功扱いしない。既存全体private guard違反は前後一致、新規差分違反0を要求。merge/release/baseline変更なし。
+- Next: 0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
