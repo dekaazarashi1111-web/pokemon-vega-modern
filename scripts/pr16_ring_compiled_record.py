@@ -71,7 +71,11 @@ def validate_receipt(value):
 def project(state, backlog, report):
     """状態入力を壊さずRing限定参照のみ追加。BP受入/他gapはそのまま。"""
     s, b = copy.deepcopy(state), copy.deepcopy(backlog)
-    need(s['candidate'] == owner.CANDIDATE and s['bp']['spending_accepted'] is True, 'accepted BP boundary differs')
+    need({k: s['candidate'].get(k) for k in owner.CANDIDATE} == owner.CANDIDATE
+         and s['bp']['spending_accepted'] is True, 'accepted BP boundary differs')
+    need(s['candidate'].get('final_product_sha_fixed') is False
+         and s['candidate'].get('full_candidate_regression_complete') is False,
+         'candidate acceptance boundary differs')
     need(s['latest_native_run'] == 34946969126 and GAP in s['remaining_physical_gap_ids'], 'native checkpoint moved')
     rows = [r for r in b['remaining_conditions'] if r['id'] == 'NATURAL_CAPTURE_GEAR']
     need(len(rows) == 1 and GAP in rows[0]['remaining_supply_gap_ids'], 'Ring gap already closed or missing')
@@ -137,7 +141,7 @@ def logs():
         '- Version: PR16 Ring compiled owner boundary\n'
         '- Summary: map97/80の誤解しやすいscript_pointer列をtransition本体として扱い、map table、schedule、有限CFGと独立compileしたevent runtimeをcandidateのbyteへ結合。未知opcode/外部分岐/operand途中/不正Thumbをfail-closedにし、未解決nativeをgiver不存在へ昇格しない。\n'
         f'- Verify: compiled異常系24 tests PASS、Actions run{verify["run"]["id"]} / job{verify["job"]["id"]} success。記録/固定引継ぎ {tests["tests_run"]} tests PASS、read-only check、task graph、diff、最終index差分guardを必須gateとする。\n'
-        f'- Evidence: {owner.REPORT}; tested HEAD={report["source_head"]}; artifact={verify["artifact"]["id"]} / SHA256={verify["artifact"]["sha256"]}。初回run34956435284のimport失敗は保持しsuccessへ読み替えない。\n'
+        f'- Evidence: {owner.REPORT}; tested HEAD={report["source_head"]}; artifact={verify["artifact"]["id"]} / SHA256={verify["artifact"]["sha256"]}。初回run34956435284のimport失敗と記録run34957907451のmetadata比較失敗は保持しsuccessへ読み替えない。\n'
         '- Preserved: candidate ceddbe91 / CRC3EB17B36、正式BP checkpoint/原本、Ring source-only原本不変。候補再構築2回（初回CLI失敗の修正を含む）、native0、受入済み単独再実行0、ゲームruntime変更0。\n'
         '- Files changed: compiled監査と起動/異常系tests、限定検証/記録workflow、記録helper/tests、compiled receipt、P08のRing参照、固定引継ぎMD/JSON、両ログ。\n'
         '- Commit: この記録を含む同branchへの非force commit。自己SHAは外部refで確認。既存full guard failureは保持し追加違反0と前後出力完全一致を要求。\n'

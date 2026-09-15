@@ -13,7 +13,9 @@ spec.loader.exec_module(r)
 
 class RecordTests(unittest.TestCase):
     def fixture(self):
-        state={'candidate':r.owner.CANDIDATE, 'bp':{'spending_accepted':True},
+        state={'candidate':dict(r.owner.CANDIDATE, final_product_sha_fixed=False,
+                                full_candidate_regression_complete=False),
+               'bp':{'spending_accepted':True},
                'latest_native_run':34946969126,'remaining_physical_gap_ids':[r.GAP,'POLICY'],
                'next_action':{},'do_not_repeat':[], 'unrelated':{'unchanged':True}}
         backlog={'remaining_conditions':[{'id':'NATURAL_CAPTURE_GEAR',
@@ -110,6 +112,17 @@ class RecordTests(unittest.TestCase):
             if change=='gap':b['remaining_conditions'][0]['remaining_supply_gap_ids'].remove(r.GAP)
             else:b['remaining_conditions'][0]['selected_supply_entrypoints'][r.GAP]='real-owner'
             with self.subTest(change=change),self.assertRaises(ValueError): r.project(s,b,v)
+
+    def test_candidate_metadata_is_preserved_not_compared_as_identity(self):
+        s,b,v=self.fixture();ss,bb=r.project(s,b,v)
+        self.assertEqual(ss['candidate'],s['candidate'])
+        s['candidate']['sha256']='f'*64
+        with self.assertRaises(ValueError):r.project(s,b,v)
+
+    def test_candidate_metadata_cannot_promote_acceptance(self):
+        for key in ('final_product_sha_fixed','full_candidate_regression_complete'):
+            s,b,v=self.fixture();s['candidate'][key]=True
+            with self.subTest(key=key),self.assertRaises(ValueError):r.project(s,b,v)
 
     def test_native_checkpoint_advance_rejected(self):
         s,b,v=self.fixture();s['latest_native_run']=2
