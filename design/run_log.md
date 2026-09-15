@@ -5301,3 +5301,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsと前工程のhash固定入力復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致/新規違反0。全体guard PASS/全CI green/全caller/Ring受入を主張しない。merge/release/baseline変更なし。
 - Next: 次は未読0x090970F7だけを優先し、helper非0側の返却pointer使用・SP/r4-r6/保存slot復元を限定確認する。0x0806DDBDは未読として保持。helper/callee/FlagSet/FlagGet再採取、15辺再分類、BP再実行をしない。旧18targetを削らず、helper単体の帰還証明をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T15:32:48.663365+00:00 — PR-P08-7-RING-NONZERO-BYTES
+- Timestamp: 2026-09-15T15:32:48.663365+00:00
+- Task: PR-P08-7-RING-NONZERO-BYTES / 非0継続一根採取
+- Status: STOPPED / 採取保存工程完了。同一作業のABI検証へ続行。
+- Version: PR16 nonzero bytes checkpoint
+- Summary: WIP: 未読0x090970F7だけを最大14byte範囲で1命令/2byte採取し保存。helper非0側の返却pointer/SP/r4-r6/保存slotは保存byteで検証する。旧18target・未読0x0806DDBD・BP受入を保持。
+- Files changed: scripts/pr16_ring_nonzero_bytes.py, tests/test_pr16_ring_nonzero_bytes.py, .github/workflows/pr16-ring-nonzero-bytes.yml, content/modernization/pr16_ring_nonzero_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定異常系18 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=0ebf9eb94cc5a73eb7fb65f3b91691dcf5a14fcd; run=34988999991（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph/15辺再分類/受入済み再実行0。候補復元1。旧18target保持。
+- Commit: checkpointを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 保存済みpr16_ring_nonzero_bytes.jsonの0x090970F7継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。0x0806DDBDは未読。callee全体・全caller/全owner除外・Ring通常取得へ昇格しない。
