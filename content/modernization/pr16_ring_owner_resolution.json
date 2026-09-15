@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-OWNER",
+  "gap_id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+  "classification": "SOURCE_ONLY_NOT_NATIVE_ACCEPTANCE",
+  "source_head": "9537666ffac4fb96a22d0f832ad7d36429ace630",
+  "run_id": 34953511304,
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432,
+    "crc32": "3EB17B36"
+  },
+  "canonical_ring": {
+    "display_name": "メガリング",
+    "item_id": 580,
+    "item_key": "ITEM_KEY_MEGA_RING",
+    "price": 0,
+    "quantity": 1,
+    "repeatability": "STORY_BOUND",
+    "repeatability_id": 4,
+    "secondary_source": "NONE",
+    "source": "STORY_EVENT",
+    "source_id": 7,
+    "target_policy": "FUNCTIONAL_SERVICE_ONLY",
+    "unlock": "FINAL_LEAGUE_CLEARED",
+    "unlock_id": 15
+  },
+  "event_graph": {
+    "event_key": "EVENT_KEY_MAIN_FINAL_LEAGUE_CLEARED",
+    "placement_key": "PLACEMENT_KEY_EVENT_FINAL_LEAGUE_CLEAR",
+    "map_group": 97,
+    "map_id": 80,
+    "unlock_key": "FINAL_LEAGUE_CLEARED",
+    "condition_key": "CONDITION_KEY_EVENT_MAIN_FINAL_LEAGUE_CLEARED_READY",
+    "declared_reward_key": "NONE",
+    "trigger": "MAP_ENTER",
+    "binding_addresses": {
+      "dispatcher_address": "0x0938E7CC",
+      "stage37_record_address": "0x092C24BC",
+      "stage37_script_pointer_address": "0x0938E850"
+    },
+    "reachable_step_keys": [
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_CHECK_DONE",
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_INTRO",
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_COMPLETE",
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_SET_DONE",
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_REVISIT",
+      "STEP_KEY_MAIN_FINAL_LEAGUE_CLEARED_END"
+    ],
+    "reachable_give_reward_step_keys": [],
+    "source_graph_only": true,
+    "candidate_bytes_checked": false,
+    "all_runtime_owners_excluded": false,
+    "ring_acquisition_accepted": false
+  },
+  "rejected_entry": {
+    "path": "scripts/pr16_gear_originals.py",
+    "scope": "verify",
+    "reason_ja": "過去artifactの検証関数であり、通常プレイのRing取得ownerではない。"
+  },
+  "preferred_entry_candidate": null,
+  "runtime_owner_verified": false,
+  "next_step_ja": "同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
+  "new_emulator_processes": 0,
+  "rom_changes": 0,
+  "accepted_bp_replays": 0,
+  "ring_acquisition_accepted": false,
+  "release_ready": false,
+  "source_bindings": {
+    "content/event_design_implementation/event_plan.json": {
+      "size": 628107,
+      "sha256": "fde11b9dfdd7e8159d7fa1895985435ddcbe2d2589e9a8b120d7f1f023bd5ae6"
+    },
+    "config/event_design_bindings.csv": {
+      "size": 24234,
+      "sha256": "d0761e7809d111475054b47a448163f70f0fe1e51182200606a3c4d4dafdd213"
+    },
+    "content/collection_supply_v1/canonical_model.json": {
+      "size": 899889,
+      "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0"
+    },
+    "overlays/event_design/event_design.c": {
+      "size": 9378,
+      "sha256": "0a63e6ed04c9cb9973f6bfd5ecc659d8ff53be7bcd09badd45031da9ff1c81e7"
+    },
+    "scripts/build_event_design_stage.py": {
+      "size": 107837,
+      "sha256": "3f7be9b3fc9e81a974fc7bff27c0726d2c01e0a33f4d37f6f8ee8f99f41adca9"
+    },
+    "scripts/pr16_gear_originals.py": {
+      "size": 10661,
+      "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea"
+    },
+    "scripts/pr16_p05_native_supply_evidence_map.py": {
+      "size": 17044,
+      "sha256": "55c40230901fc3d58174af46927e28d64bec4cc25acac4ae4cde2b48f739ff55"
+    },
+    "tests/test_pr16_p05_native_supply_evidence_map.py": {
+      "size": 5839,
+      "sha256": "053bb21ba8d94da9121e2dac3c7429f4ecb607e36d65aafee0b96e06a6e2032e"
+    },
+    "scripts/pr16_ring_owner.py": {
+      "size": 15872,
+      "sha256": "06e2967569c4b667881cc1fbc709a528fa7e42d8ca46d2c0b4908045a299a9b1"
+    },
+    "tests/test_pr16_ring_owner.py": {
+      "size": 9855,
+      "sha256": "c6fa7f151d79983c698be2a8ac7062da245d92ae5cef195ca9910ae216250efb"
+    }
+  }
+}

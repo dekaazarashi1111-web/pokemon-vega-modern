@@ -5115,3 +5115,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsの原本とmetadataのみ。closeoutはprivate入力復元・ROM生成・native実行なし。
 - Boundary: PR16 open/draft維持、merge/release/active baseline変更0。physical3/P08 gates2、native exchange単体受入false、release_ready=false。全Actions成功とは主張しない。
 - Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。
+
+
+## 2026-09-15T09:37:41Z — PR-P08-7-RING-OWNER
+- Timestamp: 2026-09-15T09:37:41Z
+- Task: PR-P08-7-RING-OWNER / Ring誤入口選択と既受入BP再openの防止
+- Status: DONE / source入口選択修正。P05_NATIVE_RING_ACQUISITION_PHYSICALは未完。
+- Version: PR16 Ring source owner boundary
+- Summary: Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。
+- Verify: Ring/旧mapper/固定引継ぎ focused 48 tests PASS。check、task graph、diff検査を実行。最終index guardは開始HEADとの差分と既存違反を別計上し、非force反映の必須gateにする。
+- Evidence: content/modernization/pr16_ring_owner_resolution.json; source HEAD=9537666ffac4fb96a22d0f832ad7d36429ace630; Actions run=34953511304。全Actions green、Ring実取得成功、最終candidate受入は主張しない。
+- Files changed: source mapper・回帰tests、Ring限定graph検査/記録scriptとtests、専用workflow、限定JSON、P08のRing参照、固定引継ぎMD/JSON、両ログ。
+- Preserved: BP run34946969126、candidate ceddbe91、正式checkpoint、過去receiptは不変。ROM生成0・native0・受入済み単独再実行0。merge/release/baseline変更なし。
+- Commit: この記録を含むcommit。自己SHAは外部refで確認。同一branchへ非force pushのみ。
+- Network: GitHub connector/Actionsでexact HEADと最新runを確認。新しいprivate入力やROM/saveを公開しない。
+- Next: 同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。

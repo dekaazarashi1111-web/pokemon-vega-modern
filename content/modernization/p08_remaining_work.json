@@ -404,12 +404,7 @@
           "path": "scripts/build_bp_shop_runtime.py",
           "scope": "_catalog_outputs"
         },
-        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
-          "fixture_only": false,
-          "line": 83,
-          "path": "scripts/pr16_gear_originals.py",
-          "scope": "verify"
-        },
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": null,
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
           "fixture_only": false,
           "line": 27,
@@ -425,7 +420,8 @@
       "supply_physical_acceptance_complete": false,
       "supply_source_evidence_binding_complete": true,
       "target_function": "natural capture/item acquisition to battle",
-      "bp_spending_success_evidence": "content/modernization/pr16_bp_spending_verified.json"
+      "bp_spending_success_evidence": "content/modernization/pr16_bp_spending_verified.json",
+      "ring_owner_resolution": "content/modernization/pr16_ring_owner_resolution.json"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",

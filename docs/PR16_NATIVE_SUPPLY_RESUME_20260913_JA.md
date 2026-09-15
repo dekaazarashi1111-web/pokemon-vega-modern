@@ -6,9 +6,9 @@
 
 ## いまの停止点と次の1手
 
-2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
+Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。
 
-**次: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。**
+**次: 同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_bp_spending_verified.json`
-- `content/modernization/pr16_p05_native_supply_reconciliation.json`
-- `content/modernization/pr16_p05_native_supply_evidence_map.json`
-- `content/modernization/pr16_p05_supply_owner_findings.json`
-- `scripts/pr16_gear_originals.py`
-- `scripts/pr16_apply_gear_policy_boundary.py`
+- `content/modernization/pr16_ring_owner_resolution.json`
+- `content/event_design_implementation/event_plan.json`
+- `config/event_design_bindings.csv`
+- `overlays/event_design/event_design.c`
+- `scripts/build_event_design_stage.py`
+- `scripts/pr16_ring_owner.py`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -49,7 +49,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 
 ## 候補identityと残件
 
-SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。保持wrapper接続済みcandidate。同一playthroughのnative 3勝と正確な9 BP稼得までscoped受入済み。BP消費・Ring/policy/Circus・最終製品SHAは未受入。
+SHA-256 `ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b` / 33554432 bytes / CRC32 `3EB17B36`。同一candidateのBP3勝・稼得・通常購入・保存再開は受入済み。Ring/policy/Circusと最終製品SHAは未受入。
 
 正式physical残件（台帳から照合）:
 
@@ -87,6 +87,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、run34854927678の3勝9BP受入prefixとして再利用する。
 - run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、BP購入suffixもrun34946969126で完了。
 - run34946969126の通常購入12→8 BP・かわらずのいし0→1・Save/fresh Continueは正式受入。source/候補/契約変更影響なしに再実行しない。失敗run34933733445と34945660762をsuccessに読み替えない。
+- Ring source graphと誤入口選択の修正は完了。同一sourceで再scanせず、map97/80 compiled ownerの未観測区間へ進む。source-onlyをRing通常取得や全ROMのgiver不在証明にしない。
 
 ## 次セッションへ残す更新手順
 
