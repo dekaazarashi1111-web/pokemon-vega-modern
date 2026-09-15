@@ -65,11 +65,11 @@
     "status": "ADOPTED"
   },
   "bp_chooser_checkpoint": {
-    "accepted_case_count": 1,
-    "latest_native_run": 34733866168,
+    "accepted_case_count": 3,
+    "latest_native_run": 34946969126,
     "path": "content/modernization/pr16_bp_chooser_checkpoint.json",
     "receipt": "content/modernization/pr16_bp_chooser_receipt.json",
-    "scope": "RENTAL_CANCEL_SAVE_CONTINUE_NOT_BP_EARNING"
+    "scope": "RENTAL_CANCEL_AND_NATIVE_BP_EARNING_SPENDING_SAVE_CONTINUE"
   },
   "bp_trial_successor_checkpoint": {
     "native_bp_earning_accepted": false,
@@ -233,8 +233,8 @@
       "size": 33554432
     },
     "full_candidate_regression_complete": false,
-    "scope": "NATIVE_THREE_WIN_9BP_ACCEPTED_BP_SPENDING_RING_POLICY_PENDING",
-    "source_path": "content/modernization/pr16_bp_three_win_reward_verified.json"
+    "scope": "NATIVE_BP_EARNING_SPENDING_ACCEPTED_RING_POLICY_PENDING",
+    "source_path": "content/modernization/pr16_bp_spending_verified.json"
   },
   "nonblocking_findings": [
     {
@@ -252,7 +252,10 @@
     "original_native_processes": 1,
     "physical_bp_earning_accepted": true,
     "receipt": "content/modernization/pr16_bp_native_controls_receipt.json",
-    "earning_success_evidence": "content/modernization/pr16_bp_three_win_reward_verified.json"
+    "earning_success_evidence": "content/modernization/pr16_bp_spending_verified.json",
+    "previous_earning_success_evidence": "content/modernization/pr16_bp_three_win_reward_verified.json",
+    "spending_success_evidence": "content/modernization/pr16_bp_spending_verified.json",
+    "physical_bp_spending_accepted": true
   },
   "p05_route_checkpoint": {
     "historical_candidate": {
@@ -387,12 +390,12 @@
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
       "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
-      "reason_ja": "自然捕獲個体と購入gearの既受入を保持。run34854927678で同一cedd candidateを1processのまま2・3戦目まで勝利し、BP 0→9、streak3、報酬pending解消、元party600bytes復元をscoped受入。BP消費、Ring通常取得、policy通常UIは未受入。",
+      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。",
       "remaining_supply_gap_ids": [
         "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. run34854927678/job104011896602でnative 3勝と正確な9 BP稼得を受入。次は同じcandidateで稼得BPの通常ショップ消費を未観測suffixとして延長し、単独の3勝再実行にしない。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -414,14 +417,15 @@
           "scope": "main"
         }
       },
-      "status": "PENDING_BP_SPENDING_AND_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
+      "status": "PENDING_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
       "success_evidence": null,
       "supply_coverage_inventory_complete": true,
       "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
       "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
       "supply_physical_acceptance_complete": false,
       "supply_source_evidence_binding_complete": true,
-      "target_function": "natural capture/item acquisition to battle"
+      "target_function": "natural capture/item acquisition to battle",
+      "bp_spending_success_evidence": "content/modernization/pr16_bp_spending_verified.json"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
@@ -459,8 +463,8 @@
       "original_request": "P08 final-candidate acceptance",
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
-      "reason_ja": "親候補のP03 fixed-form5件、P07ほか既受入を保持。取消保存再開と同一cedd candidateのnative 3勝9BP稼得を新規受入。残る3 physical gap完了後に最終候補を固定し、必要な変更影響回帰だけを実行する。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. BP稼得はrun34854927678でscoped受入。BP消費、Ring、policy、CircusとP08最終判定が未完。",
+      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。",
+      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"

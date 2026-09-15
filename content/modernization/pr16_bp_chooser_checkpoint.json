@@ -1,8 +1,9 @@
 {
-  "accepted_case_count": 2,
+  "accepted_case_count": 3,
   "accepted_case_ids": [
     "rental-cancel-save-continue",
-    "native-three-win-reward-9bp"
+    "native-three-win-reward-9bp",
+    "native-bp-spending-save-continue"
   ],
   "active_baseline_changed": false,
   "builder": "scripts/pr16_bp_chooser_successor.py",
@@ -172,24 +173,48 @@
         "sha256": "7196514ad1edc43fc4e4028cbd39d1e4529f49b4e32406a55d2b4b8d2819854d",
         "size": 1517614
       }
+    },
+    {
+      "run_id": 34946969126,
+      "job_id": 104308573084,
+      "tested_head": "0b7497b575a3180a045f2be377386490f192a012",
+      "artifact_id": 10386754174,
+      "artifact": {
+        "id": 10386754174,
+        "name": "pr16-bp-spending-native",
+        "size": 859444,
+        "sha256": "7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0",
+        "expires_at": "2026-12-14T08:26:31Z"
+      },
+      "candidate": {
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "size": 33554432,
+        "crc32": "3EB17B36"
+      },
+      "classification": "native-bp-spending-save-continue",
+      "adoption": "ACCEPTED_NATIVE_BP_SPENDING_SAVE_CONTINUE",
+      "original_conclusion": "success",
+      "source_path": "content/modernization/pr16_bp_spending_verified.json",
+      "new_emulator_processes": 1,
+      "successful_fresh_cores": 2
     }
   ],
   "final_product_sha_fixed": false,
   "fixed_form_accepted_case_count_retained": 5,
   "full_candidate_regression_complete": false,
   "historical_native_processes_embedded": 1,
-  "latest_native_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
-  "latest_native_job": 104011896602,
-  "latest_native_run": 34854927678,
+  "latest_native_head": "0b7497b575a3180a045f2be377386490f192a012",
+  "latest_native_job": 104308573084,
+  "latest_native_run": 34946969126,
   "merge_performed": false,
   "native_bp_earning_accepted": true,
-  "native_bp_spending_accepted": false,
+  "native_bp_spending_accepted": true,
   "native_party_chooser_accepted": true,
   "native_rental_cancel_save_continue_accepted": true,
   "new_native_processes_during_checkpoint": 1,
   "new_native_processes_during_this_task": 2,
   "new_static_binding_runs": 1,
-  "next": "同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。 受入済み取消/Save/Continueと3勝9BPを変更影響なしに単独再実行しない。",
+  "next": "同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
   "old_runs_relabelled": 0,
   "p05_native_bp_gap_closed": true,
   "p08_gate_count": 2,
@@ -212,7 +237,9 @@
   },
   "runner_correction": "B opens abandon-battle Yes/No; one native A accepts default Yes. Same fixture, timeouts and restoration assertions.",
   "schema_version": 1,
-  "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_AND_NATIVE_BP_EARNING_SPENDING_PENDING",
+  "status": "PASS_RENTAL_CANCEL_SAVE_CONTINUE_AND_NATIVE_BP_EARNING_SPENDING",
   "task": "USER-20260913-BP-CHOOSER",
-  "latest_task": "USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE"
+  "latest_task": "USER-20260915-BP-SPENDING-ACCEPTANCE",
+  "p05_native_bp_spending_closed": true,
+  "spending_observer_correction": "Stage36 QolSupplyShopState: 50 entries, offsets64/66/68/69/6A, Everstone index0/4BP; old18 and45 layouts rejected."
 }

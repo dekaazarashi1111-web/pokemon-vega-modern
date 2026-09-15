@@ -41,7 +41,9 @@ class ResumeTests(unittest.TestCase):
                 'source_path':self.s['latest_native_evidence']},
             p05_native_bp_control_checkpoint={
                 'physical_bp_earning_accepted':self.s['bp']['earning_accepted'],
-                'earning_success_evidence':self.s['latest_native_evidence']},
+                'earning_success_evidence':self.s['latest_native_evidence'],
+                'physical_bp_spending_accepted':self.s['bp']['spending_accepted'],
+                'spending_success_evidence':self.s['latest_native_evidence']},
             remaining_conditions=[{'id':'NATURAL_CAPTURE_GEAR','remaining_supply_gap_ids':[x for x in physical if x!='PHYSICAL_CIRCUS_ADMISSION']},
                 {'id':'PHYSICAL_CIRCUS_ADMISSION','phase':'P05'},
                 *[{'id':x,'phase':'P08'} for x in self.s['remaining_p08_gate_ids']],
@@ -106,7 +108,7 @@ class ResumeTests(unittest.TestCase):
         self.s['bp']['battle_started']=not self.s['bp']['battle_started'];self.sync();self.assert_invalid()
 
     def test_no_false_bp(self):
-        self.s['bp']['earning_and_spending_accepted']=True;self.sync();self.assert_invalid()
+        self.s['bp']['earning_and_spending_accepted']=not self.s['bp']['earning_and_spending_accepted'];self.sync();self.assert_invalid()
 
     def test_no_false_release(self):
         self.s['release_ready']=True;self.sync();self.assert_invalid()
@@ -136,8 +138,8 @@ class ResumeTests(unittest.TestCase):
         self.write_evidence(evidence)
         self.assert_invalid('bp_delta')
 
-    def test_scoped_acceptance_does_not_accept_spending(self):
-        evidence=self.evidence();evidence['native_result']['native_bp_spending_accepted']=True
+    def test_scoped_acceptance_rejects_changed_spending_flag(self):
+        evidence=self.evidence();evidence['native_result']['native_bp_spending_accepted']=not evidence['native_result']['native_bp_spending_accepted']
         self.write_evidence(evidence)
         self.assert_invalid('native_bp_spending_accepted')
 

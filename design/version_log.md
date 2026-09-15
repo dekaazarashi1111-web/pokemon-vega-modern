@@ -2368,3 +2368,22 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connectorでbranch/PR/Actions job/log/artifactを照合。artifact ZIPは監査用に取得したがrepositoryへ追加しない。一般Web検索・private Release再取得なし。
 - Boundary: PR #16はopen/draft、merge・draft解除・active baseline・release変更0。正式残件physical3（Ring、ordinary policy、Circus）/P08 gate2。BP spending=false、native exchange acceptance=false、release_ready=false。
 - Next: 同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。受入済み3勝9BP区間を変更影響なしに単独再実行しない。
+
+
+## 2026-09-15T08:53:56Z — USER-20260915-BP-SPENDING-ACCEPTANCE
+- Timestamp: 2026-09-15T08:53:56Z
+- Version: PR16 scoped native BP spending and persistence
+- Task: USER-20260915-BP-SPENDING-ACCEPTANCE / 次の未完作業「稼得BPの通常ショップ購入・Save/fresh Continue」を1件完了
+- Status: DONE_SCOPED_NATIVE_BP_SPENDING / Ring・policy・Circus・P08ゲートは未完
+- Summary: 実candidateはStage36 QOL供給ショップ50品目。旧Mega45品目とStage27の18品目オフセットではeligible配列を誤読。実C構造体offset64/66/68/69/6A・先頭Everstone index0/4BPへ観測を修正。ROM変更0。
+- Native: run34946969126/job104308573084/HEAD=0b7497b575a3180a045f2be377386490f192a012 SUCCESS。基礎9+反復3=12 BP、購入12→8、所持0→1、Save counter5→6→7→7、fresh Continue保持。7 host-write barriers、warning/error0。
+- Evidence: artifact10386754174 size859444 sha256:7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0。receipt全75member、tracked source85、生成C11member、原stdoutと既存native validatorをsource-only照合。新規ROM/save/patch byte公開0。
+- Failure retained: 初期run34933733445(45品目)と今回run34945660762(18品目)のfailureは保持。後者のhost6tests PASSは旧構造体を照合しただけでnative受入ではなかった。
+- Execution: 今回native2process(失敗1/成功1)、成功実core2。legacy report successful_fresh_cores=1は成功case数なので改作しない。既受入単独再実行0、closeout emulator0。
+- Verify: 専用Actions host6 PASS。記録側resume24+spending resume8 PASS、render/check、task graph、git diff --check、最終index private guardの既存結果差分をcommit gateとする。古いguard失敗は抑制しない。
+- Visual: 原本3画面を確認。menuはBP12/Everstone4BP。購入後とfresh Continueのfield復帰。残高8/所持1保持はnative read原本で確認。
+- Files changed: C observer/Python catalog/test、ABI回帰、受入原本text/検証JSON、chooser checkpoint、固定引継ぎMD/JSON、P08、resume checker/tests、closeout workflow/script、両ログ。既受入原本とstable entrypointは不変。
+- Commit: この記録を含むcommit。照合入力HEAD=1f6c9cb036400ef84664e3fbfb6c1ac4df4bf47e。同一branchへの非force fast-forwardのみ。自己SHAを文書へ追記しない。
+- Network: GitHub connector/Actionsの原本とmetadataのみ。closeoutはprivate入力復元・ROM生成・native実行なし。
+- Boundary: PR16 open/draft維持、merge/release/active baseline変更0。physical3/P08 gates2、native exchange単体受入false、release_ready=false。全Actions成功とは主張しない。
+- Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。

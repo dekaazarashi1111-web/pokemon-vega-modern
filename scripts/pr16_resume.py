@@ -103,6 +103,46 @@ def render(s: dict) -> str:
     return '\n'.join(lines)
 
 
+def validate_spending(root: Path, d: dict, s: dict, control: dict) -> None:
+    """3勝単体受入とは別に、通常購入と再起動後の原本を要求する。"""
+    r = d['native_result']
+    require(r['scope'] == 'PR16_P05_NATIVE_BP_SPENDING_PHYSICAL'
+            and r['status'] == 'PASS_NATIVE_BP_SPENDING_SAVE_CONTINUE', 'spending scope/status differs')
+    exact = {
+        'base_reward_bp': 9, 'active_repeat_reward_bp': 3, 'reward_wrapper_saves': 3,
+        'bp_before_purchase': 12, 'bp_after_purchase': 8, 'bp_after_continue': 8,
+        'item_id': 195, 'catalog_index': 0, 'price_bp': 4, 'purchase_result': 0,
+        'item_count_before': 0, 'item_count_after_purchase': 1, 'item_count_after_continue': 1,
+        'save_counter_before_purchase': 5, 'save_counter_after_purchase': 6,
+        'save_counter_after_manual': 7, 'save_counter_after_continue': 7,
+        'physical_shop_local_id': 3, 'automatic_saves': 1, 'manual_saves': 1,
+        'fresh_cores': 2, 'p05_native_bp_spending_closed': True,
+    }
+    for key, expected in exact.items():
+        require(type(r[key]) is type(expected) and r[key] == expected, 'spending '+key+' differs')
+    frames = [r[k] for k in ('reward_complete_frame', 'reward_settled_frame',
+        'reward_field_frame', 'shop_interaction_frame', 'shop_menu_frame',
+        'purchase_frame', 'manual_save_frame', 'continue_frame')]
+    require(all(type(f) is int for f in frames) and all(a < b for a, b in zip(frames, frames[1:]))
+            and frames[-1] == r['total_frames'], 'spending frame chain differs')
+    require(control['physical_bp_spending_accepted'] is True
+            and control['spending_success_evidence'] == s['latest_native_evidence'], 'P08 spending evidence differs')
+    original = d['verification']['raw_result']
+    raw = safe_path(root, original['path']).read_bytes()
+    require(len(raw) == original['size'] and hashlib.sha256(raw).hexdigest() == original['sha256'], 'spending raw identity differs')
+    row = json.loads(raw)
+    projected = dict(row, first_battle_outcome=row['battle_outcome'],
+        native_battle_wins_observed=sum(row[k] == 1 for k in
+            ('battle_outcome', 'second_battle_outcome', 'third_battle_outcome')))
+    require(projected == r, 'spending raw projection differs')
+    require(d['verification']['native_validator_passed'] is True
+            and d['verification']['visual_review']['completed'] is True, 'spending verification incomplete')
+    require(d['process']['raw_native_fresh_cores'] == 2, 'spending fresh core accounting differs')
+    for key in ('bp_before_purchase', 'bp_after_purchase', 'bp_after_continue',
+                'item_count_after_purchase', 'item_count_after_continue'):
+        require(s['bp'][key] == r[key], 'spending state '+key+' differs')
+
+
 def validate(root: Path, *, check_doc: bool = True) -> dict:
     s = load(root, STATE)
     require(s['schema_version'] == 2, 'unsupported resume schema')
@@ -143,6 +183,7 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
     require(s['latest_native_run'] == d['run_id'] and s['latest_native_job'] == d['job_id'], 'latest run/job differs')
     require(s['latest_native_tested_head'] == d['tested_head'], 'diagnostic HEAD differs')
     r = d['native_result']
+    spending = d.get('scope') == 'PR16_P05_NATIVE_BP_SPENDING_PHYSICAL'
     require(r['candidate_sha256'] == c['sha256'] and s['status'] == r['status'], 'diagnostic identity/status differs')
     if 'candidate' in d:
         require(isinstance(d['candidate'], dict) and all(d['candidate'][k] == c[k] for k in ('sha256', 'size', 'crc32')), 'evidence candidate differs')
@@ -153,14 +194,14 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
         require(r['native_bp_earning_accepted'] is False and r['p05_native_bp_gap_closed'] is False and r['release_ready'] is False, 'diagnostic claims acceptance')
     else:
         require(checkpoint['native_bp_earning_accepted'] is True, 'scoped acceptance missing BP earning checkpoint')
-        require(checkpoint['native_bp_spending_accepted'] is False, 'scoped acceptance overstates BP spending checkpoint')
+        require(checkpoint['native_bp_spending_accepted'] is spending, 'scoped acceptance BP spending checkpoint differs')
         require(checkpoint['p05_native_bp_gap_closed'] is True, 'scoped acceptance missing P05 BP gap closure')
         require(p05_control['earning_success_evidence'] == s['latest_native_evidence'], 'P08 BP earning evidence differs')
         require(backlog['next_integration_candidate']['source_path'] == s['latest_native_evidence'], 'P08 candidate evidence differs')
         for key, expected in (
             ('native_three_win_reward_accepted', True),
             ('native_bp_earning_accepted', True),
-            ('native_bp_spending_accepted', False),
+            ('native_bp_spending_accepted', spending),
             ('native_exchange_accepted', False),
             ('p05_native_bp_gap_closed', True),
             ('release_ready', False),
@@ -187,10 +228,10 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
             ('host_write_barriers', 7),
             ('input_only_after_guard', True),
             ('warnings_errors', 0),
-            ('manual_saves', 0),
+            ('manual_saves', 1 if spending else 0),
             ('native_three_win_reward_accepted', True),
             ('native_bp_earning_accepted', True),
-            ('native_bp_spending_accepted', False),
+            ('native_bp_spending_accepted', spending),
             ('native_exchange_accepted', False),
             ('p05_native_bp_gap_closed', True),
             ('release_ready', False),
@@ -214,6 +255,8 @@ def validate(root: Path, *, check_doc: bool = True) -> dict:
         ):
             require(type(s['bp'][state_key]) is type(r[result_key]) and s['bp'][state_key] == r[result_key], 'scoped acceptance state '+state_key+' differs')
         require(s['bp']['native_three_win_reward_accepted'] is True, 'scoped acceptance state flag differs')
+        if spending:
+            validate_spending(root, d, s, p05_control)
     require(re.fullmatch('[A-Z0-9_]+', s['next_action']['id']) and s['next_action']['goal_ja'], 'invalid next action')
     require(s['bp']['next_step'] == s['next_action']['goal_ja'], 'next-action mirrors differ')
     require(s['source_bindings'], 'missing source bindings')

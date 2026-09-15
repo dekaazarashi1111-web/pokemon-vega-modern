@@ -1,15 +1,15 @@
 {
-  "accepted_scope_summary_ja": "正式受入はレンタル取消→元party600bytes/count復元→通常Save→fresh Continueの既存1ケースと、同一cedd candidateでnative 3勝→BP 0から9→元party600bytes復元のscoped 1ケース。BP消費、native exchange単体の正式受入、Ring/policy/Circus、releaseは含まない。",
+  "accepted_scope_summary_ja": "取消/元party復元/保存再開と3勝基礎9 BPを保持し、稼得BP通常購入・保存再開を追加受入。",
   "active_baseline_changed": false,
   "bp": {
     "action_return_frame": 4313,
-    "after_battle_launch": "run34854927678/job104011896602で同一cedd candidateを1processのまま2・3戦目までnative勝利。BP 0→9、streak3、reward pending 0、snapshot無効化、元party600bytes復元を観測し、P05 native BP稼得gapをscopedに閉じた。受入済み取消/Save/Continue再実行0。BP消費・exchange正式受入・releaseは未受入。",
+    "after_battle_launch": "2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。",
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "2026-09-15: run34854927678/job104011896602で同一cedd candidateを1processのままnative 2・3戦目まで勝利。BP 0→9、streak3、pending0、元party600bytes復元をscoped受入。受入済み取消/Save/Continue再実行0。BP消費・Ring/policy/Circus・releaseは未受入。",
+    "current_stop": "2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。",
     "earning_accepted": true,
-    "earning_and_spending_accepted": false,
+    "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
     "exchange_identity_audit_completed": true,
     "loss_frame": 11261,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。",
+    "next_step": "同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -40,7 +40,7 @@
     "second_chooser_observed": true,
     "selected_frame": 1936,
     "six_rentals_generated": true,
-    "spending_accepted": false,
+    "spending_accepted": true,
     "three_selection_observed": true,
     "trial_delegate_repaired": true,
     "bp_before_reward": 0,
@@ -49,7 +49,12 @@
     "native_three_win_reward_accepted": true,
     "native_battle_wins_observed": 3,
     "reward_complete_frame": 45322,
-    "original_party_restored_bytes": 600
+    "original_party_restored_bytes": 600,
+    "bp_before_purchase": 12,
+    "bp_after_purchase": 8,
+    "bp_after_continue": 8,
+    "item_count_after_purchase": 1,
+    "item_count_after_continue": 1
   },
   "branch": "codex/modernization-followup-20260908",
   "candidate": {
@@ -271,7 +276,8 @@
     "WIP48a36ca/owner run34785149994を再利用。host predicate PASSはruntime修復やnative保持成功を意味しない。対象コード変更時だけ対応回帰を再実行。",
     "run34802013676のtarget callsite/ABI限定監査（12tests、cache alias 2件、linked.o byte-identical、predicate 0x090DD51C、player build 0x090DD538、0x090DD2E6再合流）は完了。runtime/保持/BP受入とは混同せず、対象source・candidate・cache契約の変更なしに再実行しない。",
     "run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、run34854927678の3勝9BP受入prefixとして再利用する。",
-    "run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、次は稼得BP消費の未観測suffixへ延長する。"
+    "run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、BP購入suffixもrun34946969126で完了。",
+    "run34946969126の通常購入12→8 BP・かわらずのいし0→1・Save/fresh Continueは正式受入。source/候補/契約変更影響なしに再実行しない。失敗run34933733445と34945660762をsuccessに読み替えない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -316,8 +322,8 @@
   },
   "handoff_maintenance_task": "USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
-  "last_accepted_native_run": 34854927678,
-  "last_accepted_native_tested_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
+  "last_accepted_native_run": 34946969126,
+  "last_accepted_native_tested_head": "0b7497b575a3180a045f2be377386490f192a012",
   "last_successful_native_diagnostic": {
     "job_id": 103681167660,
     "path": "content/modernization/pr16_bp_progress_diagnostic.json",
@@ -325,12 +331,12 @@
     "scope": "FIRST_TURN_NOT_BP",
     "tested_head": "88e043592f07c80d1e4f582320bb955243986711"
   },
-  "latest_native_evidence": "content/modernization/pr16_bp_three_win_reward_verified.json",
-  "latest_native_job": 104011896602,
-  "latest_native_run": 34854927678,
+  "latest_native_evidence": "content/modernization/pr16_bp_spending_verified.json",
+  "latest_native_job": 104308573084,
+  "latest_native_run": 34946969126,
   "latest_native_scope": "SCOPED_ACCEPTANCE",
-  "latest_native_summary_ja": "run34854927678/job104011896602で同一cedd candidateを1processのまま2・3戦目までnative勝利。BP 0→9、streak3、reward pending 0、snapshot無効化、元party600bytes復元を観測し、P05 native BP稼得gapをscopedに閉じた。受入済み取消/Save/Continue再実行0。BP消費・exchange正式受入・releaseは未受入。",
-  "latest_native_tested_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
+  "latest_native_summary_ja": "2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。",
+  "latest_native_tested_head": "0b7497b575a3180a045f2be377386490f192a012",
   "logs_synchronized": true,
   "loss_return_completed": {
     "evidence": "content/modernization/pr16_bp_loss_return_verified.json",
@@ -343,30 +349,30 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "BP_EARNED_SPENDING_NATIVE",
-    "goal_ja": "同じcandidateで稼得した9 BPを通常BPショップUIから消費し、購入物・残高・通常Save/fresh Continueをnativeに検証する。",
-    "host_write_policy_ja": "run34854927678の7 host-write barrier、timeout、candidate/source identity、正確な9 BP結果を緩めない。必要な場合は同じprefixをショップ消費まで一続きで延長し、3勝区間だけを単独再実行しない。",
+    "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+    "goal_ja": "同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
+    "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
+    "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_bp_three_win_reward_verified.json",
-      "content/modernization/pr16_bp_chooser_checkpoint.json",
-      "scripts/pr16_bp_three_win_reward_native.py",
-      "scripts/build_bp_shop_runtime.py",
-      "manifests/facility_rewards.csv",
-      "overlays/factory_reward_runtime/factory_reward_runtime.c"
+      "content/modernization/pr16_bp_spending_verified.json",
+      "content/modernization/pr16_p05_native_supply_reconciliation.json",
+      "content/modernization/pr16_p05_native_supply_evidence_map.json",
+      "content/modernization/pr16_p05_supply_owner_findings.json",
+      "scripts/pr16_gear_originals.py",
+      "scripts/pr16_apply_gear_policy_boundary.py"
     ],
-    "stop_rule_ja": "受入済みrun34854927678と取消/Save/Continueを変更影響なしに単独再実行しない。稼得9 BPの通常UI消費、購入物、残高、通常Save/fresh Continueを観測するまでRing/policy/Circusやrelease判定へ進まない。",
     "success_observations": [
-      "稼得9 BPを通常BPショップUIが表示",
-      "通常購入で残高が価格分だけ減少し購入物が反映",
-      "通常Save/fresh Continue後も残高と購入物が保持"
+      "正規story entrypointからRingが取得される",
+      "通常装備と適用実戦を観測",
+      "通常Save/fresh Continueで保持"
     ]
   },
   "observed_date_jst": "2026-09-15",
-  "observed_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
+  "observed_head": "0b7497b575a3180a045f2be377386490f192a012",
   "observed_head_checks": {
-    "reason_ja": "実装HEAD d9d0dfefcc524b35993eab0f98ae7b6849133644 の専用run34854927678/job104011896602はsuccess。focused 7 tests、同一candidate、新規process1、受入済みcase再実行0、2/3戦目勝利、BP 0→9、streak3、pending0、元party600bytes復元、7 host-write barrierを確認。BP消費・native exchange正式受入・Ring/policy/Circus・releaseは未受入。"
+    "reason_ja": "専用run34946969126はsuccess、focused6 tests PASS。これは全Actionsのgreenやrelease判定ではない。開始時の既存P03 forgetting failureは本変更から独立。"
   },
-  "observed_head_semantics": "同一cedd candidateの保持済みprefixを変更せず、未観測だったnative 2・3戦目と報酬completionまで延長して正確な9 BP稼得を固定した実装HEAD。今回の変更は証拠・checkpoint・引継ぎ・検証・ログの記録のみ。",
+  "observed_head_semantics": "native検証済みHEAD。以降の記録差分はsource-only照合し、ROM/入力/成功プレイを再実行しない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -476,14 +482,15 @@
     "history_rule_ja": "履歴は根拠が必要な箇所だけ読む。PR本文・日付・一般キュー・会話の記憶から最新停止点を上書きしない。"
   },
   "recording_workflow": {
-    "run_id": 34854927678,
-    "job_id": 104011896602,
-    "artifact_id": 10353145355,
-    "artifact_sha256": "7196514ad1edc43fc4e4028cbd39d1e4529f49b4e32406a55d2b4b8d2819854d",
-    "source_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
-    "record_source_head": "d9d0dfefcc524b35993eab0f98ae7b6849133644",
-    "status_at_snapshot": "completed_success",
-    "note_ja": "成功runのartifact/result/reward/receiptをhash照合し、native再実行なしでcheckpoint・P08・固定引継ぎ・両ログへscoped受入を記録。"
+    "source_head": "0b7497b575a3180a045f2be377386490f192a012",
+    "record_source_head": "1f6c9cb036400ef84664e3fbfb6c1ac4df4bf47e",
+    "run_id": 34946969126,
+    "job_id": 104308573084,
+    "artifact_id": 10386754174,
+    "artifact_sha256": "7f2443cfcf43402e3f00952f7ab9f6a4487acd3c976dd5fd487a418dfc6085b0",
+    "closeout_run_id": 34949464678,
+    "status_at_snapshot": "NATIVE_SUCCESS_SOURCE_ONLY_RECORDING",
+    "note_ja": "原本再照合と同期。emulator0。記録commit自身のSHAは外部refで確認。"
   },
   "release_ready": false,
   "remaining_p08_gate_ids": [
@@ -495,7 +502,7 @@
     "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "獲得9 BPの通常ショップ消費を閉じ、Ringの正規story取得、policy通常UI、Circus実受付/実戦を進める。physical gap完了後に最終SHA/size/CRCを固定し、owner/ROM範囲/runner/fixture/契約の変更影響台帳で継承・代表回帰・完全再実行を選ぶ。最後にclean-ROM独立二重生成・配布patch往復・manifest/backup/rollback/混入検査・release判定。",
+  "remaining_sequence_ja": "BP通常購入と保存再開は完了。次はRing正規story取得、policy通常UI、Circus実受付/実戦。physical3/P08 gates2完了後に最終候補/変更影響回帰/二重生成/配布判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -522,14 +529,17 @@
   "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json",
   "schema_version": 2,
   "session_execution_summary": {
+    "native_game_processes": 2,
+    "failed_native_processes": 1,
+    "successful_native_processes": 1,
+    "successful_native_fresh_cores": 2,
     "accepted_cancel_replays": 0,
+    "accepted_standalone_replays": 0,
     "closeout_emulator_processes": 0,
-    "failed_native_processes": 0,
-    "native_bp_earning_accepted": true,
-    "native_game_processes": 1,
     "rom_source_changes": 0,
-    "scope_ja": "同一cedd candidateの未観測2・3戦目と正確な9 BP報酬のみ。BP消費・Ring/policy/Circusは未受入。",
-    "successful_native_fresh_cores": 1
+    "native_bp_earning_accepted": true,
+    "native_bp_spending_accepted": true,
+    "scope_ja": "今回の新規native実行は誤18品目失敗1+正50品目成功1。初期45品目失敗は継承原本。3勝prefixは購入suffixと一続きであり単独再受入しない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -939,10 +949,82 @@
     "tools/mgba_pr16_bp_win_exchange.c": {
       "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
       "size": 15394
+    },
+    "content/modernization/pr16_bp_spending_verified.json": {
+      "size": 22849,
+      "sha256": "09dca2aa4a30bd884ec6b22542140cd44685170f57b7f9213da2397bab0bc640"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/original-result.stdout.json": {
+      "size": 4102,
+      "sha256": "0ccfd53b107cb9e34e73f736c827f8d342d448c136f49be1c3a9b61950e29b83"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/original-process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/original-receipt.json": {
+      "size": 12502,
+      "sha256": "b4ba49b276850cd31ae75496122d6328e62d570d0853e116d5ffc059b0bc81c6"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/purchase.json": {
+      "size": 1063,
+      "sha256": "4f6e5e3630a550ae653fedf42f22d53ee91bf224699865e2f01342cc42730f9e"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/native-spending-trace.txt": {
+      "size": 2056,
+      "sha256": "478bcc60bb9d00af045faa04a782f1aa8aafd3c0938820f1bec6df80c60fd6f7"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/artifact-verification.json": {
+      "size": 14950,
+      "sha256": "f65b7cc558593dfcf7422ba0cebb0ef1cf5acd6f5ca3b82542659e5ba3c6bac7"
+    },
+    "content/modernization/pr16_bp_spending_evidence/34946969126/attempts.json": {
+      "size": 2152,
+      "sha256": "98e79064e3bcf9248db1e32ec65d70119e0590c5ce098782d42462a6f584e72c"
+    },
+    "tools/mgba_pr16_bp_spending.c": {
+      "size": 10973,
+      "sha256": "530172a04f0460e93337a17140630fac6d7e10a0e3de219a21ac65569b87768a"
+    },
+    "scripts/pr16_bp_spending_native.py": {
+      "size": 1772,
+      "sha256": "820a142ee9aea14e1dd154fba3951064bb9f22719d19a3e1bb7766402f6331c7"
+    },
+    "scripts/pr16_bp_spending_native_impl.py": {
+      "size": 15143,
+      "sha256": "065101eb8eef28eef88784c1756db1ef604f42a0dc4191e12b22b088f9a96f1f"
+    },
+    "tests/test_pr16_bp_spending_native.py": {
+      "size": 3112,
+      "sha256": "022ca8801bd27cb768e94ff323b06195799234d5d20732ef6083ae35d0afab05"
+    },
+    "tests/test_pr16_bp_shop_observer_abi.py": {
+      "size": 6582,
+      "sha256": "17fbb31196133901a428d6cfd4769cc2f20d2c4794637a7ccb40cdf6cc627f9c"
+    },
+    "tests/test_pr16_bp_spending_resume.py": {
+      "size": 5749,
+      "sha256": "7e6c63a6a10c96477dca64e375e8385067073c40e27d98bd4937669962d112d2"
+    },
+    "overlays/qol_production/qol_production.c": {
+      "size": 164678,
+      "sha256": "fc69ca2ff94e98ffb46f1b4117c73156683e83bbc777e9f8527c027c70399423"
+    },
+    "scripts/build_qol_production.py": {
+      "size": 79738,
+      "sha256": "3719afca8f1a9385d8da073faba369c3994e98d848b65c01fec7c5832d062ea1"
+    },
+    "overlays/qol_production/hook_contract_stage35.json": {
+      "size": 14992,
+      "sha256": "17a94205e58a00c52ddf24fb0fb45c20d6fe00a20930860854a7aa647051a5e4"
+    },
+    "config/qol_production_supply_catalog.csv": {
+      "size": 3783,
+      "sha256": "57fac89ef37255a7bdf28c04192d427a17f3a8d24cdfd366d87903a1873f6686"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "新C/Pythonだけで既存first-turn controllerを完全hash固定して派生。ROM/fixture/7write barrierと既存受入sourceは不変。native敗北後の未復元をassertion通り失敗として保持。コードが新callbackへ到達する事実と修復未完を分離し、原本JSON/statusを変更しない。",
+  "source_change_review_ja": "ROM変更なし。旧18/45品目の観測ABIを実QOL50品目に修正。native失敗原本を保持し、成功した未観測購入suffixのみ追加受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -958,7 +1040,7 @@
   "stable_entrypoint": "CHATGPT_RESUME.md",
   "stable_paths_do_not_rotate_with_date": true,
   "state_authority": "CURRENT_RESUME_STATE; acceptance and completion remain owned by referenced ledgers",
-  "status": "PASS_NATIVE_THREE_WIN_REWARD_9BP",
+  "status": "PASS_NATIVE_BP_SPENDING_SAVE_CONTINUE",
   "win_exchange_completed": {
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,
