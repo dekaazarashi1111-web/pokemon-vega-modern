@@ -33,10 +33,17 @@ static void bs_trace(struct mCore *c,const char *label) {
 static void bs_wait_field(struct mCore *c,const char *message) {
     unsigned stable=0U;
     for(unsigned f=0U;f<12000U;++f){
-        if(b_field(c)){
+        bool idle=b_field(c);
+        if(idle){
             if(++stable==60U){c->setKeys(c,0U);return;}
         }else stable=0U;
-        b_frame(c,f%90U==0U?QOL_KEY_A:0U);
+        /* Never pulse a confirm key after idle field first appears: at the
+         * three-win return position that would immediately re-open the
+         * reception NPC and replay game-owned reward/save side effects.
+         * B only dismisses a still-locked dialogue/menu and cannot start a
+         * new field interaction. */
+        b_frame(c,!idle && read8(c,P02S_FIELD_LOCK) && f%30U==0U
+            ?QOL_KEY_B:0U);
     }
     bs_trace(c,"field-timeout");bp_require(c,false,message);
 }

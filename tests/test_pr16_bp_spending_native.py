@@ -61,6 +61,16 @@ class BpSpendingContractTests(unittest.TestCase):
         with self.assertRaises(spending.BpSpendingError):
             spending.accept_spending(row, "a" * 64)
 
+    def test_field_wait_cannot_confirm_after_idle_appears(self) -> None:
+        source = (ROOT / spending.SOURCE).read_text()
+        start = source.index("static void bs_wait_field")
+        end = source.index("static void bs_wait_menu", start)
+        wait = source[start:end]
+        self.assertIn("bool idle=b_field(c);", wait)
+        self.assertIn("!idle && read8(c,P02S_FIELD_LOCK)", wait)
+        self.assertIn("?QOL_KEY_B:0U", wait)
+        self.assertNotIn("?QOL_KEY_A:0U", wait)
+
 
 if __name__ == "__main__":
     unittest.main()
