@@ -2402,3 +2402,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含むcommit。自己SHAは外部refで確認。同一branchへ非force pushのみ。
 - Network: GitHub connector/Actionsでexact HEADと最新runを確認。新しいprivate入力やROM/saveを公開しない。
 - Next: 同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。
+
+
+## 2026-09-15T09:44:59.151973+00:00 — PR-P08-7-RING-WORKFLOW-COMPAT
+- Timestamp: 2026-09-15T09:44:59.151973+00:00
+- Task: PR-P08-7-RING-WORKFLOW-COMPAT
+- Status: DONE / Ring誤入口修正のworkflow互換追補。Ring native受入は未完。
+- Version: PR16 Ring source-only workflow compatibility
+- Summary: 旧writerの候補非null前提がrun34953511256で失敗。履歴JSON/MD/P08自動再生成とPRコメント更新を廃し、exact HEADのread-only検証へ移行。失敗を成功へ読み替えない。
+- Verify: 修正後mapper9 tests PASS、Ring/resume check、tracked diff不変。既存source実装48 testsと非force記録run34953511304の成功原本をdigest照合で再利用。native再実行0。
+- Evidence: content/modernization/pr16_ring_owner_workflow_compatibility.json; current run34954168379; input HEAD=98eed9ff348b7e911af8b8888d1799cca1e65f5d。
+- Files changed: 旧map workflow、互換receipt、固定引継ぎMD/JSON、両ログ。受入済みBP原本・ROM/runtime不変。
+- Commit: この記録を含む同branchへの非force commit。最終index標準guard前後完全一致・追加違反0をgateとする。既存全体guard failureは残す。
+- Network: GitHub Actions metadata/原本artifactのみ。private入力なし。merge/release/baseline変更なし。
+- Next: 同candidate map97/80 compiled ownerを確認し、Ring正規取得・装備実戦・保存再開へ進む。source-onlyで受入しない。

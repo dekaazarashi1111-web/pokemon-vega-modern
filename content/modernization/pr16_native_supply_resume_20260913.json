@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。",
+    "current_stop": "Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。 旧供給map workflowも候補nullを許容するread-only検査へ移行。旧failure run34953511256は保持し、過去receiptやBP受入状態を自動再生成しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -1059,6 +1059,14 @@
     "content/modernization/pr16_ring_owner_resolution.json": {
       "size": 4286,
       "sha256": "911a49db5ee79386c7a6328fd7ff73ecfc8ec9bd696c899f659c2b70611b05a9"
+    },
+    ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
+      "size": 12319,
+      "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb"
+    },
+    "content/modernization/pr16_ring_owner_workflow_compatibility.json": {
+      "size": 2134,
+      "sha256": "7b37ecb2c9a29017fc3730b0233ceca75a19de509bbeae3ecf942568f95ce159"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
@@ -1237,6 +1245,11 @@
         }
       ]
     },
-    "recording_status": "FOCUSED_PASS_BEFORE_NONFORCE_PUSH"
+    "recording_status": "SUCCESS_VERIFIED_RUN_34953511304",
+    "workflow_compatibility": {
+      "path": "content/modernization/pr16_ring_owner_workflow_compatibility.json",
+      "run_id": 34954168379,
+      "source_head": "98eed9ff348b7e911af8b8888d1799cca1e65f5d"
+    }
   }
 }
