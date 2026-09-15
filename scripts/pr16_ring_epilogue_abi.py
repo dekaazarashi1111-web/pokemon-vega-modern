@@ -94,7 +94,7 @@ def recover_prior(prior, run):
         s.need(subprocess.check_output(['git','show',BASE+':'+p],cwd=s.ROOT)==(s.ROOT/p).read_bytes(), '保存成果読戻し不一致')
     job=s.api('actions/jobs/104524066362')
     s.need(job['run_id']==run['id'] and job['head_sha']==prior['source_head'] and job['conclusion']=='failure', '原job不一致')
-    log=subprocess.check_output(['gh','api','repos/'+s.REPO+'/actions/jobs/104524066362/logs'],cwd=s.ROOT)
+    log=subprocess.check_output(['gh','api','--allow-escape-sequences','repos/'+s.REPO+'/actions/jobs/104524066362/logs'],cwd=s.ROOT)
     text=log.decode('utf-8-sig')
     for token in ('632e502..6f6a867', 'assert_remote(commit)', 'ValueError: PR境界不一致',
                   '"new_violations": 0', '"exact_output_match": true', '"full_guard_pass_claimed": false'):
@@ -121,6 +121,7 @@ def analyze(prior,out):
                    and r['registers'][0]==word and r['target_raw']==0x0806DE81 and r['memory_unchanged'], '局所ABI不一致')
             cases+=1
     return {'classification':'CONDITIONAL_EPILOGUE_RETURN_NOT_WHOLE_CALLEE_PROOF','candidate':copy.deepcopy(s.CANDIDATE),
+        'preflight_failure_preserved':{'run_id':35012133695,'job_id':104526438952,'original_conclusion':'failure','reason':'gh CLI terminal escape protection before ABI','candidate_reconstructions':0,'abi_executions':0},
         'instructions_verified':3,'instruction_bytes_verified':6,'local_sp_delta':16,
         'popped_registers':[4,5,6,1],'return_slot_register':1,'r0_preserved':True,
         'conditional_return_target':c['prefix']['callee_entry_lr_value'],
@@ -140,7 +141,7 @@ def analyze(prior,out):
 def summaries(a):
     return ('保存末尾3命令/6byteの条件付き局所帰還ABIを検証。SP+16、r4/r5/r6を3wordから復元し4word目をr1経由BX、r0不変。'
         '保存slot保持と到達を仮定した帰還先0x0806DE81・FlagSet frame残8byteを結合。全callee帰還/非aliasは未証明。'
-        '採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。',
+        'ABI初回run35012133695はCLIの制御文字保護で実行前failure、原結論を保持。採取run35011425946はpush後PR照合でfailureのまま保持し、commit6f6a8678の6成果を独立読戻し。再採取0。',
         '次は未読0x0806DE51だけを限定採取し、もう一方のpointer経路を確認する。外部call3本/旧18targetは保持。'
         '保存末尾/共通末尾/zero/helper/既受入BPを再採取・単独再実行しない。Ring通常取得へ昇格しない。')
 
