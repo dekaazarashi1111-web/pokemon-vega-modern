@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Ring map97/80のcompiled owner限定監査は完了。candidate ceddbe91のevent runtimeを独立compileと全byte一致させ、map root→transition→dispatcherと有限CFGを照合。共有dispatcherはKANTO_LEAGUE_CLEAR/FINAL_LEAGUE_CLEAREDの2eventへ接続。70命令332 bytes、native4種11呼出し、到達EventDesign reward呼出し0。既存transition nativeなし。callstd4/推移的calleeは未除外で、Ring通常取得や全ROMのgiver不存在を証明したものではない。正式BP受入run34946969126は維持。",
+    "current_stop": "Ring未解決callee第一段を実装・検証。callstd4は0x08192DA5の8 bytes 6700000000666d03（message0→waitmessage→waitbuttonpress→return）。Flag/QOL/Save/Trainer/ScriptContextの6入口を有限byte監査した。FlagSetとSaveFinalizeはpatch済み入口で、sourceだけを見て無副作用と判断してはならない。QOLDispatchのDAYCARE分岐は入力74/79では非到達だがQOL_FEATURE全体は未除外。Ring通常取得・全runtime owner不存在は未証明。BP受入run34946969126は不変。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
+    "next_step": "成功済みcallstd4と6 native入口の証拠を再実行せず再利用し、FlagSet 0x0806DE75→0x093775C5、SaveFinalize 0x092D28D9→0x093BDD7Dのpatch先と、記録された未解決callee/標準script engine handlerだけを限定追跡する。callstd4のscript層はmessage/wait/returnだがengine副作用やRing giver不存在は未証明。通常取得ownerが未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -279,7 +279,8 @@
     "run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、BP購入suffixもrun34946969126で完了。",
     "run34946969126の通常購入12→8 BP・かわらずのいし0→1・Save/fresh Continueは正式受入。source/候補/契約変更影響なしに再実行しない。失敗run34933733445と34945660762をsuccessに読み替えない。",
     "Ring source graphと誤入口選択の修正は完了。同一sourceで再scanせず、map97/80 compiled ownerの未観測区間へ進む。source-onlyをRing通常取得や全ROMのgiver不在証明にしない。",
-    "Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。"
+    "Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。",
+    "run34960361700の34 tests/callstd4/6入口はsource不変なら再実行しない。patch先の未観測実体と未解決辺だけを進める。BP受入原本は不変。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -352,16 +353,16 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
+    "goal_ja": "成功済みcallstd4と6 native入口の証拠を再実行せず再利用し、FlagSet 0x0806DE75→0x093775C5、SaveFinalize 0x092D28D9→0x093BDD7Dのpatch先と、記録された未解決callee/標準script engine handlerだけを限定追跡する。callstd4のscript層はmessage/wait/returnだがengine副作用やRing giver不存在は未証明。通常取得ownerが未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_transitive_owner.json",
       "content/modernization/pr16_ring_compiled_owner.json",
-      "content/modernization/pr16_ring_owner_resolution.json",
-      "scripts/pr16_ring_compiled_owner.py",
+      "scripts/pr16_ring_transitive_owner.py",
+      "tests/test_pr16_ring_transitive_owner.py",
       "overlays/event_design/event_design.c",
-      "scripts/build_event_design_stage.py",
-      "config/event_design_bindings.csv"
+      "overlays/qol_production/qol_production.c"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -370,11 +371,11 @@
     ]
   },
   "observed_date_jst": "2026-09-15",
-  "observed_head": "0b7497b575a3180a045f2be377386490f192a012",
+  "observed_head": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
   "observed_head_checks": {
-    "reason_ja": "専用run34946969126はsuccess、focused6 tests PASS。これは全Actionsのgreenやrelease判定ではない。開始時の既存P03 forgetting failureは本変更から独立。"
+    "reason_ja": "限定run34960361700/job104352222046はsuccess、34 tests PASS。Actions全件greenではない。観測した他runはreceiptのactions_observed_before_recordに保存し、failure/action_requiredを成功へ読み替えない。"
   },
-  "observed_head_semantics": "native検証済みHEAD。以降の記録差分はsource-only照合し、ROM/入力/成功プレイを再実行しない。",
+  "observed_head_semantics": "限定byte監査を実行したsource HEAD。最終記録commitはremote refで別途確認する。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -534,8 +535,8 @@
     "new_emulator_processes": 0,
     "rom_changes": 0,
     "accepted_standalone_replays": 0,
-    "candidate_reconstructions": 2,
-    "scope_ja": "compiled監査実装。初回はCLI importで失敗、修正後に同一候補で完了。native受入追加なし。"
+    "candidate_reconstructions": 1,
+    "scope_ja": "限定監査1回。記録時再build/nativeなし。追加closureは書込み未反映・未受入であり成果に含めない。通常pushの自動CIは別枠。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1101,10 +1102,38 @@
     ".github/workflows/pr16-ring-compiled-owner.yml": {
       "size": 7567,
       "sha256": "15cfcfb91b25e65b0ca2cf81d78e010dc122450e5df475f0c18393bb12590553"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "tests/test_pr16_ring_transitive_owner.py": {
+      "size": 8243,
+      "sha256": "e3c3fbee8f7a85ccbd14969f6ddb7d585d3619f6c2bcbbad960757f12877014f"
+    },
+    ".github/workflows/pr16-ring-transitive-owner.yml": {
+      "size": 8012,
+      "sha256": "e0a774bca385b07997290cee0c4c1b8d01182b2ce1d43c67236c3baf545043b8"
+    },
+    "content/modernization/pr16_ring_transitive_owner.json": {
+      "size": 34036,
+      "sha256": "2045f5f2d9b2f234f58b8c596121f26794ae578a220e960d38b4a2999ab51cb7"
+    },
+    "scripts/pr16_ring_transitive_record.py": {
+      "size": 9490,
+      "sha256": "7ed39b1e859d52c8ebaacd3f4267b3fcd414a83f97f318d77567adeb5c107203"
+    },
+    "tests/test_pr16_ring_transitive_record.py": {
+      "size": 4143,
+      "sha256": "2e7db1e2e93ef95ab9270cd0e36706cd45e40047a0e5dd3cde52ac131425c927"
+    },
+    ".github/workflows/pr16-ring-transitive-record.yml": {
+      "size": 7620,
+      "sha256": "ddb8f110596f5f5d7fb6953fff7c86c0b120aea6730cd1e59cdd6822d0505019"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Ring map97/80のcompiled owner限定監査は完了。candidate ceddbe91のevent runtimeを独立compileと全byte一致させ、map root→transition→dispatcherと有限CFGを照合。共有dispatcherはKANTO_LEAGUE_CLEAR/FINAL_LEAGUE_CLEAREDの2eventへ接続。70命令332 bytes、native4種11呼出し、到達EventDesign reward呼出し0。既存transition nativeなし。callstd4/推移的calleeは未除外で、Ring通常取得や全ROMのgiver不存在を証明したものではない。正式BP受入run34946969126は維持。 ゲームruntime・受入原本は変更していない。",
+  "source_change_review_ja": "Ring未解決callee第一段を実装・検証。callstd4は0x08192DA5の8 bytes 6700000000666d03（message0→waitmessage→waitbuttonpress→return）。Flag/QOL/Save/Trainer/ScriptContextの6入口を有限byte監査した。FlagSetとSaveFinalizeはpatch済み入口で、sourceだけを見て無副作用と判断してはならない。QOLDispatchのDAYCARE分岐は入力74/79では非到達だがQOL_FEATURE全体は未除外。Ring通常取得・全runtime owner不存在は未証明。BP受入run34946969126は不変。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1292,6 +1321,13 @@
     "source_head": "2a9728ac4e3531f2a595da6b3d95ba12f842e44a",
     "run_id": 34956919982,
     "compiled_event_runtime_verified": true,
+    "ring_acquisition_accepted": false
+  },
+  "ring_transitive_owner": {
+    "path": "content/modernization/pr16_ring_transitive_owner.json",
+    "run_id": 34960361700,
+    "source_head": "41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7",
+    "classification": "TRANSITIVE_CALLEE_BOUNDARY_NOT_NATIVE_ACCEPTANCE",
     "ring_acquisition_accepted": false
   }
 }

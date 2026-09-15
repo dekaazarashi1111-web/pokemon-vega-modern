@@ -2431,3 +2431,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branchへの非force commit。自己SHAは外部refで確認。既存full guard failureは保持し追加違反0と前後出力完全一致を要求。
 - Network: GitHub connector/Actions。固定private入力はrunner内のみ、ROM/save/private archiveをtracked/artifactへ追加しない。全Actions green・merge・release・baseline変更を主張しない。
 - Next: 同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。
+
+
+## 2026-09-15T11:17:25.310726+00:00 — PR-P08-7-RING-TRANSITIVE-OWNER
+- Timestamp: 2026-09-15T11:17:25.310726+00:00
+- Task: PR-P08-7-RING-TRANSITIVE-OWNER
+- Status: DONE / 未解決callee第一段の実装・検証・記録。Ring通常取得は未完。
+- Version: PR16 Ring transitive owner first layer
+- Summary: callstd4の8 bytesと6 native入口を有限CFG化。未知opcode/不正Thumb/範囲外/重複命令を拒否。間接分岐・memory writeを無副作用やgiver不存在へ昇格しない。FlagSet→0x093775C5、SaveFinalize→0x093BDD7Dのpatched入口を特定。
+- Verify: run34960361700/job104352222046 success、34 tests PASS。記録・固定resume 35 tests PASS。read-only resume/task graph/diffと差分guardをcommit前必須gateとする。
+- Evidence: content/modernization/pr16_ring_transitive_owner.json; source HEAD=41debb1dc1ac3c8fddefe7fa97898e7ecd2943b7; artifact10392663831; SHA256=a3ae8cbfc1ce80a7883c152950f8ccfd939fe8ca33defc007b785f77a5619a5d。
+- Preserved: candidate ceddbe91/CRC3EB17B36、受入BP原本・checkpoint・compiled owner不変。限定候補再構築1、native0、受入済みnative再実行0、ROM変更0。自動push CIは別枠。追加closureコードは書込みブロックで未反映・未受入。
+- Files changed: 限定監査/helper/tests/workflows、receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote ref/recorded-resultで確認。
+- Network: GitHub connector/Actions。ROM/save/private入力の追加なし。既存full guard違反は保持し、前後出力完全一致と追加違反0を要求。全Actions green/merge/release/baseline切替は主張しない。
+- Next: 成功済みcallstd4と6 native入口の証拠を再実行せず再利用し、FlagSet 0x0806DE75→0x093775C5、SaveFinalize 0x092D28D9→0x093BDD7Dのpatch先と、記録された未解決callee/標準script engine handlerだけを限定追跡する。callstd4のscript層はmessage/wait/returnだがengine副作用やRing giver不存在は未証明。通常取得ownerが未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
