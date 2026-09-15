@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "0x09097105の保存済み10命令/22byteを限定検証。PUSH {r4-r6,lr}で追加16byte、FlagSet継承8byteと合わせてSP=-24、callee entry LR保存offsetは元entry SPから-12。引数low16をr0/r4/r6へ渡しBL 0x091281D1。helper帰還時は非0→0x090970F7、0→literal BX 0x0806DDBDへ進む。観測prefixにPOP/returnなし。literalはcode targetで返却data pointerではない。callee帰還/SP/r4復元/非aliasは未証明。旧18target台帳を維持し、この3外部targetを追加境界に記録。BP受入不変。",
+    "current_stop": "WIP: 未読helper 0x091281D1だけを同一candidateから29命令/58bytes採取して保存。return/SP/r4-r6/保存slotの限定検証は保存byteから続行。旧18targetと0x090970F7/0x0806DDBDの未読境界・BP受入を保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。",
+    "next_step": "保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -286,7 +286,8 @@
     "0x0806DE7Dの1根byte採取は完了。同一candidate/sourceで再採取せず、保存した継続graphを再利用する。継承8byte frame・旧18未読target・全owner未除外を保持し、Ring通常取得の受入へ読み替えない。",
     "FlagSet継続の継承frame結合は条件付きで完了。opaque callee 0x09097105のreturn/SP/r4/保存slotと返却pointer非aliasは未証明。結合を全owner除外やRing受入へ昇格せず、同一入力で単独再実行しない。",
     "0x09097105の限定byte採取は保存済み。保存graphを再利用し、同一candidateから再採取しない。帰還/SP/r4/非alias検証は別工程。",
-    "0x09097105の10命令/22byteと追加16byte live-frameの限定検証は完了。helper091281D1・非0継続090970F7・0継続0806DDBDは未読。callee return/SP/r4/返却pointer非aliasを受入せず、literal code pointerを返却bufferへ読み替えない。同一prefixを再採取しない。"
+    "0x09097105の10命令/22byteと追加16byte live-frameの限定検証は完了。helper091281D1・非0継続090970F7・0継続0806DDBDは未読。callee return/SP/r4/返却pointer非aliasを受入せず、literal code pointerを返却bufferへ読み替えない。同一prefixを再採取しない。",
+    "0x091281D1のhelper byte採取は保存済み。同一candidateから再採取せず、保存byteでreturn/stackを限定検証する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -359,15 +360,15 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。",
+    "goal_ja": "保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_helper_bytes.json",
+      "scripts/pr16_ring_helper_bytes.py",
       "content/modernization/pr16_ring_callee_abi.json",
-      "scripts/pr16_ring_callee_abi.py",
       "content/modernization/pr16_ring_callee_bytes.json",
-      "content/modernization/pr16_ring_frame_join.json",
-      "content/modernization/pr16_ring_flagset_continuation.json"
+      "content/modernization/pr16_ring_frame_join.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -376,11 +377,11 @@
     ]
   },
   "observed_date_jst": "2026-09-15",
-  "observed_head": "85e0b2a4558d5ec74f032f6b6cead6df249089a0",
+  "observed_head": "5366a1f8caa09dd7c369ca14640307e88c348d6b",
   "observed_head_checks": {
-    "reason_ja": "採取run34976478801・frame結合run34974346670・BP run34946969126はcompleted/successを照合。今回run34978245004は保存時in_progress。通常CI action_requiredは成功へ読み替えずreceiptへ最新snapshot保存。"
+    "reason_ja": "前回ABI run34978245004とBP run34946969126成功照合。今回run34981952888は保存時in_progress。action_requiredは成功へ読み替えない。"
   },
-  "observed_head_semantics": "保存済みcallee prefixのframe/外部境界を検証したsource HEAD。完了commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "未読helper一根を採取したsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -541,7 +542,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "本セッションは新規callee byte用の同一candidate復元1。ABI工程は保存byteのみでROM復元/decode/native/既存分類再実行0。"
+    "scope_ja": "未読helper一根のみ採取。既読graph/受入済みnative再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1243,10 +1244,26 @@
     "content/modernization/pr16_ring_callee_abi.json": {
       "size": 12915,
       "sha256": "ec45ae731bee3d124e5c7fa1bf9919f4f03520d526af3906e34623da3bf92ac8"
+    },
+    "scripts/pr16_ring_helper_bytes.py": {
+      "size": 15743,
+      "sha256": "f83b07906fade2359b3f77e2f22b6479c8eea3309754428fcc85dcebecd94f87"
+    },
+    "tests/test_pr16_ring_helper_bytes.py": {
+      "size": 2942,
+      "sha256": "5ae251c21d6a2371ba3f68862e5e9516902d093b4b78d9221ebd1ff5a9199fa8"
+    },
+    ".github/workflows/pr16-ring-helper-bytes.yml": {
+      "size": 4607,
+      "sha256": "6e9a6324b4d51252e884001d6d4244d4b57ea139de7740b93fa38f6a4ae83d74"
+    },
+    "content/modernization/pr16_ring_helper_bytes.json": {
+      "size": 23847,
+      "sha256": "09ba17a7fdb61b327d7a0e18f71c09fbffb7c74b3e58004b72d31ead8de28c1b"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "0x09097105の保存済み10命令/22byteを限定検証。PUSH {r4-r6,lr}で追加16byte、FlagSet継承8byteと合わせてSP=-24、callee entry LR保存offsetは元entry SPから-12。引数low16をr0/r4/r6へ渡しBL 0x091281D1。helper帰還時は非0→0x090970F7、0→literal BX 0x0806DDBDへ進む。観測prefixにPOP/returnなし。literalはcode targetで返却data pointerではない。callee帰還/SP/r4復元/非aliasは未証明。旧18target台帳を維持し、この3外部targetを追加境界に記録。BP受入不変。",
+  "source_change_review_ja": "WIP: 未読helper 0x091281D1だけを同一candidateから29命令/58bytes採取して保存。return/SP/r4-r6/保存slotの限定検証は保存byteから続行。旧18targetと0x090970F7/0x0806DDBDの未読境界・BP受入を保持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1502,6 +1519,13 @@
       152207825
     ],
     "callee_return_proven": false,
+    "ring_acquisition_accepted": false
+  },
+  "ring_helper_bytes": {
+    "path": "content/modernization/pr16_ring_helper_bytes.json",
+    "source_head": "5366a1f8caa09dd7c369ca14640307e88c348d6b",
+    "run_id": 34981952888,
+    "target": 152207825,
     "ring_acquisition_accepted": false
   }
 }

@@ -5269,3 +5269,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定入力。外部検索語「site.github.com/ARM-software/abi-aa aapcs32 r4 r8 SP preserved」および「site.developer.arm.com ARM7TDMI Thumb PUSH POP BX instruction set」。公式AAPCS32 https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst の本文を確認。ARM7TDMI https://developer.arm.com/documentation/ddi0029/g/CIHEDIDG は検索抄録のみで本文取得は失敗。r4等/SP保存は呼出規約の要求であり、未読helperが遵守する実証とはしない。
 - Boundary: 既存全体guard違反は前後一致/新規差分0を要求し全体PASSとは呼ばない。通常CI action_requiredを成功へ改称しない。merge/release/baseline変更なし。
 - Next: 次は未読helper 0x091281D1だけを優先してreturn値とSP/r4-r6/保存slotへの影響を限定確認する。その後の0x090970F7と0x0806DDBDの継続は未読として保持する。0x09097105/FlagSet/FlagGetの再採取、15辺再分類、受入済みBPの再実行はしない。旧18target台帳を削らず、条件付き境界を全caller/全owner除外やRing正規取得へ昇格しない。
+
+
+## 2026-09-15T14:30:40.822872+00:00 — PR-P08-7-RING-HELPER-BYTES
+- Timestamp: 2026-09-15T14:30:40.822872+00:00
+- Task: PR-P08-7-RING-HELPER-BYTES / 未読helper限定採取checkpoint
+- Status: STOPPED / 採取保存工程完了、同一作業のABI検証へ続行。
+- Version: PR16 helper bytes checkpoint
+- Summary: WIP: 未読helper 0x091281D1だけを同一candidateから29命令/58bytes採取して保存。return/SP/r4-r6/保存slotの限定検証は保存byteから続行。旧18targetと0x090970F7/0x0806DDBDの未読境界・BP受入を保持。
+- Files changed: scripts/pr16_ring_helper_bytes.py, tests/test_pr16_ring_helper_bytes.py, .github/workflows/pr16-ring-helper-bytes.yml, content/modernization/pr16_ring_helper_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: helper異常系/固定resume 36 tests PASS、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=5366a1f8caa09dd7c369ca14640307e88c348d6b; run=34981952888（保存時in_progress）。
+- Preserved: ROM変更/native/既読graph再scan/15辺再分類/受入済み再実行0。同一candidate復元1。旧18target台帳を保持。
+- Commit: checkpointを同branchへ非force push、最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
+- Boundary: 既存全体guard違反前後一致/新規違反0を要求。全体guard PASSや全CI greenを主張しない。merge/release/baseline変更なし。
+- Next: 保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。
