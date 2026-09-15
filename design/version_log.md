@@ -2735,3 +2735,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:25:20.675703+00:00 — PR-P08-7-RING-EXTERNAL1-BYTES
+- Timestamp: 2026-09-15T19:25:20.675703+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-BYTES / 最初の未解決外部callee1根を限定採取し次のABI境界を記録
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-bytes
+- Summary: 未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。
+- Files changed: scripts/pr16_ring_external1_bytes.py, tests/test_pr16_ring_external1_bytes.py, .github/workflows/pr16-ring-external1-bytes.yml, content/modernization/pr16_ring_external1_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定9 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d8b18f448c5c0db940d5e4f045a602d916e3d171; run=35013389513（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存済みpr16_ring_external1_bytes.jsonだけで0x08113889の局所ABI・副作用・呼出境界を検証する。今回5工程のbyte再採取/ABI単独再実行は禁止。0x0806DD1D/0x081138F9と旧18owner、採取で現れた未解決辺は保持。Ring通常story取得、policy/Circus、最終候補/releaseは未完のまま。

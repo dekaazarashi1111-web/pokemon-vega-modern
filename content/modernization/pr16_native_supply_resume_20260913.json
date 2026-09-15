@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。",
+    "current_stop": "未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。",
+    "next_step": "次は保存済みpr16_ring_external1_bytes.jsonだけで0x08113889の局所ABI・副作用・呼出境界を検証する。今回5工程のbyte再採取/ABI単独再実行は禁止。0x0806DD1D/0x081138F9と旧18owner、採取で現れた未解決辺は保持。Ring通常story取得、policy/Circus、最終候補/releaseは未完のまま。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -298,7 +298,8 @@
     "0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。",
     "保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。",
     "0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。",
-    "高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。"
+    "高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。",
+    "外部callee0x08113889の限定byteは保存済み。同一candidateから再採取せず保存graphのABIを検証する。他callee/旧18targetを解決済みへ変えない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -371,13 +372,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。",
+    "goal_ja": "次は保存済みpr16_ring_external1_bytes.jsonだけで0x08113889の局所ABI・副作用・呼出境界を検証する。今回5工程のbyte再採取/ABI単独再実行は禁止。0x0806DD1D/0x081138F9と旧18owner、採取で現れた未解決辺は保持。Ring通常story取得、policy/Circus、最終候補/releaseは未完のまま。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_high_branch_abi.json",
-      "scripts/pr16_ring_high_branch_abi.py",
-      "content/modernization/pr16_ring_high_branch_bytes.json"
+      "content/modernization/pr16_ring_external1_bytes.json",
+      "scripts/pr16_ring_external1_bytes.py",
+      "content/modernization/pr16_ring_high_branch_abi.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -386,9 +387,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "de517da291587ca23867800f1df65997e5e6034e",
+  "observed_head": "d8b18f448c5c0db940d5e4f045a602d916e3d171",
   "observed_head_checks": {
-    "reason_ja": "先行run35012559981の原結論と保存証拠、BP run34946969126成功を照合。今回run35013060593は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35013060593の原結論と保存証拠、BP run34946969126成功を照合。今回run35013389513は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -549,9 +550,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。"
+    "scope_ja": "未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1457,10 +1458,26 @@
     "content/modernization/pr16_ring_high_branch_abi.json": {
       "size": 9441,
       "sha256": "2e9a6c05f49a16d1dd92a3939876436b8e25dc1ec5012c3b527e25fcbd845e78"
+    },
+    "scripts/pr16_ring_external1_bytes.py": {
+      "size": 7703,
+      "sha256": "b8e18b0a4659ffa738b9c0205a2e1453fbf23b3b2270f7f071ae97ec26e7b671"
+    },
+    "tests/test_pr16_ring_external1_bytes.py": {
+      "size": 2745,
+      "sha256": "e0dd5ac4644fbfb0b0a8d86b88636296eb54439e2f434a5e141f400536a60274"
+    },
+    ".github/workflows/pr16-ring-external1-bytes.yml": {
+      "size": 1391,
+      "sha256": "532c1835c2babbd958387cef0dd315f0568de49fc3a3a43b70a40c936f0a8752"
+    },
+    "content/modernization/pr16_ring_external1_bytes.json": {
+      "size": 25306,
+      "sha256": "2df5de29ce937a02491b839993edbb631ab0016c09176d6134c9759a1434461c"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。",
+  "source_change_review_ja": "未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1795,5 +1812,10 @@
     "path": "content/modernization/pr16_ring_high_branch_abi.json",
     "source_head": "de517da291587ca23867800f1df65997e5e6034e",
     "run_id": 35013060593
+  },
+  "ring_external1_bytes": {
+    "path": "content/modernization/pr16_ring_external1_bytes.json",
+    "source_head": "d8b18f448c5c0db940d5e4f045a602d916e3d171",
+    "run_id": 35013389513
   }
 }
