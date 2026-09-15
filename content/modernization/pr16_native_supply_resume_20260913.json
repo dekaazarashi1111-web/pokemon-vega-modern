@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。 旧供給map workflowも候補nullを許容するread-only検査へ移行。旧failure run34953511256は保持し、過去receiptやBP受入状態を自動再生成しない。",
+    "current_stop": "Ring map97/80のcompiled owner限定監査は完了。candidate ceddbe91のevent runtimeを独立compileと全byte一致させ、map root→transition→dispatcherと有限CFGを照合。共有dispatcherはKANTO_LEAGUE_CLEAR/FINAL_LEAGUE_CLEAREDの2eventへ接続。70命令332 bytes、native4種11呼出し、到達EventDesign reward呼出し0。既存transition nativeなし。callstd4/推移的calleeは未除外で、Ring通常取得や全ROMのgiver不存在を証明したものではない。正式BP受入run34946969126は維持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
+    "next_step": "同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -278,7 +278,8 @@
     "run34825059791の限定runtime接続・交換個体保持（600byte/3個体/次戦action）は完了。同一candidate/sourceで単独再実行せず、run34854927678の3勝9BP受入prefixとして再利用する。",
     "run34854927678の同一playthrough native 3勝・BP 0→9・元party600bytes復元はscoped受入済み。変更影響なしに単独再実行せず、BP購入suffixもrun34946969126で完了。",
     "run34946969126の通常購入12→8 BP・かわらずのいし0→1・Save/fresh Continueは正式受入。source/候補/契約変更影響なしに再実行しない。失敗run34933733445と34945660762をsuccessに読み替えない。",
-    "Ring source graphと誤入口選択の修正は完了。同一sourceで再scanせず、map97/80 compiled ownerの未観測区間へ進む。source-onlyをRing通常取得や全ROMのgiver不在証明にしない。"
+    "Ring source graphと誤入口選択の修正は完了。同一sourceで再scanせず、map97/80 compiled ownerの未観測区間へ進む。source-onlyをRing通常取得や全ROMのgiver不在証明にしない。",
+    "Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -351,16 +352,16 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "同じcandidateのmap97/80・FINAL_LEAGUE_CLEARED dispatcherを限定byte照合し、既存native/specialによるRing付与の有無を追う。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
+    "goal_ja": "同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_compiled_owner.json",
       "content/modernization/pr16_ring_owner_resolution.json",
-      "content/event_design_implementation/event_plan.json",
-      "config/event_design_bindings.csv",
+      "scripts/pr16_ring_compiled_owner.py",
       "overlays/event_design/event_design.c",
       "scripts/build_event_design_stage.py",
-      "scripts/pr16_ring_owner.py"
+      "config/event_design_bindings.csv"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -533,7 +534,8 @@
     "new_emulator_processes": 0,
     "rom_changes": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "Ring source入口選択と既受入BPを保全する投影処理の修正。native受入の追加なし。"
+    "candidate_reconstructions": 2,
+    "scope_ja": "compiled監査実装。初回はCLI importで失敗、修正後に同一候補で完了。native受入追加なし。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1067,10 +1069,42 @@
     "content/modernization/pr16_ring_owner_workflow_compatibility.json": {
       "size": 2134,
       "sha256": "7b37ecb2c9a29017fc3730b0233ceca75a19de509bbeae3ecf942568f95ce159"
+    },
+    "scripts/pr16_ring_compiled_owner.py": {
+      "size": 13070,
+      "sha256": "708854062d694ef1e8bbafe633f24e684a92e44daea3abec01afb42c7a419aee"
+    },
+    "tests/test_pr16_ring_compiled_owner.py": {
+      "size": 6605,
+      "sha256": "d3b5c10ee0916c09982f542df5f0ccff6becf9802e30586566a65d9817228e42"
+    },
+    "overlays/event_design/event_design.h": {
+      "size": 1242,
+      "sha256": "9a07ce1e81da1100538705c51f4e92a603b6c32355df35b4491a32f46e11b845"
+    },
+    "content/modernization/pr16_ring_compiled_owner.json": {
+      "size": 22345,
+      "sha256": "37e57ffefe6df07ccb5fd3df2730e7199f9b7e7af067139cabcca4f0e45a8ec4"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "tests/test_pr16_ring_compiled_record.py": {
+      "size": 7066,
+      "sha256": "2220048d4d7bf4ea580c34a0fb01b52bed2fe01897b3cc7bad55113d63f75f09"
+    },
+    ".github/workflows/pr16-ring-compiled-record.yml": {
+      "size": 8787,
+      "sha256": "a0008128fad54d27427b5d33048cc8886418549cf4157bf90f34490895ed7f55"
+    },
+    ".github/workflows/pr16-ring-compiled-owner.yml": {
+      "size": 7567,
+      "sha256": "15cfcfb91b25e65b0ca2cf81d78e010dc122450e5df475f0c18393bb12590553"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Ringの誤入口pr16_gear_originals.py:verifyを選択しないよう実装し、旧inventoryの再投影で受入済みBPを再openしないよう修正。限定source graphでは最終リーグ完了eventのreward_key=NONE・到達GIVE_REWARD=0。これはROM内の全owner不在証明ではない。Ring native受入は未完、次はmap97/80のcompiled owner。 ROM/runtime/受入原本は不変。",
+  "source_change_review_ja": "Ring map97/80のcompiled owner限定監査は完了。candidate ceddbe91のevent runtimeを独立compileと全byte一致させ、map root→transition→dispatcherと有限CFGを照合。共有dispatcherはKANTO_LEAGUE_CLEAR/FINAL_LEAGUE_CLEAREDの2eventへ接続。70命令332 bytes、native4種11呼出し、到達EventDesign reward呼出し0。既存transition nativeなし。callstd4/推移的calleeは未除外で、Ring通常取得や全ROMのgiver不存在を証明したものではない。正式BP受入run34946969126は維持。 ゲームruntime・受入原本は変更していない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1251,5 +1285,13 @@
       "run_id": 34954168379,
       "source_head": "98eed9ff348b7e911af8b8888d1799cca1e65f5d"
     }
+  },
+  "ring_compiled_owner": {
+    "path": "content/modernization/pr16_ring_compiled_owner.json",
+    "classification": "COMPILED_OWNER_BOUNDARY_NOT_NATIVE_ACCEPTANCE",
+    "source_head": "2a9728ac4e3531f2a595da6b3d95ba12f842e44a",
+    "run_id": 34956919982,
+    "compiled_event_runtime_verified": true,
+    "ring_acquisition_accepted": false
   }
 }

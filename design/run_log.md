@@ -5144,3 +5144,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branchへの非force commit。最終index標準guard前後完全一致・追加違反0をgateとする。既存全体guard failureは残す。
 - Network: GitHub Actions metadata/原本artifactのみ。private入力なし。merge/release/baseline変更なし。
 - Next: 同candidate map97/80 compiled ownerを確認し、Ring正規取得・装備実戦・保存再開へ進む。source-onlyで受入しない。
+
+
+## 2026-09-15T10:30:32.595785+00:00 — PR-P08-7-RING-COMPILED-OWNER
+- Timestamp: 2026-09-15T10:30:32.595785+00:00
+- Task: PR-P08-7-RING-COMPILED-OWNER
+- Status: DONE / compiled owner限定監査実装・検証・記録。Ring通常取得は未完。
+- Version: PR16 Ring compiled owner boundary
+- Summary: map97/80の誤解しやすいscript_pointer列をtransition本体として扱い、map table、schedule、有限CFGと独立compileしたevent runtimeをcandidateのbyteへ結合。未知opcode/外部分岐/operand途中/不正Thumbをfail-closedにし、未解決nativeをgiver不存在へ昇格しない。
+- Verify: compiled異常系24 tests PASS、Actions run34956919982 / job104341086832 success。記録/固定引継ぎ 40 tests PASS、read-only check、task graph、diff、最終index差分guardを必須gateとする。
+- Evidence: content/modernization/pr16_ring_compiled_owner.json; tested HEAD=2a9728ac4e3531f2a595da6b3d95ba12f842e44a; artifact=10391238659 / SHA256=c6a915be88ccfd6a5410cad5917914ebfe75a555b24b8e42a5e872a3f73bb598。初回run34956435284のimport失敗と記録run34957907451のmetadata比較失敗は保持しsuccessへ読み替えない。
+- Preserved: candidate ceddbe91 / CRC3EB17B36、正式BP checkpoint/原本、Ring source-only原本不変。候補再構築2回（初回CLI失敗の修正を含む）、native0、受入済み単独再実行0、ゲームruntime変更0。
+- Files changed: compiled監査と起動/異常系tests、限定検証/記録workflow、記録helper/tests、compiled receipt、P08のRing参照、固定引継ぎMD/JSON、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAは外部refで確認。既存full guard failureは保持し追加違反0と前後出力完全一致を要求。
+- Network: GitHub connector/Actions。固定private入力はrunner内のみ、ROM/save/private archiveをtracked/artifactへ追加しない。全Actions green・merge・release・baseline変更を主張しない。
+- Next: 同一candidateのcompiled owner証拠を再利用し、未除外のcallstd4と、EventDesignからのFlag/QOL/Save finalize等の推移的native呼出し先だけを限定追跡する。map97/80の既存transition nativeは存在しないことがbyte確認済み。Ring580のstory取得ownerの有無を確定する。未実装と確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足から通常取得、装備実戦、Save/fresh Continueへ進む。
