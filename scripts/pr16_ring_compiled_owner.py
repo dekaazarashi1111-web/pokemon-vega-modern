@@ -18,6 +18,8 @@ import tempfile
 import zlib
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 BASE = 0x08000000
 CANDIDATE = {'size': 33554432, 'sha256': 'ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b', 'crc32': '3EB17B36'}
 TASK = 'PR-P08-7-RING-COMPILED-OWNER'

@@ -3,6 +3,9 @@
 import importlib.util
 from pathlib import Path
 import struct
+import subprocess
+import sys
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +18,15 @@ B = r.BASE
 class RingCompiledOwnerTests(unittest.TestCase):
     def graph(self, data, limit=512):
         return r.graph(data, [B], B, B + len(data), limit)
+
+    def test_cli_bootstrap_without_pythonpath_or_repository_cwd(self):
+        command = ("import runpy,sys;runpy.run_path(sys.argv[1],run_name='bootstrap_contract');"
+                   "assert sys.argv[2] in sys.path")
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([sys.executable, '-I', '-c', command,
+                                     str(ROOT / 'scripts/pr16_ring_compiled_owner.py'), str(ROOT)],
+                                    cwd=directory, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_end(self):
         self.assertEqual(len(self.graph(b'\x02')), 1)
