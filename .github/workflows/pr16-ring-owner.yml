@@ -1,0 +1,58 @@
+name: pr16-ring-owner
+run-name: Ring正規取得ownerの限定検証
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-owner.yml
+      - scripts/pr16_ring_owner.py
+      - tests/test_pr16_ring_owner.py
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-ring-owner
+  cancel-in-progress: false
+jobs:
+  inspect:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Export tracked text for exact-HEAD offline implementation; no native run
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-ring-owner
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess,zipfile
+          out=pathlib.Path('.local/pr16-ring-owner'); bindings={}
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          allowed={'scripts','tools','tests','overlays','config','content','docs','design','infra','.github','tasks','state'}
+          with zipfile.ZipFile(out/'sources.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in sorted(filter(None,names)):
+                  p=pathlib.Path(name)
+                  if p.parts[0] not in allowed and name not in ('README.md','AGENTS.md','CHATGPT_RESUME.md','Makefile'):continue
+                  if p.suffix not in ('.py','.c','.h','.json','.md','.yml','.yaml','.toml','.sh','.csv','.tbl') and name!='Makefile':continue
+                  if any(t in name.lower() for t in ('credential','secret','private_key','.env')) or p.is_symlink():continue
+                  raw=p.read_bytes()
+                  if b'\0' in raw:continue
+                  try:raw.decode('utf8')
+                  except UnicodeDecodeError:continue
+                  z.writestr(name,raw);bindings[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'source-bindings.json').write_text(json.dumps(bindings,sort_keys=True,indent=2)+'\n')
+          (out/'head.txt').write_text(subprocess.check_output(['git','rev-parse','HEAD']).decode())
+          print(json.dumps({'status':'SOURCE_SNAPSHOT_ONLY','source_files':len(bindings),'new_emulator_processes':0,'ring_acquisition_accepted':False,'release_ready':False}))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-ring-owner
+          path: .local/pr16-ring-owner/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
