@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-未読だった0x0806DE7Dのみ同一candidateから15命令/32命令byteを採取。継承8byte frameとentry LR保存offset -4を保持。旧18未読targetは不変、新規未読0targetを明示。call/returnと継承frameの結合・stack integrity・全caller/全owner網羅性・Ring通常取得は未証明。保存済み15間接辺分類とBP正式受入run34946969126は再実行せず不変。
+保存済みprologue→0x0806DE7D→call veneerを結合。継承SP=-8とLR保存offset -4から、calleeが帰還してSP/保存slotを保ち、STRBがframeへaliasしない条件下で、0x0806DE9AのBX r1がentry LRへ戻りSP=0/r4復元となることを確認。BL 0x0806DDB5は保存済みveneerを経由して旧未読0x09097105へ到達。そのcalleeの帰還・stack integrity・全caller/全owner網羅性は未証明。旧18未読targetと正式BP受入は維持し、ROM/native/既存15辺再分類0。
 
-**次: 0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。**
+**次: 保存済みFlagSet継続と継承8byte frameの条件付き結合は完了。次は旧18未読targetのうち0x09097105だけを優先し、0x0806DDB5 veneerから渡るcalleeのreturn・SP/r4保存・返却pointerとstack非alias条件を限定確認する。0x0806DE7D/FlagGetの再採取、15間接辺の再分類、受入済みBPの再実行はしない。旧18targetの台帳を削らず、条件付き帰還をstack integrity/全caller/全owner除外やRing通常取得へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `27f29ff3ce6b26ca9b1ac439e29f655910d5eebd`。
-FlagSet継続1根のcandidate byteを採取したsource HEAD。完了commit/run結論はremote ref/Actionsで確認する。
+証拠のsource HEAD: `369299c404a28ece2aaadf82b578c636d3120021`。
+保存済みgraphと継承frameを条件付き結合したsource HEAD。完了commit/run結論はremote ref/Actionsで確認する。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_frame_join.json`
+- `scripts/pr16_ring_frame_join.py`
 - `content/modernization/pr16_ring_flagset_continuation.json`
-- `scripts/pr16_ring_flagset_continuation.py`
 - `content/modernization/pr16_ring_indirect_abi.json`
 - `content/modernization/pr16_ring_patch_owner.json`
-- `content/modernization/pr16_ring_transitive_owner.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -92,6 +92,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - run34964225479の18 tests・24 graph/366命令は同一source/candidateなら再実行しない。残る18target/15間接辺だけを進める。Ring通常取得受入や全owner不存在へ読み替えない。
 - 15間接辺のABI分類12return/2callsite trampoline/1live-frame branchを同一入力で再実行しない。旧18未読targetと新1target、全caller/CFG/stack-integrityの仮定を保持し、Ring受入や全owner不存在へ昇格しない。
 - 0x0806DE7Dの1根byte採取は完了。同一candidate/sourceで再採取せず、保存した継続graphを再利用する。継承8byte frame・旧18未読target・全owner未除外を保持し、Ring通常取得の受入へ読み替えない。
+- FlagSet継続の継承frame結合は条件付きで完了。opaque callee 0x09097105のreturn/SP/r4/保存slotと返却pointer非aliasは未証明。結合を全owner除外やRing受入へ昇格せず、同一入力で単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -121,6 +122,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-新規限定採取run34971661219は保存時in_progress。前回ABI run34968485915とBP run34946969126のcompleted/successを照合。開始HEADのPR checks action_requiredを成功へ読み替えず、最新Actions snapshotをreceiptへ保存。
+前回採取run34971661219、ABI run34968485915、BP run34946969126のcompleted/successを照合。今回run34974346670は保存時in_progress。通常CIのaction_requiredをsuccessへ読み替えない。最新snapshotは結合receiptへ保存。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

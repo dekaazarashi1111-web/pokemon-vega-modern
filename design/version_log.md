@@ -2493,3 +2493,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsと既存hash固定入力復元のみ。container直接Git取得はDNS失敗。外部技術資料の新規検索なし。
 - Boundary: 開始HEADの通常PR checks action_requiredを成功扱いしない。既存全体private guard違反は前後一致、新規差分違反0を要求。merge/release/baseline変更なし。
 - Next: 0x0806DE7Dのcandidate byte採取は完了。同一入力で再採取せず、保存した継続graphのcall/returnと継承8byte frameを結合して残るownerを絞る。旧18未読targetは保持し、保存済みFlagGet graphと15間接辺分類を再実行しない。callsite限定解決を全callerへ昇格しない。全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
+
+
+## 2026-09-15T13:20:30.158713+00:00 — PR-P08-7-RING-FRAME-JOIN
+- Timestamp: 2026-09-15T13:20:30.158713+00:00
+- Task: PR-P08-7-RING-FRAME-JOIN / FlagSet継承frameとcall/return境界の結合
+- Status: DONE / 限定結合の実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 conditional frame join
+- Summary: 保存済みprologue→0x0806DE7D→call veneerを結合。継承SP=-8とLR保存offset -4から、calleeが帰還してSP/保存slotを保ち、STRBがframeへaliasしない条件下で、0x0806DE9AのBX r1がentry LRへ戻りSP=0/r4復元となることを確認。BL 0x0806DDB5は保存済みveneerを経由して旧未読0x09097105へ到達。そのcalleeの帰還・stack integrity・全caller/全owner網羅性は未証明。旧18未読targetと正式BP受入は維持し、ROM/native/既存15辺再分類0。
+- Files changed: scripts/pr16_ring_frame_join.py, tests/test_pr16_ring_frame_join.py, .github/workflows/pr16-ring-frame-join.yml, content/modernization/pr16_ring_frame_join.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規結合/異常系と固定resume 44 tests PASS。render/check PASS、check読取専用、限定source hash/BP checkpoint全byte不変。task graph・最終index差分guard・diffを完了commit前の必須gateとする。
+- Evidence: content/modernization/pr16_ring_frame_join.json; source HEAD=369299c404a28ece2aaadf82b578c636d3120021; run=34974346670（保存時in_progress、最終結論はActionsで確認）。前回採取run34971661219はcompleted/successを照合済み。
+- Preserved: candidate ceddbe91 / CRC32 3EB17B36、旧18未読target、受入済みBP原本。ROM編集/再構築/新規decode/native/既存15辺再分類/受入済み単独再実行0。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actionsでexact HEADと最新runを照合。container直接Git取得はDNS失敗。private入力復元・外部技術資料検索なし。
+- Boundary: 帰還はopaque calleeと非aliasの仮定付き。全体private guardの既存違反は前後一致・新規違反0を要求し全体PASSと混同しない。通常CI action_requiredをsuccessへ変更しない。merge/release/baseline変更なし。
+- Next: 保存済みFlagSet継続と継承8byte frameの条件付き結合は完了。次は旧18未読targetのうち0x09097105だけを優先し、0x0806DDB5 veneerから渡るcalleeのreturn・SP/r4保存・返却pointerとstack非alias条件を限定確認する。0x0806DE7D/FlagGetの再採取、15間接辺の再分類、受入済みBPの再実行はしない。旧18targetの台帳を削らず、条件付き帰還をstack integrity/全caller/全owner除外やRing通常取得へ昇格しない。
