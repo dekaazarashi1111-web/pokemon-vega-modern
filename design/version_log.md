@@ -2621,3 +2621,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
 - Next: 保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。
+
+
+## 2026-09-15T17:38:01.143891+00:00 — PR-P08-7-RING-ZERO-ABI
+- Timestamp: 2026-09-15T17:38:01.143891+00:00
+- Task: PR-P08-7-RING-ZERO-ABI / zero継続の限定ABI監査
+- Status: DONE / 保存範囲のABI監査完了。zero/callee全体帰還とphysical受入は未完。
+- Version: PR16 zero-prefix ABI
+- Summary: 保存zero継続0x0806DDBDの54命令/114byteを限定ABI検証。helper結果は再実行せず、zero域51456入力を0→未読0x0806DE63、1..2303→selector経路、16384..65535→未読0x0806DE51へ分類。selector=1/2は未解決外部call3本と条件付きSTRB/STRHを含む。共通末尾0x0806DE3Dも未読。保存命令にPOP/復元はなく局所SP変化0、FlagSet基準-24のframeが残る。書込み先と保存slotのalias反例を保持し、zero/callee全体の帰還・保存slot不変・全owner除外は未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_zero_abi.py, scripts/pr16_ring_zero_model.py, tests/test_pr16_ring_zero_abi.py, .github/workflows/pr16-ring-zero-abi.yml, content/modernization/pr16_ring_zero_abi.json, 固定MD/JSON、P08参照、両ログ。
+- Verify: 36 focused tests PASS; 新zero域51456入力/selector256値/仮想call契約13818ケース、54命令被覆。render/check、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=884db03b5e9436d67545e1cf43bf03f86acd33c1; run=35002458426（保存時in_progress）。zero採取run35000269301成功原本再利用。
+- Preserved: 本ABI工程のROM/native/候補再構築/再採取/helper再実行/受入済み再実行0。旧18targetと未解決新6target保持。
+- Commit: 完了commitを同branchへ非force push。最終SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actions。一次資料検索語 site:sourceware.org/cgen/gen-doc/arm-thumb-insn.html Thumb ldr pop bx semantics; https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html。Thumb-1の分岐、load/store幅、BLを照合。
+- Boundary: 全体guard既存違反は前後同一/新規0を要求。全体guard PASS・全CI green・merge/release/baseline変更は主張しない。
+- Next: 次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。

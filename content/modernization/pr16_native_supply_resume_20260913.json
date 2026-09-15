@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "WIP: 未読0x0806DDBDだけを最大128byte範囲で54命令/114byte採取し保存。zero側の返却値・SP/r4-r6/保存slotは保存byteで検証する。非0側の既証明条件付き帰還・旧18target・BP受入を保持。",
+    "current_stop": "保存zero継続0x0806DDBDの54命令/114byteを限定ABI検証。helper結果は再実行せず、zero域51456入力を0→未読0x0806DE63、1..2303→selector経路、16384..65535→未読0x0806DE51へ分類。selector=1/2は未解決外部call3本と条件付きSTRB/STRHを含む。共通末尾0x0806DE3Dも未読。保存命令にPOP/復元はなく局所SP変化0、FlagSet基準-24のframeが残る。書込み先と保存slotのalias反例を保持し、zero/callee全体の帰還・保存slot不変・全owner除外は未証明。旧18target・BP受入を保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。",
+    "next_step": "次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -291,7 +291,8 @@
     "0x091281D1の保存29命令/全u16 return・SP/r4-r11/LR/保存slot非変更検証は完了。source不変なら再採取/単独再実行せず0x090970F7へ進む。callee全体帰還/非alias/Ring受入とは区別する。",
     "0x090970F7の限定byte採取は保存済み。保存byteを再利用し、同一candidateを再構築/再採取しない。",
     "0x090970F7の保存POP1命令2byte・非0側SP/r4-r6/保存slot結合は完了。同一入力を再採取/単独再実行せず未読0x0806DDBDへ進む。callee全体/非alias/Ring受入とは区別。",
-    "0x0806DDBDの限定byte採取は保存済み。同一candidateを再構築/再採取せず、保存byteでABI検証する。"
+    "0x0806DDBDの限定byte採取は保存済み。同一candidateを再構築/再採取せず、保存byteでABI検証する。",
+    "保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -364,15 +365,16 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。",
+    "goal_ja": "次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_zero_abi.json",
+      "scripts/pr16_ring_zero_abi.py",
+      "scripts/pr16_ring_zero_model.py",
       "content/modernization/pr16_ring_zero_bytes.json",
-      "scripts/pr16_ring_zero_bytes.py",
-      "content/modernization/pr16_ring_nonzero_abi.json",
-      "content/modernization/pr16_ring_callee_abi.json",
-      "content/modernization/pr16_ring_helper_abi.json"
+      "content/modernization/pr16_ring_helper_abi.json",
+      "content/modernization/pr16_ring_callee_abi.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -381,11 +383,11 @@
     ]
   },
   "observed_date_jst": "2026-09-15",
-  "observed_head": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+  "observed_head": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
   "observed_head_checks": {
-    "reason_ja": "非0側run34990811278とBP run34946969126成功照合。今回run35000269301は保存時in_progress。action_requiredは成功へ読み替えない。"
+    "reason_ja": "zero採取run35000269301と非0側run34990811278成功照合。今回run35002458426は保存時in_progress。action_requiredを成功へ読み替えない。"
   },
-  "observed_head_semantics": "未読zero継続一根の採取source HEAD。保存commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "保存zero継続の限定ABI source HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -544,9 +546,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "未読zero継続一根だけ採取。既読graph/受入済みnative再実行0。"
+    "scope_ja": "保存zero54命令の限定ABI監査。外部call未実行、条件付き書込みと未解決帰還を区別。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1328,10 +1330,30 @@
     "content/modernization/pr16_ring_zero_bytes.json": {
       "size": 35345,
       "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036"
+    },
+    "scripts/pr16_ring_zero_abi.py": {
+      "size": 23532,
+      "sha256": "605261f5e5e44dcbeca24e7fdbf68dc0dd8a5af554e9f124c1e617e9536023eb"
+    },
+    "scripts/pr16_ring_zero_model.py": {
+      "size": 5995,
+      "sha256": "d15a13b18e26fdd8d81ea2dd1f796d2b20f821bb5aa7647f6982e9161b9dfa16"
+    },
+    "tests/test_pr16_ring_zero_abi.py": {
+      "size": 7575,
+      "sha256": "22eb3f177f40e3b74532c615c650310dd85ccb7c3ca8a467d85444651a53643a"
+    },
+    ".github/workflows/pr16-ring-zero-abi.yml": {
+      "size": 4313,
+      "sha256": "57fde0901d6891ce63fbbbc55b626d7ba9ed3bb70cdfda7e42bd1e374403564d"
+    },
+    "content/modernization/pr16_ring_zero_abi.json": {
+      "size": 14547,
+      "sha256": "2d6d97fc1998409e2589620589eb3911d92cf979b6e1f3b30418730e5efa0f90"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "WIP: 未読0x0806DDBDだけを最大128byte範囲で54命令/114byte採取し保存。zero側の返却値・SP/r4-r6/保存slotは保存byteで検証する。非0側の既証明条件付き帰還・旧18target・BP受入を保持。",
+  "source_change_review_ja": "保存zero継続0x0806DDBDの54命令/114byteを限定ABI検証。helper結果は再実行せず、zero域51456入力を0→未読0x0806DE63、1..2303→selector経路、16384..65535→未読0x0806DE51へ分類。selector=1/2は未解決外部call3本と条件付きSTRB/STRHを含む。共通末尾0x0806DE3Dも未読。保存命令にPOP/復元はなく局所SP変化0、FlagSet基準-24のframeが残る。書込み先と保存slotのalias反例を保持し、zero/callee全体の帰還・保存slot不変・全owner除外は未証明。旧18target・BP受入を保持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1624,6 +1646,12 @@
     "path": "content/modernization/pr16_ring_zero_bytes.json",
     "run_id": 35000269301,
     "source_head": "9df0a6c7fd9fcf34ee307346afcea209e8323817",
+    "target": 134667709
+  },
+  "ring_zero_abi": {
+    "path": "content/modernization/pr16_ring_zero_abi.json",
+    "run_id": 35002458426,
+    "source_head": "884db03b5e9436d67545e1cf43bf03f86acd33c1",
     "target": 134667709
   }
 }

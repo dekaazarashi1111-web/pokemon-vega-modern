@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-WIP: 未読0x0806DDBDだけを最大128byte範囲で54命令/114byte採取し保存。zero側の返却値・SP/r4-r6/保存slotは保存byteで検証する。非0側の既証明条件付き帰還・旧18target・BP受入を保持。
+保存zero継続0x0806DDBDの54命令/114byteを限定ABI検証。helper結果は再実行せず、zero域51456入力を0→未読0x0806DE63、1..2303→selector経路、16384..65535→未読0x0806DE51へ分類。selector=1/2は未解決外部call3本と条件付きSTRB/STRHを含む。共通末尾0x0806DE3Dも未読。保存命令にPOP/復元はなく局所SP変化0、FlagSet基準-24のframeが残る。書込み先と保存slotのalias反例を保持し、zero/callee全体の帰還・保存slot不変・全owner除外は未証明。旧18target・BP受入を保持。
 
-**次: 保存済みpr16_ring_zero_bytes.jsonの0x0806DDBD継続だけを限定ABI検証する。候補復元/byte採取/helper全u16/非0側/既読callee/FlagSet/FlagGet/15辺分類/BPを再実行しない。全caller/全owner除外・Ring通常取得へ昇格しない。**
+**次: 次は新規未読0x0806DE3Dだけを優先し、共通返却pointer生成/復元区間を限定採取する。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存zero54命令、非0側、helper全u16、callee prefix、FlagSet/FlagGet、15辺分類、BPを再採取/単独再実行しない。新規未読targetの採取だけを進め、仮想call契約のモデルをnative帰還/保存slot不変/Ring受入へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9df0a6c7fd9fcf34ee307346afcea209e8323817`。
-未読zero継続一根の採取source HEAD。保存commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `884db03b5e9436d67545e1cf43bf03f86acd33c1`。
+保存zero継続の限定ABI source HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
 
@@ -25,11 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_zero_abi.json`
+- `scripts/pr16_ring_zero_abi.py`
+- `scripts/pr16_ring_zero_model.py`
 - `content/modernization/pr16_ring_zero_bytes.json`
-- `scripts/pr16_ring_zero_bytes.py`
-- `content/modernization/pr16_ring_nonzero_abi.json`
-- `content/modernization/pr16_ring_callee_abi.json`
 - `content/modernization/pr16_ring_helper_abi.json`
+- `content/modernization/pr16_ring_callee_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -100,6 +101,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x090970F7の限定byte採取は保存済み。保存byteを再利用し、同一candidateを再構築/再採取しない。
 - 0x090970F7の保存POP1命令2byte・非0側SP/r4-r6/保存slot結合は完了。同一入力を再採取/単独再実行せず未読0x0806DDBDへ進む。callee全体/非alias/Ring受入とは区別。
 - 0x0806DDBDの限定byte採取は保存済み。同一candidateを再構築/再採取せず、保存byteでABI検証する。
+- 保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -129,6 +131,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-非0側run34990811278とBP run34946969126成功照合。今回run35000269301は保存時in_progress。action_requiredは成功へ読み替えない。
+zero採取run35000269301と非0側run34990811278成功照合。今回run35002458426は保存時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
