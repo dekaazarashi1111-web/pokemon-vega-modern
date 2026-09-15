@@ -31,19 +31,29 @@ static void bs_trace(struct mCore *c,const char *label) {
 }
 
 static void bs_wait_field(struct mCore *c,const char *message) {
-    unsigned stable=0U;
+    unsigned stable=0U,last_lock=~0U,last_bp=~0U,last_save=~0U;
+    uint32_t last_script=~0U;
     for(unsigned f=0U;f<12000U;++f){
-        bool idle=b_field(c);
+        bool idle=b_field(c);unsigned lock=read8(c,P02S_FIELD_LOCK);
+        unsigned bp=read16(c,BP_F(battle_points));
+        unsigned save=read32(c,P03_SAVE_COUNTER);
+        uint32_t script=read32(c,SP_SCRIPT_PTR);
+        if(!f || lock!=last_lock || bp!=last_bp || save!=last_save
+            || script!=last_script || f%600U==0U){
+            fprintf(stderr,
+                "BP_SPEND_WAIT frame=%u elapsed=%u idle=%u lock=%u bp=%u save=%u script=%08x cb2=%08x\n",
+                b_frames,f,idle,lock,bp,save,script,
+                read32(c,BATTLE_CORE_MAIN_CALLBACK2));
+            last_lock=lock;last_bp=bp;last_save=save;last_script=script;
+        }
         if(idle){
             if(++stable==60U){c->setKeys(c,0U);return;}
         }else stable=0U;
-        /* Never pulse a confirm key after idle field first appears: at the
-         * three-win return position that would immediately re-open the
-         * reception NPC and replay game-owned reward/save side effects.
-         * B only dismisses a still-locked dialogue/menu and cannot start a
-         * new field interaction. */
-        b_frame(c,!idle && read8(c,P02S_FIELD_LOCK) && f%30U==0U
-            ?QOL_KEY_B:0U);
+        /* The accepted reward state is still crossing a game-owned locked
+         * script boundary.  Do not acknowledge text or menus here: either
+         * confirm key can replay reception/reward side effects before the
+         * spending suffix owns a physical field interaction. */
+        b_frame(c,0U);
     }
     bs_trace(c,"field-timeout");bp_require(c,false,message);
 }
