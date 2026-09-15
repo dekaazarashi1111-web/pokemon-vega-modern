@@ -148,6 +148,62 @@ class CommonTailBoundaryTests(unittest.TestCase):
         self.assertEqual(len(a.sample_ranges(raw, g)), 2)
         with self.assertRaises(ValueError): a.sample_ranges(raw[:-1] + b'\1', g)
 
+    def test_deferred_jump_stops_before_decode(self):
+        raw = bytes(AT - a.ROM_BASE + a.MAX_WINDOW)
+        called = []
+        def decode(data, at):
+            called.append(at)
+            self.assertEqual(at, AT)
+            return dict(graph()['nodes'][0], kind='jump', target=a.OTHER_ROOTS[1] & ~1)
+        g = a.bounded_graph(raw, set(), decode)
+        self.assertEqual(called, [AT])
+        self.assertEqual(g['nodes'][0]['successors'], [])
+        self.assertEqual(g['external_edges'][0]['target'], a.OTHER_ROOTS[1])
+        self.assertEqual(g['external_edges'][0]['stop_reason'], 'DEFERRED_UNREAD_ROOT_NOT_DECODED')
+        a.validate_graph(g, set())
+
+    def test_deferred_conditional_preserves_fallthrough(self):
+        raw = bytes(AT - a.ROM_BASE + a.MAX_WINDOW)
+        called = []
+        def decode(data, at):
+            called.append(at)
+            row = dict(graph()['nodes'][0], address=at)
+            if at == AT: row.update(kind='conditional', target=a.OTHER_ROOTS[0] & ~1)
+            return row
+        g = a.bounded_graph(raw, set(), decode)
+        self.assertEqual(called, [AT, AT + 2])
+        self.assertEqual(g['external_edges'][0]['target'], a.OTHER_ROOTS[0])
+        a.validate_graph(g, set())
+
+    def test_external_call_not_followed(self):
+        raw = bytes(AT - a.ROM_BASE + a.MAX_WINDOW)
+        called = []
+        def decode(data, at):
+            called.append(at)
+            row = dict(graph()['nodes'][0], address=at)
+            if at == AT: row.update(kind='call', target=a.OTHER_ROOTS[2] & ~1, size=4, hex='00f000f8')
+            return row
+        g = a.bounded_graph(raw, set(), decode)
+        self.assertEqual(called, [AT, AT + 4])
+        self.assertEqual(g['external_edges'][0]['target'], a.OTHER_ROOTS[2])
+        a.validate_graph(g, set())
+
+    def test_bounded_decoder_window_truncation(self):
+        with self.assertRaises(ValueError):
+            a.bounded_graph(b'', set(), lambda *_: self.fail('must not decode'))
+
+    def test_bounded_decoder_wrong_address(self):
+        raw = bytes(AT - a.ROM_BASE + a.MAX_WINDOW)
+        with self.assertRaises(ValueError):
+            a.bounded_graph(raw, set(), lambda *_: dict(graph()['nodes'][0], address=AT + 2))
+
+    def test_bounded_decoder_keeps_cycle_finite(self):
+        raw = bytes(AT - a.ROM_BASE + a.MAX_WINDOW)
+        g = a.bounded_graph(raw, set(), lambda *_: dict(graph()['nodes'][0], kind='jump', target=AT))
+        self.assertEqual(len(g['nodes']), 1)
+        self.assertEqual(g['nodes'][0]['successors'], [AT])
+        a.validate_graph(g, set())
+
     def test_unresolved_new_edge_retained(self):
         g = graph(); edge = 0x08070001
         g['external_edges'] = [{'site': AT, 'target': edge}]

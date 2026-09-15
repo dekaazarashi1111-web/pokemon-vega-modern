@@ -43,6 +43,12 @@ OUTPUTS = (REPORT, STATE, DOC, BACKLOG, *LOGS)
 CANDIDATE = {'size': 33554432,
     'sha256': 'ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b',
     'crc32': '3EB17B36'}
+FAILED_ATTEMPT = {'run_id': 35006120653, 'job_id': 104506187780,
+    'source_head': '2d4cbd4773ae2f8f8473893fd34e07b19cf9c903',
+    'original_conclusion': 'failure', 'artifact_id': 10411821592,
+    'artifact_sha256': '78fd39b3cc2323abd180e1175a12737c2570faa040ba640b71e8b903db305d9f',
+    'reason': 'another unread root reached', 'accepted': False,
+    'candidate_reconstructions': 1, 'graph_decodes_rejected_before_record': 1}
 NO_PROOF = ('callee_return_proven', 'stack_integrity_proven', 'all_callers_resolved',
             'all_runtime_owners_excluded', 'ring_acquisition_accepted', 'release_ready')
 
@@ -122,6 +128,60 @@ def validate_graph(g, cached):
     return occupied
 
 
+def bounded_graph(raw, cached, decode):
+    """別未読入口をdecode前に境界化する。共有Thumb decoder自体は変更しない。"""
+    root, window = TARGET & ~1, window_for(cached)
+    end, deferred = root + window, {p & ~1 for p in OTHER_ROOTS}
+    need(len(raw) >= end - ROM_BASE, 'candidate window truncated')
+    pending, nodes, occupied, edges = [root], {}, set(), []
+    while pending:
+        at = pending.pop()
+        if at in nodes:
+            continue
+        need(root <= at < end and at not in deferred, 'decoder escaped scope')
+        need(at not in cached | occupied, 'decoder overlaps saved/operand bytes')
+        need(len(nodes) < LIMIT, 'node budget')
+        row = copy.deepcopy(decode(raw, at))
+        need(row['address'] == at and row['size'] in (2, 4), 'decoder identity differs')
+        span = set(range(at, at + row['size']))
+        need(at + row['size'] <= end and not span & (cached | occupied | deferred), 'instruction crosses boundary')
+        kind, after, successors = row['kind'], at + row['size'], []
+        need(kind in ('ordinary', 'call', 'jump', 'conditional', 'indirect', 'return'), 'bad kind')
+
+        def edge(target, edge_kind):
+            e = {'site': at, 'kind': edge_kind, 'target': target | 1,
+                 'resolved_to_code_address_only': True}
+            if target in deferred:
+                e['stop_reason'] = 'DEFERRED_UNREAD_ROOT_NOT_DECODED'
+            edges.append(e)
+
+        if kind in ('call', 'jump', 'conditional'):
+            target = row['target']
+            need(type(target) is int and not target & 1, 'unaligned branch')
+            if kind == 'call' or target in deferred or not root <= target < end:
+                edge(target, kind)
+            else:
+                successors.append(target)
+        if kind == 'indirect':
+            edges.append({'site': at, 'kind': kind, 'register': row['register'], 'target': None})
+        if kind not in ('return', 'indirect', 'jump'):
+            if after in deferred or not root <= after < end:
+                edge(after, 'window_fallthrough')
+            else:
+                successors.append(after)
+        row['successors'] = sorted(set(successors))
+        nodes[at] = row
+        occupied.update(span)
+        pending.extend(row['successors'])
+    return {'entry': TARGET, 'window': window,
+        'window_identity': identity(raw[root-ROM_BASE:end-ROM_BASE]),
+        'nodes': [nodes[at] for at in sorted(nodes)],
+        'external_edges': sorted(edges, key=lambda e: (e['site'], e['kind'])),
+        'memory_write_sites': sorted(at for at, n in nodes.items() if n['memory_write']),
+        'side_effects_excluded': False, 'deferred_unread_roots': list(OTHER_ROOTS),
+        'deferred_roots_decoded': 0}
+
+
 def sample_ranges(raw, graph):
     samples = {}
     for n in graph['nodes']:
@@ -191,6 +251,9 @@ def preflight():
         run = saved.api('actions/runs/' + str(rid))
         need(run['status'] == 'completed' and run['conclusion'] == 'success' and run['head_sha'] == source, 'prior run differs')
         reused.append({k: run[k] for k in ('id', 'name', 'head_sha', 'status', 'conclusion')})
+    failed = saved.api('actions/runs/' + str(FAILED_ATTEMPT['run_id']))
+    need(failed['status'] == 'completed' and failed['conclusion'] == 'failure'
+         and failed['head_sha'] == FAILED_ATTEMPT['source_head'], 'failed original differs')
     runs = saved.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&per_page=30')['workflow_runs']
     active = saved.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&status=in_progress&per_page=100')['workflow_runs']
     queued = saved.api('actions/runs?branch=codex%2Fmodernization-followup-20260908&status=queued&per_page=100')['workflow_runs']
@@ -203,6 +266,7 @@ def preflight():
     (OUT / 'tests.json').write_bytes(stable(tests))
     need(tests['successful'] and tests['tests_run'] >= 20, 'focused tests failed')
     before = {'head': head, 'pr': {'number': 16, 'state': pr['state'], 'draft': pr['draft'], 'merged': pr['merged']},
+        'failed_attempt_preserved': copy.deepcopy(FAILED_ATTEMPT),
         'unread_window': window_for(cached), 'reused_successful_actions': reused,
         'actions_before': [{k: r[k] for k in ('id', 'name', 'head_sha', 'status', 'conclusion')} for r in runs],
         'checkpoint': identity((ROOT / CHECKPOINT).read_bytes()),
@@ -228,13 +292,14 @@ def record(rom):
     prior, cached = inputs()
     raw = saved.safe(ROOT, rom).read_bytes()
     saved.candidate_identity(raw)
-    graph = decoder.native_graph(raw, TARGET, window=window_for(cached), limit=LIMIT)
+    graph = bounded_graph(raw, cached, decoder.thumb_instruction)
     validate_graph(graph, cached)
     result = analysis(prior, graph, sample_ranges(raw, graph))
     need(saved.safe(ROOT, rom).read_bytes() == raw, 'candidate changed')
     tests = json.loads((OUT / 'tests.json').read_bytes())
     value = {'schema_version': 1, 'task': TASK, 'source_head': before['head'],
         'run_id': int(os.environ['GITHUB_RUN_ID']), 'run_status_at_record': 'in_progress',
+        'failed_attempt_preserved': before['failed_attempt_preserved'],
         'analysis': result, 'source_bindings': before['source_bindings'], 'focused_tests': tests,
         'reused_successful_actions': before['reused_successful_actions'],
         'actions_observed_before_record': before['actions_before']}
@@ -259,7 +324,9 @@ def record(rom):
     state['observed_head_checks']['reason_ja'] = f'zero限定ABI run{prior["run_id"]}とBP run34946969126成功照合。今回run{value["run_id"]}は保存時in_progress。action_requiredは成功へ読み替えない。'
     state['session_execution_summary'] = {'new_emulator_processes': 0, 'rom_changes': 0,
         'candidate_reconstructions': 1, 'accepted_standalone_replays': 0,
-        'scope_ja': '未読共通末尾1根の限定採取完了。既読graph/受入済みnative再実行0。'}
+        'candidate_reconstructions_including_failed_attempt': 2,
+        'failed_attempt_run_id': FAILED_ATTEMPT['run_id'],
+        'scope_ja': '別未読入口をdecode前に境界化し共通末尾1根の採取完了。初回failure保持、既読graph/受入済みnative再実行0。'}
     state['do_not_repeat'].append('0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。')
     for p in (SELF, TEST, WORKFLOW, REPORT):
         state['source_bindings'][p] = identity((ROOT / p).read_bytes())
@@ -276,7 +343,8 @@ def record(rom):
         f'- Files changed: {SELF}, {TEST}, {WORKFLOW}, {REPORT}, 固定MD/JSON、P08 Ring参照、両ログ。\n'
         f'- Verify: 限定異常系{tests["tests_run"]} tests PASS、candidate全体SHA/size/CRC一致、既読命令重複0、render/check PASS、BP checkpoint不変。task graph・最終index差分guard・diff必須。\n'
         f'- Evidence: source={before["head"]}; run={value["run_id"]}（保存時in_progress）。\n'
-        '- Preserved: ROM変更/native/既読graph/受入済み再実行0。候補復元1。旧18targetと別の未読5入口保持。\n'
+        '- Preserved: ROM変更/native/既読graph/受入済み再実行0。今回候補復元1、失敗attempt込み2。旧18targetと別の未読5入口保持。\n'
+        '- Failed attempt: run35006120653/job104506187780は別未読入口到達でfailure、commitなし。artifact10411821592（SHA256 78fd39b3cc2323abd180e1175a12737c2570faa040ba640b71e8b903db305d9f）を原本で保持。共有decoder/採取上限/guardは緩和せず、別入口のdecode前に辺を境界化した。\n'
         '- Commit: 完了条件PASS後、同branchへ非force push。最終SHAはremote ref/recorded-result.jsonで照合。\n'
         '- Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS解決失敗。外部技術資料なし。\n'
         '- Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。\n'
