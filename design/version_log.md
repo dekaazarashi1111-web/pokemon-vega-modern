@@ -2557,3 +2557,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS失敗。外部技術資料なし。
 - Boundary: 既存全体guard違反前後一致/新規違反0を要求。全体guard PASSや全CI greenを主張しない。merge/release/baseline変更なし。
 - Next: 保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。
+
+
+## 2026-09-15T14:49:10.326976+00:00 — PR-P08-7-RING-HELPER-ABI
+- Timestamp: 2026-09-15T14:49:10.326976+00:00
+- Task: PR-P08-7-RING-HELPER-ABI / helper一根のreturn・stack境界検証
+- Status: DONE / 指定helperの限定検証・記録完了。Ring通常取得とcallee全体帰還は未完。
+- Version: PR16 helper u16 ABI boundary
+- Summary: helper 0x091281D1の保存済み29命令/58byteとliteral20byteを検証し、callerでzero-extendされたu16全65536値をbyte interpreterと独立式で照合。0x0900..0x18FF→0x0203B0E8+((id-0x0900)>>3)、0x1900..0x3FFF→0x02036FEC、他は0。外部呼出し/書込み/stack操作0、r4-r11/SP/LRと保存slotを変更せずBX LRで0x09097113へ帰還する。helper帰還後もFlagSet基準SP=-24。実native帰還は未観測。0x090970F7/0x0806DDBDの継続、callee全体帰還と返却pointer非aliasは未証明。旧18target・BP受入を保持。
+- Files changed: scripts/pr16_ring_helper_abi.py, tests/test_pr16_ring_helper_abi.py, .github/workflows/pr16-ring-helper-abi.yml, content/modernization/pr16_ring_helper_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: helper異常系/固定resume 49 tests PASS。29命令58byte+literal20byte、全65536入力、独立範囲式/全命令coverage、render/check、BP checkpoint不変。task graph・最終index差分guard・diff必須。
+- Evidence: source=d339871fc1d8e9fb9abdc2f4139a547be2eb7dfa; run=34984185105（保存時in_progress）。採取run34981952888・caller ABI・BP原本はcompleted/success照合。
+- Preserved: ROM変更/native/既読graph再scan/15辺再分類/受入済み単独再実行0。セッション同一candidate復元1、当工程0。旧18target台帳と未読2継続を保持。
+- Commit: この完了記録を同branchへ非force push、自己SHAはremote ref/resultで照合。
+- Network: GitHub connector/Actionsと前工程のhash固定入力復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致/新規違反0。全体guard PASS/全CI green/全caller/Ring受入を主張しない。merge/release/baseline変更なし。
+- Next: 次は未読0x090970F7だけを優先し、helper非0側の返却pointer使用・SP/r4-r6/保存slot復元を限定確認する。0x0806DDBDは未読として保持。helper/callee/FlagSet/FlagGet再採取、15辺再分類、BP再実行をしない。旧18targetを削らず、helper単体の帰還証明をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。

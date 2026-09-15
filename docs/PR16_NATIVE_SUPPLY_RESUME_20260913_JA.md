@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-WIP: 未読helper 0x091281D1だけを同一candidateから29命令/58bytes採取して保存。return/SP/r4-r6/保存slotの限定検証は保存byteから続行。旧18targetと0x090970F7/0x0806DDBDの未読境界・BP受入を保持。
+helper 0x091281D1の保存済み29命令/58byteとliteral20byteを検証し、callerでzero-extendされたu16全65536値をbyte interpreterと独立式で照合。0x0900..0x18FF→0x0203B0E8+((id-0x0900)>>3)、0x1900..0x3FFF→0x02036FEC、他は0。外部呼出し/書込み/stack操作0、r4-r11/SP/LRと保存slotを変更せずBX LRで0x09097113へ帰還する。helper帰還後もFlagSet基準SP=-24。実native帰還は未観測。0x090970F7/0x0806DDBDの継続、callee全体帰還と返却pointer非aliasは未証明。旧18target・BP受入を保持。
 
-**次: 保存済みpr16_ring_helper_bytes.jsonだけからhelper 0x091281D1のreturn値・SP/r4-r6/保存slotへの影響を限定検証する。candidate/helper/callee/FlagSet/FlagGetの再採取、15辺再分類、BP再実行をしない。0x090970F7/0x0806DDBDは未読のまま保持し全owner除外やRing受入へ昇格しない。**
+**次: 次は未読0x090970F7だけを優先し、helper非0側の返却pointer使用・SP/r4-r6/保存slot復元を限定確認する。0x0806DDBDは未読として保持。helper/callee/FlagSet/FlagGet再採取、15辺再分類、BP再実行をしない。旧18targetを削らず、helper単体の帰還証明をcallee全体・全caller/全owner除外・Ring通常取得へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `5366a1f8caa09dd7c369ca14640307e88c348d6b`。
-未読helper一根を採取したsource HEAD。完了commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `d339871fc1d8e9fb9abdc2f4139a547be2eb7dfa`。
+保存済みhelperのu16 return/SP/register境界を検証したsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
 
@@ -25,10 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_helper_abi.json`
+- `scripts/pr16_ring_helper_abi.py`
 - `content/modernization/pr16_ring_helper_bytes.json`
-- `scripts/pr16_ring_helper_bytes.py`
 - `content/modernization/pr16_ring_callee_abi.json`
-- `content/modernization/pr16_ring_callee_bytes.json`
 - `content/modernization/pr16_ring_frame_join.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -96,6 +96,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x09097105の限定byte採取は保存済み。保存graphを再利用し、同一candidateから再採取しない。帰還/SP/r4/非alias検証は別工程。
 - 0x09097105の10命令/22byteと追加16byte live-frameの限定検証は完了。helper091281D1・非0継続090970F7・0継続0806DDBDは未読。callee return/SP/r4/返却pointer非aliasを受入せず、literal code pointerを返却bufferへ読み替えない。同一prefixを再採取しない。
 - 0x091281D1のhelper byte採取は保存済み。同一candidateから再採取せず、保存byteでreturn/stackを限定検証する。
+- 0x091281D1の保存29命令/全u16 return・SP/r4-r11/LR/保存slot非変更検証は完了。source不変なら再採取/単独再実行せず0x090970F7へ進む。callee全体帰還/非alias/Ring受入とは区別する。
 
 ## 次セッションへ残す更新手順
 
@@ -125,6 +126,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前回ABI run34978245004とBP run34946969126成功照合。今回run34981952888は保存時in_progress。action_requiredは成功へ読み替えない。
+採取run34981952888・caller ABI run34978245004・BP run34946969126成功照合。今回run34984185105は保存時in_progress。通常CIのfailure/action_requiredはそのままsnapshotに保持し、全greenを主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
