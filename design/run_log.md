@@ -5399,3 +5399,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions APIだけ。containerの直接cloneはDNS解決失敗。private Release/ROM/save/外部技術資料の取得なし。
 - Boundary: 整列・読取可能・非volatile RAMの局所モデル。先行保存契約は仮定であり実観測ではない。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
 - Next: 次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T19:06:39.498143+00:00 — PR-P08-7-RING-EPILOGUE-BYTES
+- Timestamp: 2026-09-15T19:06:39.498143+00:00
+- Task: PR-P08-7-RING-EPILOGUE-BYTES / 未読帰還末尾1根の限定採取と保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-epilogue-bytes
+- Summary: 未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。
+- Files changed: scripts/pr16_ring_epilogue_bytes.py, tests/test_pr16_ring_epilogue_bytes.py, .github/workflows/pr16-ring-epilogue-bytes.yml, content/modernization/pr16_ring_epilogue_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=632e502f19f1caf6fcb7f48d1b58277fd02ef357; run=35011425946（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。

@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-保存済み共通末尾0x0806DE3Dの6命令/12byteを限定ABI検証。r0=mem32[entry_r0]+entry_r1+0xEE0 (mod 2^32)を計算し、未読0x0806DE63へ続く。低域の保存済み入口条件ではmem32[0x03005048]+0xEE0+(id>>3)。POP/return/局所storeは0、SP変化0。先行経路の保存仮定下でFlagSet基準-24のframeが残る。計算pointerが保存6slotへaliasする反例を保持し、callee帰還/保存slot不変/非aliasは未証明。旧18target、0x0806DE51と外部call3本、BP受入を保持。
+未読帰還末尾0x0806DE63だけを3命令/6byte採取保存。初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。
 
-**次: 次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。**
+**次: 保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `5280f666fb592d961503d430dd7e88525dd0bd07`。
-保存共通末尾6命令の限定ABI source HEAD。完了commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `632e502f19f1caf6fcb7f48d1b58277fd02ef357`。
+限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
 
@@ -25,11 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_epilogue_bytes.json`
+- `scripts/pr16_ring_epilogue_bytes.py`
 - `content/modernization/pr16_ring_common_tail_abi.json`
-- `scripts/pr16_ring_common_tail_abi.py`
-- `content/modernization/pr16_ring_common_tail_bytes.json`
-- `content/modernization/pr16_ring_zero_abi.json`
-- `content/modernization/pr16_ring_callee_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -103,6 +101,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。
 - 0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。
 - 共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。
+- 0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。
 
 ## 次セッションへ残す更新手順
 
@@ -132,6 +131,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-共通末尾採取run35007034033/job104509276799とzero/helper/callee/BP成功を照合。今回run35008976649は保存時in_progress。action_required/既存failureは成功へ読み替えない。
+先行run35008976649とBP run34946969126成功照合。今回run35011425946は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
