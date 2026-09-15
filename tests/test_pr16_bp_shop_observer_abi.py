@@ -1,4 +1,4 @@
-"""通常BPショップの実C構造体と観測ABIを照合するhost回帰。"""
+"""Stage36 QOL供給ショップの実C構造体と観測ABIを照合するhost回帰。"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -22,18 +22,25 @@ class BpShopObserverAbiTests(unittest.TestCase):
         cls.addClassCleanup(cls.temp.cleanup)
         cls.work = Path(cls.temp.name)
         observer = (ROOT / "tools/mgba_pr16_bp_spending.c").read_text()
-        runtime = (ROOT / "overlays/bp_shop_runtime/bp_shop_runtime.c").read_text()
-        header = (ROOT / "overlays/bp_shop_runtime/bp_shop_runtime.h").read_text()
+        runtime = (ROOT / "overlays/qol_production/qol_production.c").read_text()
+        builder = (ROOT / "scripts/build_qol_production.py").read_text()
+        count = re.search(r"if len\(supply_catalog\) != ([0-9]+):", builder)
+        if count is None or "{len(model['supply_catalog']) + 1}u" not in builder:
+            raise AssertionError("QOLカタログ49行+legacy行の生成規約が変わった")
+        catalog_count = int(count.group(1)) + 1
+        if catalog_count != 50:
+            raise AssertionError("現行QOL供給ショップは50品目")
+        if "#define G_SUPPLY_SHOP_STATE PTR(QolSupplyShopState *, 0x0203ED40u)" not in runtime:
+            raise AssertionError("QOLショップのvolatile領域が変わった")
         layout = re.search(
-            r"typedef struct BpShopVolatileState \{.*?\} BpShopVolatileState;",
+            r"typedef struct QolSupplyShopState \{.*?\} QolSupplyShopState;",
             runtime, re.S,
         )
         if layout is None:
-            raise AssertionError("実BPショップのvolatile構造体が見つからない")
+            raise AssertionError("実QOLショップのvolatile構造体が見つからない")
         defines = "\n".join(line for line in observer.splitlines()
                             if line.startswith("#define BS_"))
-        state_defines = "\n".join(line for line in header.splitlines()
-                                 if line.startswith("#define VEGA_BP_SHOP_VOLATILE_"))
+        state_defines = f"#define VEGA_QOL_SUPPLY_CATALOG_COUNT {catalog_count}u"
         start = observer.index("static void bs_wait_menu(")
         stop = observer.index("\nstatic struct BSResult bs_spend(", start)
         cls.program = r'''
@@ -45,9 +52,9 @@ class BpShopObserverAbiTests(unittest.TestCase):
 typedef uint8_t u8;
 typedef uint16_t u16;
 ''' + state_defines + "\n" + layout.group() + "\n" + defines + r'''
-_Static_assert(BS_STATE == VEGA_BP_SHOP_VOLATILE_STATE_ADDRESS, "state address");
-_Static_assert(sizeof(BpShopVolatileState) == VEGA_BP_SHOP_VOLATILE_STATE_BYTES, "state size");
-#define BIND(observed, field) _Static_assert((observed) - BS_STATE == offsetof(BpShopVolatileState, field), #field)
+_Static_assert(BS_STATE == 0x0203ED40U, "state address");
+_Static_assert(sizeof(QolSupplyShopState) == 128U, "state size");
+#define BIND(observed, field) _Static_assert((observed) - BS_STATE == offsetof(QolSupplyShopState, field), #field)
 BIND(BS_ELIGIBLE_BASE, eligible);
 BIND(BS_LAST_RESULT, last_result);
 BIND(BS_LAST_INDEX, last_catalog_index);
@@ -55,7 +62,7 @@ BIND(BS_ELIGIBLE_COUNT, eligible_count);
 BIND(BS_PAGE, page);
 BIND(BS_WINDOW_ID, window_id);
 struct mCore { unsigned unused; };
-static BpShopVolatileState state;
+static QolSupplyShopState state;
 static unsigned frames;
 static unsigned read8(struct mCore *c, unsigned address) {
     (void)c;
@@ -111,7 +118,7 @@ int main(int argc, char **argv) {
         if completed.returncode:
             raise AssertionError(completed.stderr)
 
-    def test_actual_eighteen_entry_bp_menu_is_observed(self) -> None:
+    def test_actual_fifty_entry_qol_menu_is_observed(self) -> None:
         result = subprocess.run([str(self.binary), "0"], capture_output=True, timeout=5)
         self.assertEqual(result.returncode, 0, result.stderr)
 
@@ -122,17 +129,21 @@ int main(int argc, char **argv) {
                                         capture_output=True, timeout=5)
                 self.assertEqual(result.returncode, 42, result.stderr)
 
-    def test_mega_shop_45_entry_offsets_are_rejected(self) -> None:
-        # 旧run34933733445の誤った45品目ABIを再導入するとcompile時点で拒否。
-        mutated = self.program
-        for old, new in (("0x24U", "0x5AU"), ("0x26U", "0x5CU"),
-                         ("0x28U", "0x5EU"), ("0x29U", "0x5FU"),
-                         ("0x2AU", "0x60U")):
-            self.assertIn("BS_STATE + " + old, mutated)
-            mutated = mutated.replace("BS_STATE + " + old, "BS_STATE + " + new)
-        source = self.work / "wrong-mega-layout.c"
-        source.write_text(mutated)
-        result = subprocess.run([self.compiler, "-std=c11", "-fsyntax-only", str(source)],
-                                capture_output=True, text=True, timeout=30)
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn("static assertion failed", result.stderr)
+    def test_obsolete_18_and_45_entry_offsets_are_rejected(self) -> None:
+        # run34933733445(45品目)とrun34945660762(18品目)の誤ABIを再現。
+        for count in (18, 45):
+            with self.subTest(obsolete_catalog_count=count):
+                mutated = self.program
+                for offset in (0, 2, 4, 5, 6):
+                    old = f"BS_STATE + 0x{100 + offset:02X}U"
+                    new = f"BS_STATE + 0x{count * 2 + offset:02X}U"
+                    self.assertIn(old, mutated)
+                    mutated = mutated.replace(old, new)
+                source = self.work / f"wrong-layout-{count}.c"
+                source.write_text(mutated)
+                result = subprocess.run(
+                    [self.compiler, "-std=c11", "-fsyntax-only", str(source)],
+                    capture_output=True, text=True, timeout=30,
+                )
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("static assertion failed", result.stderr)

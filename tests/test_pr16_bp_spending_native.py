@@ -36,7 +36,7 @@ class BpSpendingContractTests(unittest.TestCase):
 
     def test_accepts_exact_purchase_and_persistence(self) -> None:
         accepted = spending.accept_spending(self.row(), "a" * 64)
-        self.assertEqual(accepted["purchase"]["catalog_index"], 3)
+        self.assertEqual(accepted["purchase"]["catalog_index"], 0)
         self.assertEqual(accepted["purchase"]["bp_after"], 8)
 
     def test_rejects_missing_debit_or_persistence(self) -> None:
@@ -48,9 +48,9 @@ class BpSpendingContractTests(unittest.TestCase):
     def test_source_contracts(self) -> None:
         source = (ROOT / spending.SOURCE).read_text()
         for marker in (
-            "#define BS_ITEM_ID 0x00C3U", "#define BS_CATALOG_INDEX 3U",
-            "#define BS_PRICE_BP 4U", "BS_STATE + 0x24U", "BS_STATE + 0x26U",
-            "BS_STATE + 0x28U", "BS_STATE + 0x2AU", "b_to(c,BS_SHOP_X,BS_SHOP_Y)",
+            "#define BS_ITEM_ID 0x00C3U", "#define BS_CATALOG_INDEX 0U",
+            "#define BS_PRICE_BP 4U", "BS_STATE + 0x64U", "BS_STATE + 0x66U",
+            "BS_STATE + 0x68U", "BS_STATE + 0x6AU", "b_to(c,BS_SHOP_X,BS_SHOP_Y)",
             ")&15U)==BS_FACING_NORTH",
         ):
             self.assertIn(marker, source)

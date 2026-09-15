@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Load the accepted BP-spending driver with the fixture's first eligible row."""
+"""現行QOL供給ショップの先頭行を使ってBP購入driverを読み込む。"""
 from __future__ import annotations
 
 import hashlib
@@ -24,7 +24,7 @@ def replace_once(old: str, new: str) -> None:
     source = source.replace(old, new, 1)
 
 
-replace_once("ITEM_ID = 0x310\nPRICE_BP = 1", "ITEM_ID = 0xC3\nCATALOG_INDEX = 3\nPRICE_BP = 4")
+replace_once("ITEM_ID = 0x310\nPRICE_BP = 1", "ITEM_ID = 0xC3\nCATALOG_INDEX = 0\nPRICE_BP = 4")
 replace_once('row.get("item_id") == ITEM_ID and row.get("catalog_index") == 0',
              'row.get("item_id") == ITEM_ID\n         and row.get("catalog_index") == CATALOG_INDEX')
 replace_once('"catalog_index": 0,', '"catalog_index": CATALOG_INDEX,')
