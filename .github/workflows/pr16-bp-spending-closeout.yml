@@ -1,5 +1,5 @@
 name: pr16-bp-spending-closeout
-run-name: BP購入の正本照合・source-only記録
+run-name: BP通常購入の原本照合・受入記録・非force反映
 on:
   workflow_dispatch:
   push:
@@ -8,7 +8,8 @@ on:
       - .github/workflows/pr16-bp-spending-closeout.yml
       - scripts/pr16_bp_spending_closeout.py
 permissions:
-  contents: read
+  contents: write
+  actions: read
 concurrency:
   group: pr16-bp-spending-closeout
   cancel-in-progress: false
@@ -16,72 +17,94 @@ jobs:
   closeout:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-          persist-credentials: false
-      - name: Existing handoff and focused observer contracts without native replay
-        run: |
-          python3 scripts/pr16_resume.py check
-          python3 -m unittest discover -s tests -p test_pr16_bp_spending_native.py -v
-      - name: Exact tracked text snapshot for source-only closeout
+          persist-credentials: true
+      - name: Fetch only pinned original artifacts and Actions metadata
         shell: bash
         run: |
           set -euo pipefail
+          base=.local/pr16-bp-spending-closeout/originals
+          mkdir -p "$base"
+          while read -r run artifact; do
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" > "$base/$run.run.json"
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/jobs?per_page=20" > "$base/$run.jobs.json"
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact" > "$base/$run.artifact.json"
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact/zip" > "$base/$run.zip"
+          done <<'PINS'
+          34933733445 10383085559
+          34945660762 10387360949
+          34946969126 10386754174
+          PINS
+      - name: Verify originals and migrate exact resume schema; no emulator
+        run: python3 scripts/pr16_bp_spending_closeout.py prepare
+      - name: Focused acceptance and authoritative handoff tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-closeout
+          python3 -m unittest discover -s tests -p test_pr16_resume.py -v > "$out/resume.stdout" 2> "$out/resume.stderr"
+          python3 -m unittest discover -s tests -p test_pr16_bp_spending_resume.py -v > "$out/spending-resume.stdout" 2> "$out/spending-resume.stderr"
+          python3 scripts/pr16_resume.py check
+          python3 scripts/validate_task_graph.py > "$out/task-graph.stdout" 2> "$out/task-graph.stderr"
+          git diff --check
+      - name: Append both logs and guard the explicit final index
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_bp_spending_closeout.py logs
+          python3 scripts/pr16_resume.py check
+          python3 scripts/pr16_bp_spending_closeout.py stage
+          git diff --cached --check
+          python3 scripts/pr16_bp_spending_closeout.py guard
+      - name: Commit and non-force fast-forward the same branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          remote=$(git ls-remote origin "refs/heads/$branch" | cut -f1)
+          test "$remote" = "$GITHUB_SHA"
+          gh api "repos/$GITHUB_REPOSITORY/pulls/16" > .local/pr16-bp-spending-closeout/pr-before-push.json
           python3 - <<'PY'
-          import hashlib,json,pathlib,re,subprocess,zipfile
-          root=pathlib.Path('.')
-          out=root/'.local/pr16-bp-spending-closeout'
-          out.mkdir(parents=True,exist_ok=True)
-          tracked=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
-          state=json.loads((root/'content/modernization/pr16_native_supply_resume_20260913.json').read_text())
-          paths=[
-              'AGENTS.md','CHATGPT_RESUME.md','Makefile',
-              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-              'content/modernization/pr16_native_supply_resume_20260913.json',
-              'content/modernization/pr16_bp_chooser_checkpoint.json',
-              'content/modernization/pr16_bp_chooser_receipt.json',
-              'content/modernization/pr16_bp_three_win_reward_verified.json',
-              'content/modernization/p08_remaining_work.json',
-              'scripts/pr16_resume.py','tests/test_pr16_resume.py',
-              'scripts/pr16_bp_spending_native.py','scripts/pr16_bp_spending_native_impl.py',
-              'tools/mgba_pr16_bp_spending.c','tests/test_pr16_bp_spending_native.py',
-              'tests/test_pr16_bp_shop_observer_abi.py',
-              '.github/workflows/pr16-bp-spending-native.yml',
-              '.github/workflows/pr16-bp-spending-closeout.yml',
-              'scripts/pr16_bp_progress_closeout.py','scripts/pr16_bp_battle_return_closeout.py',
-              'scripts/guard_private_files.py','scripts/validate_task_graph.py',
-              'overlays/qol_production/qol_production.c',
-              'overlays/qol_production/hook_contract_stage35.json',
-              'config/qol_production_supply_catalog.csv',
-              'scripts/build_qol_production.py','manifests/item_ids.csv',
-              'scripts/pr16_gear_originals.py','scripts/pr16_apply_gear_policy_boundary.py',
-              'content/modernization/pr16_p05_supply_owner_findings.json',
-              'design/run_log.md','design/version_log.md',
-              *state['source_bindings'],*state['next_action']['read_paths'],
-          ]
-          paths=sorted(set(paths))
-          manifest={}
-          with zipfile.ZipFile(out/'tracked-text.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in paths:
-                  assert name in tracked
-                  p=root/name
-                  assert p.is_file() and not p.is_symlink()
-                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw
-                  assert len(raw)<12000000
-                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
-                  z.writestr(name,raw)
-                  manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'manifest.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'sources':manifest},indent=2)+'\n')
+          import json,os,pathlib
+          pr=json.loads(pathlib.Path('.local/pr16-bp-spending-closeout/pr-before-push.json').read_text())
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['ref']=='codex/modernization-followup-20260908'
           PY
-          git diff --exit-code
-      - uses: actions/upload-artifact@v4
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'PR-P08-6: 稼得BPの通常購入・保存再開を受入し引継ぎを更新'
+          git push origin "HEAD:refs/heads/$branch"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,zipfile
+          from scripts import pr16_bp_spending_closeout as c
+          out=pathlib.Path('.local/pr16-bp-spending-closeout')
+          head=subprocess.check_output(['git','rev-parse','HEAD']).decode().strip()
+          result={'status':'PASS_RECORDED_AND_NONFORCE_PUSHED','input_head':os.environ['GITHUB_SHA'],
+                  'commit':head,'branch':c.BRANCH,'native_run':c.RUN,'native_head':c.HEAD,
+                  'new_emulator_processes':0,'release_ready':False,'merge_performed':False}
+          (out/'result.json').write_bytes(c.stable(result))
+          with zipfile.ZipFile(out/'recorded-text.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in c.PATHS: z.write(name,name)
+          print(json.dumps(result))
+          PY
+      - name: Export source-only closeout result and logs
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: pr16-bp-spending-closeout
-          path: .local/pr16-bp-spending-closeout/
+          path: |
+            .local/pr16-bp-spending-closeout/*.json
+            .local/pr16-bp-spending-closeout/*.stdout
+            .local/pr16-bp-spending-closeout/*.stderr
+            .local/pr16-bp-spending-closeout/recorded-text.zip
           include-hidden-files: true
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 90
