@@ -1,0 +1,147 @@
+name: pr16-bp-spending-native
+run-name: 同一9 BP状態から通常ショップ購入・Save・Continue検証
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-spending-native.yml
+      - scripts/pr16_bp_spending_native.py
+      - tests/test_pr16_bp_spending_native.py
+      - tools/mgba_pr16_bp_spending.c
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-spending-native
+  cancel-in-progress: false
+jobs:
+  spending:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Focused fail-closed contract tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-native-run
+          mkdir -p "$out"
+          python3 -m py_compile scripts/pr16_bp_spending_native.py
+          python3 -m unittest discover -s tests -p 'test_pr16_bp_spending_native.py' -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-native-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned private inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-native-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" \
+            --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip \
+            --dir "$assets"
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name
+          raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:
+              data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():
+              assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_bytes(data)
+              path.chmod(0o444)
+          PYCODE
+      - name: Rebuild exact retained candidate parents without separate accepted-case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-native-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Run one-process 9 BP prefix through physical purchase and persistence
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-spending-native-run
+          sudo apt-get update > "$out/apt-update.log" 2>&1
+          sudo apt-get install -y libmgba-dev > "$out/apt-mgba.log" 2>&1
+          python3 scripts/pr16_bp_spending_native.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: Bind text evidence and exclude ROM/save/patch bytes
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re,zipfile
+          root=pathlib.Path('.')
+          run=root/'.local/pr16-bp-spending-native-run'
+          native=root/'.local/pr16-bp-spending-native'
+          run.mkdir(parents=True,exist_ok=True)
+          bound={}
+          for base,prefix in ((run,''),(native,'native/')):
+              if not base.exists():
+                  continue
+              for p in sorted(base.iterdir()):
+                  assert p.is_file() and not p.is_symlink()
+                  assert p.suffix in {'.json','.txt','.stdout','.stderr','.log','.ppm','.zip'}
+                  raw=p.read_bytes()
+                  assert len(raw)<12000000
+                  if p.suffix=='.zip':
+                      with zipfile.ZipFile(p) as z:
+                          for name in z.namelist():
+                              assert not name.startswith('/') and '..' not in pathlib.PurePosixPath(name).parts
+                              data=z.read(name)
+                              data.decode('utf-8')
+                              assert b'\0' not in data
+                  elif p.suffix=='.ppm':
+                      assert raw.startswith(b'P6') or raw.startswith(b'P3')
+                  else:
+                      raw.decode('utf-8')
+                      assert b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+                  bound[prefix+p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (run/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-bp-spending-native
+          path: |
+            .local/pr16-bp-spending-native-run/
+            .local/pr16-bp-spending-native/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
