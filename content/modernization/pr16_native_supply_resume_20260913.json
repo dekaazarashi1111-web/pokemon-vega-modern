@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。",
+    "current_stop": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。",
+    "next_step": "次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -297,7 +297,8 @@
     "共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。",
     "0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。",
     "保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。",
-    "0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。"
+    "0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。",
+    "高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -370,13 +371,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。",
+    "goal_ja": "次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_high_branch_bytes.json",
-      "scripts/pr16_ring_high_branch_bytes.py",
-      "content/modernization/pr16_ring_epilogue_abi.json"
+      "content/modernization/pr16_ring_high_branch_abi.json",
+      "scripts/pr16_ring_high_branch_abi.py",
+      "content/modernization/pr16_ring_high_branch_bytes.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -385,9 +386,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "fad0e881c26ec79a937be0c657d02c268809cec6",
+  "observed_head": "de517da291587ca23867800f1df65997e5e6034e",
   "observed_head_checks": {
-    "reason_ja": "先行run35012341851の原結論と保存証拠、BP run34946969126成功を照合。今回run35012559981は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35012559981の原結論と保存証拠、BP run34946969126成功を照合。今回run35013060593は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -548,9 +549,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。"
+    "scope_ja": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1440,10 +1441,26 @@
     "content/modernization/pr16_ring_high_branch_bytes.json": {
       "size": 14310,
       "sha256": "8fb4f5a0604393f37ee63676bf411dc4e3c230e4492bb18ff9b1333999f151eb"
+    },
+    "scripts/pr16_ring_high_branch_abi.py": {
+      "size": 8407,
+      "sha256": "2661b28752996e914d1b05f413fa7c60126c1cdcdd9ddddac0fd0730a2742b5a"
+    },
+    "tests/test_pr16_ring_high_branch_abi.py": {
+      "size": 1764,
+      "sha256": "73f6c133b37f807fd9ccc9bea260d77233956654010b84037da4aaae1c1e3ab1"
+    },
+    ".github/workflows/pr16-ring-high-branch-abi.yml": {
+      "size": 1370,
+      "sha256": "70fce6fd6f0dcb723706e7429a3e486af1fe9101c522d8f78255d1360ccdb141"
+    },
+    "content/modernization/pr16_ring_high_branch_abi.json": {
+      "size": 9441,
+      "sha256": "2e9a6c05f49a16d1dd92a3939876436b8e25dc1ec5012c3b527e25fcbd845e78"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。",
+  "source_change_review_ja": "保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1773,5 +1790,10 @@
     "path": "content/modernization/pr16_ring_high_branch_bytes.json",
     "source_head": "fad0e881c26ec79a937be0c657d02c268809cec6",
     "run_id": 35012559981
+  },
+  "ring_high_branch_abi": {
+    "path": "content/modernization/pr16_ring_high_branch_abi.json",
+    "source_head": "de517da291587ca23867800f1df65997e5e6034e",
+    "run_id": 35013060593
   }
 }

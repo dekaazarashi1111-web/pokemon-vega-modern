@@ -2719,3 +2719,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。
+
+
+## 2026-09-15T19:20:53.857823+00:00 — PR-P08-7-RING-HIGH-BRANCH-ABI
+- Timestamp: 2026-09-15T19:20:53.857823+00:00
+- Task: PR-P08-7-RING-HIGH-BRANCH-ABI / 保存高域8命令の符号付き除算と条件付きpointer ABIを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-high-branch-abi
+- Summary: 保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。
+- Files changed: scripts/pr16_ring_high_branch_abi.py, tests/test_pr16_ring_high_branch_abi.py, .github/workflows/pr16-ring-high-branch-abi.yml, content/modernization/pr16_ring_high_branch_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定14 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=de517da291587ca23867800f1df65997e5e6034e; run=35013060593（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。

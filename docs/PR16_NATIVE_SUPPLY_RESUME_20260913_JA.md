@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未読高域分岐0x0806DE51だけを8命令/16byte採取保存。保存済み末尾へはdecodeせず辺で停止。旧18targetと外部call3本を保持、全callee帰還/非alias/Ring取得は未証明。
+保存高域8命令/16byteとliteral12byteを照合。高域ID49152件、到達を主張しない負側診断13件で全8命令を検査。entry_r6=idならpointer式0x02037014+((id-0x4000)>>3)。RAM読取/store/stack操作0。保存join/epilogueは結果を再利用し実行0。格納域の実サイズ・保存slot非alias・全callee帰還は未証明。
 
-**次: 次は保存済みpr16_ring_high_branch_bytes.jsonだけで高域分岐のABIを検証する。既読末尾/zero/helper/BPを再実行しない。その後に未解決外部call0x08113889、0x0806DD1D、0x081138F9を各1根の範囲で進める。**
+**次: 次は未解決外部callee0x08113889の1根だけを限定採取する。0x0806DD1D/0x081138F9と旧18targetを保持。保存高域/共通末尾/帰還末尾/zero/helper/受入済みBPを再実行しない。Ring通常取得受入へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `fad0e881c26ec79a937be0c657d02c268809cec6`。
+証拠のsource HEAD: `de517da291587ca23867800f1df65997e5e6034e`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_high_branch_abi.json`
+- `scripts/pr16_ring_high_branch_abi.py`
 - `content/modernization/pr16_ring_high_branch_bytes.json`
-- `scripts/pr16_ring_high_branch_bytes.py`
-- `content/modernization/pr16_ring_epilogue_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -104,6 +104,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x0806DE63帰還末尾1根は採取保存済み。同一candidateで再採取せず保存byteだけでABIを検証する。既読prefix/BP再実行0を保持。
 - 保存末尾0x0806DE63の3命令は条件付き局所ABI検証済み。再採取・単独再実行しない。全callee帰還/保存slot不変/非aliasは未証明。
 - 0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。
+- 高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。
 
 ## 次セッションへ残す更新手順
 
@@ -133,6 +134,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35012341851の原結論と保存証拠、BP run34946969126成功を照合。今回run35012559981は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35012559981の原結論と保存証拠、BP run34946969126成功を照合。今回run35013060593は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
