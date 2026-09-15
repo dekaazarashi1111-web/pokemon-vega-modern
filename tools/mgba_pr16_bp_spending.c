@@ -3,8 +3,9 @@
  * write barrier this suffix only supplies ordinary keypad input, advances
  * frames, and reads game state. Purchase/save writes are game-owned. */
 #define BS_STATE 0x0203ED40U
-#define BS_ITEM_ID 0x0310U
-#define BS_PRICE_BP 1U
+#define BS_ITEM_ID 0x00C3U
+#define BS_CATALOG_INDEX 3U
+#define BS_PRICE_BP 4U
 #define BS_LOCAL_ID 3U
 #define BS_FACING_NORTH 2U
 #define BS_MAP_GROUP 96U
@@ -12,10 +13,12 @@
 #define BS_REWARD_X 20U
 #define BS_SHOP_X 22U
 #define BS_SHOP_Y 20U
-#define BS_LAST_RESULT (BS_STATE + 0x24U)
-#define BS_LAST_INDEX (BS_STATE + 0x26U)
-#define BS_ELIGIBLE_COUNT (BS_STATE + 0x28U)
-#define BS_WINDOW_ID (BS_STATE + 0x2AU)
+#define BS_ELIGIBLE_BASE BS_STATE
+#define BS_LAST_RESULT (BS_STATE + 0x5AU)
+#define BS_LAST_INDEX (BS_STATE + 0x5CU)
+#define BS_ELIGIBLE_COUNT (BS_STATE + 0x5EU)
+#define BS_PAGE (BS_STATE + 0x5FU)
+#define BS_WINDOW_ID (BS_STATE + 0x60U)
 #define BS_RESULT_SUCCESS 0U
 #define BS_RESULT_BUSY 9U
 #define BS_BASE_REWARD_BP 9U
@@ -35,10 +38,11 @@ struct BSResult {
 
 static void bs_trace(struct mCore *c,const char *label) {
     fprintf(stderr,
-        "BP_SPEND label=%s frame=%u result=%u index=%u eligible=%u window=%u "
-        "bp=%u save=%u script=%08x cb2=%08x\n",
+        "BP_SPEND label=%s frame=%u result=%u index=%u eligible=%u first=%u "
+        "page=%u window=%u bp=%u save=%u script=%08x cb2=%08x\n",
         label,b_frames,read16(c,BS_LAST_RESULT),read16(c,BS_LAST_INDEX),
-        read8(c,BS_ELIGIBLE_COUNT),read8(c,BS_WINDOW_ID),
+        read8(c,BS_ELIGIBLE_COUNT),read16(c,BS_ELIGIBLE_BASE),
+        read8(c,BS_PAGE),read8(c,BS_WINDOW_ID),
         read16(c,BP_F(battle_points)),read32(c,P03_SAVE_COUNTER),
         read32(c,SP_SCRIPT_PTR),read32(c,BATTLE_CORE_MAIN_CALLBACK2));
 }
@@ -137,6 +141,8 @@ static void bs_wait_menu(struct mCore *c) {
         if(read16(c,BS_LAST_RESULT)==BS_RESULT_BUSY
             && read16(c,BS_LAST_INDEX)==0xFFFFU
             && read8(c,BS_ELIGIBLE_COUNT)>0U
+            && read16(c,BS_ELIGIBLE_BASE)==BS_CATALOG_INDEX
+            && read8(c,BS_PAGE)==0U
             && read8(c,BS_WINDOW_ID)<32U){
             b_frames_run(c,0U,60U);return;
         }
@@ -174,23 +180,27 @@ static struct BSResult bs_spend(struct mCore **core,struct mCore *original,
     b_press(c,QOL_KEY_A,60U);
     for(unsigned f=0U;f<12000U;++f){
         if(read16(c,BS_LAST_RESULT)==BS_RESULT_SUCCESS
-            && read16(c,BS_LAST_INDEX)==0U
-            && read16(c,BP_F(battle_points))==11U){
+            && read16(c,BS_LAST_INDEX)==BS_CATALOG_INDEX
+            && read16(c,BP_F(battle_points))
+                ==BS_STABLE_REWARD_BP-BS_PRICE_BP){
             r.purchased=b_frames;break;
         }
         b_frame(c,0U);
     }
     bp_require(c,r.purchased>r.menu,"physical BP purchase did not complete");
-    bs_wait_save_counter(c,r.save_before+1U,11U,
+    bs_wait_save_counter(c,r.save_before+1U,
+        BS_STABLE_REWARD_BP-BS_PRICE_BP,
         "physical BP purchase autosave did not complete");
-    (void)bs_return_field(c,11U,r.save_before+1U,"purchase-dialogue",
+    (void)bs_return_field(c,BS_STABLE_REWARD_BP-BS_PRICE_BP,
+        r.save_before+1U,"purchase-dialogue",
         "successful BP purchase did not return to idle field");
     g_inventory(c,after);
     r.result=read16(c,BS_LAST_RESULT);r.index=read16(c,BS_LAST_INDEX);
     r.bp_after=read16(c,BP_F(battle_points));r.item_after=after[BS_ITEM_ID];
     r.save_after_purchase=read32(c,P03_SAVE_COUNTER);
-    bp_require(c,r.result==BS_RESULT_SUCCESS && r.index==0U
-        && r.bp_before==BS_STABLE_REWARD_BP && r.bp_after==11U
+    bp_require(c,r.result==BS_RESULT_SUCCESS && r.index==BS_CATALOG_INDEX
+        && r.bp_before==BS_STABLE_REWARD_BP
+        && r.bp_after==BS_STABLE_REWARD_BP-BS_PRICE_BP
         && r.item_after==r.item_before+1U
         && r.save_after_purchase==r.save_before+1U,
         "physical BP purchase item/debit/autosave differs");
@@ -209,7 +219,8 @@ static struct BSResult bs_spend(struct mCore **core,struct mCore *original,
     r.bp_reloaded=read16(c,BP_F(battle_points));
     r.item_reloaded=reloaded[BS_ITEM_ID];
     r.save_after_reload=read32(c,P03_SAVE_COUNTER);
-    bp_require(c,r.bp_reloaded==11U && r.item_reloaded==r.item_after
+    bp_require(c,r.bp_reloaded==BS_STABLE_REWARD_BP-BS_PRICE_BP
+        && r.item_reloaded==r.item_after
         && r.save_after_reload==r.save_after_manual,
         "fresh Continue lost purchased item or remaining BP");
     for(unsigned i=0U;i<G_ITEMS;++i)
