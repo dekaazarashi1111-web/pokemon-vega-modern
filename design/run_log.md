@@ -5382,3 +5382,20 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定入力復元。直接cloneはDNS解決失敗。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致/新規違反0を要求。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
 - Next: 保存済みpr16_ring_common_tail_bytes.jsonの共通末尾だけを限定ABI検証する。同じcandidateの復元/共通末尾再採取、zero54命令/helper全u16/非0側/callee prefix/FlagSet/FlagGet/15辺分類/BPを単独再実行しない。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。局所復元をcallee全体の帰還/保存slot不変/全owner除外/Ring通常取得受入へ昇格しない。
+
+
+## 2026-09-15T18:41:11.743297+00:00 — PR-P08-7-RING-COMMON-TAIL-ABI
+- Timestamp: 2026-09-15T18:41:11.743297+00:00
+- Task: PR-P08-7-RING-COMMON-TAIL-ABI / 保存共通末尾の限定ABI
+- Status: DONE / 保存6命令の限定ABI工程。callee全体・Ring通常取得は未受入。
+- Version: PR16 common-tail ABI
+- Summary: 保存済み共通末尾0x0806DE3Dの6命令/12byteを限定ABI検証。r0=mem32[entry_r0]+entry_r1+0xEE0 (mod 2^32)を計算し、未読0x0806DE63へ続く。低域の保存済み入口条件ではmem32[0x03005048]+0xEE0+(id>>3)。POP/return/局所storeは0、SP変化0。先行経路の保存仮定下でFlagSet基準-24のframeが残る。計算pointerが保存6slotへaliasする反例を保持し、callee帰還/保存slot不変/非aliasは未証明。旧18target、0x0806DE51と外部call3本、BP受入を保持。
+- Files changed: scripts/pr16_ring_common_tail_abi.py, tests/test_pr16_ring_common_tail_abi.py, .github/workflows/pr16-ring-common-tail-abi.yml, content/modernization/pr16_ring_common_tail_abi.json, 固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Verify: 新規限定ABI 46 tests PASS、固定引継ぎ 24 tests PASS、render/check PASS。新規末尾のみ11515低域ケース、保存6slotへのalias反例6件。採取原本/source hash照合、BP checkpoint byte不変。
+- Commit gate: task graph、diff、最終indexとworktree一致、既存全体private guard前後出力完全一致・新規違反0を後続gateで要求。結果は同runのguard.json/recorded-result.json。
+- Evidence: source=5280f666fb592d961503d430dd7e88525dd0bd07; run=35008976649（保存時in_progress）。先行採取run35007034033/job104509276799成功を新規照合。失敗run35006120653はfailure原本で保持。
+- Preserved: ROM変更0、candidate再構築0、mGBA0、既読ABI/受入済みnative単独再実行0。BP正式受入・他gap・旧18targetを保持。外部callは未実行。
+- Commit: 完了条件PASS後に同branchへ非force push。自己SHAはremote ref/recorded-result.jsonで確認。
+- Network: GitHub connector/Actions APIだけ。containerの直接cloneはDNS解決失敗。private Release/ROM/save/外部技術資料の取得なし。
+- Boundary: 整列・読取可能・非volatile RAMの局所モデル。先行保存契約は仮定であり実観測ではない。全体guard PASS・全CI green・merge・release・baseline変更を主張しない。
+- Next: 次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。

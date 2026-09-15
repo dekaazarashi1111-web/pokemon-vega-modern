@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未読共通末尾0x0806DE3Dの1根だけを最大56byte範囲で6命令/12byte採取・保存。採取工程は完了。返却pointer生成/復元のABIは保存byteで検証する。zero54命令の限定ABI成功run35002458426を再利用。0x0806DE51/0x0806DE63と外部call3本、旧18target、保存slot/返却pointer非aliasの未証明を保持。BP受入は不変。",
+    "current_stop": "保存済み共通末尾0x0806DE3Dの6命令/12byteを限定ABI検証。r0=mem32[entry_r0]+entry_r1+0xEE0 (mod 2^32)を計算し、未読0x0806DE63へ続く。低域の保存済み入口条件ではmem32[0x03005048]+0xEE0+(id>>3)。POP/return/局所storeは0、SP変化0。先行経路の保存仮定下でFlagSet基準-24のframeが残る。計算pointerが保存6slotへaliasする反例を保持し、callee帰還/保存slot不変/非aliasは未証明。旧18target、0x0806DE51と外部call3本、BP受入を保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済みpr16_ring_common_tail_bytes.jsonの共通末尾だけを限定ABI検証する。同じcandidateの復元/共通末尾再採取、zero54命令/helper全u16/非0側/callee prefix/FlagSet/FlagGet/15辺分類/BPを単独再実行しない。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。局所復元をcallee全体の帰還/保存slot不変/全owner除外/Ring通常取得受入へ昇格しない。",
+    "next_step": "次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -293,7 +293,8 @@
     "0x090970F7の保存POP1命令2byte・非0側SP/r4-r6/保存slot結合は完了。同一入力を再採取/単独再実行せず未読0x0806DDBDへ進む。callee全体/非alias/Ring受入とは区別。",
     "0x0806DDBDの限定byte採取は保存済み。同一candidateを再構築/再採取せず、保存byteでABI検証する。",
     "保存zero54命令/114byteの採取・限定モデルは完了。次の採取は新規未読targetのみ。仮想call契約を実帰還や保存slot不変へ昇格しない。",
-    "0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。"
+    "0x0806DE3Dの共通末尾1根は採取保存済み。同一candidateを復元/再採取せず、保存byteのABI検証へ進む。",
+    "共通末尾0x0806DE3Dの保存6命令/12byteの限定ABIは完了。再採取/単独再実行せず、新規未読0x0806DE63へ進む。局所store/POP/return0をcallee全体の保存/帰還証明へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -366,15 +367,15 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存済みpr16_ring_common_tail_bytes.jsonの共通末尾だけを限定ABI検証する。同じcandidateの復元/共通末尾再採取、zero54命令/helper全u16/非0側/callee prefix/FlagSet/FlagGet/15辺分類/BPを単独再実行しない。0x0806DE51/0x0806DE63と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。局所復元をcallee全体の帰還/保存slot不変/全owner除外/Ring通常取得受入へ昇格しない。",
+    "goal_ja": "次は新規未読0x0806DE63だけを限定採取し、共通末尾後の復元/帰還命令を確認する。0x0806DE51と外部call0x08113889/0x0806DD1D/0x081138F9は未解決で保持。保存済み共通末尾6命令、zero54命令、helper全u16、非0側、callee prefix、FlagSet/FlagGet/15辺分類/BPを再採取・単独再実行しない。条件付きpointer計算を実帰還・保存slot不変・非alias・全owner除外・Ring通常取得受入へ昇格しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_common_tail_abi.json",
+      "scripts/pr16_ring_common_tail_abi.py",
       "content/modernization/pr16_ring_common_tail_bytes.json",
-      "scripts/pr16_ring_common_tail_bytes.py",
       "content/modernization/pr16_ring_zero_abi.json",
-      "content/modernization/pr16_ring_callee_abi.json",
-      "content/modernization/pr16_ring_helper_abi.json"
+      "content/modernization/pr16_ring_callee_abi.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -382,12 +383,12 @@
       "通常Save/fresh Continueで保持"
     ]
   },
-  "observed_date_jst": "2026-09-15",
-  "observed_head": "b0fbc529b66f6043ccbcde0d08da8f3678247181",
+  "observed_date_jst": "2026-09-16",
+  "observed_head": "5280f666fb592d961503d430dd7e88525dd0bd07",
   "observed_head_checks": {
-    "reason_ja": "zero限定ABI run35002458426とBP run34946969126成功照合。今回run35007034033は保存時in_progress。action_requiredは成功へ読み替えない。"
+    "reason_ja": "共通末尾採取run35007034033/job104509276799とzero/helper/callee/BP成功を照合。今回run35008976649は保存時in_progress。action_required/既存failureは成功へ読み替えない。"
   },
-  "observed_head_semantics": "未読共通末尾1根の採取source HEAD。完了commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "保存共通末尾6命令の限定ABI source HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -546,11 +547,10 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "candidate_reconstructions_including_failed_attempt": 2,
-    "failed_attempt_run_id": 35006120653,
-    "scope_ja": "別未読入口をdecode前に境界化し共通末尾1根の採取完了。初回failure保持、既読graph/受入済みnative再実行0。"
+    "prior_abi_classifications_replayed": 0,
+    "scope_ja": "保存共通末尾6命令の限定ABI・pointer計算と未読帰還境界。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1368,10 +1368,26 @@
     "content/modernization/pr16_ring_common_tail_bytes.json": {
       "size": 15198,
       "sha256": "d20be32b02bbc9e6e134f3edaa9fdfad467258ab7c9c6211c5993c1758d87745"
+    },
+    "scripts/pr16_ring_common_tail_abi.py": {
+      "size": 28698,
+      "sha256": "ac51ad2fdeea26d4bc70b53b7d6a60d902364ed3b3983bd20a927a1e2f7a1239"
+    },
+    "tests/test_pr16_ring_common_tail_abi.py": {
+      "size": 14392,
+      "sha256": "bd7c4e9f92d47fa76aee180a16e9bab7c471ee3eef85ff830582ff5a91288238"
+    },
+    ".github/workflows/pr16-ring-common-tail-abi.yml": {
+      "size": 4344,
+      "sha256": "060f17339b493923ba7ff1601270310a43f9085c2e64952e8792b6333c88a16f"
+    },
+    "content/modernization/pr16_ring_common_tail_abi.json": {
+      "size": 16527,
+      "sha256": "ed344d342b1599eaf0ea51258fb61e2cf61b0defeed87b26c44fc96ec406e1e4"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未読共通末尾0x0806DE3Dの1根だけを最大56byte範囲で6命令/12byte採取・保存。採取工程は完了。返却pointer生成/復元のABIは保存byteで検証する。zero54命令の限定ABI成功run35002458426を再利用。0x0806DE51/0x0806DE63と外部call3本、旧18target、保存slot/返却pointer非aliasの未証明を保持。BP受入は不変。",
+  "source_change_review_ja": "保存済み共通末尾0x0806DE3Dの6命令/12byteを限定ABI検証。r0=mem32[entry_r0]+entry_r1+0xEE0 (mod 2^32)を計算し、未読0x0806DE63へ続く。低域の保存済み入口条件ではmem32[0x03005048]+0xEE0+(id>>3)。POP/return/局所storeは0、SP変化0。先行経路の保存仮定下でFlagSet基準-24のframeが残る。計算pointerが保存6slotへaliasする反例を保持し、callee帰還/保存slot不変/非aliasは未証明。旧18target、0x0806DE51と外部call3本、BP受入を保持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1677,5 +1693,14 @@
     "run_id": 35007034033,
     "source_head": "b0fbc529b66f6043ccbcde0d08da8f3678247181",
     "target": 134667837
+  },
+  "ring_common_tail_abi": {
+    "path": "content/modernization/pr16_ring_common_tail_abi.json",
+    "run_id": 35008976649,
+    "source_head": "5280f666fb592d961503d430dd7e88525dd0bd07",
+    "classification": "COMMON_TAIL_POINTER_PREFIX_NOT_RETURN_PROOF",
+    "target": 134667837,
+    "continuation_thumb": 134667875,
+    "ring_acquisition_accepted": false
   }
 }
