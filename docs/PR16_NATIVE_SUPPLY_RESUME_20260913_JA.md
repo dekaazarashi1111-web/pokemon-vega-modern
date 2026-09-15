@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Ring patch先・標準handlerの限定追跡を実装・検証。FlagSet→0x093775C5とSaveFinalize→0x093BDD7D、callstd4 handler 03/66/67/6Dをcandidate byteで照合。新規24 graph/366命令・56 memory-write siteを記録し、decoder停止0。18未読target（22辺）と15間接辺は未解決のまま保存。Ring通常取得・全runtime owner不存在は未証明。正式BP受入run34946969126は不変。
+保存済み15間接辺をABI/dataflowで分類。12辺はentry LRのpush/popとSP復元を確認したABI return、2辺は記録済みcallsite限定R3 trampoline、1辺は8byte live frameを保持した0x0806DE7Dへの分岐。QOL_FEATURE→0x09376F45→0x0806DEC5、FlagSet→0x09377615→既存SAVE_FINALIZE veneer→0x093BDD7Dを結合。旧18未読targetは不変、新規未読1targetを明示。全caller・全ownerの網羅性、stack memory corruption不存在、Ring通常取得は未証明。BP正式受入run34946969126は不変。
 
-**次: 成功run34964225479の24 graph/366命令、callstd4/旧6入口を再実行せず、保存済みgraphから15間接辺を戻り番地とR3 trampolineにABI/dataflowで分類する。特にQOL_FEATURE→0x09376F45、FlagSet→0x09377615、0x093789F3→0x0806DE7Dを確認し、18未読targetは必要なrootだけ追加採取する。全owner未除外のままRing story giftを新設しない。通常取得ownerの未実装を確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。**
+**次: 保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `03ca035d5617b4d381845189e15838b5ba495a7d`。
-patch先・標準handler限定byte監査のsource HEAD。最終記録commitはremote refで確認する。
+証拠のsource HEAD: `0449002040cefe9c7df01c2bf7804ea51fb16491`。
+保存済みgraphのABI分類を実行したsource HEAD。完了commitとrun結論はremote ref/Actionsで確認する。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_indirect_abi.json`
+- `scripts/pr16_ring_indirect_abi.py`
 - `content/modernization/pr16_ring_patch_owner.json`
-- `scripts/pr16_ring_patch_owner.py`
 - `content/modernization/pr16_ring_transitive_owner.json`
 - `overlays/save_migration/save_migration.c`
-- `overlays/qol_production/qol_production.c`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -90,6 +90,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - Ring compiled監査の成功原本とsource hashが同じなら再compile/再scanしない。記録された未解決外部ownerだけを進め、受入済みBPを再実行しない。
 - run34960361700の34 tests/callstd4/6入口はsource不変なら再実行しない。patch先の未観測実体と未解決辺だけを進める。BP受入原本は不変。
 - run34964225479の18 tests・24 graph/366命令は同一source/candidateなら再実行しない。残る18target/15間接辺だけを進める。Ring通常取得受入や全owner不存在へ読み替えない。
+- 15間接辺のABI分類12return/2callsite trampoline/1live-frame branchを同一入力で再実行しない。旧18未読targetと新1target、全caller/CFG/stack-integrityの仮定を保持し、Ring受入や全owner不存在へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -119,6 +120,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-限定run34964225479/job104364767602はsuccess、18 tests PASS。これは全Actions greenやrelease受入ではない。自動P03 run34964225326のfailure、開始HEADのaction_requiredを保持し、最新snapshotをreceiptへ保存。
+ABI分類のsource-only検証run34968485915を記録。保存時のrunは実行中で、最終conclusion/commitはActionsで照合する。開始HEADのsource-validation run34965203985はaction_required。自動CIのfailure/action_requiredと正式native受入を混同せず、新しいActions snapshotを分類receiptへ保存。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

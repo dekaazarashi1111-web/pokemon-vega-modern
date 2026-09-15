@@ -5189,3 +5189,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとrecorded-resultで照合。
 - Network: GitHub connector/Actions。containerの直接Git取得はDNS失敗のため使用せず、権限不足とは扱わない。ROM/save/private入力の新規追跡なし。既存全体guardの違反は保持し前後完全一致・追加違反0を要求。merge/release/baseline切替なし。
 - Next: 成功run34964225479の24 graph/366命令、callstd4/旧6入口を再実行せず、保存済みgraphから15間接辺を戻り番地とR3 trampolineにABI/dataflowで分類する。特にQOL_FEATURE→0x09376F45、FlagSet→0x09377615、0x093789F3→0x0806DE7Dを確認し、18未読targetは必要なrootだけ追加採取する。全owner未除外のままRing story giftを新設しない。通常取得ownerの未実装を確認できた場合だけ正規story取引を実装し、条件不足・取消・二重取得・容量不足、通常取得、装備実戦、Save/fresh Continueを検証する。
+
+
+## 2026-09-15T12:22:50.046373+00:00 — PR-P08-7-RING-INDIRECT-ABI
+- Timestamp: 2026-09-15T12:22:50.046373+00:00
+- Task: PR-P08-7-RING-INDIRECT-ABI / 保存済み間接辺のABI分類
+- Status: DONE / 限定分類実装・検証・記録。Ring正規取得は未完。
+- Version: PR16 Ring recorded indirect ABI
+- Summary: 15辺を12 ABI saved-LR return、2記録callsite限定R3 trampoline、1live-frame literal branchへ分類。QOL→0x0806DEC5、FlagSet→SaveFinalize既存veneer、0x093789F3→0x0806DE7Dを追跡。旧18未読targetと新1targetを保持。
+- Verify: 新規分類/異常系および固定resume 45 tests PASS、render/check PASS。task graph・最終index差分guard・diffは完了commit前の必須gate。
+- Evidence: content/modernization/pr16_ring_indirect_abi.json; source HEAD=0449002040cefe9c7df01c2bf7804ea51fb16491; 実行run=34968485915（保存時in_progress、最終結論はActionsで照合）。
+- Preserved: ROM変更/候補生成/native/受入済み単独再実行/新規decodeすべて0。BP checkpointの全byteとcandidate ceddbe91/CRC3EB17B36不変。ABI stack-integrityは仮定でありruntime無副作用や全owner除外を主張しない。
+- Files changed: 新規classifier/tests/workflow/receipt、固定引継ぎMD/JSON、P08 Ring参照、両ログ。
+- Commit: この記録を含む同branchへの非force commit。自己SHAはremote refとresult artifactで確認。
+- Network: GitHub connector/Actions。container直接Git取得はDNS失敗、権限不足とは扱わない。検索語: site.github.com/ARM-software/abi-aa aapcs32 rst r0 r3 r12 lr subroutine call。一次資料: https://github.com/ARM-software/abi-aa/blob/main/aapcs32/aapcs32.rst ; call後r0-r3/r12/LRを未知化しSP/非揮発register保存をABI仮定とする。
+- Boundary: 開始HEADのsource-validation action_required/既存CI failureを成功へ読み替えない。既存全体private guard違反は前後一致を要求し、新規違反0を別検査。merge/release/baseline変更なし。
+- Next: 保存済み15間接辺の分類を再実行せず、次は未読の0x0806DE7D（live frameを受けるFlagSet継続）だけcandidate byteを採取する。QOL_FEATURE→0x0806DEC5は保存済みFlagGet graphを再利用し再採取しない。旧18未読targetは保持し必要なrootだけ進める。QOLのcompiler helper後のinline table/CFGも全経路網羅とは見なさない。callsite限定解決を全callerの解決へ昇格せず、全owner未除外のままRing story giftを新設しない。Ring正規取得・装備実戦・Save/fresh Continueは未受入。
