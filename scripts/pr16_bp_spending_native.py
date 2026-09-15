@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extend the retained native 9-BP state through one physical BP-shop purchase."""
+"""Extend native base-9 + active repeat-3 BP through a physical purchase."""
 from __future__ import annotations
 
 import hashlib
@@ -20,8 +20,14 @@ CASE = "native-bp-spending-save-continue"
 SCOPE = "PR16_P05_NATIVE_BP_SPENDING_PHYSICAL"
 ITEM_ID = 0x310
 PRICE_BP = 1
+BASE_REWARD_BP = 9
+REPEAT_REWARD_BP = 3
+STABLE_REWARD_BP = BASE_REWARD_BP + REPEAT_REWARD_BP
+REWARD_WRAPPER_SAVES = 3
 
 SPENDING_EXTRA = {
+    "reward_settled_frame", "reward_field_frame", "base_reward_bp",
+    "active_repeat_reward_bp", "reward_wrapper_saves",
     "shop_interaction_frame", "shop_menu_frame", "purchase_frame",
     "manual_save_frame", "continue_frame", "bp_before_purchase",
     "bp_after_purchase", "bp_after_continue", "item_id", "catalog_index",
@@ -66,10 +72,14 @@ def accept_spending(row: dict[str, Any], candidate_sha256: str) -> dict[str, Any
          "spending candidate identity differs")
     need(row.get("native_three_win_reward_accepted") is True
          and row.get("native_bp_earning_accepted") is True,
-         "accepted 9-BP prefix missing")
-    need(row.get("bp_before_purchase") == 9
-         and row.get("bp_after_purchase") == 8
-         and row.get("bp_after_continue") == 8,
+         "accepted base-9-BP prefix missing")
+    need(row.get("base_reward_bp") == BASE_REWARD_BP
+         and row.get("active_repeat_reward_bp") == REPEAT_REWARD_BP
+         and row.get("reward_wrapper_saves") == REWARD_WRAPPER_SAVES,
+         "active repeat-reward wrapper accounting differs")
+    need(row.get("bp_before_purchase") == STABLE_REWARD_BP
+         and row.get("bp_after_purchase") == STABLE_REWARD_BP - PRICE_BP
+         and row.get("bp_after_continue") == STABLE_REWARD_BP - PRICE_BP,
          "physical purchase BP debit/durability differs")
     need(row.get("item_id") == ITEM_ID and row.get("catalog_index") == 0
          and row.get("price_bp") == PRICE_BP
@@ -98,7 +108,13 @@ def accept_spending(row: dict[str, Any], candidate_sha256: str) -> dict[str, Any
         "candidate_sha256": candidate_sha256,
         "scope": SCOPE,
         "same_native_process": True,
-        "accepted_prefix": {"native_battle_wins": 3, "battle_points": 9},
+        "accepted_prefix": {
+            "native_battle_wins": 3,
+            "base_battle_points": BASE_REWARD_BP,
+            "active_repeat_reward_points": REPEAT_REWARD_BP,
+            "stable_spendable_battle_points": STABLE_REWARD_BP,
+            "reward_wrapper_saves": REWARD_WRAPPER_SAVES,
+        },
         "purchase": {
             "map": {"group": 96, "map": 5},
             "npc_local_id": 3,
@@ -106,8 +122,8 @@ def accept_spending(row: dict[str, Any], candidate_sha256: str) -> dict[str, Any
             "item_id": ITEM_ID,
             "price_bp": PRICE_BP,
             "result": 0,
-            "bp_before": 9,
-            "bp_after": 8,
+            "bp_before": STABLE_REWARD_BP,
+            "bp_after": STABLE_REWARD_BP - PRICE_BP,
             "item_count_before": row["item_count_before"],
             "item_count_after": row["item_count_after_purchase"],
         },
@@ -115,7 +131,7 @@ def accept_spending(row: dict[str, Any], candidate_sha256: str) -> dict[str, Any
             "purchase_automatic_saves": 1,
             "manual_saves": 1,
             "fresh_continue": True,
-            "bp_after_continue": 8,
+            "bp_after_continue": STABLE_REWARD_BP - PRICE_BP,
             "item_count_after_continue": row["item_count_after_continue"],
         },
         "accepted_native_cases_replayed": 0,
@@ -143,29 +159,34 @@ def controller_for_scope(win: Any, reward: Any) -> str:
         text = reward.replace_once(text, old, new)
     anchor = (
         '    printf("\\\"bp_earned\\\":%u,\\\"battle_started\\\":true,'
-        '\\\"save_counter\\\":%u,\\\"manual_saves\\\":0,\\\"fresh_cores\\\":1,'
-        '\\\"host_write_barriers\\\":7,\\\"input_only_after_guard\\\":true,'
-        '\\\"fixture_same_as_accepted_cancel\\\":true,'
-        '\\\"native_bp_earning_accepted\\\":true,'
-        '\\\"p05_native_bp_gap_closed\\\":true,\\\"release_ready\\\":false,'
-        '\\\"warnings_errors\\\":0}\\n",reward.bp_delta,counter);'
+        '\\"save_counter\\\":%u,\\\"manual_saves\\\":0,\\\"fresh_cores\\\":1,'
+        '\\"host_write_barriers\\\":7,\\\"input_only_after_guard\\\":true,'
+        '\\"fixture_same_as_accepted_cancel\\\":true,'
+        '\\"native_bp_earning_accepted\\\":true,'
+        '\\"p05_native_bp_gap_closed\\\":true,\\\"release_ready\\\":false,'
+        '\\"warnings_errors\\\":0}\\n",reward.bp_delta,counter);'
     )
     replacement = (
-        '    printf("\\\"shop_interaction_frame\\\":%u,\\\"shop_menu_frame\\\":%u,'
-        '\\\"purchase_frame\\\":%u,\\\"manual_save_frame\\\":%u,'
-        '\\\"continue_frame\\\":%u,\\\"bp_before_purchase\\\":%u,'
-        '\\\"bp_after_purchase\\\":%u,\\\"bp_after_continue\\\":%u,'
-        '\\\"item_id\\\":%u,\\\"catalog_index\\\":%u,\\\"price_bp\\\":%u,'
-        '\\\"item_count_before\\\":%u,\\\"item_count_after_purchase\\\":%u,'
-        '\\\"item_count_after_continue\\\":%u,\\\"purchase_result\\\":%u,'
-        '\\\"physical_shop_local_id\\\":%u,'
-        '\\\"save_counter_before_purchase\\\":%u,'
-        '\\\"save_counter_after_purchase\\\":%u,'
-        '\\\"save_counter_after_manual\\\":%u,'
-        '\\\"save_counter_after_continue\\\":%u,'
-        '\\\"native_bp_spending_accepted\\\":true,'
-        '\\\"p05_native_bp_spending_closed\\\":true,",'
-        'spending.interaction,spending.menu,spending.purchased,'
+        '    printf("\\"reward_settled_frame\\":%u,'
+        '\\"reward_field_frame\\":%u,\\"base_reward_bp\\":%u,'
+        '\\"active_repeat_reward_bp\\":%u,\\"reward_wrapper_saves\\":%u,'
+        '\\"shop_interaction_frame\\":%u,\\"shop_menu_frame\\":%u,'
+        '\\"purchase_frame\\":%u,\\"manual_save_frame\\":%u,'
+        '\\"continue_frame\\":%u,\\"bp_before_purchase\\":%u,'
+        '\\"bp_after_purchase\\":%u,\\"bp_after_continue\\":%u,'
+        '\\"item_id\\":%u,\\"catalog_index\\":%u,\\"price_bp\\":%u,'
+        '\\"item_count_before\\":%u,\\"item_count_after_purchase\\":%u,'
+        '\\"item_count_after_continue\\":%u,\\"purchase_result\\":%u,'
+        '\\"physical_shop_local_id\\":%u,'
+        '\\"save_counter_before_purchase\\":%u,'
+        '\\"save_counter_after_purchase\\":%u,'
+        '\\"save_counter_after_manual\\":%u,'
+        '\\"save_counter_after_continue\\":%u,'
+        '\\"native_bp_spending_accepted\\":true,'
+        '\\"p05_native_bp_spending_closed\\":true,",'
+        'spending.reward_settled,spending.reward_field,spending.base_bp,'
+        'spending.repeat_bp,spending.wrapper_saves,spending.interaction,'
+        'spending.menu,spending.purchased,'
         'spending.manual_save,spending.reloaded,spending.bp_before,'
         'spending.bp_after,spending.bp_reloaded,BS_ITEM_ID,spending.index,'
         'spending.price,spending.item_before,spending.item_after,'
@@ -173,13 +194,13 @@ def controller_for_scope(win: Any, reward: Any) -> str:
         'spending.save_before,spending.save_after_purchase,'
         'spending.save_after_manual,spending.save_after_reload);\n'
         '    printf("\\\"bp_earned\\\":%u,\\\"battle_started\\\":true,'
-        '\\\"save_counter\\\":%u,\\\"automatic_saves\\\":1,'
-        '\\\"manual_saves\\\":1,\\\"fresh_cores\\\":2,'
-        '\\\"host_write_barriers\\\":7,\\\"input_only_after_guard\\\":true,'
-        '\\\"fixture_same_as_accepted_cancel\\\":true,'
-        '\\\"native_bp_earning_accepted\\\":true,'
-        '\\\"p05_native_bp_gap_closed\\\":true,\\\"release_ready\\\":false,'
-        '\\\"warnings_errors\\\":0}\\n",reward.bp_delta,counter);'
+        '\\"save_counter\\\":%u,\\\"automatic_saves\\\":1,'
+        '\\"manual_saves\\\":1,\\\"fresh_cores\\\":2,'
+        '\\"host_write_barriers\\\":7,\\\"input_only_after_guard\\\":true,'
+        '\\"fixture_same_as_accepted_cancel\\\":true,'
+        '\\"native_bp_earning_accepted\\\":true,'
+        '\\"p05_native_bp_gap_closed\\\":true,\\\"release_ready\\\":false,'
+        '\\"warnings_errors\\\":0}\\n",reward.bp_delta,counter);'
     )
     return reward.replace_once(text, anchor, replacement)
 
@@ -203,7 +224,8 @@ def validate(raw: bytes, stderr: bytes, code: int, win: Any,
     }
     need(all(type(row[key]) is int for key in integer_fields),
          "BP spending integer schema differs")
-    need(row["reward_complete_frame"] < row["shop_interaction_frame"]
+    need(row["reward_complete_frame"] < row["reward_settled_frame"]
+         <= row["reward_field_frame"] < row["shop_interaction_frame"]
          < row["shop_menu_frame"] < row["purchase_frame"]
          < row["manual_save_frame"] < row["continue_frame"]
          == row["total_frames"], "BP spending frame chain differs")
@@ -286,7 +308,7 @@ def run() -> dict[str, Any]:
             release_ready=False,
             next_task="P06_NATIVE_FACILITY_RING_ITEMS_PHYSICAL",
             input_policy=(
-                "SAME_NATIVE_PROCESS_9BP_PREFIX_THEN_PHYSICAL_SHOP_"
+                "SAME_NATIVE_PROCESS_BASE9_REPEAT3_THEN_PHYSICAL_SHOP_"
                 "NORMAL_SAVE_FRESH_CONTINUE"
             ),
         )

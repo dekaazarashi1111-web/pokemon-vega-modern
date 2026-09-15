@@ -1,5 +1,5 @@
 name: pr16-bp-spending-native
-run-name: 同一9 BP状態から通常ショップ購入・Save・Continue検証
+run-name: 同一3勝完了（基礎9+反復3 BP）から通常ショップ購入・Save・Continue検証
 on:
   workflow_dispatch:
   push:
@@ -90,7 +90,7 @@ jobs:
           out=.local/pr16-bp-spending-native-run
           python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
           python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
-      - name: Run one-process 9 BP prefix through physical purchase and persistence
+      - name: Run one-process base-9 plus repeat-3 reward through physical purchase and persistence
         shell: bash
         run: |
           set -euo pipefail
