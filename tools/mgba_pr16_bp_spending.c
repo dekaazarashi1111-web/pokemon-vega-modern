@@ -6,6 +6,11 @@
 #define BS_ITEM_ID 0x0310U
 #define BS_PRICE_BP 1U
 #define BS_LOCAL_ID 3U
+#define BS_MAP_GROUP 96U
+#define BS_MAP_NUMBER 5U
+#define BS_REWARD_X 20U
+#define BS_SHOP_X 22U
+#define BS_SHOP_Y 20U
 #define BS_LAST_RESULT (BS_STATE + 0x24U)
 #define BS_LAST_INDEX (BS_STATE + 0x26U)
 #define BS_ELIGIBLE_COUNT (BS_STATE + 0x28U)
@@ -102,6 +107,18 @@ static unsigned bs_return_field(struct mCore *c,unsigned expected_bp,
     bs_trace(c,"field-timeout");bp_require(c,false,message);return 0U;
 }
 
+static void bs_walk_to_shop(struct mCore *c) {
+    /* The accepted reward suffix returns at the Factory receptionist tile.
+     * Reach the adjacent BP counter only through ordinary field movement; each
+     * boundary stays fail-closed so a layout/warp change cannot be mistaken for
+     * a physical shop interaction. */
+    b_position(c,BS_MAP_GROUP,BS_MAP_NUMBER,BS_REWARD_X,BS_SHOP_Y);
+    b_to(c,BS_SHOP_X,BS_SHOP_Y);
+    b_position(c,BS_MAP_GROUP,BS_MAP_NUMBER,BS_SHOP_X,BS_SHOP_Y);
+    b_frames_run(c,0U,60U);b_press(c,QOL_KEY_UP,60U);
+    b_position(c,BS_MAP_GROUP,BS_MAP_NUMBER,BS_SHOP_X,BS_SHOP_Y);
+}
+
 static void bs_wait_save_counter(struct mCore *c,unsigned expected,
         unsigned expected_bp,const char *message) {
     for(unsigned f=0U;f<12000U;++f){
@@ -143,9 +160,7 @@ static struct BSResult bs_spend(struct mCore **core,struct mCore *original,
     r.save_before=read32(c,P03_SAVE_COUNTER);
     g_inventory(c,before);r.item_before=before[BS_ITEM_ID];
     r.bp_before=read16(c,BP_F(battle_points));
-    b_position(c,96U,5U,22U,20U);
-    b_frames_run(c,0U,60U);b_press(c,QOL_KEY_UP,60U);
-    b_position(c,96U,5U,22U,20U);
+    bs_trace(c,"reward-field");bs_walk_to_shop(c);bs_trace(c,"shop-facing");
     unsigned avatar=read8(c,P02S_PLAYER_AVATAR+5U);
     bp_require(c,avatar<16U
         && (read8(c,P02S_OBJECT_EVENTS+avatar*0x24U+0x18U)&15U)==BS_LOCAL_ID,

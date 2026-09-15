@@ -79,12 +79,26 @@ class BpSpendingContractTests(unittest.TestCase):
     def test_dialogue_return_cannot_confirm_idle_field(self) -> None:
         source = (ROOT / spending.SOURCE).read_text()
         start = source.index("static unsigned bs_return_field")
-        end = source.index("static void bs_wait_save_counter", start)
+        end = source.index("static void bs_walk_to_shop", start)
         wait = source[start:end]
         self.assertIn("bool idle=b_field(c);", wait)
         self.assertIn("!idle && read8(c,P02S_FIELD_LOCK)", wait)
         self.assertIn("?QOL_KEY_B:0U", wait)
         self.assertNotIn("QOL_KEY_A", wait)
+
+    def test_shop_route_walks_from_observed_reward_tile(self) -> None:
+        source = (ROOT / spending.SOURCE).read_text()
+        start = source.index("static void bs_walk_to_shop")
+        end = source.index("static void bs_wait_save_counter", start)
+        route = source[start:end]
+        self.assertIn(
+            "b_position(c,BS_MAP_GROUP,BS_MAP_NUMBER,BS_REWARD_X,BS_SHOP_Y)",
+            route,
+        )
+        self.assertIn("b_to(c,BS_SHOP_X,BS_SHOP_Y)", route)
+        self.assertIn("b_press(c,QOL_KEY_UP,60U)", route)
+        self.assertNotIn("call_preserving", route)
+        self.assertNotIn("write", route)
 
 
 if __name__ == "__main__":
