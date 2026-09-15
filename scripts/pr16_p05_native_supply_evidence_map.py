@@ -233,15 +233,20 @@ def build_map() -> dict[str, Any]:
         contexts = [source_context(row) for row in source_rows]
         contexts.sort(key=lambda row: (-row["binding_score"], row["path"], row["line"]))
         nonfixture = [row for row in contexts if not row["fixture_only"]]
-        preferred = nonfixture[0] if nonfixture else contexts[0]
+        # Ringの文字列出現や「fixtureではない」は実取得ownerの証拠ではない。
+        # 旧候補 verify()/main() は証拠検証器/patcherで、ゲームの入口ではない。
+        # 既存native ownerの到達性と取引が別途立証されるまでfail closedにする。
+        preferred = None if category == "ring_supply" else (nonfixture[0] if nonfixture else contexts[0])
         linked = []
         for receipt in evidence:
-            refs = evidence_references(preferred, receipt)
+            refs = evidence_references(preferred, receipt) if preferred is not None else []
             linked.append({"path": receipt["path"], "references": refs})
         bindings[gap_id] = {
             "category": category,
             "evidence_disposition": "PARTIAL_FIXTURE_OR_ADJACENT_SUCCESS_NOT_ORDINARY_SUPPLY_ACCEPTANCE",
             "preferred_entry_candidate": preferred,
+            "entry_selection_status": "UNRESOLVED_NO_RUNTIME_OWNER_PROOF" if preferred is None else "TEXTUAL_CANDIDATE_ONLY",
+            "runtime_owner_verified": False,
             "alternate_entry_candidates": [row for row in contexts if row is not preferred][:4],
             "nonfixture_candidate_count": len(nonfixture),
             "existing_receipt_links": linked,
@@ -285,27 +290,27 @@ def build_map() -> dict[str, Any]:
 
 def project_remaining_work(data: dict[str, Any], report: dict[str, Any]) -> dict[str, Any]:
     row = _remaining_condition(data)
-    need(row["gear_to_battle_required"] is False, "gear success reopened")
-    need(row["ring_bp_natural_supply_required"] is True, "ring/BP was prematurely closed")
-    need(row["ordinary_policy_selection_required"] is True, "policy was prematurely closed")
-    row.update(
-        {
-            "status": "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
-            "supply_source_evidence_binding_complete": True,
-            "supply_physical_acceptance_complete": False,
-            "remaining_supply_gap_ids": list(CATEGORY_TO_GAP.values()),
-            "supply_evidence_map": OUTPUT,
-            "selected_supply_entrypoints": {
-                gap: {
-                    "path": value["preferred_entry_candidate"]["path"],
-                    "line": value["preferred_entry_candidate"]["line"],
-                    "scope": value["preferred_entry_candidate"]["scope"],
-                    "fixture_only": value["preferred_entry_candidate"]["fixture_only"],
-                }
-                for gap, value in report["bindings"].items()
-            },
+    # 履歴inventoryの3件を現在台帳へ複製すると、受入済みBPを再openする。
+    # 正本の未完集合を縮約せず増やさず、そこにある候補情報だけを更新する。
+    pending = row["remaining_supply_gap_ids"]
+    need(isinstance(pending, list) and len(pending) == len(set(pending)), "invalid live gap set")
+    need(set(pending) <= set(report["bindings"]), "live gap is not covered by this historical map")
+    selected = dict(row.get("selected_supply_entrypoints", {}))
+    unresolved = []
+    for gap in pending:
+        source = report["bindings"][gap]["preferred_entry_candidate"]
+        selected[gap] = None if source is None else {
+            key: source[key] for key in ("path", "line", "scope", "fixture_only")
         }
-    )
+        if source is None:
+            unresolved.append(gap)
+    row.update({
+        "supply_source_evidence_binding_complete": True,
+        "supply_physical_acceptance_complete": not pending,
+        "supply_evidence_map": OUTPUT,
+        "selected_supply_entrypoints": selected,
+        "unresolved_supply_owner_gap_ids": unresolved,
+    })
     return data
 
 
@@ -325,13 +330,16 @@ def render_doc(report: dict[str, Any]) -> str:
     for gap, label in labels.items():
         binding = report["bindings"][gap]
         root = binding["preferred_entry_candidate"]
+        location = f"`{root['path']}:{root['line']}`" if root is not None else "未解決（文字列候補をruntime ownerへ昇格しない）"
+        scope = f"`{root['scope']}`" if root is not None else "未立証"
+        fixture = str(root['fixture_only']).lower() if root is not None else "候補未選択"
         lines += [
             f"## {label}",
             "",
             f"- gap: `{gap}`",
-            f"- preferred source: `{root['path']}:{root['line']}`",
-            f"- scope: `{root['scope']}`",
-            f"- fixture-only source: `{str(root['fixture_only']).lower()}`",
+            f"- preferred source: {location}",
+            f"- scope: {scope}",
+            f"- fixture-only source: {fixture}",
             f"- nonfixture candidates: {binding['nonfixture_candidate_count']}",
             "- disposition: 既存receiptは隣接成功またはfixture境界であり、通常供給の代替にはしない。",
             "",

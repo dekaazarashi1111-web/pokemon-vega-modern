@@ -40,6 +40,11 @@ def test_preferred_entrypoints_are_concrete_tracked_source_locations() -> None:
     )
     for binding in report["bindings"].values():
         root = binding["preferred_entry_candidate"]
+        if binding["category"] == "ring_supply":
+            assert root is None
+            assert binding["entry_selection_status"] == "UNRESOLVED_NO_RUNTIME_OWNER_PROOF"
+            assert binding["runtime_owner_verified"] is False
+            continue
         assert root["path"] in tracked
         assert (ROOT / root["path"]).is_file()
         assert root["line"] >= 1
@@ -54,7 +59,7 @@ def test_nonfixture_roots_are_preferred_when_available() -> None:
     report = target.build_map()
     for binding in report["bindings"].values():
         root = binding["preferred_entry_candidate"]
-        if binding["nonfixture_candidate_count"]:
+        if root is not None and binding["nonfixture_candidate_count"]:
             assert root["fixture_only"] is False
 
 
@@ -88,12 +93,16 @@ def test_projection_records_bindings_but_keeps_required_flags_true() -> None:
     report = target.build_map()
     projected = target.project_remaining_work(copy.deepcopy(original), report)
     row = next(x for x in projected["remaining_conditions"] if x["id"] == "NATURAL_CAPTURE_GEAR")
-    assert row["status"] == "PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES"
+    before = next(x for x in original["remaining_conditions"] if x["id"] == "NATURAL_CAPTURE_GEAR")
+    assert row["status"] == before["status"]
     assert row["supply_source_evidence_binding_complete"] is True
     assert row["supply_physical_acceptance_complete"] is False
-    assert row["remaining_supply_gap_ids"] == list(target.CATEGORY_TO_GAP.values())
+    assert row["remaining_supply_gap_ids"] == before["remaining_supply_gap_ids"]
     assert row["supply_evidence_map"] == target.OUTPUT
-    assert set(row["selected_supply_entrypoints"]) == set(target.CATEGORY_TO_GAP.values())
+    assert row["selected_supply_entrypoints"]["P05_NATIVE_RING_ACQUISITION_PHYSICAL"] is None
+    assert "P05_NATIVE_BP_EARNING_PHYSICAL" not in row["remaining_supply_gap_ids"]
+    assert projected["p05_native_bp_control_checkpoint"] == original["p05_native_bp_control_checkpoint"]
+    assert projected["next_integration_candidate"] == original["next_integration_candidate"]
     assert row["gear_to_battle_required"] is False
     assert row["ring_bp_natural_supply_required"] is True
     assert row["ordinary_policy_selection_required"] is True
