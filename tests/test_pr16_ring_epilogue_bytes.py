@@ -1,5 +1,7 @@
 """合成byteだけを使う未読根採取の境界検査。私有ROM不要。"""
 import copy
+import json
+import tempfile
 from pathlib import Path
 import sys
 import unittest
@@ -24,6 +26,12 @@ class EpilogueBytesTests(unittest.TestCase):
         args = dict(raw=self.raw, target=self.b+1, cached=set(), deferred=(), decode=self.decode)
         args.update(kw)
         return m.bounded(**args)
+
+    def test_restore_preflight_is_persisted(self):
+        bindings = {'source.py': m.s.identity(b'safe source')}
+        with tempfile.TemporaryDirectory() as temp:
+            m.restore_preflight(Path(temp), bindings)
+            self.assertEqual(json.loads((Path(temp)/'preflight.json').read_bytes()), {'source_bindings': bindings})
 
     def test_return_stops(self):
         g = self.run_graph()

@@ -17,7 +17,7 @@ WORKFLOW = '.github/workflows/pr16-ring-epilogue-bytes.yml'
 PRIOR = 'content/modernization/pr16_ring_common_tail_abi.json'
 REPORT = 'content/modernization/pr16_ring_epilogue_bytes.json'
 KEY = 'ring_epilogue_bytes'
-MIN_TESTS = 17
+MIN_TESTS = 18
 EXTRA_CODE = (s.SELF,)
 TARGET = 0x0806DE63
 ROM_BASE = 0x08000000
@@ -89,6 +89,11 @@ def bounded(raw, target, cached, deferred, decode, max_window=64, limit=32):
         'saved_instruction_bytes_redecoded': 0, 'side_effects_excluded': False}
 
 
+def restore_preflight(out, bindings):
+    """既存復元helperの必須入力を、復元開始前に保存する。"""
+    (out / 'preflight.json').write_bytes(s.stable({'source_bindings': bindings}))
+
+
 def collect(target, deferred, extra_samples, out):
     import pr16_ring_common_tail_bytes as previous
     import pr16_ring_transitive_owner as decoder
@@ -98,6 +103,8 @@ def collect(target, deferred, extra_samples, out):
         for n in s.load(path)['analysis']['graph']['nodes']:
             cached.update(range(n['address'], n['address'] + n['size']))
     s.need(target & ~1 not in cached, '採取済みtarget')
+    restore_preflight(out, {p: s.identity((s.ROOT / p).read_bytes())
+                           for p in (s.SELF, SELF, *SOURCES, *extra_samples)})
     previous.OUT = out
     previous.restore()
     rom = s.ROOT / '.local/pr16-bp-party-retention-successor/candidate.gba'
@@ -115,6 +122,9 @@ def analyze(prior, out):
     s.need(len(set(a['old_unread_targets'])) == 18, '旧18target不一致')
     graph, ranges = collect(TARGET, DEFERRED, (), out)
     return {'classification': 'EPILOGUE_BYTES_NOT_RETURN_PROOF', 'candidate': copy.deepcopy(s.CANDIDATE),
+        'failed_attempt_preserved': {'run_id': 35011171118, 'job_id': 104523195342,
+            'source_head': '413d1fe22c37bbd92a80f418e3460b6ecd3bf8a5', 'original_conclusion': 'failure',
+            'reason': 'restore preflight.json missing', 'candidate_reconstructions': 0, 'new_graph_decodes': 0},
         'target': TARGET, 'graph': graph, 'sampled_ranges': ranges,
         'sampled_instruction_bytes': sum(n['size'] for n in graph['nodes']),
         'old_unread_targets': a['old_unread_targets'], 'old_frontier_removed': False,
@@ -129,7 +139,7 @@ def analyze(prior, out):
 
 def summaries(a):
     return (f'未読帰還末尾0x0806DE63だけを{len(a["graph"]["nodes"])}命令/{a["sampled_instruction_bytes"]}byte採取保存。'
-        '命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。',
+        '初回run35011171118はpreflight受渡し不足で復元前failure、採取0として保持。命令byteと境界の採取工程のみ完了。帰還ABI/保存slot不変/非aliasは未証明。旧18targetと別分岐・外部call3本、BP受入を保持。',
         '保存済みpr16_ring_epilogue_bytes.jsonの命令だけで復元/帰還ABIを検証する。0x0806DE51と外部call3本は未解決。'
         '同じ末尾の再採取、既読共通末尾/zero/helper/FlagSet/FlagGet/BPの単独再実行をしない。Ring通常取得受入へ昇格しない。')
 
