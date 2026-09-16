@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。",
+    "current_stop": "保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -329,7 +329,8 @@
     "GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。",
     "081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。",
     "保存081C85A5の非0除数剰余・中継ABI・二月suffixを再利用。除数0の未読helperや実年offset、caller/pointer/size/LIMITの証明へ昇格しない。同じbyte採取/候補復元/GPIO/月表/BPを単独再実行しない。",
-    "旧18targetの今回保存命令/境界を再利用。保存nodeへ合流した先や未読calleeを再帰探索しない。cohort内共有node・operand/literal/未知命令/資源上限は受入に昇格しない。BP/GPIO/閏年/候補の同一採取は再実行しない。"
+    "旧18targetの今回保存命令/境界を再利用。保存nodeへ合流した先や未読calleeを再帰探索しない。cohort内共有node・operand/literal/未知命令/資源上限は受入に昇格しない。BP/GPIO/閏年/候補の同一採取は再実行しない。",
+    "保存18targetのcallsite結合を再利用。中継先の定数とcallee帰還/SP/保存register仮定を区別する。ROM/native再採取や受入済みBPを単独再実行しない。未解決caller・jump table・calleeを残す。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -402,13 +403,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_owner_frontier.json",
-      "scripts/pr16_ring_owner_frontier.py",
-      "content/modernization/pr16_ring_leap_contracts.json"
+      "content/modernization/pr16_ring_owner_context.json",
+      "scripts/pr16_ring_owner_context.py",
+      "content/modernization/pr16_ring_owner_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -417,9 +418,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "be75645c967228f15188ebe7e5e46618b81de966",
+  "observed_head": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
   "observed_head_checks": {
-    "reason_ja": "先行run35099285622の原結論と保存証拠、BP run34946969126成功を照合。今回run35100563848は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35100563848の原結論と保存証拠、BP run34946969126成功を照合。今回run35109188711は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -580,9 +581,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。"
+    "scope_ja": "保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2020,10 +2021,26 @@
     "content/modernization/pr16_ring_owner_frontier.json": {
       "size": 73322,
       "sha256": "4260abb358c4ea4c93f0b28d18b91a8ca242a061681cdca52ddd36842dff4ccf"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "tests/test_pr16_ring_owner_context.py": {
+      "size": 6958,
+      "sha256": "74432a95301c1e55874b795e4721ec8782ed683fa3af350e30d908ef57fcafcc"
+    },
+    ".github/workflows/pr16-ring-owner-context.yml": {
+      "size": 1934,
+      "sha256": "08bc6716a16ee57fc3afe658ee97f3640892c5f52a746f069c0ce862ef50da51"
+    },
+    "content/modernization/pr16_ring_owner_context.json": {
+      "size": 37372,
+      "sha256": "be7fbf1e7aa0d99bfd371e951e3b5cf8ca6b4d9c8ce65e178e07bb564083833f"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。",
+  "source_change_review_ja": "保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2445,9 +2462,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_owner_frontier.json",
-    "source_head": "be75645c967228f15188ebe7e5e46618b81de966",
-    "run_id": 35100563848
+    "path": "content/modernization/pr16_ring_owner_context.json",
+    "source_head": "68c9c0fc6c8571f1513008443ade14de5e42cb9f",
+    "run_id": 35109188711
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

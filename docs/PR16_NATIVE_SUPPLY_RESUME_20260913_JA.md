@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。
+保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。
 
-**次: 保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `be75645c967228f15188ebe7e5e46618b81de966`。
+証拠のsource HEAD: `68c9c0fc6c8571f1513008443ade14de5e42cb9f`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_owner_context.json`
+- `scripts/pr16_ring_owner_context.py`
 - `content/modernization/pr16_ring_owner_frontier.json`
-- `scripts/pr16_ring_owner_frontier.py`
-- `content/modernization/pr16_ring_leap_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -136,6 +136,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。
 - 保存081C85A5の非0除数剰余・中継ABI・二月suffixを再利用。除数0の未読helperや実年offset、caller/pointer/size/LIMITの証明へ昇格しない。同じbyte採取/候補復元/GPIO/月表/BPを単独再実行しない。
 - 旧18targetの今回保存命令/境界を再利用。保存nodeへ合流した先や未読calleeを再帰探索しない。cohort内共有node・operand/literal/未知命令/資源上限は受入に昇格しない。BP/GPIO/閏年/候補の同一採取は再実行しない。
+- 保存18targetのcallsite結合を再利用。中継先の定数とcallee帰還/SP/保存register仮定を区別する。ROM/native再採取や受入済みBPを単独再実行しない。未解決caller・jump table・calleeを残す。
 
 ## 次セッションへ残す更新手順
 
@@ -165,6 +166,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35099285622の原結論と保存証拠、BP run34946969126成功を照合。今回run35100563848は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35100563848の原結論と保存証拠、BP run34946969126成功を照合。今回run35109188711は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

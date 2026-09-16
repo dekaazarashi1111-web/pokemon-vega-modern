@@ -5976,3 +5976,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T14:32:24.178815+00:00 — PR-P08-7-RING-OWNER-CONTEXT
+- Timestamp: 2026-09-16T14:32:24.178815+00:00
+- Task: PR-P08-7-RING-OWNER-CONTEXT / 保存18targetを実callsiteの引数・中継先・保存境界へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-owner-context
+- Summary: 保存18targetを21実callsiteへ結合。9中継callsiteの宛先5種、保存済callee3辺を明示。帰還/SP/frame/保存registerの未証明仮定と未読境界は維持。候補復元/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_owner_context.py, tests/test_pr16_ring_owner_context.py, .github/workflows/pr16-ring-owner-context.yml, content/modernization/pr16_ring_owner_context.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=68c9c0fc6c8571f1513008443ade14de5e42cb9f; run=35109188711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。
