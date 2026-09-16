@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "external1未読帰還末尾0x081138F1だけ3命令/6byteを採取保存。保存済みprefix/継続と別rootのdecodeは0。16byte継承frame・条件付きcounter書込を保持し、間接帰還/非aliasは未受入。",
+    "current_stop": "保存末尾3命令/6byteはr4/r5/r6復元・SP+16・r0保持・保存wordからBX r1を検証。本セッション5工程の限定82testsと原Actions/commitを集約。新規採取42byte、ABI照合88byte、候補復元2回、ROM変更/native/受入再実行0。保存LR破壊の仮想counter aliasを保持し、条件付き帰還を全callee帰還やRing通常取得へ昇格しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存済みpr16_ring_external1_exit_bytes.jsonの末尾ABIを検証し、prefix/継続は保存結果だけで条件付き結合する。本セッション4工程を再実行せず5工程目の記録へ。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。",
+    "next_step": "次は未解決外部callee0x0806DD1Dの1根だけ限定採取し、保存byteのABI・副作用を調べる。external1の本5工程は再採取/単独ABI再実行禁止。0x081138F9と旧18owner、保存slot/返却pointer非alias、Ring通常取得・policy/Circus・P08最終判定は未完。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -303,7 +303,8 @@
     "0x08113889の保存prefix ABIは完了。再採取/単独ABI再実行をせず、未読0x081138C9/0x081138F1のみを進める。局所stack書込を全副作用なし/帰還/owner除外に昇格しない。",
     "0x081138C9の1根継続byteは保存済み。prefix/継続を再採取せず保存継続ABIへ。0x081138F1末尾、他callee、旧18ownerの未証明範囲を保持する。",
     "external1保存継続18命令のpointer/条件付きcounter STRHは検証済み。再採取・単独ABI再実行をせず末尾0x081138F1へ。counter/返却pointerの保存slot非aliasと格納域サイズは未証明。",
-    "external1帰還末尾0x081138F1のbyteは採取保存済み。再採取せず保存末尾ABIだけを検証し、prefix/継続は保存結果を再利用する。全帰還/保存slot非alias/owner除外は未受入。"
+    "external1帰還末尾0x081138F1のbyteは採取保存済み。再採取せず保存末尾ABIだけを検証し、prefix/継続は保存結果を再利用する。全帰還/保存slot非alias/owner除外は未受入。",
+    "本セッションのexternal1 prefix ABI/継続採取・ABI/末尾採取・ABIの5工程は完了。保存証拠と原Actions/commitを再利用し単独再実行しない。次は0x0806DD1Dの1根。全callee帰還・counter/返却pointer非alias・Ring通常取得は未受入。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -376,13 +377,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存済みpr16_ring_external1_exit_bytes.jsonの末尾ABIを検証し、prefix/継続は保存結果だけで条件付き結合する。本セッション4工程を再実行せず5工程目の記録へ。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。",
+    "goal_ja": "次は未解決外部callee0x0806DD1Dの1根だけ限定採取し、保存byteのABI・副作用を調べる。external1の本5工程は再採取/単独ABI再実行禁止。0x081138F9と旧18owner、保存slot/返却pointer非alias、Ring通常取得・policy/Circus・P08最終判定は未完。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_external1_exit_bytes.json",
-      "scripts/pr16_ring_external1_exit_bytes.py",
-      "content/modernization/pr16_ring_external1_cont_abi.json"
+      "content/modernization/pr16_ring_external1_exit_abi.json",
+      "scripts/pr16_ring_external1_exit_abi.py",
+      "content/modernization/pr16_ring_external1_exit_bytes.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -391,9 +392,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "1870beaf15a5e9edbbd9c344165ab4b9cc33c988",
+  "observed_head": "f6617bfbca9363d4e958628a88bb1b6147f2818e",
   "observed_head_checks": {
-    "reason_ja": "先行run35049393487の原結論と保存証拠、BP run34946969126成功を照合。今回run35049550581は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35049550581の原結論と保存証拠、BP run34946969126成功を照合。今回run35049978307は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -554,9 +555,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "external1未読帰還末尾0x081138F1だけ3命令/6byteを採取保存。保存済みprefix/継続と別rootのdecodeは0。16byte継承frame・条件付きcounter書込を保持し、間接帰還/非aliasは未受入。"
+    "scope_ja": "保存末尾3命令/6byteはr4/r5/r6復元・SP+16・r0保持・保存wordからBX r1を検証。本セッション5工程の限定82testsと原Actions/commitを集約。新規採取42byte、ABI照合88byte、候補復元2回、ROM変更/native/受入再実行0。保存LR破壊の仮想counter aliasを保持し、条件付き帰還を全callee帰還やRing通常取得へ昇格しない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1542,10 +1543,26 @@
     "content/modernization/pr16_ring_external1_exit_bytes.json": {
       "size": 13944,
       "sha256": "e82589506956e58f2165a16c423f600bd3879ba32b0ba8004c3862f208f2b695"
+    },
+    "scripts/pr16_ring_external1_exit_abi.py": {
+      "size": 13217,
+      "sha256": "1a643da1ba5c4907ea51db4c244f4b3f40d07eb97c6ef1817d55bbd43611d1dc"
+    },
+    "tests/test_pr16_ring_external1_exit_abi.py": {
+      "size": 5995,
+      "sha256": "4dc4ffb70d33ece7f52879157d4102412d2a3f709610e309ec10f98727d4796f"
+    },
+    ".github/workflows/pr16-ring-external1-exit-abi.yml": {
+      "size": 1482,
+      "sha256": "1d87802ea55e63cf567a57f0666929a7ab77e39408cf286d61dc4716c5d2a15c"
+    },
+    "content/modernization/pr16_ring_external1_exit_abi.json": {
+      "size": 14160,
+      "sha256": "1ee79e8e8305d50af84104dd9984502df656a5c3632c22efa81008ed28baa7c6"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "external1未読帰還末尾0x081138F1だけ3命令/6byteを採取保存。保存済みprefix/継続と別rootのdecodeは0。16byte継承frame・条件付きcounter書込を保持し、間接帰還/非aliasは未受入。",
+  "source_change_review_ja": "保存末尾3命令/6byteはr4/r5/r6復元・SP+16・r0保持・保存wordからBX r1を検証。本セッション5工程の限定82testsと原Actions/commitを集約。新規採取42byte、ABI照合88byte、候補復元2回、ROM変更/native/受入再実行0。保存LR破壊の仮想counter aliasを保持し、条件付き帰還を全callee帰還やRing通常取得へ昇格しない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1905,5 +1922,10 @@
     "path": "content/modernization/pr16_ring_external1_exit_bytes.json",
     "source_head": "1870beaf15a5e9edbbd9c344165ab4b9cc33c988",
     "run_id": 35049550581
+  },
+  "ring_external1_exit_abi": {
+    "path": "content/modernization/pr16_ring_external1_exit_abi.json",
+    "source_head": "f6617bfbca9363d4e958628a88bb1b6147f2818e",
+    "run_id": 35049978307
   }
 }
