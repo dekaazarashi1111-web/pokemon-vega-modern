@@ -5960,3 +5960,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: GPIO/月表/剰余/閏年suffixの保存契約を再利用し、initializer08113984のcomputed/RAM caller・実pointer/size/LIMIT、または旧18未読ownerの未観測辺へ進む。除数0の081C7FCCは実callerで必要性が出るまで再採取しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。BPと既読契約は単独再実行しない。
+
+
+## 2026-09-16T13:15:34.269372+00:00 — PR-P08-7-RING-OWNER-FRONTIER
+- Timestamp: 2026-09-16T13:15:34.269372+00:00
+- Task: PR-P08-7-RING-OWNER-FRONTIER / 旧18targetの未読命令と保存済み境界を重複なしで固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-owner-frontier
+- Summary: 旧18targetを有限追跡し、新規240命令/502byteと保存済み合流境界を記録。保存36byteを再利用。未知/operand/literal/資源上限は停止。候補復元1、ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_owner_frontier.py, tests/test_pr16_ring_owner_frontier.py, .github/workflows/pr16-ring-owner-frontier.yml, content/modernization/pr16_ring_owner_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=be75645c967228f15188ebe7e5e46618b81de966; run=35100563848（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存した旧18targetのcall/return・書込・共有nodeを実callsiteの引数/保存frameと結合してownerを絞る。今回nodeの再採取/再解読と既読GPIO/剰余/閏年/BPの単独再実行は不要。initializerの実caller/pointer/size/LIMIT、Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
