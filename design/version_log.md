@@ -2943,3 +2943,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存済みpr16_ring_external3_tail_bytes.jsonだけで末尾ABIと保存prefix/bodyの条件付き合成を検証する。末尾を再採取せず、既読ABI/BPを再実行しない。旧18owner・保存frame/record/global非alias・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:15:13.715677+00:00 — PR-P08-7-RING-EXTERNAL3-TAIL-ABI
+- Timestamp: 2026-09-16T04:15:13.715677+00:00
+- Task: PR-P08-7-RING-EXTERNAL3-TAIL-ABI / external3保存末尾の帰還ABI・条件付き合成とframe破壊反例を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external3-tail-abi
+- Summary: external3保存末尾3命令/6byteのPOP/POP/BX、SP+20、r4-r7復元と保存LR→r0→分岐を検証。保存prefix/bodyを条件付き合成し、保存frame160単一bit破壊反例を検証。ROM復元・既読ABI・BP再実行0。
+- Files changed: scripts/pr16_ring_external3_tail_abi.py, tests/test_pr16_ring_external3_tail_abi.py, .github/workflows/pr16-ring-external3-tail-abi.yml, content/modernization/pr16_ring_external3_tail_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定43 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e64d6c86224905b21f108a57a3e5be00a226f001; run=35054868301（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存したexternal1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABIと受入BPを再実行しない。旧18未読ownerを保持し、Ring通常取得・policy/Circus・P08最終判定は未完。
