@@ -3408,3 +3408,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 残る3calleeと非null実中継先0x09378A31、placeholder14要素56byte・nibble76byte・fallback先頭1byteだけを有限採取して保存結合する。旧採取/FC/memset/旧94契約/BPを単独再実行せず、placeholder実参照と非null/caller frameへ絞る。Network補足（この工程では共通runnerの外部技術資料なし定型句を適用しない）: GBATEK THUMB.14/15（https://problemkaputt.de/gbatek-thumb-opcodes-memory-multiple-load-store-push-pop-and-ldm-stm.htm）、STMIA writeback/POP Thumb維持。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:11:03.644168+00:00 — PR-P08-7-RING-REFERENCE-FRONTIER
+- Timestamp: 2026-09-16T17:11:03.644168+00:00
+- Task: PR-P08-7-RING-REFERENCE-FRONTIER / 残る3callee・非null中継先・placeholder等133byteを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-reference-frontier
+- Summary: 残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。
+- Files changed: scripts/pr16_ring_reference_frontier.py, tests/test_pr16_ring_reference_frontier.py, .github/workflows/pr16-ring-reference-frontier.yml, content/modernization/pr16_ring_reference_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=171ed73cc1d70f2a0d768d05241d67dda9ceb4d4; run=35126420824（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。

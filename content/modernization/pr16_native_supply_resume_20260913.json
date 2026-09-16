@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存1752命令から716新規有限合成契約。FC全21分岐・memset整列/0長・selector/nibble/null gateと未読境界を検証。ROM/native0。",
+    "current_stop": "残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "残る3calleeと非null実中継先0x09378A31、placeholder14要素56byte・nibble76byte・fallback先頭1byteだけを有限採取して保存結合する。旧採取/FC/memset/旧94契約/BPを単独再実行せず、placeholder実参照と非null/caller frameへ絞る。Network補足（この工程では共通runnerの外部技術資料なし定型句を適用しない）: GBATEK THUMB.14/15（https://problemkaputt.de/gbatek-thumb-opcodes-memory-multiple-load-store-push-pop-and-ldm-stm.htm）、STMIA writeback/POP Thumb維持。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -339,7 +339,8 @@
     "残る6callee/3data表とtable先の有限採取は今回保存原本を再利用。次はv2正常/実buffer copy/string分岐を合成契約として結合。旧445命令・280単独契約・BP/nativeは再実行しない。",
     "v2正常/規則境界・v1 owner copyとv2 copyなし・有限string契約は今回原本を再利用。旧採取/単独280契約/BP/nativeを再実行せず、残る6calleeとstring subtype21要素表84byteへ進む。長さ0のcopyは安全なno-opでなく未map停止として保持。native取得とは別の合成契約。",
     "未読6callee/string252の21要素84byte表とその有限継続は今回保存原本を再利用。同一採取・既存94契約・BP/nativeを再実行せず、保存nodeでstring253/252とcallee境界を結合する。表の分岐先同定は帰還/SP/実callerやRing正規取得の証明ではない。",
-    "FC全21subtype有限契約・memset0/正長/整列・selector範囲/合成nibble表・null gateは今回原本を再利用。旧94契約/採取/BP/nativeを再実行せず、3callee・1実中継先・未読data133byteへ進む。合成表の値を候補ROM値に、null gate成功を非null帰還やRing取得に読み替えない。"
+    "FC全21subtype有限契約・memset0/正長/整列・selector範囲/合成nibble表・null gateは今回原本を再利用。旧94契約/採取/BP/nativeを再実行せず、3callee・1実中継先・未読data133byteへ進む。合成表の値を候補ROM値に、null gate成功を非null帰還やRing取得に読み替えない。",
+    "3callee/非null中継先/placeholder等133byteと表候補先の有限採取は今回保存原本を再利用。同じ採取・旧716契約・FC/memset/BP/nativeを単独再実行しない。表word候補と保存命令の結合を実callbackの帰還/SPやRing正規取得の証明にしない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -412,13 +413,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "残る3calleeと非null実中継先0x09378A31、placeholder14要素56byte・nibble76byte・fallback先頭1byteだけを有限採取して保存結合する。旧採取/FC/memset/旧94契約/BPを単独再実行せず、placeholder実参照と非null/caller frameへ絞る。Network補足（この工程では共通runnerの外部技術資料なし定型句を適用しない）: GBATEK THUMB.14/15（https://problemkaputt.de/gbatek-thumb-opcodes-memory-multiple-load-store-push-pop-and-ldm-stm.htm）、STMIA writeback/POP Thumb維持。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_string_contracts.json",
-      "scripts/pr16_ring_string_contracts.py",
-      "content/modernization/pr16_ring_string_frontier.json"
+      "content/modernization/pr16_ring_reference_frontier.json",
+      "scripts/pr16_ring_reference_frontier.py",
+      "content/modernization/pr16_ring_string_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -427,9 +428,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "0c6fc6515a81cda985f47508f342a05caf5df091",
+  "observed_head": "171ed73cc1d70f2a0d768d05241d67dda9ceb4d4",
   "observed_head_checks": {
-    "reason_ja": "先行run35124390327の原結論と保存証拠、BP run34946969126成功を照合。今回run35125897577は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35125897577の原結論と保存証拠、BP run34946969126成功を照合。今回run35126420824は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -590,9 +591,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存1752命令から716新規有限合成契約。FC全21分岐・memset整列/0長・selector/nibble/null gateと未読境界を検証。ROM/native0。"
+    "scope_ja": "残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2190,10 +2191,26 @@
     "content/modernization/pr16_ring_string_contracts.json": {
       "size": 278257,
       "sha256": "dcb8957b0350884628617a257aa9cccebc6098e0a6039d0f76737302288aff03"
+    },
+    "scripts/pr16_ring_reference_frontier.py": {
+      "size": 9214,
+      "sha256": "6f455c0e8e03e7dafef6eba2d72c6dfda25464b26521ce20ad41680aca1d6a6f"
+    },
+    "tests/test_pr16_ring_reference_frontier.py": {
+      "size": 5407,
+      "sha256": "78319cee0200af0d104090cf7acb0be12a7411470def01599544dd81da40ff5a"
+    },
+    ".github/workflows/pr16-ring-reference-frontier.yml": {
+      "size": 1988,
+      "sha256": "bec4c8420663a4c7035f91d5ece0422536621e7f951781064b6d0f5d62eeaff3"
+    },
+    "content/modernization/pr16_ring_reference_frontier.json": {
+      "size": 62556,
+      "sha256": "932a7e405c699d572669172b72ca9b0633dc3da52c14fa79a8ab3e72670dfcf2"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存1752命令から716新規有限合成契約。FC全21分岐・memset整列/0長・selector/nibble/null gateと未読境界を検証。ROM/native0。",
+  "source_change_review_ja": "残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2615,9 +2632,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_string_contracts.json",
-    "source_head": "0c6fc6515a81cda985f47508f342a05caf5df091",
-    "run_id": 35125897577
+    "path": "content/modernization/pr16_ring_reference_frontier.json",
+    "source_head": "171ed73cc1d70f2a0d768d05241d67dda9ceb4d4",
+    "run_id": 35126420824
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
