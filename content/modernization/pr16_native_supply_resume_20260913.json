@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。\n- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。",
+    "current_stop": "読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "next_step": "保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -314,7 +314,8 @@
     "external3末尾0x08113961の1根byte採取は完了。同一candidateで再採取せず保存byteの帰還ABIを検証する。prefix/bodyは保存契約だけで合成し、既読ABI/BPを再実行しない。旧18owner・帰還先/保存frame非alias・Ring通常取得は未証明。",
     "external3末尾3命令/6byteと保存prefix/bodyの条件付き帰還合成は完了。末尾r0は保存LRで上書きされbodyのindex+1ではない。160単一bit破壊診断はnative観測ではない。同一入力の末尾再採取・先行ABI/BP再実行を避け、callerの実frame/record/global非aliasと旧18ownerだけを進める。",
     "run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。",
-    "保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。"
+    "保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。",
+    "boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -387,13 +388,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "goal_ja": "保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_caller_compose.json",
-      "scripts/pr16_ring_caller_compose.py",
-      "content/modernization/pr16_ring_tail_ci_closeout.json"
+      "content/modernization/pr16_ring_caller_snapshot.json",
+      "scripts/pr16_ring_caller_snapshot.py",
+      "content/modernization/pr16_ring_caller_compose.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -402,11 +403,11 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "fc985116e19073345ac2f4f3511d76f9f40daa84",
+  "observed_head": "88292386bad501bfc08e5a71fd96c9d621d95896",
   "observed_head_checks": {
-    "reason_ja": "先行run35055552309の原結論と保存証拠、BP run34946969126成功を照合。今回run35057073533は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行caller/BP Actions成功を照合。今回run35060189419は記録時in_progress。観測器工程の成功はRing受入ではない。action_requiredをsuccessへ読み替えない。"
   },
-  "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "boot実caller限定診断のsource HEAD。latest_native_*は既存の正式BP checkpoint照合欄を保持し、最新Ring診断はlatest_ring_diagnosticに分離。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -563,11 +564,12 @@
   "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json",
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 2,
+    "fresh_cores": 2,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 2,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。\n- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。"
+    "scope_ja": "読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1729,10 +1731,46 @@
     "content/modernization/pr16_ring_caller_compose.json": {
       "size": 22501,
       "sha256": "654a5101e5f53670604ddea7e75878fd091161cef3c918020fad180ac9cbce25"
+    },
+    "scripts/pr16_ring_snapshot_record.py": {
+      "size": 17187,
+      "sha256": "5c6de5f90f5bcc55f156e8e3f1fcf0282867cd4a61e4f3117417d8a3cbb8e09e"
+    },
+    "scripts/pr16_ring_caller_snapshot.py": {
+      "size": 12323,
+      "sha256": "0c86213c751f516e14774fc0b6c070eaad1f26242944469e539886face083778"
+    },
+    "tools/mgba_pr16_ring_caller_snapshot.c": {
+      "size": 7367,
+      "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68"
+    },
+    "tests/test_pr16_ring_caller_snapshot.py": {
+      "size": 7878,
+      "sha256": "4d2315be320c2d46dc821c918aa3e8788529afb4377a37240f29576c48905be3"
+    },
+    ".github/workflows/pr16-ring-caller-snapshot.yml": {
+      "size": 2341,
+      "sha256": "5e60ff516f562bbedae8a25b2f027015514e5cda7f76bd9f09687a3cf235e117"
+    },
+    "content/modernization/pr16_ring_caller_snapshot.json": {
+      "size": 21166,
+      "sha256": "6f6debec3f86545332adcd2dedcb9c1f1a68ace264e74095586077dca089aaaf"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl": {
+      "size": 58670,
+      "sha256": "111e79f54cf721458ba1f5ec2bbdc5d40fe049fb7cef03345678326a2cabb861"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1-stdout.txt": {
+      "size": 673936,
+      "sha256": "eb8e2f9a552192b8435a40236d57fee0283a013a0ede78aa6584dd3a6e5dda83"
+    },
+    "content/modernization/pr16_ring_caller_snapshot_evidence/attempt1.json": {
+      "size": 2438,
+      "sha256": "c18871aead41d467f646631dd3fbdda86c594c2b52d98e15e0ba8ed16d60ce0b"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。\n- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。",
+  "source_change_review_ja": "読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2147,5 +2185,15 @@
     "path": "content/modernization/pr16_ring_caller_compose.json",
     "source_head": "fc985116e19073345ac2f4f3511d76f9f40daa84",
     "run_id": 35057073533
+  },
+  "ring_caller_snapshot": {
+    "path": "content/modernization/pr16_ring_caller_snapshot.json",
+    "source_head": "88292386bad501bfc08e5a71fd96c9d621d95896",
+    "run_id": 35060189419
+  },
+  "latest_ring_diagnostic": {
+    "path": "content/modernization/pr16_ring_caller_snapshot.json",
+    "source_head": "88292386bad501bfc08e5a71fd96c9d621d95896",
+    "run_id": 35060189419
   }
 }

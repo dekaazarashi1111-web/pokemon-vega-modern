@@ -5720,3 +5720,20 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T05:38:03.697967+00:00 — PR-P08-7-RING-CALLER-SNAPSHOT
+- Timestamp: 2026-09-16T05:38:03.697967+00:00
+- Task: PR-P08-7-RING-CALLER-SNAPSHOT
+- Status: DONE / 読取専用観測・保存照合工程。Ring通常取得・同期/allocation証明は未完。
+- Version: PR16 Ring actual boot caller snapshot
+- Summary: 読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。
+- Verify: focused tests 46 PASS、C warnings-as-errors compile、有限新規native観測、原ROM前後hash、read-only render/check、task graph、最終index差分guard、diff。
+- Evidence: content/modernization/pr16_ring_caller_snapshot.json; content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl; source=88292386bad501bfc08e5a71fd96c9d621d95896; run=35060189419（記録時in_progress）。
+- Preserved: ROM変更0、受入済みnative/既読ABI再実行0、正式BP checkpoint不変。初回失敗を含む新規boot診断2 process/2 cores、候補復元2。
+- Files changed: scripts/pr16_ring_snapshot_record.py, scripts/pr16_ring_caller_snapshot.py, tools/mgba_pr16_ring_caller_snapshot.c, tests/test_pr16_ring_caller_snapshot.py, .github/workflows/pr16-ring-caller-snapshot.yml, report/trace、固定MD/JSON、P08参照、両ログ。
+- Preparation: 97529e38のsource-only workspace取得を再利用。ROM/save原本をtracked/artifactへ追加しない。
+- Commit: 現HEAD競合を検査後、同branchへ通常commit/非force push。自己SHAはremote receipt参照。
+- Network: GitHub connector/Actions、既存hash固定private環境。外部技術資料なし。
+- Boundary: 既存全体guard違反は前後一致/新規0で照合。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
+- Next: 保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。

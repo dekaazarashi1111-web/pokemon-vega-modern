@@ -6,17 +6,16 @@
 
 ## いまの停止点と次の1手
 
-保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。
-- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。
+読取専用boot観測器と異常系46 testsを実装。同一candidateの新規1 processでFlagSet入口を8回観測、8回の実SP/LR・保存slot/flag/record/counterを保存caller条件式と照合。初回run35059235641は0hit・stdout混入による記録失敗として原本を保持。合計新規2 process、受入済み再実行0。これはboot caller診断でmap97/80のRing通常取得ではない。allocation所有範囲・通常mapping・同期/DMA保証は未証明。旧18ownerと正式BP受入を保持。
 
-**次: 次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。**
+**次: 保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `fc985116e19073345ac2f4f3511d76f9f40daa84`。
-限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `88292386bad501bfc08e5a71fd96c9d621d95896`。
+boot実caller限定診断のsource HEAD。latest_native_*は既存の正式BP checkpoint照合欄を保持し、最新Ring診断はlatest_ring_diagnosticに分離。
 
 ## 最短の再開手順
 
@@ -26,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_caller_snapshot.json`
+- `scripts/pr16_ring_caller_snapshot.py`
 - `content/modernization/pr16_ring_caller_compose.json`
-- `scripts/pr16_ring_caller_compose.py`
-- `content/modernization/pr16_ring_tail_ci_closeout.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -122,6 +121,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - external3末尾3命令/6byteと保存prefix/bodyの条件付き帰還合成は完了。末尾r0は保存LRで上書きされbodyのindex+1ではない。160単一bit破壊診断はnative観測ではない。同一入力の末尾再採取・先行ABI/BP再実行を避け、callerの実frame/record/global非aliasと旧18ownerだけを進める。
 - run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。
 - 保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。
+- boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -151,6 +151,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35055552309の原結論と保存証拠、BP run34946969126成功を照合。今回run35057073533は記録時in_progress。action_requiredを成功へ読み替えない。
+先行caller/BP Actions成功を照合。今回run35060189419は記録時in_progress。観測器工程の成功はRing受入ではない。action_requiredをsuccessへ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
