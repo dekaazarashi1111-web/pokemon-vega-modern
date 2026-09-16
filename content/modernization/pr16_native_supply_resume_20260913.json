@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。",
+    "current_stop": "保存1390命令を結合し280新規合成契約。v1外部buffer/VACQ正常とCRC拒否、v2初期化、4byte I/O列を検証。ROM/native再採取0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回保存した4callee・0x093BDE81・validator version1/2正常継続のABI/効果を合成検証する。保存nodeとpending_boundariesを正とし、新規未読callee・間接辺・窓上限を未証明で保持する。同じ採取/既読ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "残る6calleeとstring6要素表・v2規則23件/上限6件の3data範囲だけを有限採取して保存結合する。v2正常return、実buffer copy、string分岐、callback/wait帰還を次に検証。既読採取/単独ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存とpolicy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -334,7 +334,8 @@
     "保存callback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator prefixの合成契約を再利用。synthetic frameをlive frame・Ring取得と同一視しない。新規byte採取0、既読ABI/nativeを単独再実行しない。",
     "実callsiteからの新規7入口・5要素jump表と合流先を再利用。今回保存したnodeを再採取/再解読しない。定数targetや分岐表をnative到達・全callee ABI・Ring受入に読み替えず、未知/窓外/共有境界を残す。",
     "保存pop+cursor復帰、mode全256値、中継先2件、validator version/size/hash/reservedの合成契約を再利用。10090d4以後の新規境界以外を採取せず、既読ABI/BPを単独再実行しない。低level成否とRing通常取得・装備実戦・保存の受入は別。",
-    "残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。"
+    "残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。",
+    "445保存命令によるversion1/VACQ正常・CRC拒否、version2初期化、flash4byte書込の合成契約を再利用。既読採取/native/BPを再実行せず、未読6calleeと3data範囲だけを次の有限結合へ渡す。合成I/O書込を実flash操作やstory到達と同一視しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -407,13 +408,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "今回保存した4callee・0x093BDE81・validator version1/2正常継続のABI/効果を合成検証する。保存nodeとpending_boundariesを正とし、新規未読callee・間接辺・窓上限を未証明で保持する。同じ採取/既読ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "残る6calleeとstring6要素表・v2規則23件/上限6件の3data範囲だけを有限採取して保存結合する。v2正常return、実buffer copy、string分岐、callback/wait帰還を次に検証。既読採取/単独ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存とpolicy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_remaining_frontier.json",
-      "scripts/pr16_ring_remaining_frontier.py",
-      "content/modernization/pr16_ring_effective_contracts.json"
+      "content/modernization/pr16_ring_remaining_contracts.json",
+      "scripts/pr16_ring_remaining_contracts.py",
+      "content/modernization/pr16_ring_remaining_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -422,9 +423,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "8a3309178aaaa4cc8de06899b14db2abb249b737",
+  "observed_head": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
   "observed_head_checks": {
-    "reason_ja": "先行run35112649740の原結論と保存証拠、BP run34946969126成功を照合。今回run35115765819は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35115765819の原結論と保存証拠、BP run34946969126成功を照合。今回run35118343796は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -585,9 +586,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。"
+    "scope_ja": "保存1390命令を結合し280新規合成契約。v1外部buffer/VACQ正常とCRC拒否、v2初期化、4byte I/O列を検証。ROM/native再採取0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2105,10 +2106,26 @@
     "content/modernization/pr16_ring_remaining_frontier.json": {
       "size": 133436,
       "sha256": "b662d878ad13719e3619c6c53e7204ea1dd14604091037d599ebffcffff5f9fa"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "tests/test_pr16_ring_remaining_contracts.py": {
+      "size": 6821,
+      "sha256": "1a010ceb685968b3a752c10934fabaa6832dff1dfc08d2085790facac3048d1f"
+    },
+    ".github/workflows/pr16-ring-remaining-contracts.yml": {
+      "size": 2037,
+      "sha256": "62b5d14bb8dcba0c5f205ab89ee9ef1bb3ef2890ea40db804cd5063a6b33a7f5"
+    },
+    "content/modernization/pr16_ring_remaining_contracts.json": {
+      "size": 158063,
+      "sha256": "eee3171d6a1cec37052ce9aba22772f2bc9ba6165f57db9d3d966bb62287aabd"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。",
+  "source_change_review_ja": "保存1390命令を結合し280新規合成契約。v1外部buffer/VACQ正常とCRC拒否、v2初期化、4byte I/O列を検証。ROM/native再採取0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2530,9 +2547,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_remaining_frontier.json",
-    "source_head": "8a3309178aaaa4cc8de06899b14db2abb249b737",
-    "run_id": 35115765819
+    "path": "content/modernization/pr16_ring_remaining_contracts.json",
+    "source_head": "f91e07e0c6d48e01f941eff299a8971db80b33c7",
+    "run_id": 35118343796
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
