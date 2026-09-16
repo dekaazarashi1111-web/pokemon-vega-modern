@@ -3312,3 +3312,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存結合を再利用し、残るdirect callee 0x08008B49,0x08068CCD,0x080F7DBD,0x081C27DD と未読中継先 0x093BDE81・窓外継続のみを進める。正常header継続はversion1=0x093BDAA8、version2=0x093BDB3Eで停止する。新規7入口/表/既読契約/BPは単独再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:31:30.764215+00:00 — PR-P08-7-RING-REMAINING-FRONTIER
+- Timestamp: 2026-09-16T15:31:30.764215+00:00
+- Task: PR-P08-7-RING-REMAINING-FRONTIER / 残るcalleeとvalidator正常継続を有限waveで保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-remaining-frontier
+- Summary: 残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。
+- Files changed: scripts/pr16_ring_remaining_frontier.py, tests/test_pr16_ring_remaining_frontier.py, .github/workflows/pr16-ring-remaining-frontier.yml, content/modernization/pr16_ring_remaining_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8a3309178aaaa4cc8de06899b14db2abb249b737; run=35115765819（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回保存した4callee・0x093BDE81・validator version1/2正常継続のABI/効果を合成検証する。保存nodeとpending_boundariesを正とし、新規未読callee・間接辺・窓上限を未証明で保持する。同じ採取/既読ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-新規calleeを結合し、mode全256値、pop/ScriptReturn512ケース、validatorエラー19ケースを検証。中継2件を既知validator/0x093BDE81へ接続。Ring受入・live全frameとは別。ROM/native再実行0。
+残るcallee/validatorの10入口を4有限waveで結合。新規445命令/1096byteのみ保存。既存命令再解読0、native0。
 
-**次: 保存結合を再利用し、残るdirect callee 0x08008B49,0x08068CCD,0x080F7DBD,0x081C27DD と未読中継先 0x093BDE81・窓外継続のみを進める。正常header継続はversion1=0x093BDAA8、version2=0x093BDB3Eで停止する。新規7入口/表/既読契約/BPは単独再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 今回保存した4callee・0x093BDE81・validator version1/2正常継続のABI/効果を合成検証する。保存nodeとpending_boundariesを正とし、新規未読callee・間接辺・窓上限を未証明で保持する。同じ採取/既読ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ac9f30514b92070eb44b86b23562239a3a0617a4`。
+証拠のsource HEAD: `8a3309178aaaa4cc8de06899b14db2abb249b737`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_remaining_frontier.json`
+- `scripts/pr16_ring_remaining_frontier.py`
 - `content/modernization/pr16_ring_effective_contracts.json`
-- `scripts/pr16_ring_effective_contracts.py`
-- `content/modernization/pr16_ring_effective_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -140,6 +140,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存callback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator prefixの合成契約を再利用。synthetic frameをlive frame・Ring取得と同一視しない。新規byte採取0、既読ABI/nativeを単独再実行しない。
 - 実callsiteからの新規7入口・5要素jump表と合流先を再利用。今回保存したnodeを再採取/再解読しない。定数targetや分岐表をnative到達・全callee ABI・Ring受入に読み替えず、未知/窓外/共有境界を残す。
 - 保存pop+cursor復帰、mode全256値、中継先2件、validator version/size/hash/reservedの合成契約を再利用。10090d4以後の新規境界以外を採取せず、既読ABI/BPを単独再実行しない。低level成否とRing通常取得・装備実戦・保存の受入は別。
+- 残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -169,6 +170,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35111190784の原結論と保存証拠、BP run34946969126成功を照合。今回run35112649740は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35112649740の原結論と保存証拠、BP run34946969126成功を照合。今回run35115765819は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
