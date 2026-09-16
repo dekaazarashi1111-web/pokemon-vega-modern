@@ -6216,3 +6216,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存したVarGet実装と3calleeをcallerの引数・戻り値・書込範囲へ結合し、未読table/callbackは推測せずpendingで限定する。CreateTask/11文字列/非nullprefixの受入済み合成契約は単独再実行しない。実story Ring取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T18:02:58.079911+00:00 — PR-P08-7-RING-GATE-CONTRACTS
+- Timestamp: 2026-09-16T18:02:58.079911+00:00
+- Task: PR-P08-7-RING-GATE-CONTRACTS / 81要素表と非null caller帰還・callback境界を保存検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-gate-contracts
+- Summary: 保存2107命令で81要素展開102件・非null帰還140件を結合。32byte出力保存・168byte表・owned frameとcallee-savedを検証。dispatch/VarGet未読先は未証明のまま。
+- Files changed: scripts/pr16_ring_gate_contracts.py, tests/test_pr16_ring_gate_contracts.py, .github/workflows/pr16-ring-gate-contracts.yml, content/modernization/pr16_ring_gate_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=baa270420d525e8b78354d290543fbf6584a31de; run=35131912531（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読callee0x080017D1/0x080020BD/0x081C7ACD/0x09128221とVarGetの実継続0x0806DC51/0x0806DC57を既読2107命令へ有限結合する。callback table/12byte resource records/32byte出力slotは実caller allocation証拠と分離する。保存81要素展開・非null帰還・265caller・11文字列・旧795/716/BP/nativeの単独再実行は禁止。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-3callee/VarGet実中継先を既読1935命令へ有限結合。新規172命令/388byte、data再採取0、既読再解読/native0。
+保存2107命令で81要素展開102件・非null帰還140件を結合。32byte出力保存・168byte表・owned frameとcallee-savedを検証。dispatch/VarGet未読先は未証明のまま。
 
-**次: 保存したVarGet実装と3calleeをcallerの引数・戻り値・書込範囲へ結合し、未読table/callbackは推測せずpendingで限定する。CreateTask/11文字列/非nullprefixの受入済み合成契約は単独再実行しない。実story Ring取得・装備実戦・保存とpolicy/Circus/P08は未受入。**
+**次: 次は未読callee0x080017D1/0x080020BD/0x081C7ACD/0x09128221とVarGetの実継続0x0806DC51/0x0806DC57を既読2107命令へ有限結合する。callback table/12byte resource records/32byte出力slotは実caller allocation証拠と分離する。保存81要素展開・非null帰還・265caller・11文字列・旧795/716/BP/nativeの単独再実行は禁止。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4cc4f3f29a2d0d6b3bfcd0eb9093596c73f921fd`。
+証拠のsource HEAD: `baa270420d525e8b78354d290543fbf6584a31de`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_gate_contracts.json`
+- `scripts/pr16_ring_gate_contracts.py`
 - `content/modernization/pr16_ring_gate_frontier.json`
-- `scripts/pr16_ring_gate_frontier.py`
-- `content/modernization/pr16_ring_caller_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -151,6 +151,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 未読2入口と11文字列83byteの有限採取は保存原本を再利用する。同じcandidate復元・既読命令再解読・旧795/716契約・BP/nativeを単独再実行しない。保存文字列終端とcallee候補を実callerのbuffer/task境界やRing正規取得へ昇格しない。
 - CreateTask保存callerの0..15探索・正常task列/満杯と11実文字列の容量境界・非nullコピーprefixを再利用。特定callerの範囲証明を全live caller/割込み状態やRing正規取得へ昇格しない。同じ採取・旧795/716・task挿入/memset/BP/native単独試験を再実行しない。
 - 3callee/VarGet中継先の有限採取を保存原本から再利用する。同じ候補復元、1935既読命令、11文字列、CreateTask caller265契約、旧795/716/BPを単独再実行しない。新callee・table・callbackは未証明境界を明記し、全live frameやRing取得へ昇格しない。
+- 保存2107命令による81要素展開・非null caller帰還/32byte保存・resource/callback停止契約を再利用する。11文字列/265caller/旧795/716/BP/nativeを単独再実行しない。非null限定帰還をdispatch callback帰還・全live slot境界やRing取得へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -180,6 +181,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35130614298の原結論と保存証拠、BP run34946969126成功を照合。今回run35130896426は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35130896426の原結論と保存証拠、BP run34946969126成功を照合。今回run35131912531は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
