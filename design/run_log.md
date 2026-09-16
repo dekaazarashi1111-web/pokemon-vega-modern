@@ -5992,3 +5992,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存nodeの書込・copy/hash/LE32・initializerを実引数と結合して限定契約を検証する。中継先5種のうち既読FlagGet等を再採取せず、新規実体だけを追う。computed jump、2未読callee、窓外継続、caller/pointer/size/LIMITとRing正規取得・実戦保存は未受入。
+
+
+## 2026-09-16T14:43:27.798067+00:00 — PR-P08-7-RING-SAVED-CONTRACTS
+- Timestamp: 2026-09-16T14:43:27.798067+00:00
+- Task: PR-P08-7-RING-SAVED-CONTRACTS / 保存copy/checksum/cursor/metadata初期化の書込とframeを結合検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-saved-contracts
+- Summary: 保存nodeの28合成ケースでcallback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator早期returnを検証。書込範囲と合成SP/r4-r11復元を確認。live frame/全callerは未証明。候補復元/ROM/native再実行0。
+- Files changed: scripts/pr16_ring_saved_contracts.py, tests/test_pr16_ring_saved_contracts.py, .github/workflows/pr16-ring-saved-contracts.yml, content/modernization/pr16_ring_saved_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0ea72e2eab60447f96a91b3bfa8c97466c57ac31; run=35110450877（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読direct callee2件、computed jump表、validator窓外継続と中継先の未読実体だけを進める。保存済FlagGet/FlagSet・GPIO・剰余/閏年・今回copy/checksum契約の単独再実行は不要。元initializerの実caller/pointer/size/LIMIT、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
