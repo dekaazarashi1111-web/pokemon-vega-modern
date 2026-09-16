@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "P03_RELEARNER_NATIVE_INPUT_SAVE_RELOAD",
+  "source_run_id": 34446029812,
+  "source_head_sha": "3c894515d6d73a21fde48228853eef38501933ef",
+  "artifact_id": 10139796837,
+  "original_archive": {
+    "size": 93814,
+    "sha256": "ba584a0a5e393a08f1b7a3202945faa4c3e129f91a0d35f2ace6c78f56a960ed"
+  },
+  "original_member_count": 175,
+  "evidence_directory": "content/modernization/p08_relearner_evidence/34446029812",
+  "source_bindings": {
+    ".github/workflows/p03-relearner-e2e.yml": {
+      "size": 1980,
+      "sha256": "322353c23b42784c761fed2799b409262d6ae23687e66ad65a0c11eb1290b007"
+    },
+    "config/active_play_baseline.json": {
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "config/modernization_p03_stage74_supply.json": {
+      "size": 10937,
+      "sha256": "aa3cdd33683be5799a30184dfa03485012f03fa5928d0c341028ff88722708fc"
+    },
+    "config/modernization_stage79_cumulative_mgba.json": {
+      "size": 28627,
+      "sha256": "ee6c6326e0c96445b113e9cd0d73f5b3b7a1d5c907789e58d88ea3878abca5d6"
+    },
+    "config/move_memory.json": {
+      "size": 3564,
+      "sha256": "07aa937f598c5ce6453096b4016a7d646ea0eebaa91e046ff7f50f64ff5907d9"
+    },
+    "design/active_play_baseline.md": {
+      "size": 5551,
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"
+    },
+    "generated/runtime/modernization_p03_stage73_consumer_runtime_symbols.json": {
+      "size": 1692,
+      "sha256": "5a9113d2450a6c1aed5559176faa88a3cea4aac9a8c886e8e72a7546384bec72"
+    },
+    "infra/setup_github_actions.sh": {
+      "size": 2571,
+      "sha256": "8b081dd37ae761325e80ed4f689b1d790f76a6acb311ba810820221828c79cc2"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    },
+    "overlays/modernization_p03_archive_ui_repair/relearner_list.S": {
+      "size": 2984,
+      "sha256": "f01f83b0d583b2c8b3fd7961fa9911f80428d9c264c07a9f6b0de6ff83345082"
+    },
+    "overlays/modernization_p03_stage73_consumer_runtime/modernization_p03_stage73_consumer_runtime.c": {
+      "size": 15217,
+      "sha256": "4dff171c4998dcb8fee113674cc99d7b80f2666e0ded6de21aa56108d3a3e0d5"
+    },
+    "overlays/move_memory/move_memory.c": {
+      "size": 15625,
+      "sha256": "369f46588477ec7a2a581ec938ccbbab42992ec7cde444ca5920889f5639e1c3"
+    },
+    "scripts/run_modernization_p03_fullslots_e2e.py": {
+      "size": 13940,
+      "sha256": "439db2906617448e7e46ce76bbcdc44fad6c2dbb4b4aede436bd7385a2b282ea"
+    },
+    "scripts/run_modernization_p03_relearner_e2e.py": {
+      "size": 19551,
+      "sha256": "51cd8dd85c7f5e6e28c1c435ce1fcca0bf3655f5620400c809339966d3cacc9b"
+    },
+    "tests/fixtures/p03_relearner_cases.json": {
+      "size": 29214,
+      "sha256": "15e3a0d3e3da54db700fd226a558a598459fc026bd29013ca7af546821ad3d3b"
+    },
+    "tests/test_modernization_p03_relearner_e2e.py": {
+      "size": 12771,
+      "sha256": "84bc9f2377386ff1a3af5e8620bdfff9fc6851983d5cb5b49972664a210c35f4"
+    },
+    "tools/mgba_ai_fixture_runner.c": {
+      "size": 36272,
+      "sha256": "f03c4a894d1b76234f6e0f39c2bcb6400c416977d6e27265024abe16d248fd8f"
+    },
+    "tools/mgba_battle_core_smoke.c": {
+      "size": 94688,
+      "sha256": "ed9875695ca60c61960685ac2f8e810a183c8eedd703e56545d67bde3df5cf24"
+    },
+    "tools/mgba_modernization_p02_stage71_acceptance_smoke.c": {
+      "size": 39669,
+      "sha256": "4e543fa815ca030e74522b5d0f1455fd5074035d10f044aab3bdfd41d7319c3b"
+    },
+    "tools/mgba_modernization_p03_archive_ui_e2e.c": {
+      "size": 20154,
+      "sha256": "ccaeed858b70ea0af53a999dbaae121a8b85c88c08522755dc800e24e159b467"
+    },
+    "tools/mgba_modernization_p03_fullslots_e2e.c": {
+      "size": 12868,
+      "sha256": "f419ff2fffaf175061012dfb5dfc25d18c70a86d15c9ca89f5d5e6c886965ffa"
+    },
+    "tools/mgba_modernization_p03_learning_e2e.c": {
+      "size": 7987,
+      "sha256": "154e277ef3f37b0037a7082b154805b658742f476eaf52abeb8c0ffb27a2742d"
+    },
+    "tools/mgba_modernization_p03_relearner_e2e.c": {
+      "size": 9162,
+      "sha256": "79fa2dd982ef7a485d6d18cc0d4908c4a5eb438bf0bf1eccf5a227d92637e071"
+    },
+    "tools/mgba_qol_production_smoke.c": {
+      "size": 149046,
+      "sha256": "2c4b9f065f4dce84e48f2be9afe2e2f9f666865088770ee8b068a908a0527b85"
+    },
+    "tools/modernization_p03_archive_ui_repair.py": {
+      "size": 9187,
+      "sha256": "174d08673f9d28fc63b5bdc46e2503a9525b84527391fb4e2f96271df3f9207d"
+    },
+    "tools/modernization_p03_native_pp_repair.py": {
+      "size": 5164,
+      "sha256": "bfa4a1f2c8d470bafdb705d57fdd73a55a7885cfacb1dca6c392576a38f51e17"
+    }
+  },
+  "candidate_stage": 82,
+  "candidate_rom_sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+  "accepted_original_processes": 46,
+  "accepted_original_core_instances": 92,
+  "normal_relearner_cases": 17,
+  "egg_relearner_cases": 29,
+  "accepted_case_names": [
+    "normal-replace-0",
+    "normal-replace-1",
+    "normal-replace-2",
+    "normal-replace-3",
+    "normal-empty-1",
+    "normal-empty-2",
+    "normal-empty-3",
+    "normal-refuse",
+    "normal-cancel-summary",
+    "normal-cancel-list",
+    "normal-before-level",
+    "normal-known-filter",
+    "reminder-spore",
+    "reminder-explosion",
+    "reminder-growth",
+    "reminder-misty-terrain",
+    "normal-post-hof",
+    "egg-203-first",
+    "egg-203-last",
+    "egg-324-first",
+    "egg-324-last",
+    "egg-364-first",
+    "egg-364-last",
+    "egg-608-first",
+    "egg-608-last",
+    "egg-719-first",
+    "egg-719-last",
+    "egg-724-first",
+    "egg-724-last",
+    "egg-727-first",
+    "egg-727-last",
+    "egg-replace-1",
+    "egg-replace-2",
+    "egg-refuse",
+    "egg-cancel-summary",
+    "egg-cancel-list",
+    "egg-herb-empty-1",
+    "egg-herb-empty-2",
+    "egg-herb-empty-3",
+    "egg-herb-not-consumed-post-hof",
+    "egg-known-filter",
+    "egg-locked-dh0-hof0",
+    "egg-locked-dh0-hof1",
+    "egg-needs-herb",
+    "egg-needs-empty",
+    "egg-no-candidates"
+  ],
+  "original_cache_reuse": 0,
+  "new_emulator_runs_during_integration": 0,
+  "host_write_denial_probes": 7,
+  "compiler_first_line": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "mgba_version": "0.10.2",
+  "fixture_scope": "species/moves/flags/items configured before observation; no natural acquisition claim",
+  "active_baseline_stage": 62,
+  "active_baseline_changed": false,
+  "product_rom_modified": false,
+  "full_p03_acceptance": false,
+  "full_p05_acceptance": false,
+  "release_ready": false,
+  "remaining_scope": [
+    "other P03 routes and archive economy adoption",
+    "natural acquisition and physical Battle Circus entry",
+    "P06/P07 implementation acceptance tracked separately",
+    "final release acceptance"
+  ],
+  "metadata_bindings": {
+    "actions-run.json": {
+      "size": 16762,
+      "sha256": "b0826d1571a49c0c2d9ffb99b3eec0ff9edcaab684dca17c5522a1ee1eb15865"
+    },
+    "actions-jobs.json": {
+      "size": 3350,
+      "sha256": "2351936b3ddad68d64e6bcbe21860daee026c67721430ed7791ac2fe619a356b"
+    },
+    "actions-artifact.json": {
+      "size": 840,
+      "sha256": "fcfa0b7868787fd4064eeef67a8b2c8361ba372fcde1ab0ed6d2cf18ffee1b97"
+    }
+  }
+}

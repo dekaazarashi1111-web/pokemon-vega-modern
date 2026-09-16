@@ -1,0 +1,89 @@
+{
+  "command_argument_count": 14,
+  "compilation": {
+    "compiler": "/usr/bin/cc",
+    "executable_sha256": "28968f4ddc1712da43f2b2338666d1ed317d95b875edc564c315ee655c142e57",
+    "executable_size": 47192,
+    "flags": [
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Itools"
+    ],
+    "link_flags": [
+      "-lmgba"
+    ]
+  },
+  "id": "mega_shop",
+  "input_rom": {
+    "path": "build/stages/80_modernization_runtime_boundary_repair.gba",
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "size": 33554432
+  },
+  "plan_fingerprint": "b3e047b37f2c129c74f934a23a4188369a660c244d76e5da87599c9186936358",
+  "runner": {
+    "path": "tools/mgba_modernization_stage79_mega_shop_smoke.c",
+    "sha256": "94edf1e43c8ab52ee4a3bf34e3a0252ba78c1a166aaac5e51536ce5da16b1dbf",
+    "size": 167
+  },
+  "runner_result": {
+    "accepted_item_boundary_ids": [
+      999,
+      1023,
+      1024,
+      1043
+    ],
+    "bag_full_capacity": 1024,
+    "checks": {
+      "bag_full_no_mutation": true,
+      "claim_flags_14a0_14b6_14cc": true,
+      "fresh_core_normal_save_reload": true,
+      "fresh_core_once_rejected": true,
+      "index_0_item_999_price_16": true,
+      "index_22_item_1021_price_16": true,
+      "index_44_item_1043_price_16": true,
+      "insufficient_bp_no_mutation": true,
+      "item_consumer_boundaries_999_1023_1024_1043_1044": true,
+      "mega_ring_580_gate": true,
+      "name_hold_effect_and_is_mega_stone_consumers": true,
+      "physical_npc_script_graph_to_entrypoint": true,
+      "probe_and_save_init": true
+    },
+    "core_instances": 2,
+    "final_bp": 52,
+    "first_rejected_item_id": 1044,
+    "framebuffer_transitions": 6729,
+    "hold_effect": 73,
+    "initial_bp": 100,
+    "price_bp": 16,
+    "process_runs": 1,
+    "representative_claim_flags": [
+      5280,
+      5302,
+      5324
+    ],
+    "representative_indices": [
+      0,
+      22,
+      44
+    ],
+    "representative_item_ids": [
+      999,
+      1021,
+      1043
+    ],
+    "retained_artifacts": [],
+    "schema_version": 1,
+    "stage": 68,
+    "state_fixture": "PRODUCTION_ROM_FUNCTIONS_ONLY",
+    "status": "PASS",
+    "warnings_errors": 0
+  },
+  "schema_version": 1,
+  "stage": 79,
+  "status": "PASS",
+  "stderr_sha256": "5f5f9d24884d68f882267eb63e3d3114d4040ad9da9c57b14c33ce7b34d8b1dd",
+  "task": "USER-MODERNIZATION-STAGE79-CUMULATIVE-MGBA"
+}

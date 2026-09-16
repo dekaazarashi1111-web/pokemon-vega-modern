@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10187955840,
+  "artifact_name": "pr16-shop-display-repair",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "d33ce3a774f695cee0723e999c485818bec0ea4a",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "d33ce3a774f695cee0723e999c485818bec0ea4a",
+      "id": 103174066747,
+      "name": "shop-display-repair",
+      "run_id": 34571394609,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T06:46:49Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T06:46:49Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:46:55Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T06:46:49Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:47:27Z",
+          "conclusion": "success",
+          "name": "Restore exact parent and compiler without touching baseline",
+          "number": 3,
+          "started_at": "2026-09-11T06:46:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:47:31Z",
+          "conclusion": "success",
+          "name": "Fixed adopted V4 and original character map",
+          "number": 4,
+          "started_at": "2026-09-11T06:47:27Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:47:51Z",
+          "conclusion": "success",
+          "name": "Build fixed parent and test typed graphics bounds",
+          "number": 5,
+          "started_at": "2026-09-11T06:47:31Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:49:21Z",
+          "conclusion": "success",
+          "name": "Two repair builds and actual guarded shop graphics regression",
+          "number": 6,
+          "started_at": "2026-09-11T06:47:51Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:49:21Z",
+          "conclusion": "success",
+          "name": "Preserve code, originals and scoped reversible patches only",
+          "number": 7,
+          "started_at": "2026-09-11T06:49:21Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:49:23Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T06:49:21Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:49:23Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T06:49:23Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T06:49:23Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T06:49:23Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-shop-display-repair.yml",
+  "run_attempt": 1,
+  "run_id": 34571394609,
+  "sha256": "853db3d73ba2c89016787720f95a55150b41de009b0ca44ca3998472e225c45d",
+  "size": 1049695,
+  "status": "completed"
+}

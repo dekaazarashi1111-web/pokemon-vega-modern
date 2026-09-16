@@ -187,7 +187,9 @@ static void restore_cpu(struct mCore *core, const struct CpuContext *context)
     write_register(core, "cpsr", context->registers[16]);
     for (size_t index = 0; index < 15; ++index)
         write_register(core, REGISTER_NAMES[index], context->registers[index]);
-    write_register(core, "pc", context->registers[15]);
+    /* writeRegister(pc) refills the pipeline and adds one instruction. */
+    uint32_t width = ((uint32_t)context->registers[16] & 0x20U) ? 2U : 4U;
+    write_register(core, "pc", (int32_t)((uint32_t)context->registers[15] - width));
 }
 
 static uint32_t call_thumb(struct mCore *core, uint32_t function,

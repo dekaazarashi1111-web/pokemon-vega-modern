@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "candidate_sha256": "e630f7f199194fb4b531ff3a561da866902aea200770a832aec5c276e1636267",
+  "cases": [
+    "necrozma-dusk-mane-four-slot-roundtrip",
+    "necrozma-dawn-wings-four-slot-roundtrip"
+  ],
+  "reason": "checkpoint bcbfdb153cb7e6ca92e6a506698e3763b81f34b7。前run34697599454で固有技/PP/Bonus、初回通常Save/freshContinue、解除後base/専用技削除圧縮まで確認。復帰相方100bytesと実Start→Pokemonで3体の表示/再計数・300bytes不変を確認し、2回目Save/freshContinueまで完走を要求する。field countをhostで補正せず、不在相方ならFAIL。未完2ケースのみ、ROMと既存Crowned/取消成功は変更しない。"
+}

@@ -1,0 +1,88 @@
+name: pr16-p03-p07-route-coverage
+run-name: Validate finite P03/P07 coverage and project remaining-work JSON
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/modernization-followup-20260908
+    paths:
+      - .github/workflows/pr16-p03-p07-route-coverage.yml
+      - content/modernization/pr16_p03_p07_route_coverage.json
+      - scripts/pr16_p03_p07_route_coverage.py
+      - tests/test_pr16_p03_p07_route_coverage.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr16-p03-p07-route-coverage-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  project:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact branch commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Validate ledger and focused tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_p03_p07_route_coverage.py \
+            --output "$RUNNER_TEMP/pr16-p03-p07-route-coverage-before.json"
+          python3 -m unittest discover \
+            -s tests \
+            -p 'test_pr16_p03_p07_route_coverage.py' \
+            -v
+
+      - name: Project only P03/P07 conditions into remaining-work JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_p03_p07_route_coverage.py \
+            --apply-remaining content/modernization/p08_remaining_work.json \
+            --output "$RUNNER_TEMP/pr16-p03-p07-route-coverage-after.json"
+          python3 scripts/pr16_p03_p07_route_coverage.py \
+            --check-remaining content/modernization/p08_remaining_work.json
+          git diff --check
+          mapfile -t changed < <(git diff --name-only)
+          if (( ${#changed[@]} > 1 )); then
+            printf 'Unexpected changed files:\n%s\n' "${changed[*]}" >&2
+            exit 1
+          fi
+          if (( ${#changed[@]} == 1 )) && [[ "${changed[0]}" != "content/modernization/p08_remaining_work.json" ]]; then
+            printf 'Unexpected changed file: %s\n' "${changed[0]}" >&2
+            exit 1
+          fi
+
+      - name: Commit projected remaining-work state when changed
+        shell: bash
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- content/modernization/p08_remaining_work.json; then
+            echo 'p08_remaining_work.json already matches the finite ledger.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add content/modernization/p08_remaining_work.json
+          git commit -m 'USER-MODERNIZATION: project finite P03/P07 remaining routes'
+          git push origin "HEAD:${BRANCH}"
+
+      - name: Upload validation receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr16-p03-p07-route-coverage-receipt
+          path: |
+            ${{ runner.temp }}/pr16-p03-p07-route-coverage-before.json
+            ${{ runner.temp }}/pr16-p03-p07-route-coverage-after.json
+          if-no-files-found: error
+          retention-days: 30

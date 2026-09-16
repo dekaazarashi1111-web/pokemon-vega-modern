@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10189661850,
+  "artifact_name": "pr16-natural-capture",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "68f9459630a2bf7215c58f12cb0557f57f15c6ff",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "68f9459630a2bf7215c58f12cb0557f57f15c6ff",
+      "id": 103188331704,
+      "name": "capture-native",
+      "run_id": 34575955233,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T07:46:26Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T07:46:26Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:46:31Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T07:46:26Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:04Z",
+          "conclusion": "success",
+          "name": "Restore exact parent and compiler without touching baseline",
+          "number": 3,
+          "started_at": "2026-09-11T07:46:31Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:10Z",
+          "conclusion": "success",
+          "name": "Fixed adopted V4 and original character map",
+          "number": 4,
+          "started_at": "2026-09-11T07:47:04Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:20Z",
+          "conclusion": "success",
+          "name": "Build parent and reject malformed or inflated capture evidence",
+          "number": 5,
+          "started_at": "2026-09-11T07:47:10Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:55Z",
+          "conclusion": "success",
+          "name": "Natural encounter, physical ball, ordinary save and independent Continue",
+          "number": 6,
+          "started_at": "2026-09-11T07:47:20Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:55Z",
+          "conclusion": "success",
+          "name": "Preserve exact executed source and raw results, no ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T07:47:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:56Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T07:47:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:57Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T07:47:56Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T07:47:57Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T07:47:57Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-natural-capture.yml",
+  "run_attempt": 1,
+  "run_id": 34575955233,
+  "sha256": "879ebf377e93d48bb28ed4572699352bb92923b6e3925e876ee09f7cde6ea361",
+  "size": 246689,
+  "status": "completed"
+}

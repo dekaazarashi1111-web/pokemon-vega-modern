@@ -1,0 +1,33 @@
+{
+  "artifact": {
+    "digest": "sha256:8479ef2483c4c3eeb43c3e649b4d388f561f58ec178ce35cc67e8680c731cdff",
+    "expires_at": "2026-10-12T06:29:48Z",
+    "id": 10293110616,
+    "name": "pr16-fixed-form-contract",
+    "size_in_bytes": 5507
+  },
+  "contract": {
+    "path": "content/modernization/pr16_fixed_form_contract.json",
+    "schema": "pr16_fixed_form_contract.v1",
+    "status": "PASS_FIXED_FORM_CONTRACT_NATIVE_PENDING",
+    "target_species": [
+      1260,
+      1261,
+      1386,
+      1387
+    ]
+  },
+  "native_acceptance_claimed": false,
+  "p03_fixed_form_gap_closed": false,
+  "p03_umbrella_closed": false,
+  "release_ready": false,
+  "run": {
+    "conclusion": "success",
+    "head_sha": "6c7a6c7f4e1da3256b7394038c667d91e3db0451",
+    "id": 34678254737,
+    "workflow": ".github/workflows/pr16-fixed-form-contract.yml"
+  },
+  "schema": "pr16_fixed_form_contract_receipt.v1",
+  "scope": "STATIC_CONTRACT_ONLY_NOT_MGBA_ACCEPTANCE",
+  "status": "PASS_STATIC_CONTRACT_BOUND_NATIVE_PENDING"
+}

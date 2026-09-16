@@ -1,0 +1,24 @@
+test_cli_writes_only_bounded_text_outputs (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_cli_writes_only_bounded_text_outputs) ... ok
+test_comments_and_strings_do_not_supply_return_branch (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_comments_and_strings_do_not_supply_return_branch) ... ok
+test_missing_required_owner_token_rejected (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_missing_required_owner_token_rejected) ... ok
+test_owner_audit_is_deterministic_and_read_only (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_owner_audit_is_deterministic_and_read_only) ... ok
+test_path_traversal_rejected (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_path_traversal_rejected) ... ok
+test_separate_functions_do_not_form_one_owner (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_separate_functions_do_not_form_one_owner) ... ok
+test_shared_header_declarations_do_not_resolve_owner (tests.test_pr16_bp_loss_return_owner.OwnerAuditTests.test_shared_header_declarations_do_not_resolve_owner) ... ok
+test_archive_symlink_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_archive_symlink_rejected) ... ok
+test_auxiliary_object_metadata_is_not_restored (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_auxiliary_object_metadata_is_not_restored) ... ok
+test_bad_hash_rejected_before_destination_created (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_bad_hash_rejected_before_destination_created) ... ok
+test_destination_ancestor_symlink_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_destination_ancestor_symlink_rejected) ... ok
+test_dirty_export_restores_exact_locked_bytes_without_mutating_archive (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_dirty_export_restores_exact_locked_bytes_without_mutating_archive) ... ok
+test_existing_destination_not_overwritten (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_existing_destination_not_overwritten) ... ok
+test_git_alternates_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_git_alternates_rejected) ... ok
+test_inconsistent_lock_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_inconsistent_lock_rejected) ... ok
+test_invalid_shallow_metadata_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_invalid_shallow_metadata_rejected) ... ok
+test_missing_commit_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_missing_commit_rejected) ... ok
+test_shallow_archive_passes_full_object_validation (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_shallow_archive_passes_full_object_validation) ... ok
+test_traversal_in_source_archive_rejected (tests.test_pr16_restore_cfru_snapshot.SnapshotTests.test_traversal_in_source_archive_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.335s
+
+OK

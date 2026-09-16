@@ -1,0 +1,89 @@
+name: stage79-harness-repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/stage79-harness-repair.yml
+      - .github/scripts/stage79_harness_repair.py
+      - .github/repairs/stage79-harness-regressions.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: stage79-harness-repair-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash infra/setup_github_actions.sh --install
+      - name: Apply the exact runner-only repair
+        run: |
+          set -euo pipefail
+          mkdir -p .local/stage79-harness-repair
+          python3 .github/scripts/stage79_harness_repair.py | tee .local/stage79-harness-repair/apply.log
+      - name: Require all 88 regressions and pinned plan
+        run: |
+          set -euo pipefail
+          python3 -m unittest \
+            tests.test_modernization_stage79_github_domain \
+            tests.test_modernization_stage79_cumulative_mgba \
+            tests.test_modernization_stage79_factory_map \
+            tests.test_modernization_stage79_controller_input \
+            tests.test_modernization_stage79_runtime_boundaries -v \
+            > .local/stage79-harness-repair/tests.log 2>&1
+          cat .local/stage79-harness-repair/tests.log
+          python3 scripts/run_modernization_stage79_github_domain.py plan --selection all \
+            > .local/stage79-harness-repair/plan.json
+          python3 scripts/validate_task_graph.py
+          git diff --check
+      - name: Commit only the reviewed runners, tests, config and READY gate
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin "refs/heads/$HEAD_REF" | cut -f1)" = "$EXPECTED_SHA"
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          cfg = json.loads(pathlib.Path('config/modernization_stage79_cumulative_mgba.json').read_text())
+          for rom in (cfg['input_identity']['rom'], cfg['runtime_candidate']['rom']):
+              assert hashlib.sha256(pathlib.Path(rom['path']).read_bytes()).hexdigest() == rom['sha256']
+          gate = json.loads(pathlib.Path(cfg['execution']['runtime_gate']).read_text())
+          assert gate['status'] == 'READY_NOT_RUN' and gate['not_yet_executed'] is True
+          assert gate['execution']['evidenced_domain_runs'] == 0
+          targets = {
+              'tools/mgba_modernization_p02_stage71_acceptance_smoke.c',
+              'overlays/modernization_floette_gift/mgba_modernization_floette_gift_smoke.c',
+              'tests/test_modernization_stage79_runtime_boundaries.py',
+              'config/modernization_stage79_cumulative_mgba.json',
+              cfg['execution']['runtime_gate'],
+          }
+          changed = set(subprocess.check_output(['git','diff','--name-only'], text=True).splitlines())
+          untracked = set(subprocess.check_output(['git','ls-files','--others','--exclude-standard'], text=True).splitlines())
+          assert changed == targets and not untracked, (changed, untracked)
+          subprocess.run(['git','add','--',*sorted(targets)], check=True)
+          PY
+          git diff --cached > .local/stage79-harness-repair/validated-source.patch
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'fix(stage79): release evolution input edges and fill all compact PC slots through native storage'
+          git push origin "HEAD:refs/heads/$HEAD_REF"
+          git rev-parse HEAD | tee .local/stage79-harness-repair/committed-head.txt
+      - name: Execute all seven domains on the committed product and harness
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_REF: ${{ github.ref_name }}
+        run: gh workflow run modernization-stage79-mgba.yml --ref "$HEAD_REF" -f domain=all
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage79-harness-repair
+          path: .local/stage79-harness-repair
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14

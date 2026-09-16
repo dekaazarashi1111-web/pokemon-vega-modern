@@ -1,0 +1,308 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_conclusion": "failure",
+  "artifact_digest": "sha256:87166f621187c87fd19579b59aec89c56b2804ae6c8add010401c4f9db98f91f",
+  "artifact_id": 10339976783,
+  "artifact_member_count": 88,
+  "artifact_name": "pr16-bp-party-retention-native",
+  "artifact_size": 1157946,
+  "candidate": {
+    "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "size": 33554432
+  },
+  "candidate_crc32": "3EB17B36",
+  "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+  "job_id": 103915172830,
+  "native_bp_earning_accepted": false,
+  "native_party_retention_accepted": true,
+  "native_result": {
+    "action_frame": 3779,
+    "action_return_frame": 4313,
+    "active_battler": {
+      "moves": [
+        94,
+        347,
+        115,
+        182
+      ],
+      "ot": 1086207445,
+      "personality": 3829494485,
+      "species": 63
+    },
+    "additional_pp_events": 11,
+    "additional_turns": 12,
+    "all_three_individuals_retained": true,
+    "battle_callback2": 134285761,
+    "battle_main_callback": 134297697,
+    "battle_outcome": 1,
+    "battle_started": true,
+    "battle_struct_frame": 2545,
+    "bp_earned": 0,
+    "candidate_sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+    "case": "native-exchange-party-retention",
+    "classification": "NATIVE_PARTY_RETENTION_ACCEPTED_NOT_BP",
+    "committed": {
+      "callback2": 134569589,
+      "changed_bytes": 0,
+      "count": 3,
+      "exchanged_slots": [
+        2
+      ],
+      "frame": 17345,
+      "individuals": [
+        {
+          "moves": [
+            94,
+            347,
+            115,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 3829494485,
+          "species": 63
+        },
+        {
+          "moves": [
+            242,
+            53,
+            126,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 2882453635,
+          "species": 14
+        },
+        {
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "ot": 560001847,
+          "personality": 719593095,
+          "species": 7
+        }
+      ],
+      "native": 134656345,
+      "party_sha256": "306cb9cd9ce9785596abba8baa615c19cdc6e074b570f607e1491416e23c1b75",
+      "script": 153941645
+    },
+    "confirm_frame": 2408,
+    "enemy_battle_species": 63,
+    "enemy_hp_after": 106,
+    "enemy_hp_before": 106,
+    "enemy_party_changed": true,
+    "enemy_party_count": 3,
+    "enemy_party_count_raw": 0,
+    "exact600_retained": true,
+    "exchange_commit_frame": 17345,
+    "exchange_confirm_frame": 17250,
+    "exchange_menu_frame": 16573,
+    "exchange_preserved_bytes": 500,
+    "exchange_replaced_bytes": 100,
+    "exchange_selected_frame": 17001,
+    "exchange_selected_order": 3,
+    "exchange_slot": 2,
+    "exchanged_individual_retained": true,
+    "facility_return_frame": 16457,
+    "final_callback2": 134569589,
+    "final_marker": 2,
+    "final_party_count": 3,
+    "final_reward_pending": 1,
+    "final_script_pointer": 153941614,
+    "final_snapshot_valid": 1,
+    "final_streak": 1,
+    "first_changed": null,
+    "fixture_same_as_accepted_cancel": true,
+    "forced_identity_checks": 2,
+    "forced_switches": 2,
+    "fresh_cores": 1,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "manual_saves": 0,
+    "move_id": 182,
+    "move_menu_frame": 3931,
+    "move_selected_frame": 3960,
+    "move_slot": 3,
+    "native_afterbattle_observed": true,
+    "native_bp_earning_accepted": false,
+    "native_exchange_accepted": false,
+    "native_exchange_observed": true,
+    "native_party_retention_accepted": true,
+    "native_turn_completed": true,
+    "new_battle_struct": 33650228,
+    "next_action": {
+      "callback2": 134285761,
+      "changed_bytes": 0,
+      "count": 3,
+      "exchanged_slots": [
+        2
+      ],
+      "frame": 18987,
+      "individuals": [
+        {
+          "moves": [
+            94,
+            347,
+            115,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 3829494485,
+          "species": 63
+        },
+        {
+          "moves": [
+            242,
+            53,
+            126,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 2882453635,
+          "species": 14
+        },
+        {
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "ot": 560001847,
+          "personality": 719593095,
+          "species": 7
+        }
+      ],
+      "native": 134656345,
+      "party_sha256": "306cb9cd9ce9785596abba8baa615c19cdc6e074b570f607e1491416e23c1b75",
+      "script": 153941669
+    },
+    "next_battle_action_frame": 18987,
+    "next_battle_struct_frame": 17755,
+    "next_chooser": {
+      "callback2": 135394217,
+      "changed_bytes": 0,
+      "count": 3,
+      "exchanged_slots": [
+        2
+      ],
+      "frame": 17389,
+      "individuals": [
+        {
+          "moves": [
+            94,
+            347,
+            115,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 3829494485,
+          "species": 63
+        },
+        {
+          "moves": [
+            242,
+            53,
+            126,
+            182
+          ],
+          "ot": 1086207445,
+          "personality": 2882453635,
+          "species": 14
+        },
+        {
+          "moves": [
+            55,
+            58,
+            352,
+            182
+          ],
+          "ot": 560001847,
+          "personality": 719593095,
+          "species": 7
+        }
+      ],
+      "native": 134656345,
+      "party_sha256": "306cb9cd9ce9785596abba8baa615c19cdc6e074b570f607e1491416e23c1b75",
+      "script": 153941668
+    },
+    "observation_boundary": "READ_ONLY_FRAME_SNAPSHOTS_NOT_CPU_FUNCTION_ENTRY_RETURN",
+    "opening_native_switches": 1,
+    "original_party_or_snapshot_bytes_verified": 600,
+    "original_snapshot_bytes_verified": 600,
+    "outcome_frame": 16234,
+    "p05_native_bp_gap_closed": false,
+    "party_count": 3,
+    "pending_opcode": 93,
+    "pending_script_pointer": 153941608,
+    "player_hp_after": 106,
+    "player_hp_before": 106,
+    "pp_after": 15,
+    "pp_before": 16,
+    "pp_spent_frame": 3973,
+    "release_ready": false,
+    "return_start_frame": 4313,
+    "runtime_connected": true,
+    "save_counter": 2,
+    "schema_version": 1,
+    "scope": "PR16_P05_NATIVE_EXCHANGE_PARTY_RETENTION",
+    "script_advance_frame": 2461,
+    "script_context_resumed": true,
+    "script_pointer_after_advance": 153941609,
+    "second_chooser_frame": 2283,
+    "selected_count": 3,
+    "selected_frame": 1936,
+    "snapshot_count": 22,
+    "status": "PASS_NATIVE_EXCHANGE_PARTY_RETENTION_NOT_BP",
+    "total_frames": 18987,
+    "warnings_errors": 0
+  },
+  "native_verification_steps_conclusion": "success",
+  "new_emulator_processes": 1,
+  "p05_native_bp_gap_closed": false,
+  "parent": {
+    "sha256": "7f32ba99ad34cd0320559a8dc6990876084f371c8bfae769c7482090c7be90cd",
+    "size": 33554432
+  },
+  "patch_changes": [
+    {
+      "after": "f2f104fd",
+      "before": "24f032f9",
+      "offset": 17683740,
+      "size": 4
+    },
+    {
+      "after": "004b18473547ff09",
+      "before": "ffffffffffffffff",
+      "offset": 19726120,
+      "size": 8
+    },
+    {
+      "after": "7fb5134b00f034f8124b1e68124b04001878002c05d10024200004b070bc02bc08470e4b19780e4b0e4d1a780e4b1b782d78009002960120019500f01bf80028ead00a4b00f014f80128e5d1e3e7c04685171009b80e0003893f020200d4030201d4030203d4030202d4030229ec2c091847c046f0b505ac277806ac2578079e002401280ed102290cd1012a0ad1013b052b07d8032f05d1012d07d1054bf41863425c412000f0bc02bc0847022df9d1014bf4e75b09d3f61f09d3f6",
+      "before": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "offset": 33507124,
+      "size": 188
+    }
+  ],
+  "record_source_head": "f2b8e2b761c8105e3389d7f628e69dc7317ba3bc",
+  "record_step_conclusion": "failure_before_commit",
+  "record_step_failure_ja": "native artifact作成後、mutableなP08台帳をimmutable source bindingへ含めたためresume fixture 5件がstale sourceで停止。native検証結果は失敗していない。",
+  "release_ready": false,
+  "run_id": 34825059791,
+  "runtime_binding": {
+    "callsite": 151901468,
+    "callsite_before": "24f032f9",
+    "original_predicate": 152049540,
+    "player_true_path_only": true,
+    "runtime_entry": 167724853,
+    "second_predicate_callsite_changed": false,
+    "trampoline": 153943848
+  },
+  "runtime_connected": true,
+  "schema_version": 1,
+  "scope_ja": "交換確定時の600byte partyと3個体identityが次戦chooser/actionまで一致。2/3戦目とBP報酬は未受入。",
+  "successful_fresh_cores": 1,
+  "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
+}

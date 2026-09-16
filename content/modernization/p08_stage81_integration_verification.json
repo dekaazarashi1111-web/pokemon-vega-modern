@@ -1,0 +1,1116 @@
+{
+  "active_baseline_changed": false,
+  "candidate_sha256": "521624a5e6065bd969b7c3143044f1d96491b8af05a0231827ba2e709d04d579",
+  "candidate_stage": 81,
+  "closeout_audit": {
+    "fresh_mgba_process_runs": 0,
+    "original_cli_evidence_path": "content/modernization/p08_stage81_closeout_evidence/34380153325",
+    "regression_tests_passed": 358,
+    "release_ready": false,
+    "run_id": 34380851376,
+    "snapshot_sha256": "97de8f4b781c8a069de0c139004a4ac34cbc4ecfa16425364e7dd31f02a52c8c",
+    "validated_checkout": "eb53628dc95bca236338c498d5d2e9a16fca7e5b"
+  },
+  "fresh_native_processes_this_integration": 0,
+  "integration_run_id": 34374045795,
+  "normal_ci_after_committed_head": "SUCCESS",
+  "normal_ci_verification": {
+    "artifact_id": 10115529505,
+    "artifact_sha256": "b7e7f6dbe8ff1a6438163709dd37b0d0a49927ee20c54c50906d2abc6b0f4c9c",
+    "bound_inputs_unchanged": 290,
+    "cli_tests_passed": 10,
+    "fresh_mgba_process_runs": 0,
+    "normal_ci": [
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "4a270b8adf9d4946d15b1986540a317f1b9d9f1c",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "head_sha": "4a270b8adf9d4946d15b1986540a317f1b9d9f1c",
+            "id": 102562722769,
+            "name": "validate",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T16:59:34Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T16:59:34Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:39Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T16:59:34Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:39Z",
+                "conclusion": "success",
+                "name": "Run actions/setup-python@v5",
+                "number": 3,
+                "started_at": "2026-09-09T16:59:39Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:40Z",
+                "conclusion": "success",
+                "name": "Git\u7ba1\u7406\u5185\u306e\u6574\u5408\u6027\u3092\u691c\u8a3c",
+                "number": 4,
+                "started_at": "2026-09-09T16:59:39Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:42Z",
+                "conclusion": "success",
+                "name": "P03/P05 representative E2E result contracts",
+                "number": 5,
+                "started_at": "2026-09-09T16:59:40Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:48Z",
+                "conclusion": "success",
+                "name": "Stage81 candidate and P03 full-slot regression contracts",
+                "number": 6,
+                "started_at": "2026-09-09T16:59:42Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:04Z",
+                "conclusion": "success",
+                "name": "\u73fe\u5728\u306eP08\u53d7\u5165\u5883\u754c\u3068\u539f\u672c\u8a3c\u8de1\u3092\u691c\u8a3c",
+                "number": 7,
+                "started_at": "2026-09-09T16:59:48Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:13Z",
+                "conclusion": "success",
+                "name": "Stage81 real CLI evidence and release boundary",
+                "number": 8,
+                "started_at": "2026-09-09T17:00:04Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:14Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 9,
+                "started_at": "2026-09-09T17:00:13Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:14Z",
+                "conclusion": "success",
+                "name": "Post Run actions/setup-python@v5",
+                "number": 17,
+                "started_at": "2026-09-09T17:00:14Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:14Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 18,
+                "started_at": "2026-09-09T17:00:14Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:14Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 19,
+                "started_at": "2026-09-09T17:00:14Z",
+                "status": "completed"
+              }
+            ]
+          }
+        ],
+        "run_attempt": 1,
+        "run_id": 34380147414,
+        "status": "completed",
+        "workflow_path": ".github/workflows/ci.yml"
+      },
+      {
+        "conclusion": "success",
+        "event": "pull_request",
+        "head_sha": "4a270b8adf9d4946d15b1986540a317f1b9d9f1c",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "head_sha": "4a270b8adf9d4946d15b1986540a317f1b9d9f1c",
+            "id": 102562742375,
+            "name": "validate",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T16:59:39Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T16:59:38Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:44Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T16:59:39Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:44Z",
+                "conclusion": "success",
+                "name": "Run actions/setup-python@v5",
+                "number": 3,
+                "started_at": "2026-09-09T16:59:44Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:48Z",
+                "conclusion": "success",
+                "name": "Git\u7ba1\u7406\u5185\u306e\u6574\u5408\u6027\u3092\u691c\u8a3c",
+                "number": 4,
+                "started_at": "2026-09-09T16:59:44Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:51Z",
+                "conclusion": "success",
+                "name": "P03/P05 representative E2E result contracts",
+                "number": 5,
+                "started_at": "2026-09-09T16:59:48Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:59:56Z",
+                "conclusion": "success",
+                "name": "Stage81 candidate and P03 full-slot regression contracts",
+                "number": 6,
+                "started_at": "2026-09-09T16:59:51Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:10Z",
+                "conclusion": "success",
+                "name": "\u73fe\u5728\u306eP08\u53d7\u5165\u5883\u754c\u3068\u539f\u672c\u8a3c\u8de1\u3092\u691c\u8a3c",
+                "number": 7,
+                "started_at": "2026-09-09T16:59:56Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:18Z",
+                "conclusion": "success",
+                "name": "Stage81 real CLI evidence and release boundary",
+                "number": 8,
+                "started_at": "2026-09-09T17:00:10Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:20Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 9,
+                "started_at": "2026-09-09T17:00:18Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:20Z",
+                "conclusion": "success",
+                "name": "Post Run actions/setup-python@v5",
+                "number": 17,
+                "started_at": "2026-09-09T17:00:20Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:20Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 18,
+                "started_at": "2026-09-09T17:00:20Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T17:00:20Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 19,
+                "started_at": "2026-09-09T17:00:20Z",
+                "status": "completed"
+              }
+            ]
+          }
+        ],
+        "run_attempt": 1,
+        "run_id": 34380153325,
+        "status": "completed",
+        "workflow_path": ".github/workflows/ci.yml"
+      }
+    ],
+    "originals": [
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523190746,
+            "name": "plan",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:16Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:15Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:36Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:16Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:39Z",
+                "conclusion": "success",
+                "name": "Regression tests for exact candidate and unchanged contracts",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:36Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:40Z",
+                "conclusion": "success",
+                "name": "Validate full parent chain and Stage81 matrix plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:10:39Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:41Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 5,
+                "started_at": "2026-09-09T15:10:40Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:41Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 10,
+                "started_at": "2026-09-09T15:10:41Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:41Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 11,
+                "started_at": "2026-09-09T15:10:41Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523410952,
+            "name": "domain (p05)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:49Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:52Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:47Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:47Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:47Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:50Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:47Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:50Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:50Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:51Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:50Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:51Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:51Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523410958,
+            "name": "domain (floette)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:49Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:54Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:24Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:54Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:25Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:24Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:52Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:25Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:54Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523411014,
+            "name": "domain (p02)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:49Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:52Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:10Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:10Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:10Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:33Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:10Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:34Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:33Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:34Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:34Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:34Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:34Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523411025,
+            "name": "domain (p03)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:50Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:54Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:50Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:48Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:54Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:49Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:48Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:52Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523411040,
+            "name": "domain (mega_shop)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:50Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:52Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:50Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:25Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:25Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:25Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:52Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:25Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:53Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:53Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523411071,
+            "name": "domain (battle_policy)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:49Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:52Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:49Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:11Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:52Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:12Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:11Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:04Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:12Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:04Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:12:04Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:05Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:12:04Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:05Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:12:05Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523411569,
+            "name": "domain (p04_mega_runtime)",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:10:51Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:10:50Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:10:53Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:10:51Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:28Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T15:10:53Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:29Z",
+                "conclusion": "success",
+                "name": "Verify identical Stage81 plan",
+                "number": 4,
+                "started_at": "2026-09-09T15:11:28Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:32Z",
+                "conclusion": "success",
+                "name": "Fresh mGBA execution with unchanged Stage79 contract",
+                "number": 5,
+                "started_at": "2026-09-09T15:11:29Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:33Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 6,
+                "started_at": "2026-09-09T15:11:32Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:34Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T15:11:33Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:11:34Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T15:11:34Z",
+                "status": "completed"
+              }
+            ]
+          },
+          {
+            "conclusion": "success",
+            "head_sha": "40d2e8e49ed79a69c7675de8cd0cbb4a43677334",
+            "id": 102523914329,
+            "name": "merge",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T15:12:12Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T15:12:11Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:16Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T15:12:12Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:17Z",
+                "conclusion": "success",
+                "name": "Run actions/download-artifact@v4",
+                "number": 3,
+                "started_at": "2026-09-09T15:12:16Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:19Z",
+                "conclusion": "success",
+                "name": "Merge and check all seven results, preserving historical gate",
+                "number": 4,
+                "started_at": "2026-09-09T15:12:17Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:20Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 5,
+                "started_at": "2026-09-09T15:12:19Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:20Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 10,
+                "started_at": "2026-09-09T15:12:20Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T15:12:20Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 11,
+                "started_at": "2026-09-09T15:12:20Z",
+                "status": "completed"
+              }
+            ]
+          }
+        ],
+        "run_attempt": 1,
+        "run_id": 34368455589,
+        "status": "completed",
+        "workflow_path": ".github/workflows/modernization-stage81-mgba.yml"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "head_sha": "f1342a81d19f5c26d7f2efdfa7cec0aa05c148fc",
+            "id": 102508248160,
+            "name": "fullslots-save-reload",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T14:30:55Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T14:30:55Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:31:00Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T14:30:55Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:31:23Z",
+                "conclusion": "success",
+                "name": "Fixed toolchain",
+                "number": 3,
+                "started_at": "2026-09-09T14:31:00Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:31:25Z",
+                "conclusion": "success",
+                "name": "Recipe and result-contract regression tests",
+                "number": 4,
+                "started_at": "2026-09-09T14:31:23Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:33:12Z",
+                "conclusion": "success",
+                "name": "Eight fresh candidate cases and two failing parent controls",
+                "number": 5,
+                "started_at": "2026-09-09T14:31:25Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:33:13Z",
+                "conclusion": "success",
+                "name": "Preserve original logs on success or failure",
+                "number": 6,
+                "started_at": "2026-09-09T14:33:12Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:33:13Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 12,
+                "started_at": "2026-09-09T14:33:13Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T14:33:13Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 13,
+                "started_at": "2026-09-09T14:33:13Z",
+                "status": "completed"
+              }
+            ]
+          }
+        ],
+        "run_attempt": 1,
+        "run_id": 34364100108,
+        "status": "completed",
+        "workflow_path": ".github/workflows/p03-fullslots-e2e.yml"
+      },
+      {
+        "conclusion": "success",
+        "event": "push",
+        "head_sha": "7ae9f219b7b279bd60053485a63ef2d072edf154",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "head_sha": "7ae9f219b7b279bd60053485a63ef2d072edf154",
+            "id": 102542197229,
+            "name": "verify-and-integrate",
+            "status": "completed",
+            "steps": [
+              {
+                "completed_at": "2026-09-09T16:01:17Z",
+                "conclusion": "success",
+                "name": "Set up job",
+                "number": 1,
+                "started_at": "2026-09-09T16:01:16Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:01:21Z",
+                "conclusion": "success",
+                "name": "Run actions/checkout@v4",
+                "number": 2,
+                "started_at": "2026-09-09T16:01:17Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:01:21Z",
+                "conclusion": "success",
+                "name": "Run actions/setup-python@v5",
+                "number": 3,
+                "started_at": "2026-09-09T16:01:21Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:01:21Z",
+                "conclusion": "success",
+                "name": "Materialize exact reviewed source patch without changing candidate or runner",
+                "number": 4,
+                "started_at": "2026-09-09T16:01:21Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:01:33Z",
+                "conclusion": "success",
+                "name": "Fetch original GitHub evidence and append strictly verified Stage81 layer",
+                "number": 5,
+                "started_at": "2026-09-09T16:01:21Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:00Z",
+                "conclusion": "success",
+                "name": "Regression tests and read-only acceptance checks",
+                "number": 6,
+                "started_at": "2026-09-09T16:01:33Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:02Z",
+                "conclusion": "success",
+                "name": "Record successful validation and fast-forward PR branch",
+                "number": 7,
+                "started_at": "2026-09-09T16:02:00Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:03Z",
+                "conclusion": "success",
+                "name": "Run actions/upload-artifact@v4",
+                "number": 8,
+                "started_at": "2026-09-09T16:02:02Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:03Z",
+                "conclusion": "success",
+                "name": "Post Run actions/setup-python@v5",
+                "number": 15,
+                "started_at": "2026-09-09T16:02:03Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:03Z",
+                "conclusion": "success",
+                "name": "Post Run actions/checkout@v4",
+                "number": 16,
+                "started_at": "2026-09-09T16:02:03Z",
+                "status": "completed"
+              },
+              {
+                "completed_at": "2026-09-09T16:02:03Z",
+                "conclusion": "success",
+                "name": "Complete job",
+                "number": 17,
+                "started_at": "2026-09-09T16:02:03Z",
+                "status": "completed"
+              }
+            ]
+          }
+        ],
+        "run_attempt": 1,
+        "run_id": 34374045795,
+        "status": "completed",
+        "workflow_path": ".github/workflows/p08-stage81-evidence-integration.yml"
+      }
+    ],
+    "schema_version": 1,
+    "source_head": "4a270b8adf9d4946d15b1986540a317f1b9d9f1c",
+    "source_run_id": 34380153325
+  },
+  "original_expected_failure_controls": 2,
+  "original_successful_native_processes": 15,
+  "p03_eight_case_original_run": 34364100108,
+  "regression_tests": 348,
+  "release_ready": false,
+  "schema_version": 1,
+  "seven_domain_original_run": 34368455589,
+  "status": "PASS",
+  "validated_checkout": "7ae9f219b7b279bd60053485a63ef2d072edf154"
+}

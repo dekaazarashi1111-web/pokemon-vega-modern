@@ -1,0 +1,63 @@
+--- a/scripts/record_modernization_final_acceptance.py
++++ b/scripts/record_modernization_final_acceptance.py
+@@ -19,6 +19,7 @@
+ DIRECTORY = 'content/modernization/p08_final_evidence/34477344071'
+ RECEIPT = 'content/modernization/p08_final_candidate_acceptance.json'
+ OVERVIEW = 'content/modernization/p08_remaining_work.json'
++CANDIDATE_INDEX_SHA = '1b8d384d640090eade57267c2fa055061d563b6f8ccb2b7496d9366edbe069ed'
+ DOMAINS = ['p02','mega_shop','floette','p03','p04_mega_runtime','battle_policy','p05']
+ # GitHub artifact ID, exact size, exact SHA-256. These are originals, not fixtures.
+ ARTIFACTS = {
+@@ -76,11 +77,26 @@
+         need(all(s['status']=='completed' and s['conclusion']=='success' for s in j['steps']),'failed/skipped step')
+     by_id={a['id']:a for a in api['artifacts']}; sets={}; originals={}
+     for label,(aid,size,sha) in ARTIFACTS.items():
+-        raw=read(root,path/(label+'.zip'));need(identity(raw)==dict(size=size,sha256=sha),'original ZIP differs: '+label)
+         a=by_id[aid];fields(a,dict(id=aid,name='final-integration-'+label,size_in_bytes=size,digest='sha256:'+sha))
+         fields(a['workflow_run'],dict(id=RUN,head_sha=HEAD))
+-        sets[label]=archive(raw);need(sets[label]['tested-head.txt'].decode().strip()==HEAD,'tested HEAD differs')
+-        originals[label]=dict(artifact_id=aid,size=size,sha256=sha)
++        if label == 'candidate':
++            # The original wrapper also contains BPS payloads. Keep those OUT of Git.
++            # Preserve original native members, pinned to the exact extracted index.
++            index_raw=read(root,path/'candidate-index.json')
++            need(hashlib.sha256(index_raw).hexdigest()==CANDIDATE_INDEX_SHA,'candidate member index differs')
++            index=load(index_raw);need(len(index)==80,'candidate member count differs')
++            files={}
++            for name,bind in index.items():
++                p=Path(name)
++                need(not p.is_absolute() and '..' not in p.parts and p.suffix.lower() not in ('.gba','.sav','.srm','.bps'),'unsafe native evidence member')
++                files[name]=read(root,path/'candidate'/name)
++                need(identity(files[name])==bind,'candidate original member differs: '+name)
++            sets[label]=files
++        else:
++            raw=read(root,path/(label+'.zip'));need(identity(raw)==dict(size=size,sha256=sha),'original ZIP differs: '+label)
++            sets[label]=archive(raw)
++        need(sets[label]['tested-head.txt'].decode().strip()==HEAD,'tested HEAD differs')
++        originals[label]=dict(artifact_id=aid,size=size,sha256=sha,wrapper_retained_in_git=label!='candidate')
+     candidate=sets['candidate']; merged=sets['merged'];
+     want_rom=dict(size=final.SIZE,sha256=final.SHA)
+     fields(load(candidate['plan.json']),dict(input_rom=dict(path=final.ROM,**want_rom),plan_fingerprint=FINGERPRINT,domain_order=DOMAINS))
+@@ -126,8 +142,12 @@
+     fields(load(merged['merge-summary.json']),dict(status='GITHUB_MATRIX_MERGE_PASS',matrix_mGBA_process_runs=7,merge_mGBA_process_runs=0,plan_fingerprint=FINGERPRINT))
+     patches=load(candidate['handoff/manifest.json'])
+     fields(patches,dict(candidate=want_rom,status='ENGINEERING_HANDOFF_NOT_RELEASE',clean_rom_patch_included=False,release_ready=False))
++    import apply_modernization_stage84_patch as patcher
++    need(set(patches['artifacts'])==set(patcher.PATCHES),'patch set differs')
+     for name,r in patches['artifacts'].items():
+-        need(identity(candidate['handoff/'+name])==r['patch'] and r['roundtrip_verified'] is True,'handoff patch differs')
++        size,sha,source,target=patcher.PATCHES[name]
++        fields(r,dict(patch=dict(size=size,sha256=sha),source=dict(size=final.SIZE,sha256=source),
++                      target=dict(size=final.SIZE,sha256=target),roundtrip_verified=True))
+     protection=load(candidate['protection.json'])
+     fields(protection,dict(full_index_guard_exit=1,full_index_guard_pass=False,guard_disabled=False,originals_deleted=False,visibility_changed=False,baseline_changed=False))
+     return dict(schema_version=1,status='SCOPED_FINAL_CANDIDATE_ACCEPTED_NOT_RELEASE',source_run_id=RUN,source_head_sha=HEAD,
+--- a/scripts/record_modernization_p03_forgetting.py
++++ b/scripts/record_modernization_p03_forgetting.py
+@@ -183,3 +183,6 @@
+         result=build();overview=remaining_work(ROOT,result);target=ROOT/MANIFEST;summary=ROOT/OVERVIEW
++        if (ROOT/'content/modernization/p08_final_candidate_acceptance.json').exists():
++            from record_modernization_final_acceptance import project_overview
++            overview=project_overview(overview,ROOT)
+         if args.write:
+             need(all(not p.exists() and not p.is_symlink() for p in (target,summary)),'refuse existing acceptance overwrite')

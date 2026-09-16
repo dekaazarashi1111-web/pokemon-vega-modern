@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+  "stage": 72,
+  "status": "STAGE71_IDENTITY_PINNED",
+  "inputs": {
+    "stage71_rom": {"path": "build/stages/71_modernization_p04_mega_runtime.gba", "size": 33554432, "sha256": "dbcc1194511f234c7d34c196082d59bfc0cb6aca6bb3b9c0f911bc8add4230bb"},
+    "stage71_metadata": {"path": "build/stages/71_modernization_p04_mega_runtime.json", "sha256": "7050385f0609ec61c7356cef2d0f44c92e42ea72e7295a6bc0bf00968896419c"},
+    "stage71_allocation": {"path": "build/stages/71_modernization_p04_mega_runtime_allocation.json", "sha256": "814cb27f4a5028ddc9bb544b8f1aca7947ac9ba0fb67d638b70af54b17812cbf"},
+    "stage71_mapping": {"path": "content/modernization/p04_mega_runtime_mapping.json", "sha256": "31e4a36301dda169f7b894a62ee823d00ebd1374945a33f1478f3c9eecf5401f"},
+    "stage71_checkpoint": {"path": "content/modernization/p04_mega_runtime_checkpoint.json", "sha256": "0277f745b2f09af0e111cdcdd580bfb3104a74b95afc63ad45770fce539ae73c"},
+    "charmap": {"path": "vendor/upstream/CFRU-JP/charmap.tbl", "sha256": "35c1b978f7004129679751a79cf4b40d7edd2fcd678bc81a29483b64b75b7ed5"}
+  },
+  "source_pins": {
+    "fixed_cfru_jp_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "pokeemerald_expansion_commit": "cafe0221cefb2a991cc0ece429174ade877d037d",
+    "ability_storage": "u16",
+    "battle_mon_stride": 88,
+    "battle_mon_ability_offset": 56
+  },
+  "allocation": {
+    "name": "modernization_p05_ability_rom_runtime_stage72_payload",
+    "region": "integration_modules",
+    "alignment": 16,
+    "owner": "USER-MODERNIZATION-P05-ABILITY-ROM-RUNTIME-STAGE72",
+    "purpose": "Ability 312..317 thin CFRU-JP battle adapters and final descriptions"
+  },
+  "ability_tables": {
+    "count": 318,
+    "names": {"address": "0x094A78DC", "stride": 17, "parent_sha256": "f8851fb0d0b69b771d68932ba55a054d53a9124010470aac70f20c160a0aa2d9"},
+    "descriptions": {"address": "0x094A8DFC", "stride": 4, "parent_sha256": "d68eaef48e2168321ef9b6c580691e7b0da5fffc3e9f9555e92fdf3475d59393", "new_rows_parent_hex": "88784a0996784a09a4784a09b2784a09c0784a09ce784a09"},
+    "ratings": {"address": "0x094A92F4", "stride": 1, "parent_sha256": "f825ae1c50d378278bb2c042218f00bdef86df2418b415139f3d60056cfb607f", "new_rows_parent_hex": "000000000000"},
+    "mold_breaker_ignored": {"address": "0x094A9434", "stride": 1, "parent_sha256": "24e49d78de60490b04e12187237d5c0e8ea6168c0146db7e8c7088a6fd1bb1fb", "new_rows_parent_hex": "000000000000"}
+  },
+  "abilities": [
+    {"id": 312, "key": "ABILITY_KEY_DRAGONIZE", "name": "Dragonize", "description_ja": "ノーマルわざを ドラゴンタイプにして いりょくも あげる。", "rating": 8, "mold_breaker_ignored": 0, "mega_species": 1638},
+    {"id": 313, "key": "ABILITY_KEY_EELEVATE", "name": "Eelevate", "description_ja": "じめんわざを うけず あいてを たおすと いちばんたかい のうりょくが あがる。", "rating": 9, "mold_breaker_ignored": 1, "mega_species": 1634},
+    {"id": 314, "key": "ABILITY_KEY_FIREMANE", "name": "Fire Mane", "description_ja": "ほのおタイプの わざの いりょくが あがる。", "rating": 6, "mold_breaker_ignored": 0, "mega_species": 1655},
+    {"id": 315, "key": "ABILITY_KEY_MEGASOL", "name": "Mega Sol", "description_ja": "じぶんだけ はれと おなじ こうかを うける。", "rating": 8, "mold_breaker_ignored": 0, "mega_species": 1652},
+    {"id": 316, "key": "ABILITY_KEY_PIERCINGDRILL", "name": "Piercing Drill", "description_ja": "せっしょくわざが まもるを つらぬくが ダメージは へる。", "rating": 5, "mold_breaker_ignored": 0, "mega_species": 1636},
+    {"id": 317, "key": "ABILITY_KEY_SPICYSPRAY", "name": "Spicy Spray", "description_ja": "こうげきで ダメージを うけると あいてを やけどにする。", "rating": 4, "mold_breaker_ignored": 0, "mega_species": 1659}
+  ],
+  "mega_binding": {"base_stats_address": "0x094D48F4", "stride": 32, "ability_offsets": [22, 26, 28]},
+  "hooks": [
+    {"name":"AbilityBattleEffects","address":"0x090B667C","width":12,"target":"Stage72_EntryAbilityBattleEffects","parent_hex":"f0b557464e464546de46e0b5"},
+    {"name":"ProtectAffects","address":"0x090BC1E8","width":12,"target":"Stage72_EntryProtectAffects","parent_hex":"f0b5de46574645464e460224"},
+    {"name":"DoesProtectionMoveBlockMove","address":"0x090BC4C0","width":12,"target":"Stage72_EntryDoesProtectionMoveBlockMove","parent_hex":"f0b51400d6464f464646c0b5"},
+    {"name":"AccuracyCalc","address":"0x090BC688","width":8,"target":"Stage72_AccuracyCalc","parent_hex":"f0b5140058226243"},
+    {"name":"VisualAccuracyCalc","address":"0x090BC6B8","width":8,"target":"Stage72_VisualAccuracyCalc","parent_hex":"f0b5ce46474680b5"},
+    {"name":"VisualAccuracyCalc_NoTarget","address":"0x090BC7CC","width":8,"target":"Stage72_VisualAccuracyCalcNoTarget","parent_hex":"f0b5de464e464546"},
+    {"name":"atk01_accuracycheck","address":"0x090BCADC","width":8,"target":"Stage72_Atk01AccuracyCheck","parent_hex":"f0b54e46de465746"},
+    {"name":"ModifyGrowthInSun","address":"0x090C8EF0","width":8,"target":"Stage72_ModifyGrowthInSun","parent_hex":"0d4b1b8810b54a2b"},
+    {"name":"NonInvasiveCheckGrounding","address":"0x090D42F8","width":12,"target":"Stage72_EntryNonInvasiveCheckGrounding","parent_hex":"f8b557464e464546de46e0b5"},
+    {"name":"CheckMonGrounding","address":"0x090D43D4","width":8,"target":"Stage72_CheckMonGrounding","parent_hex":"70b500221b4d0b21"},
+    {"name":"CheckGroundingByDetails","address":"0x090D445C","width":8,"target":"Stage72_CheckGroundingByDetails","parent_hex":"70b5040015000800"},
+    {"name":"CheckGrounding","address":"0x090D4718","width":8,"target":"Stage72_CheckGrounding","parent_hex":"70b51c4e85007259"},
+    {"name":"AttacksThisTurn","address":"0x090D657C","width":8,"target":"Stage72_AttacksThisTurn","parent_hex":"f8b54b00384a5b18"},
+    {"name":"atk49_moveend","address":"0x090DF7A0","width":8,"target":"Stage72_Atk49MoveEnd","parent_hex":"f0b5de464e465746"},
+    {"name":"AdjustBasePower","address":"0x090E3130","width":8,"target":"Stage72_AdjustBasePower","parent_hex":"f0b557464546de46"},
+    {"name":"atk4A_typecalc2","address":"0x090E4780","width":8,"target":"Stage72_Atk4ATypeCalc2","parent_hex":"f0b557464e46de46"},
+    {"name":"atk06_typecalc","address":"0x090E4A80","width":8,"target":"Stage72_Atk06TypeCalc","parent_hex":"f0b5de4645465746"},
+    {"name":"GetMoveTypeSpecialPostAbility","address":"0x090E53B4","width":8,"target":"Stage72_GetMoveTypeSpecialPostAbility","parent_hex":"10b54400154b2418"},
+    {"name":"GetExceptionMoveType","address":"0x090E5414","width":8,"target":"Stage72_GetExceptionMoveType","parent_hex":"f8b5de4657464e46"},
+    {"name":"GetMonExceptionMoveType","address":"0x090E5794","width":8,"target":"Stage72_GetMonExceptionMoveType","parent_hex":"f8b5ce4647464a00"},
+    {"name":"GetMoveTypeSpecialPreAbility","address":"0x090E59D0","width":8,"target":"Stage72_GetMoveTypeSpecialPreAbility","parent_hex":"f8b545001e4b2d18"},
+    {"name":"VisualTypeCalc.part.0","address":"0x090E5A60","width":8,"target":"Stage72_VisualTypeCalcPart","parent_hex":"f0b5de4645465746"},
+    {"name":"AI_TypeCalc.part.0","address":"0x090E5ECC","width":12,"target":"Stage72_EntryAITypeCalcPart","parent_hex":"f0b5de4657464e464546e0b5"},
+    {"name":"AI_SpecialTypeCalc","address":"0x090E6278","width":8,"target":"Stage72_AISpecialTypeCalc","parent_hex":"f0b5de464e464546"},
+    {"name":"TypeCalc","address":"0x090E66D4","width":12,"target":"Stage72_EntryTypeCalc","parent_hex":"f0b5de4657464e464546e0b5"},
+    {"name":"CalcVisualBasePower","address":"0x090E8064","width":12,"target":"Stage72_EntryCalcVisualBasePower","parent_hex":"f0b5c64600b598b098466b46"},
+    {"name":"CalculateBaseDamage","address":"0x090E83D4","width":8,"target":"Stage72_CalculateBaseDamage","parent_hex":"f0b557464546de46"},
+    {"name":"atkC0_recoverbasedonsunlight","address":"0x0910C1EC","width":8,"target":"Stage72_RecoverBasedOnSunlight","parent_hex":"582270b52a4c2078"},
+    {"name":"SetMoveEffect2","address":"0x0912B964","width":8,"target":"Stage72_SetMoveEffect2","parent_hex":"4023f0b54e46de46"}
+  ],
+  "outputs": {
+    "rom": "build/stages/72_modernization_p05_ability_rom_runtime.gba",
+    "metadata": "build/stages/72_modernization_p05_ability_rom_runtime.json",
+    "allocation": "build/stages/72_modernization_p05_ability_rom_runtime_allocation.json",
+    "incremental_bps": "build/patches/stage71-to-stage72-modernization-p05-ability-rom-runtime.bps",
+    "checkpoint": "content/modernization/p05_ability_rom_runtime_checkpoint.json",
+    "surface_matrix": "content/modernization/p05_ability_rom_runtime_surface_matrix.json",
+    "payload": "generated/runtime/modernization_p05_ability_rom_runtime.bin",
+    "symbols": "generated/runtime/modernization_p05_ability_rom_runtime_symbols.json",
+    "audit": "generated/runtime/modernization_p05_ability_rom_runtime_audit.json"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-MEGA-STONE-BP-SHOP",
+  "stage": 68,
+  "inputs": {
+    "rom": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.gba",
+      "size": 33554432,
+      "sha256": "13e4ecb6f2bc72eeb5d7ffb5b5e5a7a2ae2876391bf37ec93cb6548587265111"
+    },
+    "metadata": {
+      "path": "build/stages/67_modernization_p02_p03_consumers.json",
+      "size": 11007,
+      "sha256": "0172ee5b4abd6afe275a6767a92f483e48b828037d7a35350b9baee3e92592ef"
+    },
+    "allocation": {
+      "path": "build/stages/67_modernization_p03_allocation.json",
+      "size": 40521,
+      "sha256": "3fe8f763c4c35dcdf15c2bcd256af569ef064ac051110ce3ed73ec62b9dcdac8"
+    },
+    "candidate_manifest": {
+      "path": "content/modernization/p04_candidate_manifest.json",
+      "sha256": "95fd141a4f38d4fd937af3a3873ae93f99028e94d9422db148279a1b90f6f9ac"
+    },
+    "asset_manifest": {
+      "path": "content/modernization/p04_asset_import_manifest.json",
+      "sha256": "d175514c66ee66d055d8457d6f15ff19b8a0d60f4bceb621e2f8c5e9a5aa8cc0"
+    },
+    "capacity_manifest": {
+      "path": "content/modernization/p04_capacity_allocation_manifest.json",
+      "size": 437769,
+      "sha256": "8377afbe70ff3a1da1c805f51f5e83d49fd0a5befd271e6c549cf0f76bf082fe"
+    },
+    "asset_root": "userfile/generated/modernization_p04_assets",
+    "species_manifest": "manifests/species_ids.csv",
+    "flags_manifest": "manifests/flags.csv",
+    "pointer_site_allowlist": {
+      "path": "config/modernization_mega_shop_pointer_sites.json",
+      "size": 30219,
+      "sha256": "a5bd12b2ae08bbb7bcc1bbb6e14441ba8f9edcc4d43fad4b1cfebaefc2b59019"
+    },
+    "item_bound_allowlist": {
+      "path": "config/modernization_mega_shop_item_bounds.json",
+      "size": 6508,
+      "sha256": "f0ce972f39ec12fe5a2259ea588e954fed0a40f84916bb6662eabe5092573ec6"
+    }
+  },
+  "catalog": {
+    "item_count_before": 999,
+    "item_count_after": 1044,
+    "first_item_id": 999,
+    "last_item_id": 1043,
+    "entry_count": 45,
+    "price_bp": 16,
+    "quantity": 1,
+    "page_size": 5,
+    "page_count": 9,
+    "key_stone_item_id": 580,
+    "key_stone_item_key": "ITEM_KEY_MEGA_RING",
+    "claim_flag_first": "0x14A0",
+    "claim_flag_last": "0x14CC",
+    "claim_storage": "EXPANDED_EVENT_FLAGS_ZERO_DEFAULT",
+    "repeatability": "ONCE_PER_SAVE"
+  },
+  "item_tables": {
+    "template_item_id": 747,
+    "mega_stone_item_type": 50,
+    "item_data": {
+      "address": "0x0904D108",
+      "old_count": 999,
+      "new_count": 1044,
+      "stride": 40
+    },
+    "item_graphics": {
+      "address": "0x09056D20",
+      "old_count": 999,
+      "new_count": 1044,
+      "stride": 8
+    },
+    "item_effect_pointer2": {
+      "address": "0x0915B9D0",
+      "old_count": 999,
+      "new_count": 1044,
+      "stride": 4
+    },
+    "item_fling": {
+      "address": "0x0915B198",
+      "old_count": 999,
+      "new_count": 1044,
+      "stride": 2
+    },
+    "item_type_by_id": {
+      "address": "0x0915A984",
+      "old_count": 999,
+      "new_count": 1044,
+      "stride": 2
+    }
+  },
+  "item_sanitizer": {
+    "address": "0x0809A2AC",
+    "size": 24,
+    "expected_hex": "0004000cfa2189000139884201d2001c00e0002071467047",
+    "new_max_exclusive": 1044
+  },
+  "map": {
+    "group": 96,
+    "map": 5,
+    "local_id": 14,
+    "x": 24,
+    "y": 19,
+    "clone_local_id": 3
+  },
+  "runtime_boundaries": {
+    "codex": "NEW_ITEMS_EXCLUDED_BY_EXISTING_HELD_ITEM_SAFE_MAX_998",
+    "mirage": "NEW_ITEMS_NEVER_ENTER_VIRTUAL_ITEM_ARRAY_OR_10_BIT_PROBE",
+    "item_obtained_bitmap": "SHOP_CLAIMS_USE_EXPANDED_FLAGS_NOT_999_ITEM_BITMAP",
+    "save_layout_version_bump": false
+  },
+  "outputs": {
+    "rom": "build/stages/68_modernization_mega_shop.gba",
+    "metadata": "build/stages/68_modernization_mega_shop.json",
+    "allocation": "build/stages/68_modernization_mega_shop_allocation.json",
+    "bps": "build/stages/68_modernization_mega_shop.bps",
+    "runtime_bin": "generated/runtime/modernization_mega_shop.bin",
+    "runtime_symbols": "generated/runtime/modernization_mega_shop_symbols.json",
+    "catalog_header": "generated/runtime/modernization_mega_shop_catalog_generated.h",
+    "catalog": "content/modernization/mega_shop_catalog.json",
+    "checkpoint": "content/modernization/mega_shop_checkpoint.json"
+  }
+}

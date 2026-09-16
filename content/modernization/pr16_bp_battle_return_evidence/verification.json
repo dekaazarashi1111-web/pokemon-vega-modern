@@ -1,0 +1,180 @@
+{
+  "native_bp_earning_accepted": false,
+  "new_emulator_processes": 0,
+  "release_ready": false,
+  "rows": [
+    {
+      "artifact_id": 10314659211,
+      "classification": "DIAGNOSTIC_ONLY_NOT_ACCEPTANCE",
+      "first_unmatched_condition": "native loss routed to WhiteOut instead of FacilityRuntime_AfterBattle",
+      "job_id": 103703085018,
+      "native_result": {
+        "additional_pp_events": 8,
+        "additional_turns": 8,
+        "battle_outcome": 2,
+        "battle_started": true,
+        "bp_earned": 0,
+        "candidate_sha256": "bffd0b83e3724c2fba216052a3ff45afd3ab194ca2168244874746ce0e4a9e92",
+        "evidence_basis": "DERIVED_FROM_FAILED_PROCESS_STDERR_NOT_SUCCESS_STDOUT",
+        "final_callback2": 134569589,
+        "final_frame": 93925,
+        "final_map": [
+          4,
+          0
+        ],
+        "final_marker": 2,
+        "final_party_count": 3,
+        "final_reward_pending": 0,
+        "final_save_counter": 2,
+        "final_script_pointer": 0,
+        "final_snapshot_valid": 1,
+        "final_streak": 0,
+        "final_xy": [
+          8,
+          5
+        ],
+        "forced_switches": 2,
+        "loss_frame": 11261,
+        "native_afterbattle_observed": false,
+        "native_bp_earning_accepted": false,
+        "native_process_returncode": 1,
+        "original_actions_conclusion": "failure",
+        "original_party_restoration_verified": false,
+        "p05_native_bp_gap_closed": false,
+        "raw_native_status": "FAIL",
+        "release_ready": false,
+        "schema_version": 1,
+        "script_discarded_frame": 11525,
+        "second_chooser_frame": 1789,
+        "selected_frame": 1440,
+        "status": "DIAGNOSTIC_LOSS_WHITEOUT_RETURN_BLOCKED",
+        "whiteout_callback2": 134569829,
+        "whiteout_frame": 11405
+      },
+      "native_screens": {
+        "pr16-bp-battle-return/first-battle-return-battle-action.ppm": {
+          "sha256": "9463af81e46284499f7a6ca0b006a674eedd3e50cad4ea1e3b02377e99cd21f4",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-battle-allocated.ppm": {
+          "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-battle-outcome.ppm": {
+          "sha256": "9fd942bb4613e6cabf9e9cc755f32ef3f8d0d10188b73a9ef57e62da53f9196f",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-chooser-start.ppm": {
+          "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-codex-gateway.ppm": {
+          "sha256": "a9709805b4ec7a7ca9ae17393fcfbb8b22b96384438995c9518ef94ef9fdbc2d",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-entry-menu-1.ppm": {
+          "sha256": "5e6162e6c15b8fba6b9914395e2293f7e78ef02410599b896f756bff57987da7",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-entry-menu-2.ppm": {
+          "sha256": "fa87f0574340635ea3a8b50930a298f1c20f598c57a95bff1d58ac386eee05e8",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-entry-menu-3.ppm": {
+          "sha256": "103c06246a98311b82a9c3d48bb1d88460cfc863211689d3f21e3680f211313c",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-facility-afterbattle.ppm": {
+          "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-failure.ppm": {
+          "sha256": "e8bccedd6d971cb3cd1aaa63f2f5e0aede6465004fb8c3f10865ed311bebcfc6",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-first-move-menu.ppm": {
+          "sha256": "94df9e3776dde7721fb59b087cec310ddcf08b9011373b56968a737788dd1c36",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-first-move-pp-spent.ppm": {
+          "sha256": "1073d1ecbf8bbed718e69da4ab7f7545b2750605f705496154431c29ca9b72b7",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-first-turn-return.ppm": {
+          "sha256": "8824fc41c2e37b3602f302299f0bf70fc12a6fa15644c32ee9d79915d6b89795",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-fixture.ppm": {
+          "sha256": "91746c5414ad2bf2ce73ada44134ee0fe3549437b463ee4b9948c4e97088fab7",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-forced-switch-return.ppm": {
+          "sha256": "dbd89a3bc6aabbf58d061838c5cea24547a71fa5c75656525b8259ead32d7655",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-forced-switch-start.ppm": {
+          "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-post-selection.ppm": {
+          "sha256": "34fedbe2e1b30032546247d67ccdab48a8819edd45be724587c6fb75b4350c24",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-reception-confirm.ppm": {
+          "sha256": "ec22b407813222aa67e7e24de35827e9bbbf401b3badf5e1928e178b0fbb463b",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-reception-mode.ppm": {
+          "sha256": "50e29bb7fd0e8e0cc455ab0a354f44240900efd05533612b8e7ef7438d23a683",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-reception-tier.ppm": {
+          "sha256": "0c59abbe2669e24b104eeb4a9deb2b1e6a4601ef7fbbe8894903fc2de394a5bf",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-rental-party.ppm": {
+          "sha256": "359c089aa97a344cee652267bb165f1793a2ae7633da9ff732566704cd663fa3",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-script-resumed.ppm": {
+          "sha256": "ab02b737b86a87f3d76fdaae1c89f1c788fdbc2082918809be8b8039f3414eef",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-second-confirm.ppm": {
+          "sha256": "33dbd94f1286aa93d4e84c644a2fc0a76bdef19f6731408f6c209967a77f7ac1",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-selected-1.ppm": {
+          "sha256": "19abab88fbaedaf34daf07e425e813f660a8a71f9198910ea6cc27a4161d8c13",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-selected-2.ppm": {
+          "sha256": "f8d2ef534cd06c7ead3a0b2e44fbfde4646bbad20337992cd529363846432d35",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-selected-3.ppm": {
+          "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596",
+          "size": 115215
+        },
+        "pr16-bp-battle-return/first-battle-return-three-selected.ppm": {
+          "sha256": "06aa6aa9c3b2e05928f88884c95f18955904e8e972ef7456889499341f1ee596",
+          "size": 115215
+        }
+      },
+      "new_emulator_processes": 1,
+      "original_conclusion": "failure",
+      "run_id": 34749370272,
+      "successful_fresh_cores": 0,
+      "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102",
+      "verified_chain_sources": 24,
+      "verified_members": 82,
+      "verified_sources": 79,
+      "zip": {
+        "sha256": "9fa6bdf3dc7a4ad316788413b61687c90e23882c742ca938388f9e531ad9ed0c",
+        "size": 883756
+      }
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS_RETAINED_FIRST_BATTLE_DIAGNOSTIC_NOT_BP"
+}

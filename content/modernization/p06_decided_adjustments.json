@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P06-DECIDED-DELTAS",
+  "scope": "TWO_PREVIOUSLY_DECIDED_SPECIES_ADJUSTMENTS",
+  "status": "ADOPTED_FOR_STAGE83_RUNTIME_VALIDATION",
+  "sources": {
+    "Pokemon_Vega_Stage61_Balance_Audit_20260904": {
+      "path": "design/imported/p06_decided_20260904/Pokemon_Vega_Stage61_Balance_Audit_20260904.md",
+      "size": 11697,
+      "sha256": "597b8a1ce34f185721b003ca1ffe089befb202cadb15bb8d1714830c7389453b",
+      "adoption_section": "## 5. 決定済みナーフの評価"
+    },
+    "vega_stage61_learnset_audit": {
+      "path": "design/imported/p06_decided_20260904/vega_stage61_learnset_audit.md",
+      "size": 10998,
+      "sha256": "6b151b9c59c876cbd91fcf320552f4a9bdb993901e5d6f44e35b6be4409fcbe3",
+      "adoption_section": "## 決定済みナーフのスナップショット反映状況"
+    }
+  },
+  "historical_contract": {
+    "path": "content/modernization/p06_species_adjustment_contract.json",
+    "sha256": "1e26b64de260e30c266a0b7af02621bbd602d865436db793443b7428ae996405",
+    "role": "IMMUTABLE_CHECKPOINT_BEFORE_RECOVERED_LIBRARY_DECISIONS"
+  },
+  "parent": {
+    "stage": 82,
+    "size": 33554432,
+    "sha256": "e9dcb375168c92cb4390aaf390b8278dbf08867dd7dc3b834561799ae021710d",
+    "base_stats_pointer_site": 444,
+    "base_stats_address": 156724340,
+    "stride": 32
+  },
+  "adoption": {
+    "explicit_species_adjustment_spec_received": true,
+    "adopted_delta_count": 2,
+    "field_change_count": 3,
+    "runtime_patch_authorized": true,
+    "records": [
+      {
+        "species_key": "SPECIES_KEY_VEGA_220",
+        "form_key": "FORM_KEY_BASE",
+        "display_name": "ジバクン",
+        "expected_id": 220,
+        "expected_parent_row_hex": "376432783c3200070f6c8000000000007f1e46050b0b19000005170000006c00",
+        "changes": [
+          {
+            "field": "ability.normal_1",
+            "before_key": "ABILITY_KEY_WONDERGUARD",
+            "after_key": "ABILITY_KEY_CURSEDBODY"
+          },
+          {
+            "field": "ability.normal_2",
+            "before_key": "ABILITY_KEY_SHADOWTAG",
+            "after_key": "ABILITY_KEY_FRISK"
+          }
+        ]
+      },
+      {
+        "species_key": "SPECIES_KEY_VEGA_373",
+        "form_key": "FORM_KEY_BASE",
+        "display_name": "カモナイツ",
+        "expected_id": 373,
+        "expected_parent_row_hex": "6a4b41743a4801021ec68000000000007f14460004054a00000127000000c600",
+        "changes": [
+          {
+            "field": "base_stat.attack",
+            "before": 75,
+            "after": 45
+          }
+        ]
+      }
+    ]
+  },
+  "policy": {
+    "review_archive_194_records_remain_review_only": true,
+    "no_other_stats_types_or_ability_slots_adopted": true,
+    "hidden_abilities_unchanged": true,
+    "stable_numeric_ids_unchanged": true,
+    "learnsets_unchanged": true,
+    "save_abi_unchanged": true,
+    "stored_ability_slot_selection_preserved": true,
+    "active_stage62_baseline_unchanged": true,
+    "full_p06_acceptance": false,
+    "release_ready": false
+  },
+  "decision_note_ja": "従来のSPEC_NOT_SUBMITTEDは、この2資料の決定済み記述を照合する前の履歴。今回取り込むのは明記された通常特性2枠と攻撃1項目だけ。資料の他の推奨、194件の復元候補、P07配布は自動採用しない。既存個体の能力実数値は通常の能力再計算時に更新され、保存データの強制書換えは行わない。"
+}

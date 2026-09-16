@@ -1,0 +1,117 @@
+name: p03-relearner-bootstrap
+run-name: Publish reviewed P03 relearner sources without changing product or baseline
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/p03-relearner-bootstrap.yml
+      - .github/repairs/p03-relearner-sources.*.b64
+permissions:
+  contents: write
+concurrency:
+  group: p03-relearner-source-publication
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.actor == 'dekaazarashi1111-web'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: Decode only the six reviewed source files
+        run: |
+          set -euo pipefail
+          mkdir -p .local/p03-relearner-publication
+          python3 - <<'PY'
+          import base64,hashlib,json,pathlib,zlib
+          root=pathlib.Path('.')
+          payload=''.join((root/f'.github/repairs/p03-relearner-sources.{i}.b64').read_text().strip() for i in (1,2,3))
+          assert hashlib.sha256((payload+'\n').encode()).hexdigest()=='da0615c7b8af9c11de4d07effb46e67135e31c40f8baa692756184000408146a','source transfer changed'
+          raw=zlib.decompress(base64.b64decode(payload,validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='6d1b2e65d384302ffb4754304f90978f26b265eb2d2cdae82c22abab73dd684a'
+          files=json.loads(raw)
+          expected={
+            'docs/P03_RELEARNER_E2E.md':'012d77d457dcb823f434e0ae6bdeda92ff514844f52cddcd91cda5aa5fbf0100',
+            'tests/test_modernization_p03_relearner_e2e.py':'84bc9f2377386ff1a3af5e8620bdfff9fc6851983d5cb5b49972664a210c35f4',
+            'tools/mgba_modernization_p03_relearner_e2e.c':'79fa2dd982ef7a485d6d18cc0d4908c4a5eb438bf0bf1eccf5a227d92637e071',
+            'scripts/run_modernization_p03_relearner_e2e.py':'51cd8dd85c7f5e6e28c1c435ce1fcca0bf3655f5620400c809339966d3cacc9b',
+            '.github/workflows/p03-relearner-e2e.yml':'38ffcaf99df1c2f7e232b4dfc7d80ae3470f7252d6b9b568426e034f43193402',
+            'tests/fixtures/p03_relearner_cases.json':'15e3a0d3e3da54db700fd226a558a598459fc026bd29013ca7af546821ad3d3b'}
+          assert set(files)==set(expected)
+          for name,text in files.items():
+              data=text.encode(); assert hashlib.sha256(data).hexdigest()==expected[name],name
+              p=root/name
+              assert not any(q.is_symlink() for q in (p,*p.parents)),name
+              assert not p.exists() or p.read_bytes()==data,'refusing to replace changed source: '+name
+          for name,text in files.items():
+              p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(text.encode())
+          (root/'.local/p03-relearner-publication/source-hashes.json').write_text(json.dumps(expected,indent=2)+'\n')
+          print('Six exact source files restored; workflow will be published separately by the GitHub connector.')
+          PY
+      - name: Focused regressions and task graph
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s tests -p test_modernization_p03_relearner_e2e.py -v 2>&1 | tee .local/p03-relearner-publication/tests.log
+          python3 scripts/validate_task_graph.py
+      - name: Append record and verify exact staged scope without changing historical findings
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+          SOURCE_HEAD: ${{ github.sha }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          test "$TARGET_BRANCH" = codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$SOURCE_HEAD"
+          python3 - <<'PY'
+          import os,pathlib
+          text='\n\n## 2026-09-10 — USER-P03-RELEARNER / 未反映ソースの公開\n\n前回ローカルに残した通常思い出し・タマゴ技46ケースの試験ソースを、転送全体と6ファイルのSHA-256を照合して復元した。GitHub上で新規56件の回帰テストとtask graphをPASS後、workflow以外の5ソースと本追記を同じPRへcommit/pushする。workflowはconnectorから別commitで公開する。本公開処理の新規mGBA実行は0件であり、ローカル46件を正式受入へ昇格しない。Stage62、製品ROM、実プレイsave、P06/P07の並行変更、release_ready=falseは不変。\n\n最初の公開run 34445594077は、既存の追跡ROM/saveと過去のActions絶対pathを検出する全index guardで停止した。guard本体と既存ファイルは変更しない。親HEADと変更後indexの全体検査結果が完全一致すること、今回の7差分blobだけを入れた別indexで同じguardがPASSすることを別々に検証し、全体guardの既存失敗をPASSと報告しない。\n\nPublication run: '+os.environ['RUN_ID']+'; input HEAD: '+os.environ['SOURCE_HEAD']+'.\n'
+          for name in ('design/run_log.md','design/version_log.md'):
+              p=pathlib.Path(name);p.write_bytes(p.read_bytes()+text.encode())
+          PY
+          git add docs/P03_RELEARNER_E2E.md tests/test_modernization_p03_relearner_e2e.py tools/mgba_modernization_p03_relearner_e2e.c scripts/run_modernization_p03_relearner_e2e.py tests/fixtures/p03_relearner_cases.json design/run_log.md design/version_log.md
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess,tempfile
+          out=pathlib.Path('.local/p03-relearner-publication')
+          allowed={'docs/P03_RELEARNER_E2E.md','tests/test_modernization_p03_relearner_e2e.py','tools/mgba_modernization_p03_relearner_e2e.c','scripts/run_modernization_p03_relearner_e2e.py','tests/fixtures/p03_relearner_cases.json','design/run_log.md','design/version_log.md'}
+          changed=set(subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().strip('\0').split('\0'))
+          assert changed==allowed,(changed,allowed)
+          def guard(label,env):
+              p=subprocess.run(['python3','scripts/guard_private_files.py'],env=env,capture_output=True)
+              (out/(label+'.stdout.log')).write_bytes(p.stdout)
+              (out/(label+'.stderr.log')).write_bytes(p.stderr)
+              (out/(label+'.exit.txt')).write_text(str(p.returncode)+'\n')
+              return p.returncode,p.stdout,p.stderr
+          after=guard('full-staged',os.environ.copy())
+          with tempfile.TemporaryDirectory() as tmp:
+              env=dict(os.environ,GIT_INDEX_FILE=str(pathlib.Path(tmp)/'baseline.index'))
+              subprocess.run(['git','read-tree','HEAD'],env=env,check=True)
+              before=guard('full-parent',env)
+              assert before==after,'new global guard findings introduced'
+              env['GIT_INDEX_FILE']=str(pathlib.Path(tmp)/'changed.index')
+              subprocess.run(['git','read-tree','--empty'],env=env,check=True)
+              for name in sorted(changed):
+                  sha=subprocess.check_output(['git','rev-parse',':'+name],text=True).strip()
+                  subprocess.run(['git','update-index','--add','--cacheinfo','100644',sha,name],env=env,check=True)
+              scoped=guard('all-seven-changed-blobs',env)
+              assert scoped[0]==0,scoped
+          (out/'guard-scope.json').write_text(json.dumps({'parent_full_exit':before[0],'staged_full_exit':after[0],'inherited_findings_identical':True,'changed_blob_count':len(changed),'changed_blob_guard_exit':scoped[0]},indent=2)+'\n')
+          print('All seven changed blobs pass the unchanged guard; inherited whole-index findings preserved verbatim.')
+          PY
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'USER-P03-RELEARNER: publish five exact sources and 56 passing contract tests'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          git rev-parse HEAD > .local/p03-relearner-publication/published-head.txt
+          test "$(git ls-remote origin "refs/heads/$TARGET_BRANCH" | cut -f1)" = "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p03-relearner-publication
+          path: .local/p03-relearner-publication/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

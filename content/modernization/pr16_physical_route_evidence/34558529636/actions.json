@@ -1,0 +1,105 @@
+{
+  "artifact_id": 10183885718,
+  "artifact_name": "pr16-happiny-breeding-acceptance",
+  "conclusion": "success",
+  "head_branch": "codex/modernization-followup-20260908",
+  "head_sha": "25925166a26f50edc5668cd5727b29498963f44e",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "head_sha": "25925166a26f50edc5668cd5727b29498963f44e",
+      "id": 103136265219,
+      "name": "happiny-breeding",
+      "run_id": 34558529636,
+      "status": "completed",
+      "steps": [
+        {
+          "completed_at": "2026-09-11T03:27:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "started_at": "2026-09-11T03:27:54Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:27:59Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "started_at": "2026-09-11T03:27:55Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:28:31Z",
+          "conclusion": "success",
+          "name": "Preserve exact HEAD and fixed Stage84 parent",
+          "number": 3,
+          "started_at": "2026-09-11T03:27:59Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:28:32Z",
+          "conclusion": "success",
+          "name": "Restore only the exact adopted V4 source",
+          "number": 4,
+          "started_at": "2026-09-11T03:28:31Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:28:49Z",
+          "conclusion": "success",
+          "name": "Frozen candidate and fail-closed tests, prior Pichu suite unchanged",
+          "number": 5,
+          "started_at": "2026-09-11T03:28:32Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:47:42Z",
+          "conclusion": "success",
+          "name": "Actual daycare, conditional species, retained moves, hatch and cold saves",
+          "number": 6,
+          "started_at": "2026-09-11T03:28:49Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:47:42Z",
+          "conclusion": "success",
+          "name": "Preserve exact sources and original results, never ROM or save",
+          "number": 7,
+          "started_at": "2026-09-11T03:47:42Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:47:43Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 8,
+          "started_at": "2026-09-11T03:47:42Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:47:43Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "started_at": "2026-09-11T03:47:43Z",
+          "status": "completed"
+        },
+        {
+          "completed_at": "2026-09-11T03:47:43Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "started_at": "2026-09-11T03:47:43Z",
+          "status": "completed"
+        }
+      ]
+    }
+  ],
+  "path": ".github/workflows/pr16-happiny-breeding.yml",
+  "run_attempt": 1,
+  "run_id": 34558529636,
+  "sha256": "3754678bd00a095d33cde20201b9b2206d35a076cf127d07cfa9ce2318af556a",
+  "size": 97240,
+  "status": "completed"
+}

@@ -1,0 +1,329 @@
+{
+  "corrected_adoption": {
+    "compiled_route_content_sha256": "277e80b384e34c238ce151f85ac2ee18e8904b0be65af3c34dd93b54361d1c42",
+    "consumers": {
+      "egg": {
+        "content_sha256": "dddb574bc634af15ac3570d419804904d64e20868bab55cb675d3cc5c66e1ddf",
+        "count": 2572
+      },
+      "evolution": {
+        "content_sha256": "737e7c4b42cf5cada342164684f5f176ea8f944ff40e9c7834fac9603d9e838d",
+        "count": 341
+      },
+      "form_change": {
+        "content_sha256": "d2dbeaa7db296e70f88142ddf3ed300fd961666a8a9c4cae3cee96899de9858e",
+        "count": 70
+      },
+      "level_up": {
+        "content_sha256": "8d17106a4521d278b8e7cf2d130e12747d6a82674dbb92ce47c35b08805fc607",
+        "count": 18530
+      },
+      "machine": {
+        "content_sha256": "cfb4e2c0d1d7eb9c3a574c2925d8044f88b68c6d980687094b8cb2292ab7875f",
+        "count": 55380
+      },
+      "pre_evolution_carry": {
+        "content_sha256": "363e8a71d7767a1db7207c8d2bfb724f0210f7fcdb61010f23fcc1ce576475ee",
+        "count": 35183
+      },
+      "reminder": {
+        "content_sha256": "5774ecd3d175fe7c1e7a807c0dc3663aefd93c34d1645d2b4f25b36b87d86119",
+        "count": 298
+      },
+      "shared_egg": {
+        "content_sha256": "fcd3735e7c5b7e8f7049c3dc3d7df1ee6481cb705dd6d0073348dd380d9cc797",
+        "count": 5041
+      },
+      "tutor": {
+        "content_sha256": "599611b6cfc8fd6f41f5085021ea99a232232363eeb5f254c9a4b71c2595f122",
+        "count": 1113
+      }
+    },
+    "record_content_sha256": "5b627a53452f7e004f57701ccd9eec086049b5246dea06eaf66e2bc5a7544fb5",
+    "records": 1300,
+    "routes": 118528,
+    "target_route_key_set_sha256": "2b2d7cfd1f03b32f4de4a4666e81348f35887e4ab43837451b19387af04820b3"
+  },
+  "correction": {
+    "added_keys": [
+      "SPECIES_KEY_CATERPIE"
+    ],
+    "caterpie": {
+      "canonical_id": 649,
+      "compiled_routes": [
+        {
+          "consumer": "level_up",
+          "method": "level_up",
+          "project_move_id": 33,
+          "route_id": "e84468471e2a5389cab08c6e",
+          "runtime_slot_zero_based": null,
+          "source_machine_item": ""
+        },
+        {
+          "consumer": "level_up",
+          "method": "level_up",
+          "project_move_id": 81,
+          "route_id": "bcf11b7de237f5503621f3b4",
+          "runtime_slot_zero_based": null,
+          "source_machine_item": ""
+        },
+        {
+          "consumer": "level_up",
+          "method": "level_up",
+          "project_move_id": 535,
+          "route_id": "9d24844ef808e40888791e37",
+          "runtime_slot_zero_based": null,
+          "source_machine_item": ""
+        },
+        {
+          "consumer": "machine",
+          "method": "tm",
+          "project_move_id": 489,
+          "route_id": "f47d1fe9a44cbb635c1de248",
+          "runtime_slot_zero_based": 116,
+          "source_machine_item": "TM82"
+        }
+      ],
+      "reference_id": "swordshield:0010.00",
+      "route_count": 4,
+      "species_key": "SPECIES_KEY_CATERPIE"
+    },
+    "corrected_adopted_records": 1300,
+    "egg": {
+      "apply": false,
+      "canonical_id": 412,
+      "species_key": "SPECIES_KEY_EGG"
+    },
+    "protected_false_targets": 321,
+    "removed_keys": [],
+    "source_adopted_records": 1299
+  },
+  "inputs": {
+    "adoption_decisions": {
+      "path": "config/modernization_adoption_decisions.json",
+      "sha256": "1fd74abe9b2fc1af2f8fdd77ae5d911dfd6abddee314313542f8958b0dab8e7e",
+      "size": 601
+    },
+    "fixed_policy_version": "stage61-native-no-remakes-v1.3",
+    "identity_contract": {
+      "path": "content/modernization/identity_contract.json",
+      "sha256": "be4e08a27986b7e384eab8239f5608732b5c6575b060fdae50efd0c90a810443",
+      "size": 1461322
+    },
+    "learnsets": {
+      "archive_root": "Pokemon_Vega_Stage61_Learnsets_v1_3_20260905",
+      "authoritative_members": {
+        "README_JA.md": {
+          "sha256": "2a33bc7a2499c75134e8f7b543fff49b4dc3664dfb0838db3fe3c488afdbaeb3",
+          "size": 7097
+        },
+        "SCHEMA_JA.md": {
+          "sha256": "7f873ab9aa3853d9d926d3d6fb8ea4b9fbc3e8396f3717d2cb301f6c8951ef80",
+          "size": 8067
+        },
+        "config/policy.json": {
+          "sha256": "d6de9587d4ae92714354f1427c0b32098e625f0ff7687c3bf0234e058622b724",
+          "size": 9289
+        },
+        "config/stage61_form_map.json": {
+          "sha256": "0736718e5add10c7368cc425fa3bfe4ba3d39b6ad9a96262c3b18c6aab7e4108",
+          "size": 413818
+        },
+        "data/adopted_stage61_learnsets.jsonl": {
+          "sha256": "09734339048c7dbf9d18725b2657161012939594291fc2b9f2bce755d753e9ab",
+          "size": 182887565
+        },
+        "data/base_species_1025.csv": {
+          "sha256": "633705e41565c267e3d4d651461de020bc0f8496a4aa920839a011fc0950b598",
+          "size": 235503
+        },
+        "data/move_id_crosswalk.csv": {
+          "sha256": "17bded79b9df09bbf7b040ecfced62631757d3b4b27e55782aaca614fb1f2475",
+          "size": 189708
+        },
+        "data/reference_learnsets.jsonl": {
+          "sha256": "af3ac5a4dda8a3c51642b47f68cf86f47159ad3ff8f82a3e9154591c21fedbe1",
+          "size": 193768661
+        },
+        "data/stage61_record_decisions.csv": {
+          "sha256": "64ba8ef9e39187056d267d385595daf8f529d9a83164f79b2a42c870186dff48",
+          "size": 332961
+        },
+        "implementation/README_JA.md": {
+          "sha256": "f2fed1010ae7ca1aa155324c169723168fa5a9fe1b2c73dad85372555fee8aa7",
+          "size": 1384
+        },
+        "implementation/adopted_project_move_ids.csv": {
+          "sha256": "5d630a3c220e3c45c1cfe892d13e411031681c003b77a86aa7a6aeb6421da8d4",
+          "size": 633505
+        },
+        "implementation/existing_runtime_slot_projection.csv": {
+          "sha256": "3d62e1039a6f58c0f485ab88b978f5f9c946daa81f5dd63d688588d82d17a766",
+          "size": 1783431
+        },
+        "implementation/moves_without_existing_slot.csv": {
+          "sha256": "62d3c9cdd829a1dab12f0b67abf5903748259e39a39addaebac920367096e72b",
+          "size": 3614622
+        },
+        "implementation/new_move_definitions.json": {
+          "sha256": "d5e87b2e07e6094f23780f82684812d5362eb67be7b077e731e320ba1415a696",
+          "size": 771
+        },
+        "scripts/learning_rules_v13.py": {
+          "sha256": "e89919b3d4f334df628cc862bcf0ab4a3b81f671b5d1b16d9c309e3a58772100",
+          "size": 6655
+        },
+        "scripts/validate_v13.py": {
+          "sha256": "2db54dfa4c210951ae671e9e27fb3263d9db2683c156b99be0c6a2e6cfe27bcb",
+          "size": 20969
+        },
+        "validation/acceptance_v13.json": {
+          "sha256": "742bbbbb6e9351571d29477f28b20dce361a5a3926fd730dfbe209db3191e112",
+          "size": 7670
+        }
+      },
+      "member_count": 1817,
+      "role": "learnsets",
+      "sha256": "80b678320c08203e7b39236e5c123f5c2f2f0c729e7f4e5101bed88c84158adb",
+      "size": 82683251
+    },
+    "upstream_validation": {
+      "failed": 0,
+      "passed": 26,
+      "status": "PASS"
+    }
+  },
+  "policy": {
+    "adoption": "REPLACE_NORMAL_TARGET_WITH_FIXED_REFERENCE_NOT_UNION",
+    "carry_to_direct_conversion": "FORBIDDEN",
+    "existing_party_box_save_rewrite": "FORBIDDEN",
+    "identity_join": "SPECIES_KEY_THEN_ASSERT_CANONICAL_ID",
+    "missing_runtime_slot_as_cannot_learn": "FORBIDDEN",
+    "original_machine_number_as_runtime_slot": "FORBIDDEN",
+    "post_input_user_override": "MOVE_KEY_ALLYSWITCH_EXCLUDED_WITHOUT_REPLACEMENT",
+    "route_partition": "EXACTLY_ONE_OF_NINE_CONSUMERS",
+    "source_archive": "IMMUTABLE_STREAM_ONLY",
+    "trainer_facility_explicit_parties": "OUTSIDE_P03_AND_PRESERVED"
+  },
+  "runtime_selection": {
+    "consumers": {
+      "egg": {
+        "content_sha256": "70c3079ae15bbada169217375b93163dd770ebeabb9b8ab30711e48fabf3792a",
+        "count": 2563
+      },
+      "evolution": {
+        "content_sha256": "5d7949db745d425c912aa7470c68985ece5408e3d35f7f4aba6d0dfd2283bc8e",
+        "count": 341
+      },
+      "form_change": {
+        "content_sha256": "02c611eb2d537bf6a9b51c48ab502197a59c6e64dbab324009225975e06a7419",
+        "count": 70
+      },
+      "level_up": {
+        "content_sha256": "2bddfc17b6d61913aae1bb58c4a5644a41c631ff6b671095fa68622519e7acca",
+        "count": 18515
+      },
+      "machine": {
+        "content_sha256": "be36bdcfd036baaee4d8a0af8d75556a578bb09fce2275192541f621a47e68d9",
+        "count": 55312
+      },
+      "pre_evolution_carry": {
+        "content_sha256": "6559b45442223423b713d3e0033a093588583ad55ff891fb6ac235dc035beeb3",
+        "count": 35141
+      },
+      "reminder": {
+        "content_sha256": "61f4243cdb12df5ba9a0548073342bf9cdc39659345d98985b970f5a0c767290",
+        "count": 295
+      },
+      "shared_egg": {
+        "content_sha256": "8ba5fa208acba9f0df6fe8edd2218ae3356ea0fb0ad8fef70af1fa5fa85ce10a",
+        "count": 5023
+      },
+      "tutor": {
+        "content_sha256": "61f2951d240c588fb6ccaca06f85c4286a20d9392c44475aac6ba774f57d9b32",
+        "count": 1109
+      }
+    },
+    "excluded_routes": 159,
+    "exclusions": [
+      {
+        "decision": "NOT_ADOPTED",
+        "move_key": "MOVE_KEY_ALLYSWITCH",
+        "project_move_id": 1063,
+        "replacement_move_key": null,
+        "route_action": "EXCLUDE_FROM_ALL_LEARNSET_CONSUMERS",
+        "routes_by_consumer": {
+          "egg": 9,
+          "level_up": 15,
+          "machine": 68,
+          "pre_evolution_carry": 42,
+          "reminder": 3,
+          "shared_egg": 18,
+          "tutor": 4
+        },
+        "source_route_count": 159,
+        "source_target_count": 103
+      }
+    ],
+    "records": 1300,
+    "selected_route_content_sha256": "ea33056f4bacb307d377ac68abc11a89def6ff0d42e20bfc56b97c27b20a8e0b",
+    "selected_routes": 118369,
+    "selected_target_route_key_set_sha256": "d3422a98b20f541bdc9d62951e8b170e427bebab9babfa7d7787287d64aa8757"
+  },
+  "runtime_supply": {
+    "direct_machine_tutor_pairs": 56421,
+    "excluded_candidate_pairs": 72,
+    "existing_slot_projection_rows": 29773,
+    "projected_rows_by_family": {
+      "machine": 29033,
+      "tutor": 740
+    },
+    "projection_set_sha256": "f4be2d83dae734c9339b790583d1e8c427daac49c964c87205b2f970b6deb3f1",
+    "resolution": "既存slotはruntime zero-based indexへ投影。未配置は削除せず、catalog/compatibility拡張または別供給経路が実装されるまで依存として保持。Side Change 1063は後発のユーザー判断により全consumerから除外し、供給不足へ数えず既存技にも置換しない。",
+    "source_candidate_direct_machine_tutor_pairs": 56493,
+    "supply_required_distinct_moves_by_family": {
+      "machine": 184,
+      "tutor": 31
+    },
+    "supply_required_rows": 26648,
+    "supply_required_rows_by_family": {
+      "machine": 26279,
+      "tutor": 369
+    },
+    "supply_required_set_sha256": "5ef6be8c533e60c07ec1240c3ee8cc1e56c90c505689f3d41436719f338f7968"
+  },
+  "schema_version": 1,
+  "source_reference": {
+    "base_species": {
+      "national_no_max": 1025,
+      "national_no_min": 1,
+      "reference_id_set_sha256": "8aa73dae529848b4cafa576899f167e38275511dfed1667a94f4609c003487ba",
+      "rows": 1025
+    },
+    "method_counts": {
+      "battle_transform": 2,
+      "egg": 5907,
+      "evolution": 454,
+      "form_move": 9,
+      "level_up": 28896,
+      "reminder": 331,
+      "shared_egg": 5148,
+      "special_breeding": 4,
+      "tm": 74506,
+      "tr": 8135,
+      "tutor": 2354
+    },
+    "record_content_sha256": "926f8dbd698ee62098d5fcc6a2334e8ce466ab460813b48051d4b60ab2a3bae7",
+    "reference_records": 1377,
+    "route_id_set_sha256": "efabef5df5cbdc08ae2e631c4a33b1ae0412259429d2691c96babe2b2b4229e1",
+    "route_kind_counts": {
+      "direct": 83950,
+      "form_change": 431,
+      "pre_evolution": 36225,
+      "shared_egg": 5140
+    },
+    "routes": 125746
+  },
+  "status": "PASS",
+  "task": "USER-MODERNIZATION-P03"
+}

@@ -1,0 +1,153 @@
+name: pr16-bp-loss-return-native
+run-name: Scoped Factory native loss return; no accepted cancel replay
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-bp-loss-return-native.yml
+      - scripts/pr16_bp_loss_return_successor.py
+      - tests/test_pr16_bp_loss_return_successor.py
+      - scripts/pr16_bp_loss_return_native.py
+      - overlays/facility_loss_return/**
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-bp-loss-return-native
+  cancel-in-progress: false
+jobs:
+  audit:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Focused tests and current remote reconciliation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-run
+          mkdir -p "$out"
+          python3 -m unittest tests.test_pr16_bp_loss_return_successor -v > "$out/unit.stdout" 2> "$out/unit.stderr"
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 - <<'PYCODE'
+          import json,os,pathlib,subprocess
+          repo=os.environ['GITHUB_REPOSITORY'];head=os.environ['GITHUB_SHA'];branch='codex/modernization-followup-20260908'
+          def api(path):return json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/'+path]))
+          def small(row):return {k:row[k] for k in ('id','name','head_sha','path','status','conclusion','event')}
+          assert api('git/ref/heads/'+branch)['object']['sha']==head,'branch advanced'
+          pr=api('pulls/16');assert pr['state']=='open' and pr['draft'] and not pr['merged'] and pr['head']['sha']==head
+          rows={}
+          for name,expected in [('pr16-bp-battle-return.yml',34749370272),('pr16-bp-loss-return-owner.yml',34757633314),('pr16-bp-candidate-return-audit.yml',34758866475)]:
+              r=api('actions/workflows/'+name+'/runs?branch=codex%2Fmodernization-followup-20260908&per_page=1')['workflow_runs']
+              assert len(r)==1 and r[0]['id']==expected and r[0]['status']=='completed','new result must be reconciled first'
+              rows[name]=small(r[0])
+          start='f8a7ba6b0e5985941c7945df67d651096b77026f'
+          r=api('actions/runs?head_sha='+start+'&per_page=100');assert r['total_count']==len(r['workflow_runs'])
+          rows['entry_head_runs']=[small(v) for v in r['workflow_runs']]
+          rows.update(tested_head=head,entry_head=start,pr_open_draft=True,new_emulator_processes=0)
+          pathlib.Path('.local/pr16-bp-loss-return-run/actions-before.json').write_text(json.dumps(rows,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.');cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member;assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          (root/'.local/pr16-bp-loss-return-run/charmap-binding.json').write_text(json.dumps({'archive_sha256':bound['sha256'],'member':member,'size':len(data),'sha256':hashlib.sha256(data).hexdigest()},sort_keys=True)+'\n')
+          PY
+      - name: Rebuild exact candidate parents without historical native case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Native scoped loss return with original input-only guards
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-bp-loss-return-run
+          sudo apt-get update > "$out/apt-update.log" 2>&1
+          sudo apt-get install -y libmgba-dev > "$out/apt-mgba.log" 2>&1
+          python3 scripts/pr16_bp_loss_return_native.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: Guard scoped engineering evidence; never publish ROM/save/patches
+        id: guard
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,re,shutil,zipfile
+          out=pathlib.Path('.local/pr16-bp-loss-return-run');bound={}
+          snapshot={p:pathlib.Path(p).read_text() for p in ('scripts/pr16_resume.py','tests/test_pr16_resume.py','content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json')}
+          (out/'tracked-snapshot.json').write_text(json.dumps(snapshot,ensure_ascii=False,sort_keys=True,indent=2)+'\n')
+          native=pathlib.Path('.local/pr16-bp-loss-return-native')
+          successor=pathlib.Path('.local/pr16-bp-loss-return-successor')
+          keep=['candidate.json','ledger-valid-bytes.json','compile-1/runtime-disassembly.txt','compile-1/runtime-symbols.txt']
+          for name in keep:
+              p=successor/name
+              if p.exists():shutil.copyfile(p,out/('successor-'+name.replace('/','-')))
+          for p in sorted(out.iterdir()):
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt','.stdout','.stderr','.log'}
+              raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+              bound[p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          if native.exists():
+              for p in sorted(native.iterdir()):
+                  assert p.is_file() and not p.is_symlink()
+                  assert p.suffix in {'.json','.txt','.stdout','.stderr','.ppm','.zip'}
+                  raw=p.read_bytes();assert len(raw)<8000000
+                  if p.suffix=='.zip':
+                      with zipfile.ZipFile(p) as z:
+                          for name in z.namelist():
+                              assert not name.startswith('/') and '..' not in pathlib.PurePosixPath(name).parts
+                              data=z.read(name);data.decode('utf-8');assert b'\0' not in data
+                  elif p.suffix=='.ppm':assert raw.startswith(b'P6') or raw.startswith(b'P3')
+                  else:raw.decode('utf-8');assert b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+                  bound['native/'+p.name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(bound,sort_keys=True,indent=2)+'\n')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.guard.outcome == 'success'
+        with:
+          name: pr16-bp-loss-return-native
+          path: |
+            .local/pr16-bp-loss-return-run/
+            .local/pr16-bp-loss-return-native/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

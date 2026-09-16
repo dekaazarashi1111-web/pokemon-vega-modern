@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P02-RAYQUAZA",
+  "stage": 64,
+  "inputs": {
+    "parent_rom": {
+      "path": "build/stages/63_modernization_p01_identity_repair.gba",
+      "size": 33554432,
+      "sha256": "6642602d33e1e074c20afebfc649846f0aaf106c2455f2ca212a4f427ec74fbd"
+    },
+    "parent_metadata": {
+      "path": "build/stages/63_modernization_p01_identity_repair.json",
+      "size": 5585,
+      "sha256": "9e5b1d6de4074271b7da8631a0b1908dc631d368cb57e0269b70b9a41bc580cf"
+    },
+    "p02_static_contract": {
+      "path": "content/modernization/p02_evolution_contract.json",
+      "size": 1440826,
+      "sha256": "007f80996ad1a758e0f5365e65cd4685a6c9eb7c8a072d25544b86f2f613181b"
+    },
+    "species_manifest": {
+      "path": "manifests/species_ids.csv",
+      "sha256": "4e7cd7ef13761214f506e8ad58611c3dc36a0843b8b6647368677a73613f9366"
+    },
+    "move_manifest": {
+      "path": "manifests/move_ids.csv",
+      "sha256": "dba3c65af59ee2dcfa9eecdeeeb1cc189a990b52e27b1878bad6eaec8e104f20"
+    },
+    "clean_rom": {
+      "path": "inputs/private/FireRed_JPN_Rev0_clean.gba",
+      "size": 16777216,
+      "sha256": "1e4af44b0c75cc8649bfb8649dc4ae5850bf5358bd6b9cd0bf779c99f9db1486"
+    }
+  },
+  "patch": {
+    "patch_key": "P02-EVO-RAYQUAZA-MOVE-NAMESPACE",
+    "table_runtime_address": "0x09F79F38",
+    "table_rom_offset": "0x01F79F38",
+    "species_key": "SPECIES_KEY_RAYQUAZA",
+    "species_id": 645,
+    "slot": 0,
+    "target_species_key": "SPECIES_KEY_RAYQUAZA_MEGA",
+    "target_species_id": 1092,
+    "method_id": 254,
+    "mega_variant": 2,
+    "parameter_rom_offset": "0x01F8E1BA",
+    "parameter_runtime_address": "0x09F8E1BA",
+    "before_move_key": "MOVE_KEY_OVERDRIVE",
+    "before_move_id": 773,
+    "after_move_key": "MOVE_KEY_DRAGONASCENT",
+    "after_move_id": 630,
+    "entry_before_hex": "fe00050344040200",
+    "entry_after_hex": "fe00760244040200"
+  },
+  "outputs": {
+    "rom": "build/stages/64_modernization_p02_rayquaza_parameter_repair.gba",
+    "metadata": "build/stages/64_modernization_p02_rayquaza_parameter_repair.json",
+    "incremental_bps": "build/patches/stage63-to-stage64-modernization-p02-rayquaza-parameter-repair.bps",
+    "clean_bps": "build/patches/firered-jpn-rev0-to-stage64-modernization-p02-rayquaza-parameter-repair.bps",
+    "checkpoint": "content/modernization/p02_stage64_checkpoint.json"
+  },
+  "acceptance": {
+    "static_patch_gate": "REQUIRED",
+    "incremental_bps_round_trip": "REQUIRED",
+    "clean_bps_round_trip": "REQUIRED",
+    "mgba_runtime_gate": "REQUIRED",
+    "task_completion": "CHECKPOINT_NOT_DONE"
+  }
+}

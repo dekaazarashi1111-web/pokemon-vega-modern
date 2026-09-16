@@ -1,0 +1,93 @@
+name: pr16-ring-helper-abi
+run-name: Ring保存helperの全u16返却・stack境界検証と完了記録／ROMとnativeなし
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-helper-abi.yml
+      - scripts/pr16_ring_helper_abi.py
+      - tests/test_pr16_ring_helper_abi.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-helper-abi
+  cancel-in-progress: false
+jobs:
+  helper-abi-record:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Exact HEAD・Actions・保存helper全u16と異常系・引継ぎ・index guard
+        run: python3 scripts/pr16_ring_helper_abi.py run
+      - name: 最新HEAD再確認・完了commit・同branch非force push
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=codex/modernization-followup-20260908
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$GITHUB_SHA"
+          python3 - <<'PY'
+          import json,os,subprocess
+          pr=json.loads(subprocess.check_output(['gh','api','repos/'+os.environ['GITHUB_REPOSITORY']+'/pulls/16']))
+          assert pr['state']=='open' and pr['draft'] and not pr['merged']
+          assert pr['head']['sha']==os.environ['GITHUB_SHA']
+          assert pr['head']['repo']['full_name']==os.environ['GITHUB_REPOSITORY']
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'PR-P08-7: 未読helperの全u16返却・stack境界を検証し固定引継ぎへ記録'
+          git push origin "HEAD:refs/heads/$branch"
+          test "$(git ls-remote origin "refs/heads/$branch" | cut -f1)" = "$(git rev-parse HEAD)"
+          python3 - <<'PY'
+          import json,os,subprocess,sys
+          sys.path.insert(0,'scripts');import pr16_ring_helper_abi as a
+          commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+          for p in a.OUTPUTS:
+              assert subprocess.check_output(['git','show','HEAD:'+p])==(a.ROOT/p).read_bytes()
+          assert subprocess.check_output(['git','status','--porcelain','--untracked-files=no'])==b''
+          value={'status':'PASS_HELPER_U16_ABI_RECORDED_NONFORCE_PUSHED','commit':commit,
+              'source_head':os.environ['GITHUB_SHA'],'run_id':int(os.environ['GITHUB_RUN_ID']),
+              'tests':json.loads((a.OUT/'tests.json').read_bytes()),
+              'guard':json.loads((a.OUT/'guard.json').read_bytes()),
+              'summary':json.loads((a.OUT/'summary.json').read_bytes()),
+              'committed_outputs_byte_verified':list(a.OUTPUTS),
+              'rom_changes':0,'new_emulator_processes':0,'candidate_reconstructions':0,
+              'session_candidate_reconstructions':1,'accepted_native_cases_replayed':0,
+              'helper_return_proven':True,'helper_return_observed':False,
+              'callee_return_proven':False,'ring_acquisition_accepted':False,'release_ready':False}
+          (a.OUT/'recorded-result.json').write_bytes(a.stable(value))
+          print('RESULT=DONE TASK='+a.TASK+' VERIFY=PASS COMMIT='+commit)
+          print(json.dumps(value))
+          PY
+      - name: 限定UTF-8結果のみexport検査
+        if: always()
+        id: export
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib,re
+          root=pathlib.Path('.local/pr16-ring-helper-abi')
+          for p in root.iterdir():
+              assert p.is_file() and not p.is_symlink() and p.suffix in {'.json','.txt'}
+              data=p.read_bytes();data.decode('utf-8')
+              assert b'\0' not in data and len(data)<4000000
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN [A-Z ]*PRIVATE KEY-----',data)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.export.outcome == 'success'
+        with:
+          name: pr16-ring-helper-abi
+          path: .local/pr16-ring-helper-abi/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

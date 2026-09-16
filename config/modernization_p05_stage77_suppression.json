@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "task": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+  "stage": 77,
+  "status": "STAGE76_IDENTITY_PINNED",
+  "parent_identity": {
+    "stage76_commit": "cbf98eddf712ee677eef011e6fc106a67e536c08",
+    "rom": {
+      "path": "build/stages/76_modernization_p05_edges.gba",
+      "size": 33554432,
+      "sha256": "f753f13720aeb5331cfc8a9bf9dd5fd4ad9ac34537356d20d76b73e0100100ac"
+    },
+    "metadata": {
+      "path": "build/stages/76_modernization_p05_edges.json",
+      "size": 6059,
+      "sha256": "46eb197ba064f4380d6bfd31b16b7ad04bc63599707b72254adde2231aa4d792"
+    },
+    "allocation": {
+      "path": "build/stages/76_modernization_p05_edges_allocation.json",
+      "size": 45818,
+      "sha256": "64f992d8288b3d861a8e2cc160af880991e76de1eb1ae7dd4081ee4e8c59ae3e"
+    },
+    "checkpoint": {
+      "path": "content/modernization/p05_stage76_edges_checkpoint.json",
+      "size": 7018,
+      "sha256": "f2951cd2a1cb770d5d325e8f1f596f6251f855e19b2e92d7c05b4f5ce205aa23"
+    },
+    "tracked_config": {
+      "path": "config/modernization_p05_stage76_edges.json",
+      "size": 11451,
+      "sha256": "98da12855ec46c456e0a01912d33659ce2a4d7d49fb250e131355ff6e48eb26f"
+    },
+    "contract": {
+      "path": "content/modernization/p05_stage76_edges_contract.json",
+      "size": 3469,
+      "sha256": "e7bb30ccd0fe8540970295d0ad3f9ced6ce6aeb67bfcd1c67ab7cd4cf0ba295b"
+    },
+    "policy": "FAIL_CLOSED_EXACT_STAGE76_COMMIT_AND_SIX_IDENTITIES"
+  },
+  "source_pins": {
+    "fixed_cfru_jp_commit": "e24a16fe39e27ae162faf5b78596d1f3df18489d",
+    "rom_regions": {
+      "path": "config/rom_regions.csv",
+      "size": 513,
+      "sha256": "f5dcb0ecf2f726bfff1e9c8382204e79b1354ee9071f8d9ac00a83de7a9b3553"
+    },
+    "stage72_config": {
+      "path": "config/modernization_p05_ability_rom_runtime.json",
+      "size": 8975,
+      "sha256": "862fa1e89606a00ee71350c107c53014722392c4cd8c06af93dbcbe405b42cd6"
+    },
+    "stage72_symbols": {
+      "path": "generated/runtime/modernization_p05_ability_rom_runtime_symbols.json",
+      "size": 4341,
+      "sha256": "9204f33ab9b6109d94ee7a19f1b6d96f5ab872d576b034bdb46c40b6547af029"
+    },
+    "stage72_source": {
+      "path": "overlays/modernization_p05_ability_rom_runtime/modernization_p05_ability_rom_runtime.c",
+      "size": 52635,
+      "sha256": "a00e37540d968ecda3c26ab4e7606a7c5efe249621067449921be120ed03a60b"
+    },
+    "fixed_cfru_battle_util": {
+      "path": "vendor/upstream/CFRU-JP/src/battle_util.c",
+      "size": 67724,
+      "sha256": "558c9a85d067e984c96bf83fb0c652a58df3b0b5fbf63620e4ea694195458ed3"
+    },
+    "fixed_cfru_battle_constants": {
+      "path": "vendor/upstream/CFRU-JP/include/constants/battle.h",
+      "size": 16608,
+      "sha256": "88681a4d9e3f34b8608417adf44f828b8c1a19669bba30e00fe22540e2936fb0"
+    },
+    "fixed_cfru_attackcanceler": {
+      "path": "vendor/upstream/CFRU-JP/src/attackcanceler.c",
+      "size": 43335,
+      "sha256": "5344ba9c634786753235ffc6d72cc0c8554930a42991bc81aa04bb1b839f768f"
+    },
+    "fixed_cfru_set_effect": {
+      "path": "vendor/upstream/CFRU-JP/src/set_effect.c",
+      "size": 36110,
+      "sha256": "eb05f91b0ce07c7c56000573492b4ea9ef8c7617db0fcc518dfee71af0241096"
+    },
+    "fixed_cfru_ability_battle_effects": {
+      "path": "vendor/upstream/CFRU-JP/src/ability_battle_effects.c",
+      "size": 113039,
+      "sha256": "760725330a1c94117de914f880807543ab97d97e502b1166d3278e0061144382"
+    },
+    "fixed_cfru_build_pokemon": {
+      "path": "vendor/upstream/CFRU-JP/src/build_pokemon.c",
+      "size": 138366,
+      "sha256": "ac81e3a9a8c7a58105573e6ee2abf62a4b22922e88c6c7d3a1ecdc6c9431e824"
+    },
+    "active_play_baseline_json": {
+      "path": "config/active_play_baseline.json",
+      "size": 394,
+      "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053"
+    },
+    "active_play_baseline_md": {
+      "path": "design/active_play_baseline.md",
+      "size": 5551,
+      "sha256": "e486dfa3fd9771084ba50390dd30b70d5c52e008a0b48f8cd186086e05e819f8"
+    }
+  },
+  "suppression_contract": {
+    "ordinary_suppression": {
+      "gastro_acid": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_SUPPRESSED_ABILITIES_AND_RAW_SET_NONE",
+      "neutralizing_gas": "ALREADY_SAFE_ACTIVE_ABILITY_MOVED_TO_NEUTRALIZING_GAS_BLOCKED_AND_RAW_SET_NONE",
+      "mold_breaker": "ALREADY_SAFE_ONLY_EELEVATE_FLAGGED_AND_IGNORED_ACTIVE_ABILITY_MOVED_TO_DISABLED_MOLD_BREAKER_AND_RAW_SET_NONE",
+      "stage77_behavior": "NO_CHANGE"
+    },
+    "battle_circus_global": {
+      "status": "IMPLEMENT",
+      "battle_type_flags_address": "0x02022AAC",
+      "battle_type_mask": "0x04000000",
+      "circus_flags_address": "0x0203DFBC",
+      "ability_suppression_mask": "0x80000000",
+      "predicate": "(battle_type_flags & 0x04000000) != 0 && (circus_flags & 0x80000000) != 0",
+      "suppressed_path": "TAIL_DELEGATE_STAGE72_ORIGINAL_TRAMPOLINE",
+      "normal_path": "TAIL_DELEGATE_STAGE72_WRAPPER",
+      "unique_hook_count": 29,
+      "ability_surface_occurrence_count": 33,
+      "ability_hook_counts": {
+        "Dragonize": 5,
+        "Eelevate": 12,
+        "Fire Mane": 1,
+        "Mega Sol": 11,
+        "Piercing Drill": 3,
+        "Spicy Spray": 1
+      }
+    },
+    "exclusions": {
+      "eelevate_dedicated_switch_ai": "PENDING_UNSAFE_WITHOUT_FULL_GROUND_ABSORPTION_CONTEXT",
+      "mgba_runtime": "DEFERRED_TO_SINGLE_CUMULATIVE_P05_SMOKE",
+      "browt_pombon_gecqua_added": 0,
+      "side_change_added": 0,
+      "active_play_baseline_changed": false,
+      "release_ready": false,
+      "full_p05_done": false,
+      "done": false
+    }
+  },
+  "parent_abi": {
+    "is_ability_suppressed": {
+      "name": "IsAbilitySuppressed",
+      "address": "0x090D7BB0",
+      "width": 16,
+      "parent_hex": "074b8000c35801201b0107d4054b1b68"
+    },
+    "hooks": [
+      {
+        "name": "AbilityBattleEffects",
+        "address": "0x090B667C",
+        "width": 12,
+        "target": "Stage77_DispatchAbilityBattleEffects",
+        "parent_hex": "9c46014b1847c0460d415309",
+        "normal_delegate": "Stage72_EntryAbilityBattleEffects",
+        "normal_address": "0x0953410D",
+        "suppressed_delegate": "Stage72_OriginalAbilityBattleEffects",
+        "suppressed_address": "0x0953417D",
+        "continuation_thumb": "0x090B6689",
+        "abi": "u8(u8,u8,u16,u16,u16)",
+        "abilities": [
+          "Spicy Spray"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "ProtectAffects",
+        "address": "0x090BC1E8",
+        "width": 12,
+        "target": "Stage77_DispatchProtectAffects",
+        "parent_hex": "9c46014b1847c04625415309",
+        "normal_delegate": "Stage72_EntryProtectAffects",
+        "normal_address": "0x09534125",
+        "suppressed_delegate": "Stage72_OriginalProtectAffects",
+        "suppressed_address": "0x09534199",
+        "continuation_thumb": "0x090BC1F5",
+        "abi": "u8(u16,u8,u8,u8)",
+        "abilities": [
+          "Piercing Drill"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "DoesProtectionMoveBlockMove",
+        "address": "0x090BC4C0",
+        "width": 12,
+        "target": "Stage77_DispatchDoesProtectionMoveBlockMove",
+        "parent_hex": "9c46014b1847c04619415309",
+        "normal_delegate": "Stage72_EntryDoesProtectionMoveBlockMove",
+        "normal_address": "0x09534119",
+        "suppressed_delegate": "Stage72_OriginalDoesProtectionMoveBlockMove",
+        "suppressed_address": "0x095341B5",
+        "continuation_thumb": "0x090BC4CD",
+        "abi": "u8(u8,u8,u16,u16)",
+        "abilities": [
+          "Piercing Drill"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "AccuracyCalc",
+        "address": "0x090BC688",
+        "width": 8,
+        "target": "Stage77_DispatchAccuracyCalc",
+        "parent_hex": "004b1847b1315309",
+        "normal_delegate": "Stage72_AccuracyCalc",
+        "normal_address": "0x095331B1",
+        "suppressed_delegate": "Stage72_OriginalAccuracyCalc",
+        "suppressed_address": "0x09534409",
+        "continuation_thumb": "0x090BC691",
+        "abi": "u32(u16,u8,u8)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "VisualAccuracyCalc",
+        "address": "0x090BC6B8",
+        "width": 8,
+        "target": "Stage77_DispatchVisualAccuracyCalc",
+        "parent_hex": "004b1847f7315309",
+        "normal_delegate": "Stage72_VisualAccuracyCalc",
+        "normal_address": "0x095331F7",
+        "suppressed_delegate": "Stage72_OriginalVisualAccuracyCalc",
+        "suppressed_address": "0x09534421",
+        "continuation_thumb": "0x090BC6C1",
+        "abi": "u32(u16,u8,u8)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "VisualAccuracyCalc_NoTarget",
+        "address": "0x090BC7CC",
+        "width": 8,
+        "target": "Stage77_DispatchVisualAccuracyCalcNoTarget",
+        "parent_hex": "004b18473d325309",
+        "normal_delegate": "Stage72_VisualAccuracyCalcNoTarget",
+        "normal_address": "0x0953323D",
+        "suppressed_delegate": "Stage72_OriginalVisualAccuracyCalcNoTarget",
+        "suppressed_address": "0x09534439",
+        "continuation_thumb": "0x090BC7D5",
+        "abi": "u32(u16,u8)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "atk01_accuracycheck",
+        "address": "0x090BCADC",
+        "width": 8,
+        "target": "Stage77_DispatchAtk01AccuracyCheck",
+        "parent_hex": "004b184775315309",
+        "normal_delegate": "Stage72_Atk01AccuracyCheck",
+        "normal_address": "0x09533175",
+        "suppressed_delegate": "Stage72_OriginalAtk01AccuracyCheck",
+        "suppressed_address": "0x095343F1",
+        "continuation_thumb": "0x090BCAE5",
+        "abi": "void(void)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "ModifyGrowthInSun",
+        "address": "0x090C8EF0",
+        "width": 8,
+        "target": "Stage77_DispatchModifyGrowthInSun",
+        "parent_hex": "004b184781325309",
+        "normal_delegate": "Stage72_ModifyGrowthInSun",
+        "normal_address": "0x09533281",
+        "suppressed_delegate": "Stage72_OriginalModifyGrowthInSun",
+        "suppressed_address": "0x09534451",
+        "continuation_thumb": "0x090C8EF9",
+        "abi": "void(void)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "NonInvasiveCheckGrounding",
+        "address": "0x090D42F8",
+        "width": 12,
+        "target": "Stage77_DispatchNonInvasiveCheckGrounding",
+        "parent_hex": "9c46014b1847c04631415309",
+        "normal_delegate": "Stage72_EntryNonInvasiveCheckGrounding",
+        "normal_address": "0x09534131",
+        "suppressed_delegate": "Stage72_OriginalNonInvasiveCheckGrounding",
+        "suppressed_address": "0x095341D1",
+        "continuation_thumb": "0x090D4305",
+        "abi": "u8(u8,u16,u8,u8,u8)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "CheckMonGrounding",
+        "address": "0x090D43D4",
+        "width": 8,
+        "target": "Stage77_DispatchCheckMonGrounding",
+        "parent_hex": "004b18474d385309",
+        "normal_delegate": "Stage72_CheckMonGrounding",
+        "normal_address": "0x0953384D",
+        "suppressed_delegate": "Stage72_OriginalCheckMonGrounding",
+        "suppressed_address": "0x09534311",
+        "continuation_thumb": "0x090D43DD",
+        "abi": "u8(void*)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "CheckGroundingByDetails",
+        "address": "0x090D445C",
+        "width": 8,
+        "target": "Stage77_DispatchCheckGroundingByDetails",
+        "parent_hex": "004b1847a5385309",
+        "normal_delegate": "Stage72_CheckGroundingByDetails",
+        "normal_address": "0x095338A5",
+        "suppressed_delegate": "Stage72_OriginalCheckGroundingByDetails",
+        "suppressed_address": "0x0953432D",
+        "continuation_thumb": "0x090D4465",
+        "abi": "u8(u16,u16,u16)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "CheckGrounding",
+        "address": "0x090D4718",
+        "width": 8,
+        "target": "Stage77_DispatchCheckGrounding",
+        "parent_hex": "004b1847b1375309",
+        "normal_delegate": "Stage72_CheckGrounding",
+        "normal_address": "0x095337B1",
+        "suppressed_delegate": "Stage72_OriginalCheckGrounding",
+        "suppressed_address": "0x095342F5",
+        "continuation_thumb": "0x090D4721",
+        "abi": "u8(u8)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "AttacksThisTurn",
+        "address": "0x090D657C",
+        "width": 8,
+        "target": "Stage77_DispatchAttacksThisTurn",
+        "parent_hex": "004b184769375309",
+        "normal_delegate": "Stage72_AttacksThisTurn",
+        "normal_address": "0x09533769",
+        "suppressed_delegate": "Stage72_OriginalAttacksThisTurn",
+        "suppressed_address": "0x095342D9",
+        "continuation_thumb": "0x090D6585",
+        "abi": "u8(u8,u16)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "atk49_moveend",
+        "address": "0x090DF7A0",
+        "width": 8,
+        "target": "Stage77_DispatchAtk49MoveEnd",
+        "parent_hex": "004b18472d3f5309",
+        "normal_delegate": "Stage72_Atk49MoveEnd",
+        "normal_address": "0x09533F2D",
+        "suppressed_delegate": "Stage72_OriginalAtk49MoveEnd",
+        "suppressed_address": "0x095343A5",
+        "continuation_thumb": "0x090DF7A9",
+        "abi": "void(void)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "AdjustBasePower",
+        "address": "0x090E3130",
+        "width": 8,
+        "target": "Stage77_DispatchAdjustBasePower",
+        "parent_hex": "004b1847d1335309",
+        "normal_delegate": "Stage72_AdjustBasePower",
+        "normal_address": "0x095333D1",
+        "suppressed_delegate": "Stage72_OriginalAdjustBasePower",
+        "suppressed_address": "0x09534279",
+        "continuation_thumb": "0x090E3139",
+        "abi": "u16(void*,u16)",
+        "abilities": [
+          "Dragonize",
+          "Fire Mane"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "atk4A_typecalc2",
+        "address": "0x090E4780",
+        "width": 8,
+        "target": "Stage77_DispatchAtk4ATypeCalc2",
+        "parent_hex": "004b1847753e5309",
+        "normal_delegate": "Stage72_Atk4ATypeCalc2",
+        "normal_address": "0x09533E75",
+        "suppressed_delegate": "Stage72_OriginalAtk4ATypeCalc2",
+        "suppressed_address": "0x0953438D",
+        "continuation_thumb": "0x090E4789",
+        "abi": "void(void)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "atk06_typecalc",
+        "address": "0x090E4A80",
+        "width": 8,
+        "target": "Stage77_DispatchAtk06TypeCalc",
+        "parent_hex": "004b18478d3d5309",
+        "normal_delegate": "Stage72_Atk06TypeCalc",
+        "normal_address": "0x09533D8D",
+        "suppressed_delegate": "Stage72_OriginalAtk06TypeCalc",
+        "suppressed_address": "0x09534375",
+        "continuation_thumb": "0x090E4A89",
+        "abi": "void(void)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "GetMoveTypeSpecialPostAbility",
+        "address": "0x090E53B4",
+        "width": 8,
+        "target": "Stage77_DispatchGetMoveTypeSpecialPostAbility",
+        "parent_hex": "004b184775335309",
+        "normal_delegate": "Stage72_GetMoveTypeSpecialPostAbility",
+        "normal_address": "0x09533375",
+        "suppressed_delegate": "Stage72_OriginalGetMoveTypeSpecialPostAbility",
+        "suppressed_address": "0x09534241",
+        "continuation_thumb": "0x090E53BD",
+        "abi": "u8(u16,u16,u8)",
+        "abilities": [
+          "Dragonize"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "GetExceptionMoveType",
+        "address": "0x090E5414",
+        "width": 8,
+        "target": "Stage77_DispatchGetExceptionMoveType",
+        "parent_hex": "004b184789365309",
+        "normal_delegate": "Stage72_GetExceptionMoveType",
+        "normal_address": "0x09533689",
+        "suppressed_delegate": "Stage72_OriginalGetExceptionMoveType",
+        "suppressed_address": "0x095342A9",
+        "continuation_thumb": "0x090E541D",
+        "abi": "u8(u8,u16)",
+        "abilities": [
+          "Dragonize",
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "GetMonExceptionMoveType",
+        "address": "0x090E5794",
+        "width": 8,
+        "target": "Stage77_DispatchGetMonExceptionMoveType",
+        "parent_hex": "004b18470d375309",
+        "normal_delegate": "Stage72_GetMonExceptionMoveType",
+        "normal_address": "0x0953370D",
+        "suppressed_delegate": "Stage72_OriginalGetMonExceptionMoveType",
+        "suppressed_address": "0x095342C1",
+        "continuation_thumb": "0x090E579D",
+        "abi": "u8(void*,u16)",
+        "abilities": [
+          "Dragonize",
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "GetMoveTypeSpecialPreAbility",
+        "address": "0x090E59D0",
+        "width": 8,
+        "target": "Stage77_DispatchGetMoveTypeSpecialPreAbility",
+        "parent_hex": "004b1847dd325309",
+        "normal_delegate": "Stage72_GetMoveTypeSpecialPreAbility",
+        "normal_address": "0x095332DD",
+        "suppressed_delegate": "Stage72_OriginalGetMoveTypeSpecialPreAbility",
+        "suppressed_address": "0x0953425D",
+        "continuation_thumb": "0x090E59D9",
+        "abi": "u8(u16,u8,void*)",
+        "abilities": [
+          "Dragonize"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "VisualTypeCalc.part.0",
+        "address": "0x090E5A60",
+        "width": 8,
+        "target": "Stage77_DispatchVisualTypeCalcPart",
+        "parent_hex": "004b1847353a5309",
+        "normal_delegate": "Stage72_VisualTypeCalcPart",
+        "normal_address": "0x09533A35",
+        "suppressed_delegate": "Stage72_OriginalVisualTypeCalcPart",
+        "suppressed_address": "0x0953435D",
+        "continuation_thumb": "0x090E5A69",
+        "abi": "u8(u16,u8,u8)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "AI_TypeCalc.part.0",
+        "address": "0x090E5ECC",
+        "width": 12,
+        "target": "Stage77_DispatchAITypeCalcPart",
+        "parent_hex": "9c46014b1847c04649415309",
+        "normal_delegate": "Stage72_EntryAITypeCalcPart",
+        "normal_address": "0x09534149",
+        "suppressed_delegate": "Stage72_OriginalAITypeCalcPart",
+        "suppressed_address": "0x09534209",
+        "continuation_thumb": "0x090E5ED9",
+        "abi": "u8(u16,u8,u8,void*)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "AI_SpecialTypeCalc",
+        "address": "0x090E6278",
+        "width": 8,
+        "target": "Stage77_DispatchAISpecialTypeCalc",
+        "parent_hex": "004b1847d9395309",
+        "normal_delegate": "Stage72_AISpecialTypeCalc",
+        "normal_address": "0x095339D9",
+        "suppressed_delegate": "Stage72_OriginalAISpecialTypeCalc",
+        "suppressed_address": "0x09534345",
+        "continuation_thumb": "0x090E6281",
+        "abi": "u8(u16,u8,u8)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "TypeCalc",
+        "address": "0x090E66D4",
+        "width": 12,
+        "target": "Stage77_DispatchTypeCalc",
+        "parent_hex": "9c46014b1847c0463d415309",
+        "normal_delegate": "Stage72_EntryTypeCalc",
+        "normal_address": "0x0953413D",
+        "suppressed_delegate": "Stage72_OriginalTypeCalc",
+        "suppressed_address": "0x095341ED",
+        "continuation_thumb": "0x090E66E1",
+        "abi": "u8(u16,u8,u8,void*,u8)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "CalcVisualBasePower",
+        "address": "0x090E8064",
+        "width": 12,
+        "target": "Stage77_DispatchCalcVisualBasePower",
+        "parent_hex": "9c46014b1847c04655415309",
+        "normal_delegate": "Stage72_EntryCalcVisualBasePower",
+        "normal_address": "0x09534155",
+        "suppressed_delegate": "Stage72_OriginalCalcVisualBasePower",
+        "suppressed_address": "0x09534225",
+        "continuation_thumb": "0x090E8071",
+        "abi": "u16(u8,u8,u16,u8)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "ORIGINAL_R3_IN_R12"
+      },
+      {
+        "name": "CalculateBaseDamage",
+        "address": "0x090E83D4",
+        "width": 8,
+        "target": "Stage77_DispatchCalculateBaseDamage",
+        "parent_hex": "004b1847c5345309",
+        "normal_delegate": "Stage72_CalculateBaseDamage",
+        "normal_address": "0x095334C5",
+        "suppressed_delegate": "Stage72_OriginalCalculateBaseDamage",
+        "suppressed_address": "0x09534291",
+        "continuation_thumb": "0x090E83DD",
+        "abi": "s32(void*)",
+        "abilities": [
+          "Mega Sol",
+          "Piercing Drill"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "atkC0_recoverbasedonsunlight",
+        "address": "0x0910C1EC",
+        "width": 8,
+        "target": "Stage77_DispatchRecoverBasedOnSunlight",
+        "parent_hex": "004b1847d13f5309",
+        "normal_delegate": "Stage72_RecoverBasedOnSunlight",
+        "normal_address": "0x09533FD1",
+        "suppressed_delegate": "Stage72_OriginalRecoverBasedOnSunlight",
+        "suppressed_address": "0x095343D5",
+        "continuation_thumb": "0x0910C1F5",
+        "abi": "void(void)",
+        "abilities": [
+          "Mega Sol"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      },
+      {
+        "name": "SetMoveEffect2",
+        "address": "0x0912B964",
+        "width": 8,
+        "target": "Stage77_DispatchSetMoveEffect2",
+        "parent_hex": "004b1847f53e5309",
+        "normal_delegate": "Stage72_SetMoveEffect2",
+        "normal_address": "0x09533EF5",
+        "suppressed_delegate": "Stage72_OriginalSetMoveEffect2",
+        "suppressed_address": "0x095343BD",
+        "continuation_thumb": "0x0912B96D",
+        "abi": "u8(void)",
+        "abilities": [
+          "Eelevate"
+        ],
+        "r3_contract": "STAGE72_R3_CLOBBER_VENEER_COMPATIBLE"
+      }
+    ],
+    "preserved_stage76_patches": [
+      {
+        "name": "SolarBeamEffectScript",
+        "address": "0x0903FCA4",
+        "width": 4,
+        "parent_hex": "48585d09"
+      },
+      {
+        "name": "AI_CalcDmg",
+        "address": "0x090E9E64",
+        "width": 12,
+        "parent_hex": "9c46014b1847c046c1575d09"
+      },
+      {
+        "name": "AIScript_Partner",
+        "address": "0x090A95E4",
+        "width": 12,
+        "parent_hex": "9c46014b1847c046cd575d09"
+      },
+      {
+        "name": "RangeMoveCanHurtPartner",
+        "address": "0x090B0048",
+        "width": 8,
+        "parent_hex": "004b1847e1575d09"
+      }
+    ],
+    "negative_preservation_sites": [
+      {
+        "name": "FindMonAbsorberActiveAbilityBlock",
+        "address": "0x090A03E4",
+        "width": 16,
+        "parent_hex": "95235b009b463100280010f0bffa5b46"
+      },
+      {
+        "name": "FindMonAbsorberPartyAbilityBlock",
+        "address": "0x090A0426",
+        "width": 12,
+        "parent_hex": "3000984639f007ffe38e0700"
+      }
+    ]
+  },
+  "allocation": {
+    "name": "modernization_p05_stage77_circus_suppression_payload",
+    "region": "integration_modules",
+    "alignment": 16,
+    "owner": "USER-MODERNIZATION-P05-STAGE77-CIRCUS-SUPPRESSION",
+    "purpose": "Battle Circus global ability-suppression dispatch for all 29 Stage72 ability hooks"
+  },
+  "outputs": {
+    "rom": "build/stages/77_modernization_p05_circus_suppression.gba",
+    "metadata": "build/stages/77_modernization_p05_circus_suppression.json",
+    "allocation": "build/stages/77_modernization_p05_circus_suppression_allocation.json",
+    "incremental_bps": "build/patches/stage76-to-stage77-modernization-p05-circus-suppression.bps",
+    "payload": "generated/runtime/modernization_p05_stage77_suppression.bin",
+    "symbols": "generated/runtime/modernization_p05_stage77_suppression_symbols.json",
+    "audit": "generated/runtime/modernization_p05_stage77_suppression_audit.json",
+    "contract": "content/modernization/p05_stage77_suppression_contract.json",
+    "checkpoint": "content/modernization/p05_stage77_suppression_checkpoint.json"
+  }
+}
