@@ -5800,3 +5800,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Correction: 前工程SELECTOR-OWNERSのNetwork「外部技術資料なし」はセッション全体では不正確。上記pret sourceをGitHub接続から比較参照した。旧ログは保存し、この追記を訂正記録とする。
 - Commit: task graph/最終index guard成功後、最新HEAD照合して同branch非force push。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
 - Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T10:04:05.988662+00:00 — PR-P08-7-RING-RECORD-CALLERS
+- Timestamp: 2026-09-16T10:04:05.988662+00:00
+- Task: PR-P08-7-RING-RECORD-CALLERS / initializer実caller候補と外部calleeの未読byteだけを固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-record-callers
+- Summary: initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。
+- Files changed: scripts/pr16_ring_record_callers.py, tests/test_pr16_ring_record_callers.py, .github/workflows/pr16-ring-record-callers.yml, content/modernization/pr16_ring_record_callers.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fd4ba2041e61d425bec24d107d4abe08f7b94f38; run=35082799310（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。
