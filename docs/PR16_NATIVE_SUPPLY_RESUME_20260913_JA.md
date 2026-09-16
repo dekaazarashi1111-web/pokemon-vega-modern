@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未解決外部callee0x08113889の1根だけ23命令/46byteを採取保存。他root/保存済み命令のdecodeは0。外部辺・間接辺・未読境界を保持し、calleeのABI/副作用/owner除外は未受入。本セッション5工程は採取3件/保存ABI2件、ROM変更0・受入済みnative再実行0。
+外部callee0x08113889の保存23命令/46byte・literal20byteで局所ABIを検証。u8/u16切詰め65792件、unsigned分岐8診断、16byte PUSHと2未読境界を固定。RAM再読の同値/stack非aliasは仮定せず、帰還・callee全副作用・owner除外は未受入。
 
-**次: 次は保存済みpr16_ring_external1_bytes.jsonだけで0x08113889の局所ABI・副作用・呼出境界を検証する。今回5工程のbyte再採取/ABI単独再実行は禁止。0x0806DD1D/0x081138F9と旧18owner、採取で現れた未解決辺は保持。Ring通常story取得、policy/Circus、最終候補/releaseは未完のまま。**
+**次: 次は未読継続0x081138C9の1根だけ採取する。保存prefixは再実行せず16byte live-frameを継承。次いで保存継続ABI、0x081138F1末尾採取/ABIへ。0x0806DD1D/0x081138F9・旧18ownerは保持しRing通常取得は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d8b18f448c5c0db940d5e4f045a602d916e3d171`。
+証拠のsource HEAD: `48e81bb4249b6f2b610d93fb20b62dec5f903bfd`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_external1_abi.json`
+- `scripts/pr16_ring_external1_abi.py`
 - `content/modernization/pr16_ring_external1_bytes.json`
-- `scripts/pr16_ring_external1_bytes.py`
-- `content/modernization/pr16_ring_high_branch_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -106,6 +106,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 0x0806DE51高域分岐は採取済み。同一candidateの再採取をせず保存byteのABIへ進む。保存共通末尾/帰還末尾/既受入BPは再実行しない。
 - 高域0x0806DE51の保存8命令は算術ABI検証済み。再採取・既読ABIの単独再実行をせず、次は外部callee0x08113889を1根だけ進める。
 - 外部callee0x08113889の限定byteは保存済み。同一candidateから再採取せず保存graphのABIを検証する。他callee/旧18targetを解決済みへ変えない。
+- 0x08113889の保存prefix ABIは完了。再採取/単独ABI再実行をせず、未読0x081138C9/0x081138F1のみを進める。局所stack書込を全副作用なし/帰還/owner除外に昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -135,6 +136,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35013060593の原結論と保存証拠、BP run34946969126成功を照合。今回run35013389513は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35013389513の原結論と保存証拠、BP run34946969126成功を照合。今回run35048669015は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
