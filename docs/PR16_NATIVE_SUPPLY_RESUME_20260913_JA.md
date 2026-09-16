@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-external1未読継続0x081138C9だけ18命令/36byteを採取保存。16byte継承frameと末尾0x081138F1を保持し、既読命令/他rootのdecodeは0。採取を帰還/副作用除外/Ring取得受入へ昇格しない。
+保存継続18命令/36byteの15bit key/1bit mode照合を65792件で検証。一致時だけrecord+2 pointerとcounter STRH、不一致は0。counter wrapと保存LR/返却pointerの仮想alias反例を保持。bufferの範囲/整列/非aliasと帰還は未証明。prefix/ROM/native実行0。
 
-**次: 次は保存済みpr16_ring_external1_cont_bytes.jsonだけで継続のABI・副作用・未解決辺を検証する。prefix再実行/byte再採取は禁止。続いて0x081138F1末尾採取/ABI。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。**
+**次: 次は未読帰還末尾0x081138F1の1根だけ採取し、その保存byteの復元/帰還ABIを検証する。prefix/継続の再実行禁止。0x0806DD1D/0x081138F9・旧18owner・保存slot非aliasを未完で保持しRing通常取得へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `951d12949d86f18f77c57b8e51eb9b35c12647c6`。
+証拠のsource HEAD: `e95e2655414975a9bc353ad3fc0e4365ba6ab523`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_external1_cont_abi.json`
+- `scripts/pr16_ring_external1_cont_abi.py`
 - `content/modernization/pr16_ring_external1_cont_bytes.json`
-- `scripts/pr16_ring_external1_cont_bytes.py`
-- `content/modernization/pr16_ring_external1_abi.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -108,6 +108,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 外部callee0x08113889の限定byteは保存済み。同一candidateから再採取せず保存graphのABIを検証する。他callee/旧18targetを解決済みへ変えない。
 - 0x08113889の保存prefix ABIは完了。再採取/単独ABI再実行をせず、未読0x081138C9/0x081138F1のみを進める。局所stack書込を全副作用なし/帰還/owner除外に昇格しない。
 - 0x081138C9の1根継続byteは保存済み。prefix/継続を再採取せず保存継続ABIへ。0x081138F1末尾、他callee、旧18ownerの未証明範囲を保持する。
+- external1保存継続18命令のpointer/条件付きcounter STRHは検証済み。再採取・単独ABI再実行をせず末尾0x081138F1へ。counter/返却pointerの保存slot非aliasと格納域サイズは未証明。
 
 ## 次セッションへ残す更新手順
 
@@ -137,6 +138,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35048669015の原結論と保存証拠、BP run34946969126成功を照合。今回run35048828662は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35048828662の原結論と保存証拠、BP run34946969126成功を照合。今回run35049393487は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -5511,3 +5511,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存済みpr16_ring_external1_cont_bytes.jsonだけで継続のABI・副作用・未解決辺を検証する。prefix再実行/byte再採取は禁止。続いて0x081138F1末尾採取/ABI。0x0806DD1D/0x081138F9・旧18owner・Ring通常取得は未完を保持。
+
+
+## 2026-09-16T02:48:33.946343+00:00 — PR-P08-7-RING-EXTERNAL1-CONT-ABI
+- Timestamp: 2026-09-16T02:48:33.946343+00:00
+- Task: PR-P08-7-RING-EXTERNAL1-CONT-ABI / 保存継続の15bit key/1bit mode照合とpointer返却・counter書込を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external1-cont-abi
+- Summary: 保存継続18命令/36byteの15bit key/1bit mode照合を65792件で検証。一致時だけrecord+2 pointerとcounter STRH、不一致は0。counter wrapと保存LR/返却pointerの仮想alias反例を保持。bufferの範囲/整列/非aliasと帰還は未証明。prefix/ROM/native実行0。
+- Files changed: scripts/pr16_ring_external1_cont_abi.py, tests/test_pr16_ring_external1_cont_abi.py, .github/workflows/pr16-ring-external1-cont-abi.yml, content/modernization/pr16_ring_external1_cont_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e95e2655414975a9bc353ad3fc0e4365ba6ab523; run=35049393487（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読帰還末尾0x081138F1の1根だけ採取し、その保存byteの復元/帰還ABIを検証する。prefix/継続の再実行禁止。0x0806DD1D/0x081138F9・旧18owner・保存slot非aliasを未完で保持しRing通常取得へ昇格しない。
