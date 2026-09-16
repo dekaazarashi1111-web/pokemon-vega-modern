@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。",
+    "current_stop": "保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。",
+    "next_step": "未読0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560を保存byte優先で検証する。initializerのcomputed/RAM/mirrored-PC callerとpointer/size/LIMIT、旧18owner、Ring通常取得/装備実戦/保存は未完。既読7delegate・前回分岐走査・BP受入を再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -322,7 +322,8 @@
     "initializer/外部callee6根のBL・pointer参照と不足byteは保存原本を再利用する。selectorの既存literal採取/initializer ABI/BP/nativeは再実行しない。採取されたcall候補は実到達やRing取得受入を意味しない。",
     "保存BCD変換2048vector・I/O wrapper条件モデル・tick/init prefix・veneerは完了。0x09099E16は0x081C9DF9へのtail veneerで、memset効果/帰還保存を証明していない。同じ局所ABI/byte採取を繰り返さず、保存された未読delegateと実到達だけを進める。",
     "run35082799310のcaller採取20testsとrun35084187651のrole35testsは成功原本/保存commitまで照合済み。今回closeoutを含め保存原本を再利用し、同条件のbyte採取/ABI/nativeを再実行しない。",
-    "未検索Thumb短分岐/ADR・ARM B/BL/ADR・PC相対literal参照の探索と6delegateの不足byte採取は保存原本を再利用。canonical実行addressに限定した候補探索で、computed pointer/実到達/全caller不存在は未証明。"
+    "未検索Thumb短分岐/ADR・ARM B/BL/ADR・PC相対literal参照の探索と6delegateの不足byte採取は保存原本を再利用。canonical実行addressに限定した候補探索で、computed pointer/実到達/全caller不存在は未証明。",
+    "branch-frontier採取と7delegateの局所契約は保存原本を再利用。memsetの限定ベクトル、reset、I/O readerの供給bit列モデル、gate、date validatorを通常story/hardware受入へ昇格しない。0x0912C4A8/0x0912C554/0x09099E04とmonth table/間接callerが次の未読境界。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -395,13 +396,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。",
+    "goal_ja": "未読0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560を保存byte優先で検証する。initializerのcomputed/RAM/mirrored-PC callerとpointer/size/LIMIT、旧18owner、Ring通常取得/装備実戦/保存は未完。既読7delegate・前回分岐走査・BP受入を再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_branch_frontier.json",
-      "scripts/pr16_ring_branch_frontier.py",
-      "content/modernization/pr16_ring_control_closeout.json"
+      "content/modernization/pr16_ring_delegate_contracts.json",
+      "scripts/pr16_ring_delegate_contracts.py",
+      "content/modernization/pr16_ring_branch_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -410,9 +411,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
+  "observed_head": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
   "observed_head_checks": {
-    "reason_ja": "先行run35084702528の原結論と保存証拠、BP run34946969126成功を照合。今回run35086278411は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35086278411の原結論と保存証拠、BP run34946969126成功を照合。今回run35087488359は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -573,9 +574,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。"
+    "scope_ja": "保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1901,10 +1902,26 @@
     "content/modernization/pr16_ring_branch_frontier.json": {
       "size": 18753,
       "sha256": "3c1ea4c589af430f115a0a6ed02c330e41e609fb14fdc6f60e9c01090a80861b"
+    },
+    "scripts/pr16_ring_delegate_contracts.py": {
+      "size": 22642,
+      "sha256": "df3016656c40b1a46b2926405c4fc520e5d5637408fa4b9de94dfd3dcad5c3d7"
+    },
+    "tests/test_pr16_ring_delegate_contracts.py": {
+      "size": 7441,
+      "sha256": "63d09c338de267f5dc151a4b86664512bfc4bcbf03d962bb19eec9d69fc9290a"
+    },
+    ".github/workflows/pr16-ring-delegate-contracts.yml": {
+      "size": 1969,
+      "sha256": "3cadcc8a69b21795c2eba8fcdfa0b1ab704929ce3ca57a71b2470d0d8957e6c4"
+    },
+    "content/modernization/pr16_ring_delegate_contracts.json": {
+      "size": 11904,
+      "sha256": "3423377b57a598d22e36a1f1447e44172a8bf65bdb73a0d3c269877b918df77d"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。",
+  "source_change_review_ja": "保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2326,9 +2343,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_branch_frontier.json",
-    "source_head": "82614a5fabc17ba3de1d22b990c272b2ac6b25e8",
-    "run_id": 35086278411
+    "path": "content/modernization/pr16_ring_delegate_contracts.json",
+    "source_head": "935e9116d3f2bff62b00b95eebe7e7bafb372068",
+    "run_id": 35087488359
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

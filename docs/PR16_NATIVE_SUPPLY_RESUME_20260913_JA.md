@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。
+保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。
 
-**次: 保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。**
+**次: 未読0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560を保存byte優先で検証する。initializerのcomputed/RAM/mirrored-PC callerとpointer/size/LIMIT、旧18owner、Ring通常取得/装備実戦/保存は未完。既読7delegate・前回分岐走査・BP受入を再実行しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `82614a5fabc17ba3de1d22b990c272b2ac6b25e8`。
+証拠のsource HEAD: `935e9116d3f2bff62b00b95eebe7e7bafb372068`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_delegate_contracts.json`
+- `scripts/pr16_ring_delegate_contracts.py`
 - `content/modernization/pr16_ring_branch_frontier.json`
-- `scripts/pr16_ring_branch_frontier.py`
-- `content/modernization/pr16_ring_control_closeout.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -129,6 +129,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存BCD変換2048vector・I/O wrapper条件モデル・tick/init prefix・veneerは完了。0x09099E16は0x081C9DF9へのtail veneerで、memset効果/帰還保存を証明していない。同じ局所ABI/byte採取を繰り返さず、保存された未読delegateと実到達だけを進める。
 - run35082799310のcaller採取20testsとrun35084187651のrole35testsは成功原本/保存commitまで照合済み。今回closeoutを含め保存原本を再利用し、同条件のbyte採取/ABI/nativeを再実行しない。
 - 未検索Thumb短分岐/ADR・ARM B/BL/ADR・PC相対literal参照の探索と6delegateの不足byte採取は保存原本を再利用。canonical実行addressに限定した候補探索で、computed pointer/実到達/全caller不存在は未証明。
+- branch-frontier採取と7delegateの局所契約は保存原本を再利用。memsetの限定ベクトル、reset、I/O readerの供給bit列モデル、gate、date validatorを通常story/hardware受入へ昇格しない。0x0912C4A8/0x0912C554/0x09099E04とmonth table/間接callerが次の未読境界。
 
 ## 次セッションへ残す更新手順
 
@@ -158,6 +159,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35084702528の原結論と保存証拠、BP run34946969126成功を照合。今回run35086278411は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35086278411の原結論と保存証拠、BP run34946969126成功を照合。今回run35087488359は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -5864,3 +5864,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。
+
+
+## 2026-09-16T10:55:00.080461+00:00 — PR-P08-7-RING-DELEGATE-CONTRACTS
+- Timestamp: 2026-09-16T10:55:00.080461+00:00
+- Task: PR-P08-7-RING-DELEGATE-CONTRACTS / 保存7delegateの書込範囲・帰還・未読境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-delegate-contracts
+- Summary: 保存7delegateを限定検証: fill2584、reset/gate/status各256、reader3072、date1767ベクトル。GPIO書込/buffer範囲を固定。day0/hour24/minute60/second60許容は実装事実として保持。ROM復元/変更/native/BP再実行0。通常Ring取得は未受入。
+- Files changed: scripts/pr16_ring_delegate_contracts.py, tests/test_pr16_ring_delegate_contracts.py, .github/workflows/pr16-ring-delegate-contracts.yml, content/modernization/pr16_ring_delegate_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=935e9116d3f2bff62b00b95eebe7e7bafb372068; run=35087488359（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560を保存byte優先で検証する。initializerのcomputed/RAM/mirrored-PC callerとpointer/size/LIMIT、旧18owner、Ring通常取得/装備実戦/保存は未完。既読7delegate・前回分岐走査・BP受入を再実行しない。
