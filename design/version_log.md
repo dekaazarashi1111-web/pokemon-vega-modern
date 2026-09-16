@@ -3440,3 +3440,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 残るcallee0x0806DC49と非null継続0x08002D15、11本のROM文字列を保存pendingの非重複窓（合計83byte）だけ有限採取する。次の契約では実callerのtask index<16/非循環列/文字列buffer境界を別途結合し、slot255診断を実ゲームbugや正常受入に読み替えない。同じ採取/旧795・716契約/FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:41:54.954032+00:00 — PR-P08-7-RING-TEXT-FRONTIER
+- Timestamp: 2026-09-16T17:41:54.954032+00:00
+- Task: PR-P08-7-RING-TEXT-FRONTIER / 未読VarGet callee・非null継続と11文字列83byteを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-frontier
+- Summary: 未読2入口と11文字列83byteを有限採取。新規76命令、11文字列で窓内FFを保存。ROM変更/native0。
+- Files changed: scripts/pr16_ring_text_frontier.py, tests/test_pr16_ring_text_frontier.py, .github/workflows/pr16-ring-text-frontier.yml, content/modernization/pr16_ring_text_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=030143d88235cbb02503bda2d66a372ef19ffb72; run=35129632449（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したVarGet callee・非null継続と11文字列を実byteの合成契約へ結合する。task index<16/非循環列・文字列buffer境界は実caller証拠と分離し、未読callee/間接辺は保存pendingで絞る。同じ採取・旧795/716契約・FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
