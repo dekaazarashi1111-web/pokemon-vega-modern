@@ -3216,3 +3216,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 新規保存081C85A5命令を解析し、戻値・ABI・閏年suffixを検証する。再採取/既読GPIO/月表/BPを繰り返さない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18owner、Ring正規取得・装備実戦・保存は未完。policy/Circus/P08も未受入。
+
+
+## 2026-09-16T13:01:41.673886+00:00 — PR-P08-7-RING-LEAP-CONTRACTS
+- Timestamp: 2026-09-16T13:01:41.673886+00:00
+- Task: PR-P08-7-RING-LEAP-CONTRACTS / 保存剰余callee・中継ABI・二月閏年suffixを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-leap-contracts
+- Summary: 保存192byteの非0除数剰余7256vector・中継105vector・二月7185vectorを検証。BCD year4倍数25値はday29許容、r4-r11/SP・入力不変。除数0だけ081C7FCCへ未読call。暦epoch/汎用世紀判定は未証明。候補復元/新規byte採取/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_leap_contracts.py, tests/test_pr16_ring_leap_contracts.py, .github/workflows/pr16-ring-leap-contracts.yml, content/modernization/pr16_ring_leap_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定37 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ee4089b940fe03c17fbb0919ecb2b44af36c63a6; run=35099285622（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: GPIO/月表/剰余/閏年suffixの保存契約を再利用し、initializer08113984のcomputed/RAM caller・実pointer/size/LIMIT、または旧18未読ownerの未観測辺へ進む。除数0の081C7FCCは実callerで必要性が出るまで再採取しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。BPと既読契約は単独再実行しない。

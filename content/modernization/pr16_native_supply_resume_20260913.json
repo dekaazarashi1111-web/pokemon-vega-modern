@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存中継081C85A5の未読512byteだけを固定。preflight/source/候補identityを検証し、既読GPIO/月表/BPは再実行0。剰余・ABI・閏年はまだ未受入。",
+    "current_stop": "保存192byteの非0除数剰余7256vector・中継105vector・二月7185vectorを検証。BCD year4倍数25値はday29許容、r4-r11/SP・入力不変。除数0だけ081C7FCCへ未読call。暦epoch/汎用世紀判定は未証明。候補復元/新規byte採取/ROM変更/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新規保存081C85A5命令を解析し、戻値・ABI・閏年suffixを検証する。再採取/既読GPIO/月表/BPを繰り返さない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18owner、Ring正規取得・装備実戦・保存は未完。policy/Circus/P08も未受入。",
+    "next_step": "GPIO/月表/剰余/閏年suffixの保存契約を再利用し、initializer08113984のcomputed/RAM caller・実pointer/size/LIMIT、または旧18未読ownerの未観測辺へ進む。除数0の081C7FCCは実callerで必要性が出るまで再採取しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。BPと既読契約は単独再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -327,7 +327,8 @@
     "今回frontier30testsと7delegate36testsは成功Actions・原artifact・保存commitまで照合済み。新規66tests/限定8191vectorの実装成果を再利用し、同一探索・byte採取・ABI・受入BP/nativeを繰り返さない。",
     "未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。",
     "GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。",
-    "081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。"
+    "081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。",
+    "保存081C85A5の非0除数剰余・中継ABI・二月suffixを再利用。除数0の未読helperや実年offset、caller/pointer/size/LIMITの証明へ昇格しない。同じbyte採取/候補復元/GPIO/月表/BPを単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -400,13 +401,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "新規保存081C85A5命令を解析し、戻値・ABI・閏年suffixを検証する。再採取/既読GPIO/月表/BPを繰り返さない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18owner、Ring正規取得・装備実戦・保存は未完。policy/Circus/P08も未受入。",
+    "goal_ja": "GPIO/月表/剰余/閏年suffixの保存契約を再利用し、initializer08113984のcomputed/RAM caller・実pointer/size/LIMIT、または旧18未読ownerの未観測辺へ進む。除数0の081C7FCCは実callerで必要性が出るまで再採取しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。BPと既読契約は単独再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_divmod_frontier.json",
-      "scripts/pr16_ring_divmod_frontier.py",
-      "content/modernization/pr16_ring_clock_contracts.json"
+      "content/modernization/pr16_ring_leap_contracts.json",
+      "scripts/pr16_ring_leap_contracts.py",
+      "content/modernization/pr16_ring_divmod_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -415,9 +416,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
+  "observed_head": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
   "observed_head_checks": {
-    "reason_ja": "先行run35091501711の原結論と保存証拠、BP run34946969126成功を照合。今回run35097533760は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35097533760の原結論と保存証拠、BP run34946969126成功を照合。今回run35099285622は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -578,9 +579,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存中継081C85A5の未読512byteだけを固定。preflight/source/候補identityを検証し、既読GPIO/月表/BPは再実行0。剰余・ABI・閏年はまだ未受入。"
+    "scope_ja": "保存192byteの非0除数剰余7256vector・中継105vector・二月7185vectorを検証。BCD year4倍数25値はday29許容、r4-r11/SP・入力不変。除数0だけ081C7FCCへ未読call。暦epoch/汎用世紀判定は未証明。候補復元/新規byte採取/ROM変更/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1986,10 +1987,26 @@
     "content/modernization/pr16_ring_divmod_frontier.json": {
       "size": 10223,
       "sha256": "759bb3568756c7b13b87123f1d239ef768a4844af6ca03be58e2ec05ecc024ce"
+    },
+    "scripts/pr16_ring_leap_contracts.py": {
+      "size": 15576,
+      "sha256": "38e7288db44b11a4351d4818a24b450f2d90f56a6f3f9cec9a04a08ec2bbfaba"
+    },
+    "tests/test_pr16_ring_leap_contracts.py": {
+      "size": 7377,
+      "sha256": "b50c4b9f450ba72806d980d6979671cdc179185cb983ed56e206629e98ce24ed"
+    },
+    ".github/workflows/pr16-ring-leap-contracts.yml": {
+      "size": 1930,
+      "sha256": "7ac6f2d1c9a568f0fac5c457943b97ea7900d56261df2091d6b7958c08fce4f8"
+    },
+    "content/modernization/pr16_ring_leap_contracts.json": {
+      "size": 13384,
+      "sha256": "a13f5936b97164358a7a16b13e1b81f83a646561208d19127b0a1c6876b597b4"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存中継081C85A5の未読512byteだけを固定。preflight/source/候補identityを検証し、既読GPIO/月表/BPは再実行0。剰余・ABI・閏年はまだ未受入。",
+  "source_change_review_ja": "保存192byteの非0除数剰余7256vector・中継105vector・二月7185vectorを検証。BCD year4倍数25値はday29許容、r4-r11/SP・入力不変。除数0だけ081C7FCCへ未読call。暦epoch/汎用世紀判定は未証明。候補復元/新規byte採取/ROM変更/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2411,9 +2428,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_divmod_frontier.json",
-    "source_head": "d51cfce034a86a14c151fbe6ef0135bc75ea635b",
-    "run_id": 35097533760
+    "path": "content/modernization/pr16_ring_leap_contracts.json",
+    "source_head": "ee4089b940fe03c17fbb0919ecb2b44af36c63a6",
+    "run_id": 35099285622
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
