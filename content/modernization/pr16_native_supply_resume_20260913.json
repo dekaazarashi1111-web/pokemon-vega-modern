@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。",
+    "current_stop": "保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。",
+    "next_step": "保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -325,7 +325,8 @@
     "未検索Thumb短分岐/ADR・ARM B/BL/ADR・PC相対literal参照の探索と6delegateの不足byte採取は保存原本を再利用。canonical実行addressに限定した候補探索で、computed pointer/実到達/全caller不存在は未証明。",
     "branch-frontier採取と7delegateの局所契約は保存原本を再利用。memsetの限定ベクトル、reset、I/O readerの供給bit列モデル、gate、date validatorを通常story/hardware受入へ昇格しない。0x0912C4A8/0x0912C554/0x09099E04とmonth table/間接callerが次の未読境界。",
     "今回frontier30testsと7delegate36testsは成功Actions・原artifact・保存commitまで照合済み。新規66tests/限定8191vectorの実装成果を再利用し、同一探索・byte採取・ABI・受入BP/nativeを繰り返さない。",
-    "未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。"
+    "未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。",
+    "GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -398,13 +399,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。",
+    "goal_ja": "保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_unread_frontier.json",
-      "scripts/pr16_ring_unread_frontier.py",
-      "content/modernization/pr16_ring_session_closeout.json"
+      "content/modernization/pr16_ring_clock_contracts.json",
+      "scripts/pr16_ring_clock_contracts.py",
+      "content/modernization/pr16_ring_unread_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -413,9 +414,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "d202443b94604ebffa1396104eec495611480e46",
+  "observed_head": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
   "observed_head_checks": {
-    "reason_ja": "先行run35087956576の原結論と保存証拠、BP run34946969126成功を照合。今回run35090180714は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35090180714の原結論と保存証拠、BP run34946969126成功を照合。今回run35091501711は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -576,9 +577,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。"
+    "scope_ja": "保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1952,10 +1953,26 @@
     "content/modernization/pr16_ring_unread_frontier.json": {
       "size": 13830,
       "sha256": "1b7e08195d8c2d3f7d326e79102d760d6801eb9274ebf3e3131cc963b041a7df"
+    },
+    "scripts/pr16_ring_clock_contracts.py": {
+      "size": 17570,
+      "sha256": "383c1c1425559f24aa73180a44747044555ce1a9ff65a4948fc2ce873bf35acf"
+    },
+    "tests/test_pr16_ring_clock_contracts.py": {
+      "size": 8697,
+      "sha256": "8e5bc302d5757969b353fcab168c44e271330a08807f2e8a0a6b1a24bdd28450"
+    },
+    ".github/workflows/pr16-ring-clock-contracts.yml": {
+      "size": 1937,
+      "sha256": "95aad4330f99994c1f7d1e50d0b1639c54862ff45507983e58dd1a2f5ec2226a"
+    },
+    "content/modernization/pr16_ring_clock_contracts.json": {
+      "size": 20155,
+      "sha256": "937753132d8a1546f8ffb7b2e815b773ce58dcd67079d46cab4e335f4b1089be"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。",
+  "source_change_review_ja": "保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2377,9 +2394,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_unread_frontier.json",
-    "source_head": "d202443b94604ebffa1396104eec495611480e46",
-    "run_id": 35090180714
+    "path": "content/modernization/pr16_ring_clock_contracts.json",
+    "source_head": "f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0",
+    "run_id": 35091501711
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

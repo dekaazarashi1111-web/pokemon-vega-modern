@@ -3184,3 +3184,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T11:39:56.899277+00:00 — PR-P08-7-RING-CLOCK-CONTRACTS
+- Timestamp: 2026-09-16T11:39:56.899277+00:00
+- Task: PR-P08-7-RING-CLOCK-CONTRACTS / GPIO2delegate・月表境界・外部中継の保存byte契約を確定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-clock-contracts
+- Summary: 保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_clock_contracts.py, tests/test_pr16_ring_clock_contracts.py, .github/workflows/pr16-ring-clock-contracts.yml, content/modernization/pr16_ring_clock_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0; run=35091501711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。

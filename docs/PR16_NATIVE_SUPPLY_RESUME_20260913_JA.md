@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。
+保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。
 
-**次: 保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。**
+**次: 保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d202443b94604ebffa1396104eec495611480e46`。
+証拠のsource HEAD: `f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_clock_contracts.json`
+- `scripts/pr16_ring_clock_contracts.py`
 - `content/modernization/pr16_ring_unread_frontier.json`
-- `scripts/pr16_ring_unread_frontier.py`
-- `content/modernization/pr16_ring_session_closeout.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -132,6 +132,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - branch-frontier採取と7delegateの局所契約は保存原本を再利用。memsetの限定ベクトル、reset、I/O readerの供給bit列モデル、gate、date validatorを通常story/hardware受入へ昇格しない。0x0912C4A8/0x0912C554/0x09099E04とmonth table/間接callerが次の未読境界。
 - 今回frontier30testsと7delegate36testsは成功Actions・原artifact・保存commitまで照合済み。新規66tests/限定8191vectorの実装成果を再利用し、同一探索・byte採取・ABI・受入BP/nativeを繰り返さない。
 - 未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。
+- GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。
 
 ## 次セッションへ残す更新手順
 
@@ -161,6 +162,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35087956576の原結論と保存証拠、BP run34946969126成功を照合。今回run35090180714は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35090180714の原結論と保存証拠、BP run34946969126成功を照合。今回run35091501711は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
