@@ -2975,3 +2975,20 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存external1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABI・BP受入・修正済みP05期待テストを同一入力で再実行しない。旧18ownerとRing通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:49:26.763555+00:00 — PR-P08-7-RING-CALLER-COMPOSE
+- Timestamp: 2026-09-16T04:49:26.763555+00:00
+- Task: PR-P08-7-RING-CALLER-COMPOSE / 保存external1/2/3とFlagSet callerの結合・経路別frameと非alias十分条件
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-caller-compose
+- Summary: 保存17契約を実callsite3箇所へ結合。selector2到達ID1712件を2区間で導出し、最大44byte frame・external3 mode1/u8 payload・counter非wrap・FlagSet最終1byte書込を限定検証。canonical RAM/整列/wrap/alias/未提示同期条件を拒否するsnapshot checkerを実装。fixtureは実SP/base/LR証拠へ昇格せず、旧ABI/受入native再実行0。
+- Network補足: RAM境界の設計参考は https://github.com/mgba-emu/mgba/blob/master/include/mgba/internal/gba/memory.h 。共有runner定型の「外部技術資料なし」は本工程には適用しない。
+- Files changed: scripts/pr16_ring_caller_compose.py, tests/test_pr16_ring_caller_compose.py, .github/workflows/pr16-ring-caller-compose.yml, content/modernization/pr16_ring_caller_compose.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=fc985116e19073345ac2f4f3511d76f9f40daa84; run=35057073533（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存caller結合を再利用し、同一candidateの実FlagSet入口SP/LR・record/save/global snapshotとallocation/帰還先/同期条件をboundした限定証拠をcheckerへ渡す。fixtureでは受入しない。実caller不明のまま旧18ownerを除外しない。Ring通常取得・policy/Circus・P08最終判定は未完。
