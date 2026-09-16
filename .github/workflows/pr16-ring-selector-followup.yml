@@ -1,0 +1,81 @@
+name: pr16-ring-selector-followup
+run-name: Ring未観測selector・record所有権の限定検証
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-selector-followup.yml
+      - scripts/pr16_ring_selector_followup.py
+      - tests/test_pr16_ring_selector_followup.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-selector-followup
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 保存済み証拠のidentity確認と限定source転送
+        run: |
+          python3 - <<'PY'
+          import fnmatch, hashlib, json, pathlib, subprocess, zipfile
+          root=pathlib.Path('.'); out=root/'.local/pr16-ring-selector-followup'
+          out.mkdir(parents=True,exist_ok=True)
+          close=json.loads((root/'content/modernization/pr16_ring_snapshot_closeout.json').read_text())
+          for name, binding in close['source_bindings'].items():
+              raw=(root/name).read_bytes()
+              assert len(raw)==binding['size'] and hashlib.sha256(raw).hexdigest()==binding['sha256'],name
+          patterns=['scripts/pr16_ring_*.py','tests/test_pr16_ring_*.py',
+                    'tools/mgba_pr16_ring*.c','content/modernization/pr16_ring*.json',
+                    '.github/workflows/pr16-ring-*.yml']
+          exact={'scripts/pr16_resume.py','tests/test_pr16_resume.py',
+                 'content/modernization/pr16_native_supply_resume_20260913.json',
+                 'content/modernization/pr16_bp_chooser_checkpoint.json',
+                 'content/modernization/p08_remaining_work.json',
+                 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+                 'content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl'}
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          manifest={}
+          with zipfile.ZipFile(out/'source-context.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in names:
+                  if name not in exact and not any(fnmatch.fnmatchcase(name,p) for p in patterns):
+                      continue
+                  p=root/name
+                  assert p.is_file() and not p.is_symlink(),name
+                  raw=p.read_bytes();raw.decode('utf-8')
+                  assert b'\0' not in raw and len(raw)<=4000000,name
+                  z.writestr(name,raw)
+                  manifest[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+              info={'source_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+                    'files':manifest,'new_emulator_processes':0,'accepted_native_cases_replayed':0,
+                    'purpose_ja':'未観測selector/record所有権の実装用。既存ABIテストとnativeは再実行しない。'}
+              z.writestr('source-context-manifest.json',json.dumps(info,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'source_head':info['source_head'],'source_files':len(manifest),'saved_source_bindings':'PASS','native_processes':0}))
+          PY
+      - name: 新規対象だけを検証・記録・非force保存
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if test -f scripts/pr16_ring_selector_followup.py; then
+            python3 scripts/pr16_ring_selector_followup.py run
+          else
+            echo 'WIP: source転送のみ。未実装の検証をPASS扱いしない。'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-selector-followup
+          path: .local/pr16-ring-selector-followup/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
