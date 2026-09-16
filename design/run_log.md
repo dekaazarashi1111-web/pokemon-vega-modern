@@ -6024,3 +6024,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 今回の保存callee・validator継続・jump各caseを実callsite/frame/書込へ結合し、残る未読辺だけを進める。7入口/5要素表や既読copy/checksum/BPを再採取・単独再実行しない。全caller/initializer LIMIT・Ring正規story取得/装備実戦/保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:03:08.341375+00:00 — PR-P08-7-RING-EFFECTIVE-CONTRACTS
+- Timestamp: 2026-09-16T15:03:08.341375+00:00
+- Task: PR-P08-7-RING-EFFECTIVE-CONTRACTS / 新規pop/mode/veneerとvalidatorエラー継続を保存証拠へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-effective-contracts
+- Summary: 新規calleeを結合し、mode全256値、pop/ScriptReturn512ケース、validatorエラー19ケースを検証。中継2件を既知validator/0x093BDE81へ接続。Ring受入・live全frameとは別。ROM/native再実行0。
+- Files changed: scripts/pr16_ring_effective_contracts.py, tests/test_pr16_ring_effective_contracts.py, .github/workflows/pr16-ring-effective-contracts.yml, content/modernization/pr16_ring_effective_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ac9f30514b92070eb44b86b23562239a3a0617a4; run=35112649740（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存結合を再利用し、残るdirect callee 0x08008B49,0x08068CCD,0x080F7DBD,0x081C27DD と未読中継先 0x093BDE81・窓外継続のみを進める。正常header継続はversion1=0x093BDAA8、version2=0x093BDB3Eで停止する。新規7入口/表/既読契約/BPは単独再実行せず、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
