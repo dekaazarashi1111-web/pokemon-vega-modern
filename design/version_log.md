@@ -3168,3 +3168,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存7delegate契約を再利用し、0x0912C4A9/0x0912C555/0x09099E05とmonth table0x09169530..0x09169560、initializer0x08113984のcomputed/RAM/mirrored-PC caller・pointer/size/LIMITを追う。既読byte/ABI/BPを再実行しない。旧18ownerとRing正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T11:26:36.025259+00:00 — PR-P08-7-RING-UNREAD-FRONTIER
+- Timestamp: 2026-09-16T11:26:36.025259+00:00
+- Task: PR-P08-7-RING-UNREAD-FRONTIER / 未読3delegate・月表・mirrored-PC参照の限定追跡を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-unread-frontier
+- Summary: 未読3delegate/月表の新規1278byteとmirrored-PC参照0候補を固定。保存134byteを再利用。候補復元1、ROM変更/native/BP再実行0。月表は値を採取しただけでcalendar契約未受入。
+- Files changed: scripts/pr16_ring_unread_frontier.py, tests/test_pr16_ring_unread_frontier.py, .github/workflows/pr16-ring-unread-frontier.yml, content/modernization/pr16_ring_unread_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定42 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d202443b94604ebffa1396104eec495611480e46; run=35090180714（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存した0x0912C4A9/0x0912C555/0x09099E05と12word月表を局所契約へ分解する。mirrored候補があればcode/data境界から追い、computed/RAM caller・initializer pointer/size/LIMITを未完に保つ。採取/旧7delegate/BPを再実行しない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
