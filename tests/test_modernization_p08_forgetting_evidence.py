@@ -166,13 +166,28 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
             'content/modernization/pr16_p03_p07_route_coverage.json')
 
         p05 = conditions['NATURAL_CAPTURE_GEAR']
+        # BP受入原本を保持し、Ring/policyの未完を消去しない。
         self.assertEqual(
-            p05['status'], 'PENDING_THREE_BOUND_NATIVE_SUPPLY_ACCEPTANCES')
+            p05['status'], 'PENDING_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES')
         self.assertEqual(p05['remaining_supply_gap_ids'], [
             'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
-            'P05_NATIVE_BP_EARNING_PHYSICAL',
             'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
         ])
+        bp_ref = current['bp_chooser_checkpoint']
+        self.assertEqual(bp_ref['path'],
+                         'content/modernization/pr16_bp_chooser_checkpoint.json')
+        bp = record.load((ROOT/bp_ref['path']).read_bytes())
+        self.assertEqual(bp_ref['latest_native_run'], 34946969126)
+        self.assertEqual(bp_ref['accepted_case_count'], 3)
+        self.assertEqual(bp['accepted_case_count'], 3)
+        self.assertEqual(bp['accepted_case_ids'], [
+            'rental-cancel-save-continue',
+            'native-three-win-reward-9bp',
+            'native-bp-spending-save-continue',
+        ])
+        self.assertEqual(bp['candidate']['sha256'],
+                         'ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b')
+        self.assertIs(current['full_p05_acceptance'], False)
         self.assertEqual(
             p05['supply_coverage_manifest'],
             'content/modernization/pr16_p05_native_supply_reconciliation.json')
