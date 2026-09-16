@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存byteだけでGPIO2関数のread1024/write1792vectorと月表11か月2816dayを検証。month境界765vectorでは無効244値が表外readへ進むことを記録し、実機faultとは断定しない。09099E04は081C85A5への中継で剰余/閏年契約は未証明。先行42tests成功原本と初回failureを保持。候補復元/ROM変更/native再実行0。
+保存中継081C85A5の未読512byteだけを固定。preflight/source/候補identityを検証し、既読GPIO/月表/BPは再実行0。剰余・ABI・閏年はまだ未受入。
 
-**次: 保存中継から0x081C85A5の未読契約と閏年suffixを追う。無効monthの表外値を正常拒否と仮定しない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18ownerは未完。GPIO/月表/byte採取/mirrored探索/BPを再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 新規保存081C85A5命令を解析し、戻値・ABI・閏年suffixを検証する。再採取/既読GPIO/月表/BPを繰り返さない。initializer08113984のcomputed/RAM caller・pointer/size/LIMITと旧18owner、Ring正規取得・装備実戦・保存は未完。policy/Circus/P08も未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f5a25d8284eea63dce42c73f4adbb35f9f0ea5e0`。
+証拠のsource HEAD: `d51cfce034a86a14c151fbe6ef0135bc75ea635b`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_divmod_frontier.json`
+- `scripts/pr16_ring_divmod_frontier.py`
 - `content/modernization/pr16_ring_clock_contracts.json`
-- `scripts/pr16_ring_clock_contracts.py`
-- `content/modernization/pr16_ring_unread_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -133,6 +133,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 今回frontier30testsと7delegate36testsは成功Actions・原artifact・保存commitまで照合済み。新規66tests/限定8191vectorの実装成果を再利用し、同一探索・byte採取・ABI・受入BP/nativeを繰り返さない。
 - 未読3delegate/月表の不足byteとmirrored-PC命令候補は保存原本を再利用する。canonical-PC探索、7delegate局所契約、BP/nativeを再実行しない。実caller/pointer/size/LIMITは未証明。
 - GPIO2関数/月表11か月/無効monthの表範囲超過/09099E04中継は保存結果を再利用。同じbyte採取、mirrored探索、旧7delegate/BP/nativeを再実行しない。081C85A5の戻値・ABIと閏年suffix、実caller/pointer/size/LIMITは未証明。
+- 081C85A5の限定512byte窓は保存結果を再利用。同一candidateから再採取しない。GPIO/月表/既読ABI/mirrored探索/BPは再実行せず、保存命令の剰余・閏年契約へ進む。
 
 ## 次セッションへ残す更新手順
 
@@ -162,6 +163,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35090180714の原結論と保存証拠、BP run34946969126成功を照合。今回run35091501711は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35091501711の原結論と保存証拠、BP run34946969126成功を照合。今回run35097533760は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
