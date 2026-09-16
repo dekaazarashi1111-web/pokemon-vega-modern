@@ -21,7 +21,7 @@ ENTRY = 0x093789F2
 SOURCE = 'tools/mgba_pr16_ring_caller_snapshot.c'
 SELF = 'scripts/pr16_ring_caller_snapshot.py'
 PRIOR = 'content/modernization/pr16_ring_caller_compose.json'
-MAX_HITS, CALL_LIMIT, SEARCH_LIMIT = 8, 4096, 240000000
+MAX_HITS, CALL_LIMIT, SEARCH_LIMIT = 8, 4096, 480000000
 MAX_TRACE_BYTES = 8_000_000
 
 
@@ -50,6 +50,8 @@ def instruction(raw_pc, cpsr):
 
 
 def model_binding(entry: dict, path: list[dict], exit: dict) -> dict:
+    s.need(type(exit.get('call_log_problems')) is int and exit['call_log_problems']==0,
+           'emulator diagnostic during observed call')
     snap = copy.deepcopy(entry['snapshot'])
     for key in ('raw_pc', 'cpsr', 'r0', 'r4'):
         number(entry[key])
@@ -134,10 +136,10 @@ def validate_trace(raw: bytes) -> dict:
     s.need(summary['kind'] == 'summary' and summary['search_limit'] == SEARCH_LIMIT,
            'missing bounded summary')
     for key in ('hits', 'search_steps', 'search_limit', 'unobserved_title_frames',
-                'host_memory_writes', 'host_register_writes', 'host_function_calls', 'savestate_loads'):
+                'host_memory_writes', 'host_register_writes', 'host_function_calls', 'savestate_loads', 'log_problems'):
         number(summary[key])
     s.need(summary['hits'] <= MAX_HITS and summary['search_steps'] <= SEARCH_LIMIT
-           and summary['unobserved_title_frames'] == 1200, 'search scope differs')
+           and summary['unobserved_title_frames'] == 0, 'search scope differs')
     for key in ('host_memory_writes', 'host_register_writes', 'host_function_calls', 'savestate_loads'):
         s.need(summary[key] == 0, 'host intervention in observation')
     s.need(summary['ring_acquisition_accepted'] is False, 'boot trace cannot accept Ring')
@@ -167,7 +169,7 @@ def validate_trace(raw: bytes) -> dict:
             'bindings':observations,'rejected_calls':rejected,'search':summary,
             'status':'OBSERVED_CALLS_BOUND_CONDITIONALLY' if observations else 'NO_BINDABLE_CALL_OBSERVED',
             'runtime_provenance_bound':False,'new_emulator_processes':0,'fresh_cores':0,'accepted_native_cases_replayed':0,
-            'prior_abi_classifications_replayed':0,'rom_changes':0,'candidate_reconstructions':1,
+            'prior_abi_classifications_replayed':0,'rom_changes':0,'candidate_reconstructions':0,
             'allocated_storage_extent_proven':False,'synchrony_proven':False,
             'all_runtime_owners_excluded':False,'ring_acquisition_accepted':False,'release_ready':False}
 
@@ -206,7 +208,7 @@ def capture(out: Path) -> dict:
            'native capture failed; preserve trace/process without acceptance')
     result=validate_trace((out/'trace.jsonl').read_bytes())
     result.update(classification='BOUNDED_BOOT_CALLER_OBSERVATION_NOT_RING_ACCEPTANCE',
-                  runtime_provenance_bound=True,new_emulator_processes=1,fresh_cores=1)
+                  runtime_provenance_bound=True,new_emulator_processes=1,fresh_cores=1,candidate_reconstructions=1)
     for bound in result['bindings']:
         bound.update(runtime_provenance_bound=True,actual_return_observed=True)
     result['observer_identity']=s.identity((s.ROOT/SOURCE).read_bytes())

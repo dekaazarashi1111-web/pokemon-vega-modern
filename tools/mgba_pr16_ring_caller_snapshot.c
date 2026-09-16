@@ -11,11 +11,29 @@
 #include <stdlib.h>
 #include <mgba/core/config.h>
 #include <mgba/core/core.h>
+#include <mgba/core/log.h>
 
 #define ENTRY 0x093789F2U
-#define LIMIT UINT64_C(240000000)
+#define LIMIT UINT64_C(480000000)
 #define CALL_LIMIT 4096U
 #define MAX_HITS 8U
+
+static unsigned log_problems, call_log_problems;
+static bool inside_call;
+static void diagnostic_log(struct mLogger *logger,int category,enum mLogLevel level,
+                           const char *format,va_list args) {
+    (void)logger;
+    if(level&(mLOG_FATAL|mLOG_ERROR|mLOG_WARN)) {
+        ++log_problems;if(inside_call)++call_log_problems;
+    }
+    fprintf(stderr,"mGBA[%s][%u]: ",mLogCategoryName(category),(unsigned)level);
+    vfprintf(stderr,format,args);fputc('\n',stderr);
+}
+static unsigned keys(unsigned frame) {
+    if(frame==1200U || frame==1682U || frame==1683U)return 8U;
+    if(frame==1926U || frame==1927U)return 1U;
+    return frame>=2108U && (frame-2108U)%22U<2U?1U:0U;
+}
 
 static uint32_t reg(struct mCore *c, const char *name) {
     int32_t v = 0;
@@ -63,6 +81,7 @@ static bool capture(struct mCore *c,uint64_t start,unsigned ordinal) {
     uint32_t first_ime=r16(c,0x04000208U),first_ie=r16(c,0x04000200U);
     bool mode_stable=true,mapping_stable=true,dma_disabled=!dma_enable;
     bool returned=false; unsigned steps=0U;
+    inside_call=true;call_log_problems=0U;
     printf("{\"kind\":\"entry\",\"ordinal\":%u,\"step\":%"PRIu64",\"raw_pc\":%u,\"cpsr\":%u,\"r0\":%u,\"r4\":%u,",ordinal,start,raw_pc,cpsr,id,r4);
     printf("\"snapshot\":{\"id\":%u,\"selector\":%u,\"sp\":%u,\"lr\":%u,\"save_base\":%u,\"record_base\":%u,\"count\":%u,\"limit\":%u,\"index\":%u,\"capacity\":%u,\"record_word\":%u,\"flag_byte\":%u},",id&65535U,selector,sp,lr,save,base,count,limit,index,capacity,word,byte);
     printf("\"record_readable\":%s,\"flag_readable\":%s,\"memory_control\":%u,\"ime\":%u,\"ie\":%u,\"dma_enable\":%u}\n",record_ok?"true":"false",flag_ok?"true":"false",mapping,first_ime,first_ie,dma_enable);
@@ -81,12 +100,14 @@ static bool capture(struct mCore *c,uint64_t start,unsigned ordinal) {
     }
     printf("{\"kind\":\"exit\",\"ordinal\":%u,\"returned\":%s,\"steps\":%u,\"raw_pc\":%u,\"cpsr\":%u,\"sp\":%u,\"r0\":%u,\"r4\":%u,\"minimum_sp\":%u,",ordinal,returned?"true":"false",steps,reg(c,"pc"),reg(c,"cpsr"),reg(c,"sp"),reg(c,"r0"),reg(c,"r4"),minimum);
     printf("\"saved_lr_word\":%u,\"saved_r4_word\":%u,\"record_word_after\":%u,\"flag_byte_after\":%u,\"counter_after\":%u,\"pending_id_after\":%u,",sp>=8U && ram(sp-4U,4U)?r32(c,sp-4U):0U,sp>=8U && ram(sp-8U,4U)?r32(c,sp-8U):0U,record_ok?r32(c,record):0U,flag_ok?r8(c,flag):0U,r16(c,0x0203AF96U),r16(c,0x030050BCU));
-    printf("\"cpu_mode_stable\":%s,\"memory_control_stable\":%s,\"dma_disabled_at_step_boundaries\":%s}\n",mode_stable?"true":"false",mapping_stable?"true":"false",dma_disabled?"true":"false");fflush(stdout);
+    printf("\"cpu_mode_stable\":%s,\"memory_control_stable\":%s,\"dma_disabled_at_step_boundaries\":%s,\"call_log_problems\":%u}\n",mode_stable?"true":"false",mapping_stable?"true":"false",dma_disabled?"true":"false",call_log_problems);fflush(stdout);
+    inside_call=false;
     return returned;
 }
 
 int main(int argc,char **argv) {
     if(argc!=3)return 2;
+    struct mLogger logger={.log=diagnostic_log,.filter=NULL};mLogSetDefaultLogger(&logger);
     struct mCore *c=mCoreFind(argv[1]);
     if(!c || !c->init(c) || !mCoreLoadFile(c,argv[1]))return 3;
     if(!mCoreLoadSaveFile(c,argv[2],false))return 3;
@@ -94,20 +115,19 @@ int main(int argc,char **argv) {
     mCoreConfigSetDefaultValue(&c->config,"idleOptimization","ignore");
     color_t *video=calloc(240U*160U,sizeof(*video));if(!video)return 3;
     c->setVideoBuffer(c,video,240U);c->reset(c);c->setKeys(c,0U);
-    /* Cold title preparation is not an acquisition/Save/Continue test. */
-    for(unsigned f=0U;f<1200U;++f)c->runFrame(c);
+    /* Observe from reset: the previous late-start probe missed this interval. */
     unsigned first_frame=c->frameCounter(c),old_frame=~0U,hits=0U;
     uint64_t steps;
     for(steps=0;steps<LIMIT && hits<MAX_HITS;++steps) {
         unsigned frame=c->frameCounter(c)-first_frame;
         if(frame!=old_frame){
-            c->setKeys(c,frame<2U?8U:(frame>180U && frame%90U==0U?1U:0U));old_frame=frame;
+            c->setKeys(c,keys(frame));old_frame=frame;
         }
         uint32_t state=reg(c,"cpsr");
         if((state&32U) && pc(c,state)==ENTRY) {
             if(!capture(c,steps,++hits))break;
         } else c->step(c);
     }
-    printf("{\"kind\":\"summary\",\"hits\":%u,\"search_steps\":%"PRIu64",\"search_limit\":%"PRIu64",\"unobserved_title_frames\":1200,\"host_memory_writes\":0,\"host_register_writes\":0,\"host_function_calls\":0,\"savestate_loads\":0,\"ring_acquisition_accepted\":false}\n",hits,steps,LIMIT);
+    printf("{\"kind\":\"summary\",\"hits\":%u,\"search_steps\":%"PRIu64",\"search_limit\":%"PRIu64",\"unobserved_title_frames\":0,\"host_memory_writes\":0,\"host_register_writes\":0,\"host_function_calls\":0,\"savestate_loads\":0,\"ring_acquisition_accepted\":false,\"log_problems\":%u}\n",hits,steps,LIMIT,log_problems);
     mCoreConfigDeinit(&c->config);c->deinit(c);free(video);return 0;
 }

@@ -22,10 +22,10 @@ def fixture():
           'minimum_sp':snap['sp']-44,'saved_lr_word':snap['lr'],'saved_r4_word':42,
           'record_word_after':0x248230,'flag_byte_after':0x25,'counter_after':1,
           'pending_id_after':560,'cpu_mode_stable':True,'memory_control_stable':True,
-          'dma_disabled_at_step_boundaries':True}
+          'dma_disabled_at_step_boundaries':True,'call_log_problems':0}
     summary={'kind':'summary','hits':1,'search_steps':2,'search_limit':a.SEARCH_LIMIT,
-             'unobserved_title_frames':1200,'host_memory_writes':0,'host_register_writes':0,
-             'host_function_calls':0,'savestate_loads':0,'ring_acquisition_accepted':False}
+             'unobserved_title_frames':0,'host_memory_writes':0,'host_register_writes':0,
+             'host_function_calls':0,'savestate_loads':0,'ring_acquisition_accepted':False,'log_problems':0}
     return [entry,*path,exit,summary]
 
 
@@ -116,6 +116,15 @@ class SnapshotTests(unittest.TestCase):
         b=self.result()['bindings'][0];self.assertFalse(b['synchrony_proven'])
     def test_parser_does_not_mutate_caller_snapshot(self):
         before=copy.deepcopy(self.rows);self.result();self.assertEqual(self.rows,before)
+    def test_warning_inside_call_rejected(self):self.rows[-2]['call_log_problems']=1;self.reject_call()
+    def test_missing_warning_accounting_rejected(self):del self.rows[-2]['call_log_problems'];self.reject_call()
+    def test_unobserved_reset_prefix_rejected(self):
+        self.rows[-1]['unobserved_title_frames']=1200
+        with self.assertRaises(ValueError):self.result()
+    def test_c_logger_stays_off_trace_channel(self):
+        text=(ROOT/a.SOURCE).read_text()
+        self.assertIn('mLogSetDefaultLogger(&logger)',text)
+        self.assertIn('vfprintf(stderr,format,args)',text)
     def test_read_only_c_driver(self):a.source_policy((ROOT/a.SOURCE).read_text())
     def test_write_surface_guard(self):
         with self.assertRaises(ValueError):a.source_policy((ROOT/a.SOURCE).read_text()+'c->writeRegister(c);')
