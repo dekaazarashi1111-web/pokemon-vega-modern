@@ -3056,3 +3056,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T08:39:33.800359+00:00 — PR-P08-7-RING-SELECTOR-CLOSEOUT
+- Timestamp: 2026-09-16T08:39:33.800359+00:00
+- Task: PR-P08-7-RING-SELECTOR-CLOSEOUT
+- Status: DONE / 2工程の原本・CI照合。Ring通常取得は未受入。
+- Version: PR16 selector/record closeout
+- Summary: selector参照採取15tests/run35073059942とrecord初期化24tests/run35074318490は原Actions成功・artifact・保存commitと照合済み。2工程の新規参照649、保存再利用15、採取61024byte、候補復元計1、native/既読ABI/受入BP再実行0。record初期化はcaller提供域、mode2は容量とは別のLIMIT依存。制御域alias候補の実到達は未証明。
+- Verify: closeout8 tests、更新影響のresume24 tests、render/check、task graph、最終index guardとdiff。旧15/24 ABI testsは再実行しない。
+- Evidence: content/modernization/pr16_ring_selector_closeout.json; commits 5a3a79347acd / 8b626df3ef87; run35073059942 / run35074318490 success。
+- Files changed: scripts/pr16_ring_selector_closeout.py, tests/test_pr16_ring_selector_closeout.py, .github/workflows/pr16-ring-selector-closeout.yml、closeout JSON、固定MD/JSON、P08参照、両ログ。
+- Preserved: 本closeoutは候補復元0/native0/ROM変更0。BP受入原本、2工程の原本・失敗履歴は不変。
+- Network/reference: GitHub/Actions。比較参照pret/pokefirered@c75f352304d529f6ba92d4f74b9cf8b5c3810788 src/event_data.c / src/quest_log.c。外部コード転記・候補ROMへの同一性主張なし。
+- Correction: 前工程SELECTOR-OWNERSのNetwork「外部技術資料なし」はセッション全体では不正確。上記pret sourceをGitHub接続から比較参照した。旧ログは保存し、この追記を訂正記録とする。
+- Commit: task graph/最終index guard成功後、最新HEAD照合して同branch非force push。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
+- Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。

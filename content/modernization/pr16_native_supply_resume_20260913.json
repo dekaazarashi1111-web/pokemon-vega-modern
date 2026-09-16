@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。",
+    "current_stop": "selector参照採取15tests/run35073059942とrecord初期化24tests/run35074318490は原Actions成功・artifact・保存commitと照合済み。2工程の新規参照649、保存再利用15、採取61024byte、候補復元計1、native/既読ABI/受入BP再実行0。record初期化はcaller提供域、mode2は容量とは別のLIMIT依存。制御域alias候補の実到達は未証明。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -317,7 +317,8 @@
     "保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。",
     "boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。",
     "selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。",
-    "保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。"
+    "保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。",
+    "selector採取・record初期化と今回closeoutの保存原本を再利用。受入済みnative/BP/既読ABIを再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -394,9 +395,10 @@
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
+      "content/modernization/pr16_ring_selector_closeout.json",
       "content/modernization/pr16_ring_record_init.json",
-      "scripts/pr16_ring_record_init.py",
-      "content/modernization/pr16_ring_selector_owners.json"
+      "content/modernization/pr16_ring_selector_owners.json",
+      "scripts/pr16_ring_record_init.py"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -405,11 +407,11 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+  "observed_head": "eb949aedc42717f8011422d1e961da25ada30b98",
   "observed_head_checks": {
-    "reason_ja": "先行run35073059942の原結論と保存証拠、BP run34946969126成功を照合。今回run35074318490は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "run35073059942/35074318490 success確認済み。記録commitのaction_requiredは未実行のまま保持しsuccessへ変更しない。"
   },
-  "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "2完了工程の証拠/CI照合source HEAD。完了commitはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -566,11 +568,15 @@
   "reward_source_conditions_audit": "content/modernization/pr16_bp_battle_return_evidence/reward-source-audit.json",
   "schema_version": 2,
   "session_execution_summary": {
+    "new_focused_implementation_tests": 39,
+    "new_reference_sites": 649,
+    "saved_references_reused": 15,
+    "new_sampled_bytes": 61024,
+    "candidate_reconstructions": 1,
     "new_emulator_processes": 0,
+    "accepted_native_cases_replayed": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
-    "accepted_standalone_replays": 0,
-    "scope_ja": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。"
+    "scope_ja": "selector参照採取15tests/run35073059942とrecord初期化24tests/run35074318490は原Actions成功・artifact・保存commitと照合済み。2工程の新規参照649、保存再利用15、採取61024byte、候補復元計1、native/既読ABI/受入BP再実行0。record初期化はcaller提供域、mode2は容量とは別のLIMIT依存。制御域alias候補の実到達は未証明。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1816,10 +1822,26 @@
     "content/modernization/pr16_ring_record_init.json": {
       "size": 22140,
       "sha256": "36c5c9961ded9db8af4bbd8f6cb96f37477ee09f916afc0c69498ae9bb9c4f11"
+    },
+    "scripts/pr16_ring_selector_closeout.py": {
+      "size": 13954,
+      "sha256": "b9e12e5a217edf5d2ed58ab806671173f6f0f3301dea26653936f0338ec5cd9a"
+    },
+    "tests/test_pr16_ring_selector_closeout.py": {
+      "size": 2880,
+      "sha256": "6a1fe256fb5669b85cfb96a1b4a81d1fe607946173d37d15bca8d8bcb230c5b2"
+    },
+    ".github/workflows/pr16-ring-selector-closeout.yml": {
+      "size": 1964,
+      "sha256": "81cd64e12d4b087e0d433284e611b2a87a2cde355bc62384c833f37f65bd2f26"
+    },
+    "content/modernization/pr16_ring_selector_closeout.json": {
+      "size": 21044,
+      "sha256": "670d967f080fa5162b9aed00532e8eac9b564350e9d92733f4922000e7c7bee4"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。",
+  "source_change_review_ja": "selector参照採取15tests/run35073059942とrecord初期化24tests/run35074318490は原Actions成功・artifact・保存commitと照合済み。2工程の新規参照649、保存再利用15、採取61024byte、候補復元計1、native/既読ABI/受入BP再実行0。record初期化はcaller提供域、mode2は容量とは別のLIMIT依存。制御域alias候補の実到達は未証明。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2241,9 +2263,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_snapshot_closeout.json",
-    "source_head": "4b5005efaef33aa1bed77c6d30208d88fdc839d0",
-    "run_id": 35060759252
+    "path": "content/modernization/pr16_ring_selector_closeout.json",
+    "source_head": "eb949aedc42717f8011422d1e961da25ada30b98",
+    "run_id": 35074960605
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
@@ -2259,5 +2281,10 @@
     "path": "content/modernization/pr16_ring_record_init.json",
     "source_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
     "run_id": 35074318490
+  },
+  "ring_selector_closeout": {
+    "path": "content/modernization/pr16_ring_selector_closeout.json",
+    "source_head": "eb949aedc42717f8011422d1e961da25ada30b98",
+    "run_id": 35074960605
   }
 }
