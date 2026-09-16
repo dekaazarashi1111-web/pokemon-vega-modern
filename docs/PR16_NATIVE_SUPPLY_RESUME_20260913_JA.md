@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存1390命令を結合し280新規合成契約。v1外部buffer/VACQ正常とCRC拒否、v2初期化、4byte I/O列を検証。ROM/native再採取0。
+残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。
 
-**次: 残る6calleeとstring6要素表・v2規則23件/上限6件の3data範囲だけを有限採取して保存結合する。v2正常return、実buffer copy、string分岐、callback/wait帰還を次に検証。既読採取/単独ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存とpolicy/Circus/P08は未受入。**
+**次: 今回保存したcopy/string分岐とv2表を使い、v2正常return・実buffer形のcopy・文字列分岐を合成検証する。未読callee/間接辺を推測せず保存pendingを次の境界とする。同じ採取/旧280契約/BPは再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f91e07e0c6d48e01f941eff299a8971db80b33c7`。
+証拠のsource HEAD: `d6db33f77f6f0a7ba4cdb316a135809c231b1b4a`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_dependency_frontier.json`
+- `scripts/pr16_ring_dependency_frontier.py`
 - `content/modernization/pr16_ring_remaining_contracts.json`
-- `scripts/pr16_ring_remaining_contracts.py`
-- `content/modernization/pr16_ring_remaining_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -142,6 +142,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存pop+cursor復帰、mode全256値、中継先2件、validator version/size/hash/reservedの合成契約を再利用。10090d4以後の新規境界以外を採取せず、既読ABI/BPを単独再実行しない。低level成否とRing通常取得・装備実戦・保存の受入は別。
 - 残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。
 - 445保存命令によるversion1/VACQ正常・CRC拒否、version2初期化、flash4byte書込の合成契約を再利用。既読採取/native/BPを再実行せず、未読6calleeと3data範囲だけを次の有限結合へ渡す。合成I/O書込を実flash操作やstory到達と同一視しない。
+- 残る6callee/3data表とtable先の有限採取は今回保存原本を再利用。次はv2正常/実buffer copy/string分岐を合成契約として結合。旧445命令・280単独契約・BP/nativeは再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -171,6 +172,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35115765819の原結論と保存証拠、BP run34946969126成功を照合。今回run35118343796は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35118343796の原結論と保存証拠、BP run34946969126成功を照合。今回run35118859775は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

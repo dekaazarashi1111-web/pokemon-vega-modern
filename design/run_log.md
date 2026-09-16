@@ -6072,3 +6072,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 残る6calleeとstring6要素表・v2規則23件/上限6件の3data範囲だけを有限採取して保存結合する。v2正常return、実buffer copy、string分岐、callback/wait帰還を次に検証。既読採取/単独ABI/BPを再実行せず、Ring正規story取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-16T15:59:45.458934+00:00 — PR-P08-7-RING-DEPENDENCY-FRONTIER
+- Timestamp: 2026-09-16T15:59:45.458934+00:00
+- Task: PR-P08-7-RING-DEPENDENCY-FRONTIER / 残る6calleeとstring/v2有限data表を保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dependency-frontier
+- Summary: 残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。
+- Files changed: scripts/pr16_ring_dependency_frontier.py, tests/test_pr16_ring_dependency_frontier.py, .github/workflows/pr16-ring-dependency-frontier.yml, content/modernization/pr16_ring_dependency_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d6db33f77f6f0a7ba4cdb316a135809c231b1b4a; run=35118859775（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回保存したcopy/string分岐とv2表を使い、v2正常return・実buffer形のcopy・文字列分岐を合成検証する。未読callee/間接辺を推測せず保存pendingを次の境界とする。同じ採取/旧280契約/BPは再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
