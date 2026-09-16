@@ -28,7 +28,21 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
       - name: 新規42tests・限定追跡・正本記録・非force保存
-        run: python3 scripts/pr16_ring_unread_frontier.py run
+        run: |
+          python3 - <<'PYCODE'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_ring_unread_frontier as task
+          import pr16_ring_followup_v2 as s
+          out=s.ROOT/'.local'/task.SLUG
+          out.mkdir(parents=True,exist_ok=True)
+          (out/'preflight.json').write_bytes(s.stable({
+              'source_bindings': {p:s.identity((s.ROOT/p).read_bytes()) for p in task.SOURCES},
+              'original_failed_run': 35090013920,
+              'original_conclusion': 'failure',
+              'failure_stage': 'missing_preflight_before_candidate_restore'}))
+          PYCODE
+          python3 scripts/pr16_ring_unread_frontier.py run
       - name: 診断text exportの範囲検査
         if: always()
         id: export
