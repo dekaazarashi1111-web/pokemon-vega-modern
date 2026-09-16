@@ -6008,3 +6008,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 未読direct callee2件、computed jump表、validator窓外継続と中継先の未読実体だけを進める。保存済FlagGet/FlagSet・GPIO・剰余/閏年・今回copy/checksum契約の単独再実行は不要。元initializerの実caller/pointer/size/LIMIT、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T14:52:18.023614+00:00 — PR-P08-7-RING-EFFECTIVE-FRONTIER
+- Timestamp: 2026-09-16T14:52:18.023614+00:00
+- Task: PR-P08-7-RING-EFFECTIVE-FRONTIER / 実callsiteの新規7入口と5要素jump表を保存境界へ接続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-effective-frontier
+- Summary: 実callsiteの新規7入口と保存済計算jumpの5要素表から、未読143命令/340byteだけを保存。既存802nodeへは再decodeせず停止。候補復元1、ROM変更/native再実行0。
+- Files changed: scripts/pr16_ring_effective_frontier.py, tests/test_pr16_ring_effective_frontier.py, .github/workflows/pr16-ring-effective-frontier.yml, content/modernization/pr16_ring_effective_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=1189b2df826a81133e8680b72c3069870f276cb2; run=35111190784（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 今回の保存callee・validator継続・jump各caseを実callsite/frame/書込へ結合し、残る未読辺だけを進める。7入口/5要素表や既読copy/checksum/BPを再採取・単独再実行しない。全caller/initializer LIMIT・Ring正規story取得/装備実戦/保存とpolicy/Circus/P08は未受入。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存nodeの28合成ケースでcallback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator早期returnを検証。書込範囲と合成SP/r4-r11復元を確認。live frame/全callerは未証明。候補復元/ROM/native再実行0。
+実callsiteの新規7入口と保存済計算jumpの5要素表から、未読143命令/340byteだけを保存。既存802nodeへは再decodeせず停止。候補復元1、ROM変更/native再実行0。
 
-**次: 未読direct callee2件、computed jump表、validator窓外継続と中継先の未読実体だけを進める。保存済FlagGet/FlagSet・GPIO・剰余/閏年・今回copy/checksum契約の単独再実行は不要。元initializerの実caller/pointer/size/LIMIT、Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 今回の保存callee・validator継続・jump各caseを実callsite/frame/書込へ結合し、残る未読辺だけを進める。7入口/5要素表や既読copy/checksum/BPを再採取・単独再実行しない。全caller/initializer LIMIT・Ring正規story取得/装備実戦/保存とpolicy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0ea72e2eab60447f96a91b3bfa8c97466c57ac31`。
+証拠のsource HEAD: `1189b2df826a81133e8680b72c3069870f276cb2`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_effective_frontier.json`
+- `scripts/pr16_ring_effective_frontier.py`
 - `content/modernization/pr16_ring_saved_contracts.json`
-- `scripts/pr16_ring_saved_contracts.py`
-- `content/modernization/pr16_ring_owner_context.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -138,6 +138,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 旧18targetの今回保存命令/境界を再利用。保存nodeへ合流した先や未読calleeを再帰探索しない。cohort内共有node・operand/literal/未知命令/資源上限は受入に昇格しない。BP/GPIO/閏年/候補の同一採取は再実行しない。
 - 保存18targetのcallsite結合を再利用。中継先の定数とcallee帰還/SP/保存register仮定を区別する。ROM/native再採取や受入済みBPを単独再実行しない。未解決caller・jump table・calleeを残す。
 - 保存callback/cursor/copy2048/checksum/LE32/runtime metadata初期化とvalidator prefixの合成契約を再利用。synthetic frameをlive frame・Ring取得と同一視しない。新規byte採取0、既読ABI/nativeを単独再実行しない。
+- 実callsiteからの新規7入口・5要素jump表と合流先を再利用。今回保存したnodeを再採取/再解読しない。定数targetや分岐表をnative到達・全callee ABI・Ring受入に読み替えず、未知/窓外/共有境界を残す。
 
 ## 次セッションへ残す更新手順
 
@@ -167,6 +168,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35109188711の原結論と保存証拠、BP run34946969126成功を照合。今回run35110450877は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35110450877の原結論と保存証拠、BP run34946969126成功を照合。今回run35111190784は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
