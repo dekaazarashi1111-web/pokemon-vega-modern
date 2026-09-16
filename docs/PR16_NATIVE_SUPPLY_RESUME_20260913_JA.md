@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-残る3callee/非null中継先とplaceholder等133byteを1waveで有限結合。新規107命令/319byte。既読再解読・native0。
+保存1859命令で795新規合成契約、31停止境界とslot255の負診断を結合。placeholder14参照/実nibble152値/task挿入214件を限定検証。実caller範囲とRing取得は未証明。
 
-**次: 保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 残るcallee0x0806DC49と非null継続0x08002D15、11本のROM文字列を保存pendingの非重複窓（合計83byte）だけ有限採取する。次の契約では実callerのtask index<16/非循環列/文字列buffer境界を別途結合し、slot255診断を実ゲームbugや正常受入に読み替えない。同じ採取/旧795・716契約/FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `171ed73cc1d70f2a0d768d05241d67dda9ceb4d4`。
+証拠のsource HEAD: `9b36ca01d9d83234650b667baa6224f81b23fdf3`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_reference_contracts.json`
+- `scripts/pr16_ring_reference_contracts.py`
 - `content/modernization/pr16_ring_reference_frontier.json`
-- `scripts/pr16_ring_reference_frontier.py`
-- `content/modernization/pr16_ring_string_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -147,6 +147,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 未読6callee/string252の21要素84byte表とその有限継続は今回保存原本を再利用。同一採取・既存94契約・BP/nativeを再実行せず、保存nodeでstring253/252とcallee境界を結合する。表の分岐先同定は帰還/SP/実callerやRing正規取得の証明ではない。
 - FC全21subtype有限契約・memset0/正長/整列・selector範囲/合成nibble表・null gateは今回原本を再利用。旧94契約/採取/BP/nativeを再実行せず、3callee・1実中継先・未読data133byteへ進む。合成表の値を候補ROM値に、null gate成功を非null帰還やRing取得に読み替えない。
 - 3callee/非null中継先/placeholder等133byteと表候補先の有限採取は今回保存原本を再利用。同じ採取・旧716契約・FC/memset/BP/nativeを単独再実行しない。表word候補と保存命令の結合を実callbackの帰還/SPやRing正規取得の証明にしない。
+- placeholder14参照/実nibble/16slot task挿入と非nullprefixは保存原本を再利用。正常な有限task列と不正slot255のframe外write診断を混同しない。旧716契約・FC/memset・同じ採取・BP/nativeを単独再実行せず、1callee/1継続と11文字列の限定窓へ進む。
 
 ## 次セッションへ残す更新手順
 
@@ -176,6 +177,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35125897577の原結論と保存証拠、BP run34946969126成功を照合。今回run35126420824は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35126420824の原結論と保存証拠、BP run34946969126成功を照合。今回run35127969235は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -6152,3 +6152,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存したplaceholder table/getter・nibble実表・fallback先頭・非null中継先を有限合成契約として結合する。新たなcallee/実データ/間接辺とcaller frameは保存pendingで絞り、推測して通過しない。同じ採取/旧716契約/FC/memset/BPは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:24:43.155725+00:00 — PR-P08-7-RING-REFERENCE-CONTRACTS
+- Timestamp: 2026-09-16T17:24:43.155725+00:00
+- Task: PR-P08-7-RING-REFERENCE-CONTRACTS / placeholder14参照・実nibble・task列・非null境界を保存結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-reference-contracts
+- Summary: 保存1859命令で795新規合成契約、31停止境界とslot255の負診断を結合。placeholder14参照/実nibble152値/task挿入214件を限定検証。実caller範囲とRing取得は未証明。
+- Files changed: scripts/pr16_ring_reference_contracts.py, tests/test_pr16_ring_reference_contracts.py, .github/workflows/pr16-ring-reference-contracts.yml, content/modernization/pr16_ring_reference_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定48 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9b36ca01d9d83234650b667baa6224f81b23fdf3; run=35127969235（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残るcallee0x0806DC49と非null継続0x08002D15、11本のROM文字列を保存pendingの非重複窓（合計83byte）だけ有限採取する。次の契約では実callerのtask index<16/非循環列/文字列buffer境界を別途結合し、slot255診断を実ゲームbugや正常受入に読み替えない。同じ採取/旧795・716契約/FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
