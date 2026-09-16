@@ -3024,3 +3024,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network/reference: GitHub/Actions。観測器実装後のPC prefetch確認として https://github.com/mgba-emu/mgba/blob/0.10.3/src/arm/arm.c を参照。外部コード転記なし。
 - Commit: 最新HEAD確認後、同branch非force push。全CI green/全体guard PASS・merge/release/baseline変更なし。
 - Next: 保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。
+
+
+## 2026-09-16T08:20:07.957760+00:00 — PR-P08-7-RING-SELECTOR-OWNERS
+- Timestamp: 2026-09-16T08:20:07.957760+00:00
+- Task: PR-P08-7-RING-SELECTOR-OWNERS / 未観測selectorとrecord制御変数の新規参照・書込候補を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-selector-followup
+- Summary: selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。
+- Files changed: scripts/pr16_ring_selector_followup.py, tests/test_pr16_ring_selector_followup.py, .github/workflows/pr16-ring-selector-followup.yml, content/modernization/pr16_ring_selector_owners.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定15 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0a9e8c00fbb67cff4c626eca9c7ae770b143c4de; run=35073059942（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。

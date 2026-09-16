@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。",
+    "current_stop": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。",
+    "next_step": "保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -315,7 +315,8 @@
     "external3末尾3命令/6byteと保存prefix/bodyの条件付き帰還合成は完了。末尾r0は保存LRで上書きされbodyのindex+1ではない。160単一bit破壊診断はnative観測ではない。同一入力の末尾再採取・先行ABI/BP再実行を避け、callerの実frame/record/global非aliasと旧18ownerだけを進める。",
     "run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。",
     "保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。",
-    "boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。"
+    "boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。",
+    "selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -388,13 +389,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。",
+    "goal_ja": "保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_snapshot_closeout.json",
-      "content/modernization/pr16_ring_caller_snapshot.json",
-      "content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl"
+      "content/modernization/pr16_ring_selector_owners.json",
+      "scripts/pr16_ring_selector_followup.py",
+      "content/modernization/pr16_ring_caller_snapshot.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -403,11 +404,11 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "4b5005efaef33aa1bed77c6d30208d88fdc839d0",
+  "observed_head": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
   "observed_head_checks": {
-    "reason_ja": "観測run35060189419はsuccess確認済み。記録commitの未実行CI/action_requiredはsuccessへ読み替えない。"
+    "reason_ja": "先行run35060189419の原結論と保存証拠、BP run34946969126成功を照合。今回run35073059942は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
-  "observed_head_semantics": "保存native観測のCI/coverage整理source HEAD。今回工程でnativeを再起動しない。",
+  "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -566,10 +567,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "previous_observation_processes": 2,
-    "scope_ja": "実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。"
+    "scope_ja": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1783,10 +1783,26 @@
     "content/modernization/pr16_ring_snapshot_closeout.json": {
       "size": 5216,
       "sha256": "699d2c798ced44b119b9437f2012a2dcc1823894900144bfa80acdbce3b2d89d"
+    },
+    "scripts/pr16_ring_selector_followup.py": {
+      "size": 10439,
+      "sha256": "84af72842589073fe5ba369ce07b91bbf314844c0dc0ea5aceaab32f73d33e79"
+    },
+    "tests/test_pr16_ring_selector_followup.py": {
+      "size": 3676,
+      "sha256": "06c630dc84628eab0ed184109e1e88a2ecb0da984f55863f3f2b2073cd6d53a9"
+    },
+    ".github/workflows/pr16-ring-selector-followup.yml": {
+      "size": 4092,
+      "sha256": "fa2f493e0bdacafefd1133766f901060a01b5c05af71efe715bbafe69eb79a0b"
+    },
+    "content/modernization/pr16_ring_selector_owners.json": {
+      "size": 1704471,
+      "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。",
+  "source_change_review_ja": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2216,5 +2232,10 @@
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
     "source_head": "4b5005efaef33aa1bed77c6d30208d88fdc839d0",
     "run_id": 35060759252
+  },
+  "ring_selector_owners": {
+    "path": "content/modernization/pr16_ring_selector_owners.json",
+    "source_head": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+    "run_id": 35073059942
   }
 }

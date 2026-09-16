@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。
+selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。
 
-**次: 保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。**
+**次: 保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4b5005efaef33aa1bed77c6d30208d88fdc839d0`。
-保存native観測のCI/coverage整理source HEAD。今回工程でnativeを再起動しない。
+証拠のsource HEAD: `0a9e8c00fbb67cff4c626eca9c7ae770b143c4de`。
+限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
 
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_ring_snapshot_closeout.json`
+- `content/modernization/pr16_ring_selector_owners.json`
+- `scripts/pr16_ring_selector_followup.py`
 - `content/modernization/pr16_ring_caller_snapshot.json`
-- `content/modernization/pr16_ring_caller_snapshot_evidence/trace.jsonl`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -122,6 +122,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。
 - 保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。
 - boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。
+- selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。
 
 ## 次セッションへ残す更新手順
 
@@ -151,6 +152,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-観測run35060189419はsuccess確認済み。記録commitの未実行CI/action_requiredはsuccessへ読み替えない。
+先行run35060189419の原結論と保存証拠、BP run34946969126成功を照合。今回run35073059942は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
