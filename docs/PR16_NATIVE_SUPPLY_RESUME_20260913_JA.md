@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。
+保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。
 
-**次: 保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。**
+**次: 保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `fd4ba2041e61d425bec24d107d4abe08f7b94f38`。
+証拠のsource HEAD: `8050cb1a2cd17f127922483247c34829aa92e287`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_control_roles.json`
+- `scripts/pr16_ring_control_roles.py`
 - `content/modernization/pr16_ring_record_callers.json`
-- `scripts/pr16_ring_record_callers.py`
-- `content/modernization/pr16_ring_record_init.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -126,6 +126,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。
 - selector採取・record初期化と今回closeoutの保存原本を再利用。受入済みnative/BP/既読ABIを再実行しない。
 - initializer/外部callee6根のBL・pointer参照と不足byteは保存原本を再利用する。selectorの既存literal採取/initializer ABI/BP/nativeは再実行しない。採取されたcall候補は実到達やRing取得受入を意味しない。
+- 保存BCD変換2048vector・I/O wrapper条件モデル・tick/init prefix・veneerは完了。0x09099E16は0x081C9DF9へのtail veneerで、memset効果/帰還保存を証明していない。同じ局所ABI/byte採取を繰り返さず、保存された未読delegateと実到達だけを進める。
 
 ## 次セッションへ残す更新手順
 
@@ -155,6 +156,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35074318490の原結論と保存証拠、BP run34946969126成功を照合。今回run35082799310は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35082799310の原結論と保存証拠、BP run34946969126成功を照合。今回run35084187651は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

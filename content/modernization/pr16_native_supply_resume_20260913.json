@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。",
+    "current_stop": "保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。",
+    "next_step": "保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -319,7 +319,8 @@
     "selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。",
     "保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。",
     "selector採取・record初期化と今回closeoutの保存原本を再利用。受入済みnative/BP/既読ABIを再実行しない。",
-    "initializer/外部callee6根のBL・pointer参照と不足byteは保存原本を再利用する。selectorの既存literal採取/initializer ABI/BP/nativeは再実行しない。採取されたcall候補は実到達やRing取得受入を意味しない。"
+    "initializer/外部callee6根のBL・pointer参照と不足byteは保存原本を再利用する。selectorの既存literal採取/initializer ABI/BP/nativeは再実行しない。採取されたcall候補は実到達やRing取得受入を意味しない。",
+    "保存BCD変換2048vector・I/O wrapper条件モデル・tick/init prefix・veneerは完了。0x09099E16は0x081C9DF9へのtail veneerで、memset効果/帰還保存を証明していない。同じ局所ABI/byte採取を繰り返さず、保存された未読delegateと実到達だけを進める。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -392,13 +393,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。",
+    "goal_ja": "保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_record_callers.json",
-      "scripts/pr16_ring_record_callers.py",
-      "content/modernization/pr16_ring_record_init.json"
+      "content/modernization/pr16_ring_control_roles.json",
+      "scripts/pr16_ring_control_roles.py",
+      "content/modernization/pr16_ring_record_callers.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -407,9 +408,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
+  "observed_head": "8050cb1a2cd17f127922483247c34829aa92e287",
   "observed_head_checks": {
-    "reason_ja": "先行run35074318490の原結論と保存証拠、BP run34946969126成功を照合。今回run35082799310は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35082799310の原結論と保存証拠、BP run34946969126成功を照合。今回run35084187651は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -570,9 +571,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。"
+    "scope_ja": "保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1850,10 +1851,26 @@
     "content/modernization/pr16_ring_record_callers.json": {
       "size": 102561,
       "sha256": "622b9d69ef96fc0d975fc4e1bec5e08c4d07e85ee0ddea5a4f8fe538fa65d77a"
+    },
+    "scripts/pr16_ring_control_roles.py": {
+      "size": 18313,
+      "sha256": "1ded67f68d8a1822eb39662819f8cfba1bc23929be313ef95b195f357ea756f0"
+    },
+    "tests/test_pr16_ring_control_roles.py": {
+      "size": 6325,
+      "sha256": "0e9a864856a7d2e9c05cfe13395f54e854c45d7118a110a3fe56de868c4be67f"
+    },
+    ".github/workflows/pr16-ring-control-roles.yml": {
+      "size": 1932,
+      "sha256": "86ff6b384492f54f894f43c481a6914bba4d5170a1579514336691f363cdb6b3"
+    },
+    "content/modernization/pr16_ring_control_roles.json": {
+      "size": 24319,
+      "sha256": "72245471b63633804ef0361d22a5897ecf65ae1562164cf47e9071946466530d"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "initializer/外部callee6根の未読caller候補116件、新規18308byte採取、保存570byte再利用。selector literal/initializer ABI/受入BP/native再実行0。コード境界と実到達は未証明。",
+  "source_change_review_ja": "保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2303,5 +2320,10 @@
     "path": "content/modernization/pr16_ring_record_callers.json",
     "source_head": "fd4ba2041e61d425bec24d107d4abe08f7b94f38",
     "run_id": 35082799310
+  },
+  "ring_control_roles": {
+    "path": "content/modernization/pr16_ring_control_roles.json",
+    "source_head": "8050cb1a2cd17f127922483247c34829aa92e287",
+    "run_id": 35084187651
   }
 }

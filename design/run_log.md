@@ -5816,3 +5816,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存したrecord caller証拠から0x08113984 callerのpointer/size/LIMITとselector設定を結合し、0x09126CB4/0x09127060/0x09099E16の実作用とcallersを検証する。再採取せず、RTC aliasの存在と通常story到達を分離する。旧18owner・Ring取得/装備実戦/保存は未完。
+
+
+## 2026-09-16T10:17:54.392105+00:00 — PR-P08-7-RING-CONTROL-ROLES
+- Timestamp: 2026-09-16T10:17:54.392105+00:00
+- Task: PR-P08-7-RING-CONTROL-ROLES / 保存BCD変換とI/O wrapper・外部veneerの契約を区別
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-roles
+- Summary: 保存byteから0x09126CB4の7field BCD変換を2048vectorで検証。0x09127060は外部5calleeを持つI/O wrapper、0x09099E16は未読0x081C9DF9への2命令tail veneer。tick/init入口条件257件を限定検証。initializer直接BL/pointer参照0は不存在証明ではない。候補復元/native/既読ABI/BP再実行0。
+- Files changed: scripts/pr16_ring_control_roles.py, tests/test_pr16_ring_control_roles.py, .github/workflows/pr16-ring-control-roles.yml, content/modernization/pr16_ring_control_roles.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8050cb1a2cd17f127922483247c34829aa92e287; run=35084187651（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。
