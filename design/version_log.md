@@ -2847,3 +2847,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存済みpr16_ring_external2_bytes.jsonの命令だけで0x0806DD1DのABI・副作用を検証する。同一候補から再採取せず、未読継続が出れば保存frontierに従う。0x081138F9・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T03:19:42.905586+00:00 — PR-P08-7-RING-EXTERNAL2-ABI
+- Timestamp: 2026-09-16T03:19:42.905586+00:00
+- Task: PR-P08-7-RING-EXTERNAL2-ABI / external2全u16分類と条件付きstack帰還ABIを保存byteで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-external2-abi
+- Summary: external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。
+- Files changed: scripts/pr16_ring_external2_abi.py, tests/test_pr16_ring_external2_abi.py, .github/workflows/pr16-ring-external2-abi.yml, content/modernization/pr16_ring_external2_abi.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8d2504309caa29cfdcb749675c7f26a6b5a5fad0; run=35051354515（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読外部callee0x081138F9の1根だけ限定採取。external2は再採取/単独ABI再実行せず保存結果を再利用する。旧18owner・外側calleeの帰還/保存slot/返却pointer非alias・Ring通常取得・policy/Circus・P08最終判定は未完。
