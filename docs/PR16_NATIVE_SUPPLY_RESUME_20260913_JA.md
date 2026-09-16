@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未読2入口と11文字列83byteを有限採取。新規76命令、11文字列で窓内FFを保存。ROM変更/native0。
+保存1935命令でCreateTask実caller166件・11実文字列の容量99件を合成。当該callerのindex0..15・満杯0返却、非null32byte初期化と16byte転送を限定検証。live allocation/Ring未証明。
 
-**次: 保存したVarGet callee・非null継続と11文字列を実byteの合成契約へ結合する。task index<16/非循環列・文字列buffer境界は実caller証拠と分離し、未読callee/間接辺は保存pendingで絞る。同じ採取・旧795/716契約・FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 次は未読3callee0x08002E4D/0x08002E79/0x08003EEDとVarGet実中継先0x090970DDだけを有限採取する。保存CreateTask caller/11文字列/非nullprefixを再利用し、live task列/文字列allocationとstory到達は別証拠で結合する。満杯0返却をslot0成功へ、合成prefixをcallee帰還へ読み替えない。旧採取/795/716/BP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `030143d88235cbb02503bda2d66a372ef19ffb72`。
+証拠のsource HEAD: `0f091f214aae0bfc0ee7d7e462f8ea64013b3010`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_caller_contracts.json`
+- `scripts/pr16_ring_caller_contracts.py`
 - `content/modernization/pr16_ring_text_frontier.json`
-- `scripts/pr16_ring_text_frontier.py`
-- `content/modernization/pr16_ring_reference_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -149,6 +149,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 3callee/非null中継先/placeholder等133byteと表候補先の有限採取は今回保存原本を再利用。同じ採取・旧716契約・FC/memset/BP/nativeを単独再実行しない。表word候補と保存命令の結合を実callbackの帰還/SPやRing正規取得の証明にしない。
 - placeholder14参照/実nibble/16slot task挿入と非nullprefixは保存原本を再利用。正常な有限task列と不正slot255のframe外write診断を混同しない。旧716契約・FC/memset・同じ採取・BP/nativeを単独再実行せず、1callee/1継続と11文字列の限定窓へ進む。
 - 未読2入口と11文字列83byteの有限採取は保存原本を再利用する。同じcandidate復元・既読命令再解読・旧795/716契約・BP/nativeを単独再実行しない。保存文字列終端とcallee候補を実callerのbuffer/task境界やRing正規取得へ昇格しない。
+- CreateTask保存callerの0..15探索・正常task列/満杯と11実文字列の容量境界・非nullコピーprefixを再利用。特定callerの範囲証明を全live caller/割込み状態やRing正規取得へ昇格しない。同じ採取・旧795/716・task挿入/memset/BP/native単独試験を再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -178,6 +179,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35127969235の原結論と保存証拠、BP run34946969126成功を照合。今回run35129632449は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35129632449の原結論と保存証拠、BP run34946969126成功を照合。今回run35130614298は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

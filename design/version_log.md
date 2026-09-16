@@ -3456,3 +3456,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存したVarGet callee・非null継続と11文字列を実byteの合成契約へ結合する。task index<16/非循環列・文字列buffer境界は実caller証拠と分離し、未読callee/間接辺は保存pendingで絞る。同じ採取・旧795/716契約・FC/memset/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:50:27.127532+00:00 — PR-P08-7-RING-CALLER-CONTRACTS
+- Timestamp: 2026-09-16T17:50:27.127532+00:00
+- Task: PR-P08-7-RING-CALLER-CONTRACTS / CreateTask実caller・11実文字列容量・非null転送prefixの保存契約を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-caller-contracts
+- Summary: 保存1935命令でCreateTask実caller166件・11実文字列の容量99件を合成。当該callerのindex0..15・満杯0返却、非null32byte初期化と16byte転送を限定検証。live allocation/Ring未証明。
+- Files changed: scripts/pr16_ring_caller_contracts.py, tests/test_pr16_ring_caller_contracts.py, .github/workflows/pr16-ring-caller-contracts.yml, content/modernization/pr16_ring_caller_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定44 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0f091f214aae0bfc0ee7d7e462f8ea64013b3010; run=35130614298（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読3callee0x08002E4D/0x08002E79/0x08003EEDとVarGet実中継先0x090970DDだけを有限採取する。保存CreateTask caller/11文字列/非nullprefixを再利用し、live task列/文字列allocationとstory到達は別証拠で結合する。満杯0返却をslot0成功へ、合成prefixをcallee帰還へ読み替えない。旧採取/795/716/BP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。
