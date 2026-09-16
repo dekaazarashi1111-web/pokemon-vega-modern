@@ -15,7 +15,7 @@ WORKFLOW='.github/workflows/pr16-ring-remaining-frontier.yml'
 PRIOR='content/modernization/pr16_ring_effective_contracts.json'
 REPORT='content/modernization/pr16_ring_remaining_frontier.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=30
+MIN_TESTS=32
 EXTRA_CODE=()
 DIRECT=(0x08008b49,0x08068ccd,0x080f7dbd,0x081c27dd)
 EFFECTIVE=(0x093bde81,)
@@ -127,6 +127,16 @@ def bounded_walk(raw,roots,cached,decode,inspect,*,max_rounds=MAX_ROUNDS,
         **classify_boundaries(rows,known)}
 
 
+def preflight(roots,bindings,prior_run_id):
+    required={SELF,TEST,WORKFLOW,PRIOR,*SOURCES}
+    need(type(bindings)is dict and required<=bindings.keys(),'復元source binding欠落')
+    for value in bindings.values():
+        need(type(value)is dict and type(value.get('size'))is int and value['size']>=0
+             and type(value.get('sha256'))is str and len(value['sha256'])==64,'source identity形式')
+    return {'source_bindings':copy.deepcopy(bindings),'roots':list(roots),'max_rounds':MAX_ROUNDS,
+        'max_roots':MAX_ROOTS,'max_nodes':MAX_NODES,'max_bytes':MAX_BYTES,'prior_run_id':prior_run_id}
+
+
 def analyze(prior,out):
     import pr16_ring_followup_v2 as s
     import pr16_ring_effective_frontier as f
@@ -149,8 +159,8 @@ def analyze(prior,out):
         *({'nodes':reports[p]['analysis']['new_nodes']} for p in (f.OLD,f.REPORT))]
     cached=old.cache_nodes(graphs);f.nodes_to_memory(memory,list(cached.values()))
     roots=requested_roots(prior['analysis'])
-    (out/'preflight.json').write_bytes(s.stable({'roots':roots,'max_rounds':MAX_ROUNDS,
-        'max_roots':MAX_ROOTS,'max_nodes':MAX_NODES,'max_bytes':MAX_BYTES,'prior_run_id':prior['run_id']}))
+    bindings={p:s.identity((s.ROOT/p).read_bytes()) for p in (SELF,TEST,WORKFLOW,PRIOR,*SOURCES)}
+    (out/'preflight.json').write_bytes(s.stable(preflight(roots,bindings,prior['run_id'])))
     # 次の保存契約実装用。Git管理済みtext/nodeだけ。ROM/save/秘密情報はexportしない。
     paths=(SELF,TEST,vm.SELF,vm.flow.SELF,f.SELF,contracts.SELF,old.SELF)
     (out/'development-source.json').write_bytes(s.stable({p:(s.ROOT/p).read_text(encoding='utf-8') for p in paths}))
@@ -172,7 +182,11 @@ def analyze(prior,out):
         'caller_pointer_size_limit_proven':False,'validator_success_continuation_proven':False,
         'ring_acquisition_accepted':False,'release_ready':False,'rom_changes':0,'new_emulator_processes':0,
         'candidate_reconstructions':1,'accepted_native_cases_replayed':0,'accepted_standalone_contracts_replayed':0,
-        'full_rom_scans':0})
+        'full_rom_scans':0,
+        'development_failure_preserved':{'run_id':35114642802,
+            'source_head':'fe3aadec4dbb154a618f6c2ac2e30b3d2588863f','original_conclusion':'failure',
+            'cause':'復元preflightへのsource_bindings渡し漏れ。採取前に停止。',
+            'candidate_reconstructions':0,'new_byte_samples':0}})
     (out/'analysis.json').write_bytes(s.stable(result))
     (out/'pending.json').write_bytes(s.stable({k:result[k] for k in (
         'initial_roots','new_node_count','new_window_bytes','pending_direct_callees','pending_continuations',

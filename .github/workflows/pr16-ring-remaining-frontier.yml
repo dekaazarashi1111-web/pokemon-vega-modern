@@ -27,7 +27,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: 新規30tests・未読継続をまとめて採取・正本記録・非force保存
+      - name: 新規32tests・未読継続をまとめて採取・正本記録・非force保存
         run: python3 scripts/pr16_ring_remaining_frontier.py run
       - name: 診断text exportの範囲検査
         if: always()

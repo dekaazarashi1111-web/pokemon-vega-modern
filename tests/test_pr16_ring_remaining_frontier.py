@@ -31,6 +31,14 @@ class Fake:
 
 class FrontierTests(unittest.TestCase):
     def walk(self,f=None,**kw):return m.bounded_walk(RAW,[A|1],{},None,f or Fake(),**kw)
+    def test_restore_preflight_contains_bound_sources(self):
+        bindings={p:{'size':0,'sha256':'a'*64} for p in (m.SELF,m.TEST,m.WORKFLOW,m.PRIOR,*m.SOURCES)}
+        result=m.preflight([A|1],bindings,35112649740)
+        self.assertEqual(result['source_bindings'],bindings)
+        bindings[m.SELF]['size']=1
+        self.assertEqual(result['source_bindings'][m.SELF]['size'],0)
+    def test_restore_preflight_missing_binding_rejected(self):
+        with self.assertRaisesRegex(ValueError,'source binding'):m.preflight([A|1],{},35112649740)
     def test_exact_plan(self):self.assertEqual(len(m.requested_roots(plan())),7)
     def test_plan_deduplicates_continuations(self):
         p=plan();p['pending_continuations']=[m.DIRECT[0],m.DIRECT[0]]
