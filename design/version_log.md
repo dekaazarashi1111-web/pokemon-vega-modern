@@ -3009,3 +3009,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定private環境。外部技術資料なし。
 - Boundary: 既存全体guard違反は前後一致/新規0で照合。全体guard PASS・全CI green・merge/release/baseline変更を主張しない。
 - Next: 保存済みboot trace/実caller照合を再実行せず再利用する。次はmap97/80 FINAL_LEAGUE_CLEAREDの実経路callerとrecord allocation所有範囲を限定し、同期/IRQ/DMA条件を独立証拠で解決する。boot callerやfixtureだけで旧18ownerを除外しない。Ring正規取得owner確定後に取得・装備実戦・通常保存へ進む。BP受入済み試験は再実行しない。
+
+
+## 2026-09-16T05:45:13.036844+00:00 — PR-P08-7-RING-SNAPSHOT-CLOSEOUT
+- Timestamp: 2026-09-16T05:45:13.036844+00:00
+- Task: PR-P08-7-RING-SNAPSHOT-CLOSEOUT
+- Status: DONE / 保存観測coverage・CI照合。Ring取得は未完。
+- Version: PR16 snapshot closeout
+- Summary: 実FlagSet8件の保存証拠とrun35060189419/job104678679467 success・非force保存を照合。全8件selector=0/low_other、帰還先0x093775CC、観測peak24byte。selector1/2、external1/2/3、record保存prefixとpeak44は未観測。このCI整理はnative0、候補復元0、旧46tests/ABI再実行0。初回失敗を含む前工程native2は記録を保持。
+- Verify: 新規projection8 tests、read-only resume check、task graph、最終index差分guard・diff。
+- Evidence: content/modernization/pr16_ring_snapshot_closeout.json; observed run35060189419 success / commit 2c9202b47409f0009f32eebda0424033402ae12a。
+- Preserved: native0・候補復元0・ROM変更0・受入済み再実行0。BP原本とRing観測原本は不変。
+- Files changed: scripts/pr16_ring_snapshot_closeout.py, tests/test_pr16_ring_snapshot_closeout.py, .github/workflows/pr16-ring-snapshot-closeout.yml、coverage receipt、固定引継ぎMD/JSON、P08参照、両ログ。
+- Network/reference: GitHub/Actions。観測器実装後のPC prefetch確認として https://github.com/mgba-emu/mgba/blob/0.10.3/src/arm/arm.c を参照。外部コード転記なし。
+- Commit: 最新HEAD確認後、同branch非force push。全CI green/全体guard PASS・merge/release/baseline変更なし。
+- Next: 保存8件は再実行しない。次はRing実経路callerのselector1/2とactive record prefix、record allocation所有範囲・mapping/同期/IRQ/DMA条件を独立に解決する。selector0の実帰還証拠をexternal1/2/3やmap97/80 FINAL_LEAGUE_CLEAREDの取得へ一般化しない。旧18ownerは保持。Ring通常取得・装備実戦・通常保存、policy/Circus、P08は未完。受入済みBPは再実行しない。
