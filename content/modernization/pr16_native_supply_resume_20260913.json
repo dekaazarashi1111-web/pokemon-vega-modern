@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。",
+    "current_stop": "保存1576命令と440byte表から94新規合成契約。v2正常/規則境界、v1 shadow copyとv2 copyなし、正length copy、string有限入力を検証。ROM/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回保存したcopy/string分岐とv2表を使い、v2正常return・実buffer形のcopy・文字列分岐を合成検証する。未読callee/間接辺を推測せず保存pendingを次の境界とする。同じ採取/旧280契約/BPは再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "残る6calleeとstring252 subtype4..24の21要素表84byteを一度だけ有限採取し保存結合する。string253の参照先、scheduler/callback/wait等の未読境界とcaller frameを次に絞る。今回完了したv2/owner copy/規則境界を単独再実行しない。copy長0は安全なno-opではなく、r0はdestinationでなく保存LRとなる。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -336,7 +336,8 @@
     "保存pop+cursor復帰、mode全256値、中継先2件、validator version/size/hash/reservedの合成契約を再利用。10090d4以後の新規境界以外を採取せず、既読ABI/BPを単独再実行しない。低level成否とRing通常取得・装備実戦・保存の受入は別。",
     "残る4callee/中継先/validator正常継続の有限wave採取は保存原本を再利用。既存nodeと新規共有nodeを再解読せず、未知callee/間接辺/資源境界は未証明で保持。次は保存byteの契約結合だけを進め、BP/nativeや同じ採取を単独再実行しない。",
     "445保存命令によるversion1/VACQ正常・CRC拒否、version2初期化、flash4byte書込の合成契約を再利用。既読採取/native/BPを再実行せず、未読6calleeと3data範囲だけを次の有限結合へ渡す。合成I/O書込を実flash操作やstory到達と同一視しない。",
-    "残る6callee/3data表とtable先の有限採取は今回保存原本を再利用。次はv2正常/実buffer copy/string分岐を合成契約として結合。旧445命令・280単独契約・BP/nativeは再実行しない。"
+    "残る6callee/3data表とtable先の有限採取は今回保存原本を再利用。次はv2正常/実buffer copy/string分岐を合成契約として結合。旧445命令・280単独契約・BP/nativeは再実行しない。",
+    "v2正常/規則境界・v1 owner copyとv2 copyなし・有限string契約は今回原本を再利用。旧採取/単独280契約/BP/nativeを再実行せず、残る6calleeとstring subtype21要素表84byteへ進む。長さ0のcopyは安全なno-opでなく未map停止として保持。native取得とは別の合成契約。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -409,13 +410,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "今回保存したcopy/string分岐とv2表を使い、v2正常return・実buffer形のcopy・文字列分岐を合成検証する。未読callee/間接辺を推測せず保存pendingを次の境界とする。同じ採取/旧280契約/BPは再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "残る6calleeとstring252 subtype4..24の21要素表84byteを一度だけ有限採取し保存結合する。string253の参照先、scheduler/callback/wait等の未読境界とcaller frameを次に絞る。今回完了したv2/owner copy/規則境界を単独再実行しない。copy長0は安全なno-opではなく、r0はdestinationでなく保存LRとなる。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_dependency_frontier.json",
-      "scripts/pr16_ring_dependency_frontier.py",
-      "content/modernization/pr16_ring_remaining_contracts.json"
+      "content/modernization/pr16_ring_dependency_contracts.json",
+      "scripts/pr16_ring_dependency_contracts.py",
+      "content/modernization/pr16_ring_dependency_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -424,9 +425,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "d6db33f77f6f0a7ba4cdb316a135809c231b1b4a",
+  "observed_head": "43abb8ea13dbbbe1bb86533b4e8445cf14303859",
   "observed_head_checks": {
-    "reason_ja": "先行run35118343796の原結論と保存証拠、BP run34946969126成功を照合。今回run35118859775は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35118859775の原結論と保存証拠、BP run34946969126成功を照合。今回run35119924967は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -587,9 +588,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。"
+    "scope_ja": "保存1576命令と440byte表から94新規合成契約。v2正常/規則境界、v1 shadow copyとv2 copyなし、正length copy、string有限入力を検証。ROM/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2139,10 +2140,26 @@
     "content/modernization/pr16_ring_dependency_frontier.json": {
       "size": 65220,
       "sha256": "7fec9a6c21d55e350677a45db840e54dfe6d5560858f4db04d3074b0cc0223f7"
+    },
+    "scripts/pr16_ring_dependency_contracts.py": {
+      "size": 12312,
+      "sha256": "9553ff9b8a34b058093636234c6045410c3c960dc5d0f8dc2b071518af9bfe5f"
+    },
+    "tests/test_pr16_ring_dependency_contracts.py": {
+      "size": 3886,
+      "sha256": "6a554de5718b2e954cc603caf568aa35b903193bed8ef7f7456458fc3a01d757"
+    },
+    ".github/workflows/pr16-ring-dependency-contracts.yml": {
+      "size": 1986,
+      "sha256": "9ce09f9c29b4ff849d596bc758140f78009c11c1695946c86193aad3246a07d8"
+    },
+    "content/modernization/pr16_ring_dependency_contracts.json": {
+      "size": 62467,
+      "sha256": "2ca4a391e86dc87960e2a6ab2c8902d8ec62cc004baae81ca9e168eba0039490"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "残る6calleeと3表440byteを有限結合。2waveで新規186命令/854byte。旧命令再解読・native0。",
+  "source_change_review_ja": "保存1576命令と440byte表から94新規合成契約。v2正常/規則境界、v1 shadow copyとv2 copyなし、正length copy、string有限入力を検証。ROM/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2564,9 +2581,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_dependency_frontier.json",
-    "source_head": "d6db33f77f6f0a7ba4cdb316a135809c231b1b4a",
-    "run_id": 35118859775
+    "path": "content/modernization/pr16_ring_dependency_contracts.json",
+    "source_head": "43abb8ea13dbbbe1bb86533b4e8445cf14303859",
+    "run_id": 35119924967
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
