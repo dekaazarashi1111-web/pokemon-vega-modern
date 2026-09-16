@@ -6120,3 +6120,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 今回保存したstring252全subtype分岐とstring253参照選択、scheduler/callback/wait等を有限合成契約で結合する。未読callee/実data/ライブcaller frameは保存pendingから次へ絞る。同じ採取/旧94契約/BPを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-16T17:04:47.471246+00:00 — PR-P08-7-RING-STRING-CONTRACTS
+- Timestamp: 2026-09-16T17:04:47.471246+00:00
+- Task: PR-P08-7-RING-STRING-CONTRACTS / FC全21分岐・memset・placeholderとcallee停止契約を保存検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-string-contracts
+- Summary: 保存1752命令から716新規有限合成契約。FC全21分岐・memset整列/0長・selector/nibble/null gateと未読境界を検証。ROM/native0。
+- Files changed: scripts/pr16_ring_string_contracts.py, tests/test_pr16_ring_string_contracts.py, .github/workflows/pr16-ring-string-contracts.yml, content/modernization/pr16_ring_string_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定43 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=0c6fc6515a81cda985f47508f342a05caf5df091; run=35125897577（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 残る3calleeと非null実中継先0x09378A31、placeholder14要素56byte・nibble76byte・fallback先頭1byteだけを有限採取して保存結合する。旧採取/FC/memset/旧94契約/BPを単独再実行せず、placeholder実参照と非null/caller frameへ絞る。Network補足（この工程では共通runnerの外部技術資料なし定型句を適用しない）: GBATEK THUMB.14/15（https://problemkaputt.de/gbatek-thumb-opcodes-memory-multiple-load-store-push-pop-and-ldm-stm.htm）、STMIA writeback/POP Thumb維持。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
