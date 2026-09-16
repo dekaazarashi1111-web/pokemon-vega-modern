@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "external3保存前半32命令/64byteの3gate・正規化引数・20byte PUSH frameを検証。2401境界組合せと65536正規化入力で全命令/分岐両側を被覆。stackがcounterへaliasすると分岐が変わる仮想反例を保存。未読継続/末尾は未実行、ROM復元/native/既読ABI再実行0。",
+    "current_stop": "external3未読継続0x08113939の1根だけ20命令/40byteを採取保存。external1/2・external3前半の保存ABIとBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未読継続0x08113939の1根だけを限定採取し、保存前半の境界契約を再利用する。未読末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "next_step": "次は保存済みpr16_ring_external3_body_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。未読末尾0x08113961・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -308,7 +308,8 @@
     "外部callee0x0806DD1Dの限定byte採取は完了。保存graphだけでABIと副作用を検証し、同一candidateから再採取しない。external1の5工程・BPを再実行せず、0x081138F9・旧18owner・保存slot/返却pointer非alias・Ring通常取得は未証明のまま保持する。",
     "external2 0x0806DD1Dの保存28命令/56byteは全u16×2mode分類と局所stack帰還ABIを検証済み。同一入力の再採取/単独ABI再実行をしない。外側callee・保存slot/返却pointer非alias・Ring通常取得の受入へ昇格せず、次は0x081138F9の1根だけ進める。",
     "external3 0x081138F9の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。新規未読継続・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。",
-    "external3保存前半32命令/64byteのABIは完了。3条件・正規化引数・20byte frameを保存契約として再利用し、再採取/単独ABI再実行しない。次は未読継続0x08113939だけ。末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得は未受入。"
+    "external3保存前半32命令/64byteのABIは完了。3条件・正規化引数・20byte frameを保存契約として再利用し、再採取/単独ABI再実行しない。次は未読継続0x08113939だけ。末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得は未受入。",
+    "external3継続0x08113939の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。未読末尾0x08113961・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -381,13 +382,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未読継続0x08113939の1根だけを限定採取し、保存前半の境界契約を再利用する。未読末尾0x08113961・旧18owner・外側帰還/非alias・Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "goal_ja": "次は保存済みpr16_ring_external3_body_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。未読末尾0x08113961・旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_external3_abi.json",
-      "scripts/pr16_ring_external3_abi.py",
-      "content/modernization/pr16_ring_external3_bytes.json"
+      "content/modernization/pr16_ring_external3_body_bytes.json",
+      "scripts/pr16_ring_external3_body_bytes.py",
+      "content/modernization/pr16_ring_external3_abi.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -396,9 +397,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
+  "observed_head": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
   "observed_head_checks": {
-    "reason_ja": "先行run35051550466の原結論と保存証拠、BP run34946969126成功を照合。今回run35052121180は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35052121180の原結論と保存証拠、BP run34946969126成功を照合。今回run35052317109は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -559,9 +560,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "external3保存前半32命令/64byteの3gate・正規化引数・20byte PUSH frameを検証。2401境界組合せと65536正規化入力で全命令/分岐両側を被覆。stackがcounterへaliasすると分岐が変わる仮想反例を保存。未読継続/末尾は未実行、ROM復元/native/既読ABI再実行0。"
+    "scope_ja": "external3未読継続0x08113939の1根だけ20命令/40byteを採取保存。external1/2・external3前半の保存ABIとBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1627,10 +1628,26 @@
     "content/modernization/pr16_ring_external3_abi.json": {
       "size": 9866,
       "sha256": "abb56976a0d74faeabbf3b80b63b58ec58b697ce932193c4593e5c7eb9943acc"
+    },
+    "scripts/pr16_ring_external3_body_bytes.py": {
+      "size": 5601,
+      "sha256": "181dfc6201ef5fb5d4f21df830d6aa5e8785d498814c86fd19e4bc124c4efbfa"
+    },
+    "tests/test_pr16_ring_external3_body_bytes.py": {
+      "size": 4449,
+      "sha256": "db509b5d2a11cc98e2b1a030fb34abfd99e290dfc020317c2efca509eb9d36a8"
+    },
+    ".github/workflows/pr16-ring-external3-body-bytes.yml": {
+      "size": 1479,
+      "sha256": "848bc927f5c255d0630ca6743d1ce91cd2c4bc43bc22ff35e44df41c5e01520b"
+    },
+    "content/modernization/pr16_ring_external3_body_bytes.json": {
+      "size": 21757,
+      "sha256": "628d3e733f8811563e35b90227877742325b86346f62ef3e6ccbc9750d9b1d66"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "external3保存前半32命令/64byteの3gate・正規化引数・20byte PUSH frameを検証。2401境界組合せと65536正規化入力で全命令/分岐両側を被覆。stackがcounterへaliasすると分岐が変わる仮想反例を保存。未読継続/末尾は未実行、ROM復元/native/既読ABI再実行0。",
+  "source_change_review_ja": "external3未読継続0x08113939の1根だけ20命令/40byteを採取保存。external1/2・external3前半の保存ABIとBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2015,5 +2032,10 @@
     "path": "content/modernization/pr16_ring_external3_abi.json",
     "source_head": "cf5c6acd3744bcaae90f21829178704b5c5926d7",
     "run_id": 35052121180
+  },
+  "ring_external3_body_bytes": {
+    "path": "content/modernization/pr16_ring_external3_body_bytes.json",
+    "source_head": "1c70e5ea3f3595f858cbaf389b5c047db7e55bd9",
+    "run_id": 35052317109
   }
 }
