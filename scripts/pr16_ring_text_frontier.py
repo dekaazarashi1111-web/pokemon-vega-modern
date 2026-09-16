@@ -16,7 +16,7 @@ WORKFLOW='.github/workflows/pr16-ring-text-frontier.yml'
 PRIOR='content/modernization/pr16_ring_reference_contracts.json'
 REPORT='content/modernization/pr16_ring_text_frontier.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=30
+MIN_TESTS=35
 EXTRA_CODE=()
 SOURCES=()
 ROM_BASE,ROM_END=0x08000000,0x0a000000
@@ -96,6 +96,13 @@ def terminators(rows,nodes=(),other_ranges=()):
     return result
 
 
+def preflight(root,paths,prior_run,node_count):
+    need(type(paths)in (list,tuple) and len(paths)>0,'source一覧')
+    bindings={p:identity((root/p).read_bytes())for p in paths}
+    return {'source_bindings':bindings,'prior_run':prior_run,'roots':[*CALLEES,*EFFECTIVE],
+        'saved_nodes':node_count,'text_plan':text_plan(),'data_bytes':83}
+
+
 def saved_inputs():
     import pr16_ring_followup_v2 as s
     import pr16_ring_reference_frontier as previous
@@ -120,8 +127,8 @@ def analyze(prior,out):
     data_plan(prior['analysis']);nodes,memory,tables=saved_inputs()
     need(len(nodes)==1859,'保存node差分')
     ranges=[(t['start'],t['length'])for t in tables]+[(f.TABLE,f.TABLE_COUNT*4)]
-    (out/'preflight.json').write_bytes(s.stable({'prior_run':prior['run_id'],'roots':[*CALLEES,*EFFECTIVE],
-        'saved_nodes':len(nodes),'text_plan':text_plan(),'data_bytes':83}))
+    (out/'preflight.json').write_bytes(s.stable(preflight(s.ROOT,
+        tuple(dict.fromkeys((SELF,TEST,WORKFLOW,PRIOR,*SOURCES))),prior['run_id'],len(nodes))))
     restore.OUT=out;restore.restore()
     candidate=s.ROOT/'.local/pr16-bp-party-retention-successor/candidate.gba'
     raw=candidate.read_bytes();saved.candidate_identity(raw)
@@ -136,6 +143,8 @@ def analyze(prior,out):
     points.update(result.pop('points'));windows,reused=old.new_windows(raw,sorted(points),memory)
     need(identity(candidate.read_bytes())==identity(raw),'候補変更')
     result.update({'classification':'FINITE_TEXT_AND_VAR_GATE_FRONTIER_NOT_NATIVE_ACCEPTANCE',
+        'failed_attempt_preserved':{'run_id':35129297493,'job_id':104906004325,'conclusion':'failure',
+            'reason':'preflight source_bindings欠落をrestore前に拒否','candidate_reconstructions':0,'new_byte_samples':0},
         'candidate':copy.deepcopy(s.CANDIDATE),'tables':[*tables,*texts],'text_windows':texts,
         'text_terminators':terminators(texts,[*nodes,*new],ranges),
         'new_windows':windows,'new_node_count':len(new),'new_window_bytes':sum(w['end']-w['start']for w in windows),

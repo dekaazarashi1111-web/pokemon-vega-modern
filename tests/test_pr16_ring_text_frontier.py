@@ -3,6 +3,7 @@ import copy
 from pathlib import Path
 import sys
 import unittest
+import tempfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import pr16_ring_text_frontier as m
 
@@ -98,6 +99,20 @@ class DataTests(unittest.TestCase):
         t=texts();raw=b'\xff'*t[0]['length'];t[0].update(hex=raw.hex(),identity=m.identity(raw))
         self.assertEqual(m.terminators(t)[0]['bounded_prefix_hex'],'ff')
     def test_no_runtime_promotion(self):self.assertTrue(all(r['all_runtime_buffer_bounds_proven']is False for r in m.terminators(texts())))
+
+
+class PreflightTests(unittest.TestCase):
+    def test_restore_contract_has_source_bindings(self):
+        with tempfile.TemporaryDirectory()as tmp:
+            root=Path(tmp);(root/'s.py').write_bytes(b'x=1\n')
+            p=m.preflight(root,('s.py',),7,1859)
+            self.assertEqual(p['source_bindings'],{'s.py':m.identity(b'x=1\n')})
+            self.assertEqual((p['prior_run'],p['saved_nodes'],p['data_bytes']),(7,1859,83))
+    def test_missing_source_fails_before_restore(self):
+        with tempfile.TemporaryDirectory()as tmp:
+            with self.assertRaises(FileNotFoundError):m.preflight(Path(tmp),('missing.py',),7,1859)
+    def test_empty_sources_rejected(self):
+        with self.assertRaises(ValueError):m.preflight(Path('.'),(),7,1859)
 
 
 if __name__=='__main__':unittest.main()
