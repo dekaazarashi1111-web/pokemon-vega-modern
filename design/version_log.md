@@ -2959,3 +2959,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存したexternal1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABIと受入BPを再実行しない。旧18未読ownerを保持し、Ring通常取得・policy/Circus・P08最終判定は未完。
+
+
+## 2026-09-16T04:25:50.697729+00:00 — PR-P08-7-RING-TAIL-CI-CLOSEOUT
+- Timestamp: 2026-09-16T04:25:50.697729+00:00
+- Task: PR-P08-7-RING-TAIL-CI-CLOSEOUT / 保存末尾ABI成功照合とBP受入後のP05残件テスト修正
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-tail-ci-closeout
+- Summary: external3末尾ABIの43tests成功・完了commitを保存原本で照合。P05残件テストの旧3件期待をBP正式3case/run34946969126と未完Ring/policy2件へ結び直し、誤再開・誤完了の拒否を検証。旧CI failure原本を保持。末尾ABI/受入native再実行0。
+- Files changed: scripts/pr16_ring_tail_ci_closeout.py, tests/test_pr16_ring_tail_ci_closeout.py, .github/workflows/pr16-ring-tail-ci-closeout.yml, content/modernization/pr16_ring_tail_ci_closeout.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定12 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=47dffd12eaf98a4748b8429e3855a4b37371a958; run=35055552309（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存external1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABI・BP受入・修正済みP05期待テストを同一入力で再実行しない。旧18ownerとRing通常取得・policy/Circus・P08最終判定は未完。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-external3保存末尾3命令/6byteのPOP/POP/BX、SP+20、r4-r7復元と保存LR→r0→分岐を検証。保存prefix/bodyを条件付き合成し、保存frame160単一bit破壊反例を検証。ROM復元・既読ABI・BP再実行0。
+external3末尾ABIの43tests成功・完了commitを保存原本で照合。P05残件テストの旧3件期待をBP正式3case/run34946969126と未完Ring/policy2件へ結び直し、誤再開・誤完了の拒否を検証。旧CI failure原本を保持。末尾ABI/受入native再実行0。
 
-**次: 次は保存したexternal1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABIと受入BPを再実行しない。旧18未読ownerを保持し、Ring通常取得・policy/Circus・P08最終判定は未完。**
+**次: 次は保存external1/2/3契約と外側callerを結び、実frame/record/global非alias・帰還先条件を限定検証する。末尾byte/ABI・BP受入・修正済みP05期待テストを同一入力で再実行しない。旧18ownerとRing通常取得・policy/Circus・P08最終判定は未完。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e64d6c86224905b21f108a57a3e5be00a226f001`。
+証拠のsource HEAD: `47dffd12eaf98a4748b8429e3855a4b37371a958`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_tail_ci_closeout.json`
+- `scripts/pr16_ring_tail_ci_closeout.py`
 - `content/modernization/pr16_ring_external3_tail_abi.json`
-- `scripts/pr16_ring_external3_tail_abi.py`
-- `content/modernization/pr16_ring_external3_tail_bytes.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -119,6 +119,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - external3継続20命令/40byteのABIは完了。4書込の順序とcounter/baseの再読取を保存契約として再利用し、再採取/単独ABI再実行しない。次は未読末尾0x08113961だけ。record/counter/base/frame非alias・外側帰還・旧18owner・Ring通常取得は未証明。
 - external3末尾0x08113961の1根byte採取は完了。同一candidateで再採取せず保存byteの帰還ABIを検証する。prefix/bodyは保存契約だけで合成し、既読ABI/BPを再実行しない。旧18owner・帰還先/保存frame非alias・Ring通常取得は未証明。
 - external3末尾3命令/6byteと保存prefix/bodyの条件付き帰還合成は完了。末尾r0は保存LRで上書きされbodyのindex+1ではない。160単一bit破壊診断はnative観測ではない。同一入力の末尾再採取・先行ABI/BP再実行を避け、callerの実frame/record/global非aliasと旧18ownerだけを進める。
+- run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。
 
 ## 次セッションへ残す更新手順
 
@@ -148,6 +149,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35053183103の原結論と保存証拠、BP run34946969126成功を照合。今回run35054868301は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35054868301の原結論と保存証拠、BP run34946969126成功を照合。今回run35055552309は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
