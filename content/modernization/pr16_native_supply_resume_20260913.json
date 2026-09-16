@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。",
+    "current_stop": "未読外部callee0x081138F9の1根だけ32命令/64byteを採取保存。external1/2の保存結果とBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未読外部callee0x081138F9の1根だけ限定採取。external2は再採取/単独ABI再実行せず保存結果を再利用する。旧18owner・外側calleeの帰還/保存slot/返却pointer非alias・Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "next_step": "次は保存済みpr16_ring_external3_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -306,7 +306,8 @@
     "external1帰還末尾0x081138F1のbyteは採取保存済み。再採取せず保存末尾ABIだけを検証し、prefix/継続は保存結果を再利用する。全帰還/保存slot非alias/owner除外は未受入。",
     "本セッションのexternal1 prefix ABI/継続採取・ABI/末尾採取・ABIの5工程は完了。保存証拠と原Actions/commitを再利用し単独再実行しない。次は0x0806DD1Dの1根。全callee帰還・counter/返却pointer非alias・Ring通常取得は未受入。",
     "外部callee0x0806DD1Dの限定byte採取は完了。保存graphだけでABIと副作用を検証し、同一candidateから再採取しない。external1の5工程・BPを再実行せず、0x081138F9・旧18owner・保存slot/返却pointer非alias・Ring通常取得は未証明のまま保持する。",
-    "external2 0x0806DD1Dの保存28命令/56byteは全u16×2mode分類と局所stack帰還ABIを検証済み。同一入力の再採取/単独ABI再実行をしない。外側callee・保存slot/返却pointer非alias・Ring通常取得の受入へ昇格せず、次は0x081138F9の1根だけ進める。"
+    "external2 0x0806DD1Dの保存28命令/56byteは全u16×2mode分類と局所stack帰還ABIを検証済み。同一入力の再採取/単独ABI再実行をしない。外側callee・保存slot/返却pointer非alias・Ring通常取得の受入へ昇格せず、次は0x081138F9の1根だけ進める。",
+    "external3 0x081138F9の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。新規未読継続・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -379,13 +380,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未読外部callee0x081138F9の1根だけ限定採取。external2は再採取/単独ABI再実行せず保存結果を再利用する。旧18owner・外側calleeの帰還/保存slot/返却pointer非alias・Ring通常取得・policy/Circus・P08最終判定は未完。",
+    "goal_ja": "次は保存済みpr16_ring_external3_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_external2_abi.json",
-      "scripts/pr16_ring_external2_abi.py",
-      "content/modernization/pr16_ring_external2_bytes.json"
+      "content/modernization/pr16_ring_external3_bytes.json",
+      "scripts/pr16_ring_external3_bytes.py",
+      "content/modernization/pr16_ring_external2_abi.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -394,9 +395,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "8d2504309caa29cfdcb749675c7f26a6b5a5fad0",
+  "observed_head": "53b70aac2a1e1099f9f9c80e440ad54fbc8049d4",
   "observed_head_checks": {
-    "reason_ja": "先行run35050675969の原結論と保存証拠、BP run34946969126成功を照合。今回run35051354515は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35051354515の原結論と保存証拠、BP run34946969126成功を照合。今回run35051550466は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -557,9 +558,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。"
+    "scope_ja": "未読外部callee0x081138F9の1根だけ32命令/64byteを採取保存。external1/2の保存結果とBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1593,10 +1594,26 @@
     "content/modernization/pr16_ring_external2_abi.json": {
       "size": 10779,
       "sha256": "10171fb0872ab4ec7390ba828178c109ba4b0391c93d6f90a87785f49a46880c"
+    },
+    "scripts/pr16_ring_external3_bytes.py": {
+      "size": 5433,
+      "sha256": "b4f3899947a4b5dca00e68c15c805de18ed7fd6a848b0361c11b18bf058021b3"
+    },
+    "tests/test_pr16_ring_external3_bytes.py": {
+      "size": 4812,
+      "sha256": "7e6a4916198b4a811fe320ed9fb2d10c0cb624a56ec1b18a17f70dfa489ae56d"
+    },
+    ".github/workflows/pr16-ring-external3-bytes.yml": {
+      "size": 1423,
+      "sha256": "a647e13eae4912e9deda4238a5f7ac536984b44bd90fc1f86a67db03dcc5f2fa"
+    },
+    "content/modernization/pr16_ring_external3_bytes.json": {
+      "size": 28741,
+      "sha256": "0e846bf2838e453810ed488ef0533b91672707da81d837aee307bbe028c5d141"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。",
+  "source_change_review_ja": "未読外部callee0x081138F9の1根だけ32命令/64byteを採取保存。external1/2の保存結果とBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -1971,5 +1988,10 @@
     "path": "content/modernization/pr16_ring_external2_abi.json",
     "source_head": "8d2504309caa29cfdcb749675c7f26a6b5a5fad0",
     "run_id": 35051354515
+  },
+  "ring_external3_bytes": {
+    "path": "content/modernization/pr16_ring_external3_bytes.json",
+    "source_head": "53b70aac2a1e1099f9f9c80e440ad54fbc8049d4",
+    "run_id": 35051550466
   }
 }

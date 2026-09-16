@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-external2保存28命令/56byteを全u16×2mode=131072入力で検証。全命令/条件分岐両側を被覆し、返値0/1・r4-r11/LR保持・局所SP差分0・外部call0・非stack書込0をモデル条件付きで確認。既読ABI/native/候補復元0。エージェント側命令仕様照合: https://sourceware.org/cgen/gen-doc/arm-thumb-insn.html（Actions中の外部資料取得なし）。
+未読外部callee0x081138F9の1根だけ32命令/64byteを採取保存。external1/2の保存結果とBPは再実行0。外側帰還・保存slot/返却pointer非aliasは未証明のまま維持。
 
-**次: 次は未読外部callee0x081138F9の1根だけ限定採取。external2は再採取/単独ABI再実行せず保存結果を再利用する。旧18owner・外側calleeの帰還/保存slot/返却pointer非alias・Ring通常取得・policy/Circus・P08最終判定は未完。**
+**次: 次は保存済みpr16_ring_external3_bytes.jsonだけでABI・副作用を検証する。新規未読継続があれば保存frontierを使う。external3を再採取せず、既読ABI/BPを再実行しない。旧18owner・Ring通常取得・policy/Circus・P08最終判定は未完。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8d2504309caa29cfdcb749675c7f26a6b5a5fad0`。
+証拠のsource HEAD: `53b70aac2a1e1099f9f9c80e440ad54fbc8049d4`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_external3_bytes.json`
+- `scripts/pr16_ring_external3_bytes.py`
 - `content/modernization/pr16_ring_external2_abi.json`
-- `scripts/pr16_ring_external2_abi.py`
-- `content/modernization/pr16_ring_external2_bytes.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -113,6 +113,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 本セッションのexternal1 prefix ABI/継続採取・ABI/末尾採取・ABIの5工程は完了。保存証拠と原Actions/commitを再利用し単独再実行しない。次は0x0806DD1Dの1根。全callee帰還・counter/返却pointer非alias・Ring通常取得は未受入。
 - 外部callee0x0806DD1Dの限定byte採取は完了。保存graphだけでABIと副作用を検証し、同一candidateから再採取しない。external1の5工程・BPを再実行せず、0x081138F9・旧18owner・保存slot/返却pointer非alias・Ring通常取得は未証明のまま保持する。
 - external2 0x0806DD1Dの保存28命令/56byteは全u16×2mode分類と局所stack帰還ABIを検証済み。同一入力の再採取/単独ABI再実行をしない。外側callee・保存slot/返却pointer非alias・Ring通常取得の受入へ昇格せず、次は0x081138F9の1根だけ進める。
+- external3 0x081138F9の1根byte採取は完了。同一candidateで再採取せず保存byteのABI/副作用を検証する。external1/2とBPは再実行しない。新規未読継続・旧18owner・外側callee帰還/保存slot/返却pointer非alias・Ring通常取得は未証明として保持する。
 
 ## 次セッションへ残す更新手順
 
@@ -142,6 +143,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35050675969の原結論と保存証拠、BP run34946969126成功を照合。今回run35051354515は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35051354515の原結論と保存証拠、BP run34946969126成功を照合。今回run35051550466は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
