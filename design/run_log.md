@@ -5848,3 +5848,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存caller/role/closeoutを再利用し、0x08113984への未検索Thumb短分岐/ARM/間接参照、0x081C9DF9とI/O wrapper未読5calleeから実callerのpointer/size/LIMIT・selector1/2の通常story実到達を絞る。同一byteのBCD/selector利用をRTC同時衝突や全owner不存在へ読み替えない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
+
+
+## 2026-09-16T10:42:02.659945+00:00 — PR-P08-7-RING-BRANCH-FRONTIER
+- Timestamp: 2026-09-16T10:42:02.659945+00:00
+- Task: PR-P08-7-RING-BRANCH-FRONTIER / 未検索分岐・間接参照候補と6delegateの不足byteを固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-branch-frontier
+- Summary: 未検索の短分岐/ARM/PC相対参照は0候補。6delegate用に新規3326byte、保存622byte再利用。候補復元1、ROM変更/native/BP受入再実行0。実到達とcaller pointer/size/LIMITは未証明。
+- Files changed: scripts/pr16_ring_branch_frontier.py, tests/test_pr16_ring_branch_frontier.py, .github/workflows/pr16-ring-branch-frontier.yml, content/modernization/pr16_ring_branch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=82614a5fabc17ba3de1d22b990c272b2ac6b25e8; run=35086278411（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存branch-frontierから0x081C9DF9とI/O wrapperの5delegateを局所契約へ分解し、新候補の命令境界・実caller接続を絞る。byte再採取/既読BCD検証を繰り返さず、computed/RAM/mirrored-PC参照と旧18ownerを未完に保つ。Ring正規取得・装備実戦・保存は未受入。
