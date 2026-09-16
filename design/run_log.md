@@ -5832,3 +5832,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存caller/制御役割証拠を再利用し、initializerへの未検索Thumb tail/ARM/間接参照と、0x081C9DF9およびI/O wrapperの未読5delegateを必要範囲だけ結合する。selector1/2とrecord pointer/size/LIMITの通常story実到達を観測するまでRing受入にしない。BCDとselectorの同一byteは確認済みだがRTC同時衝突/全owner不存在を断定しない。旧18ownerは維持。
+
+
+## 2026-09-16T10:23:36.222617+00:00 — PR-P08-7-RING-CONTROL-CLOSEOUT
+- Timestamp: 2026-09-16T10:23:36.222617+00:00
+- Task: PR-P08-7-RING-CONTROL-CLOSEOUT / caller採取と制御役割の成功原本・保存commit・未完境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-closeout
+- Summary: caller採取20tests/run35082799310と制御役割35tests/run35084187651は原Actions成功・artifact・保存commitまで照合済み。新規18308byte/116参照、保存570byte再利用。BCD2048vector、tick/init257条件を検証。候補復元計1、native/旧ABI/BP受入再実行0。0x09099E16のtail先は未読0x081C9DF9。Ring実到達は未証明。
+- Files changed: scripts/pr16_ring_control_closeout.py, tests/test_pr16_ring_control_closeout.py, .github/workflows/pr16-ring-control-closeout.yml, content/modernization/pr16_ring_control_closeout.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定18 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e23098dd78f0157cf842e6a1ccd96624b1a8ea94; run=35084702528（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller/role/closeoutを再利用し、0x08113984への未検索Thumb短分岐/ARM/間接参照、0x081C9DF9とI/O wrapper未読5calleeから実callerのpointer/size/LIMIT・selector1/2の通常story実到達を絞る。同一byteのBCD/selector利用をRTC同時衝突や全owner不存在へ読み替えない。旧18owner、Ring正規取得・装備実戦・保存、policy/Circus/P08は未完。
