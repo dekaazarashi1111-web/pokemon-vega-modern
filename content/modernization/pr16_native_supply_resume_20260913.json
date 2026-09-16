@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。",
+    "current_stop": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。",
+    "next_step": "保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -316,7 +316,8 @@
     "run35054868301の末尾43testsと条件付き合成は保存原本で成功照合済み。P05所有権テストの旧3件期待をBP受入原本に結び直した。旧failure run35054872496はfailureのまま保持。BP/P03 native、末尾ABI、prefix/bodyを再実行せず実caller非aliasと旧18ownerへ進む。",
     "保存external1/2/3とFlagSet callerの契約結合は完了。selector2のexternal3到達域は560..2047/2080..2303、最大frame44byte。新checkerのfixture PASSは実SP/base/LR/割込み状態の観測ではない。旧ABI/受入native/本工程同一fixtureを再実行せず、実caller snapshotとallocation/帰還先証拠、旧18ownerを進める。Ring通常取得は未受入。",
     "boot FlagSet caller snapshotは保存原本を再利用。同一観測器・同一candidateの無変更再実行をしない。fixture/bootをRing物理受入へ昇格しない。",
-    "selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。"
+    "selector/record制御変数8件の限定literal参照採取は保存原本を再利用する。既知命令は再decodeせず、未検証のThumb解釈候補を実行可能owner/通常取得へ昇格しない。次は保存したwriter候補からselector1/2の到達条件とrecord割当契約を結合する。",
+    "保存0x08113984初期化の局所Thumb契約・容量差・別callsiteの制御域alias候補は検証済み。候補再復元/同一初期化ABI/BP/nativeを再実行せず、実callerのpointer/size/limitと0x09126CB4/0x09127060/0x09099E16の実作用・実到達条件を次に照合する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -389,13 +390,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。",
+    "goal_ja": "保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_selector_owners.json",
-      "scripts/pr16_ring_selector_followup.py",
-      "content/modernization/pr16_ring_caller_snapshot.json"
+      "content/modernization/pr16_ring_record_init.json",
+      "scripts/pr16_ring_record_init.py",
+      "content/modernization/pr16_ring_selector_owners.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -404,9 +405,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
+  "observed_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
   "observed_head_checks": {
-    "reason_ja": "先行run35060189419の原結論と保存証拠、BP run34946969126成功を照合。今回run35073059942は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35073059942の原結論と保存証拠、BP run34946969126成功を照合。今回run35074318490は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -567,9 +568,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。"
+    "scope_ja": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1799,10 +1800,26 @@
     "content/modernization/pr16_ring_selector_owners.json": {
       "size": 1704471,
       "sha256": "64e746c4b085f85afb180bbf03299c84ae7efebd1e72964f5f0195e97d553727"
+    },
+    "scripts/pr16_ring_record_init.py": {
+      "size": 13625,
+      "sha256": "aba6b60208116ef58560ac98349e478897052840c6d0b15ac085df47c12fde46"
+    },
+    "tests/test_pr16_ring_record_init.py": {
+      "size": 4677,
+      "sha256": "e14d24b88c3cf570a17ad6dbabd53aab069829eaacac64279ce2e94ef2af838d"
+    },
+    ".github/workflows/pr16-ring-record-init.yml": {
+      "size": 1940,
+      "sha256": "d00cefe77d60450329fafdccd5dc63b823812e37a76d93c92055ede27509eae4"
+    },
+    "content/modernization/pr16_ring_record_init.json": {
+      "size": 22140,
+      "sha256": "36c5c9961ded9db8af4bbd8f6cb96f37477ee09f916afc0c69498ae9bb9c4f11"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "selector/record制御変数8件のliteral参照を限定採取。新規649候補、既読15参照は保存byteを再利用し、新規window61024byteとsource一致を記録。候補復元1、native0、旧ABI/BP再実行0。Thumb解釈候補は到達性/割当証明ではない。",
+  "source_change_review_ja": "保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2237,5 +2254,10 @@
     "path": "content/modernization/pr16_ring_selector_owners.json",
     "source_head": "0a9e8c00fbb67cff4c626eca9c7ae770b143c4de",
     "run_id": 35073059942
+  },
+  "ring_record_init": {
+    "path": "content/modernization/pr16_ring_record_init.json",
+    "source_head": "d42165a1fdaf578805e64b247b1a833a0a7316bc",
+    "run_id": 35074318490
   }
 }

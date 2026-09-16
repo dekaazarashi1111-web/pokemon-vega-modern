@@ -5768,3 +5768,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存参照とsource一致からselector1/2のwriter・record_base/capacityの割当/終了ownerを結合する。実Ring経路のcallerとIRQ/DMA条件、旧18ownerは未解決。保存8件と本工程の採取を繰り返さず、Ring通常取得・装備実戦・通常保存を観測するまで受入へ昇格しない。policy/Circus/P08も未完。
+
+
+## 2026-09-16T08:32:29.072412+00:00 — PR-P08-7-RING-RECORD-INIT
+- Timestamp: 2026-09-16T08:32:29.072412+00:00
+- Task: PR-P08-7-RING-RECORD-INIT / 保存byteのrecord初期化・容量差と制御域alias候補を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-record-init
+- Summary: 保存0x08113984の局所初期化を命令実行で検証。caller pointerを登録しcapacity=floor(u16 size/4)、mode2の初期化word数は別global LIMIT。局所frame12byte、allocatorなし。0x09127110/7160は同じselector領域を外部calleeへ渡し、r5保存条件下でLIMIT下位byteへ16を書込む候補。実到達/外部callee作用/割当所有は未証明。候補復元0/native0/旧ABI・受入BP再実行0。
+- Files changed: scripts/pr16_ring_record_init.py, tests/test_pr16_ring_record_init.py, .github/workflows/pr16-ring-record-init.yml, content/modernization/pr16_ring_record_init.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d42165a1fdaf578805e64b247b1a833a0a7316bc; run=35074318490（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存initializerとalias候補を再検証せず、0x08113984実callerのpointer/size/LIMITと0x09126CB4/0x09127060/0x09099E16の役割・実到達を絞る。有効初期化はselectorを設定しないため通常story経路のselector1/2を別に追う。同一アドレスだけでRTC衝突/既存コードの不存在と断定しない。旧18owner、Ring取得・装備実戦・保存、policy/Circus/P08は未完。
