@@ -6632,3 +6632,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存cursor/scrollの明示RAM/pixel効果と出力queueを結合。音声/BIOS・未読辺をstubにせず、字形契約・既読採取・636control/627text・font/BP/nativeを単独再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T16:46:09.584651+00:00 — PR-P08-7-RING-CURSOR-SCROLL-CONTRACTS
+- Timestamp: 2026-09-17T16:46:09.584651+00:00
+- Task: PR-P08-7-RING-CURSOR-SCROLL-CONTRACTS / 保存cursorと上下scrollのpixel・queue・待機stateを明示RAMへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-cursor-scroll-contracts
+- Summary: 保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。
+- Files changed: scripts/pr16_ring_cursor_scroll_contracts.py, tests/test_pr16_ring_cursor_scroll_contracts.py, .github/workflows/pr16-ring-cursor-scroll-contracts.yml, content/modernization/pr16_ring_cursor_scroll_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定44 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=640bbe860513de52a8fc56e90c33cde4052a12bd; run=35248504865（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。

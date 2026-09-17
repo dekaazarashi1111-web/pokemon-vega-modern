@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存字形4文字/font2・4・5とspaceの展開・clipping・透明pixel・通常callbackを1122条件（帰還1084/不足停止38）で明示RAMへ結合。候補復元/新規byte/native0。",
+    "current_stop": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存cursor/scrollの明示RAM/pixel効果と出力queueを結合。音声/BIOS・未読辺をstubにせず、字形契約・既読採取・636control/627text・font/BP/nativeを単独再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "next_step": "次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -370,7 +370,8 @@
     "保存control24分岐・色81要素展開・prompt初期化とpayload不足の部分write契約を再利用。字形/音声/BIOS未読境界は成功stubにしない。同じ採取・旧627text契約・font/BP/nativeを単独再実行しない。",
     "保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。",
     "字形256byte変換表と音声3calleeの不足採取は保存原本を再利用する。旧6983命令/3212byte・636control/627text・受入済みfont/BP/nativeを単独再実行しない。次は保存字形/cursor/scrollの明示RAM効果を検証し、未読音声/BIOSを成功stubにしない。",
-    "保存字形4文字/font2・4・5とspaceの展開、透明pixel、clipと通常callbackの明示RAM契約は本原本を再利用。全文字/live allocation/実画面の受入ではない。既読byte・636control/627text・font/BP/nativeを単独再実行しない。"
+    "保存字形4文字/font2・4・5とspaceの展開、透明pixel、clipと通常callbackの明示RAM契約は本原本を再利用。全文字/live allocation/実画面の受入ではない。既読byte・636control/627text・font/BP/nativeを単独再実行しない。",
+    "保存cursor/scrollのpixel・queue・state2/3/4は本原本を再利用する。4byte旧stack残値の明示条件とfillの隣接nibble効果、speed3..7の進捗0を保持。同じcursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -443,13 +444,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存cursor/scrollの明示RAM/pixel効果と出力queueを結合。音声/BIOS・未読辺をstubにせず、字形契約・既読採取・636control/627text・font/BP/nativeを単独再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "goal_ja": "次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_glyph_contracts.json",
-      "scripts/pr16_ring_glyph_contracts.py",
-      "content/modernization/pr16_ring_output_leaf_bytes.json"
+      "content/modernization/pr16_ring_cursor_scroll_contracts.json",
+      "scripts/pr16_ring_cursor_scroll_contracts.py",
+      "content/modernization/pr16_ring_glyph_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -458,9 +459,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "2bcba7ad813d7c67fda2442553e49f63d8a86179",
+  "observed_head": "640bbe860513de52a8fc56e90c33cde4052a12bd",
   "observed_head_checks": {
-    "reason_ja": "先行run35243472193の原結論と保存証拠、BP run34946969126成功を照合。今回run35247250870は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35247250870の原結論と保存証拠、BP run34946969126成功を照合。今回run35248504865は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -623,7 +624,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存字形4文字/font2・4・5とspaceの展開・clipping・透明pixel・通常callbackを1122条件（帰還1084/不足停止38）で明示RAMへ結合。候補復元/新規byte/native0。"
+    "scope_ja": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2717,10 +2718,26 @@
     "content/modernization/pr16_ring_glyph_contracts.json": {
       "size": 1462696,
       "sha256": "360d85a0a0e3ccccab45f68fa1d3b1aaba3ad25aae5eeb305481d93de32b7ca6"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "tests/test_pr16_ring_cursor_scroll_contracts.py": {
+      "size": 7270,
+      "sha256": "14e7a99ed7cb8d3c3b2ac7184453769cf53845008cc88a4c9e3e321ee6f8a46d"
+    },
+    ".github/workflows/pr16-ring-cursor-scroll-contracts.yml": {
+      "size": 1973,
+      "sha256": "3bef2d126f2e913d3af37f0a5f6d2b189917ad2d4ba691f45773599c2307463d"
+    },
+    "content/modernization/pr16_ring_cursor_scroll_contracts.json": {
+      "size": 1704882,
+      "sha256": "0388a19317643a9c3625352d81ae442c0d82bc01cd3d04d48c1dea52b587bde7"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存字形4文字/font2・4・5とspaceの展開・clipping・透明pixel・通常callbackを1122条件（帰還1084/不足停止38）で明示RAMへ結合。候補復元/新規byte/native0。",
+  "source_change_review_ja": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3142,9 +3159,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_glyph_contracts.json",
-    "source_head": "2bcba7ad813d7c67fda2442553e49f63d8a86179",
-    "run_id": 35247250870
+    "path": "content/modernization/pr16_ring_cursor_scroll_contracts.json",
+    "source_head": "640bbe860513de52a8fc56e90c33cde4052a12bd",
+    "run_id": 35248504865
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
