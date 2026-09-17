@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-control24表と字形/出力/prompt/音声8calleeを新規643命令で有限結合。保存総数6534、旧5891命令再解読/627契約再実行/native0。
+保存6534命令でcontrol24表・色81要素展開・prompt初期化と通常高速出力を636条件（帰還531/pending105）検証。候補復元/新規byte/native0。
 
-**次: 次は保存control24分岐・prompt初期化・字形/scroll/音声の明示RAM契約を結合。未読data/callee/BIOSはpendingを保持し、候補再採取や受入済みtext/font/BP/nativeを単独再実行しない。実描画/DMA・全live owner・gFonts実初期化・Ring通常取得/policy/Circus/P08は未受入。**
+**次: 次は未読7calleeとfont bitmap/width・cursor/symbol・音声の必要dataを限定結合し、字形/cursor/scroll出力とBIOS境界へ進む。今回control/prompt・旧627text/font/BP/nativeは単独再実行しない。実描画/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9d1e7eeabfe69f773d417b8b4f5932d36594f300`。
+証拠のsource HEAD: `070b5c27efb2f2feb88f5b220dcd5be27fb9b38b`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_control_contracts.json`
+- `scripts/pr16_ring_control_contracts.py`
 - `content/modernization/pr16_ring_control_frontier.json`
-- `scripts/pr16_ring_control_frontier.py`
-- `content/modernization/pr16_ring_text_state_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -173,6 +173,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 文字8分岐・選択font2/4/5の字形分岐と待機5calleeの有限byteを再利用。次は明示RAM/狭いstackでstate/終端/遅延/queue結合を検証し、音声globalを暗黙stackゼロで代用しない。既読採取/受入済みfont・BP/nativeは再実行しない。
 - 保存text状態/終端/遅延/通常高速描画の明示RAM契約を再利用。音声globalと512byte live stackを分離。未読control24表・字形callee・cursor/audio/BIOS境界を成功stubにしない。今回契約/既読byte採取/旧font初期化/BP/nativeは単独再実行しない。
 - control24表と字形/出力/prompt/音声8calleeの有限採取は保存原本を再利用。旧5891命令・627text契約・受入済みfont/BP/nativeは単独再実行しない。次は保存命令のcontrol/prompt/字形を明示RAMで結合し、未読data/音声/BIOSを成功stubにしない。
+- 保存control24分岐・色81要素展開・prompt初期化とpayload不足の部分write契約を再利用。字形/音声/BIOS未読境界は成功stubにしない。同じ採取・旧627text契約・font/BP/nativeを単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -202,6 +203,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35238469986の原結論と保存証拠、BP run34946969126成功を照合。今回run35240511756は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35240511756の原結論と保存証拠、BP run34946969126成功を照合。今回run35241938016は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

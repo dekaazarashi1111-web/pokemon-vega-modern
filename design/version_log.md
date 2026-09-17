@@ -3840,3 +3840,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存control24分岐・prompt初期化・字形/scroll/音声の明示RAM契約を結合。未読data/callee/BIOSはpendingを保持し、候補再採取や受入済みtext/font/BP/nativeを単独再実行しない。実描画/DMA・全live owner・gFonts実初期化・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:42:42.493077+00:00 — PR-P08-7-RING-CONTROL-CONTRACTS
+- Timestamp: 2026-09-17T15:42:42.493077+00:00
+- Task: PR-P08-7-RING-CONTROL-CONTRACTS / control24分岐・色81要素展開・prompt初期化と未読出力境界を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-control-contracts
+- Summary: 保存6534命令でcontrol24表・色81要素展開・prompt初期化と通常高速出力を636条件（帰還531/pending105）検証。候補復元/新規byte/native0。
+- Files changed: scripts/pr16_ring_control_contracts.py, tests/test_pr16_ring_control_contracts.py, .github/workflows/pr16-ring-control-contracts.yml, content/modernization/pr16_ring_control_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=070b5c27efb2f2feb88f5b220dcd5be27fb9b38b; run=35241938016（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読7calleeとfont bitmap/width・cursor/symbol・音声の必要dataを限定結合し、字形/cursor/scroll出力とBIOS境界へ進む。今回control/prompt・旧627text/font/BP/nativeは単独再実行しない。実描画/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
