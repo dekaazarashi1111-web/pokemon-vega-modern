@@ -6312,3 +6312,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存したresource 8calleeを実callback table/12byte resource/32byte出力slotの引数・帰還・書込範囲へ結合する。未知callee/間接辺はstub化せず残す。実allocation/通常・拡張変数領域との結合、Ring正規story取得・装備実戦・保存は未受入。同じ8callee採取・保存2457命令・VarGet selector1/2・旧external ABI/7graph・BP/nativeを単独再実行しない。policy/Circus/P08へscopeを拡大しない。
+
+
+## 2026-09-17T07:39:46.729200+00:00 — PR-P08-7-RING-RESOURCE-TAIL
+- Timestamp: 2026-09-17T07:39:46.729200+00:00
+- Task: PR-P08-7-RING-RESOURCE-TAIL / resourceの未読3calleeと8要素分岐表を有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-tail
+- Summary: resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。
+- Files changed: scripts/pr16_ring_resource_tail.py, tests/test_pr16_ring_resource_tail.py, .github/workflows/pr16-ring-resource-tail.yml, content/modernization/pr16_ring_resource_tail.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3029ad62d958b79904b300b57010728b4d4c0858; run=35195532065（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
