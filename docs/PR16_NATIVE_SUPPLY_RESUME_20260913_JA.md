@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-4callee/VarGetの2継続を既読2107命令へ有限結合。新規223命令/348byte、data再採取0、既読再解読/native0。
+保存2330命令でVarGet helper全65536値とcaller帰還1337件、未map/selector/callback/resource停止93件を検証。通常256変数・拡張512変数・special表参照の区分を結合。
 
-**次: 保存したresource callee・callback trampoline・VarGet helper/継続を実caller引数と帰還/SP/書込範囲へ結合する。未読先はstubで補わずpendingを保持。callback table/12byte resource records/32byte出力slotの実allocationは別証拠。既読2107命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 次はselector1/2の0x08113889/0x0806DD1D/0x081138F9を既存external1/2/3保存原本から再利用結合し、残るresource8calleeと実callback table/変数領域のallocationを有限検証する。採取済み2330命令・VarGet全u16/帰還・81要素/非null帰還・265caller・11文字列・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f25707e6a655a3beb41882a10d124f2171d75799`。
+証拠のsource HEAD: `9e14bfb6ec932f1411fe072beb5aec9385db59b1`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_dispatch_contracts.json`
+- `scripts/pr16_ring_dispatch_contracts.py`
 - `content/modernization/pr16_ring_dispatch_frontier.json`
-- `scripts/pr16_ring_dispatch_frontier.py`
-- `content/modernization/pr16_ring_gate_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -153,6 +153,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 3callee/VarGet中継先の有限採取を保存原本から再利用する。同じ候補復元、1935既読命令、11文字列、CreateTask caller265契約、旧795/716/BPを単独再実行しない。新callee・table・callbackは未証明境界を明記し、全live frameやRing取得へ昇格しない。
 - 保存2107命令による81要素展開・非null caller帰還/32byte保存・resource/callback停止契約を再利用する。11文字列/265caller/旧795/716/BP/nativeを単独再実行しない。非null限定帰還をdispatch callback帰還・全live slot境界やRing取得へ昇格しない。
 - 4calleeとVarGetの2継続の有限採取は保存原本を再利用する。既読2107命令・81要素展開・非null帰還・265caller・11文字列・BP/nativeの単独再実行は禁止。未読callee/間接callbackと実allocation条件は未証明のまま、次は保存byteの契約結合へ進む。
+- VarGet helper全65536値・保存caller帰還・明示slot不足拒否・callback/resource停止契約を再利用。同じ候補復元/採取/既読2330命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。special pointer表と拡張/通常変数領域の合成allocationを実callerの有効範囲やRing取得へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -182,6 +183,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35131912531の原結論と保存証拠、BP run34946969126成功を照合。今回run35189858767は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35189858767の原結論と保存証拠、BP run34946969126成功を照合。今回run35190870442は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -6248,3 +6248,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存したresource callee・callback trampoline・VarGet helper/継続を実caller引数と帰還/SP/書込範囲へ結合する。未読先はstubで補わずpendingを保持。callback table/12byte resource records/32byte出力slotの実allocationは別証拠。既読2107命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:41:03.294367+00:00 — PR-P08-7-RING-DISPATCH-CONTRACTS
+- Timestamp: 2026-09-17T06:41:03.294367+00:00
+- Task: PR-P08-7-RING-DISPATCH-CONTRACTS / VarGet全65536値と実継続・callback/resource境界の保存契約を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dispatch-contracts
+- Summary: 保存2330命令でVarGet helper全65536値とcaller帰還1337件、未map/selector/callback/resource停止93件を検証。通常256変数・拡張512変数・special表参照の区分を結合。
+- Files changed: scripts/pr16_ring_dispatch_contracts.py, tests/test_pr16_ring_dispatch_contracts.py, .github/workflows/pr16-ring-dispatch-contracts.yml, content/modernization/pr16_ring_dispatch_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定38 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9e14bfb6ec932f1411fe072beb5aec9385db59b1; run=35190870442（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次はselector1/2の0x08113889/0x0806DD1D/0x081138F9を既存external1/2/3保存原本から再利用結合し、残るresource8calleeと実callback table/変数領域のallocationを有限検証する。採取済み2330命令・VarGet全u16/帰還・81要素/非null帰還・265caller・11文字列・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
