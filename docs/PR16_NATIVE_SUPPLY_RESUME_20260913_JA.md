@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-message実callerのslot0/font2/4/5供給を束縛。速度delegate0937855Dの新規18命令/42byteを保存。旧7291命令再解読/native0。
+実message生成callerから設定検証・slot0・task割当・font callbackを391条件で結合。設定256値、LR由来stack残留、null font/task満杯/不足時の部分writeを区別。新byte/native/候補復元0。
 
-**次: 次は保存速度byteとmessage callerを結合し、設定分岐・有効slot書込・callback選択・不足時停止・返却frameを検証する。initializer到達/heap allocation/通常storyの実観測は未受入。新速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。**
+**次: 次は登録task callback08068C31とその上流実到達・window初期化の保存caller/必要byteを限定する。slot0・task割当は明示RAMでの条件付き証明で、通常story/実gFonts/画面・音声は未観測。本結合/速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d0068f4d2e2efed5b7d39283539ceac9a3bddbe1`。
+証拠のsource HEAD: `773a5c682c0e254304af1a732d2284c4fe0bf772`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_message_owner_contracts.json`
+- `scripts/pr16_ring_message_owner_contracts.py`
 - `content/modernization/pr16_ring_message_owner_frontier.json`
-- `scripts/pr16_ring_message_owner_frontier.py`
-- `content/modernization/pr16_ring_text_export_recovery.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -187,6 +187,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。
 - run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。
 - message実callerのslot0/font2/4/5供給と速度delegate一根を保存。同じ採取・混在列333/旧renderer/audio/glyph/BP/nativeを単独再実行しない。次は保存速度byteとmessage callerの設定/不足/slot書込/callback選択を一体検証。
+- 保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -216,6 +217,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35257642049の原結論と保存証拠、BP run34946969126成功を照合。今回run35258491487は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35258491487の原結論と保存証拠、BP run34946969126成功を照合。今回run35261096931は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
