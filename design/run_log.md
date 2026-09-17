@@ -6520,3 +6520,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。残る文字/control分岐表と未読calleeは保存pendingからだけ進める。今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:56:35.855011+00:00 — PR-P08-7-RING-CHARACTER-FRONTIER
+- Timestamp: 2026-09-17T14:56:35.855011+00:00
+- Task: PR-P08-7-RING-CHARACTER-FRONTIER / 文字と選択font分岐・待機calleeの未読byteを有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-character-frontier
+- Summary: 文字8分岐/選択font2/4/5・待機5calleeを新規266命令で結合。scroll速度8byteを保存。既読/native再実行0。
+- Files changed: scripts/pr16_ring_character_frontier.py, tests/test_pr16_ring_character_frontier.py, .github/workflows/pr16-ring-character-frontier.yml, content/modernization/pr16_ring_character_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=94bbe65a8eedfbd5462f4caecf46d6f634271a43; run=35236750637（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存byteだけでstate/終端/遅延/入力待ち/出力queueの正確writeと帰還を結合。合成stackを狭め音声globalを明示RAMへ分離し、未mapをゼロ成功にしない。残る制御table/glyph/calleeだけをpendingとして保持。今回採取・受入済みfont/BP/nativeは再実行せずRing通常取得/policy/Circus/P08は未受入。

@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "font2/4/5のstate7分岐と直接7calleeを新規1567命令で結合。無効state帰還/未map表の57条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。",
+    "current_stop": "文字8分岐/選択font2/4/5・待機5calleeを新規266命令で結合。scroll速度8byteを保存。既読/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。残る文字/control分岐表と未読calleeは保存pendingからだけ進める。今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。",
+    "next_step": "次は保存byteだけでstate/終端/遅延/入力待ち/出力queueの正確writeと帰還を結合。合成stackを狭め音声globalを明示RAMへ分離し、未mapをゼロ成功にしない。残る制御table/glyph/calleeだけをpendingとして保持。今回採取・受入済みfont/BP/nativeは再実行せずRing通常取得/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -363,7 +363,8 @@
     "gFonts reader隣接の初期化窓と有限literal依存は保存結果を再利用する。同じcandidate復元/採取・旧3955命令/609条件・BP/nativeを単独再実行しない。literal表候補の有限窓を実table長・通常初期化到達・Ring取得へ昇格しない。",
     "gFonts setterの3保存命令と新規caller literal/table有限採取・描画lookup結合を再利用。同じsetter caller探索/候補復元/byte採取/旧3955命令契約/BP/nativeを単独再実行しない。候補表のoffset lookupを実table全長・live初期化・callback帰還・Ring通常取得へ昇格しない。",
     "保存messageのfont2/4/5だけで絞ったcallbackと直接1段、default initializer帰還を再利用。候補表の他offsetを有効fontとして採取しない。同じ復元/採取/初期化契約/旧140条件/BP/nativeを単独再実行しない。callbackの保存命令・分岐表境界をlive初期化/描画完了/Ring通常取得へ昇格しない。",
-    "font2/4/5のstate7分岐表と直接1段を保存。無効state帰還/未map表境界を再利用し、次は保存state/終端/遅延・window書込を契約結合する。既読命令/default初期化/旧font契約/BP/nativeを再実行しない。"
+    "font2/4/5のstate7分岐表と直接1段を保存。無効state帰還/未map表境界を再利用し、次は保存state/終端/遅延・window書込を契約結合する。既読命令/default初期化/旧font契約/BP/nativeを再実行しない。",
+    "文字8分岐・選択font2/4/5の字形分岐と待機5calleeの有限byteを再利用。次は明示RAM/狭いstackでstate/終端/遅延/queue結合を検証し、音声globalを暗黙stackゼロで代用しない。既読採取/受入済みfont・BP/nativeは再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -436,13 +437,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。残る文字/control分岐表と未読calleeは保存pendingからだけ進める。今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。",
+    "goal_ja": "次は保存byteだけでstate/終端/遅延/入力待ち/出力queueの正確writeと帰還を結合。合成stackを狭め音声globalを明示RAMへ分離し、未mapをゼロ成功にしない。残る制御table/glyph/calleeだけをpendingとして保持。今回採取・受入済みfont/BP/nativeは再実行せずRing通常取得/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_font_states.json",
-      "scripts/pr16_ring_font_states.py",
-      "content/modernization/pr16_ring_font_frontier.json"
+      "content/modernization/pr16_ring_character_frontier.json",
+      "scripts/pr16_ring_character_frontier.py",
+      "content/modernization/pr16_ring_font_states.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -451,9 +452,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "672521934bfd29e8c77c5de37e69b47c235af626",
+  "observed_head": "94bbe65a8eedfbd5462f4caecf46d6f634271a43",
   "observed_head_checks": {
-    "reason_ja": "先行run35232060702の原結論と保存証拠、BP run34946969126成功を照合。今回run35235505444は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35235505444の原結論と保存証拠、BP run34946969126成功を照合。今回run35236750637は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -616,7 +617,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "font2/4/5のstate7分岐と直接7calleeを新規1567命令で結合。無効state帰還/未map表の57条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。"
+    "scope_ja": "文字8分岐/選択font2/4/5・待機5calleeを新規266命令で結合。scroll速度8byteを保存。既読/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2598,10 +2599,26 @@
     "content/modernization/pr16_ring_font_states.json": {
       "size": 419419,
       "sha256": "8690a952f5f2944e5678805afd7d9061e6eb45cfb3f030f72abcdaa4788e8c0e"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "tests/test_pr16_ring_character_frontier.py": {
+      "size": 3756,
+      "sha256": "7b718a76bf9ad294553a5e2b0b176685d9948b4a41753a15da5ce554bea62910"
+    },
+    ".github/workflows/pr16-ring-character-frontier.yml": {
+      "size": 1944,
+      "sha256": "62b4978e28dc5beac1a5612d66bb5acc64c81038ffd82346899948ce13826c00"
+    },
+    "content/modernization/pr16_ring_character_frontier.json": {
+      "size": 89814,
+      "sha256": "c9f19c6e588916e16445b891063deb283494b60a9c281e74fedb2d67a0c592b2"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "font2/4/5のstate7分岐と直接7calleeを新規1567命令で結合。無効state帰還/未map表の57条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。",
+  "source_change_review_ja": "文字8分岐/選択font2/4/5・待機5calleeを新規266命令で結合。scroll速度8byteを保存。既読/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3023,9 +3040,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_font_states.json",
-    "source_head": "672521934bfd29e8c77c5de37e69b47c235af626",
-    "run_id": 35235505444
+    "path": "content/modernization/pr16_ring_character_frontier.json",
+    "source_head": "94bbe65a8eedfbd5462f4caecf46d6f634271a43",
+    "run_id": 35236750637
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
