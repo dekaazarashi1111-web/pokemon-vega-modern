@@ -6776,3 +6776,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T18:24:48.662613+00:00 — PR-P08-7-RING-MESSAGE-OWNER-FRONTIER
+- Timestamp: 2026-09-17T18:24:48.662613+00:00
+- Task: PR-P08-7-RING-MESSAGE-OWNER-FRONTIER / message実callerのslot0・font分岐と未結合速度delegateを保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-owner-frontier
+- Summary: message実callerのslot0/font2/4/5供給を束縛。速度delegate0937855Dの新規18命令/42byteを保存。旧7291命令再解読/native0。
+- Files changed: scripts/pr16_ring_message_owner_frontier.py, tests/test_pr16_ring_message_owner_frontier.py, .github/workflows/pr16-ring-message-owner-frontier.yml, content/modernization/pr16_ring_message_owner_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定31 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d0068f4d2e2efed5b7d39283539ceac9a3bddbe1; run=35258491487（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存速度byteとmessage callerを結合し、設定分岐・有効slot書込・callback選択・不足時停止・返却frameを検証する。initializer到達/heap allocation/通常storyの実観測は未受入。新速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。
