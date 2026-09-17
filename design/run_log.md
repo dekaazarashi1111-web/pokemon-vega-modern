@@ -6264,3 +6264,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次はselector1/2の0x08113889/0x0806DD1D/0x081138F9を既存external1/2/3保存原本から再利用結合し、残るresource8calleeと実callback table/変数領域のallocationを有限検証する。採取済み2330命令・VarGet全u16/帰還・81要素/非null帰還・265caller・11文字列・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:52:58.772143+00:00 — PR-P08-7-RING-SELECTOR-REUSE
+- Timestamp: 2026-09-17T06:52:58.772143+00:00
+- Task: PR-P08-7-RING-SELECTOR-REUSE / 既存external3根の保存graph再利用と2工程の成功原本を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-selector-reuse
+- Summary: 旧external1/2/3の7保存byte graphから127命令を再利用結合し、合計2457命令。今回2工程の61tests・原Actions/job/ZIP/保存commitを再実行なしで照合。初回run35191559008の範囲検査failureは維持し修正。実caller契約は未証明。
+- Files changed: scripts/pr16_ring_selector_reuse.py, tests/test_pr16_ring_selector_reuse.py, .github/workflows/pr16-ring-selector-reuse.yml, content/modernization/pr16_ring_selector_reuse.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定31 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ed04397bd452f85305e208efe208538bf6dadd24; run=35191815881（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存済みselector1/2の3calleeをVarGet callerへ結合し、帰還/SP/record書込と条件不足/容量不足を検証する。残るresource8callee、実callback table/変数領域allocationは未証明。7旧graphの採取/旧ABI・VarGet全65536値/1337帰還・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
