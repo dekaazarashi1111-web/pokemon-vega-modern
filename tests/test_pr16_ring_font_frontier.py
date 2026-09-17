@@ -1,4 +1,9 @@
-"""messageで使用するfontと初期化の保存境界だけを検査する。"""
+"""messageで使用するfontと初期化の保存境界だけを検査する。
+
+run35231497691は28tests中1FAIL。拒否fixtureに正常callsiteを渡した誤りで、
+候補復元/byte採取/nativeは開始していない。元runを成功へ読み替えない。
+artifact10501750832 / SHA256 fd1acc51179e701774d6c77a2b6fd4df63e30660b63dbd301577e3328c9fc5f5。
+"""
 from pathlib import Path
 import copy
 import sys
@@ -77,7 +82,8 @@ class FontFrontierTests(unittest.TestCase):
         a=analysis();a['tables'][0]['hex']='00'*192
         with self.assertRaisesRegex(ValueError,'identity'):t.selected_fonts(a,[2,4,5])
     def test_changed_supplier_callsite_rejected(self):
-        a=analysis();a['tables'][0]['supplier_callsites']=[0x080f8a2c]
+        a=analysis();a['tables'][0]['supplier_callsites']=[0x080f8a2a]
+        self.assertNotEqual(a['tables'][0]['supplier_callsites'],analysis()['tables'][0]['supplier_callsites'])
         with self.assertRaisesRegex(ValueError,'出自'):t.selected_fonts(a,[2,4,5])
     def test_callback_not_in_saved_frontier_rejected(self):
         a=analysis();a['pending_font_callback_targets']=[]
