@@ -16,7 +16,7 @@ WORKFLOW='.github/workflows/pr16-ring-font-states.yml'
 PRIOR=prior.REPORT
 REPORT='content/modernization/pr16_ring_font_states.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=20
+MIN_TESTS=27
 EXTRA_CODE=()
 SOURCES=tuple(dict.fromkeys((prior.SELF,*prior.SOURCES)))
 NO_REPEAT=('font2/4/5のstate7分岐表と直接1段を保存。無効state帰還/未map表境界を再利用し、'
@@ -97,6 +97,27 @@ def direct_roots(result,known):
     return sorted(set(values)-{prior.ui.LOG|1,prior.ui.FATAL|1})
 
 
+PREFLIGHT_SOURCES=tuple(dict.fromkeys((SELF,TEST,WORKFLOW,PRIOR,*SOURCES)))
+FAILED_PREFLIGHT={'run_id':35234485558,'job_id':105246763972,
+    'source_head':'f6258769d0f819fe805743431aee562360ba7e1c','original_conclusion':'failure',
+    'artifact_id':10502301548,'artifact_sha256':'0207d48e0cc8505a4e71845e4bb78f870ab42056585e2007372f4adbacd0c47d',
+    'classification':'PREFLIGHT_SOURCE_BINDINGS_MISSING_BEFORE_RESTORE',
+    'candidate_reconstructions':0,'new_emulator_processes':0,'result_relabelled':False}
+
+
+def preflight_record(plan,node_count,case_count,bindings):
+    need(type(bindings)is dict and set(bindings)==set(PREFLIGHT_SOURCES),'preflight source集合')
+    for row in bindings.values():
+        need(type(row)is dict and set(row)=={'size','sha256'},'preflight source identity形式')
+        need(type(row['size'])is int and row['size']>=0,'preflight source size')
+        digest=row['sha256']
+        need(type(digest)is str and len(digest)==64 and all(c in '0123456789abcdef' for c in digest),'preflight source hash')
+    need(node_count==4058 and case_count==57,'preflight保存/契約件数')
+    return {'plan':copy.deepcopy(plan),'saved_nodes':node_count,'contract_cases':case_count,
+        'max_direct_layers':1,'candidate':copy.deepcopy(s.CANDIDATE),'source_bindings':copy.deepcopy(bindings),
+        'failed_preflight_preserved':copy.deepcopy(FAILED_PREFLIGHT)}
+
+
 def analyze(previous,out):
     import pr16_ring_ui_leaf_bytes as leaf
     import pr16_ring_remaining_frontier as walk
@@ -108,8 +129,8 @@ def analyze(previous,out):
     ranges=leaf.data_ranges(context)+[(prior.TABLE,192),(TABLE,COUNT*4)]
     forbidden={p for start,length in ranges for p in range(start,start+length)}
     conditions=boundary_contracts(nodes,previous['analysis']['selected_fonts'])
-    (out/'preflight.json').write_bytes(s.stable({'plan':plan,'saved_nodes':len(nodes),'contract_cases':len(conditions),
-        'max_direct_layers':1,'candidate':s.CANDIDATE}))
+    bindings={p:s.identity((s.ROOT/p).read_bytes())for p in PREFLIGHT_SOURCES}
+    (out/'preflight.json').write_bytes(s.stable(preflight_record(plan,len(nodes),len(conditions),bindings)))
     restore.OUT=out;restore.restore()
     candidate=s.ROOT/'.local/pr16-bp-party-retention-successor/candidate.gba';raw=candidate.read_bytes();saved.candidate_identity(raw)
     at=TABLE-0x08000000;table=table_values(raw[at:at+COUNT*4],plan,forbidden)
@@ -129,6 +150,7 @@ def analyze(previous,out):
     windows,reused=old.new_windows(raw,points,memory);all_nodes=[*nodes,*new]
     need(s.identity(candidate.read_bytes())==s.identity(raw),'candidate不変')
     result={'classification':'SAVED_FONT_STATE_TABLE_FRONTIER_AND_BOUNDARIES_NOT_NATIVE_ACCEPTANCE',
+        'failed_preflight_preserved':copy.deepcopy(FAILED_PREFLIGHT),
         'candidate':copy.deepcopy(s.CANDIDATE),'state_table':table,'selected_fonts':copy.deepcopy(previous['analysis']['selected_fonts']),
         'tables':copy.deepcopy(previous['analysis']['tables']),'initial_roots':table['roots'],'direct_layer_roots':children,
         'direct_layers_expanded':int(bool(children)),'new_nodes':new,'new_node_count':len(new),
@@ -155,7 +177,7 @@ def analyze(previous,out):
 
 def summaries(r):
     return (f'font2/4/5のstate7分岐と直接{len(r["direct_layer_roots"])}calleeを新規{r["new_node_count"]}命令で結合。'
-        f'無効state帰還/未map表の{r["contract_cases"]}条件を検証。native0。',
+        f'無効state帰還/未map表の{r["contract_cases"]}条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。',
         '次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。'
         '残る文字/control分岐表と未読calleeは保存pendingからだけ進める。'
         '今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。')

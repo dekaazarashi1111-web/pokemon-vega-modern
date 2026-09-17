@@ -37,7 +37,7 @@ class FontStatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):t.table_plan(n,a)
     def test_duplicate_node_rejected(self):
         n,a=fixture()
-        with self.assertRaises(ValueError):t.table_plan(n+n[:1],a)
+        with self.assertRaises(ValueError):t.table_plan(n,a)
     def test_missing_pending_rejected(self):
         n,a=fixture();a['pending_boundaries']=[]
         with self.assertRaises(ValueError):t.table_plan(n,a)
@@ -73,6 +73,24 @@ class FontStatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):t.direct_roots({'direct_calls_recursively_expanded':0,'pending_direct_callees':[0x08009001]},{0x08009000:{}})
     def test_assert_not_expanded(self):
         self.assertEqual(t.direct_roots({'direct_calls_recursively_expanded':0,'pending_direct_callees':[t.prior.ui.LOG|1]},{}),[])
+
+    def bindings(self):return {p:t.s.identity(p.encode())for p in t.PREFLIGHT_SOURCES}
+    def test_preflight_source_bindings_exported(self):
+        bindings=self.bindings();row=t.preflight_record(self.plan(),4058,57,bindings)
+        self.assertEqual(row['source_bindings'],bindings)
+        self.assertIsNot(row['source_bindings'],bindings)
+        self.assertEqual(row['failed_preflight_preserved']['original_conclusion'],'failure')
+    def test_preflight_missing_workflow_rejected(self):
+        bindings=self.bindings();del bindings[t.WORKFLOW]
+        with self.assertRaises(ValueError):t.preflight_record(self.plan(),4058,57,bindings)
+    def test_preflight_missing_all_bindings_rejected(self):
+        with self.assertRaises(ValueError):t.preflight_record(self.plan(),4058,57,{})
+    def test_preflight_invalid_hash_rejected(self):
+        bindings=self.bindings();bindings[t.SELF]['sha256']='g'*64
+        with self.assertRaises(ValueError):t.preflight_record(self.plan(),4058,57,bindings)
+    def test_preflight_negative_size_rejected(self):
+        bindings=self.bindings();bindings[t.SELF]['size']=-1
+        with self.assertRaises(ValueError):t.preflight_record(self.plan(),4058,57,bindings)
 
 
 if __name__=='__main__':unittest.main()
