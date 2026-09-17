@@ -4016,3 +4016,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:54:29.545164+00:00 — PR-P08-7-RING-TEXT-AUDIO-SEQUENCE
+- Timestamp: 2026-09-17T17:54:29.545164+00:00
+- Task: PR-P08-7-RING-TEXT-AUDIO-SEQUENCE / 混在text列の画素・音声状態・queueと途中停止を通常高速で結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-audio-sequence
+- Summary: 色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。
+- Files changed: scripts/pr16_ring_text_audio_sequence.py, tests/test_pr16_ring_text_audio_sequence.py, .github/workflows/pr16-ring-text-audio-sequence.yml, content/modernization/pr16_ring_text_audio_sequence.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定49 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a5f372e25eba83e5a09dead27bf8b287ce13fda2; run=35255462365（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。

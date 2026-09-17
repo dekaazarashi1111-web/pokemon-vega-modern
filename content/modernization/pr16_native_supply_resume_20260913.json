@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。",
+    "current_stop": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "next_step": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -377,7 +377,8 @@
     "音声未読3callee・BIOS入口・song0/5/291 headerの有限採取は保存原本を再利用。既読7091命令・audio164/renderer/cursor/glyph/BP/nativeは単独再実行しない。SWIを成功stubにせず、track pointerを再生完了やlive音声の受入へ昇格しない。",
     "選択曲0/5/291のheader・優先度・track容量・text16の初期化契約と音声末端の部分writeは保存原本を再利用。初期化を再生完了へ、明示IO byteを実DMA/音声へ昇格しない。同じaudio出力/旧164・renderer/cursor/glyph/BP/nativeを単独再実行せず、残る3callee/周波数表とlive callerの未証明境界へ進む。",
     "音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。",
-    "保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。"
+    "保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。",
+    "混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -450,13 +451,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "goal_ja": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_audio_tail_contracts.json",
-      "scripts/pr16_ring_audio_tail_contracts.py",
-      "content/modernization/pr16_ring_audio_tail_bytes.json"
+      "content/modernization/pr16_ring_text_audio_sequence.json",
+      "scripts/pr16_ring_text_audio_sequence.py",
+      "content/modernization/pr16_ring_audio_tail_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -465,9 +466,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d",
+  "observed_head": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
   "observed_head_checks": {
-    "reason_ja": "先行run35253330975の原結論と保存証拠、BP run34946969126成功を照合。今回run35254339394は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35254339394の原結論と保存証拠、BP run34946969126成功を照合。今回run35255462365は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -630,7 +631,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。"
+    "scope_ja": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2836,10 +2837,26 @@
     "content/modernization/pr16_ring_audio_tail_contracts.json": {
       "size": 467291,
       "sha256": "c3a2211718e75f44d7707521c32a1f5a063af37718fb0dc3e7986279d9f039b2"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    },
+    "tests/test_pr16_ring_text_audio_sequence.py": {
+      "size": 9009,
+      "sha256": "476ed865c985656dc8145b93e0d6b6b7cae9e9a0088ed1d5f925f19736461454"
+    },
+    ".github/workflows/pr16-ring-text-audio-sequence.yml": {
+      "size": 1962,
+      "sha256": "c0c5a96721261ae500b6d7b47e29ec86ca588b85b18313c6187f6f1b1cc6abc6"
+    },
+    "content/modernization/pr16_ring_text_audio_sequence.json": {
+      "size": 2621135,
+      "sha256": "13a14a0fbfab57663c883c00b812a7282896267eab185733f7cfe85bd6bc8860"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。",
+  "source_change_review_ja": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3261,9 +3278,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_audio_tail_contracts.json",
-    "source_head": "7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d",
-    "run_id": 35254339394
+    "path": "content/modernization/pr16_ring_text_audio_sequence.json",
+    "source_head": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+    "run_id": 35255462365
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
