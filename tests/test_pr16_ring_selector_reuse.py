@@ -72,6 +72,9 @@ class NodeTests(unittest.TestCase):
         with self.assertRaises(ValueError):r.merge_nodes([],self.graph(node(0x080017d0)))
     def test_reject_empty_graph(self):
         with self.assertRaises(ValueError):r.merge_nodes([],{'old':{'nodes':[]}})
+    def test_external2_literal_gap_keeps_last_instruction(self):
+        nodes,added,_=r.merge_nodes([],self.graph(node(0x0806dd5a,'0847')))
+        self.assertEqual(nodes,added);self.assertEqual(nodes[0]['address'],0x0806dd5a)
     def test_inputs_immutable(self):
         g=self.graph();before=copy.deepcopy(g);r.merge_nodes([],g);self.assertEqual(g,before)
     def test_pending_three_are_known_not_accepted(self):

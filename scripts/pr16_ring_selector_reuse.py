@@ -23,7 +23,7 @@ REPORT='content/modernization/pr16_ring_selector_reuse.json'
 KEY='latest_ring_diagnostic'
 SOURCES=()
 EXTRA_CODE=()
-MIN_TESTS=30
+MIN_TESTS=31
 NAMES=('external1_abi','external1_cont_abi','external1_exit_abi','external2_abi',
        'external3_abi','external3_body_abi','external3_tail_abi')
 OLD_HASHES=dict(zip(NAMES,(
@@ -36,7 +36,7 @@ OLD_HASHES=dict(zip(NAMES,(
     'ffe7d250077f69858d56d331d567ec073484b761e9fa25c952b0b4e7e4d96664')))
 REUSED=(0x0806dd1d,0x08113889,0x081138f9)
 RESOURCE=(0x080011e5,0x08001299,0x080014f1,0x0800273d,0x080027ad,0x08002899,0x080028ed,0x08002901)
-REGIONS=((0x0806dd1c,0x0806dd56),(0x08113888,0x08113966))
+REGIONS=((0x0806dd1c,0x0806dd5c),(0x08113888,0x08113966))
 BYTE_RE=re.compile(r'content/modernization/pr16_ring_external[123](?:_(?:cont|exit|body|tail))?_bytes\.json\Z')
 CANDIDATE={'size':33554432,'sha256':'ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b','crc32':'3EB17B36'}
 STAGES=(
@@ -161,6 +161,8 @@ def analyze(prior,out):
     need(len(nodes)==prior['analysis']['saved_node_count']==2330,'元node数')
     merged,added,provenance=merge_nodes(nodes,{p:v['analysis']['graph']for p,v in samples.items()})
     binding=pending_binding(prior['analysis']['pending_direct_callees'],merged)
+    failed=s.api('actions/runs/35191559008')
+    need(failed['status']=='completed'and failed['conclusion']=='failure'and failed['head_sha']=='123a14d9ac0d933b4b3268f5e97e270ed157e1de','初回失敗原結論差分')
     evidence=[]
     for path,value in contracts.items():
         run=s.api('actions/runs/'+str(value['run_id']))
@@ -182,6 +184,9 @@ def analyze(prior,out):
         'candidate':copy.deepcopy(CANDIDATE),'cached_node_count':2330,'new_node_count':0,'reused_external_node_count':len(added),
         'saved_node_count':len(merged),'reused_external_nodes':added,'node_source_provenance':provenance,
         'reused_byte_reports':{p:identity((s.ROOT/p).read_bytes())for p in samples},'old_contract_actions_verified':evidence,
+        'historical_failed_attempt':{'run_id':35191559008,'job_id':105105049376,'source_head':failed['head_sha'],
+            'conclusion':'failure','reason_ja':'命令56byteをliteral込み64byte窓と混同した範囲検査。末尾命令の回帰を追加し修正。',
+            'acceptance_record_created':False,'native_or_old_contract_replayed':False},
         'session_stages_verified_without_replay':stages,**binding,'pending_effective_targets':[],
         'pending_continuations':[],'pending_data_ranges':[],'unbound_runtime_data':copy.deepcopy(prior['analysis']['unbound_runtime_data']),
         'all_callers_resolved':False,'all_live_frames_proven':False,'caller_pointer_size_limit_proven':False,
@@ -196,7 +201,7 @@ def analyze(prior,out):
 
 def summaries(result):
     return (f'旧external1/2/3の7保存byte graphから{result["reused_external_node_count"]}命令を再利用結合し、合計{result["saved_node_count"]}命令。'
-        '今回2工程の61tests・原Actions/job/ZIP/保存commitを再実行なしで照合。実caller契約は未証明のまま。',
+        '今回2工程の61tests・原Actions/job/ZIP/保存commitを再実行なしで照合。初回run35191559008の範囲検査failureは維持し修正。実caller契約は未証明。',
         '保存済みselector1/2の3calleeをVarGet callerへ結合し、帰還/SP/record書込と条件不足/容量不足を検証する。'
         '残るresource8callee、実callback table/変数領域allocationは未証明。7旧graphの採取/旧ABI・VarGet全65536値/1337帰還・BP/nativeを単独再実行しない。'
         'Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。')
