@@ -146,7 +146,7 @@ def analyze(previous,out):
         'accepted_standalone_contracts_replayed':0,'saved_nodes_redecoded':0,'full_rom_scans':0,
         'boundary_ja':'未読音声3calleeとBIOS4byte入口・選択3曲headerだけ。SWI/間接辺/track streamは未結合、実音声やnative Ring受入ではない。'})
     (out/'analysis.json').write_bytes(s.stable(result));prior.b.export_development(out)
-    path=out/'development-source.json';sources=s.load(str(path.relative_to(s.ROOT))); 
+    path=out/'development-source.json';sources=s.load(str(path.relative_to(s.ROOT)))
     for x in(*SOURCES,SELF,TEST):
         if x.endswith('.py')and(s.ROOT/x).is_file():sources[x]=(s.ROOT/x).read_text(encoding='utf-8')
     path.write_bytes(s.stable(sources))
