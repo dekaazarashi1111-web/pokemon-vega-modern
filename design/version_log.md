@@ -3776,3 +3776,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は今回保存font2/4/5と文字描画delegateのstate/終端/遅延・出力windowを結合する。未知jump表/未読calleeを保存pendingからだけ進め、他font offsetを実table長と断定しない。今回採取/default初期化・旧140契約/BP/nativeを単独再実行せず、live初期化・Ring通常取得・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:44:54.122957+00:00 — PR-P08-7-RING-FONT-STATES
+- Timestamp: 2026-09-17T14:44:54.122957+00:00
+- Task: PR-P08-7-RING-FONT-STATES / font state7分岐と描画delegateを有限結合し境界を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-states
+- Summary: font2/4/5のstate7分岐と直接7calleeを新規1567命令で結合。無効state帰還/未map表の57条件を検証。初回run35234485558は復元前hash項目欠落のfailureのまま保持。native0。
+- Files changed: scripts/pr16_ring_font_states.py, tests/test_pr16_ring_font_states.py, .github/workflows/pr16-ring-font-states.yml, content/modernization/pr16_ring_font_states.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=672521934bfd29e8c77c5de37e69b47c235af626; run=35235505444（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存state0..6の終端・遅延・入力待ちと出力windowの正確なwrite/帰還を結合する。残る文字/control分岐表と未読calleeは保存pendingからだけ進める。今回表/命令採取と無効state契約・default初期化・BP/nativeは単独再実行せず、Ring通常取得/policy/Circus/P08は未受入。
