@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "音声末端3入口/周波数15index参照窓を新規95命令・238byteで保存。既知SWIは未実行BIOS境界へ分類。保存総数7291、既読再解読/native0。",
+    "current_stop": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存除算・音声復帰と有限周波数参照を契約結合。既知SWIを成功stubや再採取対象にしない。周波数表長/全mode有効性、実allocation/callback/実音声/未結合text/live callerは未証明。同じ採取・audio342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "next_step": "次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -376,7 +376,8 @@
     "保存音声停止/再開/設定とtext callerの限定RAM契約は本原本を再利用。合成音声object/IO byteの変化を実音声やBIOS実行へ昇格しない。未読3callee・song header・BIOS entryをstubにせず、同じaudio/renderer/cursor/glyph/BP/nativeを単独再実行しない。",
     "音声未読3callee・BIOS入口・song0/5/291 headerの有限採取は保存原本を再利用。既読7091命令・audio164/renderer/cursor/glyph/BP/nativeは単独再実行しない。SWIを成功stubにせず、track pointerを再生完了やlive音声の受入へ昇格しない。",
     "選択曲0/5/291のheader・優先度・track容量・text16の初期化契約と音声末端の部分writeは保存原本を再利用。初期化を再生完了へ、明示IO byteを実DMA/音声へ昇格しない。同じaudio出力/旧164・renderer/cursor/glyph/BP/nativeを単独再実行せず、残る3callee/周波数表とlive callerの未証明境界へ進む。",
-    "音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。"
+    "音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。",
+    "保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -449,13 +450,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存除算・音声復帰と有限周波数参照を契約結合。既知SWIを成功stubや再採取対象にしない。周波数表長/全mode有効性、実allocation/callback/実音声/未結合text/live callerは未証明。同じ採取・audio342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "goal_ja": "次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_audio_tail_bytes.json",
-      "scripts/pr16_ring_audio_tail_bytes.py",
-      "content/modernization/pr16_ring_audio_output_contracts.json"
+      "content/modernization/pr16_ring_audio_tail_contracts.json",
+      "scripts/pr16_ring_audio_tail_contracts.py",
+      "content/modernization/pr16_ring_audio_tail_bytes.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -464,9 +465,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "631f9caaa0f3d713b640fa0d15fcc1d4ff1d30f4",
+  "observed_head": "7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d",
   "observed_head_checks": {
-    "reason_ja": "先行run35252642998の原結論と保存証拠、BP run34946969126成功を照合。今回run35253330975は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35253330975の原結論と保存証拠、BP run34946969126成功を照合。今回run35254339394は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -627,9 +628,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "音声末端3入口/周波数15index参照窓を新規95命令・238byteで保存。既知SWIは未実行BIOS境界へ分類。保存総数7291、既読再解読/native0。"
+    "scope_ja": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2819,10 +2820,26 @@
     "content/modernization/pr16_ring_audio_tail_bytes.json": {
       "size": 74773,
       "sha256": "fadd083ec9f88f978aa7d5d7ea9776de64c7955aea5e983cb8cbb477589c2594"
+    },
+    "scripts/pr16_ring_audio_tail_contracts.py": {
+      "size": 16143,
+      "sha256": "b80b111cefa095b5b361ebdacbf57dc9be9d393c08cfc28a002573ead960f302"
+    },
+    "tests/test_pr16_ring_audio_tail_contracts.py": {
+      "size": 8572,
+      "sha256": "92a1a83980999f32617989a7e8c4263fe02a615688fa693805aa98b1654cbe0d"
+    },
+    ".github/workflows/pr16-ring-audio-tail-contracts.yml": {
+      "size": 1969,
+      "sha256": "d470882a3519b506e8b999001f01f546782b474f18d002398e1a61ac5b9e1af6"
+    },
+    "content/modernization/pr16_ring_audio_tail_contracts.json": {
+      "size": 467291,
+      "sha256": "c3a2211718e75f44d7707521c32a1f5a063af37718fb0dc3e7986279d9f039b2"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "音声末端3入口/周波数15index参照窓を新規95命令・238byteで保存。既知SWIは未実行BIOS境界へ分類。保存総数7291、既読再解読/native0。",
+  "source_change_review_ja": "保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3244,9 +3261,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_audio_tail_bytes.json",
-    "source_head": "631f9caaa0f3d713b640fa0d15fcc1d4ff1d30f4",
-    "run_id": 35253330975
+    "path": "content/modernization/pr16_ring_audio_tail_contracts.json",
+    "source_head": "7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d",
+    "run_id": 35254339394
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

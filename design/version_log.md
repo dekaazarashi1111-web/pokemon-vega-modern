@@ -4000,3 +4000,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存除算・音声復帰と有限周波数参照を契約結合。既知SWIを成功stubや再採取対象にしない。周波数表長/全mode有効性、実allocation/callback/実音声/未結合text/live callerは未証明。同じ採取・audio342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:42:55.569834+00:00 — PR-P08-7-RING-AUDIO-TAIL-CONTRACTS
+- Timestamp: 2026-09-17T17:42:55.569834+00:00
+- Task: PR-P08-7-RING-AUDIO-TAIL-CONTRACTS / 保存除算・音声再開・周波数を有限VCOUNT入力と結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-tail-contracts
+- Summary: 保存符号付き除算/音声再開/周波数と有限VCOUNT入力を439条件で結合。帰還418/不足停止21。BIOS11/12・実音声/nativeは未実行。
+- Files changed: scripts/pr16_ring_audio_tail_contracts.py, tests/test_pr16_ring_audio_tail_contracts.py, .github/workflows/pr16-ring-audio-tail-contracts.yml, content/modernization/pr16_ring_audio_tail_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定58 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7bf3821ddb9c6ce5ab2dc0674b01d6729959fd8d; run=35254339394（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの到達・実allocation・callback選択を保存callerから絞る。音声の既知BIOS11/12は未実行境界として引き継ぎ、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ続ける。15index参照窓を合法mode一覧にせず、同じ音声末端/342/164・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。Ring/policy/Circus/P08は未受入。
