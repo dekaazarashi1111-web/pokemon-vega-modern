@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-gFonts setter3命令とcaller候補1件・直前literal供給1件を結合。表1件の有限lookupとsetterを140条件で検証。ROM変更/native0。
+実messageのfont2/4/5と直接1calleeを新規98命令で結合。default初期化の完全帰還/4byte frameと不足停止を9条件で検証。native0。
 
-**次: 次は保存された実font表のcallback先を必要selectorから有限採取し、描画state/文字列/出力windowへの作用を結合する。setter/caller/table探索・今回lookup契約・旧3955命令/609条件/BP/nativeを単独再実行しない。実table全長・live初期化到達・assert残辺・Ring通常取得・policy/Circus/P08は未受入。**
+**次: 次は今回保存font2/4/5と文字描画delegateのstate/終端/遅延・出力windowを結合する。未知jump表/未読calleeを保存pendingからだけ進め、他font offsetを実table長と断定しない。今回採取/default初期化・旧140契約/BP/nativeを単独再実行せず、live初期化・Ring通常取得・policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `1aaeb8e4eda62d940beeb6a06d65542b68b1baab`。
+証拠のsource HEAD: `ea205931815c9be1c1c500bba92fea0acc7f4b16`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_font_frontier.json`
+- `scripts/pr16_ring_font_frontier.py`
 - `content/modernization/pr16_ring_font_bindings.json`
-- `scripts/pr16_ring_font_bindings.py`
-- `content/modernization/pr16_ring_font_bytes.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -168,6 +168,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存3955命令のheap分割・window連結・実renderの有界契約は今回原本を再利用。heap不足/assertは未読診断callee前、active描画は実gFontsとcallback未結合のまま保持。旧733条件・今回37命令採取・resource/BP/nativeを単独再実行しない。
 - gFonts reader隣接の初期化窓と有限literal依存は保存結果を再利用する。同じcandidate復元/採取・旧3955命令/609条件・BP/nativeを単独再実行しない。literal表候補の有限窓を実table長・通常初期化到達・Ring取得へ昇格しない。
 - gFonts setterの3保存命令と新規caller literal/table有限採取・描画lookup結合を再利用。同じsetter caller探索/候補復元/byte採取/旧3955命令契約/BP/nativeを単独再実行しない。候補表のoffset lookupを実table全長・live初期化・callback帰還・Ring通常取得へ昇格しない。
+- 保存messageのfont2/4/5だけで絞ったcallbackと直接1段、default initializer帰還を再利用。候補表の他offsetを有効fontとして採取しない。同じ復元/採取/初期化契約/旧140条件/BP/nativeを単独再実行しない。callbackの保存命令・分岐表境界をlive初期化/描画完了/Ring通常取得へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -197,6 +198,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35229107711の原結論と保存証拠、BP run34946969126成功を照合。今回run35230494553は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35230494553の原結論と保存証拠、BP run34946969126成功を照合。今回run35232060702は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

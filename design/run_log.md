@@ -6488,3 +6488,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存された実font表のcallback先を必要selectorから有限採取し、描画state/文字列/出力windowへの作用を結合する。setter/caller/table探索・今回lookup契約・旧3955命令/609条件/BP/nativeを単独再実行しない。実table全長・live初期化到達・assert残辺・Ring通常取得・policy/Circus/P08は未受入。
+
+
+## 2026-09-17T14:14:14.113770+00:00 — PR-P08-7-RING-FONT-FRONTIER
+- Timestamp: 2026-09-17T14:14:14.113770+00:00
+- Task: PR-P08-7-RING-FONT-FRONTIER / 実message font2/4/5のcallbackとdefault初期化帰還を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-frontier
+- Summary: 実messageのfont2/4/5と直接1calleeを新規98命令で結合。default初期化の完全帰還/4byte frameと不足停止を9条件で検証。native0。
+- Files changed: scripts/pr16_ring_font_frontier.py, tests/test_pr16_ring_font_frontier.py, .github/workflows/pr16-ring-font-frontier.yml, content/modernization/pr16_ring_font_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ea205931815c9be1c1c500bba92fea0acc7f4b16; run=35232060702（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存font2/4/5と文字描画delegateのstate/終端/遅延・出力windowを結合する。未知jump表/未読calleeを保存pendingからだけ進め、他font offsetを実table長と断定しない。今回採取/default初期化・旧140契約/BP/nativeを単独再実行せず、live初期化・Ring通常取得・policy/Circus/P08は未受入。
