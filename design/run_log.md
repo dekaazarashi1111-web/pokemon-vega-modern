@@ -6536,3 +6536,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存byteだけでstate/終端/遅延/入力待ち/出力queueの正確writeと帰還を結合。合成stackを狭め音声globalを明示RAMへ分離し、未mapをゼロ成功にしない。残る制御table/glyph/calleeだけをpendingとして保持。今回採取・受入済みfont/BP/nativeは再実行せずRing通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:10:52.749968+00:00 — PR-P08-7-RING-TEXT-STATE-CONTRACTS
+- Timestamp: 2026-09-17T15:10:52.749968+00:00
+- Task: PR-P08-7-RING-TEXT-STATE-CONTRACTS / 明示RAMでtext状態・終端・遅延と通常高速描画の出力予約を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-state-contracts
+- Summary: 保存5891命令だけで627text条件（帰還594/pending停止33）を検証。512byte明示live stack/音声RAM分離、通常高速終端・改行・遅延と出力queue予約を結合。候補復元/native0。
+- Files changed: scripts/pr16_ring_text_state_contracts.py, tests/test_pr16_ring_text_state_contracts.py, .github/workflows/pr16-ring-text-state-contracts.yml, content/modernization/pr16_ring_text_state_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定36 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9beb23e3c92722e768dbc99a4423cb48e67970d9; run=35238469986（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存pendingからcontrol24表、font2/4/5字形callee、prompt初期化・cursor/scroll出力と音声/BIOSを有限結合。今回state/終端/遅延/queue契約、保存byte採取、受入済みfont/BP/nativeは単独再実行しない。実文字描画/DMA・全live owner・gFonts初期化・Ring通常取得/policy/Circus/P08は未受入。
