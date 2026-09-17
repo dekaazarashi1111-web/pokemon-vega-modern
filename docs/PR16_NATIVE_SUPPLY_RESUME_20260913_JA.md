@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。
+固定JPのtext/window7入口を有限結合。新規526命令/1222byte、保存総数3496。旧2970命令再解読0、ROM変更/native0。
 
-**次: 次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。US referenceや36byteヘッダをJPの実allocationへ昇格しない。既読2970命令・resource1752契約・BP/nativeは再実行しない。Ring正規取得/装備実戦/保存・policy/Circus/P08は未受入。**
+**次: 次は今回の保存initializer/RunTextPrintersを32byte text pool・12byte window poolのループ上限/allocator失敗/解放/間接callbackへ結合。未読callee/実gFonts tableはpendingを正とする。今回7入口採取・旧resource契約・BP/nativeを単独再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e70be3ee87d24b695f2bae1d3eef6a0afbc489c0`。
+証拠のsource HEAD: `1824282b80cb2d90bbf566b5a10fa3c2fe605426`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_ui_frontier.json`
+- `scripts/pr16_ring_ui_frontier.py`
 - `content/modernization/pr16_ring_ui_owners.json`
-- `scripts/pr16_ring_ui_owners.py`
-- `content/modernization/pr16_ring_resource_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -160,6 +160,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。
 - 保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。
 - 固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。
+- JP text/windowの7入口の有限採取は今回保存nodeを再利用。旧2970命令/1752resource契約/固定JPsource取得/BP/nativeは再実行しない。保存initializerの存在を通常入場・実allocation成功・callback実行と同一視しない。
 
 ## 次セッションへ残す更新手順
 
@@ -189,6 +190,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35196651200の原結論と保存証拠、BP run34946969126成功を照合。今回run35199184638は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35199184638の原結論と保存証拠、BP run34946969126成功を照合。今回run35199605551は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

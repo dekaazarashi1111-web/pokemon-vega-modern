@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。",
+    "current_stop": "固定JPのtext/window7入口を有限結合。新規526命令/1222byte、保存総数3496。旧2970命令再解読0、ROM変更/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。US referenceや36byteヘッダをJPの実allocationへ昇格しない。既読2970命令・resource1752契約・BP/nativeは再実行しない。Ring正規取得/装備実戦/保存・policy/Circus/P08は未受入。",
+    "next_step": "次は今回の保存initializer/RunTextPrintersを32byte text pool・12byte window poolのループ上限/allocator失敗/解放/間接callbackへ結合。未読callee/実gFonts tableはpendingを正とする。今回7入口採取・旧resource契約・BP/nativeを単独再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -353,7 +353,8 @@
     "未読resource 8calleeの有限採取は保存原本を再利用する。既読2457命令/VarGet selector縦結合/旧external ABI/BP/nativeを単独再実行しない。新規calleeや間接辺はstubで補わず、保存命令からresource/callback/出力slotの条件付き帰還とallocationを結合する。",
     "resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。",
     "保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。",
-    "固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。"
+    "固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。",
+    "JP text/windowの7入口の有限採取は今回保存nodeを再利用。旧2970命令/1752resource契約/固定JPsource取得/BP/nativeは再実行しない。保存initializerの存在を通常入場・実allocation成功・callback実行と同一視しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -426,13 +427,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。US referenceや36byteヘッダをJPの実allocationへ昇格しない。既読2970命令・resource1752契約・BP/nativeは再実行しない。Ring正規取得/装備実戦/保存・policy/Circus/P08は未受入。",
+    "goal_ja": "次は今回の保存initializer/RunTextPrintersを32byte text pool・12byte window poolのループ上限/allocator失敗/解放/間接callbackへ結合。未読callee/実gFonts tableはpendingを正とする。今回7入口採取・旧resource契約・BP/nativeを単独再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_ui_owners.json",
-      "scripts/pr16_ring_ui_owners.py",
-      "content/modernization/pr16_ring_resource_contracts.json"
+      "content/modernization/pr16_ring_ui_frontier.json",
+      "scripts/pr16_ring_ui_frontier.py",
+      "content/modernization/pr16_ring_ui_owners.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -441,9 +442,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
+  "observed_head": "1824282b80cb2d90bbf566b5a10fa3c2fe605426",
   "observed_head_checks": {
-    "reason_ja": "先行run35196651200の原結論と保存証拠、BP run34946969126成功を照合。今回run35199184638は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35199184638の原結論と保存証拠、BP run34946969126成功を照合。今回run35199605551は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -604,9 +605,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。"
+    "scope_ja": "固定JPのtext/window7入口を有限結合。新規526命令/1222byte、保存総数3496。旧2970命令再解読0、ROM変更/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2428,10 +2429,26 @@
     "content/modernization/pr16_ring_ui_owners.json": {
       "size": 35218,
       "sha256": "e9d346a174b619ca121c4aa545977fcf1ab14fdd19d3adfbc3137051aa1c5e2e"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "tests/test_pr16_ring_ui_frontier.py": {
+      "size": 3645,
+      "sha256": "4134497748f8db06a381cc00ace64c05118ad3d13e690b60abcbcd015f7bda15"
+    },
+    ".github/workflows/pr16-ring-ui-frontier.yml": {
+      "size": 1879,
+      "sha256": "2fecab4c8b302ca3c4c51b95fb11fa1898413d77aa671c9c2611bbce5f4ea67f"
+    },
+    "content/modernization/pr16_ring_ui_frontier.json": {
+      "size": 161097,
+      "sha256": "ece692df068615c9d8e8f393807b23fda111788f516b46ac64d20e1eda1000da"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。",
+  "source_change_review_ja": "固定JPのtext/window7入口を有限結合。新規526命令/1222byte、保存総数3496。旧2970命令再解読0、ROM変更/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2853,9 +2870,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_ui_owners.json",
-    "source_head": "e70be3ee87d24b695f2bae1d3eef6a0afbc489c0",
-    "run_id": 35199184638
+    "path": "content/modernization/pr16_ring_ui_frontier.json",
+    "source_head": "1824282b80cb2d90bbf566b5a10fa3c2fe605426",
+    "run_id": 35199605551
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
