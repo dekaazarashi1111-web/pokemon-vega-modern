@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。
+heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。
 
-**次: 次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。**
+**次: 次は保存pool/heap/実RunTextPrintersの条件付き帰還・書込範囲・不足時部分書込を検証する。実gFonts callback tableと未読calleeはpendingで保持し、仮成功stubを入れない。今回採取/旧3595命令/旧UI・resource契約/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7fd05af1f7e06be33dfc69abe2007cd2623b9fb5`。
+証拠のsource HEAD: `57626df954b38a308031c3780a5b6757da220ab7`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_ui_runtime_bytes.json`
+- `scripts/pr16_ring_ui_runtime_bytes.py`
 - `content/modernization/pr16_ring_ui_delegates.json`
-- `scripts/pr16_ring_ui_delegates.py`
-- `content/modernization/pr16_ring_ui_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -162,6 +162,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。
 - JP text/windowの7入口の有限採取は今回保存nodeを再利用。旧2970命令/1752resource契約/固定JPsource取得/BP/nativeは再実行しない。保存initializerの存在を通常入場・実allocation成功・callback実行と同一視しない。
 - 実RunTextPrinters転送先0x09378A43とwindow6callee・dummy template採取は保存原本を再利用。旧3496命令/7入口/旧resource契約/BP/nativeを単独再実行しない。allocatorや間接辺を成功stubへ置換しない。
+- heap2入口・実描画本体・復帰と属性10要素表の採取は保存原本を再利用。旧3595命令や既読UI/属性/resource/nativeを単独再実行せず、保存pool/heap/callbackの契約へ進む。
 
 ## 次セッションへ残す更新手順
 
@@ -191,6 +192,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35199605551の原結論と保存証拠、BP run34946969126成功を照合。今回run35200296263は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35200296263の原結論と保存証拠、BP run34946969126成功を照合。今回run35201012097は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

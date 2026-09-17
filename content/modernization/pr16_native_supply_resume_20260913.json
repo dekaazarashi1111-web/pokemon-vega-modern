@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。",
+    "current_stop": "heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。",
+    "next_step": "次は保存pool/heap/実RunTextPrintersの条件付き帰還・書込範囲・不足時部分書込を検証する。実gFonts callback tableと未読calleeはpendingで保持し、仮成功stubを入れない。今回採取/旧3595命令/旧UI・resource契約/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -355,7 +355,8 @@
     "保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。",
     "固定source-lockのJP symbolと描画owner/ヘッダABI照合を再利用。保存32byte text slotとCFRU36byte TextPrinterの差を保持し、ヘッダだけでlive allocationやRing取得を受入しない。先行resource1752契約・2970命令採取・BP/nativeを単独再実行しない。",
     "JP text/windowの7入口の有限採取は今回保存nodeを再利用。旧2970命令/1752resource契約/固定JPsource取得/BP/nativeは再実行しない。保存initializerの存在を通常入場・実allocation成功・callback実行と同一視しない。",
-    "実RunTextPrinters転送先0x09378A43とwindow6callee・dummy template採取は保存原本を再利用。旧3496命令/7入口/旧resource契約/BP/nativeを単独再実行しない。allocatorや間接辺を成功stubへ置換しない。"
+    "実RunTextPrinters転送先0x09378A43とwindow6callee・dummy template採取は保存原本を再利用。旧3496命令/7入口/旧resource契約/BP/nativeを単独再実行しない。allocatorや間接辺を成功stubへ置換しない。",
+    "heap2入口・実描画本体・復帰と属性10要素表の採取は保存原本を再利用。旧3595命令や既読UI/属性/resource/nativeを単独再実行せず、保存pool/heap/callbackの契約へ進む。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -428,13 +429,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。",
+    "goal_ja": "次は保存pool/heap/実RunTextPrintersの条件付き帰還・書込範囲・不足時部分書込を検証する。実gFonts callback tableと未読calleeはpendingで保持し、仮成功stubを入れない。今回採取/旧3595命令/旧UI・resource契約/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_ui_delegates.json",
-      "scripts/pr16_ring_ui_delegates.py",
-      "content/modernization/pr16_ring_ui_frontier.json"
+      "content/modernization/pr16_ring_ui_runtime_bytes.json",
+      "scripts/pr16_ring_ui_runtime_bytes.py",
+      "content/modernization/pr16_ring_ui_delegates.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -443,9 +444,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "7fd05af1f7e06be33dfc69abe2007cd2623b9fb5",
+  "observed_head": "57626df954b38a308031c3780a5b6757da220ab7",
   "observed_head_checks": {
-    "reason_ja": "先行run35199605551の原結論と保存証拠、BP run34946969126成功を照合。今回run35200296263は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35200296263の原結論と保存証拠、BP run34946969126成功を照合。今回run35201012097は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -608,7 +609,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。"
+    "scope_ja": "heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2462,10 +2463,26 @@
     "content/modernization/pr16_ring_ui_delegates.json": {
       "size": 51758,
       "sha256": "acd093e3c64d1dcd98f67639434afc23e7daf0d27912633b32e2d4d6c9913d28"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "tests/test_pr16_ring_ui_runtime_bytes.py": {
+      "size": 3223,
+      "sha256": "16d3d5c9b59782a1f729bbeef954602b841a08bc4d085294121a3edff2e6652f"
+    },
+    ".github/workflows/pr16-ring-ui-runtime-bytes.yml": {
+      "size": 1932,
+      "sha256": "e8d58e19db5910b7246465444b99b05e7f4498c2bfc3c0ae37cde53ad8d43de0"
+    },
+    "content/modernization/pr16_ring_ui_runtime_bytes.json": {
+      "size": 123310,
+      "sha256": "2182a5606cb53f49e60ebc56780791c1448b57b6ff5ac0216be54b58abf154c2"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。",
+  "source_change_review_ja": "heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2887,9 +2904,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_ui_delegates.json",
-    "source_head": "7fd05af1f7e06be33dfc69abe2007cd2623b9fb5",
-    "run_id": 35200296263
+    "path": "content/modernization/pr16_ring_ui_runtime_bytes.json",
+    "source_head": "57626df954b38a308031c3780a5b6757da220ab7",
+    "run_id": 35201012097
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

@@ -6392,3 +6392,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:42:31.317794+00:00 — PR-P08-7-RING-UI-RUNTIME-BYTES
+- Timestamp: 2026-09-17T08:42:31.317794+00:00
+- Task: PR-P08-7-RING-UI-RUNTIME-BYTES / 特定済みheapと実描画本体・復帰・属性10要素表を未読byteだけで結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-runtime-bytes
+- Summary: heap2入口・実描画本体と復帰・属性10要素表を結合。新規323命令/822byte、保存総数3918。既読再解読/native0。
+- Files changed: scripts/pr16_ring_ui_runtime_bytes.py, tests/test_pr16_ring_ui_runtime_bytes.py, .github/workflows/pr16-ring-ui-runtime-bytes.yml, content/modernization/pr16_ring_ui_runtime_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=57626df954b38a308031c3780a5b6757da220ab7; run=35201012097（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存pool/heap/実RunTextPrintersの条件付き帰還・書込範囲・不足時部分書込を検証する。実gFonts callback tableと未読calleeはpendingで保持し、仮成功stubを入れない。今回採取/旧3595命令/旧UI・resource契約/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
