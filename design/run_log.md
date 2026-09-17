@@ -6600,3 +6600,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:57:52.704042+00:00 — PR-P08-7-RING-OUTPUT-LEAF-BYTES
+- Timestamp: 2026-09-17T15:57:52.704042+00:00
+- Task: PR-P08-7-RING-OUTPUT-LEAF-BYTES / 字形の256byte変換表と音声3calleeを保存graphへ限定結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-output-leaf-bytes
+- Summary: 字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。
+- Files changed: scripts/pr16_ring_output_leaf_bytes.py, tests/test_pr16_ring_output_leaf_bytes.py, .github/workflows/pr16-ring-output-leaf-bytes.yml, content/modernization/pr16_ring_output_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=42fcf069c04ee7669b62366b598564568ada4869; run=35243472193（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存字形4文字/font2・4・5とspace・cursor/scrollの明示RAM/pixel効果を結合。音声/BIOS・未読辺はstubにせず、同じ採取・636control/627text・受入済みfont/BP/nativeは再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。
+字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。
 
-**次: 次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。**
+**次: 次は保存字形4文字/font2・4・5とspace・cursor/scrollの明示RAM/pixel効果を結合。音声/BIOS・未読辺はstubにせず、同じ採取・636control/627text・受入済みfont/BP/nativeは再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7725be137314349238e975a6f640e73ddeffe614`。
+証拠のsource HEAD: `42fcf069c04ee7669b62366b598564568ada4869`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_output_leaf_bytes.json`
+- `scripts/pr16_ring_output_leaf_bytes.py`
 - `content/modernization/pr16_ring_output_frontier.json`
-- `scripts/pr16_ring_output_frontier.py`
-- `content/modernization/pr16_ring_control_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -175,6 +175,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - control24表と字形/出力/prompt/音声8calleeの有限採取は保存原本を再利用。旧5891命令・627text契約・受入済みfont/BP/nativeは単独再実行しない。次は保存命令のcontrol/prompt/字形を明示RAMで結合し、未読data/音声/BIOSを成功stubにしない。
 - 保存control24分岐・色81要素展開・prompt初期化とpayload不足の部分write契約を再利用。字形/音声/BIOS未読境界は成功stubにしない。同じ採取・旧627text契約・font/BP/nativeを単独再実行しない。
 - 保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。
+- 字形256byte変換表と音声3calleeの不足採取は保存原本を再利用する。旧6983命令/3212byte・636control/627text・受入済みfont/BP/nativeを単独再実行しない。次は保存字形/cursor/scrollの明示RAM効果を検証し、未読音声/BIOSを成功stubにしない。
 
 ## 次セッションへ残す更新手順
 
@@ -204,6 +205,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35241938016の原結論と保存証拠、BP run34946969126成功を照合。今回run35242518427は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35242518427の原結論と保存証拠、BP run34946969126成功を照合。今回run35243472193は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

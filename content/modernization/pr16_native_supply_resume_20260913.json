@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。",
+    "current_stop": "字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "next_step": "次は保存字形4文字/font2・4・5とspace・cursor/scrollの明示RAM/pixel効果を結合。音声/BIOS・未読辺はstubにせず、同じ採取・636control/627text・受入済みfont/BP/nativeは再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -368,7 +368,8 @@
     "保存text状態/終端/遅延/通常高速描画の明示RAM契約を再利用。音声globalと512byte live stackを分離。未読control24表・字形callee・cursor/audio/BIOS境界を成功stubにしない。今回契約/既読byte採取/旧font初期化/BP/nativeは単独再実行しない。",
     "control24表と字形/出力/prompt/音声8calleeの有限採取は保存原本を再利用。旧5891命令・627text契約・受入済みfont/BP/nativeは単独再実行しない。次は保存命令のcontrol/prompt/字形を明示RAMで結合し、未読data/音声/BIOSを成功stubにしない。",
     "保存control24分岐・色81要素展開・prompt初期化とpayload不足の部分write契約を再利用。字形/音声/BIOS未読境界は成功stubにしない。同じ採取・旧627text契約・font/BP/nativeを単独再実行しない。",
-    "保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。"
+    "保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。",
+    "字形256byte変換表と音声3calleeの不足採取は保存原本を再利用する。旧6983命令/3212byte・636control/627text・受入済みfont/BP/nativeを単独再実行しない。次は保存字形/cursor/scrollの明示RAM効果を検証し、未読音声/BIOSを成功stubにしない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -441,13 +442,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "goal_ja": "次は保存字形4文字/font2・4・5とspace・cursor/scrollの明示RAM/pixel効果を結合。音声/BIOS・未読辺はstubにせず、同じ採取・636control/627text・受入済みfont/BP/nativeは再実行しない。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_output_frontier.json",
-      "scripts/pr16_ring_output_frontier.py",
-      "content/modernization/pr16_ring_control_contracts.json"
+      "content/modernization/pr16_ring_output_leaf_bytes.json",
+      "scripts/pr16_ring_output_leaf_bytes.py",
+      "content/modernization/pr16_ring_output_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -456,9 +457,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "7725be137314349238e975a6f640e73ddeffe614",
+  "observed_head": "42fcf069c04ee7669b62366b598564568ada4869",
   "observed_head_checks": {
-    "reason_ja": "先行run35241938016の原結論と保存証拠、BP run34946969126成功を照合。今回run35242518427は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35242518427の原結論と保存証拠、BP run34946969126成功を照合。今回run35243472193は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -621,7 +622,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。"
+    "scope_ja": "字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2683,10 +2684,26 @@
     "content/modernization/pr16_ring_output_frontier.json": {
       "size": 166211,
       "sha256": "b4e9ae7fc02603f68b93762999dcf28bb66adeb6d837ff2d59fd233b09d40507"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "tests/test_pr16_ring_output_leaf_bytes.py": {
+      "size": 3337,
+      "sha256": "e5428b6c2ceaeb10db17e5a4ddbe609831888044e55967b91a4a9918c7187687"
+    },
+    ".github/workflows/pr16-ring-output-leaf-bytes.yml": {
+      "size": 1933,
+      "sha256": "30e3941035b2b4a7b815135b2804451a5ba599445dde9cfe3a027c4f31ccc3d7"
+    },
+    "content/modernization/pr16_ring_output_leaf_bytes.json": {
+      "size": 71266,
+      "sha256": "783cc3cf96a2a05ca9ac93037da0234f7c8a8e3a779cd0b44cf9bdee5e4f2d70"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。",
+  "source_change_review_ja": "字形256byte変換表と音声3calleeを新規108命令で限定結合。保存総数7091、既読再解読/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3108,9 +3125,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_output_frontier.json",
-    "source_head": "7725be137314349238e975a6f640e73ddeffe614",
-    "run_id": 35242518427
+    "path": "content/modernization/pr16_ring_output_leaf_bytes.json",
+    "source_head": "42fcf069c04ee7669b62366b598564568ada4869",
+    "run_id": 35243472193
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
