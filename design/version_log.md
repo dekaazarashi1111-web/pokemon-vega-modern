@@ -3712,3 +3712,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は今回保存3入口を使い、heap split完了/不足と実RunTextPrinters active継続を有界検証する。実gFonts callback tableと新たな未読辺はpendingを保持。旧3918命令・今回採取・pool/heap/resource/BP/nativeの単独再実行は禁止。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:15:40.174308+00:00 — PR-P08-7-RING-UI-LEAF-CONTRACTS
+- Timestamp: 2026-09-17T13:15:40.174308+00:00
+- Task: PR-P08-7-RING-UI-LEAF-CONTRACTS / heap分割完了・window連結・実描画callback境界を有界検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-leaf-contracts
+- Summary: 保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。
+- Files changed: scripts/pr16_ring_ui_leaf_contracts.py, tests/test_pr16_ring_ui_leaf_contracts.py, .github/workflows/pr16-ring-ui-leaf-contracts.yml, content/modernization/pr16_ring_ui_leaf_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=263e6b7e8fc54176da704323eeb9d16afe7acf9e; run=35225879618（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
