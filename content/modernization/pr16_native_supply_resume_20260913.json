@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。",
+    "current_stop": "gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "次は今回保存初期化窓のwriter/callsiteと実12byte font descriptorを保存readerへ結合し、初期化store・selector・callback境界を検証する。表候補192byteを実table長と断定しない。同じ採取/候補復元/旧3955命令契約/BP/nativeを単独再実行しない。assert残辺・Ring通常取得・policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -359,7 +359,8 @@
     "heap2入口・実描画本体・復帰と属性10要素表の採取は保存原本を再利用。旧3595命令や既読UI/属性/resource/nativeを単独再実行せず、保存pool/heap/callbackの契約へ進む。",
     "保存3918命令のUI pool/heap/実RunTextPrinters有界契約は今回原本を再利用。heap不足/null freeのassert呼出前とsplit初期化前の部分書込を保持する。未読3callee/実gFontsを成功stubにせず、旧byte採取/旧resource/受入済みBP/nativeを単独再実行しない。",
     "heap split/assert/render thunkの未読3入口採取は今回原本を再利用。旧3918命令・pool/heap契約・旧resource/BP/nativeを単独再実行しない。実gFonts callback table/実allocationは未観測のままで、未読辺を成功stubに置換しない。",
-    "保存3955命令のheap分割・window連結・実renderの有界契約は今回原本を再利用。heap不足/assertは未読診断callee前、active描画は実gFontsとcallback未結合のまま保持。旧733条件・今回37命令採取・resource/BP/nativeを単独再実行しない。"
+    "保存3955命令のheap分割・window連結・実renderの有界契約は今回原本を再利用。heap不足/assertは未読診断callee前、active描画は実gFontsとcallback未結合のまま保持。旧733条件・今回37命令採取・resource/BP/nativeを単独再実行しない。",
+    "gFonts reader隣接の初期化窓と有限literal依存は保存結果を再利用する。同じcandidate復元/採取・旧3955命令/609条件・BP/nativeを単独再実行しない。literal表候補の有限窓を実table長・通常初期化到達・Ring取得へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -432,13 +433,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "次は今回保存初期化窓のwriter/callsiteと実12byte font descriptorを保存readerへ結合し、初期化store・selector・callback境界を検証する。表候補192byteを実table長と断定しない。同じ採取/候補復元/旧3955命令契約/BP/nativeを単独再実行しない。assert残辺・Ring通常取得・policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_ui_leaf_contracts.json",
-      "scripts/pr16_ring_ui_leaf_contracts.py",
-      "content/modernization/pr16_ring_ui_leaf_bytes.json"
+      "content/modernization/pr16_ring_font_bytes.json",
+      "scripts/pr16_ring_font_bytes.py",
+      "content/modernization/pr16_ring_ui_leaf_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -447,9 +448,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "263e6b7e8fc54176da704323eeb9d16afe7acf9e",
+  "observed_head": "2560975cac98a6b315269399d2af407886e34ce1",
   "observed_head_checks": {
-    "reason_ja": "先行run35224563901の原結論と保存証拠、BP run34946969126成功を照合。今回run35225879618は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35225879618の原結論と保存証拠、BP run34946969126成功を照合。今回run35229107711は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -610,9 +611,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。"
+    "scope_ja": "gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2530,10 +2531,26 @@
     "content/modernization/pr16_ring_ui_leaf_contracts.json": {
       "size": 695878,
       "sha256": "f12c2d0c8f69c255051beaa29e2a1542b5a29ae7c99284135eade24bc2e08389"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "tests/test_pr16_ring_font_bytes.py": {
+      "size": 4088,
+      "sha256": "c6899f7994a75d71208c46a493ceb37fd3612a346debde454e4e58899feda584"
+    },
+    ".github/workflows/pr16-ring-font-bytes.yml": {
+      "size": 1865,
+      "sha256": "e849ce891af3938b8f15ea7a1c6b791969c5ed29292385b53d53e3e3ae614fcf"
+    },
+    "content/modernization/pr16_ring_font_bytes.json": {
+      "size": 13650,
+      "sha256": "20e817bff426d9f5d040ded3cedb7343fce1cef122c357cdba210d49fd70b9e9"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。",
+  "source_change_review_ja": "gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2955,9 +2972,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_ui_leaf_contracts.json",
-    "source_head": "263e6b7e8fc54176da704323eeb9d16afe7acf9e",
-    "run_id": 35225879618
+    "path": "content/modernization/pr16_ring_font_bytes.json",
+    "source_head": "2560975cac98a6b315269399d2af407886e34ce1",
+    "run_id": 35229107711
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

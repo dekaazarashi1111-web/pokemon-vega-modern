@@ -6456,3 +6456,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:46:34.593509+00:00 — PR-P08-7-RING-FONT-BYTES
+- Timestamp: 2026-09-17T13:46:34.593509+00:00
+- Task: PR-P08-7-RING-FONT-BYTES / gFonts初期化の未読84byteと有限table候補を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-font-bytes
+- Summary: gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。
+- Files changed: scripts/pr16_ring_font_bytes.py, tests/test_pr16_ring_font_bytes.py, .github/workflows/pr16-ring-font-bytes.yml, content/modernization/pr16_ring_font_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=2560975cac98a6b315269399d2af407886e34ce1; run=35229107711（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存初期化窓のwriter/callsiteと実12byte font descriptorを保存readerへ結合し、初期化store・selector・callback境界を検証する。表候補192byteを実table長と断定しない。同じ採取/候補復元/旧3955命令契約/BP/nativeを単独再実行しない。assert残辺・Ring通常取得・policy/Circus/P08は未受入。

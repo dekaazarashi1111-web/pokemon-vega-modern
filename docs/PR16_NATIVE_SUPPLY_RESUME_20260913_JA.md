@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存3955命令のheap分割・window連結・実render境界を609条件で検証。帰還408、fail-closed 201。ROM復元/native0。
+gFonts初期化の隣接84byteを限定採取。literal候補3件・有限table候補0件、新規80byte。旧命令再解読/native0。
 
-**次: 次は実gFonts(0x03003DD0)初期化と12byte callback表の出自を固定候補の証拠へ結合する。assert残辺0x081C78FD/0x081C7A29と0x081C7A5C未知encodingは未証明で保持。今回3955命令契約・旧733条件/採取/resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 次は今回保存初期化窓のwriter/callsiteと実12byte font descriptorを保存readerへ結合し、初期化store・selector・callback境界を検証する。表候補192byteを実table長と断定しない。同じ採取/候補復元/旧3955命令契約/BP/nativeを単独再実行しない。assert残辺・Ring通常取得・policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `263e6b7e8fc54176da704323eeb9d16afe7acf9e`。
+証拠のsource HEAD: `2560975cac98a6b315269399d2af407886e34ce1`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_font_bytes.json`
+- `scripts/pr16_ring_font_bytes.py`
 - `content/modernization/pr16_ring_ui_leaf_contracts.json`
-- `scripts/pr16_ring_ui_leaf_contracts.py`
-- `content/modernization/pr16_ring_ui_leaf_bytes.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -166,6 +166,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存3918命令のUI pool/heap/実RunTextPrinters有界契約は今回原本を再利用。heap不足/null freeのassert呼出前とsplit初期化前の部分書込を保持する。未読3callee/実gFontsを成功stubにせず、旧byte採取/旧resource/受入済みBP/nativeを単独再実行しない。
 - heap split/assert/render thunkの未読3入口採取は今回原本を再利用。旧3918命令・pool/heap契約・旧resource/BP/nativeを単独再実行しない。実gFonts callback table/実allocationは未観測のままで、未読辺を成功stubに置換しない。
 - 保存3955命令のheap分割・window連結・実renderの有界契約は今回原本を再利用。heap不足/assertは未読診断callee前、active描画は実gFontsとcallback未結合のまま保持。旧733条件・今回37命令採取・resource/BP/nativeを単独再実行しない。
+- gFonts reader隣接の初期化窓と有限literal依存は保存結果を再利用する。同じcandidate復元/採取・旧3955命令/609条件・BP/nativeを単独再実行しない。literal表候補の有限窓を実table長・通常初期化到達・Ring取得へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -195,6 +196,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35224563901の原結論と保存証拠、BP run34946969126成功を照合。今回run35225879618は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35225879618の原結論と保存証拠、BP run34946969126成功を照合。今回run35229107711は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
