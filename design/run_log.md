@@ -6376,3 +6376,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は今回の保存initializer/RunTextPrintersを32byte text pool・12byte window poolのループ上限/allocator失敗/解放/間接callbackへ結合。未読callee/実gFonts tableはpendingを正とする。今回7入口採取・旧resource契約・BP/nativeを単独再実行しない。Ring正規取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:34:51.143653+00:00 — PR-P08-7-RING-UI-DELEGATES
+- Timestamp: 2026-09-17T08:34:51.143653+00:00
+- Task: PR-P08-7-RING-UI-DELEGATES / 実text中継とwindow allocationの6calleeを保存命令へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-delegates
+- Summary: 実RunTextPrinters中継0x09378A43とwindow6calleeを結合。新規99命令/252byte、dummy template8byte。純正symbol名だけで実本体を扱わない。
+- Files changed: scripts/pr16_ring_ui_delegates.py, tests/test_pr16_ring_ui_delegates.py, .github/workflows/pr16-ring-ui-delegates.yml, content/modernization/pr16_ring_ui_delegates.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7fd05af1f7e06be33dfc69abe2007cd2623b9fb5; run=35200296263（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存text/window初期化・満杯拒否・null解放・実RunTextPrinters中継の契約を結合。未読heap/callback/実gFonts tableはpendingを正とし、stubで通過させない。今回delegate採取・旧7入口/3496命令・resource契約・BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存とpolicy/Circus/P08は未受入。
