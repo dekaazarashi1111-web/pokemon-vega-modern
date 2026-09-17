@@ -3952,3 +3952,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存callerから確定した音声未読3callee・BIOS wrapper・song0/5/291 headerの有限採取と契約結合。実音声/BIOS・全live owner/Ring通常取得は未受入。旧audio/renderer/cursor/glyph/control・受入済みBP/nativeは単独再実行しない。
+
+
+## 2026-09-17T17:16:27.403290+00:00 — PR-P08-7-RING-AUDIO-LEAF-BYTES
+- Timestamp: 2026-09-17T17:16:27.403290+00:00
+- Task: PR-P08-7-RING-AUDIO-LEAF-BYTES / 音声の未読3callee・BIOS入口と選択3曲headerを有限保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-leaf-bytes
+- Summary: 音声未読3callee/BIOS入口/選択3曲headerを新規105命令・356byteで保存。保存総数7196。既読再解読/native0。
+- Files changed: scripts/pr16_ring_audio_leaf_bytes.py, tests/test_pr16_ring_audio_leaf_bytes.py, .github/workflows/pr16-ring-audio-leaf-bytes.yml, content/modernization/pr16_ring_audio_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3cd1000abcdb1639be66da957d8f92092982f73e; run=35251583296（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存した音声末端・選択曲headerとBIOS SWI停止の契約結合。BIOSを実行済みにせず、間接callback/実allocationを明示する。同じ採取・audio164/renderer/cursor/glyph/control/font・受入済みBP/nativeを単独再実行しない。実音声/全live owner/Ring通常取得/policy/Circus/P08は未受入。
