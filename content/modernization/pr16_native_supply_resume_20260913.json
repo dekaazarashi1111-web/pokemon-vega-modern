@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。",
+    "current_stop": "混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "next_step": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -378,7 +378,8 @@
     "選択曲0/5/291のheader・優先度・track容量・text16の初期化契約と音声末端の部分writeは保存原本を再利用。初期化を再生完了へ、明示IO byteを実DMA/音声へ昇格しない。同じaudio出力/旧164・renderer/cursor/glyph/BP/nativeを単独再実行せず、残る3callee/周波数表とlive callerの未証明境界へ進む。",
     "音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。",
     "保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。",
-    "混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。"
+    "混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。",
+    "run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -451,13 +452,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。",
+    "goal_ja": "次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_text_audio_sequence.json",
-      "scripts/pr16_ring_text_audio_sequence.py",
-      "content/modernization/pr16_ring_audio_tail_contracts.json"
+      "content/modernization/pr16_ring_text_export_recovery.json",
+      "scripts/pr16_ring_text_export_recovery.py",
+      "content/modernization/pr16_ring_text_audio_sequence.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -466,9 +467,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "a5f372e25eba83e5a09dead27bf8b287ce13fda2",
+  "observed_head": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
   "observed_head_checks": {
-    "reason_ja": "先行run35254339394の原結論と保存証拠、BP run34946969126成功を照合。今回run35255462365は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35255462365の原結論と保存証拠、BP run34946969126成功を照合。今回run35257642049は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -631,7 +632,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。"
+    "scope_ja": "混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2853,10 +2854,26 @@
     "content/modernization/pr16_ring_text_audio_sequence.json": {
       "size": 2621135,
       "sha256": "13a14a0fbfab57663c883c00b812a7282896267eab185733f7cfe85bd6bc8860"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "tests/test_pr16_ring_text_export_recovery.py": {
+      "size": 7037,
+      "sha256": "d0d0c0867f30cb10e4b489b3302e2ab3d69926eff0123fb9eb81640c7e8fb711"
+    },
+    ".github/workflows/pr16-ring-text-export-recovery.yml": {
+      "size": 1291,
+      "sha256": "de0677b872e35c6c57d3516c3d4eadb7111ff36933882e431695a3cbd222947a"
+    },
+    "content/modernization/pr16_ring_text_export_recovery.json": {
+      "size": 9067,
+      "sha256": "992a41dd535a5d624dd41ba27556498c48cd0b818476ad1089711f7e380709e2"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。",
+  "source_change_review_ja": "混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3311,5 +3328,10 @@
     "path": "content/modernization/pr16_ring_control_roles.json",
     "source_head": "8050cb1a2cd17f127922483247c34829aa92e287",
     "run_id": 35084187651
+  },
+  "latest_ring_text_export_recovery": {
+    "path": "content/modernization/pr16_ring_text_export_recovery.json",
+    "source_head": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
+    "run_id": 35257642049
   }
 }

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-色・4文字・選択3曲初期化・停止/再開を333条件で結合。帰還303/不足停止30、通常高速の画素/音声最終像一致36件。通常5呼出し/高速1呼出し・queue要求4対1、ROM/native0。
+混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。
 
-**次: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。**
+**次: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a5f372e25eba83e5a09dead27bf8b287ce13fda2`。
+証拠のsource HEAD: `ce4bfe14efd71a7cb6f50712afcd4be6facffe83`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_text_export_recovery.json`
+- `scripts/pr16_ring_text_export_recovery.py`
 - `content/modernization/pr16_ring_text_audio_sequence.json`
-- `scripts/pr16_ring_text_audio_sequence.py`
-- `content/modernization/pr16_ring_audio_tail_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -185,6 +185,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 音声末端3入口/周波数15index参照窓の有限採取を保存原本で再利用。既知SWIは未実行BIOS境界であって未読再採取対象ではない。15要素を本来の表長/有効mode全域と断定せず、index0の表前参照を保持。同じ採取・audio342/164・renderer/cursor/glyph/BP/nativeは単独再実行しない。
 - 保存除算/音声再開/周波数と有限VCOUNT入力の契約は保存原本を再利用。BIOS11/12を実行済み・未読再採取へ読み替えない。15index参照窓は合法mode一覧ではない。ゼロ除算例外先0x081c7fcdは不足時停止として保持。同じ末端/音声342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。次は未結合text/live ownerの到達・allocation/callback。
 - 混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。
+- run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。
 
 ## 次セッションへ残す更新手順
 
@@ -214,6 +215,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35254339394の原結論と保存証拠、BP run34946969126成功を照合。今回run35255462365は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35255462365の原結論と保存証拠、BP run34946969126成功を照合。今回run35257642049は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

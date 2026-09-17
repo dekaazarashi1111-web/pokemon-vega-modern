@@ -4032,3 +4032,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。今回の混在列は保存済みなので再実行せず、実画面/音声と全文法を受入扱いしない。BIOS11/12は既知未実行境界、ゼロ除算例外先0x081c7fcdは実callerに必要な場合だけ継続。同じ混在列・音声末端439/342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T18:15:07.330836+00:00 — PR-P08-7-RING-TEXT-EXPORT-RECOVERY
+- Timestamp: 2026-09-17T18:15:07.330836+00:00
+- Task: PR-P08-7-RING-TEXT-EXPORT-RECOVERY / 保存済み混在列の記録を再実行なしで照合し分割exportを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-export-recovery
+- Summary: 混在列run35255462365の49tests/333条件とa5573a9の非force記録を再実行なしで独立照合。60 textを116分割し各2MB境界と全体hashを検証。元runのexport failureは保持。
+- Files changed: scripts/pr16_ring_text_export_recovery.py, tests/test_pr16_ring_text_export_recovery.py, .github/workflows/pr16-ring-text-export-recovery.yml, content/modernization/pr16_ring_text_export_recovery.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ce4bfe14efd71a7cb6f50712afcd4be6facffe83; run=35257642049（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未結合text/live ownerの実到達・allocation・callback選択を保存callerから限定する。分割exportのsaved-context.json/保存7291命令を使い、混在列333条件・音声末端・renderer/cursor/glyph・受入済みBP/nativeを単独再実行しない。実画面/音声・全文法・Ring/policy/Circus/P08は未受入。
