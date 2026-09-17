@@ -162,7 +162,7 @@ def verify_receipt(prior, run, jobs, logs):
 def recover_prior(prior, run):
     import pr16_ring_followup_v2 as s
     jobs = s.api(f'actions/runs/{RUN}/jobs')['jobs']
-    logs = s.cmd('gh', 'api', f'repos/{s.REPO}/actions/jobs/{JOB}/logs')
+    logs = s.cmd('gh', 'api', '--allow-escape-sequences', f'repos/{s.REPO}/actions/jobs/{JOB}/logs')
     result = verify_receipt(prior, run, jobs, logs)
     need(s.cmd('git', 'rev-parse', BASE + '^') == SOURCE, 'record parent不一致')
     paths = sorted((PRIOR, s.STATE, s.DOC, s.BACKLOG, *s.LOGS))
@@ -208,6 +208,8 @@ def analyze(previous, out):
               'candidate_reconstructions': 0, 'rom_changes': 0, 'new_emulator_processes': 0,
               'ring_acquisition_accepted': False, 'release_ready': False,
               'next_owner_work_pending': True,
+              'implementation_attempts': [{'run_id': 35257148521, 'source_head': '70584fb1caf8f88257e6f105b90e641816f7c6f9',
+                  'conclusion': 'failure', 'stage': 'gh log escape-sequence refusal before tests', 'new_emulator_processes': 0}],
               'boundary_ja': '元runのfailureは保持。上限を緩めず分割前後のUTF-8/hashを検査。Ring通常取得/実allocation/callbackは未受入。'}
     (out / 'analysis.json').write_bytes(stable(result))
     return result
