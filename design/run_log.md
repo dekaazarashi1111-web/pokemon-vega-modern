@@ -6696,3 +6696,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存した音声末端・選択曲headerとBIOS SWI停止の契約結合。BIOSを実行済みにせず、間接callback/実allocationを明示する。同じ採取・audio164/renderer/cursor/glyph/control/font・受入済みBP/nativeを単独再実行しない。実音声/全live owner/Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:26:07.431002+00:00 — PR-P08-7-RING-AUDIO-OUTPUT-CONTRACTS
+- Timestamp: 2026-09-17T17:26:07.431002+00:00
+- Task: PR-P08-7-RING-AUDIO-OUTPUT-CONTRACTS / 選択曲初期化・text callerと音声末端の明示RAM停止を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-output-contracts
+- Summary: 選択曲0/5/291の優先度・track容量とtext16、音声末端の明示IO prefixを342条件で結合。帰還250/不足停止92。再生/BIOS/nativeは未受入。
+- Files changed: scripts/pr16_ring_audio_output_contracts.py, tests/test_pr16_ring_audio_output_contracts.py, .github/workflows/pr16-ring-audio-output-contracts.yml, content/modernization/pr16_ring_audio_output_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定56 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=379b5060fd31cad580033e77d109ddb806601b67; run=35252642998（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は未読0x081c1761/0x081c7a89/0x081c7f39と周波数表0x0844e72cの有限採取・契約、および未結合text/live caller。通常初期化・実allocation・callback選択・音声再生はfixtureで代用しない。同じaudio出力/旧164・renderer/cursor/glyph/control/font・受入済みBP/nativeは単独再実行しない。Ring通常取得/policy/Circus/P08は未受入。

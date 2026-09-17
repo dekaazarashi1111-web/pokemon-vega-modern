@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-音声未読3callee/BIOS入口/選択3曲headerを新規105命令・356byteで保存。保存総数7196。既読再解読/native0。
+選択曲0/5/291の優先度・track容量とtext16、音声末端の明示IO prefixを342条件で結合。帰還250/不足停止92。再生/BIOS/nativeは未受入。
 
-**次: 次は保存した音声末端・選択曲headerとBIOS SWI停止の契約結合。BIOSを実行済みにせず、間接callback/実allocationを明示する。同じ採取・audio164/renderer/cursor/glyph/control/font・受入済みBP/nativeを単独再実行しない。実音声/全live owner/Ring通常取得/policy/Circus/P08は未受入。**
+**次: 次は未読0x081c1761/0x081c7a89/0x081c7f39と周波数表0x0844e72cの有限採取・契約、および未結合text/live caller。通常初期化・実allocation・callback選択・音声再生はfixtureで代用しない。同じaudio出力/旧164・renderer/cursor/glyph/control/font・受入済みBP/nativeは単独再実行しない。Ring通常取得/policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3cd1000abcdb1639be66da957d8f92092982f73e`。
+証拠のsource HEAD: `379b5060fd31cad580033e77d109ddb806601b67`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_audio_output_contracts.json`
+- `scripts/pr16_ring_audio_output_contracts.py`
 - `content/modernization/pr16_ring_audio_leaf_bytes.json`
-- `scripts/pr16_ring_audio_leaf_bytes.py`
-- `content/modernization/pr16_ring_audio_boundary_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -181,6 +181,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - RunTextPrintersの色制御+字形4文字/space有限streamは通常6呼出し・高速1呼出しと終了後無変更を保存原本で再利用。pixel最終像の一致とqueue予約回数の違いを保持。全文法/全caller/実DMA/nativeの受入ではない。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。
 - 保存音声停止/再開/設定とtext callerの限定RAM契約は本原本を再利用。合成音声object/IO byteの変化を実音声やBIOS実行へ昇格しない。未読3callee・song header・BIOS entryをstubにせず、同じaudio/renderer/cursor/glyph/BP/nativeを単独再実行しない。
 - 音声未読3callee・BIOS入口・song0/5/291 headerの有限採取は保存原本を再利用。既読7091命令・audio164/renderer/cursor/glyph/BP/nativeは単独再実行しない。SWIを成功stubにせず、track pointerを再生完了やlive音声の受入へ昇格しない。
+- 選択曲0/5/291のheader・優先度・track容量・text16の初期化契約と音声末端の部分writeは保存原本を再利用。初期化を再生完了へ、明示IO byteを実DMA/音声へ昇格しない。同じaudio出力/旧164・renderer/cursor/glyph/BP/nativeを単独再実行せず、残る3callee/周波数表とlive callerの未証明境界へ進む。
 
 ## 次セッションへ残す更新手順
 
@@ -210,6 +211,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35250913296の原結論と保存証拠、BP run34946969126成功を照合。今回run35251583296は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35251583296の原結論と保存証拠、BP run34946969126成功を照合。今回run35252642998は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
