@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。
+保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。
 
-**次: 次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3029ad62d958b79904b300b57010728b4d4c0858`。
+証拠のsource HEAD: `798145cfb950e61fed0a38fe72e5bf30e591636c`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_resource_contracts.json`
+- `scripts/pr16_ring_resource_contracts.py`
 - `content/modernization/pr16_ring_resource_tail.json`
-- `scripts/pr16_ring_resource_tail.py`
-- `content/modernization/pr16_ring_resource_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -158,6 +158,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - VarGet selector1/2の全通常256変数・record key/mode・count/limit/capacity境界と外側帰還の新規結合は保存結果を再利用する。旧external ABI/7graph・旧VarGet65536/1337・既読2457命令・81要素/265caller/11文字列・BP/nativeを単独再実行しない。明示合成allocationの帰還を実caller/Ring通常取得へ昇格しない。
 - 未読resource 8calleeの有限採取は保存原本を再利用する。既読2457命令/VarGet selector縦結合/旧external ABI/BP/nativeを単独再実行しない。新規calleeや間接辺はstubで補わず、保存命令からresource/callback/出力slotの条件付き帰還とallocationを結合する。
 - resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。
+- 保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。
 
 ## 次セッションへ残す更新手順
 
@@ -187,6 +188,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35194777629の原結論と保存証拠、BP run34946969126成功を照合。今回run35195532065は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35195532065の原結論と保存証拠、BP run34946969126成功を照合。今回run35196651200は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

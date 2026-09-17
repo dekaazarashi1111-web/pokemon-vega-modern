@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。",
+    "current_stop": "保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -351,7 +351,8 @@
     "保存external1/2/3の7byte graphを現在の2330命令へ再利用結合した。今回2工程の成功Actions/原ZIP/保存commitを照合済み。採取・旧ABI・VarGet全u16/1337帰還・BP/nativeを単独再実行しない。既知nodeへの再結合はselector callerの全帰還や実allocation/Ring取得の証明ではない。",
     "VarGet selector1/2の全通常256変数・record key/mode・count/limit/capacity境界と外側帰還の新規結合は保存結果を再利用する。旧external ABI/7graph・旧VarGet65536/1337・既読2457命令・81要素/265caller/11文字列・BP/nativeを単独再実行しない。明示合成allocationの帰還を実caller/Ring通常取得へ昇格しない。",
     "未読resource 8calleeの有限採取は保存原本を再利用する。既読2457命令/VarGet selector縦結合/旧external ABI/BP/nativeを単独再実行しない。新規calleeや間接辺はstubで補わず、保存命令からresource/callback/出力slotの条件付き帰還とallocationを結合する。",
-    "resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。"
+    "resource追加3callee/8要素32byte表と表先の有限採取は保存結果を再利用する。既読2850命令・先の8callee・VarGet/旧external ABI/BP/nativeを単独再実行しない。保存table targetを実callback選択・実allocation・Ring通常取得の証明へ昇格しない。",
+    "保存2970命令のresource属性/queue/転送/bitmap/12byte caller帰還と不足時部分書込は今回原本を再利用する。同じbyte採取/旧VarGet/旧external ABI/BP/nativeを単独再実行しない。queue予約をDMA実行・描画・Ring通常取得と同一視しない。cursor>=128の配列外初回参照、size0再利用、bitmap検索count0/1拒否、実allocation未証明を保持する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -424,13 +425,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_resource_tail.json",
-      "scripts/pr16_ring_resource_tail.py",
-      "content/modernization/pr16_ring_resource_frontier.json"
+      "content/modernization/pr16_ring_resource_contracts.json",
+      "scripts/pr16_ring_resource_contracts.py",
+      "content/modernization/pr16_ring_resource_tail.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -439,9 +440,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "3029ad62d958b79904b300b57010728b4d4c0858",
+  "observed_head": "798145cfb950e61fed0a38fe72e5bf30e591636c",
   "observed_head_checks": {
-    "reason_ja": "先行run35194777629の原結論と保存証拠、BP run34946969126成功を照合。今回run35195532065は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35195532065の原結論と保存証拠、BP run34946969126成功を照合。今回run35196651200は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -602,9 +603,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。"
+    "scope_ja": "保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2394,10 +2395,26 @@
     "content/modernization/pr16_ring_resource_tail.json": {
       "size": 53805,
       "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "tests/test_pr16_ring_resource_contracts.py": {
+      "size": 7275,
+      "sha256": "a14330f96dd72aecfa2dfda96975bf627afffdaf52397b1ec5111e15bfad77fd"
+    },
+    ".github/workflows/pr16-ring-resource-contracts.yml": {
+      "size": 1954,
+      "sha256": "698245519c8eb1592dc5b1c5450d5737fac47a946381ef73a77aa11670d8975c"
+    },
+    "content/modernization/pr16_ring_resource_contracts.json": {
+      "size": 473082,
+      "sha256": "11bc44e5d9f0090d30f97267188aa18053d58f6fdc57640a9975780f80fa2a76"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "resourceの未読3calleeと8要素32byte分岐表を有限結合。新規120命令/292byte、保存命令2970件。既読再解読/native0。",
+  "source_change_review_ja": "保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2819,9 +2836,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_resource_tail.json",
-    "source_head": "3029ad62d958b79904b300b57010728b4d4c0858",
-    "run_id": 35195532065
+    "path": "content/modernization/pr16_ring_resource_contracts.json",
+    "source_head": "798145cfb950e61fed0a38fe72e5bf30e591636c",
+    "run_id": 35196651200
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

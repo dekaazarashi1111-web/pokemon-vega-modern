@@ -3600,3 +3600,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存命令だけでresource getter/転送/bitmapと12byte record callerの条件付き帰還・書込範囲を結合。実callback table/32byte出力slot/通常・拡張変数領域のallocationは実証拠と区別する。今回3callee/32byte表・先の8callee/VarGet/旧external ABI/BP/nativeは単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:52:26.585998+00:00 — PR-P08-7-RING-RESOURCE-CONTRACTS
+- Timestamp: 2026-09-17T07:52:26.585998+00:00
+- Task: PR-P08-7-RING-RESOURCE-CONTRACTS / resourceの予約queue・bitmap・12byte callerの帰還と部分書込を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-contracts
+- Summary: 保存2970命令でresource属性/queue/転送/bitmap/12byte callerの1752合成契約と25不足停止を結合。128slot予約・部分書込・外側帰還を固定。実DMA/通常取得とは別。
+- Files changed: scripts/pr16_ring_resource_contracts.py, tests/test_pr16_ring_resource_contracts.py, .github/workflows/pr16-ring-resource-contracts.yml, content/modernization/pr16_ring_resource_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定59 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=798145cfb950e61fed0a38fe72e5bf30e591636c; run=35196651200（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
