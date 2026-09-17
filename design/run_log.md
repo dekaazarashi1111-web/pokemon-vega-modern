@@ -6344,3 +6344,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は実callback table/12byte resource/32byte出力slotのallocation・callback到達と残るownerを照合。queue予約は実DMA完了でなく、source/destinationの有効性を証明しない。cursor>=128初回配列外・size0再利用・bitmap検索0/1拒否を保存証拠として保持。今回resource契約/2970命令/3calleeと表/先の8callee/VarGet/旧external ABI/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T08:21:11.309138+00:00 — PR-P08-7-RING-UI-OWNERS
+- Timestamp: 2026-09-17T08:21:11.309138+00:00
+- Task: PR-P08-7-RING-UI-OWNERS / 保存callbackとresourceを固定JPの描画owner・構造体境界へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-owners
+- Summary: 保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。
+- Files changed: scripts/pr16_ring_ui_owners.py, tests/test_pr16_ring_ui_owners.py, .github/workflows/pr16-ring-ui-owners.yml, content/modernization/pr16_ring_ui_owners.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定39 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e70be3ee87d24b695f2bae1d3eef6a0afbc489c0; run=35199184638（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。US referenceや36byteヘッダをJPの実allocationへ昇格しない。既読2970命令・resource1752契約・BP/nativeは再実行しない。Ring正規取得/装備実戦/保存・policy/Circus/P08は未受入。
