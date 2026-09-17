@@ -6712,3 +6712,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未読0x081c1761/0x081c7a89/0x081c7f39と周波数表0x0844e72cの有限採取・契約、および未結合text/live caller。通常初期化・実allocation・callback選択・音声再生はfixtureで代用しない。同じaudio出力/旧164・renderer/cursor/glyph/control/font・受入済みBP/nativeは単独再実行しない。Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T17:33:42.907723+00:00 — PR-P08-7-RING-AUDIO-TAIL-BYTES
+- Timestamp: 2026-09-17T17:33:42.907723+00:00
+- Task: PR-P08-7-RING-AUDIO-TAIL-BYTES / 音声末端3入口と有限周波数参照窓を保存しBIOS境界を分類
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-audio-tail-bytes
+- Summary: 音声末端3入口/周波数15index参照窓を新規95命令・238byteで保存。既知SWIは未実行BIOS境界へ分類。保存総数7291、既読再解読/native0。
+- Files changed: scripts/pr16_ring_audio_tail_bytes.py, tests/test_pr16_ring_audio_tail_bytes.py, .github/workflows/pr16-ring-audio-tail-bytes.yml, content/modernization/pr16_ring_audio_tail_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=631f9caaa0f3d713b640fa0d15fcc1d4ff1d30f4; run=35253330975（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存除算・音声復帰と有限周波数参照を契約結合。既知SWIを成功stubや再採取対象にしない。周波数表長/全mode有効性、実allocation/callback/実音声/未結合text/live callerは未証明。同じ採取・audio342/164・renderer/cursor/glyph・受入済みBP/nativeは単独再実行しない。Ring/policy/Circus/P08は未受入。
