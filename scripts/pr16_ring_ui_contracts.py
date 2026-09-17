@@ -153,7 +153,10 @@ def saved_inputs():
 
 
 def base_segments(*,pool=None,backgrounds=None,enabled=0,source=None,flags=None):
-    rows=[(engine.ENABLE,word(enabled),False),(DUMMY,bytes.fromhex('ff00000000000000'),False)]
+    table=next(t for t in saved_inputs()[2]['tables']if t['start']==engine.TABLE)
+    need(table['length']==32,'保存属性表32byte')
+    rows=[(engine.ENABLE,word(enabled),False),(DUMMY,bytes.fromhex('ff00000000000000'),False),
+        (engine.TABLE,bytes.fromhex(table['hex']),False)]
     if pool is not None:rows.append((WINDOWS,pool,True))
     if backgrounds is not None:rows.append((BACKGROUNDS,b''.join(word(x)for x in backgrounds),True))
     if source is not None:rows.append((TEMPLATE,source,False))
@@ -231,11 +234,13 @@ def run_group(name):
     elif name=='init_stops':
         for dims in ((0,0),(1,1),(1,2),(16,16),(255,255)):
             segs=base_segments(pool=b'\xaa'*384,backgrounds=(HEAP,)*4,source=template(0,dims)+b'\xff',enabled=1,flags=bytes(17))
-            segs.append((engine.BITS,b'\xff'*256,True))
+            segs.extend(((engine.CONTEXT,bytes(64),False),(engine.BITS,b'\xff'*256,True)))
             cases.run('init-bitmap-shortage-'+str(dims),INIT,segs,(TEMPLATE,),init_writes(),0)
         segs=base_segments(pool=b'\xaa'*384,backgrounds=(0,)*4,flags=bytes(17))
+        segs.append((engine.CONTEXT,bytes(64),False))
         cases.run('init-missing-terminator',INIT,segs,(TEMPLATE,),init_writes(),stop=('未map read',0x08003b4c))
         segs=base_segments(pool=b'\xaa'*(31*12),backgrounds=(0,)*4,source=b'\xff',flags=bytes(17))
+        segs.append((engine.CONTEXT,bytes(64),False))
         cases.run('init-short-pool',INIT,segs,(TEMPLATE,),init_writes()[:4+31*3],stop=('未許可 write',0x08003b30))
     elif name=='add_window':
         for slot in range(32):
@@ -304,10 +309,17 @@ def analyze(prior,out):
     nodes,_,a=saved_inputs()
     groups={name:copy.deepcopy(run_group(name))for name in GROUPS}
     rows=[row for values in groups.values()for row in values]
+    failed=s.api('actions/runs/35223426249')
+    need(failed['head_sha']=='b2424e9964f752815df8dbca6a1ef7588c36722a' and failed['status']=='completed'
+        and failed['conclusion']=='failure','初回Actions失敗原本')
     result={'classification':'SAVED_UI_POOL_HEAP_AND_ACTUAL_RENDER_CONDITIONAL_CONTRACTS_NOT_NATIVE',
         'candidate':copy.deepcopy(s.CANDIDATE),'saved_node_count':len(nodes),'groups':groups,
         'contract_cases':len(rows),'conditional_return_cases':sum(r['returned']for r in rows),
         'fail_closed_cases':sum(not r['returned']for r in rows),
+        'development_failure_preserved':{'run_id':35223426249,'source_head':failed['head_sha'],
+            'original_conclusion':'failure','tests_run':28,'errors':2,'artifact_id':10498260487,
+            'artifact_sha256':'b035f151bd091d397809b89f24454c77af6e3e0e9e272cf7115710907c6a590e',
+            'reason_ja':'合成RAMで保存属性分岐表と背景contextの明示mapが不足。旧engine/ROMは変更せず今回fixtureだけ修正。'},
         'pending_direct_callees':copy.deepcopy(a['pending_direct_callees']),
         'pending_continuations':[],'pending_effective_targets':[],
         'actual_callback_table_observed':False,'all_live_slot_bounds_proven':False,
