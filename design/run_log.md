@@ -6232,3 +6232,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未読callee0x080017D1/0x080020BD/0x081C7ACD/0x09128221とVarGetの実継続0x0806DC51/0x0806DC57を既読2107命令へ有限結合する。callback table/12byte resource records/32byte出力slotは実caller allocation証拠と分離する。保存81要素展開・非null帰還・265caller・11文字列・旧795/716/BP/nativeの単独再実行は禁止。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T06:28:06.099298+00:00 — PR-P08-7-RING-DISPATCH-FRONTIER
+- Timestamp: 2026-09-17T06:28:06.099298+00:00
+- Task: PR-P08-7-RING-DISPATCH-FRONTIER / 4calleeとVarGetの2継続を保存2107命令へ有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-dispatch-frontier
+- Summary: 4callee/VarGetの2継続を既読2107命令へ有限結合。新規223命令/348byte、data再採取0、既読再解読/native0。
+- Files changed: scripts/pr16_ring_dispatch_frontier.py, tests/test_pr16_ring_dispatch_frontier.py, .github/workflows/pr16-ring-dispatch-frontier.yml, content/modernization/pr16_ring_dispatch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定23 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f25707e6a655a3beb41882a10d124f2171d75799; run=35189858767（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存したresource callee・callback trampoline・VarGet helper/継続を実caller引数と帰還/SP/書込範囲へ結合する。未読先はstubで補わずpendingを保持。callback table/12byte resource records/32byte出力slotの実allocationは別証拠。既読2107命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
