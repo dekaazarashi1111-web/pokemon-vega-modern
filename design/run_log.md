@@ -6648,3 +6648,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T16:56:14.640328+00:00 — PR-P08-7-RING-RENDERER-OUTPUT-CONTRACTS
+- Timestamp: 2026-09-17T16:56:14.640328+00:00
+- Task: PR-P08-7-RING-RENDERER-OUTPUT-CONTRACTS / RunTextPrintersの有限色制御と5文字を通常・高速pixel出力へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-renderer-output-contracts
+- Summary: RunTextPrintersの色制御+4文字/spaceを通常6呼出し・高速1呼出しで結合。168条件（帰還162/不足停止6）、最終RAM一致18件。queue要求5対1を保持。ROM/native0。
+- Files changed: scripts/pr16_ring_renderer_output_contracts.py, tests/test_pr16_ring_renderer_output_contracts.py, .github/workflows/pr16-ring-renderer-output-contracts.yml, content/modernization/pr16_ring_renderer_output_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定41 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c2b341ce94f233501e0d467e4f82671d1ce32492; run=35249575389（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存音声calleeとBIOS境界、残るtext出力/live callerの未結合区間。有限5文字streamを全文法や実DMAへ昇格せず、旧stack条件・queue予約差を保持。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。

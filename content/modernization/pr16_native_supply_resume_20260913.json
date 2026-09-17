@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。",
+    "current_stop": "RunTextPrintersの色制御+4文字/spaceを通常6呼出し・高速1呼出しで結合。168条件（帰還162/不足停止6）、最終RAM一致18件。queue要求5対1を保持。ROM/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "next_step": "次は保存音声calleeとBIOS境界、残るtext出力/live callerの未結合区間。有限5文字streamを全文法や実DMAへ昇格せず、旧stack条件・queue予約差を保持。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -371,7 +371,8 @@
     "保存7calleeと字形4文字/font2・4・5、cursor画像/animation、symbolと音声表の限定窓を再利用。旧6534命令・636control/627text契約・font/BP/nativeを単独再実行しない。字形/cursor/scrollと音声/BIOSの実効果は保存命令と明示RAMから結合し、未読辺をstubにしない。",
     "字形256byte変換表と音声3calleeの不足採取は保存原本を再利用する。旧6983命令/3212byte・636control/627text・受入済みfont/BP/nativeを単独再実行しない。次は保存字形/cursor/scrollの明示RAM効果を検証し、未読音声/BIOSを成功stubにしない。",
     "保存字形4文字/font2・4・5とspaceの展開、透明pixel、clipと通常callbackの明示RAM契約は本原本を再利用。全文字/live allocation/実画面の受入ではない。既読byte・636control/627text・font/BP/nativeを単独再実行しない。",
-    "保存cursor/scrollのpixel・queue・state2/3/4は本原本を再利用する。4byte旧stack残値の明示条件とfillの隣接nibble効果、speed3..7の進捗0を保持。同じcursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。"
+    "保存cursor/scrollのpixel・queue・state2/3/4は本原本を再利用する。4byte旧stack残値の明示条件とfillの隣接nibble効果、speed3..7の進捗0を保持。同じcursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。",
+    "RunTextPrintersの色制御+字形4文字/space有限streamは通常6呼出し・高速1呼出しと終了後無変更を保存原本で再利用。pixel最終像の一致とqueue予約回数の違いを保持。全文法/全caller/実DMA/nativeの受入ではない。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -444,13 +445,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存音声calleeとBIOS境界、RunTextPrinters全出力連鎖の未結合区間。旧stack条件/queue予約と実DMAを混同せず、cursor/scroll・1122glyph・636control/627text・font/BP/nativeを単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
+    "goal_ja": "次は保存音声calleeとBIOS境界、残るtext出力/live callerの未結合区間。有限5文字streamを全文法や実DMAへ昇格せず、旧stack条件・queue予約差を保持。同じrenderer・591cursor/scroll・1122glyph・636control/627text・font/BP/nativeは単独再実行しない。実画面・全live owner・Ring通常取得/policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_cursor_scroll_contracts.json",
-      "scripts/pr16_ring_cursor_scroll_contracts.py",
-      "content/modernization/pr16_ring_glyph_contracts.json"
+      "content/modernization/pr16_ring_renderer_output_contracts.json",
+      "scripts/pr16_ring_renderer_output_contracts.py",
+      "content/modernization/pr16_ring_cursor_scroll_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -459,9 +460,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "640bbe860513de52a8fc56e90c33cde4052a12bd",
+  "observed_head": "c2b341ce94f233501e0d467e4f82671d1ce32492",
   "observed_head_checks": {
-    "reason_ja": "先行run35247250870の原結論と保存証拠、BP run34946969126成功を照合。今回run35248504865は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35248504865の原結論と保存証拠、BP run34946969126成功を照合。今回run35249575389は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -624,7 +625,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。"
+    "scope_ja": "RunTextPrintersの色制御+4文字/spaceを通常6呼出し・高速1呼出しで結合。168条件（帰還162/不足停止6）、最終RAM一致18件。queue要求5対1を保持。ROM/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2734,10 +2735,26 @@
     "content/modernization/pr16_ring_cursor_scroll_contracts.json": {
       "size": 1704882,
       "sha256": "0388a19317643a9c3625352d81ae442c0d82bc01cd3d04d48c1dea52b587bde7"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "tests/test_pr16_ring_renderer_output_contracts.py": {
+      "size": 7966,
+      "sha256": "4fe399adf7ea4df4ae01183a5588266320a2893af26373c0fb7a71634e483611"
+    },
+    ".github/workflows/pr16-ring-renderer-output-contracts.yml": {
+      "size": 1989,
+      "sha256": "37aae091323502e980a6244aae33884645174e03c54b0ccb1be8cc005a0fc7fe"
+    },
+    "content/modernization/pr16_ring_renderer_output_contracts.json": {
+      "size": 1023655,
+      "sha256": "c976a4822fa2b096c1d66a7c36e9e727c369335bd4e74119cc34eb441b9f509a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存cursor/scrollのpixel・queue・state2/3/4を591条件（帰還588/不足停止3）で結合。4byte旧stack条件・塗り隣接効果・零速度を明記。ROM/native0。",
+  "source_change_review_ja": "RunTextPrintersの色制御+4文字/spaceを通常6呼出し・高速1呼出しで結合。168条件（帰還162/不足停止6）、最終RAM一致18件。queue要求5対1を保持。ROM/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3159,9 +3176,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_cursor_scroll_contracts.json",
-    "source_head": "640bbe860513de52a8fc56e90c33cde4052a12bd",
-    "run_id": 35248504865
+    "path": "content/modernization/pr16_ring_renderer_output_contracts.json",
+    "source_head": "c2b341ce94f233501e0d467e4f82671d1ce32492",
+    "run_id": 35249575389
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
