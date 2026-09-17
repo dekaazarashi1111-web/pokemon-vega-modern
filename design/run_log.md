@@ -6280,3 +6280,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存済みselector1/2の3calleeをVarGet callerへ結合し、帰還/SP/record書込と条件不足/容量不足を検証する。残るresource8callee、実callback table/変数領域allocationは未証明。7旧graphの採取/旧ABI・VarGet全65536値/1337帰還・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:05:51.238086+00:00 — PR-P08-7-RING-VARGET-JOIN
+- Timestamp: 2026-09-17T07:05:51.238086+00:00
+- Task: PR-P08-7-RING-VARGET-JOIN / VarGet selector1/2の全通常256変数と条件付きrecord書込・帰還を結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-varget-join
+- Summary: 保存2457命令でVarGet selector1/2の通常256変数を含む752帰還、33不足/readonly停止を結合。selector2の108変数・最大44byte frame・順序付き部分書込を固定。
+- Files changed: scripts/pr16_ring_varget_join.py, tests/test_pr16_ring_varget_join.py, .github/workflows/pr16-ring-varget-join.yml, content/modernization/pr16_ring_varget_join.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=bab6cb7ae680c9af89147940430b662a6aa83904; run=35192829827（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次はresource未読8callee 0x080011E5/0x08001299/0x080014F1/0x0800273D/0x080027AD/0x08002899/0x080028ED/0x08002901だけを有限採取し、実callback table/12byte resource/32byte出力slotと通常・拡張変数領域のallocation条件を結合する。保存2457命令・VarGet全u16/1337帰還・selector1/2縦結合・旧external ABI/7graph・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
