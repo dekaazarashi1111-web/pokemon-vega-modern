@@ -1,6 +1,5 @@
 """保存state分岐の根拠と拒否境界。旧font/ABI/native試験は起動しない。"""
 from pathlib import Path
-import copy
 import sys
 import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
@@ -37,7 +36,7 @@ class FontStatesTests(unittest.TestCase):
         with self.assertRaises(ValueError):t.table_plan(n,a)
     def test_duplicate_node_rejected(self):
         n,a=fixture()
-        with self.assertRaises(ValueError):t.table_plan(n,a)
+        with self.assertRaises(ValueError):t.table_plan(n+n[:1],a)
     def test_missing_pending_rejected(self):
         n,a=fixture();a['pending_boundaries']=[]
         with self.assertRaises(ValueError):t.table_plan(n,a)
