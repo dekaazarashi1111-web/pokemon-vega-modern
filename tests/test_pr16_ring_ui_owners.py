@@ -89,7 +89,7 @@ class SavedJoinTests(unittest.TestCase):
         r=m.join(self.nodes,m.EXPECTED);self.assertEqual(r['resource_pool'],0x02020430)
         self.assertFalse(r['symbol_name_is_execution_proof'])
     def test_name_mismatch(self):
-        p=dict(m.EXPECTED);p['AddTextPrinter']+=2
+        p=dict(m.EXPECTED);p['RenderFont']+=2
         with self.assertRaises(ValueError):m.join(self.nodes,p)
     def test_node_tamper(self):
         p=copy.deepcopy(self.nodes);next(n for n in p if n['address']==0x08002d5e)['hex']='0000'
@@ -106,6 +106,39 @@ class SavedJoinTests(unittest.TestCase):
         p={**m.EXPECTED,'InitWindows':0x08003001};r=m.join(self.nodes,p)
         self.assertEqual(r['next_named_roots'],[{'symbol':'InitWindows','entry':0x08003001,'already_saved':False}])
     def test_root_absence_not_invented(self):self.assertEqual(m.join(self.nodes,m.EXPECTED)['next_named_roots'],[])
+
+
+class SnapshotTests(unittest.TestCase):
+    def fixture(self):
+        snapshots={};provenance={}
+        for n in m.SOURCE_PATHS:
+            for p in m.SOURCE_PATHS[n]:
+                key=n+'/'+p;raw=b'fixed source';snapshots[key]=raw.decode()
+                provenance[key]={'repository':m.PINS[n][0],'commit':m.PINS[n][1],'path':p,
+                    **m.identity(raw),'git_blob':blob(raw)['sha']}
+        return snapshots,provenance
+    def test_snapshot(self):
+        s,p=self.fixture();self.assertEqual(m.verify_snapshots(s,p),(s,p))
+    def test_snapshot_extra(self):
+        s,p=self.fixture();s['extra']='x'
+        with self.assertRaises(ValueError):m.verify_snapshots(s,p)
+    def test_snapshot_hash(self):
+        s,p=self.fixture();s['cfru/BPRJ.ld']+='x'
+        with self.assertRaises(ValueError):m.verify_snapshots(s,p)
+    def test_snapshot_blob(self):
+        s,p=self.fixture();p['cfru/BPRJ.ld']['git_blob']='0'*40
+        with self.assertRaises(ValueError):m.verify_snapshots(s,p)
+    def test_snapshot_pin(self):
+        s,p=self.fixture();p['cfru/BPRJ.ld']['commit']='0'*40
+        with self.assertRaises(ValueError):m.verify_snapshots(s,p)
+    def test_snapshot_nul(self):
+        s,p=self.fixture();s['cfru/BPRJ.ld']='\0'
+        with self.assertRaises(ValueError):m.verify_snapshots(s,p)
+    def test_missing_symbol_not_promoted(self):
+        nodes=saved_nodes();r=m.join(nodes,m.EXPECTED)
+        self.assertNotIn('AddTextPrinter',r['jp_symbol_bindings'])
+        self.assertFalse(r['unbound_symbol_hypotheses'][0]['present_in_pinned_ld'])
+        self.assertFalse(r['unbound_symbol_hypotheses'][0]['accepted_as_symbol_binding'])
 
 
 if __name__=='__main__':unittest.main()

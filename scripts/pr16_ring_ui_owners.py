@@ -6,6 +6,9 @@ import copy
 import ctypes
 import hashlib
 import json
+import io
+import subprocess
+import zipfile
 import re
 import sys
 from pathlib import PurePosixPath
@@ -20,7 +23,7 @@ WORKFLOW='.github/workflows/pr16-ring-ui-owners.yml'
 PRIOR='content/modernization/pr16_ring_resource_contracts.json'
 REPORT='content/modernization/pr16_ring_ui_owners.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=24
+MIN_TESTS=39
 EXTRA_CODE=()
 SOURCES=('state/source-lock.json','scripts/pr16_ring_resource_tail.py',
     'content/modernization/pr16_ring_resource_tail.json')
@@ -28,9 +31,9 @@ PINS={'cfru':('kapibarasan000/CFRU-JP','e24a16fe39e27ae162faf5b78596d1f3df18489d
       'pokefirered':('pret/pokefirered','c75f352304d529f6ba92d4f74b9cf8b5c3810788')}
 SOURCE_PATHS={'cfru':('BPRJ.ld','include/text.h','include/window.h'),
               'pokefirered':('src/text.c','src/window.c')}
-EXPECTED={'AddTextPrinter':0x08002cf1,'RenderFont':0x08002e4d,
+EXPECTED={'sTextPrinters':0x02020030,'RenderFont':0x08002e4d,
           'CopyWindowToVram':0x08003eed,'gWindows':0x02020430}
-ROOT_NAMES=('SetFontsPointer','DeactivateAllTextPrinters','RunTextPrinters',
+ROOT_NAMES=('AddTextPrinterParameterized','SetFontsPointer','DeactivateAllTextPrinters','RunTextPrinters',
     'SetDefaultFontsPointer','InitWindows','AddWindow','RemoveWindow','FreeAllWindowBuffers')
 TERMS=('gFonts','gTextPrinters','sTempTextPrinter','sFontInfos','FontInfo','TextPrinter',
        'NUM_TEXT_PRINTERS','WINDOWS_MAX','gWindows','WindowTemplate','struct Window',*ROOT_NAMES)
@@ -137,24 +140,59 @@ def join(nodes,table):
         'callback_global':0x03003dd0,'callback_record_stride':12,'callback_selector_offset':5,
         'output_pool':0x02020030,'output_stride':32,'resource_pool':0x02020430,'resource_stride':12,
         'next_named_roots':roots,'missing_named_roots':[n for n in ROOT_NAMES if n not in table],
-        'symbol_name_is_execution_proof':False,'source_header_is_live_allocation_proof':False}
+        'symbol_name_is_execution_proof':False,'source_header_is_live_allocation_proof':False,
+        'unbound_symbol_hypotheses':[{'entry':0x08002cf1,'name':'AddTextPrinter',
+            'present_in_pinned_ld':'AddTextPrinter'in table,'accepted_as_symbol_binding':False}]}
+
+
+FAILED_RUN=35198562759
+FAILED_HEAD='5463174ef150fa07360f7dd4eccb0f355e5ba596'
+FAILED_ARTIFACT=10486748720
+FAILED_ZIP_SHA='0d13cbceeef226acfb5ff9907dc408e8fce1db2e0f91a87a66b5405328b5b6a0'
+
+
+def verify_snapshots(snapshots,provenance):
+    paths={n+'/'+p for n in SOURCE_PATHS for p in SOURCE_PATHS[n]}
+    need(type(snapshots)is dict and set(snapshots)==paths,'snapshot path集合')
+    need(type(provenance)is dict and set(provenance)==paths,'provenance path集合')
+    for name in SOURCE_PATHS:
+        for path in SOURCE_PATHS[name]:
+            key=name+'/'+path;text=snapshots[key];r=provenance[key]
+            need(type(text)is str and '\0'not in text,'snapshot text')
+            raw=text.encode('utf-8');need(0<len(raw)<=1000000,'snapshot size')
+            need(r['repository']==PINS[name][0] and r['commit']==PINS[name][1] and r['path']==path,'snapshot pin')
+            need(all(r[k]==v for k,v in identity(raw).items()),'snapshot identity')
+            blob=hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
+            need(r['git_blob']==blob,'snapshot Git blob')
+    return snapshots,provenance
 
 
 def analyze(previous,out):
     import pr16_ring_followup_v2 as s
     import pr16_ring_resource_tail as tail
-    pins=checked_pins(s.load('state/source-lock.json'));snapshots={};provenance={}
-    for name in SOURCE_PATHS:
-        for path in SOURCE_PATHS[name]:
-            text,receipt=checked_source(json.loads(s.cmd('gh','api',source_path(name,path))))
-            key=name+'/'+path;snapshots[key]=text
-            provenance[key]={**pins[name],**receipt,'path':path,'relevant_lines':excerpts(text)}
+    checked_pins(s.load('state/source-lock.json'))
+    failed=s.api('actions/runs/'+str(FAILED_RUN))
+    need(failed['head_sha']==FAILED_HEAD and failed['status']=='completed' and failed['conclusion']=='failure',
+         '失敗Actions原本不一致')
+    raw=subprocess.check_output(['gh','api','repos/'+s.REPO+'/actions/artifacts/'+str(FAILED_ARTIFACT)+'/zip'])
+    need(hashlib.sha256(raw).hexdigest()==FAILED_ZIP_SHA,'保存source ZIP identity')
+    with zipfile.ZipFile(io.BytesIO(raw))as z:
+        need(sorted(z.namelist())==['source-provenance.json','source-snapshots.json','tests.json','tests.txt'],
+             '保存source ZIP範囲')
+        snapshots,provenance=verify_snapshots(json.loads(z.read('source-snapshots.json')),
+                                            json.loads(z.read('source-provenance.json')))
+        need(json.loads(z.read('tests.json'))=={'tests_run':32,'failures':0,'errors':0,'skips':0,'successful':True},
+             '前回限定tests原本')
     (out/'source-snapshots.json').write_bytes(s.stable(snapshots))
     (out/'source-provenance.json').write_bytes(s.stable(provenance))
     nodes,_,_=tail.saved_inputs();nodes=[*nodes,*s.load(tail.REPORT)['analysis']['new_nodes']]
     result=join(nodes,symbols(snapshots['cfru/BPRJ.ld']))
     result.update({'classification':'PINNED_JP_UI_OWNER_BINDINGS_NOT_LIVE_ALLOCATION_OR_NATIVE_ACCEPTANCE',
         'candidate':copy.deepcopy(s.CANDIDATE),'source_provenance':provenance,
+        'original_failed_attempt':{'run_id':FAILED_RUN,'source_head':FAILED_HEAD,'conclusion':'failure',
+            'artifact_id':FAILED_ARTIFACT,'zip_sha256':FAILED_ZIP_SHA,'tests_passed':32,
+            'cause':'AddTextPrinterは固定JP ldに未定義。symbol-backedな名前結合から除外し仮説を保持。'},
+        'upstream_fetches_this_run':0,
         'header_abi':abi_layout(snapshots['cfru/include/text.h'],snapshots['cfru/include/window.h']),
         'saved_node_count':len(nodes),'unbound_runtime_data':copy.deepcopy(previous['analysis']['unbound_runtime_data']),
         'all_callers_resolved':False,'all_live_frames_proven':False,'all_runtime_owners_excluded':False,
@@ -172,8 +210,8 @@ def analyze(previous,out):
 
 
 def summaries(result):
-    return ('保存callback/resourceを固定JPのAddTextPrinter・RenderFont・CopyWindowToVram・gWindowsへ結合。'
-        '候補32byte text slotとCFRUヘッダ36byteのABI差を保持。live allocationとRing取得は未受入。',
+    return ('保存callback/resourceを固定JPのsTextPrinters・RenderFont・CopyWindowToVram・gWindowsへ結合。'
+        '候補32byte slotとCFRUヘッダ36byte差を保持。AddTextPrinterはJP ld未定義で仮説。初回run35198562759はfailure保持。live allocation/Ringは未受入。',
         '次は今回特定したJP initializer/RunTextPrinters/InitWindowsの未読rootだけを有限採取し、'
         'gFonts実table・32byte出力slot・12byte window配列の初期化/到達境界を結合する。'
         'US referenceや36byteヘッダをJPの実allocationへ昇格しない。'
