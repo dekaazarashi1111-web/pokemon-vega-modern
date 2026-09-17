@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存2457命令でVarGet selector1/2の通常256変数を含む752帰還、33不足/readonly停止を結合。selector2の108変数・最大44byte frame・順序付き部分書込を固定。",
+    "current_stop": "未読resource 8calleeを保存2457命令へ有限結合。新規393命令/840byte、既読再解読/全ROM走査/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次はresource未読8callee 0x080011E5/0x08001299/0x080014F1/0x0800273D/0x080027AD/0x08002899/0x080028ED/0x08002901だけを有限採取し、実callback table/12byte resource/32byte出力slotと通常・拡張変数領域のallocation条件を結合する。保存2457命令・VarGet全u16/1337帰還・selector1/2縦結合・旧external ABI/7graph・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "next_step": "次は保存したresource 8calleeを実callback table/12byte resource/32byte出力slotの引数・帰還・書込範囲へ結合する。未知callee/間接辺はstub化せず残す。実allocation/通常・拡張変数領域との結合、Ring正規story取得・装備実戦・保存は未受入。同じ8callee採取・保存2457命令・VarGet selector1/2・旧external ABI/7graph・BP/nativeを単独再実行しない。policy/Circus/P08へscopeを拡大しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -349,7 +349,8 @@
     "4calleeとVarGetの2継続の有限採取は保存原本を再利用する。既読2107命令・81要素展開・非null帰還・265caller・11文字列・BP/nativeの単独再実行は禁止。未読callee/間接callbackと実allocation条件は未証明のまま、次は保存byteの契約結合へ進む。",
     "VarGet helper全65536値・保存caller帰還・明示slot不足拒否・callback/resource停止契約を再利用。同じ候補復元/採取/既読2330命令/81要素/非null帰還/265caller/11文字列/BP/nativeを単独再実行しない。special pointer表と拡張/通常変数領域の合成allocationを実callerの有効範囲やRing取得へ昇格しない。",
     "保存external1/2/3の7byte graphを現在の2330命令へ再利用結合した。今回2工程の成功Actions/原ZIP/保存commitを照合済み。採取・旧ABI・VarGet全u16/1337帰還・BP/nativeを単独再実行しない。既知nodeへの再結合はselector callerの全帰還や実allocation/Ring取得の証明ではない。",
-    "VarGet selector1/2の全通常256変数・record key/mode・count/limit/capacity境界と外側帰還の新規結合は保存結果を再利用する。旧external ABI/7graph・旧VarGet65536/1337・既読2457命令・81要素/265caller/11文字列・BP/nativeを単独再実行しない。明示合成allocationの帰還を実caller/Ring通常取得へ昇格しない。"
+    "VarGet selector1/2の全通常256変数・record key/mode・count/limit/capacity境界と外側帰還の新規結合は保存結果を再利用する。旧external ABI/7graph・旧VarGet65536/1337・既読2457命令・81要素/265caller/11文字列・BP/nativeを単独再実行しない。明示合成allocationの帰還を実caller/Ring通常取得へ昇格しない。",
+    "未読resource 8calleeの有限採取は保存原本を再利用する。既読2457命令/VarGet selector縦結合/旧external ABI/BP/nativeを単独再実行しない。新規calleeや間接辺はstubで補わず、保存命令からresource/callback/出力slotの条件付き帰還とallocationを結合する。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -422,13 +423,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次はresource未読8callee 0x080011E5/0x08001299/0x080014F1/0x0800273D/0x080027AD/0x08002899/0x080028ED/0x08002901だけを有限採取し、実callback table/12byte resource/32byte出力slotと通常・拡張変数領域のallocation条件を結合する。保存2457命令・VarGet全u16/1337帰還・selector1/2縦結合・旧external ABI/7graph・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。",
+    "goal_ja": "次は保存したresource 8calleeを実callback table/12byte resource/32byte出力slotの引数・帰還・書込範囲へ結合する。未知callee/間接辺はstub化せず残す。実allocation/通常・拡張変数領域との結合、Ring正規story取得・装備実戦・保存は未受入。同じ8callee採取・保存2457命令・VarGet selector1/2・旧external ABI/7graph・BP/nativeを単独再実行しない。policy/Circus/P08へscopeを拡大しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_varget_join.json",
-      "scripts/pr16_ring_varget_join.py",
-      "content/modernization/pr16_ring_selector_reuse.json"
+      "content/modernization/pr16_ring_resource_frontier.json",
+      "scripts/pr16_ring_resource_frontier.py",
+      "content/modernization/pr16_ring_varget_join.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -437,9 +438,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "bab6cb7ae680c9af89147940430b662a6aa83904",
+  "observed_head": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
   "observed_head_checks": {
-    "reason_ja": "先行run35191815881の原結論と保存証拠、BP run34946969126成功を照合。今回run35192829827は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35192829827の原結論と保存証拠、BP run34946969126成功を照合。今回run35194777629は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -600,9 +601,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存2457命令でVarGet selector1/2の通常256変数を含む752帰還、33不足/readonly停止を結合。selector2の108変数・最大44byte frame・順序付き部分書込を固定。"
+    "scope_ja": "未読resource 8calleeを保存2457命令へ有限結合。新規393命令/840byte、既読再解読/全ROM走査/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2360,10 +2361,26 @@
     "content/modernization/pr16_ring_varget_join.json": {
       "size": 1022772,
       "sha256": "e9648f93a8bc6b521f239d38406102f2b616e02872d1076d200949f6c6a6b627"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "tests/test_pr16_ring_resource_frontier.py": {
+      "size": 5322,
+      "sha256": "454551ea497f20bd902b7e4ed235756a72e76535fc29ce434d92c9fa1dd2f094"
+    },
+    ".github/workflows/pr16-ring-resource-frontier.yml": {
+      "size": 1937,
+      "sha256": "bc56a8fe19ab9d061f071917241633135b93a061e93a3781b8911da6df1a2fc7"
+    },
+    "content/modernization/pr16_ring_resource_frontier.json": {
+      "size": 126243,
+      "sha256": "4049cd397c124f333f1523d689bc80d466f03cb6a478b654af96973112e90ec7"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存2457命令でVarGet selector1/2の通常256変数を含む752帰還、33不足/readonly停止を結合。selector2の108変数・最大44byte frame・順序付き部分書込を固定。",
+  "source_change_review_ja": "未読resource 8calleeを保存2457命令へ有限結合。新規393命令/840byte、既読再解読/全ROM走査/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -2785,9 +2802,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_varget_join.json",
-    "source_head": "bab6cb7ae680c9af89147940430b662a6aa83904",
-    "run_id": 35192829827
+    "path": "content/modernization/pr16_ring_resource_frontier.json",
+    "source_head": "4ab69d822720658c988cd2e7422f822d0e02f3f3",
+    "run_id": 35194777629
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

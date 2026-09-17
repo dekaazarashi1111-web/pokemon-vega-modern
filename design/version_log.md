@@ -3568,3 +3568,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次はresource未読8callee 0x080011E5/0x08001299/0x080014F1/0x0800273D/0x080027AD/0x08002899/0x080028ED/0x08002901だけを有限採取し、実callback table/12byte resource/32byte出力slotと通常・拡張変数領域のallocation条件を結合する。保存2457命令・VarGet全u16/1337帰還・selector1/2縦結合・旧external ABI/7graph・BP/nativeを単独再実行しない。Ring正規story取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T07:30:57.485966+00:00 — PR-P08-7-RING-RESOURCE-FRONTIER
+- Timestamp: 2026-09-17T07:30:57.485966+00:00
+- Task: PR-P08-7-RING-RESOURCE-FRONTIER / 未読resource 8calleeを保存2457命令へ有限結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-resource-frontier
+- Summary: 未読resource 8calleeを保存2457命令へ有限結合。新規393命令/840byte、既読再解読/全ROM走査/native0。
+- Files changed: scripts/pr16_ring_resource_frontier.py, tests/test_pr16_ring_resource_frontier.py, .github/workflows/pr16-ring-resource-frontier.yml, content/modernization/pr16_ring_resource_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=4ab69d822720658c988cd2e7422f822d0e02f3f3; run=35194777629（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存したresource 8calleeを実callback table/12byte resource/32byte出力slotの引数・帰還・書込範囲へ結合する。未知callee/間接辺はstub化せず残す。実allocation/通常・拡張変数領域との結合、Ring正規story取得・装備実戦・保存は未受入。同じ8callee採取・保存2457命令・VarGet selector1/2・旧external ABI/7graph・BP/nativeを単独再実行しない。policy/Circus/P08へscopeを拡大しない。
