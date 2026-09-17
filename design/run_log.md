@@ -6584,3 +6584,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未読7calleeとfont bitmap/width・cursor/symbol・音声の必要dataを限定結合し、字形/cursor/scroll出力とBIOS境界へ進む。今回control/prompt・旧627text/font/BP/nativeは単独再実行しない。実描画/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
+
+
+## 2026-09-17T15:48:58.572342+00:00 — PR-P08-7-RING-OUTPUT-FRONTIER
+- Timestamp: 2026-09-17T15:48:58.572342+00:00
+- Task: PR-P08-7-RING-OUTPUT-FRONTIER / 字形・cursor・音声7calleeと限定実データを保存graphへ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-output-frontier
+- Summary: 字形/cursor/音声7calleeを新規449命令と3212byteの限定実dataで結合。保存総数6983、旧node再解読/native0。
+- Files changed: scripts/pr16_ring_output_frontier.py, tests/test_pr16_ring_output_frontier.py, .github/workflows/pr16-ring-output-frontier.yml, content/modernization/pr16_ring_output_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=7725be137314349238e975a6f640e73ddeffe614; run=35242518427（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存字形4文字/font2・4・5・cursor/scrollと音声/BIOSの明示RAM契約を結合。同じ採取・636control/627text・font/BP/nativeを単独再実行しない。未読/間接辺はstubにせず残す。実画面/DMA・全live owner・Ring通常取得/policy/Circus/P08は未受入。
