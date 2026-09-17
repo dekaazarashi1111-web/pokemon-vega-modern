@@ -6424,3 +6424,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は未読0x0800292D(heap split初期化)、0x081C7A39(assert実体)、0x09378679(render thunk)だけを採取し、保存heap不足・split部分書込とactive描画継続を結合する。実gFonts callback tableは未観測のまま。今回pool/heap/非active帰還・旧byte/旧resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-17T13:03:04.310858+00:00 — PR-P08-7-RING-UI-LEAF-BYTES
+- Timestamp: 2026-09-17T13:03:04.310858+00:00
+- Task: PR-P08-7-RING-UI-LEAF-BYTES / heap split・assert・描画thunkの未読3入口を保存契約へ結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-ui-leaf-bytes
+- Summary: 未読heap split/assert/render thunkの3入口を結合。新規37命令/94byte、保存総数3955。旧node再解読/native0。
+- Files changed: scripts/pr16_ring_ui_leaf_bytes.py, tests/test_pr16_ring_ui_leaf_bytes.py, .github/workflows/pr16-ring-ui-leaf-bytes.yml, content/modernization/pr16_ring_ui_leaf_bytes.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=5687db11b0d96e150bcfa5fc5310b6c86e427bc8; run=35224563901（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は今回保存3入口を使い、heap split完了/不足と実RunTextPrinters active継続を有界検証する。実gFonts callback tableと新たな未読辺はpendingを保持。旧3918命令・今回採取・pool/heap/resource/BP/nativeの単独再実行は禁止。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。

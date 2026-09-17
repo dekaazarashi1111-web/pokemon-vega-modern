@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存3918命令のpool/heap/実RunTextPrintersを733条件で結合。条件付き帰還578、fail-closed 155。ROM復元/新規byte/既読単独検証/native0。
+未読heap split/assert/render thunkの3入口を結合。新規37命令/94byte、保存総数3955。旧node再解読/native0。
 
-**次: 次は未読0x0800292D(heap split初期化)、0x081C7A39(assert実体)、0x09378679(render thunk)だけを採取し、保存heap不足・split部分書込とactive描画継続を結合する。実gFonts callback tableは未観測のまま。今回pool/heap/非active帰還・旧byte/旧resource/BP/nativeを単独再実行しない。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。**
+**次: 次は今回保存3入口を使い、heap split完了/不足と実RunTextPrinters active継続を有界検証する。実gFonts callback tableと新たな未読辺はpendingを保持。旧3918命令・今回採取・pool/heap/resource/BP/nativeの単独再実行は禁止。Ring通常取得・装備実戦・保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `cf016e615f242dbc6835f96083a7c98fd1f734ab`。
+証拠のsource HEAD: `5687db11b0d96e150bcfa5fc5310b6c86e427bc8`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_ui_leaf_bytes.json`
+- `scripts/pr16_ring_ui_leaf_bytes.py`
 - `content/modernization/pr16_ring_ui_contracts.json`
-- `scripts/pr16_ring_ui_contracts.py`
-- `content/modernization/pr16_ring_ui_runtime_bytes.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -164,6 +164,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 実RunTextPrinters転送先0x09378A43とwindow6callee・dummy template採取は保存原本を再利用。旧3496命令/7入口/旧resource契約/BP/nativeを単独再実行しない。allocatorや間接辺を成功stubへ置換しない。
 - heap2入口・実描画本体・復帰と属性10要素表の採取は保存原本を再利用。旧3595命令や既読UI/属性/resource/nativeを単独再実行せず、保存pool/heap/callbackの契約へ進む。
 - 保存3918命令のUI pool/heap/実RunTextPrinters有界契約は今回原本を再利用。heap不足/null freeのassert呼出前とsplit初期化前の部分書込を保持する。未読3callee/実gFontsを成功stubにせず、旧byte採取/旧resource/受入済みBP/nativeを単独再実行しない。
+- heap split/assert/render thunkの未読3入口採取は今回原本を再利用。旧3918命令・pool/heap契約・旧resource/BP/nativeを単独再実行しない。実gFonts callback table/実allocationは未観測のままで、未読辺を成功stubに置換しない。
 
 ## 次セッションへ残す更新手順
 
@@ -193,6 +194,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35201012097の原結論と保存証拠、BP run34946969126成功を照合。今回run35223854385は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35223854385の原結論と保存証拠、BP run34946969126成功を照合。今回run35224563901は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
