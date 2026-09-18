@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。
+state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。
 
-**次: 次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。**
+**次: 保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f60b226c327b14b1f7391880e2f4d2354bffc5df`。
+証拠のsource HEAD: `ddb29398740118c879cee6ebb4feecddee6f7731`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_state0_palette_supply.json`
+- `scripts/pr16_ring_state0_palette_supply.py`
 - `content/modernization/pr16_ring_state1_completion_contracts.json`
-- `scripts/pr16_ring_state1_completion_contracts.py`
-- `content/modernization/pr16_ring_bios_selector_continuation.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -201,6 +201,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。
 - 本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。
 - state1→2の今回独立write oracle/保存レジスタ/queue満杯対照/新suffix部分停止を保存原本から再利用。state2の旧poll/delete受入を再実行しない。state0の次の未供給32byteは0843FA24、コピー先0203730C/0203770C。palette20byte・2属性slot・8628旧node・BIOS/724/1231条件・BP/native再実行禁止。state1のRAM/queue条件付き完了をDMA描画・実BIOS・通常story/Ringへ昇格しない。
+- state0の0843FA24の32byteと両コピー99契約・21caller suffixを保存原本から再利用。次は0300504Cのpointerと+14の選択byte、その保存callee継続。state1→2/旧state2/BIOS単独/BP/nativeは再実行しない。通常story/Ring/実BIOSは未受入。
 
 ## 次セッションへ残す更新手順
 
@@ -230,6 +231,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35307686146の原結論と保存証拠、BP run34946969126成功を照合。今回run35308467459は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35308467459の原結論と保存証拠、BP run34946969126成功を照合。今回run35310296705は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

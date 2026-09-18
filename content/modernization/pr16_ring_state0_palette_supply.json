@@ -1,0 +1,3440 @@
+{
+  "schema_version": 1,
+  "task": "PR-P08-7-RING-STATE0-PALETTE-SUPPLY",
+  "source_head": "ddb29398740118c879cee6ebb4feecddee6f7731",
+  "run_id": 35310296705,
+  "run_status_at_record": "in_progress",
+  "analysis": {
+    "classification": "STATE0_PALETTE_SUPPLY_AND_CONDITIONAL_COPY_NOT_NATIVE_ACCEPTANCE",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+      "crc32": "3EB17B36"
+    },
+    "source_palette32": {
+      "start": 138672676,
+      "length": 32,
+      "hex": "2e53ff7f8c315a673c04ff3a6406d24b4665147bff7fb7573243d95b6c3a2b36",
+      "identity": {
+        "size": 32,
+        "sha256": "e15213fccde14f5c62e7bf8a97eb36db4610a7e4d06244f612866467102819e6"
+      },
+      "candidate": {
+        "size": 33554432,
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "crc32": "3EB17B36"
+      }
+    },
+    "saved_palette20": {
+      "start": 138293420,
+      "length": 20,
+      "hex": "ff7fff7f8c315a673c04ff3a6406d24b4665147b",
+      "identity": {
+        "size": 20,
+        "sha256": "36cc1a2c81842a9e98b8cea37e5394a8e3c92648b5de3abc2649ad32aa609e90"
+      },
+      "candidate": {
+        "size": 33554432,
+        "sha256": "ceddbe91ecba0d81f6148b82d24771cced2d269f9474400bfed7a0938156934b",
+        "crc32": "3EB17B36"
+      },
+      "supplier": "HASH_VERIFIED_CANDIDATE_READ_ONLY_EXACT_20_BYTES"
+    },
+    "copy_contract_cases": 99,
+    "copy_cases": [
+      {
+        "case": "two-copies",
+        "returned": true,
+        "stop": null,
+        "read_fault": null,
+        "writes": 32,
+        "write_identity": {
+          "size": 1279,
+          "sha256": "7afeb1a17390d210357523292e757f40f5c21bd4423f57a23f87652aaf7298af"
+        },
+        "final_object_sha256": "5c1bf63b48e53d57f708f6e57f37e77cb7ab3e42d2d45b9698d796006f67a82e",
+        "return_sp_r4_r11_proven": true,
+        "completed_copies": 2,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-0",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672676,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "final_object_sha256": "b8e6d39ea785cf5e1f7fd222dfb57d715cecf1ff580e13eff8c426cfbdaeda3c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-1",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672676,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "final_object_sha256": "9faac91954eafd7b52edc12c58619624e7274e11d240a755fbb9d27659fc35b2",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-2",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672678,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 1,
+        "write_identity": {
+          "size": 43,
+          "sha256": "776e39e03224695c872a291a5bd7855bdc10eb5077a6963e28800ecdd4126d8f"
+        },
+        "final_object_sha256": "7596167a6275d4fae739e9c4155e531d239bf6ca9fbc6cd36831cadbdcfe0f27",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-3",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672678,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 1,
+        "write_identity": {
+          "size": 43,
+          "sha256": "776e39e03224695c872a291a5bd7855bdc10eb5077a6963e28800ecdd4126d8f"
+        },
+        "final_object_sha256": "2f238fe1db6394f6da22b71313a55dc1018ef29a79dce16dc487a68c07041d8d",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-4",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672680,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 2,
+        "write_identity": {
+          "size": 83,
+          "sha256": "1571e731f5d04c79cf9dc4e00cd775eb78c5f6d20da0377a3db54f01a438828b"
+        },
+        "final_object_sha256": "305671789d2fc2bb04d66753e7502a70d708611ea21f1122544b5fb074d94443",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-5",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672680,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 2,
+        "write_identity": {
+          "size": 83,
+          "sha256": "1571e731f5d04c79cf9dc4e00cd775eb78c5f6d20da0377a3db54f01a438828b"
+        },
+        "final_object_sha256": "56840caa245d7a40ab73426a34b3121c8a0c017a44f4db88d2caa9be7648bdaf",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-6",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672682,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 3,
+        "write_identity": {
+          "size": 123,
+          "sha256": "858a46ab4bfa9dfac0040b54f79d9b4abacd10097544f9ab7c5047d60c73122a"
+        },
+        "final_object_sha256": "887bb7132fa420f49c025a31553f6e230be3937d4637c6d5f933abf683d1e193",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-7",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672682,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 3,
+        "write_identity": {
+          "size": 123,
+          "sha256": "858a46ab4bfa9dfac0040b54f79d9b4abacd10097544f9ab7c5047d60c73122a"
+        },
+        "final_object_sha256": "36ad567d5e0791de14085d196005418d23b2b26b8a465df026af098dfe7cd81e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-8",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672684,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 4,
+        "write_identity": {
+          "size": 163,
+          "sha256": "c889ae9fd8561c826331fcd4e39d747ce68984a6743fcb1d37aeb4434c02bfff"
+        },
+        "final_object_sha256": "afa3b890e8892c89abc292a5ead8b2ac225df6314693889b0fc9748d8eafc692",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-9",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672684,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 4,
+        "write_identity": {
+          "size": 163,
+          "sha256": "c889ae9fd8561c826331fcd4e39d747ce68984a6743fcb1d37aeb4434c02bfff"
+        },
+        "final_object_sha256": "d3e284bea2031590d1e0a10c582bfe8750a760375c18cfabebb0aa518ab3d349",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-10",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672686,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 5,
+        "write_identity": {
+          "size": 202,
+          "sha256": "435d5a561df6440e95674bbb4f444380645c8adb0907a1afe53918a063d3c5e2"
+        },
+        "final_object_sha256": "a4d39a8b54e7e41b07c1a42479154a85731b8c4ebdf2644486dfc6fbc1100620",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-11",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672686,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 5,
+        "write_identity": {
+          "size": 202,
+          "sha256": "435d5a561df6440e95674bbb4f444380645c8adb0907a1afe53918a063d3c5e2"
+        },
+        "final_object_sha256": "49f5cedcd13f3870a6669ddebc8bb14afdc646b4926b7be394f810346973ad27",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-12",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672688,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 6,
+        "write_identity": {
+          "size": 242,
+          "sha256": "9715738e9154715bde7d62df801ba5456711493e23b7e12d4795b0b8b18092de"
+        },
+        "final_object_sha256": "436972e7a1022ea8633dcb0a318ab0e720998caae7236d1a75754208b08d0602",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-13",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672688,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 6,
+        "write_identity": {
+          "size": 242,
+          "sha256": "9715738e9154715bde7d62df801ba5456711493e23b7e12d4795b0b8b18092de"
+        },
+        "final_object_sha256": "8443d3bbd473a965576b75efb9f5b7432f04329159a0c358b317dc1058480908",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-14",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672690,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 7,
+        "write_identity": {
+          "size": 281,
+          "sha256": "5516aa3d4822f4099f7582785ce78319c1d2565f4f5761dec5c88def9c0ffe4e"
+        },
+        "final_object_sha256": "9fce3491c894d90763c322a395783c357e6b1fe9753e7fee1e5dfd57ba34e22a",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-15",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672690,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 7,
+        "write_identity": {
+          "size": 281,
+          "sha256": "5516aa3d4822f4099f7582785ce78319c1d2565f4f5761dec5c88def9c0ffe4e"
+        },
+        "final_object_sha256": "b2015fbca1822c438401c6bc34baf3603cafa845c9e3de16e15a2d788191052a",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-16",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672692,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 8,
+        "write_identity": {
+          "size": 321,
+          "sha256": "0b6e73b7fa3eefabce3917742c1a708344c4310f2c6fe033a5033fa4ed5a724b"
+        },
+        "final_object_sha256": "edd4f200d9e80aa8bc7a08c0b3703d1a5fcd3923a9b37e6b70aa4a29b7764eae",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-17",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672692,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 8,
+        "write_identity": {
+          "size": 321,
+          "sha256": "0b6e73b7fa3eefabce3917742c1a708344c4310f2c6fe033a5033fa4ed5a724b"
+        },
+        "final_object_sha256": "407801d141b6e8d44335a4856a212da45ef4240434eb528b54a19dddf10bc037",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-18",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672694,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 9,
+        "write_identity": {
+          "size": 361,
+          "sha256": "a7487dcb14d34bcd65181d5eeaebc054a751ce56c7260181de710b547daf6155"
+        },
+        "final_object_sha256": "748b5a9680184f8715674915fa0355ef509ba69fe9dc17daae5d702c706ac20f",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-19",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672694,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 9,
+        "write_identity": {
+          "size": 361,
+          "sha256": "a7487dcb14d34bcd65181d5eeaebc054a751ce56c7260181de710b547daf6155"
+        },
+        "final_object_sha256": "792fb8ff31bb918ba27d3b9be37767a97acb4f4be07a380e55e2e6642fa45164",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-20",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672696,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 10,
+        "write_identity": {
+          "size": 401,
+          "sha256": "76b9f3a877d0086e1d511cce541c52ba25f652905824cbce18b838e724be16f4"
+        },
+        "final_object_sha256": "c49836d8ff6d147692700b248c85fe052c26cc4e527abbeae59107b8cb86a19e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-21",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672696,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 10,
+        "write_identity": {
+          "size": 401,
+          "sha256": "76b9f3a877d0086e1d511cce541c52ba25f652905824cbce18b838e724be16f4"
+        },
+        "final_object_sha256": "0a0d027dc5c8585d8fc5d22b12ca6f63efbce40d79efcd7f33c063547edc1522",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-22",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672698,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 11,
+        "write_identity": {
+          "size": 441,
+          "sha256": "c8ee13affbad99d45591838f398d3f67f5629f6194b657c2f07f0564763148be"
+        },
+        "final_object_sha256": "98a4892b2b37c60c267b8c19f833c84e96ce3191af58e41820b9b27677494643",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-23",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672698,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 11,
+        "write_identity": {
+          "size": 441,
+          "sha256": "c8ee13affbad99d45591838f398d3f67f5629f6194b657c2f07f0564763148be"
+        },
+        "final_object_sha256": "f812d6b226d06e9e88aba52c5836c7680b0ad25b0dd8b974131e66bc0a374d85",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-24",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672700,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 12,
+        "write_identity": {
+          "size": 481,
+          "sha256": "166007a01916672b1f0f3aacfa3275b88c242fa5e8f955780a611d16a6eb135e"
+        },
+        "final_object_sha256": "2739ad6ffd455f1afb8b57c435a07b2aed4fe156b93d6e065bf047e6f87b853d",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-25",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672700,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 12,
+        "write_identity": {
+          "size": 481,
+          "sha256": "166007a01916672b1f0f3aacfa3275b88c242fa5e8f955780a611d16a6eb135e"
+        },
+        "final_object_sha256": "d296219aeb9651a700798aeb80b6e7cffaff363c57044b79d3d235a30208d0ac",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-26",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672702,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 13,
+        "write_identity": {
+          "size": 521,
+          "sha256": "d299850616ffed718f666d1cf3f4a94918f5077afdbb4a0aec92e0518943ca2b"
+        },
+        "final_object_sha256": "2e1d80d52704104dab8616171ec236fd106a470f37c397f036d446e2e98af7af",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-27",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672702,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 13,
+        "write_identity": {
+          "size": 521,
+          "sha256": "d299850616ffed718f666d1cf3f4a94918f5077afdbb4a0aec92e0518943ca2b"
+        },
+        "final_object_sha256": "ccf9d67a8bb2d0a12cfe988579cc72e5e9fab854ea5a2bab7bfa5d30838c6511",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-28",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672704,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 14,
+        "write_identity": {
+          "size": 561,
+          "sha256": "c370e0dffd81c25e10be709f9bcc8422e78d6ac96a5f44908b8c4de3add2c1e8"
+        },
+        "final_object_sha256": "1b6a6badf2501d7769cfb5d2c444f42f47d33b2c09e969cde7b1561c83210e59",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-29",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672704,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 14,
+        "write_identity": {
+          "size": 561,
+          "sha256": "c370e0dffd81c25e10be709f9bcc8422e78d6ac96a5f44908b8c4de3add2c1e8"
+        },
+        "final_object_sha256": "cb2c4a288b6fd34ffd4b86f5df5fb5038b53be2495288d461ccf62369f4623ad",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-30",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672706,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 15,
+        "write_identity": {
+          "size": 601,
+          "sha256": "92a19e44927ab2dc93b95c959c0c2e67556ba8b51d954f186e8f092ee8d89b6e"
+        },
+        "final_object_sha256": "877361555c210b71dfd6da6577f5eeeb9c37ac405908d0c477aeba0133749062",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "source_length-31",
+        "returned": false,
+        "stop": [
+          "未map read",
+          136084104
+        ],
+        "read_fault": {
+          "address": 138672706,
+          "size": 2,
+          "site": 136084104
+        },
+        "writes": 15,
+        "write_identity": {
+          "size": 601,
+          "sha256": "92a19e44927ab2dc93b95c959c0c2e67556ba8b51d954f186e8f092ee8d89b6e"
+        },
+        "final_object_sha256": "edca73a59dc33a150f78593f353239d8f61b4f959be0cbd8eb0c7dd888efce2a",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-0",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "final_object_sha256": "9f17de4f686df6e7c68439f5483035614ca56bddc3c56ae725704cd4a4ffe69d",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-1",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "final_object_sha256": "ae2a77e7a9326e609e9e5e6efeeace8f2b819b8a93f1ca415e598f854270a159",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-2",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 1,
+        "write_identity": {
+          "size": 43,
+          "sha256": "776e39e03224695c872a291a5bd7855bdc10eb5077a6963e28800ecdd4126d8f"
+        },
+        "final_object_sha256": "69628358fdbc360ee9a53ba8d8a55f5e4dbfb037b62c98656ace8b17bf4ac7f6",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-3",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 1,
+        "write_identity": {
+          "size": 43,
+          "sha256": "776e39e03224695c872a291a5bd7855bdc10eb5077a6963e28800ecdd4126d8f"
+        },
+        "final_object_sha256": "97a9cdcc9d16a3738037c8b6988b4fa2b57fd4710d159b63fb48939efa43cb6e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-4",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 2,
+        "write_identity": {
+          "size": 83,
+          "sha256": "1571e731f5d04c79cf9dc4e00cd775eb78c5f6d20da0377a3db54f01a438828b"
+        },
+        "final_object_sha256": "6e19174a4a9a08d6a7947e39f068cfcf3667ae762e8a2bd882101ce6914a14c2",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-5",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 2,
+        "write_identity": {
+          "size": 83,
+          "sha256": "1571e731f5d04c79cf9dc4e00cd775eb78c5f6d20da0377a3db54f01a438828b"
+        },
+        "final_object_sha256": "b6d3455b4a78391f906a326f3bb36a37b4cac97aebdf127ad004a0cdb0650d14",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-6",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 3,
+        "write_identity": {
+          "size": 123,
+          "sha256": "858a46ab4bfa9dfac0040b54f79d9b4abacd10097544f9ab7c5047d60c73122a"
+        },
+        "final_object_sha256": "738402e6c132e90891b72f5c7f37012172d21bb13cbd0b5f12aecaabba4104cd",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-7",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 3,
+        "write_identity": {
+          "size": 123,
+          "sha256": "858a46ab4bfa9dfac0040b54f79d9b4abacd10097544f9ab7c5047d60c73122a"
+        },
+        "final_object_sha256": "4f6964459d18bbfd8b84dd28a1e51a1c0e3fd9e52863a51578e58e662264a6a7",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-8",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 4,
+        "write_identity": {
+          "size": 163,
+          "sha256": "c889ae9fd8561c826331fcd4e39d747ce68984a6743fcb1d37aeb4434c02bfff"
+        },
+        "final_object_sha256": "196ca02a81840b96e68664c98c5b1db5fb921e61aebcea79e75092b52b5ecd99",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-9",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 4,
+        "write_identity": {
+          "size": 163,
+          "sha256": "c889ae9fd8561c826331fcd4e39d747ce68984a6743fcb1d37aeb4434c02bfff"
+        },
+        "final_object_sha256": "fe97d3e9e511ca5156718efe043522f77a3192494507a6663aab32e947d3520d",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-10",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 5,
+        "write_identity": {
+          "size": 202,
+          "sha256": "435d5a561df6440e95674bbb4f444380645c8adb0907a1afe53918a063d3c5e2"
+        },
+        "final_object_sha256": "58dc587999439386a1ef7b8a2303733f6e9b408e8867cad9f522ce53253c6e8b",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-11",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 5,
+        "write_identity": {
+          "size": 202,
+          "sha256": "435d5a561df6440e95674bbb4f444380645c8adb0907a1afe53918a063d3c5e2"
+        },
+        "final_object_sha256": "78e154041ad426dd7b29b107694dc93d519b6b7df7055baa75d0720edd1dc848",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-12",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 6,
+        "write_identity": {
+          "size": 242,
+          "sha256": "9715738e9154715bde7d62df801ba5456711493e23b7e12d4795b0b8b18092de"
+        },
+        "final_object_sha256": "fcc5874e33de048d3b165b4f0858d81b7e1d1159a8dbccfac0158c4cad06d6e2",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-13",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 6,
+        "write_identity": {
+          "size": 242,
+          "sha256": "9715738e9154715bde7d62df801ba5456711493e23b7e12d4795b0b8b18092de"
+        },
+        "final_object_sha256": "2dda6bd0cebbaa8d8a19ba6deb019614d6c07087963c980428b1442b76ed4e83",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-14",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 7,
+        "write_identity": {
+          "size": 281,
+          "sha256": "5516aa3d4822f4099f7582785ce78319c1d2565f4f5761dec5c88def9c0ffe4e"
+        },
+        "final_object_sha256": "97220a793f0cb763782899f992e6e0da0a7c9056f0fceb5be91496f0857a3116",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-15",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 7,
+        "write_identity": {
+          "size": 281,
+          "sha256": "5516aa3d4822f4099f7582785ce78319c1d2565f4f5761dec5c88def9c0ffe4e"
+        },
+        "final_object_sha256": "1f6c4100a3657e6a71c8fe4a6cf7fdaed70a1db50d1e896215c2feec3408580c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-16",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 8,
+        "write_identity": {
+          "size": 321,
+          "sha256": "0b6e73b7fa3eefabce3917742c1a708344c4310f2c6fe033a5033fa4ed5a724b"
+        },
+        "final_object_sha256": "148ec8457ea8694ef68c4b79dba40c7ef435eee59aa47bc41638f2f1c5c83136",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-17",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 8,
+        "write_identity": {
+          "size": 321,
+          "sha256": "0b6e73b7fa3eefabce3917742c1a708344c4310f2c6fe033a5033fa4ed5a724b"
+        },
+        "final_object_sha256": "3066a3b036d22fd23609564ea8835cfd73393ecb77fb280c11e97fe906124bdd",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-18",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 9,
+        "write_identity": {
+          "size": 361,
+          "sha256": "a7487dcb14d34bcd65181d5eeaebc054a751ce56c7260181de710b547daf6155"
+        },
+        "final_object_sha256": "bc8810566814839dac994f307de63f25ae228b03c8bef7f4dcb9e1f5c05d1a55",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-19",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 9,
+        "write_identity": {
+          "size": 361,
+          "sha256": "a7487dcb14d34bcd65181d5eeaebc054a751ce56c7260181de710b547daf6155"
+        },
+        "final_object_sha256": "bfb8642c56d79ef38c1912b12c9cc2bf0b597414ddfc7b7627e11d2953a26c4c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-20",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 10,
+        "write_identity": {
+          "size": 401,
+          "sha256": "76b9f3a877d0086e1d511cce541c52ba25f652905824cbce18b838e724be16f4"
+        },
+        "final_object_sha256": "5a004621644439454faddf0ca254de03d886bd6e7f49eac5cb2b49255930f33a",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-21",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 10,
+        "write_identity": {
+          "size": 401,
+          "sha256": "76b9f3a877d0086e1d511cce541c52ba25f652905824cbce18b838e724be16f4"
+        },
+        "final_object_sha256": "b35dcd4ee4f5c359fc18384bf3173ffe5a1ce6d8a5a85a4286143dc9abe6b397",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-22",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 11,
+        "write_identity": {
+          "size": 441,
+          "sha256": "c8ee13affbad99d45591838f398d3f67f5629f6194b657c2f07f0564763148be"
+        },
+        "final_object_sha256": "8dd4d45feece36ec1040aaeb917c286baebc6a446f73dca83c6b2776e1d10b48",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-23",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 11,
+        "write_identity": {
+          "size": 441,
+          "sha256": "c8ee13affbad99d45591838f398d3f67f5629f6194b657c2f07f0564763148be"
+        },
+        "final_object_sha256": "d7ca7bd5d42455a9464c636da24bebcb30741fec046b349d9c684a3b1af62e77",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-24",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 12,
+        "write_identity": {
+          "size": 481,
+          "sha256": "166007a01916672b1f0f3aacfa3275b88c242fa5e8f955780a611d16a6eb135e"
+        },
+        "final_object_sha256": "7c4b9e7c2ae11d9ed8e107adfe69de1e759711baf691e3834a1e5b8b1dac1ec5",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-25",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 12,
+        "write_identity": {
+          "size": 481,
+          "sha256": "166007a01916672b1f0f3aacfa3275b88c242fa5e8f955780a611d16a6eb135e"
+        },
+        "final_object_sha256": "bcbf33d67d785505c55ac336abaf06fc3b4787b8007a486dc3e42b83bde7fbb8",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-26",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 13,
+        "write_identity": {
+          "size": 521,
+          "sha256": "d299850616ffed718f666d1cf3f4a94918f5077afdbb4a0aec92e0518943ca2b"
+        },
+        "final_object_sha256": "9822390eb1308edd244a832848754fd8bb3f92814a3a2a989f7dd8c734f9de35",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-27",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 13,
+        "write_identity": {
+          "size": 521,
+          "sha256": "d299850616ffed718f666d1cf3f4a94918f5077afdbb4a0aec92e0518943ca2b"
+        },
+        "final_object_sha256": "9226c9aabc3c4a38d54602a9dba954b323f5303daec7c2e3d88e39a7eb7eefbc",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-28",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 14,
+        "write_identity": {
+          "size": 561,
+          "sha256": "c370e0dffd81c25e10be709f9bcc8422e78d6ac96a5f44908b8c4de3add2c1e8"
+        },
+        "final_object_sha256": "936e5f333c9891bd5e4947fdf203470acbf53f29c36299da9eb5614a79e0121f",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-29",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 14,
+        "write_identity": {
+          "size": 561,
+          "sha256": "c370e0dffd81c25e10be709f9bcc8422e78d6ac96a5f44908b8c4de3add2c1e8"
+        },
+        "final_object_sha256": "649158ce21e76177ba20396b3e29214429b63724fc2efa7e738f84b5e5fb18a2",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-30",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 15,
+        "write_identity": {
+          "size": 601,
+          "sha256": "92a19e44927ab2dc93b95c959c0c2e67556ba8b51d954f186e8f092ee8d89b6e"
+        },
+        "final_object_sha256": "521e00f3c53510c427c8a566b3b0f89cb6dd3970191d42d1d6c47121c4fd9da6",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "first-31",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 15,
+        "write_identity": {
+          "size": 601,
+          "sha256": "92a19e44927ab2dc93b95c959c0c2e67556ba8b51d954f186e8f092ee8d89b6e"
+        },
+        "final_object_sha256": "aa27303f642c9a63cc903074682f2cd6f956f36a0ea3e713b288fe62911d4f53",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-0",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 16,
+        "write_identity": {
+          "size": 641,
+          "sha256": "131ff5aa60b642d4f88e70f09292f1a542dcb7843ba44ea2f7bb684f3b46ccc5"
+        },
+        "final_object_sha256": "c8c6df97389f35024d2f836d6bc0879734c03731ad05142dde27cad4f59f6244",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-1",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 16,
+        "write_identity": {
+          "size": 641,
+          "sha256": "131ff5aa60b642d4f88e70f09292f1a542dcb7843ba44ea2f7bb684f3b46ccc5"
+        },
+        "final_object_sha256": "0a230659a9d54b61815e2fc20d662c21973778b393fb00075e67b2cc1c34ffb1",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-2",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 17,
+        "write_identity": {
+          "size": 681,
+          "sha256": "910ce02884a9c6fb6516e22e07bef9149a94717df607a315c928a80257dbac9f"
+        },
+        "final_object_sha256": "8746184a6551dd31277c3831068a6a6c2c64d323e3a4fe1fa881ca11d1e5456f",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-3",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 17,
+        "write_identity": {
+          "size": 681,
+          "sha256": "910ce02884a9c6fb6516e22e07bef9149a94717df607a315c928a80257dbac9f"
+        },
+        "final_object_sha256": "4244785ae6e7b221a21da06fce982703a7baf6ca850f523d64999566dc885d24",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-4",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 18,
+        "write_identity": {
+          "size": 721,
+          "sha256": "5e1ae1ef6813f16843e30d0c102e71bc5962cc81d8951cb7332bd60a0e981af3"
+        },
+        "final_object_sha256": "892a1d6ec9bd067a38bcc3cdacf98436727a9540d30bbaa56badba40cc924a90",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-5",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 18,
+        "write_identity": {
+          "size": 721,
+          "sha256": "5e1ae1ef6813f16843e30d0c102e71bc5962cc81d8951cb7332bd60a0e981af3"
+        },
+        "final_object_sha256": "0fe4a3975fc294104254d85383480c90c99bdd9d0e14a74b73cdfc1dacebd4d6",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-6",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 19,
+        "write_identity": {
+          "size": 761,
+          "sha256": "5989376b0e81bf5c50759d9f748c23736b3296fae309898c87ab21c4ddb17ec2"
+        },
+        "final_object_sha256": "67d6463832f12fb159ecddcc0e63c1104c194dc28477c1fb8b4b6d4ab756b25c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-7",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 19,
+        "write_identity": {
+          "size": 761,
+          "sha256": "5989376b0e81bf5c50759d9f748c23736b3296fae309898c87ab21c4ddb17ec2"
+        },
+        "final_object_sha256": "9c5cdd391942d92e2b5891a6b745848c1580e3a270704380e1446fb013397a8f",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-8",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 20,
+        "write_identity": {
+          "size": 801,
+          "sha256": "160f923ec0b7844ae72aa5b3d75e429c09b691f3e07172de18806e43f744a6b5"
+        },
+        "final_object_sha256": "cae5472ef0380843d3b09967174f9ceaa6591739102a10a2c8532d38126bebff",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-9",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 20,
+        "write_identity": {
+          "size": 801,
+          "sha256": "160f923ec0b7844ae72aa5b3d75e429c09b691f3e07172de18806e43f744a6b5"
+        },
+        "final_object_sha256": "1d80ba550534d3d3af6f82700140dafffb44961be6b2ec57850dc2a5ca48388e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-10",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 21,
+        "write_identity": {
+          "size": 840,
+          "sha256": "bb9f30a28bd05fbe3f5131ea741aec69caf6b2728a9b6b84a87202a73b497daa"
+        },
+        "final_object_sha256": "e2f848391c3d77c1f94ff4262b409e1db2fbad0e6ff538adfe1ef397e738ac29",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-11",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 21,
+        "write_identity": {
+          "size": 840,
+          "sha256": "bb9f30a28bd05fbe3f5131ea741aec69caf6b2728a9b6b84a87202a73b497daa"
+        },
+        "final_object_sha256": "cff87f58f4dea14baaaa4cd7c0789d3fdcc31a93052a95b8287fb4df7cda47b8",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-12",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 22,
+        "write_identity": {
+          "size": 880,
+          "sha256": "bc0633ff84bfd6d4d32b0db9093947ba5d4e0d1c17306fe1dd0569fae986487c"
+        },
+        "final_object_sha256": "e4adce328bb837c6d4fdffeb6d6f356eca78a0c05d6466cd9f4e2b9d4974412a",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-13",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 22,
+        "write_identity": {
+          "size": 880,
+          "sha256": "bc0633ff84bfd6d4d32b0db9093947ba5d4e0d1c17306fe1dd0569fae986487c"
+        },
+        "final_object_sha256": "153f6c475c68217f9fc4647f6e47f65b6b3b10d9b1ac55224cf6a9dbff36cb88",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-14",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 23,
+        "write_identity": {
+          "size": 919,
+          "sha256": "6f866238d5470f01054c739d8eacd2790e6c03f0756ea093dd147a372ee3558c"
+        },
+        "final_object_sha256": "c9ba5f8198f86f74f4d2baef3c5abc6a0cf691b2e5ca0e6d3632c1e9be14dbb8",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-15",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 23,
+        "write_identity": {
+          "size": 919,
+          "sha256": "6f866238d5470f01054c739d8eacd2790e6c03f0756ea093dd147a372ee3558c"
+        },
+        "final_object_sha256": "1e806c0a0044e6489e3b3f3d1556c4e34dd59e4789698de8a819fbae7108607e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-16",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 24,
+        "write_identity": {
+          "size": 959,
+          "sha256": "e000b42a8da58527fd25c86c1ce0de98786203e4a1521492d72bb86fa6268a22"
+        },
+        "final_object_sha256": "8aca1360a60b90b0a30068fcaecbc82c4a0788211e9b8d8197382990a38644b2",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-17",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 24,
+        "write_identity": {
+          "size": 959,
+          "sha256": "e000b42a8da58527fd25c86c1ce0de98786203e4a1521492d72bb86fa6268a22"
+        },
+        "final_object_sha256": "bac60ad65651995e978f7bd7f2af632bfe961ec3e47cfe8a9645e507074f70ee",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-18",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 25,
+        "write_identity": {
+          "size": 999,
+          "sha256": "5e1e10c62784683b1c6059e11b2ec1d5cc0ac34eeacb6f9ada0b2ff7d6016e7d"
+        },
+        "final_object_sha256": "47050b669c2ba1a655916d0257e6584acac6bcc55d2cfa83a735334a1bbea0ff",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-19",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 25,
+        "write_identity": {
+          "size": 999,
+          "sha256": "5e1e10c62784683b1c6059e11b2ec1d5cc0ac34eeacb6f9ada0b2ff7d6016e7d"
+        },
+        "final_object_sha256": "0047def75bf2e021c034d58971fe9ff1f9d8254ba433de915d7c1c3f1d889ae3",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-20",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 26,
+        "write_identity": {
+          "size": 1039,
+          "sha256": "1fb5ed54418dabdc69fe1362c43aff757307fcd220b607a0706d09f1a925bde6"
+        },
+        "final_object_sha256": "6ccd085819ca9e72fcfeedaf778e75b5945292238b6db0a362e2a5a67c0f1157",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-21",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 26,
+        "write_identity": {
+          "size": 1039,
+          "sha256": "1fb5ed54418dabdc69fe1362c43aff757307fcd220b607a0706d09f1a925bde6"
+        },
+        "final_object_sha256": "a9c190668164ce4a11c720eaea1e5873ff535c7da2df8ef0d017265a744dc0d1",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-22",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 27,
+        "write_identity": {
+          "size": 1079,
+          "sha256": "c5d8d293274b3653a905775e42dad906d5b05426916dbe456f086a8ce54d96b0"
+        },
+        "final_object_sha256": "56da16f75e7f178c7b3d738a57aa9c790ac927353585725c141801884564b5cc",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-23",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 27,
+        "write_identity": {
+          "size": 1079,
+          "sha256": "c5d8d293274b3653a905775e42dad906d5b05426916dbe456f086a8ce54d96b0"
+        },
+        "final_object_sha256": "33f7ec765ff69b0856d1eab6d48ad687e4cdea596f0e39298a75994dcd59dc5c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-24",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 28,
+        "write_identity": {
+          "size": 1119,
+          "sha256": "4a254cceea4a58b359a70c443054f35fad84607998b88cf8fc196c7dbf9ac9a1"
+        },
+        "final_object_sha256": "d5bb0962ee5afc395fae0f53e23b2b5034b3ac9a86c987a8fa10b8d764bfdf55",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-25",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 28,
+        "write_identity": {
+          "size": 1119,
+          "sha256": "4a254cceea4a58b359a70c443054f35fad84607998b88cf8fc196c7dbf9ac9a1"
+        },
+        "final_object_sha256": "866737e7aa98ef9a773fb9ae672ee29a961302fa420c6c9258efac1ee75e4e55",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-26",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 29,
+        "write_identity": {
+          "size": 1159,
+          "sha256": "7962f84461e1bf5c6518e2060004d72d6e99b12e810653967b30d656e7bd71ea"
+        },
+        "final_object_sha256": "b79ac4fb6a855ceba67700abc47ec588e3cf07b23a752c7ab031e9cfaaeb982f",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-27",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 29,
+        "write_identity": {
+          "size": 1159,
+          "sha256": "7962f84461e1bf5c6518e2060004d72d6e99b12e810653967b30d656e7bd71ea"
+        },
+        "final_object_sha256": "5fe91f51a698da2ecf751e594fe5328242ca330bded2ea3b37ec32765346fb54",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-28",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 30,
+        "write_identity": {
+          "size": 1199,
+          "sha256": "ef58921fc806ca4b06cfa790990fcf39d89cd25ca7875cda8b8d5ee8eb8e7b2c"
+        },
+        "final_object_sha256": "c54279949f3590060dc100272d8a7d4f90f1a14b925430c0331f6bca714af71c",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-29",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 30,
+        "write_identity": {
+          "size": 1199,
+          "sha256": "ef58921fc806ca4b06cfa790990fcf39d89cd25ca7875cda8b8d5ee8eb8e7b2c"
+        },
+        "final_object_sha256": "1b343e6b1bb7a400d2474f9861fc50fc6d0cdb50290e25198b0a08b6b19a7d5e",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-30",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 31,
+        "write_identity": {
+          "size": 1239,
+          "sha256": "def031354b4407473c04ad04083d3c91b190176be246938c40914ae0883b218c"
+        },
+        "final_object_sha256": "146a268eaf36e35c246f688b7273a3ffbca46fc8cdc488a6383beaa0520b5951",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "second-31",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 31,
+        "write_identity": {
+          "size": 1239,
+          "sha256": "def031354b4407473c04ad04083d3c91b190176be246938c40914ae0883b218c"
+        },
+        "final_object_sha256": "40a0af0fbdbbd18f9519905cafce4e156367acf4a79441ed28c5f3cf126a69a8",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "readonly-1",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 0,
+        "write_identity": {
+          "size": 3,
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "final_object_sha256": "4fb335d05d35f7cab1eebadafe3044b2bfdf8d8142dabb0434e6580ac4d5f3f3",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 0,
+        "bios_execution_observed": false,
+        "native_observation": false
+      },
+      {
+        "case": "readonly-2",
+        "returned": false,
+        "stop": [
+          "未許可 write",
+          136084104
+        ],
+        "read_fault": null,
+        "writes": 16,
+        "write_identity": {
+          "size": 641,
+          "sha256": "131ff5aa60b642d4f88e70f09292f1a542dcb7843ba44ea2f7bb684f3b46ccc5"
+        },
+        "final_object_sha256": "b2b4789f544cb0ee24d3b198cca7c3a2a3038852954d9118d239415377ca51ba",
+        "return_sp_r4_r11_proven": false,
+        "completed_copies": 1,
+        "bios_execution_observed": false,
+        "native_observation": false
+      }
+    ],
+    "caller_suffix_cases": 21,
+    "cases": [
+      {
+        "case": "task-0",
+        "task_id": 0,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "3b92cca5d5bf9204d38415c41f25ad4a00302001450c283674a79900f8cd7681",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-1",
+        "task_id": 1,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "79635fbf3418e01d30a59ccc52ce6d937ac96f860f4b2913d629d416b34a6512",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-2",
+        "task_id": 2,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "a82b1cd55292535d39c70366a2688c61d1fc4ea5b5e7cfa0e3e497a782bf7e77",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-3",
+        "task_id": 3,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "1b5eb069d4277824907d62a0303bad860a93f346739163866b821c7ec74278a3",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-4",
+        "task_id": 4,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "f30c66cb43136c4ef4a42dbb433780c794cb642eaa5fd9823053ca453050ea82",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-5",
+        "task_id": 5,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "4c9c2eaa521d93c7cb67992144e3a6f7451ddb9c4e3f7c600fc1b5340a8eb7d3",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-6",
+        "task_id": 6,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "2a41921fe7680e5ddd3e64623cebad49b83b5fce5eaaf58f326c8b5ca64cbeed",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-7",
+        "task_id": 7,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "7af908d0b2b455309390a0a3671bbaaedd3a6d9c8dbac834d38d86bbf3d61c75",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-8",
+        "task_id": 8,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "c013cf91fb2bbf7b14e6e93842feb75b0cc27703b0a5d2055f32d9e8dc0081a6",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-9",
+        "task_id": 9,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "d633d80d1c321d8fcaaf8d9619393d42b202b6eb9144f17bfd807e4068bd0ec1",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-10",
+        "task_id": 10,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "efb4373851946a3976242cbfa224fa45e6abd6420731a511b7e37a9ccda98fcf",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-11",
+        "task_id": 11,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "92a3fb16b8edcbc3e1465ae20da138c74986ffbdde0b3890e5736067affdb4ba",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-12",
+        "task_id": 12,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "e7fe60e32817e53518a86ae97be177383d7ebdba8e93e0bf6ddaa6edb94cdf32",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-13",
+        "task_id": 13,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "0d17fa16e4772add359c0d415121d06f743e35e8935633f6d3fa4f3f1fd9817d",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-14",
+        "task_id": 14,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "389ce12ca55d608d1b627645b25b042a69209aeb30825d3ac4eafd77be9d6c3e",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "task-15",
+        "task_id": 15,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "0a7de30b4f56432302501e0052c2619676ab2013cf9fa6d93af54580892b6abc",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "mode-1",
+        "task_id": 0,
+        "mode": 1,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "3b8450a0b7c425bcbc939be0ce5f479f47eb332604280799fed6e72565dee364",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "mode-3",
+        "task_id": 0,
+        "mode": 3,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "6ae8a329e36934f0d5f9e90c69341c9782eff702754e8d0d85ac45f017d27d22",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "mode-255",
+        "task_id": 0,
+        "mode": 255,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "a151cf3cf6c2f31c0e66cc82c118ee3e35e2626026752ca77d2ede9f2884c48d",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "queue-wrap",
+        "task_id": 0,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 59,
+        "write_identity": {
+          "size": 2345,
+          "sha256": "af66d7dc283ceb91362f435e61069f1c054de9e51ec2dd758af2d02cc645ebe6"
+        },
+        "final_object_sha256": "2f269c1a9c566121c3693685c66c682238b343b8979983ea6c92b26b80eb9eae",
+        "queue_reservations": [
+          {
+            "index": 0,
+            "source": 138292844,
+            "destination": 100679680,
+            "length": 640
+          }
+        ],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      },
+      {
+        "case": "queue-full",
+        "task_id": 0,
+        "mode": 0,
+        "returned": false,
+        "stop": [
+          "未map read",
+          135606516
+        ],
+        "read_fault": {
+          "address": 50352204,
+          "size": 4,
+          "site": 135606516
+        },
+        "registers_at_stop": [
+          0,
+          50352204,
+          224,
+          224
+        ],
+        "task_state_after": 0,
+        "writes": 54,
+        "write_identity": {
+          "size": 2147,
+          "sha256": "e8dcc336bbbca05043f2aef3e8daf217b94ab4e5d94a59a1d9573d3debf4bf43"
+        },
+        "final_object_sha256": "f13ad46b44c3817df06f59482f84e98a632918ce798a9bf3260d0f6d6ca02c89",
+        "queue_reservations": [],
+        "completed_bios_copies": 4,
+        "maximum_caller_stack_bytes": 112,
+        "return_sp_r4_r11_proven": false,
+        "native_observation": false
+      }
+    ],
+    "palette32_two_copies_conditional_proven": true,
+    "state0_to1_proven": false,
+    "task_state1_to2_inherited_not_replayed": true,
+    "task_state01_complete_proven": false,
+    "next_read": {
+      "address": 50352204,
+      "size": 4,
+      "site": 135606516
+    },
+    "task_full_boundary": {
+      "producer_returns": 1,
+      "script_command_returns": 0,
+      "busy_after": 2,
+      "task_allocated": false,
+      "normal_play_reproduction_observed": false,
+      "liveness_proven": false
+    },
+    "rom_changes": 0,
+    "candidate_reconstructions": 1,
+    "new_emulator_processes": 0,
+    "new_window_bytes": 32,
+    "new_node_count": 0,
+    "saved_nodes_redecoded": 0,
+    "palette20_resampled_bytes": 0,
+    "slots_resampled_bytes": 0,
+    "accepted_standalone_contracts_replayed": 0,
+    "accepted_native_cases_replayed": 0,
+    "successful_callee_stubs": 0,
+    "bios_execution_observed": false,
+    "dma_execution_observed": false,
+    "normal_story_observed": false,
+    "ring_acquisition_accepted": false,
+    "release_ready": false,
+    "boundary_ja": "明示RAMと固定HLEの条件付きコピー。次の0300504C未供給でstate0を保持。queue予約はDMA描画ではなく、合成callerはlive初期化/Ring通常取得ではない。",
+    "export_manifest": {
+      "size": 55406,
+      "sha256": "95ff873e449e6454656256bf51d1db20fda695d06c2666706351cd41a7f6b645"
+    }
+  },
+  "source_bindings": {
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_state0_palette_supply.py": {
+      "size": 12006,
+      "sha256": "a1e0935c85579eb210ec708511a889ae5255b66e05c8bd18bd07faa7f8bdb49a"
+    },
+    "tests/test_pr16_ring_state0_palette_supply.py": {
+      "size": 5586,
+      "sha256": "8045eb0078986abf3c147e4d36946049ff01e65d18c914086167a47247691297"
+    },
+    ".github/workflows/pr16-ring-state0-palette-supply.yml": {
+      "size": 1728,
+      "sha256": "5016f03a6f27a789909ff9e861dc9dbd11979a388a3a4ae3b153a005e3ff39ea"
+    },
+    "content/modernization/pr16_ring_state1_completion_contracts.json": {
+      "size": 176942,
+      "sha256": "45b37f6952edd7d919468ed57bec976e28e9891081261a799fff650f88885628"
+    },
+    "content/modernization/pr16_bp_chooser_checkpoint.json": {
+      "size": 9442,
+      "sha256": "853ed41b6abcfb63651aab136951a53c8c89ec635f769e8466327ba3a0c0ae41"
+    },
+    "scripts/pr16_resume.py": {
+      "size": 26649,
+      "sha256": "b0ec73bf933e46f7b254057559b0c637a2d1a9b625b08f348aa8308ea00dee5a"
+    },
+    "scripts/pr16_ring_compiled_record.py": {
+      "size": 13116,
+      "sha256": "768c94e59983d27bbf0ed46d6ba60008352a3a67e11612b18936e38b271e73ef"
+    },
+    "scripts/guard_private_files.py": {
+      "size": 5443,
+      "sha256": "143426a7403abf47396791f6ece3a3a374fa97fbf8bedc88169f636cddbcc905"
+    },
+    "scripts/pr16_ring_state1_completion_contracts.py": {
+      "size": 12840,
+      "sha256": "e6467bba2ce29f2842d4af0acab2cabcdaf060cf18199eb673899b932899a895"
+    },
+    "tests/test_pr16_ring_state1_completion_contracts.py": {
+      "size": 6288,
+      "sha256": "289f0c71b7c9ce0ce74e5b93d41c075e481a915d6d4f6c00ce8b62712f0e2a72"
+    },
+    "content/modernization/pr16_ring_bios_selector_continuation.json": {
+      "size": 27869,
+      "sha256": "198307e12cf284df360d8a10376201e9cef7d21704f3c4f978ae85801377ad5d"
+    },
+    "content/modernization/pr16_ring_bios_memory_contracts.json": {
+      "size": 63386,
+      "sha256": "dd255b88fc1495361b88e4ec52438cbb1788fc919b8bb6f5a1b06ac104586cef"
+    },
+    "scripts/pr16_ring_bios_selector_continuation.py": {
+      "size": 11026,
+      "sha256": "f38ceb78946b55e67e149f42b04e8124ad6d39caf75672636709bf6a8e03e706"
+    },
+    "tests/test_pr16_ring_bios_selector_continuation.py": {
+      "size": 5993,
+      "sha256": "3bf1ff6fbb61d6dd2bcc1a722f583df7b28bd74bcb16a3879efb500707208c4d"
+    },
+    "scripts/pr16_ring_bios_memory_contracts.py": {
+      "size": 15595,
+      "sha256": "1f38612b3cd565575db321b2488a30334c1d5fd9ac0573295911bb417733a394"
+    },
+    "tests/test_pr16_ring_bios_memory_contracts.py": {
+      "size": 9298,
+      "sha256": "c263f42264dca1ab489175e35e956d078be3235d81df900a6a6229531521716d"
+    },
+    "scripts/pr16_ring_owner_frontier.py": {
+      "size": 12711,
+      "sha256": "e7505577537eba4df7a5ee641836b56f212706473eb99ef139a60d22141b9e65"
+    },
+    "scripts/pr16_ring_message_window_contracts.py": {
+      "size": 28110,
+      "sha256": "2a5d6bfb8db291c35fe7223fb3b080c58eb4511a12a550fed32220ec396f3fad"
+    },
+    "content/modernization/pr16_ring_message_window_contracts.json": {
+      "size": 769261,
+      "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
+    },
+    "scripts/pr16_ring_message_tile_leaves.py": {
+      "size": 7532,
+      "sha256": "4e829bf29e22277f8b0ddd646218361442ba26f42531f96f33f8cda792c91b70"
+    },
+    "content/modernization/pr16_ring_message_window_dependencies.json": {
+      "size": 86186,
+      "sha256": "fd912ea2c0404f78c4ed94513e985d9be5622a49d9f8a2d9b9a298e9bff4f125"
+    },
+    "scripts/pr16_ring_message_window_dependencies.py": {
+      "size": 7764,
+      "sha256": "ff56381bc31e886629716e69074e9439e936ec856cf60fa9f432e4360e0d26cd"
+    },
+    "content/modernization/pr16_ring_message_window_frontier.json": {
+      "size": 27825,
+      "sha256": "5ad35e199622e777624a482def01cc05e4ba468dbcecdd369e3671a95ce90120"
+    },
+    "scripts/pr16_ring_message_window_frontier.py": {
+      "size": 8874,
+      "sha256": "879bde66b1985a483810a00a483636c9bba2ec1c4b8429ba6a42a4b910c07f54"
+    },
+    "content/modernization/pr16_ring_message_task_checkpoint.json": {
+      "size": 11900,
+      "sha256": "cf971cfb7f5bdb597ca832c6e766db5cb168e3094436b9d919e81ab0a05ac10d"
+    },
+    "scripts/pr16_ring_message_task_contracts.py": {
+      "size": 28265,
+      "sha256": "6e575d79e5ec695f3fafc491cfbe13d47b705591bba8df9f57a368fa7f77124f"
+    },
+    "content/modernization/pr16_ring_message_task_contracts.json": {
+      "size": 1547055,
+      "sha256": "e585b13edd9ecb20de1ac313dfb33d7588c97ceec9e358a2b89741150c86a0e6"
+    },
+    "content/modernization/pr16_ring_message_window_bytes.json": {
+      "size": 186628,
+      "sha256": "bb5068bc9259c93982d03d84455cc4281c1d45d7f0bf466cb024cfe60fa13456"
+    },
+    "scripts/pr16_ring_message_window_bytes.py": {
+      "size": 7253,
+      "sha256": "b69191907b394aee845529a709146450ea7ba32677e9c38bb798e27265ff0e32"
+    },
+    "content/modernization/pr16_ring_message_task_callees.json": {
+      "size": 58019,
+      "sha256": "55e198114931889645456a57b2f76d38b6c911dc962ede062e5d2f9dd43c2b07"
+    },
+    "scripts/pr16_ring_message_task_callees.py": {
+      "size": 7920,
+      "sha256": "02b09cc6f87c46891857f465de129d7fe0631677a2ba075f895e22e9db85e79d"
+    },
+    "content/modernization/pr16_ring_message_task_frontier.json": {
+      "size": 36672,
+      "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "content/modernization/pr16_ring_message_owner_contracts.json": {
+      "size": 1333833,
+      "sha256": "d7e02206e9e83e14ddcbcf8c1b9cd73c2a5b0237fb2f13f3e780f631f56eef89"
+    },
+    "scripts/pr16_ring_message_owner_contracts.py": {
+      "size": 24057,
+      "sha256": "f5822ffa3cbac2bdd9001f12d1cced8f42b2df315ea74e3c57b63eb88c7966d1"
+    },
+    "content/modernization/pr16_ring_message_owner_frontier.json": {
+      "size": 23137,
+      "sha256": "b91103a45857b814871816eb9169d751cbe02c2626e5d3b2712736966057e3a6"
+    },
+    "scripts/pr16_ring_message_owner_frontier.py": {
+      "size": 10397,
+      "sha256": "14d9c4f97f302c216b320c49ecc12920978d0ee7756a9949e64067496b20b068"
+    },
+    "scripts/pr16_ring_text_audio_sequence.py": {
+      "size": 14986,
+      "sha256": "b84b1a14ae199469ff3a35c21d57bedd0b9d49e7a1f9d1cd802020159ecfbc8b"
+    },
+    "scripts/pr16_ring_audio_tail_contracts.py": {
+      "size": 16143,
+      "sha256": "b80b111cefa095b5b361ebdacbf57dc9be9d393c08cfc28a002573ead960f302"
+    },
+    "scripts/pr16_ring_audio_tail_bytes.py": {
+      "size": 8748,
+      "sha256": "715af133808eda28a035eebb0791f92858183529dec8582711a05a7d372a6701"
+    },
+    "scripts/pr16_ring_audio_output_contracts.py": {
+      "size": 17087,
+      "sha256": "8229621c883fa7f9449341a976b58e6d455737b0ba65b1b89038ab368c0a9b2d"
+    },
+    "scripts/pr16_ring_audio_leaf_bytes.py": {
+      "size": 9771,
+      "sha256": "118b073a6b24508e6d2ecfdf4cb685d459ab874c49bb699c8094bb8c10352fca"
+    },
+    "scripts/pr16_ring_audio_boundary_contracts.py": {
+      "size": 15002,
+      "sha256": "78d711fe93798cb2d697aac35106c3fcb27d75dffedc1e6d6376394a3dde4390"
+    },
+    "scripts/pr16_ring_renderer_output_contracts.py": {
+      "size": 12319,
+      "sha256": "6ec0c16f167e0520b423a7c98fad18f194a8b7002b43a196f84ac5344e4fc967"
+    },
+    "scripts/pr16_ring_cursor_scroll_contracts.py": {
+      "size": 18092,
+      "sha256": "1c4cf92fd6fa819bac2a9ae9186e4fd3bcec89c203e38c1114a77d77e73d509a"
+    },
+    "scripts/pr16_ring_glyph_contracts.py": {
+      "size": 17097,
+      "sha256": "31dbf07bae6c11c0a8caf6c7e44e1121551e1193e2b22c9e018ae6e5ec97df7f"
+    },
+    "scripts/pr16_ring_output_leaf_bytes.py": {
+      "size": 7517,
+      "sha256": "22f6b9434ae223842c56ed6dd84347a7b4f548303a6e053230e5e92175a7afc1"
+    },
+    "scripts/pr16_ring_output_frontier.py": {
+      "size": 7759,
+      "sha256": "73675380b1a0f619baa1ffc0fc6abf71581537bdaf0858f62a42293ca171bcc7"
+    },
+    "scripts/pr16_ring_control_contracts.py": {
+      "size": 17075,
+      "sha256": "11c7824b5e2946453581bc812870f723d4aa16962039052c1b96fced027aa875"
+    },
+    "scripts/pr16_ring_control_frontier.py": {
+      "size": 8469,
+      "sha256": "75a81f81b44bf0d543fc1ecbb07a6d99380a9042005fbd5ec88e8b5ae313af32"
+    },
+    "scripts/pr16_ring_text_state_contracts.py": {
+      "size": 16500,
+      "sha256": "1f6be4b834c8d1a08229c72231846aa2faee6fb503ae86c553980aaf26e9efdb"
+    },
+    "scripts/pr16_ring_explicit_text_machine.py": {
+      "size": 3622,
+      "sha256": "a59059be50cb79b0b2bd0d7fe3b0d331fc51127639fc1b2efb369a06693edfed"
+    },
+    "scripts/pr16_ring_character_frontier.py": {
+      "size": 9313,
+      "sha256": "de6180c89376b2a5d121b2734ccdd2b55280322885183d73c0ba4b7cdb666843"
+    },
+    "scripts/pr16_ring_font_states.py": {
+      "size": 12093,
+      "sha256": "60da75307d3fa2e69b7c2c23f668b12b7a64b60d790671f06cbf5496cafa0fe7"
+    },
+    "scripts/pr16_ring_font_frontier.py": {
+      "size": 11134,
+      "sha256": "d7dcbf3732ee6e6f33bae6777320b6b9fa4d2151ced1b9238a6a77115910cda5"
+    },
+    "scripts/pr16_ring_font_bindings.py": {
+      "size": 13242,
+      "sha256": "6693f5bd5fd8d8a070965fc77a66b676b6cf4e7f5e78c04cb0d9a137e2d00983"
+    },
+    "scripts/pr16_ring_font_bytes.py": {
+      "size": 7719,
+      "sha256": "c00b87bd69d6f47cb5c05089b85793b020857955b8ce95965ccef7842cf35e2f"
+    },
+    "scripts/pr16_ring_ui_leaf_contracts.py": {
+      "size": 15732,
+      "sha256": "2ae5cd8caadc44c4ad0b077ee78e564c44d31f13c6600f443a4c6a7ccc23475c"
+    },
+    "scripts/pr16_ring_ui_leaf_bytes.py": {
+      "size": 7112,
+      "sha256": "a0e190b7ac55f3a3e682b5d22b51133a87cc0feb1786f29262b08196df53d2a7"
+    },
+    "scripts/pr16_ring_ui_contracts.py": {
+      "size": 21972,
+      "sha256": "fb1625164a039e270da8b02d3be2081b304c3a98ab533a6043aff7e14eda0529"
+    },
+    "scripts/pr16_ring_ui_runtime_bytes.py": {
+      "size": 7582,
+      "sha256": "dceebb0c07beb1f1248ee710f1d035c01b19237c4fc77123e75e99424627cf8b"
+    },
+    "scripts/pr16_ring_ui_delegates.py": {
+      "size": 8013,
+      "sha256": "df322f8e399d7babccd486072b0c6b02542e868bbae29602e0c6c73da5f18db5"
+    },
+    "scripts/pr16_ring_ui_frontier.py": {
+      "size": 8819,
+      "sha256": "527db74169fb6c50d649898552dfd2ec6301392128d2ea8b482733ae39beee1f"
+    },
+    "scripts/pr16_ring_ui_owners.py": {
+      "size": 12961,
+      "sha256": "6bb82a9057e01845ef1f4efcce8e41d77856f1cf74c5fe601af9b9b509566bbf"
+    },
+    "scripts/pr16_ring_resource_tail.py": {
+      "size": 7535,
+      "sha256": "f4988540601c2eaa63876d6ee981a362e8614d0aaa11ca4a791e68f2b6100b81"
+    },
+    "content/modernization/pr16_ring_resource_tail.json": {
+      "size": 53805,
+      "sha256": "dc74f564a59f4b72a39f7c4a1a6fab0251b6c225ccd4f326b28123407cb618a3"
+    },
+    "scripts/pr16_ring_resource_frontier.py": {
+      "size": 8691,
+      "sha256": "12bad41bba1c269433134d204f4bae896f79b417900b6c70ea56893fa58e4d88"
+    },
+    "scripts/pr16_ring_remaining_frontier.py": {
+      "size": 12375,
+      "sha256": "3aa490bc6a4615a447f996df72e2ea678f41ed585076d3e2ddc3d572cd6f94bd"
+    },
+    "scripts/pr16_ring_effective_frontier.py": {
+      "size": 10560,
+      "sha256": "31303cea8148726c922f40f41231aa588b249796c08e04d9b41225150f25759e"
+    },
+    "scripts/pr16_ring_branch_frontier.py": {
+      "size": 10233,
+      "sha256": "9fe8b6d2697127d0dcefa4afecd1b0365bdc51f3a3638b03acc63ea0987c3aff"
+    },
+    "scripts/pr16_ring_zero_bytes.py": {
+      "size": 16741,
+      "sha256": "ef6255772fdc3153ec4518888af94df1c27f15d028283d81f901e1b5b2e87998"
+    },
+    "scripts/pr16_ring_transitive_owner.py": {
+      "size": 15717,
+      "sha256": "4d934acefe35ae818ed998282e3e783c4c5550e8da699a8e629557d4d82508dc"
+    },
+    "scripts/pr16_ring_flagset_continuation.py": {
+      "size": 19471,
+      "sha256": "10f6aa42d04f81385e42ff1987ca325c6a1bab52264c6591c9de7e8841f10e33"
+    },
+    ".github/workflows/pr16-ring-callee-bytes.yml": {
+      "size": 6742,
+      "sha256": "f8bab211f28662062bff281c538487d4bc2f06ff1c71e2d078da9bbe52977d3d"
+    },
+    "scripts/pr16_ring_resource_contracts.py": {
+      "size": 20140,
+      "sha256": "c575f1a803acd3c138092487957239e95d9587f20209b5668ed23f293381e700"
+    },
+    "scripts/pr16_ring_dispatch_contracts.py": {
+      "size": 14635,
+      "sha256": "55a743873e6c3409e65813d4a2a474f194827ccb440587595c86bda291d6b2f1"
+    },
+    "scripts/pr16_ring_gate_contracts.py": {
+      "size": 15264,
+      "sha256": "681de11dd4404608122b3069321c60f2f6331b0f04c18d75d87aef208ac383a7"
+    },
+    "scripts/pr16_ring_caller_contracts.py": {
+      "size": 17412,
+      "sha256": "bde459691a9b1fdf1fa239a4df1f12c1ae3e3d16f8405634d46bd88e2290907f"
+    },
+    "scripts/pr16_ring_string_machine.py": {
+      "size": 2000,
+      "sha256": "1db71b3632a95a5a676a4315ccac2dae51ba6a3d80a9d4be42916145703a6581"
+    },
+    "scripts/pr16_ring_contract_machine.py": {
+      "size": 8710,
+      "sha256": "e48dfc6e12913c93efc9ee54d26117fc3082cf7aeb304df90bbae2438a83775b"
+    },
+    "scripts/pr16_ring_saved_contracts.py": {
+      "size": 15079,
+      "sha256": "1fe5c750ebc8be8faf46915f0e172706a35bd4313bb05bfec621af3760e50620"
+    },
+    "scripts/pr16_ring_owner_context.py": {
+      "size": 13828,
+      "sha256": "e4ceb839cb6f9e3676b50549471512ae18698b9d4a4428f5577992758e38c1f0"
+    },
+    "scripts/pr16_ring_record_callers.py": {
+      "size": 9264,
+      "sha256": "d30434a3ea9abdcd48c73c5265feafb268069dac8c7abf0e5117ad43e215bbfd"
+    },
+    "scripts/pr16_ring_text_export_recovery.py": {
+      "size": 12559,
+      "sha256": "39156d99a541fe6df74d264df0f08d3f014c3558edff1fa30d576887a97da595"
+    },
+    "scripts/pr16_ring_remaining_contracts.py": {
+      "size": 11862,
+      "sha256": "afb8dda5c8161f8833f4551f299981bdf177b57d4840e2c166945e5e1e4a74bd"
+    },
+    "infra/toolchain_manifest.json": {
+      "size": 33230,
+      "sha256": "abf9f2fe3589323702aa8f934209d17b5165983773ad44207c6301f53afe1bff"
+    }
+  },
+  "focused_tests": {
+    "tests_run": 25,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "successful": true
+  },
+  "prior_actions_verified_without_replay": [
+    {
+      "id": 35308467459,
+      "head_sha": "f60b226c327b14b1f7391880e2f4d2354bffc5df",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 34946969126,
+      "head_sha": "0b7497b575a3180a045f2be377386490f192a012",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "actions_observed_before_record": [
+    {
+      "id": 35310299974,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310299991,
+      "name": "source-validation",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310296602,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310296560,
+      "name": "p03-forgetting-ci",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310296578,
+      "name": "source-validation",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310296705,
+      "name": "state0の32byte供給と二重コピーの独立oracleを検証",
+      "head_sha": "ddb29398740118c879cee6ebb4feecddee6f7731",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310279224,
+      "name": "source-validation",
+      "head_sha": "fae5458ef75313e2b4c1a4f29715de85b871ffee",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310279289,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fae5458ef75313e2b4c1a4f29715de85b871ffee",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35310276410,
+      "name": "source-validation",
+      "head_sha": "fae5458ef75313e2b4c1a4f29715de85b871ffee",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310276415,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "fae5458ef75313e2b4c1a4f29715de85b871ffee",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35310276509,
+      "name": "p03-forgetting-ci",
+      "head_sha": "fae5458ef75313e2b4c1a4f29715de85b871ffee",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35310248657,
+      "name": "source-validation",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310248674,
+      "name": "p03-forgetting-ci",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35310244264,
+      "name": "source-validation",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310244198,
+      "name": "Stage79 mGBA (all)",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 35310244222,
+      "name": "p03-forgetting-ci",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35310244194,
+      "name": "Stage79 runtime boundary audit",
+      "head_sha": "04124f6e649b58f3a110f6296356127eec2b679a",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 35308533460,
+      "name": "source-validation",
+      "head_sha": "91d36fc6939344c07bb78ebbbec0321d5bcfeca3",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35308533461,
+      "name": "p03-forgetting-ci",
+      "head_sha": "91d36fc6939344c07bb78ebbbec0321d5bcfeca3",
+      "status": "completed",
+      "conclusion": "action_required"
+    },
+    {
+      "id": 35308469845,
+      "name": "p03-forgetting-ci",
+      "head_sha": "f60b226c327b14b1f7391880e2f4d2354bffc5df",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ]
+}

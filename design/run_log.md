@@ -7016,3 +7016,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsの出自照合のみ。保存12byte/2nodeとpalette20byteを再利用。candidate再構築0・ROM新byte採取0・外部資料再取得0・source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。
+
+
+## 2026-09-18T05:20:10.816069+00:00 — PR-P08-7-RING-STATE0-PALETTE-SUPPLY
+- Timestamp: 2026-09-18T05:20:10.816069+00:00
+- Task: PR-P08-7-RING-STATE0-PALETTE-SUPPLY / state0の32byte供給・二重コピー・部分停止を独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state0-palette-supply
+- Summary: state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。
+- Files changed: scripts/pr16_ring_state0_palette_supply.py, tests/test_pr16_ring_state0_palette_supply.py, .github/workflows/pr16-ring-state0-palette-supply.yml, content/modernization/pr16_ring_state0_palette_supply.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ddb29398740118c879cee6ebb4feecddee6f7731; run=35310296705（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions。同一hash candidateから未供給0843FA24の32byteだけ取得。保存palette20byte/slot/nodeを再採取しない。外部資料/source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。
