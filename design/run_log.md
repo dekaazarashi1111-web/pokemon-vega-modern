@@ -7160,3 +7160,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 既存run35316606613のhash固定exportのみ。外部source追加、候補復元、ROM/native実行0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T07:31:17.223598+00:00 — PR-P08-7-RING-STORY-FIELD-FRONTIER
+- Timestamp: 2026-09-18T07:31:17.223598+00:00
+- Task: PR-P08-7-RING-STORY-FIELD-FRONTIER / field状態5slotと実wait callbackの未読接続を限定採取
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-field-frontier
+- Summary: 実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。
+- Files changed: scripts/pr16_ring_story_field_frontier.py, tests/test_pr16_ring_story_field_frontier.py, .github/workflows/pr16-ring-story-field-frontier.yml, content/modernization/pr16_ring_story_field_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=d466bed507d7ceb3d815d0eab5e306513ea42abe; run=35319665678（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35319087228と保存exportを照合し同hash candidateを1回だけ復元。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。

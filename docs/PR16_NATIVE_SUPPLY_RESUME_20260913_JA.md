@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。
+実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。
 
-**次: 未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。**
+**次: 保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f38bf4caa943f6096104970a7ad7e320d60483de`。
+証拠のsource HEAD: `d466bed507d7ceb3d815d0eab5e306513ea42abe`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_story_field_frontier.json`
+- `scripts/pr16_ring_story_field_frontier.py`
 - `content/modernization/pr16_ring_story_dispatch_contracts.json`
-- `scripts/pr16_ring_story_dispatch_contracts.py`
-- `content/modernization/pr16_ring_story_dispatch_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -210,6 +210,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。
 - 保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。
 - 保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。
+- 080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。
 
 ## 次セッションへ残す更新手順
 
@@ -239,6 +240,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35316606613の原結論と保存証拠、BP run34946969126成功を照合。今回run35319087228は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35319087228の原結論と保存証拠、BP run34946969126成功を照合。今回run35319665678は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

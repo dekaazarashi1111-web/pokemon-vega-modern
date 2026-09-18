@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。",
+    "current_stop": "実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。",
+    "next_step": "保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -403,7 +403,8 @@
     "font initializer080F8A29→setter08002C1Dとprinter reset08002C29からproducer/state012/非空text終了までの同一RAM原本を再利用。初期pointer/poolのhost準備を2点除去した条件付きモデル証明で、これらentryの通常story到達は未証明。旧setter/font/state/glyph/BP/nativeの単独再実行禁止。",
     "保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。",
     "保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。",
-    "保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。"
+    "保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。",
+    "080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -476,13 +477,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。",
+    "goal_ja": "保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_story_dispatch_contracts.json",
-      "scripts/pr16_ring_story_dispatch_contracts.py",
-      "content/modernization/pr16_ring_story_dispatch_frontier.json"
+      "content/modernization/pr16_ring_story_field_frontier.json",
+      "scripts/pr16_ring_story_field_frontier.py",
+      "content/modernization/pr16_ring_story_dispatch_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -491,9 +492,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "f38bf4caa943f6096104970a7ad7e320d60483de",
+  "observed_head": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
   "observed_head_checks": {
-    "reason_ja": "先行run35316606613の原結論と保存証拠、BP run34946969126成功を照合。今回run35319087228は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35319087228の原結論と保存証拠、BP run34946969126成功を照合。今回run35319665678は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -654,9 +655,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。"
+    "scope_ja": "実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3282,10 +3283,26 @@
     "content/modernization/pr16_ring_story_dispatch_contracts.json": {
       "size": 839141,
       "sha256": "342cd1d70ab9795a2c142af864205d8bb56be7f9c47f8f5604afa9b71d8d8d2f"
+    },
+    "scripts/pr16_ring_story_field_frontier.py": {
+      "size": 8234,
+      "sha256": "02f6948601a008d8b2f9f3aaf32158c72b8bfee8d880c4ece11d9e0a57a7f8ae"
+    },
+    "tests/test_pr16_ring_story_field_frontier.py": {
+      "size": 4950,
+      "sha256": "405945e5b777d7781b09fb51019abde0759dfabb7bc2fa9f78022fe8daa8bf1f"
+    },
+    ".github/workflows/pr16-ring-story-field-frontier.yml": {
+      "size": 1687,
+      "sha256": "6cc7d4d0cbccc985decd4084a653a5cbff88477f37c14a1081cfcf5c9baa0275"
+    },
+    "content/modernization/pr16_ring_story_field_frontier.json": {
+      "size": 79037,
+      "sha256": "8b47e78efee8ed38364dca9face9333dc6ca0158f50359369f6dc9748827f7c4"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。",
+  "source_change_review_ja": "実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3707,9 +3724,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_story_dispatch_contracts.json",
-    "source_head": "f38bf4caa943f6096104970a7ad7e320d60483de",
-    "run_id": 35319087228
+    "path": "content/modernization/pr16_ring_story_field_frontier.json",
+    "source_head": "d466bed507d7ceb3d815d0eab5e306513ea42abe",
+    "run_id": 35319665678
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
