@@ -4528,3 +4528,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功run35328554870のSHA固定exportを再利用。first-stop指定5calleeと実BG定数/属性7slotのみ、同candidate復元1。既読再解読/native0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存命令でheap/reset・BG default→実template→属性→InitWindows/fontの連続RAM/部分write/不足条件を検証する。未読save relocation/暗号化とdefault callback/state2は別owner。今回byteと旧accepted条件は再採取/単独再実行しない。通常Ring取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T09:43:07.644675+00:00 — PR-P08-7-RING-STORY-RESOURCE-CONTRACTS
+- Timestamp: 2026-09-18T09:43:07.644675+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCE-CONTRACTS / 実BG供給から通常windowへの連続RAMとsave退避後の未証明境界を検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resource-contracts
+- Summary: 実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_resource_contracts.py, tests/test_pr16_ring_story_resource_contracts.py, .github/workflows/pr16-ring-story-resource-contracts.yml, content/modernization/pr16_ring_story_resource_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定40 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a6c076976a7b02bd8599a17abbc42e8ae62e554b; run=35330928644（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35329291913のSHA固定exportだけ。候補復元/新規byte採取/ROM変更/native0。旧model/source-lockは不変。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
