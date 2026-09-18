@@ -8,6 +8,7 @@ on:
       - scripts/pr16_ring_policy_successor.py
       - scripts/pr16_ring_policy_native.py
       - tests/test_pr16_ring_policy.py
+      - tests/test_pr16_ring_policy_build.py
       - tests/test_pr16_ring_policy_native.py
       - tests/ring_policy_host.c
       - tools/mgba_pr16_ring_policy.c
@@ -28,11 +29,12 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
           persist-credentials: false
-      - name: Production ordinary Ring policy contracts
+      - name: Production ordinary Ring policy and native oracle contracts
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-ring-policy-run
           python3 -m unittest discover -s tests -p test_pr16_ring_policy.py -v > .local/pr16-ring-policy-run/policy.stdout 2> .local/pr16-ring-policy-run/policy.stderr
+          python3 -m unittest discover -s tests -p test_pr16_ring_policy_native.py -v > .local/pr16-ring-policy-run/oracle.stdout 2> .local/pr16-ring-policy-run/oracle.stderr
           python3 scripts/pr16_resume.py check > .local/pr16-ring-policy-run/resume-before.json
       - name: Restore pinned compiler and unchanged Stage84 input
         shell: bash
@@ -89,10 +91,15 @@ jobs:
           out=.local/pr16-ring-policy-run
           python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
           python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
-      - name: Retain accepted gift and identify ordinary policy callsite only
+      - name: Build bounded Ring policy successor with independent ARM compiles
         run: |
           set -euo pipefail
           python3 scripts/pr16_ring_policy_successor.py > .local/pr16-ring-policy-run/build.stdout 2> .local/pr16-ring-policy-run/build.stderr
+          git diff --exit-code
+      - name: New NPC Give cold ordinary Mega suffixes only
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_ring_policy_native.py > .local/pr16-ring-policy-run/native.stdout 2> .local/pr16-ring-policy-run/native.stderr
           git diff --exit-code
       - name: Exact source checkpoint
         if: always()
@@ -104,7 +111,9 @@ jobs:
           work.PATHS=(
               'overlays/ring_policy/ring_policy.c','overlays/ring_policy/ring_policy.h',
               'tests/test_pr16_ring_policy.py','tests/ring_policy_host.c',
-              'scripts/pr16_ring_policy_successor.py',
+              'scripts/pr16_ring_policy_successor.py','tests/test_pr16_ring_policy_build.py',
+              'scripts/pr16_ring_policy_native.py','tests/test_pr16_ring_policy_native.py',
+              'tools/mgba_pr16_ring_policy.c','.github/workflows/pr16-ring-policy.yml',
               'content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json',
               'content/modernization/pr16_native_supply_resume_20260913.json',
               'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
