@@ -4336,3 +4336,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsの先行成功/出自照合のみ。保存default行とpaletteを再利用しcandidate再構築0、新規byte0。外部資料/source-lock変更なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存producerのconfig/text pool/task初期化を今回state0→1→2のRAMへ衝突なく接続する。次のreadは0937858E→0203D000の4byte。既読producer/poll契約を再利用し、busy/stateのhost直接書換で終了させない。通常storyのpointer初期化・script入口・Ring取得/保存は未受入。単独state0/1/2・BP/nativeの再実行は禁止。
+
+
+## 2026-09-18T05:53:17.988510+00:00 — PR-P08-7-RING-MESSAGE-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T05:53:17.988510+00:00
+- Task: PR-P08-7-RING-MESSAGE-LIFECYCLE-CONTRACTS / producerからstate0/1/2・busy解除・task削除まで同一RAMを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-lifecycle-contracts
+- Summary: 保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。
+- Files changed: scripts/pr16_ring_message_lifecycle_contracts.py, tests/test_pr16_ring_message_lifecycle_contracts.py, .github/workflows/pr16-ring-message-lifecycle-contracts.yml, content/modernization/pr16_ring_message_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定34 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=ad2f9ee67708d724eadb60da10f90ae34e6fcc51; run=35312550354（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsで先行成功・source hashを照合。保存命令/表/配色のみ再利用。候補復元0・新規byte0・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。

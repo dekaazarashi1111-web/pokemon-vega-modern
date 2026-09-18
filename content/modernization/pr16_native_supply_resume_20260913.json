@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "default行のstate0→1→2を同一明示RAMの21条件で結合。task16枠・queue空き0/1/2/3/4・127周回・phase間host書換0・各帰還SP/r4-r11を検証。state2は0203D000 config不足でwrite0停止。候補復元/byte採取/native再実行0。",
+    "current_stop": "保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存producerのconfig/text pool/task初期化を今回state0→1→2のRAMへ衝突なく接続する。次のreadは0937858E→0203D000の4byte。既読producer/poll契約を再利用し、busy/stateのhost直接書換で終了させない。通常storyのpointer初期化・script入口・Ring取得/保存は未受入。単独state0/1/2・BP/nativeの再実行は禁止。",
+    "next_step": "通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -397,7 +397,8 @@
     "state1→2の今回独立write oracle/保存レジスタ/queue満杯対照/新suffix部分停止を保存原本から再利用。state2の旧poll/delete受入を再実行しない。state0の次の未供給32byteは0843FA24、コピー先0203730C/0203770C。palette20byte・2属性slot・8628旧node・BIOS/724/1231条件・BP/native再実行禁止。state1のRAM/queue条件付き完了をDMA描画・実BIOS・通常story/Ringへ昇格しない。",
     "state0の0843FA24の32byteと両コピー99契約・21caller suffixを保存原本から再利用。次は0300504Cのpointerと+14の選択byte、その保存callee継続。state1→2/旧state2/BIOS単独/BP/nativeは再実行しない。通常story/Ring/実BIOSは未受入。",
     "state0のoption全256値・default行/実palette・独立write oracleによるstate0→1を保存原本から再利用。state1→2は先行受入の継承のみ。次は通常story/live pointer初期化・task入場と保存callerの接続。option index0..31の算術は全32行有効証明ではない。BP/旧BIOS/native/同一候補再構築を単独再実行しない。",
-    "state0→1→2の同一RAM/queue予約引継ぎ21条件とstate2の明示config不足停止を保存原本から再利用。旧state0/1単独・option263・paletteコピー99・BP/native再実行禁止。次は保存producerのconfig/text pool/task初期化を今回RAMに衝突なく接続する。hostからstate/busyを書き換えて終了させない。"
+    "state0→1→2の同一RAM/queue予約引継ぎ21条件とstate2の明示config不足停止を保存原本から再利用。旧state0/1単独・option263・paletteコピー99・BP/native再実行禁止。次は保存producerのconfig/text pool/task初期化を今回RAMに衝突なく接続する。hostからstate/busyを書き換えて終了させない。",
+    "producer→script即値/fallback→state0/1/2→busy解除/task削除の同一RAM32条件を保存原本から再利用。終端のみの合成text/default行/明示初期RAM/HLE条件付きであり通常story取得ではない。旧単独producer/state/poll・BP/nativeを再実行せず、通常storyのpointer初期化・非空text・script実到達との接続だけを進める。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -470,13 +471,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存producerのconfig/text pool/task初期化を今回state0→1→2のRAMへ衝突なく接続する。次のreadは0937858E→0203D000の4byte。既読producer/poll契約を再利用し、busy/stateのhost直接書換で終了させない。通常storyのpointer初期化・script入口・Ring取得/保存は未受入。単独state0/1/2・BP/nativeの再実行は禁止。",
+    "goal_ja": "通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_state01_handoff_contracts.json",
-      "scripts/pr16_ring_state01_handoff_contracts.py",
-      "content/modernization/pr16_ring_state0_completion_contracts.json"
+      "content/modernization/pr16_ring_message_lifecycle_contracts.json",
+      "scripts/pr16_ring_message_lifecycle_contracts.py",
+      "content/modernization/pr16_ring_state01_handoff_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -485,9 +486,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "8de46fb5fc5d0c63dc3939a768324affd102d421",
+  "observed_head": "ad2f9ee67708d724eadb60da10f90ae34e6fcc51",
   "observed_head_checks": {
-    "reason_ja": "先行run35310950944の原結論と保存証拠、BP run34946969126成功を照合。今回run35311393786は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35311393786の原結論と保存証拠、BP run34946969126成功を照合。今回run35312550354は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -650,7 +651,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "default行のstate0→1→2を同一明示RAMの21条件で結合。task16枠・queue空き0/1/2/3/4・127周回・phase間host書換0・各帰還SP/r4-r11を検証。state2は0203D000 config不足でwrite0停止。候補復元/byte採取/native再実行0。"
+    "scope_ja": "保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3180,10 +3181,26 @@
     "content/modernization/pr16_ring_state01_handoff_contracts.json": {
       "size": 55150,
       "sha256": "8013f98e43f23c1847f0542689dfe3c4b4ab33426842d2de72188f9e416107e6"
+    },
+    "scripts/pr16_ring_message_lifecycle_contracts.py": {
+      "size": 13382,
+      "sha256": "cd6067288e62d34f25f4c2351f22fd23a78f98cf3eadac618ccc248e92b0de98"
+    },
+    "tests/test_pr16_ring_message_lifecycle_contracts.py": {
+      "size": 6771,
+      "sha256": "4f653f3f62dba1c048fa02211ff7868346c310477e8ea6b76c118aa504223f94"
+    },
+    ".github/workflows/pr16-ring-message-lifecycle-contracts.yml": {
+      "size": 1724,
+      "sha256": "c671201e8e7f6b056e692555d352d27c8d3ffba115e4adb6d82e099678239c95"
+    },
+    "content/modernization/pr16_ring_message_lifecycle_contracts.json": {
+      "size": 111908,
+      "sha256": "5210aa529eded60467cc8bab94c678a4fe98716ec5cc71795cfc18d7eed45e34"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "default行のstate0→1→2を同一明示RAMの21条件で結合。task16枠・queue空き0/1/2/3/4・127周回・phase間host書換0・各帰還SP/r4-r11を検証。state2は0203D000 config不足でwrite0停止。候補復元/byte採取/native再実行0。",
+  "source_change_review_ja": "保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3605,9 +3622,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_state01_handoff_contracts.json",
-    "source_head": "8de46fb5fc5d0c63dc3939a768324affd102d421",
-    "run_id": 35311393786
+    "path": "content/modernization/pr16_ring_message_lifecycle_contracts.json",
+    "source_head": "ad2f9ee67708d724eadb60da10f90ae34e6fcc51",
+    "run_id": 35312550354
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
