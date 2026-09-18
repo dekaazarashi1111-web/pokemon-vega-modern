@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。",
+    "current_stop": "個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "next_step": "保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -99,6 +99,32 @@
     "script_connection_built": true,
     "status": "CIRCUS_SCRIPT_WIRED_CANDIDATE_BUILT_NATIVE_OPEN",
     "tested_head": "657c589538b68ab665b4acfcc36bd4434b00a2a6"
+  },
+  "circus_first_battle_native": {
+    "engineering_candidate": {
+      "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+      "size": 33554432
+    },
+    "first_turn_verified": true,
+    "path": "content/modernization/pr16_circus_first_battle_checkpoint.json",
+    "physical_admission_accepted": false,
+    "rental_identity_verified": false,
+    "run_id": 35367721416,
+    "status": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
+    "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9"
+  },
+  "circus_rental_identity": {
+    "diagnostic_complete": true,
+    "engineering_candidate": {
+      "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b",
+      "size": 33554432
+    },
+    "path": "content/modernization/pr16_circus_identity_checkpoint.json",
+    "physical_admission_accepted": false,
+    "rental_identity_verified": false,
+    "run_id": 35378203102,
+    "status": "CIRCUS_RENTALS_REPLACED_AT_BATTLE_INIT",
+    "tested_head": "3b967ba55ff6914263787a2273b7346faecf3792"
   },
   "circus_thumb_implementation": {
     "engineering_candidate": {
@@ -296,6 +322,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。",
     "run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。",
     "run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。",
     "Circus実受付候補の23件/独立2link/限定2patchと原本を再利用。失敗run35359098745のmetadata名誤仮定とrun35359681701のveneer整列を再発させない。無変更の旧7関数/link/5335root/nativeは再実行しない。",
@@ -536,14 +563,14 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "goal_ja": "保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_RENTAL_IDENTITY_AND_STREAK",
+    "id": "CIRCUS_SCOPED_RETENTION_REPAIR",
     "read_paths": [
-      "content/modernization/pr16_circus_first_battle_checkpoint.json",
-      "content/modernization/pr16_circus_thumb_checkpoint.json",
-      "tools/mgba_pr16_circus_native.c",
-      "scripts/pr16_circus_native.py",
+      "content/modernization/pr16_circus_identity_checkpoint.json",
+      "scripts/pr16_circus_identity.py",
+      "overlays/facility_party_retention/facility_party_retention.c",
+      "scripts/pr16_bp_party_retention_successor.py",
       "scripts/pr16_circus_entry.py",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -555,43 +582,198 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "c6043b8c58a99f2687cdf8126274db1eeec5460f",
+  "observed_head": "6a2133b1f777b303ed8d3f175fc81333449c6727",
   "observed_head_checks": {
-    "scope_head": "c6043b8c58a99f2687cdf8126274db1eeec5460f",
-    "circus_first_battle": {
-      "run": {
-        "id": 35367721416,
-        "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
-        "path": ".github/workflows/pr16-circus-native.yml",
-        "status": "completed",
-        "conclusion": "success",
-        "run_attempt": 1
+    "circus_identity": {
+      "artifact": {
+        "digest": "sha256:085f33b1f5510a6281e0d85b541089d0d84a90df99e080955586c5877144f945",
+        "expired": false,
+        "id": 10561465516,
+        "name": "pr16-circus-identity",
+        "size_in_bytes": 376771
       },
       "job": {
-        "id": 105674099808,
-        "run_id": 35367721416,
-        "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
-        "status": "completed",
-        "conclusion": "success"
-      },
-      "artifact": {
-        "id": 10557022177,
-        "name": "pr16-circus-native",
-        "digest": "sha256:2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc",
-        "size_in_bytes": 258578,
-        "expired": false
+        "conclusion": "success",
+        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
+        "id": 105707865018,
+        "run_id": 35378203102,
+        "status": "completed"
       },
       "required_steps": [
-        "新SHA結果契約と未完1件の選択16件のみを検証",
-        "固定Thumb修復候補をnative入力用に再構成（受入ケース再実行なし）",
-        "受入済み2ケースは再実行せずThumb修復Circus初戦のみ検証",
-        "ROM save ELFを除外しnative原本と限定sourceを保持",
+        "個体継承契約20件のみ検証",
+        "受入済み候補を同SHAへ再構成しnativeは再実行しない",
+        "個体bytesを限定観測し初戦ターン前で停止",
+        "ROM save credentialを除外して限定原本と修復用sourceを保持",
         "Run actions/upload-artifact@v4"
+      ],
+      "run": {
+        "conclusion": "success",
+        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
+        "id": 35378203102,
+        "path": ".github/workflows/pr16-circus-identity.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    },
+    "initial_head_checks": {
+      "head": "d3dfddc4b15d7dad9b0bd6733f865ed8e8cb16bb",
+      "runs": [
+        {
+          "conclusion": "action_required",
+          "id": 35369093276
+        },
+        {
+          "conclusion": "action_required",
+          "id": 35369093259
+        }
       ]
     },
-    "reason_ja": "限定native成功原本を照合。記録runはcommit時in_progress。全CI green/受付全体受入とは主張しない。"
+    "reason_ja": "個体追跡run35378203102/job105707865018は成功。開始HEAD通常CI2件はaction_required、記録runはcommit時実行中。全CI green/全受付受入とは主張しない。",
+    "recent": [
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379150938,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379150940,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379146339,
+        "path": ".github/workflows/pr16-circus-identity-record.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379146259,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379146367,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+        "id": 35379146224,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
+        "id": 35379110545,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
+        "id": 35379110296,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
+        "id": 35379105325,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
+        "id": 35379105291,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
+        "id": 35379105311,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379083810,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379083829,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379079220,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "cancelled",
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379079146,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379079093,
+        "path": ".github/workflows/ci.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
+        "id": 35379078969,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
+        "id": 35378208621,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
+        "id": 35378208592,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
+        "id": 35378203140,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      }
+    ],
+    "scope_head": "6a2133b1f777b303ed8d3f175fc81333449c6727"
   },
-  "observed_head_semantics": "初戦成功原本の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入HEADは維持。",
+  "observed_head_semantics": "個体追跡の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入は維持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -719,7 +901,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "初戦1ターン成功は保存→選択個体の戦闘継承を確認/必要修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。",
+  "remaining_sequence_ja": "個体追跡は保存済み→Circus限定保持修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1255,10 +1437,10 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
+    "accepted_standalone_replays": 0,
     "new_emulator_processes": 1,
     "record_emulator_processes": 0,
-    "accepted_standalone_replays": 0,
-    "scope_ja": "Thumb修復候補の未完初戦1件のみ。原本の600byte検証は初期party退避像であり選択個体の一致検証ではない。"
+    "scope_ja": "未確認だった個体継承だけ1件。初戦ターン前3336fで停止。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1341,9 +1523,25 @@
       "sha256": "109e0fb4dd81d05a87e91d17177b15587739e408412f74ae175e28217c14a951",
       "size": 5728
     },
+    ".github/workflows/pr16-circus-first-record.yml": {
+      "sha256": "426cc3fa26639568836af4d2a0c47cb78393fd2a7cee1cd4fbc4fc3b1ae1de0a",
+      "size": 3456
+    },
+    ".github/workflows/pr16-circus-identity-record.yml": {
+      "sha256": "48198701a0268f80e9d208787224e8fb2fc1fa9229415e9952e57b1739e27a8d",
+      "size": 2496
+    },
+    ".github/workflows/pr16-circus-identity.yml": {
+      "sha256": "67eafa48051ab31f33d342da9f81e1f97b39fbfe3ac7b18b023acaa5f3fbd605",
+      "size": 6838
+    },
     ".github/workflows/pr16-circus-link.yml": {
       "sha256": "304f2548584566e690516207e11f691e8551ed9e96b7d91e34cbc270f4be2c02",
       "size": 6190
+    },
+    ".github/workflows/pr16-circus-native.yml": {
+      "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9",
+      "size": 6257
     },
     ".github/workflows/pr16-circus-record.yml": {
       "sha256": "d67f25c7b736165ade8e4c3fbb919e07927213872e93a0b2ae1eb56039d548a3",
@@ -2061,6 +2259,14 @@
       "sha256": "87e3f95c6f4f2641012b9987b7ecdd98339cd5a7f22b20781b955f558bb9eb7b",
       "size": 2293
     },
+    "content/modernization/pr16_circus_first_battle_checkpoint.json": {
+      "sha256": "17f96202631445ff7958a83dae497439faf632240e801c7f2783d5aa0a511a6c",
+      "size": 38916
+    },
+    "content/modernization/pr16_circus_identity_checkpoint.json": {
+      "sha256": "73b65f4849716c9bc88bcbb4021d5161a5ce918a4c5d487ca8d36b9fd007353c",
+      "size": 122328
+    },
     "content/modernization/pr16_circus_native_prefix_checkpoint.json": {
       "sha256": "27b0c52cf9240addba0d6146d1ad2cf456e0777ec2fc8ce6503ff65a0f870c1a",
       "size": 2642
@@ -2637,6 +2843,22 @@
       "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036",
       "size": 35345
     },
+    "evidence/pr16_circus_first_native/original.stderr.txt": {
+      "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14",
+      "size": 41472
+    },
+    "evidence/pr16_circus_first_native/original.stdout.txt": {
+      "sha256": "2417066c6d21ceba5325013bbf793a31c31409e392782f5dc5d5612d3ac6b169",
+      "size": 813
+    },
+    "evidence/pr16_circus_identity/original.stderr.txt": {
+      "sha256": "ea5bfb800eb969c41682132d083b16aa5af081f3b3a8473c6f20995da5dcbf60",
+      "size": 90053
+    },
+    "evidence/pr16_circus_identity/original.stdout.txt": {
+      "sha256": "07228ac6c3b147907e24fbd1d4139a7181c835f6574b4f79940223b6ca384ea6",
+      "size": 299
+    },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
       "size": 4907
@@ -2841,9 +3063,25 @@
       "sha256": "a836a1036bf9d7ea3a6413c8163bf187105d1500403ce7ec22613a81ad2cb3e3",
       "size": 15695
     },
+    "scripts/pr16_circus_first_record.py": {
+      "sha256": "c63d394d550be78e068426e5653ca81a9df7f24bc0f229ef7b6184af4399a993",
+      "size": 18557
+    },
+    "scripts/pr16_circus_identity.py": {
+      "sha256": "82358c4149a35e73e3c82c77622aa8d2637b00c6fbe3b2350b613db045ab098d",
+      "size": 11015
+    },
+    "scripts/pr16_circus_identity_record.py": {
+      "sha256": "7e9e0b1a0a25e72d2437f8229580951b29e8196455988f340db0558ddc9feead",
+      "size": 15576
+    },
     "scripts/pr16_circus_link_probe.py": {
       "sha256": "7a46d9ba46c2c4165e98afc02179f14a5a196810a8198c1556ee91be802655b6",
       "size": 13380
+    },
+    "scripts/pr16_circus_native.py": {
+      "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665",
+      "size": 12188
     },
     "scripts/pr16_circus_record.py": {
       "sha256": "386887d547ec1a28654c033cbb56ca80db5d81032cd49f1d7a8d66ae92ebf5dc",
@@ -3569,9 +3807,25 @@
       "sha256": "edf987e74d71d098fb25885bf5ce91570157ecd68f94a58f0d1220ce64db978c",
       "size": 4725
     },
+    "tests/test_pr16_circus_first_record.py": {
+      "sha256": "a8fa9b95f2b7de05988a920bb4f0889ad02e1f51d7572080143e80492331dd11",
+      "size": 7304
+    },
+    "tests/test_pr16_circus_identity.py": {
+      "sha256": "468344e2c3f2c07f4ee6c60f68a1e76e72000fb8a570570a8b184a7627ea2181",
+      "size": 5602
+    },
+    "tests/test_pr16_circus_identity_record.py": {
+      "sha256": "309eeff76c17dc1ff24cb4ca13c232420232e6e9bca7569169900111e2de3ec5",
+      "size": 2940
+    },
     "tests/test_pr16_circus_link_probe.py": {
       "sha256": "e94d4c1e9845a8f4472641d1398f03b31ad787ccdee0050e70d7407e8ec94d71",
       "size": 3610
+    },
+    "tests/test_pr16_circus_native.py": {
+      "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0",
+      "size": 5648
     },
     "tests/test_pr16_circus_record.py": {
       "sha256": "6e5703c1ede22dcc7d0ff43c2ab8d1a45bacd06728bfb2f3ebcea46e870ce120",
@@ -4177,6 +4431,10 @@
       "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
       "size": 15394
     },
+    "tools/mgba_pr16_circus_native.c": {
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885",
+      "size": 11730
+    },
     "tools/mgba_pr16_ring_caller_snapshot.c": {
       "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68",
       "size": 7367
@@ -4184,50 +4442,10 @@
     "tools/mgba_pr16_ring_policy.c": {
       "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
       "size": 12153
-    },
-    "scripts/pr16_circus_native.py": {
-      "size": 12188,
-      "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665"
-    },
-    "tests/test_pr16_circus_native.py": {
-      "size": 5648,
-      "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0"
-    },
-    ".github/workflows/pr16-circus-native.yml": {
-      "size": 6257,
-      "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9"
-    },
-    "scripts/pr16_circus_first_record.py": {
-      "size": 18557,
-      "sha256": "c63d394d550be78e068426e5653ca81a9df7f24bc0f229ef7b6184af4399a993"
-    },
-    "tests/test_pr16_circus_first_record.py": {
-      "size": 7304,
-      "sha256": "a8fa9b95f2b7de05988a920bb4f0889ad02e1f51d7572080143e80492331dd11"
-    },
-    ".github/workflows/pr16-circus-first-record.yml": {
-      "size": 3456,
-      "sha256": "426cc3fa26639568836af4d2a0c47cb78393fd2a7cee1cd4fbc4fc3b1ae1de0a"
-    },
-    "tools/mgba_pr16_circus_native.c": {
-      "size": 11730,
-      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
-    },
-    "content/modernization/pr16_circus_first_battle_checkpoint.json": {
-      "size": 38916,
-      "sha256": "17f96202631445ff7958a83dae497439faf632240e801c7f2783d5aa0a511a6c"
-    },
-    "evidence/pr16_circus_first_native/original.stdout.txt": {
-      "size": 813,
-      "sha256": "2417066c6d21ceba5325013bbf793a31c31409e392782f5dc5d5612d3ac6b169"
-    },
-    "evidence/pr16_circus_first_native/original.stderr.txt": {
-      "size": 41472,
-      "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。",
+  "source_change_review_ja": "個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -4248,18 +4466,5 @@
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,
     "scope": "NATIVE_DIAGNOSTIC_NOT_FORMAL_ACCEPTANCE"
-  },
-  "circus_first_battle_native": {
-    "path": "content/modernization/pr16_circus_first_battle_checkpoint.json",
-    "status": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
-    "run_id": 35367721416,
-    "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
-    "engineering_candidate": {
-      "size": 33554432,
-      "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b"
-    },
-    "first_turn_verified": true,
-    "rental_identity_verified": false,
-    "physical_admission_accepted": false
   }
 }
