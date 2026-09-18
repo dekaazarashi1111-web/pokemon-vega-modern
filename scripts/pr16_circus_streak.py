@@ -174,9 +174,18 @@ def run():
     bound=next(r for r in cfg['archives'] if r['name']==archive.name)
     need(identity(archive.read_bytes())=={k:bound[k] for k in ('size','sha256')},'fixed source archive differs')
     with zipfile.ZipFile(archive) as z:
-        meta=json.loads(z.read('build/stages/20_facility_runtime.json'))
         global_header=z.read('vendor/upstream/CFRU-JP/include/global.h')
-    policy=meta['contract']['battle_policy_addresses']
+    link=json.loads((ROOT/'config/circus_streak_link.json').read_bytes())
+    need(link['source_run']==35353620141 and link['source_artifact']==10550587542,
+         'inherited symbol provenance differs')
+    old_runtime=next(r for r in recipe['allocation']['allocations'] if r['name']=='facility_runtime_payload')
+    old_bytes=raw[old_runtime['start']:old_runtime['end_exclusive']]
+    need(identity(old_bytes)['sha256']==old_runtime['content_sha256'],'original Factory runtime changed')
+    policy={k:r['address']|1 for k,r in link['symbols'].items()}
+    need(set(policy)=={'configure_facility','generate_rentals','generate_trainer'},'three fixed call targets required')
+    for key,address in policy.items():
+        need(link['symbols'][key]['kind']=='T' and old_bytes.count(struct.pack('<I',address))==1,
+             'fixed symbol is not the original Factory call literal: '+key)
     match=re.search(rb'/\*0x00A\*/[^\n]*playerTrainerId[^\n]*',global_header)
     need(match is not None,'trainer identity ABI no longer +0xA')
     builds=[compile_runtime(OUT/f'compile-{n}',BASE+off,policy,delegates) for n in (1,2)]
@@ -224,7 +233,7 @@ def run():
     for row in allocation['allocations']:
         need(identity(left[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'candidate owner hash differs')
     need(all(left[c-BASE-1]==0x5D for c in parent.CONTINUATIONS),'accepted script continuations changed')
-    sources=[SELF,TEST,WORKFLOW,OLD_SOURCE,OLD_HEADER,*SOURCES,'config/ram_layout.csv','config/save_layout.csv',
+    sources=[SELF,TEST,WORKFLOW,OLD_SOURCE,OLD_HEADER,*SOURCES,'config/ram_layout.csv','config/save_layout.csv','config/circus_streak_link.json',
         'tests/test_pr16_circus_streak.py','tests/fixtures/circus_streak_fixture.c','tests/fixtures/circus_streak_io_fixture.c',
         'overlays/save_migration/save_migration.c','overlays/save_migration/save_migration.h']
     report=dict(schema_version=1,status='BUILT_CIRCUS_STREAK_NATIVE_OPEN',task=TASK,
@@ -233,7 +242,7 @@ def run():
         reception=recipe['entries'],launch_sites=recipe['launch_sites'],delegates=delegates,patches=patches,calls=calls,
         allocation=allocation,changed_existing_allocations=changed,independent_arm_links=2,whole_rom_rollback_matches_parent=True,
         original_factory_runtime_unchanged=True,original_factory_streak_and_claim_not_aliased=True,
-        accepted_script_continuations=list(parent.CONTINUATIONS),trainer_id_abi=match[0].decode(),
+        accepted_script_continuations=list(parent.CONTINUATIONS),trainer_id_abi=match[0].decode(),inherited_policy=link,
         source_bindings={n:identity((ROOT/n).read_bytes()) for n in sources},new_emulator_processes=0,
         accepted_native_cases_replayed=0,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)
     (OUT/'candidate.gba').write_bytes(left);(OUT/'report.json').write_bytes(stable(report))
