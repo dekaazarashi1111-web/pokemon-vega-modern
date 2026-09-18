@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-2026-09-18所有者指示でNPC配布優先へ方針変更。実装・ROM変更・native再実行は今回0。直前の351条件/40testsの内部解析成果は履歴として保持するが、その続きを取得機能の必須前提にしない。BP受入済みを保持し、Ring通常取得・通常戦闘への接続はまだ未受入。
+NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。
 
-**次: 既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。**
+**次: 新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。**
 
 最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8f76f857c2f17f1be6f8c12653609c0272ad6d73`。
-方針変更の照合元HEAD。新たなROM/native検証HEADではない。過去の各証拠のsource HEADは原本のまま保持。
+証拠のsource HEAD: `80f49475ab016557241da7fecb591c04d00246f0`。
+NPC配布成功を原本から記録したsource HEAD。正式BP受入は既存欄を維持。記録commitはremote refで確認。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `scripts/build_bp_shop_runtime.py`
-- `config/modernization_p04_mega_runtime.json`
+- `content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json`
+- `scripts/pr16_ring_npc_successor.py`
+- `scripts/pr16_ring_npc_native.py`
+- `overlays/cfru/rom_bridge.c`
 - `overlays/cfru/integration.c`
 - `scripts/build_battle_core.py`
-- `content/modernization/pr16_purchased_gear_acceptance.json`
-- `content/modernization/pr16_ring_owner_resolution.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -68,6 +68,7 @@ BP通常購入/保存再開は完了。次は安全なNPCからリングを通�
 
 ## 再実行・過大主張の禁止
 
+- NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。
 - 2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。
 - run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。
 - run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。
@@ -250,6 +251,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-方針変更前HEAD 8f76f857c2f17f1be6f8c12653609c0272ad6d73のPR Checksを再照会。各結論はruns参照。先行run35330928644はsuccessへ完了したことを確認。新規native検証は0。action_required/過去failureを成功へ読み替えず、この文書変更を全CI greenとは主張しない。
+NPC build/native run35339382576 SUCCESSを確認。39 testsと3新規processの結果は独立checkpoint参照。開始HEADのsource-validation action_requiredと初回NPCビルドfailureはそのまま保持。全CI greenとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

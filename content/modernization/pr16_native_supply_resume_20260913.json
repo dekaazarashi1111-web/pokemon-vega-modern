@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "2026-09-18所有者指示でNPC配布優先へ方針変更。実装・ROM変更・native再実行は今回0。直前の351条件/40testsの内部解析成果は履歴として保持するが、その続きを取得機能の必須前提にしない。BP受入済みを保持し、Ring通常取得・通常戦闘への接続はまだ未受入。",
+    "current_stop": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。",
+    "next_step": "新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -259,6 +259,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。",
     "2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。",
     "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
     "run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。",
@@ -484,16 +485,16 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。",
+    "goal_ja": "新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。",
     "read_paths": [
-      "scripts/build_bp_shop_runtime.py",
-      "config/modernization_p04_mega_runtime.json",
+      "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
+      "scripts/pr16_ring_npc_successor.py",
+      "scripts/pr16_ring_npc_native.py",
+      "overlays/cfru/rom_bridge.c",
       "overlays/cfru/integration.c",
-      "scripts/build_battle_core.py",
-      "content/modernization/pr16_purchased_gear_acceptance.json",
-      "content/modernization/pr16_ring_owner_resolution.json"
+      "scripts/build_battle_core.py"
     ],
     "success_observations": [
       "対象NPCのmap/local ID/座標/会話ownerと、進行イベント/共有スクリプト非破壊を確認",
@@ -507,7 +508,7 @@
     ]
   },
   "observed_date_jst": "2026-09-18",
-  "observed_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+  "observed_head": "80f49475ab016557241da7fecb591c04d00246f0",
   "observed_head_checks": {
     "scope_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
     "runs": [
@@ -526,9 +527,9 @@
         "conclusion": "action_required"
       }
     ],
-    "reason_ja": "方針変更前HEAD 8f76f857c2f17f1be6f8c12653609c0272ad6d73のPR Checksを再照会。各結論はruns参照。先行run35330928644はsuccessへ完了したことを確認。新規native検証は0。action_required/過去failureを成功へ読み替えず、この文書変更を全CI greenとは主張しない。"
+    "reason_ja": "NPC build/native run35339382576 SUCCESSを確認。39 testsと3新規processの結果は独立checkpoint参照。開始HEADのsource-validation action_requiredと初回NPCビルドfailureはそのまま保持。全CI greenとは主張しない。"
   },
-  "observed_head_semantics": "方針変更の照合元HEAD。新たなROM/native検証HEADではない。過去の各証拠のsource HEADは原本のまま保持。",
+  "observed_head_semantics": "NPC配布成功を原本から記録したsource HEAD。正式BP受入は既存欄を維持。記録commitはremote refで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -686,10 +687,13 @@
   "schema_version": 2,
   "session_execution_summary": {
     "new_emulator_processes": 0,
+    "record_scope_new_emulator_processes": 0,
+    "recorded_native_processes": 3,
+    "recorded_fresh_cores": 6,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "recorded_candidate_changes": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "NPC配布優先への方針/正本同期のみ。受入済みnative/低level契約を再実行しない。"
+    "scope_ja": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3427,10 +3431,14 @@
     "content/modernization/pr16_ring_story_resource_contracts.json": {
       "size": 355941,
       "sha256": "d34ae23a2057c569b640cd6da70abe41337aab8b0ef18e824aa3d461fd80d6b7"
+    },
+    "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
+      "size": 105995,
+      "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "所有者指定による次工程/読書順/停止条件の文書変更のみ。ゲーム実装・既存証拠・source bindingsは無変更。",
+  "source_change_review_ja": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3942,5 +3950,19 @@
       "status": "completed",
       "conclusion": "success"
     }
+  },
+  "ring_npc_implementation": {
+    "path": "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
+    "status": "SCOPED_NPC_GIFT_SAVE_ONLY",
+    "tested_head": "dd432122b22d6bdaf1858c03b40a351da67c56bf",
+    "run_id": 35339382576,
+    "candidate": {
+      "sha256": "72fbca91cd6ee1082198678ccaed76bcb76dfd19ce9f6f3c26309745b2f09ac0",
+      "size": 33554432,
+      "crc32": "62F3C583"
+    },
+    "npc_gift_save_scoped_accepted": true,
+    "ring_full_acceptance": false,
+    "ordinary_battle_accepted": false
   }
 }

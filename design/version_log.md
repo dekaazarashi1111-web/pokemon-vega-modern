@@ -4559,3 +4559,22 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsのref、PR、run/Checksのみ。private Release/外部技術資料の取得なし。
 - Boundary: 既存全体guardの前後一致と新規違反0を確認して非force反映。全体guard/全CI成功やmerge/release/baseline変更は主張しない。
 - Next: 安全なNPC配置/会話差替えから正規受取を実装し、既存UIでの実戦/保存再開まで通す。
+
+
+## 2026-09-18T11:36:25Z — USER-20260918-RING-NPC-GIFT
+- Timestamp: 2026-09-18T11:36:25Z
+- Task: USER-20260918-RING-NPC-GIFT / 正規NPC配布と保存再開の最初の動作区切り
+- Status: DONE / NPC配布と保存再開のみ。Ring全体/通常戦闘/最終統合は未完。
+- Version: pr16-ring-npc-gift-20260918
+- Summary: NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。
+- Files changed: .github/workflows/pr16-ring-npc-workbench.yml, scripts/pr16_ring_npc_workbench.py, .github/workflows/pr16-ring-npc.yml, overlays/ring_npc/ring_npc.c, overlays/ring_npc/ring_npc.h, tests/ring_npc_host.c, tests/test_pr16_ring_npc.py, scripts/pr16_ring_npc_successor.py, tests/test_pr16_ring_npc_successor.py, scripts/pr16_ring_npc_native.py, tools/mgba_pr16_ring_npc.c, tests/test_pr16_ring_npc_native.py, scripts/pr16_ring_npc_gift_record.py, tests/test_pr16_ring_npc_gift_record.py, .github/workflows/pr16-ring-npc-gift-record.yml, content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: production C11/map18/native oracle10の39tests PASS。ARM二重生成一致、allocator overlap0、宣言外ROM差分0。新native3cases/6cores、各Save2→3、Ring0→1又は不成立、全Bag/party/BP保持。
+- Visual: 成功/重複/未達/満杯とcold再訪7画面を原PNGで確認。
+- Record verification: 原ZIPと全member digest、case raw stdout/stderr/process、candidate/source/Actionsを照合。記録/resume focused testsとtask graph PASS。最終index guardとdiff checkはcommit前必須。
+- History: 初回run35338073483は町のNPC枠境界で停止、native0。新run35339382576で北ルートへ修正成功。旧失敗は成功に読み替えない。
+- Evidence: tested=dd432122b22d6bdaf1858c03b40a351da67c56bf; run=35339382576; job=105581553850; artifact=10543834367; SHA256=2fa3a6957224048e87efa1e91b6b51fce8c717252c8ec2eeb4865c12c79f1e50。
+- Preserved: 受入済みBP/P03/P06/P07のnative再実行0。最初のhost用globは既存plan14testsも含んだため後続でexact test名へ修正。正式BP候補・checkpoint・physical3/P08 gates2は無変更。
+- Commit: この記録を含むcommit。record source=80f49475ab016557241da7fecb591c04d00246f0、record run=35340438692。同branchへ非force反映、完了SHAはremote ref確認。
+- Network: GitHub connector/Actions・固定private環境の復元のみ。ROM/save/private ZIP/elfをGitや証拠artifactへ公開しない。
+- Boundary: 全体private guardの既存違反前後一致と追加違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。
