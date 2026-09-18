@@ -6920,3 +6920,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存属性0・paletteコピー中継・r8 frame・tile矩形/window資源を明示RAMで結合し、state0/1の帰還・次状態・queue予約・不足時部分writeを検証。新BL/BIOS/DMAは成功stubにしない。今回5callee/旧29命令/旧1231条件/BP/nativeは単独再実行せず、通常story/Ring/live初期化は未受入。
+
+
+## 2026-09-18T03:42:15.609702+00:00 — PR-P08-7-RING-MESSAGE-TILE-LEAVES
+- Timestamp: 2026-09-18T03:42:15.609702+00:00
+- Task: PR-P08-7-RING-MESSAGE-TILE-LEAVES / 矩形描画のindex計算・tile値書込2leafを保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-tile-leaves
+- Summary: 矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_tile_leaves.py, tests/test_pr16_ring_message_tile_leaves.py, .github/workflows/pr16-ring-message-tile-leaves.yml, content/modernization/pr16_ring_message_tile_leaves.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a943a112416ec625e846cd6b743631746cfe437f; run=35304098811（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存属性0・palette・r8 frame・矩形・queueの状態0/1結合を明示RAMで検証。帰還/次状態と描画成功を区別し、queue満杯等の部分成功とBIOS SWI停止を保持。今回2leaf/旧5callee/29命令/1231条件/BP/nativeは再実行しない。通常story/Ring/live初期化は未受入。
