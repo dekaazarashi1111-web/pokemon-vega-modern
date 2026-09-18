@@ -1,0 +1,155 @@
+name: PR16 Ring ordinary policy successor
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-policy.yml
+      - overlays/ring_policy/**
+      - scripts/pr16_ring_policy_successor.py
+      - scripts/pr16_ring_policy_native.py
+      - tests/test_pr16_ring_policy.py
+      - tests/test_pr16_ring_policy_native.py
+      - tests/ring_policy_host.c
+      - tools/mgba_pr16_ring_policy.c
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-ring-policy-implementation
+  cancel-in-progress: false
+jobs:
+  policy:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Production ordinary Ring policy contracts
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-ring-policy-run
+          python3 -m unittest discover -s tests -p test_pr16_ring_policy.py -v > .local/pr16-ring-policy-run/policy.stdout 2> .local/pr16-ring-policy-run/policy.stderr
+          python3 scripts/pr16_resume.py check > .local/pr16-ring-policy-run/resume-before.json
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-policy-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned private inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-policy-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" \
+            --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip \
+            --dir "$assets"
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name
+          raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:
+              data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():
+              assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_bytes(data)
+              path.chmod(0o444)
+          PYCODE
+      - name: Rebuild exact retained candidate parents without separate accepted-case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-policy-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Retain accepted gift and identify ordinary policy callsite only
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_ring_policy_successor.py > .local/pr16-ring-policy-run/build.stdout 2> .local/pr16-ring-policy-run/build.stderr
+          git diff --exit-code
+      - name: Exact source checkpoint
+        if: always()
+        run: |
+          python3 - <<'PYCODE'
+          import sys
+          sys.path.insert(0,'scripts')
+          import pr16_ring_npc_workbench as work
+          work.PATHS=(
+              'overlays/ring_policy/ring_policy.c','overlays/ring_policy/ring_policy.h',
+              'tests/test_pr16_ring_policy.py','tests/ring_policy_host.c',
+              'scripts/pr16_ring_policy_successor.py',
+              'content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json',
+              'content/modernization/pr16_native_supply_resume_20260913.json',
+              'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
+          )
+          work.collect()
+          PYCODE
+      - name: Export text and screenshots without ROM save or patch
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,struct,zlib
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-ring-policy-evidence'
+          out.mkdir(parents=True,exist_ok=True)
+          members={}
+          for prefix in ('pr16-ring-policy-run','pr16-ring-policy-successor','pr16-ring-npc-workbench','pr16-ring-policy-native'):
+              base=root/'.local'/prefix
+              if not base.exists(): continue
+              for p in sorted(base.rglob('*')):
+                  if p.is_dir(): continue
+                  assert p.is_file() and not p.is_symlink()
+                  if p.suffix=='.ppm':
+                      raw=p.read_bytes();magic,size,maximum,rgb=raw.split(b'\n',3)
+                      assert (magic,size,maximum)==(b'P6',b'240 160',b'255') and len(rgb)==240*160*3
+                      def chunk(tag,data):
+                          return struct.pack('>I',len(data))+tag+data+struct.pack('>I',zlib.crc32(tag+data)&0xffffffff)
+                      scan=b''.join(b'\0'+rgb[y*720:(y+1)*720] for y in range(160))
+                      png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',240,160,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(scan))+chunk(b'IEND',b'')
+                      name=prefix+'/'+p.relative_to(base).with_suffix('.png').as_posix()
+                      target=out/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(png)
+                      members[name]={'size':len(png),'sha256':hashlib.sha256(png).hexdigest(),'ppm_sha256':hashlib.sha256(raw).hexdigest()}
+                      continue
+                  if p.suffix not in {'.json','.txt','.stdout','.stderr','.log','.c','.h','.py','.csv'}: continue
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<2000000
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+                  name=prefix+'/'+p.relative_to(base).as_posix()
+                  target=out/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+                  members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n',encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-policy-build
+          path: .local/pr16-ring-policy-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
