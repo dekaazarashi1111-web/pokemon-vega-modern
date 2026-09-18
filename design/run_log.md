@@ -7192,3 +7192,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功run35319665678のhash固定exportのみ。候補復元・再採取・native実行0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T07:48:29.915459+00:00 — PR-P08-7-RING-STORY-INITIALIZER-FRONTIER
+- Timestamp: 2026-09-18T07:48:29.915459+00:00
+- Task: PR-P08-7-RING-STORY-INITIALIZER-FRONTIER / field初期化calleeとwindow/printerの条件付きcall接続を実byteに固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-initializer-frontier
+- Summary: field初期化3calleeの未読174命令/468byteを保存。field0からInitWindows/DeactivateAllTextPrintersへの有限may-callを固定。通常実行/帰還は未証明、native0。
+- Files changed: scripts/pr16_ring_story_initializer_frontier.py, tests/test_pr16_ring_story_initializer_frontier.py, .github/workflows/pr16-ring-story-initializer-frontier.yml, content/modernization/pr16_ring_story_initializer_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=c54eb8dcc818092fe7eb3608fa3259a07091d5c1; run=35321072525（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功済み保存wait/field契約とhash固定exportを再利用。同hash candidateの復元1回。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field初期化/RunFieldCallback/flash getterの条件付き契約を結合し、window/font供給の残るheap/IO/callback停止点を絞る。今回byteと旧wait/script/text/BP/nativeの単独再実行は禁止。Ring通常取得/保存、policy/Circus/P08は未受入。

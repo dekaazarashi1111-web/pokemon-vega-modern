@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。",
+    "current_stop": "field初期化3calleeの未読174命令/468byteを保存。field0からInitWindows/DeactivateAllTextPrintersへの有限may-callを固定。通常実行/帰還は未証明、native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。",
+    "next_step": "保存field初期化/RunFieldCallback/flash getterの条件付き契約を結合し、window/font供給の残るheap/IO/callback停止点を絞る。今回byteと旧wait/script/text/BP/nativeの単独再実行は禁止。Ring通常取得/保存、policy/Circus/P08は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -405,7 +405,8 @@
     "保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。",
     "保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。",
     "080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。",
-    "実wait全u8/連続3tick・field1/4とstate0/2/3停止境界は保存原本を再利用。待機解除byteのhost書込0だがbusy=0/非0は明示初期条件。通常message表示/取得を受入にしない。次は08055B71/08055EAD/080555F1の未読calleeだけ。旧1037条件/今回786条件/BP/native単独再実行禁止。"
+    "実wait全u8/連続3tick・field1/4とstate0/2/3停止境界は保存原本を再利用。待機解除byteのhost書込0だがbusy=0/非0は明示初期条件。通常message表示/取得を受入にしない。次は08055B71/08055EAD/080555F1の未読calleeだけ。旧1037条件/今回786条件/BP/native単独再実行禁止。",
+    "field初期化3calleeとwindow/printer may-call接続の保存byteを再利用。call後のfallthroughはcallee帰還を仮定する静的到達で通常初期化実行ではない。旧wait786/script1037/text/bootstrap/BP/nativeを単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -478,13 +479,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。",
+    "goal_ja": "保存field初期化/RunFieldCallback/flash getterの条件付き契約を結合し、window/font供給の残るheap/IO/callback停止点を絞る。今回byteと旧wait/script/text/BP/nativeの単独再実行は禁止。Ring通常取得/保存、policy/Circus/P08は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_story_wait_lifecycle.json",
-      "scripts/pr16_ring_story_wait_lifecycle.py",
-      "content/modernization/pr16_ring_story_field_frontier.json"
+      "content/modernization/pr16_ring_story_initializer_frontier.json",
+      "scripts/pr16_ring_story_initializer_frontier.py",
+      "content/modernization/pr16_ring_story_wait_lifecycle.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -493,9 +494,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "3a312641b866b25f29a66e587534e8b0b451453b",
+  "observed_head": "c54eb8dcc818092fe7eb3608fa3259a07091d5c1",
   "observed_head_checks": {
-    "reason_ja": "先行run35319665678の原結論と保存証拠、BP run34946969126成功を照合。今回run35320499930は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35320499930の原結論と保存証拠、BP run34946969126成功を照合。今回run35321072525は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -656,9 +657,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。"
+    "scope_ja": "field初期化3calleeの未読174命令/468byteを保存。field0からInitWindows/DeactivateAllTextPrintersへの有限may-callを固定。通常実行/帰還は未証明、native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3316,10 +3317,26 @@
     "content/modernization/pr16_ring_story_wait_lifecycle.json": {
       "size": 686456,
       "sha256": "54f5fab11a2bb55ade11431071c87de78d949079c9e7c4b72a30a87354182ef3"
+    },
+    "scripts/pr16_ring_story_initializer_frontier.py": {
+      "size": 8785,
+      "sha256": "d3822ab511ea32df663925b66645ea0d8b7801bf03996d36c6a40f41195817a0"
+    },
+    "tests/test_pr16_ring_story_initializer_frontier.py": {
+      "size": 5420,
+      "sha256": "159400e4efaa08b170c8825c9b5d2e862dcb59b12b37b258177e6caba06427f9"
+    },
+    ".github/workflows/pr16-ring-story-initializer-frontier.yml": {
+      "size": 1791,
+      "sha256": "794575d45b4b91d9569997182f53a8d08cd55596188cd8797cb0124877649f61"
+    },
+    "content/modernization/pr16_ring_story_initializer_frontier.json": {
+      "size": 78760,
+      "sha256": "72af5e8c60a73ef3bd323759d923080ef2cc089df0c9a6c5afff1afc336157a4"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。",
+  "source_change_review_ja": "field初期化3calleeの未読174命令/468byteを保存。field0からInitWindows/DeactivateAllTextPrintersへの有限may-callを固定。通常実行/帰還は未証明、native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3741,9 +3758,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_story_wait_lifecycle.json",
-    "source_head": "3a312641b866b25f29a66e587534e8b0b451453b",
-    "run_id": 35320499930
+    "path": "content/modernization/pr16_ring_story_initializer_frontier.json",
+    "source_head": "c54eb8dcc818092fe7eb3608fa3259a07091d5c1",
+    "run_id": 35321072525
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
