@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。",
+    "current_stop": "既存Codex受付のFactory行き4-byte pointerに任意Circus分岐を追加した限定候補を生成。既存Factory本体/CFRU ownerは不変。専用のscript結果adapterと複製Trialの3戦闘開始点へ未消費pending番号3選択→正規sp072反復→5Dを接続。23件の新規host/script契約、独立ARM link2回・限定patch2回一致、全allocation hash/2範囲外不変/重複0を検証。実受付native・保存復帰・Circus固有連勝の正規更新/永続化・抑制抽選は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。",
+    "next_step": "保存した候補生成原本を再利用し、新しい実受付の取消・レンタル選択・戦闘開始を入力だけで検証する。追加質問の影響を受けるFactory入口に限り対照を行い、party/BP/Bag/通常Save/fresh Continueを確認する。Factoryの連勝値とCircus固有streak ownerは別物。固有streakの正規更新・永続化を接続した上で連勝30以上の来歴と正規sp072の特性抑制を別に検証する。効果bit/施設番号/PC/LRをhost注入しない。受入済みRing/BP/P03/P06/P07の無変更native、旧7関数/link/5335 root走査は再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -259,6 +259,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "Circus実受付候補の23件/独立2link/限定2patchと原本を再利用。失敗run35359098745のmetadata名誤仮定とrun35359681701のveneer整列を再発させない。無変更の旧7関数/link/5335root/nativeは再実行しない。",
     "Circus source run35351832671/actual-owner link run35353620141を再利用。C/契約/7実関数/候補SHAに影響がなければ10+10件/独立link/5335 rootsを再実行しない。保存ELFはlinked.oであり拡張子.elf限定探索を再発させない。",
     "通常戦闘Ring5件はcontent/modernization/pr16_ring_policy_acceptance.jsonの固定候補/原本から継承。旧NPC3件・BP/P03/P06/P07を影響なしに再実行しない。旧cold-policy-resetの不成立を新候補の結果へ読み替えない。",
     "NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。",
@@ -487,13 +488,14 @@
   "merge_performed": false,
   "next_action": {
     "id": "PHYSICAL_CIRCUS_ADMISSION",
-    "goal_ja": "保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。",
-    "host_write_policy_ja": "Circus受付の観測開始後に施設番号・効果bit・進行条件・party・PC/LRをhostから設定しない。連勝30以上は正規進行を保持した入力として別途照合し、零連勝fixtureで抑制を要求しない。",
+    "goal_ja": "保存した候補生成原本を再利用し、新しい実受付の取消・レンタル選択・戦闘開始を入力だけで検証する。追加質問の影響を受けるFactory入口に限り対照を行い、party/BP/Bag/通常Save/fresh Continueを確認する。Factoryの連勝値とCircus固有streak ownerは別物。固有streakの正規更新・永続化を接続した上で連勝30以上の来歴と正規sp072の特性抑制を別に検証する。効果bit/施設番号/PC/LRをhost注入しない。受入済みRing/BP/P03/P06/P07の無変更native、旧7関数/link/5335 root走査は再実行しない。",
+    "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
     "read_paths": [
+      "content/modernization/pr16_circus_entry_checkpoint.json",
+      "scripts/pr16_circus_entry.py",
+      "overlays/circus_admission/circus_script.c",
       "content/modernization/pr16_circus_admission_checkpoint.json",
-      "overlays/circus_admission/circus_admission.c",
-      "content/modernization/pr16_p05_supply_owner_findings.json",
       "content/modernization/p08_remaining_work.json"
     ],
     "success_observations": [
@@ -502,165 +504,106 @@
       "退出/保存再開/原partyと報酬の境界を保ち、変更影響台帳を記録してからP08へ移送"
     ]
   },
-  "observed_date_jst": "2026-09-18",
-  "observed_head": "c7e80897952581924db3498cc04936dfacee27f0",
+  "observed_date_jst": "2026-09-19",
+  "observed_head": "92260e2edcbc1f8338b679e35ecbdb6875a51d08",
   "observed_head_checks": {
-    "scope_head": "c7e80897952581924db3498cc04936dfacee27f0",
+    "scope_head": "92260e2edcbc1f8338b679e35ecbdb6875a51d08",
     "verified_artifacts": {
-      "source": {
+      "build": {
         "run": {
-          "id": 35351832671,
-          "head_sha": "fc1d13e5e793566db1ce0b7a9e2353af402d3302",
-          "path": ".github/workflows/pr16-circus-source.yml",
+          "id": 35360663203,
+          "head_sha": "657c589538b68ab665b4acfcc36bd4434b00a2a6",
+          "path": ".github/workflows/pr16-circus-entry.yml",
           "status": "completed",
           "conclusion": "success",
           "run_attempt": 1
         },
         "job": {
-          "id": 105621561133,
-          "run_id": 35351832671,
-          "head_sha": "fc1d13e5e793566db1ce0b7a9e2353af402d3302",
+          "id": 105650834496,
+          "run_id": 35360663203,
+          "head_sha": "657c589538b68ab665b4acfcc36bd4434b00a2a6",
           "status": "completed",
           "conclusion": "success"
         },
         "artifact": {
-          "id": 10550280062,
-          "name": "pr16-circus-source",
-          "digest": "sha256:77df3fa629c57c74a57bc702ccfb730ef8998922e63aa0c83026afea52abc29b",
-          "size_in_bytes": 175368,
+          "id": 10553719312,
+          "name": "pr16-circus-entry",
+          "digest": "sha256:af761b533b1edbe1c39ea4ae0344188a7fa4d57f0bf14324d2718ff9598c2b4f",
+          "size_in_bytes": 108957,
           "expired": false
         },
         "required_steps": [
-          "新しいCircus pending実装だけを現行CFRU APIと検証",
-          "固定compilerを検証し新コードを独立compile",
-          "固定sourceとlink metadataだけを採取"
+          "新規script adapterと分岐23件のみを検証",
+          "固定compilerとStage84親入力を復元",
+          "固定private入力とcharmapだけを復元",
+          "ROM save ELFを除外した原本と次工程の限定sourceを保持",
+          "新候補作成のためだけに固定親を再構成（受入native再実行なし）"
         ]
       },
-      "link": {
+      "failed_metadata": {
         "run": {
-          "id": 35353620141,
-          "head_sha": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
-          "path": ".github/workflows/pr16-circus-link.yml",
-          "status": "completed",
-          "conclusion": "success",
-          "run_attempt": 1
-        },
-        "job": {
-          "id": 105627467136,
-          "run_id": 35353620141,
-          "head_sha": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        "artifact": {
-          "id": 10550587542,
-          "name": "pr16-circus-link",
-          "digest": "sha256:2e371907b9d2e3c2daa7c1b0daeb43bda5ace63e671caac5de0d020c974152cf",
-          "size_in_bytes": 195387,
-          "expired": false
-        },
-        "required_steps": [
-          "新規ELF異常境界のみ",
-          "新しいCircus ARMを実ownerへlinkし受付rootを照合"
-        ]
-      },
-      "ci": {
-        "run": {
-          "id": 35353620112,
-          "head_sha": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
-          "path": ".github/workflows/p03-forgetting-ci.yml",
-          "status": "completed",
-          "conclusion": "success",
-          "run_attempt": 1
-        },
-        "job": {
-          "id": 105627466619,
-          "run_id": 35353620112,
-          "head_sha": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        "artifact": {
-          "id": 10550417336,
-          "name": "p03-forgetting-ci-push",
-          "digest": "sha256:39406946273db6068bcba1b48797f08fe9c43c535e41c49d8efd40da4ed79cc3",
-          "size_in_bytes": 2170,
-          "expired": false
-        },
-        "required_steps": [
-          "Restore exact pinned integration originals for current acceptance",
-          "Forty regression checks and exact accepted originals"
-        ]
-      },
-      "failed_link": {
-        "run": {
-          "id": 35352684227,
-          "head_sha": "70e30fe6199c900042cfac09426583adea68a451",
-          "path": ".github/workflows/pr16-circus-link.yml",
+          "id": 35359098745,
+          "head_sha": "8ddb662a5508c98d7d863ff83fb831612555e1b0",
+          "path": ".github/workflows/pr16-circus-entry.yml",
           "status": "completed",
           "conclusion": "failure",
           "run_attempt": 1
         },
         "job": {
-          "id": 105624349047,
-          "run_id": 35352684227,
-          "head_sha": "70e30fe6199c900042cfac09426583adea68a451",
+          "id": 105645626749,
+          "run_id": 35359098745,
+          "head_sha": "8ddb662a5508c98d7d863ff83fb831612555e1b0",
           "status": "completed",
           "conclusion": "failure"
         },
         "artifact": {
-          "id": 10550731943,
-          "name": "pr16-circus-link",
-          "digest": "sha256:f01118e0fe1d40c6aa7de60ed9401ea8ffdfb1e80df3949e33ed05059b7e66b0",
-          "size_in_bytes": 25986,
+          "id": 10554256296,
+          "name": "pr16-circus-entry",
+          "digest": "sha256:85a53f90bef1778675e0210c9a0e4a90c6aae684ad113f1cb51aaa510cf6532a",
+          "size_in_bytes": 88021,
           "expired": false
         },
         "required_steps": [
-          "新規ELF異常境界のみ"
+          "新規script adapterと分岐18件のみを検証",
+          "固定compilerとStage84親入力を復元",
+          "固定private入力とcharmapだけを復元",
+          "ROM save ELFを除外した原本と次工程の限定sourceを保持"
+        ]
+      },
+      "failed_alignment": {
+        "run": {
+          "id": 35359681701,
+          "head_sha": "a053cb990b98216f8ee256a145334208b2d95eee",
+          "path": ".github/workflows/pr16-circus-entry.yml",
+          "status": "completed",
+          "conclusion": "failure",
+          "run_attempt": 1
+        },
+        "job": {
+          "id": 105647588377,
+          "run_id": 35359681701,
+          "head_sha": "a053cb990b98216f8ee256a145334208b2d95eee",
+          "status": "completed",
+          "conclusion": "failure"
+        },
+        "artifact": {
+          "id": 10553862533,
+          "name": "pr16-circus-entry",
+          "digest": "sha256:722e8ea21a8755e954833aad079db9c08f820ae44531c64c69061f9f1fdeecec",
+          "size_in_bytes": 89520,
+          "expired": false
+        },
+        "required_steps": [
+          "新規script adapterと分岐23件のみを検証",
+          "固定compilerとStage84親入力を復元",
+          "固定private入力とcharmapだけを復元",
+          "ROM save ELFを除外した原本と次工程の限定sourceを保持"
         ]
       }
     },
-    "prior": {
-      "scope_head": "77d45a429bf410a783fbb2c7738d9561048366c4",
-      "native": {
-        "run": {
-          "id": 35347587112,
-          "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        "job": {
-          "id": 105607699274,
-          "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
-          "status": "completed",
-          "conclusion": "success"
-        }
-      },
-      "prior": {
-        "scope_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
-        "runs": [
-          {
-            "id": 35331042512,
-            "name": "source-validation",
-            "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
-            "status": "completed",
-            "conclusion": "action_required"
-          },
-          {
-            "id": 35331042547,
-            "name": "p03-forgetting-ci",
-            "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
-            "status": "completed",
-            "conclusion": "action_required"
-          }
-        ],
-        "reason_ja": "NPC build/native run35339382576 SUCCESSを確認。39 testsと3新規processの結果は独立checkpoint参照。開始HEADのsource-validation action_requiredと初回NPCビルドfailureはそのまま保持。全CI greenとは主張しない。"
-      },
-      "reason_ja": "このRing/policy Actionsのsuccessのみを確認。履歴failure/action_requiredは保持。記録Actions自体はcommit時in_progressであり外部確認する。全CI greenとは主張しない。"
-    },
-    "reason_ja": "成功したsource/link/P03 CI原本を確認。失敗した旧linkも保持。記録runはcommit時in_progressで、全CI greenとは主張しない。"
+    "reason_ja": "専用build原本の成功と先行2失敗を照合。記録runはcommit時in_progress。全CI green/新native受入とは主張しない。"
   },
-  "observed_head_semantics": "Circus実装/link/CI修復の原本を記録するsource HEAD。完了commitはremote ref/receiptで確認。正式BP受入HEADではない。",
+  "observed_head_semantics": "Circus実受付候補生成を記録するsource HEAD。正式BP受入HEADではない。完了SHAはremote ref/記録receiptで確認。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -788,7 +731,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "Circus pending C/実owner linkまで完了。実受付・効果抽選への接続→新native→影響台帳によるP08移送→release判定。",
+  "remaining_sequence_ja": "Circus受付候補生成まで完了→新規取消/入場/戦闘/保存native→Circus固有streak正規更新/永続化と抑制→影響台帳P08移送→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -817,10 +760,10 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "accepted_standalone_replays": 0,
+    "engineering_candidate_changes": 1,
     "record_scope_rom_changes": 0,
-    "implementation_candidate_changes": 0,
-    "product_rom_wired": false,
-    "scope_ja": "未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。"
+    "source_tests": 23,
+    "scope_ja": "今回の専用build工程。自動Stage79 CIを新規Circus native受入に数えない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3678,10 +3621,50 @@
     "content/modernization/pr16_circus_admission_checkpoint.json": {
       "size": 175465,
       "sha256": "3b4521a6b59913241f7d639300a9505dd70e0a6391d82ccf7fbcc419bfa9bae8"
+    },
+    "overlays/circus_admission/circus_script.c": {
+      "size": 488,
+      "sha256": "82c94c6428df7d8625f932a160073dc9635d410f7ae433184853da055dd8cdcd"
+    },
+    "scripts/pr16_circus_entry.py": {
+      "size": 17181,
+      "sha256": "52119e383a5cbef0ceeae3ffe05a06f71ea5928136e81a257187b94817e719fb"
+    },
+    "tests/test_pr16_circus_entry.py": {
+      "size": 10692,
+      "sha256": "52dc00af1585f6fbad7f872961e47997deb6fcfb89cfcdc551fdbc66dcbfef7d"
+    },
+    "tests/test_pr16_circus_entry_binding.py": {
+      "size": 1487,
+      "sha256": "36c783610c2540a44cd1718848204179940910829619dd2c5443cf9420063871"
+    },
+    ".github/workflows/pr16-circus-entry.yml": {
+      "size": 5728,
+      "sha256": "109e0fb4dd81d05a87e91d17177b15587739e408412f74ae175e28217c14a951"
+    },
+    "scripts/pr16_circus_entry_record.py": {
+      "size": 15695,
+      "sha256": "a836a1036bf9d7ea3a6413c8163bf187105d1500403ce7ec22613a81ad2cb3e3"
+    },
+    "tests/test_pr16_circus_entry_record.py": {
+      "size": 4725,
+      "sha256": "edf987e74d71d098fb25885bf5ce91570157ecd68f94a58f0d1220ce64db978c"
+    },
+    ".github/workflows/pr16-circus-entry-record.yml": {
+      "size": 2605,
+      "sha256": "7335dfcfdf1746bf0914321b835d91ec4bf45f4015960d9d557b4cb01148cfe0"
+    },
+    "content/modernization/pr16_circus_entry_record_spec.json": {
+      "size": 2293,
+      "sha256": "87e3f95c6f4f2641012b9987b7ecdd98339cd5a7f22b20781b955f558bb9eb7b"
+    },
+    "content/modernization/pr16_circus_entry_checkpoint.json": {
+      "size": 90509,
+      "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。",
+  "source_change_review_ja": "既存Codex受付のFactory行き4-byte pointerに任意Circus分岐を追加した限定候補を生成。既存Factory本体/CFRU ownerは不変。専用のscript結果adapterと複製Trialの3戦闘開始点へ未消費pending番号3選択→正規sp072反復→5Dを接続。23件の新規host/script契約、独立ARM link2回・限定patch2回一致、全allocation hash/2範囲外不変/重複0を検証。実受付native・保存復帰・Circus固有連勝の正規更新/永続化・抑制抽選は未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -4228,6 +4211,19 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a",
     "run_id": 35353620141,
     "product_rom_wired": false,
+    "physical_admission_accepted": false
+  },
+  "circus_entry_implementation": {
+    "path": "content/modernization/pr16_circus_entry_checkpoint.json",
+    "status": "CIRCUS_SCRIPT_WIRED_CANDIDATE_BUILT_NATIVE_OPEN",
+    "tested_head": "657c589538b68ab665b4acfcc36bd4434b00a2a6",
+    "run_id": 35360663203,
+    "engineering_candidate": {
+      "sha256": "022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72",
+      "size": 33554432
+    },
+    "product_release_adopted": false,
+    "script_connection_built": true,
     "physical_admission_accepted": false
   }
 }

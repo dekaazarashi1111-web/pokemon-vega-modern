@@ -4616,3 +4616,20 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branchへ非force push。record source=c7e80897952581924db3498cc04936dfacee27f0; record run=35356314497。自己SHAはreceipt/remote refで確認。
 - Network: GitHub connector/Actions固定入力のみ。新ROM/save/ELF/private ZIPをtracked/artifactへ追加しない。merge/release/active baseline変更なし。
 - Next: 保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。
+
+
+## 2026-09-18T15:17:38.819511+00:00 — USER-20260918-CIRCUS-ENTRY
+- Timestamp: 2026-09-18T15:17:38.819511+00:00
+- Task: USER-20260918-CIRCUS-ENTRY / Circus実受付候補生成
+- Status: DONE / 候補生成・限定script契約まで。実入場nativeは未受入。
+- Version: pr16-circus-entry-candidate
+- Summary: 既存Codex受付のFactory行き4-byte pointerに任意Circus分岐を追加した限定候補を生成。既存Factory本体/CFRU ownerは不変。専用のscript結果adapterと複製Trialの3戦闘開始点へ未消費pending番号3選択→正規sp072反復→5Dを接続。23件の新規host/script契約、独立ARM link2回・限定patch2回一致、全allocation hash/2範囲外不変/重複0を検証。実受付native・保存復帰・Circus固有連勝の正規更新/永続化・抑制抽選は未受入。
+- Files changed: overlays/circus_admission/circus_script.c, scripts/pr16_circus_entry.py, tests/test_pr16_circus_entry.py, tests/test_pr16_circus_entry_binding.py, .github/workflows/pr16-circus-entry.yml, scripts/pr16_circus_entry_record.py, tests/test_pr16_circus_entry_record.py, .github/workflows/pr16-circus-entry-record.yml, content/modernization/pr16_circus_entry_record_spec.json, content/modernization/pr16_circus_entry_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規23件PASS原本、ARM link2回一致、限定patch2回一致、全allocation hash/重複0/2範囲外不変。記録/再開tests、task graph、差分guard、diff checkをcommit前必須。
+- Evidence: build run35360663203; tested_head=657c589538b68ab665b4acfcc36bd4434b00a2a6; candidate=022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72; content/modernization/pr16_circus_entry_checkpoint.json。元Actions/job/artifact ZIP/member/sourceを照合。
+- History: run35359098745は存在しないscript名をmetadataへ要求し停止。実CommitSelection拒否edge/Abort ownerで解決。run35359681701はveneer整列で入口4byteずれを検出して停止。16byte割当で解決。失敗原本と最終原因行/hashを保持。
+- Boundary: 新候補は検証用でrelease採用/active baseline変更なし。専用工程emulator0、受入済みnative手動再実行0。自動Stage79結果を新Circus受入へ流用しない。
+- Preserved: 正式BP checkpoint不変、Ring/BP/P03/P06/P07受入、physical1/P08 gates2、release_ready=falseを保持。
+- Commit: 同branchへ非force push。record source=92260e2edcbc1f8338b679e35ecbdb6875a51d08; record run=35361499557。自己SHAはreceipt/remote refで確認。
+- Network: GitHub connector/Actionsと既存hash固定入力のみ。新ROM/save/ELF/private ZIPをtrackedへ追加しない。
+- Next: 保存した候補生成原本を再利用し、新しい実受付の取消・レンタル選択・戦闘開始を入力だけで検証する。追加質問の影響を受けるFactory入口に限り対照を行い、party/BP/Bag/通常Save/fresh Continueを確認する。Factoryの連勝値とCircus固有streak ownerは別物。固有streakの正規更新・永続化を接続した上で連勝30以上の来歴と正規sp072の特性抑制を別に検証する。効果bit/施設番号/PC/LRをhost注入しない。受入済みRing/BP/P03/P06/P07の無変更native、旧7関数/link/5335 root走査は再実行しない。
