@@ -8,6 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT),str(ROOT/'scripts')]
 import pr16_circus_checkpoint as common
 from pr16_circus_identity import need,identity,strict
+from pr16_streak_archive import unpack as unpack_build
 BASE='a067d18028a6c78b74c42c1cb09678c2fdbc273e'
 TASK='USER-20260919-CIRCUS-STREAK-BUILD'
 SELF='scripts/pr16_streak_record.py'
@@ -22,7 +23,7 @@ RAW={'evidence/pr16_circus_streak/build.json':BUILD+'report.json',
      'evidence/pr16_circus_streak/tests.stderr.txt':TEST_RESULT,
      'evidence/pr16_circus_streak/symbols.txt':BUILD+'compile-1/symbols.txt',
      'evidence/pr16_circus_streak/disassembly.txt':BUILD+'compile-1/disassembly.txt'}
-IMPL=(SELF,TEST,WORKFLOW,'scripts/pr16_circus_streak.py','scripts/pr16_circus_streak_edges.py',
+IMPL=(SELF,TEST,WORKFLOW,'scripts/pr16_streak_archive.py','scripts/pr16_circus_streak.py','scripts/pr16_circus_streak_edges.py',
       'tests/test_pr16_circus_streak_calls.py','tests/test_pr16_circus_streak_edges.py',
       'tests/fixtures/circus_streak_loss_fixture.c','.github/workflows/pr16-circus-streak-build.yml',
       'overlays/circus_streak/circus_streak_runtime.c','overlays/circus_streak/circus_streak_runtime.h',
@@ -86,6 +87,7 @@ def make_report(unused,r,files):
     return dict(classification=CLASS,run_scope='BUILD_ONLY_NO_EMULATOR',candidate=CANDIDATE,build=r,
         native_streak_verified=False,later_battle_rental_identity_verified=False,
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
+        record_retry=dict(run_id=35390453598,reason='old native ZIP suffix contract excluded two tracked allocation CSVs; only these exact paths added'),
         inherited_wip_head=BASE,host_tests=21,loss_guard_combinations=1327104,
         resolved_build_failures=[
             dict(run_id=35386975306,head=BASE,error='configure literal expected1 but production Enter/PrepareBattle contain2'),
@@ -120,6 +122,7 @@ def project(state,backlog,report):
 def recording_driver(text):
     # 既受入のrecorderを再利用し、build-only工程の保存metadata名称を明確化する。
     for before,after,count in (
+        ("first.unpack(raw,spec['artifact_identity'])","task.unpack_build(raw,spec['artifact_identity'])",1),
         ('native_run_id=', 'build_run_id=',2),('scoped_native=verified','scoped_build=verified',1),
         ('実native tested HEADは工程checkpointに固定。','実ARM tested HEADは構築checkpointに固定。',1)):
         need(text.count(before)==count,'common recorder anchor changed: '+before)
