@@ -4176,3 +4176,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。
+
+
+## 2026-09-18T03:35:21.327878+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-DEPENDENCIES
+- Timestamp: 2026-09-18T03:35:21.327878+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-DEPENDENCIES / 状態0/1のtile矩形・window資源・paletteコピー中継5依存を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-dependencies
+- Summary: 状態0/1の保存callsiteから残存5calleeを新規280命令/614byteで保存。旧8280命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_window_dependencies.py, tests/test_pr16_ring_message_window_dependencies.py, .github/workflows/pr16-ring-message-window-dependencies.yml, content/modernization/pr16_ring_message_window_dependencies.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=627bd6f29c9e087e6284d4179e881b57348807a4; run=35303682033（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存属性0・paletteコピー中継・r8 frame・tile矩形/window資源を明示RAMで結合し、state0/1の帰還・次状態・queue予約・不足時部分writeを検証。新BL/BIOS/DMAは成功stubにしない。今回5callee/旧29命令/旧1231条件/BP/nativeは単独再実行せず、通常story/Ring/live初期化は未受入。
