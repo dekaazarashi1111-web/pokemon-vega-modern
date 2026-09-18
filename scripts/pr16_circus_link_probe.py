@@ -75,7 +75,26 @@ def elf_span(raw, address, size):
     return matches[0]
 
 
-def cached_elf(archive):
+REQUIRED_FUNCTIONS = (*OWNERS, 'VegaConfigureNextFacility', 'VegaFacilityStateGet',
+    'VegaFacilityStateSet', 'BattleSetup_StartTrainerBattle', 'sp072_LoadBattleCircusEffects')
+
+
+def matching_functions(elf_raw, rows, candidate):
+    """名前一致では採用しない。利用する7関数の全バイトと絶対位置を照合する。"""
+    matches = {}
+    for name in REQUIRED_FUNCTIONS:
+        row = rows.get(name, {})
+        address, size = row.get('address', 0) & ~1, row.get('size')
+        if not size or row.get('kind') != 'T' or not BASE <= address < BASE+len(candidate):
+            return None
+        data = elf_span(elf_raw, address, size)
+        if data != candidate[address-BASE:address-BASE+size]:
+            return None
+        matches[name] = dict(address=address, size=size, sha256=identity(data)['sha256'])
+    return matches
+
+
+def cached_elf(archive, candidate):
     cfg = json.loads((ROOT/'config/github_private_environment.json').read_bytes())
     bound = next(a for a in cfg['archives'] if a['name'] == 'pokemon-vega-private-env-v1-build-cache.zip')
     need(identity(archive.read_bytes()) == {k:bound[k] for k in ('size', 'sha256')}, 'fixed build archive differs')
@@ -84,25 +103,31 @@ def cached_elf(archive):
         names = z.namelist();need(len(names) == len(set(names)), 'duplicate archive member')
         for info in z.infolist():
             name = info.filename
-            if not name.startswith('build/battle-core/'):
-                continue
-            index.append({'path': name, 'size': info.file_size})
-            if not name.endswith('.elf'):
+            if not name.startswith('build/battle-core/') or not name.endswith('/linked.o'):
                 continue
             p = PurePosixPath(name)
             need('..' not in p.parts and '\\' not in name and not p.is_absolute(), 'unsafe ELF path')
             need(info.file_size <= 32_000_000, 'ELF bound exceeded')
             raw = z.read(info)
-            path = OUT/('cached-'+str(len(chosen))+'.elf');path.write_bytes(raw)
+            path = OUT/('cached-'+str(len(index))+'.elf');path.write_bytes(raw)
             listing = subprocess.check_output(['arm-none-eabi-nm', '-g', '-S', '-n', str(path)], text=True)
             rows = symbols(listing)
-            if set(OWNERS) <= set(rows) and 'VegaConfigureNextFacility' in rows:
-                chosen.append((path, raw, rows, name))
+            match = matching_functions(raw, rows, candidate)
+            index.append(dict(path=name, elf=identity(raw), matching_functions=match))
+            if match is not None:
+                chosen.append((path, raw, rows, name, match))
             else:
                 path.unlink()
-    need(len(chosen) == 1, 'unique fixed CFRU owner ELF not found; index retained in exception only: '+repr(index)[:16000])
-    path, raw, rows, name = chosen[0]
-    return path, raw, rows, dict(archive={k:bound[k] for k in ('name','size','sha256')}, member=name, elf=identity(raw))
+    (OUT/'cache-index.json').write_bytes(stable(index))
+    need(chosen, 'no fixed linked.o matches all actual Circus owner function bytes')
+    # 同一buildのrun-1/run-2等は、照合対象が全て同一の場合だけ同値として扱う。
+    fingerprints = {stable(row[4]) for row in chosen}
+    need(len(fingerprints) == 1, 'ambiguous current owner functions in fixed linked objects')
+    path, raw, rows, name, match = sorted(chosen, key=lambda item:item[3])[0]
+    binding = dict(archive={k:bound[k] for k in ('name','size','sha256')}, member=name,
+        elf=identity(raw), verified_functions=match,
+        equivalent_members=[item[3] for item in chosen], whole_cache_revision_claimed=False)
+    return path, raw, rows, binding
 
 
 def rooted_routes(raw, rows):
@@ -180,7 +205,7 @@ def run(archive, candidate):
     raw = candidate.read_bytes();need(identity(raw) == PARENT, 'accepted scoped candidate differs')
     head = subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     need(head == os.environ['GITHUB_SHA'], 'fixed checkout differs')
-    elf, elf_raw, rows, binding = cached_elf(archive)
+    elf, elf_raw, rows, binding = cached_elf(archive, raw)
     (OUT/'symbols.json').write_bytes(stable(rows))
     wanted = {}
     for name in sorted(WANTED & set(rows)):

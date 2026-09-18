@@ -49,6 +49,26 @@ class ElfContracts(unittest.TestCase):
             with self.subTest(address=address,size=size),self.assertRaises(ValueError):
                 target.elf_span(fixture(),address,size)
 
+    def test_candidate_requires_each_owner_and_every_byte(self):
+        raw=fixture()
+        candidate=bytearray(0x1000000+28)
+        candidate[0x1000000:]=bytes(range(28))
+        rows={name:dict(address=0x09000000,size=28,kind='T') for name in target.REQUIRED_FUNCTIONS}
+        self.assertEqual(set(target.matching_functions(raw,rows,candidate)),set(target.REQUIRED_FUNCTIONS))
+        for name in rows:
+            absent=dict(rows);del absent[name]
+            self.assertIsNone(target.matching_functions(raw,absent,candidate))
+        for index in range(28):
+            candidate[0x1000000+index]^=1
+            self.assertIsNone(target.matching_functions(raw,rows,candidate))
+            candidate[0x1000000+index]^=1
+
+    def test_unmapped_and_nontext_owner_rejected(self):
+        for field,value in (('address',0x02000000),('size',None),('kind','A')):
+            rows={name:dict(address=0x09000000,size=28,kind='T') for name in target.REQUIRED_FUNCTIONS}
+            rows[target.REQUIRED_FUNCTIONS[0]][field]=value
+            self.assertIsNone(target.matching_functions(fixture(),rows,bytes(0x100001c)))
+
     def test_overlapping_allocated_sections_rejected(self):
         data=fixture();data[52:92]=data[92:132]
         with self.assertRaises(ValueError):target.elf_span(data,0x09000000,1)

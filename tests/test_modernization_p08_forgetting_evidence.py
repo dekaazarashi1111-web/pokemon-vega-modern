@@ -166,13 +166,31 @@ class CurrentRemainingWorkOwnershipTests(unittest.TestCase):
             'content/modernization/pr16_p03_p07_route_coverage.json')
 
         p05 = conditions['NATURAL_CAPTURE_GEAR']
-        # BP受入原本を保持し、Ring/policyの未完を消去しない。
-        self.assertEqual(
-            p05['status'], 'PENDING_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES')
-        self.assertEqual(p05['remaining_supply_gap_ids'], [
+        # Forgettingは後続ownerのRing/policy受入を未完へ巻き戻さない。
+        # 現在のscoped受入原本と結び、P08移送・Circusは閉じない。
+        ring_path = 'content/modernization/pr16_ring_policy_acceptance.json'
+        ring = record.load((ROOT/ring_path).read_bytes())
+        self.assertEqual(p05['status'],
+                         'PASS_SCOPED_RING_POLICY_PENDING_P08_TRANSFER')
+        self.assertEqual(p05['remaining_supply_gap_ids'], [])
+        self.assertIs(p05['complete'], True)
+        self.assertIs(p05['supply_physical_acceptance_complete'], True)
+        self.assertEqual(p05['success_evidence'], ring_path)
+        self.assertEqual(p05['accepted_candidate_sha256'],
+                         ring['candidate']['sha256'])
+        self.assertEqual(ring['closed_physical_ids'], [
             'P05_NATIVE_RING_ACQUISITION_PHYSICAL',
             'P05_ORDINARY_POLICY_SELECTION_PHYSICAL',
         ])
+        self.assertIs(ring['ring_acquisition_accepted'], True)
+        self.assertIs(ring['ordinary_battle_accepted'], True)
+        self.assertIs(ring['final_candidate_transfer_complete'], False)
+        self.assertIs(ring['release_ready'], False)
+        self.assertEqual(p05['successor_transfer_condition_id'],
+                         'FINAL_NATIVE_ACCEPTANCE')
+        circus = conditions['PHYSICAL_CIRCUS_ADMISSION']
+        self.assertIsNot(circus.get('complete'), True)
+        self.assertIsNone(circus['success_evidence'])
         bp_ref = current['bp_chooser_checkpoint']
         self.assertEqual(bp_ref['path'],
                          'content/modernization/pr16_bp_chooser_checkpoint.json')
