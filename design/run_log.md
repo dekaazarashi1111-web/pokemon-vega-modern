@@ -7240,3 +7240,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 初回run35328047608は復元前manifestのsource_bindings不足でfailure、候補復元/native0。その原結論を保持して契約を修正。成功run35322265804のSHA固定exportを再利用。同一candidate復元1回、保存命令再解読0。外部source追加/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T09:25:08.115876+00:00 — PR-P08-7-RING-STORY-RESOURCE-SUPPLIERS
+- Timestamp: 2026-09-18T09:25:08.115876+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCE-SUPPLIERS / BG実定数・属性分岐表とmemcpy/heap/GPUの未読供給を接続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resource-suppliers
+- Summary: 保存first-stopのmemcpy/heap/GPUとBG定数・属性7slotから新規190命令/470byteを固定。候補復元1、ROM変更/native0。
+- Files changed: scripts/pr16_ring_story_resource_suppliers.py, tests/test_pr16_ring_story_resource_suppliers.py, .github/workflows/pr16-ring-story-resource-suppliers.yml, content/modernization/pr16_ring_story_resource_suppliers.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d; run=35329291913（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35328554870のSHA固定exportを再利用。first-stop指定5calleeと実BG定数/属性7slotのみ、同candidate復元1。既読再解読/native0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存命令でheap/reset・BG default→実template→属性→InitWindows/fontの連続RAM/部分write/不足条件を検証する。未読save relocation/暗号化とdefault callback/state2は別owner。今回byteと旧accepted条件は再採取/単独再実行しない。通常Ring取得/装備/保存、policy/Circus/P08未受入。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。
+保存first-stopのmemcpy/heap/GPUとBG定数・属性7slotから新規190命令/470byteを固定。候補復元1、ROM変更/native0。
 
-**次: 保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。**
+**次: 保存命令でheap/reset・BG default→実template→属性→InitWindows/fontの連続RAM/部分write/不足条件を検証する。未読save relocation/暗号化とdefault callback/state2は別owner。今回byteと旧accepted条件は再採取/単独再実行しない。通常Ring取得/装備/保存、policy/Circus/P08未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `db6a249d19f0fcb60586721477d1e4d2e4881148`。
+証拠のsource HEAD: `a041183bde6aae8a3ffacf8fe18b5dc1bc372c7d`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_story_resource_suppliers.json`
+- `scripts/pr16_ring_story_resource_suppliers.py`
 - `content/modernization/pr16_ring_story_resources_frontier.json`
-- `scripts/pr16_ring_story_resources_frontier.py`
-- `content/modernization/pr16_ring_story_initializer_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -215,6 +215,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - field初期化3calleeとwindow/printer may-call接続の保存byteを再利用。call後のfallthroughはcallee帰還を仮定する静的到達で通常初期化実行ではない。旧wait786/script1037/text/bootstrap/BP/nativeを単独再実行しない。
 - flash全u8、field callbackの優先順位/false待機/true消去/拒否時部分書込、state3→4連続RAM、初期化資源停止の540条件は原本を再利用。callbackに渡した保存getterは合成初期条件で通常登録の証拠ではない。次はheap reset0804B85DとBG供給/default callbackの未解決owner。旧byte/1037+786+540条件/BP/native単独再実行禁止。
 - heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。
+- memcpy/heap/GPU供給とBG定数・属性7slotは本原本を再利用し、次はその保存命令によるreset→template→window連続RAMを検証。候補復元・旧870命令・旧540/1037/786条件・受入済BP/native単独再実行禁止。通常story/IO効果/未読save暗号化ownerは未証明。
 
 ## 次セッションへ残す更新手順
 
@@ -244,6 +245,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35322265804の原結論と保存証拠、BP run34946969126成功を照合。今回run35328554870は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35328554870の原結論と保存証拠、BP run34946969126成功を照合。今回run35329291913は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
