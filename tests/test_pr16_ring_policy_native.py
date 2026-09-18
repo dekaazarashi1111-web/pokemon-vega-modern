@@ -79,4 +79,33 @@ class NativeOracleContracts(unittest.TestCase):
         self.assertIn('k_equip(c,v->item)',post)
         self.assertIn('n_step(c,',post)
 
+class CurrentRouteContracts(unittest.TestCase):
+    def catalogue(self):
+        return {'headers':[{'group':96,'map':17,'first_coordinate_owner':True,'header':0x09000000,
+            'tables':{'land':{'rate':20,'slots':[{'species':10,'min':5,'max':7} for _ in range(12)]}}}]}
+
+    def test_new_candidate_binding_precedes_generic_decoder(self):
+        with self.assertRaisesRegex(ValueError,'route candidate differs'):n.current_route(b'wrong candidate',{})
+
+    def test_unique_current_coordinate_owner(self):
+        c=self.catalogue();self.assertEqual(n.grass_owner(c),c['headers'][0])
+        c['headers']*=2
+        with self.assertRaises(ValueError):n.grass_owner(c)
+        with self.assertRaises(ValueError):n.grass_owner({'headers':[]})
+
+    def test_wrong_map_rate_and_slot_fail_closed(self):
+        c=self.catalogue();c['headers'][0]['map']=5
+        with self.assertRaises(ValueError):n.grass_owner(c)
+        for key,value in (('rate',0),('slots',[])):
+            c=self.catalogue();c['headers'][0]['tables']['land'][key]=value
+            with self.assertRaises(ValueError):n.grass_owner(c)
+        c=self.catalogue();c['headers'][0]['tables']['land']['slots'][0]['species']=True
+        with self.assertRaises(ValueError):n.grass_owner(c)
+
+    def test_old_probe_and_fixture_claims_not_relabelled(self):
+        text=(ROOT/n.SELF).read_text()
+        self.assertNotIn('gear.oracle(',text)
+        self.assertNotIn('probe.SHA=',text)
+        self.assertIn('audit=current_route(raw,parent)',text)
+
 if __name__=='__main__':unittest.main()

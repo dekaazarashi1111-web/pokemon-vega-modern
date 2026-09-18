@@ -85,6 +85,38 @@ def select_cases(names):
     return result
 
 
+def grass_owner(catalogue):
+    rows=[r for r in catalogue['headers'] if (r['group'],r['map'])==(96,17)
+          and r['first_coordinate_owner'] is True]
+    need(len(rows)==1,'current Ring grass owner missing or duplicated')
+    owner=rows[0];table=owner['tables']['land']
+    need(type(table['rate']) is int and table['rate']>0 and len(table['slots'])==12,'current Ring grass table invalid')
+    for slot in table['slots']:
+        need(all(type(slot[k]) is int for k in ('species','min','max')) and 1<=slot['species']<2048
+             and 1<=slot['min']<=slot['max']<=100,'current Ring grass slot invalid')
+    return owner
+
+
+def current_route(raw,parent):
+    # 旧gear probeの固定SHAや旧受入を上書きしない。generic decoderへ渡す前に新候補を固定する。
+    need(identity(raw)==dict(size=33554432,sha256=SHA),'current Ring route candidate differs')
+    need(parent['map_key']==[96,17] and parent['map']['front']==[12,39], 'current Ring route front differs')
+    from scripts import pr16_capture_geometry as geometry
+    from scripts import pr16_p05_root_diagnostics as roots
+    from scripts.pr16_purchased_gear import path as walk_path
+    town=geometry.geometry(raw,96,5);grass=geometry.geometry(raw,96,17)
+    need((grass['width'],grass['height'])==(24,40),'current Ring grass dimensions differ')
+    paths=dict(town=walk_path(town,[24,20],[23,0]),grass=walk_path(grass,[12,39],[14,30]))
+    need(paths['grass']==parent['paths']['to_grass'],'current Ring path differs from accepted gift geometry')
+    need(any(p['start']==[14,30] and p['end']==[15,30] and p['behavior']==2
+             for p in grass['walkable_pairs']),'current Ring grass pair not audited')
+    owner=grass_owner(roots.wild_catalogue(raw))
+    return dict(candidate=identity(raw),paths=paths,grass_header=owner['header'],table=owner['tables']['land'],
+        geometry={str(i):identity(stable(g)) for i,g in ((5,town),(17,grass))},
+        unused_embedded_town_route=True,ring_is_fixture=False,policy_is_fixture=False,
+        new_emulator_processes=0,ordinary_battle_accepted=False)
+
+
 def run(names=None):
     sys.path[:0]=[str(ROOT),str(ROOT/'scripts')]
     import pr16_shop_routes as shop
@@ -101,14 +133,14 @@ def run(names=None):
     for name,binding in prior['native']['sources'].items():
         need(identity((ROOT/name).read_bytes())==binding,'accepted shared gift owner changed: '+name)
     seed=ROOT/m.SEED;need(identity(seed.read_bytes())['sha256']==m.SEED_SHA,'Ring seed differs')
-    audit=gear.oracle(raw);audit['paths']['grass']=parent['paths']['to_grass']
+    audit=current_route(raw,parent)
     group,number=parent['map_key'];npc=parent['map']['npc'];front=parent['map']['front'];host=[group,number,npc['local_id'],npc['x'],npc['y']]
     need(host==[96,17,4,12,38] and front==[12,39],'Ring physical owner differs')
     header='/* 固定候補のNPCと歩行経路。Ring/NEXTのfixtureなし。 */\n#define RP_SHA "'+SHA+'"\n'
     for key,value in dict(RP_GROUP=group,RP_MAP=number,RP_LOCAL_ID=npc['local_id'],RP_X=front[0],RP_Y=front[1]).items():header+=f'#define {key} {value}U\n'
     generated={'pr16_ring_policy_generated.h':header,'pr16_gear_route.h':gear.route_header(audit)}
     paths={SELF,SOURCE,build.SELF,build.SOURCE,build.HEADER,gift.SELF,gift.SOURCE,gift.HEADER,
-           gear.SELF,gear.SOURCE,'overlays/cfru/integration.h','overlays/cfru/runtime.h',
+           gear.SELF,gear.SOURCE,'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','overlays/cfru/integration.h','overlays/cfru/runtime.h',
            shop.SELF,shop.SOURCE,shop.base.PARENT,shop.base.PARENT_C,gear.parent.SELF,gear.parent.SOURCE}
     for i,(src,target) in enumerate(m.EMBEDDED):generated[target]=m.embed((ROOT/src).read_text(),'ring_policy_embedded_'+str(i));paths.add(src)
     for src,target,label in ((shop.base.PARENT_C,'pr16_shop_breeding_helpers.c','ring_policy_breeding'),
