@@ -60,7 +60,11 @@ def run():
     need(begin==152200948 and 0<limit-begin<=1024,'known ordinary begin boundary changed')
     begin_calls=calls(raw,begin,limit)
     callers=[r for r in calls(raw,0x09000000,0x09200000) if r['target']==begin]
-    need(len(callers)==1,'original begin callsite is not unique')
+    need(len(callers)<=16,'ordinary begin call search exceeded bound')
+    for row in callers:
+        at=row['address']-BASE
+        row['context_start']=row['address']-32
+        row['context_hex']=raw[at-32:at+36].hex()
     bounded=raw[begin-BASE:limit-BASE]
     binary=OUT/'begin.bin';binary.write_bytes(bounded)
     dis=subprocess.check_output(['arm-none-eabi-objdump','-D','-b','binary','-m','arm','-M','force-thumb',
@@ -70,6 +74,7 @@ def run():
     for target in sorted(set(r['target'] for r in begin_calls)):
         if 0x09000000<=target<0x09200000:
             callees[f'{target:08x}']=dict(address=target,first_64_hex=raw[target-BASE:target-BASE+64].hex())
+    (OUT/'call-context.json').write_bytes(stable(dict(begin=begin,end=limit,begin_calls=begin_calls,callers=callers,callees=callees)))
     cache=ROOT/'build/battle-core'/metadata['fingerprint']
     linked=[]
     for index in (1,2):
