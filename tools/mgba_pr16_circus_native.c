@@ -13,8 +13,8 @@ struct CFTrace {unsigned gateway,rentals,cancel,field,saved,reloaded,selected,se
 static struct CFTrace ct;
 static void cf_state(struct mCore *c,const char *label){
     bp_state(c,label);
-    fprintf(stderr,"CIRCUS label=%s frame=%u flags=%08x types=%08x pending_valid=%u pending_number=%u script=%08x streak0=%u\n",
-        label,b_frames,read32(c,CF_FLAGS),read32(c,CF_TYPES),read8(c,0x0203E040U),
+    fprintf(stderr,"CIRCUS label=%s frame=%u flags=%08x types=%08x pending_magic=%08x pending_number=%u script=%08x streak0=%u\n",
+        label,b_frames,read32(c,CF_FLAGS),read32(c,CF_TYPES),read32(c,0x0203E040U),
         read16(c,0x0203E052U),read32(c,SP_SCRIPT_PTR),read16(c,CF_STREAK));
     g_shot(label);
 }
@@ -127,8 +127,12 @@ int main(int argc,char **argv){
         b_copy(c,QOL_PLAYER_PARTY,restored,600U);b_copy(c,BP_FACTORY,prefix_after,106U);g_inventory(c,inventory_after);
         bp_require(c,!memcmp(party,restored,600U) && read8(c,QOL_PLAYER_PARTY_COUNT)==1U
             && !memcmp(prefix,prefix_after,106U) && !memcmp(inventory,inventory_after,sizeof(inventory)),"cancel changed original party/progress/inventory");
+        /* BATTLE_TYPE_FRONTIER is a composite mask including the Circus bit;
+         * the original Factory preparation sets all of it. It is not proof of
+         * a live Circus session. Check genuine effects, owned number and BS. */
         bp_require(c,!read8(c,BP_F(snapshot_valid)) && !read8(c,BP_F(marker)) && !read8(c,BP_F(reward_pending))
-            && !read32(c,CF_FLAGS) && !read16(c,CF_STREAK) && !(read32(c,CF_TYPES)&CF_CIRCUS_BIT),"cancel retained Circus effects or active session");
+            && !read32(c,CF_FLAGS) && !read16(c,CF_STREAK) && !read16(c,0x0203E052U)
+            && !read32(c,ADDR_NEW_BATTLE_STRUCT_POINTER),"cancel retained Circus effects or active session");
         bp_require(c,read32(c,P03_SAVE_COUNTER)==counter,"cancel performed automatic full Save");
         if(!factory){
             bp_require(c,b_save(c),"Circus cancel normal Save failed");ct.saved=b_frames;
