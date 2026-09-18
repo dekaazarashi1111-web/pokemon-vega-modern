@@ -4597,3 +4597,22 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions・固定private環境のみ。ROM/save/private ZIP/elfをtracked/artifactへ追加しない。
 - Boundary: 既存full private guard違反の前後出力完全一致と追加違反0を要求。全体guard PASS/全CI green/merge/release/baseline変更は主張しない。
 - Next: PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。
+
+
+## 2026-09-18T14:27:39.332070+00:00 — USER-20260918-CIRCUS
+- Timestamp: 2026-09-18T14:27:39.332070+00:00
+- Task: USER-20260918-CIRCUS
+- Status: DONE / pending選択実装と実owner linkの区切り。実受付・入場nativeは未完。
+- Version: pr16-circus-pending-owner
+- Summary: 未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。
+- Files changed: .github/workflows/pr16-source-workspace.yml, overlays/circus_admission/circus_admission.c, overlays/circus_admission/circus_admission.h, tests/test_pr16_circus_admission.py, scripts/pr16_circus_source_probe.py, .github/workflows/pr16-circus-source.yml, scripts/pr16_circus_link_probe.py, tests/test_pr16_circus_link_probe.py, .github/workflows/pr16-circus-link.yml, tests/test_modernization_p08_forgetting_evidence.py, scripts/pr16_circus_record.py, tests/test_pr16_circus_record.py, .github/workflows/pr16-circus-record.yml, content/modernization/pr16_circus_record_spec.json, content/modernization/pr16_circus_admission_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新Cのmockなしhost10件、ELF/実byte境界10件PASS。ARM object2compile一致、実候補7関数全byte一致、新280-byte payload独立2link一致・未解決symbol0。
+- CI repair: P03状態保持20件＋既存契約24件PASS（保存原本の検査のみ、native再実行0）。Ring/policyを未完へ戻さず、P08/Circusは未完のまま。
+- Evidence: content/modernization/pr16_circus_admission_checkpoint.json; source run35351832671/artifact10550280062; link run35353620141/artifact10550587542; CI run35353620112/artifact10550417336。固定HEAD/ZIP/全member/source/job結論照合。
+- History: run35352684227はlinked.oを.elf限定で見落とした失敗。原stderrのhash/原因行と固定artifactを保持し、成功へ読み替えない。記録run35355663661はrunner絶対パス混入をguardで拒否し、未commitのまま停止。原本参照を保って原因行だけ記録する修復を加えた。
+- Boundary: 受付への新runtime接続・ROM挿入0、実入場native0、accepted standalone native replay0。5335 decoded rootsで直接owner/sp072呼出し未検出でも、間接native/std経路の不存在は主張しない。
+- Preserved: 正式BP checkpoint byte不変。Ring/BP/P03/P06/P07の受入原本・既存CFRU・release_ready=false・physical1/P08 gates2を維持。
+- Record: 固定MD/JSON同期、focused記録/再開testsとtask graph検査。最終index guardは既存違反の前後出力完全一致/追加違反0、diff checkをcommit前必須gate。
+- Commit: 同branchへ非force push。record source=c7e80897952581924db3498cc04936dfacee27f0; record run=35356314497。自己SHAはreceipt/remote refで確認。
+- Network: GitHub connector/Actions固定入力のみ。新ROM/save/ELF/private ZIPをtracked/artifactへ追加しない。merge/release/active baseline変更なし。
+- Next: 保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。

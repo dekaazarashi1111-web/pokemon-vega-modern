@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。
+未消費の正規facility commandを所有APIでCircus番号3へ切替えるC実装を追加。mockなしhost10件、ELF境界10件、ARM object独立2compile、現ROMの7関数全byte照合と独立2linkを検証。280-byte runtimeはlink検証までで、製品ROMへの挿入/受付script接続/実入場nativeは未完。Ring受入後に古い未完状態を要求していたP03 CI条件も修正し20+24件PASS。
 
-**次: PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。**
+**次: 保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `77d45a429bf410a783fbb2c7738d9561048366c4`。
-Ring/policyの成功原本を記録するsource HEAD。自己commit SHAはremote ref/記録receiptで確認。正式BP受入欄は維持。
+証拠のsource HEAD: `c7e80897952581924db3498cc04936dfacee27f0`。
+Circus実装/link/CI修復の原本を記録するsource HEAD。完了commitはremote ref/receiptで確認。正式BP受入HEADではない。
 
 ## 最短の再開手順
 
@@ -25,11 +25,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_ring_policy_acceptance.json`
-- `content/modernization/p08_remaining_work.json`
+- `content/modernization/pr16_circus_admission_checkpoint.json`
+- `overlays/circus_admission/circus_admission.c`
 - `content/modernization/pr16_p05_supply_owner_findings.json`
-- `scripts/build_battle_core.py`
-- `overlays/cfru/integration.c`
+- `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -44,7 +43,7 @@ checkは限定source hashと正本間整合性を検査するだけで、GitHub�
 照合抄録: `content/modernization/pr16_bp_spending_verified.json`。
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
 
-通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。
+Circus受付の観測開始後に施設番号・効果bit・進行条件・party・PC/LRをhostから設定しない。連勝30以上は正規進行を保持した入力として別途照合し、零連勝fixtureで抑制を要求しない。
 
 ## 候補identityと残件
 
@@ -61,10 +60,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-Ring/policyはscoped受入済み。残る順序はCircus実入場→影響台帳によるP08最終候補移送→release判定。
+Circus pending C/実owner linkまで完了。実受付・効果抽選への接続→新native→影響台帳によるP08移送→release判定。
 
 ## 再実行・過大主張の禁止
 
+- Circus source run35351832671/actual-owner link run35353620141を再利用。C/契約/7実関数/候補SHAに影響がなければ10+10件/独立link/5335 rootsを再実行しない。保存ELFはlinked.oであり拡張子.elf限定探索を再発させない。
 - 通常戦闘Ring5件はcontent/modernization/pr16_ring_policy_acceptance.jsonの固定候補/原本から継承。旧NPC3件・BP/P03/P06/P07を影響なしに再実行しない。旧cold-policy-resetの不成立を新候補の結果へ読み替えない。
 - NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。
 - 2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。
@@ -249,6 +249,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-このRing/policy Actionsのsuccessのみを確認。履歴failure/action_requiredは保持。記録Actions自体はcommit時in_progressであり外部確認する。全CI greenとは主張しない。
+成功したsource/link/P03 CI原本を確認。失敗した旧linkも保持。記録runはcommit時in_progressで、全CI greenとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

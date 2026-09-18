@@ -489,10 +489,12 @@
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "run34701044310: the former F0 is a back-sprite pointer byte reached through malformed map12/7 events, not an unknown command. raw403A is remapped to battle-local facility state by build_battle_core.py. Trace real number3 admission owner; map12/7 is not established as Circus. Native admission still0.",
+      "resume": "保存した7関数・リンク結果・5335 root走査を再実行せず、未解決の間接native/std受付経路を絞る。実受付scriptに未消費pending番号3選択→正規sp072抽選→戦闘開始を接続し、受付取消/party復帰と正常Save/fresh Continueを新規nativeで検証する。sp072の特性抑制はpersonal effectで連勝30以上の正規進行条件が必要。map12/7やraw Var403AをCircusの証拠とせず、flag/PC/LR直接注入で入場を代用しない。Ring/BP/P03/P06/P07の受入済みnativeは変更影響なしに再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
-      "target_function": "actual reception/admission to suppression"
+      "target_function": "actual reception/admission to suppression",
+      "implementation_checkpoint": "content/modernization/pr16_circus_admission_checkpoint.json",
+      "implementation_status": "CIRCUS_PENDING_IMPLEMENTATION_LINKED_PHYSICAL_ENTRY_OPEN"
     },
     {
       "accepted_candidate_sha256": "635fd890a8d1071560d3cb56c9c663425f7c988119ce098dedad6bf6554f973e",
