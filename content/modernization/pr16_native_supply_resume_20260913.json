@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "field初期化の未読停止・実callbackの待機/消去/部分書込・state3→4を540条件で結合。callback pointerは明示初期条件、tick間RAM書換0。候補復元/native0。",
+    "current_stop": "heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "state0の最初の未読0804B85D（heap/save reset）から限定し、実BG供給030008D0・InitWindows・font pointer登録へ結合する。default callback0807D695とfield2境界080F77E9/0807E7A5は別の未解決ownerとして保持。今回540条件/旧1037+786条件/採取済byte/BP/nativeは単独再実行しない。Ring通常story取得/装備/保存、policy/Circus/P08は未受入。",
+    "next_step": "保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -407,7 +407,8 @@
     "080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。",
     "実wait全u8/連続3tick・field1/4とstate0/2/3停止境界は保存原本を再利用。待機解除byteのhost書込0だがbusy=0/非0は明示初期条件。通常message表示/取得を受入にしない。次は08055B71/08055EAD/080555F1の未読calleeだけ。旧1037条件/今回786条件/BP/native単独再実行禁止。",
     "field初期化3calleeとwindow/printer may-call接続の保存byteを再利用。call後のfallthroughはcallee帰還を仮定する静的到達で通常初期化実行ではない。旧wait786/script1037/text/bootstrap/BP/nativeを単独再実行しない。",
-    "flash全u8、field callbackの優先順位/false待機/true消去/拒否時部分書込、state3→4連続RAM、初期化資源停止の540条件は原本を再利用。callbackに渡した保存getterは合成初期条件で通常登録の証拠ではない。次はheap reset0804B85DとBG供給/default callbackの未解決owner。旧byte/1037+786+540条件/BP/native単独再実行禁止。"
+    "flash全u8、field callbackの優先順位/false待機/true消去/拒否時部分書込、state3→4連続RAM、初期化資源停止の540条件は原本を再利用。callbackに渡した保存getterは合成初期条件で通常登録の証拠ではない。次はheap reset0804B85DとBG供給/default callbackの未解決owner。旧byte/1037+786+540条件/BP/native単独再実行禁止。",
+    "heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -480,13 +481,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "state0の最初の未読0804B85D（heap/save reset）から限定し、実BG供給030008D0・InitWindows・font pointer登録へ結合する。default callback0807D695とfield2境界080F77E9/0807E7A5は別の未解決ownerとして保持。今回540条件/旧1037+786条件/採取済byte/BP/nativeは単独再実行しない。Ring通常story取得/装備/保存、policy/Circus/P08は未受入。",
+    "goal_ja": "保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_story_initializer_contracts.json",
-      "scripts/pr16_ring_story_initializer_contracts.py",
-      "content/modernization/pr16_ring_story_initializer_frontier.json"
+      "content/modernization/pr16_ring_story_resources_frontier.json",
+      "scripts/pr16_ring_story_resources_frontier.py",
+      "content/modernization/pr16_ring_story_initializer_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -495,9 +496,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "44066493f1a75e3fb0acabb1cc1aa1fecaeddb82",
+  "observed_head": "db6a249d19f0fcb60586721477d1e4d2e4881148",
   "observed_head_checks": {
-    "reason_ja": "先行run35321072525の原結論と保存証拠、BP run34946969126成功を照合。今回run35322265804は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35322265804の原結論と保存証拠、BP run34946969126成功を照合。今回run35328554870は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -658,9 +659,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "field初期化の未読停止・実callbackの待機/消去/部分書込・state3→4を540条件で結合。callback pointerは明示初期条件、tick間RAM書換0。候補復元/native0。"
+    "scope_ja": "heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3350,10 +3351,26 @@
     "content/modernization/pr16_ring_story_initializer_contracts.json": {
       "size": 388496,
       "sha256": "1ad4609d399836879f364e878eb45af0e7ade33ad672e93739d8c94072cb78b6"
+    },
+    "scripts/pr16_ring_story_resources_frontier.py": {
+      "size": 9747,
+      "sha256": "cf52b84636b4191417614cf6fa1e74493297aae35b8b94ce1aeba84352989fdc"
+    },
+    "tests/test_pr16_ring_story_resources_frontier.py": {
+      "size": 5672,
+      "sha256": "ad80f03f67cf1a7b960b2e63406391a65698b709330b6a9bbd5ecd0dc75e44a3"
+    },
+    ".github/workflows/pr16-ring-story-resources-frontier.yml": {
+      "size": 1748,
+      "sha256": "4011100bc59eeea10d99eff1bee976cd41f01b6e43060e7599ecb9e24e500826"
+    },
+    "content/modernization/pr16_ring_story_resources_frontier.json": {
+      "size": 249558,
+      "sha256": "20c16c20540822ff111241ecd9cf4cedd897dc8256b28045a7bf4b7902e16a68"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "field初期化の未読停止・実callbackの待機/消去/部分書込・state3→4を540条件で結合。callback pointerは明示初期条件、tick間RAM書換0。候補復元/native0。",
+  "source_change_review_ja": "heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3775,9 +3792,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_story_initializer_contracts.json",
-    "source_head": "44066493f1a75e3fb0acabb1cc1aa1fecaeddb82",
-    "run_id": 35322265804
+    "path": "content/modernization/pr16_ring_story_resources_frontier.json",
+    "source_head": "db6a249d19f0fcb60586721477d1e4d2e4881148",
+    "run_id": 35328554870
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

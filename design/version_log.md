@@ -4496,3 +4496,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功run35321072525のhash固定exportと保存candidate命令のみ。外部source追加/候補復元/ROM変更/native0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: state0の最初の未読0804B85D（heap/save reset）から限定し、実BG供給030008D0・InitWindows・font pointer登録へ結合する。default callback0807D695とfield2境界080F77E9/0807E7A5は別の未解決ownerとして保持。今回540条件/旧1037+786条件/採取済byte/BP/nativeは単独再実行しない。Ring通常story取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T09:16:28.062967+00:00 — PR-P08-7-RING-STORY-RESOURCES-FRONTIER
+- Timestamp: 2026-09-18T09:16:28.062967+00:00
+- Task: PR-P08-7-RING-STORY-RESOURCES-FRONTIER / heap/save resetとBG・画面初期化の未読依存を重複なしで固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-resources-frontier
+- Summary: heap/save reset・BG・画面資源の12入口から未読870命令/2146byteと実template2表を保存。既読再解読0、同candidate復元1/native0。
+- Files changed: scripts/pr16_ring_story_resources_frontier.py, tests/test_pr16_ring_story_resources_frontier.py, .github/workflows/pr16-ring-story-resources-frontier.yml, content/modernization/pr16_ring_story_resources_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定33 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=db6a249d19f0fcb60586721477d1e4d2e4881148; run=35328554870（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 初回run35328047608は復元前manifestのsource_bindings不足でfailure、候補復元/native0。その原結論を保持して契約を修正。成功run35322265804のSHA固定exportを再利用。同一candidate復元1回、保存命令再解読0。外部source追加/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存heap/save resetとBG/画面資源を条件付きwrite/return契約へ結合し、030008D0供給→InitWindows/font登録の最初の未証明依存を進める。default0807D695とfield2の080F77E9/0807E7A5は別owner。今回byte、旧540/1037/786条件、BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
