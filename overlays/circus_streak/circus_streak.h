@@ -35,7 +35,9 @@ typedef struct CircusStreakOwner {
     uint8_t phase;
     uint8_t format;
     uint8_t last_outcome;
-    uint8_t reserved[25];
+    uint8_t reserved0;
+    uint32_t save_identity;
+    uint8_t reserved[20];
 } CircusStreakOwner;
 
 _Static_assert(sizeof(CircusStreakOwner) == CIRCUS_STREAK_SIZE, "Circus owner ABI");
@@ -49,6 +51,8 @@ typedef int (*CircusStreakPersist)(const CircusStreakOwner *, void *);
 uint32_t CircusStreakCrc(const CircusStreakOwner *owner);
 int CircusStreakValid(const CircusStreakOwner *owner);
 int CircusStreakInitialize(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx);
+int CircusStreakInitializeFor(CircusStreakOwner *owner, uint32_t save_identity,
+                             CircusStreakPersist persist, void *ctx);
 int CircusStreakBegin(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx);
 int CircusStreakArm(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx);
 int CircusStreakSettle(CircusStreakOwner *owner, uint32_t battle, uint8_t outcome,

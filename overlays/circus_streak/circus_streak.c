@@ -28,7 +28,7 @@ int CircusStreakValid(const CircusStreakOwner *owner)
     if (owner == NULL || owner->magic != CIRCUS_STREAK_MAGIC
         || owner->magic_inverse != (uint32_t)~CIRCUS_STREAK_MAGIC
         || owner->version != CIRCUS_STREAK_VERSION || owner->size != CIRCUS_STREAK_SIZE
-        || owner->generation == 0u || owner->format != 0u
+        || owner->generation == 0u || owner->format != 0u || owner->reserved0 != 0u
         || owner->phase > CIRCUS_ARMED || owner->last_outcome > CIRCUS_ABORT
         || owner->current > owner->best || owner->crc32 != CircusStreakCrc(owner))
         return 0;
@@ -66,7 +66,8 @@ static int commit(CircusStreakOwner *owner, CircusStreakOwner *next,
     return CIRCUS_OK;
 }
 
-int CircusStreakInitialize(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx)
+int CircusStreakInitializeFor(CircusStreakOwner *owner, uint32_t save_identity,
+                             CircusStreakPersist persist, void *ctx)
 {
     CircusStreakOwner next;
     size_t i;
@@ -88,7 +89,13 @@ int CircusStreakInitialize(CircusStreakOwner *owner, CircusStreakPersist persist
     next.magic_inverse = ~CIRCUS_STREAK_MAGIC;
     next.version = CIRCUS_STREAK_VERSION;
     next.size = CIRCUS_STREAK_SIZE;
+    next.save_identity = save_identity;
     return commit(owner, &next, persist, ctx);
+}
+
+int CircusStreakInitialize(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx)
+{
+    return CircusStreakInitializeFor(owner, 0u, persist, ctx);
 }
 
 int CircusStreakBegin(CircusStreakOwner *owner, CircusStreakPersist persist, void *ctx)

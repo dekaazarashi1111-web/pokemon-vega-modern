@@ -90,7 +90,7 @@ int main(int argc, char **argv)
         owner = good; owner.version = 2; owner.crc32 = CircusStreakCrc(&owner);
         assert(!CircusStreakValid(&owner));
         CALL(CircusStreakBegin(&owner, persist, &store), CIRCUS_INVALID);
-        owner = good; owner.reserved[24] = 1; owner.crc32 = CircusStreakCrc(&owner);
+        owner = good; owner.reserved[19] = 1; owner.crc32 = CircusStreakCrc(&owner);
         assert(!CircusStreakValid(&owner));
         owner = good; owner.current = 1; owner.crc32 = CircusStreakCrc(&owner);
         assert(!CircusStreakValid(&owner));
