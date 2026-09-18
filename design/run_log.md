@@ -7407,3 +7407,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本記録を同branchへ非force commit。自己SHAはremote ref/receiptに記録。
 - Network: GitHub connector/Actions原本のみ。記録工程はROM生成/private復元/native起動なし。ROM/save/credentialを追加しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
 - Next: 保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。
+
+
+## 2026-09-18T18:30:00.366928+00:00 — USER-20260919-CIRCUS-RETENTION
+- Timestamp: 2026-09-18T18:30:00.366928+00:00
+- Task: USER-20260919-CIRCUS-RETENTION
+- Status: DONE / Circus限定保持実装と初戦選択3体300bytesのnative受入。後続戦/固有連勝/抑制は未完。
+- Version: pr16-circus-retention-first-battle
+- Summary: Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。
+- Files changed: scripts/pr16_circus_retention.py, overlays/circus_retention/circus_retention.c, tests/test_pr16_circus_retention.py, .github/workflows/pr16-circus-retention.yml, scripts/pr16_circus_retention_native.py, scripts/pr16_circus_checkpoint.py, scripts/pr16_circus_retention_record.py, tests/test_pr16_circus_retention_record.py, .github/workflows/pr16-circus-retention-record.yml, content/modernization/pr16_circus_retention_checkpoint.json, evidence/pr16_circus_retention/original.stdout.txt, evidence/pr16_circus_retention/original.stderr.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 保持13契約PASS（145152境界組合せを含む）、独立ARM link2/patch2、7host-write guard、native1process/1core/20events/3128f。原本画像13枚を画像確認。 原本ZIP/member/source/process/stdout/stderrを照合。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_retention_checkpoint.json; run35379705280/job105712711736; tested HEAD=9a100b06df2f83510c1196bd71dd4fb7afe25a9a; artifact10561218387 SHA256=96c03199f13afb5b8962df044875b58f843af37e25e04833f8a6bc41601821d5。
+- Boundary: 選択300bytesの受入は初戦のみ。後続戦の3script対応はhost/static確認まで。旧候補診断・受入済み単体ケース再実行0。旧Factory/正式BP/Ring/P03/P06/P07と履歴checkpointを不変。 physical1/P08 gates2/release_ready=falseを維持。
+- Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
+- Next: 初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。

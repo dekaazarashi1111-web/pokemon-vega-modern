@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。
+Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。
 
-**次: 保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。**
+**次: 初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6a2133b1f777b303ed8d3f175fc81333449c6727`。
-個体追跡の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入は維持。
+証拠のsource HEAD: `f652c99c101924f737353835a9aba6a3465c6d6c`。
+Circus限定工程の記録source HEAD。実native tested HEADは工程checkpointに固定。正式BP受入HEADは維持。
 
 ## 最短の再開手順
 
@@ -25,11 +25,13 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_identity_checkpoint.json`
-- `scripts/pr16_circus_identity.py`
-- `overlays/facility_party_retention/facility_party_retention.c`
-- `scripts/pr16_bp_party_retention_successor.py`
-- `scripts/pr16_circus_entry.py`
+- `content/modernization/pr16_circus_retention_checkpoint.json`
+- `scripts/pr16_circus_retention.py`
+- `scripts/pr16_circus_retention_native.py`
+- `overlays/facility_runtime/facility_runtime.c`
+- `overlays/save_migration/save_migration.c`
+- `overlays/save_migration/save_migration.h`
+- `scripts/build_battle_core.py`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -62,10 +64,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-個体追跡は保存済み→Circus限定保持修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。
+初戦選択個体保持は保存→Circus固有連勝の正規更新/永続化と継続戦個体保持→30連勝来歴から特性抑制→影響範囲P08移送→release判定。
 
 ## 再実行・過大主張の禁止
 
+- 3554dc42初戦保持run35379705280は300bytes完全一致/20events/3128framesで受入。旧99cc置換診断run35378203102とともに再実行せず保持証拠を再利用。3script対応のうち後続戦はhost/static確認までで、継続戦の新しい通し検証に含める。
 - run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。
 - run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。
 - run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。
@@ -255,6 +258,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-個体追跡run35378203102/job105707865018は成功。開始HEAD通常CI2件はaction_required、記録runはcommit時実行中。全CI green/全受付受入とは主張しない。
+保持修復run35379705280/job105712711736は全工程成功。 記録runはcommit時実行中。開始HEAD通常CI2件はaction_required。全CI green/全受付受入とは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

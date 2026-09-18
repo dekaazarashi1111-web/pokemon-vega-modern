@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。",
+    "current_stop": "Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "next_step": "初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -125,6 +125,19 @@
     "run_id": 35378203102,
     "status": "CIRCUS_RENTALS_REPLACED_AT_BATTLE_INIT",
     "tested_head": "3b967ba55ff6914263787a2273b7346faecf3792"
+  },
+  "circus_rental_retention": {
+    "engineering_candidate": {
+      "sha256": "3554dc42923bf426332f25c5776d4e213ab0d89a9d2ad6d3861be8d93b9e2cc1",
+      "size": 33554432
+    },
+    "first_battle_rental_identity_verified": true,
+    "later_battle_rental_identity_verified": false,
+    "path": "content/modernization/pr16_circus_retention_checkpoint.json",
+    "physical_admission_accepted": false,
+    "run_id": 35379705280,
+    "status": "CIRCUS_FIRST_BATTLE_RETENTION_ACCEPTED_STREAK_OPEN",
+    "tested_head": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a"
   },
   "circus_thumb_implementation": {
     "engineering_candidate": {
@@ -322,6 +335,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "3554dc42初戦保持run35379705280は300bytes完全一致/20events/3128framesで受入。旧99cc置換診断run35378203102とともに再実行せず保持証拠を再利用。3script対応のうち後続戦はhost/static確認までで、継続戦の新しい通し検証に含める。",
     "run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。",
     "run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。",
     "run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。",
@@ -563,15 +577,17 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存した個体追跡を再実行せず、既存Factory predicateの返値を非該当時に保持するCircus専用wrapperを実装する。固定候補99cc0948のretention trampoline literalだけを検証付きで新wrapperへ接続し、3つのCircus launch continuation/marker/pending/facility番号で限定する。新候補で選択個体の実戦保持を検証。その後、Circus固有streakの正規勝敗更新・保存復帰・30連勝以上の来歴と正規sp072特性抑制へ進む。Factory連勝の代用、効果/施設番号/連勝/party/PC/LRのhost注入は禁止。無変更の初戦1ターン/取消保存/Factory入口/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "goal_ja": "初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_SCOPED_RETENTION_REPAIR",
+    "id": "CIRCUS_STREAK_SAVE_AND_SUPPRESSION",
     "read_paths": [
-      "content/modernization/pr16_circus_identity_checkpoint.json",
-      "scripts/pr16_circus_identity.py",
-      "overlays/facility_party_retention/facility_party_retention.c",
-      "scripts/pr16_bp_party_retention_successor.py",
-      "scripts/pr16_circus_entry.py",
+      "content/modernization/pr16_circus_retention_checkpoint.json",
+      "scripts/pr16_circus_retention.py",
+      "scripts/pr16_circus_retention_native.py",
+      "overlays/facility_runtime/facility_runtime.c",
+      "overlays/save_migration/save_migration.c",
+      "overlays/save_migration/save_migration.h",
+      "scripts/build_battle_core.py",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -582,39 +598,8 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "6a2133b1f777b303ed8d3f175fc81333449c6727",
+  "observed_head": "f652c99c101924f737353835a9aba6a3465c6d6c",
   "observed_head_checks": {
-    "circus_identity": {
-      "artifact": {
-        "digest": "sha256:085f33b1f5510a6281e0d85b541089d0d84a90df99e080955586c5877144f945",
-        "expired": false,
-        "id": 10561465516,
-        "name": "pr16-circus-identity",
-        "size_in_bytes": 376771
-      },
-      "job": {
-        "conclusion": "success",
-        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
-        "id": 105707865018,
-        "run_id": 35378203102,
-        "status": "completed"
-      },
-      "required_steps": [
-        "個体継承契約20件のみ検証",
-        "受入済み候補を同SHAへ再構成しnativeは再実行しない",
-        "個体bytesを限定観測し初戦ターン前で停止",
-        "ROM save credentialを除外して限定原本と修復用sourceを保持",
-        "Run actions/upload-artifact@v4"
-      ],
-      "run": {
-        "conclusion": "success",
-        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
-        "id": 35378203102,
-        "path": ".github/workflows/pr16-circus-identity.yml",
-        "run_attempt": 1,
-        "status": "completed"
-      }
-    },
     "initial_head_checks": {
       "head": "d3dfddc4b15d7dad9b0bd6733f865ed8e8cb16bb",
       "runs": [
@@ -628,152 +613,183 @@
         }
       ]
     },
-    "reason_ja": "個体追跡run35378203102/job105707865018は成功。開始HEAD通常CI2件はaction_required、記録runはcommit時実行中。全CI green/全受付受入とは主張しない。",
+    "reason_ja": "保持修復run35379705280/job105712711736は全工程成功。 記録runはcommit時実行中。開始HEAD通常CI2件はaction_required。全CI green/全受付受入とは主張しない。",
     "recent": [
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379150938,
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380507795,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379150940,
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380507814,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379146339,
-        "path": ".github/workflows/pr16-circus-identity-record.yml",
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380501524,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379146259,
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380501522,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379146367,
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380501530,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "6a2133b1f777b303ed8d3f175fc81333449c6727",
-        "id": 35379146224,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
+        "id": 35380501598,
+        "path": ".github/workflows/pr16-circus-retention-record.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
-        "id": 35379110545,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380466287,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "cancelled",
-        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
-        "id": 35379110296,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380466243,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
         "conclusion": null,
-        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
-        "id": 35379105325,
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "success",
-        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
-        "id": 35379105291,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "cancelled",
-        "head_sha": "56f414c62c4ca02d598394daa778503a1d807de0",
-        "id": 35379105311,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "cancelled",
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379083810,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379083829,
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "success",
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379079220,
-        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "cancelled",
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379079146,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379079093,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380462401,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "b95938bcdf3d4a2f88379a7e91e035d81f9b641e",
-        "id": 35379078969,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380462299,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "success",
-        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
-        "id": 35378208621,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380462279,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
-        "id": 35378208592,
+        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
+        "id": 35380462316,
+        "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379710704,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379710855,
         "path": ".github/workflows/ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "3b967ba55ff6914263787a2273b7346faecf3792",
-        "id": 35378203140,
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379705182,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379705189,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379705202,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379705280,
+        "path": ".github/workflows/pr16-circus-retention.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4cfc7f38c0e638816a83d5c1d669cc2506bf863e",
+        "id": 35379636874,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "4cfc7f38c0e638816a83d5c1d669cc2506bf863e",
+        "id": 35379636858,
+        "path": ".github/workflows/ci.yml",
         "status": "completed"
       }
     ],
-    "scope_head": "6a2133b1f777b303ed8d3f175fc81333449c6727"
+    "scope_head": "f652c99c101924f737353835a9aba6a3465c6d6c",
+    "scoped_native": {
+      "artifact": {
+        "digest": "sha256:96c03199f13afb5b8962df044875b58f843af37e25e04833f8a6bc41601821d5",
+        "expired": false,
+        "id": 10561218387,
+        "name": "pr16-circus-retention",
+        "size_in_bytes": 486143
+      },
+      "job": {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 105712711736,
+        "run_id": 35379705280,
+        "status": "completed"
+      },
+      "required_steps": [
+        "保持限定13契約と145152条件を検証",
+        "旧受入は再実行せず固定親と保持修復候補を独立構築",
+        "新候補の選択300bytes保持だけを実戦開始まで検証",
+        "ROM save credentialを除外して保持修復原本を保存",
+        "Run actions/upload-artifact@v4"
+      ],
+      "run": {
+        "conclusion": "success",
+        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
+        "id": 35379705280,
+        "path": ".github/workflows/pr16-circus-retention.yml",
+        "run_attempt": 1,
+        "status": "completed"
+      }
+    }
   },
-  "observed_head_semantics": "個体追跡の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入は維持。",
+  "observed_head_semantics": "Circus限定工程の記録source HEAD。実native tested HEADは工程checkpointに固定。正式BP受入HEADは維持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -901,7 +917,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "個体追跡は保存済み→Circus限定保持修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。",
+  "remaining_sequence_ja": "初戦選択個体保持は保存→Circus固有連勝の正規更新/永続化と継続戦個体保持→30連勝来歴から特性抑制→影響範囲P08移送→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1438,9 +1454,9 @@
   "schema_version": 2,
   "session_execution_summary": {
     "accepted_standalone_replays": 0,
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 2,
     "record_emulator_processes": 0,
-    "scope_ja": "未確認だった個体継承だけ1件。初戦ターン前3336fで停止。"
+    "scope_ja": "このセッションは未確認の個体追跡1件と修復候補の初戦保持1件。旧初戦ターン/受入済み単体ケースは再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1546,6 +1562,14 @@
     ".github/workflows/pr16-circus-record.yml": {
       "sha256": "d67f25c7b736165ade8e4c3fbb919e07927213872e93a0b2ae1eb56039d548a3",
       "size": 2534
+    },
+    ".github/workflows/pr16-circus-retention-record.yml": {
+      "sha256": "cd7b5af8eb82d09f81184d6ab000d0dd7be663645820ded27e1d2db9aef89767",
+      "size": 2509
+    },
+    ".github/workflows/pr16-circus-retention.yml": {
+      "sha256": "383092d3ba24bd9968f7081c25129db9e24e978e6f01cebab11259b9ad4cf86a",
+      "size": 7275
     },
     ".github/workflows/pr16-circus-source.yml": {
       "sha256": "e5e7c90dd6233392ea29a9d0e58b7f3f78afa3693c5773c70c176a147a4b23a5",
@@ -2275,6 +2299,10 @@
       "sha256": "52691ec1da4ac77680cae0385bab5f2343dfad3a92a6faf1a4f9bd55bc503476",
       "size": 3315
     },
+    "content/modernization/pr16_circus_retention_checkpoint.json": {
+      "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
+      "size": 195272
+    },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
       "size": 66827
@@ -2859,6 +2887,14 @@
       "sha256": "07228ac6c3b147907e24fbd1d4139a7181c835f6574b4f79940223b6ca384ea6",
       "size": 299
     },
+    "evidence/pr16_circus_retention/original.stderr.txt": {
+      "sha256": "87d17efefdc71ef57f74909d5f0d233b7a056805e3980577d5fdba074d798bcd",
+      "size": 64287
+    },
+    "evidence/pr16_circus_retention/original.stdout.txt": {
+      "sha256": "79d8bab547946dec9d1e32d8ca7ab825da92cff78e49cabdc6f7a9ff57736e1a",
+      "size": 299
+    },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
       "size": 4907
@@ -2874,6 +2910,10 @@
     "overlays/circus_admission/circus_script.c": {
       "sha256": "82c94c6428df7d8625f932a160073dc9635d410f7ae433184853da055dd8cdcd",
       "size": 488
+    },
+    "overlays/circus_retention/circus_retention.c": {
+      "sha256": "b25defba1c3acaafd92a07a67a69740e90a2a67fd50a1b5031dad05a9e9f9505",
+      "size": 2188
     },
     "overlays/event_design/event_design.c": {
       "sha256": "0a63e6ed04c9cb9973f6bfd5ecc659d8ff53be7bcd09badd45031da9ff1c81e7",
@@ -3055,6 +3095,10 @@
       "sha256": "282238a89b834e8c37c3e920e7a5e9c3fa025db88de9fa703dd533af76cb4386",
       "size": 25371
     },
+    "scripts/pr16_circus_checkpoint.py": {
+      "sha256": "b0b1f994327365e9a80c998bda942f9f158eeb00e747bd55aeb5a8f030afac2f",
+      "size": 8785
+    },
     "scripts/pr16_circus_entry.py": {
       "sha256": "a026633b218686fa8c440f6b9d8954f8eb29f1cae39ae17ee9f65be19105a79f",
       "size": 15402
@@ -3086,6 +3130,18 @@
     "scripts/pr16_circus_record.py": {
       "sha256": "386887d547ec1a28654c033cbb56ca80db5d81032cd49f1d7a8d66ae92ebf5dc",
       "size": 23713
+    },
+    "scripts/pr16_circus_retention.py": {
+      "sha256": "a53bce1090845a2c669c34f41e21179270a5551c58984bf00459b8cc896ed3b6",
+      "size": 9674
+    },
+    "scripts/pr16_circus_retention_native.py": {
+      "sha256": "3eb366a6df7140fece72afb36abacf513c00e7c1b2cf598ce1245eece0c08435",
+      "size": 5595
+    },
+    "scripts/pr16_circus_retention_record.py": {
+      "sha256": "bd192d9921371b89f898f3a24ea2cfbaf627077fe6e2ad8077a43b879e8dcd7b",
+      "size": 12169
     },
     "scripts/pr16_circus_source_probe.py": {
       "sha256": "fe1306aa05c3e0c8f5af1763e84afbac7e07d5c1d0d75b52720507a48ba5e4ef",
@@ -3831,6 +3887,14 @@
       "sha256": "6e5703c1ede22dcc7d0ff43c2ab8d1a45bacd06728bfb2f3ebcea46e870ce120",
       "size": 8609
     },
+    "tests/test_pr16_circus_retention.py": {
+      "sha256": "7b61368ed4f28a28cc8ab02e0525ac5e9f4676a8e25375e77f75e5e799923906",
+      "size": 4844
+    },
+    "tests/test_pr16_circus_retention_record.py": {
+      "sha256": "49a410acf48b48c88fbaa5c7df4de029dc2519c6c31139a0611f8bab7d827d99",
+      "size": 3599
+    },
     "tests/test_pr16_circus_thumb.py": {
       "sha256": "ca28f4f61babf02eb2ca95b8c5ff3e7ea150c15685dde2c840d6cc9ee136cd36",
       "size": 3515
@@ -4445,7 +4509,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "個体追跡run35378203102で原因を限定。初回確定1311f→第2確認1782fの選択3体300bytesは完全一致。正規sp072→戦闘初期化の1936fに全3枠が0化され、3336fの実戦では別PID/speciesへ置換された。scriptはCircus初戦continuation 0x09FF4D16。既存retentionはFactory継続2scriptのみでCircusを除外している。新規1process/1core、7書込barrier、35限定event、警告0。初戦ターン/取消保存/Factory入口は再実行0。診断完了であり個体保持・固有連勝・30連勝抑制は未受入。",
+  "source_change_review_ja": "Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
