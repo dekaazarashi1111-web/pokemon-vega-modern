@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存producerをstate0→1→2の同一RAMへ接続し、script即値/fallback・3font/3速度・task既存link・config不正・queue空き0..4/127周回の32条件でbusy解除/task削除まで検証。phase間host書換0、候補復元/新規byte/native再実行0。終端FF合成text/default行の限定証明。
+producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。
 
-**次: 通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。**
+**次: 保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ad2f9ee67708d724eadb60da10f90ae34e6fcc51`。
+証拠のsource HEAD: `66cbb6a47e4a4e50ba79b3068164331b5b96de25`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_text_lifecycle_contracts.json`
+- `scripts/pr16_ring_text_lifecycle_contracts.py`
 - `content/modernization/pr16_ring_message_lifecycle_contracts.json`
-- `scripts/pr16_ring_message_lifecycle_contracts.py`
-- `content/modernization/pr16_ring_state01_handoff_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -205,6 +205,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - state0のoption全256値・default行/実palette・独立write oracleによるstate0→1を保存原本から再利用。state1→2は先行受入の継承のみ。次は通常story/live pointer初期化・task入場と保存callerの接続。option index0..31の算術は全32行有効証明ではない。BP/旧BIOS/native/同一候補再構築を単独再実行しない。
 - state0→1→2の同一RAM/queue予約引継ぎ21条件とstate2の明示config不足停止を保存原本から再利用。旧state0/1単独・option263・paletteコピー99・BP/native再実行禁止。次は保存producerのconfig/text pool/task初期化を今回RAMに衝突なく接続する。hostからstate/busyを書き換えて終了させない。
 - producer→script即値/fallback→state0/1/2→busy解除/task削除の同一RAM32条件を保存原本から再利用。終端のみの合成text/default行/明示初期RAM/HLE条件付きであり通常story取得ではない。旧単独producer/state/poll・BP/nativeを再実行せず、通常storyのpointer初期化・非空text・script実到達との接続だけを進める。
+- producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -234,6 +235,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35311393786の原結論と保存証拠、BP run34946969126成功を照合。今回run35312550354は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35312550354の原結論と保存証拠、BP run34946969126成功を照合。今回run35313281916は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

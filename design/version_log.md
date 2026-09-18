@@ -4352,3 +4352,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsで先行成功・source hashを照合。保存命令/表/配色のみ再利用。候補復元0・新規byte0・外部資料/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 通常storyのpointer初期化とscript実到達・非空textを保存lifecycleへ接続する。今回32条件は再利用し、同一条件のproducer/state0/1/2/pollやBP/nativeは再実行しない。Ring所有bit・inventory・party・PC/LRのhost設定で正規取得を代用しない。Ring/policy/Circus/最終製品は未受入。
+
+
+## 2026-09-18T06:04:09.066342+00:00 — PR-P08-7-RING-TEXT-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T06:04:09.066342+00:00
+- Task: PR-P08-7-RING-TEXT-LIFECYCLE-CONTRACTS / producer/state012から非空文字列の描画・終了まで同一RAMを検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-text-lifecycle-contracts
+- Summary: producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。
+- Files changed: scripts/pr16_ring_text_lifecycle_contracts.py, tests/test_pr16_ring_text_lifecycle_contracts.py, .github/workflows/pr16-ring-text-lifecycle-contracts.yml, content/modernization/pr16_ring_text_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定35 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=66cbb6a47e4a4e50ba79b3068164331b5b96de25; run=35313281916（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの先行run/source hashを照合。保存4字形/spaceと既存命令だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。
