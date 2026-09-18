@@ -12,7 +12,7 @@ class NativeOracleContracts(unittest.TestCase):
         row.update(personality=99,enemy_species=10,enemy_level=6,move=33,pp_before=10,pp_after=9,
             outcome=4,walking_steps=13,save_before=2,save_after=4,bp_before=8,bp_after=8,
             total_frames=130,witness=trace)
-        stderr=f'RING_ENCOUNTER species=10 level=6 flags=00000000 mode={n.CASES[name][0]} used=0 frame=80\n'.encode()
+        stderr=f'RING_ENCOUNTER species=10 level=6 flags=00000004 mode={n.CASES[name][0]} used=0 frame=80\n'.encode()
         audit={'paths':{'grass':[[11,39]]*13},'table':{'slots':[{'species':10,'min':5,'max':7}]}}
         return row,stderr,name,audit
 
@@ -53,7 +53,7 @@ class NativeOracleContracts(unittest.TestCase):
 
     def test_original_event_must_be_unique_normal_and_warning_free(self):
         args=list(self.fixture());original=args[1]
-        for data in (b'',original*2,original.replace(b'00000000',b'00000008'),original+b'mGBA[warning]\n',original.replace(b'mode=1',b'mode=0')):
+        for data in (b'',original*2,original.replace(b'00000004',b'00000008'),original+b'mGBA[warning]\n',original.replace(b'mode=1',b'mode=0')):
             args[1]=data
             with self.assertRaises(ValueError):n.validate(*args)
 
@@ -107,5 +107,18 @@ class CurrentRouteContracts(unittest.TestCase):
         self.assertNotIn('gear.oracle(',text)
         self.assertNotIn('probe.SHA=',text)
         self.assertIn('audit=current_route(raw,parent)',text)
+
+class BattleFlagContracts(unittest.TestCase):
+    def test_active_master_is_not_link_and_supports_pinned_integer_macros(self):
+        for master in ('BATTLE_TYPE_IS_MASTER','BATTLE_TYPE_MASTER'):
+            for value in ('0x00000004','(1 << 2)','4U'):
+                row=n.flag_contract('#define '+master+' '+value+'\n#define BATTLE_TYPE_LINK (1 << 1)\n')
+                self.assertEqual((row['master'],row['link']),(4,2))
+
+    def test_unknown_link_bit_conflicts_and_macro_calls_fail_closed(self):
+        for text in ('', '#define BATTLE_TYPE_MASTER 4\n#define BATTLE_TYPE_LINK 4',
+                     '#define BATTLE_TYPE_MASTER function()\n#define BATTLE_TYPE_LINK 2',
+                     '#define BATTLE_TYPE_MASTER 4\n#define BATTLE_TYPE_MASTER 8\n#define BATTLE_TYPE_LINK 2'):
+            with self.assertRaises(ValueError):n.flag_contract(text)
 
 if __name__=='__main__':unittest.main()

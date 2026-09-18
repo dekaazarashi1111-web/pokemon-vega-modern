@@ -72,7 +72,7 @@ def validate(row,stderr,name,audit):
     events=EVENT.findall(stderr);need(len(events)==1,'Ring original encounter missing or duplicated')
     sp,level,flags,mode,used,frame=events[0]
     observed=(int(sp),int(level),int(flags,16),int(mode),int(used),int(frame))
-    need(observed==(row['enemy_species'],row['enemy_level'],0,CASES[name][0],0,trace['encounter']),
+    need(observed==(row['enemy_species'],row['enemy_level'],4,CASES[name][0],0,trace['encounter']),
          'Ring ordinary encounter/policy original differs')
     need(any(s['species']==observed[0] and s['min']<=observed[1]<=s['max'] for s in audit['table']['slots']),
          'Ring enemy does not belong to audited native grass')
@@ -95,6 +95,34 @@ def grass_owner(catalogue):
         need(all(type(slot[k]) is int for k in ('species','min','max')) and 1<=slot['species']<2048
              and 1<=slot['min']<=slot['max']<=100,'current Ring grass slot invalid')
     return owner
+
+
+def flag_contract(text):
+    values={};lines={}
+    for line in text.splitlines():
+        match=re.match(r'^\s*#define\s+(BATTLE_TYPE_(?:IS_MASTER|MASTER|LINK))\s+(.+)$',line)
+        if not match:continue
+        name,value=match.groups();value=re.split(r'//|/\*',value,maxsplit=1)[0].strip()
+        number=re.fullmatch(r'\(?\s*(0[xX][0-9a-fA-F]+|[0-9]+)[uUlL]*\s*(?:<<\s*([0-9]+))?\s*\)?',value)
+        need(number is not None,'battle flag macro is not a bounded integer expression')
+        value=int(number[1],0) << (int(number[2]) if number[2] else 0)
+        need(name not in values or values[name]==value,'conflicting battle flag macro')
+        values[name]=value;lines[name]=line
+    masters=[values[name] for name in ('BATTLE_TYPE_IS_MASTER','BATTLE_TYPE_MASTER') if name in values]
+    need(masters and set(masters)=={4} and values.get('BATTLE_TYPE_LINK')==2,'master/link flag ABI differs')
+    return dict(master=4,link=2,definitions=lines,
+        stage_ja='自然遭遇の既存action controller入力待ち。開始時flagsとは別にmaster bitが立つ。')
+
+
+def pinned_flags():
+    candidates=[ROOT/'vendor/upstream/CFRU-JP/include/constants/battle.h',
+                ROOT/'vendor/upstream/CFRU-JP/include/battle.h']
+    candidates=[p for p in candidates if p.is_file()]
+    need(candidates,'pinned battle header missing')
+    texts=[p.read_text(encoding='utf-8') for p in candidates]
+    result=flag_contract('\n'.join(texts))
+    result['headers']={p.relative_to(ROOT).as_posix():identity(p.read_bytes()) for p in candidates}
+    return result
 
 
 def current_route(raw,parent):
@@ -133,11 +161,12 @@ def run(names=None):
     for name,binding in prior['native']['sources'].items():
         need(identity((ROOT/name).read_bytes())==binding,'accepted shared gift owner changed: '+name)
     seed=ROOT/m.SEED;need(identity(seed.read_bytes())['sha256']==m.SEED_SHA,'Ring seed differs')
-    audit=current_route(raw,parent)
+    audit=current_route(raw,parent);audit['flag_contract']=pinned_flags()
     group,number=parent['map_key'];npc=parent['map']['npc'];front=parent['map']['front'];host=[group,number,npc['local_id'],npc['x'],npc['y']]
     need(host==[96,17,4,12,38] and front==[12,39],'Ring physical owner differs')
     header='/* 固定候補のNPCと歩行経路。Ring/NEXTのfixtureなし。 */\n#define RP_SHA "'+SHA+'"\n'
     for key,value in dict(RP_GROUP=group,RP_MAP=number,RP_LOCAL_ID=npc['local_id'],RP_X=front[0],RP_Y=front[1]).items():header+=f'#define {key} {value}U\n'
+    header+='#define RP_ORDINARY_ACTIVE_FLAGS '+str(audit['flag_contract']['master'])+'U\n'
     generated={'pr16_ring_policy_generated.h':header,'pr16_gear_route.h':gear.route_header(audit)}
     paths={SELF,SOURCE,build.SELF,build.SOURCE,build.HEADER,gift.SELF,gift.SOURCE,gift.HEADER,
            gear.SELF,gear.SOURCE,'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','overlays/cfru/integration.h','overlays/cfru/runtime.h',

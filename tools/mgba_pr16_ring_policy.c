@@ -85,7 +85,7 @@ int main(int argc,char**argv){
  a_require(n_action(c),"Ring real walking encounter absent");kt.encounter=b_frames;
  unsigned enemy=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE),level=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_SIZE+BATTLE_CORE_MON_LEVEL),flags=read32(c,ADDR_BATTLE_TYPE_FLAGS),mode=rp_mode(c),used=rp_used(c);
  fprintf(stderr,"RING_ENCOUNTER species=%u level=%u flags=%08x mode=%u used=%u frame=%u\n",enemy,level,flags,mode,used,kt.encounter);
- a_require(!flags && mode==r->grant && !used,"Ring cold-load ordinary policy or initial usage differs");
+ a_require(flags==RP_ORDINARY_ACTIVE_FLAGS && mode==r->grant && !used,"Ring cold-load ordinary policy or initial usage differs");
  a_require(!read16(c,ADDR_BATTLER_PARTY_INDEXES) && read16(c,ADDR_BATTLE_MONS)==v->species && read16(c,ADDR_BATTLE_MONS+0x2eU)==v->item && read16(c,ADDR_BATTLE_MONS+0x38U)==v->base_ability && read32(c,QOL_PLAYER_PARTY)==k_pid,"Ring natural battler identity/item/ability differs");g_shot("natural-equipped-battle");
  unsigned move=read16(c,ADDR_BATTLE_MONS+BATTLE_MON_MOVES_OFFSET),pp=read8(c,ADDR_BATTLE_MONS+BATTLE_MON_PP_OFFSET),after_pp=pp,observed_species=v->species,observed_ability=v->base_ability;
  n_cursor(c,0U);b_press(c,QOL_KEY_A,60U);a_require(read8(c,0x02022B24U)==0x14U && (read32(c,0x02023B28U)&1U),"Ring existing move UI absent");kt.move_menu=b_frames;
