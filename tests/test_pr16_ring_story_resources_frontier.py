@@ -53,4 +53,27 @@ class ResourceFrontierTests(unittest.TestCase):
     def test_28_scopes_disjoint(self):
         scopes=sorted(x.SCOPES);self.assertTrue(all(lo<hi and lo%2==hi%2==0 for lo,hi in scopes));self.assertTrue(all(a[1]<=b[0]for a,b in zip(scopes,scopes[1:])))
 
+    def test_29_preflight_binding_paths(self):
+        r=x.preflight(self.known,lambda p:p.encode());self.assertEqual(set(r['source_bindings']),set((x.SELF,x.TEST,x.WORKFLOW,x.PRIOR,*x.SOURCES)))
+        self.assertIn('.github/workflows/pr16-ring-callee-bytes.yml',r['source_bindings'])
+    def test_30_preflight_binding_identity(self):
+        r=x.preflight(self.known,lambda p:p.encode());self.assertTrue(all(v==x.s.identity(p.encode())for p,v in r['source_bindings'].items()))
+    def test_31_preflight_empty_bytes_rejected(self):
+        with self.assertRaises(ValueError):x.preflight(self.known,lambda p:b'')
+    def test_32_preflight_missing_source_rejected(self):
+        def missing(p):raise FileNotFoundError(p)
+        with self.assertRaises(FileNotFoundError):x.preflight(self.known,missing)
+    def test_33_preflight_restore_contract(self):
+        import json
+        import tempfile
+        import pr16_ring_flagset_continuation as saved
+        r=json.loads(x.s.stable(x.preflight(self.known,lambda p:p.encode())))
+        with tempfile.TemporaryDirectory()as tmp:
+            root=Path(tmp)
+            for name in r['source_bindings']:
+                p=root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(name.encode())
+            saved.bindings_fresh(root,r['source_bindings'])
+            (root/x.SELF).write_bytes(b'changed')
+            with self.assertRaises(ValueError):saved.bindings_fresh(root,r['source_bindings'])
+
 if __name__=='__main__':unittest.main()

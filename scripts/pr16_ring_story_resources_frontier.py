@@ -22,7 +22,7 @@ WORKFLOW='.github/workflows/pr16-ring-story-resources-frontier.yml'
 PRIOR=prior.REPORT
 REPORT='content/modernization/pr16_ring_story_resources_frontier.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=24
+MIN_TESTS=33
 EXTRA_CODE=()
 SOURCES=(prior.SELF,front.SELF,archive.SELF,sample.SELF,decoder.SELF,
     'scripts/pr16_ring_zero_bytes.py','.github/workflows/pr16-ring-callee-bytes.yml',
@@ -35,7 +35,7 @@ SCOPES=((0x08000a38,0x08000b40),(0x08001000,0x08002200),(0x08002b80,0x08002c1c),
     (0x08006e64,0x08006ee0),(0x0804b850,0x0804c000),(0x08087a48,0x08087b10),(0x081139f0,0x08113a80))
 TABLES=(('bg_templates',0x08055b84,0x0822d6c8,16),('window_templates',0x080f7cc6,0x083e30d0,16))
 SEPARATE_OWNERS=(0x0807d695,0x080f77e9,0x0807e7a5)
-NETWORK='成功run35322265804のSHA固定exportを再利用。同一candidate復元1回、保存命令再解読0。外部source追加/source-lock変更0。'
+NETWORK='初回run35328047608は復元前manifestのsource_bindings不足でfailure、候補復元/native0。その原結論を保持して契約を修正。成功run35322265804のSHA固定exportを再利用。同一candidate復元1回、保存命令再解読0。外部source追加/source-lock変更0。'
 NO_REPEAT='heap/save・BG・画面初期化12入口と保存caller指定template2表の限定byteを再利用。未読依存を成功stubにせず、次は保存命令の実write/return/不足条件。旧540/1037/786条件、採取済byte、BP/nativeは単独再実行しない。default callbackとfield2 ownerは別未完。'
 need=s.need
 
@@ -87,6 +87,15 @@ def tables(read):
     return rows
 
 
+def preflight(known,read):
+    paths=tuple(dict.fromkeys((SELF,TEST,WORKFLOW,PRIOR,*SOURCES)))
+    bindings={}
+    for path in paths:
+        raw=read(path);need(type(raw)is bytes and bool(raw),'source byte入力')
+        bindings[path]=s.identity(raw)
+    return {'roots':ROOTS,'scopes':SCOPES,'tables':TABLES,'saved_nodes':len(known),'source_bindings':bindings}
+
+
 def analyze(previous,out):
     import pr16_ring_zero_bytes as restore
     import pr16_ring_flagset_continuation as saved
@@ -98,7 +107,7 @@ def analyze(previous,out):
         for i,b in enumerate(bytes.fromhex(n['hex'])):memory[n['address']+i]=b
         if 'literal_address'in n:
             for i,b in enumerate(n['literal_value'].to_bytes(4,'little')):memory[n['literal_address']+i]=b
-    (out/'preflight.json').write_bytes(s.stable({'roots':ROOTS,'scopes':SCOPES,'tables':TABLES,'saved_nodes':len(known)}))
+    (out/'preflight.json').write_bytes(s.stable(preflight(known,lambda p:(s.ROOT/p).read_bytes())))
     restore.OUT=out;restore.restore();candidate=s.ROOT/'.local/pr16-bp-party-retention-successor/candidate.gba'
     raw=candidate.read_bytes();saved.candidate_identity(raw);r=collect(raw,list(ROOTS),known)
     data=tables(lambda at,size:raw[at-0x08000000:at-0x08000000+size]);points=set(r.pop('points'))
@@ -107,6 +116,8 @@ def analyze(previous,out):
     need(len({n['address']for n in nodes})==len(nodes),'node合流重複');jp=payload('jp-symbols.json')
     r.update({'classification':'CANDIDATE_HEAP_BG_SCREEN_DEPENDENCIES_NOT_NORMAL_STORY_EXECUTION',
         'candidate':dict(s.CANDIDATE),'templates':data,'scopes':SCOPES,
+        'failed_attempts':[{'run_id':35328047608,'job_id':105545659303,'source_head':'0f006d3dea36feb618dfbe9673618f9e17b2b02d',
+            'original_conclusion':'failure','reason':'preflight source_bindings欠落・復元前停止','candidate_reconstructions':0,'new_emulator_processes':0}],
         'new_node_count':len(r['new_nodes']),'saved_node_count':len(known),'new_windows':windows,
         'new_window_bytes':sum(w['end']-w['start']for w in windows),'saved_bytes_reused':reused,
         'call_target_names':{str(n['target']|1):[name for name,value in jp.items()if value==n['target']|1]for n in r['new_nodes']if n['kind']=='call'},
