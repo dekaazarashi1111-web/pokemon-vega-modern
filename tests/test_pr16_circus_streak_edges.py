@@ -17,14 +17,14 @@ class EdgeTests(unittest.TestCase):
         raw[at:at+16]=b'\x23'+struct.pack('<I',after)+bytes.fromhex('210d8002000601')+struct.pack('<I',target)
         raw[0x200:0x20f]=b'\x23'+struct.pack('<I',native)+b'\x0f\x00'+struct.pack('<I',0x08000280)+bytes.fromhex('09046c02')
         clone=dict(start=0x100,end_exclusive=0x300)
-        alloc=dict(allocations=[dict(name='factory_shiny_memorial_runtime_payload',start=0x300,end_exclusive=0x400,
+        alloc=dict(allocations=[dict(name='factory_high_modes_v2_stage42_payload',start=0x300,end_exclusive=0x400,
             content_sha256=hashlib.sha256(raw[0x300:0x400]).hexdigest())])
         return bytes(raw),at+e.BASE,after,clone,alloc
 
     def test_third_win_uses_live_wrapper_not_old_complete_symbol(self):
         proof=e.completion_binding(*self.fixture())
         self.assertEqual((proof['script'],proof['native']),(0x08000200,0x08000301))
-        self.assertEqual(proof['allocation'],'factory_shiny_memorial_runtime_payload')
+        self.assertEqual(proof['allocation'],'factory_high_modes_v2_stage42_payload')
 
     def test_changed_condition_afterbattle_terminal_or_owner_is_rejected(self):
         args=list(self.fixture())

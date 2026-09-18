@@ -6,7 +6,7 @@ BASE = 0x08000000
 COMPLETION_OWNERS = {
     'facility_runtime_payload', 'factory_reward_runtime_payload',
     'factory_repeat_reward_runtime_payload', 'factory_special_event_runtime_payload',
-    'factory_shiny_memorial_runtime_payload',
+    'factory_shiny_memorial_runtime_payload', 'factory_high_modes_v2_stage42_payload',
 }
 
 
@@ -34,7 +34,7 @@ def completion_binding(raw, continuation, afterbattle, clone, allocation):
     owners = [r for r in allocation['allocations']
               if r['start'] <= (native & ~1) - BASE < r['end_exclusive']]
     need(len(owners) == 1 and owners[0]['name'] in COMPLETION_OWNERS,
-         'completion target has no known Factory wrapper owner')
+         f'completion target {native:#x} has no known Factory wrapper owner: {[r["name"] for r in owners]}')
     owner = owners[0]
     digest = hashlib.sha256(raw[owner['start']:owner['end_exclusive']]).hexdigest()
     need(digest == owner['content_sha256'], 'completion wrapper owner hash differs')

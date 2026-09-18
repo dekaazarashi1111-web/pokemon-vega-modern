@@ -5,6 +5,8 @@ on:
     paths:
       - .github/workflows/pr16-circus-streak-build.yml
       - scripts/pr16_circus_streak.py
+      - scripts/pr16_circus_streak_edges.py
+      - config/circus_streak_link.json
       - overlays/circus_streak/**
       - tests/test_pr16_circus_streak*.py
       - tests/fixtures/circus_streak*.c
@@ -24,7 +26,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: Circus owner・serializer・限定patchの14契約
+      - name: Circus owner・serializer・限定patchの21契約
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-circus-streak-run
@@ -96,7 +98,9 @@ jobs:
           sys.path[:0]=[str(root.resolve()),str((root/'scripts').resolve())]
           import pr16_circus_streak as task
           names=[task.SELF,task.TEST,task.WORKFLOW,task.OLD_SOURCE,task.OLD_HEADER,*task.SOURCES,
-            'config/ram_layout.csv','config/save_layout.csv','scripts/pr16_resume.py','scripts/pr16_circus_streak_context.py',
+            'config/ram_layout.csv','config/save_layout.csv','config/circus_streak_link.json',
+            'scripts/pr16_circus_streak_edges.py','tests/test_pr16_circus_streak_edges.py',
+            'tests/test_pr16_circus_streak_calls.py','tests/fixtures/circus_streak_loss_fixture.c','scripts/pr16_resume.py','scripts/pr16_circus_streak_context.py',
             'tests/test_pr16_circus_streak.py','tests/fixtures/circus_streak_fixture.c','tests/fixtures/circus_streak_io_fixture.c',
             'tools/mgba_pr16_circus_native.c','tools/mgba_pr16_bp_battle_progress.c','tools/mgba_pr16_bp_trial_control.c',
             'content/modernization/pr16_native_supply_resume_20260913.json','content/modernization/p08_remaining_work.json']
