@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。
+2026-09-18所有者指示でNPC配布優先へ方針変更。実装・ROM変更・native再実行は今回0。直前の351条件/40testsの内部解析成果は履歴として保持するが、その続きを取得機能の必須前提にしない。BP受入済みを保持し、Ring通常取得・通常戦闘への接続はまだ未受入。
 
-**次: 保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。**
+**次: 既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。**
 
-BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
+最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a6c076976a7b02bd8599a17abbc42e8ae62e554b`。
-限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
+証拠のsource HEAD: `8f76f857c2f17f1be6f8c12653609c0272ad6d73`。
+方針変更の照合元HEAD。新たなROM/native検証HEADではない。過去の各証拠のsource HEADは原本のまま保持。
 
 ## 最短の再開手順
 
@@ -25,9 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_ring_story_resource_contracts.json`
-- `scripts/pr16_ring_story_resource_contracts.py`
-- `content/modernization/pr16_ring_story_resource_suppliers.json`
+- `scripts/build_bp_shop_runtime.py`
+- `config/modernization_p04_mega_runtime.json`
+- `overlays/cfru/integration.c`
+- `scripts/build_battle_core.py`
+- `content/modernization/pr16_purchased_gear_acceptance.json`
+- `content/modernization/pr16_ring_owner_resolution.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -61,10 +64,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。
 
-BP通常購入と保存再開は完了。次はRing正規story取得、policy通常UI、Circus実受付/実戦。physical3/P08 gates2完了後に最終候補/変更影響回帰/二重生成/配布判定。
+BP通常購入/保存再開は完了。次は安全なNPCからリングを通常受取し、既存戦闘UIまで通す。リング連動の通常戦闘許可と既存UIでpolicy条件を満たす対応を記録し、別の戦闘前UI新設は必須にしない。その後Circus実受付/実戦、P08最終候補固定・変更影響回帰・二重生成・配布判定。この方針変更だけではphysical3/P08 gates2を閉じない。
 
 ## 再実行・過大主張の禁止
 
+- 2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。
 - run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。
 - run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。
 - 履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。
@@ -246,6 +250,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35329291913の原結論と保存証拠、BP run34946969126成功を照合。今回run35330928644は記録時in_progress。action_requiredを成功へ読み替えない。
+方針変更前HEAD 8f76f857c2f17f1be6f8c12653609c0272ad6d73のPR Checksを再照会。各結論はruns参照。先行run35330928644はsuccessへ完了したことを確認。新規native検証は0。action_required/過去failureを成功へ読み替えず、この文書変更を全CI greenとは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

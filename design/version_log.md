@@ -4544,3 +4544,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功run35329291913のSHA固定exportだけ。候補復元/新規byte採取/ROM変更/native0。旧model/source-lockは不変。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。
+
+
+## 2026-09-18T10:29:57Z — USER-20260918-RING-NPC-PLAN
+- Timestamp: 2026-09-18T10:29:57Z
+- Task: USER-20260918-RING-NPC-PLAN / 次作業をNPC配布と既存メガUI接続へ変更
+- Status: DONE / 引継ぎ方針更新のみ。Ringの実装・受入完了ではない。
+- Version: pr16-ring-npc-plan
+- Summary: 既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。
+- Files changed: scripts/pr16_ring_npc_plan.py, tests/test_pr16_ring_npc_plan.py, .github/workflows/pr16-ring-npc-plan.yml, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, design/decisions.md
+- Verify: 方針/非昇格と既存resumeのfocused 38 tests PASS、render/check、task graph、BP checkpoint byte不変。最終index guardとdiff checkはcommit前に必須。
+- Preserved: ROM変更0、候補再生成0、emulator0、受入済みnative/低level契約の再実行0。
+- Commit: 本記録を含むcommit。照合元=8f76f857c2f17f1be6f8c12653609c0272ad6d73、実行source=9a29083ae6653b2713dc12940327124ea147e9e3、run=35334959218。最終SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsのref、PR、run/Checksのみ。private Release/外部技術資料の取得なし。
+- Boundary: 既存全体guardの前後一致と新規違反0を確認して非force反映。全体guard/全CI成功やmerge/release/baseline変更は主張しない。
+- Next: 安全なNPC配置/会話差替えから正規受取を実装し、既存UIでの実戦/保存再開まで通す。

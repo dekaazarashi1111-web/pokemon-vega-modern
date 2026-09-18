@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。",
+    "current_stop": "2026-09-18所有者指示でNPC配布優先へ方針変更。実装・ROM変更・native再実行は今回0。直前の351条件/40testsの内部解析成果は履歴として保持するが、その続きを取得機能の必須前提にしない。BP受入済みを保持し、Ring通常取得・通常戦闘への接続はまだ未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。",
+    "next_step": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -259,6 +259,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。",
     "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
     "run34759726061のnative敗北帰還は原stdout/traceの再検証で完了。原Actions failureをsuccessへ改作しない。同一fcda敗北/同一bffd失敗/完了source監査/候補byte採取を再実行しない。取消・Save・Continue受入原本は無変更。",
     "履歴: run34757633314の固定CFRU source監査は19tests PASS、宣言1件のみでsource側ownerは未解決だった。旧schema1 owner=trueは不採用のまま保持。その後run34758866475のcandidate bytesで実分岐を特定し、今回のnative敗北帰還修復を完了。固定source再scan・byte採取・受入取消/Save/Continueは繰り返さない。",
@@ -453,7 +454,7 @@
     "successful_fresh_cores": 0,
     "tested_head": "9bf3abe5e0fbef23f8c5727c658ba31a4d556473"
   },
-  "handoff_maintenance_task": "USER-20260915-BP-THREE-WIN-REWARD-ACCEPTANCE",
+  "handoff_maintenance_task": "USER-20260918-RING-NPC-PLAN",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
   "last_accepted_native_run": 34946969126,
   "last_accepted_native_tested_head": "0b7497b575a3180a045f2be377386490f192a012",
@@ -483,26 +484,51 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。",
+    "goal_ja": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
-    "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
+    "stop_rule_ja": "最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。",
     "read_paths": [
-      "content/modernization/pr16_ring_story_resource_contracts.json",
-      "scripts/pr16_ring_story_resource_contracts.py",
-      "content/modernization/pr16_ring_story_resource_suppliers.json"
+      "scripts/build_bp_shop_runtime.py",
+      "config/modernization_p04_mega_runtime.json",
+      "overlays/cfru/integration.c",
+      "scripts/build_battle_core.py",
+      "content/modernization/pr16_purchased_gear_acceptance.json",
+      "content/modernization/pr16_ring_owner_resolution.json"
     ],
     "success_observations": [
-      "正規story entrypointからRingが取得される",
-      "通常装備と適用実戦を観測",
-      "通常Save/fresh Continueで保持"
+      "対象NPCのmap/local ID/座標/会話ownerと、進行イベント/共有スクリプト非破壊を確認",
+      "FINAL_LEAGUE_CLEARED未達では付与/解禁されず、達成後は実会話でitem580を1個受取",
+      "未取得対照、二重受取防止、付与失敗では取得済みにしないことを確認。取消経路がある場合は取消も確認",
+      "リング所持を正本に通常戦闘を解禁。追加の永続フラグは必要性がある場合だけ既存save枠へ整合的に接続",
+      "対応石を持つポケモンで既存技選択UIからメガ進化・技使用。未所持/不適合石/選択取消の不成立を確認",
+      "施設禁止/他ギミック排他/使用回数を維持し、戦闘後に漏洩しない",
+      "通常Save→fresh Continue後もリングを保持し、受取時だけの揮発RAM設定に依存せず次戦で利用可能",
+      "変更影響台帳と受入条件の対応を記録。実観測前はRing/policy/Circus/P08未受入を維持"
     ]
   },
-  "observed_date_jst": "2026-09-16",
-  "observed_head": "a6c076976a7b02bd8599a17abbc42e8ae62e554b",
+  "observed_date_jst": "2026-09-18",
+  "observed_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
   "observed_head_checks": {
-    "reason_ja": "先行run35329291913の原結論と保存証拠、BP run34946969126成功を照合。今回run35330928644は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "scope_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+    "runs": [
+      {
+        "id": 35331042512,
+        "name": "source-validation",
+        "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+        "status": "completed",
+        "conclusion": "action_required"
+      },
+      {
+        "id": 35331042547,
+        "name": "p03-forgetting-ci",
+        "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+        "status": "completed",
+        "conclusion": "action_required"
+      }
+    ],
+    "reason_ja": "方針変更前HEAD 8f76f857c2f17f1be6f8c12653609c0272ad6d73のPR Checksを再照会。各結論はruns参照。先行run35330928644はsuccessへ完了したことを確認。新規native検証は0。action_required/過去failureを成功へ読み替えず、この文書変更を全CI greenとは主張しない。"
   },
-  "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
+  "observed_head_semantics": "方針変更の照合元HEAD。新たなROM/native検証HEADではない。過去の各証拠のsource HEADは原本のまま保持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -632,7 +658,7 @@
     "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "BP通常購入と保存再開は完了。次はRing正規story取得、policy通常UI、Circus実受付/実戦。physical3/P08 gates2完了後に最終候補/変更影響回帰/二重生成/配布判定。",
+  "remaining_sequence_ja": "BP通常購入/保存再開は完了。次は安全なNPCからリングを通常受取し、既存戦闘UIまで通す。リング連動の通常戦闘許可と既存UIでpolicy条件を満たす対応を記録し、別の戦闘前UI新設は必須にしない。その後Circus実受付/実戦、P08最終候補固定・変更影響回帰・二重生成・配布判定。この方針変更だけではphysical3/P08 gates2を閉じない。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -663,7 +689,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。"
+    "scope_ja": "NPC配布優先への方針/正本同期のみ。受入済みnative/低level契約を再実行しない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3404,7 +3430,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。",
+  "source_change_review_ja": "所有者指定による次工程/読書順/停止条件の文書変更のみ。ゲーム実装・既存証拠・source bindingsは無変更。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3864,5 +3890,57 @@
     "path": "content/modernization/pr16_ring_text_export_recovery.json",
     "source_head": "ce4bfe14efd71a7cb6f50712afcd4be6facffe83",
     "run_id": 35257642049
+  },
+  "ring_npc_plan": {
+    "decision_id": "USER-20260918-RING-NPC-PLAN",
+    "owner_instruction_at_utc": "2026-09-18T10:21:06Z",
+    "based_on_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+    "status": "PLAN_ONLY_NOT_IMPLEMENTED_OR_ACCEPTED",
+    "preferred_route": "SAFE_NPC_GIFT_EXISTING_ITEM_GATE_AND_BATTLE_UI",
+    "item_id": 580,
+    "unlock": "FINAL_LEAGUE_CLEARED",
+    "ring_ownership_is_primary": true,
+    "new_battle_ui_required": false,
+    "separate_prebattle_policy_ui_required": false,
+    "exhaustive_old_owner_exclusion_required": false,
+    "native_cases_replayed": 0,
+    "rom_changes": 0,
+    "previous_stop_ja": "実BG定数/template・heap→通常window→fonts setterの連続明示RAMとsave3block退避を351条件で検証。save退避53300byte後はRandom、callocはCpuSet未読で停止。候補復元/native0。",
+    "previous_next_action": {
+      "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
+      "goal_ja": "保存3block退避後のRandom0804448D→save pointer relocation/暗号化、callocのCpuSet081C7A89と画面DMA/InitFieldMessageBox08068C09、通常fonts/callback登録を未読owner別に進める。今回連続RAM・旧byte/条件・BP/nativeを単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08未受入。",
+      "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
+      "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
+      "read_paths": [
+        "content/modernization/pr16_ring_story_resource_contracts.json",
+        "scripts/pr16_ring_story_resource_contracts.py",
+        "content/modernization/pr16_ring_story_resource_suppliers.json"
+      ],
+      "success_observations": [
+        "正規story entrypointからRingが取得される",
+        "通常装備と適用実戦を観測",
+        "通常Save/fresh Continueで保持"
+      ]
+    },
+    "previous_observed_head_checks": {
+      "reason_ja": "先行run35329291913の原結論と保存証拠、BP run34946969126成功を照合。今回run35330928644は記録時in_progress。action_requiredを成功へ読み替えない。"
+    },
+    "policy_acceptance_mapping_ja": "2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。",
+    "steps_ja": [
+      "対象NPCのmap/local ID/座標/会話ownerと、進行イベント/共有スクリプト非破壊を確認",
+      "FINAL_LEAGUE_CLEARED未達では付与/解禁されず、達成後は実会話でitem580を1個受取",
+      "未取得対照、二重受取防止、付与失敗では取得済みにしないことを確認。取消経路がある場合は取消も確認",
+      "リング所持を正本に通常戦闘を解禁。追加の永続フラグは必要性がある場合だけ既存save枠へ整合的に接続",
+      "対応石を持つポケモンで既存技選択UIからメガ進化・技使用。未所持/不適合石/選択取消の不成立を確認",
+      "施設禁止/他ギミック排他/使用回数を維持し、戦闘後に漏洩しない",
+      "通常Save→fresh Continue後もリングを保持し、受取時だけの揮発RAM設定に依存せず次戦で利用可能",
+      "変更影響台帳と受入条件の対応を記録。実観測前はRing/policy/Circus/P08未受入を維持"
+    ],
+    "prior_run_observed": {
+      "id": 35330928644,
+      "head_sha": "a6c076976a7b02bd8599a17abbc42e8ae62e554b",
+      "status": "completed",
+      "conclusion": "success"
+    }
   }
 }

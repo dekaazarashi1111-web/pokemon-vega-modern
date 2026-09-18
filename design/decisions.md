@@ -592,3 +592,13 @@
 - `.github/workflows/modernization-stage79-mgba.yml`は7 domainをUbuntu 24.04で並列実行し、`fail-fast: false`、domain別PASS cache、stdout／stderr／result Artifact、最終gate合成を提供する。新規workflowがdefault branchへ入る前でも専用branch pushで初回`all`を起動する。
 - 直接追跡した`.gba`／`.srm`を拒否しないよう、push CIとChatGPT patch bridgeから`guard_private_files.py`を外す。これは当該private repositoryに必須runtime入力を置くというユーザーの最新指定による。
 - 初回local sequential heavy runはP02 `rare_candy_cancel_entry`でIWRAM illegal opcode／`evolution_scene_field_return_timeout`となった。後続6 domainは未実行で、GitHub matrixが独立に実行する。active Stage62、P08 selected Stage77、release-ready=falseは変更しない。
+
+
+## 2026-09-18T10:29:57Z — USER-20260918-RING-NPC-PLAN
+- Owner request: 2026-09-18T10:21:06Z、次作業をNPC配布と既存メガUI接続へ書き換える。今回の許可範囲は案内/台帳/記録の同期。
+- Decision: 既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。
+- Boundaries: 最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。
+- Policy mapping: 2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。
+- Rationale: NPC追加の既存方式とitem580所持ゲート/戦闘UIを再利用。元story経路や共通基盤の網羅解析を機能実装の必須前提にしない。
+- Historical evidence: 旧停止点/次actionはresume JSONのring_npc_planへ保存。解析JSON、正式checkpoint、成功/失敗の原本、候補identityは無変更。
+- Status: 方針採用のみ。ゲーム実装/ROM変更/native実行0。physical3/P08 gates2は未完を維持。

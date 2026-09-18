@@ -390,12 +390,12 @@
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
       "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
-      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。",
+      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。 2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。 旧map97/80の全owner解析完了をNPC配布実装の前提にしない。",
       "remaining_supply_gap_ids": [
         "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
       ],
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
+      "resume": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。 最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。",
       "ring_bp_natural_supply_required": true,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
@@ -466,7 +466,8 @@
       "ring_record_callers": "content/modernization/pr16_ring_record_callers.json",
       "ring_control_roles": "content/modernization/pr16_ring_control_roles.json",
       "latest_ring_diagnostic": "content/modernization/pr16_ring_story_resource_contracts.json",
-      "latest_ring_text_export_recovery": "content/modernization/pr16_ring_text_export_recovery.json"
+      "latest_ring_text_export_recovery": "content/modernization/pr16_ring_text_export_recovery.json",
+      "ordinary_policy_plan_ja": "2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
@@ -505,7 +506,7 @@
       "pass_condition": "Finish required BP/Ring/policy/Circus ROM changes, fix one final full SHA/size/CRC, and transfer parent accepted evidence using a changed-ROM-range/owner/runner/fixture/contract impact ledger with only justified reruns. bffd is not yet final.",
       "phase": "P08",
       "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。",
-      "resume": "Current resume: docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md. 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Next: 同じcandidateでRingの正規story取得ownerを追い、通常取得から装備・実戦・保存再開までの未受入経路を検証する。",
+      "resume": "先にNPCによるリング正規取得と既存メガUI/通常戦闘の許可接続、必要なpolicy条件、Circusを完了する。その後最終SHAを固定し変更ROM範囲/owner/runner/fixture/契約の台帳で既受入を移送する。影響のないBP/P03/P06/P07を再実行せず、方針変更だけで受入やreleaseへ昇格しない。",
       "shop_display_successor": "content/modernization/pr16_shop_display_acceptance.json",
       "success_evidence": "content/modernization/pr16_completion_acceptance.json",
       "target_function": "native final-candidate coverage beyond inherited seven-domain regression"
