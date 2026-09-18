@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実field5slotとwait callback08068DDDを採取し未読191命令/558byteを結合。既読8821命令再解読0、BP/native0。
+実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。
 
-**次: 保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。**
+**次: field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d466bed507d7ceb3d815d0eab5e306513ea42abe`。
+証拠のsource HEAD: `3a312641b866b25f29a66e587534e8b0b451453b`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_story_wait_lifecycle.json`
+- `scripts/pr16_ring_story_wait_lifecycle.py`
 - `content/modernization/pr16_ring_story_field_frontier.json`
-- `scripts/pr16_ring_story_field_frontier.py`
-- `content/modernization/pr16_ring_story_dispatch_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -211,6 +211,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。
 - 保存script/field dispatch全u8境界、実66/67slot、初期化とglobal statusの条件付き契約は原本再利用。synthetic RAM/任意callbackの帰還を通常story供給と同一視しない。次は080565B0の5slotと08068DDD待機callbackの未読byteだけ。旧text/bootstrap/BP/native再実行禁止。
 - 080565B0の5slotと08068DDDの実callback、field未読接続は今回保存byteを再利用。全u8旧script契約、旧text/bootstrap/BP/nativeの単独再実行禁止。命令採取をfield初期化やRing通常取得のruntime受入へ昇格しない。
+- 実wait全u8/連続3tick・field1/4とstate0/2/3停止境界は保存原本を再利用。待機解除byteのhost書込0だがbusy=0/非0は明示初期条件。通常message表示/取得を受入にしない。次は08055B71/08055EAD/080555F1の未読calleeだけ。旧1037条件/今回786条件/BP/native単独再実行禁止。
 
 ## 次セッションへ残す更新手順
 
@@ -240,6 +241,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35319087228の原結論と保存証拠、BP run34946969126成功を照合。今回run35319665678は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35319665678の原結論と保存証拠、BP run34946969126成功を照合。今回run35320499930は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

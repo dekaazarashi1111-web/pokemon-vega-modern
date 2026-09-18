@@ -7176,3 +7176,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功run35319087228と保存exportを照合し同hash candidateを1回だけ復元。外部source追加/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存field state本体と実wait callbackを条件付き実行へ結合し、初期化calleeのfont/window供給と未読境界を限定する。今回byte/旧script1037条件/BP/nativeの単独再実行は禁止。Ring通常取得/装備/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T07:40:06.628596+00:00 — PR-P08-7-RING-STORY-WAIT-LIFECYCLE
+- Timestamp: 2026-09-18T07:40:06.628596+00:00
+- Task: PR-P08-7-RING-STORY-WAIT-LIFECYCLE / 実wait callbackからscript終了への連続tickとfield状態境界を保存byteで結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-wait-lifecycle
+- Summary: 実wait callbackの全u8とscript連続3tick、field状態を786条件で結合。hiddenなら66→待機解除→終了/lock解除、busyなら待機継続。tick間host書込0、候補復元/native0。
+- Files changed: scripts/pr16_ring_story_wait_lifecycle.py, tests/test_pr16_ring_story_wait_lifecycle.py, .github/workflows/pr16-ring-story-wait-lifecycle.yml, content/modernization/pr16_ring_story_wait_lifecycle.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定28 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=3a312641b866b25f29a66e587534e8b0b451453b; run=35320499930（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35319665678のhash固定exportのみ。候補復元・再採取・native実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: field0初期化08055B71、field3callback08055EAD、field2flash080555F1の未読calleeを限定し、window/font供給と通常story到達へ結合する。旧byte/1037条件/今回786条件/BP/nativeは単独再実行しない。Ring通常取得/装備/保存、policy/Circus/P08は未受入。
