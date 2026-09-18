@@ -93,6 +93,21 @@ class MapAppendContracts(unittest.TestCase):
         with self.assertRaises(m.RingBuildError): self.append(e[:-1],o)
         with self.assertRaises(m.RingBuildError): self.append(e,o[:-1])
 
+    def test_empty_target_uses_external_verified_reception_template(self):
+        e,o=self.fixture()
+        empty=bytes((0,3,1,2))+e[4:]
+        after,objects,npc=m.extend_objects(empty,b'',0x09E00040,0x09E00100,(13,38),o[24:])
+        self.assertEqual(after[0],1)
+        self.assertEqual(npc['local_id'],1)
+        self.assertEqual(struct.unpack_from('<HH',objects,4),(13,38))
+        self.assertEqual(after[8:],e[8:])
+
+    def test_external_template_still_validated(self):
+        e,o=self.fixture()
+        for template in (b'',bytes(24),o[:24],bytearray(o[24:])):
+            with self.subTest(template=template),self.assertRaises(m.RingBuildError):
+                m.extend_objects(e,o,0x09E00040,0x09E00100,(13,38),template)
+
     def test_manifest_gate_matches_existing_owner(self):
         m.verify_manifests()
 

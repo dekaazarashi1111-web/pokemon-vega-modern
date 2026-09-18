@@ -7,6 +7,7 @@ on:
       - overlays/ring_npc/**
       - tests/test_pr16_ring_npc.py
       - tests/test_pr16_ring_npc_successor.py
+      - tests/test_pr16_ring_npc_native.py
       - tests/ring_npc_host.c
       - scripts/pr16_ring_npc_successor.py
       - scripts/pr16_ring_npc_native.py
@@ -34,6 +35,7 @@ jobs:
           mkdir -p .local/pr16-ring-npc-run
           python3 -m unittest discover -s tests -p test_pr16_ring_npc.py -v > .local/pr16-ring-npc-run/gift.stdout 2> .local/pr16-ring-npc-run/gift.stderr
           python3 -m unittest discover -s tests -p test_pr16_ring_npc_successor.py -v > .local/pr16-ring-npc-run/map.stdout 2> .local/pr16-ring-npc-run/map.stderr
+          python3 -m unittest discover -s tests -p test_pr16_ring_npc_native.py -v > .local/pr16-ring-npc-run/oracle.stdout 2> .local/pr16-ring-npc-run/oracle.stderr
           python3 scripts/pr16_resume.py check > .local/pr16-ring-npc-run/resume-before.json
       - name: Restore pinned compiler and unchanged Stage84 input
         shell: bash
@@ -95,6 +97,11 @@ jobs:
           set -euo pipefail
           python3 scripts/pr16_ring_npc_successor.py > .local/pr16-ring-npc-run/build.stdout 2> .local/pr16-ring-npc-run/build.stderr
           git diff --exit-code
+      - name: New NPC conversations and normal Save fresh Continue only
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_ring_npc_native.py > .local/pr16-ring-npc-run/native.stdout 2> .local/pr16-ring-npc-run/native.stderr
+          git diff --exit-code
       - name: Source and bounded battle bridge context
         if: always()
         run: |
@@ -107,6 +114,8 @@ jobs:
               'scripts/pr16_breeding_delta.py', 'scripts/pr16_purchased_gear.py',
               'config/battle_core.json', 'scripts/pr16_ring_npc_successor.py',
               'tests/test_pr16_ring_npc_successor.py',
+              'scripts/pr16_ring_npc_native.py', 'tools/mgba_pr16_ring_npc.c',
+              'tests/test_pr16_ring_npc_native.py',
           )
           work.collect()
           root=pathlib.Path('.')
@@ -120,21 +129,32 @@ jobs:
               context['integration_symbols']=[r.get('integration_symbols') for r in metadata.get('upstream_runs',[])]
           (root/'.local/pr16-ring-npc-workbench/battle-symbols.json').write_text(json.dumps(context,indent=2)+'\n',encoding='utf-8')
           PY
-      - name: Export text evidence only
+      - name: Export text and screenshots without ROM save or patch
         if: always()
         run: |
           python3 - <<'PY'
-          import hashlib,json,pathlib,re,shutil
+          import hashlib,json,pathlib,re,struct,zlib
           root=pathlib.Path('.')
           out=root/'.local/pr16-ring-npc-evidence'
           out.mkdir(parents=True,exist_ok=True)
           members={}
-          for prefix in ('pr16-ring-npc-run','pr16-ring-npc-successor','pr16-ring-npc-workbench'):
+          for prefix in ('pr16-ring-npc-run','pr16-ring-npc-successor','pr16-ring-npc-workbench','pr16-ring-npc-native'):
               base=root/'.local'/prefix
               if not base.exists(): continue
               for p in sorted(base.rglob('*')):
                   if p.is_dir(): continue
                   assert p.is_file() and not p.is_symlink()
+                  if p.suffix=='.ppm':
+                      raw=p.read_bytes();magic,size,maximum,rgb=raw.split(b'\n',3)
+                      assert (magic,size,maximum)==(b'P6',b'240 160',b'255') and len(rgb)==240*160*3
+                      def chunk(tag,data):
+                          return struct.pack('>I',len(data))+tag+data+struct.pack('>I',zlib.crc32(tag+data)&0xffffffff)
+                      scan=b''.join(b'\0'+rgb[y*720:(y+1)*720] for y in range(160))
+                      png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',240,160,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(scan))+chunk(b'IEND',b'')
+                      name=prefix+'/'+p.relative_to(base).with_suffix('.png').as_posix()
+                      target=out/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(png)
+                      members[name]={'size':len(png),'sha256':hashlib.sha256(png).hexdigest(),'ppm_sha256':hashlib.sha256(raw).hexdigest()}
+                      continue
                   if p.suffix not in {'.json','.txt','.stdout','.stderr','.log','.c','.h','.py','.csv'}: continue
                   raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<2000000
                   assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)

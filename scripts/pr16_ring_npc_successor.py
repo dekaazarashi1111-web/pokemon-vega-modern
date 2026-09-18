@@ -27,8 +27,9 @@ BASE, SIZE = 0x08000000, 33554432
 REGIONS = 'config/rom_regions.csv'
 RESERVATION = 4096
 ALLOCATION = 'pr16_ring_npc_runtime'
-MAP = (96, 5)
-NPC_XY, FRONT_XY = (26, 19), (26, 20)
+MAP = (96, 17)
+TEMPLATE_MAP = (96, 5)
+NPC_XY, FRONT_XY = (26, 19), (26, 20)  # synthetic-test defaults only
 FINAL_FLAG, RING = 0x13FF, 580
 
 
@@ -60,17 +61,17 @@ def u32(raw, address):
     return struct.unpack('<I', span(raw, address, 4))[0]
 
 
-def map_view(raw):
+def map_view(raw, map_key=MAP):
     groups = u32(raw, BASE+0x54B0C)
-    header = u32(raw, u32(raw, groups+MAP[0]*4)+MAP[1]*4)
+    header = u32(raw, u32(raw, groups+map_key[0]*4)+map_key[1]*4)
     header_bytes = span(raw, header, 0x1C)
     events = u32(raw, header+4)
     event_bytes = span(raw, events, 20)
     count = event_bytes[0]
-    # One slot remains for the player, and this change adds one NPC.
-    need(1 <= count <= 15, 'invalid live object count')
+    # Keep this new site below the conservative fifteen-template boundary.
+    need(0 <= count <= 15, 'invalid live object count')
     objects = u32(raw, events+4)
-    raw_objects = span(raw, objects, count*24)
+    raw_objects = span(raw, objects, count*24) if count else b''
     rows = [raw_objects[i:i+24] for i in range(0, len(raw_objects), 24)]
     ids = [row[0] for row in rows]
     need(all(ids) and len(ids)==len(set(ids)), 'invalid/duplicate existing local IDs')
@@ -79,11 +80,11 @@ def map_view(raw):
                 count=count, ids=ids)
 
 
-def extend_objects(event_bytes, old_objects, script_address, objects_address, xy=NPC_XY):
+def extend_objects(event_bytes, old_objects, script_address, objects_address, xy=NPC_XY, template=None):
     """Use the established map-object append ABI; do not repurpose a live script."""
     need(type(event_bytes) is bytes and len(event_bytes)==20, 'event header size differs')
     count = event_bytes[0]
-    need(1 <= count <= 14 and type(old_objects) is bytes and len(old_objects)==24*count,
+    need(0 <= count <= 14 and type(old_objects) is bytes and len(old_objects)==24*count,
          'object count/table size differs')
     rows = [old_objects[i:i+24] for i in range(0,len(old_objects),24)]
     ids = [row[0] for row in rows]
@@ -93,9 +94,11 @@ def extend_objects(event_bytes, old_objects, script_address, objects_address, xy
     for address in (script_address, objects_address):
         need(type(address) is int and BASE<=address<BASE+SIZE, 'new pointer outside ROM')
     need(objects_address%4==0, 'unaligned object table')
-    templates = [row for row in rows if row[0]==2]
-    need(len(templates)==1, 'accepted stationary reception template missing')
-    template = templates[0]
+    if template is None:
+        templates = [row for row in rows if row[0]==2]
+        need(len(templates)==1, 'accepted stationary reception template missing')
+        template = templates[0]
+    need(type(template) is bytes and len(template)==24 and template[0]==2, 'unsafe source template')
     need(struct.unpack_from('<HH',template,4)==(20,19), 'reception template position differs')
     new = bytearray(template)
     new_id = next(i for i in range(1,256) if i not in ids)
@@ -192,7 +195,7 @@ def choose_offset(allocation):
     return rows[0]['start']
 
 
-def make_payload(raw, offset, code, entry):
+def make_payload(raw, offset, code, entry, xy, template):
     from tools.regression.rom_runtime import _Blob
     view=map_view(raw)
     blob=_Blob();blob.reserve('ring_header',64,4)
@@ -201,7 +204,7 @@ def make_payload(raw, offset, code, entry):
     object_offset=(len(blob.data)+3)&~3
     # Scripts already have stable relative labels; pointer fixups are finalized below.
     script=BASE+offset+blob.labels['ring_script_npc']
-    events,objects,npc=extend_objects(view['event_bytes'],view['raw_objects'],script,BASE+offset+object_offset)
+    events,objects,npc=extend_objects(view['event_bytes'],view['raw_objects'],script,BASE+offset+object_offset,xy,template)
     need(blob.add('ring_objects',objects,4)==object_offset,'object placement differs')
     event_offset=blob.add('ring_events',events,4)
     struct.pack_into('<8sIIIIIIII',blob.data,0,b'VEGAR18N',1,len(blob.data),entry,script,
@@ -211,7 +214,7 @@ def make_payload(raw, offset, code, entry):
     return payload,dict(header=view['header'],old_events=view['events'],
         new_events=BASE+offset+event_offset,old_event_header=view['event_bytes'].hex(),
         old_objects=identity(view['raw_objects']),old_object_count=view['count'],
-        new_object_count=view['count']+1,npc=npc,front=list(FRONT_XY),
+        new_object_count=view['count']+1,npc=npc,front=[xy[0],xy[1]+1],template_map=list(TEMPLATE_MAP),
         messages=messages,native_entry=entry,script_address=script,
         existing_objects_preserved=True,non_object_events_preserved=True,
         map_scripts_preserved=True)
@@ -264,28 +267,36 @@ def run():
     need(identity(raw)==dict(size=SIZE,sha256=PARENT_SHA) and recipe['candidate']==identity(raw),'accepted parent differs')
     model=geometry.geometry(raw,*MAP)
     (OUT/'geometry-before.json').write_bytes(stable(model))
-    pair=[p for p in model['walkable_pairs'] if p['start']==list(NPC_XY) and p['end']==list(FRONT_XY) and p['behavior']==0]
-    need(len(pair)==1,'giver/front tiles are not clear, equal-elevation, event-free ground')
+    # The town has fifteen existing templates. Add on its connected north
+    # route instead, with no old conversation replacement or slot-limit change.
+    candidates=[p for p in model['walkable_pairs'] if p['behavior']==0
+        and p['end']==[p['start'][0],p['start'][1]+1]
+        and model['height']-8 <= p['start'][1] <= model['height']-2
+        and abs(p['start'][0]-model['width']//2)<=6]
+    need(candidates,'no clear normal-ground giver/front pair on north route')
+    candidates.sort(key=lambda p:(abs(p['start'][0]-13)+abs(p['start'][1]-38),p['start']))
+    pair=candidates[0];xy=tuple(pair['start']);front=tuple(pair['end'])
     view=map_view(raw)
-    template=view['raw_objects'][view['ids'].index(2)*24:][:24]
-    need(template[8] in (0,pair[0]['elevation']),'reception/giver elevation mismatch')
+    template_view=map_view(raw,TEMPLATE_MAP)
+    template=template_view['raw_objects'][template_view['ids'].index(2)*24:][:24]
+    need(template[8] in (0,pair['elevation']),'reception/giver elevation mismatch')
     offset=choose_offset(recipe['allocation'])
     compilations=[compile_runtime(OUT/f'compile-{i}',BASE+offset+64) for i in (1,2)]
     need(compilations[0]==compilations[1],'independent gift compilations differ')
     code,entry=compilations[0]
-    payload,details=make_payload(raw,offset,code,entry)
+    payload,details=make_payload(raw,offset,code,entry,xy,template)
     new,allocation,changed=apply(raw,recipe['allocation'],offset,payload,details)
     after=geometry.geometry(new,*MAP)
     # Keep the old shop/reception approach and north connection route available.
-    paths=dict(to_previous_shop=walk_path(after,FRONT_XY,(24,20)),
-        town_to_north=walk_path(after,FRONT_XY,(23,0)))
+    paths=dict(to_south_connection=walk_path(after,front,(11,39)),
+        to_grass=walk_path(after,front,(14,30)))
     need(map_view(new)['raw_objects'][:len(view['raw_objects'])]==view['raw_objects'],'old NPC bytes changed')
     candidate=identity(new)
     report=dict(schema_version=1,status='BUILT_RING_NPC_NOT_NATIVE_ACCEPTED',task=TASK,
         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         run_id=int(os.environ.get('GITHUB_RUN_ID','0')),parent=identity(raw),candidate=candidate,
         crc32=f'{zlib.crc32(new)&0xffffffff:08X}',allocation=allocation,payload_offset=offset,
-        payload=identity(payload),map=details,paths=paths,existing_allocations_rehashed=changed,
+        payload=identity(payload),map=details,map_key=list(MAP),paths=paths,existing_allocations_rehashed=changed,
         new_allocations=1,independent_gift_compiles=2,undeclared_changed_bytes=0,
         map_layout_changes=0,existing_object_changes=0,save_layout_changes=0,
         battle_policy_changes=0,accepted_native_cases_replayed=0,new_emulator_processes=0,
