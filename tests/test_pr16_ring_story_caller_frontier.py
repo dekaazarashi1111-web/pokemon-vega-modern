@@ -77,9 +77,19 @@ class CallerTests(unittest.TestCase):
         self.assertTrue(r['edges'][0]['reference_only_not_candidate_binding'])
     def test_30_no_input_mutation(self):
         nodes=[self.node()];before=copy.deepcopy(nodes);m.saved_inbound(nodes,{'f':0x8000101});self.assertEqual(nodes,before)
-
     def test_31_direct_jump(self):
         n=dict(self.node(0x8000200),kind='jump',target=0x8000100)
         self.assertEqual(m.saved_inbound([self.node(),n],{'f':0x8000101})['f']['saved_inbound'][0]['kind'],'jump')
+    def test_32_else_if_inside_function(self):
+        source='void f() {\n if (x) { a(); }\n else if (y) { target(); }\n}'
+        rows=m.source_callers({'x.c':source},('target',))['edges']
+        self.assertEqual([(r['caller'],r['site_line'])for r in rows],[('f',3)])
+    def test_33_nested_function_rejected(self):
+        with self.assertRaises(ValueError):m.definitions('void f() {\n void inner() { target(); }\n}')
+    def test_34_top_level_else_if_rejected(self):
+        with self.assertRaises(ValueError):m.definitions('else if (x) { target(); }')
+    def test_35_else_if_does_not_hide_later_function(self):
+        source='void f(){\n if(x){a();}\n else if(y){b();}\n}\nvoid g(){target();}'
+        self.assertEqual([d['name']for d in m.definitions(source)],['f','g'])
 
 if __name__=='__main__':unittest.main()
