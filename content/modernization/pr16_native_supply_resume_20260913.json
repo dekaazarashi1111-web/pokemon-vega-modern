@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。",
+    "current_stop": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。",
+    "next_step": "本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -390,7 +390,8 @@
     "window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。",
     "状態0/1の残存5callee採取は本原本とhash付きexportを再利用。次は属性0・palette・r8 frame・queueの明示RAM結合。今回/旧29命令78byte/旧1231条件/BP/nativeは再実行しない。",
     "矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。",
-    "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。"
+    "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。",
+    "成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -463,13 +464,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。",
+    "goal_ja": "本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_window_contracts.json",
-      "scripts/pr16_ring_message_window_contracts.py",
-      "content/modernization/pr16_ring_message_tile_leaves.json"
+      "content/modernization/pr16_ring_message_window_checkpoint.json",
+      "scripts/pr16_ring_message_window_checkpoint.py",
+      "content/modernization/pr16_ring_message_window_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -478,9 +479,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
+  "observed_head": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
   "observed_head_checks": {
-    "reason_ja": "先行run35304098811の原結論と保存証拠、BP run34946969126成功を照合。今回run35305255324は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35305255324の原結論と保存証拠、BP run34946969126成功を照合。今回run35305646696は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -643,7 +644,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。"
+    "scope_ja": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3057,10 +3058,26 @@
     "content/modernization/pr16_ring_message_window_contracts.json": {
       "size": 769261,
       "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
+    },
+    "scripts/pr16_ring_message_window_checkpoint.py": {
+      "size": 10222,
+      "sha256": "d4427f82d457d315ecb9a5ec508c623275498c8fc4cfcec8b818a81e0541d426"
+    },
+    "tests/test_pr16_ring_message_window_checkpoint.py": {
+      "size": 5526,
+      "sha256": "199c283c5dc5ecdea7ee2fb71a868c981e929048f633949e04e31c0416fa4bd9"
+    },
+    ".github/workflows/pr16-ring-message-window-checkpoint.yml": {
+      "size": 1583,
+      "sha256": "5d3fbd82470a4f778c3dae212e00d000895a512e9f40194df8d56d55dc294b23"
+    },
+    "content/modernization/pr16_ring_message_window_checkpoint.json": {
+      "size": 12736,
+      "sha256": "22dca8ce7959e9c0b2ee1547e54b2d4efb7de011cbb825076d91de617064eb38"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。",
+  "source_change_review_ja": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3482,9 +3499,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_window_contracts.json",
-    "source_head": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
-    "run_id": 35305255324
+    "path": "content/modernization/pr16_ring_message_window_checkpoint.json",
+    "source_head": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+    "run_id": 35305646696
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
