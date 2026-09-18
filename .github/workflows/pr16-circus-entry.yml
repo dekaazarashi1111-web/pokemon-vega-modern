@@ -5,7 +5,7 @@ on:
     paths:
       - .github/workflows/pr16-circus-entry.yml
       - scripts/pr16_circus_entry.py
-      - tests/test_pr16_circus_entry.py
+      - tests/test_pr16_circus_entry*.py
       - overlays/circus_admission/circus_script.c
 permissions:
   contents: read
@@ -23,11 +23,11 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: 新規script adapterと分岐18件のみを検証
+      - name: 新規script adapterと分岐23件のみを検証
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-circus-entry-run
-          python3 -m unittest discover -s tests -p test_pr16_circus_entry.py -v > .local/pr16-circus-entry-run/tests.stdout 2> .local/pr16-circus-entry-run/tests.stderr
+          python3 -m unittest discover -s tests -p "test_pr16_circus_entry*.py" -v > .local/pr16-circus-entry-run/tests.stdout 2> .local/pr16-circus-entry-run/tests.stderr
       - name: 固定compilerとStage84親入力を復元
         run: |
           set -euo pipefail

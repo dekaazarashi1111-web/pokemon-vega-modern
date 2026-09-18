@@ -119,6 +119,18 @@ def fork_graph(nodes, start, select, draw, cancel, old_prompt, new_prompt):
     return bytes(result),labels,sites,std
 
 
+def cancel_address(nodes, metadata):
+    """配布metadataはscript名を持たない。CommitSelectionの拒否edgeと実Abortを結ぶ。"""
+    owners=metadata['entrypoints']
+    selected=[n for n in nodes if any(r.get('native')==owners['FacilityRuntime_CommitSelection'] for r in n['instructions'])]
+    need(len(selected)==1, 'ambiguous CommitSelection script')
+    rows=selected[0]['instructions']
+    need(rows[-1]['opcode']==5 and rows[-1].get('target') is not None, 'missing selection rejection edge')
+    target=rows[-1]['target'];cancel=[n for n in nodes if n['address']==target]
+    need(len(cancel)==1 and cancel[0]['instructions'][0].get('native')==owners['FacilityRuntime_Abort'], 'selection rejection does not enter Abort')
+    return target
+
+
 def bridge(address, prompt, circus):
     # Codexの「いいえ」で入る地点。既存Factoryは新しい「いいえ」で元と同じ入口へ。
     raw=b'\x0f\x00'+ptr(prompt)+b'\x09\x05'
@@ -137,7 +149,7 @@ def patch(raw, offset, payload, gate_operand, bridge_address):
     spans=[(gate_operand,gate_operand+4),(offset,offset+len(payload))];cursor=0
     for begin,end in spans:
         need(out[cursor:begin]==raw[cursor:begin], 'undeclared ROM change');cursor=end
-    need(out[cursor:]==raw[cursor:], 'undeclared ROM suffix change')
+    need(out[cursor:]==raw[cursor:],'undeclared ROM suffix change')
     return bytes(out)
 
 
@@ -194,7 +206,7 @@ def run():
     routes=[r for r in gate['instructions'] if r.get('target')==FACTORY and r['opcode']==5]
     need(len(routes)==1,'unresolved Codex-to-Factory gateway')
     operand=routes[0]['operand_address']-BASE
-    # 固定metadataの2つのlabelだけを用い、未解読native/stdを不存在扱いしない。
+    # 固定metadataの2つのnative ownerだけを用い、未解読native/stdを不存在扱いしない。
     cfg=json.loads((ROOT/'config/github_private_environment.json').read_bytes())
     name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
     archive=ROOT/'.local/pr16-bp-trial-native-inputs'/name
@@ -202,12 +214,8 @@ def run():
     with zipfile.ZipFile(archive) as z:
         meta=json.loads(z.read('generated/runtime/facility_runtime_symbols.json'))
     (OUT/'facility-symbols.json').write_bytes(stable(meta))
-    symbols=meta.get('symbols',meta)
-    def address(key):
-        v=symbols[key]
-        if isinstance(v,dict):v=v['address']
-        return int(v,0) if isinstance(v,str) else v
-    cancel=address('script_facility_cancel')
+    need(meta['scripts']['npc_address']==npc, 'fixed metadata NPC differs from candidate')
+    cancel=cancel_address(nodes,meta)
     entry_node=next(n for n in nodes if n['address']==npc)
     prompt_rows=[r for r in entry_node['instructions'] if r['opcode']==15]
     need(len(prompt_rows)==1 and bytes.fromhex(prompt_rows[0]['bytes'])[:2]==b'\x0f\x00', 'ambiguous Trial prompt')
@@ -255,7 +263,7 @@ def run():
     need(allocation['summaries']['overlap_count']==0,'new allocation overlap')
     for row in allocation['allocations']:
         need(identity(new[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'new allocation identity differs')
-    sources=(SELF,SOURCE,'tests/test_pr16_circus_entry.py','.github/workflows/pr16-circus-entry.yml')
+    sources=(SELF,SOURCE,'tests/test_pr16_circus_entry.py','tests/test_pr16_circus_entry_binding.py','.github/workflows/pr16-circus-entry.yml')
     report=dict(schema_version=1,status='BUILT_CIRCUS_RECEPTION_NATIVE_PENDING',task=TASK,
         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         run_id=int(os.environ.get('GITHUB_RUN_ID','0')),parent=identity(raw),candidate=identity(new),
