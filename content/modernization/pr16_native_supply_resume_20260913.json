@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実message生成callerから設定検証・slot0・task割当・font callbackを391条件で結合。設定256値、LR由来stack残留、null font/task満杯/不足時の部分writeを区別。新byte/native/候補復元0。",
+    "current_stop": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は登録task callback08068C31とその上流実到達・window初期化の保存caller/必要byteを限定する。slot0・task割当は明示RAMでの条件付き証明で、通常story/実gFonts/画面・音声は未観測。本結合/速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。",
+    "next_step": "次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -381,7 +381,8 @@
     "混在textの選択3曲・色・4文字・停止/再開は本原本を再利用。通常5呼出し/高速1呼出しの最終画素/音声一致、queue要求4対1を保持。音声初期化後のglyph不足、track pointer不足の部分writeを破棄しない。同じ混在列/音声末端439・342/164・renderer/cursor/glyph/BP/nativeを単独再実行しない。",
     "run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。",
     "message実callerのslot0/font2/4/5供給と速度delegate一根を保存。同じ採取・混在列333/旧renderer/audio/glyph/BP/nativeを単独再実行しない。次は保存速度byteとmessage callerの設定/不足/slot書込/callback選択を一体検証。",
-    "保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。"
+    "保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。",
+    "登録message task08068C31の限定採取と保存caller照合は保存原本を再利用。次は保存taskの状態遷移/終了/不足境界を上流と結合。登録を実行、初期化表をlive初期化へ読み替えない。旧391条件/速度採取/renderer/audio/BP/nativeを単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -454,13 +455,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は登録task callback08068C31とその上流実到達・window初期化の保存caller/必要byteを限定する。slot0・task割当は明示RAMでの条件付き証明で、通常story/実gFonts/画面・音声は未観測。本結合/速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。",
+    "goal_ja": "次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_owner_contracts.json",
-      "scripts/pr16_ring_message_owner_contracts.py",
-      "content/modernization/pr16_ring_message_owner_frontier.json"
+      "content/modernization/pr16_ring_message_task_frontier.json",
+      "scripts/pr16_ring_message_task_frontier.py",
+      "content/modernization/pr16_ring_message_owner_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -469,9 +470,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "773a5c682c0e254304af1a732d2284c4fe0bf772",
+  "observed_head": "6d3362b290aa5728ec74a6ddf5c6b19b99b75abc",
   "observed_head_checks": {
-    "reason_ja": "先行run35258491487の原結論と保存証拠、BP run34946969126成功を照合。今回run35261096931は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35261096931の原結論と保存証拠、BP run34946969126成功を照合。今回run35298567936は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -632,9 +633,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "実message生成callerから設定検証・slot0・task割当・font callbackを391条件で結合。設定256値、LR由来stack残留、null font/task満杯/不足時の部分writeを区別。新byte/native/候補復元0。"
+    "scope_ja": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2904,10 +2905,26 @@
     "content/modernization/pr16_ring_message_owner_contracts.json": {
       "size": 1333833,
       "sha256": "d7e02206e9e83e14ddcbcf8c1b9cd73c2a5b0237fb2f13f3e780f631f56eef89"
+    },
+    "scripts/pr16_ring_message_task_frontier.py": {
+      "size": 11023,
+      "sha256": "281514fa091e8a6082a37024fd6aa54869ff39b996ef15517e7132ce750322ee"
+    },
+    "tests/test_pr16_ring_message_task_frontier.py": {
+      "size": 5621,
+      "sha256": "826c16ddf7126cb354c2e28553d52ba0ba6291e7d3dbde9264ac932d643e6206"
+    },
+    ".github/workflows/pr16-ring-message-task-frontier.yml": {
+      "size": 1601,
+      "sha256": "901f0098be3055860bfeee74d2a556b259ba85966dc6a12f4a6cace7b4e5684c"
+    },
+    "content/modernization/pr16_ring_message_task_frontier.json": {
+      "size": 36672,
+      "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実message生成callerから設定検証・slot0・task割当・font callbackを391条件で結合。設定256値、LR由来stack残留、null font/task満杯/不足時の部分writeを区別。新byte/native/候補復元0。",
+  "source_change_review_ja": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3329,9 +3346,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_owner_contracts.json",
-    "source_head": "773a5c682c0e254304af1a732d2284c4fe0bf772",
-    "run_id": 35261096931
+    "path": "content/modernization/pr16_ring_message_task_frontier.json",
+    "source_head": "6d3362b290aa5728ec74a6ddf5c6b19b99b75abc",
+    "run_id": 35298567936
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

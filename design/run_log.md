@@ -6808,3 +6808,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は登録task callback08068C31とその上流実到達・window初期化の保存caller/必要byteを限定する。slot0・task割当は明示RAMでの条件付き証明で、通常story/実gFonts/画面・音声は未観測。本結合/速度採取/混在333/audio/renderer/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T02:15:48.753462+00:00 — PR-P08-7-RING-MESSAGE-TASK-FRONTIER
+- Timestamp: 2026-09-18T02:15:48.753462+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-FRONTIER / 登録message taskの未読byteと保存上流caller・初期化境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-frontier
+- Summary: 登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。
+- Files changed: scripts/pr16_ring_message_task_frontier.py, tests/test_pr16_ring_message_task_frontier.py, .github/workflows/pr16-ring-message-task-frontier.yml, content/modernization/pr16_ring_message_task_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=6d3362b290aa5728ec74a6ddf5c6b19b99b75abc; run=35298567936（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。
