@@ -117,6 +117,23 @@ def bounded_patch(raw, patches):
     return bytes(out)
 
 
+def inherited_policy(old_bytes, link):
+    """独立関数のliteral poolを数える。configureはEnter/PrepareBattleの2箇所。"""
+    expected = {'configure_facility': 2, 'generate_rentals': 1, 'generate_trainer': 1}
+    need(set(link['symbols']) == set(expected), 'three fixed call targets required')
+    policy, counts = {}, {}
+    for key, count in expected.items():
+        row = link['symbols'][key]
+        address = row['address']
+        need(row['kind'] == 'T' and type(address) is int and address % 2 == 0
+             and BASE <= address < BASE + PARENT['size'], 'invalid fixed Thumb symbol: ' + key)
+        policy[key] = address | 1
+        counts[key] = old_bytes.count(struct.pack('<I', policy[key]))
+        need(counts[key] == count,
+             f'original Factory call literal multiplicity differs: {key}: {counts[key]} != {count}')
+    return policy, counts
+
+
 def compile_runtime(folder, address, policy, delegates):
     folder.mkdir(parents=True,exist_ok=True)
     (folder/'circus_facility.c').write_text(isolated_source((ROOT/OLD_SOURCE).read_text(),(ROOT/(PREFIX+'circus_facility_policy.c')).read_text()))
@@ -181,11 +198,7 @@ def run():
     old_runtime=next(r for r in recipe['allocation']['allocations'] if r['name']=='facility_runtime_payload')
     old_bytes=raw[old_runtime['start']:old_runtime['end_exclusive']]
     need(identity(old_bytes)['sha256']==old_runtime['content_sha256'],'original Factory runtime changed')
-    policy={k:r['address']|1 for k,r in link['symbols'].items()}
-    need(set(policy)=={'configure_facility','generate_rentals','generate_trainer'},'three fixed call targets required')
-    for key,address in policy.items():
-        need(link['symbols'][key]['kind']=='T' and old_bytes.count(struct.pack('<I',address))==1,
-             'fixed symbol is not the original Factory call literal: '+key)
+    policy, literal_counts = inherited_policy(old_bytes, link)
     match=re.search(rb'/\*0x00A\*/[^\n]*playerTrainerId[^\n]*',global_header)
     need(match is not None,'trainer identity ABI no longer +0xA')
     builds=[compile_runtime(OUT/f'compile-{n}',BASE+off,policy,delegates) for n in (1,2)]
@@ -242,7 +255,7 @@ def run():
         reception=recipe['entries'],launch_sites=recipe['launch_sites'],delegates=delegates,patches=patches,calls=calls,
         allocation=allocation,changed_existing_allocations=changed,independent_arm_links=2,whole_rom_rollback_matches_parent=True,
         original_factory_runtime_unchanged=True,original_factory_streak_and_claim_not_aliased=True,
-        accepted_script_continuations=list(parent.CONTINUATIONS),trainer_id_abi=match[0].decode(),inherited_policy=link,
+        accepted_script_continuations=list(parent.CONTINUATIONS),trainer_id_abi=match[0].decode(),inherited_policy=link,inherited_literal_counts=literal_counts,
         source_bindings={n:identity((ROOT/n).read_bytes()) for n in sources},new_emulator_processes=0,
         accepted_native_cases_replayed=0,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)
     (OUT/'candidate.gba').write_bytes(left);(OUT/'report.json').write_bytes(stable(report))
