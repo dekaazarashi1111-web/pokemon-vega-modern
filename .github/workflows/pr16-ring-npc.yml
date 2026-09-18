@@ -1,0 +1,59 @@
+name: PR16 Ring NPC implementation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-npc.yml
+      - overlays/ring_npc/**
+      - tests/test_pr16_ring_npc*.py
+      - tests/ring_npc_host.c
+      - scripts/pr16_ring_npc_successor.py
+      - scripts/pr16_ring_npc_native.py
+      - tools/mgba_pr16_ring_npc.c
+permissions:
+  contents: read
+concurrency:
+  group: pr16-ring-npc-implementation
+  cancel-in-progress: false
+jobs:
+  ring:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Production gift C host contracts
+        run: |
+          mkdir -p .local/pr16-ring-npc-workbench
+          python3 -m unittest discover -s tests -p 'test_pr16_ring_npc*.py' -v > .local/pr16-ring-npc-workbench/host.stdout 2> .local/pr16-ring-npc-workbench/host.stderr
+          python3 scripts/pr16_resume.py check > .local/pr16-ring-npc-workbench/resume-before.json
+      - name: Native driver and target source context only
+        run: |
+          python3 - <<'PY'
+          import sys
+          sys.path.insert(0, 'scripts')
+          import pr16_ring_npc_workbench as work
+          work.PATHS = (
+              'scripts/pr16_gear_route_probe.py', 'scripts/pr16_natural_capture.py',
+              'scripts/pr16_shop_display_repair.py', 'scripts/pr16_shop_display_probe.py',
+              'scripts/pr16_capture_shop_smoke.py', 'scripts/pr16_shop_native.py',
+              'scripts/pr16_capture_geometry.py', 'scripts/pr16_p05_root_diagnostics.py',
+              'scripts/pr16_purchased_gear.py', 'tools/mgba_pr16_natural_capture.c',
+              'tools/mgba_pr16_capture_gear.c', 'tools/mgba_pr16_shop_smoke.c',
+              'config/rom_regions.csv', 'manifests/flags.csv', 'manifests/item_ids.csv',
+              'overlays/ring_npc/ring_npc.c', 'overlays/ring_npc/ring_npc.h',
+              'tests/ring_npc_host.c', 'tests/test_pr16_ring_npc.py',
+          )
+          work.collect()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-npc-host
+          path: .local/pr16-ring-npc-workbench/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
