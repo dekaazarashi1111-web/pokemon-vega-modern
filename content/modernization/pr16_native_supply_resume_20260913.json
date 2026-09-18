@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Circus初戦のThumb呼出し不具合を修復。既存2ownerへ関数型付きbx r3 thunkを接続し、独立2compile/link・2限定patchの一致を確認。304byte adapter以外を変えず、旧adapterを戻したROM全体SHAが取消/Factory成功候補022bd5e6と完全一致することを検証。取消保存/Factory入口の成功2ケースは継承し再実行0。初戦nativeとCircus固有連勝/永続化/抑制は未受入。",
+    "current_stop": "Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。",
+    "next_step": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -296,6 +296,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。",
     "run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。",
     "Circus実受付候補の23件/独立2link/限定2patchと原本を再利用。失敗run35359098745のmetadata名誤仮定とrun35359681701のveneer整列を再発させない。無変更の旧7関数/link/5335root/nativeは再実行しない。",
     "Circus source run35351832671/actual-owner link run35353620141を再利用。C/契約/7実関数/候補SHAに影響がなければ10+10件/独立link/5335 rootsを再実行しない。保存ELFはlinked.oであり拡張子.elf限定探索を再発させない。",
@@ -535,15 +536,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。",
+    "goal_ja": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_FIRST_BATTLE_THUMB_NATIVE",
+    "id": "CIRCUS_RENTAL_IDENTITY_AND_STREAK",
     "read_paths": [
+      "content/modernization/pr16_circus_first_battle_checkpoint.json",
       "content/modernization/pr16_circus_thumb_checkpoint.json",
-      "content/modernization/pr16_circus_native_prefix_checkpoint.json",
-      "scripts/pr16_circus_native.py",
       "tools/mgba_pr16_circus_native.c",
-      "content/modernization/pr16_circus_admission_checkpoint.json",
+      "scripts/pr16_circus_native.py",
+      "scripts/pr16_circus_entry.py",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -554,13 +555,43 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7",
+  "observed_head": "c6043b8c58a99f2687cdf8126274db1eeec5460f",
   "observed_head_checks": {
-    "circus_thumb_run": 35366959217,
-    "reason_ja": "Thumb修復の新規契約・独立2compile/link・全ROM非影響証明を完了。記録runはcommit時in_progress。初戦nativeや全CI greenは未主張。",
-    "scope_head": "8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7"
+    "scope_head": "c6043b8c58a99f2687cdf8126274db1eeec5460f",
+    "circus_first_battle": {
+      "run": {
+        "id": 35367721416,
+        "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+        "path": ".github/workflows/pr16-circus-native.yml",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1
+      },
+      "job": {
+        "id": 105674099808,
+        "run_id": 35367721416,
+        "head_sha": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "artifact": {
+        "id": 10557022177,
+        "name": "pr16-circus-native",
+        "digest": "sha256:2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc",
+        "size_in_bytes": 258578,
+        "expired": false
+      },
+      "required_steps": [
+        "新SHA結果契約と未完1件の選択16件のみを検証",
+        "固定Thumb修復候補をnative入力用に再構成（受入ケース再実行なし）",
+        "受入済み2ケースは再実行せずThumb修復Circus初戦のみ検証",
+        "ROM save ELFを除外しnative原本と限定sourceを保持",
+        "Run actions/upload-artifact@v4"
+      ]
+    },
+    "reason_ja": "限定native成功原本を照合。記録runはcommit時in_progress。全CI green/受付全体受入とは主張しない。"
   },
-  "observed_head_semantics": "Thumb修復検証の要求HEAD。source-patch identityを適用したworktreeを検証。完了SHAはremote ref/receiptで確認。正式BP受入HEADではない。",
+  "observed_head_semantics": "初戦成功原本の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入HEADは維持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -688,7 +719,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "取消/保存/Factory入口2件継承→Thumb修復初戦native→Circus固有streak正規更新/永続化と30連勝抑制→P08影響範囲移送→release判断。",
+  "remaining_sequence_ja": "初戦1ターン成功は保存→選択個体の戦闘継承を確認/必要修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1224,11 +1255,10 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
+    "new_emulator_processes": 1,
+    "record_emulator_processes": 0,
     "accepted_standalone_replays": 0,
-    "independent_adapter_links": 2,
-    "independent_scoped_patches": 2,
-    "new_emulator_processes": 0,
-    "scope_ja": "Thumb修復のみ。既存Circus取消/Factory入口は旧原本と全ROM一致証明から継承。"
+    "scope_ja": "Thumb修復候補の未完初戦1件のみ。原本の600byte検証は初期party退避像であり選択個体の一致検証ではない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -4154,10 +4184,50 @@
     "tools/mgba_pr16_ring_policy.c": {
       "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
       "size": 12153
+    },
+    "scripts/pr16_circus_native.py": {
+      "size": 12188,
+      "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665"
+    },
+    "tests/test_pr16_circus_native.py": {
+      "size": 5648,
+      "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0"
+    },
+    ".github/workflows/pr16-circus-native.yml": {
+      "size": 6257,
+      "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9"
+    },
+    "scripts/pr16_circus_first_record.py": {
+      "size": 18557,
+      "sha256": "c63d394d550be78e068426e5653ca81a9df7f24bc0f229ef7b6184af4399a993"
+    },
+    "tests/test_pr16_circus_first_record.py": {
+      "size": 7304,
+      "sha256": "a8fa9b95f2b7de05988a920bb4f0889ad02e1f51d7572080143e80492331dd11"
+    },
+    ".github/workflows/pr16-circus-first-record.yml": {
+      "size": 3456,
+      "sha256": "426cc3fa26639568836af4d2a0c47cb78393fd2a7cee1cd4fbc4fc3b1ae1de0a"
+    },
+    "tools/mgba_pr16_circus_native.c": {
+      "size": 11730,
+      "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885"
+    },
+    "content/modernization/pr16_circus_first_battle_checkpoint.json": {
+      "size": 38916,
+      "sha256": "17f96202631445ff7958a83dae497439faf632240e801c7f2783d5aa0a511a6c"
+    },
+    "evidence/pr16_circus_first_native/original.stdout.txt": {
+      "size": 813,
+      "sha256": "2417066c6d21ceba5325013bbf793a31c31409e392782f5dc5d5612d3ac6b169"
+    },
+    "evidence/pr16_circus_first_native/original.stderr.txt": {
+      "size": 41472,
+      "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Circus初戦のThumb呼出し不具合を修復。既存2ownerへ関数型付きbx r3 thunkを接続し、独立2compile/link・2限定patchの一致を確認。304byte adapter以外を変えず、旧adapterを戻したROM全体SHAが取消/Factory成功候補022bd5e6と完全一致することを検証。取消保存/Factory入口の成功2ケースは継承し再実行0。初戦nativeとCircus固有連勝/永続化/抑制は未受入。",
+  "source_change_review_ja": "Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -4178,5 +4248,18 @@
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,
     "scope": "NATIVE_DIAGNOSTIC_NOT_FORMAL_ACCEPTANCE"
+  },
+  "circus_first_battle_native": {
+    "path": "content/modernization/pr16_circus_first_battle_checkpoint.json",
+    "status": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
+    "run_id": 35367721416,
+    "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9",
+    "engineering_candidate": {
+      "size": 33554432,
+      "sha256": "99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b"
+    },
+    "first_turn_verified": true,
+    "rental_identity_verified": false,
+    "physical_admission_accepted": false
   }
 }

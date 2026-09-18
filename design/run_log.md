@@ -7377,3 +7377,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録と検証済み実装を含む同branchへの非force commit。自己SHAは外部ref/receipt。
 - Network: GitHub connector/Actionsとhash固定private Release。ROM/save/private archive/credentialは新規tracked/artifactへ含めない。merge/release/baseline変更なし。
 - Next: Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。
+
+
+## 2026-09-18T16:32:11.990893+00:00 — USER-20260918-CIRCUS-FIRST-BATTLE
+- Timestamp: 2026-09-18T16:32:11.990893+00:00
+- Task: USER-20260918-CIRCUS-FIRST-BATTLE
+- Status: DONE / 修復候補の初戦1ターン限定検証・記録。選択個体保持/固有連勝は未受入。
+- Version: pr16-circus-first-turn
+- Summary: Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。
+- Files changed: scripts/pr16_circus_native.py, tests/test_pr16_circus_native.py, .github/workflows/pr16-circus-native.yml, scripts/pr16_circus_first_record.py, tests/test_pr16_circus_first_record.py, .github/workflows/pr16-circus-first-record.yml, content/modernization/pr16_circus_first_battle_checkpoint.json, evidence/pr16_circus_first_native/original.stdout.txt, evidence/pr16_circus_first_native/original.stderr.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: native結果契約16件PASS、7host-write barrier、run35367721416/job105674099808成功。ZIP/member/source/process/stdout/stderrを照合し、PPM16枚を画像確認。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_first_battle_checkpoint.json; tested HEAD=c847b700d5b3af983c08a44d2278ab86d409eeb9; artifact10557022177 SHA256=2d20f873c45ac26d8cd65d26b6b7a0fe18786be464f3a25b0c46d948aebc64cc。原本stdout/stderrをtracked textで保持。画像上の個体名差は未解決として記録し、旧原本は改変しない。
+- Boundary: 新規native1/4229frames/効果0x80/警告0/保存0/BP0。取消保存・Factory入口2成功は継承、再実行0。正式BP/Ring/P03/P06/P07、physical1/P08 gates2、release_ready=falseを維持。
+- Commit: この記録と検証済みnative選択変更を含む同branchへの非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程では既存artifactのみ使用し、private入力復元/ROM生成/native起動なし。ROM/save/credentialを新規tracked/artifactへ含めない。既存full guard違反は前後出力一致・新規違反0で区別。merge/release/baseline変更なし。
+- Next: 保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。

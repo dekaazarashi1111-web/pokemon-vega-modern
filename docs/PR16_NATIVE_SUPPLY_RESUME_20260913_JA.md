@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Circus初戦のThumb呼出し不具合を修復。既存2ownerへ関数型付きbx r3 thunkを接続し、独立2compile/link・2限定patchの一致を確認。304byte adapter以外を変えず、旧adapterを戻したROM全体SHAが取消/Factory成功候補022bd5e6と完全一致することを検証。取消保存/Factory入口の成功2ケースは継承し再実行0。初戦nativeとCircus固有連勝/永続化/抑制は未受入。
+Thumb修復候補99cc0948で未完だったCircus初戦1件が成功。新質問→レンタル選択→正規sp072抽選（field効果0x80）→戦闘→実入力の1ターンを4229framesで確認。新規emulator1、7書込barrier、警告0。取消保存/Factory入口2成功は非影響証明から継承し再実行0。画像16枚を確認したが、第2選択画面の先頭ゴースと実戦のポリゴンが異なる。600byte検査は元partyの退避像のみで、選択個体の実戦継承を保証しない。選択個体の経路とCircus固有連勝/永続化/30連勝抑制は未受入。
 
-**次: Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。**
+**次: 保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7`。
-Thumb修復検証の要求HEAD。source-patch identityを適用したworktreeを検証。完了SHAはremote ref/receiptで確認。正式BP受入HEADではない。
+証拠のsource HEAD: `c6043b8c58a99f2687cdf8126274db1eeec5460f`。
+初戦成功原本の記録source HEAD。実native tested HEADはCircus専用checkpointに固定。正式BP受入HEADは維持。
 
 ## 最短の再開手順
 
@@ -25,11 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_first_battle_checkpoint.json`
 - `content/modernization/pr16_circus_thumb_checkpoint.json`
-- `content/modernization/pr16_circus_native_prefix_checkpoint.json`
-- `scripts/pr16_circus_native.py`
 - `tools/mgba_pr16_circus_native.c`
-- `content/modernization/pr16_circus_admission_checkpoint.json`
+- `scripts/pr16_circus_native.py`
+- `scripts/pr16_circus_entry.py`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -62,10 +62,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-取消/保存/Factory入口2件継承→Thumb修復初戦native→Circus固有streak正規更新/永続化と30連勝抑制→P08影響範囲移送→release判断。
+初戦1ターン成功は保存→選択個体の戦闘継承を確認/必要修復→固有連勝の正規更新/永続化と30連勝抑制→影響範囲P08移送→release判定。
 
 ## 再実行・過大主張の禁止
 
+- run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。
 - run35363580877は取消保存・Factory入口の2成功とThumb初戦失敗の混在原本。run全体をsuccessへ読み替えない。304byte adapter以外の全ROM一致証明がある間は成功2ケースを再実行しない。run35365722696のbridge停止は既存全体private guardであり、認可不足やpatch不成立ではない。
 - Circus実受付候補の23件/独立2link/限定2patchと原本を再利用。失敗run35359098745のmetadata名誤仮定とrun35359681701のveneer整列を再発させない。無変更の旧7関数/link/5335root/nativeは再実行しない。
 - Circus source run35351832671/actual-owner link run35353620141を再利用。C/契約/7実関数/候補SHAに影響がなければ10+10件/独立link/5335 rootsを再実行しない。保存ELFはlinked.oであり拡張子.elf限定探索を再発させない。
@@ -253,6 +254,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-Thumb修復の新規契約・独立2compile/link・全ROM非影響証明を完了。記録runはcommit時in_progress。初戦nativeや全CI greenは未主張。
+限定native成功原本を照合。記録runはcommit時in_progress。全CI green/受付全体受入とは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

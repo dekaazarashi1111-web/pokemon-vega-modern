@@ -485,13 +485,13 @@
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
       "id": "PHYSICAL_CIRCUS_ADMISSION",
-      "implementation_checkpoint": "content/modernization/pr16_circus_thumb_checkpoint.json",
-      "implementation_status": "THUMB_ADAPTER_REPAIRED_PREFIX_INHERITED_NATIVE_OPEN",
+      "implementation_checkpoint": "content/modernization/pr16_circus_first_battle_checkpoint.json",
+      "implementation_status": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
       "original_request": "P05 suppression requirement and current P08 boundary",
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。",
+      "resume": "保存した初戦成功・Thumb非影響証明を再利用し、まず第2選択→戦闘間の個体継承を限定追跡する。表示名だけで原因を断定せず、選択個体のspecies/personality/party bytesと既存prepare/retention ownerを照合し、必要な場合だけCircus専用経路を修復する。その後、固有streakの正規勝敗更新・保存復帰と30連勝以上の来歴、正規sp072の特性抑制を実装・検証する。Factory連勝を代用せず、効果/施設番号/連勝/PC/LRをhost注入しない。無変更の取消保存/Factory入口/初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"
