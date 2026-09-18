@@ -1,0 +1,112 @@
+name: PR16 Circus native reception
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-native.yml
+      - scripts/pr16_circus_native.py
+      - tools/mgba_pr16_circus_native.c
+      - tests/test_pr16_circus_native.py
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: pr16-circus-native
+  cancel-in-progress: false
+jobs:
+  circus-native:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: 新規native結果契約14件のみを検証
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-native-run
+          python3 -m unittest discover -s tests -p test_pr16_circus_native.py -v > .local/pr16-circus-native-run/tests.stdout 2> .local/pr16-circus-native-run/tests.stderr
+      - name: 固定compilerとStage84親入力を復元
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-native-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: 固定private入力とcharmapだけを復元
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-native-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          PY
+      - name: 新候補作成のためだけに固定親を再構成（受入native再実行なし）
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-native-run
+          python3 scripts/pr16_resume.py check > "$out/resume-before.json"
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_circus_entry.py > "$out/build.stdout" 2> "$out/build.stderr"
+          git diff --exit-code
+      - name: 新受付の取消保存・Factory入口対照・Circus第1戦だけを検証
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-native-run
+          sudo apt-get update > "$out/apt-update.log" 2>&1
+          sudo apt-get install -y libmgba-dev > "$out/apt-mgba.log" 2>&1
+          python3 scripts/pr16_circus_native.py > "$out/native.stdout" 2> "$out/native.stderr"
+          git diff --exit-code
+      - name: ROM save ELFを除外しnative原本と限定sourceを保持
+        if: always()
+        run: |
+          python3 - <<'PYEND'
+          import hashlib,json,pathlib,re,subprocess
+          out=pathlib.Path('.local/pr16-circus-native-evidence');out.mkdir(parents=True,exist_ok=True)
+          members={}
+          def save(name,p):
+              assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes()
+              if p.suffix=='.ppm':
+                  assert raw.startswith(b'P6\n240 160\n255\n') and len(raw)==15+240*160*3
+              else:
+                  raw.decode('utf-8');assert len(raw)<2000000 and b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+              members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          for prefix in ('pr16-circus-native-run','pr16-circus-native','pr16-circus-entry'):
+              source=pathlib.Path('.local')/prefix
+              for p in sorted(source.rglob('*')):
+                  if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.ld','.c','.h','.ppm'}:save(prefix+'/'+p.relative_to(source).as_posix(),p)
+          for name in ('scripts/pr16_circus_native.py','tools/mgba_pr16_circus_native.c','tests/test_pr16_circus_native.py','.github/workflows/pr16-circus-native.yml'):
+              save('source/'+name,pathlib.Path(name))
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
+          PYEND
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-native
+          path: .local/pr16-circus-native-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
