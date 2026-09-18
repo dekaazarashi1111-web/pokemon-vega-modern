@@ -225,10 +225,12 @@ def run():
     # NPC builderの正本allocator設定をそのまま継承する。
     import pr16_ring_npc_successor as gift
     regions=gift.REGIONS
-    req=dict(name=ALLOCATION,region='future_tail',size=RESERVATION,alignment=4,owner=TASK,
+    req=dict(name=ALLOCATION,region='future_tail',size=RESERVATION,alignment=16,owner=TASK,
              purpose='Circus optional real reception and exact pending/draw sequence',content_sha256='0'*64)
     preview=build_allocation_report_from_csv(ROOT/regions,requests+[req])
     offset=next(r['start'] for r in preview['allocations'] if r['name']==ALLOCATION)
+    # ARM linkerのlong-call veneerは8-byte整列する。予約自体を16-byteへ固定。
+    need(offset % 16 == 0, 'adapter allocation alignment differs')
     load=BASE+offset+64
     left,entry=compile_adapter(OUT/'compile-1',load,owners)
     right,entry2=compile_adapter(OUT/'compile-2',load,owners)
@@ -275,7 +277,7 @@ def run():
         inherited_link_run=checkpoint['link_run_id'],inherited_root_scan_repeated=False,
         sources={n:identity((ROOT/n).read_bytes()) for n in sources},new_emulator_processes=0,accepted_native_cases_replayed=0,
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
-        next='新しい実受付分岐のnative取消/入場/Save/fresh Continue。30連勝入力の来歴と抑制抽選は別受入。')
+        next='新しい実受付のnative取消/入場/Save/fresh Continue。Circus固有streak ownerの正規更新と永続化を別途接続し、30連勝以上の来歴と抑制抽選を検証する。')
     (OUT/'candidate.gba').write_bytes(new);(OUT/'report.json').write_bytes(stable(report))
     need((parent.OUT/'candidate.gba').read_bytes()==raw,'parent mutated')
     print(json.dumps({k:v for k,v in report.items() if k not in ('allocation','sources','rooted_std_edges')},ensure_ascii=False))
