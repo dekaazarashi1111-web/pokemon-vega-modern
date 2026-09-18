@@ -6,6 +6,7 @@ on:
       - .github/workflows/pr16-circus-entry.yml
       - scripts/pr16_circus_entry.py
       - tests/test_pr16_circus_entry.py
+      - overlays/circus_admission/circus_script.c
 permissions:
   contents: read
   actions: read
@@ -22,57 +23,78 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: 実受付接続に必要なtracked textだけを転送（既受入再実行なし）
+      - name: 新規script adapterと分岐18件のみを検証
+        run: |
+          set -euo pipefail
+          mkdir -p .local/pr16-circus-entry-run
+          python3 -m unittest discover -s tests -p test_pr16_circus_entry.py -v > .local/pr16-circus-entry-run/tests.stdout 2> .local/pr16-circus-entry-run/tests.stderr
+      - name: 固定compilerとStage84親入力を復元
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-entry-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: 固定private入力とcharmapだけを復元
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-entry-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" --pattern pokemon-vega-private-env-v1-inputs.zip --pattern pokemon-vega-private-env-v1-modernization-inputs.zip --pattern pokemon-vega-private-env-v1-state.zip --dir "$assets"
+          python3 scripts/github_private_environment.py restore --archive-dir "$assets" --archive pokemon-vega-private-env-v1-inputs.zip --archive pokemon-vega-private-env-v1-modernization-inputs.zip > "$out/private-restore.json"
+          python3 - <<'PY'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip';bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name;raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
+          PY
+      - name: 新候補作成のためだけに固定親を再構成（受入native再実行なし）
+        run: |
+          set -euo pipefail
+          out=.local/pr16-circus-entry-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+          python3 scripts/pr16_circus_entry.py > "$out/build.stdout" 2> "$out/build.stderr"
+          git diff --exit-code
+      - name: ROM save ELFを除外した原本と次工程の限定sourceを保持
+        if: always()
         run: |
           python3 - <<'PY'
           import fnmatch,hashlib,json,pathlib,re,subprocess
-          patterns = [
-            'AGENTS.md','CHATGPT_RESUME.md',
-            'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md',
-            'content/modernization/pr16_native_supply_resume_20260913.json',
-            'content/modernization/pr16_bp_chooser_checkpoint.json',
-            'content/modernization/p08_remaining_work.json',
-            'content/modernization/pr16_circus*.json',
-            'content/modernization/pr16_p05_supply_owner_findings.json',
-            'content/modernization/pr16_ring_policy_acceptance.json',
-            'config/facility*.json','config/active_play_baseline.json',
-            'design/active_play_baseline.md',
-            'scripts/pr16_circus*.py','scripts/pr16_resume.py',
-            'scripts/pr16_receiver_audit.py',
-            'scripts/pr16_ring_policy_successor.py',
-            'scripts/pr16_ring_policy_native.py',
-            'scripts/pr16_bp_native*.py','scripts/pr16_bp_trial*.py',
-            'scripts/pr16_bp_chooser*.py','scripts/pr16_bp_battle*.py',
-            'scripts/pr16_bp_spending*.py','scripts/build_facility_runtime.py',
-            'scripts/pr16_*record*.py',
-            'scripts/pr16_closeout*.py',
-            'scripts/private_file_guard.py',
-            'scripts/taskctl.py',
-            'overlays/facility_runtime/*','overlays/circus_admission/*',
-            'tests/test_pr16_circus*.py','tests/test_pr16_resume.py',
-            '.github/workflows/pr16-bp-spending*.yml',
-            '.github/workflows/pr16-ring-policy*.yml',
-            '.github/workflows/pr16-circus-record*.yml'
-          ]
-          out=pathlib.Path('.local/pr16-circus-entry-source');out.mkdir(parents=True,exist_ok=True)
-          members={};total=0
-          for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
-              if not name or not any(fnmatch.fnmatchcase(name,p) for p in patterns):continue
-              p=pathlib.Path(name)
-              assert p.is_file() and not p.is_symlink(),name
-              assert p.suffix in {'.py','.c','.h','.json','.md','.yml'},name
-              raw=p.read_bytes();raw.decode('utf-8');total+=len(raw)
-              assert len(raw)<4000000 and total<30000000 and b'\0' not in raw,name
-              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw),name
-              dst=out/'source'/p;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
+          out=pathlib.Path('.local/pr16-circus-entry-evidence');out.mkdir(parents=True,exist_ok=True)
+          members={}
+          def save(name,p):
+              assert p.is_file() and not p.is_symlink()
+              raw=p.read_bytes();raw.decode('utf-8');assert len(raw)<2000000 and b'\0' not in raw
+              assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+              dst=out/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(raw)
               members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
-          (out/'members.json').write_text(json.dumps({'head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'members':members,'new_emulator_processes':0,'accepted_native_cases_replayed':0},indent=2)+'\n')
-          print(json.dumps({'text_files':len(members),'bytes':total,'new_emulator_processes':0}))
+          for prefix in ('pr16-circus-entry-run','pr16-circus-entry'):
+              source=pathlib.Path('.local')/prefix
+              for p in sorted(source.rglob('*')):
+                  if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.ld'}:save(prefix+'/'+p.relative_to(source).as_posix(),p)
+          patterns=['scripts/pr16_ring_followup_v2.py','scripts/pr16_ring_npc_successor.py','scripts/pr16_bp_party_retention_successor.py','scripts/pr16_circus_entry.py','tests/test_pr16_circus_entry.py','overlays/circus_admission/circus_script.c','.github/workflows/pr16-circus-entry.yml','tools/mgba_pr16_bp_*.c','tools/mgba_pr16_bp_*.h']
+          for name in subprocess.check_output(['git','ls-files','-z']).decode().split('\0'):
+              if name and any(fnmatch.fnmatchcase(name,p) for p in patterns):save('source/'+name,pathlib.Path(name))
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: pr16-circus-entry-source
-          path: .local/pr16-circus-entry-source/
+          name: pr16-circus-entry
+          path: .local/pr16-circus-entry-evidence/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
