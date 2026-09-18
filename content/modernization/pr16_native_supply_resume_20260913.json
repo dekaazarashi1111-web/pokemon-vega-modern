@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。",
+    "current_stop": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。",
+    "next_step": "次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -391,7 +391,8 @@
     "状態0/1の残存5callee採取は本原本とhash付きexportを再利用。次は属性0・palette・r8 frame・queueの明示RAM結合。今回/旧29命令78byte/旧1231条件/BP/nativeは再実行しない。",
     "矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。",
     "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。",
-    "成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。"
+    "成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。",
+    "BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -464,13 +465,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。",
+    "goal_ja": "次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_window_checkpoint.json",
-      "scripts/pr16_ring_message_window_checkpoint.py",
-      "content/modernization/pr16_ring_message_window_contracts.json"
+      "content/modernization/pr16_ring_bios_memory_contracts.json",
+      "scripts/pr16_ring_bios_memory_contracts.py",
+      "content/modernization/pr16_ring_message_window_checkpoint.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -479,9 +480,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
+  "observed_head": "e73a025885444a645d0bf690361844b463004ae2",
   "observed_head_checks": {
-    "reason_ja": "先行run35305255324の原結論と保存証拠、BP run34946969126成功を照合。今回run35305646696は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35305646696の原結論と保存証拠、BP run34946969126成功を照合。今回run35307170557は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -642,9 +643,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。"
+    "scope_ja": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3074,10 +3075,30 @@
     "content/modernization/pr16_ring_message_window_checkpoint.json": {
       "size": 12736,
       "sha256": "22dca8ce7959e9c0b2ee1547e54b2d4efb7de011cbb825076d91de617064eb38"
+    },
+    "scripts/pr16_ring_bios_record.py": {
+      "size": 11374,
+      "sha256": "448e17fa82fbe031d9202fd6045315e88c590202ae4f3c4f864283052a414ffa"
+    },
+    "scripts/pr16_ring_bios_memory_contracts.py": {
+      "size": 15595,
+      "sha256": "1f38612b3cd565575db321b2488a30334c1d5fd9ac0573295911bb417733a394"
+    },
+    "tests/test_pr16_ring_bios_memory_contracts.py": {
+      "size": 9298,
+      "sha256": "c263f42264dca1ab489175e35e956d078be3235d81df900a6a6229531521716d"
+    },
+    ".github/workflows/pr16-ring-bios-memory-contracts.yml": {
+      "size": 1771,
+      "sha256": "85fe39869ef23a3796a4753acf9bcfeafecc86a60b7295ff82cca1e81e093c40"
+    },
+    "content/modernization/pr16_ring_bios_memory_contracts.json": {
+      "size": 63386,
+      "sha256": "dd255b88fc1495361b88e4ec52438cbb1788fc919b8bb6f5a1b06ac104586cef"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "成功原本724条件/50tests(587帰還/137停止、9同一RAM列)を再実行せず照合し、軽量checkpointとhash付き取得経路を固定。mode2 state0進行・26矩形frame RAM帰還を確認済み。queue失敗と描画成功は区別。",
+  "source_change_review_ja": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3499,9 +3520,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_window_checkpoint.json",
-    "source_head": "d6459ffb27a69d15b7bc5dd086280c2656163fc6",
-    "run_id": 35305646696
+    "path": "content/modernization/pr16_ring_bios_memory_contracts.json",
+    "source_head": "e73a025885444a645d0bf690361844b463004ae2",
+    "run_id": 35307170557
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

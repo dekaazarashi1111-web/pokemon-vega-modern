@@ -4240,3 +4240,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 本checkpointのimplementation_read_paths/evidence_accessから継続。次は既知BIOS0B/0Cの根拠付き供給元/メモリ効果契約。palette083E30AC→020372ECの10半word、次の020376ECは未到達。state1はframe書込後fill11111111で停止。保存prefix/724条件/旧採取/1231条件/BP/nativeを再実行しない。task満杯busy2と通常story/Ring/live初期化の未受入を保持。
+
+
+## 2026-09-18T04:31:08.866450+00:00 — PR-P08-7-RING-BIOS-MEMORY-CONTRACTS
+- Timestamp: 2026-09-18T04:31:08.866450+00:00
+- Task: PR-P08-7-RING-BIOS-MEMORY-CONTRACTS / BIOSコピー・fillの供給元と部分書込を検証し未読属性表まで継続
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bios-memory-contracts
+- Summary: BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。
+- Files changed: scripts/pr16_ring_bios_memory_contracts.py, tests/test_pr16_ring_bios_memory_contracts.py, .github/workflows/pr16-ring-bios-memory-contracts.yml, content/modernization/pr16_ring_bios_memory_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=e73a025885444a645d0bf690361844b463004ae2; run=35307170557（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、既存hash固定candidateから新規palette20byteのみ取得。一次資料: https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/hle-bios.s (blob c891479a5ee8efb37eba00365c765d2fa90b12b1) のCpuSet/CpuFastSet/swiBase。検索語: mGBA 0.10.2 CpuSet CpuFastSet。低20bit count、8word転送、r2/flags復元を採用。full BIOS/IRQ/実機/サイクル同値性は未証明。source-lock/toolchain変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。
