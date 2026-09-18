@@ -66,4 +66,28 @@ class PolicyBuildContracts(unittest.TestCase):
         self.assertNotIn('SaveGame',text)
         self.assertIn('CFRU_MECHANIC_MEGA',text)
 
+class ReservedOwnerContracts(unittest.TestCase):
+    def regions(self):
+        return [dict(name='cfru_payload',kind='reserved',owner='CFRU-JP',
+                     start='0x01000000',end_exclusive='0x01200000')]
+
+    def test_reserved_core_is_not_an_added_allocation(self):
+        from scripts import pr16_ring_policy_successor as b
+        result=b.reserved_owner(self.regions(),{'allocations':[]})
+        self.assertEqual(result['patch_start'],b.BEGIN-b.BASE)
+        self.assertEqual(result['patch_size'],8)
+
+    def test_wrong_owner_or_kind_fails_closed(self):
+        from scripts import pr16_ring_policy_successor as b
+        for key,value in (('owner','project'),('kind','allocatable'),('start','0x01100000')):
+            rows=self.regions();rows[0][key]=value
+            with self.assertRaises(ValueError):b.reserved_owner(rows,{'allocations':[]})
+        for rows in ([],self.regions()*2):
+            with self.assertRaises(ValueError):b.reserved_owner(rows,{'allocations':[]})
+
+    def test_allocator_cannot_claim_original_function(self):
+        from scripts import pr16_ring_policy_successor as b
+        with self.assertRaises(ValueError):
+            b.reserved_owner(self.regions(),{'allocations':[dict(start=b.BEGIN-b.BASE,end_exclusive=b.END-b.BASE)]})
+
 if __name__=='__main__':unittest.main()

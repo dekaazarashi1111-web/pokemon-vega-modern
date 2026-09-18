@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """受入済みNPC候補へ通常戦闘Ring bridgeを限定追加。native受入とは分離する。"""
 from __future__ import annotations
+import csv
 import hashlib
 import json
 import os
@@ -75,6 +76,21 @@ def verify_owners(raw):
     return {name:target|1 for name,(_,target,_) in OWNERS.items()}
 
 
+def reserved_owner(regions,allocation):
+    rows=[r for r in regions if r['name']=='cfru_payload']
+    need(len(rows)==1,'reserved CFRU owner missing or duplicated')
+    row=rows[0]
+    need(row['kind']=='reserved' and row['owner']=='CFRU-JP'
+         and int(row['start'],0)==0x01000000 and int(row['end_exclusive'],0)==0x01200000,
+         'reserved CFRU envelope differs')
+    need(int(row['start'],0)<=BEGIN-BASE<END-BASE<=int(row['end_exclusive'],0),
+         'original policy is outside reserved CFRU envelope')
+    need(all(r['end_exclusive']<=BEGIN-BASE or r['start']>=END-BASE
+             for r in allocation['allocations']),'allocator overlaps reserved policy owner')
+    return dict(region=row['name'],owner=row['owner'],kind=row['kind'],
+                patch_start=BEGIN-BASE,patch_size=8)
+
+
 def compile_runtime(out,load,original,owners):
     out.mkdir(parents=True,exist_ok=True)
     linker=out/'policy.ld'
@@ -134,6 +150,8 @@ def run():
         need(identity((ROOT/source).read_bytes())==prior['source_bindings'][source],'accepted gift owner changed')
     recipe=gift.run();raw=(gift.OUT/'candidate.gba').read_bytes();owners=verify_owners(raw)
     need(recipe['candidate']==identity(raw),'gift recipe differs')
+    with (ROOT/gift.REGIONS).open(encoding='utf-8',newline='') as f:
+        region=reserved_owner(list(csv.DictReader(f)),recipe['allocation'])
     requests=existing_requests(recipe['allocation'])
     preview=build_allocation_report_from_csv(ROOT/gift.REGIONS,requests+[dict(name=ALLOCATION,
         region='future_tail',size=RESERVATION,alignment=4,owner=TASK,purpose='ordinary Ring policy preview',content_sha256='0'*64)])
@@ -152,7 +170,7 @@ def run():
         if raw[start:end]!=new[start:end]:
             need(start<=BEGIN-BASE and BEGIN-BASE+8<=end,'unexpected existing allocation change')
             request['content_sha256']=identity(new[start:end])['sha256'];changed.append(row['name'])
-    need(len(changed)==1,'begin must be owned by exactly one existing allocation')
+    need(changed==[],'reserved CFRU entry must not change allocator-owned payloads')
     requests.append(dict(name=ALLOCATION,region='future_tail',start=offset,size=len(payload),alignment=4,
         owner=TASK,purpose='Ring ordinary begin bridge; no NPC/save/UI replacement',content_sha256=identity(payload)['sha256']))
     allocation=build_allocation_report_from_csv(ROOT/gift.REGIONS,requests)
@@ -168,7 +186,7 @@ def run():
         entry=entry,trampoline=original|1,original_begin=BEGIN,original_begin_identity=dict(size=END-BEGIN,sha256=BEGIN_SHA),
         original_owner_run=35341496620,owners=owners,displaced_prologue_hex=PROLOGUE.hex(),
         original_resume=(BEGIN+8)|1,independent_policy_compiles=2,existing_allocations_rehashed=changed,
-        original_entry_changed_bytes=8,undeclared_changed_bytes=0,npc_payload_changed=False,save_layout_changes=0,
+        reserved_entry_owner=region,original_entry_changed_bytes=8,undeclared_changed_bytes=0,npc_payload_changed=False,save_layout_changes=0,
         sources={p:identity((ROOT/p).read_bytes()) for p in sources},
         new_emulator_processes=0,accepted_native_cases_replayed=0,ordinary_battle_accepted=False,
         ring_full_acceptance=False,release_ready=False)
