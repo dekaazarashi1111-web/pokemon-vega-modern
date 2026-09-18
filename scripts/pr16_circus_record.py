@@ -223,7 +223,9 @@ def run():
         release_ready=False,source_report=source,link_report=link,verified_artifacts=metadata,
         ci_repair=dict(status='PASS',tests=44,reason_ja='Ring/policy受入原本に合わせて古いpending要求を修正。P08/Circusは未完を維持。',
             originals={n:d.decode() for n,d in bundles['ci'].items()},sources=spec['ci_sources']),
-        failed_link=dict(run_id=35352684227,accepted=False,original_stderr=failed,
+        failed_link=dict(run_id=35352684227,accepted=False,
+            original_stderr_identity=identity(failed.encode()),original_stderr_last_line=failed.splitlines()[-1],
+            original_stderr_available_in_fixed_artifact=True,
             reason_ja='固定cacheの実体linked.oを拡張子.elf限定で見落とした。7関数の全byte照合で修復。'),
         implementation_files=list(IMPL),impact_ledger=dict(accepted_ring_policy_changed=False,
             formal_bp_checkpoint_changed=False,existing_cfru_runtime_changed=False,
@@ -263,7 +265,7 @@ def run():
         '- Verify: 新Cのmockなしhost10件、ELF/実byte境界10件PASS。ARM object2compile一致、実候補7関数全byte一致、新280-byte payload独立2link一致・未解決symbol0。\n'
         '- CI repair: P03状態保持20件＋既存契約24件PASS（保存原本の検査のみ、native再実行0）。Ring/policyを未完へ戻さず、P08/Circusは未完のまま。\n'
         '- Evidence: '+REPORT+'; source run35351832671/artifact10550280062; link run35353620141/artifact10550587542; CI run35353620112/artifact10550417336。固定HEAD/ZIP/全member/source/job結論照合。\n'
-        '- History: run35352684227はlinked.oを.elf限定で見落とした失敗。原stderrと失敗結論を保持し、成功へ読み替えない。\n'
+        '- History: run35352684227はlinked.oを.elf限定で見落とした失敗。原stderrのhash/原因行と固定artifactを保持し、成功へ読み替えない。記録run35355663661はrunner絶対パス混入をguardで拒否し、未commitのまま停止。原本参照を保って原因行だけ記録する修復を加えた。\n'
         '- Boundary: 受付への新runtime接続・ROM挿入0、実入場native0、accepted standalone native replay0。5335 decoded rootsで直接owner/sp072呼出し未検出でも、間接native/std経路の不存在は主張しない。\n'
         '- Preserved: 正式BP checkpoint byte不変。Ring/BP/P03/P06/P07の受入原本・既存CFRU・release_ready=false・physical1/P08 gates2を維持。\n'
         '- Record: 固定MD/JSON同期、focused記録/再開testsとtask graph検査。最終index guardは既存違反の前後出力完全一致/追加違反0、diff checkをcommit前必須gate。\n'
