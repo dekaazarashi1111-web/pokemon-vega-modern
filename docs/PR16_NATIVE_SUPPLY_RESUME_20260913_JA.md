@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。
+保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。
 
-**次: 保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。**
+**次: 保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `292799756b34df838ed0943eb50dabd9bbfbb7d2`。
+証拠のsource HEAD: `74bfe6c81b8123e241e9f79b69f2bd61c0cba794`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_story_dispatch_frontier.json`
+- `scripts/pr16_ring_story_dispatch_frontier.py`
 - `content/modernization/pr16_ring_story_caller_frontier.json`
-- `scripts/pr16_ring_story_caller_frontier.py`
-- `content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -208,6 +208,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。
 - font initializer080F8A29→setter08002C1Dとprinter reset08002C29からproducer/state012/非空text終了までの同一RAM原本を再利用。初期pointer/poolのhost準備を2点除去した条件付きモデル証明で、これらentryの通常story到達は未証明。旧setter/font/state/glyph/BP/nativeの単独再実行禁止。
 - 保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。
+- 保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。
 
 ## 次セッションへ残す更新手順
 
@@ -237,6 +238,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35313824566の原結論と保存証拠、BP run34946969126成功を照合。今回run35316123836は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35316123836の原結論と保存証拠、BP run34946969126成功を照合。今回run35316606613は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

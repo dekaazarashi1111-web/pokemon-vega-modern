@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。",
+    "current_stop": "保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。",
+    "next_step": "保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -401,7 +401,8 @@
     "producer→script即値/fallback→state0/1/2→busy解除/task削除の同一RAM32条件を保存原本から再利用。終端のみの合成text/default行/明示初期RAM/HLE条件付きであり通常story取得ではない。旧単独producer/state/poll・BP/nativeを再実行せず、通常storyのpointer初期化・非空text・script実到達との接続だけを進める。",
     "producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。",
     "font initializer080F8A29→setter08002C1Dとprinter reset08002C29からproducer/state012/非空text終了までの同一RAM原本を再利用。初期pointer/poolのhost準備を2点除去した条件付きモデル証明で、これらentryの通常story到達は未証明。旧setter/font/state/glyph/BP/nativeの単独再実行禁止。",
-    "保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。"
+    "保存8628命令の3入口inbound照合と固定reference限定caller索引を再利用。未保存caller不存在やJP candidate実到達とは読まない。次は索引の未読caller/tableのcandidate byteを限定し、bootstrap/text/BP/nativeを単独再実行しない。",
+    "保存script setupのtable08162CC4/end08163010、message/waitmessage実slotと有限field/script caller採取を再利用。保存8K命令/bootstrap/text/BP/nativeの単独再実行禁止。間接dispatchとstory側state/window供給は到達証明ではない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -474,13 +475,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。",
+    "goal_ja": "保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_story_caller_frontier.json",
-      "scripts/pr16_ring_story_caller_frontier.py",
-      "content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json"
+      "content/modernization/pr16_ring_story_dispatch_frontier.json",
+      "scripts/pr16_ring_story_dispatch_frontier.py",
+      "content/modernization/pr16_ring_story_caller_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -489,9 +490,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
+  "observed_head": "74bfe6c81b8123e241e9f79b69f2bd61c0cba794",
   "observed_head_checks": {
-    "reason_ja": "先行run35313824566の原結論と保存証拠、BP run34946969126成功を照合。今回run35316123836は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35316123836の原結論と保存証拠、BP run34946969126成功を照合。今回run35316606613は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -652,9 +653,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。"
+    "scope_ja": "保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3248,10 +3249,26 @@
     "content/modernization/pr16_ring_story_caller_frontier.json": {
       "size": 22506,
       "sha256": "aa91e2a4ca98d74a57e5a66d4cbb8abbb094ac7f7edb9b074cd099c3487d3686"
+    },
+    "scripts/pr16_ring_story_dispatch_frontier.py": {
+      "size": 10872,
+      "sha256": "51373f424de8476dfdf6b39b86817c41ad4e0ed8c4e1e9f66f04813385ebad70"
+    },
+    "tests/test_pr16_ring_story_dispatch_frontier.py": {
+      "size": 3717,
+      "sha256": "766112539dbb03e3885ad9654c771119609ab1e48e8954ae9cc9c83cd6c05c70"
+    },
+    ".github/workflows/pr16-ring-story-dispatch-frontier.yml": {
+      "size": 1755,
+      "sha256": "b0c5f91c7e04881fc09a1e4c86ca2a229858188857e5139904f901a59de484fa"
+    },
+    "content/modernization/pr16_ring_story_dispatch_frontier.json": {
+      "size": 76866,
+      "sha256": "2b07021b0cabf7b61d5175799327c7eba90bc86083f7e228c1e1e90595ec3473"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。",
+  "source_change_review_ja": "保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3673,9 +3690,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_story_caller_frontier.json",
-    "source_head": "292799756b34df838ed0943eb50dabd9bbfbb7d2",
-    "run_id": 35316123836
+    "path": "content/modernization/pr16_ring_story_dispatch_frontier.json",
+    "source_head": "74bfe6c81b8123e241e9f79b69f2bd61c0cba794",
+    "run_id": 35316606613
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

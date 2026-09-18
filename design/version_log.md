@@ -4400,3 +4400,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsとsource-lock固定pretの限定7source。既存JP symbol/8628命令は保存原本を再利用。source-lock変更/ROM復元/native再実行0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T06:51:18.775044+00:00 — PR-P08-7-RING-STORY-DISPATCH-FRONTIER
+- Timestamp: 2026-09-18T06:51:18.775044+00:00
+- Task: PR-P08-7-RING-STORY-DISPATCH-FRONTIER / 保存script setupの実命令表とfield callerの未読接続をcandidate byteに固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-dispatch-frontier
+- Summary: 保存setupの実命令表08162CC4/end08163010からmessage67→0806B0CDをcandidate byteに結合。field3入口の未読193命令/540byteを有限採取。初期化/BP/native再実行0。
+- Files changed: scripts/pr16_ring_story_dispatch_frontier.py, tests/test_pr16_ring_story_dispatch_frontier.py, .github/workflows/pr16-ring-story-dispatch-frontier.yml, content/modernization/pr16_ring_story_dispatch_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定20 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=74bfe6c81b8123e241e9f79b69f2bd61c0cba794; run=35316606613（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 固定Actions exportと同hash candidateの既存復元だけ。外部source追加/source-lock変更なし。保存命令再解読0、未読辺とmessage表2slotだけ。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。
