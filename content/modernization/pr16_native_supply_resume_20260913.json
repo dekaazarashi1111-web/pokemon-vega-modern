@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。",
+    "current_stop": "font初期化080F8A29→setter08002C1Dと32printer reset08002C29を前段に接続。null/DEADBEEF初期pointer・全poolA5から3font/2速度の12条件で非空text終了、reset省略2条件はslot1の未供給font読取で停止。hostによるpointer/pool準備2点を除去。明示entry実行であり通常storyの到達ではない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。",
+    "next_step": "保存bootstrap/text lifecycleを再利用し、080F8A29・08002C29・script0806B0CDへ通常storyが到達するcallerを保存原本/未読辺から限定する。config0203D000、global0300504C→object、window/queue割当は明示初期入力のまま。同じ初期化/producer/state/renderer/BP/nativeを再実行せず、通常Ring取得/保存とpolicy/Circus/P08を未受入のまま進める。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -399,7 +399,8 @@
     "state0のoption全256値・default行/実palette・独立write oracleによるstate0→1を保存原本から再利用。state1→2は先行受入の継承のみ。次は通常story/live pointer初期化・task入場と保存callerの接続。option index0..31の算術は全32行有効証明ではない。BP/旧BIOS/native/同一候補再構築を単独再実行しない。",
     "state0→1→2の同一RAM/queue予約引継ぎ21条件とstate2の明示config不足停止を保存原本から再利用。旧state0/1単独・option263・paletteコピー99・BP/native再実行禁止。次は保存producerのconfig/text pool/task初期化を今回RAMに衝突なく接続する。hostからstate/busyを書き換えて終了させない。",
     "producer→script即値/fallback→state0/1/2→busy解除/task削除の同一RAM32条件を保存原本から再利用。終端のみの合成text/default行/明示初期RAM/HLE条件付きであり通常story取得ではない。旧単独producer/state/poll・BP/nativeを再実行せず、通常storyのpointer初期化・非空text・script実到達との接続だけを進める。",
-    "producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。"
+    "producer→state012→5文字描画→busy解除/task削除の同一RAM原本を再利用。通常/高速の画素一致、遅延pollとqueue差、入力不足の部分writeを保持。合成text/初期RAMの限定証明であり通常storyのscript実到達/Ring取得ではない。旧単独producer/state/renderer/glyph/BP/nativeの再実行は禁止。",
+    "font initializer080F8A29→setter08002C1Dとprinter reset08002C29からproducer/state012/非空text終了までの同一RAM原本を再利用。初期pointer/poolのhost準備を2点除去した条件付きモデル証明で、これらentryの通常story到達は未証明。旧setter/font/state/glyph/BP/nativeの単独再実行禁止。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -472,13 +473,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。",
+    "goal_ja": "保存bootstrap/text lifecycleを再利用し、080F8A29・08002C29・script0806B0CDへ通常storyが到達するcallerを保存原本/未読辺から限定する。config0203D000、global0300504C→object、window/queue割当は明示初期入力のまま。同じ初期化/producer/state/renderer/BP/nativeを再実行せず、通常Ring取得/保存とpolicy/Circus/P08を未受入のまま進める。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_text_lifecycle_contracts.json",
-      "scripts/pr16_ring_text_lifecycle_contracts.py",
-      "content/modernization/pr16_ring_message_lifecycle_contracts.json"
+      "content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json",
+      "scripts/pr16_ring_bootstrap_lifecycle_contracts.py",
+      "content/modernization/pr16_ring_text_lifecycle_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -487,9 +488,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
+  "observed_head": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
   "observed_head_checks": {
-    "reason_ja": "先行run35312550354の原結論と保存証拠、BP run34946969126成功を照合。今回run35313281916は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35313281916の原結論と保存証拠、BP run34946969126成功を照合。今回run35313824566は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -652,7 +653,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。"
+    "scope_ja": "font初期化080F8A29→setter08002C1Dと32printer reset08002C29を前段に接続。null/DEADBEEF初期pointer・全poolA5から3font/2速度の12条件で非空text終了、reset省略2条件はslot1の未供給font読取で停止。hostによるpointer/pool準備2点を除去。明示entry実行であり通常storyの到達ではない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3214,10 +3215,26 @@
     "content/modernization/pr16_ring_text_lifecycle_contracts.json": {
       "size": 181998,
       "sha256": "c4c7f441a6eed8e0028aa7bd093250600bb721ccf1608299d3c7d2a9c9a6b4a8"
+    },
+    "scripts/pr16_ring_bootstrap_lifecycle_contracts.py": {
+      "size": 12804,
+      "sha256": "3e9afa175d87e5b61070f2545d43ed25931835828517f72d1cc871f0753f0cba"
+    },
+    "tests/test_pr16_ring_bootstrap_lifecycle_contracts.py": {
+      "size": 5149,
+      "sha256": "7c9e92bd167266813c1cf841e011dc1430d4becec6c7387418aa278520face7d"
+    },
+    ".github/workflows/pr16-ring-bootstrap-lifecycle-contracts.yml": {
+      "size": 1768,
+      "sha256": "ddb72924ab7a5d22777770cfa80fd6e91a4e8b9670c8e858f5ca8f69cade2206"
+    },
+    "content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json": {
+      "size": 75719,
+      "sha256": "7fee98bb5f889b31f86af3a374e0d675c39898d9465b40d81724823453272f19"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "producer→state0/1/2→非空5文字描画→busy解除/task削除を同一RAMで結合。3font/3速度・即値/fallback・flag4・task15・queue飽和/部分空き/127周回、入力不足4停止を検証。通常/高速の最終画素一致、host書換/新規byte/候補復元/native再実行0。合成textであり通常story未受入。",
+  "source_change_review_ja": "font初期化080F8A29→setter08002C1Dと32printer reset08002C29を前段に接続。null/DEADBEEF初期pointer・全poolA5から3font/2速度の12条件で非空text終了、reset省略2条件はslot1の未供給font読取で停止。hostによるpointer/pool準備2点を除去。明示entry実行であり通常storyの到達ではない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3639,9 +3656,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_text_lifecycle_contracts.json",
-    "source_head": "66cbb6a47e4a4e50ba79b3068164331b5b96de25",
-    "run_id": 35313281916
+    "path": "content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json",
+    "source_head": "da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c",
+    "run_id": 35313824566
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

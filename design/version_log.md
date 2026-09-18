@@ -4368,3 +4368,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actionsの先行run/source hashを照合。保存4字形/spaceと既存命令だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存producer/text lifecycleを再利用し、通常story側のglobal pointer初期化・font table初期化・scriptの実到達を限定して接続する。未知ownerの原本/未読辺を先に確認し、既存glyph/renderer/state/BP/nativeを再実行しない。Ring通常取得・装備実戦・保存、policy/Circusと最終製品は未受入のまま。
+
+
+## 2026-09-18T06:11:55.097062+00:00 — PR-P08-7-RING-BOOTSTRAP-LIFECYCLE-CONTRACTS
+- Timestamp: 2026-09-18T06:11:55.097062+00:00
+- Task: PR-P08-7-RING-BOOTSTRAP-LIFECYCLE-CONTRACTS / 実font初期化と32printer resetから非空message終了まで同一RAMを結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bootstrap-lifecycle-contracts
+- Summary: font初期化080F8A29→setter08002C1Dと32printer reset08002C29を前段に接続。null/DEADBEEF初期pointer・全poolA5から3font/2速度の12条件で非空text終了、reset省略2条件はslot1の未供給font読取で停止。hostによるpointer/pool準備2点を除去。明示entry実行であり通常storyの到達ではない。
+- Files changed: scripts/pr16_ring_bootstrap_lifecycle_contracts.py, tests/test_pr16_ring_bootstrap_lifecycle_contracts.py, .github/workflows/pr16-ring-bootstrap-lifecycle-contracts.yml, content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=da7b46c591ab9a3ae48630ba0a1ac11c0c6f4a5c; run=35313824566（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 保存命令/表とGitHub connector/Actions出自だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存bootstrap/text lifecycleを再利用し、080F8A29・08002C29・script0806B0CDへ通常storyが到達するcallerを保存原本/未読辺から限定する。config0203D000、global0300504C→object、window/queue割当は明示初期入力のまま。同じ初期化/producer/state/renderer/BP/nativeを再実行せず、通常Ring取得/保存とpolicy/Circus/P08を未受入のまま進める。
