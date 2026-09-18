@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。",
+    "current_stop": "state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。",
+    "next_step": "次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -393,7 +393,8 @@
     "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。",
     "成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。",
     "BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。",
-    "本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。"
+    "本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。",
+    "state1→2の今回独立write oracle/保存レジスタ/queue満杯対照/新suffix部分停止を保存原本から再利用。state2の旧poll/delete受入を再実行しない。state0の次の未供給32byteは0843FA24、コピー先0203730C/0203770C。palette20byte・2属性slot・8628旧node・BIOS/724/1231条件・BP/native再実行禁止。state1のRAM/queue条件付き完了をDMA描画・実BIOS・通常story/Ringへ昇格しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -466,13 +467,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。",
+    "goal_ja": "次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_bios_selector_continuation.json",
-      "scripts/pr16_ring_bios_selector_continuation.py",
-      "content/modernization/pr16_ring_bios_memory_contracts.json"
+      "content/modernization/pr16_ring_state1_completion_contracts.json",
+      "scripts/pr16_ring_state1_completion_contracts.py",
+      "content/modernization/pr16_ring_bios_selector_continuation.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -481,9 +482,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "9f7439dd5d8263a967312ca71af5477dd0ce4e79",
+  "observed_head": "f60b226c327b14b1f7391880e2f4d2354bffc5df",
   "observed_head_checks": {
-    "reason_ja": "先行run35307170557の原結論と保存証拠、BP run34946969126成功を照合。今回run35307686146は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35307686146の原結論と保存証拠、BP run34946969126成功を照合。今回run35308467459は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -644,9 +645,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。"
+    "scope_ja": "state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3112,10 +3113,26 @@
     "content/modernization/pr16_ring_bios_selector_continuation.json": {
       "size": 27869,
       "sha256": "198307e12cf284df360d8a10376201e9cef7d21704f3c4f978ae85801377ad5d"
+    },
+    "scripts/pr16_ring_state1_completion_contracts.py": {
+      "size": 12840,
+      "sha256": "e6467bba2ce29f2842d4af0acab2cabcdaf060cf18199eb673899b932899a895"
+    },
+    "tests/test_pr16_ring_state1_completion_contracts.py": {
+      "size": 6288,
+      "sha256": "289f0c71b7c9ce0ce74e5b93d41c075e481a915d6d4f6c00ce8b62712f0e2a72"
+    },
+    ".github/workflows/pr16-ring-state1-completion-contracts.yml": {
+      "size": 1801,
+      "sha256": "3f761df358f7c9b406f7c26ccf573e49f3e4f8d734af6fd8b71ae1e98ecff51b"
+    },
+    "content/modernization/pr16_ring_state1_completion_contracts.json": {
+      "size": 176942,
+      "sha256": "45b37f6952edd7d919468ed57bec976e28e9891081261a799fff650f88885628"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。",
+  "source_change_review_ja": "state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3537,9 +3554,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_bios_selector_continuation.json",
-    "source_head": "9f7439dd5d8263a967312ca71af5477dd0ce4e79",
-    "run_id": 35307686146
+    "path": "content/modernization/pr16_ring_state1_completion_contracts.json",
+    "source_head": "f60b226c327b14b1f7391880e2f4d2354bffc5df",
+    "run_id": 35308467459
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

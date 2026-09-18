@@ -4272,3 +4272,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、同一hash candidateから新規属性2slotとその未読分岐先だけを取得。固定mGBA BIOS根拠は先行reportを継承。外部資料の再取得・source-lock変更なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。
+
+
+## 2026-09-18T04:50:32.166567+00:00 — PR-P08-7-RING-STATE1-COMPLETION-CONTRACTS
+- Timestamp: 2026-09-18T04:50:32.166567+00:00
+- Task: PR-P08-7-RING-STATE1-COMPLETION-CONTRACTS / state1のfill・内側tile・queue・state2帰還を独立write oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state1-completion-contracts
+- Summary: state1→2を独立write oracleで新規79条件/75帰還・4部分停止まで条件付き検証。全task16枠、queue空/折返し/満杯、4背景4shape、bitmap/bank/寸法境界、SP/r4-r11を確認。ROM復元/新byte/emulator0。queue満杯もstate2へ進むが描画成功ではない。
+- Files changed: scripts/pr16_ring_state1_completion_contracts.py, tests/test_pr16_ring_state1_completion_contracts.py, .github/workflows/pr16-ring-state1-completion-contracts.yml, content/modernization/pr16_ring_state1_completion_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定22 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f60b226c327b14b1f7391880e2f4d2354bffc5df; run=35308467459（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの出自照合のみ。保存12byte/2nodeとpalette20byteを再利用。candidate再構築0・ROM新byte採取0・外部資料再取得0・source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存state0_remaining_readのBIOS0B source0843FA24、32byteの出自付き供給と0203730C/0203770C両コピーを未観測suffixへ延長する。state1→2/旧state2 poll/delete/BP/nativeは再実行しない。palette20byte・2属性slot・全保存nodeを再採取しない。通常story/live初期化・Ring取得・保存再開は未受入。
