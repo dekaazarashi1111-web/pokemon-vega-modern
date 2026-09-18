@@ -7361,3 +7361,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branchへ非force push。record source=92260e2edcbc1f8338b679e35ecbdb6875a51d08; record run=35361499557。自己SHAはreceipt/remote refで確認。
 - Network: GitHub connector/Actionsと既存hash固定入力のみ。新ROM/save/ELF/private ZIPをtrackedへ追加しない。
 - Next: 保存した候補生成原本を再利用し、新しい実受付の取消・レンタル選択・戦闘開始を入力だけで検証する。追加質問の影響を受けるFactory入口に限り対照を行い、party/BP/Bag/通常Save/fresh Continueを確認する。Factoryの連勝値とCircus固有streak ownerは別物。固有streakの正規更新・永続化を接続した上で連勝30以上の来歴と正規sp072の特性抑制を別に検証する。効果bit/施設番号/PC/LRをhost注入しない。受入済みRing/BP/P03/P06/P07の無変更native、旧7関数/link/5335 root走査は再実行しない。
+
+
+## 2026-09-18T16:12:49.135691+00:00 — USER-20260918-CIRCUS-THUMB
+- Timestamp: 2026-09-18T16:12:49.135691+00:00
+- Task: USER-20260918-CIRCUS-THUMB / Circus Thumb実行不具合修復
+- Status: DONE / Thumb修復build・prefix非影響証明まで。初戦native・固有連勝は未受入。
+- Version: pr16-circus-thumb-successor
+- Summary: Circus初戦のThumb呼出し不具合を修復。既存2ownerへ関数型付きbx r3 thunkを接続し、独立2compile/link・2限定patchの一致を確認。304byte adapter以外を変えず、旧adapterを戻したROM全体SHAが取消/Factory成功候補022bd5e6と完全一致することを検証。取消保存/Factory入口の成功2ケースは継承し再実行0。初戦nativeとCircus固有連勝/永続化/抑制は未受入。
+- Files changed: scripts/pr16_circus_entry.py, scripts/pr16_circus_thumb.py, tests/test_pr16_circus_thumb.py, scripts/pr16_circus_thumb_record.py, tests/test_pr16_circus_thumb_record.py, .github/workflows/pr16-circus-thumb.yml, content/modernization/pr16_circus_thumb_checkpoint.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 新規Thumb/記録契約、resume検証、task graph、diff checkをPASS。独立2compile/link・2patch一致、ELF関数型/Thumb bit/命令列、全allocation hashと重複0、旧adapter復元による全ROM SHA一致を確認。
+- Evidence: request HEAD=8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7; build run=35366959217; candidate=99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b; content/modernization/pr16_circus_thumb_checkpoint.json。検証対象worktreeのpatch/source hashを保存。
+- History: run35363580877の2成功と1失敗を混同しない。run35365722696は認可・patch適用・task graphに成功、既存全体private guardで停止しnative0/push0。全体guard自体を変更/無効化せず、基点と最終index出力一致・追加違反0をcommit条件とする。
+- Native: 新規emulator0、既受入取消保存/Factory入口再実行0。正式BP/Ring/P03/P06/P07原本不変。
+- Commit: この記録と検証済み実装を含む同branchへの非force commit。自己SHAは外部ref/receipt。
+- Network: GitHub connector/Actionsとhash固定private Release。ROM/save/private archive/credentialは新規tracked/artifactへ含めない。merge/release/baseline変更なし。
+- Next: Thumb修復候補と非影響証明を再利用し、circus-first-battleだけを新SHA/新checkpointへ結合して入力のみで検証する。成功済みcircus-cancel-save-continueとfactory-fallback-cancelは再実行しない。初戦到達後にCircus固有streakの正規更新・永続化と30連勝以上の来歴、正規sp072の特性抑制を接続・検証する。Factory連勝をCircus固有連勝へ読み替えず、効果bit/施設番号/PC/LRをhost注入しない。無変更のRing/BP/P03/P06/P07/旧7関数/5335root走査は再実行しない。
