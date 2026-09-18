@@ -7112,3 +7112,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 保存命令/表とGitHub connector/Actions出自だけを使用。候補復元・新規byte・外部資料/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存bootstrap/text lifecycleを再利用し、080F8A29・08002C29・script0806B0CDへ通常storyが到達するcallerを保存原本/未読辺から限定する。config0203D000、global0300504C→object、window/queue割当は明示初期入力のまま。同じ初期化/producer/state/renderer/BP/nativeを再実行せず、通常Ring取得/保存とpolicy/Circus/P08を未受入のまま進める。
+
+
+## 2026-09-18T06:44:06.051353+00:00 — PR-P08-7-RING-STORY-CALLER-FRONTIER
+- Timestamp: 2026-09-18T06:44:06.051353+00:00
+- Task: PR-P08-7-RING-STORY-CALLER-FRONTIER / 保存graphと固定sourceからstory初期化callerとscript命令表の未読接続を限定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-caller-frontier
+- Summary: 保存8628命令では初期化080F8A29/reset08002C29/script0806B0CDへのinboundなし。固定reference7ファイルから深さ4のcaller15辺とmessage opcode67を索引化。JP symbol候補/別地域reference/実candidate到達を区別。旧初期化・text/native再実行0。
+- Files changed: scripts/pr16_ring_story_caller_frontier.py, tests/test_pr16_ring_story_caller_frontier.py, .github/workflows/pr16-ring-story-caller-frontier.yml, content/modernization/pr16_ring_story_caller_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定37 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=292799756b34df838ed0943eb50dabd9bbfbb7d2; run=35316123836（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsとsource-lock固定pretの限定7source。既存JP symbol/8628命令は保存原本を再利用。source-lock変更/ROM復元/native再実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存caller索引のInitStandardTextBoxWindows等とscript command table/RunScriptCommandの未読candidate接続を限定採取・照合する。通常story開始から初期化/command dispatchへ到達したとは未主張。config/global/windowの初期入力仮定を残し、通常Ring取得/保存とpolicy/Circus/P08は未受入。保存bootstrap/text/BP/nativeは単独再実行しない。
