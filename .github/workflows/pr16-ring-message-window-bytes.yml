@@ -1,0 +1,44 @@
+name: pr16-ring-message-window-bytes
+run-name: task終了判定とwindow依存の限定保存
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-ring-message-window-bytes.yml
+      - scripts/pr16_ring_message_window_bytes.py
+      - tests/test_pr16_ring_message_window_bytes.py
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-ring-message-window-bytes
+  cancel-in-progress: false
+jobs:
+  focused:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 保存callee出自と限定byteを検証し同branchへ記録
+        run: python3 scripts/pr16_ring_message_window_bytes.py run
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-ring-message-window-bytes
+          path: |
+            .local/pr16-ring-message-window-bytes/export/
+            .local/pr16-ring-message-window-bytes/analysis.json
+            .local/pr16-ring-message-window-bytes/tests.json
+            .local/pr16-ring-message-window-bytes/tests.txt
+            .local/pr16-ring-message-window-bytes/recorded-result.json
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
