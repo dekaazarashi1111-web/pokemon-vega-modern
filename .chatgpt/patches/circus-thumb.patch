@@ -1,0 +1,45 @@
+diff --git a/scripts/pr16_circus_entry.py b/scripts/pr16_circus_entry.py
+--- a/scripts/pr16_circus_entry.py
++++ b/scripts/pr16_circus_entry.py
+@@ -154,30 +154,8 @@
+ 
+ 
+ def compile_adapter(folder, address, owners):
+-    folder.mkdir(parents=True,exist_ok=True)
+-    ld=folder/'circus.ld';elf=folder/'circus.elf'
+-    ld.write_text('ENTRY(VegaCircusAdmissionSelectScript)\nSECTIONS { . = '+hex(address)+'; '
+-        '.text : { KEEP(*(.text.VegaCircusAdmissionSelectScript)) *(.text*) *(.rodata*) } '
+-        '/DISCARD/ : { *(.ARM.exidx*) *(.ARM.extab*) *(.comment*) *(.note*) } }\n')
+-    definitions=dict(owners,VegaCircusScriptResult=RESULT)
+-    cmd=['arm-none-eabi-gcc','-std=c11','-Os','-mthumb','-mcpu=arm7tdmi','-ffreestanding',
+-         '-fno-builtin','-ffunction-sections','-fdata-sections','-fno-unwind-tables','-fno-asynchronous-unwind-tables',
+-         '-Wall','-Wextra','-Werror','-nostdlib','-Wl,--gc-sections','-Wl,--build-id=none',
+-         *['-Wl,--defsym,'+k+'='+hex(v) for k,v in sorted(definitions.items())],
+-         '-T',str(ld),str(ROOT/SOURCE),str(ROOT/'overlays/circus_admission/circus_admission.c'),'-o',str(elf)]
+-    proc=subprocess.run(cmd,capture_output=True)
+-    (folder/'compile.stdout').write_bytes(proc.stdout);(folder/'compile.stderr').write_bytes(proc.stderr)
+-    need(proc.returncode==0,'new Circus script adapter compile failed')
+-    need(not subprocess.check_output(['arm-none-eabi-nm','-u',str(elf)]).strip(),'undefined adapter symbol')
+-    listing=subprocess.check_output(['arm-none-eabi-nm','-n',str(elf)],text=True)
+-    (folder/'symbols.txt').write_text(listing)
+-    symbols={r.split()[2]:int(r.split()[0],16) for r in listing.splitlines() if len(r.split())==3}
+-    need(symbols['VegaCircusAdmissionSelectScript']==address,'script adapter entry drift')
+-    binary=folder/'circus.bin';subprocess.run(['arm-none-eabi-objcopy','-O','binary',str(elf),str(binary)],check=True)
+-    code=binary.read_bytes();need(280<=len(code)<512,'unexpected adapter size')
+-    dis=subprocess.check_output(['arm-none-eabi-objdump','-d',str(elf)],text=True)
+-    (folder/'disassembly.txt').write_text(dis.replace(str(elf),'circus-script.elf'))
+-    return code,address|1
++    from pr16_circus_thumb import compile_adapter as compile_thumb
++    return compile_thumb(ROOT, folder, address, owners)
+ 
+ 
+ def run():
+@@ -265,7 +243,7 @@
+     need(allocation['summaries']['overlap_count']==0,'new allocation overlap')
+     for row in allocation['allocations']:
+         need(identity(new[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'new allocation identity differs')
+-    sources=(SELF,SOURCE,'tests/test_pr16_circus_entry.py','tests/test_pr16_circus_entry_binding.py','.github/workflows/pr16-circus-entry.yml')
++    sources=(SELF,SOURCE,'scripts/pr16_circus_thumb.py','tests/test_pr16_circus_thumb.py','tests/test_pr16_circus_entry.py','tests/test_pr16_circus_entry_binding.py','.github/workflows/pr16-circus-entry.yml')
+     report=dict(schema_version=1,status='BUILT_CIRCUS_RECEPTION_NATIVE_PENDING',task=TASK,
+         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+         run_id=int(os.environ.get('GITHUB_RUN_ID','0')),parent=identity(raw),candidate=identity(new),
