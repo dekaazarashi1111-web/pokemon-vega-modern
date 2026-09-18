@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。",
+    "current_stop": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。",
+    "next_step": "本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -392,7 +392,8 @@
     "矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。",
     "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。",
     "成功724条件/50testsの原本はこの軽量checkpointとhash付きartifactから再利用。今回checkpointはbyte採取/契約/nativeを実行しない。次は既知BIOS0B/0Cの根拠付き供給/効果境界。prefix/旧377命令836byte/724条件/1231条件/BP/nativeを重複実行しない。",
-    "BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。"
+    "BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。",
+    "本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -465,13 +466,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。",
+    "goal_ja": "本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_bios_memory_contracts.json",
-      "scripts/pr16_ring_bios_memory_contracts.py",
-      "content/modernization/pr16_ring_message_window_checkpoint.json"
+      "content/modernization/pr16_ring_bios_selector_continuation.json",
+      "scripts/pr16_ring_bios_selector_continuation.py",
+      "content/modernization/pr16_ring_bios_memory_contracts.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -480,9 +481,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "e73a025885444a645d0bf690361844b463004ae2",
+  "observed_head": "9f7439dd5d8263a967312ca71af5477dd0ce4e79",
   "observed_head_checks": {
-    "reason_ja": "先行run35305646696の原結論と保存証拠、BP run34946969126成功を照合。今回run35307170557は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35307170557の原結論と保存証拠、BP run34946969126成功を照合。今回run35307686146は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -645,7 +646,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。"
+    "scope_ja": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3095,10 +3096,26 @@
     "content/modernization/pr16_ring_bios_memory_contracts.json": {
       "size": 63386,
       "sha256": "dd255b88fc1495361b88e4ec52438cbb1788fc919b8bb6f5a1b06ac104586cef"
+    },
+    "scripts/pr16_ring_bios_selector_continuation.py": {
+      "size": 11026,
+      "sha256": "f38ceb78946b55e67e149f42b04e8124ad6d39caf75672636709bf6a8e03e706"
+    },
+    "tests/test_pr16_ring_bios_selector_continuation.py": {
+      "size": 5993,
+      "sha256": "3bf1ff6fbb61d6dd2bcc1a722f583df7b28bd74bcb16a3879efb500707208c4d"
+    },
+    ".github/workflows/pr16-ring-bios-selector-continuation.yml": {
+      "size": 1781,
+      "sha256": "7e4fb169dc77cc034c84e7b973303eeb85a17112a2a81dcc112fb5a07f4954ad"
+    },
+    "content/modernization/pr16_ring_bios_selector_continuation.json": {
+      "size": 27869,
+      "sha256": "198307e12cf284df360d8a10376201e9cef7d21704f3c4f978ae85801377ad5d"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "BIOS0B/0Cの有界メモリ契約を26新規結合条件で検証。同一候補palette20byteを新規供給し020372EC/020376ECへの両コピーを確認。state1は78frame+864fill書込とwindow12byte転送後、属性10の表読出で停止。native/ROM変更0。",
+  "source_change_review_ja": "BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3520,9 +3537,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_bios_memory_contracts.json",
-    "source_head": "e73a025885444a645d0bf690361844b463004ae2",
-    "run_id": 35307170557
+    "path": "content/modernization/pr16_ring_bios_selector_continuation.json",
+    "source_head": "9f7439dd5d8263a967312ca71af5477dd0ce4e79",
+    "run_id": 35307686146
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

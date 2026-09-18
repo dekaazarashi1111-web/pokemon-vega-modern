@@ -6984,3 +6984,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、既存hash固定candidateから新規palette20byteのみ取得。一次資料: https://github.com/mgba-emu/mgba/blob/0.10.2/src/gba/hle-bios.s (blob c891479a5ee8efb37eba00365c765d2fa90b12b1) のCpuSet/CpuFastSet/swiBase。検索語: mGBA 0.10.2 CpuSet CpuFastSet。低20bit count、8word転送、r2/flags復元を採用。full BIOS/IRQ/実機/サイクル同値性は未証明。source-lock/toolchain変更なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は本reportのnext_unmapped_readsにある081534DC/08001ABEの正確な属性表slotを根拠付きで供給する。保存済palette20byte/BIOS prefix/今回契約/724条件/旧1231条件/BP/nativeを単独再実行しない。state1→2、BIOS stack/IRQ、通常story/Ring/live初期化、task満杯busy2のlivenessは未受入を保持。
+
+
+## 2026-09-18T04:39:15.427746+00:00 — PR-P08-7-RING-BIOS-SELECTOR-CONTINUATION
+- Timestamp: 2026-09-18T04:39:15.427746+00:00
+- Task: PR-P08-7-RING-BIOS-SELECTOR-CONTINUATION / BIOS後の2属性slotと未読分岐先を供給して次の境界を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-bios-selector-continuation
+- Summary: BIOS後の2属性slot8byteと未読2命令を供給。保存palette/prefix再採取0、旧ABI/native再実行0。selector-state0: 未map read PC=081C7A88 / selector-state1: 条件付き帰還。
+- Files changed: scripts/pr16_ring_bios_selector_continuation.py, tests/test_pr16_ring_bios_selector_continuation.py, .github/workflows/pr16-ring-bios-selector-continuation.yml, content/modernization/pr16_ring_bios_selector_continuation.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定21 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=9f7439dd5d8263a967312ca71af5477dd0ce4e79; run=35307686146（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、同一hash candidateから新規属性2slotとその未読分岐先だけを取得。固定mGBA BIOS根拠は先行reportを継承。外部資料の再取得・source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 本reportのcases/read_fault/registers_at_stopとnew_nodes/new_windowsを正本に、残るmemory/ABIを限定検証する。selector供給で得たtraceだけを全状態遷移・実BIOS・通常story/Ring受入へ昇格しない。候補の同一再構築・palette/BIOS prefix採取・32tests/26条件/724条件/BP/nativeの単独再実行は禁止。
