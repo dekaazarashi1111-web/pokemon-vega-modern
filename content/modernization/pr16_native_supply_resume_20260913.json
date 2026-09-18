@@ -3,11 +3,11 @@
   "active_baseline_changed": false,
   "bp": {
     "action_return_frame": 4313,
-    "after_battle_launch": "2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。",
+    "after_battle_launch": "2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。",
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。",
+    "current_stop": "通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。",
+    "next_step": "PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -64,7 +64,7 @@
     "final_product_sha_fixed": false,
     "full_candidate_regression_complete": false
   },
-  "candidate_scope_ja": "同一candidateのBP3勝・稼得・通常購入・保存再開は受入済み。Ring/policy/Circusと最終製品SHAは未受入。",
+  "candidate_scope_ja": "この欄は正式BP親候補ceddbe91のidentityを維持。Ring/policyは別checkpointの新scoped候補4ea33fb8で受入済み。CircusとP08最終候補への移送/回帰・製品SHA固定は未完。",
   "checkpoint_index_order_failures": [
     {
       "job_id": 103675775748,
@@ -259,6 +259,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "通常戦闘Ring5件はcontent/modernization/pr16_ring_policy_acceptance.jsonの固定候補/原本から継承。旧NPC3件・BP/P03/P06/P07を影響なしに再実行しない。旧cold-policy-resetの不成立を新候補の結果へ読み替えない。",
     "NPC配布3件はcontent/modernization/pr16_ring_npc_gift_checkpoint_20260918.jsonのrun35339382576で成功。配布/配置/saveに変更影響がなければ原本を継承し、次は通常戦闘のリング再判定と既存UI。",
     "2026-09-18所有者方針: 次作業はNPC配布と既存メガUI/所持判定の接続。以下の履歴にある「次の未読callee」や全owner不存在証明は既定の再開指示ではない。保存済み低level解析は破棄せず、正規NPC経路で再現した不具合の切分けに必要な箇所だけ参照する。合成RAM/fixture成功を通常取得に読み替えず、文書更新だけでROM/nativeを再実行しない。",
     "run34762342982の交換ABI source/host検証と2operand修正は完了。9tests・二重限定生成をnative交換/BP受入と混同せず、次は未観測の勝利後区間へ進む。",
@@ -484,52 +485,64 @@
   },
   "merge_performed": false,
   "next_action": {
-    "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。",
+    "id": "PHYSICAL_CIRCUS_ADMISSION",
+    "goal_ja": "PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
-    "stop_rule_ja": "最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。",
+    "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
     "read_paths": [
-      "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
-      "scripts/pr16_ring_npc_successor.py",
-      "scripts/pr16_ring_npc_native.py",
-      "overlays/cfru/rom_bridge.c",
-      "overlays/cfru/integration.c",
-      "scripts/build_battle_core.py"
+      "content/modernization/pr16_ring_policy_acceptance.json",
+      "content/modernization/p08_remaining_work.json",
+      "content/modernization/pr16_p05_supply_owner_findings.json",
+      "scripts/build_battle_core.py",
+      "overlays/cfru/integration.c"
     ],
     "success_observations": [
-      "対象NPCのmap/local ID/座標/会話ownerと、進行イベント/共有スクリプト非破壊を確認",
-      "FINAL_LEAGUE_CLEARED未達では付与/解禁されず、達成後は実会話でitem580を1個受取",
-      "未取得対照、二重受取防止、付与失敗では取得済みにしないことを確認。取消経路がある場合は取消も確認",
-      "リング所持を正本に通常戦闘を解禁。追加の永続フラグは必要性がある場合だけ既存save枠へ整合的に接続",
-      "対応石を持つポケモンで既存技選択UIからメガ進化・技使用。未所持/不適合石/選択取消の不成立を確認",
-      "施設禁止/他ギミック排他/使用回数を維持し、戦闘後に漏洩しない",
-      "通常Save→fresh Continue後もリングを保持し、受取時だけの揮発RAM設定に依存せず次戦で利用可能",
-      "変更影響台帳と受入条件の対応を記録。実観測前はRing/policy/Circus/P08未受入を維持"
+      "実受付/入場ownerと必要進行条件を確定。データ上のmap名だけでCircusと断定しない",
+      "flag直接注入を入場の証拠にせず、受付から対象ルール/特性抑制まで通常入力で確認",
+      "退出/保存再開/原partyと報酬の境界を保ち、変更影響台帳を記録してからP08へ移送"
     ]
   },
   "observed_date_jst": "2026-09-18",
-  "observed_head": "80f49475ab016557241da7fecb591c04d00246f0",
+  "observed_head": "77d45a429bf410a783fbb2c7738d9561048366c4",
   "observed_head_checks": {
-    "scope_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
-    "runs": [
-      {
-        "id": 35331042512,
-        "name": "source-validation",
-        "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+    "scope_head": "77d45a429bf410a783fbb2c7738d9561048366c4",
+    "native": {
+      "run": {
+        "id": 35347587112,
+        "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
         "status": "completed",
-        "conclusion": "action_required"
+        "conclusion": "success"
       },
-      {
-        "id": 35331042547,
-        "name": "p03-forgetting-ci",
-        "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+      "job": {
+        "id": 105607699274,
+        "head_sha": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
         "status": "completed",
-        "conclusion": "action_required"
+        "conclusion": "success"
       }
-    ],
-    "reason_ja": "NPC build/native run35339382576 SUCCESSを確認。39 testsと3新規processの結果は独立checkpoint参照。開始HEADのsource-validation action_requiredと初回NPCビルドfailureはそのまま保持。全CI greenとは主張しない。"
+    },
+    "prior": {
+      "scope_head": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+      "runs": [
+        {
+          "id": 35331042512,
+          "name": "source-validation",
+          "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+          "status": "completed",
+          "conclusion": "action_required"
+        },
+        {
+          "id": 35331042547,
+          "name": "p03-forgetting-ci",
+          "head_sha": "8f76f857c2f17f1be6f8c12653609c0272ad6d73",
+          "status": "completed",
+          "conclusion": "action_required"
+        }
+      ],
+      "reason_ja": "NPC build/native run35339382576 SUCCESSを確認。39 testsと3新規processの結果は独立checkpoint参照。開始HEADのsource-validation action_requiredと初回NPCビルドfailureはそのまま保持。全CI greenとは主張しない。"
+    },
+    "reason_ja": "このRing/policy Actionsのsuccessのみを確認。履歴failure/action_requiredは保持。記録Actions自体はcommit時in_progressであり外部確認する。全CI greenとは主張しない。"
   },
-  "observed_head_semantics": "NPC配布成功を原本から記録したsource HEAD。正式BP受入は既存欄を維持。記録commitはremote refで確認。",
+  "observed_head_semantics": "Ring/policyの成功原本を記録するsource HEAD。自己commit SHAはremote ref/記録receiptで確認。正式BP受入欄は維持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "task": "USER-20260914-BP-RETENTION-RUNTIME",
@@ -655,11 +668,9 @@
     "RELEASE_DECISION"
   ],
   "remaining_physical_gap_ids": [
-    "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "P05_ORDINARY_POLICY_SELECTION_PHYSICAL",
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "BP通常購入/保存再開は完了。次は安全なNPCからリングを通常受取し、既存戦闘UIまで通す。リング連動の通常戦闘許可と既存UIでpolicy条件を満たす対応を記録し、別の戦闘前UI新設は必須にしない。その後Circus実受付/実戦、P08最終候補固定・変更影響回帰・二重生成・配布判定。この方針変更だけではphysical3/P08 gates2を閉じない。",
+  "remaining_sequence_ja": "Ring/policyはscoped受入済み。残る順序はCircus実入場→影響台帳によるP08最終候補移送→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -687,13 +698,12 @@
   "schema_version": 2,
   "session_execution_summary": {
     "new_emulator_processes": 0,
-    "record_scope_new_emulator_processes": 0,
-    "recorded_native_processes": 3,
-    "recorded_fresh_cores": 6,
-    "rom_changes": 0,
-    "recorded_candidate_changes": 1,
+    "recorded_native_processes": 5,
+    "recorded_fresh_cores": 15,
     "accepted_standalone_replays": 0,
-    "scope_ja": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。"
+    "record_scope_rom_changes": 0,
+    "implementation_candidate_changes": 1,
+    "scope_ja": "通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3435,10 +3445,66 @@
     "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json": {
       "size": 105995,
       "sha256": "786e5e10a23e5008669b3ec76d8646ee523819d91740dbb8a361e5150598bae9"
+    },
+    "scripts/pr16_ring_policy_successor.py": {
+      "size": 11995,
+      "sha256": "13b4907245beaf484ee9bd32a44faeae7a0cdf5c047c51530a0c7b91ad72bf33"
+    },
+    "tests/test_pr16_ring_policy_build.py": {
+      "size": 4969,
+      "sha256": "f7f4009a566b645c5833e39144e2e790b3ab5e3212c63ed05afdff898aa49bce"
+    },
+    "scripts/pr16_ring_policy_native.py": {
+      "size": 15416,
+      "sha256": "d008aae0dee1b1735ca14931850e4964c8ef70bf730d3d22608981f9dd2a9f74"
+    },
+    "tests/test_pr16_ring_policy_native.py": {
+      "size": 6885,
+      "sha256": "d644a35f1e253dfa032a6d8b33069cceeb8eb9339fbb649cffa63955f05c14e8"
+    },
+    "tools/mgba_pr16_ring_policy.c": {
+      "size": 12153,
+      "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415"
+    },
+    ".github/workflows/pr16-ring-policy.yml": {
+      "size": 8499,
+      "sha256": "241605d7f3144590acdbc806eebf8e14eb67dd030c95ba3810434812020687a4"
+    },
+    "scripts/pr16_ring_policy_record.py": {
+      "size": 28353,
+      "sha256": "c0b167448badd58af236138e9326bda2b08775f3a382fc0a17c213b126ae865a"
+    },
+    "tests/test_pr16_ring_policy_record.py": {
+      "size": 7073,
+      "sha256": "89592d6367bc3f8e12dd0990ffa3b6ec0fbf0b36c767c8f7070b9d66268e8546"
+    },
+    ".github/workflows/pr16-ring-policy-record.yml": {
+      "size": 2590,
+      "sha256": "00382365efccac5d3dcacf1377da712e4be8ecc5b125bd4b9b2b13f6ca3d7bbf"
+    },
+    "content/modernization/pr16_ring_policy_record_spec.json": {
+      "size": 6521,
+      "sha256": "3f0fca4a6deb55287641ba5e66c9d20feb77840e18585273633d8938b8808bab"
+    },
+    "content/modernization/pr16_ring_policy_acceptance.json": {
+      "size": 162934,
+      "sha256": "85c56f6eb79b8f589ef6ab7a49db18929f9beb97dc7aac0dadc273623b07acfd"
+    },
+    "overlays/ring_policy/ring_policy.c": {
+      "size": 3207,
+      "sha256": "a9d523ad733b71af9cbfcd081555de0cd6361b14bb339463cb3e9e50b85de845"
+    },
+    "overlays/ring_policy/ring_policy.h": {
+      "size": 398,
+      "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583"
+    },
+    "tests/ring_policy_host.c": {
+      "size": 1683,
+      "sha256": "45f7075d57e91c68edc76b7fab5f52d82949f147d27fdfa9f2a07a87c1428a6f"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "NPC正規配布の最初の動作区切りを完了。run35339382576/job105581553850 SUCCESS、新candidate72fbca91のmap96/17 local4 (12,38)でRing0→1の実会話、二重受取防止、最終リーグ未達/バッグ満杯の不成立、通常Save2→3/fresh Continue/再訪を3process・6coresで確認。11+18+10=39 source tests、ARM二重生成、既存NPC/非object event/レイアウト不変、7画面目視。BP正本ceddbe91は変更しない。通常戦闘へのリング所持再判定は次の未完作業であり、Ring/policyのformal IDは閉じない。",
+  "source_change_review_ja": "通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3964,5 +4030,19 @@
     "npc_gift_save_scoped_accepted": true,
     "ring_full_acceptance": false,
     "ordinary_battle_accepted": false
+  },
+  "ring_ordinary_policy_implementation": {
+    "path": "content/modernization/pr16_ring_policy_acceptance.json",
+    "status": "SCOPED_RING_ORDINARY_POLICY_ACCEPTANCE",
+    "run_id": 35347587112,
+    "tested_head": "a54fe471c666c280f116b5cbfc3b1a6c821e5395",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+      "crc32": "9EFB0E56"
+    },
+    "ring_acquisition_accepted": true,
+    "ordinary_battle_accepted": true,
+    "final_candidate_transfer_complete": false
   }
 }

@@ -233,8 +233,14 @@
       "size": 33554432
     },
     "full_candidate_regression_complete": false,
-    "scope": "NATIVE_BP_EARNING_SPENDING_ACCEPTED_RING_POLICY_PENDING",
-    "source_path": "content/modernization/pr16_bp_spending_verified.json"
+    "scope": "BP_AUTHORITY_PRESERVED_RING_POLICY_SCOPED_SUCCESSOR_CIRCUS_PENDING",
+    "source_path": "content/modernization/pr16_bp_spending_verified.json",
+    "latest_successor_candidate": {
+      "size": 33554432,
+      "sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+      "crc32": "9EFB0E56"
+    },
+    "latest_successor_evidence": "content/modernization/pr16_ring_policy_acceptance.json"
   },
   "nonblocking_findings": [
     {
@@ -384,19 +390,16 @@
       "native_rental_cancellation": "content/modernization/pr16_bp_chooser_checkpoint.json",
       "natural_capture_evidence": "content/modernization/pr16_natural_capture_acceptance.json",
       "natural_capture_required": false,
-      "ordinary_policy_selection_required": true,
+      "ordinary_policy_selection_required": false,
       "original_request": "P05 original acceptance and current P08 boundary",
       "partial_data_evidence": "content/modernization/pr16_shop_display_acceptance.json",
       "pass_condition": "normal acquisition into battle; no fixture replacement after observation boundary",
       "phase": "P05",
       "purchased_gear_evidence": "content/modernization/pr16_purchased_gear_acceptance.json",
-      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。 2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。 旧map97/80の全owner解析完了をNPC配布実装の前提にしない。",
-      "remaining_supply_gap_ids": [
-        "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-        "P05_ORDINARY_POLICY_SELECTION_PHYSICAL"
-      ],
-      "resume": "既存方式でNPCを1人追加するか、進行に無関係と確認できたNPCの会話を差し替え、最終リーグクリア後にメガリング(item580)を通常のアイテム付与処理で1個渡す。既存のリング所持判定と通常戦闘のメガ許可判定を接続し、対応メガストーンを持たせたポケモンで既存の戦闘UIからメガ進化する。NPC受取→実戦→通常Save/fresh Continue後の再利用を先に通す。別の戦闘前policy選択画面を必須にせず、リング連動解禁と既存戦闘UIへの条件対応を台帳に記録する。旧story経路の全owner除外やフォント/音声/DMA/セーブ内部の網羅解析を、この実装の前提にしない。 最初の区切りはNPCの安全な配置/会話差替えと正規受取を含む動く最小経路。新規UIや共通基盤を作り直さず、実際に再現した失敗箇所だけ限定修復する。取得条件FINAL_LEAGUE_CLEARED・施設禁止/他ギミックとの排他・既存使用回数制限は維持する。リングは主人公の所持品、ポケモンに持たせるのは対応メガストーン。BP/P03/P06/P07の受入済みは変更影響なしに再実行しない。リング連動に必要な通常戦闘の許可判定は同一範囲とし、Circus/最終統合/releaseへ広げない。未取得対照・付与失敗/二重受取・既存UIでの選択/取消・保存再開を実観測するまで、Ring/policyの未受入IDを閉じない。",
-      "ring_bp_natural_supply_required": true,
+      "reason_ja": "既受入は保持。2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 Ring/policy/CircusとP08最終判定は未完。 2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。 旧map97/80の全owner解析完了をNPC配布実装の前提にしない。 2026-09-18: 通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。",
+      "remaining_supply_gap_ids": [],
+      "resume": "PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。",
+      "ring_bp_natural_supply_required": false,
       "selected_supply_entrypoints": {
         "P05_NATIVE_BP_EARNING_PHYSICAL": {
           "fixture_only": false,
@@ -404,20 +407,25 @@
           "path": "scripts/build_bp_shop_runtime.py",
           "scope": "_catalog_outputs"
         },
-        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": null,
+        "P05_NATIVE_RING_ACQUISITION_PHYSICAL": {
+          "fixture_only": false,
+          "path": "overlays/ring_npc/ring_npc.c",
+          "scope": "VegaRingNpcInteract",
+          "line": 45
+        },
         "P05_ORDINARY_POLICY_SELECTION_PHYSICAL": {
           "fixture_only": false,
-          "line": 27,
-          "path": "scripts/pr16_apply_gear_policy_boundary.py",
-          "scope": "main"
+          "path": "overlays/ring_policy/ring_policy.c",
+          "scope": "VegaRingPolicyBegin",
+          "line": 57
         }
       },
-      "status": "PENDING_TWO_BOUND_NATIVE_SUPPLY_ACCEPTANCES",
-      "success_evidence": null,
+      "status": "PASS_SCOPED_RING_POLICY_PENDING_P08_TRANSFER",
+      "success_evidence": "content/modernization/pr16_ring_policy_acceptance.json",
       "supply_coverage_inventory_complete": true,
       "supply_coverage_manifest": "content/modernization/pr16_p05_native_supply_reconciliation.json",
       "supply_evidence_map": "content/modernization/pr16_p05_native_supply_evidence_map.json",
-      "supply_physical_acceptance_complete": false,
+      "supply_physical_acceptance_complete": true,
       "supply_source_evidence_binding_complete": true,
       "target_function": "natural capture/item acquisition to battle",
       "bp_spending_success_evidence": "content/modernization/pr16_bp_spending_verified.json",
@@ -467,8 +475,12 @@
       "ring_control_roles": "content/modernization/pr16_ring_control_roles.json",
       "latest_ring_diagnostic": "content/modernization/pr16_ring_story_resource_contracts.json",
       "latest_ring_text_export_recovery": "content/modernization/pr16_ring_text_export_recovery.json",
-      "ordinary_policy_plan_ja": "2026-09-18所有者方針: 通常戦闘のリング連動解禁と既存戦闘UIの選択/不選択/取消をordinary policy受入へ対応付ける。独立した戦闘前設定UIは必須にしない。cold Continue後は所持品から利用可否を再判定し、受取時の揮発NEXT設定だけで代用しない。仕様対応と証拠を記録するまで元IDは未完のまま保持する。",
-      "ring_npc_gift_checkpoint": "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json"
+      "ordinary_policy_plan_ja": "所有者方針どおり通常戦闘時にRing所持を再判定し、既存技選択UIのSTARTで選択/不選択/取消。独立した戦闘前UIも揮発NEXT注入も不要。成功原本: content/modernization/pr16_ring_policy_acceptance.json",
+      "ring_npc_gift_checkpoint": "content/modernization/pr16_ring_npc_gift_checkpoint_20260918.json",
+      "complete": true,
+      "ring_ordinary_policy_checkpoint": "content/modernization/pr16_ring_policy_acceptance.json",
+      "accepted_candidate_sha256": "4ea33fb8224b0b84493ccca6e90161da245705eb1eb0a3874691ab39cc3806cc",
+      "successor_transfer_condition_id": "FINAL_NATIVE_ACCEPTANCE"
     },
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",

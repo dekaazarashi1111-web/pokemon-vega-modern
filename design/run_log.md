@@ -7306,3 +7306,22 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions・固定private環境の復元のみ。ROM/save/private ZIP/elfをGitや証拠artifactへ公開しない。
 - Boundary: 全体private guardの既存違反前後一致と追加違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 新NPC候補72fbca91を親に、通常戦闘開始時にリング所持を毎回再判定する最小bridgeを実装する。明示pending設定、施設/raid/link制限、対応石/使用回数/他ギミック排他を維持し、NPC受取→対応石を装備→通常Save/fresh Continue→既存技選択UIのメガ選択/不選択/取消・技使用・戦闘後復帰を実観測する。新しい戦闘前選択UIやNPC受取時の揮発NEXT設定で代用しない。保存済みNPC3件は配布/配置/saveコードに変更影響がなければ再実行せず原本を継承する。
+
+
+## 2026-09-18T13:16:00Z — USER-20260918-RING-POLICY-CLOSEOUT
+- Timestamp: 2026-09-18T13:16:00Z
+- Task: USER-20260918-RING-POLICY-CLOSEOUT
+- Status: DONE / Ring取得からcold通常戦闘までのscoped受入。Circus/P08/releaseは未完。
+- Version: pr16-ring-ordinary-policy
+- Summary: 通常戦闘のRing bridgeを受入済みNPC候補から限定実装。NPC正規受取→Bag Give→通常Save/fresh Continue→自然遭遇→既存メガUI→技使用→戦闘後復帰→Save/fresh Continueの新規5件を検証。選択/不選択/取消、未所持/別の石の対照を含む。Ring/policyの2つのphysical IDをこのscoped候補で閉じ、CircusとP08最終候補への移送・releaseは未完。正式BP候補ceddbe91と旧原本は維持する。
+- Files changed: scripts/pr16_ring_policy_successor.py, tests/test_pr16_ring_policy_build.py, scripts/pr16_ring_policy_native.py, tests/test_pr16_ring_policy_native.py, tools/mgba_pr16_ring_policy.c, .github/workflows/pr16-ring-policy.yml, scripts/pr16_ring_policy_record.py, tests/test_pr16_ring_policy_record.py, .github/workflows/pr16-ring-policy-record.yml, content/modernization/pr16_ring_policy_record_spec.json, content/modernization/pr16_ring_policy_acceptance.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, content/modernization/pr16_bp_chooser_checkpoint.json, design/run_log.md, design/version_log.md
+- Verify: production host11 + builder12 + native oracle17 = 40 tests PASS。ARM独立2build一致、172-byte payload + 8-byte entryのみ、allocator overlap0/宣言外ROM差分0。
+- Native: 正規受取・Give・cold通常戦闘の新規5件/15fresh cores。Ring所持/対応石/START選択でMega、未所持・別石・不選択・取消では不成立。技PP/使用回数/復帰/石非消費/Bag・個体・BP・Save保持を確認。7host-write barriers。
+- Record verification: 固定ZIP/全member/Actions/sourceと元stdout/stderr/processを照合。選択した原PNG24画面を目視、記録/固定resume tests、task graph PASS。最終index guardとdiff checkをcommit前gateにする。
+- Evidence: content/modernization/pr16_ring_policy_acceptance.json; tested=a54fe471c666c280f116b5cbfc3b1a6c821e5395; run=35347587112; job=105607699274; artifact=10547413771; ZIP SHA256=113b5972602453eafdab47f57272f1d9fd0ab22d1efcd4d956651b2f84ad0f65。
+- History: 予約領域台帳の誤仮定・旧SHA probe・入力待ちmaster bit・未展開headerの失敗は原artifactに保持。成功原本へ読み替えず、既に成功した単独nativeは再実行しない。
+- Preserved: 旧NPC3件とBP/P03/P06/P07の独立再実行0。正式BP候補/原本/数値は不変。BP checkpointは全体physical_gap_countだけ3→1へ同期し、Ring/policy2件を閉じる。Circus1件/P08 gates2は未完。
+- Commit: この記録を含む同branchへの非force commit。record source=77d45a429bf410a783fbb2c7738d9561048366c4; record run=35349174693。自己SHAはremote ref/receiptで確認。
+- Network: GitHub connector/Actions・固定private環境のみ。ROM/save/private ZIP/elfをtracked/artifactへ追加しない。
+- Boundary: 既存full private guard違反の前後出力完全一致と追加違反0を要求。全体guard PASS/全CI green/merge/release/baseline変更は主張しない。
+- Next: PHYSICAL_CIRCUS_ADMISSIONの実受付/入場ownerから特性抑制までの最小経路を進める。content/modernization/pr16_p05_supply_owner_findings.jsonの未解決箇所から始め、map12/7をCircusと仮定せず、flag直接注入で入場を代用しない。Ring/policyの受入済み5件とNPC3件、BP/P03/P06/P07は変更影響なしに再実行しない。Circus修復後に変更ROM範囲/owner/runner/fixture/契約を照合してP08最終候補へ移送する。
