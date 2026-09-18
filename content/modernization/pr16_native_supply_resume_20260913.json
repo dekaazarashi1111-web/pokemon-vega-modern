@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。",
+    "current_stop": "window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。",
+    "next_step": "次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -386,7 +386,8 @@
     "保存task08068C31の七callee採取は原本を再利用。新規callは再帰採取せず未読境界を保持。次は保存命令で待機/終了/task削除/window分岐/不足を結合。今回採取/前回62命令/旧391条件/BP/nativeは単独再実行しない。",
     "task終了判定/未読window8calleeとliteral由来frame callbackの採取は保存原本を再利用。次は保存命令だけで上流script/busy・task待機/終了/削除/window不足を結合。今回/旧採取/旧391条件/BP/nativeは単独再実行しない。",
     "message taskと上流scriptの結合・busy全byte・待機/終了/削除/不足の条件は本原本を再利用。task満杯でもbusy2となる部分成功を正常受入へ昇格しない。今回結合/七callee採取/旧391条件/BP/nativeは単独再実行しない。",
-    "55tests/1231条件の原本run35301261393と完了5a489a17はこの軽量checkpointから再利用。大きなJSON本文が空なら権限不足/内容不在と推測せず、記載artifactと分割exportをhash照合して読む。今回記録だけで契約/native/byte採取を再実行しない。次はwindow状態0/1の未読境界。"
+    "55tests/1231条件の原本run35301261393と完了5a489a17はこの軽量checkpointから再利用。大きなJSON本文が空なら権限不足/内容不在と推測せず、記載artifactと分割exportをhash照合して読む。今回記録だけで契約/native/byte採取を再実行しない。次はwindow状態0/1の未読境界。",
+    "window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -459,13 +460,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。",
+    "goal_ja": "次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_task_checkpoint.json",
-      "scripts/pr16_ring_message_task_checkpoint.py",
-      "content/modernization/pr16_ring_message_task_contracts.json"
+      "content/modernization/pr16_ring_message_window_frontier.json",
+      "scripts/pr16_ring_message_window_frontier.py",
+      "content/modernization/pr16_ring_message_task_checkpoint.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -474,9 +475,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "313b295bfa34b17fde30f8d32e7801c4ae35dfdb",
+  "observed_head": "046f2e1d060de13f9d1983c5b8eed10d40ea5de7",
   "observed_head_checks": {
-    "reason_ja": "先行run35301261393の原結論と保存証拠、BP run34946969126成功を照合。今回run35302074834は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35302074834の原結論と保存証拠、BP run34946969126成功を照合。今回run35303089805は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -637,9 +638,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 0,
+    "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。"
+    "scope_ja": "window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2989,10 +2990,26 @@
     "content/modernization/pr16_ring_message_task_checkpoint.json": {
       "size": 11900,
       "sha256": "cf971cfb7f5bdb597ca832c6e766db5cb168e3094436b9d919e81ab0a05ac10d"
+    },
+    "scripts/pr16_ring_message_window_frontier.py": {
+      "size": 8874,
+      "sha256": "879bde66b1985a483810a00a483636c9bba2ec1c4b8429ba6a42a4b910c07f54"
+    },
+    "tests/test_pr16_ring_message_window_frontier.py": {
+      "size": 4873,
+      "sha256": "f2b959266e6583d1e4b5d2d56128737e61b479085b8b54c2094a57d3631f96d2"
+    },
+    ".github/workflows/pr16-ring-message-window-frontier.yml": {
+      "size": 1627,
+      "sha256": "972ca08891f10fb5ba7e697a32a82321db4534f95940b3a6338985234cff9c7e"
+    },
+    "content/modernization/pr16_ring_message_window_frontier.json": {
+      "size": 27825,
+      "sha256": "5ad35e199622e777624a482def01cc05e4ba468dbcecdd369e3671a95ce90120"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。",
+  "source_change_review_ja": "window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3414,9 +3431,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_task_checkpoint.json",
-    "source_head": "313b295bfa34b17fde30f8d32e7801c4ae35dfdb",
-    "run_id": 35302074834
+    "path": "content/modernization/pr16_ring_message_window_frontier.json",
+    "source_head": "046f2e1d060de13f9d1983c5b8eed10d40ea5de7",
+    "run_id": 35303089805
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

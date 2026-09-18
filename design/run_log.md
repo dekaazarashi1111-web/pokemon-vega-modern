@@ -6888,3 +6888,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。
+
+
+## 2026-09-18T03:26:04.514506+00:00 — PR-P08-7-RING-MESSAGE-WINDOW-FRONTIER
+- Timestamp: 2026-09-18T03:26:04.514506+00:00
+- Task: PR-P08-7-RING-MESSAGE-WINDOW-FRONTIER / 状態0/1のwindow属性0・palette・frame中継の未読境界を保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-window-frontier
+- Summary: window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。
+- Files changed: scripts/pr16_ring_message_window_frontier.py, tests/test_pr16_ring_message_window_frontier.py, .github/workflows/pr16-ring-message-window-frontier.yml, content/modernization/pr16_ring_message_window_frontier.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=046f2e1d060de13f9d1983c5b8eed10d40ea5de7; run=35303089805（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。

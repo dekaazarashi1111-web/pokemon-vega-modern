@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。
+window属性0の一word/選択body、palette、frame thunkを新規29命令/78byteで保存。旧8251命令再解読/1231条件再実行/native0。
 
-**次: 軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。**
+**次: 次は保存命令でmessage task状態0/1のwindow属性・paletteコピー・r8 frame callbackを条件付き結合検証。新BL/資源不足は成功stubなしで停止。今回採取/旧1231条件/391条件/BP/nativeを単独再実行しない。通常story/Ring取得・live初期化・task満杯busy2は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `313b295bfa34b17fde30f8d32e7801c4ae35dfdb`。
+証拠のsource HEAD: `046f2e1d060de13f9d1983c5b8eed10d40ea5de7`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_message_window_frontier.json`
+- `scripts/pr16_ring_message_window_frontier.py`
 - `content/modernization/pr16_ring_message_task_checkpoint.json`
-- `scripts/pr16_ring_message_task_checkpoint.py`
-- `content/modernization/pr16_ring_message_task_contracts.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -193,6 +193,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - task終了判定/未読window8calleeとliteral由来frame callbackの採取は保存原本を再利用。次は保存命令だけで上流script/busy・task待機/終了/削除/window不足を結合。今回/旧採取/旧391条件/BP/nativeは単独再実行しない。
 - message taskと上流scriptの結合・busy全byte・待機/終了/削除/不足の条件は本原本を再利用。task満杯でもbusy2となる部分成功を正常受入へ昇格しない。今回結合/七callee採取/旧391条件/BP/nativeは単独再実行しない。
 - 55tests/1231条件の原本run35301261393と完了5a489a17はこの軽量checkpointから再利用。大きなJSON本文が空なら権限不足/内容不在と推測せず、記載artifactと分割exportをhash照合して読む。今回記録だけで契約/native/byte採取を再実行しない。次はwindow状態0/1の未読境界。
+- window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -222,6 +223,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35301261393の原結論と保存証拠、BP run34946969126成功を照合。今回run35302074834は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35302074834の原結論と保存証拠、BP run34946969126成功を照合。今回run35303089805は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
