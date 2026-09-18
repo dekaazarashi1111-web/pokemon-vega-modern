@@ -7144,3 +7144,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 固定Actions exportと同hash candidateの既存復元だけ。外部source追加/source-lock変更なし。保存命令再解読0、未読辺とmessage表2slotだけ。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存field/script callerを条件付きstate/command dispatch契約に結合し、残る間接分岐のtableと通常story initializer到達を限定する。命令表接続はRing受入ではない。font/config/global/window初期供給、通常取得/保存、policy/Circus/P08は未受入。今回byteの再採取と旧bootstrap/text/BP/native再実行は禁止。
+
+
+## 2026-09-18T07:22:33.834986+00:00 — PR-P08-7-RING-STORY-DISPATCH-CONTRACTS
+- Timestamp: 2026-09-18T07:22:33.834986+00:00
+- Task: PR-P08-7-RING-STORY-DISPATCH-CONTRACTS / 保存script状態と実命令slotの部分書込・待機・field table不足を条件付き結合
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-dispatch-contracts
+- Summary: 保存script/field dispatchの1037条件を結合。実66待機/67busy拒否、全u8 mode/status/opcode/field、cursor部分書込、setup/global初期化を検証。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_dispatch_contracts.py, tests/test_pr16_ring_story_dispatch_contracts.py, .github/workflows/pr16-ring-story-dispatch-contracts.yml, content/modernization/pr16_ring_story_dispatch_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=f38bf4caa943f6096104970a7ad7e320d60483de; run=35319087228（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 既存run35316606613のhash固定exportのみ。外部source追加、候補復元、ROM/native実行0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 未読080565B0の5slotと実wait callback08068DDDだけを採取し、field state0の初期化calleeを既存font/window/bootstrapへ結合する。未mapは不存在ではない。通常story取得/装備/Saveは未受入。今回条件と旧text/BP/nativeを単独再実行しない。
