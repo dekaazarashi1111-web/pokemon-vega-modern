@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。",
+    "current_stop": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存属性0・palette・r8 frame・矩形・queueの状態0/1結合を明示RAMで検証。帰還/次状態と描画成功を区別し、queue満杯等の部分成功とBIOS SWI停止を保持。今回2leaf/旧5callee/29命令/1231条件/BP/nativeは再実行しない。通常story/Ring/live初期化は未受入。",
+    "next_step": "次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -389,7 +389,8 @@
     "55tests/1231条件の原本run35301261393と完了5a489a17はこの軽量checkpointから再利用。大きなJSON本文が空なら権限不足/内容不在と推測せず、記載artifactと分割exportをhash照合して読む。今回記録だけで契約/native/byte採取を再実行しない。次はwindow状態0/1の未読境界。",
     "window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。",
     "状態0/1の残存5callee採取は本原本とhash付きexportを再利用。次は属性0・palette・r8 frame・queueの明示RAM結合。今回/旧29命令78byte/旧1231条件/BP/nativeは再実行しない。",
-    "矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。"
+    "矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。",
+    "属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -462,13 +463,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存属性0・palette・r8 frame・矩形・queueの状態0/1結合を明示RAMで検証。帰還/次状態と描画成功を区別し、queue満杯等の部分成功とBIOS SWI停止を保持。今回2leaf/旧5callee/29命令/1231条件/BP/nativeは再実行しない。通常story/Ring/live初期化は未受入。",
+    "goal_ja": "次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_tile_leaves.json",
-      "scripts/pr16_ring_message_tile_leaves.py",
-      "content/modernization/pr16_ring_message_window_dependencies.json"
+      "content/modernization/pr16_ring_message_window_contracts.json",
+      "scripts/pr16_ring_message_window_contracts.py",
+      "content/modernization/pr16_ring_message_tile_leaves.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -477,9 +478,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "a943a112416ec625e846cd6b743631746cfe437f",
+  "observed_head": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
   "observed_head_checks": {
-    "reason_ja": "先行run35303682033の原結論と保存証拠、BP run34946969126成功を照合。今回run35304098811は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35304098811の原結論と保存証拠、BP run34946969126成功を照合。今回run35305255324は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -640,9 +641,9 @@
   "session_execution_summary": {
     "new_emulator_processes": 0,
     "rom_changes": 0,
-    "candidate_reconstructions": 1,
+    "candidate_reconstructions": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。"
+    "scope_ja": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3040,10 +3041,26 @@
     "content/modernization/pr16_ring_message_tile_leaves.json": {
       "size": 35607,
       "sha256": "76f7ce22ae7a4c7c380be5f81d385101144081007631324d9e3632e7c956012e"
+    },
+    "scripts/pr16_ring_message_window_contracts.py": {
+      "size": 28110,
+      "sha256": "2a5d6bfb8db291c35fe7223fb3b080c58eb4511a12a550fed32220ec396f3fad"
+    },
+    "tests/test_pr16_ring_message_window_contracts.py": {
+      "size": 8896,
+      "sha256": "54d957abcc3a54541306b32dc70259f2ad870198cd96694d4018996cde6daa96"
+    },
+    ".github/workflows/pr16-ring-message-window-contracts.yml": {
+      "size": 1643,
+      "sha256": "0f4b71d295a254bee7ad01b3574a6f58d034901e437757513f7c52813f84f259"
+    },
+    "content/modernization/pr16_ring_message_window_contracts.json": {
+      "size": 769261,
+      "sha256": "3b00f06261173520276abd3f19e2cc2b27e7f5e59b26b243c8ab720cd66f5f82"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。",
+  "source_change_review_ja": "状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3465,9 +3482,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_tile_leaves.json",
-    "source_head": "a943a112416ec625e846cd6b743631746cfe437f",
-    "run_id": 35304098811
+    "path": "content/modernization/pr16_ring_message_window_contracts.json",
+    "source_head": "cbc53699afa6ea8cc5d913fdba5d4bb451dd2833",
+    "run_id": 35305255324
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

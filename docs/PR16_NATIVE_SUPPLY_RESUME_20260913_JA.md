@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-矩形index計算とtile値書込の残存2leafを新規68命令/144byteで保存。旧8560命令再解読/1231条件再実行/native0。
+状態0のmode2進行・属性0・26矩形の実r8 frame・BIOS停止を724条件と9同一RAM列で結合。新byte/native0。
 
-**次: 次は保存属性0・palette・r8 frame・矩形・queueの状態0/1結合を明示RAMで検証。帰還/次状態と描画成功を区別し、queue満杯等の部分成功とBIOS SWI停止を保持。今回2leaf/旧5callee/29命令/1231条件/BP/nativeは再実行しない。通常story/Ring/live初期化は未受入。**
+**次: 次は保存BIOS0B/0Cのservice境界を、成功stubではない根拠付きメモリ効果/供給元契約として限定する。palette state0はROM083E30AC→020372ECの10半word(次の020376ECは未到達)、state1はframe RAM書込後のfill0x11111111/width*height*8 wordで停止。prefix再採取は不要。queue失敗時state1進行とtask満杯busy2を保持。今回/旧採取/1231条件/BP/nativeを単独再実行せず、通常story/Ring/live初期化は未受入。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `a943a112416ec625e846cd6b743631746cfe437f`。
+証拠のsource HEAD: `cbc53699afa6ea8cc5d913fdba5d4bb451dd2833`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_message_window_contracts.json`
+- `scripts/pr16_ring_message_window_contracts.py`
 - `content/modernization/pr16_ring_message_tile_leaves.json`
-- `scripts/pr16_ring_message_tile_leaves.py`
-- `content/modernization/pr16_ring_message_window_dependencies.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -196,6 +196,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - window属性selector0の一word/選択body・palette0806FB91・frame thunk081C7AE9は保存原本を再利用。次は状態0/1の条件付き効果/帰還/不足を保存命令で検証。今回採取・旧1231条件/391条件/BP/nativeは単独再実行しない。
 - 状態0/1の残存5callee採取は本原本とhash付きexportを再利用。次は属性0・palette・r8 frame・queueの明示RAM結合。今回/旧29命令78byte/旧1231条件/BP/nativeは再実行しない。
 - 矩形index計算/値書込2leafは本原本とexportを再利用。次は状態0/1の明示RAM結合。BIOS SWI0B/0Cを成功stubにしない。今回/旧5callee/29命令/1231条件/BP/nativeは再実行しない。
+- 属性0・mode2状態0進行・frame矩形書込・BIOS停止の今回結合原本を再利用。queue失敗でもstate1に進むことを描画成功へ昇格しない。BIOS0B/0Cの保存prefixも再採取不要。今回/旧68命令/280命令/29命令/1231条件/391条件/BP/nativeは単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -225,6 +226,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35303682033の原結論と保存証拠、BP run34946969126成功を照合。今回run35304098811は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35304098811の原結論と保存証拠、BP run34946969126成功を照合。今回run35305255324は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
