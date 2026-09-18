@@ -56,7 +56,7 @@ def run():
     metadata=json.loads((ROOT/'build/stages/06_battle_core.json').read_bytes())
     symbols=metadata['upstream_runs'][0]['integration_symbols']
     need(symbols==metadata['upstream_runs'][1]['integration_symbols'],'T06 independent symbols differ')
-    begin=symbols['VegaBattlePolicyBegin'];limit=symbols['VegaBattlePolicyControllersBegin']
+    begin=symbols['VegaBattlePolicyBegin'];limit=symbols['VegaBattlePolicyEnd']
     need(begin==152200948 and 0<limit-begin<=1024,'known ordinary begin boundary changed')
     begin_calls=calls(raw,begin,limit)
     callers=[r for r in calls(raw,0x09000000,0x09200000) if r['target']==begin]
