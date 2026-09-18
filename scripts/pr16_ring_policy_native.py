@@ -9,6 +9,7 @@ import re
 import shutil
 import sys
 import tempfile
+import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 SELF='scripts/pr16_ring_policy_native.py'
@@ -115,13 +116,20 @@ def flag_contract(text):
 
 
 def pinned_flags():
-    candidates=[ROOT/'vendor/upstream/CFRU-JP/include/constants/battle.h',
-                ROOT/'vendor/upstream/CFRU-JP/include/battle.h']
-    candidates=[p for p in candidates if p.is_file()]
-    need(candidates,'pinned battle header missing')
-    texts=[p.read_text(encoding='utf-8') for p in candidates]
-    result=flag_contract('\n'.join(texts))
-    result['headers']={p.relative_to(ROOT).as_posix():identity(p.read_bytes()) for p in candidates}
+    # native-only環境はcharmapだけ展開する。固定state ZIPから2headerだけ読む。
+    cfg=json.loads((ROOT/'config/github_private_environment.json').read_bytes())
+    name='pokemon-vega-private-env-v1-state.zip'
+    binding=next(a for a in cfg['archives'] if a['name']==name)
+    archive=ROOT/'.local/pr16-bp-trial-native-inputs'/name
+    need(identity(archive.read_bytes())=={k:binding[k] for k in ('size','sha256')},'pinned state archive differs')
+    candidates=('vendor/upstream/CFRU-JP/include/constants/battle.h',
+                'vendor/upstream/CFRU-JP/include/battle.h')
+    with zipfile.ZipFile(archive) as z:
+        names=set(z.namelist());texts={p:z.read(p) for p in candidates if p in names}
+    need(texts and all(0<len(raw)<200000 and b'\0' not in raw for raw in texts.values()),'pinned battle header missing or malformed')
+    result=flag_contract('\n'.join(raw.decode('utf-8') for raw in texts.values()))
+    result['headers']={p:identity(raw) for p,raw in texts.items()}
+    result['archive']={k:binding[k] for k in ('name','size','sha256')}
     return result
 
 
@@ -169,7 +177,7 @@ def run(names=None):
     header+='#define RP_ORDINARY_ACTIVE_FLAGS '+str(audit['flag_contract']['master'])+'U\n'
     generated={'pr16_ring_policy_generated.h':header,'pr16_gear_route.h':gear.route_header(audit)}
     paths={SELF,SOURCE,build.SELF,build.SOURCE,build.HEADER,gift.SELF,gift.SOURCE,gift.HEADER,
-           gear.SELF,gear.SOURCE,'scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','overlays/cfru/integration.h','overlays/cfru/runtime.h',
+           gear.SELF,gear.SOURCE,'config/github_private_environment.json','scripts/pr16_capture_geometry.py','scripts/pr16_p05_root_diagnostics.py','overlays/cfru/integration.h','overlays/cfru/runtime.h',
            shop.SELF,shop.SOURCE,shop.base.PARENT,shop.base.PARENT_C,gear.parent.SELF,gear.parent.SOURCE}
     for i,(src,target) in enumerate(m.EMBEDDED):generated[target]=m.embed((ROOT/src).read_text(),'ring_policy_embedded_'+str(i));paths.add(src)
     for src,target,label in ((shop.base.PARENT_C,'pr16_shop_breeding_helpers.c','ring_policy_breeding'),
