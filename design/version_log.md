@@ -4480,3 +4480,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: 成功済み保存wait/field契約とhash固定exportを再利用。同hash candidateの復元1回。外部source追加/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存field初期化/RunFieldCallback/flash getterの条件付き契約を結合し、window/font供給の残るheap/IO/callback停止点を絞る。今回byteと旧wait/script/text/BP/nativeの単独再実行は禁止。Ring通常取得/保存、policy/Circus/P08は未受入。
+
+
+## 2026-09-18T08:02:11.179764+00:00 — PR-P08-7-RING-STORY-INITIALIZER-CONTRACTS
+- Timestamp: 2026-09-18T08:02:11.179764+00:00
+- Task: PR-P08-7-RING-STORY-INITIALIZER-CONTRACTS / field callbackの待機・消去・部分書込と初期化資源の停止境界を条件付き検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-story-initializer-contracts
+- Summary: field初期化の未読停止・実callbackの待機/消去/部分書込・state3→4を540条件で結合。callback pointerは明示初期条件、tick間RAM書換0。候補復元/native0。
+- Files changed: scripts/pr16_ring_story_initializer_contracts.py, tests/test_pr16_ring_story_initializer_contracts.py, .github/workflows/pr16-ring-story-initializer-contracts.yml, content/modernization/pr16_ring_story_initializer_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定32 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=44066493f1a75e3fb0acabb1cc1aa1fecaeddb82; run=35322265804（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: 成功run35321072525のhash固定exportと保存candidate命令のみ。外部source追加/候補復元/ROM変更/native0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: state0の最初の未読0804B85D（heap/save reset）から限定し、実BG供給030008D0・InitWindows・font pointer登録へ結合する。default callback0807D695とfield2境界080F77E9/0807E7A5は別の未解決ownerとして保持。今回540条件/旧1037+786条件/採取済byte/BP/nativeは単独再実行しない。Ring通常story取得/装備/保存、policy/Circus/P08は未受入。
