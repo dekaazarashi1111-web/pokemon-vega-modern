@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。",
+    "current_stop": "message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。",
+    "next_step": "次は保存taskと七calleeの状態遷移・待機/終了・削除・不足時の部分writeを結合検証。新規未読callee/間接辺は成功stubなしで停止し、上流busy/通常story/live window初期化を混同しない。今回採取/旧391条件/BP/nativeは単独再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -382,7 +382,8 @@
     "run35255462365は49tests/333条件と非force記録が成功した後のexport失敗。原Actions failureを保持し、記録commit a5573a9を独立照合。混在列は再実行しない。分割exportは各member 2MB以下・全体hash照合。次は未結合text/live owner。",
     "message実callerのslot0/font2/4/5供給と速度delegate一根を保存。同じ採取・混在列333/旧renderer/audio/glyph/BP/nativeを単独再実行しない。次は保存速度byteとmessage callerの設定/不足/slot書込/callback選択を一体検証。",
     "保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。",
-    "登録message task08068C31の限定採取と保存caller照合は保存原本を再利用。次は保存taskの状態遷移/終了/不足境界を上流と結合。登録を実行、初期化表をlive初期化へ読み替えない。旧391条件/速度採取/renderer/audio/BP/nativeを単独再実行しない。"
+    "登録message task08068C31の限定採取と保存caller照合は保存原本を再利用。次は保存taskの状態遷移/終了/不足境界を上流と結合。登録を実行、初期化表をlive初期化へ読み替えない。旧391条件/速度採取/renderer/audio/BP/nativeを単独再実行しない。",
+    "保存task08068C31の七callee採取は原本を再利用。新規callは再帰採取せず未読境界を保持。次は保存命令で待機/終了/task削除/window分岐/不足を結合。今回採取/前回62命令/旧391条件/BP/nativeは単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -455,13 +456,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。",
+    "goal_ja": "次は保存taskと七calleeの状態遷移・待機/終了・削除・不足時の部分writeを結合検証。新規未読callee/間接辺は成功stubなしで停止し、上流busy/通常story/live window初期化を混同しない。今回採取/旧391条件/BP/nativeは単独再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_message_task_frontier.json",
-      "scripts/pr16_ring_message_task_frontier.py",
-      "content/modernization/pr16_ring_message_owner_contracts.json"
+      "content/modernization/pr16_ring_message_task_callees.json",
+      "scripts/pr16_ring_message_task_callees.py",
+      "content/modernization/pr16_ring_message_task_frontier.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -470,9 +471,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "6d3362b290aa5728ec74a6ddf5c6b19b99b75abc",
+  "observed_head": "bff5e1ec49ebb890329f4228227f9b6180b60b50",
   "observed_head_checks": {
-    "reason_ja": "先行run35261096931の原結論と保存証拠、BP run34946969126成功を照合。今回run35298567936は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35298567936の原結論と保存証拠、BP run34946969126成功を照合。今回run35299053977は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -635,7 +636,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。"
+    "scope_ja": "message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -2921,10 +2922,26 @@
     "content/modernization/pr16_ring_message_task_frontier.json": {
       "size": 36672,
       "sha256": "14db168d3a2834b7317b07666840f7a53c22dea716f4702a6bf785ee41bd5428"
+    },
+    "scripts/pr16_ring_message_task_callees.py": {
+      "size": 7920,
+      "sha256": "02b09cc6f87c46891857f465de129d7fe0631677a2ba075f895e22e9db85e79d"
+    },
+    "tests/test_pr16_ring_message_task_callees.py": {
+      "size": 4523,
+      "sha256": "48ace364e8c4f6b058a62beca38e06379423ba53aa2a5470461c5a399bc4606f"
+    },
+    ".github/workflows/pr16-ring-message-task-callees.yml": {
+      "size": 1570,
+      "sha256": "ca548da29f33583ccbbc5187dc85168867aa2f421d54ed713742f842cb80d9c7"
+    },
+    "content/modernization/pr16_ring_message_task_callees.json": {
+      "size": 58019,
+      "sha256": "55e198114931889645456a57b2f76d38b6c911dc962ede062e5d2f9dd43c2b07"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "登録task08068C31の新規62命令/154byteを限定保存。上流保存callerと初期化の未観測境界を固定。旧391条件/native再実行0。",
+  "source_change_review_ja": "message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3346,9 +3363,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_message_task_frontier.json",
-    "source_head": "6d3362b290aa5728ec74a6ddf5c6b19b99b75abc",
-    "run_id": 35298567936
+    "path": "content/modernization/pr16_ring_message_task_callees.json",
+    "source_head": "bff5e1ec49ebb890329f4228227f9b6180b60b50",
+    "run_id": 35299053977
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",

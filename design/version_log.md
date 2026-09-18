@@ -4096,3 +4096,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存task callbackの状態遷移・待機/終了・task削除・不足時の部分writeを上流callerと結合検証する。必要な未読calleeだけを限定し、通常story到達/live window・gFonts初期化は未受入のまま。今回採取/旧391条件/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T02:26:16.506484+00:00 — PR-P08-7-RING-MESSAGE-TASK-CALLEES
+- Timestamp: 2026-09-18T02:26:16.506484+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-CALLEES / message taskの待機・終了・window分岐の七calleeを限定保存
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-callees
+- Summary: message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。
+- Files changed: scripts/pr16_ring_message_task_callees.py, tests/test_pr16_ring_message_task_callees.py, .github/workflows/pr16-ring-message-task-callees.yml, content/modernization/pr16_ring_message_task_callees.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定25 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=bff5e1ec49ebb890329f4228227f9b6180b60b50; run=35299053977（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 次は保存taskと七calleeの状態遷移・待機/終了・削除・不足時の部分writeを結合検証。新規未読callee/間接辺は成功stubなしで停止し、上流busy/通常story/live window初期化を混同しない。今回採取/旧391条件/BP/nativeは単独再実行しない。
