@@ -21,7 +21,7 @@ WORKFLOW = '.github/workflows/pr16-circus-streak-build.yml'
 TEST = 'tests/test_pr16_circus_streak_build.py'
 PREFIX = 'overlays/circus_streak/'
 SOURCES = [PREFIX+n for n in ('circus_streak.c','circus_streak.h','circus_streak_io.c','circus_streak_io.h',
-    'circus_streak_runtime.c','circus_streak_runtime.h','circus_facility_policy.c')]
+    'circus_streak_runtime.c','circus_streak_runtime.h','circus_facility_policy.c','circus_streak_loss.h')]
 OLD_SOURCE = 'overlays/facility_runtime/facility_runtime.c'
 OLD_HEADER = 'overlays/facility_runtime/facility_runtime.h'
 RUNTIME = 'pr16_circus_streak_runtime'
@@ -31,6 +31,7 @@ GET_CALL = 0x09103380
 GETTER = 0x091025EC
 READ_KEYS_LITERAL = 0x5EC
 SAVE_LOAD_LITERAL = 0xDB4E8
+LOSS_LITERAL = 0x7FC5C
 
 
 def need(ok, message):
@@ -166,6 +167,7 @@ def compile_runtime(folder, address, policy, delegates):
 
 def run():
     sys.path[:0]=[str(ROOT),str(ROOT/'scripts')]
+    import pr16_circus_streak_edges as edges
     import pr16_circus_retention as parent
     import pr16_circus_entry as admission
     import pr16_bp_party_retention_successor as old
@@ -184,7 +186,10 @@ def run():
     near=next(r['start'] for r in preview['allocations'] if r['name']==VENEER)
     need(raw[SAVE_LOAD_LITERAL-4:SAVE_LOAD_LITERAL]==bytes.fromhex('004b1847'),'save-load trampoline changed')
     delegates=dict(CIRCUS_PREVIOUS_READ_KEYS=struct.unpack_from('<I',raw,READ_KEYS_LITERAL)[0],
-        CIRCUS_PREVIOUS_SAVE_LOAD=struct.unpack_from('<I',raw,SAVE_LOAD_LITERAL)[0],CIRCUS_PREVIOUS_SELECTOR=recipe['entries']['selector'])
+        CIRCUS_PREVIOUS_SAVE_LOAD=struct.unpack_from('<I',raw,SAVE_LOAD_LITERAL)[0],CIRCUS_PREVIOUS_SELECTOR=recipe['entries']['selector'],
+        CIRCUS_PREVIOUS_LOSS_RETURN=struct.unpack_from('<I',raw,LOSS_LITERAL)[0])
+    need(delegates['CIRCUS_PREVIOUS_LOSS_RETURN']==0x09FF4681, 'Factory loss delegate changed')
+    need(raw[LOSS_LITERAL-12:LOSS_LITERAL]==bytes.fromhex('024880f777fc0ae0ea3d0202'), 'loss dispatch instruction changed')
     need(all(v&1 and BASE<=v<BASE+len(raw) for v in delegates.values()),'delegate must be bound Thumb ROM')
     cfg=json.loads((ROOT/'config/github_private_environment.json').read_bytes())
     archive=ROOT/'.local/pr16-bp-trial-native-inputs/pokemon-vega-private-env-v1-state.zip'
@@ -212,6 +217,7 @@ def run():
     patch('sp072-get-veneer',near,jump)
     need(old.decode_thumb_bl(GET_CALL,raw[GET_CALL-BASE:GET_CALL-BASE+4])==GETTER,'sp072 getter preimage differs')
     patch('sp072-getter-call',GET_CALL-BASE,old.encode_thumb_bl(GET_CALL,BASE+near))
+    patch('circus-loss-delegate',LOSS_LITERAL,struct.pack('<I',entries['CircusStreakRuntimeLossReturn']))
     patch('read-keys-delegate',READ_KEYS_LITERAL,struct.pack('<I',entries['CircusStreakRuntimeReadKeys']))
     patch('save-load-delegate',SAVE_LOAD_LITERAL,struct.pack('<I',entries['CircusStreakRuntimeSaveLoad']))
     natives=json.loads((admission.OUT/'facility-symbols.json').read_bytes())['entrypoints']
@@ -220,6 +226,8 @@ def run():
     nodes=graph(raw,[recipe['entries']['circus']]);seen=set();calls=[]
     need(len(nodes)<=128,'bounded Circus graph exceeded')
     owner=next(r for r in recipe['allocation']['allocations'] if r['name']==admission.ALLOCATION)
+    finish=edges.completion_binding(raw,parent.CONTINUATIONS[-1],natives['FacilityRuntime_AfterBattle'],owner,recipe['allocation'])
+    remap[finish['native']]=entries['CircusRuntime_Complete']
     for node in nodes:
         for row in node['instructions']:
             address=row['address']
@@ -231,7 +239,9 @@ def run():
                 calls.append(dict(address=address,before=row['native'],after=new))
     need(sum(r['before']==recipe['entries']['selector'] for r in calls)==3,'three selector edges required')
     for suffix in ('Enter','PrepareBattle','AfterBattle','Complete','Abort'):
-        need(any(r['before']==natives['FacilityRuntime_'+suffix] for r in calls),'missing production edge '+suffix)
+        expected=finish['native'] if suffix=='Complete' else natives['FacilityRuntime_'+suffix]
+        need(any(r['before']==expected for r in calls),'missing production edge '+suffix)
+    need(sum(r['before']==finish['native'] for r in calls)==1, 'completion wrapper has multiple clone callers')
     left=bounded_patch(raw,patches);need(left==bounded_patch(raw,patches),'independent patches differ')
     changed=[]
     for row,request in zip(recipe['allocation']['allocations'],requests):
@@ -246,14 +256,14 @@ def run():
     for row in allocation['allocations']:
         need(identity(left[row['start']:row['end_exclusive']])['sha256']==row['content_sha256'],'candidate owner hash differs')
     need(all(left[c-BASE-1]==0x5D for c in parent.CONTINUATIONS),'accepted script continuations changed')
-    sources=[SELF,TEST,WORKFLOW,OLD_SOURCE,OLD_HEADER,*SOURCES,'config/ram_layout.csv','config/save_layout.csv','config/circus_streak_link.json',
+    sources=[SELF,TEST,WORKFLOW,'scripts/pr16_circus_streak_edges.py','tests/test_pr16_circus_streak_calls.py','tests/test_pr16_circus_streak_edges.py','tests/fixtures/circus_streak_loss_fixture.c',OLD_SOURCE,OLD_HEADER,*SOURCES,'config/ram_layout.csv','config/save_layout.csv','config/circus_streak_link.json',
         'tests/test_pr16_circus_streak.py','tests/fixtures/circus_streak_fixture.c','tests/fixtures/circus_streak_io_fixture.c',
         'overlays/save_migration/save_migration.c','overlays/save_migration/save_migration.h']
     report=dict(schema_version=1,status='BUILT_CIRCUS_STREAK_NATIVE_OPEN',task=TASK,
         source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),run_id=int(os.environ.get('GITHUB_RUN_ID','0')),
         parent=PARENT,candidate=identity(left),payload=identity(payload),payload_offset=off,entries=entries,
         reception=recipe['entries'],launch_sites=recipe['launch_sites'],delegates=delegates,patches=patches,calls=calls,
-        allocation=allocation,changed_existing_allocations=changed,independent_arm_links=2,whole_rom_rollback_matches_parent=True,
+        completion_binding=finish,allocation=allocation,changed_existing_allocations=changed,independent_arm_links=2,whole_rom_rollback_matches_parent=True,
         original_factory_runtime_unchanged=True,original_factory_streak_and_claim_not_aliased=True,
         accepted_script_continuations=list(parent.CONTINUATIONS),trainer_id_abi=match[0].decode(),inherited_policy=link,inherited_literal_counts=literal_counts,
         source_bindings={n:identity((ROOT/n).read_bytes()) for n in sources},new_emulator_processes=0,

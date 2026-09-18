@@ -1,6 +1,7 @@
 /* 既存read-keys/save-loadへ一度だけ委譲。Circus固有の64byteのみ復元する。 */
 #include "circus_streak_runtime.h"
 #include "circus_streak_io.h"
+#include "circus_streak_loss.h"
 #include "../save_migration/save_migration.h"
 #include "circus_streak_addresses.h"
 
@@ -146,4 +147,19 @@ EXPORT uint16_t CircusStreakRuntimeGet(uint8_t current_or_max, uint16_t style,
         return current_or_max == 0u ? OWNER->current : OWNER->best;
     return ((uint16_t (*)(uint8_t, uint16_t, uint16_t, uint16_t, uint8_t))
         (uintptr_t)0x091025EDu)(current_or_max, style, tier, size, level);
+}
+
+EXPORT void CircusStreakRuntimeLossReturn(void)
+{
+    const volatile VegaFactoryState *f = &gVegaModernSaveData->factory;
+    uint8_t outcome = *(volatile uint8_t *)(uintptr_t)0x02023DEAu;
+    uint32_t script = *(volatile uint32_t *)(uintptr_t)0x03000EB8u;
+    if (CircusStreakLossAllowed((uint8_t)CircusStreakRuntimeArmed(), 1u,
+            f->marker, f->snapshot_valid, f->party_count, outcome, script)
+        && VegaSaveValidate(gVegaModernSaveData, VEGA_SAVE_LEDGER_SIZE) == VEGA_SAVE_OK) {
+        /* 既存EndTrainerBattleの復帰経路。集計と復元はscriptのAfterBattleが所有。 */
+        ((void (*)(void))(uintptr_t)0x080561A1u)();
+    } else {
+        ((void (*)(void))(uintptr_t)CIRCUS_PREVIOUS_LOSS_RETURN)();
+    }
 }

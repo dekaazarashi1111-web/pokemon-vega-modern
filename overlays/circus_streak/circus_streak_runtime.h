@@ -8,6 +8,7 @@ int CircusStreakRuntimeRecord(uint8_t outcome);
 int CircusStreakRuntimeEnd(int completed);
 int CircusStreakRuntimeArmed(void);
 void CircusStreakRuntimeReadKeys(void);
+void CircusStreakRuntimeLossReturn(void);
 uint8_t CircusStreakRuntimeSaveLoad(uint8_t save_type);
 void CircusStreakRuntimeSelect(void);
 uint16_t CircusStreakRuntimeGet(uint8_t current_or_max, uint16_t style,
