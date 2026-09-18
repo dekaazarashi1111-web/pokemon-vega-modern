@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""新Circus実受付3ケースだけを実行する。旧controllerはhelperとしてのみ再利用。"""
+"""Thumb修復後の未完Circus初戦1ケースだけを実行する。旧controllerはhelperとしてのみ再利用。"""
 from __future__ import annotations
 import hashlib
 import json
@@ -15,8 +15,9 @@ SOURCE='tools/mgba_pr16_circus_native.c'
 TEST='tests/test_pr16_circus_native.py'
 WORKFLOW='.github/workflows/pr16-circus-native.yml'
 OUT=ROOT/'.local/pr16-circus-native'
-SHA='022bd5e6383f5513f7b43fd00923f8ed66908b18a07f7be252b8ce7a011c5c72'
+SHA='99cc09484a9c6bd787fb4b0631970396b4ae5ec2abc902ea8fdec932130b6c0b'
 CASES=('circus-cancel-save-continue','factory-fallback-cancel','circus-first-battle')
+RUN_CASES=(CASES[2],)
 TRACE=('gateway','rentals','cancel','field','saved','reloaded','selected','second','confirm','draw','action','turn')
 
 
@@ -65,20 +66,30 @@ def validate(raw,stderr,code,case):
     return r
 
 
+def requested_cases():
+    need(RUN_CASES==(CASES[2],),'accepted prefix must not be replayed')
+    return RUN_CASES
+
+
 def run():
+    cases=requested_cases()
     sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
     import pr16_purchased_gear as gear
     import pr16_bp_chooser_native as previous
     import pr16_circus_entry as entry
     parent,shop,r,common=gear.parent,gear.shop,gear.r,gear.common
     m=shop.base.load();out=gear.evidence.prepare_output(ROOT,OUT)
-    report=dict(schema_version=1,status='FAIL',scope='NEW_CIRCUS_RECEPTION_ONLY',source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
-        candidate=dict(size=33554432,sha256=SHA),requested_cases=list(CASES),actual_new_processes=0,successful_fresh_cores=0,
+    report=dict(schema_version=1,status='FAIL',scope='THUMB_REPAIRED_CIRCUS_FIRST_BATTLE_ONLY',source_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        candidate=dict(size=33554432,sha256=SHA),requested_cases=list(cases),actual_new_processes=0,successful_fresh_cores=0,
         results=[],failures=[],guard_checks=[],accepted_native_cases_replayed=0,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)
     protected={};bindings={}
     try:
         recipe=strict((entry.OUT/'report.json').read_bytes());need(recipe['candidate']==report['candidate'],'built native candidate differs')
-        saved=strict((ROOT/'content/modernization/pr16_circus_entry_checkpoint.json').read_bytes())
+        saved=strict((ROOT/'content/modernization/pr16_circus_thumb_checkpoint.json').read_bytes())
+        from pr16_circus_thumb_record import validate_build
+        validate_build(recipe,saved['proof'])
+        for name in ('scripts/pr16_circus_entry.py','scripts/pr16_circus_thumb.py'):
+            need(identity((ROOT/name).read_bytes())==saved['source_bindings'][name],'repaired adapter source changed')
         need(recipe['candidate']==saved['build']['candidate'] and recipe['payload']==saved['build']['payload'],'saved build identity differs')
         need(identity((ROOT/previous.control.SOURCE).read_bytes())['sha256']==previous.C_SOURCE_SHA,'historical helper changed')
         candidate=entry.OUT/'candidate.gba';seed=ROOT/m.SEED
@@ -131,7 +142,7 @@ def run():
             for guard in previous.fixed.GUARDS:
                 stdout,stderr,process=common.capture([str(binary),'--guard-check',guard],out/('guard-'+guard),10)
                 m.validate_guard(stdout,stderr,process);report['guard_checks'].append(guard)
-            for case in CASES:
+            for case in cases:
                 scratch=work/(case+'.srm');shutil.copyfile(seed,scratch);report['actual_new_processes']+=1
                 stdout,stderr,process=common.capture([str(binary),str(candidate),str(scratch),SHA,m.SEED_SHA,case,str(out/case)],out/case,900)
                 row=validate(stdout,stderr,common.require_exited(process),case)
@@ -145,7 +156,7 @@ def run():
             need(protected=={p:identity(Path(p).read_bytes()) for p in protected},'protected native input changed')
             need(bindings=={p:identity((ROOT/p).read_bytes()) for p in bindings},'protected source changed')
         except (ValueError,OSError) as error:report['failures'].append(dict(stage='immutability',error=str(error)))
-        if not report['failures'] and report['actual_new_processes']==len(CASES) and len(report['results'])==len(CASES):report['status']='PASS_CIRCUS_SCOPED_NATIVE'
+        if not report['failures'] and report['actual_new_processes']==len(cases) and len(report['results'])==len(cases):report['status']='PASS_CIRCUS_SCOPED_NATIVE'
         (out/'report.json').write_bytes(stable(report))
     return report
 

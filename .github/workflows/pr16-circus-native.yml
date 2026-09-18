@@ -23,7 +23,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: 新規native結果契約14件のみを検証
+      - name: 新SHA結果契約と未完1件の選択16件のみを検証
         run: |
           set -euo pipefail
           mkdir -p .local/pr16-circus-native-run
@@ -60,7 +60,7 @@ jobs:
           else:
               path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data);path.chmod(0o444)
           PY
-      - name: 新候補作成のためだけに固定親を再構成（受入native再実行なし）
+      - name: 固定Thumb修復候補をnative入力用に再構成（受入ケース再実行なし）
         run: |
           set -euo pipefail
           out=.local/pr16-circus-native-run
@@ -69,7 +69,7 @@ jobs:
           python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
           python3 scripts/pr16_circus_entry.py > "$out/build.stdout" 2> "$out/build.stderr"
           git diff --exit-code
-      - name: 新受付の取消保存・Factory入口対照・Circus第1戦だけを検証
+      - name: 受入済み2ケースは再実行せずThumb修復Circus初戦のみ検証
         run: |
           set -euo pipefail
           out=.local/pr16-circus-native-run
@@ -97,8 +97,9 @@ jobs:
           for prefix in ('pr16-circus-native-run','pr16-circus-native','pr16-circus-entry'):
               source=pathlib.Path('.local')/prefix
               for p in sorted(source.rglob('*')):
-                  if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.ld','.c','.h','.ppm'}:save(prefix+'/'+p.relative_to(source).as_posix(),p)
-          for name in ('scripts/pr16_circus_native.py','tools/mgba_pr16_circus_native.c','tests/test_pr16_circus_native.py','.github/workflows/pr16-circus-native.yml'):
+                  if p.is_file() and p.suffix in {'.json','.txt','.stdout','.stderr','.log','.ld','.c','.h','.ppm','.S'}:save(prefix+'/'+p.relative_to(source).as_posix(),p)
+          for name in ('scripts/pr16_circus_native.py','tools/mgba_pr16_circus_native.c','tests/test_pr16_circus_native.py','.github/workflows/pr16-circus-native.yml',
+                       'scripts/pr16_circus_entry.py','scripts/pr16_circus_thumb.py','scripts/pr16_circus_thumb_record.py'):
               save('source/'+name,pathlib.Path(name))
           (out/'members.json').write_text(json.dumps(members,indent=2)+'\n')
           PYEND

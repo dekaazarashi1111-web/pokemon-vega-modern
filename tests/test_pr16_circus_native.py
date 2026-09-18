@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 import pr16_circus_native as native
 
@@ -27,6 +28,12 @@ def trace(case):
 class NativeResultContracts(unittest.TestCase):
     def check(self,r,case=None,stderr=None,code=0):
         case=case or r['case'];return native.validate(json.dumps(r).encode(),trace(case) if stderr is None else stderr,code,case)
+    def test_only_unfinished_battle_is_selected(self):
+        self.assertEqual(native.requested_cases(),('circus-first-battle',))
+    def test_accepted_prefix_or_extra_case_cannot_be_scheduled(self):
+        for cases in (native.CASES,native.CASES[:2],(),(native.CASES[2],native.CASES[2]),[native.CASES[2]]):
+            with patch.object(native,'RUN_CASES',cases):
+                with self.assertRaises(ValueError):native.requested_cases()
     def test_three_new_case_contracts(self):
         for case in native.CASES:self.assertEqual(self.check(result(case)),result(case))
     def test_reject_failed_and_bool_exit(self):
