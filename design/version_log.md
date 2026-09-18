@@ -4694,3 +4694,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
 - Next: 初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。
+
+
+## 2026-09-18T20:18:54.181252+00:00 — USER-20260919-CIRCUS-STREAK-BUILD
+- Timestamp: 2026-09-18T20:18:54.181252+00:00
+- Task: USER-20260919-CIRCUS-STREAK-BUILD
+- Status: DONE / Circus固有連勝runtimeの実装・再現可能ビルド・限定検証・記録。native受入は未完。
+- Version: pr16-circus-isolated-streak-build
+- Summary: Circus専用64byte owner/CRC/保存復帰と既存Factoryから隔離したruntimeを構築。開始HEADの既存WIPを継承し、configureの2 literal、Stage42完走adapter、Circus限定敗北復帰を修復。run35389993775は21 host契約・1327104敗北条件・独立ARM link2回を通過。6396byte runtimeと8byte veneer、4箇所のengine参照、20箇所の複製script呼出しを限定接続。旧Factory allocation不変、全ROM rollbackで3554親へ一致。実native勝敗/保存/継続戦/30連勝抑制はまだ未受入。
+- Files changed: scripts/pr16_streak_record.py, tests/test_pr16_streak_record.py, .github/workflows/pr16-streak-record.yml, scripts/pr16_streak_archive.py, scripts/pr16_circus_streak.py, scripts/pr16_circus_streak_edges.py, tests/test_pr16_circus_streak_calls.py, tests/test_pr16_circus_streak_edges.py, tests/fixtures/circus_streak_loss_fixture.c, .github/workflows/pr16-circus-streak-build.yml, overlays/circus_streak/circus_streak_runtime.c, overlays/circus_streak/circus_streak_runtime.h, overlays/circus_streak/circus_streak_loss.h, content/modernization/pr16_circus_streak_build_checkpoint.json, evidence/pr16_circus_streak/build.json, evidence/pr16_circus_streak/tests.stderr.txt, evidence/pr16_circus_streak/symbols.txt, evidence/pr16_circus_streak/disassembly.txt, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 21 host契約PASS（UBSan、512bit破損、保存失敗rollback、重複/順序、境界、33勝model roundtrip、1327104敗北条件）、ARM独立link2一致、ROM全差分/全rollback、owner overlap0。33勝modelはnative連勝の証拠ではない。 原本ZIP/member/source/process/stdout/stderrを照合。記録/再開tests、task graph、最終index差分guard、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_streak_build_checkpoint.json; run35389993775/job105745851627; tested HEAD=37a2bf04d3947fd51a9d8ab88d47988fbf377af1; artifact10565491335 SHA256=3e2931a22e8aaf4c02a04ffff65de67c3d8523765767a77b98085c5423050038。
+- Boundary: 工程はBUILDER_ONLY。専用連勝・native Save/Continue・後続戦個体保持・抑制は未受入。正式BPと旧native原本/現行baseline/私有入力は不変。 physical1/P08 gates2/release_ready=falseを維持。
+- Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
+- Next: 固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。

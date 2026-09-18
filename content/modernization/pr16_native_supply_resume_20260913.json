@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。",
+    "current_stop": "Circus専用64byte owner/CRC/保存復帰と既存Factoryから隔離したruntimeを構築。開始HEADの既存WIPを継承し、configureの2 literal、Stage42完走adapter、Circus限定敗北復帰を修復。run35389993775は21 host契約・1327104敗北条件・独立ARM link2回を通過。6396byte runtimeと8byte veneer、4箇所のengine参照、20箇所の複製script呼出しを限定接続。旧Factory allocation不変、全ROM rollbackで3554親へ一致。実native勝敗/保存/継続戦/30連勝抑制はまだ未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "next_step": "固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -138,6 +138,18 @@
     "run_id": 35379705280,
     "status": "CIRCUS_FIRST_BATTLE_RETENTION_ACCEPTED_STREAK_OPEN",
     "tested_head": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a"
+  },
+  "circus_streak_build": {
+    "engineering_candidate": {
+      "sha256": "3f377dbc745aa3ac6c07f8177bba2dd20b8d9cbb34203364826a87771fd02da6",
+      "size": 33554432
+    },
+    "native_streak_verified": false,
+    "path": "content/modernization/pr16_circus_streak_build_checkpoint.json",
+    "physical_admission_accepted": false,
+    "run_id": 35389993775,
+    "status": "CIRCUS_ISOLATED_STREAK_BUILT_NATIVE_OPEN",
+    "tested_head": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1"
   },
   "circus_thumb_implementation": {
     "engineering_candidate": {
@@ -335,6 +347,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "3f377dbc構築run35389993775の21 host契約/独立ARM2/全rollbackは固定証拠を再利用。compile/contextだけを繰返さず、未受入の実勝敗と保存復帰へ進む。",
     "3554dc42初戦保持run35379705280は300bytes完全一致/20events/3128framesで受入。旧99cc置換診断run35378203102とともに再実行せず保持証拠を再利用。3script対応のうち後続戦はhost/static確認までで、継続戦の新しい通し検証に含める。",
     "run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。",
     "run35367721416の初戦1ターン成功は同SHA/controllerなら再実行しない。画像16枚の選択ゴース/実戦ポリゴン差は未解決で、元party600byte退避検査と選択個体保持を混同しない。取消/Factory入口2件は旧失敗run内の成功原本とThumb全ROM非影響証明から継承する。",
@@ -577,17 +590,16 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "初戦個体保持checkpointを再利用し、Circus固有streakの正規勝敗更新と保存復帰へ進む。現在のFacilityRuntime_AfterBattleはFactory Trial current_streak[0]を更新しており、その値をCircus連勝として代用しない。正規sp072のCircus streak読出し先と既存save ownerを限定照合し、専用更新/永続化を接続する。継続戦では第2/第3開始点の選択/交換個体継承も検証し、真正30連勝以上の来歴から正規抽選による特性抑制まで通す。初戦保持だけでphysical/P08を閉じず、効果/施設番号/連勝/party/PC/LRをhost注入しない。旧99cc個体診断・3554初戦保持単体・無変更の取消保存/Factory入口/旧初戦1ターン/Ring/BP/P03/P06/P07/旧7関数/5335root走査を再実行しない。",
+    "goal_ja": "固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_STREAK_SAVE_AND_SUPPRESSION",
+    "id": "CIRCUS_STREAK_NATIVE_SAVE_AND_CONTINUATIONS",
     "read_paths": [
-      "content/modernization/pr16_circus_retention_checkpoint.json",
-      "scripts/pr16_circus_retention.py",
+      "content/modernization/pr16_circus_streak_build_checkpoint.json",
+      "scripts/pr16_circus_streak.py",
+      "overlays/circus_streak/circus_streak_runtime.c",
+      "overlays/circus_streak/circus_facility_policy.c",
       "scripts/pr16_circus_retention_native.py",
-      "overlays/facility_runtime/facility_runtime.c",
-      "overlays/save_migration/save_migration.c",
-      "overlays/save_migration/save_migration.h",
-      "scripts/build_battle_core.py",
+      "tools/mgba_pr16_bp_three_win_reward.c",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -598,7 +610,7 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "f652c99c101924f737353835a9aba6a3465c6d6c",
+  "observed_head": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
   "observed_head_checks": {
     "initial_head_checks": {
       "head": "d3dfddc4b15d7dad9b0bd6733f865ed8e8cb16bb",
@@ -613,183 +625,182 @@
         }
       ]
     },
-    "reason_ja": "保持修復run35379705280/job105712711736は全工程成功。 記録runはcommit時実行中。開始HEAD通常CI2件はaction_required。全CI green/全受付受入とは主張しない。",
+    "reason_ja": "構築run35389993775/job105745851627は全工程成功。21件はhost契約でありnative受入ではない。 記録runはcommit時実行中。開始HEAD通常CI2件はaction_required。全CI green/全受付受入とは主張しない。",
     "recent": [
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380507795,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390748863,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380507814,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390748864,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380501524,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390741894,
+        "path": ".github/workflows/pr16-streak-record.yml",
+        "status": "in_progress"
+      },
+      {
+        "conclusion": null,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390741838,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380501522,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390741834,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380501530,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390741892,
         "path": ".github/workflows/ci.yml",
         "status": "in_progress"
       },
       {
         "conclusion": null,
-        "head_sha": "f652c99c101924f737353835a9aba6a3465c6d6c",
-        "id": 35380501598,
-        "path": ".github/workflows/pr16-circus-retention-record.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380466287,
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": "cancelled",
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380466243,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380462401,
-        "path": ".github/workflows/ci.yml",
-        "status": "in_progress"
-      },
-      {
-        "conclusion": null,
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380462299,
+        "head_sha": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+        "id": 35390741879,
         "path": ".github/workflows/modernization-stage79-mgba.yml",
         "status": "in_progress"
       },
       {
         "conclusion": "success",
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380462279,
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390457484,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "e648d7d5d66a1745084d448f7ec59a3a17ecd8df",
-        "id": 35380462316,
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390457437,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390453747,
+        "path": ".github/workflows/ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390453436,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379710704,
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390453491,
+        "path": ".github/workflows/modernization-stage79-mgba.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "failure",
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390453598,
+        "path": ".github/workflows/pr16-streak-record.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "f98400be79919294c4848767f7e7d5c15b3726f5",
+        "id": 35390453560,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379710855,
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389998671,
+        "path": ".github/workflows/p03-forgetting-ci.yml",
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389998637,
         "path": ".github/workflows/ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379705182,
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389993716,
         "path": ".github/workflows/stage79-runtime-boundary-audit.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379705189,
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389993837,
         "path": ".github/workflows/p03-forgetting-ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379705202,
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389993742,
         "path": ".github/workflows/ci.yml",
         "status": "completed"
       },
       {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379705280,
-        "path": ".github/workflows/pr16-circus-retention.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_sha": "4cfc7f38c0e638816a83d5c1d669cc2506bf863e",
-        "id": 35379636874,
-        "path": ".github/workflows/p03-forgetting-ci.yml",
-        "status": "completed"
-      },
-      {
-        "conclusion": "success",
-        "head_sha": "4cfc7f38c0e638816a83d5c1d669cc2506bf863e",
-        "id": 35379636858,
-        "path": ".github/workflows/ci.yml",
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389993775,
+        "path": ".github/workflows/pr16-circus-streak-build.yml",
         "status": "completed"
       }
     ],
-    "scope_head": "f652c99c101924f737353835a9aba6a3465c6d6c",
-    "scoped_native": {
+    "scope_head": "858070ed334123f9d3d645c2f6a39ec1a87591d8",
+    "scoped_build": {
       "artifact": {
-        "digest": "sha256:96c03199f13afb5b8962df044875b58f843af37e25e04833f8a6bc41601821d5",
+        "digest": "sha256:3e2931a22e8aaf4c02a04ffff65de67c3d8523765767a77b98085c5423050038",
         "expired": false,
-        "id": 10561218387,
-        "name": "pr16-circus-retention",
-        "size_in_bytes": 486143
+        "id": 10565491335,
+        "name": "pr16-circus-streak-build",
+        "size_in_bytes": 257339
       },
       "job": {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 105712711736,
-        "run_id": 35379705280,
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 105745851627,
+        "run_id": 35389993775,
         "status": "completed"
       },
       "required_steps": [
-        "保持限定13契約と145152条件を検証",
-        "旧受入は再実行せず固定親と保持修復候補を独立構築",
-        "新候補の選択300bytes保持だけを実戦開始まで検証",
-        "ROM save credentialを除外して保持修復原本を保存",
+        "Circus owner・serializer・限定patchの21契約",
+        "旧受入は再実行せず固定親とCircus固有連勝候補を構築",
+        "ROM save credentialを除外して新実装の構築証跡を保存",
         "Run actions/upload-artifact@v4"
       ],
       "run": {
         "conclusion": "success",
-        "head_sha": "9a100b06df2f83510c1196bd71dd4fb7afe25a9a",
-        "id": 35379705280,
-        "path": ".github/workflows/pr16-circus-retention.yml",
+        "head_sha": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1",
+        "id": 35389993775,
+        "path": ".github/workflows/pr16-circus-streak-build.yml",
         "run_attempt": 1,
         "status": "completed"
       }
     }
   },
-  "observed_head_semantics": "Circus限定工程の記録source HEAD。実native tested HEADは工程checkpointに固定。正式BP受入HEADは維持。",
+  "observed_head_semantics": "Circus限定工程の記録source HEAD。実ARM tested HEADは構築checkpointに固定。正式BP受入HEADは維持。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -917,7 +928,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "初戦選択個体保持は保存→Circus固有連勝の正規更新/永続化と継続戦個体保持→30連勝来歴から特性抑制→影響範囲P08移送→release判定。",
+  "remaining_sequence_ja": "専用ownerとnative結合は構築済み→実勝敗/継続戦/完走保存→真正30連勝抑制→影響範囲P08→release判定。",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1454,9 +1465,9 @@
   "schema_version": 2,
   "session_execution_summary": {
     "accepted_standalone_replays": 0,
-    "new_emulator_processes": 2,
+    "new_emulator_processes": 0,
     "record_emulator_processes": 0,
-    "scope_ja": "このセッションは未確認の個体追跡1件と修復候補の初戦保持1件。旧初戦ターン/受入済み単体ケースは再実行0。"
+    "scope_ja": "既存WIPの構築不整合3点を修正、候補を独立ARM構築。新規native0、受入済み単体再実行0。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -1574,6 +1585,10 @@
     ".github/workflows/pr16-circus-source.yml": {
       "sha256": "e5e7c90dd6233392ea29a9d0e58b7f3f78afa3693c5773c70c176a147a4b23a5",
       "size": 3306
+    },
+    ".github/workflows/pr16-circus-streak-build.yml": {
+      "sha256": "0473fa99568654eccc922487ee943f4dfb05acb76ba4b6c2f71de60ea3020986",
+      "size": 7065
     },
     ".github/workflows/pr16-circus-thumb.yml": {
       "sha256": "2db0eb6f0b6609532510dd6a3e3d803630bf90d35b93679c17c956523a29fc07",
@@ -2139,9 +2154,17 @@
       "sha256": "b8cf5684274aa5a1aff72aefef7e76cc9d702e4a093e9f23493faffc0b5c104b",
       "size": 2581
     },
+    ".github/workflows/pr16-streak-record.yml": {
+      "sha256": "257165114d76e6d1b9ea1c633c918a297ab4a32a6cfce9f5e7788b2b77d074be",
+      "size": 1328
+    },
     "config/active_play_baseline.json": {
       "sha256": "4800257add049ea99cdedda91413a70a255dcff9a85823463596edefa8785053",
       "size": 394
+    },
+    "config/circus_streak_link.json": {
+      "sha256": "b1d88ef5a551b88552ca3565c17f65e1e45fa3b981e52213636d7ce19290e920",
+      "size": 910
     },
     "config/event_design_bindings.csv": {
       "sha256": "d0761e7809d111475054b47a448163f70f0fe1e51182200606a3c4d4dafdd213",
@@ -2154,6 +2177,14 @@
     "config/qol_production_supply_catalog.csv": {
       "sha256": "57fac89ef37255a7bdf28c04192d427a17f3a8d24cdfd366d87903a1873f6686",
       "size": 3783
+    },
+    "config/ram_layout.csv": {
+      "sha256": "54111d0d25b2f5ee3258a3a029d1c5304f630fd4e87fbf3bddab5edf9e659159",
+      "size": 8618
+    },
+    "config/save_layout.csv": {
+      "sha256": "e99a44990c1c3243b997182f506dbbbd55bf723cffc71670e4175f8d5df8d541",
+      "size": 11098
     },
     "content/collection_supply_v1/canonical_model.json": {
       "sha256": "fb8066c0a8140da079b1e947cdfb6c76e987cf0c2514456a86868ec554f061d0",
@@ -2302,6 +2333,10 @@
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
       "size": 195272
+    },
+    "content/modernization/pr16_circus_streak_build_checkpoint.json": {
+      "sha256": "a49d0e6603e23e79c98f966be03529fd16f215a20e0e274d5bb4e52bfe6ee8b6",
+      "size": 116174
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -2895,6 +2930,22 @@
       "sha256": "79d8bab547946dec9d1e32d8ca7ab825da92cff78e49cabdc6f7a9ff57736e1a",
       "size": 299
     },
+    "evidence/pr16_circus_streak/build.json": {
+      "sha256": "97f0afdb24c728652088880ff465fe34b5c68e43f8f6a77866bd1997ee29978e",
+      "size": 96727
+    },
+    "evidence/pr16_circus_streak/disassembly.txt": {
+      "sha256": "0f69346e82cf3980888897b97558675edc391628211ed2f81c5fd3b48130b918",
+      "size": 123378
+    },
+    "evidence/pr16_circus_streak/symbols.txt": {
+      "sha256": "42960a9368d55cf7e5d047a929fceea1f145a32d7d21e14605689672ac51b35e",
+      "size": 2016
+    },
+    "evidence/pr16_circus_streak/tests.stderr.txt": {
+      "sha256": "03f7769e775a647ae7f6250cd16140a209d5e2606571d06e0d916d44d311b8f2",
+      "size": 3466
+    },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
       "size": 4907
@@ -2915,6 +2966,38 @@
       "sha256": "b25defba1c3acaafd92a07a67a69740e90a2a67fd50a1b5031dad05a9e9f9505",
       "size": 2188
     },
+    "overlays/circus_streak/circus_facility_policy.c": {
+      "sha256": "092cfac9c09f8859659ad8070dd7567b0615997601042c739e02b095a97828cb",
+      "size": 3480
+    },
+    "overlays/circus_streak/circus_streak.c": {
+      "sha256": "1158013e3bcf11f40a2df75a712dd19f81e369df9a030e69acac9cb85b241c60",
+      "size": 6251
+    },
+    "overlays/circus_streak/circus_streak.h": {
+      "sha256": "cdbd4bc908c20f96a6765f71c38f4501c9e05493f95fbc3f3747d7a5bab96a03",
+      "size": 2680
+    },
+    "overlays/circus_streak/circus_streak_io.c": {
+      "sha256": "a7b527568813993bd3755a9e95f7162d1471f243c6afbddb573a40862e242b7b",
+      "size": 1850
+    },
+    "overlays/circus_streak/circus_streak_io.h": {
+      "sha256": "c47485dda2e7d29607acabe1dc07e7c466e87b8b59cd1ffff5210813841135d1",
+      "size": 555
+    },
+    "overlays/circus_streak/circus_streak_loss.h": {
+      "sha256": "6bffd5226c2e87cf2b1cf6a69ff940947183040565038f5d79d65764b74c14c7",
+      "size": 616
+    },
+    "overlays/circus_streak/circus_streak_runtime.c": {
+      "sha256": "b751f46d18884e27078fb31599aa60c70567695a583916a0b986e8d4e66efd05",
+      "size": 5974
+    },
+    "overlays/circus_streak/circus_streak_runtime.h": {
+      "sha256": "9060134cc464eda522d4be877b1de66cf2b20df750b005cc08a7ab4d14486000",
+      "size": 660
+    },
     "overlays/event_design/event_design.c": {
       "sha256": "0a63e6ed04c9cb9973f6bfd5ecc659d8ff53be7bcd09badd45031da9ff1c81e7",
       "size": 9378
@@ -2934,6 +3017,10 @@
     "overlays/facility_runtime/facility_runtime.c": {
       "sha256": "28603b55a0573dd376e1acdc4310591c017d158c69ade92393020781271e7cb0",
       "size": 18139
+    },
+    "overlays/facility_runtime/facility_runtime.h": {
+      "sha256": "ec3cb296942c0608b7839a81684ecf6d6f70731abcbc6c02c4f1ec5a202ec54c",
+      "size": 637
     },
     "overlays/factory_repeat_reward_runtime/factory_repeat_reward_runtime.c": {
       "sha256": "9fa19907cf298cf3cfe75d6e26cfbaa70f021b89a9d8f8763484327615a8868f",
@@ -2958,6 +3045,14 @@
     "overlays/ring_policy/ring_policy.h": {
       "sha256": "631d923b90c8f397a9a7672ce19f96ca9f4f4d6dc6c0131cac53269086c15583",
       "size": 398
+    },
+    "overlays/save_migration/save_migration.c": {
+      "sha256": "78e6a74c05ecf652d82e43c1e7ce196de3f6694731bbbabeeead76eef27b6320",
+      "size": 25098
+    },
+    "overlays/save_migration/save_migration.h": {
+      "sha256": "e266c4ec10a3244654837c0f3009b449ccf0e203fe0bfc1c11b319132baadf67",
+      "size": 12497
     },
     "scripts/build_battle_core.py": {
       "sha256": "e83f659b912e4f61f790ef648f30dd7e669f737da84f326c234dc491a6d135c0",
@@ -3146,6 +3241,14 @@
     "scripts/pr16_circus_source_probe.py": {
       "sha256": "fe1306aa05c3e0c8f5af1763e84afbac7e07d5c1d0d75b52720507a48ba5e4ef",
       "size": 7707
+    },
+    "scripts/pr16_circus_streak.py": {
+      "sha256": "35e96e0fbca856cf74afbcda56f7b220ebaccc050bc907431f91b0020ad1bcf5",
+      "size": 18586
+    },
+    "scripts/pr16_circus_streak_edges.py": {
+      "sha256": "2adb98ede1cc06f1301588fc30978fba6db899b1c1f1aec72721ff821d78a469",
+      "size": 2324
     },
     "scripts/pr16_circus_thumb.py": {
       "sha256": "320c65e9a40f590dd37d9d57606b05c56fbe095b59051b1181e70dc0c8a92a78",
@@ -3747,6 +3850,26 @@
       "sha256": "d15a13b18e26fdd8d81ea2dd1f796d2b20f821bb5aa7647f6982e9161b9dfa16",
       "size": 5995
     },
+    "scripts/pr16_streak_archive.py": {
+      "sha256": "41e2d084249788a7c516c23b5713f1b07205568a619026c44cc0f3a3473f7d2d",
+      "size": 1658
+    },
+    "scripts/pr16_streak_record.py": {
+      "sha256": "f79423d334c46900b362110cbbefe6d9a3163ea24a3e3987ac38cf22d4c4f2ae",
+      "size": 10809
+    },
+    "tests/fixtures/circus_streak_fixture.c": {
+      "sha256": "38d2d98abf68ed24b5d243bc680a0e01aff14fd2bbccd25e331b21438402815a",
+      "size": 6575
+    },
+    "tests/fixtures/circus_streak_io_fixture.c": {
+      "sha256": "346882cc9c5f3fa41beea6f3e36aff3ea3ba5da8e8750f71b3ff0d6e5f4e8d9d",
+      "size": 2452
+    },
+    "tests/fixtures/circus_streak_loss_fixture.c": {
+      "sha256": "72561871f7d4e0cb126a668af08bff6c40fbe1b66e1f207cfffc6530da9aab60",
+      "size": 990
+    },
     "tests/ring_policy_host.c": {
       "sha256": "45f7075d57e91c68edc76b7fab5f52d82949f147d27fdfa9f2a07a87c1428a6f",
       "size": 1683
@@ -3894,6 +4017,22 @@
     "tests/test_pr16_circus_retention_record.py": {
       "sha256": "49a410acf48b48c88fbaa5c7df4de029dc2519c6c31139a0611f8bab7d827d99",
       "size": 3599
+    },
+    "tests/test_pr16_circus_streak.py": {
+      "sha256": "b57bdf37d7f704700a1a0827547af7dae5fd14936042f158fb36a3341e617bd7",
+      "size": 2553
+    },
+    "tests/test_pr16_circus_streak_build.py": {
+      "sha256": "cfff415349ffdb2691794b932deda6c29c5275d699a74f0f15ea2dd7359b1f87",
+      "size": 4939
+    },
+    "tests/test_pr16_circus_streak_calls.py": {
+      "sha256": "f14ed92c60279da27e40873e0540fb24a91df510741db2c58bd2d57b19f36768",
+      "size": 1919
+    },
+    "tests/test_pr16_circus_streak_edges.py": {
+      "sha256": "1d55ffe9d18a2a29302dc88a42ae316cb86bf5acfe6092b8f0d3b22d9ea57c4d",
+      "size": 2876
     },
     "tests/test_pr16_circus_thumb.py": {
       "sha256": "ca28f4f61babf02eb2ca95b8c5ff3e7ea150c15685dde2c840d6cc9ee136cd36",
@@ -4471,6 +4610,10 @@
       "sha256": "4506973da0fe4fdcfb5ebc290c9805d6ad2a3f234ac840a41ce261d3c5fe563b",
       "size": 2956
     },
+    "tests/test_pr16_streak_record.py": {
+      "sha256": "9a5853b9d1376cd1e7ae837c38293cf614e2b83ece15ba4da49c375ac7287e5e",
+      "size": 4404
+    },
     "tools/mgba_pr16_bp_battle_progress.c": {
       "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b",
       "size": 3939
@@ -4509,7 +4652,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Circus限定保持wrapperを実装し、run35379705280で修復候補3554dc42の初戦個体継承を検証。1311fの初回確定→1782fの第2確認→3128fの戦闘開始で選択3体300bytes/PID/speciesが完全一致、途中の個体置換0。画像13枚で実戦先頭もゴースのまま確認。変更は既存trampoline参照4bytesと新Thumb runtime280bytesだけ。旧Factory runtime不変、非Circusは以前のpredicate返値を保存。全ROM rollbackは親99cc0948と一致。保持13契約/145152条件、独立ARM link2回、独立patch2回、新規native1/1core/7書込barrier/警告0。3つのCircus開始点を実装対象にしたが、native受入は初戦のみ。固有連勝/保存復帰/30連勝抑制は未完。",
+  "source_change_review_ja": "Circus専用64byte owner/CRC/保存復帰と既存Factoryから隔離したruntimeを構築。開始HEADの既存WIPを継承し、configureの2 literal、Stage42完走adapter、Circus限定敗北復帰を修復。run35389993775は21 host契約・1327104敗北条件・独立ARM link2回を通過。6396byte runtimeと8byte veneer、4箇所のengine参照、20箇所の複製script呼出しを限定接続。旧Factory allocation不変、全ROM rollbackで3554親へ一致。実native勝敗/保存/継続戦/30連勝抑制はまだ未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
