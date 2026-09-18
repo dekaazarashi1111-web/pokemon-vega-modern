@@ -7048,3 +7048,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。固定candidateからdefault選択行8byteとそのpalette32byteだけを有限供給。保存20/32byte・slot/node再採取0、外部資料/source-lock変更0。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存default行/実paletteとstate0→1・先行state1→2を再利用し、通常story側の0300504C初期化とtask作成/dispatchの保存callerを結合する。全32行の有効性は未証明。Ring正規取得・実装備戦闘・保存再開は未受入。旧BIOS/copy/state1/state2/BP/nativeを単独再実行しない。
+
+
+## 2026-09-18T05:35:35.772613+00:00 — PR-P08-7-RING-STATE01-HANDOFF-CONTRACTS
+- Timestamp: 2026-09-18T05:35:35.772613+00:00
+- Task: PR-P08-7-RING-STATE01-HANDOFF-CONTRACTS / state0→1→2の同一RAMとqueue引継ぎを独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state01-handoff-contracts
+- Summary: default行のstate0→1→2を同一明示RAMの21条件で結合。task16枠・queue空き0/1/2/3/4・127周回・phase間host書換0・各帰還SP/r4-r11を検証。state2は0203D000 config不足でwrite0停止。候補復元/byte採取/native再実行0。
+- Files changed: scripts/pr16_ring_state01_handoff_contracts.py, tests/test_pr16_ring_state01_handoff_contracts.py, .github/workflows/pr16-ring-state01-handoff-contracts.yml, content/modernization/pr16_ring_state01_handoff_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定24 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=8de46fb5fc5d0c63dc3939a768324affd102d421; run=35311393786（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actionsの先行成功/出自照合のみ。保存default行とpaletteを再利用しcandidate再構築0、新規byte0。外部資料/source-lock変更なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存producerのconfig/text pool/task初期化を今回state0→1→2のRAMへ衝突なく接続する。次のreadは0937858E→0203D000の4byte。既読producer/poll契約を再利用し、busy/stateのhost直接書換で終了させない。通常storyのpointer初期化・script入口・Ring取得/保存は未受入。単独state0/1/2・BP/nativeの再実行は禁止。
