@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-message taskの待機/終了/削除/window分岐七calleeを新規154命令/352byteで保存。旧7371命令の再解読/native0。
+task終了判定/8calleeとframe callbackを新規726命令/1788byteで保存。旧7525命令再解読/native0。
 
-**次: 次は保存taskと七calleeの状態遷移・待機/終了・削除・不足時の部分writeを結合検証。新規未読callee/間接辺は成功stubなしで停止し、上流busy/通常story/live window初期化を混同しない。今回採取/旧391条件/BP/nativeは単独再実行しない。**
+**次: 次は採取を繰り返さず、保存命令で上流script/busy・task待機/終了/削除・window初期化不足を結合検証。資源data/未読calleeは成功stubなしで停止し、正常story/live gFonts/画面観測へ昇格しない。**
 
 BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bff5e1ec49ebb890329f4228227f9b6180b60b50`。
+証拠のsource HEAD: `30b19c143bc87a7b7de58564d5133b734c560603`。
 限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。
 
 ## 最短の再開手順
@@ -25,9 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_ring_message_window_bytes.json`
+- `scripts/pr16_ring_message_window_bytes.py`
 - `content/modernization/pr16_ring_message_task_callees.json`
-- `scripts/pr16_ring_message_task_callees.py`
-- `content/modernization/pr16_ring_message_task_frontier.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
 
@@ -190,6 +190,7 @@ BP通常購入と保存再開は完了。次はRing正規story取得、policy通
 - 保存7309命令によるmessage生成→設定検証→slot0→task割当とfont callback結合は保存原本を再利用。設定byte256値、stack LR由来残留、task満杯/null fontの部分成功を通常story受入へ昇格しない。次は登録task callback08068C31とその上流実到達・window初期化を限定する。本工程/速度採取/混在333/音声/renderer/BP/nativeは単独再実行しない。
 - 登録message task08068C31の限定採取と保存caller照合は保存原本を再利用。次は保存taskの状態遷移/終了/不足境界を上流と結合。登録を実行、初期化表をlive初期化へ読み替えない。旧391条件/速度採取/renderer/audio/BP/nativeを単独再実行しない。
 - 保存task08068C31の七callee採取は原本を再利用。新規callは再帰採取せず未読境界を保持。次は保存命令で待機/終了/task削除/window分岐/不足を結合。今回採取/前回62命令/旧391条件/BP/nativeは単独再実行しない。
+- task終了判定/未読window8calleeとliteral由来frame callbackの採取は保存原本を再利用。次は保存命令だけで上流script/busy・task待機/終了/削除/window不足を結合。今回/旧採取/旧391条件/BP/nativeは単独再実行しない。
 
 ## 次セッションへ残す更新手順
 
@@ -219,6 +220,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-先行run35298567936の原結論と保存証拠、BP run34946969126成功を照合。今回run35299053977は記録時in_progress。action_requiredを成功へ読み替えない。
+先行run35299053977の原結論と保存証拠、BP run34946969126成功を照合。今回run35299722103は記録時in_progress。action_requiredを成功へ読み替えない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
