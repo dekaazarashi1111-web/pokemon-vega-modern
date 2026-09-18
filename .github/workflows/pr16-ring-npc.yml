@@ -5,55 +5,149 @@ on:
     paths:
       - .github/workflows/pr16-ring-npc.yml
       - overlays/ring_npc/**
-      - tests/test_pr16_ring_npc*.py
+      - tests/test_pr16_ring_npc.py
+      - tests/test_pr16_ring_npc_successor.py
       - tests/ring_npc_host.c
       - scripts/pr16_ring_npc_successor.py
       - scripts/pr16_ring_npc_native.py
       - tools/mgba_pr16_ring_npc.c
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: pr16-ring-npc-implementation
   cancel-in-progress: false
 jobs:
   ring:
-    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 0
           persist-credentials: false
-      - name: Production gift C host contracts
+      - name: Gift and map append contracts
         run: |
-          mkdir -p .local/pr16-ring-npc-workbench
-          python3 -m unittest discover -s tests -p 'test_pr16_ring_npc*.py' -v > .local/pr16-ring-npc-workbench/host.stdout 2> .local/pr16-ring-npc-workbench/host.stderr
-          python3 scripts/pr16_resume.py check > .local/pr16-ring-npc-workbench/resume-before.json
-      - name: Native driver and target source context only
+          set -euo pipefail
+          mkdir -p .local/pr16-ring-npc-run
+          python3 -m unittest discover -s tests -p test_pr16_ring_npc.py -v > .local/pr16-ring-npc-run/gift.stdout 2> .local/pr16-ring-npc-run/gift.stderr
+          python3 -m unittest discover -s tests -p test_pr16_ring_npc_successor.py -v > .local/pr16-ring-npc-run/map.stdout 2> .local/pr16-ring-npc-run/map.stderr
+          python3 scripts/pr16_resume.py check > .local/pr16-ring-npc-run/resume-before.json
+      - name: Restore pinned compiler and unchanged Stage84 input
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-npc-run
+          bash infra/setup_github_actions.sh --install > "$out/toolchain.log" 2>&1
+          python3 scripts/modernization_final_integration.py prepare > "$out/stage84.json" 2> "$out/stage84.stderr"
+      - name: Restore pinned private inputs and character map
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-npc-run
+          assets=.local/pr16-bp-trial-native-inputs
+          mkdir -p "$assets"
+          tag=$(python3 -c 'import json; print(json.load(open("config/github_private_environment.json"))["release"]["tag"])')
+          gh release download "$tag" \
+            --pattern pokemon-vega-private-env-v1-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-modernization-inputs.zip \
+            --pattern pokemon-vega-private-env-v1-state.zip \
+            --dir "$assets"
+          python3 scripts/github_private_environment.py restore \
+            --archive-dir "$assets" \
+            --archive pokemon-vega-private-env-v1-inputs.zip \
+            --archive pokemon-vega-private-env-v1-modernization-inputs.zip \
+            > "$out/private-restore.json"
+          python3 - <<'PYCODE'
+          import hashlib,json,pathlib,zipfile
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/github_private_environment.json').read_bytes())
+          name='pokemon-vega-private-env-v1-state.zip'
+          bound=next(a for a in cfg['archives'] if a['name']==name)
+          archive=root/'.local/pr16-bp-trial-native-inputs'/name
+          raw=archive.read_bytes()
+          assert len(raw)==bound['size'] and hashlib.sha256(raw).hexdigest()==bound['sha256']
+          member='vendor/upstream/CFRU-JP/charmap.tbl'
+          with zipfile.ZipFile(archive) as z:
+              data=z.read(member)
+          path=root/member
+          assert not any(p.is_symlink() for p in (path,*path.parents))
+          if path.exists():
+              assert path.read_bytes()==data
+          else:
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_bytes(data)
+              path.chmod(0o444)
+          PYCODE
+      - name: Rebuild exact retained candidate parents without separate accepted-case replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=.local/pr16-ring-npc-run
+          python3 scripts/pr16_p07_preserved_layer.py > "$out/p07.stdout" 2> "$out/p07.stderr"
+          python3 scripts/pr16_evolution_learning_repair.py > "$out/repair.stdout" 2> "$out/repair.stderr"
+      - name: Build bounded NPC successor without accepted native replay
+        run: |
+          set -euo pipefail
+          python3 scripts/pr16_ring_npc_successor.py > .local/pr16-ring-npc-run/build.stdout 2> .local/pr16-ring-npc-run/build.stderr
+          git diff --exit-code
+      - name: Source and bounded battle bridge context
+        if: always()
         run: |
           python3 - <<'PY'
-          import sys
+          import json, pathlib, sys
           sys.path.insert(0, 'scripts')
           import pr16_ring_npc_workbench as work
           work.PATHS = (
-              'scripts/pr16_gear_route_probe.py', 'scripts/pr16_natural_capture.py',
-              'scripts/pr16_shop_display_repair.py', 'scripts/pr16_shop_display_probe.py',
-              'scripts/pr16_capture_shop_smoke.py', 'scripts/pr16_shop_native.py',
-              'scripts/pr16_capture_geometry.py', 'scripts/pr16_p05_root_diagnostics.py',
-              'scripts/pr16_purchased_gear.py', 'tools/mgba_pr16_natural_capture.c',
-              'tools/mgba_pr16_capture_gear.c', 'tools/mgba_pr16_shop_smoke.c',
-              'config/rom_regions.csv', 'manifests/flags.csv', 'manifests/item_ids.csv',
-              'overlays/ring_npc/ring_npc.c', 'overlays/ring_npc/ring_npc.h',
-              'tests/ring_npc_host.c', 'tests/test_pr16_ring_npc.py',
+              'scripts/pr16_shop_routes.py', 'tools/mgba_pr16_shop_routes.c',
+              'scripts/pr16_breeding_delta.py', 'scripts/pr16_purchased_gear.py',
+              'config/battle_core.json', 'scripts/pr16_ring_npc_successor.py',
+              'tests/test_pr16_ring_npc_successor.py',
           )
           work.collect()
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'config/battle_core.json').read_bytes())
+          name=cfg['outputs']['stage_metadata']
+          path=root/name
+          context={'metadata_path':name,'available':path.is_file()}
+          if path.is_file():
+              metadata=json.loads(path.read_bytes())
+              context['downstream_symbols']=metadata.get('downstream_symbols')
+              context['integration_symbols']=[r.get('integration_symbols') for r in metadata.get('upstream_runs',[])]
+          (root/'.local/pr16-ring-npc-workbench/battle-symbols.json').write_text(json.dumps(context,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Export text evidence only
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,pathlib,re,shutil
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-ring-npc-evidence'
+          out.mkdir(parents=True,exist_ok=True)
+          members={}
+          for prefix in ('pr16-ring-npc-run','pr16-ring-npc-successor','pr16-ring-npc-workbench'):
+              base=root/'.local'/prefix
+              if not base.exists(): continue
+              for p in sorted(base.rglob('*')):
+                  if p.is_dir(): continue
+                  assert p.is_file() and not p.is_symlink()
+                  if p.suffix not in {'.json','.txt','.stdout','.stderr','.log','.c','.h','.py','.csv'}: continue
+                  raw=p.read_bytes();raw.decode('utf-8');assert b'\0' not in raw and len(raw)<2000000
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}',raw)
+                  name=prefix+'/'+p.relative_to(base).as_posix()
+                  target=out/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
+                  members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+          (out/'members.json').write_text(json.dumps(members,indent=2)+'\n',encoding='utf-8')
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: pr16-ring-npc-host
-          path: .local/pr16-ring-npc-workbench/
+          name: pr16-ring-npc-build
+          path: .local/pr16-ring-npc-evidence/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
