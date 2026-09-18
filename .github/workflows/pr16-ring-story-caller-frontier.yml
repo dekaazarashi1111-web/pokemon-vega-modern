@@ -14,7 +14,7 @@ permissions:
   pull-requests: read
 concurrency:
   group: pr16-ring-story-caller-frontier
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   focused:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
@@ -28,7 +28,7 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
       - name: 未読callerを限定・検証し同branchへ記録
-        run: python3 scripts/pr16_ring_story_caller_frontier.py run
+        run: timeout 180 python3 scripts/pr16_ring_story_caller_frontier.py run
       - uses: actions/upload-artifact@v4
         if: always()
         with:

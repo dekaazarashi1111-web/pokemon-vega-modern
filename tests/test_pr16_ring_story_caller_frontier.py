@@ -91,5 +91,9 @@ class CallerTests(unittest.TestCase):
     def test_35_else_if_does_not_hide_later_function(self):
         source='void f(){\n if(x){a();}\n else if(y){b();}\n}\nvoid g(){target();}'
         self.assertEqual([d['name']for d in m.definitions(source)],['f','g'])
+    def test_36_long_whitespace_declaration(self):
+        self.assertEqual(m.definitions('u8 '+(' '*4096)+'data[4];'),[])
+    def test_37_pointer_return_type(self):
+        self.assertEqual(m.definitions('static const u8 *f(void) { return NULL; }')[0]['name'],'f')
 
 if __name__=='__main__':unittest.main()

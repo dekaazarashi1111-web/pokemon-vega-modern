@@ -25,7 +25,7 @@ WORKFLOW='.github/workflows/pr16-ring-story-caller-frontier.yml'
 PRIOR='content/modernization/pr16_ring_bootstrap_lifecycle_contracts.json'
 REPORT='content/modernization/pr16_ring_story_caller_frontier.json'
 KEY='latest_ring_diagnostic'
-MIN_TESTS=35
+MIN_TESTS=37
 EXTRA_CODE=()
 SOURCES=(owners.SELF,export.SELF,s.SELF,'scripts/pr16_ring_message_task_frontier.py','state/source-lock.json',
     'content/modernization/pr16_ring_ui_owners.json')
@@ -100,13 +100,13 @@ def mask_c(text):
 
 def definitions(text):
     clean=mask_c(text);out=[]
-    pattern=r'(?m)^[ \t]*(?:static[ \t]+|inline[ \t]+|const[ \t]+)*[A-Za-z_]\w*(?:[ \t]+|[ \t]*\*+[ \t]*)+([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{'
+    pattern=r'(?m)^[ \t]*([A-Za-z_][^\n;{}()]*?)\b([A-Za-z_]\w*)\s*\([^;{}]*\)\s*\{'
     for m in re.finditer(pattern,clean):
         # else if / else while は型名+関数に似るが、既読関数の内部に限る。
         if out and m.start()<out[-1]['end']:
-            need(m[1] in ('if','while','for','switch'), '未対応の入れ子関数定義')
+            need(m[2] in ('if','while','for','switch'), '未対応の入れ子関数定義')
             continue
-        need(m[1] not in ('if','while','for','switch'),'top-level制御構文')
+        need(m[2] not in ('if','while','for','switch'),'top-level制御構文')
         start=m.end()-1;depth=1;end=start+1
         while end<len(clean) and depth:
             depth+=(clean[end]=='{')-(clean[end]=='}');end+=1
@@ -116,7 +116,7 @@ def definitions(text):
         calls=[{'symbol':v[1],'line':clean.count('\n',0,start+1+v.start())+1}
                for v in re.finditer(r'\b([A-Za-z_]\w*)\s*\(',body)
                if v[1] not in ('if','for','while','switch','sizeof','return')]
-        out.append({'name':m[1],'start':m.start(),'end':end,
+        out.append({'name':m[2],'start':m.start(),'end':end,
                     'line':clean.count('\n',0,m.start())+1,'calls':calls})
     return out
 
@@ -178,6 +178,8 @@ def analyze(previous,out):
         snapshots,provenance=owners.verify_snapshots(json.loads(z.read('source-snapshots.json')),
             json.loads(z.read('source-provenance.json')))
     jp=owners.symbols(snapshots['cfru/BPRJ.ld'])
+    corrected=json.loads(subprocess.check_output(['gh','api',f'repos/{s.REPO}/actions/runs/35315698648']))
+    need(corrected['status']=='completed' and corrected['conclusion']=='cancelled','旧WIP中止の原結論')
     fresh={};sources={}
     for path in REFERENCE_PATHS:
         payload=json.loads(subprocess.check_output(['gh','api',reference_path(path)]))
@@ -203,6 +205,8 @@ def analyze(previous,out):
             'artifact_id':10535110418,'zip_sha256':'0dd7e1d6bf388a7d7b507ca317972238e2bc16087312d98903f2e963f3dd2faf',
             'failure_boundary':'制御構文と入れ子関数候補の区別不足・解析時にfail closed',
             'tests_passed':31,'record_commit_created':False},
+        'cancelled_parser_attempt':{'run_id':35315698648,'head':corrected['head_sha'],
+            'conclusion':corrected['conclusion'],'cause':'長い空白の宣言で字句正規表現が過剰backtracking。37testsへ追加して置換。'},
         'candidate_reconstructions':0,'rom_changes':0,'new_window_bytes':0,'new_node_count':0,
         'new_emulator_processes':0,'saved_nodes_redecoded':0,'accepted_standalone_contracts_replayed':0,'accepted_native_cases_replayed':0,
         'normal_story_observed':False,'ring_acquisition_accepted':False,'release_ready':False,
