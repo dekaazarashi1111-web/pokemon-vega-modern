@@ -4144,3 +4144,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 次は保存state2/上流1231条件を再実行せず、window状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91とr8 frame thunk081C7AE9を限定する。task満杯時busy2は通常プレイ未再現で未受入。live window/gFonts初期化・通常story/Ring正規取得は引き続き未観測。今回結合/旧採取/旧391条件/BP/nativeは単独再実行しない。
+
+
+## 2026-09-18T03:08:48.653355+00:00 — PR-P08-7-RING-MESSAGE-TASK-CHECKPOINT
+- Timestamp: 2026-09-18T03:08:48.653355+00:00
+- Task: PR-P08-7-RING-MESSAGE-TASK-CHECKPOINT / 成功1231条件を再実行せず軽量再開点と証拠取得経路を固定
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-message-task-checkpoint
+- Summary: run35301261393/完了5a489a17の55tests・1231条件（914帰還/317停止、状態2開始96列）を再実行せず照合。大きいJSONの本文空応答を避ける軽量checkpointとhash付きartifact取得経路を固定。新byte/契約/native実行0。
+- Files changed: scripts/pr16_ring_message_task_checkpoint.py, tests/test_pr16_ring_message_task_checkpoint.py, .github/workflows/pr16-ring-message-task-checkpoint.yml, content/modernization/pr16_ring_message_task_checkpoint.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定27 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=313b295bfa34b17fde30f8d32e7801c4ae35dfdb; run=35302074834（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元0。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions、必要時のみ既存hash固定candidate復元。外部技術資料なし。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 軽量checkpointのimplementation_read_pathsとevidence_accessから保存証拠を読む。次はwindow状態0/1のGetWindowAttribute selector0表08004938の必要word/分岐body、palette0806FB91、r8 frame thunk081C7AE9を限定する。上流/状態2の1231条件、旧採取/391条件/BP/nativeは再実行しない。task満杯busy2・live初期化/通常story/Ring取得は未受入。
