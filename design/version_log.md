@@ -4304,3 +4304,19 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Network: GitHub connector/Actions。同一hash candidateから未供給0843FA24の32byteだけ取得。保存palette20byte/slot/nodeを再採取しない。外部資料/source-lock変更なし。
 - Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
 - Next: 保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。
+
+
+## 2026-09-18T05:30:26.021663+00:00 — PR-P08-7-RING-STATE0-COMPLETION-CONTRACTS
+- Timestamp: 2026-09-18T05:30:26.021663+00:00
+- Task: PR-P08-7-RING-STATE0-COMPLETION-CONTRACTS / state0のoption境界・選択行供給・state1帰還を独立oracleで検証
+- Status: DONE / 限定工程。Ring通常取得の受入ではない。
+- Version: pr16-ring-state0-completion-contracts
+- Summary: state0 option全256値/不足pointer計263条件と、default行のstate0→1を118条件/75帰還で検証。新規40byte、保存palette/node再採取0。全task16枠・queue満杯・SP/r4-r11・43部分停止を独立write oracleで確認。
+- Files changed: scripts/pr16_ring_state0_completion_contracts.py, tests/test_pr16_ring_state0_completion_contracts.py, .github/workflows/pr16-ring-state0-completion-contracts.yml, content/modernization/pr16_ring_state0_completion_contracts.json, 固定MD/JSON、P08 Ring参照、両ログ。
+- Verify: 限定30 tests PASS、source hash照合、render/check PASS、BP checkpoint不変。task graph/最終index差分guard/diffはcommit前必須。
+- Evidence: source=76484b07ad64c663af6084bb329700a8a62f2e59; run=35310950944（記録時in_progress）。
+- Preserved: ROM変更0、emulator0、受入済みnative/既読ABI再実行0。今回候補復元1。
+- Commit: 本工程のguard PASS後、同branchへ非force push。完了SHAはremote ref/Actionsで確認。
+- Network: GitHub connector/Actions。固定candidateからdefault選択行8byteとそのpalette32byteだけを有限供給。保存20/32byte・slot/node再採取0、外部資料/source-lock変更0。
+- Boundary: 既存全体guard違反の前後一致と新規違反0を検査。全体guard PASS、全CI green、merge/release/baseline変更は主張しない。
+- Next: 保存default行/実paletteとstate0→1・先行state1→2を再利用し、通常story側の0300504C初期化とtask作成/dispatchの保存callerを結合する。全32行の有効性は未証明。Ring正規取得・実装備戦闘・保存再開は未受入。旧BIOS/copy/state1/state2/BP/nativeを単独再実行しない。

@@ -7,7 +7,7 @@
     "battle_started": true,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。",
+    "current_stop": "state0 option全256値/不足pointer計263条件と、default行のstate0→1を118条件/75帰還で検証。新規40byte、保存palette/node再採取0。全task16枠・queue満杯・SP/r4-r11・43部分停止を独立write oracleで確認。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -29,7 +29,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。",
+    "next_step": "保存default行/実paletteとstate0→1・先行state1→2を再利用し、通常story側の0300504C初期化とtask作成/dispatchの保存callerを結合する。全32行の有効性は未証明。Ring正規取得・実装備戦闘・保存再開は未受入。旧BIOS/copy/state1/state2/BP/nativeを単独再実行しない。",
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
     "party_retention_target_callsite_verified": true,
@@ -395,7 +395,8 @@
     "BIOS0B/0Cの今回メモリ効果・短い供給/readonly部分書込・palette20byte・state1 fill後の12byte window転送を保存原本から再利用。prefix/724条件/旧1231条件/候補再構築/BP/nativeを単独再実行しない。次は保存した属性表不足の正確なread境界。条件付きHLE契約を実BIOS実行/通常story/Ring受入に昇格しない。",
     "本工程の2属性slot/新規分岐先byte/結合traceは保存原本から再利用。BIOS契約32tests/26条件・palette20byte・724条件・1231条件・BP/nativeを単独再実行しない。次はcaseごとに保存した不足memory/未知nodeを対象にし、候補再構築を不要にできる保存byteを先に確認。",
     "state1→2の今回独立write oracle/保存レジスタ/queue満杯対照/新suffix部分停止を保存原本から再利用。state2の旧poll/delete受入を再実行しない。state0の次の未供給32byteは0843FA24、コピー先0203730C/0203770C。palette20byte・2属性slot・8628旧node・BIOS/724/1231条件・BP/native再実行禁止。state1のRAM/queue条件付き完了をDMA描画・実BIOS・通常story/Ringへ昇格しない。",
-    "state0の0843FA24の32byteと両コピー99契約・21caller suffixを保存原本から再利用。次は0300504Cのpointerと+14の選択byte、その保存callee継続。state1→2/旧state2/BIOS単独/BP/nativeは再実行しない。通常story/Ring/実BIOSは未受入。"
+    "state0の0843FA24の32byteと両コピー99契約・21caller suffixを保存原本から再利用。次は0300504Cのpointerと+14の選択byte、その保存callee継続。state1→2/旧state2/BIOS単独/BP/nativeは再実行しない。通常story/Ring/実BIOSは未受入。",
+    "state0のoption全256値・default行/実palette・独立write oracleによるstate0→1を保存原本から再利用。state1→2は先行受入の継承のみ。次は通常story/live pointer初期化・task入場と保存callerの接続。option index0..31の算術は全32行有効証明ではない。BP/旧BIOS/native/同一候補再構築を単独再実行しない。"
   ],
   "exchange_successor": {
     "abi_repaired": true,
@@ -468,13 +469,13 @@
   "merge_performed": false,
   "next_action": {
     "id": "P05_NATIVE_RING_ACQUISITION_PHYSICAL",
-    "goal_ja": "保存state0_palette_supplyを再利用し、081530F4の0300504C pointerと+14の選択byte、保存callee08153089の未観測suffixを明示allocationで結合する。32byte/旧palette20byte/slot/nodeを再採取しない。state1→2/旧state2/BP/nativeの単独再実行禁止。通常story/Ring取得・保存は未受入。",
+    "goal_ja": "保存default行/実paletteとstate0→1・先行state1→2を再利用し、通常story側の0300504C初期化とtask作成/dispatchの保存callerを結合する。全32行の有効性は未証明。Ring正規取得・実装備戦闘・保存再開は未受入。旧BIOS/copy/state1/state2/BP/nativeを単独再実行しない。",
     "host_write_policy_ja": "通常取得の観測開始後にRing所有bit・inventory・party・PC/LRをhostから設定しない。既存fixtureは正規取得証拠ではない。",
     "stop_rule_ja": "BP購入成功run34946969126と3勝/取消/Save/Continueを単独再実行しない。Ring正規取得・装備実戦・保存を観測するまでRing受入にしない。policy/Circusやreleaseへscopeを拡大しない。",
     "read_paths": [
-      "content/modernization/pr16_ring_state0_palette_supply.json",
-      "scripts/pr16_ring_state0_palette_supply.py",
-      "content/modernization/pr16_ring_state1_completion_contracts.json"
+      "content/modernization/pr16_ring_state0_completion_contracts.json",
+      "scripts/pr16_ring_state0_completion_contracts.py",
+      "content/modernization/pr16_ring_state0_palette_supply.json"
     ],
     "success_observations": [
       "正規story entrypointからRingが取得される",
@@ -483,9 +484,9 @@
     ]
   },
   "observed_date_jst": "2026-09-16",
-  "observed_head": "ddb29398740118c879cee6ebb4feecddee6f7731",
+  "observed_head": "76484b07ad64c663af6084bb329700a8a62f2e59",
   "observed_head_checks": {
-    "reason_ja": "先行run35308467459の原結論と保存証拠、BP run34946969126成功を照合。今回run35310296705は記録時in_progress。action_requiredを成功へ読み替えない。"
+    "reason_ja": "先行run35310296705の原結論と保存証拠、BP run34946969126成功を照合。今回run35310950944は記録時in_progress。action_requiredを成功へ読み替えない。"
   },
   "observed_head_semantics": "限定工程のsource HEAD。完了commit/runはremote ref/Actionsで確認。",
   "p08_resume_synchronized": true,
@@ -648,7 +649,7 @@
     "rom_changes": 0,
     "candidate_reconstructions": 1,
     "accepted_standalone_replays": 0,
-    "scope_ja": "state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。"
+    "scope_ja": "state0 option全256値/不足pointer計263条件と、default行のstate0→1を118条件/75帰還で検証。新規40byte、保存palette/node再採取0。全task16枠・queue満杯・SP/r4-r11・43部分停止を独立write oracleで確認。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -3146,10 +3147,26 @@
     "content/modernization/pr16_ring_state0_palette_supply.json": {
       "size": 105733,
       "sha256": "4b62b3cab98056ddb280b38318a7301c730f604ba005eadc56aad8196f57f3ab"
+    },
+    "scripts/pr16_ring_state0_completion_contracts.py": {
+      "size": 17674,
+      "sha256": "d94d9ff16f9a12acbca836c0039c0d56d26109c29da1f46877d7d78f6f6c222f"
+    },
+    "tests/test_pr16_ring_state0_completion_contracts.py": {
+      "size": 6454,
+      "sha256": "c1b139f68503279239278bb27f443a97c54c97ab41aadab70eca5b3bdaffe318"
+    },
+    ".github/workflows/pr16-ring-state0-completion-contracts.yml": {
+      "size": 1806,
+      "sha256": "26e6ab72e813369398c065a380b2cf3be157ab7ae463f28da9de298ddd96780b"
+    },
+    "content/modernization/pr16_ring_state0_completion_contracts.json": {
+      "size": 339342,
+      "sha256": "ab00896a00af9e079109fc7a10093de42973eb3635941d6ee67fea44fec6181a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "state0未供給0843FA24の32byteを同一candidateから取得。二重コピー99条件と全task16枠等21caller suffixを独立write oracleで検証。0203730C/0203770Cコピーは条件付き完了、次の0300504C readでstate0を保持。state1/BP/native再実行0。",
+  "source_change_review_ja": "state0 option全256値/不足pointer計263条件と、default行のstate0→1を118条件/75帰還で検証。新規40byte、保存palette/node再採取0。全task16枠・queue満杯・SP/r4-r11・43部分停止を独立write oracleで確認。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -3571,9 +3588,9 @@
     "run_id": 35060189419
   },
   "latest_ring_diagnostic": {
-    "path": "content/modernization/pr16_ring_state0_palette_supply.json",
-    "source_head": "ddb29398740118c879cee6ebb4feecddee6f7731",
-    "run_id": 35310296705
+    "path": "content/modernization/pr16_ring_state0_completion_contracts.json",
+    "source_head": "76484b07ad64c663af6084bb329700a8a62f2e59",
+    "run_id": 35310950944
   },
   "ring_snapshot_closeout": {
     "path": "content/modernization/pr16_ring_snapshot_closeout.json",
