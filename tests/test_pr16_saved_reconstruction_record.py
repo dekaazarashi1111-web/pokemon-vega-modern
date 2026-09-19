@@ -53,6 +53,15 @@ class SavedRecordTests(unittest.TestCase):
             else:self.assertIsNone(a['success_evidence'])
         self.assertEqual(state['bp']['next_step'],state['next_action']['goal_ja'])
         self.assertEqual(state['next_action']['id'],'CIRCUS_BATTLE25_ORDINARY_POLICY')
+        # run35465795453: 型の差は投影単体でなく実MD生成まで検査する。
+        self.assertIsInstance(state['remaining_sequence_ja'],str)
+        rendered=r.resume.render(state)
+        self.assertIn(state['remaining_sequence_ja'],rendered)
+        self.assertIn(r.NEXT,rendered)
+        self.assertEqual(r.resume.render(s.strict(s.stable(state))),rendered)
+        broken=copy.deepcopy(state)
+        broken['remaining_sequence_ja']=['文字列契約を壊した反例']
+        with self.assertRaises(TypeError):r.resume.render(broken)
 
     def test_closed_gap_cannot_be_overwritten(self):
         b=copy.deepcopy(self.backlog)

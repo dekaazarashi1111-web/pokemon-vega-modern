@@ -116,8 +116,9 @@ def project(state, backlog, report):
             '通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。')
     if note not in state['do_not_repeat']:
         state['do_not_repeat'].insert(0, note)
-    state['remaining_sequence_ja'] = ['同一2b107e7eの25戦目通常入力から真正30勝と保存',
-        '正規実受付から特性抑制', '変更影響範囲P08最終統合・release判断（公開操作は別指示）']
+    # render()の単一段落契約を維持する。配列はjoin時にTypeErrorとなる。
+    state['remaining_sequence_ja'] = ('同一2b107e7eの25戦目通常入力から真正30勝と保存 → '
+        '正規実受付から特性抑制 → 変更影響範囲P08最終統合・release判断（公開操作は別指示）')
     return state, backlog
 
 
@@ -202,7 +203,11 @@ print(json.dumps(result))
         old_native_boundary=dict(run_id=35457636604, genuine_wins=24, bp=72, loss_battle=25,
                                  candidate=TARGET, original_conclusion='failure'),
         failure_history=[dict(run_id=35464893016, conclusion='failure', diagnosis='受付adapterの明示padding未継承'),
-                         dict(run_id=35465115956, conclusion='failure', diagnosis='objdump OBJECT定数8byteを見落とした')],
+                         dict(run_id=35465115956, conclusion='failure', diagnosis='objdump OBJECT定数8byteを見落とした'),
+                         dict(run_id=35465795453, job_id=105957767914, conclusion='failure',
+                              artifact_id=10591186356,
+                              archive=dict(size=980, sha256='5f93d37f43902618f1e03de3500793dab13096ac1286f429bdb7ef099efabd73'),
+                              diagnosis='投影したremaining_sequence_jaが配列で、固定MD生成時にTypeError。文字列契約と実render回帰を追加。')],
         correction_ja='コード284byte（OBJECT定数8byteを含む）と元ADAPTER_SIZE304の明示FF padding20byteで元payload hash一致。',
         next_action_ja=NEXT)
     report['record_tests'] = tests()
@@ -216,7 +221,7 @@ print(json.dumps(result))
         s.need(prior['status'] == 'completed' and prior['conclusion'] == 'failure', 'failure history changed')
         observed.append({k:prior[k] for k in ('id','head_sha','status','conclusion')})
     state['observed_head_checks'] = dict(scope_head=head, runs=observed,
-        reason_ja='復元run35465528252は成功。先行2失敗とnative30未達は維持。記録run自身はsnapshot外で、全CI greenは主張しない。')
+        reason_ja='復元run35465528252は成功。先行3失敗とnative30未達は維持。記録run自身はsnapshot外で、全CI greenは主張しない。')
     state['pending_runs'] = []
     state['recording_workflow'] = dict(run_id=int(os.environ['GITHUB_RUN_ID']), source_head=head,
                                       status_at_snapshot='in_progress', native_work=False)
@@ -244,10 +249,10 @@ print(json.dumps(result))
         '- Version: pr16-saved-byte-chain-20\n'
         '- Summary: 固定Stage80から20層425差分を保存BPS・原本byteのみで正規化し、候補2b107e7eへ全hash一致。全層allocationと全ROM逆適用を確認。'
         '通常再開は保存JSONと純粋核だけで、旧builder・network・子processは禁止。\n'
-        '- Summary: 受付adapterのOBJECT定数8byteと明示20byte FF paddingを原本から回復。先行失敗35464893016/35465115956は保存し、成功へ改作しない。\n'
+        '- Summary: 受付adapterのOBJECT定数8byteと明示20byte FF paddingを原本から回復。先行失敗35464893016/35465115956と記録型不整合35465795453は失敗のまま保存。単一段落契約と実render回帰を追加。\n'
         '- Files changed: '+', '.join((*SOURCE_PATHS,*paths))+'\n'
         '- Verify: run35465528252/job105957035501成功、artifact10591650346 sha256='+ZIP_ID['sha256']+'。'
-        '核13契約の未影響12件と原本IO9契約の証跡継承、影響decoder3件PASS。記録8契約、固定JSONのoffline実ROM再開、'
+        '核13契約の未影響12件と原本IO9契約の証跡継承、影響decoder3件PASS。記録8契約（投影後render/JSON往復を含む）、固定JSONのoffline実ROM再開、'
         'resume tests、pr16_resume.validate、task graph PASS。commit前index差分private guardで新規違反0、diff check必須。\n'
         '- Native: 今回0。候補byte変更0、ARM compile/link0、受入単体再実行0。履歴bootstrap全体ARM数はunknownを維持。\n'
         '- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receiptを参照。\n'
