@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。
+無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。
 
 **次: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `351d61df39371b9167498534d2c5dce81c59131f`。
+証拠のsource HEAD: `bf137c2eb6041d26e4ea476debe97b896ee0fb0e`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

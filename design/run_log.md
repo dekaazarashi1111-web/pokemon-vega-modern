@@ -7918,3 +7918,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。
+
+
+## 2026-09-19T06:40:19.724313+00:00 — USER-20260919-CIRCUS-REENTRY-RECORDED
+- Timestamp: 2026-09-19T06:40:19.724313+00:00
+- Task: USER-20260919-CIRCUS-REENTRY-RECORDED
+- Status: DONE / 無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。
+- Version: pr16-circus-loss-marker
+- Summary: 無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reentry.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_reentry.py, .github/workflows/pr16-circus-reentry.yml, content/modernization/pr16_circus_reentry_visual_review.json, content/modernization/pr16_circus_continuous.json, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, tests/test_pr16_circus_continuous.py, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/events.json, evidence/pr16_circus_reentry/35427049942/native/report.json, evidence/pr16_circus_reentry/35427049942/native/streak.json, evidence/pr16_circus_reentry/35427049942/reconstruction.json
+- Verify: CIRCUS_REENTRY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix4戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。

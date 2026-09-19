@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。",
+    "current_stop": "無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_REENTRY_PAID_PROGRESS_PREPARED",
+    "classification": "CIRCUS_REENTRY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_reentry.json",
     "target_wins": 30
   },
@@ -130,11 +130,11 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35427049942,
-    "source_head": "351d61df39371b9167498534d2c5dce81c59131f",
+    "source_head": "bf137c2eb6041d26e4ea476debe97b896ee0fb0e",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
-    "classification": "CIRCUS_REENTRY_PAID_PROGRESS_PREPARED",
+    "classification": "CIRCUS_REENTRY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_reentry.json",
     "previous_native_conclusion": "failure",
     "previous_native_run": 35426278164,
@@ -658,10 +658,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "351d61df39371b9167498534d2c5dce81c59131f",
+  "observed_head": "bf137c2eb6041d26e4ea476debe97b896ee0fb0e",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "351d61df39371b9167498534d2c5dce81c59131f"
+    "scope_head": "bf137c2eb6041d26e4ea476debe97b896ee0fb0e"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2284,8 +2284,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "959e9332fee477d9271a6ab46ca6a10dacaf54a79535c2af1bbbce91c7ae29d6",
-      "size": 131999
+      "sha256": "3d82d215fb5cc5f35da6951856a4673451aad19b63ed12d0fae74041548d0224",
+      "size": 132013
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2300,8 +2300,8 @@
       "size": 3315
     },
     "content/modernization/pr16_circus_reentry.json": {
-      "sha256": "2630110c5916310ca2145cf05a4470d9c9897a240244f25fab10b688423f2979",
-      "size": 2971
+      "sha256": "44e43c997913997641e2f93de9f9ffd8da37ecee424a250d054f2f1438ab94ee",
+      "size": 120740
     },
     "content/modernization/pr16_circus_reentry_visual_review.json": {
       "sha256": "703779330c48b20f020ef225a18f8f5493b9422f28d6b100d27e590b874573fd",
@@ -3106,6 +3106,34 @@
     "evidence/pr16_circus_loss_weather/35415331977/streak.json": {
       "sha256": "4bebd73a289043df7a10fc709280ea686f911afd94e3a1c377ccd550286f102e",
       "size": 880
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr": {
+      "sha256": "ff480ee86b29a53b4abe2a6e417676ca7fb33e4b57ec8546b740bb0b003ea46d",
+      "size": 214697
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout": {
+      "sha256": "92de56776a57ef419d4a40c8aaafa31663a246e8fdc7f890bfad501eb03e4739",
+      "size": 664
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/events.json": {
+      "sha256": "fa1539a4033c4999a7ec668e0bcaa7143f926f3d967154375eee31faa4d39c95",
+      "size": 52404
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/report.json": {
+      "sha256": "9d78858fda13978257efe3c4d58a4d4650720cc342a436f8f85dd3edbd4117e4",
+      "size": 109557
+    },
+    "evidence/pr16_circus_reentry/35427049942/native/streak.json": {
+      "sha256": "7a7f348f48ed98e4391e866df0cc5ff2394de5e143030159470eaf787dcd768b",
+      "size": 1048
+    },
+    "evidence/pr16_circus_reentry/35427049942/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
     },
     "evidence/pr16_circus_retention/original.stderr.txt": {
       "sha256": "87d17efefdc71ef57f74909d5f0d233b7a056805e3980577d5fdba074d798bcd",
@@ -5365,7 +5393,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。",
+  "source_change_review_ja": "無進展入力修復後の連続case原本を保存。旧実4勝後敗北の再解析と新実測を分離し、真正30勝は未達のまま最初の不一致を次へ引き継ぐ。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
