@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-候補2b107e7eの受付/launch契約と再構築は成功。native0のcontroller include順序によるsc_events未宣言を前方定義で修復し、未実行continuationだけを開始。
+READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。
 
-**次: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。**
+**次: 保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `69075ada3e54a3218a916b5b532f8883428c6bfa`。
+証拠のsource HEAD: `4e0596d58c1321810f9b90cf3c6130d29ff8ce6d`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
