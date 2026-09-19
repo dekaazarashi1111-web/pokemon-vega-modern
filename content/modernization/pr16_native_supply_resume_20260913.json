@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。",
+    "current_stop": "ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。",
+    "next_step": "新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,8 +88,8 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED",
-    "path": "content/modernization/pr16_circus_win_return_owner.json",
+    "classification": "CIRCUS_WIN_CPU_READONLY_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_cpu.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -137,8 +137,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35432926280,
-    "source_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54",
+    "run_id": 35433308048,
+    "source_head": "e28d620a5c42a29395bf340bacdb0ce8e3f73425",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -289,6 +289,11 @@
     "old_head": "b5e22ea1a7fddc30a2c705e2fafffeb3648fd8c9",
     "original_conclusion": "failure",
     "reason_ja": "macro修正3ファイルに固定resumeの旧hashが残りprepareで拒否。旧commitの3原本と完全一致を確認して対象3hashだけ更新。他のbinding/受入結果は変更しない。"
+  },
+  "circus_win_return_cpu": {
+    "classification": "CIRCUS_WIN_CPU_READONLY_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_cpu.json",
+    "run_id": 35433308048
   },
   "circus_win_return_owner": {
     "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED",
@@ -736,15 +741,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。",
+    "goal_ja": "新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_win_return_owner.py",
+      "scripts/pr16_circus_win_return_cpu.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "scripts/pr16_circus_win_return_owner.py",
+      "tools/mgba_pr16_circus_win_return_cpu.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -756,10 +761,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54",
+  "observed_head": "e28d620a5c42a29395bf340bacdb0ce8e3f73425",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54"
+    "scope_head": "e28d620a5c42a29395bf340bacdb0ce8e3f73425"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -828,9 +833,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35432926280,
+      "run_id": 35433308048,
       "status": "in_progress",
-      "tested_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68"
+      "tested_head": "e28d620a5c42a29395bf340bacdb0ce8e3f73425"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1657,6 +1662,10 @@
       "sha256": "b41d6eed4e239e3b07fe6fffb063bdd29fe7fa576c82a8008ff8b32701e347f7",
       "size": 1779
     },
+    ".github/workflows/pr16-circus-win-return-cpu.yml": {
+      "sha256": "be3c818d752a82c77a4da5744bdb4868398aa43132a186fd6665b89de8ad7454",
+      "size": 1801
+    },
     ".github/workflows/pr16-circus-win-return-owner.yml": {
       "sha256": "eff7953191364cf4bab05cfa1ae015a96c48ef6976c38c76087494881bf7210f",
       "size": 1600
@@ -2422,8 +2431,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "baccd9a78b2a15f40a6976c71173a293a05264d500c51a52835ed30460783003",
-      "size": 133169
+      "sha256": "63e383f484d0522dea7da9a15022c5981825d10ab91df1e9aff0c62f0d30a00b",
+      "size": 133349
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2484,6 +2493,10 @@
     "content/modernization/pr16_circus_visual_review_20260919.json": {
       "sha256": "f8c68129989eccd3146e3009786b2f4f2cfee9f13a08d4cfc4a1fa1dbfa25abd",
       "size": 1014
+    },
+    "content/modernization/pr16_circus_win_return_cpu.json": {
+      "sha256": "05510343bdb6ae453fa4ef87f91b221933156fd1e2e1ff025082a528dd22e2d5",
+      "size": 575
     },
     "content/modernization/pr16_circus_win_return_owner.json": {
       "sha256": "a1796fa00333be0c8cf3e8acf73933d0ac67fa8b95870c5b923b166c1265af00",
@@ -4177,6 +4190,10 @@
       "sha256": "b317dd030268ac9dea8a714e6f4686783582ab2508b6ff789f7c669ef7885279",
       "size": 4552
     },
+    "scripts/pr16_circus_win_return_cpu.py": {
+      "sha256": "017f84836151fdc822d0bc8d29b1ef22ae6e0b9a4fc5ca349824a7156d8abe6e",
+      "size": 7295
+    },
     "scripts/pr16_circus_win_return_owner.py": {
       "sha256": "d3e7ef6bb82866a074e0ee9724f12083ba2bb2882035fc6c35bebaa8f5ebf436",
       "size": 8750
@@ -5089,6 +5106,10 @@
       "sha256": "0249af69d54361659e231f06f0768cad6eaef00105a81e3285812f620a2eccaf",
       "size": 3017
     },
+    "tests/test_pr16_circus_win_return_cpu.py": {
+      "sha256": "4286a34d1efaa0cd75256df4cc2eb2d72a24f62e3320ab3713c4ad5b75a4c9bd",
+      "size": 3458
+    },
     "tests/test_pr16_circus_win_return_owner.py": {
       "sha256": "9386146ac44d06f67b7fa43d7b666da701a470a382ed988952eb7830afa32be8",
       "size": 1688
@@ -5777,6 +5798,10 @@
       "sha256": "d6281327a96b81fec5ab6bd42f28737b9200e1b2f60a590fe465d8fc08be1ad9",
       "size": 1919
     },
+    "tools/mgba_pr16_circus_win_return_cpu.h": {
+      "sha256": "a37cbc89ded0552cc6811e6ffe777c693cb18a57ff765ed17ad728d1d726a469",
+      "size": 1848
+    },
     "tools/mgba_pr16_circus_win_return_trace.h": {
       "sha256": "4258edf9c1e422bbb22a31208db8e3cdf65e7b34f1548d57fd8f3a29f7047d74",
       "size": 1758
@@ -5791,7 +5816,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。",
+  "source_change_review_ja": "ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

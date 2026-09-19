@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
+ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。
 
-**次: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。**
+**次: 新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ec2a86be966b32c8cae69faf08cca71e31b97e54`。
+証拠のsource HEAD: `e28d620a5c42a29395bf340bacdb0ce8e3f73425`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_win_return_owner.py`
+- `scripts/pr16_circus_win_return_cpu.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `scripts/pr16_circus_win_return_owner.py`
+- `tools/mgba_pr16_circus_win_return_cpu.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
