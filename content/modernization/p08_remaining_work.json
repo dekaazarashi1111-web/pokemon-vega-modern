@@ -485,13 +485,13 @@
     {
       "diagnostic_evidence": "content/modernization/pr16_p05_route_acceptance.json",
       "id": "PHYSICAL_CIRCUS_ADMISSION",
-      "implementation_checkpoint": "content/modernization/pr16_circus_streak_build_checkpoint.json",
-      "implementation_status": "CIRCUS_ISOLATED_STREAK_BUILT_NATIVE_OPEN",
+      "implementation_checkpoint": "content/modernization/pr16_circus_loss_followup.json",
+      "implementation_status": "CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING",
       "original_request": "P05 suppression requirement and current P08 boundary",
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。",
+      "resume": "修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"

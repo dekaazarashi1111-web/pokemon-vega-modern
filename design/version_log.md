@@ -4709,3 +4709,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 本工程の検証/記録を同branchへ非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actions。記録工程は既存artifactのみ、ROM生成/private復元/native起動なし。ROM/save/credentialを新規追跡しない。既存full guard違反は前後一致・新規違反0と区別。merge/release/baseline変更なし。
 - Next: 固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。
+
+
+## 2026-09-19T01:42:56.597793+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-SOURCE
+- Timestamp: 2026-09-19T01:42:56.597793+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-SOURCE
+- Status: DONE / 開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, overlays/circus_streak/circus_streak_loss.h, tests/fixtures/circus_streak_loss_fixture.c, tests/test_pr16_circus_streak_edges.py, evidence/pr16_circus_loss_followup/35391760500/stderr.txt, evidence/pr16_circus_loss_followup/35391760500/report.json
+- Verify: [{'pattern': 'test_pr16_circus_streak*.py', 'count': 21, 'success': True}, {'pattern': 'test_pr16_streak_native.py', 'count': 10, 'success': True}, {'pattern': 'test_pr16_circus_loss_followup.py', 'count': 6, 'success': True}]、2211840 loss guard条件PASS。native受入追加なし; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。

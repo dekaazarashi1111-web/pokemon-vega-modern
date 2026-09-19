@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-Circus専用64byte owner/CRC/保存復帰と既存Factoryから隔離したruntimeを構築。開始HEADの既存WIPを継承し、configureの2 literal、Stage42完走adapter、Circus限定敗北復帰を修復。run35389993775は21 host契約・1327104敗北条件・独立ARM link2回を通過。6396byte runtimeと8byte veneer、4箇所のengine参照、20箇所の複製script呼出しを限定接続。旧Factory allocation不変、全ROM rollbackで3554親へ一致。実native勝敗/保存/継続戦/30連勝抑制はまだ未受入。
+開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
 
-**次: 固定構築checkpointの3f377dbc候補を再利用し、入力専用nativeでCircus固有ownerの正規勝敗更新、継続戦の第2/第3launch個体保持、完走9BP/原party復元、通常Save/fresh Continueと敗北/中断復帰を検証する。そこから真正30連勝以上の来歴と正規特性抑制へ進む。Factoryの24連勝枠をCircus値として使わず、効果/連勝/party/勝敗/PC/LRをhost注入しない。受入済み3554初戦保持単体/取消保存/Factory入口/Ring/BP/P03/P06/P07は変更影響がなければ再実行しない。**
+**次: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `858070ed334123f9d3d645c2f6a39ec1a87591d8`。
-Circus限定工程の記録source HEAD。実ARM tested HEADは構築checkpointに固定。正式BP受入HEADは維持。
+証拠のsource HEAD: `f03868f3c839348877b5c7f2db583e5112d5cbe9`。
+Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
 
@@ -25,12 +25,12 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_streak_build_checkpoint.json`
-- `scripts/pr16_circus_streak.py`
-- `overlays/circus_streak/circus_streak_runtime.c`
-- `overlays/circus_streak/circus_facility_policy.c`
-- `scripts/pr16_circus_retention_native.py`
-- `tools/mgba_pr16_bp_three_win_reward.c`
+- `content/modernization/pr16_circus_loss_followup.json`
+- `scripts/pr16_circus_loss_followup.py`
+- `scripts/pr16_streak_native.py`
+- `scripts/pr16_streak_probe.py`
+- `overlays/circus_streak/circus_streak_loss.h`
+- `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- 旧3f377dbcの敗北run35391760500はmarker=2に対しguard=1でWhiteOutへ落ちた失敗原本。無変更再実行せず、battle-active enumへ修復した後継候補を使う。
 - 3f377dbc構築run35389993775の21 host契約/独立ARM2/全rollbackは固定証拠を再利用。compile/contextだけを繰返さず、未受入の実勝敗と保存復帰へ進む。
 - 3554dc42初戦保持run35379705280は300bytes完全一致/20events/3128framesで受入。旧99cc置換診断run35378203102とともに再実行せず保持証拠を再利用。3script対応のうち後続戦はhost/static確認までで、継続戦の新しい通し検証に含める。
 - run35378203102の個体追跡は35event/3336framesで完了。初回選択→第2確認300bytes一致、1936fの戦闘初期化で全3枠を消去/再抽選。旧候補の同一診断を再実行せず、保持修復した後継候補へ進む。初戦ターンは再実行していない。
@@ -258,6 +259,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-構築run35389993775/job105745851627は全工程成功。21件はhost契約でありnative受入ではない。 記録runはcommit時実行中。開始HEAD通常CI2件はaction_required。全CI green/全受付受入とは主張しない。
+旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

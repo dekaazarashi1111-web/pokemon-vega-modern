@@ -1,0 +1,52 @@
+{
+  "classification": "CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING",
+  "diagnosis": {
+    "active_marker": 2,
+    "native_acceptance": false,
+    "original_conclusion": "failure",
+    "outcome": 2,
+    "outcome_frame": 17060,
+    "owner_unchanged": true,
+    "script": 167726358,
+    "snapshot": 1,
+    "timeout_frame": 93902
+  },
+  "host_tests": [
+    {
+      "count": 21,
+      "pattern": "test_pr16_circus_streak*.py",
+      "success": true
+    },
+    {
+      "count": 10,
+      "pattern": "test_pr16_streak_native.py",
+      "success": true
+    },
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_loss_followup.py",
+      "success": true
+    }
+  ],
+  "inherited_head": "1f0a9dc680a129fbe967a8664673deafb0b96b87",
+  "original_artifact": 10565488710,
+  "original_run": 35391760500,
+  "original_text": {
+    "evidence/pr16_circus_loss_followup/35391760500/report.json": {
+      "sha256": "f53245dee330cf18b51d9ebc4bc4f9db1ebb0be75e4c0673ee2cfc77f4fcdeb5",
+      "size": 121426
+    },
+    "evidence/pr16_circus_loss_followup/35391760500/stderr.txt": {
+      "sha256": "c862173fd50541986664aa19eca726c65627922c1f5e20633dbbf4b3a503cf0e",
+      "size": 50578
+    }
+  },
+  "original_zip": {
+    "sha256": "e78981950738c950284be76106b919599bd69b7dfc00740d7276b46c733c257b",
+    "size": 364400
+  },
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false
+}

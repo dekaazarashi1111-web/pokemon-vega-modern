@@ -46,6 +46,6 @@ class EdgeTests(unittest.TestCase):
             subprocess.run([os.environ.get('CC','cc'),'-std=c11','-O2','-Wall','-Wextra','-Werror','-pedantic',
                 '-I',str(ROOT),str(ROOT/'tests/fixtures/circus_streak_loss_fixture.c'),'-o',str(exe)],check=True,capture_output=True)
             result=subprocess.run([str(exe)],check=True,capture_output=True,text=True)
-            self.assertEqual(result.stdout,'PASS_CIRCUS_LOSS_GUARD combinations=1327104 native_processes=0\n')
+            self.assertEqual(result.stdout,'PASS_CIRCUS_LOSS_GUARD combinations=2211840 native_processes=0\n')
 
 if __name__=='__main__':unittest.main()
