@@ -1,0 +1,64 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
+      "id": 35450725433,
+      "status": "completed"
+    }
+  ],
+  "classification": "CIRCUS_SELECTION_COUNT_REPAIR_PREPARED",
+  "diagnosis": {
+    "actual_wins": 17,
+    "cause_ja": "c.countの取得元はfactory.party_count=退場時復元用人数。fixtureの元1体はVegaFactoryEnterで保存され、選出3体とは別。旧launch count==3 guardが元1体を拒否しoriginal initAllへ落ちる。現在人数を別readで確認し、保存人数1..6の所有権は維持する。",
+    "diagnostic_endpoint_not_reached": true,
+    "events": 81,
+    "native_processes": 1,
+    "original_conclusion": "failure",
+    "original_party_count": 1,
+    "script_zero_field_drop_rejected": true,
+    "selected_party_count": 3,
+    "source_run": 35450725433,
+    "source_script_preserved": true,
+    "transition_rows": 9,
+    "weather_after": [
+      2,
+      0,
+      1,
+      1
+    ],
+    "weather_before": [
+      5,
+      1,
+      32,
+      32
+    ]
+  },
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_selection.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "native_lifecycle_accepted": false,
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_change": {
+    "after": {
+      "sha256": "c4b2795117c693526f6d4415a3a64d13a1e56254a97f1f21c89eeabe59f803eb",
+      "size": 1906
+    },
+    "before": {
+      "sha256": "f2d64b6652b68c7259b37f17713d1d1c2b6b0bba45fb88ddbf58eb97f933e923",
+      "size": 1880
+    },
+    "path": "overlays/circus_streak/circus_drought.c"
+  },
+  "standard_save_fresh_continue": false,
+  "suppression_accepted": false
+}

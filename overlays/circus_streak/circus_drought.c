@@ -1,5 +1,5 @@
 /* weather12 initAll tableの4byteだけから呼ぶ。旧LOSS/Factory/readkeys/Saveは不変。 */
-#include "circus_drought_launch.h"
+#include "circus_drought_selection.h"
 #include "circus_drought_addresses.h"
 #include "../save_migration/save_migration.h"
 #define READ8(a) (*(const volatile uint8_t *)(uintptr_t)(a))
@@ -33,5 +33,5 @@ void CircusDroughtInitAll(void)
         c.armed = (uint8_t)((int (*)(void))(uintptr_t)CIRCUS_DROUGHT_ARMED)();
         c.ledger_valid = (uint8_t)(VegaSaveValidate(gVegaModernSaveData, VEGA_SAVE_LEDGER_SIZE) == VEGA_SAVE_OK);
     }
-    CircusDroughtInitializeLaunch(&c, w, DroughtOriginal, DroughtInitVars, DroughtStep);
+    CircusDroughtInitializeSelection(&c, READ8(0x02023F89u), w, DroughtOriginal, DroughtInitVars, DroughtStep);
 }
