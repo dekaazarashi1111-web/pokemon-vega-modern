@@ -1,0 +1,47 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 3,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_continuous.py",
+      "success": true
+    },
+    {
+      "count": 1,
+      "pattern": "test_pr16_circus_continuous_reentry.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_three_win": {
+    "job_id": 105849912664,
+    "original_conclusion": "success",
+    "path": "content/modernization/pr16_circus_accuracy.json",
+    "run_id": 35425237415,
+    "visual_review": "content/modernization/pr16_circus_three_win_visual_review.json"
+  },
+  "physical_admission_accepted": false,
+  "preparation_failures": [
+    {
+      "cause": "configure_then_reimport_duplicated_mutable_headers",
+      "head_sha": "ab3a4caa4d62cf293fae8d266d511d1f343c3ec6",
+      "job_id": 105851668685,
+      "native_processes": 0,
+      "original_conclusion": "failure",
+      "run_id": 35425903083,
+      "stage": "prepare/host_tests"
+    }
+  ],
+  "release_ready": false,
+  "schema_version": 1,
+  "scope_ja": "同じprocessで受付→3戦→元party復元→再受付を最大10回。中断も勝数注入も行わず、最初の実敗北で停止。全連続区間後の通常Save/fresh Continueを検証。先頭3勝の原本15イベント完全一致を必須にする。",
+  "suppression_accepted": false,
+  "target_wins": 30
+}

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。
+実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
 
-**次: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。**
+**次: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `02533b790784b99d02ded593b7a18ade392a6189`。
+証拠のsource HEAD: `30478777dc36f13f452b13b53980e60c97ef6a18`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_accuracy.py`
+- `scripts/pr16_circus_continuous.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_accuracy.h`
+- `tools/mgba_pr16_circus_continuous.c`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,8 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35425903083/job105851668685はprepare内hostテストで停止しnative0。configure後の再importによるヘッダー重複を修復した後継だけを実行し、旧failureを成功に読み替えない。
+- run35425237415/job105849912664: 実3勝・9BP・第2第3launch個体保持・owner64/party600・通常Save/fresh Continue・5画面を受入。残り3入力方策は未実行。新連続caseの不可避prefix3戦を独立受入caseの再実行と混同しない。
 - run35422605107/job105842901422の実1勝→第2戦中断/ABORT一度/best1/owner64/原party600/自動Save2+通常Save1/3coreは成功原本で継承。次の3勝ケースを中断の再実行に戻さない。
 - 旧3f377dbcの敗北run35391760500はmarker=2に対しguard=1でWhiteOutへ落ちた失敗原本。無変更再実行せず、battle-active enumへ修復した後継候補を使う。
 - 3f377dbc構築run35389993775の21 host契約/独立ARM2/全rollbackは固定証拠を再利用。compile/contextだけを繰返さず、未受入の実勝敗と保存復帰へ進む。

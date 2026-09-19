@@ -5151,3 +5151,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。
+
+
+## 2026-09-19T06:19:30.822189+00:00 — USER-20260919-CIRCUS-CONTINUOUS-PREPARED
+- Timestamp: 2026-09-19T06:19:30.822189+00:00
+- Task: USER-20260919-CIRCUS-CONTINUOUS-PREPARED
+- Status: DONE / 実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: 実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_continuous.json, scripts/pr16_circus_continuous.py, tools/mgba_pr16_circus_continuous.c, scripts/pr16_circus_continuous_probe.py, tests/test_pr16_circus_continuous.py, tests/test_pr16_circus_continuous_reentry.py, .github/workflows/pr16-circus-continuous.yml, content/modernization/pr16_circus_three_win_visual_review.json, scripts/pr16_circus_finish.py
+- Verify: CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED。candidate310177固定、ROM変更0、ARM再link0、受入済み独立case再実行0。新case内prefix3戦の再実行は明示。prepare再import回帰を追加。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。
