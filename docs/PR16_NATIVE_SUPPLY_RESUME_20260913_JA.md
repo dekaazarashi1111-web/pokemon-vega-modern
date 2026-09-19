@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。
+連続入場の今回原本を保存。真正30勝は未達のまま保持し、最初の実不一致から続ける。既受入3勝/9BPとcold-load成功は維持。
 
 **次: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `30478777dc36f13f452b13b53980e60c97ef6a18`。
+証拠のsource HEAD: `51ef7e2cea39bb2d32e0fc5a6db5611611475b5e`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

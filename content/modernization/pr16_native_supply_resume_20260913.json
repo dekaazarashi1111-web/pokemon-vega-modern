@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。",
+    "current_stop": "連続入場の今回原本を保存。真正30勝は未達のまま保持し、最初の実不一致から続ける。既受入3勝/9BPとcold-load成功は維持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED",
+    "classification": "CIRCUS_CONTINUOUS_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_continuous.json",
     "target_wins": 30
   },
@@ -130,7 +130,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35426278164,
-    "source_head": "30478777dc36f13f452b13b53980e60c97ef6a18",
+    "source_head": "51ef7e2cea39bb2d32e0fc5a6db5611611475b5e",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -649,10 +649,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "30478777dc36f13f452b13b53980e60c97ef6a18",
+  "observed_head": "51ef7e2cea39bb2d32e0fc5a6db5611611475b5e",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "30478777dc36f13f452b13b53980e60c97ef6a18"
+    "scope_head": "51ef7e2cea39bb2d32e0fc5a6db5611611475b5e"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2239,8 +2239,8 @@
       "size": 189879
     },
     "content/modernization/pr16_circus_continuous.json": {
-      "sha256": "ad2b90c0f55c99aedc04d7e01d87ec3d59c17d420aff16ae4d6083deef73f50f",
-      "size": 1645
+      "sha256": "c158379530423dd86cc351a38dd71ecaf8be7cdc7297c0174547ae124824511e",
+      "size": 107174
     },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
@@ -2271,8 +2271,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "14c09bd6512211ae6dde89efcf4a40ad6579e77d90f702a5d0efa05ea21c98eb",
-      "size": 131826
+      "sha256": "9c9fa1948a4deb48b980d07cca63de3ad5b74e3675ea44011c4b109f09623b3f",
+      "size": 131819
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2937,6 +2937,26 @@
     "evidence/pr16_circus_coldboot/35422605107/streak.json": {
       "sha256": "28239f94e3ccab10763400d304d76314f99b55c4a2a5b6a0d6cee7e56a643600",
       "size": 1019
+    },
+    "evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr": {
+      "sha256": "e4702ce42da33ec61cbbae54066d6620592e9692a25d7185f76ffedf92fa4f0a",
+      "size": 213976
+    },
+    "evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout": {
+      "sha256": "7fe27a71039363dd53d16a253fcb08d9461460fa2ee4eb8a1e2928b09cb370ae",
+      "size": 664
+    },
+    "evidence/pr16_circus_continuous/35426278164/native/report.json": {
+      "sha256": "4d666e7ccaf46c49528340cf3de7e6f03106f6937ea5110be4489d9bb36bcc3f",
+      "size": 99293
+    },
+    "evidence/pr16_circus_continuous/35426278164/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
     },
     "evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.process.json": {
       "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
@@ -5308,7 +5328,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。",
+  "source_change_review_ja": "連続入場の今回原本を保存。真正30勝は未達のまま保持し、最初の実不一致から続ける。既受入3勝/9BPとcold-load成功は維持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
