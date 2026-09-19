@@ -16,6 +16,7 @@ SELF='scripts/pr16_circus_continuous.py'
 SOURCE='tools/mgba_pr16_circus_continuous.c'
 PROBE='scripts/pr16_circus_continuous_probe.py'
 TEST='tests/test_pr16_circus_continuous.py'
+REENTRY_TEST='tests/test_pr16_circus_continuous_reentry.py'
 WORKFLOW='.github/workflows/pr16-circus-continuous.yml'
 REPORT='content/modernization/pr16_circus_continuous.json'
 REVIEW='content/modernization/pr16_circus_three_win_visual_review.json'
@@ -23,9 +24,12 @@ TASK='USER-20260919-CIRCUS-CONTINUOUS'
 OUT=ROOT/'.local/pr16-circus-continuous'
 PREVIOUS='content/modernization/pr16_circus_accuracy.json'
 PREFIX='evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr'
-HEADERS=(*f.HEADERS,'tools/mgba_pr16_circus_menu_identity.h','tools/mgba_pr16_circus_matchup.h',
-    'tools/mgba_pr16_circus_drain.h','tools/mgba_pr16_circus_accuracy.h')
-FILES=(SELF,SOURCE,PROBE,TEST,WORKFLOW,REVIEW,'scripts/pr16_circus_finish.py')
+# configure()はf.HEADERSを書き換える。再import時にその可変値へ追加しない。
+# 受入3勝方策の展開順を固定し、同一process内のテストでも二重展開を拒否する。
+HEADERS=('tools/mgba_pr16_circus_sustain.h','tools/mgba_pr16_circus_effective.h',
+    'tools/mgba_pr16_circus_pivot.h','tools/mgba_pr16_circus_menu_identity.h',
+    'tools/mgba_pr16_circus_matchup.h','tools/mgba_pr16_circus_drain.h','tools/mgba_pr16_circus_accuracy.h')
+FILES=(SELF,SOURCE,PROBE,TEST,REENTRY_TEST,WORKFLOW,REVIEW,'scripts/pr16_circus_finish.py')
 
 
 def policy_text(base,headers):
@@ -71,9 +75,11 @@ def checkpoint(value,phase,stop):
     state['circus_continuous_followup']=dict(path=REPORT,classification=value['classification'],target_wins=30)
     note='run35425237415/job105849912664: 実3勝・9BP・第2第3launch個体保持・owner64/party600・通常Save/fresh Continue・5画面を受入。残り3入力方策は未実行。新連続caseの不可避prefix3戦を独立受入caseの再実行と混同しない。'
     if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
+    failure_note='run35425903083/job105851668685はprepare内hostテストで停止しnative0。configure後の再importによるヘッダー重複を修復した後継だけを実行し、旧failureを成功に読み替えない。'
+    if failure_note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,failure_note)
     (ROOT/REPORT).write_bytes(stable(value));r.SELF=SELF;r.TEST=TEST;r.WORKFLOW=WORKFLOW;r.HEADER=SOURCE
     r.checkpoint(state,loss,stop,f.NEXT,[REPORT,*FILES,*value.get('text_evidence',{})],phase,
-        value['classification']+'。candidate310177固定、ROM変更0、ARM再link0、受入済み独立case再実行0。新case内prefix3戦の再実行は明示。')
+        value['classification']+'。candidate310177固定、ROM変更0、ARM再link0、受入済み独立case再実行0。新case内prefix3戦の再実行は明示。prepare再import回帰を追加。')
 
 
 def prepare():
@@ -90,12 +96,17 @@ def prepare():
     need(identity(raw)['sha256']==review['artifact_sha256'],'visual ZIP binding')
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         for name,bound in review['screens'].items():need(identity(z.read('finish/drain-accurate-fire/native/'+name))==bound,'visual source changed')
+    failed=r.api('actions/runs/35425903083')
+    need(failed['status']=='completed' and failed['conclusion']=='failure'
+        and failed['head_sha']=='ab3a4caa4d62cf293fae8d266d511d1f343c3ec6','preparation failure original differs')
     value=dict(schema_version=1,classification='CIRCUS_CONTINUOUS_THIRTY_TARGET_PREPARED',candidate=old['candidate'],target_wins=30,
         inherited_three_win=dict(path=PREVIOUS,run_id=35425237415,job_id=105849912664,original_conclusion='success',visual_review=REVIEW),
+        preparation_failures=[dict(run_id=35425903083,job_id=105851668685,head_sha=failed['head_sha'],original_conclusion='failure',
+            stage='prepare/host_tests',native_processes=0,cause='configure_then_reimport_duplicated_mutable_headers')],
         accepted_native_cases_replayed=0,accepted_prefix_battles_reexecuted_for_continuation=3,independent_arm_links_replayed=0,
-        host_tests=r.tests([Path(TEST).name]),genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
+        host_tests=r.tests([Path(TEST).name,Path(REENTRY_TEST).name]),genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
         scope_ja='同じprocessで受付→3戦→元party復元→再受付を最大10回。中断も勝数注入も行わず、最初の実敗北で停止。全連続区間後の通常Save/fresh Continueを検証。先頭3勝の原本15イベント完全一致を必須にする。')
-    checkpoint(value,'PREPARED','実3勝/9BPのActionsと5画面を正式照合。次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。')
+    checkpoint(value,'PREPARED','実3勝/9BPのActionsと5画面を正式照合。prepare再import失敗を修復し、次の未完は0から連続入場での真正30勝。新30戦caseを1processとして追加し、3勝単体を再実行しない。')
 
 
 def reconstruct():configure();f.reconstruct()
