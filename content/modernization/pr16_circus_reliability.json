@@ -1,0 +1,54 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 8,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56",
+      "id": 35427693324,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_RELIABILITY_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 8,
+      "pattern": "test_pr16_circus_reliability.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "independently_replayed": false,
+    "job_id": 105856400152,
+    "losses": 1,
+    "original_conclusion": "failure",
+    "run_id": 35427693324,
+    "wins": 8
+  },
+  "input_policy_ja": "再入場の汎用分離で欠落した命中安定性を、期待値差10%以内の汎用規則として9戦目から接続。PPなし/無効/blocked技を選び直さず、feedbackは実行技。",
+  "physical_admission_accepted": false,
+  "predecessor_visual_review": {
+    "artifact_id": 10579915811,
+    "artifact_sha256": "d36e82fddcebbfc71fbdbbda7ec5f23cd8fb700fcd06748b1da053832506ef40",
+    "observation_ja": "3入場目の6体選出/3体最終確認、第9戦、敗北後の受付前復帰・Save・Continueの描画を確認。画像だけから30勝や抑制の受入は行わない。",
+    "screens": [
+      "streak-30-selected",
+      "streak-39-confirmation",
+      "streak-40-action",
+      "streak-41-outcome",
+      "streak-43-returned",
+      "streak-44-saved",
+      "streak-45-reloaded"
+    ]
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "target_wins": 30
+}

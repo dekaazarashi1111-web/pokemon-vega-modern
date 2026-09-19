@@ -7957,3 +7957,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。
+
+
+## 2026-09-19T07:19:12.991995+00:00 — USER-20260919-CIRCUS-RELIABILITY-PREPARED
+- Timestamp: 2026-09-19T07:19:12.991995+00:00
+- Task: USER-20260919-CIRCUS-RELIABILITY-PREPARED
+- Status: DONE / 実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。
+- Version: pr16-circus-loss-marker
+- Summary: 実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reliability.json, scripts/pr16_circus_reliability.py, tools/mgba_pr16_circus_reliability.h, tests/test_pr16_circus_reliability.py, .github/workflows/pr16-circus-reliability.yml, content/modernization/pr16_circus_coverage.json, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr, evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json, scripts/pr16_circus_coverage.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_coverage.h, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_coverage.py, .github/workflows/pr16-circus-coverage.yml, content/modernization/pr16_circus_reentry.json, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stdout, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.stderr, evidence/pr16_circus_reentry/35427049942/native/circus-continuous-30-save.process.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr, scripts/pr16_circus_coverage.py
+- Verify: CIRCUS_RELIABILITY_PREPARED。候補310177固定・ROM変更0・ARM再link0・受入独立case再実行0。新caseのprefix8戦は不可避。高命中選択は9戦目以降のみ、実技をfeedbackへ記録。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。

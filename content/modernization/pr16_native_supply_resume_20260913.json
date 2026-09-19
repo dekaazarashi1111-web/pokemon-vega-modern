@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。",
+    "current_stop": "実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。",
+    "next_step": "今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,8 +88,8 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_COVERAGE_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
-    "path": "content/modernization/pr16_circus_coverage.json",
+    "classification": "CIRCUS_RELIABILITY_PREPARED",
+    "path": "content/modernization/pr16_circus_reliability.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -137,8 +137,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35427693324,
-    "source_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5",
+    "run_id": 35428983641,
+    "source_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -147,6 +147,14 @@
     "previous_native_conclusion": "failure",
     "previous_native_run": 35426278164,
     "previous_observed_wins": 4,
+    "target_wins": 30
+  },
+  "circus_reliability_followup": {
+    "classification": "CIRCUS_RELIABILITY_PREPARED",
+    "path": "content/modernization/pr16_circus_reliability.json",
+    "previous_native_conclusion": "failure",
+    "previous_native_run": 35427693324,
+    "previous_observed_wins": 8,
     "target_wins": 30
   },
   "circus_rental_identity": {
@@ -398,6 +406,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。",
     "run35427049942/job105854709530は4勝後敗北だが正規LOSS/ABORT/owner64/原party600/9BP/通常Save/fresh Continueのscoped validatorはPASS。30勝ゲート未達なのでActions failureを維持。旧入力fallbackの独立再実行は禁止。",
     "run35426278164/job105852678835は実4勝→5戦目敗北→LOSS/End(0)→ABORT/current0/best4/9BP/owner64/原party600/Save/別coreの27イベントを保存。旧validator誤拒否は新host世代検査で照合し、旧Actions failureを変更しない。独立native再実行不要。",
     "run35425903083/job105851668685はprepare内hostテストで停止しnative0。configure後の再importによるヘッダー重複を修復した後継だけを実行し、旧failureを成功に読み替えない。",
@@ -647,15 +656,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。",
+    "goal_ja": "今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_coverage.py",
+      "scripts/pr16_circus_reliability.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_coverage.h",
+      "tools/mgba_pr16_circus_reliability.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -667,10 +676,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5",
+  "observed_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5"
+    "scope_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -739,9 +748,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35427693324,
+      "run_id": 35428983641,
       "status": "in_progress",
-      "tested_head": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56"
+      "tested_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -766,6 +775,14 @@
     "source_only_tests": 13,
     "tested_head": "96ad7823a147e1db6ea8f411c77650b27a4f3102"
   },
+  "prior_actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56",
+      "id": 35427693324,
+      "status": "completed"
+    }
+  ],
   "read_policy": {
     "always": [
       "AGENTS.md",
@@ -1511,6 +1528,10 @@
     ".github/workflows/pr16-circus-reentry.yml": {
       "sha256": "dac57837fb6de9d39bf85db474edaad46079b1ad761f1028674a348901af9806",
       "size": 1785
+    },
+    ".github/workflows/pr16-circus-reliability.yml": {
+      "sha256": "b24846c93f2437a19ed6ec716e142a21705dca5bfc50ab823c05cd848e6b52dc",
+      "size": 1796
     },
     ".github/workflows/pr16-circus-retention-record.yml": {
       "sha256": "cd7b5af8eb82d09f81184d6ab000d0dd7be663645820ded27e1d2db9aef89767",
@@ -2301,8 +2322,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "48a473aba013f527b1597d5435986e09a419c8dc42a54e244d11336221e5510b",
-      "size": 132210
+      "sha256": "a9121cc62c9e6f2591276d403677c9f0014c4c73c12ad2c71f64f1030d15920b",
+      "size": 132388
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2323,6 +2344,10 @@
     "content/modernization/pr16_circus_reentry_visual_review.json": {
       "sha256": "703779330c48b20f020ef225a18f8f5493b9422f28d6b100d27e590b874573fd",
       "size": 1572
+    },
+    "content/modernization/pr16_circus_reliability.json": {
+      "sha256": "412cb793dcf35904bfd032524a6bcbb2ff0b9f5a6c18d6defa930d9c14b3b95d",
+      "size": 1803
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -3840,6 +3865,10 @@
       "sha256": "d0e39d3297f68ae8be3f433279b012a9cc66093d1868694a71b577e6261a1fc8",
       "size": 8403
     },
+    "scripts/pr16_circus_reliability.py": {
+      "sha256": "d852dbba375e25ba1525a019456b391fe00e0f3adddd03895817f77eb7943aff",
+      "size": 9995
+    },
     "scripts/pr16_circus_retention.py": {
       "sha256": "a53bce1090845a2c669c34f41e21179270a5551c58984bf00459b8cc896ed3b6",
       "size": 9674
@@ -4728,6 +4757,10 @@
       "sha256": "7a58e64b952331fda82d8b7aaba619ee4397982ef63120c3da40263688d83133",
       "size": 7992
     },
+    "tests/test_pr16_circus_reliability.py": {
+      "sha256": "fa0ac2ad4768fa5d3682b7c211034084059b0ccb75a018711fdbf72007310e12",
+      "size": 4983
+    },
     "tests/test_pr16_circus_retention.py": {
       "sha256": "7b61368ed4f28a28cc8ab02e0525ac5e9f4676a8e25375e77f75e5e799923906",
       "size": 4844
@@ -5428,6 +5461,10 @@
       "sha256": "2cf09a3021604a2afd39f52de0b8e9077a95a7f633d5b24476657ceb1e73231a",
       "size": 4038
     },
+    "tools/mgba_pr16_circus_reliability.h": {
+      "sha256": "dd4b1520740598a221bf8ede4755b9c70182adaea81c21ae301d66ec0d12e5df",
+      "size": 848
+    },
     "tools/mgba_pr16_circus_return_trace.h": {
       "sha256": "e7fe2ac27bb1ff4d2fe4faa0f434843ff76d3451a5d835dc6f64ef6e46ebc3e0",
       "size": 1387
@@ -5450,7 +5487,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。",
+  "source_change_review_ja": "実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

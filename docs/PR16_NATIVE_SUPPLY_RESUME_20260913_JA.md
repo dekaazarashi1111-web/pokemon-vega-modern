@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。
+実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。
 
-**次: 今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。**
+**次: 今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ebde6bf9cdf40c2d424d726c0414fd7f152c70b5`。
+証拠のsource HEAD: `a5ee6ad4af9ac7763287da2c839771ed1b367b8d`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_coverage.py`
+- `scripts/pr16_circus_reliability.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_coverage.h`
+- `tools/mgba_pr16_circus_reliability.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。
 - run35427049942/job105854709530は4勝後敗北だが正規LOSS/ABORT/owner64/原party600/9BP/通常Save/fresh Continueのscoped validatorはPASS。30勝ゲート未達なのでActions failureを維持。旧入力fallbackの独立再実行は禁止。
 - run35426278164/job105852678835は実4勝→5戦目敗北→LOSS/End(0)→ABORT/current0/best4/9BP/owner64/原party600/Save/別coreの27イベントを保存。旧validator誤拒否は新host世代検査で照合し、旧Actions failureを変更しない。独立native再実行不要。
 - run35425903083/job105851668685はprepare内hostテストで停止しnative0。configure後の再importによるヘッダー重複を修復した後継だけを実行し、旧failureを成功に読み替えない。
