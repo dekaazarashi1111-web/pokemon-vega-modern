@@ -5804,3 +5804,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: 進行中の29戦目Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
+
+
+## 2026-09-19T22:30:47Z — USER-20260920-CIRCUS-BATTLE29-FINISH
+- Timestamp: 2026-09-19T22:30:47Z
+- Task: USER-20260920-CIRCUS-BATTLE29 / 29戦目の通常先発維持
+- Status: DONE（全体受入は未完）
+- Version: pr16-circus-battle29-risk-v1
+- Summary: 先発維持修正後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+- Files changed: scripts/pr16_circus_battle29.py, scripts/pr16_circus_battle29_policy.py, tests/test_pr16_circus_battle29.py, .github/workflows/pr16-circus-battle29.yml, content/modernization/pr16_circus_battle29.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29/35473090294/execution/analysis.json, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.process.json, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.stderr, evidence/pr16_circus_battle29/35473090294/execution/circus-continuous-30-save.stdout, evidence/pr16_circus_battle29/35473090294/execution/compile.process.json, evidence/pr16_circus_battle29/35473090294/execution/compile.stderr, evidence/pr16_circus_battle29/35473090294/execution/compile.stdout, evidence/pr16_circus_battle29/35473090294/execution/events.json, evidence/pr16_circus_battle29/35473090294/execution/policy.c, evidence/pr16_circus_battle29/35473090294/execution/prefix.json, evidence/pr16_circus_battle29/35473090294/execution/prefix29.json, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.process.json, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.stderr, evidence/pr16_circus_battle29/35473090294/execution/reconstruct.stdout, evidence/pr16_circus_battle29/35473090294/execution/resume-START.process.json, evidence/pr16_circus_battle29/35473090294/execution/resume-START.stderr, evidence/pr16_circus_battle29/35473090294/execution/resume-START.stdout, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.process.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stderr, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stdout, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.process.json, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.stderr, evidence/pr16_circus_battle29/35473090294/execution/task-graph-START.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規8契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: content/modernization/pr16_circus_battle29.jsonの新たな最初の実敗北を修復する。受入単体・旧ARM・Ring hostを再実行しない。

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-28勝81BPと通常Save/fresh Continueの受入原本を保持。29戦目で健康な水先発を氷技のある水対面から無条件に交代させない通常入力修正を実装し、新規8契約を検証。新nativeは未実行。
+先発維持修正後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
 
-**次: 進行中の29戦目Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。**
+**次: content/modernization/pr16_circus_battle29.jsonの新たな最初の実敗北を修復する。受入単体・旧ARM・Ring hostを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e125a2d4b3c0cf7e012eba9fb14b079530acaa18`。
+証拠のsource HEAD: `e44afe9cb1e59eed0239cb87414b0da8bd4278c3`。
 当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
 
 ## 最短の再開手順
