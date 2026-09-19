@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
+Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
 
-**次: 新候補の独立2linkと実敗北/原party600/固有owner64/通常Save/fresh Continueを検証する。勝敗やpartyをhostから注入しない。**
+**次: 受入済みの敗北保存原本を再実行せず、未受入の実3勝・第2/第3launch個体保持・9BP完走に進む。続いて中断復帰、真正30連勝と正規特性抑制。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b65c3db450b460a396d2e1f81d4bde81c6a8a718`。
+証拠のsource HEAD: `22a281050ab0e600580bbb908cd11365ddd6750e`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

@@ -7515,3 +7515,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 新候補の独立2linkと実敗北/原party600/固有owner64/通常Save/fresh Continueを検証する。勝敗やpartyをhostから注入しない。
+
+
+## 2026-09-19T02:22:47.908284+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-FADE-NATIVE
+- Timestamp: 2026-09-19T02:22:47.908284+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-FADE-NATIVE
+- Status: DONE / Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
+- Version: pr16-circus-loss-marker
+- Summary: Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_loss_weather.json, overlays/circus_streak/circus_streak_return.h, tests/fixtures/circus_streak_return_fixture.c, tools/mgba_pr16_circus_loss_weather.h, evidence/pr16_circus_loss_weather/35415331977/report.json, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.stdout, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.stderr, evidence/pr16_circus_loss_weather/35415331977/circus-streak-batch-save.process.json, evidence/pr16_circus_loss_weather/35415331977/streak.json, evidence/pr16_circus_loss_weather/35415331977/build-report.json
+- Verify: CIRCUS_LOSS_FADE_SAVE_CONTINUE_VERIFIED_SCOPED。旧原本保持、受入済みnative再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 受入済みの敗北保存原本を再実行せず、未受入の実3勝・第2/第3launch個体保持・9BP完走に進む。続いて中断復帰、真正30連勝と正規特性抑制。
