@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。
+境界診断は未完。今回試行の原本だけを保存し、採取済みやnative受入とは扱わない。
 
-**次: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。**
+**次: 今回runのnative_attempt/失敗原本から最初の未完原因だけを修復する。旧binding成功と受入済み単体と旧ARM linkは再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7797170adc2224afc18a46bacad1c5e4dc4ca643`。
+証拠のsource HEAD: `2c12adbf41bab062d91a336c35457632306ea3ff`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。",
+    "current_stop": "境界診断は未完。今回試行の原本だけを保存し、採取済みやnative受入とは扱わない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
+    "next_step": "今回runのnative_attempt/失敗原本から最初の未完原因だけを修復する。旧binding成功と受入済み単体と旧ARM linkは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
     "run_id": 35450725433,
     "target_wins": 30
@@ -107,7 +107,7 @@
     "run_id": 35435801505
   },
   "circus_drought_launch_boundary": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
     "run_id": 35450725433
   },
@@ -164,7 +164,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35450725433,
-    "source_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
+    "source_head": "2c12adbf41bab062d91a336c35457632306ea3ff",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -777,7 +777,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
+    "goal_ja": "今回runのnative_attempt/失敗原本から最初の未完原因だけを修復する。旧binding成功と受入済み単体と旧ARM linkは再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
@@ -797,10 +797,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
+  "observed_head": "2c12adbf41bab062d91a336c35457632306ea3ff",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643"
+    "scope_head": "2c12adbf41bab062d91a336c35457632306ea3ff"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2497,8 +2497,8 @@
       "size": 256225
     },
     "content/modernization/pr16_circus_drought_launch_boundary.json": {
-      "sha256": "36696e4d350f565be4cf4df31df9badfc5d87fb552e7b4a08ee070d0747278d5",
-      "size": 15216
+      "sha256": "f134323e494bd3a018fb0f5b6f5326054ed2c3433b1810a63c2c35fe54f1e31d",
+      "size": 169772
     },
     "content/modernization/pr16_circus_drought_launch_boundary_binding.json": {
       "sha256": "741520d3c15c8d87f9d6f9a3be592e10e543cf8742ff5ab9a3db4599f7901eac",
@@ -2537,8 +2537,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "e326265ec02b225f6665702e2bc111077461d20ca942e6e25637dcf79fe2784a",
-      "size": 134533
+      "sha256": "ad29f7fe2dba23693e8851698486043d916db033d5153025ff36b5ce54dff269",
+      "size": 134523
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -3763,6 +3763,130 @@
     "evidence/pr16_circus_drought_launch_boundary/35438144902/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/build.json": {
+      "sha256": "bb8cd38ba3ba01fab084138ac9884fb294ea29f5b06e6b8ae839c35452f161c0",
+      "size": 90788
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/chooser-bindings.json": {
+      "sha256": "dc8acfa1b9e7abbfccb279793bd8ce999d71b8ab9032525a4b796b4059eb4cd0",
+      "size": 2530
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stderr": {
+      "sha256": "2bfc2904d5129e52bce7031360084f68756b3a1623649bcec7df460ac254b06d",
+      "size": 583536
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-bus8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-raw8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/guard-register.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/native/report.json": {
+      "sha256": "e4e363a696f3a1411820644ed7f1644003a639bbacd7c3659bd24aa90239c7e9",
+      "size": 129345
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35450725433/reconstruction.json": {
+      "sha256": "42c503f88ed51c982dc98a9d770172d600f1bd979727b28ff6e67951fa3f02b1",
+      "size": 367
     },
     "evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.process.json": {
       "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
@@ -6730,7 +6854,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。",
+  "source_change_review_ja": "境界診断は未完。今回試行の原本だけを保存し、採取済みやnative受入とは扱わない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
