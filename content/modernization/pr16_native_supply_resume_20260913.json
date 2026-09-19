@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。",
+    "current_stop": "18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_TRACE_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
     "run_id": 35438144902,
     "target_wins": 30
@@ -107,7 +107,7 @@
     "run_id": 35435801505
   },
   "circus_drought_launch_boundary": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_TRACE_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
     "run_id": 35438144902
   },
@@ -159,7 +159,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35438144902,
-    "source_head": "3fa90fab346223742c2f66dff6756e7f0d560078",
+    "source_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -788,10 +788,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "3fa90fab346223742c2f66dff6756e7f0d560078",
+  "observed_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "3fa90fab346223742c2f66dff6756e7f0d560078"
+    "scope_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2468,8 +2468,8 @@
       "size": 256225
     },
     "content/modernization/pr16_circus_drought_launch_boundary.json": {
-      "sha256": "ebd305dfb3d8bb4b4ad6fc4df7258ec75da458e4b2ee9264355075f6df0db0d0",
-      "size": 1721
+      "sha256": "277bad6a7080bdf277ec53773bba0d3e4c63ed3d1203ed0b1c401d1c18fbe613",
+      "size": 13788
     },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
@@ -2504,8 +2504,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "b286bbfa38f3e43382090ce7311e36f48cecd0e5cd9990b2556bb73f92e83303",
-      "size": 134302
+      "sha256": "ccdd13499d4f9afcaaa79d656355d07c1cac880e109ea007b840f0653ca560c3",
+      "size": 134292
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -3648,6 +3648,86 @@
       "size": 72003
     },
     "evidence/pr16_circus_drought_launch/35437062974/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/build.json": {
+      "sha256": "6fad0d61bc91c7249624fc38edee5639e7a8e28da6a529d461cc4afabc9d5530",
+      "size": 89052
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/disassembly.txt": {
+      "sha256": "3461a056c6f53e48ead9a3edb0c62f6fcecbd77d46b3f81bd311c192c0eb5376",
+      "size": 25300
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/stack-usage.txt": {
+      "sha256": "eb92c16044fe5032efda8fb8fb6f96e2741727661db99694e7aa47289483cf2b",
+      "size": 2799
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/symbols.txt": {
+      "sha256": "4322d1cc833c393383b595699a5f87cb09f3365144d874b450ff08e6fd40ef47",
+      "size": 244
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-1/target-contract.json": {
+      "sha256": "45a91c8ba01d39bf9909234c16871b24e27ce436b4f1a941a57b45c0ccc8a76d",
+      "size": 163
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/disassembly.txt": {
+      "sha256": "3461a056c6f53e48ead9a3edb0c62f6fcecbd77d46b3f81bd311c192c0eb5376",
+      "size": 25300
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/stack-usage.txt": {
+      "sha256": "eb92c16044fe5032efda8fb8fb6f96e2741727661db99694e7aa47289483cf2b",
+      "size": 2799
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/symbols.txt": {
+      "sha256": "4322d1cc833c393383b595699a5f87cb09f3365144d874b450ff08e6fd40ef47",
+      "size": 244
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/compile-2/target-contract.json": {
+      "sha256": "45a91c8ba01d39bf9909234c16871b24e27ce436b4f1a941a57b45c0ccc8a76d",
+      "size": 163
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/native/chooser-bindings.json": {
+      "sha256": "dc8acfa1b9e7abbfccb279793bd8ce999d71b8ab9032525a4b796b4059eb4cd0",
+      "size": 2530
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/native/report.json": {
+      "sha256": "385a76e136ba057656c43e0bb0a15367fac7242e18afd0786f15f5290a2c2617",
+      "size": 122413
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807a330.txt": {
+      "sha256": "e0649f9517d18db32470ba4c33cc58dc56171b78df246dec958319e0d5ee3c2f",
+      "size": 2917
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x807acd4.txt": {
+      "sha256": "eb2224e7ae3475962ca1ae9e098b911b2c59e1ee6e1681afafb71eafea560267",
+      "size": 6625
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/parent-0x8389a04.txt": {
+      "sha256": "6e6f7ff44c7345034bd088344941fcf7319c93fb6dacdb54fb05484ed48693ab",
+      "size": 456
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/parent-recipe.json": {
+      "sha256": "f5c746350a1645cc515e32eaaaa98550ab610111f6a8890aac9c8eb75fcd056e",
+      "size": 72003
+    },
+    "evidence/pr16_circus_drought_launch_boundary/35438144902/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -6601,7 +6681,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。",
+  "source_change_review_ja": "18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

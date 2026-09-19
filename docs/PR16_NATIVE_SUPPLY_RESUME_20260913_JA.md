@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。
+18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。
 
 **次: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3fa90fab346223742c2f66dff6756e7f0d560078`。
+証拠のsource HEAD: `8370d9309ca1f5e22285dd67ee1ad4651d967bcc`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
