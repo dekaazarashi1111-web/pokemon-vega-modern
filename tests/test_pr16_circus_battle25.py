@@ -97,6 +97,16 @@ int main(void) {
         raw,events=self.synthetic()
         with self.assertRaises(ValueError):p.prefix_proof(self.trace,raw.replace(b'"streak": 24',b'"streak": 23'),self.events,events)
 
+    def test_pending_run_producer_matches_resume_schema(self):
+        import ast
+        tree=ast.parse((ROOT/'scripts/pr16_circus_battle25.py').read_text())
+        fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='checkpoint')
+        rows=[n for n in ast.walk(fn) if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Subscript) and isinstance(n.targets[0].value,ast.Name) and n.targets[0].value.id=='state' and isinstance(n.targets[0].slice,ast.Constant) and n.targets[0].slice.value=='pending_runs']
+        self.assertEqual(len(rows),1)
+        value=dict(recording_run=17,source_head='a'*40)
+        actual=eval(compile(ast.Expression(rows[0].value),'pending producer','eval'),{},dict(value=value))
+        self.assertEqual(actual,[dict(run_id=17,tested_head='a'*40,status='in_progress',scope='battle25-continuation')])
+
     def test_original_loss_never_promoted_to_30(self):
         probe.SHA='2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183'
         old=probe.validate((ORIGINAL/(probe.CASE+'.stdout')).read_bytes(),self.trace,0,probe.CASE)

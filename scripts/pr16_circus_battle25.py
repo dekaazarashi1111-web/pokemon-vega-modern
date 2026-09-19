@@ -119,8 +119,8 @@ def originals():
 
 def tests():
     raw,err,proc=capture([sys.executable,'-m','unittest','discover','-s','tests','-p','test_pr16_circus_battle25.py','-v'],'policy-tests')
-    need(exited(proc)==0 and b'Ran 6 tests' in err and b'\nOK\n' in err,'policy contracts failed')
-    return dict(tests_run=6,success=True,skipped=0)
+    need(exited(proc)==0 and b'Ran 7 tests' in err and b'\nOK\n' in err,'policy contracts failed')
+    return dict(tests_run=7,success=True,skipped=0)
 
 
 def checkpoint(value,phase):
@@ -137,7 +137,7 @@ def checkpoint(value,phase):
         r=value['result'];stop=f"25戦目限定入力の同一候補で実{r['wins']}勝・{r['bp_earned']}BP、{r['battles']}戦目敗北後の通常Save/fresh Continueを検証。旧24勝prefixは完全一致。真正30勝は未達。"
         nxt=f"{REPORT}の新原本から{r['battles']}戦目の最初の失敗を修復。旧24勝と今回成功分の独立再実行は禁止。保存byteのみで候補を復元し、必要な継続prefixだけを通す。"
     elif phase=='START':
-        stop='25戦目限定レンタル相性方策と6契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。'
+        stop='25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。'
         nxt='進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。'
     else:
         stop='25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。'+str(value.get('failures',[]))
@@ -159,7 +159,7 @@ def checkpoint(value,phase):
     state['observed_head_semantics']='当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。'
     state['observed_head_checks']=dict(scope_head=head,runs=[dict(id=RUN,head_sha=OLD_HEAD,status='completed',conclusion='failure')],
         reason_ja='旧30勝目標run35457636604はfailureのまま。今回runは記録時in_progressで全CI greenは主張しない。')
-    state['pending_runs']=[dict(run_id=value['recording_run'],source_head=value['source_head'],status_at_snapshot='in_progress',scope='battle25-continuation')]
+    state['pending_runs']=[dict(run_id=value['recording_run'],tested_head=value['source_head'],status='in_progress',scope='battle25-continuation')]
     state['logs_synchronized']=state['p08_resume_synchronized']=True
     rows[0]['battle25_checkpoint']=REPORT;rows[0]['resume']=nxt
     if lifecycle:rows[0]['implementation_checkpoint']=REPORT;rows[0]['implementation_status']=value['classification']
@@ -185,7 +185,7 @@ def checkpoint(value,phase):
         f"- Status: {'DONE（入力実装とscoped検証・記録。全体受入は未完）' if lifecycle else 'WIP（未達段階はreport参照）'}\n"
         '- Version: pr16-circus-battle25-input-v1\n- Summary: '+stop+'\n'
         '- Files changed: '+', '.join((*FILES,REPORT,resume.STATE,resume.DOC,resume.BACKLOG,*evidence,*LOGS))+'\n'
-        '- Verify: 方策6契約、resume整合性/影響tests/task graph、index差分private guardとdiff check。native結果はreportの原本と実process数を参照。\n'
+        '- Verify: 方策/記録7契約、resume整合性/影響tests/task graph、index差分private guardとdiff check。native結果はreportの原本と実process数を参照。\n'
         '- Commit: 同branch非force commit。自己SHAはremote/receipt参照。\n'
         '- Network: GitHub固定run/artifact照合。入力/ROM/save/credentialの新規追跡なし。旧builder/ARM/Ring hostを実行しない。\n'
         '- Next: '+nxt+'\n')
@@ -215,6 +215,7 @@ def prepare():
         candidate=TARGET,original=originals(),host_tests=tests(),new_emulator_processes=0,arm_compiles=0,arm_links=0,
         accepted_standalone_replays=0,rom_changes=0,genuine_30_wins_verified=False,lifecycle_verified=False,
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])
+    value['prior_setup_failures'].append(dict(run_id=35467683171,job_id=105962909421,source_head='c4ac48db61d6dcd5bb90fc4712dd548694cfff8e',original_conclusion='failure',native_processes=0,artifact_id=10591528567,archive=dict(size=139413,sha256='7639b0db1de7d7a53c29e48c7f609fb6ca1dbdc9f14c9d5bc3bab04882d46004'),reason_ja='pending_runsのtested_head/status必須キー不一致。記録producerの実生成式を回帰検査。'))
     checkpoint(value,'START')
 
 
