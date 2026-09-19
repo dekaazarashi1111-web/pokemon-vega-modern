@@ -27,47 +27,42 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: pending runの必須キーを修正して生成式も回帰検査
+      - name: テストfixtureの意図した台帳置換だけをhash同期し失敗履歴も保存
         run: |
           python3 - <<'PY'
           import hashlib,pathlib,subprocess,sys
           sys.path.insert(0,'scripts')
           import pr16_circus_battle25 as b
-          head=b.scope();prior=b.api('actions/runs/35467683171')
-          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='c4ac48db61d6dcd5bb90fc4712dd548694cfff8e'
+          head=b.scope();state=b.resume.validate(b.ROOT)
+          prior=b.api('actions/runs/35467845356')
+          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='0ff65b356c70182b7835bfa50b526bb1894a572d'
           assert not pathlib.Path(b.REPORT).exists()
-          paths={'scripts/pr16_circus_battle25.py':'43154edaa36969c5687497791ad621fce1e7c18f22c439a812f1640b1c24b52b',
-                 'tests/test_pr16_circus_battle25.py':'1f9978ff89e8cf402c3ba9f5481f764a0b2e687db280714d4aa52a8a8f177f5a'}
-          for name,sha in paths.items():
-              p=pathlib.Path(name);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sha
-              text=raw.decode()
-              if name.startswith('scripts/'):
-                  text=b.policy.replace_once(text,"source_head=value['source_head'],status_at_snapshot='in_progress',scope='battle25-continuation'","tested_head=value['source_head'],status='in_progress',scope='battle25-continuation'")
-                  text=b.policy.replace_once(text,"checkpoint(value,'START')", "value['prior_setup_failures'].append(dict(run_id=35467683171,job_id=105962909421,source_head='c4ac48db61d6dcd5bb90fc4712dd548694cfff8e',original_conclusion='failure',native_processes=0,artifact_id=10591528567,archive=dict(size=139413,sha256='7639b0db1de7d7a53c29e48c7f609fb6ca1dbdc9f14c9d5bc3bab04882d46004'),reason_ja='pending_runsのtested_head/status必須キー不一致。記録producerの実生成式を回帰検査。'))\n    checkpoint(value,'START')")
-                  text=b.policy.replace_once(text,"b'Ran 6 tests'","b'Ran 7 tests'")
-                  text=b.policy.replace_once(text,'return dict(tests_run=6,success=True,skipped=0)','return dict(tests_run=7,success=True,skipped=0)')
-                  text=text.replace('方策6契約','方策/記録7契約').replace('方策と6契約','方策と記録7契約')
-              else:
-                  test='''    def test_pending_run_producer_matches_resume_schema(self):
-                  import ast
-                  tree=ast.parse((ROOT/'scripts/pr16_circus_battle25.py').read_text())
-                  fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='checkpoint')
-                  rows=[n for n in ast.walk(fn) if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Subscript) and isinstance(n.targets[0].value,ast.Name) and n.targets[0].value.id=='state' and isinstance(n.targets[0].slice,ast.Constant) and n.targets[0].slice.value=='pending_runs']
-                  self.assertEqual(len(rows),1)
-                  value=dict(recording_run=17,source_head='a'*40)
-                  actual=eval(compile(ast.Expression(rows[0].value),'pending producer','eval'),{},dict(value=value))
-                  self.assertEqual(actual,[dict(run_id=17,tested_head='a'*40,status='in_progress',scope='battle25-continuation')])
-
-          '''
-                  text=b.policy.replace_once(text,'    def test_original_loss_never_promoted_to_30(self):',test+'    def test_original_loss_never_promoted_to_30(self):')
-              compile(text,name,'exec');p.write_text(text)
+          paths=['scripts/pr16_circus_battle25.py','tests/test_pr16_resume.py']
+          p=pathlib.Path(paths[0]);raw=p.read_bytes()
+          assert hashlib.sha256(raw).hexdigest()=='5fc2500106af951aebedec8c4534aa0a3be02fb86312457b75e529aed899741c'
+          text=b.policy.replace_once(raw.decode(),"FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py')","FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py','tests/test_pr16_resume.py')")
+          text=b.policy.replace_once(text,"checkpoint(value,'START')", "value['prior_setup_failures'].append(dict(run_id=35467845356,job_id=105963334813,source_head='0ff65b356c70182b7835bfa50b526bb1894a572d',original_conclusion='failure',native_processes=0,artifact_id=10592060796,archive=dict(size=141478,sha256='5f768a4cd77395979a9282250c874be993925fc35a2de373b5de9cc45538c904'),reason_ja='本物の投影validateはPASS。resumeテストの合成台帳が元台帳のhashを継承して5件失敗。setUpの意図したfixture生成直後だけbinding更新し、後続の改作拒否を維持。'))\n    checkpoint(value,'START')")
+          compile(text,str(p),'exec');p.write_text(text)
+          p=pathlib.Path(paths[1]);assert b.command('git','hash-object',str(p))=='c938eac6b69fb84fbc3fb03fdf0aaff17751ae89'
+          text=b.policy.replace_once(p.read_text(),'        self.put(m.BACKLOG, backlog)\n',
+              "        self.put(m.BACKLOG, backlog)\n        # setUpで意図的に合成した台帳だけを再bindingする。実検査中の改作は同期しない。\n        if m.BACKLOG in self.s['source_bindings']:\n            raw=(self.root/m.BACKLOG).read_bytes()\n            self.s['source_bindings'][m.BACKLOG]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())\n")
+          compile(text,str(p),'exec');p.write_text(text)
+          # 既存受入のbindingがある場合のみ、検証済みpreimageからのこのテスト変更を同期。
+          changed_binding=False
+          for name in paths:
+              if name in state['source_bindings']:
+                  state['source_bindings'][name]=b.identity(pathlib.Path(name).read_bytes());changed_binding=True
+          if changed_binding:
+              b.write(b.resume.STATE,b.stable(state));b.write(b.resume.DOC,b.resume.render(state).encode())
+              paths += [b.resume.STATE,b.resume.DOC]
+          b.resume.validate(b.ROOT)
           subprocess.run(['git','add','--',*paths],check=True)
           subprocess.run(['git','diff','--cached','--check'],check=True)
           assert set(b.command('git','diff','--cached','--name-only',head).splitlines())==set(paths)
           b.scope()
           subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
           subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
-          subprocess.run(['git','commit','-m',b.TASK+': WIP pending run必須キーとproducer回帰を修正'],check=True)
+          subprocess.run(['git','commit','-m',b.TASK+': WIP resume合成台帳fixtureの限定bindingを修復'],check=True)
           subprocess.run(['git','push','origin','HEAD:refs/heads/'+b.BRANCH],check=True)
           b.scope()
           PY
