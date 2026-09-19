@@ -4826,3 +4826,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:15:20.059552+00:00 — USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-SUSTAIN-START
+- Timestamp: 2026-09-19T03:15:20.059552+00:00
+- Task: USER-20260919-CIRCUS-SUSTAIN-V1-THREE-WIN-SUSTAIN-START
+- Status: DONE / 前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。
+- Version: pr16-circus-loss-marker
+- Summary: 前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_sustain.h, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, .github/workflows/pr16-circus-sustain.yml, scripts/pr16_circus_sustain.py, tests/test_pr16_circus_sustain.py, tests/fixtures/circus_sustain_policy_fixture.c, tools/mgba_pr16_circus_sustain.h, .github/workflows/pr16-circus-sustain.yml
+- Verify: CIRCUS_SUSTAIN_INPUT_POLICY_PENDING。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。

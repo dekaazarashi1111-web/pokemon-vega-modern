@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
+    "current_stop": "前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35415727687,
-    "source_head": "7fee0ecdb76af979fe24dc3883a6988e49e697ed",
+    "run_id": 35418010512,
+    "source_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -603,10 +603,10 @@
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_three_win.py",
+      "scripts/pr16_circus_sustain.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_three_win.h",
+      "tools/mgba_pr16_circus_sustain.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "7fee0ecdb76af979fe24dc3883a6988e49e697ed",
+  "observed_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "7fee0ecdb76af979fe24dc3883a6988e49e697ed"
+    "scope_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35415727687,
+      "run_id": 35418010512,
       "status": "in_progress",
-      "tested_head": "eb0a7b17d03d900b5227f339f989697bd1bb89cf"
+      "tested_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1431,6 +1431,10 @@
       "sha256": "0473fa99568654eccc922487ee943f4dfb05acb76ba4b6c2f71de60ea3020986",
       "size": 7065
     },
+    ".github/workflows/pr16-circus-sustain.yml": {
+      "sha256": "a0ebc0e89777c8a451b9a412535631b45c57c42287c510cef7ff0437f3e98f07",
+      "size": 1733
+    },
     ".github/workflows/pr16-circus-three-win.yml": {
       "sha256": "36ba1aa643f9c036e91d635b54acfced20a0efd6721cce5c9345ef7127f7d9cd",
       "size": 1602
@@ -2168,8 +2172,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "e5b496a71f252e79902a74b65acfd4e11046bb0e4aa950786ba9a2a40e30ebcf",
-      "size": 130843
+      "sha256": "6ba7cadd4cf6204774ca08e620819b5d7ed7ec96bc52ec664c7d5e77dc33548b",
+      "size": 130846
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2196,8 +2200,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "916f553046cb9932675e72ef900450b2848ce274eb3c6546f61c806fbdb6a76e",
-      "size": 130600
+      "sha256": "869bdafaf588206da117d1b1a800e2f68f31f6ae0321ebc28e6deebbb8d3d8b0",
+      "size": 7111
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3307,6 +3311,10 @@
       "sha256": "2adb98ede1cc06f1301588fc30978fba6db899b1c1f1aec72721ff821d78a469",
       "size": 2324
     },
+    "scripts/pr16_circus_sustain.py": {
+      "sha256": "de10389af02abc81ccb500259228f5ce57acb7ee2065e11bf16d132952c5beb5",
+      "size": 5143
+    },
     "scripts/pr16_circus_three_win.py": {
       "sha256": "52dc5b49dccc95d647f30aea696c77daf1fa4de050ce1344b4ec71576a7af0d6",
       "size": 8910
@@ -3935,6 +3943,10 @@
       "sha256": "c03f9c39de19a5df13c07a52f65c21588bd08f226fa8488d41e0513ab817ff1e",
       "size": 1271
     },
+    "tests/fixtures/circus_sustain_policy_fixture.c": {
+      "sha256": "fdf227dd619a805f2d838df53ec9ae9b70d3cc1eae61af529c524ff8f11db0f2",
+      "size": 2403
+    },
     "tests/ring_policy_host.c": {
       "sha256": "45f7075d57e91c68edc76b7fab5f52d82949f147d27fdfa9f2a07a87c1428a6f",
       "size": 1683
@@ -4110,6 +4122,10 @@
     "tests/test_pr16_circus_streak_edges.py": {
       "sha256": "853baa3cc674efe9725d2a71369725a2f08d7f885aac2a10ad1b2c68ea07b19a",
       "size": 2876
+    },
+    "tests/test_pr16_circus_sustain.py": {
+      "sha256": "114aa5cf1fb5b1cda01cb9f5cbe82af773b2490f2919c509b8d6bae82106b027",
+      "size": 2602
     },
     "tests/test_pr16_circus_three_win.py": {
       "sha256": "f54deeb3f49ac296564350efbd73aaa9170edef0696867b6b6c4fbd3a9dd9bba",
@@ -4731,6 +4747,10 @@
       "sha256": "e7fe2ac27bb1ff4d2fe4faa0f434843ff76d3451a5d835dc6f64ef6e46ebc3e0",
       "size": 1387
     },
+    "tools/mgba_pr16_circus_sustain.h": {
+      "sha256": "4eafd6b52fd841f974ea96987c0a42ebcd29ba31e376a9dfc1abd66097763dbf",
+      "size": 5921
+    },
     "tools/mgba_pr16_circus_three_win.h": {
       "sha256": "d6281327a96b81fec5ab6bd42f28737b9200e1b2f60a590fe465d8fc08be1ad9",
       "size": 1919
@@ -4745,7 +4765,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
+  "source_change_review_ja": "前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
