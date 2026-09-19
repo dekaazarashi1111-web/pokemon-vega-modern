@@ -1,0 +1,56 @@
+name: PR16 Circus battle25 ordinary-input continuation
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_battle25.py
+      - scripts/pr16_circus_battle25_policy.py
+      - tools/mgba_pr16_circus_battle25.h
+      - tests/test_pr16_circus_battle25.py
+      - .github/workflows/pr16-circus-battle25.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-battle25-ordinary-input
+  cancel-in-progress: false
+jobs:
+  battle25:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 固定原本と6契約を照合し実装・引継ぎ・両ログを先に保存
+        id: prepare
+        run: python3 scripts/pr16_circus_battle25.py prepare
+      - name: host native依存だけを用意し旧ARM builderを呼ばない
+        run: |
+          set -euo pipefail
+          sudo apt-get update > .local/pr16-circus-battle25/apt-update.log 2>&1
+          sudo apt-get install -y libmgba-dev > .local/pr16-circus-battle25/apt-install.log 2>&1
+      - name: 同一候補で24勝prefixと25戦目以降を一続きに検証
+        run: python3 scripts/pr16_circus_battle25.py native
+      - name: 実停止・成功失敗・原本・引継ぎと両ログを非force記録
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle25.py finish
+      - name: ROM save private入力を除きtextと画面だけ保存
+        if: always()
+        run: python3 scripts/pr16_circus_battle25.py pack
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-battle25
+          path: .local/pr16-circus-battle25/artifact/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: scoped完走と真正30勝を混同しない
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_battle25.py result
