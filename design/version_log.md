@@ -4969,3 +4969,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:03:52.964962+00:00 — USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-RECORDED
+- Timestamp: 2026-09-19T04:03:52.964962+00:00
+- Task: USER-20260919-CIRCUS-MATCHUP-V1-THREE-WIN-RECORDED
+- Status: DONE / 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Version: pr16-circus-loss-marker
+- Summary: 3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_three_win.json, tools/mgba_pr16_circus_matchup.h, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, .github/workflows/pr16-circus-matchup.yml, evidence/pr16_circus_three_win/35420040412/report.json, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stdout, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stderr, evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.process.json, evidence/pr16_circus_three_win/35420040412/reconstruction.json, tests/fixtures/circus_matchup_fixture.c, scripts/pr16_circus_matchup.py, tests/test_pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, .github/workflows/pr16-circus-matchup.yml, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h, scripts/pr16_circus_interruption_probe.py
+- Verify: CIRCUS_THREE_WIN_DIAGNOSTIC_OPEN。候補ROM変更0、既存2link再実行0、受入済み単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "通常交代は原本で確認済み。実PPのフィードバックと相性を読取専用で組み合わせ、未完の実3勝/9BPへ進む。中断ケースは原本を継承して独立再実行しない。",
+    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35420040412,
-    "source_head": "91d10c3b116c07d50f7ae0c438fa9d1054284519",
+    "source_head": "234609e5631ec2d862ac4f4f4e543aa8cbf5053c",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "91d10c3b116c07d50f7ae0c438fa9d1054284519",
+  "observed_head": "234609e5631ec2d862ac4f4f4e543aa8cbf5053c",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "91d10c3b116c07d50f7ae0c438fa9d1054284519"
+    "scope_head": "234609e5631ec2d862ac4f4f4e543aa8cbf5053c"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2192,8 +2192,8 @@
       "size": 133478
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "d97c2a276b044b5b54ea3cae4cf1f7b11aa0828d84149b6f0634fea78801a0ea",
-      "size": 131034
+      "sha256": "4a87cd966e8f2b23fcb0ed7ea20759fff7a135e62d37689290f3f8bcffd8b577",
+      "size": 131031
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2220,8 +2220,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "843d4b2d90b8147ca367dee4183a04bb5215282166a4fb631783a3e44dc111af",
-      "size": 14419
+      "sha256": "ed02510337798472fe55887740f38f4220a526dbf625e3a283b9bf6a017f0ee4",
+      "size": 145024
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3098,6 +3098,26 @@
     "evidence/pr16_circus_three_win/35419024634/report.json": {
       "sha256": "354cb3f1d50fa28ae1bbab4c8671d98da2aa6f42bccb09647ba31cc3c42d0445",
       "size": 124162
+    },
+    "evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stderr": {
+      "sha256": "3633555d3180c18fcfa5341bfd640bd34c160492d4f29f613d842fe4e91022e6",
+      "size": 105408
+    },
+    "evidence/pr16_circus_three_win/35420040412/circus-streak-batch-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_three_win/35420040412/reconstruction.json": {
+      "sha256": "bcbf8b14b8640151dab4fb241c0a2807a56b331e49290d01cb45355fe0407421",
+      "size": 175
+    },
+    "evidence/pr16_circus_three_win/35420040412/report.json": {
+      "sha256": "a3b6b1fc4c1cba3dde6215b1719f337a397a124ed96bad4bcbd367edebd602a8",
+      "size": 124282
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -4937,7 +4957,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "通常交代は原本で確認済み。実PPのフィードバックと相性を読取専用で組み合わせ、未完の実3勝/9BPへ進む。中断ケースは原本を継承して独立再実行しない。",
+  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
