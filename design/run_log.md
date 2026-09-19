@@ -7788,3 +7788,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:39:04.971014+00:00 — USER-20260919-CIRCUS-LOAD-ORDER-SOURCE-BOUND
+- Timestamp: 2026-09-19T04:39:04.971014+00:00
+- Task: USER-20260919-CIRCUS-LOAD-ORDER-SOURCE-BOUND
+- Status: DONE / cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。
+- Version: pr16-circus-loss-marker
+- Summary: cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, scripts/pr16_circus_load_order.py, tests/test_pr16_circus_load_order.py, .github/workflows/pr16-circus-load-order.yml, content/modernization/pr16_circus_load_order.json
+- Verify: source抽出の境界テストとresume/task graph/private新規差分guard。native再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。
