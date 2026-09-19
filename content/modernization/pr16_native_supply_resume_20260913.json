@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。",
+    "current_stop": "run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。",
+    "next_step": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,9 +88,9 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
-    "run_id": 35438144902,
+    "run_id": 35450725433,
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -107,9 +107,9 @@
     "run_id": 35435801505
   },
   "circus_drought_launch_boundary": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED",
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
-    "run_id": 35438144902
+    "run_id": 35450725433
   },
   "circus_drought_launch_boundary_binding": {
     "classification": "CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED",
@@ -163,8 +163,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35450224019,
-    "source_head": "602abf6c601c39e3f912cde24c84d58ac960220a",
+    "run_id": 35450725433,
+    "source_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -511,6 +511,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35450224019/job105915967201: binding保存c96d14fは成功、旧タグ再利用のprepareは失敗/native0。既存ログ削除・成功binding単独再実行・旧ARM再linkをせず、run固有タグで未採取境界のみ進める。",
     "run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。",
     "run35438845025/job105886059983は前処理失敗/native0。source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。",
     "run35438563815/job105885315243は前処理失敗/native0。正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。",
@@ -776,12 +777,12 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。",
+    "goal_ja": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_drought_launch_boundary_resume.py",
+      "scripts/pr16_circus_boundary_continue.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
       "tools/mgba_pr16_circus_drought_launch_boundary.h",
@@ -796,10 +797,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "602abf6c601c39e3f912cde24c84d58ac960220a",
+  "observed_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "602abf6c601c39e3f912cde24c84d58ac960220a"
+    "scope_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -868,9 +869,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35450224019,
+      "run_id": 35450725433,
       "status": "in_progress",
-      "tested_head": "602abf6c601c39e3f912cde24c84d58ac960220a"
+      "tested_head": "7797170adc2224afc18a46bacad1c5e4dc4ca643"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -898,20 +899,26 @@
   "prior_actions_reconciled": [
     {
       "conclusion": "failure",
-      "head_sha": "1e43febe6da4e7ba74549a4905b8466da88bef3d",
-      "id": 35438563815,
+      "head_sha": "80e9643ff8689fec7212745e7a3fb21e988bc79b",
+      "id": 35437062974,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "3906ccc213e358a67000f6ebfb2e3618261d5390",
+      "id": 35437460976,
       "status": "completed"
     },
     {
       "conclusion": "failure",
-      "head_sha": "725bbe8bdcc2149870dd78ce55406243fd71c86e",
-      "id": 35438845025,
+      "head_sha": "3fa90fab346223742c2f66dff6756e7f0d560078",
+      "id": 35438144902,
       "status": "completed"
     },
     {
       "conclusion": "failure",
-      "head_sha": "3827258983b6a3a467af0ef584c408ae3bc4ef8b",
-      "id": 35439014239,
+      "head_sha": "602abf6c601c39e3f912cde24c84d58ac960220a",
+      "id": 35450224019,
       "status": "completed"
     }
   ],
@@ -1572,6 +1579,10 @@
     ".github/workflows/pr16-circus-accuracy.yml": {
       "sha256": "480cf753ca14f899f080442cf523b1e8957fcfe8787f58bd9bc03babe723f295",
       "size": 1757
+    },
+    ".github/workflows/pr16-circus-boundary-continue.yml": {
+      "sha256": "1fb4fbe44c6076beda7727dca622a671814ca29040da9ac8c05b3cfa59a81b68",
+      "size": 4440
     },
     ".github/workflows/pr16-circus-coldboot.yml": {
       "sha256": "7a1a8a81438cef3c975a823db54de0b5e20fb0b9e111178cbbfc9d878848c48f",
@@ -2486,8 +2497,8 @@
       "size": 256225
     },
     "content/modernization/pr16_circus_drought_launch_boundary.json": {
-      "sha256": "277bad6a7080bdf277ec53773bba0d3e4c63ed3d1203ed0b1c401d1c18fbe613",
-      "size": 13788
+      "sha256": "36696e4d350f565be4cf4df31df9badfc5d87fb552e7b4a08ee070d0747278d5",
+      "size": 15216
     },
     "content/modernization/pr16_circus_drought_launch_boundary_binding.json": {
       "sha256": "741520d3c15c8d87f9d6f9a3be592e10e543cf8742ff5ab9a3db4599f7901eac",
@@ -2526,8 +2537,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "f43d2d2f11bed74a5eeecb30667b5d0e136fa9d3310ce5345d4995ff76de185f",
-      "size": 134523
+      "sha256": "e326265ec02b225f6665702e2bc111077461d20ca942e6e25637dcf79fe2784a",
+      "size": 134533
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -4849,6 +4860,10 @@
       "sha256": "23081ce91cf0e508777d1f9e6df6ebfeb811b157891e3a95cb40d16444ce8621",
       "size": 8794
     },
+    "scripts/pr16_circus_boundary_continue.py": {
+      "sha256": "414765afdd06df288b031e7d9ab608bce6bc31f38b05b8600fa3689d4e75bfdc",
+      "size": 8277
+    },
     "scripts/pr16_circus_checkpoint.py": {
       "sha256": "b0b1f994327365e9a80c998bda942f9f158eeb00e747bd55aeb5a8f030afac2f",
       "size": 8785
@@ -5809,6 +5824,10 @@
       "sha256": "265c445b460db3545e27157238fe187dde76f92543cb6725ad16aacfdd3f15d7",
       "size": 6516
     },
+    "tests/test_pr16_circus_boundary_continue.py": {
+      "sha256": "d266f337944a0910a5426aba04e74ba72cb166ab94ae593b90a220b2bbcfde92",
+      "size": 4539
+    },
     "tests/test_pr16_circus_coldboot.py": {
       "sha256": "defaa34fe2f9ef2ae44b7934a5caf4f7880a3c37d0173bfa6b4b6adc5ca49aad",
       "size": 5936
@@ -6711,7 +6730,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。",
+  "source_change_review_ja": "run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

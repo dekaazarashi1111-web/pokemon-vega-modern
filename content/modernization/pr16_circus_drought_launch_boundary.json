@@ -12,14 +12,37 @@
       "head_sha": "3906ccc213e358a67000f6ebfb2e3618261d5390",
       "id": 35437460976,
       "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "3fa90fab346223742c2f66dff6756e7f0d560078",
+      "id": 35438144902,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "602abf6c601c39e3f912cde24c84d58ac960220a",
+      "id": 35450224019,
+      "status": "completed"
     }
   ],
   "candidate": {
     "sha256": "a2c612a2fde4be2fcb0b0484798055a31a007652e56db7912940dbd16025f1cb",
     "size": 33554432
   },
-  "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN",
+  "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED",
   "diagnostic_complete": false,
+  "diagnostic_setup_failure": {
+    "accepted_native_cases_replayed": 0,
+    "artifact_digest": "sha256:07e2825828a5831ec1d9cdfc3a38d0b03eef3594d84eee00af9e82e3f619d1a5",
+    "artifact_id": 10582383197,
+    "head_sha": "3fa90fab346223742c2f66dff6756e7f0d560078",
+    "job_id": 105884235962,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "reason_ja": "Drought watcherより前へ境界watcherを挿入し、fade連結後にだけ存在するb_frame=fw_frameを要求してsetup停止。ゲームは起動していない。",
+    "run_id": 35438144902
+  },
   "evidence_transformations": {
     "evidence/pr16_circus_drought_launch_boundary/35438144902/build.json": {
       "original": {
@@ -245,8 +268,8 @@
   "genuine_30_wins_verified": false,
   "host_tests": [
     {
-      "count": 6,
-      "pattern": "test_pr16_circus_drought_launch_boundary.py",
+      "count": 9,
+      "pattern": "test_pr16_circus_boundary_continue.py",
       "success": true
     },
     {
@@ -269,10 +292,19 @@
   },
   "native_lifecycle_accepted": false,
   "physical_admission_accepted": false,
-  "recording_run": 35438144902,
   "release_ready": false,
+  "resume_setup_failure": {
+    "binding_checkpoint_succeeded": true,
+    "checkpoint_commit": "c96d14f8342fef6a99f349fa9cdbafea9020f8ad",
+    "head_sha": "602abf6c601c39e3f912cde24c84d58ac960220a",
+    "job_id": 105915967201,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "reason_ja": "binding checkpointは成功。次のprepareが旧PREPAREDタグと衝突して停止。native/pipeline/finishは未実行。既存記録を保持し新run固有タグで未完部分だけ進む。",
+    "run_id": 35450224019
+  },
   "schema_version": 1,
-  "scope_ja": "同じ候補を1processだけ再構築し、不可避17勝prefix後の18戦目chooser→field落下を180frameで停止して読む。旧CPU600frame診断、受入済み単体、旧独立2linkは実行しない。",
+  "scope_ja": "同じ候補を1processだけ再構築し、不可避17勝prefix後の18戦目chooser→field落下を180frameで停止して読む。前回setup失敗と旧CPU600frame診断、受入済み単体、旧独立2linkは実行しない。",
   "standard_save_fresh_continue": false,
   "suppression_accepted": false,
   "text_evidence": {
