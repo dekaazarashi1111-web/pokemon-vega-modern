@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-最新run35434591898の失敗と記録停止を原本照合。定数callbackで消失する分岐/復帰を実関数symbol境界へ修復し、host/生成ARMの回帰を追加。未完nativeだけを後継候補で検証する。
+実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。
 
 **次: 新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `31130b4c04effdb6beedd071a0111dbc4552d941`。
+証拠のsource HEAD: `c1f295002953de61ba81b81554442de398084cf1`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
