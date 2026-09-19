@@ -4,8 +4,9 @@ on:
     branches: [codex/modernization-followup-20260908]
     paths:
       - .github/workflows/pr16-saved-reconstruction.yml
+      - scripts/pr16_saved_recipe.py
       - scripts/pr16_saved_reconstruction.py
-      - tests/test_pr16_saved_reconstruction.py
+      - tests/test_pr16_saved_object_bytes.py
       - content/modernization/pr16_saved_reconstruction_seed.json
 permissions:
   contents: read
@@ -23,11 +24,11 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 1
-      - name: 新規9契約だけを検証
+      - name: 変更したdecoderだけを検証し既受入9契約は原本を継承
         run: |
           mkdir -p .local/pr16-saved-reconstruction
           git rev-parse HEAD > .local/pr16-saved-reconstruction/tested-head.txt
-          python3 -m unittest discover -s tests -p test_pr16_saved_reconstruction.py -v > .local/pr16-saved-reconstruction/tests.txt 2>&1
+          PYTHONPATH=scripts:tests python3 -m unittest test_pr16_saved_recipe.SavedRecipeTests.test_disassembly_exact_halfwords_and_literals test_pr16_saved_object_bytes -v > .local/pr16-saved-reconstruction/tests.txt 2>&1
           cat .local/pr16-saved-reconstruction/tests.txt
       - name: 保存byte20層と全ROM逆適用を検証
         run: |

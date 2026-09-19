@@ -179,11 +179,11 @@ def make_entry(raw, report, originals):
     old_prompt = struct.unpack_from('<I', bytes.fromhex(rows[0]['bytes']), 2)[0]
     offset, selector = report['payload_offset'], report['entries']['selector']
     code = originals.code('entry', 'pr16-circus-entry/compile-1/disassembly.txt', BASE+offset+64,
-                          dict(size=276, sha256='f900831c70272390004e6d6584ffd8438c4e813c5298ec29b828b48473c6c69e'))
+                          dict(size=284, sha256='0c95e9375df9ee669122b8663e960262bb82f3186c4bffc9d6f4a028a2e37b7b'))
     thumb = 'scripts/pr16_circus_thumb.py'
     checked(thumb, report['sources'][thumb])
     adapter_size = constants(thumb)['ADAPTER_SIZE']
-    s.need(adapter_size == 304 and len(code) == 276, '保存adapter境界不一致')
+    s.need(adapter_size == 304 and len(code) == 284, '保存adapter境界不一致')
     # 固定原本compile_adapterの明示ljust規則。命令の欠損を推測で埋めない。
     code = code.ljust(adapter_size, b'\xff')
     payload = bytearray(64); payload[:8] = b'VEGAC18E'; payload.extend(code)

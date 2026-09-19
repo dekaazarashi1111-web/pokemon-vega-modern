@@ -142,11 +142,14 @@ def disassembly_bytes(text, address, expected):
     need(type(text) is str and type(address) is int and address >= 0, 'disassembly input differs')
     memory = {}
     for line in text.splitlines():
-        match = re.match(r'^\s*([0-9a-fA-F]+):\s*\t([^\t]+)\t', line)
+        match = re.match(r'^\s*([0-9a-fA-F]+):\s*\t(.*)$', line)
         if not match:
             continue
         at = int(match[1], 16)
-        tokens = match[2].split()
+        # objdumpはOBJECT定数表をmnemonicなし・空白区切りで表示する。
+        # 命令と同じlittle-endian word欄を採用し、ASCII注記は含めない。
+        field = match[2].split('\t', 1)[0] if '\t' in match[2] else re.split(r' {2,}', match[2], maxsplit=1)[0]
+        tokens = field.split()
         need(tokens and all(re.fullmatch(r'(?:[0-9a-fA-F]{2}|[0-9a-fA-F]{4}|[0-9a-fA-F]{8})', t) for t in tokens),
              'unrecognized disassembly byte field')
         data = b''.join(int(t, 16).to_bytes(len(t)//2, 'little') for t in tokens)
