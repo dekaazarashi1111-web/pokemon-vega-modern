@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。",
+    "current_stop": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED",
+    "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_rental_drought.json",
     "run_id": 35456028016,
     "target_wins": 30
@@ -164,7 +164,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35456028016,
-    "source_head": "d1af762472eb529b4fcad93bac65c4e44aa05db3",
+    "source_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -189,7 +189,7 @@
     "run_id": 35452739116
   },
   "circus_rental_drought_followup": {
-    "classification": "CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED",
+    "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_rental_drought.json",
     "run_id": 35456028016
   },
@@ -822,10 +822,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "d1af762472eb529b4fcad93bac65c4e44aa05db3",
+  "observed_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "d1af762472eb529b4fcad93bac65c4e44aa05db3"
+    "scope_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2568,8 +2568,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "60e5d24d4894045d323789d08fbf4e6e89e90b367824fa31cefa81af6203a8ba",
-      "size": 135082
+      "sha256": "cfcc847f1caefc3ddbdedeb5cbf9af3dcb12874d3a0082bda0885330b0eab3e4",
+      "size": 135078
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2600,8 +2600,8 @@
       "size": 299555
     },
     "content/modernization/pr16_circus_rental_drought.json": {
-      "sha256": "0126d2d83728e9c7b19177f23c681bd7f9642eebad4fff98357169fc82f66825",
-      "size": 2612
+      "sha256": "eed84fbede9f62eebf62f1bf278656510d3a99c88eb003896b285478737e3610",
+      "size": 444001
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -4364,6 +4364,62 @@
       "size": 131850
     },
     "evidence/pr16_circus_rental_boundary/35452739116/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/build.json": {
+      "sha256": "75d8eade5c8d837b55295dc2e8cb9f720a4deaafa416968704081a1e9594e403",
+      "size": 186240
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-1/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-1/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-1/disassembly.txt": {
+      "sha256": "6c00520828c6d78f0ce77b59c9b85b922b2f0cfe04dd379cfe13a8a3d5434bb3",
+      "size": 36107
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-1/stack-usage.txt": {
+      "sha256": "e382dd26d2c4ebf764a3713bdb0316615cde25fb21209bd2d433fd913616d218",
+      "size": 3588
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-1/symbols.txt": {
+      "sha256": "e7db7c4ea98bf2134d0c2d88abcc2918ae7fb5cd859c37cb9ef9c65bd053f926",
+      "size": 300
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-2/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-2/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-2/disassembly.txt": {
+      "sha256": "6c00520828c6d78f0ce77b59c9b85b922b2f0cfe04dd379cfe13a8a3d5434bb3",
+      "size": 36107
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-2/stack-usage.txt": {
+      "sha256": "e382dd26d2c4ebf764a3713bdb0316615cde25fb21209bd2d433fd913616d218",
+      "size": 3588
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/compile-2/symbols.txt": {
+      "sha256": "e7db7c4ea98bf2134d0c2d88abcc2918ae7fb5cd859c37cb9ef9c65bd053f926",
+      "size": 300
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/native/chooser-bindings.json": {
+      "sha256": "7d24bdfac5a59c110cacb98c6f3ea50a3be9d6b58168c6b003034e020f199549",
+      "size": 2530
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/native/report.json": {
+      "sha256": "68f72988656185fa59015ebc5feb8c90a843f8e26f0199390ae34af5d9f9f499",
+      "size": 226809
+    },
+    "evidence/pr16_circus_rental_drought/35456028016/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -7269,7 +7325,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。",
+  "source_change_review_ja": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

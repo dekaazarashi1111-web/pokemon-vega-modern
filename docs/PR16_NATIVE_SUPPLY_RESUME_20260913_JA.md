@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。
+READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
 
 **次: READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `d1af762472eb529b4fcad93bac65c4e44aa05db3`。
+証拠のsource HEAD: `4d08b2088786fb2f959665003fb0d7a9cf23ecef`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
