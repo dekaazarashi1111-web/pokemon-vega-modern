@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。",
+    "current_stop": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RENTAL_BOUNDARY_PREPARED",
+    "classification": "CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_rental_boundary.json",
     "run_id": 35452739116,
     "target_wins": 30
@@ -164,7 +164,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35452739116,
-    "source_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
+    "source_head": "ce51471dd8bcadcd8ddff4cd5fbdb371411c2d5b",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -184,7 +184,7 @@
     "target_wins": 30
   },
   "circus_rental_boundary": {
-    "classification": "CIRCUS_RENTAL_BOUNDARY_PREPARED",
+    "classification": "CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_rental_boundary.json",
     "run_id": 35452739116
   },
@@ -816,10 +816,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
+  "observed_head": "ce51471dd8bcadcd8ddff4cd5fbdb371411c2d5b",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "9f663a0bde45deb01958ecbf8c0bfc1541508857"
+    "scope_head": "ce51471dd8bcadcd8ddff4cd5fbdb371411c2d5b"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2546,8 +2546,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "505a17cb063ff56039c4d27f33e3ee473c1c523f0e492a742c358a84c7a77979",
-      "size": 134879
+      "sha256": "d57c782648bbab259c525777535e6549fade96a008e5b95a6889cac4f12762cc",
+      "size": 134888
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2574,8 +2574,8 @@
       "size": 131372
     },
     "content/modernization/pr16_circus_rental_boundary.json": {
-      "sha256": "9313acdb1eeed2e65772de02a5dfc1e7db62a9f515ee7bad5912eb8929c05ba4",
-      "size": 3560
+      "sha256": "8cb3cfd224c39dd0a596980f918a4b83c28c9e517ef014c6b56ebe3dd15745d5",
+      "size": 299555
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -4210,6 +4210,134 @@
       "size": 1051
     },
     "evidence/pr16_circus_reliability/35428983641/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/build.json": {
+      "sha256": "92ffbdbda318fffaa220c9801175021ea793d8e675eb99b6eefb7fc03e925c1f",
+      "size": 91764
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/diagnostic.json": {
+      "sha256": "a13f68b2c02f105684f7c5f932f558bf6deb2b5f41cc894b207637e8a027a3c1",
+      "size": 41317
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/chooser-bindings.json": {
+      "sha256": "83b2f2137374438aa3cb1326ba3b413e740f71e4c9f61163f22e4de7a2d79f9c",
+      "size": 2530
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stderr": {
+      "sha256": "34e79377471cac39b69ec806621e893990768ec0b02d687832b23290a813589a",
+      "size": 763279
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/compile.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-bus8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-raw8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/guard-register.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/native/report.json": {
+      "sha256": "c9ee38e2263916176bfb50dd10944017a960b436a5a8f1bef1e7784782dbe278",
+      "size": 131850
+    },
+    "evidence/pr16_circus_rental_boundary/35452739116/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -7095,7 +7223,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。",
+  "source_change_review_ja": "18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

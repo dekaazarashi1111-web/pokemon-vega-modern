@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=False。通常Save/fresh Continue/真正30勝は未達。
+18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。
 
 **次: 18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9f663a0bde45deb01958ecbf8c0bfc1541508857`。
+証拠のsource HEAD: `ce51471dd8bcadcd8ddff4cd5fbdb371411c2d5b`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
