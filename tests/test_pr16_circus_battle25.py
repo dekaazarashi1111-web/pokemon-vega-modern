@@ -10,7 +10,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'scripts'))
 import pr16_circus_battle25_policy as p
-import pr16_circus_continuous_probe as probe
+import pr16_circus_reentry_probe as probe
 ORIGINAL = Path(os.environ.get('B25_ORIGINALS', str(ROOT/'.local/pr16-circus-battle25/original')))
 
 
@@ -98,7 +98,8 @@ int main(void) {
         with self.assertRaises(ValueError):p.prefix_proof(self.trace,raw.replace(b'"streak": 24',b'"streak": 23'),self.events,events)
 
     def test_original_loss_never_promoted_to_30(self):
-        old=probe.strict((ORIGINAL/(probe.CASE+'.stdout')).read_bytes())
+        probe.SHA='2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183'
+        old=probe.validate((ORIGINAL/(probe.CASE+'.stdout')).read_bytes(),self.trace,0,probe.CASE)
         with self.assertRaises(ValueError):probe.require_target(old)
         self.assertEqual((old['wins'],old['losses'],old['bp_earned']),(24,1,72))
 

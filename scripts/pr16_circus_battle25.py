@@ -15,7 +15,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT)]
 import pr16_circus_battle25_policy as policy
-import pr16_circus_continuous_probe as probe
+import pr16_circus_reentry_probe as probe
 import pr16_resume as resume
 need=policy.need
 REPO='dekaazarashi1111-web/pokemon-vega-modern'
@@ -106,7 +106,7 @@ def originals():
     bound={}
     for name,expected in native['sources'].items():
         # Includes are compiled directly; old Python builder modules are not imported/executed.
-        if Path(name).suffix in ('.c','.h') or name=='scripts/pr16_circus_continuous_probe.py':
+        if Path(name).suffix in ('.c','.h') or name in ('scripts/pr16_circus_continuous_probe.py','scripts/pr16_circus_reentry_probe.py'):
             need(identity(resume.safe_path(ROOT,name).read_bytes())==expected,'host dependency changed: '+name)
             bound[name]=expected
     need(identity((ROOT/'tools/mgba_pr16_circus_continuous.c').read_bytes())==native['generated']['controller.c'],'controller changed')
@@ -214,7 +214,7 @@ def prepare():
     value=dict(schema_version=1,task=TASK,classification='BATTLE25_INPUT_IMPLEMENTED_NATIVE_PENDING',source_head=command('git','rev-parse','HEAD'),
         candidate=TARGET,original=originals(),host_tests=tests(),new_emulator_processes=0,arm_compiles=0,arm_links=0,
         accepted_standalone_replays=0,rom_changes=0,genuine_30_wins_verified=False,lifecycle_verified=False,
-        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False)
+        physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])
     checkpoint(value,'START')
 
 
