@@ -38,6 +38,24 @@ class LaunchBoundaryTests(unittest.TestCase):
         header='static void lb_frame(void){b_frame(c,keys);}\n#undef b_frame\n#define b_frame lb_frame\n'
         result=t.append_watch(base,header);self.assertIn('#define b_frame lb_frame',result)
         with self.assertRaises(ValueError):t.append_watch(result,header)
+    def test_boundary_watch_is_composed_after_fade_chain(self):
+        fade='static void fw_frame(void){b_frame(c,keys);}\n#define b_frame fw_frame\n'
+        header='static void lb_frame(void){b_frame(c,keys);}\n#undef b_frame\n#define b_frame lb_frame\n'
+        def chain(text):return text.replace('b_frame(c,keys);','wr_frame(c,keys);')
+        result=t.compose_boundary_watch(fade,header,chain)
+        self.assertIn('wr_frame(c,keys);',result)
+        self.assertLess(result.index('#define b_frame fw_frame'),result.index('static void lb_frame'))
+        self.assertTrue(result.rstrip().endswith('#define b_frame lb_frame'))
+    def test_previous_setup_failure_is_native_zero_only(self):
+        previous=dict(classification='CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN',recording_run=t.FAILED_RUN,diagnostic_complete=False)
+        failed=dict(status='FAIL',actual_new_processes=0,successful_fresh_cores=0,results=[],
+            failures=[{'stage':'setup-or-execution','error':'inherited frame watcher boundary'}])
+        run=dict(id=t.FAILED_RUN,head_sha=t.FAILED_HEAD,status='completed',conclusion='failure')
+        artifact=dict(id=t.FAILED_ARTIFACT,digest=t.FAILED_DIGEST,expired=False,workflow_run={'id':t.FAILED_RUN})
+        value=t.validate_retry_failure(previous,failed,run,artifact)
+        self.assertEqual(value['native_processes'],0);self.assertEqual(value['accepted_native_cases_replayed'],0)
+        failed=dict(failed,actual_new_processes=1)
+        with self.assertRaises(ValueError):t.validate_retry_failure(previous,failed,run,artifact)
     def test_tracked_header_is_readonly_and_bounded(self):
         text=(ROOT/t.HEADER).read_text()
         for token in ('write8(','write16(','write32(','setKeys(','call_preserving('):self.assertNotIn(token,text)

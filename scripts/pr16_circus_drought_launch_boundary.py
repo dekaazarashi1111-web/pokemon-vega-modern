@@ -20,6 +20,12 @@ TASK='USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY'
 OUT=ROOT/'.local/pr16-circus-drought-launch-boundary'
 PRIOR_RUN=35437062974
 LATEST_NONRESULT_RUN=35437460976
+FAILED_RUN=35438144902
+FAILED_JOB=105884235962
+FAILED_ARTIFACT=10582383197
+FAILED_HEAD='3fa90fab346223742c2f66dff6756e7f0d560078'
+FAILED_DIGEST='sha256:07e2825828a5831ec1d9cdfc3a38d0b03eef3594d84eee00af9e82e3f619d1a5'
+FAILED_REPORT='evidence/pr16_circus_drought_launch_boundary/35438144902/native/report.json'
 NEXT='境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。'
 
 
@@ -48,6 +54,32 @@ def append_watch(text,header):
     need(text.count('#define b_frame fw_frame')==1,'inherited frame watcher boundary')
     need(header.count('b_frame(c,keys);')==1 and header.count('#undef b_frame')==1,'readonly watcher call chain')
     return text+'\n'+header
+
+
+def compose_boundary_watch(fade_text,header,chain):
+    chained=chain(fade_text)
+    need(chained!=fade_text and chained.count('wr_frame(c,keys);')==1,'fade watcher was not chained after Drought watcher')
+    return append_watch(chained,header)
+
+
+def validate_retry_failure(previous,failed,run,artifact):
+    need(previous['classification']=='CIRCUS_DROUGHT_LAUNCH_BOUNDARY_OPEN'
+        and previous['recording_run']==FAILED_RUN and previous['diagnostic_complete'] is False,
+        'previous boundary setup result differs')
+    need(failed['status']=='FAIL' and failed['actual_new_processes']==0
+        and failed['successful_fresh_cores']==0 and failed['results']==[],
+        'boundary setup failure unexpectedly ran native')
+    need(failed['failures']==[{'stage':'setup-or-execution','error':'inherited frame watcher boundary'}],
+        'boundary setup failure reason differs')
+    need(run['id']==FAILED_RUN and run['head_sha']==FAILED_HEAD and run['status']=='completed'
+        and run['conclusion']=='failure','boundary setup Actions result differs')
+    need(artifact['id']==FAILED_ARTIFACT and artifact['workflow_run']['id']==FAILED_RUN
+        and artifact['digest']==FAILED_DIGEST and artifact['expired'] is False,
+        'boundary setup artifact differs')
+    return dict(run_id=FAILED_RUN,job_id=FAILED_JOB,artifact_id=FAILED_ARTIFACT,
+        head_sha=FAILED_HEAD,artifact_digest=FAILED_DIGEST,original_conclusion='failure',
+        native_processes=0,accepted_native_cases_replayed=0,
+        reason_ja='Drought watcherより前へ境界watcherを挿入し、fade連結後にだけ存在するb_frame=fw_frameを要求してsetup停止。ゲームは起動していない。')
 
 
 def continuous_events(raw):
@@ -115,6 +147,8 @@ def record(value,phase,stop,next_step=NEXT):
     state['prior_actions_reconciled']=value['actions_reconciled']
     note='run35437062974/job105881419750は17勝prefixと18戦目確認まで到達後、action/Saveなしでfield callback・script0へ落ちた。新候補の最初の停止として保持し、同じ18,000frame失敗待ちは再実行しない。'
     if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
+    setup_note='run35438144902/job105884235962はwatcher連結順のsetup失敗でnative process 0。ゲーム側結果ではなく、同じ前段挿入を再実行しない。fade連結後への境界watcher追加だけを再試行する。'
+    if setup_note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,setup_note)
     r.SELF=SELF;r.TEST=TEST;r.WORKFLOW=WORKFLOW;r.HEADER=HEADER;r.TASK=TASK
     r.checkpoint(state,loss,stop,next_step,[REPORT,*d.FILES,*value.get('text_evidence',{})],phase,
         value['classification']+'。現候補1processの17勝不可避prefixのみ、入力不変のreadonly境界trace。受入済み単体0、ARM link追加0、ROM/save証跡0。')
@@ -123,22 +157,31 @@ def record(value,phase,stop,next_step=NEXT):
 def prepare():
     import pr16_resume as resume
     base,d,b=configure();r=b.rec;r.scope();resume.validate(ROOT)
-    need(not (ROOT/REPORT).exists(),'launch boundary trace already attempted')
+    previous=resume.load(ROOT,REPORT)
+    need(FAILED_REPORT in previous.get('text_evidence',{}),'previous setup evidence reference absent')
+    failed_raw=(ROOT/FAILED_REPORT).read_bytes()
+    need(identity(failed_raw)==previous['text_evidence'][FAILED_REPORT],'previous setup native report drift')
+    failed=json.loads(failed_raw)
+    failed_run=r.api('actions/runs/'+str(FAILED_RUN));artifact=r.api('actions/artifacts/'+str(FAILED_ARTIFACT))
+    setup_failure=validate_retry_failure(previous,failed,failed_run,artifact)
     prior=resume.load(ROOT,PRIOR);need(prior['recording_run']==PRIOR_RUN and prior['classification']=='CIRCUS_DROUGHT_LAUNCH_NATIVE_OPEN','prior launch result differs')
     need(prior['native']['status']=='FAIL' and prior['native']['actual_new_processes']==1 and not prior['launch_native_verified'],'prior launch was not the open failure')
     need(identity((ROOT/RAW).read_bytes())==prior['text_evidence'][RAW],'prior native stderr drift')
     run=r.api('actions/runs/'+str(PRIOR_RUN));nonresult=r.api('actions/runs/'+str(LATEST_NONRESULT_RUN))
     need(run['status']=='completed' and run['conclusion']=='failure','prior Actions result differs')
     need(nonresult['status']=='completed' and nonresult['conclusion']=='action_required','latest non-result Actions classification differs')
-    value=dict(schema_version=1,classification='CIRCUS_DROUGHT_LAUNCH_BOUNDARY_TRACE_PREPARED',candidate=prior['candidate'],
+    value=dict(schema_version=1,classification='CIRCUS_DROUGHT_LAUNCH_BOUNDARY_RETRY_PREPARED',candidate=prior['candidate'],
         inherited_failure=dict(run_id=PRIOR_RUN,job_id=105881419750,artifact_id=10583081417,events=81,settled_wins=17,
             reached_eighteenth_confirmation=True,action_reached=False,standard_save_reached=False,original_conclusion='failure'),
-        actions_reconciled=[{k:run[k] for k in ('id','head_sha','status','conclusion')},{k:nonresult[k] for k in ('id','head_sha','status','conclusion')}],
-        scope_ja='同じ候補を1processだけ再構築し、不可避17勝prefix後の18戦目chooser→field落下を180frameで停止して読む。旧CPU600frame診断、受入済み単体、旧独立2linkは実行しない。',
+        diagnostic_setup_failure=setup_failure,
+        actions_reconciled=[{k:run[k] for k in ('id','head_sha','status','conclusion')},{k:nonresult[k] for k in ('id','head_sha','status','conclusion')},
+            {k:failed_run[k] for k in ('id','head_sha','status','conclusion')}],
+        scope_ja='同じ候補を1processだけ再構築し、不可避17勝prefix後の18戦目chooser→field落下を180frameで停止して読む。前回setup失敗と旧CPU600frame診断、受入済み単体、旧独立2linkは実行しない。',
         host_tests=r.tests([Path(TEST).name,'test_pr16_circus_drought_launch.py']),accepted_native_cases_replayed=0,
         unavoidable_prefix_battles=17,independent_arm_links_replayed=0,diagnostic_complete=False,native_lifecycle_accepted=False,
-        standard_save_fresh_continue=False,genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)
-    record(value,'PREPARED','18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。')
+        standard_save_fresh_continue=False,genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
+        text_evidence=dict(previous.get('text_evidence',{})),evidence_transformations=dict(previous.get('evidence_transformations',{})))
+    record(value,'PREPARED','run35438144902はwatcher連結順のsetup失敗/native0として固定。fade watcherをDrought watcherへ連結した後だけ境界watcherを追加し、同じゲーム境界を初回採取する。')
 
 
 def reconstruct():
@@ -165,14 +208,13 @@ def validate_trace():
 
 def native():
     base,d,b=configure();recipe=json.loads((OUT/'build.json').read_bytes());d.probe.SHA=recipe['candidate']['sha256']
-    original=d.policy_text;header=(ROOT/HEADER).read_text()
-    def traced_policy(text,headers):return append_watch(original(text,headers),header)
-    d.policy_text=traced_policy;d.c.policy_text=traced_policy
+    header=(ROOT/HEADER).read_text()
     import pr16_circus_win_return_trace as trace
+    def boundary_watch(text):return compose_boundary_watch(text,header,trace.chained_watch)
     source=inspect.getsource(d.c.native);old="(ROOT/b.fade.WATCH).read_text()"
     need(source.count(old)==1,'inherited native watcher source boundary')
-    source=source.replace(old,"chained_watch((ROOT/b.fade.WATCH).read_text())")
-    ns=dict(d.c.__dict__);ns.update(policy_text=traced_policy,chained_watch=trace.chained_watch)
+    source=source.replace(old,"boundary_watch((ROOT/b.fade.WATCH).read_text())")
+    ns=dict(d.c.__dict__);ns['boundary_watch']=boundary_watch
     exec(compile(source,SELF+':launch-boundary','exec'),ns)
     try:ns['native']()
     except ValueError as error:need(str(error)=='continuous lifecycle failed; inspect original','unexpected boundary native failure: '+str(error))
@@ -186,7 +228,8 @@ def finish():
     trace=OUT/'native/launch-boundary-trace.json'
     if trace.exists():
         value['diagnostic']=validate_trace();value['classification']=value['diagnostic']['classification'];value['diagnostic_complete']=True
-    value['recording_run']=int(os.environ['GITHUB_RUN_ID']);value['text_evidence']={};value['evidence_transformations']={}
+    value['recording_run']=int(os.environ['GITHUB_RUN_ID'])
+    value.setdefault('text_evidence',{});value.setdefault('evidence_transformations',{})
     base,d,b=configure()
     for p in sorted(OUT.rglob('*')):
         if not p.is_file() or p.suffix not in {'.json','.txt','.stderr','.stdout'} or p.name.endswith('-receipt.json'):continue
