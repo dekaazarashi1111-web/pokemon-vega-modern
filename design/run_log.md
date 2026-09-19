@@ -7736,3 +7736,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T04:15:13.954832+00:00 — USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-START
+- Timestamp: 2026-09-19T04:15:13.954832+00:00
+- Task: USER-20260919-CIRCUS-MENU-IDENTITY-RECOVERY-TRACE-START
+- Status: DONE / 中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
+- Version: pr16-circus-loss-marker
+- Summary: 中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_menu_recovery.py, tools/mgba_pr16_circus_recovery_trace.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, scripts/pr16_circus_menu_recovery.py, tests/test_pr16_circus_menu_recovery.py, .github/workflows/pr16-circus-menu-recovery.yml, tools/mgba_pr16_circus_menu_identity.h, tests/fixtures/circus_menu_identity_fixture.c, tools/mgba_pr16_circus_recovery_trace.c, tools/mgba_pr16_circus_matchup.h
+- Verify: CIRCUS_INTERRUPTION_READONLY_RECOVERY_TRACE_PENDING。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 復旧traceから最初のowner/sector変化を特定し、必要なゲーム側修復と影響テストへ。3勝結果は別記録を継承し、影響なしに再実行しない。

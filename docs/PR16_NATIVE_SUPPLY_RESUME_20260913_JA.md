@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
 
-**次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
+**次: 復旧traceから最初のowner/sector変化を特定し、必要なゲーム側修復と影響テストへ。3勝結果は別記録を継承し、影響なしに再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2437265a9573020690f1f96f023152dd9a99a49d`。
+証拠のsource HEAD: `93bb047e8f00e49fa845dea87653ccc6efdc5d8e`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -29,7 +29,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 - `scripts/pr16_circus_menu_recovery.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_matchup.h`
+- `tools/mgba_pr16_circus_recovery_trace.c`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
