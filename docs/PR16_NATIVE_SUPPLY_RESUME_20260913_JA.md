@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-Circus実敗北の9イベント/原party600/owner64/7guard/Save+fresh Continueはrun35415331977で受入。3画面も確認。3b候補を保持し、攻撃技と実能力の読取専用順位付けで未受入3勝・継続戦を開始。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@ Circus実敗北の9イベント/原party600/owner64/7guard/Save+fresh Continue�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `eb0a7b17d03d900b5227f339f989697bd1bb89cf`。
+証拠のsource HEAD: `7fee0ecdb76af979fe24dc3883a6988e49e697ed`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
