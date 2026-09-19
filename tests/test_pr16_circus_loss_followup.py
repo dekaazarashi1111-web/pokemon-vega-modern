@@ -48,4 +48,20 @@ class LossFollowupTests(unittest.TestCase):
         with self.assertRaises(ValueError):m.repair_text('unrelated.h','marker == 1u')
         with self.assertRaises(ValueError):m.repair_text(m.HEADER,'#include <stdint.h>\nmarker == 1u; marker == 1u;')
 
+    def pr(self):
+        return dict(state='open',merged=False,head=dict(ref=m.BRANCH,sha='old',repo=dict(full_name=m.REPO)))
+
+    def test_pr_display_lag_uses_authoritative_ref(self):
+        m.verify_scope(self.pr(),'new\trefs/heads/'+m.BRANCH,'new')
+
+    def test_changed_ref_or_closed_pr_rejected(self):
+        with self.assertRaises(ValueError):m.verify_scope(self.pr(),'other\trefs/heads/'+m.BRANCH,'new')
+        pr=self.pr();pr['state']='closed'
+        with self.assertRaises(ValueError):m.verify_scope(pr,'new\trefs/heads/'+m.BRANCH,'new')
+        pr=self.pr();pr['head']['repo']['full_name']='other/repo'
+        with self.assertRaises(ValueError):m.verify_scope(pr,'new\trefs/heads/'+m.BRANCH,'new')
+
+    def test_glob_result_filename_is_artifact_safe(self):
+        self.assertEqual(m.result_filename('test_pr16_circus_streak*.py'),'test_pr16_circus_streak_.py.txt')
+
 if __name__=='__main__':unittest.main()

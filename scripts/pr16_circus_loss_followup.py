@@ -8,7 +8,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
 import subprocess
 import sys
 import zipfile
@@ -58,10 +57,22 @@ def scope():
     need(os.environ.get('GITHUB_REPOSITORY')==REPO and os.environ.get('GITHUB_REF')=='refs/heads/'+BRANCH,'write scope')
     head=command('git','rev-parse','HEAD')
     pr=api('pulls/16')
-    need(pr['state']=='open' and not pr['merged'] and pr['head']['repo']['full_name']==REPO
-         and pr['head']['ref']==BRANCH and pr['head']['sha']==head,'remote PR advanced/closed')
+    ref=command('git','ls-remote','--exit-code','origin','refs/heads/'+BRANCH)
+    verify_scope(pr,ref,head)
     subprocess.run(['git','merge-base','--is-ancestor',BASE,head],cwd=ROOT,check=True)
     return head
+
+
+
+def verify_scope(pr,ref,head):
+    """PRのidentityとlive refを分離。表示遅延は許容、別repo/競合は拒否。"""
+    need(pr['state']=='open' and not pr['merged'] and pr['head']['repo']['full_name']==REPO
+         and pr['head']['ref']==BRANCH,'remote PR closed or wrong identity')
+    need(ref.split()==[head,'refs/heads/'+BRANCH],'remote branch advanced')
+
+
+def result_filename(pattern):
+    return re.sub(r'[^A-Za-z0-9_.-]','_',pattern)+'.txt'
 
 
 def repair_text(name,text):
@@ -95,7 +106,7 @@ def tests(patterns):
     OUT.mkdir(parents=True,exist_ok=True);results=[]
     for pattern in patterns:
         suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'),pattern=pattern)
-        with (OUT/(pattern+'.txt')).open('w') as stream:
+        with (OUT/result_filename(pattern)).open('w') as stream:
             r=unittest.TextTestRunner(stream=stream,verbosity=2).run(suite)
         need(r.wasSuccessful() and r.testsRun>0 and not r.skipped,'tests failed: '+pattern)
         results.append(dict(pattern=pattern,count=r.testsRun,success=True))
@@ -155,7 +166,10 @@ def checkpoint(state,report,stop,next_step,extra,phase,verification):
 
 def prepare():
     import pr16_resume as resume
-    scope();need(not (ROOT/REPORT).exists(),'already repaired; use next checkpoint, do not replay')
+    scope()
+    if (ROOT/REPORT).exists():
+        resume_prepared()
+        return
     state=resume.validate(ROOT);OUT.mkdir(parents=True,exist_ok=True)
     run=api('actions/runs/'+str(OLD_RUN));artifact=api('actions/artifacts/'+str(OLD_ARTIFACT))
     need(run['head_sha']==BASE and run['conclusion']=='failure' and run['status']=='completed','old run differs')
@@ -180,6 +194,31 @@ def prepare():
     report['host_tests']=host
     stop='開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。'
     checkpoint(state,report,stop,NEXT,[HEADER,FIXTURE,EDGES,*originals],'SOURCE',str(host)+'、2211840 loss guard条件PASS。native受入追加なし')
+
+
+
+def resume_prepared():
+    """成功push済み・native未起動の停止点だけを一度再開する。"""
+    import pr16_resume as resume
+    source='278c64efd1fba53b63e5b251db30ce868585c0d5'
+    report=resume.load(ROOT,REPORT);state=resume.load(ROOT,resume.STATE)
+    need(report['classification']=='CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING'
+         and 'resume_started' not in report,'already executed; do not replay')
+    previous=api('actions/runs/35413487243')
+    need(previous['status']=='completed' and previous['conclusion']=='failure'
+         and previous['head_sha']=='f03868f3c839348877b5c7f2db583e5112d5cbe9','prior run differs')
+    allowed={SELF,TEST}
+    changed=set(command('git','diff','--name-only',source,'HEAD').splitlines())
+    need(changed<=allowed,'unexpected changes since source checkpoint')
+    for name in allowed:
+        old=subprocess.check_output(['git','show',source+':'+name],cwd=ROOT)
+        need(identity(old)==state['source_bindings'][name],'stale continuation preimage')
+    report['resume_started']=dict(run_id=int(os.environ['GITHUB_RUN_ID']),source_checkpoint=source,
+        previous_run=35413487243,previous_conclusion='failure',previous_native_processes=0,
+        reason_ja='source commit/push成功後のPR表示遅延。live ref照合へ修正し37契約を再実行せずnative工程へ。')
+    host=tests(['test_pr16_circus_loss_followup.py']);report['continuation_tests']=host
+    checkpoint(state,report,'Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。',
+        NEXT,sorted(allowed),'RESUME',str(host)+'。旧37契約再実行0、旧native再実行0。')
 
 
 def native():
