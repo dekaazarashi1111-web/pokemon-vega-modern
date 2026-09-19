@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。
+旧親20層425差分を保存byteのみで復元し、全層hash/allocation・全ROM逆適用とnetwork/process禁止の固定JSON再開経路を検証済み。候補2b107e7eは不変、ARM compile/link/nativeは0。実24勝72BP・25戦目敗北・通常Save/fresh Continueは旧run35457636604の受入範囲を維持し、真正30勝・実受付から特性抑制の完了は主張しない。
 
-**次: 旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。**
+**次: 保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9eaef3fc7a2a3ddf03a64931f270fe9006afbb38`。
-完了済みnative runと原本を照合するcloseout source HEAD。記録専用Actionsはnativeを再実行しない。
+証拠のsource HEAD: `75f25d671ff6bcfacd5e1df3c0c100f53df9a322`。
+保存byte正本の記録source HEAD。native最終試行は35457636604、正式BP checkpointは不変。
 
 ## 最短の再開手順
 
@@ -25,6 +25,8 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_saved_reconstruction.json`
+- `scripts/pr16_saved_reconstruction.py`
 - `content/modernization/pr16_circus_rental_closeout.json`
 - `content/modernization/pr16_circus_rental_resume.json`
 - `scripts/pr16_circus_rental_resume.py`
@@ -60,10 +62,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-専用ownerとnative結合は構築済み→実勝敗/継続戦/完走保存→真正30連勝抑制→影響範囲P08→release判定。
+同一2b107e7eの25戦目通常入力から真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08最終統合・release判断（公開操作は別指示）
 
 ## 再実行・過大主張の禁止
 
+- run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。
 - run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。
 - run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。
 - run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。
@@ -284,6 +287,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-native runの最終結論を照合。action_required等はsuccessに改作しない。記録専用run自身はこのsnapshotに含めず、全CI greenもrelease完了も主張しない。
+復元run35465528252は成功。先行3失敗とnative30未達は維持。記録run自身はsnapshot外で、全CI greenは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

@@ -1,0 +1,118 @@
+{
+  "accepted_host_tests_replayed": 0,
+  "accepted_native_cases_replayed": 0,
+  "anchor": {
+    "sha256": "6ff621edb1c1f99c6b1feb665ddce576eff939519776a2135002ab4fa90603a3",
+    "size": 33554432
+  },
+  "arm_compiles": 0,
+  "arm_links": 0,
+  "candidate": {
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+    "size": 33554432
+  },
+  "classification": "SAVED_PARENT_RECONSTRUCTION_COMPLETE_NATIVE_30_OPEN",
+  "correction_ja": "コード284byte（OBJECT定数8byteを含む）と元ADAPTER_SIZE304の明示FF padding20byteで元payload hash一致。",
+  "failure_history": [
+    {
+      "conclusion": "failure",
+      "diagnosis": "受付adapterの明示padding未継承",
+      "run_id": 35464893016
+    },
+    {
+      "conclusion": "failure",
+      "diagnosis": "objdump OBJECT定数8byteを見落とした",
+      "run_id": 35465115956
+    },
+    {
+      "archive": {
+        "sha256": "5f93d37f43902618f1e03de3500793dab13096ac1286f429bdb7ef099efabd73",
+        "size": 980
+      },
+      "artifact_id": 10591186356,
+      "conclusion": "failure",
+      "diagnosis": "投影したremaining_sequence_jaが配列で、固定MD生成時にTypeError。文字列契約と実render回帰を追加。",
+      "job_id": 105957767914,
+      "run_id": 35465795453
+    }
+  ],
+  "genuine_30_wins_verified": false,
+  "historical_bootstrap_arm_count": null,
+  "layer_count": 20,
+  "new_emulator_processes": 0,
+  "new_python_runtime_verifications": 1,
+  "next_action_ja": "保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。",
+  "normalization": {
+    "archive": {
+      "sha256": "2794bdf353004a75754f2a4c20347822572bb252093688bcfbe283b96088bdc9",
+      "size": 263166
+    },
+    "artifact_id": 10591650346,
+    "conclusion": "success",
+    "job_id": 105957035501,
+    "run_id": 35465528252
+  },
+  "normalization_source_head": "c2737e1b57ff28909d43c13ad4223d0380c0029a",
+  "normalized_recipe": {
+    "path": "content/modernization/pr16_saved_reconstruction_recipes.json",
+    "sha256": "80d93a1de6175eaffb391baf1d38a0de8ec647c90b837863e2703868e33d1bd5",
+    "size": 1249360
+  },
+  "offline_runtime_verified": true,
+  "old_native_boundary": {
+    "bp": 72,
+    "candidate": {
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+      "size": 33554432
+    },
+    "genuine_wins": 24,
+    "loss_battle": 25,
+    "original_conclusion": "failure",
+    "run_id": 35457636604
+  },
+  "patch_count": 425,
+  "physical_admission_accepted": false,
+  "raw_evidence": {
+    "evidence/pr16_saved_reconstruction/35465528252/normalize.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/normalize.stdout": {
+      "sha256": "76ade53f25a3320473880c81116072876fb0fba5d63b170b6628eaff9ddaec90",
+      "size": 14043
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/reconstruction.json": {
+      "sha256": "a6cb560a81ddc50fdca3bf18649f87e03225cc5884e05da39b317bbd826d2d55",
+      "size": 13856
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/runtime.json": {
+      "sha256": "e09c5af21bc0b814f040ad09e42da3399aa221955bfce98c36caa350bf900e56",
+      "size": 8200
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/runtime.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/tested-head.txt": {
+      "sha256": "7953e6e8cc97f0d78345383c3fcfa5f115a1dba3769713654da6869e2bf4a2cc",
+      "size": 41
+    },
+    "evidence/pr16_saved_reconstruction/35465528252/tests.txt": {
+      "sha256": "4b96efb9c2e441f735af022b7a891ca99d8f5d5d11119f82309f3547e0bd9389",
+      "size": 567
+    }
+  },
+  "reconstruction_child_processes": 0,
+  "record_tests": {
+    "skipped": 0,
+    "success": true,
+    "tests_run": 8
+  },
+  "release_ready": false,
+  "rom_changes": 0,
+  "schema_version": 1,
+  "source_head": "75f25d671ff6bcfacd5e1df3c0c100f53df9a322",
+  "suppression_accepted": false,
+  "task": "USER-20260920-CIRCUS-SAVED-RECONSTRUCTION",
+  "whole_rom_reverse_verified": true
+}

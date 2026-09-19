@@ -5711,3 +5711,18 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub/Actionsのみ。このcloseout自体は新規native0/ARM link0/ROM変更0。参照runの末端Drought再link0を総数0とした旧記録は訂正する。継承pipelineの旧親再compile/Ring host tests再実行あり、総実行回数未採取。原本は保持。旧failure/全体guard違反を成功に改作しない。
 - Next: 旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。
+
+
+## 2026-09-19T20:13:05Z — USER-20260920-CIRCUS-SAVED-RECONSTRUCTION
+- Timestamp: 2026-09-19T20:13:05Z
+- Task: USER-20260920-CIRCUS-SAVED-RECONSTRUCTION / 旧親を再compileしない保存byte再構成
+- Status: DONE（再構成経路。真正30勝・正規特性抑制・P08統合は未完）
+- Version: pr16-saved-byte-chain-20
+- Summary: 固定Stage80から20層425差分を保存BPS・原本byteのみで正規化し、候補2b107e7eへ全hash一致。全層allocationと全ROM逆適用を確認。通常再開は保存JSONと純粋核だけで、旧builder・network・子processは禁止。
+- Summary: 受付adapterのOBJECT定数8byteと明示20byte FF paddingを原本から回復。先行失敗35464893016/35465115956と記録型不整合35465795453は失敗のまま保存。単一段落契約と実render回帰を追加。
+- Files changed: scripts/pr16_saved_reconstruction_record.py, tests/test_pr16_saved_reconstruction_record.py, .github/workflows/pr16-saved-reconstruction-record.yml, scripts/pr16_saved_recipe.py, scripts/pr16_saved_reconstruction.py, tests/test_pr16_saved_recipe.py, tests/test_pr16_saved_reconstruction.py, tests/test_pr16_saved_object_bytes.py, content/modernization/pr16_saved_reconstruction_seed.json, .github/workflows/pr16-saved-reconstruction.yml, .github/workflows/pr16-saved-reconstruction-source.yml, content/modernization/pr16_saved_reconstruction_recipes.json, content/modernization/pr16_saved_reconstruction.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_saved_reconstruction/35465528252/tested-head.txt, evidence/pr16_saved_reconstruction/35465528252/tests.txt, evidence/pr16_saved_reconstruction/35465528252/reconstruction.json, evidence/pr16_saved_reconstruction/35465528252/normalize.stderr, evidence/pr16_saved_reconstruction/35465528252/normalize.stdout, evidence/pr16_saved_reconstruction/35465528252/runtime.json, evidence/pr16_saved_reconstruction/35465528252/runtime.stderr, design/run_log.md, design/version_log.md
+- Verify: run35465528252/job105957035501成功、artifact10591650346 sha256=2794bdf353004a75754f2a4c20347822572bb252093688bcfbe283b96088bdc9。核13契約の未影響12件と原本IO9契約の証跡継承、影響decoder3件PASS。記録8契約（投影後render/JSON往復を含む）、固定JSONのoffline実ROM再開、resume tests、pr16_resume.validate、task graph PASS。commit前index差分private guardで新規違反0、diff check必須。
+- Native: 今回0。候補byte変更0、ARM compile/link0、受入単体再実行0。履歴bootstrap全体ARM数はunknownを維持。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receiptを参照。
+- Network: GitHub connector/Actionsの固定run/artifact照合と固定CFRU charmapのみ。private入力取得なし、ROM/save/credential追加追跡なし。
+- Next: 保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。
