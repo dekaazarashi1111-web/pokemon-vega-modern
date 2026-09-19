@@ -4,11 +4,19 @@
     "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
     "size": 33554432
   },
-  "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
+  "classification": "CIRCUS_WIN_RETURN_READONLY_PREPARED",
+  "compile_failure_preserved": {
+    "compiler": "evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr",
+    "job_id": 105865517281,
+    "native_processes": 0,
+    "original_conclusion": "failure",
+    "path": "evidence/pr16_circus_win_return_trace/35431032216/native/report.json",
+    "run_id": 35431032216
+  },
   "diagnostic_complete": false,
   "host_tests": [
     {
-      "count": 8,
+      "count": 9,
       "pattern": "test_pr16_circus_win_return_trace.py",
       "success": true
     }
@@ -34,18 +42,7 @@
     ]
   },
   "physical_admission_accepted": false,
-  "recording_run": 35431032216,
   "release_ready": false,
   "schema_version": 1,
-  "suppression_accepted": false,
-  "text_evidence": {
-    "evidence/pr16_circus_win_return_trace/35431032216/native/report.json": {
-      "sha256": "150f05079b094cc6ddac852bac52659967540a5e5addb5b233b6076e594ab4fb",
-      "size": 105896
-    },
-    "evidence/pr16_circus_win_return_trace/35431032216/reconstruction.json": {
-      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
-      "size": 249
-    }
-  }
+  "suppression_accepted": false
 }
