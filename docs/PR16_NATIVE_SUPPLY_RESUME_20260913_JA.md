@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034`。
+証拠のsource HEAD: `329e4b7088d9a77e9ed001185b124c0049c12066`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

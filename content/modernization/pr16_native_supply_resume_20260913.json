@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。",
+    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35418010512,
-    "source_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034",
+    "source_head": "329e4b7088d9a77e9ed001185b124c0049c12066",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034",
+  "observed_head": "329e4b7088d9a77e9ed001185b124c0049c12066",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "e8a2ee12e97328c5a59f384f65d0c2bcbf8bb034"
+    "scope_head": "329e4b7088d9a77e9ed001185b124c0049c12066"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2172,8 +2172,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "6ba7cadd4cf6204774ca08e620819b5d7ed7ec96bc52ec664c7d5e77dc33548b",
-      "size": 130846
+      "sha256": "252e4b08bcf2e0ba97e9f4868d9970ed335217e6e06af3ca6b228261eca2eecb",
+      "size": 130843
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2200,8 +2200,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "869bdafaf588206da117d1b1a800e2f68f31f6ae0321ebc28e6deebbb8d3d8b0",
-      "size": 7111
+      "sha256": "954e7b98e7cb6f830d4b75749247acfa6db802d6a7b95d1907fdabe3e00acb7c",
+      "size": 136961
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -2990,6 +2990,26 @@
     "evidence/pr16_circus_three_win/35415727687/report.json": {
       "sha256": "616f6a64bb3405757bf343db6e3b727e26eb101d152b62a2ccb69780adf2a1a0",
       "size": 123255
+    },
+    "evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.stderr": {
+      "sha256": "54a927be967b846c1bd6432105e4c347434e513203085d28bc8cc4e12d534014",
+      "size": 126663
+    },
+    "evidence/pr16_circus_three_win/35418010512/circus-streak-batch-save.stdout": {
+      "sha256": "ea0359eb2f8c12358ba7a359b6d54b821afe31255c6fe768ff5b0da9f8f5dc88",
+      "size": 588
+    },
+    "evidence/pr16_circus_three_win/35418010512/reconstruction.json": {
+      "sha256": "bcbf8b14b8640151dab4fb241c0a2807a56b331e49290d01cb45355fe0407421",
+      "size": 175
+    },
+    "evidence/pr16_circus_three_win/35418010512/report.json": {
+      "sha256": "5b54ffdeebc7fdc094370213884ec3757e1dfafaf3fb97889690d4b9b78e8fd7",
+      "size": 123565
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -4765,7 +4785,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "前回run35415727687の0勝1敗をfailure原本として保持。耐久・技タイプ重複と実状態技を使う別入力方策を28条件で検証し、同一3b候補の未受入3勝へ進む。",
+  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
