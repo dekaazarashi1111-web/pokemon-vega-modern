@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free taskで、先頭にあるだけでは停止原因を確定できない。未観測の実PC/LR/weatherを600frame限定で読む。
+17勝後のCPU/weather読取原本を保存。正常Save/30勝の受入とは区別し、実際の停止命令からruntime修復へ進む。
 
 **次: 新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。**
 
@@ -14,7 +14,7 @@ ready1原本とROM命令を照合。080f7abdはDMA完了を待つ通常free task
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `e28d620a5c42a29395bf340bacdb0ce8e3f73425`。
+証拠のsource HEAD: `dc287bed92e148189d919f59a9e9ccc50ec8db35`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
