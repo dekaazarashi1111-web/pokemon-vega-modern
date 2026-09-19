@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "最新cold-load中断復旧はActions成功として照合・継承。実2勝後の敗北原本はfailureのまま保持し、未完3勝/9BPだけの入力方策を追加。",
+    "current_stop": "未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -105,7 +105,7 @@
       "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
       "size": 33554432
     },
-    "classification": "CIRCUS_FINISH_INPUT_PREPARED",
+    "classification": "CIRCUS_FINISH_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_finish.json"
   },
   "circus_first_battle_native": {
@@ -125,7 +125,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35424764823,
-    "source_head": "0dcc31b3db577f453dc11298470a5cf1e8c5d52a",
+    "source_head": "f10d587cfff0b31ee032d0c6e43227d842236555",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -627,10 +627,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "0dcc31b3db577f453dc11298470a5cf1e8c5d52a",
+  "observed_head": "f10d587cfff0b31ee032d0c6e43227d842236555",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "0dcc31b3db577f453dc11298470a5cf1e8c5d52a"
+    "scope_head": "f10d587cfff0b31ee032d0c6e43227d842236555"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2213,8 +2213,8 @@
       "size": 2293
     },
     "content/modernization/pr16_circus_finish.json": {
-      "sha256": "26e6e0659c7c9347523acc9b46660755b95b292d4797a2f53c32b3b2bb2af828",
-      "size": 1437
+      "sha256": "75f8c9ef825c090633fc7e1c8ac09bccc931541c10b5992ed97dd42f0410916b",
+      "size": 105663
     },
     "content/modernization/pr16_circus_first_battle_checkpoint.json": {
       "sha256": "17f96202631445ff7958a83dae497439faf632240e801c7f2783d5aa0a511a6c",
@@ -2233,8 +2233,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "f408a0a674be6b8127b9c871559575c0c8cf1b0aa112409a8f5782ff36c38c23",
-      "size": 131615
+      "sha256": "bbbeac3946b06f8542c2f00a314c77725e9e54462af96c7ebfb99d928c8353b1",
+      "size": 131616
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2855,6 +2855,26 @@
     "evidence/pr16_circus_coldboot/35422605107/streak.json": {
       "sha256": "28239f94e3ccab10763400d304d76314f99b55c4a2a5b6a0d6cee7e56a643600",
       "size": 1019
+    },
+    "evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.stderr": {
+      "sha256": "295bf73bba21bb75124f5d8c6dfbc8036bc3567742dc3411b6e26c2f4910f021",
+      "size": 114774
+    },
+    "evidence/pr16_circus_finish/35424764823/circus-streak-batch-save.stdout": {
+      "sha256": "28e1d0f4fee9fa993565289d5137176e652595f4fbda9db317c8e00452e2c4e7",
+      "size": 588
+    },
+    "evidence/pr16_circus_finish/35424764823/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_finish/35424764823/report.json": {
+      "sha256": "c2829576e8b29be41bfd2c296aa2e6c20d7037c2b45f5d46f449596622657b39",
+      "size": 98089
     },
     "evidence/pr16_circus_first_native/original.stderr.txt": {
       "sha256": "a790621a10611e43aaceecb693eefcfc5afdffc9babed76f310c57fbdeb37b14",
@@ -5174,7 +5194,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "最新cold-load中断復旧はActions成功として照合・継承。実2勝後の敗北原本はfailureのまま保持し、未完3勝/9BPだけの入力方策を追加。",
+  "source_change_review_ja": "未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

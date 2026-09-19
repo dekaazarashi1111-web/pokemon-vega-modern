@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-最新cold-load中断復旧はActions成功として照合・継承。実2勝後の敗北原本はfailureのまま保持し、未完3勝/9BPだけの入力方策を追加。
+未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。
 
 **次: 実3勝/9BPの今回原本を照合し、未達なら最初の不一致だけを修復。成功後は真正30連勝・正規特性抑制へ進む。cold-load中断/旧敗北/BP/Ringの受入単体は再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `0dcc31b3db577f453dc11298470a5cf1e8c5d52a`。
+証拠のsource HEAD: `f10d587cfff0b31ee032d0c6e43227d842236555`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
