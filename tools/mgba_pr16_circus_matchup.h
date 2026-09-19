@@ -1,6 +1,7 @@
 #ifndef VEGA_CIRCUS_MATCHUP_H
 #define VEGA_CIRCUS_MATCHUP_H
 #include <stdint.h>
+#include "mgba_pr16_circus_menu_identity.h"
 /* 純粋な入力選択。施設/RNG/能力/owner/partyへhost書込みは行わない。 */
 static unsigned mt_role(unsigned streak,unsigned own,unsigned foe,uint32_t status,uint32_t foe_status,unsigned hp,unsigned maxhp)
 {
@@ -46,7 +47,15 @@ static unsigned mt_shift(struct mCore *c,unsigned role)
     n_cursor(c,2U);b_press(c,QOL_KEY_A,120U);
     for(unsigned f=0;f<1800U && read32(c,BATTLE_CORE_MAIN_CALLBACK2)!=P02S_CB2_PARTY;++f)b_frame(c,0U);
     bp_require(c,read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY,"Circus matchup normal party menu absent");
-    b_frames_run(c,0U,60U);wx_cursor(c,target);
+    b_frames_run(c,0U,60U);
+    /* メニュー表示時のparty並替えに追従。battle前slotをUIへ流用しない。 */
+    uint32_t menu_pid[3],menu_ot[3];uint16_t menu_species[3];
+    for(unsigned i=0;i<3U;++i){uint32_t q=QOL_PLAYER_PARTY+100U*i;
+        menu_pid[i]=read32(c,q);menu_ot[i]=read32(c,q+4U);menu_species[i]=read16(c,q+0x20U);}
+    unsigned menu_slot=mi_find(read8(c,QOL_PLAYER_PARTY_COUNT),menu_pid,menu_ot,menu_species,pid,ot,species);
+    bp_require(c,menu_slot<3U,"Circus menu selected individual absent or ambiguous");
+    fprintf(stderr,"CIRCUS_MENU frame=%u requested=%u resolved=%u pid=%u ot=%u species=%u\n",b_frames,target,menu_slot,pid,ot,species);
+    wx_cursor(c,menu_slot);
     char shot[64];snprintf(shot,sizeof(shot),"matchup-%u-party",mt_shifts+1U);g_shot(shot);
     b_press(c,QOL_KEY_A,80U);
     if(read32(c,BATTLE_CORE_MAIN_CALLBACK2)==P02S_CB2_PARTY)b_press(c,QOL_KEY_A,80U);
