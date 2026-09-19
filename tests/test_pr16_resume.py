@@ -49,6 +49,10 @@ class ResumeTests(unittest.TestCase):
                 *[{'id':x,'phase':'P08'} for x in self.s['remaining_p08_gate_ids']],
                 {'id':'P03','complete':True,'remaining_physical_gap_ids':['MUST_NOT_REOPEN']}])
         self.put(m.BACKLOG, backlog)
+        # setUpで意図的に合成した台帳だけを再bindingする。実検査中の改作は同期しない。
+        if m.BACKLOG in self.s['source_bindings']:
+            raw=(self.root/m.BACKLOG).read_bytes()
+            self.s['source_bindings'][m.BACKLOG]=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
         for name in m.ROUTE_PATHS+m.HISTORY_PATHS+('design/run_log.md','design/version_log.md'):
             p=self.root/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('# original\nKEEP ORIGINAL\n',encoding='utf-8')
         self.sync()

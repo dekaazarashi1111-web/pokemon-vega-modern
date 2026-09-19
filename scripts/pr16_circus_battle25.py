@@ -36,7 +36,7 @@ SELF='scripts/pr16_circus_battle25.py'
 HEADER='tools/mgba_pr16_circus_battle25.h'
 TEST='tests/test_pr16_circus_battle25.py'
 WORKFLOW='.github/workflows/pr16-circus-battle25.yml'
-FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py')
+FILES=(SELF,HEADER,TEST,WORKFLOW,'scripts/pr16_circus_battle25_policy.py','tests/test_pr16_resume.py')
 REPORT='content/modernization/pr16_circus_battle25.json'
 OUT=ROOT/'.local/pr16-circus-battle25'
 EVIDENCE='evidence/pr16_circus_battle25/'
@@ -216,6 +216,7 @@ def prepare():
         accepted_standalone_replays=0,rom_changes=0,genuine_30_wins_verified=False,lifecycle_verified=False,
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])
     value['prior_setup_failures'].append(dict(run_id=35467683171,job_id=105962909421,source_head='c4ac48db61d6dcd5bb90fc4712dd548694cfff8e',original_conclusion='failure',native_processes=0,artifact_id=10591528567,archive=dict(size=139413,sha256='7639b0db1de7d7a53c29e48c7f609fb6ca1dbdc9f14c9d5bc3bab04882d46004'),reason_ja='pending_runsのtested_head/status必須キー不一致。記録producerの実生成式を回帰検査。'))
+    value['prior_setup_failures'].append(dict(run_id=35467845356,job_id=105963334813,source_head='0ff65b356c70182b7835bfa50b526bb1894a572d',original_conclusion='failure',native_processes=0,artifact_id=10592060796,archive=dict(size=141478,sha256='5f768a4cd77395979a9282250c874be993925fc35a2de373b5de9cc45538c904'),reason_ja='本物の投影validateはPASS。resumeテストの合成台帳が元台帳のhashを継承して5件失敗。setUpの意図したfixture生成直後だけbinding更新し、後続の改作拒否を維持。'))
     checkpoint(value,'START')
 
 
