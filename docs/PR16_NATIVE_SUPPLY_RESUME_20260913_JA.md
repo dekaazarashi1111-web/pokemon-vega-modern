@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'continuous process failed'}]
+前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。
 
-**次: content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。**
+**次: 進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9c2368ce58f7e5ff226ec7c802d3c275d96b014b`。
-当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。
+証拠のsource HEAD: `c7218dbf663df9c3b5be868712037e94c76d430d`。
+当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
 
 ## 最短の再開手順
 
@@ -25,13 +25,11 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_battle25.json`
-- `scripts/pr16_circus_battle25.py`
-- `tools/mgba_pr16_circus_battle25.h`
-- `tests/test_pr16_circus_battle25.py`
-- `.github/workflows/pr16-circus-battle25.yml`
-- `scripts/pr16_circus_battle25_policy.py`
-- `tests/test_pr16_resume.py`
+- `content/modernization/pr16_circus_battle28.json`
+- `scripts/pr16_circus_battle28.py`
+- `scripts/pr16_circus_battle28_policy.py`
+- `tests/test_pr16_circus_battle28.py`
+- `.github/workflows/pr16-circus-battle28.yml`
 - `content/modernization/pr16_saved_reconstruction.json`
 - `content/modernization/p08_remaining_work.json`
 
@@ -69,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- USER-20260920-CIRCUS-BATTLE28 run35471833294の新原本を先に読む。旧run35468164696の27勝/28戦目瀕死停止を成功へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。
 - USER-20260920-CIRCUS-BATTLE25 run35468164696の原本と実停止を先に読む。旧run35457636604を30勝成功へ改作しない。保存JSON/固定生成Cを使用し旧親builder/ARM/Ring hostを呼ばない。
 - run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。
 - run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。
@@ -291,6 +290,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧30勝目標run35457636604はfailureのまま。今回runは記録時in_progressで全CI greenは主張しない。
+前runは27勝到達だがSave未達のfailureを保持。今回runは記録時in_progress。全CI greenは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

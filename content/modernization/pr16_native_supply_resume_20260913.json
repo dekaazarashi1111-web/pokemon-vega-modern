@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'continuous process failed'}]",
+    "current_stop": "前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。",
+    "next_step": "進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "USER-20260920-CIRCUS-BATTLE28 run35471833294の新原本を先に読む。旧run35468164696の27勝/28戦目瀕死停止を成功へ改作しない。受入単体/旧ARM/Ring host再実行は禁止。",
     "USER-20260920-CIRCUS-BATTLE25 run35468164696の原本と実停止を先に読む。旧run35457636604を30勝成功へ改作しない。保存JSON/固定生成Cを使用し旧親builder/ARM/Ring hostを呼ばない。",
     "run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。",
     "run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。",
@@ -821,17 +822,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。",
+    "goal_ja": "進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_BATTLE25_ORDINARY_POLICY",
+    "id": "CIRCUS_BATTLE28_HANDOFF",
     "read_paths": [
-      "content/modernization/pr16_circus_battle25.json",
-      "scripts/pr16_circus_battle25.py",
-      "tools/mgba_pr16_circus_battle25.h",
-      "tests/test_pr16_circus_battle25.py",
-      ".github/workflows/pr16-circus-battle25.yml",
-      "scripts/pr16_circus_battle25_policy.py",
-      "tests/test_pr16_resume.py",
+      "content/modernization/pr16_circus_battle28.json",
+      "scripts/pr16_circus_battle28.py",
+      "scripts/pr16_circus_battle28_policy.py",
+      "tests/test_pr16_circus_battle28.py",
+      ".github/workflows/pr16-circus-battle28.yml",
       "content/modernization/pr16_saved_reconstruction.json",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -843,20 +842,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "9c2368ce58f7e5ff226ec7c802d3c275d96b014b",
+  "observed_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
   "observed_head_checks": {
-    "scope_head": "9c2368ce58f7e5ff226ec7c802d3c275d96b014b",
+    "scope_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
     "runs": [
       {
-        "id": 35457636604,
-        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35468164696,
+        "head_sha": "0d0e840cb8c277f70bc149f0767b7047ee35ea34",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "旧30勝目標run35457636604はfailureのまま。今回runは記録時in_progressで全CI greenは主張しない。"
+    "reason_ja": "前runは27勝到達だがSave未達のfailureを保持。今回runは記録時in_progress。全CI greenは主張しない。"
   },
-  "observed_head_semantics": "当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。",
+  "observed_head_semantics": "当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -923,10 +922,10 @@
   },
   "pending_runs": [
     {
-      "run_id": 35468164696,
-      "tested_head": "766073d61da2eb7fdc08ec928c1506819d8ee5f8",
+      "run_id": 35471833294,
+      "tested_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
       "status": "in_progress",
-      "scope": "battle25-continuation"
+      "scope": "battle28-handoff"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1590,11 +1589,11 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 1,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
-    "scope_ja": "保存byte復元と25戦目限定通常入力。24勝は継続prefixのみ。履歴bootstrap全体ARM数はunknownのまま。"
+    "scope_ja": "保存byte/固定生成Cを再利用。27勝は次の未完部分への連続prefixのみ。歴史的ARM総数unknownは維持。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -7844,10 +7843,42 @@
     "evidence/pr16_circus_battle25/35468164696/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "scripts/pr16_circus_battle28.py": {
+      "size": 13909,
+      "sha256": "6200ddedc143cc0b8e1d48b432606ecd4ff4afa1bc859d7dfbf38f0f394a7b08"
+    },
+    "scripts/pr16_circus_battle28_policy.py": {
+      "size": 6002,
+      "sha256": "932d110c32523658906e98b209f53a48ab77f580b3b92b3ed3a5313081863604"
+    },
+    "tests/test_pr16_circus_battle28.py": {
+      "size": 4435,
+      "sha256": "db9f5ee146d9ca2f92baadb988191e484b72cafd2ed657f38af2b107d99ead04"
+    },
+    ".github/workflows/pr16-circus-battle28.yml": {
+      "size": 2264,
+      "sha256": "d7d2d62e575c36b46a9353c249ee4d8db9feabccc2cc1aeb681cab405e26c6c9"
+    },
+    "content/modernization/pr16_circus_battle28.json": {
+      "size": 13639,
+      "sha256": "8946b44217ea3708492d5e689b50edcc8a3143bcec7871dc40fefb8a5f57b310"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stderr": {
+      "size": 1291,
+      "sha256": "fcc871ac12796be95045ab0356a8aecfacc69068be0c0e69256b20e3085acce8"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'continuous process failed'}]",
+  "source_change_review_ja": "前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -7873,6 +7904,15 @@
     "path": "content/modernization/pr16_circus_battle25.json",
     "run_id": 35468164696,
     "classification": "BATTLE25_DIAGNOSTIC_OPEN",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
+  },
+  "circus_battle28": {
+    "path": "content/modernization/pr16_circus_battle28.json",
+    "run_id": 35471833294,
+    "classification": "CIRCUS_BATTLE28_HANDOFF_IMPLEMENTED_NATIVE_PENDING",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

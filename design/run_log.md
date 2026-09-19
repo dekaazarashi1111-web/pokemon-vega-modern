@@ -8480,3 +8480,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit。自己SHAはremote/receipt参照。
 - Network: GitHub固定run/artifact照合。入力/ROM/save/credentialの新規追跡なし。旧builder/ARM/Ring hostを実行しない。
 - Next: content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。
+
+
+## 2026-09-19T21:56:18Z — USER-20260920-CIRCUS-BATTLE28-START
+- Timestamp: 2026-09-19T21:56:18Z
+- Task: USER-20260920-CIRCUS-BATTLE28 / 28戦目通常強制交代の引渡し
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle28-handoff-v1
+- Summary: 前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle28.py, scripts/pr16_circus_battle28_policy.py, tests/test_pr16_circus_battle28.py, .github/workflows/pr16-circus-battle28.yml, content/modernization/pr16_circus_battle28.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stderr, evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規9契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
