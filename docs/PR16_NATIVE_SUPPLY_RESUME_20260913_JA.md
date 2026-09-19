@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-17勝後のCPU/weather読取原本を保存。正常Save/30勝の受入とは区別し、実際の停止命令からruntime修復へ進む。
+実17勝後は未実装Drought palette loaderのcursorが進まずstate2で無限待機。CircusWIN/有効ownerとledger/正規script/weather12だけをguardし、空loader cursor2byte以外はnative初期化へ委譲する修正を準備。
 
-**次: 新しい実PC/LR/weather原本の最初の停止命令だけを修復する。勝利/party/task/PCをhostから注入しない。2独立linkとROM変更影響台帳を作り新候補で継続を検証する。旧17勝診断や受入済み単体は繰り返さない。**
+**次: 新候補の実17勝後復帰とnative完了cursor/集計/原party600/owner64/通常Save/fresh Continueを画像込みで確認。真正30勝/90BPが未達なら最初の新敗北から入力だけを改善し、達成後に正規特性抑制を別検証する。旧診断/受入単体/旧2linkを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `dc287bed92e148189d919f59a9e9ccc50ec8db35`。
+証拠のsource HEAD: `bf27c13d5ff9f4089084cec269389b3d492ecb13`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_win_return_cpu.py`
+- `scripts/pr16_circus_drought.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_win_return_cpu.h`
+- `overlays/circus_streak/circus_drought.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,8 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。
+- run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。
 - run35432359547/job105869102983: host9と修正wrapper5はPASS、実17戦目WINまで80events完全一致。新readonly13点はready1/palette1/両waiter/先頭080f7abdを観測しready0仮説を反証。native受入/Save/30勝ではなくActions failureを保持。同候補の同じ診断は再実行しない。
 - run35431539401/job105866926442はconfigure後の診断module再import testでprepare停止、native0。wrapperのSELF置換を修復して未実行readonly診断へ進む。旧failureを成功へ読み替えない。
 - run35431388329は固定resumeの旧source hashでprepare停止、native0。3ファイルの旧commit照合だけで更新し、ゲームの受入を変えない。
