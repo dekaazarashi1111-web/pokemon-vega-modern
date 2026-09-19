@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
+    "current_stop": "Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。",
+    "next_step": "実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,8 +88,8 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_TAUNT_DIAGNOSTIC_OPEN",
-    "path": "content/modernization/pr16_circus_taunt.json",
+    "classification": "CIRCUS_WIN_RETURN_READONLY_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_trace.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -137,8 +137,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35430246002,
-    "source_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af",
+    "run_id": 35431032216,
+    "source_head": "be159e064e067927c850589f54d3cfa7add2e79d",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -241,6 +241,11 @@
     "run_id": 35366959217,
     "status": "THUMB_ADAPTER_REPAIRED_PREFIX_INHERITED_NATIVE_OPEN",
     "tested_head": "8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7"
+  },
+  "circus_win_return_trace": {
+    "classification": "CIRCUS_WIN_RETURN_READONLY_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_trace.json",
+    "run_id": 35431032216
   },
   "closeout_retention_repair": {
     "failed_source_only_run": 34739728185,
@@ -422,6 +427,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35430246002/job105863397028は15勝prefix不変・実16戦目WIN/settled16・17戦目WIN後black画面/phase2のまま停止。saved/reloadedなし、16勝保存成功や30勝へ昇格しない。actions failure原本を保持し、直後のreadonly traceだけを追加する。",
     "run35429677248/job105861895032は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは15勝後returnまで71events完全一致を要求し、受入単体を独立再実行しない。",
     "run35428983641/job105859956663は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは16戦目actionまで74events完全一致を要求し、受入単体を独立再実行しない。",
     "run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。",
@@ -674,15 +680,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。",
+    "goal_ja": "実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_taunt.py",
+      "scripts/pr16_circus_win_return_trace.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_taunt.h",
+      "tools/mgba_pr16_circus_win_return_trace.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -694,10 +700,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af",
+  "observed_head": "be159e064e067927c850589f54d3cfa7add2e79d",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "02f9626a47604c28fcc0158a0fb0faafe4a4e1af"
+    "scope_head": "be159e064e067927c850589f54d3cfa7add2e79d"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -766,9 +772,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35430246002,
+      "run_id": 35431032216,
       "status": "in_progress",
-      "tested_head": "9f0e5078ee54ff9d2df3f18682f0457b95296eff"
+      "tested_head": "be159e064e067927c850589f54d3cfa7add2e79d"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1591,6 +1597,10 @@
       "sha256": "2db0eb6f0b6609532510dd6a3e3d803630bf90d35b93679c17c956523a29fc07",
       "size": 6368
     },
+    ".github/workflows/pr16-circus-win-return-trace.yml": {
+      "sha256": "08bfb901d0975135d1ddfcbbfc12d576e075311a9a4862205b43c8f33b55d536",
+      "size": 1851
+    },
     ".github/workflows/pr16-p05-native-supply-evidence-map.yml": {
       "sha256": "b6e715faf64cdc8b74da02b953840ea04aa03b304cf2eef08ef445c5cbb002eb",
       "size": 12319
@@ -2348,8 +2358,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "4244adfba02a8dce9f84593254c04272f4226795eddf4c56aef9d73188cac0f2",
-      "size": 132780
+      "sha256": "cb2b5669f3e8f24411a1e28b298d638c0febf1a75bf738792df522028ecea050",
+      "size": 132967
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2410,6 +2420,10 @@
     "content/modernization/pr16_circus_visual_review_20260919.json": {
       "sha256": "f8c68129989eccd3146e3009786b2f4f2cfee9f13a08d4cfc4a1fa1dbfa25abd",
       "size": 1014
+    },
+    "content/modernization/pr16_circus_win_return_trace.json": {
+      "sha256": "2f56b97f4c6064ea338595a127b0082ca1ff87d64518c259c24a9f686cf99a0b",
+      "size": 1196
     },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
@@ -4031,6 +4045,10 @@
       "sha256": "d45286f1813d4e7087bfa68aba2bdf756ca7142a7224d12d0bfab02116d125b4",
       "size": 16392
     },
+    "scripts/pr16_circus_win_return_trace.py": {
+      "sha256": "53d4de5a3b93f7a04baa148e6fa612c564abfb35e97e3e64e9f631816b5d5852",
+      "size": 9837
+    },
     "scripts/pr16_gear_originals.py": {
       "sha256": "7d4b617b96826343087dc2ca27cf017c9ad47e5bef1a4b91c90974da58f66bea",
       "size": 10661
@@ -4931,6 +4949,10 @@
       "sha256": "418f67777990a9bae964e086697ae9d146982dd8975088ad32e3fe5f5defb62b",
       "size": 5921
     },
+    "tests/test_pr16_circus_win_return_trace.py": {
+      "sha256": "418174da592d87c14ed2d6d5abbbc0c4d30bfd307f5dd075cb2da05d4ac87b26",
+      "size": 5937
+    },
     "tests/test_pr16_p05_native_supply_evidence_map.py": {
       "sha256": "053bb21ba8d94da9121e2dac3c7429f4ecb607e36d65aafee0b96e06a6e2032e",
       "size": 5839
@@ -5611,6 +5633,10 @@
       "sha256": "d6281327a96b81fec5ab6bd42f28737b9200e1b2f60a590fe465d8fc08be1ad9",
       "size": 1919
     },
+    "tools/mgba_pr16_circus_win_return_trace.h": {
+      "sha256": "1b479a4bd789b904c82e4062b9a27a5f3f3eebaa487bf971ec20809fc2c14ebb",
+      "size": 1783
+    },
     "tools/mgba_pr16_ring_caller_snapshot.c": {
       "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68",
       "size": 7367
@@ -5621,7 +5647,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
+  "source_change_review_ja": "Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

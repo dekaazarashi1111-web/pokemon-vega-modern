@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Taunt先発・対状態技入力後の連続入場を記録: 実勝数未確定。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。
 
-**次: 実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。**
+**次: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `02f9626a47604c28fcc0158a0fb0faafe4a4e1af`。
+証拠のsource HEAD: `be159e064e067927c850589f54d3cfa7add2e79d`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_taunt.py`
+- `scripts/pr16_circus_win_return_trace.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_taunt.h`
+- `tools/mgba_pr16_circus_win_return_trace.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35430246002/job105863397028は15勝prefix不変・実16戦目WIN/settled16・17戦目WIN後black画面/phase2のまま停止。saved/reloadedなし、16勝保存成功や30勝へ昇格しない。actions failure原本を保持し、直後のreadonly traceだけを追加する。
 - run35429677248/job105861895032は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは15勝後returnまで71events完全一致を要求し、受入単体を独立再実行しない。
 - run35428983641/job105859956663は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは16戦目actionまで74events完全一致を要求し、受入単体を独立再実行しない。
 - run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。
