@@ -87,8 +87,15 @@ int main(void){struct mCore c={0};wr_frame(&c,1U);return b_frames!=1U || wr_rows
             p=Path(d);(p/'test.c').write_text(text)
             subprocess.run(['cc','-std=c11','-Wall','-Wextra','-Werror',str(p/'test.c'),'-o',str(p/'test')],check=True,capture_output=True)
             subprocess.run([str(p/'test')],check=True,capture_output=True)
+    def test_loss_watcher_calls_trace_without_redefining_frame_macro(self):
+        old="b_frame(c,keys);\n#define b_frame fw_frame\n"
+        self.assertEqual(task.chained_watch(old),"wr_frame(c,keys);\n#define b_frame fw_frame\n")
+        self.assertEqual(task.chained_native_source().count('chained_watch('),1)
+        for bad in ('',old+old,old.replace('b_frame(c,keys);','b_frame(c,0);')):
+            with self.assertRaises(ValueError):task.chained_watch(bad)
     def test_no_fade_call_or_key_replacement_is_injected(self):
         text=(ROOT/task.HEADER).read_text()
+        self.assertNotIn('#define b_frame',text)
         for token in ('write8(', 'write16(', 'write32(', 'call_preserving(', 'loadState(', '0x0807D361'):self.assertNotIn(token,text)
         self.assertIn('b_frame(c,keys);',text)
         self.assertIn('wr_waiting==180U',text)

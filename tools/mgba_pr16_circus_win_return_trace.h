@@ -21,4 +21,3 @@ static void wr_frame(struct mCore *c,uint32_t keys)
     fprintf(stderr,"\"}\n");
     if(wr_waiting==180U){g_shot("win-return-wait-180");bp_require(c,false,"read-only win return witness collected");}
 }
-#define b_frame wr_frame

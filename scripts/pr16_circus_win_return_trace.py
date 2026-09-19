@@ -2,6 +2,7 @@
 """入力不変で実17戦目勝利後を読む。診断完了とnative受入を厳密に分ける。"""
 from pathlib import Path
 import json
+import inspect
 import os
 import sys
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,9 +17,11 @@ WORKFLOW='.github/workflows/pr16-circus-win-return-trace.yml'
 REPORT='content/modernization/pr16_circus_win_return_trace.json'
 OLD='content/modernization/pr16_circus_taunt.json'
 RAW='evidence/pr16_circus_taunt/35430246002/native/'+probe.CASE
-TASK='USER-20260919-CIRCUS-WIN-RETURN-TRACE'
+TASK='USER-20260919-CIRCUS-WIN-RETURN-TRACE-WATCHCALL'
 OUT=ROOT/'.local/pr16-circus-win-return-trace'
-FILES=(SELF,HEADER,TEST,WORKFLOW,OLD,RAW+'.stdout',RAW+'.stderr',RAW+'.process.json',*previous.FILES,'scripts/pr16_circus_taunt.py')
+COMPILE_FAILURE='evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr'
+COMPILE_REPORT='evidence/pr16_circus_win_return_trace/35431032216/native/report.json'
+FILES=(SELF,HEADER,TEST,WORKFLOW,COMPILE_FAILURE,COMPILE_REPORT,OLD,RAW+'.stdout',RAW+'.stderr',RAW+'.process.json',*previous.FILES,'scripts/pr16_circus_taunt.py')
 NEXT='実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。'
 original_policy=previous.policy_text
 
@@ -72,7 +75,11 @@ def checkpoint(value,phase,stop):
 
 def prepare():
     import pr16_resume as resume
-    b=configure();r=b.rec;r.scope();resume.validate(ROOT);need(not (ROOT/REPORT).exists(),'trace already recorded')
+    b=configure();r=b.rec;r.scope();resume.validate(ROOT)
+    prior=resume.load(ROOT,REPORT);failed=resume.load(ROOT,COMPILE_REPORT);prior_run=r.api('actions/runs/35431032216')
+    need(prior['recording_run']==35431032216 and prior['diagnostic_complete'] is False and failed['actual_new_processes']==0
+        and prior_run['status']=='completed' and prior_run['conclusion']=='failure','compile-only preimage differs')
+    need('error: "b_frame" redefined' in (ROOT/COMPILE_FAILURE).read_text(),'compile diagnostic absent')
     old=resume.load(ROOT,OLD);run=r.api('actions/runs/35430246002')
     need(run['status']=='completed' and run['conclusion']=='failure' and run['head_sha']=='9f0e5078ee54ff9d2df3f18682f0457b95296eff','original Actions differs')
     need(old['native']['status']=='FAIL' and old['native']['actual_new_processes']==1 and not old['native']['results'],'original terminal failure differs')
@@ -81,6 +88,7 @@ def prepare():
     need(events[-1]['label']=='timeout' and events[-1]['owner']==events[-2]['owner'] and not events[-1]['newbs'],'original win did not remain armed')
     value=dict(schema_version=1,classification='CIRCUS_WIN_RETURN_READONLY_PREPARED',candidate=old['candidate'],
         inherited_run=dict(run_id=35430246002,job_id=105863397028,original_conclusion='failure',saved=False),
+        compile_failure_preserved=dict(run_id=35431032216,job_id=105865517281,native_processes=0,original_conclusion='failure',path=COMPILE_REPORT,compiler=COMPILE_FAILURE),
         host_tests=r.tests([Path(TEST).name]),accepted_native_cases_replayed=0,independent_arm_links_replayed=0,
         diagnostic_complete=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False,
         original_visual_review=dict(artifact_id=10580033276,artifact_sha256='adb7dd1548ab76c4e18023d8a62148f11d9ad7666b072c0eb95ce89804631ec1',
@@ -98,9 +106,18 @@ def validate_trace():
     events=probe.parse(raw);verify_prefix(events,(ROOT/c.PREFIX).read_bytes())
     need(len(events)==79,'new accepted lifecycle was unexpectedly executed')
     return waiting_witness([probe.strict(l[18:]) for l in raw.splitlines() if l.startswith(b'CIRCUS_WIN_RETURN ')])
+def chained_native_source():
+    source=inspect.getsource(c.native)
+    old="(ROOT/b.fade.WATCH).read_text()"
+    need(source.count(old)==1,'inherited native watcher boundary')
+    return source.replace(old,"chained_watch((ROOT/b.fade.WATCH).read_text())")
+def chained_watch(text):
+    need(text.count('b_frame(c,keys);')==1 and text.count('#define b_frame fw_frame')==1,'inherited loss watcher boundary')
+    return text.replace('b_frame(c,keys);','wr_frame(c,keys);')
 def native():
-    configure()
-    try:c.native()
+    configure();ns=dict(c.__dict__);ns['chained_watch']=chained_watch
+    exec(compile(chained_native_source(),SELF+':watch-call','exec'),ns)
+    try:ns['native']()
     except ValueError as error:
         need(str(error)=='continuous lifecycle failed; inspect original','unexpected native failure: '+str(error))
     else:raise ValueError('readonly trace did not reach specified boundary')
