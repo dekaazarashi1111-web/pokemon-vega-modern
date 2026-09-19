@@ -30,7 +30,7 @@ jobs:
                     '.github/workflows/pr16*.yml','infra/*.sh','infra/*.json',
                     'scripts/rom*.py','AGENTS.md','CHATGPT_RESUME.md','scripts/romtools/*.py']
           allowed={'.py','.c','.h','.S','.ld','.json','.yml','.sh','.md'}
-          members={}
+          members={};excluded={}
           with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
               for name in subprocess.check_output(['git','ls-files'],text=True).splitlines():
                   p=root/name
@@ -38,12 +38,13 @@ jobs:
                   if p.suffix not in allowed or p.is_symlink():continue
                   raw=p.read_bytes();raw.decode('utf-8')
                   assert b'\0' not in raw
-                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+                  if re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw):
+                      excluded[name]='秘密候補を含むため本文は収録しない';continue
                   z.writestr(name,raw);members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
               metadata={'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
-                        'native_processes':0,'arm_compiles':0,'host_tests_replayed':0,'members':members}
+                        'native_processes':0,'arm_compiles':0,'host_tests_replayed':0,'members':members,'excluded':excluded}
               z.writestr('source-manifest.json',json.dumps(metadata,indent=2)+'\n')
-          print(json.dumps({'head':metadata['head'],'files':len(members),'native_processes':0,'arm_compiles':0}))
+          print(json.dumps({'head':metadata['head'],'files':len(members),'excluded':len(excluded),'native_processes':0,'arm_compiles':0}))
           PY
       - uses: actions/upload-artifact@v4
         with:
