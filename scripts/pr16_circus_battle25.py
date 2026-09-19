@@ -173,7 +173,10 @@ def checkpoint(value,phase):
             write(name,raw);evidence[name]=identity(raw)
     value['text_evidence']=evidence
     write(REPORT,stable(value));write(resume.BACKLOG,stable(backlog))
-    for name in (*FILES,REPORT,resume.BACKLOG,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())
+    for name in (*FILES,REPORT,*evidence):state['source_bindings'][name]=identity((ROOT/name).read_bytes())
+    # 台帳は次段の再開routingも更新する可変状態。既存bindingだけを同期し、新規固定しない。
+    if resume.BACKLOG in state['source_bindings']:
+        state['source_bindings'][resume.BACKLOG]=identity((ROOT/resume.BACKLOG).read_bytes())
     write(resume.STATE,stable(state));write(resume.DOC,resume.render(state).encode())
     resume.validate(ROOT)
     out,err,proc=capture([sys.executable,'-m','unittest','discover','-s','tests','-p','test_pr16_resume.py','-v'],'resume-'+phase)
@@ -217,6 +220,7 @@ def prepare():
         physical_admission_accepted=False,suppression_accepted=False,release_ready=False,failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])
     value['prior_setup_failures'].append(dict(run_id=35467683171,job_id=105962909421,source_head='c4ac48db61d6dcd5bb90fc4712dd548694cfff8e',original_conclusion='failure',native_processes=0,artifact_id=10591528567,archive=dict(size=139413,sha256='7639b0db1de7d7a53c29e48c7f609fb6ca1dbdc9f14c9d5bc3bab04882d46004'),reason_ja='pending_runsのtested_head/status必須キー不一致。記録producerの実生成式を回帰検査。'))
     value['prior_setup_failures'].append(dict(run_id=35467845356,job_id=105963334813,source_head='0ff65b356c70182b7835bfa50b526bb1894a572d',original_conclusion='failure',native_processes=0,artifact_id=10592060796,archive=dict(size=141478,sha256='5f768a4cd77395979a9282250c874be993925fc35a2de373b5de9cc45538c904'),reason_ja='本物の投影validateはPASS。resumeテストの合成台帳が元台帳のhashを継承して5件失敗。setUpの意図したfixture生成直後だけbinding更新し、後続の改作拒否を維持。'))
+    value['prior_setup_failures'].append(dict(run_id=35468065354,job_id=105963925331,source_head='fcb8ac8ffa73c1523d93187f48f90453a7d39cdd',original_conclusion='failure',native_processes=0,artifact_id=10591801735,archive=dict(size=141358,sha256='b5730cc0cfb1f9b466aa5da77ea27594670fd02bf216ca0a54cc99ad5b95dbc6'),reason_ja='可変P08台帳を新規source固定したため旧install_routingの意図した更新でhash不一致。既存記録器と同じ条件付きbindingへ修正。台帳の意味検査は維持。'))
     checkpoint(value,'START')
 
 
