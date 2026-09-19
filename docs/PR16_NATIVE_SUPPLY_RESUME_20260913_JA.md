@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@ run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが�
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `98d36df16223cc1b1d34b33ada62ede5e53b9def`。
+証拠のsource HEAD: `9bd9d65fa7679d1656771951fb8444b231588e81`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

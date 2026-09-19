@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。",
+    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35419024634,
-    "source_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def",
+    "source_head": "9bd9d65fa7679d1656771951fb8444b231588e81",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def",
+  "observed_head": "9bd9d65fa7679d1656771951fb8444b231588e81",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def"
+    "scope_head": "9bd9d65fa7679d1656771951fb8444b231588e81"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2180,8 +2180,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "8a75d3915f335e5781774c784ff25cec8b917adb9e114399d2fe655277e44105",
-      "size": 130844
+      "sha256": "d604587e493145127e4b69f69929e702707ec8becd9bb42278d7b688f5ab26ee",
+      "size": 130843
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2208,8 +2208,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "ddc231d5986d6cf5b34569afc0e6a786e22cb1d0bd5289002912710c89243bd8",
-      "size": 11652
+      "sha256": "c04a958d6fe90ec8e1395730906bb1ff4a4a45e71543c02bc47342d41fed223b",
+      "size": 142951
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3038,6 +3038,30 @@
     "evidence/pr16_circus_three_win/35418424222/report.json": {
       "sha256": "adf1fdaa2d3202ee3a2d147aab15a54e21039fb9bdb59ab45e66b002b149fee1",
       "size": 123877
+    },
+    "evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.stderr": {
+      "sha256": "f1804113cef58205c595a956f2b244ded2408e55fa0fe0af1e5243c104c850d6",
+      "size": 125138
+    },
+    "evidence/pr16_circus_three_win/35419024634/circus-streak-batch-save.stdout": {
+      "sha256": "492cffad504fabfcd0e57bcb68ba3a8ea8ae65964118640a1c9c28cb95329042",
+      "size": 588
+    },
+    "evidence/pr16_circus_three_win/35419024634/pivot-proof.json": {
+      "sha256": "d84540d782c9bdac643afeb8f8eaa3151d0588e875baec0515471c42d7dcddca",
+      "size": 580
+    },
+    "evidence/pr16_circus_three_win/35419024634/reconstruction.json": {
+      "sha256": "bcbf8b14b8640151dab4fb241c0a2807a56b331e49290d01cb45355fe0407421",
+      "size": 175
+    },
+    "evidence/pr16_circus_three_win/35419024634/report.json": {
+      "sha256": "354cb3f1d50fa28ae1bbab4c8671d98da2aa6f42bccb09647ba31cc3c42d0445",
+      "size": 124162
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -4845,7 +4869,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。",
+  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
