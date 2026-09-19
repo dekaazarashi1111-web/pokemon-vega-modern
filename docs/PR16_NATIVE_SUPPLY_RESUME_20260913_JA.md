@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。
+6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。
 
 **次: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `9c05fd46922870e04d25155818a1b9f2734372ac`。
+証拠のsource HEAD: `92e204ef58154507a83dce921d41d17278ca97e5`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

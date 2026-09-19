@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。",
+    "current_stop": "6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35414451945,
-    "source_head": "9c05fd46922870e04d25155818a1b9f2734372ac",
+    "source_head": "92e204ef58154507a83dce921d41d17278ca97e5",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "9c05fd46922870e04d25155818a1b9f2734372ac",
+  "observed_head": "92e204ef58154507a83dce921d41d17278ca97e5",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "9c05fd46922870e04d25155818a1b9f2734372ac"
+    "scope_head": "92e204ef58154507a83dce921d41d17278ca97e5"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2160,8 +2160,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "787dd6d834f6a64a0f3560d708f333d2adf0a4273e638e42842b3dd1c07e296f",
-      "size": 130412
+      "sha256": "c554bffc50f3296f8f9ec7e13b881c350d0ce1552297e7a4efb5ec712eba0891",
+      "size": 130428
     },
     "content/modernization/pr16_circus_native_prefix_checkpoint.json": {
       "sha256": "27b0c52cf9240addba0d6146d1ad2cf456e0777ec2fc8ce6503ff65a0f870c1a",
@@ -2176,8 +2176,8 @@
       "size": 195272
     },
     "content/modernization/pr16_circus_return_trace.json": {
-      "sha256": "e87235fd546f2f9b20d6d6135cfc46b832126ec6374be2f7413b4fdc83463131",
-      "size": 444
+      "sha256": "49b59d0aa1e444941dcfb725ff9153d7b67f7d3015aa223b2c6e37fef6f8949f",
+      "size": 6368
     },
     "content/modernization/pr16_circus_streak_build_checkpoint.json": {
       "sha256": "a49d0e6603e23e79c98f966be03529fd16f215a20e0e274d5bb4e52bfe6ee8b6",
@@ -2798,6 +2798,118 @@
     "evidence/pr16_circus_retention/original.stdout.txt": {
       "sha256": "79d8bab547946dec9d1e32d8ca7ab825da92cff78e49cabdc6f7a9ff57736e1a",
       "size": 299
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80109c0.txt": {
+      "sha256": "945fe1ac4ca4a4214d6976909901fe108ec2565534989d9d083294d2ac26c896",
+      "size": 2730
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8011c34.txt": {
+      "sha256": "81f811d53aa9a0387438265ada6556e7ebb5ffc6051a0f679c89ec59cbc37174",
+      "size": 3114
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80339bc.txt": {
+      "sha256": "53052286f32e84d0db62ab9e15fc5610468b404172683a9a85cd6adc0d65b5dd",
+      "size": 3025
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8055df4.txt": {
+      "sha256": "75f44bf4ffdc099d086ec6cdb21114dcaf42e699864655215eb28ac064f237f7",
+      "size": 2391
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8055e50.txt": {
+      "sha256": "d59f5f7cb06fba2cd27b263607fa2df19dc712f5bb09172e9863cda5f2223c68",
+      "size": 2663
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8055e74.txt": {
+      "sha256": "85695ab086941ba70463424938dfb88576f1e960acdc8b086af814d5cbfcba05",
+      "size": 2695
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8055f60.txt": {
+      "sha256": "e6e55f966b9209ca9e29f3c29bc65b421d4be1040e1ca573c878e32631823ba5",
+      "size": 2469
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x8056160.txt": {
+      "sha256": "62cff005cc5f6119618aaa7c9673c62c43bb0386093b301caf53081de86ebd3a",
+      "size": 2682
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80562d4.txt": {
+      "sha256": "29303d9bd06dd62feed12f7bc58f30180e515e76640804255261ed407cb98e14",
+      "size": 2797
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x806e004.txt": {
+      "sha256": "868c845ed60dfddd77710f4c50dba835efbd598a2591859872690603021e3e60",
+      "size": 2921
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x806e030.txt": {
+      "sha256": "94972e3d66f1dbe80539b417bf24a7a8b772ce7fc3e0a4d72fc53f4b33849bd1",
+      "size": 2856
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x807951c.txt": {
+      "sha256": "b707ee71a7361a35a9698d1f7b3e89deed808f8794a58cca39419423f445fd8d",
+      "size": 3109
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x807d464.txt": {
+      "sha256": "8c293aaded549c5aff16e3afd06aafd35d7ec825dece5538795089ce03c3009c",
+      "size": 2580
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x807fbcc.txt": {
+      "sha256": "245dfd41c232736e7ce03f6c82b4d56f0a33ca96367c169996ddc57d906a587d",
+      "size": 2869
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x807fc00.txt": {
+      "sha256": "7990d4a71743056a609b7d3c7f5f915168ac853051a46d9e263cfd3f21f056bf",
+      "size": 2811
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80f01f8.txt": {
+      "sha256": "08ea53ea70f7d9b4d7c108ab3e8f44e497acfcd0a7c3671394a5a0b6f1928de5",
+      "size": 2954
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80f02a4.txt": {
+      "sha256": "449d5ec668608e31babbbfb2b2b8969dbd20c19a36993142a85a605df725d97f",
+      "size": 3103
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80f1f9c.txt": {
+      "sha256": "83919320e9a5f3b5f2b7990e5b6fe985eb158340d06fefd8fbf77df208ba93de",
+      "size": 3060
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x80f2240.txt": {
+      "sha256": "5984350cbfebd312b0c1f4918d0909a35f51e0aa7578310ff1bb0df1d1437f26",
+      "size": 3024
+    },
+    "evidence/pr16_circus_return_trace/35414451945/callback-0x90cdc24.txt": {
+      "sha256": "5bcc0834777bc9671f5420d1df1509c3823ed3ee81578a39c0403a4b5804a6f0",
+      "size": 2701
+    },
+    "evidence/pr16_circus_return_trace/35414451945/diagnostic.json": {
+      "sha256": "66de79025db2c135f86829541a6c2a832a93d430028470e42995ab43a17b856f",
+      "size": 838
+    },
+    "evidence/pr16_circus_return_trace/35414451945/native-circus-streak-batch-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_return_trace/35414451945/native-circus-streak-batch-save.stderr": {
+      "sha256": "241de38f511a5cecbae3ec9df08ca4c5eb130976fcf59be6c567acad292f142f",
+      "size": 149005
+    },
+    "evidence/pr16_circus_return_trace/35414451945/native-report.json": {
+      "sha256": "66b726a82966b26b9a368f2e68f9f62737d6123cec0d675534cbf5210a55b104",
+      "size": 121909
+    },
+    "evidence/pr16_circus_return_trace/35414451945/private-restore.json": {
+      "sha256": "02ad0f577bd29a770c67979bc976b4f918b7a73592525330b03c3fe6bc0965a0",
+      "size": 228
+    },
+    "evidence/pr16_circus_return_trace/35414451945/resume-before.json": {
+      "sha256": "df9f69096ae2c7d1841176d015e32cd18e15be6a2c1d00d9445f594fdb652d37",
+      "size": 83
+    },
+    "evidence/pr16_circus_return_trace/35414451945/rows.json": {
+      "sha256": "fc691dd11e488ac55f3018c337e495e73b77d20f3c7a6ca2e8e83e2571eaa93e",
+      "size": 103512
+    },
+    "evidence/pr16_circus_return_trace/35414451945/stage84.json": {
+      "sha256": "4a79800bf5314f031ea22489e38091d9e0d6b3bf0e0ac500d027530753e47251",
+      "size": 412
     },
     "evidence/pr16_circus_streak/build.json": {
       "sha256": "97f0afdb24c728652088880ff465fe34b5c68e43f8f6a77866bd1997ee29978e",
@@ -4541,7 +4653,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。",
+  "source_change_review_ja": "6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
