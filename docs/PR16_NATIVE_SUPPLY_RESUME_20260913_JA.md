@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-先行原本の実2勝と3勝未完はそのまま保持。新規ケースで実1勝後の第2戦を中断し、未完戦を加算しない復旧と再保存を検証する。
+第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
 
-**次: 第2戦中断後にcurrent0/best1/ABORT一度/原party600/Factory104/BP0を確認し、通常Saveと別core Continueを検証。完了後は未完の実3勝、真正30連勝と正規特性抑制へ。**
+**次: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c1730f5c4a1d2be77738b0452470a21baf6362d4`。
+証拠のsource HEAD: `de5a50a848492e90037f222cb6a989a4a01d8961`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
