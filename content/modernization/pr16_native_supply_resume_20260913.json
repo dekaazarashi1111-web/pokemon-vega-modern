@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。",
+    "current_stop": "メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。",
+    "next_step": "実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35420622910,
-    "source_head": "1338ae5d72e43528a1139dbbe4cd64f9a04bee4d",
+    "run_id": 35421235529,
+    "source_head": "7072b55d2c23d30f3f744843398b0c2933508436",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -598,15 +598,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。",
+    "goal_ja": "実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_menu_recovery.py",
+      "scripts/pr16_circus_drain.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_recovery_trace.c",
+      "tools/mgba_pr16_circus_drain.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "1338ae5d72e43528a1139dbbe4cd64f9a04bee4d",
+  "observed_head": "7072b55d2c23d30f3f744843398b0c2933508436",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "1338ae5d72e43528a1139dbbe4cd64f9a04bee4d"
+    "scope_head": "7072b55d2c23d30f3f744843398b0c2933508436"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35420622910,
+      "run_id": 35421235529,
       "status": "in_progress",
-      "tested_head": "8ebe9031a8a0755e98497a0250291130163f7448"
+      "tested_head": "7072b55d2c23d30f3f744843398b0c2933508436"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1370,6 +1370,10 @@
     ".github/workflows/pr16-bp-win-exchange-record.yml": {
       "sha256": "7743568dd9d4c941766508fc0bfd635f5563d2126ca3843ec504dcf25a843d76",
       "size": 2890
+    },
+    ".github/workflows/pr16-circus-drain.yml": {
+      "sha256": "e4c8a29d3fa55728561fc3db3246479ba2286a91515cd2679d8e17125949bdaa",
+      "size": 1666
     },
     ".github/workflows/pr16-circus-effective.yml": {
       "sha256": "5f5c6e71b8b6455aa68275b456ebeb3d30c50560e8c0d9a65aff8b1b3645bf0b",
@@ -2196,7 +2200,7 @@
       "size": 136085
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "8ddfb8a7d6333b145583047678cff351974f51bf4ab5bc20a419b66302659cd3",
+      "sha256": "da9af85e7d825f631e8ca8f360159c623c885482e5d16802b71691a849fed93f",
       "size": 131031
     },
     "content/modernization/pr16_circus_loss_weather.json": {
@@ -2224,8 +2228,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "4d65531e2b0bed92205e7d1c2b553b96759cd54cebe9d3749ffa9e69f76380c1",
-      "size": 149787
+      "sha256": "7ad5ddbe1e671fe33f05dd50aab430865b660372627c825a9bae96c93e19254f",
+      "size": 21202
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3423,6 +3427,10 @@
       "sha256": "b0b1f994327365e9a80c998bda942f9f158eeb00e747bd55aeb5a8f030afac2f",
       "size": 8785
     },
+    "scripts/pr16_circus_drain.py": {
+      "sha256": "3ce2405c027e51b9fceda21599a49360e926c913058fb2da58292f9f41bd1d7d",
+      "size": 5778
+    },
     "scripts/pr16_circus_effective.py": {
       "sha256": "b9181302b5420620bc617236d1f86132d2371565ff337fcc56a455f4c3b9c3f1",
       "size": 6589
@@ -4271,6 +4279,10 @@
       "sha256": "265c445b460db3545e27157238fe187dde76f92543cb6725ad16aacfdd3f15d7",
       "size": 6516
     },
+    "tests/test_pr16_circus_drain.py": {
+      "sha256": "682349d5c6c6f6a3a4d8f3dd1e2687f06228eecaf45a9f8f2aaf3c9b29b2bbaa",
+      "size": 4131
+    },
     "tests/test_pr16_circus_effective.py": {
       "sha256": "04a1f81cec48282b2f1ba443f9c2138a00ff27842857e9b1caa1dd6b1ff7c021",
       "size": 3905
@@ -4975,6 +4987,10 @@
       "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
       "size": 15394
     },
+    "tools/mgba_pr16_circus_drain.h": {
+      "sha256": "07db7c5fd35a2b94b7ee7ea01ac7a4148790ea50f8e9b971182cf42a4c358aec",
+      "size": 1553
+    },
     "tools/mgba_pr16_circus_effective.h": {
       "sha256": "2d1988eab00bf22e3856312219efbea2c527fdcd551675a24a55b2e0fd73d7db",
       "size": 1776
@@ -5029,7 +5045,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。",
+  "source_change_review_ja": "メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
