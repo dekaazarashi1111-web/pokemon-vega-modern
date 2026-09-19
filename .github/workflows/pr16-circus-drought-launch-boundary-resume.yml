@@ -48,3 +48,42 @@ jobs:
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
+      - name: 再読削減用のtracked textだけを固定hashで収録
+        if: always()
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,subprocess,zipfile
+          root=Path.cwd();out=root/'.local/pr16-debug-source';out.mkdir(parents=True,exist_ok=True)
+          names=subprocess.check_output(['git','ls-files','-z']).decode().split('\0')
+          exact={'AGENTS.md','CHATGPT_RESUME.md','docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md','design/run_log.md','design/version_log.md'}
+          source_suffix={'.py','.c','.h','.S','.ld','.yml'}
+          evidence_suffix={'.json','.txt','.stderr','.stdout'}
+          selected=[]
+          for name in names:
+              p=Path(name)
+              source=bool(p.parts) and p.parts[0] in {'scripts','tests','tools','overlays'} and p.suffix in source_suffix
+              state=name.startswith('content/modernization/') and len(p.parts)==3 and p.suffix=='.json'
+              evidence=name.startswith('evidence/pr16_circus_drought') and p.suffix in evidence_suffix
+              workflow=name.startswith('.github/workflows/pr16-circus-') and p.suffix=='.yml'
+              if not (source or state or evidence or workflow or name in exact):continue
+              path=root/p
+              if path.is_symlink() or not path.is_file():raise ValueError('non-regular tracked text')
+              raw=path.read_bytes();raw.decode('utf-8')
+              if b'\0' in raw:raise ValueError('binary tracked text')
+              selected.append((name,raw))
+          if sum(len(raw) for _,raw in selected)>300*1024*1024:raise ValueError('source context bound')
+          manifest={'source_head':subprocess.check_output(['git','rev-parse','HEAD']).decode().strip(),'members':{name:{'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()} for name,raw in selected}}
+          with zipfile.ZipFile(out/'tracked-text.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name,raw in selected:z.writestr(name,raw)
+              z.writestr('snapshot-manifest.json',json.dumps(manifest,sort_keys=True,indent=2)+'\n')
+          print('tracked text members:',len(selected))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-debug-source
+          path: .local/pr16-debug-source/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7

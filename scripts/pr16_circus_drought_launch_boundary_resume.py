@@ -19,7 +19,7 @@ REPORT='content/modernization/pr16_circus_drought_launch_boundary_binding.json'
 BOUNDARY_SCRIPT='scripts/pr16_circus_drought_launch_boundary.py'
 BOUNDARY_TEST='tests/test_pr16_circus_drought_launch_boundary.py'
 BASE_HEAD='1e43febe6da4e7ba74549a4905b8466da88bef3d'
-RETRY_PARENT='725bbe8bdcc2149870dd78ce55406243fd71c86e'
+RETRY_PARENT='3827258983b6a3a467af0ef584c408ae3bc4ef8b'
 BOUNDARY_BLOBS={
     BOUNDARY_SCRIPT:'823d241f654c999e247e69513ce727c9d589c323',
     BOUNDARY_TEST:'1709e29535063ec3de817c8331c47338ab513c50',
@@ -33,7 +33,10 @@ STALE_JOB=105885315243
 STALE_HEAD=BASE_HEAD
 RENDER_RUN=35438845025
 RENDER_JOB=105886059983
-RENDER_HEAD=RETRY_PARENT
+RENDER_HEAD='725bbe8bdcc2149870dd78ce55406243fd71c86e'
+PATH_RUN=35439014239
+PATH_JOB=105886489666
+PATH_HEAD=RETRY_PARENT
 TASK='USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-BINDING'
 NEXT='source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。'
 NEW_FILES=(SELF,TEST,WORKFLOW)
@@ -78,18 +81,38 @@ def validate_stale_run(run:dict,jobs:dict,artifacts:dict)->dict[str,Any]:
         'reason_ja':'正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。'}
 
 
-def validate_render_run(run:dict,jobs:dict,artifacts:dict)->dict[str,Any]:
-    need(run.get('id')==RENDER_RUN and run.get('head_sha')==RENDER_HEAD
-        and run.get('status')=='completed' and run.get('conclusion')=='failure','render-sync run differs')
-    rows=jobs.get('jobs');need(jobs.get('total_count')==1 and isinstance(rows,list) and len(rows)==1,'render-sync jobs differ')
-    job=rows[0];need(job.get('id')==RENDER_JOB and job.get('conclusion')=='failure','render-sync job differs')
+def validate_reconcile_failure(run:dict,jobs:dict,artifacts:dict,run_id:int,job_id:int,head:str,reason:str)->dict[str,Any]:
+    need(run.get('id')==run_id and run.get('head_sha')==head
+        and run.get('status')=='completed' and run.get('conclusion')=='failure','reconcile run differs')
+    rows=jobs.get('jobs');need(jobs.get('total_count')==1 and isinstance(rows,list) and len(rows)==1,'reconcile jobs differ')
+    job=rows[0];need(job.get('id')==job_id and job.get('conclusion')=='failure','reconcile job differs')
     steps={row.get('number'):(row.get('name'),row.get('conclusion')) for row in job.get('steps',[])}
-    need(steps.get(3)==('source binding差分を親HEADとblobで固定して先行保存','failure'),'render-sync failure step differs')
-    for number in (4,5,6,7,8):need(steps.get(number,(None,None))[1]=='skipped','post-render-sync step unexpectedly ran')
-    need(artifacts.get('total_count')==0 and artifacts.get('artifacts')==[],'render-sync run unexpectedly published artifact')
-    return {'run_id':RENDER_RUN,'job_id':RENDER_JOB,'head_sha':RENDER_HEAD,'original_conclusion':'failure',
-        'reconcile_failed':True,'native_processes':0,'accepted_native_cases_replayed':0,'artifacts':0,
-        'reason_ja':'source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。'}
+    need(steps.get(3)==('source binding差分を親HEADとblobで固定して先行保存','failure'),'reconcile failure step differs')
+    for number in (4,5,6,7,8):need(steps.get(number,(None,None))[1]=='skipped','post-reconcile step unexpectedly ran')
+    need(artifacts.get('total_count')==0 and artifacts.get('artifacts')==[],'reconcile run unexpectedly published artifact')
+    return {'run_id':run_id,'job_id':job_id,'head_sha':head,'original_conclusion':'failure',
+        'reconcile_failed':True,'native_processes':0,'accepted_native_cases_replayed':0,'artifacts':0,'reason_ja':reason}
+
+
+def validate_render_run(run:dict,jobs:dict,artifacts:dict)->dict[str,Any]:
+    return validate_reconcile_failure(run,jobs,artifacts,RENDER_RUN,RENDER_JOB,RENDER_HEAD,
+        'source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。')
+
+
+def validate_path_run(run:dict,jobs:dict,artifacts:dict)->dict[str,Any]:
+    return validate_reconcile_failure(run,jobs,artifacts,PATH_RUN,PATH_JOB,PATH_HEAD,
+        'source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。')
+
+
+def bind_checkpoint_reports(state:dict,loss:dict,ref:dict)->tuple[dict,dict]:
+    """親正本にも意味のある参照を記録し、必須差分guardは変更しない。"""
+    need(ref.get('path')==REPORT and ref.get('classification')=='CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED'
+         and type(ref.get('run_id')) is int and ref['run_id']>0,'binding reference differs')
+    state_copy=deepcopy(state);loss_copy=deepcopy(loss)
+    need(loss_copy.get('drought_launch_boundary_binding')!=ref,'binding checkpoint already recorded')
+    state_copy['circus_drought_launch_boundary_binding']=deepcopy(ref)
+    loss_copy['drought_launch_boundary_binding']=deepcopy(ref)
+    return state_copy,loss_copy
 
 
 def rebind(state:dict,actual:dict[str,bytes],additions:dict[str,bytes])->tuple[dict,dict[str,dict[str,Any]]]:
@@ -120,39 +143,39 @@ def reconcile()->None:
     head=git_lines('rev-parse','HEAD')[0];parent=git_lines('rev-parse','HEAD^')[0]
     scope=validate_commit_scope(head,parent,git_lines('diff','--name-only',BASE_HEAD+'..HEAD'),
         git_lines('diff','--diff-filter=A','--name-only',BASE_HEAD+'..HEAD'))
-    run=r.api('actions/runs/'+str(STALE_RUN));jobs=r.api('actions/runs/'+str(STALE_RUN)+'/jobs')
-    artifacts=r.api('actions/runs/'+str(STALE_RUN)+'/artifacts')
-    stale=validate_stale_run(run,jobs,artifacts)
-    render_run=r.api('actions/runs/'+str(RENDER_RUN));render_jobs=r.api('actions/runs/'+str(RENDER_RUN)+'/jobs')
-    render_artifacts=r.api('actions/runs/'+str(RENDER_RUN)+'/artifacts')
-    render_failure=validate_render_run(render_run,render_jobs,render_artifacts)
+    runs=[];failures=[]
+    for run_id,validator in ((STALE_RUN,validate_stale_run),(RENDER_RUN,validate_render_run),(PATH_RUN,validate_path_run)):
+        run=r.api('actions/runs/'+str(run_id));jobs=r.api('actions/runs/'+str(run_id)+'/jobs')
+        artifacts=r.api('actions/runs/'+str(run_id)+'/artifacts')
+        runs.append(run);failures.append(validator(run,jobs,artifacts))
     state=resume.load(ROOT,resume.STATE)
     actual={path:(ROOT/path).read_bytes() for path in (BOUNDARY_SCRIPT,BOUNDARY_TEST)}
     additions={path:(ROOT/path).read_bytes() for path in NEW_FILES}
     state,changes=rebind(state,actual,additions)
-    note='run35438563815/job105885315243はsource binding旧fingerprint検知でprepare停止。native process 0、後続4step skipped、artifact 0。旧bindingをblob固定照合して先行checkpointした後だけ境界採取を再開する。'
-    if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
-    render_note='run35438845025/job105886059983はsource binding更新後の生成MD未同期でreconcile停止。native process 0、後続5step skipped、artifact 0。state更新後にMD生成してから厳格validateする。'
-    if render_note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,render_note)
+    for failure in failures:
+        note=f"run{failure['run_id']}/job{failure['job_id']}は前処理失敗/native0。"+failure['reason_ja']+' 同一失敗は再実行しない。'
+        if note not in state['do_not_repeat']:state['do_not_repeat'].insert(0,note)
     ref={'path':REPORT,'classification':'CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED','run_id':int(os.environ['GITHUB_RUN_ID'])}
-    state['circus_drought_launch_boundary_binding']=ref
-    state['prior_actions_reconciled']=[{k:row[k] for k in ('id','head_sha','status','conclusion')} for row in (run,render_run)]
+    loss=resume.load(ROOT,r.REPORT)
+    state,loss=bind_checkpoint_reports(state,loss,ref)
+    state['prior_actions_reconciled']=[{k:row[k] for k in ('id','head_sha','status','conclusion')} for row in runs]
     resume.dump(ROOT/resume.STATE,state)
     resume.safe_path(ROOT,resume.DOC).write_text(resume.render(state),encoding='utf-8')
     resume.validate(ROOT)
     value={'schema_version':1,'classification':ref['classification'],'recording_run':int(os.environ['GITHUB_RUN_ID']),
-        'commit_scope':scope,'stale_binding_failure':stale,'render_sync_failure':render_failure,'source_binding_changes':changes,
-        'strict_resume_validation_after_rebind':True,'native_processes':0,'accepted_native_cases_replayed':0,
+        'commit_scope':scope,'stale_binding_failure':failures[0],'render_sync_failure':failures[1],
+        'checkpoint_path_failure':failures[2],'source_binding_changes':changes,
+        'strict_resume_validation_after_rebind':True,'parent_loss_reference_bound':True,
+        'native_processes':0,'accepted_native_cases_replayed':0,
         'independent_arm_links_replayed':0,'rom_or_save_evidence_published':False,'native_lifecycle_accepted':False,
         'standard_save_fresh_continue':False,'genuine_30_wins_verified':False,'physical_admission_accepted':False,
         'suppression_accepted':False,'release_ready':False}
     (ROOT/REPORT).write_bytes(stable(value))
-    loss=resume.load(ROOT,r.REPORT)
     r.SELF=SELF;r.TEST=TEST;r.WORKFLOW=WORKFLOW;r.HEADER=boundary.HEADER;r.TASK=TASK
     r.checkpoint(state,loss,
-        '意図した境界script/testの旧source bindingだけをGit blob固定で更新。run35438563815とrun35438845025はsetup失敗/native0として保存し、ゲーム結果に数えない。',
+        '境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。',
         NEXT,[REPORT,SELF,TEST,WORKFLOW,BOUNDARY_SCRIPT,BOUNDARY_TEST],
-        'RECORDED','CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED。親HEADと追加3ファイルを固定し、その他binding不変の厳格validateを再通過。native0/ROM・save証跡0。')
+        'RECORDED','source binding・生成MD・親loss参照を整合。限定host回帰と厳格resume validate、最終index guardを通過して非force保存。native0/ROM・save証跡0。')
 
 
 def main()->None:
