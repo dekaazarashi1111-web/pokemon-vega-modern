@@ -1,0 +1,54 @@
+name: PR16 saved reconstruction source
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths: [.github/workflows/pr16-saved-reconstruction-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - name: 再compile不要経路の実装用tracked textを固定HEADで収録
+        run: |
+          python3 - <<'PY'
+          import fnmatch, hashlib, json, pathlib, re, subprocess, zipfile
+          root=pathlib.Path('.')
+          out=root/'.local/pr16-saved-source';out.mkdir(parents=True)
+          patterns=['scripts/pr16*.py','scripts/modernization_final_integration.py',
+                    'scripts/github_private_environment.py','scripts/private*.py',
+                    'scripts/task*.py','tests/test_pr16*.py','tests/fixtures/circus*',
+                    'tools/mgba_pr16*','overlays/circus*/*',
+                    'content/modernization/pr16*.json','content/modernization/p08_remaining_work.json',
+                    'config/github_private_environment.json','state/source-lock.json',
+                    '.github/workflows/pr16*.yml','infra/*.sh','infra/*.json',
+                    'scripts/rom*.py','AGENTS.md','CHATGPT_RESUME.md','scripts/romtools/*.py']
+          allowed={'.py','.c','.h','.S','.ld','.json','.yml','.sh','.md'}
+          members={}
+          with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for name in subprocess.check_output(['git','ls-files'],text=True).splitlines():
+                  p=root/name
+                  if not any(fnmatch.fnmatchcase(name,q) for q in patterns):continue
+                  if p.suffix not in allowed or p.is_symlink():continue
+                  raw=p.read_bytes();raw.decode('utf-8')
+                  assert b'\0' not in raw
+                  assert not re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw)
+                  z.writestr(name,raw);members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+              metadata={'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+                        'native_processes':0,'arm_compiles':0,'host_tests_replayed':0,'members':members}
+              z.writestr('source-manifest.json',json.dumps(metadata,indent=2)+'\n')
+          print(json.dumps({'head':metadata['head'],'files':len(members),'native_processes':0,'arm_compiles':0}))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr16-saved-reconstruction-source
+          path: .local/pr16-saved-source/source.zip
+          include-hidden-files: true
+          retention-days: 7
+          if-no-files-found: error
