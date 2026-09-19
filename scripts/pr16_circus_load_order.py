@@ -42,13 +42,17 @@ def run():
     if prior['recording_run']!=35421235529 or prior['input_policy_id']!='toxic-drain-v1':raise ValueError('current predecessor differs')
     current=r.api('actions/runs/35421235529')
     if current['status']!='completed' or current['conclusion']!='failure':raise ValueError('predecessor not completed failure')
-    names=r.command('git','ls-files').splitlines();members={};matches=[];total=0
+    names=r.command('git','ls-files').splitlines();members={};matches=[];total=0;skipped=[]
     for name in names:
         if not allowed(name):continue
         p=ROOT/name
         if p.is_symlink():raise ValueError('symlink source')
         raw=p.read_bytes()
-        if not selected(name,raw):continue
+        try:
+            keep=selected(name,raw)
+        except (ValueError,UnicodeDecodeError) as error:
+            skipped.append(dict(path=name,identity=r.identity(raw),reason=str(error)));continue
+        if not keep:continue
         total+=len(raw)
         if total>24*1024*1024:raise ValueError('source audit budget exceeded')
         target=OUT/'source'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(raw)
@@ -58,6 +62,7 @@ def run():
     if len(members)<5:raise ValueError('save/load consumers missing')
     value=dict(schema_version=1,classification='CIRCUS_COLD_BOOT_LOAD_ORDER_SOURCE_BOUND_NATIVE_REPAIR_PENDING',
         source_head=r.command('git','rev-parse','HEAD'),source_files=len(members),source_bytes=total,matches=matches,
+        excluded_sources=skipped,previous_source_export_run=35421781231,previous_source_export_conclusion='failure',
         original_trace_run=35420622910,latest_three_win_run=35421235529,latest_three_win_conclusion='failure',
         accepted_native_cases_replayed=0,independent_arm_links_replayed=0,native_processes_executed=0,
         scope_ja='cold boot owner64未ロードの間にSave counter2→3→4。raw観測と固定sourceのload/save呼出順を結合。3勝は2勝1敗で未完、ここで成功へ改作しない。',
