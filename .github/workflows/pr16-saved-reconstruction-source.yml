@@ -9,47 +9,73 @@ jobs:
   source:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 1
-      - name: 再compile不要経路の実装用tracked textを固定HEADで収録
+      - name: 新規再構成核13契約だけ検証
+        run: |
+          mkdir -p .local/pr16-saved-source
+          python3 -m unittest discover -s tests -p test_pr16_saved_recipe.py -v > .local/pr16-saved-source/tests.txt 2>&1
+      - name: 保存済みpatchとbyte欄を原本identity付きで収録
         run: |
           python3 - <<'PY'
           import fnmatch, hashlib, json, pathlib, re, subprocess, zipfile
           root=pathlib.Path('.')
-          out=root/'.local/pr16-saved-source';out.mkdir(parents=True)
-          patterns=['scripts/pr16*.py','scripts/modernization_final_integration.py',
-                    'scripts/github_private_environment.py','scripts/private*.py',
-                    'scripts/task*.py','tests/test_pr16*.py','tests/fixtures/circus*',
-                    'tools/mgba_pr16*','overlays/circus*/*',
-                    'content/modernization/pr16*.json','content/modernization/p08_remaining_work.json',
-                    'config/github_private_environment.json','state/source-lock.json',
-                    '.github/workflows/pr16*.yml','infra/*.sh','infra/*.json',
-                    'scripts/rom*.py','AGENTS.md','CHATGPT_RESUME.md','scripts/romtools/*.py']
-          allowed={'.py','.c','.h','.S','.ld','.json','.yml','.sh','.md'}
-          members={};excluded={}
+          out=root/'.local/pr16-saved-source';out.mkdir(parents=True,exist_ok=True)
+          names=subprocess.check_output(['git','ls-files'],text=True).splitlines()
+          patterns=['scripts/*.py','tools/*.py','tests/test_pr16_saved_recipe.py',
+                    'content/modernization/*.json','config/*.json','infra/*.sh','infra/*.json',
+                    'evidence/*/build.json','evidence/*/report.json','evidence/*/disassembly.txt',
+                    'evidence/*/runtime-disassembly.txt','.github/workflows/pr16*.yml',
+                    'AGENTS.md','CHATGPT_RESUME.md']
+          allowed={'.py','.json','.yml','.sh','.md','.txt'}
+          identity=lambda raw:dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+          members={};excluded={};archives={}
+          secret=re.compile(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----')
           with zipfile.ZipFile(out/'source.zip','w',zipfile.ZIP_DEFLATED) as z:
-              for name in subprocess.check_output(['git','ls-files'],text=True).splitlines():
+              def put(name,raw):
+                  if name in members:return
+                  if not name.endswith('.bps'):
+                      raw.decode('utf-8')
+                      assert b'\0' not in raw
+                      if secret.search(raw):excluded[name]='秘密候補を含むため本文は収録しない';return
+                  z.writestr(name,raw);members[name]=identity(raw)
+              for name in names:
                   p=root/name
-                  if not any(fnmatch.fnmatchcase(name,q) for q in patterns):continue
-                  if p.suffix not in allowed or p.is_symlink():continue
-                  raw=p.read_bytes();raw.decode('utf-8')
-                  assert b'\0' not in raw
-                  if re.search(rb'gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{60,}|-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',raw):
-                      excluded[name]='秘密候補を含むため本文は収録しない';continue
-                  z.writestr(name,raw);members[name]={'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
+                  if p.is_symlink():continue
+                  if any(fnmatch.fnmatchcase(name,q) for q in patterns) and p.suffix in allowed:
+                      put(name,p.read_bytes())
+                  if name.startswith('content/modernization/') and p.suffix=='.zip':
+                      raw=p.read_bytes();entry=dict(identity=identity(raw),members={})
+                      with zipfile.ZipFile(p) as old:
+                          seen=set()
+                          for item in old.infolist():
+                              assert item.filename not in seen;seen.add(item.filename)
+                              q=pathlib.PurePosixPath(item.filename)
+                              assert not q.is_absolute() and '..' not in q.parts
+                              if item.is_dir():continue
+                              selected=(q.suffix=='.bps' or 'disassembly' in q.name or
+                                        q.name in ('candidate.json','report.json','build.json','source-bindings.json'))
+                              if not selected or item.file_size>16000000:continue
+                              data=old.read(item);entry['members'][item.filename]=identity(data)
+                              put('saved-members/'+entry['identity']['sha256']+'/'+item.filename,data)
+                      archives[name]=entry
               metadata={'head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
-                        'native_processes':0,'arm_compiles':0,'host_tests_replayed':0,'members':members,'excluded':excluded}
+                        'native_processes':0,'arm_compiles':0,'accepted_host_tests_replayed':0,
+                        'new_test_count':13,'members':members,'excluded':excluded,'archives':archives,
+                        'tracked_paths':names}
               z.writestr('source-manifest.json',json.dumps(metadata,indent=2)+'\n')
-          print(json.dumps({'head':metadata['head'],'files':len(members),'excluded':len(excluded),'native_processes':0,'arm_compiles':0}))
+          (out/'inventory.json').write_text(json.dumps({k:v for k,v in metadata.items() if k not in ('members','tracked_paths')},indent=2)+'\n')
+          print(json.dumps({'head':metadata['head'],'files':len(members),'archives':len(archives),'excluded':len(excluded),'native_processes':0,'arm_compiles':0}))
           PY
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: pr16-saved-reconstruction-source
-          path: .local/pr16-saved-source/source.zip
+          path: .local/pr16-saved-source/
           include-hidden-files: true
           retention-days: 7
           if-no-files-found: error
