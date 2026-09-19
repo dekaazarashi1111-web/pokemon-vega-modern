@@ -8454,3 +8454,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receiptを参照。
 - Network: GitHub connector/Actionsの固定run/artifact照合と固定CFRU charmapのみ。private入力取得なし、ROM/save/credential追加追跡なし。
 - Next: 保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。
+
+
+## 2026-09-19T20:41:59Z — USER-20260920-CIRCUS-BATTLE25-START
+- Timestamp: 2026-09-19T20:41:59Z
+- Task: USER-20260920-CIRCUS-BATTLE25
+- Status: WIP（未達段階はreport参照）
+- Version: pr16-circus-battle25-input-v1
+- Summary: 25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。
+- Files changed: scripts/pr16_circus_battle25.py, tools/mgba_pr16_circus_battle25.h, tests/test_pr16_circus_battle25.py, .github/workflows/pr16-circus-battle25.yml, scripts/pr16_circus_battle25_policy.py, tests/test_pr16_resume.py, content/modernization/pr16_circus_battle25.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle25/35468164696/original-generated/controller.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_learning_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03_p02_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03a_fullslots_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/p03b_archive_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_control_embedded.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_native_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_capture_shop_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_addresses.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_selection_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_turn_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_capture_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_route.h, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_shop_breeding_helpers.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_legacy.c, evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_policy.c, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.process.json, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stderr, evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 方策/記録7契約、resume整合性/影響tests/task graph、index差分private guardとdiff check。native結果はreportの原本と実process数を参照。
+- Commit: 同branch非force commit。自己SHAはremote/receipt参照。
+- Network: GitHub固定run/artifact照合。入力/ROM/save/credentialの新規追跡なし。旧builder/ARM/Ring hostを実行しない。
+- Next: 進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。

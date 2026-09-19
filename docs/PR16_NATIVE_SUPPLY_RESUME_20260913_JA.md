@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-旧親20層425差分を保存byteのみで復元し、全層hash/allocation・全ROM逆適用とnetwork/process禁止の固定JSON再開経路を検証済み。候補2b107e7eは不変、ARM compile/link/nativeは0。実24勝72BP・25戦目敗北・通常Save/fresh Continueは旧run35457636604の受入範囲を維持し、真正30勝・実受付から特性抑制の完了は主張しない。
+25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。
 
-**次: 保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。**
+**次: 進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `75f25d671ff6bcfacd5e1df3c0c100f53df9a322`。
-保存byte正本の記録source HEAD。native最終試行は35457636604、正式BP checkpointは不変。
+証拠のsource HEAD: `766073d61da2eb7fdc08ec928c1506819d8ee5f8`。
+当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。
 
 ## 最短の再開手順
 
@@ -25,11 +25,14 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
+- `content/modernization/pr16_circus_battle25.json`
+- `scripts/pr16_circus_battle25.py`
+- `tools/mgba_pr16_circus_battle25.h`
+- `tests/test_pr16_circus_battle25.py`
+- `.github/workflows/pr16-circus-battle25.yml`
+- `scripts/pr16_circus_battle25_policy.py`
+- `tests/test_pr16_resume.py`
 - `content/modernization/pr16_saved_reconstruction.json`
-- `scripts/pr16_saved_reconstruction.py`
-- `content/modernization/pr16_circus_rental_closeout.json`
-- `content/modernization/pr16_circus_rental_resume.json`
-- `scripts/pr16_circus_rental_resume.py`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -62,10 +65,11 @@ P08ゲート:
 
 2026-09-15: run34946969126/job104308573084で、同一candidateの3勝基礎9 BPに既存反復報酬3 BPが加算され12 BPへ確定。通常QOL供給ショップでかわらずのいしを4 BP購入し、残高12→8、所持0→1、Save counter5→6→7→7、通常Save/fresh Continue後の保持をscoped受入。ROM変更0、成功1process/2fresh cores。次はRing。 2026-09-18追記: Ring/policyは別scoped候補で完了。BP数値・原本の意味は変更しない。
 
-同一2b107e7eの25戦目通常入力から真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08最終統合・release判断（公開操作は別指示）
+同一候補で真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）
 
 ## 再実行・過大主張の禁止
 
+- USER-20260920-CIRCUS-BATTLE25 run35468164696の原本と実停止を先に読む。旧run35457636604を30勝成功へ改作しない。保存JSON/固定生成Cを使用し旧親builder/ARM/Ring hostを呼ばない。
 - run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。
 - run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。
 - run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。
@@ -287,6 +291,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-復元run35465528252は成功。先行3失敗とnative30未達は維持。記録run自身はsnapshot外で、全CI greenは主張しない。
+旧30勝目標run35457636604はfailureのまま。今回runは記録時in_progressで全CI greenは主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

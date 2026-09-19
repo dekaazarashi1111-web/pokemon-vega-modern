@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "旧親20層425差分を保存byteのみで復元し、全層hash/allocation・全ROM逆適用とnetwork/process禁止の固定JSON再開経路を検証済み。候補2b107e7eは不変、ARM compile/link/nativeは0。実24勝72BP・25戦目敗北・通常Save/fresh Continueは旧run35457636604の受入範囲を維持し、真正30勝・実受付から特性抑制の完了は主張しない。",
+    "current_stop": "25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。",
+    "next_step": "進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -542,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "USER-20260920-CIRCUS-BATTLE25 run35468164696の原本と実停止を先に読む。旧run35457636604を30勝成功へ改作しない。保存JSON/固定生成Cを使用し旧親builder/ARM/Ring hostを呼ばない。",
     "run35465528252で旧親20層425差分の保存byte復元・全ROMrollbackを検証済み。保存レシピと核が不変ならnormalize/旧builder/compiler/既受入Ring hostを再実行しない。通常再開は固定JSONのreconstructのみ。履歴bootstrap全体のARM数unknownを0へ改作しない。",
     "run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。",
     "run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。",
@@ -820,15 +821,18 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存byte再構成は完了。scripts/pr16_saved_reconstruction.py reconstructを別processで使い、旧親builder/compile/Ring hostを起動せず同じ2b107e7eを復元する。24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と通常Save/fresh Continueへ進む。25戦目の最初の入力変更より前のevent列を完全照合する。受入24勝の独立再実行、勝敗/連勝/効果/PC/LR/save注入は禁止。30勝後に正規特性抑制、影響範囲P08へ進む。",
+    "goal_ja": "進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_BATTLE25_ORDINARY_POLICY",
     "read_paths": [
+      "content/modernization/pr16_circus_battle25.json",
+      "scripts/pr16_circus_battle25.py",
+      "tools/mgba_pr16_circus_battle25.h",
+      "tests/test_pr16_circus_battle25.py",
+      ".github/workflows/pr16-circus-battle25.yml",
+      "scripts/pr16_circus_battle25_policy.py",
+      "tests/test_pr16_resume.py",
       "content/modernization/pr16_saved_reconstruction.json",
-      "scripts/pr16_saved_reconstruction.py",
-      "content/modernization/pr16_circus_rental_closeout.json",
-      "content/modernization/pr16_circus_rental_resume.json",
-      "scripts/pr16_circus_rental_resume.py",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -839,38 +843,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "75f25d671ff6bcfacd5e1df3c0c100f53df9a322",
+  "observed_head": "766073d61da2eb7fdc08ec928c1506819d8ee5f8",
   "observed_head_checks": {
-    "reason_ja": "復元run35465528252は成功。先行3失敗とnative30未達は維持。記録run自身はsnapshot外で、全CI greenは主張しない。",
+    "scope_head": "766073d61da2eb7fdc08ec928c1506819d8ee5f8",
     "runs": [
       {
-        "conclusion": "success",
-        "head_sha": "c2737e1b57ff28909d43c13ad4223d0380c0029a",
-        "id": 35465528252,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "129f896cbaf04e6759275de619bd29bd5791a679",
-        "id": 35464893016,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "25c334e1d8e362bef876eaa1b431b7ef8206410e",
-        "id": 35465115956,
-        "status": "completed"
-      },
-      {
-        "conclusion": "failure",
-        "head_sha": "e72938bb9a0d12baa2ec73c93fd9cc242f5f33f3",
-        "id": 35465795453,
-        "status": "completed"
+        "id": 35457636604,
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "status": "completed",
+        "conclusion": "failure"
       }
     ],
-    "scope_head": "75f25d671ff6bcfacd5e1df3c0c100f53df9a322"
+    "reason_ja": "旧30勝目標run35457636604はfailureのまま。今回runは記録時in_progressで全CI greenは主張しない。"
   },
-  "observed_head_semantics": "保存byte正本の記録source HEAD。native最終試行は35457636604、正式BP checkpointは不変。",
+  "observed_head_semantics": "当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -935,7 +921,14 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [],
+  "pending_runs": [
+    {
+      "run_id": 35468164696,
+      "tested_head": "766073d61da2eb7fdc08ec928c1506819d8ee5f8",
+      "status": "in_progress",
+      "scope": "battle25-continuation"
+    }
+  ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -1049,7 +1042,7 @@
   "remaining_physical_gap_ids": [
     "PHYSICAL_CIRCUS_ADMISSION"
   ],
-  "remaining_sequence_ja": "同一2b107e7eの25戦目通常入力から真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08最終統合・release判断（公開操作は別指示）",
+  "remaining_sequence_ja": "同一候補で真正30勝と保存 → 正規実受付から特性抑制 → 変更影響範囲P08（公開操作は別指示）",
   "retained_fixed_form_accepted_case_count": 5,
   "reward_route_audit": {
     "artifact_id": 10311359991,
@@ -1597,14 +1590,11 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "accepted_standalone_replays": 0,
+    "new_emulator_processes": 0,
     "arm_compiles": 0,
     "arm_links": 0,
-    "layer_count": 20,
-    "new_emulator_processes": 0,
-    "new_python_runtime_verifications": 1,
-    "patch_count": 425,
-    "scope_ja": "保存byte復元と正本記録。旧20層compile/Ring host/nativeを呼ばない。"
+    "accepted_standalone_replays": 0,
+    "scope_ja": "保存byte復元と25戦目限定通常入力。24勝は継続prefixのみ。履歴bootstrap全体ARM数はunknownのまま。"
   },
   "session_protocol": {
     "concurrency_ja": "push直前にbranch HEADを再取得する。進んでいれば差分を再照合してから統合し、force pushや他セッションの変更上書きをしない。",
@@ -7686,10 +7676,114 @@
     "tools/mgba_pr16_ring_policy.c": {
       "sha256": "ba8d25d7b8d95856777327d13f2fca8eadb663fe9fba1cc8915cf916748a2415",
       "size": 12153
+    },
+    "scripts/pr16_circus_battle25.py": {
+      "size": 24409,
+      "sha256": "530011006e51bfdc47678a26f7690e3a75053b0d7bf01f485f7eaa4c1ea3e28e"
+    },
+    "tools/mgba_pr16_circus_battle25.h": {
+      "size": 1631,
+      "sha256": "ee8b9f74d58114b83e6fac4de3ac22d00c3c3067cffbbfab587c84418bb8b1f9"
+    },
+    "tests/test_pr16_circus_battle25.py": {
+      "size": 6218,
+      "sha256": "99ec8bc7a8874eeff78b018d4dee73f80d98b039554e3c306e30441fb986a16f"
+    },
+    ".github/workflows/pr16-circus-battle25.yml": {
+      "size": 5117,
+      "sha256": "f08c1cfd452649af506d93ccee1dc28f851d09fc83c46a8b29b591dc3d9eab05"
+    },
+    "scripts/pr16_circus_battle25_policy.py": {
+      "size": 3219,
+      "sha256": "455d7c2fc10b456d948a8ff042c84dcf1ecf60e14baed9c793e7a910b5d7d969"
+    },
+    "tests/test_pr16_resume.py": {
+      "size": 9322,
+      "sha256": "938a8345ec704c0e64f6fbcb4741c0ccdddc0da557c12b2f7e102a701c996ea2"
+    },
+    "content/modernization/pr16_circus_battle25.json": {
+      "size": 17692,
+      "sha256": "e203ee00a877131e7ea5e287d8ccd5f3027de92d40520b2ca2db978b3b04afc9"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/controller.c": {
+      "size": 12838,
+      "sha256": "649bfe64db299aa1d9b6aab58c8a0f51e38d6b12a6e12d298c1f3b55ed9691a5"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/p03_learning_embedded.c": {
+      "size": 7996,
+      "sha256": "81a488ced101990d3b22af65542e1f68d24e628291c1dd7e90751f2a6b18f336"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/p03_p02_embedded.c": {
+      "size": 39678,
+      "sha256": "04ba837b8aad5625708751f7902ca794c74b0993e13307c6c7e390ae62af1cdf"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/p03a_fullslots_embedded.c": {
+      "size": 12877,
+      "sha256": "d5230de78b19ab9990281d884b0f5242b76f0c4b427b574da25daddb0abc60a8"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/p03b_archive_embedded.c": {
+      "size": 20163,
+      "sha256": "d1aef42d46e770aa7784477965902e5f26297ca8f0b5da80b8f78b0e7c706a80"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_control_embedded.c": {
+      "size": 11463,
+      "sha256": "06dd81f90dde1c8d57d156acf92b1bf2db30431341c1fc3ada3aa654cc396ee7"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_bp_native_helpers.c": {
+      "size": 16314,
+      "sha256": "29fd3a5f30d5e6e7ea229fd59d2fd8d2b072d07244ddef762ec01d59a03e4c9f"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_capture_shop_helpers.c": {
+      "size": 10007,
+      "sha256": "0854289c5a7895ad7de2ee82b4ac578db0b96fcf6e1b570d6adb5205dabab881"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_addresses.h": {
+      "size": 87,
+      "sha256": "1b7247f0cd8ef1d75eaad6e7811ed584b32cfc638d4e5c458c2a4d515536287f"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_selection_helpers.c": {
+      "size": 10511,
+      "sha256": "db81848dbd188a74b4afd0aab1e27aa796229964541dc392805801bcccc51da5"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_circus_turn_helpers.c": {
+      "size": 3939,
+      "sha256": "37b6581d714cf47e605b0516215456415e1787f03a9af830cc7ce441657a173b"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_capture_helpers.c": {
+      "size": 9640,
+      "sha256": "4c057989f1638e14d6814c269291f952ad2cb8e96be5a36274ff8707fc63bee8"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_gear_route.h": {
+      "size": 518,
+      "sha256": "bd60ed3f71b01b821c7722e3d80edeb2b3d9049b9dd876e6ffb4e49dac65cf1c"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_shop_breeding_helpers.c": {
+      "size": 19625,
+      "sha256": "fa420d273a80b8423d001b123e7eaeebd1a29717c52b8d24b7d5f32efc1095b3"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_legacy.c": {
+      "size": 11746,
+      "sha256": "de1618b95f09d8ce02c2a1ce8b833fa893f35c4da08b64dd69f9927cfe0c89c2"
+    },
+    "evidence/pr16_circus_battle25/35468164696/original-generated/pr16_streak_policy.c": {
+      "size": 54344,
+      "sha256": "a740eaba10cfb7f8bfc97585ef9fe84c40181cb9c616e113a7ce72d108d47515"
+    },
+    "evidence/pr16_circus_battle25/35468164696/execution/policy-tests.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stderr": {
+      "size": 1077,
+      "sha256": "4acc59e4e1f0635332fb0a3b77d5ae8c0002cb0457c897d1424ee87eb6aa801a"
+    },
+    "evidence/pr16_circus_battle25/35468164696/execution/policy-tests.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "旧親20層425差分を保存byteのみで復元し、全層hash/allocation・全ROM逆適用とnetwork/process禁止の固定JSON再開経路を検証済み。候補2b107e7eは不変、ARM compile/link/nativeは0。実24勝72BP・25戦目敗北・通常Save/fresh Continueは旧run35457636604の受入範囲を維持し、真正30勝・実受付から特性抑制の完了は主張しない。",
+  "source_change_review_ja": "25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -7710,5 +7804,14 @@
     "evidence": "content/modernization/pr16_bp_win_exchange_verified.json",
     "run_id": 34770280751,
     "scope": "NATIVE_DIAGNOSTIC_NOT_FORMAL_ACCEPTANCE"
+  },
+  "circus_battle25": {
+    "path": "content/modernization/pr16_circus_battle25.json",
+    "run_id": 35468164696,
+    "classification": "BATTLE25_INPUT_IMPLEMENTED_NATIVE_PENDING",
+    "candidate": {
+      "size": 33554432,
+      "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
+    }
   }
 }
