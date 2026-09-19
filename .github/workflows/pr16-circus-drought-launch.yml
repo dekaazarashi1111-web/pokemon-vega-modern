@@ -1,0 +1,47 @@
+name: PR16 Circus Drought chooser return repair
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - .github/workflows/pr16-circus-drought-launch.yml
+      - scripts/pr16_circus_drought_launch.py
+      - tests/test_pr16_circus_drought_launch.py
+      - overlays/circus_streak/circus_drought_launch.h
+      - tests/fixtures/circus_drought_launch_fixture.c
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: pr16-circus-three-win
+  cancel-in-progress: false
+jobs:
+  launch-repair:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: CPU原本照合と限定修復と31回帰を非force保存
+        id: prepare
+        run: python3 scripts/pr16_circus_drought_launch.py prepare
+      - name: 新候補の独立2linkと18戦目以降と保存継続を検証
+        run: python3 scripts/pr16_circus_drought_launch.py pipeline
+      - name: 新候補の成否と引継ぎと両ログを非force保存
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_drought_launch.py finish
+      - name: ROMとsaveを除外した証跡
+        if: always() && steps.prepare.outcome == 'success'
+        run: python3 scripts/pr16_circus_drought_launch.py pack
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.prepare.outcome == 'success'
+        with:
+          name: pr16-circus-drought-launch
+          path: .local/pr16-circus-finish-evidence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
