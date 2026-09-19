@@ -1,0 +1,80 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "success",
+      "head_sha": "6455fa59f6ac4888007fd947d0e35712734c8f13",
+      "id": 35436330902,
+      "status": "completed"
+    }
+  ],
+  "classification": "CIRCUS_DROUGHT_LAUNCH_REPAIR_PREPARED",
+  "diagnosis": {
+    "complete": 0,
+    "current": 17,
+    "cursor": [
+      1,
+      1
+    ],
+    "elapsed_frames": 600,
+    "native_loop_points": 18,
+    "outcome": 0,
+    "points": 21,
+    "reason_ja": "選出画面→field復帰でも空loaderが再初期化される。WIN専用条件がoutcome0/chooser scriptを除外していた。",
+    "script": 167726509,
+    "state": 2
+  },
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 7,
+      "pattern": "test_pr16_circus_drought_launch.py",
+      "success": true
+    },
+    {
+      "count": 11,
+      "pattern": "test_pr16_circus_drought.py",
+      "success": true
+    },
+    {
+      "count": 13,
+      "pattern": "test_pr16_circus_drought_calls.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "inherited_diagnostic": {
+    "archive": {
+      "sha256": "a8790cca69386158c0e4182fda80fedb073a1ed852d6271b1d487efcb1bcdcc9",
+      "size": 1674561
+    },
+    "artifact_id": 10582825654,
+    "job_id": 105879496730,
+    "run_id": 35436330902,
+    "screens": {
+      "finish/native/circus-continuous-30-save-launch-cpu-wait-600.ppm": {
+        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+        "size": 115215
+      }
+    },
+    "visual_review_ja": "600frame後も黒画面。選出確認の後にDrought初期化がstate2で停止し、戦闘action/Saveに未到達。"
+  },
+  "launch_native_verified": false,
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_change": {
+    "after": {
+      "sha256": "f2d64b6652b68c7259b37f17713d1d1c2b6b0bba45fb88ddbf58eb97f933e923",
+      "size": 1880
+    },
+    "before": {
+      "sha256": "e85c5757b9d712c6628bd58d9ac04dd823b3f9c5cf67f1ee7b7df917c05b1e1b",
+      "size": 1867
+    },
+    "path": "overlays/circus_streak/circus_drought.c"
+  },
+  "standard_save_fresh_continue": false,
+  "suppression_accepted": false,
+  "win_return_native_verified": false
+}

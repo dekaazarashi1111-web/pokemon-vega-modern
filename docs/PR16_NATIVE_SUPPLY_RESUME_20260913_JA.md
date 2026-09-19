@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。
+18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。
 
-**次: 17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。**
+**次: 新候補で18戦目の正規launch・以降の実勝敗・原party600/owner64・通常Save/fresh Continueを確認。真正30勝未達は最初の新停止だけを修復し、達成後に正規特性抑制へ進む。旧CPU診断/旧独立2link/受入単体の再実行は禁止。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c6142c969e3f04c512a8d30254330b0b50357d99`。
+証拠のsource HEAD: `80e9643ff8689fec7212745e7a3fb21e988bc79b`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_launch_cpu.py`
+- `scripts/pr16_circus_drought_launch.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_launch_cpu.h`
+- `overlays/circus_streak/circus_drought_launch.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35436330902/job105879496730はROM98b9eea4不変・ARM再link0で18戦目のCPU21点/600frame診断SUCCESS。outcome0/script09ff4dad・weather12/state2/empty cursor1/1・native busy loopを確認。診断を保存/30勝受入に変えず、同一診断は再実行しない。
 - run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。
 - run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。
 - run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。
