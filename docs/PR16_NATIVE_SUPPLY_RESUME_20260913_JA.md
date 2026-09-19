@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+候補2b107e7eの受付/launch契約と再構築は成功。native0のcontroller include順序によるsc_events未宣言を前方定義で修復し、未実行continuationだけを開始。
 
 **次: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@ READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `b2cff5f4b1790639578859419f275a4fbde10981`。
+証拠のsource HEAD: `69075ada3e54a3218a916b5b532f8883428c6bfa`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。
 - run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。
 - run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。
 - run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。
