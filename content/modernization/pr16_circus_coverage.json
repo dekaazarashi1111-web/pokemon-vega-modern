@@ -1,0 +1,34 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 3,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_COVERAGE_GENERAL_REENTRY_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 7,
+      "pattern": "test_pr16_circus_coverage.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "independently_replayed": false,
+    "job_id": 105854709530,
+    "lifecycle_verification": "PASS_CIRCUS_SCOPED_NATIVE",
+    "losses": 1,
+    "original_conclusion": "failure",
+    "run_id": 35427049942,
+    "source_path": "content/modernization/pr16_circus_reentry.json",
+    "wins": 4
+  },
+  "input_policy_ja": "初回3勝の15イベントを完全保持。再入場後は一律補助技2倍加点を外し、既存異種攻撃選択で3体を通常入力選択。以後の技選択は汎用攻撃scoreとPP消費/相手HP無進展回避を使用し、初回チーム専用のpivot/role条件を流用しない。",
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "target_wins": 30
+}

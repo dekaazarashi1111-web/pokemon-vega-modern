@@ -491,7 +491,7 @@
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。",
+      "resume": "今回の連続入場の実停止から続ける。受入初回3勝の15イベントを固定し、再入場は補助技一律加点を外した異種攻撃編成と汎用攻撃/paid無進展回避へ分離。真正30勝後の正規特性抑制とP08は未完。旧nativeは再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"
