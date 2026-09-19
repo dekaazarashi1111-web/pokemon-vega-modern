@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-18戦目修復と実21勝/63BP/元party600復帰は限定受入。22戦目の新境界診断=True。通常Save/fresh Continue/真正30勝は未達。
+実21勝受入後の最初の新停止をREADY/6体レンタルfield復帰のDrought空loaderと確定。狭いowner/ledger/party/script/weather guardを準備し、旧phase2/3体とWIN経路は委譲して変更しない。
 
-**次: 18戦目起動・実21勝/63BP/元party600復元の受入範囲は維持し、22戦目の初回6体選出→field境界の新readonly原本から最初の停止だけ修復する。Save/fresh Continue/真正30勝/正規抑制は未受入。旧ARM link・旧境界・受入単体を再実行しない。**
+**次: READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ce51471dd8bcadcd8ddff4cd5fbdb371411c2d5b`。
+証拠のsource HEAD: `d1af762472eb529b4fcad93bac65c4e44aa05db3`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_rental_boundary.py`
+- `scripts/pr16_circus_rental_drought.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_rental_boundary.h`
+- `overlays/circus_streak/circus_drought_rental.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。
 - run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。
 - run35450725433/job105917285879は保存candidate a2c612a2不変/旧ARM再link0の1process。81eventsと境界9行を採取したがscript0 endpoint前提が誤りnative未完。元party1/選出3の混同を修復し、同じ境界診断は再実行しない。
 - run35450224019/job105915967201: binding保存c96d14fは成功、旧タグ再利用のprepareは失敗/native0。既存ログ削除・成功binding単独再実行・旧ARM再linkをせず、run固有タグで未採取境界のみ進める。

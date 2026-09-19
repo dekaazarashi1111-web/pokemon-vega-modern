@@ -1,0 +1,94 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_reexecuted_only_inside_continuation": true,
+  "accepted_prefix_wins": 21,
+  "actions_reconciled": [
+    {
+      "conclusion": "success",
+      "head_sha": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
+      "id": 35452739116,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "1e8650300a7512636cc533f701f96e6956b6160b",
+      "id": 35453175182,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "1e8650300a7512636cc533f701f96e6956b6160b",
+      "id": 35453175149,
+      "status": "completed"
+    }
+  ],
+  "classification": "CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED",
+  "diagnosis": {
+    "active_party_count": 6,
+    "bp": 63,
+    "cause_ja": "既存guardはARMED/3体/marker2またはWIN復帰だけを許可する。新原本はCRC/identity有効なREADY owner、元party保存1体、レンタル6体、marker1、script09ff4cb5であり、別の正規field復帰境界なのに旧initAllへ落ちて空loader cursor1で停止した。",
+    "classification": "CIRCUS_RENTAL_DROUGHT_READY6_DIAGNOSED",
+    "complete": 0,
+    "current": 21,
+    "cursor": [
+      1,
+      1
+    ],
+    "elapsed_frames": 600,
+    "events": 100,
+    "marker": 1,
+    "outcome": 1,
+    "owner_phase": 1,
+    "owner_session": 8,
+    "saved_party_count": 1,
+    "script": 167726261,
+    "snapshot": 1,
+    "source_run": 35452739116,
+    "weather": 12,
+    "weather_state": 2,
+    "wins": 21
+  },
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 11,
+      "pattern": "test_pr16_circus_rental_drought.py",
+      "success": true
+    },
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_selection.py",
+      "success": true
+    },
+    {
+      "count": 11,
+      "pattern": "test_pr16_circus_drought.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "legacy_host_tests": [
+    {
+      "count": 8,
+      "pattern": "test_pr16_circus_rental_boundary.py",
+      "success": true
+    }
+  ],
+  "native_lifecycle_accepted": false,
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_change": {
+    "after": {
+      "sha256": "545890f227f54f3c650afa5477fa0b52cefd1d6924ef7d5c3d345b69c5efabf5",
+      "size": 2578
+    },
+    "before": {
+      "sha256": "c4b2795117c693526f6d4415a3a64d13a1e56254a97f1f21c89eeabe59f803eb",
+      "size": 1906
+    },
+    "path": "overlays/circus_streak/circus_drought.c"
+  },
+  "standard_save_fresh_continue": false,
+  "suppression_accepted": false
+}

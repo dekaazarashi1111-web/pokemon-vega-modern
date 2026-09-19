@@ -54,6 +54,14 @@ class RentalDroughtTests(unittest.TestCase):
         source=inspect.getsource(t.native)
         self.assertIn('same_without_frame',source);self.assertIn('events[:100]',source)
         self.assertNotIn('prior.native()',source);self.assertNotIn('s.native()',source)
+    def test_prepare_checks_legacy_contract_before_candidate_contract(self):
+        source=inspect.getsource(t.prepare)
+        legacy="legacy_host_tests=r.tests(['test_pr16_circus_rental_boundary.py'])"
+        repair="(ROOT/SOURCE).write_text(repair(before.decode()))"
+        candidate="host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py'])"
+        self.assertLess(source.index(legacy),source.index(repair))
+        self.assertLess(source.index(repair),source.index(candidate))
+        self.assertNotIn("'test_pr16_circus_rental_boundary.py']),\n        accepted_prefix",source)
     def test_witness_parser_requires_enter_and_cross(self):
         rows=[dict(label='entered',elapsed=0,frame=1,events=100,keys=0,current=21,phase=1,count=6,saved_count=1,marker=1,snapshot=1,callback2=0x08055E75,script=0x09FF4CB5,newbs=0,outcome=1,state=2,complete=0,index=1,offset=1),
               dict(label='event-crossed',elapsed=5,frame=6,events=101,keys=0,current=21,phase=2,count=3,saved_count=1,marker=2,snapshot=1,callback2=0x08055E75,script=0x09FF4CEB,newbs=0,outcome=0,state=5,complete=1,index=32,offset=32)]

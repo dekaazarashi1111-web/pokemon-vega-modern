@@ -111,7 +111,7 @@ def record(value,phase,stop,next_step):
 def prepare():
     import pr16_resume as resume
     d,b=configure();task=task_id();r=b.rec;head=r.scope();state=resume.validate(ROOT)
-    need(int(r.command('git','rev-list','--count',BASE+'..'+head)) in (1,6) and set(r.command('git','diff','--name-only',BASE,head).splitlines())==set(NEW),'rental Drought WIP source scope')
+    need(int(r.command('git','rev-list','--count',BASE+'..'+head)) in (1,7) and set(r.command('git','diff','--name-only',BASE,head).splitlines())==set(NEW),'rental Drought WIP source scope')
     need(not (ROOT/REPORT).exists(),'rental Drought attempt already exists')
     old=resume.load(ROOT,OLD);need(old['recording_run']==RUN and old['classification']=='CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE' and old['diagnostic_complete'],'readonly predecessor differs')
     need(identity((ROOT/RAW).read_bytes())==old['text_evidence'][RAW],'readonly raw identity differs')
@@ -123,11 +123,13 @@ def prepare():
         a=r.api('actions/runs/'+str(run_id));need(a['head_sha']==BASE and a['status']=='completed' and a['conclusion']=='action_required','HEAD no-job run differs')
         actions.append({k:a[k] for k in ('id','head_sha','status','conclusion')})
     diagnosis=diagnose((ROOT/RAW).read_bytes())
+    legacy_host_tests=r.tests(['test_pr16_circus_rental_boundary.py'])
     before=(ROOT/SOURCE).read_bytes();need(identity(before)==state['source_bindings'][SOURCE],'Drought source binding drift')
     (ROOT/SOURCE).write_text(repair(before.decode()))
     value=dict(schema_version=1,classification='CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED',diagnosis=diagnosis,
         actions_reconciled=actions,source_change=dict(path=SOURCE,before=identity(before),after=identity((ROOT/SOURCE).read_bytes())),
-        host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py','test_pr16_circus_rental_boundary.py']),
+        legacy_host_tests=legacy_host_tests,
+        host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py']),
         accepted_prefix_wins=21,accepted_prefix_reexecuted_only_inside_continuation=True,accepted_native_cases_replayed=0,
         independent_old_arm_links_replayed=0,native_lifecycle_accepted=False,standard_save_fresh_continue=False,
         genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)

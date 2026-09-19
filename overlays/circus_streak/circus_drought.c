@@ -1,15 +1,30 @@
 /* weather12 initAll tableの4byteだけから呼ぶ。旧LOSS/Factory/readkeys/Saveは不変。 */
-#include "circus_drought_selection.h"
+#include "circus_drought_rental.h"
+#include "circus_streak.h"
 #include "circus_drought_addresses.h"
 #include "../save_migration/save_migration.h"
 #define READ8(a) (*(const volatile uint8_t *)(uintptr_t)(a))
 #define READ32(a) (*(const volatile uint32_t *)(uintptr_t)(a))
 #define NATIVE(a) ((void (*)(void))(uintptr_t)(a))
+#define OWNER ((const CircusStreakOwner *)(uintptr_t)CIRCUS_STREAK_ADDRESS)
 /* 定数addressをinline関数のcallback引数へ直接渡さない。
  * GCCで分岐/復帰が消失する縮小再現を保存し、実関数symbolをABI境界にする。 */
 __attribute__((noinline)) static void DroughtOriginal(void) { NATIVE(0x0807AD09u)(); }
 __attribute__((noinline)) static void DroughtInitVars(void) { NATIVE(0x0807ACD5u)(); }
 __attribute__((noinline)) static void DroughtStep(void) { NATIVE(0x0807AD39u)(); }
+static uint32_t DroughtSaveIdentity(void)
+{
+    const volatile uint8_t *save2 = *(const volatile uint8_t * volatile *)(uintptr_t)0x0300504Cu;
+    if ((uintptr_t)save2 < 0x02000000u || (uintptr_t)save2 > 0x0203F000u)
+        return 0u;
+    return (uint32_t)save2[10] | ((uint32_t)save2[11] << 8)
+        | ((uint32_t)save2[12] << 16) | ((uint32_t)save2[13] << 24);
+}
+static uint8_t DroughtOwnerReady(void)
+{
+    return (uint8_t)(CircusStreakValid(OWNER)
+        && OWNER->save_identity == DroughtSaveIdentity() && OWNER->phase == CIRCUS_READY);
+}
 __attribute__((used, noinline, externally_visible))
 void CircusDroughtInitAll(void)
 {
@@ -33,5 +48,5 @@ void CircusDroughtInitAll(void)
         c.armed = (uint8_t)((int (*)(void))(uintptr_t)CIRCUS_DROUGHT_ARMED)();
         c.ledger_valid = (uint8_t)(VegaSaveValidate(gVegaModernSaveData, VEGA_SAVE_LEDGER_SIZE) == VEGA_SAVE_OK);
     }
-    CircusDroughtInitializeSelection(&c, READ8(0x02023F89u), w, DroughtOriginal, DroughtInitVars, DroughtStep);
+    CircusDroughtInitializeRentalBoundary(&c, DroughtOwnerReady(), READ8(0x02023F89u), w, DroughtOriginal, DroughtInitVars, DroughtStep);
 }
