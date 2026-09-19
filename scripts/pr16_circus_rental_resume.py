@@ -15,7 +15,10 @@ TEST = 'tests/test_pr16_circus_rental_resume.py'
 WORKFLOW = '.github/workflows/pr16-circus-rental-resume.yml'
 REPORT = 'content/modernization/pr16_circus_rental_resume.json'
 PREVIOUS = 'content/modernization/pr16_circus_rental_drought.json'
-BASE = '148698da36b9be617d923792656019833a0cb96c'
+BASE = '7838f3f510fdf004a426b84cd75141c6dff8b207'
+COMPILE_RUN = 35457143420
+COMPILE_JOB = 105934337378
+COMPILE_HEAD = '667ef6aee34f0e7dda25f6d94d8db5649a571fd7'
 RUN = 35456028016
 JOB = 105931324175
 SHA = '2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183'
@@ -86,13 +89,43 @@ def record(value, phase, stop, next_step):
             '未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。')
     if note not in state['do_not_repeat']:
         state['do_not_repeat'].insert(0, note)
+    compile_note = ('run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、'
+                    'policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、'
+                    'host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。')
+    if compile_note not in state['do_not_repeat']:
+        state['do_not_repeat'].insert(0, compile_note)
     r.SELF, r.TEST, r.WORKFLOW, r.HEADER = SELF, TEST, WORKFLOW, inherited.HEADER
     r.TASK = 'USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN' + os.environ['GITHUB_RUN_ID']
     r.checkpoint(state, loss, stop, next_step,
                  [REPORT, *FILES, PREVIOUS, *value.get('text_evidence', {})], phase,
                  value['classification'] + '。既存candidate2b107e7e/全allocation/rollback固定。'
-                 '受付・launch metadata継承のみ、ROM変更0/ARM再link0/受入単体再実行0。'
+                 '受付・launch metadata継承とhost counter前方定義のみ、ROM変更0/ARM再link0/受入単体再実行0。'
                  '100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。')
+
+
+def refresh_changed_bindings(state):
+    """旧HEADで同一性を証明した意図した3ファイルだけを更新する。"""
+    import pr16_resume as resume
+    for path, bound in state['source_bindings'].items():
+        current = identity((ROOT / path).read_bytes())
+        if current != bound:
+            need(path in FILES, 'unexpected source drift: ' + path)
+            previous = subprocess.check_output(['git', 'show', BASE + ':' + path], cwd=ROOT)
+            need(identity(previous) == bound, 'previous source binding differs: ' + path)
+    # 生成MDを先に同期し、resumeの他の受入/候補/台帳検査は一切緩和しない。
+    for path in FILES:
+        state['source_bindings'][path] = identity((ROOT / path).read_bytes())
+    (ROOT / resume.STATE).write_bytes(stable(state))
+    (ROOT / resume.DOC).write_text(resume.render(state))
+    return resume.validate(ROOT)
+
+
+def policy_with_counter(text):
+    """policy includeはcontrollerの定義より前。Cの同一内部リンケージを前方定義する。"""
+    declaration = 'static unsigned sc_events;\n'
+    need(declaration not in text, 'duplicate event counter declaration')
+    return declaration + text
+
 
 
 def prepare():
@@ -100,10 +133,20 @@ def prepare():
     d, b = configure()
     r = b.rec
     head = r.scope()
-    state = resume.validate(ROOT)
+    state = resume.load(ROOT, resume.STATE)
     need(r.command('git', 'rev-parse', 'HEAD^') == BASE, 'resume base advanced')
     need(set(r.command('git', 'diff', '--name-only', BASE, head).splitlines()) == set(FILES), 'resume WIP scope')
-    need(not (ROOT / REPORT).exists(), 'resume already attempted; inspect original instead')
+    last = resume.load(ROOT, REPORT)
+    need(last.get('recording_run') == COMPILE_RUN, 'resume already attempted; inspect original instead')
+    need(last['native']['actual_new_processes'] == 0 and last['native']['failures'] ==
+         [dict(stage='setup-or-execution', error='Circus native controller compile failed')],
+         'previous controller compilation failure differs')
+    for path, bound in last['text_evidence'].items():
+        need(identity((ROOT / path).read_bytes()) == bound, 'previous runner evidence changed: ' + path)
+    error_path = 'evidence/pr16_circus_rental_drought/' + str(COMPILE_RUN) + '/native/compile.stderr'
+    errors = (ROOT / error_path).read_text()
+    need('sc_events' in errors and 'undeclared' in errors, 'original counter declaration failure absent')
+    state = refresh_changed_bindings(state)
     previous = resume.load(ROOT, PREVIOUS)
     need(previous['recording_run'] == RUN and previous['native']['actual_new_processes'] == 0,
          'previous native already executed')
@@ -118,11 +161,21 @@ def prepare():
     need(run['status'] == 'completed' and run['conclusion'] == 'failure'
          and run['head_sha'] == 'd1af762472eb529b4fcad93bac65c4e44aa05db3', 'previous Actions differs')
     need(job['run_id'] == RUN and job['status'] == 'completed' and job['conclusion'] == 'failure', 'previous job differs')
+    compile_run = r.api('actions/runs/' + str(COMPILE_RUN))
+    compile_job = r.api('actions/jobs/' + str(COMPILE_JOB))
+    need(compile_run['head_sha'] == COMPILE_HEAD and compile_run['conclusion'] == 'failure'
+         and compile_run['status'] == 'completed', 'compilation run identity differs')
+    need(compile_job['run_id'] == COMPILE_RUN and compile_job['conclusion'] == 'failure'
+         and compile_job['status'] == 'completed', 'compilation job identity differs')
     # 保存済みin_progressを失敗完了として先に照合する。新しいrunはcheckpointが別に登録する。
     actions = [{k: run[k] for k in ('id', 'head_sha', 'status', 'conclusion')}]
+    actions.append({k: compile_run[k] for k in ('id', 'head_sha', 'status', 'conclusion')})
     for item in r.api('actions/runs?head_sha=' + BASE + '&per_page=20')['workflow_runs']:
         actions.append({k: item[k] for k in ('id', 'head_sha', 'status', 'conclusion')})
-    value = dict(schema_version=1, classification='CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING',
+    value = dict(schema_version=1, classification='CIRCUS_RENTAL_CONTROLLER_DECLARATION_REPAIRED_NATIVE_PENDING',
+                 prior_runner_attempt=dict(run_id=COMPILE_RUN, job_id=COMPILE_JOB, original_conclusion='failure',
+                                          native_processes=0, error_evidence=error_path,
+                                          text_evidence=last['text_evidence']),
                  previous_run=RUN, previous_job=JOB, previous_original_conclusion='failure', previous_native_processes=0,
                  candidate=recipe['candidate'], actions_reconciled=actions,
                  inherited_recipe=identity(stable(previous['build'])),
@@ -132,7 +185,7 @@ def prepare():
                  native_lifecycle_accepted=False, standard_save_fresh_continue=False,
                  genuine_30_wins_verified=False, physical_admission_accepted=False,
                  suppression_accepted=False, release_ready=False)
-    record(value, 'PREPARED', '候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。', NEXT)
+    record(value, 'PREPARED', '候補2b107e7eの受付/launch契約と再構築は成功。native0のcontroller include順序によるsc_events未宣言を前方定義で修復し、未実行continuationだけを開始。', NEXT)
 
 
 def reconstruct():
@@ -159,6 +212,9 @@ def reconstruct():
 
 def native():
     configure()
+    import pr16_streak_native as n
+    previous_policy = n.policy
+    n.policy = lambda wx, br: policy_with_counter(previous_policy(wx, br))
     inherited.native()
     result = json.loads((OUT / 'rental-drought-result.json').read_bytes())
     need(result['genuine_30_wins_verified'], 'genuine 30-win target remains open; preserve scoped result')

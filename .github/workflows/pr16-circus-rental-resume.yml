@@ -22,10 +22,10 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
-      - name: native0失敗の受付契約だけを修復して記録
+      - name: native0の宣言順序だけを修復して記録
         id: prepare
         run: python3 scripts/pr16_circus_rental_resume.py prepare
-      - name: 構築済み候補を再linkせず未実行nativeを検証
+      - name: 構築済み候補と修復済み受付契約から未実行nativeを検証
         run: python3 scripts/pr16_circus_rental_resume.py pipeline
       - name: 成否を区別して固定引継ぎと両ログを非force保存
         if: always() && steps.prepare.outcome == 'success'
