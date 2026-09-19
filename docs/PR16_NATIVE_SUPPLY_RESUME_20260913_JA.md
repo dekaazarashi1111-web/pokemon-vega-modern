@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-18戦目の実境界はscript09ff4dad保持・state5から2へ再停止。元1体snapshotを選出3体と誤比較していたguardを、2つの読取人数を分離して修復。旧WINと原party/ledgerは不変。
+元人数/選出数分離の新候補と原本を保存。18戦目launchと通常Save/fresh Continue=False、真正30勝=False。画像・抑制・最終P08/releaseは未完。
 
 **次: 新候補の18戦目以降の実勝敗/元party600と人数/owner64/通常Save/fresh Continueを原本と画像で確認。真正30勝が未達なら最初の新停止のみ修復し、達成後に正規特性抑制へ進む。旧境界/旧CPU/旧ARM2link/既受入単体は再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `ce19f6c05dab61f35bd82332d158b913985f837a`。
+証拠のsource HEAD: `db3a14598b87494eb109814f02f7f88a5e8ab0d2`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
