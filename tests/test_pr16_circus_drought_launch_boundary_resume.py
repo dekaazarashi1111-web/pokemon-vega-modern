@@ -9,9 +9,9 @@ class ResumeBindingTests(unittest.TestCase):
     def test_git_blob_matches_git_object_rule(self):
         raw=b'abc\n';self.assertEqual(t.git_blob(raw),hashlib.sha1(b'blob 4\0abc\n').hexdigest())
     def test_commit_scope_is_exact_and_add_only(self):
-        value=t.validate_commit_scope('a'*40,t.BASE_HEAD,list(reversed(t.NEW_FILES)),list(t.NEW_FILES))
+        value=t.validate_commit_scope('a'*40,t.RETRY_PARENT,list(reversed(t.NEW_FILES)),list(t.NEW_FILES))
         self.assertTrue(value['added_only'])
-        with self.assertRaises(ValueError):t.validate_commit_scope('a'*40,t.BASE_HEAD,[*t.NEW_FILES,'extra'],list(t.NEW_FILES))
+        with self.assertRaises(ValueError):t.validate_commit_scope('a'*40,t.RETRY_PARENT,[*t.NEW_FILES,'extra'],list(t.NEW_FILES))
         with self.assertRaises(ValueError):t.validate_commit_scope('a'*40,'b'*40,list(t.NEW_FILES),list(t.NEW_FILES))
     def test_stale_run_requires_prepare_only_failure(self):
         run={'id':t.STALE_RUN,'head_sha':t.STALE_HEAD,'status':'completed','conclusion':'failure'}
@@ -22,6 +22,15 @@ class ResumeBindingTests(unittest.TestCase):
         self.assertEqual(value['native_processes'],0)
         jobs['jobs'][0]['steps'][1]['conclusion']='success'
         with self.assertRaises(ValueError):t.validate_stale_run(run,jobs,{'total_count':0,'artifacts':[]})
+    def test_render_sync_run_requires_reconcile_only_failure(self):
+        run={'id':t.RENDER_RUN,'head_sha':t.RENDER_HEAD,'status':'completed','conclusion':'failure'}
+        steps=[{'number':3,'name':'source binding差分を親HEADとblobで固定して先行保存','conclusion':'failure'}]
+        steps += [{'number':n,'name':'x','conclusion':'skipped'} for n in (4,5,6,7,8)]
+        jobs={'total_count':1,'jobs':[{'id':t.RENDER_JOB,'conclusion':'failure','steps':steps}]}
+        value=t.validate_render_run(run,jobs,{'total_count':0,'artifacts':[]})
+        self.assertEqual(value['native_processes'],0)
+        jobs['jobs'][0]['steps'][-1]['conclusion']='success'
+        with self.assertRaises(ValueError):t.validate_render_run(run,jobs,{'total_count':0,'artifacts':[]})
     def test_rebind_changes_only_expected_entries(self):
         script=b'new-script';test=b'new-test';new={p:(p+'\n').encode() for p in t.NEW_FILES}
         old_bindings={t.BOUNDARY_SCRIPT:dict(t.OLD_BINDINGS[t.BOUNDARY_SCRIPT]),t.BOUNDARY_TEST:dict(t.OLD_BINDINGS[t.BOUNDARY_TEST]),'keep':{'size':1,'sha256':'x'}}
