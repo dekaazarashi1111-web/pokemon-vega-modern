@@ -27,6 +27,39 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+      - name: 旧probe参照だけを原本契約へ修正して非force保存
+        run: |
+          python3 - <<'PY'
+          import hashlib,os,pathlib,subprocess,sys
+          sys.path.insert(0,'scripts')
+          import pr16_circus_battle25 as b
+          head=b.scope()
+          prior=b.api('actions/runs/35467548807')
+          assert prior['status']=='completed' and prior['conclusion']=='failure' and prior['head_sha']=='f8d84b1ec0944921928cbb19b7d5f16837218da6'
+          assert not pathlib.Path(b.REPORT).exists()
+          paths={'scripts/pr16_circus_battle25.py':'4eb632584928db1bc6ca250658354215cabe694b675c37c05de10f202b4866fe',
+                 'tests/test_pr16_circus_battle25.py':'3c3b32c8223233546a7fe2a85ec9d88867a5791188f029cacbd7ac5a422b11c9'}
+          for name,sha in paths.items():
+              p=pathlib.Path(name);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sha
+              text=raw.decode();text=b.policy.replace_once(text,'import pr16_circus_continuous_probe as probe','import pr16_circus_reentry_probe as probe')
+              if name.startswith('scripts/'):
+                  text=b.policy.replace_once(text,"name=='scripts/pr16_circus_continuous_probe.py'","name in ('scripts/pr16_circus_continuous_probe.py','scripts/pr16_circus_reentry_probe.py')")
+                  text=b.policy.replace_once(text,'failures=[],visual_review_completed=False)',
+                      "failures=[],visual_review_completed=False,workflow_source_head=os.environ['GITHUB_SHA'],prior_setup_failures=[dict(run_id=35467548807,job_id=105962556068,source_head='f8d84b1ec0944921928cbb19b7d5f16837218da6',original_conclusion='failure',native_processes=0,artifact_id=10592095504,archive=dict(size=138612,sha256='c7fbd2f2c7aae3f69425813df1ca794d1d2f03cad52f55ea5fb6f0b36aee3cb1'),reason_ja='旧continuous probeはEnd/ABORT世代を扱えず、原本照合で停止。既存reentry probeへ接続し実原本全体を回帰検査。')])")
+              else:
+                  text=b.policy.replace_once(text,"old=probe.strict((ORIGINAL/(probe.CASE+'.stdout')).read_bytes())",
+                      "probe.SHA='2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183'\n        old=probe.validate((ORIGINAL/(probe.CASE+'.stdout')).read_bytes(),self.trace,0,probe.CASE)")
+              compile(text,name,'exec');p.write_text(text)
+          subprocess.run(['git','add','--',*paths],check=True)
+          subprocess.run(['git','diff','--cached','--check'],check=True)
+          assert set(b.command('git','diff','--cached','--name-only',head).splitlines())==set(paths)
+          b.scope()
+          subprocess.run(['git','config','user.name','github-actions[bot]'],check=True)
+          subprocess.run(['git','config','user.email','41898282+github-actions[bot]@users.noreply.github.com'],check=True)
+          subprocess.run(['git','commit','-m',b.TASK+': WIP 既存reentry検証器へ接続し終了世代を含む原本回帰を追加'],check=True)
+          subprocess.run(['git','push','origin','HEAD:refs/heads/'+b.BRANCH],check=True)
+          b.scope()
+          PY
       - name: 固定原本と6契約を照合し実装・引継ぎ・両ログを先に保存
         id: prepare
         run: python3 scripts/pr16_circus_battle25.py prepare
