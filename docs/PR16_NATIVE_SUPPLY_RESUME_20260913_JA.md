@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
+実1勝後の第2戦中断でcurrent0/best1/ABORT一度を保持。既存自動Save2回と通常Save1回を区別し、3つ目のcoreでもowner64/原party600/Factory104不変/BP0を検証。
 
 **次: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `84c1e2b18393668da321624e36c920b8e4aec6e7`。
+証拠のsource HEAD: `0aa04cbd845aa6dcdac2db87550a64cc169c6c59`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

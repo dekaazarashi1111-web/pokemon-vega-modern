@@ -7814,3 +7814,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。
+
+
+## 2026-09-19T04:59:04.689084+00:00 — USER-20260919-CIRCUS-COLD-LOAD-RECORDED
+- Timestamp: 2026-09-19T04:59:04.689084+00:00
+- Task: USER-20260919-CIRCUS-COLD-LOAD-RECORDED
+- Status: DONE / 実1勝後の第2戦中断でcurrent0/best1/ABORT一度を保持。既存自動Save2回と通常Save1回を区別し、3つ目のcoreでもowner64/原party600/Factory104不変/BP0を検証。
+- Version: pr16-circus-loss-marker
+- Summary: 実1勝後の第2戦中断でcurrent0/best1/ABORT一度を保持。既存自動Save2回と通常Save1回を区別し、3つ目のcoreでもowner64/原party600/Factory104不変/BP0を検証。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coldboot.json, scripts/pr16_circus_coldboot.py, tests/test_pr16_circus_coldboot.py, tests/fixtures/circus_cold_load_fixture.c, overlays/circus_streak/circus_streak_cold_load.c, tools/mgba_pr16_circus_coldboot.c, scripts/pr16_circus_coldboot_probe.py, .github/workflows/pr16-circus-coldboot.yml, evidence/pr16_circus_coldboot/35422605107/build.json, evidence/pr16_circus_coldboot/35422605107/report.json, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.stdout, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.stderr, evidence/pr16_circus_coldboot/35422605107/circus-interrupt-second-battle.process.json, evidence/pr16_circus_coldboot/35422605107/streak.json
+- Verify: CIRCUS_COLD_LOAD_INTERRUPTION_BEST1_SAVE_CONTINUE_VERIFIED。2独立ARM linkと全ROM rollbackの構築原本を保存。既存Factoryの自動Save2回は変更せず、未完戦を加算しない64byteを検証。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。
