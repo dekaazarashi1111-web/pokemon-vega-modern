@@ -1,0 +1,48 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "success",
+      "head_sha": "84c1e2b18393668da321624e36c920b8e4aec6e7",
+      "id": 35422605107,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "7072b55d2c23d30f3f744843398b0c2933508436",
+      "id": 35421235529,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "changed_scope_ja": "ROM/fixture/最初の2戦は不変。第3戦のみ無効な攻撃だけのNormalへの先発交換と未確認SeedのProtectを避け、実タイプ/PP/毒/HPで決着と回復を選ぶ。",
+  "classification": "CIRCUS_FINISH_INPUT_PREPARED",
+  "cold_load_inherited": {
+    "job_id": 105842901422,
+    "original_conclusion": "success",
+    "path": "content/modernization/pr16_circus_coldboot.json",
+    "run_id": 35422605107
+  },
+  "failed_three_win_inherited": {
+    "losses": 1,
+    "original_conclusion": "failure",
+    "run_id": 35421235529,
+    "wins": 2
+  },
+  "host_tests": [
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_finish.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "input_policy_id": "confirmed-damage-finish-v1",
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false
+}
