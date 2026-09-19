@@ -7476,3 +7476,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。
+
+
+## 2026-09-19T02:02:07.679969+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-RETURN-START
+- Timestamp: 2026-09-19T02:02:07.679969+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-RETURN-START
+- Status: DONE / 6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。
+- Version: pr16-circus-loss-marker
+- Summary: 6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_return_trace.json, tools/mgba_pr16_circus_return_trace.h, scripts/pr16_circus_return_trace.py, tests/test_pr16_circus_return_trace.py, .github/workflows/pr16-circus-return-trace.yml
+- Verify: readonly trace契約PASS。診断のみ、native受入追加なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。

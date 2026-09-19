@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。",
+    "current_stop": "6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。",
+    "next_step": "敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35413721743,
-    "source_head": "e52e2fb113f713421ee95c02717dc57f6013a554",
+    "run_id": 35414451945,
+    "source_head": "9c05fd46922870e04d25155818a1b9f2734372ac",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -598,12 +598,12 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。",
+    "goal_ja": "敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_loss_followup.py",
+      "scripts/pr16_circus_return_trace.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
       "overlays/circus_streak/circus_streak_loss.h",
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "e52e2fb113f713421ee95c02717dc57f6013a554",
+  "observed_head": "9c05fd46922870e04d25155818a1b9f2734372ac",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "e52e2fb113f713421ee95c02717dc57f6013a554"
+    "scope_head": "9c05fd46922870e04d25155818a1b9f2734372ac"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35413721743,
+      "run_id": 35414451945,
       "status": "in_progress",
-      "tested_head": "37a502e01d2023102b7decdeec439295f6b16ddf"
+      "tested_head": "9c05fd46922870e04d25155818a1b9f2734372ac"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1414,6 +1414,10 @@
     ".github/workflows/pr16-circus-retention.yml": {
       "sha256": "383092d3ba24bd9968f7081c25129db9e24e978e6f01cebab11259b9ad4cf86a",
       "size": 7275
+    },
+    ".github/workflows/pr16-circus-return-trace.yml": {
+      "sha256": "8b40a2c59d22a790c36f772a18ac68d76c991e0315986e9c896d5911f7f57451",
+      "size": 5937
     },
     ".github/workflows/pr16-circus-source.yml": {
       "sha256": "e5e7c90dd6233392ea29a9d0e58b7f3f78afa3693c5773c70c176a147a4b23a5",
@@ -2156,8 +2160,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "f285523e71806ed783b22522eb80793bdc59a7de81ec497821961039b502659a",
-      "size": 130195
+      "sha256": "787dd6d834f6a64a0f3560d708f333d2adf0a4273e638e42842b3dd1c07e296f",
+      "size": 130412
     },
     "content/modernization/pr16_circus_native_prefix_checkpoint.json": {
       "sha256": "27b0c52cf9240addba0d6146d1ad2cf456e0777ec2fc8ce6503ff65a0f870c1a",
@@ -2170,6 +2174,10 @@
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
       "size": 195272
+    },
+    "content/modernization/pr16_circus_return_trace.json": {
+      "sha256": "e87235fd546f2f9b20d6d6135cfc46b832126ec6374be2f7413b4fdc83463131",
+      "size": 444
     },
     "content/modernization/pr16_circus_streak_build_checkpoint.json": {
       "sha256": "a49d0e6603e23e79c98f966be03529fd16f215a20e0e274d5bb4e52bfe6ee8b6",
@@ -3103,6 +3111,10 @@
       "sha256": "bd192d9921371b89f898f3a24ea2cfbaf627077fe6e2ad8077a43b879e8dcd7b",
       "size": 12169
     },
+    "scripts/pr16_circus_return_trace.py": {
+      "sha256": "62b80d12d345e87d475f366910a545f5469434ab77df6960d9802f8373da8918",
+      "size": 7757
+    },
     "scripts/pr16_circus_source_probe.py": {
       "sha256": "fe1306aa05c3e0c8f5af1763e84afbac7e07d5c1d0d75b52720507a48ba5e4ef",
       "size": 7707
@@ -3887,6 +3899,10 @@
       "sha256": "49a410acf48b48c88fbaa5c7df4de029dc2519c6c31139a0611f8bab7d827d99",
       "size": 3599
     },
+    "tests/test_pr16_circus_return_trace.py": {
+      "sha256": "56858d1247706a4a614bd668faf1240b80c976c65525eead9acefc8642744ffa",
+      "size": 1735
+    },
     "tests/test_pr16_circus_streak.py": {
       "sha256": "b57bdf37d7f704700a1a0827547af7dae5fd14936042f158fb36a3341e617bd7",
       "size": 2553
@@ -4511,6 +4527,10 @@
       "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885",
       "size": 11730
     },
+    "tools/mgba_pr16_circus_return_trace.h": {
+      "sha256": "e7fe2ac27bb1ff4d2fe4faa0f434843ff76d3451a5d835dc6f64ef6e46ebc3e0",
+      "size": 1387
+    },
     "tools/mgba_pr16_ring_caller_snapshot.c": {
       "sha256": "5984c597aafedbe2a4da2ce5efdf6ed5108e699a5af3a8c8df79d1c779d3ea68",
       "size": 7367
@@ -4521,7 +4541,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。",
+  "source_change_review_ja": "6e修復候補はWhiteOutを回避するが黒画面で原party復元前に停止。未観測の敗北後1200frameのfield/script/fade/taskだけを入力専用で記録。固定2linkの再実行なし。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
