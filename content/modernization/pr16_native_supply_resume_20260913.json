@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。",
+    "current_stop": "境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
+    "next_step": "source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -111,6 +111,11 @@
     "path": "content/modernization/pr16_circus_drought_launch_boundary.json",
     "run_id": 35438144902
   },
+  "circus_drought_launch_boundary_binding": {
+    "classification": "CIRCUS_DROUGHT_BOUNDARY_SOURCE_BINDING_RECONCILED",
+    "path": "content/modernization/pr16_circus_drought_launch_boundary_binding.json",
+    "run_id": 35450224019
+  },
   "circus_drought_launch_followup": {
     "classification": "CIRCUS_DROUGHT_LAUNCH_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch.json",
@@ -158,8 +163,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35438144902,
-    "source_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc",
+    "run_id": 35450224019,
+    "source_head": "602abf6c601c39e3f912cde24c84d58ac960220a",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -506,6 +511,9 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。",
+    "run35438845025/job105886059983は前処理失敗/native0。source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。",
+    "run35438563815/job105885315243は前処理失敗/native0。正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。",
     "run35437062974/job105881419750は17勝prefixと18戦目確認まで到達後、action/Saveなしでfield callback・script0へ落ちた。新候補の最初の停止として保持し、同じ18,000frame失敗待ちは再実行しない。",
     "run35436330902/job105879496730はROM98b9eea4不変・ARM再link0で18戦目のCPU21点/600frame診断SUCCESS。outcome0/script09ff4dad・weather12/state2/empty cursor1/1・native busy loopを確認。診断を保存/30勝受入に変えず、同一診断は再実行しない。",
     "run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。",
@@ -768,12 +776,12 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。",
+    "goal_ja": "source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_drought_launch_boundary.py",
+      "scripts/pr16_circus_drought_launch_boundary_resume.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
       "tools/mgba_pr16_circus_drought_launch_boundary.h",
@@ -788,10 +796,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc",
+  "observed_head": "602abf6c601c39e3f912cde24c84d58ac960220a",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "8370d9309ca1f5e22285dd67ee1ad4651d967bcc"
+    "scope_head": "602abf6c601c39e3f912cde24c84d58ac960220a"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -860,9 +868,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35438144902,
+      "run_id": 35450224019,
       "status": "in_progress",
-      "tested_head": "3fa90fab346223742c2f66dff6756e7f0d560078"
+      "tested_head": "602abf6c601c39e3f912cde24c84d58ac960220a"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -890,14 +898,20 @@
   "prior_actions_reconciled": [
     {
       "conclusion": "failure",
-      "head_sha": "80e9643ff8689fec7212745e7a3fb21e988bc79b",
-      "id": 35437062974,
+      "head_sha": "1e43febe6da4e7ba74549a4905b8466da88bef3d",
+      "id": 35438563815,
       "status": "completed"
     },
     {
-      "conclusion": "action_required",
-      "head_sha": "3906ccc213e358a67000f6ebfb2e3618261d5390",
-      "id": 35437460976,
+      "conclusion": "failure",
+      "head_sha": "725bbe8bdcc2149870dd78ce55406243fd71c86e",
+      "id": 35438845025,
+      "status": "completed"
+    },
+    {
+      "conclusion": "failure",
+      "head_sha": "3827258983b6a3a467af0ef584c408ae3bc4ef8b",
+      "id": 35439014239,
       "status": "completed"
     }
   ],
@@ -1578,6 +1592,10 @@
     ".github/workflows/pr16-circus-drought-calls.yml": {
       "sha256": "6af6931184f968bd687ae454b6d518d45823008ac41b554c2ffe84f23c209d93",
       "size": 1784
+    },
+    ".github/workflows/pr16-circus-drought-launch-boundary-resume.yml": {
+      "sha256": "0256f7c0d1de236d7bd279f43bd3db002c71981811a1d57174d955cc0bcf865f",
+      "size": 4587
     },
     ".github/workflows/pr16-circus-drought-launch-boundary.yml": {
       "sha256": "0f7eadd735b11a52fa13891c25e4fedc932ccbd75cc41797cc796d1ce363b077",
@@ -2471,6 +2489,10 @@
       "sha256": "277bad6a7080bdf277ec53773bba0d3e4c63ed3d1203ed0b1c401d1c18fbe613",
       "size": 13788
     },
+    "content/modernization/pr16_circus_drought_launch_boundary_binding.json": {
+      "sha256": "741520d3c15c8d87f9d6f9a3be592e10e543cf8742ff5ab9a3db4599f7901eac",
+      "size": 4224
+    },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
       "size": 90509
@@ -2504,8 +2526,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "ccdd13499d4f9afcaaa79d656355d07c1cac880e109ea007b840f0653ca560c3",
-      "size": 134292
+      "sha256": "f43d2d2f11bed74a5eeecb30667b5d0e136fa9d3310ce5345d4995ff76de185f",
+      "size": 134523
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -4868,8 +4890,12 @@
       "size": 11694
     },
     "scripts/pr16_circus_drought_launch_boundary.py": {
-      "sha256": "a3b8ffe2a2c2d139b2fdbbbcc9e8bcf987755dab3c450856552ee7fa9e19427d",
-      "size": 14439
+      "sha256": "f2a7255e61e96501c1dfa43e3adf9bb9de79d55d410f2cc945624b73de581081",
+      "size": 17466
+    },
+    "scripts/pr16_circus_drought_launch_boundary_resume.py": {
+      "sha256": "3366787af3904a8a2f97850511ee0af54796c49ddd187b73dcdcc590b8a3f9b5",
+      "size": 11288
     },
     "scripts/pr16_circus_effective.py": {
       "sha256": "b9181302b5420620bc617236d1f86132d2371565ff337fcc56a455f4c3b9c3f1",
@@ -5816,8 +5842,12 @@
       "size": 3066
     },
     "tests/test_pr16_circus_drought_launch_boundary.py": {
-      "sha256": "ccace74b3b7f9a73f44f2c9f64bdd0b7f61f8f5decfed903c6f6df612f98033b",
-      "size": 3104
+      "sha256": "5042d339fee13a2c283cd55c13f22a8fdb4036aa32066e26a1256d8441d6826f",
+      "size": 4663
+    },
+    "tests/test_pr16_circus_drought_launch_boundary_resume.py": {
+      "sha256": "4bf1cdff24faf86d55da69c8cec6f64d2303aed53e477ce01ca0767cee4eadb9",
+      "size": 7396
     },
     "tests/test_pr16_circus_effective.py": {
       "sha256": "04a1f81cec48282b2f1ba443f9c2138a00ff27842857e9b1caa1dd6b1ff7c021",
@@ -6681,7 +6711,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。",
+  "source_change_review_ja": "境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

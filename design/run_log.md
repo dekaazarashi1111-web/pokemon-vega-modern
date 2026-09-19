@@ -8256,3 +8256,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。
+
+
+## 2026-09-19T14:56:13.159182+00:00 — USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-BINDING-RECORDED
+- Timestamp: 2026-09-19T14:56:13.159182+00:00
+- Task: USER-20260919-CIRCUS-DROUGHT-LAUNCH-BOUNDARY-BINDING-RECORDED
+- Status: DONE / 境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。
+- Version: pr16-circus-loss-marker
+- Summary: 境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_drought_launch_boundary_binding.json, scripts/pr16_circus_drought_launch_boundary_resume.py, tests/test_pr16_circus_drought_launch_boundary_resume.py, .github/workflows/pr16-circus-drought-launch-boundary-resume.yml, scripts/pr16_circus_drought_launch_boundary.py, tests/test_pr16_circus_drought_launch_boundary.py
+- Verify: source binding・生成MD・親loss参照を整合。限定host回帰と厳格resume validate、最終index guardを通過して非force保存。native0/ROM・save証跡0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。

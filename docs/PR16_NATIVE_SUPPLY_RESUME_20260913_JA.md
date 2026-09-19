@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-18戦目chooserからfield callback/script0へ落ちるreadonly境界を保存。weather完了=None。native/Save/30勝受入には昇格しない。
+境界script/testの旧source bindingをblob固定照合し、親loss JSONにも結果参照を結合。3件の前処理失敗をnative0のまま保存。必須差分guardは維持。
 
-**次: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。**
+**次: source bindingを厳格整合済みの同じ候補で、18戦目chooser→field落下のreadonly境界を1processだけ採取する。受入済み単体・旧CPU診断・旧独立2linkは再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8370d9309ca1f5e22285dd67ee1ad4651d967bcc`。
+証拠のsource HEAD: `602abf6c601c39e3f912cde24c84d58ac960220a`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,7 +26,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_drought_launch_boundary.py`
+- `scripts/pr16_circus_drought_launch_boundary_resume.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
 - `tools/mgba_pr16_circus_drought_launch_boundary.h`
@@ -67,6 +67,9 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35439014239/job105886489666は前処理失敗/native0。source binding/生成MDは整合したが、親loss JSONに参照を結び付けず不変だったためcheckpoint必須差分検査で停止。commit/push/native/artifactなし。 同一失敗は再実行しない。
+- run35438845025/job105886059983は前処理失敗/native0。source binding更新後に生成MDを先に同期せず厳格resume.validateを実行し、Markdown driftで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。
+- run35438563815/job105885315243は前処理失敗/native0。正本source_bindingsが意図した診断script変更を旧fingerprintとして検知し、prepareで停止。native/pipeline/finish/pack/artifactは未実行。 同一失敗は再実行しない。
 - run35437062974/job105881419750は17勝prefixと18戦目確認まで到達後、action/Saveなしでfield callback・script0へ落ちた。新候補の最初の停止として保持し、同じ18,000frame失敗待ちは再実行しない。
 - run35436330902/job105879496730はROM98b9eea4不変・ARM再link0で18戦目のCPU21点/600frame診断SUCCESS。outcome0/script09ff4dad・weather12/state2/empty cursor1/1・native busy loopを確認。診断を保存/30勝受入に変えず、同一診断は再実行しない。
 - run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。
