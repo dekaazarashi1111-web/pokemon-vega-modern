@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
+厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。
 
 **次: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4981e2b9a2523ad707ce7f15fbc57fb4e895992b`。
+証拠のsource HEAD: `02533b790784b99d02ded593b7a18ade392a6189`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

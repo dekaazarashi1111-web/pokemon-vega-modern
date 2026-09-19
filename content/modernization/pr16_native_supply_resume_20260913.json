@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。",
+    "current_stop": "厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -105,7 +105,7 @@
       "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
       "size": 33554432
     },
-    "classification": "CIRCUS_ACCURACY_POLICIES_PREPARED",
+    "classification": "CIRCUS_THREE_WIN_ACCURACY_SAVE_CONTINUE_VERIFIED",
     "path": "content/modernization/pr16_circus_accuracy.json"
   },
   "circus_first_battle_native": {
@@ -125,7 +125,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35425237415,
-    "source_head": "4981e2b9a2523ad707ce7f15fbc57fb4e895992b",
+    "source_head": "02533b790784b99d02ded593b7a18ade392a6189",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -627,10 +627,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "4981e2b9a2523ad707ce7f15fbc57fb4e895992b",
+  "observed_head": "02533b790784b99d02ded593b7a18ade392a6189",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "4981e2b9a2523ad707ce7f15fbc57fb4e895992b"
+    "scope_head": "02533b790784b99d02ded593b7a18ade392a6189"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2201,8 +2201,8 @@
       "size": 23940
     },
     "content/modernization/pr16_circus_accuracy.json": {
-      "sha256": "90ca825a7baa9e34e7f758afa418169c130719b721a61a3344f8c84b4df8e615",
-      "size": 1431
+      "sha256": "f5251fb43c205cc41dc53768d2e7ddd74945eb250871c2e6a68946391d54fc48",
+      "size": 5517
     },
     "content/modernization/pr16_circus_admission_checkpoint.json": {
       "sha256": "3b4521a6b59913241f7d639300a9505dd70e0a6391d82ccf7fbcc419bfa9bae8",
@@ -2241,8 +2241,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "8199cf76a08fb9e622f456a7813efd5bcb6e293aa226541d74ef2828d9f97713",
-      "size": 131622
+      "sha256": "ac7f662a27e25930a44c6d5692fe7a2cf066c153bf66a6b52c349ab02aaa14b1",
+      "size": 131637
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2843,6 +2843,42 @@
     "content/modernization/pr16_ring_zero_bytes.json": {
       "sha256": "053457495169b5628d8ff3c0c28c8a58e38053ffd66b4bf8547bae2b2cfb5036",
       "size": 35345
+    },
+    "evidence/pr16_circus_accuracy/35425237415/attempts.json": {
+      "sha256": "1e172475dfb8933835834de60c367b0943d33c38a522372f0eabc45ef9e2348e",
+      "size": 1058
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stderr": {
+      "sha256": "e49441005542fd432750b6c29b29bcdf6b39295fe032e268ed2b63ecb86a3828",
+      "size": 135080
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/circus-streak-batch-save.stdout": {
+      "sha256": "45c816cdec4ba221d358773fc885154000ea0f6e3678e0f23e08bb68246bdf3c",
+      "size": 588
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/report.json": {
+      "sha256": "70cc1fba0498d4963793a604796d00bc58e6dfb72c814aa88cc1d02d923a4f6c",
+      "size": 105815
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/native/streak.json": {
+      "sha256": "33d726c7dab1a085d8894369bae7cc3f844ab76a11d23185c5dce658587d5e3a",
+      "size": 879
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_accuracy/35425237415/drain-accurate-fire/runner.stdout": {
+      "sha256": "777bd181cf131fe4b38f80909aa91dbb063213142612d1d30494ac0a97cf1a8d",
+      "size": 112
+    },
+    "evidence/pr16_circus_accuracy/35425237415/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
     },
     "evidence/pr16_circus_coldboot/35422605107/build.json": {
       "sha256": "f5c746350a1645cc515e32eaaaa98550ab610111f6a8890aac9c8eb75fcd056e",
@@ -5218,7 +5254,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。",
+  "source_change_review_ja": "厳密3勝・第2/第3launch個体・9BP・原party600・owner64・Save/fresh Continueを確認。成功後の方策実行0。真正30連勝/抑制/P08は未完。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
