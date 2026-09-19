@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。
+Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。
 
-**次: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。**
+**次: 新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `37a502e01d2023102b7decdeec439295f6b16ddf`。
+証拠のsource HEAD: `e52e2fb113f713421ee95c02717dc57f6013a554`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

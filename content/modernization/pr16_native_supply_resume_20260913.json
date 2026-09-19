@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。",
+    "current_stop": "Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。",
+    "next_step": "新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -117,8 +117,8 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35413721743,
-    "source_head": "37a502e01d2023102b7decdeec439295f6b16ddf",
-    "status": "CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING"
+    "source_head": "e52e2fb113f713421ee95c02717dc57f6013a554",
+    "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
     "diagnostic_complete": true,
@@ -598,7 +598,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。",
+    "goal_ja": "新しいnative失敗原本と限定byte-proofを読み、実際の停止箇所を修復する。source-only成功をnative受入へ昇格しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "37a502e01d2023102b7decdeec439295f6b16ddf",
+  "observed_head": "e52e2fb113f713421ee95c02717dc57f6013a554",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "37a502e01d2023102b7decdeec439295f6b16ddf"
+    "scope_head": "e52e2fb113f713421ee95c02717dc57f6013a554"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2156,8 +2156,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "bd135a5000a707ed1b4e6a44700147e962dfb567ac55e95eda00cccc1a1b1635",
-      "size": 1936
+      "sha256": "f285523e71806ed783b22522eb80793bdc59a7de81ec497821961039b502659a",
+      "size": 130195
     },
     "content/modernization/pr16_circus_native_prefix_checkpoint.json": {
       "sha256": "27b0c52cf9240addba0d6146d1ad2cf456e0777ec2fc8ce6503ff65a0f870c1a",
@@ -2766,6 +2766,22 @@
     "evidence/pr16_circus_loss_followup/35391760500/stderr.txt": {
       "sha256": "c862173fd50541986664aa19eca726c65627922c1f5e20633dbbf4b3a503cf0e",
       "size": 50578
+    },
+    "evidence/pr16_circus_loss_followup/run35413721743/byte-proof.json": {
+      "sha256": "9fe6cb73a9e7482209527e179bae4bb161442c8bd20af18de7c572edec7829a9",
+      "size": 553
+    },
+    "evidence/pr16_circus_loss_followup/run35413721743/circus-streak-batch-save.stderr": {
+      "sha256": "b631349a1aac9787f805997d34e9f9dac9b9e49e6bcda9458368042ac3ddebe0",
+      "size": 50589
+    },
+    "evidence/pr16_circus_loss_followup/run35413721743/circus-streak-batch-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_loss_followup/run35413721743/report.json": {
+      "sha256": "d9ca29c41100deb5d637fbe5365119ec18b9b805ae266b527a87bafa39bcf06d",
+      "size": 122081
     },
     "evidence/pr16_circus_retention/original.stderr.txt": {
       "sha256": "87d17efefdc71ef57f74909d5f0d233b7a056805e3980577d5fdba074d798bcd",
@@ -4505,7 +4521,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。",
+  "source_change_review_ja": "Circus敗北marker source修復を保存。後継nativeは失敗原本を保持し未受入。reportのfailuresとstderr末尾から続行し、旧候補を無変更再実行しない。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
