@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。",
+    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35421235529,
-    "source_head": "7072b55d2c23d30f3f744843398b0c2933508436",
+    "source_head": "1e79c3e743e7a5c12fe9ee9be3fc0c22641f6949",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "7072b55d2c23d30f3f744843398b0c2933508436",
+  "observed_head": "1e79c3e743e7a5c12fe9ee9be3fc0c22641f6949",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "7072b55d2c23d30f3f744843398b0c2933508436"
+    "scope_head": "1e79c3e743e7a5c12fe9ee9be3fc0c22641f6949"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2200,7 +2200,7 @@
       "size": 136085
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "da9af85e7d825f631e8ca8f360159c623c885482e5d16802b71691a849fed93f",
+      "sha256": "14c8f8dd2628fb96e325e1fea946df2128869bdc8b797b713e637cbefa7aacb3",
       "size": 131031
     },
     "content/modernization/pr16_circus_loss_weather.json": {
@@ -2228,8 +2228,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "7ad5ddbe1e671fe33f05dd50aab430865b660372627c825a9bae96c93e19254f",
-      "size": 21202
+      "sha256": "7cebe95b554709f2e88f949301d6601712cd6097d4531bb4d266bb5c8a40b9c4",
+      "size": 152286
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3174,6 +3174,34 @@
     "evidence/pr16_circus_three_win/35420622910/report.json": {
       "sha256": "c55cbcac87c732f8825bfae3e05e84cba283763b9bc0e5c073f066ae4c999ecc",
       "size": 124815
+    },
+    "evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.stderr": {
+      "sha256": "940e535c37f3377485c57035cfc1d31005f85b6ca7e61c7babf584dea251fc38",
+      "size": 132558
+    },
+    "evidence/pr16_circus_three_win/35421235529/circus-streak-batch-save.stdout": {
+      "sha256": "655051bc08871d236da856b9c0ae9b0339e8322abc721933ae4dfefb9a4718cd",
+      "size": 588
+    },
+    "evidence/pr16_circus_three_win/35421235529/matchup-proof.json": {
+      "sha256": "c73449bf764a143009e4af98a08aafc7a633eab33e5984972085de1fc3512ff2",
+      "size": 927
+    },
+    "evidence/pr16_circus_three_win/35421235529/pivot-proof.json": {
+      "sha256": "d84540d782c9bdac643afeb8f8eaa3151d0588e875baec0515471c42d7dcddca",
+      "size": 580
+    },
+    "evidence/pr16_circus_three_win/35421235529/reconstruction.json": {
+      "sha256": "bcbf8b14b8640151dab4fb241c0a2807a56b331e49290d01cb45355fe0407421",
+      "size": 175
+    },
+    "evidence/pr16_circus_three_win/35421235529/report.json": {
+      "sha256": "3bd7dd0c2c2ee4d178950a04b4de65d2033a1d1150200bb69dbf55cd8dc023dc",
+      "size": 124773
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -5045,7 +5073,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。",
+  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

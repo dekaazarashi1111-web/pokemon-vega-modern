@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-メニュー表示後の個体再解決は実3回成功。実3勝は未完。毒付き低HP相手への余分なSeedだけをGiga Drainへ修正。中断のowner消失原本は再実行せず、ロード前段の2回Saveを次の修復点として記録。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `7072b55d2c23d30f3f744843398b0c2933508436`。
+証拠のsource HEAD: `1e79c3e743e7a5c12fe9ee9be3fc0c22641f6949`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
