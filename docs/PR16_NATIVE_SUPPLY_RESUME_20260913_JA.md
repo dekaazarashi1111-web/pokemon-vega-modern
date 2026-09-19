@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。
+実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
 
-**次: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。**
+**次: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `51d51e2d56eb9c15cedd99ff236c7174633fcccf`。
+証拠のsource HEAD: `f911d5b6ca11ea35e137c0284bdccc46f4d2bc68`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_win_return_trace.py`
+- `scripts/pr16_circus_win_return_owner.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_win_return_trace.h`
+- `scripts/pr16_circus_win_return_owner.py`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35432359547/job105869102983: host9と修正wrapper5はPASS、実17戦目WINまで80events完全一致。新readonly13点はready1/palette1/両waiter/先頭080f7abdを観測しready0仮説を反証。native受入/Save/30勝ではなくActions failureを保持。同候補の同じ診断は再実行しない。
 - run35431539401/job105866926442はconfigure後の診断module再import testでprepare停止、native0。wrapperのSELF置換を修復して未実行readonly診断へ進む。旧failureを成功へ読み替えない。
 - run35431388329は固定resumeの旧source hashでprepare停止、native0。3ファイルの旧commit照合だけで更新し、ゲームの受入を変えない。
 - run35430246002/job105863397028は15勝prefix不変・実16戦目WIN/settled16・17戦目WIN後black画面/phase2のまま停止。saved/reloadedなし、16勝保存成功や30勝へ昇格しない。actions failure原本を保持し、直後のreadonly traceだけを追加する。

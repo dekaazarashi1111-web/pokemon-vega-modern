@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。",
+    "current_stop": "実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。",
+    "next_step": "ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,8 +88,8 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
-    "path": "content/modernization/pr16_circus_win_return_trace.json",
+    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_owner.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -137,8 +137,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35432359547,
-    "source_head": "51d51e2d56eb9c15cedd99ff236c7174633fcccf",
+    "run_id": 35432926280,
+    "source_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -289,6 +289,11 @@
     "old_head": "b5e22ea1a7fddc30a2c705e2fafffeb3648fd8c9",
     "original_conclusion": "failure",
     "reason_ja": "macro修正3ファイルに固定resumeの旧hashが残りprepareで拒否。旧commitの3原本と完全一致を確認して対象3hashだけ更新。他のbinding/受入結果は変更しない。"
+  },
+  "circus_win_return_owner": {
+    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED",
+    "path": "content/modernization/pr16_circus_win_return_owner.json",
+    "run_id": 35432926280
   },
   "circus_win_return_trace": {
     "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
@@ -475,6 +480,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35432359547/job105869102983: host9と修正wrapper5はPASS、実17戦目WINまで80events完全一致。新readonly13点はready1/palette1/両waiter/先頭080f7abdを観測しready0仮説を反証。native受入/Save/30勝ではなくActions failureを保持。同候補の同じ診断は再実行しない。",
     "run35431539401/job105866926442はconfigure後の診断module再import testでprepare停止、native0。wrapperのSELF置換を修復して未実行readonly診断へ進む。旧failureを成功へ読み替えない。",
     "run35431388329は固定resumeの旧source hashでprepare停止、native0。3ファイルの旧commit照合だけで更新し、ゲームの受入を変えない。",
     "run35430246002/job105863397028は15勝prefix不変・実16戦目WIN/settled16・17戦目WIN後black画面/phase2のまま停止。saved/reloadedなし、16勝保存成功や30勝へ昇格しない。actions failure原本を保持し、直後のreadonly traceだけを追加する。",
@@ -730,15 +736,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。",
+    "goal_ja": "ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_win_return_trace.py",
+      "scripts/pr16_circus_win_return_owner.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_win_return_trace.h",
+      "scripts/pr16_circus_win_return_owner.py",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -750,10 +756,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "51d51e2d56eb9c15cedd99ff236c7174633fcccf",
+  "observed_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "51d51e2d56eb9c15cedd99ff236c7174633fcccf"
+    "scope_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -822,9 +828,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35432359547,
+      "run_id": 35432926280,
       "status": "in_progress",
-      "tested_head": "7370e9222019ff8de5431c2bec71946999ca3bc9"
+      "tested_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1651,6 +1657,10 @@
       "sha256": "b41d6eed4e239e3b07fe6fffb063bdd29fe7fa576c82a8008ff8b32701e347f7",
       "size": 1779
     },
+    ".github/workflows/pr16-circus-win-return-owner.yml": {
+      "sha256": "eff7953191364cf4bab05cfa1ae015a96c48ef6976c38c76087494881bf7210f",
+      "size": 1600
+    },
     ".github/workflows/pr16-circus-win-return-trace.yml": {
       "sha256": "08bfb901d0975135d1ddfcbbfc12d576e075311a9a4862205b43c8f33b55d536",
       "size": 1851
@@ -2412,8 +2422,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "74ea3c1f7d8f2aba70db0da51161028dc6e0b86bde272b1961917c3db0eaac93",
-      "size": 132974
+      "sha256": "b43299be1475e3abffe2d740dd2054f3f337b68a17f9cf651d5a645ba7ff22e8",
+      "size": 133168
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2474,6 +2484,10 @@
     "content/modernization/pr16_circus_visual_review_20260919.json": {
       "sha256": "f8c68129989eccd3146e3009786b2f4f2cfee9f13a08d4cfc4a1fa1dbfa25abd",
       "size": 1014
+    },
+    "content/modernization/pr16_circus_win_return_owner.json": {
+      "sha256": "858a10f5eff6fd430178a03310f3034ea7f5f6b6607bd39fd8ab50e6c007daab",
+      "size": 2544
     },
     "content/modernization/pr16_circus_win_return_trace.json": {
       "sha256": "8b0e9fe35669360f1e5f4c2e4b3562c6f3ced43a45d96307ad8669031320f50e",
@@ -4135,6 +4149,10 @@
       "sha256": "b317dd030268ac9dea8a714e6f4686783582ab2508b6ff789f7c669ef7885279",
       "size": 4552
     },
+    "scripts/pr16_circus_win_return_owner.py": {
+      "sha256": "d3e7ef6bb82866a074e0ee9724f12083ba2bb2882035fc6c35bebaa8f5ebf436",
+      "size": 8750
+    },
     "scripts/pr16_circus_win_return_trace.py": {
       "sha256": "70e4cfbe615e027630604dbf5c6c8b0f9511272076be7c429a7afeab243df23d",
       "size": 11251
@@ -5043,6 +5061,10 @@
       "sha256": "0249af69d54361659e231f06f0768cad6eaef00105a81e3285812f620a2eccaf",
       "size": 3017
     },
+    "tests/test_pr16_circus_win_return_owner.py": {
+      "sha256": "9386146ac44d06f67b7fa43d7b666da701a470a382ed988952eb7830afa32be8",
+      "size": 1688
+    },
     "tests/test_pr16_circus_win_return_trace.py": {
       "sha256": "9e1955a9feb789d749f0a0d0cda8681f418ea74e73af0fce9e1ff3bc326e082b",
       "size": 6452
@@ -5741,7 +5763,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。",
+  "source_change_review_ja": "実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

@@ -5359,3 +5359,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実17戦目勝利後のreadonly weather/script待ち原本を参照。敗北限定の既存FadeInFromBlack再開guardとの条件差を確認し、実WINかつ両待機task・正規script・armed Circus・有効ledgerに限定したruntime修復と独立2link/変更範囲台帳を進める。固定candidateでの同じ診断・旧単体nativeは繰り返さない。
+
+
+## 2026-09-19T08:47:13.056608+00:00 — USER-20260919-CIRCUS-WIN-RETURN-OWNER-PREPARED
+- Timestamp: 2026-09-19T08:47:13.056608+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-OWNER-PREPARED
+- Status: DONE / 実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
+- Version: pr16-circus-loss-marker
+- Summary: 実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_owner.json, scripts/pr16_circus_win_return_owner.py, tests/test_pr16_circus_win_return_owner.py, .github/workflows/pr16-circus-win-return-owner.yml, content/modernization/pr16_circus_win_return_trace.json, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr
+- Verify: CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED。保存原本の再照合と限定ROM逆アセンブルのみ。新規native0/ARM link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。

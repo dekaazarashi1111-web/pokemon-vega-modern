@@ -1,0 +1,99 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actual_new_native_processes": 0,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED",
+  "diagnosis": {
+    "bp": 45,
+    "genuine_30_wins_verified": false,
+    "last_observed_frame": 284892,
+    "native_acceptance": false,
+    "observed_rows": 13,
+    "old_ready_zero_hypothesis_rejected": true,
+    "original_events_identical": 80,
+    "palette_state": 1,
+    "persistent_180_frame_ready_zero_claimed": false,
+    "ready": 1,
+    "real_wins": 17,
+    "save_continue_verified": false,
+    "settled_wins": 16,
+    "source_observation_complete": true,
+    "task_order": [
+      3,
+      4,
+      5,
+      0,
+      1,
+      2
+    ],
+    "tasks": [
+      {
+        "data": "0000000000000000000000000000000000000000000000000000000000000000",
+        "function": 134714653,
+        "next": 1,
+        "previous": 5,
+        "priority": 80,
+        "slot": 0
+      },
+      {
+        "data": "0000000000000000000000000000000000000000000000000000000000000000",
+        "function": 134668293,
+        "next": 2,
+        "previous": 0,
+        "priority": 80,
+        "slot": 1
+      },
+      {
+        "data": "0000000000000000000000000000000000000000000000000000000000000000",
+        "function": 134668337,
+        "next": 255,
+        "previous": 1,
+        "priority": 80,
+        "slot": 2
+      },
+      {
+        "data": "4b00602d00020000000000000000000000000000000000000000000000000000",
+        "function": 135232189,
+        "next": 4,
+        "previous": 254,
+        "priority": 0,
+        "slot": 3
+      },
+      {
+        "data": "4c00707d00020000000000000000000000000000000000000000000000000000",
+        "function": 135232189,
+        "next": 5,
+        "previous": 3,
+        "priority": 0,
+        "slot": 4
+      },
+      {
+        "data": "0000000000000000000000000000000000000000000000000000000000000000",
+        "function": 134730853,
+        "next": 0,
+        "previous": 4,
+        "priority": 10,
+        "slot": 5
+      }
+    ],
+    "timeout_frame": 358992
+  },
+  "host_tests": [
+    {
+      "count": 4,
+      "pattern": "test_pr16_circus_win_return_owner.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links": 0,
+  "original_conclusion": "failure",
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_job": 105869102983,
+  "source_run": 35432359547,
+  "suppression_accepted": false
+}
