@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。",
+    "current_stop": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。",
+    "next_step": "content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -822,7 +822,7 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。",
+    "goal_ja": "content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_BATTLE28_HANDOFF",
     "read_paths": [
@@ -842,9 +842,9 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
+  "observed_head": "c0fae432feeb297382d33d84f6b5bab264113332",
   "observed_head_checks": {
-    "scope_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
+    "scope_head": "c0fae432feeb297382d33d84f6b5bab264113332",
     "runs": [
       {
         "id": 35468164696,
@@ -1589,7 +1589,7 @@
   },
   "schema_version": 2,
   "session_execution_summary": {
-    "new_emulator_processes": 0,
+    "new_emulator_processes": 1,
     "arm_compiles": 0,
     "arm_links": 0,
     "accepted_standalone_replays": 0,
@@ -7861,8 +7861,8 @@
       "sha256": "d7d2d62e575c36b46a9353c249ee4d8db9feabccc2cc1aeb681cab405e26c6c9"
     },
     "content/modernization/pr16_circus_battle28.json": {
-      "size": 13639,
-      "sha256": "8946b44217ea3708492d5e689b50edcc8a3143bcec7871dc40fefb8a5f57b310"
+      "size": 58614,
+      "sha256": "41dbcf04329d5e49fa34ac2b84ecf4b679485c3c516b8505597002c24c7d493f"
     },
     "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json": {
       "size": 90,
@@ -7875,10 +7875,90 @@
     "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.stdout": {
       "size": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/analysis.json": {
+      "size": 513,
+      "sha256": "2e1de2110353f69098d36f948a78c2a8b1ed59a9176b2d0dd50ec2fd03116ecf"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.stderr": {
+      "size": 965095,
+      "sha256": "992df28a19971d9dfb5775dd3469c3ad668a947bbf1f7e3a802360221df8ee91"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/circus-continuous-30-save.stdout": {
+      "size": 673,
+      "sha256": "6887e8993f73e6188694cd3c314e4851180025fbd02348129b1111f354726a80"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/compile.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/compile.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/compile.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/events.json": {
+      "size": 270381,
+      "sha256": "bf10215ca2120282cec90376574b1564a733722f1b146565327a124af850de23"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/policy.c": {
+      "size": 57857,
+      "sha256": "82d9983a667c3d7cc89b8ff6af68b17ab7c8949f595869e2ef9db656dab3246f"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/prefix.json": {
+      "size": 374,
+      "sha256": "a36c3603465a00ac835fddda18a6d52702412fabc29e867272f69701cd551485"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/prefix28.json": {
+      "size": 344,
+      "sha256": "afb71e869063387e4cee67ca5e85a518b0011918c0e16a67486b5fe4ba7c8d4f"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/reconstruct.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/reconstruct.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/reconstruct.stdout": {
+      "size": 6294,
+      "sha256": "3ac2c4ea6b4c0d27e1873c2a0155fdbfe8828bf254d10e3d52fa40a1b8c42747"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/resume-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/resume-START.stderr": {
+      "size": 2449,
+      "sha256": "4e114d2dc49c55dddecfc9cdce87c61d13a2c671ce90835f2eda2f9bfcc81bd7"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/resume-START.stdout": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.process.json": {
+      "size": 90,
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.stderr": {
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.stdout": {
+      "size": 77,
+      "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。",
+  "source_change_review_ja": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -7912,7 +7992,7 @@
   "circus_battle28": {
     "path": "content/modernization/pr16_circus_battle28.json",
     "run_id": 35471833294,
-    "classification": "CIRCUS_BATTLE28_HANDOFF_IMPLEMENTED_NATIVE_PENDING",
+    "classification": "CIRCUS_BATTLE28_LOSS_SAVE_SCOPED_30_OPEN",
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"

@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-前runは27勝81BP/元party9回復元、28戦目交代先の瀕死/強制交代待ちで停止。失敗を保持。通常強制交代への引渡しを実装し9契約を検証。新nativeは未実行。
+28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
 
-**次: 進行中の当branch Actionsだけを照合し28戦目以降の未完nativeを続ける。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。**
+**次: content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c7218dbf663df9c3b5be868712037e94c76d430d`。
+証拠のsource HEAD: `c0fae432feeb297382d33d84f6b5bab264113332`。
 当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
 
 ## 最短の再開手順
