@@ -180,6 +180,12 @@ def make_entry(raw, report, originals):
     offset, selector = report['payload_offset'], report['entries']['selector']
     code = originals.code('entry', 'pr16-circus-entry/compile-1/disassembly.txt', BASE+offset+64,
                           dict(size=276, sha256='f900831c70272390004e6d6584ffd8438c4e813c5298ec29b828b48473c6c69e'))
+    thumb = 'scripts/pr16_circus_thumb.py'
+    checked(thumb, report['sources'][thumb])
+    adapter_size = constants(thumb)['ADAPTER_SIZE']
+    s.need(adapter_size == 304 and len(code) == 276, '保存adapter境界不一致')
+    # 固定原本compile_adapterの明示ljust規則。命令の欠損を推測で埋めない。
+    code = code.ljust(adapter_size, b'\xff')
     payload = bytearray(64); payload[:8] = b'VEGAC18E'; payload.extend(code)
     while len(payload) % 4:
         payload.append(255)
