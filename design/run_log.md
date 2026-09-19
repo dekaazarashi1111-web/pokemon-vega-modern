@@ -7853,3 +7853,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝/9BPの今回原本を照合し、未達なら最初の不一致だけを修復。成功後は真正30連勝・正規特性抑制へ進む。cold-load中断/旧敗北/BP/Ringの受入単体は再実行しない。
+
+
+## 2026-09-19T05:56:00.039945+00:00 — USER-20260919-CIRCUS-ACCURACY-PREPARED
+- Timestamp: 2026-09-19T05:56:00.039945+00:00
+- Task: USER-20260919-CIRCUS-ACCURACY-PREPARED
+- Status: DONE / 実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
+- Version: pr16-circus-loss-marker
+- Summary: 実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_accuracy.json, scripts/pr16_circus_accuracy.py, tools/mgba_pr16_circus_accuracy.h, tests/test_pr16_circus_accuracy.py, .github/workflows/pr16-circus-accuracy.yml, content/modernization/pr16_circus_visual_review_20260919.json, scripts/pr16_circus_finish.py
+- Verify: CIRCUS_ACCURACY_POLICIES_PREPARED。candidate310177固定、既存ARM再link0、受入単体再実行0。新host契約と原本を保持し、結果注入なし。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。

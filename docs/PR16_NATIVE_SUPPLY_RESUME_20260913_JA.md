@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-未完3勝の新入力原本を保存。候補と失敗を受入に読み替えず、今回停止した最初の条件から修復する。中断復旧は再実行していない。
+実2勝敗北原本とcold-load3画面を照合。固定候補の未完3勝に最大4つの異なる入力方策を用意し、最初の厳密成功後は追加実行しない。
 
-**次: 実3勝/9BPの今回原本を照合し、未達なら最初の不一致だけを修復。成功後は真正30連勝・正規特性抑制へ進む。cold-load中断/旧敗北/BP/Ringの受入単体は再実行しない。**
+**次: 今回の3勝原本・選択方策を採用し、未完なら最初の停止点だけを修復。真正30連勝と正規特性抑制、P08最終統合は未受入。既存BP/Ring/cold-load受入は単体再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f10d587cfff0b31ee032d0c6e43227d842236555`。
+証拠のsource HEAD: `4981e2b9a2523ad707ce7f15fbc57fb4e895992b`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_finish.py`
+- `scripts/pr16_circus_accuracy.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_finish.h`
+- `tools/mgba_pr16_circus_accuracy.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 

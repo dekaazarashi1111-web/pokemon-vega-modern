@@ -1,0 +1,41 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_ACCURACY_POLICIES_PREPARED",
+  "cold_load_visual_review": {
+    "completed": true,
+    "path": "content/modernization/pr16_circus_visual_review_20260919.json",
+    "run_id": 35422605107
+  },
+  "diagnosis_ja": "旧drainは2勝後、炎対炎でFire Blastが外れて炎を失い、草の未成立Seed/Protectと毒で敗北。直近の全面攻撃は混乱で2回PP未消費のまま草を失った。4方策は旧drainを基礎に命中優先/毒中Protect/炎対草の直接攻撃/混乱を個別化。ゲーム状態や乱数は変更しない。",
+  "host_tests": [
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_accuracy.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "input_policy_id": "bounded-accuracy-family-v1",
+  "physical_admission_accepted": false,
+  "policies": [
+    "drain-accurate-fire",
+    "drain-accurate-poison",
+    "drain-accurate-direct",
+    "drain-accurate-confuse"
+  ],
+  "predecessor": {
+    "losses": 1,
+    "original_conclusion": "failure",
+    "path": "content/modernization/pr16_circus_finish.json",
+    "run_id": 35424764823,
+    "wins": 2
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "stop_on_first_success": true,
+  "suppression_accepted": false
+}
