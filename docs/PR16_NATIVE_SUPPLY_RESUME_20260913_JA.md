@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。
+READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
 
 **次: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `667ef6aee34f0e7dda25f6d94d8db5649a571fd7`。
+証拠のsource HEAD: `b2cff5f4b1790639578859419f275a4fbde10981`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

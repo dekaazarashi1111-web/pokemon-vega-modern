@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。",
+    "current_stop": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING",
+    "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_rental_resume.json",
     "run_id": 35457143420,
     "target_wins": 30
@@ -164,7 +164,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35457143420,
-    "source_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7",
+    "source_head": "b2cff5f4b1790639578859419f275a4fbde10981",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -189,7 +189,7 @@
     "run_id": 35452739116
   },
   "circus_rental_contract_resume": {
-    "classification": "CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING",
+    "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_rental_resume.json",
     "run_id": 35457143420
   },
@@ -828,10 +828,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7",
+  "observed_head": "b2cff5f4b1790639578859419f275a4fbde10981",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7"
+    "scope_head": "b2cff5f4b1790639578859419f275a4fbde10981"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2578,8 +2578,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "7ae60340ee76815998eda368118ebdf2acf54ad6cb6b4a48fb8763ab81c0c7eb",
-      "size": 135286
+      "sha256": "a39de36c636fd9fb60f01bdf0fb03fb8587821eab5e28f7456c6925933dbef74",
+      "size": 135266
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2614,8 +2614,8 @@
       "size": 444001
     },
     "content/modernization/pr16_circus_rental_resume.json": {
-      "sha256": "541f7979d54dc53fd8ac0c1ca5f341970cae953d5b7111d99462caff47af3562",
-      "size": 2172
+      "sha256": "68488247b8b3c22b4c5672dd4e4c247ed0e1b2f285f8559ca6976f12e1477590",
+      "size": 458588
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -4436,6 +4436,34 @@
     "evidence/pr16_circus_rental_drought/35456028016/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/build.json": {
+      "sha256": "d363ae9c7156885d670e829be9e174f76b6cb5802c08894dea3193f71c09d051",
+      "size": 192561
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/native/chooser-bindings.json": {
+      "sha256": "7d24bdfac5a59c110cacb98c6f3ea50a3be9d6b58168c6b003034e020f199549",
+      "size": 2530
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/native/compile.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/native/compile.stderr": {
+      "sha256": "0db12e7be168e18b768f27cf2c600f28a00dcf30876376a00bd2fa92dda1bc08",
+      "size": 1767
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/native/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/native/report.json": {
+      "sha256": "6920c25586f7aad8dfa3faea40955515d4b7a61d3a4461411743452ceda8c68b",
+      "size": 238533
+    },
+    "evidence/pr16_circus_rental_drought/35457143420/reconstruction.json": {
+      "sha256": "e0a8ce6723315371f68d39d5abe14e9e52422e783754a8a1c893bdb6f579922b",
+      "size": 1036
     },
     "evidence/pr16_circus_retention/original.stderr.txt": {
       "sha256": "87d17efefdc71ef57f74909d5f0d233b7a056805e3980577d5fdba074d798bcd",
@@ -7347,7 +7375,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。",
+  "source_change_review_ja": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

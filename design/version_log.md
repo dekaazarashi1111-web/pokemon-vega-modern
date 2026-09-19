@@ -5658,3 +5658,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。
+
+
+## 2026-09-19T17:10:41.561936+00:00 — USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-RECORDED
+- Timestamp: 2026-09-19T17:10:41.561936+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CONTRACT-RUN35457143420-RECORDED
+- Status: DONE / READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Version: pr16-circus-loss-marker
+- Summary: READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_rental_resume.json, scripts/pr16_circus_rental_resume.py, tests/test_pr16_circus_rental_resume.py, .github/workflows/pr16-circus-rental-resume.yml, content/modernization/pr16_circus_rental_drought.json, evidence/pr16_circus_rental_drought/35457143420/build.json, evidence/pr16_circus_rental_drought/35457143420/native/chooser-bindings.json, evidence/pr16_circus_rental_drought/35457143420/native/compile.process.json, evidence/pr16_circus_rental_drought/35457143420/native/compile.stderr, evidence/pr16_circus_rental_drought/35457143420/native/compile.stdout, evidence/pr16_circus_rental_drought/35457143420/native/report.json, evidence/pr16_circus_rental_drought/35457143420/reconstruction.json
+- Verify: CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN。既存candidate2b107e7e/全allocation/rollback固定。受付・launch metadata継承のみ、ROM変更0/ARM再link0/受入単体再実行0。100events prefix同一意味、実勝敗・owner64・元party600・通常Save/fresh Continueを別判定。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。
