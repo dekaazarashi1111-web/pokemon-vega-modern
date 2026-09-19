@@ -4774,3 +4774,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。
+
+
+## 2026-09-19T02:20:14.349849+00:00 — USER-20260919-CIRCUS-LOSS-MARKER-FADE-SOURCE
+- Timestamp: 2026-09-19T02:20:14.349849+00:00
+- Task: USER-20260919-CIRCUS-LOSS-MARKER-FADE-SOURCE
+- Status: DONE / 敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
+- Version: pr16-circus-loss-marker
+- Summary: 敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_loss_weather.json, overlays/circus_streak/circus_streak_return.h, tests/fixtures/circus_streak_return_fixture.c, tools/mgba_pr16_circus_loss_weather.h, overlays/circus_streak/circus_streak_runtime.c, scripts/pr16_circus_loss_weather.py, tests/test_pr16_circus_loss_weather.py, .github/workflows/pr16-circus-loss-weather.yml
+- Verify: CIRCUS_LOSS_NATIVE_FADE_REPAIR_PENDING。旧原本保持、受入済みnative再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新候補の独立2linkと実敗北/原party600/固有owner64/通常Save/fresh Continueを検証する。勝敗やpartyをhostから注入しない。

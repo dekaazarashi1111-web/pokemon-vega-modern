@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-6e候補の敗北後限定診断を原本保存。旧nativeの失敗は保持し、今回もparty/save受入へ昇格しない。field/script/fade/taskとcallback逆アセンブルの新しい観測から修復へ進む。
+敗北後のweather初期化待ちとスクリプト再開待ちが同時に残る原本52点を保存済み。Circus・実敗北・正規3script・有効台帳・両待機taskに限定してnative FadeInFromBlackを再開。判定側も初期frame0だけを正しく扱う。
 
-**次: 敗北後のfield callback/script/fade/task記録を照合し、正規復帰経路だけを修復する。hostからPC/LR/勝敗/party/連勝/効果を注入しない。受入済み単体/2linkは無変更再実行しない。**
+**次: 新候補の独立2linkと実敗北/原party600/固有owner64/通常Save/fresh Continueを検証する。勝敗やpartyをhostから注入しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `92e204ef58154507a83dce921d41d17278ca97e5`。
+証拠のsource HEAD: `b65c3db450b460a396d2e1f81d4bde81c6a8a718`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_return_trace.py`
+- `scripts/pr16_circus_loss_weather.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_streak_loss.h`
+- `overlays/circus_streak/circus_streak_return.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 

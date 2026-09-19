@@ -2,6 +2,7 @@
 #include "circus_streak_runtime.h"
 #include "circus_streak_io.h"
 #include "circus_streak_loss.h"
+#include "circus_streak_return.h"
 #include "../save_migration/save_migration.h"
 #include "circus_streak_addresses.h"
 
@@ -110,12 +111,46 @@ static void restore_cache_if_field(void)
         CircusRuntime_Recover();
 }
 
+static void resume_loss_fade_if_waiting(void)
+{
+    const volatile VegaFactoryState *f = &gVegaModernSaveData->factory;
+    const volatile uint8_t *tasks = (const volatile uint8_t *)(uintptr_t)0x030050D0u;
+    uint8_t weather_waiter = 0u, script_waiter = 0u;
+    uint32_t callback = *(volatile uint32_t *)(uintptr_t)0x03003134u;
+    uint32_t script = *(volatile uint32_t *)(uintptr_t)0x03000EB8u;
+    uint8_t ready = *(volatile uint8_t *)(uintptr_t)0x02038530u;
+    unsigned i;
+    if (callback != 0x08055E75u || ready != 0u)
+        return;
+    for (i = 0; i < 16u; ++i) {
+        const volatile uint8_t *task = tasks + 40u * i;
+        uint32_t function;
+        if (task[4] != 1u)
+            continue;
+        function = *(const volatile uint32_t *)(const volatile void *)task;
+        if (function == 0x0807951Du) weather_waiter = 1u;
+        if (function == 0x0807D465u) script_waiter = 1u;
+    }
+    if (CircusStreakReturnFadeAllowed((uint8_t)CircusStreakRuntimeArmed(),
+            (uint8_t)((*(volatile uint32_t *)(uintptr_t)0x02022AACu & 0x04000000u) != 0u),
+            f->marker, f->snapshot_valid, f->party_count,
+            *(volatile uint8_t *)(uintptr_t)0x02023DEAu, script, callback, ready,
+            weather_waiter, script_waiter)
+        && VegaSaveValidate(gVegaModernSaveData, VEGA_SAVE_LEDGER_SIZE) == VEGA_SAVE_OK) {
+        /* 両待機taskの実観測に限定。通常のFadeInFromBlackでreadyForInitを立てる。
+         * Task_WeatherInit/Task_ContinueScriptが本来の初期化と再開を完了する。
+         * readyForInitとtask遷移が再実行を抑止。hostからの状態注入は不要。 */
+        ((void (*)(void))(uintptr_t)0x0807D361u)();
+    }
+}
+
 EXPORT void CircusStreakRuntimeReadKeys(void)
 {
     /* 下流ownerの復旧がsector31を書いてもCircus領域をゼロで上書きしない。 */
     restore_cache_if_field();
     ((void (*)(void))(uintptr_t)CIRCUS_PREVIOUS_READ_KEYS)();
     restore_cache_if_field();
+    resume_loss_fade_if_waiting();
 }
 
 EXPORT uint8_t CircusStreakRuntimeSaveLoad(uint8_t save_type)
