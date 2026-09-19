@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-25戦目限定レンタル相性方策と記録7契約を検証し実装checkpointを保存。新nativeは未実行。旧24勝72BPの受入を保持、真正30勝は未受入。
+25戦目限定方策の試行原本を保存。検証未達を受入へ昇格しない。[{'stage': 'native-or-setup', 'type': 'ValueError', 'error': 'continuous process failed'}]
 
-**次: 進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。**
+**次: content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `766073d61da2eb7fdc08ec928c1506819d8ee5f8`。
+証拠のsource HEAD: `9c2368ce58f7e5ff226ec7c802d3c275d96b014b`。
 当checkpoint記録前のremote HEAD。native sourceはreportのsource_head。正式BP受入HEADは不変。
 
 ## 最短の再開手順

@@ -492,7 +492,7 @@
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
       "reconstruction_checkpoint": "content/modernization/pr16_saved_reconstruction.json",
-      "resume": "進行中の同branch Actionsを照合する。同じrunを重複起動せず、25戦目通常入力の未完nativeを完了・原本と引継ぎを記録する。",
+      "resume": "content/modernization/pr16_circus_battle25.jsonの失敗段階・実process数・prefix証拠を読んで未完段階だけ修復。旧builder/ARM/Ring host/受入単体を再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression",
