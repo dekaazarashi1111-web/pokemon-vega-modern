@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-高命中選択後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+実15勝/45BP/通常Save/fresh Continueを照合。第16戦は水先発の毒/混乱消耗と炎対面に草のみ残る順序を記録。15勝を保持し、16戦目以降だけ通常交代の選択と実個体照合を追加。
 
-**次: 今回の新しい連続入場原本の最初の停止から続ける。8勝までの40イベントを固定し、9戦目以降は期待値差10%以内の高命中選択と実行技に対応するpaid無進展を使う。真正30勝/正規特性抑制/P08は実測でのみ閉じる。旧独立nativeは再実行しない。**
+**次: 今回の連続入場原本の最初の停止から続ける。15勝と16戦目actionまで74イベントを固定。16戦目以降だけ場のtype/攻撃技種から通常交代し、メニュー後のPID/OT/speciesを再解決する。真正30勝/正規特性抑制/P08は実測でのみ閉じ、旧独立nativeを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `5f7afd6fe00b404688f1809520afdd20d1a96074`。
+証拠のsource HEAD: `ddf42eb59a637c075be0051fb0f73b411f286bd2`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_reliability.py`
+- `scripts/pr16_circus_tactical.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_reliability.h`
+- `tools/mgba_pr16_circus_tactical.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35428983641/job105859956663は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは16戦目actionまで74events完全一致を要求し、受入単体を独立再実行しない。
 - run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。
 - run35427049942/job105854709530は4勝後敗北だが正規LOSS/ABORT/owner64/原party600/9BP/通常Save/fresh Continueのscoped validatorはPASS。30勝ゲート未達なのでActions failureを維持。旧入力fallbackの独立再実行は禁止。
 - run35426278164/job105852678835は実4勝→5戦目敗北→LOSS/End(0)→ABORT/current0/best4/9BP/owner64/原party600/Save/別coreの27イベントを保存。旧validator誤拒否は新host世代検査で照合し、旧Actions failureを変更しない。独立native再実行不要。

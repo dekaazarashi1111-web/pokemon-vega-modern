@@ -1,0 +1,52 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 15,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d",
+      "id": 35428983641,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_TACTICAL_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_tactical.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "independently_replayed": false,
+    "job_id": 105859956663,
+    "losses": 1,
+    "original_conclusion": "failure",
+    "run_id": 35428983641,
+    "wins": 15
+  },
+  "input_policy_ja": "15勝の入力を完全保持し、以降は場の単type火水草に対する有効攻撃技、Ghost攻撃のみの相手にDark技を持つ控えを通常交代選択。控えは生存HP/PP/技種で順位付けし、技種を実種族typeと断定しない。1対面1回・1戦最大6回の追加交代、通常技は既存高命中/paid feedbackを維持。",
+  "physical_admission_accepted": false,
+  "predecessor_visual_review": {
+    "artifact_id": 10580580034,
+    "artifact_sha256": "06582be41632e57846e8168127883114723968f42c9c71b0b13127c4b057b598",
+    "observation_ja": "第16戦の実actionと敗北、元partyで受付前復帰、通常Saveとfresh Continueの同位置描画を確認。30勝/特性抑制受入には使わない。",
+    "screens": [
+      "streak-74-action",
+      "streak-75-outcome",
+      "streak-77-returned",
+      "streak-78-saved",
+      "streak-79-reloaded"
+    ]
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "target_wins": 30
+}
