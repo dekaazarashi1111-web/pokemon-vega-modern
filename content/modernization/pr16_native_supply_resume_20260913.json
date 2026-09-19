@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
+    "current_stop": "run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35418424222,
-    "source_head": "46fc455710c7038b656e42e77890d4ba78565b43",
+    "run_id": 35419024634,
+    "source_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -603,10 +603,10 @@
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_effective.py",
+      "scripts/pr16_circus_pivot.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "tools/mgba_pr16_circus_effective.h",
+      "tools/mgba_pr16_circus_pivot.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "46fc455710c7038b656e42e77890d4ba78565b43",
+  "observed_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "46fc455710c7038b656e42e77890d4ba78565b43"
+    "scope_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35418424222,
+      "run_id": 35419024634,
       "status": "in_progress",
-      "tested_head": "2532ef71a6e0afe06e20c482b17dc657f2f32a4b"
+      "tested_head": "98d36df16223cc1b1d34b33ada62ede5e53b9def"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1410,6 +1410,10 @@
     ".github/workflows/pr16-circus-native.yml": {
       "sha256": "4fb8bd67d1a99772ce1242c2c7a26702812d4232f0cff918dc9b6f1d706262a9",
       "size": 6257
+    },
+    ".github/workflows/pr16-circus-pivot.yml": {
+      "sha256": "bedf4348cc3f50cf6b28e3f44b9912a4830a4da615fbadef0282702a679288b6",
+      "size": 1710
     },
     ".github/workflows/pr16-circus-record.yml": {
       "sha256": "d67f25c7b736165ade8e4c3fbb919e07927213872e93a0b2ae1eb56039d548a3",
@@ -2176,8 +2180,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "466b2639d1bec651afa2e8f19e05bbbbaf5cd27a3d50fe04b19ef5dd27f336ea",
-      "size": 130843
+      "sha256": "8a75d3915f335e5781774c784ff25cec8b917adb9e114399d2fe655277e44105",
+      "size": 130844
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2204,8 +2208,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "e93ba7f1cf47faa9d5a84c4ce4664d15e1a2b53f4d413a7ffe510680e217ee61",
-      "size": 140283
+      "sha256": "ddc231d5986d6cf5b34569afc0e6a786e22cb1d0bd5289002912710c89243bd8",
+      "size": 11652
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3327,6 +3331,10 @@
       "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665",
       "size": 12188
     },
+    "scripts/pr16_circus_pivot.py": {
+      "sha256": "b083e8f63f2fdc9b72b31fce70b92f36711a6ba23b13f0a1275f1cc725e679ac",
+      "size": 9387
+    },
     "scripts/pr16_circus_record.py": {
       "sha256": "386887d547ec1a28654c033cbb56ca80db5d81032cd49f1d7a8d66ae92ebf5dc",
       "size": 23713
@@ -3979,6 +3987,10 @@
       "sha256": "1a6a8e53caab212d74a9345dc211ca592fe3b1566d1ba2634bf243e0e1216c03",
       "size": 1095
     },
+    "tests/fixtures/circus_pivot_policy_fixture.c": {
+      "sha256": "4a63d0edfb808962ece60d581f47f207afb5a8836a8d48922d5b2ed22e1f9225",
+      "size": 636
+    },
     "tests/fixtures/circus_streak_fixture.c": {
       "sha256": "38d2d98abf68ed24b5d243bc680a0e01aff14fd2bbccd25e331b21438402815a",
       "size": 6575
@@ -4146,6 +4158,10 @@
     "tests/test_pr16_circus_native.py": {
       "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0",
       "size": 5648
+    },
+    "tests/test_pr16_circus_pivot.py": {
+      "sha256": "78921ab70802386cdbe13355c3c95d95a9b1be03eb0e5c304ef7d1541482344d",
+      "size": 4240
     },
     "tests/test_pr16_circus_record.py": {
       "sha256": "6e5703c1ede22dcc7d0ff43c2ab8d1a45bacd06728bfb2f3ebcea46e870ce120",
@@ -4803,6 +4819,10 @@
       "sha256": "6267e2bbd682198d79998ac250b52aef63e337db7eb96bb8f3921bc96a39e885",
       "size": 11730
     },
+    "tools/mgba_pr16_circus_pivot.h": {
+      "sha256": "18da4e5418e46a3e997683ba93626cf971837cb8f1099fbea05438940664fa63",
+      "size": 3115
+    },
     "tools/mgba_pr16_circus_return_trace.h": {
       "sha256": "e7fe2ac27bb1ff4d2fe4faa0f434843ff76d3451a5d835dc6f64ef6e46ebc3e0",
       "size": 1387
@@ -4825,7 +4845,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
+  "source_change_review_ja": "run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

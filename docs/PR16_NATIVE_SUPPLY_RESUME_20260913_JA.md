@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
+run35418424222は無効Shadow BallをToxicへ切替えて相手を倒したが、次の相手で敗北。第3戦だけ通常PARTY入力による1回の任意交代を追加し、実3勝へ進む。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `46fc455710c7038b656e42e77890d4ba78565b43`。
+証拠のsource HEAD: `98d36df16223cc1b1d34b33ada62ede5e53b9def`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_effective.py`
+- `scripts/pr16_circus_pivot.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_effective.h`
+- `tools/mgba_pr16_circus_pivot.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
