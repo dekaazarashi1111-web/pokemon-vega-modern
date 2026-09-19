@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。",
+    "current_stop": "選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_REPAIR_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch.json",
     "run_id": 35437062974,
     "target_wins": 30
@@ -107,7 +107,7 @@
     "run_id": 35435801505
   },
   "circus_drought_launch_followup": {
-    "classification": "CIRCUS_DROUGHT_LAUNCH_REPAIR_PREPARED",
+    "classification": "CIRCUS_DROUGHT_LAUNCH_NATIVE_OPEN",
     "path": "content/modernization/pr16_circus_drought_launch.json",
     "run_id": 35437062974
   },
@@ -154,7 +154,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35437062974,
-    "source_head": "80e9643ff8689fec7212745e7a3fb21e988bc79b",
+    "source_head": "3aa37ebd2c3ad0cb71f6045781d090f2b67d1e12",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -782,10 +782,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "80e9643ff8689fec7212745e7a3fb21e988bc79b",
+  "observed_head": "3aa37ebd2c3ad0cb71f6045781d090f2b67d1e12",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "80e9643ff8689fec7212745e7a3fb21e988bc79b"
+    "scope_head": "3aa37ebd2c3ad0cb71f6045781d090f2b67d1e12"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2448,8 +2448,8 @@
       "size": 252400
     },
     "content/modernization/pr16_circus_drought_launch.json": {
-      "sha256": "a136dc77d3c6658a993179087d952773a6b7bfc06e56476615f62f6681e5c664",
-      "size": 2279
+      "sha256": "b7ba392a6eb39a513b75af99d9a01a3846f58d55bc3597a222457583a1f034af",
+      "size": 256225
     },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
@@ -2484,8 +2484,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "2aab49b37134c273833dcc8e72d8002721f5755f01dda11607c49718d49a98cb",
-      "size": 134095
+      "sha256": "075891d11f8407b269759e0f6d5887e3a70313b164b5ce699b243634863daffd",
+      "size": 134091
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -3440,6 +3440,194 @@
       "size": 72003
     },
     "evidence/pr16_circus_drought_calls/35435801505/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/build.json": {
+      "sha256": "83959b9436ddb3ed1574495075e9387393d38bd48e46686a862458597dcc363a",
+      "size": 89007
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/disassembly.txt": {
+      "sha256": "3461a056c6f53e48ead9a3edb0c62f6fcecbd77d46b3f81bd311c192c0eb5376",
+      "size": 25300
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/stack-usage.txt": {
+      "sha256": "eb92c16044fe5032efda8fb8fb6f96e2741727661db99694e7aa47289483cf2b",
+      "size": 2799
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/symbols.txt": {
+      "sha256": "4322d1cc833c393383b595699a5f87cb09f3365144d874b450ff08e6fd40ef47",
+      "size": 244
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-1/target-contract.json": {
+      "sha256": "45a91c8ba01d39bf9909234c16871b24e27ce436b4f1a941a57b45c0ccc8a76d",
+      "size": 163
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/disassembly.txt": {
+      "sha256": "3461a056c6f53e48ead9a3edb0c62f6fcecbd77d46b3f81bd311c192c0eb5376",
+      "size": 25300
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/stack-usage.txt": {
+      "sha256": "eb92c16044fe5032efda8fb8fb6f96e2741727661db99694e7aa47289483cf2b",
+      "size": 2799
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/symbols.txt": {
+      "sha256": "4322d1cc833c393383b595699a5f87cb09f3365144d874b450ff08e6fd40ef47",
+      "size": 244
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/compile-2/target-contract.json": {
+      "sha256": "45a91c8ba01d39bf9909234c16871b24e27ce436b4f1a941a57b45c0ccc8a76d",
+      "size": 163
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/chooser-bindings.json": {
+      "sha256": "dc8acfa1b9e7abbfccb279793bd8ce999d71b8ab9032525a4b796b4059eb4cd0",
+      "size": 2530
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stderr": {
+      "sha256": "5d2b37f53cdcb51ed244384ca4f5aa35efe83dc962fad472fe648a60b3c39873",
+      "size": 564953
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/compile.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-bus8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-raw8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-register.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-register.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/guard-register.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/native/report.json": {
+      "sha256": "215b9f0bd485387142f805258aca7c02f62496e0ada41b7c6404e99770a1ca69",
+      "size": 126236
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/parent-0x807a330.txt": {
+      "sha256": "e0649f9517d18db32470ba4c33cc58dc56171b78df246dec958319e0d5ee3c2f",
+      "size": 2917
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/parent-0x807acd4.txt": {
+      "sha256": "eb2224e7ae3475962ca1ae9e098b911b2c59e1ee6e1681afafb71eafea560267",
+      "size": 6625
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/parent-0x8389a04.txt": {
+      "sha256": "6e6f7ff44c7345034bd088344941fcf7319c93fb6dacdb54fb05484ed48693ab",
+      "size": 456
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/parent-recipe.json": {
+      "sha256": "f5c746350a1645cc515e32eaaaa98550ab610111f6a8890aac9c8eb75fcd056e",
+      "size": 72003
+    },
+    "evidence/pr16_circus_drought_launch/35437062974/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -6381,7 +6569,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。",
+  "source_change_review_ja": "選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

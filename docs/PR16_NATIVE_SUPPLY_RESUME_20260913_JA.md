@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-18戦目の新停止をCPU原本で確定。戦闘開始前の正規選出3経路だけ空Drought loader修復を追加し、旧WIN/LOSS/Factory/保存ownerは維持。新候補を独立2linkと未完continuationで検証。
+選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。
 
 **次: 新候補で18戦目の正規launch・以降の実勝敗・原party600/owner64・通常Save/fresh Continueを確認。真正30勝未達は最初の新停止だけを修復し、達成後に正規特性抑制へ進む。旧CPU診断/旧独立2link/受入単体の再実行は禁止。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `80e9643ff8689fec7212745e7a3fb21e988bc79b`。
+証拠のsource HEAD: `3aa37ebd2c3ad0cb71f6045781d090f2b67d1e12`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

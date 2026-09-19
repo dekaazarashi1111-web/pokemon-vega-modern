@@ -1,0 +1,584 @@
+
+drought.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+09ff6b3c <CircusDroughtInitAll>:
+ 9ff6b3c:	2280      	movs	r2, #128	@ 0x80
+ 9ff6b3e:	4b5a      	ldr	r3, [pc, #360]	@ (9ff6ca8 <CircusDroughtInitAll+0x16c>)
+ 9ff6b40:	681b      	ldr	r3, [r3, #0]
+ 9ff6b42:	04d2      	lsls	r2, r2, #19
+ 9ff6b44:	4013      	ands	r3, r2
+ 9ff6b46:	0019      	movs	r1, r3
+ 9ff6b48:	1e4a      	subs	r2, r1, #1
+ 9ff6b4a:	4191      	sbcs	r1, r2
+ 9ff6b4c:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 9ff6b4e:	b08f      	sub	sp, #60	@ 0x3c
+ 9ff6b50:	9105      	str	r1, [sp, #20]
+ 9ff6b52:	4a56      	ldr	r2, [pc, #344]	@ (9ff6cac <CircusDroughtInitAll+0x170>)
+ 9ff6b54:	2000      	movs	r0, #0
+ 9ff6b56:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b58:	9206      	str	r2, [sp, #24]
+ 9ff6b5a:	4a55      	ldr	r2, [pc, #340]	@ (9ff6cb0 <CircusDroughtInitAll+0x174>)
+ 9ff6b5c:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b5e:	9200      	str	r2, [sp, #0]
+ 9ff6b60:	4a54      	ldr	r2, [pc, #336]	@ (9ff6cb4 <CircusDroughtInitAll+0x178>)
+ 9ff6b62:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b64:	9201      	str	r2, [sp, #4]
+ 9ff6b66:	4a54      	ldr	r2, [pc, #336]	@ (9ff6cb8 <CircusDroughtInitAll+0x17c>)
+ 9ff6b68:	7816      	ldrb	r6, [r2, #0]
+ 9ff6b6a:	4a54      	ldr	r2, [pc, #336]	@ (9ff6cbc <CircusDroughtInitAll+0x180>)
+ 9ff6b6c:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b6e:	9207      	str	r2, [sp, #28]
+ 9ff6b70:	4a53      	ldr	r2, [pc, #332]	@ (9ff6cc0 <CircusDroughtInitAll+0x184>)
+ 9ff6b72:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b74:	9202      	str	r2, [sp, #8]
+ 9ff6b76:	4a53      	ldr	r2, [pc, #332]	@ (9ff6cc4 <CircusDroughtInitAll+0x188>)
+ 9ff6b78:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b7a:	9203      	str	r2, [sp, #12]
+ 9ff6b7c:	4a52      	ldr	r2, [pc, #328]	@ (9ff6cc8 <CircusDroughtInitAll+0x18c>)
+ 9ff6b7e:	7812      	ldrb	r2, [r2, #0]
+ 9ff6b80:	9204      	str	r2, [sp, #16]
+ 9ff6b82:	4a52      	ldr	r2, [pc, #328]	@ (9ff6ccc <CircusDroughtInitAll+0x190>)
+ 9ff6b84:	6817      	ldr	r7, [r2, #0]
+ 9ff6b86:	4a52      	ldr	r2, [pc, #328]	@ (9ff6cd0 <CircusDroughtInitAll+0x194>)
+ 9ff6b88:	0005      	movs	r5, r0
+ 9ff6b8a:	6814      	ldr	r4, [r2, #0]
+ 9ff6b8c:	4283      	cmp	r3, r0
+ 9ff6b8e:	d010      	beq.n	9ff6bb2 <CircusDroughtInitAll+0x76>
+ 9ff6b90:	2e01      	cmp	r6, #1
+ 9ff6b92:	d80e      	bhi.n	9ff6bb2 <CircusDroughtInitAll+0x76>
+ 9ff6b94:	4b4f      	ldr	r3, [pc, #316]	@ (9ff6cd4 <CircusDroughtInitAll+0x198>)
+ 9ff6b96:	429f      	cmp	r7, r3
+ 9ff6b98:	d10b      	bne.n	9ff6bb2 <CircusDroughtInitAll+0x76>
+ 9ff6b9a:	4b4f      	ldr	r3, [pc, #316]	@ (9ff6cd8 <CircusDroughtInitAll+0x19c>)
+ 9ff6b9c:	f000 f8b6 	bl	9ff6d0c <CircusDroughtInitAll+0x1d0>
+ 9ff6ba0:	2180      	movs	r1, #128	@ 0x80
+ 9ff6ba2:	0605      	lsls	r5, r0, #24
+ 9ff6ba4:	0109      	lsls	r1, r1, #4
+ 9ff6ba6:	484d      	ldr	r0, [pc, #308]	@ (9ff6cdc <CircusDroughtInitAll+0x1a0>)
+ 9ff6ba8:	f000 f91e 	bl	9ff6de8 <VegaSaveValidate>
+ 9ff6bac:	4243      	negs	r3, r0
+ 9ff6bae:	4158      	adcs	r0, r3
+ 9ff6bb0:	0e2d      	lsrs	r5, r5, #24
+ 9ff6bb2:	9a05      	ldr	r2, [sp, #20]
+ 9ff6bb4:	ab09      	add	r3, sp, #36	@ 0x24
+ 9ff6bb6:	709a      	strb	r2, [r3, #2]
+ 9ff6bb8:	9a06      	ldr	r2, [sp, #24]
+ 9ff6bba:	701d      	strb	r5, [r3, #0]
+ 9ff6bbc:	70da      	strb	r2, [r3, #3]
+ 9ff6bbe:	7058      	strb	r0, [r3, #1]
+ 9ff6bc0:	4a47      	ldr	r2, [pc, #284]	@ (9ff6ce0 <CircusDroughtInitAll+0x1a4>)
+ 9ff6bc2:	9909      	ldr	r1, [sp, #36]	@ 0x24
+ 9ff6bc4:	4291      	cmp	r1, r2
+ 9ff6bc6:	d005      	beq.n	9ff6bd4 <CircusDroughtInitAll+0x98>
+ 9ff6bc8:	f000 f8a2 	bl	9ff6d10 <DroughtOriginal>
+ 9ff6bcc:	b00f      	add	sp, #60	@ 0x3c
+ 9ff6bce:	bcf0      	pop	{r4, r5, r6, r7}
+ 9ff6bd0:	bc01      	pop	{r0}
+ 9ff6bd2:	4700      	bx	r0
+ 9ff6bd4:	9a00      	ldr	r2, [sp, #0]
+ 9ff6bd6:	711a      	strb	r2, [r3, #4]
+ 9ff6bd8:	9a01      	ldr	r2, [sp, #4]
+ 9ff6bda:	715a      	strb	r2, [r3, #5]
+ 9ff6bdc:	9a07      	ldr	r2, [sp, #28]
+ 9ff6bde:	719e      	strb	r6, [r3, #6]
+ 9ff6be0:	71da      	strb	r2, [r3, #7]
+ 9ff6be2:	4a40      	ldr	r2, [pc, #256]	@ (9ff6ce4 <CircusDroughtInitAll+0x1a8>)
+ 9ff6be4:	6859      	ldr	r1, [r3, #4]
+ 9ff6be6:	4291      	cmp	r1, r2
+ 9ff6be8:	d128      	bne.n	9ff6c3c <CircusDroughtInitAll+0x100>
+ 9ff6bea:	9a02      	ldr	r2, [sp, #8]
+ 9ff6bec:	721a      	strb	r2, [r3, #8]
+ 9ff6bee:	9a03      	ldr	r2, [sp, #12]
+ 9ff6bf0:	725a      	strb	r2, [r3, #9]
+ 9ff6bf2:	2286      	movs	r2, #134	@ 0x86
+ 9ff6bf4:	8919      	ldrh	r1, [r3, #8]
+ 9ff6bf6:	0052      	lsls	r2, r2, #1
+ 9ff6bf8:	4291      	cmp	r1, r2
+ 9ff6bfa:	d11f      	bne.n	9ff6c3c <CircusDroughtInitAll+0x100>
+ 9ff6bfc:	9a04      	ldr	r2, [sp, #16]
+ 9ff6bfe:	2a01      	cmp	r2, #1
+ 9ff6c00:	d11c      	bne.n	9ff6c3c <CircusDroughtInitAll+0x100>
+ 9ff6c02:	4a34      	ldr	r2, [pc, #208]	@ (9ff6cd4 <CircusDroughtInitAll+0x198>)
+ 9ff6c04:	4297      	cmp	r7, r2
+ 9ff6c06:	d119      	bne.n	9ff6c3c <CircusDroughtInitAll+0x100>
+ 9ff6c08:	4a37      	ldr	r2, [pc, #220]	@ (9ff6ce8 <CircusDroughtInitAll+0x1ac>)
+ 9ff6c0a:	4294      	cmp	r4, r2
+ 9ff6c0c:	d005      	beq.n	9ff6c1a <CircusDroughtInitAll+0xde>
+ 9ff6c0e:	4a37      	ldr	r2, [pc, #220]	@ (9ff6cec <CircusDroughtInitAll+0x1b0>)
+ 9ff6c10:	4294      	cmp	r4, r2
+ 9ff6c12:	d002      	beq.n	9ff6c1a <CircusDroughtInitAll+0xde>
+ 9ff6c14:	4a36      	ldr	r2, [pc, #216]	@ (9ff6cf0 <CircusDroughtInitAll+0x1b4>)
+ 9ff6c16:	4294      	cmp	r4, r2
+ 9ff6c18:	d110      	bne.n	9ff6c3c <CircusDroughtInitAll+0x100>
+ 9ff6c1a:	2480      	movs	r4, #128	@ 0x80
+ 9ff6c1c:	f000 f884 	bl	9ff6d28 <DroughtInitVars>
+ 9ff6c20:	0064      	lsls	r4, r4, #1
+ 9ff6c22:	4a34      	ldr	r2, [pc, #208]	@ (9ff6cf4 <CircusDroughtInitAll+0x1b8>)
+ 9ff6c24:	4b34      	ldr	r3, [pc, #208]	@ (9ff6cf8 <CircusDroughtInitAll+0x1bc>)
+ 9ff6c26:	5cd3      	ldrb	r3, [r2, r3]
+ 9ff6c28:	2b00      	cmp	r3, #0
+ 9ff6c2a:	d1cf      	bne.n	9ff6bcc <CircusDroughtInitAll+0x90>
+ 9ff6c2c:	3c01      	subs	r4, #1
+ 9ff6c2e:	f000 f893 	bl	9ff6d58 <CircusDroughtEmptyLoader.constprop.0.isra.0>
+ 9ff6c32:	f000 f885 	bl	9ff6d40 <DroughtStep>
+ 9ff6c36:	2c00      	cmp	r4, #0
+ 9ff6c38:	d1f3      	bne.n	9ff6c22 <CircusDroughtInitAll+0xe6>
+ 9ff6c3a:	e7c7      	b.n	9ff6bcc <CircusDroughtInitAll+0x90>
+ 9ff6c3c:	9a00      	ldr	r2, [sp, #0]
+ 9ff6c3e:	2a01      	cmp	r2, #1
+ 9ff6c40:	d1c2      	bne.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c42:	9a01      	ldr	r2, [sp, #4]
+ 9ff6c44:	3a01      	subs	r2, #1
+ 9ff6c46:	2a05      	cmp	r2, #5
+ 9ff6c48:	d8be      	bhi.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c4a:	4a2c      	ldr	r2, [pc, #176]	@ (9ff6cfc <CircusDroughtInitAll+0x1c0>)
+ 9ff6c4c:	88d9      	ldrh	r1, [r3, #6]
+ 9ff6c4e:	4291      	cmp	r1, r2
+ 9ff6c50:	d1ba      	bne.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c52:	9a02      	ldr	r2, [sp, #8]
+ 9ff6c54:	721a      	strb	r2, [r3, #8]
+ 9ff6c56:	9a03      	ldr	r2, [sp, #12]
+ 9ff6c58:	725a      	strb	r2, [r3, #9]
+ 9ff6c5a:	891a      	ldrh	r2, [r3, #8]
+ 9ff6c5c:	2386      	movs	r3, #134	@ 0x86
+ 9ff6c5e:	005b      	lsls	r3, r3, #1
+ 9ff6c60:	429a      	cmp	r2, r3
+ 9ff6c62:	d1b1      	bne.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c64:	9b04      	ldr	r3, [sp, #16]
+ 9ff6c66:	2b01      	cmp	r3, #1
+ 9ff6c68:	d1ae      	bne.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c6a:	4b1a      	ldr	r3, [pc, #104]	@ (9ff6cd4 <CircusDroughtInitAll+0x198>)
+ 9ff6c6c:	429f      	cmp	r7, r3
+ 9ff6c6e:	d1ab      	bne.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6c70:	4b23      	ldr	r3, [pc, #140]	@ (9ff6d00 <CircusDroughtInitAll+0x1c4>)
+ 9ff6c72:	429c      	cmp	r4, r3
+ 9ff6c74:	d002      	beq.n	9ff6c7c <CircusDroughtInitAll+0x140>
+ 9ff6c76:	4b23      	ldr	r3, [pc, #140]	@ (9ff6d04 <CircusDroughtInitAll+0x1c8>)
+ 9ff6c78:	429c      	cmp	r4, r3
+ 9ff6c7a:	d110      	bne.n	9ff6c9e <CircusDroughtInitAll+0x162>
+ 9ff6c7c:	2480      	movs	r4, #128	@ 0x80
+ 9ff6c7e:	f000 f853 	bl	9ff6d28 <DroughtInitVars>
+ 9ff6c82:	0064      	lsls	r4, r4, #1
+ 9ff6c84:	4a1b      	ldr	r2, [pc, #108]	@ (9ff6cf4 <CircusDroughtInitAll+0x1b8>)
+ 9ff6c86:	4b1c      	ldr	r3, [pc, #112]	@ (9ff6cf8 <CircusDroughtInitAll+0x1bc>)
+ 9ff6c88:	5cd3      	ldrb	r3, [r2, r3]
+ 9ff6c8a:	2b00      	cmp	r3, #0
+ 9ff6c8c:	d19e      	bne.n	9ff6bcc <CircusDroughtInitAll+0x90>
+ 9ff6c8e:	3c01      	subs	r4, #1
+ 9ff6c90:	f000 f862 	bl	9ff6d58 <CircusDroughtEmptyLoader.constprop.0.isra.0>
+ 9ff6c94:	f000 f854 	bl	9ff6d40 <DroughtStep>
+ 9ff6c98:	2c00      	cmp	r4, #0
+ 9ff6c9a:	d1f3      	bne.n	9ff6c84 <CircusDroughtInitAll+0x148>
+ 9ff6c9c:	e796      	b.n	9ff6bcc <CircusDroughtInitAll+0x90>
+ 9ff6c9e:	4b1a      	ldr	r3, [pc, #104]	@ (9ff6d08 <CircusDroughtInitAll+0x1cc>)
+ 9ff6ca0:	429c      	cmp	r4, r3
+ 9ff6ca2:	d000      	beq.n	9ff6ca6 <CircusDroughtInitAll+0x16a>
+ 9ff6ca4:	e790      	b.n	9ff6bc8 <CircusDroughtInitAll+0x8c>
+ 9ff6ca6:	e7e9      	b.n	9ff6c7c <CircusDroughtInitAll+0x140>
+ 9ff6ca8:	02022aac 	.word	0x02022aac
+ 9ff6cac:	0203d400 	.word	0x0203d400
+ 9ff6cb0:	0203d401 	.word	0x0203d401
+ 9ff6cb4:	0203d402 	.word	0x0203d402
+ 9ff6cb8:	02023dea 	.word	0x02023dea
+ 9ff6cbc:	02038538 	.word	0x02038538
+ 9ff6cc0:	02038539 	.word	0x02038539
+ 9ff6cc4:	02038530 	.word	0x02038530
+ 9ff6cc8:	0203852e 	.word	0x0203852e
+ 9ff6ccc:	03003134 	.word	0x03003134
+ 9ff6cd0:	03000eb8 	.word	0x03000eb8
+ 9ff6cd4:	08055e75 	.word	0x08055e75
+ 9ff6cd8:	09ff56e5 	.word	0x09ff56e5
+ 9ff6cdc:	0203d000 	.word	0x0203d000
+ 9ff6ce0:	02010101 	.word	0x02010101
+ 9ff6ce4:	0c000301 	.word	0x0c000301
+ 9ff6ce8:	09ff4ceb 	.word	0x09ff4ceb
+ 9ff6cec:	09ff4d4c 	.word	0x09ff4d4c
+ 9ff6cf0:	09ff4dad 	.word	0x09ff4dad
+ 9ff6cf4:	02037e68 	.word	0x02037e68
+ 9ff6cf8:	000006d2 	.word	0x000006d2
+ 9ff6cfc:	00000c01 	.word	0x00000c01
+ 9ff6d00:	09ff4d16 	.word	0x09ff4d16
+ 9ff6d04:	09ff4d77 	.word	0x09ff4d77
+ 9ff6d08:	09ff4dd8 	.word	0x09ff4dd8
+ 9ff6d0c:	4718      	bx	r3
+ 9ff6d0e:	46c0      	nop			@ (mov r8, r8)
+
+09ff6d10 <DroughtOriginal>:
+ 9ff6d10:	b510      	push	{r4, lr}
+ 9ff6d12:	4b03      	ldr	r3, [pc, #12]	@ (9ff6d20 <DroughtOriginal+0x10>)
+ 9ff6d14:	f000 f806 	bl	9ff6d24 <DroughtOriginal+0x14>
+ 9ff6d18:	bc10      	pop	{r4}
+ 9ff6d1a:	bc01      	pop	{r0}
+ 9ff6d1c:	4700      	bx	r0
+ 9ff6d1e:	46c0      	nop			@ (mov r8, r8)
+ 9ff6d20:	0807ad09 	.word	0x0807ad09
+ 9ff6d24:	4718      	bx	r3
+ 9ff6d26:	46c0      	nop			@ (mov r8, r8)
+
+09ff6d28 <DroughtInitVars>:
+ 9ff6d28:	b510      	push	{r4, lr}
+ 9ff6d2a:	4b03      	ldr	r3, [pc, #12]	@ (9ff6d38 <DroughtInitVars+0x10>)
+ 9ff6d2c:	f000 f806 	bl	9ff6d3c <DroughtInitVars+0x14>
+ 9ff6d30:	bc10      	pop	{r4}
+ 9ff6d32:	bc01      	pop	{r0}
+ 9ff6d34:	4700      	bx	r0
+ 9ff6d36:	46c0      	nop			@ (mov r8, r8)
+ 9ff6d38:	0807acd5 	.word	0x0807acd5
+ 9ff6d3c:	4718      	bx	r3
+ 9ff6d3e:	46c0      	nop			@ (mov r8, r8)
+
+09ff6d40 <DroughtStep>:
+ 9ff6d40:	b510      	push	{r4, lr}
+ 9ff6d42:	4b03      	ldr	r3, [pc, #12]	@ (9ff6d50 <DroughtStep+0x10>)
+ 9ff6d44:	f000 f806 	bl	9ff6d54 <DroughtStep+0x14>
+ 9ff6d48:	bc10      	pop	{r4}
+ 9ff6d4a:	bc01      	pop	{r0}
+ 9ff6d4c:	4700      	bx	r0
+ 9ff6d4e:	46c0      	nop			@ (mov r8, r8)
+ 9ff6d50:	0807ad39 	.word	0x0807ad39
+ 9ff6d54:	4718      	bx	r3
+ 9ff6d56:	46c0      	nop			@ (mov r8, r8)
+
+09ff6d58 <CircusDroughtEmptyLoader.constprop.0.isra.0>:
+ 9ff6d58:	4b0a      	ldr	r3, [pc, #40]	@ (9ff6d84 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x2c>)
+ 9ff6d5a:	4a0b      	ldr	r2, [pc, #44]	@ (9ff6d88 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x30>)
+ 9ff6d5c:	5c9a      	ldrb	r2, [r3, r2]
+ 9ff6d5e:	2a02      	cmp	r2, #2
+ 9ff6d60:	d10e      	bne.n	9ff6d80 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x28>
+ 9ff6d62:	4a0a      	ldr	r2, [pc, #40]	@ (9ff6d8c <CircusDroughtEmptyLoader.constprop.0.isra.0+0x34>)
+ 9ff6d64:	5c9a      	ldrb	r2, [r3, r2]
+ 9ff6d66:	2a00      	cmp	r2, #0
+ 9ff6d68:	d10a      	bne.n	9ff6d80 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x28>
+ 9ff6d6a:	4809      	ldr	r0, [pc, #36]	@ (9ff6d90 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x38>)
+ 9ff6d6c:	5c1a      	ldrb	r2, [r3, r0]
+ 9ff6d6e:	2a01      	cmp	r2, #1
+ 9ff6d70:	d106      	bne.n	9ff6d80 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x28>
+ 9ff6d72:	4a08      	ldr	r2, [pc, #32]	@ (9ff6d94 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x3c>)
+ 9ff6d74:	5c99      	ldrb	r1, [r3, r2]
+ 9ff6d76:	2901      	cmp	r1, #1
+ 9ff6d78:	d102      	bne.n	9ff6d80 <CircusDroughtEmptyLoader.constprop.0.isra.0+0x28>
+ 9ff6d7a:	311f      	adds	r1, #31
+ 9ff6d7c:	5419      	strb	r1, [r3, r0]
+ 9ff6d7e:	5499      	strb	r1, [r3, r2]
+ 9ff6d80:	4770      	bx	lr
+ 9ff6d82:	46c0      	nop			@ (mov r8, r8)
+ 9ff6d84:	02037e68 	.word	0x02037e68
+ 9ff6d88:	000006cc 	.word	0x000006cc
+ 9ff6d8c:	000006cd 	.word	0x000006cd
+ 9ff6d90:	0000074d 	.word	0x0000074d
+ 9ff6d94:	0000074e 	.word	0x0000074e
+
+09ff6d98 <BytesAreZero>:
+ 9ff6d98:	1841      	adds	r1, r0, r1
+ 9ff6d9a:	7803      	ldrb	r3, [r0, #0]
+ 9ff6d9c:	2b00      	cmp	r3, #0
+ 9ff6d9e:	d104      	bne.n	9ff6daa <BytesAreZero+0x12>
+ 9ff6da0:	3001      	adds	r0, #1
+ 9ff6da2:	4288      	cmp	r0, r1
+ 9ff6da4:	d1f9      	bne.n	9ff6d9a <BytesAreZero+0x2>
+ 9ff6da6:	2001      	movs	r0, #1
+ 9ff6da8:	4770      	bx	lr
+ 9ff6daa:	2000      	movs	r0, #0
+ 9ff6dac:	e7fc      	b.n	9ff6da8 <BytesAreZero+0x10>
+	...
+
+09ff6db0 <VegaSaveChecksum>:
+ 9ff6db0:	0002      	movs	r2, r0
+ 9ff6db2:	b570      	push	{r4, r5, r6, lr}
+ 9ff6db4:	2800      	cmp	r0, #0
+ 9ff6db6:	d00f      	beq.n	9ff6dd8 <VegaSaveChecksum+0x28>
+ 9ff6db8:	2580      	movs	r5, #128	@ 0x80
+ 9ff6dba:	2300      	movs	r3, #0
+ 9ff6dbc:	4808      	ldr	r0, [pc, #32]	@ (9ff6de0 <VegaSaveChecksum+0x30>)
+ 9ff6dbe:	4e09      	ldr	r6, [pc, #36]	@ (9ff6de4 <VegaSaveChecksum+0x34>)
+ 9ff6dc0:	012d      	lsls	r5, r5, #4
+ 9ff6dc2:	0019      	movs	r1, r3
+ 9ff6dc4:	3908      	subs	r1, #8
+ 9ff6dc6:	2400      	movs	r4, #0
+ 9ff6dc8:	2903      	cmp	r1, #3
+ 9ff6dca:	d900      	bls.n	9ff6dce <VegaSaveChecksum+0x1e>
+ 9ff6dcc:	5cd4      	ldrb	r4, [r2, r3]
+ 9ff6dce:	4060      	eors	r0, r4
+ 9ff6dd0:	3301      	adds	r3, #1
+ 9ff6dd2:	4370      	muls	r0, r6
+ 9ff6dd4:	42ab      	cmp	r3, r5
+ 9ff6dd6:	d1f4      	bne.n	9ff6dc2 <VegaSaveChecksum+0x12>
+ 9ff6dd8:	bc70      	pop	{r4, r5, r6}
+ 9ff6dda:	bc02      	pop	{r1}
+ 9ff6ddc:	4708      	bx	r1
+ 9ff6dde:	46c0      	nop			@ (mov r8, r8)
+ 9ff6de0:	811c9dc5 	.word	0x811c9dc5
+ 9ff6de4:	01000193 	.word	0x01000193
+
+09ff6de8 <VegaSaveValidate>:
+ 9ff6de8:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+ 9ff6dea:	0004      	movs	r4, r0
+ 9ff6dec:	2506      	movs	r5, #6
+ 9ff6dee:	2800      	cmp	r0, #0
+ 9ff6df0:	d100      	bne.n	9ff6df4 <VegaSaveValidate+0xc>
+ 9ff6df2:	e0f5      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6df4:	2380      	movs	r3, #128	@ 0x80
+ 9ff6df6:	3d02      	subs	r5, #2
+ 9ff6df8:	011b      	lsls	r3, r3, #4
+ 9ff6dfa:	4299      	cmp	r1, r3
+ 9ff6dfc:	d200      	bcs.n	9ff6e00 <VegaSaveValidate+0x18>
+ 9ff6dfe:	e0ef      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6e00:	2201      	movs	r2, #1
+ 9ff6e02:	0015      	movs	r5, r2
+ 9ff6e04:	0001      	movs	r1, r0
+ 9ff6e06:	18c0      	adds	r0, r0, r3
+ 9ff6e08:	2300      	movs	r3, #0
+ 9ff6e0a:	429d      	cmp	r5, r3
+ 9ff6e0c:	d002      	beq.n	9ff6e14 <VegaSaveValidate+0x2c>
+ 9ff6e0e:	780b      	ldrb	r3, [r1, #0]
+ 9ff6e10:	425d      	negs	r5, r3
+ 9ff6e12:	416b      	adcs	r3, r5
+ 9ff6e14:	001d      	movs	r5, r3
+ 9ff6e16:	2300      	movs	r3, #0
+ 9ff6e18:	429a      	cmp	r2, r3
+ 9ff6e1a:	d003      	beq.n	9ff6e24 <VegaSaveValidate+0x3c>
+ 9ff6e1c:	780b      	ldrb	r3, [r1, #0]
+ 9ff6e1e:	3bff      	subs	r3, #255	@ 0xff
+ 9ff6e20:	425a      	negs	r2, r3
+ 9ff6e22:	4153      	adcs	r3, r2
+ 9ff6e24:	3101      	adds	r1, #1
+ 9ff6e26:	001a      	movs	r2, r3
+ 9ff6e28:	4281      	cmp	r1, r0
+ 9ff6e2a:	d1ed      	bne.n	9ff6e08 <VegaSaveValidate+0x20>
+ 9ff6e2c:	431d      	orrs	r5, r3
+ 9ff6e2e:	d000      	beq.n	9ff6e32 <VegaSaveValidate+0x4a>
+ 9ff6e30:	e0d6      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6e32:	7863      	ldrb	r3, [r4, #1]
+ 9ff6e34:	7822      	ldrb	r2, [r4, #0]
+ 9ff6e36:	021b      	lsls	r3, r3, #8
+ 9ff6e38:	4313      	orrs	r3, r2
+ 9ff6e3a:	78a2      	ldrb	r2, [r4, #2]
+ 9ff6e3c:	0412      	lsls	r2, r2, #16
+ 9ff6e3e:	431a      	orrs	r2, r3
+ 9ff6e40:	78e3      	ldrb	r3, [r4, #3]
+ 9ff6e42:	061b      	lsls	r3, r3, #24
+ 9ff6e44:	4313      	orrs	r3, r2
+ 9ff6e46:	4a6b      	ldr	r2, [pc, #428]	@ (9ff6ff4 <VegaSaveValidate+0x20c>)
+ 9ff6e48:	4293      	cmp	r3, r2
+ 9ff6e4a:	d000      	beq.n	9ff6e4e <VegaSaveValidate+0x66>
+ 9ff6e4c:	e0c7      	b.n	9ff6fde <VegaSaveValidate+0x1f6>
+ 9ff6e4e:	7966      	ldrb	r6, [r4, #5]
+ 9ff6e50:	7923      	ldrb	r3, [r4, #4]
+ 9ff6e52:	0236      	lsls	r6, r6, #8
+ 9ff6e54:	431e      	orrs	r6, r3
+ 9ff6e56:	1e73      	subs	r3, r6, #1
+ 9ff6e58:	2b01      	cmp	r3, #1
+ 9ff6e5a:	d900      	bls.n	9ff6e5e <VegaSaveValidate+0x76>
+ 9ff6e5c:	e0c4      	b.n	9ff6fe8 <VegaSaveValidate+0x200>
+ 9ff6e5e:	79e3      	ldrb	r3, [r4, #7]
+ 9ff6e60:	79a2      	ldrb	r2, [r4, #6]
+ 9ff6e62:	021b      	lsls	r3, r3, #8
+ 9ff6e64:	4313      	orrs	r3, r2
+ 9ff6e66:	2280      	movs	r2, #128	@ 0x80
+ 9ff6e68:	0112      	lsls	r2, r2, #4
+ 9ff6e6a:	4293      	cmp	r3, r2
+ 9ff6e6c:	d000      	beq.n	9ff6e70 <VegaSaveValidate+0x88>
+ 9ff6e6e:	e0bd      	b.n	9ff6fec <VegaSaveValidate+0x204>
+ 9ff6e70:	7a62      	ldrb	r2, [r4, #9]
+ 9ff6e72:	7a23      	ldrb	r3, [r4, #8]
+ 9ff6e74:	0212      	lsls	r2, r2, #8
+ 9ff6e76:	431a      	orrs	r2, r3
+ 9ff6e78:	7aa3      	ldrb	r3, [r4, #10]
+ 9ff6e7a:	7ae7      	ldrb	r7, [r4, #11]
+ 9ff6e7c:	041b      	lsls	r3, r3, #16
+ 9ff6e7e:	4313      	orrs	r3, r2
+ 9ff6e80:	063f      	lsls	r7, r7, #24
+ 9ff6e82:	0020      	movs	r0, r4
+ 9ff6e84:	431f      	orrs	r7, r3
+ 9ff6e86:	f7ff ff93 	bl	9ff6db0 <VegaSaveChecksum>
+ 9ff6e8a:	4287      	cmp	r7, r0
+ 9ff6e8c:	d000      	beq.n	9ff6e90 <VegaSaveValidate+0xa8>
+ 9ff6e8e:	e0af      	b.n	9ff6ff0 <VegaSaveValidate+0x208>
+ 9ff6e90:	0020      	movs	r0, r4
+ 9ff6e92:	2103      	movs	r1, #3
+ 9ff6e94:	3041      	adds	r0, #65	@ 0x41
+ 9ff6e96:	f7ff ff7f 	bl	9ff6d98 <BytesAreZero>
+ 9ff6e9a:	2800      	cmp	r0, #0
+ 9ff6e9c:	d076      	beq.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6e9e:	0027      	movs	r7, r4
+ 9ff6ea0:	3744      	adds	r7, #68	@ 0x44
+ 9ff6ea2:	21f0      	movs	r1, #240	@ 0xf0
+ 9ff6ea4:	0038      	movs	r0, r7
+ 9ff6ea6:	f7ff ff77 	bl	9ff6d98 <BytesAreZero>
+ 9ff6eaa:	2800      	cmp	r0, #0
+ 9ff6eac:	d156      	bne.n	9ff6f5c <VegaSaveValidate+0x174>
+ 9ff6eae:	0023      	movs	r3, r4
+ 9ff6eb0:	3345      	adds	r3, #69	@ 0x45
+ 9ff6eb2:	781b      	ldrb	r3, [r3, #0]
+ 9ff6eb4:	783a      	ldrb	r2, [r7, #0]
+ 9ff6eb6:	021b      	lsls	r3, r3, #8
+ 9ff6eb8:	4313      	orrs	r3, r2
+ 9ff6eba:	0022      	movs	r2, r4
+ 9ff6ebc:	3246      	adds	r2, #70	@ 0x46
+ 9ff6ebe:	7812      	ldrb	r2, [r2, #0]
+ 9ff6ec0:	0412      	lsls	r2, r2, #16
+ 9ff6ec2:	431a      	orrs	r2, r3
+ 9ff6ec4:	0023      	movs	r3, r4
+ 9ff6ec6:	3347      	adds	r3, #71	@ 0x47
+ 9ff6ec8:	781b      	ldrb	r3, [r3, #0]
+ 9ff6eca:	061b      	lsls	r3, r3, #24
+ 9ff6ecc:	4313      	orrs	r3, r2
+ 9ff6ece:	4a4a      	ldr	r2, [pc, #296]	@ (9ff6ff8 <VegaSaveValidate+0x210>)
+ 9ff6ed0:	4293      	cmp	r3, r2
+ 9ff6ed2:	d15b      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6ed4:	0023      	movs	r3, r4
+ 9ff6ed6:	3348      	adds	r3, #72	@ 0x48
+ 9ff6ed8:	781a      	ldrb	r2, [r3, #0]
+ 9ff6eda:	785b      	ldrb	r3, [r3, #1]
+ 9ff6edc:	021b      	lsls	r3, r3, #8
+ 9ff6ede:	4313      	orrs	r3, r2
+ 9ff6ee0:	2b01      	cmp	r3, #1
+ 9ff6ee2:	d153      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6ee4:	0023      	movs	r3, r4
+ 9ff6ee6:	334a      	adds	r3, #74	@ 0x4a
+ 9ff6ee8:	781a      	ldrb	r2, [r3, #0]
+ 9ff6eea:	785b      	ldrb	r3, [r3, #1]
+ 9ff6eec:	021b      	lsls	r3, r3, #8
+ 9ff6eee:	4313      	orrs	r3, r2
+ 9ff6ef0:	2bf0      	cmp	r3, #240	@ 0xf0
+ 9ff6ef2:	d14b      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6ef4:	0022      	movs	r2, r4
+ 9ff6ef6:	0023      	movs	r3, r4
+ 9ff6ef8:	324d      	adds	r2, #77	@ 0x4d
+ 9ff6efa:	7812      	ldrb	r2, [r2, #0]
+ 9ff6efc:	334c      	adds	r3, #76	@ 0x4c
+ 9ff6efe:	781b      	ldrb	r3, [r3, #0]
+ 9ff6f00:	0212      	lsls	r2, r2, #8
+ 9ff6f02:	431a      	orrs	r2, r3
+ 9ff6f04:	0023      	movs	r3, r4
+ 9ff6f06:	334e      	adds	r3, #78	@ 0x4e
+ 9ff6f08:	781b      	ldrb	r3, [r3, #0]
+ 9ff6f0a:	041b      	lsls	r3, r3, #16
+ 9ff6f0c:	4313      	orrs	r3, r2
+ 9ff6f0e:	0022      	movs	r2, r4
+ 9ff6f10:	324f      	adds	r2, #79	@ 0x4f
+ 9ff6f12:	7812      	ldrb	r2, [r2, #0]
+ 9ff6f14:	0612      	lsls	r2, r2, #24
+ 9ff6f16:	431a      	orrs	r2, r3
+ 9ff6f18:	2108      	movs	r1, #8
+ 9ff6f1a:	2301      	movs	r3, #1
+ 9ff6f1c:	2708      	movs	r7, #8
+ 9ff6f1e:	9201      	str	r2, [sp, #4]
+ 9ff6f20:	4249      	negs	r1, r1
+ 9ff6f22:	425b      	negs	r3, r3
+ 9ff6f24:	2200      	movs	r2, #0
+ 9ff6f26:	2903      	cmp	r1, #3
+ 9ff6f28:	d902      	bls.n	9ff6f30 <VegaSaveValidate+0x148>
+ 9ff6f2a:	0022      	movs	r2, r4
+ 9ff6f2c:	324c      	adds	r2, #76	@ 0x4c
+ 9ff6f2e:	5c52      	ldrb	r2, [r2, r1]
+ 9ff6f30:	4053      	eors	r3, r2
+ 9ff6f32:	003a      	movs	r2, r7
+ 9ff6f34:	0858      	lsrs	r0, r3, #1
+ 9ff6f36:	4684      	mov	ip, r0
+ 9ff6f38:	2001      	movs	r0, #1
+ 9ff6f3a:	4003      	ands	r3, r0
+ 9ff6f3c:	482f      	ldr	r0, [pc, #188]	@ (9ff6ffc <VegaSaveValidate+0x214>)
+ 9ff6f3e:	425b      	negs	r3, r3
+ 9ff6f40:	4003      	ands	r3, r0
+ 9ff6f42:	4660      	mov	r0, ip
+ 9ff6f44:	3a01      	subs	r2, #1
+ 9ff6f46:	0612      	lsls	r2, r2, #24
+ 9ff6f48:	4043      	eors	r3, r0
+ 9ff6f4a:	0e12      	lsrs	r2, r2, #24
+ 9ff6f4c:	d1f2      	bne.n	9ff6f34 <VegaSaveValidate+0x14c>
+ 9ff6f4e:	3101      	adds	r1, #1
+ 9ff6f50:	29e8      	cmp	r1, #232	@ 0xe8
+ 9ff6f52:	d1e7      	bne.n	9ff6f24 <VegaSaveValidate+0x13c>
+ 9ff6f54:	43db      	mvns	r3, r3
+ 9ff6f56:	9a01      	ldr	r2, [sp, #4]
+ 9ff6f58:	4293      	cmp	r3, r2
+ 9ff6f5a:	d117      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6f5c:	0020      	movs	r0, r4
+ 9ff6f5e:	3035      	adds	r0, #53	@ 0x35
+ 9ff6f60:	210f      	movs	r1, #15
+ 9ff6f62:	30ff      	adds	r0, #255	@ 0xff
+ 9ff6f64:	f7ff ff18 	bl	9ff6d98 <BytesAreZero>
+ 9ff6f68:	2800      	cmp	r0, #0
+ 9ff6f6a:	d00f      	beq.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6f6c:	2e01      	cmp	r6, #1
+ 9ff6f6e:	d10f      	bne.n	9ff6f90 <VegaSaveValidate+0x1a8>
+ 9ff6f70:	2140      	movs	r1, #64	@ 0x40
+ 9ff6f72:	4b23      	ldr	r3, [pc, #140]	@ (9ff7000 <VegaSaveValidate+0x218>)
+ 9ff6f74:	18e0      	adds	r0, r4, r3
+ 9ff6f76:	f7ff ff0f 	bl	9ff6d98 <BytesAreZero>
+ 9ff6f7a:	2800      	cmp	r0, #0
+ 9ff6f7c:	d006      	beq.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6f7e:	4b21      	ldr	r3, [pc, #132]	@ (9ff7004 <VegaSaveValidate+0x21c>)
+ 9ff6f80:	2181      	movs	r1, #129	@ 0x81
+ 9ff6f82:	18e0      	adds	r0, r4, r3
+ 9ff6f84:	f7ff ff08 	bl	9ff6d98 <BytesAreZero>
+ 9ff6f88:	2800      	cmp	r0, #0
+ 9ff6f8a:	d129      	bne.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6f8c:	250f      	movs	r5, #15
+ 9ff6f8e:	e027      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6f90:	4b1b      	ldr	r3, [pc, #108]	@ (9ff7000 <VegaSaveValidate+0x218>)
+ 9ff6f92:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6f94:	2b01      	cmp	r3, #1
+ 9ff6f96:	d1f9      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6f98:	23e8      	movs	r3, #232	@ 0xe8
+ 9ff6f9a:	00db      	lsls	r3, r3, #3
+ 9ff6f9c:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6f9e:	2b40      	cmp	r3, #64	@ 0x40
+ 9ff6fa0:	d1f4      	bne.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fa2:	4b19      	ldr	r3, [pc, #100]	@ (9ff7008 <VegaSaveValidate+0x220>)
+ 9ff6fa4:	5ce1      	ldrb	r1, [r4, r3]
+ 9ff6fa6:	4b19      	ldr	r3, [pc, #100]	@ (9ff700c <VegaSaveValidate+0x224>)
+ 9ff6fa8:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6faa:	4a19      	ldr	r2, [pc, #100]	@ (9ff7010 <VegaSaveValidate+0x228>)
+ 9ff6fac:	021b      	lsls	r3, r3, #8
+ 9ff6fae:	430b      	orrs	r3, r1
+ 9ff6fb0:	4293      	cmp	r3, r2
+ 9ff6fb2:	d8eb      	bhi.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fb4:	4b17      	ldr	r3, [pc, #92]	@ (9ff7014 <VegaSaveValidate+0x22c>)
+ 9ff6fb6:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6fb8:	3b01      	subs	r3, #1
+ 9ff6fba:	2b06      	cmp	r3, #6
+ 9ff6fbc:	d8e6      	bhi.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fbe:	4b16      	ldr	r3, [pc, #88]	@ (9ff7018 <VegaSaveValidate+0x230>)
+ 9ff6fc0:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6fc2:	2b3b      	cmp	r3, #59	@ 0x3b
+ 9ff6fc4:	d8e2      	bhi.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fc6:	4b15      	ldr	r3, [pc, #84]	@ (9ff701c <VegaSaveValidate+0x234>)
+ 9ff6fc8:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6fca:	2b04      	cmp	r3, #4
+ 9ff6fcc:	d8de      	bhi.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fce:	23ee      	movs	r3, #238	@ 0xee
+ 9ff6fd0:	00db      	lsls	r3, r3, #3
+ 9ff6fd2:	5ce3      	ldrb	r3, [r4, r3]
+ 9ff6fd4:	2b01      	cmp	r3, #1
+ 9ff6fd6:	d8d9      	bhi.n	9ff6f8c <VegaSaveValidate+0x1a4>
+ 9ff6fd8:	2104      	movs	r1, #4
+ 9ff6fda:	4b11      	ldr	r3, [pc, #68]	@ (9ff7020 <VegaSaveValidate+0x238>)
+ 9ff6fdc:	e7ca      	b.n	9ff6f74 <VegaSaveValidate+0x18c>
+ 9ff6fde:	2502      	movs	r5, #2
+ 9ff6fe0:	0028      	movs	r0, r5
+ 9ff6fe2:	bcfe      	pop	{r1, r2, r3, r4, r5, r6, r7}
+ 9ff6fe4:	bc02      	pop	{r1}
+ 9ff6fe6:	4708      	bx	r1
+ 9ff6fe8:	2503      	movs	r5, #3
+ 9ff6fea:	e7f9      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6fec:	2504      	movs	r5, #4
+ 9ff6fee:	e7f7      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6ff0:	2505      	movs	r5, #5
+ 9ff6ff2:	e7f5      	b.n	9ff6fe0 <VegaSaveValidate+0x1f8>
+ 9ff6ff4:	31534756 	.word	0x31534756
+ 9ff6ff8:	51434156 	.word	0x51434156
+ 9ff6ffc:	edb88320 	.word	0xedb88320
+ 9ff7000:	0000073f 	.word	0x0000073f
+ 9ff7004:	0000077f 	.word	0x0000077f
+ 9ff7008:	00000743 	.word	0x00000743
+ 9ff700c:	00000744 	.word	0x00000744
+ 9ff7010:	0000270f 	.word	0x0000270f
+ 9ff7014:	00000745 	.word	0x00000745
+ 9ff7018:	00000746 	.word	0x00000746
+ 9ff701c:	0000076f 	.word	0x0000076f
+ 9ff7020:	0000077b 	.word	0x0000077b
