@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。",
+    "current_stop": "run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。",
+    "next_step": "旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,9 +88,8 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RENTAL_DROUGHT_RETURN_SAVE_CONTINUE_SCOPED_VERIFIED",
-    "path": "content/modernization/pr16_circus_rental_resume.json",
-    "run_id": 35457636604,
+    "classification": "CIRCUS_24_WINS_72BP_SAVE_CONTINUE_SCOPED_VERIFIED_30_OPEN",
+    "path": "content/modernization/pr16_circus_rental_closeout.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -187,6 +186,11 @@
     "classification": "CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_rental_boundary.json",
     "run_id": 35452739116
+  },
+  "circus_rental_closeout": {
+    "path": "content/modernization/pr16_circus_rental_closeout.json",
+    "run_id": 35457636604,
+    "status": "CIRCUS_24_WINS_72BP_SAVE_CONTINUE_SCOPED_VERIFIED_30_OPEN"
   },
   "circus_rental_contract_resume": {
     "classification": "CIRCUS_RENTAL_DROUGHT_RETURN_SAVE_CONTINUE_SCOPED_VERIFIED",
@@ -538,6 +542,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。",
     "run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。",
     "run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。",
     "run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。",
@@ -772,6 +777,11 @@
   },
   "handoff_maintenance_task": "USER-20260918-RING-NPC-PLAN",
   "history_handoff_retained": "content/modernization/pr16_native_supply_handoff.json",
+  "inherited_bootstrap_accounting_correction": {
+    "all_ancestor_arm_links_zero": false,
+    "note_ja": "末端Drought再link0を全pipelineへ外挿した旧記述は誤り。旧親compile/Ring host testsの再実行を記録。新native前に保存済みbyte再構築へ切替。",
+    "path": "content/modernization/pr16_circus_rental_closeout.json"
+  },
   "last_accepted_native_run": 34946969126,
   "last_accepted_native_tested_head": "0b7497b575a3180a045f2be377386490f192a012",
   "last_successful_native_diagnostic": {
@@ -809,16 +819,13 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。",
+    "goal_ja": "旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
+    "id": "CIRCUS_RENTAL_NEXT_UNFINISHED_BOUNDARY",
     "read_paths": [
-      "content/modernization/pr16_circus_loss_followup.json",
+      "content/modernization/pr16_circus_rental_closeout.json",
+      "content/modernization/pr16_circus_rental_resume.json",
       "scripts/pr16_circus_rental_resume.py",
-      "scripts/pr16_streak_native.py",
-      "scripts/pr16_streak_probe.py",
-      "overlays/circus_streak/circus_drought_rental.h",
-      "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
     "stop_rule_ja": "次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。",
@@ -828,13 +835,69 @@
       "退出/保存再開/原partyと報酬の境界を保ち、変更影響台帳を記録してからP08へ移送"
     ]
   },
-  "observed_date_jst": "2026-09-19",
-  "observed_head": "4e0596d58c1321810f9b90cf3c6130d29ff8ce6d",
+  "observed_date_jst": "2026-09-20",
+  "observed_head": "9eaef3fc7a2a3ddf03a64931f270fe9006afbb38",
   "observed_head_checks": {
-    "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "4e0596d58c1321810f9b90cf3c6130d29ff8ce6d"
+    "reason_ja": "native runの最終結論を照合。action_required等はsuccessに改作しない。記録専用run自身はこのsnapshotに含めず、全CI greenもrelease完了も主張しない。",
+    "runs": [
+      {
+        "conclusion": "failure",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457636604,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457639486,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457639464,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457636611,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457636637,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457636645,
+        "status": "completed"
+      },
+      {
+        "conclusion": "success",
+        "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+        "id": 35457636626,
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+        "id": 35458202655,
+        "status": "completed"
+      },
+      {
+        "conclusion": "action_required",
+        "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+        "id": 35458202701,
+        "status": "completed"
+      }
+    ],
+    "scope_head": "9eaef3fc7a2a3ddf03a64931f270fe9006afbb38"
   },
-  "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
+  "observed_head_semantics": "完了済みnative runと原本を照合するcloseout source HEAD。記録専用Actionsはnativeを再実行しない。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -899,13 +962,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 35457636604,
-      "status": "in_progress",
-      "tested_head": "69075ada3e54a3218a916b5b532f8883428c6bfa"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -931,26 +988,56 @@
   "prior_actions_reconciled": [
     {
       "conclusion": "failure",
-      "head_sha": "d1af762472eb529b4fcad93bac65c4e44aa05db3",
-      "id": 35456028016,
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636604,
       "status": "completed"
     },
     {
-      "conclusion": "failure",
-      "head_sha": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7",
-      "id": 35457143420,
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457639486,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457639464,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636611,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636637,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636645,
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "head_sha": "69075ada3e54a3218a916b5b532f8883428c6bfa",
+      "id": 35457636626,
       "status": "completed"
     },
     {
       "conclusion": "action_required",
-      "head_sha": "7838f3f510fdf004a426b84cd75141c6dff8b207",
-      "id": 35457301571,
+      "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+      "id": 35458202655,
       "status": "completed"
     },
     {
       "conclusion": "action_required",
-      "head_sha": "7838f3f510fdf004a426b84cd75141c6dff8b207",
-      "id": 35457301606,
+      "head_sha": "618775d1bd269021a9ecf3c622032eb96afe264d",
+      "id": 35458202701,
       "status": "completed"
     }
   ],
@@ -1735,6 +1822,10 @@
     ".github/workflows/pr16-circus-rental-boundary.yml": {
       "sha256": "f7b05711d80d62c3771d87cfeaeb6f97703d1aba71d82eff66c225cb1c24738b",
       "size": 4525
+    },
+    ".github/workflows/pr16-circus-rental-closeout.yml": {
+      "sha256": "25d3e280e0746e6b37b35365988cffbc9a35a1442c66463808737cae6cd11d3d",
+      "size": 1086
     },
     ".github/workflows/pr16-circus-rental-drought.yml": {
       "sha256": "02eab2fed13bfa51b1ac36f517dfd32bbd50e81391e779e0f8129b15c95e385e",
@@ -2615,6 +2706,14 @@
     "content/modernization/pr16_circus_rental_boundary.json": {
       "sha256": "8cb3cfd224c39dd0a596980f918a4b83c28c9e517ef014c6b56ebe3dd15745d5",
       "size": 299555
+    },
+    "content/modernization/pr16_circus_rental_closeout.json": {
+      "sha256": "939aefcd87bf31ad480e9d850108d71649d86f48fddfa1000af8b0fd51e497c1",
+      "size": 8597
+    },
+    "content/modernization/pr16_circus_rental_closeout_spec.json": {
+      "sha256": "48f31eec34d993d072bcbf9c079b450295908e8353ac7ef9d838ceacfac5d675",
+      "size": 1749
     },
     "content/modernization/pr16_circus_rental_drought.json": {
       "sha256": "eed84fbede9f62eebf62f1bf278656510d3a99c88eb003896b285478737e3610",
@@ -5736,6 +5835,10 @@
       "sha256": "120ff63f8627577125daac73eba180b8dfe045b241c33403f80732addafab8e2",
       "size": 16138
     },
+    "scripts/pr16_circus_rental_closeout.py": {
+      "sha256": "8b175b9a4636d0167dd5c11390e62281ec9bb81cc061b7406e42d6f8373cbce5",
+      "size": 14992
+    },
     "scripts/pr16_circus_rental_drought.py": {
       "sha256": "332224629c5b3da59ee8c5e251c200ca78ebcd82ba2ffad6280d59cc73f0a2f2",
       "size": 26434
@@ -6716,6 +6819,10 @@
       "sha256": "8ff9160e46b5f0c752bc05a2a4edea1a036bcf77c220f0fde9a0e19dfb8a5a58",
       "size": 3187
     },
+    "tests/test_pr16_circus_rental_closeout.py": {
+      "sha256": "eb0725d474dd285d300cc3010b3f5649dc7e21af40dceb900937083ec47a26a3",
+      "size": 6942
+    },
     "tests/test_pr16_circus_rental_drought.py": {
       "sha256": "4924eaf4bda429a6201b13f981c16066a4be5c31f56a1f4bb330835cf33cabfd",
       "size": 5631
@@ -7518,7 +7625,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。",
+  "source_change_review_ja": "run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

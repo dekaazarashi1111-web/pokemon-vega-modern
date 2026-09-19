@@ -8425,3 +8425,17 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。
+
+
+## 2026-09-19T17:35:23.515478+00:00 — USER-20260920-CIRCUS-RENTAL-CLOSEOUT-RUN35458535637
+- Timestamp: 2026-09-19T17:35:23.515478+00:00
+- Task: USER-20260920-CIRCUS-RENTAL-CLOSEOUT-RUN35458535637
+- Status: DONE / 記録区切り。physical/P08/release未完。
+- Version: pr16-circus-rental-closeout
+- Summary: run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。
+- Files changed: scripts/pr16_circus_rental_closeout.py, tests/test_pr16_circus_rental_closeout.py, .github/workflows/pr16-circus-rental-closeout.yml, content/modernization/pr16_circus_rental_closeout_spec.json, content/modernization/pr16_circus_rental_closeout.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: [{'pattern': 'test_pr16_circus_rental_closeout.py', 'count': 13, 'success': True}, {'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; 原本全hash・Actions最終結論・実勝敗/owner/Saveを照合。task graph、差分private guard新規違反0、diff checkをcommit前必須。
+- Evidence: content/modernization/pr16_circus_rental_closeout.json / run35457636604 / job105935643398
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub/Actionsのみ。このcloseout自体は新規native0/ARM link0/ROM変更0。参照runの末端Drought再link0を総数0とした旧記録は訂正する。継承pipelineの旧親再compile/Ring host tests再実行あり、総実行回数未採取。原本は保持。旧failure/全体guard違反を成功に改作しない。
+- Next: 旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。

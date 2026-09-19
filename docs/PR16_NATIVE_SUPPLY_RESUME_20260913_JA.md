@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-READY/6体境界を修復し22戦目以降と通常Save/fresh Continueを確認。今回の実勝数=24、真正30勝は未達。
+run35457636604/job105935643398: 候補2b107e7eでREADY/6体Drought停止を突破。実24勝/72BP/25戦目敗北、121events・元party600/owner64・通常Save counter2→3/fresh Continueを検証。30勝未達なのでActions failureを保持。旧bootstrap再compileの総数0記述は誤りとして訂正。
 
-**次: 保存済み後継原本の最初の実敗北/停止から入力だけを改善し、真正30勝・90BPを同一processで達成する。旧21勝prefixの独立再実行は禁止。**
+**次: 旧親の再compileをしない保存済みbyte/patch再構築を先に実装・検証する。その後は同じ2b107e7eと24勝prefixを保持し、25戦目の通常レンタル/技選択だけを改善して真正30勝と保存へ進む。25戦目の最初の入力変更より前のevent列を完全照合し、受入24勝・旧ARM linkの独立再実行をしない。30勝後に正規特性抑制、影響範囲P08へ進む。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `4e0596d58c1321810f9b90cf3c6130d29ff8ce6d`。
-Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
+証拠のsource HEAD: `9eaef3fc7a2a3ddf03a64931f270fe9006afbb38`。
+完了済みnative runと原本を照合するcloseout source HEAD。記録専用Actionsはnativeを再実行しない。
 
 ## 最短の再開手順
 
@@ -25,12 +25,9 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 受入判定・ROM変更前に `content/modernization/pr16_bp_chooser_checkpoint.json` と `content/modernization/p08_remaining_work.json` を照合する。
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
-- `content/modernization/pr16_circus_loss_followup.json`
+- `content/modernization/pr16_circus_rental_closeout.json`
+- `content/modernization/pr16_circus_rental_resume.json`
 - `scripts/pr16_circus_rental_resume.py`
-- `scripts/pr16_streak_native.py`
-- `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_drought_rental.h`
-- `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
 checkは限定source hashと正本間整合性を検査するだけで、GitHubの新runを自動発見しない。Actionsの最新run・実行中runを別途照会し、保存済み最新runより新しければ先に結果を照合・引継ぎへ反映する。
@@ -67,6 +64,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35457636604/job105935643398は同候補2b107e7eで実24勝/72BP・25戦目敗北、元party600/owner64/通常Save counter2→3/fresh Continueをscoped検証。121events/1process/2fresh cores、既受入100eventsは同一意味。30勝未達でfailure維持。旧親再compileとRing host testsの重複を発見したため、総ARM0とした旧記述は撤回し原本と訂正を保持。次は再compileしない親復元→25戦目の通常入力改善。
 - run35457143420/job105934337378は候補2b107e7eの受付/launch契約復元・再構築成功後、policy includeがsc_events定義より先でC compile失敗/native0。旧失敗を保持し、host counter前方定義だけを追加した後継で未実行nativeへ進む。旧ARM再link0。
 - run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。
 - run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。
@@ -286,6 +284,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。
+native runの最終結論を照合。action_required等はsuccessに改作しない。記録専用run自身はこのsnapshotに含めず、全CI greenもrelease完了も主張しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。
