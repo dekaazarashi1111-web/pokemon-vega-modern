@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
+    "current_stop": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。 完了済みActionsの実結論・原artifact・画面・Git原本を新規native0で再照合。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。",
+    "next_step": "29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -822,11 +822,12 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。",
+    "goal_ja": "29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
-    "id": "CIRCUS_BATTLE28_HANDOFF",
+    "id": "CIRCUS_BATTLE29_LEAD",
     "read_paths": [
       "content/modernization/pr16_circus_battle28.json",
+      "content/modernization/pr16_circus_battle28_receipt.json",
       "scripts/pr16_circus_battle28.py",
       "scripts/pr16_circus_battle28_policy.py",
       "tests/test_pr16_circus_battle28.py",
@@ -842,20 +843,20 @@
     ]
   },
   "observed_date_jst": "2026-09-20",
-  "observed_head": "c0fae432feeb297382d33d84f6b5bab264113332",
+  "observed_head": "f98a9778e79177bc8094798b43d663d2d6174499",
   "observed_head_checks": {
-    "scope_head": "c0fae432feeb297382d33d84f6b5bab264113332",
+    "scope_head": "f98a9778e79177bc8094798b43d663d2d6174499",
     "runs": [
       {
-        "id": 35468164696,
-        "head_sha": "0d0e840cb8c277f70bc149f0767b7047ee35ea34",
+        "id": 35471833294,
+        "head_sha": "c7218dbf663df9c3b5be868712037e94c76d430d",
         "status": "completed",
         "conclusion": "failure"
       }
     ],
-    "reason_ja": "前runは27勝到達だがSave未達のfailureを保持。今回runは記録時in_progress。全CI greenは主張しない。"
+    "reason_ja": "完了済みCircus原本を直接照合。当記録run全体/全CI greenとは同一視しない。"
   },
-  "observed_head_semantics": "当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。",
+  "observed_head_semantics": "原本照合記録前のremote HEAD。native workflow/native execution HEADと実結論はreceiptで個別固定。",
   "p08_resume_synchronized": true,
   "party_retention_latest_attempt": {
     "accepted_native_cases_replayed": 0,
@@ -920,14 +921,7 @@
     "status": "NATIVE_PARTY_RETENTION_ACCEPTED_BP_PENDING",
     "tested_head": "10e535a046441dd3b797918106259b5c57b69716"
   },
-  "pending_runs": [
-    {
-      "run_id": 35471833294,
-      "tested_head": "c7218dbf663df9c3b5be868712037e94c76d430d",
-      "status": "in_progress",
-      "scope": "battle28-handoff"
-    }
-  ],
+  "pending_runs": [],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
   "pr_draft": true,
   "pr_merged": false,
@@ -7861,8 +7855,8 @@
       "sha256": "d7d2d62e575c36b46a9353c249ee4d8db9feabccc2cc1aeb681cab405e26c6c9"
     },
     "content/modernization/pr16_circus_battle28.json": {
-      "size": 58614,
-      "sha256": "41dbcf04329d5e49fa34ac2b84ecf4b679485c3c516b8505597002c24c7d493f"
+      "size": 60611,
+      "sha256": "76a62efec3733c62044d0c7a552f1719a2fafad714db99d59317fe8ab46156a8"
     },
     "evidence/pr16_circus_battle28/35471833294/execution/handoff-tests.process.json": {
       "size": 90,
@@ -7955,10 +7949,22 @@
     "evidence/pr16_circus_battle28/35471833294/execution/task-graph-START.stdout": {
       "size": 77,
       "sha256": "62088248f3d245c3853d2eaa0e2fdcffe8609be8f608995613c19a76e994466a"
+    },
+    "content/modernization/pr16_circus_battle28_receipt.json": {
+      "size": 3256,
+      "sha256": "1a7b72ae9c36642a77e31e7a8c68731f4346d901e1548d5165e0f94b16f39a31"
+    },
+    "scripts/pr16_circus_battle28_receipt.py": {
+      "size": 12932,
+      "sha256": "8361793a3f38283c79131a8cbce7fbcedd9994b9a96d4ed2894c100fceab9801"
+    },
+    ".github/workflows/pr16-circus-battle28-receipt.yml": {
+      "size": 1452,
+      "sha256": "6f43a9c1f4fa26a1d96aae0173785b5bf6ff2275bf6dd1a46a6c70410035e5c7"
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。",
+  "source_change_review_ja": "28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。 完了済みActionsの実結論・原artifact・画面・Git原本を新規native0で再照合。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
@@ -7996,6 +8002,7 @@
     "candidate": {
       "size": 33554432,
       "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183"
-    }
+    },
+    "receipt": "content/modernization/pr16_circus_battle28_receipt.json"
   }
 }

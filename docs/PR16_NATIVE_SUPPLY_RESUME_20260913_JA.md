@@ -6,16 +6,16 @@
 
 ## いまの停止点と次の1手
 
-28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。
+28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。 完了済みActionsの実結論・原artifact・画面・Git原本を新規native0で再照合。
 
-**次: content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。**
+**次: 29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c0fae432feeb297382d33d84f6b5bab264113332`。
-当checkpoint前のremote HEAD。実native sourceはreport。正式BP受入HEADは不変。
+証拠のsource HEAD: `f98a9778e79177bc8094798b43d663d2d6174499`。
+原本照合記録前のremote HEAD。native workflow/native execution HEADと実結論はreceiptで個別固定。
 
 ## 最短の再開手順
 
@@ -26,6 +26,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_battle28.json`
+- `content/modernization/pr16_circus_battle28_receipt.json`
 - `scripts/pr16_circus_battle28.py`
 - `scripts/pr16_circus_battle28_policy.py`
 - `tests/test_pr16_circus_battle28.py`
@@ -290,6 +291,6 @@ PR本文は更新失敗の履歴があり、再開入口に使わない。受付
 
 ## Checks・releaseの境界
 
-前runは27勝到達だがSave未達のfailureを保持。今回runは記録時in_progress。全CI greenは主張しない。
+完了済みCircus原本を直接照合。当記録run全体/全CI greenとは同一視しない。
 
 merge・draft解除・active baseline切替・release公開はこの引継ぎ作業に含めない。受入済み原本、既存公開方針、過去guard結果は変更しない。

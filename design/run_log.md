@@ -8506,3 +8506,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force。自己SHAはremote/receipt。
 - Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
 - Next: content/modernization/pr16_circus_battle28.jsonの新たな最初の敗北を修復し、保存byteで候補を復元。受入単体・旧ARM・Ring hostを再実行しない。
+
+
+## 2026-09-19T22:15:50Z — USER-20260920-CIRCUS-BATTLE28-RECEIPT
+- Timestamp: 2026-09-19T22:15:50Z
+- Task: USER-20260920-CIRCUS-BATTLE28-RECEIPT
+- Status: DONE（原本照合と記録。製品全体・特性抑制・P08は未完）
+- Version: pr16-circus-battle28-receipt-v1
+- Summary: 28戦目handoff後、実28勝/81BPと通常Save/fresh Continueをscoped検証。真正30勝は未達。 完了済みActionsの実結論・原artifact・画面・Git原本を新規native0で再照合。
+- Files changed: scripts/pr16_circus_battle28_receipt.py, .github/workflows/pr16-circus-battle28-receipt.yml, content/modernization/pr16_circus_battle28.json, content/modernization/pr16_circus_battle28_receipt.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md
+- Verify: 固定Actions/job/artifact、生成C・tracked原本・27勝130events/byte prefix・通常Save/fresh Continue原本と画面、固定resume tests/task graph、index差分private guard/diff check。新規native0/ARM0/既受入単体再実行0。
+- Commit: 同branch非force commit。自己SHAはreceipt/remoteを参照。
+- Network: 完了済みGitHub Actions原本照合のみ。ROM/save/private入力の追加なし。
+- Next: 29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。
