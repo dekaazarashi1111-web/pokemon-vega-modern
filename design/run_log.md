@@ -7801,3 +7801,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。
+
+
+## 2026-09-19T04:56:30.782959+00:00 — USER-20260919-CIRCUS-COLD-LOAD-PREPARED
+- Timestamp: 2026-09-19T04:56:30.782959+00:00
+- Task: USER-20260919-CIRCUS-COLD-LOAD-PREPARED
+- Status: DONE / ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
+- Version: pr16-circus-loss-marker
+- Summary: ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_coldboot.json, scripts/pr16_circus_coldboot.py, tests/test_pr16_circus_coldboot.py, tests/fixtures/circus_cold_load_fixture.c, overlays/circus_streak/circus_streak_cold_load.c, tools/mgba_pr16_circus_coldboot.c, scripts/pr16_circus_coldboot_probe.py, .github/workflows/pr16-circus-coldboot.yml
+- Verify: CIRCUS_COLD_LOAD_BRIDGE_PREPARED_NATIVE_OPEN。host契約を検証。ARM linkとnativeは未実行。既存Factoryの自動Save2回は変更せず、未完戦を加算しない64byteを検証。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。

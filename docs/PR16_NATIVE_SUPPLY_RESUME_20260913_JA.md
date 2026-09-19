@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。
+ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。
 
-**次: load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。**
+**次: cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `61500b6ed541acfb77287f521d5f07750f91c76a`。
+証拠のsource HEAD: `84c1e2b18393668da321624e36c920b8e4aec6e7`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_load_order.py`
+- `scripts/pr16_circus_coldboot.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_streak_loss.h`
+- `tools/mgba_pr16_circus_coldboot.c`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 

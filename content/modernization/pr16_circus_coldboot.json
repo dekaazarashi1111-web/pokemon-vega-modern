@@ -1,0 +1,61 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "automatic_save_contract": {
+    "automatic_recovery_saves": 2,
+    "function": "restore_original",
+    "function_identity": {
+      "sha256": "def6af6360669825975c1b1046be3a38cb89d37be5f96a88e10f84d2b1e0f33d",
+      "size": 1581
+    },
+    "scope_ja": "復旧前markerのcommitと、原party復元/snapshot消去後commit。通常Save1回と別に数える。",
+    "source": "overlays/factory_high_modes_v2/factory_high_modes_v2.c",
+    "source_identity": {
+      "sha256": "681b53d6199ab8ec3dc03a47f4a1a6457412603dc032679930111e18e738268b",
+      "size": 76769
+    }
+  },
+  "changed_rom_scope_ja": "新規Thumb bridgeと既存save-load literalの4byteのみ。旧loadへ一度委譲し、CRC-validなCircus tail64を委譲前に復元。旧Factory/cold field復旧/乱数/能力/party/戦闘scriptは不変。",
+  "classification": "CIRCUS_COLD_LOAD_BRIDGE_PREPARED_NATIVE_OPEN",
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_coldboot.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "old_failed_probe_preserved": true,
+  "old_failed_run": 35420622910,
+  "original_trace": {
+    "accepted": false,
+    "empty_owner_during_recovery_saves": true,
+    "first_loaded_owner_frame": 25805,
+    "independent_native_replays": 0,
+    "next_ja": "前段load内のFactory復旧が標準Saveを2回行う間、Circus owner64が未ロード。後段field hookでは初期化済み。save/load呼出順で既存ownerを保持・中断確定する修復が必要。",
+    "observations": 21,
+    "original_conclusion": "failure",
+    "original_run": 35420622910,
+    "standard_save_counter_chain": [
+      2,
+      3,
+      4
+    ],
+    "terminal_best": 0,
+    "terminal_current": 0,
+    "terminal_generation": 1,
+    "terminal_session": 0
+  },
+  "original_trace_identity": {
+    "sha256": "5bd67f30ae409e893df283a0ba4473d3d63d9c5a3dfdc0608256a5791adece40",
+    "size": 103344
+  },
+  "parent": {
+    "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+    "size": 33554432
+  },
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "save_count_contract_ja": "実既存codeは中断復旧で2回の自動Saveを行う。旧probeの全Save0回という予測だけを訂正し、自動2/通常1を区別。旧原本のbest0は新probeでも失敗。CRC64/実勝利/ABORT一度/原party600は弱めない。",
+  "schema_version": 1,
+  "suppression_accepted": false
+}

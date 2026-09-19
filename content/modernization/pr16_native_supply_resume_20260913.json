@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。",
+    "current_stop": "ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。",
+    "next_step": "cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35421846955,
-    "source_head": "61500b6ed541acfb77287f521d5f07750f91c76a",
+    "run_id": 35422605107,
+    "source_head": "84c1e2b18393668da321624e36c920b8e4aec6e7",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -598,15 +598,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。",
+    "goal_ja": "cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_load_order.py",
+      "scripts/pr16_circus_coldboot.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "overlays/circus_streak/circus_streak_loss.h",
+      "tools/mgba_pr16_circus_coldboot.c",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "61500b6ed541acfb77287f521d5f07750f91c76a",
+  "observed_head": "84c1e2b18393668da321624e36c920b8e4aec6e7",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "61500b6ed541acfb77287f521d5f07750f91c76a"
+    "scope_head": "84c1e2b18393668da321624e36c920b8e4aec6e7"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35421846955,
+      "run_id": 35422605107,
       "status": "in_progress",
-      "tested_head": "61500b6ed541acfb77287f521d5f07750f91c76a"
+      "tested_head": "84c1e2b18393668da321624e36c920b8e4aec6e7"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -1370,6 +1370,10 @@
     ".github/workflows/pr16-bp-win-exchange-record.yml": {
       "sha256": "7743568dd9d4c941766508fc0bfd635f5563d2126ca3843ec504dcf25a843d76",
       "size": 2890
+    },
+    ".github/workflows/pr16-circus-coldboot.yml": {
+      "sha256": "7a1a8a81438cef3c975a823db54de0b5e20fb0b9e111178cbbfc9d878848c48f",
+      "size": 1899
     },
     ".github/workflows/pr16-circus-drain.yml": {
       "sha256": "e4c8a29d3fa55728561fc3db3246479ba2286a91515cd2679d8e17125949bdaa",
@@ -2183,6 +2187,10 @@
       "sha256": "3b4521a6b59913241f7d639300a9505dd70e0a6391d82ccf7fbcc419bfa9bae8",
       "size": 175465
     },
+    "content/modernization/pr16_circus_coldboot.json": {
+      "sha256": "f45d9fe05066f0ebb5c2b6caa1d8377049aa78c5e6cf97c3fdd9863e0b34649c",
+      "size": 2496
+    },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
       "size": 90509
@@ -2208,8 +2216,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "b782e3e2369ad36fd8a718d46bafdaef0125a9f382da9ffe6007a4bb14708ddb",
-      "size": 131242
+      "sha256": "6b8e1ce7de1f2a7bb78f1494893f4a32762b8f90d1df23ad396435053982b074",
+      "size": 131432
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -3243,6 +3251,10 @@
       "sha256": "cdbd4bc908c20f96a6765f71c38f4501c9e05493f95fbc3f3747d7a5bab96a03",
       "size": 2680
     },
+    "overlays/circus_streak/circus_streak_cold_load.c": {
+      "sha256": "c81eb10285c8a7aebc73961398fe349556e68553fdf575d4c7945719880eab00",
+      "size": 1535
+    },
     "overlays/circus_streak/circus_streak_io.c": {
       "sha256": "a7b527568813993bd3755a9e95f7162d1471f243c6afbddb573a40862e242b7b",
       "size": 1850
@@ -3462,6 +3474,14 @@
     "scripts/pr16_circus_checkpoint.py": {
       "sha256": "b0b1f994327365e9a80c998bda942f9f158eeb00e747bd55aeb5a8f030afac2f",
       "size": 8785
+    },
+    "scripts/pr16_circus_coldboot.py": {
+      "sha256": "e899f6d0cf25943bf265f03f8ae6addade3b875d6e399dc0710ff6567a182be8",
+      "size": 15858
+    },
+    "scripts/pr16_circus_coldboot_probe.py": {
+      "sha256": "7b2f08b100c2709aa3c90031a12525abd98c87af5f2a5a14afc32074d88e625e",
+      "size": 8068
     },
     "scripts/pr16_circus_drain.py": {
       "sha256": "3ce2405c027e51b9fceda21599a49360e926c913058fb2da58292f9f41bd1d7d",
@@ -4179,6 +4199,10 @@
       "sha256": "f79423d334c46900b362110cbbefe6d9a3163ea24a3e3987ac38cf22d4c4f2ae",
       "size": 10809
     },
+    "tests/fixtures/circus_cold_load_fixture.c": {
+      "sha256": "ec6f28d0d93d26f5cc6fd8cbdee00ac586ae34949f22493b5d6bdcc626c5e60a",
+      "size": 4019
+    },
     "tests/fixtures/circus_effective_policy_fixture.c": {
       "sha256": "1a6a8e53caab212d74a9345dc211ca592fe3b1566d1ba2634bf243e0e1216c03",
       "size": 1095
@@ -4318,6 +4342,10 @@
     "tests/test_pr16_circus_admission.py": {
       "sha256": "265c445b460db3545e27157238fe187dde76f92543cb6725ad16aacfdd3f15d7",
       "size": 6516
+    },
+    "tests/test_pr16_circus_coldboot.py": {
+      "sha256": "defaa34fe2f9ef2ae44b7934a5caf4f7880a3c37d0173bfa6b4b6adc5ca49aad",
+      "size": 5936
     },
     "tests/test_pr16_circus_drain.py": {
       "sha256": "682349d5c6c6f6a3a4d8f3dd1e2687f06228eecaf45a9f8f2aaf3c9b29b2bbaa",
@@ -5031,6 +5059,10 @@
       "sha256": "95f1e9e3044df165190dc879c47b98251ecbbcc48de0b8f588ff6ec5af94480c",
       "size": 15394
     },
+    "tools/mgba_pr16_circus_coldboot.c": {
+      "sha256": "e56212287227e7e97a3c7b7e2ba5029b4885dc20e4ae404917e6c489e969c988",
+      "size": 7627
+    },
     "tools/mgba_pr16_circus_drain.h": {
       "sha256": "07db7c5fd35a2b94b7ee7ea01ac7a4148790ea50f8e9b971182cf42a4c358aec",
       "size": 1553
@@ -5089,7 +5121,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "cold bootのowner64消失と通常交代修復を原本に固定。既存load/save連鎖のtracked sourceをhash付きで収集し、初期化前の自動保存を修復する。",
+  "source_change_review_ja": "ロード中の既存Factory自動Save2回でCircus tail64が消える原本を固定。CRC-validなtailを委譲前に保護するbridgeと、512bit破損/256返値/別ID/二重ABORTのhost検証を追加。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

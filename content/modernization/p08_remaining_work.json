@@ -491,7 +491,7 @@
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "load順序修復をC契約と2独立ARM linkで検証し、影響する中断復旧・保存だけをnative検証。実3勝/9BPは未完のまま保持。",
+      "resume": "cold-load bridgeの実1勝→第2戦中断→ABORT一度/best1→通常Save/別coreを原本で確認。未完の実3勝/9BPと真正30連勝は別ゲートのまま。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"
