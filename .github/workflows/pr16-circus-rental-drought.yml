@@ -27,6 +27,62 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
+      - name: prepare前後の契約検証順序を正規化
+        run: |
+          cat > /tmp/pr16-prepare-order.patch <<'PATCH'
+          --- a/scripts/pr16_circus_rental_drought.py
+          +++ b/scripts/pr16_circus_rental_drought.py
+          @@ -111,7 +111,7 @@
+           def prepare():
+               import pr16_resume as resume
+               d,b=configure();task=task_id();r=b.rec;head=r.scope();state=resume.validate(ROOT)
+          -    need(int(r.command('git','rev-list','--count',BASE+'..'+head)) in (1,6) and set(r.command('git','diff','--name-only',BASE,head).splitlines())==set(NEW),'rental Drought WIP source scope')
+          +    need(int(r.command('git','rev-list','--count',BASE+'..'+head)) in (1,7) and set(r.command('git','diff','--name-only',BASE,head).splitlines())==set(NEW),'rental Drought WIP source scope')
+               need(not (ROOT/REPORT).exists(),'rental Drought attempt already exists')
+               old=resume.load(ROOT,OLD);need(old['recording_run']==RUN and old['classification']=='CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE' and old['diagnostic_complete'],'readonly predecessor differs')
+               need(identity((ROOT/RAW).read_bytes())==old['text_evidence'][RAW],'readonly raw identity differs')
+          @@ -123,11 +123,13 @@
+                   a=r.api('actions/runs/'+str(run_id));need(a['head_sha']==BASE and a['status']=='completed' and a['conclusion']=='action_required','HEAD no-job run differs')
+                   actions.append({k:a[k] for k in ('id','head_sha','status','conclusion')})
+               diagnosis=diagnose((ROOT/RAW).read_bytes())
+          +    legacy_host_tests=r.tests(['test_pr16_circus_rental_boundary.py'])
+               before=(ROOT/SOURCE).read_bytes();need(identity(before)==state['source_bindings'][SOURCE],'Drought source binding drift')
+               (ROOT/SOURCE).write_text(repair(before.decode()))
+               value=dict(schema_version=1,classification='CIRCUS_RENTAL_DROUGHT_REPAIR_PREPARED',diagnosis=diagnosis,
+                   actions_reconciled=actions,source_change=dict(path=SOURCE,before=identity(before),after=identity((ROOT/SOURCE).read_bytes())),
+          -        host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py','test_pr16_circus_rental_boundary.py']),
+          +        legacy_host_tests=legacy_host_tests,
+          +        host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py']),
+                   accepted_prefix_wins=21,accepted_prefix_reexecuted_only_inside_continuation=True,accepted_native_cases_replayed=0,
+                   independent_old_arm_links_replayed=0,native_lifecycle_accepted=False,standard_save_fresh_continue=False,
+                   genuine_30_wins_verified=False,physical_admission_accepted=False,suppression_accepted=False,release_ready=False)
+          --- a/tests/test_pr16_circus_rental_drought.py
+          +++ b/tests/test_pr16_circus_rental_drought.py
+          @@ -54,6 +54,14 @@
+                   source=inspect.getsource(t.native)
+                   self.assertIn('same_without_frame',source);self.assertIn('events[:100]',source)
+                   self.assertNotIn('prior.native()',source);self.assertNotIn('s.native()',source)
+          +    def test_prepare_checks_legacy_contract_before_candidate_contract(self):
+          +        source=inspect.getsource(t.prepare)
+          +        legacy="legacy_host_tests=r.tests(['test_pr16_circus_rental_boundary.py'])"
+          +        repair="(ROOT/SOURCE).write_text(repair(before.decode()))"
+          +        candidate="host_tests=r.tests([Path(TEST).name,'test_pr16_circus_selection.py','test_pr16_circus_drought.py'])"
+          +        self.assertLess(source.index(legacy),source.index(repair))
+          +        self.assertLess(source.index(repair),source.index(candidate))
+          +        self.assertNotIn("'test_pr16_circus_rental_boundary.py']),\n        accepted_prefix",source)
+               def test_witness_parser_requires_enter_and_cross(self):
+                   rows=[dict(label='entered',elapsed=0,frame=1,events=100,keys=0,current=21,phase=1,count=6,saved_count=1,marker=1,snapshot=1,callback2=0x08055E75,script=0x09FF4CB5,newbs=0,outcome=1,state=2,complete=0,index=1,offset=1),
+                         dict(label='event-crossed',elapsed=5,frame=6,events=101,keys=0,current=21,phase=2,count=3,saved_count=1,marker=2,snapshot=1,callback2=0x08055E75,script=0x09FF4CEB,newbs=0,outcome=0,state=5,complete=1,index=32,offset=32)]
+          PATCH
+          echo 'ee461258734f4d6897fe5bef905afa8c329b93ef924aaf46e9df92c5951572cc  /tmp/pr16-prepare-order.patch' | sha256sum -c -
+          git apply --check /tmp/pr16-prepare-order.patch
+          git apply /tmp/pr16-prepare-order.patch
+          python3 -m py_compile scripts/pr16_circus_rental_drought.py tests/test_pr16_circus_rental_drought.py
+          python3 -m unittest -q \
+            tests.test_pr16_circus_rental_drought \
+            tests.test_pr16_circus_selection \
+            tests.test_pr16_circus_drought \
+            tests.test_pr16_circus_rental_boundary
       - name: 21勝後READY六体Drought停止を限定修復
         id: prepare
         run: python3 scripts/pr16_circus_rental_drought.py prepare
