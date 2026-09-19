@@ -1,0 +1,78 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "d1af762472eb529b4fcad93bac65c4e44aa05db3",
+      "id": 35456028016,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "148698da36b9be617d923792656019833a0cb96c",
+      "id": 35456169748,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "148698da36b9be617d923792656019833a0cb96c",
+      "id": 35456169751,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "2b107e7ef897844eff810ff0b40f82543640488696e8295194ceb3b66fb2c183",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 12,
+      "pattern": "test_pr16_circus_rental_resume.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "inherited_recipe": {
+    "sha256": "75d8eade5c8d837b55295dc2e8cb9f720a4deaafa416968704081a1e9594e403",
+    "size": 186240
+  },
+  "native_lifecycle_accepted": false,
+  "new_arm_links": 0,
+  "physical_admission_accepted": false,
+  "previous_job": 105931324175,
+  "previous_native_processes": 0,
+  "previous_original_conclusion": "failure",
+  "previous_run": 35456028016,
+  "release_ready": false,
+  "restored_metadata_keys": [
+    "accepted_native_cases_replayed",
+    "accepted_script_continuations",
+    "calls",
+    "cold_load_delegate",
+    "cold_load_payload",
+    "completion_binding",
+    "delegates",
+    "inherited_independent_arm_links",
+    "inherited_literal_counts",
+    "inherited_policy",
+    "launch_sites",
+    "new_emulator_processes",
+    "original_factory_runtime_unchanged",
+    "original_factory_streak_and_claim_not_aliased",
+    "parent_patch_recipe",
+    "payload_offset",
+    "physical_admission_accepted",
+    "preimage_checks",
+    "reception",
+    "reconstruction_source",
+    "release_ready",
+    "suppression_accepted",
+    "trainer_id_abi"
+  ],
+  "rom_changes": 0,
+  "schema_version": 1,
+  "standard_save_fresh_continue": false,
+  "suppression_accepted": false
+}

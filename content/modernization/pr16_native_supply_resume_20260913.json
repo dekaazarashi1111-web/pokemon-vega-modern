@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
+    "current_stop": "候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。",
+    "next_step": "候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,9 +88,9 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
-    "path": "content/modernization/pr16_circus_rental_drought.json",
-    "run_id": 35456028016,
+    "classification": "CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING",
+    "path": "content/modernization/pr16_circus_rental_resume.json",
+    "run_id": 35457143420,
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -163,8 +163,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35456028016,
-    "source_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef",
+    "run_id": 35457143420,
+    "source_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -187,6 +187,11 @@
     "classification": "CIRCUS_RENTAL_BOUNDARY_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_rental_boundary.json",
     "run_id": 35452739116
+  },
+  "circus_rental_contract_resume": {
+    "classification": "CIRCUS_RENTAL_RUNNER_CONTRACT_RESTORED_NATIVE_PENDING",
+    "path": "content/modernization/pr16_circus_rental_resume.json",
+    "run_id": 35457143420
   },
   "circus_rental_drought_followup": {
     "classification": "CIRCUS_RENTAL_DROUGHT_NATIVE_OPEN",
@@ -533,6 +538,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35456028016/job105931324175は候補2b107e7eの独立2link/rollback成功後、runner契約reception欠落でnative0停止。失敗原本と候補は不変。親の受付/launch metadataを継承して未実行nativeだけを再開し、旧ARM再link・旧境界診断・受入単体は再実行しない。",
     "run35452739116/job105922614423は新candidate7a5676f9の実21勝/63BP/元party600復元後、READY/6体/script09ff4cb5/Drought state2 cursor1で600frame停止したreadonly原本。旧21勝受入単体・旧ARM link・同じ境界診断は再実行せず後継だけを検証する。",
     "run35451609631/job105919631301: 新候補7a5676f9の18戦目起動と実21勝/63BP/7回原party600復元を確認。22戦目6体選出後に停止、通常Save/fresh Continueなし。元人数1/現在3の読取実測も一致。成功prefixを独立再実行せず、新停止のreadonlyだけを進める。",
     "run35450725433/job105917285879は保存candidate a2c612a2不変/旧ARM再link0の1process。81eventsと境界9行を採取したがscript0 endpoint前提が誤りnative未完。元party1/選出3の混同を修復し、同じ境界診断は再実行しない。",
@@ -802,12 +808,12 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "READY/6体レンタル→fieldのDrought修復候補で22戦目以降の実勝敗・元party600/owner64・通常Save/fresh Continueを確認する。真正30勝未達なら新原本の最初の停止だけを修復し、達成後に正規特性抑制へ進む。旧21勝prefixは同一continuation内の不可避部分以外に再実行しない。",
+    "goal_ja": "候補2b107e7eを再linkせず、親から復元した受付/launch契約で未実行だった22戦目以降のnativeを検証する。旧21勝は同一continuation内のprefixだけとし、真正30勝・通常Save/fresh Continue後に正規特性抑制へ進む。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_rental_drought.py",
+      "scripts/pr16_circus_rental_resume.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
       "overlays/circus_streak/circus_drought_rental.h",
@@ -822,10 +828,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef",
+  "observed_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "4d08b2088786fb2f959665003fb0d7a9cf23ecef"
+    "scope_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -894,9 +900,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35456028016,
+      "run_id": 35457143420,
       "status": "in_progress",
-      "tested_head": "d1af762472eb529b4fcad93bac65c4e44aa05db3"
+      "tested_head": "667ef6aee34f0e7dda25f6d94d8db5649a571fd7"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -923,21 +929,21 @@
   },
   "prior_actions_reconciled": [
     {
-      "conclusion": "success",
-      "head_sha": "9f663a0bde45deb01958ecbf8c0bfc1541508857",
-      "id": 35452739116,
+      "conclusion": "failure",
+      "head_sha": "d1af762472eb529b4fcad93bac65c4e44aa05db3",
+      "id": 35456028016,
       "status": "completed"
     },
     {
       "conclusion": "action_required",
-      "head_sha": "1e8650300a7512636cc533f701f96e6956b6160b",
-      "id": 35453175182,
+      "head_sha": "148698da36b9be617d923792656019833a0cb96c",
+      "id": 35456169748,
       "status": "completed"
     },
     {
       "conclusion": "action_required",
-      "head_sha": "1e8650300a7512636cc533f701f96e6956b6160b",
-      "id": 35453175149,
+      "head_sha": "148698da36b9be617d923792656019833a0cb96c",
+      "id": 35456169751,
       "status": "completed"
     }
   ],
@@ -1726,6 +1732,10 @@
     ".github/workflows/pr16-circus-rental-drought.yml": {
       "sha256": "02eab2fed13bfa51b1ac36f517dfd32bbd50e81391e779e0f8129b15c95e385e",
       "size": 9683
+    },
+    ".github/workflows/pr16-circus-rental-resume.yml": {
+      "sha256": "d0fba2908471790b00f3d72106c217d410813ec9961e20e09004d8396f35cb82",
+      "size": 1654
     },
     ".github/workflows/pr16-circus-retention-record.yml": {
       "sha256": "cd7b5af8eb82d09f81184d6ab000d0dd7be663645820ded27e1d2db9aef89767",
@@ -2568,8 +2578,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "cfcc847f1caefc3ddbdedeb5cbf9af3dcb12874d3a0082bda0885330b0eab3e4",
-      "size": 135078
+      "sha256": "7ae60340ee76815998eda368118ebdf2acf54ad6cb6b4a48fb8763ab81c0c7eb",
+      "size": 135286
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2602,6 +2612,10 @@
     "content/modernization/pr16_circus_rental_drought.json": {
       "sha256": "eed84fbede9f62eebf62f1bf278656510d3a99c88eb003896b285478737e3610",
       "size": 444001
+    },
+    "content/modernization/pr16_circus_rental_resume.json": {
+      "sha256": "541f7979d54dc53fd8ac0c1ca5f341970cae953d5b7111d99462caff47af3562",
+      "size": 2172
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -5555,6 +5569,10 @@
       "sha256": "332224629c5b3da59ee8c5e251c200ca78ebcd82ba2ffad6280d59cc73f0a2f2",
       "size": 26434
     },
+    "scripts/pr16_circus_rental_resume.py": {
+      "sha256": "ee171e42b1afbf836f1ae57853bf440802702236f5ac953642eca9d9e530ce05",
+      "size": 10163
+    },
     "scripts/pr16_circus_retention.py": {
       "sha256": "a53bce1090845a2c669c34f41e21179270a5551c58984bf00459b8cc896ed3b6",
       "size": 9674
@@ -6531,6 +6549,10 @@
       "sha256": "4924eaf4bda429a6201b13f981c16066a4be5c31f56a1f4bb330835cf33cabfd",
       "size": 5631
     },
+    "tests/test_pr16_circus_rental_resume.py": {
+      "sha256": "8fb4351ff808bcab26900f4b2a4ee2e830528404a9a2db5ed777528cdaf32d93",
+      "size": 5621
+    },
     "tests/test_pr16_circus_retention.py": {
       "sha256": "7b61368ed4f28a28cc8ab02e0525ac5e9f4676a8e25375e77f75e5e799923906",
       "size": 4844
@@ -7325,7 +7347,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "READY/6体Drought後継のbuild/native原本が未完。受入状態を進めず、同runの最初の失敗から再開。",
+  "source_change_review_ja": "候補2b107e7eは独立2link済み。native0の受付/launch契約欠落を親metadata継承で修復し、未実行continuationだけを開始。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
