@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。
+Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。
 
 **次: 修復候補でCircus敗北復帰・固有64byte・原party600byte・通常Save/fresh Continueを検証する。続いて未受入の実3勝、第2/第3launch個体保持、9BP、真正30連勝と正規特性抑制へ進む。受入済みの単体検証は変更影響なしに再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f03868f3c839348877b5c7f2db583e5112d5cbe9`。
+証拠のsource HEAD: `37a502e01d2023102b7decdeec439295f6b16ddf`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

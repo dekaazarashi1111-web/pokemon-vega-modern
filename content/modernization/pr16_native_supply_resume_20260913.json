@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。",
+    "current_stop": "Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -116,8 +116,8 @@
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35413487243,
-    "source_head": "f03868f3c839348877b5c7f2db583e5112d5cbe9",
+    "run_id": 35413721743,
+    "source_head": "37a502e01d2023102b7decdeec439295f6b16ddf",
     "status": "CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "f03868f3c839348877b5c7f2db583e5112d5cbe9",
+  "observed_head": "37a502e01d2023102b7decdeec439295f6b16ddf",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "f03868f3c839348877b5c7f2db583e5112d5cbe9"
+    "scope_head": "37a502e01d2023102b7decdeec439295f6b16ddf"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -690,9 +690,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35413487243,
+      "run_id": 35413721743,
       "status": "in_progress",
-      "tested_head": "f03868f3c839348877b5c7f2db583e5112d5cbe9"
+      "tested_head": "37a502e01d2023102b7decdeec439295f6b16ddf"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -2156,8 +2156,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "80c61151bc0ee86b45a003ce5014927acab9a8121f0444d8cd173e0dbf8713c9",
-      "size": 1432
+      "sha256": "bd135a5000a707ed1b4e6a44700147e962dfb567ac55e95eda00cccc1a1b1635",
+      "size": 1936
     },
     "content/modernization/pr16_circus_native_prefix_checkpoint.json": {
       "sha256": "27b0c52cf9240addba0d6146d1ad2cf456e0777ec2fc8ce6503ff65a0f870c1a",
@@ -3064,8 +3064,8 @@
       "size": 13380
     },
     "scripts/pr16_circus_loss_followup.py": {
-      "sha256": "bc98909336f0c20742dde22d24911f1b88dae1083cf4346eec71afd325008d07",
-      "size": 17227
+      "sha256": "6ca435771577edee5d39c6bf835d7c33e5331da56c61ebafafec2767ff731342",
+      "size": 19386
     },
     "scripts/pr16_circus_native.py": {
       "sha256": "2415beb758d0f682e191cf3a1aa48b2430d029561d6884b7d545dd905d03f665",
@@ -3852,8 +3852,8 @@
       "size": 3610
     },
     "tests/test_pr16_circus_loss_followup.py": {
-      "sha256": "cb43802da0ecb3fbf683bf4658f9c7fc93c398a14a5069312303e3809a786583",
-      "size": 2608
+      "sha256": "cd9787d4b2f27a0aad458b936f38a09182753f4c8fae79002683e7b44281ecf1",
+      "size": 3491
     },
     "tests/test_pr16_circus_native.py": {
       "sha256": "90072b0d76805e049c04122cb77e7c68d2a93e99810c115a292562c2f5ca42b0",
@@ -4505,7 +4505,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "開始HEADのnative失敗原本を照合。敗北時marker=2に対しCircus guardがsnapshot=1を要求した誤りを、正本VEGA_FACTORY_BATTLE_ACTIVEへ修復。5 marker全状態・2211840条件を検証。元Factory/正式BP受入は不変。native後継検証は未完。",
+  "source_change_review_ja": "Circus source修復278c64efは保存済み。PR表示遅延による停止とartifactのglob文字名を修正。live refで競合を拒否し、37既存契約の証拠を継承して未起動nativeから再開。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

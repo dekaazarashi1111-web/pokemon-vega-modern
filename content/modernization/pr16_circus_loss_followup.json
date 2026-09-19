@@ -1,5 +1,12 @@
 {
   "classification": "CIRCUS_LOSS_MARKER_SOURCE_REPAIRED_NATIVE_PENDING",
+  "continuation_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_loss_followup.py",
+      "success": true
+    }
+  ],
   "diagnosis": {
     "active_marker": 2,
     "native_acceptance": false,
@@ -47,6 +54,14 @@
   },
   "physical_admission_accepted": false,
   "release_ready": false,
+  "resume_started": {
+    "previous_conclusion": "failure",
+    "previous_native_processes": 0,
+    "previous_run": 35413487243,
+    "reason_ja": "source commit/push成功後のPR表示遅延。live ref照合へ修正し37契約を再実行せずnative工程へ。",
+    "run_id": 35413721743,
+    "source_checkpoint": "278c64efd1fba53b63e5b251db30ce868585c0d5"
+  },
   "schema_version": 1,
   "suppression_accepted": false
 }
