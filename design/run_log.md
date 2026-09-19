@@ -7658,3 +7658,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。
+
+
+## 2026-09-19T03:59:00.130637+00:00 — USER-20260919-CIRCUS-INTERRUPTION-SETUP-REPAIRED
+- Timestamp: 2026-09-19T03:59:00.130637+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-SETUP-REPAIRED
+- Status: DONE / 中断run35419491330はsetup出力先欠落でnative未実行。原本と失敗を保持し、mkdirのみ修復して未観測の中断復旧を実行する。
+- Version: pr16-circus-loss-marker
+- Summary: 中断run35419491330はsetup出力先欠落でnative未実行。原本と失敗を保持し、mkdirのみ修復して未観測の中断復旧を実行する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, scripts/pr16_circus_interruption.py, content/modernization/pr16_circus_interruption.json, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, scripts/pr16_circus_matchup.py, tools/mgba_pr16_circus_matchup.h, tests/test_pr16_circus_matchup.py, tests/fixtures/circus_matchup_fixture.c, .github/workflows/pr16-circus-matchup.yml, evidence/pr16_circus_interruption/35419491330/setup-diagnostic.json, scripts/pr16_circus_pivot.py, tools/mgba_pr16_circus_sustain.h, tools/mgba_pr16_circus_effective.h, tools/mgba_pr16_circus_pivot.h
+- Verify: 14中断hostテストと100条件を含む新方策テスト、scope/private差分guard、元ソースhashを照合。既受入native0再実行。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 新規中断ケースの原本を保存後、同じ候補を再構築せず第3戦入力方策を検証する。完了条件未達は残件のまま保持。

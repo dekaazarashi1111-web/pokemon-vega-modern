@@ -13,7 +13,7 @@ PROBE='scripts/pr16_circus_interruption_probe.py'
 TEST='tests/test_pr16_circus_interruption.py'
 WORKFLOW='.github/workflows/pr16-circus-interruption.yml'
 REPORT='content/modernization/pr16_circus_interruption.json'
-TASK='USER-20260919-CIRCUS-INTERRUPTION'
+TASK='USER-20260919-CIRCUS-INTERRUPTION-SETUP'
 BASE_SOURCE='tools/mgba_pr16_streak_native.c'
 POLICY_SOURCE='tools/mgba_pr16_circus_sustain.h'
 OUT=ROOT/'.local/pr16-circus-interruption'
@@ -42,6 +42,7 @@ def adapt_summary(text):
 def configure():
     import pr16_circus_three_win as b
     b.SELF=SELF;b.TEST=TEST;b.WORKFLOW=WORKFLOW;b.HEADER=SOURCE;b.rec.TASK=TASK
+    b.OUT.mkdir(parents=True,exist_ok=True)
     return b
 
 
