@@ -5791,3 +5791,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: 同branch非force commit。自己SHAはreceipt/remoteを参照。
 - Network: 完了済みGitHub Actions原本照合のみ。ROM/save/private入力の追加なし。
 - Next: 29戦目の先発/通常交代を修復する。初回交代の163→71HPと終盤の相手2HP/こちら4HPを新原本で確認。28勝prefixと受入済みSave/Continueは単独再実行しない。ROM変更/連勝・RNG注入は禁止。
+
+
+## 2026-09-19T22:22:08Z — USER-20260920-CIRCUS-BATTLE29-START
+- Timestamp: 2026-09-19T22:22:08Z
+- Task: USER-20260920-CIRCUS-BATTLE29 / 29戦目の通常先発維持
+- Status: STOPPED（全体受入は未完）
+- Version: pr16-circus-battle29-risk-v1
+- Summary: 28勝81BPと通常Save/fresh Continueの受入原本を保持。29戦目で健康な水先発を氷技のある水対面から無条件に交代させない通常入力修正を実装し、新規8契約を検証。新nativeは未実行。
+- Files changed: scripts/pr16_circus_battle29.py, scripts/pr16_circus_battle29_policy.py, tests/test_pr16_circus_battle29.py, .github/workflows/pr16-circus-battle29.yml, content/modernization/pr16_circus_battle29.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.process.json, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stderr, evidence/pr16_circus_battle29/35473090294/execution/risk-tests.stdout, design/run_log.md, design/version_log.md
+- Verify: 新規8契約、固定resume整合性/影響tests、task graph、index差分private guard/diff check。native成否/実process数はreport。旧7契約・受入単体は再実行しない。
+- Commit: 同branch非force。自己SHAはremote/receipt。
+- Network: GitHub前run/job/artifactと旧24勝原本の固定照合。host mGBA依存のみ。旧builder/ARM/Ring hostなし。
+- Next: 進行中の29戦目Actionsだけを照合する。重複起動せず、完了後に原本・固定引継ぎ・両ログを記録する。
