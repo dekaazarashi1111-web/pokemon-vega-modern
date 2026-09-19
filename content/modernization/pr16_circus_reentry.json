@@ -1,0 +1,83 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 3,
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_REENTRY_PAID_PROGRESS_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 12,
+      "pattern": "test_pr16_circus_reentry.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "job_id": 105852678835,
+    "original_conclusion": "failure",
+    "run_id": 35426278164,
+    "source_path": "content/modernization/pr16_circus_continuous.json"
+  },
+  "input_policy_ja": "最初の4勝の20イベントは完全一致。以後、同じ個体対面で実PP消費後も相手HP減少がない攻撃を2回観測した場合だけ、別の有効攻撃を通常入力で選ぶ。特性抑制の実証には数えない。",
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "source_only_reanalysis": {
+    "native_processes": 0,
+    "original_result": {
+      "admissions": 2,
+      "battles": 5,
+      "bp_earned": 9,
+      "candidate_sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+      "case": "circus-continuous-30-save",
+      "completed_batches": 1,
+      "events": 27,
+      "forced_identity_checks": 8,
+      "fresh_cores": 2,
+      "host_write_barriers": 7,
+      "input_only_after_guard": true,
+      "losses": 1,
+      "manual_saves": 1,
+      "owner_bytes_verified": 64,
+      "party_bytes_verified": 600,
+      "physical_admission_accepted": false,
+      "release_ready": false,
+      "save_counter_after": 3,
+      "save_counter_before": 2,
+      "schema_version": 1,
+      "status": "PASS_CIRCUS_CONTINUOUS_LIFECYCLE",
+      "suppression_accepted": false,
+      "switches": 8,
+      "target_wins": 30,
+      "total_frames": 95252,
+      "turns": 74,
+      "warnings_errors": 0,
+      "wins": 4
+    },
+    "result": {
+      "accepted_prefix_battles_reexecuted_for_continuation": 3,
+      "admissions": 2,
+      "bp_earned": 9,
+      "classification": "CIRCUS_CONTINUOUS_FIRST_LOSS_DIAGNOSTIC",
+      "completed_batches": 1,
+      "factory_streak_and_claim_unchanged": true,
+      "genuine_30_wins_verified": false,
+      "later_battle_launches_verified": 3,
+      "losses": 1,
+      "original_party_bytes_verified": 600,
+      "owner_bytes_verified": 64,
+      "physical_admission_accepted": false,
+      "release_ready": false,
+      "suppression_accepted": false,
+      "wins": 4
+    },
+    "rule_ja": "実outcome2を先に要求。Settle直後ならREADY/LOSS/+1世代、End直後ならIDLE/ABORT/+2世代。復帰時は必ずIDLE/ABORTで実4勝bestを保持。",
+    "visual_review": "content/modernization/pr16_circus_reentry_visual_review.json"
+  },
+  "suppression_accepted": false,
+  "target_wins": 30,
+  "unchanged_observed_prefix_battles_required": 4
+}

@@ -5177,3 +5177,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 新しい連続入場の原本を照合。真正30勝/90BP未達は最初の停止条件だけを修復する。30勝後の正規特性抑制は別ゲート。受入済み3勝/BP/Ring/cold-loadの単体caseは再実行せずP08も未完のまま保つ。
+
+
+## 2026-09-19T06:36:30.476669+00:00 — USER-20260919-CIRCUS-REENTRY-PREPARED
+- Timestamp: 2026-09-19T06:36:30.476669+00:00
+- Task: USER-20260919-CIRCUS-REENTRY-PREPARED
+- Status: DONE / 実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。
+- Version: pr16-circus-loss-marker
+- Summary: 実4勝後敗北の27イベントを新validatorで非再実行照合。正規End(0)のABORTを世代差まで検査し、5戦目の無進展攻撃だけに入力fallbackを追加。真正30勝は未完。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_reentry.json, scripts/pr16_circus_reentry.py, scripts/pr16_circus_reentry_probe.py, tools/mgba_pr16_circus_reentry.h, tests/test_pr16_circus_reentry.py, .github/workflows/pr16-circus-reentry.yml, content/modernization/pr16_circus_reentry_visual_review.json, content/modernization/pr16_circus_continuous.json, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stdout, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.stderr, evidence/pr16_circus_continuous/35426278164/native/circus-continuous-30-save.process.json, scripts/pr16_circus_continuous.py, scripts/pr16_circus_continuous_probe.py, scripts/pr16_circus_finish.py, tools/mgba_pr16_circus_continuous.c, tests/test_pr16_circus_continuous.py
+- Verify: CIRCUS_REENTRY_PAID_PROGRESS_PREPARED。既存候補310177固定、ROM変更0、ARM再link0、旧原本再実行0。新30戦caseのみprefix4戦が必要。hostでは実outcome/世代差/CRC/原本64を独立に検査。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 今回の連続入場原本で最初の未達条件から続ける。4勝後敗北の原本はfailureのまま、正規LOSS→ABORT/保存をhostで再照合済み。真正30勝後の正規特性抑制とP08は別ゲート。受入済み単体caseと旧敗北nativeは再実行しない。
