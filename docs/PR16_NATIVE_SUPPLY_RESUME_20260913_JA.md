@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-通常交代追加後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。
+通常交代2回の実個体照合と15勝/45BP/保存復元を照合。第16戦は最後の敵HP7で敗北。正規選出3体は維持してTaunt持ちを先発へ移し、未使用状態技の最大2回入力を追加。
 
-**次: 今回の連続入場原本の最初の停止から続ける。15勝と16戦目actionまで74イベントを固定。16戦目以降だけ場のtype/攻撃技種から通常交代し、メニュー後のPID/OT/speciesを再解決する。真正30勝/正規特性抑制/P08は実測でのみ閉じ、旧独立nativeを再実行しない。**
+**次: 実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `24dc800fe1b4cdd42151282919fb1145123ab090`。
+証拠のsource HEAD: `9f0e5078ee54ff9d2df3f18682f0457b95296eff`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_tactical.py`
+- `scripts/pr16_circus_taunt.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `tools/mgba_pr16_circus_tactical.h`
+- `tools/mgba_pr16_circus_taunt.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35429677248/job105861895032は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは15勝後returnまで71events完全一致を要求し、受入単体を独立再実行しない。
 - run35428983641/job105859956663は実15勝/45BP/16戦目敗北。79events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達でActions failureを保持。新caseでは16戦目actionまで74events完全一致を要求し、受入単体を独立再実行しない。
 - run35427693324/job105856400152は実8勝/18BP/9戦目敗北。45events/owner64/原party600/通常Save/fresh Continueはscoped PASS、真正30勝未達なのでActions failureを保持。新caseは第9戦actionまで40events完全一致を要求し、独立再実行しない。
 - run35427049942/job105854709530は4勝後敗北だが正規LOSS/ABORT/owner64/原party600/9BP/通常Save/fresh Continueのscoped validatorはPASS。30勝ゲート未達なのでActions failureを維持。旧入力fallbackの独立再実行は禁止。

@@ -1,0 +1,52 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "accepted_prefix_battles_reexecuted_for_continuation": 15,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "ddf42eb59a637c075be0051fb0f73b411f286bd2",
+      "id": 35429677248,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "3101772a3b91fe0461f200bbd3faf19f01064132bd3d8db9b0fe8f747445b399",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_TAUNT_PREPARED",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 9,
+      "pattern": "test_pr16_circus_taunt.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "independently_replayed": false,
+    "job_id": 105861895032,
+    "losses": 1,
+    "original_conclusion": "failure",
+    "run_id": 35429677248,
+    "wins": 15
+  },
+  "input_policy_ja": "15勝後returnまで入力保持。第6入場から既存rankの3体を維持してTaunt持ちのみ先頭へ移す。相手の使用可能状態技2個以上・HP1/4超で最大2回Tauntを通常入力し、PP消費後は3入力間隔を空ける。PP消費は着弾証明ではなく、最終勝敗/owner/保存の厳密検査を受入根拠にする。",
+  "physical_admission_accepted": false,
+  "predecessor_visual_review": {
+    "artifact_id": 10580182476,
+    "artifact_sha256": "17ae5af7b590581850862001fbb2c75b857526f99f45df85157076b929222d11",
+    "observation_ja": "第16戦の実actionと敗北、受付前への元party復帰・Save・fresh Continueの同位置描画を確認。通常交代2回後に相手残HP7で敗北。30勝/特性抑制の受入にはしない。",
+    "screens": [
+      "streak-74-action",
+      "streak-75-outcome",
+      "streak-77-returned",
+      "streak-78-saved",
+      "streak-79-reloaded"
+    ]
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "target_wins": 30
+}

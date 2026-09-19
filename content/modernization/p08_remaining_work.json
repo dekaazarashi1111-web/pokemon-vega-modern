@@ -491,7 +491,7 @@
       "pass_condition": "reach battle from the actual facility entrance; do not substitute writing the Circus flag",
       "phase": "P05",
       "reason_ja": "実際の受付・入場からBattle Circus特性抑制までの通し受入。既存のフラグ設定試験で代替しない",
-      "resume": "今回の連続入場原本の最初の停止から続ける。15勝と16戦目actionまで74イベントを固定。16戦目以降だけ場のtype/攻撃技種から通常交代し、メニュー後のPID/OT/speciesを再解決する。真正30勝/正規特性抑制/P08は実測でのみ閉じ、旧独立nativeを再実行しない。",
+      "resume": "実15勝の71eventsを保持し、第16戦から同じ選出3体のTaunt先発と最大2回の対状態技入力を検証する。新原本で真正30勝が未達なら最初の停止だけを修復する。30勝後の正規特性抑制/P08は別ゲート。旧独立nativeを再実行しない。",
       "success_evidence": null,
       "supply_owner_evidence": "content/modernization/pr16_p05_supply_owner_findings.json",
       "target_function": "actual reception/admission to suppression"
