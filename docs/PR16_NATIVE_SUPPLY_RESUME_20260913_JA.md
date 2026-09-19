@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh Continueを検証したが最終戦敗北。低HPかつ無効技だけの場面を修復し、3勝の未完区間へ進む。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
 **次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
@@ -14,7 +14,7 @@ run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh C
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `2532ef71a6e0afe06e20c482b17dc657f2f32a4b`。
+証拠のsource HEAD: `46fc455710c7038b656e42e77890d4ba78565b43`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順

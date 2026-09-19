@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh Continueを検証したが最終戦敗北。低HPかつ無効技だけの場面を修復し、3勝の未完区間へ進む。",
+    "current_stop": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -117,7 +117,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35418424222,
-    "source_head": "2532ef71a6e0afe06e20c482b17dc657f2f32a4b",
+    "source_head": "46fc455710c7038b656e42e77890d4ba78565b43",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_rental_identity": {
@@ -618,10 +618,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "2532ef71a6e0afe06e20c482b17dc657f2f32a4b",
+  "observed_head": "46fc455710c7038b656e42e77890d4ba78565b43",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "2532ef71a6e0afe06e20c482b17dc657f2f32a4b"
+    "scope_head": "46fc455710c7038b656e42e77890d4ba78565b43"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2176,8 +2176,8 @@
       "size": 122328
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "a3aea9f8f6bc65b65e5f832c8f8371b9622b86d39f1970d4402bbe3a8141fd30",
-      "size": 130848
+      "sha256": "466b2639d1bec651afa2e8f19e05bbbbaf5cd27a3d50fe04b19ef5dd27f336ea",
+      "size": 130843
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2204,8 +2204,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_three_win.json": {
-      "sha256": "74832b87a9a8ce9c7cca82234239d2dee4e6db254cc700881d9dff1fa98b6031",
-      "size": 10107
+      "sha256": "e93ba7f1cf47faa9d5a84c4ce4664d15e1a2b53f4d413a7ffe510680e217ee61",
+      "size": 140283
     },
     "content/modernization/pr16_circus_thumb_checkpoint.json": {
       "sha256": "9ee8979d57b7b24cc634cbaf3542abb52f568e530909efa2d499df92376d9c8e",
@@ -3014,6 +3014,26 @@
     "evidence/pr16_circus_three_win/35418010512/report.json": {
       "sha256": "5b54ffdeebc7fdc094370213884ec3757e1dfafaf3fb97889690d4b9b78e8fd7",
       "size": 123565
+    },
+    "evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.stderr": {
+      "sha256": "2f7578ec1dc8d6af85b13cb7e919aecde2ec2d07fb7560b532cb166027f85092",
+      "size": 132735
+    },
+    "evidence/pr16_circus_three_win/35418424222/circus-streak-batch-save.stdout": {
+      "sha256": "0f9d9c40bbbe3a56f78eadb745e209a74ae931270437bcd455282bac1739e27c",
+      "size": 588
+    },
+    "evidence/pr16_circus_three_win/35418424222/reconstruction.json": {
+      "sha256": "bcbf8b14b8640151dab4fb241c0a2807a56b331e49290d01cb45355fe0407421",
+      "size": 175
+    },
+    "evidence/pr16_circus_three_win/35418424222/report.json": {
+      "sha256": "adf1fdaa2d3202ee3a2d147aab15a54e21039fb9bdb59ab45e66b002b149fee1",
+      "size": 123877
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -4805,7 +4825,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "run35418010512は実2勝・第2/第3launch個体保持・17events・Save/fresh Continueを検証したが最終戦敗北。低HPかつ無効技だけの場面を修復し、3勝の未完区間へ進む。",
+  "source_change_review_ja": "3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
