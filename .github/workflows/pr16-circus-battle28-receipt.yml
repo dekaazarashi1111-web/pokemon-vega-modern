@@ -1,0 +1,42 @@
+name: PR16 Circus battle28 completed-native receipt
+on:
+  push:
+    branches: [codex/modernization-followup-20260908]
+    paths:
+      - scripts/pr16_circus_battle28_receipt.py
+      - .github/workflows/pr16-circus-battle28-receipt.yml
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+concurrency:
+  group: pr16-circus-battle28-receipt
+  cancel-in-progress: false
+jobs:
+  receipt:
+    if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: 新規native0で完了原本と画面を照合し記録
+        run: |
+          mkdir -p .local/pr16-circus-battle28-receipt
+          python3 scripts/pr16_circus_battle28_receipt.py > .local/pr16-circus-battle28-receipt/main.stdout 2> .local/pr16-circus-battle28-receipt/main.stderr
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr16-circus-battle28-receipt
+          path: |
+            .local/pr16-circus-battle28-receipt/*.stdout
+            .local/pr16-circus-battle28-receipt/*.stderr
+            .local/pr16-circus-battle28-receipt/*.json
+            .local/pr16-circus-battle28-receipt/execution/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
