@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。",
+    "current_stop": "18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_18TH_LAUNCH_CPU_PREPARED",
+    "classification": "CIRCUS_18TH_LAUNCH_CPU_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_launch_cpu.json",
     "run_id": 35436330902,
     "target_wins": 30
@@ -141,7 +141,7 @@
     "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9"
   },
   "circus_launch_followup": {
-    "classification": "CIRCUS_18TH_LAUNCH_CPU_PREPARED",
+    "classification": "CIRCUS_18TH_LAUNCH_CPU_READONLY_COMPLETE",
     "path": "content/modernization/pr16_circus_launch_cpu.json",
     "run_id": 35436330902
   },
@@ -149,7 +149,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35436330902,
-    "source_head": "6455fa59f6ac4888007fd947d0e35712734c8f13",
+    "source_head": "c6142c969e3f04c512a8d30254330b0b50357d99",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -776,10 +776,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "6455fa59f6ac4888007fd947d0e35712734c8f13",
+  "observed_head": "c6142c969e3f04c512a8d30254330b0b50357d99",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "6455fa59f6ac4888007fd947d0e35712734c8f13"
+    "scope_head": "c6142c969e3f04c512a8d30254330b0b50357d99"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2462,16 +2462,16 @@
       "size": 136085
     },
     "content/modernization/pr16_circus_launch_cpu.json": {
-      "sha256": "6b7992b916b338920b776e60e5587b59710b7a3712b668dccfe4f2f69df4d8e1",
-      "size": 2361
+      "sha256": "b65496a3ae39f935fa2d81d2a87660773e6ab9293e0ade2d8feaa94a0ee27e3d",
+      "size": 57191
     },
     "content/modernization/pr16_circus_load_order.json": {
       "sha256": "51ee4affb9b96db10e6d4d18f4be21316e7b376b3a9fcff674e38090d20d294a",
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "02b0f76640a878722d921a34b1b6c6482c30ae38121ec6644fcfee62762da897",
-      "size": 133892
+      "sha256": "5a7d537b49f25c471e0a41b7eda1923a51cf8b74296c3606559915af69364e8b",
+      "size": 133901
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -3508,6 +3508,130 @@
     "evidence/pr16_circus_interruption/35420622910/report.json": {
       "sha256": "b468f4be156a6f240ae1a1a4a6874afbdeb3cd1d291a74ff5b0bf60f2a760fe5",
       "size": 124618
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/cpu-rows.json": {
+      "sha256": "25f9e1fcec1af3a90c72d2cbb754c0b3fc4f52e8480a97447cf30a7e476081de",
+      "size": 36188
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/chooser-bindings.json": {
+      "sha256": "acb37069b7d05b7c7a2b950fd89c4d7423fbd43e0cf992e206b7058ab25adf5f",
+      "size": 2530
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.stderr": {
+      "sha256": "56774de6f1ce722407bf862b4bbe904a3d445bf9027366aef006354218cef56d",
+      "size": 599896
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/circus-continuous-30-save.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/compile.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/compile.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/compile.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-bus8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw16.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw32.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-raw8.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.process.json": {
+      "sha256": "d610cd378c14d47ee0cf739bbaaf05e16f5fcf245e58a66bf2dbc2b4dca75457",
+      "size": 90
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.stderr": {
+      "sha256": "b18aad1ad3fb4b6db701c14e25ad6f57178d5ebcb474395a48c7a31e3abd5934",
+      "size": 50
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/guard-register.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/native/report.json": {
+      "sha256": "cb4216750412bf89b747edd2367752116200b87cf82eab4f2a491c2294f5d496",
+      "size": 123744
+    },
+    "evidence/pr16_circus_launch_cpu/35436330902/reconstruction.json": {
+      "sha256": "0983da0b7799fddf99fea5b91e07ca9351346e09908a4b33acc1a6b0b0593338",
+      "size": 175
     },
     "evidence/pr16_circus_loss_followup/35391760500/report.json": {
       "sha256": "f53245dee330cf18b51d9ebc4bc4f9db1ebb0be75e4c0673ee2cfc77f4fcdeb5",
@@ -6227,7 +6351,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。",
+  "source_change_review_ja": "18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

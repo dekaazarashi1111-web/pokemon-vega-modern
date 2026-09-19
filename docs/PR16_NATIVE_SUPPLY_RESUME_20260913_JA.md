@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。
+18戦目未完launchの600frame/21点CPU・weather・tasksの読取原本を保存。診断完了=True。ROM/ARM link変更なし、通常Save/fresh Continueは未受入。
 
 **次: 17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `6455fa59f6ac4888007fd947d0e35712734c8f13`。
+証拠のsource HEAD: `c6142c969e3f04c512a8d30254330b0b50357d99`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
