@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。",
+    "current_stop": "高命中選択後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_RELIABILITY_PREPARED",
+    "classification": "CIRCUS_RELIABILITY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_reliability.json",
     "target_wins": 30
   },
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35428983641,
-    "source_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d",
+    "source_head": "5f7afd6fe00b404688f1809520afdd20d1a96074",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -150,7 +150,7 @@
     "target_wins": 30
   },
   "circus_reliability_followup": {
-    "classification": "CIRCUS_RELIABILITY_PREPARED",
+    "classification": "CIRCUS_RELIABILITY_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_reliability.json",
     "previous_native_conclusion": "failure",
     "previous_native_run": 35427693324,
@@ -676,10 +676,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d",
+  "observed_head": "5f7afd6fe00b404688f1809520afdd20d1a96074",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "a5ee6ad4af9ac7763287da2c839771ed1b367b8d"
+    "scope_head": "5f7afd6fe00b404688f1809520afdd20d1a96074"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2322,8 +2322,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "a9121cc62c9e6f2591276d403677c9f0014c4c73c12ad2c71f64f1030d15920b",
-      "size": 132388
+      "sha256": "493c91a7cc658641e54e170638e02d3eb1ad805752990893399384033f230172",
+      "size": 132416
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2346,8 +2346,8 @@
       "size": 1572
     },
     "content/modernization/pr16_circus_reliability.json": {
-      "sha256": "412cb793dcf35904bfd032524a6bcbb2ff0b9f5a6c18d6defa930d9c14b3b95d",
-      "size": 1803
+      "sha256": "2247dd00c340be1d86795fe42150d219af5cbf4c6ed434aadba13391c094879a",
+      "size": 131372
     },
     "content/modernization/pr16_circus_retention_checkpoint.json": {
       "sha256": "170dbeb812c57d650625e48758b3e3c296424f3c1029da3369882fc6fa4a54ea",
@@ -3202,6 +3202,34 @@
       "size": 1048
     },
     "evidence/pr16_circus_reentry/35427049942/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stderr": {
+      "sha256": "82b93cb2b89d4da86e570ceb164aad2c04c910e724b9513bd8bad51795af939b",
+      "size": 540943
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/circus-continuous-30-save.stdout": {
+      "sha256": "cfe783c182b02087a231ec8417c130a9b2726f0045cd0eece4d5e5f0e45af068",
+      "size": 671
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/events.json": {
+      "sha256": "1e4d4075aa2587bea0507ff93adfab594b79aabeb0cb0e6fac8e0c713d2f1f6a",
+      "size": 153580
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/report.json": {
+      "sha256": "eb57c7d1a3720a1bec8f3e3e8a0a899871eeba9c166ee08971157af809f535ce",
+      "size": 120823
+    },
+    "evidence/pr16_circus_reliability/35428983641/native/streak.json": {
+      "sha256": "4bb6bbd12798c9d9473c0fe6b6f1277039f0f6498ff16103a442232a5dfccf8d",
+      "size": 1051
+    },
+    "evidence/pr16_circus_reliability/35428983641/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -5487,7 +5515,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実8勝/18BP/通常Save/fresh Continueを失敗原本から照合。第9戦で命中85の126を反復したため、近接期待値の高命中技へ切り替える入力と実battle snapshotを追加。",
+  "source_change_review_ja": "高命中選択後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
