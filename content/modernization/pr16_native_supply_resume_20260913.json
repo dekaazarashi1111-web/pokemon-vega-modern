@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。",
+    "current_stop": "17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -39,7 +39,7 @@
     "next_battle_exchanged_individual_identity_verified": true,
     "next_battle_party_retained": true,
     "next_battle_started_observed": true,
-    "next_step": "新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。",
+    "next_step": "17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。",
     "original_party_restored_bytes": 600,
     "party_retention_runtime_connected": true,
     "party_retention_target_abi_verified": true,
@@ -88,9 +88,9 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_DROUGHT_CALLS_NATIVE_OPEN",
-    "path": "content/modernization/pr16_circus_drought_calls.json",
-    "run_id": 35435801505,
+    "classification": "CIRCUS_18TH_LAUNCH_CPU_PREPARED",
+    "path": "content/modernization/pr16_circus_launch_cpu.json",
+    "run_id": 35436330902,
     "target_wins": 30
   },
   "circus_coverage_followup": {
@@ -140,11 +140,16 @@
     "status": "CIRCUS_FIRST_TURN_VERIFIED_RENTAL_IDENTITY_AND_STREAK_OPEN",
     "tested_head": "c847b700d5b3af983c08a44d2278ab86d409eeb9"
   },
+  "circus_launch_followup": {
+    "classification": "CIRCUS_18TH_LAUNCH_CPU_PREPARED",
+    "path": "content/modernization/pr16_circus_launch_cpu.json",
+    "run_id": 35436330902
+  },
   "circus_loss_followup": {
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
-    "run_id": 35435801505,
-    "source_head": "c1f295002953de61ba81b81554442de398084cf1",
+    "run_id": 35436330902,
+    "source_head": "6455fa59f6ac4888007fd947d0e35712734c8f13",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -491,6 +496,7 @@
   },
   "current_resume_doc": "docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md",
   "do_not_repeat": [
+    "run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。",
     "run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。",
     "run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。",
     "run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。",
@@ -750,15 +756,15 @@
   },
   "merge_performed": false,
   "next_action": {
-    "goal_ja": "新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。",
+    "goal_ja": "17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。",
     "host_write_policy_ja": "新しい実受付のguard開始後は入力/frames/readのみ。施設番号/効果/連勝/party/PC/LRのhost注入は禁止。初期配置fixtureと実入場/正規連勝を区別する。",
     "id": "CIRCUS_LOSS_REPAIR_AND_NATIVE_CONTINUATIONS",
     "read_paths": [
       "content/modernization/pr16_circus_loss_followup.json",
-      "scripts/pr16_circus_drought_calls.py",
+      "scripts/pr16_circus_launch_cpu.py",
       "scripts/pr16_streak_native.py",
       "scripts/pr16_streak_probe.py",
-      "overlays/circus_streak/circus_drought.h",
+      "tools/mgba_pr16_circus_launch_cpu.h",
       "tools/mgba_pr16_streak_native.c",
       "content/modernization/p08_remaining_work.json"
     ],
@@ -770,10 +776,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "c1f295002953de61ba81b81554442de398084cf1",
+  "observed_head": "6455fa59f6ac4888007fd947d0e35712734c8f13",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "c1f295002953de61ba81b81554442de398084cf1"
+    "scope_head": "6455fa59f6ac4888007fd947d0e35712734c8f13"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -842,9 +848,9 @@
   },
   "pending_runs": [
     {
-      "run_id": 35435801505,
+      "run_id": 35436330902,
       "status": "in_progress",
-      "tested_head": "31130b4c04effdb6beedd071a0111dbc4552d941"
+      "tested_head": "6455fa59f6ac4888007fd947d0e35712734c8f13"
     }
   ],
   "pr_body_update": "HISTORICAL_REJECTION_BODY_NOT_CANONICAL",
@@ -872,8 +878,8 @@
   "prior_actions_reconciled": [
     {
       "conclusion": "failure",
-      "head_sha": "bf27c13d5ff9f4089084cec269389b3d492ecb13",
-      "id": 35434591898,
+      "head_sha": "31130b4c04effdb6beedd071a0111dbc4552d941",
+      "id": 35435801505,
       "status": "completed"
     }
   ],
@@ -1590,6 +1596,10 @@
     ".github/workflows/pr16-circus-interruption.yml": {
       "sha256": "408e1826a9425013fffa42c4c8504405637755756364f3b429d22745adc13a6e",
       "size": 1802
+    },
+    ".github/workflows/pr16-circus-launch-cpu.yml": {
+      "sha256": "3165dc608a2530bb83fcd770acab2b4a47a381f3458289bed1d00010e800304a",
+      "size": 1749
     },
     ".github/workflows/pr16-circus-link.yml": {
       "sha256": "304f2548584566e690516207e11f691e8551ed9e96b7d91e34cbc270f4be2c02",
@@ -2451,13 +2461,17 @@
       "sha256": "1f5151ef4608949ea21fabb8f1f538a2fea1e3effa529478274229f935723880",
       "size": 136085
     },
+    "content/modernization/pr16_circus_launch_cpu.json": {
+      "sha256": "6b7992b916b338920b776e60e5587b59710b7a3712b668dccfe4f2f69df4d8e1",
+      "size": 2361
+    },
     "content/modernization/pr16_circus_load_order.json": {
       "sha256": "51ee4affb9b96db10e6d4d18f4be21316e7b376b3a9fcff674e38090d20d294a",
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "57ec73ed7448ad84082f78cb0bea271aee911ea96901d71eb8a2623e8af6b02f",
-      "size": 133716
+      "sha256": "02b0f76640a878722d921a34b1b6c6482c30ae38121ec6644fcfee62762da897",
+      "size": 133892
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -4455,6 +4469,10 @@
       "sha256": "2d2d2713bde9934bd41deeda23c092c65a71717569777a2a28e2b42ae5fd9e1b",
       "size": 7980
     },
+    "scripts/pr16_circus_launch_cpu.py": {
+      "sha256": "f5e035c64706a888730af0774b6e5a1e36b9ef63d39e03a5717911c3cf9ec1bd",
+      "size": 10748
+    },
     "scripts/pr16_circus_link_probe.py": {
       "sha256": "7a46d9ba46c2c4165e98afc02179f14a5a196810a8198c1556ee91be802655b6",
       "size": 13380
@@ -5387,6 +5405,10 @@
       "sha256": "8c4a8e3cd94154cf193ab60ee66568fd96b6c4b9c913c49b60d07496b9c0a9c6",
       "size": 7514
     },
+    "tests/test_pr16_circus_launch_cpu.py": {
+      "sha256": "5f78c9503c24ecb8dd70994c054c3f186bab4f6eea861ffa1db95ee3a3e3dbad",
+      "size": 2573
+    },
     "tests/test_pr16_circus_link_probe.py": {
       "sha256": "e94d4c1e9845a8f4472641d1398f03b31ad787ccdee0050e70d7407e8ec94d71",
       "size": 3610
@@ -6131,6 +6153,10 @@
       "sha256": "4e6e6b1cf9e5b505c5b5a4fbb59cdab77dcbab869d1a0719c2343f50585da5fa",
       "size": 5544
     },
+    "tools/mgba_pr16_circus_launch_cpu.h": {
+      "sha256": "02e3c0f07b56c9ca3ca82016faab99dee437737d9043785dce1f76a8ea6e9dad",
+      "size": 1535
+    },
     "tools/mgba_pr16_circus_loss_weather.h": {
       "sha256": "855c195f470faee9daa2965e93b76e939ed9c17b848d74dcf12ac103fe462b18",
       "size": 832
@@ -6201,7 +6227,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。",
+  "source_change_review_ja": "17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

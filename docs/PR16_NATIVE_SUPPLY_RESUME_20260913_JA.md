@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実関数境界修復の独立2link/生成ARM/全ROM rollbackと新native原本を保存。17勝後復帰=False、真正30勝=False。画像レビュー/特性抑制/P08は別ゲート。
+17勝後の修復自体はnative完了・勝数記録・画面復帰を原本照合。次の18戦目launch停止を読取CPUで限定診断する。候補は再linkせず固定再構成。
 
-**次: 新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。**
+**次: 17勝後Drought復帰はnative完了cursor32/32・17勝記録・18戦目確認まで原本で確認済み。18戦目launchの新CPU原本から限定修復し、続く実戦・原party600/owner64・通常Save/fresh Continue・真正30勝へ進む。旧17勝診断・独立2link・受入単体は再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `c1f295002953de61ba81b81554442de398084cf1`。
+証拠のsource HEAD: `6455fa59f6ac4888007fd947d0e35712734c8f13`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_drought_calls.py`
+- `scripts/pr16_circus_launch_cpu.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_drought.h`
+- `tools/mgba_pr16_circus_launch_cpu.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。
 - run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。
 - run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。
 - run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。

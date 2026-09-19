@@ -1,0 +1,77 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "31130b4c04effdb6beedd071a0111dbc4552d941",
+      "id": 35435801505,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "98b9eea437e63fbbaf81b361cf36a11436b785f6946c60e9a6a51e19fe559aac",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_18TH_LAUNCH_CPU_PREPARED",
+  "diagnostic_complete": false,
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_launch_cpu.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_run": {
+    "archive": {
+      "sha256": "f54d9cce0b2be27e13a75ca77c7604c0847a3bf85aa07fa160ff249e80414340",
+      "size": 1781827
+    },
+    "artifact": 10581864965,
+    "id": 35435801505,
+    "job": 105878112448
+  },
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "save_continue_verified": false,
+  "schema_version": 1,
+  "seventeenth_return": {
+    "native_witness": {
+      "brightness": 6,
+      "complete": 1,
+      "current": 16,
+      "frame": 284893,
+      "index": 32,
+      "offset": 32,
+      "outcome": 1,
+      "script": 167726455,
+      "state": 5
+    },
+    "next_confirmation": 18,
+    "observation_ja": "勝利画面→通常交換質問→18戦目選出確認までは復帰。その後は黒画面。保存画面なし。",
+    "real_wins": 17,
+    "save_continue_verified": false,
+    "screens": {
+      "finish/native/circus-continuous-30-save-failure.ppm": {
+        "sha256": "e57cd46081f89328205c488f943d14adb155dab3ce1984a6a6ef4e87ffcd29cd",
+        "size": 115215
+      },
+      "finish/native/circus-continuous-30-save-streak-79-outcome.ppm": {
+        "sha256": "e76b579c80b3478fc1ab20c4617d5a82e36794de709cf1274048820b07b05b6e",
+        "size": 115215
+      },
+      "finish/native/circus-continuous-30-save-streak-80-settled.ppm": {
+        "sha256": "1a802a535063491b9c132919388127a4cbc0dc0943c4334b0a552676ce5ff448",
+        "size": 115215
+      },
+      "finish/native/circus-continuous-30-save-streak-81-confirmation.ppm": {
+        "sha256": "8cae0784e0e3f6280ab607f9547f8061d8fd531d8678053691035ea55111d12b",
+        "size": 115215
+      }
+    },
+    "settled_wins": 17,
+    "visual_review_completed": true
+  },
+  "suppression_accepted": false
+}
