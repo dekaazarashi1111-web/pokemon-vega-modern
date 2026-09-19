@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。",
+    "current_stop": "実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_WIN_RETURN_READONLY_PREPARED",
+    "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_win_return_trace.json",
     "target_wins": 30
   },
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35431032216,
-    "source_head": "be159e064e067927c850589f54d3cfa7add2e79d",
+    "source_head": "8f4ea6bc5ae0638543ed13107ee903a04851188a",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -243,7 +243,7 @@
     "tested_head": "8b06bcf82d7d7b5f36e21b2ec1f689bec8b1b7f7"
   },
   "circus_win_return_trace": {
-    "classification": "CIRCUS_WIN_RETURN_READONLY_PREPARED",
+    "classification": "CIRCUS_WIN_RETURN_READONLY_DIAGNOSTIC_OPEN",
     "path": "content/modernization/pr16_circus_win_return_trace.json",
     "run_id": 35431032216
   },
@@ -700,10 +700,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "be159e064e067927c850589f54d3cfa7add2e79d",
+  "observed_head": "8f4ea6bc5ae0638543ed13107ee903a04851188a",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "be159e064e067927c850589f54d3cfa7add2e79d"
+    "scope_head": "8f4ea6bc5ae0638543ed13107ee903a04851188a"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2358,8 +2358,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "cb2b5669f3e8f24411a1e28b298d638c0febf1a75bf738792df522028ecea050",
-      "size": 132967
+      "sha256": "923631ca635e1f59647b02ad6868c8fc8fa2b2d45f5a7f1170f99693a8e80432",
+      "size": 132974
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2422,8 +2422,8 @@
       "size": 1014
     },
     "content/modernization/pr16_circus_win_return_trace.json": {
-      "sha256": "2f56b97f4c6064ea338595a127b0082ca1ff87d64518c259c24a9f686cf99a0b",
-      "size": 1196
+      "sha256": "6f66eb7a9c56e31ce931071da912fbf9959d4b5e8705b6628aadf48e4f2d35d4",
+      "size": 1638
     },
     "content/modernization/pr16_ring_audio_boundary_contracts.json": {
       "sha256": "61de96a6afd25c699b0dcb3cbd27d2b113b540ba53b609f641aea34434ac09d2",
@@ -3624,6 +3624,14 @@
     "evidence/pr16_circus_three_win/35421235529/report.json": {
       "sha256": "3bd7dd0c2c2ee4d178950a04b4de65d2033a1d1150200bb69dbf55cd8dc023dc",
       "size": 124773
+    },
+    "evidence/pr16_circus_win_return_trace/35431032216/native/report.json": {
+      "sha256": "150f05079b094cc6ddac852bac52659967540a5e5addb5b233b6076e594ab4fb",
+      "size": 105896
+    },
+    "evidence/pr16_circus_win_return_trace/35431032216/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
     },
     "manifests/facility_rewards.csv": {
       "sha256": "5460469dbe757701c0b3fbec50f218cc946d071cdbffc59e520d03a63f44b3e5",
@@ -5647,7 +5655,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "Taunt先発で16戦目を突破。17戦目も実WINだがcallback08055e75/script09ff4d77/phase2で黒画面停止。guardは敗北のみを許可しているため、同じ待機task条件か読取専用に確認する。",
+  "source_change_review_ja": "実17戦目WIN後の読取専用traceを記録。期待した待機条件を確認できず未完。native/save/30勝/正規特性抑制受入とは区別する。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
