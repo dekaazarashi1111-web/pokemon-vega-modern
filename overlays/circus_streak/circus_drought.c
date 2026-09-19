@@ -5,6 +5,11 @@
 #define READ8(a) (*(const volatile uint8_t *)(uintptr_t)(a))
 #define READ32(a) (*(const volatile uint32_t *)(uintptr_t)(a))
 #define NATIVE(a) ((void (*)(void))(uintptr_t)(a))
+/* 定数addressをinline関数のcallback引数へ直接渡さない。
+ * GCCで分岐/復帰が消失する縮小再現を保存し、実関数symbolをABI境界にする。 */
+__attribute__((noinline)) static void DroughtOriginal(void) { NATIVE(0x0807AD09u)(); }
+__attribute__((noinline)) static void DroughtInitVars(void) { NATIVE(0x0807ACD5u)(); }
+__attribute__((noinline)) static void DroughtStep(void) { NATIVE(0x0807AD39u)(); }
 __attribute__((used, noinline, externally_visible))
 void CircusDroughtInitAll(void)
 {
@@ -28,5 +33,5 @@ void CircusDroughtInitAll(void)
         c.armed = (uint8_t)((int (*)(void))(uintptr_t)CIRCUS_DROUGHT_ARMED)();
         c.ledger_valid = (uint8_t)(VegaSaveValidate(gVegaModernSaveData, VEGA_SAVE_LEDGER_SIZE) == VEGA_SAVE_OK);
     }
-    CircusDroughtInitialize(&c, w, NATIVE(0x0807AD09u), NATIVE(0x0807ACD5u), NATIVE(0x0807AD39u));
+    CircusDroughtInitialize(&c, w, DroughtOriginal, DroughtInitVars, DroughtStep);
 }

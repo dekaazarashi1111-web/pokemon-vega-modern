@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実17勝後は未実装Drought palette loaderのcursorが進まずstate2で無限待機。CircusWIN/有効ownerとledger/正規script/weather12だけをguardし、空loader cursor2byte以外はnative初期化へ委譲する修正を準備。
+最新run35434591898の失敗と記録停止を原本照合。定数callbackで消失する分岐/復帰を実関数symbol境界へ修復し、host/生成ARMの回帰を追加。未完nativeだけを後継候補で検証する。
 
-**次: 新候補の実17勝後復帰とnative完了cursor/集計/原party600/owner64/通常Save/fresh Continueを画像込みで確認。真正30勝/90BPが未達なら最初の新敗北から入力だけを改善し、達成後に正規特性抑制を別検証する。旧診断/受入単体/旧2linkを再実行しない。**
+**次: 新候補で実17勝後のDrought復帰とnative完了cursorを検証し、未完continuation/原party600/owner64/通常Save/fresh Continueへ進む。30勝未達なら最初の新停止点だけ修復し、真正30勝後に正規特性抑制を別検証。旧失敗の同一native/旧2link/受入単体は再実行しない。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `bf27c13d5ff9f4089084cec269389b3d492ecb13`。
+証拠のsource HEAD: `31130b4c04effdb6beedd071a0111dbc4552d941`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,7 +26,7 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_drought.py`
+- `scripts/pr16_circus_drought_calls.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
 - `overlays/circus_streak/circus_drought.h`
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。
 - run35434401185/job105874514732はCPU JSON arrayをobject専用readerへ渡してprepare停止。ARM link0/native0。array reader修復後の未実行build/nativeだけを進め、旧failureは保持。
 - run35433308048/job105871614193はCPU21点/600frameの読取診断SUCCESS。native受入ではない。weather12のinitAll0807ad09/state2/空loader0807a350に停止を特定。同候補の17戦診断は再実行せず、後継ROMの新検証だけを行う。
 - run35432359547/job105869102983: host9と修正wrapper5はPASS、実17戦目WINまで80events完全一致。新readonly13点はready1/palette1/両waiter/先頭080f7abdを観測しready0仮説を反証。native受入/Save/30勝ではなくActions failureを保持。同候補の同じ診断は再実行しない。

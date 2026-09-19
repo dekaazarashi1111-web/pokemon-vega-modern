@@ -1,0 +1,161 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "bf27c13d5ff9f4089084cec269389b3d492ecb13",
+      "id": 35434591898,
+      "status": "completed"
+    }
+  ],
+  "classification": "CIRCUS_DROUGHT_CALLS_REPAIR_PREPARED",
+  "evidence_transformations": {
+    "evidence/pr16_circus_drought_calls/35434591898/build.json": {
+      "original": {
+        "sha256": "02a1a1ffa6d5985685f2c5cad3c41226c4fc5f09bfd5d285481577d11b528fa0",
+        "size": 84513
+      },
+      "tracked": {
+        "sha256": "02a1a1ffa6d5985685f2c5cad3c41226c4fc5f09bfd5d285481577d11b528fa0",
+        "size": 84513
+      },
+      "workspace_relative": false
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-1/disassembly.txt": {
+      "original": {
+        "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+        "size": 15097
+      },
+      "tracked": {
+        "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+        "size": 15097
+      },
+      "workspace_relative": false
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-1/stack-usage.txt": {
+      "original": {
+        "sha256": "d00ed9a52a8d6a0d58f0d1697ee685b788aa54e070e8a13b1059588ba0c72bff",
+        "size": 4349
+      },
+      "tracked": {
+        "sha256": "524e5ab7c4b75e6c78f27efe561c0c1030ac7717c1699203ca98bad3962fd80c",
+        "size": 2493
+      },
+      "workspace_relative": true
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-2/disassembly.txt": {
+      "original": {
+        "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+        "size": 15097
+      },
+      "tracked": {
+        "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+        "size": 15097
+      },
+      "workspace_relative": false
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/native/circus-continuous-30-save.stderr": {
+      "original": {
+        "sha256": "1f76e8928e22dd6b8a4a550d55704678d740ccab2a526e368a92a5c7cf5db4f6",
+        "size": 562978
+      },
+      "tracked": {
+        "sha256": "1f76e8928e22dd6b8a4a550d55704678d740ccab2a526e368a92a5c7cf5db4f6",
+        "size": 562978
+      },
+      "workspace_relative": false
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/native/report.json": {
+      "original": {
+        "sha256": "fcf88262af29df2b1fca3b75c2126b63be3f06c38af91673d8be09f70d02e3d5",
+        "size": 119571
+      },
+      "tracked": {
+        "sha256": "fcf88262af29df2b1fca3b75c2126b63be3f06c38af91673d8be09f70d02e3d5",
+        "size": 119571
+      },
+      "workspace_relative": false
+    }
+  },
+  "external_research_ja": "GCC integer function pointer argument inline builtin_unreachable等で公式一次情報を検索したが該当資料なし。外部記事を原因証拠にせず、固定ARM出力とhost縮小再現を根拠とする。",
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 13,
+      "pattern": "test_pr16_circus_drought_calls.py",
+      "success": true
+    },
+    {
+      "count": 11,
+      "pattern": "test_pr16_circus_drought.py",
+      "success": true
+    }
+  ],
+  "independent_old_arm_links_replayed": 0,
+  "physical_admission_accepted": false,
+  "previous": {
+    "archive": {
+      "sha256": "9816094abec54457e80eff70c468addca7cef7bbb41722c5d16eefbf0f33f842",
+      "size": 1752874
+    },
+    "artifact_id": 10582003357,
+    "bp": 45,
+    "candidate": {
+      "sha256": "45bdbd720019cbb1e864f44bc4a745ef46303791d6fe089c84c0f8e6b758be0a",
+      "size": 33554432
+    },
+    "events": 80,
+    "independent_arm_links": 2,
+    "job_id": 105875004261,
+    "native_return_verified": false,
+    "original_conclusion": "failure",
+    "real_win_outcomes": 17,
+    "reloaded": false,
+    "run_id": 35434591898,
+    "saved": false,
+    "settled_wins": 16,
+    "visual_review_ja": "第16戦後の通常交換画面、第17戦の勝利直後、timeoutの黒画面を照合。保存画面は存在しない。"
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "source_change": {
+    "after": {
+      "sha256": "e85c5757b9d712c6628bd58d9ac04dd823b3f9c5cf67f1ee7b7df917c05b1e1b",
+      "size": 1867
+    },
+    "before": {
+      "sha256": "a0f1803a01698488b6831462097bd3e5d62afcb9953b05f75b0234846b862272",
+      "size": 1446
+    },
+    "path": "overlays/circus_streak/circus_drought.c"
+  },
+  "suppression_accepted": false,
+  "text_evidence": {
+    "evidence/pr16_circus_drought_calls/35434591898/build.json": {
+      "sha256": "02a1a1ffa6d5985685f2c5cad3c41226c4fc5f09bfd5d285481577d11b528fa0",
+      "size": 84513
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-1/disassembly.txt": {
+      "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+      "size": 15097
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-1/stack-usage.txt": {
+      "sha256": "524e5ab7c4b75e6c78f27efe561c0c1030ac7717c1699203ca98bad3962fd80c",
+      "size": 2493
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/compile-2/disassembly.txt": {
+      "sha256": "a0ffedfc9f31265c472c609593c1aec7f306f3c5207250e3661f7e01b30270d7",
+      "size": 15097
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/native/circus-continuous-30-save.stderr": {
+      "sha256": "1f76e8928e22dd6b8a4a550d55704678d740ccab2a526e368a92a5c7cf5db4f6",
+      "size": 562978
+    },
+    "evidence/pr16_circus_drought_calls/35434591898/native/report.json": {
+      "sha256": "fcf88262af29df2b1fca3b75c2126b63be3f06c38af91673d8be09f70d02e3d5",
+      "size": 119571
+    }
+  },
+  "visual_review_completed": false,
+  "win_return_native_verified": false
+}
