@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実4勝後敗北の修復済みscoped検証を再実行せず継承。再入場後の補助技一律加点と初回限定方策の流用を切り離し、通常入力だけを修復。真正30勝は未完。",
+    "current_stop": "再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,12 +88,12 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_COVERAGE_GENERAL_REENTRY_PREPARED",
+    "classification": "CIRCUS_COVERAGE_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_coverage.json",
     "target_wins": 30
   },
   "circus_coverage_followup": {
-    "classification": "CIRCUS_COVERAGE_GENERAL_REENTRY_PREPARED",
+    "classification": "CIRCUS_COVERAGE_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_coverage.json",
     "previous_native_conclusion": "failure",
     "previous_native_run": 35427049942,
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35427693324,
-    "source_head": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56",
+    "source_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -667,10 +667,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56",
+  "observed_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "6c0f61679c76acf8199b7f1fee6fbd0cb8709a56"
+    "scope_head": "ebde6bf9cdf40c2d424d726c0414fd7f152c70b5"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2269,8 +2269,8 @@
       "size": 107174
     },
     "content/modernization/pr16_circus_coverage.json": {
-      "sha256": "8a81aae5401ccd16da2a6178e50cb0fd10c8db36e16432ad7c4930dec1b3f22c",
-      "size": 1275
+      "sha256": "5c6d50efe4b1c0913b1ae025898e50304194d649a4d1446dbc7f581ae05bf6fe",
+      "size": 122734
     },
     "content/modernization/pr16_circus_entry_checkpoint.json": {
       "sha256": "96a199befeee9269902093a776564fe59c72fb6658ad622ded23a145d9bfed48",
@@ -2301,8 +2301,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "7998490564e891feab5edc8beb1d9d1a3950ff7f1c49bb93e6181474cb5fba84",
-      "size": 132198
+      "sha256": "48a473aba013f527b1597d5435986e09a419c8dc42a54e244d11336221e5510b",
+      "size": 132210
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2993,6 +2993,34 @@
       "size": 99293
     },
     "evidence/pr16_circus_continuous/35426278164/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stderr": {
+      "sha256": "648321fc4923f2c77b78c99355dae2b2cc96ee7c1d000e517807bd413cf335b4",
+      "size": 309709
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/circus-continuous-30-save.stdout": {
+      "sha256": "9bd3ddaf4e55d07957607a67cf14667a35d3fb00038c596208c71fbebc51a84e",
+      "size": 669
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/events.json": {
+      "sha256": "e6cdc2318012715bfc57f7a475de65cce11204384dd5a091cf37dae63e4ea195",
+      "size": 87429
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/report.json": {
+      "sha256": "4bef5f425a9d563ff2234766f2a6a56b70a56e0ab69be569e9f7dabc2c10c9ec",
+      "size": 113089
+    },
+    "evidence/pr16_circus_coverage/35427693324/native/streak.json": {
+      "sha256": "1450e1f98618bd3bdf602dcfa9c306c906e2daff5f72b9307128a9a446721d8f",
+      "size": 1049
+    },
+    "evidence/pr16_circus_coverage/35427693324/reconstruction.json": {
       "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
       "size": 249
     },
@@ -5422,7 +5450,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実4勝後敗北の修復済みscoped検証を再実行せず継承。再入場後の補助技一律加点と初回限定方策の流用を切り離し、通常入力だけを修復。真正30勝は未完。",
+  "source_change_review_ja": "再入場編成/汎用入力修復後の連続case原本を保存。実測勝数と全battle lifecycleを分離し、真正30勝未達は最初の不一致を次へ引き継ぐ。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
