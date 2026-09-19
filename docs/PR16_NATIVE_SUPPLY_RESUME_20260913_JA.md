@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-Circus実敗北の正規フェード/スクリプト復帰・原party600・固有owner64・Factory104不変・通常Save/fresh Continueをnativeで確認。
+Circus実敗北の9イベント/原party600/owner64/7guard/Save+fresh Continueはrun35415331977で受入。3画面も確認。3b候補を保持し、攻撃技と実能力の読取専用順位付けで未受入3勝・継続戦を開始。
 
-**次: 受入済みの敗北保存原本を再実行せず、未受入の実3勝・第2/第3launch個体保持・9BP完走に進む。続いて中断復帰、真正30連勝と正規特性抑制。**
+**次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `22a281050ab0e600580bbb908cd11365ddd6750e`。
+証拠のsource HEAD: `eb0a7b17d03d900b5227f339f989697bd1bb89cf`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_loss_weather.py`
+- `scripts/pr16_circus_three_win.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_streak_return.h`
+- `tools/mgba_pr16_circus_three_win.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 

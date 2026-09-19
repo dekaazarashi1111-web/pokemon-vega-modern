@@ -1,0 +1,31 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "candidate": {
+    "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_THREE_WIN_INPUT_POLICY_PENDING",
+  "host_tests": [
+    {
+      "count": 5,
+      "pattern": "test_pr16_circus_three_win.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "physical_admission_accepted": false,
+  "previous_loss_checkpoint": "21b96f4bc48569360a84a1c8978e13ca6d0291b0",
+  "previous_loss_run": 35415331977,
+  "previous_loss_visual_review": {
+    "observation_ja": "3画面とも受付前の同位置にプレイヤーとNPC列を確認。黒画面なし。保存後/Continue後の雨描画も正常。",
+    "reviewed": [
+      "streak-07-returned",
+      "streak-08-saved",
+      "streak-09-reloaded"
+    ],
+    "scope_ja": "実敗北・正規復帰・保存再開の一連動作を受入。フェード再試行分岐の実行回数自体は未計測。"
+  },
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false
+}
