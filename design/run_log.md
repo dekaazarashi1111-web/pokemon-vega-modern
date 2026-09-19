@@ -8100,3 +8100,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。
+
+
+## 2026-09-19T08:49:20.612552+00:00 — USER-20260919-CIRCUS-WIN-RETURN-OWNER-RECORDED
+- Timestamp: 2026-09-19T08:49:20.612552+00:00
+- Task: USER-20260919-CIRCUS-WIN-RETURN-OWNER-RECORDED
+- Status: DONE / ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
+- Version: pr16-circus-loss-marker
+- Summary: ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_win_return_owner.json, scripts/pr16_circus_win_return_owner.py, tests/test_pr16_circus_win_return_owner.py, .github/workflows/pr16-circus-win-return-owner.yml, content/modernization/pr16_circus_win_return_trace.json, evidence/pr16_circus_win_return_trace/35432359547/native/circus-continuous-30-save.stderr, evidence/pr16_circus_taunt/35430246002/native/circus-continuous-30-save.stderr, evidence/pr16_circus_win_return_owner/35432926280/callback-0x8055e38.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807951c.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d360.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d464.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x807db48.txt, evidence/pr16_circus_win_return_owner/35432926280/callback-0x80f7abc.txt, evidence/pr16_circus_win_return_owner/35432926280/inspection.json
+- Verify: CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED。保存原本の再照合と限定ROM逆アセンブルのみ。新規native0/ARM link0/受入単体再実行0。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。

@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。",
+    "current_stop": "ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED",
+    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED",
     "path": "content/modernization/pr16_circus_win_return_owner.json",
     "target_wins": 30
   },
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35432926280,
-    "source_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68",
+    "source_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -291,7 +291,7 @@
     "reason_ja": "macro修正3ファイルに固定resumeの旧hashが残りprepareで拒否。旧commitの3原本と完全一致を確認して対象3hashだけ更新。他のbinding/受入結果は変更しない。"
   },
   "circus_win_return_owner": {
-    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_PREPARED",
+    "classification": "CIRCUS_WIN_RETURN_READY_ONE_OWNER_INSPECTED",
     "path": "content/modernization/pr16_circus_win_return_owner.json",
     "run_id": 35432926280
   },
@@ -756,10 +756,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68",
+  "observed_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "f911d5b6ca11ea35e137c0284bdccc46f4d2bc68"
+    "scope_head": "ec2a86be966b32c8cae69faf08cca71e31b97e54"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2422,8 +2422,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "b43299be1475e3abffe2d740dd2054f3f337b68a17f9cf651d5a645ba7ff22e8",
-      "size": 133168
+      "sha256": "baccd9a78b2a15f40a6976c71173a293a05264d500c51a52835ed30460783003",
+      "size": 133169
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2486,8 +2486,8 @@
       "size": 1014
     },
     "content/modernization/pr16_circus_win_return_owner.json": {
-      "sha256": "858a10f5eff6fd430178a03310f3034ea7f5f6b6607bd39fd8ab50e6c007daab",
-      "size": 2544
+      "sha256": "a1796fa00333be0c8cf3e8acf73933d0ac67fa8b95870c5b923b166c1265af00",
+      "size": 3937
     },
     "content/modernization/pr16_circus_win_return_trace.json": {
       "sha256": "8b0e9fe35669360f1e5f4c2e4b3562c6f3ced43a45d96307ad8669031320f50e",
@@ -3692,6 +3692,34 @@
     "evidence/pr16_circus_three_win/35421235529/report.json": {
       "sha256": "3bd7dd0c2c2ee4d178950a04b4de65d2033a1d1150200bb69dbf55cd8dc023dc",
       "size": 124773
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x8055e38.txt": {
+      "sha256": "abcaf63281733c14741c57825798c543fec02f2a65ae3237eb1f137031194073",
+      "size": 827
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x807951c.txt": {
+      "sha256": "bdf68cb0154091f5ad8d84bc12b47adf7ed0ee81d91d43d6e53bb12491f25bfe",
+      "size": 1635
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d360.txt": {
+      "sha256": "1a3c6ddc634a0e5b15c1bf2c6e797db482dd1a43ab18ccd1c7a32206bdade75c",
+      "size": 2040
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x807d464.txt": {
+      "sha256": "8bce73209ffc3297b09a695b3f4e9bd121f6252072e5b7448e3b7f9d401b492b",
+      "size": 534
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x807db48.txt": {
+      "sha256": "936332a050a048191a176130501c5434c75bd6842aa4225aa787379b34f4327c",
+      "size": 1025
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/callback-0x80f7abc.txt": {
+      "sha256": "b1c9520eb02de238caad8f420c60a73cbbdf6ea0b3df97ff9f0e5f98ad245122",
+      "size": 3854
+    },
+    "evidence/pr16_circus_win_return_owner/35432926280/inspection.json": {
+      "sha256": "be437413682d19cb2e5b317d2e1d7b4b284ca6f5af12038373a0fac3c83f726e",
+      "size": 1364
     },
     "evidence/pr16_circus_win_return_trace/35431032216/native/compile.stderr": {
       "sha256": "f93a2a7ca74517e61eab9506ba7e2d1bb46d7294bddd5ccd09aff31c99e8f420",
@@ -5763,7 +5791,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。",
+  "source_change_review_ja": "ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,

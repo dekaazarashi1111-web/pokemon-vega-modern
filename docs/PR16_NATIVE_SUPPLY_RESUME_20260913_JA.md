@@ -6,7 +6,7 @@
 
 ## いまの停止点と次の1手
 
-実17勝後のreadonly13点はready1。旧80events完全一致を確認し、ready0修復仮説を撤回。先頭task2件とfield loopの未読命令を固定候補から読む。
+ready1で停止する実17勝後のtask順3→4→5→0→1→2を原本から確定。先頭080f7abdとfield/weather/scriptの固定ROM命令を保存。新規native0。
 
 **次: ready=1の実17戦目WIN停止を、先頭taskとfield loopの実ROM命令から修復する。ready=0限定FadeInの単純拡張はしない。独立2link/全ROM差分証明の後、新候補だけで継続と保存を検証し、旧17戦診断は再実行しない。**
 
@@ -14,7 +14,7 @@
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `f911d5b6ca11ea35e137c0284bdccc46f4d2bc68`。
+証拠のsource HEAD: `ec2a86be966b32c8cae69faf08cca71e31b97e54`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
