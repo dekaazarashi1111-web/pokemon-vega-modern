@@ -1,0 +1,56 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "actions_reconciled": [
+    {
+      "conclusion": "failure",
+      "head_sha": "80e9643ff8689fec7212745e7a3fb21e988bc79b",
+      "id": 35437062974,
+      "status": "completed"
+    },
+    {
+      "conclusion": "action_required",
+      "head_sha": "3906ccc213e358a67000f6ebfb2e3618261d5390",
+      "id": 35437460976,
+      "status": "completed"
+    }
+  ],
+  "candidate": {
+    "sha256": "a2c612a2fde4be2fcb0b0484798055a31a007652e56db7912940dbd16025f1cb",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_DROUGHT_LAUNCH_BOUNDARY_TRACE_PREPARED",
+  "diagnostic_complete": false,
+  "genuine_30_wins_verified": false,
+  "host_tests": [
+    {
+      "count": 6,
+      "pattern": "test_pr16_circus_drought_launch_boundary.py",
+      "success": true
+    },
+    {
+      "count": 7,
+      "pattern": "test_pr16_circus_drought_launch.py",
+      "success": true
+    }
+  ],
+  "independent_arm_links_replayed": 0,
+  "inherited_failure": {
+    "action_reached": false,
+    "artifact_id": 10583081417,
+    "events": 81,
+    "job_id": 105881419750,
+    "original_conclusion": "failure",
+    "reached_eighteenth_confirmation": true,
+    "run_id": 35437062974,
+    "settled_wins": 17,
+    "standard_save_reached": false
+  },
+  "native_lifecycle_accepted": false,
+  "physical_admission_accepted": false,
+  "release_ready": false,
+  "schema_version": 1,
+  "scope_ja": "同じ候補を1processだけ再構築し、不可避17勝prefix後の18戦目chooser→field落下を180frameで停止して読む。旧CPU600frame診断、受入済み単体、旧独立2linkは実行しない。",
+  "standard_save_fresh_continue": false,
+  "suppression_accepted": false,
+  "unavoidable_prefix_battles": 17
+}

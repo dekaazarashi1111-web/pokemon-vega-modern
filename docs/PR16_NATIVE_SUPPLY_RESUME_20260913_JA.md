@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-選出復帰修復の原本と新候補差分を保存。18戦目native launch/通常Save/fresh Continue=False、真正30勝=False。画像・正規特性抑制・P08は別ゲート。
+18戦目確認後にactionが来ずfield callback/script0へ落ちた原本を照合。現候補の同じ境界だけを短いreadonly watcherで採取する。
 
-**次: 新候補で18戦目の正規launch・以降の実勝敗・原party600/owner64・通常Save/fresh Continueを確認。真正30勝未達は最初の新停止だけを修復し、達成後に正規特性抑制へ進む。旧CPU診断/旧独立2link/受入単体の再実行は禁止。**
+**次: 境界traceのcomplete/state/cursorとscript/task遷移に基づき、18戦目だけの最小修復を追加する。17勝prefix・受入済み単体・旧CPU診断・旧独立2linkは再実行せず、修復候補で18戦目launch以降の実勝敗・原party600/owner64・通常Save/fresh Continueへ進む。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `3aa37ebd2c3ad0cb71f6045781d090f2b67d1e12`。
+証拠のsource HEAD: `3fa90fab346223742c2f66dff6756e7f0d560078`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
@@ -26,10 +26,10 @@ PR#16とbranch refをGitHubから取得し、live HEADを固定して読む。�
 次の実装で読むのは次のファイルから。環境の問題がある時だけ `docs/CHATGPT_WEB_GITHUB_ENVIRONMENT_JA.md` を追加する。
 
 - `content/modernization/pr16_circus_loss_followup.json`
-- `scripts/pr16_circus_drought_launch.py`
+- `scripts/pr16_circus_drought_launch_boundary.py`
 - `scripts/pr16_streak_native.py`
 - `scripts/pr16_streak_probe.py`
-- `overlays/circus_streak/circus_drought_launch.h`
+- `tools/mgba_pr16_circus_drought_launch_boundary.h`
 - `tools/mgba_pr16_streak_native.c`
 - `content/modernization/p08_remaining_work.json`
 
@@ -67,6 +67,7 @@ P08ゲート:
 
 ## 再実行・過大主張の禁止
 
+- run35437062974/job105881419750は17勝prefixと18戦目確認まで到達後、action/Saveなしでfield callback・script0へ落ちた。新候補の最初の停止として保持し、同じ18,000frame失敗待ちは再実行しない。
 - run35436330902/job105879496730はROM98b9eea4不変・ARM再link0で18戦目のCPU21点/600frame診断SUCCESS。outcome0/script09ff4dad・weather12/state2/empty cursor1/1・native busy loopを確認。診断を保存/30勝受入に変えず、同一診断は再実行しない。
 - run35435801505/job105878112448: candidate98b9eea4の独立2link/rollback成功。17勝後Drought native state5/complete1/cursor32/32、settled17と18戦目確認は観測。次launch黒画面でfailure、Save未到達。記録/両ログ/差分guard成功。17勝保存受入や30勝へ昇格せず、18戦目の未完部分だけ診断。
 - run35434591898/job105875004261は独立2link一致だが実17勝後timeout。生成entryの条件分岐/復帰が消失し、記録もstack-usageのrunner絶対pathで停止。native受入/Save/30勝ではない。原artifact10582003357を保持し、失敗の同一nativeと旧2linkは再実行しない。
