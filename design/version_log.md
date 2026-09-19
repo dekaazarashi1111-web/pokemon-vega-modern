@@ -4904,3 +4904,16 @@ Commits: cc1b917,099f728,673574d,f7d8bbc,edcebec,d6701c6,f01149d。native HEAD f
 - Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
 - Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
 - Next: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。
+
+
+## 2026-09-19T03:46:35.547795+00:00 — USER-20260919-CIRCUS-INTERRUPTION-START
+- Timestamp: 2026-09-19T03:46:35.547795+00:00
+- Task: USER-20260919-CIRCUS-INTERRUPTION-START
+- Status: DONE / 先行原本の実2勝と3勝未完はそのまま保持。新規ケースで実1勝後の第2戦を中断し、未完戦を加算しない復旧と再保存を検証する。
+- Version: pr16-circus-loss-marker
+- Summary: 先行原本の実2勝と3勝未完はそのまま保持。新規ケースで実1勝後の第2戦を中断し、未完戦を加算しない復旧と再保存を検証する。
+- Files changed: content/modernization/pr16_circus_loss_followup.json, content/modernization/pr16_native_supply_resume_20260913.json, docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md, content/modernization/p08_remaining_work.json, design/run_log.md, design/version_log.md, content/modernization/pr16_circus_interruption.json, scripts/pr16_circus_interruption.py, tools/mgba_pr16_circus_interruption.c, scripts/pr16_circus_interruption_probe.py, tests/test_pr16_circus_interruption.py, .github/workflows/pr16-circus-interruption.yml
+- Verify: CIRCUS_INTERRUPTION_NATIVE_PENDING。第1実勝利は新規中断ケースの前提。受入済み3勝単体再実行0、同一3b候補/ARM再link0、host注入は初期fixtureまで。; resume tests [{'pattern': 'test_pr16_resume.py', 'count': 24, 'success': True}]; task graph、最終index差分private guard、diff checkをcommit前必須。
+- Commit: この記録を含む同branch非force commit。自己SHAはremote ref/receipt。
+- Network: GitHub connector/Actionsと固定private inputs。既受入の単体再実行0。旧全体guard結果を成功に改作せず新規違反0を要求。ROM/save/credential新規追跡なし。
+- Next: 第2戦中断後にcurrent0/best1/ABORT一度/原party600/Factory104/BP0を確認し、通常Saveと別core Continueを検証。完了後は未完の実3勝、真正30連勝と正規特性抑制へ。

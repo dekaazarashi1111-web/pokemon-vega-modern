@@ -1,0 +1,51 @@
+{
+  "accepted_native_cases_replayed": 0,
+  "candidate": {
+    "sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+    "size": 33554432
+  },
+  "classification": "CIRCUS_INTERRUPTION_NATIVE_PENDING",
+  "host_tests": [
+    {
+      "count": 14,
+      "pattern": "test_pr16_circus_interruption.py",
+      "success": true
+    }
+  ],
+  "host_write_policy_ja": "初期fixture終了後はkey/frame/readのみ。第2戦中のcore破棄時にsavestate/RAM/party/ownerをhost復元しない。",
+  "independent_arm_links_replayed": 0,
+  "physical_admission_accepted": false,
+  "prerequisite_checkpoint": "c1730f5c4a1d2be77738b0452470a21baf6362d4",
+  "prerequisite_original_conclusion": "failure",
+  "prerequisite_result": {
+    "battles": 3,
+    "candidate_sha256": "3b5f919958bf72bad9aa5b466215f33311f9c8c19e1f7f409303416eab952d5d",
+    "case": "circus-streak-batch-save",
+    "events": 17,
+    "forced_identity_checks": 5,
+    "fresh_cores": 2,
+    "host_write_barriers": 7,
+    "input_only_after_guard": true,
+    "losses": 1,
+    "manual_saves": 1,
+    "owner_bytes_verified": 64,
+    "party_bytes_verified": 600,
+    "physical_admission_accepted": false,
+    "release_ready": false,
+    "save_counter_after": 3,
+    "save_counter_before": 2,
+    "schema_version": 1,
+    "status": "PASS_CIRCUS_STREAK_NATIVE",
+    "suppression_accepted": false,
+    "switches": 5,
+    "total_frames": 59703,
+    "turns": 49,
+    "warnings_errors": 0,
+    "wins": 2
+  },
+  "prerequisite_run": 35419024634,
+  "release_ready": false,
+  "schema_version": 1,
+  "suppression_accepted": false,
+  "three_win_accepted": false
+}
