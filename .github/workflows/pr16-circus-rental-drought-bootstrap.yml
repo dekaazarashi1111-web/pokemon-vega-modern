@@ -17,19 +17,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  bootstrap:
+  publish-nonworkflow:
     if: github.repository == 'dekaazarashi1111-web/pokemon-vega-modern' && github.ref == 'refs/heads/codex/modernization-followup-20260908'
     runs-on: ubuntu-24.04
-    timeout-minutes: 55
-    env:
-      GH_TOKEN: ${{ github.token }}
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0
 
-      - name: Decode reviewed tracked-text bundle
+      - name: Decode reviewed text and stage only non-workflow files
         run: |
           python3 - <<'PY'
           from pathlib import Path, PurePosixPath
@@ -45,8 +43,7 @@ jobs:
               'tools/mgba_pr16_circus_rental_drought.h',
           }
           packed = base64.b64decode(bundle.read_text().strip(), validate=True)
-          expected_hash = 'e412ac9f9d536f25c28b9bb04ae558aeb1310df7ef9bc53a1c467aa0d7dc9bc5'
-          if hashlib.sha256(packed).hexdigest() != expected_hash:
+          if hashlib.sha256(packed).hexdigest() != 'e412ac9f9d536f25c28b9bb04ae558aeb1310df7ef9bc53a1c467aa0d7dc9bc5':
               raise ValueError('bundle hash mismatch')
           with tarfile.open(fileobj=io.BytesIO(gzip.decompress(packed)), mode='r:') as archive:
               members = archive.getmembers()
@@ -64,19 +61,16 @@ jobs:
                   target.parent.mkdir(parents=True, exist_ok=True)
                   target.write_bytes(raw)
                   os.chmod(target, member.mode & 0o777)
-          # One extra trigger commit was required after registering the branch-local workflow.
           script = root / 'scripts/pr16_circus_rental_drought.py'
           text = script.read_text()
           old = "rev-list','--count',BASE+'..'+head)) in (1,3)"
-          new = "rev-list','--count',BASE+'..'+head)) in (1,4)"
+          new = "rev-list','--count',BASE+'..'+head)) in (1,6)"
           if text.count(old) != 1:
-              raise ValueError('bootstrap history guard preimage differs')
+              raise ValueError('history guard preimage differs')
           script.write_text(text.replace(old, new))
-          bundle.unlink()
-          (root / '.github/workflows/pr16-circus-rental-drought-bootstrap.yml').unlink()
           PY
 
-      - name: Verify and publish WIP without force
+      - name: Verify and publish five non-workflow files without force
         run: |
           set -euo pipefail
           python3 -m py_compile scripts/pr16_circus_rental_drought.py tests/test_pr16_circus_rental_drought.py
@@ -87,90 +81,15 @@ jobs:
             tests.test_pr16_circus_rental_boundary
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A -- \
-            content/modernization/pr16_circus_rental_drought_wip_bundle.b64 \
-            .github/workflows/pr16-circus-rental-drought-bootstrap.yml \
-            .github/workflows/pr16-circus-rental-drought.yml \
+          git add -- \
             scripts/pr16_circus_rental_drought.py \
             tests/test_pr16_circus_rental_drought.py \
             overlays/circus_streak/circus_drought_rental.h \
             tests/fixtures/circus_drought_rental_fixture.c \
             tools/mgba_pr16_circus_rental_drought.h
           git diff --cached --check
-          git commit -m 'USER-20260920-CIRCUS-RENTAL-DROUGHT-WIP: READY/6体Drought後継と検証を追加'
+          test "$(git diff --cached --name-only | wc -l)" -eq 5
+          git commit -m 'USER-20260920-CIRCUS-RENTAL-DROUGHT-WIP: READY/6体Drought後継の非workflow実装を追加'
           git fetch origin codex/modernization-followup-20260908
           test "$(git rev-parse origin/codex/modernization-followup-20260908)" = "${GITHUB_SHA}"
           git push origin HEAD:codex/modernization-followup-20260908
-
-      - name: Prepare narrow READY/6-rental repair
-        id: prepare
-        run: python3 scripts/pr16_circus_rental_drought.py prepare
-
-      - name: Build and run native continuation
-        run: python3 scripts/pr16_circus_rental_drought.py pipeline
-
-      - name: Record candidate, verification, handoff, and logs
-        if: always() && steps.prepare.outcome == 'success'
-        run: python3 scripts/pr16_circus_rental_drought.py finish
-
-      - name: Pack evidence without ROM or save
-        if: always() && steps.prepare.outcome == 'success'
-        run: python3 scripts/pr16_circus_rental_drought.py pack
-
-      - uses: actions/upload-artifact@v4
-        if: always() && steps.prepare.outcome == 'success'
-        with:
-          name: pr16-circus-rental-drought
-          path: .local/pr16-circus-finish-evidence/
-          include-hidden-files: true
-          if-no-files-found: error
-          retention-days: 30
-
-      - name: Pack tracked text for bounded follow-up
-        if: always()
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import hashlib, json, subprocess, zipfile
-          root = Path.cwd()
-          out = root / '.local/pr16-debug-source'
-          out.mkdir(parents=True, exist_ok=True)
-          names = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
-          exact = {'AGENTS.md', 'CHATGPT_RESUME.md', 'docs/PR16_NATIVE_SUPPLY_RESUME_20260913_JA.md', 'design/run_log.md', 'design/version_log.md'}
-          source_suffix = {'.py', '.c', '.h', '.S', '.ld', '.yml'}
-          evidence_suffix = {'.json', '.txt', '.stderr', '.stdout'}
-          selected = []
-          for name in names:
-              path = Path(name)
-              source = bool(path.parts) and path.parts[0] in {'scripts', 'tests', 'tools', 'overlays'} and path.suffix in source_suffix
-              source = source or (name.startswith('config/') and path.suffix in {'.json', '.csv'}) or path.name == 'AGENTS.md'
-              state = name.startswith('content/modernization/') and len(path.parts) == 3 and path.suffix == '.json'
-              evidence = name.startswith('evidence/pr16_circus_') and path.suffix in evidence_suffix
-              workflow = name.startswith('.github/workflows/pr16-circus-') and path.suffix == '.yml'
-              if not (source or state or evidence or workflow or name in exact):
-                  continue
-              raw = (root / path).read_bytes()
-              raw.decode('utf-8')
-              if b'\0' in raw:
-                  raise ValueError('binary tracked text')
-              selected.append((name, raw))
-          manifest = {
-              'source_head': subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode().strip(),
-              'dirty_tracked_paths': subprocess.check_output(['git', 'diff', '--name-only', 'HEAD']).decode().splitlines(),
-              'members': {name: {'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()} for name, raw in selected},
-          }
-          with zipfile.ZipFile(out / 'tracked-text.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
-              for name, raw in selected:
-                  archive.writestr(name, raw)
-              archive.writestr('snapshot-manifest.json', json.dumps(manifest, sort_keys=True, indent=2) + '\n')
-          print('tracked text members:', len(selected))
-          PY
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pr16-circus-debug-source
-          path: .local/pr16-debug-source/
-          include-hidden-files: true
-          if-no-files-found: error
-          retention-days: 7
