@@ -1,8 +1,10 @@
 """旧commitと一致する3ファイルだけを更新し、受入状態は保存する。"""
 from pathlib import Path
 import copy
+import importlib.util
 import sys
 import unittest
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 import pr16_circus_trace_bindings as b
 
@@ -32,5 +34,18 @@ class BindingTests(unittest.TestCase):
         with self.assertRaises(ValueError):b.refresh(state,old,old)
         out=b.refresh(state,old,new)
         with self.assertRaises(ValueError):b.refresh(out,old,new)
+    def test_configure_preserves_trace_import_identity_and_is_idempotent(self):
+        with patch.object(b.task,'FILES',b.task.FILES),patch.object(b.task,'WORKFLOW',b.task.WORKFLOW):
+            original=b.task.SELF
+            b.configure();first=b.task.FILES;b.configure()
+            self.assertEqual(b.task.SELF,original)
+            self.assertEqual(Path(b.task.__file__).resolve(),ROOT/b.task.SELF)
+            self.assertEqual(b.task.FILES,first)
+            for path in (b.SELF,b.TEST,b.WORKFLOW,original):self.assertEqual(first.count(path),1)
+            spec=importlib.util.spec_from_file_location('configured_trace_regression',ROOT/b.task.SELF)
+            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+            self.assertTrue(callable(module.policy_text))
+            self.assertTrue(callable(module.chained_native_source))
+            self.assertEqual(module.SELF,original)
 
 if __name__=='__main__':unittest.main()
