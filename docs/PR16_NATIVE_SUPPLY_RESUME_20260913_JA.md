@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-実2勝と第3戦launchは原本に保持。第3戦の任意交代でUI並替え前slotを使った停止を、メニュー表示後の個体再解決へ修復。
+3勝専用の新入力方策を実行し原本保存。途中敗北やlaunch停止を3勝に昇格せず、今回の実停止から修復を続ける。
 
-**次: 未完の実3勝/9BP/通常保存を検証し、同じ候補で中断ownerが失われる時点を読取専用で追跡。勝敗・抑制・release条件は緩めない。**
+**次: 実3勝・第2/第3launchの同一個体・9BP・Save/Continueを検証し、完了した証拠を再実行しない。続いて中断復帰、真正30連勝と正規特性抑制へ進む。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `8ebe9031a8a0755e98497a0250291130163f7448`。
+証拠のsource HEAD: `2437265a9573020690f1f96f023152dd9a99a49d`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
