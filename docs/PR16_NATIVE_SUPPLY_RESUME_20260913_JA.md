@@ -6,15 +6,15 @@
 
 ## いまの停止点と次の1手
 
-中断の正規Continue後にowner条件停止とSave counter4を確認。入力・勝敗・復旧条件を変更せず、frame委譲後の読取traceで失われる時点を限定する。
+第2戦中断の新規native原本を保存。未観測・失敗を受入にせず、原本の実停止から修復する。
 
-**次: 復旧traceから最初のowner/sector変化を特定し、必要なゲーム側修復と影響テストへ。3勝結果は別記録を継承し、影響なしに再実行しない。**
+**次: 完了済みの中断/敗北ケースを独立再実行せず、未完の実3勝・9BP、続いて真正30連勝と正規特性抑制へ進む。失敗時は中断reportから最初の不一致だけを修復。**
 
 次はCircusの最小実受付経路。完了した区切りを記録してから最終統合へ進む。merge/release/active baseline変更は行わない。
 
 branch: `codex/modernization-followup-20260908` / PR #16（記録時 open, draft=true）。
 
-証拠のsource HEAD: `93bb047e8f00e49fa845dea87653ccc6efdc5d8e`。
+証拠のsource HEAD: `1338ae5d72e43528a1139dbbe4cd64f9a04bee4d`。
 Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。
 
 ## 最短の再開手順
