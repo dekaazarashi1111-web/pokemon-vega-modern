@@ -13,7 +13,7 @@
     "bp_delta": 9,
     "bp_earned": 9,
     "cancellation_save_continue_accepted": true,
-    "current_stop": "実15勝/45BP/通常Save/fresh Continueを照合。第16戦は水先発の毒/混乱消耗と炎対面に草のみ残る順序を記録。15勝を保持し、16戦目以降だけ通常交代の選択と実個体照合を追加。",
+    "current_stop": "通常交代追加後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
     "earning_accepted": true,
     "earning_and_spending_accepted": true,
     "exchange_abi_repaired": true,
@@ -88,7 +88,7 @@
     "tested_head": "8df683fb7bbb6cea490ea8a97616b5171fe5383a"
   },
   "circus_continuous_followup": {
-    "classification": "CIRCUS_TACTICAL_PREPARED",
+    "classification": "CIRCUS_TACTICAL_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_tactical.json",
     "target_wins": 30
   },
@@ -138,7 +138,7 @@
     "path": "content/modernization/pr16_circus_loss_followup.json",
     "physical_admission_accepted": false,
     "run_id": 35429677248,
-    "source_head": "ddf42eb59a637c075be0051fb0f73b411f286bd2",
+    "source_head": "24dc800fe1b4cdd42151282919fb1145123ab090",
     "status": "CIRCUS_LOSS_MARKER_REPAIRED_NATIVE_DIAGNOSTIC_OPEN"
   },
   "circus_reentry_followup": {
@@ -196,7 +196,7 @@
     "tested_head": "37a2bf04d3947fd51a9d8ab88d47988fbf377af1"
   },
   "circus_tactical_followup": {
-    "classification": "CIRCUS_TACTICAL_PREPARED",
+    "classification": "CIRCUS_TACTICAL_FIRST_LOSS_SAVE_VERIFIED_TARGET_OPEN",
     "path": "content/modernization/pr16_circus_tactical.json",
     "previous_native_conclusion": "failure",
     "previous_native_run": 35428983641,
@@ -685,10 +685,10 @@
     ]
   },
   "observed_date_jst": "2026-09-19",
-  "observed_head": "ddf42eb59a637c075be0051fb0f73b411f286bd2",
+  "observed_head": "24dc800fe1b4cdd42151282919fb1145123ab090",
   "observed_head_checks": {
     "reason_ja": "旧run35391760500はfailure。今回runは記録時実行中であり全CI green/全体受入を主張しない。",
-    "scope_head": "ddf42eb59a637c075be0051fb0f73b411f286bd2"
+    "scope_head": "24dc800fe1b4cdd42151282919fb1145123ab090"
   },
   "observed_head_semantics": "Circus限定修復/記録source HEAD。正式BP checkpointと過去の失敗原本は維持。",
   "p08_resume_synchronized": true,
@@ -2335,8 +2335,8 @@
       "size": 29196
     },
     "content/modernization/pr16_circus_loss_followup.json": {
-      "sha256": "5a70b3e7aebb1cc8329ea6bb3f569dee87575a8e0a4f8bc435e84c356e17ada3",
-      "size": 132585
+      "sha256": "a338556a458156a703b3480802347bf8af2c2ea35bd33b71da7ce7e74f211980",
+      "size": 132613
     },
     "content/modernization/pr16_circus_loss_weather.json": {
       "sha256": "ec6774ad522b8253bafa40d1404d360a543259b1dcc010c5b079b2d945929a66",
@@ -2375,8 +2375,8 @@
       "size": 116174
     },
     "content/modernization/pr16_circus_tactical.json": {
-      "sha256": "72fa03006a1c6d45ea23fa31d6e7a7298e6100681d67e1a37db9b1f7c1d2c5a2",
-      "size": 1888
+      "sha256": "603e652db4f24d6f51c3900a9e39b75f0ce43bfa31ec09b3416074c1d8335761",
+      "size": 132909
     },
     "content/modernization/pr16_circus_three_win.json": {
       "sha256": "7cebe95b554709f2e88f949301d6601712cd6097d4531bb4d266bb5c8a40b9c4",
@@ -3385,6 +3385,34 @@
     "evidence/pr16_circus_streak/tests.stderr.txt": {
       "sha256": "03f7769e775a647ae7f6250cd16140a209d5e2606571d06e0d916d44d311b8f2",
       "size": 3466
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.process.json": {
+      "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
+      "size": 90
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stderr": {
+      "sha256": "3cbd649c95125f4a529f0fff0ada5777d83c5b917e7c0fff8b5eca516e675b86",
+      "size": 544253
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/circus-continuous-30-save.stdout": {
+      "sha256": "02ba9ab28d7704c7ef6dbaf307ee324247a22a7f72bd23336718e1880dbba4ba",
+      "size": 671
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/events.json": {
+      "sha256": "12c93be02ca1ba5ede13bafc1532f4134801e6c8c41d89476ead185f4cc9441c",
+      "size": 153580
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/report.json": {
+      "sha256": "109190f702c3b63a62e0c3755bb68ed1a5cf7d89542550c48e11fc0196e34906",
+      "size": 122232
+    },
+    "evidence/pr16_circus_tactical/35429677248/native/streak.json": {
+      "sha256": "02caedd0d395b32d0fa41686ef357ddfea9c0068127e5114a27d16f49ab0118a",
+      "size": 1051
+    },
+    "evidence/pr16_circus_tactical/35429677248/reconstruction.json": {
+      "sha256": "144dcf042dec77ed86063be33f8f07adb1f0ef0b1eacda1ce9846c783edd81bd",
+      "size": 249
     },
     "evidence/pr16_circus_three_win/35415727687/circus-streak-batch-save.process.json": {
       "sha256": "7b02b9d5c264acbc661cccf13aa56ffa8cc5900f76f846f7fb53d6c2b5e894bb",
@@ -5544,7 +5572,7 @@
     }
   },
   "source_bindings_policy_ja": "変更がある場合は結果の適用範囲を再評価して停止点を更新する。PASS目的だけでhashを書き換えない。全依存closureではなく次の作業の最小freshness guard。",
-  "source_change_review_ja": "実15勝/45BP/通常Save/fresh Continueを照合。第16戦は水先発の毒/混乱消耗と炎対面に草のみ残る順序を記録。15勝を保持し、16戦目以降だけ通常交代の選択と実個体照合を追加。",
+  "source_change_review_ja": "通常交代追加後の連続入場を記録: 実勝数15。勝敗/報酬/保存の実測と真正30勝ゲートを分離。最初の未解決停止から続ける。",
   "source_owner_audit": {
     "accepted_native_cases_replayed": 0,
     "candidate_rom_owner_verified": false,
